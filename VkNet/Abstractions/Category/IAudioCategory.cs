@@ -82,19 +82,19 @@ namespace VkNet.Abstractions.Category
 		/// <summary>
 		/// Удаляет альбом аудиозаписей.
 		/// </summary>
-		/// <param name="groupId">
-		/// Идентификатор сообщества, которому принадлежит альбом.
+		/// <param name="ownerId">
+		/// Идентификатор владельца (пользователь или сообщество).
 		/// </param>
-		/// <param name="albumId">
-		/// Идентификатор альбома.
+		/// <param name="playlistId">
+		/// Идентификатор плейлиста.
 		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/audio.deleteAlbum
+		/// Страница документации ВКонтакте -неизвестно-.
 		/// </remarks>
-		bool DeleteAlbum(long albumId, long? groupId = null);
+		bool DeletePlaylist(long ownerId, long playlistId);
 
 		/// <summary>
 		/// Редактирует данные аудиозаписи на странице пользователя или сообщества.

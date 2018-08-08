@@ -69,17 +69,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		[Obsolete(
-			"5.65 Методы audio.getAlbums, audio.addAlbum, audio.editAlbum, audio.deleteAlbum и audio.moveToAlbum устарели.")]
-		public bool DeleteAlbum(long albumId, long? groupId = null)
+		public bool DeletePlaylist(long ownerId, long playlistId)
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId },
-				{ "album_id", albumId }
+				{ "owner_id", ownerId },
+				{ "playlist_id", playlistId }
 			};
 
-			return _vk.Call<bool>("audio.deleteAlbum", parameters);
+			return _vk.Call<bool>("audio.deletePlaylist", parameters);
 		}
 
 		/// <inheritdoc />
