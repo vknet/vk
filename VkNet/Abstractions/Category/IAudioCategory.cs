@@ -39,22 +39,28 @@ namespace VkNet.Abstractions.Category
 		long Add(long audioId, long ownerId, long? groupId = null, long? albumId = null);
 
 		/// <summary>
-		/// Создает пустой альбом аудиозаписей.
+		/// Создает пустой плейлист.
 		/// </summary>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (если альбом нужно создать в сообществе).
+		/// <param name="ownerId">
+		/// Идентификатор владельца (пользователь или сообщество).
 		/// </param>
 		/// <param name="title">
-		/// Название альбома.
+		/// Название плейлиста.
+		/// </param>
+		/// <param name="description">
+		/// Описание плейлиста.
+		/// </param>
+		/// <param name="audioIds">
+		/// Идентификаторы аудиозаписей, которые необходимо добавить в альбом, в виде
+		/// {owner_id}_{audio_id}.
 		/// </param>
 		/// <returns>
-		/// После успешного выполнения возвращает идентификатор (album_id) созданного
-		/// альбома.
+		/// После успешного выполнения возвращает <see cref="AudioAlbum"/>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/audio.addAlbum
+		/// Страница документации ВКонтакте -неизвестно-.
 		/// </remarks>
-		long AddAlbum(string title, long? groupId = null);
+		AudioPlaylist CreatePlaylist(long ownerId, string title, string description = null, IEnumerable<string> audioIds = null);
 
 		/// <summary>
 		/// Удаляет аудиозапись со страницы пользователя или сообщества.
