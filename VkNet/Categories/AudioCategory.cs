@@ -87,20 +87,18 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		[Obsolete(
-			"5.65 Методы audio.getAlbums, audio.addAlbum, audio.editAlbum, audio.deleteAlbum и audio.moveToAlbum устарели.")]
-		public bool EditAlbum(string title, long albumId, long? groupId = null)
+		public bool EditPlaylist(long ownerId, int playlistId, string title, string description = null, IEnumerable<string> audioIds = null)
 		{
-			VkErrors.ThrowIfNullOrEmpty(() => title);
-
 			var parameters = new VkParameters
 			{
+				{ "owner_id", ownerId },
+				{ "playlist_id", playlistId },
 				{ "title", title },
-				{ "group_id", groupId },
-				{ "album_id", albumId }
+				{ "description", description },
+				{ "audio_ids", audioIds }
 			};
 
-			return _vk.Call<bool>("audio.editAlbum", parameters);
+			return _vk.Call<bool>("audio.editPlaylist", parameters);
 		}
 
 		/// <inheritdoc />

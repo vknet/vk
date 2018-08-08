@@ -110,24 +110,33 @@ namespace VkNet.Abstractions.Category
 		long Edit(AudioEditParams @params);
 
 		/// <summary>
-		/// Редактирует название альбома аудиозаписей.
+		/// Редактирует плейлист.
 		/// </summary>
-		/// <param name="groupId">
-		/// Идентификатор сообщества, которому принадлежит альбом.
+		/// <param name="ownerId">
+		/// Идентификатор владельца (пользователь или сообщество).
 		/// </param>
-		/// <param name="albumId">
-		/// Идентификатор альбома.
+		/// <param name="playlistId">
+		/// Идентификатор плейлиста.
 		/// </param>
 		/// <param name="title">
-		/// Новое название для альбома.
+		/// Новое название для плейлиста.
+		/// </param>
+		/// <param name="description">
+		/// Новое описание для плейлиста.
+		/// </param>
+		/// <param name="audioIds">
+		/// Идентификаторы аудиозаписей, в виде {owner_id}_{audio_id}.
+		/// Чтобы добавить аудиозаписи необходимо перечислить
+		/// идентификаторы всех имеющихся аудиозаписей в плейлисте + новые.
+		/// Не указывайте идентификаторы аудиозаписей, которые необходимо удалить.
 		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/audio.editAlbum
+		/// Страница документации ВКонтакте -неизвестно-.
 		/// </remarks>
-		bool EditAlbum(string title, long albumId, long? groupId = null);
+		bool EditPlaylist(long ownerId, int playlistId, string title, string description = null, IEnumerable<string> audioIds = null);
 
 		/// <summary>
 		/// Возвращает список аудиозаписей пользователя или сообщества.
