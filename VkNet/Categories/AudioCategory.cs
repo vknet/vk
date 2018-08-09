@@ -120,9 +120,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		[Obsolete(
-			"5.65 Методы audio.getAlbums, audio.addAlbum, audio.editAlbum, audio.deleteAlbum и audio.moveToAlbum устарели.")]
-		public VkCollection<AudioAlbum> GetAlbums(long? ownerId = null, uint? count = null, uint? offset = null)
+		public VkCollection<AudioPlaylist> GetPlaylists(long ownerId, uint? count = null, uint? offset = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -131,7 +129,7 @@ namespace VkNet.Categories
 				{ "count", count }
 			};
 
-			return _vk.Call<VkCollection<AudioAlbum>>("audio.getAlbums", parameters);
+			return _vk.Call<VkCollection<AudioPlaylist>>("audio.getPlaylists", parameters);
 		}
 
 		/// <inheritdoc />
