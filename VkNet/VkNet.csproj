@@ -60,7 +60,6 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
 		<PackageReference Include="System.Net.Http" Version="4.3.3" />
-		<PackageReference Include="Roslynator" Version="0.2.10" PrivateAssets="all"/>
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
 		<PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
