@@ -216,18 +216,16 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		[Obsolete(
-			"5.65 Методы audio.getAlbums, audio.addAlbum, audio.editAlbum, audio.deleteAlbum и audio.moveToAlbum устарели. ")]
-		public bool MoveToAlbum(long albumId, IEnumerable<long> audioIds, long? groupId = null)
+		public IEnumerable<long> AddToPlaylist(long ownerId, long playlistId, IEnumerable<long> audioIds)
 		{
 			var parameters = new VkParameters
 			{
-				{ "album_id", albumId },
-				{ "group_id", groupId },
+				{ "owner_id", ownerId },
+				{ "playlist_id", playlistId },
 				{ "audio_ids", audioIds }
 			};
 
-			return _vk.Call<bool>("audio.moveToAlbum", parameters);
+			return _vk.Call("audio.addToPlaylist", parameters).ToReadOnlyCollectionOf<long>(x => x["audio_id"]);
 		}
 
 		/// <inheritdoc />
