@@ -191,8 +191,8 @@ namespace VkNet.Abstractions.Category
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/audio.getBroadcastList
         /// </remarks>
-		UserOrGroup GetBroadcastList(AudioBroadcastFilter filter = null, bool? active = null);
-
+		IEnumerable<object> GetBroadcastList(AudioBroadcastFilter filter = null, bool? active = null);
+		
 		/// <summary>
 		/// Возвращает информацию об аудиозаписях.
 		/// </summary>

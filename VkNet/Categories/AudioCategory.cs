@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Category;
@@ -121,7 +120,7 @@ namespace VkNet.Categories
 		}
 
         /// <inheritdoc />
-        public UserOrGroup GetBroadcastList(AudioBroadcastFilter filter = null, bool? active = null)
+        public IEnumerable<object> GetBroadcastList(AudioBroadcastFilter filter = null, bool? active = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -129,7 +128,7 @@ namespace VkNet.Categories
 				{ "active", active }
 			};
 
-			return _vk.Call("audio.getBroadcastList", parameters);
+			return _vk.Call<ReadOnlyCollection<Audio>>("audio.getBroadcastList", parameters);
 		}
 
 		/// <inheritdoc />
