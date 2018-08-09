@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -38,5 +39,26 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("access_key")]
 		public string AccessKey { get; set; }
+
+	#region Методы
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static AudioAlbum FromJson(VkResponse response)
+		{
+			return new AudioAlbum
+			{
+				Id = response["id"],
+				OwnerId = response["owner_id"],
+				Title = response["title"],
+				Cover = response["thumb"],
+				AccessKey = response["access_key"]
+			};
+		}
+
+	#endregion
 	}
 }

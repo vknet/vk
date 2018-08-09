@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -13,11 +14,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор текста аудиозаписи.
 		/// </summary>
+		[JsonProperty("lyrics_id")]
 		public long Id { get; set; }
 
 		/// <summary>
 		/// Тест аудиозаписи. В качестве переводов строк в тексте используется '\n'.
 		/// </summary>
+		[JsonProperty("text")]
 		public string Text { get; set; }
 
 	#region Методы
@@ -31,8 +34,8 @@ namespace VkNet.Model
 		{
 			return new Lyrics
 			{
-					Id = response[key: "lyrics_id"]
-					, Text = response[key: "text"]
+				Id = response[key: "lyrics_id"],
+				Text = response[key: "text"]
 			};
 		}
 

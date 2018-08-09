@@ -110,6 +110,18 @@ namespace VkNet.Model
 		public AudioCover Cover { get; set; }
 
 		/// <summary>
+		/// Миниатюры плейлиста.
+		/// </summary>
+		[JsonProperty("thumbs")]
+		public IEnumerable<AudioCover> Covers { get; set; }
+
+		/// <summary>
+		/// Неизвестно.
+		/// </summary>
+		[JsonProperty("display_owner_ids")]
+		public IEnumerable<long> OwnerIds { get; set; }
+
+		/// <summary>
 		/// Ключ доступа.
 		/// </summary>
 		[JsonProperty("access_key")]

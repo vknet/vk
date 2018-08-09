@@ -1,10 +1,13 @@
+using System;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
 	/// <summary>
 	/// Обложка аудиоальбома.
 	/// </summary>
+	[Serializable]
 	public class AudioCover
 	{
 		/// <summary>
@@ -54,5 +57,31 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("height")]
 		public long Height { get; set; }
+
+	#region Методы
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static AudioCover FromJson(VkResponse response)
+		{
+			var album = new AudioCover
+			{
+				Photo34 = response["photo_34"],
+				Photo68 = response["photo_68"],
+				Photo135 = response["photo_135"],
+				Photo270 = response["photo_270"],
+				Photo300 = response["photo_300"],
+				Photo600 = response["photo_600"],
+				Width = response["width"],
+				Height = response["height"]
+			};
+
+			return album;
+		}
+
+	#endregion
 	}
 }
