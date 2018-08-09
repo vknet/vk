@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
+using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -485,9 +486,11 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long SetChatPhoto(out long messageId, string file)
 		{
+			var json = JObject.Parse(file);
+			var rawResponse = json["response"];
 			var parameters = new VkParameters
 			{
-				{ "file", file }
+				{ "file", rawResponse }
 			};
 
 			var result = _vk.Call(methodName: "messages.setChatPhoto", parameters: parameters);
