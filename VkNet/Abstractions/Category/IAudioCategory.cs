@@ -141,22 +141,15 @@ namespace VkNet.Abstractions.Category
 		/// <summary>
 		/// Возвращает список аудиозаписей пользователя или сообщества.
 		/// </summary>
-		/// <param name="user"> Данные о пользователе. </param>
 		/// <param name="params"> Параметры запроса. </param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов audio.
-		/// Если был задан параметр need_user=1, дополнительно возвращается объект user,
-		/// содержащий поля:
-		/// id — идентификатор пользователя;
-		/// photo — url фотографии профиля;
-		/// name — имя и фамилия пользователя;
-		/// name_gen — имя пользователя в родительном падеже.
 		/// Обратите внимание, что ссылки на mp3 привязаны к ip-адресу.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.get
 		/// </remarks>
-		IEnumerable<Audio> Get(AudioGetParams @params, out User user);
+		VkCollection<Audio> Get(AudioGetParams @params);
 
 		/// <summary>
 		/// Возвращает список плейлистов пользователя или группы.
@@ -179,25 +172,25 @@ namespace VkNet.Abstractions.Category
 		/// </remarks>
 		VkCollection<AudioPlaylist> GetPlaylists(long ownerId, uint? count = null, uint? offset = null);
 
-		/// <summary>
-		/// Возвращает список друзей и сообществ пользователя, которые транслируют музыку в
-		/// статус.
-		/// </summary>
-		/// <param name="filter">
-		/// Определяет, какие типы объектов необходимо получить.
-		/// </param>
-		/// <param name="active">
-		/// true — будут возвращены только друзья и сообщества, которые транслируют музыку в
-		/// данный момент.
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов друзей и сообществ с
-		/// дополнительным полем status_audio — объект аудиозаписи, установленной в статус
-		/// (если аудиозапись транслируется в текущей момент).
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/audio.getBroadcastList
-		/// </remarks>
+        /// <summary>
+        /// Возвращает список друзей и сообществ пользователя, которые транслируют музыку в
+        /// статус.
+        /// </summary>
+        /// <param name="filter">
+        /// Определяет, какие типы объектов необходимо получить.
+        /// </param>
+        /// <param name="active">
+        /// true — будут возвращены только друзья и сообщества, которые транслируют музыку в
+        /// данный момент.
+        /// </param>
+        /// <returns>
+        /// После успешного выполнения возвращает список объектов друзей и сообществ с
+        /// дополнительным полем status_audio — объект аудиозаписи, установленной в статус
+        /// (если аудиозапись транслируется в текущей момент).
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/audio.getBroadcastList
+        /// </remarks>
 		UserOrGroup GetBroadcastList(AudioBroadcastFilter filter = null, bool? active = null);
 
 		/// <summary>

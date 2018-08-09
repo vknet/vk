@@ -102,21 +102,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<Audio> Get(AudioGetParams @params, out User user)
+		public VkCollection<Audio> Get(AudioGetParams @params)
 		{
-			VkResponseArray response = _vk.Call("audio.get", @params);
-
-			IEnumerable<VkResponse> items = response.ToList();
-
-			user = null;
-
-			if (@params.NeedUser.HasValue && @params.NeedUser.Value && items.Any())
-			{
-				user = items.First();
-				items = items.Skip(1);
-			}
-
-			return items.ToReadOnlyCollectionOf<Audio>(r => r);
+			return _vk.Call<VkCollection<Audio>>("audio.get", @params);
 		}
 
 		/// <inheritdoc />
@@ -132,8 +120,8 @@ namespace VkNet.Categories
 			return _vk.Call<VkCollection<AudioPlaylist>>("audio.getPlaylists", parameters);
 		}
 
-		/// <inheritdoc />
-		public UserOrGroup GetBroadcastList(AudioBroadcastFilter filter = null, bool? active = null)
+        /// <inheritdoc />
+        public UserOrGroup GetBroadcastList(AudioBroadcastFilter filter = null, bool? active = null)
 		{
 			var parameters = new VkParameters
 			{
