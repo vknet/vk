@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums;
@@ -9,6 +10,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class UtilsCategoryTest : BaseTest
 	{
 		[Test]
@@ -98,7 +100,7 @@ namespace VkNet.Tests.Categories
 						'key': '6oOGVh',
 						'views': 0,
 						'access_key': 'a2760354e62e87ab13'
-					}, 
+					},
 					{
 						'timestamp': 1490038465,
 						'url': 'http://google.ru',

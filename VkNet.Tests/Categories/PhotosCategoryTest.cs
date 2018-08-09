@@ -12,6 +12,7 @@ namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[ExcludeFromCodeCoverage]
 	public class PhotosCategoryTest : BaseTest
 	{
 		public PhotoCategory GetMockedPhotosCategory(string url, string json)

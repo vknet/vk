@@ -14,6 +14,7 @@ namespace VkNet.Tests.Categories.Wall
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[ExcludeFromCodeCoverage]
 	public class WallCategoryTest : BaseTest
 	{
 		[SetUp]

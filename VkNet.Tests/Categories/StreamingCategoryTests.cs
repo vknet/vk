@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Categories
 {
+	[ExcludeFromCodeCoverage]
 	public class StreamingCategoryTests : BaseTest
 	{
 		[Test]

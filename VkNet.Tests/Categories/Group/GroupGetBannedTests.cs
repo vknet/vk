@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -6,6 +7,7 @@ using VkNet.Tests.Helper;
 
 namespace VkNet.Tests.Categories.Group
 {
+	[ExcludeFromCodeCoverage]
 	public class GroupGetBannedTests : BaseTest
 	{
 		[Test]

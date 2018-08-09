@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -14,6 +15,7 @@ using VkNet.Tests.Helper;
 namespace VkNet.Tests.Categories.Users
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class UsersCategoryTest : BaseTest
 	{
 		private const string Query = "Masha Ivanova";

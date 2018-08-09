@@ -1,10 +1,12 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Exception;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class StatusCategoryTest : BaseTest
 	{
 		private StatusCategory GetMockedStatusCategory(string url, string json)

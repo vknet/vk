@@ -1,10 +1,12 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Utils.JsonConverter
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class AttachmentJsonConverterTests : BaseTest
 	{
 		[Test]
@@ -12,7 +14,7 @@ namespace VkNet.Tests.Utils.JsonConverter
 		{
 			Json = @"
             {
-                'response': 
+                'response':
                 {
                     'id': 3,
                     'from_id': 32190123,

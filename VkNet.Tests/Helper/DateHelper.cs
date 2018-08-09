@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace VkNet.Tests.Helper
 {
+	[ExcludeFromCodeCoverage]
 	public static class DateHelper
 	{
 		public static DateTime TimeStampToDateTime(long timestamp)

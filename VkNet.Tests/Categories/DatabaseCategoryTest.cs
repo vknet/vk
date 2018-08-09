@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
@@ -9,6 +10,7 @@ using VkNet.Model.RequestParams.Database;
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class DatabaseCategoryTest : BaseTest
 	{
 		private DatabaseCategory GetMockedDatabaseCategory(string url, string json)

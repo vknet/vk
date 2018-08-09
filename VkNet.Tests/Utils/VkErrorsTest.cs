@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Utils;
@@ -6,6 +7,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class VkErrorsTest : BaseTest
 	{
 		private class TestClass

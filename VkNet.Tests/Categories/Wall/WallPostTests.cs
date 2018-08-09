@@ -1,10 +1,12 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories.Wall
 {
+	[ExcludeFromCodeCoverage]
 	public class WallPostTests : BaseTest
 	{
 		[Test]

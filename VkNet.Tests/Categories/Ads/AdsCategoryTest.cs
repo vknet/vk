@@ -9,6 +9,7 @@ namespace VkNet.Tests.Categories.Ads
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[ExcludeFromCodeCoverage]
 	public class AdsCategoryTest : BaseTest
 	{
 		[Test]

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -7,6 +8,7 @@ using VkNet.Enums.SafetyEnums;
 namespace VkNet.Tests.Categories.Friends
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class FriendsGetSuggestions : BaseTest
 	{
 		[Test]

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -13,6 +14,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class VideoCategoryTest : BaseTest
 	{
 		private VideoCategory GetMockedVideoCategory(string url, string json)
@@ -781,7 +783,7 @@ namespace VkNet.Tests.Categories
             'key' : 'method',
             'value' : 'video.save'
          },
-         
+
          {
             'key' : 'description',
             'value' : '123'

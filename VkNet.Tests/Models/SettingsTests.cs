@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Enums.Filters;
 
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class SettingsTests : BaseTest
 	{
 		[Test]

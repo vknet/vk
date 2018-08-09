@@ -1,10 +1,12 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Utils;
 
 namespace VkNet.Tests
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class VkAuthorizationTests
 	{
 		private const string Input =

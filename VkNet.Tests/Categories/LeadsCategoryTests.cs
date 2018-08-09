@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model.RequestParams.Leads;
 
 namespace VkNet.Tests.Categories
 {
+	[ExcludeFromCodeCoverage]
 	public class LeadsCategoryTests : BaseTest
 	{
 		[Test]
@@ -11,7 +13,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/leads.complete";
 
 			Json =
-					@"{
+				@"{
 					""response"": {
 						""limit"": 1000,
 						""day_limit"": 500,
@@ -39,7 +41,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/leads.start";
 
 			Json =
-					@"{
+				@"{
 					""response"": {
 						""test_mode"": 1,
 						""vk_sid"": ""vk_sid""
@@ -59,7 +61,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/leads.getUsers";
 
 			Json =
-					@"{
+				@"{
 					response: [
 						{
 							uid: 214402965,

@@ -16,6 +16,7 @@ namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[ExcludeFromCodeCoverage]
 	public class MessagesCategoryTest : BaseTest
 	{
 		public MessagesCategory Cat => GetMockedMessagesCategory();

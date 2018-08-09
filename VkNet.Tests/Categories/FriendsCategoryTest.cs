@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -10,6 +11,7 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class FriendsCategoryTest : BaseTest
 	{
 		private FriendsCategory GetMockedFriendsCategory(string url, string json)

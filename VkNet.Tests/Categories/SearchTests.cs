@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class SearchTests : BaseTest
 	{
 		[Test]
@@ -31,7 +33,7 @@ namespace VkNet.Tests.Categories
                             'section': 'groups',
                             'description': 'Группа, 320 437 участников',
                             'global': 1
-                        }, 
+                        },
                         {
                             'type': 'profile',
                             'profile': {

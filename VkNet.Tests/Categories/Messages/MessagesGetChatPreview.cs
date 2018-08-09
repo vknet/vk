@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Enums.Filters;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class MessagesGetChatPreview : BaseTest
 	{
 		[Test]
@@ -49,7 +51,7 @@ namespace VkNet.Tests.Categories.Messages
                         'emails': [{
                             id: 123,
                             address: 'qwe@qwe.ru'
-                        }],                        
+                        }],
                     }
                 }
             ";

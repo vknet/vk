@@ -7,6 +7,7 @@ namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[ExcludeFromCodeCoverage]
 	public class StatsTest : BaseTest
 	{
 		private StatsCategory GetMockedStatsCategory(string url, string json)

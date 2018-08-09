@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Utils
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class VkParametersTests
 	{
 		[Test]

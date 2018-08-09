@@ -1,10 +1,12 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Abstractions;
 using VkNet.Infrastructure;
 
 namespace VkNet.Tests
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class VkApiVersionManagerTests
 	{
 		[Test]

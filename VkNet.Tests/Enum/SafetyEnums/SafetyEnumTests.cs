@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -5,6 +6,7 @@ using VkNet.Enums.SafetyEnums;
 namespace VkNet.Tests.Enum.SafetyEnums
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class SafetyEnumsTest
 	{
 		[Test]

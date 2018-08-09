@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Utils;
@@ -6,6 +7,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Enum
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class EnumsTest
 	{
 		[Test]
