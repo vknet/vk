@@ -15,7 +15,6 @@ using Newtonsoft.Json.Linq;
 using NLog;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
-using VkNet.Abstractions.Category;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Categories;

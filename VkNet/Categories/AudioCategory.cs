@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
-using VkNet.Abstractions.Category;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -14,7 +13,7 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <inheritdoc />
-	public class AudioCategory : IAudioCategory
+	public partial class AudioCategory : IAudioCategory
 	{
 		private readonly IVkApiInvoke _vk;
 
@@ -128,7 +127,7 @@ namespace VkNet.Categories
 				{ "active", active }
 			};
 
-			return _vk.Call<ReadOnlyCollection<Audio>>("audio.getBroadcastList", parameters);
+			return _vk.Call<ReadOnlyCollection<object>>("audio.getBroadcastList", parameters);
 		}
 
 		/// <inheritdoc />

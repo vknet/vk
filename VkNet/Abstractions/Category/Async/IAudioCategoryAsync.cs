@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -9,11 +10,8 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
-	/// <inheritdoc />
-	/// <summary>
-	/// Методы для работы с аудиозаписями.
-	/// </summary>
-    public interface IAudioCategory : IAudioCategoryAsync
+	/// <inheritdoc cref="IAudioCategory"/>
+	public interface IAudioCategoryAsync
 	{
 		/// <summary>
 		/// Копирует аудиозапись на страницу пользователя или группы.
@@ -37,7 +35,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.add
 		/// </remarks>
-		long Add(long audioId, long ownerId, long? groupId = null, long? albumId = null);
+		Task<long> AddAsync(long audioId, long ownerId, long? groupId = null, long? albumId = null);
 
 		/// <summary>
 		/// Создает пустой плейлист.
@@ -61,7 +59,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте -неизвестно-.
 		/// </remarks>
-		AudioPlaylist CreatePlaylist(long ownerId, string title, string description = null, IEnumerable<string> audioIds = null);
+		Task<AudioPlaylist> CreatePlaylistAsync(long ownerId, string title, string description = null, IEnumerable<string> audioIds = null);
 
 		/// <summary>
 		/// Удаляет аудиозапись со страницы пользователя или сообщества.
@@ -78,7 +76,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.delete
 		/// </remarks>
-		bool Delete(long audioId, long ownerId);
+		Task<bool> DeleteAsync(long audioId, long ownerId);
 
 		/// <summary>
 		/// Удаляет альбом аудиозаписей.
@@ -95,7 +93,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте -неизвестно-.
 		/// </remarks>
-		bool DeletePlaylist(long ownerId, long playlistId);
+		Task<bool> DeletePlaylistAsync(long ownerId, long playlistId);
 
 		/// <summary>
 		/// Редактирует данные аудиозаписи на странице пользователя или сообщества.
@@ -108,7 +106,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.edit
 		/// </remarks>
-		long Edit(AudioEditParams @params);
+		Task<long> EditAsync(AudioEditParams @params);
 
 		/// <summary>
 		/// Редактирует плейлист.
@@ -137,7 +135,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте -неизвестно-.
 		/// </remarks>
-		bool EditPlaylist(long ownerId, int playlistId, string title, string description = null, IEnumerable<string> audioIds = null);
+		Task<bool> EditPlaylistAsync(long ownerId, int playlistId, string title, string description = null, IEnumerable<string> audioIds = null);
 
 		/// <summary>
 		/// Возвращает список аудиозаписей пользователя или сообщества.
@@ -150,7 +148,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.get
 		/// </remarks>
-		VkCollection<Audio> Get(AudioGetParams @params);
+		Task<VkCollection<Audio>> GetAsync(AudioGetParams @params);
 
 		/// <summary>
 		/// Возвращает список плейлистов пользователя или группы.
@@ -171,7 +169,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте -неизвестно-.
 		/// </remarks>
-		VkCollection<AudioPlaylist> GetPlaylists(long ownerId, uint? count = null, uint? offset = null);
+		Task<VkCollection<AudioPlaylist>> GetPlaylistsAsync(long ownerId, uint? count = null, uint? offset = null);
 
 		/// <summary>
 		/// Возвращает список друзей и сообществ пользователя, которые транслируют музыку в
@@ -192,7 +190,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.getBroadcastList
 		/// </remarks>
-		IEnumerable<object> GetBroadcastList(AudioBroadcastFilter filter = null, bool? active = null);
+		Task<IEnumerable<object>> GetBroadcastListAsync(AudioBroadcastFilter filter = null, bool? active = null);
 
 		/// <summary>
 		/// Возвращает информацию об аудиозаписях.
@@ -209,7 +207,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.getById
 		/// </remarks>
-		IEnumerable<Audio> GetById(IEnumerable<string> audios);
+		Task<IEnumerable<Audio>> GetByIdAsync(IEnumerable<string> audios);
 
 		/// <summary>
 		/// Возвращает количество аудиозаписей пользователя или сообщества.
@@ -228,7 +226,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.getCount
 		/// </remarks>
-		long GetCount(long ownerId);
+		Task<long> GetCountAsync(long ownerId);
 
 		/// <summary>
 		/// Возвращает текст аудиозаписи.
@@ -242,8 +240,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.getLyrics
 		/// </remarks>
-		Lyrics GetLyrics(long lyricsId);
-
+		Task<Lyrics> GetLyricsAsync(long lyricsId);
 
 		/// <summary>
 		/// Возвращает список аудиозаписей из раздела "Популярное".
@@ -269,7 +266,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.getPopular
 		/// </remarks>
-		IEnumerable<Audio> GetPopular(bool onlyEng = false, AudioGenre? genre = null, uint? count = null, uint? offset = null);
+		Task<IEnumerable<Audio>> GetPopularAsync(bool onlyEng = false, AudioGenre? genre = null, uint? count = null, uint? offset = null);
 
 		/// <summary>
 		/// Возвращает список рекомендуемых аудиозаписей на основе списка воспроизведения
@@ -307,19 +304,19 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.getRecommendations
 		/// </remarks>
-		VkCollection<Audio> GetRecommendations(string targetAudio = null, long? userId = null, uint? count = null,
+		Task<VkCollection<Audio>> GetRecommendationsAsync(string targetAudio = null, long? userId = null, uint? count = null,
 												uint? offset = null, bool? shuffle = null);
 
 		/// <summary>
 		/// Возвращает адрес сервера для загрузки аудиозаписей.
 		/// </summary>
 		/// <returns>
-		/// После успешного выполнения возвращает обьект <see cref="Uri"/>.
+		/// После успешного выполнения возвращает объект с единственным полем upload_url.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.getUploadServer
 		/// </remarks>
-		Uri GetUploadServer();
+		Task<Uri> GetUploadServerAsync();
 
 		/// <summary>
 		/// Перемещает аудиозаписи в плейлист.
@@ -340,7 +337,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте -неизвестно-
 		/// </remarks>
-		IEnumerable<long> AddToPlaylist(long ownerId, long playlistId, IEnumerable<long> audioIds);
+		Task<IEnumerable<long>> AddToPlaylistAsync(long ownerId, long playlistId, IEnumerable<long> audioIds);
 
 		/// <summary>
 		/// Изменяет порядок аудиозаписи, перенося ее между аудиозаписями, идентификаторы
@@ -365,7 +362,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.reorder
 		/// </remarks>
-		bool Reorder(long audioId, long? ownerId, long? before, long? after);
+		Task<bool> ReorderAsync(long audioId, long? ownerId, long? before, long? after);
 
 		/// <summary>
 		/// Восстанавливает аудиозапись после удаления.
@@ -385,7 +382,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.restore
 		/// </remarks>
-		Audio Restore(long audioId, long? ownerId = null);
+		Task<Audio> RestoreAsync(long audioId, long? ownerId = null);
 
 		/// <summary>
 		/// Сохраняет аудиозаписи после успешной загрузки.
@@ -400,7 +397,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.save
 		/// </remarks>
-		Audio Save(string response, string artist = null, string title = null);
+		Task<Audio> SaveAsync(string response, string artist = null, string title = null);
 
 		/// <summary>
 		/// Возвращает список аудиозаписей в соответствии с заданным критерием поиска.
@@ -414,8 +411,7 @@ namespace VkNet.Abstractions
 		/// содержащей Settings.Audio
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.search
 		/// </remarks>
-		VkCollection<Audio> Search(AudioSearchParams @params);
-
+		Task<VkCollection<Audio>> SearchAsync(AudioSearchParams @params);
 
 		/// <summary>
 		/// Транслирует аудиозапись в статус пользователю или сообществу.
@@ -439,6 +435,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.setBroadcast
 		/// </remarks>
-		IEnumerable<long> SetBroadcast(string audio = null, IEnumerable<long> targetIds = null);
+		Task<IEnumerable<long>> SetBroadcastAsync(string audio = null, IEnumerable<long> targetIds = null);
 	}
 }
