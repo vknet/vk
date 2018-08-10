@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using VkNet.Exception;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -59,7 +60,7 @@ namespace VkNet.Model
 					default:
 
 					{
-						throw new System.Exception(message: string.Format(format:
+						throw new VkApiException(message: string.Format(format:
 								"Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues"
 								, arg0: item[key: "type"]));
 					}

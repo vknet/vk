@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -7,6 +8,7 @@ using VkNet.Enums.SafetyEnums;
 namespace VkNet.Tests.Categories.Friends
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class FriendsGetSuggestions : BaseTest
 	{
 		[Test]
@@ -28,17 +30,17 @@ namespace VkNet.Tests.Categories.Friends
                 }
             }";
 
-			var result = Api.Friends.GetSuggestions(filter: FriendsFilter.Mutual
-					, count: 1
-					, offset: 0
-					, fields: UsersFields.Sex
-					, nameCase: NameCase.Gen);
+			var result = Api.Friends.GetSuggestions(FriendsFilter.Mutual
+					, 1
+					, 0
+					, UsersFields.Sex
+					, NameCase.Gen);
 
-			Assert.NotNull(anObject: result);
-			Assert.AreEqual(expected: 182, actual: result.TotalCount);
+			Assert.NotNull(result);
+			Assert.AreEqual(182, result.TotalCount);
 			var user = result.FirstOrDefault();
-			Assert.NotNull(anObject: user);
-			Assert.AreEqual(expected: Sex.Male, actual: user?.Sex);
+			Assert.NotNull(user);
+			Assert.AreEqual(Sex.Male, user.Sex);
 		}
 
 		[Test]
@@ -70,8 +72,8 @@ namespace VkNet.Tests.Categories.Friends
             }";
 
 			var result = Api.Friends.GetSuggestions();
-			Assert.NotNull(anObject: result);
-			Assert.AreEqual(expected: 3, actual: result.TotalCount);
+			Assert.NotNull(result);
+			Assert.AreEqual(3, result.TotalCount);
 		}
 	}
 }

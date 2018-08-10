@@ -1,9 +1,9 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model.Keyboard
 {
 	/// <summary>
 	/// Объект клавиатуры, отправляемой ботом.
@@ -22,7 +22,7 @@ namespace VkNet.Model
 		/// Массив кнопок отправляемых ботом, размером до 4х10
 		/// </summary>
 		[JsonProperty(propertyName: "buttons")]
-		public ReadOnlyCollection<ReadOnlyCollection<MessageKeyboardButton>> Buttons { get; set; }
+		public IEnumerable<IEnumerable<MessageKeyboardButton>> Buttons { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -37,6 +37,18 @@ namespace VkNet.Model
 				Buttons = response[key: "buttons"]
 					.ToReadOnlyCollectionOf(x => x.ToReadOnlyCollectionOf<MessageKeyboardButton>(y => y))
 			};
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator MessageKeyboard(VkResponse response)
+		{
+			return response.HasToken() ? FromJson(response) : null;
 		}
 	}
 }

@@ -276,11 +276,6 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Помечает сообщения как прочитанные.
 		/// </summary>
-		/// <param name="messageIds">
-		/// Идентификаторы сообщений. список положительных чисел, разделенных запятыми
-		/// (Список
-		/// положительных чисел, разделенных запятыми).
-		/// </param>
 		/// <param name="peerId">
 		/// Идентификатор чата или пользователя, если это диалог.
 		/// строка (Строка).
@@ -290,13 +285,16 @@ namespace VkNet.Abstractions
 		/// начиная с
 		/// данного. положительное число (Положительное число).
 		/// </param>
+		/// <param name="groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя).
+		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsRead
 		/// </remarks>
-		bool MarkAsRead(IEnumerable<long> messageIds, string peerId, long? startMessageId = null);
+		bool MarkAsRead(string peerId, long? startMessageId = null, long? groupId = null);
 
 		/// <summary>
 		/// Изменяет статус набора текста пользователем в диалоге.

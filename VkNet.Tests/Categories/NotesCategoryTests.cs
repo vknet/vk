@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model.RequestParams.Notes;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class NotesCategoryTests : BaseTest
 	{
 		[Test]

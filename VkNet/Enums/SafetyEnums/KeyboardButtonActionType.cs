@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using VkNet.Utils;
+﻿using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {

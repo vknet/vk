@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Ads
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class AdsCheckLinkTests : BaseTest
 	{
 		[Test]

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Exception;
@@ -5,6 +6,7 @@ using VkNet.Exception;
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class StatusCategoryTest : BaseTest
 	{
 		private StatusCategory GetMockedStatusCategory(string url, string json)
@@ -12,7 +14,7 @@ namespace VkNet.Tests.Categories
 			Json = json;
 			Url = url;
 
-			return new StatusCategory(vk: Api);
+			return new StatusCategory(Api);
 		}
 
 		[Test]
@@ -46,16 +48,17 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var status = GetMockedStatusCategory(url: url, json: json);
-			var ex = Assert.Throws<PermissionToPerformThisActionException>(code: () => status.Get(userId: 1));
-			Assert.That(actual: ex.Message, expression: Is.EqualTo(expected: "Permission to perform this action is denied"));
+			var status = GetMockedStatusCategory(url, json);
+			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
+			var ex = Assert.Throws<PermissionToPerformThisActionException>(() => status.Get(1));
+			Assert.That(ex.Message, Is.EqualTo("Permission to perform this action is denied"));
 		}
 
 		[Test]
 		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var status = new StatusCategory(vk: new VkApi());
-			Assert.That(del: () => status.Get(userId: 1), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+			var status = new StatusCategory(new VkApi());
+			Assert.That(() => status.Get(1), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -82,18 +85,17 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var status = GetMockedStatusCategory(url: url, json: json);
-			var actual = status.Get(userId: 1);
+			var status = GetMockedStatusCategory(url, json);
+			var actual = status.Get(1);
 
-			Assert.That(actual: actual, expression: Is.Not.Null);
-			Assert.That(actual: actual.Text, expression: Is.EqualTo(expected: "Тараканы! – Собачье Сердце"));
-			Assert.That(actual: actual.Audio, expression: Is.Not.Null);
-			Assert.That(actual: actual.Audio.Id, expression: Is.EqualTo(expected: 158073513));
-			Assert.That(actual: actual.Audio.OwnerId, expression: Is.EqualTo(expected: 4793858));
-			Assert.That(actual: actual.Audio.Artist, expression: Is.EqualTo(expected: "Тараканы!"));
-			Assert.That(actual: actual.Audio.Title, expression: Is.EqualTo(expected: "Собачье Сердце"));
-			Assert.That(actual: actual.Audio.Duration, expression: Is.EqualTo(expected: 230));
-
+			Assert.That(actual, Is.Not.Null);
+			Assert.That(actual.Text, Is.EqualTo("Тараканы! – Собачье Сердце"));
+			Assert.That(actual.Audio, Is.Not.Null);
+			Assert.That(actual.Audio.Id, Is.EqualTo(158073513));
+			Assert.That(actual.Audio.OwnerId, Is.EqualTo(4793858));
+			Assert.That(actual.Audio.Artist, Is.EqualTo("Тараканы!"));
+			Assert.That(actual.Audio.Title, Is.EqualTo("Собачье Сердце"));
+			Assert.That(actual.Audio.Duration, Is.EqualTo(230));
 			Assert.That(actual: actual.Audio.Url.OriginalString
 					, expression: Is.EqualTo(expected: "https://cs1-43v4/lR-RTwXXMk_q1RrO_-g"));
 
@@ -112,12 +114,12 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var status = GetMockedStatusCategory(url: url, json: json);
-			var actual = status.Get(userId: 1);
+			var status = GetMockedStatusCategory(url, json);
+			var actual = status.Get(1);
 
-			Assert.That(actual: actual, expression: Is.Not.Null);
-			Assert.That(actual: actual.Text, expression: Is.EqualTo(expected: "it really work!!!"));
-			Assert.That(actual: actual.Audio, expression: Is.Null);
+			Assert.That(actual, Is.Not.Null);
+			Assert.That(actual.Text, Is.EqualTo("it really work!!!"));
+			Assert.That(actual.Audio, Is.Null);
 		}
 
 		[Test]
@@ -151,15 +153,15 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var status = GetMockedStatusCategory(url: url, json: json);
-			Assert.That(del: () => status.Set(text: "test"), expr: Throws.InstanceOf<PermissionToPerformThisActionException>());
+			var status = GetMockedStatusCategory(url, json);
+			Assert.That(() => status.Set("test"), Throws.InstanceOf<PermissionToPerformThisActionException>());
 		}
 
 		[Test]
 		public void Set_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var status = new StatusCategory(vk: new VkApi());
-			Assert.That(del: () => status.Set(text: "test"), expr: Throws.InstanceOf<AccessTokenInvalidException>());
+			var status = new StatusCategory(new VkApi());
+			Assert.That(() => status.Set("test"), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -172,10 +174,10 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-			var status = GetMockedStatusCategory(url: url, json: json);
-			var result = status.Set(text: "test test test");
+			var status = GetMockedStatusCategory(url, json);
+			var result = status.Set("test test test");
 
-			Assert.That(actual: result, expression: Is.True);
+			Assert.That(result, Is.True);
 		}
 	}
 }

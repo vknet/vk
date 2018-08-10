@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Extensions.DependencyModel;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
@@ -12,6 +12,7 @@ using VkNet.Model.Attachments;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class ModelsTests
 	{
 		[Test]
@@ -19,26 +20,26 @@ namespace VkNet.Tests.Models
 		{
 			var models = typeof(VkApi).Assembly
 				.GetTypes()
-				.Where(predicate: t =>
+				.Where(t =>
 					t.Namespace != null
-					&& t.Namespace.StartsWith(value: "VkNet.Model")
+					&& t.Namespace.StartsWith("VkNet.Model")
 					&& t.GetProperties()
-						.Any(predicate: p =>
+						.Any(p =>
 							(
 								p.PropertyType == typeof(DateTime)
 								|| p.PropertyType == typeof(DateTime?)
 							)
-							&& p.GetCustomAttributes(attributeType: typeof(JsonConverterAttribute), inherit: false).Length
+							&& p.GetCustomAttributes(typeof(JsonConverterAttribute), false).Length
 							< 1));
 
 			var enumerable = models.ToList();
 
 			if (enumerable.Any())
 			{
-				Assert.Fail(message: string.Join(separator: Environment.NewLine, values: enumerable.Select(selector: x => x.FullName)));
+				Assert.Fail(string.Join(Environment.NewLine, enumerable.Select(x => x.FullName)));
 			}
 
-			Assert.IsEmpty(collection: enumerable);
+			Assert.IsEmpty(enumerable);
 		}
 
 		[Test]
@@ -46,25 +47,25 @@ namespace VkNet.Tests.Models
 		{
 			var models = typeof(VkApi).Assembly
 				.GetTypes()
-				.Where(predicate: t =>
+				.Where(t =>
 					t.Namespace != null
-					&& t.Namespace.StartsWith(value: "VkNet.Model")
+					&& t.Namespace.StartsWith("VkNet.Model")
 					&& t.GetProperties()
-						.Any(predicate: p =>
+						.Any(p =>
 							(
 								p.PropertyType == typeof(ReadOnlyCollection<Attachment>)
 							)
-							&& p.GetCustomAttributes(attributeType: typeof(JsonConverterAttribute), inherit: false).Length
+							&& p.GetCustomAttributes(typeof(JsonConverterAttribute), false).Length
 							< 1));
 
 			var enumerable = models.ToList();
 
 			if (enumerable.Any())
 			{
-				Assert.Fail(message: string.Join(separator: Environment.NewLine, values: enumerable.Select(selector: x => x.FullName)));
+				Assert.Fail(string.Join(Environment.NewLine, enumerable.Select(x => x.FullName)));
 			}
 
-			Assert.IsEmpty(collection: enumerable);
+			Assert.IsEmpty(enumerable);
 		}
 
 		[Test]
@@ -72,11 +73,11 @@ namespace VkNet.Tests.Models
 		{
 			var models = typeof(VkApi).Assembly
 				.GetTypes()
-				.Where(predicate: t =>
+				.Where(t =>
 					t.Namespace != null
-					&& t.Namespace.StartsWith(value: "VkNet.Model")
+					&& t.Namespace.StartsWith("VkNet.Model")
 					&& t.GetProperties()
-						.Any(predicate: p =>
+						.Any(p =>
 							(
 								!p.PropertyType.IsAbstract
 								&& !p.PropertyType.IsInterface
@@ -84,17 +85,17 @@ namespace VkNet.Tests.Models
 								&& p.PropertyType.BaseType.IsGenericType
 								&& p.PropertyType.BaseType.GetGenericTypeDefinition() == typeof(SafetyEnum<>)
 							)
-							&& p.GetCustomAttributes(attributeType: typeof(JsonConverterAttribute), inherit: false).Length
+							&& p.GetCustomAttributes(typeof(JsonConverterAttribute), false).Length
 							< 1));
 
 			var enumerable = models.ToList();
 
 			if (enumerable.Any())
 			{
-				Assert.Fail(message: string.Join(separator: Environment.NewLine, values: enumerable.Select(selector: x => x.FullName)));
+				Assert.Fail(string.Join(Environment.NewLine, enumerable.Select(x => x.FullName)));
 			}
 
-			Assert.IsEmpty(collection: enumerable);
+			Assert.IsEmpty(enumerable);
 		}
 
 		public static string AssemblyDirectory

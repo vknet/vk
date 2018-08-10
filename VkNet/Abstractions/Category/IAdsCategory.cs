@@ -853,7 +853,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getUploadURl
 		/// </remarks>
-		Uri GetUploadURL(long adFormat);
+		Uri GetUploadUrl(long adFormat);
 
 		/// <summary>
 		/// Возвращает URL-адрес для загрузки видеозаписи рекламного объявления.
@@ -864,7 +864,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getVideoUploadURl
 		/// </remarks>
-		Uri GetVideoUploadURL();
+		Uri GetVideoUploadUrl();
 
 		/// <summary>
 		/// Импортирует список контактов рекламодателя для учета зарегистрированных во ВКонтакте пользователей в аудитории ретаргетинга.

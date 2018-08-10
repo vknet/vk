@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Enums.Filters;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class MessagesGetChatPreview : BaseTest
 	{
 		[Test]
@@ -49,21 +51,21 @@ namespace VkNet.Tests.Categories.Messages
                         'emails': [{
                             id: 123,
                             address: 'qwe@qwe.ru'
-                        }],                        
+                        }],
                     }
                 }
             ";
 
-			var result = Api.Messages.GetChatPreview(link: "http://vk.com", fields: ProfileFields.About);
-			Assert.NotNull(anObject: result);
-			Assert.That(actual: result.Emails, expression: Is.Not.Empty);
-			Assert.That(actual: result.Groups, expression: Is.Not.Empty);
-			Assert.That(actual: result.Profiles, expression: Is.Not.Empty);
-			Assert.That(actual: result.Preview, expression: Is.Not.Null);
-			Assert.That(actual: result.Preview.LocalId, expression: Is.EqualTo(expected: 43));
-			Assert.That(actual: result.Preview.Title, expression: Is.EqualTo(expected: "qwe"));
-			Assert.That(actual: result.Preview.AdminId, expression: Is.EqualTo(expected: 123));
-			Assert.That(actual: result.Preview.Members, expression: Is.Not.Empty);
+			var result = Api.Messages.GetChatPreview("http://vk.com", ProfileFields.About);
+			Assert.NotNull(result);
+			Assert.That(result.Emails, Is.Not.Empty);
+			Assert.That(result.Groups, Is.Not.Empty);
+			Assert.That(result.Profiles, Is.Not.Empty);
+			Assert.That(result.Preview, Is.Not.Null);
+			Assert.That(result.Preview.LocalId, Is.EqualTo(43));
+			Assert.That(result.Preview.Title, Is.EqualTo("qwe"));
+			Assert.That(result.Preview.AdminId, Is.EqualTo(123));
+			Assert.That(result.Preview.Members, Is.Not.Empty);
 		}
 	}
 }

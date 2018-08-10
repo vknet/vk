@@ -1,10 +1,12 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
+	[ExcludeFromCodeCoverage]
 	public class ExecuteCategoryTest : BaseTest
 	{
 		[Test]
@@ -18,8 +20,8 @@ namespace VkNet.Tests.Categories
 			const string code =
 					@"return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name;";
 
-			var result = Api.Execute.Execute(code: code);
-			Assert.That(actual: result.RawJson, expression: Is.EqualTo(expected: Json));
+			var result = Api.Execute.Execute(code);
+			Assert.That(result.RawJson, Is.EqualTo(Json));
 		}
 
 		[Test]
@@ -43,8 +45,8 @@ namespace VkNet.Tests.Categories
 			const string code =
 					@"return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name;";
 
-			var result = Api.Execute.Execute<TopicsFeed>(code: code);
-			Assert.That(actual: result, expression: Is.Not.Null);
+			var result = Api.Execute.Execute<TopicsFeed>(code);
+			Assert.That(result, Is.Not.Null);
 		}
 
 		[Test]
@@ -66,10 +68,10 @@ namespace VkNet.Tests.Categories
 			const string code =
 					@"return API.database.getUniversities({""country_id"": 1, ""city_id"": 2, ""q"": ""СПб"", count: 1}); ";
 
-			var result = Api.Execute.Execute<VkCollection<University>>(code: code);
-			Assert.That(actual: result, expression: Is.Not.Null);
-			Assert.That(actual: result.TotalCount, expression: Is.EqualTo(expected: 93));
-			Assert.That(actual: result, expression: Is.Not.Empty);
+			var result = Api.Execute.Execute<VkCollection<University>>(code);
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.TotalCount, Is.EqualTo(93));
+			Assert.That(result, Is.Not.Empty);
 		}
 
 		[Test]
@@ -101,7 +103,7 @@ namespace VkNet.Tests.Categories
 			const string code =
 					@"return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name";
 
-			Assert.That(del: () => Api.Execute.Execute(code: code), expr: Throws.InstanceOf<VkApiException>());
+			Assert.That(() => Api.Execute.Execute(code), Throws.InstanceOf<VkApiException>());
 		}
 	}
 }

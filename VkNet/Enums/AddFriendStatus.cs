@@ -12,6 +12,7 @@ namespace VkNet.Enums
 		/// <summary>
 		/// Статус в случае ошибки ответа
 		/// </summary>
+		// ReSharper disable once S2346
 		[DefaultValue]
 		Unknown = 0
 

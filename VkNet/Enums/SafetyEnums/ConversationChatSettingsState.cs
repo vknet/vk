@@ -2,6 +2,9 @@
 
 namespace VkNet.Enums.SafetyEnums
 {
+	/// <summary>
+	/// Настройки беседы
+	/// </summary>
 	[Serializable]
 	public class ConversationChatSettingsState : SafetyEnum<ConversationChatSettingsState>
 	{

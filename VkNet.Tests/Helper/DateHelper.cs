@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace VkNet.Tests.Helper
 {
+	[ExcludeFromCodeCoverage]
 	public static class DateHelper
 	{
 		public static DateTime TimeStampToDateTime(long timestamp)
 		{
-			var dt = new DateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, millisecond: 0, kind: DateTimeKind.Utc);
+			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
 
-			return dt.AddSeconds(value: timestamp);
+			return dt.AddSeconds(timestamp);
 		}
 
 		/// <summary>
@@ -18,7 +20,7 @@ namespace VkNet.Tests.Helper
 		/// <returns> Строковое представление даты в формате "DD.MM.YYYY" </returns>
 		public static string ToShortDateString(this DateTime dateTime)
 		{
-			return dateTime.ToString(format: "DD.MM.YYYY");
+			return dateTime.ToString("DD.MM.YYYY");
 		}
 	}
 }

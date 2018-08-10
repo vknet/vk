@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using NUnit.Framework;
 using VkNet.Model;
@@ -8,27 +9,28 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class UtilitiesTests
 	{
 		[Test]
 		public void JsonConvert()
 		{
-			var result = Utilities.SerializeToJson(@object: new User
+			var result = Utilities.SerializeToJson(new User
 			{
 				FirstName = "Maxim",
 				LastName = "Inyutin"
 			});
 
-			Assert.AreNotEqual(expected: result, actual: "{}");
-			var attribute = Attribute.GetCustomAttribute(element: typeof(User), attributeType: typeof(DataContractAttribute));
-			Assert.That(actual: attribute, expression: Is.Null);
+			Assert.AreNotEqual(result, "{}");
+			var attribute = Attribute.GetCustomAttribute(typeof(User), typeof(DataContractAttribute));
+			Assert.That(attribute, Is.Null);
 		}
 
 		[Test]
 		public void JsonConvertWrite()
 		{
-			var vkCollection = new VkCollection<User>(totalCount: 10,
-				list: new List<User>
+			var vkCollection = new VkCollection<User>(10,
+				new List<User>
 				{
 					new User
 					{
@@ -44,10 +46,10 @@ namespace VkNet.Tests.Utils
 					}
 				});
 
-			var result = Utilities.SerializeToJson(@object: vkCollection);
-			Assert.AreNotEqual(expected: result, actual: "{}");
-			var attribute = Attribute.GetCustomAttribute(element: typeof(VkCollection<>), attributeType: typeof(DataContractAttribute));
-			Assert.That(actual: attribute, expression: Is.Null);
+			var result = Utilities.SerializeToJson(vkCollection);
+			Assert.AreNotEqual(result, "{}");
+			var attribute = Attribute.GetCustomAttribute(typeof(VkCollection<>), typeof(DataContractAttribute));
+			Assert.That(attribute, Is.Null);
 		}
 	}
 }

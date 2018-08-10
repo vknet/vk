@@ -85,7 +85,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getSMSHistory
 		/// </remarks>
-		IEnumerable<object> GetSMSHistory(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null, ulong? limit = null);
+		IEnumerable<object> GetSmsHistory(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null, ulong? limit = null);
 
 		/// <summary>
 		/// Выводит историю транзакций по переводу голосов между пользователями и приложением.
@@ -150,7 +150,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.sendSMSNotification
 		/// </remarks>
-		bool SendSMSNotification(ulong userId, string message);
+		bool SendSmsNotification(ulong userId, string message);
 
 		/// <summary>
 		/// Устанавливает счетчик, который выводится пользователю жирным шрифтом в левом меню.

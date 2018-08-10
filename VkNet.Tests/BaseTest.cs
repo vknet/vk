@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Threading.Tasks;
 using Moq;
@@ -19,6 +20,7 @@ namespace VkNet.Tests
 	/// TODO: V3072 http://www.viva64.com/en/w/V3072 The 'BaseTest' class containing
 	/// IDisposable members does not itself implement IDisposable. Inspect: Api.
 	/// </remarks>
+	[ExcludeFromCodeCoverage]
 	public abstract class BaseTest
 	{
 		/// <summary>

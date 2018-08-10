@@ -155,7 +155,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.sendSMSNotification
 		/// </remarks>
-		Task<bool> SendSMSNotificationAsync(ulong userId, string message);
+		Task<bool> SendSmsNotificationAsync(ulong userId, string message);
 
 		/// <summary>
 		/// Устанавливает счетчик, который выводится пользователю жирным шрифтом в левом меню.

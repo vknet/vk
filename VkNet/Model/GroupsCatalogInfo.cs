@@ -13,7 +13,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Список категорий.
 		/// </summary>
-		public IEnumerable<CategoryGroup> Categories;
+		public IEnumerable<CategoryGroup> Categories { get; set; }
 
 		/// <summary>
 		/// Признак доступности каталога для пользователя.
@@ -29,8 +29,8 @@ namespace VkNet.Model
 		{
 			var result = new GroupsCatalogInfo
 			{
-					Enabled = response[key: "enabled"]
-					, Categories = response[key: "categories"].ToReadOnlyCollectionOf<CategoryGroup>(selector: o => o)
+				Enabled = response[key: "enabled"],
+				Categories = response[key: "categories"].ToReadOnlyCollectionOf<CategoryGroup>(selector: o => o)
 			};
 
 			return result;

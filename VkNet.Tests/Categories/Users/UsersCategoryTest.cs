@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -11,9 +12,10 @@ using VkNet.Exception;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Users
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class UsersCategoryTest : BaseTest
 	{
 		private const string Query = "Masha Ivanova";
@@ -71,6 +73,7 @@ namespace VkNet.Tests.Categories
                   }";
 
 			var users = GetMockedUsersCategory(url, json);
+			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
 			var ex = Assert.Throws<UserAuthorizationFailException>(() => users.Get(1));
 			Assert.That(ex.Message, Is.EqualTo("User authorization failed: invalid access_token."));
 		}

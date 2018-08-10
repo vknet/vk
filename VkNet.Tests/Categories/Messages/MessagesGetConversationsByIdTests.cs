@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class MessagesGetConversationsByIdTests : BaseTest
 	{
 		[Test]

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
+using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -79,18 +80,13 @@ namespace VkNet.Categories
 		[Pure]
 		public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, uint? previewLength = null)
 		{
-			if (!messageIds.Any())
-			{
-				throw new System.Exception(message: "messageIds не может быть пустой");
-			}
-
-			var parameters = new VkParameters
-			{
-				{ "message_ids", messageIds },
-				{ "preview_length", previewLength }
-			};
-
-			return _vk.Call(methodName: "messages.getById", parameters: parameters).ToVkCollectionOf<Message>(selector: r => r);
+			return _vk.Call(methodName: "messages.getById",
+					parameters: new VkParameters
+					{
+						{ "message_ids", messageIds },
+						{ "preview_length", previewLength }
+					})
+				.ToVkCollectionOf<Message>(selector: r => r);
 		}
 
 		/// <inheritdoc />
@@ -119,42 +115,18 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<Message> Search(MessagesSearchParams @params)
 		{
-			if (string.IsNullOrWhiteSpace(value: @params.Query))
-			{
-				throw new ArgumentException(message: "Query can not be null or empty.", paramName: nameof(@params.Query));
-			}
-
 			return _vk.Call(methodName: "messages.search", parameters: @params).ToVkCollectionOf<Message>(selector: r => r);
 		}
 
 		/// <inheritdoc />
 		public long Send(MessagesSendParams @params)
 		{
-			if (string.IsNullOrEmpty(value: @params.Message) && @params.Attachments == null)
-			{
-				throw new ArgumentException(message: "Message can not be null.", paramName: nameof(@params.Message));
-			}
-
-			if (@params.UserIds != null)
-			{
-				throw new ArgumentException(
-					message: "Для отправки сообщения нескольким пользователям используйте метод SendToUserIds(MessagesSendParams).",
-					paramName: nameof(@params.Message));
-			}
-
 			return _vk.Call(methodName: "messages.send", parameters: @params);
 		}
 
 		/// <inheritdoc />
 		public ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params)
 		{
-			if (@params.UserIds == null)
-			{
-				throw new ArgumentException(
-					message: "Для отправки сообщения одному пользователю или в беседу используйте метод Send(MessagesSendParams).",
-					paramName: nameof(@params.Message));
-			}
-
 			return _vk.Call(methodName: "messages.send", parameters: @params).ToReadOnlyCollectionOf<MessagesSendResult>(selector: x => x);
 		}
 
@@ -304,11 +276,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool MarkAsRead(IEnumerable<long> messageIds, string peerId, long? startMessageId = null)
+		public bool MarkAsRead(string peerId, long? startMessageId = null, long? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
-				{ "message_ids", messageIds },
 				{ "peer_id", peerId },
 				{ "start_message_id", startMessageId }
 			};
@@ -515,9 +486,11 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long SetChatPhoto(out long messageId, string file)
 		{
+			var json = JObject.Parse(file);
+			var rawResponse = json["response"];
 			var parameters = new VkParameters
 			{
-				{ "file", file }
+				{ "file", rawResponse }
 			};
 
 			var result = _vk.Call(methodName: "messages.setChatPhoto", parameters: parameters);

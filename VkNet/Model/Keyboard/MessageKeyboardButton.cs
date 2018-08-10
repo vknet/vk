@@ -4,7 +4,7 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model
+namespace VkNet.Model.Keyboard
 {
 	/// <summary>
 	/// Кнопка клавиатуры, отправляемая ботом.
@@ -38,6 +38,18 @@ namespace VkNet.Model
 				Action = response[key: "action"],
 				Color = response[key: "color"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator MessageKeyboardButton(VkResponse response)
+		{
+			return response.HasToken() ? FromJson(response) : null;
 		}
 	}
 }

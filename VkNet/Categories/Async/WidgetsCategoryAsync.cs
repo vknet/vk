@@ -9,9 +9,9 @@ namespace VkNet.Categories
 	public partial class WidgetsCategory
 	{
 		/// <inheritdoc />
-		public Task<VkCollection<Comment>> GetCommentsAsync(GetCommentsParams getComments)
+		public Task<VkCollection<Comment>> GetCommentsAsync(GetCommentsParams getCommentsParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetComments(getCommentsParams: getComments));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetComments(getCommentsParams: getCommentsParams));
 		}
 
 		/// <inheritdoc />

@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class StorageCategoryTests : BaseTest
 	{
 		[Test]
@@ -17,9 +19,9 @@ namespace VkNet.Tests.Categories
 			}";
 
 			Url = "https://api.vk.com/method/storage.get";
-			var result = Api.Storage.Get(keys: new[] { "qwe" });
-			Assert.NotNull(anObject: result);
-			Assert.IsNotEmpty(collection: result);
+			var result = Api.Storage.Get(new[] { "qwe" });
+			Assert.NotNull(result);
+			Assert.IsNotEmpty(result);
 		}
 
 		[Test]
@@ -32,8 +34,8 @@ namespace VkNet.Tests.Categories
 
 			Url = "https://api.vk.com/method/storage.getKeys";
 			var result = Api.Storage.GetKeys();
-			Assert.NotNull(anObject: result);
-			Assert.IsNotEmpty(collection: result);
+			Assert.NotNull(result);
+			Assert.IsNotEmpty(result);
 		}
 
 		[Test]
@@ -45,8 +47,8 @@ namespace VkNet.Tests.Categories
 			}";
 
 			Url = "https://api.vk.com/method/storage.set";
-			var result = Api.Storage.Set(key: "qwe", value: "qwe");
-			Assert.True(condition: result);
+			var result = Api.Storage.Set("qwe", "qwe");
+			Assert.True(result);
 		}
 	}
 }

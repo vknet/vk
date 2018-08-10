@@ -148,28 +148,28 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список городов.
 		/// </summary>
-		/// <param name="params"> Параметры запроса database.getCities </param>
+		/// <param name="getCitiesParams"> Параметры запроса database.getCities </param>
 		/// <returns> Cписок городов </returns>
 		/// <remarks>
 		/// Возвращает коллекцию городов, каждый из которых содержит поля City.Id
 		/// При наличии информации о регионе и/или области, в которых находится данный
 		/// город, в объекте могут дополнительно
 		/// включаться поля City.Area
-		/// Если не задан параметр <paramref name="params.query" />, то будет возвращен
+		/// Если не задан параметр <paramref name="getCitiesParams.query" />, то будет возвращен
 		/// список самых крупных городов в заданной
 		/// стране.
-		/// Если задан параметр <paramref name="params.query" />, то будет возвращен список
+		/// Если задан параметр <paramref name="getCitiesParams.query" />, то будет возвращен список
 		/// городов, которые релевантны
 		/// поисковому запросу.
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getCities
 		/// </remarks>
 		[Pure]
-		public VkCollection<City> GetCities(GetCitiesParams @params)
+		public VkCollection<City> GetCities(GetCitiesParams getCitiesParams)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.CountryId);
-			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.RegionId);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => getCitiesParams.CountryId);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => getCitiesParams.RegionId);
 
-			return _vk.Call(methodName: "database.getCities", parameters: @params, skipAuthorization: true)
+			return _vk.Call(methodName: "database.getCities", parameters: getCitiesParams, skipAuthorization: true)
 					.ToVkCollectionOf<City>(selector: x => x);
 		}
 

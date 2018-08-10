@@ -44,17 +44,17 @@ namespace VkNet.Utils
 		/// </summary>
 		private void BugFixCookieDomain()
 		{
-			var table = (IDictionary) Container.GetType()
-				#if NET40
-					.InvokeMember(name: "m_domainTable"
-							, invokeAttr: BindingFlags.NonPublic|BindingFlags.GetField|BindingFlags.Instance
-							, binder: null
-							, target: Container
-							, args: new object[] {});
+			var table = Container.GetType()
+			#if NET40
+				.InvokeMember(name: "m_domainTable"
+					, invokeAttr: BindingFlags.NonPublic|BindingFlags.GetField|BindingFlags.Instance
+					, binder: null
+					, target: Container
+					, args: new object[] {}) as IDictionary;
 		#else
 					.GetRuntimeFields()
 					.FirstOrDefault(predicate: x => x.Name == "m_domainTable" || x.Name == "_domainTable")
-					?.GetValue(obj: Container);
+					?.GetValue(obj: Container) as IDictionary;
 		#endif
 
 			if (table == null)

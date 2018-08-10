@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Model.RequestParams.Stories;
@@ -6,6 +7,7 @@ using VkNet.Model.RequestParams.Stories;
 namespace VkNet.Tests.Categories.Story
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class StoriesGetTests : BaseTest
 	{
 		[Test]
@@ -91,8 +93,8 @@ namespace VkNet.Tests.Categories.Story
 		{
 			Url = "https://api.vk.com/method/stories.getPhotoUploadServer";
 
-			Json = @"{  
-					   'response':{  
+			Json = @"{
+					   'response':{
 					      'upload_url':'https://pu.vk.com/Tk0YjM0MjRmNzA5NSJ9',
 					      'peer_ids':[]
 					   }

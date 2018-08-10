@@ -4,6 +4,9 @@ using Newtonsoft.Json.Converters;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Члены обсуждения
+	/// </summary>
 	[Serializable]
 	public class ConversationMember
 	{

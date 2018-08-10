@@ -47,32 +47,32 @@
 		<OutputPath>..\Build\Release\</OutputPath>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="AsyncFixer" Version="1.1.6" PrivateAssets="all"/>
-		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all"/>
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="7.3.0.5690"/>
-		<PackageReference Include="JetBrains.Annotations" Version="2018.2.1" PrivateAssets="all"/>
+		<PackageReference Include="AsyncFixer" Version="1.1.6" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="7.3.1.5982" PrivateAssets="all" />
+		<PackageReference Include="JetBrains.Annotations" Version="2018.2.1" PrivateAssets="all" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="HtmlAgilityPack" Version="1.8.5"/>
-		<PackageReference Include="Newtonsoft.Json" Version="11.0.2"/>
-		<PackageReference Include="NLog" Version="4.5.7"/>
+		<PackageReference Include="HtmlAgilityPack" Version="1.8.5" />
+		<PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+		<PackageReference Include="NLog" Version="4.5.8"/>
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1"/>
-		<PackageReference Include="System.Net.Http" Version="4.3.3"/>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+		<PackageReference Include="System.Net.Http" Version="4.3.3" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
-		<PackageReference Include="Microsoft.Bcl" Version="1.1.10"/>
-		<PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168"/>
-		<PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21"/>
-		<PackageReference Include="Microsoft.Net.Http" Version="2.2.29"/>
-		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="2.0.1"/>
+		<PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
+		<PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168" />
+		<PackageReference Include="Microsoft.Bcl.Build" Version="[1.0.14]" />
+		<PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="2.0.1" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="2.0.1"/>
-		<PackageReference Include="System.Net.Http" Version="4.3.3"/>
+		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="2.0.1" />
+		<PackageReference Include="System.Net.Http" Version="4.3.3" />
 	</ItemGroup>
 	<ItemGroup>
-		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}"/>
+		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
 	</ItemGroup>
 </Project>

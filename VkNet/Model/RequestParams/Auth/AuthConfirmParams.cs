@@ -1,5 +1,4 @@
 ﻿using System;
-using JetBrains.Annotations;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -19,7 +18,6 @@ namespace VkNet.Model.RequestParams
 		/// Секретный ключ приложения, доступный в резделе редактирования приложения.
 		/// строка, обязательный параметр.
 		/// </summary>
-		[NotNull]
 		public string ClientSecret { get; set; }
 
 		/// <summary>
@@ -27,13 +25,11 @@ namespace VkNet.Model.RequestParams
 		/// заранее методом auth.checkPhone.
 		/// строка, обязательный параметр.
 		/// </summary>
-		[NotNull]
 		public string Phone { get; set; }
 
 		/// <summary>
 		/// Код, отправленный пользователю по SMS. строка, обязательный параметр.
 		/// </summary>
-		[NotNull]
 		public string Code { get; set; }
 
 		/// <summary>
@@ -66,13 +62,13 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-					{ "client_id", p.ClientId }
-					, { "client_secret", p.ClientSecret }
-					, { "phone", p.Phone }
-					, { "code", p.Code }
-					, { "password", p.Password }
-					, { "test_mode", p.TestMode }
-					, { "intro", p.Intro }
+				{ "client_id", p.ClientId },
+				{ "client_secret", p.ClientSecret },
+				{ "phone", p.Phone },
+				{ "code", p.Code },
+				{ "password", p.Password },
+				{ "test_mode", p.TestMode },
+				{ "intro", p.Intro }
 			};
 
 			return parameters;

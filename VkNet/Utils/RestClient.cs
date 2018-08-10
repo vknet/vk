@@ -40,7 +40,7 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public async Task<HttpResponse<string>> GetAsync(Uri uri, VkParameters parameters)
+		public Task<HttpResponse<string>> GetAsync(Uri uri, VkParameters parameters)
 		{
 			var queries = parameters.Where(predicate: k => !string.IsNullOrWhiteSpace(value: k.Value))
 				.Select(selector: kvp => $"{kvp.Key.ToLowerInvariant()}={kvp.Value}");
@@ -52,17 +52,17 @@ namespace VkNet.Utils
 
 			_logger?.Debug(message: $"GET request: {url.Uri}");
 
-			return await Call(method: httpClient => httpClient.GetAsync(requestUri: url.Uri)).ConfigureAwait(false);
+			return Call(method: httpClient => httpClient.GetAsync(requestUri: url.Uri));
 		}
 
 		/// <inheritdoc />
-		public async Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
+		public Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
 			var json = JsonConvert.SerializeObject(value: parameters);
 			_logger?.Debug(message: $"POST request: {uri}{Environment.NewLine}{Utilities.PreetyPrintJson(json: json)}");
 			HttpContent content = new FormUrlEncodedContent(nameValueCollection: parameters);
 
-			return await Call(method: httpClient => httpClient.PostAsync(requestUri: uri, content: content)).ConfigureAwait(false);
+			return Call(method: httpClient => httpClient.PostAsync(requestUri: uri, content: content));
 		}
 
 		private async Task<HttpResponse<string>> Call(Func<HttpClient, Task<HttpResponseMessage>> method)

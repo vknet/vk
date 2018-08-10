@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -9,26 +10,27 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class MessagesSendTests : BaseTest
 	{
 		private MessagesCategory Messages => GetMockedMessagesCategory();
 
 		private MessagesCategory GetMockedMessagesCategory()
 		{
-			return new MessagesCategory(vk: Api);
+			return new MessagesCategory(Api);
 		}
 
 		[Test]
 		public void AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var cat = new MessagesCategory(vk: new VkApi());
+			var cat = new MessagesCategory(new VkApi());
 
-			Assert.That(del: () => cat.Send(@params: new MessagesSendParams
+			Assert.That(() => cat.Send(new MessagesSendParams
 					{
 							UserId = 1
 							, Message = "Привет, Паша!"
 					})
-					, expr: Throws.InstanceOf<AccessTokenInvalidException>());
+					, Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -40,7 +42,7 @@ namespace VkNet.Tests.Categories.Messages
 			    'response': 4464
 			}";
 
-			var id = Messages.Send(@params: new MessagesSendParams
+			var id = Messages.Send(new MessagesSendParams
 			{
 					UserId = 7550525
 					, Message = "г. Таганрог, ул. Фрунзе 66А"
@@ -48,7 +50,7 @@ namespace VkNet.Tests.Categories.Messages
 					, Longitude = 38.922743
 			});
 
-			Assert.That(actual: id, expression: Is.EqualTo(expected: 4464));
+			Assert.That(id, Is.EqualTo(4464));
 		}
 
 		[Test]
@@ -61,24 +63,24 @@ namespace VkNet.Tests.Categories.Messages
 					'response': 4457
 				  }";
 
-			var id = Messages.Send(@params: new MessagesSendParams
+			var id = Messages.Send(new MessagesSendParams
 			{
 					UserId = 7550525
 					, Message = "Test from vk.net ;) # 2"
 			});
 
-			Assert.That(actual: id, expression: Is.EqualTo(expected: 4457));
+			Assert.That(id, Is.EqualTo(4457));
 		}
 
 		[Test]
 		public void EmptyMessage_ThrowsInvalidParameterException()
 		{
-			Assert.That(del: () => Messages.Send(@params: new MessagesSendParams
+			Assert.That(() => Messages.Send(new MessagesSendParams
 					{
 							UserId = 7550525
 							, Message = ""
 					})
-					, expr: Throws.InstanceOf<ArgumentException>());
+					, Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
@@ -100,14 +102,14 @@ namespace VkNet.Tests.Categories.Messages
 					}
 				  }";
 
-			Assert.That(del: () => Messages.Send(@params: new MessagesSendParams
+			Assert.That(() => Messages.Send(new MessagesSendParams
 					{
 							UserId = 7550525
 							, Message = "г. Таганрог, ул. Фрунзе 66А"
 							, Lat = 47.217451
 							, Longitude = 38.922743
 					})
-					, expr: Throws.InstanceOf<MessageIsTooLongException>());
+					, Throws.InstanceOf<MessageIsTooLongException>());
 		}
 
 		[Test]
@@ -129,14 +131,14 @@ namespace VkNet.Tests.Categories.Messages
 					}
 				  }";
 
-			Assert.That(del: () => Messages.Send(@params: new MessagesSendParams
+			Assert.That(() => Messages.Send(new MessagesSendParams
 					{
 							UserId = 7550525
 							, Message = "г. Таганрог, ул. Фрунзе 66А"
 							, Lat = 47.217451
 							, Longitude = 38.922743
 					})
-					, expr: Throws.InstanceOf<TooMuchSentMessagesException>());
+					, Throws.InstanceOf<TooMuchSentMessagesException>());
 		}
 
 		[Test]
@@ -152,37 +154,14 @@ namespace VkNet.Tests.Categories.Messages
                 }]
             }";
 
-			Assert.That(del: () => Messages.Send(@params: new MessagesSendParams
+			Assert.That(() => Messages.Send(new MessagesSendParams
 					{
 							UserIds = new List<long> { 7550525 }
 							, Message = "г. Таганрог, ул. Фрунзе 66А"
 							, Lat = 47.217451
 							, Longitude = 38.922743
 					})
-					, expr: Throws.InstanceOf<ArgumentException>());
-		}
-
-		[Test]
-		public void MessagesSendToUserIds_NoSetUserIdsParam_ArgumentException()
-		{
-			Url = "https://api.vk.com/method/messages.send";
-
-			Json = @"
-            {
-                'response': [{
-                    'peer_id': 32190123,
-                    'message_id': 210525
-                }]
-            }";
-
-			Assert.That(del: () => Messages.SendToUserIds(@params: new MessagesSendParams
-					{
-							UserId = 7550525
-							, Message = "г. Таганрог, ул. Фрунзе 66А"
-							, Lat = 47.217451
-							, Longitude = 38.922743
-					})
-					, expr: Throws.InstanceOf<ArgumentException>());
+					, Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
@@ -198,7 +177,7 @@ namespace VkNet.Tests.Categories.Messages
                 }]
             }";
 
-			var result = Messages.SendToUserIds(@params: new MessagesSendParams
+			var result = Messages.SendToUserIds(new MessagesSendParams
 			{
 					UserIds = new List<long> { 7550525 }
 					, Message = "г. Таганрог, ул. Фрунзе 66А"
@@ -206,11 +185,11 @@ namespace VkNet.Tests.Categories.Messages
 					, Longitude = 38.922743
 			});
 
-			Assert.IsNotEmpty(collection: result);
+			Assert.IsNotEmpty(result);
 			var message = result.FirstOrDefault();
-			Assert.NotNull(anObject: message);
-			Assert.AreEqual(expected: 32190123, actual: message.PeerId);
-			Assert.AreEqual(expected: 210525, actual: message.MessageId);
+			Assert.NotNull(message);
+			Assert.AreEqual(32190123, message.PeerId);
+			Assert.AreEqual(210525, message.MessageId);
 		}
 
 		[Test]
@@ -223,13 +202,13 @@ namespace VkNet.Tests.Categories.Messages
 					'response': 4464
 				  }";
 
-			var id = Messages.Send(@params: new MessagesSendParams
+			var id = Messages.Send(new MessagesSendParams
 			{
 					UserId = 7550525
 					, Message = "Работает # 2 --  еще разок"
 			});
 
-			Assert.That(actual: id, expression: Is.EqualTo(expected: 4464));
+			Assert.That(id, Is.EqualTo(4464));
 		}
 	}
 }

@@ -71,15 +71,15 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/pages.save
 		/// </remarks>
-		public long Save(string text, long? pageId, long groupId, long userId, string title = "")
+		public long Save(string text, long groupId, long userId, string title, long? pageId)
 		{
 			var parameters = new VkParameters
 			{
-					{ "text", text }
-					, { "group_id", groupId }
-					, { "user_id", userId }
-					, { "title", title }
-					, { "page_id", pageId }
+				{ "text", text },
+				{ "group_id", groupId },
+				{ "user_id", userId },
+				{ "title", title },
+				{ "page_id", pageId }
 			};
 
 			return _vk.Call(methodName: "pages.save", parameters: parameters);
@@ -110,11 +110,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "page_id", pageId }
-					, { "group_id", groupId }
-					, { "user_id", userId }
-					, { "view", view }
-					, { "edit", edit }
+				{ "page_id", pageId }, { "group_id", groupId }, { "user_id", userId }, { "view", view }, { "edit", edit }
 			};
 
 			return _vk.Call(methodName: "pages.saveAccess", parameters: parameters);
@@ -144,9 +140,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "page_id", pageId }
-					, { "group_id", groupId }
-					, { "user_id", userId }
+				{ "page_id", pageId }, { "group_id", groupId }, { "user_id", userId }
 			};
 
 			VkResponseArray result = _vk.Call(methodName: "pages.getHistory", parameters: parameters);
@@ -171,7 +165,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "group_id", groupId }
+				{ "group_id", groupId }
 			};
 
 			VkResponseArray result = _vk.Call(methodName: "pages.getTitles", parameters: parameters);
@@ -202,10 +196,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "version_id", versionId }
-					, { "group_id", groupId }
-					, { "user_id", userId }
-					, { "need_html", needHtml }
+				{ "version_id", versionId }, { "group_id", groupId }, { "user_id", userId }, { "need_html", needHtml }
 			};
 
 			return _vk.Call(methodName: "pages.getVersion", parameters: parameters);
@@ -229,8 +220,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "text", text }
-					, { "group_id", groupId }
+				{ "text", text }, { "group_id", groupId }
 			};
 
 			return _vk.Call(methodName: "pages.parseWiki", parameters: parameters);
@@ -255,7 +245,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "url", url }
+				{ "url", url }
 			};
 
 			return _vk.Call(methodName: "pages.clearCache", parameters: parameters);

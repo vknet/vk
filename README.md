@@ -7,7 +7,7 @@
 |**Downloads**|[![](https://img.shields.io/nuget/dt/VkNet.svg)](https://www.nuget.org/packages/VkNet/)
 |**Issues**|[![](https://img.shields.io/github/issues/VkNet/Vk.svg)](https://github.com/vknet/vk/issues)
 |**Coverity**|[![Coverity Scan Build Status](https://img.shields.io/coverity/scan/6249.svg)](https://scan.coverity.com/projects/vknet)
-|**Contacts**|[![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-0F80C1.svg)](https://goo.gl/fNNDpK)|
+|**Contacts**|[![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-0F80C1.svg)](https://t.me/VkDotNet)|
 
 # При поддержке
 [![Supported by JebBrains](https://raw.githubusercontent.com/vknet/vk/master/.github/jetbrains_logo.png)](https://www.jetbrains.com/)
@@ -27,7 +27,7 @@ PM> Install-Package VkNet
 2. Авторизуйтесь как указано в [документации](https://vknet.github.io/vk/authorize/)
 3. Используйте необходимые методы. [Список методов по категориям](https://vknet.github.io/vk/)
 4. [Список часто задаваемых вопросов](https://github.com/vknet/vk/wiki/FAQ)
-5. [Обсуждение в Telegram](https://goo.gl/fNNDpK)
+5. [Обсуждение в Telegram](https://t.me/VkDotNet)
 
 # План развития проекта
 
@@ -47,6 +47,6 @@ PM> Install-Package VkNet
 - [SonarAnalyzer.CSharp](https://www.sonarlint.org/visualstudio/) - Analyzers which spot bugs and code smells in your code. 
 
 # Помощь проекту
-- [![На счет в банке](https://img.shields.io/badge/Альфа_Банк-donate-CHFCHx.svg)](https://money.alfabank.ru/p2p/web/transfer/minyutin)
-- [![PayPal](https://img.shields.io/badge/PayPal-donate-CHFCHx.svg)](https://www.paypal.me/InyutinMaxim)
+- [![На счет в банке](https://bpurl.biz/Jb)](https://money.alfabank.ru/p2p/web/transfer/minyutin)
+- [![PayPal](https://img.shields.io/badge/PayPal-donate-red.svg)](https://www.paypal.me/InyutinMaxim)
 - Также вы можете помочь проекту `Pull Request`'ом

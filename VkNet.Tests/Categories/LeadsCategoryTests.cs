@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model.RequestParams.Leads;
 
 namespace VkNet.Tests.Categories
 {
+	[ExcludeFromCodeCoverage]
 	public class LeadsCategoryTests : BaseTest
 	{
 		[Test]
@@ -11,7 +13,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/leads.complete";
 
 			Json =
-					@"{
+				@"{
 					""response"": {
 						""limit"": 1000,
 						""day_limit"": 500,
@@ -23,14 +25,14 @@ namespace VkNet.Tests.Categories
 				}
             ";
 
-			var result = Api.Leads.Complete(vkSid: "test8f4f23fb62c5c89fbb", secret: "bb4f37150027a9cf51", comment: string.Empty);
-			Assert.IsNotNull(anObject: result);
-			Assert.AreEqual(expected: 1000, actual: result.Limit);
-			Assert.AreEqual(expected: 500, actual: result.DayLimit);
-			Assert.AreEqual(expected: 10, actual: result.Spent);
-			Assert.AreEqual(expected: "1", actual: result.Cost);
-			Assert.AreEqual(expected: 1, actual: result.TestMode);
-			Assert.AreEqual(expected: 1, actual: result.Success);
+			var result = Api.Leads.Complete("test8f4f23fb62c5c89fbb", "bb4f37150027a9cf51", string.Empty);
+			Assert.IsNotNull(result);
+			Assert.AreEqual(1000, result.Limit);
+			Assert.AreEqual(500, result.DayLimit);
+			Assert.AreEqual(10, result.Spent);
+			Assert.AreEqual("1", result.Cost);
+			Assert.AreEqual(1, result.TestMode);
+			Assert.AreEqual(1, result.Success);
 		}
 
 		[Test]
@@ -39,7 +41,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/leads.start";
 
 			Json =
-					@"{
+				@"{
 					""response"": {
 						""test_mode"": 1,
 						""vk_sid"": ""vk_sid""
@@ -47,10 +49,10 @@ namespace VkNet.Tests.Categories
 				}
             ";
 
-			var result = Api.Leads.Start(startParams: new StartParams());
-			Assert.IsNotNull(anObject: result);
-			Assert.AreEqual(expected: 1, actual: result.TestMode);
-			Assert.AreEqual(expected: "vk_sid", actual: result.VkSid);
+			var result = Api.Leads.Start(new StartParams());
+			Assert.IsNotNull(result);
+			Assert.AreEqual(1, result.TestMode);
+			Assert.AreEqual("vk_sid", result.VkSid);
 		}
 
 		[Test]
@@ -59,7 +61,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/leads.getUsers";
 
 			Json =
-					@"{
+				@"{
 					response: [
 						{
 							uid: 214402965,
@@ -75,9 +77,9 @@ namespace VkNet.Tests.Categories
 				}
             ";
 
-			var result = Api.Leads.GetUsers(getUsersParams: new GetUsersParams());
-			Assert.IsNotNull(anObject: result);
-			Assert.IsNotEmpty(collection: result);
+			var result = Api.Leads.GetUsers(new GetUsersParams());
+			Assert.IsNotNull(result);
+			Assert.IsNotEmpty(result);
 		}
 	}
 }

@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.Friends
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class FriendsGetRequests : BaseTest
 	{
 		[Test]
@@ -18,9 +20,9 @@ namespace VkNet.Tests.Categories.Friends
                 }
             }";
 
-			var result = Api.Friends.GetRequests(@params: new FriendsGetRequestsParams());
-			Assert.NotNull(anObject: result);
-			Assert.AreEqual(expected: 1, actual: result.Count);
+			var result = Api.Friends.GetRequests(new FriendsGetRequestsParams());
+			Assert.NotNull(result);
+			Assert.AreEqual(1, result.Count);
 		}
 
 		[Test]
@@ -37,13 +39,13 @@ namespace VkNet.Tests.Categories.Friends
                 }
             }";
 
-			var result = Api.Friends.GetRequestsExtended(@params: new FriendsGetRequestsParams
+			var result = Api.Friends.GetRequestsExtended(new FriendsGetRequestsParams
 			{
 					Extended = true
 			});
 
-			Assert.NotNull(anObject: result);
-			Assert.AreEqual(expected: 1, actual: result.Count);
+			Assert.NotNull(result);
+			Assert.AreEqual(1, result.Count);
 		}
 	}
 }

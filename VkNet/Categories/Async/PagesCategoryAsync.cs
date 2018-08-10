@@ -19,10 +19,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<long> SaveAsync(string text, long? pageId, long groupId, long userId, string title)
+		public Task<long> SaveAsync(string text, long groupId, long userId, string title, long? pageId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					Save(text: text, pageId: pageId, groupId: groupId, userId: userId, title: title));
+					Save(text, groupId, userId, title, pageId));
 		}
 
 		/// <inheritdoc />

@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class MessagesGetObjectTests : BaseTest
 	{
 		[Test]
@@ -46,9 +48,9 @@ namespace VkNet.Tests.Categories.Messages
                   }";
 
 			Url = "https://api.vk.com/method/messages.getHistory";
-			var res = Api.Messages.GetHistory(@params: new MessagesGetHistoryParams());
+			var res = Api.Messages.GetHistory(new MessagesGetHistoryParams());
 
-			Assert.AreEqual(expected: 1, actual: res.Unread);
+			Assert.AreEqual(1, res.Unread);
 		}
 	}
 }

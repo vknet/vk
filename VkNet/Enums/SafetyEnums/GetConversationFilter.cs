@@ -3,6 +3,9 @@ using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
+	/// <summary>
+	/// Фильтр беседы
+	/// </summary>
 	[Serializable]
 	public class GetConversationFilter: SafetyEnum<GetConversationFilter>
 	{

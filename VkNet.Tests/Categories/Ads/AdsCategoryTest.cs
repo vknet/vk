@@ -4,13 +4,12 @@ using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.RequestParams;
-using VkNet.Model.RequestParams.Ads;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Ads
 {
 	[TestFixture]
-	[SuppressMessage(category: "ReSharper", checkId: "PublicMembersMustHaveComments")]
+	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[ExcludeFromCodeCoverage]
 	public class AdsCategoryTest : BaseTest
 	{
 		[Test]
@@ -47,13 +46,13 @@ namespace VkNet.Tests.Categories
 
 			var accounts = Api.Ads.GetAccounts();
 
-			Assert.That(actual: accounts.Count, expression: Is.EqualTo(expected: 3));
+			Assert.That(accounts.Count, Is.EqualTo(3));
 
-			Assert.That(actual: accounts[index: 1].AccountId, expression: Is.EqualTo(expected: 1900013324));
-			Assert.That(actual: accounts[index: 1].AccountType, expression: Is.EqualTo(expected: AccountType.Agency));
-			Assert.That(actual: accounts[index: 1].AccountStatus, expression: Is.EqualTo(expected: AccountStatus.Active));
-			Assert.That(actual: accounts[index: 1].AccountName, expression: Is.EqualTo(expected: "Кабинет агентства"));
-			Assert.That(actual: accounts[index: 1].AccessRole, expression: Is.EqualTo(expected: AccessRole.Manager));
+			Assert.That(accounts[1].AccountId, Is.EqualTo(1900013324));
+			Assert.That(accounts[1].AccountType, Is.EqualTo(AccountType.Agency));
+			Assert.That(accounts[1].AccountStatus, Is.EqualTo(AccountStatus.Active));
+			Assert.That(accounts[1].AccountName, Is.EqualTo("Кабинет агентства"));
+			Assert.That(accounts[1].AccessRole, Is.EqualTo(AccessRole.Manager));
 		}
 
 		[Test]
@@ -115,10 +114,10 @@ namespace VkNet.Tests.Categories
 				1009157560, 1009088099, 1009150293, 1009316667
 			}, 1604555949, true);
 
-			Assert.That(actual: campaigns.Count, expression: Is.EqualTo(expected: 4));
+			Assert.That(campaigns.Count, Is.EqualTo(4));
 
 			// ID кампании
-			Assert.That(actual: campaigns[index: 3].Id, expression: Is.EqualTo(expected: 1009316667));
+			Assert.That(campaigns[3].Id, Is.EqualTo(1009316667));
 		}
 
 		[Test]
@@ -199,36 +198,36 @@ namespace VkNet.Tests.Categories
 
 			var campaigns = Api.Ads.GetCampaigns(1603879239, new List<long>());
 
-			Assert.That(actual: campaigns.Count, expression: Is.EqualTo(expected: 6));
+			Assert.That(campaigns.Count, Is.EqualTo(6));
 
 			// ID кампании
-			Assert.That(actual: campaigns[index: 3].Id, expression: Is.EqualTo(expected: 1008003092));
+			Assert.That(campaigns[3].Id, Is.EqualTo(1008003092));
 
 			// ID кампании
-			Assert.That(actual: campaigns[index: 4].Name, expression: Is.EqualTo(expected: "Продвижение записей"));
+			Assert.That(campaigns[4].Name, Is.EqualTo("Продвижение записей"));
 
 			// Типы кампаний
-			Assert.That(actual: campaigns[index: 0].Type, expression: Is.EqualTo(expected: CampaignType.Normal));
-			Assert.That(actual: campaigns[index: 1].Type, expression: Is.EqualTo(expected: CampaignType.VkAppsManaged));
-			Assert.That(actual: campaigns[index: 2].Type, expression: Is.EqualTo(expected: CampaignType.MobileApps));
-			Assert.That(actual: campaigns[index: 3].Type, expression: Is.EqualTo(expected: CampaignType.PromotedPosts));
+			Assert.That(campaigns[0].Type, Is.EqualTo(CampaignType.Normal));
+			Assert.That(campaigns[1].Type, Is.EqualTo(CampaignType.VkAppsManaged));
+			Assert.That(campaigns[2].Type, Is.EqualTo(CampaignType.MobileApps));
+			Assert.That(campaigns[3].Type, Is.EqualTo(CampaignType.PromotedPosts));
 
 			// Лимиты
-			Assert.That(actual: campaigns[index: 3].DayLimit, expression: Is.EqualTo(expected: 10000));
-			Assert.That(actual: campaigns[index: 3].AllLimit, expression: Is.EqualTo(expected: 200000));
+			Assert.That(campaigns[3].DayLimit, Is.EqualTo(10000));
+			Assert.That(campaigns[3].AllLimit, Is.EqualTo(200000));
 
 			// Даты
-			Assert.That(actual: campaigns[index: 3].StartTime,
-				expression: Is.EqualTo(expected: new DateTime(year: 2017, month: 10, day: 1, hour: 19, minute: 37, second: 24)));
+			Assert.That(campaigns[3].StartTime,
+				Is.EqualTo(new DateTime(2017, 10, 1, 19, 37, 24)));
 
-			Assert.That(actual: campaigns[index: 3].StopTime,
-				expression: Is.EqualTo(expected: new DateTime(year: 2017, month: 10, day: 1, hour: 19, minute: 56, second: 39)));
+			Assert.That(campaigns[3].StopTime,
+				Is.EqualTo(new DateTime(2017, 10, 1, 19, 56, 39)));
 
-			Assert.That(actual: campaigns[index: 3].CreateTime,
-				expression: Is.EqualTo(expected: new DateTime(year: 2017, month: 09, day: 29, hour: 10, minute: 22, second: 15)));
+			Assert.That(campaigns[3].CreateTime,
+				Is.EqualTo(new DateTime(2017, 09, 29, 10, 22, 15)));
 
-			Assert.That(actual: campaigns[index: 3].UpdateTime,
-				expression: Is.EqualTo(expected: new DateTime(year: 2018, month: 01, day: 23, hour: 17, minute: 02, second: 48)));
+			Assert.That(campaigns[3].UpdateTime,
+				Is.EqualTo(new DateTime(2018, 01, 23, 17, 02, 48)));
 		}
 	}
 }

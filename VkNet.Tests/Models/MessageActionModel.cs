@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class MessageActionModel : BaseTest
 	{
 		[Test]
@@ -11,8 +13,8 @@ namespace VkNet.Tests.Models
 		{
 			Json = "{'action':'chat_create'}";
 			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response: response[key: "action"]);
-			Assert.That(actual: action, expression: Is.EqualTo(expected: MessageAction.ChatCreate));
+			var action = MessageAction.FromJsonString(response["action"]);
+			Assert.That(action, Is.EqualTo(MessageAction.ChatCreate));
 		}
 
 		[Test]
@@ -20,8 +22,8 @@ namespace VkNet.Tests.Models
 		{
 			Json = "{'action':'chat_invite_user'}";
 			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response: response[key: "action"]);
-			Assert.That(actual: action, expression: Is.EqualTo(expected: MessageAction.ChatInviteUser));
+			var action = MessageAction.FromJsonString(response["action"]);
+			Assert.That(action, Is.EqualTo(MessageAction.ChatInviteUser));
 		}
 
 		[Test]
@@ -29,8 +31,8 @@ namespace VkNet.Tests.Models
 		{
 			Json = "{'action':'chat_invite_user_by_link'}";
 			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response: response[key: "action"]);
-			Assert.That(actual: action, expression: Is.EqualTo(expected: MessageAction.ChatInviteUserByLink));
+			var action = MessageAction.FromJsonString(response["action"]);
+			Assert.That(action, Is.EqualTo(MessageAction.ChatInviteUserByLink));
 		}
 
 		[Test]
@@ -38,8 +40,8 @@ namespace VkNet.Tests.Models
 		{
 			Json = "{'action':'chat_kick_user'}";
 			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response: response[key: "action"]);
-			Assert.That(actual: action, expression: Is.EqualTo(expected: MessageAction.ChatKickUser));
+			var action = MessageAction.FromJsonString(response["action"]);
+			Assert.That(action, Is.EqualTo(MessageAction.ChatKickUser));
 		}
 
 		[Test]
@@ -47,8 +49,8 @@ namespace VkNet.Tests.Models
 		{
 			Json = "{'action':'chat_photo_remove'}";
 			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response: response[key: "action"]);
-			Assert.That(actual: action, expression: Is.EqualTo(expected: MessageAction.ChatPhotoRemove));
+			var action = MessageAction.FromJsonString(response["action"]);
+			Assert.That(action, Is.EqualTo(MessageAction.ChatPhotoRemove));
 		}
 
 		[Test]
@@ -56,8 +58,8 @@ namespace VkNet.Tests.Models
 		{
 			Json = "{'action':'chat_photo_update'}";
 			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response: response[key: "action"]);
-			Assert.That(actual: action, expression: Is.EqualTo(expected: MessageAction.ChatPhotoUpdate));
+			var action = MessageAction.FromJsonString(response["action"]);
+			Assert.That(action, Is.EqualTo(MessageAction.ChatPhotoUpdate));
 		}
 
 		[Test]
@@ -65,8 +67,8 @@ namespace VkNet.Tests.Models
 		{
 			Json = "{'action':'chat_pin_message'}";
 			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response: response[key: "action"]);
-			Assert.That(actual: action, expression: Is.EqualTo(expected: MessageAction.ChatPinMessage));
+			var action = MessageAction.FromJsonString(response["action"]);
+			Assert.That(action, Is.EqualTo(MessageAction.ChatPinMessage));
 		}
 
 		[Test]
@@ -74,8 +76,8 @@ namespace VkNet.Tests.Models
 		{
 			Json = "{'action':'chat_title_update'}";
 			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response: response[key: "action"]);
-			Assert.That(actual: action, expression: Is.EqualTo(expected: MessageAction.ChatTitleUpdate));
+			var action = MessageAction.FromJsonString(response["action"]);
+			Assert.That(action, Is.EqualTo(MessageAction.ChatTitleUpdate));
 		}
 
 		[Test]
@@ -83,8 +85,8 @@ namespace VkNet.Tests.Models
 		{
 			Json = "{'action':'chat_unpin_message'}";
 			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response: response[key: "action"]);
-			Assert.That(actual: action, expression: Is.EqualTo(expected: MessageAction.ChatUnpinMessage));
+			var action = MessageAction.FromJsonString(response["action"]);
+			Assert.That(action, Is.EqualTo(MessageAction.ChatUnpinMessage));
 		}
 	}
 }

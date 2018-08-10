@@ -4,6 +4,9 @@ using Newtonsoft.Json;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Результат метода messages.getByConversationMessageId
+	/// </summary>
 	[Serializable]
 	public class GetByConversationMessageIdResult
 	{

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -13,6 +14,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class VideoCategoryTest : BaseTest
 	{
 		private VideoCategory GetMockedVideoCategory(string url, string json)
@@ -20,7 +22,7 @@ namespace VkNet.Tests.Categories
 			Json = json;
 			Url = url;
 
-			return new VideoCategory(vk: Api);
+			return new VideoCategory(Api);
 		}
 
 		[Test]
@@ -33,10 +35,10 @@ namespace VkNet.Tests.Categories
                     'response': 167593944
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var id = cat.Add(videoId: 164841344, ownerId: 1);
-			Assert.That(actual: id, expression: Is.EqualTo(expected: 167593944));
+			var id = cat.Add(164841344, 1);
+			Assert.That(id, Is.EqualTo(167593944));
 		}
 
 		[Test]
@@ -51,10 +53,10 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var id = cat.AddAlbum(title: "Новый альбом видеозаписей");
-			Assert.That(actual: id, expression: Is.EqualTo(expected: 49273471));
+			var id = cat.AddAlbum("Новый альбом видеозаписей");
+			Assert.That(id, Is.EqualTo(49273471));
 		}
 
 		[Test]
@@ -67,16 +69,16 @@ namespace VkNet.Tests.Categories
                     'response': 35634
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var id = cat.CreateComment(@params: new VideoCreateCommentParams
+			var id = cat.CreateComment(new VideoCreateCommentParams
 			{
 					VideoId = 166613182
 					, Message = "забавное видео"
 					, OwnerId = 1
 			});
 
-			Assert.That(actual: id, expression: Is.EqualTo(expected: 35634));
+			Assert.That(id, Is.EqualTo(35634));
 		}
 
 		[Test]
@@ -89,10 +91,10 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var result = cat.Delete(videoId: 167593944);
-			Assert.That(actual: result, expression: Is.True);
+			var result = cat.Delete(167593944);
+			Assert.That(result, Is.True);
 		}
 
 		[Test]
@@ -105,10 +107,10 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var result = cat.DeleteAlbum(albumId: 52153813);
-			Assert.That(actual: result, expression: Is.True);
+			var result = cat.DeleteAlbum(52153813);
+			Assert.That(result, Is.True);
 		}
 
 		[Test]
@@ -121,10 +123,10 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var result = cat.DeleteComment(commentId: 35634, ownerId: 1);
-			Assert.That(actual: result, expression: Is.True);
+			var result = cat.DeleteComment(35634, 1);
+			Assert.That(result, Is.True);
 		}
 
 		[Test]
@@ -137,9 +139,9 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var result = cat.Edit(@params: new VideoEditParams
+			var result = cat.Edit(new VideoEditParams
 			{
 					VideoId = 167538
 					, OwnerId = 23469
@@ -147,7 +149,7 @@ namespace VkNet.Tests.Categories
 					, Desc = "Новое описание"
 			});
 
-			Assert.That(actual: result, expression: Is.True);
+			Assert.That(result, Is.True);
 		}
 
 		[Test]
@@ -160,10 +162,10 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var result = cat.EditAlbum(albumId: 521543, title: "Новое название!!!");
-			Assert.That(actual: result, expression: Is.True);
+			var result = cat.EditAlbum(521543, "Новое название!!!");
+			Assert.That(result, Is.True);
 		}
 
 		[Test]
@@ -176,10 +178,10 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var result = cat.EditComment(commentId: 35634, message: "суперское видео", ownerId: 1);
-			Assert.That(actual: result, expression: Is.True);
+			var result = cat.EditComment(35634, "суперское видео", 1);
+			Assert.That(result, Is.True);
 		}
 
 		[Test]
@@ -256,9 +258,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var result = cat.Get(@params: new VideoGetParams
+			var result = cat.Get(new VideoGetParams
 			{
 					OwnerId = 1
 					, Count = 3
@@ -266,89 +268,89 @@ namespace VkNet.Tests.Categories
 					, Extended = true
 			});
 
-			Assert.That(actual: result, expression: Is.Not.Null);
-			Assert.That(actual: result.Count, expression: Is.EqualTo(expected: 3));
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.Count, Is.EqualTo(3));
 
 			var video = result.FirstOrDefault();
-			Assert.That(actual: video, expression: Is.Not.Null);
-			Assert.That(actual: video.Id, expression: Is.EqualTo(expected: 166481021));
-			Assert.That(actual: video.OwnerId, expression: Is.EqualTo(expected: 1));
-			Assert.That(actual: video.Title, expression: Is.EqualTo(expected: "Лидия Аркадьевна"));
-			Assert.That(actual: video.Duration, expression: Is.EqualTo(expected: 131));
-			Assert.That(actual: video.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1384867255)));
-			Assert.That(actual: video.Views, expression: Is.EqualTo(expected: 81677));
-			Assert.That(actual: video.Comments, expression: Is.EqualTo(expected: 2098));
+			Assert.That(video, Is.Not.Null);
+			Assert.That(video.Id, Is.EqualTo(166481021));
+			Assert.That(video.OwnerId, Is.EqualTo(1));
+			Assert.That(video.Title, Is.EqualTo("Лидия Аркадьевна"));
+			Assert.That(video.Duration, Is.EqualTo(131));
+			Assert.That(video.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384867255)));
+			Assert.That(video.Views, Is.EqualTo(81677));
+			Assert.That(video.Comments, Is.EqualTo(2098));
 
-			Assert.That(actual: video.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs419529.vk.me/u9258277/video/s_af2727af.jpg")));
+			Assert.That(video.Photo130
+					, Is.EqualTo(new Uri("http://cs419529.vk.me/u9258277/video/s_af2727af.jpg")));
 
-			Assert.That(actual: video.Photo320
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs419529.vk.me/u9258277/video/l_aba9c1ab.jpg")));
+			Assert.That(video.Photo320
+					, Is.EqualTo(new Uri("http://cs419529.vk.me/u9258277/video/l_aba9c1ab.jpg")));
 
-			Assert.That(actual: video.Player
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://www.youtube.com/embed/VQaHFisdf-s")));
+			Assert.That(video.Player
+					, Is.EqualTo(new Uri("http://www.youtube.com/embed/VQaHFisdf-s")));
 
-			Assert.That(actual: video.CanComment, expression: Is.EqualTo(expected: true));
-			Assert.That(actual: video.CanRepost, expression: Is.EqualTo(expected: true));
-			Assert.That(actual: video.Repeat, expression: Is.EqualTo(expected: false));
-			Assert.That(actual: video.Likes, expression: Is.Not.Null);
-			Assert.That(actual: video.Likes.UserLikes, expression: Is.EqualTo(expected: false));
-			Assert.That(actual: video.Likes.Count, expression: Is.EqualTo(expected: 1789));
+			Assert.That(video.CanComment, Is.EqualTo(true));
+			Assert.That(video.CanRepost, Is.EqualTo(true));
+			Assert.That(video.Repeat, Is.EqualTo(false));
+			Assert.That(video.Likes, Is.Not.Null);
+			Assert.That(video.Likes.UserLikes, Is.EqualTo(false));
+			Assert.That(video.Likes.Count, Is.EqualTo(1789));
 
-			var video1 = result.Skip(count: 1).FirstOrDefault();
-			Assert.That(actual: video1, expression: Is.Not.Null);
-			Assert.That(actual: video1.Id, expression: Is.EqualTo(expected: 166468673));
-			Assert.That(actual: video1.OwnerId, expression: Is.EqualTo(expected: 1));
-			Assert.That(actual: video1.Title, expression: Is.EqualTo(expected: "Лидия Аркадьевна"));
-			Assert.That(actual: video1.Duration, expression: Is.EqualTo(expected: 62));
-			Assert.That(actual: video1.Description, expression: Is.EqualTo(expected: string.Empty));
-			Assert.That(actual: video1.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1384721483)));
-			Assert.That(actual: video1.Views, expression: Is.EqualTo(expected: 42107));
-			Assert.That(actual: video1.Comments, expression: Is.EqualTo(expected: 1243));
+			var video1 = result.Skip(1).FirstOrDefault();
+			Assert.That(video1, Is.Not.Null);
+			Assert.That(video1.Id, Is.EqualTo(166468673));
+			Assert.That(video1.OwnerId, Is.EqualTo(1));
+			Assert.That(video1.Title, Is.EqualTo("Лидия Аркадьевна"));
+			Assert.That(video1.Duration, Is.EqualTo(62));
+			Assert.That(video1.Description, Is.EqualTo(string.Empty));
+			Assert.That(video1.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384721483)));
+			Assert.That(video1.Views, Is.EqualTo(42107));
+			Assert.That(video1.Comments, Is.EqualTo(1243));
 
-			Assert.That(actual: video1.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs409217.vk.me/u9258277/video/s_4e281f24.jpg")));
+			Assert.That(video1.Photo130
+					, Is.EqualTo(new Uri("http://cs409217.vk.me/u9258277/video/s_4e281f24.jpg")));
 
-			Assert.That(actual: video1.Photo320
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs409217.vk.me/u9258277/video/l_aa616ea2.jpg")));
+			Assert.That(video1.Photo320
+					, Is.EqualTo(new Uri("http://cs409217.vk.me/u9258277/video/l_aa616ea2.jpg")));
 
-			Assert.That(actual: video1.Player
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://www.youtube.com/embed/YfLytrkbAfM")));
+			Assert.That(video1.Player
+					, Is.EqualTo(new Uri("http://www.youtube.com/embed/YfLytrkbAfM")));
 
-			Assert.That(actual: video1.CanComment, expression: Is.EqualTo(expected: true));
-			Assert.That(actual: video1.CanRepost, expression: Is.EqualTo(expected: true));
-			Assert.That(actual: video1.Repeat, expression: Is.EqualTo(expected: false));
-			Assert.That(actual: video1.Likes, expression: Is.Not.Null);
-			Assert.That(actual: video1.Likes.UserLikes, expression: Is.EqualTo(expected: false));
-			Assert.That(actual: video1.Likes.Count, expression: Is.EqualTo(expected: 640));
+			Assert.That(video1.CanComment, Is.EqualTo(true));
+			Assert.That(video1.CanRepost, Is.EqualTo(true));
+			Assert.That(video1.Repeat, Is.EqualTo(false));
+			Assert.That(video1.Likes, Is.Not.Null);
+			Assert.That(video1.Likes.UserLikes, Is.EqualTo(false));
+			Assert.That(video1.Likes.Count, Is.EqualTo(640));
 
-			var video2 = result.Skip(count: 2).FirstOrDefault();
-			Assert.That(actual: video2, expression: Is.Not.Null);
-			Assert.That(actual: video2.Id, expression: Is.EqualTo(expected: 164841344));
-			Assert.That(actual: video2.OwnerId, expression: Is.EqualTo(expected: 1));
-			Assert.That(actual: video2.Title, expression: Is.EqualTo(expected: "This is SPARTA"));
-			Assert.That(actual: video2.Duration, expression: Is.EqualTo(expected: 16));
-			Assert.That(actual: video2.Description, expression: Is.EqualTo(expected: string.Empty));
-			Assert.That(actual: video2.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1366495075)));
-			Assert.That(actual: video2.Views, expression: Is.EqualTo(expected: 218659));
-			Assert.That(actual: video2.Comments, expression: Is.EqualTo(expected: 2578));
+			var video2 = result.Skip(2).FirstOrDefault();
+			Assert.That(video2, Is.Not.Null);
+			Assert.That(video2.Id, Is.EqualTo(164841344));
+			Assert.That(video2.OwnerId, Is.EqualTo(1));
+			Assert.That(video2.Title, Is.EqualTo("This is SPARTA"));
+			Assert.That(video2.Duration, Is.EqualTo(16));
+			Assert.That(video2.Description, Is.EqualTo(string.Empty));
+			Assert.That(video2.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1366495075)));
+			Assert.That(video2.Views, Is.EqualTo(218659));
+			Assert.That(video2.Comments, Is.EqualTo(2578));
 
-			Assert.That(actual: video2.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs12761.vk.me/u5705167/video/s_df53315c.jpg")));
+			Assert.That(video2.Photo130
+					, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/s_df53315c.jpg")));
 
-			Assert.That(actual: video2.Photo320
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
+			Assert.That(video2.Photo320
+					, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
 
-			Assert.That(actual: video2.Player
-					, expression: Is.EqualTo(
-							expected: new Uri(uriString: "http://vk.com/video_ext.php?oid=1&id=164841344&hash=c8de45fc73389353")));
+			Assert.That(video2.Player
+					, Is.EqualTo(
+							new Uri("http://vk.com/video_ext.php?oid=1&id=164841344&hash=c8de45fc73389353")));
 
-			Assert.That(actual: video2.CanComment, expression: Is.EqualTo(expected: true));
-			Assert.That(actual: video2.CanRepost, expression: Is.EqualTo(expected: true));
-			Assert.That(actual: video2.Repeat, expression: Is.EqualTo(expected: true));
-			Assert.That(actual: video2.Likes, expression: Is.Not.Null);
-			Assert.That(actual: video2.Likes.UserLikes, expression: Is.EqualTo(expected: true));
-			Assert.That(actual: video2.Likes.Count, expression: Is.EqualTo(expected: 4137));
+			Assert.That(video2.CanComment, Is.EqualTo(true));
+			Assert.That(video2.CanRepost, Is.EqualTo(true));
+			Assert.That(video2.Repeat, Is.EqualTo(true));
+			Assert.That(video2.Likes, Is.Not.Null);
+			Assert.That(video2.Likes.UserLikes, Is.EqualTo(true));
+			Assert.That(video2.Likes.Count, Is.EqualTo(4137));
 		}
 
 		[Test]
@@ -404,78 +406,78 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
 // 1, width: VideoWidth.Large320, count: 3, offset: 2
-			var result = cat.Get(@params: new VideoGetParams
+			var result = cat.Get(new VideoGetParams
 			{
 					OwnerId = 1
 					, Count = 3
 					, Offset = 2
 			});
 
-			Assert.That(actual: result, expression: Is.Not.Null);
-			Assert.That(actual: result.Count, expression: Is.EqualTo(expected: 3));
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.Count, Is.EqualTo(3));
 
 			var video = result.FirstOrDefault();
-			Assert.That(actual: video, expression: Is.Not.Null);
-			Assert.That(actual: video.Id, expression: Is.EqualTo(expected: 166481021));
-			Assert.That(actual: video.OwnerId, expression: Is.EqualTo(expected: 1));
-			Assert.That(actual: video.Title, expression: Is.EqualTo(expected: "Лидия Аркадьевна"));
-			Assert.That(actual: video.Duration, expression: Is.EqualTo(expected: 131));
-			Assert.That(actual: video.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1384867255)));
-			Assert.That(actual: video.Views, expression: Is.EqualTo(expected: 81676));
-			Assert.That(actual: video.Comments, expression: Is.EqualTo(expected: 2098));
+			Assert.That(video, Is.Not.Null);
+			Assert.That(video.Id, Is.EqualTo(166481021));
+			Assert.That(video.OwnerId, Is.EqualTo(1));
+			Assert.That(video.Title, Is.EqualTo("Лидия Аркадьевна"));
+			Assert.That(video.Duration, Is.EqualTo(131));
+			Assert.That(video.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384867255)));
+			Assert.That(video.Views, Is.EqualTo(81676));
+			Assert.That(video.Comments, Is.EqualTo(2098));
 
-			Assert.That(actual: video.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs419529.vk.me/u9258277/video/s_af2727af.jpg")));
+			Assert.That(video.Photo130
+					, Is.EqualTo(new Uri("http://cs419529.vk.me/u9258277/video/s_af2727af.jpg")));
 
-			Assert.That(actual: video.Photo320
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs419529.vk.me/u9258277/video/l_aba9c1ab.jpg")));
+			Assert.That(video.Photo320
+					, Is.EqualTo(new Uri("http://cs419529.vk.me/u9258277/video/l_aba9c1ab.jpg")));
 
-			Assert.That(actual: video.Player
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://www.youtube.com/embed/VQaHFisdf-s")));
+			Assert.That(video.Player
+					, Is.EqualTo(new Uri("http://www.youtube.com/embed/VQaHFisdf-s")));
 
-			var video1 = result.Skip(count: 1).FirstOrDefault();
-			Assert.That(actual: video1, expression: Is.Not.Null);
-			Assert.That(actual: video1.Id, expression: Is.EqualTo(expected: 166468673));
-			Assert.That(actual: video1.OwnerId, expression: Is.EqualTo(expected: 1));
-			Assert.That(actual: video1.Title, expression: Is.EqualTo(expected: "Лидия Аркадьевна"));
-			Assert.That(actual: video1.Duration, expression: Is.EqualTo(expected: 62));
-			Assert.That(actual: video1.Description, expression: Is.EqualTo(expected: string.Empty));
-			Assert.That(actual: video1.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1384721483)));
-			Assert.That(actual: video1.Views, expression: Is.EqualTo(expected: 42107));
-			Assert.That(actual: video1.Comments, expression: Is.EqualTo(expected: 1243));
+			var video1 = result.Skip(1).FirstOrDefault();
+			Assert.That(video1, Is.Not.Null);
+			Assert.That(video1.Id, Is.EqualTo(166468673));
+			Assert.That(video1.OwnerId, Is.EqualTo(1));
+			Assert.That(video1.Title, Is.EqualTo("Лидия Аркадьевна"));
+			Assert.That(video1.Duration, Is.EqualTo(62));
+			Assert.That(video1.Description, Is.EqualTo(string.Empty));
+			Assert.That(video1.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384721483)));
+			Assert.That(video1.Views, Is.EqualTo(42107));
+			Assert.That(video1.Comments, Is.EqualTo(1243));
 
-			Assert.That(actual: video1.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs409217.vk.me/u9258277/video/s_4e281f24.jpg")));
+			Assert.That(video1.Photo130
+					, Is.EqualTo(new Uri("http://cs409217.vk.me/u9258277/video/s_4e281f24.jpg")));
 
-			Assert.That(actual: video1.Photo320
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs409217.vk.me/u9258277/video/l_aa616ea2.jpg")));
+			Assert.That(video1.Photo320
+					, Is.EqualTo(new Uri("http://cs409217.vk.me/u9258277/video/l_aa616ea2.jpg")));
 
-			Assert.That(actual: video1.Player
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://www.youtube.com/embed/YfLytrkbAfM")));
+			Assert.That(video1.Player
+					, Is.EqualTo(new Uri("http://www.youtube.com/embed/YfLytrkbAfM")));
 
-			var video2 = result.Skip(count: 2).FirstOrDefault();
-			Assert.That(actual: video2, expression: Is.Not.Null);
-			Assert.That(actual: video2.Id, expression: Is.EqualTo(expected: 164841344));
-			Assert.That(actual: video2.OwnerId, expression: Is.EqualTo(expected: 1));
-			Assert.That(actual: video2.Title, expression: Is.EqualTo(expected: "This is SPARTA"));
-			Assert.That(actual: video2.Duration, expression: Is.EqualTo(expected: 16));
-			Assert.That(actual: video2.Description, expression: Is.EqualTo(expected: string.Empty));
-			Assert.That(actual: video2.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1366495075)));
-			Assert.That(actual: video2.Views, expression: Is.EqualTo(expected: 218658));
-			Assert.That(actual: video2.Comments, expression: Is.EqualTo(expected: 2578));
+			var video2 = result.Skip(2).FirstOrDefault();
+			Assert.That(video2, Is.Not.Null);
+			Assert.That(video2.Id, Is.EqualTo(164841344));
+			Assert.That(video2.OwnerId, Is.EqualTo(1));
+			Assert.That(video2.Title, Is.EqualTo("This is SPARTA"));
+			Assert.That(video2.Duration, Is.EqualTo(16));
+			Assert.That(video2.Description, Is.EqualTo(string.Empty));
+			Assert.That(video2.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1366495075)));
+			Assert.That(video2.Views, Is.EqualTo(218658));
+			Assert.That(video2.Comments, Is.EqualTo(2578));
 
-			Assert.That(actual: video2.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs12761.vk.me/u5705167/video/s_df53315c.jpg")));
+			Assert.That(video2.Photo130
+					, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/s_df53315c.jpg")));
 
-			Assert.That(actual: video2.Photo320
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
+			Assert.That(video2.Photo320
+					, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
 
-			Assert.That(actual: video2.Player
-					, expression: Is.EqualTo(
-							expected: new Uri(uriString: "http://vk.com/video_ext.php?oid=1&id=164841344&hash=c8de45fc73389353")));
+			Assert.That(video2.Player
+					, Is.EqualTo(
+							new Uri("http://vk.com/video_ext.php?oid=1&id=164841344&hash=c8de45fc73389353")));
 		}
 
 		// todo add not extended version
@@ -505,25 +507,25 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var result = cat.GetAlbums(ownerId: 234695119, extended: true);
-			Assert.That(actual: result, expression: Is.Not.Null);
-			Assert.That(actual: result.Count, expression: Is.EqualTo(expected: 2));
+			var result = cat.GetAlbums(234695119, extended: true);
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.Count, Is.EqualTo(2));
 
 			var videoAlbum = result.FirstOrDefault();
-			Assert.That(actual: videoAlbum, expression: Is.Not.Null);
-			Assert.That(actual: videoAlbum.Id, expression: Is.EqualTo(expected: 52154345));
-			Assert.That(actual: videoAlbum.OwnerId, expression: Is.EqualTo(expected: 234695119));
-			Assert.That(actual: videoAlbum.Title, expression: Is.EqualTo(expected: "Второй новый альбом видеозаписей"));
-			Assert.That(actual: videoAlbum.Count, expression: Is.EqualTo(expected: 0));
+			Assert.That(videoAlbum, Is.Not.Null);
+			Assert.That(videoAlbum.Id, Is.EqualTo(52154345));
+			Assert.That(videoAlbum.OwnerId, Is.EqualTo(234695119));
+			Assert.That(videoAlbum.Title, Is.EqualTo("Второй новый альбом видеозаписей"));
+			Assert.That(videoAlbum.Count, Is.EqualTo(0));
 
-			var videoAlbum1 = result.Skip(count: 1).FirstOrDefault();
-			Assert.That(actual: videoAlbum1, expression: Is.Not.Null);
-			Assert.That(actual: videoAlbum1.Id, expression: Is.EqualTo(expected: 52152803));
-			Assert.That(actual: videoAlbum1.OwnerId, expression: Is.EqualTo(expected: 234695119));
-			Assert.That(actual: videoAlbum1.Title, expression: Is.EqualTo(expected: "Новый альбом видеозаписей"));
-			Assert.That(actual: videoAlbum1.Count, expression: Is.EqualTo(expected: 0));
+			var videoAlbum1 = result.Skip(1).FirstOrDefault();
+			Assert.That(videoAlbum1, Is.Not.Null);
+			Assert.That(videoAlbum1.Id, Is.EqualTo(52152803));
+			Assert.That(videoAlbum1.OwnerId, Is.EqualTo(234695119));
+			Assert.That(videoAlbum1.Title, Is.EqualTo("Новый альбом видеозаписей"));
+			Assert.That(videoAlbum1.Count, Is.EqualTo(0));
 		}
 
 		[Test]
@@ -562,9 +564,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var comments = cat.GetComments(@params: new VideoGetCommentsParams
+			var comments = cat.GetComments(new VideoGetCommentsParams
 			{
 					VideoId = 166481021
 					, OwnerId = 1
@@ -574,34 +576,33 @@ namespace VkNet.Tests.Categories
 					, Sort = CommentsSort.Asc
 			});
 
-			Assert.That(actual: comments, expression: Is.Not.Null);
-			Assert.That(actual: comments.Count, expression: Is.EqualTo(expected: 2));
+			Assert.That(comments, Is.Not.Null);
+			Assert.That(comments.Count, Is.EqualTo(2));
 
 			var comment = comments.FirstOrDefault();
-			Assert.That(actual: comment, expression: Is.Not.Null);
+			Assert.That(comment, Is.Not.Null);
 
-			Assert.That(actual: comment.Id, expression: Is.EqualTo(expected: 14715));
-			Assert.That(actual: comment.FromId, expression: Is.EqualTo(expected: 24758120));
-			Assert.That(actual: comment.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1384867361)));
-			Assert.That(actual: comment.Text, expression: Is.EqualTo(expected: "паша здаров!"));
-			Assert.That(actual: comment.Likes.Count, expression: Is.EqualTo(expected: 5));
-			Assert.That(actual: comment.Likes.UserLikes, expression: Is.EqualTo(expected: false));
-			Assert.That(actual: comment.Likes.CanLike, expression: Is.EqualTo(expected: true));
+			Assert.That(comment.Id, Is.EqualTo(14715));
+			Assert.That(comment.FromId, Is.EqualTo(24758120));
+			Assert.That(comment.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384867361)));
+			Assert.That(comment.Text, Is.EqualTo("паша здаров!"));
+			Assert.That(comment.Likes.Count, Is.EqualTo(5));
+			Assert.That(comment.Likes.UserLikes, Is.EqualTo(false));
+			Assert.That(comment.Likes.CanLike, Is.EqualTo(true));
 
-			var comment1 = comments.Skip(count: 1).FirstOrDefault();
-			Assert.That(actual: comment1, expression: Is.Not.Null);
+			var comment1 = comments.Skip(1).FirstOrDefault();
+			Assert.That(comment1, Is.Not.Null);
 
-			Assert.That(actual: comment1.Id, expression: Is.EqualTo(expected: 14716));
-			Assert.That(actual: comment1.FromId, expression: Is.EqualTo(expected: 94278436));
-			Assert.That(actual: comment1.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1384867372)));
+			Assert.That(comment1.Id, Is.EqualTo(14716));
+			Assert.That(comment1.FromId, Is.EqualTo(94278436));
+			Assert.That(comment1.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384867372)));
 
-			Assert.That(actual: comment1.Text
-					, expression: Is.EqualTo(expected:
-							"Я опять на странице Дурова, опять передаю привет Маме, Бабушке и своим друзьям! Дела у меня очень отлично!"));
+			Assert.That(comment1.Text
+					, Is.EqualTo("Я опять на странице Дурова, опять передаю привет Маме, Бабушке и своим друзьям! Дела у меня очень отлично!"));
 
-			Assert.That(actual: comment1.Likes.Count, expression: Is.EqualTo(expected: 77));
-			Assert.That(actual: comment1.Likes.UserLikes, expression: Is.EqualTo(expected: false));
-			Assert.That(actual: comment1.Likes.CanLike, expression: Is.EqualTo(expected: true));
+			Assert.That(comment1.Likes.Count, Is.EqualTo(77));
+			Assert.That(comment1.Likes.UserLikes, Is.EqualTo(false));
+			Assert.That(comment1.Likes.CanLike, Is.EqualTo(true));
 		}
 
 		[Test]
@@ -630,9 +631,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var comments = cat.GetComments(@params: new VideoGetCommentsParams
+			var comments = cat.GetComments(new VideoGetCommentsParams
 			{
 					VideoId = 166481021
 					, OwnerId = 1
@@ -642,26 +643,25 @@ namespace VkNet.Tests.Categories
 					, Sort = CommentsSort.Asc
 			});
 
-			Assert.That(actual: comments, expression: Is.Not.Null);
-			Assert.That(actual: comments.Count, expression: Is.EqualTo(expected: 2));
+			Assert.That(comments, Is.Not.Null);
+			Assert.That(comments.Count, Is.EqualTo(2));
 
 			var comment = comments.FirstOrDefault();
-			Assert.That(actual: comment, expression: Is.Not.Null);
+			Assert.That(comment, Is.Not.Null);
 
-			Assert.That(actual: comment.Id, expression: Is.EqualTo(expected: 14715));
-			Assert.That(actual: comment.FromId, expression: Is.EqualTo(expected: 24758120));
-			Assert.That(actual: comment.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1384867361)));
-			Assert.That(actual: comment.Text, expression: Is.EqualTo(expected: "паша здаров!"));
+			Assert.That(comment.Id, Is.EqualTo(14715));
+			Assert.That(comment.FromId, Is.EqualTo(24758120));
+			Assert.That(comment.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384867361)));
+			Assert.That(comment.Text, Is.EqualTo("паша здаров!"));
 
-			var comment1 = comments.Skip(count: 1).FirstOrDefault();
-			Assert.That(actual: comment1, expression: Is.Not.Null);
-			Assert.That(actual: comment1.Id, expression: Is.EqualTo(expected: 14716));
-			Assert.That(actual: comment1.FromId, expression: Is.EqualTo(expected: 94278436));
-			Assert.That(actual: comment1.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1384867372)));
+			var comment1 = comments.Skip(1).FirstOrDefault();
+			Assert.That(comment1, Is.Not.Null);
+			Assert.That(comment1.Id, Is.EqualTo(14716));
+			Assert.That(comment1.FromId, Is.EqualTo(94278436));
+			Assert.That(comment1.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384867372)));
 
-			Assert.That(actual: comment1.Text
-					, expression: Is.EqualTo(expected:
-							"Я опять на странице Дурова, опять передаю привет Маме, Бабушке и своим друзьям! Дела у меня очень отлично!"));
+			Assert.That(comment1.Text
+					, Is.EqualTo("Я опять на странице Дурова, опять передаю привет Маме, Бабушке и своим друзьям! Дела у меня очень отлично!"));
 		}
 
 		[Test]
@@ -674,10 +674,10 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var result = cat.Report(videoId: 166613182, reason: ReportReason.DrugPropaganda, ownerId: 1, comment: "коммент");
-			Assert.That(actual: result, expression: Is.True);
+			var result = cat.Report(166613182, ReportReason.DrugPropaganda, 1, "коммент");
+			Assert.That(result, Is.True);
 		}
 
 		[Test]
@@ -690,10 +690,10 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var result = cat.ReportComment(commentId: 35637, ownerId: 1, reason: ReportReason.AdultMaterial);
-			Assert.That(actual: result, expression: Is.True);
+			var result = cat.ReportComment(35637, 1, ReportReason.AdultMaterial);
+			Assert.That(result, Is.True);
 		}
 
 		[Test]
@@ -706,10 +706,10 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var result = cat.Restore(videoId: 167593944);
-			Assert.That(actual: result, expression: Is.True);
+			var result = cat.Restore(167593944);
+			Assert.That(result, Is.True);
 		}
 
 		[Test]
@@ -722,10 +722,10 @@ namespace VkNet.Tests.Categories
                     'response': 1
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var result = cat.RestoreComment(commentId: 35634, ownerId: 1);
-			Assert.That(actual: result, expression: Is.True);
+			var result = cat.RestoreComment(35634, 1);
+			Assert.That(result, Is.True);
 		}
 
 		[Test]
@@ -745,9 +745,9 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
-			var video = cat.Save(@params: new VideoSaveParams
+			var video = cat.Save(new VideoSaveParams
 			{
 					Name = "Название из ютуба"
 					, Description = "Описание из ютуба"
@@ -755,16 +755,15 @@ namespace VkNet.Tests.Categories
 					, Link = "https://www.youtube.com/watch?v=lhQtzv5a408&list=PLBC36AAAE4E4E0CAA"
 			});
 
-			Assert.That(actual: video, expression: Is.Not.Null);
-			Assert.That(actual: video.Id, expression: Is.EqualTo(expected: 1673994));
-			Assert.That(actual: video.OwnerId, expression: Is.EqualTo(expected: 2346958));
-			Assert.That(actual: video.Title, expression: Is.EqualTo(expected: "Название из ютуба"));
-			Assert.That(actual: video.Description, expression: Is.EqualTo(expected: "Описание из ютуба"));
-			Assert.That(actual: video.AccessKey, expression: Is.EqualTo(expected: "f2ec9f3982f05bc"));
+			Assert.That(video, Is.Not.Null);
+			Assert.That(video.Id, Is.EqualTo(1673994));
+			Assert.That(video.OwnerId, Is.EqualTo(2346958));
+			Assert.That(video.Title, Is.EqualTo("Название из ютуба"));
+			Assert.That(video.Description, Is.EqualTo("Описание из ютуба"));
+			Assert.That(video.AccessKey, Is.EqualTo("f2ec9f3982f05bc"));
 
-			Assert.That(actual: video.UploadUrl
-					, expression: Is.EqualTo(expected: new Uri(uriString:
-							"http://cs6058.vk.com/upload.php?act=parse_share&hash=d5371f57b935d1b3b0c6cde1100ecb&rhash=5c623ee8b80db0d3af5078a5dfb2&mid=234695118&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlhQtzv5a408&api_callback=06ec8115dfc9a66eec&remotely=1&photo_server=607423&photo_server_hash=7874a144e80b8bb3c1a1eee5c9043")));
+			Assert.That(video.UploadUrl
+					, Is.EqualTo(new Uri("http://cs6058.vk.com/upload.php?act=parse_share&hash=d5371f57b935d1b3b0c6cde1100ecb&rhash=5c623ee8b80db0d3af5078a5dfb2&mid=234695118&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlhQtzv5a408&api_callback=06ec8115dfc9a66eec&remotely=1&photo_server=607423&photo_server_hash=7874a144e80b8bb3c1a1eee5c9043")));
 		}
 
 		[Test]
@@ -784,7 +783,7 @@ namespace VkNet.Tests.Categories
             'key' : 'method',
             'value' : 'video.save'
          },
-         
+
          {
             'key' : 'description',
             'value' : '123'
@@ -801,7 +800,7 @@ namespace VkNet.Tests.Categories
    }
 }";
 
-			Assert.That(code: () => VkErrors.IfErrorThrowException(json: json), constraint: Throws.TypeOf<VideoAccessDeniedException>());
+			Assert.That(() => VkErrors.IfErrorThrowException(json), Throws.TypeOf<VideoAccessDeniedException>());
 		}
 
 		[Test]
@@ -858,10 +857,10 @@ namespace VkNet.Tests.Categories
                     }
                   }";
 
-			var cat = GetMockedVideoCategory(url: url, json: json);
+			var cat = GetMockedVideoCategory(url, json);
 
 			// , VideoSort.Relevance, false, true, VideoFilters.Long, false, 5, 1
-			var result = cat.Search(@params: new VideoSearchParams
+			var result = cat.Search(new VideoSearchParams
 			{
 					Query = "саша грей"
 					, Sort = VideoSort.Relevance
@@ -873,96 +872,91 @@ namespace VkNet.Tests.Categories
 					, Offset = 1
 			});
 
-			Assert.That(actual: result, expression: Is.Not.Null);
-			Assert.That(actual: result.Count, expression: Is.EqualTo(expected: 3));
+			Assert.That(result, Is.Not.Null);
+			Assert.That(result.Count, Is.EqualTo(3));
 
 			var video = result.FirstOrDefault();
-			Assert.That(actual: video, expression: Is.Not.Null);
+			Assert.That(video, Is.Not.Null);
 
-			Assert.That(actual: video.Id, expression: Is.EqualTo(expected: 166671614));
-			Assert.That(actual: video.OwnerId, expression: Is.EqualTo(expected: -59205334));
+			Assert.That(video.Id, Is.EqualTo(166671614));
+			Assert.That(video.OwnerId, Is.EqualTo(-59205334));
 
-			Assert.That(actual: video.Title
-					, expression: Is.EqualTo(expected:
-							"Fucking Machines Sasha Grey | Саша Грей | Саша Грэй  | Порно | Секс | Эротика | Секс машина |  Садо-мазо  | БДСМ"));
+			Assert.That(video.Title
+					, Is.EqualTo("Fucking Machines Sasha Grey | Саша Грей | Саша Грэй  | Порно | Секс | Эротика | Секс машина |  Садо-мазо  | БДСМ"));
 
-			Assert.That(actual: video.Duration, expression: Is.EqualTo(expected: 1934));
+			Assert.That(video.Duration, Is.EqualTo(1934));
 
-			Assert.That(actual: video.Description
-					, expression: Is.EqualTo(expected:
-							"beauty 18+\n\n\'Качественное и эксклюзивное порно  у нас\'\n\n>>>>>>> http://vk.com/mastofmastur<<<<<<"));
+			Assert.That(video.Description
+					, Is.EqualTo("beauty 18+\n\n\'Качественное и эксклюзивное порно  у нас\'\n\n>>>>>>> http://vk.com/mastofmastur<<<<<<"));
 
-			Assert.That(actual: video.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1384706962)));
-			Assert.That(actual: video.Views, expression: Is.EqualTo(expected: 11579));
-			Assert.That(actual: video.Comments, expression: Is.EqualTo(expected: 12));
+			Assert.That(video.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384706962)));
+			Assert.That(video.Views, Is.EqualTo(11579));
+			Assert.That(video.Comments, Is.EqualTo(12));
 
-			Assert.That(actual: video.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs505118.vk.me/u7160710/video/s_08382000.jpg")));
+			Assert.That(video.Photo130
+					, Is.EqualTo(new Uri("http://cs505118.vk.me/u7160710/video/s_08382000.jpg")));
 
-			Assert.That(actual: video.Photo320
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs505118.vk.me/u7160710/video/l_a02ed037.jpg")));
+			Assert.That(video.Photo320
+					, Is.EqualTo(new Uri("http://cs505118.vk.me/u7160710/video/l_a02ed037.jpg")));
 
-			Assert.That(actual: video.AlbumId, expression: Is.EqualTo(expected: 50100051));
+			Assert.That(video.AlbumId, Is.EqualTo(50100051));
 
-			Assert.That(actual: video.Player
-					, expression: Is.EqualTo(
-							expected: new Uri(uriString: "http://vk.com/video_ext.php?oid=-59205334&id=166671614&hash=d609a7775bbb2e7d")));
+			Assert.That(video.Player
+					, Is.EqualTo(
+							new Uri("http://vk.com/video_ext.php?oid=-59205334&id=166671614&hash=d609a7775bbb2e7d")));
 
-			var video1 = result.Skip(count: 1).FirstOrDefault();
-			Assert.That(actual: video1, expression: Is.Not.Null);
+			var video1 = result.Skip(1).FirstOrDefault();
+			Assert.That(video1, Is.Not.Null);
 
-			Assert.That(actual: video1.Id, expression: Is.EqualTo(expected: 165458571));
-			Assert.That(actual: video1.OwnerId, expression: Is.EqualTo(expected: -49956637));
+			Assert.That(video1.Id, Is.EqualTo(165458571));
+			Assert.That(video1.OwnerId, Is.EqualTo(-49956637));
 
-			Assert.That(actual: video1.Title
-					, expression: Is.EqualTo(expected:
-							"домашнее частное порно порно модель саша грей on-line любовь порно с сюжетом лесби порка стендап stand up клип группа"));
+			Assert.That(video1.Title
+					, Is.EqualTo("домашнее частное порно порно модель саша грей on-line любовь порно с сюжетом лесби порка стендап stand up клип группа"));
 
-			Assert.That(actual: video1.Duration, expression: Is.EqualTo(expected: 1139));
+			Assert.That(video1.Duration, Is.EqualTo(1139));
 
-			Assert.That(actual: video1.Description
-					, expression: Is.EqualTo(expected:
-							"секс знакомства подписывайся,знакомься,общайся,тут русские шлюхи,проститутки подпишись у нас http://vk.com/tyt_sex"));
+			Assert.That(video1.Description
+					, Is.EqualTo("секс знакомства подписывайся,знакомься,общайся,тут русские шлюхи,проститутки подпишись у нас http://vk.com/tyt_sex"));
 
-			Assert.That(actual: video1.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1371702618)));
-			Assert.That(actual: video1.Views, expression: Is.EqualTo(expected: 12817));
-			Assert.That(actual: video1.Comments, expression: Is.EqualTo(expected: 5));
+			Assert.That(video1.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1371702618)));
+			Assert.That(video1.Views, Is.EqualTo(12817));
+			Assert.That(video1.Comments, Is.EqualTo(5));
 
-			Assert.That(actual: video1.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs527502.vk.me/u65226705/video/s_1d867e81.jpg")));
+			Assert.That(video1.Photo130
+					, Is.EqualTo(new Uri("http://cs527502.vk.me/u65226705/video/s_1d867e81.jpg")));
 
-			Assert.That(actual: video1.Photo320
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs527502.vk.me/u65226705/video/l_ba2e1aff.jpg")));
+			Assert.That(video1.Photo320
+					, Is.EqualTo(new Uri("http://cs527502.vk.me/u65226705/video/l_ba2e1aff.jpg")));
 
-			Assert.That(actual: video1.Player
-					, expression: Is.EqualTo(
-							expected: new Uri(uriString: "http://vk.com/video_ext.php?oid=-49956637&id=165458571&hash=dc6995a7cc9aed92")));
+			Assert.That(video1.Player
+					, Is.EqualTo(
+							new Uri("http://vk.com/video_ext.php?oid=-49956637&id=165458571&hash=dc6995a7cc9aed92")));
 
-			var video2 = result.Skip(count: 2).FirstOrDefault();
-			Assert.That(actual: video2, expression: Is.Not.Null);
+			var video2 = result.Skip(2).FirstOrDefault();
+			Assert.That(video2, Is.Not.Null);
 
-			Assert.That(actual: video2.Id, expression: Is.EqualTo(expected: 166728490));
-			Assert.That(actual: video2.OwnerId, expression: Is.EqualTo(expected: -54257090));
-			Assert.That(actual: video2.Title, expression: Is.EqualTo(expected: "Саша Грей | Sasha Grey #13"));
-			Assert.That(actual: video2.Duration, expression: Is.EqualTo(expected: 1289));
+			Assert.That(video2.Id, Is.EqualTo(166728490));
+			Assert.That(video2.OwnerId, Is.EqualTo(-54257090));
+			Assert.That(video2.Title, Is.EqualTo("Саша Грей | Sasha Grey #13"));
+			Assert.That(video2.Duration, Is.EqualTo(1289));
 
-			Assert.That(actual: video2.Description
-					, expression: Is.EqualTo(expected:
-							"Взято со страницы Саша Грей | Sasha Grey | 18+: http://vk.com/sashagreyphotos\nЭротика: http://vk.com/gentleerotica"));
+			Assert.That(video2.Description
+					, Is.EqualTo("Взято со страницы Саша Грей | Sasha Grey | 18+: http://vk.com/sashagreyphotos\nЭротика: http://vk.com/gentleerotica"));
 
-			Assert.That(actual: video2.Date, expression: Is.EqualTo(expected: DateHelper.TimeStampToDateTime(timestamp: 1386961568)));
-			Assert.That(actual: video2.Views, expression: Is.EqualTo(expected: 8730));
-			Assert.That(actual: video2.Comments, expression: Is.EqualTo(expected: 12));
+			Assert.That(video2.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1386961568)));
+			Assert.That(video2.Views, Is.EqualTo(8730));
+			Assert.That(video2.Comments, Is.EqualTo(12));
 
-			Assert.That(actual: video2.Photo130
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs535107.vk.me/u146564541/video/s_2d874147.jpg")));
+			Assert.That(video2.Photo130
+					, Is.EqualTo(new Uri("http://cs535107.vk.me/u146564541/video/s_2d874147.jpg")));
 
-			Assert.That(actual: video2.Photo320
-					, expression: Is.EqualTo(expected: new Uri(uriString: "http://cs535107.vk.me/u146564541/video/l_cb794198.jpg")));
+			Assert.That(video2.Photo320
+					, Is.EqualTo(new Uri("http://cs535107.vk.me/u146564541/video/l_cb794198.jpg")));
 
-			Assert.That(actual: video2.Player
-					, expression: Is.EqualTo(
-							expected: new Uri(uriString: "http://vk.com/video_ext.php?oid=-54257090&id=166728490&hash=15a0552ca76bedac")));
+			Assert.That(video2.Player
+					, Is.EqualTo(
+							new Uri("http://vk.com/video_ext.php?oid=-54257090&id=166728490&hash=15a0552ca76bedac")));
 		}
 	}
 }

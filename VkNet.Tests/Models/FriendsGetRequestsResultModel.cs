@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model;
 
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class FriendsGetRequestsResultModel : BaseTest
 	{
 		[Test]
@@ -11,8 +13,8 @@ namespace VkNet.Tests.Models
 		{
 			Json = "{'user_id':221634238, 'message':'text'}";
 			var response = GetResponse();
-			var result = FriendsGetRequestsResult.FromJson(response: response);
-			Assert.That(actual: result.Message, expression: Is.EqualTo(expected: "text"));
+			var result = FriendsGetRequestsResult.FromJson(response);
+			Assert.That(result.Message, Is.EqualTo("text"));
 		}
 
 		[Test]
@@ -28,8 +30,8 @@ namespace VkNet.Tests.Models
             }";
 
 			var response = GetResponse();
-			var result = FriendsGetRequestsResult.FromJson(response: response);
-			Assert.IsNotEmpty(collection: result.Mutual);
+			var result = FriendsGetRequestsResult.FromJson(response);
+			Assert.IsNotEmpty(result.Mutual);
 		}
 
 		[Test]
@@ -37,8 +39,8 @@ namespace VkNet.Tests.Models
 		{
 			Json = "{'user_id':221634238}";
 			var response = GetResponse();
-			var result = FriendsGetRequestsResult.FromJson(response: response);
-			Assert.That(actual: result.UserId, expression: Is.EqualTo(expected: 221634238L));
+			var result = FriendsGetRequestsResult.FromJson(response);
+			Assert.That(result.UserId, Is.EqualTo(221634238L));
 		}
 	}
 }

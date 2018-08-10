@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class SearchTests : BaseTest
 	{
 		[Test]
@@ -31,7 +33,7 @@ namespace VkNet.Tests.Categories
                             'section': 'groups',
                             'description': 'Группа, 320 437 участников',
                             'global': 1
-                        }, 
+                        },
                         {
                             'type': 'profile',
                             'profile': {
@@ -47,8 +49,8 @@ namespace VkNet.Tests.Categories
             }";
 
 			Url = "https://api.vk.com/method/search.getHints";
-			var result = Api.Search.GetHints(@params: new SearchGetHintsParams());
-			Assert.NotNull(anObject: result);
+			var result = Api.Search.GetHints(new SearchGetHintsParams());
+			Assert.NotNull(result);
 		}
 	}
 }

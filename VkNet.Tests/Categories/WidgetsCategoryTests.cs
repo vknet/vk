@@ -1,9 +1,11 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class WidgetsCategoryTests : BaseTest
 	{
 		[Test]
@@ -53,7 +55,7 @@ namespace VkNet.Tests.Categories
 				}
             ";
 
-			var result = Api.Widgets.GetComments(getCommentsParams: new GetCommentsParams
+			var result = Api.Widgets.GetComments(new GetCommentsParams
 			{
 					WidgetApiId = 5553257
 					, Url = "http://griffiny.ru/season-01/4-1-sezon-1-seriya-i-u-smerti-est-ten.html"
@@ -62,8 +64,8 @@ namespace VkNet.Tests.Categories
 					, Offset = 0
 			});
 
-			Assert.IsNotEmpty(collection: result);
-			Assert.AreEqual(expected: 10, actual: result.TotalCount);
+			Assert.IsNotEmpty(result);
+			Assert.AreEqual(10, result.TotalCount);
 		}
 
 		[Test]
@@ -145,9 +147,9 @@ namespace VkNet.Tests.Categories
 				}
             ";
 
-			var result = Api.Widgets.GetPages(widgetApiId: 5553257, order: null, period: "alltime", offset: 0, count: 10);
-			Assert.IsNotEmpty(collection: result);
-			Assert.AreEqual(expected: 50, actual: result.TotalCount);
+			var result = Api.Widgets.GetPages(5553257, null, "alltime", 0, 10);
+			Assert.IsNotEmpty(result);
+			Assert.AreEqual(50, result.TotalCount);
 		}
 	}
 }

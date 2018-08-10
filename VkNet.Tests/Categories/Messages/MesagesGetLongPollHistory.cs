@@ -1,17 +1,19 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class MesagesGetLongPollHistory : BaseTest
 	{
 		[Test]
 		public void GetLongPollHistory_ThrowArgumentException()
 		{
-			Assert.That(del: () => Api.Messages.GetLongPollHistory(@params: new MessagesGetLongPollHistoryParams()),
-				expr: Throws.InstanceOf<ArgumentException>());
+			Assert.That(() => Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams()),
+				Throws.InstanceOf<ArgumentException>());
 		}
 
 		[Test]
@@ -53,7 +55,7 @@ namespace VkNet.Tests.Categories.Messages
                 }
             }";
 
-			var result = Api.Messages.GetLongPollHistory(@params: new MessagesGetLongPollHistoryParams
+			var result = Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams
 			{
 				Ts = 1874397841,
 				PreviewLength = 0,
@@ -63,7 +65,7 @@ namespace VkNet.Tests.Categories.Messages
 				Onlines = true
 			});
 
-			Assert.IsNotEmpty(collection: result.Groups);
+			Assert.IsNotEmpty(result.Groups);
 		}
 	}
 }

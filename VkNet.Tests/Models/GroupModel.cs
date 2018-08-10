@@ -1,16 +1,18 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model;
 
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class GroupModel : BaseTest
 	{
 		[Test]
 		public void ShouldHaveField_Trending()
 		{
 			var group = new Group();
-			Assert.That(actual: group, expression: Has.Property(name: "Trending"));
+			Assert.That(group, Has.Property("Trending"));
 		}
 
 		[Test]
@@ -22,8 +24,8 @@ namespace VkNet.Tests.Models
 					  }";
 
 			var response = GetResponse();
-			var group = Group.FromJson(response: response);
-			Assert.That(actual: group.Trending, expression: Is.False);
+			var group = Group.FromJson(response);
+			Assert.That(group.Trending, Is.False);
 		}
 
 		[Test]
@@ -34,8 +36,8 @@ namespace VkNet.Tests.Models
 					  }";
 
 			var response = GetResponse();
-			var group = Group.FromJson(response: response);
-			Assert.That(actual: group.Trending, expression: Is.False);
+			var group = Group.FromJson(response);
+			Assert.That(group.Trending, Is.False);
 		}
 
 		[Test]
@@ -47,8 +49,8 @@ namespace VkNet.Tests.Models
 					  }";
 
 			var response = GetResponse();
-			var group = Group.FromJson(response: response);
-			Assert.That(actual: group.Trending, expression: Is.True);
+			var group = Group.FromJson(response);
+			Assert.That(group.Trending, Is.True);
 		}
 	}
 }

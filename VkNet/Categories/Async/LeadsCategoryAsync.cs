@@ -41,9 +41,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<Start> StartAsync(StartParams start)
+		public Task<Start> StartAsync(StartParams startParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => Start(startParams: start));
+			return TypeHelper.TryInvokeMethodAsync(func: () => Start(startParams: startParams));
 		}
 	}
 }

@@ -6,6 +6,9 @@ using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
+	/// <summary>
+	/// Параметры запроса messages.GetConversations
+	/// </summary>
 	[Serializable]
 	public class GetConversationsParams
 	{

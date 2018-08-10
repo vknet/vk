@@ -16,20 +16,14 @@ namespace VkNet.Utils.JsonConverter
 		/// Инициализация
 		/// </summary>
 		/// <param name="collectionField"> Collection Field </param>
-		public VkCollectionJsonConverter(string collectionField = "items")
+		public VkCollectionJsonConverter(string collectionField)
 		{
-			CollectionField = collectionField;
+			CollectionField = string.IsNullOrWhiteSpace(collectionField) ? "items" : collectionField;
 		}
 
-		/// <summary>
-		/// Инициализация
-		/// </summary>
-		public VkCollectionJsonConverter()
+		/// <inheritdoc />
+		public VkCollectionJsonConverter() : this("items")
 		{
-			if (string.IsNullOrWhiteSpace(value: CollectionField))
-			{
-				CollectionField = "items";
-			}
 		}
 
 		/// <summary>
@@ -63,8 +57,8 @@ namespace VkNet.Utils.JsonConverter
 
 				var vkCollectionSurrogate = new
 				{
-						TotalCount = vkCollectionType.GetProperty(name: "TotalCount")?.GetValue(obj: value, index: null)
-						, Items = castToListObject
+					TotalCount = vkCollectionType.GetProperty(name: "TotalCount")?.GetValue(obj: value, index: null),
+					Items = castToListObject
 				};
 
 				serializer.Serialize(jsonWriter: writer, value: vkCollectionSurrogate);
@@ -105,8 +99,8 @@ namespace VkNet.Utils.JsonConverter
 			var totalCount = response[key: CountField].Value<ulong>();
 
 			var converter =
-					serializer.Converters.FirstOrDefault(predicate: x => x.GetType() == typeof(VkCollectionJsonConverter)) as
-							VkCollectionJsonConverter;
+				serializer.Converters.FirstOrDefault(predicate: x => x.GetType() == typeof(VkCollectionJsonConverter)) as
+					VkCollectionJsonConverter;
 
 			var collectionField = CollectionField;
 

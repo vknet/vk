@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
@@ -11,82 +10,82 @@ namespace VkNet.Categories
 	public partial class StoriesCategory
 	{
 		/// <inheritdoc/>
-		public async Task<bool> BanOwnerAsync(IEnumerable<long> ownersIds)
+		public Task<bool> BanOwnerAsync(IEnumerable<long> ownersIds)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => BanOwner(ownersIds));
+			return TypeHelper.TryInvokeMethodAsync(() => BanOwner(ownersIds));
 		}
 
 		/// <inheritdoc/>
-		public async Task<bool> DeleteAsync(long ownerId, ulong storyId)
+		public Task<bool> DeleteAsync(long ownerId, ulong storyId)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => Delete(ownerId, storyId));
+			return TypeHelper.TryInvokeMethodAsync(() => Delete(ownerId, storyId));
 		}
 
 		/// <inheritdoc/>
-		public async Task<StoryResult<IEnumerable<Story>>> GetAsync(long? ownerId = null, bool? extended = null)
+		public Task<StoryResult<IEnumerable<Story>>> GetAsync(long? ownerId = null, bool? extended = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => Get(ownerId, extended));
+			return TypeHelper.TryInvokeMethodAsync(() => Get(ownerId, extended));
 		}
 
 		/// <inheritdoc/>
-		public async Task<StoryResult<long>> GetBannedAsync(IEnumerable<string> fields, bool? extended = null)
+		public Task<StoryResult<long>> GetBannedAsync(IEnumerable<string> fields = null, bool? extended = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetBanned(extended, fields));
+			return TypeHelper.TryInvokeMethodAsync(() => GetBanned(extended, fields));
 		}
 
 		/// <inheritdoc/>
-		public async Task<StoryResult<Story>> GetByIdAsync(IEnumerable<string> stories, bool? extended = null, IEnumerable<string> fields = null)
+		public Task<StoryResult<Story>> GetByIdAsync(IEnumerable<string> stories, bool? extended = null, IEnumerable<string> fields = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetById(stories, extended, fields));
+			return TypeHelper.TryInvokeMethodAsync(() => GetById(stories, extended, fields));
 		}
 
 		/// <inheritdoc/>
-		public async Task<StoryServerUrl> GetPhotoUploadServerAsync(GetPhotoUploadServerParams getPhotoUploadServerParams)
+		public Task<StoryServerUrl> GetPhotoUploadServerAsync(GetPhotoUploadServerParams @params)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetPhotoUploadServer(getPhotoUploadServerParams));
+			return TypeHelper.TryInvokeMethodAsync(() => GetPhotoUploadServer(@params));
 		}
 
 		/// <inheritdoc/>
-		public async Task<StoryResult<IEnumerable<Story>>> GetRepliesAsync(long ownerId, ulong storyId, string accessKey = null, bool? extended = null, IEnumerable<string> fields = null)
+		public Task<StoryResult<IEnumerable<Story>>> GetRepliesAsync(long ownerId, ulong storyId, string accessKey = null, bool? extended = null, IEnumerable<string> fields = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetReplies(ownerId, storyId, accessKey, extended, fields));
+			return TypeHelper.TryInvokeMethodAsync(() => GetReplies(ownerId, storyId, accessKey, extended, fields));
 		}
 
 		/// <inheritdoc/>
-		public async Task<StoryStatsResult> GetStatsAsync(long ownerId, ulong storyId)
+		public Task<StoryStatsResult> GetStatsAsync(long ownerId, ulong storyId)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetStats(ownerId, storyId));
+			return TypeHelper.TryInvokeMethodAsync(() => GetStats(ownerId, storyId));
 		}
 
 		/// <inheritdoc/>
-		public async Task<StoryServerUrl> GetVideoUploadServerAsync(GetVideoUploadServerParams getVideoUploadServerParams)
+		public Task<StoryServerUrl> GetVideoUploadServerAsync(GetVideoUploadServerParams @params)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetVideoUploadServer(getVideoUploadServerParams));
+			return TypeHelper.TryInvokeMethodAsync(() => GetVideoUploadServer(@params));
 		}
 
 		/// <inheritdoc/>
-		public async Task<VkCollection<User>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null,
+		public Task<VkCollection<User>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null,
 																bool? extended = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetViewers(ownerId, storyId, count, offset, extended));
+			return TypeHelper.TryInvokeMethodAsync(() => GetViewers(ownerId, storyId, count, offset, extended));
 		}
 
 		/// <inheritdoc/>
-		public async Task<bool> HideAllRepliesAsync(long ownerId)
+		public Task<bool> HideAllRepliesAsync(long ownerId)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => HideAllReplies(ownerId));
+			return TypeHelper.TryInvokeMethodAsync(() => HideAllReplies(ownerId));
 		}
 
 		/// <inheritdoc/>
-		public async Task<bool> HideReplyAsync(long ownerId, ulong storyId, string accessKey = null)
+		public Task<bool> HideReplyAsync(long ownerId, ulong storyId, string accessKey = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => HideReply(ownerId, storyId, accessKey));
+			return TypeHelper.TryInvokeMethodAsync(() => HideReply(ownerId, storyId, accessKey));
 		}
 
 		/// <inheritdoc/>
-		public async Task<bool> UnbanOwnerAsync(IEnumerable<long> ownersIds)
+		public Task<bool> UnbanOwnerAsync(IEnumerable<long> ownersIds)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => UnbanOwner(ownersIds));
+			return TypeHelper.TryInvokeMethodAsync(() => UnbanOwner(ownersIds));
 		}
 	}
 }

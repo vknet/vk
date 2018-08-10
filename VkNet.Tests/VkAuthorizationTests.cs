@@ -1,10 +1,12 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Utils;
 
 namespace VkNet.Tests
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class VkAuthorizationTests
 	{
 		private const string Input =
@@ -29,58 +31,58 @@ namespace VkNet.Tests
 													+ "&m=4"
 													+ "&email=mail";
 
-			var authorization = VkAuthorization.From(uriFragment: urlWithBadLoginOrPassword);
+			var authorization = VkAuthorization.From(urlWithBadLoginOrPassword);
 
-			Assert.IsFalse(condition: authorization.IsAuthorized);
-			Assert.IsFalse(condition: authorization.IsAuthorizationRequired);
+			Assert.IsFalse(authorization.IsAuthorized);
+			Assert.IsFalse(authorization.IsAuthorizationRequired);
 		}
 
 		[Test]
 		public void CorrectParseInputString()
 		{
-			var auth = VkAuthorization.From(uriFragment: Input);
+			var auth = VkAuthorization.From(Input);
 
-			Assert.AreEqual(expected: "token"
-					, actual: auth.AccessToken);
+			Assert.AreEqual("token"
+					, auth.AccessToken);
 
-			Assert.AreEqual(expected: 86400, actual: auth.ExpiresIn);
-			Assert.AreEqual(expected: 32190123L, actual: auth.UserId);
-			Assert.AreEqual(expected: "inyutin_maxim@mail.ru", actual: auth.Email);
+			Assert.AreEqual(86400, auth.ExpiresIn);
+			Assert.AreEqual(32190123L, auth.UserId);
+			Assert.AreEqual("inyutin_maxim@mail.ru", auth.Email);
 		}
 
 		[Test]
 		public void GetExpiresIn_Exception()
 		{
-			var auth = VkAuthorization.From(uriFragment: Input.Replace(oldValue: "86400", newValue: "qwe"));
+			var auth = VkAuthorization.From(Input.Replace("86400", "qwe"));
 
-			var error = Assert.Throws<VkApiException>(code: () =>
+			var error = Assert.Throws<VkApiException>(() =>
 			{
 				var expiresIn = auth.ExpiresIn;
-				Assert.NotZero(actual: expiresIn);
+				Assert.NotZero(expiresIn);
 			});
 
-			Assert.AreEqual(expected: "ExpiresIn is not integer value.", actual: error.Message);
+			Assert.AreEqual("ExpiresIn is not integer value.", error.Message);
 		}
 
 		[Test]
 		public void GetUserId_Exception()
 		{
-			var auth = VkAuthorization.From(uriFragment: Input.Replace(oldValue: "32190123", newValue: "qwe"));
+			var auth = VkAuthorization.From(Input.Replace("32190123", "qwe"));
 
-			var error = Assert.Throws<VkApiException>(code: () =>
+			var error = Assert.Throws<VkApiException>(() =>
 			{
 				var authUserId = auth.UserId;
-				Assert.NotZero(actual: authUserId);
+				Assert.NotZero(authUserId);
 			});
 
-			Assert.AreEqual(expected: "UserId is not long value.", actual: error.Message);
+			Assert.AreEqual("UserId is not long value.", error.Message);
 		}
 
 		[Test]
 		public void IsAuthorizationRequired_False()
 		{
-			var auth = VkAuthorization.From(uriFragment: Input);
-			Assert.IsFalse(condition: auth.IsAuthorizationRequired);
+			var auth = VkAuthorization.From(Input);
+			Assert.IsFalse(auth.IsAuthorizationRequired);
 		}
 
 		[Test]
@@ -96,22 +98,22 @@ namespace VkNet.Tests
 									+ "&display=page"
 									+ "&__q_hash=90f3ddf308ca69fca660e32b09e3617b";
 
-			var auth = VkAuthorization.From(uriFragment: uriQuery);
-			Assert.IsTrue(condition: auth.IsAuthorizationRequired);
+			var auth = VkAuthorization.From(uriQuery);
+			Assert.IsTrue(auth.IsAuthorizationRequired);
 		}
 
 		[Test]
 		public void IsAuthorized_Failed()
 		{
-			var auth = VkAuthorization.From(uriFragment: Input.Replace(oldValue: "access_token", newValue: "qwe"));
-			Assert.IsFalse(condition: auth.IsAuthorized);
+			var auth = VkAuthorization.From(Input.Replace("access_token", "qwe"));
+			Assert.IsFalse(auth.IsAuthorized);
 		}
 
 		[Test]
 		public void IsAuthorized_Success()
 		{
-			var auth = VkAuthorization.From(uriFragment: Input);
-			Assert.IsTrue(condition: auth.IsAuthorized);
+			var auth = VkAuthorization.From(Input);
+			Assert.IsTrue(auth.IsAuthorized);
 		}
 	}
 }

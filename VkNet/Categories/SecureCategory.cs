@@ -41,7 +41,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> GetSMSHistory(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null, ulong? limit = null)
+		public IEnumerable<object> GetSmsHistory(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null, ulong? limit = null)
 		{
 			return _vk.Call<IEnumerable<object>>("secure.getSMSHistory",
 				new VkParameters { { "user_id", userId }, { "date_from", dateFrom }, { "date_to", dateTo }, { "limit", limit } });
@@ -67,7 +67,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public bool SendSMSNotification(ulong userId, string message)
+		public bool SendSmsNotification(ulong userId, string message)
 		{
 			return _vk.Call<bool>("secure.sendSMSNotification", new VkParameters { { "user_id", userId }, { "message", message } });
 		}

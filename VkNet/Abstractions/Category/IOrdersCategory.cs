@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using VkNet.Abstractions.Category;
+using VkNet.Model;
 
 namespace VkNet.Abstractions
 {
@@ -26,6 +27,7 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/orders.cancelSubscription
         /// </remarks>
         bool CancelSubscription(ulong userId, ulong subscriptionId, bool? pendingCancel = null);
+
         /// <summary>
         /// Изменяет состояние заказа.
         /// </summary>
@@ -59,6 +61,7 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/orders.changeState
         /// </remarks>
         object ChangeState(ulong orderId, string action, ulong? appOrderId = null, bool? testMode = null);
+
         /// <summary>
         /// Возвращает список заказов.
         /// </summary>
@@ -84,6 +87,7 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/orders.get
         /// </remarks>
         IEnumerable<object> Get(ulong? offset = null, ulong? count = null, bool? testMode = null);
+
         /// <summary>
         /// Возвращает стоимость голосов в валюте пользователя.
         /// </summary>
@@ -99,7 +103,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/orders.getAmount
         /// </remarks>
-        IEnumerable<object> GetAmount(ulong userId, IEnumerable<string> votes);
+        IEnumerable<VotesAmount> GetAmount(ulong userId, IEnumerable<string> votes);
         /// <summary>
         /// Возвращает информацию об отдельном заказе.
         /// </summary>
@@ -125,42 +129,44 @@ namespace VkNet.Abstractions
         /// Страница документации ВКонтакте http://vk.com/dev/orders.getById
         /// </remarks>
         IEnumerable<object> GetById(ulong? orderId = null, IEnumerable<ulong> orderIds = null, bool? testMode = null);
-        /// <summary>
-        /// Получает информацию о подписке по её идентификатору.
-        /// </summary>
-        /// <param name = "userId">
-        /// Идентификатор пользователя. положительное число, обязательный параметр
-        /// </param>
-        /// <param name = "subscriptionId">
-        /// Идентификатор подписки. положительное число, обязательный параметр
-        /// </param>
-        /// <returns>
-        /// Возвращает объект, описывающий подписку. Содержит следующие поля:
-        /// id (integer) — идентификатор подписки.
-        /// item_id (string) — идентификатор товара в приложении.
-        /// status (string) — статус подписки. Возможные значения:
-        /// chargeable — неподтвержденная подписка;
-        /// active — подписка активна;
-        /// cancelled — подписка отменена.
-        /// price (integer) — стоимость подписки.
-        /// period (integer) — период подписки.
-        /// create_time (integer) — дата создания в Unixtime.
-        /// update_time (integer) — дата обновления в Unixtime.
-        /// period_start_time (integer) — дата начала периода в Unixtime.
-        /// next_bill_time (integer) — дата следующего платежа в Unixtime (если status = active).
-        /// trial_expire_time (integer) — дата истечения триал-периода (если есть).
-        /// pending_cancel (boolean, [true]) — true, если подписка ожидает отмены.
-        /// cancel_reason (string) — причина отмены (если есть). Возможные значения:
-        /// user_decision — по инициативе пользователя;
-        /// app_decision — по инициативе приложения;
-        /// payment_fail — из-за проблемы с платежом;
-        /// unknown — причина неизвестна.
-        /// test_mode (boolean, [true]) — true, если используется тестовый режим.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/orders.getUserSubscriptionById
-        /// </remarks>
-        object GetUserSubscriptionById(ulong userId, ulong subscriptionId);
+
+		/// <summary>
+		/// Получает информацию о подписке по её идентификатору.
+		/// </summary>
+		/// <param name = "userId">
+		/// Идентификатор пользователя. положительное число, обязательный параметр
+		/// </param>
+		/// <param name = "subscriptionId">
+		/// Идентификатор подписки. положительное число, обязательный параметр
+		/// </param>
+		/// <returns>
+		/// Возвращает объект, описывающий подписку. Содержит следующие поля:
+		/// id (integer) — идентификатор подписки.
+		/// item_id (string) — идентификатор товара в приложении.
+		/// status (string) — статус подписки. Возможные значения:
+		/// chargeable — неподтвержденная подписка;
+		/// active — подписка активна;
+		/// cancelled — подписка отменена.
+		/// price (integer) — стоимость подписки.
+		/// period (integer) — период подписки.
+		/// create_time (integer) — дата создания в Unixtime.
+		/// update_time (integer) — дата обновления в Unixtime.
+		/// period_start_time (integer) — дата начала периода в Unixtime.
+		/// next_bill_time (integer) — дата следующего платежа в Unixtime (если status = active).
+		/// trial_expire_time (integer) — дата истечения триал-периода (если есть).
+		/// pending_cancel (boolean, [true]) — true, если подписка ожидает отмены.
+		/// cancel_reason (string) — причина отмены (если есть). Возможные значения:
+		/// user_decision — по инициативе пользователя;
+		/// app_decision — по инициативе приложения;
+		/// payment_fail — из-за проблемы с платежом;
+		/// unknown — причина неизвестна.
+		/// test_mode (boolean, [true]) — true, если используется тестовый режим.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/orders.getUserSubscriptionById
+		/// </remarks>
+		SubscriptionItem GetUserSubscriptionById(ulong userId, ulong subscriptionId);
+
         /// <summary>
         /// Получает список активных подписок пользователя.
         /// </summary>
@@ -191,7 +197,8 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/orders.getUserSubscriptions
         /// </remarks>
-        IEnumerable<object> GetUserSubscriptions(ulong userId);
+        IEnumerable<SubscriptionItem> GetUserSubscriptions(ulong userId);
+
         /// <summary>
         /// Обновляет цену подписки для пользователя.
         /// </summary>

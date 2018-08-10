@@ -45,13 +45,13 @@ namespace VkNet.Model
 		/// Цена за переход в копейках. (если cost_type = 0)
 		/// </summary>
 		[JsonProperty("cpc")]
-		public long CPC { get; set; }
+		public long Cpc { get; set; }
 
 		/// <summary>
 		/// Цена за 1000 показов в копейках. (если cost_type = 1)
 		/// </summary>
 		[JsonProperty("cpm")]
-		public long CPM { get; set; }
+		public long Cpm { get; set; }
 
 		/// <summary>
 		/// (если задано) Ограничение количества показов данного объявления на одного пользователя.

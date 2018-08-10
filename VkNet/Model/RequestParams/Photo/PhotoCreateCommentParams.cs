@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using VkNet.Exception;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -83,22 +84,22 @@ namespace VkNet.Model.RequestParams
 		{
 			if (p.Message.Length > 2048)
 			{
-				throw new System.Exception(message: "Максимальное количество символов: 2048.");
+				throw new VkApiException(message: "Максимальное количество символов: 2048.");
 			}
 
 			var parameters = new VkParameters
 			{
-					{ "owner_id", p.OwnerId }
-					, { "photo_id", p.PhotoId }
-					, { "message", p.Message }
-					, { "attachments", p.Attachments }
-					, { "from_group", p.FromGroup }
-					, { "reply_to_comment", p.ReplyToComment }
-					, { "sticker_id", p.StickerId }
-					, { "access_key", p.AccessKey }
-					, { "captcha_sid", p.CaptchaSid }
-					, { "captcha_key", p.CaptchaKey }
-					, { "guid", p.Guid }
+				{ "owner_id", p.OwnerId },
+				{ "photo_id", p.PhotoId },
+				{ "message", p.Message },
+				{ "attachments", p.Attachments },
+				{ "from_group", p.FromGroup },
+				{ "reply_to_comment", p.ReplyToComment },
+				{ "sticker_id", p.StickerId },
+				{ "access_key", p.AccessKey },
+				{ "captcha_sid", p.CaptchaSid },
+				{ "captcha_key", p.CaptchaKey },
+				{ "guid", p.Guid }
 			};
 
 			return parameters;

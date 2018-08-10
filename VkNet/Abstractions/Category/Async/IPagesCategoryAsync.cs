@@ -46,7 +46,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/pages.save
 		/// </remarks>
-		Task<long> SaveAsync(string text, long? pageId, long groupId, long userId, string title);
+		Task<long> SaveAsync(string text, long groupId, long userId, string title, long? pageId);
 
 		/// <summary>
 		/// Сохраняет новые настройки доступа на чтение и редактирование вики-страницы.

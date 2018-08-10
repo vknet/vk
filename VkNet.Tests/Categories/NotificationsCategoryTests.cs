@@ -1,8 +1,10 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class NotificationsCategoryTests : BaseTest
 	{
 		[Test]
@@ -15,7 +17,7 @@ namespace VkNet.Tests.Categories
 
 			Url = "https://api.vk.com/method/notifications.markAsViewed";
 			var result = Api.Notifications.MarkAsViewed();
-			Assert.True(condition: result);
+			Assert.True(result);
 		}
 	}
 }

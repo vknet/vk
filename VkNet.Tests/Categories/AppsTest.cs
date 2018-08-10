@@ -8,7 +8,8 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
-	[SuppressMessage(category: "ReSharper", checkId: "PublicMembersMustHaveComments")]
+	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[ExcludeFromCodeCoverage]
 	public class AppsTest : BaseTest
 	{
 		[Test]
@@ -22,7 +23,7 @@ namespace VkNet.Tests.Categories
 				  }";
 
 			var app = Api.Apps.DeleteAppRequests();
-			Assert.That(actual: app, expression: Is.True);
+			Assert.That(app, Is.True);
 		}
 
 		[Test]
@@ -58,14 +59,14 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			var app = Api.Apps.Get(@params: new AppGetParams
+			var app = Api.Apps.Get(new AppGetParams
 			{
 					AppIds = new ulong[] { 4268118 }
 					, Platform = AppPlatforms.Web
 			});
 
-			Assert.That(actual: app.TotalCount, expression: Is.AtLeast(expected: 0));
-			Assert.That(actual: app.Apps.First().Title, expression: Is.EqualTo(expected: "raventestapp"));
+			Assert.That(app.TotalCount, Is.AtLeast(0));
+			Assert.That(app.Apps.First().Title, Is.EqualTo("raventestapp"));
 		}
 
 		[Test]
@@ -139,9 +140,9 @@ namespace VkNet.Tests.Categories
 						}
 				  }";
 
-			var app = Api.Apps.GetCatalog(@params: new AppGetCatalogParams());
-			Assert.That(actual: app.TotalCount, expression: Is.AtLeast(expected: 0));
-			Assert.That(actual: app.FirstOrDefault()?.Title, expression: Is.EqualTo(expected: "Подземелья!"));
+			var app = Api.Apps.GetCatalog(new AppGetCatalogParams());
+			Assert.That(app.TotalCount, Is.AtLeast(0));
+			Assert.That(app.FirstOrDefault()?.Title, Is.EqualTo("Подземелья!"));
 		}
 
 		[Test]
@@ -157,9 +158,9 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			var app = Api.Apps.GetFriendsList(type: AppRequestType.Invite);
-			Assert.That(actual: app.TotalCount, expression: Is.GreaterThan(expected: 0));
-			Assert.That(actual: app, expression: Is.Not.Null);
+			var app = Api.Apps.GetFriendsList(AppRequestType.Invite);
+			Assert.That(app.TotalCount, Is.GreaterThan(0));
+			Assert.That(app, Is.Not.Null);
 		}
 
 		[Test]
@@ -195,9 +196,9 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			var app = Api.Apps.GetFriendsList(type: AppRequestType.Invite, extended: true, count: 5, offset: 1, fields: UsersFields.Online);
-			Assert.That(actual: app.TotalCount, expression: Is.GreaterThan(expected: 0));
-			Assert.That(actual: app, expression: Is.Not.Null);
+			var app = Api.Apps.GetFriendsList(AppRequestType.Invite, true, 5, 1, UsersFields.Online);
+			Assert.That(app.TotalCount, Is.GreaterThan(0));
+			Assert.That(app, Is.Not.Null);
 		}
 
 		[Test]
@@ -222,14 +223,14 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			var app = Api.Apps.GetLeaderboard(type: AppRatingType.Points, global: null, extended: true);
-			Assert.IsNotNull(anObject: app);
-			Assert.That(actual: app.Count, expression: Is.EqualTo(expected: 130));
-			Assert.That(actual: app.Items, expression: Is.Not.Empty);
-			Assert.That(actual: app.Items[index: 0].Score, expression: Is.EqualTo(expected: 221634238));
-			Assert.That(actual: app.Items[index: 0].Points, expression: Is.EqualTo(expected: 256));
-			Assert.That(actual: app.Items[index: 0].UserId, expression: Is.EqualTo(expected: 123));
-			Assert.That(actual: app.Profiles, expression: Is.Not.Empty);
+			var app = Api.Apps.GetLeaderboard(AppRatingType.Points, null, true);
+			Assert.IsNotNull(app);
+			Assert.That(app.Count, Is.EqualTo(130));
+			Assert.That(app.Items, Is.Not.Empty);
+			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
+			Assert.That(app.Items[0].Points, Is.EqualTo(256));
+			Assert.That(app.Items[0].UserId, Is.EqualTo(123));
+			Assert.That(app.Profiles, Is.Not.Empty);
 		}
 
 		[Test]
@@ -249,13 +250,13 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			var app = Api.Apps.GetLeaderboard(type: AppRatingType.Level);
-			Assert.IsNotNull(anObject: app);
-			Assert.That(actual: app.Count, expression: Is.EqualTo(expected: 130));
-			Assert.That(actual: app.Items, expression: Is.Not.Empty);
-			Assert.That(actual: app.Items[index: 0].Score, expression: Is.EqualTo(expected: 221634238));
-			Assert.That(actual: app.Items[index: 0].Level, expression: Is.EqualTo(expected: 13));
-			Assert.That(actual: app.Items[index: 0].UserId, expression: Is.EqualTo(expected: 123));
+			var app = Api.Apps.GetLeaderboard(AppRatingType.Level);
+			Assert.IsNotNull(app);
+			Assert.That(app.Count, Is.EqualTo(130));
+			Assert.That(app.Items, Is.Not.Empty);
+			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
+			Assert.That(app.Items[0].Level, Is.EqualTo(13));
+			Assert.That(app.Items[0].UserId, Is.EqualTo(123));
 		}
 
 		[Test]
@@ -275,13 +276,13 @@ namespace VkNet.Tests.Categories
 					}
 				  }";
 
-			var app = Api.Apps.GetLeaderboard(type: AppRatingType.Points);
-			Assert.IsNotNull(anObject: app);
-			Assert.That(actual: app.Count, expression: Is.EqualTo(expected: 130));
-			Assert.That(actual: app.Items, expression: Is.Not.Empty);
-			Assert.That(actual: app.Items[index: 0].Score, expression: Is.EqualTo(expected: 221634238));
-			Assert.That(actual: app.Items[index: 0].Points, expression: Is.EqualTo(expected: 256));
-			Assert.That(actual: app.Items[index: 0].UserId, expression: Is.EqualTo(expected: 123));
+			var app = Api.Apps.GetLeaderboard(AppRatingType.Points);
+			Assert.IsNotNull(app);
+			Assert.That(app.Count, Is.EqualTo(130));
+			Assert.That(app.Items, Is.Not.Empty);
+			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
+			Assert.That(app.Items[0].Points, Is.EqualTo(256));
+			Assert.That(app.Items[0].UserId, Is.EqualTo(123));
 		}
 	}
 }

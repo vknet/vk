@@ -1,10 +1,12 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Wall
 {
+	[ExcludeFromCodeCoverage]
 	public class WallPostTests : BaseTest
 	{
 		[Test]
@@ -49,7 +51,7 @@ namespace VkNet.Tests.Categories
                  }
                  ";
 
-			Assert.That(code: () => VkErrors.IfErrorThrowException(json: Json), constraint: Throws.TypeOf<NeedValidationException>());
+			Assert.That(() => VkErrors.IfErrorThrowException(Json), Throws.TypeOf<NeedValidationException>());
 		}
 
 		[Test]
@@ -87,7 +89,7 @@ namespace VkNet.Tests.Categories
                    }
                  }";
 
-			Assert.Throws<PostLimitException>(code: () => Api.Wall.Post(@params: new WallPostParams()));
+			Assert.Throws<PostLimitException>(() => Api.Wall.Post(new WallPostParams()));
 		}
 	}
 }
