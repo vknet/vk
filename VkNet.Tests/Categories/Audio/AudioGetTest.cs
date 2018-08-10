@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
@@ -49,12 +50,15 @@ namespace VkNet.Tests.Categories.Audio
 				}";
 
 			var result = Api.Audio.Get(new AudioGetParams
-				{
-					Count = 1,
-					NeedUser = true
-				});
+			{
+				Count = 1
+			});
+
+			var audio = result.FirstOrDefault();
 
 			Assert.IsNotEmpty(result);
+			Assert.That(result.Count, Is.EqualTo(1));
+			Assert.NotNull(audio);
 		}
 	}
 }

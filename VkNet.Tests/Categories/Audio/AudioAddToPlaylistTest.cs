@@ -32,7 +32,7 @@ namespace VkNet.Tests.Categories.Audio
 				.ToList();
 
 			Assert.IsNotEmpty(result);
-			Assert.That(result.Count == 2);
+			Assert.That(result.Count, Is.EqualTo(2));
 		}
 	}
 }

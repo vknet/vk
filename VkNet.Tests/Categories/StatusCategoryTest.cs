@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Exception;
 
@@ -66,16 +66,18 @@ namespace VkNet.Tests.Categories
 			const string json =
 					@"{
                     'response': {
-                      'text': 'Тараканы! &ndash; Собачье Сердце',
+                      'text': 'Тараканы! – Собачье Сердце',
                       'audio': {
-                        'id': 158073513,
-                        'owner_id': 4793858,
-                        'artist': 'Тараканы!',
-                        'title': 'Собачье Сердце',
-                        'duration': 230,
-                        'url': 'http://cs4838.vkontakte.ru/u4198300/audio/3ada410d4830.mp3',
-                        'performer': 'Тараканы!',
-                        'lyrics_id': '7985406'
+						'id': 158073513,
+						'owner_id': 4793858,
+						'artist': 'Тараканы!',
+						'title': 'Собачье Сердце',
+						'duration': 230,
+						'date': 1533704475,
+						'url': 'https://cs1-43v4/lR-RTwXXMk_q1RrO_-g',
+						'lyrics_id': 7985406,
+						'genre_id': 3,
+						'is_hq': true
                       }
                     }
                   }";
@@ -92,11 +94,10 @@ namespace VkNet.Tests.Categories
 			Assert.That(actual: actual.Audio.Title, expression: Is.EqualTo(expected: "Собачье Сердце"));
 			Assert.That(actual: actual.Audio.Duration, expression: Is.EqualTo(expected: 230));
 
-			Assert.That(actual: actual.Audio.Uri.OriginalString
-					, expression: Is.EqualTo(expected: "http://cs4838.vkontakte.ru/u4198300/audio/3ada410d4830.mp3"));
+			Assert.That(actual: actual.Audio.Url.OriginalString
+					, expression: Is.EqualTo(expected: "https://cs1-43v4/lR-RTwXXMk_q1RrO_-g"));
 
 			Assert.That(actual: actual.Audio.LyricsId, expression: Is.EqualTo(expected: 7985406));
-			Assert.That(actual: actual.Audio.AlbumId, expression: Is.Null);
 		}
 
 		[Test]

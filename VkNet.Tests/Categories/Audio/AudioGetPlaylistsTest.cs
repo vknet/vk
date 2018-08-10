@@ -52,7 +52,7 @@ namespace VkNet.Tests.Categories.Audio
 			var result = Api.Audio.GetPlaylists(123456789, 1);
 			var playlist = result.FirstOrDefault();
 
-			Assert.That(result.TotalCount == 3);
+			Assert.That(result.TotalCount, Is.EqualTo(3));
 			Assert.IsNotEmpty(result);
 			Assert.NotNull(playlist);
 		}

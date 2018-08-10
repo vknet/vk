@@ -57,10 +57,10 @@ namespace VkNet.Tests.Categories.Audio
 					  ]
 					}";
 
-			var result = Api.Audio.GetBroadcastList();
+			var result = Api.Audio.GetBroadcastList().ToList();
 			var Object = result.FirstOrDefault();
 
-			Assert.NotNull(result);
+			Assert.IsNotEmpty(result);
 			Assert.NotNull(Object);
 		}
 	}
