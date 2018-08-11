@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model.Attachments;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
@@ -55,6 +56,7 @@ namespace VkNet.Model
 					, CanSeeAudio = response[key: "can_see_audio"]
 					, CanWritePrivateMessage = response[key: "can_write_private_message"]
 					, Status = response[key: "status"]
+					, StatusAudio = response[key: "status_audio"]
 					, LastSeen = response[key: "last_seen"]
 					, CommonCount = response[key: "common_count"]
 					, Relation = response[key: "relation"]
@@ -664,6 +666,12 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty(propertyName: "status")]
 		public string Status { get; set; }
+
+		/// <summary>
+		/// Объект аудиозаписи, установленной в статус (если аудиозапись транслируется в текущей момент).
+		/// </summary>
+		[JsonProperty("status_audio")]
+		public Audio StatusAudio { get; set; }
 
 		/// <summary>
 		/// Часовой пояс пользователя.

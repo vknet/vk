@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -6,26 +7,38 @@ namespace VkNet.Model
 	/// <summary>
 	/// Информация об аудиоальбоме.
 	/// </summary>
-	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.getAlbums
-	/// </remarks>
 	[Serializable]
 	public class AudioAlbum
 	{
 		/// <summary>
-		/// Идентификатор владельца альбома.
-		/// </summary>
-		public long? OwnerId { get; set; }
-
-		/// <summary>
 		/// Идентификатор альбома.
 		/// </summary>
-		public long? AlbumId { get; set; }
+		[JsonProperty("id")]
+		public long Id { get; set; }
+
+		/// <summary>
+		/// Идентификатор владельца альбома (пользователь или сообщество).
+		/// </summary>
+		[JsonProperty("owner_id")]
+		public long OwnerId { get; set; }
 
 		/// <summary>
 		/// Название альбома.
 		/// </summary>
+		[JsonProperty("title")]
 		public string Title { get; set; }
+
+		/// <summary>
+		/// Обложка альбома.
+		/// </summary>
+		[JsonProperty("thumb")]
+		public AudioCover Cover { get; set; }
+
+		/// <summary>
+		/// Ключ доступа.
+		/// </summary>
+		[JsonProperty("access_key")]
+		public string AccessKey { get; set; }
 
 	#region Методы
 
@@ -36,14 +49,14 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static AudioAlbum FromJson(VkResponse response)
 		{
-			var album = new AudioAlbum
+			return new AudioAlbum
 			{
-					OwnerId = response[key: "owner_id"]
-					, AlbumId = response[key: "album_id"] ?? response[key: "id"]
-					, Title = response[key: "title"]
+				Id = response["id"],
+				OwnerId = response["owner_id"],
+				Title = response["title"],
+				Cover = response["thumb"],
+				AccessKey = response["access_key"]
 			};
-
-			return album;
 		}
 
 	#endregion

@@ -294,18 +294,6 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator AudioAlbum(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : AudioAlbum.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
 		public static implicit operator AuthConfirmResult(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues ? null : AuthConfirmResult.FromJson(response: response);
@@ -1743,5 +1731,77 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : AdsAccount.FromJson(response: response);
 		}
-    }
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator MessageKeyboard(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : MessageKeyboard.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator MessageKeyboardButton(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : MessageKeyboardButton.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator MessageKeyboardButtonAction(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : MessageKeyboardButtonAction.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator MessageActionObject(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : MessageActionObject.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator AudioCover(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : AudioCover.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator AudioAlbum(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : AudioAlbum.FromJson(response: response);
+		}
+	}
 }

@@ -324,5 +324,18 @@ namespace VkNet.Tests.Enum.Filters
 			Assert.That(VideoFilters.FromJsonString("mp4,youtube,vimeo,short,long")
 					, Is.EqualTo(VideoFilters.All));
 		}
+
+		[Test]
+		public void AudioBroadcastFilterTest()
+		{
+			// get test
+			Assert.That(actual: AudioBroadcastFilter.All.ToString(), expression: Is.EqualTo(expected: "all"));
+			Assert.That(actual: AudioBroadcastFilter.Friends.ToString(), expression: Is.EqualTo(expected: "friends"));
+			Assert.That(actual: AudioBroadcastFilter.Groups.ToString(), expression: Is.EqualTo(expected: "groups"));
+			// parse test
+			Assert.That(actual: AudioBroadcastFilter.FromJsonString(val: "all"), expression: Is.EqualTo(expected: AudioBroadcastFilter.All));
+			Assert.That(actual: AudioBroadcastFilter.FromJsonString(val: "friends"), expression: Is.EqualTo(expected: AudioBroadcastFilter.Friends));
+			Assert.That(actual: AudioBroadcastFilter.FromJsonString(val: "groups"), expression: Is.EqualTo(expected: AudioBroadcastFilter.Groups));
+		}
 	}
 }

@@ -479,7 +479,7 @@ namespace VkNet
 		public IGroupsCategory Groups { get; private set; }
 
 		/// <inheritdoc />
-		public AudioCategory Audio { get; private set; }
+		public IAudioCategory Audio { get; private set; }
 
 		/// <inheritdoc />
 		public IDatabaseCategory Database { get; private set; }

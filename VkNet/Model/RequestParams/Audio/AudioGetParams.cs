@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using VkNet.Utils;
 
@@ -12,42 +12,31 @@ namespace VkNet.Model.RequestParams
 	{
 		/// <summary>
 		/// Идентификатор владельца аудиозаписей (пользователь или сообщество). Обратите
-		/// внимание, идентификатор сообщества в
-		/// параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1
-		/// соответствует идентификатору
-		/// сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор
-		/// текущего пользователя.
+		/// внимание, идентификатор сообщества в параметре owner_id необходимо указывать
+		/// со знаком "-" — например, owner_id=-1.
+		/// По умолчанию идентификатор текущего пользователя.
 		/// </summary>
 		public long? OwnerId { get; set; }
 
 		/// <summary>
-		/// Идентификатор альбома с аудиозаписями. целое число.
+		/// Идентификатор альбома с аудиозаписями.
 		/// </summary>
 		public long? AlbumId { get; set; }
 
 		/// <summary>
-		/// Идентификаторы аудиозаписей, информацию о которых необходимо вернуть. список
-		/// положительных чисел, разделенных
-		/// запятыми.
+		/// Идентификаторы аудиозаписей, информацию о которых необходимо вернуть.
 		/// </summary>
 		public IEnumerable<long> AudioIds { get; set; }
 
 		/// <summary>
-		/// 1 — возвращать информацию о пользователях, загрузивших аудиозапись. флаг, может
-		/// принимать значения 1 или 0.
-		/// </summary>
-		public bool? NeedUser { get; set; }
-
-		/// <summary>
-		/// Смещение, необходимое для выборки определенного количества аудиозаписей. По
-		/// умолчанию — 0. положительное число.
+		/// Смещение, необходимое для выборки определенного количества аудиозаписей.
+		/// По умолчанию — 0.
 		/// </summary>
 		public long? Offset { get; set; }
 
 		/// <summary>
 		/// Количество аудиозаписей, информацию о которых необходимо вернуть. Максимальное
-		/// значение — 6000. положительное
-		/// число.
+		/// значение — 6000.
 		/// </summary>
 		public long? Count { get; set; }
 
@@ -60,12 +49,11 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", p.OwnerId }
-					, { "album_id", p.AlbumId }
-					, { "audio_ids", p.AudioIds }
-					, { "need_user", p.NeedUser }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
+				{ "owner_id", p.OwnerId },
+				{ "album_id", p.AlbumId },
+				{ "audio_ids", p.AudioIds },
+				{ "offset", p.Offset },
+				{ "count", p.Count }
 			};
 
 			return parameters;

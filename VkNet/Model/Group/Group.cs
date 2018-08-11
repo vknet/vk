@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model.Attachments;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
@@ -79,6 +80,7 @@ namespace VkNet.Model
 					, CanCreateTopic = response[key: "can_create_topic"]
 					, Activity = response[key: "activity"]
 					, Status = response[key: "status"]
+					, StatusAudio = response[key: "status_audio"]
 					, Contacts = response[key: "contacts"].ToReadOnlyCollectionOf<Contact>(selector: x => x)
 					, Links = response[key: "links"].ToReadOnlyCollectionOf<ExternalLink>(selector: x => x)
 					, FixedPost = response[key: "fixed_post"]
@@ -352,6 +354,12 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? StartDate { get; set; }
+
+		/// <summary>
+		/// Объект аудиозаписи, установленной в статус (если аудиозапись транслируется в текущей момент).
+		/// </summary>
+		[JsonProperty("status_audio")]
+		public Audio StatusAudio { get; set; }
 
 		/// <summary>
 		/// Время окончания встречи (возвращаются только для встреч).
