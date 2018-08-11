@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -7,6 +8,7 @@ using VkNet.Utils;
 namespace VkNet.Model.Keyboard
 {
 	/// <inheritdoc />
+	[Serializable]
 	[UsedImplicitly]
 	public class KeyboardBuilder : IKeyboardBuilder
 	{

@@ -74,7 +74,12 @@ namespace VkNet.Model
 		/// </returns>
 		public static implicit operator MessageActionObject(VkResponse response)
 		{
-			return response.HasToken() ? null : FromJson(response);
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken() ? FromJson(response) : null;
 		}
 	}
 }
