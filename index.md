@@ -60,6 +60,7 @@ PM> Install-Package VkNet
 + [Groups.Join](/vk/groups/join/) - Данный метод позволяет вступить в группу, публичную страницу, а также подтвердить участие во встрече.
 + [Groups.Leave](/vk/groups/leave/) - Позволяет покинуть сообщество.
 + [Groups.Search](/vk/groups/search/) - Осуществляет поиск сообществ по заданной подстроке.
++ [Groups.GetLongPollServer](/vk/groups/getLongPollServer/) - Возвращает данные для подключения к Bots Longpoll API.
 + [Groups.GetCatalog](/vk/groups/getCatalog/) - Возвращает список сообществ выбранной категории каталога.
 + [Groups.GetCatalogInfo](/vk/groups/getCatalogInfo/) - Возвращает список категорий для каталога сообществ.
 + [Groups.GetInvites](/vk/groups/getInvites/) - Данный метод возвращает список приглашений в сообщества и встречи текущего пользователя.
