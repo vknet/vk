@@ -58,6 +58,11 @@ namespace VkNet.Model.Keyboard
 		/// </returns>
 		public static implicit operator MessageKeyboardButtonAction(VkResponse response)
 		{
+			if (response == null)
+			{
+				return null;
+			}
+
 			return response.HasToken() ? FromJson(response) : null;
 		}
 	}

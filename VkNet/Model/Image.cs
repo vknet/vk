@@ -46,6 +46,11 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static implicit operator Image(VkResponse response)
 		{
+			if (response == null)
+			{
+				return null;
+			}
+
 			return response.HasToken()
 					? FromJson(response: response)
 					: null;

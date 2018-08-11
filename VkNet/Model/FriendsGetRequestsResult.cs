@@ -41,9 +41,9 @@ namespace VkNet.Model
 		{
 			return new FriendsGetRequestsResult
 			{
-					UserId = response[key: "user_id"]
-					, Mutual = response[key: "mutual"].ToVkCollectionOf<long>(selector: x => x, arrayName: "users")
-					, Message = response[key: "message"]
+				UserId = response[key: "user_id"],
+				Mutual = response[key: "mutual"].ToVkCollectionOf<long>(selector: x => x, arrayName: "users"),
+				Message = response[key: "message"]
 			};
 		}
 
@@ -56,6 +56,11 @@ namespace VkNet.Model
 		/// </returns>
 		public static implicit operator FriendsGetRequestsResult(VkResponse response)
 		{
+			if (response == null)
+			{
+				return null;
+			}
+
 			return response.HasToken() ? FromJson(response: response) : null;
 		}
 	}
