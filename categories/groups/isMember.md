@@ -41,7 +41,7 @@ invitation — приглашён ли пользователь в группу 
 ## Пример
 ```csharp
 // Проверяем состоит ли Павел Дуров в группе с id равным 2.
-bool isMember = vk.Groups.IsMember(2, 1);
+var collection = vk.Groups.IsMember("123456", 123456, new long[] { 132 132 }, false);
 ```
 
 ## Версия Вконтакте API v.5.44
