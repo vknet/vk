@@ -19,8 +19,8 @@ namespace VkNet.Utils
 		public static implicit operator MessagesSendResult(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: MessagesSendResult.FromJson(response: response);
+				? null
+				: MessagesSendResult.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -33,8 +33,8 @@ namespace VkNet.Utils
 		public static implicit operator PageVersion(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: PageVersion.FromJson(response: response);
+				? null
+				: PageVersion.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -47,8 +47,8 @@ namespace VkNet.Utils
 		public static implicit operator FriendsDeleteResult(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: FriendsDeleteResult.FromJson(response: response);
+				? null
+				: FriendsDeleteResult.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -61,8 +61,8 @@ namespace VkNet.Utils
 		public static implicit operator AreFriendsResult(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: AreFriendsResult.FromJson(response: response);
+				? null
+				: AreFriendsResult.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -75,8 +75,8 @@ namespace VkNet.Utils
 		public static implicit operator CallbackSettings(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: CallbackSettings.FromJson(response: response);
+				? null
+				: CallbackSettings.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -89,8 +89,8 @@ namespace VkNet.Utils
 		public static implicit operator CallbackServerItem(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: CallbackServerItem.FromJson(response: response);
+				? null
+				: CallbackServerItem.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -103,8 +103,8 @@ namespace VkNet.Utils
 		public static implicit operator ChatPreviewField(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: ChatPreviewField.FromJson(response: response);
+				? null
+				: ChatPreviewField.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -117,8 +117,8 @@ namespace VkNet.Utils
 		public static implicit operator ChatPreview(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: ChatPreview.FromJson(response: response);
+				? null
+				: ChatPreview.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -131,8 +131,8 @@ namespace VkNet.Utils
 		public static implicit operator ChatPhoto(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: ChatPhoto.FromJson(response: response);
+				? null
+				: ChatPhoto.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -145,8 +145,8 @@ namespace VkNet.Utils
 		public static implicit operator Email(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: Email.FromJson(response: response);
+				? null
+				: Email.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -171,8 +171,8 @@ namespace VkNet.Utils
 		public static implicit operator AccountPushSettings(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: AccountPushSettings.FromJson(response: response);
+				? null
+				: AccountPushSettings.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -197,8 +197,8 @@ namespace VkNet.Utils
 		public static implicit operator AccountChangePasswordResult(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: AccountChangePasswordResult.FromJson(response: response);
+				? null
+				: AccountChangePasswordResult.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -259,8 +259,8 @@ namespace VkNet.Utils
 		public static implicit operator ApplicationContent(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: ApplicationContent.FromJson(response: response);
+				? null
+				: ApplicationContent.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -789,8 +789,8 @@ namespace VkNet.Utils
 		public static implicit operator InformationAboutOffers(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: InformationAboutOffers.FromJson(response: response);
+				? null
+				: InformationAboutOffers.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -875,8 +875,8 @@ namespace VkNet.Utils
 		public static implicit operator LongPollHistoryResponse(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: LongPollHistoryResponse.FromJson(response: response);
+				? null
+				: LongPollHistoryResponse.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -889,8 +889,8 @@ namespace VkNet.Utils
 		public static implicit operator LongPollServerResponse(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: LongPollServerResponse.FromJson(response: response);
+				? null
+				: LongPollServerResponse.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -903,8 +903,8 @@ namespace VkNet.Utils
 		public static implicit operator LookupContactsOther(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: LookupContactsOther.FromJson(response: response);
+				? null
+				: LookupContactsOther.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -917,8 +917,8 @@ namespace VkNet.Utils
 		public static implicit operator LookupContactsResult(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: LookupContactsResult.FromJson(response: response);
+				? null
+				: LookupContactsResult.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -979,8 +979,8 @@ namespace VkNet.Utils
 		public static implicit operator MarketCategorySection(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: MarketCategorySection.FromJson(response: response);
+				? null
+				: MarketCategorySection.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -1041,8 +1041,8 @@ namespace VkNet.Utils
 		public static implicit operator MessagesPushSettings(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: MessagesPushSettings.FromJson(response: response);
+				? null
+				: MessagesPushSettings.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -1464,8 +1464,8 @@ namespace VkNet.Utils
 		public static implicit operator SearchDialogsResponse(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
-					? null
-					: SearchDialogsResponse.FromJson(response: response);
+				? null
+				: SearchDialogsResponse.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -1730,54 +1730,6 @@ namespace VkNet.Utils
 		public static implicit operator AdsAccount(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues ? null : AdsAccount.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator MessageKeyboard(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : MessageKeyboard.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator MessageKeyboardButton(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : MessageKeyboardButton.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator MessageKeyboardButtonAction(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : MessageKeyboardButtonAction.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator MessageActionObject(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : MessageActionObject.FromJson(response: response);
 		}
 
 		/// <summary>
