@@ -506,6 +506,9 @@ namespace VkNet.Abstractions
 		/// <c> true </c> — возвращать поле pts, необходимое для работы метода
 		/// messages.getLongPollHistory
 		/// </param>
+		/// <param name="groupId">
+		/// Айди группы, от которой получать данные
+		/// </param>
 		/// <returns>
 		/// Возвращает объект, с помощью которого можно подключиться к серверу быстрых
 		/// сообщений для мгновенного
@@ -516,7 +519,7 @@ namespace VkNet.Abstractions
 		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollServer
 		/// </remarks>
-		Task<LongPollServerResponse> GetLongPollServerAsync(bool needPts = false, uint lpVersion = 2);
+		Task<LongPollServerResponse> GetLongPollServerAsync(bool needPts = false, uint lpVersion = 2, ulong? groupId = null);
 
 		/// <summary>
 		/// Возвращает обновления в личных сообщениях пользователя.
