@@ -447,10 +447,11 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public LongPollServerResponse GetLongPollServer(bool needPts = false, uint lpVersion = 2)
+		public LongPollServerResponse GetLongPollServer(bool needPts = false, uint lpVersion = 2, ulong? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
+				{ "group_id", groupId },
 				{ "lp_version", lpVersion },
 				{ "need_pts", needPts }
 			};

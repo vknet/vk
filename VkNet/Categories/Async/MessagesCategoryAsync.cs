@@ -218,10 +218,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<LongPollServerResponse> GetLongPollServerAsync(bool needPts = false, uint lpVersion = 2)
+		public Task<LongPollServerResponse> GetLongPollServerAsync(bool needPts = false, uint lpVersion = 2, ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				GetLongPollServer(needPts: needPts, lpVersion: lpVersion));
+				GetLongPollServer(needPts: needPts, lpVersion: lpVersion, groupId: groupId));
 		}
 
 		/// <inheritdoc />

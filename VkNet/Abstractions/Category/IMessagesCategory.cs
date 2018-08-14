@@ -494,12 +494,15 @@ namespace VkNet.Abstractions
 		/// сообщений и других событий.
 		/// </summary>
 		/// <param name="lpVersion">
-		/// версия для подключения к Long Poll. Актуальная версия:
+		/// Версия для подключения к Long Poll. Актуальная версия:
 		/// 2.
 		/// </param>
 		/// <param name="needPts">
 		/// <c> true </c> — возвращать поле pts, необходимое для работы метода
 		/// messages.getLongPollHistory
+		/// </param>
+		/// <param name="groupId">
+		/// Айди группы, от которой получать данные
 		/// </param>
 		/// <returns>
 		/// Возвращает объект, с помощью которого можно подключиться к серверу быстрых
@@ -511,7 +514,7 @@ namespace VkNet.Abstractions
 		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollServer
 		/// </remarks>
-		LongPollServerResponse GetLongPollServer(bool needPts = false, uint lpVersion = 2);
+		LongPollServerResponse GetLongPollServer(bool needPts = false, uint lpVersion = 2, ulong? groupId = null);
 
 		/// <summary>
 		/// Возвращает обновления в личных сообщениях пользователя.

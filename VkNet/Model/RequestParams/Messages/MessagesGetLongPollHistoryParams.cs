@@ -76,6 +76,9 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "lp_version")]
 		public ulong? LpVersion { get; set; }
+		
+		[JsonProperty(propertyName: "group_id")]
+		public ulong? GroupId { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -95,6 +98,7 @@ namespace VkNet.Model.RequestParams
 					, { "msgs_limit", p.MsgsLimit }
 					, { "max_msg_id", p.MaxMsgId }
 					, { "lp_version", p.LpVersion }
+					, { "group_id", p.GroupId }
 			};
 		}
 	}
