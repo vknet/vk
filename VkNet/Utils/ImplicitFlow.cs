@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using JetBrains.Annotations;
-using NLog;
+using Microsoft.Extensions.Logging;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Enums.SafetyEnums;
@@ -24,7 +24,7 @@ namespace VkNet.Utils
 		/// Логгер
 		/// </summary>
 		[CanBeNull]
-		private readonly ILogger _logger;
+		private readonly ILogger<ImplicitFlow> _logger;
 
 		/// <summary>
 		/// WebProxy
@@ -38,7 +38,7 @@ namespace VkNet.Utils
 
 		/// <inheritdoc />
 		public ImplicitFlow([CanBeNull]
-							ILogger logger, IWebProxy proxy, HttpClient httpClient, IVkApiVersionManager versionManager)
+							ILogger<ImplicitFlow> logger, IWebProxy proxy, HttpClient httpClient, IVkApiVersionManager versionManager)
 		{
 			_logger = logger;
 			_proxy = proxy;
@@ -49,10 +49,10 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public AuthorizationResult Authorize()
 		{
-			_logger?.Debug(message: "Валидация данных.");
+			_logger?.LogDebug(message: "Валидация данных.");
 			ValidateAuthorizationParameters();
 
-			_logger?.Debug(message: "Шаг 1. Открытие диалога авторизации");
+			_logger?.LogDebug(message: "Шаг 1. Открытие диалога авторизации");
 			var authorizeUrlResult = OpenAuthDialog();
 
 			return null;
@@ -64,7 +64,7 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 		{
-			_logger?.Debug(message: "Построение url для авторизации.");
+			_logger?.LogDebug(message: "Построение url для авторизации.");
 			var builder = new StringBuilder(value: "https://oauth.vk.com/authorize?");
 
 			builder.Append(value: $"client_id={clientId}&");

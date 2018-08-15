@@ -1,6 +1,6 @@
 using System;
 using JetBrains.Annotations;
-using NLog;
+using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Core;
 using VkNet.Exception;
 using VkNet.Utils.AntiCaptcha;
@@ -11,12 +11,12 @@ namespace VkNet.Utils
 	[UsedImplicitly]
 	public class CaptchaHandler : ICaptchaHandler
 	{
-		private readonly ILogger _logger;
+		private readonly ILogger<CaptchaHandler> _logger;
 
 		private readonly ICaptchaSolver _captchaSolver;
 
 		/// <inheritdoc />
-		public CaptchaHandler(ILogger logger, ICaptchaSolver captchaSolver)
+		public CaptchaHandler(ILogger<CaptchaHandler> logger, ICaptchaSolver captchaSolver)
 		{
 			_logger = logger;
 			_captchaSolver = captchaSolver;
@@ -58,7 +58,7 @@ namespace VkNet.Utils
 				return result;
 			}
 
-			_logger?.Error("Капча ни разу не была распознана верно");
+			_logger?.LogError("Капча ни разу не была распознана верно");
 
 			throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
 		}
@@ -68,7 +68,7 @@ namespace VkNet.Utils
 												ref long? captchaSidTemp,
 												ref string captchaKeyTemp)
 		{
-			_logger?.Warn("Повторная обработка капчи");
+			_logger?.LogWarning("Повторная обработка капчи");
 
 			if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
 			{

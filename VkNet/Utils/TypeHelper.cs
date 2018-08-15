@@ -4,9 +4,8 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using NLog;
-using NLog.Config;
-using NLog.Targets;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
@@ -43,9 +42,9 @@ namespace VkNet.Utils
 				container.TryAddSingleton<INeedValidationHandler, Browser>();
 			}
 
-			if (container.All(x => x.ServiceType != typeof(ILogger)))
+			if (container.All(x => x.ServiceType != typeof(ILogger<>)))
 			{
-				container.TryAddSingleton(InitLogger());
+				container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
 			}
 
 			if (container.All(x => x.ServiceType != typeof(IRestClient)))
@@ -77,28 +76,6 @@ namespace VkNet.Utils
 			{
 				container.TryAddSingleton<ICaptchaSolver>(sp => null);
 			}
-		}
-
-		/// <summary>
-		/// Инициализация логгера.
-		/// </summary>
-		/// <returns> Логгер </returns>
-		private static ILogger InitLogger()
-		{
-			var consoleTarget = new ColoredConsoleTarget
-			{
-				UseDefaultRowHighlightingRules = true,
-				Layout = @"${level} ${longdate} ${logger} ${message}"
-			};
-
-			var config = new LoggingConfiguration();
-			config.AddTarget("console", consoleTarget);
-			var rule1 = new LoggingRule("*", LogLevel.Trace, consoleTarget);
-			config.LoggingRules.Add(rule1);
-
-			LogManager.Configuration = config;
-
-			return LogManager.GetLogger("VkApi");
 		}
 
 		/// <summary>

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using NLog;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
@@ -20,6 +20,7 @@ using VkNet.Abstractions.Utils;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
+using VkNet.Infrastructure;
 using VkNet.Model;
 using VkNet.Utils;
 using VkNet.Utils.AntiCaptcha;
@@ -76,7 +77,7 @@ namespace VkNet
 		/// <summary>
 		/// Логгер
 		/// </summary>
-		private ILogger _logger;
+		private ILogger<VkApi> _logger;
 
 	#pragma warning disable S1104 // Fields should not have public accessibility
 		/// <summary>
@@ -86,7 +87,7 @@ namespace VkNet
 	#pragma warning restore S1104 // Fields should not have public accessibility
 
 		/// <inheritdoc />
-		public VkApi(ILogger logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
+		public VkApi(ILogger<VkApi> logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
 		{
 			var container = new ServiceCollection();
 
@@ -176,7 +177,7 @@ namespace VkNet
 			// подключение браузера через прокси
 			if (@params.Host != null)
 			{
-				_logger?.Debug(message: "Настройка прокси");
+				_logger?.LogDebug(message: "Настройка прокси");
 
 				Browser.Proxy = WebProxy.GetProxy(host: @params.Host,
 					port: @params.Port,
@@ -203,7 +204,7 @@ namespace VkNet
 			}
 
 			_ap = @params;
-			_logger?.Debug(message: "Авторизация прошла успешно");
+			_logger?.LogDebug(message: "Авторизация прошла успешно");
 		}
 
 		/// <inheritdoc />
@@ -224,7 +225,7 @@ namespace VkNet
 				const string message =
 					"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
 
-				_logger?.Error(message: message);
+				_logger?.LogError(message: message);
 
 				throw new AggregateException(message: message);
 			}
@@ -297,7 +298,7 @@ namespace VkNet
 			if (!skipAuthorization && !IsAuthorized)
 			{
 				var message = $"Метод '{methodName}' нельзя вызывать без авторизации";
-				_logger?.Error(message: message);
+				_logger?.LogError(message: message);
 
 				throw new AccessTokenInvalidException(message: message);
 			}
@@ -346,8 +347,8 @@ namespace VkNet
 				SendRequest(method: methodName, @params: parameters);
 			}
 
-			_logger?.Trace(message: $"Uri = \"{url}\"");
-			_logger?.Trace(message: $"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(json: answer)}");
+			_logger?.LogTrace(message: $"Uri = \"{url}\"");
+			_logger?.LogTrace(message: $"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(json: answer)}");
 
 			VkErrors.IfErrorThrowException(json: answer);
 
@@ -380,7 +381,7 @@ namespace VkNet
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
 				const string message = "Не удалось автоматически пройти валидацию!";
-				_logger?.Error(message: message);
+				_logger?.LogError(message: message);
 
 				throw new NeedValidationException(message: message, strRedirectUri: validateUrl);
 			}
@@ -596,9 +597,9 @@ namespace VkNet
 				parameters.Add(name: "v", value: VkApiVersion.Version);
 			}
 
-			if (!parameters.ContainsKey(key: "access_token"))
+			if (!parameters.ContainsKey(key: Constants.AccessToken))
 			{
-				parameters.Add(name: "access_token", value: AccessToken);
+				parameters.Add(name: Constants.AccessToken, value: AccessToken);
 			}
 
 			if (!parameters.ContainsKey(key: "lang") && _language.GetLanguage().HasValue)
@@ -606,8 +607,8 @@ namespace VkNet
 				parameters.Add(name: "lang", nullableValue: _language.GetLanguage());
 			}
 
-			_logger?.Debug(message:
-				$"Вызов метода {methodName}, с параметрами {string.Join(separator: ",", values: parameters.Select(selector: x => $"{x.Key}={x.Value}"))}");
+			_logger?.LogDebug(message:
+				$"Вызов метода {methodName}, с параметрами {string.Join(separator: ",", values: parameters.Where(x => x.Key != Constants.AccessToken).Select(selector: x => $"{x.Key}={x.Value}"))}");
 
 			string answer;
 
@@ -635,7 +636,7 @@ namespace VkNet
 		/// <exception cref="VkApiAuthorizationException"> </exception>
 		private void AuthorizeWithAntiCaptcha(IApiAuthParams authParams)
 		{
-			_logger?.Debug(message: "Старт авторизации");
+			_logger?.LogDebug(message: "Старт авторизации");
 
 			if (CaptchaSolver == null)
 			{
@@ -644,7 +645,7 @@ namespace VkNet
 			{
 				_captchaHandler.Perform(action: (sid, key) =>
 				{
-					_logger?.Debug(message: "Авторизация с использование капчи.");
+					_logger?.LogDebug(message: "Авторизация с использование капчи.");
 					authParams.CaptchaSid = sid;
 					authParams.CaptchaKey = key;
 					BaseAuthorize(authParams: authParams);
@@ -665,12 +666,12 @@ namespace VkNet
 		{
 			if (string.IsNullOrWhiteSpace(value: accessToken))
 			{
-				_logger?.Error(message: "Авторизация через токен. Токен не задан.");
+				_logger?.LogError(message: "Авторизация через токен. Токен не задан.");
 
 				throw new ArgumentNullException(paramName: accessToken);
 			}
 
-			_logger?.Debug(message: "Авторизация через токен");
+			_logger?.LogDebug(message: "Авторизация через токен");
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
@@ -684,7 +685,7 @@ namespace VkNet
 		/// <param name="authorization"> The authorization. </param>
 		private void SetTokenProperties(AuthorizationResult authorization)
 		{
-			_logger?.Debug(message: "Установка свойств токена");
+			_logger?.LogDebug(message: "Установка свойств токена");
 			var expireTime = (Convert.ToInt32(value: authorization.ExpiresIn) - 10) * 1000;
 			SetApiPropertiesAfterAuth(expireTime: expireTime, accessToken: authorization.AccessToken, userId: authorization.UserId);
 		}
@@ -747,7 +748,7 @@ namespace VkNet
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
 				var message = $"Invalid authorization with {authParams.Login} - {authParams.Password}";
-				_logger?.Error(message: message);
+				_logger?.LogError(message: message);
 
 				throw new VkApiAuthorizationException(message: message, email: authParams.Login, password: authParams.Password);
 			}
@@ -760,7 +761,7 @@ namespace VkNet
 			Browser = serviceProvider.GetRequiredService<IBrowser>();
 			AuthorizationFlow = serviceProvider.GetRequiredService<IAuthorizationFlow>();
 			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
-			_logger = serviceProvider.GetService<ILogger>();
+			_logger = serviceProvider.GetService<ILogger<VkApi>>();
 			_captchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
 			_language = serviceProvider.GetRequiredService<ILanguageService>();
 
@@ -809,7 +810,7 @@ namespace VkNet
 			RequestsPerSecond = 3;
 
 			MaxCaptchaRecognitionCount = 5;
-			_logger?.Debug(message: "VkApi Initialization successfully");
+			_logger?.LogDebug(message: "VkApi Initialization successfully");
 		}
 
 	#endregion

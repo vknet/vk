@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using VkNet.Exception;
+using VkNet.Infrastructure;
 
 namespace VkNet.Utils
 {
@@ -27,7 +28,7 @@ namespace VkNet.Utils
 		/// <summary>
 		/// Возвращает признак была ли авторизация успешной.
 		/// </summary>
-		public bool IsAuthorized => _nameValues.ContainsKey(key: "access_token");
+		public bool IsAuthorized => _nameValues.ContainsKey(key: Constants.AccessToken);
 
 		/// <summary>
 		/// Проверяет требуется ли получения у авторизации на запрошенные приложением
@@ -39,7 +40,7 @@ namespace VkNet.Utils
 		/// <summary>
 		/// Маркер доступа, который необходимо использовать для доступа к API ВКонтакте.
 		/// </summary>
-		public string AccessToken => GetFieldValue(fieldName: "access_token");
+		public string AccessToken => GetFieldValue(fieldName: Constants.AccessToken);
 
 		/// <summary>
 		/// Время истечения срока действия маркера доступа.

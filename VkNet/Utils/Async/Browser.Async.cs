@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Microsoft.Extensions.Logging;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
@@ -36,7 +37,7 @@ namespace VkNet.Utils
 		[UsedImplicitly]
 		public async Task<VkAuthorization> AuthorizeAsync(IApiAuthParams authParams)
 		{
-			_logger?.Debug(message: "Шаг 1. Открытие диалога авторизации");
+			_logger?.LogDebug(message: "Шаг 1. Открытие диалога авторизации");
 
 			var authorizeUrlResult = await OpenAuthDialogAsync(appId: authParams.ApplicationId, settings: authParams.Settings)
 				.ConfigureAwait(false);
@@ -46,7 +47,7 @@ namespace VkNet.Utils
 				return await EndAuthorizeAsync(result: authorizeUrlResult, webProxy: Proxy).ConfigureAwait(false);
 			}
 
-			_logger?.Debug(message: "Шаг 2. Заполнение формы логина");
+			_logger?.LogDebug(message: "Шаг 2. Заполнение формы логина");
 
 			var loginFormPostResult = await FilledLoginFormAsync(email: authParams.Login,
 					password: authParams.Password,
@@ -65,7 +66,7 @@ namespace VkNet.Utils
 				return await EndAuthorizeAsync(result: loginFormPostResult, webProxy: Proxy).ConfigureAwait(false);
 			}
 
-			_logger?.Debug(message: "Шаг 2.5.1. Заполнить код двухфакторной авторизации");
+			_logger?.LogDebug(message: "Шаг 2.5.1. Заполнить код двухфакторной авторизации");
 
 			var twoFactorFormResult =
 				await FilledTwoFactorFormAsync(code: authParams.TwoFactorAuthorization, loginFormPostResult: loginFormPostResult);
@@ -75,7 +76,7 @@ namespace VkNet.Utils
 				return await EndAuthorizeAsync(result: twoFactorFormResult, webProxy: Proxy).ConfigureAwait(false);
 			}
 
-			_logger?.Debug(message: "Шаг 2.5.2 Капча");
+			_logger?.LogDebug(message: "Шаг 2.5.2 Капча");
 			var captchaForm = WebForm.From(result: twoFactorFormResult);
 
 			var captcha = await WebCall.PostAsync(form: captchaForm, webProxy: Proxy).ConfigureAwait(false);
@@ -126,7 +127,7 @@ namespace VkNet.Utils
 
 			if (captchaSid.HasValue)
 			{
-				_logger?.Debug(message: "Шаг 2. Заполнение формы логина. Капча");
+				_logger?.LogDebug(message: "Шаг 2. Заполнение формы логина. Капча");
 
 				loginForm.WithField(name: "captcha_sid")
 					.FilledWith(value: captchaSid.Value.ToString())
@@ -196,7 +197,7 @@ namespace VkNet.Utils
 
 			if (HasСonfirmationRights(result: result))
 			{
-				_logger?.Debug(message: "Требуется подтверждение прав");
+				_logger?.LogDebug(message: "Требуется подтверждение прав");
 				var authorizationForm = WebForm.From(result: result);
 
 				var authorizationFormPostResult =
@@ -219,7 +220,7 @@ namespace VkNet.Utils
 				throw new VkApiException(message: "Непредвиденная ошибка авторизации. Обратитесь к разработчику.");
 			}
 
-			_logger?.Debug(message: "Требуется ввод капчи");
+			_logger?.LogDebug(message: "Требуется ввод капчи");
 
 			throw new VkApiException(message: "Требуется ввод капчи");
 		}
