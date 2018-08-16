@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -75,6 +76,11 @@ namespace VkNet.Utils
 			if (container.All(x => x.ServiceType != typeof(ICaptchaSolver)))
 			{
 				container.TryAddSingleton<ICaptchaSolver>(sp => null);
+			}
+
+			if (container.All(x => x.ServiceType != typeof(HttpClient)))
+			{
+				container.TryAddSingleton<HttpClient>();
 			}
 		}
 
