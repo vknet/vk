@@ -96,6 +96,20 @@ namespace VkNet.Utils
 			};
 		}
 
+		/// <inheritdoc />
+		public AuthorizationResult Validate(string validateUrl)
+		{
+			var result = OldValidate(validateUrl, _authParams.Phone);
+
+			return new AuthorizationResult
+			{
+				AccessToken = result.AccessToken,
+				ExpiresIn = result.ExpiresIn,
+				UserId = result.ExpiresIn,
+				State = result.State
+			};
+		}
+
 		/// <summary>
 		/// Заполнить форму двухфакторной авторизации
 		/// </summary>

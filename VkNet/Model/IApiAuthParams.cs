@@ -81,5 +81,10 @@ namespace VkNet.Model
 		/// Пароль для прокси с авторищацией. Если прокси без авторизации - оставить пустым
 		/// </summary>
 		string ProxyPassword { get; set; }
+
+		/// <summary>
+		/// Номер телефона
+		/// </summary>
+		string Phone { get; }
 	}
 }

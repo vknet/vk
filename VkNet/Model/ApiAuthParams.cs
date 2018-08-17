@@ -48,5 +48,8 @@ namespace VkNet.Model
 
 		/// <inheritdoc />
 		public string ProxyPassword { get; set; }
+
+		/// <inheritdoc />
+		public string Phone { get; set; }
 	}
 }
