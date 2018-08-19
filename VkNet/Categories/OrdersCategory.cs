@@ -28,7 +28,12 @@ namespace VkNet.Categories
 		public bool CancelSubscription(ulong userId, ulong subscriptionId, bool? pendingCancel = null)
 		{
 			return _vk.Call<bool>("orders.cancelSubscription",
-				new VkParameters { { "user_id", userId }, { "subscription_id", subscriptionId }, { "pending_cancel", pendingCancel } });
+				new VkParameters
+				{
+					{ "user_id", userId },
+					{ "subscription_id", subscriptionId },
+					{ "pending_cancel", pendingCancel }
+				});
 		}
 
 		/// <inheritdoc/>
@@ -43,13 +48,23 @@ namespace VkNet.Categories
 		public IEnumerable<Order> Get(ulong? offset = null, ulong? count = null, bool? testMode = null)
 		{
 			return _vk.Call<ReadOnlyCollection<Order>>("orders.get",
-				new VkParameters { { "offset", offset }, { "count", count }, { "test_mode", testMode } });
+				new VkParameters
+				{
+					{ "offset", offset },
+					{ "count", count },
+					{ "test_mode", testMode }
+				});
 		}
 
 		/// <inheritdoc/>
 		public IEnumerable<VotesAmount> GetAmount(ulong userId, IEnumerable<string> votes)
 		{
-			return _vk.Call<IEnumerable<VotesAmount>>("orders.getAmount", new VkParameters { { "user_id", userId }, { "votes", votes } });
+			return _vk.Call<ReadOnlyCollection<VotesAmount>>("orders.getAmount",
+				new VkParameters
+				{
+					{ "user_id", userId },
+					{ "votes", votes }
+				});
 		}
 
 		/// <inheritdoc/>
