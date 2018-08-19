@@ -11,7 +11,7 @@ namespace VkNet.Tests.Categories.Orders
 		{
 			Url = "https://api.vk.com/method/orders.changeState";
 
-			Json = @"{ ""response"": ""charged"" }";
+			Json = @"{ 'response': 'charged' }";
 
 			var result = Api.Orders.ChangeState(123, OrderStateAction.Charge);
 

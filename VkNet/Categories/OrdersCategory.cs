@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -39,9 +40,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> Get(ulong? offset = null, ulong? count = null, bool? testMode = null)
+		public IEnumerable<Order> Get(ulong? offset = null, ulong? count = null, bool? testMode = null)
 		{
-			return _vk.Call<IEnumerable<object>>("orders.get",
+			return _vk.Call<ReadOnlyCollection<Order>>("orders.get",
 				new VkParameters { { "offset", offset }, { "count", count }, { "test_mode", testMode } });
 		}
 

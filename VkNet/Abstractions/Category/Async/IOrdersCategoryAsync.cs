@@ -89,7 +89,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/orders.get
 		/// </remarks>
-		Task<IEnumerable<object>> GetAsync(ulong? offset = null, ulong? count = null, bool? testMode = null);
+		Task<IEnumerable<Order>> GetAsync(ulong? offset = null, ulong? count = null, bool? testMode = null);
 
 		/// <summary>
 		/// Возвращает стоимость голосов в валюте пользователя.

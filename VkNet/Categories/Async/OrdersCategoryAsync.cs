@@ -22,7 +22,7 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc/>
-        public Task<IEnumerable<object>> GetAsync(ulong? offset = null, ulong? count = null, bool? testMode = null)
+        public Task<IEnumerable<Order>> GetAsync(ulong? offset = null, ulong? count = null, bool? testMode = null)
         {
             return TypeHelper.TryInvokeMethodAsync(() => Get(offset, count, testMode));
         }

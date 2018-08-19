@@ -87,7 +87,7 @@ namespace VkNet.Abstractions
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/orders.get
         /// </remarks>
-        IEnumerable<object> Get(ulong? offset = null, ulong? count = null, bool? testMode = null);
+        IEnumerable<Order> Get(ulong? offset = null, ulong? count = null, bool? testMode = null);
 
         /// <summary>
         /// Возвращает стоимость голосов в валюте пользователя.
