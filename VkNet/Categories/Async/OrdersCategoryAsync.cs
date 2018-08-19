@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -15,7 +16,7 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc/>
-        public Task<object> ChangeStateAsync(ulong orderId, string action, ulong? appOrderId = null, bool? testMode = null)
+        public Task<OrderState> ChangeStateAsync(ulong orderId, OrderStateAction action, ulong? appOrderId = null, bool? testMode = null)
         {
             return TypeHelper.TryInvokeMethodAsync(() => ChangeState(orderId, action, appOrderId, testMode));
         }

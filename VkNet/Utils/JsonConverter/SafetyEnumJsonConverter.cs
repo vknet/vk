@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace VkNet.Utils.JsonConverter
 {
@@ -28,14 +29,38 @@ namespace VkNet.Utils.JsonConverter
 				return null;
 			}
 
+			var value = reader.Value;
+
+			if (value == null)
+			{
+				if (reader.TokenType == JsonToken.StartObject)
+				{
+					reader.Read();
+				}
+
+				if (reader.TokenType == JsonToken.PropertyName)
+				{
+					reader.Read();
+				}
+
+				value = reader.Value;
+
+				var hasRead = true;
+
+				while (hasRead)
+				{
+					hasRead = reader.Read();
+				}
+			}
+
 			var result = Activator.CreateInstance(type: objectType);
 
 			var methods = result.GetType()
-					.GetMethods(bindingAttr: BindingFlags.NonPublic|BindingFlags.Public|BindingFlags.Static|BindingFlags.FlattenHierarchy);
+				.GetMethods(bindingAttr: BindingFlags.NonPublic|BindingFlags.Public|BindingFlags.Static|BindingFlags.FlattenHierarchy);
 
 			result = methods
-					.FirstOrDefault(predicate: x => x.Name == "FromJsonString")
-					?.Invoke(obj: result, parameters: new object[] { $"{reader.Value}" });
+				.FirstOrDefault(predicate: x => x.Name == "FromJsonString")
+				?.Invoke(obj: result, parameters: new object[] { $"{value}" });
 
 			var fields = result?.GetType().GetFields();
 
@@ -46,15 +71,13 @@ namespace VkNet.Utils.JsonConverter
 
 			foreach (var field in fields)
 			{
-				field.GetValue(obj: null);
+				field.GetValue(null);
 			}
 
 			return result;
 		}
 
-		/// <summary>
-		/// TODO: Description
-		/// </summary>
+		/// <inheritdoc />
 		public override bool CanConvert(Type objectType)
 		{
 			throw new NotImplementedException();

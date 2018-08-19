@@ -4,7 +4,7 @@ using System.Resources;
 // Общие сведения о сборке определяются следующим
 // набором атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные с этой сборкой.
-[assembly: AssemblyTitle(title: "VkNet.UWP")]
+[assembly: AssemblyTitle(title: "VkNet")]
 [assembly: AssemblyDescription(description: "Реализация ВКонтакте API для .NET. Список методов см. https://vknet.github.io/vk/")]
 [assembly: AssemblyConfiguration(configuration: "")]
 [assembly: AssemblyCompany(company: "VkNet")]

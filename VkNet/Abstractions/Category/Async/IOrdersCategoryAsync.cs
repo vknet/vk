@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 
 namespace VkNet.Abstractions.Category
@@ -62,7 +63,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/orders.changeState
 		/// </remarks>
-		Task<object> ChangeStateAsync(ulong orderId, string action, ulong? appOrderId = null, bool? testMode = null);
+		Task<OrderState> ChangeStateAsync(ulong orderId, OrderStateAction action, ulong? appOrderId = null, bool? testMode = null);
 
 		/// <summary>
 		/// Возвращает список заказов.

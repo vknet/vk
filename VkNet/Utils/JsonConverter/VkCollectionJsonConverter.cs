@@ -50,19 +50,21 @@ namespace VkNet.Utils.JsonConverter
 			var vkCollectionGenericArgument = vkCollectionType.GetGenericArguments()[0];
 			var toListMethod = typeof(Enumerable).GetMethod(name: "ToList");
 
-			if (toListMethod != null)
+			if (toListMethod == null)
 			{
-				var constructedToListGenericMethod = toListMethod.MakeGenericMethod(vkCollectionGenericArgument);
-				var castToListObject = constructedToListGenericMethod.Invoke(obj: null, parameters: new[] { value });
-
-				var vkCollectionSurrogate = new
-				{
-					TotalCount = vkCollectionType.GetProperty(name: "TotalCount")?.GetValue(obj: value, index: null),
-					Items = castToListObject
-				};
-
-				serializer.Serialize(jsonWriter: writer, value: vkCollectionSurrogate);
+				return;
 			}
+
+			var constructedToListGenericMethod = toListMethod.MakeGenericMethod(vkCollectionGenericArgument);
+			var castToListObject = constructedToListGenericMethod.Invoke(obj: null, parameters: new[] { value });
+
+			var vkCollectionSurrogate = new
+			{
+				TotalCount = vkCollectionType.GetProperty(name: "TotalCount")?.GetValue(obj: value, index: null),
+				Items = castToListObject
+			};
+
+			serializer.Serialize(jsonWriter: writer, value: vkCollectionSurrogate);
 		}
 
 		/// <summary>
