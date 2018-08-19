@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories.Orders
 	public class OrdersCancelSubscriptionTests: BaseTest
 	{
 		[Test]
-		public void Get()
+		public void CancelSubscription()
 		{
 			Url = "https://api.vk.com/method/orders.cancelSubscription";
 
