@@ -88,7 +88,7 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public IEnumerable<SubscriptionItem> GetUserSubscriptions(ulong userId)
 		{
-			return _vk.Call<IEnumerable<SubscriptionItem>>("orders.getUserSubscriptions", new VkParameters { { "user_id", userId } });
+			return _vk.Call<ReadOnlyCollection<SubscriptionItem>>("orders.getUserSubscriptions", new VkParameters { { "user_id", userId } });
 		}
 
 		/// <inheritdoc/>
