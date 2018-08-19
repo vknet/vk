@@ -23,7 +23,7 @@ namespace VkNet.Tests.Categories.Orders
 
 			var result = Api.Orders.GetAmount(123, new []{"1"});
 
-			Assert.IsNotEmpty(result);
+			 Assert.IsNotEmpty(result);
 		}
 	}
 }
