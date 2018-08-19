@@ -69,6 +69,15 @@ namespace VkNet.Tests
 					State = "123456"
 				});
 
+			browser.Setup(m => m.Validate(It.IsAny<string>()))
+				.Returns(new AuthorizationResult
+				{
+					AccessToken = "token",
+					ExpiresIn = 1000,
+					UserId = 1,
+					State = "123456"
+				});
+
 			var restClient = new Mock<IRestClient>();
 
 			restClient.Setup(x =>
@@ -102,7 +111,8 @@ namespace VkNet.Tests
 				ApplicationId = 1,
 				Login = "login",
 				Password = "pass",
-				Settings = Settings.All
+				Settings = Settings.All,
+				Phone = "89510000000"
 			});
 
 			Api.RequestsPerSecond = 100000; // Чтобы тесты быстрее выполнялись

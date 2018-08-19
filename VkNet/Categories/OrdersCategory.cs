@@ -53,10 +53,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> GetById(ulong? orderId = null, IEnumerable<ulong> orderIds = null, bool? testMode = null)
+		public IEnumerable<Order> GetById(IEnumerable<ulong> orderIds = null, bool? testMode = null)
 		{
-			return _vk.Call<IEnumerable<object>>("orders.getById",
-				new VkParameters { { "order_id", orderId }, { "order_ids", orderIds }, { "test_mode", testMode } });
+			return _vk.Call<ReadOnlyCollection<Order>>("orders.getById",
+				new VkParameters
+				{
+					{ "order_ids", orderIds },
+					{ "test_mode", testMode }
+				});
 		}
 
 		/// <inheritdoc/>

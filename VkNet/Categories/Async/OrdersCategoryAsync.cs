@@ -34,9 +34,9 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc/>
-        public Task<IEnumerable<object>> GetByIdAsync(ulong? orderId = null, IEnumerable<ulong> orderIds = null, bool? testMode = null)
+        public Task<IEnumerable<Order>> GetByIdAsync(IEnumerable<ulong> orderIds = null, bool? testMode = null)
         {
-            return TypeHelper.TryInvokeMethodAsync(() => GetById(orderId, orderIds, testMode));
+            return TypeHelper.TryInvokeMethodAsync(() => GetById(orderIds, testMode));
         }
 
         /// <inheritdoc/>

@@ -111,9 +111,6 @@ namespace VkNet.Abstractions.Category
 		/// <summary>
 		/// Возвращает информацию об отдельном заказе.
 		/// </summary>
-		/// <param name = "orderId">
-		/// Идентификатор заказа. положительное число
-		/// </param>
 		/// <param name = "orderIds">
 		/// Идентификаторы заказов (при запросе информации о нескольких заказах). список положительных чисел, разделенных запятыми
 		/// </param>
@@ -132,7 +129,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/orders.getById
 		/// </remarks>
-		Task<IEnumerable<object>> GetByIdAsync(ulong? orderId = null, IEnumerable<ulong> orderIds = null, bool? testMode = null);
+		Task<IEnumerable<Order>> GetByIdAsync(IEnumerable<ulong> orderIds = null, bool? testMode = null);
 
 		/// <summary>
 		/// Получает информацию о подписке по её идентификатору.
