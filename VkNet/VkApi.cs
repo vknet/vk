@@ -278,10 +278,6 @@ namespace VkNet
 		{
 			var answer = CallBase(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
 
-			var json = JObject.Parse(json: answer);
-
-			var rawResponse = json[propertyName: "response"];
-
 			if (!jsonConverters.Any())
 			{
 				return JsonConvert.DeserializeObject<T>(answer,
