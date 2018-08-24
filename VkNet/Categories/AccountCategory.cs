@@ -530,20 +530,17 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.changePassword
 		/// </remarks>
-		public AccountChangePasswordResult ChangePassword(string oldPassword
-														, string newPassword
-														, string restoreSid = null
-														, string changePasswordHash = null)
+		public AccountChangePasswordResult ChangePassword(string oldPassword, string newPassword, string restoreSid = null, string changePasswordHash = null)
 		{
 			var parameters = new VkParameters
 			{
-					{ "restore_sid", restoreSid }
-					, { "change_password_hash", changePasswordHash }
-					, { "old_password", oldPassword }
-					, { "new_password", newPassword }
+				{ "restore_sid", restoreSid },
+				{ "change_password_hash", changePasswordHash },
+				{ "old_password", oldPassword },
+				{ "new_password", newPassword }
 			};
 
-			return _vk.Call(methodName: "account.сhangePassword", parameters: parameters);
+			return _vk.Call<AccountChangePasswordResult>(methodName: "account.changePassword", parameters: parameters);
 		}
 
 		/// <summary>
