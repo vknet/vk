@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using VkNet.Exception;
 using VkNet.Utils;
 
@@ -23,7 +23,27 @@ namespace VkNet.Model
 		/// </summary>
 		public double Longitude { get; set; }
 
-	#region Методы
+		#region Методы
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static Coordinates FromJsonAttachments(VkResponse response)
+		{
+			// TODO: TEST IT!!!!!
+
+			double latitude = response["latitude"];
+			double longitude = response["longitude"];
+
+			var coordinates = new Coordinates
+			{
+				Latitude = latitude,
+				Longitude = longitude
+			};
+			return coordinates;
+		}
 
 		/// <summary>
 		/// Разобрать из json.
@@ -40,29 +60,25 @@ namespace VkNet.Model
 				throw new VkApiException(message: "Coordinates must have latitude and longitude!");
 			}
 
-			double latitude;
-
-			if (!double.TryParse(s: latitudeWithLongitude[0].Replace(oldValue: ".", newValue: ","), result: out latitude))
+			if (!double.TryParse(s: latitudeWithLongitude[0].Replace(oldValue: ".", newValue: ","), result: out double latitude))
 			{
 				throw new VkApiException(message: "Invalid latitude!");
 			}
 
-			double longitude;
-
-			if (!double.TryParse(s: latitudeWithLongitude[1].Replace(oldValue: ".", newValue: ","), result: out longitude))
+			if (!double.TryParse(s: latitudeWithLongitude[1].Replace(oldValue: ".", newValue: ","), result: out double longitude))
 			{
 				throw new VkApiException(message: "Invalid longitude!");
 			}
 
 			var coordinates = new Coordinates
 			{
-					Latitude = latitude
-					, Longitude = longitude
+				Latitude = latitude,
+				Longitude = longitude
 			};
 
 			return coordinates;
 		}
 
-	#endregion
+		#endregion
 	}
 }

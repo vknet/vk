@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -103,13 +103,13 @@ namespace VkNet.Model
 		/// Страна, в которой находится место.
 		/// </summary>
 		[JsonProperty("country")]
-		public long? Country { get; set; }
+		public string Country { get; set; }
 
 		/// <summary>
 		/// Город, в котором находится место.
 		/// </summary>
 		[JsonProperty("city")]
-		public long? City { get; set; }
+		public string City { get; set; }
 
 		/// <summary>
 		/// Расстояние от исходной точки
