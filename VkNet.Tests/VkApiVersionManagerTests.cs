@@ -23,7 +23,7 @@ namespace VkNet.Tests
 		{
 			IVkApiVersionManager manager = new VkApiVersionManager();
 
-			manager.SetVersion(0,0);
+			manager.SetVersion(0, 0);
 			Assert.AreEqual("0.0", manager.Version);
 		}
 	}
