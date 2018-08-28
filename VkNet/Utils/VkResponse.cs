@@ -119,11 +119,11 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Coordinates(VkResponse response)
 		{
-			if (response?._token == null) return null;
-			if (response.ContainsKey("latitude") && response.ContainsKey("longitude"))
-				return Coordinates.FromJsonAttachments(response: response);
-			else
-				return Coordinates.FromJson(response: response);
+			if (response?._token == null)
+			{
+				return null;
+			}
+			return Coordinates.FromJson(response: response);
 		}
 
 	

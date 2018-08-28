@@ -30,52 +30,41 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
-		public static Coordinates FromJsonAttachments(VkResponse response)
-		{
-			// TODO: TEST IT!!!!!
-
-			double latitude = response["latitude"];
-			double longitude = response["longitude"];
-
-			var coordinates = new Coordinates
-			{
-				Latitude = latitude,
-				Longitude = longitude
-			};
-			return coordinates;
-		}
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
 		public static Coordinates FromJson(VkResponse response)
 		{
 			// TODO: TEST IT!!!!!
-			var latitudeWithLongitude = ((string) response).Split(' ');
 
-			if (latitudeWithLongitude.Length != 2)
+			double latitude;
+			double longitude;
+			if (response.ContainsKey("latitude") && response.ContainsKey("longitude")) //приходит в messages.geo
 			{
-				throw new VkApiException(message: "Coordinates must have latitude and longitude!");
+				latitude = response["latitude"];
+				longitude = response["longitude"];
 			}
-
-			if (!double.TryParse(s: latitudeWithLongitude[0].Replace(oldValue: ".", newValue: ","), result: out double latitude))
+			else //geo со стены 
 			{
-				throw new VkApiException(message: "Invalid latitude!");
-			}
+				var latitudeWithLongitude = ((string) response).Split(' ');
 
-			if (!double.TryParse(s: latitudeWithLongitude[1].Replace(oldValue: ".", newValue: ","), result: out double longitude))
-			{
-				throw new VkApiException(message: "Invalid longitude!");
-			}
+				if (latitudeWithLongitude.Length != 2)
+				{
+					throw new VkApiException(message: "Coordinates must have latitude and longitude!");
+				}
 
+				if (!double.TryParse(s: latitudeWithLongitude[0].Replace(oldValue: ".", newValue: ","), result: out latitude))
+				{
+					throw new VkApiException(message: "Invalid latitude!");
+				}
+
+				if (!double.TryParse(s: latitudeWithLongitude[1].Replace(oldValue: ".", newValue: ","), result: out longitude))
+				{
+					throw new VkApiException(message: "Invalid longitude!");
+				}
+			}
 			var coordinates = new Coordinates
 			{
 				Latitude = latitude,
 				Longitude = longitude
 			};
-
 			return coordinates;
 		}
 
