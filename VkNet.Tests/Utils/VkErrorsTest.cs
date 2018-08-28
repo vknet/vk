@@ -24,7 +24,7 @@ namespace VkNet.Tests.Utils
 			Url = "https://api.vk.com/method/messages.send";
 
 			Json =
-					@"{
+				@"{
 					'error': {
 					  'error_code': 14,
 					  'error_msg': 'Captcha needed',
@@ -60,12 +60,11 @@ namespace VkNet.Tests.Utils
 				  }";
 
 			var ex = Assert.Throws<CaptchaNeededException>(() =>
-					Api.Call("messages.send", VkParameters.Empty, true));
+				Api.Call("messages.send", VkParameters.Empty, true));
 
 			Assert.That(ex.Sid, Is.EqualTo(548747100691));
 
-			Assert.That(ex.Img
-					, Is.EqualTo(new Uri("http://api.vk.com/captcha.php?sid=548747100284&s=1")));
+			Assert.That(ex.Img, Is.EqualTo(new Uri("http://api.vk.com/captcha.php?sid=548747100284&s=1")));
 		}
 
 		[Test]
@@ -74,7 +73,7 @@ namespace VkNet.Tests.Utils
 			Url = "https://api.vk.com/method/execute";
 
 			Json =
-					@"{
+				@"{
                     'error': {
                         'error_code': 12,
                         'error_msg': 'Unable to compile code: undefined identifier \'test\' in line 1',
@@ -100,7 +99,7 @@ namespace VkNet.Tests.Utils
                 }";
 
 			Assert.Throws<ImpossibleToCompileCodeException>(() =>
-					Api.Call("execute", VkParameters.Empty, true));
+				Api.Call("execute", VkParameters.Empty, true));
 		}
 
 		[Test]
@@ -109,7 +108,7 @@ namespace VkNet.Tests.Utils
 			Url = "https://api.vk.com/method/messages.send";
 
 			Json =
-					@"{
+				@"{
 					'error': {
 						'error_code': 214,
 						'error_msg': 'Access to adding post denied: you can only add 50 posts a day',
@@ -139,7 +138,7 @@ namespace VkNet.Tests.Utils
 				}";
 
 			Assert.Throws<PostLimitException>(() =>
-					Api.Call("messages.send", VkParameters.Empty, true));
+				Api.Call("messages.send", VkParameters.Empty, true));
 		}
 
 		[Test]
@@ -148,7 +147,7 @@ namespace VkNet.Tests.Utils
 			Url = "https://api.vk.com/method/messages.send";
 
 			Json =
-					@"{
+				@"{
 					'error': {
 						'error_code': 103,
 						'error_msg': 'Access to adding post denied: you can only add 50 posts a day',
@@ -178,14 +177,14 @@ namespace VkNet.Tests.Utils
 				}";
 
 			Assert.Throws<OutOfLimitsException>(() =>
-					Api.Call("messages.send", VkParameters.Empty, true));
+				Api.Call("messages.send", VkParameters.Empty, true));
 		}
 
 		[Test]
 		public void IfErrorThrowException_GroupAccessDenied_ThrowAccessDeniedException()
 		{
 			const string json =
-					@"{
+				@"{
                     'error': {
                       'error_code': 260,
                       'error_msg': 'Access to the groups list is denied due to the user privacy settings.',
@@ -212,15 +211,14 @@ namespace VkNet.Tests.Utils
 
 			var ex = Assert.Throws<GroupsListAccessDeniedException>(() => VkErrors.IfErrorThrowException(json));
 
-			StringAssert.AreEqualIgnoringCase("Access to the groups list is denied due to the user privacy settings."
-					, ex.Message);
+			StringAssert.AreEqualIgnoringCase("Access to the groups list is denied due to the user privacy settings.", ex.Message);
 		}
 
 		[Test]
 		public void IfErrorThrowException_NormalCase_NothingExceptions()
 		{
 			const string json =
-					@"{
+				@"{
                     'response': [
                       {
                         'uid': 1,
@@ -242,7 +240,7 @@ namespace VkNet.Tests.Utils
 		public void IfErrorThrowException_UserAuthorizationFail_ThrowUserAuthorizationFailExcption()
 		{
 			const string json =
-					@"{
+				@"{
                     'error': {
                       'error_code': 5,
                       'error_msg': 'User authorization failed: invalid access_token.',
@@ -283,7 +281,9 @@ namespace VkNet.Tests.Utils
 		}
 
 		[Test]
-		[Ignore("")] // TODO important: strange error, with nullable long everytihng ok, check later on windows OS
+		[Ignore("")]
+
+		// TODO important: strange error, with nullable long everytihng ok, check later on windows OS
 		public void ThrowIfNumberIsNegative_ExpressionVersion_Long()
 		{
 			const long paramName = -1;
