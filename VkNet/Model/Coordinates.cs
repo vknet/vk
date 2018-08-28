@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using VkNet.Exception;
 using VkNet.Utils;
 
@@ -23,7 +23,7 @@ namespace VkNet.Model
 		/// </summary>
 		public double Longitude { get; set; }
 
-	#region Методы
+		#region Методы
 
 		/// <summary>
 		/// Разобрать из json.
@@ -33,36 +33,41 @@ namespace VkNet.Model
 		public static Coordinates FromJson(VkResponse response)
 		{
 			// TODO: TEST IT!!!!!
-			var latitudeWithLongitude = ((string) response).Split(' ');
-
-			if (latitudeWithLongitude.Length != 2)
-			{
-				throw new VkApiException(message: "Coordinates must have latitude and longitude!");
-			}
 
 			double latitude;
-
-			if (!double.TryParse(s: latitudeWithLongitude[0].Replace(oldValue: ".", newValue: ","), result: out latitude))
-			{
-				throw new VkApiException(message: "Invalid latitude!");
-			}
-
 			double longitude;
-
-			if (!double.TryParse(s: latitudeWithLongitude[1].Replace(oldValue: ".", newValue: ","), result: out longitude))
+			if (response.ContainsKey("latitude") && response.ContainsKey("longitude")) //приходит в messages.geo
 			{
-				throw new VkApiException(message: "Invalid longitude!");
+				latitude = response["latitude"];
+				longitude = response["longitude"];
 			}
+			else //geo со стены 
+			{
+				var latitudeWithLongitude = ((string) response).Split(' ');
 
+				if (latitudeWithLongitude.Length != 2)
+				{
+					throw new VkApiException(message: "Coordinates must have latitude and longitude!");
+				}
+
+				if (!double.TryParse(s: latitudeWithLongitude[0].Replace(oldValue: ".", newValue: ","), result: out latitude))
+				{
+					throw new VkApiException(message: "Invalid latitude!");
+				}
+
+				if (!double.TryParse(s: latitudeWithLongitude[1].Replace(oldValue: ".", newValue: ","), result: out longitude))
+				{
+					throw new VkApiException(message: "Invalid longitude!");
+				}
+			}
 			var coordinates = new Coordinates
 			{
-					Latitude = latitude
-					, Longitude = longitude
+				Latitude = latitude,
+				Longitude = longitude
 			};
-
 			return coordinates;
 		}
 
-	#endregion
+		#endregion
 	}
 }
