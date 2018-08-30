@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Categories.Orders
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class ChangeStateTests: BaseTest
 	{
 		[Test]

@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Audio
 {
+	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class AudioCreatePlaylistTest : BaseTest
 	{
 		[Test]

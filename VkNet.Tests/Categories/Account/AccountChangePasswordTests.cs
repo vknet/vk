@@ -1,7 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 
 namespace VkNet.Tests.Categories
 {
+	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class AccountChangePasswordTests : BaseTest
 	{
 		[Test]

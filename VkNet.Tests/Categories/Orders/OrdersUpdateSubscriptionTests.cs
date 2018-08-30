@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Orders
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class OrdersUpdateSubscriptionTests : BaseTest
 	{
 		[Test]

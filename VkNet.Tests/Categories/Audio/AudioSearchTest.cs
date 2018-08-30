@@ -1,8 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.Audio
 {
+	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class AudioSearchTest : BaseTest
 	{
 		[Test]
