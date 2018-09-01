@@ -154,6 +154,12 @@ namespace VkNet.Model.RequestParams
 		public bool? MarkAsAds { get; set; }
 
 		/// <summary>
+		/// Включать закртыте комментарии
+		/// </summary>
+		[JsonProperty("close_comments")]
+		public bool? CloseComments { get; set; }
+
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p"> Параметры. </param>
@@ -162,22 +168,22 @@ namespace VkNet.Model.RequestParams
 		{
 			var result = new VkParameters
 			{
-					{ "owner_id", p.OwnerId }
-					, { "friends_only", p.FriendsOnly }
-					, { "from_group", p.FromGroup }
-					, { "message", p.Message }
-					, { "attachments", p.Attachments }
-					, { "services", p.Services }
-					, { "signed", p.Signed }
-					, { "publish_date", p.PublishDate }
-					, { "lat", p.Lat }
-					, { "long", p.Long }
-					, { "place_id", p.PlaceId }
-					, { "post_id", p.PostId }
-					, { "captcha_sid", p.CaptchaSid }
-					, { "captcha_key", p.CaptchaKey }
-					, { "guid", p.Guid }
-					, { "mark_as_ads", p.MarkAsAds }
+				{ "owner_id", p.OwnerId },
+				{ "friends_only", p.FriendsOnly },
+				{ "from_group", p.FromGroup },
+				{ "message", p.Message },
+				{ "attachments", p.Attachments },
+				{ "services", p.Services },
+				{ "signed", p.Signed },
+				{ "publish_date", p.PublishDate },
+				{ "lat", p.Lat },
+				{ "long", p.Long },
+				{ "place_id", p.PlaceId },
+				{ "post_id", p.PostId },
+				{ "captcha_sid", p.CaptchaSid },
+				{ "captcha_key", p.CaptchaKey },
+				{ "guid", p.Guid },
+				{ "mark_as_ads", p.MarkAsAds }
 			};
 
 			return result;
