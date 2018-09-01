@@ -183,7 +183,8 @@ namespace VkNet.Model.RequestParams
 				{ "captcha_sid", p.CaptchaSid },
 				{ "captcha_key", p.CaptchaKey },
 				{ "guid", p.Guid },
-				{ "mark_as_ads", p.MarkAsAds }
+				{ "mark_as_ads", p.MarkAsAds },
+				{ "close_comments", p.CloseComments}
 			};
 
 			return result;
