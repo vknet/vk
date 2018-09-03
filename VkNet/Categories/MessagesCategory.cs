@@ -623,37 +623,37 @@ namespace VkNet.Categories
             return list.ToReadOnlyCollection();
         }
 
-		/// <summary>
-		/// Исключает из мультидиалога пользователя, если текущий пользователь был создателем беседы либо пригласил исключаемого пользователя.
-		/// </summary>
-		/// <param name="chatId">Идентификатор беседы. целое число, обязательный параметр (Целое число, обязательный параметр).</param>
-		/// <param name="userId">Идентификатор пользователя, которого необходимо исключить из беседы. Может быть меньше нуля в случае, если пользователь приглашён по email. обязательный параметр (Обязательный параметр).</param>
-		/// <param name="memberId">Идентификатор участника, которого необходимо исключить из беседы. Для сообществ — идентификатор сообщества со знаком «минус». </param>
-		/// <returns>
-		/// После успешного выполнения возвращает <c>true</c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.removeChatUser
-		/// </remarks>
-		public bool RemoveChatUser(long chatId, long userId, long memberId = 0)
+        /// <summary>
+        /// Исключает из мультидиалога пользователя, если текущий пользователь был создателем беседы либо пригласил исключаемого пользователя.
+        /// </summary>
+        /// <param name="chatId">Идентификатор беседы. целое число, обязательный параметр (Целое число, обязательный параметр).</param>
+        /// <param name="userId">Идентификатор пользователя, которого необходимо исключить из беседы. Может быть меньше нуля в случае, если пользователь приглашён по email. обязательный параметр (Обязательный параметр).</param>
+        /// <param name="memberId">Идентификатор участника, которого необходимо исключить из беседы. Для сообществ — идентификатор сообщества со знаком «минус». </param>
+        /// <returns>
+        /// После успешного выполнения возвращает <c>true</c>.
+        /// </returns>
+        /// <remarks>
+        /// Страница документации ВКонтакте http://vk.com/dev/messages.removeChatUser
+        /// </remarks>
+        public bool RemoveChatUser(long chatId, long userId, long memberId = 0)
         {
-			VkParameters parameters;
-			if(memberId == 0)
-			{
-				parameters = new VkParameters
-				{
-					{"chat_id", chatId},
-					{"user_id", userId}
-				};
-			}
-			else
-			{
-				parameters = new VkParameters
-				{
-					{"chat_id", chatId },
-					{ "memberId", memberId}
-				};
-			}
+            VkParameters parameters;
+            if(memberId == 0)
+            {
+                parameters = new VkParameters
+                {
+                    { "chat_id", chatId},
+                    {"user_id", userId}
+                };
+            }
+            else
+            {
+                parameters = new VkParameters
+                {
+                    {"chat_id", chatId },
+                    { "memberId", memberId}
+                };
+            }
 
             return _vk.Call("messages.removeChatUser", parameters);
         }
