@@ -360,13 +360,14 @@ namespace VkNet.Abstractions
         /// </summary>
         /// <param name="chatId">Идентификатор беседы. целое число, обязательный параметр (Целое число, обязательный параметр).</param>
         /// <param name="userId">Идентификатор пользователя, которого необходимо исключить из беседы. Может быть меньше нуля в случае, если пользователь приглашён по email. обязательный параметр (Обязательный параметр).</param>
+        /// <param name="memberId">Идентификатор участника, которого необходимо исключить из беседы. Для сообществ — идентификатор сообщества со знаком «минус». </param>
         /// <returns>
         /// После успешного выполнения возвращает <c>true</c>.
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.removeChatUser
         /// </remarks>
-        Task<bool> RemoveChatUserAsync(long chatId, long userId);
+        Task<bool> RemoveChatUserAsync(long chatId, long userId, long memberId = 0);
 
         /// <summary>
         /// Возвращает данные, необходимые для подключения к Long Poll серверу.

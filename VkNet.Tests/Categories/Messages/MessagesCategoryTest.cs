@@ -1048,6 +1048,13 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
+		public void RemoveChatUser_ByMemberId_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		{
+		var cat = new MessagesCategory(new VkApi());
+			Assert.That(() => cat.RemoveChatUser(2, 2, 1), Throws.InstanceOf<AccessTokenInvalidException>());
+		}
+
+		[Test]
 		public void RemoveChatUser_NormalCase_True()
 		{
 			Url = "https://api.vk.com/method/messages.removeChatUser";
@@ -1060,7 +1067,20 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(result, Is.True);
 		}
-		
+
+		[Test]
+		public void RemoveChatUser_ByMemberId_NormalCase_True()
+		{
+			Url = "https://api.vk.com/method/messages.removeChatUser";
+			Json =
+				@"{
+					'response': 1
+				}";
+
+			var result = Cat.RemoveChatUser(2, 7550525, 4562148);
+
+			Assert.That(result, Is.True);
+		}
 
 		[Test]
 		public void GetLongPollServer_ThrowArgumentNullException()
