@@ -224,6 +224,17 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public PinnedMessage Pin(long peerId, ulong? messageId = null)
+		{
+			return _vk.Call<PinnedMessage>("messages.pin",
+				new VkParameters
+				{
+					{ "peer_id", peerId },
+					{ "message_id", messageId }
+				});
+		}
+
+		/// <inheritdoc />
 		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return DeleteConversation(userId, peerId, offset, count, null);
@@ -489,6 +500,7 @@ namespace VkNet.Categories
 		{
 			var json = JObject.Parse(file);
 			var rawResponse = json["response"];
+
 			var parameters = new VkParameters
 			{
 				{ "file", rawResponse }

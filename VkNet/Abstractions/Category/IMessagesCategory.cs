@@ -884,7 +884,31 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.searchConversations
 		/// </remarks>
 		SearchConversationsResult SearchConversations(string q, IEnumerable<string> fields, ulong? count = null, bool? extended = null,
-												ulong? groupId = null);
+													ulong? groupId = null);
+
+		/// <summary>
+		/// Закрепляет сообщение.
+		/// </summary>
+		/// <param name = "peerId">
+		/// Идентификатор назначения.
+		/// Для пользователя:
+		/// id  пользователя.
+		/// Для групповой беседы:
+		/// 2000000000 + id беседы.
+		/// Для сообщества:
+		/// -id сообщества.
+		/// целое число, обязательный параметр
+		/// </param>
+		/// <param name = "messageId">
+		/// Идентификатор сообщения, которое нужно закрепить. положительное число
+		/// </param>
+		/// <returns>
+		/// Возвращает объект закрепленного сообщения.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.pin
+		/// </remarks>
+		PinnedMessage Pin(long peerId, ulong? messageId = null);
 
 	#region Obsoleted
 

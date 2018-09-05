@@ -89,6 +89,12 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public Task<PinnedMessage> PinAsync(long peerId, ulong? messageId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Pin(peerId, messageId));
+		}
+
+		/// <inheritdoc />
 		public Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>

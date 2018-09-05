@@ -57,5 +57,10 @@ namespace VkNet.Model
 		[JsonProperty("fwd_messages")]
 		public ReadOnlyCollection<Message> ForwardMessages { get; set; }
 
+		/// <summary>
+		/// Текст сообщения.
+		/// </summary>
+		[JsonProperty("text")]
+		public string Text { get; set; }
 	}
 }
