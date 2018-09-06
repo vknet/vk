@@ -1,22 +1,24 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Categories
 {
+	[ExcludeFromCodeCoverage]
 	public class ExecuteCategoryTest : BaseTest
 	{
 		[Test]
 		public void ExecuteTest()
 		{
 			Url =
-				@"https://api.vk.com/method/execute";
+					@"https://api.vk.com/method/execute";
 
 			Json = @"{response: ['Тишко', 'Бледнов', 'Касимова']}";
 
 			const string code =
-				@"return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name;";
+					@"return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name;";
 
 			var result = Api.Execute.Execute(code);
 			Assert.That(result.RawJson, Is.EqualTo(Json));
@@ -26,7 +28,7 @@ namespace VkNet.Tests.Categories
 		public void ExecuteTopicsFeedTest()
 		{
 			Url =
-				@"https://api.vk.com/method/execute";
+					@"https://api.vk.com/method/execute";
 
 			Json = @"{
 	""response"": {
@@ -41,7 +43,7 @@ namespace VkNet.Tests.Categories
 }";
 
 			const string code =
-				@"return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name;";
+					@"return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name;";
 
 			var result = Api.Execute.Execute<TopicsFeed>(code);
 			Assert.That(result, Is.Not.Null);
@@ -53,7 +55,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/execute";
 
 			Json =
-				@"{
+					@"{
                     'response': {
                       count: 93,
                       items: [{
@@ -64,7 +66,7 @@ namespace VkNet.Tests.Categories
                   }";
 
 			const string code =
-				@"return API.database.getUniversities({""country_id"": 1, ""city_id"": 2, ""q"": ""СПб"", count: 1}); ";
+					@"return API.database.getUniversities({""country_id"": 1, ""city_id"": 2, ""q"": ""СПб"", count: 1}); ";
 
 			var result = Api.Execute.Execute<VkCollection<University>>(code);
 			Assert.That(result, Is.Not.Null);
@@ -76,7 +78,7 @@ namespace VkNet.Tests.Categories
 		public void ExecuteErrorTest()
 		{
 			Url =
-				@"https://api.vk.com/method/execute";
+					@"https://api.vk.com/method/execute";
 
 			Json = @"{
 				error: {
@@ -99,7 +101,7 @@ namespace VkNet.Tests.Categories
 			}";
 
 			const string code =
-				@"return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name";
+					@"return API.users.get({""user_ids"": API.audio.search({""q"":""Beatles"", ""count"":3}).items@.owner_id})@.last_name";
 
 			Assert.That(() => Api.Execute.Execute(code), Throws.InstanceOf<VkApiException>());
 		}

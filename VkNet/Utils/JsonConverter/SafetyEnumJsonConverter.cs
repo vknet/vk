@@ -1,56 +1,86 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
+using Newtonsoft.Json.Linq;
 
 namespace VkNet.Utils.JsonConverter
 {
-    /// <summary>
-    /// TODO: Description
-    /// </summary>
-    public class SafetyEnumJsonConverter : Newtonsoft.Json.JsonConverter
-    {
-        /// <summary>
-        /// TODO: Description
-        /// </summary>
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
-        }
-        /// <summary>
-        /// TODO: Description
-        /// </summary>
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
-            JsonSerializer serializer)
-        {
-            if (reader.TokenType == JsonToken.Null)
-            {
-                return null;
-            }
+	/// <summary>
+	/// TODO: Description
+	/// </summary>
+	public class SafetyEnumJsonConverter : Newtonsoft.Json.JsonConverter
+	{
+		/// <summary>
+		/// TODO: Description
+		/// </summary>
+		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+		{
+			writer.WriteValue(value.ToString());
+		}
 
-            var result = Activator.CreateInstance(objectType);
-            var methods = result.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public |
-                                                      BindingFlags.Static | BindingFlags.FlattenHierarchy);
+		/// <summary>
+		/// TODO: Description
+		/// </summary>
+		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+		{
+			if (reader.TokenType == JsonToken.Null)
+			{
+				return null;
+			}
 
-            result = methods
-                .FirstOrDefault(x => x.Name == "FromJsonString")
-                ?.Invoke(result, new object[] {$"{reader.Value}"});
+			var value = reader.Value;
 
-            var fields = result?.GetType().GetFields();
-            foreach (var field in fields)
-            {
-                field.GetValue(null);
-            }
+			if (value == null)
+			{
+				if (reader.TokenType == JsonToken.StartObject)
+				{
+					reader.Read();
+				}
 
-            return result;
-        }
-        /// <summary>
-        /// TODO: Description
-        /// </summary>
-        public override bool CanConvert(Type objectType)
-        {
-            throw new NotImplementedException();
-        }
-    }
+				if (reader.TokenType == JsonToken.PropertyName)
+				{
+					reader.Read();
+				}
+
+				value = reader.Value;
+
+				var hasRead = true;
+
+				while (hasRead)
+				{
+					hasRead = reader.Read();
+				}
+			}
+
+			var result = Activator.CreateInstance(type: objectType);
+
+			var methods = result.GetType()
+				.GetMethods(bindingAttr: BindingFlags.NonPublic|BindingFlags.Public|BindingFlags.Static|BindingFlags.FlattenHierarchy);
+
+			result = methods
+				.FirstOrDefault(predicate: x => x.Name == "FromJsonString")
+				?.Invoke(obj: result, parameters: new object[] { $"{value}" });
+
+			var fields = result?.GetType().GetFields();
+
+			if (fields == null)
+			{
+				return null;
+			}
+
+			foreach (var field in fields)
+			{
+				field.GetValue(null);
+			}
+
+			return result;
+		}
+
+		/// <inheritdoc />
+		public override bool CanConvert(Type objectType)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

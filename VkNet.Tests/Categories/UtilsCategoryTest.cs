@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums;
@@ -9,20 +10,21 @@ using VkNet.Utils;
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class UtilsCategoryTest : BaseTest
 	{
 		[Test]
 		public void CheckLink_BannedLink()
 		{
 			Url = "https://api.vk.com/method/utils.checkLink";
-            Json =
-				@"{
+
+			Json =
+					@"{
                     'response': {
                       'status': 'banned',
                       'link': 'http://www.kreml.ru/'
                     }
                   }";
-
 
 			var type = Api.Utils.CheckLink("http://www.kreml.ru/‎");
 			Assert.That(type, Is.EqualTo(LinkAccessType.Banned));
@@ -33,32 +35,18 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		public void CheckLink_NotLink()
-		{
-			Url = "https://api.vk.com/method/utils.checkLink";
-			Json =
-				@"{
-                    'response': {
-                      'status': 'not_banned',
-                      'link': 'http://vk.com/'
-                    }
-                  }";
-
-            Assert.That(() => Api.Utils.CheckLink("hsfasfsf"), Throws.InstanceOf<UriFormatException>());
-        }
-
-		[Test]
 		public void CheckLink_GoogleLink()
 		{
 			Url = "https://api.vk.com/method/utils.checkLink";
+
 			Json =
-				@"{
+					@"{
                     'response': {
                       'status': 'not_banned',
                       'link': 'https://www.google.ru/'
                     }
                   }";
-			
+
 			var type = Api.Utils.CheckLink("https://www.google.ru/");
 
 			Assert.That(type, Is.EqualTo(LinkAccessType.NotBanned));
@@ -69,83 +57,63 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		public void ResolveScreenName_BadScreenName()
+		public void CheckLink_NotLink()
 		{
-			Url = "https://api.vk.com/method/utils.resolveScreenName";
-			Json =
-				@"{
-                    'response': []
-                  }";
-			
-			var obj = Api.Utils.ResolveScreenName("3f625aef-b285-4006-a87f-0367a04f1138");
+			Url = "https://api.vk.com/method/utils.checkLink";
 
-			Assert.That(obj, Is.Null);
-		}
-
-		[Test]
-		public void ResolveScreenName_User()
-		{
-			Url = "https://api.vk.com/method/utils.resolveScreenName";
 			Json =
-				@"{
+					@"{
                     'response': {
-                      'type': 'user',
-                      'object_id': 186085938.0
-                    }
-                  }";
-			
-			var obj = Api.Utils.ResolveScreenName("azhidkov");
-
-			// assert
-			Assert.That(obj, Is.Not.Null);
-			Assert.That(obj.Id, Is.EqualTo(186085938));
-			Assert.That(obj.Type, Is.EqualTo(VkObjectType.User));
-		}
-
-		[Test]
-		public void ResolveScreenName_ObjectIdIsVeryBig_User()
-		{
-			Url = "https://api.vk.com/method/utils.resolveScreenName";
-			Json =
-				@"{
-                    'response': {
-                      'type': 'user',
-                      'object_id': 922337203685471.0
-                    }
-                  }";
-			
-			var obj = Api.Utils.ResolveScreenName("azhidkov");
-
-			// assert
-			Assert.That(obj, Is.Not.Null);
-			Assert.That(obj.Id, Is.EqualTo(922337203685471));
-			Assert.That(obj.Type, Is.EqualTo(VkObjectType.User));
-		}
-
-		[Test]
-		public void ResolveScreenName_Group()
-		{
-			Url = "https://api.vk.com/method/utils.resolveScreenName";
-			Json =
-				@"{
-                    'response': {
-                      'type': 'group',
-                      'object_id': 10639516.0
+                      'status': 'not_banned',
+                      'link': 'http://vk.com/'
                     }
                   }";
 
-			var obj = Api.Utils.ResolveScreenName("mdk");
-
-			// assert
-			Assert.That(obj, Is.Not.Null);
-			Assert.That(obj.Type, Is.EqualTo(VkObjectType.Group));
-			Assert.That(obj.Id, Is.EqualTo(10639516));
+			Assert.That(() => Api.Utils.CheckLink("hsfasfsf"), Throws.InstanceOf<UriFormatException>());
 		}
 
 		[Test]
-		public void ResolveScreenName_EmptyStringName_ThrowException()
+		public void DeleteFromLastShortened()
 		{
-			Assert.That(() => Api.Utils.ResolveScreenName(string.Empty), Throws.InstanceOf<ArgumentNullException>());
+			Json = @"
+            {
+				'response': 1
+			}";
+
+			Url = "https://api.vk.com/method/utils.deleteFromLastShortened";
+			var result = Api.Utils.DeleteFromLastShortened("qwe");
+			Assert.True(result);
+		}
+
+		[Test]
+		public void GetLastShortenedLinks()
+		{
+			Json = @"
+            {
+				'response': {
+					'count': 2,
+					'items': [
+					{
+						'timestamp': 1490085185,
+						'url': 'http://google.ru',
+						'short_url': 'https://vk.cc/6oOGVh',
+						'key': '6oOGVh',
+						'views': 0,
+						'access_key': 'a2760354e62e87ab13'
+					},
+					{
+						'timestamp': 1490038465,
+						'url': 'http://google.ru',
+						'short_url': 'https://vk.cc/29npqH',
+						'key': '29npqH',
+						'views': 721
+					}]
+				}
+			}";
+
+			Url = "https://api.vk.com/method/utils.getLastShortenedLinks";
+			var result = Api.Utils.GetLastShortenedLinks();
+			Assert.NotNull(result);
 		}
 
 		[Test]
@@ -174,6 +142,7 @@ namespace VkNet.Tests.Categories
 					}]
 				}
 			}";
+
 			Url = "https://api.vk.com/method/utils.getLinkStats";
 			var result = Api.Utils.GetLinkStats(new LinkStatsParams());
 			Assert.NotNull(result);
@@ -182,7 +151,10 @@ namespace VkNet.Tests.Categories
 			var stat = result.Stats.FirstOrDefault();
 			Assert.NotNull(stat);
 			Assert.That(stat.Views, Is.EqualTo(1));
-			Assert.That(stat.Timestamp, Is.EqualTo(VkResponse.TimestampToDateTime(1489309200)));
+
+			Assert.That(stat.Timestamp
+					, Is.EqualTo(VkResponse.TimestampToDateTime(1489309200)));
+
 			var sexAge = stat.SexAge.FirstOrDefault();
 			Assert.NotNull(sexAge);
 			Assert.That(sexAge.AgeRange, Is.EqualTo("18-21"));
@@ -199,54 +171,13 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		public void GetLastShortenedLinks()
-		{
-			Json = @"
-            {
-				'response': {
-					'count': 2,
-					'items': [
-					{
-						'timestamp': 1490085185,
-						'url': 'http://google.ru',
-						'short_url': 'https://vk.cc/6oOGVh',
-						'key': '6oOGVh',
-						'views': 0,
-						'access_key': 'a2760354e62e87ab13'
-					}, 
-					{
-						'timestamp': 1490038465,
-						'url': 'http://google.ru',
-						'short_url': 'https://vk.cc/29npqH',
-						'key': '29npqH',
-						'views': 721
-					}]
-				}
-			}";
-			Url = "https://api.vk.com/method/utils.getLastShortenedLinks";
-			var result = Api.Utils.GetLastShortenedLinks();
-			Assert.NotNull(result);
-		}
-
-		[Test]
-		public void DeleteFromLastShortened()
-		{
-			Json = @"
-            {
-				'response': 1
-			}";
-			Url = "https://api.vk.com/method/utils.deleteFromLastShortened";
-			var result = Api.Utils.DeleteFromLastShortened("qwe");
-			Assert.True(result);
-		}
-
-		[Test]
 		public void GetServerTime()
 		{
 			Json = @"
             {
 				'response': 1489309200
 			}";
+
 			Url = "https://api.vk.com/method/utils.getServerTime";
 			var result = Api.Utils.GetServerTime();
 			Assert.That(result, Is.EqualTo(VkResponse.TimestampToDateTime(1489309200)));
@@ -263,6 +194,7 @@ namespace VkNet.Tests.Categories
 					'key': '7dMDvY'
 				}
 			}";
+
 			Url = "https://api.vk.com/method/utils.getShortLink";
 			var result = Api.Utils.GetShortLink(new Uri("http://google.ru"), false);
 			Assert.NotNull(result);
@@ -281,11 +213,96 @@ namespace VkNet.Tests.Categories
 					'object_id': 1
 				}
 			}";
+
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
 			var result = Api.Utils.ResolveScreenName("durov");
 			Assert.NotNull(result);
 			Assert.AreEqual(result.Type, VkObjectType.User);
 			Assert.That(result.Id, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void ResolveScreenName_BadScreenName()
+		{
+			Url = "https://api.vk.com/method/utils.resolveScreenName";
+
+			Json =
+					@"{
+                    'response': []
+                  }";
+
+			var obj = Api.Utils.ResolveScreenName("3f625aef-b285-4006-a87f-0367a04f1138");
+
+			Assert.That(obj, Is.Null);
+		}
+
+		[Test]
+		public void ResolveScreenName_EmptyStringName_ThrowException()
+		{
+			Assert.That(() => Api.Utils.ResolveScreenName(string.Empty), Throws.InstanceOf<ArgumentNullException>());
+		}
+
+		[Test]
+		public void ResolveScreenName_Group()
+		{
+			Url = "https://api.vk.com/method/utils.resolveScreenName";
+
+			Json =
+					@"{
+                    'response': {
+                      'type': 'group',
+                      'object_id': 10639516.0
+                    }
+                  }";
+
+			var obj = Api.Utils.ResolveScreenName("mdk");
+
+			// assert
+			Assert.That(obj, Is.Not.Null);
+			Assert.That(obj.Type, Is.EqualTo(VkObjectType.Group));
+			Assert.That(obj.Id, Is.EqualTo(10639516));
+		}
+
+		[Test]
+		public void ResolveScreenName_ObjectIdIsVeryBig_User()
+		{
+			Url = "https://api.vk.com/method/utils.resolveScreenName";
+
+			Json =
+					@"{
+                    'response': {
+                      'type': 'user',
+                      'object_id': 922337203685471.0
+                    }
+                  }";
+
+			var obj = Api.Utils.ResolveScreenName("azhidkov");
+
+			// assert
+			Assert.That(obj, Is.Not.Null);
+			Assert.That(obj.Id, Is.EqualTo(922337203685471));
+			Assert.That(obj.Type, Is.EqualTo(VkObjectType.User));
+		}
+
+		[Test]
+		public void ResolveScreenName_User()
+		{
+			Url = "https://api.vk.com/method/utils.resolveScreenName";
+
+			Json =
+					@"{
+                    'response': {
+                      'type': 'user',
+                      'object_id': 186085938.0
+                    }
+                  }";
+
+			var obj = Api.Utils.ResolveScreenName("azhidkov");
+
+			// assert
+			Assert.That(obj, Is.Not.Null);
+			Assert.That(obj.Id, Is.EqualTo(186085938));
+			Assert.That(obj.Type, Is.EqualTo(VkObjectType.User));
 		}
 	}
 }

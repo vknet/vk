@@ -23,14 +23,14 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static LookupContactsResult FromJson(VkResponse response)
 		{
 			return new LookupContactsResult
 			{
-				FoundList = response["found"].ToReadOnlyCollectionOf<User>(x => x),
-				Other = response["other"].ToReadOnlyCollectionOf<LookupContactsOther>(x => x)
+					FoundList = response[key: "found"].ToReadOnlyCollectionOf<User>(selector: x => x)
+					, Other = response[key: "other"].ToReadOnlyCollectionOf<LookupContactsOther>(selector: x => x)
 			};
 		}
 	}

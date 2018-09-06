@@ -27,15 +27,15 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns>Тип документа.</returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Тип документа. </returns>
 		public static DocumentType FromJson(VkResponse response)
 		{
 			var result = new DocumentType
 			{
-				Id = response["id"],
-				Name = response["name"],
-				Count = response["count"]
+					Id = response[key: "id"]
+					, Name = response[key: "name"]
+					, Count = response[key: "count"]
 			};
 
 			return result;

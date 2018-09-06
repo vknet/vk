@@ -1,294 +1,211 @@
-﻿using VkNet.Enums.SafetyEnums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
+using VkNet.Abstractions;
 using VkNet.Enums;
-using VkNet.Utils;
-using VkNet.Model.Attachments;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
+using VkNet.Model.Attachments;
+using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-    /// <summary>
-    /// Методы для работы с документами (получение списка, загрузка, удаление и т.д.)
-    /// </summary>
-    public partial class DocsCategory : IDocsCategory
-    {
-        /// <summary>
-        /// API
-        /// </summary>
-        private readonly VkApi _vk;
+	/// <summary>
+	/// Методы для работы с документами (получение списка, загрузка, удаление и т.д.)
+	/// </summary>
+	public partial class DocsCategory : IDocsCategory
+	{
+		/// <summary>
+		/// API
+		/// </summary>
+		private readonly IVkApiInvoke _vk;
 
-        /// <summary>
-        /// Методы для работы с документами (получение списка, загрузка, удаление и т.д.).
-        /// </summary>
-        /// <param name="vk">API.</param>
-        public DocsCategory(VkApi vk)
-        {
-            _vk = vk;
-        }
+		/// <summary>
+		/// Методы для работы с документами (получение списка, загрузка, удаление и т.д.).
+		/// </summary>
+		/// <param name="vk"> API. </param>
+		public DocsCategory(IVkApiInvoke vk)
+		{
+			_vk = vk;
+		}
 
-        /// <summary>
-        /// Возвращает расширенную информацию о документах пользователя или сообщества.
-        /// </summary>
-        /// <param name="count">Количество документов, информацию о которых нужно вернуть. По умолчанию — все документы.</param>
-        /// <param name="offset">Смещение, необходимое для выборки определенного подмножества документов. Положительное число.</param>
-        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежат документы. Целое число, по умолчанию идентификатор текущего пользователя.</param>
-        /// <param name="type">Фильтр по типу документа.</param>
-        /// <returns>
-        /// После успешного выполнения возвращает список объектов документов.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/docs.get
-        /// </remarks>
-        [Pure]
-        public VkCollection<Document> Get(int? count = null, int? offset = null, long? ownerId = null,
-            DocFilter? type = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => count);
-            VkErrors.ThrowIfNumberIsNegative(() => offset);
+		/// <inheritdoc />
+		[Pure]
+		public VkCollection<Document> Get(int? count = null, int? offset = null, long? ownerId = null, DocFilter? type = null)
+		{
+			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
 
-            var parameters = new VkParameters
-            {
-                {"count", count},
-                {"offset", offset},
-                {"owner_id", ownerId},
-                {"type", type}
-            };
+			var parameters = new VkParameters
+			{
+					{ "count", count }
+					, { "offset", offset }
+					, { "owner_id", ownerId }
+					, { "type", type }
+			};
 
-            return _vk.Call("docs.get", parameters).ToVkCollectionOf<Document>(r => r);
-        }
+			return _vk.Call(methodName: "docs.get", parameters: parameters).ToVkCollectionOf<Document>(selector: r => r);
+		}
 
-        /// <summary>
-        /// Возвращает информацию о документах по их идентификаторам.
-        /// </summary>
-        /// <param name="docs">Идентификаторы документов, информацию о которых нужно вернуть.</param>
-        /// <returns>После успешного выполнения возвращает список объектов документов.</returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/docs.getById
-        /// </remarks>
-        [Pure]
-        public ReadOnlyCollection<Document> GetById(IEnumerable<Document> docs)
-        {
-            foreach (var doc in docs)
-            {
-                VkErrors.ThrowIfNumberIsNegative(() => doc.Id);
-                VkErrors.ThrowIfNumberIsNegative(() => doc.OwnerId);
-            }
+		/// <inheritdoc />
+		[Pure]
+		public ReadOnlyCollection<Document> GetById(IEnumerable<Document> docs)
+		{
+			foreach (var doc in docs)
+			{
+				VkErrors.ThrowIfNumberIsNegative(expr: () => doc.Id);
+				VkErrors.ThrowIfNumberIsNegative(expr: () => doc.OwnerId);
+			}
 
-            var parameters = new VkParameters
-            {
-                {"docs", string.Concat(docs.Select(it => it.OwnerId + "_" + it.Id + ","))}
-            };
+			var parameters = new VkParameters
+			{
+					{ "docs", string.Concat(values: docs.Select(selector: it => it.OwnerId + "_" + it.Id + ",")) }
+			};
 
-            var response = _vk.Call("docs.getById", parameters);
-            return response.ToReadOnlyCollectionOf<Document>(r => r);
-        }
+			var response = _vk.Call(methodName: "docs.getById", parameters: parameters);
 
-        /// <summary>
-        /// Возвращает адрес сервера для загрузки документов.
-        /// </summary>
-        /// <param name="groupId">Идентификатор сообщества (если необходимо загрузить документ в список документов сообщества). Если документ нужно загрузить в список пользователя, метод вызывается без дополнительных параметров. Положительное число</param>
-        /// <returns>После успешного выполнения возвращает объект UploadServerInfo</returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/docs.getUploadServer
-        /// </remarks>
-        [Pure]
-        public UploadServerInfo GetUploadServer(long? groupId = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => groupId);
+			return response.ToReadOnlyCollectionOf<Document>(selector: r => r);
+		}
 
-            var parameters = new VkParameters
-            {
-                {"group_id", groupId}
-            };
+		/// <inheritdoc />
+		[Pure]
+		public UploadServerInfo GetUploadServer(long? groupId = null)
+		{
+			VkErrors.ThrowIfNumberIsNegative(expr: () => groupId);
 
-            return _vk.Call("docs.getUploadServer", parameters);
-        }
+			var parameters = new VkParameters
+			{
+					{ "group_id", groupId }
+			};
 
-        /// <summary>
-        /// Возвращает адрес сервера для загрузки документов в папку Отправленные, для последующей отправки документа на стену или личным сообщением.
-        /// </summary>
-        /// <param name="groupId">Идентификатор сообщества, в которое нужно загрузить документ. Положительное число.</param>
-        /// <returns>После успешного выполнения возвращает объект UploadServerInfo</returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/docs.getWallUploadServer
-        /// </remarks>
-        [Pure]
-        public UploadServerInfo GetWallUploadServer(long? groupId = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => groupId);
+			return _vk.Call(methodName: "docs.getUploadServer", parameters: parameters);
+		}
 
-            var parameters = new VkParameters {{"group_id", groupId}};
+		/// <inheritdoc />
+		[Pure]
+		public UploadServerInfo GetWallUploadServer(long? groupId = null)
+		{
+			VkErrors.ThrowIfNumberIsNegative(expr: () => groupId);
 
-            return _vk.Call("docs.getWallUploadServer", parameters);
-        }
+			var parameters = new VkParameters { { "group_id", groupId } };
 
-        /// <summary>
-        /// Сохраняет документ после его успешной загрузки на сервер.
-        /// </summary>
-        /// <param name="file">Параметр, возвращаемый в результате загрузки файла на сервер. Обязательный параметр.</param>
-        /// <param name="title">Название документа.</param>
-        /// <param name="tags">Метки для поиска.</param>
-        /// <param name="captchaSid">Id капчи (только если для вызова метода необходимо ввести капчу)</param>
-        /// <param name="captchaKey">Текст капчи (только если для вызова метода необходимо ввести капчу)</param>
-        /// <returns>Возвращает массив с загруженными объектами. </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/docs.save
-        /// </remarks>
-        [Pure]
-        public ReadOnlyCollection<Document> Save(string file, string title, string tags = null, long? captchaSid = null,
-            string captchaKey = null)
-        {
-            VkErrors.ThrowIfNullOrEmpty(() => file);
-            VkErrors.ThrowIfNullOrEmpty(() => title);
-            var responseJson = JObject.Parse(file);
-            file = responseJson["file"].ToString();
-            var parameters = new VkParameters
-            {
-                {"file", file},
-                {"title", title},
-                {"tags", tags},
-                {"captcha_sid", captchaSid},
-                {"captcha_key", captchaKey}
-            };
+			return _vk.Call(methodName: "docs.getWallUploadServer", parameters: parameters);
+		}
 
-            var response = _vk.Call("docs.save", parameters);
-            return response.ToReadOnlyCollectionOf<Document>(r => r);
-        }
+		/// <inheritdoc />
+		[Pure]
+		public ReadOnlyCollection<Document> Save(string file
+												, string title
+												, string tags = null
+												, long? captchaSid = null
+												, string captchaKey = null)
+		{
+			var file1 = file;
+			VkErrors.ThrowIfNullOrEmpty(expr: () => file1);
+			VkErrors.ThrowIfNullOrEmpty(expr: () => title);
+			var responseJson = JObject.Parse(json: file);
+			file = responseJson[propertyName: "file"].ToString();
 
-        /// <summary>
-        /// Удаляет документ пользователя или группы.
-        /// </summary>
-        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит документ. Целое число, обязательный параметр</param>
-        /// <param name="docId">Идентификатор документа. Положительное число, обязательный параметр</param>
-        /// <returns>После успешного выполнения возвращает 1. </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/docs.delete
-        /// </remarks>
-        [Pure]
-        public bool Delete(long ownerId, long docId)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => ownerId);
-            VkErrors.ThrowIfNumberIsNegative(() => docId);
+			var parameters = new VkParameters
+			{
+					{ "file", file }
+					, { "title", title }
+					, { "tags", tags }
+					, { "captcha_sid", captchaSid }
+					, { "captcha_key", captchaKey }
+			};
 
-            var parameters = new VkParameters
-            {
-                {"owner_id", ownerId},
-                {"doc_id", docId}
-            };
-            return _vk.Call("docs.delete", parameters);
-        }
+			var response = _vk.Call(methodName: "docs.save", parameters: parameters);
 
-        /// <summary>
-        /// Копирует документ в документы текущего пользователя.
-        /// </summary>
-        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит документ. Целое число, обязательный параметр</param>
-        /// <param name="docId">Идентификатор документа. Положительное число, обязательный параметр</param>
-        /// <param name="accessKey">Ключ доступа документа. Этот параметр следует передать, если вместе с остальными данными о документе было возвращено поле access_key.</param>
-        /// <param name="captchaSid">Идентификатор капчи</param>
-        /// <param name="captchaKey">Текст капчи, который ввел пользователь</param>
-        /// <returns>После успешного выполнения возвращает идентификатор созданного документа (did).</returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/docs.add
-        /// </remarks>
-        [Pure]
-        public long Add(long ownerId, long docId, string accessKey = null, long? captchaSid = null,
-            string captchaKey = null)
-        {
-            VkErrors.ThrowIfNumberIsNegative(() => ownerId);
-            VkErrors.ThrowIfNumberIsNegative(() => docId);
+			return response.ToReadOnlyCollectionOf<Document>(selector: r => r);
+		}
 
-            var parameters = new VkParameters
-            {
-                {"owner_id", ownerId},
-                {"doc_id", docId},
-                {"access_key", accessKey},
-                {"captcha_sid", captchaSid},
-                {"captcha_key", captchaKey}
-            };
+		/// <inheritdoc />
+		[Pure]
+		public bool Delete(long ownerId, long docId)
+		{
+			VkErrors.ThrowIfNumberIsNegative(expr: () => ownerId);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => docId);
 
-            return _vk.Call("docs.add", parameters);
-        }
+			var parameters = new VkParameters
+			{
+					{ "owner_id", ownerId }
+					, { "doc_id", docId }
+			};
 
-        /// <summary>
-        /// Возвращает доступные типы документы для пользователя.
-        /// </summary>
-        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежат документы. целое число, по умолчанию идентификатор текущего пользователя, обязательный параметр (Целое число, по умолчанию идентификатор текущего пользователя, обязательный параметр).</param>
-        /// <returns>
-        /// После успешного выполнения возвращает список объектов type.
-        /// Объект type — тип документов.
-        /// id идентификатор типа.
-        /// положительное число name название типа.
-        /// строка count число документов;
-        /// int (числовое значение).
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/docs.getTypes
-        /// </remarks>
-        public VkCollection<DocumentType> GetTypes(long ownerId)
-        {
-            var parameters = new VkParameters
-            {
-                {"owner_id", ownerId}
-            };
+			return _vk.Call(methodName: "docs.delete", parameters: parameters);
+		}
 
-            return _vk.Call("docs.getTypes", parameters).ToVkCollectionOf<DocumentType>(x => x);
-        }
+		/// <inheritdoc />
+		[Pure]
+		public long Add(long ownerId, long docId, string accessKey = null, long? captchaSid = null, string captchaKey = null)
+		{
+			VkErrors.ThrowIfNumberIsNegative(expr: () => ownerId);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => docId);
 
-        /// <inheritdoc />
-        public VkCollection<Document> Search(string query, bool searchOwn, long? count = null, long? offset = null)
-        {
-            var parameters = new VkParameters
-            {
-                {"q", query},
-                {"count", count},
-                {"offset", offset},
-                {"search_own", searchOwn}
-            };
+			var parameters = new VkParameters
+			{
+					{ "owner_id", ownerId }
+					, { "doc_id", docId }
+					, { "access_key", accessKey }
+					, { "captcha_sid", captchaSid }
+					, { "captcha_key", captchaKey }
+			};
 
-            return _vk.Call("docs.search", parameters).ToVkCollectionOf<Document>(x => x);
-        }
+			return _vk.Call(methodName: "docs.add", parameters: parameters);
+		}
 
-        /// <summary>
-        /// Редактирует документ пользователя или группы.
-        /// </summary>
-        /// <param name="ownerId">Идентификатор пользователя или сообщества, которому принадлежит документ.
-        /// Обратите внимание, идентификатор сообщества в параметре owner_id необходимо указывать со знаком "-" — например, owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)  целое число, по умолчанию идентификатор текущего пользователя, обязательный параметр (Целое число, по умолчанию идентификатор текущего пользователя, обязательный параметр).</param>
-        /// <param name="docId">Идентификатор документа. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
-        /// <param name="title">Название документа. строка, максимальная длина 128 (Строка, максимальная длина 128).</param>
-        /// <param name="tags">Метки для поиска. список слов, разделенных через запятую (Список слов, разделенных через запятую).</param>
-        /// <returns>
-        /// После успешного выполнения возвращает <c>true</c>.
-        /// </returns>
-        /// <remarks>
-        /// Страница документации ВКонтакте http://vk.com/dev/docs.edit
-        /// </remarks>
-        public bool Edit(long ownerId, long docId, string title, IEnumerable<string> tags)
-        {
-            var parameters = new VkParameters
-            {
-                {"owner_id", ownerId},
-                {"doc_id", docId},
-                {"title", title},
-                {"tags", tags}
-            };
+		/// <inheritdoc />
+		public VkCollection<DocumentType> GetTypes(long ownerId)
+		{
+			var parameters = new VkParameters
+			{
+					{ "owner_id", ownerId }
+			};
 
-            return _vk.Call("docs.edit", parameters);
-        }
+			return _vk.Call(methodName: "docs.getTypes", parameters: parameters).ToVkCollectionOf<DocumentType>(selector: x => x);
+		}
 
-        /// <inheritdoc />
-        public UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType type = null)
-        {
-            var parameters = new VkParameters
-            {
-                {"peer_id", peerId},
-                {"type", type}
-            };
+		/// <inheritdoc />
+		public VkCollection<Document> Search(string query, bool searchOwn, long? count = null, long? offset = null)
+		{
+			var parameters = new VkParameters
+			{
+					{ "q", query }
+					, { "count", count }
+					, { "offset", offset }
+					, { "search_own", searchOwn }
+			};
 
-            return _vk.Call("docs.getMessagesUploadServer", parameters);
-        }
-    }
+			return _vk.Call(methodName: "docs.search", parameters: parameters).ToVkCollectionOf<Document>(selector: x => x);
+		}
+
+		/// <inheritdoc />
+		public bool Edit(long ownerId, long docId, string title, IEnumerable<string> tags)
+		{
+			var parameters = new VkParameters
+			{
+					{ "owner_id", ownerId }
+					, { "doc_id", docId }
+					, { "title", title }
+					, { "tags", tags }
+			};
+
+			return _vk.Call(methodName: "docs.edit", parameters: parameters);
+		}
+
+		/// <inheritdoc />
+		public UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType type = null)
+		{
+			var parameters = new VkParameters
+			{
+					{ "peer_id", peerId }
+					, { "type", type }
+			};
+
+			return _vk.Call(methodName: "docs.getMessagesUploadServer", parameters: parameters);
+		}
+	}
 }

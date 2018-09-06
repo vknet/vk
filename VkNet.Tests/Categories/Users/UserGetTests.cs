@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums;
@@ -7,14 +8,16 @@ using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Tests.Categories.Users
 {
-	public class UserGetTests: BaseTest
+	[ExcludeFromCodeCoverage]
+	public class UserGetTests : BaseTest
 	{
 		[Test]
 		public void Get_Dimon_SingleUser()
 		{
 			Url = "https://api.vk.com/method/users.get";
+
 			Json =
-				@"{
+					@"{
                     'response': [
                       {
                         'id': 118312730,
@@ -26,7 +29,7 @@ namespace VkNet.Tests.Categories.Users
                     ]
                   }";
 
-			var users = Api.Users.Get(new List<long>{118312730}, ProfileFields.Sex, NameCase.Nom);
+			var users = Api.Users.Get(new List<long> { 118312730 }, ProfileFields.Sex, NameCase.Nom);
 
 			Assert.That(users, Is.Not.Null);
 			var user = users.FirstOrDefault();

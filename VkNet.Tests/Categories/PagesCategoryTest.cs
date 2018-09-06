@@ -9,21 +9,41 @@ namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+	[ExcludeFromCodeCoverage]
 	public class PagesCategoryTest : BaseTest
 	{
 		private PagesCategory GetMockedPagesCategory(string url, string json)
 		{
-		    Json = json;
-		    Url = url;
+			Json = json;
+			Url = url;
+
 			return new PagesCategory(Api);
+		}
+
+		[Test]
+		public void ClearCache()
+		{
+			const string url = "https://api.vk.com/method/pages.clearCache";
+
+			const string json =
+					@"{
+					'response': 1
+				  }";
+
+			var db = GetMockedPagesCategory(url, json);
+
+			var cache = db.ClearCache(new Uri("https://www.vk.com/dev/groups.addLink"));
+
+			Assert.That(cache, Is.True);
 		}
 
 		[Test]
 		public void Get1_NormalCase()
 		{
 			const string url = "https://api.vk.com/method/pages.get";
+
 			const string json =
-				@"{
+					@"{
 					'response': {
 					  'id': 50050492,
 					  'group_id': 103292418,
@@ -45,8 +65,8 @@ namespace VkNet.Tests.Categories
 
 			var page = db.Get(new PagesGetParams
 			{
-				OwnerId = -103292418, 
-				Title = "Свежие новости"
+					OwnerId = -103292418
+					, Title = "Свежие новости"
 			});
 
 			Assert.That(page.Id, Is.EqualTo(50050492));
@@ -61,15 +81,18 @@ namespace VkNet.Tests.Categories
 			Assert.That(page.Created, Is.EqualTo("1444643546"));
 			Assert.That(page.EditorId, Is.EqualTo(32190123));
 			Assert.That(page.CreatorId, Is.EqualTo(32190123));
-			Assert.That(page.ViewUrl, Is.EqualTo("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e"));
+
+			Assert.That(page.ViewUrl
+					, Is.EqualTo("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e"));
 		}
 
 		[Test]
 		public void Get2_NormalCase()
 		{
 			const string url = "https://api.vk.com/method/pages.get";
+
 			const string json =
-				@"{
+					@"{
 					'response': {
 					  'id': 50050492,
 					  'group_id': 103292418,
@@ -91,8 +114,8 @@ namespace VkNet.Tests.Categories
 
 			var page = db.Get(new PagesGetParams
 			{
-				OwnerId = -103292418, 
-				PageId = 50050492
+					OwnerId = -103292418
+					, PageId = 50050492
 			});
 
 			Assert.That(page.Id, Is.EqualTo(50050492));
@@ -107,63 +130,18 @@ namespace VkNet.Tests.Categories
 			Assert.That(page.Created, Is.EqualTo("1444643546"));
 			Assert.That(page.EditorId, Is.EqualTo(32190123));
 			Assert.That(page.CreatorId, Is.EqualTo(32190123));
-			Assert.That(page.ViewUrl, Is.EqualTo("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e"));
-		}
 
-		[Test]
-		public void Save1_NormalCase()
-		{
-			const string url = "https://api.vk.com/method/pages.save";
-            const string json =
-				@"{
-					'response': 50050492
-				  }";
-
-			var db = GetMockedPagesCategory(url, json);
-
-			var page = db.Save("123", 103292418, 123, 32190123,"Свежие новости");
-
-			Assert.That(page, Is.EqualTo(50050492));
-		}
-
-		[Test]
-		public void Save2_NormalCase()
-		{
-			const string url = "https://api.vk.com/method/pages.save";
-			const string json =
-				@"{
-					'response': 50050492
-				  }";
-
-			var db = GetMockedPagesCategory(url, json);
-
-			var page = db.Save("123", 103292418, 50050492, 32190123);
-
-			Assert.That(page, Is.EqualTo(50050492));
-		}
-
-		[Test]
-		public void SaveAccess_NormalCase()
-		{
-			const string url = "https://api.vk.com/method/pages.saveAccess";
-			const string json =
-				@"{
-					'response': 50050492
-				  }";
-
-			var db = GetMockedPagesCategory(url, json);
-
-			var page = db.SaveAccess(50050492, 103292418);
-
-			Assert.That(page, Is.EqualTo(50050492));
+			Assert.That(page.ViewUrl
+					, Is.EqualTo("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e"));
 		}
 
 		[Test]
 		public void GetHistory_NormalCase()
 		{
 			const string url = "https://api.vk.com/method/pages.getHistory";
+
 			const string json =
-				@"{
+					@"{
 					'response': [
 						{
 						'id': 184657345,
@@ -216,8 +194,9 @@ namespace VkNet.Tests.Categories
 		public void GetTitles_NormalCase()
 		{
 			const string url = "https://api.vk.com/method/pages.getTitles";
+
 			const string json =
-				@"{
+					@"{
 					'response': [{
 						'id': 50010549,
 						'title': 'Условия оплаты и доставки',
@@ -259,8 +238,9 @@ namespace VkNet.Tests.Categories
 		public void GetVersion_NormalCase()
 		{
 			const string url = "https://api.vk.com/method/pages.getVersion";
-            const string json =
-				@"{
+
+			const string json =
+					@"{
 					'response': {
 						'id': 184657135,
 						'page_id': 50050492,
@@ -293,19 +273,54 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		public void ClearCache()
+		public void Save1_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/pages.clearCache";
+			const string url = "https://api.vk.com/method/pages.save";
+
 			const string json =
-				@"{
-					'response': 1
+					@"{
+					'response': 50050492
 				  }";
 
 			var db = GetMockedPagesCategory(url, json);
 
-			var cache = db.ClearCache(new Uri("https://www.vk.com/dev/groups.addLink"));
+			var page = db.Save("123", 123, 32190123, "Свежие новости", 103292418);
 
-			Assert.That(cache, Is.True);
+			Assert.That(page, Is.EqualTo(50050492));
+		}
+
+		[Test]
+		public void Save2_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/pages.save";
+
+			const string json =
+					@"{
+					'response': 50050492
+				  }";
+
+			var db = GetMockedPagesCategory(url, json);
+
+			var page = db.Save("123", 50050492, 32190123, "", 103292418);
+
+			Assert.That(page, Is.EqualTo(50050492));
+		}
+
+		[Test]
+		public void SaveAccess_NormalCase()
+		{
+			const string url = "https://api.vk.com/method/pages.saveAccess";
+
+			const string json =
+					@"{
+					'response': 50050492
+				  }";
+
+			var db = GetMockedPagesCategory(url, json);
+
+			var page = db.SaveAccess(50050492, 103292418);
+
+			Assert.That(page, Is.EqualTo(50050492));
 		}
 	}
 }

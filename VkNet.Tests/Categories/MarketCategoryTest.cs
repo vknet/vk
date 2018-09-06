@@ -1,11 +1,9 @@
-﻿using NUnit.Framework;
-using VkNet.Exception;
-using VkNet.Model.RequestParams;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace VkNet.Tests.Categories
 {
+	[ExcludeFromCodeCoverage]
 	public class MarketCategoryTest : BaseTest
 	{
-
 	}
 }

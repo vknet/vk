@@ -5,21 +5,24 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-    /// <inheritdoc />
-    public partial class SearchCategory : ISearchCategory
-    {
-        /// <inheritdoc />
-        public SearchCategory(VkApi vk)
-        {
-            Vk = vk;
-        }
+	/// <inheritdoc />
+	public partial class SearchCategory : ISearchCategory
+	{
+		/// <summary>
+		/// API.
+		/// </summary>
+		private readonly IVkApiInvoke _vk;
 
-        private VkApi Vk { get; }
+		/// <inheritdoc />
+		public SearchCategory(IVkApiInvoke vk)
+		{
+			_vk = vk;
+		}
 
-        /// <inheritdoc />
-        public VkCollection<SearchHintsItem> GetHints(SearchGetHintsParams @params)
-        {
-            return Vk.Call<VkCollection<SearchHintsItem>>("search.getHints", @params);
-        }
-    }
+		/// <inheritdoc />
+		public VkCollection<SearchHintsItem> GetHints(SearchGetHintsParams @params)
+		{
+			return _vk.Call<VkCollection<SearchHintsItem>>(methodName: "search.getHints", parameters: @params);
+		}
+	}
 }

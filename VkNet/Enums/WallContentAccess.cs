@@ -11,16 +11,19 @@ namespace VkNet.Enums
 		/// Выключены
 		/// </summary>
 		[DefaultValue]
-		Off = 0,
-		/// <summary>
+		Off = 0
+
+		, /// <summary>
 		/// Открытые
 		/// </summary>
-		Opened,
-		/// <summary>
+		Opened
+
+		, /// <summary>
 		/// Ограниченные
 		/// </summary>
-		Restricted,
-		/// <summary>
+		Restricted
+
+		, /// <summary>
 		/// Закрытая
 		/// </summary>
 		Closed

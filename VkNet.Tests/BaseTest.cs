@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Threading.Tasks;
 using Moq;
@@ -15,8 +16,12 @@ namespace VkNet.Tests
 	/// <summary>
 	/// Базовый класс для тестирования категорий методов.
 	/// </summary>
-	public abstract class
-		BaseTest //TODO: V3072 http://www.viva64.com/en/w/V3072 The 'BaseTest' class containing IDisposable members does not itself implement IDisposable. Inspect: Api.
+	/// <remarks>
+	/// TODO: V3072 http://www.viva64.com/en/w/V3072 The 'BaseTest' class containing
+	/// IDisposable members does not itself implement IDisposable. Inspect: Api.
+	/// </remarks>
+	[ExcludeFromCodeCoverage]
+	public abstract class BaseTest
 	{
 		/// <summary>
 		/// Экземпляр класса API.
@@ -29,14 +34,14 @@ namespace VkNet.Tests
 		protected string Json;
 
 		/// <summary>
-		/// Url запроса.
-		/// </summary>
-		protected string Url;
-
-		/// <summary>
 		/// Параметры запроса.
 		/// </summary>
 		protected VkParameters Parameters = new VkParameters();
+
+		/// <summary>
+		/// Url запроса.
+		/// </summary>
+		protected string Url;
 
 		/// <summary>
 		/// Пред установки выполнения каждого теста.
@@ -46,38 +51,49 @@ namespace VkNet.Tests
 		{
 			var browser = new Mock<IBrowser>();
 
-			browser.Setup(m => m.GetJson(It.Is<string>(s => s == Url), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-				.Callback(Callback)
-				.Returns(() =>
+			browser.Setup(o => o.Authorize())
+				.Returns(new AuthorizationResult
 				{
-					if (string.IsNullOrWhiteSpace(Json))
-					{
-						throw new ArgumentNullException(nameof(Json), @"Json не может быть равен null. Обновите значение поля Json");
-					}
-
-					return Json;
+					AccessToken = "token",
+					ExpiresIn = 1000,
+					UserId = 1,
+					State = "123456"
 				});
 
-			browser.Setup(o => o.Authorize(It.IsAny<IApiAuthParams>()))
-				.Returns(VkAuthorization.From("https://vk.com/auth?__q_hash=qwerty&access_token=token&expires_in=1000&user_id=1"));
-
 			browser.Setup(m => m.Validate(It.IsAny<string>(), It.IsAny<string>()))
-				.Returns(VkAuthorization.From(
-					"https://oauth.vk.com/blank.html#success=1&access_token=token&user_id=1"));
+				.Returns(new AuthorizationResult
+				{
+					AccessToken = "token",
+					ExpiresIn = 1000,
+					UserId = 1,
+					State = "123456"
+				});
+
+			browser.Setup(m => m.Validate(It.IsAny<string>()))
+				.Returns(new AuthorizationResult
+				{
+					AccessToken = "token",
+					ExpiresIn = 1000,
+					UserId = 1,
+					State = "123456"
+				});
 
 			var restClient = new Mock<IRestClient>();
 
 			restClient.Setup(x =>
-					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
+						It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
 				.Callback(Callback)
 				.Returns(() =>
 				{
 					if (string.IsNullOrWhiteSpace(Json))
 					{
-						throw new ArgumentNullException(nameof(Json), @"Json не может быть равен null. Обновите значение поля Json");
+						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
 					}
 
-					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url));
+					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK,
+						Json,
+						Url));
 				});
 
 			restClient.Setup(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
@@ -95,7 +111,8 @@ namespace VkNet.Tests
 				ApplicationId = 1,
 				Login = "login",
 				Password = "pass",
-				Settings = Settings.All
+				Settings = Settings.All,
+				Phone = "89510000000"
 			});
 
 			Api.RequestsPerSecond = 100000; // Чтобы тесты быстрее выполнялись
@@ -116,14 +133,14 @@ namespace VkNet.Tests
 		{
 			var response = JToken.Parse(Json);
 
-			return new VkResponse(response) {RawJson = Json};
+			return new VkResponse(response) { RawJson = Json };
 		}
 
 		private void Callback()
 		{
 			if (string.IsNullOrWhiteSpace(Url))
 			{
-				throw new ArgumentNullException(nameof(Json), @"Url не может быть равен null. Обновите значение поля Url");
+				throw new NullReferenceException(@"Url не может быть равен null. Обновите значение поля Url");
 			}
 
 			Url = Url.Replace("\'", "%27");

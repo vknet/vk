@@ -8,11 +8,11 @@
 		/// <summary>
 		/// Видеоролик.
 		/// </summary>
-		public static readonly VideoCatalogItemType Video = RegisterPossibleValue("video");
+		public static readonly VideoCatalogItemType Video = RegisterPossibleValue(value: "video");
 
 		/// <summary>
 		/// Альбом.
 		/// </summary>
-		public static readonly VideoCatalogItemType Album = RegisterPossibleValue("album");
+		public static readonly VideoCatalogItemType Album = RegisterPossibleValue(value: "album");
 	}
 }

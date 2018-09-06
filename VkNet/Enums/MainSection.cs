@@ -11,24 +11,29 @@ namespace VkNet.Enums
 		/// Главная секция отсутствует
 		/// </summary>
 		[DefaultValue]
-		NoSection = 0,
-		/// <summary>
+		NoSection = 0
+
+		, /// <summary>
 		/// Фотографии
 		/// </summary>
-		Photo,
-		/// <summary>
+		Photo
+
+		, /// <summary>
 		/// Обсуждения
 		/// </summary>
-		Post,
-		/// <summary>
+		Post
+
+		, /// <summary>
 		/// Аудиозаписи
 		/// </summary>
-		Audio,
-		/// <summary>
+		Audio
+
+		, /// <summary>
 		/// Видеозаписи
 		/// </summary>
-		Video,
-		/// <summary>
+		Video
+
+		, /// <summary>
 		/// Товары
 		/// </summary>
 		Goods

@@ -12,7 +12,8 @@ namespace VkNet.Model
 	{
 		/// <summary>
 		/// Общее число диалогов.
-		/// Если Вы используете при вызове unread=true, то здесь будет содержаться количество непрочитанных диалогов
+		/// Если Вы используете при вызове unread=true, то здесь будет содержаться
+		/// количество непрочитанных диалогов
 		/// </summary>
 		public uint TotalCount { get; set; }
 
@@ -23,7 +24,8 @@ namespace VkNet.Model
 		public uint? Unread { get; set; }
 
 		/// <summary>
-		/// Если был передан параметр start_message_id, будет содержать итоговое смещение данного подмножества диалогов
+		/// Если был передан параметр start_message_id, будет содержать итоговое смещение
+		/// данного подмножества диалогов
 		/// (оно может быть отрицательным, если был указан отрицательный offset).
 		/// </summary>
 		public uint? RealOffset { get; set; }
@@ -42,23 +44,22 @@ namespace VkNet.Model
 		/// Идентификатор последнего сообщения, прочитанного собеседником.
 		/// </summary>
 		public uint? OutRead { get; set; }
-		
-		
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns>Объект типа MessagesGetObject</returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Объект типа MessagesGetObject </returns>
 		public static MessagesGetObject FromJson(VkResponse response)
 		{
 			var dialogsGetObject = new MessagesGetObject
 			{
-				TotalCount = response["count"],
-				Unread = response["unread"] ?? response["unread_dialogs"],
-				RealOffset = response["real_offset"],
-				Messages = response["items"].ToReadOnlyCollectionOf<Message>(m => m),
-				InRead = response["in_read"],
-				OutRead = response["out_read"]
+					TotalCount = response[key: "count"]
+					, Unread = response[key: "unread"] ?? response[key: "unread_dialogs"]
+					, RealOffset = response[key: "real_offset"]
+					, Messages = response[key: "items"].ToReadOnlyCollectionOf<Message>(selector: m => m)
+					, InRead = response[key: "in_read"]
+					, OutRead = response[key: "out_read"]
 			};
 
 			return dialogsGetObject;

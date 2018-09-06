@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -20,7 +19,8 @@ namespace VkNet.Model
 		public ulong Id { get; set; }
 
 		/// <summary>
-		/// Идентификатор пользователя, который отправил подарок, или 0, если отправитель скрыт.
+		/// Идентификатор пользователя, который отправил подарок, или 0, если отправитель
+		/// скрыт.
 		/// </summary>
 		public long FromId { get; set; }
 
@@ -32,7 +32,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время отправки подарка в формате unixtime.
 		/// </summary>
-		[JsonConverter(typeof(UnixDateTimeConverter))]
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
@@ -53,19 +53,19 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static GiftItem FromJson(VkResponse response)
 		{
 			return new GiftItem
 			{
-				Id = response["id"],
-				FromId = response["from_id"],
-				Message = response["message"],
-				Date = response["date"],
-				Gift = response["gift"],
-				Privacy = response["privacy"],
-				GiftHash = response["gift_hash"]
+					Id = response[key: "id"]
+					, FromId = response[key: "from_id"]
+					, Message = response[key: "message"]
+					, Date = response[key: "date"]
+					, Gift = response[key: "gift"]
+					, Privacy = response[key: "privacy"]
+					, GiftHash = response[key: "gift_hash"]
 			};
 		}
 	}

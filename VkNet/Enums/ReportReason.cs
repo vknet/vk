@@ -11,34 +11,34 @@ namespace VkNet.Enums
 		/// Это спам.
 		/// </summary>
 		[DefaultValue]
-		Spam = 0,
+		Spam = 0
 
-		/// <summary>
+		, /// <summary>
 		/// Детская порнография.
 		/// </summary>
-		ChildPornography,
+		ChildPornography
 
-		/// <summary>
+		, /// <summary>
 		/// Экстремизм.
 		/// </summary>
-		Extremism,
+		Extremism
 
-		/// <summary>
+		, /// <summary>
 		/// Насилие.
 		/// </summary>
-		Violence,
+		Violence
 
-		/// <summary>
+		, /// <summary>
 		/// Пропаганда наркотиков.
 		/// </summary>
-		DrugPropaganda,
+		DrugPropaganda
 
-		/// <summary>
+		, /// <summary>
 		/// Материал для взрослых.
 		/// </summary>
-		AdultMaterial,
+		AdultMaterial
 
-		/// <summary>
+		, /// <summary>
 		/// Оскорбление.
 		/// </summary>
 		Abuse

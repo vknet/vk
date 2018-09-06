@@ -1,5 +1,4 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -113,32 +112,32 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static PushSettings FromJson(VkResponse response)
 		{
 			var result = new PushSettings
 			{
-				Msg = response["msg"],
-				Chat = response["chat"],
-				Friend = response.ContainsKey("friend") && response["mutual"],
-				FriendFound = response["friend_found"],
-				FriendAccepted = response["friend_accepted"],
-				Reply = response["reply"],
-				Comment = response.ContainsKey("comment") && response["fr_of_fr"],
-				Mention = response.ContainsKey("mention") && response["fr_of_fr"],
-				Like = response.ContainsKey("like") && response["fr_of_fr"],
-				Repost = response.ContainsKey("repost") && response["fr_of_fr"],
-				WallPost = response["wall_post"],
-				WallPublish = response["wall_publish"],
-				GroupInvite = response["group_invite"],
-				GroupAccepted = response["group_accepted"],
-				EventSoon = response["event_soon"],
-				TagPhoto = response.ContainsKey("tag_photo") && response["fr_of_fr"],
-				AppRequest = response["app_request"],
-				SdkOpen = response["sdk_open"],
-				NewPost = response["new_post"],
-				Birthday = response["birthday"]
+					Msg = response[key: "msg"]
+					, Chat = response[key: "chat"]
+					, Friend = response.ContainsKey(key: "friend") && response[key: "mutual"]
+					, FriendFound = response[key: "friend_found"]
+					, FriendAccepted = response[key: "friend_accepted"]
+					, Reply = response[key: "reply"]
+					, Comment = response.ContainsKey(key: "comment") && response[key: "fr_of_fr"]
+					, Mention = response.ContainsKey(key: "mention") && response[key: "fr_of_fr"]
+					, Like = response.ContainsKey(key: "like") && response[key: "fr_of_fr"]
+					, Repost = response.ContainsKey(key: "repost") && response[key: "fr_of_fr"]
+					, WallPost = response[key: "wall_post"]
+					, WallPublish = response[key: "wall_publish"]
+					, GroupInvite = response[key: "group_invite"]
+					, GroupAccepted = response[key: "group_accepted"]
+					, EventSoon = response[key: "event_soon"]
+					, TagPhoto = response.ContainsKey(key: "tag_photo") && response[key: "fr_of_fr"]
+					, AppRequest = response[key: "app_request"]
+					, SdkOpen = response[key: "sdk_open"]
+					, NewPost = response[key: "new_post"]
+					, Birthday = response[key: "birthday"]
 			};
 
 			return result;

@@ -1,5 +1,4 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -14,14 +13,17 @@ namespace VkNet.Model
 		/// x
 		/// </summary>
 		public uint X { get; set; }
+
 		/// <summary>
 		/// x2
 		/// </summary>
 		public uint X2 { get; set; }
+
 		/// <summary>
 		/// y
 		/// </summary>
 		public uint Y { get; set; }
+
 		/// <summary>
 		/// y2
 		/// </summary>
@@ -30,16 +32,16 @@ namespace VkNet.Model
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Rect FromJson(VkResponse response)
 		{
 			var crop = new Rect
 			{
-				X = response["x"],
-				X2 = response["x2"],
-				Y = response["y"],
-				Y2 = response["y2"]
+					X = response[key: "x"]
+					, X2 = response[key: "x2"]
+					, Y = response[key: "y"]
+					, Y2 = response[key: "y2"]
 			};
 
 			return crop;

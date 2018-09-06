@@ -11,29 +11,29 @@ namespace VkNet.Enums
 		/// Не указано.
 		/// </summary>
 		[DefaultValue]
-		Unknown = 0,
+		Unknown = 0
 
-		/// <summary>
+		, /// <summary>
 		/// Резко негативное.
 		/// </summary>
-		VeryNegative = 1,
+		VeryNegative = 1
 
-		/// <summary>
+		, /// <summary>
 		/// Негативное.
 		/// </summary>
-		Negative = 2,
+		Negative = 2
 
-		/// <summary>
+		, /// <summary>
 		/// Компромиссное.
 		/// </summary>
-		Compromise = 3,
+		Compromise = 3
 
-		/// <summary>
+		, /// <summary>
 		/// Нейтральное.
 		/// </summary>
-		Neutral = 4,
+		Neutral = 4
 
-		/// <summary>
+		, /// <summary>
 		/// Положительное.
 		/// </summary>
 		Positive = 5

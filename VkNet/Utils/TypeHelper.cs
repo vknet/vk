@@ -1,15 +1,19 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using NLog;
-using NLog.Conditions;
-using NLog.Config;
-using NLog.Targets;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using VkNet.Abstractions;
+using VkNet.Abstractions.Authorization;
+using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Exception;
+using VkNet.Infrastructure;
+using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils
 {
@@ -18,23 +22,10 @@ namespace VkNet.Utils
 	/// </summary>
 	public static class TypeHelper
 	{
-#if NET40
-
-/// <summary>
-/// Получить информацию о типе
-/// </summary>
-/// <param name="type">Тип</param>
-/// <returns>Тип</returns>
-		public static Type GetTypeInfo(this Type type)
-		{
-			return type;
-		}
-
-#endif
 		/// <summary>
 		/// DI регистрация зависимостей по умолчанию
 		/// </summary>
-		/// <param name="container">DI контейнер</param>
+		/// <param name="container"> DI контейнер </param>
 		public static void RegisterDefaultDependencies(this IServiceCollection container)
 		{
 			if (container.All(x => x.ServiceType != typeof(IBrowser)))
@@ -42,65 +33,80 @@ namespace VkNet.Utils
 				container.TryAddSingleton<IBrowser, Browser>();
 			}
 
-			if (container.All(x => x.ServiceType != typeof(ILogger)))
+			if (container.All(x => x.ServiceType != typeof(IAuthorizationFlow)))
 			{
-				container.TryAddSingleton(InitLogger());
+				container.TryAddSingleton<IAuthorizationFlow, Browser>();
+			}
+
+			if (container.All(x => x.ServiceType != typeof(INeedValidationHandler)))
+			{
+				container.TryAddSingleton<INeedValidationHandler, Browser>();
+			}
+
+			if (container.All(x => x.ServiceType != typeof(ILogger<>)))
+			{
+				container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
 			}
 
 			if (container.All(x => x.ServiceType != typeof(IRestClient)))
 			{
-				container.TryAddScoped<IRestClient, RestClient>();
+				container.TryAddSingleton<IRestClient, RestClient>();
 			}
 
 			if (container.All(x => x.ServiceType != typeof(IWebProxy)))
 			{
-				container.TryAddScoped<IWebProxy>(t => null);
+				container.TryAddSingleton<IWebProxy>(t => null);
 			}
-		}
 
-		/// <summary>
-		/// Инициализация логгера.
-		/// </summary>
-		/// <returns>Логгер</returns>
-		private static ILogger InitLogger()
-		{
-			var consoleTarget = new ColoredConsoleTarget
+			if (container.All(x => x.ServiceType != typeof(IVkApiVersionManager)))
 			{
-				UseDefaultRowHighlightingRules = true,
-				Layout = @"${level} ${longdate} ${logger} ${message}"
-			};
+				container.TryAddSingleton<IVkApiVersionManager, VkApiVersionManager>();
+			}
 
-			var config = new LoggingConfiguration();
-			config.AddTarget("console", consoleTarget);
-			var rule1 = new LoggingRule("*", LogLevel.Trace, consoleTarget);
-			config.LoggingRules.Add(rule1);
-			
-			LogManager.Configuration = config;
-			return LogManager.GetLogger("VkApi");
+			if (container.All(x => x.ServiceType != typeof(ICaptchaHandler)))
+			{
+				container.TryAddSingleton<ICaptchaHandler, CaptchaHandler>();
+			}
+
+			if (container.All(x => x.ServiceType != typeof(ILanguageService)))
+			{
+				container.TryAddSingleton<ILanguageService, LanguageService>();
+			}
+
+			if (container.All(x => x.ServiceType != typeof(ICaptchaSolver)))
+			{
+				container.TryAddSingleton<ICaptchaSolver>(sp => null);
+			}
+
+			if (container.All(x => x.ServiceType != typeof(HttpClient)))
+			{
+				container.TryAddSingleton<HttpClient>();
+			}
 		}
 
 		/// <summary>
 		/// Попытаться асинхронно выполнить метод.
 		/// </summary>
-		/// <param name="func">Синхронный метод.</param>
-		/// <typeparam name="T">Тип ответа</typeparam>
-		/// <returns>Результат выполнения функции.</returns>
+		/// <param name="func"> Синхронный метод. </param>
+		/// <typeparam name="T"> Тип ответа </typeparam>
+		/// <returns> Результат выполнения функции. </returns>
 		public static Task<T> TryInvokeMethodAsync<T>(Func<T> func)
 		{
 			var tcs = new TaskCompletionSource<T>();
 
 			Task.Factory.StartNew(() =>
-			{
-				try
 				{
-					var result = func.Invoke();
-					tcs.SetResult(result);
-				}
-				catch (VkApiException ex)
-				{
-					tcs.SetException(ex);
-				}
-			});
+					try
+					{
+						var result = func.Invoke();
+						tcs.SetResult(result);
+					}
+					catch (VkApiException ex)
+					{
+						tcs.SetException(ex);
+					}
+				})
+				.ConfigureAwait(false);
 
 			return tcs.Task;
 		}
@@ -108,8 +114,8 @@ namespace VkNet.Utils
 		/// <summary>
 		/// Попытаться асинхронно выполнить метод.
 		/// </summary>
-		/// <param name="func">Синхронный метод.</param>
-		/// <returns>Результат выполнения функции.</returns>
+		/// <param name="func"> Синхронный метод. </param>
+		/// <returns> Результат выполнения функции. </returns>
 		public static Task TryInvokeMethodAsync(Action func)
 		{
 			var tcs = new TaskCompletionSource<Task>();

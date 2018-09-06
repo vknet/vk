@@ -1,15 +1,17 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.Messages
 {
-    [TestFixture]
-    public class MessagesGetObjectTests : BaseTest
-    {
-        [Test]
-        public void Unread()
-        {
-            Json = @"{
+	[TestFixture]
+	[ExcludeFromCodeCoverage]
+	public class MessagesGetObjectTests : BaseTest
+	{
+		[Test]
+		public void Unread()
+		{
+			Json = @"{
                     'response': {
                       'count': 3,
                       'skipped': 1,
@@ -44,10 +46,11 @@ namespace VkNet.Tests.Categories.Messages
                       'out_read': 3001
                     }
                   }";
-            Url = "https://api.vk.com/method/messages.getHistory";
-            var res = Api.Messages.GetHistory(new MessagesGetHistoryParams());
 
-            Assert.AreEqual(res.Unread, 1);
-        }
-    }
+			Url = "https://api.vk.com/method/messages.getHistory";
+			var res = Api.Messages.GetHistory(new MessagesGetHistoryParams());
+
+			Assert.AreEqual(1, res.Unread);
+		}
+	}
 }

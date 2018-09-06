@@ -8,168 +8,209 @@
 		/// <summary>
 		/// Авто/мото.
 		/// </summary>
-		AutoMoto = 1,
-		/// <summary>
+		AutoMoto = 1
+
+		, /// <summary>
 		/// Активный отдых.
 		/// </summary>
-		Leisure,
-		/// <summary>
+		Leisure
+
+		, /// <summary>
 		/// Бизнес.
 		/// </summary>
-		Business,
-		/// <summary>
+		Business
+
+		, /// <summary>
 		/// Домашние животные.
 		/// </summary>
-		DomesticAnimals,
-		/// <summary>
+		DomesticAnimals
+
+		, /// <summary>
 		/// Здоровье.
 		/// </summary>
-		Health,
-		/// <summary>
+		Health
+
+		, /// <summary>
 		/// Знакомство и общение.
 		/// </summary>
-		MeetAndChat,
-		/// <summary>
+		MeetAndChat
+
+		, /// <summary>
 		/// Игры.
 		/// </summary>
-		Games,
-		/// <summary>
+		Games
+
+		, /// <summary>
 		/// ИТ.
 		/// </summary>
-		IT,
-		/// <summary>
+		It
+
+		, /// <summary>
 		/// Кино.
 		/// </summary>
-		Cinema,
-		/// <summary>
+		Cinema
+
+		, /// <summary>
 		/// Красота и мода.
 		/// </summary>
-		BeautyAndFashion,
-		/// <summary>
+		BeautyAndFashion
+
+		, /// <summary>
 		/// Кулинария.
 		/// </summary>
-		Cookery,
-		/// <summary>
+		Cookery
+
+		, /// <summary>
 		/// Культура и искусство.
 		/// </summary>
-		CultureAndArt,
-		/// <summary>
+		CultureAndArt
+
+		, /// <summary>
 		/// Литература.
 		/// </summary>
-		References,
-		/// <summary>
+		References
+
+		, /// <summary>
 		/// Мобильная связь и интернет.
 		/// </summary>
-		MobileTelephonyAndInternet,
-		/// <summary>
+		MobileTelephonyAndInternet
+
+		, /// <summary>
 		/// Музыка.
 		/// </summary>
-		Music,
-		/// <summary>
+		Music
+
+		, /// <summary>
 		/// Наука и техника.
 		/// </summary>
-		ScienceAndTechnology,
-		/// <summary>
+		ScienceAndTechnology
+
+		, /// <summary>
 		/// Недвижимость.
 		/// </summary>
-		RealEstate,
-		/// <summary>
+		RealEstate
+
+		, /// <summary>
 		/// Новости и СМИ.
 		/// </summary>
-		NewsAndMedia,
-		/// <summary>
+		NewsAndMedia
+
+		, /// <summary>
 		/// Безопасность.
 		/// </summary>
-		Security,
-		/// <summary>
+		Security
+
+		, /// <summary>
 		/// Образование.
 		/// </summary>
-		Forming,
-		/// <summary>
+		Forming
+
+		, /// <summary>
 		/// Обустройство и ремонт.
 		/// </summary>
-		ConstructionAndRepair,
-		/// <summary>
+		ConstructionAndRepair
+
+		, /// <summary>
 		/// Политика.
 		/// </summary>
-		Policy,
-		/// <summary>
+		Policy
+
+		, /// <summary>
 		/// Продукты питания.
 		/// </summary>
-		FoodItems,
-		/// <summary>
+		FoodItems
+
+		, /// <summary>
 		/// Промышленность.
 		/// </summary>
-		Industry,
-		/// <summary>
+		Industry
+
+		, /// <summary>
 		/// Путешествия.
 		/// </summary>
-		Travels,
-		/// <summary>
+		Travels
+
+		, /// <summary>
 		/// Работа.
 		/// </summary>
-		Job,
-		/// <summary>
+		Job
+
+		, /// <summary>
 		/// Развлечения.
 		/// </summary>
-		Entertainment,
-		/// <summary>
+		Entertainment
+
+		, /// <summary>
 		/// Религия.
 		/// </summary>
-		Religion,
-		/// <summary>
+		Religion
+
+		, /// <summary>
 		/// Дом и семья.
 		/// </summary>
-		HomeAndFamily,
-		/// <summary>
+		HomeAndFamily
+
+		, /// <summary>
 		/// Спорт.
 		/// </summary>
-		Sports,
-		/// <summary>
+		Sports
+
+		, /// <summary>
 		/// Страхование.
 		/// </summary>
-		Coverage,
-		/// <summary>
+		Coverage
+
+		, /// <summary>
 		/// Телевидение.
 		/// </summary>
-		TV,
-		/// <summary>
+		Tv
+
+		, /// <summary>
 		/// Товары и услуги.
 		/// </summary>
-		GoodsAndServices,
-		/// <summary>
+		GoodsAndServices
+
+		, /// <summary>
 		/// Увлечения и хобби.
 		/// </summary>
-		InterestsAndHobbies,
-		/// <summary>
+		InterestsAndHobbies
+
+		, /// <summary>
 		/// Финансы.
 		/// </summary>
-		Finances,
-		/// <summary>
+		Finances
+
+		, /// <summary>
 		/// Фото.
 		/// </summary>
-		Photography,
-		/// <summary>
+		Photography
+
+		, /// <summary>
 		/// Эзотерика.
 		/// </summary>
-		Esoterics,
-		/// <summary>
+		Esoterics
+
+		, /// <summary>
 		/// Электроника и бытовая техника.
 		/// </summary>
-		ElectronicsAndAppliances,
-		/// <summary>
+		ElectronicsAndAppliances
+
+		, /// <summary>
 		/// Эротика.
 		/// </summary>
-		Erotica,
-		/// <summary>
+		Erotica
+
+		, /// <summary>
 		/// Юмор.
 		/// </summary>
-		Humor,
-		/// <summary>
+		Humor
+
+		, /// <summary>
 		/// Общество, гуманитарные науки.
 		/// </summary>
-		SocietyHumanities,
-		/// <summary>
+		SocietyHumanities
+
+		, /// <summary>
 		/// Дизайн и графика.
 		/// </summary>
 		DesignAndGraphics

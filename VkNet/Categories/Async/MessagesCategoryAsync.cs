@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
@@ -9,228 +10,313 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-    public partial class MessagesCategory
-    {
-        /// <inheritdoc />
-        public async Task<bool> AddChatUserAsync(long chatId, long userId)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.AddChatUser(chatId, userId));
-        }
+	public partial class MessagesCategory
+	{
+		/// <inheritdoc/>
+		public Task<bool> UnpinAsync(long peerId, ulong? groupId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Unpin(peerId, groupId));
+		}
 
-        /// <inheritdoc />
-        public async Task<bool> AllowMessagesFromGroupAsync(long groupId, string key)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.AllowMessagesFromGroup(groupId, key));
-        }
+		/// <inheritdoc />
+		public Task<bool> AddChatUserAsync(long chatId, long userId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => AddChatUser(chatId: chatId, userId: userId));
+		}
 
-        /// <inheritdoc />
-        public async Task<long> CreateChatAsync(IEnumerable<ulong> userIds, string title)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.CreateChat(userIds, title));
-        }
+		/// <inheritdoc />
+		public Task<bool> AllowMessagesFromGroupAsync(long groupId, string key)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => AllowMessagesFromGroup(groupId: groupId, key: key));
+		}
 
-        /// <inheritdoc />
-        public async Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> messageIds, bool spam, bool deleteForAll)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.Delete(messageIds, spam, deleteForAll));
-        }
+		/// <inheritdoc />
+		public Task<long> CreateChatAsync(IEnumerable<ulong> userIds, string title)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => CreateChat(userIds: userIds, title: title));
+		}
 
-        /// <inheritdoc />
-        public async Task<Chat> DeleteChatPhotoAsync(ulong chatId)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.DeleteChatPhoto(out var _, chatId));
-        }
+		/// <inheritdoc />
+		public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> messageIds, bool spam, bool deleteForAll)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				Delete(messageIds: messageIds, spam: spam, deleteForAll: deleteForAll));
+		}
 
-        /// <inheritdoc />
-        public async Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.DeleteDialog(userId,peerId,offset,count));
-        }
+		/// <inheritdoc />
+		public Task<Chat> DeleteChatPhotoAsync(ulong chatId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => DeleteChatPhoto(messageId: out var _, chatId: chatId));
+		}
 
-        /// <inheritdoc />
-        public async Task<bool> DenyMessagesFromGroupAsync(long groupId)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.DenyMessagesFromGroup(groupId));
-        }
+		/// <inheritdoc />
+		public Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null,
+												long? groupId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => DeleteConversation(userId, peerId, offset, count, groupId));
+		}
 
-        /// <inheritdoc />
-        public async Task<bool> EditChatAsync(long chatId, string title)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.EditChat(chatId, title));
-        }
+		/// <inheritdoc />
+		public Task<ConversationResultObject> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields,
+																			bool? extended = null, ulong? groupId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetConversationsById(peerIds, fields, extended, groupId));
+		}
 
-        /// <inheritdoc />
-        public async Task<MessagesGetObject> GetAsync(MessagesGetParams @params)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.Get(@params));
-        }
+		/// <inheritdoc />
+		public Task<GetConversationsResult> GetConversationsAsync(GetConversationsParams getConversationsParams)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetConversations(getConversationsParams));
+		}
 
-        /// <inheritdoc />
-        public async Task<VkCollection<Message>> GetByIdAsync(IEnumerable<ulong> messageIds, uint? previewLength = null)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.GetById(messageIds, previewLength));
-        }
+		/// <inheritdoc />
+		public Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields,
+																					ulong? groupId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetConversationMembers(peerId, fields, groupId));
+		}
 
-        /// <inheritdoc />
-        public async Task<SearchDialogsResponse> SearchDialogsAsync(string query, ProfileFields fields = null, uint? limit = null)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.SearchDialogs(query,fields,limit));
-        }
+		/// <inheritdoc />
+		public Task<GetByConversationMessageIdResult> GetByConversationMessageIdAsync(long peerId,
+																							IEnumerable<ulong> conversationMessageIds,
+																							IEnumerable<string> fields,
+																							bool? extended = null,
+																							ulong? groupId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() =>
+				GetByConversationMessageId(peerId, conversationMessageIds, fields, extended, groupId));
+		}
 
-        /// <inheritdoc />
-        public async Task<VkCollection<Message>> SearchAsync(MessagesSearchParams @params)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.Search(@params));
-        }
+		/// <inheritdoc />
+		public Task<SearchConversationsResult> SearchConversationsAsync(string q, IEnumerable<string> fields, ulong? count = null,
+																			bool? extended = null, ulong? groupId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => SearchConversations(q, fields, count, extended, groupId));
+		}
 
-        /// <inheritdoc />
-        public async Task<long> SendAsync(MessagesSendParams @params)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.Send(@params));
-        }
+		/// <inheritdoc />
+		public Task<PinnedMessage> PinAsync(long peerId, ulong? messageId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Pin(peerId, messageId));
+		}
 
-        /// <inheritdoc />
-        public async Task<ReadOnlyCollection<MessagesSendResult>> SendToUserIdsAsync(MessagesSendParams @params)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.SendToUserIds(@params));
-        }
+		/// <inheritdoc />
+		public Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				DeleteDialog(userId: userId, peerId: peerId, offset: offset, count: count));
+		}
 
-        /// <inheritdoc />
-        public async Task<bool> RestoreAsync(ulong messageId)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.Restore(messageId));
-        }
+		/// <inheritdoc />
+		public Task<bool> DenyMessagesFromGroupAsync(long groupId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => DenyMessagesFromGroup(groupId: groupId));
+		}
 
-        /// <inheritdoc />
-        public async Task<bool> MarkAsReadAsync(IEnumerable<long> messageIds, string peerId, long? startMessageId = null)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.MarkAsRead(messageIds, peerId, startMessageId));
-        }
+		/// <inheritdoc />
+		public Task<bool> EditChatAsync(long chatId, string title)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => EditChat(chatId: chatId, title: title));
+		}
 
-        /// <inheritdoc />
-        public async Task<bool> SetActivityAsync(long userId, long? peerId = null, string type = "typing")
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.SetActivity(userId, peerId, type));
-        }
+		/// <inheritdoc />
+		public Task<MessagesGetObject> GetAsync(MessagesGetParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => Get(@params: @params));
+		}
 
-        /// <inheritdoc />
-        public async Task<LastActivity> GetLastActivityAsync(long userId)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.GetLastActivity(userId));
-        }
+		/// <inheritdoc />
+		public Task<VkCollection<Message>> GetByIdAsync(IEnumerable<ulong> messageIds, uint? previewLength = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				GetById(messageIds: messageIds, previewLength: previewLength));
+		}
 
-        /// <inheritdoc />
-        public async Task<Chat> GetChatAsync(long chatId, ProfileFields fields = null, NameCase nameCase = null)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.GetChat(chatId,fields, nameCase));
-        }
+		/// <inheritdoc />
+		public Task<SearchDialogsResponse> SearchDialogsAsync(string query, ProfileFields fields = null, uint? limit = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				SearchDialogs(query: query, fields: fields, limit: limit));
+		}
 
-        /// <inheritdoc />
-        public async Task<ReadOnlyCollection<Chat>> GetChatAsync(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.GetChat(chatIds, fields, nameCase));
-        }
+		/// <inheritdoc />
+		public Task<VkCollection<Message>> SearchAsync(MessagesSearchParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => Search(@params: @params));
+		}
 
-        /// <inheritdoc />
-        public async Task<ChatPreview> GetChatPreviewAsync(string link, ProfileFields fields)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.GetChatPreview(link, fields));
-        }
+		/// <inheritdoc />
+		public Task<long> SendAsync(MessagesSendParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => Send(@params: @params));
+		}
 
-        /// <inheritdoc />
-        public async Task<ReadOnlyCollection<User>> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.GetChatUsers(chatIds, fields, nameCase));
-        }
+		/// <inheritdoc />
+		public Task<ReadOnlyCollection<MessagesSendResult>> SendToUserIdsAsync(MessagesSendParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => SendToUserIds(@params: @params));
+		}
 
-        /// <inheritdoc />
-        public async Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.GetDialogs(@params));
-        }
+		/// <inheritdoc />
+		public Task<bool> RestoreAsync(ulong messageId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => Restore(messageId: messageId));
+		}
 
-        /// <inheritdoc />
-        public async Task<MessagesGetObject> GetHistoryAsync(MessagesGetHistoryParams @params)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.GetHistory(@params));
-        }
+		/// <inheritdoc />
+		public Task<bool> MarkAsReadAsync(string peerId, long? startMessageId = null, long? groupId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				MarkAsRead(peerId: peerId, startMessageId: startMessageId, groupId: groupId));
+		}
 
-        /// <inheritdoc />
-        public async Task<bool> RemoveChatUserAsync(long chatId, long userId, long memberId = 0)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.RemoveChatUser(chatId, userId, memberId));
-        }
+		/// <inheritdoc />
+		public Task<bool> SetActivityAsync(long userId, long? peerId = null, string type = "typing")
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => SetActivity(userId: userId, peerId: peerId, type: type));
+		}
 
-        /// <inheritdoc />
-        public async Task<LongPollServerResponse> GetLongPollServerAsync(bool needPts = false, uint lpVersion = 2)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.GetLongPollServer(needPts, lpVersion));
-        }
+		/// <inheritdoc />
+		public Task<LastActivity> GetLastActivityAsync(long userId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetLastActivity(userId: userId));
+		}
 
-        /// <inheritdoc />
-        public async Task<LongPollHistoryResponse> GetLongPollHistoryAsync(MessagesGetLongPollHistoryParams @params)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.GetLongPollHistory(@params));
-        }
+		/// <inheritdoc />
+		public Task<Chat> GetChatAsync(long chatId, ProfileFields fields = null, NameCase nameCase = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				GetChat(chatId: chatId, fields: fields, nameCase: nameCase));
+		}
 
-        /// <inheritdoc />
-        public async Task<long> SetChatPhotoAsync(string file)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.SetChatPhoto(out var _,file));
-        }
+		/// <inheritdoc />
+		public Task<ReadOnlyCollection<Chat>> GetChatAsync(IEnumerable<long> chatIds
+															, ProfileFields fields = null
+															, NameCase nameCase = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				GetChat(chatIds: chatIds, fields: fields, nameCase: nameCase));
+		}
 
-        /// <inheritdoc />
-        public async Task<ReadOnlyCollection<long>> MarkAsImportantAsync(IEnumerable<long> messageIds, bool important = true)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.MarkAsImportant(messageIds, important));
-        }
+		/// <inheritdoc />
+		public Task<ChatPreview> GetChatPreviewAsync(string link, ProfileFields fields)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetChatPreview(link: link, fields: fields));
+		}
 
-        /// <inheritdoc />
-        public async Task<long> SendStickerAsync(MessagesSendStickerParams @params)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.SendSticker(@params));
-        }
+		/// <inheritdoc />
+		public Task<ReadOnlyCollection<User>> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				GetChatUsers(chatIds: chatIds, fields: fields, nameCase: nameCase));
+		}
 
-        /// <inheritdoc />
-        public async Task<ReadOnlyCollection<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.GetHistoryAttachments(@params, out var _));
-        }
+		/// <inheritdoc />
+		public Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetDialogs(@params: @params));
+		}
 
-        /// <inheritdoc />
-        public async Task<string> GetInviteLinkAsync(ulong peerId, bool reset)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.GetInviteLink(peerId, reset));
-        }
+		/// <inheritdoc />
+		public Task<MessagesGetObject> GetHistoryAsync(MessagesGetHistoryParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetHistory(@params: @params));
+		}
 
-        /// <inheritdoc />
-        public async Task<bool> IsMessagesFromGroupAllowedAsync(ulong groupId, ulong userId)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.IsMessagesFromGroupAllowed(groupId, userId));
-        }
+		/// <inheritdoc />
+		public Task<bool> RemoveChatUserAsync(long chatId, long userId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => RemoveChatUser(chatId: chatId, userId: userId));
+		}
 
-        /// <inheritdoc />
-        public async Task<long> JoinChatByInviteLinkAsync(string link)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.JoinChatByInviteLink(link));
-        }
+		/// <inheritdoc />
+		public Task<LongPollServerResponse> GetLongPollServerAsync(bool needPts = false, uint lpVersion = 2, ulong? groupId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				GetLongPollServer(needPts: needPts, lpVersion: lpVersion, groupId: groupId));
+		}
 
-        /// <inheritdoc />
-        public async Task<bool> MarkAsAnsweredDialogAsync(long peerId, bool answered = true)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.MarkAsAnsweredDialog(peerId, answered));
-        }
+		/// <inheritdoc />
+		public Task<LongPollHistoryResponse> GetLongPollHistoryAsync(MessagesGetLongPollHistoryParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetLongPollHistory(@params: @params));
+		}
 
-        /// <inheritdoc />
-        public async Task<bool> MarkAsImportantDialogAsync(long peerId, bool important = true)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.MarkAsImportantDialog(peerId, important));
-        }
+		/// <inheritdoc />
+		public Task<long> SetChatPhotoAsync(string file)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => SetChatPhoto(messageId: out var _, file: file));
+		}
 
-        /// <inheritdoc />
-        public async Task<bool> EditAsync(MessageEditParams @params)
-        {
-            return await TypeHelper.TryInvokeMethodAsync(() => _vk.Messages.Edit(@params));
-        }
-    }
+		/// <inheritdoc />
+		public Task<ReadOnlyCollection<long>> MarkAsImportantAsync(IEnumerable<long> messageIds, bool important = true)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				MarkAsImportant(messageIds: messageIds, important: important));
+		}
+
+		/// <inheritdoc />
+		public Task<long> SendStickerAsync(MessagesSendStickerParams parameters)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => SendSticker(@params: parameters));
+		}
+
+		/// <inheritdoc />
+		public Task<ReadOnlyCollection<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				GetHistoryAttachments(@params: @params, nextFrom: out var _));
+		}
+
+		/// <inheritdoc />
+		public Task<string> GetInviteLinkAsync(ulong peerId, bool reset)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetInviteLink(peerId: peerId, reset: reset));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> IsMessagesFromGroupAllowedAsync(ulong groupId, ulong userId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				IsMessagesFromGroupAllowed(groupId: groupId, userId: userId));
+		}
+
+		/// <inheritdoc />
+		public Task<long> JoinChatByInviteLinkAsync(string link)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => JoinChatByInviteLink(link: link));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> MarkAsAnsweredConversationAsync(long peerId, bool answered = true)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <inheritdoc />
+		public Task<bool> MarkAsAnsweredDialogAsync(long peerId, bool answered = true)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => MarkAsAnsweredDialog(peerId: peerId, answered: answered));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> MarkAsImportantConversationAsync(long peerId, bool important = true)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				MarkAsImportantConversation(peerId: peerId, important: important));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> MarkAsImportantDialogAsync(long peerId, bool important = true)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				MarkAsImportantDialog(peerId: peerId, important: important));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> EditAsync(MessageEditParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => Edit(@params: @params));
+		}
+	}
 }

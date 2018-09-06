@@ -7,7 +7,7 @@
 |**Downloads**|[![](https://img.shields.io/nuget/dt/VkNet.svg)](https://www.nuget.org/packages/VkNet/)
 |**Issues**|[![](https://img.shields.io/github/issues/VkNet/Vk.svg)](https://github.com/vknet/vk/issues)
 |**Coverity**|[![Coverity Scan Build Status](https://img.shields.io/coverity/scan/6249.svg)](https://scan.coverity.com/projects/vknet)
-|**Contacts**|[![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-0F80C1.svg)](https://goo.gl/fNNDpK)|
+|**Contacts**|[![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-0F80C1.svg)](https://t.me/VkDotNet)|
 
 # При поддержке
 [![Supported by JebBrains](https://raw.githubusercontent.com/vknet/vk/master/.github/jetbrains_logo.png)](https://www.jetbrains.com/)
@@ -27,31 +27,26 @@ PM> Install-Package VkNet
 2. Авторизуйтесь как указано в [документации](https://vknet.github.io/vk/authorize/)
 3. Используйте необходимые методы. [Список методов по категориям](https://vknet.github.io/vk/)
 4. [Список часто задаваемых вопросов](https://github.com/vknet/vk/wiki/FAQ)
-5. [Обсуждение в Telegram](https://goo.gl/fNNDpK)
+5. [Обсуждение в Telegram](https://t.me/VkDotNet)
 
 # План развития проекта
 
-- [ ] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.74.
-- [ ] Недостающие классы и методы
+- [x] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.80.
+- [ ] [Недостающие классы и методы](http://bit.ly/2slXKrI)
 - [ ] Обновить документацию проекта
-
-# Альфа сборки
-
-Альфа сборки доступны из следующего nuget канала: [https://www.myget.org/F/vknet-alpha/api/v3/index.json](https://www.myget.org/F/vknet-alpha/api/v3/index.json) [![](https://img.shields.io/myget/vknet-alpha/vpre/VkNet.svg)](https://www.myget.org/F/vknet-alpha/api/v3/index.json) 
 
 # Credits
 
 Большое спасибо следующим организациям и проектам, работа которых имеет важное значение для развития проекта:
 - [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper) лицензия для разработки VkNet
 - [Json.Net](http://www.newtonsoft.com/json) - Popular high-performance JSON framework for .NET
-- [HtmlAgilityPack](http://html-agility-pack.net/?z=codeplex)
+- [HtmlAgilityPack](http://html-agility-pack.net/)
 - [NUnit](http://www.nunit.org/) - NUnit is a unit-testing framework for all .Net languages.
 - [Moq](https://github.com/moq/moq4) - The most popular and friendly mocking framework for .NET
 - [NLog](http://nlog-project.org/) - Flexible & free open-source logging for .NET
-- [Simple Injector](https://simpleinjector.org/index.html) - Simple Injector is an easy, flexible and fast dependency injection library that uses best practice to guide your solutions toward the pit of success.
 - [SonarAnalyzer.CSharp](https://www.sonarlint.org/visualstudio/) - Analyzers which spot bugs and code smells in your code. 
 
 # Помощь проекту
-- [![На счет в банке](https://img.shields.io/badge/Альфа_Банк-donate-CHFCHx.svg)](https://money.alfabank.ru/p2p/web/transfer/minyutin)
-- [![PayPal](https://img.shields.io/badge/PayPal-donate-CHFCHx.svg)](https://www.paypal.me/InyutinMaxim)
-- Так же вы можете помочь проекту `Pull Request`'ом
+- [![На счет в банке](https://bpurl.biz/Jb)](https://money.alfabank.ru/p2p/web/transfer/minyutin)
+- [![PayPal](https://img.shields.io/badge/PayPal-donate-red.svg)](https://www.paypal.me/InyutinMaxim)
+- Также вы можете помочь проекту `Pull Request`'ом

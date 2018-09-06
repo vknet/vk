@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -15,63 +14,62 @@ namespace VkNet.Model.Attachments
 	{
 		static Album()
 		{
-			RegisterType(typeof (Album), "album");
+			RegisterType(type: typeof(Album), match: "album");
 		}
 
 		/// <summary>
-        /// Обложка альбома.
-        /// </summary>
-        public Photo Thumb { get; set; }
-
-		/// <summary>
-        /// Название альбома.
-        /// </summary>
-        public string Title { get; set; }
-
-        /// <summary>
-        /// Описание альбома.
-        /// </summary>
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Дата и время создания альбома.
-        /// </summary>
-        [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime? CreateTime { get; set; }
-
-        /// <summary>
-        /// Дата и время последнего обновления альбома.
-        /// </summary>
-        [JsonConverter(typeof(UnixDateTimeConverter))]
-        public DateTime? UpdateTime { get; set; }
-
-        /// <summary>
-        /// Количество фотографий в альбоме.
-        /// </summary>
-        public int Size { get; set; }
-
-        #region Методы
-
-		/// <summary>
-		/// 
+		/// Обложка альбома.
 		/// </summary>
-		/// <param name="response"></param>
-		/// <returns></returns>
+		public Photo Thumb { get; set; }
+
+		/// <summary>
+		/// Название альбома.
+		/// </summary>
+		public string Title { get; set; }
+
+		/// <summary>
+		/// Описание альбома.
+		/// </summary>
+		public string Description { get; set; }
+
+		/// <summary>
+		/// Дата и время создания альбома.
+		/// </summary>
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		public DateTime? CreateTime { get; set; }
+
+		/// <summary>
+		/// Дата и время последнего обновления альбома.
+		/// </summary>
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		public DateTime? UpdateTime { get; set; }
+
+		/// <summary>
+		/// Количество фотографий в альбоме.
+		/// </summary>
+		public int Size { get; set; }
+
+	#region Методы
+
+		/// <summary>
+		/// </summary>
+		/// <param name="response"> </param>
+		/// <returns> </returns>
 		public static Album FromJson(VkResponse response)
 		{
 			return new Album
 			{
-				Id = response["album_id"] ?? response["aid"] ?? response["id"],
-				Thumb = response["thumb"],
-				OwnerId = response["owner_id"],
-				Title = response["title"],
-				Description = response["description"],
-				CreateTime = response["created"],
-				UpdateTime = response["updated"],
-				Size = response["size"]
+					Id = response[key: "album_id"] ?? response[key: "aid"] ?? response[key: "id"]
+					, Thumb = response[key: "thumb"]
+					, OwnerId = response[key: "owner_id"]
+					, Title = response[key: "title"]
+					, Description = response[key: "description"]
+					, CreateTime = response[key: "created"]
+					, UpdateTime = response[key: "updated"]
+					, Size = response[key: "size"]
 			};
 		}
 
-		#endregion
-    }
+	#endregion
+	}
 }

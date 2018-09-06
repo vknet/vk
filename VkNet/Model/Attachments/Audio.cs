@@ -1,5 +1,4 @@
-﻿using System;
-
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -16,82 +15,117 @@ namespace VkNet.Model.Attachments
 	{
 		static Audio()
 		{
-			RegisterType(typeof(Audio), "audio");
+			RegisterType(type: typeof(Audio), match: "audio");
 		}
 
 		/// <summary>
 		/// Исполнитель аудиозаписи.
 		/// </summary>
-		public string Artist
-		{ get; set; }
+		[JsonProperty("artist")]
+		public string Artist { get; set; }
 
 		/// <summary>
 		/// Название композиции.
 		/// </summary>
-		public string Title
-		{ get; set; }
+		[JsonProperty("title")]
+		public string Title { get; set; }
 
 		/// <summary>
 		/// Длительность аудиозаписи в секундах.
 		/// </summary>
-		public int Duration
-		{ get; set; }
-
-		/// <summary>
-		/// Ссылка на аудиозапись (привязана к ip-адресу клиентского приложения).
-		/// </summary>
-		public Uri Uri
-		{ get; set; }
-
-		/// <summary>
-		/// Идентификатор текста аудиозаписи (если доступно).
-		/// </summary>
-		public long? LyricsId
-		{ get; set; }
-
-		/// <summary>
-		/// Идентификатор альбома аудиозаписи (если присвоен).
-		/// </summary>
-		public long? AlbumId
-		{ get; set; }
-
-		/// <summary>
-		/// Жанр аудиозаписи.
-		/// </summary>
-		public AudioGenre? Genre
-		{ get; set; }
+		[JsonProperty("duration")]
+		public int Duration { get; set; }
 
 		/// <summary>
 		/// Дата добавления.
 		/// </summary>
 		[JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime? Date
-		{ get; set; }
+		[JsonProperty("date")]
+		public DateTime Date { get; set; }
 
-		#region Методы
+		/// <summary>
+		/// Ссылка на аудиозапись (привязана к ip-адресу клиентского приложения).
+		/// </summary>
+		[JsonProperty("url")]
+		public Uri Url { get; set; }
+
+		/// <summary>
+		/// Альбом аудиозаписи.
+		/// </summary>
+		[JsonProperty("album")]
+		public AudioAlbum Album { get; set; }
+
+		/// <summary>
+		/// true, если аудиозапись лицензируется.
+		/// </summary>
+		[JsonProperty("is_licensed")]
+		public bool? IsLicensed { get; set; }
+
+		/// <summary>
+		/// true, если аудиозапись в высоком качестве.
+		/// </summary>
+		[JsonProperty("is_hq")]
+		public bool? IsHq { get; set; }
+
+		/// <summary>
+		/// Жанр аудиозаписи.
+		/// </summary>
+		[JsonProperty("track_genre_id")]
+		public AudioGenre? TrackGenre { get; set; }
+
+		/// <summary>
+		/// Ключ доступа.
+		/// </summary>
+		[JsonProperty("access_key")]
+		public string AccessKey { get; set; }
+
+		/// <summary>
+		/// Жанр аудиозаписи.
+		/// </summary>
+		[JsonProperty("genre_id")]
+		public AudioGenre? Genre { get; set; }
+
+		/// <summary>
+		/// Идентификатор текста аудиозаписи (если доступно).
+		/// </summary>
+		[JsonProperty("lyrics_id")]
+		public long? LyricsId { get; set; }
+
+		/// <summary>
+		/// Неизвестно.
+		/// </summary>
+		[JsonProperty("content_restricted")]
+		public int? ContentRestricted { get; set; }
+
+	#region Методы
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Audio FromJson(VkResponse response)
 		{
-			var audio = new Audio
+			return new Audio
 			{
-				Id = response["audio_id"] ?? response["aid"] ?? response["id"],
-				OwnerId = response["owner_id"],
-				Artist = response["artist"],
-				Title = response["title"],
-				Duration = response["duration"],
-				Uri = response["url"],
-				LyricsId = response["lyrics_id"],
-				AlbumId = response["album_id"],
-				Genre = response["genre_id"] ?? response["genre"],
-				Date = response["date"]
+				Id = response[key: "id"],
+				OwnerId = response[key: "owner_id"],
+				Artist = response[key: "artist"],
+				Title = response[key: "title"],
+				Duration = response[key: "duration"],
+				Url = response[key: "url"],
+				LyricsId = response[key: "lyrics_id"],
+				Album = response[key: "album"],
+				AccessKey = response["access_key"],
+				IsHq = response["is_hq"],
+				IsLicensed = response["is_licensed"],
+				TrackGenre = response["track_genre_id"],
+				ContentRestricted = response["content_restricted"],
+				Genre = response[key: "genre_id"] ?? response[key: "genre"],
+				Date = response[key: "date"]
 			};
-			return audio;
 		}
 
-		#endregion
+	#endregion
 	}
 }

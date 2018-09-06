@@ -1,12 +1,11 @@
-﻿using VkNet.Abstractions;
+﻿using System;
+using VkNet.Abstractions;
+using VkNet.Model;
+using VkNet.Model.Attachments;
+using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	using System;
-	using Model;
-	using Model.Attachments;
-	using Utils;
-
 	/// <summary>
 	/// Категория работы с закладками.
 	/// </summary>
@@ -15,13 +14,13 @@ namespace VkNet.Categories
 		/// <summary>
 		/// API
 		/// </summary>
-		private readonly VkApi _vk;
+		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
 		/// Методы для работы с закладками.
 		/// </summary>
-		/// <param name="vk">API.</param>
-		public FaveCategory(VkApi vk)
+		/// <param name="vk"> API. </param>
+		public FaveCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
 		}
@@ -29,8 +28,16 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Возвращает список пользователей, добавленных текущим пользователем в закладки.
 		/// </summary>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества пользователей. По умолчанию — 0. положительное число (Положительное число).</param>
-		/// <param name="count">Количество пользователей, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
+		/// <param name="offset">
+		/// Смещение, необходимое для выборки определенного подмножества пользователей. По
+		/// умолчанию — 0.
+		/// положительное число (Положительное число).
+		/// </param>
+		/// <param name="count">
+		/// Количество пользователей, информацию о которых необходимо вернуть.
+		/// положительное число, по
+		/// умолчанию 50 (Положительное число, по умолчанию 50).
+		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов пользователей.
 		/// </returns>
@@ -39,25 +46,37 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<User> GetUsers(int? count = null, int? offset = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
 
 			var parameters = new VkParameters
-				{
-					{ "count", count },
-					{ "offset", offset }
-				};
+			{
+					{ "count", count }
+					, { "offset", offset }
+			};
 
-			return _vk.Call("fave.getUsers", parameters).ToVkCollectionOf<User>(x => x);
+			return _vk.Call(methodName: "fave.getUsers", parameters: parameters).ToVkCollectionOf<User>(selector: x => x);
 		}
 
 		/// <summary>
-		/// Возвращает фотографии, на которых текущий пользователь поставил отметку "Мне нравится".
+		/// Возвращает фотографии, на которых текущий пользователь поставил отметку "Мне
+		/// нравится".
 		/// </summary>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества фотографий.
-		/// По умолчанию 0. положительное число (Положительное число).</param>
-		/// <param name="count">Число фотографий, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
-		/// <param name="photoSizes">Параметр, указывающий нужно ли возвращать ли доступные размеры фотографии в специальном формате. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
+		/// <param name="offset">
+		/// Смещение, необходимое для выборки определенного подмножества фотографий.
+		/// По умолчанию 0. положительное число (Положительное число).
+		/// </param>
+		/// <param name="count">
+		/// Число фотографий, информацию о которых необходимо вернуть. положительное число,
+		/// по умолчанию 50
+		/// (Положительное число, по умолчанию 50).
+		/// </param>
+		/// <param name="photoSizes">
+		/// Параметр, указывающий нужно ли возвращать ли доступные размеры фотографии в
+		/// специальном
+		/// формате. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения
+		/// 1 или 0).
+		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов фотографий.
 		/// </returns>
@@ -66,22 +85,22 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Photo> GetPhotos(int? count = null, int? offset = null, bool? photoSizes = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
 
 			var parameters = new VkParameters
-				{
-					{ "count", count },
-					{ "offset", offset },
-					{ "photo_sizes", photoSizes }
-				};
+			{
+					{ "count", count }
+					, { "offset", offset }
+					, { "photo_sizes", photoSizes }
+			};
 
-			return _vk.Call("fave.getPhotos", parameters).ToVkCollectionOf<Photo>(x => x);
+			return _vk.Call(methodName: "fave.getPhotos", parameters: parameters).ToVkCollectionOf<Photo>(selector: x => x);
 		}
 
-
 		/// <summary>
-		/// Возвращает записи, на которых текущий пользователь поставил отметку "Мне нравится".
+		/// Возвращает записи, на которых текущий пользователь поставил отметку "Мне
+		/// нравится".
 		/// </summary>
 		/// <param name="offset">
 		/// Смещение, необходимо для выборки определенного подмножества записей.
@@ -93,7 +112,9 @@ namespace VkNet.Categories
 		/// (Положительное число, по умолчанию 50).
 		/// </param>
 		/// <param name="extended">
-		/// 1 — в ответе будут возвращены дополнительные поля profiles и groups, содержащие информацию о пользователях и сообществах.
+		/// 1 — в ответе будут возвращены дополнительные поля profiles и groups, содержащие
+		/// информацию о пользователях и
+		/// сообществах.
 		/// По умолчанию: 0.
 		/// </param>
 		/// <returns>
@@ -104,22 +125,22 @@ namespace VkNet.Categories
 		/// </remarks>
 		public WallGetObject GetPosts(int? count = null, int? offset = null, bool extended = false)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
 
 			var parameters = new VkParameters
 			{
-				{ "count", count },
-				{ "offset", offset },
-				{ "extended", true }
+					{ "count", count }
+					, { "offset", offset }
+					, { "extended", true }
 			};
 
-			return _vk.Call("fave.getPosts", parameters);
+			return _vk.Call(methodName: "fave.getPosts", parameters: parameters);
 		}
 
-
 		/// <summary>
-		/// Возвращает список видеозаписей, на которых текущий пользователь поставил отметку "Мне нравится".
+		/// Возвращает список видеозаписей, на которых текущий пользователь поставил
+		/// отметку "Мне нравится".
 		/// </summary>
 		/// <param name="offset">
 		/// Смещение, необходимое для выборки определенного подмножества видеозаписей.
@@ -130,8 +151,10 @@ namespace VkNet.Categories
 		/// (Положительное число, по умолчанию 50).
 		/// </param>
 		/// <param name="extended">
-		/// 1 — в ответе будут возвращены дополнительные поля profiles и groups, содержащие информацию о пользователях и сообществах.
-		/// По умолчанию: 0. 
+		/// 1 — в ответе будут возвращены дополнительные поля profiles и groups, содержащие
+		/// информацию о пользователях и
+		/// сообществах.
+		/// По умолчанию: 0.
 		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов видеозаписей.
@@ -141,50 +164,64 @@ namespace VkNet.Categories
 		/// </remarks>
 		public FaveVideoEx GetVideos(int? count = null, int? offset = null, bool extended = false)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
 
 			var parameters = new VkParameters
 			{
-				{ "count", count },
-				{ "offset", offset },
-				{ "extended", true }
+					{ "count", count }
+					, { "offset", offset }
+					, { "extended", true }
 			};
 
-			return _vk.Call("fave.getVideos", parameters);
+			return _vk.Call(methodName: "fave.getVideos", parameters: parameters);
 		}
 
 		/// <summary>
 		/// Возвращает ссылки, добавленные в закладки текущим пользователем.
 		/// </summary>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества ссылок. положительное число (Положительное число).</param>
-		/// <param name="count">Количество ссылок, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
+		/// <param name="offset">
+		/// Смещение, необходимое для выборки определенного подмножества ссылок.
+		/// положительное число
+		/// (Положительное число).
+		/// </param>
+		/// <param name="count">
+		/// Количество ссылок, информацию о которых необходимо вернуть. положительное
+		/// число, по умолчанию 50
+		/// (Положительное число, по умолчанию 50).
+		/// </param>
 		/// <returns>
-		/// После успешного выполнения возвращает общее количество ссылок и массив объектов link, каждый из которых содержит поля id, URL, title, description, photo_50 и photo_100.
+		/// После успешного выполнения возвращает общее количество ссылок и массив объектов
+		/// link, каждый из которых содержит
+		/// поля id, URL, title, description, photo_50 и photo_100.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getLinks
 		/// </remarks>
 		public VkCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => count);
-			VkErrors.ThrowIfNumberIsNegative(() => offset);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
 
 			var parameters = new VkParameters
 			{
-				{ "count", count },
-				{ "offset", offset}
+					{ "count", count }
+					, { "offset", offset }
 			};
 
-			return _vk.Call("fave.getLinks", parameters).ToVkCollectionOf<ExternalLink>(x => x);
+			return _vk.Call(methodName: "fave.getLinks", parameters: parameters).ToVkCollectionOf<ExternalLink>(selector: x => x);
 		}
 
 		/// <summary>
 		/// Добавляет пользователя в закладки.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя, которого нужно добавить в закладки. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <param name="userId">
+		/// Идентификатор пользователя, которого нужно добавить в закладки. положительное
+		/// число, обязательный
+		/// параметр (Положительное число, обязательный параметр).
+		/// </param>
 		/// <returns>
-		/// В случае успешного выполнения возвращает <c>true</c>.
+		/// В случае успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.addUser
@@ -193,17 +230,22 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "user_id", userId }
+					{ "user_id", userId }
 			};
-			return _vk.Call("fave.addUser", parameters);
+
+			return _vk.Call(methodName: "fave.addUser", parameters: parameters);
 		}
 
 		/// <summary>
 		/// Удаляет пользователя из закладок.
 		/// </summary>
-		/// <param name="userId">Идентификатор пользователя, которого нужно удалить из закладок. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <param name="userId">
+		/// Идентификатор пользователя, которого нужно удалить из закладок. положительное
+		/// число, обязательный
+		/// параметр (Положительное число, обязательный параметр).
+		/// </param>
 		/// <returns>
-		/// В случае успешного выполнения возвращает <c>true</c>.
+		/// В случае успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeUser
@@ -212,17 +254,22 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "user_id", userId }
+					{ "user_id", userId }
 			};
-			return _vk.Call("fave.removeUser", parameters);
+
+			return _vk.Call(methodName: "fave.removeUser", parameters: parameters);
 		}
 
 		/// <summary>
 		/// Добавляет сообщество в закладки.
 		/// </summary>
-		/// <param name="groupId">Идентификатор сообщества, которое нужно добавить в закладки. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <param name="groupId">
+		/// Идентификатор сообщества, которое нужно добавить в закладки. положительное
+		/// число, обязательный
+		/// параметр (Положительное число, обязательный параметр).
+		/// </param>
 		/// <returns>
-		/// В случае успешного выполнения возвращает <c>true</c>.
+		/// В случае успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.addGroup
@@ -231,17 +278,22 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }
+					{ "group_id", groupId }
 			};
-			return _vk.Call("fave.addGroup", parameters);
+
+			return _vk.Call(methodName: "fave.addGroup", parameters: parameters);
 		}
 
 		/// <summary>
 		/// Удаляет сообщество из закладок.
 		/// </summary>
-		/// <param name="groupId">Идентификатор сообщества, которое нужно удалить из закладок. положительное число, обязательный параметр (Положительное число, обязательный параметр).</param>
+		/// <param name="groupId">
+		/// Идентификатор сообщества, которое нужно удалить из закладок. положительное
+		/// число, обязательный
+		/// параметр (Положительное число, обязательный параметр).
+		/// </param>
 		/// <returns>
-		/// В случае успешного выполнения возвращает <c>true</c>.
+		/// В случае успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeGroup
@@ -250,18 +302,23 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }
+					{ "group_id", groupId }
 			};
-			return _vk.Call("fave.removeGroup", parameters);
+
+			return _vk.Call(methodName: "fave.removeGroup", parameters: parameters);
 		}
 
 		/// <summary>
 		/// Добавляет ссылку в закладки.
 		/// </summary>
-		/// <param name="link">Адрес добавляемой ссылки. Поддерживаются только внутренние ссылки на http://vk.com/. строка, обязательный параметр (Строка, обязательный параметр).</param>
-		/// <param name="text">Текст ссылки. строка (Строка).</param>
+		/// <param name="link">
+		/// Адрес добавляемой ссылки. Поддерживаются только внутренние ссылки на
+		/// http://vk.com/. строка,
+		/// обязательный параметр (Строка, обязательный параметр).
+		/// </param>
+		/// <param name="text"> Текст ссылки. строка (Строка). </param>
 		/// <returns>
-		/// В случае успешного выполнения возвращает <c>true</c>.
+		/// В случае успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.addLink
@@ -270,18 +327,23 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "link", link },
-				{ "text", text }
+					{ "link", link }
+					, { "text", text }
 			};
-			return _vk.Call("fave.addLink", parameters);
+
+			return _vk.Call(methodName: "fave.addLink", parameters: parameters);
 		}
 
 		/// <summary>
 		/// Удаляет ссылку из закладок.
 		/// </summary>
-		/// <param name="linkId">Идентификатор ссылки, которую нужно удалить, полученный методом fave.getLinks. строка, обязательный параметр (Строка, обязательный параметр).</param>
+		/// <param name="linkId">
+		/// Идентификатор ссылки, которую нужно удалить, полученный методом fave.getLinks.
+		/// строка,
+		/// обязательный параметр (Строка, обязательный параметр).
+		/// </param>
 		/// <returns>
-		/// В случае успешного выполнения возвращает <c>true</c>.
+		/// В случае успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeLink
@@ -290,17 +352,31 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "link_id", linkId }
+					{ "link_id", linkId }
 			};
-			return _vk.Call("fave.removeLink", parameters);
+
+			return _vk.Call(methodName: "fave.removeLink", parameters: parameters);
 		}
 
 		/// <summary>
 		/// Возвращает товары, добавленные в закладки текущим пользователем.
 		/// </summary>
-		/// <param name="count">Число товаров, информацию о которых необходимо вернуть. положительное число, по умолчанию 50 (Положительное число, по умолчанию 50).</param>
-		/// <param name="offset">Смещение, необходимое для выборки определенного подмножества товаров. положительное число, по умолчанию 0 (Положительное число, по умолчанию 0).</param>
-		/// <param name="extended">1 — будут возвращены дополнительные поля likes, can_comment, can_repost, photos. По умолчанию данные поля не возвращается. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или 0).</param>
+		/// <param name="count">
+		/// Число товаров, информацию о которых необходимо вернуть. положительное число, по
+		/// умолчанию 50
+		/// (Положительное число, по умолчанию 50).
+		/// </param>
+		/// <param name="offset">
+		/// Смещение, необходимое для выборки определенного подмножества товаров.
+		/// положительное число, по
+		/// умолчанию 0 (Положительное число, по умолчанию 0).
+		/// </param>
+		/// <param name="extended">
+		/// 1 — будут возвращены дополнительные поля likes, can_comment, can_repost,
+		/// photos. По умолчанию
+		/// данные поля не возвращается. флаг, может принимать значения 1 или 0 (Флаг,
+		/// может принимать значения 1 или 0).
+		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов товаров.
 		/// </returns>
@@ -309,13 +385,14 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Market> GetMarketItems(ulong? count = null, ulong? offset = null, bool? extended = null)
 		{
-			var parameters = new VkParameters {
-				{ "count", count },
-				{ "offset", offset },
-				{ "extended", extended }
+			var parameters = new VkParameters
+			{
+					{ "count", count }
+					, { "offset", offset }
+					, { "extended", extended }
 			};
 
-			return _vk.Call("fave.getMarketItems", parameters).ToVkCollectionOf<Market>(x => x);
+			return _vk.Call(methodName: "fave.getMarketItems", parameters: parameters).ToVkCollectionOf<Market>(selector: x => x);
 		}
 	}
 }

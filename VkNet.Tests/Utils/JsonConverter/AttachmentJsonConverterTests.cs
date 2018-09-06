@@ -1,18 +1,20 @@
-﻿using NUnit.Framework;
+﻿using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Utils.JsonConverter
 {
-    [TestFixture]
-    public class AttachmentJsonConverterTests: BaseTest
-    {
-        [Test]
-        public void CallAndConvertToType()
-        {
-            Json = @"
+	[TestFixture]
+	[ExcludeFromCodeCoverage]
+	public class AttachmentJsonConverterTests : BaseTest
+	{
+		[Test]
+		public void CallAndConvertToType()
+		{
+			Json = @"
             {
-                'response': 
+                'response':
                 {
                     'id': 3,
                     'from_id': 32190123,
@@ -34,12 +36,13 @@ namespace VkNet.Tests.Utils.JsonConverter
                     }]
                 }
             }";
-            Url = "https://api.vk.com/method/friends.getRequests";
-            CommentBoard result = Api.Call("friends.getRequests", VkParameters.Empty);
-            Assert.NotNull(result);
-            Assert.That(result.Id, Is.EqualTo(3));
-            Assert.That(result.FromId, Is.EqualTo(32190123));
-            Assert.IsNotEmpty(result.Attachments);
-        }
-    }
+
+			Url = "https://api.vk.com/method/friends.getRequests";
+			CommentBoard result = Api.Call("friends.getRequests", VkParameters.Empty);
+			Assert.NotNull(result);
+			Assert.That(result.Id, Is.EqualTo(3));
+			Assert.That(result.FromId, Is.EqualTo(32190123));
+			Assert.IsNotEmpty(result.Attachments);
+		}
+	}
 }

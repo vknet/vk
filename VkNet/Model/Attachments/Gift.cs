@@ -1,5 +1,4 @@
 ﻿using System;
-
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -15,7 +14,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		static Gift()
 		{
-			RegisterType(typeof(Gift), "gift");
+			RegisterType(type: typeof(Gift), match: "gift");
 		}
 
 		/// <summary>
@@ -36,16 +35,16 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response">Ответ сервера.</param>
-		/// <returns></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
 		public static Gift FromJson(VkResponse response)
 		{
 			var gift = new Gift
 			{
-				Id = response["id"],
-				Thumb48 = response["thumb_48"],
-				Thumb96 = response["thumb_96"],
-				Thumb256 = response["thumb_256"]
+					Id = response[key: "id"]
+					, Thumb48 = response[key: "thumb_48"]
+					, Thumb96 = response[key: "thumb_96"]
+					, Thumb256 = response[key: "thumb_256"]
 			};
 
 			return gift;

@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
@@ -12,16 +11,16 @@ namespace VkNet.Enums.SafetyEnums
 		/// <summary>
 		/// Работа.
 		/// </summary>
-		public static readonly OccupationType Work = RegisterPossibleValue("work");
+		public static readonly OccupationType Work = RegisterPossibleValue(value: "work");
 
 		/// <summary>
 		/// Школа.
 		/// </summary>
-		public static readonly OccupationType School = RegisterPossibleValue("school");
+		public static readonly OccupationType School = RegisterPossibleValue(value: "school");
 
 		/// <summary>
 		/// ВУЗ.
 		/// </summary>
-		public static readonly OccupationType University = RegisterPossibleValue("university");
+		public static readonly OccupationType University = RegisterPossibleValue(value: "university");
 	}
 }
