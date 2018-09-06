@@ -910,6 +910,30 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		PinnedMessage Pin(long peerId, ulong? messageId = null);
 
+		/// <summary>
+		/// Открепляет сообщение.
+		/// </summary>
+		/// <param name = "peerId">
+		/// Идентификатор назначения.
+		/// Для пользователя:
+		/// id  пользователя.
+		/// Для групповой беседы:
+		/// 2000000000 + id беседы.
+		/// Для сообщества:
+		/// -id сообщества.
+		/// целое число, обязательный параметр
+		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.unpin
+		/// </remarks>
+		bool Unpin(long peerId, ulong? groupId = null);
+
 	#region Obsoleted
 
 		/// <summary>

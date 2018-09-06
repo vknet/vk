@@ -642,5 +642,11 @@ namespace VkNet.Categories
 
 			throw new VkApiException(message: "Сообщения с таким ID не существует.");
 		}
+
+		/// <inheritdoc/>
+		public bool Unpin(long peerId, ulong? groupId = null)
+		{
+			return _vk.Call<bool>("messages.unpin", new VkParameters{{"peer_id", peerId}, {"group_id", groupId}});
+		}
 	}
 }

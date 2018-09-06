@@ -12,6 +12,12 @@ namespace VkNet.Categories
 {
 	public partial class MessagesCategory
 	{
+		/// <inheritdoc/>
+		public Task<bool> UnpinAsync(long peerId, ulong? groupId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Unpin(peerId, groupId));
+		}
+
 		/// <inheritdoc />
 		public Task<bool> AddChatUserAsync(long chatId, long userId)
 		{
