@@ -35,3 +35,15 @@ steps:
     SolutionOrProjectPath: VkNet/VkNet.csproj
 
     FailBuildLevelSelector: Error
+- task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
+  displayName: 'Send Telegram Notification'
+  inputs:
+    botToken: '$(telegramToken)'
+
+    getChatId: true
+
+    teamUrl: true
+
+    releaseName: true
+
+    releaseRequestedFor: true
