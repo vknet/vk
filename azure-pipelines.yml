@@ -14,20 +14,17 @@ steps:
   displayName: 'Use .NET Core sdk 2.1.402'
   inputs:
     version: 2.1.402
-	
 - task: DotNetCoreCLI@2
   displayName: Restore
   inputs:
     command: restore
     projects: '**/*.csproj'
-	
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
     projects: '**/*.csproj'
 
     arguments: '--configuration $(BuildConfiguration) --no-restore'
-	
 - task: DotNetCoreCLI@2
   displayName: Test
   inputs:
