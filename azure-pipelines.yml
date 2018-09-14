@@ -18,11 +18,11 @@ steps:
   displayName: Restore
   inputs:
     command: restore
-    projects: '**/*.csproj'
+    projects: 'VkNet/*.csproj'
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
-    projects: '**/*.csproj'
+    projects: 'VkNet/*.csproj'
 
     arguments: '--configuration $(BuildConfiguration) --no-restore'
 - task: DotNetCoreCLI@2
@@ -30,6 +30,6 @@ steps:
   inputs:
     command: test
 
-    projects: '**/*[Tt]ests/*.csproj'
+    projects: 'VkNet/*[Tt]ests/*.csproj'
 
     arguments: '--configuration $(BuildConfiguration) --no-restore' 
