@@ -7,8 +7,32 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 variables:
-  buildConfiguration: 'Release'
+  BuildConfiguration: 'Release'
 
 steps:
-- script: dotnet test ./VkNet.Tests/VkNet.Tests.csproj -f netcoreapp2.0  --no-restore
-  displayName: 'dotnet build $(buildConfiguration)'
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core sdk 2.1.402'
+  inputs:
+    version: 2.1.402
+	
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+	
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    projects: '**/*.csproj'
+
+    arguments: '--configuration $(BuildConfiguration) --no-restore'
+	
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+
+    projects: '**/*[Tt]ests/*.csproj'
+
+    arguments: '--configuration $(BuildConfiguration) --no-restore' 
