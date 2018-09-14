@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/vsts/pipelines/languages/dotnet-core
 
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: 'Hosted VS2017'
 
 variables:
   BuildConfiguration: 'Release'
