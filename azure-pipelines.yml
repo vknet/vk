@@ -10,10 +10,6 @@ variables:
   BuildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 2.1.402'
-  inputs:
-    version: 2.1.402
 - task: DotNetCoreCLI@2
   displayName: Restore
   inputs:
