@@ -36,8 +36,8 @@ steps:
 
     chats: '$(Parameters.chats)'
 
-    message: 'VkNet был успешно собран!'
+    message: 'Reason: $(Build.Reason) 
+	Build №: $(Build.BuildNumber)
+	VkNet был успешно собран!'
 
-    releaseName: true
-
-    releaseRequestedFor: true
+    buildQueuedBy: true
