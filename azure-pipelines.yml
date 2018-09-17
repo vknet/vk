@@ -36,9 +36,7 @@ steps:
 
     chats: '$(Parameters.chats)'
 
-    teamUrl: true
-
-    message: 'Message Text'
+    message: 'VkNet был успешно собран!'
 
     releaseName: true
 
