@@ -32,11 +32,13 @@ steps:
 - task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
   displayName: 'Send Telegram Notification'
   inputs:
-    botToken: '$(telegramToken)'
+    botToken: '$(Parameters.botToken)'
 
-    getChatId: true
+    chats: '$(Parameters.chats)'
 
     teamUrl: true
+
+    message: 'Message Text'
 
     releaseName: true
 
