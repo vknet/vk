@@ -110,6 +110,12 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "captcha_key")]
 		public string CaptchaKey { get; set; }
+		
+		/// <summary>
+		/// Полезная нагрузка (максимальная длина 1000)
+		/// </summary>
+		[JsonProperty(propertyName: "payload")]
+		public string Payload { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -135,6 +141,7 @@ namespace VkNet.Model.RequestParams
 					, { "captcha_sid", p.CaptchaSid }
 					, { "captcha_key", p.CaptchaKey }
 					, { "peer_id", p.PeerId }
+					, { "payload", p.Payload }
 			};
 		}
 	}
