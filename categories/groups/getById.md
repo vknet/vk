@@ -34,15 +34,18 @@ using VkNet.Enums.Filters; // for GroupsFields
 // Получаем основную информацию о группе с id равным 2.
 var groups = api.Groups.GetById(null, "2", null).FirstOrDefault();
 if (groups == null)
+{
     return;
-
+}
 //Получить ид группы
 Console.WriteLine(groups.Id);
 
 // Получаем всю информацию о группе с id равным 2.
 var groups = api.Groups.GetById(null, "2", GroupsFields.All).FirstOrDefault();
 if (groups == null)
+{
     return;
+}
 
 //Получить фотографию сообщества размером 200х200
 Console.WriteLine(groups.Photo200);

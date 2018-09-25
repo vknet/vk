@@ -62,7 +62,12 @@ static void Main(string[] args)
         ApplicationId = 123456,
         Login = "Login",
         Password = "Password",
-        Settings = Settings.All
+        Settings = Settings.All,
+        TwoFactorAuthorization = () =>
+        {
+            Console.WriteLine("Enter Code:");
+            return Console.ReadLine();
+        }
     });
 
     Console.WriteLine(api.Token);
