@@ -3,7 +3,7 @@ namespace VkNet.Enums.SafetyEnums
 	/// <summary>
 	/// Тип обновления
 	/// </summary>
-	public class GroupUpdateType : SafetyEnum<GroupUpdateType>
+	public sealed class GroupUpdateType : SafetyEnum<GroupUpdateType>
 	{
 		/// <summary>
 		/// Новое сообщение

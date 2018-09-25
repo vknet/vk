@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.GroupUpdate
 {
@@ -15,7 +16,7 @@ namespace VkNet.Model.GroupUpdate
 		/// <summary>
 		/// Тип обновления
 		/// </summary>
-		[JsonProperty("type")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public GroupUpdateType Type { get; set; }
 
 		/// <summary>
