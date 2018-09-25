@@ -304,48 +304,7 @@ namespace VkNet
 			}
 
 			var url = $"https://api.vk.com/method/{methodName}";
-			var answer = "";
-
-			void SendRequest(string method, IDictionary<string, string> @params)
-			{
-				LastInvokeTime = DateTimeOffset.Now;
-
-				var response = RestClient.PostAsync(uri: new Uri(uriString: $"https://api.vk.com/method/{method}"), parameters: @params)
-					.ConfigureAwait(false)
-					.GetAwaiter()
-					.GetResult();
-
-				answer = response.Value ?? response.Message;
-			}
-
-			// Защита от превышения количества запросов в секунду
-			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
-			{
-				if (_expireTimer == null)
-				{
-					SetTimer(expireTime: 0);
-				}
-
-				lock (_expireTimerLock)
-				{
-					var span = LastInvokeTimeSpan?.TotalMilliseconds;
-
-					if (span < _minInterval)
-					{
-						var timeout = (int) _minInterval - (int) span;
-					#if NET40
-						Thread.Sleep(millisecondsTimeout: timeout);
-					#else
-						Task.Delay(millisecondsDelay: timeout).Wait();
-					#endif
-					}
-
-					SendRequest(method: methodName, @params: parameters);
-				}
-			} else if (skipAuthorization)
-			{
-				SendRequest(method: methodName, @params: parameters);
-			}
+			var answer = InvokeBase(url, parameters, skipAuthorization);
 
 			_logger?.LogTrace(message: $"Uri = \"{url}\"");
 			_logger?.LogTrace(message: $"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(json: answer)}");
@@ -361,6 +320,54 @@ namespace VkNet
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
 				Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
+		}
+
+		/// <inheritdoc />
+		public VkResponse CallLongPoll(string server, VkParameters parameters)
+		{
+			var answer = InvokeLongPoll(server: server, parameters: parameters);
+
+			var json = JObject.Parse(json: answer);
+
+			var rawResponse = json.Root;
+
+			return new VkResponse(token: rawResponse) { RawJson = answer };
+		}
+
+		/// <inheritdoc />
+		public Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => CallLongPoll(server, parameters));
+		}
+
+		/// <inheritdoc />
+		public string InvokeLongPoll(string server, Dictionary<string, string> parameters)
+		{
+			if (string.IsNullOrEmpty(server))
+			{
+				var message = $"Server не должен быть пустым или null";
+				_logger?.LogError(message: message);
+
+				throw new ArgumentException(message: message);
+			}
+
+			_logger?.LogDebug(message:
+				$"Вызов GetLongPollHistory с сервером {server}, с параметрами {string.Join(separator: ",", values: parameters.Select(selector: x => $"{x.Key}={x.Value}"))}");
+
+			var answer = InvokeBase(server, parameters);
+
+			_logger?.LogTrace(message: $"Uri = \"{server}\"");
+			_logger?.LogTrace(message: $"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(json: answer)}");
+
+			VkErrors.IfErrorThrowException(json: answer);
+
+			return answer;
+		}
+
+		/// <inheritdoc />
+		public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => InvokeLongPoll(server, parameters));
 		}
 
 		/// <inheritdoc cref="IDisposable" />
@@ -624,6 +631,54 @@ namespace VkNet
 
 					return Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
 				});
+			}
+
+			return answer;
+		}
+
+		private string InvokeBase(string url, IDictionary<string, string> @params, bool skipAuthorization = false)
+		{
+			var answer = string.Empty;
+
+			void SendRequest()
+			{
+				LastInvokeTime = DateTimeOffset.Now;
+
+				var response = RestClient.PostAsync(uri: new Uri(uriString: url), parameters: @params)
+					.ConfigureAwait(false)
+					.GetAwaiter()
+					.GetResult();
+
+				answer = response.Value ?? response.Message;
+			}
+
+			// Защита от превышения количества запросов в секунду
+			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
+			{
+				if (_expireTimer == null)
+				{
+					SetTimer(expireTime: 0);
+				}
+
+				lock (_expireTimerLock)
+				{
+					var span = LastInvokeTimeSpan?.TotalMilliseconds;
+
+					if (span < _minInterval)
+					{
+						var timeout = (int) _minInterval - (int) span;
+					#if NET40
+						Thread.Sleep(millisecondsTimeout: timeout);
+#else
+						Task.Delay(millisecondsDelay: timeout).Wait();
+					#endif
+					}
+
+					SendRequest();
+				}
+			} else if (skipAuthorization)
+			{
+				SendRequest();
 			}
 
 			return answer;
