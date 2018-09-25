@@ -28,7 +28,7 @@ public bool Set(string text, long? groupId = null)
 ## Пример
 ```csharp
 // Устанавливаем простой статус "test test test".
-bool result = vk.Status.Set("test test test");
+bool result = api.Status.Set("test test test");
 
 ```
 

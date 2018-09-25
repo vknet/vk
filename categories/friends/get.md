@@ -11,7 +11,7 @@ comments: true
 
 ## Синтаксис
 ``` csharp
-public ReadOnlyCollection<User> Get(FriendsGetParams @params)
+public VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false)
 ```
 
 ## Параметры
@@ -42,11 +42,42 @@ name - сортировать по имени. Данный тип сортир�
 ## Пример
 ```csharp
 // Получение идентификаторов друзей Павла Дурова.
-var users = vk.Friends.Get(1);
+var users = api.Friends.Get(new VkNet.Model.RequestParams.FriendsGetParams
+{
+    UserId = 1,
+    Count = 10, 
+});
+
+using VkNet.Enums.Filters;
 
 // Получение идентификаторов, имен и фамилий первых трех друзей Павла Дурова.
-var users = friends.Get(1, ProfileFields.FirstName | ProfileFields.LastName, 3);
+var users = api.Friends.Get(new VkNet.Model.RequestParams.FriendsGetParams
+{
+    UserId = 1,
+    Count = 10,
+    Fields = ProfileFields.FirstName,
+});
 
+// Получить имена друзей
+var p = users.Select(x => x.FirstName);
+foreach(var item in p)
+{
+    //logic   
+}
+
+// Получить фамилии друзей
+var p = users.Select(x => x.LastName);
+foreach(var item in p)
+{
+    //logic
+}
+
+// Получить друзей онлайн
+var p = users.Select(x => x.Online);
+foreach(var item in p)
+{
+    //logic
+}
 ```
 
 ## Версия Вконтакте API v.5.44

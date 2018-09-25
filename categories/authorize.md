@@ -49,10 +49,14 @@ static void Main(string[] args)
 Для двухфакторной авторизации необходимо передать пятым параметром обработчик, возвращающий код авторизации.
 
 ```csharp
+using VkNet;
+using VkNet.Enums.Filters;
+using VkNet.Model;
+
 static void Main(string[] args)
 {
     var api = new VkApi();
-    
+
     api.Authorize(new ApiAuthParams
     {
         ApplicationId = 123456,
@@ -65,10 +69,15 @@ static void Main(string[] args)
             return Console.ReadLine();
         }
     });
-    Console.WriteLine(api.Token);
-    var res = api.Groups.Get(new GroupsGetParams());
 
-    Console.WriteLine(res.TotalCount);
+    Console.WriteLine(api.Token);
+
+    // Отправка сообщения себе
+    api.Messages.Send(new VkNet.Model.RequestParams.MessagesSendParams
+    {
+        ChatId = api.UserId.Value,
+        Message = "message"
+    });
 
     Console.ReadLine();
 }

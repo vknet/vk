@@ -28,37 +28,51 @@ public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, Profile
 
 ## Пример
 ```csharp
+using VkNet.Enums.Filters;
+
 // Получаем базовую информацию о Павле Дурове.
-var p = vk.Users.Get(1);
-Console.WriteLine(p.Uid);        // 1
-Console.WriteLine(p.FirstName); // "Павел"
-Console.WriteLine(p.LastName); // "Дуров"
+var p = api.Users.Get(new long[] { 1 }).FirstOrDefault();
+if (p == null)
+    return;
+
+Console.WriteLine(p.Id);         // 1
+Console.WriteLine(p.FirstName);  // "Павел"
+Console.WriteLine(p.LastName);   // "Дуров"
+
 
 // Получаем информацию о счетчиках различных объектов у пользователя
-var p = users.Get(1, ProfileFields.Counters);
-Console.WriteLine(p.Uid);                      // 1
-Console.WriteLine(p.FirstName,);           // "Павел"
-Console.WriteLine(p.LastName);            // "Дуров"
-Console.WriteLine(p.Counters.Albums);  // 3
-Console.WriteLine(p.Counters.Videos);   // 183
-Console.WriteLine(p.Counters.Audios);   // 78
-Console.WriteLinet(p.Counters.Notes);   // 5
-Console.WriteLine(p.Counters.Photos);   // 783
-Console.WriteLine(p.Counters.Groups);  // 24
+var p = api.Users.Get(new long[] { 1 }, VkNet.Enums.Filters.ProfileFields.Counters).FirstOrDefault();
+if (p == null)
+    return;
+
+Console.WriteLine(p.Counters.Albums); // 3
+Console.WriteLine(p.Counters.Videos);  // 183
+Console.WriteLine(p.Counters.Audios);  // 78
+Console.WriteLine(p.Counters.Notes); // 5
+Console.WriteLine(p.Counters.Photos);  // 783
+Console.WriteLine(p.Counters.Groups); // 24
 Console.WriteLine(p.Counters.Friends);  // 641
 ...
 
 // Получаем базовую информацию о трех пользователях.
 var ids = new long[] {2, 3, 6};
-var users = vk.Users.Get(ids);
+var users = api.Users.Get(ids);
 foreach(var p in users)
 {
-   ....
+   // logic
 }
 
-// Получаем информацию о высшем образовании трех пользователей.
+//Получаем имена трех пользователей
+var ids = new long[] { 2, 3, 6 };
+var users = api.Users.Get(ids).Select(x => x.FirstName);
+foreach (var item in users)
+{
+    // logic
+}
+
+// Получаем информацию о доемене трех пользователей.
 var ids = new long[] {2, 3, 6};
-var users = vk.Users.Get(ids, ProfileFields.Education);
+var users = api.Users.Get(ids, VkNet.Enums.Filters.ProfileFields.Domain).Select(x => x.Domain);
 ```
 
 ## Версия Вконтакте API v.5.44

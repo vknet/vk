@@ -29,7 +29,7 @@ public Status Get(long userId, long? groupId = null)
 ## Пример
 ```csharp
 // Получаем статус Павла Дурова.
-Status s = vk.Status.Get(1);
+string status = api.Status.Get(1).Text;
 ```
 
 ## Версия Вконтакте API v.5.44

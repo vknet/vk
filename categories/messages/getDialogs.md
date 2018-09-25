@@ -27,10 +27,12 @@ public MessagesGetObject GetDialogs(MessagesDialogsGetParams @params)
 Поля in_read и out_read являются идентификаторами прочтения. in_read возвращает идентификатор последнего прочитанного сообщения текущим пользователем, а out_read возвращает идентификатор последнего прочитанного сообщения собеседником. 
 Если у пользователя есть диалоги с непрочитанными входящими сообщениями, то их количество будет возвращено в поле unread_dialogs (между полями count и items результата). Если Вы используете при вызове unread=1, это поле возвращено не будет (общее число непрочитанных диалогов в таком случае возвращается в первом поле count). 
 Если был передан параметр start_message_id, будет также возвращено поле real_offset – итоговое смещение данного подмножества диалогов (оно может быть отрицательным, если был указан отрицательный offset).
-
 ## Пример
 ``` csharp
-var getDialogs = _api.Messages.GetDialogs();
+var getDialogs = api.Messages.GetDialogs(new VkNet.Model.RequestParams.MessagesDialogsGetParams
+{
+    Count = 200
+});
 ```
 
 ## Версия Вконтакте API v.5.44
