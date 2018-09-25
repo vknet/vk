@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Utils;
 
-namespace VkNet.Abstractions.Core
+namespace VkNet.Abstractions
 {
 	/// <summary>
 	/// Вызов LongPoll API

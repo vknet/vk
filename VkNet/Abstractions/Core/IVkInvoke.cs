@@ -1,4 +1,4 @@
-namespace VkNet.Abstractions.Core
+namespace VkNet.Abstractions
 {
 	/// <summary>
 	/// Вызовы API
