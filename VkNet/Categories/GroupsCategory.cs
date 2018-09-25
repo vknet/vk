@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -17,12 +17,12 @@ namespace VkNet.Categories
 	/// </summary>
 	public partial class GroupsCategory : IGroupsCategory
 	{
-		private readonly IVkApiInvoke _vk;
+		private readonly IVkInvoke _vk;
 
 		/// <summary>
 		/// </summary>
 		/// <param name="vk"> </param>
-		public GroupsCategory(IVkApiInvoke vk)
+		public GroupsCategory(IVkInvoke vk)
 		{
 			_vk = vk;
 		}
@@ -512,6 +512,12 @@ namespace VkNet.Categories
 		{
 			return _vk.Call<LongPollServerResponse>(methodName: "groups.getLongPollServer"
 					, parameters: new VkParameters { { "group_id", groupId } });
+		}
+
+		/// <inheritdoc />
+		public BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params)
+		{
+			return _vk.CallLongPoll(@params.Server, @params);
 		}
 	}
 }

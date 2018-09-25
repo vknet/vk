@@ -828,5 +828,17 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.getLongPollServer
 		/// </remarks>
 		Task<LongPollServerResponse> GetLongPollServerAsync(ulong groupId);
+
+		/// <summary>
+		/// Возвращаем обновления событий группы
+		/// </summary>
+		/// <param name="params">Параметры запроса к BotsLongPoll API</param>
+		/// <returns>
+		/// Новые события в группе
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте https://vk.com/dev/bots_longpoll
+		/// </remarks>
+		Task<BotsLongPollHistoryResponse> GetBotsLongPollHistoryAsync(BotsLongPollHistoryParams @params);
 	}
 }
