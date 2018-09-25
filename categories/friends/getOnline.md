@@ -11,7 +11,7 @@ comments: true
 
 ## Синтаксис
 ``` csharp
-public ReadOnlyCollection<long> GetOnline(FriendsGetOnlineParams @params)
+public FriendOnline GetOnline(FriendsGetOnlineParams @params)
 ```
 
 ## Параметры
@@ -35,32 +35,23 @@ public ReadOnlyCollection<long> GetOnline(FriendsGetOnlineParams @params)
 ## Пример
 ```csharp
 // Получение идентификаторов находящихся онлайн друзей Павла Дурова.
-var onlineEx = _api.Friends.GetOnlineEx(new FriendsGetOnlineParams
+var online = api.Friends.GetOnline(new VkNet.Model.RequestParams.FriendsGetOnlineParams
 {
-	ListId = 1,
-	UserId = 1
+    ListId = 1,
+    UserId = 1,
+    OnlineMobile = true // online с мобильного устройства
 });
+
 // Друзья пользователя online с ПК
-foreach (var item in onlineEx.Online)
+foreach (var item in online.Online)
 {
-	...	
+	//logic
 }
 
 // Друзья пользователя online с мобильного устройства
-foreach (var item in onlineEx.MobileOnline)
+foreach (var item in online.MobileOnline)
 {
-	...	
-}
-
-var online = _api.Friends.GetOnline(new FriendsGetOnlineParams
-{
-	ListId = 1,
-	UserId = 1
-});
-// Друзья пользователя online со всех устройств
-foreach (var item in online)
-{
-	...	
+	//logic
 }
 ```
 

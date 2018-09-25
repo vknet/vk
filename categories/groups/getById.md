@@ -11,7 +11,7 @@ comments: true
 
 ## Синтаксис
 ``` csharp
-public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields)
+public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields, bool skipAuthorization = false)
 ```
 
 ## Параметры
@@ -29,19 +29,36 @@ public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string gr
 
 ## Пример
 ```csharp
+using VkNet.Enums.Filters; // for GroupsFields
+
 // Получаем основную информацию о группе с id равным 2.
-var groups = vk.Groups.GetById(2);
+var groups = api.Groups.GetById(null, "2", null).FirstOrDefault();
+if (groups == null)
+    return;
+
+//Получить ид группы
+Console.WriteLine(groups.Id);
 
 // Получаем всю информацию о группе с id равным 2.
-var groups = vk.Groups.GetById(2, GroupsFields.All);
+var groups = api.Groups.GetById(null, "2", GroupsFields.All).FirstOrDefault();
+if (groups == null)
+    return;
+
+//Получить фотографию сообщества размером 200х200
+Console.WriteLine(groups.Photo200);
 
 // Получаем основную информацию о трех группах
-var gids = new long[] {1, 2, 3};
-var groups = vk.Groups.GetById(gids);
+var groups = api.Groups.GetById(new string[] { "1", "2", "3" }, null, null);
+
+// Получаем названия групп
+foreach (var item in groups)
+{
+    Console.WriteLine(item.Name);
+}
 
 // Получаем всю информацию о трех группах
 var gids = new long[] {1, 2, 3};
-var groups = vk.Groups.GetById(gids, GroupsFields.All);
+var groups = api.Groups.GetById(new string[] { "1", "2", "3" }, null, GroupsFields.All);
 ```
 
 ## Версия Вконтакте API v.5.44

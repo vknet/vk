@@ -11,7 +11,7 @@ comments: true
 
 ## Синтаксис
 ``` csharp
-public bool IsMember(string groupId, long? userId, IEnumerable<string> userIds, bool? extended)
+public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended, bool skipAuthorization = false)
 ```
 
 ## Параметры
@@ -41,7 +41,7 @@ invitation — приглашён ли пользователь в группу 
 ## Пример
 ```csharp
 // Проверяем состоит ли Павел Дуров в группе с id равным 2.
-var collection = vk.Groups.IsMember("123456", 123456, new long[] { 132 132 }, false);
+var collection = api.Groups.IsMember("2", 1, null, null).Select(x => x.Member).FirstOrDefault();
 ```
 
 ## Версия Вконтакте API v.5.80

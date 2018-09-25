@@ -55,9 +55,15 @@ photo100172_166443618
 
 ## Пример
 ``` csharp
-var send = _api.Messages.Send(new MessagesSendParams{
-	
+// Отправка сообщения Павлу Дурову
+api.Messages.Send(new VkNet.Model.RequestParams.MessagesSendParams
+{
+    UserId = 1,
+    Message = "message"
 });
+
+// Примеры с Attachments
+// https://github.com/vknet/vk/wiki/FAQ
 ```
 
 ## Версия Вконтакте API v.5.44

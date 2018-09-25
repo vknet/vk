@@ -32,8 +32,17 @@ public ReadOnlyCollection<long> GetMutual(FriendsGetMutualParams @params)
 
 ## Пример
 ```csharp
-// Нахождение общих друзей Павла Дурова и человека с id равным 2.
-var ids = vk.Friends.GetMutual(new FriendsGetMutualParams {TargetUid = 2, SourceUid = 1});
+// Нахождение общих друзей у человека с id равным 2745 и человека с id равным 6492.
+var ids = api.Friends.GetMutual(new VkNet.Model.RequestParams.FriendsGetMutualParams
+{
+    TargetUid = 6492,
+    SourceUid = 2745
+});
+
+foreach (var item in ids)
+{
+    //logic
+}
 ```
 
 ## Версия Вконтакте API v.5.44
