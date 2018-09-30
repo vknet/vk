@@ -25,7 +25,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Отметка времени.
 		/// </summary>
-		public ulong Ts { get; set; }
+		public string Ts { get; set; }
 
 		/// <summary>
 		/// Постоянное событие для работы с методом getLongPoolHistory
@@ -43,10 +43,10 @@ namespace VkNet.Model
 		{
 			var longPollServerResponse = new LongPollServerResponse
 			{
-					Key = response[key: "key"]
-					, Server = response[key: "server"]
-					, Ts = response[key: "ts"]
-					, Pts = response[key: "pts"]
+				Key = response["key"],
+				Server = response["server"],
+				Ts = response["ts"],
+				Pts = response["pts"]
 			};
 
 			return longPollServerResponse;
