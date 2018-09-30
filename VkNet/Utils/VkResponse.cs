@@ -58,7 +58,7 @@ namespace VkNet.Utils
 		/// <returns> </returns>
 		public bool HasToken()
 		{
-			return _token.HasValues;
+			return _token != null && _token.HasValues;
 		}
 
 		/// <summary>
@@ -108,7 +108,7 @@ namespace VkNet.Utils
 			return _token.ToString();
 		}
 
-		#region Model exceptions
+	#region Model exceptions
 
 		/// <summary>
 		/// Преобразовать из VkResponse
@@ -123,14 +123,13 @@ namespace VkNet.Utils
 			{
 				return null;
 			}
+
 			return Coordinates.FromJson(response: response);
 		}
 
-	
+	#endregion
 
-		#endregion
-
-		#region System types
+	#region System types
 
 		/// <summary>
 		/// Выполняет неявное преобразование из VkResponse
@@ -151,7 +150,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator bool? (VkResponse response)
+		public static implicit operator bool?(VkResponse response)
 		{
 			return response == null ? (bool?) null : response == 1;
 		}
@@ -175,7 +174,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator long? (VkResponse response)
+		public static implicit operator long?(VkResponse response)
 		{
 			return response != null ? (long?) response._token : null;
 		}
@@ -199,7 +198,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator ulong? (VkResponse response)
+		public static implicit operator ulong?(VkResponse response)
 		{
 			return response != null ? (ulong?) response._token : null;
 		}
@@ -223,7 +222,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator float? (VkResponse response)
+		public static implicit operator float?(VkResponse response)
 		{
 			return response != null ? (float?) response._token : null;
 		}
@@ -247,7 +246,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator decimal? (VkResponse response)
+		public static implicit operator decimal?(VkResponse response)
 		{
 			return response != null ? (decimal?) response._token : null;
 		}
@@ -271,7 +270,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator uint? (VkResponse response)
+		public static implicit operator uint?(VkResponse response)
 		{
 			return response != null ? (uint?) response._token : null;
 		}
@@ -295,7 +294,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator int? (VkResponse response)
+		public static implicit operator int?(VkResponse response)
 		{
 			return response != null ? (int?) response._token : null;
 		}
@@ -319,7 +318,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator DateTime? (VkResponse response)
+		public static implicit operator DateTime?(VkResponse response)
 		{
 			var dateStringValue = response?.ToString();
 
@@ -386,9 +385,9 @@ namespace VkNet.Utils
 			return Uri.TryCreate(uriString: response, uriKind: UriKind.Absolute, result: out var uriResult) ? uriResult : null;
 		}
 
-		#endregion
+	#endregion
 
-		#region Enums
+	#region Enums
 
 		/// <summary>
 		/// Выполняет неявное преобразование из VkResponse
@@ -397,7 +396,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator PageAccessKind? (VkResponse response)
+		public static implicit operator PageAccessKind?(VkResponse response)
 		{
 			return response == null ? null : Utilities.NullableEnumFrom<PageAccessKind>(value: response);
 		}
@@ -409,7 +408,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator GroupPublicity? (VkResponse response)
+		public static implicit operator GroupPublicity?(VkResponse response)
 		{
 			return response == null ? null : Utilities.NullableEnumFrom<GroupPublicity>(value: response);
 		}
@@ -421,7 +420,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator ContentAccess? (VkResponse response)
+		public static implicit operator ContentAccess?(VkResponse response)
 		{
 			return response == null ? null : Utilities.NullableEnumFrom<ContentAccess>(value: response);
 		}
@@ -433,7 +432,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator GroupSubjects? (VkResponse response)
+		public static implicit operator GroupSubjects?(VkResponse response)
 		{
 			return response == null ? null : Utilities.NullableEnumFrom<GroupSubjects>(value: response);
 		}
@@ -445,7 +444,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator AdminLevel? (VkResponse response)
+		public static implicit operator AdminLevel?(VkResponse response)
 		{
 			return response == null ? null : Utilities.NullableEnumFrom<AdminLevel>(value: response);
 		}
@@ -457,7 +456,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator AudioGenre? (VkResponse response)
+		public static implicit operator AudioGenre?(VkResponse response)
 		{
 			return response == null ? null : Utilities.NullableEnumFrom<AudioGenre>(value: response);
 		}
@@ -469,7 +468,7 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator MessageType? (VkResponse response)
+		public static implicit operator MessageType?(VkResponse response)
 		{
 			return response == null ? null : Utilities.NullableEnumFrom<MessageType>(value: response);
 		}
@@ -481,11 +480,11 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator MessageReadState? (VkResponse response)
+		public static implicit operator MessageReadState?(VkResponse response)
 		{
 			return response == null ? null : Utilities.NullableEnumFrom<MessageReadState>(value: response);
 		}
 
-		#endregion
+	#endregion
 	}
 }

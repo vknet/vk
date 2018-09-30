@@ -14,6 +14,18 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
+		public static implicit operator PollBackgroundType(VkResponse response)
+		{
+			return response == null ? null : PollBackgroundType.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
 		public static implicit operator AppFilter(VkResponse response)
 		{
 			return response == null ? null : AppFilter.FromJson(response: response);

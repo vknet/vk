@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netcoreapp2.1</TargetFrameworks>
+		<TargetFrameworks>netcoreapp2.0</TargetFrameworks>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0"/>
-		<PackageReference Include="Moq" Version="4.10.0"/>
+		<PackageReference Include="Moq" Version="4.9.0"/>
 		<PackageReference Include="NUnit" Version="3.10.1"/>
-		<PackageReference Include="NUnit3TestAdapter" Version="3.10.0"/>s
-		<PackageReference Include="NUnit.Console" Version="3.9.0"/>
-		<PackageReference Include="NUnit.ConsoleRunner" Version="3.9.0"/>
+		<PackageReference Include="NUnit3TestAdapter" Version="3.10.0"/>
+		<PackageReference Include="NUnit.Console" Version="3.8.0"/>
+		<PackageReference Include="NUnit.ConsoleRunner" Version="3.8.0"/>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\VkNet\VkNet.csproj"/>

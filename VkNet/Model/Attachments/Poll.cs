@@ -6,9 +6,10 @@ using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
+	/// <inheritdoc />
 	/// <summary>
 	/// Опрос.
-	/// См. описание http://vk.com/dev/attachments_w
+	/// См. описание https://vk.com/dev/objects/poll
 	/// </summary>
 	[Serializable]
 	public class Poll : MediaAttachment
@@ -18,13 +19,13 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		static Poll()
 		{
-			RegisterType(type: typeof(Poll), match: "poll");
+			RegisterType(typeof(Poll), "poll");
 		}
 
 		/// <summary>
 		/// Дата создания опроса
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Created { get; set; }
 
 		/// <summary>
@@ -52,6 +53,72 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public bool? Anonymous { get; set; }
 
+		/// <summary>
+		/// Допускает ли опрос выбор нескольких вариантов ответа.
+		/// </summary>
+		public bool? Multiple { get; set; }
+
+		/// <summary>
+		/// Идентификаторы вариантов ответа, выбранных текущим пользователем.
+		/// </summary>
+		public ReadOnlyCollection<long> AnswerIds { get; set; }
+
+		/// <summary>
+		/// Дата завершения опроса в Unixtime. 0, если опрос бессрочный.
+		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
+		public DateTime? EndDate { get; set; }
+
+		/// <summary>
+		/// Является ли опрос завершенным.
+		/// </summary>
+		public bool? Closed { get; set; }
+
+		/// <summary>
+		/// Прикреплён ли опрос к обсуждению.
+		/// </summary>
+		public bool? IsBoard { get; set; }
+
+		/// <summary>
+		/// Можно ли отредактировать опрос.
+		/// </summary>
+		public bool? CanEdit { get; set; }
+
+		/// <summary>
+		/// Можно ли проголосовать в опросе.
+		/// </summary>
+		public bool? CanVote { get; set; }
+
+		/// <summary>
+		/// Можно ли пожаловаться на опрос.
+		/// </summary>
+		public bool? CanReport { get; set; }
+
+		/// <summary>
+		/// Можно ли поделиться опросом.
+		/// </summary>
+		public bool? CanShare { get; set; }
+
+		/// <summary>
+		/// Идентификатор автора опроса.
+		/// </summary>
+		public long? AuthorId { get; set; }
+
+		/// <summary>
+		/// Фотография — фон сниппета опроса. Объект фотографии.
+		/// </summary>
+		public Photo Photo { get; set; }
+
+		/// <summary>
+		/// Фон сниппета опроса.
+		/// </summary>
+		public PollBackground Background { get; set; }
+
+		/// <summary>
+		/// Идентификаторы 3 друзей, которые проголосовали в опросе.
+		/// </summary>
+		public ReadOnlyCollection<long> Friends { get; set; }
+
 	#region Методы
 
 		/// <summary>
@@ -63,14 +130,27 @@ namespace VkNet.Model.Attachments
 		{
 			var poll = new Poll
 			{
-					Id = response[key: "id"] ?? response[key: "poll_id"]
-					, OwnerId = response[key: "owner_id"]
-					, Question = response[key: "question"]
-					, Created = response[key: "created"]
-					, Votes = response[key: "votes"]
-					, AnswerId = response[key: "answer_id"]
-					, Anonymous = response[key: "anonymous"]
-					, Answers = response[key: "answers"].ToReadOnlyCollectionOf<PollAnswer>(selector: x => x)
+				Id = response["id"] ?? response["poll_id"],
+				OwnerId = response["owner_id"],
+				Question = response["question"],
+				Created = response["created"],
+				Votes = response["votes"],
+				AnswerId = response["answer_id"],
+				Anonymous = response["anonymous"],
+				Answers = response["answers"].ToReadOnlyCollectionOf<PollAnswer>(x => x),
+				IsBoard = response["is_board"],
+				EndDate = response["end_date"],
+				CanVote = response["can_vote"],
+				CanShare = response["can_share"],
+				CanReport = response["can_report"],
+				CanEdit = response["can_edit"],
+				AuthorId = response["author_id"],
+				Multiple = response["multiple"],
+				Closed = response["closed"],
+				Photo = response["photo"],
+				Background = response["background"],
+				Friends = response["friends"].ToReadOnlyCollectionOf<long>(x => x),
+				AnswerIds = response["answer_ids"].ToReadOnlyCollectionOf<long>(x => x)
 			};
 
 			return poll;
