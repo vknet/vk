@@ -93,24 +93,24 @@ namespace VkNet
 
 			if (logger != null)
 			{
-				container.TryAddSingleton(instance: logger);
+				container.TryAddSingleton(logger);
 			}
 
 			if (captchaSolver != null)
 			{
-				container.TryAddSingleton(instance: captchaSolver);
+				container.TryAddSingleton(captchaSolver);
 			}
 
 			if (authorizationFlow != null)
 			{
-				container.TryAddSingleton(instance: authorizationFlow);
+				container.TryAddSingleton(authorizationFlow);
 			}
 
 			container.RegisterDefaultDependencies();
 
 			IServiceProvider serviceProvider = container.BuildServiceProvider();
 
-			Initialization(serviceProvider: serviceProvider);
+			Initialization(serviceProvider);
 		}
 
 		/// <inheritdoc />
@@ -122,7 +122,7 @@ namespace VkNet
 
 			IServiceProvider serviceProvider = container.BuildServiceProvider();
 
-			Initialization(serviceProvider: serviceProvider);
+			Initialization(serviceProvider);
 		}
 
 		/// <summary>
@@ -140,7 +140,7 @@ namespace VkNet
 		public IAuthorizationFlow AuthorizationFlow { get; set; }
 
 		/// <inheritdoc />
-		public bool IsAuthorized => !string.IsNullOrWhiteSpace(value: AccessToken);
+		public bool IsAuthorized => !string.IsNullOrWhiteSpace(AccessToken);
 
 		/// <inheritdoc />
 		public string Token => AccessToken;
@@ -177,12 +177,12 @@ namespace VkNet
 			// подключение браузера через прокси
 			if (@params.Host != null)
 			{
-				_logger?.LogDebug(message: "Настройка прокси");
+				_logger?.LogDebug("Настройка прокси");
 
-				Browser.Proxy = WebProxy.GetProxy(host: @params.Host,
-					port: @params.Port,
-					proxyLogin: @params.ProxyLogin,
-					proxyPassword: @params.ProxyPassword);
+				Browser.Proxy = WebProxy.GetProxy(@params.Host,
+					@params.Port,
+					@params.ProxyLogin,
+					@params.ProxyPassword);
 
 				RestClient.Proxy = Browser.Proxy;
 			}
@@ -190,7 +190,7 @@ namespace VkNet
 			// если токен не задан - обычная авторизация
 			if (@params.AccessToken == null)
 			{
-				AuthorizeWithAntiCaptcha(authParams: @params);
+				AuthorizeWithAntiCaptcha(@params);
 
 				// Сбросить после использования
 				@params.CaptchaSid = null;
@@ -200,61 +200,61 @@ namespace VkNet
 			// если токен задан - авторизация с помощью токена полученного извне
 			else
 			{
-				TokenAuth(accessToken: @params.AccessToken, userId: @params.UserId, expireTime: @params.TokenExpireTime);
+				TokenAuth(@params.AccessToken, @params.UserId, @params.TokenExpireTime);
 			}
 
 			_ap = @params;
-			_logger?.LogDebug(message: "Авторизация прошла успешно");
+			_logger?.LogDebug("Авторизация прошла успешно");
 		}
 
 		/// <inheritdoc />
 		public Task AuthorizeAsync(IApiAuthParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => Authorize(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(() => Authorize(@params));
 		}
 
 		/// <inheritdoc />
 		public void RefreshToken(Func<string> code = null)
 		{
-			if (!string.IsNullOrWhiteSpace(value: _ap.Login) && !string.IsNullOrWhiteSpace(value: _ap.Password))
+			if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
 			{
 				_ap.TwoFactorAuthorization = _ap.TwoFactorAuthorization ?? code;
-				AuthorizeWithAntiCaptcha(authParams: _ap);
+				AuthorizeWithAntiCaptcha(_ap);
 			} else
 			{
 				const string message =
 					"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
 
-				_logger?.LogError(message: message);
+				_logger?.LogError(message);
 
-				throw new AggregateException(message: message);
+				throw new AggregateException(message);
 			}
 		}
 
 		/// <inheritdoc />
 		public Task RefreshTokenAsync(Func<string> code = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => RefreshToken(code: code));
+			return TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code));
 		}
 
 		/// <inheritdoc />
-		[MethodImpl(methodImplOptions: MethodImplOptions.NoInlining)]
+		[MethodImpl(MethodImplOptions.NoInlining)]
 		public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
-			var answer = CallBase(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
+			var answer = CallBase(methodName, parameters, skipAuthorization);
 
-			var json = JObject.Parse(json: answer);
+			var json = JObject.Parse(answer);
 
-			var rawResponse = json[propertyName: "response"];
+			var rawResponse = json["response"];
 
-			return new VkResponse(token: rawResponse) { RawJson = answer };
+			return new VkResponse(rawResponse) { RawJson = answer };
 		}
 
 		/// <inheritdoc />
 		public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
-			var task = TypeHelper.TryInvokeMethodAsync(func: () =>
-				Call(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
+			var task = TypeHelper.TryInvokeMethodAsync(() =>
+				Call(methodName, parameters, skipAuthorization));
 
 			task.ConfigureAwait(false);
 
@@ -264,8 +264,8 @@ namespace VkNet
 		/// <inheritdoc />
 		public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
-			var task = TypeHelper.TryInvokeMethodAsync(func: () =>
-				Call<T>(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
+			var task = TypeHelper.TryInvokeMethodAsync(() =>
+				Call<T>(methodName, parameters, skipAuthorization));
 
 			task.ConfigureAwait(false);
 
@@ -273,10 +273,10 @@ namespace VkNet
 		}
 
 		/// <inheritdoc />
-		[MethodImpl(methodImplOptions: MethodImplOptions.NoInlining)]
+		[MethodImpl(MethodImplOptions.NoInlining)]
 		public T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters)
 		{
-			var answer = CallBase(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
+			var answer = CallBase(methodName, parameters, skipAuthorization);
 
 			if (!jsonConverters.Any())
 			{
@@ -288,7 +288,7 @@ namespace VkNet
 					new StringEnumConverter());
 			}
 
-			return JsonConvert.DeserializeObject<T>(value: answer, converters: jsonConverters);
+			return JsonConvert.DeserializeObject<T>(answer, jsonConverters);
 		}
 
 		/// <inheritdoc />
@@ -298,9 +298,9 @@ namespace VkNet
 			if (!skipAuthorization && !IsAuthorized)
 			{
 				var message = $"Метод '{methodName}' нельзя вызывать без авторизации";
-				_logger?.LogError(message: message);
+				_logger?.LogError(message);
 
-				throw new AccessTokenInvalidException(message: message);
+				throw new AccessTokenInvalidException(message);
 			}
 
 			var url = $"https://api.vk.com/method/{methodName}";
@@ -310,7 +310,7 @@ namespace VkNet
 			{
 				LastInvokeTime = DateTimeOffset.Now;
 
-				var response = RestClient.PostAsync(uri: new Uri(uriString: $"https://api.vk.com/method/{method}"), parameters: @params)
+				var response = RestClient.PostAsync(new Uri($"https://api.vk.com/method/{method}"), @params)
 					.ConfigureAwait(false)
 					.GetAwaiter()
 					.GetResult();
@@ -323,7 +323,7 @@ namespace VkNet
 			{
 				if (_expireTimer == null)
 				{
-					SetTimer(expireTime: 0);
+					SetTimer(0);
 				}
 
 				lock (_expireTimerLock)
@@ -334,23 +334,23 @@ namespace VkNet
 					{
 						var timeout = (int) _minInterval - (int) span;
 					#if NET40
-						Thread.Sleep(millisecondsTimeout: timeout);
+						Thread.Sleep(timeout);
 					#else
-						Task.Delay(millisecondsDelay: timeout).Wait();
+						Task.Delay(timeout).Wait();
 					#endif
 					}
 
-					SendRequest(method: methodName, @params: parameters);
+					SendRequest(methodName, parameters);
 				}
 			} else if (skipAuthorization)
 			{
-				SendRequest(method: methodName, @params: parameters);
+				SendRequest(methodName, parameters);
 			}
 
-			_logger?.LogTrace(message: $"Uri = \"{url}\"");
-			_logger?.LogTrace(message: $"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(json: answer)}");
+			_logger?.LogTrace($"Uri = \"{url}\"");
+			_logger?.LogTrace($"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(answer)}");
 
-			VkErrors.IfErrorThrowException(json: answer);
+			VkErrors.IfErrorThrowException(answer);
 
 			return answer;
 		}
@@ -359,15 +359,15 @@ namespace VkNet
 		[CanBeNull]
 		public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
+			return TypeHelper.TryInvokeMethodAsync(() =>
+				Invoke(methodName, parameters, skipAuthorization));
 		}
 
 		/// <inheritdoc cref="IDisposable" />
 		public void Dispose()
 		{
-			Dispose(disposing: true);
-			GC.SuppressFinalize(obj: this);
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 
 		/// <inheritdoc />
@@ -376,14 +376,14 @@ namespace VkNet
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
-			var authorization = Browser.Validate(validateUrl: validateUrl, phoneNumber: phoneNumber);
+			var authorization = Browser.Validate(validateUrl, phoneNumber);
 
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
 				const string message = "Не удалось автоматически пройти валидацию!";
-				_logger?.LogError(message: message);
+				_logger?.LogError(message);
 
-				throw new NeedValidationException(message: message, strRedirectUri: validateUrl);
+				throw new NeedValidationException(message, validateUrl);
 			}
 
 			AccessToken = authorization.AccessToken;
@@ -443,7 +443,7 @@ namespace VkNet
 			{
 				if (value < 0)
 				{
-					throw new ArgumentException(message: @"Value must be positive", paramName: nameof(value));
+					throw new ArgumentException(@"Value must be positive", nameof(value));
 				}
 
 				_requestsPerSecond = value;
@@ -592,37 +592,36 @@ namespace VkNet
 		/// <exception cref="CaptchaNeededException"> Требуется ввести капчу </exception>
 		private string CallBase(string methodName, VkParameters parameters, bool skipAuthorization)
 		{
-			if (!parameters.ContainsKey(key: "v"))
+			if (!parameters.ContainsKey("v"))
 			{
-				parameters.Add(name: "v", value: VkApiVersion.Version);
+				parameters.Add("v", VkApiVersion.Version);
 			}
 
-			if (!parameters.ContainsKey(key: Constants.AccessToken))
+			if (!parameters.ContainsKey(Constants.AccessToken))
 			{
-				parameters.Add(name: Constants.AccessToken, value: AccessToken);
+				parameters.Add(Constants.AccessToken, AccessToken);
 			}
 
-			if (!parameters.ContainsKey(key: "lang") && _language.GetLanguage().HasValue)
+			if (!parameters.ContainsKey("lang") && _language.GetLanguage().HasValue)
 			{
-				parameters.Add(name: "lang", nullableValue: _language.GetLanguage());
+				parameters.Add("lang", _language.GetLanguage());
 			}
 
-			_logger?.LogDebug(message:
-				$"Вызов метода {methodName}, с параметрами {string.Join(separator: ",", values: parameters.Where(x => x.Key != Constants.AccessToken).Select(selector: x => $"{x.Key}={x.Value}"))}");
+			_logger?.LogDebug($"Вызов метода {methodName}, с параметрами {string.Join(",", parameters.Where(x => x.Key != Constants.AccessToken).Select(x => $"{x.Key}={x.Value}"))}");
 
 			string answer;
 
 			if (CaptchaSolver == null)
 			{
-				answer = Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
+				answer = Invoke(methodName, parameters, skipAuthorization);
 			} else
 			{
-				answer = _captchaHandler.Perform(action: (sid, key) =>
+				answer = _captchaHandler.Perform((sid, key) =>
 				{
-					parameters.Add(name: "captcha_sid", nullableValue: sid);
-					parameters.Add(name: "captcha_key", value: key);
+					parameters.Add("captcha_sid", sid);
+					parameters.Add("captcha_key", key);
 
-					return Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization);
+					return Invoke(methodName, parameters, skipAuthorization);
 				});
 			}
 
@@ -636,19 +635,19 @@ namespace VkNet
 		/// <exception cref="VkApiAuthorizationException"> </exception>
 		private void AuthorizeWithAntiCaptcha(IApiAuthParams authParams)
 		{
-			_logger?.LogDebug(message: "Старт авторизации");
+			_logger?.LogDebug("Старт авторизации");
 
 			if (CaptchaSolver == null)
 			{
-				BaseAuthorize(authParams: authParams);
+				BaseAuthorize(authParams);
 			} else
 			{
-				_captchaHandler.Perform(action: (sid, key) =>
+				_captchaHandler.Perform((sid, key) =>
 				{
-					_logger?.LogDebug(message: "Авторизация с использование капчи.");
+					_logger?.LogDebug("Авторизация с использование капчи.");
 					authParams.CaptchaSid = sid;
 					authParams.CaptchaKey = key;
-					BaseAuthorize(authParams: authParams);
+					BaseAuthorize(authParams);
 
 					return true;
 				});
@@ -664,18 +663,18 @@ namespace VkNet
 		/// <exception cref="ArgumentNullException"> </exception>
 		private void TokenAuth(string accessToken, long? userId, int expireTime)
 		{
-			if (string.IsNullOrWhiteSpace(value: accessToken))
+			if (string.IsNullOrWhiteSpace(accessToken))
 			{
-				_logger?.LogError(message: "Авторизация через токен. Токен не задан.");
+				_logger?.LogError("Авторизация через токен. Токен не задан.");
 
-				throw new ArgumentNullException(paramName: accessToken);
+				throw new ArgumentNullException(accessToken);
 			}
 
-			_logger?.LogDebug(message: "Авторизация через токен");
+			_logger?.LogDebug("Авторизация через токен");
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
-			SetApiPropertiesAfterAuth(expireTime: expireTime, accessToken: accessToken, userId: userId);
+			SetApiPropertiesAfterAuth(expireTime, accessToken, userId);
 			_ap = new ApiAuthParams();
 		}
 
@@ -685,9 +684,9 @@ namespace VkNet
 		/// <param name="authorization"> The authorization. </param>
 		private void SetTokenProperties(AuthorizationResult authorization)
 		{
-			_logger?.LogDebug(message: "Установка свойств токена");
-			var expireTime = (Convert.ToInt32(value: authorization.ExpiresIn) - 10) * 1000;
-			SetApiPropertiesAfterAuth(expireTime: expireTime, accessToken: authorization.AccessToken, userId: authorization.UserId);
+			_logger?.LogDebug("Установка свойств токена");
+			var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
+			SetApiPropertiesAfterAuth(expireTime, authorization.AccessToken, authorization.UserId);
 		}
 
 		/// <summary>
@@ -698,7 +697,7 @@ namespace VkNet
 		/// <param name="userId"> </param>
 		private void SetApiPropertiesAfterAuth(int expireTime, string accessToken, long? userId)
 		{
-			SetTimer(expireTime: expireTime);
+			SetTimer(expireTime);
 			AccessToken = accessToken;
 			UserId = userId;
 		}
@@ -709,10 +708,10 @@ namespace VkNet
 		/// <param name="expireTime"> Значение таймера </param>
 		private void SetTimer(int expireTime)
 		{
-			_expireTimer = new Timer(callback: AlertExpires,
-				state: null,
-				dueTime: expireTime > 0 ? expireTime : Timeout.Infinite,
-				period: Timeout.Infinite);
+			_expireTimer = new Timer(AlertExpires,
+				null,
+				expireTime > 0 ? expireTime : Timeout.Infinite,
+				Timeout.Infinite);
 		}
 
 		/// <summary>
@@ -729,7 +728,7 @@ namespace VkNet
 		/// <param name="state"> </param>
 		private void AlertExpires(object state)
 		{
-			OnTokenExpires?.Invoke(sender: this);
+			OnTokenExpires?.Invoke(this);
 		}
 
 		/// <summary>
@@ -748,12 +747,12 @@ namespace VkNet
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
 				var message = $"Invalid authorization with {authParams.Login} - {authParams.Password}";
-				_logger?.LogError(message: message);
+				_logger?.LogError(message);
 
-				throw new VkApiAuthorizationException(message: message, email: authParams.Login, password: authParams.Password);
+				throw new VkApiAuthorizationException(message, authParams.Login, authParams.Password);
 			}
 
-			SetTokenProperties(authorization: authorization);
+			SetTokenProperties(authorization);
 		}
 
 		private void Initialization(IServiceProvider serviceProvider)
@@ -766,40 +765,40 @@ namespace VkNet
 			_language = serviceProvider.GetRequiredService<ILanguageService>();
 
 			RestClient = serviceProvider.GetRequiredService<IRestClient>();
-			Users = new UsersCategory(vk: this);
-			Friends = new FriendsCategory(vk: this);
-			Status = new StatusCategory(vk: this);
-			Messages = new MessagesCategory(vk: this);
-			Groups = new GroupsCategory(vk: this);
-			Audio = new AudioCategory(vk: this);
-			Wall = new WallCategory(vk: this);
-			Board = new BoardCategory(vk: this);
-			Database = new DatabaseCategory(vk: this);
-			Utils = new UtilsCategory(vk: this);
-			Fave = new FaveCategory(vk: this);
-			Video = new VideoCategory(vk: this);
-			Account = new AccountCategory(vk: this);
-			Photo = new PhotoCategory(vk: this);
-			Docs = new DocsCategory(vk: this);
-			Likes = new LikesCategory(vk: this);
-			Pages = new PagesCategory(vk: this);
-			Gifts = new GiftsCategory(vk: this);
-			Apps = new AppsCategory(vk: this);
-			NewsFeed = new NewsFeedCategory(vk: this);
-			Stats = new StatsCategory(vk: this);
-			Auth = new AuthCategory(vk: this);
-			Markets = new MarketsCategory(vk: this);
-			Execute = new ExecuteCategory(vk: this);
-			PollsCategory = new PollsCategory(vk: this);
-			Search = new SearchCategory(vk: this);
+			Users = new UsersCategory(this);
+			Friends = new FriendsCategory(this);
+			Status = new StatusCategory(this);
+			Messages = new MessagesCategory(this);
+			Groups = new GroupsCategory(this);
+			Audio = new AudioCategory(this);
+			Wall = new WallCategory(this);
+			Board = new BoardCategory(this);
+			Database = new DatabaseCategory(this);
+			Utils = new UtilsCategory(this);
+			Fave = new FaveCategory(this);
+			Video = new VideoCategory(this);
+			Account = new AccountCategory(this);
+			Photo = new PhotoCategory(this);
+			Docs = new DocsCategory(this);
+			Likes = new LikesCategory(this);
+			Pages = new PagesCategory(this);
+			Gifts = new GiftsCategory(this);
+			Apps = new AppsCategory(this);
+			NewsFeed = new NewsFeedCategory(this);
+			Stats = new StatsCategory(this);
+			Auth = new AuthCategory(this);
+			Markets = new MarketsCategory(this);
+			Execute = new ExecuteCategory(this);
+			PollsCategory = new PollsCategory(this);
+			Search = new SearchCategory(this);
 			Ads = new AdsCategory(this);
-			Storage = new StorageCategory(api: this);
-			Notifications = new NotificationsCategory(api: this);
-			Widgets = new WidgetsCategory(api: this);
-			Leads = new LeadsCategory(api: this);
-			Streaming = new StreamingCategory(api: this);
-			Places = new PlacesCategory(api: this);
-			Notes = new NotesCategory(api: this);
+			Storage = new StorageCategory(this);
+			Notifications = new NotificationsCategory(this);
+			Widgets = new WidgetsCategory(this);
+			Leads = new LeadsCategory(this);
+			Streaming = new StreamingCategory(this);
+			Places = new PlacesCategory(this);
+			Notes = new NotesCategory(this);
 			AppWidgets = new AppWidgetsCategory(this);
 			Orders = new OrdersCategory(this);
 			Secure = new SecureCategory(this);
@@ -810,7 +809,7 @@ namespace VkNet
 			RequestsPerSecond = 3;
 
 			MaxCaptchaRecognitionCount = 5;
-			_logger?.LogDebug(message: "VkApi Initialization successfully");
+			_logger?.LogDebug("VkApi Initialization successfully");
 		}
 
 	#endregion
