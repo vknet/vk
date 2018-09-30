@@ -76,7 +76,10 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "lp_version")]
 		public ulong? LpVersion { get; set; }
-		
+
+		/// <summary>
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя).
+		/// </summary>
 		[JsonProperty(propertyName: "group_id")]
 		public ulong? GroupId { get; set; }
 
@@ -89,16 +92,16 @@ namespace VkNet.Model.RequestParams
 		{
 			return new VkParameters
 			{
-					{ "ts", p.Ts }
-					, { "pts", p.Pts }
-					, { "preview_length", p.PreviewLength }
-					, { "onlines", p.Onlines }
-					, { "fields", p.Fields }
-					, { "events_limit", p.EventsLimit }
-					, { "msgs_limit", p.MsgsLimit }
-					, { "max_msg_id", p.MaxMsgId }
-					, { "lp_version", p.LpVersion }
-					, { "group_id", p.GroupId }
+				{ "ts", p.Ts },
+				{ "pts", p.Pts },
+				{ "preview_length", p.PreviewLength },
+				{ "onlines", p.Onlines },
+				{ "fields", p.Fields },
+				{ "events_limit", p.EventsLimit },
+				{ "msgs_limit", p.MsgsLimit },
+				{ "max_msg_id", p.MaxMsgId },
+				{ "lp_version", p.LpVersion },
+				{ "group_id", p.GroupId }
 			};
 		}
 	}
