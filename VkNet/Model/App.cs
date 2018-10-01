@@ -152,7 +152,7 @@ namespace VkNet.Model
 		/// Поддерживаемая ориентация экрана.
 		/// </summary>
 		[JsonProperty("screen_orientation")]
-		public ScreenOrientation ScreenOrientation { get; set; }
+		public ScreenOrientation? ScreenOrientation { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

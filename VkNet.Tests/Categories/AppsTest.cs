@@ -18,7 +18,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/apps.deleteAppRequests";
 
 			Json =
-					@"{
+				@"{
 					'response': 1
 				  }";
 
@@ -30,10 +30,10 @@ namespace VkNet.Tests.Categories
 		public void Get_NormalCase()
 		{
 			Url =
-					"https://api.vk.com/method/apps.get";
+				"https://api.vk.com/method/apps.get";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 						'count': 1,
 						'items': [{
@@ -61,8 +61,7 @@ namespace VkNet.Tests.Categories
 
 			var app = Api.Apps.Get(new AppGetParams
 			{
-					AppIds = new ulong[] { 4268118 }
-					, Platform = AppPlatforms.Web
+				AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web
 			});
 
 			Assert.That(app.TotalCount, Is.AtLeast(0));
@@ -75,7 +74,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/apps.getCatalog";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 						'count': 8710,
 						'items': [{
@@ -151,7 +150,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/apps.getFriendsList";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 						'count': 130,
 						'items': [310881357, 221634238, 72815776, 138230483, 228907945, 63838918, 229634083, 325170546, 131518798, 239679269, 114253497, 224688907, 319045109, 197866462, 204823258, 283140346, 74653727, 159042291, 241237764, 50894115]
@@ -169,7 +168,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/apps.getFriendsList";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 						'count': 130,
 						'items': [{
@@ -207,7 +206,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/apps.getLeaderboard";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 						'count': 130,
 						'items': [{
@@ -239,7 +238,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/apps.getLeaderboard";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 						'count': 130,
 						'items': [{
@@ -265,7 +264,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/apps.getLeaderboard";
 
 			Json =
-					@"{
+				@"{
 					'response': {
 						'count': 130,
 						'items': [{

@@ -218,7 +218,9 @@ namespace VkNet.Utils
 		public static T To<T>(this VkResponse response)
 			where T : IConvertible
 		{
-			return Utilities.EnumFrom<T>(value: response);
+			return response == null
+				? default(T)
+				: Utilities.EnumFrom<T>(response);
 		}
 	}
 }
