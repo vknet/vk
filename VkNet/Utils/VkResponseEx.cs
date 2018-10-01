@@ -208,5 +208,17 @@ namespace VkNet.Utils
 
 			return new VkCollection<T>(totalCount, resultCollection);
 		}
+
+		/// <summary>
+		/// Преобразовать <see cref="VkResponse"/> к <see cref="T"/>
+		/// </summary>
+		/// <param name="response">Ответ vk.com.</param>
+		/// <typeparam name="T">Тип перечисления</typeparam>
+		/// <returns></returns>
+		public static T To<T>(this VkResponse response)
+			where T : IConvertible
+		{
+			return Utilities.EnumFrom<T>(value: response);
+		}
 	}
 }

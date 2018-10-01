@@ -132,20 +132,26 @@ namespace VkNet.Model
 		/// приложение
 		/// (если был передан параметр return_friends = 1.
 		/// </summary>
-		[JsonProperty(propertyName: "friends")]
+		[JsonProperty("friends")]
 		public ReadOnlyCollection<long> Friends { get; set; }
 
 		/// <summary>
 		/// 1, если приложение установлено у текущего пользователя.
 		/// </summary>
-		[JsonProperty(propertyName: "installed")]
+		[JsonProperty("installed")]
 		public bool? Installed { get; set; }
 
 		/// <summary>
 		/// 1, если приложение — html5 игра.
 		/// </summary>
-		[JsonProperty(propertyName: "is_html_5_app")]
+		[JsonProperty("is_html_5_app")]
 		public bool IsHtml5App { get; set; }
+
+		/// <summary>
+		/// Поддерживаемая ориентация экрана.
+		/// </summary>
+		[JsonProperty("screen_orientation")]
+		public ScreenOrientation ScreenOrientation { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -156,36 +162,37 @@ namespace VkNet.Model
 		{
 			return new App
 			{
-					Id = response[key: "id"]
-					, Title = response[key: "title"]
-					, ScreenName = response[key: "screen_name"]
-					, Description = response[key: "description"]
-					, Icon278 = response[key: "icon_278"]
-					, Icon139 = response[key: "icon_139"]
-					, Icon75 = response[key: "icon_75"]
-					, Icon150 = response[key: "icon_150"]
-					, Icon16 = response[key: "icon_16"]
-					, Banner560 = response[key: "banner_560"]
-					, Banner1120 = response[key: "banner_1120"]
-					, Type = response[key: "type"]
-					, Section = response[key: "section"]
-					, AuthorUrl = response[key: "author_url"]
-					, AuthorId = response[key: "author_id"]
-					, AuthorGroup = response[key: "author_group"]
-					, MembersCount = response[key: "members_count"]
-					, PublishedDate = response[key: "published_date"]
-					, CatalogPosition = response[key: "catalog_position"]
-					, Screenshots = response[key: "screenshots"].ToReadOnlyCollectionOf<Photo>(selector: o => o)
-					, International = response[key: "international"]
-					, LeaderBoardType = response[key: "leaderboard_type"]
-					, GenreId = response[key: "genre_id"]
-					, Genre = response[key: "genre"]
-					, PlatformId = response[key: "platform_id"]
-					, IsInCatalog = response[key: "is_in_catalog"]
-					, Friends = response[key: "friends"].ToReadOnlyCollectionOf<long>(selector: x => x)
-					, Installed = response[key: "installed"]
-					, IsHtml5App = response[key: "is_html_5_app"]
-					, PushEnabled = response[key: "push_enabled"]
+				Id = response["id"],
+				Title = response["title"],
+				ScreenName = response["screen_name"],
+				Description = response["description"],
+				Icon278 = response["icon_278"],
+				Icon139 = response["icon_139"],
+				Icon75 = response["icon_75"],
+				Icon150 = response["icon_150"],
+				Icon16 = response["icon_16"],
+				Banner560 = response["banner_560"],
+				Banner1120 = response["banner_1120"],
+				Type = response["type"],
+				Section = response["section"],
+				AuthorUrl = response["author_url"],
+				AuthorId = response["author_id"],
+				AuthorGroup = response["author_group"],
+				MembersCount = response["members_count"],
+				PublishedDate = response["published_date"],
+				CatalogPosition = response["catalog_position"],
+				Screenshots = response["screenshots"].ToReadOnlyCollectionOf<Photo>(o => o),
+				International = response["international"],
+				LeaderBoardType = response["leaderboard_type"],
+				GenreId = response["genre_id"],
+				Genre = response["genre"],
+				PlatformId = response["platform_id"],
+				IsInCatalog = response["is_in_catalog"],
+				Friends = response["friends"].ToReadOnlyCollectionOf<long>(x => x),
+				Installed = response["installed"],
+				IsHtml5App = response["is_html_5_app"],
+				PushEnabled = response["push_enabled"],
+				ScreenOrientation = response["screen_orientation"].To<ScreenOrientation>()
 			};
 		}
 
@@ -214,7 +221,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// 1, если у пользователя включены уведомления из этого приложения.
 		/// </summary>
-		[JsonProperty(propertyName: "push_enabled")]
+		[JsonProperty("push_enabled")]
 		public bool? PushEnabled { get; set; }
 
 	#endregion
