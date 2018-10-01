@@ -145,6 +145,7 @@ namespace VkNet.Model
 		/// 1, если приложение — html5 игра.
 		/// </summary>
 		[JsonProperty("is_html_5_app")]
+		[Obsolete("5.85 В объекте приложения больше не приходит поле is_html5_app. Смотрите поле type", false)]
 		public bool IsHtml5App { get; set; }
 
 		/// <summary>
