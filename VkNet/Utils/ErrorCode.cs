@@ -440,5 +440,10 @@
 		/// Сообщение слишком длинное.
 		/// </summary>
 		public const int MessageIsTooLong = 914;
+
+		/// <summary>
+		/// Нет доступа к беседе
+		/// </summary>
+		public const int ConversationAccessDenied = 917;
 	}
 }
