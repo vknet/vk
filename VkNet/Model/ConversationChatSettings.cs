@@ -49,5 +49,23 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("active_ids")]
 		public ReadOnlyCollection<long> ActiveIds { get; set; }
+
+		/// <summary>
+		///
+		/// </summary>
+		[JsonProperty("owner_id")]
+		public long OwnerId { get; set; }
+
+		/// <summary>
+		///
+		/// </summary>
+		[JsonProperty("is_group_channel")]
+		public bool IsGroupChannel { get; set; }
+
+		/// <summary>
+		///
+		/// </summary>
+		[JsonProperty("acl")]
+		public Acl Acl { get; set; }
 	}
 }
