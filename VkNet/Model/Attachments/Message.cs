@@ -282,7 +282,7 @@ namespace VkNet.Model
 		/// Идентификатор сообщения в беседе
 		/// </summary>
 		[JsonProperty("conversation_message_id")]
-		public long ConversationMessageId { get; set; }
+		public long? ConversationMessageId { get; set; }
 
 		/// <summary>
 		/// Тип сообщения (не возвращается для пересланных сообщений).
