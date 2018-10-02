@@ -101,7 +101,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = 0,
+				Ts = "0",
 				Wait = 10
 			});
 
@@ -135,7 +135,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = 0,
+				Ts = "0",
 				Wait = 10
 			});
 
@@ -167,7 +167,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = 0,
+				Ts = "0",
 				Wait = 10
 			});
 
@@ -199,7 +199,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = 0,
+				Ts = "0",
 				Wait = 10
 			});
 
@@ -236,7 +236,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = 0,
+				Ts = "0",
 				Wait = 10
 			});
 
@@ -275,7 +275,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = 0,
+				Ts = "0",
 				Wait = 10
 			});
 
@@ -317,7 +317,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = 0,
+				Ts = "0",
 				Wait = 10
 			});
 
@@ -354,7 +354,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = 0,
+				Ts = "0",
 				Wait = 10
 			});
 
@@ -389,7 +389,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = 0,
+				Ts = "0",
 				Wait = 10
 			});
 
@@ -426,7 +426,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = 0,
+				Ts = "0",
 				Wait = 10
 			});
 
