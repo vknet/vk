@@ -9,6 +9,9 @@ namespace VkNet.Exception
 	public class BotsLongPollInfoLostException : LongPollException
 	{
 		/// <inheritdoc />
-		public BotsLongPollInfoLostException() : base(3, "Информация утрачена, нужно запросить новые key и ts методом groups.getLongPollServer.") { }
+		public BotsLongPollInfoLostException() : base(InfoLostException,
+			"Информация утрачена, нужно запросить новые key и ts методом groups.getLongPollServer.")
+		{
+		}
 	}
 }

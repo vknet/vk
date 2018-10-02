@@ -9,6 +9,9 @@ namespace VkNet.Exception
 	public class BotsLongPollKeyExpiredException : LongPollException
 	{
 		/// <inheritdoc />
-		public BotsLongPollKeyExpiredException() : base(2, "Истекло время действия ключа, нужно заново получить key методом groups.getLongPollServer.") { }
+		public BotsLongPollKeyExpiredException() : base(KeyExpiredException,
+			"Истекло время действия ключа, нужно заново получить key методом groups.getLongPollServer.")
+		{
+		}
 	}
 }
