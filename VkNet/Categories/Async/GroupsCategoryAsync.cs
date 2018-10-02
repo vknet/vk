@@ -271,5 +271,11 @@ namespace VkNet.Categories
 		{
 			return await TypeHelper.TryInvokeMethodAsync(() => DisableOnline(groupId));
 		}
+
+		/// <inheritdoc />
+		public Task<BotsLongPollHistoryResponse> GetBotsLongPollHistoryAsync(BotsLongPollHistoryParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetBotsLongPollHistory(@params: @params));
+		}
 	}
 }

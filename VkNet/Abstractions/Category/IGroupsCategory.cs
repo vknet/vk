@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums.Filters;
@@ -841,5 +841,17 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.disableOnline
 		/// </remarks>
 		bool DisableOnline(ulong groupId);
+
+		/// <summary>
+		/// Возвращаем обновления событий группы
+		/// </summary>
+		/// <param name="params">Параметры запроса к BotsLongPoll API</param>
+		/// <returns>
+		/// Новые события в группе
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте https://vk.com/dev/bots_longpoll
+		/// </remarks>
+		BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params);
 	}
 }
