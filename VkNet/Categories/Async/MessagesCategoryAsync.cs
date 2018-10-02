@@ -223,10 +223,10 @@ namespace VkNet.Categories
 			return TypeHelper.TryInvokeMethodAsync(func: () => GetHistory(@params: @params));
 		}
 
-		/// <inheritdoc />
-		public Task<bool> RemoveChatUserAsync(long chatId, long userId)
+		/// <inheritdoc/>
+		public async Task<bool> RemoveChatUserAsync(ulong chatId, long? userId = null, long? memberId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => RemoveChatUser(chatId: chatId, userId: userId));
+			return await TypeHelper.TryInvokeMethodAsync(() => RemoveChatUser(chatId, userId, memberId));
 		}
 
 		/// <inheritdoc />
