@@ -15,7 +15,7 @@ namespace VkNet.Model
 	/// Личное сообщение пользователя.
 	/// См. описание http://vk.com/dev/message
 	/// </summary>
-	[DebuggerDisplay("[{UserId}-{Id}] {Body}")]
+	[DebuggerDisplay("[{PeerId}-{Id}] {Text}")]
 	[Serializable]
 	public class Message : MediaAttachment
 	{
@@ -81,8 +81,8 @@ namespace VkNet.Model
 				Out = response["out"],
 				UpdateTime = response["update_time"],
 
-				Keyboard = response["keyboard"]
-
+				Keyboard = response["keyboard"],
+				ConversationMessageId = response["conversation_message_id"]
 			};
 
 			return message;
@@ -128,7 +128,6 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("payload")]
 		public string Payload { get; set; }
-
 
 		/// <summary>
 		/// Статус сообщения (не возвращается для пересланных сообщений).
@@ -278,6 +277,12 @@ namespace VkNet.Model
 	#endregion
 
 	#region недокументированные
+
+		/// <summary>
+		/// Идентификатор сообщения в беседе
+		/// </summary>
+		[JsonProperty("conversation_message_id")]
+		public long ConversationMessageId { get; set; }
 
 		/// <summary>
 		/// Тип сообщения (не возвращается для пересланных сообщений).
