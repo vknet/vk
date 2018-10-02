@@ -32,7 +32,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public override string ToString()
 		{
-			return $"{MatchType(type: GetType())}{OwnerId}_{Id}";
+			return $"{MatchType(GetType())}{OwnerId}_{Id}";
 		}
 
 		/// <summary>
@@ -42,7 +42,7 @@ namespace VkNet.Model.Attachments
 		/// <param name="match"> Соответствие. </param>
 		protected static void RegisterType(Type type, string match)
 		{
-			Types.Add(key: type, value: match);
+			Types.Add(type, match);
 		}
 
 		/// <summary>
@@ -52,7 +52,7 @@ namespace VkNet.Model.Attachments
 		/// <returns> </returns>
 		private static string MatchType(Type type)
 		{
-			return Types[key: type];
+			return Types[type];
 		}
 	}
 }
