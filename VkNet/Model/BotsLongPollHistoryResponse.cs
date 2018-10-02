@@ -38,17 +38,17 @@ namespace VkNet.Model
 
 				if (code == LongPollException.OutdateException)
 				{
-					throw new BotsLongPollOutdateException(response["ts"]);
+					throw new LongPollOutdateException(response["ts"]);
 				}
 
 				if (code == LongPollException.KeyExpiredException)
 				{
-					throw new BotsLongPollKeyExpiredException();
+					throw new LongPollKeyExpiredException();
 				}
 
 				if (code == LongPollException.InfoLostException)
 				{
-					throw new BotsLongPollInfoLostException();
+					throw new LongPollInfoLostException();
 				}
 			}
 
@@ -79,7 +79,10 @@ namespace VkNet.Model
 		/// </returns>
 		public static implicit operator BotsLongPollHistoryResponse(VkResponse response)
 		{
-			if (response == null) return null;
+			if (response == null)
+			{
+				return null;
+			}
 
 			return response.HasToken() ? FromJson(response: response) : null;
 		}

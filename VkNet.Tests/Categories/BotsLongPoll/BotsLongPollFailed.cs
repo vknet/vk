@@ -13,7 +13,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			const string json = "{\"failed\":1, \"ts\":10}";
 			var groupCategory = GetMockedGroupCategory("https://vk.com", json);
 
-			Assert.Throws<BotsLongPollOutdateException>(() => groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			Assert.Throws<LongPollOutdateException>(() => groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",
@@ -42,7 +42,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 				Assert.Fail();
 			}
-			catch (BotsLongPollOutdateException exception)
+			catch (LongPollOutdateException exception)
 			{
 				Assert.AreEqual(ts, exception.Ts);
 			}
@@ -54,7 +54,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			const string json = "{\"failed\":2}";
 			var groupCategory = GetMockedGroupCategory("https://vk.com", json);
 
-			Assert.Throws<BotsLongPollKeyExpiredException>(() => groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			Assert.Throws<LongPollKeyExpiredException>(() => groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",
@@ -69,7 +69,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			const string json = "{\"failed\":3}";
 			var groupCategory = GetMockedGroupCategory("https://vk.com", json);
 
-			Assert.Throws<BotsLongPollInfoLostException>(() => groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			Assert.Throws<LongPollInfoLostException>(() => groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",
