@@ -829,6 +829,20 @@ namespace VkNet.Abstractions
 		LongPollServerResponse GetLongPollServer(ulong groupId);
 
 		/// <summary>
+		/// Выключает статус «онлайн» в сообществе.
+		/// </summary>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества. положительное число, обязательный параметр
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.disableOnline
+		/// </remarks>
+		bool DisableOnline(ulong groupId);
+
+		/// <summary>
 		/// Возвращаем обновления событий группы
 		/// </summary>
 		/// <param name="params">Параметры запроса к BotsLongPoll API</param>

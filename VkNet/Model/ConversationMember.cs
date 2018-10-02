@@ -34,5 +34,11 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("is_admin")]
 		public bool IsAdmin { get; set; }
+
+		/// <summary>
+		/// Может ли текущий пользователь исключить участника.
+		/// </summary>
+		[JsonProperty("can_kick")]
+		public bool CanKick { get; set; }
 	}
 }

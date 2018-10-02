@@ -959,7 +959,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			Assert.That(response.Key, Is.EqualTo("6f4120988efaf3a7d398054b5bb5d019c5844bz3"));
 			Assert.That(response.Server, Is.EqualTo("im46.vk.com/im1858"));
-			Assert.That(response.Ts, Is.EqualTo(1627957305));
+			Assert.That(response.Ts, Is.EqualTo("1627957305"));
 		}
 
 		[Test]
