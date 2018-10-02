@@ -661,7 +661,7 @@ namespace VkNet
 					SetTimer(0);
 				}
 
-				lock (_expireTimerLock)
+				lock (_expireTimerLock)//TODO Сделать способ для ограничения количества запросов, не блокирующий потоки
 				{
 					var span = LastInvokeTimeSpan?.TotalMilliseconds;
 
