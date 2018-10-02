@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -26,6 +27,18 @@ namespace VkNet.Model
 		public bool GroupsCanPost { get; set; }
 
 		/// <summary>
+		///
+		/// </summary>
+		[JsonProperty("can_close")]
+		public bool CanClose { get; set; }
+
+		/// <summary>
+		///
+		/// </summary>
+		[JsonProperty("can_open")]
+		public bool CanOpen { get; set; }
+
+		/// <summary>
 		/// Разобрать из JSON.
 		/// </summary>
 		/// <param name="response"> Ответ от vk. </param>
@@ -34,9 +47,11 @@ namespace VkNet.Model
 		{
 			return new Comments
 			{
-					Count = response[key: "count"]
-					, CanPost = response[key: "can_post"]
-					, GroupsCanPost = response[key: "groups_can_post"]
+				Count = response["count"],
+				CanPost = response["can_post"],
+				GroupsCanPost = response["groups_can_post"],
+				CanOpen = response["can_open"],
+				CanClose = response["can_close"]
 			};
 		}
 
