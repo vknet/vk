@@ -28,7 +28,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			const string json = "{\"failed\":1, \"ts\":10}";
 			var groupCategory = GetMockedGroupCategory("https://vk.com", json);
 
-			const int ts = 10;
+			const string ts = "10";
 
 			try
 			{

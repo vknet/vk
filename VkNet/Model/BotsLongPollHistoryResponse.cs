@@ -16,7 +16,7 @@ namespace VkNet.Model
 		/// Номер последнего события, начиная с которого нужно получать данные;
 		/// </summary>
 		[JsonProperty("ts")]
-		public ulong Ts { get; set; }
+		public string Ts { get; set; }
 
 		/// <summary>
 		/// Обновления группы
