@@ -17,7 +17,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Последние полученое событие
 		/// </summary>
-		public ulong Ts { get; set; }
+		public string Ts { get; set; }
 
 		/// <summary>
 		/// Ключ сессии
