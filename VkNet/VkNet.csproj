@@ -53,7 +53,7 @@
 		<PackageReference Include="JetBrains.Annotations" Version="2018.2.1" PrivateAssets="all"/>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="HtmlAgilityPack" Version="1.8.8"/>
+		<PackageReference Include="HtmlAgilityPack" Version="1.8.9"/>
 		<PackageReference Include="Newtonsoft.Json" Version="11.0.2"/>
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
