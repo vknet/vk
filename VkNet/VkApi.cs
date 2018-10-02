@@ -306,10 +306,10 @@ namespace VkNet
 			var url = $"https://api.vk.com/method/{methodName}";
 			var answer = InvokeBase(url, parameters, skipAuthorization);
 
-			_logger?.LogTrace(message: $"Uri = \"{url}\"");
-			_logger?.LogTrace(message: $"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(json: answer)}");
+			_logger?.LogTrace($"Uri = \"{url}\"");
+			_logger?.LogTrace($"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(answer)}");
 
-			VkErrors.IfErrorThrowException(json: answer);
+			VkErrors.IfErrorThrowException(answer);
 
 			return answer;
 		}
@@ -318,26 +318,26 @@ namespace VkNet
 		[CanBeNull]
 		public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				Invoke(methodName: methodName, parameters: parameters, skipAuthorization: skipAuthorization));
+			return TypeHelper.TryInvokeMethodAsync(() =>
+				Invoke(methodName, parameters, skipAuthorization));
 		}
 
 		/// <inheritdoc />
 		public VkResponse CallLongPoll(string server, VkParameters parameters)
 		{
-			var answer = InvokeLongPoll(server: server, parameters: parameters);
+			var answer = InvokeLongPoll(server, parameters);
 
-			var json = JObject.Parse(json: answer);
+			var json = JObject.Parse(answer);
 
 			var rawResponse = json.Root;
 
-			return new VkResponse(token: rawResponse) { RawJson = answer };
+			return new VkResponse(rawResponse) { RawJson = answer };
 		}
 
 		/// <inheritdoc />
 		public Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => CallLongPoll(server, parameters));
+			return TypeHelper.TryInvokeMethodAsync(() => CallLongPoll(server, parameters));
 		}
 
 		/// <inheritdoc />
@@ -346,18 +346,18 @@ namespace VkNet
 			if (string.IsNullOrEmpty(server))
 			{
 				var message = $"Server не должен быть пустым или null";
-				_logger?.LogError(message: message);
+				_logger?.LogError(message);
 
-				throw new ArgumentException(message: message);
+				throw new ArgumentException(message);
 			}
 
-			_logger?.LogDebug(message:
-				$"Вызов GetLongPollHistory с сервером {server}, с параметрами {string.Join(separator: ",", values: parameters.Select(selector: x => $"{x.Key}={x.Value}"))}");
+			_logger?.LogDebug(
+				$"Вызов GetLongPollHistory с сервером {server}, с параметрами {string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}"))}");
 
 			var answer = InvokeBase(server, parameters);
 
-			_logger?.LogTrace(message: $"Uri = \"{server}\"");
-			_logger?.LogTrace(message: $"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(json: answer)}");
+			_logger?.LogTrace($"Uri = \"{server}\"");
+			_logger?.LogTrace($"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(answer)}");
 
 			VkErrors.IfErrorThrowException(answer);
 
@@ -368,7 +368,7 @@ namespace VkNet
 		public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
-				Invoke(methodName, parameters, skipAuthorization));
+				InvokeLongPoll(server, parameters));
 		}
 
 		/// <inheritdoc cref="IDisposable" />
@@ -615,7 +615,8 @@ namespace VkNet
 				parameters.Add("lang", _language.GetLanguage());
 			}
 
-			_logger?.LogDebug($"Вызов метода {methodName}, с параметрами {string.Join(",", parameters.Where(x => x.Key != Constants.AccessToken).Select(x => $"{x.Key}={x.Value}"))}");
+			_logger?.LogDebug(
+				$"Вызов метода {methodName}, с параметрами {string.Join(",", parameters.Where(x => x.Key != Constants.AccessToken).Select(x => $"{x.Key}={x.Value}"))}");
 
 			string answer;
 
@@ -644,7 +645,7 @@ namespace VkNet
 			{
 				LastInvokeTime = DateTimeOffset.Now;
 
-				var response = RestClient.PostAsync(uri: new Uri(uriString: url), parameters: @params)
+				var response = RestClient.PostAsync(new Uri(url), @params)
 					.ConfigureAwait(false)
 					.GetAwaiter()
 					.GetResult();
@@ -657,7 +658,7 @@ namespace VkNet
 			{
 				if (_expireTimer == null)
 				{
-					SetTimer(expireTime: 0);
+					SetTimer(0);
 				}
 
 				lock (_expireTimerLock)
@@ -668,9 +669,9 @@ namespace VkNet
 					{
 						var timeout = (int) _minInterval - (int) span;
 					#if NET40
-						Thread.Sleep(millisecondsTimeout: timeout);
-#else
-						Task.Delay(millisecondsDelay: timeout).Wait();
+						Thread.Sleep(timeout);
+					#else
+						Task.Delay(timeout).Wait();
 					#endif
 					}
 
