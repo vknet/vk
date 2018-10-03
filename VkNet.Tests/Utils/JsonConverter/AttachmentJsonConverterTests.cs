@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Utils;
@@ -42,6 +43,58 @@ namespace VkNet.Tests.Utils.JsonConverter
 			Assert.NotNull(result);
 			Assert.That(result.Id, Is.EqualTo(3));
 			Assert.That(result.FromId, Is.EqualTo(32190123));
+			Assert.IsNotEmpty(result.Attachments);
+		}
+
+		[Test]
+		public void SerealizationTest()
+		{
+			Json = @"{
+					  'date': 1538561982,
+					  'from_id': 1234567890,
+					  'id': 28648,
+					  'out': 1,
+					  'peer_id': 2000000003,
+					  'text': '',
+					  'conversation_message_id': 1824,
+					  'fwd_messages': [],
+					  'important': false,
+					  'random_id': 1058133329,
+					  'attachments': [
+					    {
+					      'type': 'photo',
+					      'photo': {
+					        'id': 456239677,
+					        'album_id': -3,
+					        'owner_id': 1234567890,
+					        'sizes': [
+					          {
+					            'type': 'm',
+					            'url': 'https://pp.userap/6f0/eur0G6JEtHA.jpg',
+					            'width': 130,
+					            'height': 129
+					          }
+					        ],
+					        'text': '',
+					        'date': 1538561982,
+					        'access_key': '0a96d1dceb18b6fa7b'
+					      }
+					    }
+					  ],
+					  'is_hidden': false
+					}";
+
+			var response = GetResponse();
+			var message = Message.FromJson(response);
+
+			var json = JsonConvert.SerializeObject(message, new JsonSerializerSettings
+			{
+				NullValueHandling = NullValueHandling.Ignore,
+				DefaultValueHandling = DefaultValueHandling.Ignore
+			});
+			var result = JsonConvert.DeserializeObject<Message>(json);
+
+			Assert.NotNull(result);
 			Assert.IsNotEmpty(result.Attachments);
 		}
 	}
