@@ -52,7 +52,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Дата создания товара в формате Unixtime.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
@@ -89,19 +89,19 @@ namespace VkNet.Model
 		{
 			var result = new Market
 			{
-					Id = response[key: "id"] ?? -1
-					, OwnerId = response[key: "owner_id"]
-					, Title = response[key: "title"]
-					, Description = response[key: "description"]
-					, Price = response[key: "price"]
-					, Category = response[key: "category"]
-					, ThumbPhoto = response[key: "thumb_photo"]
-					, Date = response[key: "date"]
-					, Availability = response[key: "availability"]
-					, Photos = response[key: "photos"].ToReadOnlyCollectionOf<Photo>(selector: x => x)
-					, CanComment = response[key: "can_comment"]
-					, CanRepost = response[key: "can_repost"]
-					, Likes = response[key: "likes"]
+					Id = response["id"] ?? -1
+					, OwnerId = response["owner_id"]
+					, Title = response["title"]
+					, Description = response["description"]
+					, Price = response["price"]
+					, Category = response["category"]
+					, ThumbPhoto = response["thumb_photo"]
+					, Date = response["date"]
+					, Availability = response["availability"]
+					, Photos = response["photos"].ToReadOnlyCollectionOf<Photo>(x => x)
+					, CanComment = response["can_comment"]
+					, CanRepost = response["can_repost"]
+					, Likes = response["likes"]
 			};
 
 			return result;
