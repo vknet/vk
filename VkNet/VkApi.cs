@@ -15,6 +15,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
+using VkNet.Abstractions.Category;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Categories;
@@ -586,6 +587,9 @@ namespace VkNet
 		/// <inheritdoc />
 		public IStoriesCategory Stories { get; set; }
 
+		/// <inheritdoc />
+		public ILeadFormsCategory LeadForms { get; set; }
+
 	#endregion
 
 	#region private
@@ -860,6 +864,7 @@ namespace VkNet
 			Orders = new OrdersCategory(this);
 			Secure = new SecureCategory(this);
 			Stories = new StoriesCategory(this);
+			LeadForms = new LeadFormsCategory(this);
 
 			VkApiVersion = serviceProvider.GetRequiredService<IVkApiVersionManager>();
 
