@@ -8,13 +8,14 @@ pool:
 
 variables:
   BuildConfiguration: 'Release'
-  Parameters.CanPush: true
 
 steps:
 - task: DotNetCoreInstaller@0
   displayName: 'Use .NET Core sdk 2.1.402'
   inputs:
     version: 2.1.402
+
+
 - task: DotNetCoreCLI@2
   displayName: Test
   inputs:
@@ -22,29 +23,21 @@ steps:
 
     projects: '*[Tt]ests/*.csproj'
 
-    arguments: '--configuration $(BuildConfiguration)'
+    arguments: '-c $(BuildConfiguration)'
+
+
 - task: DotNetCoreCLI@2
-  displayName: Pack
+  displayName: 'dotnet build'
   inputs:
-    command: custom
-	
-	projects: 'VkNet/VkNet.csproj'
+    projects: VkNet/VkNet.csproj
 
-    custom: pack
+    arguments: '-o $(Build.ArtifactStagingDirectory) -c $(BuildConfiguration) --version-suffix $(Build.BuildId)'
 
-    arguments: '-o $(Build.ArtifactStagingDirectory) -c "$(BuildConfiguration)" --version-suffix $(Build.BuildId)'
-- task: DotNetCoreCLI@2
-  displayName: 'Push to MyGet'
-  inputs:
-    command: custom
 
-    custom: 'nuget push'
+- script: 'dotnet nuget push *.nupkg -k $(Parameters.MyGetKey) -s $(Parameters.MyGetFeed)' 
+  workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
-    arguments: '*.nupkg -k $(Parameters.MyGetKey) -s $(Parameters.MyGetFeed)'
-
-    workingDirectory: '$(Build.ArtifactStagingDirectory)'
-
-  enabled: true
+  displayName: 'Command Line Script'
 
 - task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
   displayName: 'Send Telegram Notification'
