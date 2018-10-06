@@ -8,6 +8,7 @@ pool:
 
 variables:
   BuildConfiguration: 'Release'
+  Parameters.CanPush: true
 
 steps:
 - task: DotNetCoreCLI@2
