@@ -28,13 +28,9 @@ steps:
   inputs:
     command: custom
 
-    projects: '$(Parameters.TestProjects)'
-
     custom: pack
 
     arguments: '-o $(Build.ArtifactStagingDirectory) -c "$(BuildConfiguration)" --version-suffix $(Build.BuildId)'
-
-  
 - task: DotNetCoreCLI@2
   displayName: 'Push to MyGet'
   inputs:
