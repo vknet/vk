@@ -26,7 +26,7 @@ steps:
 
     packagesToPack: VkNet/VkNet.csproj
 
-    buildProperties: '-c "$(BuildConfiguration)" --version-suffix "alpha$(BuildID)"'
+    buildProperties: '--version-suffix alpha$(BuildID)'
 
   enabled: true
   
