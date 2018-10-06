@@ -28,7 +28,7 @@ steps:
 
     buildProperties: '-o $(Build.ArtifactStagingDirectory) -c "$(BuildConfiguration)" --version-suffix "alpha$(Rev:.r)"'
 
-  enabled: $(Parameters.CanPush)
+  enabled: true
   
 - task: DotNetCoreCLI@2
   displayName: 'Push to MyGet'
@@ -41,7 +41,7 @@ steps:
 
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
-  enabled: $(Parameters.CanPush)
+  enabled: true
 
 - task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
   displayName: 'Send Telegram Notification'
