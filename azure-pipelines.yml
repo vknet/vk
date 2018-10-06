@@ -28,7 +28,7 @@ steps:
   inputs:
     command: custom
 	
-	projects: VkNet/VkNet.csproj
+	projects: 'VkNet/VkNet.csproj'
 
     custom: pack
 
