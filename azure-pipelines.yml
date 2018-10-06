@@ -11,6 +11,10 @@ variables:
   Parameters.CanPush: true
 
 steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core sdk 2.1.402'
+  inputs:
+    version: 2.1.402
 - task: DotNetCoreCLI@2
   displayName: Test
   inputs:
@@ -22,13 +26,14 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: Pack
   inputs:
-    command: pack
+    command: custom
 
-    packagesToPack: VkNet/VkNet.csproj
+    projects: '$(Parameters.TestProjects)'
 
-    buildProperties: '--version-suffix alpha$(BuildID)'
+    custom: pack
 
-  enabled: true
+    arguments: '-o $(Build.ArtifactStagingDirectory) -c "$(BuildConfiguration)" --version-suffix $(Build.BuildId)'
+
   
 - task: DotNetCoreCLI@2
   displayName: 'Push to MyGet'
