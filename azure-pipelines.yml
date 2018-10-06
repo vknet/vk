@@ -18,7 +18,6 @@ steps:
     projects: '*[Tt]ests/*.csproj'
 
     arguments: '--configuration $(BuildConfiguration) --no-restore --no-build'
-	
 - task: DotNetCoreCLI@2
   displayName: Pack
   inputs:
