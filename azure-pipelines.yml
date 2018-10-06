@@ -11,17 +11,6 @@ variables:
 
 steps:
 - task: DotNetCoreCLI@2
-  displayName: Restore
-  inputs:
-    command: restore
-    projects: 'VkNet*/*.csproj'
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    projects: 'VkNet*/*.csproj'
-
-    arguments: '--configuration $(BuildConfiguration) --no-restore'
-- task: DotNetCoreCLI@2
   displayName: Test
   inputs:
     command: test
@@ -29,6 +18,31 @@ steps:
     projects: '*[Tt]ests/*.csproj'
 
     arguments: '--configuration $(BuildConfiguration) --no-restore --no-build'
+	
+- task: DotNetCoreCLI@2
+  displayName: Pack
+  inputs:
+    command: pack
+
+    packagesToPack: VkNet/VkNet.csproj
+
+    buildProperties: '-o $(Build.ArtifactStagingDirectory) -c "$(BuildConfiguration)" --version-suffix "alpha$(Rev:.r)"'
+
+  enabled: $(Parameters.CanPush)
+  
+- task: DotNetCoreCLI@2
+  displayName: 'Push to MyGet'
+  inputs:
+    command: custom
+
+    custom: 'nuget push'
+
+    arguments: '*.nupkg -k $(Parameters.MyGetKey) -s $(Parameters.MyGetFeed)'
+
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
+  enabled: $(Parameters.CanPush)
+
 - task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
   displayName: 'Send Telegram Notification'
   inputs:
