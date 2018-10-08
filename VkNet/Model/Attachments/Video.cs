@@ -103,7 +103,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Платформа
 		/// </summary>
-		[JsonProperty("is_private")]
+		[JsonProperty("platform")]
 		public string Platform { set; get; }
 
 		/// <summary>
@@ -170,7 +170,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Информация о лайках к видеозаписи.
 		/// </summary>
-		[JsonProperty("is_private")]
+		[JsonProperty("likes")]
 		public Likes Likes { get; set; }
 
 		/// <summary>
