@@ -664,7 +664,7 @@ namespace VkNet.Tests.Categories.Messages
 						'id':1234,
 						'body':'',
 						'user_id':4321,
-						'from_id':,
+						'from_id': 1234567890,
 						'date':1414993364,
 						'read_state':1,
 						'out':1,
@@ -853,12 +853,13 @@ namespace VkNet.Tests.Categories.Messages
 				  }";
 
 			var msgs = Cat.GetHistory(new MessagesGetHistoryParams());
+			var messages = msgs.Messages.ToList();
 
-			Assert.That(msgs.Messages[2].Body, Is.EqualTo("думаю пива предложит попить"));
-			Assert.That(msgs.Messages[2].Id, Is.EqualTo(2095));
-			Assert.That(msgs.Messages[2].UserId, Is.EqualTo(4793858));
+			Assert.That(messages[2].Body, Is.EqualTo("думаю пива предложит попить"));
+			Assert.That(messages[2].Id, Is.EqualTo(2095));
+			Assert.That(messages[2].UserId, Is.EqualTo(4793858));
 
-			Assert.That(msgs.Messages[2].Date,
+			Assert.That(messages[2].Date,
 				Is.EqualTo(new DateTime(2010,
 					9,
 					25,
@@ -867,17 +868,17 @@ namespace VkNet.Tests.Categories.Messages
 					4,
 					DateTimeKind.Utc)));
 
-			Assert.That(msgs.Messages[2].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs.Messages[2].Type, Is.EqualTo(MessageType.Sended));
+			Assert.That(messages[2].ReadState, Is.EqualTo(MessageReadState.Readed));
+			Assert.That(messages[2].Type, Is.EqualTo(MessageType.Sended));
 
 			Assert.That(msgs.TotalCount, Is.EqualTo(18));
-			Assert.That(msgs.Messages.Count, Is.EqualTo(3));
+			Assert.That(messages.Count, Is.EqualTo(3));
 
-			Assert.That(msgs.Messages[0].Id, Is.EqualTo(2093));
-			Assert.That(msgs.Messages[0].Body, Is.EqualTo("Таких литовкиных и сычевых"));
-			Assert.That(msgs.Messages[0].UserId, Is.EqualTo(4793858));
+			Assert.That(messages[0].Id, Is.EqualTo(2093));
+			Assert.That(messages[0].Body, Is.EqualTo("Таких литовкиных и сычевых"));
+			Assert.That(messages[0].UserId, Is.EqualTo(4793858));
 
-			Assert.That(msgs.Messages[0].Date,
+			Assert.That(messages[0].Date,
 				Is.EqualTo(new DateTime(2010,
 					9,
 					25,
@@ -886,14 +887,14 @@ namespace VkNet.Tests.Categories.Messages
 					48,
 					DateTimeKind.Utc)));
 
-			Assert.That(msgs.Messages[0].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs.Messages[0].Type, Is.EqualTo(MessageType.Sended));
+			Assert.That(messages[0].ReadState, Is.EqualTo(MessageReadState.Readed));
+			Assert.That(messages[0].Type, Is.EqualTo(MessageType.Sended));
 
-			Assert.That(msgs.Messages[1].Body, Is.EqualTo("в одноклассниках и в майле есть."));
-			Assert.That(msgs.Messages[1].Id, Is.EqualTo(2094));
-			Assert.That(msgs.Messages[1].UserId, Is.EqualTo(7712));
+			Assert.That(messages[1].Body, Is.EqualTo("в одноклассниках и в майле есть."));
+			Assert.That(messages[1].Id, Is.EqualTo(2094));
+			Assert.That(messages[1].UserId, Is.EqualTo(7712));
 
-			Assert.That(msgs.Messages[1].Date,
+			Assert.That(messages[1].Date,
 				Is.EqualTo(new DateTime(2010,
 					9,
 					25,
@@ -902,8 +903,8 @@ namespace VkNet.Tests.Categories.Messages
 					56,
 					DateTimeKind.Utc)));
 
-			Assert.That(msgs.Messages[1].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs.Messages[1].Type, Is.EqualTo(MessageType.Received));
+			Assert.That(messages[1].ReadState, Is.EqualTo(MessageReadState.Readed));
+			Assert.That(messages[1].Type, Is.EqualTo(MessageType.Received));
 		}
 
 		[Test]
