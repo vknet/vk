@@ -1,0 +1,102 @@
+using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
+using VkNet.Model.RequestParams;
+
+namespace VkNet.Tests.Categories.Messages
+{
+	[TestFixture]
+	[ExcludeFromCodeCoverage]
+	public class MessageGetHistoryTest : BaseTest
+	{
+		[Test]
+		public void GetHistoryTest()
+		{
+			Url = "https://api.vk.com/method/messages.getHistory";
+
+			Json = @"{
+					  'response': {
+					    'count': 226,
+					    'items': [
+					      {
+					        'date': 1539101588,
+					        'from_id': -123456789,
+					        'id': 30188,
+					        'out': 0,
+					        'peer_id': -123456789,
+					        'text': 'test',
+					        'conversation_message_id': 420,
+					        'fwd_messages': [
+					          {
+					            'date': 1539101091,
+					            'from_id': 123456789,
+					            'text': 'test',
+					            'attachments': [],
+					            'update_time': 0
+					          }
+					        ],
+					        'important': false,
+					        'random_id': 0,
+					        'attachments': [],
+					        'is_hidden': false
+					      }
+					    ],
+					    'conversations': [
+					      {
+					        'peer': {
+					          'id': -123456789,
+					          'type': 'group',
+					          'local_id': 123456789
+					        },
+					        'in_read': 30188,
+					        'out_read': 30188,
+					        'last_message_id': 30188,
+					        'can_write': {
+					          'allowed': true
+					        }
+					      }
+					    ],
+					    'profiles': [
+					      {
+					        'id': 123456789,
+					        'first_name': 'Test',
+					        'last_name': 'Test',
+					        'sex': 1,
+					        'screen_name': 'test',
+					        'photo_50': 'https://pp.userap/Kwo1nIv4k.jpg?ava=1',
+					        'photo_100': 'https://pp.userap/TyUeMBcHU.jpg?ava=1',
+					        'online': 1
+					      }
+					    ],
+					    'groups': [
+					      {
+					        'id': 123456789,
+					        'name': 'test',
+					        'screen_name': 'club123456789',
+					        'is_closed': 0,
+					        'type': 'page',
+					        'is_admin': 1,
+					        'admin_level': 3,
+					        'is_member': 1,
+					        'photo_50': 'https://vk.com/im/munity_50.png?ava=1',
+					        'photo_100': 'https://vk.com/im/unity_100.png?ava=1',
+					        'photo_200': 'https://vk.com/im/unity_200.png?ava=1'
+					      }
+					    ]
+					  }
+					}";
+
+			var result = Api.Messages.GetHistory(new MessagesGetHistoryParams
+			{
+				Count = 1,
+				PeerId = -123456789,
+				Extended = true
+			});
+
+			Assert.That(result.TotalCount, Is.EqualTo(226));
+			Assert.IsNotEmpty(result.Messages);
+			Assert.IsNotEmpty(result.Conversations);
+			Assert.IsNotEmpty(result.Groups);
+			Assert.IsNotEmpty(result.Users);
+		}
+	}
+}

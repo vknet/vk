@@ -218,7 +218,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<MessagesGetObject> GetHistoryAsync(MessagesGetHistoryParams @params)
+		public Task<MessageGetHistoryObject> GetHistoryAsync(MessagesGetHistoryParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => GetHistory(@params: @params));
 		}

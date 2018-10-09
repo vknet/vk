@@ -468,7 +468,7 @@ namespace VkNet.Abstractions
 		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getHistory
 		/// </remarks>
-		Task<MessagesGetObject> GetHistoryAsync(MessagesGetHistoryParams @params);
+		Task<MessageGetHistoryObject> GetHistoryAsync(MessagesGetHistoryParams @params);
 
 		/// <summary>
 		/// Исключает из мультидиалога пользователя, если текущий пользователь был создателем беседы либо пригласил исключаемого пользователя.
