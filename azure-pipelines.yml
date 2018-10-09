@@ -1,0 +1,50 @@
+# ASP.NET Core
+# Build and test ASP.NET Core web applications targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/vsts/pipelines/languages/dotnet-core
+
+variables:
+  BuildConfiguration: 'Release'
+
+steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core sdk 2.1.402'
+  inputs:
+    version: 2.1.402
+
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+
+    projects: '*[Tt]ests/*.csproj'
+
+    arguments: '-c $(BuildConfiguration)'
+
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    projects: VkNet/VkNet.csproj
+
+    arguments: '-o $(Build.ArtifactStagingDirectory) -c $(BuildConfiguration) --version-suffix $(Build.BuildId)'
+
+
+- script: 'dotnet nuget push *.nupkg -k $(Parameters.MyGetKey) -s $(Parameters.MyGetFeed)' 
+  workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
+  displayName: 'Command Line Script'
+
+- task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
+  displayName: 'Send Telegram Notification'
+  inputs:
+    botToken: '$(Parameters.botToken)'
+
+    chats: '$(Parameters.chats)'
+
+    message: '<code>Reason: $(Build.Reason) 
+	Build №: $(Build.BuildNumber)
+	VkNet был успешно собран!</code>'
+
+    buildQueuedBy: true

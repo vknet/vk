@@ -198,5 +198,10 @@ namespace VkNet.Abstractions
 		/// Stories
 		/// </summary>
 		IStoriesCategory Stories { get; set; }
+
+		/// <summary>
+		/// Lead Forms
+		/// </summary>
+		ILeadFormsCategory LeadForms { get; set; }
 	}
 }

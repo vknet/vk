@@ -34,6 +34,11 @@ namespace VkNet.Model.Attachments
 					return Audio;
 				}
 
+				if (Type == typeof(AudioMessage))
+				{
+					return AudioMessage;
+				}
+
 				if (Type == typeof(Document))
 				{
 					return Document;
@@ -123,6 +128,8 @@ namespace VkNet.Model.Attachments
 			}
 		}
 
+
+
 		/// <summary>
 		/// Информация о типе вложения.
 		/// </summary>
@@ -139,7 +146,7 @@ namespace VkNet.Model.Attachments
 		{
 			var attachment = new Attachment();
 
-			string type = response[key: "type"];
+			string type = response["type"];
 
 			switch (type)
 			{
@@ -148,7 +155,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Photo);
-					attachment.Photo = response[key: type];
+					attachment.Photo = response[type];
 
 					break;
 				}
@@ -156,7 +163,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Video);
-					attachment.Video = response[key: "video"];
+					attachment.Video = response["video"];
 
 					break;
 				}
@@ -164,7 +171,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Audio);
-					attachment.Audio = response[key: "audio"];
+					attachment.Audio = response["audio"];
 
 					break;
 				}
@@ -172,7 +179,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Document);
-					attachment.Document = response[key: "doc"];
+					attachment.Document = response["doc"];
 
 					break;
 				}
@@ -180,7 +187,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Graffiti);
-					attachment.Graffiti = response[key: "graffiti"];
+					attachment.Graffiti = response["graffiti"];
 
 					break;
 				}
@@ -188,7 +195,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Link);
-					attachment.Link = response[key: "link"];
+					attachment.Link = response["link"];
 
 					break;
 				}
@@ -196,7 +203,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Note);
-					attachment.Note = response[key: "note"];
+					attachment.Note = response["note"];
 
 					break;
 				}
@@ -204,7 +211,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(ApplicationContent);
-					attachment.ApplicationContent = response[key: "app"];
+					attachment.ApplicationContent = response["app"];
 
 					break;
 				}
@@ -212,7 +219,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Poll);
-					attachment.Poll = response[key: "poll"];
+					attachment.Poll = response["poll"];
 
 					break;
 				}
@@ -220,7 +227,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Page);
-					attachment.Page = response[key: "page"];
+					attachment.Page = response["page"];
 
 					break;
 				}
@@ -228,7 +235,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Album);
-					attachment.Album = response[key: "album"];
+					attachment.Album = response["album"];
 
 					break;
 				}
@@ -236,7 +243,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(PhotosList);
-					attachment.PhotosList = response[key: "photos_list"];
+					attachment.PhotosList = response["photos_list"];
 
 					break;
 				}
@@ -244,7 +251,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Wall);
-					attachment.Wall = response[key: "wall"];
+					attachment.Wall = response["wall"];
 
 					break;
 				}
@@ -252,7 +259,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Sticker);
-					attachment.Sticker = response[key: "sticker"];
+					attachment.Sticker = response["sticker"];
 
 					break;
 				}
@@ -260,7 +267,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Gift);
-					attachment.Gift = response[key: "gift"];
+					attachment.Gift = response["gift"];
 
 					break;
 				}
@@ -268,7 +275,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(WallReply);
-					attachment.WallReply = response[key: "wall_reply"];
+					attachment.WallReply = response["wall_reply"];
 
 					break;
 				}
@@ -276,7 +283,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(MarketAlbum);
-					attachment.MarketAlbum = response[key: "market_album"];
+					attachment.MarketAlbum = response["market_album"];
 
 					break;
 				}
@@ -284,7 +291,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(Market);
-					attachment.Market = response[key: "market"];
+					attachment.Market = response["market"];
 
 					break;
 				}
@@ -292,16 +299,25 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(PrettyCards);
-					attachment.PrettyCards = response[key: "pretty_cards"];
+					attachment.PrettyCards = response["pretty_cards"];
+
+					break;
+				}
+
+				case "audio_message":
+
+				{
+					attachment.Type = typeof(AudioMessage);
+					attachment.AudioMessage = response["audio_message"];
 
 					break;
 				}
 				default:
 
 				{
-					throw new InvalidParameterException(message: string.Format(format: "The type '{0}' of attachment is not defined. {1}"
-							, arg0: type
-							, arg1: response[key: "date"]));
+					throw new InvalidParameterException(string.Format("The type '{0}' of attachment is not defined. {1}"
+							, type
+							, response["date"]));
 				}
 			}
 
@@ -412,6 +428,10 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		private PrettyCards PrettyCards { get; set; }
 
+		/// <summary>
+		/// Аудио сообщение
+		/// </summary>
+		public AudioMessage AudioMessage { get; set; }
 	#endregion
 	}
 }

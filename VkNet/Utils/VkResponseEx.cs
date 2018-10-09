@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace VkNet.Utils
 {
@@ -18,7 +19,7 @@ namespace VkNet.Utils
 		/// <returns> Коллекция данных. </returns>
 		public static Collection<T> ToCollection<T>(this IEnumerable<T> source)
 		{
-			return new Collection<T>(list: new List<T>(collection: source));
+			return new Collection<T>(new List<T>(source));
 		}
 
 		/// <summary>
@@ -32,20 +33,20 @@ namespace VkNet.Utils
 		{
 			if (response == null)
 			{
-				return new Collection<T>(list: new List<T>());
+				return new Collection<T>(new List<T>());
 			}
 
 			var responseArray = (VkResponseArray) response;
 
 			if (responseArray == null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
 			{
-				return new Collection<T>(list: new List<T>());
+				return new Collection<T>(new List<T>());
 			}
 
 			return
-					responseArray.Select(selector: selector)
-							.Where(predicate: i => i != null)
-							.ToCollection(); //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'i' for null will always return false when generic type is instantiated with a value type.
+				responseArray.Select(selector)
+					.Where(i => i != null)
+					.ToCollection(); //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'i' for null will always return false when generic type is instantiated with a value type.
 		}
 
 		// --------------------------------------------------------------------------------------------
@@ -57,7 +58,7 @@ namespace VkNet.Utils
 		/// <returns> Коллекция данных только для чтения. </returns>
 		public static ReadOnlyCollection<T> ToReadOnlyCollection<T>(this IEnumerable<T> source)
 		{
-			return new ReadOnlyCollection<T>(list: new List<T>(collection: source));
+			return new ReadOnlyCollection<T>(new List<T>(source));
 		}
 
 		/// <summary>
@@ -68,21 +69,46 @@ namespace VkNet.Utils
 		/// <param name="selector"> Функция выборки. </param>
 		/// <returns> Коллекция данных только для чтения. </returns>
 		public static ReadOnlyCollection<T>
-				ToReadOnlyCollectionOf<T>(this VkResponse response, Func<VkResponse, T> selector) // where T : class
+			ToReadOnlyCollectionOf<T>(this VkResponse response, Func<VkResponse, T> selector) // where T : class
 		{
 			if (response == null)
 			{
-				return new ReadOnlyCollection<T>(list: new List<T>());
+				return new ReadOnlyCollection<T>(new List<T>());
 			}
 
 			var responseArray = (VkResponseArray) response;
 
 			if (responseArray == null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
 			{
-				return new ReadOnlyCollection<T>(list: new List<T>());
+				return new ReadOnlyCollection<T>(new List<T>());
 			}
 
-			return responseArray.Select(selector: selector).Where(predicate: i => i != null).ToReadOnlyCollection();
+			return responseArray.Select(selector).Where(i => i != null).ToReadOnlyCollection();
+		}
+
+		/// <summary>
+		/// В коллекцию только для чтения.
+		/// </summary>
+		/// <typeparam name="T"> Тип данных коллекции. </typeparam>
+		/// <param name="response"> Ответ vk.com. </param>
+		/// <param name="selector"> Функция выборки. </param>
+		/// <returns> Коллекция данных только для чтения. </returns>
+		public static ReadOnlyCollection<T>
+			ToReadOnlyCollectionOf<T>(this VkResponse response) // where T : class
+		{
+			if (response == null)
+			{
+				return new ReadOnlyCollection<T>(new List<T>());
+			}
+
+			var responseArray = (VkResponseArray) response;
+
+			if (responseArray == null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
+			{
+				return new ReadOnlyCollection<T>(new List<T>());
+			}
+
+			return responseArray.Cast<T>().Select(x => x).Where(i => i != null).ToReadOnlyCollection();
 		}
 
 		/// <summary>
@@ -96,10 +122,10 @@ namespace VkNet.Utils
 		{
 			if (responses == null)
 			{
-				return new ReadOnlyCollection<T>(list: new List<T>());
+				return new ReadOnlyCollection<T>(new List<T>());
 			}
 
-			return responses.Select(selector: selector).ToReadOnlyCollection();
+			return responses.Select(selector).ToReadOnlyCollection();
 		}
 
 		// --------------------------------------------------------------------------------------------
@@ -127,9 +153,9 @@ namespace VkNet.Utils
 			}
 
 			return
-					responseArray.Select(selector: selector)
-							.Where(predicate: i => i != null)
-							.ToList(); //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'i' for null will always return false when generic type is instantiated with a value type.
+				responseArray.Select(selector)
+					.Where(i => i != null)
+					.ToList(); //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'i' for null will always return false when generic type is instantiated with a value type.
 		}
 
 		/// <summary>
@@ -148,7 +174,7 @@ namespace VkNet.Utils
 				return new List<T>();
 			}
 
-			return responses.Select(selector: selector).ToList();
+			return responses.Select(selector).ToList();
 		}
 
 		// --------------------------------------------------------------------------------------------
@@ -167,20 +193,34 @@ namespace VkNet.Utils
 		{
 			if (response == null)
 			{
-				return new VkCollection<T>(totalCount: 0, list: Enumerable.Empty<T>());
+				return new VkCollection<T>(0, Enumerable.Empty<T>());
 			}
 
-			VkResponseArray data = response.ContainsKey(key: arrayName)
-					? response[key: arrayName]
-					: response;
+			VkResponseArray data = response.ContainsKey(arrayName)
+				? response[arrayName]
+				: response;
 
-			var resultCollection = data.ToReadOnlyCollectionOf(selector: selector);
+			var resultCollection = data.ToReadOnlyCollectionOf(selector);
 
-			var totalCount = response.ContainsKey(key: "count")
-					? response[key: "count"]
-					: (ulong) resultCollection.Count;
+			var totalCount = response.ContainsKey("count")
+				? response["count"]
+				: (ulong) resultCollection.Count;
 
-			return new VkCollection<T>(totalCount: totalCount, list: resultCollection);
+			return new VkCollection<T>(totalCount, resultCollection);
+		}
+
+		/// <summary>
+		/// Преобразовать <see cref="VkResponse"/> к <see cref="T"/>
+		/// </summary>
+		/// <param name="response">Ответ vk.com.</param>
+		/// <typeparam name="T">Тип перечисления</typeparam>
+		/// <returns></returns>
+		public static T To<T>(this VkResponse response)
+			where T : IConvertible
+		{
+			return response == null
+				? default(T)
+				: Utilities.EnumFrom<T>(response);
 		}
 	}
 }

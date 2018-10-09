@@ -9,7 +9,7 @@ namespace VkNet.Abstractions
 	/// <summary>
 	/// VkApi
 	/// </summary>
-	public interface IVkApi : IDisposable, IVkApiAuthAsync, IVkApiCategories, IVkApiCaptcha, IVkApiInvoke
+	public interface IVkApi : IDisposable, IVkApiAuthAsync, IVkApiCategories, IVkApiCaptcha, IVkInvoke
 	{
 	#region Properties
 

@@ -15,7 +15,7 @@ namespace VkNet.Model
 	/// Информация о сообществе (группе).
 	/// См. описание http://vk.com/dev/fields_groups
 	/// </summary>
-	[DebuggerDisplay(value: "[{Id}] {Name}")]
+	[DebuggerDisplay("[{Id}] {Name}")]
 	[Serializable]
 	public class Group : IVkModel
 	{
@@ -34,7 +34,7 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		IVkModel IVkModel.FromJson(VkResponse response)
 		{
-			return FromJson(response: response);
+			return FromJson(response);
 		}
 
 	#region Методы
@@ -48,59 +48,59 @@ namespace VkNet.Model
 		{
 			var group = new Group
 			{
-					Id = response[key: "group_id"] ?? response[key: "gid"] ?? response[key: "id"]
-					, Name = response[key: "name"]
-					, ScreenName = response[key: "screen_name"]
-					, IsClosed = response[key: "is_closed"]
-					, IsAdmin = response[key: "is_admin"]
-					, AdminLevel = response[key: "admin_level"]
-					, IsMember = response[key: "is_member"]
-					, Type = response[key: "type"]
+					Id = response["group_id"] ?? response["gid"] ?? response["id"]
+					, Name = response["name"]
+					, ScreenName = response["screen_name"]
+					, IsClosed = response["is_closed"]
+					, IsAdmin = response["is_admin"]
+					, AdminLevel = response["admin_level"]
+					, IsMember = response["is_member"]
+					, Type = response["type"]
 					, PhotoPreviews = response
-					, Deactivated = response[key: "deactivated"]
-					, HasPhoto = response[key: "has_photo"]
-					, Photo50 = response[key: "photo_50"]
-					, Photo100 = response[key: "photo_100"]
-					, Photo200 = response[key: "photo_200"]
+					, Deactivated = response["deactivated"]
+					, HasPhoto = response["has_photo"]
+					, Photo50 = response["photo_50"]
+					, Photo100 = response["photo_100"]
+					, Photo200 = response["photo_200"]
 					,
 
 					// опциональные поля
-					City = response[key: "city"]
-					, Country = response[key: "country"]
-					, Place = response[key: "place"]
-					, Description = response[key: "description"]
-					, WikiPage = response[key: "wiki_page"]
-					, MembersCount = response[key: "members_count"]
-					, Counters = response[key: "counters"]
-					, StartDate = response[key: "start_date"]
-					, EndDate = response[key: "finish_date"] ?? response[key: "end_date"]
-					, CanPost = response[key: "can_post"]
-					, CanSeeAllPosts = response[key: "can_see_all_posts"]
-					, CanUploadDocuments = response[key: "can_upload_doc"]
-					, CanCreateTopic = response[key: "can_create_topic"]
-					, Activity = response[key: "activity"]
-					, Status = response[key: "status"]
-					, StatusAudio = response[key: "status_audio"]
-					, Contacts = response[key: "contacts"].ToReadOnlyCollectionOf<Contact>(selector: x => x)
-					, Links = response[key: "links"].ToReadOnlyCollectionOf<ExternalLink>(selector: x => x)
-					, FixedPost = response[key: "fixed_post"]
-					, Verified = response[key: "verified"]
-					, Site = response[key: "site"]
-					, InvitedBy = response[key: "invited_by"]
-					, IsFavorite = response[key: "is_favorite"]
-					, BanInfo = response[key: "ban_info"]
-					, CanUploadVideo = response[key: "can_upload_video"]
-					, MainAlbumId = response[key: "main_album_id"]
-					, IsHiddenFromFeed = response[key: "is_hidden_from_feed"]
-					, MainSection = response[key: "main_section"]
-					, IsMessagesAllowed = response[key: "is_messages_allowed"]
-					, Trending = response[key: "trending"]
-					, CanMessage = response[key: "can_message"]
-					, Cover = response[key: "cover"]
-					, Market = response[key: "market"]
-					, AgeLimits = response[key: "age_limits"]
-					, MemberStatus = response[key: "member_status"]
-					, PublicDateLabel = response[key: "public_date_label"]
+					City = response["city"]
+					, Country = response["country"]
+					, Place = response["place"]
+					, Description = response["description"]
+					, WikiPage = response["wiki_page"]
+					, MembersCount = response["members_count"]
+					, Counters = response["counters"]
+					, StartDate = response["start_date"]
+					, EndDate = response["finish_date"] ?? response["end_date"]
+					, CanPost = response["can_post"]
+					, CanSeeAllPosts = response["can_see_all_posts"]
+					, CanUploadDocuments = response["can_upload_doc"]
+					, CanCreateTopic = response["can_create_topic"]
+					, Activity = response["activity"]
+					, Status = response["status"]
+					, StatusAudio = response["status_audio"]
+					, Contacts = response["contacts"].ToReadOnlyCollectionOf<Contact>(x => x)
+					, Links = response["links"].ToReadOnlyCollectionOf<ExternalLink>(x => x)
+					, FixedPost = response["fixed_post"]
+					, Verified = response["verified"]
+					, Site = response["site"]
+					, InvitedBy = response["invited_by"]
+					, IsFavorite = response["is_favorite"]
+					, BanInfo = response["ban_info"]
+					, CanUploadVideo = response["can_upload_video"]
+					, MainAlbumId = response["main_album_id"]
+					, IsHiddenFromFeed = response["is_hidden_from_feed"]
+					, MainSection = response["main_section"]
+					, IsMessagesAllowed = response["is_messages_allowed"]
+					, Trending = response["trending"]
+					, CanMessage = response["can_message"]
+					, Cover = response["cover"]
+					, Market = response["market"]
+					, AgeLimits = response["age_limits"]
+					, MemberStatus = response["member_status"]
+					, PublicDateLabel = response["public_date_label"]
 			};
 
 			return group;
@@ -192,7 +192,7 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "age_limits")]
+		[JsonProperty("age_limits")]
 		public AgeLimit AgeLimits { get; set; }
 
 		/// <summary>
@@ -211,7 +211,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// информация о том, может ли текущий пользователь написать сообщение сообществу.
 		/// </summary>
-		[JsonProperty(propertyName: "can_message")]
+		[JsonProperty("can_message")]
 		public bool CanMessage { get; set; }
 
 		/// <summary>
@@ -266,7 +266,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// обложка сообщества
 		/// </summary>
-		[JsonProperty(propertyName: "cover")]
+		[JsonProperty("cover")]
 		public GroupCover Cover { get; set; }
 
 		/// <summary>
@@ -319,13 +319,13 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "market")]
-		public Market Market { get; set; }
+		[JsonProperty("market")]
+		public GroupMarket Market { get; set; }
 
 		/// <summary>
 		/// статус участника текущего пользователя.
 		/// </summary>
-		[JsonProperty(propertyName: "member_status")]
+		[JsonProperty("member_status")]
 		public MemberStatus MemberStatus { get; set; }
 
 		/// <summary>
@@ -341,7 +341,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// возвращается для публичных страниц. Текст описания для поля start_date.
 		/// </summary>
-		[JsonProperty(propertyName: "public_date_label")]
+		[JsonProperty("public_date_label")]
 		public string PublicDateLabel { get; set; }
 
 		/// <summary>
@@ -352,7 +352,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время начала встречи (возвращаются только для встреч).
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? StartDate { get; set; }
 
 		/// <summary>
@@ -364,7 +364,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время окончания встречи (возвращаются только для встреч).
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? EndDate { get; set; }
 
 		/// <summary>

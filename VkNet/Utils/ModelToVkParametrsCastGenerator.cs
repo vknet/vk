@@ -2,6 +2,7 @@
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Model.RequestParams.Database;
+using VkNet.Model.RequestParams.Polls;
 
 // ReSharper disable MissingAnnotation
 

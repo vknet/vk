@@ -42,14 +42,14 @@ namespace VkNet.Categories
 				{ "user_id", userId }
 			};
 
-			return _vk.Call(methodName: "messages.addChatUser", parameters: parameters);
+			return _vk.Call("messages.addChatUser", parameters);
 		}
 
 		/// <inheritdoc />
 		public bool AllowMessagesFromGroup(long groupId, string key)
 		{
-			return _vk.Call(methodName: "messages.allowMessagesFromGroup",
-				parameters: new VkParameters
+			return _vk.Call("messages.allowMessagesFromGroup",
+				new VkParameters
 				{
 					{ "group_id", groupId },
 					{ "key", key }
@@ -59,14 +59,14 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool DenyMessagesFromGroup(long groupId)
 		{
-			return _vk.Call(methodName: "messages.denyMessagesFromGroup", parameters: new VkParameters { { "group_id", groupId } });
+			return _vk.Call("messages.denyMessagesFromGroup", new VkParameters { { "group_id", groupId } });
 		}
 
 		/// <inheritdoc />
 		[Pure]
 		public MessagesGetObject Get(MessagesGetParams @params)
 		{
-			return _vk.Call(methodName: "messages.get", parameters: @params);
+			return _vk.Call("messages.get", @params);
 		}
 
 		/// <inheritdoc />
@@ -80,22 +80,22 @@ namespace VkNet.Categories
 		[Pure]
 		public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, uint? previewLength = null)
 		{
-			return _vk.Call(methodName: "messages.getById",
-					parameters: new VkParameters
+			return _vk.Call("messages.getById",
+					new VkParameters
 					{
 						{ "message_ids", messageIds },
 						{ "preview_length", previewLength }
 					})
-				.ToVkCollectionOf<Message>(selector: r => r);
+				.ToVkCollectionOf<Message>(r => r);
 		}
 
 		/// <inheritdoc />
 		[Pure]
 		public MessagesGetObject GetDialogs(MessagesDialogsGetParams @params)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
 
-			return _vk.Call(methodName: "messages.getDialogs", parameters: @params);
+			return _vk.Call("messages.getDialogs", @params);
 		}
 
 		/// <inheritdoc />
@@ -109,25 +109,25 @@ namespace VkNet.Categories
 				{ "limit", limit }
 			};
 
-			return _vk.Call(methodName: "messages.searchDialogs", parameters: parameters);
+			return _vk.Call("messages.searchDialogs", parameters);
 		}
 
 		/// <inheritdoc />
 		public VkCollection<Message> Search(MessagesSearchParams @params)
 		{
-			return _vk.Call(methodName: "messages.search", parameters: @params).ToVkCollectionOf<Message>(selector: r => r);
+			return _vk.Call("messages.search", @params).ToVkCollectionOf<Message>(r => r);
 		}
 
 		/// <inheritdoc />
 		public long Send(MessagesSendParams @params)
 		{
-			return _vk.Call(methodName: "messages.send", parameters: @params);
+			return _vk.Call("messages.send", @params);
 		}
 
 		/// <inheritdoc />
 		public ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params)
 		{
-			return _vk.Call(methodName: "messages.send", parameters: @params).ToReadOnlyCollectionOf<MessagesSendResult>(selector: x => x);
+			return _vk.Call("messages.send", @params).ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
 		}
 
 		/// <inheritdoc />
@@ -143,10 +143,10 @@ namespace VkNet.Categories
 
 			if (count <= 10000)
 			{
-				parameters.Add(name: "count", nullableValue: count);
+				parameters.Add("count", count);
 			}
 
-			return _vk.Call(methodName: "messages.deleteConversation", parameters: parameters);
+			return _vk.Call("messages.deleteConversation", parameters);
 		}
 
 		/// <inheritdoc />
@@ -245,14 +245,14 @@ namespace VkNet.Categories
 		{
 			if (messageIds == null)
 			{
-				throw new ArgumentNullException(paramName: nameof(messageIds), message: "Parameter messageIds can not be null.");
+				throw new ArgumentNullException(nameof(messageIds), "Parameter messageIds can not be null.");
 			}
 
 			var ids = messageIds.ToList();
 
 			if (ids.Count == 0)
 			{
-				throw new ArgumentException(message: "Parameter messageIds has no elements.", paramName: nameof(messageIds));
+				throw new ArgumentException("Parameter messageIds has no elements.", nameof(messageIds));
 			}
 
 			var parameters = new VkParameters
@@ -262,14 +262,14 @@ namespace VkNet.Categories
 				{ "delete_for_all", deleteForAll }
 			};
 
-			var response = _vk.Call(methodName: "messages.delete", parameters: parameters);
+			var response = _vk.Call("messages.delete", parameters);
 
 			var result = new Dictionary<ulong, bool>();
 
 			foreach (var id in ids)
 			{
-				bool isDeleted = response[key: id.ToString(provider: CultureInfo.InvariantCulture)];
-				result.Add(key: id, value: isDeleted);
+				bool isDeleted = response[id.ToString(CultureInfo.InvariantCulture)];
+				result.Add(id, isDeleted);
 			}
 
 			return result;
@@ -283,7 +283,7 @@ namespace VkNet.Categories
 				{ "message_id", messageId }
 			};
 
-			return _vk.Call(methodName: "messages.restore", parameters: parameters);
+			return _vk.Call("messages.restore", parameters);
 		}
 
 		/// <inheritdoc />
@@ -295,7 +295,7 @@ namespace VkNet.Categories
 				{ "start_message_id", startMessageId }
 			};
 
-			return _vk.Call(methodName: "messages.markAsRead", parameters: parameters);
+			return _vk.Call("messages.markAsRead", parameters);
 		}
 
 		/// <inheritdoc />
@@ -308,7 +308,7 @@ namespace VkNet.Categories
 				{ "peer_id", peerId }
 			};
 
-			return _vk.Call(methodName: "messages.setActivity", parameters: parameters);
+			return _vk.Call("messages.setActivity", parameters);
 		}
 
 		/// <inheritdoc />
@@ -319,7 +319,7 @@ namespace VkNet.Categories
 				{ "user_id", userId }
 			};
 
-			var response = _vk.Call(methodName: "messages.getLastActivity", parameters: parameters);
+			var response = _vk.Call("messages.getLastActivity", parameters);
 
 			LastActivity activity = response;
 			activity.UserId = userId;
@@ -330,14 +330,14 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null)
 		{
-			return GetChat(chatIds: new[] { chatId }, fields: fields, nameCase: nameCase).FirstOrDefault();
+			return GetChat(new[] { chatId }, fields, nameCase).FirstOrDefault();
 		}
 
 		/// <inheritdoc />
 		public ChatPreview GetChatPreview(string link, ProfileFields fields)
 		{
-			return _vk.Call(methodName: "messages.getChatPreview",
-				parameters: new VkParameters
+			return _vk.Call("messages.getChatPreview",
+				new VkParameters
 				{
 					{ "link", link },
 					{ "fields", fields }
@@ -351,7 +351,7 @@ namespace VkNet.Categories
 
 			if (isNoEmpty)
 			{
-				throw new ArgumentException(message: "At least one chat ID must be defined", paramName: nameof(chatIds));
+				throw new ArgumentException("At least one chat ID must be defined", nameof(chatIds));
 			}
 
 			var parameters = new VkParameters
@@ -362,25 +362,25 @@ namespace VkNet.Categories
 
 			if (chatIds.Count() > 1)
 			{
-				parameters.Add(name: "chat_ids", collection: chatIds);
+				parameters.Add("chat_ids", chatIds);
 			} else
 			{
-				parameters.Add(name: "chat_id", value: chatIds.ElementAt(index: 0));
+				parameters.Add("chat_id", chatIds.ElementAt(0));
 			}
 
-			var response = _vk.Call(methodName: "messages.getChat", parameters: parameters);
+			var response = _vk.Call("messages.getChat", parameters);
 
 			return chatIds.Count() > 1
-				? response.ToReadOnlyCollectionOf<Chat>(selector: c => c)
-				: new ReadOnlyCollection<Chat>(list: new List<Chat> { response });
+				? response.ToReadOnlyCollectionOf<Chat>(c => c)
+				: new ReadOnlyCollection<Chat>(new List<Chat> { response });
 		}
 
 		/// <inheritdoc />
 		public long CreateChat(IEnumerable<ulong> userIds, string title)
 		{
-			if (string.IsNullOrEmpty(value: title))
+			if (string.IsNullOrEmpty(title))
 			{
-				throw new ArgumentException(message: "Title can not be empty or null.", paramName: nameof(userIds));
+				throw new ArgumentException("Title can not be empty or null.", nameof(userIds));
 			}
 
 			var parameters = new VkParameters
@@ -389,15 +389,15 @@ namespace VkNet.Categories
 				{ "title", title }
 			};
 
-			return _vk.Call(methodName: "messages.createChat", parameters: parameters);
+			return _vk.Call("messages.createChat", parameters);
 		}
 
 		/// <inheritdoc />
 		public bool EditChat(long chatId, string title)
 		{
-			if (string.IsNullOrEmpty(value: title))
+			if (string.IsNullOrEmpty(title))
 			{
-				throw new ArgumentException(message: "Title can not be empty or null.", paramName: nameof(title));
+				throw new ArgumentException("Title can not be empty or null.", nameof(title));
 			}
 
 			var parameters = new VkParameters
@@ -406,7 +406,7 @@ namespace VkNet.Categories
 				{ "title", title }
 			};
 
-			return _vk.Call(methodName: "messages.editChat", parameters: parameters);
+			return _vk.Call("messages.editChat", parameters);
 		}
 
 		/// <inheritdoc />
@@ -421,22 +421,22 @@ namespace VkNet.Categories
 				{ "name_case", nameCase }
 			};
 
-			var response = _vk.Call(methodName: "messages.getChatUsers", parameters: parameters);
+			var response = _vk.Call("messages.getChatUsers", parameters);
 
 			var list = new List<User>();
 
 			foreach (var chatId in collection)
 			{
-				var chatResponse = response[key: chatId.ToString()];
-				var users = chatResponse.ToReadOnlyCollectionOf(selector: x => fields != null ? x : new User { Id = (long) x });
+				var chatResponse = response[chatId.ToString()];
+				var users = chatResponse.ToReadOnlyCollectionOf(x => fields != null ? x : new User { Id = (long) x });
 
 				foreach (var user in users)
 				{
-					var exist = list.Exists(match: first => first.Id == user.Id);
+					var exist = list.Exists(first => first.Id == user.Id);
 
 					if (!exist)
 					{
-						list.Add(item: user);
+						list.Add(user);
 					}
 				}
 			}
@@ -444,16 +444,16 @@ namespace VkNet.Categories
 			return list.ToReadOnlyCollection();
 		}
 
-		/// <inheritdoc />
-		public bool RemoveChatUser(long chatId, long userId)
+		/// <inheritdoc/>
+		public bool RemoveChatUser(ulong chatId, long? userId = null, long? memberId = null)
 		{
-			var parameters = new VkParameters
-			{
-				{ "chat_id", chatId },
-				{ "user_id", userId }
-			};
-
-			return _vk.Call(methodName: "messages.removeChatUser", parameters: parameters);
+			return _vk.Call<bool>("messages.removeChatUser",
+				new VkParameters
+				{
+					{ "chat_id", chatId },
+					{ "user_id", userId },
+					{ "member_id", memberId }
+				});
 		}
 
 		/// <inheritdoc />
@@ -467,18 +467,18 @@ namespace VkNet.Categories
 				{ "need_pts", needPts }
 			};
 
-			return _vk.Call(methodName: "messages.getLongPollServer", parameters: parameters);
+			return _vk.Call("messages.getLongPollServer", parameters);
 		}
 
 		/// <inheritdoc />
 		public LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.PreviewLength);
-			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.EventsLimit);
-			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.MsgsLimit);
-			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.MaxMsgId);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.PreviewLength);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.EventsLimit);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.MsgsLimit);
+			VkErrors.ThrowIfNumberIsNegative(() => @params.MaxMsgId);
 
-			return _vk.Call(methodName: "messages.getLongPollHistory", parameters: @params);
+			return _vk.Call("messages.getLongPollHistory", @params);
 		}
 
 		/// <inheritdoc />
@@ -489,10 +489,10 @@ namespace VkNet.Categories
 				{ "chat_id", chatId }
 			};
 
-			var result = _vk.Call(methodName: "messages.deleteChatPhoto", parameters: parameters);
-			messageId = result[key: "message_id"];
+			var result = _vk.Call("messages.deleteChatPhoto", parameters);
+			messageId = result["message_id"];
 
-			return result[key: "chat"];
+			return result["chat"];
 		}
 
 		/// <inheritdoc />
@@ -506,10 +506,10 @@ namespace VkNet.Categories
 				{ "file", rawResponse }
 			};
 
-			var result = _vk.Call(methodName: "messages.setChatPhoto", parameters: parameters);
-			messageId = result[key: "message_id"];
+			var result = _vk.Call("messages.setChatPhoto", parameters);
+			messageId = result["message_id"];
 
-			return result[key: "chat"];
+			return result["chat"];
 		}
 
 		/// <inheritdoc />
@@ -521,9 +521,9 @@ namespace VkNet.Categories
 				{ "important", important }
 			};
 
-			VkResponseArray result = _vk.Call(methodName: "messages.markAsImportant", parameters: parameters);
+			VkResponseArray result = _vk.Call("messages.markAsImportant", parameters);
 
-			return result.ToReadOnlyCollectionOf<long>(selector: x => x);
+			return result.ToReadOnlyCollectionOf<long>(x => x);
 		}
 
 		/// <inheritdoc />
@@ -531,52 +531,52 @@ namespace VkNet.Categories
 		{
 			var parameters = @params;
 
-			return _vk.Call(methodName: "messages.sendSticker", parameters: parameters);
+			return _vk.Call("messages.sendSticker", parameters);
 		}
 
 		/// <inheritdoc />
 		public ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom)
 		{
-			var result = _vk.Call(methodName: "messages.getHistoryAttachments", parameters: @params);
+			var result = _vk.Call("messages.getHistoryAttachments", @params);
 
-			nextFrom = result[key: "next_from"];
+			nextFrom = result["next_from"];
 
-			return result.ToReadOnlyCollectionOf<HistoryAttachment>(selector: o => o);
+			return result.ToReadOnlyCollectionOf<HistoryAttachment>(o => o);
 		}
 
 		/// <inheritdoc />
 		public string GetInviteLink(ulong peerId, bool reset)
 		{
-			return _vk.Call(methodName: "messages.getInviteLink",
-				parameters: new VkParameters
+			return _vk.Call("messages.getInviteLink",
+				new VkParameters
 				{
 					{ "peer_id", peerId },
 					{ "reset", reset }
-				})[key: "link"];
+				})["link"];
 		}
 
 		/// <inheritdoc />
 		public bool IsMessagesFromGroupAllowed(ulong groupId, ulong userId)
 		{
-			return _vk.Call(methodName: "messages.isMessagesFromGroupAllowed",
-				parameters: new VkParameters
+			return _vk.Call("messages.isMessagesFromGroupAllowed",
+				new VkParameters
 				{
 					{ "group_id", groupId },
 					{ "user_id", userId }
-				})[key: "is_allowed"];
+				})["is_allowed"];
 		}
 
 		/// <inheritdoc />
 		public long JoinChatByInviteLink(string link)
 		{
-			return _vk.Call(methodName: "messages.joinChatByInviteLink", parameters: new VkParameters { { "link", link } })[key: "chat_id"];
+			return _vk.Call("messages.joinChatByInviteLink", new VkParameters { { "link", link } })["chat_id"];
 		}
 
 		/// <inheritdoc />
 		public bool MarkAsAnsweredConversation(long peerId, bool answered = true)
 		{
-			return _vk.Call(methodName: "messages.markAsAnsweredConversation",
-				parameters: new VkParameters
+			return _vk.Call("messages.markAsAnsweredConversation",
+				new VkParameters
 				{
 					{ "peer_id", peerId },
 					{ "answered", answered }
@@ -592,8 +592,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool MarkAsImportantConversation(long peerId, bool important = true)
 		{
-			return _vk.Call(methodName: "messages.markAsImportantConversation",
-				parameters: new VkParameters
+			return _vk.Call("messages.markAsImportantConversation",
+				new VkParameters
 				{
 					{ "peer_id", peerId },
 					{ "important", important }
@@ -609,7 +609,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool Edit(MessageEditParams @params)
 		{
-			return _vk.Call(methodName: "messages.edit", parameters: @params);
+			return _vk.Call("messages.edit", @params);
 		}
 
 		/// <summary>
@@ -633,20 +633,20 @@ namespace VkNet.Categories
 		[Pure]
 		public Message GetById(ulong messageId, uint? previewLength = null)
 		{
-			var result = GetById(messageIds: new[] { messageId }, previewLength: previewLength);
+			var result = GetById(new[] { messageId }, previewLength);
 
 			if (result.Count > 0)
 			{
 				return result.First();
 			}
 
-			throw new VkApiException(message: "Сообщения с таким ID не существует.");
+			throw new VkApiException("Сообщения с таким ID не существует.");
 		}
 
 		/// <inheritdoc/>
 		public bool Unpin(long peerId, ulong? groupId = null)
 		{
-			return _vk.Call<bool>("messages.unpin", new VkParameters{{"peer_id", peerId}, {"group_id", groupId}});
+			return _vk.Call<bool>("messages.unpin", new VkParameters { { "peer_id", peerId }, { "group_id", groupId } });
 		}
 	}
 }

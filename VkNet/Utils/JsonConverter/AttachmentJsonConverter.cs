@@ -18,7 +18,22 @@ namespace VkNet.Utils.JsonConverter
 		/// <exception cref="T:System.NotImplementedException"> </exception>
 		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 		{
-			throw new NotImplementedException();
+			var attachments = (IEnumerable<Attachment>) value;
+
+			var jArray = new JArray();
+
+			foreach (var attachment in attachments)
+			{
+				var type = attachment.Type.Name.ToLower();
+				var jObj = new JObject
+				{
+					{ "type", type },
+					{ type, JToken.FromObject(attachment.Instance, serializer) }
+				};
+				jArray.Add(jObj);
+			}
+
+			jArray.WriteTo(writer);
 		}
 
 		/// <inheritdoc />

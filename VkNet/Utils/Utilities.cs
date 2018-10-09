@@ -19,6 +19,7 @@ namespace VkNet.Utils
 		/// <returns> Перечисление указанного типа. </returns>
 		/// <exception cref="System.ArgumentException"> value </exception>
 		public static T EnumFrom<T>(int value)
+			where T : IConvertible
 		{
 			if (!Enum.IsDefined(enumType: typeof(T), value: value))
 			{
@@ -35,7 +36,7 @@ namespace VkNet.Utils
 		/// <param name="value"> Числовое значение. </param>
 		/// <returns> Перечисление указанного типа. </returns>
 		public static T? NullableEnumFrom<T>(int value)
-				where T : struct
+			where T : struct
 		{
 			if (!Enum.IsDefined(enumType: typeof(T), value: value))
 			{
@@ -54,8 +55,8 @@ namespace VkNet.Utils
 		public static long? GetNullableLongId(VkResponse response)
 		{
 			return string.IsNullOrWhiteSpace(value: response?.ToString())
-					? (long?) null
-					: System.Convert.ToInt64(value: response?.ToString());
+				? (long?) null
+				: System.Convert.ToInt64(value: response?.ToString());
 		}
 
 		/// <summary>
@@ -72,9 +73,9 @@ namespace VkNet.Utils
 				return string.Empty;
 			}
 
-			return string.Join(separator: separator
-					, values: collection.Select(selector: i => i.ToString().Trim())
-							.Where(predicate: s => !string.IsNullOrWhiteSpace(value: s)));
+			return string.Join(separator: separator,
+				values: collection.Select(selector: i => i.ToString().Trim())
+					.Where(predicate: s => !string.IsNullOrWhiteSpace(value: s)));
 		}
 
 		/// <summary>
