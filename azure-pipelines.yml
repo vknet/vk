@@ -3,9 +3,6 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/vsts/pipelines/languages/dotnet-core
 
-pool:
-  vmImage: 'Hosted VS2017'
-
 variables:
   BuildConfiguration: 'Release'
 
