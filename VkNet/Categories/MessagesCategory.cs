@@ -71,9 +71,9 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public MessagesGetObject GetHistory(MessagesGetHistoryParams @params)
+		public MessageGetHistoryObject GetHistory(MessagesGetHistoryParams @params)
 		{
-			return _vk.Call(methodName: "messages.getHistory", parameters: @params);
+			return _vk.Call<MessageGetHistoryObject>(methodName: "messages.getHistory", parameters: @params);
 		}
 
 		/// <inheritdoc />
