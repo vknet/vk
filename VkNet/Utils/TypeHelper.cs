@@ -101,7 +101,11 @@ namespace VkNet.Utils
 						var result = func.Invoke();
 						tcs.SetResult(result);
 					}
-					catch (VkApiException ex)
+					catch (OperationCanceledException)
+					{
+						tcs.SetCanceled();
+					}
+					catch (System.Exception ex)
 					{
 						tcs.SetException(ex);
 					}
@@ -127,7 +131,11 @@ namespace VkNet.Utils
 					func.Invoke();
 					tcs.SetResult(null);
 				}
-				catch (VkApiException ex)
+				catch (OperationCanceledException)
+				{
+					tcs.SetCanceled();
+				}
+				catch (System.Exception ex)
 				{
 					tcs.SetException(ex);
 				}
