@@ -16,7 +16,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Идентификатор фона.
 		/// </summary>
-		public long Id { get; set; }
+		public long? Id { get; set; }
 
 		/// <summary>
 		/// Тип фона.
@@ -27,7 +27,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// (для type = gradient) угол градиента по оси X.
 		/// </summary>
-		public int Angle { get; set; }
+		public int? Angle { get; set; }
 
 		/// <summary>
 		/// HEX-код замещающего цвета (без #).
@@ -37,12 +37,12 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// (для type = tile) ширина плитки паттерна.
 		/// </summary>
-		public int Width { get; set; }
+		public int? Width { get; set; }
 
 		/// <summary>
 		/// (для type = tile) высота плитки паттерна.
 		/// </summary>
-		public int Height { get; set; }
+		public int? Height { get; set; }
 
 		/// <summary>
 		/// (для type = tile) изображение плитки паттерна. Массив объектов изображений.
@@ -83,6 +83,11 @@ namespace VkNet.Model.Attachments
 		/// </returns>
 		public static implicit operator PollBackground(VkResponse response)
 		{
+			if (response == null)
+			{
+				return null;
+			}
+
 			return response.HasToken()
 				? FromJson(response)
 				: null;

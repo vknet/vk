@@ -22,7 +22,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Кол-во проголосовавших
 		/// </summary>
-		public int Votes { get; set; }
+		public int? Votes { get; set; }
 
 		/// <summary>
 		/// Процент текущего ответа ко всем остальным вариантам
