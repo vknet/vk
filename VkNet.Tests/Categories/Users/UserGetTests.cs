@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
@@ -24,7 +24,7 @@ namespace VkNet.Tests.Categories.Users
                         'first_name': 'Olesya',
                         'last_name': 'Izmaylova',
                         'deactivated': 'banned',
-						'sex': -1
+			'sex': -1
                       }
                     ]
                   }";
