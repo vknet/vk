@@ -181,7 +181,8 @@ namespace VkNet.Model
 		public string LastName { get; set; }
 
 		/// <summary>
-		/// Причина блокирования аккаунта
+		/// поле возвращается, если страница пользователя удалена или заблокирована, содержит
+		/// значение deleted или banned. В этом случае опциональные поля не возвращаются
 		/// </summary>
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public Deactivated Deactivated { get; set; }
