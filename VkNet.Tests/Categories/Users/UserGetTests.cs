@@ -20,11 +20,11 @@ namespace VkNet.Tests.Categories.Users
 					@"{
                     'response': [
                       {
-                        'id': 118312730,
-                        'first_name': 'Olesya',
-                        'last_name': 'Izmaylova',
+                        'id': 47,
+                        'first_name': 'Gabriel',
+                        'last_name': 'Shalel',
                         'deactivated': 'banned',
-			'sex': -1
+						'sex': 2
                       }
                     ]
                   }";
