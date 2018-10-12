@@ -10,17 +10,17 @@ namespace VkNet.Enums.SafetyEnums
 	public sealed class Deactivated : SafetyEnum<Deactivated>
 	{
 		/// <summary>
-		/// Удалено.
+		/// Удалён.
 		/// </summary>
 		public static readonly Deactivated Deleted = RegisterPossibleValue(value: "deleted");
 
 		/// <summary>
-		/// Заблокировано.
+		/// Заблокирован.
 		/// </summary>
 		public static readonly Deactivated Banned = RegisterPossibleValue(value: "banned");
 
 		/// <summary>
-		/// Активно.
+		/// Активен.
 		/// </summary>
 		[DefaultValue]
 		public static readonly Deactivated Activated = RegisterPossibleValue(value: "activated");
