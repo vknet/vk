@@ -10,11 +10,6 @@ namespace VkNet.Enums
 	public enum Sex
 	{
 		/// <summary>
-		/// Деактивированный аккаунт
-		/// </summary>
-		Deactivated = -1
-
-		, /// <summary>
 		/// Не указан
 		/// </summary>
 		[DefaultValue]
