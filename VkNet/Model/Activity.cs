@@ -1,5 +1,6 @@
-﻿using System;
 using Newtonsoft.Json;
+using System;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -7,6 +8,7 @@ namespace VkNet.Model
 	/// Activity
 	/// </summary>
 	[Serializable]
+	[JsonConverter(typeof(IgnoreUnexpectedArraysConverter<Activity>))]
 	public class Activity
 	{
 		/// <summary>
