@@ -15,13 +15,15 @@ namespace VkNet.Enums
 		/// </summary>
 		[DefaultValue]
 		Unknown = 0
+		,
 
-		, /// <summary>
+		/// <summary>
 		/// Женский
 		/// </summary>
 		Female = 1
+		,
 
-		, /// <summary>
+		/// <summary>
 		/// Мужской
 		/// </summary>
 		Male = 2
