@@ -9,6 +9,7 @@ namespace VkNet.Enums
 	[Serializable]
 	public enum Sex
 	{
+	
 		/// <summary>
 		/// Не указан
 		/// </summary>
