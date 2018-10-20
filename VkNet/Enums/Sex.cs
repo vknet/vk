@@ -9,7 +9,7 @@ namespace VkNet.Enums
 	[Serializable]
 	public enum Sex
 	{
-		,/// <summary>
+		/// <summary>
 		/// Не указан
 		/// </summary>
 		[DefaultValue]
