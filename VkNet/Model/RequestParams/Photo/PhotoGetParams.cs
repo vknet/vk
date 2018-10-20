@@ -21,9 +21,9 @@ namespace VkNet.Model.RequestParams
 
 		/// <summary>
 		/// Идентификатор альбома. Для служебных альбомов используются следующие
-		/// идентификаторы: wall — фотографии со стены; 
-		/// profile — фотографии профиля; 
-		/// saved — сохраненные фотографии;
+		/// идентификаторы: wall — фотографии со стены,
+		/// profile — фотографии профиля,
+		/// saved — сохраненные фотографии,
 		/// </summary>
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public PhotoAlbumType AlbumId { get; set; }
