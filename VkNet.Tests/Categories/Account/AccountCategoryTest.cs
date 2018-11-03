@@ -17,7 +17,7 @@ namespace VkNet.Tests.Categories
 	[ExcludeFromCodeCoverage]
 	public class AccountCategoryTest : CategoryBaseTest
 	{
-		protected override string Folder => "Account";
+		protected override string Folder => @"Categories\Account";
 
 		[Test]
 		public void BanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
@@ -216,7 +216,7 @@ namespace VkNet.Tests.Categories
 		{
 			Url = "https://api.vk.com/method/account.getProfileInfo";
 			ReadCategoryJsonPath(nameof(GetProfileInfo_WhenServerReturnAllFields));
-			
+
 			var info = Api.Account.GetProfileInfo();
 			Assert.That(info, Is.Not.Null);
 
