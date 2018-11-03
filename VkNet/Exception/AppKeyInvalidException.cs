@@ -12,8 +12,9 @@ namespace VkNet.Exception
 	public class AppKeyInvalidException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
-		public AppKeyInvalidException(VkResponse error) : base(message: error)
+		public AppKeyInvalidException(VkResponse response) : base(message: response[key: "error_msg"])
 		{
+			ErrorCode = response[key: "error_code"];
 		}
 	}
 }
