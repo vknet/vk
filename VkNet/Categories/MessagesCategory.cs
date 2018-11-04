@@ -295,7 +295,8 @@ namespace VkNet.Categories
 			var parameters = new VkParameters
 			{
 				{ "peer_id", peerId },
-				{ "start_message_id", startMessageId }
+				{ "start_message_id", startMessageId },
+				{ "group_id", groupId }
 			};
 
 			return _vk.Call("messages.markAsRead", parameters);
