@@ -484,11 +484,12 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Chat DeleteChatPhoto(out ulong messageId, ulong chatId)
+		public Chat DeleteChatPhoto(out ulong messageId, ulong chatId, ulong? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
-				{ "chat_id", chatId }
+				{ "chat_id", chatId },
+				{ "group_id", groupId }
 			};
 
 			var result = _vk.Call("messages.deleteChatPhoto", parameters);

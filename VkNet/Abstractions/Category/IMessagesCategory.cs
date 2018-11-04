@@ -97,10 +97,11 @@ namespace VkNet.Abstractions
 		/// Позволяет удалить фотографию мультидиалога.
 		/// </summary>
 		/// <param name="messageId"> Идентификатор отправленного системного сообщения; </param>
-		/// <param name="chatId">
-		/// Идентификатор беседы. положительное число, обязательный параметр (Положительное
-		/// число,
-		/// обязательный параметр).
+		/// <param name = "chatId">
+		/// Идентификатор беседы. положительное число, обязательный параметр, максимальное значение 100000000
+		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
 		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает объект, содержащий следующие поля:
@@ -110,7 +111,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteChatPhoto
 		/// </remarks>
-		Chat DeleteChatPhoto(out ulong messageId, ulong chatId);
+		Chat DeleteChatPhoto(out ulong messageId, ulong chatId, ulong? groupId = null);
 
 		/// <summary>
 		/// Позволяет запретить отправку сообщений от сообщества текущему пользователю.

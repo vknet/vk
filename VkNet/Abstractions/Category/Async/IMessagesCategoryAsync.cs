@@ -72,9 +72,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.createChat
 		/// </remarks>
-		Task<long> CreateChatAsync(IEnumerable<ulong> userIds
-									, [NotNull]
-									string title);
+		Task<long> CreateChatAsync(IEnumerable<ulong> userIds, [NotNull] string title);
 
 		/// <summary>
 		/// Удаляет сообщение.
@@ -97,15 +95,17 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.delete
 		/// </remarks>
-		Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null, bool? deleteForAll = null);
+		Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
+													bool? deleteForAll = null);
 
 		/// <summary>
 		/// Позволяет удалить фотографию мультидиалога.
 		/// </summary>
-		/// <param name="chatId">
-		/// Идентификатор беседы. положительное число, обязательный параметр (Положительное
-		/// число,
-		/// обязательный параметр).
+		/// <param name = "chatId">
+		/// Идентификатор беседы. положительное число, обязательный параметр, максимальное значение 100000000
+		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
 		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает объект, содержащий следующие поля:
@@ -115,7 +115,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteChatPhoto
 		/// </remarks>
-		Task<Chat> DeleteChatPhotoAsync(ulong chatId);
+		Task<Chat> DeleteChatPhotoAsync(ulong chatId, ulong? groupId = null);
 
 		/// <summary>
 		/// Позволяет запретить отправку сообщений от сообщества текущему пользователю.
@@ -148,8 +148,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.editChat
 		/// </remarks>
 		Task<bool> EditChatAsync(long chatId
-								, [NotNull]
-								string title);
+								, [NotNull] string title);
 
 		/// <summary>
 		/// Возвращает список входящих либо исходящих личных сообщений текущего
@@ -186,8 +185,7 @@ namespace VkNet.Abstractions
 		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
 		/// </remarks>
-		Task<VkCollection<Message>> GetByIdAsync([NotNull]
-												IEnumerable<ulong> messageIds
+		Task<VkCollection<Message>> GetByIdAsync([NotNull] IEnumerable<ulong> messageIds
 												, uint? previewLength = null);
 
 		/// <summary>
