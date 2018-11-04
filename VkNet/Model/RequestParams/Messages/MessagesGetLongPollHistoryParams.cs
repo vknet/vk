@@ -12,6 +12,12 @@ namespace VkNet.Model.RequestParams
 	public class MessagesGetLongPollHistoryParams
 	{
 		/// <summary>
+		/// Список дополнительных полей профилей, которые необходимо вернуть.
+		/// </summary>
+		[JsonProperty(propertyName: "fields")]
+		public UsersFields Fields { get; set; }
+
+		/// <summary>
 		/// Последнее значение параметра ts, полученное от Long Poll сервера или с помощью
 		/// метода messages.getLongPollServer
 		/// </summary>
@@ -43,12 +49,6 @@ namespace VkNet.Model.RequestParams
 		public bool? Onlines { get; set; }
 
 		/// <summary>
-		/// Список дополнительных полей профилей, которые необходимо вернуть.
-		/// </summary>
-		[JsonProperty(propertyName: "fields")]
-		public UsersFields Fields { get; set; }
-
-		/// <summary>
 		/// Если количество событий в истории превысит это значение, будет возвращена
 		/// ошибка.
 		/// </summary>
@@ -72,16 +72,16 @@ namespace VkNet.Model.RequestParams
 		public long? MaxMsgId { get; set; }
 
 		/// <summary>
-		/// Версия Long Poll.
-		/// </summary>
-		[JsonProperty(propertyName: "lp_version")]
-		public ulong? LpVersion { get; set; }
-
-		/// <summary>
 		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя).
 		/// </summary>
 		[JsonProperty(propertyName: "group_id")]
 		public ulong? GroupId { get; set; }
+
+		/// <summary>
+		/// Версия Long Poll.
+		/// </summary>
+		[JsonProperty(propertyName: "lp_version")]
+		public ulong? LpVersion { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.

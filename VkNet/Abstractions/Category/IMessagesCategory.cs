@@ -619,15 +619,22 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Помечает беседу как отвеченную либо снимает отметку.
 		/// </summary>
-		/// <param name="peerId"> Идентификатор беседы </param>
-		/// <param name="answered"> флаг, может принимать значения <c>true</c> или <c>false</c>, по умолчанию <c>true</c> </param>
+		/// <param name = "peerId">
+		/// Идентификатор беседы целое число, обязательный параметр
+		/// </param>
+		/// <param name = "answered">
+		/// <c>true</c> - беседа отмечена отвеченной, <c>false</c> - неотвеченной флаг, может принимать значения <c>true</c> или <c>false</c>, по умолчанию <c>true</c>
+		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
+		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredConversation
 		/// </remarks>
-		bool MarkAsAnsweredConversation(long peerId, bool answered = true);
+		bool MarkAsAnsweredConversation(long peerId, bool? answered = null, ulong? groupId = null);
 
 		/// <summary>
 		/// Помечает беседу как важную либо снимает отметку.

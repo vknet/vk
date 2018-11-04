@@ -577,13 +577,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool MarkAsAnsweredConversation(long peerId, bool answered = true)
+		public bool MarkAsAnsweredConversation(long peerId, bool? answered = null, ulong? groupId = null)
 		{
 			return _vk.Call("messages.markAsAnsweredConversation",
 				new VkParameters
 				{
 					{ "peer_id", peerId },
-					{ "answered", answered }
+					{ "answered", answered },
+					{ "group_id", groupId }
 				});
 		}
 

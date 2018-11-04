@@ -291,9 +291,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> MarkAsAnsweredConversationAsync(long peerId, bool answered = true)
+		public Task<bool> MarkAsAnsweredConversationAsync(long peerId, bool? answered = null, ulong? groupId = null)
 		{
-			throw new NotImplementedException();
+			return TypeHelper.TryInvokeMethodAsync(() => MarkAsAnsweredConversation(peerId, answered, groupId));
 		}
 
 		/// <inheritdoc />
