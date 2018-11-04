@@ -241,7 +241,8 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool spam, bool deleteForAll)
+		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
+												bool? deleteForAll = null)
 		{
 			if (messageIds == null)
 			{
@@ -259,6 +260,7 @@ namespace VkNet.Categories
 			{
 				{ "message_ids", ids },
 				{ "spam", spam },
+				{ "group_id", groupId },
 				{ "delete_for_all", deleteForAll }
 			};
 

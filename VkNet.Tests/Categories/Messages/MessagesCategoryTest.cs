@@ -87,7 +87,7 @@ namespace VkNet.Tests.Categories.Messages
 		{
 			var cat = new MessagesCategory(new VkApi());
 
-			Assert.That(() => cat.Delete(new ulong[] { 1 }, false, false),
+			Assert.That(() => cat.Delete(new ulong[] { 1 }, false, null, false),
 				Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
@@ -103,7 +103,7 @@ namespace VkNet.Tests.Categories.Messages
 					}
 				  }";
 
-			var result = Cat.Delete(new ulong[] { 4446 }, false, false);
+			var result = Cat.Delete(new ulong[] { 4446 }, false, null, false);
 
 			Assert.That(result[4446], Is.True);
 		}
@@ -139,7 +139,7 @@ namespace VkNet.Tests.Categories.Messages
 					}
 				  }";
 
-			Assert.That(() => Cat.Delete(new ulong[] { 999999 }, false, false),
+			Assert.That(() => Cat.Delete(new ulong[] { 999999 }, false, null, false),
 				Throws.InstanceOf<VkApiException>());
 		}
 
@@ -162,6 +162,7 @@ namespace VkNet.Tests.Categories.Messages
 					4464
 				},
 				false,
+				null,
 				false);
 
 			Assert.That(dict.Count, Is.EqualTo(2));

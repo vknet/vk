@@ -3,6 +3,9 @@
 	/// <summary>
 	/// Менеджер версий Vk Api
 	/// </summary>
+	/// <remarks>
+	/// <a href="https://vk.com/dev/versions">Версии API</a>
+	/// </remarks>
 	public interface IVkApiVersionManager
 	{
 		/// <summary>

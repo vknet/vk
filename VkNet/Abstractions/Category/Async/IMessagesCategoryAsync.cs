@@ -77,33 +77,27 @@ namespace VkNet.Abstractions
 									string title);
 
 		/// <summary>
-		/// Удаляет сообщения пользователя.
+		/// Удаляет сообщение.
 		/// </summary>
-		/// <param name="messageIds"> Идентификаторы удаляемых сообщений. </param>
-		/// <param name="spam"> пометить сообщения как спам. </param>
-		/// <param name="deleteForAll"> 1 — если сообщение нужно удалить для получателей </param>
+		/// <param name = "messageIds">
+		/// Список идентификаторов сообщений, разделённых через запятую. список положительных чисел, разделенных запятыми
+		/// </param>
+		/// <param name = "spam">
+		/// Пометить сообщения как спам. флаг, может принимать значения 1 или 0
+		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
+		/// </param>
+		/// <param name = "deleteForAll">
+		/// 1 — если сообщение нужно удалить для получателей (если с момента отправки сообщения прошло не более 24 часов ). флаг, может принимать значения 1 или 0, по умолчанию
+		/// </param>
 		/// <returns>
-		/// Возвращает словарь (идентификатор сообщения -&gt; признак было ли удаление
-		/// сообщения успешным).
+		/// После успешного выполнения возвращает 1 для каждого удаленного сообщения.
 		/// </returns>
-		/// <exception cref="System.ArgumentNullException">
-		/// messageIds;Parameter messageIds
-		/// can not be null.
-		/// </exception>
-		/// <exception cref="System.ArgumentException">
-		/// Parameter messageIds has no
-		/// elements.;messageIds
-		/// </exception>
-		/// <exception cref="ArgumentException">
-		/// Элемент с таким ключом уже существует в
-		/// словаре T:System
-		/// </exception>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.delete
 		/// </remarks>
-		Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> messageIds, bool spam, bool deleteForAll);
+		Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null, bool? deleteForAll = null);
 
 		/// <summary>
 		/// Позволяет удалить фотографию мультидиалога.

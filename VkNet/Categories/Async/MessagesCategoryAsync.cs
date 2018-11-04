@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -37,7 +38,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> messageIds, bool spam, bool deleteForAll)
+		public Task<IDictionary<ulong, bool>> DeleteAsync([NotNull]IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null, bool? deleteForAll = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
 				Delete(messageIds: messageIds, spam: spam, deleteForAll: deleteForAll));
