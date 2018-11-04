@@ -595,13 +595,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool MarkAsImportantConversation(long peerId, bool important = true)
+		public bool MarkAsImportantConversation(long peerId, bool? important = null, ulong? groupId = null)
 		{
 			return _vk.Call("messages.markAsImportantConversation",
 				new VkParameters
 				{
 					{ "peer_id", peerId },
-					{ "important", important }
+					{ "important", important },
+					{ "group_id", groupId }
 				});
 		}
 

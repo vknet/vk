@@ -532,7 +532,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsImportant
 		/// </remarks>
-		ReadOnlyCollection<long> MarkAsImportant(IEnumerable<long> messageIds, bool important = true);
+		ReadOnlyCollection<long> MarkAsImportant([NotNull] IEnumerable<long> messageIds, bool important = true);
 
 		/// <summary>
 		/// Отправляет стикер.
@@ -644,6 +644,9 @@ namespace VkNet.Abstractions
 		/// <c> true </c>, если сообщения необходимо пометить, как важные;
 		/// <c> false </c>, если необходимо снять пометку. положительное число (Положительное число).
 		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
+		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
@@ -651,7 +654,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте
 		/// http://vk.com/dev/messages.markAsImportantConversation
 		/// </remarks>
-		bool MarkAsImportantConversation(long peerId, bool important = true);
+		bool MarkAsImportantConversation(long peerId, bool? important = null, ulong? groupId = null);
 
 		/// <summary>
 		/// Редактирует сообщение.

@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -303,10 +301,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> MarkAsImportantConversationAsync(long peerId, bool important = true)
+		public Task<bool> MarkAsImportantConversationAsync(long peerId, bool? important = null, ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
-				MarkAsImportantConversation(peerId, important));
+				MarkAsImportantConversation(peerId, important, groupId));
 		}
 
 		/// <inheritdoc />
