@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -36,7 +37,8 @@ namespace VkNet.Model.RequestParams
 		/// отправленные до указанной даты.
 		/// </summary>
 		[JsonProperty("date")]
-		public string Date { get; set; }
+		[JsonConverter(typeof(DateTimeToStringFormatConverter))]
+		public DateTime Date { get; set; }
 
 		/// <summary>
 		/// Количество символов, по которому нужно обрезать сообщение.

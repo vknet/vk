@@ -29,7 +29,9 @@ namespace VkNet.Utils.JsonConverter
 						var array = JArray.Load(reader);
 
 						if (array.Count > 0)
+						{
 							throw new JsonSerializationException("Array was not empty.");
+						}
 
 						return null;
 					}
