@@ -282,11 +282,12 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool Restore(ulong messageId)
+		public bool Restore(ulong messageId, ulong? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
-				{ "message_id", messageId }
+				{ "message_id", messageId },
+				{ "group_id", groupId }
 			};
 
 			return _vk.Call("messages.restore", parameters);

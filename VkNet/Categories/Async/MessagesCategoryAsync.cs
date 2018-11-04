@@ -159,9 +159,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> RestoreAsync(ulong messageId)
+		public Task<bool> RestoreAsync(ulong messageId, ulong? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => Restore(messageId));
+			return TypeHelper.TryInvokeMethodAsync(() => Restore(messageId, groupId));
 		}
 
 		/// <inheritdoc />

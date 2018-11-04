@@ -252,13 +252,18 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Восстанавливает удаленное сообщение.
 		/// </summary>
-		/// <param name="messageId"> Идентификатор сообщения, которое нужно восстановить. </param>
+		/// <param name="messageId">
+		/// Идентификатор сообщения, которое нужно восстановить.
+		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
+		/// </param>
 		/// <remarks>
 		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
 		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.restore
 		/// </remarks>
-		Task<bool> RestoreAsync(ulong messageId);
+		Task<bool> RestoreAsync(ulong messageId, ulong? groupId = null);
 
 		/// <summary>
 		/// Помечает сообщения как прочитанные.
