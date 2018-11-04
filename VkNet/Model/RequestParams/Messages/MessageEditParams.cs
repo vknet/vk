@@ -15,50 +15,62 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор назначения.
 		/// </summary>
-		[JsonProperty(propertyName: "peer_id")]
+		[JsonProperty("peer_id")]
 		public long PeerId { get; set; }
 
 		/// <summary>
 		/// Текст сообщения. Обязательный параметр, если не задан параметр attachment.
 		/// </summary>
-		[JsonProperty(propertyName: "message")]
+		[JsonProperty("message")]
 		public string Message { get; set; }
 
 		/// <summary>
 		/// Идентификатор сообщения.
 		/// </summary>
-		[JsonProperty(propertyName: "message_id")]
+		[JsonProperty("message_id")]
 		public long MessageId { get; set; }
 
 		/// <summary>
 		/// Географическая широта (от -90 до 90).
 		/// </summary>
-		[JsonProperty(propertyName: "lat")]
+		[JsonProperty("lat")]
 		public double Latitude { get; set; }
 
 		/// <summary>
 		/// Географическая долгота (от -180 до 180).
 		/// </summary>
-		[JsonProperty(propertyName: "long")]
+		[JsonProperty("long")]
 		public double Longitude { get; set; }
 
 		/// <summary>
 		/// медиавложения к личному сообщению, перечисленные через запятую.
 		/// </summary>
-		[JsonProperty(propertyName: "attachment")]
+		[JsonProperty("attachment")]
 		public IEnumerable<MediaAttachment> Attachments { get; set; }
 
 		/// <summary>
 		/// 1, чтобы сохранить прикреплённые пересланные сообщения
 		/// </summary>
-		[JsonProperty(propertyName: "keep_forward_messages")]
+		[JsonProperty("keep_forward_messages")]
 		public bool? KeepForwardMessages { get; set; }
 
 		/// <summary>
 		/// 1, чтобы сохранить прикреплённые внешние ссылки (сниппеты).
 		/// </summary>
-		[JsonProperty(propertyName: "keep_snippets")]
+		[JsonProperty("keep_snippets")]
 		public bool? KeepSnippets { get; set; }
+
+		/// <summary>
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
+		/// </summary>
+		[JsonProperty("group_id")]
+		public ulong GroupId { get; set; }
+
+		/// <summary>
+		/// 1 — не создавать сниппет ссылки из сообщения флаг, может принимать значения 1 или 0, по умолчанию
+		/// </summary>
+		[JsonProperty("dont_parse_links")]
+		public bool DontParseLinks { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -69,14 +81,16 @@ namespace VkNet.Model.RequestParams
 		{
 			return new VkParameters
 			{
-					{ "peer_id", p.PeerId }
-					, { "message", p.Message }
-					, { "message_id", p.MessageId }
-					, { "lat", p.Latitude }
-					, { "long", p.Longitude }
-					, { "attachment", p.Attachments }
-					, { "keep_forward_messages", p.KeepForwardMessages }
-					, { "keep_snippets", p.KeepSnippets }
+				{ "peer_id", p.PeerId },
+				{ "message", p.Message },
+				{ "message_id", p.MessageId },
+				{ "lat", p.Latitude },
+				{ "long", p.Longitude },
+				{ "attachment", p.Attachments },
+				{ "keep_forward_messages", p.KeepForwardMessages },
+				{ "keep_snippets", p.KeepSnippets },
+				{ "group_id", p.GroupId },
+				{ "dont_parse_links", p.DontParseLinks }
 			};
 		}
 	}
