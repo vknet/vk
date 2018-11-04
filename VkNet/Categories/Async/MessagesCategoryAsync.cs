@@ -128,10 +128,11 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<VkCollection<Message>> GetByIdAsync(IEnumerable<ulong> messageIds, uint? previewLength = null)
+		public Task<VkCollection<Message>> GetByIdAsync(IEnumerable<ulong> messageIds, IEnumerable<string> fields,
+														ulong? previewLength = null, bool? extended = null, ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
-				GetById(messageIds, previewLength));
+				GetById(messageIds, fields, previewLength, extended, groupId));
 		}
 
 		/// <inheritdoc />

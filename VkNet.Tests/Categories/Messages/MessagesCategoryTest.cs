@@ -311,7 +311,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.GetById(1), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => cat.GetById(new ulong[]{1}, null), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -324,7 +324,7 @@ namespace VkNet.Tests.Categories.Messages
 					1,
 					3,
 					5
-				}),
+				}, null),
 				Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
@@ -372,7 +372,7 @@ namespace VkNet.Tests.Categories.Messages
 				1,
 				3,
 				5
-			});
+			}, null);
 
 			Assert.That(msgs.TotalCount, Is.EqualTo(3));
 			Assert.That(msgs.Count, Is.EqualTo(3));
@@ -422,7 +422,7 @@ namespace VkNet.Tests.Categories.Messages
 					]
 				  }";
 
-			var msg = Cat.GetById(1);
+			var msg = Cat.GetById(new ulong[] { 1 }, null).FirstOrDefault();
 
 			Assert.That(msg.Id, Is.EqualTo(1));
 

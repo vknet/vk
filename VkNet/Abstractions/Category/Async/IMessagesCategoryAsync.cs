@@ -151,42 +151,32 @@ namespace VkNet.Abstractions
 								, [NotNull] string title);
 
 		/// <summary>
-		/// Возвращает список входящих либо исходящих личных сообщений текущего
-		/// пользователя.
-		/// </summary>
-		/// <param name="params"> Входные параметры выборки. </param>
-		/// <returns> Список сообщений, удовлетворяющий условиям фильтрации. </returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.get
-		/// </remarks>
-		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
-		Task<MessagesGetObject> GetAsync(MessagesGetParams @params);
-
-		/// <summary>
 		/// Возвращает сообщения по их идентификаторам.
 		/// </summary>
-		/// <param name="messageIds">
-		/// Идентификаторы сообщений, которые необходимо вернуть
-		/// (не более 100).
+		/// <param name = "messageIds">
+		/// Идентификаторы сообщений. Максимум 100 идентификаторов. список положительных чисел, разделенных запятыми, обязательный параметр
 		/// </param>
-		/// <param name="previewLength">
-		/// Количество символов, по которому нужно обрезать сообщение.
-		/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не
-		/// обрезаются).
+		/// <param name = "fields">
+		/// Список дополнительных полей для пользователей и сообществ. список слов, разделенных через запятую
+		/// </param>
+		/// <param name = "previewLength">
+		/// Количество символов, по которому нужно обрезать сообщение. Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются). положительное число, по умолчанию 0
+		/// </param>
+		/// <param name = "extended">
+		/// 1 — возвращать дополнительные поля. флаг, может принимать значения 1 или 0
+		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
 		/// </param>
 		/// <returns>
-		/// Запрошенные сообщения.
+		/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и массив объектов, описывающих  сообщения, в поле items.
 		/// </returns>
-		/// <exception cref="System.Exception"> messageIds не может быть пустой </exception>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
 		/// </remarks>
-		Task<VkCollection<Message>> GetByIdAsync([NotNull] IEnumerable<ulong> messageIds
-												, uint? previewLength = null);
+		Task<VkCollection<Message>> GetByIdAsync([NotNull] IEnumerable<ulong> messageIds, IEnumerable<string> fields,
+												ulong? previewLength = null, bool? extended = null,
+												ulong? groupId = null);
 
 		/// <summary>
 		/// Возвращает список найденных диалогов текущего пользователя по введенной строке
@@ -686,10 +676,15 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Редактирует сообщение.
 		/// </summary>
-		/// <param name="params"> параметры запроса </param>
+		/// <param name = "params">
+		/// Входные параметры запроса.
+		/// </param>
 		/// <returns>
-		/// После успешного выполнения возвращает 1.
+		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.edit
+		/// </remarks>
 		Task<bool> EditAsync(MessageEditParams @params);
 
 		/// <summary>
@@ -848,9 +843,10 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getByConversationMessageId
 		/// </remarks>
-		Task<GetByConversationMessageIdResult> GetByConversationMessageIdAsync(long peerId, IEnumerable<ulong> conversationMessageIds,
-																				IEnumerable<string> fields, bool? extended = null,
-																				ulong? groupId = null);
+		Task<GetByConversationMessageIdResult> GetByConversationMessageIdAsync(
+			long peerId, [NotNull] IEnumerable<ulong> conversationMessageIds,
+			IEnumerable<string> fields, bool? extended = null,
+			ulong? groupId = null);
 
 		/// <summary>
 		/// Позволяет искать диалоги.
@@ -1000,6 +996,20 @@ namespace VkNet.Abstractions
 			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsImportantConversationAsync",
 			true)]
 		Task<bool> MarkAsImportantDialogAsync(long peerId, bool important = true);
+
+		/// <summary>
+		/// Возвращает список входящих либо исходящих личных сообщений текущего
+		/// пользователя.
+		/// </summary>
+		/// <param name="params"> Входные параметры выборки. </param>
+		/// <returns> Список сообщений, удовлетворяющий условиям фильтрации. </returns>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.get
+		/// </remarks>
+		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
+		Task<MessagesGetObject> GetAsync(MessagesGetParams @params);
 
 	#endregion
 	}

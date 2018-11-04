@@ -78,7 +78,8 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, uint? previewLength = null)
+		public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null,
+											bool? extended = null, ulong? groupId = null)
 		{
 			return _vk.Call("messages.getById",
 					new VkParameters
@@ -634,9 +635,12 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
 		/// </remarks>
 		[Pure]
+		[Obsolete(
+			"Используйте GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null, bool? extended = null, ulong? groupId = null)",
+			true)]
 		public Message GetById(ulong messageId, uint? previewLength = null)
 		{
-			var result = GetById(new[] { messageId }, previewLength);
+			var result = GetById(new[] { messageId }, null, previewLength);
 
 			if (result.Count > 0)
 			{

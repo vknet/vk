@@ -143,69 +143,34 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.editChat
 		/// </remarks>
-		bool EditChat(long chatId
-					, [NotNull] string title);
-
-		/// <summary>
-		/// Возвращает список входящих либо исходящих личных сообщений текущего
-		/// пользователя.
-		/// </summary>
-		/// <param name="params"> Входные параметры выборки. </param>
-		/// <returns> Список сообщений, удовлетворяющий условиям фильтрации. </returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.get
-		/// </remarks>
-		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
-		MessagesGetObject Get(MessagesGetParams @params);
+		bool EditChat(long chatId, [NotNull] string title);
 
 		/// <summary>
 		/// Возвращает сообщения по их идентификаторам.
 		/// </summary>
-		/// <param name="messageIds">
-		/// Идентификаторы сообщений, которые необходимо вернуть
-		/// (не более 100).
+		/// <param name = "messageIds">
+		/// Идентификаторы сообщений. Максимум 100 идентификаторов. список положительных чисел, разделенных запятыми, обязательный параметр
 		/// </param>
-		/// <param name="previewLength">
-		/// Количество символов, по которому нужно обрезать сообщение.
-		/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не
-		/// обрезаются).
+		/// <param name = "fields">
+		/// Список дополнительных полей для пользователей и сообществ. список слов, разделенных через запятую
+		/// </param>
+		/// <param name = "previewLength">
+		/// Количество символов, по которому нужно обрезать сообщение. Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются). положительное число, по умолчанию 0
+		/// </param>
+		/// <param name = "extended">
+		/// 1 — возвращать дополнительные поля. флаг, может принимать значения 1 или 0
+		/// </param>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
 		/// </param>
 		/// <returns>
-		/// Запрошенные сообщения.
+		/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и массив объектов, описывающих  сообщения, в поле items.
 		/// </returns>
-		/// <exception cref="System.Exception"> messageIds не может быть пустой </exception>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
 		/// </remarks>
-		VkCollection<Message> GetById([NotNull] IEnumerable<ulong> messageIds
-									, uint? previewLength = null);
-
-		/// <summary>
-		/// Возвращает список найденных диалогов текущего пользователя по введенной строке
-		/// поиска.
-		/// </summary>
-		/// <param name="query"> Подстрока, по которой будет производиться поиск. </param>
-		/// <param name="limit"> Количество пользователей которое нужно вернуть. </param>
-		/// <param name="fields"> Поля профилей собеседников, которые необходимо вернуть. </param>
-		/// <returns>
-		/// В результате выполнения данного метода будет возвращён массив объектов
-		/// профилей, бесед и email.
-		/// </returns>
-		/// <exception cref="System.ArgumentException">
-		/// Query can not be null or
-		/// empty.;query
-		/// </exception>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.searchDialogs
-		/// </remarks>
-		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
-		SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null, uint? limit = null);
+		VkCollection<Message> GetById([NotNull] IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null,
+									bool? extended = null, ulong? groupId = null);
 
 		/// <summary>
 		/// Возвращает список найденных личных сообщений текущего пользователя по введенной
@@ -684,10 +649,15 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Редактирует сообщение.
 		/// </summary>
-		/// <param name="params"> параметры запроса </param>
+		/// <param name = "params">
+		/// Входные параметры запроса.
+		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c>true</c>.
 		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.edit
+		/// </remarks>
 		bool Edit(MessageEditParams @params);
 
 		/// <summary>
@@ -845,7 +815,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getByConversationMessageId
 		/// </remarks>
-		GetByConversationMessageIdResult GetByConversationMessageId(long peerId, IEnumerable<ulong> conversationMessageIds,
+		GetByConversationMessageIdResult GetByConversationMessageId(long peerId, [NotNull] IEnumerable<ulong> conversationMessageIds,
 																	IEnumerable<string> fields,
 																	bool? extended = null, ulong? groupId = null);
 
@@ -994,6 +964,43 @@ namespace VkNet.Abstractions
 		[Obsolete(
 			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте MarkAsImportantConversation")]
 		bool MarkAsImportantDialog(long peerId, bool important = true);
+
+		/// <summary>
+		/// Возвращает список найденных диалогов текущего пользователя по введенной строке
+		/// поиска.
+		/// </summary>
+		/// <param name="query"> Подстрока, по которой будет производиться поиск. </param>
+		/// <param name="limit"> Количество пользователей которое нужно вернуть. </param>
+		/// <param name="fields"> Поля профилей собеседников, которые необходимо вернуть. </param>
+		/// <returns>
+		/// В результате выполнения данного метода будет возвращён массив объектов
+		/// профилей, бесед и email.
+		/// </returns>
+		/// <exception cref="System.ArgumentException">
+		/// Query can not be null or
+		/// empty.;query
+		/// </exception>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.searchDialogs
+		/// </remarks>
+		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
+		SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null, uint? limit = null);
+
+		/// <summary>
+		/// Возвращает список входящих либо исходящих личных сообщений текущего
+		/// пользователя.
+		/// </summary>
+		/// <param name="params"> Входные параметры выборки. </param>
+		/// <returns> Список сообщений, удовлетворяющий условиям фильтрации. </returns>
+		/// <remarks>
+		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+		/// содержащей Settings.Messages
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.get
+		/// </remarks>
+		[Obsolete("Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.")]
+		MessagesGetObject Get(MessagesGetParams @params);
 
 	#endregion
 	}
