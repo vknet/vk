@@ -11,7 +11,7 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Account
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
@@ -216,7 +216,7 @@ namespace VkNet.Tests.Categories
 		{
 			Url = "https://api.vk.com/method/account.getProfileInfo";
 			ReadCategoryJsonPath(nameof(GetProfileInfo_WhenServerReturnAllFields));
-			
+
 			var info = Api.Account.GetProfileInfo();
 			Assert.That(info, Is.Not.Null);
 
@@ -243,24 +243,7 @@ namespace VkNet.Tests.Categories
 		{
 			Url = "https://api.vk.com/method/account.getProfileInfo";
 
-			Json = @"{
-				'response': {
-					first_name: 'Анна',
-					last_name: 'Каренина',
-					maiden_name: 'Облонская',
-					sex: 1,
-					relation: 3,
-					bdate_visibility: 0,
-					country: {
-						id: 1,
-						title: 'Российская империя'
-					},
-					city: {
-						id: 2,
-						title: 'Санкт-Петербург'
-					}
-				}
-			}";
+			ReadCategoryJsonPath(nameof(GetProfileInfo_WhenServerReturnSomeFields));
 
 			var info = Api.Account.GetProfileInfo();
 			Assert.That(info, Is.Not.Null);
@@ -353,13 +336,11 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-
-		// TODO Падает на Linux
-		public void SaveProfileInfo_AllPArameters_UrlIsCreatedCorrectly()
+		public void SaveProfileInfo_AllParameters_UrlIsCreatedCorrectly()
 		{
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 
-			Json = @"{ 'response': { changed: 1 } }";
+			ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 
 			Assert.That(() => Api.Account.SaveProfileInfo(out var _,
 					new AccountSaveProfileInfoParams
@@ -376,7 +357,7 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void SaveProfileInfo_CancelChangeNameRequest_NegativeRequestId_ThrowArgumentException()
 		{
-			Json = "";
+			ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 			Url = "";
 
 			Assert.That(() => Api.Account.SaveProfileInfo(-10),
@@ -387,7 +368,7 @@ namespace VkNet.Tests.Categories
 		public void SaveProfileInfo_CancelChangeNameRequest_UrlIsGeneratedCorrectly()
 		{
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
-			Json = @"{ 'response': { changed: 1 } }";
+			ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 			Assert.That(Api.Account.SaveProfileInfo(42), Is.True);
 		}
 
@@ -398,7 +379,7 @@ namespace VkNet.Tests.Categories
 		public void SaveProfileInfo_DateIsParsedCorrectly()
 		{
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
-			Json = @"{ 'response': { changed: 1 } }";
+			ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 
 			Assert.That(() => Api.Account.SaveProfileInfo(out var _,
 					new AccountSaveProfileInfoParams
@@ -423,24 +404,17 @@ namespace VkNet.Tests.Categories
 		public void SaveProfileInfo_ResultWasParsedCorrectly_AndEmptyParametersIsProcessedCorrectly()
 		{
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
-			Json = @"{ 'response': { changed: 0 } }";
+			ReadCategoryJsonPath($"{nameof(Api.Account.SaveProfileInfo)}_False");
 
-			Assert.That(Api.Account.SaveProfileInfo(out var request, new AccountSaveProfileInfoParams()), Is.False); //Second overload
+			Assert.That(Api.Account.SaveProfileInfo(out var request, new AccountSaveProfileInfoParams()), Is.False); // Second overload
 
 			Assert.That(request, Is.Null);
 
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 
-			Json = @"{
-				'response':{
-					changed: 1,
-					name_request: {
-						status: 'success'
-					}
-				}
-			}";
+			ReadCategoryJsonPath($"{nameof(Api.Account.SaveProfileInfo)}_Success");
 
-			Assert.That(Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams()), Is.True); //Second overload
+			Assert.That(Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams()), Is.True); // Second overload
 
 			Assert.That(request, Is.Not.Null);
 			Assert.That(request.Status, Is.EqualTo(ChangeNameStatus.Success));
@@ -460,28 +434,7 @@ namespace VkNet.Tests.Categories
 			var account = new AccountCategory(Api);
 			Url = "https://api.vk.com/method/account.setInfo";
 
-			Json = @"{
-				error: {
-					error_code: 100,
-					error_msg: 'One of the parameters specified was missing or invalid: value should be positive',
-					request_params: [{
-						key: 'oauth',
-						value: '1'
-					}, {
-						key: 'method',
-						value: 'account.setInfo'
-					}, {
-						key: 'name',
-						value: 'intro'
-					}, {
-						key: 'v',
-						value: '5.50'
-					}, {
-						key: 'value',
-						value: '-10'
-					}]
-				}
-			}";
+			ReadJsonFile("Errors", "100");
 
 			Assert.That(() => account.SetInfo("intro", "-10"), Throws.InstanceOf<ParameterMissingOrInvalidException>());
 		}

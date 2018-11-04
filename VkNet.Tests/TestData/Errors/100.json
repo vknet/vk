@@ -1,0 +1,28 @@
+{
+	"error": {
+		"error_code": 100,
+		"error_msg": "One of the parameters specified was missing or invalid: value should be positive",
+		"request_params": [
+			{
+				"key": "oauth",
+				"value": "1"
+			},
+			{
+				"key": "method",
+				"value": "account.setInfo"
+			},
+			{
+				"key": "name",
+				"value": "intro"
+			},
+			{
+				"key": "v",
+				"value": "5.50"
+			},
+			{
+				"key": "value",
+				"value": "-10"
+			}
+		]
+	}
+}

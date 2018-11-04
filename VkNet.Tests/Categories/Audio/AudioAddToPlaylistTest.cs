@@ -2,28 +2,22 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Audio
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class AudioAddToPlaylistTest : BaseTest
+	public class AudioAddToPlaylistTest : CategoryBaseTest
 	{
+		protected override string Folder => "Audio";
+
 		[Test]
 		public void AddToPlaylistTest()
 		{
 			Url = "https://api.vk.com/method/audio.addToPlaylist";
 
-			Json = @"{
-					  'response': [
-					    {
-					      'audio_id': 456239288
-					    },
-					    {
-					      'audio_id': 456239289
-					    }
-					  ]
-					}";
+			ReadCategoryJsonPath(nameof(Api.Audio.AddToPlaylist));
 
 			var result = Api.Audio.AddToPlaylist(123456789,
 					1,

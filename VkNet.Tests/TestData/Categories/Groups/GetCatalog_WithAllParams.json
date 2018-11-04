@@ -1,0 +1,31 @@
+{
+	"response": {
+		"count": 35,
+		"items": [
+			{
+				"id": 50245628,
+				"name": "СвадьбанаБали.СвадебнаяцеремониянаБали.",
+				"screen_name": "svadbanabali",
+				"is_closed": 0,
+				"type": "group",
+				"is_admin": 0,
+				"is_member": 0,
+				"photo_50": "https://pp.vk.me/c620330/v620330740/cf2a/4Lal9LxRuII.jpg",
+				"photo_100": "https://pp.vk.me/c620330/v620330740/cf29/6anB7BfUduc.jpg",
+				"photo_200": "https://pp.vk.me/c620330/v620330740/cf28/wPYJcCw4dJA.jpg"
+			},
+			{
+				"id": 34267994,
+				"name": "Логотип.Лендинг.Оформлениегрупп.Реклама",
+				"screen_name": "pixelike",
+				"is_closed": 0,
+				"type": "page",
+				"is_admin": 0,
+				"is_member": 0,
+				"photo_50": "https://pp.vk.me/c631129/v631129289/a7b2/IsslJ3YB_Ho.jpg",
+				"photo_100": "https://pp.vk.me/c631129/v631129289/a7b1/Ud8vrcXY4jE.jpg",
+				"photo_200": "https://pp.vk.me/c631129/v631129289/a7b0/1Xle1sPdGWU.jpg"
+			}
+		]
+	}
+}

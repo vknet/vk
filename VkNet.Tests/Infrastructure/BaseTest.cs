@@ -158,6 +158,11 @@ namespace VkNet.Tests
 			Json = File.ReadAllText(path);
 		}
 
+		protected void ReadErrorsJsonFile(uint errorCode)
+		{
+			ReadJsonFile("Errors", errorCode.ToString());
+		}
+
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing)

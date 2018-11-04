@@ -1,24 +1,22 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Friends
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class FriendsGetRequests : BaseTest
+	public class FriendsGetRequests : CategoryBaseTest
 	{
+		protected override string Folder => "Friends";
+
 		[Test]
 		public void DefaultParams()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
 
-			Json = @"{
-                'response': {
-                    'count': 1,
-                    'items': [435460566]
-                }
-            }";
+			ReadCategoryJsonPath(nameof(Api.Friends.GetRequests));
 
 			var result = Api.Friends.GetRequests(new FriendsGetRequestsParams());
 			Assert.NotNull(result);
@@ -30,18 +28,11 @@ namespace VkNet.Tests.Categories.Friends
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
 
-			Json = @"{
-                'response': {
-                    'count': 1,
-                    'items': [{
-                        'user_id': 435460566
-                    }]
-                }
-            }";
+			ReadCategoryJsonPath(nameof(Api.Friends.GetRequestsExtended));
 
 			var result = Api.Friends.GetRequestsExtended(new FriendsGetRequestsParams
 			{
-					Extended = true
+				Extended = true
 			});
 
 			Assert.NotNull(result);

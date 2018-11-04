@@ -1,0 +1,85 @@
+{
+	"response": {
+		"enabled": 1,
+		"categories": [
+			{
+				"id": 6,
+				"name": "Бренды",
+				"page_count": 162,
+				"page_previews": [
+					{
+						"id": 30637940,
+						"name": "KFCРоссия",
+						"screen_name": "kfcrussia",
+						"is_closed": 0,
+						"type": "page",
+						"is_admin": 0,
+						"is_member": 0,
+						"photo_50": "https://pp.vk.me/c631322/v631322521/2389b/G9mB6ONcyG8.jpg",
+						"photo_100": "https://pp.vk.me/c631322/v631322521/2389a/qVAjs1J9yT8.jpg",
+						"photo_200": "https://pp.vk.me/c631322/v631322521/23899/VDXY8eWi9JE.jpg"
+					}
+				]
+			},
+			{
+				"id": 11,
+				"name": "Магазины",
+				"page_count": 696,
+				"page_previews": [
+					{
+						"id": 55525992,
+						"name": "АвточехлыSEATEX®|Автомобильныечехлы",
+						"screen_name": "seatex",
+						"is_closed": 0,
+						"type": "group",
+						"is_admin": 0,
+						"is_member": 0,
+						"photo_50": "https://pp.vk.me/c625729/v625729577/42d90/-ayhVQKKwuA.jpg",
+						"photo_100": "https://pp.vk.me/c625729/v625729577/42d8f/zfp_vADJZ_E.jpg",
+						"photo_200": "https://pp.vk.me/c625729/v625729577/42d8e/OtJWRTBoLrk.jpg"
+					}
+				],
+				"subcategories": [
+					{
+						"id": 1,
+						"name": "Детскиетовары",
+						"page_count": 63,
+						"page_previews": [
+							{
+								"id": 104472144,
+								"name": "Мягкаяигрушка\"\"Мимиляндия\"\"",
+								"screen_name": "mimilyandiya",
+								"is_closed": 0,
+								"type": "group",
+								"is_admin": 0,
+								"is_member": 0,
+								"photo_50": "https://pp.vk.me/c628830/v628830962/1d8c7/zSJxvXXSsZk.jpg",
+								"photo_100": "https://pp.vk.me/c628830/v628830962/1d8c6/XhyjV9Mwvp8.jpg",
+								"photo_200": "https://pp.vk.me/c628830/v628830962/1d8c5/8PmGXLlDgqQ.jpg"
+							}
+						]
+					},
+					{
+						"id": 2,
+						"name": "Электроника",
+						"page_count": 38,
+						"page_previews": [
+							{
+								"id": 97587446,
+								"name": "AstroBuy-купитьтелескоп,микроскоп,бинокль",
+								"screen_name": "astrobuy",
+								"is_closed": 0,
+								"type": "group",
+								"is_admin": 0,
+								"is_member": 0,
+								"photo_50": "https://pp.vk.me/c628823/v628823905/277c4/3N1nHMnv2so.jpg",
+								"photo_100": "https://pp.vk.me/c628823/v628823905/277c3/S1tPjT1fkqI.jpg",
+								"photo_200": "https://pp.vk.me/c628823/v628823905/277c1/2zCWcZ-zQk4.jpg"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

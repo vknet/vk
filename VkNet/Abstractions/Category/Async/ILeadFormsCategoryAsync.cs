@@ -125,7 +125,7 @@ namespace VkNet.Abstractions.Category.Async
 		/// <summary>
 		/// Обновляет форму сбора заявок.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "updateParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>

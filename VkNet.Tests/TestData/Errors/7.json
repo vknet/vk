@@ -1,0 +1,24 @@
+{
+	"error": {
+		"error_code": 7,
+		"error_msg": "Permission to perform this action is denied",
+		"request_params": [
+			{
+				"key": "oauth",
+				"value": "1"
+			},
+			{
+				"key": "method",
+				"value": "groups.leave"
+			},
+			{
+				"key": "text",
+				"value": "test"
+			},
+			{
+				"key": "access_token",
+				"value": "token"
+			}
+		]
+	}
+}

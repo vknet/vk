@@ -1,0 +1,28 @@
+{
+	"response": [
+		{
+			"id": 17683660,
+			"name": "Творческие каникулы ART CAMP с 21 по 29 июля",
+			"screen_name": "club17683660",
+			"is_closed": 0,
+			"type": "event",
+			"is_admin": 0,
+			"is_member": 0,
+			"photo_50": "http://cs407631.userapi.com/g17683660/e_f700c806.jpg",
+			"photo_100": "http://cs407631.userapi.com/g17683660/d_26f909c0.jpg",
+			"photo_200": "http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"
+		},
+		{
+			"id": 637247,
+			"name": "Чак Паланик - Сумасшедший гений литературы",
+			"screen_name": "club637247",
+			"is_closed": 1,
+			"type": "group",
+			"is_admin": 0,
+			"is_member": 1,
+			"photo_50": "http://cs11418.userapi.com/g637247/c_f597d0f8.jpg",
+			"photo_100": "http://cs11418.userapi.com/g637247/b_898ae7f1.jpg",
+			"photo_200": "http://cs11418.userapi.com/g637247/a_6be98c68.jpg"
+		}
+	]
+}

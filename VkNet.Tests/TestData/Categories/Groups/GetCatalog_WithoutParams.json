@@ -1,0 +1,31 @@
+{
+	"response": {
+		"count": 27,
+		"items": [
+			{
+				"id": 15911874,
+				"name": "Собака.ru",
+				"screen_name": "sobaka_ru",
+				"is_closed": 0,
+				"type": "page",
+				"is_admin": 0,
+				"is_member": 0,
+				"photo_50": "https://pp.vk.me/c629209/v629209418/39246/tARC41vYcko.jpg",
+				"photo_100": "https://pp.vk.me/c629209/v629209418/39245/oqo-rj5a3JY.jpg",
+				"photo_200": "https://pp.vk.me/c629209/v629209418/39244/LNkpNaZWlkE.jpg"
+			},
+			{
+				"id": 79794,
+				"name": "CirqueduSoleil|ЦиркдюСолей",
+				"screen_name": "cds",
+				"is_closed": 0,
+				"type": "group",
+				"is_admin": 0,
+				"is_member": 0,
+				"photo_50": "https://pp.vk.me/c629511/v629511851/2dec6/FqIHKdp4u2U.jpg",
+				"photo_100": "https://pp.vk.me/c629511/v629511851/2dec5/h10vBfOoRnk.jpg",
+				"photo_200": "https://pp.vk.me/c629511/v629511851/2dec4/VRFDlbtQGH4.jpg"
+			}
+		]
+	}
+}

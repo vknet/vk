@@ -6,49 +6,30 @@ using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams.Ads;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Ads
 {
 	[ExcludeFromCodeCoverage]
-	public class AdsGetAdsTests : BaseTest
+	public class AdsGetAdsTests : CategoryBaseTest
 	{
+		protected override string Folder => "Ads";
+
 		[Test]
 		public void GetAds_GenerateAdsCorrectly()
 		{
 			Url = "https://api.vk.com/method/ads.getAds";
 
-			Json = @"
-			{
-				""response"": [{
-					""campaign_id"": 1009150293,
-					""id"": ""42644528"",
-					""status"": 0,
-					""approved"": ""1"",
-					""create_time"": ""1527069558"",
-					""update_time"": ""1529160522"",
-					""day_limit"": ""0"",
-					""all_limit"": ""0"",
-					""start_time"": ""0"",
-					""stop_time"": ""0"",
-					""category1_id"": ""285"",
-					""category2_id"": ""0"",
-					""age_restriction"": ""5"",
-					""name"": ""Сеты шаров на свою группу."",
-					""events_retargeting_groups"": {
-						""26897268"": [5, 6]
-					},
-					""cost_type"": 1,
-					""ad_format"": 9,
-					""cpm"": ""23699"",
-					""impressions_limit"": 1,
-					""ad_platform"": ""all"",
-					""ad_platform_no_wall"": 1,
-					""ad_platform_no_ad_network"": 1
-				}]
-			}";
+			ReadCategoryJsonPath(nameof(Api.Ads.GetAds));
 
-			var ads = Api.Ads.GetAds(new GetAdsParams()
-				{ AccountId = 1900013324, ClientId = 1604555949, CampaignIds = new List<long>() { 1009150293, 1009400691 } });
+			var ads = Api.Ads.GetAds(new GetAdsParams
+			{
+				AccountId = 1900013324, ClientId = 1604555949, CampaignIds = new List<long>
+				{
+					1009150293,
+					1009400691
+				}
+			});
 
 			Assert.IsNotEmpty(ads);
 

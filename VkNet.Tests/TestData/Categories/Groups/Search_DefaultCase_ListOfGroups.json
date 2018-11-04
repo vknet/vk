@@ -1,0 +1,31 @@
+{
+	"response": {
+		"count": 78152,
+		"items": [
+			{
+				"id": 339767,
+				"name": "A-ONE HIP-HOP MUSIC CHANNEL",
+				"screen_name": "a1tv",
+				"is_closed": 0,
+				"type": "group",
+				"is_admin": 0,
+				"is_member": 0,
+				"photo_50": "http://cs9365.userapi.com/g339767/e_a590d16b.jpg",
+				"photo_100": "http://cs9365.userapi.com/g339767/d_f653c773.jpg",
+				"photo_200": "http://cs9365.userapi.com/g339767/a_4653ba99.jpg"
+			},
+			{
+				"id": 27895931,
+				"name": "MUSIC 2012",
+				"screen_name": "exclusive_muzic",
+				"is_closed": 0,
+				"type": "group",
+				"is_admin": 0,
+				"is_member": 0,
+				"photo_50": "http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg",
+				"photo_100": "http://cs410222.userapi.com/g27895931/d_2869e827.jpg",
+				"photo_200": "http://cs410222.userapi.com/g27895931/a_32935e91.jpg"
+			}
+		]
+	}
+}

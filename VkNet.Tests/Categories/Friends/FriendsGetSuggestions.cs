@@ -4,37 +4,24 @@ using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Friends
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class FriendsGetSuggestions : BaseTest
+	public class FriendsGetSuggestions : CategoryBaseTest
 	{
+		protected override string Folder => "Friends";
+
 		[Test]
 		public void GetSuggestions_AllParameters()
 		{
 			Url = "https://api.vk.com/method/friends.getSuggestions";
 
-			Json = @"{
-                'response':{
-                    'count':182,
-                    'items':[
-                        {
-                            'id':1591605,
-                            'first_name':'Михаила',
-                            'last_name':'Захаркина',
-                            'sex':2
-                        }
-                    ]
-                }
-            }";
+			ReadCategoryJsonPath(nameof(Api.Friends.GetSuggestions));
 
-			var result = Api.Friends.GetSuggestions(FriendsFilter.Mutual
-					, 1
-					, 0
-					, UsersFields.Sex
-					, NameCase.Gen);
+			var result = Api.Friends.GetSuggestions(FriendsFilter.Mutual, 1, 0, UsersFields.Sex, NameCase.Gen);
 
 			Assert.NotNull(result);
 			Assert.AreEqual(182, result.TotalCount);
@@ -48,32 +35,11 @@ namespace VkNet.Tests.Categories.Friends
 		{
 			Url = "https://api.vk.com/method/friends.getSuggestions";
 
-			Json = @"{
-                'response':{
-                    'count':3,
-                    'items':[
-                        {
-                            'id':2243095,
-                            'first_name':'Alexander',
-                            'last_name':'Surikov'
-                        },
-                        {
-                            'id':8611838,
-                            'first_name':'Arnold',
-                            'last_name':'Gromko'
-                        },
-                        {
-                            'id':50656600,
-                            'first_name':'Максим',
-                            'last_name':'Щербаков'
-                        }
-                    ]
-                }
-            }";
+			ReadCategoryJsonPath(nameof(Api.Friends.GetSuggestions));
 
 			var result = Api.Friends.GetSuggestions();
 			Assert.NotNull(result);
-			Assert.AreEqual(3, result.TotalCount);
+			Assert.AreEqual(182, result.TotalCount);
 		}
 	}
 }

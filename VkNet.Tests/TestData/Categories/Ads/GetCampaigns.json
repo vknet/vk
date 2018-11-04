@@ -1,0 +1,52 @@
+{
+	"response": [
+		{
+			"id": 1009088099,
+			"type": "promoted_posts",
+			"name": "Сюрприз51 - Тест - День рождения",
+			"status": 1,
+			"day_limit": "2000",
+			"all_limit": "0",
+			"start_time": "0",
+			"stop_time": "0",
+			"create_time": "1521361421",
+			"update_time": "1525812787"
+		},
+		{
+			"id": 1009150293,
+			"type": "promoted_posts",
+			"name": "Сюрприз51 - Рабочие",
+			"status": 1,
+			"day_limit": "2000",
+			"all_limit": "0",
+			"start_time": "0",
+			"stop_time": "0",
+			"create_time": "1522074190",
+			"update_time": "1526330822"
+		},
+		{
+			"id": 1009157560,
+			"type": "promoted_posts",
+			"name": "Сюрприз51 - Тест - По конкурентам",
+			"status": 0,
+			"day_limit": "200",
+			"all_limit": "0",
+			"start_time": "0",
+			"stop_time": "0",
+			"create_time": "1522155165",
+			"update_time": "1523949817"
+		},
+		{
+			"id": 1009316667,
+			"type": "normal",
+			"name": "Тизеры ЦА Родители с детьми",
+			"status": 0,
+			"day_limit": "1000",
+			"all_limit": "7000",
+			"start_time": "0",
+			"stop_time": "0",
+			"create_time": "1524046841",
+			"update_time": "1526923163"
+		}
+	]
+}
