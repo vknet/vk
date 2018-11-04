@@ -6,7 +6,7 @@ namespace VkNet.Tests.Infrastructure
 
 		protected void ReadCategoryJsonPath(string path)
 		{
-			ReadJsonFile(Folder, path);
+			ReadJsonFile("Categories", Folder, path);
 		}
 	}
 }

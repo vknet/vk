@@ -206,7 +206,7 @@ csharp_special_else_if_treatment=true
 csharp_insert_final_newline=false
 
 # Arrangement of Attributes
-csharp_max_attribute_length_for_same_line=1
+csharp_max_attribute_length_for_same_line = 36
 csharp_keep_existing_attribute_arrangement=false
 csharp_keep_existing_arrangement=false
 csharp_place_type_attribute_on_same_line=never
