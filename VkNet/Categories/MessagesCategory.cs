@@ -85,7 +85,10 @@ namespace VkNet.Categories
 					new VkParameters
 					{
 						{ "message_ids", messageIds },
-						{ "preview_length", previewLength }
+						{ "fields", fields },
+						{ "preview_length", previewLength },
+						{ "extended", extended },
+						{ "group_id", groupId }
 					})
 				.ToVkCollectionOf<Message>(r => r);
 		}
