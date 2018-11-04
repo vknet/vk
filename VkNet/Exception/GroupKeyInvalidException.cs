@@ -14,6 +14,7 @@ namespace VkNet.Exception
 		/// <inheritdoc />
 		public GroupKeyInvalidException(VkResponse response) : base(message: response[key: "error_msg"])
 		{
+			ErrorCode = response[key: "error_code"];
 		}
 	}
 }
