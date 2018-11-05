@@ -18,9 +18,16 @@ namespace VkNet.Categories
 			return TypeHelper.TryInvokeMethodAsync(() => Unpin(peerId, groupId));
 		}
 
-		public async Task<GetImportantMessagesResult> GetImportantMessagesAsync(GetImportantMessagesParams getImportantMessagesParams)
+		/// <inheritdoc />
+		public Task<GetImportantMessagesResult> GetImportantMessagesAsync(GetImportantMessagesParams getImportantMessagesParams)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetImportantMessages(getImportantMessagesParams));
+			return TypeHelper.TryInvokeMethodAsync(() => GetImportantMessages(getImportantMessagesParams));
+		}
+
+		/// <inheritdoc />
+		public Task<GetRecentCallsResult> GetRecentCallsAsync(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null, bool? extended = null)
+		{
+			return  TypeHelper.TryInvokeMethodAsync(() => GetRecentCalls(fields, count, startMessageId, extended));
 		}
 
 		/// <inheritdoc />

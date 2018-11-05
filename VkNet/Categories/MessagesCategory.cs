@@ -680,5 +680,11 @@ namespace VkNet.Categories
 		{
 			return _vk.Call<bool>("messages.unpin", new VkParameters { { "peer_id", peerId }, { "group_id", groupId } });
 		}
+
+		/// <inheritdoc/>
+		public GetRecentCallsResult GetRecentCalls(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null, bool? extended = null)
+		{
+			return _vk.Call<GetRecentCallsResult>("messages.getRecentCalls", new VkParameters{{"fields", fields}, {"count", count}, {"start_message_id", startMessageId}, {"extended", extended}});
+		}
 	}
 }

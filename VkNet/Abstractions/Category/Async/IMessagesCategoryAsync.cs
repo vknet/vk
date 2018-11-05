@@ -951,6 +951,43 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<GetImportantMessagesResult> GetImportantMessagesAsync(GetImportantMessagesParams getImportantMessagesParams);
 
+		/// <summary>
+		/// Возвращает информацию о недавних звонках.
+		/// </summary>
+		/// <param name = "fields">
+		/// Список дополнительных полей для пользователей и сообществ. список слов, разделенных через запятую
+		/// </param>
+		/// <param name = "count">
+		/// Максимальное число результатов, которые нужно получить. положительное число, по умолчанию 40, максимальное значение 500
+		/// </param>
+		/// <param name = "startMessageId">
+		/// Идентификатор сообщения, начиная с которого нужно возвращать звонки. положительное число
+		/// </param>
+		/// <param name = "extended">
+		/// 1 — возвращать дополнительные поля для пользователей и сообществ. флаг, может принимать значения 1 или 0
+		/// </param>
+		/// <returns>
+		/// Возвращает объект, который содержит следующие поля:
+		/// count
+		/// integerчисло результатов. items
+		/// arrayбеседы. Массив объектов, каждый из которых содержит поля:
+		/// call (object) — объект со следующими полями
+		/// initiator_id (integer) — инициатор звонка.
+		/// receiver_id (integer) — получатель звонка.
+		/// state (string) — состояние.
+		/// canceled_by_initiator — сброшен инициатором
+		/// canceled_by_receiver — сброшен получателем
+		/// reached — состоялся
+		/// duration (integer) — длительность звонка в секундах.
+		/// message_id  (integer) — индетификатор сообщения profiles
+		/// arrayмассив объектов пользователей. groups
+		/// arrayмассив объектов сообществ.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getRecentCalls
+		/// </remarks>
+		Task<GetRecentCallsResult> GetRecentCallsAsync(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null, bool? extended = null);
+
 	#region Obsoleted
 
 		/// <summary>
