@@ -172,9 +172,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SetActivityAsync(long userId, long? peerId = null, string type = "typing")
+		public Task<bool> SetActivityAsync(string userId, MessageActivityType type, long? peerId = null, ulong? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => SetActivity(userId, peerId, type));
+			return TypeHelper.TryInvokeMethodAsync(() => SetActivity(userId, type, peerId, groupId));
 		}
 
 		/// <inheritdoc />

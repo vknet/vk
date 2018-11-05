@@ -1289,7 +1289,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void SetActivity_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.SetActivity(1), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => cat.SetActivity("1", MessageActivityType.Typing), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -1302,7 +1302,7 @@ namespace VkNet.Tests.Categories.Messages
 					'response': 1
 				  }";
 
-			var result = Cat.SetActivity(7550525);
+			var result = Cat.SetActivity("7550525", MessageActivityType.Typing);
 
 			Assert.That(result, Is.True);
 		}

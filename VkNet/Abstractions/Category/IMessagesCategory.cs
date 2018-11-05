@@ -279,7 +279,7 @@ namespace VkNet.Abstractions
 		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.setActivity
 		/// </remarks>
-		bool SetActivity(long userId, long? peerId = null, string type = "typing");
+		bool SetActivity(string userId, MessageActivityType type, long? peerId = null, ulong? groupId = null);
 
 		/// <summary>
 		/// Возвращает текущий статус и дату последней активности указанного пользователя.

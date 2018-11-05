@@ -17,6 +17,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
+	/// <inheritdoc />
 	/// <summary>
 	/// Методы для работы с сообщениями.
 	/// </summary>
@@ -307,13 +308,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool SetActivity(long userId, long? peerId = null, string type = "typing")
+		public bool SetActivity(string userId, MessageActivityType type, long? peerId = null, ulong? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
 				{ "used_id", userId },
 				{ "type", type },
-				{ "peer_id", peerId }
+				{ "peer_id", peerId },
+				{"group_id", groupId}
 			};
 
 			return _vk.Call("messages.setActivity", parameters);
