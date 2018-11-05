@@ -1,0 +1,50 @@
+{
+  "response": {
+    "messages": {
+      "count": 1,
+      "items": [
+        {
+          "date": 1540740361,
+          "from_id": 32190123,
+          "id": 224652,
+          "out": 1,
+          "peer_id": 442461954,
+          "text": "Нету",
+          "conversation_message_id": 4451,
+          "fwd_messages": [],
+          "important": true,
+          "random_id": 580186734,
+          "attachments": [],
+          "is_hidden": false
+        }
+      ]
+    },
+    "profiles": [
+      {
+        "id": 32190123,
+        "first_name": "Максим",
+        "last_name": "Инютин"
+      },
+      {
+        "id": 442461954,
+        "first_name": "Александр",
+        "last_name": "Инютин"
+      }
+    ],
+    "conversations": [
+      {
+        "peer": {
+          "id": 442461954,
+          "type": "user",
+          "local_id": 442461954
+        },
+        "in_read": 224811,
+        "out_read": 224811,
+        "last_message_id": 224811,
+        "can_write": {
+          "allowed": true
+        }
+      }
+    ]
+  }
+}

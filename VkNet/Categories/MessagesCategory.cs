@@ -240,6 +240,22 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public GetImportantMessagesResult GetImportantMessages(GetImportantMessagesParams getImportantMessagesParams)
+		{
+			return _vk.Call<GetImportantMessagesResult>("messages.getImportantMessages",
+				new VkParameters
+				{
+					{ "fields", getImportantMessagesParams.Fields },
+					{ "count", getImportantMessagesParams.Count },
+					{ "offset", getImportantMessagesParams.Offset },
+					{ "start_message_id", getImportantMessagesParams.StartMessageId },
+					{ "preview_length", getImportantMessagesParams.PreviewLength },
+					{ "extended", getImportantMessagesParams.Extended },
+					{ "group_id", getImportantMessagesParams.GroupId }
+				});
+		}
+
+		/// <inheritdoc />
 		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return DeleteConversation(userId, peerId, offset, count, null);
@@ -315,7 +331,7 @@ namespace VkNet.Categories
 				{ "used_id", userId },
 				{ "type", type },
 				{ "peer_id", peerId },
-				{"group_id", groupId}
+				{ "group_id", groupId }
 			};
 
 			return _vk.Call("messages.setActivity", parameters);

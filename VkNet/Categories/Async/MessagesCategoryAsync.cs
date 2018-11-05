@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -15,6 +16,11 @@ namespace VkNet.Categories
 		public Task<bool> UnpinAsync(long peerId, ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Unpin(peerId, groupId));
+		}
+
+		public async Task<GetImportantMessagesResult> GetImportantMessagesAsync(GetImportantMessagesParams getImportantMessagesParams)
+		{
+			return await TypeHelper.TryInvokeMethodAsync(() => GetImportantMessages(getImportantMessagesParams));
 		}
 
 		/// <inheritdoc />

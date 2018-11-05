@@ -938,6 +938,19 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<bool> UnpinAsync(long peerId, ulong? groupId = null);
 
+		/// <summary>
+		/// Возвращает список важных сообщений пользователя.
+		/// </summary>
+		/// <param name = "getImportantMessagesParams">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <returns>
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getImportantMessages
+		/// </remarks>
+		Task<GetImportantMessagesResult> GetImportantMessagesAsync(GetImportantMessagesParams getImportantMessagesParams);
+
 	#region Obsoleted
 
 		/// <summary>
