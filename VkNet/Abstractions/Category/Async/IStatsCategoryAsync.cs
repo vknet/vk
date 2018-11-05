@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Model;
 
@@ -13,36 +12,16 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращает статистику сообщества или приложения.
 		/// </summary>
-		/// <param name="groupId"> Идентификатор сообщества. </param>
-		/// <param name="dateFrom">
-		/// Начальная дата выводимой статистики в формате
-		/// YYYY-MM-DD.
+		/// <param name = "getParams">
+		/// Входные параметры запроса.
 		/// </param>
-		/// <param name="dateTo"> Конечная дата выводимой статистики в формате YYYY-MM-DD. </param>
 		/// <returns>
-		/// Возвращает результат выполнения метода.
+		/// После успешного выполнения возвращает объект с данными статистики.
 		/// </returns>
 		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/stats.get
+		/// Страница документации ВКонтакте http://vk.com/dev/stats.get
 		/// </remarks>
-		Task<ReadOnlyCollection<StatsPeriod>> GetByGroupAsync(long groupId, DateTime dateFrom, DateTime? dateTo = null);
-
-		/// <summary>
-		/// Возвращает статистику сообщества или приложения.
-		/// </summary>
-		/// <param name="appId"> Идентификатор приложения. </param>
-		/// <param name="dateFrom">
-		/// Начальная дата выводимой статистики в формате
-		/// YYYY-MM-DD.
-		/// </param>
-		/// <param name="dateTo"> Конечная дата выводимой статистики в формате YYYY-MM-DD. </param>
-		/// <returns>
-		/// Возвращает результат выполнения метода.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/stats.get
-		/// </remarks>
-		Task<ReadOnlyCollection<StatsPeriod>> GetByAppAsync(long appId, DateTime dateFrom, DateTime? dateTo = null);
+		Task<ReadOnlyCollection<StatsPeriod>> GetAsync(StatsGetParams getParams);
 
 		/// <summary>
 		/// Добавляет данные о текущем сеансе в статистику посещаемости приложения..

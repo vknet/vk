@@ -23,16 +23,22 @@ namespace VkNet.Categories
 			_vk = vk;
 		}
 
-		/// <inheritdoc />
-		public ReadOnlyCollection<StatsPeriod> GetByGroup(long groupId, DateTime dateFrom, DateTime? dateTo = null)
+		/// <inheritdoc/>
+		public ReadOnlyCollection<StatsPeriod> Get(StatsGetParams getParams)
 		{
-			return Get(dateFrom: dateFrom, dateTo: dateTo, groupId: groupId);
-		}
-
-		/// <inheritdoc />
-		public ReadOnlyCollection<StatsPeriod> GetByApp(long appId, DateTime dateFrom, DateTime? dateTo = null)
-		{
-			return Get(dateFrom: dateFrom, dateTo: dateTo, groupId: null, appId: appId);
+			return _vk.Call<ReadOnlyCollection<StatsPeriod>>("stats.get",
+				new VkParameters
+				{
+					{ "interval", getParams.Interval },
+					{ "filters", getParams.Filters },
+					{ "stats_groups", getParams.StatsGroups },
+					{ "group_id", getParams.GroupId },
+					{ "app_id", getParams.AppId },
+					{ "timestamp_from", getParams.TimestampFrom },
+					{ "timestamp_to", getParams.TimestampTo },
+					{ "intervals_count", getParams.IntervalsCount },
+					{ "extended", getParams.Extended }
+				});
 		}
 
 		/// <inheritdoc />
@@ -53,39 +59,6 @@ namespace VkNet.Categories
 			};
 
 			return _vk.Call(methodName: "stats.getPostReach", parameters: parameters);
-		}
-
-		/// <summary>
-		/// Возвращает статистику сообщества или приложения.
-		/// </summary>
-		/// <param name="groupId"> Идентификатор сообщества. </param>
-		/// <param name="appId"> Идентификатор приложения. </param>
-		/// <param name="dateFrom">
-		/// Начальная дата выводимой статистики в формате
-		/// YYYY-MM-DD.
-		/// </param>
-		/// <param name="dateTo"> Конечная дата выводимой статистики в формате YYYY-MM-DD. </param>
-		/// <returns>
-		/// Возвращает результат выполнения метода.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/stats.get
-		/// </remarks>
-		private ReadOnlyCollection<StatsPeriod> Get(DateTime dateFrom, DateTime? dateTo = null, long? groupId = null, long? appId = null)
-		{
-			var parameters = new VkParameters
-			{
-				{ "group_id", groupId },
-				{ "app_id", appId },
-				{ "date_from", dateFrom.ToString(format: "yyyy-MM-dd") }
-			};
-
-			if (dateTo != null)
-			{
-				parameters.Add(name: "date_to", value: dateTo.Value.ToString(format: "yyyy-MM-dd"));
-			}
-
-			return _vk.Call<ReadOnlyCollection<StatsPeriod>>(methodName: "stats.get", parameters: parameters);
 		}
 	}
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using VkNet.Categories;
+using VkNet.Model;
 
 namespace VkNet.Tests.Categories
 {
@@ -26,8 +27,8 @@ namespace VkNet.Tests.Categories
 			const string json =
 				@"{
 					response: [{
-						period_from: '2013-09-08',
-						period_to: '2013-09-08',
+						period_from: '1378598400',
+						period_to: '1378598400',
 						visitors: {
 							views: 3688,
 							visitors: 2768,
@@ -118,8 +119,11 @@ namespace VkNet.Tests.Categories
 
 			var mockedStatsCategory = GetMockedStatsCategory(url, json);
 
-			var statsPeriods = mockedStatsCategory.GetByApp(1,
-				new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc));
+			var statsPeriods = mockedStatsCategory.Get(new StatsGetParams
+			{
+				AppId = 1,
+				TimestampTo = new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc)
+			});
 
 			Assert.NotNull(statsPeriods[0]);
 			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
@@ -133,8 +137,8 @@ namespace VkNet.Tests.Categories
 			const string json =
 				@"{
 					response: [{
-						period_from: '2013-09-08',
-						period_to: '2013-09-08',
+						period_from: '1378598400',
+						period_to: '1378598400',
 						visitors: {
 							views: 3688,
 							visitors: 2768,
@@ -225,8 +229,11 @@ namespace VkNet.Tests.Categories
 
 			var mockedStatsCategory = GetMockedStatsCategory(url, json);
 
-			var statsPeriods = mockedStatsCategory.GetByGroup(1,
-				new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc));
+			var statsPeriods = mockedStatsCategory.Get(new StatsGetParams
+			{
+				GroupId = 1,
+				TimestampFrom = new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc)
+			});
 
 			Assert.NotNull(statsPeriods[0]);
 
@@ -241,8 +248,8 @@ namespace VkNet.Tests.Categories
 			const string json =
 				@"{
 					response: [{
-						period_from: '2013-09-08',
-						period_to: '2013-09-08',
+						period_from: '1378598400',
+						period_to: '1378598400',
 						visitors: {
 							views: 3688,
 							visitors: 2768,
@@ -329,8 +336,11 @@ namespace VkNet.Tests.Categories
 
 			var mockedStatsCategory = GetMockedStatsCategory(url, json);
 
-			var statsPeriods = mockedStatsCategory.GetByGroup(1,
-				new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc));
+			var statsPeriods = mockedStatsCategory.Get(new StatsGetParams
+			{
+				GroupId = 1,
+				TimestampFrom = new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc)
+			});
 
 			Assert.NotNull(statsPeriods[0]);
 			Assert.Null(statsPeriods[0].Activity);
