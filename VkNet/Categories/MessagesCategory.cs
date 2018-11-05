@@ -117,9 +117,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public VkCollection<Message> Search(MessagesSearchParams @params)
+		public MessageSearchResult Search(MessagesSearchParams @params)
 		{
-			return _vk.Call("messages.search", @params).ToVkCollectionOf<Message>(r => r);
+			return _vk.Call<MessageSearchResult>("messages.search", @params);
 		}
 
 		/// <inheritdoc />

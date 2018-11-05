@@ -141,7 +141,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<VkCollection<Message>> SearchAsync(MessagesSearchParams @params)
+		public Task<MessageSearchResult> SearchAsync(MessagesSearchParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Search(@params));
 		}

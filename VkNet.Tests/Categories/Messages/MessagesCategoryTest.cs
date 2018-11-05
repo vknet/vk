@@ -11,14 +11,17 @@ using VkNet.Exception;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	[ExcludeFromCodeCoverage]
-	public class MessagesCategoryTest : BaseTest
+	public class MessagesCategoryTest : CategoryBaseTest
 	{
+		protected override string Folder => "Messages";
+
 		public MessagesCategory Cat => GetMockedMessagesCategory();
 
 		private MessagesCategory GetMockedMessagesCategory()
@@ -311,7 +314,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
-			Assert.That(() => cat.GetById(new ulong[]{1}, null), Throws.InstanceOf<AccessTokenInvalidException>());
+			Assert.That(() => cat.GetById(new ulong[] { 1 }, null), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
 		[Test]
@@ -320,11 +323,12 @@ namespace VkNet.Tests.Categories.Messages
 			var cat = new MessagesCategory(new VkApi());
 
 			Assert.That(() => cat.GetById(new ulong[]
-				{
-					1,
-					3,
-					5
-				}, null),
+					{
+						1,
+						3,
+						5
+					},
+					null),
 				Throws.InstanceOf<AccessTokenInvalidException>());
 		}
 
@@ -368,11 +372,12 @@ namespace VkNet.Tests.Categories.Messages
 				  }";
 
 			var msgs = Cat.GetById(new ulong[]
-			{
-				1,
-				3,
-				5
-			}, null);
+				{
+					1,
+					3,
+					5
+				},
+				null);
 
 			Assert.That(msgs.TotalCount, Is.EqualTo(3));
 			Assert.That(msgs.Count, Is.EqualTo(3));
@@ -1102,13 +1107,16 @@ namespace VkNet.Tests.Categories.Messages
 					}]
 			}";
 
-			var msgs = Cat.Search(new MessagesSearchParams
+			var result = Cat.Search(new MessagesSearchParams
 			{
 				Query = "привет",
 				Count = 3
 			});
 
-			Assert.That(msgs.TotalCount, Is.EqualTo(680));
+			var msgs = result.Items;
+
+			Assert.That(result.Count, Is.EqualTo(680));
+			Assert.NotNull(msgs);
 			Assert.That(msgs.Count, Is.EqualTo(3));
 
 			Assert.That(msgs[2].Id, Is.EqualTo(4414));
@@ -1169,12 +1177,7 @@ namespace VkNet.Tests.Categories.Messages
 		{
 			Url = "https://api.vk.com/method/messages.search";
 
-			Json =
-				@"{
-					'response': [
-					  0
-					]
-				  }";
+			ReadCategoryJsonPath(JsonPaths.EmptyVkCollection);
 
 			var msgs = Cat.Search(new MessagesSearchParams
 			{
@@ -1182,7 +1185,6 @@ namespace VkNet.Tests.Categories.Messages
 				Count = 3
 			});
 
-			Assert.That(msgs.TotalCount, Is.EqualTo(0));
 			Assert.That(msgs.Count, Is.EqualTo(0));
 		}
 
@@ -1197,10 +1199,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void SearchDialogs_EmptyResponse_MessageResponseWithEmptyLists()
 		{
 			Url = "https://api.vk.com/method/messages.searchDialogs";
-
-			Json = @"{
-                    'response': []
-                  }";
+			ReadJsonFile(JsonPaths.EmptyArray);
 
 			var response = Cat.SearchDialogs("привет");
 

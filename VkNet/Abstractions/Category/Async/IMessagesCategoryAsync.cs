@@ -217,7 +217,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.search
 		/// </remarks>
-		Task<VkCollection<Message>> SearchAsync(MessagesSearchParams @params);
+		Task<MessageSearchResult> SearchAsync(MessagesSearchParams @params);
 
 		/// <summary>
 		/// Посылает личное сообщение.

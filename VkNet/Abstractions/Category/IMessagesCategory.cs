@@ -173,22 +173,21 @@ namespace VkNet.Abstractions
 									bool? extended = null, ulong? groupId = null);
 
 		/// <summary>
-		/// Возвращает список найденных личных сообщений текущего пользователя по введенной
-		/// строке поиска.
+		/// Возвращает список найденных личных сообщений текущего пользователя по введенной строке поиска.
 		/// </summary>
-		/// <param name="params"> Параметры запроса messages.search </param>
+		/// <param name = "params">
+		/// Входные параметры запроса.
+		/// </param>
 		/// <returns>
-		/// После успешного выполнения возвращает  объектов , найденных в соответствии с
-		/// поисковым запросом '''q'''.
+		/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и массив объектов, описывающих личные сообщения, в поле items.
+		/// Обратите внимание, даже при использовании параметра offset максимальное число доступных результатов — 10000.
+		/// Если extended = 1, в поле items возвращается массив объектов бесед.
+		/// Дополнительно возвращаются массивы profiles и groups, содержащие объекты пользователей и сообществ.
 		/// </returns>
-		/// <exception cref="System.ArgumentException">
-		/// Query can not be null or
-		/// empty.;query
-		/// </exception>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.search
 		/// </remarks>
-		VkCollection<Message> Search(MessagesSearchParams @params);
+		MessageSearchResult Search(MessagesSearchParams @params);
 
 		/// <summary>
 		/// Посылает личное сообщение.
