@@ -37,7 +37,7 @@ namespace VkNet.Model.RequestParams
 		/// отправленные до указанной даты.
 		/// </summary>
 		[JsonProperty("date")]
-		[JsonConverter(typeof(DateTimeToStringFormatConverter))]
+		[JsonConverter(typeof(DateTimeToStringFormatConverter), "ddMMyyyy")]
 		public DateTime Date { get; set; }
 
 		/// <summary>

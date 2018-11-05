@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Newtonsoft.Json;
 
 namespace VkNet.Utils.JsonConverter
@@ -24,12 +25,12 @@ namespace VkNet.Utils.JsonConverter
 		/// <inheritdoc />
 		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 		{
-			if (objectType != typeof(string))
+			if (objectType != typeof(DateTime) && objectType != typeof(DateTime?))
 			{
-				throw new JsonSerializationException("objectType should be string.");
+				throw new JsonSerializationException("objectType should be DateTime or DateTime?.");
 			}
 
-			return DateTime.Parse(objectType.ToString());
+			return DateTime.ParseExact(reader.Value.ToString(), _format, CultureInfo.InvariantCulture);
 		}
 
 		/// <inheritdoc />
