@@ -49,7 +49,7 @@
 	<ItemGroup>
 		<PackageReference Include="AsyncFixer" Version="1.1.6" PrivateAssets="all"/>
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all"/>
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="7.6.0.7024" PrivateAssets="all"/>
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="7.8.0.7320" PrivateAssets="all"/>
 		<PackageReference Include="JetBrains.Annotations" Version="2018.2.1" PrivateAssets="all"/>
 	</ItemGroup>
 	<ItemGroup>
@@ -59,7 +59,7 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1"/>
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.1"/>
-		<PackageReference Include="System.Net.Http" Version="4.3.3"/>
+		<PackageReference Include="System.Net.Http" Version="4.3.4"/>
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
 		<PackageReference Include="Microsoft.Bcl" Version="1.1.10"/>
@@ -72,7 +72,7 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
 		<PackageReference Include="NetFx.Extensions.Logging.Abstractions" Version="2.1.1"/>
 		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="2.1.1"/>
-		<PackageReference Include="System.Net.Http" Version="4.3.3"/>
+		<PackageReference Include="System.Net.Http" Version="4.3.4"/>
 	</ItemGroup>
 	<ItemGroup>
 		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}"/>
