@@ -193,7 +193,7 @@ namespace VkNet.Model
 				Installed = response["installed"],
 				IsHtml5App = response["is_html_5_app"],
 				PushEnabled = response["push_enabled"],
-				ScreenOrientation = response["screen_orientation"].To<ScreenOrientation>()
+				ScreenOrientation = response["screen_orientation"].ToEnum<ScreenOrientation>()
 			};
 		}
 

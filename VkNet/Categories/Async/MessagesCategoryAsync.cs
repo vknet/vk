@@ -238,9 +238,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<bool> RemoveChatUserAsync(ulong chatId, long? userId = null, long? memberId = null)
+		public Task<bool> RemoveChatUserAsync(ulong chatId, long? userId = null, long? memberId = null)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => RemoveChatUser(chatId, userId, memberId));
+			return TypeHelper.TryInvokeMethodAsync(() => RemoveChatUser(chatId, userId, memberId));
 		}
 
 		/// <inheritdoc />

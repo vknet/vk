@@ -13,7 +13,7 @@
 		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<VersionPrefix>1.39.0</VersionPrefix>
+		<VersionPrefix>1.40.0</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -33,7 +33,7 @@
 			Обсуждение в Telegram: http://bit.ly/2rvEOWD
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: http://bit.ly/2zVQhnz
+			Список изменений: http://bit.ly/2PHAgKB
 		</PackageReleaseNotes>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -64,7 +64,7 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
 		<PackageReference Include="Microsoft.Bcl" Version="1.1.10"/>
 		<PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168"/>
-		<PackageReference Include="Microsoft.Bcl.Build" Version="[1.0.14]"/>
+		<PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21"/>
 		<PackageReference Include="Microsoft.Net.Http" Version="2.2.29"/>
 		<PackageReference Include="NetFx.Extensions.Logging.Abstractions" Version="2.1.1"/>
 		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="2.1.1"/>

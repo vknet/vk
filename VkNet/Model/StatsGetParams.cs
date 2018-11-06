@@ -8,6 +8,9 @@ using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Параметры метода Stats.Get
+	/// </summary>
 	[Serializable]
 	public class StatsGetParams
 	{

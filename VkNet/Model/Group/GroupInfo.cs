@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -170,6 +171,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Список тематик
 		/// </summary>
+		[UsedImplicitly]
 		public readonly Dictionary<int, string> Subjects = new Dictionary<int, string>
 		{
 			{ 1, "Авто/мото" },

@@ -267,9 +267,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public async Task<bool> DisableOnlineAsync(ulong groupId)
+		public Task<bool> DisableOnlineAsync(ulong groupId)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => DisableOnline(groupId));
+			return TypeHelper.TryInvokeMethodAsync(() => DisableOnline(groupId));
 		}
 
 		/// <inheritdoc />

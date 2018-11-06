@@ -6,6 +6,9 @@ using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Параметры метода Messages.GetImportantMessages
+	/// </summary>
 	[Serializable]
 	public class GetImportantMessagesResult
 	{

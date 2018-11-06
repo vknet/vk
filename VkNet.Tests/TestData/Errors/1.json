@@ -1,0 +1,24 @@
+{
+  "error": {
+    "error_code": 1,
+    "error_msg": "Unknown error occured",
+    "request_params": [
+      {
+        "key": "oauth",
+        "value": "1"
+      },
+      {
+        "key": "method",
+        "value": "messages.delete"
+      },
+      {
+        "key": "mids",
+        "value": "999999"
+      },
+      {
+        "key": "access_token",
+        "value": "token"
+      }
+    ]
+  }
+}
