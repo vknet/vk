@@ -545,3 +545,18 @@ html_blank_lines_around_razor_helpers=1
 
 # Blank lines around Razor sections
 html_blank_lines_around_razor_sections=1
+
+## INSPECTIONS
+
+# Code Notification
+resharper_invocation_is_skipped_highlighting=warning
+
+# Code Style
+resharper_arrange_missing_parentheses_highlighting=true:hint
+resharper_arrange_static_member_qualifier_highlighting=true:warning
+resharper_arrange_this_qualifier_highlighting=true:warning
+resharper_arrange_modifiers_order_highlighting=true:error
+resharper_arrange_attributes_highlighting=true:error
+
+resharper_possible_null_reference_exception_highlighting=error
+resharper_n_unit_non_public_method_with_test_attribute_highlighting=error
