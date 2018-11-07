@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace VkNet.Model
 {
@@ -12,17 +12,17 @@ namespace VkNet.Model
 		/// <summary>
 		/// Массив новостей для текущего пользователя.
 		/// </summary>
-		public ReadOnlyCollection<NewsItem> Items { get; set; }
+		public IEnumerable<NewsItem> Items { get; set; }
 
 		/// <summary>
 		/// Информация о пользователях, которые находятся в списке новостей.
 		/// </summary>
-		public ReadOnlyCollection<User> Profiles { get; set; }
+		public IEnumerable<User> Profiles { get; set; }
 
 		/// <summary>
 		/// Информация о группах, которые находятся в списке новостей.
 		/// </summary>
-		public ReadOnlyCollection<Group> Groups { get; set; }
+		public IEnumerable<Group> Groups { get; set; }
 
 		/// <summary>
 		/// Содержит offset, который необходимо передать, для того, чтобы получить
