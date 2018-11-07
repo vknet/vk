@@ -174,5 +174,19 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("friends")]
 		public VkCollection<User> Friends { get; set; }
+
+		/// <summary>
+		/// Содержат информацию о количестве объектов и до 5 последних объектов, связанных
+		/// с данной новостью.
+		/// </summary>
+		[JsonProperty("audio")]
+		public VkCollection<Audio> Audios { get; set; }
+
+		/// <summary>
+		/// Содержат информацию о количестве объектов и до 5 последних объектов, связанных
+		/// с данной новостью.
+		/// </summary>
+		[JsonProperty("video")]
+		public VkCollection<Video> Videos { get; set; }
 	}
 }
