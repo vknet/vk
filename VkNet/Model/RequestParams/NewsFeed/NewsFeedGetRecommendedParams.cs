@@ -1,13 +1,12 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Enums.Filters;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	/// Список параметров запроса newsfeed.get
+	/// Список параметров запроса newsfeed.getRecommended
 	/// </summary>
 	[Serializable]
 	public class NewsFeedGetRecommendedParams
@@ -16,7 +15,7 @@ namespace VkNet.Model.RequestParams
 		/// Время в формате unixtime, начиная с которого следует получить новости для
 		/// текущего пользователя.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? StartTime { get; set; }
 
 		/// <summary>
@@ -24,7 +23,7 @@ namespace VkNet.Model.RequestParams
 		/// пользователя. Если параметр не задан,
 		/// то он считается равным текущему времени.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? EndTime { get; set; }
 
 		/// <summary>
@@ -44,12 +43,12 @@ namespace VkNet.Model.RequestParams
 		/// Указывает, какое максимальное число новостей следует возвращать, но не более
 		/// 100. По умолчанию 50.
 		/// </summary>
-		public long? Count { get; set; }
+		public ushort? Count { get; set; }
 
 		/// <summary>
-		/// Список дополнительных полей профилей, которые необходимо вернуть.
+		/// Список дополнительных полей профилей и сообществ, которые необходимо вернуть.
 		/// </summary>
-		public UsersFields Fields { get; set; }
+		public string Fields { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -60,12 +59,12 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-					{ "start_time", p.StartTime }
-					, { "end_time", p.EndTime }
-					, { "max_photos", p.MaxPhotos }
-					, { "start_from", p.StartFrom }
-					, { "count", p.Count }
-					, { "fields", p.Fields }
+				{ "start_time", p.StartTime },
+				{ "end_time", p.EndTime },
+				{ "max_photos", p.MaxPhotos },
+				{ "start_from", p.StartFrom },
+				{ "count", p.Count },
+				{ "fields", p.Fields }
 			};
 
 			return parameters;

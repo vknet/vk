@@ -38,18 +38,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public NewsFeed GetRecommended(NewsFeedGetRecommendedParams @params)
 		{
-			var response = _vk.Call(methodName: "newsfeed.getRecommended", parameters: @params);
-
-			var result = new NewsFeed
-			{
-				Items = response[key: "items"].ToReadOnlyCollectionOf<NewsItem>(selector: x => x),
-				Profiles = response[key: "profiles"].ToReadOnlyCollectionOf<User>(selector: x => x),
-				Groups = response[key: "groups"].ToReadOnlyCollectionOf<Group>(selector: x => x),
-				NewOffset = response[key: "new_offset"],
-				NextFrom = response[key: "next_from"]
-			};
-
-			return result;
+			return _vk.Call<NewsFeed>("newsfeed.getRecommended", @params);
 		}
 
 		/// <inheritdoc />
