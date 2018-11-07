@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions;
@@ -44,18 +44,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public NewsFeed GetComments(NewsFeedGetCommentsParams @params)
 		{
-			var response = _vk.Call(methodName: "newsfeed.getComments", parameters: @params);
-
-			var result = new NewsFeed
-			{
-				Items = response[key: "items"].ToReadOnlyCollectionOf<NewsItem>(selector: x => x),
-				Profiles = response[key: "profiles"].ToReadOnlyCollectionOf<User>(selector: x => x),
-				Groups = response[key: "groups"].ToReadOnlyCollectionOf<Group>(selector: x => x),
-				NewOffset = response[key: "new_offset"],
-				NextFrom = response[key: "next_from"]
-			};
-
-			return result;
+			return _vk.Call<NewsFeed>("newsfeed.getComments", @params);
 		}
 
 		/// <inheritdoc />
