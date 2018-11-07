@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
@@ -15,13 +14,8 @@ namespace VkNet.Model.RequestParams
 	public class NewsFeedGetCommentsParams
 	{
 		/// <summary>
-		/// Перечисленные через запятую названия списков новостей, которые необходимо
-		/// получить. В данный момент поддерживаются
-		/// следующие списки новостей: post — новые записи со стен photo — новые фотографии
-		/// photo_tag — новые отметки на
-		/// фотографиях wall_photo — новые фотографии на стенах friend — новые друзья note
-		/// — новые заметки Если параметр не
-		/// задан, то будут получены все возможные списки новостей.
+		/// Названия списков новостей, которые необходимо
+		/// получить.
 		/// </summary>
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public NewsTypes Filters { get; set; }
@@ -39,7 +33,7 @@ namespace VkNet.Model.RequestParams
 		/// Время в формате unixtime, начиная с которого следует получить новости для
 		/// текущего пользователя.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? StartTime { get; set; }
 
 		/// <summary>
@@ -47,13 +41,14 @@ namespace VkNet.Model.RequestParams
 		/// пользователя. Если параметр не задан,
 		/// то он считается равным текущему времени.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? EndTime { get; set; }
 
 		/// <summary>
 		/// Количество комментариев к записям, которые нужно получить.
+		/// По умолчанию 0. Максимальное значение 10.
 		/// </summary>
-		public long? LastCommentsCount { get; set; }
+		public ushort? LastCommentsCount { get; set; }
 
 		/// <summary>
 		/// Идентификатор, необходимый для получения следующей страницы результатов.
@@ -63,15 +58,16 @@ namespace VkNet.Model.RequestParams
 		public long? StartFrom { get; set; }
 
 		/// <summary>
-		/// Указывает, какое максимальное число новостей следует возвращать, но не более
-		/// 100. По умолчанию 50.
+		/// указывает, какое максимальное число новостей следует возвращать,
+		/// но не более 100. По умолчанию 30.
+		/// Для автоподгрузки Вы можете использовать возвращаемый данным методом параметр new_offset.
 		/// </summary>
-		public long? Count { get; set; }
+		public ushort? Count { get; set; }
 
 		/// <summary>
-		/// Список дополнительных полей профилей, которые необходимо вернуть.
+		/// Список дополнительных полей профилей и сообществ, которые необходимо вернуть.
 		/// </summary>
-		public UsersFields Fields { get; set; }
+		public string Fields { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -82,14 +78,14 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-					{ "count", p.Count }
-					, { "filters", p.Filters }
-					, { "reposts", p.Reposts }
-					, { "start_time", p.StartTime }
-					, { "end_time", p.EndTime }
-					, { "last_comments_count", p.LastCommentsCount }
-					, { "start_from", p.StartFrom }
-					, { "fields", p.Fields }
+				{ "count", p.Count },
+				{ "filters", p.Filters },
+				{ "reposts", p.Reposts },
+				{ "start_time", p.StartTime },
+				{ "end_time", p.EndTime },
+				{ "last_comments_count", p.LastCommentsCount },
+				{ "start_from", p.StartFrom },
+				{ "fields", p.Fields }
 			};
 
 			return parameters;
