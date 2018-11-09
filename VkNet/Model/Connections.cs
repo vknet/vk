@@ -6,8 +6,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Информация о социальных контактах пользователя.
 	/// См. описание
-	/// <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields" />
-	/// и http://vk.com/dev/fields
+	/// <see href="https://vk.com/dev/objects/user" />
 	/// Экспериментально установлено, что поля находятся непосредственно в полях
 	/// объекта User.
 	/// </summary>
@@ -22,7 +21,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор акаунта в Facebook.
 		/// </summary>
-		public long? FacebookId { get; set; }
+		public string Facebook { get; set; }
 
 		/// <summary>
 		/// Имя и фамилия в facebook.
@@ -50,11 +49,11 @@ namespace VkNet.Model
 		{
 			var connections = new Connections
 			{
-					Skype = response[key: "skype"]
-					, FacebookId = Utilities.GetNullableLongId(response: response[key: "facebook"])
-					, FacebookName = response[key: "facebook_name"]
-					, Twitter = response[key: "twitter"]
-					, Instagram = response[key: "instagram"]
+				Skype = response["skype"],
+				Facebook = response["facebook"],
+				FacebookName = response["facebook_name"],
+				Twitter = response["twitter"],
+				Instagram = response["instagram"]
 			};
 
 			return connections;
