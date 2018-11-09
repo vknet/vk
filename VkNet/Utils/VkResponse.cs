@@ -48,7 +48,9 @@ namespace VkNet.Utils
 
 				var token = _token[key: key];
 
-				return token != null ? new VkResponse(token: _token[key: key]) : null;
+				return token != null && token.Type != JTokenType.Null
+					? new VkResponse(token)
+					: null;
 			}
 		}
 
