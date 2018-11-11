@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using System.IO;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -643,29 +645,25 @@ namespace VkNet
 
 		private string InvokeBase(string url, IDictionary<string, string> @params, bool skipAuthorization = false)
 		{
-			var answer = string.Empty;
+			var response = default(HttpResponseMessage);
 
 			void SendRequest()
 			{
 				LastInvokeTime = DateTimeOffset.Now;
 
-				var response = RestClient.PostAsync(new Uri(url), @params)
+				response = RestClient.PostAsync(new Uri(url), @params)
 					.ConfigureAwait(false)
 					.GetAwaiter()
 					.GetResult();
-
-				answer = response.Value ?? response.Message;
 			}
 
 			// Защита от превышения количества запросов в секунду
 			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
 			{
 				if (_expireTimer == null)
-				{
 					SetTimer(0);
-				}
 
-				lock (_expireTimerLock)//TODO Сделать способ для ограничения количества запросов, не блокирующий потоки
+				lock (_expireTimerLock) //TODO Сделать способ для ограничения количества запросов, не блокирующий потоки
 				{
 					var span = LastInvokeTimeSpan?.TotalMilliseconds;
 
@@ -686,7 +684,14 @@ namespace VkNet
 				SendRequest();
 			}
 
-			return answer;
+			using (var body = response?.Content.ReadAsStreamAsync().ConfigureAwait(false).GetAwaiter().GetResult())
+			{
+				if (body == null)
+					return null;
+
+				using (var reader = new StreamReader(body))
+					return reader.ReadToEndAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+			}
 		}
 
 		/// <summary>

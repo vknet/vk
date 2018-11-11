@@ -35,75 +35,63 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public TimeSpan Timeout
 		{
-			get => _timeoutSeconds == TimeSpan.Zero ? TimeSpan.FromSeconds(value: 300) : _timeoutSeconds;
+			get => _timeoutSeconds == TimeSpan.Zero ? TimeSpan.FromSeconds(300) : _timeoutSeconds;
 			set => _timeoutSeconds = value;
 		}
 
 		/// <inheritdoc />
-		public Task<HttpResponse<string>> GetAsync(Uri uri, VkParameters parameters)
+		public Task<HttpResponseMessage> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
-			var queries = parameters.Where(predicate: k => !string.IsNullOrWhiteSpace(value: k.Value))
-				.Select(selector: kvp => $"{kvp.Key.ToLowerInvariant()}={kvp.Value}");
+			var queries = parameters
+				.Where(parameter => !string.IsNullOrWhiteSpace(parameter.Value))
+				.Select(parameter => $"{parameter.Key.ToLowerInvariant()}={parameter.Value}");
 
-			var url = new UriBuilder(uri: uri)
+			var url = new UriBuilder(uri)
 			{
-				Query = string.Join(separator: "&", values: queries)
+				Query = string.Join("&", queries)
 			};
 
-			_logger?.LogDebug(message: $"GET request: {url.Uri}");
+			_logger?.LogDebug($"GET request: {url.Uri}");
 
-			return Call(method: httpClient => httpClient.GetAsync(requestUri: url.Uri));
+			var request = new HttpRequestMessage(HttpMethod.Get, uri);
+
+			return Call(httpClient => httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead));
 		}
 
 		/// <inheritdoc />
-		public Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
+		public Task<HttpResponseMessage> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
-			var json = JsonConvert.SerializeObject(value: parameters);
-			_logger?.LogDebug(message: $"POST request: {uri}{Environment.NewLine}{Utilities.PreetyPrintJson(json: json)}");
-			HttpContent content = new FormUrlEncodedContent(nameValueCollection: parameters);
-
-			return Call(method: httpClient => httpClient.PostAsync(requestUri: uri, content: content));
-		}
-
-		private async Task<HttpResponse<string>> Call(Func<HttpClient, Task<HttpResponseMessage>> method)
-		{
-			var handler = new HttpClientHandler
+			if (_logger != null)
 			{
-				UseProxy = false
-			};
-
-			if (Proxy != null)
-			{
-				handler = new HttpClientHandler
-				{
-					Proxy = Proxy,
-					UseProxy = true
-				};
-
-				_logger?.LogDebug(message: $"Use Proxy: {Proxy}");
+				var json = JsonConvert.SerializeObject(parameters);
+				_logger.LogDebug($"POST request: {uri}{Environment.NewLine}{Utilities.PreetyPrintJson(json)}");
 			}
 
-			using (var client = new HttpClient(handler: handler))
+			var content = new FormUrlEncodedContent(parameters);
+
+			var request = new HttpRequestMessage(HttpMethod.Post, uri) { Content = content };
+
+			return Call(httpClient => httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead));
+		}
+
+		private async Task<HttpResponseMessage> Call(Func<HttpClient, Task<HttpResponseMessage>> method)
+		{
+			var useProxyCondition = Proxy != null;
+
+			if (useProxyCondition)
+				_logger?.LogDebug($"Use Proxy: {Proxy}");
+
+			var handler = new HttpClientHandler
 			{
-				if (Timeout != TimeSpan.Zero)
-				{
-					client.Timeout = Timeout;
-				}
+				Proxy = Proxy,
+				UseProxy = useProxyCondition
+			};
 
-				var response = await method(arg: client).ConfigureAwait(false);
-				var requestUri = response.RequestMessage.RequestUri.ToString();
+			using (var client = new HttpClient(handler) { Timeout = Timeout })
+			{
+				var response = await method(client).ConfigureAwait(false);
 
-				if (response.IsSuccessStatusCode)
-				{
-					var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-					_logger?.LogDebug(message: $"Response:{Environment.NewLine}{Utilities.PreetyPrintJson(json: json)}");
-
-					return HttpResponse<string>.Success(httpStatusCode: response.StatusCode, value: json, requestUri: requestUri);
-				}
-
-				var message = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-				return HttpResponse<string>.Fail(httpStatusCode: response.StatusCode, message: message, requestUri: requestUri);
+				return response;
 			}
 		}
 	}
