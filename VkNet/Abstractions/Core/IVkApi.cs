@@ -16,7 +16,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Ограничение на кол-во запросов в секунду
 		/// </summary>
-		float RequestsPerSecond { get; set; }
+		int RequestsPerSecond { get; set; }
 
 		/// <summary>
 		/// Браузер.
