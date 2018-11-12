@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
+using VkNet.Utils;
 
 namespace VkNet.Abstractions.Utils
 {
@@ -28,7 +28,7 @@ namespace VkNet.Abstractions.Utils
 		/// <param name="uri"> Uri </param>
 		/// <param name="parameters"> </param>
 		/// <returns> String result </returns>
-		Task<HttpResponseMessage> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters);
+		Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters);
 
 		/// <summary>
 		/// POST запрос
@@ -36,6 +36,6 @@ namespace VkNet.Abstractions.Utils
 		/// <param name="uri"> Uri </param>
 		/// <param name="parameters"> Параметры </param>
 		/// <returns> Строковый результат </returns>
-		Task<HttpResponseMessage> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters);
+		Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters);
 	}
 }
