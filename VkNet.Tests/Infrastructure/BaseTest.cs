@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Moq;
 using Newtonsoft.Json.Linq;
@@ -166,14 +165,7 @@ namespace VkNet.Tests
 						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
 					}
 
-					return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
-					{
-						Content = new StringContent(Json),
-						RequestMessage = new HttpRequestMessage
-						{
-							RequestUri = new Uri(Url)
-						}
-					});
+					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url));
 				});
 
 			restClient.Setup(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),

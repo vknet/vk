@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Moq;
@@ -38,7 +39,7 @@ namespace VkNet.Tests
 			while (true)
 			{
 				Api.Call("friends.getRequests", VkParameters.Empty, true);
-
+				Debug.Print($"{DateTime.Now:HH:mm:ss.fff}{Environment.NewLine}");
 				var total = (int) (DateTimeOffset.Now - start).TotalMilliseconds;
 
 				if (total > 999)
