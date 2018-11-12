@@ -51,11 +51,6 @@ namespace VkNet
 	public class VkApi : IVkApi
 	{
 		/// <summary>
-		/// Версия API vk.com.
-		/// </summary>
-		public IVkApiVersionManager VkApiVersion { get; private set; }
-
-		/// <summary>
 		/// Параметры авторизации.
 		/// </summary>
 		private IApiAuthParams _ap;
@@ -69,6 +64,11 @@ namespace VkNet
 		/// Таймер.
 		/// </summary>
 		private Timer _expireTimer;
+
+		/// <summary>
+		/// Сервис управления языком
+		/// </summary>
+		private ILanguageService _language;
 
 		/// <summary>
 		/// Логгер
@@ -122,6 +122,11 @@ namespace VkNet
 		}
 
 		/// <summary>
+		/// Версия API vk.com.
+		/// </summary>
+		public IVkApiVersionManager VkApiVersion { get; private set; }
+
+		/// <summary>
 		/// Токен для доступа к методам API
 		/// </summary>
 		private string AccessToken { get; set; }
@@ -149,11 +154,6 @@ namespace VkNet
 
 		/// <inheritdoc />
 		public ICaptchaSolver CaptchaSolver { get; set; }
-
-		/// <summary>
-		/// Сервис управления языком
-		/// </summary>
-		private ILanguageService _language;
 
 		/// <inheritdoc />
 		public void SetLanguage(Language language)
@@ -341,7 +341,7 @@ namespace VkNet
 		{
 			if (string.IsNullOrEmpty(server))
 			{
-				var message = $"Server не должен быть пустым или null";
+				var message = "Server не должен быть пустым или null";
 				_logger?.LogError(message);
 
 				throw new ArgumentException(message);
@@ -644,7 +644,9 @@ namespace VkNet
 			}
 
 			if (_expireTimer == null)
+			{
 				SetTimer(0);
+			}
 
 			// Защита от превышения количества запросов в секунду
 			_rateLimiter.Perform(() => SendRequest()).ConfigureAwait(false).GetAwaiter().GetResult();

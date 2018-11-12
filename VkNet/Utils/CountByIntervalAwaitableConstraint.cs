@@ -31,10 +31,14 @@ namespace VkNet.Utils
 		public CountByIntervalAwaitableConstraint(int count, TimeSpan timeSpan)
 		{
 			if (count <= 0)
+			{
 				throw new ArgumentException("count should be strictly positive", nameof(count));
+			}
 
 			if (timeSpan.TotalMilliseconds <= 0)
+			{
 				throw new ArgumentException("timeSpan should be strictly positive", nameof(timeSpan));
+			}
 
 			_count = count;
 			_timeSpan = timeSpan;
@@ -51,7 +55,7 @@ namespace VkNet.Utils
 			LinkedListNode<DateTime> element = _timeStamps.First,
 				last = null;
 
-			while (element != null && element.Value > target)
+			while (element?.Value > target)
 			{
 				last = element;
 				element = element.Next;
@@ -65,14 +69,14 @@ namespace VkNet.Utils
 				return;
 			}
 
-			var timetoWait = last.Value.Add(_timeSpan) - now;
+			var timeToWait = last.Value.Add(_timeSpan) - now;
 
 			try
 			{
 			#if NET40
-				await TaskEx.Delay(timetoWait, cancellationToken);
+				await TaskEx.Delay(timeToWait, cancellationToken);
 			#else
-				await Task.Delay(timetoWait, cancellationToken);
+				await Task.Delay(timeToWait, cancellationToken);
 			#endif
 			}
 			catch (System.Exception)
