@@ -23,6 +23,13 @@ namespace VkNet.Utils
 
 		private readonly object _sync = new object();
 
+		public CountByIntervalAwaitableConstraint()
+		{
+			_count = 3;
+			_timeSpan = TimeSpan.FromSeconds(1);
+			_timeStamps = new LimitedSizeStack<DateTime>(_count);
+		}
+
 		public CountByIntervalAwaitableConstraint(int count, TimeSpan timeSpan)
 		{
 			if (count <= 0)
