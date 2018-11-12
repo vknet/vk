@@ -38,7 +38,7 @@ namespace VkNet.Utils
 			container.TryAddSingleton<ICaptchaSolver>(sp => null);
 			container.TryAddSingleton<HttpClient>();
 			container.TryAddSingleton<IRateLimiter, RateLimiter>();
-			container.TryAddSingleton<IAwaitableConstraint>(sp => new CountByIntervalAwaitableConstraint(3, TimeSpan.FromSeconds(1)));
+			container.TryAddSingleton<IAwaitableConstraint, CountByIntervalAwaitableConstraint>();
 		}
 
 		/// <summary>
