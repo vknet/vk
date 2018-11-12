@@ -8,8 +8,6 @@ namespace VkNet.Utils
 {
 	public class CountByIntervalAwaitableConstraint : IAwaitableConstraint
 	{
-		public LimitedSizeStack<DateTime> TimeStamps => _timeStamps;
-
 		private readonly LimitedSizeStack<DateTime> _timeStamps;
 
 		private int _count;

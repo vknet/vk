@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace VkNet.Utils
 {
-	public class LimitedSizeStack<T> : LinkedList<T>
+	internal class LimitedSizeStack<T> : LinkedList<T>
 	{
 		private readonly int _maxSize;
 
