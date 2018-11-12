@@ -40,7 +40,7 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public Task<HttpResponseMessage> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
+		public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
 			var queries = parameters
 				.Where(parameter => !string.IsNullOrWhiteSpace(parameter.Value))
@@ -59,7 +59,7 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public Task<HttpResponseMessage> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
+		public Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
 			if (_logger != null)
 			{
@@ -74,7 +74,7 @@ namespace VkNet.Utils
 			return Call(httpClient => httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead));
 		}
 
-		private async Task<HttpResponseMessage> Call(Func<HttpClient, Task<HttpResponseMessage>> method)
+		private async Task<HttpResponse<string>> Call(Func<HttpClient, Task<HttpResponseMessage>> method)
 		{
 			var useProxyCondition = Proxy != null;
 
@@ -91,7 +91,14 @@ namespace VkNet.Utils
 			{
 				var response = await method(client).ConfigureAwait(false);
 
-				return response;
+				var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+				_logger?.LogDebug($"Response:{Environment.NewLine}{Utilities.PreetyPrintJson(content)}");
+				var url = response.RequestMessage.RequestUri.ToString();
+
+				return response.IsSuccessStatusCode
+					? HttpResponse<string>.Success(response.StatusCode, content, url)
+					: HttpResponse<string>.Fail(response.StatusCode, content, url);
 			}
 		}
 	}

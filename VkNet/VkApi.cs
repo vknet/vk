@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
-using System.IO;
-using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -56,11 +54,6 @@ namespace VkNet
 		/// Версия API vk.com.
 		/// </summary>
 		public IVkApiVersionManager VkApiVersion { get; private set; }
-
-		/// <summary>
-		/// The expire timer lock
-		/// </summary>
-		private readonly object _expireTimerLock = new object();
 
 		/// <summary>
 		/// Параметры авторизации.
@@ -416,16 +409,12 @@ namespace VkNet
 
 	#region Requests limit stuff
 
+		private IRateLimiter _rateLimiter;
+
 		/// <summary>
 		/// Запросов в секунду.
 		/// </summary>
-		private float _requestsPerSecond;
-
-		/// <summary>
-		/// Минимальное время, которое должно пройти между запросами чтобы не превысить
-		/// кол-во запросов в секунду.
-		/// </summary>
-		private float _minInterval;
+		private int _requestsPerSecond;
 
 		/// <inheritdoc />
 		public DateTimeOffset? LastInvokeTime { get; private set; }
@@ -444,10 +433,8 @@ namespace VkNet
 			}
 		}
 
-		private readonly object _minIntervalLock = new object();
-
 		/// <inheritdoc />
-		public float RequestsPerSecond
+		public int RequestsPerSecond
 		{
 			get => _requestsPerSecond;
 			set
@@ -464,10 +451,7 @@ namespace VkNet
 					return;
 				}
 
-				lock (_minIntervalLock)
-				{
-					_minInterval = (int) (1000 / _requestsPerSecond) + 1;
-				}
+				_rateLimiter.SetRate(_requestsPerSecond, TimeSpan.FromSeconds(1));
 			}
 		}
 
@@ -645,53 +629,27 @@ namespace VkNet
 
 		private string InvokeBase(string url, IDictionary<string, string> @params, bool skipAuthorization = false)
 		{
-			var response = default(HttpResponseMessage);
+			var answer = string.Empty;
 
 			void SendRequest()
 			{
 				LastInvokeTime = DateTimeOffset.Now;
 
-				response = RestClient.PostAsync(new Uri(url), @params)
+				var response = RestClient.PostAsync(new Uri(url), @params)
 					.ConfigureAwait(false)
 					.GetAwaiter()
 					.GetResult();
+
+				answer = response.Message ?? response.Value;
 			}
+
+			if (_expireTimer == null)
+				SetTimer(0);
 
 			// Защита от превышения количества запросов в секунду
-			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
-			{
-				if (_expireTimer == null)
-					SetTimer(0);
+			_rateLimiter.Perform(() => SendRequest()).ConfigureAwait(false).GetAwaiter().GetResult();
 
-				lock (_expireTimerLock) //TODO Сделать способ для ограничения количества запросов, не блокирующий потоки
-				{
-					var span = LastInvokeTimeSpan?.TotalMilliseconds;
-
-					if (span < _minInterval)
-					{
-						var timeout = (int) _minInterval - (int) span;
-					#if NET40
-						Thread.Sleep(timeout);
-					#else
-						Task.Delay(timeout).Wait();
-					#endif
-					}
-
-					SendRequest();
-				}
-			} else if (skipAuthorization)
-			{
-				SendRequest();
-			}
-
-			using (var body = response?.Content.ReadAsStreamAsync().ConfigureAwait(false).GetAwaiter().GetResult())
-			{
-				if (body == null)
-					return null;
-
-				using (var reader = new StreamReader(body))
-					return reader.ReadToEndAsync().ConfigureAwait(false).GetAwaiter().GetResult();
-			}
+			return answer;
 		}
 
 		/// <summary>
@@ -829,6 +787,7 @@ namespace VkNet
 			_logger = serviceProvider.GetService<ILogger<VkApi>>();
 			_captchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
 			_language = serviceProvider.GetRequiredService<ILanguageService>();
+			_rateLimiter = serviceProvider.GetRequiredService<IRateLimiter>();
 
 			RestClient = serviceProvider.GetRequiredService<IRestClient>();
 			Users = new UsersCategory(this);
