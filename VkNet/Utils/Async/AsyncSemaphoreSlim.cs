@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,12 +6,10 @@ internal class AsyncSemaphoreSlim
 {
 	private readonly Queue<TaskCompletionSource<bool>> _mWaiters = new Queue<TaskCompletionSource<bool>>();
 
-	private int _mCurrentCount;
+	private uint _mCurrentCount;
 
-	public AsyncSemaphoreSlim(int initialCount)
+	public AsyncSemaphoreSlim(uint initialCount)
 	{
-		if (initialCount < 0) throw new ArgumentOutOfRangeException("initialCount");
-
 		_mCurrentCount = initialCount;
 	}
 
