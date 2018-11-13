@@ -15,7 +15,7 @@ namespace VkNet.Model.Attachments
 	{
 		static Audio()
 		{
-			RegisterType(type: typeof(Audio), match: "audio");
+			RegisterType(typeof(Audio), "audio");
 		}
 
 		/// <summary>
@@ -99,6 +99,14 @@ namespace VkNet.Model.Attachments
 
 	#region Методы
 
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return string.IsNullOrWhiteSpace(AccessKey)
+				? base.ToString()
+				: $"{base.ToString()}_{AccessKey}";
+		}
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
@@ -108,21 +116,21 @@ namespace VkNet.Model.Attachments
 		{
 			return new Audio
 			{
-				Id = response[key: "id"],
-				OwnerId = response[key: "owner_id"],
-				Artist = response[key: "artist"],
-				Title = response[key: "title"],
-				Duration = response[key: "duration"],
-				Url = response[key: "url"],
-				LyricsId = response[key: "lyrics_id"],
-				Album = response[key: "album"],
+				Id = response["id"],
+				OwnerId = response["owner_id"],
+				Artist = response["artist"],
+				Title = response["title"],
+				Duration = response["duration"],
+				Url = response["url"],
+				LyricsId = response["lyrics_id"],
+				Album = response["album"],
 				AccessKey = response["access_key"],
 				IsHq = response["is_hq"],
 				IsLicensed = response["is_licensed"],
 				TrackGenre = response["track_genre_id"],
 				ContentRestricted = response["content_restricted"],
-				Genre = response[key: "genre_id"] ?? response[key: "genre"],
-				Date = response[key: "date"]
+				Genre = response["genre_id"] ?? response["genre"],
+				Date = response["date"]
 			};
 		}
 

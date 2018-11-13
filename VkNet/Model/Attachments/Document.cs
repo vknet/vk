@@ -14,7 +14,7 @@ namespace VkNet.Model.Attachments
 	{
 		static Document()
 		{
-			RegisterType(type: typeof(Document), match: "doc");
+			RegisterType(typeof(Document), "doc");
 		}
 
 		/// <summary>
@@ -40,13 +40,13 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Дата добавления в формате unixtime.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
 		/// тип документа
 		/// </summary>
-		[JsonProperty(propertyName: "type")]
+		[JsonProperty("type")]
 		public DocumentType Type { get; set; }
 
 		/// <summary>
@@ -71,6 +71,14 @@ namespace VkNet.Model.Attachments
 
 	#region Методы
 
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return string.IsNullOrWhiteSpace(AccessKey)
+				? base.ToString()
+				: $"{base.ToString()}_{AccessKey}";
+		}
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
@@ -80,18 +88,18 @@ namespace VkNet.Model.Attachments
 		{
 			var document = new Document
 			{
-					Id = response[key: "doc_id"] ?? response[key: "did"] ?? response[key: "id"]
-					, OwnerId = response[key: "owner_id"]
-					, Title = response[key: "title"]
-					, Size = response[key: "size"]
-					, Ext = response[key: "ext"]
-					, Uri = response[key: "url"]
-					, Photo100 = response[key: "photo_100"]
-					, Photo130 = response[key: "photo_130"]
-					, AccessKey = response[key: "access_key"]
-					, Date = response[key: "date"]
-					, Preview = response[key: "preview"]
-					, Type = response[key: "type"]
+				Id = response["doc_id"] ?? response["did"] ?? response["id"],
+				OwnerId = response["owner_id"],
+				Title = response["title"],
+				Size = response["size"],
+				Ext = response["ext"],
+				Uri = response["url"],
+				Photo100 = response["photo_100"],
+				Photo130 = response["photo_130"],
+				AccessKey = response["access_key"],
+				Date = response["date"],
+				Preview = response["preview"],
+				Type = response["type"]
 			};
 
 			return document;
