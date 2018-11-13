@@ -11,6 +11,11 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class AudioMessage : MediaAttachment
 	{
+		static AudioMessage()
+		{
+			RegisterType(typeof(AudioMessage), "audio_message");
+		}
+
 		/// <summary>
 		/// Продолжительность
 		/// </summary>
@@ -61,7 +66,8 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		/// Преобразование класса <see cref="AudioMessage" /> в <see cref="VkParameters"/>>
+		/// Преобразование класса <see cref="AudioMessage" /> в <see cref="VkParameters" />
+		/// >
 		/// </summary>
 		/// <param name="response"> Параметр. </param>
 		/// <returns>
@@ -70,6 +76,14 @@ namespace VkNet.Model.Attachments
 		public static implicit operator AudioMessage(VkResponse response)
 		{
 			return response.HasToken() ? FromJson(response) : null;
+		}
+
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return string.IsNullOrWhiteSpace(AccessKey)
+				? base.ToString()
+				: $"{base.ToString()}_{AccessKey}";
 		}
 	}
 }
