@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Moq;
@@ -74,25 +73,7 @@ namespace VkNet.Tests
 
 			var restClient = new Mock<IRestClient>();
 
-			restClient.Setup(x =>
-					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
-						It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-				.Callback(Callback)
-				.Returns(() =>
-				{
-					if (string.IsNullOrWhiteSpace(Json))
-					{
-						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
-					}
-
-					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK,
-						Json,
-						Url));
-				});
-
-			restClient.Setup(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
-					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-				.Throws<ArgumentException>();
+			SetupIRestClient(restClient);
 
 			Api = new VkApi
 			{
@@ -169,6 +150,27 @@ namespace VkNet.Tests
 			{
 				Api?.Dispose();
 			}
+		}
+
+		protected void SetupIRestClient(Mock<IRestClient> restClient)
+		{
+			restClient.Setup(x =>
+					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
+						It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+				.Callback(Callback)
+				.Returns(() =>
+				{
+					if (string.IsNullOrWhiteSpace(Json))
+					{
+						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
+					}
+
+					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url));
+				});
+
+			restClient.Setup(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
+					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+				.Throws<ArgumentException>();
 		}
 
 		public void Dispose()

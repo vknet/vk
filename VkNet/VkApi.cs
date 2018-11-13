@@ -51,16 +51,6 @@ namespace VkNet
 	public class VkApi : IVkApi
 	{
 		/// <summary>
-		/// Версия API vk.com.
-		/// </summary>
-		public IVkApiVersionManager VkApiVersion { get; private set; }
-
-		/// <summary>
-		/// The expire timer lock
-		/// </summary>
-		private readonly object _expireTimerLock = new object();
-
-		/// <summary>
 		/// Параметры авторизации.
 		/// </summary>
 		private IApiAuthParams _ap;
@@ -74,6 +64,11 @@ namespace VkNet
 		/// Таймер.
 		/// </summary>
 		private Timer _expireTimer;
+
+		/// <summary>
+		/// Сервис управления языком
+		/// </summary>
+		private ILanguageService _language;
 
 		/// <summary>
 		/// Логгер
@@ -127,6 +122,11 @@ namespace VkNet
 		}
 
 		/// <summary>
+		/// Версия API vk.com.
+		/// </summary>
+		public IVkApiVersionManager VkApiVersion { get; private set; }
+
+		/// <summary>
 		/// Токен для доступа к методам API
 		/// </summary>
 		private string AccessToken { get; set; }
@@ -154,11 +154,6 @@ namespace VkNet
 
 		/// <inheritdoc />
 		public ICaptchaSolver CaptchaSolver { get; set; }
-
-		/// <summary>
-		/// Сервис управления языком
-		/// </summary>
-		private ILanguageService _language;
 
 		/// <inheritdoc />
 		public void SetLanguage(Language language)
@@ -346,7 +341,7 @@ namespace VkNet
 		{
 			if (string.IsNullOrEmpty(server))
 			{
-				var message = $"Server не должен быть пустым или null";
+				var message = "Server не должен быть пустым или null";
 				_logger?.LogError(message);
 
 				throw new ArgumentException(message);
@@ -415,15 +410,14 @@ namespace VkNet
 	#region Requests limit stuff
 
 		/// <summary>
-		/// Запросов в секунду.
+		/// The <see cref="IRateLimiter"/>.
 		/// </summary>
-		private float _requestsPerSecond;
+		private IRateLimiter _rateLimiter;
 
 		/// <summary>
-		/// Минимальное время, которое должно пройти между запросами чтобы не превысить
-		/// кол-во запросов в секунду.
+		/// Запросов в секунду.
 		/// </summary>
-		private float _minInterval;
+		private int _requestsPerSecond;
 
 		/// <inheritdoc />
 		public DateTimeOffset? LastInvokeTime { get; private set; }
@@ -442,10 +436,8 @@ namespace VkNet
 			}
 		}
 
-		private readonly object _minIntervalLock = new object();
-
 		/// <inheritdoc />
-		public float RequestsPerSecond
+		public int RequestsPerSecond
 		{
 			get => _requestsPerSecond;
 			set
@@ -462,10 +454,7 @@ namespace VkNet
 					return;
 				}
 
-				lock (_minIntervalLock)
-				{
-					_minInterval = (int) (1000 / _requestsPerSecond) + 1;
-				}
+				_rateLimiter.SetRate(_requestsPerSecond, TimeSpan.FromSeconds(1));
 			}
 		}
 
@@ -654,37 +643,16 @@ namespace VkNet
 					.GetAwaiter()
 					.GetResult();
 
-				answer = response.Value ?? response.Message;
+				answer = response.Message ?? response.Value;
+			}
+
+			if (_expireTimer == null)
+			{
+				SetTimer(0);
 			}
 
 			// Защита от превышения количества запросов в секунду
-			if (RequestsPerSecond > 0 && LastInvokeTime.HasValue)
-			{
-				if (_expireTimer == null)
-				{
-					SetTimer(0);
-				}
-
-				lock (_expireTimerLock)//TODO Сделать способ для ограничения количества запросов, не блокирующий потоки
-				{
-					var span = LastInvokeTimeSpan?.TotalMilliseconds;
-
-					if (span < _minInterval)
-					{
-						var timeout = (int) _minInterval - (int) span;
-					#if NET40
-						Thread.Sleep(timeout);
-					#else
-						Task.Delay(timeout).Wait();
-					#endif
-					}
-
-					SendRequest();
-				}
-			} else if (skipAuthorization)
-			{
-				SendRequest();
-			}
+			_rateLimiter.Perform(() => SendRequest()).ConfigureAwait(false).GetAwaiter().GetResult();
 
 			return answer;
 		}
@@ -824,6 +792,7 @@ namespace VkNet
 			_logger = serviceProvider.GetService<ILogger<VkApi>>();
 			_captchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
 			_language = serviceProvider.GetRequiredService<ILanguageService>();
+			_rateLimiter = serviceProvider.GetRequiredService<IRateLimiter>();
 
 			RestClient = serviceProvider.GetRequiredService<IRestClient>();
 			Users = new UsersCategory(this);
