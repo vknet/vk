@@ -6,7 +6,7 @@ namespace VkNet.Abstractions.Core
 {
 	public interface IAwaitableConstraint
 	{
-		Task WaitForReadiness(CancellationToken cancellationToken);
+		Task<IDisposable> WaitForReadiness(CancellationToken cancellationToken);
 
 		void SetRate(int count, TimeSpan timeSpan);
 	}
