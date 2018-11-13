@@ -409,6 +409,9 @@ namespace VkNet
 
 	#region Requests limit stuff
 
+		/// <summary>
+		/// The <see cref="IRateLimiter"/>.
+		/// </summary>
 		private IRateLimiter _rateLimiter;
 
 		/// <summary>

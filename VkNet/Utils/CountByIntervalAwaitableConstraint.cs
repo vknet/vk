@@ -6,6 +6,9 @@ using VkNet.Abstractions.Core;
 
 namespace VkNet.Utils
 {
+	/// <summary>
+	/// Represents the behavior for the constraint.
+	/// </summary>
 	public class CountByIntervalAwaitableConstraint : IAwaitableConstraint
 	{
 		private readonly LimitedSizeStack<DateTime> _timeStamps;
@@ -21,6 +24,10 @@ namespace VkNet.Utils
 
 		private readonly object _sync = new object();
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CountByIntervalAwaitableConstraint"/> class
+		/// with default values.
+		/// </summary>
 		public CountByIntervalAwaitableConstraint()
 		{
 			_count = 3;
@@ -28,11 +35,24 @@ namespace VkNet.Utils
 			_timeStamps = new LimitedSizeStack<DateTime>(_count);
 		}
 
-		public CountByIntervalAwaitableConstraint(int count, TimeSpan timeSpan)
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CountByIntervalAwaitableConstraint"/> class,
+		/// specifying the maximum number of requests per time interval.
+		/// </summary>
+		/// <param name="number">
+		/// Maximum <paramref name="number"/> times per <paramref name="timeSpan"/>.
+		/// </param>
+		/// <param name="timeSpan">
+		/// Time interval.
+		/// </param>
+		/// <exception cref="ArgumentException">
+		/// The <paramref name="number"/> and <paramref name="timeSpan"/> should be strictly positive.
+		/// </exception>
+		public CountByIntervalAwaitableConstraint(int number, TimeSpan timeSpan)
 		{
-			if (count <= 0)
+			if (number <= 0)
 			{
-				throw new ArgumentException("count should be strictly positive", nameof(count));
+				throw new ArgumentException("count should be strictly positive", nameof(number));
 			}
 
 			if (timeSpan.TotalMilliseconds <= 0)
@@ -40,11 +60,12 @@ namespace VkNet.Utils
 				throw new ArgumentException("timeSpan should be strictly positive", nameof(timeSpan));
 			}
 
-			_count = count;
+			_count = number;
 			_timeSpan = timeSpan;
 			_timeStamps = new LimitedSizeStack<DateTime>(_count);
 		}
 
+		/// <inheritdoc />
 		public async Task<IDisposable> WaitForReadiness(CancellationToken cancellationToken)
 		{
 			await _semaphore.WaitAsync(cancellationToken);
@@ -87,11 +108,12 @@ namespace VkNet.Utils
 			return new DisposableAction(OnEnded);
 		}
 
-		public void SetRate(int count, TimeSpan timeSpan)
+		/// <inheritdoc />
+		public void SetRate(int number, TimeSpan timeSpan)
 		{
 			lock (_sync)
 			{
-				_count = count;
+				_count = number;
 				_timeSpan = timeSpan;
 			}
 		}
@@ -100,12 +122,7 @@ namespace VkNet.Utils
 		{
 			var now = DateTime.Now;
 			_timeStamps.Push(now);
-			OnEnded(now);
 			_semaphore.Release();
-		}
-
-		protected virtual void OnEnded(DateTime now)
-		{
 		}
 	}
 }
