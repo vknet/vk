@@ -4,7 +4,6 @@
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21"/>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0"/>
 		<PackageReference Include="Moq" Version="4.10.0"/>
 		<PackageReference Include="NUnit" Version="3.11.0"/>
@@ -15,6 +14,7 @@
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
 		<PackageReference Include="Microsoft.Bcl" Version="1.1.10"/>
 		<PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168"/>
+		<PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21"/>
 		<PackageReference Include="Microsoft.Net.Http" Version="2.2.29"/>
 		<PackageReference Include="NetFx.Extensions.Logging.Abstractions" Version="2.1.1"/>
 		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="2.1.1"/>
