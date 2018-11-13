@@ -28,42 +28,20 @@ namespace VkNet.Utils
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 
-			await _awaitableConstraint.WaitForReadiness(cancellationToken);
-			await perform();
+			using (await _awaitableConstraint.WaitForReadiness(cancellationToken))
+			{
+				await perform();
+			}
 		}
 
 		public async Task<T> Perform<T>(Func<Task<T>> perform, CancellationToken cancellationToken)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 
-			await _awaitableConstraint.WaitForReadiness(cancellationToken);
-
-			return await perform();
-		}
-
-		private static Func<Task> Transform(Action act)
-		{
-			return () =>
+			using (await _awaitableConstraint.WaitForReadiness(cancellationToken))
 			{
-				act();
-			#if NET40
-				return TaskEx.FromResult(0);
-			#else
-				return Task.FromResult(0);
-			#endif
-			};
-		}
-
-		private static Func<Task<T>> Transform<T>(Func<T> compute)
-		{
-			return () =>
-			{
-			#if NET40
-				return TaskEx.FromResult(compute());
-			#else
-				return Task.FromResult(compute());
-			#endif
-			};
+				return await perform();
+			}
 		}
 
 		public Task Perform(Action perform, CancellationToken cancellationToken)
@@ -97,6 +75,31 @@ namespace VkNet.Utils
 		public void SetRate(int count, TimeSpan timeSpan)
 		{
 			_awaitableConstraint.SetRate(count, timeSpan);
+		}
+
+		private static Func<Task> Transform(Action act)
+		{
+			return () =>
+			{
+				act();
+			#if NET40
+				return TaskEx.FromResult(0);
+			#else
+				return Task.FromResult(0);
+			#endif
+			};
+		}
+
+		private static Func<Task<T>> Transform<T>(Func<T> compute)
+		{
+			return () =>
+			{
+			#if NET40
+				return TaskEx.FromResult(compute());
+			#else
+				return Task.FromResult(compute());
+			#endif
+			};
 		}
 	}
 }

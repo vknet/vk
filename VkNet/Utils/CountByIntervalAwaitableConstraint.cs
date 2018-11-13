@@ -45,7 +45,7 @@ namespace VkNet.Utils
 			_timeStamps = new LimitedSizeStack<DateTime>(_count);
 		}
 
-		public async Task WaitForReadiness(CancellationToken cancellationToken)
+		public async Task<IDisposable> WaitForReadiness(CancellationToken cancellationToken)
 		{
 			await _semaphore.WaitAsync(cancellationToken);
 			var count = 0;
@@ -64,9 +64,7 @@ namespace VkNet.Utils
 
 			if (count < _count)
 			{
-				OnEnded();
-
-				return;
+				return new DisposableAction(OnEnded);
 			}
 
 			var timeToWait = last.Value.Add(_timeSpan) - now;
@@ -81,12 +79,12 @@ namespace VkNet.Utils
 			}
 			catch (System.Exception)
 			{
-				OnEnded();
+				_semaphore.Release();
 
 				throw;
 			}
 
-			OnEnded();
+			return new DisposableAction(OnEnded);
 		}
 
 		public void SetRate(int count, TimeSpan timeSpan)
@@ -102,7 +100,12 @@ namespace VkNet.Utils
 		{
 			var now = DateTime.Now;
 			_timeStamps.Push(now);
+			OnEnded(now);
 			_semaphore.Release();
+		}
+
+		protected virtual void OnEnded(DateTime now)
+		{
 		}
 	}
 }
