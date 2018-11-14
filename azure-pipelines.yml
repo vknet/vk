@@ -20,7 +20,7 @@ steps:
 
     projects: '*[Tt]ests/*.csproj'
 
-    arguments: '-c $(BuildConfiguration)'
+    arguments: '-c $(BuildConfiguration) -f netcoreapp2.0 '
 
 
 - task: DotNetCoreCLI@2
