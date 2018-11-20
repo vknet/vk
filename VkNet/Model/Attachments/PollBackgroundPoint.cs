@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -42,6 +42,11 @@ namespace VkNet.Model.Attachments
 		/// </returns>
 		public static implicit operator PollBackgroundPoint(VkResponse response)
 		{
+			if (response == null)
+			{
+				return null;
+			}
+
 			return response.HasToken()
 				? FromJson(response)
 				: null;

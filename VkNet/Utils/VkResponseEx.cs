@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -108,7 +108,7 @@ namespace VkNet.Utils
 				return new ReadOnlyCollection<T>(new List<T>());
 			}
 
-			return responseArray.Cast<T>().Select(x => x).Where(i => i != null).ToReadOnlyCollection();
+			return responseArray.Select(x => x as T).Where(i => i != null).ToReadOnlyCollection();
 		}
 
 		/// <summary>
