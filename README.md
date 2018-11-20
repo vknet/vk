@@ -1,7 +1,7 @@
 # Vk Api for .NET
 ||Badge|
 |------|:------:|
-|**Build Status**|[![Build Status](https://travis-ci.org/vknet/vk.svg?branch=master)](https://travis-ci.org/vknet/vk)
+|**Build Status**|[![Build Status](https://dev.azure.com/VkDotNet/VkNet/_apis/build/status/vknet.vk)](https://dev.azure.com/VkDotNet/VkNet/_build/latest?definitionId=1)
 |**Target Frameworks**|[![Targets](https://img.shields.io/badge/.NET%20Standard-2.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/standard/net-standard) [![Targets](https://img.shields.io/badge/.NET%20-4.5-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/framework/) [![Targets](https://img.shields.io/badge/.NET%20-4.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/framework/)|
 |**Nuget**|[![](http://img.shields.io/nuget/v/VkNet.svg)](http://www.nuget.org/packages/VkNet)
 |**Downloads**|[![](https://img.shields.io/nuget/dt/VkNet.svg)](https://www.nuget.org/packages/VkNet/)
@@ -31,9 +31,9 @@ PM> Install-Package VkNet
 
 # План развития проекта
 
-- [x] Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.85.
-- [ ] [Недостающие классы и методы](http://bit.ly/2slXKrI)
-- [ ] Обновить документацию проекта
+- Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.90.
+- [Недостающие классы и методы](http://bit.ly/2slXKrI)
+- Обновить документацию проекта
 
 # Credits
 
