@@ -228,9 +228,21 @@ namespace VkNet
 		}
 
 		/// <inheritdoc />
+		public void LogOut()
+		{
+			AccessToken = string.Empty;
+		}
+
+		/// <inheritdoc />
 		public Task RefreshTokenAsync(Func<string> code = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code));
+		}
+
+		/// <inheritdoc />
+		public Task LogOutAsync()
+		{
+			return TypeHelper.TryInvokeMethodAsync(LogOut);
 		}
 
 		/// <inheritdoc />
