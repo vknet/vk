@@ -179,5 +179,12 @@ namespace VkNet.Tests
 
 			Assert.AreEqual("0.0", Api.VkApiVersion.Version);
 		}
+
+		[Test]
+		public void Logout()
+		{
+			Api.LogOut();
+			Assert.IsEmpty(Api.Token);
+		}
 	}
 }
