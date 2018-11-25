@@ -32,5 +32,13 @@ namespace VkNet.Abstractions
 		/// помощи логина и пароля
 		/// </exception>
 		void RefreshToken(Func<string> code = null);
+
+		/// <summary>
+		/// Выйти из системы
+		/// </summary>
+		/// <remarks>
+		/// Забыть токен авторизации
+		/// </remarks>
+		void LogOut();
 	}
 }
