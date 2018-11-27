@@ -7,6 +7,8 @@ namespace VkNet.Model
 	[Serializable]
 	public class ApiAuthParams : IApiAuthParams
 	{
+		// TODO: добавить поле IsValid в котором проверять достаточно ли параметров для авторизации
+
 		/// <inheritdoc />
 		public ulong ApplicationId { get; set; }
 
@@ -51,5 +53,24 @@ namespace VkNet.Model
 
 		/// <inheritdoc />
 		public string Phone { get; set; }
+
+		/// <summary>
+		/// Формирует параметры авторизации по минимальному набору необходимых полей
+		/// </summary>
+		/// <param name="appId"></param>
+		/// <param name="login"></param>
+		/// <param name="password"></param>
+		/// <param name="settings"></param>
+		/// <returns></returns>
+		public static ApiAuthParams Format(ulong appId, string login, string password, Settings settings)
+		{
+			return new ApiAuthParams()
+			{
+				ApplicationId = appId,
+				Login = login,
+				Password = password,
+				Settings = settings
+			};
+		}
 	}
 }

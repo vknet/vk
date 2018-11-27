@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using VkNet.Model;
 
 namespace VkNet.Abstractions
@@ -18,6 +18,12 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="params"> Данные авторизации </param>
 		void Authorize(IApiAuthParams @params);
+
+		/// <summary>
+		/// Авторизация и получение токена
+		/// </summary>
+		/// <param name="params"> Данные авторизации </param>
+		void Authorize(ApiAuthParams @params);
 
 		/// <summary>
 		/// Получает новый AccessToken используя логин, пароль, приложение и настройки
