@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -473,13 +473,14 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public bool RemoveChatUser(ulong chatId, long? userId = null, long? memberId = null)
 		{
-			return _vk.Call<bool>("messages.removeChatUser",
-				new VkParameters
-				{
-					{ "chat_id", chatId },
-					{ "user_id", userId },
-					{ "member_id", memberId }
-				});
+			var parameters = new VkParameters
+			{
+				{ "chat_id", chatId },
+				{ "user_id", userId },
+				{ "member_id", memberId }
+			};
+
+			return _vk.Call<bool>("messages.removeChatUser", parameters);
 		}
 
 		/// <inheritdoc />
