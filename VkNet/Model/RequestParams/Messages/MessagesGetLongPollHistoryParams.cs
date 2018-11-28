@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Utils;
@@ -11,6 +11,9 @@ namespace VkNet.Model.RequestParams
 	[Serializable]
 	public class MessagesGetLongPollHistoryParams
 	{
+		[JsonIgnore]
+		public const long EVENTS_LIMIT_MIN = 1000;
+
 		/// <summary>
 		/// Список дополнительных полей профилей, которые необходимо вернуть.
 		/// </summary>
@@ -48,12 +51,20 @@ namespace VkNet.Model.RequestParams
 		[JsonProperty(propertyName: "onlines")]
 		public bool? Onlines { get; set; }
 
+		[JsonIgnore]
+		private long? _eventsLimit;
+
 		/// <summary>
 		/// Если количество событий в истории превысит это значение, будет возвращена
 		/// ошибка.
+		/// Положительное число. По умолчанию - 1000. Минимальное значение - 1000
 		/// </summary>
 		[JsonProperty(propertyName: "events_limit")]
-		public long? EventsLimit { get; set; }
+		public long? EventsLimit
+		{
+			get => _eventsLimit;
+			set => _eventsLimit = (!value.HasValue || value >= EVENTS_LIMIT_MIN) ? value : EVENTS_LIMIT_MIN;
+		}
 
 		/// <summary>
 		/// Количество сообщений, которое нужно вернуть.
