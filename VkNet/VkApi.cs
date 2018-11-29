@@ -19,6 +19,7 @@ using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Categories;
 using VkNet.Enums;
+using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Infrastructure;
 using VkNet.Model;
@@ -167,6 +168,8 @@ namespace VkNet
 
 			_logger?.LogDebug("Авторизация прошла успешно");
 		}
+		/// <inheritdoc />
+		public void Authorize(ApiAuthParams @params) => Authorize((IApiAuthParams)@params);
 
 		/// <inheritdoc cref="IVkApiAuth.Authorize"/>
 		public void Authorize()

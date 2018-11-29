@@ -1,4 +1,4 @@
-﻿using VkNet.Abstractions.Authorization;
+using VkNet.Abstractions.Authorization;
 
 namespace VkNet.Abstractions
 {

@@ -10,6 +10,8 @@ namespace VkNet.Model
 	[Serializable]
 	public class ApiAuthParams : IApiAuthParams
 	{
+		// TODO: добавить поле IsValid в котором проверять достаточно ли параметров для авторизации
+
 		/// <inheritdoc />
 		public bool? TwoFactorSupported { get; set; }
 
