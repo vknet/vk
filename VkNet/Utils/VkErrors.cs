@@ -130,6 +130,45 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
+		/// Ошибки авторизации VK.
+		/// </summary>
+		/// <param name="json"> JSON. </param>
+		public static void IfAuthErrorThrowException(string json)
+		{
+			JObject obj;
+
+			try
+			{
+				obj = JObject.Parse(json);
+			}
+			catch (JsonReaderException ex)
+			{
+				throw new VkApiException("Wrong json data.", ex);
+			}
+
+			var error = obj["error"];
+
+			if (error == null)
+			{
+				return;
+			}
+
+			var errorDescription = obj["error_description"] ?? string.Empty;
+
+			switch (error.ToString())
+			{
+				case "need_captcha":
+					var sid = obj["captcha_sid"].Value<long>();
+					var imgUrl = obj["captcha_img"].ToString();
+
+					throw new CaptchaNeededException(sid, imgUrl);
+				default:
+
+					throw new VkApiException($"{error}{Environment.NewLine}{errorDescription}");
+			}
+		}
+
+		/// <summary>
 		/// Ошибки VK.
 		/// </summary>
 		/// <param name="json"> JSON. </param>

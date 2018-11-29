@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,14 +33,6 @@ using VkNet.Utils.JsonConverter;
 
 namespace VkNet
 {
-	/// <summary>
-	/// Служит для оповещения об истечении токена
-	/// </summary>
-	/// <param name="sender">
-	/// Экземпляр API у которого истекло время токена
-	/// </param>
-	public delegate void VkApiDelegate(VkApi sender);
-
 	/// <inheritdoc />
 	/// <summary>
 	/// API для работы с ВКонтакте.
@@ -51,19 +42,9 @@ namespace VkNet
 	public class VkApi : IVkApi
 	{
 		/// <summary>
-		/// Параметры авторизации.
-		/// </summary>
-		private IApiAuthParams _ap;
-
-		/// <summary>
 		/// Обработчик ошибки капчи
 		/// </summary>
 		private ICaptchaHandler _captchaHandler;
-
-		/// <summary>
-		/// Таймер.
-		/// </summary>
-		private Timer _expireTimer;
 
 		/// <summary>
 		/// Сервис управления языком
@@ -80,6 +61,7 @@ namespace VkNet
 		/// Rest Client
 		/// </summary>
 		public IRestClient RestClient;
+
 	#pragma warning restore S1104 // Fields should not have public accessibility
 
 		/// <inheritdoc />
@@ -126,28 +108,11 @@ namespace VkNet
 		/// </summary>
 		public IVkApiVersionManager VkApiVersion { get; private set; }
 
-		/// <summary>
-		/// Токен для доступа к методам API
-		/// </summary>
-		private string AccessToken { get; set; }
-
-		/// <inheritdoc />
-		public event VkApiDelegate OnTokenExpires;
-
-		/// <inheritdoc />
-		public IBrowser Browser { get; set; }
-
 		/// <inheritdoc />
 		public IAuthorizationFlow AuthorizationFlow { get; set; }
 
 		/// <inheritdoc />
-		public bool IsAuthorized => !string.IsNullOrWhiteSpace(AccessToken);
-
-		/// <inheritdoc />
-		public string Token => AccessToken;
-
-		/// <inheritdoc />
-		public long? UserId { get; set; }
+		public ITokenManager AccessToken { get; set; }
 
 		/// <inheritdoc />
 		public int MaxCaptchaRecognitionCount { get; set; }
@@ -168,75 +133,63 @@ namespace VkNet
 		}
 
 		/// <inheritdoc />
-		public void Authorize(IApiAuthParams @params)
+		public void Authorize([NotNull] IAuthorizationFlow authorizationFlow)
 		{
-			// подключение браузера через прокси
-			if (@params.Host != null)
+			if (authorizationFlow == null)
 			{
-				_logger?.LogDebug("Настройка прокси");
-
-				Browser.Proxy = WebProxy.GetProxy(@params.Host,
-					@params.Port,
-					@params.ProxyLogin,
-					@params.ProxyPassword);
-
-				RestClient.Proxy = Browser.Proxy;
+				throw new ArgumentNullException(nameof(authorizationFlow));
 			}
 
-			// если токен не задан - обычная авторизация
-			if (@params.AccessToken == null)
-			{
-				AuthorizeWithAntiCaptcha(@params);
+			AuthorizationResult authorizationResult;
 
-				// Сбросить после использования
-				@params.CaptchaSid = null;
-				@params.CaptchaKey = "";
+			if (CaptchaSolver != null)
+			{
+				authorizationResult = _captchaHandler.Perform((sid, key) =>
+				{
+					var authParams = AuthorizationFlow.GetAuthParams();
+					authParams.CaptchaSid = sid;
+					authParams.CaptchaKey = key;
+					AuthorizationFlow.SetAuthParams(authParams);
+
+					return authorizationFlow.Authorize();
+				});
+			} else
+			{
+				authorizationResult = authorizationFlow.Authorize();
 			}
 
-			// если токен задан - авторизация с помощью токена полученного извне
-			else
+			AccessToken = new TokenManager(this, _logger)
 			{
-				TokenAuth(@params.AccessToken, @params.UserId, @params.TokenExpireTime);
-			}
+				Token = authorizationResult.AccessToken,
+				UserId = authorizationResult.UserId,
+				ExpireTime = authorizationResult.ExpiresIn
+			};
 
-			_ap = @params;
 			_logger?.LogDebug("Авторизация прошла успешно");
 		}
 
-		/// <inheritdoc />
-		public Task AuthorizeAsync(IApiAuthParams @params)
+		/// <inheritdoc cref="IVkApiAuth.Authorize"/>
+		public void Authorize()
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => Authorize(@params));
+			Authorize(AuthorizationFlow);
 		}
 
 		/// <inheritdoc />
-		public void RefreshToken(Func<string> code = null)
+		public Task AuthorizeAsync(IAuthorizationFlow authorizationFlow)
 		{
-			if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
-			{
-				_ap.TwoFactorAuthorization = _ap.TwoFactorAuthorization ?? code;
-				AuthorizeWithAntiCaptcha(_ap);
-			} else
-			{
-				const string message =
-					"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
+			return TypeHelper.TryInvokeMethodAsync(() => Authorize(authorizationFlow));
+		}
 
-				_logger?.LogError(message);
-
-				throw new AggregateException(message);
-			}
+		/// <inheritdoc cref="IVkApiAuth.Authorize"/>
+		public Task AuthorizeAsync()
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Authorize());
 		}
 
 		/// <inheritdoc />
 		public void LogOut()
 		{
-			AccessToken = string.Empty;
-		}
-
-		/// <inheritdoc />
-		public Task RefreshTokenAsync(Func<string> code = null)
-		{
-			return TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code));
+			AccessToken = new TokenManager();
 		}
 
 		/// <inheritdoc />
@@ -303,7 +256,7 @@ namespace VkNet
 		[CanBeNull]
 		public string Invoke(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
 		{
-			if (!skipAuthorization && !IsAuthorized)
+			if (!skipAuthorization && !AccessToken.IsAuthorized)
 			{
 				var message = $"Метод '{methodName}' нельзя вызывать без авторизации";
 				_logger?.LogError(message);
@@ -386,26 +339,6 @@ namespace VkNet
 			GC.SuppressFinalize(this);
 		}
 
-		/// <inheritdoc />
-		public void Validate(string validateUrl, string phoneNumber)
-		{
-			StopTimer();
-
-			LastInvokeTime = DateTimeOffset.Now;
-			var authorization = Browser.Validate(validateUrl, phoneNumber);
-
-			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
-			{
-				const string message = "Не удалось автоматически пройти валидацию!";
-				_logger?.LogError(message);
-
-				throw new NeedValidationException(message, validateUrl);
-			}
-
-			AccessToken = authorization.AccessToken;
-			UserId = authorization.UserId;
-		}
-
 		/// <summary>
 		/// Releases unmanaged and - optionally - managed resources.
 		/// </summary>
@@ -416,7 +349,7 @@ namespace VkNet
 		/// </param>
 		protected virtual void Dispose(bool disposing)
 		{
-			_expireTimer?.Dispose();
+			AccessToken?.Dispose();
 		}
 
 	#region Requests limit stuff
@@ -612,12 +545,19 @@ namespace VkNet
 
 			if (!parameters.ContainsKey(Constants.AccessToken))
 			{
-				parameters.Add(Constants.AccessToken, AccessToken);
+				parameters.Add(Constants.AccessToken, AccessToken.Token);
 			}
 
 			if (!parameters.ContainsKey("lang") && _language.GetLanguage().HasValue)
 			{
 				parameters.Add("lang", _language.GetLanguage());
+			}
+
+			var clientSecret = AuthorizationFlow?.GetAuthParams()?.ClientSecret;
+
+			if (!string.IsNullOrWhiteSpace(clientSecret) && !parameters.ContainsKey("client_secret"))
+			{
+				parameters.Add("client_secret", clientSecret);
 			}
 
 			_logger?.LogDebug(
@@ -658,147 +598,14 @@ namespace VkNet
 				answer = response.Message ?? response.Value;
 			}
 
-			if (_expireTimer == null)
-			{
-				SetTimer(0);
-			}
-
 			// Защита от превышения количества запросов в секунду
 			_rateLimiter.Perform(() => SendRequest()).ConfigureAwait(false).GetAwaiter().GetResult();
 
 			return answer;
 		}
 
-		/// <summary>
-		/// Авторизация и получение токена
-		/// </summary>
-		/// <param name="authParams"> Параметры авторизации </param>
-		/// <exception cref="VkApiAuthorizationException"> </exception>
-		private void AuthorizeWithAntiCaptcha(IApiAuthParams authParams)
-		{
-			_logger?.LogDebug("Старт авторизации");
-
-			if (CaptchaSolver == null)
-			{
-				BaseAuthorize(authParams);
-			} else
-			{
-				_captchaHandler.Perform((sid, key) =>
-				{
-					_logger?.LogDebug("Авторизация с использование капчи.");
-					authParams.CaptchaSid = sid;
-					authParams.CaptchaKey = key;
-					BaseAuthorize(authParams);
-
-					return true;
-				});
-			}
-		}
-
-		/// <summary>
-		/// Авторизация через установку токена
-		/// </summary>
-		/// <param name="accessToken"> Токен </param>
-		/// <param name="userId"> Идентификатор пользователя </param>
-		/// <param name="expireTime"> Время истечения токена </param>
-		/// <exception cref="ArgumentNullException"> </exception>
-		private void TokenAuth(string accessToken, long? userId, int expireTime)
-		{
-			if (string.IsNullOrWhiteSpace(accessToken))
-			{
-				_logger?.LogError("Авторизация через токен. Токен не задан.");
-
-				throw new ArgumentNullException(accessToken);
-			}
-
-			_logger?.LogDebug("Авторизация через токен");
-			StopTimer();
-
-			LastInvokeTime = DateTimeOffset.Now;
-			SetApiPropertiesAfterAuth(expireTime, accessToken, userId);
-			_ap = new ApiAuthParams();
-		}
-
-		/// <summary>
-		/// Sets the token properties.
-		/// </summary>
-		/// <param name="authorization"> The authorization. </param>
-		private void SetTokenProperties(AuthorizationResult authorization)
-		{
-			_logger?.LogDebug("Установка свойств токена");
-			var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
-			SetApiPropertiesAfterAuth(expireTime, authorization.AccessToken, authorization.UserId);
-		}
-
-		/// <summary>
-		/// Установить свойства api после авторизации
-		/// </summary>
-		/// <param name="expireTime"> </param>
-		/// <param name="accessToken"> </param>
-		/// <param name="userId"> </param>
-		private void SetApiPropertiesAfterAuth(int expireTime, string accessToken, long? userId)
-		{
-			SetTimer(expireTime);
-			AccessToken = accessToken;
-			UserId = userId;
-		}
-
-		/// <summary>
-		/// Установить значение таймера
-		/// </summary>
-		/// <param name="expireTime"> Значение таймера </param>
-		private void SetTimer(int expireTime)
-		{
-			_expireTimer = new Timer(AlertExpires,
-				null,
-				expireTime > 0 ? expireTime : Timeout.Infinite,
-				Timeout.Infinite);
-		}
-
-		/// <summary>
-		/// Прекращает работу таймера оповещения
-		/// </summary>
-		private void StopTimer()
-		{
-			_expireTimer?.Dispose();
-		}
-
-		/// <summary>
-		/// Создает событие оповещения об окончании времени токена
-		/// </summary>
-		/// <param name="state"> </param>
-		private void AlertExpires(object state)
-		{
-			OnTokenExpires?.Invoke(this);
-		}
-
-		/// <summary>
-		/// Авторизация и получение токена
-		/// </summary>
-		/// <param name="authParams"> Параметры авторизации </param>
-		/// <exception cref="VkApiAuthorizationException"> </exception>
-		private void BaseAuthorize(IApiAuthParams authParams)
-		{
-			StopTimer();
-
-			LastInvokeTime = DateTimeOffset.Now;
-			Browser.SetAuthParams(authParams);
-			var authorization = Browser.Authorize();
-
-			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
-			{
-				var message = $"Invalid authorization with {authParams.Login} - {authParams.Password}";
-				_logger?.LogError(message);
-
-				throw new VkApiAuthorizationException(message, authParams.Login, authParams.Password);
-			}
-
-			SetTokenProperties(authorization);
-		}
-
 		private void Initialization(IServiceProvider serviceProvider)
 		{
-			Browser = serviceProvider.GetRequiredService<IBrowser>();
 			AuthorizationFlow = serviceProvider.GetRequiredService<IAuthorizationFlow>();
 			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
 			_logger = serviceProvider.GetService<ILogger<VkApi>>();

@@ -1,5 +1,9 @@
 using System;
+using JetBrains.Annotations;
+using Newtonsoft.Json;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -9,85 +13,72 @@ namespace VkNet.Model
 	public interface IApiAuthParams
 	{
 		/// <summary>
-		/// Идентификатор приложения с помощью которого будет авторизован пользователь
+		/// Передайте <c> true </c>, чтобы включить поддержку двухфакторной аутентификации.
 		/// </summary>
-		ulong ApplicationId { get; set; }
+		bool? TwoFactorSupported { get; set; }
 
 		/// <summary>
-		/// Логин пользователя
+		/// Временный код, полученный после прохождения авторизации или код двухфакторной
+		/// авторизации.
 		/// </summary>
-		string Login { get; set; }
+		string Code { get; set; }
 
 		/// <summary>
-		/// Пароль пользователя
+		/// Cекретный ключ Вашего приложения.
 		/// </summary>
-		string Password { get; set; }
+		string ClientSecret { get; set; }
 
 		/// <summary>
-		/// Права доступа приложений
-		/// См. описание <see href="https://vk.com/dev/permissions" />
+		/// Идентификатор Вашего приложения.
+		/// </summary>
+		long ClientId { get; set; }
+
+		/// <summary>
+		/// Адрес, на который будет переадресован пользователь после прохождения
+		/// авторизации.
+		/// </summary>
+		Uri RedirectUri { get; set; }
+
+		/// <summary>
+		/// Указывает тип отображения страницы авторизации.
+		/// </summary>
+		[CanBeNull]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		Display Display { get; set; }
+
+		/// <summary>
+		/// Права доступа приложения.
+		/// См. описание <see href="https://vk.com/dev/permissions" />.
 		/// </summary>
 		/// <remarks>
 		/// ВНИМАНИЕ!!! Settings.All по умолчанию не содержит Settings.Offline
 		/// </remarks>
-		Settings Settings { get; set; }
+		[CanBeNull]
+		Settings Scope { get; set; }
 
 		/// <summary>
-		/// Функция двух факторной авторизации
+		/// Произвольная строка, которая будет возвращена вместе с результатом авторизации.
 		/// </summary>
-		Func<string> TwoFactorAuthorization { get; set; }
+		string State { get; set; }
 
 		/// <summary>
-		/// Токен доступа, полученный извне
+		/// Логин пользователя.
 		/// </summary>
-		string AccessToken { get; set; }
+		string Login { get; set; }
 
 		/// <summary>
-		/// Время, в течении которого действует токен доступа полученный извне (0 -
-		/// бесконечно, по умолчанию)
-		/// Используется при авторизации с помощью токена доступа, полученного извне
+		/// Пароль пользователя.
 		/// </summary>
-		int TokenExpireTime { get; set; }
+		string Password { get; set; }
 
 		/// <summary>
-		/// Идентификатор пользователя, установившего приложение
-		/// Используется при авторизации с помощью токена доступа, полученного извне
-		/// </summary>
-		long UserId { get; set; }
-
-		/// <summary>
-		/// Идентификатор капчи (если установлена)
+		/// Идентификатор капчи (если установлена).
 		/// </summary>
 		long? CaptchaSid { get; set; }
 
 		/// <summary>
-		/// Ключ капчи (если необходимо)
+		/// Ключ капчи (если необходимо).
 		/// </summary>
 		string CaptchaKey { get; set; }
-
-		/// <summary>
-		/// Имя узла прокси-сервера.
-		/// </summary>
-		string Host { get; set; }
-
-		/// <summary>
-		/// Номер порта используемого Host.
-		/// </summary>
-		int? Port { get; set; }
-
-		/// <summary>
-		/// Логин для прокси с авторизацией. Если прокси без авторизации - оставить пустым
-		/// </summary>
-		string ProxyLogin { get; set; }
-
-		/// <summary>
-		/// Пароль для прокси с авторищацией. Если прокси без авторизации - оставить пустым
-		/// </summary>
-		string ProxyPassword { get; set; }
-
-		/// <summary>
-		/// Номер телефона
-		/// </summary>
-		string Phone { get; }
 	}
 }

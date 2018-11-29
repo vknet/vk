@@ -1,6 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
-using VkNet.Model;
+﻿using System.Threading.Tasks;
+using VkNet.Abstractions.Authorization;
 
 namespace VkNet.Abstractions
 {
@@ -8,10 +7,7 @@ namespace VkNet.Abstractions
 	public interface IVkApiAuthAsync : IVkApiAuth
 	{
 		/// <inheritdoc cref="IVkApiAuth.Authorize"/>
-		Task AuthorizeAsync(IApiAuthParams @params);
-
-		/// <inheritdoc cref="IVkApiAuth.RefreshToken"/>
-		Task RefreshTokenAsync(Func<string> code = null);
+		Task AuthorizeAsync(IAuthorizationFlow authorizationFlow);
 
 		/// <inheritdoc cref="IVkApiAuth.LogOut"/>
 		Task LogOutAsync();

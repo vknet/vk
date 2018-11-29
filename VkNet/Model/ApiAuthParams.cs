@@ -1,5 +1,8 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -8,7 +11,29 @@ namespace VkNet.Model
 	public class ApiAuthParams : IApiAuthParams
 	{
 		/// <inheritdoc />
-		public ulong ApplicationId { get; set; }
+		public bool? TwoFactorSupported { get; set; }
+
+		/// <inheritdoc />
+		public string Code { get; set; }
+
+		/// <inheritdoc />
+		public string ClientSecret { get; set; }
+
+		/// <inheritdoc />
+		public long ClientId { get; set; }
+
+		/// <inheritdoc />
+		public Uri RedirectUri { get; set; }
+
+		/// <inheritdoc />
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public Display Display { get; set; }
+
+		/// <inheritdoc />
+		public Settings Scope { get; set; }
+
+		/// <inheritdoc />
+		public string State { get; set; }
 
 		/// <inheritdoc />
 		public string Login { get; set; }
@@ -17,39 +42,9 @@ namespace VkNet.Model
 		public string Password { get; set; }
 
 		/// <inheritdoc />
-		public Settings Settings { get; set; }
-
-		/// <inheritdoc />
-		public Func<string> TwoFactorAuthorization { get; set; }
-
-		/// <inheritdoc />
-		public string AccessToken { get; set; }
-
-		/// <inheritdoc />
-		public int TokenExpireTime { get; set; }
-
-		/// <inheritdoc />
-		public long UserId { get; set; }
-
-		/// <inheritdoc />
 		public long? CaptchaSid { get; set; }
 
 		/// <inheritdoc />
 		public string CaptchaKey { get; set; }
-
-		/// <inheritdoc />
-		public string Host { get; set; }
-
-		/// <inheritdoc />
-		public int? Port { get; set; }
-
-		/// <inheritdoc />
-		public string ProxyLogin { get; set; }
-
-		/// <inheritdoc />
-		public string ProxyPassword { get; set; }
-
-		/// <inheritdoc />
-		public string Phone { get; set; }
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using JetBrains.Annotations;
-using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Abstractions.Authorization
 {
@@ -21,20 +20,8 @@ namespace VkNet.Abstractions.Authorization
 	public interface IImplicitFlow : IAuthorizationFlow
 	{
 		/// <summary>
-		/// Построить URL для авторизации.
+		/// Установить URL полученный после авторизации.
 		/// </summary>
-		/// <param name="clientId"> Идентификатор Вашего приложения. </param>
-		/// <param name="scope">
-		/// Битовая маска настроек доступа приложения, которые необходимо проверить при
-		/// авторизации
-		/// пользователя и запросить отсутствующие.
-		/// </param>
-		/// <param name="display"> Указывает тип отображения страницы авторизации. </param>
-		/// <param name="state">
-		/// Произвольная строка, которая будет возвращена вместе с
-		/// результатом авторизации.
-		/// </param>
-		/// <returns> Возвращает Uri для авторизации </returns>
-		Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state);
+		void SetResponseUri(Uri uri);
 	}
 }
