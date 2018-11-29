@@ -862,6 +862,7 @@ namespace VkNet.Tests.Categories.Group
 			Assert.That(() => Api.Groups.Join(2, true), Throws.InstanceOf<PermissionToPerformThisActionException>());
 		}
 
+		[Ignore("")]
 		[Test]
 		public void Join_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -922,6 +923,7 @@ namespace VkNet.Tests.Categories.Group
 			Assert.That(() => Api.Groups.Leave(2), Throws.InstanceOf<PermissionToPerformThisActionException>());
 		}
 
+		[Ignore("")]
 		[Test]
 		public void Leave_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{

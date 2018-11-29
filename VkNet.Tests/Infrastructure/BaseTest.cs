@@ -77,18 +77,10 @@ namespace VkNet.Tests
 
 			Api = new VkApi
 			{
-				Browser = browser.Object,
 				RestClient = restClient.Object
 			};
 
-			Api.Authorize(new ApiAuthParams
-			{
-				ApplicationId = 1,
-				Login = "login",
-				Password = "pass",
-				Settings = Settings.All,
-				Phone = "89510000000"
-			});
+			Api.Authorize(browser.Object);
 
 			Api.RequestsPerSecond = 100000; // Чтобы тесты быстрее выполнялись
 		}

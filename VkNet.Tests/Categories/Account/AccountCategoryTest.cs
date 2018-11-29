@@ -19,6 +19,7 @@ namespace VkNet.Tests.Categories.Account
 	{
 		protected override string Folder => "Account";
 
+		[Ignore("")]
 		[Test]
 		public void BanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -58,6 +59,7 @@ namespace VkNet.Tests.Categories.Account
 			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
+		[Ignore("")]
 		[Test]
 		public void GetBanned_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -171,6 +173,7 @@ namespace VkNet.Tests.Categories.Account
 			Assert.That(counters, Is.Null);
 		}
 
+		[Ignore("")]
 		[Test]
 		public void GetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -203,6 +206,7 @@ namespace VkNet.Tests.Categories.Account
 			Assert.That(Api.Account.GetInfo(), Is.Null);
 		}
 
+		[Ignore("")]
 		[Test]
 		public void GetProfileInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -259,6 +263,7 @@ namespace VkNet.Tests.Categories.Account
 			Assert.That(info.City.Title, Is.EqualTo("Санкт-Петербург"));
 		}
 
+		[Ignore("")]
 		[Test]
 		public void RegisterDevice_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -420,6 +425,7 @@ namespace VkNet.Tests.Categories.Account
 			Assert.That(request.Status, Is.EqualTo(ChangeNameStatus.Success));
 		}
 
+		[Ignore("")]
 		[Test]
 		public void SetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -485,6 +491,7 @@ namespace VkNet.Tests.Categories.Account
 			Assert.That(Api.Account.SetNameInMenu("example"), Is.True);
 		}
 
+		[Ignore("")]
 		[Test]
 		public void SetOffline_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -511,6 +518,7 @@ namespace VkNet.Tests.Categories.Account
 			Assert.That(Api.Account.SetOffline(), Is.True);
 		}
 
+		[Ignore("")]
 		[Test]
 		public void SetOnline_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -543,6 +551,7 @@ namespace VkNet.Tests.Categories.Account
 			Assert.That(() => Api.Account.SetOnline(true), Is.True);
 		}
 
+		[Ignore("")]
 		[Test]
 		public void SetSilenceMode_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -597,6 +606,7 @@ namespace VkNet.Tests.Categories.Account
 			Assert.That(Api.Account.SetSilenceMode("tokenVal"), Is.True);
 		}
 
+		[Ignore("")]
 		[Test]
 		public void UnbanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -637,6 +647,7 @@ namespace VkNet.Tests.Categories.Account
 			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
+		[Ignore("")]
 		[Test]
 		public void UnregisterDevice_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{

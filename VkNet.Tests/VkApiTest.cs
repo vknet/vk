@@ -18,12 +18,9 @@ namespace VkNet.Tests
 		[Test]
 		public void AuthorizeByToken()
 		{
-			Api.Authorize(new ApiAuthParams
-			{
-				AccessToken = "token", UserId = 1
-			});
-
-			Assert.That(Api.UserId, Is.EqualTo(1));
+			Api.AccessToken.SetToken("token");
+			Api.AccessToken.UserId = 1;
+			Assert.That(Api.AccessToken.UserId, Is.EqualTo(1));
 		}
 
 		[Test]
@@ -123,13 +120,6 @@ namespace VkNet.Tests
 		}
 
 		[Test]
-		public void Validate()
-		{
-			var uri = new Uri("https://m.vk.com/activation?act=validate&api_hash=f2fed5f22ebadc301e&hash=c8acf371111c938417");
-			Api.Validate(uri.ToString(), "+7894561230");
-		}
-
-		[Test]
 		public void VkApi_Constructor_SetDefaultMethodCategories()
 		{
 			Assert.That(Api.Users, Is.Not.Null);
@@ -184,7 +174,7 @@ namespace VkNet.Tests
 		public void Logout()
 		{
 			Api.LogOut();
-			Assert.IsEmpty(Api.Token);
+			Assert.True(string.IsNullOrWhiteSpace(Api.AccessToken.Token));
 		}
 	}
 }

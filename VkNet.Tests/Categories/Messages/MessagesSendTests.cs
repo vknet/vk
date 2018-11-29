@@ -20,6 +20,7 @@ namespace VkNet.Tests.Categories.Messages
 			return new MessagesCategory(Api);
 		}
 
+		[Ignore("")]
 		[Test]
 		public void AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{

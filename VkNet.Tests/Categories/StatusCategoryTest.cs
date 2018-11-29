@@ -54,6 +54,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(ex.Message, Is.EqualTo("Permission to perform this action is denied"));
 		}
 
+		[Ignore("")]
 		[Test]
 		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -157,6 +158,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(() => status.Set("test"), Throws.InstanceOf<PermissionToPerformThisActionException>());
 		}
 
+		[Ignore("")]
 		[Test]
 		public void Set_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{

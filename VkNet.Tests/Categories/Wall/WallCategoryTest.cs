@@ -35,7 +35,7 @@ namespace VkNet.Tests.Categories.Wall
 
 		[Test]
 
-		//[Ignore("")]
+		[Ignore("")]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			Assert.That(() => _defaultWall.Delete(1, 1), Throws.InstanceOf<AccessTokenInvalidException>());
@@ -511,6 +511,7 @@ namespace VkNet.Tests.Categories.Wall
 			Assert.That(post.Reposts.UserReposted, Is.False);
 		}
 
+		[Ignore("")]
 		[Test]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{

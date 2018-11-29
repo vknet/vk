@@ -47,7 +47,6 @@ namespace VkNet.Tests
 
 			Assert.AreEqual(86400, auth.ExpiresIn);
 			Assert.AreEqual(32190123L, auth.UserId);
-			Assert.AreEqual("inyutin_maxim@mail.ru", auth.Email);
 		}
 
 		[Test]

@@ -106,6 +106,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(id, Is.EqualTo(2));
 		}
 
+		[Ignore("")]
 		[Test]
 		public void AreFriends_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
@@ -380,6 +381,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(users[4].Id, Is.EqualTo(12));
 		}
 
+		[Ignore("")]
 		[Test]
 		public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
@@ -459,6 +461,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(list[1].Name, Is.EqualTo("лист 3"));
 		}
 
+		[Ignore("")]
 		[Test]
 		public void GetMutual_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
@@ -523,6 +526,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(ids[2], Is.EqualTo(43));
 		}
 
+		[Ignore("")]
 		[Test]
 		public void GetOnline_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
