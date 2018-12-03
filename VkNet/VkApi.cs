@@ -389,13 +389,22 @@ namespace VkNet
 			GC.SuppressFinalize(this);
 		}
 
-		/// <inheritdoc />
+		/// <inheritdoc cref="IVkApi.Validate" />
+		[Obsolete(ObsoleteText.Validate)]
 		public void Validate(string validateUrl, string phoneNumber)
+		{
+			_ap.Phone = phoneNumber;
+			Validate(validateUrl);
+		}
+
+		/// <inheritdoc />
+		public void Validate(string validateUrl)
 		{
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
-			var authorization = Browser.Validate(validateUrl, phoneNumber);
+			Browser.SetAuthParams(_ap);
+			var authorization = Browser.Validate(validateUrl);
 
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{

@@ -88,6 +88,6 @@ namespace VkNet.Model
 		/// <summary>
 		/// Номер телефона
 		/// </summary>
-		string Phone { get; }
+		string Phone { get; set; }
 	}
 }

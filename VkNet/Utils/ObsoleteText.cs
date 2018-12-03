@@ -18,5 +18,10 @@ namespace VkNet.Utils
 		/// </summary>
 		public const string StatsGet = "устаревший параметр, доступен только для версий меньше 5.86";
 
+		/// <summary>
+		/// Stats.Get
+		/// </summary>
+		public const string Validate = "Данный метод устарел, используйте перешрузку void Validate(string validateUrl);";
+
 	}
 }

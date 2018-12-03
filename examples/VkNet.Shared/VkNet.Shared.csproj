@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VkNet.Shared</RootNamespace>
     <AssemblyName>VkNet.Shared</AssemblyName>
-	  <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,17 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-	  <Reference Include="Microsoft.CSharp"/>
-	  <Reference Include="mscorlib"/>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
-	  <Reference Include="System.ComponentModel.Composition"/>
-	  <Reference Include="System.Configuration"/>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-	  <Reference Include="System.IO.Compression"/>
-	  <Reference Include="System.Runtime.Serialization"/>
-	  <Reference Include="System.ServiceModel"/>
-	  <Reference Include="System.Transactions"/>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -51,13 +52,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-	  <ProjectReference Include="..\..\VkNet\VkNet.csproj">
-		  <Project>{1e722528-b833-4231-9b9f-b35a6ff62ba6}</Project>
-		  <Name>VkNet</Name>
-	  </ProjectReference>
+    <ProjectReference Include="..\..\VkNet\VkNet.csproj">
+      <Project>{1e722528-b833-4231-9b9f-b35a6ff62ba6}</Project>
+      <Name>VkNet</Name>
+    </ProjectReference>
   </ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0"/>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.1" />
+    <PackageReference Include="SimpleInjector" Version="4.4.2" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
