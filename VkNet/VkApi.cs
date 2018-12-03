@@ -203,8 +203,9 @@ namespace VkNet
 			_ap = @params;
 			_logger?.LogDebug("Авторизация прошла успешно");
 		}
+
 		/// <inheritdoc />
-		public void Authorize(ApiAuthParams @params) => Authorize((IApiAuthParams)@params);
+		public void Authorize(ApiAuthParams @params) => Authorize((IApiAuthParams) @params);
 
 		/// <inheritdoc />
 		public Task AuthorizeAsync(IApiAuthParams @params)
@@ -315,7 +316,7 @@ namespace VkNet
 			}
 
 			var url = $"https://api.vk.com/method/{methodName}";
-			var answer = InvokeBase(url, parameters, skipAuthorization);
+			var answer = InvokeBase(url, parameters);
 
 			_logger?.LogTrace($"Uri = \"{url}\"");
 			_logger?.LogTrace($"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(answer)}");
@@ -356,7 +357,7 @@ namespace VkNet
 		{
 			if (string.IsNullOrEmpty(server))
 			{
-				var message = "Server не должен быть пустым или null";
+				const string message = "Server не должен быть пустым или null";
 				_logger?.LogError(message);
 
 				throw new ArgumentException(message);
@@ -654,7 +655,7 @@ namespace VkNet
 			return answer;
 		}
 
-		private string InvokeBase(string url, IDictionary<string, string> @params, bool skipAuthorization = false)
+		private string InvokeBase(string url, IDictionary<string, string> @params)
 		{
 			var answer = string.Empty;
 

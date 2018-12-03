@@ -8,7 +8,7 @@ namespace VkNet.Infrastructure
 	public class VkApiVersionManager: IVkApiVersionManager
 	{
 		/// <inheritdoc />
-		public string Version { get; private set; } = "5.87";
+		public string Version { get; private set; } = "5.92";
 
 		/// <inheritdoc />
 		public void SetVersion(int major, int minor)
