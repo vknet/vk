@@ -429,186 +429,186 @@ PM> Install-Package VkNet
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
 
 ## Рекламный Кабинет
-+ [Ads.addOfficeUsers](/vk/ads/addOfficeUsers/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
-+ [Ads.ads.checkLink](/vk/ads/ads.checkLink/) - Проверяет ссылку на рекламируемый объект.
-+ [Ads.createAds](/vk/ads/createAds/) - Создает рекламные объявления.
-+ [Ads.createCampaigns](/vk/ads/createCampaigns/) - Создает рекламные кампании.
-+ [Ads.createClients](/vk/ads/createClients/) - оздаёт клиентов рекламного агентства.
-+ [Ads.createLookalikeRequest](/vk/ads/createLookalikeRequest/) - Создаёт запрос на поиск похожей аудитории.
-+ [Ads.createTargetGroup](/vk/ads/createTargetGroup/) - Создает аудиторию для ретаргетинга рекламных объявлений на пользователей, которые посетили сайт рекламодателя (просмотрели информации о товаре, зарегистрировались и т.д.).
-+ [Ads.createTargetPixel](/vk/ads/createTargetPixel/) - Создаёт пиксель ретаргетинга.
-+ [Ads.deleteAds](/vk/ads/deleteAds/) - Архивирует рекламные объявления.
-+ [Ads.deleteCampaigns](/vk/ads/deleteCampaigns/) - Архивирует рекламные кампании.
-+ [Ads.deleteClients](/vk/ads/deleteClients/) - Архивирует клиентов рекламного агентства.
-+ [Ads.deleteTargetGroup](/vk/ads/deleteTargetGroup/) - Удаляет аудиторию ретаргетинга.
-+ [Ads.deleteTargetPixel](/vk/ads/deleteTargetPixel/) - Удаляет пиксель ретаргетинга.
-+ [Ads.getAccounts](/vk/ads/getAccounts/) - Возвращает список рекламных кабинетов.
-+ [Ads.getAds](/vk/ads/getAds/) - Возвращает список рекламных объявлений.
-+ [Ads.getAdsLayout](/vk/ads/getAdsLayout/) - Возвращает описания внешнего вида рекламных объявлений.
-+ [Ads.getAdsTargeting](/vk/ads/getAdsTargeting/) - Возвращает параметры таргетинга рекламных объявлений
-+ [Ads.getBudget](/vk/ads/getBudget/) - Возвращает текущий бюджет рекламного кабинета.
-+ [Ads.getCampaigns](/vk/ads/getCampaigns/) - Возвращает список кампаний рекламного кабинета.
-+ [Ads.getCategories](/vk/ads/getCategories/) - Позволяет получить возможные тематики рекламных объявлений.
-+ [Ads.getClients](/vk/ads/getClients/) - Возвращает список клиентов рекламного агентства.
-+ [Ads.getDemographics](/vk/ads/getDemographics/) - Возвращает демографическую статистику по рекламным объявлениям или кампаниям.
-+ [Ads.getFloodStats](/vk/ads/getFloodStats/) - Возвращает информацию о текущем состоянии счетчика — количество оставшихся запусков методов и время до следующего обнуления счетчика в секундах.
-+ [Ads.getLookalikeRequests](/vk/ads/getLookalikeRequests/) - Возвращает список запросов на поиск похожей аудитории.
-+ [Ads.getOfficeUsers](/vk/ads/getOfficeUsers/) - Возвращает список администраторов и наблюдателей рекламного кабинета.
-+ [Ads.getPostsReach](/vk/ads/getPostsReach/) - Возвращает подробную статистику по охвату рекламных записей из объявлений и кампаний для продвижения записей сообщества.
-+ [Ads.getRejectionReason](/vk/ads/getRejectionReason/) - Возвращает причину, по которой указанному объявлению было отказано в прохождении премодерации.
-+ [Ads.getStatistics](/vk/ads/getStatistics/) - Возвращает статистику показателей эффективности по рекламным объявлениям, кампаниям, клиентам или всему кабинету.
-+ [Ads.getSuggestions](/vk/ads/getSuggestions/) - Возвращает набор подсказок для различных параметров таргетинга.
-+ [Ads.ads.getTargetGroups](/vk/ads/ads.getTargetGroups/) - Возвращает список аудиторий ретаргетинга.
-+ [Ads.getTargetPixels](/vk/ads/getTargetPixels/) - Возвращает список пикселей ретаргетинга.
-+ [Ads.getTargetingStats](/vk/ads/getTargetingStats/) - Возвращает размер целевой аудитории таргетинга, а также рекомендованные значения CPC и CPM.
-+ [Ads.getUploadURL](/vk/ads/getUploadURL/) - Возвращает URL-адрес для загрузки фотографии рекламного объявления.
-+ [Ads.getVideoUploadURL](/vk/ads/getVideoUploadURL/) - Возвращает URL-адрес для загрузки видеозаписи рекламного объявления.
-+ [Ads.importTargetContacts](/vk/ads/importTargetContacts/) - Импортирует список контактов рекламодателя для учета зарегистрированных во ВКонтакте пользователей в аудитории ретаргетинга. 
-+ [Ads.removeOfficeUsers](/vk/ads/removeOfficeUsers/) - Удаляет администраторов и/или наблюдателей из рекламного кабинета.
-+ [Ads.removeTargetContacts](/vk/ads/removeTargetContacts/) - Принимает запрос на исключение контактов рекламодателя из аудитории ретаргетинга.
-+ [Ads.saveLookalikeRequestResult](/vk/ads/saveLookalikeRequestResult/) - Сохраняет результат поиска похожей аудитории.
-+ [Ads.shareTargetGroup](/vk/ads/shareTargetGroup/) - Предоставляет доступ к аудитории ретаргетинга другому рекламному кабинету. В результате выполнения метода возвращается идентификатор аудитории для указанного кабинета.
-+ [Ads.updateAds](/vk/ads/updateAds/) - Редактирует рекламные объявления.
-+ [Ads.updateCampaigns](/vk/ads/updateCampaigns/) - Редактирует рекламные кампании.
-+ [Ads.updateClients](/vk/ads/updateClients/) - Редактирует клиентов рекламного агентства.
-+ [Ads.updateTargetGroup](/vk/ads/updateTargetGroup/) - Редактирует аудиторию ретаргетинга.
-+ [Ads.updateTargetPixel](/vk/ads/updateTargetPixel/) - Редактирует пиксель ретаргетинга.
++ [Ads.addOfficeUsers](/vk/ads/nodata/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
++ [Ads.ads.checkLink](/vk/ads/nodata/) - Проверяет ссылку на рекламируемый объект.
++ [Ads.createAds](/vk/ads/nodata/) - Создает рекламные объявления.
++ [Ads.createCampaigns](/vk/ads/nodata/) - Создает рекламные кампании.
++ [Ads.createClients](/vk/ads/nodata/) - оздаёт клиентов рекламного агентства.
++ [Ads.createLookalikeRequest](/vk/ads/nodata/) - Создаёт запрос на поиск похожей аудитории.
++ [Ads.createTargetGroup](/vk/ads/nodata/) - Создает аудиторию для ретаргетинга рекламных объявлений на пользователей, которые посетили сайт рекламодателя (просмотрели информации о товаре, зарегистрировались и т.д.).
++ [Ads.createTargetPixel](/vk/ads/nodata/) - Создаёт пиксель ретаргетинга.
++ [Ads.deleteAds](/vk/ads/nodata/) - Архивирует рекламные объявления.
++ [Ads.deleteCampaigns](/vk/ads/nodata/) - Архивирует рекламные кампании.
++ [Ads.deleteClients](/vk/ads/nodata/) - Архивирует клиентов рекламного агентства.
++ [Ads.deleteTargetGroup](/vk/ads/nodata/) - Удаляет аудиторию ретаргетинга.
++ [Ads.deleteTargetPixel](/vk/ads/nodata/) - Удаляет пиксель ретаргетинга.
++ [Ads.getAccounts](/vk/ads/nodata/) - Возвращает список рекламных кабинетов.
++ [Ads.getAds](/vk/ads/nodata/) - Возвращает список рекламных объявлений.
++ [Ads.getAdsLayout](/vk/ads/nodata/) - Возвращает описания внешнего вида рекламных объявлений.
++ [Ads.getAdsTargeting](/vk/ads/nodata/) - Возвращает параметры таргетинга рекламных объявлений
++ [Ads.getBudget](/vk/ads/nodata/) - Возвращает текущий бюджет рекламного кабинета.
++ [Ads.getCampaigns](/vk/ads/nodata/) - Возвращает список кампаний рекламного кабинета.
++ [Ads.getCategories](/vk/ads/nodata/) - Позволяет получить возможные тематики рекламных объявлений.
++ [Ads.getClients](/vk/ads/nodata/) - Возвращает список клиентов рекламного агентства.
++ [Ads.getDemographics](/vk/ads/nodata/) - Возвращает демографическую статистику по рекламным объявлениям или кампаниям.
++ [Ads.getFloodStats](/vk/ads/nodata/) - Возвращает информацию о текущем состоянии счетчика — количество оставшихся запусков методов и время до следующего обнуления счетчика в секундах.
++ [Ads.getLookalikeRequests](/vk/ads/nodata/) - Возвращает список запросов на поиск похожей аудитории.
++ [Ads.getOfficeUsers](/vk/ads/nodata/) - Возвращает список администраторов и наблюдателей рекламного кабинета.
++ [Ads.getPostsReach](/vk/ads/nodata/) - Возвращает подробную статистику по охвату рекламных записей из объявлений и кампаний для продвижения записей сообщества.
++ [Ads.getRejectionReason](/vk/ads/nodata/) - Возвращает причину, по которой указанному объявлению было отказано в прохождении премодерации.
++ [Ads.getStatistics](/vk/ads/nodata/) - Возвращает статистику показателей эффективности по рекламным объявлениям, кампаниям, клиентам или всему кабинету.
++ [Ads.getSuggestions](/vk/ads/nodata/) - Возвращает набор подсказок для различных параметров таргетинга.
++ [Ads.ads.getTargetGroups](/vk/ads/nodata/) - Возвращает список аудиторий ретаргетинга.
++ [Ads.getTargetPixels](/vk/ads/nodata/) - Возвращает список пикселей ретаргетинга.
++ [Ads.getTargetingStats](/vk/ads/nodata/) - Возвращает размер целевой аудитории таргетинга, а также рекомендованные значения CPC и CPM.
++ [Ads.getUploadURL](/vk/ads/nodata/) - Возвращает URL-адрес для загрузки фотографии рекламного объявления.
++ [Ads.getVideoUploadURL](/vk/ads/nodata/) - Возвращает URL-адрес для загрузки видеозаписи рекламного объявления.
++ [Ads.importTargetContacts](/vk/ads/nodata/) - Импортирует список контактов рекламодателя для учета зарегистрированных во ВКонтакте пользователей в аудитории ретаргетинга. 
++ [Ads.removeOfficeUsers](/vk/ads/nodata/) - Удаляет администраторов и/или наблюдателей из рекламного кабинета.
++ [Ads.removeTargetContacts](/vk/ads/nodata/) - Принимает запрос на исключение контактов рекламодателя из аудитории ретаргетинга.
++ [Ads.saveLookalikeRequestResult](/vk/ads/nodata/) - Сохраняет результат поиска похожей аудитории.
++ [Ads.shareTargetGroup](/vk/ads/nodata/) - Предоставляет доступ к аудитории ретаргетинга другому рекламному кабинету. В результате выполнения метода возвращается идентификатор аудитории для указанного кабинета.
++ [Ads.updateAds](/vk/ads/nodata/) - Редактирует рекламные объявления.
++ [Ads.updateCampaigns](/vk/ads/nodata/) - Редактирует рекламные кампании.
++ [Ads.updateClients](/vk/ads/nodata/) - Редактирует клиентов рекламного агентства.
++ [Ads.updateTargetGroup](/vk/ads/nodata/) - Редактирует аудиторию ретаргетинга.
++ [Ads.updateTargetPixel](/vk/ads/nodata/) - Редактирует пиксель ретаргетинга.
 
 ## Обсуждения
-+ [Board.addTopic](/vk/board/addTopic/) - Создает новую тему в списке обсуждений группы.
-+ [Board.closeTopic](/vk/board/closeTopic/) - Закрывает тему в списке обсуждений группы (в такой теме невозможно оставлять новые сообщения).
-+ [Board.createComment](/vk/board/createComment/) - Добавляет новый комментарий в обсуждении.
-+ [Board.deleteComment](/vk/board/deleteComment/) - Удаляет сообщение темы в обсуждениях сообщества.
-+ [Board.deleteTopic](/vk/board/deleteTopic/) - Удаляет тему в обсуждениях группы.
-+ [Board.editComment](/vk/board/editComment/) - Редактирует одно из сообщений в обсуждении сообщества.
-+ [Board.editTopic](/vk/board/editTopic/) - Изменяет заголовок темы в списке обсуждений группы.
-+ [Board.fixTopic](/vk/board/fixTopic/) - Закрепляет тему в списке обсуждений группы (такая тема при любой сортировке выводится выше остальных).
-+ [Board.getComments](/vk/board/getComments/) - Возвращает список сообщений в указанной теме.
-+ [Board.getTopics](/vk/board/getTopics/) - Возвращает список тем в обсуждениях указанной группы.
-+ [Board.openTopic](/vk/board/openTopic/) - Открывает ранее закрытую тему (в ней станет возможно оставлять новые сообщения).
-+ [Board.restoreComment](/vk/board/restoreComment/) - Восстанавливает удаленное сообщение темы в обсуждениях группы.
-+ [Board.unfixTopic](/vk/board/unfixTopic/) - Отменяет прикрепление темы в списке обсуждений группы (тема будет выводиться согласно выбранной сортировке).
++ [Board.addTopic](/vk/board/nodata/) - Создает новую тему в списке обсуждений группы.
++ [Board.closeTopic](/vk/board/nodata/) - Закрывает тему в списке обсуждений группы (в такой теме невозможно оставлять новые сообщения).
++ [Board.createComment](/vk/board/nodata/) - Добавляет новый комментарий в обсуждении.
++ [Board.deleteComment](/vk/board/nodata/) - Удаляет сообщение темы в обсуждениях сообщества.
++ [Board.deleteTopic](/vk/board/nodata/) - Удаляет тему в обсуждениях группы.
++ [Board.editComment](/vk/board/nodata/) - Редактирует одно из сообщений в обсуждении сообщества.
++ [Board.editTopic](/vk/board/nodata/) - Изменяет заголовок темы в списке обсуждений группы.
++ [Board.fixTopic](/vk/board/nodata/) - Закрепляет тему в списке обсуждений группы (такая тема при любой сортировке выводится выше остальных).
++ [Board.getComments](/vk/board/nodata/) - Возвращает список сообщений в указанной теме.
++ [Board.getTopics](/vk/board/nodata/) - Возвращает список тем в обсуждениях указанной группы.
++ [Board.openTopic](/vk/board/nodata/) - Открывает ранее закрытую тему (в ней станет возможно оставлять новые сообщения).
++ [Board.restoreComment](/vk/board/nodata/) - Восстанавливает удаленное сообщение темы в обсуждениях группы.
++ [Board.unfixTopic](/vk/board/nodata/) - Отменяет прикрепление темы в списке обсуждений группы (тема будет выводиться согласно выбранной сортировке).
 
 ## Управление рекламными акциями (офферами)
-+ [Leads.checkUser](/vk/leads/checkUser/) - Проверяет, доступна ли рекламная акция пользователю.
-+ [Leads.complete](/vk/leads/complete/) - Завершает начатую пользователем рекламную акцию, используя сессию и секретный ключ.
-+ [Leads.getStats](/vk/leads/getStats/) - Возвращает статистику по рекламной акции.
-+ [Leads.getUsers](/vk/leads/getUsers/) - Возвращает список последних действий пользователей по рекламной акции.
-+ [Leads.metricHit](/vk/leads/metricHit/) - Засчитывает событие метрики.
-+ [Leads.start](/vk/leads/start/) - Создаёт новую сессию для прохождения рекламной акции для пользователя.
++ [Leads.checkUser](/vk/leads/nodata/) - Проверяет, доступна ли рекламная акция пользователю.
++ [Leads.complete](/vk/leads/nodata/) - Завершает начатую пользователем рекламную акцию, используя сессию и секретный ключ.
++ [Leads.getStats](/vk/leads/nodata/) - Возвращает статистику по рекламной акции.
++ [Leads.getUsers](/vk/leads/nodata/) - Возвращает список последних действий пользователей по рекламной акции.
++ [Leads.metricHit](/vk/leads/nodata/) - Засчитывает событие метрики.
++ [Leads.start](/vk/leads/nodata/) - Создаёт новую сессию для прохождения рекламной акции для пользователя.
 
 ## Заметки
-+ [Notes.add](/vk/notes/add/) - Создает новую заметку у текущего пользователя.
-+ [Notes.createComment](/vk/notes/createComment/) - Добавляет новый комментарий к заметке.
-+ [Notes.delete](/vk/notes/delete/) - Удаляет заметку текущего пользователя.
-+ [Notes.deleteComment](/vk/notes/deleteComment/) - Удаляет комментарий к заметке.
-+ [Notes.edit](/vk/notes/edit/) - Редактирует заметку текущего пользователя.
-+ [Notes.editComment](/vk/notes/editComment/) - Редактирует указанный комментарий у заметки.
-+ [Notes.get](/vk/notes/get/) - Возвращает список заметок, созданных пользователем.
-+ [Notes.getById](/vk/notes/getById/) - Возвращает заметку по её id.
-+ [Notes.getComments](/vk/notes/getComments/) - Возвращает список комментариев к заметке.
-+ [Notes.restoreComment](/vk/notes/restoreComment/) - Восстанавливает удалённый комментарий.
++ [Notes.add](/vk/notes/nodata/) - Создает новую заметку у текущего пользователя.
++ [Notes.createComment](/vk/notes/nodata/) - Добавляет новый комментарий к заметке.
++ [Notes.delete](/vk/notes/nodata/) - Удаляет заметку текущего пользователя.
++ [Notes.deleteComment](/vk/notes/nodata/) - Удаляет комментарий к заметке.
++ [Notes.edit](/vk/notes/nodata/) - Редактирует заметку текущего пользователя.
++ [Notes.editComment](/vk/notes/nodata/) - Редактирует указанный комментарий у заметки.
++ [Notes.get](/vk/notes/nodata/) - Возвращает список заметок, созданных пользователем.
++ [Notes.getById](/vk/notes/nodata/) - Возвращает заметку по её id.
++ [Notes.getComments](/vk/notes/nodata/) - Возвращает список комментариев к заметке.
++ [Notes.restoreComment](/vk/notes/nodata/) - Восстанавливает удалённый комментарий.
 
 ## Оповещения
-+ [Notifications.notifications.get](/vk/notifications/notifications.get/) - Возвращает список оповещений об ответах других пользователей на записи текущего пользователя.
-+ [Notifications.markAsViewed](/vk/notifications/markAsViewed/) - Сбрасывает счетчик непросмотренных оповещений об ответах других пользователей на записи текущего пользователя.
-+ [Notifications.sendMessage](/vk/notifications/sendMessage/) - Отправляет уведомление пользователю приложения VK Apps.
++ [Notifications.notifications.get](/vk/notifications/nodata/) - Возвращает список оповещений об ответах других пользователей на записи текущего пользователя.
++ [Notifications.markAsViewed](/vk/notifications/nodata/) - Сбрасывает счетчик непросмотренных оповещений об ответах других пользователей на записи текущего пользователя.
++ [Notifications.sendMessage](/vk/notifications/nodata/) - Отправляет уведомление пользователю приложения VK Apps.
 
 ## Опросы
-+ [Polls.addVote](/vk/polls/addVote/) - Отдает голос текущего пользователя за выбранный вариант ответа в указанном опросе.
-+ [Polls.create](/vk/polls/create/) - Позволяет создавать опросы, которые впоследствии можно прикреплять к записям на странице пользователя или сообщества.
-+ [Polls.deleteVote](/vk/polls/deleteVote/) - Снимает голос текущего пользователя с выбранного варианта ответа в указанном опросе.
-+ [Polls.edit](/vk/polls/edit/) - Позволяет редактировать созданные опросы.
-+ [Polls.getBackgrounds](/vk/polls/getBackgrounds/) - Возвращает варианты фонового изображения для опросов.
-+ [Polls.getById](/vk/polls/getById/) - Возвращает детальную информацию об опросе по его идентификатору.
-+ [Polls.getPhotoUploadServer](/vk/polls/getPhotoUploadServer/) - Возвращает адрес сервера для загрузки фоновой фотографии в опрос.
-+ [Polls.polls.getVoters](/vk/polls/polls.getVoters/) - Получает список идентификаторов пользователей, которые выбрали определенные варианты ответа в опросе.
-+ [Polls.savePhoto](/vk/polls/savePhoto/) - Сохраняет фотографию, загруженную в опрос.
++ [Polls.addVote](/vk/polls/nodata/) - Отдает голос текущего пользователя за выбранный вариант ответа в указанном опросе.
++ [Polls.create](/vk/polls/nodata/) - Позволяет создавать опросы, которые впоследствии можно прикреплять к записям на странице пользователя или сообщества.
++ [Polls.deleteVote](/vk/polls/nodata/) - Снимает голос текущего пользователя с выбранного варианта ответа в указанном опросе.
++ [Polls.edit](/vk/polls/nodata/) - Позволяет редактировать созданные опросы.
++ [Polls.getBackgrounds](/vk/polls/nodata/) - Возвращает варианты фонового изображения для опросов.
++ [Polls.getById](/vk/polls/nodata/) - Возвращает детальную информацию об опросе по его идентификатору.
++ [Polls.getPhotoUploadServer](/vk/polls/nodata/) - Возвращает адрес сервера для загрузки фоновой фотографии в опрос.
++ [Polls.polls.getVoters](/vk/polls/polls.nodata/) - Получает список идентификаторов пользователей, которые выбрали определенные варианты ответа в опросе.
++ [Polls.savePhoto](/vk/polls/nodata/) - Сохраняет фотографию, загруженную в опрос.
 
 ## Поиск
-+ [Search.getHints](/vk/Search/) - Метод позволяет получить результаты быстрого поиска по произвольной подстроке/) 
++ [Search.getHints](/vk/nodata/) - Метод позволяет получить результаты быстрого поиска по произвольной подстроке/) 
 
 ## Административные методы от имени приложения
-+ [Secure.addAppEvent](/vk/secure/addAppEvent/) - Добавляет информацию о достижениях пользователя в приложении.
-+ [Secure.checkToken](/vk/secure/checkToken/) - Позволяет проверять валидность пользователя в IFrame, Flash и Standalone-приложениях с помощью передаваемого в приложения параметра access_token.
-+ [Secure.getAppBalance](/vk/secure/getAppBalance/) - Возвращает платежный баланс (счет) приложения в сотых долях голоса.
-+ [Secure.getSMSHistory](/vk/secure/getSMSHistory/) - Выводит список SMS-уведомлений, отосланных приложением с помощью метода secure.sendSMSNotification.
-+ [Secure.getTransactionsHistory](/vk/secure/getTransactionsHistory/) - Выводит историю транзакций по переводу голосов между пользователями и приложением.
-+ [Secure.getUserLevel](/vk/secure/getUserLevel/) - Возвращает ранее выставленный игровой уровень одного или нескольких пользователей в приложении.
-+ [Secure.sendNotification](/vk/secure/sendNotification/) - Отправляет уведомление пользователю.
-+ [Secure.sendSMSNotification](/vk/secure/sendSMSNotification/) - Отправляет SMS-уведомление на мобильный телефон пользователя.
-+ [Secure.setCounter](/vk/secure/setCounter/) - Устанавливает счетчик, который выводится пользователю жирным шрифтом в левом меню.
++ [Secure.addAppEvent](/vk/secure/nodata/) - Добавляет информацию о достижениях пользователя в приложении.
++ [Secure.checkToken](/vk/secure/nodata/) - Позволяет проверять валидность пользователя в IFrame, Flash и Standalone-приложениях с помощью передаваемого в приложения параметра access_token.
++ [Secure.getAppBalance](/vk/secure/nodata/) - Возвращает платежный баланс (счет) приложения в сотых долях голоса.
++ [Secure.getSMSHistory](/vk/secure/nodata/) - Выводит список SMS-уведомлений, отосланных приложением с помощью метода secure.sendSMSNotification.
++ [Secure.getTransactionsHistory](/vk/secure/nodata/) - Выводит историю транзакций по переводу голосов между пользователями и приложением.
++ [Secure.getUserLevel](/vk/secure/nodata/) - Возвращает ранее выставленный игровой уровень одного или нескольких пользователей в приложении.
++ [Secure.sendNotification](/vk/secure/nodata/) - Отправляет уведомление пользователю.
++ [Secure.sendSMSNotification](/vk/secure/nodata/) - Отправляет SMS-уведомление на мобильный телефон пользователя.
++ [Secure.setCounter](/vk/secure/nodata/) - Устанавливает счетчик, который выводится пользователю жирным шрифтом в левом меню.
 
 ## Переменные в приложении
-+ [Storage.get](/vk/storage/get/) - Возвращает значение переменной, название которой передано в параметре key
-+ [Storage.getKeys](/vk/storage/getKeys/) - Возвращает названия всех переменных.
-+ [Storage.set](/vk/storage/set/) - Сохраняет значение переменной, название которой передано в параметре key.
++ [Storage.get](/vk/storage/nodata/) - Возвращает значение переменной, название которой передано в параметре key
++ [Storage.getKeys](/vk/storage/nodata/) - Возвращает названия всех переменных.
++ [Storage.set](/vk/storage/nodata/) - Сохраняет значение переменной, название которой передано в параметре key.
 
 ## Места
-+ [Places.](vk/places//) - Нет данных. 
++ [Places.](vk/places/nodata/) - Нет данных. 
 
 ## Подкасты 
-+ [Podcasts.](vk/podcasts//) - Нет данных. 
++ [Podcasts.](vk/podcasts/nodata/) - Нет данных. 
 
 ## Формы сбора заявок
-+ [LeadForms.create](vk/leadForms/create/) - Создаёт форму сбора заявок.
-+ [LeadForms.delete](vk/leadForms/delete/) - Удаляет форму сбора заявок.
-+ [LeadForms.get](vk/leadForms/get/) - Возвращает информацию о форме сбора заявок.
-+ [LeadForms.getLeads](vk/leadForms/getLeads/) - Возвращает заявки формы.
-+ [LeadForms.getUploadURL](vk/leadForms/getUploadURL/) - Возвращает URL для загрузки обложки для формы.
-+ [LeadForms.list](vk/leadForms/list/) - Возвращает список форм сообщества.
-+ [LeadForms.update](vk/leadForms/update/) - Обновляет форму сбора заявок.
++ [LeadForms.create](vk/leadForms/nodata/) - Создаёт форму сбора заявок.
++ [LeadForms.delete](vk/leadForms/nodata/) - Удаляет форму сбора заявок.
++ [LeadForms.get](vk/leadForms/nodata/) - Возвращает информацию о форме сбора заявок.
++ [LeadForms.getLeads](vk/leadForms/nodata/) - Возвращает заявки формы.
++ [LeadForms.getUploadURL](vk/leadForms/nodata/) - Возвращает URL для загрузки обложки для формы.
++ [LeadForms.list](vk/leadForms/nodata/) - Возвращает список форм сообщества.
++ [LeadForms.update](vk/leadForms/nodata/) - Обновляет форму сбора заявок.
 
 ## Карусель
-+ [PrettyCards.create](vk/prettyCards/create/) - Создаёт карточку карусели.
-+ [PrettyCards.delete](vk/prettyCards/delete/) - Удаляет карточку.
-+ [PrettyCards.edit](vk/prettyCards/edit/) - Редактирует карточку карусели.
-+ [PrettyCards.get](vk/prettyCards/get/) - Возвращает неиспользованные карточки владельца.
-+ [PrettyCards.getById](vk/prettyCards/getById/) - Возвращает информацию о карточке.
-+ [PrettyCards.getUploadURL](vk/prettyCards/getUploadURL/) - Возвращает URL для загрузки фотографии для карточки.
++ [PrettyCards.create](vk/prettyCards/nodata/) - Создаёт карточку карусели.
++ [PrettyCards.delete](vk/prettyCards/nodata/) - Удаляет карточку.
++ [PrettyCards.edit](vk/prettyCards/nodata/) - Редактирует карточку карусели.
++ [PrettyCards.get](vk/prettyCards/nodata/) - Возвращает неиспользованные карточки владельца.
++ [PrettyCards.getById](vk/prettyCards/nodata/) - Возвращает информацию о карточке.
++ [PrettyCards.getUploadURL](vk/prettyCards/nodata/) - Возвращает URL для загрузки фотографии для карточки.
 
 ## Истории
-+ [Stories.banOwner](vk/stories/banOwner/) - Позволяет скрыть из ленты новостей истории от выбранных источников.
-+ [Stories.delete](vk/stories/delete/) - Удаляет историю.
-+ [Stories.get](vk/stories/get/) - Возвращает истории, доступные для текущего пользователя.
-+ [Stories.getBanned](vk/stories/getBanned/) - Возвращает список источников историй, скрытых из ленты текущего пользователя.
-+ [Stories.getById](vk/stories/getById/) - Возвращает информацию об истории по её идентификатору.
-+ [Stories.getPhotoUploadServer](vk/stories/getPhotoUploadServer/) - Позволяет получить адрес для загрузки истории с фотографией.
-+ [Stories.getReplies](vk/stories/getReplies/) - Позволяет получить ответы на историю.
-+ [Stories.getStats](vk/stories/getStats/) - Возвращает статистику истории.
-+ [Stories.getVideoUploadServer](vk/stories/getVideoUploadServer/) - Позволяет получить адрес для загрузки видеозаписи в историю.
-+ [Stories.getViewers](vk/stories/getViewers/) - Возвращает список пользователей, просмотревших историю.
-+ [Stories.hideAllReplies](vk/stories/hideAllReplies/) - Скрывает все ответы автора за последние сутки на истории текущего пользователя.
-+ [Stories.hideReply](vk/stories/hideReply/) - Скрывает ответ на историю.
-+ [Stories.unbanOwner](vk/stories/unbanOwner/) - Позволяет вернуть пользователя или сообщество в список отображаемых историй в ленте.
++ [Stories.banOwner](vk/stories/nodata/) - Позволяет скрыть из ленты новостей истории от выбранных источников.
++ [Stories.delete](vk/stories/nodata/) - Удаляет историю.
++ [Stories.get](vk/stories/nodata/) - Возвращает истории, доступные для текущего пользователя.
++ [Stories.getBanned](vk/stories/nodata/) - Возвращает список источников историй, скрытых из ленты текущего пользователя.
++ [Stories.getById](vk/stories/nodata/) - Возвращает информацию об истории по её идентификатору.
++ [Stories.getPhotoUploadServer](vk/stories/nodata/) - Позволяет получить адрес для загрузки истории с фотографией.
++ [Stories.getReplies](vk/stories/nodata/) - Позволяет получить ответы на историю.
++ [Stories.getStats](vk/stories/nodata/) - Возвращает статистику истории.
++ [Stories.getVideoUploadServer](vk/stories/nodata/) - Позволяет получить адрес для загрузки видеозаписи в историю.
++ [Stories.getViewers](vk/stories/nodata/) - Возвращает список пользователей, просмотревших историю.
++ [Stories.hideAllReplies](vk/stories/nodata/) - Скрывает все ответы автора за последние сутки на истории текущего пользователя.
++ [Stories.hideReply](vk/stories/nodata/) - Скрывает ответ на историю.
++ [Stories.unbanOwner](vk/stories/nodata/) - Позволяет вернуть пользователя или сообщество в список отображаемых историй в ленте.
 
 ## Виджеты приложений
-+ [AppWidgets.getAppImageUploadServer](vk/appWidgets/getAppImageUploadServer/) - Позволяет получить адрес для загрузки фотографии в коллекцию приложения для виджетов приложений сообществ.
-+ [AppWidgets.getAppImages](vk/appWidgets/getAppImages/) - Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
-+ [AppWidgets.getGroupImageUploadServer](vk/appWidgets/getGroupImageUploadServer/) - Позволяет получить адрес для загрузки фотографии в коллекцию сообщества для виджетов приложений сообществ.
-+ [AppWidgets.getGroupImages](vk/appWidgets/getGroupImages/) - Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
-+ [AppWidgets.getImagesById](vk/appWidgets/getImagesById/) - Позволяет получить изображение для виджетов приложений сообществ по его идентификатору.
-+ [AppWidgets.saveAppImage](vk/appWidgets/saveAppImage/) - Позволяет сохранить изображение в коллекцию приложения для виджетов приложений сообществ после загрузки на сервер.
-+ [AppWidgets.saveGroupImage](vk/appWidgets/saveGroupImage/) - Позволяет сохранить изображение в коллекцию сообщества для виджетов приложений сообществ. после загрузки на сервер.
-+ [AppWidgets.update](vk/appWidgets/update/) - Позволяет обновить виджет приложения сообщества. Виджет обязательно должен быть уже установлен в сообществе.
++ [AppWidgets.getAppImageUploadServer](vk/appWidgets/nodata/) - Позволяет получить адрес для загрузки фотографии в коллекцию приложения для виджетов приложений сообществ.
++ [AppWidgets.getAppImages](vk/appWidgets/nodata/) - Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
++ [AppWidgets.getGroupImageUploadServer](vk/appWidgets/nodata/) - Позволяет получить адрес для загрузки фотографии в коллекцию сообщества для виджетов приложений сообществ.
++ [AppWidgets.getGroupImages](vk/appWidgets/nodata/) - Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
++ [AppWidgets.getImagesById](vk/appWidgets/nodata/) - Позволяет получить изображение для виджетов приложений сообществ по его идентификатору.
++ [AppWidgets.saveAppImage](vk/appWidgets/nodata/) - Позволяет сохранить изображение в коллекцию приложения для виджетов приложений сообществ после загрузки на сервер.
++ [AppWidgets.saveGroupImage](vk/appWidgets/nodata/) - Позволяет сохранить изображение в коллекцию сообщества для виджетов приложений сообществ. после загрузки на сервер.
++ [AppWidgets.update](vk/appWidgets/nodata/) - Позволяет обновить виджет приложения сообщества. Виджет обязательно должен быть уже установлен в сообществе.
 
 ## Streaming API
-+ [Streaming.getServerUrl](vk/streaming/getServerUrl/) - Позволяет получить данные для подключения к Streaming API.
-+ [Streaming.getSettings](vk/streaming/getSettings/) - Позволяет получить значение порога для Streaming API.
-+ [Streaming.getStats](vk/streaming/getStats/) - Позволяет получить статистику для подготовленных и доставленных событий Streaming API.
-+ [Streaming.getStem](vk/streaming/getStem/) - Позволяет получить основу слова.
-+ [Streaming.setSettings](vk/streaming/setSettings/) - Позволяет задать значение порога для Streaming API.
++ [Streaming.getServerUrl](vk/streaming/nodata/) - Позволяет получить данные для подключения к Streaming API.
++ [Streaming.getSettings](vk/streaming/nodata/) - Позволяет получить значение порога для Streaming API.
++ [Streaming.getStats](vk/streaming/nodata/) - Позволяет получить статистику для подготовленных и доставленных событий Streaming API.
++ [Streaming.getStem](vk/streaming/nodata/) - Позволяет получить основу слова.
++ [Streaming.setSettings](vk/streaming/nodata/) - Позволяет задать значение порога для Streaming API.
 
 ## Состояние заказов
-+ [Orders.cancelSubscription](vk/orders/cancelSubscription/) - Отменяет подписку.
-+ [Orders.changeState](vk/orders/changeState/) - Изменяет состояние заказа.
-+ [Orders.get](vk/orders/get/) - Возвращает список заказов.
-+ [Orders.getAmount](vk/orders/getAmount/) - Возвращает стоимость голосов в валюте пользователя.
-+ [Orders.getById](vk/orders/getById/) - Возвращает информацию об отдельном заказе.
-+ [Orders.getUserSubscriptionById](vk/orders/getUserSubscriptionById/) - Получает информацию о подписке по её идентификатору.
-+ [Orders.getUserSubscriptions](vk/orders/getUserSubscriptions/) - Получает список активных подписок пользователя.
-+ [Orders.updateSubscription](vk/orders/updateSubscription/) - Обновляет цену подписки для пользователя.
++ [Orders.cancelSubscription](vk/orders/nodata/) - Отменяет подписку.
++ [Orders.changeState](vk/orders/nodata/) - Изменяет состояние заказа.
++ [Orders.get](vk/orders/nodata/) - Возвращает список заказов.
++ [Orders.getAmount](vk/orders/nodata/) - Возвращает стоимость голосов в валюте пользователя.
++ [Orders.getById](vk/orders/nodata/) - Возвращает информацию об отдельном заказе.
++ [Orders.getUserSubscriptionById](vk/orders/nodata/) - Получает информацию о подписке по её идентификатору.
++ [Orders.getUserSubscriptions](vk/orders/nodata/) - Получает список активных подписок пользователя.
++ [Orders.updateSubscription](vk/orders/nodata/) - Обновляет цену подписки для пользователя.
 
 ## Виджеты
-+ [Widgets.getComments](vk/widgets/getComments/) - Получает список комментариев к странице, оставленных через Виджет комментариев.
-+ [Widgets.getPages](vk/widgets/getPages/) - Получает список страниц приложения/сайта, на которых установлен Виджет комментариев или «Мне нравится».
++ [Widgets.getComments](vk/widgets/nodata/) - Получает список комментариев к странице, оставленных через Виджет комментариев.
++ [Widgets.getPages](vk/widgets/nodata/) - Получает список страниц приложения/сайта, на которых установлен Виджет комментариев или «Мне нравится».
