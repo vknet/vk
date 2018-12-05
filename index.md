@@ -426,7 +426,6 @@ PM> Install-Package VkNet
 + [Account.SetInfo](/vk/account/setInfo/) - Позволяет редактировать информацию о текущем аккаунте.
 + [Account.ChangePassword](/vk/account/changePassword/) - Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore.
 + [Account.GetProfileInfo](/vk/account/getProfileInfo/) - Возвращает информацию о текущем профиле.
-+ [Ads.AddOfficeUsers](/vk/ads/nodata/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
 
 ## Рекламный Кабинет
