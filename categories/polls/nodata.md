@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Папка.НазваниеМетода
-permalink: папка/названиеМетода/
+title: Метод Polls.NoData
+permalink: polls/nodata
 comments: true
 ---
-# Метод Папка.НазваниеМетода
+# Метод Polls.NoData
 Метод не реализован.
 
 ## Версия Вконтакте API v.5.92
