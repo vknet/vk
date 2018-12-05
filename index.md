@@ -475,152 +475,140 @@ PM> Install-Package VkNet
 + [Ads.updateTargetPixel](/vk/ads/updateTargetPixel/) - Редактирует пиксель ретаргетинга.
 
 ## Обсуждения
-+ [Board.addTopic] (/vk/board/addTopic/) - Создает новую тему в списке обсуждений группы.
-+ [Board.closeTopic] (/vk/board/closeTopic/) - Закрывает тему в списке обсуждений группы (в такой теме невозможно оставлять новые сообщения).
-+ [Board.createComment] (/vk/board/createComment/) - Добавляет новый комментарий в обсуждении.
-+ [Board.deleteComment] (/vk/board/deleteComment/) - Удаляет сообщение темы в обсуждениях сообщества.
-+ [Board.deleteTopic] (/vk/board/deleteTopic/) - Удаляет тему в обсуждениях группы.
-+ [Board.editComment] (/vk/board/editComment/) - Редактирует одно из сообщений в обсуждении сообщества.
-+ [Board.editTopic] (/vk/board/editTopic/) - Изменяет заголовок темы в списке обсуждений группы.
-+ [Board.fixTopic] (/vk/board/fixTopic/) - Закрепляет тему в списке обсуждений группы (такая тема при любой сортировке выводится выше остальных).
-+ [Board.getComments] (/vk/board/getComments/) - Возвращает список сообщений в указанной теме.
-+ [Board.getTopics] (/vk/board/getTopics/) - Возвращает список тем в обсуждениях указанной группы.
-+ [Board.openTopic] (/vk/board/openTopic/) - Открывает ранее закрытую тему (в ней станет возможно оставлять новые сообщения).
-+ [Board.restoreComment] (/vk/board/restoreComment/) - Восстанавливает удаленное сообщение темы в обсуждениях группы.
-+ [Board.unfixTopic] (/vk/board/unfixTopic/) - Отменяет прикрепление темы в списке обсуждений группы (тема будет выводиться согласно выбранной сортировке).
-
++ [Board.addTopic](/vk/board/addTopic/) - Создает новую тему в списке обсуждений группы.
++ [Board.closeTopic](/vk/board/closeTopic/) - Закрывает тему в списке обсуждений группы (в такой теме невозможно оставлять новые сообщения).
++ [Board.createComment](/vk/board/createComment/) - Добавляет новый комментарий в обсуждении.
++ [Board.deleteComment](/vk/board/deleteComment/) - Удаляет сообщение темы в обсуждениях сообщества.
++ [Board.deleteTopic](/vk/board/deleteTopic/) - Удаляет тему в обсуждениях группы.
++ [Board.editComment](/vk/board/editComment/) - Редактирует одно из сообщений в обсуждении сообщества.
++ [Board.editTopic](/vk/board/editTopic/) - Изменяет заголовок темы в списке обсуждений группы.
++ [Board.fixTopic](/vk/board/fixTopic/) - Закрепляет тему в списке обсуждений группы (такая тема при любой сортировке выводится выше остальных).
++ [Board.getComments](/vk/board/getComments/) - Возвращает список сообщений в указанной теме.
++ [Board.getTopics](/vk/board/getTopics/) - Возвращает список тем в обсуждениях указанной группы.
++ [Board.openTopic](/vk/board/openTopic/) - Открывает ранее закрытую тему (в ней станет возможно оставлять новые сообщения).
++ [Board.restoreComment](/vk/board/restoreComment/) - Восстанавливает удаленное сообщение темы в обсуждениях группы.
++ [Board.unfixTopic](/vk/board/unfixTopic/) - Отменяет прикрепление темы в списке обсуждений группы (тема будет выводиться согласно выбранной сортировке).
 
 ## Управление рекламными акциями (офферами)
-+ [Leads.checkUser] (/vk/leads/checkUser/) - Проверяет, доступна ли рекламная акция пользователю.
-+ [Leads.complete] (/vk/leads/complete/) - Завершает начатую пользователем рекламную акцию, используя сессию и секретный ключ.
-+ [Leads.getStats] (/vk/leads/getStats/) - Возвращает статистику по рекламной акции.
-+ [Leads.getUsers] (/vk/leads/getUsers/) - Возвращает список последних действий пользователей по рекламной акции.
-+ [Leads.metricHit] (/vk/leads/metricHit/) - Засчитывает событие метрики.
-+ [Leads.start] (/vk/leads/start/) - Создаёт новую сессию для прохождения рекламной акции для пользователя.
++ [Leads.checkUser](/vk/leads/checkUser/) - Проверяет, доступна ли рекламная акция пользователю.
++ [Leads.complete](/vk/leads/complete/) - Завершает начатую пользователем рекламную акцию, используя сессию и секретный ключ.
++ [Leads.getStats](/vk/leads/getStats/) - Возвращает статистику по рекламной акции.
++ [Leads.getUsers](/vk/leads/getUsers/) - Возвращает список последних действий пользователей по рекламной акции.
++ [Leads.metricHit](/vk/leads/metricHit/) - Засчитывает событие метрики.
++ [Leads.start](/vk/leads/start/) - Создаёт новую сессию для прохождения рекламной акции для пользователя.
 
 ## Заметки
-+ [Notes.add] (/vk/notes/add/) - Создает новую заметку у текущего пользователя.
-+ [Notes.createComment] (/vk/notes/createComment/) - Добавляет новый комментарий к заметке.
-+ [Notes.delete] (/vk/notes/delete/) - Удаляет заметку текущего пользователя.
-+ [Notes.deleteComment] (/vk/notes/deleteComment/) - Удаляет комментарий к заметке.
-+ [Notes.edit] (/vk/notes/edit/) - Редактирует заметку текущего пользователя.
-+ [Notes.editComment] (/vk/notes/editComment/) - Редактирует указанный комментарий у заметки.
-+ [Notes.get] (/vk/notes/get/) - Возвращает список заметок, созданных пользователем.
-+ [Notes.getById] (/vk/notes/getById/) - Возвращает заметку по её id.
-+ [Notes.getComments] (/vk/notes/getComments/) - Возвращает список комментариев к заметке.
-+ [Notes.restoreComment] (/vk/notes/restoreComment/) - Восстанавливает удалённый комментарий.
++ [Notes.add](/vk/notes/add/) - Создает новую заметку у текущего пользователя.
++ [Notes.createComment](/vk/notes/createComment/) - Добавляет новый комментарий к заметке.
++ [Notes.delete](/vk/notes/delete/) - Удаляет заметку текущего пользователя.
++ [Notes.deleteComment](/vk/notes/deleteComment/) - Удаляет комментарий к заметке.
++ [Notes.edit](/vk/notes/edit/) - Редактирует заметку текущего пользователя.
++ [Notes.editComment](/vk/notes/editComment/) - Редактирует указанный комментарий у заметки.
++ [Notes.get](/vk/notes/get/) - Возвращает список заметок, созданных пользователем.
++ [Notes.getById](/vk/notes/getById/) - Возвращает заметку по её id.
++ [Notes.getComments](/vk/notes/getComments/) - Возвращает список комментариев к заметке.
++ [Notes.restoreComment](/vk/notes/restoreComment/) - Восстанавливает удалённый комментарий.
 
 ## Оповещения
-+ [Notifications.notifications.get] (/vk/notifications/notifications.get/) - Возвращает список оповещений об ответах других пользователей на записи текущего пользователя.
-+ [Notifications.markAsViewed] (/vk/notifications/markAsViewed/) - Сбрасывает счетчик непросмотренных оповещений об ответах других пользователей на записи текущего пользователя.
-+ [Notifications.sendMessage] (/vk/notifications/sendMessage/) - Отправляет уведомление пользователю приложения VK Apps.
++ [Notifications.notifications.get](/vk/notifications/notifications.get/) - Возвращает список оповещений об ответах других пользователей на записи текущего пользователя.
++ [Notifications.markAsViewed](/vk/notifications/markAsViewed/) - Сбрасывает счетчик непросмотренных оповещений об ответах других пользователей на записи текущего пользователя.
++ [Notifications.sendMessage](/vk/notifications/sendMessage/) - Отправляет уведомление пользователю приложения VK Apps.
 
 ## Опросы
-+ [Polls.addVote] (/vk/polls/addVote/) - Отдает голос текущего пользователя за выбранный вариант ответа в указанном опросе.
-+ [Polls.create] (/vk/polls/create/) - Позволяет создавать опросы, которые впоследствии можно прикреплять к записям на странице пользователя или сообщества.
-+ [Polls.deleteVote] (/vk/polls/deleteVote/) - Снимает голос текущего пользователя с выбранного варианта ответа в указанном опросе.
-+ [Polls.edit] (/vk/polls/edit/) - Позволяет редактировать созданные опросы.
-+ [Polls.getBackgrounds] (/vk/polls/getBackgrounds/) - Возвращает варианты фонового изображения для опросов.
-+ [Polls.getById] (/vk/polls/getById/) - Возвращает детальную информацию об опросе по его идентификатору.
-+ [Polls.getPhotoUploadServer] (/vk/polls/getPhotoUploadServer/) - Возвращает адрес сервера для загрузки фоновой фотографии в опрос.
-+ [Polls.polls.getVoters] (/vk/polls/polls.getVoters/) - Получает список идентификаторов пользователей, которые выбрали определенные варианты ответа в опросе.
-+ [Polls.savePhoto] (/vk/polls/savePhoto/) - Сохраняет фотографию, загруженную в опрос.
++ [Polls.addVote](/vk/polls/addVote/) - Отдает голос текущего пользователя за выбранный вариант ответа в указанном опросе.
++ [Polls.create](/vk/polls/create/) - Позволяет создавать опросы, которые впоследствии можно прикреплять к записям на странице пользователя или сообщества.
++ [Polls.deleteVote](/vk/polls/deleteVote/) - Снимает голос текущего пользователя с выбранного варианта ответа в указанном опросе.
++ [Polls.edit](/vk/polls/edit/) - Позволяет редактировать созданные опросы.
++ [Polls.getBackgrounds](/vk/polls/getBackgrounds/) - Возвращает варианты фонового изображения для опросов.
++ [Polls.getById](/vk/polls/getById/) - Возвращает детальную информацию об опросе по его идентификатору.
++ [Polls.getPhotoUploadServer](/vk/polls/getPhotoUploadServer/) - Возвращает адрес сервера для загрузки фоновой фотографии в опрос.
++ [Polls.polls.getVoters](/vk/polls/polls.getVoters/) - Получает список идентификаторов пользователей, которые выбрали определенные варианты ответа в опросе.
++ [Polls.savePhoto](/vk/polls/savePhoto/) - Сохраняет фотографию, загруженную в опрос.
 
 ## Поиск
-+ [Search.getHints] (/vk/Search/Метод позволяет получить результаты быстрого поиска по произвольной подстроке/) - 
++ [Search.getHints](/vk/Search/Метод позволяет получить результаты быстрого поиска по произвольной подстроке/) - 
 
 ## Административные методы от имени приложения
-+ [Secure.addAppEvent] (/vk/secure/addAppEvent/) - Добавляет информацию о достижениях пользователя в приложении.
-+ [Secure.checkToken] (/vk/secure/checkToken/) - Позволяет проверять валидность пользователя в IFrame, Flash и Standalone-приложениях с помощью передаваемого в приложения параметра access_token.
-+ [Secure.getAppBalance] (/vk/secure/getAppBalance/) - Возвращает платежный баланс (счет) приложения в сотых долях голоса.
-+ [Secure.getSMSHistory] (/vk/secure/getSMSHistory/) - Выводит список SMS-уведомлений, отосланных приложением с помощью метода secure.sendSMSNotification.
-+ [Secure.getTransactionsHistory] (/vk/secure/getTransactionsHistory/) - Выводит историю транзакций по переводу голосов между пользователями и приложением.
-+ [Secure.getUserLevel] (/vk/secure/getUserLevel/) - Возвращает ранее выставленный игровой уровень одного или нескольких пользователей в приложении.
-+ [Secure.sendNotification] (/vk/secure/sendNotification/) - Отправляет уведомление пользователю.
-+ [Secure.sendSMSNotification] (/vk/secure/sendSMSNotification/) - Отправляет SMS-уведомление на мобильный телефон пользователя.
-+ [Secure.setCounter] (/vk/secure/setCounter/) - Устанавливает счетчик, который выводится пользователю жирным шрифтом в левом меню.
++ [Secure.addAppEvent](/vk/secure/addAppEvent/) - Добавляет информацию о достижениях пользователя в приложении.
++ [Secure.checkToken](/vk/secure/checkToken/) - Позволяет проверять валидность пользователя в IFrame, Flash и Standalone-приложениях с помощью передаваемого в приложения параметра access_token.
++ [Secure.getAppBalance](/vk/secure/getAppBalance/) - Возвращает платежный баланс (счет) приложения в сотых долях голоса.
++ [Secure.getSMSHistory](/vk/secure/getSMSHistory/) - Выводит список SMS-уведомлений, отосланных приложением с помощью метода secure.sendSMSNotification.
++ [Secure.getTransactionsHistory](/vk/secure/getTransactionsHistory/) - Выводит историю транзакций по переводу голосов между пользователями и приложением.
++ [Secure.getUserLevel](/vk/secure/getUserLevel/) - Возвращает ранее выставленный игровой уровень одного или нескольких пользователей в приложении.
++ [Secure.sendNotification](/vk/secure/sendNotification/) - Отправляет уведомление пользователю.
++ [Secure.sendSMSNotification](/vk/secure/sendSMSNotification/) - Отправляет SMS-уведомление на мобильный телефон пользователя.
++ [Secure.setCounter](/vk/secure/setCounter/) - Устанавливает счетчик, который выводится пользователю жирным шрифтом в левом меню.
 
 ## Переменные в приложении
-+ [Storage.get] (/vk/storage/get/) - Возвращает значение переменной, название которой передано в параметре key
-+ [Storage.getKeys] (/vk/storage/getKeys/) - Возвращает названия всех переменных.
-+ [Storage.set] (/vk/storage/set/) - Сохраняет значение переменной, название которой передано в параметре key.
++ [Storage.get](/vk/storage/get/) - Возвращает значение переменной, название которой передано в параметре key
++ [Storage.getKeys](/vk/storage/getKeys/) - Возвращает названия всех переменных.
++ [Storage.set](/vk/storage/set/) - Сохраняет значение переменной, название которой передано в параметре key.
 
 ## Места
-+ [Places.] (vk/places//) - Нет данных. 
++ [Places.](vk/places//) - Нет данных. 
 
 ## Подкасты 
-+ [Podcasts.] (vk/podcasts//) - Нет данных. 
++ [Podcasts.](vk/podcasts//) - Нет данных. 
 
 ## Формы сбора заявок
-+ [LeadForms.create] (vk/leadForms/create/) - Создаёт форму сбора заявок.
-+ [LeadForms.delete] (vk/leadForms/delete/) - Удаляет форму сбора заявок.
-+ [LeadForms.get] (vk/leadForms/get/) - Возвращает информацию о форме сбора заявок.
-+ [LeadForms.getLeads] (vk/leadForms/getLeads/) - Возвращает заявки формы.
-+ [LeadForms.getUploadURL] (vk/leadForms/getUploadURL/) - Возвращает URL для загрузки обложки для формы.
-+ [LeadForms.list] (vk/leadForms/list/) - Возвращает список форм сообщества.
-+ [LeadForms.update] (vk/leadForms/update/) - Обновляет форму сбора заявок.
++ [LeadForms.create](vk/leadForms/create/) - Создаёт форму сбора заявок.
++ [LeadForms.delete](vk/leadForms/delete/) - Удаляет форму сбора заявок.
++ [LeadForms.get](vk/leadForms/get/) - Возвращает информацию о форме сбора заявок.
++ [LeadForms.getLeads](vk/leadForms/getLeads/) - Возвращает заявки формы.
++ [LeadForms.getUploadURL](vk/leadForms/getUploadURL/) - Возвращает URL для загрузки обложки для формы.
++ [LeadForms.list](vk/leadForms/list/) - Возвращает список форм сообщества.
++ [LeadForms.update](vk/leadForms/update/) - Обновляет форму сбора заявок.
 
 ## Карусель
-+ [PrettyCards.create] (vk/prettyCards/create/) - Создаёт карточку карусели.
-+ [PrettyCards.delete] (vk/prettyCards/delete/) - Удаляет карточку.
-+ [PrettyCards.edit] (vk/prettyCards/edit/) - Редактирует карточку карусели.
-+ [PrettyCards.get] (vk/prettyCards/get/) - Возвращает неиспользованные карточки владельца.
-+ [PrettyCards.getById] (vk/prettyCards/getById/) - Возвращает информацию о карточке.
-+ [PrettyCards.getUploadURL] (vk/prettyCards/getUploadURL/) - Возвращает URL для загрузки фотографии для карточки.
++ [PrettyCards.create](vk/prettyCards/create/) - Создаёт карточку карусели.
++ [PrettyCards.delete](vk/prettyCards/delete/) - Удаляет карточку.
++ [PrettyCards.edit](vk/prettyCards/edit/) - Редактирует карточку карусели.
++ [PrettyCards.get](vk/prettyCards/get/) - Возвращает неиспользованные карточки владельца.
++ [PrettyCards.getById](vk/prettyCards/getById/) - Возвращает информацию о карточке.
++ [PrettyCards.getUploadURL](vk/prettyCards/getUploadURL/) - Возвращает URL для загрузки фотографии для карточки.
 
 ## Истории
-+ [Stories.banOwner] (vk/stories/banOwner/) - Позволяет скрыть из ленты новостей истории от выбранных источников.
-+ [Stories.delete] (vk/stories/delete/) - Удаляет историю.
-+ [Stories.get] (vk/stories/get/) - Возвращает истории, доступные для текущего пользователя.
-+ [Stories.getBanned] (vk/stories/getBanned/) - Возвращает список источников историй, скрытых из ленты текущего пользователя.
-+ [Stories.getById] (vk/stories/getById/) - Возвращает информацию об истории по её идентификатору.
-+ [Stories.getPhotoUploadServer] (vk/stories/getPhotoUploadServer/) - Позволяет получить адрес для загрузки истории с фотографией.
-+ [Stories.getReplies] (vk/stories/getReplies/) - Позволяет получить ответы на историю.
-+ [Stories.getStats] (vk/stories/getStats/) - Возвращает статистику истории.
-+ [Stories.getVideoUploadServer] (vk/stories/getVideoUploadServer/) - Позволяет получить адрес для загрузки видеозаписи в историю.
-+ [Stories.getViewers] (vk/stories/getViewers/) - Возвращает список пользователей, просмотревших историю.
-+ [Stories.hideAllReplies] (vk/stories/hideAllReplies/) - Скрывает все ответы автора за последние сутки на истории текущего пользователя.
-+ [Stories.hideReply] (vk/stories/hideReply/) - Скрывает ответ на историю.
-+ [Stories.unbanOwner] (vk/stories/unbanOwner/) - Позволяет вернуть пользователя или сообщество в список отображаемых историй в ленте.
++ [Stories.banOwner](vk/stories/banOwner/) - Позволяет скрыть из ленты новостей истории от выбранных источников.
++ [Stories.delete](vk/stories/delete/) - Удаляет историю.
++ [Stories.get](vk/stories/get/) - Возвращает истории, доступные для текущего пользователя.
++ [Stories.getBanned](vk/stories/getBanned/) - Возвращает список источников историй, скрытых из ленты текущего пользователя.
++ [Stories.getById](vk/stories/getById/) - Возвращает информацию об истории по её идентификатору.
++ [Stories.getPhotoUploadServer](vk/stories/getPhotoUploadServer/) - Позволяет получить адрес для загрузки истории с фотографией.
++ [Stories.getReplies](vk/stories/getReplies/) - Позволяет получить ответы на историю.
++ [Stories.getStats](vk/stories/getStats/) - Возвращает статистику истории.
++ [Stories.getVideoUploadServer](vk/stories/getVideoUploadServer/) - Позволяет получить адрес для загрузки видеозаписи в историю.
++ [Stories.getViewers](vk/stories/getViewers/) - Возвращает список пользователей, просмотревших историю.
++ [Stories.hideAllReplies](vk/stories/hideAllReplies/) - Скрывает все ответы автора за последние сутки на истории текущего пользователя.
++ [Stories.hideReply](vk/stories/hideReply/) - Скрывает ответ на историю.
++ [Stories.unbanOwner](vk/stories/unbanOwner/) - Позволяет вернуть пользователя или сообщество в список отображаемых историй в ленте.
 
 ## Виджеты приложений
-+ [AppWidgets.getAppImageUploadServer] (vk/appWidgets/getAppImageUploadServer/) - Позволяет получить адрес для загрузки фотографии в коллекцию приложения для виджетов приложений сообществ.
-+ [AppWidgets.getAppImages] (vk/appWidgets/getAppImages/) - Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
-+ [AppWidgets.getGroupImageUploadServer] (vk/appWidgets/getGroupImageUploadServer/) - Позволяет получить адрес для загрузки фотографии в коллекцию сообщества для виджетов приложений сообществ.
-+ [AppWidgets.getGroupImages] (vk/appWidgets/getGroupImages/) - Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
-+ [AppWidgets.getImagesById] (vk/appWidgets/getImagesById/) - Позволяет получить изображение для виджетов приложений сообществ по его идентификатору.
-+ [AppWidgets.saveAppImage] (vk/appWidgets/saveAppImage/) - Позволяет сохранить изображение в коллекцию приложения для виджетов приложений сообществ после загрузки на сервер.
-+ [AppWidgets.saveGroupImage] (vk/appWidgets/saveGroupImage/) - Позволяет сохранить изображение в коллекцию сообщества для виджетов приложений сообществ. после загрузки на сервер.
-+ [AppWidgets.update] (vk/appWidgets/update/) - Позволяет обновить виджет приложения сообщества. Виджет обязательно должен быть уже установлен в сообществе.
++ [AppWidgets.getAppImageUploadServer](vk/appWidgets/getAppImageUploadServer/) - Позволяет получить адрес для загрузки фотографии в коллекцию приложения для виджетов приложений сообществ.
++ [AppWidgets.getAppImages](vk/appWidgets/getAppImages/) - Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
++ [AppWidgets.getGroupImageUploadServer](vk/appWidgets/getGroupImageUploadServer/) - Позволяет получить адрес для загрузки фотографии в коллекцию сообщества для виджетов приложений сообществ.
++ [AppWidgets.getGroupImages](vk/appWidgets/getGroupImages/) - Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
++ [AppWidgets.getImagesById](vk/appWidgets/getImagesById/) - Позволяет получить изображение для виджетов приложений сообществ по его идентификатору.
++ [AppWidgets.saveAppImage](vk/appWidgets/saveAppImage/) - Позволяет сохранить изображение в коллекцию приложения для виджетов приложений сообществ после загрузки на сервер.
++ [AppWidgets.saveGroupImage](vk/appWidgets/saveGroupImage/) - Позволяет сохранить изображение в коллекцию сообщества для виджетов приложений сообществ. после загрузки на сервер.
++ [AppWidgets.update](vk/appWidgets/update/) - Позволяет обновить виджет приложения сообщества. Виджет обязательно должен быть уже установлен в сообществе.
 
 ## Streaming API
-+ [Streaming.getServerUrl] (vk/streaming/getServerUrl/) - Позволяет получить данные для подключения к Streaming API.
-+ [Streaming.getSettings] (vk/streaming/getSettings/) - Позволяет получить значение порога для Streaming API.
-+ [Streaming.getStats] (vk/streaming/getStats/) - Позволяет получить статистику для подготовленных и доставленных событий Streaming API.
-+ [Streaming.getStem] (vk/streaming/getStem/) - Позволяет получить основу слова.
-+ [Streaming.setSettings] (vk/streaming/setSettings/) - Позволяет задать значение порога для Streaming API.
++ [Streaming.getServerUrl](vk/streaming/getServerUrl/) - Позволяет получить данные для подключения к Streaming API.
++ [Streaming.getSettings](vk/streaming/getSettings/) - Позволяет получить значение порога для Streaming API.
++ [Streaming.getStats](vk/streaming/getStats/) - Позволяет получить статистику для подготовленных и доставленных событий Streaming API.
++ [Streaming.getStem](vk/streaming/getStem/) - Позволяет получить основу слова.
++ [Streaming.setSettings](vk/streaming/setSettings/) - Позволяет задать значение порога для Streaming API.
 
 ## Состояние заказов
-+ [Orders.cancelSubscription] (vk/orders/cancelSubscription/) - Отменяет подписку.
-+ [Orders.changeState] (vk/orders/changeState/) - Изменяет состояние заказа.
-+ [Orders.get] (vk/orders/get/) - Возвращает список заказов.
-+ [Orders.getAmount] (vk/orders/getAmount/) - Возвращает стоимость голосов в валюте пользователя.
-+ [Orders.getById] (vk/orders/getById/) - Возвращает информацию об отдельном заказе.
-+ [Orders.getUserSubscriptionById] (vk/orders/getUserSubscriptionById/) - Получает информацию о подписке по её идентификатору.
-+ [Orders.getUserSubscriptions] (vk/orders/getUserSubscriptions/) - Получает список активных подписок пользователя.
-+ [Orders.updateSubscription] (vk/orders/updateSubscription/) - Обновляет цену подписки для пользователя.
++ [Orders.cancelSubscription](vk/orders/cancelSubscription/) - Отменяет подписку.
++ [Orders.changeState](vk/orders/changeState/) - Изменяет состояние заказа.
++ [Orders.get](vk/orders/get/) - Возвращает список заказов.
++ [Orders.getAmount](vk/orders/getAmount/) - Возвращает стоимость голосов в валюте пользователя.
++ [Orders.getById](vk/orders/getById/) - Возвращает информацию об отдельном заказе.
++ [Orders.getUserSubscriptionById](vk/orders/getUserSubscriptionById/) - Получает информацию о подписке по её идентификатору.
++ [Orders.getUserSubscriptions](vk/orders/getUserSubscriptions/) - Получает список активных подписок пользователя.
++ [Orders.updateSubscription](vk/orders/updateSubscription/) - Обновляет цену подписки для пользователя.
 
 ## Виджеты
-+ [Widgets.getComments] (vk/widgets/getComments/) - Получает список комментариев к странице, оставленных через Виджет комментариев.
-+ [Widgets.getPages] (vk/widgets/getPages/) - Получает список страниц приложения/сайта, на которых установлен Виджет комментариев или «Мне нравится».
-
-
-
-
-
-
-
-
-
-
-
++ [Widgets.getComments](vk/widgets/getComments/) - Получает список комментариев к странице, оставленных через Виджет комментариев.
++ [Widgets.getPages](vk/widgets/getPages/) - Получает список страниц приложения/сайта, на которых установлен Виджет комментариев или «Мне нравится».
