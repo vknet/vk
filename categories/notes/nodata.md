@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Папка.НазваниеМетода
-permalink: папка/названиеМетода/
+title: Метод Ads.NoData
+permalink: ads/nodata
 comments: true
 ---
-# Метод Папка.НазваниеМетода
+# Метод Ads.NoData
 Метод не реализован.
 
 ## Версия Вконтакте API v.5.92
