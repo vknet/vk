@@ -429,12 +429,12 @@ PM> Install-Package VkNet
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
 
 ## Рекламный Кабинет
-+ [Ads.AddOfficeUsers](/vk/ads/nodata.md/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
-+ [Ads.CheckLink](/vk/ads/nodata/) - Проверяет ссылку на рекламируемый объект.
-+ [Ads.CreateAds](/vk/ads/nodata/) - Создает рекламные объявления.
-+ [Ads.CreateCampaigns](/vk/ads/nodata/) - Создает рекламные кампании.
-+ [Ads.CreateClients](/vk/ads/nodata/) - оздаёт клиентов рекламного агентства.
-+ [Ads.CreateLookalikeRequest](/vk/ads/nodata/) - Создаёт запрос на поиск похожей аудитории.
++ [Ads.AddOfficeUsers](/vk/ads/noData/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
++ [Ads.CheckLink](/vk/ads/noData/) - Проверяет ссылку на рекламируемый объект.
++ [Ads.CreateAds](/vk/ads/noData/) - Создает рекламные объявления.
++ [Ads.CreateCampaigns](/vk/ads/noData/) - Создает рекламные кампании.
++ [Ads.CreateClients](/vk/ads/noData/) - оздаёт клиентов рекламного агентства.
++ [Ads.CreateLookalikeRequest](/vk/ads/noData/) - Создаёт запрос на поиск похожей аудитории.
 + [Ads.CreateTargetGroup](/vk/ads/nodata/) - Создает аудиторию для ретаргетинга рекламных объявлений на пользователей, которые посетили сайт рекламодателя (просмотрели информации о товаре, зарегистрировались и т.д.).
 + [Ads.CreateTargetPixel](/vk/ads/nodata/) - Создаёт пиксель ретаргетинга.
 + [Ads.DeleteAds](/vk/ads/nodata/) - Архивирует рекламные объявления.
