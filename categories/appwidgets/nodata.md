@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Папка.НазваниеМетода
-permalink: папка/названиеМетода/
+title: Метод AppWidgets.NoData
+permalink: appWidgets/nodata
 comments: true
 ---
-# Метод Папка.НазваниеМетода
+# Метод AppWidgets.NoData
 Метод не реализован.
 
 ## Версия Вконтакте API v.5.92
