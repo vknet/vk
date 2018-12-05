@@ -430,7 +430,7 @@ PM> Install-Package VkNet
 
 ## Рекламный Кабинет
 + [Ads.addOfficeUsers](/vk/ads/nodata/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
-+ [Ads.ads.checkLink](/vk/ads/nodata/) - Проверяет ссылку на рекламируемый объект.
++ [Ads.checkLink](/vk/ads/nodata/) - Проверяет ссылку на рекламируемый объект.
 + [Ads.createAds](/vk/ads/nodata/) - Создает рекламные объявления.
 + [Ads.createCampaigns](/vk/ads/nodata/) - Создает рекламные кампании.
 + [Ads.createClients](/vk/ads/nodata/) - оздаёт клиентов рекламного агентства.
