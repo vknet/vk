@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Ads.NoData
-permalink: ads/nodata
+title: Метод Notes.NoData
+permalink: notes/nodata
 comments: true
 ---
-# Метод Ads.NoData
+# Метод Notes.NoData
 Метод не реализован.
 
 ## Версия Вконтакте API v.5.92
