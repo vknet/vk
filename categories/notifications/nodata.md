@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Папка.НазваниеМетода
-permalink: папка/названиеМетода/
+title: Метод Notifications.NoData
+permalink: notifications/nodata
 comments: true
 ---
-# Метод Папка.НазваниеМетода
+# Метод Notifications.NoData
 Метод не реализован.
 
 ## Версия Вконтакте API v.5.92
