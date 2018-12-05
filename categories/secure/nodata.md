@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Папка.НазваниеМетода
-permalink: папка/названиеМетода/
+title: Метод Secure.NoData
+permalink: secure/nodata
 comments: true
 ---
-# Метод Папка.НазваниеМетода
+# Метод Secure.NoData
 Метод не реализован.
 
 ## Версия Вконтакте API v.5.92
