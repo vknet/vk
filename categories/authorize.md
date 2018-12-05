@@ -9,7 +9,7 @@ comments: true
 
 ## Параметры
 + **appID** - ID приложения
-+ **email** - Email или телефон
++ **login** - E-mail или телефон
 + **password** - Пароль для авторизации
 + **settings** - [Права доступа приложения](https://vk.com/dev/permissions). Тип параметра - Settings
 
