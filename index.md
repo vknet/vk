@@ -429,50 +429,50 @@ PM> Install-Package VkNet
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
 
 ## Рекламный Кабинет
-+ [Ads.addOfficeUsers](/vk/ads/nodata/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
-+ [Ads.checkLink](/vk/ads/nodata/) - Проверяет ссылку на рекламируемый объект.
-+ [Ads.createAds](/vk/ads/nodata/) - Создает рекламные объявления.
-+ [Ads.createCampaigns](/vk/ads/nodata/) - Создает рекламные кампании.
-+ [Ads.createClients](/vk/ads/nodata/) - оздаёт клиентов рекламного агентства.
-+ [Ads.createLookalikeRequest](/vk/ads/nodata/) - Создаёт запрос на поиск похожей аудитории.
-+ [Ads.createTargetGroup](/vk/ads/nodata/) - Создает аудиторию для ретаргетинга рекламных объявлений на пользователей, которые посетили сайт рекламодателя (просмотрели информации о товаре, зарегистрировались и т.д.).
-+ [Ads.createTargetPixel](/vk/ads/nodata/) - Создаёт пиксель ретаргетинга.
-+ [Ads.deleteAds](/vk/ads/nodata/) - Архивирует рекламные объявления.
-+ [Ads.deleteCampaigns](/vk/ads/nodata/) - Архивирует рекламные кампании.
-+ [Ads.deleteClients](/vk/ads/nodata/) - Архивирует клиентов рекламного агентства.
-+ [Ads.deleteTargetGroup](/vk/ads/nodata/) - Удаляет аудиторию ретаргетинга.
-+ [Ads.deleteTargetPixel](/vk/ads/nodata/) - Удаляет пиксель ретаргетинга.
-+ [Ads.getAccounts](/vk/ads/nodata/) - Возвращает список рекламных кабинетов.
-+ [Ads.getAds](/vk/ads/nodata/) - Возвращает список рекламных объявлений.
-+ [Ads.getAdsLayout](/vk/ads/nodata/) - Возвращает описания внешнего вида рекламных объявлений.
-+ [Ads.getAdsTargeting](/vk/ads/nodata/) - Возвращает параметры таргетинга рекламных объявлений
-+ [Ads.getBudget](/vk/ads/nodata/) - Возвращает текущий бюджет рекламного кабинета.
-+ [Ads.getCampaigns](/vk/ads/nodata/) - Возвращает список кампаний рекламного кабинета.
-+ [Ads.getCategories](/vk/ads/nodata/) - Позволяет получить возможные тематики рекламных объявлений.
-+ [Ads.getClients](/vk/ads/nodata/) - Возвращает список клиентов рекламного агентства.
-+ [Ads.getDemographics](/vk/ads/nodata/) - Возвращает демографическую статистику по рекламным объявлениям или кампаниям.
-+ [Ads.getFloodStats](/vk/ads/nodata/) - Возвращает информацию о текущем состоянии счетчика — количество оставшихся запусков методов и время до следующего обнуления счетчика в секундах.
-+ [Ads.getLookalikeRequests](/vk/ads/nodata/) - Возвращает список запросов на поиск похожей аудитории.
-+ [Ads.getOfficeUsers](/vk/ads/nodata/) - Возвращает список администраторов и наблюдателей рекламного кабинета.
-+ [Ads.getPostsReach](/vk/ads/nodata/) - Возвращает подробную статистику по охвату рекламных записей из объявлений и кампаний для продвижения записей сообщества.
-+ [Ads.getRejectionReason](/vk/ads/nodata/) - Возвращает причину, по которой указанному объявлению было отказано в прохождении премодерации.
-+ [Ads.getStatistics](/vk/ads/nodata/) - Возвращает статистику показателей эффективности по рекламным объявлениям, кампаниям, клиентам или всему кабинету.
-+ [Ads.getSuggestions](/vk/ads/nodata/) - Возвращает набор подсказок для различных параметров таргетинга.
-+ [Ads.ads.getTargetGroups](/vk/ads/nodata/) - Возвращает список аудиторий ретаргетинга.
-+ [Ads.getTargetPixels](/vk/ads/nodata/) - Возвращает список пикселей ретаргетинга.
-+ [Ads.getTargetingStats](/vk/ads/nodata/) - Возвращает размер целевой аудитории таргетинга, а также рекомендованные значения CPC и CPM.
-+ [Ads.getUploadURL](/vk/ads/nodata/) - Возвращает URL-адрес для загрузки фотографии рекламного объявления.
-+ [Ads.getVideoUploadURL](/vk/ads/nodata/) - Возвращает URL-адрес для загрузки видеозаписи рекламного объявления.
-+ [Ads.importTargetContacts](/vk/ads/nodata/) - Импортирует список контактов рекламодателя для учета зарегистрированных во ВКонтакте пользователей в аудитории ретаргетинга. 
-+ [Ads.removeOfficeUsers](/vk/ads/nodata/) - Удаляет администраторов и/или наблюдателей из рекламного кабинета.
-+ [Ads.removeTargetContacts](/vk/ads/nodata/) - Принимает запрос на исключение контактов рекламодателя из аудитории ретаргетинга.
-+ [Ads.saveLookalikeRequestResult](/vk/ads/nodata/) - Сохраняет результат поиска похожей аудитории.
-+ [Ads.shareTargetGroup](/vk/ads/nodata/) - Предоставляет доступ к аудитории ретаргетинга другому рекламному кабинету. В результате выполнения метода возвращается идентификатор аудитории для указанного кабинета.
-+ [Ads.updateAds](/vk/ads/nodata/) - Редактирует рекламные объявления.
-+ [Ads.updateCampaigns](/vk/ads/nodata/) - Редактирует рекламные кампании.
-+ [Ads.updateClients](/vk/ads/nodata/) - Редактирует клиентов рекламного агентства.
-+ [Ads.updateTargetGroup](/vk/ads/nodata/) - Редактирует аудиторию ретаргетинга.
-+ [Ads.updateTargetPixel](/vk/ads/nodata/) - Редактирует пиксель ретаргетинга.
++ [Ads.AddOfficeUsers](/vk/ads/nodata/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
++ [Ads.CheckLink](/vk/ads/nodata/) - Проверяет ссылку на рекламируемый объект.
++ [Ads.CreateAds](/vk/ads/nodata/) - Создает рекламные объявления.
++ [Ads.CreateCampaigns](/vk/ads/nodata/) - Создает рекламные кампании.
++ [Ads.CreateClients](/vk/ads/nodata/) - оздаёт клиентов рекламного агентства.
++ [Ads.CreateLookalikeRequest](/vk/ads/nodata/) - Создаёт запрос на поиск похожей аудитории.
++ [Ads.CreateTargetGroup](/vk/ads/nodata/) - Создает аудиторию для ретаргетинга рекламных объявлений на пользователей, которые посетили сайт рекламодателя (просмотрели информации о товаре, зарегистрировались и т.д.).
++ [Ads.CreateTargetPixel](/vk/ads/nodata/) - Создаёт пиксель ретаргетинга.
++ [Ads.DeleteAds](/vk/ads/nodata/) - Архивирует рекламные объявления.
++ [Ads.DeleteCampaigns](/vk/ads/nodata/) - Архивирует рекламные кампании.
++ [Ads.DeleteClients](/vk/ads/nodata/) - Архивирует клиентов рекламного агентства.
++ [Ads.DeleteTargetGroup](/vk/ads/nodata/) - Удаляет аудиторию ретаргетинга.
++ [Ads.DeleteTargetPixel](/vk/ads/nodata/) - Удаляет пиксель ретаргетинга.
++ [Ads.GetAccounts](/vk/ads/nodata/) - Возвращает список рекламных кабинетов.
++ [Ads.GetAds](/vk/ads/nodata/) - Возвращает список рекламных объявлений.
++ [Ads.GetAdsLayout](/vk/ads/nodata/) - Возвращает описания внешнего вида рекламных объявлений.
++ [Ads.GetAdsTargeting](/vk/ads/nodata/) - Возвращает параметры таргетинга рекламных объявлений
++ [Ads.GetBudget](/vk/ads/nodata/) - Возвращает текущий бюджет рекламного кабинета.
++ [Ads.GetCampaigns](/vk/ads/nodata/) - Возвращает список кампаний рекламного кабинета.
++ [Ads.GetCategories](/vk/ads/nodata/) - Позволяет получить возможные тематики рекламных объявлений.
++ [Ads.GetClients](/vk/ads/nodata/) - Возвращает список клиентов рекламного агентства.
++ [Ads.GetDemographics](/vk/ads/nodata/) - Возвращает демографическую статистику по рекламным объявлениям или кампаниям.
++ [Ads.GetFloodStats](/vk/ads/nodata/) - Возвращает информацию о текущем состоянии счетчика — количество оставшихся запусков методов и время до следующего обнуления счетчика в секундах.
++ [Ads.GetLookalikeRequests](/vk/ads/nodata/) - Возвращает список запросов на поиск похожей аудитории.
++ [Ads.GetOfficeUsers](/vk/ads/nodata/) - Возвращает список администраторов и наблюдателей рекламного кабинета.
++ [Ads.GetPostsReach](/vk/ads/nodata/) - Возвращает подробную статистику по охвату рекламных записей из объявлений и кампаний для продвижения записей сообщества.
++ [Ads.GetRejectionReason](/vk/ads/nodata/) - Возвращает причину, по которой указанному объявлению было отказано в прохождении премодерации.
++ [Ads.GetStatistics](/vk/ads/nodata/) - Возвращает статистику показателей эффективности по рекламным объявлениям, кампаниям, клиентам или всему кабинету.
++ [Ads.GetSuggestions](/vk/ads/nodata/) - Возвращает набор подсказок для различных параметров таргетинга.
++ [Ads.GetTargetGroups](/vk/ads/nodata/) - Возвращает список аудиторий ретаргетинга.
++ [Ads.GetTargetPixels](/vk/ads/nodata/) - Возвращает список пикселей ретаргетинга.
++ [Ads.GetTargetingStats](/vk/ads/nodata/) - Возвращает размер целевой аудитории таргетинга, а также рекомендованные значения CPC и CPM.
++ [Ads.GetUploadURL](/vk/ads/nodata/) - Возвращает URL-адрес для загрузки фотографии рекламного объявления.
++ [Ads.GetVideoUploadURL](/vk/ads/nodata/) - Возвращает URL-адрес для загрузки видеозаписи рекламного объявления.
++ [Ads.ImportTargetContacts](/vk/ads/nodata/) - Импортирует список контактов рекламодателя для учета зарегистрированных во ВКонтакте пользователей в аудитории ретаргетинга. 
++ [Ads.RemoveOfficeUsers](/vk/ads/nodata/) - Удаляет администраторов и/или наблюдателей из рекламного кабинета.
++ [Ads.RemoveTargetContacts](/vk/ads/nodata/) - Принимает запрос на исключение контактов рекламодателя из аудитории ретаргетинга.
++ [Ads.SaveLookalikeRequestResult](/vk/ads/nodata/) - Сохраняет результат поиска похожей аудитории.
++ [Ads.ShareTargetGroup](/vk/ads/nodata/) - Предоставляет доступ к аудитории ретаргетинга другому рекламному кабинету. В результате выполнения метода возвращается идентификатор аудитории для указанного кабинета.
++ [Ads.UpdateAds](/vk/ads/nodata/) - Редактирует рекламные объявления.
++ [Ads.UpdateCampaigns](/vk/ads/nodata/) - Редактирует рекламные кампании.
++ [Ads.UpdateClients](/vk/ads/nodata/) - Редактирует клиентов рекламного агентства.
++ [Ads.UpdateTargetGroup](/vk/ads/nodata/) - Редактирует аудиторию ретаргетинга.
++ [Ads.UpdateTargetPixel](/vk/ads/nodata/) - Редактирует пиксель ретаргетинга.
 
 ## Обсуждения
 + [Board.addTopic](/vk/board/nodata/) - Создает новую тему в списке обсуждений группы.
