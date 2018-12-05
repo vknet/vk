@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Папка.НазваниеМетода
-permalink: папка/названиеМетода/
+title: Метод LeadForms.NoData
+permalink: leadForms/nodata
 comments: true
 ---
-# Метод Папка.НазваниеМетода
+# Метод LeadForms.NoData
 Метод не реализован.
 
 ## Версия Вконтакте API v.5.92
