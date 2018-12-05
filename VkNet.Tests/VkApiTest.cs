@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using VkNet.Enums;
@@ -30,20 +29,17 @@ namespace VkNet.Tests
 		[Test]
 		public void Call_NotMoreThen3CallsPerSecond()
 		{
+			Url = "https://api.vk.com/method/friends.getRequests";
 			Json = @"{ ""response"": 2 }";
 			Api.RequestsPerSecond = 3; // Переопределение значения в базовом классе
-
-			Mock.Get(Api.RestClient)
-				.Setup(m =>
-					m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-				.Returns(Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url)));
+			SetupIRestClient(Mock.Get(Api.RestClient));
 
 			var start = DateTimeOffset.Now;
 
 			while (true)
 			{
-				Api.Call("someMethod", VkParameters.Empty, true);
-
+				Api.Call("friends.getRequests", VkParameters.Empty, true);
+				Debug.Print($"{DateTime.Now:HH:mm:ss.fff}{Environment.NewLine}");
 				var total = (int) (DateTimeOffset.Now - start).TotalMilliseconds;
 
 				if (total > 999)
@@ -182,6 +178,13 @@ namespace VkNet.Tests
 			Api.VkApiVersion.SetVersion(0, 0);
 
 			Assert.AreEqual("0.0", Api.VkApiVersion.Version);
+		}
+
+		[Test]
+		public void Logout()
+		{
+			Api.LogOut();
+			Assert.IsEmpty(Api.Token);
 		}
 	}
 }

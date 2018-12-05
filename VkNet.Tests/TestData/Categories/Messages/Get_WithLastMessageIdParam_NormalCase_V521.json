@@ -1,0 +1,16 @@
+{
+  'response': {
+    'count': 5,
+    'items': [
+      {
+        'id': 31,
+        'date': 1398242412,
+        'out': 0,
+        'user_id': 123508789,
+        'read_state': 0,
+        'title': ' ... ',
+        'body': 'may'
+      }
+    ]
+  }
+}

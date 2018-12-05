@@ -14,7 +14,7 @@ namespace VkNet.Abstractions.Category
 		/// <summary>
 		/// Создаёт форму сбора заявок.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "createParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -125,7 +125,7 @@ namespace VkNet.Abstractions.Category
 		/// <summary>
 		/// Обновляет форму сбора заявок.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name = "updateParams">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>

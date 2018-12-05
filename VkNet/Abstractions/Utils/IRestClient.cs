@@ -28,7 +28,7 @@ namespace VkNet.Abstractions.Utils
 		/// <param name="uri"> Uri </param>
 		/// <param name="parameters"> </param>
 		/// <returns> String result </returns>
-		Task<HttpResponse<string>> GetAsync(Uri uri, VkParameters parameters);
+		Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters);
 
 		/// <summary>
 		/// POST запрос

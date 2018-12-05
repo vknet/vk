@@ -1,25 +1,22 @@
 using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Ads
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class AdsCheckLinkTests : BaseTest
+	public class AdsCheckLinkTests : CategoryBaseTest
 	{
+		protected override string Folder => "Ads";
+
 		[Test]
 		public void CheckLink()
 		{
 			Url = "https://api.vk.com/method/ads.checkLink";
 
-			Json =
-				@"{
-				'response': {
-					'status': 'disallowed',
-					'description': 'Невозможно использовать запись для продвижения. Запись должна быть опубликована от имени сообщества.'
-				}
-			}";
+			ReadCategoryJsonPath(nameof(Api.Ads.CheckLink));
 
 			var link = Api.Ads.CheckLink(123, AdsLinkType.Application, Url);
 

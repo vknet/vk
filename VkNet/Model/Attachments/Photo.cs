@@ -17,7 +17,7 @@ namespace VkNet.Model.Attachments
 	{
 		static Photo()
 		{
-			RegisterType(type: typeof(Photo), match: "photo");
+			RegisterType(typeof(Photo), "photo");
 		}
 
 		/// <summary>
@@ -44,7 +44,7 @@ namespace VkNet.Model.Attachments
 		/// Дата добавления фотографии.
 		/// </summary>
 		[JsonProperty("date")]
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? CreateTime { get; set; }
 
 		/// <summary>
@@ -121,6 +121,14 @@ namespace VkNet.Model.Attachments
 
 	#region Методы
 
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return string.IsNullOrWhiteSpace(AccessKey)
+				? base.ToString()
+				: $"{base.ToString()}_{AccessKey}";
+		}
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
@@ -130,26 +138,38 @@ namespace VkNet.Model.Attachments
 		{
 			var photo = new Photo
 			{
-				Id = response[key: "photo_id"] ?? response[key: "pid"] ?? response[key: "id"],
-				AlbumId = response[key: "album_id"] ?? response[key: "aid"], OwnerId = response[key: "owner_id"],
-				Photo50 = response[key: "photo_50"],
-				Photo75 = response[key: "photo_75"] ?? response[key: "src_small"],
-				Photo100 = response[key: "photo_100"],
-				Photo130 = response[key: "photo_130"] ?? response[key: "src"],
-				Photo200 = response[key: "photo_200"],
-				Photo604 = response[key: "photo_604"] ?? response[key: "src_big"],
-				Photo807 = response[key: "photo_807"] ?? response[key: "src_xbig"],
-				Photo1280 = response[key: "photo_1280"] ?? response[key: "src_xxbig"],
-				Photo2560 = response[key: "photo_2560"] ?? response[key: "src_xxxbig"], Width = response[key: "width"],
-				Height = response[key: "height"], Text = response[key: "text"],
-				CreateTime = response[key: "date"] ?? response[key: "created"],
-				UserId = Utilities.GetNullableLongId(response: response[key: "user_id"]),
-				PostId = Utilities.GetNullableLongId(response: response[key: "post_id"]), AccessKey = response[key: "access_key"],
-				PlacerId = Utilities.GetNullableLongId(response: response[key: "placer_id"]), TagCreated = response[key: "tag_created"],
-				TagId = response[key: "tag_id"], Likes = response[key: "likes"], Comments = response[key: "comments"],
-				CanComment = response[key: "can_comment"], Tags = response[key: "tags"], PhotoSrc = response[key: "photo_src"],
-				PhotoHash = response[key: "photo_hash"], SmallPhotoSrc = response[key: "src_small"], Latitude = response[key: "lat"],
-				Longitude = response[key: "long"], Sizes = response[key: "sizes"].ToReadOnlyCollectionOf<PhotoSize>(selector: x => x)
+				Id = response["photo_id"] ?? response["pid"] ?? response["id"],
+				AlbumId = response["album_id"] ?? response["aid"],
+				OwnerId = response["owner_id"],
+				Photo50 = response["photo_50"],
+				Photo75 = response["photo_75"] ?? response["src_small"],
+				Photo100 = response["photo_100"],
+				Photo130 = response["photo_130"] ?? response["src"],
+				Photo200 = response["photo_200"],
+				Photo604 = response["photo_604"] ?? response["src_big"],
+				Photo807 = response["photo_807"] ?? response["src_xbig"],
+				Photo1280 = response["photo_1280"] ?? response["src_xxbig"],
+				Photo2560 = response["photo_2560"] ?? response["src_xxxbig"],
+				Width = response["width"],
+				Height = response["height"],
+				Text = response["text"],
+				CreateTime = response["date"] ?? response["created"],
+				UserId = Utilities.GetNullableLongId(response["user_id"]),
+				PostId = Utilities.GetNullableLongId(response["post_id"]),
+				AccessKey = response["access_key"],
+				PlacerId = Utilities.GetNullableLongId(response["placer_id"]),
+				TagCreated = response["tag_created"],
+				TagId = response["tag_id"],
+				Likes = response["likes"],
+				Comments = response["comments"],
+				CanComment = response["can_comment"],
+				Tags = response["tags"],
+				PhotoSrc = response["photo_src"],
+				PhotoHash = response["photo_hash"],
+				SmallPhotoSrc = response["src_small"],
+				Latitude = response["lat"],
+				Longitude = response["long"],
+				Sizes = response["sizes"].ToReadOnlyCollectionOf<PhotoSize>(x => x)
 			};
 
 			return photo;
@@ -181,7 +201,7 @@ namespace VkNet.Model.Attachments
 		/// Дата создания отметки
 		/// </summary>
 		[JsonProperty("tag_created")]
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? TagCreated { get; set; }
 
 		/// <summary>

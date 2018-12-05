@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -17,6 +17,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
+	/// <inheritdoc />
 	/// <summary>
 	/// Методы для работы с сообщениями.
 	/// </summary>
@@ -71,20 +72,24 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public MessagesGetObject GetHistory(MessagesGetHistoryParams @params)
+		public MessageGetHistoryObject GetHistory(MessagesGetHistoryParams @params)
 		{
-			return _vk.Call("messages.getHistory", @params);
+			return _vk.Call<MessageGetHistoryObject>(methodName: "messages.getHistory", parameters: @params);
 		}
 
 		/// <inheritdoc />
 		[Pure]
-		public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, uint? previewLength = null)
+		public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null,
+											bool? extended = null, ulong? groupId = null)
 		{
 			return _vk.Call("messages.getById",
 					new VkParameters
 					{
 						{ "message_ids", messageIds },
-						{ "preview_length", previewLength }
+						{ "fields", fields },
+						{ "preview_length", previewLength },
+						{ "extended", extended },
+						{ "group_id", groupId }
 					})
 				.ToVkCollectionOf<Message>(r => r);
 		}
@@ -113,9 +118,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public VkCollection<Message> Search(MessagesSearchParams @params)
+		public MessageSearchResult Search(MessagesSearchParams @params)
 		{
-			return _vk.Call("messages.search", @params).ToVkCollectionOf<Message>(r => r);
+			return _vk.Call<MessageSearchResult>("messages.search", @params);
 		}
 
 		/// <inheritdoc />
@@ -235,13 +240,30 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public GetImportantMessagesResult GetImportantMessages(GetImportantMessagesParams getImportantMessagesParams)
+		{
+			return _vk.Call<GetImportantMessagesResult>("messages.getImportantMessages",
+				new VkParameters
+				{
+					{ "fields", getImportantMessagesParams.Fields },
+					{ "count", getImportantMessagesParams.Count },
+					{ "offset", getImportantMessagesParams.Offset },
+					{ "start_message_id", getImportantMessagesParams.StartMessageId },
+					{ "preview_length", getImportantMessagesParams.PreviewLength },
+					{ "extended", getImportantMessagesParams.Extended },
+					{ "group_id", getImportantMessagesParams.GroupId }
+				});
+		}
+
+		/// <inheritdoc />
 		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return DeleteConversation(userId, peerId, offset, count, null);
 		}
 
 		/// <inheritdoc />
-		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool spam, bool deleteForAll)
+		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
+												bool? deleteForAll = null)
 		{
 			if (messageIds == null)
 			{
@@ -259,6 +281,7 @@ namespace VkNet.Categories
 			{
 				{ "message_ids", ids },
 				{ "spam", spam },
+				{ "group_id", groupId },
 				{ "delete_for_all", deleteForAll }
 			};
 
@@ -276,11 +299,12 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool Restore(ulong messageId)
+		public bool Restore(ulong messageId, ulong? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
-				{ "message_id", messageId }
+				{ "message_id", messageId },
+				{ "group_id", groupId }
 			};
 
 			return _vk.Call("messages.restore", parameters);
@@ -292,20 +316,22 @@ namespace VkNet.Categories
 			var parameters = new VkParameters
 			{
 				{ "peer_id", peerId },
-				{ "start_message_id", startMessageId }
+				{ "start_message_id", startMessageId },
+				{ "group_id", groupId }
 			};
 
 			return _vk.Call("messages.markAsRead", parameters);
 		}
 
 		/// <inheritdoc />
-		public bool SetActivity(long userId, long? peerId = null, string type = "typing")
+		public bool SetActivity(string userId, MessageActivityType type, long? peerId = null, ulong? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
 				{ "used_id", userId },
 				{ "type", type },
-				{ "peer_id", peerId }
+				{ "peer_id", peerId },
+				{ "group_id", groupId }
 			};
 
 			return _vk.Call("messages.setActivity", parameters);
@@ -447,13 +473,14 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public bool RemoveChatUser(ulong chatId, long? userId = null, long? memberId = null)
 		{
-			return _vk.Call<bool>("messages.removeChatUser",
-				new VkParameters
-				{
-					{ "chat_id", chatId },
-					{ "user_id", userId },
-					{ "member_id", memberId }
-				});
+			var parameters = new VkParameters
+			{
+				{ "chat_id", chatId },
+				{ "user_id", userId },
+				{ "member_id", memberId }
+			};
+
+			return _vk.Call<bool>("messages.removeChatUser", parameters);
 		}
 
 		/// <inheritdoc />
@@ -482,11 +509,12 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Chat DeleteChatPhoto(out ulong messageId, ulong chatId)
+		public Chat DeleteChatPhoto(out ulong messageId, ulong chatId, ulong? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
-				{ "chat_id", chatId }
+				{ "chat_id", chatId },
+				{ "group_id", groupId }
 			};
 
 			var result = _vk.Call("messages.deleteChatPhoto", parameters);
@@ -573,13 +601,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool MarkAsAnsweredConversation(long peerId, bool answered = true)
+		public bool MarkAsAnsweredConversation(long peerId, bool? answered = null, ulong? groupId = null)
 		{
 			return _vk.Call("messages.markAsAnsweredConversation",
 				new VkParameters
 				{
 					{ "peer_id", peerId },
-					{ "answered", answered }
+					{ "answered", answered },
+					{ "group_id", groupId }
 				});
 		}
 
@@ -590,13 +619,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool MarkAsImportantConversation(long peerId, bool important = true)
+		public bool MarkAsImportantConversation(long peerId, bool? important = null, ulong? groupId = null)
 		{
 			return _vk.Call("messages.markAsImportantConversation",
 				new VkParameters
 				{
 					{ "peer_id", peerId },
-					{ "important", important }
+					{ "important", important },
+					{ "group_id", groupId }
 				});
 		}
 
@@ -631,9 +661,12 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
 		/// </remarks>
 		[Pure]
+		[Obsolete(
+			"Используйте GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null, bool? extended = null, ulong? groupId = null)",
+			true)]
 		public Message GetById(ulong messageId, uint? previewLength = null)
 		{
-			var result = GetById(new[] { messageId }, previewLength);
+			var result = GetById(new[] { messageId }, null, previewLength);
 
 			if (result.Count > 0)
 			{
@@ -647,6 +680,12 @@ namespace VkNet.Categories
 		public bool Unpin(long peerId, ulong? groupId = null)
 		{
 			return _vk.Call<bool>("messages.unpin", new VkParameters { { "peer_id", peerId }, { "group_id", groupId } });
+		}
+
+		/// <inheritdoc/>
+		public GetRecentCallsResult GetRecentCalls(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null, bool? extended = null)
+		{
+			return _vk.Call<GetRecentCallsResult>("messages.getRecentCalls", new VkParameters{{"fields", fields}, {"count", count}, {"start_message_id", startMessageId}, {"extended", extended}});
 		}
 	}
 }

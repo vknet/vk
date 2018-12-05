@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -91,10 +91,10 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <typeparam name="T"> Тип данных коллекции. </typeparam>
 		/// <param name="response"> Ответ vk.com. </param>
-		/// <param name="selector"> Функция выборки. </param>
 		/// <returns> Коллекция данных только для чтения. </returns>
 		public static ReadOnlyCollection<T>
-			ToReadOnlyCollectionOf<T>(this VkResponse response) // where T : class
+			ToReadOnlyCollectionOf<T>(this VkResponse response)
+			where T : class
 		{
 			if (response == null)
 			{
@@ -108,7 +108,7 @@ namespace VkNet.Utils
 				return new ReadOnlyCollection<T>(new List<T>());
 			}
 
-			return responseArray.Cast<T>().Select(x => x).Where(i => i != null).ToReadOnlyCollection();
+			return responseArray.Select(x => x as T).Where(i => i != null).ToReadOnlyCollection();
 		}
 
 		/// <summary>
@@ -120,12 +120,9 @@ namespace VkNet.Utils
 		/// <returns> Коллекция данных только для чтения. </returns>
 		public static ReadOnlyCollection<T> ToReadOnlyCollectionOf<T>(this IEnumerable<VkResponse> responses, Func<VkResponse, T> selector)
 		{
-			if (responses == null)
-			{
-				return new ReadOnlyCollection<T>(new List<T>());
-			}
-
-			return responses.Select(selector).ToReadOnlyCollection();
+			return responses == null
+				? new ReadOnlyCollection<T>(new List<T>())
+				: responses.Select(selector).ToReadOnlyCollection();
 		}
 
 		// --------------------------------------------------------------------------------------------
@@ -169,12 +166,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static List<T> ToListOf<T>(this IEnumerable<VkResponse> responses, Func<VkResponse, T> selector)
 		{
-			if (responses == null)
-			{
-				return new List<T>();
-			}
-
-			return responses.Select(selector).ToList();
+			return responses == null ? new List<T>() : responses.Select(selector).ToList();
 		}
 
 		// --------------------------------------------------------------------------------------------
@@ -210,12 +202,12 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Преобразовать <see cref="VkResponse"/> к <see cref="T"/>
+		/// Преобразовать <see cref="VkResponse"/> к <see cref="IConvertible"/>
 		/// </summary>
 		/// <param name="response">Ответ vk.com.</param>
 		/// <typeparam name="T">Тип перечисления</typeparam>
 		/// <returns></returns>
-		public static T To<T>(this VkResponse response)
+		public static T ToEnum<T>(this VkResponse response)
 			where T : IConvertible
 		{
 			return response == null

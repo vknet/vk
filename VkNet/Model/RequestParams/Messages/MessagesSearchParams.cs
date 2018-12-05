@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -13,42 +16,62 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Подстрока, по которой будет производиться поиск.
 		/// </summary>
-		[JsonProperty(propertyName: "q")]
+		[JsonProperty("q")]
 		public string Query { get; set; }
+
+		/// <summary>
+		/// Список дополнительных полей для пользователей и сообществ. список слов, разделенных через запятую
+		/// </summary>
+		[JsonProperty("fields")]
+		[CanBeNull]
+		public IEnumerable<string> Fields { get; set; }
 
 		/// <summary>
 		/// Фильтр по идентификатору назначения для поиска по отдельному диалогу
 		/// </summary>
-		[JsonProperty(propertyName: "peer_id")]
-		public long PeerId { get; set; }
+		[JsonProperty("peer_id")]
+		public long? PeerId { get; set; }
 
 		/// <summary>
 		/// Дата в формате DDMMYYYY — если параметр задан, в ответе будут только сообщения,
 		/// отправленные до указанной даты.
 		/// </summary>
-		[JsonProperty(propertyName: "date")]
-		public string Date { get; set; }
+		[JsonProperty("date")]
+		[JsonConverter(typeof(DateTimeToStringFormatConverter), "ddMMyyyy")]
+		public DateTime Date { get; set; }
 
 		/// <summary>
 		/// Количество символов, по которому нужно обрезать сообщение.
 		/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не
 		/// обрезаются).
 		/// </summary>
-		[JsonProperty(propertyName: "preview_length")]
-		public uint PreviewLength { get; set; }
+		[JsonProperty("preview_length")]
+		public uint? PreviewLength { get; set; }
 
 		/// <summary>
 		/// Смещение, необходимое для выборки определенного подмножества сообщений из
 		/// списка найденных.
 		/// </summary>
-		[JsonProperty(propertyName: "offset")]
-		public uint Offset { get; set; }
+		[JsonProperty("offset")]
+		public uint? Offset { get; set; }
 
 		/// <summary>
 		/// Количество сообщений, которое необходимо получить.
 		/// </summary>
-		[JsonProperty(propertyName: "count")]
-		public uint Count { get; set; } = 20;
+		[JsonProperty("count")]
+		public uint? Count { get; set; } = 20;
+
+		/// <summary>
+		/// 1 — возвращать дополнительные поля для пользователей и сообществ. В ответе будет содержаться массив объектов бесед. флаг, может принимать значения 1 или 0
+		/// </summary>
+		[JsonProperty("extended")]
+		public bool? Extended { get; set; }
+
+		/// <summary>
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
+		/// </summary>
+		[JsonProperty("group_id")]
+		public ulong? GroupId { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -59,12 +82,15 @@ namespace VkNet.Model.RequestParams
 		{
 			return new VkParameters
 			{
-					{ "q", p.Query }
-					, { "peer_id", p.PeerId }
-					, { "date", p.Date }
-					, { "preview_length", p.PreviewLength }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
+				{ "q", p.Query },
+				{ "fields", p.Fields },
+				{ "peer_id", p.PeerId },
+				{ "date", p.Date },
+				{ "preview_length", p.PreviewLength },
+				{ "offset", p.Offset },
+				{ "count", p.Count },
+				{ "extended", p.Extended },
+				{ "group_id", p.GroupId }
 			};
 		}
 	}

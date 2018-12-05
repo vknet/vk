@@ -48,59 +48,59 @@ namespace VkNet.Model
 		{
 			var group = new Group
 			{
-					Id = response["group_id"] ?? response["gid"] ?? response["id"]
-					, Name = response["name"]
-					, ScreenName = response["screen_name"]
-					, IsClosed = response["is_closed"]
-					, IsAdmin = response["is_admin"]
-					, AdminLevel = response["admin_level"]
-					, IsMember = response["is_member"]
-					, Type = response["type"]
-					, PhotoPreviews = response
-					, Deactivated = response["deactivated"]
-					, HasPhoto = response["has_photo"]
-					, Photo50 = response["photo_50"]
-					, Photo100 = response["photo_100"]
-					, Photo200 = response["photo_200"]
-					,
+				Id = response["group_id"] ?? response["gid"] ?? response["id"],
+				Name = response["name"],
+				ScreenName = response["screen_name"],
+				IsClosed = response["is_closed"],
+				IsAdmin = response["is_admin"],
+				AdminLevel = response["admin_level"],
+				IsMember = response["is_member"],
+				Type = response["type"],
+				PhotoPreviews = response,
+				Deactivated = response["deactivated"],
+				HasPhoto = response["has_photo"],
+				Photo50 = response["photo_50"],
+				Photo100 = response["photo_100"],
+				Photo200 = response["photo_200"],
 
-					// опциональные поля
-					City = response["city"]
-					, Country = response["country"]
-					, Place = response["place"]
-					, Description = response["description"]
-					, WikiPage = response["wiki_page"]
-					, MembersCount = response["members_count"]
-					, Counters = response["counters"]
-					, StartDate = response["start_date"]
-					, EndDate = response["finish_date"] ?? response["end_date"]
-					, CanPost = response["can_post"]
-					, CanSeeAllPosts = response["can_see_all_posts"]
-					, CanUploadDocuments = response["can_upload_doc"]
-					, CanCreateTopic = response["can_create_topic"]
-					, Activity = response["activity"]
-					, Status = response["status"]
-					, StatusAudio = response["status_audio"]
-					, Contacts = response["contacts"].ToReadOnlyCollectionOf<Contact>(x => x)
-					, Links = response["links"].ToReadOnlyCollectionOf<ExternalLink>(x => x)
-					, FixedPost = response["fixed_post"]
-					, Verified = response["verified"]
-					, Site = response["site"]
-					, InvitedBy = response["invited_by"]
-					, IsFavorite = response["is_favorite"]
-					, BanInfo = response["ban_info"]
-					, CanUploadVideo = response["can_upload_video"]
-					, MainAlbumId = response["main_album_id"]
-					, IsHiddenFromFeed = response["is_hidden_from_feed"]
-					, MainSection = response["main_section"]
-					, IsMessagesAllowed = response["is_messages_allowed"]
-					, Trending = response["trending"]
-					, CanMessage = response["can_message"]
-					, Cover = response["cover"]
-					, Market = response["market"]
-					, AgeLimits = response["age_limits"]
-					, MemberStatus = response["member_status"]
-					, PublicDateLabel = response["public_date_label"]
+				// опциональные поля
+				City = response["city"],
+				Country = response["country"],
+				Place = response["place"],
+				Description = response["description"],
+				WikiPage = response["wiki_page"],
+				MembersCount = response["members_count"],
+				Counters = response["counters"],
+				StartDate = response["start_date"],
+				EndDate = response["finish_date"] ?? response["end_date"],
+				CanPost = response["can_post"],
+				CanSeeAllPosts = response["can_see_all_posts"],
+				CanUploadDocuments = response["can_upload_doc"],
+				CanCreateTopic = response["can_create_topic"],
+				Activity = response["activity"],
+				Status = response["status"],
+				StatusAudio = response["status_audio"],
+				Contacts = response["contacts"].ToReadOnlyCollectionOf<Contact>(x => x),
+				Links = response["links"].ToReadOnlyCollectionOf<ExternalLink>(x => x),
+				FixedPost = response["fixed_post"],
+				Verified = response["verified"],
+				Site = response["site"],
+				InvitedBy = response["invited_by"],
+				IsFavorite = response["is_favorite"],
+				BanInfo = response["ban_info"],
+				CanUploadVideo = response["can_upload_video"],
+				MainAlbumId = response["main_album_id"],
+				IsHiddenFromFeed = response["is_hidden_from_feed"],
+				MainSection = response["main_section"],
+				IsMessagesAllowed = response["is_messages_allowed"],
+				Trending = response["trending"],
+				CanMessage = response["can_message"],
+				Cover = response["cover"],
+				Market = response["market"],
+				AgeLimits = response["age_limits"],
+				MemberStatus = response["member_status"],
+				PublicDateLabel = response["public_date_label"],
+				Wall = response["wall"]
 			};
 
 			return group;
@@ -393,6 +393,12 @@ namespace VkNet.Model
 		/// Информация о ссылках на предпросмотр фотографий сообщества.
 		/// </summary>
 		public Previews PhotoPreviews { get; set; }
+
+		/// <summary>
+		/// Стена
+		/// </summary>
+		[JsonProperty("wall")]
+		public WallType Wall { get; set; }
 
 	#endregion
 	}

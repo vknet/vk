@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Utils;
@@ -11,6 +11,15 @@ namespace VkNet.Model.RequestParams
 	[Serializable]
 	public class MessagesGetLongPollHistoryParams
 	{
+		[JsonIgnore]
+		public const long EVENTS_LIMIT_MIN = 1000;
+
+		/// <summary>
+		/// Список дополнительных полей профилей, которые необходимо вернуть.
+		/// </summary>
+		[JsonProperty(propertyName: "fields")]
+		public UsersFields Fields { get; set; }
+
 		/// <summary>
 		/// Последнее значение параметра ts, полученное от Long Poll сервера или с помощью
 		/// метода messages.getLongPollServer
@@ -42,18 +51,20 @@ namespace VkNet.Model.RequestParams
 		[JsonProperty(propertyName: "onlines")]
 		public bool? Onlines { get; set; }
 
-		/// <summary>
-		/// Список дополнительных полей профилей, которые необходимо вернуть.
-		/// </summary>
-		[JsonProperty(propertyName: "fields")]
-		public UsersFields Fields { get; set; }
+		[JsonIgnore]
+		private long? _eventsLimit;
 
 		/// <summary>
 		/// Если количество событий в истории превысит это значение, будет возвращена
 		/// ошибка.
+		/// Положительное число. По умолчанию - 1000. Минимальное значение - 1000
 		/// </summary>
 		[JsonProperty(propertyName: "events_limit")]
-		public long? EventsLimit { get; set; }
+		public long? EventsLimit
+		{
+			get => _eventsLimit;
+			set => _eventsLimit = (!value.HasValue || value >= EVENTS_LIMIT_MIN) ? value : EVENTS_LIMIT_MIN;
+		}
 
 		/// <summary>
 		/// Количество сообщений, которое нужно вернуть.
@@ -72,16 +83,16 @@ namespace VkNet.Model.RequestParams
 		public long? MaxMsgId { get; set; }
 
 		/// <summary>
-		/// Версия Long Poll.
-		/// </summary>
-		[JsonProperty(propertyName: "lp_version")]
-		public ulong? LpVersion { get; set; }
-
-		/// <summary>
 		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя).
 		/// </summary>
 		[JsonProperty(propertyName: "group_id")]
 		public ulong? GroupId { get; set; }
+
+		/// <summary>
+		/// Версия Long Poll.
+		/// </summary>
+		[JsonProperty(propertyName: "lp_version")]
+		public ulong? LpVersion { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.

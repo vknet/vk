@@ -1,0 +1,76 @@
+{
+	"response": [
+		{
+			"id": 1007993739,
+			"type": "normal",
+			"name": "Студия Съёдиных кнопка",
+			"status": 0,
+			"day_limit": "0",
+			"all_limit": "0",
+			"start_time": "0",
+			"stop_time": "0",
+			"create_time": "1506536323",
+			"update_time": "1507465573"
+		},
+		{
+			"id": 1007993929,
+			"type": "vk_apps_managed",
+			"name": "Студия универс",
+			"status": 0,
+			"day_limit": "0",
+			"all_limit": "0",
+			"start_time": "0",
+			"stop_time": "0",
+			"create_time": "1506538073",
+			"update_time": "1516726969"
+		},
+		{
+			"id": 1008001037,
+			"type": "mobile_apps",
+			"name": "Студия Съединых узнаваемость",
+			"status": 0,
+			"day_limit": "0",
+			"all_limit": "0",
+			"start_time": "0",
+			"stop_time": "0",
+			"create_time": "1506634785",
+			"update_time": "1507465566"
+		},
+		{
+			"id": 1008003092,
+			"type": "promoted_posts",
+			"name": "Студия Съединых карусель",
+			"status": 0,
+			"day_limit": "10000",
+			"all_limit": "200000",
+			"start_time": "1506886644",
+			"stop_time": "1506887799",
+			"create_time": "1506680535",
+			"update_time": "1516726968"
+		},
+		{
+			"id": 1008386575,
+			"type": "promoted_posts",
+			"name": "Продвижение записей",
+			"status": 0,
+			"day_limit": "0",
+			"all_limit": "0",
+			"start_time": "0",
+			"stop_time": "0",
+			"create_time": "1512074538",
+			"update_time": "1516726968"
+		},
+		{
+			"id": 1008695393,
+			"type": "promoted_posts",
+			"name": "GAUSS MEDIA",
+			"status": 1,
+			"day_limit": "0",
+			"all_limit": "0",
+			"start_time": "0",
+			"stop_time": "0",
+			"create_time": "1516726280",
+			"update_time": "1517647518"
+		}
+	]
+}

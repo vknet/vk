@@ -12,7 +12,7 @@ namespace VkNet.Model.Attachments
 	/// <remarks>
 	/// См. описание http://vk.com/dev/video_object
 	/// </remarks>
-	[DebuggerDisplay(value: "Id = {Id}, Title = {Title}")]
+	[DebuggerDisplay("Id = {Id}, Title = {Title}")]
 	[Serializable]
 	public class Video : MediaAttachment
 	{
@@ -21,7 +21,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		static Video()
 		{
-			RegisterType(type: typeof(Video), match: "video");
+			RegisterType(typeof(Video), "video");
 		}
 
 		/// <summary>
@@ -70,14 +70,14 @@ namespace VkNet.Model.Attachments
 		/// Дата добавления видеозаписи.
 		/// </summary>
 		[JsonProperty("date")]
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
 		/// Дата добавления видеозаписи пользователем или группой в формате unixtime.
 		/// </summary>
 		[JsonProperty("adding_date")]
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? AddingDate { get; set; }
 
 		/// <summary>
@@ -103,7 +103,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Платформа
 		/// </summary>
-		[JsonProperty("is_private")]
+		[JsonProperty("platform")]
 		public string Platform { set; get; }
 
 		/// <summary>
@@ -150,7 +150,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// (для live = 1). Поле свидетельствует о том, что трансляция скоро начнётся.
 		/// </summary>
-		[JsonProperty( "upcoming")]
+		[JsonProperty("upcoming")]
 		public bool? Upcoming { get; set; }
 
 	#region Недокументированные
@@ -170,7 +170,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Информация о лайках к видеозаписи.
 		/// </summary>
-		[JsonProperty("is_private")]
+		[JsonProperty("likes")]
 		public Likes Likes { get; set; }
 
 		/// <summary>
@@ -226,6 +226,14 @@ namespace VkNet.Model.Attachments
 
 	#region Методы
 
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return string.IsNullOrWhiteSpace(AccessKey)
+				? base.ToString()
+				: $"{base.ToString()}_{AccessKey}";
+		}
+
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
@@ -235,51 +243,42 @@ namespace VkNet.Model.Attachments
 		{
 			return new Video
 			{
-					Id = response[key: "video_id"] ?? response[key: "vid"] ?? response[key: "id"]
-					, OwnerId = response[key: "owner_id"]
-					, Title = response[key: "title"]
-					, Description = response[key: "description"]
-					, Duration = response[key: "duration"]
-					, Photo130 = response[key: "photo_130"]
-					, Photo320 = response[key: "photo_320"]
-					, Photo640 = response[key: "photo_640"]
-					, Photo800 = response[key: "photo_800"]
-					, Date = response[key: "date"]
-					, Views = response[key: "views"]
-					, Comments = response[key: "comments"]
-					, Player = response[key: "player"]
-					, AccessKey = response[key: "access_key"]
-					, Processing = response[key: "processing"]
-					, Live = response[key: "live"]
-					,
+				Id = response["video_id"] ?? response["vid"] ?? response["id"],
+				OwnerId = response["owner_id"],
+				Title = response["title"],
+				Description = response["description"],
+				Duration = response["duration"],
+				Photo130 = response["photo_130"],
+				Photo320 = response["photo_320"],
+				Photo640 = response["photo_640"],
+				Photo800 = response["photo_800"],
+				Date = response["date"],
+				Views = response["views"],
+				Comments = response["comments"],
+				Player = response["player"],
+				AccessKey = response["access_key"],
+				Processing = response["processing"],
+				Live = response["live"],
 
-					// Устаревшие или не документированные
-					CanAdd = response[key: "can_add"]
-					, CanComment = response[key: "can_comment"]
-					, CanRepost = response[key: "can_repost"]
-					, Repeat = response[key: "repeat"]
-					, Likes = response[key: "likes"]
-					, AlbumId = Utilities.GetNullableLongId(response: response[key: "album_id"])
-					, UploadUrl = response[key: "upload_url"]
-					, Tag = response
-					, AddingDate = response[key: "adding_date"]
-					, Files = response[key: "files"]
-					, Reposts = response[key: "reposts"]
-					, Platform = response[key: "platform"]
-					, Width = response[key: "width"]
-					, Height = response[key: "height"]
-					, CanEdit = response[key: "can_edit"]
-					, IsPrivate = response[key: "is_private"]
-					, Upcoming = response[key: "upcoming"]
+				// Устаревшие или не документированные
+				CanAdd = response["can_add"],
+				CanComment = response["can_comment"],
+				CanRepost = response["can_repost"],
+				Repeat = response["repeat"],
+				Likes = response["likes"],
+				AlbumId = Utilities.GetNullableLongId(response["album_id"]),
+				UploadUrl = response["upload_url"],
+				Tag = response,
+				AddingDate = response["adding_date"],
+				Files = response["files"],
+				Reposts = response["reposts"],
+				Platform = response["platform"],
+				Width = response["width"],
+				Height = response["height"],
+				CanEdit = response["can_edit"],
+				IsPrivate = response["is_private"],
+				Upcoming = response["upcoming"]
 			};
-		}
-
-		/// <summary>
-		/// Привести объект к строке.
-		/// </summary>
-		public override string ToString()
-		{
-			return $"video{OwnerId}_{Id}";
 		}
 
 	#endregion

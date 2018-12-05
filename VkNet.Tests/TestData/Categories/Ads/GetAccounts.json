@@ -1,0 +1,25 @@
+{
+	"response": [
+		{
+			"account_id": 1603879239,
+			"account_type": "general",
+			"account_status": 1,
+			"account_name": "Личный кабинет",
+			"access_role": "admin"
+		},
+		{
+			"account_id": 1900013324,
+			"account_type": "agency",
+			"account_status": 1,
+			"account_name": "Кабинет агентства",
+			"access_role": "manager"
+		},
+		{
+			"account_id": 1604369480,
+			"account_type": "general",
+			"account_status": 1,
+			"account_name": "Николай Петров",
+			"access_role": "manager"
+		}
+	]
+}

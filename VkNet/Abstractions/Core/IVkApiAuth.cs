@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using VkNet.Model;
 
 namespace VkNet.Abstractions
@@ -20,6 +20,12 @@ namespace VkNet.Abstractions
 		void Authorize(IApiAuthParams @params);
 
 		/// <summary>
+		/// Авторизация и получение токена
+		/// </summary>
+		/// <param name="params"> Данные авторизации </param>
+		void Authorize(ApiAuthParams @params);
+
+		/// <summary>
 		/// Получает новый AccessToken используя логин, пароль, приложение и настройки
 		/// указанные при последней авторизации.
 		/// </summary>
@@ -32,5 +38,13 @@ namespace VkNet.Abstractions
 		/// помощи логина и пароля
 		/// </exception>
 		void RefreshToken(Func<string> code = null);
+
+		/// <summary>
+		/// Выйти из системы
+		/// </summary>
+		/// <remarks>
+		/// Забыть токен авторизации
+		/// </remarks>
+		void LogOut();
 	}
 }

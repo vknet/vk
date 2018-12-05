@@ -1,35 +1,22 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Audio
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class AudioCreatePlaylistTest : BaseTest
+	public class AudioCreatePlaylistTest : CategoryBaseTest
 	{
+		protected override string Folder => "Audio";
+
 		[Test]
 		public void CreatePlaylistTest()
 		{
 			Url = "https://api.vk.com/method/audio.createPlaylist";
 
-			Json = @"{
-					  'response': {
-					    'id': 11,
-					    'owner_id': 123456789,
-					    'type': 0,
-					    'title': 'test title',
-					    'description': 'test description',
-					    'genres': [],
-					    'count': 0,
-					    'is_following': false,
-					    'followers': 0,
-					    'plays': 0,
-					    'create_time': 1533694356,
-					    'update_time': 1533694356,
-					    'artists': []
-					  }
-					}";
+			ReadCategoryJsonPath(nameof(Api.Audio.CreatePlaylist));
 
 			var result = Api.Audio.CreatePlaylist(123456789, "test title", "test description", new List<string> { "123456789_123456789" });
 

@@ -1,0 +1,13 @@
+{
+	"response": {
+		"friends": 1,
+		"messages": 2,
+		"photos": 3,
+		"videos": 4,
+		"notes": 5,
+		"gifts": 6,
+		"events": 7,
+		"groups": 8,
+		"notifications": 9
+	}
+}

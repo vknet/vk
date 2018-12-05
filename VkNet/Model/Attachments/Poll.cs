@@ -117,7 +117,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Идентификаторы 3 друзей, которые проголосовали в опросе.
 		/// </summary>
-		public ReadOnlyCollection<long> Friends { get; set; }
+		public ReadOnlyCollection<User> Friends { get; set; }
 
 	#region Методы
 
@@ -149,7 +149,7 @@ namespace VkNet.Model.Attachments
 				Closed = response["closed"],
 				Photo = response["photo"],
 				Background = response["background"],
-				Friends = response["friends"].ToReadOnlyCollectionOf<long>(x => x),
+				Friends = response["friends"].ToReadOnlyCollectionOf<User>(x => x),
 				AnswerIds = response["answer_ids"].ToReadOnlyCollectionOf<long>(x => x)
 			};
 

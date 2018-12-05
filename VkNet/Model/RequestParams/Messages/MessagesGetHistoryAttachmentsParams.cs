@@ -22,6 +22,7 @@ namespace VkNet.Model.RequestParams
 		/// -id сообщества.
 		/// целое число, обязательный параметр.
 		/// </summary>
+		[JsonProperty("peer_id")]
 		public long PeerId { get; set; }
 
 		/// <summary>
@@ -42,18 +43,27 @@ namespace VkNet.Model.RequestParams
 		/// строка, по умолчанию photo.
 		/// </summary>
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		[JsonProperty("media_type")]
 		public MediaType MediaType { get; set; }
 
 		/// <summary>
 		/// Смещение, необходимое для выборки определенного подмножества объектов. строка.
 		/// </summary>
+		[JsonProperty("start_from")]
 		public string StartFrom { get; set; }
+
+		/// <summary>
+		/// Список слов, разделенных через запятую.
+		/// </summary>
+		[JsonProperty("fields")]
+		public IEnumerable<string> Fields { get; set; }
 
 		/// <summary>
 		/// Количество объектов, которое необходимо получить (но не более 200).
 		/// положительное число, максимальное значение 200,
 		/// по умолчанию 30.
 		/// </summary>
+		[JsonProperty("count")]
 		public long? Count { get; set; }
 
 		/// <summary>
@@ -61,12 +71,14 @@ namespace VkNet.Model.RequestParams
 		/// специальном формате. флаг, может
 		/// принимать значения 1 или 0.
 		/// </summary>
+		[JsonProperty("photo_sizes")]
 		public bool? PhotoSizes { get; set; }
 
 		/// <summary>
-		/// Список слов, разделенных через запятую.
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
 		/// </summary>
-		public IEnumerable<string> Fields { get; set; }
+		[JsonProperty("group_id")]
+		public ulong GroupId { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -77,12 +89,13 @@ namespace VkNet.Model.RequestParams
 		{
 			var result = new VkParameters
 			{
-					{ "peer_id", p.PeerId }
-					, { "media_type", p.MediaType }
-					, { "start_from", p.StartFrom }
-					, { "count", p.Count }
-					, { "photo_sizes", p.PhotoSizes }
-					, { "fields", p.Fields }
+				{ "peer_id", p.PeerId },
+				{ "media_type", p.MediaType },
+				{ "start_from", p.StartFrom },
+				{ "count", p.Count },
+				{ "photo_sizes", p.PhotoSizes },
+				{ "fields", p.Fields },
+				{ "group_id", p.GroupId }
 			};
 
 			return result;

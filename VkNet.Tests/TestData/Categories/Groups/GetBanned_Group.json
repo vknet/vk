@@ -1,0 +1,22 @@
+{
+	"response": {
+		"count": 1,
+		"items": [
+			{
+				"type": "group",
+				"group": {
+					"id": 419909516,
+					"name": "Vknet"
+				},
+				"ban_info": {
+					"admin_id": 32190123,
+					"date": 1516980336,
+					"reason": 0,
+					"comment": "для теста",
+					"comment_visible": true,
+					"end_date": 1517585141
+				}
+			}
+		]
+	}
+}

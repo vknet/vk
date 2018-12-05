@@ -173,13 +173,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Содержатся ли в сообщении emoji-смайлы.
 		/// </summary>
-		public bool Emoji { get; set; }
+		public bool? Emoji { get; set; }
 
 		/// <summary>
 		/// Является ли сообщение важным.
 		/// </summary>
 		[JsonProperty("important")]
-		public bool Important { get; set; }
+		public bool? Important { get; set; }
 
 		/// <summary>
 		/// Удалено ли сообщение.
@@ -293,7 +293,7 @@ namespace VkNet.Model
 		/// Содержит количество непрочитанных сообщений в текущем диалоге (если это
 		/// значение было возвращено, иначе 0)
 		/// </summary>
-		public int Unread { get; set; }
+		public int? Unread { get; set; }
 
 		/// <summary>
 		/// Информация о ссылках на предпросмотр фотографий беседы.

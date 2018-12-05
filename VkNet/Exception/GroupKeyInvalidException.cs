@@ -12,8 +12,9 @@ namespace VkNet.Exception
 	public class GroupKeyInvalidException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
-		public GroupKeyInvalidException(VkResponse error) : base(message: error)
+		public GroupKeyInvalidException(VkResponse response) : base(message: response[key: "error_msg"])
 		{
+			ErrorCode = response[key: "error_code"];
 		}
 	}
 }

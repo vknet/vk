@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -11,7 +10,6 @@ using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
-using VkNet.Exception;
 using VkNet.Infrastructure;
 using VkNet.Utils.AntiCaptcha;
 
@@ -28,60 +26,19 @@ namespace VkNet.Utils
 		/// <param name="container"> DI контейнер </param>
 		public static void RegisterDefaultDependencies(this IServiceCollection container)
 		{
-			if (container.All(x => x.ServiceType != typeof(IBrowser)))
-			{
-				container.TryAddSingleton<IBrowser, Browser>();
-			}
-
-			if (container.All(x => x.ServiceType != typeof(IAuthorizationFlow)))
-			{
-				container.TryAddSingleton<IAuthorizationFlow, Browser>();
-			}
-
-			if (container.All(x => x.ServiceType != typeof(INeedValidationHandler)))
-			{
-				container.TryAddSingleton<INeedValidationHandler, Browser>();
-			}
-
-			if (container.All(x => x.ServiceType != typeof(ILogger<>)))
-			{
-				container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
-			}
-
-			if (container.All(x => x.ServiceType != typeof(IRestClient)))
-			{
-				container.TryAddSingleton<IRestClient, RestClient>();
-			}
-
-			if (container.All(x => x.ServiceType != typeof(IWebProxy)))
-			{
-				container.TryAddSingleton<IWebProxy>(t => null);
-			}
-
-			if (container.All(x => x.ServiceType != typeof(IVkApiVersionManager)))
-			{
-				container.TryAddSingleton<IVkApiVersionManager, VkApiVersionManager>();
-			}
-
-			if (container.All(x => x.ServiceType != typeof(ICaptchaHandler)))
-			{
-				container.TryAddSingleton<ICaptchaHandler, CaptchaHandler>();
-			}
-
-			if (container.All(x => x.ServiceType != typeof(ILanguageService)))
-			{
-				container.TryAddSingleton<ILanguageService, LanguageService>();
-			}
-
-			if (container.All(x => x.ServiceType != typeof(ICaptchaSolver)))
-			{
-				container.TryAddSingleton<ICaptchaSolver>(sp => null);
-			}
-
-			if (container.All(x => x.ServiceType != typeof(HttpClient)))
-			{
-				container.TryAddSingleton<HttpClient>();
-			}
+			container.TryAddSingleton<IBrowser, Browser>();
+			container.TryAddSingleton<IAuthorizationFlow, Browser>();
+			container.TryAddSingleton<INeedValidationHandler, Browser>();
+			container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
+			container.TryAddSingleton<IRestClient, RestClient>();
+			container.TryAddSingleton<IWebProxy>(t => null);
+			container.TryAddSingleton<IVkApiVersionManager, VkApiVersionManager>();
+			container.TryAddSingleton<ICaptchaHandler, CaptchaHandler>();
+			container.TryAddSingleton<ILanguageService, LanguageService>();
+			container.TryAddSingleton<ICaptchaSolver>(sp => null);
+			container.TryAddSingleton<HttpClient>();
+			container.TryAddSingleton<IRateLimiter, RateLimiter>();
+			container.TryAddSingleton<IAwaitableConstraint, CountByIntervalAwaitableConstraint>();
 		}
 
 		/// <summary>
@@ -101,7 +58,11 @@ namespace VkNet.Utils
 						var result = func.Invoke();
 						tcs.SetResult(result);
 					}
-					catch (VkApiException ex)
+					catch (OperationCanceledException)
+					{
+						tcs.SetCanceled();
+					}
+					catch (System.Exception ex)
 					{
 						tcs.SetException(ex);
 					}
@@ -127,7 +88,11 @@ namespace VkNet.Utils
 					func.Invoke();
 					tcs.SetResult(null);
 				}
-				catch (VkApiException ex)
+				catch (OperationCanceledException)
+				{
+					tcs.SetCanceled();
+				}
+				catch (System.Exception ex)
 				{
 					tcs.SetException(ex);
 				}

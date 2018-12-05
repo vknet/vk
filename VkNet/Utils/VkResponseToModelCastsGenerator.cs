@@ -1088,18 +1088,6 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator NewsItem(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : NewsItem.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
 		public static implicit operator NewsSearchResult(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues ? null : NewsSearchResult.FromJson(response: response);

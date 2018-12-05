@@ -1,0 +1,20 @@
+{
+	"response": {
+		"count": 1,
+		"items": [
+			{
+				"gid": 66528333,
+				"name": "группа 123",
+				"screen_name": "club66528333",
+				"is_closed": 1,
+				"type": "group",
+				"is_admin": 0,
+				"is_member": 0,
+				"photo": "http://vk.com/images/community_50.gif",
+				"photo_medium": "http://vk.com/images/community_100.gif",
+				"photo_big": "http://vk.com/images/question_a.gif",
+				"invited_by": 242508789
+			}
+		]
+	}
+}

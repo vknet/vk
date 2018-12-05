@@ -1,0 +1,18 @@
+{
+	"response": {
+		"first_name": "Анна",
+		"last_name": "Каренина",
+		"maiden_name": "Облонская",
+		"sex": 1,
+		"relation": 3,
+		"bdate_visibility": 0,
+		"country": {
+			"id": 1,
+			"title": "Российская империя"
+		},
+		"city": {
+			"id": 2,
+			"title": "Санкт-Петербург"
+		}
+	}
+}

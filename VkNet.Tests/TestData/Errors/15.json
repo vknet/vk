@@ -1,0 +1,28 @@
+{
+	"error": {
+		"error_code": 15,
+		"error_msg": "Access denied: you can not join this private community",
+		"request_params": [
+			{
+				"key": "oauth",
+				"value": "1"
+			},
+			{
+				"key": "method",
+				"value": "groups.join"
+			},
+			{
+				"key": "gid",
+				"value": "0"
+			},
+			{
+				"key": "not_sure",
+				"value": "1"
+			},
+			{
+				"key": "access_token",
+				"value": ""
+			}
+		]
+	}
+}

@@ -70,20 +70,13 @@ namespace VkNet.Enums.SafetyEnums
 		/// </returns>
 		public static bool operator ==(SafetyEnum<TFilter> left, SafetyEnum<TFilter> right)
 		{
-			if (left is null)
-			{
-				return false;
-			}
-
-			if (right is null)
-			{
-				return false;
-			}
-
 			if (ReferenceEquals(objA: right, objB: left))
 			{
 				return true;
 			}
+
+			if (left is null || right is null)
+				return false;
 
 			return left._value == right._value;
 		}

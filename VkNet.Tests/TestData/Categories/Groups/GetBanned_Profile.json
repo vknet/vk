@@ -1,0 +1,23 @@
+{
+	"response": {
+		"count": 1,
+		"items": [
+			{
+				"type": "profile",
+				"profile": {
+					"id": 419909516,
+					"first_name": "Vknet",
+					"last_name": "Developer"
+				},
+				"ban_info": {
+					"admin_id": 32190123,
+					"date": 1516980336,
+					"reason": 0,
+					"comment": "для теста",
+					"comment_visible": true,
+					"end_date": 1517585141
+				}
+			}
+		]
+	}
+}

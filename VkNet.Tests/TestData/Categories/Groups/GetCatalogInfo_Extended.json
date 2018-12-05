@@ -1,0 +1,69 @@
+{
+	"response": {
+		"enabled": 1,
+		"categories": [
+			{
+				"id": 0,
+				"name": "Рекомендации",
+				"page_count": 30,
+				"page_previews": [
+					{
+						"id": 111572021,
+						"name": "Реалити-шоу«НаЭкране»",
+						"screen_name": "na_ekrane",
+						"is_closed": 0,
+						"type": "page",
+						"is_admin": 0,
+						"is_member": 0,
+						"photo_50": "https://pp.vk.me/c629531/v629531353/29e68/1P32EV5zAxM.jpg",
+						"photo_100": "https://pp.vk.me/c629531/v629531353/29e67/g-eu6gNO768.jpg",
+						"photo_200": "https://pp.vk.me/c629531/v629531353/29e66/8rHS3aC7Nps.jpg"
+					},
+					{
+						"id": 101982925,
+						"name": "МатчТВ",
+						"screen_name": "matchtv",
+						"is_closed": 0,
+						"type": "page",
+						"is_admin": 0,
+						"is_member": 0,
+						"photo_50": "https://pp.vk.me/c627817/v627817317/2c710/_0BJ4mIYCW8.jpg",
+						"photo_100": "https://pp.vk.me/c627817/v627817317/2c70f/qkYU3iMrO30.jpg",
+						"photo_200": "https://pp.vk.me/c627817/v627817317/2c70d/2fuHkWrOUro.jpg"
+					}
+				]
+			},
+			{
+				"id": 1,
+				"name": "Новости",
+				"page_count": 21,
+				"page_previews": [
+					{
+						"id": 68263002,
+						"name": "TheNextWeb",
+						"screen_name": "thenextweb",
+						"is_closed": 0,
+						"type": "page",
+						"is_admin": 0,
+						"is_member": 0,
+						"photo_50": "https://pp.vk.me/c616216/v616216614/5f1a/EAgnMHjtbFc.jpg",
+						"photo_100": "https://pp.vk.me/c616216/v616216614/5f19/WSyBxalc3cE.jpg",
+						"photo_200": "https://pp.vk.me/c616216/v616216614/5f18/_5nXyMOAwr8.jpg"
+					},
+					{
+						"id": 43986871,
+						"name": "Парламентскаягазета",
+						"screen_name": "pnpru",
+						"is_closed": 0,
+						"type": "page",
+						"is_admin": 0,
+						"is_member": 0,
+						"photo_50": "https://pp.vk.me/c307503/v307503831/6e62/z1EpCTQPyZQ.jpg",
+						"photo_100": "https://pp.vk.me/c307503/v307503831/6e61/RP_fl1Q9tIw.jpg",
+						"photo_200": "https://pp.vk.me/c307503/v307503831/6e60/bJnb2-6SSeA.jpg"
+					}
+				]
+			}
+		]
+	}
+}

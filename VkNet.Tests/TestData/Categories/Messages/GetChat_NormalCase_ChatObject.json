@@ -1,0 +1,13 @@
+{
+  "response": {
+    "type": "chat",
+    "id": 2,
+    "title": "test chat title",
+    "admin_id": "4793858",
+    "users": [
+      4793858,
+      5041431,
+      10657891
+    ]
+  }
+}

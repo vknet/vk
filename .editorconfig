@@ -15,6 +15,13 @@ indent_style=tab
 tab_width=4
 trim_trailing_whitespace=true
 
+[*.json]
+charset = utf-8
+end_of_line = crlf
+indent_style = space
+tab_width = 2
+trim_trailing_whitespace = true
+
 [*.cs]
 ## Blank Lines
 
@@ -206,7 +213,7 @@ csharp_special_else_if_treatment=true
 csharp_insert_final_newline=false
 
 # Arrangement of Attributes
-csharp_max_attribute_length_for_same_line=1
+csharp_max_attribute_length_for_same_line = 36
 csharp_keep_existing_attribute_arrangement=false
 csharp_keep_existing_arrangement=false
 csharp_place_type_attribute_on_same_line=never
@@ -538,3 +545,18 @@ html_blank_lines_around_razor_helpers=1
 
 # Blank lines around Razor sections
 html_blank_lines_around_razor_sections=1
+
+## INSPECTIONS
+
+# Code Notification
+resharper_invocation_is_skipped_highlighting=warning
+
+# Code Style
+resharper_arrange_missing_parentheses_highlighting=true:hint
+resharper_arrange_static_member_qualifier_highlighting=true:warning
+resharper_arrange_this_qualifier_highlighting=true:warning
+resharper_arrange_modifiers_order_highlighting=true:error
+resharper_arrange_attributes_highlighting=true:error
+
+resharper_possible_null_reference_exception_highlighting=error
+resharper_n_unit_non_public_method_with_test_attribute_highlighting=error

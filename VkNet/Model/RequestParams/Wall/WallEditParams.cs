@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -137,6 +137,19 @@ namespace VkNet.Model.RequestParams
 		public bool? MarkAsAds { get; set; }
 
 		/// <summary>
+		/// Флаг, может принимать значения 1 или 0
+		/// </summary>
+		[JsonProperty(propertyName: "close_comments")]
+		public bool? CloseComments { get; set; }
+
+		/// <summary>
+		/// No description.
+		/// Положительное число
+		/// </summary>
+		[JsonProperty(propertyName: "poster_bkg_id")]
+		public long? PosterBackgroundId { get; set; }
+
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p"> Параметры. </param>
@@ -145,20 +158,22 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", p.OwnerId }
-					, { "post_id", p.PostId }
-					, { "friends_only", p.FriendsOnly }
-					, { "message", p.Message }
-					, { "attachments", p.Attachments }
-					, { "services", p.Services }
-					, { "signed", p.Signed }
-					, { "publish_date", p.PublishDate }
-					, { "lat", p.Lat }
-					, { "long", p.Long }
-					, { "place_id", p.PlaceId }
-					, { "captcha_sid", p.CaptchaSid }
-					, { "captcha_key", p.CaptchaKey }
-					, { "mark_as_ads", p.MarkAsAds }
+				{ "owner_id", p.OwnerId },
+				{ "post_id", p.PostId },
+				{ "friends_only", p.FriendsOnly },
+				{ "message", p.Message },
+				{ "attachments", p.Attachments },
+				{ "services", p.Services },
+				{ "signed", p.Signed },
+				{ "publish_date", p.PublishDate },
+				{ "lat", p.Lat },
+				{ "long", p.Long },
+				{ "place_id", p.PlaceId },
+				{ "captcha_sid", p.CaptchaSid },
+				{ "captcha_key", p.CaptchaKey },
+				{ "mark_as_ads", p.MarkAsAds },
+				{ "close_comments", p.CloseComments },
+				{ "poster_bkg_id", p.PosterBackgroundId }
 			};
 
 			return parameters;

@@ -48,7 +48,7 @@ namespace VkNet.Utils.JsonConverter
 			var vkCollectionType = value.GetType();
 
 			var vkCollectionGenericArgument = vkCollectionType.GetGenericArguments()[0];
-			var toListMethod = typeof(Enumerable).GetMethod(name: "ToList");
+			var toListMethod = typeof(Enumerable).GetMethod("ToList");
 
 			if (toListMethod == null)
 			{
@@ -56,15 +56,15 @@ namespace VkNet.Utils.JsonConverter
 			}
 
 			var constructedToListGenericMethod = toListMethod.MakeGenericMethod(vkCollectionGenericArgument);
-			var castToListObject = constructedToListGenericMethod.Invoke(obj: null, parameters: new[] { value });
+			var castToListObject = constructedToListGenericMethod.Invoke(null, new[] { value });
 
 			var vkCollectionSurrogate = new
 			{
-				TotalCount = vkCollectionType.GetProperty(name: "TotalCount")?.GetValue(obj: value, index: null),
+				TotalCount = vkCollectionType.GetProperty("TotalCount")?.GetValue(value, null),
 				Items = castToListObject
 			};
 
-			serializer.Serialize(jsonWriter: writer, value: vkCollectionSurrogate);
+			serializer.Serialize(writer, vkCollectionSurrogate);
 		}
 
 		/// <summary>
@@ -92,16 +92,16 @@ namespace VkNet.Utils.JsonConverter
 
 			var constructedListType = typeof(List<>).MakeGenericType(keyType);
 
-			var list = (IList) Activator.CreateInstance(type: constructedListType);
+			var list = (IList) Activator.CreateInstance(constructedListType);
 
 			var vkCollection = typeof(VkCollection<>).MakeGenericType(keyType);
 
-			var obj = JObject.Load(reader: reader);
-			var response = obj[propertyName: "response"] ?? obj;
-			var totalCount = response[key: CountField].Value<ulong>();
+			var obj = JObject.Load(reader);
+			var response = obj["response"] ?? obj;
+			var totalCount = response[CountField].Value<ulong>();
 
 			var converter =
-				serializer.Converters.FirstOrDefault(predicate: x => x.GetType() == typeof(VkCollectionJsonConverter)) as
+				serializer.Converters.FirstOrDefault(x => x.GetType() == typeof(VkCollectionJsonConverter)) as
 					VkCollectionJsonConverter;
 
 			var collectionField = CollectionField;
@@ -111,9 +111,9 @@ namespace VkNet.Utils.JsonConverter
 				collectionField = converter.CollectionField;
 			}
 
-			foreach (var item in response[key: collectionField])
+			foreach (var item in response[collectionField])
 			{
-				list.Add(value: item.ToObject(objectType: keyType));
+				list.Add(item.ToObject(keyType));
 			}
 
 			return Activator.CreateInstance(vkCollection, totalCount, list);
@@ -126,7 +126,7 @@ namespace VkNet.Utils.JsonConverter
 		/// <returns> <c> true </c> если можно преобразовать </returns>
 		public override bool CanConvert(Type objectType)
 		{
-			return typeof(VkCollection<>).IsAssignableFrom(c: objectType);
+			return typeof(VkCollection<>).IsAssignableFrom(objectType);
 		}
 	}
 }

@@ -225,7 +225,6 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 }";
 
 			const int userId = 321;
-			const int adminId = 123;
 			const int groupId = 1234;
 			const GroupOfficerLevel oldLevel = GroupOfficerLevel.Admin;
 			const GroupOfficerLevel newLevel = GroupOfficerLevel.Editor;

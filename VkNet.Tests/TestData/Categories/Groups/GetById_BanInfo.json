@@ -1,0 +1,20 @@
+{
+	"response": [
+		{
+			"id": 66464944,
+			"name": "Подслушано в Ст.Кривянской",
+			"screen_name": "club66464944",
+			"is_closed": 0,
+			"type": "page",
+			"is_admin": 0,
+			"is_member": 1,
+			"ban_info": {
+				"end_date": 1446061273,
+				"comment": "Сам попросил :D"
+			},
+			"photo_50": "https://pp.vk.me/...1f1/EQ4pWlWdL74.jpg",
+			"photo_100": "https://pp.vk.me/...1f0/0Rl3JI-Oyyo.jpg",
+			"photo_200": "https://pp.vk.me/...1ef/ozzx8hmX3Bk.jpg"
+		}
+	]
+}

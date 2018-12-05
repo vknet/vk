@@ -1,20 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+		<TargetFrameworks>netcoreapp2.1</TargetFrameworks>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0"/>
-		<PackageReference Include="Moq" Version="4.10.0"/>
-		<PackageReference Include="NUnit" Version="3.10.1"/>
-		<PackageReference Include="NUnit3TestAdapter" Version="3.10.0"/>
-		<PackageReference Include="NUnit.Console" Version="3.9.0"/>
-		<PackageReference Include="NUnit.ConsoleRunner" Version="3.9.0"/>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+		<PackageReference Include="Moq" Version="4.10.1" />
+		<PackageReference Include="NUnit" Version="3.11.0" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.11.2" />
+		<PackageReference Include="NUnit.Console" Version="3.9.0" />
+		<PackageReference Include="NUnit.ConsoleRunner" Version="3.9.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\VkNet\VkNet.csproj"/>
+		<ProjectReference Include="..\VkNet\VkNet.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}"/>
+		<Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Update="TestData\**\*.*" CopyToOutputDirectory="Always" />
 	</ItemGroup>
 </Project>

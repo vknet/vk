@@ -3,24 +3,16 @@
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/vsts/pipelines/languages/dotnet-core
 
-pool:
-  vmImage: 'Hosted VS2017'
-
 variables:
   BuildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreCLI@2
-  displayName: Restore
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core sdk 2.1.402'
   inputs:
-    command: restore
-    projects: 'VkNet*/*.csproj'
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    projects: 'VkNet*/*.csproj'
+    version: 2.1.402
 
-    arguments: '--configuration $(BuildConfiguration) --no-restore'
+
 - task: DotNetCoreCLI@2
   displayName: Test
   inputs:
@@ -28,7 +20,22 @@ steps:
 
     projects: '*[Tt]ests/*.csproj'
 
-    arguments: '--configuration $(BuildConfiguration) --no-restore --no-build'
+    arguments: '-c $(BuildConfiguration) -f netcoreapp2.1'
+
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    projects: VkNet/VkNet.csproj
+
+    arguments: '-o $(Build.ArtifactStagingDirectory) -c $(BuildConfiguration) --version-suffix $(Build.BuildId)'
+
+
+- script: 'dotnet nuget push *.nupkg -k $(Parameters.MyGetKey) -s $(Parameters.MyGetFeed)' 
+  workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
+  displayName: 'Command Line Script'
+
 - task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
   displayName: 'Send Telegram Notification'
   inputs:

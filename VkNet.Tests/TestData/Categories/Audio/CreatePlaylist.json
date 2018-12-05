@@ -1,0 +1,17 @@
+{
+	"response": {
+		"id": 11,
+		"owner_id": 123456789,
+		"type": 0,
+		"title": "test title",
+		"description": "test description",
+		"genres": [],
+		"count": 0,
+		"is_following": false,
+		"followers": 0,
+		"plays": 0,
+		"create_time": 1533694356,
+		"update_time": 1533694356,
+		"artists": []
+	}
+}

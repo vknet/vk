@@ -11,17 +11,17 @@ namespace VkNet.Model
 	public class StatsPeriod
 	{
 		/// <summary>
-		/// Период начала отсчёта в формате YYYY-MM-DD.
+		/// Период начала отсчёта.
 		/// </summary>
 		[JsonProperty("period_from")]
-		[JsonConverter(typeof(IsoDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime PeriodFrom { get; set; }
 
 		/// <summary>
-		/// Период окончания отсчёта в формате YYYY-MM-DD.
+		/// Период окончания отсчёта.
 		/// </summary>
 		[JsonProperty("period_to")]
-		[JsonConverter(typeof(IsoDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime PeriodTo { get; set; }
 
 		/// <summary>

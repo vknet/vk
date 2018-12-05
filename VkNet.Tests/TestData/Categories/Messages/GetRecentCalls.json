@@ -1,0 +1,409 @@
+{
+  "response": {
+    "count": 302,
+    "items": [
+      {
+        "call": {
+          "initiator_id": 91670994,
+          "receiver_id": 163176673,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2713960
+      },
+      {
+        "call": {
+          "initiator_id": 230863836,
+          "receiver_id": 163176673,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2710775
+      },
+      {
+        "call": {
+          "initiator_id": 230863836,
+          "receiver_id": 163176673,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2709058
+      },
+      {
+        "call": {
+          "initiator_id": 230863836,
+          "receiver_id": 163176673,
+          "state": "reached",
+          "duration": 12
+        },
+        "message_id": 2698851
+      },
+      {
+        "call": {
+          "initiator_id": 230863836,
+          "receiver_id": 163176673,
+          "state": "reached",
+          "duration": 35
+        },
+        "message_id": 2698830
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 230863836,
+          "state": "reached",
+          "duration": 223
+        },
+        "message_id": 2698669
+      },
+      {
+        "call": {
+          "initiator_id": 230863836,
+          "receiver_id": 163176673,
+          "state": "reached",
+          "duration": 61
+        },
+        "message_id": 2693155
+      },
+      {
+        "call": {
+          "initiator_id": 230863836,
+          "receiver_id": 163176673,
+          "state": "reached",
+          "duration": 19
+        },
+        "message_id": 2692061
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 6280530,
+          "state": "reached",
+          "duration": 46
+        },
+        "message_id": 2690049
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 6280530,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2689433
+      },
+      {
+        "call": {
+          "initiator_id": 230863836,
+          "receiver_id": 163176673,
+          "state": "reached",
+          "duration": 4
+        },
+        "message_id": 2688111
+      },
+      {
+        "call": {
+          "initiator_id": 6280530,
+          "receiver_id": 163176673,
+          "state": "reached",
+          "duration": 501
+        },
+        "message_id": 2686347
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 6280530,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2686333
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 6280530,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2683324
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 230863836,
+          "state": "reached",
+          "duration": 100
+        },
+        "message_id": 2675371
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 230863836,
+          "state": "reached",
+          "duration": 91
+        },
+        "message_id": 2675327
+      },
+      {
+        "call": {
+          "initiator_id": 162447,
+          "receiver_id": 163176673,
+          "state": "reached",
+          "duration": 150
+        },
+        "message_id": 2663444
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 162447,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2663443
+      },
+      {
+        "call": {
+          "initiator_id": 162447,
+          "receiver_id": 163176673,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2663439
+      },
+      {
+        "call": {
+          "initiator_id": 162447,
+          "receiver_id": 163176673,
+          "state": "reached",
+          "duration": 10
+        },
+        "message_id": 2663425
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 230863836,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2662562
+      },
+      {
+        "call": {
+          "initiator_id": 6280530,
+          "receiver_id": 163176673,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2661207
+      },
+      {
+        "call": {
+          "initiator_id": 6280530,
+          "receiver_id": 163176673,
+          "state": "reached",
+          "duration": 196
+        },
+        "message_id": 2655806
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 6280530,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2655764
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 1599722,
+          "state": "reached",
+          "duration": 53
+        },
+        "message_id": 2655714
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 6280530,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2651373
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 6280530,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2650856
+      },
+      {
+        "call": {
+          "initiator_id": 8414068,
+          "receiver_id": 163176673,
+          "state": "reached",
+          "duration": 71
+        },
+        "message_id": 2650758
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 8414068,
+          "state": "reached",
+          "duration": 239
+        },
+        "message_id": 2650748
+      },
+      {
+        "call": {
+          "initiator_id": 8414068,
+          "receiver_id": 163176673,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2650741
+      },
+      {
+        "call": {
+          "initiator_id": 230863836,
+          "receiver_id": 163176673,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2649939
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 230863836,
+          "state": "reached",
+          "duration": 65
+        },
+        "message_id": 2647946
+      },
+      {
+        "call": {
+          "initiator_id": 6280530,
+          "receiver_id": 163176673,
+          "state": "canceled_by_receiver",
+          "duration": 0
+        },
+        "message_id": 2647852
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 6280530,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2647839
+      },
+      {
+        "call": {
+          "initiator_id": 230863836,
+          "receiver_id": 163176673,
+          "state": "reached",
+          "duration": 24
+        },
+        "message_id": 2645932
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 230863836,
+          "state": "reached",
+          "duration": 446
+        },
+        "message_id": 2643914
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 65447447,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2641633
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 230863836,
+          "state": "reached",
+          "duration": 58
+        },
+        "message_id": 2641435
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 6280530,
+          "state": "canceled_by_initiator",
+          "duration": 0
+        },
+        "message_id": 2638785
+      },
+      {
+        "call": {
+          "initiator_id": 163176673,
+          "receiver_id": 230863836,
+          "state": "reached",
+          "duration": 49
+        },
+        "message_id": 2638321
+      }
+    ],
+    "profiles": [
+      {
+        "id": 162447,
+        "first_name": "Ksyusha",
+        "last_name": "Cherotchenko"
+      },
+      {
+        "id": 1599722,
+        "first_name": "Nikita",
+        "last_name": "Kharitonov"
+      },
+      {
+        "id": 6280530,
+        "first_name": "Taras",
+        "last_name": "Fazylov"
+      },
+      {
+        "id": 8414068,
+        "first_name": "Lesya",
+        "last_name": "Fazylova"
+      },
+      {
+        "id": 65447447,
+        "first_name": "Alt",
+        "last_name": "Alt"
+      },
+      {
+        "id": 91670994,
+        "first_name": "Seva",
+        "last_name": "Zhidkov"
+      },
+      {
+        "id": 163176673,
+        "first_name": "Nazar",
+        "last_name": "Fazylov"
+      },
+      {
+        "id": 230863836,
+        "first_name": "Madina",
+        "last_name": "Timofeeva"
+      }
+    ]
+  }
+}

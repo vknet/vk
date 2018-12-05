@@ -10,6 +10,14 @@ namespace VkNet.Tests.Enum.SafetyEnums
 	public class SafetyEnumsTest
 	{
 		[Test]
+		public void NullTest()
+		{
+			var result = AppFilter.FromJsonString("");
+
+			Assert.That(result == null);
+		}
+
+		[Test]
 		public void AppFilterTest()
 		{
 			// get test

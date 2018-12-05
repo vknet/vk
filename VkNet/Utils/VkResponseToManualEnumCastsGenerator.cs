@@ -29,6 +29,23 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
+		public static implicit operator WallType(VkResponse response)
+		{
+			if (response == null)
+			{
+				return WallType.Off;
+			}
+
+			return Utilities.EnumFrom<WallType>(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
 		public static implicit operator AgeLimit(VkResponse response)
 		{
 			if (response == null)

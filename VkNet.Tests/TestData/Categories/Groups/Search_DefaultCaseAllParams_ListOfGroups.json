@@ -1,0 +1,43 @@
+{
+	"response": {
+		"count": 78152,
+		"items": [
+			{
+				"id": 26442631,
+				"name": "Music Quotes. First Public.",
+				"screen_name": "music_quotes_public",
+				"is_closed": 0,
+				"type": "page",
+				"is_admin": 0,
+				"is_member": 0,
+				"photo_50": "http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg",
+				"photo_100": "http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg",
+				"photo_200": "http://cs303205.userapi.com/g26442631/a_32dd770f.jpg"
+			},
+			{
+				"id": 23727386,
+				"name": "Classical Music Humor",
+				"screen_name": "mushumor",
+				"is_closed": 0,
+				"type": "page",
+				"is_admin": 0,
+				"is_member": 0,
+				"photo_50": "http://cs10650.userapi.com/g23727386/e_8006da42.jpg",
+				"photo_100": "http://cs10650.userapi.com/g23727386/d_cbea0559.jpg",
+				"photo_200": "http://cs10650.userapi.com/g23727386/a_7743aab2.jpg"
+			},
+			{
+				"id": 23995866,
+				"name": "E:\\music\\",
+				"screen_name": "e_music",
+				"is_closed": 0,
+				"type": "page",
+				"is_admin": 0,
+				"is_member": 0,
+				"photo_50": "http://cs9913.userapi.com/g23995866/e_319d8573.jpg",
+				"photo_100": "http://cs9913.userapi.com/g23995866/d_166572a9.jpg",
+				"photo_200": "http://cs9913.userapi.com/g23995866/a_fc553960.jpg"
+			}
+		]
+	}
+}

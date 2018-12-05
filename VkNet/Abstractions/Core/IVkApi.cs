@@ -16,7 +16,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Ограничение на кол-во запросов в секунду
 		/// </summary>
-		float RequestsPerSecond { get; set; }
+		int RequestsPerSecond { get; set; }
 
 		/// <summary>
 		/// Браузер.
@@ -67,11 +67,7 @@ namespace VkNet.Abstractions
 		/// Обход ошибки валидации: https://vk.com/dev/need_validation
 		/// </summary>
 		/// <param name="validateUrl"> Адрес, на который нужно перейти для валидации </param>
-		/// <param name="phoneNumber">
-		/// Номер телефона, который нужно ввести на странице
-		/// валидации
-		/// </param>
-		void Validate(string validateUrl, string phoneNumber);
+		void Validate(string validateUrl);
 
 	#endregion
 	}
