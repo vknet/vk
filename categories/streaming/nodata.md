@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Метод Папка.НазваниеМетода
-permalink: папка/названиеМетода/
+title: Метод Streaming.NoData
+permalink: streaming/nodata
 comments: true
 ---
-# Метод Папка.НазваниеМетода
+# Метод Streaming.NoData
 Метод не реализован.
 
 ## Версия Вконтакте API v.5.92
