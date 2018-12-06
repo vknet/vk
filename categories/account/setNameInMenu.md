@@ -25,7 +25,9 @@ public bool SetNameInMenu([NotNull] string name, long? userId = null)
 ## Пример
 ``` csharp
 var setNameInMenu = _api.Account.SetNameInMenu("name", userId: 0);
+            Console.WriteLine(setNameInMenu.ToString());
+            Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.50
-Дата обновления: 10.02.2016 13:55:10
+## Версия Вконтакте API v.5.92
+Дата обновления: 06.12.2018 23:05:10
