@@ -35,7 +35,7 @@ public ReadOnlyCollection<Document> Save(
 var save = _api.Docs.Save(file: "file");
 ```
 
-## Пример загрузки документа как вложение для сообщения из локального файла?
+## Пример загрузки документа как вложение для сообщения из локального файла
 ``` csharp
 // Получить адрес сервера для загрузки.
 var uploadServer = Api.Docs.GetUploadServer(987654321);
