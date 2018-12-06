@@ -97,7 +97,16 @@ PM> Install-Package VkNet
 + [Groups.SetCallbackSettings](/vk/groups/setCallbackSettings/) - !!Позволяет задать настройки уведомлений о событиях в Callback API.
 + [Groups.SetLongPollSettings](/vk/groups/setLongPollSettings/) - !!Задаёт настройки для Bots Long Poll API в сообществе.
 
-## Аудиозаписи (исколючены из вк api, все методы считаются устаревшими и не работают)
+## Аудиозаписи [Решение по обходу блокировки API Audio](https://github.com/atckun/VkNet.AudioBypass)
+#№ Установка через Nuget
+**Package Manager**
+``` powershell
+PM> Install-Package VkNet.AudioBypassService
+```
+**.NET CLI**
+``` powershell
+> dotnet add package VkNet.AudioBypassService
+```
 + [Audio.Get](/vk/audio/get/) - Возвращает список аудиозаписей пользователя или сообщества.
 + [Audio.GetById](/vk/audio/getById/) - Возвращает информацию об аудиозаписях.
 + [Audio.GetLyrics](/vk/audio/getLyrics/) - Возвращает текст аудиозаписи.
@@ -427,6 +436,8 @@ PM> Install-Package VkNet
 + [Account.ChangePassword](/vk/account/changePassword/) - Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore.
 + [Account.GetProfileInfo](/vk/account/getProfileInfo/) - Возвращает информацию о текущем профиле.
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
+
+# Не реализованные методы
 
 ## Рекламный Кабинет
 + [Ads.AddOfficeUsers](/vk/ads/addOfficeUsers/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
