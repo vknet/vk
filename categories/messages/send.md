@@ -53,17 +53,67 @@ photo100172_166443618
 ## Результат
 После успешного выполнения возвращает идентификатор отправленного сообщения.
 
-## Пример
+## Пример отправки сообщения Павлу Дурову
 ``` csharp
-// Отправка сообщения Павлу Дурову
 api.Messages.Send(new VkNet.Model.RequestParams.MessagesSendParams
 {
     UserId = 1,
     Message = "message"
 });
+```
 
-// Примеры с Attachments
-// https://github.com/vknet/vk/wiki/FAQ
+## Пример формирования вложения для сообщения
+``` csharp
+var albumid = 123456789;
+var photos = Api.Photo.Get(new PhotoGetParams
+{
+	AlbumId = PhotoAlbumType.Id(albumid),
+	OwnerId = Api.UserId.Value
+});
+Api.Messages.Send(new MessagesSendParams
+{
+	Attachments = photos,
+	Message = "Message",
+	PeerId = Api.UserId.Value
+});
+```
+
+## Пример формирования вложения из локального файла
+``` csharp
+// Получить адрес сервера для загрузки.
+var uploadServer = Api.Photo.GetUploadServer(123);
+// Загрузить файл.
+var wc = new WebClient();
+var responseFile = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"fullPathToImage.jpg"));
+// Сохранить загруженный файл
+var photos = Api.Photo.Save(new PhotoSaveParams
+{
+	SaveFileResponse = responseFile,
+	AlbumId = 123,
+        GroupId = 12345678,
+});
+Api.Messages.Send(new MessagesSendParams
+{
+	Attachments = photos,
+	Message = "Message",
+	PeerId = Api.UserId.Value
+});
+```
+
+## Пример формирования вложения для сообщения
+``` csharp
+var albumid = 123456789;
+var photos = Api.Photo.Get(new PhotoGetParams
+{
+	AlbumId = PhotoAlbumType.Id(albumid),
+	OwnerId = Api.UserId.Value
+});
+Api.Messages.Send(new MessagesSendParams
+{
+	Attachments = photos,
+	Message = "Message",
+	PeerId = Api.UserId.Value
+});
 ```
 
 ## Версия Вконтакте API v.5.44
