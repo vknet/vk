@@ -429,7 +429,7 @@ PM> Install-Package VkNet
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
 
 ## Рекламный Кабинет
-+ [Ads.AddOfficeUsers](panuchi.github.io/vk/ads/addOfficeUsers/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
++ [Ads.AddOfficeUsers](/vk/ads/addOfficeUsers/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
 + [Ads.CheckLink](/vk/ads/checkLink/) - Проверяет ссылку на рекламируемый объект.
 + [Ads.CreateAds](/vk/ads/createAds/) - Создает рекламные объявления.
 + [Ads.CreateCampaigns](/vk/ads/createCampaigns/) - Создает рекламные кампании.
