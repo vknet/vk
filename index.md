@@ -98,8 +98,8 @@ PM> Install-Package VkNet
 + [Groups.SetLongPollSettings](/vk/groups/setLongPollSettings/) - !!Задаёт настройки для Bots Long Poll API в сообществе.
 
 ## Аудиозаписи [Решение по обходу блокировки API Audio](https://github.com/atckun/VkNet.AudioBypass)
-#№ Установка через Nuget
-**Package Manager**
+### Установка через Nuget
+***Package Manager***
 ``` powershell
 PM> Install-Package VkNet.AudioBypassService
 ```
