@@ -56,11 +56,14 @@ changed – возвращает **true** — если информация бы
 ## Пример
 ``` csharp
 ChangeNameRequest change;
-var saveProfileInfo = _api.Account.SaveProfileInfo(out change, new AccountSaveProfileInfoParams
-{
-
-});
+ChangeNameRequest change;
+            var saveProfileInfo = _api.Account.SaveProfileInfo(out change, new AccountSaveProfileInfoParams
+            {
+                Sex = Sex.Female
+            });
+            Console.WriteLine(saveProfileInfo.ToString());
+            Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.45
-Дата обновления: 10.02.2016 13:55:10
+## Версия Вконтакте API v.5.92
+Дата обновления: 06.12.2018 23:05:10
