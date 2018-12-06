@@ -23,10 +23,12 @@ public bool SetInfo(string name, string value)
 
 ## Пример
 ``` csharp
-var own_posts_default = _api.Account.SetInfo("own_posts_default", "1");
-var no_wall_replies = _api.Account.SetInfo("no_wall_replies", "1");
-var intro  = _api.Account.SetInfo("intro", "1");
+            var own_posts_default = _api.Account.SetInfo("own_posts_default", "1");
+            var no_wall_replies = _api.Account.SetInfo("no_wall_replies", "1");
+            var intro = _api.Account.SetInfo("intro", "1");
+            Console.WriteLine(intro.ToString());
+            Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.50
-Дата обновления: 10.02.2016 13:55:10
+## Версия Вконтакте API v.5.92
+Дата обновления: 06.12.2018 23:05:10
