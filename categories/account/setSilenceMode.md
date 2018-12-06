@@ -32,7 +32,9 @@ id  пользователя.
 ## Пример
 ``` csharp
 var setSilenceMode = _api.Account.SetSilenceMode();
+            Console.WriteLine(setSilenceMode.ToString());
+            Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.50
-Дата обновления: 21.03.2016 16:09:37
+## Версия Вконтакте API v.5.92
+Дата обновления: 06.12.2018 23:20:37
