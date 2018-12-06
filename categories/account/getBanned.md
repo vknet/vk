@@ -23,9 +23,14 @@ public ReadOnlyCollection<User> GetBanned(out int total, int? offset = null, int
 
 ## Пример
 ``` csharp
-int total;
-var bannedUsers = _api.Account.GetBanned(out total);
+var bannedUsers = _api.Account.GetBanned(0, 1);
+Console.WriteLine(bannedUsers.Count.ToString());
+foreach (var item in bannedUsers)
+{ 
+Console.WriteLine(item.FirstName + " " + item.LastName); 
+}
+Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.50
-Дата обновления: 10.02.2016 13:55:10
+## Версия Вконтакте API v.5.92
+Дата обновления: 06.12.2018 22:33:10
