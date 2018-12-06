@@ -22,8 +22,10 @@ public bool SetOnline(bool? voip = null)
 
 ## Пример
 ``` csharp
-var setOnline = _api.Account.SetOnline();
+            var setOnline = _api.Account.SetOnline();
+            Console.WriteLine(setOnline.ToString());
+            Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.50
-Дата обновления: 15.02.2016 14:14:52
+## Версия Вконтакте API v.5.92
+Дата обновления: 06.12.2018 23:19:52
