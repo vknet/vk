@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Метод Ads.NoData
-permalink: ads/nodata
+permalink: ads/nodata.md
 comments: true
 ---
 # Метод Ads.NoData
