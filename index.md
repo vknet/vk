@@ -429,7 +429,7 @@ PM> Install-Package VkNet
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
 
 ## Рекламный Кабинет
-+ [Ads.AddOfficeUsers](/vk/ads/nodata/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
++ [Ads.AddOfficeUsers](panuchi.github.io/vk/ads/nodata/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
 + [Ads.CheckLink](/vk/ads/nodata/) - Проверяет ссылку на рекламируемый объект.
 + [Ads.CreateAds](/vk/ads/nodata/) - Создает рекламные объявления.
 + [Ads.CreateCampaigns](/vk/ads/nodata/) - Создает рекламные кампании.
@@ -545,70 +545,70 @@ PM> Install-Package VkNet
 + [Storage.set](/vk/storage/nodata/) - Сохраняет значение переменной, название которой передано в параметре key.
 
 ## Места
-+ [Places.](vk/places/nodata/) - Нет данных. 
++ [Places.](/vk/places/nodata/) - Нет данных. 
 
 ## Подкасты 
-+ [Podcasts.](vk/podcasts/nodata/) - Нет данных. 
++ [Podcasts.](/vk/podcasts/nodata/) - Нет данных. 
 
 ## Формы сбора заявок
-+ [LeadForms.create](vk/leadForms/nodata/) - Создаёт форму сбора заявок.
-+ [LeadForms.delete](vk/leadForms/nodata/) - Удаляет форму сбора заявок.
-+ [LeadForms.get](vk/leadForms/nodata/) - Возвращает информацию о форме сбора заявок.
-+ [LeadForms.getLeads](vk/leadForms/nodata/) - Возвращает заявки формы.
-+ [LeadForms.getUploadURL](vk/leadForms/nodata/) - Возвращает URL для загрузки обложки для формы.
-+ [LeadForms.list](vk/leadForms/nodata/) - Возвращает список форм сообщества.
-+ [LeadForms.update](vk/leadForms/nodata/) - Обновляет форму сбора заявок.
++ [LeadForms.create](/vk/leadForms/nodata/) - Создаёт форму сбора заявок.
++ [LeadForms.delete](/vk/leadForms/nodata/) - Удаляет форму сбора заявок.
++ [LeadForms.get](/vk/leadForms/nodata/) - Возвращает информацию о форме сбора заявок.
++ [LeadForms.getLeads](/vk/leadForms/nodata/) - Возвращает заявки формы.
++ [LeadForms.getUploadURL](/vk/leadForms/nodata/) - Возвращает URL для загрузки обложки для формы.
++ [LeadForms.list](/vk/leadForms/nodata/) - Возвращает список форм сообщества.
++ [LeadForms.update](/vk/leadForms/nodata/) - Обновляет форму сбора заявок.
 
 ## Карусель
-+ [PrettyCards.create](vk/prettyCards/nodata/) - Создаёт карточку карусели.
-+ [PrettyCards.delete](vk/prettyCards/nodata/) - Удаляет карточку.
-+ [PrettyCards.edit](vk/prettyCards/nodata/) - Редактирует карточку карусели.
-+ [PrettyCards.get](vk/prettyCards/nodata/) - Возвращает неиспользованные карточки владельца.
-+ [PrettyCards.getById](vk/prettyCards/nodata/) - Возвращает информацию о карточке.
-+ [PrettyCards.getUploadURL](vk/prettyCards/nodata/) - Возвращает URL для загрузки фотографии для карточки.
++ [PrettyCards.create](/vk/prettyCards/nodata/) - Создаёт карточку карусели.
++ [PrettyCards.delete](/vk/prettyCards/nodata/) - Удаляет карточку.
++ [PrettyCards.edit](/vk/prettyCards/nodata/) - Редактирует карточку карусели.
++ [PrettyCards.get](/vk/prettyCards/nodata/) - Возвращает неиспользованные карточки владельца.
++ [PrettyCards.getById](/vk/prettyCards/nodata/) - Возвращает информацию о карточке.
++ [PrettyCards.getUploadURL](/vk/prettyCards/nodata/) - Возвращает URL для загрузки фотографии для карточки.
 
 ## Истории
-+ [Stories.banOwner](vk/stories/nodata/) - Позволяет скрыть из ленты новостей истории от выбранных источников.
-+ [Stories.delete](vk/stories/nodata/) - Удаляет историю.
-+ [Stories.get](vk/stories/nodata/) - Возвращает истории, доступные для текущего пользователя.
-+ [Stories.getBanned](vk/stories/nodata/) - Возвращает список источников историй, скрытых из ленты текущего пользователя.
-+ [Stories.getById](vk/stories/nodata/) - Возвращает информацию об истории по её идентификатору.
-+ [Stories.getPhotoUploadServer](vk/stories/nodata/) - Позволяет получить адрес для загрузки истории с фотографией.
-+ [Stories.getReplies](vk/stories/nodata/) - Позволяет получить ответы на историю.
-+ [Stories.getStats](vk/stories/nodata/) - Возвращает статистику истории.
-+ [Stories.getVideoUploadServer](vk/stories/nodata/) - Позволяет получить адрес для загрузки видеозаписи в историю.
-+ [Stories.getViewers](vk/stories/nodata/) - Возвращает список пользователей, просмотревших историю.
-+ [Stories.hideAllReplies](vk/stories/nodata/) - Скрывает все ответы автора за последние сутки на истории текущего пользователя.
-+ [Stories.hideReply](vk/stories/nodata/) - Скрывает ответ на историю.
-+ [Stories.unbanOwner](vk/stories/nodata/) - Позволяет вернуть пользователя или сообщество в список отображаемых историй в ленте.
++ [Stories.banOwner](/vk/stories/nodata/) - Позволяет скрыть из ленты новостей истории от выбранных источников.
++ [Stories.delete](/vk/stories/nodata/) - Удаляет историю.
++ [Stories.get](/vk/stories/nodata/) - Возвращает истории, доступные для текущего пользователя.
++ [Stories.getBanned](/vk/stories/nodata/) - Возвращает список источников историй, скрытых из ленты текущего пользователя.
++ [Stories.getById](/vk/stories/nodata/) - Возвращает информацию об истории по её идентификатору.
++ [Stories.getPhotoUploadServer](/vk/stories/nodata/) - Позволяет получить адрес для загрузки истории с фотографией.
++ [Stories.getReplies](/vk/stories/nodata/) - Позволяет получить ответы на историю.
++ [Stories.getStats](/vk/stories/nodata/) - Возвращает статистику истории.
++ [Stories.getVideoUploadServer](/vk/stories/nodata/) - Позволяет получить адрес для загрузки видеозаписи в историю.
++ [Stories.getViewers](/vk/stories/nodata/) - Возвращает список пользователей, просмотревших историю.
++ [Stories.hideAllReplies](/vk/stories/nodata/) - Скрывает все ответы автора за последние сутки на истории текущего пользователя.
++ [Stories.hideReply](/vk/stories/nodata/) - Скрывает ответ на историю.
++ [Stories.unbanOwner](/vk/stories/nodata/) - Позволяет вернуть пользователя или сообщество в список отображаемых историй в ленте.
 
 ## Виджеты приложений
-+ [AppWidgets.getAppImageUploadServer](vk/appWidgets/nodata/) - Позволяет получить адрес для загрузки фотографии в коллекцию приложения для виджетов приложений сообществ.
-+ [AppWidgets.getAppImages](vk/appWidgets/nodata/) - Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
-+ [AppWidgets.getGroupImageUploadServer](vk/appWidgets/nodata/) - Позволяет получить адрес для загрузки фотографии в коллекцию сообщества для виджетов приложений сообществ.
-+ [AppWidgets.getGroupImages](vk/appWidgets/nodata/) - Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
-+ [AppWidgets.getImagesById](vk/appWidgets/nodata/) - Позволяет получить изображение для виджетов приложений сообществ по его идентификатору.
-+ [AppWidgets.saveAppImage](vk/appWidgets/nodata/) - Позволяет сохранить изображение в коллекцию приложения для виджетов приложений сообществ после загрузки на сервер.
-+ [AppWidgets.saveGroupImage](vk/appWidgets/nodata/) - Позволяет сохранить изображение в коллекцию сообщества для виджетов приложений сообществ. после загрузки на сервер.
-+ [AppWidgets.update](vk/appWidgets/nodata/) - Позволяет обновить виджет приложения сообщества. Виджет обязательно должен быть уже установлен в сообществе.
++ [AppWidgets.getAppImageUploadServer](/vk/appWidgets/nodata/) - Позволяет получить адрес для загрузки фотографии в коллекцию приложения для виджетов приложений сообществ.
++ [AppWidgets.getAppImages](/vk/appWidgets/nodata/) - Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
++ [AppWidgets.getGroupImageUploadServer](/vk/appWidgets/nodata/) - Позволяет получить адрес для загрузки фотографии в коллекцию сообщества для виджетов приложений сообществ.
++ [AppWidgets.getGroupImages](/vk/appWidgets/nodata/) - Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
++ [AppWidgets.getImagesById](/vk/appWidgets/nodata/) - Позволяет получить изображение для виджетов приложений сообществ по его идентификатору.
++ [AppWidgets.saveAppImage](/vk/appWidgets/nodata/) - Позволяет сохранить изображение в коллекцию приложения для виджетов приложений сообществ после загрузки на сервер.
++ [AppWidgets.saveGroupImage](/vk/appWidgets/nodata/) - Позволяет сохранить изображение в коллекцию сообщества для виджетов приложений сообществ. после загрузки на сервер.
++ [AppWidgets.update](/vk/appWidgets/nodata/) - Позволяет обновить виджет приложения сообщества. Виджет обязательно должен быть уже установлен в сообществе.
 
 ## Streaming API
-+ [Streaming.getServerUrl](vk/streaming/nodata/) - Позволяет получить данные для подключения к Streaming API.
-+ [Streaming.getSettings](vk/streaming/nodata/) - Позволяет получить значение порога для Streaming API.
-+ [Streaming.getStats](vk/streaming/nodata/) - Позволяет получить статистику для подготовленных и доставленных событий Streaming API.
-+ [Streaming.getStem](vk/streaming/nodata/) - Позволяет получить основу слова.
-+ [Streaming.setSettings](vk/streaming/nodata/) - Позволяет задать значение порога для Streaming API.
++ [Streaming.getServerUrl](/vk/streaming/nodata/) - Позволяет получить данные для подключения к Streaming API.
++ [Streaming.getSettings](/vk/streaming/nodata/) - Позволяет получить значение порога для Streaming API.
++ [Streaming.getStats](/vk/streaming/nodata/) - Позволяет получить статистику для подготовленных и доставленных событий Streaming API.
++ [Streaming.getStem](/vk/streaming/nodata/) - Позволяет получить основу слова.
++ [Streaming.setSettings](/vk/streaming/nodata/) - Позволяет задать значение порога для Streaming API.
 
 ## Состояние заказов
-+ [Orders.cancelSubscription](vk/orders/nodata/) - Отменяет подписку.
-+ [Orders.changeState](vk/orders/nodata/) - Изменяет состояние заказа.
-+ [Orders.get](vk/orders/nodata/) - Возвращает список заказов.
-+ [Orders.getAmount](vk/orders/nodata/) - Возвращает стоимость голосов в валюте пользователя.
-+ [Orders.getById](vk/orders/nodata/) - Возвращает информацию об отдельном заказе.
-+ [Orders.getUserSubscriptionById](vk/orders/nodata/) - Получает информацию о подписке по её идентификатору.
-+ [Orders.getUserSubscriptions](vk/orders/nodata/) - Получает список активных подписок пользователя.
-+ [Orders.updateSubscription](vk/orders/nodata/) - Обновляет цену подписки для пользователя.
++ [Orders.cancelSubscription](/vk/orders/nodata/) - Отменяет подписку.
++ [Orders.changeState](/vk/orders/nodata/) - Изменяет состояние заказа.
++ [Orders.get](/vk/orders/nodata/) - Возвращает список заказов.
++ [Orders.getAmount](/vk/orders/nodata/) - Возвращает стоимость голосов в валюте пользователя.
++ [Orders.getById](/vk/orders/nodata/) - Возвращает информацию об отдельном заказе.
++ [Orders.getUserSubscriptionById](/vk/orders/nodata/) - Получает информацию о подписке по её идентификатору.
++ [Orders.getUserSubscriptions](/vk/orders/nodata/) - Получает список активных подписок пользователя.
++ [Orders.updateSubscription](/vk/orders/nodata/) - Обновляет цену подписки для пользователя.
 
 ## Виджеты
-+ [Widgets.getComments](vk/widgets/nodata/) - Получает список комментариев к странице, оставленных через Виджет комментариев.
-+ [Widgets.getPages](vk/widgets/nodata/) - Получает список страниц приложения/сайта, на которых установлен Виджет комментариев или «Мне нравится».
++ [Widgets.getComments](/vk/widgets/nodata/) - Получает список комментариев к странице, оставленных через Виджет комментариев.
++ [Widgets.getPages](/vk/widgets/nodata/) - Получает список страниц приложения/сайта, на которых установлен Виджет комментариев или «Мне нравится».
