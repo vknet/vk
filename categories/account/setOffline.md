@@ -22,8 +22,10 @@ public bool SetOffline()
 
 ## Пример
 ``` csharp
-var setOffline = _api.Account.SetOffline();
+            var setOffline = _api.Account.SetOffline();
+            Console.WriteLine(setOffline.ToString());
+            Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.45
-Дата обновления: 15.02.2016 14:14:52
+## Версия Вконтакте API v.5.92
+Дата обновления: 06.12.2016 23:18:52
