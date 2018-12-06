@@ -16,11 +16,11 @@ public AccountInfo GetInfo(AccountFields fields = null)
 
 ## Параметры
 + **fields** - Список полей, которые необходимо вернуть. Возможные значения: 
-country 
-https_required 
-own_posts_default 
-no_wall_replies 
-intro 
+country, 
+https_required, 
+own_posts_default, 
+no_wall_replies, 
+intro, 
 lang 
 По умолчанию будут возвращены все поля. список слов, разделенных через запятую
 
@@ -37,7 +37,9 @@ lang
 ## Пример
 ``` csharp
 var info = _api.Account.GetInfo();
+Console.WriteLine(info.Country.ToString());
+Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.50
-Дата обновления: 10.02.2016 13:55:10
+## Версия Вконтакте API v.5.92
+Дата обновления: 06.12.2018 22:57:10
