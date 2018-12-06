@@ -26,7 +26,9 @@ public bool SetPushSettings(string deviceId, PushSettings settings, string key, 
 ## Пример
 ``` csharp
 var setPushSettings = _api.Account.SetPushSettings(deviceId: "device_id");
+            Console.WriteLine(setPushSettings.ToString());
+            Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.50
-Дата обновления: 10.02.2016 13:55:10
+## Версия Вконтакте API v.5.92
+Дата обновления: 06.12.2018 23:19:10
