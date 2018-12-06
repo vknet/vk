@@ -22,8 +22,10 @@ public bool UnbanUser(long userId)
 
 ## Пример
 ``` csharp
-var unbanUser = _api.Account.UnbanUser(userId: 0);
+            var unbanUser = _api.Account.UnbanUser(userId: 1);
+            Console.WriteLine(unbanUser.ToString());
+            Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.50
-Дата обновления: 10.02.2016 13:55:10
+## Версия Вконтакте API v.5.92
+Дата обновления: 06.12.2018 23:21:10
