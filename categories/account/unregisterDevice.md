@@ -24,7 +24,9 @@ public bool UnregisterDevice(string deviceId, bool? sandbox)
 ## Пример
 ``` csharp
 var unregisterDevice = _api.Account.UnregisterDevice();
+            Console.WriteLine(unregisterDevice.ToString());
+            Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.50
-Дата обновления: 21.03.2016 16:13:21
+## Версия Вконтакте API v.5.92
+Дата обновления: 06.12.2018 23:23:21
