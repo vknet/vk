@@ -29,5 +29,5 @@ public long GetAppPermissions(long? userId = null)
 var myPermission = _api.Account.GetAppPermissions();
 ```
 
-## Версия Вконтакте API v.5.45
-Дата обновления: 10.02.2016 13:55:10
+## Версия Вконтакте API v.5.92
+Дата обновления: 06.12.2018 22:28:10
