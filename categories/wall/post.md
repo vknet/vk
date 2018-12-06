@@ -58,5 +58,20 @@ var post = _api.Wall.Post(new WallPostParams{
 });
 ```
 
+## Пример загрузки документа как вложение для сообщения из локального файла
+``` csharp
+// Получить адрес сервера для загрузки.
+var uploadServer = Api.Docs.GetUploadServer(987654321);
+// Загрузить файл.
+var wc = new WebClient();
+var responseFile = Encoding.ASCII.GetString(wc.UploadFile(uploadServer.UploadUrl, @"C:\Users\Raven\Downloads\https__vk_com_gif_fak.gif"));
+// Сохранить загруженный файл
+var photos = Api.Docs.Save(responseFile, "gif");
+Api.Wall.Post(new WallPostParams
+{
+	Attachments = photos, Message = "Test", OwnerId = -123456789
+});
+```
+
 ## Версия Вконтакте API v.5.44
 Дата обновления: 25.01.2016 17:04:31
