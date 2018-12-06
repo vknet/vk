@@ -62,7 +62,7 @@ api.Messages.Send(new VkNet.Model.RequestParams.MessagesSendParams
 });
 ```
 
-## Пример формирования вложения для сообщения
+## Пример формирования вложения
 ``` csharp
 var albumid = 123456789;
 var photos = Api.Photo.Get(new PhotoGetParams
@@ -91,22 +91,6 @@ var photos = Api.Photo.Save(new PhotoSaveParams
 	SaveFileResponse = responseFile,
 	AlbumId = 123,
         GroupId = 12345678,
-});
-Api.Messages.Send(new MessagesSendParams
-{
-	Attachments = photos,
-	Message = "Message",
-	PeerId = Api.UserId.Value
-});
-```
-
-## Пример формирования вложения для сообщения
-``` csharp
-var albumid = 123456789;
-var photos = Api.Photo.Get(new PhotoGetParams
-{
-	AlbumId = PhotoAlbumType.Id(albumid),
-	OwnerId = Api.UserId.Value
 });
 Api.Messages.Send(new MessagesSendParams
 {
