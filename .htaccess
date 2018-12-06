@@ -1,0 +1,2 @@
+RewriteCond  %{REQUEST_URI}  ^/.+/$
+RewriteRule  ^(.*?)/+$       http://%{HTTP_HOST}/$1  [R=301,L,QSA]
