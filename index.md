@@ -146,6 +146,23 @@ PM> Install-Package VkNet.AudioBypassService
 + [Messages.GetLastActivity](/vk/messages/getLastActivity/) - Возвращает текущий статус и дату последней активности указанного пользователя.
 + [Messages.SetChatPhoto](/vk/messages/setChatPhoto/) - Позволяет установить фотографию мультидиалога, загруженную с помощью метода photos.getChatUploadServer.
 + [Messages.DeleteChatPhoto](/vk/messages/deleteChatPhoto/) - Позволяет удалить фотографию мультидиалога.
++ [Messages.AllowMessagesFromGroup](/vk/messages/allowMessagesFromGroup/) - !!Позволяет разрешить отправку сообщений от сообщества текущему пользователю.
++ [Messages.DenyMessagesFromGroup](/vk/messages/denyMessagesFromGroup/) - !!Позволяет запретить отправку сообщений от сообщества текущему пользователю.
++ [Messages.Edit](/vk/messages/edit/) - !!Редактирует сообщение.
++ [Messages.GetByConversationMessageId](/vk/messages/getByConversationMessageId/) - !!Возвращает сообщения по их идентификаторам в рамках беседы.
++ [Messages.GetChatPreview](/vk/messages/getChatPreview/) - !!Получает данные для превью чата с приглашением по ссылке.
++ [Messages.Pin](/vk/messages/pin/) - !!Закрепляет сообщение.
++ [Messages.Unpin](/vk/messages/unpin/) - !!Открепляет сообщение.
++ [Messages.MarkAsImportantConversation](/vk/messages/markAsImportantConversation/) - !!Помечает беседу как важную либо снимает отметку.
++ [Messages.MarkAsAnsweredConversation](/vk/messages/markAsAnsweredConversation/) - !!Помечает беседу как отвеченную либо снимает отметку.
++ [Messages.JoinChatByInviteLink](/vk/messages/joinChatByInviteLink/) - !!Позволяет присоединиться к чату по ссылке-приглашению.
++ [Messages.IsMessagesFromGroupAllowed](/vk/messages/isMessagesFromGroupAllowed/) - !!Возвращает информацию о том, разрешена ли отправка сообщений от сообщества пользователю.
++ [Messages.GetInviteLink](/vk/messages/getInviteLink/) - !!Получает ссылку для приглашения пользователя в беседу.
++ [Messages.GetImportantMessages](/vk/messages/getImportantMessages/) - !!Возвращает список важных сообщений пользователя.
++ [Messages.GetHistoryAttachments](/vk/messages/getHistoryAttachments/) - !!Возвращает материалы диалога или беседы.
++ [Messages.GetHistory](/vk/messages/getHistory/) - !!Возвращает историю сообщений для указанного диалога.
++ [Messages.GetConversationsById](/vk/messages/getConversationsById/) - !!Позволяет получить беседу по её идентификатору.
++ [Messages.GetConversations](/vk/messages/getConversations/) - !!Возвращает список бесед пользователя.
 
 ## Стена
 + [Wall.Get](/vk/wall/get/) - Возвращает список записей со стены пользователя или сообщества.
@@ -413,25 +430,6 @@ PM> Install-Package VkNet.AudioBypassService
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
 
 # Не реализованные методы
-
-## Сообщения
-+ [Messages.AllowMessagesFromGroup](/vk/messages/allowMessagesFromGroup/) - !!Позволяет разрешить отправку сообщений от сообщества текущему пользователю.
-+ [Messages.DenyMessagesFromGroup](/vk/messages/denyMessagesFromGroup/) - !!Позволяет запретить отправку сообщений от сообщества текущему пользователю.
-+ [Messages.Edit](/vk/messages/edit/) - !!Редактирует сообщение.
-+ [Messages.GetByConversationMessageId](/vk/messages/getByConversationMessageId/) - !!Возвращает сообщения по их идентификаторам в рамках беседы.
-+ [Messages.GetChatPreview](/vk/messages/getChatPreview/) - !!Получает данные для превью чата с приглашением по ссылке.
-+ [Messages.Pin](/vk/messages/pin/) - !!Закрепляет сообщение.
-+ [Messages.Unpin](/vk/messages/unpin/) - !!Открепляет сообщение.
-+ [Messages.MarkAsImportantConversation](/vk/messages/markAsImportantConversation/) - !!Помечает беседу как важную либо снимает отметку.
-+ [Messages.MarkAsAnsweredConversation](/vk/messages/markAsAnsweredConversation/) - !!Помечает беседу как отвеченную либо снимает отметку.
-+ [Messages.JoinChatByInviteLink](/vk/messages/joinChatByInviteLink/) - !!Позволяет присоединиться к чату по ссылке-приглашению.
-+ [Messages.IsMessagesFromGroupAllowed](/vk/messages/isMessagesFromGroupAllowed/) - !!Возвращает информацию о том, разрешена ли отправка сообщений от сообщества пользователю.
-+ [Messages.GetInviteLink](/vk/messages/getInviteLink/) - !!Получает ссылку для приглашения пользователя в беседу.
-+ [Messages.GetImportantMessages](/vk/messages/getImportantMessages/) - !!Возвращает список важных сообщений пользователя.
-+ [Messages.GetHistoryAttachments](/vk/messages/getHistoryAttachments/) - !!Возвращает материалы диалога или беседы.
-+ [Messages.GetHistory](/vk/messages/getHistory/) - !!Возвращает историю сообщений для указанного диалога.
-+ [Messages.GetConversationsById](/vk/messages/getConversationsById/) - !!Позволяет получить беседу по её идентификатору.
-+ [Messages.GetConversations](/vk/messages/getConversations/) - !!Возвращает список бесед пользователя.
 
 ## Группы
 + [Groups.SetLongPollSettings](/vk/groups/setLongPollSettings/) - !!Задаёт настройки для Bots Long Poll API в сообществе.
