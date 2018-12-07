@@ -24,8 +24,10 @@ app_requests - возвращает количество непрочитанн�
 
 ## Пример
 ``` csharp
-var counters = _api.Account.GetCounters(CountersFilter.All);
+            var counters = _api.Account.GetCounters(CountersFilter.All);
+            Console.WriteLine(counters.Groups.ToString());
+            Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.50
-Дата обновления: 10.02.2016 13:55:10
+## Версия Вконтакте API v.5.92
+Дата обновления: 08.12.2018 01:34:10
