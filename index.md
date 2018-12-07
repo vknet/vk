@@ -30,8 +30,6 @@ PM> Install-Package VkNet
 + [Users.Report](/vk/users/report/) - Позволяет пожаловаться на пользователя.
 + [Users.GetNearby](/vk/users/getNearby/) - Индексирует текущее местоположение пользователя и возвращает список пользователей, которые находятся вблизи.
 
-
-
 ## Друзья
 + [Friends.Get](/vk/friends/get/) - Возвращает список идентификаторов друзей пользователя или расширенную информацию о друзьях пользователя (при использовании параметра fields).
 + [Friends.GetOnline](/vk/friends/getOnline/) - Возвращает список идентификаторов друзей пользователя, находящихся на сайте.
@@ -86,16 +84,10 @@ PM> Install-Package VkNet
 + [Groups.DeleteCallbackServer](/vk/groups/deleteCallbackServer/) - !!Удаляет сервер для Callback API из сообщества.
 + [Groups.DisableOnline](/vk/groups/disableOnline/) - !!Выключает статус «онлайн» в сообществе.
 + [Groups.EditCallbackServer](/vk/groups/editCallbackServer/) - !!Редактирует данные сервера для Callback API в сообществе.
-+ [Groups.EnableOnline](/vk/groups/enableOnline/) - !!Включает статус «онлайн» в сообществе.
-+ [Groups.GetAddresses](/vk/groups/getAddresses/) - !!addresses
-+ [Groups.GetCallbackConfirmationCode](/vk/groups/getCallbackConfirmationCode/) - Позволяет получить строку, необходимую для подтверждения адреса сервера в Callback API.
++ [Groups.GetCallbackConfirmationCode](/vk/groups/getCallbackConfirmationCode/) - !!Позволяет получить строку, необходимую для подтверждения адреса сервера в Callback API.
 + [Groups.GetCallbackServers](/vk/groups/getCallbackServers/) - !!Получает информацию о серверах для Callback API в сообществе.
-+ [Groups.GetCallbackSettings](/vk/groups/getCallbackSettings/) - !!Позволяет получить настройки уведомлений Callback API для сообщества.
-+ [Groups.GetLongPollSettings](/vk/groups/getLongPollSettings/) - !!Получает настройки Bots Longpoll API для сообщества.
-+ [Groups.GetOnlineStatus](/vk/groups/getOnlineStatus/) - !!Получает информацию о статусе «онлайн» в сообществе.
-+ [Groups.GetTokenPermissions](/vk/groups/getTokenPermissions/) - !!Возвращает настройки прав для ключа доступа сообщества.
-+ [Groups.SetCallbackSettings](/vk/groups/setCallbackSettings/) - !!Позволяет задать настройки уведомлений о событиях в Callback API.
-+ [Groups.SetLongPollSettings](/vk/groups/setLongPollSettings/) - !!Задаёт настройки для Bots Long Poll API в сообществе.
++ [Groups.GetCallbackSettings](/vk/groups/getCallbackSettings/) - Позволяет получить настройки уведомлений Callback API для сообщества.
++ [Groups.SetCallbackSettings](/vk/groups/setCallbackSettings/) - Позволяет задать настройки уведомлений о событиях в Callback API.
 
 ## Аудиозаписи [Решение по обходу блокировки API Audio](https://github.com/atckun/VkNet.AudioBypass)
 ### Установка через Nuget
@@ -154,23 +146,6 @@ PM> Install-Package VkNet.AudioBypassService
 + [Messages.GetLastActivity](/vk/messages/getLastActivity/) - Возвращает текущий статус и дату последней активности указанного пользователя.
 + [Messages.SetChatPhoto](/vk/messages/setChatPhoto/) - Позволяет установить фотографию мультидиалога, загруженную с помощью метода photos.getChatUploadServer.
 + [Messages.DeleteChatPhoto](/vk/messages/deleteChatPhoto/) - Позволяет удалить фотографию мультидиалога.
-+ [Messages.AllowMessagesFromGroup](/vk/messages/allowMessagesFromGroup/) - !!Позволяет разрешить отправку сообщений от сообщества текущему пользователю.
-+ [Messages.DenyMessagesFromGroup](/vk/messages/denyMessagesFromGroup/) - !!Позволяет запретить отправку сообщений от сообщества текущему пользователю.
-+ [Messages.Edit](/vk/messages/edit/) - !!Редактирует сообщение.
-+ [Messages.GetByConversationMessageId](/vk/messages/getByConversationMessageId/) - !!Возвращает сообщения по их идентификаторам в рамках беседы.
-+ [Messages.GetChatPreview](/vk/messages/getChatPreview/) - !!Получает данные для превью чата с приглашением по ссылке.
-+ [Messages.Pin](/vk/messages/pin/) - !!Закрепляет сообщение.
-+ [Messages.Unpin](/vk/messages/unpin/) - !!Открепляет сообщение.
-+ [Messages.MarkAsImportantConversation](/vk/messages/markAsImportantConversation/) - !!Помечает беседу как важную либо снимает отметку.
-+ [Messages.MarkAsAnsweredConversation](/vk/messages/markAsAnsweredConversation/) - !!Помечает беседу как отвеченную либо снимает отметку.
-+ [Messages.JoinChatByInviteLink](/vk/messages/joinChatByInviteLink/) - !!Позволяет присоединиться к чату по ссылке-приглашению.
-+ [Messages.IsMessagesFromGroupAllowed](/vk/messages/isMessagesFromGroupAllowed/) - !!Возвращает информацию о том, разрешена ли отправка сообщений от сообщества пользователю.
-+ [Messages.GetInviteLink](/vk/messages/getInviteLink/) - !!Получает ссылку для приглашения пользователя в беседу.
-+ [Messages.GetImportantMessages](/vk/messages/getImportantMessages/) - !!Возвращает список важных сообщений пользователя.
-+ [Messages.GetHistoryAttachments](/vk/messages/getHistoryAttachments/) - !!Возвращает материалы диалога или беседы.
-+ [Messages.GetHistory](/vk/messages/getHistory/) - !!Возвращает историю сообщений для указанного диалога.
-+ [Messages.GetConversationsById](/vk/messages/getConversationsById/) - !!Позволяет получить беседу по её идентификатору.
-+ [Messages.ПetConversations](/vk/messages/getConversations/) - !!Возвращает список бесед пользователя.
 
 ## Стена
 + [Wall.Get](/vk/wall/get/) - Возвращает список записей со стены пользователя или сообщества.
@@ -438,6 +413,33 @@ PM> Install-Package VkNet.AudioBypassService
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
 
 # Не реализованные методы
+
+## Сообщения
++ [Messages.AllowMessagesFromGroup](/vk/messages/allowMessagesFromGroup/) - !!Позволяет разрешить отправку сообщений от сообщества текущему пользователю.
++ [Messages.DenyMessagesFromGroup](/vk/messages/denyMessagesFromGroup/) - !!Позволяет запретить отправку сообщений от сообщества текущему пользователю.
++ [Messages.Edit](/vk/messages/edit/) - !!Редактирует сообщение.
++ [Messages.GetByConversationMessageId](/vk/messages/getByConversationMessageId/) - !!Возвращает сообщения по их идентификаторам в рамках беседы.
++ [Messages.GetChatPreview](/vk/messages/getChatPreview/) - !!Получает данные для превью чата с приглашением по ссылке.
++ [Messages.Pin](/vk/messages/pin/) - !!Закрепляет сообщение.
++ [Messages.Unpin](/vk/messages/unpin/) - !!Открепляет сообщение.
++ [Messages.MarkAsImportantConversation](/vk/messages/markAsImportantConversation/) - !!Помечает беседу как важную либо снимает отметку.
++ [Messages.MarkAsAnsweredConversation](/vk/messages/markAsAnsweredConversation/) - !!Помечает беседу как отвеченную либо снимает отметку.
++ [Messages.JoinChatByInviteLink](/vk/messages/joinChatByInviteLink/) - !!Позволяет присоединиться к чату по ссылке-приглашению.
++ [Messages.IsMessagesFromGroupAllowed](/vk/messages/isMessagesFromGroupAllowed/) - !!Возвращает информацию о том, разрешена ли отправка сообщений от сообщества пользователю.
++ [Messages.GetInviteLink](/vk/messages/getInviteLink/) - !!Получает ссылку для приглашения пользователя в беседу.
++ [Messages.GetImportantMessages](/vk/messages/getImportantMessages/) - !!Возвращает список важных сообщений пользователя.
++ [Messages.GetHistoryAttachments](/vk/messages/getHistoryAttachments/) - !!Возвращает материалы диалога или беседы.
++ [Messages.GetHistory](/vk/messages/getHistory/) - !!Возвращает историю сообщений для указанного диалога.
++ [Messages.GetConversationsById](/vk/messages/getConversationsById/) - !!Позволяет получить беседу по её идентификатору.
++ [Messages.GetConversations](/vk/messages/getConversations/) - !!Возвращает список бесед пользователя.
+
+## Группы
++ [Groups.SetLongPollSettings](/vk/groups/setLongPollSettings/) - !!Задаёт настройки для Bots Long Poll API в сообществе.
++ [Groups.EnableOnline](/vk/groups/enableOnline/) - !!Включает статус «онлайн» в сообществе.
++ [Groups.GetAddresses](/vk/groups/getAddresses/) - !!addresses
++ [Groups.GetLongPollSettings](/vk/groups/getLongPollSettings/) - !!Получает настройки Bots Longpoll API для сообщества.
++ [Groups.GetOnlineStatus](/vk/groups/getOnlineStatus/) - !!Получает информацию о статусе «онлайн» в сообществе.
++ [Groups.GetTokenPermissions](/vk/groups/getTokenPermissions/) - !!Возвращает настройки прав для ключа доступа сообщества.
 
 ## Рекламный Кабинет
 + [Ads.AddOfficeUsers](/vk/ads/addOfficeUsers/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
