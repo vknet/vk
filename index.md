@@ -84,10 +84,17 @@ PM> Install-Package VkNet
 + [Groups.DeleteCallbackServer](/vk/groups/deleteCallbackServer/) - !!Удаляет сервер для Callback API из сообщества.
 + [Groups.DisableOnline](/vk/groups/disableOnline/) - !!Выключает статус «онлайн» в сообществе.
 + [Groups.EditCallbackServer](/vk/groups/editCallbackServer/) - !!Редактирует данные сервера для Callback API в сообществе.
-+ [Groups.GetCallbackConfirmationCode](/vk/groups/getCallbackConfirmationCode/) - !!Позволяет получить строку, необходимую для подтверждения адреса сервера в Callback API.
++ [Groups.EnableOnline](/vk/groups/enableOnline/) - !!Включает статус «онлайн» в сообществе.
++ [Groups.GetAddresses](/vk/groups/getAddresses/) - !!addresses
++ [Groups.GetCallbackConfirmationCode](/vk/groups/getCallbackConfirmationCode/) - Позволяет получить строку, необходимую для подтверждения адреса сервера в Callback API.
 + [Groups.GetCallbackServers](/vk/groups/getCallbackServers/) - !!Получает информацию о серверах для Callback API в сообществе.
-+ [Groups.GetCallbackSettings](/vk/groups/getCallbackSettings/) - Позволяет получить настройки уведомлений Callback API для сообщества.
-+ [Groups.SetCallbackSettings](/vk/groups/setCallbackSettings/) - Позволяет задать настройки уведомлений о событиях в Callback API.
++ [Groups.GetCallbackSettings](/vk/groups/getCallbackSettings/) - !!Позволяет получить настройки уведомлений Callback API для сообщества.
++ [Groups.GetLongPollSettings](/vk/groups/getLongPollSettings/) - !!Получает настройки Bots Longpoll API для сообщества.
++ [Groups.GetOnlineStatus](/vk/groups/getOnlineStatus/) - !!Получает информацию о статусе «онлайн» в сообществе.
++ [Groups.GetTokenPermissions](/vk/groups/getTokenPermissions/) - !!Возвращает настройки прав для ключа доступа сообщества.
++ [Groups.SetCallbackSettings](/vk/groups/setCallbackSettings/) - !!Позволяет задать настройки уведомлений о событиях в Callback API.
++ [Groups.SetLongPollSettings](/vk/groups/setLongPollSettings/) - !!Задаёт настройки для Bots Long Poll API в сообществе.
+
 
 ## Аудиозаписи [Решение по обходу блокировки API Audio](https://github.com/atckun/VkNet.AudioBypass)
 ### Установка через Nuget
@@ -430,7 +437,6 @@ PM> Install-Package VkNet.AudioBypassService
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
 
 # Не реализованные методы
-
 ## Группы
 + [Groups.SetLongPollSettings](/vk/groups/setLongPollSettings/) - !!Задаёт настройки для Bots Long Poll API в сообществе.
 + [Groups.EnableOnline](/vk/groups/enableOnline/) - !!Включает статус «онлайн» в сообществе.
