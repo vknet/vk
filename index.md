@@ -30,8 +30,6 @@ PM> Install-Package VkNet
 + [Users.Report](/vk/users/report/) - Позволяет пожаловаться на пользователя.
 + [Users.GetNearby](/vk/users/getNearby/) - Индексирует текущее местоположение пользователя и возвращает список пользователей, которые находятся вблизи.
 
-
-
 ## Друзья
 + [Friends.Get](/vk/friends/get/) - Возвращает список идентификаторов друзей пользователя или расширенную информацию о друзьях пользователя (при использовании параметра fields).
 + [Friends.GetOnline](/vk/friends/getOnline/) - Возвращает список идентификаторов друзей пользователя, находящихся на сайте.
@@ -96,6 +94,7 @@ PM> Install-Package VkNet
 + [Groups.GetTokenPermissions](/vk/groups/getTokenPermissions/) - !!Возвращает настройки прав для ключа доступа сообщества.
 + [Groups.SetCallbackSettings](/vk/groups/setCallbackSettings/) - !!Позволяет задать настройки уведомлений о событиях в Callback API.
 + [Groups.SetLongPollSettings](/vk/groups/setLongPollSettings/) - !!Задаёт настройки для Bots Long Poll API в сообществе.
+
 
 ## Аудиозаписи [Решение по обходу блокировки API Audio](https://github.com/atckun/VkNet.AudioBypass)
 ### Установка через Nuget
@@ -170,7 +169,7 @@ PM> Install-Package VkNet.AudioBypassService
 + [Messages.GetHistoryAttachments](/vk/messages/getHistoryAttachments/) - !!Возвращает материалы диалога или беседы.
 + [Messages.GetHistory](/vk/messages/getHistory/) - !!Возвращает историю сообщений для указанного диалога.
 + [Messages.GetConversationsById](/vk/messages/getConversationsById/) - !!Позволяет получить беседу по её идентификатору.
-+ [Messages.ПetConversations](/vk/messages/getConversations/) - !!Возвращает список бесед пользователя.
++ [Messages.GetConversations](/vk/messages/getConversations/) - !!Возвращает список бесед пользователя.
 
 ## Стена
 + [Wall.Get](/vk/wall/get/) - Возвращает список записей со стены пользователя или сообщества.
@@ -438,6 +437,13 @@ PM> Install-Package VkNet.AudioBypassService
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
 
 # Не реализованные методы
+## Группы
++ [Groups.SetLongPollSettings](/vk/groups/setLongPollSettings/) - !!Задаёт настройки для Bots Long Poll API в сообществе.
++ [Groups.EnableOnline](/vk/groups/enableOnline/) - !!Включает статус «онлайн» в сообществе.
++ [Groups.GetAddresses](/vk/groups/getAddresses/) - !!addresses
++ [Groups.GetLongPollSettings](/vk/groups/getLongPollSettings/) - !!Получает настройки Bots Longpoll API для сообщества.
++ [Groups.GetOnlineStatus](/vk/groups/getOnlineStatus/) - !!Получает информацию о статусе «онлайн» в сообществе.
++ [Groups.GetTokenPermissions](/vk/groups/getTokenPermissions/) - !!Возвращает настройки прав для ключа доступа сообщества.
 
 ## Рекламный Кабинет
 + [Ads.AddOfficeUsers](/vk/ads/addOfficeUsers/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
