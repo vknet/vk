@@ -1,0 +1,54 @@
+<Page
+    x:Class="VkNet.Uwp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VkNet.Uwp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+	<Grid>
+
+		<TextBlock HorizontalAlignment="Center"
+				   x:Name="DescriptionText"
+				   Margin="0 100 0 0"
+				   FontSize="22"
+				   Text="Пример авторизации в uwp приложениях с использованием VkNet"/>
+
+		<TextBlock Text="Ваш токен: "
+				   x:Name="UserToken"
+				   Visibility="Collapsed"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center"
+				   Margin="0 0 0 100"/>
+
+		<TextBox HorizontalAlignment="Center"
+				 VerticalAlignment="Center"
+				 x:Name="ClientId"
+				 Visibility="Visible"
+				 Margin="0 0 0 75"
+				 PlaceholderText="Введите Id Вашего приложения"/>
+
+		<TextBox HorizontalAlignment="Center"
+				 VerticalAlignment="Center"
+				 x:Name="Scope"
+				 Visibility="Visible"
+				 Margin="0 0 0 0"
+				 Text="friends,photos,messages,offline,docs"
+				 PlaceholderText="введите необходимые scope через запятую"/>
+		
+		<Button Content="Войти"
+				Margin="0 80 0 0"
+				Visibility="Visible"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Click="AuthButton_Click"
+				x:Name="AuthButton"/>
+
+		<HyperlinkButton Content="Fooxboy 2018"
+						 NavigateUri="https://t.me/fooxboy"
+						 HorizontalAlignment="Center"
+						 VerticalAlignment="Bottom"/>
+	</Grid>
+</Page>
