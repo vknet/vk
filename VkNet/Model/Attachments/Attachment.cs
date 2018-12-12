@@ -44,6 +44,11 @@ namespace VkNet.Model.Attachments
 					return Document;
 				}
 
+				if (Type == typeof(Podcast))
+				{
+					return Podcast;
+				}
+
 				if (Type == typeof(Graffiti))
 				{
 					return Graffiti;
@@ -180,6 +185,14 @@ namespace VkNet.Model.Attachments
 				{
 					attachment.Type = typeof(Document);
 					attachment.Document = response["doc"];
+
+					break;
+				}
+				case "podcast":
+
+				{
+					attachment.Type = typeof(Podcast);
+					attachment.Podcast = response["podcast"];
 
 					break;
 				}
@@ -350,6 +363,11 @@ namespace VkNet.Model.Attachments
 		private Document Document { get; set; }
 
 		/// <summary>
+		/// Подкаст.
+		/// </summary>
+		private Podcast Podcast { get; set; }
+
+		/// <summary>
 		/// Документ.
 		/// </summary>
 		private Graffiti Graffiti { get; set; }
@@ -431,7 +449,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Аудио сообщение
 		/// </summary>
-		public AudioMessage AudioMessage { get; set; }
+		private AudioMessage AudioMessage { get; set; }
 	#endregion
 	}
 }
