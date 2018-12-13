@@ -23,13 +23,13 @@ namespace VkNet.Categories
 	/// </summary>
 	public partial class MessagesCategory : IMessagesCategory
 	{
-		private readonly IVkApiInvoke _vk;
+		private readonly IVkApi _vk;
 
 		/// <summary>
 		/// Методы для работы с сообщениями.
 		/// </summary>
 		/// <param name="vk"> API </param>
-		public MessagesCategory(IVkApiInvoke vk)
+		public MessagesCategory(IVkApi vk)
 		{
 			_vk = vk;
 		}
@@ -127,7 +127,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long Send(MessagesSendParams @params)
 		{
-			if (@params.RandomId <= 0)
+			if (_vk.VkApiVersion.IsGreaterThanOrEqual(5, 90) && @params.RandomId <= 0)
 			{
 				throw new ArgumentException($"{nameof(@params.RandomId)} обязательное значение.");
 			}

@@ -1,6 +1,7 @@
 using System;
 using JetBrains.Annotations;
 using VkNet.Abstractions.Authorization;
+using VkNet.Abstractions.Core;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -27,6 +28,11 @@ namespace VkNet.Abstractions
 		/// Поток авторизации
 		/// </summary>
 		IAuthorizationFlow AuthorizationFlow { get; set; }
+
+		/// <summary>
+		/// Версия API vk.com.
+		/// </summary>
+		IVkApiVersionManager VkApiVersion { get; set; }
 
 		/// <summary>
 		/// Токен для доступа к методам API

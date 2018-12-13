@@ -20,7 +20,6 @@ using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Categories;
 using VkNet.Enums;
-using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Infrastructure;
 using VkNet.Model;
@@ -122,10 +121,8 @@ namespace VkNet
 			Initialization(serviceProvider);
 		}
 
-		/// <summary>
-		/// Версия API vk.com.
-		/// </summary>
-		public IVkApiVersionManager VkApiVersion { get; private set; }
+		/// <inheritdoc />
+		public IVkApiVersionManager VkApiVersion { get; set; }
 
 		/// <summary>
 		/// Токен для доступа к методам API
@@ -811,15 +808,17 @@ namespace VkNet
 
 		private void Initialization(IServiceProvider serviceProvider)
 		{
-			Browser = serviceProvider.GetRequiredService<IBrowser>();
-			AuthorizationFlow = serviceProvider.GetRequiredService<IAuthorizationFlow>();
-			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
 			_logger = serviceProvider.GetService<ILogger<VkApi>>();
 			_captchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
 			_language = serviceProvider.GetRequiredService<ILanguageService>();
 			_rateLimiter = serviceProvider.GetRequiredService<IRateLimiter>();
 
+			Browser = serviceProvider.GetRequiredService<IBrowser>();
+			AuthorizationFlow = serviceProvider.GetRequiredService<IAuthorizationFlow>();
+			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
 			RestClient = serviceProvider.GetRequiredService<IRestClient>();
+			VkApiVersion = serviceProvider.GetRequiredService<IVkApiVersionManager>();
+
 			Users = new UsersCategory(this);
 			Friends = new FriendsCategory(this);
 			Status = new StatusCategory(this);
@@ -859,8 +858,6 @@ namespace VkNet
 			Secure = new SecureCategory(this);
 			Stories = new StoriesCategory(this);
 			LeadForms = new LeadFormsCategory(this);
-
-			VkApiVersion = serviceProvider.GetRequiredService<IVkApiVersionManager>();
 
 			RequestsPerSecond = 3;
 

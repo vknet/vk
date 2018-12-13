@@ -5,6 +5,7 @@ using System.Text;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions;
+using VkNet.Abstractions.Core;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;

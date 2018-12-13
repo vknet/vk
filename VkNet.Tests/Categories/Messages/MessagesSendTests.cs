@@ -5,20 +5,17 @@ using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Exception;
+using VkNet.Infrastructure;
 using VkNet.Model.RequestParams;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class MessagesSendTests : BaseTest
+	public class MessagesSendTests : CategoryBaseTest
 	{
-		private MessagesCategory Messages => GetMockedMessagesCategory();
-
-		private MessagesCategory GetMockedMessagesCategory()
-		{
-			return new MessagesCategory(Api);
-		}
+		protected override string Folder => "Messages";
 
 		[Test]
 		public void AccessTokenInvalid_ThrowAccessTokenInvalidException()
@@ -43,7 +40,7 @@ namespace VkNet.Tests.Categories.Messages
 			    'response': 4464
 			}";
 
-			var id = Messages.Send(new MessagesSendParams
+			var id = Api.Messages.Send(new MessagesSendParams
 			{
 				UserId = 7550525, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743,
 				RandomId = 1
@@ -62,7 +59,7 @@ namespace VkNet.Tests.Categories.Messages
 					'response': 4457
 				  }";
 
-			var id = Messages.Send(new MessagesSendParams
+			var id = Api.Messages.Send(new MessagesSendParams
 			{
 				UserId = 7550525, Message = "Test from vk.net ;) # 2",
 				RandomId = 1
@@ -74,7 +71,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void EmptyMessage_ThrowsInvalidParameterException()
 		{
-			Assert.That(() => Messages.Send(new MessagesSendParams
+			Assert.That(() => Api.Messages.Send(new MessagesSendParams
 				{
 					UserId = 7550525, Message = ""
 				}),
@@ -100,7 +97,7 @@ namespace VkNet.Tests.Categories.Messages
 					}
 				  }";
 
-			Assert.That(() => Messages.Send(new MessagesSendParams
+			Assert.That(() => Api.Messages.Send(new MessagesSendParams
 				{
 					UserId = 7550525, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743,
 					RandomId = 1
@@ -127,7 +124,7 @@ namespace VkNet.Tests.Categories.Messages
 					}
 				  }";
 
-			Assert.That(() => Messages.Send(new MessagesSendParams
+			Assert.That(() => Api.Messages.Send(new MessagesSendParams
 				{
 					UserId = 7550525, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743,
 					RandomId = 1
@@ -148,7 +145,7 @@ namespace VkNet.Tests.Categories.Messages
                 }]
             }";
 
-			Assert.That(() => Messages.Send(new MessagesSendParams
+			Assert.That(() => Api.Messages.Send(new MessagesSendParams
 				{
 					UserIds = new List<long> { 7550525 }, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743
 				}),
@@ -168,7 +165,7 @@ namespace VkNet.Tests.Categories.Messages
                 }]
             }";
 
-			var result = Messages.SendToUserIds(new MessagesSendParams
+			var result = Api.Messages.SendToUserIds(new MessagesSendParams
 			{
 				UserIds = new List<long> { 7550525 }, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743
 			});
@@ -190,10 +187,50 @@ namespace VkNet.Tests.Categories.Messages
 					'response': 4464
 				  }";
 
-			var id = Messages.Send(new MessagesSendParams
+			var id = Api.Messages.Send(new MessagesSendParams
 			{
 				UserId = 7550525, Message = "Работает # 2 --  еще разок",
 				RandomId = 1
+			});
+
+			Assert.That(id, Is.EqualTo(4464));
+		}
+
+		[Test]
+		public void MessagesSend_RandomIdRequired_ArgumentException()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+
+			Json = @"
+            {
+                'response': [{
+                    'peer_id': 32190123,
+                    'message_id': 210525
+                }]
+            }";
+
+			Assert.That(() => Api.Messages.Send(new MessagesSendParams
+				{
+					UserIds = new List<long> { 7550525 }, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743
+				}),
+				Throws.InstanceOf<ArgumentException>());
+		}
+
+		[Test]
+		public void MessagesSend_RandomIdNotRequiredInLessThan_5_90_ArgumentException()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+
+			Json = @"
+            {
+                'response': 4464
+            }";
+
+			Api.VkApiVersion.SetVersion(5, 88);
+
+			var id = Api.Messages.Send(new MessagesSendParams
+			{
+				UserId = 7550525, Message = "Работает # 2 --  еще разок"
 			});
 
 			Assert.That(id, Is.EqualTo(4464));
