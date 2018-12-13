@@ -123,9 +123,15 @@ namespace VkNet.Categories
 			return _vk.Call<MessageSearchResult>("messages.search", @params);
 		}
 
+		/// <exception cref="ArgumentNullException"></exception>
 		/// <inheritdoc />
 		public long Send(MessagesSendParams @params)
 		{
+			if (@params.RandomId <= 0)
+			{
+				throw new ArgumentException($"{nameof(@params.RandomId)} обязательное значение.");
+			}
+
 			return _vk.Call("messages.send", @params);
 		}
 
