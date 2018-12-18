@@ -31,7 +31,7 @@ PM> Install-Package VkNet
 
 # План развития проекта
 
-- Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.90.
+- Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.92.
 - [Недостающие классы и методы](http://bit.ly/2slXKrI)
 - Обновить документацию проекта
 
@@ -43,7 +43,6 @@ PM> Install-Package VkNet
 - [HtmlAgilityPack](http://html-agility-pack.net/)
 - [NUnit](http://www.nunit.org/) - NUnit is a unit-testing framework for all .Net languages.
 - [Moq](https://github.com/moq/moq4) - The most popular and friendly mocking framework for .NET
-- [NLog](http://nlog-project.org/) - Flexible & free open-source logging for .NET
 - [SonarAnalyzer.CSharp](https://www.sonarlint.org/visualstudio/) - Analyzers which spot bugs and code smells in your code. 
 
 # Помощь проекту
