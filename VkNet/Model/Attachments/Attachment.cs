@@ -44,6 +44,11 @@ namespace VkNet.Model.Attachments
 					return Document;
 				}
 
+				if (Type == typeof(Article))
+				{
+					return Article;
+				}
+
 				if (Type == typeof(Podcast))
 				{
 					return Podcast;
@@ -133,8 +138,6 @@ namespace VkNet.Model.Attachments
 			}
 		}
 
-
-
 		/// <summary>
 		/// Информация о типе вложения.
 		/// </summary>
@@ -193,6 +196,14 @@ namespace VkNet.Model.Attachments
 				{
 					attachment.Type = typeof(Podcast);
 					attachment.Podcast = response["podcast"];
+
+					break;
+				}
+				case "article":
+
+				{
+					attachment.Type = typeof(Article);
+					attachment.Article = response[type];
 
 					break;
 				}
@@ -328,9 +339,9 @@ namespace VkNet.Model.Attachments
 				default:
 
 				{
-					throw new InvalidParameterException(string.Format("The type '{0}' of attachment is not defined. {1}"
-							, type
-							, response["date"]));
+					throw new InvalidParameterException(string.Format("The type '{0}' of attachment is not defined. {1}",
+						type,
+						response["date"]));
 				}
 			}
 
@@ -450,6 +461,12 @@ namespace VkNet.Model.Attachments
 		/// Аудио сообщение
 		/// </summary>
 		private AudioMessage AudioMessage { get; set; }
+
+		/// <summary>
+		/// Статья
+		/// </summary>
+		public Article Article { get; set; }
+
 	#endregion
 	}
 }

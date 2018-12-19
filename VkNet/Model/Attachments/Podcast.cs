@@ -27,14 +27,14 @@ namespace VkNet.Model.Attachments
 		/// Длительность
 		/// </summary>
 		[JsonProperty("duration")]
-		public long Duration { get; set; }
+		public long? Duration { get; set; }
 
 		/// <summary>
 		/// Дата
 		/// </summary>
 		[JsonProperty("date")]
 		[JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime Date { get; set; }
+		public DateTime? Date { get; set; }
 
 		/// <summary>
 		/// URL на подкаст
@@ -46,25 +46,25 @@ namespace VkNet.Model.Attachments
 		/// Идентификатор текста песни
 		/// </summary>
 		[JsonProperty("lyrics_id")]
-		public long LyricsId { get; set; }
+		public long? LyricsId { get; set; }
 
 		/// <summary>
 		/// Не искать
 		/// </summary>
 		[JsonProperty("no_search")]
-		public bool NoSearch { get; set; }
+		public bool? NoSearch { get; set; }
 
 		/// <summary>
 		/// Высокое качество
 		/// </summary>
 		[JsonProperty("is_hq")]
-		public bool IsHq { get; set; }
+		public bool? IsHq { get; set; }
 
 		/// <summary>
 		/// Явный
 		/// </summary>
 		[JsonProperty("is_explicit")]
-		public bool IsExplicit { get; set; }
+		public bool? IsExplicit { get; set; }
 
 		/// <summary>
 		/// Информация о подкасте

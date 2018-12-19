@@ -1,0 +1,128 @@
+{
+  "response": {
+    "count": 520,
+    "items": [
+      {
+        "id": 4284,
+        "from_id": -96493329,
+        "owner_id": -96493329,
+        "date": 1541606880,
+        "type": "post",
+        "marked_as_ads": 0,
+        "post_type": "post",
+        "text": "√овард –ахлин объ¤сн¤ет концепт финальной причины и показывает, в чем отличие молекул¤рного и мол¤рного подходов к анализу поведени¤. ¬рем¤ чтени¤ Ч 5 минут. ѕеревод [club165511031| реатуриста].\n#психологи¤ #философи¤",
+        "attachments": [
+          {
+            "type": "article",
+            "article": {
+              "id": 10419,
+              "owner_id": -165511031,
+              "owner_name": " –≈ј“”–»—“ | Ѕлог о человеческом поведении",
+              "owner_photo": "https://pp.userapi.com/c845420/v845420791/1372fc/K8-LXUcEGPM.jpg?ava=1",
+              "state": "available",
+              "can_report": true,
+              "title": "“елеологический бихевиоризм",
+              "subtitle": "“елеологическа¤ наука основана на конечных причинах, тогда как науки, к которым мы привыкли Ч физика и хими¤ Ч на действующих причинах. ",
+              "views": 217,
+              "shares": 13,
+              "is_favorite": false,
+              "url": "https://vk.com/@creaturist-teleologicheskii-biheviorizm",
+              "view_url": "https://m.vk.com/@creaturist-teleologicheskii-biheviorizm?wall_owner_id=-96493329",
+              "access_key": "e68cde7291a8ea3176",
+              "published_date": 1541261721,
+              "photo": {
+                "id": 456239087,
+                "album_id": -66,
+                "owner_id": -165511031,
+                "user_id": 100,
+                "sizes": [
+                  {
+                    "type": "m",
+                    "url": "https://pp.userapi.com/c850128/v850128306/5ae7c/GdXmEOWoJro.jpg",
+                    "width": 130,
+                    "height": 108
+                  },
+                  {
+                    "type": "o",
+                    "url": "https://pp.userapi.com/c850128/v850128306/5ae80/0yi3fx4Rib8.jpg",
+                    "width": 130,
+                    "height": 108
+                  },
+                  {
+                    "type": "p",
+                    "url": "https://pp.userapi.com/c850128/v850128306/5ae81/ThBa2gbivGc.jpg",
+                    "width": 200,
+                    "height": 167
+                  },
+                  {
+                    "type": "q",
+                    "url": "https://pp.userapi.com/c850128/v850128306/5ae82/Zf1DOR0GWGw.jpg",
+                    "width": 320,
+                    "height": 267
+                  },
+                  {
+                    "type": "r",
+                    "url": "https://pp.userapi.com/c850128/v850128306/5ae83/08RQUu09UGQ.jpg",
+                    "width": 510,
+                    "height": 425
+                  },
+                  {
+                    "type": "s",
+                    "url": "https://pp.userapi.com/c850128/v850128306/5ae7b/D7Og5v-A5bk.jpg",
+                    "width": 75,
+                    "height": 62
+                  },
+                  {
+                    "type": "x",
+                    "url": "https://pp.userapi.com/c850128/v850128306/5ae7d/aMNhiXHHsss.jpg",
+                    "width": 604,
+                    "height": 503
+                  },
+                  {
+                    "type": "y",
+                    "url": "https://pp.userapi.com/c850128/v850128306/5ae7e/6txUCMtiBIs.jpg",
+                    "width": 807,
+                    "height": 672
+                  },
+                  {
+                    "type": "z",
+                    "url": "https://pp.userapi.com/c850128/v850128306/5ae7f/8M4tpW94Go8.jpg",
+                    "width": 1200,
+                    "height": 1000
+                  }
+                ],
+                "text": "",
+                "date": 1541261715
+              }
+            }
+          }
+        ],
+        "post_source": {
+          "type": "vk"
+        },
+        "comments": {
+          "count": 17,
+          "can_post": 1,
+          "groups_can_post": true
+        },
+        "likes": {
+          "count": 30,
+          "user_likes": 0,
+          "can_like": 1,
+          "can_publish": 1
+        },
+        "reposts": {
+          "count": 5,
+          "user_reposted": 0
+        },
+        "views": {
+          "count": 3002
+        },
+        "ads_easy_promote": {
+          "type": 0
+        }
+      }
+    ],
+    "next_from": "10"
+  }
+}
