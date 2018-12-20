@@ -134,6 +134,11 @@ namespace VkNet.Model.Attachments
 					return PrettyCards;
 				}
 
+				if (Type == typeof(Call))
+				{
+					return Call;
+				}
+
 				return null;
 			}
 		}
@@ -336,6 +341,16 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
+				case "call":
+
+				{
+					attachment.Type = typeof(Call);
+					attachment.Call = response["call"];
+
+					break;
+				}
+
 				default:
 
 				{
@@ -466,6 +481,11 @@ namespace VkNet.Model.Attachments
 		/// Статья
 		/// </summary>
 		public Article Article { get; set; }
+
+		/// <summary>
+		/// Звонок.
+		/// </summary>
+		public Call Call { get; set; }
 
 	#endregion
 	}
