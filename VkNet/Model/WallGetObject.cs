@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Model

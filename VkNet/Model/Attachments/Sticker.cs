@@ -10,13 +10,7 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class Sticker : MediaAttachment
 	{
-		/// <summary>
-		/// Стикер.
-		/// </summary>
-		static Sticker()
-		{
-			RegisterType(type: typeof(Sticker), match: "sticker");
-		}
+		protected override string Alias => "sticker";
 
 		/// <summary>
 		/// Идентификатор набора.
@@ -40,15 +34,30 @@ namespace VkNet.Model.Attachments
 		/// <returns> </returns>
 		public static Sticker FromJson(VkResponse response)
 		{
-			var sticker = new Sticker
+			return new Sticker
 			{
-					Id = response[key: "id"] ?? response[key: "sticker_id"]
-					, ProductId = response[key: "product_id"]
-					, Images = response[key: "images"].ToReadOnlyCollectionOf<Image>(selector: x => x)
-					, ImagesWithBackground = response[key: "images_with_background"].ToReadOnlyCollectionOf<Image>(selector: x => x)
+				Id = response["id"] ?? response["sticker_id"], 
+				ProductId = response["product_id"],
+				Images = response["images"].ToReadOnlyCollectionOf<Image>(x => x),
+				ImagesWithBackground = response["images_with_background"].ToReadOnlyCollectionOf<Image>(x => x)
 			};
+		}
 
-			return sticker;
+		/// <summary>
+		/// Преобразование класса <see cref="Sticker" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Sticker" /></returns>
+		public static implicit operator Sticker(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

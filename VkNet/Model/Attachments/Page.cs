@@ -11,13 +11,8 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class Page : MediaAttachment
 	{
-		/// <summary>
-		/// Опрос.
-		/// </summary>
-		static Page()
-		{
-			RegisterType(type: typeof(Page), match: "page");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "page";
 
 		/// <summary>
 		/// Идентификатор сообщества.
@@ -75,7 +70,7 @@ namespace VkNet.Model.Attachments
 		public long? Views { get; set; }
 
 		/// <summary>
-		/// Заголовок родительской страницы для навигации, если есть.
+		/// Заголовок родительской страницы для навигации,если есть.
 		/// </summary>
 		public string Parent { get; set; }
 
@@ -116,37 +111,52 @@ namespace VkNet.Model.Attachments
 		/// <returns> </returns>
 		public static Page FromJson(VkResponse response)
 		{
-			var page = new Page
+			return new Page
 			{
-					Id = response[key: "page_id"] ?? response[key: "pid"] ?? response[key: "id"]
-					, GroupId = response[key: "group_id"] ?? response[key: "gid"]
-					, CreatorId = response[key: "creator_id"]
-					, Title = response[key: "title"]
-					, Source = response[key: "source"]
-					, CurrentUserCanEdit = response[key: "current_user_can_edit"]
-					, CurrentUserCanEditAccess = response[key: "current_user_can_edit_access"]
-					, WhoCanView = response[key: "who_can_view"]
-					, WhoCanEdit = response[key: "who_can_edit"]
-					, EditorId = response[key: "editor_id"]
-					, Edited = response[key: "edited"]
-					, Created = response[key: "created"]
-					, Parent = response[key: "parent"]
-					, Parent2 = response[key: "parent2"]
-					, Html = response[key: "html"]
-					, ViewUrl = response[key: "view_url"]
-					, VersionCreated = response[key: "version_created"]
-					, Views = response[key: "views"]
+				Id = response["page_id"] ?? response["pid"] ?? response["id"],
+				GroupId = response["group_id"] ?? response["gid"],
+				CreatorId = response["creator_id"],
+				Title = response["title"],
+				Source = response["source"],
+				CurrentUserCanEdit = response["current_user_can_edit"],
+				CurrentUserCanEditAccess = response["current_user_can_edit_access"],
+				WhoCanView = response["who_can_view"],
+				WhoCanEdit = response["who_can_edit"],
+				EditorId = response["editor_id"],
+				Edited = response["edited"],
+				Created = response["created"],
+				Parent = response["parent"],
+				Parent2 = response["parent2"],
+				Html = response["html"],
+				ViewUrl = response["view_url"],
+				VersionCreated = response["version_created"],
+				Views = response["views"]
 			};
+		}
 
-			return page;
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return string.Format("page-{0}_{1}",
+				GroupId,
+				Id);
 		}
 
 		/// <summary>
-		/// Преобразовать в строку.
+		/// Преобразование класса <see cref="Page" /> в <see cref="VkParameters" />
 		/// </summary>
-		public override string ToString()
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Page" /></returns>
+		public static implicit operator Page(VkResponse response)
 		{
-			return string.Format(format: "page-{0}_{1}", arg0: GroupId, arg1: Id);
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 
 	#endregion

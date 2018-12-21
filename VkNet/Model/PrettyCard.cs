@@ -12,32 +12,32 @@ namespace VkNet.Model.Attachments
 	{
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "card_id")]
+		[JsonProperty("card_id")]
 		public string CardId { get; set; }
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "link_url_target")]
+		[JsonProperty("link_url_target")]
 		public string LinkUrlTarget { get; set; }
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "link_url")]
+		[JsonProperty("link_url")]
 		public string LinkUrl { get; set; }
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "title")]
+		[JsonProperty("title")]
 		public string Title { get; set; }
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "button")]
+		[JsonProperty("button")]
 		public Button Button { get; set; }
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "images")]
+		[JsonProperty("images")]
 		public ReadOnlyCollection<Photo> Images { get; set; }
 
 		/// <summary>
@@ -49,25 +49,30 @@ namespace VkNet.Model.Attachments
 		{
 			return new PrettyCard
 			{
-					CardId = response[key: "card_id"]
-					, LinkUrlTarget = response[key: "link_url_target"]
-					, LinkUrl = response[key: "link_url"]
-					, Title = response[key: "title"]
-					, Button = response[key: "button"]
-					, Images = response[key: "images"].ToReadOnlyCollectionOf<Photo>(selector: x => x)
+				CardId = response["card_id"],
+				LinkUrlTarget = response["link_url_target"],
+				LinkUrl = response["link_url"],
+				Title = response["title"],
+				Button = response["button"],
+				Images = response["images"].ToReadOnlyCollectionOf<Photo>(x => x)
 			};
 		}
 
 		/// <summary>
-		/// Преобразовать из VkResponse
+		/// Преобразование класса <see cref="PrettyCard" /> в <see cref="VkParameters" />
 		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="PrettyCard" /></returns>
 		public static implicit operator PrettyCard(VkResponse response)
 		{
-			return response != null && !response.HasToken() ? null : FromJson(response: response);
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

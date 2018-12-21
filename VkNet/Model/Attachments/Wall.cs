@@ -4,11 +4,10 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model
+namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Запись со стены пользователя или сообщества. Используется для отправки
@@ -21,13 +20,8 @@ namespace VkNet.Model
 	[Serializable]
 	public class Wall : MediaAttachment
 	{
-		/// <summary>
-		/// Пост.
-		/// </summary>
-		static Wall()
-		{
-			RegisterType(typeof(Wall), "wall");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "wall";
 
 		/// <summary>
 		/// Идентификатор автора записи.
@@ -246,10 +240,10 @@ namespace VkNet.Model
 		}
 
 		/// <summary>
-		/// Неявное приведение типа <see cref="Wall"/> к <see cref="VkResponse"/>
+		/// Преобразование класса <see cref="Wall" /> в <see cref="VkParameters" />
 		/// </summary>
-		/// <param name="response">Ответ от vk</param>
-		/// <returns>Объект <see cref="Wall"/></returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Wall" /></returns>
 		public static implicit operator Wall(VkResponse response)
 		{
 			if (response == null)
@@ -257,9 +251,9 @@ namespace VkNet.Model
 				return null;
 			}
 
-			return !response.HasToken()
-				? null
-				: FromJson(response);
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 
 	#region Поля, установленные экспериментально

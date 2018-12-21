@@ -16,13 +16,8 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class Video : MediaAttachment
 	{
-		/// <summary>
-		/// Видеозапись пользователя или группы.
-		/// </summary>
-		static Video()
-		{
-			RegisterType(typeof(Video), "video");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "video";
 
 		/// <summary>
 		/// Название видеозаписи.
@@ -194,6 +189,23 @@ namespace VkNet.Model.Attachments
 				IsPrivate = response["is_private"],
 				Upcoming = response["upcoming"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="Video" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Video" /></returns>
+		public static implicit operator Video(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 
 	#endregion

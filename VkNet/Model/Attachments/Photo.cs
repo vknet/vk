@@ -15,10 +15,8 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class Photo : MediaAttachment
 	{
-		static Photo()
-		{
-			RegisterType(typeof(Photo), "photo");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "photo";
 
 		/// <summary>
 		/// Идентификатор альбома, в котором находится фотография.
@@ -121,14 +119,6 @@ namespace VkNet.Model.Attachments
 
 	#region Методы
 
-		/// <inheritdoc />
-		public override string ToString()
-		{
-			return string.IsNullOrWhiteSpace(AccessKey)
-				? base.ToString()
-				: $"{base.ToString()}_{AccessKey}";
-		}
-
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
@@ -175,15 +165,26 @@ namespace VkNet.Model.Attachments
 			return photo;
 		}
 
+		/// <summary>
+		/// Преобразование класса <see cref="Photo" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Photo" /></returns>
+		public static implicit operator Photo(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
+
 	#endregion
 
 	#region опциональные поля
-
-		/// <summary>
-		/// Ключ доступа.
-		/// </summary>
-		[JsonProperty("access_key")]
-		public string AccessKey { get; set; }
 
 		/// <summary>
 		/// Идентификатор записи, у которой данная фотография является прикреплением???

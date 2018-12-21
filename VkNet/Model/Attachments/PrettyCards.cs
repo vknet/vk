@@ -9,16 +9,12 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class PrettyCards : MediaAttachment
 	{
-		/// <inheritdoc />
-		static PrettyCards()
-		{
-			RegisterType(type: typeof(PrettyCards), match: "pretty_cards");
-		}
+		protected override string Alias => "pretty_cards";
 
 		/// <summary>
 		/// Cards
 		/// </summary>
-		[JsonProperty(propertyName: "cards")]
+		[JsonProperty("cards")]
 		public ReadOnlyCollection<PrettyCard> Cards { get; set; }
 
 		/// <summary>
@@ -30,20 +26,25 @@ namespace VkNet.Model.Attachments
 		{
 			return new PrettyCards
 			{
-					Cards = response[key: "cards"].ToReadOnlyCollectionOf<PrettyCard>(selector: x => x)
+				Cards = response["cards"].ToReadOnlyCollectionOf<PrettyCard>(x => x)
 			};
 		}
 
 		/// <summary>
-		/// Преобразовать из VkResponse
+		/// Преобразование класса <see cref="PrettyCards" /> в <see cref="VkParameters" />
 		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="PrettyCards" /></returns>
 		public static implicit operator PrettyCards(VkResponse response)
 		{
-			return response != null && !response.HasToken() ? null : FromJson(response: response);
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

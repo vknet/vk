@@ -1,4 +1,5 @@
 ﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
@@ -9,10 +10,7 @@ namespace VkNet.Model.Attachments
 	public class StringLink : MediaAttachment
 	{
 		/// <inheritdoc />
-		static StringLink()
-		{
-			RegisterType(type: typeof(string), match: "string");
-		}
+		protected override string Alias => "string";
 
 		/// <summary>
 		/// Ссылка
@@ -23,6 +21,31 @@ namespace VkNet.Model.Attachments
 		public override string ToString()
 		{
 			return Link;
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="StringLink" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="StringLink" /></returns>
+		public static implicit operator StringLink(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
+
+		private static StringLink FromJson(VkResponse response)
+		{
+			return new StringLink
+			{
+				Link = response["link"]
+			};
 		}
 	}
 }

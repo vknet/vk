@@ -13,13 +13,8 @@ namespace VkNet.Model.Attachments
 	[DebuggerDisplay("[{InitiatorId} - {ReceiverId}: {State}]")]
 	public class Call : MediaAttachment
 	{
-		/// <summary>
-		/// Звонок.
-		/// </summary>
-		static Call()
-		{
-			RegisterType(type: typeof(Call), match: "call");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "call";
 
 		/// <summary>
 		/// Идентификатор инициатора звонка.
@@ -66,15 +61,18 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		/// Преобразовать из VkResponse
+		/// Преобразование класса <see cref="Call" /> в <see cref="VkParameters" />
 		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Call" /></returns>
 		public static implicit operator Call(VkResponse response)
 		{
-			return response != null && response.HasToken()
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
 				? FromJson(response)
 				: null;
 		}

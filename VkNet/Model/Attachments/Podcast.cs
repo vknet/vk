@@ -11,13 +11,8 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class Podcast : MediaAttachment
 	{
-		/// <summary>
-		/// Заметка пользователя.
-		/// </summary>
-		static Podcast()
-		{
-			RegisterType(typeof(Podcast), "podcast");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "podcast";
 
 		/// <summary>
 		/// Исполнитель
@@ -105,10 +100,10 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		/// Разобрать из json.
+		/// Преобразование класса <see cref="Podcast" /> в <see cref="VkParameters" />
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
+		/// <returns>Результат преобразования в <see cref="Podcast" /></returns>
 		public static implicit operator Podcast(VkResponse response)
 		{
 			if (response == null)

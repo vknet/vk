@@ -11,13 +11,8 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class WallReply : MediaAttachment
 	{
-		/// <summary>
-		/// Комментарий к записи на стене.
-		/// </summary>
-		static WallReply()
-		{
-			RegisterType(type: typeof(WallReply), match: "wall_reply");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "wall_reply";
 
 		/// <summary>
 		/// Идентификатор автора комментария.
@@ -27,7 +22,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Дата создания комментария в формате unixtime.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
@@ -59,16 +54,33 @@ namespace VkNet.Model.Attachments
 		{
 			var wallReply = new WallReply
 			{
-					Id = response[key: "comment_id"] ?? response[key: "cid"] ?? response[key: "id"]
-					, FromId = response[key: "from_id"] ?? response[key: "user_id"] ?? response[key: "uid"]
-					, Date = response[key: "date"]
-					, Text = response[key: "text"]
-					, Likes = response[key: "likes"]
-					, ReplyToUId = response[key: "reply_to_uid"]
-					, ReplyToCId = response[key: "reply_to_cid"]
+				Id = response["comment_id"] ?? response["cid"] ?? response["id"],
+				FromId = response["from_id"] ?? response["user_id"] ?? response["uid"],
+				Date = response["date"],
+				Text = response["text"],
+				Likes = response["likes"],
+				ReplyToUId = response["reply_to_uid"],
+				ReplyToCId = response["reply_to_cid"]
 			};
 
 			return wallReply;
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="WallReply" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="WallReply" /></returns>
+		public static implicit operator WallReply(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

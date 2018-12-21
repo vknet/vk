@@ -13,15 +13,8 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class Story : MediaAttachment
 	{
-	#region Поля
-
-		/// <summary>
-		/// История.
-		/// </summary>
-		static Story()
-		{
-			RegisterType(typeof(Story), "story");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "story";
 
 		/// <summary>
 		/// Дата добавления в Unixtime.
@@ -128,14 +121,6 @@ namespace VkNet.Model.Attachments
 		[JsonProperty("views")]
 		public int? Views { get; set; }
 
-		/// <summary>
-		/// Ключ доступа для приватного объекта.
-		/// </summary>
-		[JsonProperty("access_key")]
-		public string AccessKey { get; set; }
-
-	#endregion
-
 	#region Методы
 
 		/// <summary>
@@ -145,7 +130,7 @@ namespace VkNet.Model.Attachments
 		/// <returns> </returns>
 		public static Story FromJson(VkResponse response)
 		{
-			var story = new Story
+			return new Story
 			{
 				Id = response["id"],
 				OwnerId = response["owner_id"],
@@ -168,30 +153,23 @@ namespace VkNet.Model.Attachments
 				Views = response["views"],
 				AccessKey = response["access_key"]
 			};
-
-			return story;
 		}
 
 		/// <summary>
-		/// Преобразовать из VkResponse
+		/// Преобразование класса <see cref="Story" /> в <see cref="VkParameters" />
 		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Story" /></returns>
 		public static implicit operator Story(VkResponse response)
 		{
-			return response != null && response.HasToken()
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
 				? FromJson(response)
 				: null;
-		}
-
-		/// <inheritdoc />
-		public override string ToString()
-		{
-			return string.IsNullOrWhiteSpace(AccessKey)
-				? base.ToString()
-				: $"{base.ToString()}_{AccessKey}";
 		}
 
 	#endregion

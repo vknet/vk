@@ -12,10 +12,8 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class Album : MediaAttachment
 	{
-		static Album()
-		{
-			RegisterType(type: typeof(Album), match: "album");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "album";
 
 		/// <summary>
 		/// Обложка альбома.
@@ -35,13 +33,13 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Дата и время создания альбома.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? CreateTime { get; set; }
 
 		/// <summary>
 		/// Дата и время последнего обновления альбома.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? UpdateTime { get; set; }
 
 		/// <summary>
@@ -59,15 +57,32 @@ namespace VkNet.Model.Attachments
 		{
 			return new Album
 			{
-					Id = response[key: "album_id"] ?? response[key: "aid"] ?? response[key: "id"]
-					, Thumb = response[key: "thumb"]
-					, OwnerId = response[key: "owner_id"]
-					, Title = response[key: "title"]
-					, Description = response[key: "description"]
-					, CreateTime = response[key: "created"]
-					, UpdateTime = response[key: "updated"]
-					, Size = response[key: "size"]
+				Id = response["album_id"] ?? response["aid"] ?? response["id"],
+				Thumb = response["thumb"],
+				OwnerId = response["owner_id"],
+				Title = response["title"],
+				Description = response["description"],
+				CreateTime = response["created"],
+				UpdateTime = response["updated"],
+				Size = response["size"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="Album" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Album" /></returns>
+		public static implicit operator Album(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 
 	#endregion

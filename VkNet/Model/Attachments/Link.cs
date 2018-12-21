@@ -8,17 +8,12 @@ namespace VkNet.Model.Attachments
 	/// Ссылка на Web-страницу.
 	/// См. описание http://vk.com/dev/attachments_w
 	/// </summary>
-	[DebuggerDisplay(value: "[{Title}] {Uri}")]
+	[DebuggerDisplay("[{Title}] {Uri}")]
 	[Serializable]
 	public class Link : MediaAttachment
 	{
-		/// <summary>
-		/// Граффити.
-		/// </summary>
-		static Link()
-		{
-			RegisterType(type: typeof(Link), match: "link");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "link";
 
 		/// <summary>
 		/// Адрес ссылки.
@@ -107,27 +102,41 @@ namespace VkNet.Model.Attachments
 		/// <returns> </returns>
 		public static Link FromJson(VkResponse response)
 		{
-			var link = new Link
+			return new Link
 			{
-					Id = response[key: "id"]
-					, Uri = response[key: "url"]
-					, Title = response[key: "title"]
-					, Description = response[key: "description"] ?? response[key: "desc"]
-					, Image = response[key: "image_src"]
-					, PreviewPage = response[key: "preview_page"]
-					, Caption = response[key: "caption"]
-					, Photo = response[key: "photo"]
-					, IsExternal = response[key: "is_external"]
-					, Product = response[key: "product"]
-					, Rating = response[key: "rating"]
-					, Application = response[key: "application"]
-					, Button = response[key: "button"]
-					, PreviewUrl = response[key: "preview_url"]
+				Id = response["id"],
+				Uri = response["url"],
+				Title = response["title"],
+				Description = response["description"] ?? response["desc"],
+				Image = response["image_src"],
+				PreviewPage = response["preview_page"],
+				Caption = response["caption"],
+				Photo = response["photo"],
+				IsExternal = response["is_external"],
+				Product = response["product"],
+				Rating = response["rating"],
+				Application = response["application"],
+				Button = response["button"],
+				PreviewUrl = response["preview_url"]
 			};
-
-			return link;
 		}
 
+		/// <summary>
+		/// Преобразование класса <see cref="Link" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Link" /></returns>
+		public static implicit operator Link(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	#endregion
 	}
 }

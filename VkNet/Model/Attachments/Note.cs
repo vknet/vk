@@ -7,18 +7,15 @@ namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Заметка пользователя.
-	/// См. описание http://vk.com/dev/note
 	/// </summary>
+	/// <remarks>
+	/// <a href="http://vk.com/dev/note">См. описание</a>
+	/// </remarks>
 	[Serializable]
 	public class Note : MediaAttachment
 	{
-		/// <summary>
-		/// Заметка пользователя.
-		/// </summary>
-		static Note()
-		{
-			RegisterType(type: typeof(Note), match: "note");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "note";
 
 		/// <summary>
 		/// Заголовок заметки.
@@ -33,7 +30,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Дата создания заметки.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
@@ -60,19 +57,34 @@ namespace VkNet.Model.Attachments
 		/// <returns> </returns>
 		public static Note FromJson(VkResponse response)
 		{
-			var note = new Note
+			return new Note
 			{
-					Id = response[key: "id"]
-					, OwnerId = response[key: "user_id"]
-					, Title = response[key: "title"]
-					, Text = response[key: "text"]
-					, Date = response[key: "date"]
-					, CommentsCount = response[key: "comments"]
-					, ReadCommentsCount = response[key: "read_comments"]
-					, ViewUrl = response[key: "view_url"]
+				Id = response["id"],
+				OwnerId = response["user_id"],
+				Title = response["title"],
+				Text = response["text"],
+				Date = response["date"],
+				CommentsCount = response["comments"],
+				ReadCommentsCount = response["read_comments"],
+				ViewUrl = response["view_url"]
 			};
+		}
 
-			return note;
+		/// <summary>
+		/// Преобразование класса <see cref="Note" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Note" /></returns>
+		public static implicit operator Note(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 
 	#endregion

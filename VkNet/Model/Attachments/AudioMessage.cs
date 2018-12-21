@@ -11,10 +11,8 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class AudioMessage : MediaAttachment
 	{
-		static AudioMessage()
-		{
-			RegisterType(typeof(AudioMessage), "audio_message");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "audio_message";
 
 		/// <summary>
 		/// Продолжительность
@@ -41,12 +39,6 @@ namespace VkNet.Model.Attachments
 		public Uri LinkMp3 { get; set; }
 
 		/// <summary>
-		/// Ключ доступа
-		/// </summary>
-		[JsonProperty("access_key")]
-		public string AccessKey { get; set; }
-
-		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
@@ -67,23 +59,19 @@ namespace VkNet.Model.Attachments
 
 		/// <summary>
 		/// Преобразование класса <see cref="AudioMessage" /> в <see cref="VkParameters" />
-		/// >
 		/// </summary>
-		/// <param name="response"> Параметр. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="AudioMessage" /></returns>
 		public static implicit operator AudioMessage(VkResponse response)
 		{
-			return response.HasToken() ? FromJson(response) : null;
-		}
+			if (response == null)
+			{
+				return null;
+			}
 
-		/// <inheritdoc />
-		public override string ToString()
-		{
-			return string.IsNullOrWhiteSpace(AccessKey)
-				? base.ToString()
-				: $"{base.ToString()}_{AccessKey}";
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

@@ -10,13 +10,8 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class Graffiti : MediaAttachment
 	{
-		/// <summary>
-		/// Граффити.
-		/// </summary>
-		static Graffiti()
-		{
-			RegisterType(type: typeof(Graffiti), match: "graffiti");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "graffiti";
 
 		/// <summary>
 		/// Адрес изображения для предпросмотра.
@@ -37,15 +32,30 @@ namespace VkNet.Model.Attachments
 		/// <returns> </returns>
 		public static Graffiti FromJson(VkResponse response)
 		{
-			var graffiti = new Graffiti
+			return new Graffiti
 			{
-					Id = response[key: "id"]
-					, OwnerId = response[key: "owner_id"]
-					, Photo200 = response[key: "photo_200"]
-					, Photo586 = response[key: "photo_586"]
+				Id = response["id"],
+				OwnerId = response["owner_id"],
+				Photo200 = response["photo_200"],
+				Photo586 = response["photo_586"]
 			};
+		}
 
-			return graffiti;
+		/// <summary>
+		/// Преобразование класса <see cref="Graffiti" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Graffiti" /></returns>
+		public static implicit operator Graffiti(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 
 	#endregion

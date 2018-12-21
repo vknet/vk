@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model.Attachments
@@ -11,9 +10,9 @@ namespace VkNet.Model.Attachments
 	public abstract class MediaAttachment
 	{
 		/// <summary>
-		/// Коллекция вложений
+		/// Наименование типа которое приходит от vk.com
 		/// </summary>
-		private static readonly IDictionary<Type, string> Types = new Dictionary<Type, string>();
+		protected abstract string Alias { get; }
 
 		/// <summary>
 		/// Идентификатор вложенеия.
@@ -38,31 +37,11 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public override string ToString()
 		{
-			var result = $"{MatchType(GetType())}{OwnerId}_{Id}";
+			var result = $"{Alias}{OwnerId}_{Id}";
 
 			return string.IsNullOrWhiteSpace(AccessKey)
 				? result
 				: $"{result}_{AccessKey}";
-		}
-
-		/// <summary>
-		/// Зарегистрировать тип.
-		/// </summary>
-		/// <param name="type"> тип вложения. </param>
-		/// <param name="match"> Соответствие. </param>
-		protected static void RegisterType(Type type, string match)
-		{
-			Types.Add(type, match);
-		}
-
-		/// <summary>
-		/// Соответствие типу.
-		/// </summary>
-		/// <param name="type"> Тип вложения. </param>
-		/// <returns> </returns>
-		private static string MatchType(Type type)
-		{
-			return Types[type];
 		}
 	}
 }

@@ -33,7 +33,7 @@ namespace VkNet.Categories
 		/// <returns> </returns>
 		public Poll GetById(PollsGetByIdParams @params)
 		{
-			return _vk.Call(methodName: "polls.getById", parameters: @params);
+			return _vk.Call("polls.getById", @params);
 		}
 
 		/// <summary>
@@ -43,7 +43,7 @@ namespace VkNet.Categories
 		/// <returns> </returns>
 		public bool Edit(PollsEditParams @params)
 		{
-			return _vk.Call(methodName: "polls.edit", parameters: @params);
+			return _vk.Call("polls.edit", @params);
 		}
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace VkNet.Categories
 		/// <returns> </returns>
 		public bool AddVote(PollsAddVoteParams @params)
 		{
-			return _vk.Call(methodName: "polls.addVote", parameters: @params);
+			return _vk.Call("polls.addVote", @params);
 		}
 
 		/// <summary>
@@ -65,7 +65,7 @@ namespace VkNet.Categories
 		/// <returns> </returns>
 		public bool DeleteVote(PollsDeleteVoteParams @params)
 		{
-			return _vk.Call(methodName: "polls.deleteVote", parameters: @params);
+			return _vk.Call("polls.deleteVote", @params);
 		}
 
 		/// <summary>
@@ -76,7 +76,7 @@ namespace VkNet.Categories
 		/// <returns> </returns>
 		public VkCollection<PollAnswerVoters> GetVoters(PollsGetVotersParams @params)
 		{
-			return _vk.Call(methodName: "polls.getVoters", parameters: @params).ToVkCollectionOf<PollAnswerVoters>(selector: x => x);
+			return _vk.Call("polls.getVoters", @params).ToVkCollectionOf<PollAnswerVoters>(x => x);
 		}
 
 		/// <summary>
@@ -88,7 +88,7 @@ namespace VkNet.Categories
 		/// <returns> </returns>
 		public Poll Create(PollsCreateParams @params)
 		{
-			return _vk.Call(methodName: "polls.create", parameters: @params);
+			return _vk.Call("polls.create", @params);
 		}
 	}
 }

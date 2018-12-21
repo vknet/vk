@@ -11,13 +11,8 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class Article : MediaAttachment
 	{
-		/// <summary>
-		/// Заметка пользователя.
-		/// </summary>
-		static Article()
-		{
-			RegisterType(typeof(Article), "article");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "article";
 
 		/// <summary>
 		/// Имя владельца
@@ -97,7 +92,7 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
-		public static Article FromJson(VkResponse response)
+		private static Article FromJson(VkResponse response)
 		{
 			return new Article
 			{
@@ -121,10 +116,10 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		/// Разобрать из json.
+		/// Преобразование класса <see cref="Article" /> в <see cref="VkParameters" />
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
+		/// <returns>Результат преобразования в <see cref="Article" /></returns>
 		public static implicit operator Article(VkResponse response)
 		{
 			if (response == null)

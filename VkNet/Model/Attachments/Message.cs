@@ -19,13 +19,8 @@ namespace VkNet.Model
 	[Serializable]
 	public class Message : MediaAttachment
 	{
-		/// <summary>
-		/// Личное сообщение пользователя.
-		/// </summary>
-		static Message()
-		{
-			RegisterType(typeof(Message), "message");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "message";
 
 	#region Методы
 
@@ -86,6 +81,23 @@ namespace VkNet.Model
 			};
 
 			return message;
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="Message" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Message" /></returns>
+		public static implicit operator Message(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 
 	#endregion

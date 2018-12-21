@@ -6,14 +6,11 @@ namespace VkNet.UWP.Model.Attachments
 {
 	/// <summary>
 	/// </summary>
-	[Obsolete(message: "Для версии API ниже 5.0")]
+	[Obsolete("Для версии API ниже 5.0")]
 	[Serializable]
 	public class PhotosList : MediaAttachment
 	{
-		static PhotosList()
-		{
-			RegisterType(type: typeof(PhotosList), match: "photos_list");
-		}
+		protected override string Alias => "photos_list";
 
 	#region Private Methods
 
@@ -23,9 +20,24 @@ namespace VkNet.UWP.Model.Attachments
 		/// <returns> </returns>
 		public static PhotosList FromJson(VkResponse response)
 		{
-			var list = new PhotosList();
+			return new PhotosList();
+		}
 
-			return list;
+		/// <summary>
+		/// Преобразование класса <see cref="PhotosList" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="PhotosList" /></returns>
+		public static implicit operator PhotosList(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 
 	#endregion

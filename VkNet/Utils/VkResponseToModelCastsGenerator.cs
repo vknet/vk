@@ -20,7 +20,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: MessagesSendResult.FromJson(response: response);
+				: MessagesSendResult.FromJson(response);
 		}
 
 		/// <summary>
@@ -34,7 +34,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: PageVersion.FromJson(response: response);
+				: PageVersion.FromJson(response);
 		}
 
 		/// <summary>
@@ -48,7 +48,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: FriendsDeleteResult.FromJson(response: response);
+				: FriendsDeleteResult.FromJson(response);
 		}
 
 		/// <summary>
@@ -62,7 +62,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: AreFriendsResult.FromJson(response: response);
+				: AreFriendsResult.FromJson(response);
 		}
 
 		/// <summary>
@@ -76,7 +76,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: CallbackSettings.FromJson(response: response);
+				: CallbackSettings.FromJson(response);
 		}
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: CallbackServerItem.FromJson(response: response);
+				: CallbackServerItem.FromJson(response);
 		}
 
 		/// <summary>
@@ -104,7 +104,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: ChatPreviewField.FromJson(response: response);
+				: ChatPreviewField.FromJson(response);
 		}
 
 		/// <summary>
@@ -118,7 +118,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: ChatPreview.FromJson(response: response);
+				: ChatPreview.FromJson(response);
 		}
 
 		/// <summary>
@@ -132,7 +132,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: ChatPhoto.FromJson(response: response);
+				: ChatPhoto.FromJson(response);
 		}
 
 		/// <summary>
@@ -146,7 +146,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: Email.FromJson(response: response);
+				: Email.FromJson(response);
 		}
 
 		/// <summary>
@@ -158,7 +158,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator AccountInfo(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : AccountInfo.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : AccountInfo.FromJson(response);
 		}
 
 		/// <summary>
@@ -172,7 +172,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: AccountPushSettings.FromJson(response: response);
+				: AccountPushSettings.FromJson(response);
 		}
 
 		/// <summary>
@@ -184,7 +184,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator ShortLink(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : ShortLink.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : ShortLink.FromJson(response);
 		}
 
 		/// <summary>
@@ -198,19 +198,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: AccountChangePasswordResult.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Album(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Album.FromJson(response: response);
+				: AccountChangePasswordResult.FromJson(response);
 		}
 
 		/// <summary>
@@ -222,7 +210,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator App(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : App.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : App.FromJson(response);
 		}
 
 		/// <summary>
@@ -234,7 +222,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator AppGetObject(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : AppGetObject.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : AppGetObject.FromJson(response);
 		}
 
 		/// <summary>
@@ -246,21 +234,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Application(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Application.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator ApplicationContent(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues
-				? null
-				: ApplicationContent.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Application.FromJson(response);
 		}
 
 		/// <summary>
@@ -272,19 +246,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Attachment(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Attachment.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Audio(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Audio.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Attachment.FromJson(response);
 		}
 
 		/// <summary>
@@ -296,7 +258,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator AuthConfirmResult(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : AuthConfirmResult.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : AuthConfirmResult.FromJson(response);
 		}
 
 		/// <summary>
@@ -308,7 +270,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator BanInfo(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : BanInfo.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : BanInfo.FromJson(response);
 		}
 
 		/// <summary>
@@ -320,7 +282,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Button(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Button.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Button.FromJson(response);
 		}
 
 		/// <summary>
@@ -332,7 +294,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Career(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Career.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Career.FromJson(response);
 		}
 
 		/// <summary>
@@ -344,7 +306,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator CategoryGroup(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : CategoryGroup.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : CategoryGroup.FromJson(response);
 		}
 
 		/// <summary>
@@ -356,7 +318,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Chair(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Chair.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Chair.FromJson(response);
 		}
 
 		/// <summary>
@@ -368,7 +330,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator ChangeNameRequest(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : ChangeNameRequest.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : ChangeNameRequest.FromJson(response);
 		}
 
 		/// <summary>
@@ -380,7 +342,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Chat(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Chat.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Chat.FromJson(response);
 		}
 
 		/// <summary>
@@ -392,7 +354,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator ChatPushSettings(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : ChatPushSettings.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : ChatPushSettings.FromJson(response);
 		}
 
 		/// <summary>
@@ -404,7 +366,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator City(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : City.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : City.FromJson(response);
 		}
 
 		/// <summary>
@@ -416,7 +378,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Comment(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Comment.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Comment.FromJson(response);
 		}
 
 		/// <summary>
@@ -428,7 +390,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Comments(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Comments.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Comments.FromJson(response);
 		}
 
 		/// <summary>
@@ -440,7 +402,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Connections(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Connections.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Connections.FromJson(response);
 		}
 
 		/// <summary>
@@ -452,7 +414,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Contact(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Contact.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Contact.FromJson(response);
 		}
 
 		/// <summary>
@@ -464,7 +426,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Contacts(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Contacts.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Contacts.FromJson(response);
 		}
 
 		/// <summary>
@@ -476,7 +438,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Counters(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Counters.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Counters.FromJson(response);
 		}
 
 		/// <summary>
@@ -488,7 +450,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Country(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Country.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Country.FromJson(response);
 		}
 
 		/// <summary>
@@ -500,7 +462,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator CropPhoto(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : CropPhoto.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : CropPhoto.FromJson(response);
 		}
 
 		/// <summary>
@@ -512,19 +474,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Currency(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Currency.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Document(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Document.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Currency.FromJson(response);
 		}
 
 		/// <summary>
@@ -536,7 +486,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator DocumentType(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : DocumentType.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : DocumentType.FromJson(response);
 		}
 
 		/// <summary>
@@ -548,7 +498,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Education(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Education.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Education.FromJson(response);
 		}
 
 		/// <summary>
@@ -560,7 +510,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Exports(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Exports.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Exports.FromJson(response);
 		}
 
 		/// <summary>
@@ -572,7 +522,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator ExternalLink(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : ExternalLink.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : ExternalLink.FromJson(response);
 		}
 
 		/// <summary>
@@ -584,7 +534,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Faculty(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Faculty.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Faculty.FromJson(response);
 		}
 
 		/// <summary>
@@ -596,7 +546,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator FaveVideoEx(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : FaveVideoEx.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : FaveVideoEx.FromJson(response);
 		}
 
 		/// <summary>
@@ -608,7 +558,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator FriendList(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : FriendList.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : FriendList.FromJson(response);
 		}
 
 		/// <summary>
@@ -620,7 +570,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator FriendOnline(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : FriendOnline.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : FriendOnline.FromJson(response);
 		}
 
 		/// <summary>
@@ -632,19 +582,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Geo(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Geo.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Gift(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Gift.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Geo.FromJson(response);
 		}
 
 		/// <summary>
@@ -656,19 +594,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator GiftItem(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : GiftItem.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Graffiti(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Graffiti.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : GiftItem.FromJson(response);
 		}
 
 		/// <summary>
@@ -680,7 +606,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Group(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Group.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Group.FromJson(response);
 		}
 
 		/// <summary>
@@ -692,7 +618,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator GroupCover(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : GroupCover.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : GroupCover.FromJson(response);
 		}
 
 		/// <summary>
@@ -704,7 +630,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator GroupCoverImage(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : GroupCoverImage.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : GroupCoverImage.FromJson(response);
 		}
 
 		/// <summary>
@@ -716,7 +642,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator GroupInfo(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : GroupInfo.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : GroupInfo.FromJson(response);
 		}
 
 		/// <summary>
@@ -728,7 +654,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator GroupMember(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : GroupMember.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : GroupMember.FromJson(response);
 		}
 
 		/// <summary>
@@ -740,7 +666,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator GroupsCatalogInfo(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : GroupsCatalogInfo.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : GroupsCatalogInfo.FromJson(response);
 		}
 
 		/// <summary>
@@ -752,7 +678,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator GroupsEditParams(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : GroupsEditParams.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : GroupsEditParams.FromJson(response);
 		}
 
 		/// <summary>
@@ -764,7 +690,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator History(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : History.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : History.FromJson(response);
 		}
 
 		/// <summary>
@@ -776,7 +702,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator HistoryAttachment(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : HistoryAttachment.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : HistoryAttachment.FromJson(response);
 		}
 
 		/// <summary>
@@ -790,7 +716,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: InformationAboutOffers.FromJson(response: response);
+				: InformationAboutOffers.FromJson(response);
 		}
 
 		/// <summary>
@@ -802,7 +728,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator LastActivity(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : LastActivity.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : LastActivity.FromJson(response);
 		}
 
 		/// <summary>
@@ -814,7 +740,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator LastSeen(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : LastSeen.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : LastSeen.FromJson(response);
 		}
 
 		/// <summary>
@@ -826,19 +752,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Likes(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Likes.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Link(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Link.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Likes.FromJson(response);
 		}
 
 		/// <summary>
@@ -850,7 +764,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator LinkButton(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : LinkButton.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : LinkButton.FromJson(response);
 		}
 
 		/// <summary>
@@ -862,7 +776,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator LinkButtonAction(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : LinkButtonAction.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : LinkButtonAction.FromJson(response);
 		}
 
 		/// <summary>
@@ -876,7 +790,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: LongPollHistoryResponse.FromJson(response: response);
+				: LongPollHistoryResponse.FromJson(response);
 		}
 
 		/// <summary>
@@ -890,7 +804,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: LongPollServerResponse.FromJson(response: response);
+				: LongPollServerResponse.FromJson(response);
 		}
 
 		/// <summary>
@@ -904,7 +818,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: LookupContactsOther.FromJson(response: response);
+				: LookupContactsOther.FromJson(response);
 		}
 
 		/// <summary>
@@ -918,7 +832,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: LookupContactsResult.FromJson(response: response);
+				: LookupContactsResult.FromJson(response);
 		}
 
 		/// <summary>
@@ -930,7 +844,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Lyrics(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Lyrics.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Lyrics.FromJson(response);
 		}
 
 		/// <summary>
@@ -942,19 +856,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Market(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Market.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator MarketAlbum(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : MarketAlbum.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Market.FromJson(response);
 		}
 
 		/// <summary>
@@ -966,7 +868,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator MarketCategory(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : MarketCategory.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : MarketCategory.FromJson(response);
 		}
 
 		/// <summary>
@@ -980,7 +882,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: MarketCategorySection.FromJson(response: response);
+				: MarketCategorySection.FromJson(response);
 		}
 
 		/// <summary>
@@ -992,7 +894,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator MarketComment(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : MarketComment.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : MarketComment.FromJson(response);
 		}
 
 		/// <summary>
@@ -1004,19 +906,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Mention(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Mention.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Message(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Message.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Mention.FromJson(response);
 		}
 
 		/// <summary>
@@ -1028,7 +918,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator MessagesGetObject(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : MessagesGetObject.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : MessagesGetObject.FromJson(response);
 		}
 
 		/// <summary>
@@ -1042,7 +932,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: MessagesPushSettings.FromJson(response: response);
+				: MessagesPushSettings.FromJson(response);
 		}
 
 		/// <summary>
@@ -1054,7 +944,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Military(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Military.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Military.FromJson(response);
 		}
 
 		/// <summary>
@@ -1066,7 +956,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator NewsBannedExList(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : NewsBannedExList.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : NewsBannedExList.FromJson(response);
 		}
 
 		/// <summary>
@@ -1078,7 +968,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator NewsBannedList(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : NewsBannedList.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : NewsBannedList.FromJson(response);
 		}
 
 		/// <summary>
@@ -1090,7 +980,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator NewsSearchResult(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : NewsSearchResult.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : NewsSearchResult.FromJson(response);
 		}
 
 		/// <summary>
@@ -1102,7 +992,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator NewsSuggestions(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : NewsSuggestions.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : NewsSuggestions.FromJson(response);
 		}
 
 		/// <summary>
@@ -1114,19 +1004,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator NewsUserListItem(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : NewsUserListItem.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Note(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Note.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : NewsUserListItem.FromJson(response);
 		}
 
 		/// <summary>
@@ -1138,31 +1016,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Occupation(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Occupation.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Page(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Page.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Photo(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Photo.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Occupation.FromJson(response);
 		}
 
 		/// <summary>
@@ -1174,7 +1028,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator PhotoAlbum(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : PhotoAlbum.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : PhotoAlbum.FromJson(response);
 		}
 
 		/// <summary>
@@ -1186,22 +1040,9 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator PhotoSize(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : PhotoSize.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : PhotoSize.FromJson(response);
 		}
 
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-	#pragma warning disable 618
-		public static implicit operator PhotosList(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : PhotosList.FromJson(response: response);
-		}
-	#pragma warning restore 618
 		/// <summary>
 		/// Преобразовать из VkResponse
 		/// </summary>
@@ -1211,19 +1052,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Place(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Place.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Poll(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Poll.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Place.FromJson(response);
 		}
 
 		/// <summary>
@@ -1235,7 +1064,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator PollAnswer(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : PollAnswer.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : PollAnswer.FromJson(response);
 		}
 
 		/// <summary>
@@ -1247,19 +1076,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator PollAnswerVoters(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : PollAnswerVoters.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Post(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Post.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : PollAnswerVoters.FromJson(response);
 		}
 
 		/// <summary>
@@ -1271,7 +1088,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator PostReach(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : PostReach.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : PostReach.FromJson(response);
 		}
 
 		/// <summary>
@@ -1283,7 +1100,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator PostSource(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : PostSource.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : PostSource.FromJson(response);
 		}
 
 		/// <summary>
@@ -1295,7 +1112,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator PostSourceData(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : PostSourceData.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : PostSourceData.FromJson(response);
 		}
 
 		/// <summary>
@@ -1307,7 +1124,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator PostView(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : PostView.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : PostView.FromJson(response);
 		}
 
 		/// <summary>
@@ -1319,7 +1136,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Previews(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Previews.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Previews.FromJson(response);
 		}
 
 		/// <summary>
@@ -1331,7 +1148,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Price(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Price.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Price.FromJson(response);
 		}
 
 		/// <summary>
@@ -1343,7 +1160,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator PushSettings(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : PushSettings.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : PushSettings.FromJson(response);
 		}
 
 		/// <summary>
@@ -1355,7 +1172,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Rating(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Rating.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Rating.FromJson(response);
 		}
 
 		/// <summary>
@@ -1367,7 +1184,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Rect(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Rect.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Rect.FromJson(response);
 		}
 
 		/// <summary>
@@ -1379,7 +1196,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Region(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Region.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Region.FromJson(response);
 		}
 
 		/// <summary>
@@ -1391,7 +1208,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Relative(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Relative.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Relative.FromJson(response);
 		}
 
 		/// <summary>
@@ -1403,7 +1220,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator RepostResult(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : RepostResult.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : RepostResult.FromJson(response);
 		}
 
 		/// <summary>
@@ -1415,7 +1232,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Reposts(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Reposts.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Reposts.FromJson(response);
 		}
 
 		/// <summary>
@@ -1427,7 +1244,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator School(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : School.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : School.FromJson(response);
 		}
 
 		/// <summary>
@@ -1439,7 +1256,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator SchoolClass(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : SchoolClass.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : SchoolClass.FromJson(response);
 		}
 
 		/// <summary>
@@ -1453,7 +1270,7 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues
 				? null
-				: SearchDialogsResponse.FromJson(response: response);
+				: SearchDialogsResponse.FromJson(response);
 		}
 
 		/// <summary>
@@ -1465,7 +1282,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator StandInLife(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : StandInLife.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : StandInLife.FromJson(response);
 		}
 
 		/// <summary>
@@ -1477,7 +1294,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator StatsStruct(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : StatsStruct.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : StatsStruct.FromJson(response);
 		}
 
 		/// <summary>
@@ -1489,19 +1306,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Status(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Status.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Sticker(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Sticker.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Status.FromJson(response);
 		}
 
 		/// <summary>
@@ -1513,7 +1318,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Store(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Store.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Store.FromJson(response);
 		}
 
 		/// <summary>
@@ -1525,7 +1330,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Street(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Street.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Street.FromJson(response);
 		}
 
 		/// <summary>
@@ -1537,7 +1342,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Tag(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Tag.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Tag.FromJson(response);
 		}
 
 		/// <summary>
@@ -1549,7 +1354,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Tags(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Tags.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Tags.FromJson(response);
 		}
 
 		/// <summary>
@@ -1561,7 +1366,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Topic(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : Topic.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : Topic.FromJson(response);
 		}
 
 		/// <summary>
@@ -1573,7 +1378,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator University(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : University.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : University.FromJson(response);
 		}
 
 		/// <summary>
@@ -1585,7 +1390,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator UploadServerInfo(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : UploadServerInfo.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : UploadServerInfo.FromJson(response);
 		}
 
 		/// <summary>
@@ -1597,7 +1402,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator User(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : User.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : User.FromJson(response);
 		}
 
 		/// <summary>
@@ -1609,19 +1414,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator UserOrGroup(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : UserOrGroup.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator Video(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Video.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : UserOrGroup.FromJson(response);
 		}
 
 		/// <summary>
@@ -1633,7 +1426,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator VideoAlbum(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : VideoAlbum.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : VideoAlbum.FromJson(response);
 		}
 
 		/// <summary>
@@ -1645,7 +1438,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator VideoCatalog(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : VideoCatalog.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : VideoCatalog.FromJson(response);
 		}
 
 		/// <summary>
@@ -1657,7 +1450,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator VideoCatalogItem(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : VideoCatalogItem.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : VideoCatalogItem.FromJson(response);
 		}
 
 		/// <summary>
@@ -1669,7 +1462,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator VideoFiles(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : VideoFiles.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : VideoFiles.FromJson(response);
 		}
 
 		/// <summary>
@@ -1681,7 +1474,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator VkObject(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : VkObject.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : VkObject.FromJson(response);
 		}
 
 		/// <summary>
@@ -1693,19 +1486,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator WallGetObject(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : WallGetObject.FromJson(response: response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator WallReply(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : WallReply.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : WallGetObject.FromJson(response);
 		}
 
 		/// <summary>
@@ -1717,7 +1498,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator AdsAccount(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : AdsAccount.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : AdsAccount.FromJson(response);
 		}
 
 		/// <summary>
@@ -1729,7 +1510,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator AudioCover(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : AudioCover.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : AudioCover.FromJson(response);
 		}
 
 		/// <summary>
@@ -1741,7 +1522,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator AudioAlbum(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : AudioAlbum.FromJson(response: response);
+			return response?._token == null || !response._token.HasValues ? null : AudioAlbum.FromJson(response);
 		}
 	}
 }

@@ -428,7 +428,7 @@ namespace VkNet.Tests.Categories.Messages
 			Assert.That(msg, Is.Not.Null);
 			Assert.That(msg.Attachments.Count, Is.EqualTo(1));
 
-			var wall = msg.Attachments[0].Instance as Model.Wall;
+			var wall = msg.Attachments[0].Instance as Model.Attachments.Wall;
 
 			Assert.That(wall, Is.Not.Null);
 			Assert.That(wall.Id, Is.EqualTo(6194));

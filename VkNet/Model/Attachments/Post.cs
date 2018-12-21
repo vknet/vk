@@ -5,11 +5,10 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model
+namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Запись со стены пользователя или сообщества.
@@ -17,17 +16,12 @@ namespace VkNet.Model
 	/// <remarks>
 	/// См. описание http://vk.com/dev/post
 	/// </remarks>
-	[DebuggerDisplay(value: "[{Id}] {Text}")]
+	[DebuggerDisplay("[{Id}] {Text}")]
 	[Serializable]
 	public class Post : MediaAttachment
 	{
-		/// <summary>
-		/// Пост.
-		/// </summary>
-		static Post()
-		{
-			RegisterType(type: typeof(Post), match: "post");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "post";
 
 		/// <summary>
 		/// Идентификатор автора записи.
@@ -37,7 +31,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время публикации записи.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
@@ -125,7 +119,7 @@ namespace VkNet.Model
 		/// Время публикации записи-оригинала (если запись является копией записи с чужой
 		/// стены).
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? CopyPostDate { get; set; }
 
 		/// <summary>
@@ -166,50 +160,44 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static Post FromJson(VkResponse response)
 		{
-			if (response[key: "id"] == null)
+			if (response["id"] == null)
 			{
 				return null;
 			}
 
-			var post = new Post
+			return new Post
 			{
-					Id = response[key: "id"]
-					, OwnerId = response[key: "owner_id"]
-					, FromId = response[key: "from_id"]
-					, Date = response[key: "date"]
-					, Text = response[key: "text"]
-					, ReplyOwnerId = response[key: "reply_owner_id"]
-					, ReplyPostId = response[key: "reply_post_id"]
-					, FriendsOnly = response[key: "friends_only"]
-					, Comments = response[key: "comments"]
-					, Likes = response[key: "likes"]
-					, Reposts = response[key: "reposts"]
-					, PostType = response[key: "post_type"]
-					, PostSource = response[key: "post_source"]
-					, Attachments = response[key: "attachments"].ToReadOnlyCollectionOf<Attachment>(selector: x => x)
-					, Geo = response[key: "geo"]
-					, SignerId = response[key: "signer_id"]
-					, CopyPostDate = response[key: "copy_post_date"]
-					, CopyPostType = response[key: "copy_post_type"]
-					, CopyOwnerId = response[key: "copy_owner_id"]
-					, CopyPostId = response[key: "copy_post_id"]
-					, CopyText = response[key: "copy_text"]
-					, CopyHistory = response[key: "copy_history"].ToReadOnlyCollectionOf<Post>(selector: x => x)
-					, IsPinned = response[key: "is_pinned"]
-					, CreatedBy = response[key: "created_by"]
-					, CopyCommenterId = response[key: "copy_commenter_id"]
-					, CopyCommentId = response[key: "copy_comment_id"]
-					, CanDelete = response[key: "can_delete"]
-					, CanEdit = response[key: "can_edit"]
-					, CanPin = response[key: "can_pin"]
-					, Views = response[key: "views"]
-					, MarkedAsAds = response[key: "marked_as_ads"]
-					, AccessKey = response[key: "access_key"]
+				Id = response["id"], OwnerId = response["owner_id"], FromId = response["from_id"], Date = response["date"],
+				Text = response["text"], ReplyOwnerId = response["reply_owner_id"], ReplyPostId = response["reply_post_id"],
+				FriendsOnly = response["friends_only"], Comments = response["comments"], Likes = response["likes"],
+				Reposts = response["reposts"], PostType = response["post_type"], PostSource = response["post_source"],
+				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x), Geo = response["geo"],
+				SignerId = response["signer_id"], CopyPostDate = response["copy_post_date"], CopyPostType = response["copy_post_type"],
+				CopyOwnerId = response["copy_owner_id"], CopyPostId = response["copy_post_id"], CopyText = response["copy_text"],
+				CopyHistory = response["copy_history"].ToReadOnlyCollectionOf<Post>(x => x), IsPinned = response["is_pinned"],
+				CreatedBy = response["created_by"], CopyCommenterId = response["copy_commenter_id"],
+				CopyCommentId = response["copy_comment_id"], CanDelete = response["can_delete"], CanEdit = response["can_edit"],
+				CanPin = response["can_pin"], Views = response["views"], MarkedAsAds = response["marked_as_ads"],
+				AccessKey = response["access_key"]
 			};
-
-			return post;
 		}
 
+		/// <summary>
+		/// Преобразование класса <see cref="Post" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Post" /></returns>
+		public static implicit operator Post(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	#endregion
 
 	#region Поля, установленные экспериментально
@@ -256,7 +244,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Ключ доступа
 		/// </summary>
-		[JsonProperty(propertyName: "access_key")]
+		[JsonProperty("access_key")]
 		public string AccessKey { get; set; }
 
 	#endregion

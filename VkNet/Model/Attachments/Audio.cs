@@ -13,10 +13,8 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class Audio : MediaAttachment
 	{
-		static Audio()
-		{
-			RegisterType(typeof(Audio), "audio");
-		}
+		/// <inheritdoc />
+		protected override string Alias => "audio";
 
 		/// <summary>
 		/// Исполнитель аудиозаписи.
@@ -74,12 +72,6 @@ namespace VkNet.Model.Attachments
 		public AudioGenre? TrackGenre { get; set; }
 
 		/// <summary>
-		/// Ключ доступа.
-		/// </summary>
-		[JsonProperty("access_key")]
-		public string AccessKey { get; set; }
-
-		/// <summary>
 		/// Жанр аудиозаписи.
 		/// </summary>
 		[JsonProperty("genre_id")]
@@ -98,14 +90,6 @@ namespace VkNet.Model.Attachments
 		public int? ContentRestricted { get; set; }
 
 	#region Методы
-
-		/// <inheritdoc />
-		public override string ToString()
-		{
-			return string.IsNullOrWhiteSpace(AccessKey)
-				? base.ToString()
-				: $"{base.ToString()}_{AccessKey}";
-		}
 
 		/// <summary>
 		/// Разобрать из json.
@@ -132,6 +116,23 @@ namespace VkNet.Model.Attachments
 				Genre = response["genre_id"] ?? response["genre"],
 				Date = response["date"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="Audio" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Audio" /></returns>
+		public static implicit operator Audio(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 
 	#endregion

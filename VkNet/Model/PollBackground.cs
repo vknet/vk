@@ -2,10 +2,11 @@
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model.Attachments;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model.Attachments
+namespace VkNet.Model
 {
 	/// <summary>
 	/// Фон сниппета опроса.
@@ -75,12 +76,10 @@ namespace VkNet.Model.Attachments
 		}
 
 		/// <summary>
-		/// Преобразовать из VkResponse
+		/// Преобразование класса <see cref="PollBackground" /> в <see cref="VkParameters" />
 		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="PollBackground" /></returns>
 		public static implicit operator PollBackground(VkResponse response)
 		{
 			if (response == null)
