@@ -1,0 +1,42 @@
+{
+  "type": "story",
+  "story": {
+    "id": 1381656,
+    "owner_id": 154688100,
+    "date": 1543864562,
+    "can_see": 1,
+    "type": "video",
+    "video": {
+      "id": 456239441,
+      "owner_id": 154688100,
+      "title": "vk stories",
+      "duration": 15,
+      "description": "",
+      "date": 1543864561,
+      "comments": 0,
+      "width": 720,
+      "height": 1280,
+      "photo_130": "https://sun1-18.userapi.com/c845020/v845020807/14df15/NtOEwct5-30.jpg",
+      "photo_320": "https://sun1-2.userapi.com/c845020/v845020807/14df13/2C3TgI3YQq8.jpg",
+      "photo_800": "https://sun1-16.userapi.com/c845020/v845020807/14df12/j_7h5XfnnoI.jpg",
+      "photo_1280": "https://sun1-7.userapi.com/c845020/v845020807/14df11/x2cZX5ojhb4.jpg",
+      "access_key": "9a453e7dcd77b43b4f",
+      "first_frame_320": "https://sun1-2.userapi.com/c845020/v845020807/14df13/2C3TgI3YQq8.jpg",
+      "first_frame_160": "https://sun1-8.userapi.com/c845020/v845020807/14df14/l_YK6ZjbLaY.jpg",
+      "first_frame_130": "https://sun1-18.userapi.com/c845020/v845020807/14df15/NtOEwct5-30.jpg",
+      "first_frame_1280": "https://sun1-7.userapi.com/c845020/v845020807/14df11/x2cZX5ojhb4.jpg",
+      "first_frame_800": "https://sun1-16.userapi.com/c845020/v845020807/14df12/j_7h5XfnnoI.jpg",
+      "files": {
+        "mp4_720": "https://sun1-15.userapi.com/c511605/1/u154688100/videos/c06ea2eed3.720.mp4?extra=e6rH3kzF6GXduLyBbEaa5qiNKommj_d3UhgVaXACduh6ZGxpUS-X895zN6aM0J0bbo9Djb7z52FdGBcGdydz58xPBcrPrxC2R02o1WNJzhyxb-aMCt1a0BiSvPch34aPVBzmuiYwmEtH74_5XSMXq3Y6Ng"
+      },
+      "player": "https://vk.com/video_ext.php?oid=154688100&id=456239441&hash=bc01574a560ca68e&__ref=vk.iphone&api_hash=1545406722ea6961f895eb4a21f9_GEZTENRSHEYTKOI",
+      "can_add": 0,
+      "is_private": 1
+    },
+    "can_share": 0,
+    "can_comment": 1,
+    "can_reply": 0,
+    "track_code": "story_154688100_1381656",
+    "access_key": "efc080092f032115c1"
+  }
+}

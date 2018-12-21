@@ -139,6 +139,11 @@ namespace VkNet.Model.Attachments
 					return Call;
 				}
 
+				if (Type == typeof(Story))
+				{
+					return Story;
+				}
+
 				return null;
 			}
 		}
@@ -351,6 +356,15 @@ namespace VkNet.Model.Attachments
 					break;
 				}
 
+				case "story":
+
+				{
+					attachment.Type = typeof(Story);
+					attachment.Story = response["story"];
+
+					break;
+				}
+
 				default:
 
 				{
@@ -486,6 +500,11 @@ namespace VkNet.Model.Attachments
 		/// Звонок.
 		/// </summary>
 		public Call Call { get; set; }
+
+		/// <summary>
+		/// История.
+		/// </summary>
+		public Story Story { get; set; }
 
 	#endregion
 	}

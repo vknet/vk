@@ -2,36 +2,32 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
+using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model
+namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// История
 	/// </summary>
 	[Serializable]
-	public class Story
+	public class Story : MediaAttachment
 	{
 	#region Поля
 
 		/// <summary>
-		/// Идентификатор истории.
+		/// История.
 		/// </summary>
-		[JsonProperty("id")]
-		public long Id { get; set; }
-
-		/// <summary>
-		/// Идентификатор владельца истории.
-		/// </summary>
-		[JsonProperty("owner_id")]
-		public long OwnerId { get; set; }
+		static Story()
+		{
+			RegisterType(typeof(Story), "story");
+		}
 
 		/// <summary>
 		/// Дата добавления в Unixtime.
 		/// </summary>
 		[JsonProperty("date")]
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime Date { get; set; }
 
 		/// <summary>
@@ -84,7 +80,8 @@ namespace VkNet.Model
 		public StoryLink Link { get; set; }
 
 		/// <summary>
-		/// Идентификатор пользователя, загрузившего историю, ответом на которую является текущая.
+		/// Идентификатор пользователя, загрузившего историю, ответом на которую является
+		/// текущая.
 		/// </summary>
 		[JsonProperty("parent_story_owner_id")]
 		public long? ParentStoryOwnerId { get; set; }
@@ -136,6 +133,66 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("access_key")]
 		public string AccessKey { get; set; }
+
+	#endregion
+
+	#region Методы
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static Story FromJson(VkResponse response)
+		{
+			var story = new Story
+			{
+				Id = response["id"],
+				OwnerId = response["owner_id"],
+				Date = response["date"],
+				IsExpired = response["is_expired"],
+				IsDeleted = response["is_deleted"],
+				CanSee = response["can_see"],
+				Seen = response["seen"],
+				Type = response["type"],
+				Photo = response["photo"],
+				Video = response["video"],
+				Link = response["link"],
+				ParentStoryOwnerId = response["parent_story_owner_id"],
+				ParentStoryId = response["parent_story_id"],
+				ParentStory = response["parent_story"],
+				Replies = response["replies"],
+				CanReply = response["can_reply"],
+				CanShare = response["can_share"],
+				CanComment = response["can_comment"],
+				Views = response["views"],
+				AccessKey = response["access_key"]
+			};
+
+			return story;
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator Story(VkResponse response)
+		{
+			return response != null && response.HasToken()
+				? FromJson(response)
+				: null;
+		}
+
+		/// <inheritdoc />
+		public override string ToString()
+		{
+			return string.IsNullOrWhiteSpace(AccessKey)
+				? base.ToString()
+				: $"{base.ToString()}_{AccessKey}";
+		}
 
 	#endregion
 	}
