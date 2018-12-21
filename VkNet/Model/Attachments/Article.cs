@@ -12,6 +12,14 @@ namespace VkNet.Model.Attachments
 	public class Article : MediaAttachment
 	{
 		/// <summary>
+		/// Заметка пользователя.
+		/// </summary>
+		static Article()
+		{
+			RegisterType(typeof(Article), "article");
+		}
+
+		/// <summary>
 		/// Имя владельца
 		/// </summary>
 		[JsonProperty("owner_name")]
@@ -75,11 +83,6 @@ namespace VkNet.Model.Attachments
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty("access_key")]
-		public string AccessKey { get; set; }
-
-		/// <summary>
-		/// </summary>
 		[JsonProperty("published_date")]
 		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? PublishedDate { get; set; }
@@ -132,14 +135,6 @@ namespace VkNet.Model.Attachments
 			return response.HasToken()
 				? FromJson(response)
 				: null;
-		}
-
-		/// <inheritdoc />
-		public override string ToString()
-		{
-			return string.IsNullOrWhiteSpace(AccessKey)
-				? base.ToString()
-				: $"{base.ToString()}_{AccessKey}";
 		}
 	}
 }

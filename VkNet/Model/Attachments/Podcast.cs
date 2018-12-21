@@ -12,6 +12,14 @@ namespace VkNet.Model.Attachments
 	public class Podcast : MediaAttachment
 	{
 		/// <summary>
+		/// Заметка пользователя.
+		/// </summary>
+		static Podcast()
+		{
+			RegisterType(typeof(Podcast), "podcast");
+		}
+
+		/// <summary>
 		/// Исполнитель
 		/// </summary>
 		[JsonProperty("artist")]

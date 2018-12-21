@@ -127,12 +127,6 @@ namespace VkNet.Model.Attachments
 		public bool? IsPrivate { get; set; }
 
 		/// <summary>
-		/// Ключ доступа.
-		/// </summary>
-		[JsonProperty("access_key")]
-		public string AccessKey { set; get; }
-
-		/// <summary>
 		/// Поле возвращается в том случае, если видеоролик находится в процессе обработки,
 		/// всегда содержит 1.
 		/// </summary>
@@ -152,6 +146,57 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[JsonProperty("upcoming")]
 		public bool? Upcoming { get; set; }
+
+	#region Методы
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static Video FromJson(VkResponse response)
+		{
+			return new Video
+			{
+				Id = response["video_id"] ?? response["vid"] ?? response["id"],
+				OwnerId = response["owner_id"],
+				Title = response["title"],
+				Description = response["description"],
+				Duration = response["duration"],
+				Photo130 = response["photo_130"],
+				Photo320 = response["photo_320"],
+				Photo640 = response["photo_640"],
+				Photo800 = response["photo_800"],
+				Date = response["date"],
+				Views = response["views"],
+				Comments = response["comments"],
+				Player = response["player"],
+				AccessKey = response["access_key"],
+				Processing = response["processing"],
+				Live = response["live"],
+
+				// Устаревшие или не документированные
+				CanAdd = response["can_add"],
+				CanComment = response["can_comment"],
+				CanRepost = response["can_repost"],
+				Repeat = response["repeat"],
+				Likes = response["likes"],
+				AlbumId = Utilities.GetNullableLongId(response["album_id"]),
+				UploadUrl = response["upload_url"],
+				Tag = response,
+				AddingDate = response["adding_date"],
+				Files = response["files"],
+				Reposts = response["reposts"],
+				Platform = response["platform"],
+				Width = response["width"],
+				Height = response["height"],
+				CanEdit = response["can_edit"],
+				IsPrivate = response["is_private"],
+				Upcoming = response["upcoming"]
+			};
+		}
+
+	#endregion
 
 	#region Недокументированные
 
@@ -221,65 +266,6 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[JsonProperty("height")]
 		public int? Height { get; set; }
-
-	#endregion
-
-	#region Методы
-
-		/// <inheritdoc />
-		public override string ToString()
-		{
-			return string.IsNullOrWhiteSpace(AccessKey)
-				? base.ToString()
-				: $"{base.ToString()}_{AccessKey}";
-		}
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static Video FromJson(VkResponse response)
-		{
-			return new Video
-			{
-				Id = response["video_id"] ?? response["vid"] ?? response["id"],
-				OwnerId = response["owner_id"],
-				Title = response["title"],
-				Description = response["description"],
-				Duration = response["duration"],
-				Photo130 = response["photo_130"],
-				Photo320 = response["photo_320"],
-				Photo640 = response["photo_640"],
-				Photo800 = response["photo_800"],
-				Date = response["date"],
-				Views = response["views"],
-				Comments = response["comments"],
-				Player = response["player"],
-				AccessKey = response["access_key"],
-				Processing = response["processing"],
-				Live = response["live"],
-
-				// Устаревшие или не документированные
-				CanAdd = response["can_add"],
-				CanComment = response["can_comment"],
-				CanRepost = response["can_repost"],
-				Repeat = response["repeat"],
-				Likes = response["likes"],
-				AlbumId = Utilities.GetNullableLongId(response["album_id"]),
-				UploadUrl = response["upload_url"],
-				Tag = response,
-				AddingDate = response["adding_date"],
-				Files = response["files"],
-				Reposts = response["reposts"],
-				Platform = response["platform"],
-				Width = response["width"],
-				Height = response["height"],
-				CanEdit = response["can_edit"],
-				IsPrivate = response["is_private"],
-				Upcoming = response["upcoming"]
-			};
-		}
 
 	#endregion
 	}

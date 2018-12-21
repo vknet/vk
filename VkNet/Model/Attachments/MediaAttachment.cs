@@ -28,11 +28,21 @@ namespace VkNet.Model.Attachments
 		public long? OwnerId { get; set; }
 
 		/// <summary>
+		/// Ключ доступа
+		/// </summary>
+		[JsonProperty("access_key")]
+		public string AccessKey { get; set; }
+
+		/// <summary>
 		/// Преобразовать вложение в строку.
 		/// </summary>
 		public override string ToString()
 		{
-			return $"{MatchType(GetType())}{OwnerId}_{Id}";
+			var result = $"{MatchType(GetType())}{OwnerId}_{Id}";
+
+			return string.IsNullOrWhiteSpace(AccessKey)
+				? result
+				: $"{result}_{AccessKey}";
 		}
 
 		/// <summary>
