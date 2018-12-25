@@ -2,26 +2,18 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model.Attachments
 {
 	/// <summary>
 	/// Плейлист.
 	/// </summary>
 	[Serializable]
-	public class AudioPlaylist
+	public class AudioPlaylist : MediaAttachment
 	{
-		/// <summary>
-		/// Идентификатор плейлиста.
-		/// </summary>
-		[JsonProperty("id")]
-		public long Id { get; set; }
-
-		/// <summary>
-		/// Идентификатор владельца плейлиста (пользователь или сообщество).
-		/// </summary>
-		[JsonProperty("owner_id")]
-		public long OwnerId { get; set; }
+		/// <inheritdoc />
+		protected override string Alias { get; } = "audio_playlist";
 
 		/// <summary>
 		/// Тип плейлиста.
@@ -89,7 +81,7 @@ namespace VkNet.Model
 		/// Год выпуска альбома.
 		/// </summary>
 		[JsonProperty("year")]
-		public long Year { get; set; }
+		public long? Year { get; set; }
 
 		/// <summary>
 		/// Неизвестно.
@@ -122,12 +114,6 @@ namespace VkNet.Model
 		public IEnumerable<long> OwnerIds { get; set; }
 
 		/// <summary>
-		/// Ключ доступа.
-		/// </summary>
-		[JsonProperty("access_key")]
-		public string AccessKey { get; set; }
-
-		/// <summary>
 		/// Главный исполнитель.
 		/// </summary>
 		[JsonProperty("main_artist")]
@@ -138,5 +124,62 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("artists")]
 		public IEnumerable<AudioPlaylistArtist> Artists { get; set; }
+
+	#region Методы
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static AudioPlaylist FromJson(VkResponse response)
+		{
+			var playlist = new AudioPlaylist
+			{
+				Id = response["id"],
+				OwnerId = response["owner_id"],
+				Type = response["type"],
+				Title = response["title"],
+				Description = response["description"],
+				Genres = response["genres"].ToReadOnlyCollectionOf<AudioPlaylistGenre>(x => x),
+				Count = response["count"],
+				IsFollowing = response["is_following"],
+				Followers = response["followers"],
+				Plays = response["plays"],
+				CreateTime = response["create_time"],
+				UpdateTime = response["update_time"],
+				Year = response["year"],
+				Original = response["original"],
+				Follower = response["followed"],
+				Cover = response["photo"],
+				Covers = response["thumbs"].ToReadOnlyCollectionOf<AudioCover>(x => x),
+				OwnerIds = response["display_owner_ids"].ToReadOnlyCollectionOf<long>(x => x),
+				MainArtist = response["main_artist"],
+				Artists = response["artists"].ToReadOnlyCollectionOf<AudioPlaylistArtist>(x => x),
+				AccessKey = response["access_key"]
+			};
+
+			return playlist;
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="AudioPlaylist" /> в
+		/// <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="AudioPlaylist" /> </returns>
+		public static implicit operator AudioPlaylist(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
+
+	#endregion
 	}
 }

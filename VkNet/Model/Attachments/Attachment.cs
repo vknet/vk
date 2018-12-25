@@ -144,6 +144,11 @@ namespace VkNet.Model.Attachments
 					return Story;
 				}
 
+				if (Type == typeof(AudioPlaylist))
+				{
+					return AudioPlaylist;
+				}
+
 				return null;
 			}
 		}
@@ -364,6 +369,14 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+				case "audio_playlist":
+
+				{
+					attachment.Type = typeof(AudioPlaylist);
+					attachment.AudioPlaylist = response[type];
+
+					break;
+				}
 
 				default:
 
@@ -505,6 +518,11 @@ namespace VkNet.Model.Attachments
 		/// История.
 		/// </summary>
 		public Story Story { get; set; }
+
+		/// <summary>
+		/// Плейлист.
+		/// </summary>
+		public AudioPlaylist AudioPlaylist { get; set; }
 
 	#endregion
 	}
