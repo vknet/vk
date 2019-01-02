@@ -63,15 +63,24 @@ csharp_blank_lines_after_multiline_statements=1
 
 
 # Braces Layout
-csharp_brace_style=next_line
+csharp_type_declaration_braces=next_line
+csharp_indent_inside_namespace=true
+csharp_invocable_declaration_braces=next_line
+csharp_anonymous_method_declaration_braces=next_line
+csharp_accessor_owner_declaration_braces=next_line
+csharp_accessor_declaration_braces=next_line
+csharp_case_block_braces=next_line
+csharp_initializer_braces=next_line
+csharp_use_continuous_indent_inside_initializer_braces=true
+csharp_other_braces=next_line
 csharp_allow_comment_after_lbrace=false
 csharp_empty_block_style=multiline
 
 ## CodeStyle
 # 'var' Usage in Declarations
-csharp_for_built_in_types=use_var:error
-csharp_for_simple_types=use_var:error
-csharp_for_other_types=use_var:error
+csharp_for_built_in_types=use_var
+csharp_for_simple_types=use_var
+csharp_for_other_types=use_var
 
 # Prefer separate declarations for deconstructed variables
 csharp_prefer_separate_deconstructed_variables_declaration=false
@@ -102,6 +111,7 @@ csharp_default_private_modifier=explicit
 csharp_default_internal_modifier=explicit
 
 # Arguments
+csharp_arguments_skip_single=true
 csharp_arguments_literal=positional
 csharp_arguments_string_literal=positional
 csharp_arguments_named=positional
@@ -121,6 +131,7 @@ csharp_braces_for_dowhile=required
 csharp_braces_for_using=required
 csharp_braces_for_fixed=required
 csharp_braces_redundant=true
+csharp_braces_for_lock=required
 
 # Code Body
 csharp_method_or_operator_body=block_body
@@ -226,11 +237,13 @@ csharp_place_field_attribute_on_same_line=never
 
 # Arrangement of Method Signatures
 csharp_wrap_parameters_style=wrap_if_long
+csharp_max_formal_parameters_on_line=5
 csharp_keep_existing_declaration_parens_arrangement=false
 csharp_wrap_before_declaration_lpar=false
 csharp_wrap_after_declaration_lpar=false
 csharp_wrap_before_declaration_rpar=false
 csharp_place_constructor_initializer_on_same_line=true
+
 
 # Arrangement of Expression Bodied Members
 csharp_keep_existing_expr_member_arrangement=true
@@ -265,6 +278,12 @@ csharp_place_simple_method_on_single_line=false
 csharp_place_simple_declaration_blocks_on_single_line=false
 place_simple_blocks_on_single_line=false
 
+# Arrangement of Enumerations
+csharp_keep_existing_enum_arrangement=false
+csharp_max_enum_members_on_line=0
+csharp_place_simple_enum_on_single_line=false
+csharp_wrap_enum_declaration=chop_always
+
 # Arrangement of Statements
 csharp_new_line_before_else=false
 csharp_new_line_before_while=false
@@ -283,12 +302,15 @@ csharp_place_simple_anonymousmethod_on_single_line=false
 
 # Arrangement of Initializers
 csharp_keep_existing_initializer_arrangement=true
+csharp_max_initializer_elements_on_line=0
+csharp_max_array_initializer_elements_on_line=0
 csharp_place_simple_initializer_on_single_line=false
 csharp_wrap_object_and_collection_initializer_style=chop_always
 csharp_wrap_array_initializer_style=chop_always
 
 # Arrangement of Invocations
 csharp_wrap_arguments_style=chop_if_long
+csharp_max_invocation_arguments_on_line=5
 csharp_keep_existing_invocation_parens_arrangement=false
 csharp_wrap_before_invocation_lpar=false
 csharp_wrap_after_invocation_lpar=false
@@ -314,6 +336,9 @@ csharp_nested_ternary_style=autodetect
 csharp_wrap_linq_expressions=chop_always
 csharp_wrap_before_linq_expression=false
 csharp_place_linq_into_on_new_line=true
+
+# Arrangement of interpolated strings
+csharp_wrap_verbatim_interpolated_strings=no_wrap
 
 ## - Other
 csharp_old_engine=false
