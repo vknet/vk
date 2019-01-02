@@ -74,7 +74,7 @@ namespace VkNet.Categories
 		[Pure]
 		public MessageGetHistoryObject GetHistory(MessagesGetHistoryParams @params)
 		{
-			return _vk.Call<MessageGetHistoryObject>(methodName: "messages.getHistory", parameters: @params);
+			return _vk.Call<MessageGetHistoryObject>("messages.getHistory", @params);
 		}
 
 		/// <inheritdoc />
@@ -123,7 +123,7 @@ namespace VkNet.Categories
 			return _vk.Call<MessageSearchResult>("messages.search", @params);
 		}
 
-		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="ArgumentNullException"> </exception>
 		/// <inheritdoc />
 		public long Send(MessagesSendParams @params)
 		{
@@ -476,7 +476,7 @@ namespace VkNet.Categories
 			return list.ToReadOnlyCollection();
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public bool RemoveChatUser(ulong chatId, long? userId = null, long? memberId = null)
 		{
 			var parameters = new VkParameters
@@ -648,6 +648,21 @@ namespace VkNet.Categories
 			return _vk.Call("messages.edit", @params);
 		}
 
+		/// <inheritdoc />
+		public bool Unpin(long peerId, ulong? groupId = null)
+		{
+			return _vk.Call<bool>("messages.unpin", new VkParameters { { "peer_id", peerId }, { "group_id", groupId } });
+		}
+
+		/// <inheritdoc />
+		public GetRecentCallsResult GetRecentCalls(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null,
+													bool? extended = null)
+		{
+			return _vk.Call<GetRecentCallsResult>("messages.getRecentCalls",
+				new VkParameters
+					{ { "fields", fields }, { "count", count }, { "start_message_id", startMessageId }, { "extended", extended } });
+		}
+
 		/// <summary>
 		/// Ворзвращает указанное сообщение по его идентификатору.
 		/// </summary>
@@ -667,9 +682,7 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
 		/// </remarks>
 		[Pure]
-		[Obsolete(
-			"Используйте GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null, bool? extended = null, ulong? groupId = null)",
-			true)]
+		[Obsolete(ObsoleteText.MessageGetById, true)]
 		public Message GetById(ulong messageId, uint? previewLength = null)
 		{
 			var result = GetById(new[] { messageId }, null, previewLength);
@@ -680,18 +693,6 @@ namespace VkNet.Categories
 			}
 
 			throw new VkApiException("Сообщения с таким ID не существует.");
-		}
-
-		/// <inheritdoc/>
-		public bool Unpin(long peerId, ulong? groupId = null)
-		{
-			return _vk.Call<bool>("messages.unpin", new VkParameters { { "peer_id", peerId }, { "group_id", groupId } });
-		}
-
-		/// <inheritdoc/>
-		public GetRecentCallsResult GetRecentCalls(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null, bool? extended = null)
-		{
-			return _vk.Call<GetRecentCallsResult>("messages.getRecentCalls", new VkParameters{{"fields", fields}, {"count", count}, {"start_message_id", startMessageId}, {"extended", extended}});
 		}
 	}
 }

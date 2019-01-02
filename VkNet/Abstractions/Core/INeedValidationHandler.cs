@@ -1,5 +1,6 @@
 ﻿using System;
 using VkNet.Model;
+using VkNet.Utils;
 
 namespace VkNet.Abstractions.Core
 {
@@ -17,7 +18,7 @@ namespace VkNet.Abstractions.Core
 		/// странице валидации
 		/// </param>
 		/// <returns> Информация об авторизации приложения. </returns>
-		[Obsolete("Данный метод устарел, используйте Validate(string validateUrl)")]
+		[Obsolete(ObsoleteText.Validate)]
 		AuthorizationResult Validate(string validateUrl, string phoneNumber);
 
 		/// <summary>
