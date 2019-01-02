@@ -36,6 +36,12 @@ namespace VkNet.Tests
 		/// </summary>
 		protected string Url;
 
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
 		/// <summary>
 		/// Пред установки выполнения каждого теста.
 		/// </summary>
@@ -122,6 +128,16 @@ namespace VkNet.Tests
 
 		protected void ReadJsonFile(params string[] jsonRelativePaths)
 		{
+			Json = ReadJson(jsonRelativePaths);
+		}
+
+		protected void ReadErrorsJsonFile(uint errorCode)
+		{
+			ReadJsonFile("Errors", errorCode.ToString());
+		}
+
+		protected string ReadJson(params string[] jsonRelativePaths)
+		{
 			var folders = new List<string>
 			{
 				AppContext.BaseDirectory, "TestData"
@@ -136,12 +152,7 @@ namespace VkNet.Tests
 				throw new FileNotFoundException(path);
 			}
 
-			Json = File.ReadAllText(path);
-		}
-
-		protected void ReadErrorsJsonFile(uint errorCode)
-		{
-			ReadJsonFile("Errors", errorCode.ToString());
+			return File.ReadAllText(path);
 		}
 
 		protected virtual void Dispose(bool disposing)
@@ -171,12 +182,6 @@ namespace VkNet.Tests
 			restClient.Setup(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
 					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
 				.Throws<ArgumentException>();
-		}
-
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
 		}
 	}
 }

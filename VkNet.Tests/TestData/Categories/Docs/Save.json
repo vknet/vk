@@ -1,0 +1,52 @@
+{
+  "response": {
+    "type": "doc",
+    "doc": {
+      "id": 486338532,
+      "owner_id": 509001243,
+      "title": "IMG_907",
+      "size": 4620,
+      "ext": "png",
+      "url": "https://vk.com/doc509001243_486338532?hash=70c3c8bb671fb310da&dl=GUYDSMBQGEZDIMY:1546384167:9047fc20070b2c018b&api=1&no_preview=1",
+      "date": 1546384167,
+      "type": 4,
+      "preview": {
+        "photo": {
+          "sizes": [
+            {
+              "src": "https://pp.userapi.com/c848328/u509001243/d1/-3/m_8566612e4a.jpg",
+              "width": 130,
+              "height": 71,
+              "type": "m"
+            },
+            {
+              "src": "https://pp.userapi.com/c848328/u509001243/d1/-3/s_8566612e4a.jpg",
+              "width": 100,
+              "height": 55,
+              "type": "s"
+            },
+            {
+              "src": "https://pp.userapi.com/c848328/u509001243/d1/-3/x_8566612e4a.jpg",
+              "width": 604,
+              "height": 329,
+              "type": "x"
+            },
+            {
+              "src": "https://pp.userapi.com/c848328/u509001243/d1/-3/y_8566612e4a.jpg",
+              "width": 807,
+              "height": 439,
+              "type": "y"
+            },
+            {
+              "src": "https://pp.userapi.com/c848328/u509001243/d1/-3/o_8566612e4a.jpg",
+              "width": 717,
+              "height": 390,
+              "type": "o"
+            }
+          ]
+        }
+      },
+      "is_licensed": 0
+    }
+  }
+}

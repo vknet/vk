@@ -24,7 +24,7 @@ namespace VkNet.UWP.Model.Attachments
 		/// <returns> Результат преобразования в <see cref="PhotosList" /> </returns>
 		public static implicit operator PhotosList(VkResponse response)
 		{
-			return new PhotosList();
+			return response == null ? null : new PhotosList();
 		}
 
 	#endregion

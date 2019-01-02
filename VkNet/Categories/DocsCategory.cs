@@ -40,13 +40,10 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "count", count }
-					, { "offset", offset }
-					, { "owner_id", ownerId }
-					, { "type", type }
+				{ "count", count }, { "offset", offset }, { "owner_id", ownerId }, { "type", type }
 			};
 
-			return _vk.Call(methodName: "docs.get", parameters: parameters).ToVkCollectionOf<Document>(selector: r => r);
+			return _vk.Call("docs.get", parameters).ToVkCollectionOf<Document>(selector: r => r);
 		}
 
 		/// <inheritdoc />
@@ -61,10 +58,10 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "docs", string.Concat(values: docs.Select(selector: it => it.OwnerId + "_" + it.Id + ",")) }
+				{ "docs", string.Concat(values: docs.Select(selector: it => it.OwnerId + "_" + it.Id + ",")) }
 			};
 
-			var response = _vk.Call(methodName: "docs.getById", parameters: parameters);
+			var response = _vk.Call("docs.getById", parameters);
 
 			return response.ToReadOnlyCollectionOf<Document>(selector: r => r);
 		}
@@ -77,10 +74,10 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "group_id", groupId }
+				{ "group_id", groupId }
 			};
 
-			return _vk.Call(methodName: "docs.getUploadServer", parameters: parameters);
+			return _vk.Call("docs.getUploadServer", parameters);
 		}
 
 		/// <inheritdoc />
@@ -91,35 +88,42 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters { { "group_id", groupId } };
 
-			return _vk.Call(methodName: "docs.getWallUploadServer", parameters: parameters);
+			return _vk.Call("docs.getWallUploadServer", parameters);
 		}
 
 		/// <inheritdoc />
 		[Pure]
-		public ReadOnlyCollection<Document> Save(string file
-												, string title
-												, string tags = null
-												, long? captchaSid = null
-												, string captchaKey = null)
+		public ReadOnlyCollection<Document> Save(string file, string title, string tags = null, long? captchaSid = null,
+												string captchaKey = null)
 		{
-			var file1 = file;
-			VkErrors.ThrowIfNullOrEmpty(expr: () => file1);
-			VkErrors.ThrowIfNullOrEmpty(expr: () => title);
-			var responseJson = JObject.Parse(json: file);
-			file = responseJson[propertyName: "file"].ToString();
+			VkErrors.ThrowIfNullOrEmpty(() => title);
+
+			if (VkResponseEx.IsValidJson(file))
+			{
+				var responseJson = JObject.Parse(file);
+				file = responseJson["file"].ToString();
+			}
 
 			var parameters = new VkParameters
 			{
-					{ "file", file }
-					, { "title", title }
-					, { "tags", tags }
-					, { "captcha_sid", captchaSid }
-					, { "captcha_key", captchaKey }
+				{ "file", file },
+				{ "title", title },
+				{ "tags", tags },
+				{ "captcha_sid", captchaSid },
+				{ "captcha_key", captchaKey }
 			};
 
-			var response = _vk.Call(methodName: "docs.save", parameters: parameters);
+			var response = _vk.Call("docs.save", parameters);
 
-			return response.ToReadOnlyCollectionOf<Document>(selector: r => r);
+			if ((Document) response != null)
+			{
+				return new ReadOnlyCollection<Document>(new List<Document>
+				{
+					response
+				});
+			}
+
+			return response.ToReadOnlyCollectionOf<Document>(r => r);
 		}
 
 		/// <inheritdoc />
@@ -131,11 +135,11 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "doc_id", docId }
+				{ "owner_id", ownerId },
+				{ "doc_id", docId }
 			};
 
-			return _vk.Call(methodName: "docs.delete", parameters: parameters);
+			return _vk.Call("docs.delete", parameters);
 		}
 
 		/// <inheritdoc />
@@ -147,14 +151,14 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "doc_id", docId }
-					, { "access_key", accessKey }
-					, { "captcha_sid", captchaSid }
-					, { "captcha_key", captchaKey }
+				{ "owner_id", ownerId },
+				{ "doc_id", docId },
+				{ "access_key", accessKey },
+				{ "captcha_sid", captchaSid },
+				{ "captcha_key", captchaKey }
 			};
 
-			return _vk.Call(methodName: "docs.add", parameters: parameters);
+			return _vk.Call("docs.add", parameters);
 		}
 
 		/// <inheritdoc />
@@ -162,10 +166,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
+				{ "owner_id", ownerId }
 			};
 
-			return _vk.Call(methodName: "docs.getTypes", parameters: parameters).ToVkCollectionOf<DocumentType>(selector: x => x);
+			return _vk.Call("docs.getTypes", parameters).ToVkCollectionOf<DocumentType>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -173,13 +177,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "q", query }
-					, { "count", count }
-					, { "offset", offset }
-					, { "search_own", searchOwn }
+				{ "q", query }, { "count", count }, { "offset", offset }, { "search_own", searchOwn }
 			};
 
-			return _vk.Call(methodName: "docs.search", parameters: parameters).ToVkCollectionOf<Document>(selector: x => x);
+			return _vk.Call("docs.search", parameters).ToVkCollectionOf<Document>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -187,13 +188,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "doc_id", docId }
-					, { "title", title }
-					, { "tags", tags }
+				{ "owner_id", ownerId }, { "doc_id", docId }, { "title", title }, { "tags", tags }
 			};
 
-			return _vk.Call(methodName: "docs.edit", parameters: parameters);
+			return _vk.Call("docs.edit", parameters);
 		}
 
 		/// <inheritdoc />
@@ -201,11 +199,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "peer_id", peerId }
-					, { "type", type }
+				{ "peer_id", peerId }, { "type", type }
 			};
 
-			return _vk.Call(methodName: "docs.getMessagesUploadServer", parameters: parameters);
+			return _vk.Call("docs.getMessagesUploadServer", parameters);
 		}
 	}
 }

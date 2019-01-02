@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using JetBrains.Annotations;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace VkNet.Utils
 {
@@ -202,17 +203,52 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Преобразовать <see cref="VkResponse"/> к <see cref="IConvertible"/>
+		/// Преобразовать <see cref="VkResponse" /> к <see cref="IConvertible" />
 		/// </summary>
-		/// <param name="response">Ответ vk.com.</param>
-		/// <typeparam name="T">Тип перечисления</typeparam>
-		/// <returns></returns>
+		/// <param name="response"> Ответ vk.com. </param>
+		/// <typeparam name="T"> Тип перечисления </typeparam>
+		/// <returns> </returns>
 		public static T ToEnum<T>(this VkResponse response)
 			where T : IConvertible
 		{
 			return response == null
 				? default(T)
 				: Utilities.EnumFrom<T>(response);
+		}
+
+		/// <summary>
+		/// Проверка что строка является JSON
+		/// </summary>
+		/// <param name="input"> </param>
+		/// <returns> </returns>
+		public static bool IsValidJson(string input)
+		{
+			input = input.Trim();
+
+			if ((!input.StartsWith("{") || !input.EndsWith("}")) && (!input.StartsWith("[") || !input.EndsWith("]")))
+			{
+				return false;
+			}
+
+			try
+			{
+				var obj = JToken.Parse(input);
+
+				return true;
+			}
+			catch (JsonReaderException jex)
+			{
+				//Exception in parsing json
+				Console.WriteLine(jex.Message);
+
+				return false;
+			}
+			catch (System.Exception ex) //some other exception
+			{
+				Console.WriteLine(ex.ToString());
+
+				return false;
+			}
 		}
 	}
 }
