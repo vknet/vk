@@ -15,7 +15,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Экземпляр самого прикрепления.
 		/// </summary>
-		public object Instance
+		public MediaAttachment Instance
 		{
 			get
 			{
@@ -458,7 +458,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Список фотографий
 		/// </summary>
-		private PhotosList PhotosList;
+		private PhotosList PhotosList { get; set; }
 
 		/// <summary>
 		/// Запись на стене.
@@ -507,22 +507,22 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Статья
 		/// </summary>
-		public Article Article { get; set; }
+		private Article Article { get; set; }
 
 		/// <summary>
 		/// Звонок.
 		/// </summary>
-		public Call Call { get; set; }
+		private Call Call { get; set; }
 
 		/// <summary>
 		/// История.
 		/// </summary>
-		public Story Story { get; set; }
+		private Story Story { get; set; }
 
 		/// <summary>
 		/// Плейлист.
 		/// </summary>
-		public AudioPlaylist AudioPlaylist { get; set; }
+		private AudioPlaylist AudioPlaylist { get; set; }
 
 	#endregion
 	}

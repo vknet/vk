@@ -44,15 +44,15 @@ namespace VkNet.Utils
 		{
 			Remove(key: name);
 
-			if (value == null
-			) //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'value' for null will always return false when generic type is instantiated with a value type.
+			// TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'value' for null will always return false when generic type is instantiated with a value type.
+			if (value == null)
 			{
 				return;
 			}
 
 			if (typeof(T).IsEnum)
 			{
-				Add(name: name, value: (int) (object) value);
+				Add(name, (int) (object) value);
 
 				return;
 			}
@@ -61,7 +61,7 @@ namespace VkNet.Utils
 
 			if (!string.IsNullOrWhiteSpace(value: stringValue))
 			{
-				base.Add(key: name, value: stringValue);
+				base.Add(name, stringValue);
 			}
 		}
 
@@ -80,7 +80,7 @@ namespace VkNet.Utils
 		public void Add<T>(string name, IEnumerable<T> collection)
 		{
 			var value = collection.JoinNonEmpty();
-			Add(name: name, value: value);
+			Add(name, value);
 		}
 
 		/// <summary>
@@ -94,7 +94,7 @@ namespace VkNet.Utils
 		/// <param name="collection"> Коллекция, представляющая значение параметра запроса. </param>
 		public void Add<T>(string name, List<T> collection)
 		{
-			Add(name: name, collection: (IEnumerable<T>) collection);
+			Add(name, (IEnumerable<T>) collection);
 		}
 
 		/// <summary>
@@ -105,7 +105,7 @@ namespace VkNet.Utils
 		/// <param name="name"> Имя параметра запроса. </param>
 		/// <param name="nullableValue"> Значение параметра запроса. </param>
 		public void Add<T>(string name, T? nullableValue)
-				where T : struct
+			where T : struct
 		{
 			Remove(key: name);
 
@@ -114,7 +114,7 @@ namespace VkNet.Utils
 				return;
 			}
 
-			Add(name: name, value: nullableValue.Value);
+			Add(name, nullableValue.Value);
 		}
 
 		/// <summary>
@@ -133,12 +133,18 @@ namespace VkNet.Utils
 			}
 
 			var totalSeconds =
-					(nullableDateTime.Value.ToUniversalTime()
-					- new DateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, kind: DateTimeKind.Utc)).TotalSeconds;
+				(nullableDateTime.Value.ToUniversalTime()
+				- new DateTime(1970,
+					1,
+					1,
+					0,
+					0,
+					0,
+					DateTimeKind.Utc)).TotalSeconds;
 
 			var offset = Convert.ToInt64(value: totalSeconds);
 
-			Add(name: name, value: offset);
+			Add(name, offset);
 		}
 
 		/// <summary>
@@ -156,7 +162,7 @@ namespace VkNet.Utils
 				return;
 			}
 
-			base.Add(key: name, value: nullableValue.Value ? "1" : "0");
+			base.Add(name, nullableValue.Value ? "1" : "0");
 		}
 
 		/// <summary>
@@ -169,7 +175,7 @@ namespace VkNet.Utils
 		{
 			Remove(key: name);
 
-			base.Add(key: name, value: value ? "1" : "0");
+			base.Add(name, value ? "1" : "0");
 		}
 
 		/// <summary>
@@ -182,7 +188,7 @@ namespace VkNet.Utils
 		{
 			Remove(key: name);
 
-			base.Add(key: name, value: value.ToString(provider: CultureInfo.InvariantCulture));
+			base.Add(name, value.ToString(provider: CultureInfo.InvariantCulture));
 		}
 
 		/// <summary>
@@ -200,7 +206,7 @@ namespace VkNet.Utils
 				return;
 			}
 
-			base.Add(key: name, value: value.Value.ToString(provider: CultureInfo.InvariantCulture));
+			base.Add(name, value.Value.ToString(provider: CultureInfo.InvariantCulture));
 		}
 
 		/// <summary>
@@ -213,7 +219,7 @@ namespace VkNet.Utils
 		{
 			Remove(key: name);
 
-			base.Add(key: name, value: value.ToString(provider: CultureInfo.InvariantCulture));
+			base.Add(name, value.ToString(provider: CultureInfo.InvariantCulture));
 		}
 
 		/// <summary>
@@ -231,7 +237,7 @@ namespace VkNet.Utils
 				return;
 			}
 
-			base.Add(key: name, value: value.Value.ToString(provider: CultureInfo.InvariantCulture));
+			base.Add(name, value.Value.ToString(provider: CultureInfo.InvariantCulture));
 		}
 
 		/// <summary>
@@ -244,7 +250,7 @@ namespace VkNet.Utils
 		{
 			Remove(key: name);
 
-			base.Add(key: name, value: value.ToString(provider: CultureInfo.InvariantCulture));
+			base.Add(name, value.ToString(provider: CultureInfo.InvariantCulture));
 		}
 
 		/// <summary>
@@ -262,7 +268,7 @@ namespace VkNet.Utils
 				return;
 			}
 
-			base.Add(key: name, value: value.Value.ToString(provider: CultureInfo.InvariantCulture));
+			base.Add(name, value.Value.ToString(provider: CultureInfo.InvariantCulture));
 		}
 	}
 }

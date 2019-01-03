@@ -12,17 +12,10 @@ namespace VkNet.Model
 	/// Информация о продукте.
 	/// </summary>
 	[Serializable]
-	public class Market
+	public class Market : MediaAttachment
 	{
-		/// <summary>
-		/// Идентификатор
-		/// </summary>
-		public long Id { get; set; }
-
-		/// <summary>
-		/// Идентификатор владельца товара
-		/// </summary>
-		public long? OwnerId { get; set; }
+		/// <inheritdoc />
+		protected override string Alias => "market";
 
 		/// <summary>
 		/// Название товара
@@ -87,24 +80,22 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static Market FromJson(VkResponse response)
 		{
-			var result = new Market
+			return new Market
 			{
-					Id = response["id"] ?? -1
-					, OwnerId = response["owner_id"]
-					, Title = response["title"]
-					, Description = response["description"]
-					, Price = response["price"]
-					, Category = response["category"]
-					, ThumbPhoto = response["thumb_photo"]
-					, Date = response["date"]
-					, Availability = response["availability"]
-					, Photos = response["photos"].ToReadOnlyCollectionOf<Photo>(x => x)
-					, CanComment = response["can_comment"]
-					, CanRepost = response["can_repost"]
-					, Likes = response["likes"]
+				Id = response["id"] ?? -1,
+				OwnerId = response["owner_id"],
+				Title = response["title"],
+				Description = response["description"],
+				Price = response["price"],
+				Category = response["category"],
+				ThumbPhoto = response["thumb_photo"],
+				Date = response["date"],
+				Availability = response["availability"],
+				Photos = response["photos"].ToReadOnlyCollectionOf<Photo>(x => x),
+				CanComment = response["can_comment"],
+				CanRepost = response["can_repost"],
+				Likes = response["likes"]
 			};
-
-			return result;
 		}
 	}
 }

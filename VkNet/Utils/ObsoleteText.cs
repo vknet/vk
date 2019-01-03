@@ -1,3 +1,7 @@
+using VkNet.Abstractions;
+using VkNet.Model.Attachments;
+using VkNet.Utils.AntiCaptcha;
+
 namespace VkNet.Utils
 {
 	/// <summary>
@@ -7,10 +11,12 @@ namespace VkNet.Utils
 	{
 		/// <summary>
 		/// Параметры для капчи устаревшие.
-		/// Необходимо реализовать интефейс ICapthaSolver и внедрить через констуктор.
+		/// Необходимо реализовать интефейс ICaptchaSolver и внедрить через констуктор.
 		/// </summary>
 		public const string CaptchaNeeded = "Использование параметров капчи устаревший метод взаимодействия с Captcha."
-											+ " Необходимо реализовать интефейс ICapthaSolver и внедрить через констуктор."
+											+ " Необходимо реализовать интефейс "
+											+ nameof(ICaptchaSolver)
+											+ " и внедрить через констуктор."
 											+ " Данный параметр будет удален в версии 2.0.0";
 
 		/// <summary>
@@ -19,7 +25,12 @@ namespace VkNet.Utils
 		public const string StatsGet = "Устаревший параметр, доступен только для версий меньше 5.86";
 
 		/// <summary>
-		/// Stats.Get
+		/// Attachment
+		/// </summary>
+		public const string Attachment = "Данный тип данных устарел, используйте вместо него " + nameof(MediaAttachment);
+
+		/// <summary>
+		/// Validate
 		/// </summary>
 		public const string Validate = "Данный метод устарел, используйте перегрузку void Validate(string validateUrl);";
 
@@ -27,37 +38,43 @@ namespace VkNet.Utils
 		/// Messages.GetConversations
 		/// </summary>
 		public const string MessageGet =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него GetConversations";
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него "
+			+ nameof(IMessagesCategory.GetConversations);
 
 		/// <summary>
 		/// Messages.SearchConversations
 		/// </summary>
 		public const string MessageSearchDialogs =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него SearchConversations";
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него "
+			+ nameof(IMessagesCategory.SearchConversations);
 
 		/// <summary>
 		/// Messages.MessageMarkAsImportantDialog
 		/// </summary>
 		public const string MessageMarkAsImportantDialog =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него MarkAsImportantConversation";
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него "
+			+ nameof(IMessagesCategory.MarkAsImportantConversation);
 
 		/// <summary>
 		/// Messages.MarkAsAnsweredDialog
 		/// </summary>
 		public const string MessageMarkAsAnsweredDialog =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него MarkAsAnsweredConversation";
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него "
+			+ nameof(IMessagesCategory.MarkAsAnsweredConversation);
 
 		/// <summary>
 		/// Messages.DeleteConversation
 		/// </summary>
 		public const string MessageDeleteDialog =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него DeleteConversation";
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него "
+			+ nameof(IMessagesCategory.DeleteConversation);
 
 		/// <summary>
 		/// Messages.DeleteConversation
 		/// </summary>
 		public const string MessageGetChatUsers =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него GetConversationMembers";
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него "
+			+ nameof(IMessagesCategory.GetConversationMembers);
 
 		/// <summary>
 		/// Messages.DeleteConversation
