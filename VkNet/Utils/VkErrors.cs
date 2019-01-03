@@ -529,6 +529,11 @@ namespace VkNet.Utils
 				{
 					throw new ConversationAccessDeniedException(error);
 				}
+				case ErrorCode.UserNotFoundInChat: // Error 935
+
+				{
+					throw new UserNotFoundInChatException(error);
+				}
 				default:
 
 				{

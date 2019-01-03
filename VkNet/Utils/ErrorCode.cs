@@ -445,5 +445,10 @@
 		/// Нет доступа к беседе
 		/// </summary>
 		public const int ConversationAccessDenied = 917;
+
+		/// <summary>
+		/// Пользователя нет в чате
+		/// </summary>
+		public const int UserNotFoundInChat = 935;
 	}
 }
