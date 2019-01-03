@@ -21,9 +21,9 @@ namespace VkNet.Utils
 		public static T EnumFrom<T>(int value)
 			where T : IConvertible
 		{
-			if (!Enum.IsDefined(enumType: typeof(T), value: value))
+			if (!Enum.IsDefined(typeof(T), value))
 			{
-				throw new ArgumentException(message: $"Enum value {value} not defined!", paramName: nameof(value));
+				throw new ArgumentException($"Enum value {value} not defined!", nameof(value));
 			}
 
 			return (T) (object) value;
@@ -38,7 +38,7 @@ namespace VkNet.Utils
 		public static T? NullableEnumFrom<T>(int value)
 			where T : struct
 		{
-			if (!Enum.IsDefined(enumType: typeof(T), value: value))
+			if (!Enum.IsDefined(typeof(T), value))
 			{
 				return null;
 			}
@@ -54,9 +54,9 @@ namespace VkNet.Utils
 		/// <returns> Число типа long или null </returns>
 		public static long? GetNullableLongId(VkResponse response)
 		{
-			return string.IsNullOrWhiteSpace(value: response?.ToString())
+			return string.IsNullOrWhiteSpace(response?.ToString())
 				? (long?) null
-				: System.Convert.ToInt64(value: response?.ToString());
+				: System.Convert.ToInt64(response?.ToString());
 		}
 
 		/// <summary>
@@ -73,9 +73,9 @@ namespace VkNet.Utils
 				return string.Empty;
 			}
 
-			return string.Join(separator: separator,
-				values: collection.Select(selector: i => i.ToString().Trim())
-					.Where(predicate: s => !string.IsNullOrWhiteSpace(value: s)));
+			return string.Join(separator,
+				collection.Select(i => i.ToString().Trim())
+					.Where(s => !string.IsNullOrWhiteSpace(value: s)));
 		}
 
 		/// <summary>
@@ -95,7 +95,7 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="json"> Json. </param>
 		/// <returns> Json </returns>
-		public static string PreetyPrintJson(string json)
+		public static string PrettyPrintJson(string json)
 		{
 			using (var stringReader = new StringReader(s: json))
 			{
@@ -117,7 +117,7 @@ namespace VkNet.Utils
 		/// <returns> </returns>
 		public static string SerializeToJson<T>(T @object)
 		{
-			var result = JsonConvert.SerializeObject(value: @object, formatting: Formatting.Indented);
+			var result = JsonConvert.SerializeObject(@object, Formatting.Indented);
 
 			return result == "null" ? null : result;
 		}

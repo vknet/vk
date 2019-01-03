@@ -13,7 +13,7 @@ namespace VkNet.Utils
 		private readonly IAwaitableConstraint _awaitableConstraint;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="RateLimiter"/> class,
+		/// Initializes a new instance of the <see cref="RateLimiter" /> class,
 		/// specifying the behavior for the constraint.
 		/// </summary>
 		/// <param name="awaitableConstraint">
@@ -41,9 +41,9 @@ namespace VkNet.Utils
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 
-			using (await _awaitableConstraint.WaitForReadiness(cancellationToken))
+			using (await _awaitableConstraint.WaitForReadiness(cancellationToken).ConfigureAwait(false))
 			{
-				await perform();
+				await perform().ConfigureAwait(false);
 			}
 		}
 
@@ -52,9 +52,9 @@ namespace VkNet.Utils
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 
-			using (await _awaitableConstraint.WaitForReadiness(cancellationToken))
+			using (await _awaitableConstraint.WaitForReadiness(cancellationToken).ConfigureAwait(false))
 			{
-				return await perform();
+				return await perform().ConfigureAwait(false);
 			}
 		}
 

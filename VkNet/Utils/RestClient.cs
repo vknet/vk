@@ -64,7 +64,7 @@ namespace VkNet.Utils
 			if (_logger != null)
 			{
 				var json = JsonConvert.SerializeObject(parameters);
-				_logger.LogDebug($"POST request: {uri}{Environment.NewLine}{Utilities.PreetyPrintJson(json)}");
+				_logger.LogDebug($"POST request: {uri}{Environment.NewLine}{Utilities.PrettyPrintJson(json)}");
 			}
 
 			var content = new FormUrlEncodedContent(parameters);
@@ -79,7 +79,9 @@ namespace VkNet.Utils
 			var useProxyCondition = Proxy != null;
 
 			if (useProxyCondition)
+			{
 				_logger?.LogDebug($"Use Proxy: {Proxy}");
+			}
 
 			var handler = new HttpClientHandler
 			{
@@ -93,7 +95,7 @@ namespace VkNet.Utils
 
 				var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-				_logger?.LogDebug($"Response:{Environment.NewLine}{Utilities.PreetyPrintJson(content)}");
+				_logger?.LogDebug($"Response:{Environment.NewLine}{Utilities.PrettyPrintJson(content)}");
 				var url = response.RequestMessage.RequestUri.ToString();
 
 				return response.IsSuccessStatusCode

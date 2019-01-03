@@ -121,13 +121,13 @@ namespace VkNet
 			Initialization(serviceProvider);
 		}
 
-		/// <inheritdoc />
-		public IVkApiVersionManager VkApiVersion { get; set; }
-
 		/// <summary>
 		/// Токен для доступа к методам API
 		/// </summary>
 		private string AccessToken { get; set; }
+
+		/// <inheritdoc />
+		public IVkApiVersionManager VkApiVersion { get; set; }
 
 		/// <inheritdoc />
 		public event VkApiDelegate OnTokenExpires;
@@ -202,7 +202,10 @@ namespace VkNet
 		}
 
 		/// <inheritdoc />
-		public void Authorize(ApiAuthParams @params) => Authorize((IApiAuthParams) @params);
+		public void Authorize(ApiAuthParams @params)
+		{
+			Authorize((IApiAuthParams) @params);
+		}
 
 		/// <inheritdoc />
 		public Task AuthorizeAsync(IApiAuthParams @params)
@@ -316,7 +319,7 @@ namespace VkNet
 			var answer = InvokeBase(url, parameters);
 
 			_logger?.LogTrace($"Uri = \"{url}\"");
-			_logger?.LogTrace($"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(answer)}");
+			_logger?.LogTrace($"Json ={Environment.NewLine}{Utilities.PrettyPrintJson(answer)}");
 
 			VkErrors.IfErrorThrowException(answer);
 
@@ -366,7 +369,7 @@ namespace VkNet
 			var answer = InvokeBase(server, parameters);
 
 			_logger?.LogTrace($"Uri = \"{server}\"");
-			_logger?.LogTrace($"Json ={Environment.NewLine}{Utilities.PreetyPrintJson(answer)}");
+			_logger?.LogTrace($"Json ={Environment.NewLine}{Utilities.PrettyPrintJson(answer)}");
 
 			VkErrors.IfErrorThrowException(answer);
 
@@ -385,14 +388,6 @@ namespace VkNet
 		{
 			Dispose(true);
 			GC.SuppressFinalize(this);
-		}
-
-		/// <inheritdoc cref="IVkApi.Validate" />
-		[Obsolete(ObsoleteText.Validate)]
-		public void Validate(string validateUrl, string phoneNumber)
-		{
-			_ap.Phone = phoneNumber;
-			Validate(validateUrl);
 		}
 
 		/// <inheritdoc />
@@ -416,6 +411,14 @@ namespace VkNet
 			UserId = authorization.UserId;
 		}
 
+		/// <inheritdoc cref="IVkApi.Validate" />
+		[Obsolete(ObsoleteText.Validate)]
+		public void Validate(string validateUrl, string phoneNumber)
+		{
+			_ap.Phone = phoneNumber;
+			Validate(validateUrl);
+		}
+
 		/// <summary>
 		/// Releases unmanaged and - optionally - managed resources.
 		/// </summary>
@@ -432,7 +435,7 @@ namespace VkNet
 	#region Requests limit stuff
 
 		/// <summary>
-		/// The <see cref="IRateLimiter"/>.
+		/// The <see cref="IRateLimiter" />.
 		/// </summary>
 		private IRateLimiter _rateLimiter;
 

@@ -225,7 +225,10 @@ namespace VkNet.Utils
 		{
 			input = input.Trim();
 
-			if ((!input.StartsWith("{") || !input.EndsWith("}")) && (!input.StartsWith("[") || !input.EndsWith("]")))
+			if ((!input.StartsWith("{")
+				|| !input.EndsWith("}"))
+				&& (!input.StartsWith("[")
+					|| !input.EndsWith("]")))
 			{
 				return false;
 			}
