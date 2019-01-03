@@ -33,5 +33,18 @@ namespace VkNet.Tests.Categories.Docs
 
 			Assert.IsNotEmpty(result);
 		}
+
+		[Test]
+		public void Save3()
+		{
+			Url = "https://api.vk.com/method/docs.save";
+			ReadCategoryJsonPath("Save3");
+
+			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
+
+			var result = Api.Docs.Save(docUploadResult, "IMG_907");
+
+			Assert.IsNotEmpty(result);
+		}
 	}
 }

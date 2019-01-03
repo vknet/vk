@@ -104,7 +104,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/docs.save
 		/// </remarks>
-		ReadOnlyCollection<Document> Save(string file, string title, string tags = null, long? captchaSid = null, string captchaKey = null);
+		ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
+											string captchaKey = null);
 
 		/// <summary>
 		/// Удаляет документ пользователя или группы.

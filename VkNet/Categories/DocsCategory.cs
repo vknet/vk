@@ -93,8 +93,8 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public ReadOnlyCollection<Document> Save(string file, string title, string tags = null, long? captchaSid = null,
-												string captchaKey = null)
+		public ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
+													string captchaKey = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 
@@ -115,15 +115,7 @@ namespace VkNet.Categories
 
 			var response = _vk.Call("docs.save", parameters);
 
-			if ((Document) response != null)
-			{
-				return new ReadOnlyCollection<Document>(new List<Document>
-				{
-					response
-				});
-			}
-
-			return response.ToReadOnlyCollectionOf<Document>(r => r);
+			return response.ToReadOnlyCollectionOf<Attachment>(r => r);
 		}
 
 		/// <inheritdoc />
@@ -177,7 +169,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "q", query }, { "count", count }, { "offset", offset }, { "search_own", searchOwn }
+				{ "q", query },
+				{ "count", count },
+				{ "offset", offset },
+				{ "search_own", searchOwn }
 			};
 
 			return _vk.Call("docs.search", parameters).ToVkCollectionOf<Document>(selector: x => x);
@@ -188,7 +183,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "owner_id", ownerId }, { "doc_id", docId }, { "title", title }, { "tags", tags }
+				{ "owner_id", ownerId },
+				{ "doc_id", docId },
+				{ "title", title },
+				{ "tags", tags }
 			};
 
 			return _vk.Call("docs.edit", parameters);
@@ -199,7 +197,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "peer_id", peerId }, { "type", type }
+				{ "peer_id", peerId },
+				{ "type", type }
 			};
 
 			return _vk.Call("docs.getMessagesUploadServer", parameters);
