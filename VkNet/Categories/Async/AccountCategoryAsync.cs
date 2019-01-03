@@ -91,7 +91,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<VkCollection<User>> GetBannedAsync(int? offset = null, int? count = null)
+		public Task<AccountGetBannedResult> GetBannedAsync(int? offset = null, int? count = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetBanned(offset, count));
 		}

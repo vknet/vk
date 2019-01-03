@@ -315,7 +315,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.getBanned
 		/// </remarks>
-		Task<VkCollection<User>> GetBannedAsync(int? offset = null, int? count = null);
+		Task<AccountGetBannedResult> GetBannedAsync(int? offset = null, int? count = null);
 
 		/// <summary>
 		/// Возвращает информацию о текущем аккаунте.

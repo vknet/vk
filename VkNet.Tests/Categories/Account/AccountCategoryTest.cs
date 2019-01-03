@@ -96,8 +96,7 @@ namespace VkNet.Tests.Categories.Account
 			ReadCategoryJsonPath(nameof(GetBanned_WhenThereIsSomeBannedUsersButNotInTheOffsetRange));
 
 			var result = Api.Account.GetBanned(50);
-			Assert.That(result, Has.Count.EqualTo(0));
-			Assert.That(result.TotalCount, Is.EqualTo(5));
+			Assert.That(result.Count, Is.EqualTo(5));
 		}
 
 		[Test]
@@ -109,7 +108,7 @@ namespace VkNet.Tests.Categories.Account
 
 			var items = Api.Account.GetBanned(count: 2);
 
-			Assert.That(items.Count, Is.EqualTo(2));
+			Assert.That(items.Count, Is.EqualTo(10));
 		}
 
 		[Test]
@@ -120,7 +119,7 @@ namespace VkNet.Tests.Categories.Account
 			ReadCategoryJsonPath(nameof(GetBanned_WithCorrectOffsetParameter));
 
 			var items = Api.Account.GetBanned(null, 10);
-			Assert.That(items.Count, Is.EqualTo(2));
+			Assert.That(items.Count, Is.EqualTo(10));
 		}
 
 		[Test]
@@ -131,9 +130,9 @@ namespace VkNet.Tests.Categories.Account
 			ReadCategoryJsonPath(nameof(GetBanned_WithDefaultParameters));
 
 			var items = Api.Account.GetBanned();
-			Assert.That(items.TotalCount, Is.EqualTo(10));
-			Assert.That(items, Has.Count.EqualTo(2));
-			var banned = items.FirstOrDefault();
+			Assert.That(items.Count, Is.EqualTo(10));
+			Assert.That(items, Has.Count.EqualTo(10));
+			var banned = items.Items.FirstOrDefault();
 			Assert.That(banned, Is.Not.Null);
 			Assert.That(banned.Id, Is.EqualTo(247704457));
 			Assert.That(banned.FirstName, Is.EqualTo("Твой"));

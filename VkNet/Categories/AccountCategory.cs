@@ -426,7 +426,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.getBanned
 		/// </remarks>
-		public VkCollection<User> GetBanned(int? offset = null, int? count = null)
+		public AccountGetBannedResult GetBanned(int? offset = null, int? count = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
@@ -437,8 +437,7 @@ namespace VkNet.Categories
 					, { "count", count }
 			};
 
-			return _vk.Call(methodName: "account.getBanned", parameters: parameters)
-					.ToVkCollectionOf<User>(selector: vkResponse => vkResponse);
+			return _vk.Call<AccountGetBannedResult>(methodName: "account.getBanned", parameters: parameters);
 		}
 
 		/// <summary>

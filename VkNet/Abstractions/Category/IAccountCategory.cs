@@ -310,7 +310,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.getBanned
 		/// </remarks>
-		VkCollection<User> GetBanned(int? offset = null, int? count = null);
+		AccountGetBannedResult GetBanned(int? offset = null, int? count = null);
 
 		/// <summary>
 		/// Возвращает информацию о текущем аккаунте.
