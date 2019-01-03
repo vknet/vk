@@ -115,6 +115,16 @@ namespace VkNet.Categories
 
 			var response = _vk.Call("docs.save", parameters);
 
+			var responseArray = (VkResponseArray) response;
+
+			if (responseArray == null)
+			{
+				return new ReadOnlyCollection<Attachment>(new List<Attachment>
+				{
+					response
+				});
+			}
+
 			return response.ToReadOnlyCollectionOf<Attachment>(r => r);
 		}
 
