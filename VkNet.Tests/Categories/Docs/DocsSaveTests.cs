@@ -1,4 +1,7 @@
+using System.Linq;
 using NUnit.Framework;
+using VkNet.Enums;
+using VkNet.Model.Attachments;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Docs
@@ -45,6 +48,24 @@ namespace VkNet.Tests.Categories.Docs
 			var result = Api.Docs.Save(docUploadResult, "IMG_907");
 
 			Assert.IsNotEmpty(result);
+		}
+
+		[Test]
+		public void Save_Type()
+		{
+			Url = "https://api.vk.com/method/docs.save";
+			ReadCategoryJsonPath("Save3");
+
+			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
+
+			var result = Api.Docs.Save(docUploadResult, "IMG_907");
+
+			Assert.IsNotEmpty(result);
+			var item = result.FirstOrDefault();
+			Assert.NotNull(item);
+			var doc = item.Instance as Document;
+			Assert.NotNull(doc);
+			Assert.AreEqual(DocumentTypeEnum.Text, doc.Type);
 		}
 	}
 }

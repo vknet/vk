@@ -12,6 +12,23 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
+		public static implicit operator DocumentTypeEnum(VkResponse response)
+		{
+			if (response == null)
+			{
+				return DocumentTypeEnum.Unknown;
+			}
+
+			return Utilities.EnumFrom<DocumentTypeEnum>(value: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
 		public static implicit operator AddFriendStatus(VkResponse response)
 		{
 			if (response == null)

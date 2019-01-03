@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using VkNet.Enums;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -33,6 +34,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Адрес документа, по которому его можно загрузить.
 		/// </summary>
+		[JsonProperty("url")]
 		public string Uri { get; set; }
 
 		/// <summary>
@@ -45,12 +47,12 @@ namespace VkNet.Model.Attachments
 		/// тип документа
 		/// </summary>
 		[JsonProperty("type")]
-		public DocumentType Type { get; set; }
+		public DocumentTypeEnum Type { get; set; }
 
 		/// <summary>
 		/// Gets or sets the preview.
 		/// </summary>
-		public Previews Preview { get; set; }
+		public DocumentPreview Preview { get; set; }
 
 		/// <summary>
 		/// Адрес изображения с размером 100x75px (если файл графический).
