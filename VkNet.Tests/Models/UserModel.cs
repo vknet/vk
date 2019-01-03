@@ -50,6 +50,20 @@ namespace VkNet.Tests.Models
 		}
 
 		[Test]
+		public void ShouldHaveField_CanAccessClosed()
+		{
+			var user = new User();
+			Assert.That(user, Has.Property("CanAccessClosed"));
+		}
+
+		[Test]
+		public void ShouldHaveField_IsClosed()
+		{
+			var user = new User();
+			Assert.That(user, Has.Property("IsClosed"));
+		}
+
+		[Test]
 		public void ShouldHaveField_Trending()
 		{
 			var user = new User();

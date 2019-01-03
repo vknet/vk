@@ -32,99 +32,99 @@ namespace VkNet.Model
 		{
 			var user = new User
 			{
-					Id = response["user_id"] ?? response["uid"] ?? response["id"] ?? 0
-					, FirstName = response["first_name"]
-					, LastName = response["last_name"]
-					, Sex = response["sex"]
-					, BirthDate = response["bdate"]
-					, City = response["city"]
-					, Country = response["country"]
-					, PhotoPreviews = response
-					, Online = response["online"]
-					, FriendLists = response["lists"].ToReadOnlyCollectionOf<long>(x => x)
-					, Domain = response["domain"]
-					, HasMobile = response["has_mobile"]
-					, MobilePhone = response["mobile_phone"] ?? response["phone"]
-					, HomePhone = response["home_phone"]
-					, Connections = response
-					, Site = response["site"]
-					, Education = response
-					, Universities = response["universities"].ToReadOnlyCollectionOf<University>(x => x)
-					, Schools = response["schools"].ToReadOnlyCollectionOf<School>(x => x)
-					, CanPost = response["can_post"]
-					, CanSeeAllPosts = response["can_see_all_posts"]
-					, CanSeeAudio = response["can_see_audio"]
-					, CanWritePrivateMessage = response["can_write_private_message"]
-					, Status = response["status"]
-					, StatusAudio = response["status_audio"]
-					, LastSeen = response["last_seen"]
-					, CommonCount = response["common_count"]
-					, Relation = response["relation"]
-					, Relatives = response["relatives"].ToReadOnlyCollectionOf<Relative>(x => x)
-					, Counters = response["counters"]
-					, ScreenName = response["screen_name"]
-					, Nickname = response["nickname"]
-					, Timezone = response["timezone"]
-					, Language = response["language"]
-					, OnlineMobile = response["online_mobile"]
-					, OnlineApp = response["online_app"]
-					, RelationPartner = response["relation_partner"]
-					, StandInLife = response["personal"]
-					, Interests = response["interests"]
-					, Music = response["music"]
-					, Activities = response["activities"]
-					, Movies = response["movies"]
-					, Tv = response["tv"]
-					, Books = response["books"]
-					, Games = response["games"]
-					, About = response["about"]
-					, Quotes = response["quotes"]
-					, InvitedBy = response["invited_by"]
-					, BanInfo = response["ban_info"]
-					, Deactivated = response["deactivated"]
-					, MaidenName = response["maiden_name"]
-					, BirthdayVisibility = response["bdate_visibility"]
-					, HomeTown = response["home_town"]
-					, ChangeNameRequest = response["name_request"]
-					, Contacts = response["contacts"]
-					, Hidden = response["hidden"]
-					, PhotoId = response["photo_id"]
-					, Verified = response["verified"]
-					, HasPhoto = response["has_photo"]
-					, Photo50 = response["photo_50"]
-					, Photo100 = response["photo_100"]
-					, Photo200Orig = response["photo_200_orig"]
-					, Photo200 = response["photo_200"]
-					, Photo400Orig = response["photo_400_orig"]
-					, PhotoMax = response["photo_max"]
-					, PhotoMaxOrig = response["photo_max_orig"]
-					, FollowersCount = response["followers_count"]
-					, Occupation = response["occupation"]
-					, Exports = response["exports"]
-					, WallComments = response["wall_comments"]
-					, CanSendFriendRequest = response["can_send_friend_request"]
-					, IsFavorite = response["is_favorite"]
-					, IsHiddenFromFeed = response["is_hidden_from_feed"]
-					, CropPhoto = response["crop_photo"]
-					, IsFriend = response["is_friend"] == "1"
-					, FriendStatus = response["friend_status"]
-					, Career = response["career"].ToReadOnlyCollectionOf<Career>(x => x)
-					, Military = response["military"]
-					, Blacklisted = response["blacklisted"]
-					, BlacklistedByMe = response["blacklisted_by_me"]
-					, Trending = response["trending"]
-					, FirstNameNom = response["first_name_nom"]
-					, FirstNameGen = response["first_name_gen"]
-					, FirstNameDat = response["first_name_dat"]
-					, FirstNameAcc = response["first_name_acc"]
-					, FirstNameIns = response["first_name_ins"]
-					, FirstNameAbl = response["first_name_abl"]
-					, LastNameNom = response["last_name_nom"]
-					, LastNameGen = response["last_name_gen"]
-					, LastNameDat = response["last_name_dat"]
-					, LastNameAcc = response["last_name_acc"]
-					, LastNameIns = response["last_name_ins"]
-					, LastNameAbl = response["last_name_abl"]
+				Id = response["user_id"] ?? response["uid"] ?? response["id"] ?? 0,
+				FirstName = response["first_name"],
+				LastName = response["last_name"],
+				Sex = response["sex"],
+				BirthDate = response["bdate"],
+				City = response["city"],
+				Country = response["country"],
+				PhotoPreviews = response,
+				Online = response["online"],
+				FriendLists = response["lists"].ToReadOnlyCollectionOf<long>(x => x),
+				Domain = response["domain"],
+				HasMobile = response["has_mobile"],
+				MobilePhone = response["mobile_phone"] ?? response["phone"],
+				HomePhone = response["home_phone"],
+				Connections = response,
+				Site = response["site"],
+				Education = response,
+				Universities = response["universities"].ToReadOnlyCollectionOf<University>(x => x),
+				Schools = response["schools"].ToReadOnlyCollectionOf<School>(x => x),
+				CanPost = response["can_post"],
+				CanSeeAllPosts = response["can_see_all_posts"],
+				CanSeeAudio = response["can_see_audio"],
+				CanWritePrivateMessage = response["can_write_private_message"],
+				Status = response["status"],
+				StatusAudio = response["status_audio"],
+				LastSeen = response["last_seen"],
+				CommonCount = response["common_count"],
+				Relation = response["relation"],
+				Relatives = response["relatives"].ToReadOnlyCollectionOf<Relative>(x => x),
+				Counters = response["counters"],
+				ScreenName = response["screen_name"],
+				Nickname = response["nickname"],
+				Timezone = response["timezone"],
+				Language = response["language"],
+				OnlineMobile = response["online_mobile"],
+				OnlineApp = response["online_app"],
+				RelationPartner = response["relation_partner"],
+				StandInLife = response["personal"],
+				Interests = response["interests"],
+				Music = response["music"],
+				Activities = response["activities"],
+				Movies = response["movies"],
+				Tv = response["tv"],
+				Books = response["books"],
+				Games = response["games"],
+				About = response["about"],
+				Quotes = response["quotes"],
+				InvitedBy = response["invited_by"],
+				BanInfo = response["ban_info"],
+				Deactivated = response["deactivated"],
+				MaidenName = response["maiden_name"],
+				BirthdayVisibility = response["bdate_visibility"],
+				HomeTown = response["home_town"],
+				ChangeNameRequest = response["name_request"],
+				Contacts = response["contacts"],
+				Hidden = response["hidden"],
+				PhotoId = response["photo_id"],
+				Verified = response["verified"],
+				HasPhoto = response["has_photo"],
+				Photo50 = response["photo_50"],
+				Photo100 = response["photo_100"],
+				Photo200Orig = response["photo_200_orig"],
+				Photo200 = response["photo_200"],
+				Photo400Orig = response["photo_400_orig"],
+				PhotoMax = response["photo_max"],
+				PhotoMaxOrig = response["photo_max_orig"],
+				FollowersCount = response["followers_count"],
+				Occupation = response["occupation"],
+				Exports = response["exports"],
+				WallComments = response["wall_comments"],
+				CanSendFriendRequest = response["can_send_friend_request"],
+				IsFavorite = response["is_favorite"],
+				IsHiddenFromFeed = response["is_hidden_from_feed"],
+				CropPhoto = response["crop_photo"],
+				IsFriend = response["is_friend"] == "1", FriendStatus = response["friend_status"],
+				Career = response["career"].ToReadOnlyCollectionOf<Career>(x => x), Military = response["military"],
+				Blacklisted = response["blacklisted"],
+				BlacklistedByMe = response["blacklisted_by_me"],
+				Trending = response["trending"],
+				FirstNameNom = response["first_name_nom"],
+				FirstNameGen = response["first_name_gen"],
+				FirstNameDat = response["first_name_dat"],
+				FirstNameAcc = response["first_name_acc"],
+				FirstNameIns = response["first_name_ins"],
+				FirstNameAbl = response["first_name_abl"],
+				LastNameNom = response["last_name_nom"],
+				LastNameGen = response["last_name_gen"],
+				LastNameDat = response["last_name_dat"],
+				LastNameAcc = response["last_name_acc"],
+				LastNameIns = response["last_name_ins"],
+				LastNameAbl = response["last_name_abl"],
+				IsClosed = response["is_closed"],
+				CanAccessClosed = response["can_access_closed"]
 			};
 
 			user.IsDeactivated = user.Deactivated != null;
@@ -149,11 +149,11 @@ namespace VkNet.Model
 				return user;
 			}
 
-			var birdthdayParts = user.BirthDate.Split('.');
+			var birthdayParts = user.BirthDate.Split('.');
 
-			user.BirthdayVisibility = birdthdayParts.Length > 2
-					? Enums.BirthdayVisibility.Full
-					: Enums.BirthdayVisibility.OnlyDayAndMonth;
+			user.BirthdayVisibility = birthdayParts.Length > 2
+				? Enums.BirthdayVisibility.Full
+				: Enums.BirthdayVisibility.OnlyDayAndMonth;
 
 			return user;
 		}
@@ -181,12 +181,6 @@ namespace VkNet.Model
 		public string LastName { get; set; }
 
 		/// <summary>
-		/// Причина блокирования аккаунта
-		/// </summary>
-		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public Deactivated Deactivated { get; set; }
-
-		/// <summary>
 		/// Возвращается при вызове без access_token, если пользователь установил настройку
 		/// «Кому в интернете видна моя
 		/// страница» — «Только пользователям ВКонтакте».
@@ -195,9 +189,33 @@ namespace VkNet.Model
 		[JsonProperty("hidden")]
 		public bool Hidden { get; set; }
 
+		/// <summary>
+		/// Скрыт ли профиль пользователя настройками приватности.
+		/// </summary>
+		/// <remarks>
+		/// Начиная с версии 5.89 обязательное поле
+		/// </remarks>
+		[JsonProperty("is_closed")]
+		public bool? IsClosed { get; set; }
+
+		/// <summary>
+		/// Может ли текущий пользователь видеть профиль при is_closed = 1 (например, если он есть в друзьях).
+		/// </summary>
+		/// <remarks>
+		/// Начиная с версии 5.89 обязательное поле
+		/// </remarks>
+		[JsonProperty("can_access_closed")]
+		public bool? CanAccessClosed { get; set; }
+
 	#endregion
 
 	#region Опциональные поля
+
+		/// <summary>
+		/// Причина блокирования аккаунта
+		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public Deactivated Deactivated { get; set; }
 
 		/// <summary>
 		/// Информация пользователя о себе.
