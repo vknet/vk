@@ -1,5 +1,4 @@
 ﻿using System;
-using VkNet.Exception;
 using VkNet.Utils;
 using VkNet.UWP.Model.Attachments;
 
@@ -147,6 +146,11 @@ namespace VkNet.Model.Attachments
 				if (Type == typeof(AudioPlaylist))
 				{
 					return AudioPlaylist;
+				}
+
+				if (Type == typeof(UnknownAttachment))
+				{
+					return UnknownAttachment;
 				}
 
 				return null;
@@ -381,9 +385,10 @@ namespace VkNet.Model.Attachments
 				default:
 
 				{
-					throw new InvalidParameterException(string.Format("The type '{0}' of attachment is not defined. {1}",
-						type,
-						response["date"]));
+					attachment.Type = typeof(UnknownAttachment);
+					attachment.AudioPlaylist = response[type];
+
+					break;
 				}
 			}
 
@@ -523,6 +528,11 @@ namespace VkNet.Model.Attachments
 		/// Плейлист.
 		/// </summary>
 		private AudioPlaylist AudioPlaylist { get; set; }
+
+		/// <summary>
+		/// Плейлист.
+		/// </summary>
+		private UnknownAttachment UnknownAttachment { get; set; }
 
 	#endregion
 	}
