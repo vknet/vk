@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -41,6 +42,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public Task<ReadOnlyCollection<Attachment>> SaveAsync(string file
 															, string title
 															, string tags = null
@@ -58,6 +60,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public Task<long> AddAsync(long ownerId
 									, long docId
 									, string accessKey = null

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -104,6 +105,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/docs.save
 		/// </remarks>
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
 											string captchaKey = null);
 
@@ -151,6 +153,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/docs.add
 		/// </remarks>
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		long Add(long ownerId, long docId, string accessKey = null, long? captchaSid = null, string captchaKey = null);
 
 		/// <summary>

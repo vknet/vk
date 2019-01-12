@@ -137,6 +137,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public Task<bool> InviteAsync(long groupId, long userId, long? captchaSid, string captchaKey)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>

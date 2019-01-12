@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -117,8 +118,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.areFriends
 		/// </remarks>
-		Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync([NotNull]
-																	IEnumerable<long> userIds
+		Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync([NotNull] IEnumerable<long> userIds
 																	, bool? needSign = null);
 
 		/// <summary>
@@ -268,11 +268,9 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.add
 		/// </remarks>
-		Task<AddFriendStatus> AddAsync(long userId
-										, string text = ""
-										, bool? follow = null
-										, long? captchaSid = null
-										, string captchaKey = null);
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		Task<AddFriendStatus> AddAsync(long userId, string text = "", bool? follow = null, long? captchaSid = null,
+										string captchaKey = null);
 
 		/// <summary>
 		/// Удаляет пользователя из списка друзей или отклоняет заявку в друзья.

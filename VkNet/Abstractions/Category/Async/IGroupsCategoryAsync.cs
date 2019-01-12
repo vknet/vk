@@ -429,6 +429,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.invite
 		/// </remarks>
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		Task<bool> InviteAsync(long groupId, long userId, long? captchaSid, string captchaKey);
 
 		/// <summary>

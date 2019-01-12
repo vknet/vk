@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using JetBrains.Annotations;
@@ -93,6 +94,7 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
 													string captchaKey = null)
 		{
@@ -146,6 +148,7 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public long Add(long ownerId, long docId, string accessKey = null, long? captchaSid = null, string captchaKey = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => ownerId);

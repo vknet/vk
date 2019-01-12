@@ -251,6 +251,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public bool Invite(long groupId, long userId, long? captchaSid = null, string captchaKey = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);

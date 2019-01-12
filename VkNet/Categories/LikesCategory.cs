@@ -1,4 +1,5 @@
-﻿using VkNet.Abstractions;
+﻿using System;
+using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -109,6 +110,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/likes.delete
 		/// </remarks>
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public long Delete(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null)
 		{
 			var parameters = new VkParameters

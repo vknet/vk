@@ -50,7 +50,7 @@
 	<ItemGroup>
 		<PackageReference Include="AsyncFixer" Version="1.1.6" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="7.9.1.7622" PrivateAssets="all" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="7.10.0.7896" PrivateAssets="all"/>
 		<PackageReference Include="JetBrains.Annotations" Version="2018.2.1" PrivateAssets="all" />
 	</ItemGroup>
 	<ItemGroup>

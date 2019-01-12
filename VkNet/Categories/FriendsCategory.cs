@@ -313,6 +313,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.add
 		/// </remarks>
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public AddFriendStatus Add(long userId, string text = "", bool? follow = null, long? captchaSid = null, string captchaKey = null)
 		{
 			var parameters = new VkParameters

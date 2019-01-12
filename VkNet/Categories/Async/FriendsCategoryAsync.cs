@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -80,6 +81,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public Task<AddFriendStatus> AddAsync(long userId
 													, string text = ""
 													, bool? follow = null

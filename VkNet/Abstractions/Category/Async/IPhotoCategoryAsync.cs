@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums;
@@ -238,6 +239,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerPhoto
 		/// </remarks>
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		Task<Photo> SaveOwnerPhotoAsync(string response, long? captchaSid, string captchaKey);
 
 		/// <summary>

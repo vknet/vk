@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using VkNet.Enums;
@@ -267,6 +268,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.add
 		/// </remarks>
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		AddFriendStatus Add(long userId, string text = "", bool? follow = null, long? captchaSid = null, string captchaKey = null);
 
 		/// <summary>

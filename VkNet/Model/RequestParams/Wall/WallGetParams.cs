@@ -60,11 +60,13 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор капчи
 		/// </summary>
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public long? CaptchaSid { get; set; }
 
 		/// <summary>
 		/// Текст капчи, который ввел пользователь
 		/// </summary>
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public string CaptchaKey { get; set; }
 
 		/// <summary>

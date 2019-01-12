@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Model;
@@ -237,6 +238,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerPhoto
 		/// </remarks>
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey);
 
 		/// <summary>

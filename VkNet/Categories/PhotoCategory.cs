@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
@@ -314,6 +315,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerPhoto
 		/// </remarks>
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey)
 		{
 			var responseJson = JObject.Parse(json: response);

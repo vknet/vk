@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -76,6 +77,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public Task<Photo> SaveOwnerPhotoAsync(string response, long? captchaSid, string captchaKey)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>

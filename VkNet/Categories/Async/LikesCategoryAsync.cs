@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -29,6 +30,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public Task<long> DeleteAsync(LikeObjectType type
 									, long itemId
 									, long? ownerId = null

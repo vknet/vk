@@ -64,12 +64,14 @@ namespace VkNet.Model.RequestParams
 		/// Идентификатор капчи
 		/// </summary>
 		[JsonProperty(propertyName: "captcha_sid")]
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public long? CaptchaSid { get; set; }
 
 		/// <summary>
 		/// Текст, который ввел пользователь
 		/// </summary>
 		[JsonProperty(propertyName: "captcha_key")]
+		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public string CaptchaKey { get; set; }
 
 		/// <summary>
