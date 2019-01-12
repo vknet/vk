@@ -3,7 +3,7 @@ using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams
+namespace VkNet.Model.RequestParams.Market
 {
 	/// <summary>
 	/// Параметры запроса market.getComments

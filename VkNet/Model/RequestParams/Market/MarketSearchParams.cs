@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams
+namespace VkNet.Model.RequestParams.Market
 {
 	/// <summary>
 	/// Параметры запроса market.search

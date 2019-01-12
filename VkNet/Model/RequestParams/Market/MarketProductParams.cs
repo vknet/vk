@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using VkNet.Abstractions;
 using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams
+namespace VkNet.Model.RequestParams.Market
 {
 	/// <summary>
 	/// Параметр для добавления / редактирования товара
@@ -17,11 +19,16 @@ namespace VkNet.Model.RequestParams
 		/// сообщества ВКонтакте API (club1)
 		/// целое число, обязательный параметр (целое число, обязательный параметр).
 		/// </summary>
+		[JsonProperty("photo_ids")]
 		public long OwnerId { get; set; }
 
 		/// <summary>
 		/// Идентификатор товара.
 		/// </summary>
+		/// <remarks>
+		/// Только для метода <see cref="IMarketsCategory.Edit"/>
+		/// </remarks>
+		[JsonProperty("item_id")]
 		public long? ItemId { get; set; }
 
 		/// <summary>
@@ -29,6 +36,7 @@ namespace VkNet.Model.RequestParams
 		/// обязательный параметр (строка, минимальная
 		/// длина 4, максимальная длина 100, обязательный параметр).
 		/// </summary>
+		[JsonProperty("name")]
 		public string Name { get; set; }
 
 		/// <summary>
@@ -36,6 +44,7 @@ namespace VkNet.Model.RequestParams
 		/// минимальная длина 10, обязательный
 		/// параметр).
 		/// </summary>
+		[JsonProperty("description")]
 		public string Description { get; set; }
 
 		/// <summary>
@@ -43,6 +52,7 @@ namespace VkNet.Model.RequestParams
 		/// (положительное число, обязательный
 		/// параметр).
 		/// </summary>
+		[JsonProperty("category_id")]
 		public long CategoryId { get; set; }
 
 		/// <summary>
@@ -50,6 +60,7 @@ namespace VkNet.Model.RequestParams
 		/// (дробное число, обязательный параметр,
 		/// минимальное значение 0.01).
 		/// </summary>
+		[JsonProperty("price")]
 		public decimal Price { get; set; }
 
 		/// <summary>
@@ -57,6 +68,7 @@ namespace VkNet.Model.RequestParams
 		/// значения 1 или 0 (флаг, может
 		/// принимать значения 1 или 0).
 		/// </summary>
+		[JsonProperty("deleted")]
 		public bool Deleted { get; set; }
 
 		/// <summary>
@@ -64,6 +76,7 @@ namespace VkNet.Model.RequestParams
 		/// параметр (положительное число,
 		/// обязательный параметр).
 		/// </summary>
+		[JsonProperty("main_photo_id")]
 		public long MainPhotoId { get; set; }
 
 		/// <summary>
@@ -73,7 +86,17 @@ namespace VkNet.Model.RequestParams
 		/// запятыми, количество элементов
 		/// должно составлять не более 4).
 		/// </summary>
+		[JsonProperty("photo_ids")]
 		public IEnumerable<long> PhotoIds { get; set; }
+
+		/// <summary>
+		/// Ссылка на сайт товара.
+		/// </summary>
+		/// <remarks>
+		/// Строка, минимальная длина 0, максимальная длина 320
+		/// </remarks>
+		[JsonProperty("url")]
+		public Uri Url { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -82,20 +105,19 @@ namespace VkNet.Model.RequestParams
 		/// <returns> </returns>
 		public static VkParameters ToVkParameters(MarketProductParams p)
 		{
-			var parameters = new VkParameters
+			return new VkParameters
 			{
-					{ "owner_id", p.OwnerId }
-					, { "item_id", p.ItemId }
-					, { "name", p.Name }
-					, { "description", p.Description }
-					, { "category_id", p.CategoryId }
-					, { "price", p.Price }
-					, { "deleted", p.Deleted }
-					, { "main_photo_id", p.MainPhotoId }
-					, { "photo_ids", p.PhotoIds }
+				{ "owner_id", p.OwnerId },
+				{ "item_id", p.ItemId },
+				{ "name", p.Name },
+				{ "description", p.Description },
+				{ "category_id", p.CategoryId },
+				{ "price", p.Price },
+				{ "deleted", p.Deleted },
+				{ "main_photo_id", p.MainPhotoId },
+				{ "photo_ids", p.PhotoIds },
+				{ "url", p.Url }
 			};
-
-			return parameters;
 		}
 	}
 }

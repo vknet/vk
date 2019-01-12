@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
+using VkNet.Model.RequestParams.Market;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions
@@ -54,11 +54,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/market.get
 		/// </remarks>
-		Task<VkCollection<Market>> GetAsync(long ownerId
-											, long? albumId = null
-											, int? count = null
-											, int? offset = null
-											, bool extended = false);
+		Task<VkCollection<Market>> GetAsync(long ownerId, long? albumId = null, int? count = null, int? offset = null,
+											bool extended = false);
 
 		/// <summary>
 		/// Возвращает информацию о товарах по идентификаторам.
