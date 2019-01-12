@@ -1,0 +1,67 @@
+{
+  "response": {
+    "count": 8,
+    "items": [
+      {
+        "id": 166481021,
+        "owner_id": 1,
+        "title": "Лидия Аркадьевна",
+        "duration": 131,
+        "description": "",
+        "date": 1384867255,
+        "views": 81677,
+        "comments": 2098,
+        "photo_130": "http://cs419529.vk.me/u9258277/video/s_af2727af.jpg",
+        "photo_320": "http://cs419529.vk.me/u9258277/video/l_aba9c1ab.jpg",
+        "player": "http://www.youtube.com/embed/VQaHFisdf-s",
+        "can_comment": 1,
+        "can_repost": 1,
+        "likes": {
+          "user_likes": 0,
+          "count": 1789
+        },
+        "repeat": 0
+      },
+      {
+        "id": 166468673,
+        "owner_id": 1,
+        "title": "Лидия Аркадьевна",
+        "duration": 62,
+        "description": "",
+        "date": 1384721483,
+        "views": 42107,
+        "comments": 1243,
+        "photo_130": "http://cs409217.vk.me/u9258277/video/s_4e281f24.jpg",
+        "photo_320": "http://cs409217.vk.me/u9258277/video/l_aa616ea2.jpg",
+        "player": "http://www.youtube.com/embed/YfLytrkbAfM",
+        "can_comment": 1,
+        "can_repost": 1,
+        "likes": {
+          "user_likes": 0,
+          "count": 640
+        },
+        "repeat": 0
+      },
+      {
+        "id": 164841344,
+        "owner_id": 1,
+        "title": "This is SPARTA",
+        "duration": 16,
+        "description": "",
+        "date": 1366495075,
+        "views": 218659,
+        "comments": 2578,
+        "photo_130": "http://cs12761.vk.me/u5705167/video/s_df53315c.jpg",
+        "photo_320": "http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg",
+        "player": "http://vk.com/video_ext.php?oid=1&id=164841344&hash=c8de45fc73389353",
+        "can_comment": 1,
+        "can_repost": 1,
+        "likes": {
+          "user_likes": 1,
+          "count": 4137
+        },
+        "repeat": 1
+      }
+    ]
+  }
+}

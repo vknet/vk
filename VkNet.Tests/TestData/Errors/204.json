@@ -1,0 +1,28 @@
+{
+  "error": {
+    "error_code": 204,
+    "error_msg": "Access denied: user was banned for this action, cant add video",
+    "request_params": [
+      {
+        "key": "oauth",
+        "value": "1"
+      },
+      {
+        "key": "method",
+        "value": "video.save"
+      },
+      {
+        "key": "description",
+        "value": "123"
+      },
+      {
+        "key": "group_id",
+        "value": "33905270"
+      },
+      {
+        "key": "v",
+        "value": "5.64"
+      }
+    ]
+  }
+}
