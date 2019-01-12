@@ -37,50 +37,40 @@ namespace VkNet.Utils
 		/// <summary>
 		/// Messages.GetConversations
 		/// </summary>
-		public const string MessageGet =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него "
-			+ nameof(IMessagesCategory.GetConversations);
+		public const string MessageGet = Deprecated + nameof(IMessagesCategory.GetConversations);
 
 		/// <summary>
 		/// Messages.SearchConversations
 		/// </summary>
-		public const string MessageSearchDialogs =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него "
-			+ nameof(IMessagesCategory.SearchConversations);
+		public const string MessageSearchDialogs = Deprecated + nameof(IMessagesCategory.SearchConversations);
 
 		/// <summary>
 		/// Messages.MessageMarkAsImportantDialog
 		/// </summary>
-		public const string MessageMarkAsImportantDialog =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него "
-			+ nameof(IMessagesCategory.MarkAsImportantConversation);
+		public const string MessageMarkAsImportantDialog = Deprecated + nameof(IMessagesCategory.MarkAsImportantConversation);
 
 		/// <summary>
 		/// Messages.MarkAsAnsweredDialog
 		/// </summary>
-		public const string MessageMarkAsAnsweredDialog =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него "
-			+ nameof(IMessagesCategory.MarkAsAnsweredConversation);
+		public const string MessageMarkAsAnsweredDialog = Deprecated + nameof(IMessagesCategory.MarkAsAnsweredConversation);
 
 		/// <summary>
 		/// Messages.DeleteConversation
 		/// </summary>
-		public const string MessageDeleteDialog =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него "
-			+ nameof(IMessagesCategory.DeleteConversation);
+		public const string MessageDeleteDialog = Deprecated + nameof(IMessagesCategory.DeleteConversation);
 
 		/// <summary>
 		/// Messages.DeleteConversation
 		/// </summary>
-		public const string MessageGetChatUsers =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него "
-			+ nameof(IMessagesCategory.GetConversationMembers);
+		public const string MessageGetChatUsers = Deprecated + nameof(IMessagesCategory.GetConversationMembers);
 
 		/// <summary>
 		/// Messages.DeleteConversation
 		/// </summary>
-		public const string MessageGetById =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования."
-			+ " Используйте вместо него GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null, bool? extended = null, ulong? groupId = null)";
+		public const string MessageGetById = Deprecated
+											+ "GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null, bool? extended = null, ulong? groupId = null)";
+
+		private const string Deprecated =
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него ";
 	}
 }
