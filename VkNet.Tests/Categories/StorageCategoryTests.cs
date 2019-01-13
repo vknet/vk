@@ -1,25 +1,23 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class StorageCategoryTests : BaseTest
+	public class StorageCategoryTests : CategoryBaseTest
 	{
+		protected override string Folder => "Storage";
+
 		[Test]
 		public void Get()
 		{
-			Json = @"
-            {
-				""response"": [{
-					""key"": ""qwe"",
-					""value"": ""qwe""
-				}]
-			}";
-
 			Url = "https://api.vk.com/method/storage.get";
+			ReadCategoryJsonPath(nameof(Get));
+
 			var result = Api.Storage.Get(new[] { "qwe" });
+
 			Assert.NotNull(result);
 			Assert.IsNotEmpty(result);
 		}
@@ -27,13 +25,11 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetKeys()
 		{
-			Json = @"
-            {
-				""response"": [""qwe"", ""qwe1""]
-			}";
-
 			Url = "https://api.vk.com/method/storage.getKeys";
+			ReadCategoryJsonPath(nameof(GetKeys));
+
 			var result = Api.Storage.GetKeys();
+
 			Assert.NotNull(result);
 			Assert.IsNotEmpty(result);
 		}
@@ -41,13 +37,11 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Set()
 		{
-			Json = @"
-            {
-				'response': 1
-			}";
-
 			Url = "https://api.vk.com/method/storage.set";
+			ReadJsonFile(JsonPaths.True);
+
 			var result = Api.Storage.Set("qwe", "qwe");
+
 			Assert.True(result);
 		}
 	}
