@@ -1,0 +1,15 @@
+{
+  "response": [
+    {
+      "id": 4980426,
+      "title": "test",
+      "latitude": 25,
+      "longitude": 25,
+      "created": 1364117621,
+      "icon": "http://vk.com/images/places/home.png",
+      "checkins": 18,
+      "updated": 1375926671,
+      "type": 1
+    }
+  ]
+}

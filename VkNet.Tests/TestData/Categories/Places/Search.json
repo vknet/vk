@@ -1,0 +1,22 @@
+{
+  "response": {
+    "count": 1999,
+    "items": [
+      {
+        "id": 213784,
+        "title": "Дом Зингера",
+        "latitude": 59.935624,
+        "longitude": 30.325875,
+        "created": 1295369575,
+        "icon": "http://vk.com/images/places/work.png",
+        "checkins": 355,
+        "updated": 1439407347,
+        "type": 2,
+        "country": 1,
+        "city": 2,
+        "address": "Невский проспект 28",
+        "distance": 3
+      }
+    ]
+  }
+}
