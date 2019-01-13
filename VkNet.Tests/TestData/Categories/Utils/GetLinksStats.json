@@ -1,0 +1,30 @@
+{
+  "response": {
+    "key": "6drK78",
+    "stats": [
+      {
+        "timestamp": 1489309200,
+        "views": 1,
+        "sex_age": [
+          {
+            "age_range": "18-21",
+            "female": 2,
+            "male": 1
+          }
+        ],
+        "countries": [
+          {
+            "country_id": 1,
+            "views": 1
+          }
+        ],
+        "cities": [
+          {
+            "city_id": 1,
+            "views": 1
+          }
+        ]
+      }
+    ]
+  }
+}

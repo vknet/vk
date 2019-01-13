@@ -1,0 +1,22 @@
+{
+  "response": {
+    "count": 2,
+    "items": [
+      {
+        "timestamp": 1490085185,
+        "url": "http://google.ru",
+        "short_url": "https://vk.cc/6oOGVh",
+        "key": "6oOGVh",
+        "views": 0,
+        "access_key": "a2760354e62e87ab13"
+      },
+      {
+        "timestamp": 1490038465,
+        "url": "http://google.ru",
+        "short_url": "https://vk.cc/29npqH",
+        "key": "29npqH",
+        "views": 721
+      }
+    ]
+  }
+}
