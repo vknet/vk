@@ -3,25 +3,20 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories
 {
 	[ExcludeFromCodeCoverage]
-	public class StreamingCategoryTests : BaseTest
+	public class StreamingCategoryTests : CategoryBaseTest
 	{
+		protected override string Folder => "Streaming";
+
 		[Test]
 		public void GetServerUrl()
 		{
 			Url = "https://api.vk.com/method/streaming.getServerUrl";
-
-			Json =
-					@"{
-					""response"": {
-						""endpoint"": ""streaming.vk.com"",
-						""key"": ""be8d29c05546e58cb52420aaf2b9f51f0a440f89""
-					}
-				}
-            ";
+			ReadCategoryJsonPath(nameof(GetServerUrl));
 
 			var result = Api.Streaming.GetServerUrl();
 
@@ -34,14 +29,7 @@ namespace VkNet.Tests.Categories
 		public void GetSettings()
 		{
 			Url = "https://api.vk.com/method/streaming.getSettings";
-
-			Json =
-					@"{
-					""response"": {
-						""monthly_limit"": ""tier_6""
-					}
-				}
-            ";
+			ReadCategoryJsonPath(nameof(GetSettings));
 
 			var result = Api.Streaming.GetSettings();
 
@@ -53,31 +41,9 @@ namespace VkNet.Tests.Categories
 		public void GetStats()
 		{
 			Url = "https://api.vk.com/method/streaming.getStats";
+			ReadCategoryJsonPath(nameof(GetStats));
 
-			Json =
-					@"{
-					response: [
-						{
-							event_type: ""post"",
-							stats: [
-								{
-									timestamp: 1525208400,
-									value: 160
-								},
-								{
-									timestamp: 1525294800,
-									value: 155
-								}
-							]
-						}
-					]
-				}
-            ";
-
-			var result = Api.Streaming.GetStats("prepared"
-					, "24h"
-					, new DateTime(2018, 5, 1)
-					, new DateTime(2018, 5, 20));
+			var result = Api.Streaming.GetStats("prepared", "24h", new DateTime(2018, 5, 1), new DateTime(2018, 5, 20));
 
 			Assert.IsNotEmpty(result);
 
@@ -91,12 +57,7 @@ namespace VkNet.Tests.Categories
 		public void SetSettings()
 		{
 			Url = "https://api.vk.com/method/streaming.setSettings";
-
-			Json =
-					@"{
-					response: 1
-				}
-            ";
+			ReadJsonFile(JsonPaths.True);
 
 			var result = Api.Streaming.SetSettings(MonthlyLimit.Tier6);
 

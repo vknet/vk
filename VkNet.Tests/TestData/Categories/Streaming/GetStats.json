@@ -1,0 +1,17 @@
+{
+  "response": [
+    {
+      "event_type": "post",
+      "stats": [
+        {
+          "timestamp": 1525208400,
+          "value": 160
+        },
+        {
+          "timestamp": 1525294800,
+          "value": 155
+        }
+      ]
+    }
+  ]
+}
