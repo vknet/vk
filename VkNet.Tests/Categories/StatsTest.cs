@@ -1,345 +1,56 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using VkNet.Categories;
+using NUnit.Framework;
 using VkNet.Model;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	[ExcludeFromCodeCoverage]
-	public class StatsTest : BaseTest
+	public class StatsTest : CategoryBaseTest
 	{
-		private StatsCategory GetMockedStatsCategory(string url, string json)
-		{
-			Json = json;
-			Url = url;
-
-			return new StatsCategory(Api);
-		}
+		protected override string Folder => "Stats";
 
 		[Test]
 		public void GetByApp_NormalCase()
 		{
-			const string url = "https://api.vk.com/method/stats.get";
+			Url = "https://api.vk.com/method/stats.get";
+			ReadCategoryJsonPath(nameof(GetByApp_NormalCase));
 
-			const string json =
-				@"{
-					response: [{
-						period_from: '1378598400',
-						period_to: '1378598400',
-						visitors: {
-							views: 3688,
-							visitors: 2768,
-							mobile_views: 130,
-							sex: [
-								{
-									count: 339,
-									value: 'f'
-								},
-								{
-									count: 857,
-									value: 'm'
-								}
-							],
-							age: [
-								{
-									count: 326,
-									value: '12-18'
-								}
-							],
-							sex_age: [
-								{
-									count: 112,
-									value: 'f;12-18'
-								}
-							],
-							countries: [
-								{
-									count: 2372,
-									value: 1,
-									code: 'RU',
-									name: 'Россия'
-								}
-							],
-							cities: [
-								{
-									count: 303,
-									value: 1,
-									name: 'Москва'
-								}
-							]
-						},
-						reach: {
-							reach: 458,
-							reach_subscribers: 119,
-							mobile_reach: 68,
-							sex: [
-								{
-									count: 162,
-									value: 'f'
-								}
-							],
-							age: [
-								{
-									count: 130,
-									value: '12-18'
-								}
-							],
-							sex_age: [
-								{
-									count: 53,
-									value: 'f;12-18'
-								}
-							],
-							countries: [
-								{
-									count: 344,
-									value: 1,
-									code: 'RU',
-									name: 'Россия'
-								}
-							],
-							cities: [
-								{
-									count: 72,
-									value: 1,
-									name: 'Москва'
-								}
-							]
-						},
-						activity: {
-							likes: 8,
-							subscribed: 457,
-							unsubscribed: 193
-						}
-					}]
-				  }";
-
-			var mockedStatsCategory = GetMockedStatsCategory(url, json);
-
-			var statsPeriods = mockedStatsCategory.Get(new StatsGetParams
+			var statsPeriods = Api.Stats.Get(new StatsGetParams
 			{
 				AppId = 1,
-				TimestampTo = new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc)
+				TimestampTo = new DateTime(2015,
+					11,
+					11,
+					0,
+					0,
+					0,
+					DateTimeKind.Utc)
 			});
 
 			Assert.NotNull(statsPeriods[0]);
-			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
-		}
-
-		[Test]
-		public void GetByGroup_NormalCase()
-		{
-			const string url = "https://api.vk.com/method/stats.get";
-
-			const string json =
-				@"{
-					response: [{
-						period_from: '1378598400',
-						period_to: '1378598400',
-						visitors: {
-							views: 3688,
-							visitors: 2768,
-							mobile_views: 130,
-							sex: [
-								{
-									count: 339,
-									value: 'f'
-								},
-								{
-									count: 857,
-									value: 'm'
-								}
-							],
-							age: [
-								{
-									count: 326,
-									value: '12-18'
-								}
-							],
-							sex_age: [
-								{
-									count: 112,
-									value: 'f;12-18'
-								}
-							],
-							countries: [
-								{
-									count: 2372,
-									value: 1,
-									code: 'RU',
-									name: 'Россия'
-								}
-							],
-							cities: [
-								{
-									count: 303,
-									value: 1,
-									name: 'Москва'
-								}
-							]
-						},
-						reach: {
-							reach: 458,
-							reach_subscribers: 119,
-							mobile_reach: 68,
-							sex: [
-								{
-									count: 162,
-									value: 'f'
-								}
-							],
-							age: [
-								{
-									count: 130,
-									value: '12-18'
-								}
-							],
-							sex_age: [
-								{
-									count: 53,
-									value: 'f;12-18'
-								}
-							],
-							countries: [
-								{
-									count: 344,
-									value: 1,
-									code: 'RU',
-									name: 'Россия'
-								}
-							],
-							cities: [
-								{
-									count: 72,
-									value: 1,
-									name: 'Москва'
-								}
-							]
-						},
-						activity: {
-							likes: 8,
-							subscribed: 457,
-							unsubscribed: 193
-						}
-					}]
-				  }";
-
-			var mockedStatsCategory = GetMockedStatsCategory(url, json);
-
-			var statsPeriods = mockedStatsCategory.Get(new StatsGetParams
-			{
-				GroupId = 1,
-				TimestampFrom = new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc)
-			});
-
-			Assert.NotNull(statsPeriods[0]);
-
 			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
 		}
 
 		[Test]
 		public void GetByGroup_EmptyActivityCase()
 		{
-			const string url = "https://api.vk.com/method/stats.get";
+			Url = "https://api.vk.com/method/stats.get";
+			ReadCategoryJsonPath(nameof(GetByGroup_EmptyActivityCase));
 
-			const string json =
-				@"{
-					response: [{
-						period_from: '1378598400',
-						period_to: '1378598400',
-						visitors: {
-							views: 3688,
-							visitors: 2768,
-							mobile_views: 130,
-							sex: [
-								{
-									count: 339,
-									value: 'f'
-								},
-								{
-									count: 857,
-									value: 'm'
-								}
-							],
-							age: [
-								{
-									count: 326,
-									value: '12-18'
-								}
-							],
-							sex_age: [
-								{
-									count: 112,
-									value: 'f;12-18'
-								}
-							],
-							countries: [
-								{
-									count: 2372,
-									value: 1,
-									code: 'RU',
-									name: 'Россия'
-								}
-							],
-							cities: [
-								{
-									count: 303,
-									value: 1,
-									name: 'Москва'
-								}
-							]
-						},
-						reach: {
-							reach: 458,
-							reach_subscribers: 119,
-							mobile_reach: 68,
-							sex: [
-								{
-									count: 162,
-									value: 'f'
-								}
-							],
-							age: [
-								{
-									count: 130,
-									value: '12-18'
-								}
-							],
-							sex_age: [
-								{
-									count: 53,
-									value: 'f;12-18'
-								}
-							],
-							countries: [
-								{
-									count: 344,
-									value: 1,
-									code: 'RU',
-									name: 'Россия'
-								}
-							],
-							cities: [
-								{
-									count: 72,
-									value: 1,
-									name: 'Москва'
-								}
-							]
-						},
-						activity: []
-					}]
-				  }";
-
-			var mockedStatsCategory = GetMockedStatsCategory(url, json);
-
-			var statsPeriods = mockedStatsCategory.Get(new StatsGetParams
+			var statsPeriods = Api.Stats.Get(new StatsGetParams
 			{
 				GroupId = 1,
-				TimestampFrom = new DateTime(2015, 11, 11, 0, 0, 0, DateTimeKind.Utc)
+				TimestampFrom = new DateTime(2015,
+					11,
+					11,
+					0,
+					0,
+					0,
+					DateTimeKind.Utc)
 			});
 
 			Assert.NotNull(statsPeriods[0]);
@@ -349,17 +60,35 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
+		public void GetByGroup_NormalCase()
+		{
+			Url = "https://api.vk.com/method/stats.get";
+			ReadCategoryJsonPath(nameof(GetByGroup_NormalCase));
+
+			var statsPeriods = Api.Stats.Get(new StatsGetParams
+			{
+				GroupId = 1,
+				TimestampFrom = new DateTime(2015,
+					11,
+					11,
+					0,
+					0,
+					0,
+					DateTimeKind.Utc)
+			});
+
+			Assert.NotNull(statsPeriods[0]);
+
+			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
+		}
+
+		[Test]
 		public void TrackVisitorTest()
 		{
-			const string url = "https://api.vk.com/method/stats.trackVisitor";
+			Url = "https://api.vk.com/method/stats.trackVisitor";
+			ReadJsonFile(JsonPaths.True);
 
-			const string json =
-				@"{
-					response: 1
-				  }";
-
-			var mockedStatsCategory = GetMockedStatsCategory(url, json);
-			var statsPeriods = mockedStatsCategory.TrackVisitor();
+			var statsPeriods = Api.Stats.TrackVisitor();
 
 			Assert.That(statsPeriods, Is.True);
 		}
