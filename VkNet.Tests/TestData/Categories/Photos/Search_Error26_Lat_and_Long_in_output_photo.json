@@ -1,0 +1,37 @@
+{
+  "response": {
+    "count": 12,
+    "items": [
+      {
+        "id": 334408466,
+        "album_id": 198144854,
+        "owner_id": 258913887,
+        "photo_75": "http://cs617419.vk.me/v617419887/11e90/GD__Lv5FTI4.jpg",
+        "photo_130": "http://cs617419.vk.me/v617419887/11e91/f-4hN1xff9I.jpg",
+        "photo_604": "http://cs617419.vk.me/v617419887/11e92/KiTWG4Lk8sE.jpg",
+        "photo_807": "http://cs617419.vk.me/v617419887/11e93/LXbjRssgtso.jpg",
+        "width": 640,
+        "height": 640,
+        "text": "",
+        "date": 1404294037,
+        "lat": 29.999996,
+        "long": 29.999997
+      },
+      {
+        "id": 326991086,
+        "album_id": -6,
+        "owner_id": 249390767,
+        "photo_75": "http://cs605216.vk.me/v605216767/5336/XeqYTC3wgwo.jpg",
+        "photo_130": "http://cs605216.vk.me/v605216767/5337/IdbmUgGaoys.jpg",
+        "photo_604": "http://cs605216.vk.me/v605216767/5338/6wIHGv9_xZ8.jpg",
+        "width": 403,
+        "height": 336,
+        "text": "",
+        "date": 1396601780,
+        "lat": 29.942251,
+        "long": 29.882819,
+        "post_id": 1
+      }
+    ]
+  }
+}

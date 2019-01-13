@@ -1,0 +1,18 @@
+{
+  "response": {
+    "id": 197266686,
+    "thumb_id": -1,
+    "owner_id": 234698,
+    "title": "hello world",
+    "description": "description for album",
+    "created": 1403185184,
+    "updated": 1403185184,
+    "privacy_view": [
+      "all"
+    ],
+    "privacy_comment": [
+      "all"
+    ],
+    "size": 0
+  }
+}
