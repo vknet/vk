@@ -1,0 +1,78 @@
+{
+  "response": {
+    "count": 2623,
+    "items": [
+      {
+        "id": 1258365,
+        "from_id": -30666517,
+        "owner_id": -30666517,
+        "date": 1447668333,
+        "post_type": "post",
+        "text": "Видео с наглядными инструкциями, как правильно отрефакторить плохо написанный код, сделав его намного более читаемым, чем было изначально.",
+        "attachments": [
+          {
+            "type": "video",
+            "video": {
+              "id": 171514588,
+              "owner_id": 235845316,
+              "title": "Clean Code: Learn to write clean, maintainable and robust code",
+              "duration": 2058,
+              "description": "Clean Code: Learn to write clean, maintainable and robust code. In this video, I take a poorly-written piece of code and refactor in a step-by-step fashion. I also teach you some productivity tips along the way that helps you write code fast with Visual Studio. If you enjoy my teaching style and want to learn more from me, check out my courses on Udemy: C# Intermediate: Classes, Interfaces and Object-oriented Programming https://www.udemy.com/csharp-intermediate-classes-interfaces-and-oop/?couponCode=",
+              "date": 1447535648,
+              "views": 1613,
+              "comments": 0,
+              "photo_130": "https://pp.vk.me/c627830/u235845316/video/s_856d4cf3.jpg",
+              "photo_320": "https://pp.vk.me/c627830/u235845316/video/l_e2fc316e.jpg",
+              "photo_800": "https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg",
+              "photo_640": "https://pp.vk.me/c627830/u235845316/video/y_dca48fdd.jpg",
+              "access_key": "733701ff4d7eb85ed7"
+            }
+          }
+        ],
+        "post_source": {
+          "type": "vk"
+        },
+        "comments": {
+          "count": 9,
+          "can_post": 1
+        },
+        "likes": {
+          "count": 413,
+          "user_likes": 1,
+          "can_like": 0,
+          "can_publish": 1
+        },
+        "reposts": {
+          "count": 91,
+          "user_reposted": 0
+        }
+      }
+    ],
+    "profiles": [
+      {
+        "id": 235845316,
+        "first_name": "Лапанильда",
+        "last_name": "Кошкодавленко",
+        "sex": 1,
+        "screen_name": "deadlymanul",
+        "photo_50": "https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg",
+        "photo_100": "https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg",
+        "online": 1
+      }
+    ],
+    "groups": [
+      {
+        "id": 30666517,
+        "name": "Типичный программист | tproger",
+        "screen_name": "tproger",
+        "is_closed": 0,
+        "type": "page",
+        "is_admin": 0,
+        "is_member": 1,
+        "photo_50": "https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg",
+        "photo_100": "https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg",
+        "photo_200": "https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  'response': {
+    'count': 2,
+    'items': [
+      {
+        'id': 164841344,
+        'owner_id': 1,
+        'title': 'This is SPARTA',
+        'duration': 16,
+        'description': '',
+        'date': 1366495075,
+        'views': 215502,
+        'comments': 2559,
+        'photo_130': 'http://cs12761.vk.me/u5705167/video/s_df53315c.jpg',
+        'photo_320': 'http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg'
+      }
+    ]
+  }
+}

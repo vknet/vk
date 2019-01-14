@@ -1,0 +1,32 @@
+{
+  "response": {
+    "count": 1,
+    "items": [
+      {
+        "id": 94992,
+        "owner_id": -103292418,
+        "title": "Название",
+        "description": "Описание",
+        "price": {
+          "amount": "12300",
+          "currency": {
+            "id": 643,
+            "name": "RUB"
+          },
+          "text": "123руб."
+        },
+        "category": {
+          "id": 300,
+          "name": "Компьютеры",
+          "section": {
+            "id": 3,
+            "name": "Компьютернаятехника"
+          }
+        },
+        "date": 1452002460,
+        "thumb_photo": "https://pp.vk.me/c628717/v628717123/3852b/Kli3SztJwDE.jpg",
+        "availability": 0
+      }
+    ]
+  }
+}

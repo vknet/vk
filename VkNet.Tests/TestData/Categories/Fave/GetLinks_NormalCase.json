@@ -1,0 +1,15 @@
+{
+  "response": {
+    "count": 4,
+    "items": [
+      {
+        "id": "2_32190123_1",
+        "url": "https://vk.com/apiclub",
+        "title": "ВКонтакте API",
+        "description": "Сообщество",
+        "photo_50": "https://pp.vk.me/c400/g00001/e_5ba03323.jpg",
+        "photo_100": "https://pp.vk.me/c400/g00001/e_5ba03323.jpg"
+      }
+    ]
+  }
+}

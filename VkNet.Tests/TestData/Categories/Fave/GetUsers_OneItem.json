@@ -1,0 +1,12 @@
+{
+  "response": {
+    "count": 2,
+    "items": [
+      {
+        "id": 1,
+        "first_name": "Павел",
+        "last_name": "Дуров"
+      }
+    ]
+  }
+}
