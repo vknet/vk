@@ -1,0 +1,14 @@
+{
+  "response": [
+    {
+      "uid": 214402965,
+      "aid": 3812231,
+      "sid": "testcb94fcab4fb7107250",
+      "date": 1376468670,
+      "status": 1,
+      "test_mode": 1,
+      "comment": "group autocomplete",
+      "start_date": 1376468668
+    }
+  ]
+}

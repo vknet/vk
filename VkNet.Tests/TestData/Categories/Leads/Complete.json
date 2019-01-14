@@ -1,0 +1,10 @@
+{
+  "response": {
+    "limit": 1000,
+    "day_limit": 500,
+    "spent": 10,
+    "cost": "1",
+    "test_mode": 1,
+    "success": 1
+  }
+}
