@@ -4,54 +4,25 @@ using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Tests.Helper;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	[ExcludeFromCodeCoverage]
-	public class GiftsTest : BaseTest
+	public class GiftsTest : CategoryBaseTest
 	{
+		protected override string Folder => "Gifts";
+
 		[Test]
 		public void Get_NormalCase()
 		{
 			Url = "https://api.vk.com/method/gifts.get";
-
-			Json =
-					@"{
-					response: {
-						count: 6,
-						items: [{
-							id: 577952355,
-							from_id: 103942820,
-							message: 'С Днём Рождения!!! Пущай в доме твоём всегда будут уют, тепло, весёлость и вкусняшки ^.^',
-							date: 1452854355,
-							gift: {
-								id: 658,
-								thumb_256: 'https://vk.com/images/gift/658/256.jpg',
-								thumb_96: 'https://vk.com/images/gift/658/96.png',
-								thumb_48: 'https://vk.com/images/gift/658/48.png'
-							},
-							privacy: 0,
-							gift_hash: 'XZuJeI8mbdkphj7QQ8I7n*Bh1bnuJQqwraxWyjYdp45ZWPhzrn6pTPlUirsRlvyPq7iwAd5/I6iWNYl8pch6jZVRjT5BnpGtN8flF00CFI58XXEJboNLTyfvO4pFL48psGgKdgRJJgi8cL7zfcGZhVMYXG/lrCHVP9GoLXdOSso-'
-						}, {
-							id: 443110992,
-							from_id: 221634238,
-							message: '',
-							date: 1431167825,
-							gift: {
-								id: 711,
-								thumb_256: 'https://vk.com/images/gift/711/256.jpg',
-								thumb_96: 'https://vk.com/images/gift/711/96.png',
-								thumb_48: 'https://vk.com/images/gift/711/48.png'
-							},
-							privacy: 0,
-							gift_hash: 'iceMVGPQLpYLpbd5HdBGRrmCce5QzjGiJ8ugBtJPqrC/sqfH7MoJqwC7yjIiI*tYU8TZlPr7utHQCkAYvUgpKUT2x6/Cy2dBKjpsG/LhKIei/yhmVdoSW5GCJbdWKx3*nOBRzamrreWv6I8G/df8sfEFndOeBj4wMxmXIeXiw2k-'
-						}]
-					}
-				  }";
+			ReadCategoryJsonPath(nameof(Get_NormalCase));
 
 			var gifts = Api.Gifts.Get(32190123);
+
 			Assert.That(gifts.TotalCount, Is.AtLeast(0));
 
 			var gift = gifts.FirstOrDefault();
@@ -60,26 +31,23 @@ namespace VkNet.Tests.Categories
 			Assert.That(gift.Id, Is.EqualTo(577952355));
 			Assert.That(gift.FromId, Is.EqualTo(103942820));
 
-			Assert.That(gift.Message
-					, Is.EqualTo(
-							"С Днём Рождения!!! Пущай в доме твоём всегда будут уют, тепло, весёлость и вкусняшки ^.^"));
+			Assert.That(gift.Message,
+				Is.EqualTo("С Днём Рождения!!! Пущай в доме твоём всегда будут уют, тепло, весёлость и вкусняшки ^.^"));
 
 			Assert.That(gift.Date.Value, Is.EqualTo(DateHelper.TimeStampToDateTime(1452854355)));
 			Assert.That(gift.Gift.Id, Is.EqualTo(658));
 
-			Assert.That(gift.Gift.Thumb256
-					, Is.EqualTo(new Uri("https://vk.com/images/gift/658/256.jpg")));
+			Assert.That(gift.Gift.Thumb256, Is.EqualTo(new Uri("https://vk.com/images/gift/658/256.jpg")));
 
-			Assert.That(gift.Gift.Thumb96
-					, Is.EqualTo(new Uri("https://vk.com/images/gift/658/96.png")));
+			Assert.That(gift.Gift.Thumb96, Is.EqualTo(new Uri("https://vk.com/images/gift/658/96.png")));
 
-			Assert.That(gift.Gift.Thumb48
-					, Is.EqualTo(new Uri("https://vk.com/images/gift/658/48.png")));
+			Assert.That(gift.Gift.Thumb48, Is.EqualTo(new Uri("https://vk.com/images/gift/658/48.png")));
 
 			Assert.That(gift.Privacy, Is.EqualTo(GiftPrivacy.All));
 
-			Assert.That(gift.GiftHash
-					, Is.EqualTo("XZuJeI8mbdkphj7QQ8I7n*Bh1bnuJQqwraxWyjYdp45ZWPhzrn6pTPlUirsRlvyPq7iwAd5/I6iWNYl8pch6jZVRjT5BnpGtN8flF00CFI58XXEJboNLTyfvO4pFL48psGgKdgRJJgi8cL7zfcGZhVMYXG/lrCHVP9GoLXdOSso-"));
+			Assert.That(gift.GiftHash,
+				Is.EqualTo(
+					"XZuJeI8mbdkphj7QQ8I7n*Bh1bnuJQqwraxWyjYdp45ZWPhzrn6pTPlUirsRlvyPq7iwAd5/I6iWNYl8pch6jZVRjT5BnpGtN8flF00CFI58XXEJboNLTyfvO4pFL48psGgKdgRJJgi8cL7zfcGZhVMYXG/lrCHVP9GoLXdOSso-"));
 		}
 	}
 }
