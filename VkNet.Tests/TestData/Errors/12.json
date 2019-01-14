@@ -1,0 +1,24 @@
+{
+  "error": {
+    "error_code": 12,
+    "error_msg": "Unable to compile code: ';' expected, '' found in line 1",
+    "request_params": [
+      {
+        "key": "oauth",
+        "value": "1"
+      },
+      {
+        "key": "method",
+        "value": "execute"
+      },
+      {
+        "key": "code",
+        "value": "return API.users.get({\"user_ids\": API.audio.search({\"q\":\"Beatles\", \"count\":3}).items@.owner_id})@.last_name"
+      },
+      {
+        "key": "v",
+        "value": "5.50"
+      }
+    ]
+  }
+}

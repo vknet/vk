@@ -1,0 +1,1 @@
+return API.users.get({"user_ids": API.audio.search({"q":"Beatles", "count":3}).items@.owner_id})@.last_name

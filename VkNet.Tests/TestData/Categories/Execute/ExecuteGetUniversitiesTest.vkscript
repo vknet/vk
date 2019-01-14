@@ -1,0 +1,1 @@
+return API.database.getUniversities({"country_id": 1, "city_id": 2, "q": "СПб", count: 1});
