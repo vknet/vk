@@ -1,0 +1,25 @@
+{
+  "response": {
+    "count": 690,
+    "items": [
+      {
+        "id": 2,
+        "first_name": "Александра",
+        "last_name": "Владимирова",
+        "online": 0
+      },
+      {
+        "id": 5,
+        "first_name": "Илья",
+        "last_name": "Перекопский",
+        "online": 0
+      },
+      {
+        "id": 6,
+        "first_name": "Николай",
+        "last_name": "Дуров",
+        "online": 0
+      }
+    ]
+  }
+}

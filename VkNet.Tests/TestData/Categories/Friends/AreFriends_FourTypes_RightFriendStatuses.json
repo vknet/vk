@@ -1,0 +1,20 @@
+{
+  "response": [
+    {
+      "user_id": 24181068,
+      "friend_status": 0
+    },
+    {
+      "user_id": 22911407,
+      "friend_status": 3
+    },
+    {
+      "user_id": 155810539,
+      "friend_status": 2
+    },
+    {
+      "user_id": 3505305,
+      "friend_status": 1
+    }
+  ]
+}
