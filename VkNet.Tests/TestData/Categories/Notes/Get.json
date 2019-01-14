@@ -1,0 +1,16 @@
+{
+  "response": {
+    "count": 123,
+    "items": [
+      {
+        "id": 11801953,
+        "owner_id": 66748,
+        "comments": 0,
+        "date": 1437379505,
+        "title": "Без названия",
+        "text": "text",
+        "view_url": "https://m.vk.com/63a975c&lang=en"
+      }
+    ]
+  }
+}
