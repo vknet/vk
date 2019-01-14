@@ -1,23 +1,24 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class NotificationsCategoryTests : BaseTest
+	public class NotificationsCategoryTests : CategoryBaseTest
 	{
 		[Test]
 		public void MarkAsViewed()
 		{
-			Json = @"
-            {
-				'response': 1
-			}";
-
 			Url = "https://api.vk.com/method/notifications.markAsViewed";
+			ReadJsonFile(JsonPaths.True);
+
 			var result = Api.Notifications.MarkAsViewed();
+
 			Assert.True(result);
 		}
+
+		protected override string Folder => "Notifications";
 	}
 }
