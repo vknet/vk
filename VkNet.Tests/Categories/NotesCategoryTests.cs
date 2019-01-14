@@ -1,13 +1,16 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Model.RequestParams.Notes;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class NotesCategoryTests : BaseTest
+	public class NotesCategoryTests : CategoryBaseTest
 	{
+		protected override string Folder => "Notes";
+
 		[Test]
 		public void Add()
 		{
@@ -37,52 +40,44 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void Delete()
 		{
-			Json = @"
-			{
-				'response': 1
-			}";
-
 			Url = "https://api.vk.com/method/notes.delete";
+			ReadJsonFile(JsonPaths.True);
+
 			var result = Api.Notes.Delete(11825220);
+
 			Assert.True(result);
 		}
 
 		[Test]
 		public void DeleteComment()
 		{
-			Json = @"
-			{
-				'response': 1
-			}";
-
 			Url = "https://api.vk.com/method/notes.deleteComment";
+			ReadJsonFile(JsonPaths.True);
+
 			var result = Api.Notes.DeleteComment(new NotesDeleteCommentParams());
+
 			Assert.True(result);
 		}
 
 		[Test]
 		public void Edit()
 		{
-			Json = @"
-			{
-				'response': 1
-			}";
-
 			Url = "https://api.vk.com/method/notes.edit";
+			ReadJsonFile(JsonPaths.True);
+
 			var result = Api.Notes.Edit(new NotesEditParams());
+
 			Assert.True(result);
 		}
 
 		[Test]
 		public void EditComment()
 		{
-			Json = @"
-			{
-				'response': 1
-			}";
-
 			Url = "https://api.vk.com/method/notes.editComment";
+			ReadJsonFile(JsonPaths.True);
+
 			var result = Api.Notes.EditComment(new NotesEditCommentParams());
+
 			Assert.True(result);
 		}
 
@@ -157,18 +152,14 @@ namespace VkNet.Tests.Categories
 			Assert.IsNotEmpty(result);
 		}
 
-
-
 		[Test]
 		public void RestoreComment()
 		{
-			Json = @"
-			{
-				'response': 1
-			}";
-
 			Url = "https://api.vk.com/method/notes.restoreComment";
+			ReadJsonFile(JsonPaths.True);
+
 			var result = Api.Notes.RestoreComment(new NotesRestoreCommentParams());
+
 			Assert.True(result);
 		}
 	}
