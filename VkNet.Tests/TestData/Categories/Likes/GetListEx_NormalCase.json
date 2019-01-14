@@ -1,0 +1,37 @@
+{
+  "response": {
+    "count": 5,
+    "items": [
+      {
+        "type": "profile",
+        "id": 32190123,
+        "first_name": "Максим",
+        "last_name": "Инютин"
+      },
+      {
+        "type": "profile",
+        "id": 221634238,
+        "first_name": "Александр",
+        "last_name": "Инютин"
+      },
+      {
+        "type": "profile",
+        "id": 229027572,
+        "first_name": "Настя",
+        "last_name": "Зубова"
+      },
+      {
+        "type": "profile",
+        "id": 210894192,
+        "first_name": "Елизавета",
+        "last_name": "Емельянова"
+      },
+      {
+        "type": "profile",
+        "id": 201173701,
+        "first_name": "Даниил",
+        "last_name": "Богданов"
+      }
+    ]
+  }
+}
