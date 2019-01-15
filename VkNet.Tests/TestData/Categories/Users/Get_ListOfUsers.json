@@ -1,0 +1,95 @@
+{
+  "response": [
+    {
+      "id": 1,
+      "first_name": "Павла",
+      "last_name": "Дурова",
+      "sex": 2,
+      "nickname": "",
+      "domain": "durov",
+      "bdate": "10.10.1984",
+      "city": {
+        "id": 2,
+        "title": "Санкт-Петербург"
+      },
+      "country": {
+        "id": 1,
+        "title": "Россия"
+      },
+      "timezone": 3,
+      "photo_50": "http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg",
+      "photo_100": "http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg",
+      "photo_200": "http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg",
+      "photo_max": "http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg",
+      "photo_200_orig": "http://cs7004.vk.me/c7003/v7003736/3a08/mEqSflTauxA.jpg",
+      "photo_400_orig": "http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg",
+      "photo_max_orig": "http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg",
+      "has_mobile": 1,
+      "online": 1,
+      "can_post": 0,
+      "can_see_all_posts": 0,
+      "can_see_audio": 0,
+      "can_write_private_message": 0,
+      "twitter": "durov",
+      "site": "",
+      "status": "",
+      "last_seen": {
+        "time": 1392634257,
+        "platform": 7
+      },
+      "common_count": 0,
+      "counters": {
+        "albums": 1,
+        "videos": 8,
+        "audios": 0,
+        "notes": 6,
+        "photos": 153,
+        "friends": 688,
+        "online_friends": 146,
+        "mutual_friends": 0,
+        "followers": 5934786,
+        "subscriptions": 0,
+        "pages": 51
+      },
+      "university": 1,
+      "university_name": "",
+      "faculty": 0,
+      "faculty_name": "",
+      "graduation": 2006,
+      "relation": 0,
+      "universities": [
+        {
+          "id": 1,
+          "country": 1,
+          "city": 2,
+          "name": "СПбГУ",
+          "graduation": 2006
+        }
+      ],
+      "schools": [
+        {
+          "id": "1035386",
+          "country": "88",
+          "city": "16",
+          "name": "Sc.Elem. Coppino - Falletti di Barolo",
+          "year_from": 1990,
+          "year_to": 1992,
+          "class": ""
+        },
+        {
+          "id": "1",
+          "country": "1",
+          "city": "2",
+          "name": "Академическая (АГ) СПбГУ",
+          "year_from": 1996,
+          "year_to": 2001,
+          "year_graduated": 2001,
+          "class": "о",
+          "type": 1,
+          "type_str": "Гимназия"
+        }
+      ],
+      "relatives": []
+    }
+  ]
+}

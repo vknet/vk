@@ -1,0 +1,115 @@
+{
+  "response": {
+    "count": 5937505,
+    "items": [
+      {
+        "id": 243663122,
+        "first_name": "Ивана",
+        "last_name": "Радюна",
+        "sex": 2,
+        "nickname": "",
+        "domain": "id243663122",
+        "bdate": "27.8.1985",
+        "city": {
+          "id": 18632,
+          "title": "Вороново"
+        },
+        "country": {
+          "id": 3,
+          "title": "Беларусь"
+        },
+        "timezone": 3,
+        "photo_50": "http://cs606327.vk.me/v606327122/35ac/R57FNUr34iw.jpg",
+        "photo_100": "http://cs606327.vk.me/v606327122/35ab/HUsGNVxBoQU.jpg",
+        "photo_200": "http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg",
+        "photo_max": "http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg",
+        "photo_200_orig": "http://cs606327.vk.me/v606327122/35a9/3GW5bsTOvCA.jpg",
+        "photo_max_orig": "http://cs606327.vk.me/v606327122/35a9/3GW5bsTOvCA.jpg",
+        "has_mobile": 1,
+        "online": 1,
+        "online_mobile": 1,
+        "can_post": 0,
+        "can_see_all_posts": 1,
+        "can_see_audio": 1,
+        "can_write_private_message": 1,
+        "mobile_phone": "",
+        "home_phone": "",
+        "site": "",
+        "status": "Пусть ветер гудит в проводах пусть будет осенняя влага пусть люди забудут о нас,но ни забудем друг друга.",
+        "last_seen": {
+          "time": 1392710539,
+          "platform": 1
+        },
+        "common_count": 0,
+        "university": 0,
+        "university_name": "",
+        "faculty": 0,
+        "faculty_name": "",
+        "graduation": 0,
+        "relation": 6,
+        "universities": [],
+        "schools": [],
+        "relatives": []
+      },
+      {
+        "id": 239897398,
+        "first_name": "Софійки",
+        "last_name": "Довгалюк",
+        "sex": 1,
+        "nickname": "",
+        "domain": "id239897398",
+        "bdate": "16.6.2000",
+        "city": {
+          "id": 1559,
+          "title": "Тернополь"
+        },
+        "country": {
+          "id": 2,
+          "title": "Украина"
+        },
+        "timezone": 1,
+        "photo_50": "http://cs310121.vk.me/v310121398/8023/LMm-uoyk1-M.jpg",
+        "photo_100": "http://cs310121.vk.me/v310121398/8022/KajnVK0lvFA.jpg",
+        "photo_200": "http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg",
+        "photo_max": "http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg",
+        "photo_200_orig": "http://cs310121.vk.me/v310121398/8020/N2DK1JeENJM.jpg",
+        "photo_400_orig": "http://cs310121.vk.me/v310121398/801f/FSWGaDlq3L4.jpg",
+        "photo_max_orig": "http://cs310121.vk.me/v310121398/801f/FSWGaDlq3L4.jpg",
+        "has_mobile": 1,
+        "online": 1,
+        "can_post": 0,
+        "can_see_all_posts": 1,
+        "can_see_audio": 1,
+        "can_write_private_message": 1,
+        "mobile_phone": "**********",
+        "home_phone": "*****",
+        "skype": "немає",
+        "site": "",
+        "status": "Не варто ображатися на людей за те, що вони не виправдали наших очікувань... ми самі винні, що чекали від них більше, ніж варто було!",
+        "last_seen": {
+          "time": 1392710474,
+          "platform": 7
+        },
+        "common_count": 0,
+        "university": 0,
+        "university_name": "",
+        "faculty": 0,
+        "faculty_name": "",
+        "graduation": 0,
+        "relation": 0,
+        "universities": [],
+        "schools": [],
+        "relatives": [
+          {
+            "id": 222462523,
+            "type": "sibling"
+          },
+          {
+            "id": 207105159,
+            "type": "sibling"
+          }
+        ]
+      }
+    ]
+  }
+}

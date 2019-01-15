@@ -1,0 +1,22 @@
+{
+  "response": [
+    {
+      "id": 1,
+      "first_name": "Павел",
+      "last_name": "Дуров",
+      "counters": {
+        "albums": 1,
+        "videos": 8,
+        "audios": 0,
+        "notes": 6,
+        "photos": 153,
+        "friends": 689,
+        "online_friends": 85,
+        "mutual_friends": 0,
+        "followers": 5937280,
+        "subscriptions": 0,
+        "pages": 51
+      }
+    }
+  ]
+}

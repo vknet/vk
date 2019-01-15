@@ -1,0 +1,26 @@
+{
+  "response": {
+    "count": 26953,
+    "items": [
+      {
+        "uid": 165614770,
+        "first_name": "Маша",
+        "last_name": "Иванова",
+        "university": "0",
+        "university_name": "",
+        "faculty": "0",
+        "faculty_name": "",
+        "graduation": "0",
+        "career": [
+          {
+            "company": "ООО Рога и копыта",
+            "country_id": 1,
+            "city_id": 1041822,
+            "until": 9.2233720368547779E+18,
+            "position": "　"
+          }
+        ]
+      }
+    ]
+  }
+}

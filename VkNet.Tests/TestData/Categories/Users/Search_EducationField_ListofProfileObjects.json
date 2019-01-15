@@ -1,0 +1,37 @@
+{
+  "response": {
+    "count": 26953,
+    "items": [
+      {
+        "uid": 165614770,
+        "first_name": "Маша",
+        "last_name": "Иванова",
+        "university": "0",
+        "university_name": "",
+        "faculty": "0",
+        "faculty_name": "",
+        "graduation": "0"
+      },
+      {
+        "uid": 174063570,
+        "first_name": "Маша",
+        "last_name": "Иванова",
+        "university": "0",
+        "university_name": "",
+        "faculty": "0",
+        "faculty_name": "",
+        "graduation": "0"
+      },
+      {
+        "uid": 76817368,
+        "first_name": "Маша",
+        "last_name": "Иванова",
+        "university": "0",
+        "university_name": "",
+        "faculty": "0",
+        "faculty_name": "",
+        "graduation": "0"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "response": [
+    {
+      "id": 1,
+      "first_name": "Павел",
+      "last_name": "Дуров",
+      "university": 1,
+      "university_name": "СПбГУ",
+      "faculty": 0,
+      "faculty_name": "",
+      "graduation": 2006
+    },
+    {
+      "id": 5041431,
+      "first_name": "Тайфур",
+      "last_name": "Касеев",
+      "university": 431,
+      "university_name": "ВолгГТУ",
+      "faculty": 3162,
+      "faculty_name": "Электроники и вычислительной техники",
+      "graduation": 2012,
+      "education_form": "Дневное отделение",
+      "education_status": "Студент (специалист)"
+    }
+  ]
+}

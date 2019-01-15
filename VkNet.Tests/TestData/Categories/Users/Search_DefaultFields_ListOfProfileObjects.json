@@ -1,0 +1,22 @@
+{
+  "response": {
+    "count": 26953,
+    "items": [
+      {
+        "uid": 449928,
+        "first_name": "Маша",
+        "last_name": "Иванова"
+      },
+      {
+        "uid": 70145254,
+        "first_name": "Маша",
+        "last_name": "Шаблинская-Иванова"
+      },
+      {
+        "uid": 62899425,
+        "first_name": "Masha",
+        "last_name": "Ivanova"
+      }
+    ]
+  }
+}

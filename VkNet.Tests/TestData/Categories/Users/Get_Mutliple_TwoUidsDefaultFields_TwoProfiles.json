@@ -1,0 +1,14 @@
+{
+  "response": [
+    {
+      "id": 1,
+      "first_name": "Павел",
+      "last_name": "Дуров"
+    },
+    {
+      "id": 672,
+      "first_name": "Кристина",
+      "last_name": "Смирнова"
+    }
+  ]
+}

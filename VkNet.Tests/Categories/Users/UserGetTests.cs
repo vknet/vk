@@ -5,29 +5,20 @@ using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Users
 {
 	[ExcludeFromCodeCoverage]
-	public class UserGetTests : BaseTest
+	public class UserGetTests : CategoryBaseTest
 	{
+		protected override string Folder => "Users";
+
 		[Test]
-		public void Get_Dimon_SingleUser()
+		public void Get_Olesya_SingleUser()
 		{
 			Url = "https://api.vk.com/method/users.get";
-
-			Json =
-					@"{
-                    'response': [
-                      {
-                        'id': 118312730,
-                        'first_name': 'Olesya',
-                        'last_name': 'Izmaylova',
-                        'deactivated': 'banned',
-						'sex': -1
-                      }
-                    ]
-                  }";
+			ReadCategoryJsonPath(nameof(Get_Olesya_SingleUser));
 
 			var users = Api.Users.Get(new List<long> { 118312730 }, ProfileFields.Sex, NameCase.Nom);
 

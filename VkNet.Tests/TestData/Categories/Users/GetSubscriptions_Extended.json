@@ -1,0 +1,31 @@
+{
+  "response": {
+    "count": 51,
+    "items": [
+      {
+        "id": 32295218,
+        "name": "LIVE Экспресс",
+        "screen_name": "liveexp",
+        "is_closed": 0,
+        "type": "page",
+        "is_admin": 0,
+        "is_member": 0,
+        "photo_50": "http://cs412129.vk.me/v412129558/6cea/T3jVq9A5hN4.jpg",
+        "photo_100": "http://cs412129.vk.me/v412129558/6ce9/Rs47ldlt4Ko.jpg",
+        "photo_200": "http://cs412129.vk.me/v412129604/1238/RhEgZqrsv-w.jpg"
+      },
+      {
+        "id": 43694972,
+        "name": "Sophie Ellis-Bextor",
+        "screen_name": "sophieellisbextor",
+        "is_closed": 0,
+        "type": "page",
+        "is_admin": 0,
+        "is_member": 0,
+        "photo_50": "http://cs417031.vk.me/v417031989/59cb/65zF-xnOQsk.jpg",
+        "photo_100": "http://cs417031.vk.me/v417031989/59ca/eOJ7ER_eJok.jpg",
+        "photo_200": "http://cs417031.vk.me/v417031989/59c8/zI9aAlI-PHc.jpg"
+      }
+    ]
+  }
+}
