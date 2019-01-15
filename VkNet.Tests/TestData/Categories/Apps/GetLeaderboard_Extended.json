@@ -1,0 +1,19 @@
+{
+  "response": {
+    "count": 130,
+    "items": [
+      {
+        "score": 221634238,
+        "points": 256,
+        "user_id": 123
+      }
+    ],
+    "profiles": [
+      {
+        "id": 72815776,
+        "first_name": "Антон",
+        "last_name": "Минаев"
+      }
+    ]
+  }
+}

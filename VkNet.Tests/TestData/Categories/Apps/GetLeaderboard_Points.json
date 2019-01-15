@@ -1,0 +1,12 @@
+{
+  "response": {
+    "count": 130,
+    "items": [
+      {
+        "score": 221634238,
+        "points": 256,
+        "user_id": 123
+      }
+    ]
+  }
+}
