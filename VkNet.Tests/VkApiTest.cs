@@ -7,6 +7,7 @@ using Moq;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model;
+using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
 
 namespace VkNet.Tests
@@ -30,7 +31,7 @@ namespace VkNet.Tests
 		public void Call_NotMoreThen3CallsPerSecond()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
-			Json = @"{ ""response"": 2 }";
+			ReadJsonFile(nameof(VkApi), nameof(Call_NotMoreThen3CallsPerSecond));
 			Api.RequestsPerSecond = 3; // Переопределение значения в базовом классе
 			SetupIRestClient(Mock.Get(Api.RestClient));
 
@@ -59,20 +60,11 @@ namespace VkNet.Tests
 		[Test]
 		public void CallAndConvertToType()
 		{
-			Json = @"
-            {
-				'response': {
-					'user_id':221634238,
-					'mutual': {
-						'count': 3,
-						'users': [227457746, 228907945, 229634083]
-					},
-					'message':'text'
-				}
-			}";
-
 			Url = "https://api.vk.com/method/friends.getRequests";
+			ReadJsonFile(nameof(VkApi), nameof(CallAndConvertToType));
+
 			var result = Api.Call<FriendsGetRequestsResult>("friends.getRequests", VkParameters.Empty);
+
 			Assert.NotNull(result);
 			Assert.That(result.UserId, Is.EqualTo(221634238));
 			Assert.That(result.Message, Is.EqualTo("text"));
@@ -87,7 +79,7 @@ namespace VkNet.Tests
 		}
 
 		[Test]
-		public void Dispose()
+		public void DisposeTest()
 		{
 			Api.Dispose();
 		}
@@ -104,7 +96,8 @@ namespace VkNet.Tests
 		public void Invoke_DictionaryParams()
 		{
 			Url = "https://api.vk.com/method/example.get";
-			Json = @"{ 'response' : [] }";
+			ReadJsonFile(JsonPaths.EmptyArray);
+
 			var parameters = new Dictionary<string, string> { { "count", "23" } };
 			var json = Api.Invoke("example.get", parameters, true);
 
@@ -115,7 +108,8 @@ namespace VkNet.Tests
 		public void Invoke_VkParams()
 		{
 			Url = "https://api.vk.com/method/example.get";
-			Json = @"{ 'response' : [] }";
+			ReadJsonFile(JsonPaths.EmptyArray);
+
 			var parameters = new VkParameters { { "count", 23 } };
 			var json = Api.Invoke("example.get", parameters, true);
 
