@@ -1,0 +1,43 @@
+{
+  "response": {
+    "count": 2,
+    "items": [
+      {
+        "id": 3809,
+        "from_id": 6733856,
+        "date": 1385099144,
+        "text": "Поздравляю вас!!!<br>Растите здоровыми, счастливыми и красивыми!",
+        "likes": {
+          "count": 1
+        }
+      },
+      {
+        "id": 3810,
+        "from_id": 3073863,
+        "date": 1385101266,
+        "text": "C днем рождения малышку и родителей!!!",
+        "likes": {
+          "count": 1
+        },
+        "attachments": [
+          {
+            "type": "photo",
+            "photo": {
+              "id": 315467755,
+              "album_id": -5,
+              "owner_id": 3073863,
+              "photo_130": "http://cs425830.vk.me/v425830763/48fd/PvqwvqEOG2A.jpg",
+              "photo_604": "http://cs425830.vk.me/v425830763/48fe/XhRY9Pmoo70.jpg",
+              "photo_75": "http://cs425830.vk.me/v425830763/48fc/iJaRiL3vPfA.jpg",
+              "width": 510,
+              "height": 383,
+              "text": "",
+              "date": 1385101231,
+              "access_key": "ade2532c6a39c12be6"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

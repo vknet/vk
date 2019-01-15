@@ -1,0 +1,34 @@
+{
+  "response": {
+    "count": 2,
+    "items": [
+      {
+        "id": 3,
+        "from_id": -103292418,
+        "owner_id": -103292418,
+        "date": 1447252575,
+        "post_type": "post",
+        "text": "Тест",
+        "can_delete": 1,
+        "can_pin": 1,
+        "post_source": {
+          "type": "api"
+        },
+        "comments": {
+          "count": 0,
+          "can_post": 1
+        },
+        "likes": {
+          "count": 0,
+          "user_likes": 0,
+          "can_like": 1,
+          "can_publish": 1
+        },
+        "reposts": {
+          "count": 0,
+          "user_reposted": 0
+        }
+      }
+    ]
+  }
+}

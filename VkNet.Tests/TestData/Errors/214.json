@@ -1,0 +1,28 @@
+{
+  "error": {
+    "error_code": 214,
+    "error_msg": "Access to adding post denied: access to the wall is closed",
+    "request_params": [
+      {
+        "key": "oauth",
+        "value": "1"
+      },
+      {
+        "key": "method",
+        "value": "wall.post"
+      },
+      {
+        "key": "owner_id",
+        "value": "411773664"
+      },
+      {
+        "key": "message",
+        "value": "Privet"
+      },
+      {
+        "key": "v",
+        "value": "5.74"
+      }
+    ]
+  }
+}

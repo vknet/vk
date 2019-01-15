@@ -1,0 +1,88 @@
+{
+  "response": {
+    "count": 42,
+    "items": [
+      {
+        "id": 41,
+        "from_id": 10,
+        "owner_id": 10,
+        "date": 1394002266,
+        "post_type": "post",
+        "text": "",
+        "copy_history": [
+          {
+            "id": 93530,
+            "owner_id": -29246653,
+            "from_id": -29246653,
+            "date": 1393956845,
+            "post_type": "post",
+            "text": "",
+            "attachments": [
+              {
+                "type": "photo",
+                "photo": {
+                  "id": 323086640,
+                  "album_id": -7,
+                  "owner_id": -29246653,
+                  "user_id": 100,
+                  "photo_75": "http://cs413130.vk.me/v413130344/9563/Dr-sxoSsoBs.jpg",
+                  "photo_130": "http://cs413130.vk.me/v413130344/9564/k2jeOxwxgr4.jpg",
+                  "photo_604": "http://cs413130.vk.me/v413130344/9565/jCLiluawfXE.jpg",
+                  "width": 604,
+                  "height": 348,
+                  "text": "",
+                  "date": 1393956845,
+                  "post_id": 93530
+                }
+              }
+            ],
+            "post_source": {
+              "type": "api"
+            }
+          }
+        ],
+        "can_delete": 1,
+        "post_source": {
+          "type": "api"
+        },
+        "comments": {
+          "count": 0,
+          "can_post": 1
+        },
+        "likes": {
+          "count": 1,
+          "user_likes": 0,
+          "can_like": 1,
+          "can_publish": 0
+        },
+        "reposts": {
+          "count": 0,
+          "user_reposted": 0
+        }
+      }
+    ],
+    "profiles": [
+      {
+        "id": 10,
+        "first_name": "Иван",
+        "last_name": "Иванов",
+        "sex": 2,
+        "online": 0
+      }
+    ],
+    "groups": [
+      {
+        "id": 29246653,
+        "name": "Корпорация Зла",
+        "screen_name": "evil_incorparate",
+        "is_closed": 0,
+        "type": "page",
+        "is_admin": 0,
+        "is_member": 1,
+        "photo_50": "http://cs409529.vk.me/v409529400/98d2/3OMudmIl7gY.jpg",
+        "photo_100": "http://cs409529.vk.me/v409529400/98d1/dFkKFf-xWIw.jpg",
+        "photo_200": "http://cs409529.vk.me/v409529400/98cd/xHrEeHMSXQQ.jpg"
+      }
+    ]
+  }
+}

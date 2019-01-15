@@ -16,7 +16,9 @@ namespace VkNet.Tests.Categories.Wall
 		{
 			Url = "https://api.vk.com/method/wall.get";
 			ReadCategoryJsonPath(nameof(ArticleAttachement));
+
 			var result = Api.Wall.Get(new WallGetParams());
+
 			Assert.NotNull(result);
 			Assert.That(result.TotalCount, Is.EqualTo(520));
 			var post = result.WallPosts.FirstOrDefault();
@@ -31,7 +33,9 @@ namespace VkNet.Tests.Categories.Wall
 		{
 			Url = "https://api.vk.com/method/wall.get";
 			ReadCategoryJsonPath(nameof(PodcastAttachement));
+
 			var result = Api.Wall.Get(new WallGetParams());
+
 			Assert.NotNull(result);
 			Assert.That(result.TotalCount, Is.EqualTo(16833));
 			var post = result.WallPosts.FirstOrDefault();

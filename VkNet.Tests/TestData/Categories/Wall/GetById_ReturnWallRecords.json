@@ -1,0 +1,29 @@
+{
+  "response": [
+    {
+      "id": 617,
+      "from_id": 1,
+      "owner_id": 1,
+      "date": 1171758699,
+      "post_type": "post",
+      "text": "",
+      "post_source": {
+        "type": "vk"
+      },
+      "comments": {
+        "count": 0,
+        "can_post": 1
+      },
+      "likes": {
+        "count": 2,
+        "user_likes": 0,
+        "can_like": 1,
+        "can_publish": 0
+      },
+      "reposts": {
+        "count": 0,
+        "user_reposted": 0
+      }
+    }
+  ]
+}
