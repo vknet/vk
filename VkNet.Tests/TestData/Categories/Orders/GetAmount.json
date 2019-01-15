@@ -1,0 +1,10 @@
+{
+  "response": [
+    {
+      "votes": "item",
+      "amount": 1,
+      "description": "description",
+      "currency": "Rub"
+    }
+  ]
+}
