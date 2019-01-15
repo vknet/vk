@@ -1,20 +1,18 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class MessagesDeleteConversationTests: BaseTest
+	public class MessagesDeleteConversationTests : MessagesBaseTests
 	{
 		[Test]
 		public void DeleteConversation()
 		{
 			Url = "https://api.vk.com/method/messages.deleteConversation";
-
-			Json = @"{
-                    'response': 1
-                  }";
+			ReadJsonFile(JsonPaths.True);
 
 			var result = Api.Messages.DeleteConversation(123);
 

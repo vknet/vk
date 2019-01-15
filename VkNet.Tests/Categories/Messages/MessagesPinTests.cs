@@ -5,19 +5,13 @@ namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class MessagesPinTests: BaseTest
+	public class MessagesPinTests : MessagesBaseTests
 	{
 		[Test]
 		public void Pin()
 		{
 			Url = "https://api.vk.com/method/messages.pin";
-
-			Json = @"{
-				'response': {
-					'id': 123,
-					'text': 'text'
-				}
-			}";
+			ReadCategoryJsonPath(nameof(Pin));
 
 			var result = Api.Messages.Pin(123, 345);
 

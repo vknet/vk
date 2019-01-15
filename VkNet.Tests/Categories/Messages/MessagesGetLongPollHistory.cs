@@ -8,10 +8,8 @@ namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class MessagesGetLongPollHistory : CategoryBaseTest
+	public class MessagesGetLongPollHistory : MessagesBaseTests
 	{
-		protected override string Folder => "Messages";
-
 		[Test]
 		public void GetLongPollHistory_ThrowArgumentException()
 		{

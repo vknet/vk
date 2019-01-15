@@ -1,20 +1,18 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class MessagesMarkAsImportantConversation : BaseTest
+	public class MessagesMarkAsImportantConversation : MessagesBaseTests
 	{
 		[Test]
 		public void MarkAsImportantConversation()
 		{
 			Url = "https://api.vk.com/method/messages.markAsImportantConversation";
-
-			Json = @"{
-                    'response': 1
-                  }";
+			ReadJsonFile(JsonPaths.True);
 
 			var result = Api.Messages.MarkAsImportantConversation(123);
 

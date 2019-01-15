@@ -5,7 +5,6 @@ using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Exception;
-using VkNet.Infrastructure;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
@@ -13,10 +12,8 @@ namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class MessagesSendTests : CategoryBaseTest
+	public class MessagesSendTests : MessagesBaseTests
 	{
-		protected override string Folder => "Messages";
-
 		[Test]
 		public void AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
@@ -35,10 +32,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void CoordsMessage()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-
-			Json = @"{
-			    'response': 4464
-			}";
+			ReadCategoryJsonPath(nameof(CoordsMessage));
 
 			var id = Api.Messages.Send(new MessagesSendParams
 			{
@@ -53,11 +47,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void DefaultFields_MessageId()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-
-			Json =
-				@"{
-					'response': 4457
-				  }";
+			ReadCategoryJsonPath(nameof(DefaultFields_MessageId));
 
 			var id = Api.Messages.Send(new MessagesSendParams
 			{
@@ -82,20 +72,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void Exception_MessageIsTooLong()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-
-			Json =
-				@"{
-					'error': {
-					  'error_code': 914,
-					  'error_msg': 'Unknown error occured',
-					  'request_params': [
-						{
-						  'key': 'access_token',
-						  'value': 'token'
-						}
-					  ]
-					}
-				  }";
+			ReadErrorsJsonFile(914);
 
 			Assert.That(() => Api.Messages.Send(new MessagesSendParams
 				{
@@ -109,20 +86,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void Exception_TooMuchSentMessages()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-
-			Json =
-				@"{
-					'error': {
-					  'error_code': 913,
-					  'error_msg': 'Unknown error occured',
-					  'request_params': [
-						{
-						  'key': 'access_token',
-						  'value': 'token'
-						}
-					  ]
-					}
-				  }";
+			ReadErrorsJsonFile(913);
 
 			Assert.That(() => Api.Messages.Send(new MessagesSendParams
 				{
@@ -136,14 +100,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void MessagesSend_SetUserIdsParam_ArgumentException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-
-			Json = @"
-            {
-                'response': [{
-                    'peer_id': 32190123,
-                    'message_id': 210525
-                }]
-            }";
+			ReadCategoryJsonPath(nameof(MessagesSend_SetUserIdsParam_ArgumentException));
 
 			Assert.That(() => Api.Messages.Send(new MessagesSendParams
 				{
@@ -156,14 +113,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-
-			Json = @"
-            {
-                'response': [{
-                    'peer_id': 32190123,
-                    'message_id': 210525
-                }]
-            }";
+			ReadCategoryJsonPath(nameof(MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult));
 
 			var result = Api.Messages.SendToUserIds(new MessagesSendParams
 			{
@@ -181,11 +131,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void RussianText_MessageId()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-
-			Json =
-				@"{
-					'response': 4464
-				  }";
+			ReadCategoryJsonPath(nameof(RussianText_MessageId));
 
 			var id = Api.Messages.Send(new MessagesSendParams
 			{
@@ -200,14 +146,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void MessagesSend_RandomIdRequired_ArgumentException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-
-			Json = @"
-            {
-                'response': [{
-                    'peer_id': 32190123,
-                    'message_id': 210525
-                }]
-            }";
+			ReadCategoryJsonPath(nameof(MessagesSend_RandomIdRequired_ArgumentException));
 
 			Assert.That(() => Api.Messages.Send(new MessagesSendParams
 				{
@@ -220,11 +159,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void MessagesSend_RandomIdNotRequiredInLessThan_5_90_ArgumentException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-
-			Json = @"
-            {
-                'response': 4464
-            }";
+			ReadCategoryJsonPath(nameof(MessagesSend_RandomIdNotRequiredInLessThan_5_90_ArgumentException));
 
 			Api.VkApiVersion.SetVersion(5, 88);
 

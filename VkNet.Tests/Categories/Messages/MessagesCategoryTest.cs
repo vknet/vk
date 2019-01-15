@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
-using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -18,10 +17,8 @@ namespace VkNet.Tests.Categories.Messages
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	[ExcludeFromCodeCoverage]
-	public class MessagesCategoryTest : CategoryBaseTest
+	public class MessagesCategoryTest : MessagesBaseTests
 	{
-		protected override string Folder => "Messages";
-
 		[Test]
 		public void AddChatUser_NormalCase_True()
 		{

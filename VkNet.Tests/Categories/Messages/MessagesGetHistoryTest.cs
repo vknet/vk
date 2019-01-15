@@ -7,10 +7,8 @@ namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
-	public class MessagesGetHistoryTest : CategoryBaseTest
+	public class MessagesGetHistoryTest : MessagesBaseTests
 	{
-		protected override string Folder => "Messages";
-
 		[Test]
 		public void GetHistoryTest()
 		{
