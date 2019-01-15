@@ -1,0 +1,27 @@
+{
+  "response": {
+    "count": 6,
+    "items": [
+      {
+        "id": 890123,
+        "body": "",
+        "user_id": 45678,
+        "from_id": 876543,
+        "date": 1415205537,
+        "read_state": 1,
+        "out": 0,
+        "attachments": [
+          {
+            "type": "sticker",
+            "sticker": {
+              "id": 12345,
+              "product_id": 54321,
+              "images": [],
+              "images_with_background": []
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

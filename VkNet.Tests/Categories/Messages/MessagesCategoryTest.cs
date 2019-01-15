@@ -301,22 +301,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void GetDialogs_NormalCase_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.getDialogs";
-
-			Json =
-				@"{
-					'response': [
-					  18,
-					  {
-						'id': 2105,
-						'date': 1285442252,
-						'out': 0,
-						'user_id': 77128,
-						'read_state': 1,
-						'title': 'Re(15): Привет!',
-						'body': 'не..не зеленая точно...'
-					  }
-					]
-				  }";
+			ReadCategoryJsonPath(nameof(GetDialogs_NormalCase_Messages));
 
 			var msgs = Api.Messages.GetDialogs(new MessagesDialogsGetParams
 			{
@@ -349,73 +334,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void GetHistory_ContainsRepost_Error46()
 		{
 			Url = "https://api.vk.com/method/messages.getHistory";
-
-			Json = @"{
-			   'response':{
-				  'count':1940,
-				  'items':[
-					 {
-						'id':1234,
-						'body':'',
-						'user_id':4321,
-						'from_id': 1234567890,
-						'date':1414993364,
-						'read_state':1,
-						'out':1,
-						'attachments':[
-						   {
-							  'type':'wall',
-							  'wall':{
-								 'id':6194,
-								 'from_id':-1267,
-								 'to_id':-7654,
-								 'date':1414992610,
-								 'post_type':'post',
-								 'text':'',
-								 'attachments':[
-									{
-									   'type':'photo',
-									   'photo':{
-										  'id':76352,
-										  'album_id':-7,
-										  'owner_id':-9816,
-										  'user_id':198,
-										  'photo_75':'https://pp.vk.me/...b/uKU7pKtHLe0.jpg',
-										  'photo_130':'https://pp.vk.me/...c/WZJpkmJWBto.jpg',
-										  'photo_604':'https://pp.vk.me/...d/Kp44mAbDqSk.jpg',
-										  'width':604,
-										  'height':402,
-										  'text':'',
-										  'date':1414992613,
-										  'post_id':928719,
-										  'access_key':'test_access_key'
-									   }
-									}
-								 ],
-								 'post_source':{
-									'type':'api'
-								 },
-								 'comments':{
-									'count':3,
-									'can_post':0
-								 },
-								 'likes':{
-									'count':9191,
-									'user_likes':1,
-									'can_like':0,
-									'can_publish':1
-								 },
-								 'reposts':{
-									'count':953,
-									'user_reposted':0
-								 }
-							  }
-						   }
-						]
-					 }
-				  ]
-			   }
-			}";
+			ReadCategoryJsonPath(nameof(GetHistory_ContainsRepost_Error46));
 
 			var msgs = Api.Messages.GetHistory(new MessagesGetHistoryParams
 			{
@@ -455,34 +374,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void GetHistory_ContainsSticker_Error47()
 		{
 			Url = "https://api.vk.com/method/messages.getHistory";
-
-			Json = @"{
-	'response': {
-		'count': 6,
-		'items': [
-			{
-				'id': 890123,
-				'body': '',
-				'user_id': 45678,
-				'from_id': 876543,
-				'date': 1415205537,
-				'read_state': 1,
-				'out': 0,
-				'attachments': [
-					{
-						'type': 'sticker',
-						'sticker': {
-							'id': 12345,
-							'product_id': 54321,
-							'images': [],
-							'images_with_background': []
-						}
-					}
-				]
-			}
-		]
-	}
-}";
+			ReadCategoryJsonPath(nameof(GetHistory_ContainsSticker_Error47));
 
 			var msgs = Api.Messages.GetHistory(new MessagesGetHistoryParams
 			{
@@ -511,40 +403,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void GetHistory_NormalCaseAllFields_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.getHistory";
-
-			Json =
-				@"{
-					'response': [
-					  18,
-					  {
-						'body': 'Таких литовкиных и сычевых',
-						'id': 2093,
-						'user_id': 4793858,
-						'from_id': 4793858,
-						'date': 1285439088,
-						'read_state': 1,
-						'out': 1
-					  },
-					  {
-						'body': 'в одноклассниках и в майле есть.',
-						'id': 2094,
-						'user_id': 7712,
-						'from_id': 7712,
-						'date': 1285439216,
-						'read_state': 1,
-						'out': 0
-					  },
-					  {
-						'body': 'думаю пива предложит попить',
-						'id': 2095,
-						'user_id': 4793858,
-						'from_id': 4793858,
-						'date': 1285439644,
-						'read_state': 1,
-						'out': 1
-					  }
-					]
-				  }";
+			ReadCategoryJsonPath(nameof(GetHistory_NormalCaseAllFields_Messages));
 
 			var msgs = Api.Messages.GetHistory(new MessagesGetHistoryParams());
 			var messages = msgs.Messages.ToList();
@@ -605,14 +464,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void GetLastActivity_NormalCast_LastActivityObject()
 		{
 			Url = "https://api.vk.com/method/messages.getLastActivity";
-
-			Json =
-				@"{
-					'response': {
-					  'online': 0,
-					  'time': 1344484645
-					}
-				  }";
+			ReadCategoryJsonPath(nameof(GetLastActivity_NormalCast_LastActivityObject));
 
 			var activity = Api.Messages.GetLastActivity(77128);
 
@@ -633,15 +485,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void GetLongPollServer_NormalCase_LongPollServerResponse()
 		{
 			Url = "https://api.vk.com/method/messages.getLongPollServer";
-
-			Json =
-				@"{
-					'response': {
-					  'key': '6f4120988efaf3a7d398054b5bb5d019c5844bz3',
-					  'server': 'im46.vk.com/im1858',
-					  'ts': 1627957305
-					}
-				  }";
+			ReadCategoryJsonPath(nameof(GetLongPollServer_NormalCase_LongPollServerResponse));
 
 			var response = Api.Messages.GetLongPollServer();
 
@@ -709,37 +553,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void Search_NormalCase_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.search";
-
-			Json = @"{
-				response: {
-					count: 18,
-					items: [{
-					id: 131307,
-					date: 1444123586,
-					out: 0,
-					user_id: 72815776,
-					read_state: 1,
-					title: ' ... ',
-					body: 'Привет'
-					}, {
-					id: 131304,
-					date: 1444123077,
-					out: 1,
-					user_id: 72815776,
-					read_state: 1,
-					title: ' ... ',
-					body: 'Привет'
-					}, {
-					id: 131291,
-					date: 1444106004,
-					out: 0,
-					user_id: 310881357,
-					read_state: 1,
-					title: ' ... ',
-					body: 'Привет&#128139;',
-					emoji: 1
-					}]
-			}";
+			ReadCategoryJsonPath(nameof(Search_NormalCase_Messages));
 
 			var result = Api.Messages.Search(new MessagesSearchParams
 			{
@@ -837,24 +651,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void SearchDialogs_NastyaQuery_TwoProfiles()
 		{
 			Url = "https://api.vk.com/method/messages.searchDialogs";
-
-			Json =
-				@"{
-					'response': [
-					  {
-						'type': 'profile',
-						'uid': 7503978,
-						'first_name': 'Настя',
-						'last_name': 'Иванова'
-					  },
-					  {
-						'type': 'profile',
-						'uid': 68274561,
-						'first_name': 'Настя',
-						'last_name': 'Петрова'
-					  }
-					]
-				  }";
+			ReadCategoryJsonPath(nameof(SearchDialogs_NastyaQuery_TwoProfiles));
 
 			var response = Api.Messages.SearchDialogs("Настя");
 
@@ -872,28 +669,7 @@ namespace VkNet.Tests.Categories.Messages
 		public void SearchDialogs_ProfileAndChat_Response()
 		{
 			Url = "https://api.vk.com/method/messages.searchDialogs";
-
-			Json =
-				@"{
-					'response': [
-					  {
-						'type': 'profile',
-						'uid': 1708231,
-						'first_name': 'Григорий',
-						'last_name': 'Клюшников'
-					  },
-					  {
-						'type': 'chat',
-						'id': 109,
-						'title': 'Андрей, Григорий',
-						'users': [
-						  66748,
-						  6492,
-						  1708231
-						]
-					  }
-					]
-				  }";
+			ReadCategoryJsonPath(nameof(SearchDialogs_ProfileAndChat_Response));
 
 			var response = Api.Messages.SearchDialogs("Маша");
 

@@ -1,0 +1,16 @@
+{
+  "response": [
+    {
+      "type": "profile",
+      "uid": 7503978,
+      "first_name": "Настя",
+      "last_name": "Иванова"
+    },
+    {
+      "type": "profile",
+      "uid": 68274561,
+      "first_name": "Настя",
+      "last_name": "Петрова"
+    }
+  ]
+}
