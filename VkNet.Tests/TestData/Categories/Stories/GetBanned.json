@@ -1,0 +1,16 @@
+{
+  "response": {
+    "count": 1,
+    "items": [
+      123456789
+    ],
+    "profiles": [
+      {
+        "id": 123456789,
+        "first_name": "Иван",
+        "last_name": "Иванов"
+      }
+    ],
+    "groups": []
+  }
+}

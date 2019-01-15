@@ -1,0 +1,45 @@
+{
+  "response": {
+    "count": 1,
+    "items": [
+      {
+        "id": 937385,
+        "owner_id": 123456789,
+        "date": 1531239676,
+        "can_see": 1,
+        "type": "photo",
+        "photo": {
+          "id": 123456789,
+          "album_id": -81,
+          "owner_id": 12345679,
+          "sizes": [
+            {
+              "type": "temp",
+              "url": "https://story0.us/50f/A_9UNRNpvMc.jpg",
+              "width": 28,
+              "height": 50
+            }
+          ],
+          "text": "",
+          "date": 1531239676
+        },
+        "can_share": 1,
+        "can_comment": 0,
+        "can_reply": 0,
+        "views": 1,
+        "replies": {
+          "count": 1,
+          "new": 0
+        }
+      }
+    ],
+    "profiles": [
+      {
+        "id": 123456789,
+        "first_name": "Null",
+        "last_name": "Null"
+      }
+    ],
+    "groups": []
+  }
+}
