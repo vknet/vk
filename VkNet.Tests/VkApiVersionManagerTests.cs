@@ -58,7 +58,6 @@ namespace VkNet.Tests
 			Assert.IsTrue(Manager.IsGreaterThanOrEqual(4, 95));
 		}
 
-
 		[Test]
 		public void IsLessThanOrEqual_GreaterValue()
 		{
