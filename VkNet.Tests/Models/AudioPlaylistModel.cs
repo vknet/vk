@@ -11,7 +11,7 @@ namespace VkNet.Tests.Models
 		[Test]
 		public void ShouldDeserializeFromVkResponseToAttachment()
 		{
-			ReadJsonFile("Models/audio_playlist_attachment");
+			ReadJsonFile("Models", "audio_playlist_attachment");
 
 			var response = GetResponse();
 

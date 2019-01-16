@@ -12,7 +12,7 @@ namespace VkNet.Tests.Models
 		[Test]
 		public void ShouldDeserializeFromVkResponseToAttachment()
 		{
-			ReadJsonFile("Models/call");
+			ReadJsonFile("Models", "call");
 
 			var response = GetResponse();
 
