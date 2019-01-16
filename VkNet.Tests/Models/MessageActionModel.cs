@@ -11,81 +11,99 @@ namespace VkNet.Tests.Models
 		[Test]
 		public void ShouldHaveField_ChatCreate()
 		{
-			Json = "{'action':'chat_create'}";
+			ReadJsonFile("Models", nameof(ShouldHaveField_ChatCreate));
+
 			var response = GetResponse();
 			var action = MessageAction.FromJsonString(response["action"]);
+
 			Assert.That(action, Is.EqualTo(MessageAction.ChatCreate));
 		}
 
 		[Test]
 		public void ShouldHaveField_ChatInviteUser()
 		{
-			Json = "{'action':'chat_invite_user'}";
+			ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUser));
+
 			var response = GetResponse();
 			var action = MessageAction.FromJsonString(response["action"]);
+
 			Assert.That(action, Is.EqualTo(MessageAction.ChatInviteUser));
 		}
 
 		[Test]
 		public void ShouldHaveField_ChatInviteUserByLink()
 		{
-			Json = "{'action':'chat_invite_user_by_link'}";
+			ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUserByLink));
+
 			var response = GetResponse();
 			var action = MessageAction.FromJsonString(response["action"]);
+
 			Assert.That(action, Is.EqualTo(MessageAction.ChatInviteUserByLink));
 		}
 
 		[Test]
 		public void ShouldHaveField_ChatKickUser()
 		{
-			Json = "{'action':'chat_kick_user'}";
+			ReadJsonFile("Models", nameof(ShouldHaveField_ChatKickUser));
+
 			var response = GetResponse();
 			var action = MessageAction.FromJsonString(response["action"]);
+
 			Assert.That(action, Is.EqualTo(MessageAction.ChatKickUser));
 		}
 
 		[Test]
 		public void ShouldHaveField_ChatPhotoRemove()
 		{
-			Json = "{'action':'chat_photo_remove'}";
+			ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoRemove));
+
 			var response = GetResponse();
 			var action = MessageAction.FromJsonString(response["action"]);
+
 			Assert.That(action, Is.EqualTo(MessageAction.ChatPhotoRemove));
 		}
 
 		[Test]
 		public void ShouldHaveField_ChatPhotoUpdate()
 		{
-			Json = "{'action':'chat_photo_update'}";
+			ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoUpdate));
+
 			var response = GetResponse();
 			var action = MessageAction.FromJsonString(response["action"]);
+
 			Assert.That(action, Is.EqualTo(MessageAction.ChatPhotoUpdate));
 		}
 
 		[Test]
 		public void ShouldHaveField_ChatPinMessage()
 		{
-			Json = "{'action':'chat_pin_message'}";
+			ReadJsonFile("Models", nameof(ShouldHaveField_ChatPinMessage));
+
 			var response = GetResponse();
 			var action = MessageAction.FromJsonString(response["action"]);
+
 			Assert.That(action, Is.EqualTo(MessageAction.ChatPinMessage));
 		}
 
 		[Test]
 		public void ShouldHaveField_ChatTitleUpdate()
 		{
-			Json = "{'action':'chat_title_update'}";
+			ReadJsonFile("Models", nameof(ShouldHaveField_ChatTitleUpdate));
+
 			var response = GetResponse();
 			var action = MessageAction.FromJsonString(response["action"]);
+
 			Assert.That(action, Is.EqualTo(MessageAction.ChatTitleUpdate));
 		}
 
 		[Test]
 		public void ShouldHaveField_ChatUnpinMessage()
 		{
-			Json = "{'action':'chat_unpin_message'}";
+			ReadJsonFile("Models", nameof(ShouldHaveField_ChatUnpinMessage));
+
 			var response = GetResponse();
 			var action = MessageAction.FromJsonString(response["action"]);
+
 			Assert.That(action, Is.EqualTo(MessageAction.ChatUnpinMessage));
 		}
 	}

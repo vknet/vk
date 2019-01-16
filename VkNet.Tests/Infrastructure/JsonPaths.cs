@@ -32,5 +32,10 @@ namespace VkNet.Tests.Infrastructure
 		/// Путь к json файлу с пустым массивом
 		/// </summary>
 		public static readonly string EmptyObject = Path.Combine("Common", nameof(EmptyObject));
+
+		/// <summary>
+		/// Путь к json файлу с пустым объектом
+		/// </summary>
+		public static readonly string Object = Path.Combine("Common", "Object");
 	}
 }
