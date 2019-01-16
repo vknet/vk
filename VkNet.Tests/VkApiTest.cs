@@ -32,6 +32,7 @@ namespace VkNet.Tests
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
 			ReadJsonFile(nameof(VkApi), nameof(Call_NotMoreThen3CallsPerSecond));
+
 			Api.RequestsPerSecond = 3; // Переопределение значения в базовом классе
 			SetupIRestClient(Mock.Get(Api.RestClient));
 

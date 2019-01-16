@@ -4,14 +4,12 @@ using VkNet.Utils;
 
 namespace VkNet.Tests.Utils
 {
-	public class VkResponseTests
+	public class VkResponseTests : BaseTest
 	{
 		[Test]
 		public void ShouldBeNull()
 		{
-			const string json = @"{
-									'nullable_field': null,
-								}";
+			var json = ReadJson("VkResponse", nameof(ShouldBeNull));
 
 			var jObject = JToken.Parse(json);
 			var response = new VkResponse(jObject) { RawJson = json };
