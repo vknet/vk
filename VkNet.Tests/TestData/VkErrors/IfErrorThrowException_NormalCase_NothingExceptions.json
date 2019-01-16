@@ -1,0 +1,14 @@
+{
+  "response": [
+    {
+      "uid": 1,
+      "first_name": "Павел",
+      "last_name": "Дуров",
+      "university": "1",
+      "university_name": "СПбГУ",
+      "faculty": "0",
+      "faculty_name": "",
+      "graduation": "0"
+    }
+  ]
+}

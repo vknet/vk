@@ -1,0 +1,34 @@
+{
+  "error": {
+    "error_code": 14,
+    "error_msg": "Captcha needed",
+    "request_params": [
+      {
+        "key": "oauth",
+        "value": "1"
+      },
+      {
+        "key": "method",
+        "value": "messages.send"
+      },
+      {
+        "key": "uid",
+        "value": "242508553"
+      },
+      {
+        "key": "message",
+        "value": "hello10"
+      },
+      {
+        "key": "type",
+        "value": "0"
+      },
+      {
+        "key": "access_token",
+        "value": "1fe7889c3395722934b1"
+      }
+    ],
+    "captcha_sid": "548747100691",
+    "captcha_img": "http://api.vk.com/captcha.php?sid=548747100284&s=1"
+  }
+}

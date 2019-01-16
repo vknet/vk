@@ -22,42 +22,7 @@ namespace VkNet.Tests.Utils
 		public void Call_ThrowsCaptchaNeededException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-
-			Json =
-				@"{
-					'error': {
-					  'error_code': 14,
-					  'error_msg': 'Captcha needed',
-					  'request_params': [
-						{
-						  'key': 'oauth',
-						  'value': '1'
-						},
-						{
-						  'key': 'method',
-						  'value': 'messages.send'
-						},
-						{
-						  'key': 'uid',
-						  'value': '242508553'
-						},
-						{
-						  'key': 'message',
-						  'value': 'hello10'
-						},
-						{
-						  'key': 'type',
-						  'value': '0'
-						},
-						{
-						  'key': 'access_token',
-						  'value': '1fe7889c3395722934b1'
-						}
-					  ],
-					  'captcha_sid': '548747100691',
-					  'captcha_img': 'http://api.vk.com/captcha.php?sid=548747100284&s=1'
-					}
-				  }";
+			ReadErrorsJsonFile(14);
 
 			var ex = Assert.Throws<CaptchaNeededException>(() =>
 				Api.Call("messages.send", VkParameters.Empty, true));
@@ -71,32 +36,7 @@ namespace VkNet.Tests.Utils
 		public void Call_ThrowsImpossibleToCompileCode_12()
 		{
 			Url = "https://api.vk.com/method/execute";
-
-			Json =
-				@"{
-                    'error': {
-                        'error_code': 12,
-                        'error_msg': 'Unable to compile code: undefined identifier \'test\' in line 1',
-                        'request_params': [
-                            {
-                                'key': 'oauth',
-                                'value': '1'
-                            },
-                            {
-                                'key': 'method',
-                                'value': 'execute'
-                            },
-                            {
-                                'key': 'code',
-                                'value': 'test'
-                            },
-                            {
-                                'key': 'v',
-                                'value': '5.78'
-                            }
-                        ]
-                    }
-                }";
+			ReadErrorsJsonFile(12);
 
 			Assert.Throws<ImpossibleToCompileCodeException>(() =>
 				Api.Call("execute", VkParameters.Empty, true));
@@ -106,36 +46,7 @@ namespace VkNet.Tests.Utils
 		public void Call_ThrowsPostLimitException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-
-			Json =
-				@"{
-					'error': {
-						'error_code': 214,
-						'error_msg': 'Access to adding post denied: you can only add 50 posts a day',
-						'request_params': [
-							{
-								'key': 'oauth',
-								'value': '1'
-							},
-							{
-								'key': 'method',
-								'value': 'wall.post'
-							},
-							{
-								'key': 'owner_id',
-								'value': '-166621386'
-							},
-							{
-								'key': 'message',
-								'value': 'РРіСЂР° #24\nРЎС‚Р°С‚СѓСЃ: Р°РєС‚РёРІРЅР°'
-							},
-							{
-								'key': 'v',
-								'value': '5.74'
-							}
-						]
-					}
-				}";
+			ReadErrorsJsonFile(214);
 
 			Assert.Throws<PostLimitException>(() =>
 				Api.Call("messages.send", VkParameters.Empty, true));
@@ -145,36 +56,7 @@ namespace VkNet.Tests.Utils
 		public void Call_ThrowsPostLimitException_103()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-
-			Json =
-				@"{
-					'error': {
-						'error_code': 103,
-						'error_msg': 'Access to adding post denied: you can only add 50 posts a day',
-						'request_params': [
-							{
-								'key': 'oauth',
-								'value': '1'
-							},
-							{
-								'key': 'method',
-								'value': 'wall.post'
-							},
-							{
-								'key': 'owner_id',
-								'value': '-166621386'
-							},
-							{
-								'key': 'message',
-								'value': 'РРіСЂР° #24\nРЎС‚Р°С‚СѓСЃ: Р°РєС‚РёРІРЅР°'
-							},
-							{
-								'key': 'v',
-								'value': '5.74'
-							}
-						]
-					}
-				}";
+			ReadErrorsJsonFile(103);
 
 			Assert.Throws<OutOfLimitsException>(() =>
 				Api.Call("messages.send", VkParameters.Empty, true));
@@ -183,33 +65,9 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void IfErrorThrowException_GroupAccessDenied_ThrowAccessDeniedException()
 		{
-			const string json =
-				@"{
-                    'error': {
-                      'error_code': 260,
-                      'error_msg': 'Access to the groups list is denied due to the user privacy settings.',
-                      'request_params': [
-                        {
-                          'key': 'oauth',
-                          'value': '1'
-                        },
-                        {
-                          'key': 'method',
-                          'value': 'getGroups'
-                        },
-                        {
-                          'key': 'uid',
-                          'value': '1'
-                        },
-                        {
-                          'key': 'access_token',
-                          'value': '2f3e43eb608a87632f68d140d82f5a9efa22f772f7765eb2f49f67514987c5e'
-                        }
-                      ]
-                    }
-                  }";
+			ReadErrorsJsonFile(260);
 
-			var ex = Assert.Throws<GroupsListAccessDeniedException>(() => VkErrors.IfErrorThrowException(json));
+			var ex = Assert.Throws<GroupsListAccessDeniedException>(() => VkErrors.IfErrorThrowException(Json));
 
 			StringAssert.AreEqualIgnoringCase("Access to the groups list is denied due to the user privacy settings.", ex.Message);
 		}
@@ -217,21 +75,7 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void IfErrorThrowException_NormalCase_NothingExceptions()
 		{
-			const string json =
-				@"{
-                    'response': [
-                      {
-                        'uid': 1,
-                        'first_name': 'Павел',
-                        'last_name': 'Дуров',
-                        'university': '1',
-                        'university_name': 'СПбГУ',
-                        'faculty': '0',
-                        'faculty_name': '',
-                        'graduation': '0'
-                      }
-                    ]
-                  }";
+			var json = ReadJson("VkErrors", nameof(IfErrorThrowException_NormalCase_NothingExceptions));
 
 			VkErrors.IfErrorThrowException(json);
 		}
@@ -239,35 +83,10 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void IfErrorThrowException_UserAuthorizationFail_ThrowUserAuthorizationFailExcption()
 		{
-			const string json =
-				@"{
-                    'error': {
-                      'error_code': 5,
-                      'error_msg': 'User authorization failed: invalid access_token.',
-                      'request_params': [
-                        {
-                          'key': 'oauth',
-                          'value': '1'
-                        },
-                        {
-                          'key': 'method',
-                          'value': 'getProfiles'
-                        },
-                        {
-                          'key': 'uid',
-                          'value': '1'
-                        },
-                        {
-                          'key': 'access_token',
-                          'value': 'sfastybdsjhdg'
-                        }
-                      ]
-                    }
-                  }";
+			ReadErrorsJsonFile(5);
+			var ex = Assert.Throws<UserAuthorizationFailException>(() => VkErrors.IfErrorThrowException(Json));
 
-			var ex = Assert.Throws<UserAuthorizationFailException>(() => VkErrors.IfErrorThrowException(json));
-
-			Assert.That(ex.Message, Is.EqualTo("User authorization failed: invalid access_token."));
+			Assert.That(ex.Message, Is.EqualTo("User authorization failed: access_token was given to another ip address."));
 			Assert.That(ex.ErrorCode, Is.EqualTo(5));
 		}
 

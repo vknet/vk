@@ -1,0 +1,24 @@
+{
+  "error": {
+    "error_code": 260,
+    "error_msg": "Access to the groups list is denied due to the user privacy settings.",
+    "request_params": [
+      {
+        "key": "oauth",
+        "value": "1"
+      },
+      {
+        "key": "method",
+        "value": "getGroups"
+      },
+      {
+        "key": "uid",
+        "value": "1"
+      },
+      {
+        "key": "access_token",
+        "value": "2f3e43eb608a87632f68d140d82f5a9efa22f772f7765eb2f49f67514987c5e"
+      }
+    ]
+  }
+}
