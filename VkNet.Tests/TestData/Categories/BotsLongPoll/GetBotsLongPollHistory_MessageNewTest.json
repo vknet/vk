@@ -1,0 +1,18 @@
+{
+  "type": "message_new",
+  "object": {
+    "date": 1533397795,
+    "from_id": 123,
+    "id": 829,
+    "out": 0,
+    "peer_id": 123,
+    "text": "test",
+    "conversation_message_id": 791,
+    "fwd_messages": [],
+    "important": false,
+    "random_id": 0,
+    "attachments": [],
+    "is_hidden": false
+  },
+  "group_id": 1234
+}

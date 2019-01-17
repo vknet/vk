@@ -1,0 +1,10 @@
+{
+  "type": "poll_vote_new",
+  "object": {
+    "owner_id": -1234,
+    "poll_id": 4444,
+    "option_id": 3333,
+    "user_id": 123
+  },
+  "group_id": 1234
+}

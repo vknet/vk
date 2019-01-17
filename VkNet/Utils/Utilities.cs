@@ -75,7 +75,7 @@ namespace VkNet.Utils
 
 			return string.Join(separator,
 				collection.Select(i => i.ToString().Trim())
-					.Where(s => !string.IsNullOrWhiteSpace(value: s)));
+					.Where(s => !string.IsNullOrWhiteSpace(s)));
 		}
 
 		/// <summary>
@@ -87,7 +87,7 @@ namespace VkNet.Utils
 		/// <returns> Коллекция данных указанного типа. </returns>
 		public static IEnumerable<T> Convert<T>(this VkResponseArray response, Func<VkResponse, T> selector)
 		{
-			return response?.Select(selector: selector).ToList() ?? Enumerable.Empty<T>();
+			return response?.Select(selector).ToList() ?? Enumerable.Empty<T>();
 		}
 
 		/// <summary>
@@ -97,13 +97,13 @@ namespace VkNet.Utils
 		/// <returns> Json </returns>
 		public static string PrettyPrintJson(string json)
 		{
-			using (var stringReader = new StringReader(s: json))
+			using (var stringReader = new StringReader(json))
 			{
 				using (var stringWriter = new StringWriter())
 				{
-					var jsonReader = new JsonTextReader(reader: stringReader);
-					var jsonWriter = new JsonTextWriter(textWriter: stringWriter) { Formatting = Formatting.Indented };
-					jsonWriter.WriteToken(reader: jsonReader);
+					var jsonReader = new JsonTextReader(stringReader);
+					var jsonWriter = new JsonTextWriter(stringWriter) { Formatting = Formatting.Indented };
+					jsonWriter.WriteToken(jsonReader);
 
 					return stringWriter.ToString();
 				}

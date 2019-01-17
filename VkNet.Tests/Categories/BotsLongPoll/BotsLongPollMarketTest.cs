@@ -10,26 +10,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_MarketCommentNewTest()
 		{
-			const string json = @"{
-  'type': 'market_comment_new',
-  'object': {
-    'id': 1,
-    'from_id': 123,
-    'date': 1533405772,
-    'text': 'test',
-    'market_owner_id': -1234,
-    'item_id': 1686058
-  },
-  'group_id': 1234
-}";
+			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentNewTest));
 
 			const int userId = 123;
 			const int groupId = 1234;
 			const string text = "test";
 
-			var groupCategory = GetMockedGroupCategory("https://vk.com", GetFullResponse(json));
-
-			var botsLongPollHistory = groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",
@@ -48,26 +35,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_MarketCommentEditTest()
 		{
-			const string json = @"{
-  'type': 'market_comment_edit',
-  'object': {
-    'id': 1,
-    'from_id': 123,
-    'date': 1533405772,
-    'text': 'test1',
-    'market_owner_id': -1234,
-    'item_id': 1686058
-  },
-  'group_id': 1234
-}";
+			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentEditTest));
 
 			const int userId = 123;
 			const int groupId = 1234;
 			const string text = "test1";
 
-			var groupCategory = GetMockedGroupCategory("https://vk.com", GetFullResponse(json));
-
-			var botsLongPollHistory = groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",
@@ -86,26 +60,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_MarketCommentRestoreTest()
 		{
-			const string json = @"{
-  'type': 'market_comment_restore',
-  'object': {
-    'id': 1,
-    'from_id': 123,
-    'date': 1533405772,
-    'text': 'test1',
-    'market_owner_id': -1234,
-    'item_id': 1686058
-  },
-  'group_id': 1234
-}";
+			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentRestoreTest));
 
 			const int userId = 123;
 			const int groupId = 1234;
 			const string text = "test1";
 
-			var groupCategory = GetMockedGroupCategory("https://vk.com", GetFullResponse(json));
-
-			var botsLongPollHistory = groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",
@@ -124,25 +85,14 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_MarketCommentDeleteTest()
 		{
-			const string json = @"{
-  'type': 'market_comment_delete',
-  'object': {
-    'owner_id': -1234,
-    'id': 1,
-    'deleter_id': 123,
-    'item_id': 4444
-  },
-  'group_id': 1234
-}";
+			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentDeleteTest));
 
 			const int deleterId = 123;
 			const int groupId = 1234;
 			const int itemId = 4444;
 			const int id = 1;
 
-			var groupCategory = GetMockedGroupCategory("https://vk.com", GetFullResponse(json));
-
-			var botsLongPollHistory = groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",

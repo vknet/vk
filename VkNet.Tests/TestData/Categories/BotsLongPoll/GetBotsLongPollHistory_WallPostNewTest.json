@@ -1,0 +1,19 @@
+{
+  "type": "wall_post_new",
+  "object": {
+    "id": 6,
+    "from_id": 123,
+    "owner_id": -1234,
+    "date": 1533403316,
+    "marked_as_ads": 0,
+    "post_type": "post",
+    "text": "test",
+    "can_edit": 1,
+    "created_by": 123,
+    "can_delete": 1,
+    "comments": {
+      "count": 0
+    }
+  },
+  "group_id": 1234
+}

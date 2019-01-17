@@ -1,0 +1,12 @@
+{
+  "type": "board_post_new",
+  "object": {
+    "id": 2,
+    "from_id": -1234,
+    "date": 1533404708,
+    "text": "test",
+    "topic_owner_id": -1234,
+    "topic_id": 6
+  },
+  "group_id": 1234
+}

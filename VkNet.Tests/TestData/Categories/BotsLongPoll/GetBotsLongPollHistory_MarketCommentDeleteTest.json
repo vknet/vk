@@ -1,0 +1,10 @@
+{
+  "type": "market_comment_delete",
+  "object": {
+    "owner_id": -1234,
+    "id": 1,
+    "deleter_id": 123,
+    "item_id": 4444
+  },
+  "group_id": 1234
+}

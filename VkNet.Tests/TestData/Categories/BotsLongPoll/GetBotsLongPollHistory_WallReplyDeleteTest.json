@@ -1,0 +1,10 @@
+{
+  "type": "wall_reply_delete",
+  "object": {
+    "owner_id": -1234,
+    "id": 9,
+    "deleter_id": 12345,
+    "post_id": 6
+  },
+  "group_id": 1234
+}

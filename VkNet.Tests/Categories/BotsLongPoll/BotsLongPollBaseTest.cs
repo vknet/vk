@@ -1,22 +1,49 @@
-using NUnit.Framework;
-using VkNet.Categories;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Text;
+using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
-	public abstract class BotsLongPollBaseTest : BaseTest
+	[ExcludeFromCodeCoverage]
+	public abstract class BotsLongPollBaseTest : CategoryBaseTest
 	{
-		protected GroupsCategory GetMockedGroupCategory(string url, string json)
-		{
-			Json = json;
-			Url = url;
+		protected override string Folder => "BotsLongPoll";
 
-			return new GroupsCategory(Api);
+		protected BotsLongPollBaseTest()
+		{
+			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+			Encoding = Encoding.GetEncoding("windows-1251");
 		}
 
-		protected string GetFullResponse(string updateJson)
+		protected override void ReadCategoryJsonPath(string path)
 		{
-			return $"{{'ts': '713','updates': [{updateJson}]}}";
+			var json = ReadJson("Categories", Folder, path);
+			var format = ReadFile("Categories", Folder, "FullLongPollFormat");
+			Json = string.Format(format, json);
+			Url = "https://vk.com";
+		}
+
+		private string ReadFile(params string[] jsonRelativePaths)
+		{
+			var folders = new List<string>
+			{
+				AppContext.BaseDirectory, "TestData"
+			};
+
+			folders.AddRange(jsonRelativePaths);
+
+			var path = Path.Combine(folders.ToArray()) + ".txt";
+
+			if (!File.Exists(path))
+			{
+				throw new FileNotFoundException(path);
+			}
+
+			return File.ReadAllText(path, Encoding);
 		}
 	}
 }

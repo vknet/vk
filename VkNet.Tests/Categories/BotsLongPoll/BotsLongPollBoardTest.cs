@@ -10,26 +10,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_BoardPostNew()
 		{
-			const string json = @"{
-  'type': 'board_post_new',
-  'object': {
-    'id': 3,
-    'from_id': 123,
-    'date': 1533404752,
-    'text': 'test',
-    'topic_owner_id': -1234,
-    'topic_id': 38446232
-  },
-  'group_id': 1234
-}";
+			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNew));
 
 			const int userId = 123;
 			const int groupId = 1234;
 			const string text = "test";
 
-			var groupCategory = GetMockedGroupCategory("https://vk.com", GetFullResponse(json));
-
-			var botsLongPollHistory = groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",
@@ -48,26 +35,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_BoardPostNewFirst()
 		{
-			const string json = @"{
-  'type': 'board_post_new',
-  'object': {
-    'id': 2,
-    'from_id': -1234,
-    'date': 1533404708,
-    'text': 'test',
-    'topic_owner_id': -1234,
-    'topic_id': 6
-  },
-  'group_id': 1234
-}";
+			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNewFirst));
 
 			const int groupId = 1234;
 			const string text = "test";
 			const int topicId = 6;
 
-			var groupCategory = GetMockedGroupCategory("https://vk.com", GetFullResponse(json));
-
-			var botsLongPollHistory = groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",
@@ -87,25 +61,12 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_BoardPostEditTest()
 		{
-			const string json = @"{
-  'type': 'board_post_edit',
-  'object': {
-    'id': 2,
-    'from_id': -1234,
-    'date': 1533404708,
-    'text': 'test1',
-    'topic_owner_id': -1234,
-    'topic_id': 38446232
-  },
-  'group_id': 1234
-}";
+			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostEditTest));
 
 			const int groupId = 1234;
 			const string text = "test1";
 
-			var groupCategory = GetMockedGroupCategory("https://vk.com", GetFullResponse(json));
-
-			var botsLongPollHistory = groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",
@@ -124,26 +85,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_BoardPostRestoreTest()
 		{
-			const string json = @"{
-  'type': 'board_post_restore',
-  'object': {
-    'id': 3,
-    'from_id': 123,
-    'date': 1533404752,
-    'text': 'test',
-    'topic_owner_id': -1234,
-    'topic_id': 38446232
-  },
-  'group_id': 1234
-}";
+			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostRestoreTest));
 
 			const int userId = 123;
 			const int groupId = 1234;
 			const string text = "test";
 
-			var groupCategory = GetMockedGroupCategory("https://vk.com", GetFullResponse(json));
-
-			var botsLongPollHistory = groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",
@@ -162,23 +110,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_BoardPostDeleteTest()
 		{
-			const string json = @"{
-  'type': 'board_post_delete',
-  'object': {
-    'topic_owner_id': -1234,
-    'id': 3,
-    'topic_id': 6
-  },
-  'group_id': 1234
-}";
+			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostDeleteTest));
 
 			const int groupId = 1234;
 			const int topicId = 6;
 			const int id = 3;
 
-			var groupCategory = GetMockedGroupCategory("https://vk.com", GetFullResponse(json));
-
-			var botsLongPollHistory = groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",

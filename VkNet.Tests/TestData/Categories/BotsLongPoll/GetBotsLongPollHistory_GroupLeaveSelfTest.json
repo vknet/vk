@@ -1,0 +1,8 @@
+{
+  "type": "group_leave",
+  "object": {
+    "user_id": 321,
+    "self": 1
+  },
+  "group_id": 1234
+}

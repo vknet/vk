@@ -1,0 +1,10 @@
+{
+  "type": "group_officers_edit",
+  "object": {
+    "admin_id": 123,
+    "user_id": 321,
+    "level_old": 3,
+    "level_new": 2
+  },
+  "group_id": 1234
+}

@@ -1,0 +1,7 @@
+{
+  "type": "message_deny",
+  "object": {
+    "user_id": 123
+  },
+  "group_id": 1234
+}

@@ -81,7 +81,7 @@ namespace VkNet.Tests.Utils
 		}
 
 		[Test]
-		public void IfErrorThrowException_UserAuthorizationFail_ThrowUserAuthorizationFailExcption()
+		public void IfErrorThrowException_UserAuthorizationFail_ThrowUserAuthorizationFailException()
 		{
 			ReadErrorsJsonFile(5);
 			var ex = Assert.Throws<UserAuthorizationFailException>(() => VkErrors.IfErrorThrowException(Json));

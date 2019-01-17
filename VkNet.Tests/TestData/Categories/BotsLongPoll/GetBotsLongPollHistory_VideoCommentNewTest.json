@@ -1,0 +1,12 @@
+{
+  "type": "video_comment_new",
+  "object": {
+    "id": 1,
+    "from_id": 123,
+    "date": 1533402417,
+    "text": "test",
+    "video_owner_id": -1234,
+    "video_id": 4444
+  },
+  "group_id": 1234
+}

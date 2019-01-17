@@ -1,0 +1,19 @@
+{
+  "type": "message_reply",
+  "object": {
+    "date": 1533397818,
+    "from_id": 123,
+    "id": 830,
+    "out": 1,
+    "peer_id": 123,
+    "text": "test",
+    "conversation_message_id": 792,
+    "fwd_messages": [],
+    "important": false,
+    "random_id": 0,
+    "attachments": [],
+    "admin_author_id": 123,
+    "is_hidden": false
+  },
+  "group_id": 1234
+}

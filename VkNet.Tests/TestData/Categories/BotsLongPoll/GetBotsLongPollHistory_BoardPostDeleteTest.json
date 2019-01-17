@@ -1,0 +1,9 @@
+{
+  "type": "board_post_delete",
+  "object": {
+    "topic_owner_id": -1234,
+    "id": 3,
+    "topic_id": 6
+  },
+  "group_id": 1234
+}

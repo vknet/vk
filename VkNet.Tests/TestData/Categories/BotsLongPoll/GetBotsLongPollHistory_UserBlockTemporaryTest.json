@@ -1,0 +1,11 @@
+{
+  "type": "user_block",
+  "object": {
+    "admin_id": 123,
+    "user_id": 321,
+    "unblock_date": 1533589200,
+    "reason": 4,
+    "comment": "test"
+  },
+  "group_id": 1234
+}

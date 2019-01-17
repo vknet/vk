@@ -55,7 +55,7 @@ namespace VkNet.Utils
 
 			var request = new HttpRequestMessage(HttpMethod.Get, uri);
 
-			return Call(httpClient => httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead));
+			return CallAsync(httpClient => httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead));
 		}
 
 		/// <inheritdoc />
@@ -71,10 +71,10 @@ namespace VkNet.Utils
 
 			var request = new HttpRequestMessage(HttpMethod.Post, uri) { Content = content };
 
-			return Call(httpClient => httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead));
+			return CallAsync(httpClient => httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead));
 		}
 
-		private async Task<HttpResponse<string>> Call(Func<HttpClient, Task<HttpResponseMessage>> method)
+		private async Task<HttpResponse<string>> CallAsync(Func<HttpClient, Task<HttpResponseMessage>> method)
 		{
 			var useProxyCondition = Proxy != null;
 

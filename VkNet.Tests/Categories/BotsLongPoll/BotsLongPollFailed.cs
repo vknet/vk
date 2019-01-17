@@ -10,10 +10,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_Failed1()
 		{
-			const string json = "{\"failed\":1, \"ts\":10}";
-			var groupCategory = GetMockedGroupCategory("https://vk.com", json);
+			Url = "https://vk.com";
+			ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed1));
 
-			Assert.Throws<LongPollOutdateException>(() => groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			Assert.Throws<LongPollOutdateException>(() => Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",
@@ -25,14 +25,14 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_Failed1Ts()
 		{
-			const string json = "{\"failed\":1, \"ts\":10}";
-			var groupCategory = GetMockedGroupCategory("https://vk.com", json);
+			Url = "https://vk.com";
+			ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed1Ts));
 
 			const string ts = "10";
 
 			try
 			{
-				groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+				Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 				{
 					Key = "test",
 					Server = "https://vk.com",
@@ -51,10 +51,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_Failed2()
 		{
-			const string json = "{\"failed\":2}";
-			var groupCategory = GetMockedGroupCategory("https://vk.com", json);
+			Url = "https://vk.com";
+			ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed2));
 
-			Assert.Throws<LongPollKeyExpiredException>(() => groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			Assert.Throws<LongPollKeyExpiredException>(() => Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",
@@ -66,10 +66,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		[Test]
 		public void GetBotsLongPollHistory_Failed3()
 		{
-			const string json = "{\"failed\":3}";
-			var groupCategory = GetMockedGroupCategory("https://vk.com", json);
+			Url = "https://vk.com";
+			ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed3));
 
-			Assert.Throws<LongPollInfoLostException>(() => groupCategory.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			Assert.Throws<LongPollInfoLostException>(() => Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
 				Server = "https://vk.com",

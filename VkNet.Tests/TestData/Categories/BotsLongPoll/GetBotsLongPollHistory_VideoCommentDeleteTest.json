@@ -1,0 +1,10 @@
+{
+  "type": "video_comment_delete",
+  "object": {
+    "owner_id": -1234,
+    "id": 4,
+    "deleter_id": 12345,
+    "video_id": 123456
+  },
+  "group_id": 1234
+}

@@ -101,7 +101,7 @@ namespace VkNet.Tests.Models
 		[Test]
 		public void Trending_ShouldBeTrue()
 		{
-			ReadJsonFile("Models", nameof(MultiPropertyUid));
+			ReadJsonFile("Models", nameof(Trending_ShouldBeTrue));
 
 			var response = GetResponse();
 			var user = User.FromJson(response);

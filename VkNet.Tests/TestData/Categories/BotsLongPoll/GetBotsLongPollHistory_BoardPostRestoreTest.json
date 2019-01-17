@@ -1,0 +1,12 @@
+{
+  "type": "board_post_restore",
+  "object": {
+    "id": 3,
+    "from_id": 123,
+    "date": 1533404752,
+    "text": "test",
+    "topic_owner_id": -1234,
+    "topic_id": 38446232
+  },
+  "group_id": 1234
+}

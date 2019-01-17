@@ -1,0 +1,26 @@
+{
+  "type": "video_new",
+  "object": {
+    "id": 4444,
+    "owner_id": -1234,
+    "title": "Test",
+    "duration": 14,
+    "description": "",
+    "date": 1533402376,
+    "comments": 0,
+    "views": 1,
+    "width": 680,
+    "height": 720,
+    "photo_130": "https://pp.userapi.com/c849028/v849028892/43296/cQDGL421aic.jpg",
+    "photo_320": "https://pp.userapi.com/c849028/v849028892/43294/uhE7yWEUJ6Y.jpg",
+    "photo_800": "https://pp.userapi.com/c849028/v849028892/43293/dEXbARrZQuE.jpg",
+    "repeat": 1,
+    "first_frame_800": "https://pp.userapi.com/c846320/v846320892/b3572/wVgFPd4YBsc.jpg",
+    "first_frame_320": "https://pp.userapi.com/c846320/v846320892/b3573/803qAiFud4o.jpg",
+    "first_frame_160": "https://pp.userapi.com/c846320/v846320892/b3574/cnHZIE4htwc.jpg",
+    "first_frame_130": "https://pp.userapi.com/c846320/v846320892/b3575/Vuo9kROpA5o.jpg",
+    "can_edit": 1,
+    "can_add": 1
+  },
+  "group_id": 1234
+}

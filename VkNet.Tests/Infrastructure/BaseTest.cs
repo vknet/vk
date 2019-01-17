@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using Newtonsoft.Json.Linq;
@@ -35,6 +36,8 @@ namespace VkNet.Tests
 		/// Url запроса.
 		/// </summary>
 		protected string Url;
+
+		protected Encoding Encoding = Encoding.UTF8;
 
 		public void Dispose()
 		{
@@ -96,7 +99,7 @@ namespace VkNet.Tests
 				Phone = "89510000000"
 			});
 
-			Api.RequestsPerSecond = 100000; // Чтобы тесты быстрее выполнялись
+			Api.RequestsPerSecond = 999999999; // Чтобы тесты быстрее выполнялись
 		}
 
 		/// <summary>
@@ -152,7 +155,7 @@ namespace VkNet.Tests
 				throw new FileNotFoundException(path);
 			}
 
-			return File.ReadAllText(path);
+			return File.ReadAllText(path, Encoding);
 		}
 
 		protected virtual void Dispose(bool disposing)

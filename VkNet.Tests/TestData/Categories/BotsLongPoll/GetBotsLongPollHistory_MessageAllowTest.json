@@ -1,0 +1,8 @@
+{
+  "type": "message_allow",
+  "object": {
+    "user_id": 123,
+    "key": "123456"
+  },
+  "group_id": 1234
+}

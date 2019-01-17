@@ -68,7 +68,7 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public async Task<IDisposable> WaitForReadiness(CancellationToken cancellationToken)
 		{
-			await _semaphore.WaitAsync(cancellationToken);
+			await _semaphore.WaitAsync(cancellationToken).ConfigureAwait(false);
 			var count = 0;
 			var now = DateTime.Now;
 			var target = now - _timeSpan;
@@ -93,9 +93,9 @@ namespace VkNet.Utils
 			try
 			{
 			#if NET40
-				await TaskEx.Delay(timeToWait, cancellationToken);
+				await TaskEx.Delay(timeToWait, cancellationToken).ConfigureAwait(false);
 			#else
-				await Task.Delay(timeToWait, cancellationToken);
+				await Task.Delay(timeToWait, cancellationToken).ConfigureAwait(false);
 			#endif
 			}
 			catch (System.Exception)

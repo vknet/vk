@@ -1,0 +1,12 @@
+{
+  "type": "photo_comment_edit",
+  "object": {
+    "id": 4,
+    "from_id": 123,
+    "date": 1533399764,
+    "text": "test1",
+    "photo_owner_id": -1234,
+    "photo_id": 456239020
+  },
+  "group_id": 1234
+}
