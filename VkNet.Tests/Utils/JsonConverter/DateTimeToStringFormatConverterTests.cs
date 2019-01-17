@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
@@ -12,14 +13,7 @@ namespace VkNet.Tests.Utils.JsonConverter
 		[Test]
 		public void Deserialize()
 		{
-			Json = @"
-            {
-                'response':
-                {
-                    'date': '05112018'
-                }
-            }";
-
+			ReadJsonFile(nameof(JsonConverter), nameof(DateTimeToStringFormatConverter), nameof(Deserialize));
 			Url = "https://api.vk.com/method/friends.getRequests";
 			var result = Api.Call<MessagesSearchParams>("friends.getRequests", VkParameters.Empty);
 			Assert.NotNull(result);
@@ -29,7 +23,7 @@ namespace VkNet.Tests.Utils.JsonConverter
 		[Test]
 		public void Serialization()
 		{
-			ReadJsonFile("JsonConverter", nameof(DateTimeToStringFormatConverter));
+			ReadJsonFile(nameof(JsonConverter), nameof(DateTimeToStringFormatConverter), nameof(Serialization));
 
 			var message = new MessagesSearchParams
 			{
@@ -47,7 +41,8 @@ namespace VkNet.Tests.Utils.JsonConverter
 			var result = JsonConvert.DeserializeObject<MessagesSearchParams>(json);
 
 			Assert.NotNull(result);
-			Assert.That(json, Is.EqualTo(Json));
+			var compare = string.Compare(json, Json, CultureInfo.InvariantCulture, CompareOptions.IgnoreSymbols);
+			Assert.IsTrue(compare == 0);
 		}
 	}
 }

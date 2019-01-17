@@ -65,9 +65,10 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void IfErrorThrowException_GroupAccessDenied_ThrowAccessDeniedException()
 		{
+			Url = "https://api.vk.com/method/messages.send";
 			ReadErrorsJsonFile(260);
 
-			var ex = Assert.Throws<GroupsListAccessDeniedException>(() => VkErrors.IfErrorThrowException(Json));
+			var ex = Assert.Throws<GroupsListAccessDeniedException>(() => Api.Call("messages.send", VkParameters.Empty, true));
 
 			StringAssert.AreEqualIgnoringCase("Access to the groups list is denied due to the user privacy settings.", ex.Message);
 		}
@@ -75,6 +76,7 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void IfErrorThrowException_NormalCase_NothingExceptions()
 		{
+			Url = "https://api.vk.com/method/messages.send";
 			var json = ReadJson("VkErrors", nameof(IfErrorThrowException_NormalCase_NothingExceptions));
 
 			VkErrors.IfErrorThrowException(json);
@@ -83,8 +85,9 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void IfErrorThrowException_UserAuthorizationFail_ThrowUserAuthorizationFailException()
 		{
+			Url = "https://api.vk.com/method/messages.send";
 			ReadErrorsJsonFile(5);
-			var ex = Assert.Throws<UserAuthorizationFailException>(() => VkErrors.IfErrorThrowException(Json));
+			var ex = Assert.Throws<UserAuthorizationFailException>(() => Api.Call("messages.send", VkParameters.Empty, true));
 
 			Assert.That(ex.Message, Is.EqualTo("User authorization failed: access_token was given to another ip address."));
 			Assert.That(ex.ErrorCode, Is.EqualTo(5));
