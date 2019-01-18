@@ -44,7 +44,7 @@ namespace VkNet.Model.LeadForms
 		/// Новые вопросы формы. Подробнее см. метод leadForms.create. данные в формате JSON, обязательный параметр
 		/// </summary>
 		[JsonProperty("questions")]
-		public object Questions { get; set; }
+		public string Questions { get; set; }
 
 		/// <summary>
 		/// Новая ссылка на политику конфиденциальности. строка, обязательный параметр, максимальная длина 200

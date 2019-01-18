@@ -61,7 +61,7 @@ namespace VkNet.Model.LeadForms
 		/// данные в формате JSON, обязательный параметр
 		/// </summary>
 		[JsonProperty("questions")]
-		public object Questions { get; set; }
+		public string Questions { get; set; }
 
 		/// <summary>
 		/// Ссылка на политику конфиденциальности. строка, обязательный параметр, максимальная длина 200
