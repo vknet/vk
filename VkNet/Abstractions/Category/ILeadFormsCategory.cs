@@ -97,7 +97,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.getLeads
 		/// </remarks>
-		IEnumerable<object> GetLeads(long groupId, long formId, string nextPageToken, ulong? limit = null);
+		ReadOnlyCollection<LeadFormsGetLeadResult> GetLeads(long groupId, long formId, string nextPageToken, ulong? limit = null);
 
 		/// <summary>
 		/// Возвращает URL для загрузки обложки для формы.

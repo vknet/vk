@@ -30,7 +30,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<IEnumerable<object>> GetLeadsAsync(long groupId, long formId, string nextPageToken, ulong? limit = null)
+		public Task<ReadOnlyCollection<LeadFormsGetLeadResult>> GetLeadsAsync(long groupId, long formId, string nextPageToken, ulong? limit = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetLeads(groupId, formId, nextPageToken, limit));
 		}

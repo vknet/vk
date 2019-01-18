@@ -72,9 +72,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> GetLeads(long groupId, long formId, string nextPageToken, ulong? limit = null)
+		public ReadOnlyCollection<LeadFormsGetLeadResult> GetLeads(long groupId, long formId, string nextPageToken, ulong? limit = null)
 		{
-			return _vk.Call<IEnumerable<object>>("leadForms.getLeads",
+			return _vk.Call<ReadOnlyCollection<LeadFormsGetLeadResult>>("leadForms.getLeads",
 				new VkParameters
 				{
 					{ "group_id", groupId },

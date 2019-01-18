@@ -97,7 +97,7 @@ namespace VkNet.Abstractions.Category.Async
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.getLeads
 		/// </remarks>
-		Task<IEnumerable<object>> GetLeadsAsync(long groupId, long formId, string nextPageToken, ulong? limit = null);
+		Task<ReadOnlyCollection<LeadFormsGetLeadResult>> GetLeadsAsync(long groupId, long formId, string nextPageToken, ulong? limit = null);
 
 		/// <summary>
 		/// Возвращает URL для загрузки обложки для формы.
