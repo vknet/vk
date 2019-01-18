@@ -67,7 +67,13 @@ namespace VkNet.Tests.Categories
 		[Test]
 		public void GetUploadUrl()
 		{
+			Url = "https://api.vk.com/method/leadForms.getUploadURL";
+			ReadCategoryJsonPath(nameof(GetUploadUrl));
 
+			var result = Api.LeadForms.GetUploadURL();
+
+			Assert.NotNull(result);
+			Assert.AreEqual(new Uri("https://pu.vk.com1d95424ffe4e4983a6a"), result);
 		}
 	}
 }

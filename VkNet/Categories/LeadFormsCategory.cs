@@ -87,7 +87,7 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public Uri GetUploadURL()
 		{
-			return _vk.Call<Uri>("leadForms.getUploadURl", VkParameters.Empty);
+			return _vk.Call<Uri>("leadForms.getUploadURL", VkParameters.Empty);
 		}
 
 		/// <inheritdoc/>
