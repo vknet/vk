@@ -59,10 +59,10 @@ namespace VkNet.Model
 				Deleted = response["deleted"],
 
 				// дополнительные поля бесед
-				ChatId = response[key: "chat_id"],
-				ChatActive = response[key: "chat_active"].ToReadOnlyCollectionOf<long>(selector: x => x),
-				UsersCount = response[key: "users_count"],
-				AdminId = response[key: "admin_id"],
+				ChatId = response["chat_id"],
+				ChatActive = response["chat_active"].ToReadOnlyCollectionOf<long>(x => x),
+				UsersCount = response["users_count"],
+				AdminId = response["admin_id"],
 				PhotoPreviews = response,
 				PushSettings = response["push_settings"],
 				ActionMid = response["action_mid"],
@@ -77,7 +77,10 @@ namespace VkNet.Model
 				UpdateTime = response["update_time"],
 
 				Keyboard = response["keyboard"],
-				ConversationMessageId = response["conversation_message_id"]
+				ConversationMessageId = response["conversation_message_id"],
+				Ref = response["ref"],
+				RefSource = response["ref_source"],
+				ReplyMessage = response["reply_message"]
 			};
 
 			return message;
@@ -204,6 +207,24 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("random_id")]
 		public long? RandomId { get; set; }
+
+		/// <summary>
+		/// Произвольный параметр для работы с источниками переходов.
+		/// </summary>
+		[JsonProperty("ref")]
+		public string Ref { get; set; }
+
+		/// <summary>
+		/// Произвольный параметр для работы с источниками переходов.
+		/// </summary>
+		[JsonProperty("ref_source")]
+		public string RefSource { get; set; }
+
+		/// <summary>
+		/// Сообщение, в ответ на которое отправлено текущее.
+		/// </summary>
+		[JsonProperty("reply_message")]
+		public Message ReplyMessage { get; set; }
 
 	#endregion
 
