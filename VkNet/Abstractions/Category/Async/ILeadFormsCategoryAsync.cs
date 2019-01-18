@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Model.LeadForms;
 
 namespace VkNet.Abstractions.Category.Async
@@ -25,7 +26,7 @@ namespace VkNet.Abstractions.Category.Async
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.create
 		/// </remarks>
-		Task<Uri> CreateAsync(LeadFormsCreateParams createParams);
+		Task<LeadFormCreateResult> CreateAsync(LeadFormsCreateParams createParams);
 
 		/// <summary>
 		/// Удаляет форму сбора заявок.
@@ -42,7 +43,7 @@ namespace VkNet.Abstractions.Category.Async
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.delete
 		/// </remarks>
-		Task<object> DeleteAsync(long groupId, long formId);
+		Task<long> DeleteAsync(long groupId, long formId);
 
 		/// <summary>
 		/// Возвращает информацию о форме сбора заявок.

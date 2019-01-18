@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using VkNet.Abstractions.Category.Async;
+using VkNet.Model;
 using VkNet.Model.LeadForms;
 
 namespace VkNet.Abstractions.Category
@@ -25,7 +26,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.create
 		/// </remarks>
-		Uri Create(LeadFormsCreateParams createParams);
+		LeadFormCreateResult Create(LeadFormsCreateParams createParams);
 
 		/// <summary>
 		/// Удаляет форму сбора заявок.
@@ -42,7 +43,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.delete
 		/// </remarks>
-		object Delete(long groupId, long formId);
+		long Delete(long groupId, long formId);
 
 		/// <summary>
 		/// Возвращает информацию о форме сбора заявок.

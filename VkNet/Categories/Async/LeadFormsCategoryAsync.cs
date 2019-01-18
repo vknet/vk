@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Model;
 using VkNet.Model.LeadForms;
 using VkNet.Utils;
 
@@ -10,13 +11,13 @@ namespace VkNet.Categories
 	public partial class LeadFormsCategory
 	{
 		/// <inheritdoc/>
-		public Task<Uri> CreateAsync(LeadFormsCreateParams createParams)
+		public Task<LeadFormCreateResult> CreateAsync(LeadFormsCreateParams createParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Create(createParams));
 		}
 
 		/// <inheritdoc/>
-		public Task<object> DeleteAsync(long groupId, long formId)
+		public Task<long> DeleteAsync(long groupId, long formId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Delete(groupId, formId));
 		}

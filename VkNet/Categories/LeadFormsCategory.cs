@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Category;
+using VkNet.Model;
 using VkNet.Model.LeadForms;
 using VkNet.Utils;
 
@@ -25,9 +26,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri Create(LeadFormsCreateParams createParams)
+		public LeadFormCreateResult Create(LeadFormsCreateParams createParams)
 		{
-			return _vk.Call<Uri>("leadforms.create",
+			return _vk.Call<LeadFormCreateResult>("leadForms.create",
 				new VkParameters
 				{
 					{ "group_id", createParams.GroupId },
@@ -48,9 +49,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object Delete(long groupId, long formId)
+		public long Delete(long groupId, long formId)
 		{
-			return _vk.Call<object>("leadforms.delete",
+			return _vk.Call<long>("leadForms.delete",
 				new VkParameters
 				{
 					{ "group_id", groupId },
@@ -61,7 +62,7 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public Uri Get(long groupId, long formId)
 		{
-			return _vk.Call<Uri>("leadforms.get",
+			return _vk.Call<Uri>("leadForms.get",
 				new VkParameters
 				{
 					{ "group_id", groupId },
@@ -72,7 +73,7 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public IEnumerable<object> GetLeads(long groupId, long formId, string nextPageToken, ulong? limit = null)
 		{
-			return _vk.Call<IEnumerable<object>>("leadforms.getLeads",
+			return _vk.Call<IEnumerable<object>>("leadForms.getLeads",
 				new VkParameters
 				{
 					{ "group_id", groupId },
@@ -85,13 +86,13 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public Uri GetUploadURL()
 		{
-			return _vk.Call<Uri>("leadforms.getUploadURl", VkParameters.Empty);
+			return _vk.Call<Uri>("leadForms.getUploadURl", VkParameters.Empty);
 		}
 
 		/// <inheritdoc/>
 		public IEnumerable<object> List(long groupId)
 		{
-			return _vk.Call<IEnumerable<object>>("leadforms.list",
+			return _vk.Call<IEnumerable<object>>("leadForms.list",
 				new VkParameters
 				{
 					{ "group_id", groupId }
@@ -101,7 +102,7 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public Uri Update(LeadFormsUpdateParams updateParams)
 		{
-			return _vk.Call<Uri>("leadforms.update",
+			return _vk.Call<Uri>("leadForms.update",
 				new VkParameters
 				{
 					{ "group_id", updateParams.GroupId },
