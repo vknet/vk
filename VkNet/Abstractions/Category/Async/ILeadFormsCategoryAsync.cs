@@ -43,7 +43,7 @@ namespace VkNet.Abstractions.Category.Async
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.delete
 		/// </remarks>
-		Task<long> DeleteAsync(long groupId, long formId);
+		Task<LeadFormCreateResult> DeleteAsync(long groupId, long formId);
 
 		/// <summary>
 		/// Возвращает информацию о форме сбора заявок.

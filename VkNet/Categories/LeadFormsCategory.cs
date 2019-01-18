@@ -49,9 +49,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public long Delete(long groupId, long formId)
+		public LeadFormCreateResult Delete(long groupId, long formId)
 		{
-			return _vk.Call<long>("leadForms.delete",
+			return _vk.Call<LeadFormCreateResult>("leadForms.delete",
 				new VkParameters
 				{
 					{ "group_id", groupId },

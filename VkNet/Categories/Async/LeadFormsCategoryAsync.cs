@@ -17,7 +17,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<long> DeleteAsync(long groupId, long formId)
+		public Task<LeadFormCreateResult> DeleteAsync(long groupId, long formId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Delete(groupId, formId));
 		}

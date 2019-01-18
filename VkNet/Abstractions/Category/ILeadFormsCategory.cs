@@ -43,7 +43,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.delete
 		/// </remarks>
-		long Delete(long groupId, long formId);
+		LeadFormCreateResult Delete(long groupId, long formId);
 
 		/// <summary>
 		/// Возвращает информацию о форме сбора заявок.

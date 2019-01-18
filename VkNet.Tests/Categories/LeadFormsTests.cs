@@ -30,5 +30,17 @@ namespace VkNet.Tests.Categories
 			Assert.AreEqual(1, result.FormId);
 			Assert.AreEqual(new Uri("https://vk.com/apform_id=1#form_id=1"), result.Url);
 		}
+
+		[Test]
+		public void Delete()
+		{
+			Url = "https://api.vk.com/method/leadForms.delete";
+			ReadCategoryJsonPath(nameof(Delete));
+
+			var result = Api.LeadForms.Delete(103292418, 1);
+			Assert.NotNull(result);
+			Assert.AreEqual(1, result.FormId);
+
+		}
 	}
 }
