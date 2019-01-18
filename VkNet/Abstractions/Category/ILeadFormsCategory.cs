@@ -138,6 +138,6 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.update
 		/// </remarks>
-		Uri Update(LeadFormsUpdateParams updateParams);
+		LeadFormCreateResult Update(LeadFormsUpdateParams updateParams);
 	}
 }

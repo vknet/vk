@@ -138,6 +138,6 @@ namespace VkNet.Abstractions.Category.Async
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.update
 		/// </remarks>
-		Task<Uri> UpdateAsync(LeadFormsUpdateParams updateParams);
+		Task<LeadFormCreateResult> UpdateAsync(LeadFormsUpdateParams updateParams);
 	}
 }

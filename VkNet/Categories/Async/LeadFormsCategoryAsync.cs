@@ -48,7 +48,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> UpdateAsync(LeadFormsUpdateParams updateParams)
+		public Task<LeadFormCreateResult> UpdateAsync(LeadFormsUpdateParams updateParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Update(updateParams));
 		}

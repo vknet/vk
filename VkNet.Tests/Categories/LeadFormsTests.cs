@@ -75,5 +75,26 @@ namespace VkNet.Tests.Categories
 			Assert.NotNull(result);
 			Assert.AreEqual(new Uri("https://pu.vk.com1d95424ffe4e4983a6a"), result);
 		}
+
+		[Test]
+		public void Update()
+		{
+			Url = "https://api.vk.com/method/leadForms.update";
+			ReadCategoryJsonPath(nameof(Update));
+
+			var result = Api.LeadForms.Update(new LeadFormsUpdateParams
+			{
+				GroupId = 103292418,
+				Name = "kwedkjn",
+				Title = "kjn",
+				Description = "kjn",
+				Questions = "[{}]",
+				PolicyLinkUrl = "ya.ru"
+			});
+
+			Assert.NotNull(result);
+			Assert.AreEqual(2, result.FormId);
+			Assert.AreEqual(new Uri("https://vk.com/apform_id=2#form_id=2"), result.Url);
+		}
 	}
 }

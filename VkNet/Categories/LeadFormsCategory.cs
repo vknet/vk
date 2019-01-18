@@ -101,9 +101,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri Update(LeadFormsUpdateParams updateParams)
+		public LeadFormCreateResult Update(LeadFormsUpdateParams updateParams)
 		{
-			return _vk.Call<Uri>("leadForms.update",
+			return _vk.Call<LeadFormCreateResult>("leadForms.update",
 				new VkParameters
 				{
 					{ "group_id", updateParams.GroupId },
