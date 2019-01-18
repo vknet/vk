@@ -1,0 +1,79 @@
+{
+  "response": [
+    {
+      "form_id": 2,
+      "group_id": 103292418,
+      "photo": null,
+      "name": "kwedkjn",
+      "title": "kjn",
+      "description": "kjn",
+      "confirmation": "",
+      "site_link_url": "",
+      "policy_link_url": "ya.ru",
+      "questions": [
+        {
+          "type": "first_name",
+          "key": "first_name"
+        },
+        {
+          "key": "custom_0",
+          "type": "input",
+          "label": "Кличка кота"
+        },
+        {
+          "key": "favorite_color",
+          "type": "select",
+          "label": "Любимый цвет",
+          "options": [
+            {
+              "label": "Красный",
+              "key": "red"
+            },
+            {
+              "label": "Зелёный",
+              "key": "green"
+            }
+          ]
+        },
+        {
+          "key": "custom_2",
+          "type": "radio",
+          "label": "Я ношу часы...",
+          "options": [
+            {
+              "label": "на левой руке",
+              "key": "left"
+            },
+            {
+              "label": "на правой руке",
+              "key": "right"
+            }
+          ]
+        },
+        {
+          "key": "visited_cities",
+          "type": "checkbox",
+          "label": "Города, в которых я был",
+          "options": [
+            {
+              "label": "Екатеринбург"
+            },
+            {
+              "label": "Волгоград"
+            },
+            {
+              "label": "Санкт-Петербург"
+            }
+          ]
+        }
+      ],
+      "active": 0,
+      "leads_count": 0,
+      "pixel_code": "",
+      "once_per_user": 0,
+      "notify_admins": "",
+      "notify_emails": "",
+      "url": "https://vk.com/apform_id=2#form_id=2"
+    }
+  ]
+}

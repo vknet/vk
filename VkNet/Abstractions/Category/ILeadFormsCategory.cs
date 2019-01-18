@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Abstractions.Category.Async;
 using VkNet.Model;
 using VkNet.Model.LeadForms;
@@ -64,7 +65,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.get
 		/// </remarks>
-		Uri Get(long groupId, long formId);
+		LeadFormCreateResult Get(long groupId, long formId);
 
 		/// <summary>
 		/// Возвращает заявки формы.
@@ -121,7 +122,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.list
 		/// </remarks>
-		IEnumerable<object> List(long groupId);
+		ReadOnlyCollection<LeadFormCreateResult> List(long groupId);
 
 		/// <summary>
 		/// Обновляет форму сбора заявок.

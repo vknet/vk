@@ -40,6 +40,33 @@ namespace VkNet.Tests.Categories
 			var result = Api.LeadForms.Delete(103292418, 1);
 			Assert.NotNull(result);
 			Assert.AreEqual(1, result.FormId);
+		}
+
+		[Test]
+		public void Get()
+		{
+			Url = "https://api.vk.com/method/leadForms.get";
+			ReadCategoryJsonPath(nameof(Get));
+
+			var result = Api.LeadForms.Get(103292418, 1);
+			Assert.NotNull(result);
+			Assert.AreEqual(2, result.FormId);
+		}
+
+		[Test]
+		public void List()
+		{
+			Url = "https://api.vk.com/method/leadForms.list";
+			ReadCategoryJsonPath(nameof(List));
+
+			var result = Api.LeadForms.List(103292418);
+			Assert.NotNull(result);
+			Assert.IsNotEmpty(result);
+		}
+
+		[Test]
+		public void GetUploadUrl()
+		{
 
 		}
 	}

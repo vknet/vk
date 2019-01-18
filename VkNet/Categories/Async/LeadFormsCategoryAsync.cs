@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.LeadForms;
@@ -23,7 +24,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> GetAsync(long groupId, long formId)
+		public Task<LeadFormCreateResult> GetAsync(long groupId, long formId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Get(groupId, formId));
 		}
@@ -41,7 +42,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<IEnumerable<object>> ListAsync(long groupId)
+		public Task<ReadOnlyCollection<LeadFormCreateResult>> ListAsync(long groupId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => List(groupId));
 		}

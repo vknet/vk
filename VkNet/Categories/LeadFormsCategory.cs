@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Category;
 using VkNet.Model;
@@ -60,9 +61,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri Get(long groupId, long formId)
+		public LeadFormCreateResult Get(long groupId, long formId)
 		{
-			return _vk.Call<Uri>("leadForms.get",
+			return _vk.Call<LeadFormCreateResult>("leadForms.get",
 				new VkParameters
 				{
 					{ "group_id", groupId },
@@ -90,9 +91,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> List(long groupId)
+		public ReadOnlyCollection<LeadFormCreateResult> List(long groupId)
 		{
-			return _vk.Call<IEnumerable<object>>("leadForms.list",
+			return _vk.Call<ReadOnlyCollection<LeadFormCreateResult>>("leadForms.list",
 				new VkParameters
 				{
 					{ "group_id", groupId }
