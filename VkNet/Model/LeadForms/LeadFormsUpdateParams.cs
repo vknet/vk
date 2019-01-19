@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using VkNet.Abstractions.Utils;
 
 namespace VkNet.Model.LeadForms
 {
@@ -43,6 +44,9 @@ namespace VkNet.Model.LeadForms
 		/// <summary>
 		/// Новые вопросы формы. Подробнее см. метод leadForms.create. данные в формате JSON, обязательный параметр
 		/// </summary>
+		/// <remarks>
+		/// Для построения рекомендуется использовать <see cref="ILeadFormsQuestionBuilder"/>
+		/// </remarks>
 		[JsonProperty("questions")]
 		public string Questions { get; set; }
 

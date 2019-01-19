@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using VkNet.Abstractions.Utils;
 
 namespace VkNet.Model.LeadForms
 {
@@ -35,31 +36,11 @@ namespace VkNet.Model.LeadForms
 		public string Description { get; set; }
 
 		/// <summary>
-		/// Информация о вопросах формы. Массив структур следующего формата:
-		/// type — тип вопроса;
-		/// label — заголовок вопроса (только для нестандартных вопросов);
-		/// key — уникальный ключ вопроса (необязательно; только для нестандартных вопросов);
-		/// options — массив возможных ответов на вопрос (только для нестандартных вопросов типа radio, select, checkbox);
-		/// Типы стандартных вопросов:
-		/// first_name — имя;
-		/// patronymic_name — отчество;
-		/// last_name — фамилия;
-		/// email — адрес электронной почты;
-		/// phone_number — номер телефона;
-		/// age — возраст;
-		/// birthday — день рождения;
-		/// location — город и страна.
-		/// Типы нестандартных вопросов:
-		/// input — простое текстовое поле (строка);
-		/// textarea — большое текстовое поле (абзац);
-		/// radio — выбор одного из нескольких вариантов;
-		/// checkbox — выбор нескольких вариантов;
-		/// select — выбор одного варианта из выпадающего списка.
-		/// options должен быть массивом структур, описывающих варианты ответа:
-		/// label — текст ответа;
-		/// key — ключ ответа (необязательно).
-		/// данные в формате JSON, обязательный параметр
+		/// Информация о вопросах формы.
 		/// </summary>
+		/// <remarks>
+		/// Для построения рекомендуется использовать <see cref="ILeadFormsQuestionBuilder"/>
+		/// </remarks>
 		[JsonProperty("questions")]
 		public string Questions { get; set; }
 
