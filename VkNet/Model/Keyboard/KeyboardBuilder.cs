@@ -78,9 +78,22 @@ namespace VkNet.Model.Keyboard
 		}
 
 		/// <inheritdoc />
+		public IKeyboardBuilder Clear()
+		{
+			_currentLine.Clear();
+			_fullKeyboard.ForEach(x=>x.Clear());
+			_fullKeyboard.Clear();
+
+			return this;
+		}
+
+		/// <inheritdoc />
 		public MessageKeyboard Build()
 		{
-			_fullKeyboard.Add(_currentLine);
+			if (_currentLine.Count != 0)
+			{
+				_fullKeyboard.Add(_currentLine);
+			}
 
 			return new MessageKeyboard
 			{
