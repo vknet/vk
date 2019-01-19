@@ -78,7 +78,7 @@ namespace VkNet.Model.Keyboard
 		}
 
 		/// <inheritdoc />
-		public IKeyboardBuilder RemoveButtonsAndLines()
+		public IKeyboardBuilder Clear()
 		{
 			_currentLine.Clear();
 			_fullKeyboard.ForEach(x=>x.Clear());

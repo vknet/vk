@@ -36,7 +36,7 @@ namespace VkNet.Model.Keyboard
 		/// Удалить все добавленные кнопки и строки из клавиатуры
 		/// </summary>
 		/// <returns>Конструктор клавиатур</returns>
-		IKeyboardBuilder RemoveButtonsAndLines();
+		IKeyboardBuilder Clear();
 
 		/// <summary>
 		/// Построить
