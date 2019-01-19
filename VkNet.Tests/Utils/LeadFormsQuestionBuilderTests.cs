@@ -72,5 +72,21 @@ namespace VkNet.Tests.Utils
 
 			Assert.IsTrue(JToken.DeepEquals(expected, actual));
 		}
+
+		[Test]
+		public void AddTextArea()
+		{
+			var json = ReadJson("Utils", nameof(LeadFormsQuestionBuilder), nameof(AddTextArea));
+
+			ILeadFormsQuestionBuilder builder = new LeadFormsQuestionBuilder();
+
+			var questions = builder.AddTextArea("Кличка кота")
+				.Build();
+
+			var expected = JToken.Parse(json);
+			var actual = JToken.Parse(questions);
+
+			Assert.IsTrue(JToken.DeepEquals(expected, actual));
+		}
 	}
 }

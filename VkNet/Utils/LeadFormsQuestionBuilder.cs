@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -11,7 +12,7 @@ namespace VkNet.Utils
 	[UsedImplicitly]
 	public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
-		private List<LeadFormsQuestionInfo> _list = new List<LeadFormsQuestionInfo>();
+		private readonly List<LeadFormsQuestionInfo> _list = new List<LeadFormsQuestionInfo>();
 
 		/// <inheritdoc />
 		public ILeadFormsQuestionBuilder AddStandard(StandardQuestion question)
@@ -72,6 +73,18 @@ namespace VkNet.Utils
 				Key = key,
 				Label = label,
 				Options = options
+			});
+
+			return this;
+		}
+
+		/// <inheritdoc />
+		public ILeadFormsQuestionBuilder AddTextArea(string label)
+		{
+			_list.Add(new LeadFormsQuestionInfo
+			{
+				Type = NonStandardQuestion.Textarea.ToString(),
+				Label = label
 			});
 
 			return this;

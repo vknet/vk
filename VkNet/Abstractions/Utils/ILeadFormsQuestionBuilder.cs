@@ -59,6 +59,15 @@ namespace VkNet.Abstractions.Utils
 		ILeadFormsQuestionBuilder AddCheckbox(string key, string label, QuestionOption[] options);
 
 		/// <summary>
+		/// Добавить многострочное текстовое поле
+		/// </summary>
+		/// <param name="label">Описание поля.</param>
+		/// <returns>
+		/// Построитель вопросов для запросов LeadForms.
+		/// </returns>
+		ILeadFormsQuestionBuilder AddTextArea(string label);
+
+		/// <summary>
 		/// Построить список вопросов.
 		/// </summary>
 		/// <returns>
