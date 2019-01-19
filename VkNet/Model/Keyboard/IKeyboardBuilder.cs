@@ -33,6 +33,12 @@ namespace VkNet.Model.Keyboard
 		IKeyboardBuilder SetOneTime();
 
 		/// <summary>
+		/// Удалить все добавленные кнопки и строки из клавиатуры
+		/// </summary>
+		/// <returns>Конструктор клавиатур</returns>
+		IKeyboardBuilder RemoveButtonsAndLines();
+
+		/// <summary>
 		/// Построить
 		/// </summary>
 		/// <returns>Клавиатура</returns>
