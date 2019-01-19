@@ -1,0 +1,54 @@
+[
+  {
+    "type": "first_name"
+  },
+  {
+    "type": "input",
+    "label": "Кличка кота"
+  },
+  {
+    "type": "select",
+    "key": "favorite_color",
+    "label": "Любимый цвет",
+    "options": [
+      {
+        "key": "red",
+        "label": "Красный"
+      },
+      {
+        "key": "green",
+        "label": "Зелёный"
+      }
+    ]
+  },
+  {
+    "type": "radio",
+    "label": "Я ношу часы...",
+    "options": [
+      {
+        "key": "left",
+        "label": "на левой руке"
+      },
+      {
+        "key": "right",
+        "label": "на правой руке"
+      }
+    ]
+  },
+  {
+    "type": "checkbox",
+    "key": "visited_cities",
+    "label": "Города, в которых я был",
+    "options": [
+      {
+        "label": "Екатеринбург"
+      },
+      {
+        "label": "Волгоград"
+      },
+      {
+        "label": "Санкт-Петербург"
+      }
+    ]
+  }
+]
