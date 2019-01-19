@@ -43,6 +43,9 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Объект, описывающий клавиатуру для бота.
 		/// </summary>
+		/// <remarks>
+		/// Рекомендуется для построения использовать <see cref="IKeyboardBuilder"/>
+		/// </remarks>
 		[JsonProperty("keyboard")]
 		public MessageKeyboard Keyboard { get; set; }
 
