@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace VkNet.Enums.SafetyEnums
 {
@@ -9,27 +9,28 @@ namespace VkNet.Enums.SafetyEnums
 	public sealed class PostType : SafetyEnum<PostType>
 	{
 		/// <summary>
-		/// Популярные за день (по умолчанию);
+		/// Запись на стене (по умолчанию);
+		/// v5.6+ - репосты имею тип "post"
 		/// </summary>
 		public static readonly PostType Post = RegisterPossibleValue(value: "post");
 
 		/// <summary>
-		/// По посещаемости
+		/// Репост до версии 5.6 (сейчас не описано)
 		/// </summary>
 		public static readonly PostType Copy = RegisterPossibleValue(value: "copy");
 
 		/// <summary>
-		/// По посещаемости
+		/// Ответ на запись с закрытыми комментариями (м.б. еще что-то)
 		/// </summary>
 		public static readonly PostType Reply = RegisterPossibleValue(value: "reply");
 
 		/// <summary>
-		/// По посещаемости
+		/// Закрепленная запись
 		/// </summary>
 		public static readonly PostType Postpone = RegisterPossibleValue(value: "postpone");
 
 		/// <summary>
-		/// По посещаемости
+		/// Предложенная запись
 		/// </summary>
 		public static readonly PostType Suggest = RegisterPossibleValue(value: "suggest");
 	}
