@@ -38,7 +38,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params)
 		{
-			return _vk.Call(methodName: "photos.createAlbum", parameters: @params);
+			return _vk.Call("photos.createAlbum", @params);
 		}
 
 		/// <summary>
@@ -53,7 +53,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool EditAlbum(PhotoEditAlbumParams @params)
 		{
-			return _vk.Call(methodName: "photos.editAlbum", parameters: @params);
+			return _vk.Call("photos.editAlbum", @params);
 		}
 
 		/// <summary>
@@ -69,7 +69,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call(methodName: "photos.getAlbums", parameters: @params, skipAuthorization: skipAuthorization)
+			return _vk.Call("photos.getAlbums", @params, skipAuthorization)
 				.ToVkCollectionOf<PhotoAlbum>(selector: x => x);
 		}
 
@@ -86,7 +86,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call(methodName: "photos.get", parameters: @params, skipAuthorization: skipAuthorization)
+			return _vk.Call("photos.get", @params, skipAuthorization)
 				.ToVkCollectionOf<Photo>(selector: x => x);
 		}
 
@@ -119,7 +119,7 @@ namespace VkNet.Categories
 				{ "group_id", groupId }
 			};
 
-			return _vk.Call(methodName: "photos.getAlbumsCount", parameters: parameters);
+			return _vk.Call("photos.getAlbumsCount", parameters);
 		}
 
 		/// <summary>
@@ -181,12 +181,10 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.getById
 		/// </remarks>
-		public ReadOnlyCollection<Photo> GetById(
-			IEnumerable<string> photos
-			, bool? extended = null
-			, bool? photoSizes = null
-			, bool skipAuthorization = false
-		)
+		public ReadOnlyCollection<Photo> GetById(IEnumerable<string> photos
+												, bool? extended = null
+												, bool? photoSizes = null
+												, bool skipAuthorization = false)
 		{
 			var parameters = new VkParameters
 			{
@@ -195,7 +193,7 @@ namespace VkNet.Categories
 				{ "photo_sizes", photoSizes }
 			};
 
-			VkResponseArray response = _vk.Call(methodName: "photos.getById", parameters: parameters, skipAuthorization: skipAuthorization);
+			VkResponseArray response = _vk.Call("photos.getById", parameters, skipAuthorization);
 
 			return response.ToReadOnlyCollectionOf<Photo>(selector: x => x);
 		}
@@ -221,7 +219,7 @@ namespace VkNet.Categories
 				{ "group_id", groupId }
 			};
 
-			return _vk.Call(methodName: "photos.getUploadServer", parameters: parameters);
+			return _vk.Call("photos.getUploadServer", parameters);
 		}
 
 		/// <summary>
@@ -251,7 +249,7 @@ namespace VkNet.Categories
 				{ "owner_id", ownerId }
 			};
 
-			return _vk.Call(methodName: "photos.getOwnerPhotoUploadServer", parameters: parameters);
+			return _vk.Call("photos.getOwnerPhotoUploadServer", parameters);
 		}
 
 		/// <summary>
@@ -291,7 +289,7 @@ namespace VkNet.Categories
 				{ "crop_width", cropWidth }
 			};
 
-			return _vk.Call(methodName: "photos.getChatUploadServer", parameters: parameters);
+			return _vk.Call("photos.getChatUploadServer", parameters);
 		}
 
 		/// <summary>
@@ -332,7 +330,7 @@ namespace VkNet.Categories
 				{ "captcha_key", captchaKey }
 			};
 
-			return _vk.Call(methodName: "photos.saveOwnerPhoto", parameters: parameters);
+			return _vk.Call("photos.saveOwnerPhoto", parameters);
 		}
 
 		/// <summary>
@@ -376,7 +374,7 @@ namespace VkNet.Categories
 				{ "hash", hash }
 			};
 
-			VkResponseArray responseVk = _vk.Call(methodName: "photos.saveWallPhoto", parameters: parameters);
+			VkResponseArray responseVk = _vk.Call("photos.saveWallPhoto", parameters);
 
 			return responseVk.ToReadOnlyCollectionOf<Photo>(selector: x => x);
 		}
@@ -404,7 +402,7 @@ namespace VkNet.Categories
 				{ "group_id", groupId }
 			};
 
-			return _vk.Call(methodName: "photos.getWallUploadServer", parameters: parameters);
+			return _vk.Call("photos.getWallUploadServer", parameters);
 		}
 
 		/// <summary>
@@ -418,7 +416,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public UploadServerInfo GetMessagesUploadServer(long peerId)
 		{
-			return _vk.Call(methodName: "photos.getMessagesUploadServer", parameters: VkParameters.Empty);
+			return _vk.Call("photos.getMessagesUploadServer", new VkParameters { { "peer_id", peerId } });
 		}
 
 		/// <summary>
@@ -453,7 +451,7 @@ namespace VkNet.Categories
 				{ "server", server }
 			};
 
-			VkResponseArray result = _vk.Call(methodName: "photos.saveMessagesPhoto", parameters: parameters);
+			VkResponseArray result = _vk.Call("photos.saveMessagesPhoto", parameters);
 
 			return result.ToReadOnlyCollectionOf<Photo>(selector: x => x);
 		}
@@ -491,13 +489,11 @@ namespace VkNet.Categories
 		/// Страница документации ВКонтакте
 		/// http://vk.com/dev/photos.getOwnerCoverPhotoUploadServer
 		/// </remarks>
-		public UploadServerInfo GetOwnerCoverPhotoUploadServer(
-			long groupId
-			, long? cropX = null
-			, long? cropY = null
-			, long? cropX2 = 795L
-			, long? cropY2 = 200L
-		)
+		public UploadServerInfo GetOwnerCoverPhotoUploadServer(long groupId
+																, long? cropX = null
+																, long? cropY = null
+																, long? cropX2 = 795L
+																, long? cropY2 = 200L)
 		{
 			var parameters = new VkParameters
 			{
@@ -508,7 +504,7 @@ namespace VkNet.Categories
 				{ "crop_y2", cropY2 }
 			};
 
-			return _vk.Call(methodName: "photos.getOwnerCoverPhotoUploadServer", parameters: parameters);
+			return _vk.Call("photos.getOwnerCoverPhotoUploadServer", parameters);
 		}
 
 		/// <summary>
@@ -538,7 +534,7 @@ namespace VkNet.Categories
 				{ "hash", hash }
 			};
 
-			return _vk.Call(methodName: "photos.saveOwnerCoverPhoto", parameters: parameters);
+			return _vk.Call("photos.saveOwnerCoverPhoto", parameters);
 		}
 
 		/// <summary>
@@ -580,7 +576,7 @@ namespace VkNet.Categories
 				{ "reason", reason }
 			};
 
-			return _vk.Call(methodName: "photos.report", parameters: parameters);
+			return _vk.Call("photos.report", parameters);
 		}
 
 		/// <summary>
@@ -622,7 +618,7 @@ namespace VkNet.Categories
 				{ "reason", reason }
 			};
 
-			return _vk.Call(methodName: "photos.reportComment", parameters: parameters);
+			return _vk.Call("photos.reportComment", parameters);
 		}
 
 		/// <summary>
@@ -638,7 +634,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call(methodName: "photos.search", parameters: @params, skipAuthorization: skipAuthorization)
+			return _vk.Call("photos.search", @params, skipAuthorization)
 				.ToVkCollectionOf<Photo>(selector: x => x);
 		}
 
@@ -654,7 +650,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public ReadOnlyCollection<Photo> Save(PhotoSaveParams @params)
 		{
-			VkResponseArray response = _vk.Call(methodName: "photos.save", parameters: @params);
+			VkResponseArray response = _vk.Call("photos.save", @params);
 
 			return response.ToReadOnlyCollectionOf<Photo>(selector: x => x);
 		}
@@ -691,7 +687,7 @@ namespace VkNet.Categories
 				{ "access_key", accessKey }
 			};
 
-			return _vk.Call(methodName: "photos.copy", parameters: parameters);
+			return _vk.Call("photos.copy", parameters);
 		}
 
 		/// <summary>
@@ -706,7 +702,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool Edit(PhotoEditParams @params)
 		{
-			return _vk.Call(methodName: "photos.edit", parameters: @params);
+			return _vk.Call("photos.edit", @params);
 		}
 
 		/// <summary>
@@ -746,7 +742,7 @@ namespace VkNet.Categories
 				{ "photo_id", photoId }
 			};
 
-			return _vk.Call(methodName: "photos.move", parameters: parameters);
+			return _vk.Call("photos.move", parameters);
 		}
 
 		/// <summary>
@@ -782,7 +778,7 @@ namespace VkNet.Categories
 				{ "album_id", albumId }
 			};
 
-			return _vk.Call(methodName: "photos.makeCover", parameters: parameters);
+			return _vk.Call("photos.makeCover", parameters);
 		}
 
 		/// <summary>
@@ -825,7 +821,7 @@ namespace VkNet.Categories
 				{ "after", after }
 			};
 
-			return _vk.Call(methodName: "photos.reorderAlbums", parameters: parameters);
+			return _vk.Call("photos.reorderAlbums", parameters);
 		}
 
 		/// <summary>
@@ -871,7 +867,7 @@ namespace VkNet.Categories
 				{ "after", after }
 			};
 
-			return _vk.Call(methodName: "photos.reorderPhotos", parameters: parameters);
+			return _vk.Call("photos.reorderPhotos", parameters);
 		}
 
 		/// <summary>
@@ -896,7 +892,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Photo> GetAll(PhotoGetAllParams @params)
 		{
-			return _vk.Call(methodName: "photos.getAll", parameters: @params).ToVkCollectionOf<Photo>(selector: x => x);
+			return _vk.Call("photos.getAll", @params).ToVkCollectionOf<Photo>(selector: x => x);
 		}
 
 		/// <summary>
@@ -911,7 +907,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params)
 		{
-			return _vk.Call(methodName: "photos.getUserPhotos", parameters: @params).ToVkCollectionOf<Photo>(selector: x => x);
+			return _vk.Call("photos.getUserPhotos", @params).ToVkCollectionOf<Photo>(selector: x => x);
 		}
 
 		/// <summary>
@@ -941,7 +937,7 @@ namespace VkNet.Categories
 				{ "group_id", groupId }
 			};
 
-			return _vk.Call(methodName: "photos.deleteAlbum", parameters: parameters);
+			return _vk.Call("photos.deleteAlbum", parameters);
 		}
 
 		/// <summary>
@@ -975,7 +971,7 @@ namespace VkNet.Categories
 				{ "photo_id", photoId }
 			};
 
-			return _vk.Call(methodName: "photos.delete", parameters: parameters);
+			return _vk.Call("photos.delete", parameters);
 		}
 
 		/// <summary>
@@ -1009,7 +1005,7 @@ namespace VkNet.Categories
 				{ "photo_id", photoId }
 			};
 
-			return _vk.Call(methodName: "photos.restore", parameters: parameters);
+			return _vk.Call("photos.restore", parameters);
 		}
 
 		/// <summary>
@@ -1048,7 +1044,7 @@ namespace VkNet.Categories
 				{ "tag_id", tagId }
 			};
 
-			return _vk.Call(methodName: "photos.confirmTag", parameters: parameters);
+			return _vk.Call("photos.confirmTag", parameters);
 		}
 
 		/// <summary>
@@ -1063,7 +1059,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Comment> GetComments(PhotoGetCommentsParams @params)
 		{
-			return _vk.Call(methodName: "photos.getComments", parameters: @params).ToVkCollectionOf<Comment>(selector: x => x);
+			return _vk.Call("photos.getComments", @params).ToVkCollectionOf<Comment>(selector: x => x);
 		}
 
 		/// <summary>
@@ -1080,7 +1076,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params)
 		{
-			return _vk.Call(methodName: "photos.getAllComments", parameters: @params).ToVkCollectionOf<Comment>(selector: x => x);
+			return _vk.Call("photos.getAllComments", @params).ToVkCollectionOf<Comment>(selector: x => x);
 		}
 
 		/// <summary>
@@ -1095,7 +1091,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public long CreateComment(PhotoCreateCommentParams @params)
 		{
-			return _vk.Call(methodName: "photos.createComment", parameters: @params);
+			return _vk.Call("photos.createComment", @params);
 		}
 
 		/// <summary>
@@ -1130,7 +1126,7 @@ namespace VkNet.Categories
 				{ "comment_id", commentId }
 			};
 
-			return _vk.Call(methodName: "photos.deleteComment", parameters: parameters);
+			return _vk.Call("photos.deleteComment", parameters);
 		}
 
 		/// <summary>
@@ -1166,7 +1162,7 @@ namespace VkNet.Categories
 				{ "comment_id", commentId }
 			};
 
-			return _vk.Call(methodName: "photos.restoreComment", parameters: parameters);
+			return _vk.Call("photos.restoreComment", parameters);
 		}
 
 		/// <summary>
@@ -1217,7 +1213,7 @@ namespace VkNet.Categories
 				{ "attachments", attachments }
 			};
 
-			return _vk.Call(methodName: "photos.editComment", parameters: parameters);
+			return _vk.Call("photos.editComment", parameters);
 		}
 
 		/// <summary>
@@ -1267,7 +1263,7 @@ namespace VkNet.Categories
 				{ "access_key", accessKey }
 			};
 
-			VkResponseArray response = _vk.Call(methodName: "photos.getTags", parameters: parameters);
+			VkResponseArray response = _vk.Call("photos.getTags", parameters);
 
 			return response.ToReadOnlyCollectionOf<Tag>(selector: x => x);
 		}
@@ -1284,7 +1280,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public ulong PutTag(PhotoPutTagParams @params)
 		{
-			return _vk.Call(methodName: "photos.putTag", parameters: @params);
+			return _vk.Call("photos.putTag", @params);
 		}
 
 		/// <summary>
@@ -1323,7 +1319,7 @@ namespace VkNet.Categories
 				{ "tag_id", tagId }
 			};
 
-			return _vk.Call(methodName: "photos.removeTag", parameters: parameters);
+			return _vk.Call("photos.removeTag", parameters);
 		}
 
 		/// <summary>
@@ -1354,7 +1350,7 @@ namespace VkNet.Categories
 				{ "count", count }
 			};
 
-			return _vk.Call(methodName: "photos.getNewTags", parameters: parameters).ToVkCollectionOf<Photo>(selector: x => x);
+			return _vk.Call("photos.getNewTags", parameters).ToVkCollectionOf<Photo>(selector: x => x);
 		}
 
 		/// <summary>
@@ -1390,13 +1386,11 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.getMarketUploadServer
 		/// </remarks>
-		public UploadServerInfo GetMarketUploadServer(
-			long groupId
-			, bool? mainPhoto = null
-			, long? cropX = null
-			, long? cropY = null
-			, long? cropWidth = null
-		)
+		public UploadServerInfo GetMarketUploadServer(long groupId
+													, bool? mainPhoto = null
+													, long? cropX = null
+													, long? cropY = null
+													, long? cropWidth = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -1407,7 +1401,7 @@ namespace VkNet.Categories
 				{ "crop_width", cropWidth }
 			};
 
-			return _vk.Call(methodName: "photos.getMarketUploadServer", parameters: parameters);
+			return _vk.Call("photos.getMarketUploadServer", parameters);
 		}
 
 		/// <summary>
@@ -1432,7 +1426,7 @@ namespace VkNet.Categories
 				{ "group_id", groupId }
 			};
 
-			return _vk.Call(methodName: "photos.getMarketAlbumUploadServer", parameters: parameters);
+			return _vk.Call("photos.getMarketAlbumUploadServer", parameters);
 		}
 
 		/// <summary>
@@ -1475,7 +1469,7 @@ namespace VkNet.Categories
 				{ "crop_hash", cropHash }
 			};
 
-			return _vk.Call(methodName: "photos.saveMarketPhoto", parameters: parameters).ToReadOnlyCollectionOf<Photo>(selector: x => x);
+			return _vk.Call("photos.saveMarketPhoto", parameters).ToReadOnlyCollectionOf<Photo>(selector: x => x);
 		}
 
 		/// <summary>
@@ -1514,7 +1508,7 @@ namespace VkNet.Categories
 				{ "hash", hash }
 			};
 
-			return _vk.Call(methodName: "photos.saveMarketAlbumPhoto", parameters: parameters)
+			return _vk.Call("photos.saveMarketAlbumPhoto", parameters)
 				.ToReadOnlyCollectionOf<Photo>(selector: x => x);
 		}
 	}
