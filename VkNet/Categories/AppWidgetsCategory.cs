@@ -1,5 +1,6 @@
 using System;
 using VkNet.Abstractions;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -22,31 +23,44 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri GetAppImageUploadServer(object imageType)
+		public Uri GetAppImageUploadServer(AppWidgetImageType imageType)
 		{
-			return _vk.Call<Uri>("appWidgets.getAppImageUploadServer", new VkParameters { { "image_type", imageType } });
+			return _vk.Call("appWidgets.getAppImageUploadServer", new VkParameters { { "image_type", imageType } })["upload_url"];
 		}
 
 		/// <inheritdoc/>
-		public Uri GetAppImages()
+		public Uri GetAppImages(int offset, int count, AppWidgetImageType imageType)
 		{
-			return _vk.Call<Uri>("appWidgets.getAppImages", VkParameters.Empty);
+			return _vk.Call<Uri>("appWidgets.getAppImages",
+				new VkParameters
+				{
+					{ "offset", offset },
+					{ "count", count },
+					{ "image_type", imageType }
+				});
 		}
 
 		/// <inheritdoc/>
-		public Uri GetGroupImageUploadServer()
+		public Uri GetGroupImageUploadServer(AppWidgetImageType imageType)
 		{
-			return _vk.Call<Uri>("appWidgets.getGroupImageUploadServer", VkParameters.Empty);
+			return _vk.Call<Uri>("appWidgets.getGroupImageUploadServer", new VkParameters { { "image_type", imageType } });
 		}
 
 		/// <inheritdoc/>
-		public Uri GetGroupImages()
+		public Uri GetGroupImages(int offset, int count, AppWidgetImageType imageType)
 		{
-			return _vk.Call<Uri>("appWidgets.getGroupImages", VkParameters.Empty);
+			return _vk.Call<Uri>("appWidgets.getGroupImages",
+				new VkParameters
+				{
+					{ "offset", offset },
+					{ "count", count },
+					{ "image_type", imageType }
+				});
 		}
 
+		/// <param name="images"></param>
 		/// <inheritdoc/>
-		public Uri GetImagesById()
+		public Uri GetImagesById(string images)
 		{
 			return _vk.Call<Uri>("appWidgets.getImagesById", VkParameters.Empty);
 		}

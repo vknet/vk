@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Abstractions.Category
 {
@@ -27,11 +28,14 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getAppImageUploadServer
 		/// </remarks>
-		Task<Uri> GetAppImageUploadServerAsync(object imageType);
+		Task<Uri> GetAppImageUploadServerAsync(AppWidgetImageType imageType);
 
 		/// <summary>
 		/// Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
 		/// </summary>
+		/// <param name="offset">Смещение для получения определённого подмножества результатов.</param>
+		/// <param name="count">Максимальное число результатов для получения.</param>
+		/// <param name="imageType">Тип изображения.</param>
 		/// <returns>
 		/// Возвращает общее число результатов в поле count (integer) и массив объектов, описывающих изображения, в поле items (array).
 		/// Каждый объект массива  items содержит следующие поля:
@@ -50,11 +54,12 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getAppImages
 		/// </remarks>
-		Task<Uri> GetAppImagesAsync();
+		Task<Uri> GetAppImagesAsync(int offset, int count, AppWidgetImageType imageType);
 
 		/// <summary>
 		/// Позволяет получить адрес для загрузки фотографии в коллекцию сообщества для виджетов приложений сообществ.
 		/// </summary>
+		/// <param name="imageType">Тип изображения.</param>
 		/// <returns>
 		/// Возвращает объект с единственным полем upload_url, содержащим URL для загрузки изображения.
 		/// Для загрузки изображения сгенерируйте POST-запрос с файлом в поле image на полученный адрес, а затем вызовите метод appWidgets.saveGroupImage.
@@ -62,11 +67,14 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getGroupImageUploadServer
 		/// </remarks>
-		Task<Uri> GetGroupImageUploadServerAsync();
+		Task<Uri> GetGroupImageUploadServerAsync(AppWidgetImageType imageType);
 
 		/// <summary>
 		/// Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
 		/// </summary>
+		/// <param name="offset">Смещение для получения определённого подмножества результатов.</param>
+		/// <param name="count">Максимальное число результатов для получения.</param>
+		/// <param name="imageType">Тип изображения.</param>
 		/// <returns>
 		/// Возвращает общее число результатов в поле count (integer) и массив объектов, описывающих изображения, в поле items (array).
 		/// Каждый объект массива  items содержит следующие поля:
@@ -85,11 +93,12 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getGroupImages
 		/// </remarks>
-		Task<Uri> GetGroupImagesAsync();
+		Task<Uri> GetGroupImagesAsync(int offset, int count, AppWidgetImageType imageType);
 
 		/// <summary>
 		/// Позволяет получить изображение для виджетов приложений сообществ по его идентификатору.
 		/// </summary>
+		/// <param name="images">список идентификаторов изображений для получения.</param>
 		/// <returns>
 		/// Возвращает объект, который содержит следующие поля:
 		/// id (string) — идентификатор изображения. Обратите внимание, идентификаторы изображений для виджетов отличаются от обычных фотографий, и НЕ представляют собой сочетание owner_id+"_"+photo_id. Полученный идентификатор нужно использовать в коде виджета «как есть».
@@ -107,7 +116,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getImagesById
 		/// </remarks>
-		Task<Uri> GetImagesByIdAsync();
+		Task<Uri> GetImagesByIdAsync(string images);
 
 		/// <summary>
 		/// Позволяет сохранить изображение в коллекцию приложения для виджетов приложений сообществ после загрузки на сервер.

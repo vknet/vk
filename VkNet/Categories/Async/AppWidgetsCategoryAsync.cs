@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -8,33 +9,33 @@ namespace VkNet.Categories
 	public partial class AppWidgetsCategory
 	{
 		/// <inheritdoc/>
-		public async Task<Uri> GetAppImageUploadServerAsync(object imageType)
+		public Task<Uri> GetAppImageUploadServerAsync(AppWidgetImageType imageType)
 		{
-			return await TypeHelper.TryInvokeMethodAsync(() => GetAppImageUploadServer(imageType));
+			return TypeHelper.TryInvokeMethodAsync(() => GetAppImageUploadServer(imageType));
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> GetAppImagesAsync()
+		public Task<Uri> GetAppImagesAsync(int offset, int count, AppWidgetImageType imageType)
 		{
-			return TypeHelper.TryInvokeMethodAsync(GetAppImages);
+			return TypeHelper.TryInvokeMethodAsync(() => GetAppImages(offset, count, imageType));
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> GetGroupImageUploadServerAsync()
+		public Task<Uri> GetGroupImageUploadServerAsync(AppWidgetImageType imageType)
 		{
-			return TypeHelper.TryInvokeMethodAsync(GetGroupImageUploadServer);
+			return TypeHelper.TryInvokeMethodAsync(() => GetGroupImageUploadServer(imageType));
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> GetGroupImagesAsync()
+		public Task<Uri> GetGroupImagesAsync(int offset, int count, AppWidgetImageType imageType)
 		{
-			return TypeHelper.TryInvokeMethodAsync(GetGroupImages);
+			return TypeHelper.TryInvokeMethodAsync(() => GetGroupImages(offset, count, imageType));
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> GetImagesByIdAsync()
+		public Task<Uri> GetImagesByIdAsync(string images)
 		{
-			return TypeHelper.TryInvokeMethodAsync(GetImagesById);
+			return TypeHelper.TryInvokeMethodAsync(() => GetImagesById(images));
 		}
 
 		/// <inheritdoc/>
