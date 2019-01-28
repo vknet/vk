@@ -15,21 +15,21 @@ namespace VkNet.Utils
 	[UsedImplicitly]
 	public class RestClient : IRestClient
 	{
-		/// <summary>
-		/// The log
-		/// </summary>
+		private readonly HttpClient _httpClient;
+
 		private readonly ILogger<RestClient> _logger;
 
 		private TimeSpan _timeoutSeconds;
 
 		/// <inheritdoc />
-		public RestClient(ILogger<RestClient> logger, IWebProxy proxy)
+		public RestClient(HttpClient httpClient, ILogger<RestClient> logger)
 		{
+			_httpClient = httpClient;
 			_logger = logger;
-			Proxy = proxy;
 		}
 
 		/// <inheritdoc />
+		[Obsolete("Use HttpClientFactory to configure proxy.")]
 		public IWebProxy Proxy { get; set; }
 
 		/// <inheritdoc />
@@ -76,32 +76,18 @@ namespace VkNet.Utils
 
 		private async Task<HttpResponse<string>> CallAsync(Func<HttpClient, Task<HttpResponseMessage>> method)
 		{
-			var useProxyCondition = Proxy != null;
+			_httpClient.Timeout = Timeout;
 
-			if (useProxyCondition)
-			{
-				_logger?.LogDebug($"Use Proxy: {Proxy}");
-			}
+			var response = await method(_httpClient).ConfigureAwait(false);
 
-			var handler = new HttpClientHandler
-			{
-				Proxy = Proxy,
-				UseProxy = useProxyCondition
-			};
+			var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-			using (var client = new HttpClient(handler) { Timeout = Timeout })
-			{
-				var response = await method(client).ConfigureAwait(false);
+			_logger?.LogDebug($"Response:{Environment.NewLine}{Utilities.PrettyPrintJson(content)}");
+			var url = response.RequestMessage.RequestUri.ToString();
 
-				var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-				_logger?.LogDebug($"Response:{Environment.NewLine}{Utilities.PrettyPrintJson(content)}");
-				var url = response.RequestMessage.RequestUri.ToString();
-
-				return response.IsSuccessStatusCode
-					? HttpResponse<string>.Success(response.StatusCode, content, url)
-					: HttpResponse<string>.Fail(response.StatusCode, content, url);
-			}
+			return response.IsSuccessStatusCode
+				? HttpResponse<string>.Success(response.StatusCode, content, url)
+				: HttpResponse<string>.Fail(response.StatusCode, content, url);
 		}
 	}
 }
