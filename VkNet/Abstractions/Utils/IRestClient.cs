@@ -9,7 +9,7 @@ namespace VkNet.Abstractions.Utils
 	/// <summary>
 	/// Rest Client
 	/// </summary>
-	public interface IRestClient
+	public interface IRestClient : IDisposable
 	{
 		/// <summary>
 		/// Proxy

@@ -424,12 +424,12 @@ namespace VkNet
 		/// </summary>
 		/// <param name="disposing">
 		/// <c> true </c> to release both managed and unmanaged resources; <c> false </c>
-		/// to release only
-		/// unmanaged resources.
+		/// to release only unmanaged resources.
 		/// </param>
 		protected virtual void Dispose(bool disposing)
 		{
 			_expireTimer?.Dispose();
+			RestClient?.Dispose();
 		}
 
 	#region Requests limit stuff
