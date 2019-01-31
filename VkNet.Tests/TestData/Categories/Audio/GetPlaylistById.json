@@ -1,0 +1,32 @@
+{
+  "response": {
+    "id": 84820009,
+    "owner_id": -77288583,
+    "type": 0,
+    "title": "I Want To Die In New Orleans",
+    "description": "Release date: September 7th\n\nProduced by Budd Dwyer",
+    "genres": [],
+    "count": 14,
+    "is_following": true,
+    "followers": 31150,
+    "plays": 1257179,
+    "create_time": 1533045911,
+    "update_time": 1539260974,
+    "followed": {
+      "owner_id": 465742902,
+      "playlist_id": 3
+    },
+    "photo": {
+      "photo_34": "https://sun9-20.userapi.com/c824202/v824202191/197971/SNS1dHHktzk.jpg",
+      "photo_68": "https://sun9-10.userapi.com/c824202/v824202191/19796f/L8L4QYxL29Y.jpg",
+      "photo_135": "https://sun9-27.userapi.com/c824202/v824202191/19796d/bOtde0on3dY.jpg",
+      "photo_270": "https://sun9-27.userapi.com/c824202/v824202191/19796a/ZhB3NxrMDgs.jpg",
+      "photo_300": "https://sun9-31.userapi.com/c824202/v824202191/197968/2UzQs79-vh4.jpg",
+      "photo_600": "https://sun9-28.userapi.com/c824202/v824202191/197965/E7dQlSjyO6U.jpg",
+      "width": 300,
+      "height": 300
+    },
+    "access_key": "69629b05e05ac96584",
+    "album_type": "playlist"
+  }
+}
