@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -89,6 +90,30 @@ namespace VkNet.Model.Attachments
 		[JsonProperty("content_restricted")]
 		public int? ContentRestricted { get; set; }
 
+		/// <summary>
+		/// Список исполнителей.
+		/// </summary>
+		[JsonProperty("main_artists")]
+		public IEnumerable<AudioArtist> MainArtists { get; set; }
+
+		/// <summary>
+		/// Список исполнителей.
+		/// </summary>
+		[JsonProperty("featured_artists")]
+		public IEnumerable<AudioArtist> FeaturedArtists { get; set; }
+
+		/// <summary>
+		/// Подзаголовок(?)  композиции.
+		/// </summary>
+		[JsonProperty("subtitle")]
+		public string Subtitle { get; set; }
+
+		/// <summary>
+		/// Неизвестно (получено экспериментально).
+		/// </summary>
+		[JsonProperty("track_code")]
+		public string TrackCode { get; set; }
+
 	#region Методы
 
 		/// <summary>
@@ -114,7 +139,10 @@ namespace VkNet.Model.Attachments
 				TrackGenre = response["track_genre_id"],
 				ContentRestricted = response["content_restricted"],
 				Genre = response["genre_id"] ?? response["genre"],
-				Date = response["date"]
+				Date = response["date"],
+				MainArtists = response["main_artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
+				FeaturedArtists = response["featured_artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
+				Subtitle = response["subtitle"]
 			};
 		}
 
