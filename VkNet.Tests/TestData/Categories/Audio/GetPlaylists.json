@@ -1,38 +1,53 @@
 {
-	"response": {
-		"count": 3,
-		"items": [
-			{
-				"id": 4,
-				"owner_id": 178925712,
-				"type": 0,
-				"title": "qw",
-				"description": "",
-				"genres": [],
-				"count": 1,
-				"is_following": false,
-				"followers": 0,
-				"plays": 0,
-				"create_time": 1533707035,
-				"update_time": 1533707056,
-				"thumbs": [
-					{
-						"photo_34": "https://sun1-15.userapi.com/c841425/v841425912/8a05f/r3IHi42bs0s.jpg",
-						"photo_68": "https://sun1-8.userapi.com/c841425/v841425912/8a05d/FKE7Z-aYqNQ.jpg",
-						"photo_135": "https://sun1-6.userapi.com/c841425/v841425912/8a05b/hXyTouQ2tYQ.jpg",
-						"photo_270": "https://sun1-9.userapi.com/c841425/v841425912/8a058/EIEJjUtFKfY.jpg",
-						"photo_300": "https://sun1-16.userapi.com/c841425/v841425912/8a056/9jfeRirgwjw.jpg",
-						"photo_600": "https://sun1-10.userapi.com/c841425/v841425912/8a053/EX4QuCRB0Ao.jpg",
-						"width": 300,
-						"height": 300
-					}
-				],
-				"access_key": "40c45974d239fd1322",
-				"display_owner_ids": [
-					178925712
-				],
-				"artists": []
-			}
-		]
-	}
+  "response": {
+    "count": 3,
+    "items": [
+      {
+        "id": 4,
+        "owner_id": 123456789,
+        "type": 1,
+        "title": "One More Light",
+        "description": "",
+        "genres": [
+          {
+            "id": 21,
+            "name": "Альтернатива"
+          }
+        ],
+        "count": 10,
+        "is_following": false,
+        "followers": 62375,
+        "plays": 7095981,
+        "create_time": 1495111811,
+        "update_time": 1531742555,
+        "year": 2017,
+        "original": {
+          "owner_id": -2000984503,
+          "playlist_id": 984503,
+          "access_key": "c468f3a862b6f73b55"
+        },
+        "photo": {
+          "photo_34": "https://sun9-25.userapi.com/c851428/v851428089/488c4/xEW6IDV9VFM.jpg",
+          "photo_68": "https://sun9-26.userapi.com/c851428/v851428089/488c2/qBQ6WEY1I1o.jpg",
+          "photo_135": "https://sun9-25.userapi.com/c851428/v851428089/488c0/fatwSiRhrS0.jpg",
+          "photo_270": "https://sun9-19.userapi.com/c851428/v851428089/488bd/gBQ7W-CpoG0.jpg",
+          "photo_300": "https://sun9-27.userapi.com/c851428/v851428089/488bb/pzcRHuaDfeU.jpg",
+          "photo_600": "https://sun9-20.userapi.com/c851428/v851428089/488b8/3qUKiNkPYHc.jpg",
+          "width": 300,
+          "height": 300
+        },
+        "access_key": "dbcd68891f6306ebd2",
+        "is_explicit": false,
+        "main_artists": [
+          {
+            "name": "Linkin Park",
+            "id": "67550258036106963",
+            "domain": "67550258036106963"
+          }
+        ],
+        "album_type": "main_only"
+      }
+    ],
+    "next_from": "PUkGEFNHDhJkUVgL"
+  }
 }
