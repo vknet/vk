@@ -1,36 +1,62 @@
 {
-	"response": {
-		"count": 100,
-		"items": [
-			{
-				"id": 456239289,
-				"owner_id": 123456789,
-				"artist": "Nothing,Nowhere.",
-				"title": "Hopes Up feat. Dashboard Confessional",
-				"duration": 253,
-				"date": 1533756259,
-				"url": "https://cs1-72v4.vkuseraudio.net/p24/4e7a63b5903e4c.mp3?extra=BNVert6gKlLJr2HRgwJWBrf2-C8kF7MLprt7ZNFdMbqZnPG4WOi_y8fz86vuwX32unDoZN7CBdVsFJaQK7PXqJOOqjJ3MNroWROMpCD_hQL-QXSK2lWY6ob4hnthlmSQ8NsUqrdL2gfn8mc",
-				"album": {
-					"id": 1916788,
-					"owner_id": -2000916788,
-					"title": "Reaper",
-					"access_key": "05504b9eb5c711e87c",
-					"thumb": {
-						"photo_34": "https://sun1-11.userapi.com/c841135/v841135318/2ba8c/RZwS63TqTLY.jpg",
-						"photo_68": "https://sun1-12.userapi.com/c841135/v841135318/2ba8a/e--OfCnR0uU.jpg",
-						"photo_135": "https://sun1-17.userapi.com/c841135/v841135318/2ba88/sLsi_YoR5r0.jpg",
-						"photo_270": "https://sun1-3.userapi.com/c841135/v841135318/2ba85/j_xH14RP6wE.jpg",
-						"photo_300": "https://sun1-17.userapi.com/c841135/v841135318/2ba83/IEmRKd82oaY.jpg",
-						"photo_600": "https://sun1-10.userapi.com/c841135/v841135318/2ba82/ztIVWFpndh4.jpg",
-						"width": 300,
-						"height": 300
-					}
-				},
-				"is_licensed": true,
-				"is_hq": true,
-				"track_genre_id": 11,
-				"access_key": "44551e096b29dada1a"
-			}
-		]
-	}
+  "response": {
+    "count": 128,
+    "items": [
+      {
+        "id": 456239507,
+        "owner_id": 123456789,
+        "artist": "Far East Movement feat. The Cataracs, DEV",
+        "title": "Like A G6",
+        "duration": 218,
+        "date": 1548882510,
+        "url": "https://cs9-18v4.vkuseraudio.net/p2/4cdb803893d42d.mp3?extra=T17owLwp6U0luuc6_dgBdR0P1h630-DuuMHJlCBB8f0QCP-kVFM0t9tAxnbN8NazqR7yS_rDkgpCKlB4e4TVQ-N5_4k_KJZeAup-m2ZS_7pXQBMyJsFzmjVjrb-nunAwh2xwd0DXS6sqJwG0O4ctTuw",
+        "album": {
+          "id": 127212,
+          "owner_id": -2000127212,
+          "title": "Dirty Bass (Deluxe)",
+          "access_key": "386772227c209ea4e6",
+          "thumb": {
+            "photo_34": "https://sun9-11.userapi.com/c844721/v844721260/15bd0c/iWX9LLltGBE.jpg",
+            "photo_68": "https://sun9-18.userapi.com/c844721/v844721260/15bd0a/4Gr_inyHb2E.jpg",
+            "photo_135": "https://sun9-27.userapi.com/c844721/v844721260/15bd08/XDHOAKqrBH0.jpg",
+            "photo_270": "https://sun9-25.userapi.com/c844721/v844721260/15bd05/cq0EpzWASgk.jpg",
+            "photo_300": "https://sun9-29.userapi.com/c844721/v844721260/15bd03/-1poR7Wdyrs.jpg",
+            "photo_600": "https://sun9-13.userapi.com/c844721/v844721260/15bd00/T-nxeYxRPtM.jpg",
+            "width": 300,
+            "height": 300
+          }
+        },
+        "is_licensed": true,
+        "is_hq": true,
+        "ads": {
+          "duration": 218,
+          "content_id": "465742902_456239507",
+          "puid22": 14,
+          "puid1": 554
+        },
+        "access_key": "d30d4ef6c88fa07fa6",
+        "track_code": "1e1d52b33IMUuTZfjtlO0zozjnb2",
+        "is_explicit": false,
+        "main_artists": [
+          {
+            "name": "Far East Movement",
+            "id": "1056957371142413086",
+            "domain": "1056957371142413086"
+          }
+        ],
+        "featured_artists": [
+          {
+            "name": "The Cataracs",
+            "id": "1198424269550241247",
+            "domain": "1198424269550241247"
+          },
+          {
+            "name": "DEV",
+            "id": "4569417655882482265",
+            "domain": "4569417655882482265"
+          }
+        ]
+      }
+    ]
+  }
 }

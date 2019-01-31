@@ -174,6 +174,23 @@ namespace VkNet.Abstractions
 		VkCollection<AudioPlaylist> GetPlaylists(long ownerId, uint? count = null, uint? offset = null);
 
 		/// <summary>
+		/// Возвращает <see cref="AudioPlaylist"/> пользователя или группы.
+		/// </summary>
+		/// <param name="ownerId">
+		/// Идентификатор пользователя или сообщества.
+		/// </param>
+		/// <param name="playlistId">
+		/// Идентификатор плейлиста.
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает <see cref="AudioPlaylist"/>.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте -неизвестно-.
+		/// </remarks>
+		AudioPlaylist GetPlaylistById(long ownerId, long playlistId);
+
+		/// <summary>
 		/// Возвращает список друзей и сообществ пользователя, которые транслируют музыку в
 		/// статус.
 		/// </summary>

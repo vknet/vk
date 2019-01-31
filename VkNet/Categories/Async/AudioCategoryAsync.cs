@@ -19,7 +19,8 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<AudioPlaylist> CreatePlaylistAsync(long ownerId, string title, string description = null, IEnumerable<string> audioIds = null)
+		public Task<AudioPlaylist> CreatePlaylistAsync(long ownerId, string title, string description = null,
+														IEnumerable<string> audioIds = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => CreatePlaylist(ownerId, title, description, audioIds));
 		}
@@ -43,7 +44,8 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> EditPlaylistAsync(long ownerId, int playlistId, string title, string description = null, IEnumerable<string> audioIds = null)
+		public Task<bool> EditPlaylistAsync(long ownerId, int playlistId, string title, string description = null,
+											IEnumerable<string> audioIds = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => EditPlaylist(ownerId, playlistId, title, description, audioIds));
 		}
@@ -58,6 +60,12 @@ namespace VkNet.Categories
 		public Task<VkCollection<AudioPlaylist>> GetPlaylistsAsync(long ownerId, uint? count = null, uint? offset = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetPlaylists(ownerId, count, offset));
+		}
+
+		/// <inheritdoc />
+		public Task<AudioPlaylist> GetPlaylistByIdAsync(long ownerId, long playlistId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetPlaylistById(ownerId, playlistId));
 		}
 
 		/// <inheritdoc />
@@ -85,13 +93,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<IEnumerable<Audio>> GetPopularAsync(bool onlyEng = false, AudioGenre? genre = null, uint? count = null, uint? offset = null)
+		public Task<IEnumerable<Audio>> GetPopularAsync(bool onlyEng = false, AudioGenre? genre = null, uint? count = null,
+														uint? offset = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetPopular(onlyEng, genre, count, offset));
 		}
 
 		/// <inheritdoc />
-		public Task<VkCollection<Audio>> GetRecommendationsAsync(string targetAudio = null, long? userId = null, uint? count = null, uint? offset = null, bool? shuffle = null)
+		public Task<VkCollection<Audio>> GetRecommendationsAsync(string targetAudio = null, long? userId = null, uint? count = null,
+																uint? offset = null, bool? shuffle = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetRecommendations(targetAudio, userId, count, offset, shuffle));
 		}

@@ -18,6 +18,12 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Тип плейлиста.
 		/// </summary>
+		[JsonProperty("album_type")]
+		public string AlbumType { get; set; }
+
+		/// <summary>
+		/// Тип плейлиста.
+		/// </summary>
 		[JsonProperty("type")]
 		public long Type { get; set; }
 
@@ -116,14 +122,28 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Главный исполнитель.
 		/// </summary>
+		[Obsolete("Use MainArtists property instead.")]
 		[JsonProperty("main_artist")]
 		public string MainArtist { get; set; }
 
 		/// <summary>
 		/// Список исполнителей.
 		/// </summary>
+		[Obsolete("Use MainArtists property instead.")]
 		[JsonProperty("artists")]
-		public IEnumerable<AudioPlaylistArtist> Artists { get; set; }
+		public IEnumerable<AudioArtist> Artists { get; set; }
+
+		/// <summary>
+		/// Список исполнителей.
+		/// </summary>
+		[JsonProperty("main_artists")]
+		public IEnumerable<AudioArtist> MainArtists { get; set; }
+
+		/// <summary>
+		/// Список исполнителей.
+		/// </summary>
+		[JsonProperty("featured_artists")]
+		public IEnumerable<AudioArtist> FeaturedArtists { get; set; }
 
 	#region Методы
 
@@ -155,7 +175,9 @@ namespace VkNet.Model.Attachments
 				Covers = response["thumbs"].ToReadOnlyCollectionOf<AudioCover>(x => x),
 				OwnerIds = response["display_owner_ids"].ToReadOnlyCollectionOf<long>(x => x),
 				MainArtist = response["main_artist"],
-				Artists = response["artists"].ToReadOnlyCollectionOf<AudioPlaylistArtist>(x => x),
+				Artists = response["artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
+				MainArtists = response["main_artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
+				FeaturedArtists = response["featured_artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
 				AccessKey = response["access_key"]
 			};
 
