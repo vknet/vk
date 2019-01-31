@@ -21,7 +21,13 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор альбома с аудиозаписями.
 		/// </summary>
+		[Obsolete("Use PlaylistId property instead.")]
 		public long? AlbumId { get; set; }
+
+		/// <summary>
+		/// Идентификатор плейлиста с аудиозаписями.
+		/// </summary>
+		public long? PlaylistId { get; set; }
 
 		/// <summary>
 		/// Идентификаторы аудиозаписей, информацию о которых необходимо вернуть.
@@ -51,6 +57,7 @@ namespace VkNet.Model.RequestParams
 			{
 				{ "owner_id", p.OwnerId },
 				{ "album_id", p.AlbumId },
+				{ "playlist_id", p.PlaylistId },
 				{ "audio_ids", p.AudioIds },
 				{ "offset", p.Offset },
 				{ "count", p.Count }
