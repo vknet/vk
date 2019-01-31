@@ -118,7 +118,18 @@ namespace VkNet.Categories
 			return _vk.Call<VkCollection<AudioPlaylist>>("audio.getPlaylists", parameters);
 		}
 
-        /// <inheritdoc />
+		public AudioPlaylist GetPlaylistById(long ownerId, long playlistId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "owner_id", ownerId },
+				{ "playlist_id", playlistId }
+			};
+
+			return _vk.Call<AudioPlaylist>("audio.getPlaylistById", parameters);
+		}
+
+		/// <inheritdoc />
         public IEnumerable<object> GetBroadcastList(AudioBroadcastFilter filter = null, bool? active = null)
 		{
 			var parameters = new VkParameters
