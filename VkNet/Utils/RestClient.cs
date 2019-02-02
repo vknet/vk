@@ -19,8 +19,6 @@ namespace VkNet.Utils
 
 		private readonly ILogger<RestClient> _logger;
 
-		private TimeSpan _timeoutSeconds;
-
 		/// <inheritdoc />
 		public RestClient(HttpClient httpClient, ILogger<RestClient> logger)
 		{
@@ -33,11 +31,8 @@ namespace VkNet.Utils
 		public IWebProxy Proxy { get; set; }
 
 		/// <inheritdoc />
-		public TimeSpan Timeout
-		{
-			get => _timeoutSeconds == TimeSpan.Zero ? TimeSpan.FromSeconds(300) : _timeoutSeconds;
-			set => _timeoutSeconds = value;
-		}
+		[Obsolete("Use HttpClientFactory to configure timeout.")]
+		public TimeSpan Timeout { get; set; }
 
 		/// <inheritdoc />
 		public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
@@ -76,8 +71,6 @@ namespace VkNet.Utils
 
 		private async Task<HttpResponse<string>> CallAsync(Func<HttpClient, Task<HttpResponseMessage>> method)
 		{
-			_httpClient.Timeout = Timeout;
-
 			var response = await method(_httpClient).ConfigureAwait(false);
 
 			var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
