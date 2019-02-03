@@ -127,7 +127,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long Send(MessagesSendParams @params)
 		{
-			if (_vk.VkApiVersion.IsGreaterThanOrEqual(5, 90) && @params.RandomId <= 0)
+			if (_vk.VkApiVersion.IsGreaterThanOrEqual(5, 90) && @params.RandomId == null)
 			{
 				throw new ArgumentException($"{nameof(@params.RandomId)} обязательное значение.");
 			}
