@@ -1,161 +1,115 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using VkNet.Exception;
-using VkNet.Infrastructure;
+using VkNet.Model;
 
 namespace VkNet.Utils
 {
 	/// <summary>
 	/// Информация об авторизации приложения на действия.
 	/// </summary>
-	public class VkAuthorization
+	[UsedImplicitly]
+	public class VkAuthorization : IVkAuthorization
 	{
-		/// <summary>
-		/// Список наименования полей.
-		/// </summary>
-		private readonly Dictionary<string, string> _nameValues;
+		private const string AccessToken = "access_token";
+
+		private const string State = "state";
+
+		private const string ExpiresIn = "expires_in";
+
+		private const string UserId = "user_id";
 
 		/// <summary>
-		/// Конструктор.
+		/// Получить результат авторизации
 		/// </summary>
-		/// <param name="uriFragment"> URL ответа. </param>
-		private VkAuthorization(string uriFragment)
+		/// <param name="url">URL в котором содержатся параметры о авторизации</param>
+		/// <returns>Результат авторизации <see cref="AuthorizationResult"/></returns>
+		/// <exception cref="ArgumentException">URL должен начинаться со строки 'https://oauth.vk.com/blank.html'</exception>
+		[NotNull]
+		[UsedImplicitly]
+		public AuthorizationResult GetAuthorizationResult(Uri url)
 		{
-			_nameValues = Decode(urlFragment: uriFragment);
-		}
-
-		/// <summary>
-		/// Возвращает признак была ли авторизация успешной.
-		/// </summary>
-		public bool IsAuthorized => _nameValues.ContainsKey(key: Constants.AccessToken);
-
-		/// <summary>
-		/// Проверяет требуется ли получения у авторизации на запрошенные приложением
-		/// действия (при установке приложения
-		/// пользователю).
-		/// </summary>
-		public bool IsAuthorizationRequired => _nameValues.ContainsKey(key: "__q_hash");
-
-		/// <summary>
-		/// Маркер доступа, который необходимо использовать для доступа к API ВКонтакте.
-		/// </summary>
-		public string AccessToken => GetFieldValue(fieldName: Constants.AccessToken);
-
-		/// <summary>
-		/// Время истечения срока действия маркера доступа.
-		/// </summary>
-		public int ExpiresIn => GetExpiresIn();
-
-		/// <summary>
-		/// Произвольная строка, которая будет возвращена вместе с результатом авторизации.
-		/// </summary>
-		public string State => GetFieldValue(fieldName: "state");
-
-		/// <summary>
-		/// Идентификатор пользователя, у которого работает приложение (от имени которого
-		/// был произведен вход).
-		/// </summary>
-		public long UserId => GetUserId();
-
-		/// <summary>
-		/// E-mail пользователя, у которого работает приложение (от имени которого был
-		/// произведен вход).
-		/// </summary>
-		public string Email => GetFieldValue(fieldName: "email");
-
-		/// <summary>
-		/// ID капчи, если она появилась
-		/// </summary>
-		public bool IsCaptchaNeeded => _nameValues.ContainsKey(key: "sid");
-
-		/// <summary>
-		/// ID капчи, если она появилась
-		/// </summary>
-		public long CaptchaSid => GetCaptchaSid();
-
-		/// <summary>
-		/// Извлекает из URL, на которую произошло перенаправление при авторизации,
-		/// информацию об авторизации.
-		/// </summary>
-		/// <param name="uriFragment">
-		/// URL, на которую произошло перенаправление при авторизации.
-		/// </param>
-		/// <returns> Информация об авторизации. </returns>
-		public static VkAuthorization From(string uriFragment)
-		{
-			return new VkAuthorization(uriFragment: uriFragment);
-		}
-
-		/// <summary>
-		/// Получить значение поля.
-		/// </summary>
-		/// <param name="fieldName"> Наименование поля. </param>
-		/// <returns> Значение поля. </returns>
-		private string GetFieldValue(string fieldName)
-		{
-			return _nameValues.ContainsKey(key: fieldName)
-				? _nameValues[key: fieldName]
-				: throw new KeyNotFoundException(message: fieldName);
-		}
-
-		/// <summary>
-		/// Расшифровывает указанный URL.
-		/// </summary>
-		/// <param name="urlFragment"> URL. </param>
-		/// <returns> Список наименования полей. </returns>
-		private static Dictionary<string, string> Decode(string urlFragment)
-		{
-			var uri = new Uri(uriString: urlFragment);
-
-			if (string.IsNullOrWhiteSpace(value: uri.Query) && string.IsNullOrWhiteSpace(value: uri.Fragment))
+			if (!url.OriginalString.StartsWith("https://oauth.vk.com/blank.html"))
 			{
-				return new Dictionary<string, string>();
+				throw new ArgumentException("URL должен начинаться со строки 'https://oauth.vk.com/blank.html'", nameof(url));
 			}
 
-			var query = string.IsNullOrWhiteSpace(value: uri.Query)
-				? uri.Fragment.Substring(startIndex: 1)
-				: uri.Query.Substring(startIndex: 1);
+			var token = GetToken(url);
+			var state = GetState(url);
+			var expireIn = GetExpiresIn(url);
+			var userId = GetUserId(url);
 
-			return query.Split(separator: new[] { '&' }, options: StringSplitOptions.RemoveEmptyEntries)
-				.Select(selector: s => s.Split('='))
-				.ToDictionary(keySelector: s => s[0], elementSelector: s => s[1]);
+			return new AuthorizationResult
+			{
+				UserId = userId,
+				ExpiresIn = expireIn,
+				AccessToken = token,
+				State = state
+			};
 		}
 
-		private int GetExpiresIn()
+		private static string GetToken(Uri url)
 		{
-			var expiresInValue = GetFieldValue(fieldName: "expires_in");
+			var parameters = GetFragmentParameters(url);
 
-			if (!int.TryParse(s: expiresInValue, result: out var expiresIn))
+			if (!parameters.TryGetValue(AccessToken, out var token))
 			{
-				throw new VkApiException(message: "ExpiresIn is not integer value.");
+				throw new VkApiException($"Параметр {AccessToken} не найден");
 			}
 
-			return expiresIn;
+			return token;
 		}
 
-		private long GetUserId()
+		private static string GetState(Uri url)
 		{
-			var userIdFieldValue = GetFieldValue(fieldName: "user_id");
+			var parameters = GetFragmentParameters(url);
 
-			if (!long.TryParse(s: userIdFieldValue, result: out var userId))
+			if (!parameters.TryGetValue(State, out var state))
 			{
-				throw new VkApiException(message: "UserId is not long value.");
+				throw new VkApiException($"Параметр {State} не найден");
 			}
 
-			return userId;
+			return state;
 		}
 
-		private long GetCaptchaSid()
+		private static int GetExpiresIn(Uri url)
 		{
-			var userIdFieldValue = GetFieldValue(fieldName: "sid");
+			var parameters = GetFragmentParameters(url);
 
-			if (!long.TryParse(s: userIdFieldValue, result: out var userId))
+			if (!parameters.TryGetValue(ExpiresIn, out var expiresIn))
 			{
-				throw new VkApiException(message: "sid is not long value.");
+				throw new VkApiException($"Параметр {ExpiresIn} не найден");
 			}
 
-			return userId;
+			return int.Parse(expiresIn);
+		}
+
+		private static long GetUserId(Uri url)
+		{
+			var parameters = GetFragmentParameters(url);
+
+			if (!parameters.TryGetValue(UserId, out var userId))
+			{
+				throw new VkApiException($"Параметр {UserId} не найден");
+			}
+
+			return long.Parse(userId);
+		}
+
+		private static Dictionary<string, string> GetFragmentParameters(Uri url)
+		{
+			var cleanFragment = url.Fragment.Replace("#", string.Empty);
+
+			return GetParams(cleanFragment);
+		}
+
+		private static Dictionary<string, string> GetParams(string query)
+		{
+			return query.Split(new[] { "&" }, StringSplitOptions.RemoveEmptyEntries)
+				.ToDictionary(x => x.Split(new[] { "=" }, StringSplitOptions.RemoveEmptyEntries)[0],
+					x => x.Split(new[] { "=" }, StringSplitOptions.RemoveEmptyEntries)[1]);
 		}
 	}
 }

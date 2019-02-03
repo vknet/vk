@@ -183,13 +183,13 @@ namespace VkNet.Utils
 		/// <param name="webProxy"> Настройки прокси </param>
 		/// <returns> </returns>
 		/// <exception cref="CaptchaNeededException"> </exception>
-		private VkAuthorization EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
+		private VkAuthorization2 EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
 		{
 			if (IsAuthSuccessfull(webCallResult: result))
 			{
 				var auth = GetTokenUri(webCallResult: result);
 
-				return VkAuthorization.From(uriFragment: auth.ToString());
+				return VkAuthorization2.From(uriFragment: auth.ToString());
 			}
 
 			if (HasСonfirmationRights(result: result))
@@ -205,7 +205,7 @@ namespace VkNet.Utils
 
 				var tokenUri = GetTokenUri(webCallResult: authorizationFormPostResult);
 
-				return VkAuthorization.From(uriFragment: tokenUri.ToString());
+				return VkAuthorization2.From(uriFragment: tokenUri.ToString());
 			}
 
 			var captchaSid = HasCaptchaInput(result: result);
@@ -222,16 +222,16 @@ namespace VkNet.Utils
 
 		private bool HasСonfirmationRights(WebCallResult result)
 		{
-			var request = VkAuthorization.From(uriFragment: result.RequestUrl.ToString());
-			var response = VkAuthorization.From(uriFragment: result.ResponseUrl.ToString());
+			var request = VkAuthorization2.From(uriFragment: result.RequestUrl.ToString());
+			var response = VkAuthorization2.From(uriFragment: result.ResponseUrl.ToString());
 
 			return request.IsAuthorizationRequired || response.IsAuthorizationRequired;
 		}
 
 		private long? HasCaptchaInput(WebCallResult result)
 		{
-			var request = VkAuthorization.From(uriFragment: result.RequestUrl.ToString());
-			var response = VkAuthorization.From(uriFragment: result.ResponseUrl.ToString());
+			var request = VkAuthorization2.From(uriFragment: result.RequestUrl.ToString());
+			var response = VkAuthorization2.From(uriFragment: result.ResponseUrl.ToString());
 
 			if (request.IsCaptchaNeeded)
 			{
@@ -306,7 +306,7 @@ namespace VkNet.Utils
 			return null;
 		}
 
-		private VkAuthorization Authorize(IApiAuthParams authParams)
+		private VkAuthorization2 Authorize(IApiAuthParams authParams)
 		{
 			_logger?.LogDebug(message: "Шаг 1. Открытие диалога авторизации");
 			var authorizeUrlResult = OpenAuthDialog(appId: authParams.ApplicationId, settings: authParams.Settings);
@@ -354,7 +354,7 @@ namespace VkNet.Utils
 			return EndAuthorize(result: captcha, webProxy: Proxy);
 		}
 
-		private VkAuthorization OldValidate(string validateUrl, string phoneNumber)
+		private VkAuthorization2 OldValidate(string validateUrl, string phoneNumber)
 		{
 			if (string.IsNullOrWhiteSpace(value: validateUrl))
 			{

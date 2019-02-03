@@ -35,7 +35,7 @@ namespace VkNet.Utils
 		/// <param name="authParams"> Параметры авторизации </param>
 		/// <returns> Информация об авторизации приложения </returns>
 		[UsedImplicitly]
-		public async Task<VkAuthorization> AuthorizeAsync(IApiAuthParams authParams)
+		public async Task<VkAuthorization2> AuthorizeAsync(IApiAuthParams authParams)
 		{
 			_logger?.LogDebug(message: "Шаг 1. Открытие диалога авторизации");
 
@@ -149,7 +149,7 @@ namespace VkNet.Utils
 		/// странице валидации
 		/// </param>
 		/// <returns> Информация об авторизации приложения. </returns>
-		public Task<VkAuthorization> ValidateAsync(string validateUrl, string phoneNumber)
+		public Task<VkAuthorization2> ValidateAsync(string validateUrl, string phoneNumber)
 		{
 			if (string.IsNullOrWhiteSpace(value: validateUrl))
 			{
@@ -166,7 +166,7 @@ namespace VkNet.Utils
 			return task;
 		}
 
-		private async Task<VkAuthorization> ValidateInternalAsync(string validateUrl, string phoneNumber)
+		private async Task<VkAuthorization2> ValidateInternalAsync(string validateUrl, string phoneNumber)
 		{
 			var validateUrlResult = await WebCall.MakeCallAsync(url: validateUrl, webProxy: Proxy).ConfigureAwait(false);
 
@@ -186,13 +186,13 @@ namespace VkNet.Utils
 		/// <param name="webProxy"> Настройки прокси </param>
 		/// <returns> </returns>
 		/// <exception cref="CaptchaNeededException"> </exception>
-		private async Task<VkAuthorization> EndAuthorizeAsync(WebCallResult result, IWebProxy webProxy = null)
+		private async Task<VkAuthorization2> EndAuthorizeAsync(WebCallResult result, IWebProxy webProxy = null)
 		{
 			if (IsAuthSuccessfull(webCallResult: result))
 			{
 				var auth = GetTokenUri(webCallResult: result);
 
-				return VkAuthorization.From(uriFragment: auth.ToString());
+				return VkAuthorization2.From(uriFragment: auth.ToString());
 			}
 
 			if (HasСonfirmationRights(result: result))
@@ -210,7 +210,7 @@ namespace VkNet.Utils
 
 				var tokenUri = GetTokenUri(webCallResult: authorizationFormPostResult);
 
-				return VkAuthorization.From(uriFragment: tokenUri.ToString());
+				return VkAuthorization2.From(uriFragment: tokenUri.ToString());
 			}
 
 			var captchaSid = HasCaptchaInput(result: result);
