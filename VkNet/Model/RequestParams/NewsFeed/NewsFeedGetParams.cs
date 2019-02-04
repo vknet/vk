@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.Filters;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
@@ -67,7 +68,7 @@ namespace VkNet.Model.RequestParams
 		/// групп пользователя, за исключением
 		/// скрытых источников, которые можно получить методом newsfeed.getBanned.  строка.
 		/// </summary>
-		public string SourceIds { get; set; }
+		public IEnumerable<string> SourceIds { get; set; }
 
 		/// <summary>
 		/// Идентификатор, необходимый для получения следующей страницы результатов.
@@ -85,7 +86,7 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Список дополнительных полей профилей и сообществ, которые необходимо вернуть.
 		/// </summary>
-		public string Fields { get; set; }
+		public IEnumerable<string> Fields { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.

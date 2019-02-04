@@ -1,9 +1,9 @@
-﻿namespace VkNet.Enums.SafetyEnums
+﻿namespace VkNet.Enums.Filters
 {
 	/// <summary>
 	/// Названия списков новостей, которые необходимо получить.
 	/// </summary>
-	public sealed class NewsTypes : SafetyEnum<NewsTypes>
+	public sealed class NewsTypes : MultivaluedFilter<NewsTypes>
 	{
 		/// <summary>
 		/// Новые записи со стен.
