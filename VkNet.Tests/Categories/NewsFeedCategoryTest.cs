@@ -22,7 +22,7 @@ namespace VkNet.Tests.Categories
 
 			var result = Api.NewsFeed.Get(new NewsFeedGetParams
 			{
-				SourceIds = "1234"
+				SourceIds = new []{"1234"}
 			});
 
 			Assert.IsNotEmpty(result.Items);
