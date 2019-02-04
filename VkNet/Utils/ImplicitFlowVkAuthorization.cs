@@ -31,7 +31,7 @@ namespace VkNet.Utils
 
 			if (pageType != ImplicitFlowPageType.Result)
 			{
-				throw new ArgumentException("URL должен начинаться со строки 'https://oauth.vk.com/blank.html'", nameof(url));
+				throw new VkAuthorizationException("URL должен содержать токен доступа.");
 			}
 
 			var parameters = GetFragmentParameters(url);

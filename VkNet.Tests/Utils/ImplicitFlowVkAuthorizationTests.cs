@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using VkNet.Enums;
+using VkNet.Exception;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Utils
@@ -25,13 +26,13 @@ namespace VkNet.Tests.Utils
 		}
 
 		[Test]
-		public void GetAuthorizationResult_ArgumentException()
+		public void GetAuthorizationResult_VkAuthorizationException()
 		{
 			var url = new Uri("https://m.vk.com/login?act=authcheck&m=442");
 
 			var auth = new ImplicitFlowVkAuthorization();
 
-			Assert.Throws<ArgumentException>(() => auth.GetAuthorizationResult(url));
+			Assert.Throws<VkAuthorizationException>(() => auth.GetAuthorizationResult(url));
 		}
 
 		[Test]
@@ -118,7 +119,8 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void GetPageType_Consent()
 		{
-			var url = new Uri("https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140426399&v=&state=&display=wap&__q_hash=30b8b543bbe64e35a9f740ca24f57f12");
+			var url = new Uri(
+				"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140426399&v=&state=&display=wap&__q_hash=30b8b543bbe64e35a9f740ca24f57f12");
 
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
@@ -129,7 +131,8 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void GetPageType_Error()
 		{
-			var url = new Uri("https://oauth.vk.com/blank.html#error=access_denied&error_reason=user_denied&error_description=User%20denied%20your%20request");
+			var url = new Uri(
+				"https://oauth.vk.com/blank.html#error=access_denied&error_reason=user_denied&error_description=User%20denied%20your%20request");
 
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
