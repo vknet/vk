@@ -34,7 +34,7 @@ namespace VkNet.Tests
 			ReadJsonFile(nameof(VkApi), nameof(Call_NotMoreThen3CallsPerSecond));
 
 			Api.RequestsPerSecond = 3; // Переопределение значения в базовом классе
-			SetupIRestClient(Mock.Get(Api.RestClient));
+			// SetupIRestClient(Mock.Get(Api.RestClient));
 
 			var start = DateTimeOffset.Now;
 

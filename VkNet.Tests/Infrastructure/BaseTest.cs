@@ -6,8 +6,11 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
+using Moq.AutoMock;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using VkNet.Abstractions.Authorization;
+using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -51,44 +54,63 @@ namespace VkNet.Tests
 		[SetUp]
 		public void Init()
 		{
-			var browser = new Mock<IBrowser>();
+			var mocker = new AutoMocker();
 
-			browser.Setup(o => o.Authorize())
-				.Returns(new AuthorizationResult
-				{
-					AccessToken = "token",
-					ExpiresIn = 1000,
-					UserId = 1,
-					State = "123456"
-				});
-
-			browser.Setup(m => m.Validate(It.IsAny<string>(), It.IsAny<string>()))
-				.Returns(new AuthorizationResult
-				{
-					AccessToken = "token",
-					ExpiresIn = 1000,
-					UserId = 1,
-					State = "123456"
-				});
-
-			browser.Setup(m => m.Validate(It.IsAny<string>()))
-				.Returns(new AuthorizationResult
-				{
-					AccessToken = "token",
-					ExpiresIn = 1000,
-					UserId = 1,
-					State = "123456"
-				});
-
-			var restClient = new Mock<IRestClient>();
-
-			SetupIRestClient(restClient);
-
-			Api = new VkApi
+			mocker.Use<IApiAuthParams>(new ApiAuthParams
 			{
-				Browser = browser.Object,
-				RestClient = restClient.Object
-			};
+				ApplicationId = 1,
+				Login = "login",
+				Password = "pass",
+				Settings = Settings.All,
+				Phone = "89510000000"
+			});
+
+			mocker.Setup<IAuthorizationFlow, AuthorizationResult>(o => o.Authorize())
+				.Returns(new AuthorizationResult
+				{
+					AccessToken = "token",
+					ExpiresIn = 1000,
+					UserId = 1,
+					State = "123456"
+				});
+
+			mocker.Setup<INeedValidationHandler, AuthorizationResult>(m => m.Validate(It.IsAny<string>(), It.IsAny<string>()))
+				.Returns(new AuthorizationResult
+				{
+					AccessToken = "token",
+					ExpiresIn = 1000,
+					UserId = 1,
+					State = "123456"
+				});
+
+			mocker.Setup<INeedValidationHandler, AuthorizationResult>(m => m.Validate(It.IsAny<string>()))
+				.Returns(new AuthorizationResult
+				{
+					AccessToken = "token",
+					ExpiresIn = 1000,
+					UserId = 1,
+					State = "123456"
+				});
+
+			mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x =>
+					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
+						It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+				.Callback(Callback)
+				.Returns(() =>
+				{
+					if (string.IsNullOrWhiteSpace(Json))
+					{
+						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
+					}
+
+					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url));
+				});
+
+			mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
+					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+				.Throws<ArgumentException>();
+
+			Api = mocker.CreateInstance<VkApi>();
 
 			Api.Authorize(new ApiAuthParams
 			{
@@ -164,27 +186,6 @@ namespace VkNet.Tests
 			{
 				Api?.Dispose();
 			}
-		}
-
-		protected void SetupIRestClient(Mock<IRestClient> restClient)
-		{
-			restClient.Setup(x =>
-					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
-						It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-				.Callback(Callback)
-				.Returns(() =>
-				{
-					if (string.IsNullOrWhiteSpace(Json))
-					{
-						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
-					}
-
-					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url));
-				});
-
-			restClient.Setup(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
-					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-				.Throws<ArgumentException>();
 		}
 	}
 }

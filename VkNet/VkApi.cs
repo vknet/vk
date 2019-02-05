@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -82,6 +83,54 @@ namespace VkNet
 		public IRestClient RestClient;
 	#pragma warning restore S1104 // Fields should not have public accessibility
 
+		/// <summary>
+		/// Токен для доступа к методам API
+		/// </summary>
+		private string AccessToken { get; set; }
+
+		/// <inheritdoc />
+		public IVkApiVersionManager VkApiVersion { get; set; }
+
+		/// <inheritdoc />
+		public event VkApiDelegate OnTokenExpires;
+
+		/// <inheritdoc />
+		[Obsolete("Нужно использовать AuthorizationFlow", false)]
+		public IBrowser Browser { get; set; }
+
+		/// <inheritdoc />
+		public IAuthorizationFlow AuthorizationFlow { get; set; }
+
+		/// <inheritdoc />
+		public INeedValidationHandler NeedValidationHandler { get; set; }
+
+		/// <inheritdoc />
+		public bool IsAuthorized => !string.IsNullOrWhiteSpace(AccessToken);
+
+		/// <inheritdoc />
+		public string Token => AccessToken;
+
+		/// <inheritdoc />
+		public long? UserId { get; set; }
+
+		/// <inheritdoc />
+		public int MaxCaptchaRecognitionCount { get; set; }
+
+		/// <inheritdoc />
+		public ICaptchaSolver CaptchaSolver { get; set; }
+
+		/// <inheritdoc />
+		public void SetLanguage(Language language)
+		{
+			_language.SetLanguage(language);
+		}
+
+		/// <inheritdoc />
+		public Language? GetLanguage()
+		{
+			return _language.GetLanguage();
+		}
+
 		/// <inheritdoc />
 		public VkApi(ILogger<VkApi> logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
 		{
@@ -121,50 +170,6 @@ namespace VkNet
 			Initialization(serviceProvider);
 		}
 
-		/// <summary>
-		/// Токен для доступа к методам API
-		/// </summary>
-		private string AccessToken { get; set; }
-
-		/// <inheritdoc />
-		public IVkApiVersionManager VkApiVersion { get; set; }
-
-		/// <inheritdoc />
-		public event VkApiDelegate OnTokenExpires;
-
-		/// <inheritdoc />
-		public IBrowser Browser { get; set; }
-
-		/// <inheritdoc />
-		public IAuthorizationFlow AuthorizationFlow { get; set; }
-
-		/// <inheritdoc />
-		public bool IsAuthorized => !string.IsNullOrWhiteSpace(AccessToken);
-
-		/// <inheritdoc />
-		public string Token => AccessToken;
-
-		/// <inheritdoc />
-		public long? UserId { get; set; }
-
-		/// <inheritdoc />
-		public int MaxCaptchaRecognitionCount { get; set; }
-
-		/// <inheritdoc />
-		public ICaptchaSolver CaptchaSolver { get; set; }
-
-		/// <inheritdoc />
-		public void SetLanguage(Language language)
-		{
-			_language.SetLanguage(language);
-		}
-
-		/// <inheritdoc />
-		public Language? GetLanguage()
-		{
-			return _language.GetLanguage();
-		}
-
 		/// <inheritdoc />
 		public void Authorize(IApiAuthParams @params)
 		{
@@ -173,12 +178,12 @@ namespace VkNet
 			{
 				_logger?.LogDebug("Настройка прокси");
 
-				Browser.Proxy = WebProxy.GetProxy(@params.Host,
+				/*Browser.Proxy = WebProxy.GetProxy(@params.Host,
 					@params.Port,
 					@params.ProxyLogin,
-					@params.ProxyPassword);
+					@params.ProxyPassword);*/
 
-				RestClient.Proxy = Browser.Proxy;
+				// RestClient.Proxy = Browser.Proxy;
 			}
 
 			// если токен не задан - обычная авторизация
@@ -368,7 +373,7 @@ namespace VkNet
 
 			var answer = InvokeBase(server, parameters);
 
-			_logger?.LogTrace($"Uri = \"{server}\"");
+			_logger?.LogTrace($"Uri = '{server}'");
 			_logger?.LogTrace($"Json ={Environment.NewLine}{Utilities.PrettyPrintJson(answer)}");
 
 			VkErrors.IfErrorThrowException(answer);
@@ -396,8 +401,7 @@ namespace VkNet
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
-			Browser.SetAuthParams(_ap);
-			var authorization = Browser.Validate(validateUrl);
+			var authorization = NeedValidationHandler.Validate(validateUrl);
 
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
@@ -795,8 +799,9 @@ namespace VkNet
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
-			Browser.SetAuthParams(authParams);
-			var authorization = Browser.Authorize();
+
+			// Browser.SetAuthParams(authParams);
+			var authorization = AuthorizationFlow.Authorize();
 
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
@@ -817,6 +822,7 @@ namespace VkNet
 			_rateLimiter = serviceProvider.GetRequiredService<IRateLimiter>();
 
 			Browser = serviceProvider.GetRequiredService<IBrowser>();
+			NeedValidationHandler = serviceProvider.GetRequiredService<INeedValidationHandler>();
 			AuthorizationFlow = serviceProvider.GetRequiredService<IAuthorizationFlow>();
 			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
 			RestClient = serviceProvider.GetRequiredService<IRestClient>();
