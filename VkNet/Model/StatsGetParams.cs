@@ -34,7 +34,7 @@ namespace VkNet.Model
 		/// </remarks>
 		[JsonProperty("timestamp_from")]
 		[JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime TimestampFrom { get; set; }
+		public DateTime? TimestampFrom { get; set; }
 
 		/// <summary>
 		/// Окончание периода статистики в Unixtime.
@@ -44,7 +44,7 @@ namespace VkNet.Model
 		/// </remarks>
 		[JsonProperty("timestamp_to")]
 		[JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime TimestampTo { get; set; }
+		public DateTime? TimestampTo { get; set; }
 
 		/// <summary>
 		/// Временные интервалы.
