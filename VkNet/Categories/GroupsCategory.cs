@@ -472,6 +472,12 @@ namespace VkNet.Categories
 			return _vk.Call<bool>("groups.disableOnline", new VkParameters { { "group_id", groupId } });
 		}
 
+		/// <inheritdoc/>
+		public bool EnableOnline(ulong groupId)
+		{
+			return _vk.Call<bool>("groups.enableOnline", new VkParameters { { "group_id", groupId } });
+		}
+
 		/// <inheritdoc />
 		public BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params)
 		{
