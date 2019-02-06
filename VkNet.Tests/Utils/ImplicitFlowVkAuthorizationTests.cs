@@ -39,7 +39,7 @@ namespace VkNet.Tests.Utils
 		public void GetPageType_LoginPassword()
 		{
 			var url = new Uri(
-				"http://oauth.vk.com/oauth/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=2&v=&state=&display=wap&m=4&email=mail");
+				"http://oauth.vk.com/oauth/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140488159&v=&state=&display=wap&m=4&email=mail");
 
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
@@ -51,7 +51,7 @@ namespace VkNet.Tests.Utils
 		public void GetPageType_LoginPassword_AfterIncorrectEnter()
 		{
 			var url = new Uri(
-				"https://oauth.vk.com/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=2&v=&state=&display=wap&m=4&email=mail");
+				"https://oauth.vk.com/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140488159&v=&state=&display=wap&m=4&email=mail");
 
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
@@ -63,7 +63,7 @@ namespace VkNet.Tests.Utils
 		public void GetPageType_Captcha()
 		{
 			var url = new Uri(
-				"https://oauth.vk.com/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=2&v=&state=&display=wap&sid=462572155651&dif=1&email=inyutin_maxim%40mail.ru");
+				"https://oauth.vk.com/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140488159&v=&state=&display=wap&sid=462572155651&dif=1&email=inyutin_maxim%40mail.ru");
 
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
@@ -75,7 +75,7 @@ namespace VkNet.Tests.Utils
 		public void GetPageType_Captcha_AfterIncorrectEnter()
 		{
 			var url = new Uri(
-				"https://oauth.vk.com/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=2&v=&state=&display=wap&sid=856703151954&dif=1&email=inyutin_maxim%40mail.ru&m=5");
+				"https://oauth.vk.com/authorize?client_id=1&redirect_uri=http%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140488159&v=&state=&display=wap&sid=856703151954&dif=1&email=inyutin_maxim%40mail.ru&m=5");
 
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
