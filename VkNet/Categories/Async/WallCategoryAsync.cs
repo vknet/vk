@@ -157,5 +157,17 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>PostAdsStealth(@params: @params));
 		}
+
+		/// <inheritdoc />
+		public Task<bool> OpenCommentsAsync(long ownerId, long postId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => OpenComments(ownerId, postId));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> CloseCommentsAsync(long ownerId, long postId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => CloseComments(ownerId, postId));
+		}
 	}
 }

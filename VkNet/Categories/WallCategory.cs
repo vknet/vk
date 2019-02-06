@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VkNet.Abstractions;
@@ -257,6 +257,28 @@ namespace VkNet.Categories
 		public long PostAdsStealth(PostAdsStealthParams @params)
 		{
 			return _vk.Call(methodName: "wall.postAdsStealth", parameters: @params);
+		}
+
+		/// <inheritdoc />
+		public bool OpenComments(long ownerId, long postId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "owner_id", ownerId }, { "post_id", postId }
+			};
+
+			return _vk.Call(methodName: "wall.openComments", parameters: parameters);
+		}
+
+		/// <inheritdoc />
+		public bool CloseComments(long ownerId, long postId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "owner_id", ownerId }, { "post_id", postId }
+			};
+
+			return _vk.Call(methodName: "wall.closeComments", parameters: parameters);
 		}
 	}
 }
