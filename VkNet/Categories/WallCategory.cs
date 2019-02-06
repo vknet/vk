@@ -264,8 +264,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "owner_id", ownerId }
-				, { "post_id", postId }
+				{ "owner_id", ownerId }, { "post_id", postId }
 			};
 
 			return _vk.Call(methodName: "wall.openComments", parameters: parameters);
@@ -276,8 +275,7 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "owner_id", ownerId }
-				, { "post_id", postId }
+				{ "owner_id", ownerId }, { "post_id", postId }
 			};
 
 			return _vk.Call(methodName: "wall.closeComments", parameters: parameters);
