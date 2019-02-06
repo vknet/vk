@@ -173,19 +173,6 @@ namespace VkNet
 		/// <inheritdoc />
 		public void Authorize(IApiAuthParams @params)
 		{
-			// подключение браузера через прокси
-			if (@params.Host != null)
-			{
-				_logger?.LogDebug("Настройка прокси");
-
-				/*Browser.Proxy = WebProxy.GetProxy(@params.Host,
-					@params.Port,
-					@params.ProxyLogin,
-					@params.ProxyPassword);*/
-
-				// RestClient.Proxy = Browser.Proxy;
-			}
-
 			// если токен не задан - обычная авторизация
 			if (@params.AccessToken == null)
 			{
@@ -800,8 +787,7 @@ namespace VkNet
 
 			LastInvokeTime = DateTimeOffset.Now;
 
-			// Browser.SetAuthParams(authParams);
-			var authorization = AuthorizationFlow.Authorize();
+			var authorization = AuthorizationFlow.AuthorizeAsync().GetAwaiter().GetResult();
 
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{

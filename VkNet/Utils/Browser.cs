@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
+using Flurl;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Core;
@@ -52,9 +54,9 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public AuthorizationResult Authorize()
+		public async Task<AuthorizationResult> AuthorizeAsync()
 		{
-			var result = Authorize(_authParams);
+			var result = await AuthorizeAsync(_authParams).ConfigureAwait(false);
 
 			return new AuthorizationResult
 			{
@@ -66,7 +68,7 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
+		public Url CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 		{
 			var builder = new StringBuilder(value: "https://oauth.vk.com/authorize?");
 

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Flurl;
 using JetBrains.Annotations;
 using VkNet.Enums.SafetyEnums;
 
@@ -35,6 +35,6 @@ namespace VkNet.Abstractions.Authorization
 		/// результатом авторизации.
 		/// </param>
 		/// <returns> Возвращает Uri для авторизации </returns>
-		Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state);
+		Url CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state);
 	}
 }

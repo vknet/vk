@@ -65,8 +65,8 @@ namespace VkNet.Tests
 				Phone = "89510000000"
 			});
 
-			mocker.Setup<IAuthorizationFlow, AuthorizationResult>(o => o.Authorize())
-				.Returns(new AuthorizationResult
+			mocker.Setup<IAuthorizationFlow, Task<AuthorizationResult>>(o => o.AuthorizeAsync())
+				.ReturnsAsync(new AuthorizationResult
 				{
 					AccessToken = "token",
 					ExpiresIn = 1000,

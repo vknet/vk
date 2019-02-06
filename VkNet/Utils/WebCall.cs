@@ -87,7 +87,7 @@ namespace VkNet.Utils
 				}
 			};
 
-			_result = new WebCallResult(url: url, cookies: cookies);
+			_result = new WebCallResult(url, cookies);
 		}
 
 	#region Implementation of IDisposable
@@ -114,10 +114,10 @@ namespace VkNet.Utils
 			var watch = System.Diagnostics.Stopwatch.StartNew();
 			#endif
 
-			using (var call = new WebCall(url: url, cookies: new Cookies(), webProxy: webProxy))
+			using (var call = new WebCall(url, new Cookies(), webProxy))
 			{
 				var response = call._request.GetAsync(requestUri: url).Result;
-				var res = call.MakeRequest(response: response, uri: new Uri(uriString: url), webProxy: webProxy);
+				var res = call.MakeRequest(response, new Uri(uriString: url), webProxy);
 
 			#if DEBUG_HTTP
 				watch.Stop();
@@ -142,13 +142,13 @@ namespace VkNet.Utils
 			var watch = System.Diagnostics.Stopwatch.StartNew();
 			#endif
 
-			using (var call = new WebCall(url: url, cookies: new Cookies(), webProxy: webProxy))
+			using (var call = new WebCall(url, new Cookies(), webProxy))
 			{
 				var response = call._request
-					.PostAsync(requestUri: url, content: new FormUrlEncodedContent(nameValueCollection: parameters))
+					.PostAsync(url, new FormUrlEncodedContent(nameValueCollection: parameters))
 					.Result;
 
-				var res = call.MakeRequest(response: response, uri: new Uri(uriString: url), webProxy: webProxy);
+				var res = call.MakeRequest(response, new Uri(uriString: url), webProxy);
 
 			#if DEBUG_HTTP
 				watch.Stop();
@@ -172,15 +172,15 @@ namespace VkNet.Utils
 			var watch = System.Diagnostics.Stopwatch.StartNew();
 			#endif
 
-			using (var call = new WebCall(url: form.ActionUrl, cookies: form.Cookies, webProxy: webProxy, allowAutoRedirect: false))
+			using (var call = new WebCall(form.ActionUrl, form.Cookies, webProxy, false))
 			{
-				SpecifyHeadersForFormRequest(form: form, call: call);
+				SpecifyHeadersForFormRequest(form, call);
 
 				var response = call._request
-					.PostAsync(requestUri: form.ActionUrl, content: new FormUrlEncodedContent(nameValueCollection: form.GetFormFields()))
+					.PostAsync(form.ActionUrl, new FormUrlEncodedContent(nameValueCollection: form.GetFormFields()))
 					.Result;
 
-				var res = call.MakeRequest(response: response, uri: new Uri(uriString: form.ActionUrl), webProxy: webProxy);
+				var res = call.MakeRequest(response, new Uri(uriString: form.ActionUrl), webProxy);
 
 			#if DEBUG_HTTP
 				watch.Stop();
@@ -204,14 +204,14 @@ namespace VkNet.Utils
 			var watch = System.Diagnostics.Stopwatch.StartNew();
 			#endif
 
-			using (var call = new WebCall(url: url, cookies: _result.Cookies, webProxy: webProxy))
+			using (var call = new WebCall(url, _result.Cookies, webProxy))
 			{
 				var headers = call._request.DefaultRequestHeaders;
-				headers.Add(name: "Method", value: "GET");
-				headers.Add(name: "ContentType", value: "text/html");
+				headers.Add("Method", "GET");
+				headers.Add("ContentType", "text/html");
 
 				var response = call._request.GetAsync(requestUri: url).Result;
-				var res = call.MakeRequest(response: response, uri: new Uri(uriString: url), webProxy: webProxy);
+				var res = call.MakeRequest(response, new Uri(uriString: url), webProxy);
 
 			#if DEBUG_HTTP
 				watch.Stop();
@@ -240,14 +240,14 @@ namespace VkNet.Utils
 				}
 
 				var encoding = Encoding.UTF8;
-				_result.SaveResponse(responseUrl: response.RequestMessage.RequestUri, stream: stream, encoding: encoding);
+				_result.SaveResponse(response.RequestMessage.RequestUri, stream, encoding);
 
 				var cookies = _result.Cookies.Container;
 
 				_result.SaveCookies(cookies: cookies.GetCookies(uri: uri));
 
 				return response.StatusCode == HttpStatusCode.Redirect
-					? RedirectTo(url: response.Headers.Location.AbsoluteUri, webProxy: webProxy)
+					? RedirectTo(response.Headers.Location.AbsoluteUri, webProxy)
 					: _result;
 			}
 		}
@@ -257,10 +257,10 @@ namespace VkNet.Utils
 			var formRequest = form.GetRequest();
 
 			var headers = call._request.DefaultRequestHeaders;
-			headers.Add(name: "Method", value: "POST");
-			headers.Add(name: "ContentType", value: "application/x-www-form-urlencoded");
+			headers.Add("Method", "POST");
+			headers.Add("ContentType", "application/x-www-form-urlencoded");
 
-			headers.Add(name: "ContentLength", value: formRequest.Length.ToString());
+			headers.Add("ContentLength", formRequest.Length.ToString());
 			headers.Referrer = new Uri(uriString: form.OriginalUrl);
 		}
 	}

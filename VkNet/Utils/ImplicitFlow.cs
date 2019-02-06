@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Net;
-using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
-using VkNet.Abstractions;
+using Flurl;
+using Flurl.Http;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
 using VkNet.Enums.SafetyEnums;
@@ -17,77 +17,66 @@ namespace VkNet.Utils
 	public class ImplicitFlow : IImplicitFlow
 	{
 		/// <summary>
-		/// HttpClient
-		/// </summary>
-		private readonly HttpClient _httpClient;
-
-		/// <summary>
 		/// Логгер
 		/// </summary>
 		[CanBeNull]
 		private readonly ILogger<ImplicitFlow> _logger;
 
 		/// <summary>
-		/// WebProxy
-		/// </summary>
-		private readonly IWebProxy _proxy;
-
-		/// <summary>
 		/// Менеджер версий VkApi
 		/// </summary>
 		private readonly IVkApiVersionManager _versionManager;
 
+		private readonly IApiAuthParams _authorizationParameters;
+
 		/// <inheritdoc />
-		public ImplicitFlow([CanBeNull]
-							ILogger<ImplicitFlow> logger, IWebProxy proxy, HttpClient httpClient, IVkApiVersionManager versionManager)
+		public ImplicitFlow([CanBeNull] ILogger<ImplicitFlow> logger,
+							IVkApiVersionManager versionManager, IApiAuthParams apiAuthParams)
 		{
 			_logger = logger;
-			_proxy = proxy;
-			_httpClient = httpClient;
 			_versionManager = versionManager;
+			_authorizationParameters = apiAuthParams;
 		}
 
 		/// <inheritdoc />
-		public AuthorizationResult Authorize()
+		public async Task<AuthorizationResult> AuthorizeAsync()
 		{
-			_logger?.LogDebug(message: "Валидация данных.");
+			_logger?.LogDebug("Валидация данных.");
 			ValidateAuthorizationParameters();
 
-			_logger?.LogDebug(message: "Шаг 1. Открытие диалога авторизации");
-			var authorizeUrlResult = OpenAuthDialog();
+			_logger?.LogDebug("Шаг 1. Открытие диалога авторизации");
+
+			var authorizeUrlResult = CreateAuthorizeUrl(_authorizationParameters.ApplicationId,
+				_authorizationParameters.Settings.ToUInt64(),
+				Display.Mobile,
+				"123435");
+
+			var httpResponseMessage = await authorizeUrlResult.GetAsync().ConfigureAwait(false);
+
+			if (!httpResponseMessage.IsSuccessStatusCode)
+			{
+				throw new VkAuthorizationException();
+			}
 
 			return null;
 		}
 
 		/// <inheritdoc />
-		public IApiAuthParams AuthorizationParameters { get; set; }
-
-		/// <inheritdoc />
-		public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
+		public Url CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 		{
-			_logger?.LogDebug(message: "Построение url для авторизации.");
-			var builder = new StringBuilder(value: "https://oauth.vk.com/authorize?");
+			_logger?.LogDebug("Построение url для авторизации.");
+			var builder = new StringBuilder("https://oauth.vk.com/authorize?");
 
-			builder.Append(value: $"client_id={clientId}&");
-			builder.Append(value: "redirect_uri=https://oauth.vk.com/blank.html&");
-			builder.Append(value: $"display={display}&");
-			builder.Append(value: $"scope={scope}&");
-			builder.Append(value: "response_type=token&");
-			builder.Append(value: $"v={_versionManager.Version}&");
-			builder.Append(value: $"state={state}&");
-			builder.Append(value: "revoke=1");
+			builder.Append($"client_id={clientId}&");
+			builder.Append("redirect_uri=https://oauth.vk.com/blank.html&");
+			builder.Append($"display={display}&");
+			builder.Append($"scope={scope}&");
+			builder.Append("response_type=token&");
+			builder.Append($"v={_versionManager.Version}&");
+			builder.Append($"state={state}&");
+			builder.Append("revoke=1");
 
-			return new Uri(uriString: builder.ToString());
-		}
-
-		private Uri OpenAuthDialog()
-		{
-			var authUri = CreateAuthorizeUrl(clientId: AuthorizationParameters.ApplicationId,
-				scope: AuthorizationParameters.Settings.ToUInt64(),
-				display: Display.Mobile,
-				state: "123435");
-
-			return null;
+			return new Uri(builder.ToString());
 		}
 
 		/// <summary>
@@ -98,31 +87,31 @@ namespace VkNet.Utils
 		{
 			var errorsBuilder = new StringBuilder();
 
-			if (AuthorizationParameters.ApplicationId == 0)
+			if (_authorizationParameters.ApplicationId == 0)
 			{
-				errorsBuilder.AppendLine(value: "ApplicationId обязательный параметр");
+				errorsBuilder.AppendLine("ApplicationId обязательный параметр");
 			}
 
-			if (string.IsNullOrWhiteSpace(value: AuthorizationParameters.Login))
+			if (string.IsNullOrWhiteSpace(_authorizationParameters.Login))
 			{
-				errorsBuilder.AppendLine(value: "Login обязательный параметр");
+				errorsBuilder.AppendLine("Login обязательный параметр");
 			}
 
-			if (string.IsNullOrWhiteSpace(value: AuthorizationParameters.Password))
+			if (string.IsNullOrWhiteSpace(_authorizationParameters.Password))
 			{
-				errorsBuilder.AppendLine(value: "Password обязательный параметр");
+				errorsBuilder.AppendLine("Password обязательный параметр");
 			}
 
-			if (AuthorizationParameters.Settings == null)
+			if (_authorizationParameters.Settings == null)
 			{
-				errorsBuilder.AppendLine(value: "Settings обязательный параметр");
+				errorsBuilder.AppendLine("Settings обязательный параметр");
 			}
 
 			var errors = errorsBuilder.ToString();
 
-			if (!string.IsNullOrWhiteSpace(value: errors))
+			if (!string.IsNullOrWhiteSpace(errors))
 			{
-				throw new VkApiException(message: errors);
+				throw new VkApiException(errors);
 			}
 		}
 	}
