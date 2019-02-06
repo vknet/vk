@@ -13,7 +13,7 @@
 		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<VersionPrefix>1.41.0</VersionPrefix>
+		<VersionPrefix>1.42.0</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -34,7 +34,7 @@
 			Обсуждение в Telegram: http://bit.ly/2rvEOWD
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: http://bit.ly/2QQr6fA
+			Список изменений: http://bit.ly/2GbC1eR
 		</PackageReleaseNotes>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
