@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -507,5 +507,53 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.postAdsStealth
 		/// </remarks>
 		long PostAdsStealth(PostAdsStealthParams @params);
+
+		/// <summary>
+		/// Включает комментирование записи
+		/// Работает только с конкретными записями, комментирование которых было
+		/// выключено с помощью wall.closeComments
+		/// </summary>
+		/// <param name="ownerId">
+		/// Идентификатор пользователя или сообщества, на стене которого находится запись.
+		/// Обратите внимание,
+		/// идентификатор сообщества в параметре owner_id необходимо указывать со знаком
+		/// "-" — например, owner_id=-1
+		/// соответствует идентификатору сообщества ВКонтакте API (club1).
+		/// </param>
+		/// <param name="postId">
+		/// Идентификатор записи на стене. положительное число, обязательный параметр
+		/// (Положительное число,
+		/// обязательный параметр).
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c> true </c>.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.openComments
+		/// </remarks>
+		bool OpenComments(long ownerId, long postId);
+
+		/// <summary>
+		/// Выключает комментирование записи
+		/// </summary>
+		/// <param name="ownerId">
+		/// Идентификатор пользователя или сообщества, на стене которого находится запись.
+		/// Обратите внимание,
+		/// идентификатор сообщества в параметре owner_id необходимо указывать со знаком
+		/// "-" — например, owner_id=-1
+		/// соответствует идентификатору сообщества ВКонтакте API (club1).
+		/// </param>
+		/// <param name="postId">
+		/// Идентификатор записи на стене. положительное число, обязательный параметр
+		/// (Положительное число,
+		/// обязательный параметр).
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c> true </c>.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.closeComments
+		/// </remarks>
+		bool CloseComments(long ownerId, long postId);
 	}
 }

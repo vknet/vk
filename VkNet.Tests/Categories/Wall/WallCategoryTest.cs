@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
@@ -317,6 +317,30 @@ namespace VkNet.Tests.Categories.Wall
 			Assert.That(result.PostId, Is.EqualTo(2587));
 			Assert.That(result.RepostsCount, Is.EqualTo(21));
 			Assert.That(result.LikesCount, Is.EqualTo(105));
+		}
+
+		[Test]
+		public void OpenComments_ReturnTrue()
+		{
+			Url = "https://api.vk.com/method/wall.openComments";
+
+			ReadJsonFile(JsonPaths.True);
+
+			var result = Api.Wall.OpenComments(3, 3);
+
+			Assert.IsTrue(result);
+		}
+
+		[Test]
+		public void CloseComments_ReturnTrue()
+		{
+			Url = "https://api.vk.com/method/wall.closeComments";
+
+			ReadJsonFile(JsonPaths.True);
+
+			var result = Api.Wall.CloseComments(3, 3);
+
+			Assert.IsTrue(result);
 		}
 	}
 }
