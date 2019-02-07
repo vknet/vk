@@ -55,10 +55,10 @@ namespace VkNet.Utils
 
 			if (!httpResponseMessage.IsSuccessStatusCode)
 			{
-				throw new VkAuthorizationException();
+				throw new VkAuthorizationException(httpResponseMessage.ReasonPhrase);
 			}
 
-			return null;
+			return new AuthorizationResult();
 		}
 
 		/// <inheritdoc />
@@ -111,7 +111,7 @@ namespace VkNet.Utils
 
 			if (!string.IsNullOrWhiteSpace(errors))
 			{
-				throw new VkApiException(errors);
+				throw new VkAuthorizationException(errors);
 			}
 		}
 	}
