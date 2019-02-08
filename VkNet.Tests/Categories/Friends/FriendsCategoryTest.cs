@@ -326,10 +326,7 @@ namespace VkNet.Tests.Categories
 				})
 				.ToList();
 
-			Assert.That(ids.Count, Is.EqualTo(3));
-			Assert.That(ids[0], Is.EqualTo(3));
-			Assert.That(ids[1], Is.EqualTo(31));
-			Assert.That(ids[2], Is.EqualTo(43));
+			Assert.That(ids.Count, Is.EqualTo(1));
 		}
 
 		[Test]

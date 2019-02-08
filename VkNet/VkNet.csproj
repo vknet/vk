@@ -50,22 +50,22 @@
 	<ItemGroup>
 		<PackageReference Include="AsyncFixer" Version="1.1.6" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="7.10.0.7896" PrivateAssets="all"/>
-		<PackageReference Include="JetBrains.Annotations" Version="2018.3.0" PrivateAssets="all"/>
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="7.10.0.7896" PrivateAssets="all" />
+		<PackageReference Include="JetBrains.Annotations" Version="2018.3.0" PrivateAssets="all" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="HtmlAgilityPack" Version="1.8.14"/>
+		<PackageReference Include="HtmlAgilityPack" Version="1.8.14" />
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0"/>
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0"/>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
 		<PackageReference Include="System.Net.Http" Version="4.3.4" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0"/>
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0"/>
-		<PackageReference Include="System.Net.Http" Version="4.3.4"/>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
+		<PackageReference Include="System.Net.Http" Version="4.3.4" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
 		<PackageReference Include="Microsoft.Bcl" Version="1.1.10" />

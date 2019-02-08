@@ -62,17 +62,19 @@ namespace VkNet.Model.RequestParams
 		/// <returns> </returns>
 		public static VkParameters ToVkParameters(FriendsGetMutualParams p)
 		{
-			var parameters = new VkParameters
+			if (p.TargetUid.HasValue)
 			{
-					{ "source_uid", p.SourceUid }
-					, { "target_uid", p.TargetUid }
-					, { "target_uids", p.TargetUids }
-					, { "order", p.Order }
-					, { "count", p.Count }
-					, { "offset", p.Offset }
-			};
+				p.TargetUids = new[] { p.TargetUid.Value };
+			}
 
-			return parameters;
+			return new VkParameters
+			{
+				{ "source_uid", p.SourceUid },
+				{ "target_uids", p.TargetUids },
+				{ "order", p.Order },
+				{ "count", p.Count },
+				{ "offset", p.Offset }
+			};
 		}
 	}
 }
