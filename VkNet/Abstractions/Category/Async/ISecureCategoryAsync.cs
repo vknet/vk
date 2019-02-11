@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using VkNet.Model;
 
 namespace VkNet.Abstractions.Category
 {
@@ -90,8 +92,9 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getSMSHistory
 		/// </remarks>
-		Task<IEnumerable<object>> GetSmsHistoryAsync(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null,
-													ulong? limit = null);
+		Task<ReadOnlyCollection<SmsHistoryItem>> GetSmsHistoryAsync(ulong? userId = null, DateTime? dateFrom = null,
+																	DateTime? dateTo = null,
+																	ulong? limit = null);
 
 		/// <summary>
 		/// Выводит историю транзакций по переводу голосов между пользователями и приложением.
@@ -180,26 +183,5 @@ namespace VkNet.Abstractions.Category
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.setCounter
 		/// </remarks>
 		Task<bool> SetCounterAsync(IEnumerable<string> counters, ulong? userId = null, long? counter = null, bool? increment = null);
-
-		/// <summary>
-		/// Устанавливает игровой уровень пользователя в приложении, который смогут увидеть его друзья.
-		/// </summary>
-		/// <param name = "levels">
-		/// Позволяет указывать уровни нескольким пользователям за один запрос. Значение следует указывать в следующем формате: user_id1:level1,user_id2:level2, пример: 66748:6,6492:2. В случае, если указан этот параметр, параметры level и user_id не учитываются. Метод принимает не более 200 значений за один запрос. список слов, разделенных через запятую
-		/// </param>
-		/// <param name = "userId">
-		/// Идентификатор пользователя. положительное число
-		/// </param>
-		/// <param name = "level">
-		/// Значение уровня. положительное число
-		/// </param>
-		/// <returns>
-		/// Возвращает 1 в случае успешной установки уровня.
-		/// Обратите внимание, при попытке установить уровень ниже текущего, ответ будет содержать сообщение об ошибке "Access denied: no activity from user for last 3 days", значение уровня изменено не будет.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/secure.setUserLevel
-		/// </remarks>
-		Task<bool> SetUserLevelAsync(IEnumerable<string> levels, ulong? userId = null, ulong? level = null);
 	}
 }

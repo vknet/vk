@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -42,10 +44,17 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> GetSmsHistory(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null, ulong? limit = null)
+		public ReadOnlyCollection<SmsHistoryItem> GetSmsHistory(ulong? userId = null, DateTime? dateFrom = null, DateTime? dateTo = null,
+																ulong? limit = null)
 		{
-			return _vk.Call<IEnumerable<object>>("secure.getSMSHistory",
-				new VkParameters { { "user_id", userId }, { "date_from", dateFrom }, { "date_to", dateTo }, { "limit", limit } });
+			return _vk.Call<ReadOnlyCollection<SmsHistoryItem>>("secure.getSMSHistory",
+				new VkParameters
+				{
+					{ "user_id", userId },
+					{ "date_from", dateFrom },
+					{ "date_to", dateTo },
+					{ "limit", limit }
+				});
 		}
 
 		/// <inheritdoc/>
@@ -93,13 +102,6 @@ namespace VkNet.Categories
 					{ "counter", counter },
 					{ "increment", increment }
 				});
-		}
-
-		/// <inheritdoc/>
-		public bool SetUserLevel(IEnumerable<string> levels, ulong? userId = null, ulong? level = null)
-		{
-			return _vk.Call<bool>("secure.setUserLevel",
-				new VkParameters { { "levels", levels }, { "user_id", userId }, { "level", level } });
 		}
 	}
 }

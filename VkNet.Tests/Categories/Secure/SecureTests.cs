@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -39,6 +40,20 @@ namespace VkNet.Tests.Categories.Secure
 			var app = Api.Secure.SetCounter(new[] { "66748:6:1", "6492:2" }, 123, 2, true);
 
 			Assert.That(app, Is.True);
+		}
+
+		[Test]
+		public void GetSmsHistory()
+		{
+			Url = "https://api.vk.com/method/secure.getSMSHistory";
+			ReadCategoryJsonPath(nameof(GetSmsHistory));
+
+			var app = Api.Secure.GetSmsHistory(123);
+
+			Assert.IsNotEmpty(app);
+			var item = app.FirstOrDefault();
+			Assert.NotNull(item);
+			Assert.AreEqual(1238497, item.Id);
 		}
 	}
 }
