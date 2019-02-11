@@ -66,5 +66,16 @@ namespace VkNet.Tests.Categories.Secure
 
 			Assert.IsNotNull(app);
 		}
+
+		[Test]
+		public void GetAppBalance()
+		{
+			Url = "https://api.vk.com/method/secure.getAppBalance";
+			ReadCategoryJsonPath(nameof(GetAppBalance));
+
+			var app = Api.Secure.GetAppBalance();
+
+			Assert.AreEqual(5000, app);
+		}
 	}
 }

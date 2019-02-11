@@ -23,9 +23,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<object> GetAppBalanceAsync()
+		public Task<ulong> GetAppBalanceAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetAppBalance());
+			return TypeHelper.TryInvokeMethodAsync(GetAppBalance);
 		}
 
 		/// <inheritdoc/>

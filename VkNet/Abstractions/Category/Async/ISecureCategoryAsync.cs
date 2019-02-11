@@ -69,7 +69,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getAppBalance
 		/// </remarks>
-		Task<object> GetAppBalanceAsync();
+		Task<ulong> GetAppBalanceAsync();
 
 		/// <summary>
 		/// Выводит список SMS-уведомлений, отосланных приложением с помощью метода secure.sendSMSNotification.

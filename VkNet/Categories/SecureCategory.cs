@@ -43,9 +43,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object GetAppBalance()
+		public ulong GetAppBalance()
 		{
-			return _vk.Call<object>("secure.getAppBalance", VkParameters.Empty);
+			return _vk.Call<ulong>("secure.getAppBalance", VkParameters.Empty);
 		}
 
 		/// <inheritdoc/>
