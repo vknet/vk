@@ -37,9 +37,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<IEnumerable<object>> GetTransactionsHistoryAsync()
+		public Task<ReadOnlyCollection<Transaction>> GetTransactionsHistoryAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetTransactionsHistory());
+			return TypeHelper.TryInvokeMethodAsync(GetTransactionsHistory);
 		}
 
 		/// <inheritdoc/>

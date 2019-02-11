@@ -77,5 +77,16 @@ namespace VkNet.Tests.Categories.Secure
 
 			Assert.AreEqual(5000, app);
 		}
+
+		[Test]
+		public void GetTransactionsHistory()
+		{
+			Url = "https://api.vk.com/method/secure.getTransactionsHistory";
+			ReadCategoryJsonPath(nameof(GetTransactionsHistory));
+
+			var app = Api.Secure.GetTransactionsHistory();
+
+			Assert.IsNotEmpty(app);
+		}
 	}
 }

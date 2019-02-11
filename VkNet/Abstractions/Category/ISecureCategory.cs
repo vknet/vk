@@ -33,74 +33,18 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		object AddAppEvent(ulong userId, ulong activityId, ulong? value = null);
 
-		/// <summary>
-		/// Позволяет проверять валидность пользователя в IFrame, Flash  и Standalone-приложениях с помощью передаваемого в приложения параметра access_token.
-		/// </summary>
-		/// <param name = "token">
-		/// Клиентский access_token строка
-		/// </param>
-		/// <param name = "ip">
-		/// Ip адрес пользователя. Обратите внимание, что пользователь может обращаться через ipv6, в этом случае обязательно передавать ipv6 адрес пользователя.
-		/// Если параметр не передан – ip адрес проверен не будет. строка
-		/// </param>
-		/// <returns>
-		/// В случае успеха будет возвращен объект, содержащий следующие поля:
-		/// success = 1
-		/// user_id = идентификатор пользователя
-		/// date = unixtime дата, когда access_token был сгенерирован
-		/// expire = unixtime дата, когда access_token станет не валиден
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/secure.checkToken
-		/// </remarks>
+		/// <inheritdoc cref="ISecureCategoryAsync.CheckTokenAsync"/>
 		CheckTokenResult CheckToken(string token, string ip = null);
 
-		/// <summary>
-		/// Возвращает платежный баланс (счет) приложения в сотых долях голоса.
-		/// </summary>
-		/// <returns>
-		/// Возвращает количество голосов (в сотых долях), которые есть на счете приложения.
-		/// Например, если метод возвращает 5000, это означает, что на балансе приложения 50 голосов.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/secure.getAppBalance
-		/// </remarks>
+		/// <inheritdoc cref="ISecureCategoryAsync.GetAppBalanceAsync"/>
 		ulong GetAppBalance();
 
-		/// <summary>
-		/// Выводит список SMS-уведомлений, отосланных приложением с помощью метода secure.sendSMSNotification.
-		/// </summary>
-		/// <param name = "userId">
-		/// Фильтр по id пользователя, которому высылалось уведомление. положительное число
-		/// </param>
-		/// <param name = "dateFrom">
-		/// Фильтр по дате начала. Задается в виде UNIX-time. положительное число
-		/// </param>
-		/// <param name = "dateTo">
-		/// Фильтр по дате окончания. Задается в виде UNIX-time. положительное число
-		/// </param>
-		/// <param name = "limit">
-		/// Количество возвращаемых записей. По умолчанию 1000. положительное число, по умолчанию 1000, максимальное значение 1000
-		/// </param>
-		/// <returns>
-		/// Возвращает список SMS-уведомлений, отосланных приложением, отсортированных по убыванию даты и отфильтрованных с помощью параметров uid, date_from, date_to, limit.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/secure.getSMSHistory
-		/// </remarks>
+		/// <inheritdoc cref="ISecureCategoryAsync.GetSmsHistoryAsync"/>
 		ReadOnlyCollection<SmsHistoryItem> GetSmsHistory(ulong? userId = null, DateTime? dateFrom = null, DateTime? dateTo = null,
 														ulong? limit = null);
 
-		/// <summary>
-		/// Выводит историю транзакций по переводу голосов между пользователями и приложением.
-		/// </summary>
-		/// <returns>
-		/// Возвращает список транзакций, отсортированных по убыванию даты, и отфильтрованных с помощью параметров type, uid_from, uid_to, date_from, date_to, limit.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/secure.getTransactionsHistory
-		/// </remarks>
-		IEnumerable<object> GetTransactionsHistory();
+		/// <inheritdoc cref="ISecureCategoryAsync.GetTransactionsHistoryAsync"/>
+		ReadOnlyCollection<Transaction> GetTransactionsHistory();
 
 		/// <summary>
 		/// Возвращает ранее выставленный игровой уровень одного или нескольких пользователей в приложении.

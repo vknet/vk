@@ -63,9 +63,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> GetTransactionsHistory()
+		public ReadOnlyCollection<Transaction> GetTransactionsHistory()
 		{
-			return _vk.Call<IEnumerable<object>>("secure.getTransactionsHistory", VkParameters.Empty);
+			return _vk.Call<ReadOnlyCollection<Transaction>>("secure.getTransactionsHistory", VkParameters.Empty);
 		}
 
 		/// <inheritdoc/>

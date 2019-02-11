@@ -105,7 +105,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getTransactionsHistory
 		/// </remarks>
-		Task<IEnumerable<object>> GetTransactionsHistoryAsync();
+		Task<ReadOnlyCollection<Transaction>> GetTransactionsHistoryAsync();
 
 		/// <summary>
 		/// Возвращает ранее выставленный игровой уровень одного или нескольких пользователей в приложении.
