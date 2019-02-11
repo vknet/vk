@@ -69,7 +69,12 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public bool SendSmsNotification(ulong userId, string message)
 		{
-			return _vk.Call<bool>("secure.sendSMSNotification", new VkParameters { { "user_id", userId }, { "message", message } });
+			return _vk.Call<bool>("secure.sendSMSNotification",
+				new VkParameters
+				{
+					{ "user_id", userId },
+					{ "message", message }
+				});
 		}
 
 		/// <inheritdoc/>
