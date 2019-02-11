@@ -58,7 +58,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getUserLevel
 		/// </remarks>
-		object GetUserLevel(IEnumerable<long> userIds);
+		ReadOnlyCollection<SecureLevel> GetUserLevel(IEnumerable<long> userIds);
 
 		/// <inheritdoc cref="ISecureCategoryAsync.SendNotificationAsync"/>
 		ReadOnlyCollection<ulong> SendNotification(string message, IEnumerable<ulong> userIds = null);

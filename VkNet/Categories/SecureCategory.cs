@@ -69,9 +69,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object GetUserLevel(IEnumerable<long> userIds)
+		public ReadOnlyCollection<SecureLevel> GetUserLevel(IEnumerable<long> userIds)
 		{
-			return _vk.Call<object>("secure.getUserLevel", new VkParameters { { "user_ids", userIds } });
+			return _vk.Call<ReadOnlyCollection<SecureLevel>>("secure.getUserLevel", new VkParameters { { "user_ids", userIds } });
 		}
 
 		/// <inheritdoc/>

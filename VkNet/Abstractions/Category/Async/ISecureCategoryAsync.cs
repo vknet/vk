@@ -119,7 +119,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getUserLevel
 		/// </remarks>
-		Task<object> GetUserLevelAsync(IEnumerable<long> userIds);
+		Task<ReadOnlyCollection<SecureLevel>> GetUserLevelAsync(IEnumerable<long> userIds);
 
 		/// <summary>
 		/// Отправляет уведомление пользователю.

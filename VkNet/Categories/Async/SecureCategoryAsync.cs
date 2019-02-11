@@ -43,7 +43,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<object> GetUserLevelAsync(IEnumerable<long> userIds)
+		public Task<ReadOnlyCollection<SecureLevel>> GetUserLevelAsync(IEnumerable<long> userIds)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetUserLevel(userIds));
 		}

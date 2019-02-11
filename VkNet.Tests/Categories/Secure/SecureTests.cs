@@ -88,5 +88,16 @@ namespace VkNet.Tests.Categories.Secure
 
 			Assert.IsNotEmpty(app);
 		}
+
+		[Test]
+		public void GetUserLevel()
+		{
+			Url = "https://api.vk.com/method/secure.getUserLevel";
+			ReadCategoryJsonPath(nameof(GetUserLevel));
+
+			var app = Api.Secure.GetUserLevel(new long[]{123});
+
+			Assert.IsNotEmpty(app);
+		}
 	}
 }
