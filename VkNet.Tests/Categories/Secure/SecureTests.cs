@@ -25,9 +25,20 @@ namespace VkNet.Tests.Categories.Secure
 			Url = "https://api.vk.com/method/secure.sendNotification";
 			ReadCategoryJsonPath(nameof(SendNotification));
 
-			var app = Api.Secure.SendNotification( "Notification", new ulong[]{123});
+			var app = Api.Secure.SendNotification("Notification", new ulong[] { 123 });
 
 			Assert.IsNotEmpty(app);
+		}
+
+		[Test]
+		public void SetCounter()
+		{
+			Url = "https://api.vk.com/method/secure.setCounter";
+			ReadJsonFile(JsonPaths.True);
+
+			var app = Api.Secure.SetCounter(new[] { "66748:6:1", "6492:2" }, 123, 2, true);
+
+			Assert.That(app, Is.True);
 		}
 	}
 }

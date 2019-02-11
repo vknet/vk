@@ -86,7 +86,13 @@ namespace VkNet.Categories
 		public bool SetCounter(IEnumerable<string> counters, ulong? userId = null, long? counter = null, bool? increment = null)
 		{
 			return _vk.Call<bool>("secure.setCounter",
-				new VkParameters { { "counters", counters }, { "user_id", userId }, { "counter", counter }, { "increment", increment } });
+				new VkParameters
+				{
+					{ "counters", counters },
+					{ "user_id", userId },
+					{ "counter", counter },
+					{ "increment", increment }
+				});
 		}
 
 		/// <inheritdoc/>

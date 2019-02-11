@@ -119,30 +119,7 @@ namespace VkNet.Abstractions
 		/// <inheritdoc cref="ISecureCategoryAsync.SendSmsNotificationAsync"/>
 		bool SendSmsNotification(ulong userId, string message);
 
-		/// <summary>
-		/// Устанавливает счетчик, который выводится пользователю жирным шрифтом в левом меню.
-		/// </summary>
-		/// <param name = "counters">
-		/// Позволяет устанавливать счетчики нескольким пользователям за один запрос. Значение следует указывать в следующем формате: user_id1:counter1[:increment],user_id2:counter2[:increment], пример: 66748:6:1,6492:2. В случае, если указан этот параметр, параметры counter, user_id и increment не учитываются. Можно передать не более 200 значений за один запрос. список слов, разделенных через запятую
-		/// </param>
-		/// <param name = "userId">
-		/// Идентификатор пользователя. положительное число
-		/// </param>
-		/// <param name = "counter">
-		/// Значение счетчика. целое число
-		/// </param>
-		/// <param name = "increment">
-		/// Определяет, нужно ли заменить значение счетчика или прибавить новое значение к уже имеющемуся. 1 — прибавить counter к старому значению, 0 — заменить счетчик (по умолчанию). флаг, может принимать значения 1 или 0
-		/// </param>
-		/// <returns>
-		/// Возвращает 1 в случае успешной установки счетчика.
-		/// Если пользователь не установил приложение в левое меню, метод вернет ошибку 148 (Access to the menu of the user denied). Избежать этой ошибки можно с помощью метода account.getAppPermissions.
-		/// Вы также можете обращаться к этому методу при стандартном взаимодействии с клиентской стороны, указывая setCounter вместо secure.setCounter в названии метода. В этом случае параметр uid передавать не нужно, счетчик установится для текущего пользователя.
-		/// Метод setCounter при стандартном, а не защищенном взаимодействии можно использовать для того, чтобы, например, сбрасывать счетчик при заходе пользователя в приложение.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/secure.setCounter
-		/// </remarks>
+		/// <inheritdoc cref="ISecureCategoryAsync.SetCounterAsync"/>
 		bool SetCounter(IEnumerable<string> counters, ulong? userId = null, long? counter = null, bool? increment = null);
 
 		/// <summary>
