@@ -32,9 +32,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object CheckToken(string token, string ip)
+		public CheckTokenResult CheckToken(string token, string ip = null)
 		{
-			return _vk.Call<object>("secure.checkToken", new VkParameters { { "token", token }, { "ip", ip } });
+			return _vk.Call<CheckTokenResult>("secure.checkToken",
+				new VkParameters
+				{
+					{ "token", token },
+					{ "ip", ip }
+				});
 		}
 
 		/// <inheritdoc/>

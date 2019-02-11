@@ -53,7 +53,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.checkToken
 		/// </remarks>
-		object CheckToken(string token, string ip);
+		CheckTokenResult CheckToken(string token, string ip = null);
 
 		/// <summary>
 		/// Возвращает платежный баланс (счет) приложения в сотых долях голоса.

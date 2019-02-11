@@ -55,5 +55,16 @@ namespace VkNet.Tests.Categories.Secure
 			Assert.NotNull(item);
 			Assert.AreEqual(1238497, item.Id);
 		}
+
+		[Test]
+		public void CheckToken()
+		{
+			Url = "https://api.vk.com/method/secure.checkToken";
+			ReadCategoryJsonPath(nameof(CheckToken));
+
+			var app = Api.Secure.CheckToken("access_token", "");
+
+			Assert.IsNotNull(app);
+		}
 	}
 }

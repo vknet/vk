@@ -17,7 +17,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<object> CheckTokenAsync(string token, string ip)
+		public Task<CheckTokenResult> CheckTokenAsync(string token, string ip = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => CheckToken(token, ip));
 		}
@@ -29,8 +29,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<SmsHistoryItem>> GetSmsHistoryAsync(ulong? userId = null, DateTime? dateFrom = null, DateTime? dateTo = null,
-															ulong? limit = null)
+		public Task<ReadOnlyCollection<SmsHistoryItem>> GetSmsHistoryAsync(ulong? userId = null, DateTime? dateFrom = null,
+																			DateTime? dateTo = null,
+																			ulong? limit = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetSmsHistory(userId, dateFrom, dateTo, limit));
 		}

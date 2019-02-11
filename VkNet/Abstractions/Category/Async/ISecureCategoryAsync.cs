@@ -57,7 +57,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.checkToken
 		/// </remarks>
-		Task<object> CheckTokenAsync(string token, string ip);
+		Task<CheckTokenResult> CheckTokenAsync(string token, string ip = null);
 
 		/// <summary>
 		/// Возвращает платежный баланс (счет) приложения в сотых долях голоса.
