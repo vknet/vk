@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Utils;
 
@@ -60,10 +61,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object SendNotification(string message, IEnumerable<ulong> userIds = null, ulong? userId = null)
+		public ReadOnlyCollection<ulong> SendNotification(string message, IEnumerable<ulong> userIds = null)
 		{
-			return _vk.Call<object>("secure.sendNotification",
-				new VkParameters { { "message", message }, { "user_ids", userIds }, { "user_id", userId } });
+			return _vk.Call<ReadOnlyCollection<ulong>>("secure.sendNotification",
+				new VkParameters
+				{
+					{ "message", message },
+					{ "user_ids", userIds }
+				});
 		}
 
 		/// <inheritdoc/>

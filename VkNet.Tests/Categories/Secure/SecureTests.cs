@@ -18,5 +18,16 @@ namespace VkNet.Tests.Categories.Secure
 
 			Assert.That(app, Is.True);
 		}
+
+		[Test]
+		public void SendNotification()
+		{
+			Url = "https://api.vk.com/method/secure.sendNotification";
+			ReadCategoryJsonPath(nameof(SendNotification));
+
+			var app = Api.Secure.SendNotification( "Notification", new ulong[]{123});
+
+			Assert.IsNotEmpty(app);
+		}
 	}
 }

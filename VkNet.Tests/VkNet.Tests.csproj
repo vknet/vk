@@ -21,7 +21,4 @@
 	<ItemGroup>
 		<None Update="TestData\**\*.*" CopyToOutputDirectory="Always" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="TestData\Categories\Secure" />
-	</ItemGroup>
 </Project>

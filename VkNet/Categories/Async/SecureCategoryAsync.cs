@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Utils;
 
@@ -44,9 +45,9 @@ namespace VkNet.Categories
         }
 
         /// <inheritdoc/>
-        public Task<object> SendNotificationAsync(string message, IEnumerable<ulong> userIds = null, ulong? userId = null)
+        public Task<ReadOnlyCollection<ulong>> SendNotificationAsync(string message, IEnumerable<ulong> userIds = null)
         {
-            return TypeHelper.TryInvokeMethodAsync(() => SendNotification(message, userIds, userId));
+            return TypeHelper.TryInvokeMethodAsync(() => SendNotification(message, userIds));
         }
 
         /// <inheritdoc/>

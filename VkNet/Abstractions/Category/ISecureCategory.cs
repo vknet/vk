@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Abstractions.Category;
 
 namespace VkNet.Abstractions
@@ -112,44 +113,10 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		object GetUserLevel(IEnumerable<long> userIds);
 
-		/// <summary>
-		/// Отправляет уведомление пользователю.
-		/// </summary>
-		/// <param name = "message">
-		/// Текст уведомления, который следует передавать в кодировке UTF-8 (максимум 254 символа). строка, обязательный параметр
-		/// </param>
-		/// <param name = "userIds">
-		/// Перечисленные через запятую идентификаторы пользователей, которым отправляется уведомление (максимум 100 штук). список положительных чисел, разделенных запятыми
-		/// </param>
-		/// <param name = "userId">
-		/// Идентификатор пользователя. положительное число
-		/// </param>
-		/// <returns>
-		/// Возвращает перечисленные через запятую ID пользователей, которым было успешно отправлено уведомление.
-		/// Обратите внимание, нельзя отправлять пользователю более 1 уведомления в час (3 в сутки). Кроме того, нельзя отправить одному пользователю два уведомления с одинаковым текстом подряд.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/secure.sendNotification
-		/// </remarks>
-		object SendNotification(string message, IEnumerable<ulong> userIds = null, ulong? userId = null);
+		/// <inheritdoc cref="ISecureCategoryAsync.SendNotificationAsync"/>
+		ReadOnlyCollection<ulong> SendNotification(string message, IEnumerable<ulong> userIds = null);
 
-		/// <summary>
-		/// Отправляет SMS-уведомление на мобильный телефон пользователя.
-		/// </summary>
-		/// <param name = "userId">
-		/// Id пользователя, которому отправляется SMS-уведомление. Пользователь должен разрешить приложению отсылать ему уведомления (getUserSettings, +1). положительное число, обязательный параметр
-		/// </param>
-		/// <param name = "message">
-		/// Текст SMS, который следует передавать в кодировке UTF-8. Допускаются только латинские буквы и цифры. Максимальный размер - 160 символов. строка, обязательный параметр
-		/// </param>
-		/// <returns>
-		/// Возвращает 1 в случае успешной отсылки SMS.
-		/// Если номер пользователя еще не известен системе, то метод вернет ошибку 146 (The mobile number of the user is unknown). Для решения этой проблемы метод users.get возвращает поле has_mobile, которое позволяет определить, известен ли номер пользователя.
-		/// Если номер пользователя неизвестен, но Вы хотели бы иметь возможность высылать ему SMS-уведомления, необходимо предложить ему ввести номер мобильного телефона, не отвлекая от приложения.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/secure.sendSMSNotification
-		/// </remarks>
+		/// <inheritdoc cref="ISecureCategoryAsync.SendSmsNotificationAsync"/>
 		bool SendSmsNotification(ulong userId, string message);
 
 		/// <summary>

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace VkNet.Abstractions.Category
@@ -126,9 +127,6 @@ namespace VkNet.Abstractions.Category
 		/// <param name = "userIds">
 		/// Перечисленные через запятую идентификаторы пользователей, которым отправляется уведомление (максимум 100 штук). список положительных чисел, разделенных запятыми
 		/// </param>
-		/// <param name = "userId">
-		/// Идентификатор пользователя. положительное число
-		/// </param>
 		/// <returns>
 		/// Возвращает перечисленные через запятую ID пользователей, которым было успешно отправлено уведомление.
 		/// Обратите внимание, нельзя отправлять пользователю более 1 уведомления в час (3 в сутки). Кроме того, нельзя отправить одному пользователю два уведомления с одинаковым текстом подряд.
@@ -136,7 +134,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.sendNotification
 		/// </remarks>
-		Task<object> SendNotificationAsync(string message, IEnumerable<ulong> userIds = null, ulong? userId = null);
+		Task<ReadOnlyCollection<ulong>> SendNotificationAsync(string message, IEnumerable<ulong> userIds = null);
 
 		/// <summary>
 		/// Отправляет SMS-уведомление на мобильный телефон пользователя.
