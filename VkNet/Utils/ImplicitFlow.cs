@@ -4,11 +4,13 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using Flurl;
-using Flurl.Http;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Infrastructure.Authorization;
+using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
 
 namespace VkNet.Utils
@@ -29,13 +31,20 @@ namespace VkNet.Utils
 
 		private readonly IApiAuthParams _authorizationParameters;
 
+		private readonly IImplicitFlowLoginForm _loginForm;
+
+		private readonly ImplicitFlowVkAuthorization _vkAuthorization;
+
 		/// <inheritdoc />
 		public ImplicitFlow([CanBeNull] ILogger<ImplicitFlow> logger,
-							IVkApiVersionManager versionManager, IApiAuthParams apiAuthParams)
+							IVkApiVersionManager versionManager, IApiAuthParams apiAuthParams, IImplicitFlowLoginForm loginForm,
+							ImplicitFlowVkAuthorization vkAuthorization)
 		{
 			_logger = logger;
 			_versionManager = versionManager;
 			_authorizationParameters = apiAuthParams;
+			_loginForm = loginForm;
+			_vkAuthorization = vkAuthorization;
 		}
 
 		/// <inheritdoc />
@@ -51,14 +60,9 @@ namespace VkNet.Utils
 				Display.Mobile,
 				"123435");
 
-			var httpResponseMessage = await authorizeUrlResult.GetAsync().ConfigureAwait(false);
+			var loginFormResult = await _loginForm.ExecuteAsync(authorizeUrlResult).ConfigureAwait(false);
 
-			if (!httpResponseMessage.IsSuccessStatusCode)
-			{
-				throw new VkAuthorizationException(httpResponseMessage.ReasonPhrase);
-			}
-
-			return new AuthorizationResult();
+			return await NextStepAsync(loginFormResult).ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -77,6 +81,47 @@ namespace VkNet.Utils
 			builder.Append("revoke=1");
 
 			return new Uri(builder.ToString());
+		}
+
+		private Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult)
+		{
+			var pageType = _vkAuthorization.GetPageType(formResult.ResponseUrl.ToUri());
+
+			switch (pageType)
+			{
+				case ImplicitFlowPageType.Error:
+
+				{
+					_logger?.LogDebug("При авторизации произошла ошибка.");
+					throw new VkAuthorizationException("При авторизации произошла ошибка.");
+				}
+				case ImplicitFlowPageType.LoginPassword:
+
+				{
+					_logger?.LogDebug("Неверный логин или пароль.");
+					throw new VkAuthorizationException("Неверный логин или пароль.");
+				}
+				case ImplicitFlowPageType.Captcha:
+
+					break;
+				case ImplicitFlowPageType.TwoFactor:
+
+					break;
+				case ImplicitFlowPageType.Consent:
+
+					break;
+				case ImplicitFlowPageType.Result:
+
+				{
+					return Task.FromResult(_vkAuthorization.GetAuthorizationResult(formResult.ResponseUrl.ToUri()));
+				}
+
+				default:
+
+					throw new ArgumentOutOfRangeException();
+			}
+
+			return null;
 		}
 
 		/// <summary>

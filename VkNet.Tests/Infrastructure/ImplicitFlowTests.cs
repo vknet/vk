@@ -30,7 +30,7 @@ namespace VkNet.Tests.Infrastructure
 			builder.Append($"display={display}&");
 			builder.Append($"scope={scope}&");
 			builder.Append("response_type=token&");
-			builder.Append($"v=5.92&");
+			builder.Append("v=5.92&");
 
 			builder.Append($"state={state}&");
 			builder.Append("revoke=1");
