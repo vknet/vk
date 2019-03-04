@@ -1,14 +1,22 @@
-using System.Net.Http;
 using System.Threading.Tasks;
 using Flurl;
+using VkNet.Enums;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
 	/// <summary>
-	/// Форма логина
+	/// Страница авторизации
 	/// </summary>
-	public interface IImplicitFlowLoginForm
+	public interface IAuthorizationForm
 	{
+		/// <summary>
+		/// Получить тип страницы автризации
+		/// </summary>
+		/// <returns>
+		/// Тип страницы автризации
+		/// </returns>
+		ImplicitFlowPageType GetPageType();
+
 		/// <summary>
 		/// Выполнить авторизацию
 		/// </summary>

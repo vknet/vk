@@ -31,19 +31,22 @@ namespace VkNet.Utils
 
 		private readonly IApiAuthParams _authorizationParameters;
 
-		private readonly IImplicitFlowLoginForm _loginForm;
+		[NotNull]
+		private readonly IAuthorizationFormFactory _authorizationFormsFactory;
 
 		private readonly ImplicitFlowVkAuthorization _vkAuthorization;
 
 		/// <inheritdoc />
 		public ImplicitFlow([CanBeNull] ILogger<ImplicitFlow> logger,
-							IVkApiVersionManager versionManager, IApiAuthParams apiAuthParams, IImplicitFlowLoginForm loginForm,
+							IVkApiVersionManager versionManager,
+							IApiAuthParams apiAuthParams,
+							IAuthorizationFormFactory authorizationFormsFactory,
 							ImplicitFlowVkAuthorization vkAuthorization)
 		{
 			_logger = logger;
 			_versionManager = versionManager;
 			_authorizationParameters = apiAuthParams;
-			_loginForm = loginForm;
+			_authorizationFormsFactory = authorizationFormsFactory;
 			_vkAuthorization = vkAuthorization;
 		}
 
@@ -60,7 +63,9 @@ namespace VkNet.Utils
 				Display.Mobile,
 				"123435");
 
-			var loginFormResult = await _loginForm.ExecuteAsync(authorizeUrlResult).ConfigureAwait(false);
+			var loginFormResult = await _authorizationFormsFactory.Create(ImplicitFlowPageType.LoginPassword)
+				.ExecuteAsync(authorizeUrlResult)
+				.ConfigureAwait(false);
 
 			return await NextStepAsync(loginFormResult).ConfigureAwait(false);
 		}
@@ -83,7 +88,7 @@ namespace VkNet.Utils
 			return new Uri(builder.ToString());
 		}
 
-		private Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult)
+		private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult)
 		{
 			var pageType = _vkAuthorization.GetPageType(formResult.ResponseUrl.ToUri());
 
@@ -93,35 +98,49 @@ namespace VkNet.Utils
 
 				{
 					_logger?.LogDebug("При авторизации произошла ошибка.");
+
 					throw new VkAuthorizationException("При авторизации произошла ошибка.");
 				}
 				case ImplicitFlowPageType.LoginPassword:
 
 				{
 					_logger?.LogDebug("Неверный логин или пароль.");
-					throw new VkAuthorizationException("Неверный логин или пароль.");
+
+					break;
 				}
 				case ImplicitFlowPageType.Captcha:
 
+				{
+					_logger?.LogDebug("Капча.");
+
 					break;
+				}
 				case ImplicitFlowPageType.TwoFactor:
 
-					break;
-				case ImplicitFlowPageType.Consent:
+				{
+					_logger?.LogDebug("Двухфакторная авторизация.");
 
 					break;
+				}
+				case ImplicitFlowPageType.Consent:
+
+				{
+					_logger?.LogDebug("Страница подтверждения доступа к скоупам.");
+
+					break;
+				}
 				case ImplicitFlowPageType.Result:
 
 				{
-					return Task.FromResult(_vkAuthorization.GetAuthorizationResult(formResult.ResponseUrl.ToUri()));
+					return _vkAuthorization.GetAuthorizationResult(formResult.ResponseUrl.ToUri());
 				}
-
-				default:
-
-					throw new ArgumentOutOfRangeException();
 			}
 
-			return null;
+			var resultForm = await _authorizationFormsFactory.Create(pageType)
+				.ExecuteAsync(formResult.ResponseUrl)
+				.ConfigureAwait(false);
+
+			return await NextStepAsync(resultForm).ConfigureAwait(false);
 		}
 
 		/// <summary>

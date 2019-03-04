@@ -6,11 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Infrastructure;
+using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils
@@ -27,7 +27,6 @@ namespace VkNet.Utils
 		public static void RegisterDefaultDependencies(this IServiceCollection container)
 		{
 			container.TryAddSingleton<IBrowser, Browser>();
-			container.TryAddSingleton<IAuthorizationFlow, Browser>();
 			container.TryAddSingleton<INeedValidationHandler, Browser>();
 			container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
 			container.TryAddSingleton<IRestClient, RestClient>();
@@ -39,6 +38,7 @@ namespace VkNet.Utils
 			container.TryAddSingleton<HttpClient>();
 			container.TryAddSingleton<IRateLimiter, RateLimiter>();
 			container.TryAddSingleton<IAwaitableConstraint, CountByIntervalAwaitableConstraint>();
+			container.RegisterAuthorization();
 		}
 
 		/// <summary>
@@ -99,6 +99,16 @@ namespace VkNet.Utils
 			});
 
 			return tcs.Task;
+		}
+
+		private static void RegisterAuthorization(this IServiceCollection services)
+		{
+			services.TryAddSingleton<IAuthorizationFlow, Browser>();
+			services.TryAddSingleton<IAuthorizationFormFactory, AuthorizationFormFactory>();
+			services.TryAddSingleton<IAuthorizationForm, ImplicitFlowCaptchaLoginForm>();
+			services.TryAddSingleton<IAuthorizationForm, ImplicitFlowLoginForm>();
+			services.TryAddSingleton<IAuthorizationForm, TwoFactorForm>();
+			services.TryAddSingleton<IAuthorizationForm, ConsentForm>();
 		}
 	}
 }
