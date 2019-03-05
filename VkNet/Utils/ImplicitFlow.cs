@@ -97,7 +97,7 @@ namespace VkNet.Utils
 				case ImplicitFlowPageType.Error:
 
 				{
-					_logger?.LogDebug("При авторизации произошла ошибка.");
+					_logger?.LogError("При авторизации произошла ошибка.");
 
 					throw new VkAuthorizationException("При авторизации произошла ошибка.");
 				}
