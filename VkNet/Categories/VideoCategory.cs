@@ -25,45 +25,13 @@ namespace VkNet.Categories
 			_vk = vk;
 		}
 
-		/// <summary>
-		/// Возвращает информацию о видеозаписях.
-		/// </summary>
-		/// <param name="params"> Параметры запроса. </param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов видеозаписей с
-		/// дополнительным полем comments, содержащим
-		/// число комментариев  у видеозаписи.
-		/// Если был задан параметр extended=1, возвращаются дополнительные поля:
-		/// privacy_view — настройки приватности в формате настроек приватности; (приходит
-		/// только для текущего пользователя)
-		/// privacy_comment — настройки приватности в формате настроек приватности;
-		/// (приходит только для текущего пользователя)
-		/// can_comment — может ли текущий пользователь оставлять комментарии к ролику (1 —
-		/// может, 0 — не может);
-		/// can_repost — может ли текущий пользователь скопировать ролик с помощью функции
-		/// «Рассказать друзьям» (1 — может, 0 —
-		/// не может);
-		/// likes — информация об отметках «Мне нравится»:
-		/// user_likes — есть ли отметка «Мне нравится» от текущего пользователя;
-		/// count — число отметок «Мне нравится»;
-		/// repeat — зацикливание воспроизведения видеозаписи (1 — зацикливается, 0 — не
-		/// зацикливается).
-		/// Если в Вашем приложении используется  прямая авторизация, возвращается
-		/// дополнительное поле files, содержащее ссылку
-		/// на файл с видео (если ролик размещен на сервере ВКонтакте) или ссылку на
-		/// внешний ресурс (если ролик встроен с
-		/// какого-либо видеохостинга).
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/video.get
-		/// </remarks>
+		/// <inheritdoc />
 		public VkCollection<Video> Get(VideoGetParams @params)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.AlbumId);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
-			return _vk.Call(methodName: "video.get", parameters: @params).ToVkCollectionOf<Video>(selector: x => x);
+			return _vk.Call("video.get", @params).ToVkCollectionOf<Video>(selector: x => x);
 		}
 
 		/// <summary>
@@ -80,7 +48,7 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.VideoId);
 
-			return _vk.Call(methodName: "video.edit", parameters: @params);
+			return _vk.Call("video.edit", @params);
 		}
 
 		/// <summary>
@@ -124,7 +92,7 @@ namespace VkNet.Categories
 					, { "owner_id", ownerId }
 			};
 
-			return _vk.Call(methodName: "video.add", parameters: parameters);
+			return _vk.Call("video.add", parameters);
 		}
 
 		/// <summary>
@@ -141,7 +109,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Video Save(VideoSaveParams @params)
 		{
-			return _vk.Call(methodName: "video.save", parameters: @params);
+			return _vk.Call("video.save", @params);
 		}
 
 		/// <summary>
@@ -184,7 +152,7 @@ namespace VkNet.Categories
 					, { "target_id", targetId }
 			};
 
-			return _vk.Call(methodName: "video.delete", parameters: parameters);
+			return _vk.Call("video.delete", parameters);
 		}
 
 		/// <summary>
@@ -220,7 +188,7 @@ namespace VkNet.Categories
 					, { "owner_id", ownerId }
 			};
 
-			return _vk.Call(methodName: "video.restore", parameters: parameters);
+			return _vk.Call("video.restore", parameters);
 		}
 
 		/// <summary>
@@ -244,7 +212,7 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
-			return _vk.Call(methodName: "video.search", parameters: @params).ToVkCollectionOf<Video>(selector: x => x);
+			return _vk.Call("video.search", @params).ToVkCollectionOf<Video>(selector: x => x);
 		}
 
 		/// <summary>
@@ -310,7 +278,7 @@ namespace VkNet.Categories
 					, { "need_system", needSystem }
 			};
 
-			return _vk.Call(methodName: "video.getAlbums", parameters: parameters).ToVkCollectionOf<VideoAlbum>(selector: x => x);
+			return _vk.Call("video.getAlbums", parameters).ToVkCollectionOf<VideoAlbum>(selector: x => x);
 		}
 
 		/// <summary>
@@ -347,7 +315,7 @@ namespace VkNet.Categories
 					, { "privacy", privacy }
 			};
 
-			var response = _vk.Call(methodName: "video.addAlbum", parameters: parameters);
+			var response = _vk.Call("video.addAlbum", parameters);
 
 			return response[key: "album_id"];
 		}
@@ -394,7 +362,7 @@ namespace VkNet.Categories
 					, { "privacy", privacy }
 			};
 
-			return _vk.Call(methodName: "video.editAlbum", parameters: parameters);
+			return _vk.Call("video.editAlbum", parameters);
 		}
 
 		/// <summary>
@@ -425,7 +393,7 @@ namespace VkNet.Categories
 					, { "album_id", albumId }
 			};
 
-			return _vk.Call(methodName: "video.deleteAlbum", parameters: parameters);
+			return _vk.Call("video.deleteAlbum", parameters);
 		}
 
 		/// <summary>
@@ -463,7 +431,7 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
-			return _vk.Call(methodName: "video.getComments", parameters: @params).ToVkCollectionOf<Comment>(selector: x => x);
+			return _vk.Call("video.getComments", @params).ToVkCollectionOf<Comment>(selector: x => x);
 		}
 
 		/// <summary>
@@ -481,7 +449,7 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNullOrEmpty(expr: () => @params.Message);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.VideoId);
 
-			return _vk.Call(methodName: "video.createComment", parameters: @params);
+			return _vk.Call("video.createComment", @params);
 		}
 
 		/// <summary>
@@ -514,7 +482,7 @@ namespace VkNet.Categories
 					, { "owner_id", ownerId }
 			};
 
-			return _vk.Call(methodName: "video.deleteComment", parameters: parameters);
+			return _vk.Call("video.deleteComment", parameters);
 		}
 
 		/// <summary>
@@ -552,7 +520,7 @@ namespace VkNet.Categories
 					, { "owner_id", ownerId }
 			};
 
-			return _vk.Call(methodName: "video.restoreComment", parameters: parameters);
+			return _vk.Call("video.restoreComment", parameters);
 		}
 
 		/// <summary>
@@ -615,7 +583,7 @@ namespace VkNet.Categories
 					, { "attachments", attachments }
 			};
 
-			return _vk.Call(methodName: "video.editComment", parameters: parameters);
+			return _vk.Call("video.editComment", parameters);
 		}
 
 		/// <summary>
@@ -665,7 +633,7 @@ namespace VkNet.Categories
 					, { "search_query", searchQuery }
 			};
 
-			return _vk.Call(methodName: "video.report", parameters: parameters);
+			return _vk.Call("video.report", parameters);
 		}
 
 		/// <summary>
@@ -708,7 +676,7 @@ namespace VkNet.Categories
 					, { "reason", reason }
 			};
 
-			return _vk.Call(methodName: "video.reportComment", parameters: parameters);
+			return _vk.Call("video.reportComment", parameters);
 		}
 
 		/// <summary>
@@ -745,7 +713,7 @@ namespace VkNet.Categories
 					, { "album_id", albumId }
 			};
 
-			return _vk.Call(methodName: "video.getAlbumById", parameters: parameters);
+			return _vk.Call("video.getAlbumById", parameters);
 		}
 
 		/// <summary>
@@ -791,7 +759,7 @@ namespace VkNet.Categories
 					, { "after", after }
 			};
 
-			return _vk.Call(methodName: "video.reorderAlbums", parameters: parameters);
+			return _vk.Call("video.reorderAlbums", parameters);
 		}
 
 		/// <summary>
@@ -806,7 +774,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool ReorderVideos(VideoReorderVideosParams @params)
 		{
-			return _vk.Call(methodName: "video.reorderVideos", parameters: @params);
+			return _vk.Call("video.reorderVideos", @params);
 		}
 
 		/// <summary>
@@ -861,7 +829,7 @@ namespace VkNet.Categories
 					, { "video_id", videoId }
 			};
 
-			return _vk.Call(methodName: "video.addToAlbum", parameters: parameters);
+			return _vk.Call("video.addToAlbum", parameters);
 		}
 
 		/// <summary>
@@ -915,7 +883,7 @@ namespace VkNet.Categories
 					, { "video_id", videoId }
 			};
 
-			return _vk.Call(methodName: "video.removeFromAlbum", parameters: parameters);
+			return _vk.Call("video.removeFromAlbum", parameters);
 		}
 
 		/// <summary>
@@ -969,7 +937,7 @@ namespace VkNet.Categories
 					, { "extended", extended }
 			};
 
-			return _vk.Call(methodName: "video.getAlbumsByVideo", parameters: parameters).ToVkCollectionOf<VideoAlbum>(selector: x => x);
+			return _vk.Call("video.getAlbumsByVideo", parameters).ToVkCollectionOf<VideoAlbum>(selector: x => x);
 		}
 
 		/// <summary>
@@ -1047,7 +1015,7 @@ namespace VkNet.Categories
 					, { "extended", @params.Extended }
 			};
 
-			return _vk.Call(methodName: "video.getCatalog", parameters: parameters).ToReadOnlyCollectionOf<VideoCatalog>(selector: x => x);
+			return _vk.Call("video.getCatalog", parameters).ToReadOnlyCollectionOf<VideoCatalog>(selector: x => x);
 		}
 
 		/// <summary>
@@ -1128,7 +1096,7 @@ namespace VkNet.Categories
 					, { "extended", extended }
 			};
 
-			return _vk.Call(methodName: "video.getCatalogSection", parameters: parameters)
+			return _vk.Call("video.getCatalogSection", parameters)
 					.ToReadOnlyCollectionOf<VideoCatalogItem>(selector: x => x);
 		}
 
@@ -1153,7 +1121,7 @@ namespace VkNet.Categories
 					{ "section_id", sectionId }
 			};
 
-			return _vk.Call(methodName: "video.hideCatalogSection", parameters: parameters);
+			return _vk.Call("video.hideCatalogSection", parameters);
 		}
 	}
 }

@@ -76,12 +76,12 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", p.OwnerId }
-					, { "videos", p.Videos?.Select(selector: o => $"{o.OwnerId}_{o.Id}") }
-					, { "album_id", p.AlbumId }
-					, { "count", p.Count }
-					, { "offset", p.Offset }
-					, { "extended", p.Extended }
+				{ "owner_id", p.OwnerId },
+				{ "videos", p.Videos?.Select(selector: o => $"{o.OwnerId}_{o.Id}") },
+				{ "album_id", p.AlbumId },
+				{ "count", p.Count },
+				{ "offset", p.Offset },
+				{ "extended", p.Extended }
 			};
 
 			return parameters;
