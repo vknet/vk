@@ -34,14 +34,14 @@ namespace VkNet.Utils
 		[NotNull]
 		private readonly IAuthorizationFormFactory _authorizationFormsFactory;
 
-		private readonly ImplicitFlowVkAuthorization _vkAuthorization;
+		private readonly IVkAuthorization<ImplicitFlowPageType> _vkAuthorization;
 
 		/// <inheritdoc />
 		public ImplicitFlow([CanBeNull] ILogger<ImplicitFlow> logger,
 							IVkApiVersionManager versionManager,
 							IApiAuthParams apiAuthParams,
 							IAuthorizationFormFactory authorizationFormsFactory,
-							ImplicitFlowVkAuthorization vkAuthorization)
+							IVkAuthorization<ImplicitFlowPageType> vkAuthorization)
 		{
 			_logger = logger;
 			_versionManager = versionManager;

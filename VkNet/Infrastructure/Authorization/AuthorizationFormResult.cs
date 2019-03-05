@@ -1,5 +1,5 @@
-using System.Net.Http;
 using Flurl;
+using VkNet.Utils;
 
 namespace VkNet.Infrastructure.Authorization
 {
@@ -19,8 +19,8 @@ namespace VkNet.Infrastructure.Authorization
 		public Url ResponseUrl { get; set; }
 
 		/// <summary>
-		/// Содержимое ответа
+		/// Куки.
 		/// </summary>
-		public HttpContent Content { get; set; }
+		public Cookies Cookies { get; set; }
 	}
 }
