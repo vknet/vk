@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using VkNet.Model;
 
 namespace VkNet.Abstractions.Category
 {
@@ -54,7 +57,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.checkToken
 		/// </remarks>
-		Task<object> CheckTokenAsync(string token, string ip);
+		Task<CheckTokenResult> CheckTokenAsync(string token, string ip = null);
 
 		/// <summary>
 		/// Возвращает платежный баланс (счет) приложения в сотых долях голоса.
@@ -66,7 +69,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getAppBalance
 		/// </remarks>
-		Task<object> GetAppBalanceAsync();
+		Task<ulong> GetAppBalanceAsync();
 
 		/// <summary>
 		/// Выводит список SMS-уведомлений, отосланных приложением с помощью метода secure.sendSMSNotification.
@@ -89,8 +92,9 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getSMSHistory
 		/// </remarks>
-		Task<IEnumerable<object>> GetSmsHistoryAsync(ulong? userId = null, ulong? dateFrom = null, ulong? dateTo = null,
-													ulong? limit = null);
+		Task<ReadOnlyCollection<SmsHistoryItem>> GetSmsHistoryAsync(ulong? userId = null, DateTime? dateFrom = null,
+																	DateTime? dateTo = null,
+																	ulong? limit = null);
 
 		/// <summary>
 		/// Выводит историю транзакций по переводу голосов между пользователями и приложением.
@@ -101,7 +105,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getTransactionsHistory
 		/// </remarks>
-		Task<IEnumerable<object>> GetTransactionsHistoryAsync();
+		Task<ReadOnlyCollection<Transaction>> GetTransactionsHistoryAsync();
 
 		/// <summary>
 		/// Возвращает ранее выставленный игровой уровень одного или нескольких пользователей в приложении.
@@ -115,7 +119,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.getUserLevel
 		/// </remarks>
-		Task<object> GetUserLevelAsync(IEnumerable<long> userIds);
+		Task<ReadOnlyCollection<SecureLevel>> GetUserLevelAsync(IEnumerable<long> userIds);
 
 		/// <summary>
 		/// Отправляет уведомление пользователю.
@@ -126,9 +130,6 @@ namespace VkNet.Abstractions.Category
 		/// <param name = "userIds">
 		/// Перечисленные через запятую идентификаторы пользователей, которым отправляется уведомление (максимум 100 штук). список положительных чисел, разделенных запятыми
 		/// </param>
-		/// <param name = "userId">
-		/// Идентификатор пользователя. положительное число
-		/// </param>
 		/// <returns>
 		/// Возвращает перечисленные через запятую ID пользователей, которым было успешно отправлено уведомление.
 		/// Обратите внимание, нельзя отправлять пользователю более 1 уведомления в час (3 в сутки). Кроме того, нельзя отправить одному пользователю два уведомления с одинаковым текстом подряд.
@@ -136,7 +137,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.sendNotification
 		/// </remarks>
-		Task<object> SendNotificationAsync(string message, IEnumerable<ulong> userIds = null, ulong? userId = null);
+		Task<ReadOnlyCollection<ulong>> SendNotificationAsync(string message, IEnumerable<ulong> userIds = null);
 
 		/// <summary>
 		/// Отправляет SMS-уведомление на мобильный телефон пользователя.
@@ -182,26 +183,5 @@ namespace VkNet.Abstractions.Category
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.setCounter
 		/// </remarks>
 		Task<bool> SetCounterAsync(IEnumerable<string> counters, ulong? userId = null, long? counter = null, bool? increment = null);
-
-		/// <summary>
-		/// Устанавливает игровой уровень пользователя в приложении, который смогут увидеть его друзья.
-		/// </summary>
-		/// <param name = "levels">
-		/// Позволяет указывать уровни нескольким пользователям за один запрос. Значение следует указывать в следующем формате: user_id1:level1,user_id2:level2, пример: 66748:6,6492:2. В случае, если указан этот параметр, параметры level и user_id не учитываются. Метод принимает не более 200 значений за один запрос. список слов, разделенных через запятую
-		/// </param>
-		/// <param name = "userId">
-		/// Идентификатор пользователя. положительное число
-		/// </param>
-		/// <param name = "level">
-		/// Значение уровня. положительное число
-		/// </param>
-		/// <returns>
-		/// Возвращает 1 в случае успешной установки уровня.
-		/// Обратите внимание, при попытке установить уровень ниже текущего, ответ будет содержать сообщение об ошибке "Access denied: no activity from user for last 3 days", значение уровня изменено не будет.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/secure.setUserLevel
-		/// </remarks>
-		Task<bool> SetUserLevelAsync(IEnumerable<string> levels, ulong? userId = null, ulong? level = null);
 	}
 }

@@ -227,11 +227,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/video.getAlbums
 		/// </remarks>
-		Task<VkCollection<VideoAlbum>> GetAlbumsAsync(long? ownerId = null
-													, long? offset = null
-													, long? count = null
-													, bool? extended = null
-													, bool? needSystem = null);
+		Task<VkCollection<VideoAlbum>> GetAlbumsAsync(long? ownerId = null, long? offset = null, long? count = null, bool? extended = null,
+													bool? needSystem = null);
 
 		/// <summary>
 		/// Создает пустой альбом видеозаписей.
@@ -673,11 +670,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/video.removeFromAlbum
 		/// </remarks>
-		Task<bool> RemoveFromAlbumAsync(long ownerId
-										, long videoId
-										, IEnumerable<string> albumIds
-										, long? targetId = null
-										, long? albumId = null);
+		Task<bool> RemoveFromAlbumAsync(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null,
+										long? albumId = null);
 
 		/// <summary>
 		/// Возвращает список альбомов, в которых находится видеозапись.
@@ -853,10 +847,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/video.getCatalogSection
 		/// </remarks>
-		Task<ReadOnlyCollection<VideoCatalogItem>> GetCatalogSectionAsync(string sectionId
-																		, string from
-																		, long? count = null
-																		, bool? extended = null);
+		Task<ReadOnlyCollection<VideoCatalogItem>> GetCatalogSectionAsync(string sectionId, string from, long? count = null,
+																		bool? extended = null);
 
 		/// <summary>
 		/// Скрывает для пользователя раздел видеокаталога.

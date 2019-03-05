@@ -79,7 +79,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.getMutual
 		/// </remarks>
-		Task<ReadOnlyCollection<long>> GetMutualAsync(FriendsGetMutualParams @params);
+		Task<ReadOnlyCollection<MutualFriend>> GetMutualAsync(FriendsGetMutualParams @params);
 
 		/// <summary>
 		/// Возвращает информацию о том, добавлен ли текущий пользователь в друзья у
@@ -216,11 +216,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.editList
 		/// </remarks>
-		Task<bool> EditListAsync(long listId
-								, string name = null
-								, IEnumerable<long> userIds = null
-								, IEnumerable<long> addUserIds = null
-								, IEnumerable<long> deleteUserIds = null);
+		Task<bool> EditListAsync(long listId, string name = null, IEnumerable<long> userIds = null, IEnumerable<long> addUserIds = null,
+								IEnumerable<long> deleteUserIds = null);
 
 		/// <summary>
 		/// Отмечает все входящие заявки на добавление в друзья как просмотренные.
@@ -436,11 +433,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.getSuggestions
 		/// </remarks>
-		Task<VkCollection<User>> GetSuggestionsAsync(FriendsFilter filter = null
-													, long? count = null
-													, long? offset = null
-													, UsersFields fields = null
-													, NameCase nameCase = null);
+		Task<VkCollection<User>> GetSuggestionsAsync(FriendsFilter filter = null, long? count = null, long? offset = null,
+													UsersFields fields = null, NameCase nameCase = null);
 
 		/// <summary>
 		/// Возвращает список друзей пользователя, у которых завалидированные или указанные

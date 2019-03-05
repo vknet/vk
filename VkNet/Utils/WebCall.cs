@@ -2,7 +2,9 @@
 
 using System;
 using System.Collections.Generic;
+#if DEBUG_HTTP
 using System.IO;
+#endif
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -11,6 +13,7 @@ using VkNet.Exception;
 
 namespace VkNet.Utils
 {
+	/// <inheritdoc />
 	/// <summary>
 	/// WebCall
 	/// </summary>
@@ -26,14 +29,17 @@ namespace VkNet.Utils
 			sb.AppendLine($"{method} {url} [PROXY: {(webProxy != null)}]");
 			if (parameters != null)
 			{
-				foreach (var p in parameters)
+				foreach (var p in parameters) {
 					sb.AppendLine($"{p.Key}: {p.Value}");
+				}
 			}
 			sb.AppendLine();
 			Console.WriteLine($"{nameof(VkApi)} [{nameof(WebCall)}]: " + sb.ToString());
-			if (WRITE_TO_FILE)
+			if (WRITE_TO_FILE) {
 				File.AppendAllText(HTTP_LOG_PATH, $"{DateTime.Now}: " + sb.ToString(), Encoding.UTF8);
+			}
 		}
+
 		static internal void LogWebCallResultDebugInfo(string method, string url, HttpResponseMessage response, WebCallResult res, long executionTimeMS)
 		{
 			StringBuilder sb = new StringBuilder();
@@ -47,7 +53,7 @@ namespace VkNet.Utils
 				File.AppendAllText(HTTP_LOG_PATH, $"{DateTime.Now}: " + sb.ToString(), Encoding.UTF8);
 		}
 
-		#endif
+	#endif
 
 		/// <summary>
 		/// Получить HTTP запрос.
@@ -68,7 +74,7 @@ namespace VkNet.Utils
 		/// <param name="allowAutoRedirect"> Разрешить авто редиррект </param>
 		private WebCall(string url, Cookies cookies, IWebProxy webProxy = null, bool allowAutoRedirect = true)
 		{
-			var baseAddress = new Uri(uriString: url);
+			var baseAddress = new Uri(url);
 
 			var handler = new HttpClientHandler
 			{
@@ -78,12 +84,15 @@ namespace VkNet.Utils
 				AllowAutoRedirect = allowAutoRedirect
 			};
 
-			_request = new HttpClient(handler: handler)
+			_request = new HttpClient(handler)
 			{
 				BaseAddress = baseAddress,
 				DefaultRequestHeaders =
 				{
-					Accept = { MediaTypeWithQualityHeaderValue.Parse(input: "text/html") }
+					Accept =
+					{
+						MediaTypeWithQualityHeaderValue.Parse("text/html")
+					}
 				}
 			};
 
@@ -112,17 +121,17 @@ namespace VkNet.Utils
 		#if DEBUG_HTTP
 			LogWebCallRequestInfo("GET", url, null, webProxy);
 			var watch = System.Diagnostics.Stopwatch.StartNew();
-			#endif
+		#endif
 
 			using (var call = new WebCall(url, new Cookies(), webProxy))
 			{
-				var response = call._request.GetAsync(requestUri: url).Result;
-				var res = call.MakeRequest(response, new Uri(uriString: url), webProxy);
+				var response = call._request.GetAsync(url).Result;
+				var res = call.MakeRequest(response, new Uri(url), webProxy);
 
 			#if DEBUG_HTTP
 				watch.Stop();
 				LogWebCallResultDebugInfo("GET", url, response, res, watch.ElapsedMilliseconds);
-				#endif
+			#endif
 
 				return res;
 			}
@@ -140,20 +149,20 @@ namespace VkNet.Utils
 		#if DEBUG_HTTP
 			LogWebCallRequestInfo("POST", url, parameters, webProxy);
 			var watch = System.Diagnostics.Stopwatch.StartNew();
-			#endif
+		#endif
 
 			using (var call = new WebCall(url, new Cookies(), webProxy))
 			{
 				var response = call._request
-					.PostAsync(url, new FormUrlEncodedContent(nameValueCollection: parameters))
+					.PostAsync(url, new FormUrlEncodedContent(parameters))
 					.Result;
 
-				var res = call.MakeRequest(response, new Uri(uriString: url), webProxy);
+				var res = call.MakeRequest(response, new Uri(url), webProxy);
 
 			#if DEBUG_HTTP
 				watch.Stop();
 				LogWebCallResultDebugInfo("POST", url, response, res, watch.ElapsedMilliseconds);
-				#endif
+			#endif
 
 				return res;
 			}
@@ -170,22 +179,22 @@ namespace VkNet.Utils
 		#if DEBUG_HTTP
 			LogWebCallRequestInfo("POST", form.ActionUrl, form.GetFormFields(), webProxy);
 			var watch = System.Diagnostics.Stopwatch.StartNew();
-			#endif
+		#endif
 
 			using (var call = new WebCall(form.ActionUrl, form.Cookies, webProxy, false))
 			{
 				SpecifyHeadersForFormRequest(form, call);
 
 				var response = call._request
-					.PostAsync(form.ActionUrl, new FormUrlEncodedContent(nameValueCollection: form.GetFormFields()))
+					.PostAsync(form.ActionUrl, new FormUrlEncodedContent(form.GetFormFields()))
 					.Result;
 
-				var res = call.MakeRequest(response, new Uri(uriString: form.ActionUrl), webProxy);
+				var res = call.MakeRequest(response, new Uri(form.ActionUrl), webProxy);
 
 			#if DEBUG_HTTP
 				watch.Stop();
 				LogWebCallResultDebugInfo("POST", form.ActionUrl, response, res, watch.ElapsedMilliseconds);
-				#endif
+			#endif
 
 				return res;
 			}
@@ -202,7 +211,7 @@ namespace VkNet.Utils
 		#if DEBUG_HTTP
 			LogWebCallRequestInfo("REDIRECT GET", url, null, webProxy);
 			var watch = System.Diagnostics.Stopwatch.StartNew();
-			#endif
+		#endif
 
 			using (var call = new WebCall(url, _result.Cookies, webProxy))
 			{
@@ -210,13 +219,13 @@ namespace VkNet.Utils
 				headers.Add("Method", "GET");
 				headers.Add("ContentType", "text/html");
 
-				var response = call._request.GetAsync(requestUri: url).Result;
-				var res = call.MakeRequest(response, new Uri(uriString: url), webProxy);
+				var response = call._request.GetAsync(url).Result;
+				var res = call.MakeRequest(response, new Uri(url), webProxy);
 
 			#if DEBUG_HTTP
 				watch.Stop();
 				LogWebCallResultDebugInfo("REDIRECT GET", url, response, res, watch.ElapsedMilliseconds);
-				#endif
+			#endif
 
 				return res;
 			}
@@ -236,7 +245,7 @@ namespace VkNet.Utils
 			{
 				if (stream == null)
 				{
-					throw new VkApiException(message: "Response is null.");
+					throw new VkApiException("Response is null.");
 				}
 
 				var encoding = Encoding.UTF8;
@@ -244,7 +253,7 @@ namespace VkNet.Utils
 
 				var cookies = _result.Cookies.Container;
 
-				_result.SaveCookies(cookies: cookies.GetCookies(uri: uri));
+				_result.SaveCookies(cookies.GetCookies(uri));
 
 				return response.StatusCode == HttpStatusCode.Redirect
 					? RedirectTo(response.Headers.Location.AbsoluteUri, webProxy)
@@ -261,7 +270,7 @@ namespace VkNet.Utils
 			headers.Add("ContentType", "application/x-www-form-urlencoded");
 
 			headers.Add("ContentLength", formRequest.Length.ToString());
-			headers.Referrer = new Uri(uriString: form.OriginalUrl);
+			headers.Referrer = new Uri(form.OriginalUrl);
 		}
 	}
 }

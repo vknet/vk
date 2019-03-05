@@ -1,4 +1,5 @@
 using VkNet.Abstractions;
+using VkNet.Abstractions.Core;
 using VkNet.Model.Attachments;
 using VkNet.Utils.AntiCaptcha;
 
@@ -10,8 +11,11 @@ namespace VkNet.Utils
 	public static class ObsoleteText
 	{
 		/// <summary>
-		/// Параметры для капчи устаревшие.
-		/// Необходимо реализовать интефейс ICaptchaSolver и внедрить через констуктор.
+		/// Использование параметров капчи устаревший метод взаимодействия с <b>Captcha</b>.
+		/// Необходимо реализовать интерфейс <see cref="ICaptchaSolver"/> и внедрить через конструктор.
+		/// <para>
+		/// Данный параметр будет удален в версии <b>2.0.0</b>
+		/// </para>
 		/// </summary>
 		public const string CaptchaNeeded = "Использование параметров капчи устаревший метод взаимодействия с Captcha."
 											+ " Необходимо реализовать интерфейс "
@@ -20,57 +24,70 @@ namespace VkNet.Utils
 											+ " Данный параметр будет удален в версии 2.0.0";
 
 		/// <summary>
-		/// Stats.Get
+		/// Устаревший параметр, доступен только для версий меньше <b>5.86</b>
 		/// </summary>
 		public const string StatsGet = "Устаревший параметр, доступен только для версий меньше 5.86";
 
 		/// <summary>
-		/// Attachment
+		/// Данный тип данных устарел, используйте вместо него <see cref="MediaAttachment"/>
 		/// </summary>
 		public const string Attachment = "Данный тип данных устарел, используйте вместо него " + nameof(MediaAttachment);
 
 		/// <summary>
-		/// Validate
+		/// Данный метод устарел, используйте перегрузку класса <see cref="INeedValidationHandler"/>.<see cref="INeedValidationHandler.Validate(string)"/>
 		/// </summary>
 		public const string Validate = "Данный метод устарел, используйте перегрузку void Validate(string validateUrl);";
 
 		/// <summary>
-		/// Messages.GetConversations
+		/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.GetConversations"/>
 		/// </summary>
 		public const string MessageGet = Deprecated + nameof(IMessagesCategory.GetConversations);
 
 		/// <summary>
-		/// Messages.SearchConversations
+		/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.SearchConversations"/>
 		/// </summary>
 		public const string MessageSearchDialogs = Deprecated + nameof(IMessagesCategory.SearchConversations);
 
 		/// <summary>
-		/// Messages.MessageMarkAsImportantDialog
+		/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.MarkAsImportantConversation"/>
 		/// </summary>
 		public const string MessageMarkAsImportantDialog = Deprecated + nameof(IMessagesCategory.MarkAsImportantConversation);
 
 		/// <summary>
-		/// Messages.MarkAsAnsweredDialog
+		/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.MarkAsAnsweredConversation"/>
 		/// </summary>
 		public const string MessageMarkAsAnsweredDialog = Deprecated + nameof(IMessagesCategory.MarkAsAnsweredConversation);
 
 		/// <summary>
-		/// Messages.DeleteConversation
+		/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.DeleteConversation"/>
 		/// </summary>
 		public const string MessageDeleteDialog = Deprecated + nameof(IMessagesCategory.DeleteConversation);
 
 		/// <summary>
-		/// Messages.DeleteConversation
+		/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.GetConversationMembers"/>
 		/// </summary>
 		public const string MessageGetChatUsers = Deprecated + nameof(IMessagesCategory.GetConversationMembers);
 
 		/// <summary>
-		/// Messages.DeleteConversation
+		/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.GetById"/>
 		/// </summary>
 		public const string MessageGetById = Deprecated
 											+ "GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null, bool? extended = null, ulong? groupId = null)";
 
-		private const string Deprecated =
-			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования. Используйте вместо него ";
+		/// <summary>
+		/// <inheritdoc cref="Deprecated"/> <see cref="IFriendsCategory.AddList"/>
+		/// </summary>
+		public const string FriendsAddList = Deprecated + "long AddList(string name, IEnumerable<long> userIds);";
+
+		/// <summary>
+		/// <inheritdoc cref="Obsolete"/> Используйте вместо него
+		/// </summary>
+		private const string Deprecated = Obsolete + " Используйте вместо него ";
+
+		/// <summary>
+		/// Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.
+		/// </summary>
+		public const string Obsolete =
+			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.";
 	}
 }

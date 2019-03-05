@@ -35,6 +35,12 @@ namespace VkNet.Model.Attachments
 		public string State { get; set; }
 
 		/// <summary>
+		/// Тип вызова.
+		/// </summary>
+		[JsonProperty("duration")]
+		public long? Duration { get; set; }
+
+		/// <summary>
 		/// Время вызова.
 		/// </summary>
 		[JsonProperty("time")]
@@ -54,7 +60,8 @@ namespace VkNet.Model.Attachments
 				InitiatorId = response["initiator_id"],
 				ReceiverId = response["receiver_id"],
 				State = response["state"],
-				Time = response["time"]
+				Time = response["time"],
+				Duration = response["duration"]
 			};
 
 			return call;
