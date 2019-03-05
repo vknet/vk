@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Flurl.Http.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
+using VkNet.Enums;
 using VkNet.Infrastructure;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Utils.AntiCaptcha;
@@ -104,6 +106,9 @@ namespace VkNet.Utils
 		private static void RegisterAuthorization(this IServiceCollection services)
 		{
 			services.TryAddSingleton<IAuthorizationFlow, Browser>();
+			services.TryAddSingleton<IVkAuthorization<ImplicitFlowPageType>, ImplicitFlowVkAuthorization>();
+			services.TryAddSingleton<IAuthorizationFormHtmlParser, AuthorizationFormHtmlParser>();
+			services.TryAddSingleton<DefaultHttpClientFactory, ProxyHttpClientFactory>();
 			services.TryAddSingleton<IAuthorizationFormFactory, AuthorizationFormFactory>();
 			services.TryAddSingleton<IAuthorizationForm, ImplicitFlowCaptchaLoginForm>();
 			services.TryAddSingleton<IAuthorizationForm, ImplicitFlowLoginForm>();

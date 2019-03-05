@@ -1,20 +1,22 @@
-using System;
-using System.Threading.Tasks;
-using Flurl;
+using Flurl.Http.Configuration;
 using VkNet.Enums;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
 	/// <inheritdoc />
-	public class ConsentForm: IAuthorizationForm
+	public class ConsentForm : AbstractAuthorizationForm
 	{
-		/// <inheritdoc />
-		public ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.Consent;
+		public ConsentForm(IAuthorizationFormHtmlParser htmlParser, DefaultHttpClientFactory httpClientFactory)
+			: base(htmlParser, httpClientFactory)
+		{
+		}
 
 		/// <inheritdoc />
-		public Task<AuthorizationFormResult> ExecuteAsync(Url authorizeUrl)
+		public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.Consent;
+
+		/// <inheritdoc />
+		protected override void FillFormFields(VkHtmlFormResult form)
 		{
-			throw new NotImplementedException();
 		}
 	}
 }

@@ -20,8 +20,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <summary>
 		/// Выполнить авторизацию
 		/// </summary>
-		/// <param name="authorizeUrl">Url авторизации</param>
+		/// <param name="url">Url запроса</param>
 		/// <returns>Содержимое ответа от vk</returns>
-		Task<AuthorizationFormResult> ExecuteAsync(Url authorizeUrl);
+		Task<AuthorizationFormResult> ExecuteAsync(Url url);
 	}
 }

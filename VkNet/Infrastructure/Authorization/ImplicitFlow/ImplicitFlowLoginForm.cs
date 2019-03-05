@@ -1,34 +1,36 @@
-using System;
-using System.Threading.Tasks;
-using Flurl;
-using Flurl.Http;
+using Flurl.Http.Configuration;
 using VkNet.Enums;
-using VkNet.Exception;
+using VkNet.Model;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
 	/// <inheritdoc />
-	public class ImplicitFlowLoginForm : IAuthorizationForm
+	public class ImplicitFlowLoginForm : AbstractAuthorizationForm
 	{
-		/// <inheritdoc />
-		public ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.LoginPassword;
+		private readonly IApiAuthParams _authorizationParameters;
 
 		/// <inheritdoc />
-		public async Task<AuthorizationFormResult> ExecuteAsync(Url authorizeUrl)
+		public ImplicitFlowLoginForm(DefaultHttpClientFactory httpClientFactory, IAuthorizationFormHtmlParser htmlParser,
+									IApiAuthParams authorizationParameters) : base(htmlParser, httpClientFactory)
 		{
-			var httpResponseMessage = await authorizeUrl.GetAsync().ConfigureAwait(false);
+			_authorizationParameters = authorizationParameters;
+		}
 
-			if (!httpResponseMessage.IsSuccessStatusCode)
+		/// <inheritdoc />
+		public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.LoginPassword;
+
+		/// <inheritdoc />
+		protected override void FillFormFields(VkHtmlFormResult form)
+		{
+			if (form.Fields.ContainsKey("email"))
 			{
-				throw new VkAuthorizationException(httpResponseMessage.ReasonPhrase);
+				form.Fields["email"] = _authorizationParameters.Login;
 			}
 
-			return new AuthorizationFormResult
+			if (form.Fields.ContainsKey("pass"))
 			{
-				Content = httpResponseMessage.Content,
-				RequestUrl = httpResponseMessage.RequestMessage.RequestUri,
-				ResponseUrl = authorizeUrl
-			};
+				form.Fields["pass"] = _authorizationParameters.Password;
+			}
 		}
 	}
 }
