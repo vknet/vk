@@ -55,16 +55,14 @@ namespace VkNet.Model.RequestParams
 		/// <returns> </returns>
 		public static VkParameters ToVkParameters(VideoGetCatalogParams p)
 		{
-			var parameters = new VkParameters
+			return new VkParameters
 			{
-					{ "items_count", p.ItemsCount }
-					, { "count", p.Count }
-					, { "extended", p.Extended }
-					, { "from", p.From }
-					, { "filters", p.Filters }
+				{ "items_count", p.ItemsCount },
+				{ "count", p.Count },
+				{ "extended", p.Extended },
+				{ "from", p.From },
+				{ "filters", p.Filters }
 			};
-
-			return parameters;
 		}
 	}
 }
