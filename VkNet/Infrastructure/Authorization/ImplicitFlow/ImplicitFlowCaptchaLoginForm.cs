@@ -1,4 +1,5 @@
 using Flurl.Http.Configuration;
+using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Model;
@@ -7,7 +8,8 @@ using VkNet.Utils.AntiCaptcha;
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
 	/// <inheritdoc />
-	public class ImplicitFlowCaptchaLoginForm : AbstractAuthorizationForm
+	[UsedImplicitly]
+	public sealed class ImplicitFlowCaptchaLoginForm : AbstractAuthorizationForm
 	{
 		private readonly IApiAuthParams _authorizationParameters;
 

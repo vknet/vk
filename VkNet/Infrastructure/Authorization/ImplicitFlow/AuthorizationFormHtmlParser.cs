@@ -1,32 +1,34 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Flurl;
+using Flurl.Http;
 using HtmlAgilityPack;
+using JetBrains.Annotations;
 using VkNet.Exception;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
 	/// <inheritdoc />
-	public class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
+	[UsedImplicitly]
+	public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 	{
 		/// <inheritdoc />
-		public VkHtmlFormResult GetForm(Url url)
+		public async Task<VkHtmlFormResult> GetFormAsync(Url url)
 		{
-			var uri = url.ToUri();
-			var responseBaseUrl = uri.Scheme + "://" + uri.Host + ":" + uri.Port;
-
-			var web = new HtmlWeb();
-			var doc = web.Load(url);
+			var html = await url.GetStringAsync().ConfigureAwait(false);
+			var doc = new HtmlDocument();
+			doc.LoadHtml(html);
 			var formNode = GetFormNode(doc);
 			var inputs = ParseInputs(formNode);
 
-			var actionUrl = GetActionUrl(formNode, responseBaseUrl);
+			var actionUrl = GetActionUrl(formNode, url);
 			var method = GetMethod(formNode);
 
 			return new VkHtmlFormResult
 			{
 				Fields = inputs,
-				Action = string.IsNullOrWhiteSpace(actionUrl) ? url.ToString() : actionUrl,
+				Action = actionUrl,
 				Method = method
 			};
 		}
@@ -36,7 +38,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// </summary>
 		/// <returns> HTML элемент </returns>
 		/// <exception cref="VkApiException"> Элемент не найден на форме. </exception>
-		private HtmlNode GetFormNode(HtmlDocument html)
+		private static HtmlNode GetFormNode(HtmlDocument html)
 		{
 			HtmlNode.ElementsFlags.Remove("form");
 			var form = html.DocumentNode.SelectSingleNode("//form");
@@ -53,7 +55,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// Разобрать поля ввода.
 		/// </summary>
 		/// <returns> Коллекция полей ввода </returns>
-		private Dictionary<string, string> ParseInputs(HtmlNode formNode)
+		private static Dictionary<string, string> ParseInputs(HtmlNode formNode)
 		{
 			var inputs = new Dictionary<string, string>();
 
@@ -79,7 +81,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <summary>
 		/// URL действия.
 		/// </summary>
-		private string GetActionUrl(HtmlNode formNode, string responseBaseUrl)
+		private static string GetActionUrl(HtmlNode formNode, Url url)
 		{
 			var action = formNode.Attributes["action"];
 
@@ -90,23 +92,29 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 			var link = action.Value;
 
-			if (!string.IsNullOrEmpty(link) && !link.StartsWith("http", StringComparison.Ordinal)
-			) // относительный URL
+			if (!string.IsNullOrWhiteSpace(link) && !link.StartsWith("http", StringComparison.Ordinal)) // относительный URL
 			{
-				link = Url.Combine(responseBaseUrl, link);
+				link = Url.Combine(GetResponseBaseUrl(url), link);
 			}
 
-			return link; // абсолютный путь
+			return string.IsNullOrWhiteSpace(link) ? url.ToString() : link; // абсолютный путь
 		}
 
 		/// <summary>
 		/// URL действия.
 		/// </summary>
-		private string GetMethod(HtmlNode formNode)
+		private static string GetMethod(HtmlNode formNode)
 		{
 			var method = formNode.Attributes["method"];
 
 			return method?.Value;
+		}
+
+		private static string GetResponseBaseUrl(Url url)
+		{
+			var uri = url.ToUri();
+
+			return uri.Scheme + "://" + uri.Host + ":" + uri.Port;
 		}
 	}
 }

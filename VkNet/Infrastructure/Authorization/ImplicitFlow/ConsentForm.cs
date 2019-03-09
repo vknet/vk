@@ -1,11 +1,14 @@
 using Flurl.Http.Configuration;
+using JetBrains.Annotations;
 using VkNet.Enums;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
 	/// <inheritdoc />
-	public class ConsentForm : AbstractAuthorizationForm
+	[UsedImplicitly]
+	public sealed class ConsentForm : AbstractAuthorizationForm
 	{
+		/// <inheritdoc />
 		public ConsentForm(IAuthorizationFormHtmlParser htmlParser, DefaultHttpClientFactory httpClientFactory)
 			: base(htmlParser, httpClientFactory)
 		{

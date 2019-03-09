@@ -29,7 +29,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <inheritdoc />
 		public async Task<AuthorizationFormResult> ExecuteAsync(Url url)
 		{
-			var form = _htmlParser.GetForm(url);
+			var form = await _htmlParser.GetFormAsync(url).ConfigureAwait(false);
 
 			FillFormFields(form);
 

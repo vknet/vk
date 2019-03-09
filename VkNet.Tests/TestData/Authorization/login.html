@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!-- saved from url=(0170)https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https://oauth.vk.com/blank.html&display=mobile&scope=140492255&response_type=token&v=5.92&state=123&revoke=1 -->
+<html class="vk vk_js_yes  vk_flex_yes r m h vk_withVolumeLine vk_appAuth_no mp4_enabled ">
+<head class="push_notifier_default push_notifier_supported">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="MobileOptimized" content="176">
+	<meta name="HandheldFriendly" content="True">
+	<meta name="theme-color" content="#5181b8">
+	<!--<base id="base">-->
+	<base href=".">
+	<meta name="robots" content="noindex,nofollow">
+	<meta name="msApplication-ID" content="C6965DD5.VK">
+	<meta name="msApplication-PackageFamilyName" content="C6965DD5.VK_v422avzh127ra">
+	<style>
+		@media screen and (-ms-view-state: snapped) {
+			@-ms-viewport {
+				width: device-width
+			}
+		}
+	</style>
+	<title>Получение доступа к ВКонтакте</title>
+	<link rel="shortcut icon" href="https://oauth.vk.com/images/icons/favicons/fav_logo.ico?8">
+	<script>
+		(function () {
+			window.isMVK = true;
+			window.isNewNavigation = false;
+			window.isNewMail = true;
+			window.isNewLongpoll = true;
+			window.audioSubscribe = false;
+			window.isArticleWebView = false;
+			window.isPWAStart = false;
+
+			var vkElem = document.querySelector('.vk');
+			var vkClass = vkElem.getAttribute('class');
+
+			var supports = {
+				js: true,
+				flex: window.CSS && CSS.supports && (
+					CSS.supports('display', 'flex') ||
+					CSS.supports('display', '-webkit-flex') ||
+					CSS.supports('display', '-ms-flexbox')
+				)
+			};
+
+			supports.js && (vkClass = vkClass.replace('vk_js_no', 'vk_js_yes'));
+			supports.flex && (vkClass = vkClass.replace('vk_flex_no', 'vk_flex_yes'));
+			vkElem.setAttribute('class', vkClass);
+		})();
+	</script>
+
+	<script type="text/javascript">
+		<!--
+		(function (k, a, d, e, f) {
+			function l() {
+				var c = function () {
+					var b = !1;
+					try {
+						b = new XMLHttpRequest
+					} catch (a) {
+						try {
+							b = new ActiveXObject("Msxml2.XMLHTTP")
+						} catch (d) {
+							try {
+								b = new ActiveXObject("Microsoft.XMLHTTP")
+							} catch (c) {
+								b = !1
+							}
+						}
+					}
+					return b ? e : f
+				}(), g = function () {
+					var b = k.createElement("div");
+					b.innerHTML = '<input type="file" />';
+					b = b.getElementsByTagName("input")[0];
+					return "file" != b.type || b.disabled ? f : e
+				}(), h = "ontouchstart" in a ? e : f, m;
+				try {
+					m = typeof navigator.geolocation !== d ? e : typeof a.google !== d && typeof google.gears !== d ? e : typeof device !== d && typeof device.getServiceObject !== d ? e : typeof Mojo !== d && "Mojo.Service.Request" !== typeof Mojo.Service.Request ? e : f
+				} catch (p) {
+					m = f
+				}
+				var l = function (b) {
+					try {
+						var d = a.Audio ? new Audio : k.createElement("audio");
+						if (d.canPlayType && d.canPlayType(b) && "no" != d.canPlayType(b)) return e
+					} catch (c) {
+					}
+					return f
+				}("audio/mpeg"), n = function (b) {
+					try {
+						for (var a = k.createElement("div"), c = 0, g = ["webkit", "Moz", "ms", "O", ""], h = g.length; c < h; c++) {
+							var l = g[c], m = l ? l + b : b.toLowerCase();
+							if (typeof a.style[m] !== d) return e
+						}
+						return f
+					} catch (n) {
+						return f
+					}
+				}("Transform");
+				return c + g + h + m + l + n + ((a.XMLHttpRequest || a.XDomainRequest) && (a.FormData || a.FileReader && (a.XMLHttpRequest && XMLHttpRequest.sendAsBinary || a.ArrayBuffer && a.Uint8Array && (a.MozBlobBuilder || a.WebKitBlobBuilder || a.BlobBuilder))) ? e : f)
+			}
+
+			var c = a.screen, g = c.width || 0, c = c.height || 0, n = a.devicePixelRatio || 1,
+				p = (k.cookie.match(/(^|;\s+)remixmdevice=([^;]+)/) || [])[2] || "", h = p.split("/");
+			p && g == h[0] && c == h[1] && 7 == h[3].length || (g = [g, c, n, l()].join("/"), k.cookie = "remixmdevice=; expires=" + (new Date(0)).toUTCString() + "; path=/", k.cookie = "remixmdevice=" + g + "; expires=" + (new Date((new Date).getTime() + 7776E6)).toUTCString() + "; path=/; domain=.vk.com", (location.search.indexOf('?mode=standalone') !== 0 && k.cookie !== "") && location.replace(location.toString()))
+		})(document, window, "undefined", "!", "-");
+		!function (o, a) {
+			var e = o.hash || "", t = e.substr(2);
+			if ("#/" == e.substr(0, 2)) {
+				var i = window.locDomain, n = new Date;
+				n.setTime(n.getTime() + 864e5);
+				var r = "; expires=" + n.toGMTString();
+				document.cookie = ["remixtmp_hash_nav", "=", o.href, r, "; path=/", i ? "; domain=." + i : ""].join(""), !a && (t.match(/^\/*(away|login)(\.php)?([^a-z0-9\.]|$)/) && (t = ""), o.replace(o.protocol + "//" + o.host + "/" + t))
+			}
+		}(location, 1);
+		setTimeout(function () {
+			!location.hash && window.scrollTo(0, /android/i.test(navigator.userAgent) ? 1 : 0)
+		}, 0);
+		//-->
+	</script>
+	<link type="text/css" rel="stylesheet" media="" href="./login_files/common.css">
+	<script type="text/javascript" src="./login_files/common.js.Без названия"></script>
+	<script type="text/javascript" src="./login_files/oauth.js.Без названия"></script>
+	<script type="text/javascript" src="./login_files/grip.js.Без названия"></script>
+
+
+</head>
+
+<body
+	class="vk__page _hover vk_ios_no _hfixed vk_stickers_hints_support_no opera_mini_no vk_safari_no vk__page_oauth  vk_al_no"
+	onresize="uVK.onResize(); onBodyResize(true);" onorientationchange="uVK.onOrientationChange(); null">
+<div class="layout">
+
+
+	<div class="layout__header mhead" id="vk_head"></div>
+	<div class="layout__body  _js _copts" id="vk_wrap">
+		<div class="layout__leftMenu" id="l">
+
+		</div>
+		<div class="layout__basis" id="m">
+			<div class="basis">
+				<div class="basis__header mhead" id="mhead">
+					<div class="hb_wrap mhb_logo">
+						<div class="hb_btn mhi_logo">&nbsp;</div>
+						<h1 class="hb_btn mh_header">&nbsp;</h1>
+					</div>
+				</div>
+				<div class="basis__menu"></div>
+
+				<div class="basis__content mcont " id="mcont" data-canonical="">
+					<div class="pcont fit_box bl_cont">
+						<div class="PageBlock">
+							<div class="owner_panel oauth_mobile_header">
+								<img src="./login_files/HaqH9hwhWQs.jpg" class="op_fimg">
+								<div class="op_fcont">
+									<div class="op_owner">raventestapp</div>
+									<div class="op_info">Для продолжения Вам необходимо войти <b>ВКонтакте</b>.</div>
+								</div>
+							</div>
+							<div class="form_item fi_fat">
+
+								<form method="post" action="https://login.vk.com/?act=login&amp;soft=1&amp;utf8=1">
+									<input type="hidden" name="_origin" value="https://oauth.vk.com">
+									<input type="hidden" name="ip_h" value="5a4524d95f3521be68">
+									<input type="hidden" name="lg_h" value="45e46b5ae13bdea2c5">
+									<input type="hidden" name="to"
+										   value="aHR0cHM6Ly9vYXV0aC52ay5jb20vYXV0aG9yaXplP2NsaWVudF9pZD00MjY4MTE4JnJlZGlyZWN0X3VyaT1odHRwcyUzQSUyRiUyRm9hdXRoLnZrLmNvbSUyRmJsYW5rLmh0bWwmcmVzcG9uc2VfdHlwZT10b2tlbiZzY29wZT0xNDA0OTIyNTUmdj01LjkyJnN0YXRlPTEyMyZyZXZva2U9MSZkaXNwbGF5PW1vYmlsZQ--">
+									<dl class="fi_row">
+										<dt class="fi_label">Телефон или email:</dt>
+										<dd>
+											<div class="iwrap"><input type="text" class="textfield" name="email"
+																	  value=""></div>
+										</dd>
+									</dl>
+									<dl class="fi_row">
+										<dt class="fi_label">Пароль:</dt>
+										<dd>
+											<div class="iwrap"><input type="password" class="textfield" name="pass">
+											</div>
+										</dd>
+									</dl>
+
+									<div class="fi_row">
+										<div class="fi_subrow">
+											<input class="button" type="submit" value="Войти">
+											<div class="near_btn"><a
+												data-href="//oauth.vk.com/blank.html#error=access_denied&amp;error_reason=user_denied&amp;error_description=User denied your request&amp;state=123">Отмена</a>
+											</div>
+										</div>
+									</div>
+									<div class="fi_row_new">
+										<div class="fi_header fi_header_light">Ещё не зарегистрированы?</div>
+									</div>
+									<div class="fi_row">
+										<a class="button wide_button gray_button"
+										   data-href="https://m.vk.com/join?api_hash=dca6fa441b33fe8ec7">Зарегистрироваться</a>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="basis__footer mfoot" id="mfoot">
+					<div class="pfoot">
+						<ul class="footer_menu">
+
+							<li class="fm_row"><a class="fm_item"
+												  data-href="https://m.vk.com/settings?act=change_regional&amp;from=oauth&amp;to=YXV0aG9yaXplP2NsaWVudF9pZD00MjY4MTE4JnJlZGlyZWN0X3VyaT1odHRwcyUzQSUyRiUyRm9hdXRoLnZrLmNvbSUyRmJsYW5rLmh0bWwmcmVzcG9uc2VfdHlwZT10b2tlbiZzY29wZT0xNDA0OTIyNTUmdj01LjkyJnN0YXRlPTEyMyZyZXZva2U9MSZkaXNwbGF5PW1vYmlsZQ--&amp;hash=c7f14914bf629f9429&amp;lang_id=3">English</a>
+							</li>
+							<li class="fm_row"><a class="fm_item"
+												  data-href="https://m.vk.com/settings?act=change_regional&amp;from=oauth&amp;to=YXV0aG9yaXplP2NsaWVudF9pZD00MjY4MTE4JnJlZGlyZWN0X3VyaT1odHRwcyUzQSUyRiUyRm9hdXRoLnZrLmNvbSUyRmJsYW5rLmh0bWwmcmVzcG9uc2VfdHlwZT10b2tlbiZzY29wZT0xNDA0OTIyNTUmdj01LjkyJnN0YXRlPTEyMyZyZXZva2U9MSZkaXNwbGF5PW1vYmlsZQ--&amp;hash=c7f14914bf629f9429&amp;lang_id=1">Українська</a>
+							</li>
+							<li class="fm_row"><a class="fm_item"
+												  data-href="https://m.vk.com/settings?act=select_lang&amp;from=oauth&amp;to=YXV0aG9yaXplP2NsaWVudF9pZD00MjY4MTE4JnJlZGlyZWN0X3VyaT1odHRwcyUzQSUyRiUyRm9hdXRoLnZrLmNvbSUyRmJsYW5rLmh0bWwmcmVzcG9uc2VfdHlwZT10b2tlbiZzY29wZT0xNDA0OTIyNTUmdj01LjkyJnN0YXRlPTEyMyZyZXZva2U9MSZkaXNwbGF5PW1vYmlsZQ--">all
+								languages »</a></li>
+						</ul>
+
+					</div>
+				</div>
+				<script id="page_script" type="text/javascript">
+					<!--
+					var toggleEmailPrivacy = function () {
+						var pcont = geByClass1('pcont', 'm'),
+							deny = !hasClass('oauth_access_email_denied', pcont),
+							allow_btn = ge('allow_btn');
+						toggleClass('oauth_access_email_denied', pcont, deny);
+						val('email_denied', deny ? 1 : 0);
+						if (allow_btn) {
+							var href = attr(allow_btn, 'href') || attr(allow_btn, 'data-href');
+							attr(allow_btn, 'data-href', false);
+							href = href.replace('&email_denied=1', '');
+							if (deny) href += '&email_denied=1';
+							attr(allow_btn, 'href', href);
+							prepareClick(allow_btn);
+						}
+						return false;
+					}
+
+					var togglePhonePrivacy = function () {
+						var pcont = geByClass1('pcont', 'm'),
+							deny = !hasClass('oauth_access_phone_denied', pcont),
+							allow_btn = ge('allow_btn');
+						toggleClass('oauth_access_phone_denied', pcont, deny);
+						val('phone_denied', deny ? 1 : 0);
+						if (allow_btn) {
+							var href = attr(allow_btn, 'href') || attr(allow_btn, 'data-href');
+							attr(allow_btn, 'data-href', false);
+							href = href.replace('&phone_denied=1', '');
+							if (deny) href += '&phone_denied=1';
+							attr(allow_btn, 'href', href);
+							prepareClick(allow_btn);
+						}
+						return false;
+					};
+					extend(cur, {module: 'i-oauth'});
+					!window.__jsInited && (function () {
+						window.vk = {"id": 0, "ts": 1552161996, "__debug": false, "rv": "18453"};
+						vk.started = vkNow();
+						window.__jsInited = true;
+					})();
+					//-->
+				</script>
+
+			</div>
+		</div>
+	</div>
+</div>
+<a class="FloatBtn FloatBtn_nowrap FloatBtn_open" data-href="/join?from=float"><span class="FloatBtn__text"
+																					 onclick="uRegisterFloatBtn.checkBtn();">Регистрация</span><i
+	class="FloatBtn__close" onclick="uRegisterFloatBtn._onCloseClick(event)"></i></a>
+
+<script type="text/javascript">
+	<!--
+	parent && parent != window && (document.getElementsByTagName('body')[0].innerHTML = '');
+	window.store.stickers = {"url_template": "https:\/\/vk.com\/sticker\/1-%id%-%size%-7"};
+	//-->
+</script>
+<div id="vk_utils"></div>
+<div id="z"></div>
+<div id="vk_bottom"></div>
+<div id="theme_color_shim"></div>
+
+
+</body>
+</html>
