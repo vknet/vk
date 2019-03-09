@@ -1,10 +1,13 @@
 using System.Net;
 using System.Net.Http;
 using Flurl.Http.Configuration;
+using JetBrains.Annotations;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
-	public class ProxyHttpClientFactory: DefaultHttpClientFactory
+	/// <inheritdoc />
+	[UsedImplicitly]
+	public sealed class ProxyHttpClientFactory : DefaultHttpClientFactory
 	{
 		private readonly IWebProxy _proxy;
 
@@ -22,7 +25,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				return new HttpClientHandler();
 			}
 
-			return new HttpClientHandler {
+			return new HttpClientHandler
+			{
 				Proxy = _proxy,
 				UseProxy = true
 			};
