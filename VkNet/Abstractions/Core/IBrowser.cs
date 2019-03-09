@@ -12,7 +12,7 @@ namespace VkNet.Utils
 	/// Интерфейс введен с целью обеспечения возможности выполнения модульного
 	/// тестирования.
 	/// </summary>
-	[Obsolete("Интерфейс был разделен на IImplicitFlow и INeedValidationHandler")]
+	[Obsolete(ObsoleteText.Browser)]
 	public interface IBrowser: IImplicitFlow, INeedValidationHandler
 	{
 		/// <summary>
@@ -32,7 +32,7 @@ namespace VkNet.Utils
 		/// Задать параметры авторизации
 		/// </summary>
 		/// <param name="authParams">Параметры авторизации</param>
-		[Obsolete("Настройки должны внедряться через DI", true)]
+		[Obsolete(ObsoleteText.SettingsDependencyInjection, true)]
 		void SetAuthParams(IApiAuthParams authParams);
 	}
 }

@@ -7,7 +7,7 @@ namespace VkNet.Abstractions
 	/// <inheritdoc cref="IVkApiAuth"/>
 	public interface IVkApiAuthAsync : IVkApiAuth
 	{
-		/// <inheritdoc cref="IVkApiAuth.Authorize"/>
+		/// <inheritdoc cref="IVkApiAuth.Authorize(VkNet.Model.IApiAuthParams)"/>
 		Task AuthorizeAsync(IApiAuthParams @params);
 
 		/// <inheritdoc cref="IVkApiAuth.RefreshToken"/>

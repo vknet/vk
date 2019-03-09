@@ -48,6 +48,7 @@ namespace VkNet.Utils
 			return WebCall.PostCall(url, parameters, Proxy).Response;
 		}
 
+		/// <inheritdoc />
 		public void SetAuthParams(IApiAuthParams authParams)
 		{
 			throw new NotImplementedException();

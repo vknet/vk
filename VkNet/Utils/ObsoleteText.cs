@@ -1,4 +1,5 @@
 using VkNet.Abstractions;
+using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
 using VkNet.Model.Attachments;
 using VkNet.Utils.AntiCaptcha;
@@ -27,6 +28,16 @@ namespace VkNet.Utils
 		/// Устаревший параметр, доступен только для версий меньше <b>5.86</b>
 		/// </summary>
 		public const string StatsGet = "Устаревший параметр, доступен только для версий меньше 5.86";
+
+		/// <summary>
+		/// "Интерфейс был разделен на <see cref="IImplicitFlow"/> и <see cref="INeedValidationHandler"/>
+		/// </summary>
+		public const string Browser = "Интерфейс был разделен на " + nameof(IImplicitFlow) + " и " + nameof(INeedValidationHandler);
+
+		/// <summary>
+		/// Настройки должны внедряться через DI
+		/// </summary>
+		public const string SettingsDependencyInjection = "Настройки должны внедряться через DI";
 
 		/// <summary>
 		/// Данный тип данных устарел, используйте вместо него <see cref="MediaAttachment"/>

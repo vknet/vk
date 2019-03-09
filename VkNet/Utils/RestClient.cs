@@ -90,6 +90,9 @@ namespace VkNet.Utils
 			GC.SuppressFinalize(this);
 		}
 
+		/// <summary>
+		/// Releases unmanaged and - optionally - managed resources.
+		/// </summary>
 		~RestClient()
 		{
 			Dispose(false);
