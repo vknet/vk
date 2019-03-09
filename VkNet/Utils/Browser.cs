@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions;
@@ -16,6 +17,11 @@ namespace VkNet.Utils
 	/// <inheritdoc />
 	public partial class Browser : IBrowser
 	{
+		public const string AUTH_FAILED_MSG_PATTERN
+			= "(?:<div class=\"service_msg service_msg_warning\">)(.+)(?:<\\/div>)";
+		public static readonly Regex AuthFailedRegex
+			= new Regex(AUTH_FAILED_MSG_PATTERN, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
 		/// <summary>
 		/// Логгер
 		/// </summary>
@@ -148,11 +154,11 @@ namespace VkNet.Utils
 		/// <param name="captchaKey"> Значение капчи </param>
 		/// <param name="authorizeUrlResult"> </param>
 		/// <returns> </returns>
-		private WebCallResult FilledLoginForm(string email
-											, string password
-											, long? captchaSid
-											, string captchaKey
-											, WebCallResult authorizeUrlResult)
+		private WebCallResult FilledLoginForm(string email,
+											string password,
+											long? captchaSid,
+											string captchaKey,
+											WebCallResult authorizeUrlResult)
 		{
 			var loginForm = WebForm.From(result: authorizeUrlResult)
 				.WithField(name: "email")
@@ -212,6 +218,9 @@ namespace VkNet.Utils
 
 			if (!captchaSid.HasValue)
 			{
+				if (HasAuthorizeFailedMsg(result, out string error_msg))
+					throw new VkApiException(message: $"Ошибка авторизации. {error_msg}");
+				
 				throw new VkApiException(message: "Непредвиденная ошибка авторизации. Обратитесь к разработчику.");
 			}
 
@@ -349,9 +358,21 @@ namespace VkNet.Utils
 
 			var captcha = WebCall.Post(form: captchaForm, webProxy: Proxy);
 
-			// todo: Нужно обработать капчу
+			// TODO: Нужно обработать капчу
 
 			return EndAuthorize(result: captcha, webProxy: Proxy);
+		}
+
+		private bool HasAuthorizeFailedMsg(WebCallResult webCallResult, out string error_msg)
+		{
+			error_msg = null;
+			var match = AuthFailedRegex.Match(webCallResult.Response);
+			if (match.Success)
+			{
+				error_msg = match.Groups[1].Value;
+				return true;
+			}
+			return false;
 		}
 
 		private VkAuthorization OldValidate(string validateUrl, string phoneNumber)
