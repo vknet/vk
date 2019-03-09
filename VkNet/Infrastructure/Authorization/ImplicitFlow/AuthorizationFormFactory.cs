@@ -7,7 +7,8 @@ using VkNet.Exception;
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
 	/// <inheritdoc />
-	public class AuthorizationFormFactory : IAuthorizationFormFactory
+	[UsedImplicitly]
+	public sealed class AuthorizationFormFactory : IAuthorizationFormFactory
 	{
 		[NotNull]
 		private readonly IEnumerable<IAuthorizationForm> _authorizationForms;
