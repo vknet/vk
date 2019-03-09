@@ -31,12 +31,12 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		{
 			if (_authorizationParameters.TwoFactorAuthorization == null)
 			{
-				throw new VkAuthorizationException("Двухфакторная авторизация должна быть установлена в IApiAuthParams");
+				throw new VkAuthorizationException("Двухфакторная авторизация должна быть установлена в " + nameof(IApiAuthParams));
 			}
 
-			if (form.Fields.ContainsKey("code"))
+			if (form.Fields.ContainsKey(AuthorizationFormFields.Code))
 			{
-				form.Fields["code"] = _authorizationParameters.TwoFactorAuthorization.Invoke();
+				form.Fields[AuthorizationFormFields.Code] = _authorizationParameters.TwoFactorAuthorization.Invoke();
 			}
 		}
 	}

@@ -24,14 +24,14 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <inheritdoc />
 		protected override void FillFormFields(VkHtmlFormResult form)
 		{
-			if (form.Fields.ContainsKey("email"))
+			if (form.Fields.ContainsKey(AuthorizationFormFields.Email))
 			{
-				form.Fields["email"] = _authorizationParameters.Login;
+				form.Fields[AuthorizationFormFields.Email] = _authorizationParameters.Login;
 			}
 
-			if (form.Fields.ContainsKey("pass"))
+			if (form.Fields.ContainsKey(AuthorizationFormFields.Password))
 			{
-				form.Fields["pass"] = _authorizationParameters.Password;
+				form.Fields[AuthorizationFormFields.Password] = _authorizationParameters.Password;
 			}
 		}
 	}

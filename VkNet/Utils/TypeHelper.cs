@@ -110,6 +110,7 @@ namespace VkNet.Utils
 			services.TryAddSingleton<IAuthorizationFormHtmlParser, AuthorizationFormHtmlParser>();
 			services.TryAddSingleton<DefaultHttpClientFactory, ProxyHttpClientFactory>();
 			services.TryAddSingleton<IAuthorizationFormFactory, AuthorizationFormFactory>();
+
 			services.TryAddSingleton<IAuthorizationForm, ImplicitFlowCaptchaLoginForm>();
 			services.TryAddSingleton<IAuthorizationForm, ImplicitFlowLoginForm>();
 			services.TryAddSingleton<IAuthorizationForm, TwoFactorForm>();

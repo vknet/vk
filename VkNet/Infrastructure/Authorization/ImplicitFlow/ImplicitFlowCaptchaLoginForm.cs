@@ -35,21 +35,21 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				throw new VkAuthorizationException("Необходимо определить решатель капчи реализовав интерфейс " + nameof(ICaptchaSolver));
 			}
 
-			if (form.Fields.ContainsKey("email"))
+			if (form.Fields.ContainsKey(AuthorizationFormFields.Email))
 			{
-				form.Fields["email"] = _authorizationParameters.Login;
+				form.Fields[AuthorizationFormFields.Email] = _authorizationParameters.Login;
 			}
 
-			if (form.Fields.ContainsKey("pass"))
+			if (form.Fields.ContainsKey(AuthorizationFormFields.Password))
 			{
-				form.Fields["pass"] = _authorizationParameters.Password;
+				form.Fields[AuthorizationFormFields.Password] = _authorizationParameters.Password;
 			}
 
-			var captchaKey = _captchaSolver.Solve($"https://api.vk.com//captcha.php?sid={form.Fields["captcha_sid"]}&s=1");
+			var captchaKey = _captchaSolver.Solve($"https://api.vk.com//captcha.php?sid={form.Fields[AuthorizationFormFields.CaptchaSid]}&s=1");
 
-			if (form.Fields.ContainsKey("captcha_key"))
+			if (form.Fields.ContainsKey(AuthorizationFormFields.CaptchaKey))
 			{
-				form.Fields["captcha_key"] = captchaKey;
+				form.Fields[AuthorizationFormFields.CaptchaKey] = captchaKey;
 			}
 		}
 	}
