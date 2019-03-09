@@ -175,7 +175,6 @@ namespace VkNet.Enums.Filters
 									|AddLinkToLeftMenu
 									|Status
 									|Notes
-									|Messages
 									|Wall
 									|Ads
 									|Documents

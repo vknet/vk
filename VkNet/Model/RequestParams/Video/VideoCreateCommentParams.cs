@@ -83,19 +83,17 @@ namespace VkNet.Model.RequestParams
 		/// <returns> </returns>
 		public static VkParameters ToVkParameters(VideoCreateCommentParams p)
 		{
-			var parameters = new VkParameters
+			return new VkParameters
 			{
-					{ "owner_id", p.OwnerId }
-					, { "video_id", p.VideoId }
-					, { "message", p.Message }
-					, { "attachments", p.Attachments }
-					, { "from_group", p.FromGroup }
-					, { "reply_to_comment", p.ReplyToComment }
-					, { "sticker_id", p.StickerId }
-					, { "guid", p.Guid }
+				{ "owner_id", p.OwnerId },
+				{ "video_id", p.VideoId },
+				{ "message", p.Message },
+				{ "attachments", p.Attachments },
+				{ "from_group", p.FromGroup },
+				{ "reply_to_comment", p.ReplyToComment },
+				{ "sticker_id", p.StickerId },
+				{ "guid", p.Guid }
 			};
-
-			return parameters;
 		}
 	}
 }

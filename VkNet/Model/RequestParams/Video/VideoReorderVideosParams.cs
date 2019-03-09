@@ -71,19 +71,17 @@ namespace VkNet.Model.RequestParams
 		/// <returns> </returns>
 		public static VkParameters ToVkParameters(VideoReorderVideosParams p)
 		{
-			var parameters = new VkParameters
+			return new VkParameters
 			{
-					{ "target_id", p.TargetId }
-					, { "album_id", p.AlbumId }
-					, { "owner_id", p.OwnerId }
-					, { "video_id", p.VideoId }
-					, { "before_owner_id", p.BeforeOwnerId }
-					, { "before_video_id", p.BeforeVideoId }
-					, { "after_owner_id", p.AfterOwnerId }
-					, { "after_video_id", p.AfterVideoId }
+				{ "target_id", p.TargetId },
+				{ "album_id", p.AlbumId },
+				{ "owner_id", p.OwnerId },
+				{ "video_id", p.VideoId },
+				{ "before_owner_id", p.BeforeOwnerId },
+				{ "before_video_id", p.BeforeVideoId },
+				{ "after_owner_id", p.AfterOwnerId },
+				{ "after_video_id", p.AfterVideoId }
 			};
-
-			return parameters;
 		}
 	}
 }

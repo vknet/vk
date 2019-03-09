@@ -12,7 +12,7 @@ namespace VkNet.Tests.Models
 		public void All()
 		{
 			var settings = Settings.All;
-			Assert.AreEqual(140426719, settings.ToUInt64());
+			Assert.AreEqual(140422623, settings.ToUInt64());
 		}
 
 		[Test]
@@ -364,7 +364,7 @@ namespace VkNet.Tests.Models
 
 			Assert.That(Settings.All.ToString(),
 				Is.EqualTo(
-					"notify,friends,photos,audio,video,app_widget,pages,addlinktoleftmenu,status,notes,messages,wall,ads,docs,groups,notifications,stats,email,market"));
+					"notify,friends,photos,audio,video,app_widget,pages,addlinktoleftmenu,status,notes,wall,ads,docs,groups,notifications,stats,email,market"));
 
 			// parse test
 			Assert.That(Settings.FromJsonString("notify"), Is.EqualTo(Settings.Notify));
@@ -390,7 +390,7 @@ namespace VkNet.Tests.Models
 			Assert.That(Settings.FromJsonString("market"), Is.EqualTo(Settings.Market));
 
 			Assert.That(Settings.FromJsonString(
-					"addlinktoleftmenu,ads,audio,app_widget,docs,email,friends,groups,market,messages,notes,notifications,notify,pages,photos,stats,status,video,wall"),
+					"addlinktoleftmenu,ads,audio,app_widget,docs,email,friends,groups,market,notes,notifications,notify,pages,photos,stats,status,video,wall"),
 				Is.EqualTo(Settings.All));
 		}
 	}
