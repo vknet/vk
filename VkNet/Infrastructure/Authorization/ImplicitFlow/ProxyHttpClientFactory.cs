@@ -20,7 +20,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <inheritdoc />
 		public override HttpMessageHandler CreateMessageHandler()
 		{
-			if (_proxy != null)
+			if (_proxy == null)
 			{
 				return new HttpClientHandler();
 			}

@@ -108,13 +108,14 @@ namespace VkNet.Utils
 			services.TryAddSingleton<IAuthorizationFlow, Browser>();
 			services.TryAddSingleton<IVkAuthorization<ImplicitFlowPageType>, ImplicitFlowVkAuthorization>();
 			services.TryAddSingleton<IAuthorizationFormHtmlParser, AuthorizationFormHtmlParser>();
-			services.TryAddSingleton<DefaultHttpClientFactory, ProxyHttpClientFactory>();
+			services.TryAddSingleton<ProxyHttpClientFactory>();
 			services.TryAddSingleton<IAuthorizationFormFactory, AuthorizationFormFactory>();
 
 			services.TryAddSingleton<IAuthorizationForm, ImplicitFlowCaptchaLoginForm>();
 			services.TryAddSingleton<IAuthorizationForm, ImplicitFlowLoginForm>();
 			services.TryAddSingleton<IAuthorizationForm, TwoFactorForm>();
 			services.TryAddSingleton<IAuthorizationForm, ConsentForm>();
+			services.TryAddSingleton<IFlurlClientFactory, PerBaseUrlFlurlClientFactory>();
 		}
 	}
 }

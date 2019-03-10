@@ -7,6 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Flurl.Http;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -23,6 +24,7 @@ using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
+using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
 using VkNet.Utils;
 using VkNet.Utils.AntiCaptcha;
@@ -251,7 +253,10 @@ namespace VkNet
 
 			var rawResponse = json["response"];
 
-			return new VkResponse(rawResponse) { RawJson = answer };
+			return new VkResponse(rawResponse)
+			{
+				RawJson = answer
+			};
 		}
 
 		/// <inheritdoc />
@@ -335,7 +340,10 @@ namespace VkNet
 
 			var rawResponse = json.Root;
 
-			return new VkResponse(rawResponse) { RawJson = answer };
+			return new VkResponse(rawResponse)
+			{
+				RawJson = answer
+			};
 		}
 
 		/// <inheritdoc />
@@ -802,6 +810,11 @@ namespace VkNet
 
 		private void Initialization(IServiceProvider serviceProvider)
 		{
+			FlurlHttp.Configure(settings =>
+			{
+				settings.HttpClientFactory = serviceProvider.GetService<ProxyHttpClientFactory>();
+			});
+
 			_logger = serviceProvider.GetService<ILogger<VkApi>>();
 			_captchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
 			_language = serviceProvider.GetRequiredService<ILanguageService>();
