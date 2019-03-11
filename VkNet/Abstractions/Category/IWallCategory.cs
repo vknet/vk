@@ -160,6 +160,40 @@ namespace VkNet.Abstractions
 		RepostResult Repost(string @object, string message, long? groupId, bool markAsAds);
 
 		/// <summary>
+		/// Копирует объект на стену пользователя или сообщества.
+		/// </summary>
+		/// <param name="object">
+		/// Строковый идентификатор объекта, который необходимо разместить на стене,
+		/// например, wall66748_3675
+		/// или wall-1_340364. строка, обязательный параметр (Строка, обязательный
+		/// параметр).
+		/// </param>
+		/// <param name="message">
+		/// Сопроводительный текст, который будет добавлен к записи с объектом. строка
+		/// (Строка).
+		/// </param>
+		/// <param name="groupId">
+		/// Идентификатор сообщества, на стене которого будет размещена запись с объектом.
+		/// Если не указан,
+		/// запись будет размещена на стене текущего пользователя. положительное число
+		/// (Положительное число).
+		/// </param>
+		/// <param name="markAsAds"> Строка (Строка). </param>
+		/// <param name="captchaSid">Id капчи</param>
+		/// <param name="captchaKey">Текст капчи</param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект со следующими полями:
+		/// success
+		/// post_id — идентификатор созданной записи;
+		/// reposts_count — количество репостов объекта с учетом осуществленного;
+		/// likes_count — число отметок «Мне нравится» у объекта.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.repost
+		/// </remarks>
+		RepostResult Repost(string @object, string message, long? groupId, bool markAsAds, long captchaSid, string captchaKey);
+
+		/// <summary>
 		/// Редактирует запись на стене.
 		/// </summary>
 		/// <param name="params"> Входные параметры выборки. </param>
