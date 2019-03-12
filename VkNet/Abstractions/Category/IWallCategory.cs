@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -191,6 +192,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.repost
 		/// </remarks>
+		[Obsolete("Use ICaptchaSolver to handle captcha. This method is obsolete and will be removed in future.")]
 		RepostResult Repost(string @object, string message, long? groupId, bool markAsAds, long captchaSid, string captchaKey);
 
 		/// <summary>
