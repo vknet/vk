@@ -9,8 +9,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 	public sealed class ConsentForm : AbstractAuthorizationForm
 	{
 		/// <inheritdoc />
-		public ConsentForm(IAuthorizationFormHtmlParser htmlParser, DefaultHttpClientFactory httpClientFactory)
-			: base(htmlParser, httpClientFactory)
+		public ConsentForm(IAuthorizationFormHtmlParser htmlParser, DefaultHttpClientFactory httpClientFactory, IFlurlClientFactory _factory)
+			: base(htmlParser, httpClientFactory, _factory)
 		{
 		}
 

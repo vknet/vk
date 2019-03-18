@@ -36,6 +36,7 @@
 			_____________________________________________
 			Список изменений: http://bit.ly/2GbC1eR
 		</PackageReleaseNotes>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DefineConstants>TRACE;DEBUG;UWP</DefineConstants>

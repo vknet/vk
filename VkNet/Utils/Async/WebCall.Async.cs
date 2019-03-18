@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Flurl;
 using VkNet.Exception;
 
 namespace VkNet.Utils
@@ -114,10 +115,33 @@ namespace VkNet.Utils
 
 				_result.SaveCookies(cookies.GetCookies(uri));
 
+				if (IsAbsoluteUrl(response.Headers.Location?.ToString()))
+				{
+					return response.StatusCode == HttpStatusCode.Redirect
+						? await RedirectToAsync(response.Headers.Location.AbsoluteUri, webProxy).ConfigureAwait(false)
+						: _result;
+				}
+
 				return response.StatusCode == HttpStatusCode.Redirect
-					? await RedirectToAsync(response.Headers.Location.AbsoluteUri, webProxy).ConfigureAwait(false)
+					? await RedirectToAsync(Url.Combine(_result.RequestUrl.GetLeftPart(UriPartial.Authority), response.Headers.Location.OriginalString), webProxy)
+						.ConfigureAwait(false)
 					: _result;
 			}
+		}
+
+		private bool IsAbsoluteUrl(string url)
+		{
+			if (string.IsNullOrWhiteSpace(url))
+			{
+				return false;
+			}
+
+			return Uri.TryCreate(url, UriKind.Absolute, out _);
+		}
+
+		private string GetDomain(Uri uri)
+		{
+			return uri.GetLeftPart(UriPartial.Authority);
 		}
 	}
 }

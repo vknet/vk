@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Flurl;
@@ -5,7 +6,6 @@ using Flurl.Http;
 using Flurl.Http.Configuration;
 using VkNet.Enums;
 using VkNet.Exception;
-using VkNet.Utils;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
@@ -16,11 +16,15 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 		private readonly DefaultHttpClientFactory _httpClientFactory;
 
+		private readonly IFlurlClientFactory _clientFactory;
+
 		/// <inheritdoc />
-		protected AbstractAuthorizationForm(IAuthorizationFormHtmlParser htmlParser, DefaultHttpClientFactory httpClientFactory)
+		protected AbstractAuthorizationForm(IAuthorizationFormHtmlParser htmlParser, DefaultHttpClientFactory httpClientFactory,
+											IFlurlClientFactory clientFactory)
 		{
 			_htmlParser = htmlParser;
 			_httpClientFactory = httpClientFactory;
+			_clientFactory = clientFactory;
 		}
 
 		/// <inheritdoc />
@@ -33,13 +37,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 			FillFormFields(form);
 
-			using (var cli = new FlurlClient(form.Action).EnableCookies())
+			using (var cli = _clientFactory.Get(form.Action))
 			{
-				if (_httpClientFactory != null)
-				{
-					cli.Configure(s => s.HttpClientFactory = _httpClientFactory);
-				}
-
 				var responseMessage = await cli.Request()
 					.PostMultipartAsync(mp => mp.Add(new FormUrlEncodedContent(form.Fields)))
 					.ConfigureAwait(false);
@@ -49,11 +48,18 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 					throw new VkAuthorizationException(responseMessage.ReasonPhrase);
 				}
 
+				var cookieContainer = new CookieContainer();
+
+				foreach (var pair in cli.Cookies)
+				{
+					cookieContainer.Add(pair.Value);
+				}
+
 				return new AuthorizationFormResult
 				{
 					RequestUrl = url,
-					ResponseUrl = responseMessage.Headers.Location,
-					Cookies = new Cookies()
+					ResponseUrl = responseMessage.Headers.Location ?? url,
+					Cookies = cookieContainer
 				};
 			}
 		}

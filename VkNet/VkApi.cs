@@ -820,7 +820,6 @@ namespace VkNet
 			_language = serviceProvider.GetRequiredService<ILanguageService>();
 			_rateLimiter = serviceProvider.GetRequiredService<IRateLimiter>();
 
-//			Browser = serviceProvider.GetRequiredService<IBrowser>();
 			NeedValidationHandler = serviceProvider.GetRequiredService<INeedValidationHandler>();
 			AuthorizationFlow = serviceProvider.GetRequiredService<IAuthorizationFlow>();
 			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();

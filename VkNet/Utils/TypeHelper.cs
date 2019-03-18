@@ -13,6 +13,7 @@ using VkNet.Abstractions.Utils;
 using VkNet.Enums;
 using VkNet.Infrastructure;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
+using VkNet.Model;
 using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils
@@ -28,8 +29,9 @@ namespace VkNet.Utils
 		/// <param name="container"> DI контейнер </param>
 		public static void RegisterDefaultDependencies(this IServiceCollection container)
 		{
-			container.TryAddSingleton<IBrowser, Browser>();
-			container.TryAddSingleton<INeedValidationHandler, Browser>();
+			//container.TryAddSingleton<IBrowser, Browser>();
+			container.TryAddSingleton<INeedValidationHandler, NeedValidationHandler>();
+			container.TryAddSingleton<IApiAuthParams>(t => null);
 			container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
 			container.TryAddSingleton<IRestClient, RestClient>();
 			container.TryAddSingleton<IWebProxy>(t => null);
@@ -108,14 +110,18 @@ namespace VkNet.Utils
 			services.TryAddSingleton<IAuthorizationFlow, Browser>();
 			services.TryAddSingleton<IVkAuthorization<ImplicitFlowPageType>, ImplicitFlowVkAuthorization>();
 			services.TryAddSingleton<IAuthorizationFormHtmlParser, AuthorizationFormHtmlParser>();
-			services.TryAddSingleton<ProxyHttpClientFactory>();
 			services.TryAddSingleton<IAuthorizationFormFactory, AuthorizationFormFactory>();
 
-			services.TryAddSingleton<IAuthorizationForm, ImplicitFlowCaptchaLoginForm>();
-			services.TryAddSingleton<IAuthorizationForm, ImplicitFlowLoginForm>();
-			services.TryAddSingleton<IAuthorizationForm, TwoFactorForm>();
-			services.TryAddSingleton<IAuthorizationForm, ConsentForm>();
+			services.AddSingleton<IAuthorizationForm, ImplicitFlowCaptchaLoginForm>();
+			services.AddSingleton<IAuthorizationForm, ImplicitFlowLoginForm>();
+			services.AddSingleton<IAuthorizationForm, TwoFactorForm>();
+			services.AddSingleton<IAuthorizationForm, ConsentForm>();
 			services.TryAddSingleton<IFlurlClientFactory, PerBaseUrlFlurlClientFactory>();
+			services.TryAddSingleton<DefaultHttpClientFactory, ProxyHttpClientFactory>();
+			services.TryAddSingleton<DefaultHttpClientFactory, NoRedirectHttpClientFactory>();
+			services.TryAddSingleton<ProxyHttpClientFactory>();
+			services.TryAddSingleton<NoRedirectHttpClientFactory>();
+			services.TryAddSingleton<CookieContainer>();
 		}
 	}
 }

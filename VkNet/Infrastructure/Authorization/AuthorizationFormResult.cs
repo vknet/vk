@@ -1,3 +1,4 @@
+using System.Net;
 using Flurl;
 using VkNet.Utils;
 
@@ -21,6 +22,6 @@ namespace VkNet.Infrastructure.Authorization
 		/// <summary>
 		/// Куки.
 		/// </summary>
-		public Cookies Cookies { get; set; }
+		public CookieContainer Cookies { get; set; }
 	}
 }

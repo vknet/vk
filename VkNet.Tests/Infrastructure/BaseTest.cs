@@ -15,6 +15,7 @@ using VkNet.Abstractions.Utils;
 using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Utils;
+using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Tests
 {
@@ -29,6 +30,8 @@ namespace VkNet.Tests
 		/// Экземпляр класса API.
 		/// </summary>
 		protected VkApi Api;
+
+		protected readonly AutoMocker Mocker = new AutoMocker();
 
 		/// <summary>
 		/// Ответ от сервера.
@@ -54,9 +57,7 @@ namespace VkNet.Tests
 		[SetUp]
 		public void Init()
 		{
-			var mocker = new AutoMocker();
-
-			mocker.Use<IApiAuthParams>(new ApiAuthParams
+			Mocker.Use<IApiAuthParams>(new ApiAuthParams
 			{
 				ApplicationId = 1,
 				Login = "login",
@@ -65,7 +66,7 @@ namespace VkNet.Tests
 				Phone = "89510000000"
 			});
 
-			mocker.Setup<IAuthorizationFlow, Task<AuthorizationResult>>(o => o.AuthorizeAsync())
+			Mocker.Setup<IAuthorizationFlow, Task<AuthorizationResult>>(o => o.AuthorizeAsync())
 				.ReturnsAsync(new AuthorizationResult
 				{
 					AccessToken = "token",
@@ -74,7 +75,7 @@ namespace VkNet.Tests
 					State = "123456"
 				});
 
-			mocker.Setup<INeedValidationHandler, AuthorizationResult>(m => m.Validate(It.IsAny<string>(), It.IsAny<string>()))
+			Mocker.Setup<INeedValidationHandler, AuthorizationResult>(m => m.Validate(It.IsAny<string>(), It.IsAny<string>()))
 				.Returns(new AuthorizationResult
 				{
 					AccessToken = "token",
@@ -83,7 +84,7 @@ namespace VkNet.Tests
 					State = "123456"
 				});
 
-			mocker.Setup<INeedValidationHandler, AuthorizationResult>(m => m.Validate(It.IsAny<string>()))
+			Mocker.Setup<INeedValidationHandler, AuthorizationResult>(m => m.Validate(It.IsAny<string>()))
 				.Returns(new AuthorizationResult
 				{
 					AccessToken = "token",
@@ -92,7 +93,19 @@ namespace VkNet.Tests
 					State = "123456"
 				});
 
-			mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x =>
+			Mocker.Setup<ICaptchaHandler, string>(m => m.Perform(It.IsAny<Func<long?, string, string>>()))
+				.Returns(Json);
+
+			Mocker.Setup<ICaptchaHandler, bool>(m => m.Perform(It.IsAny<Func<long?, string, bool>>()))
+				.Returns(true);
+
+			Mocker.Setup<ICaptchaHandler, int>(m => m.MaxCaptchaRecognitionCount)
+				.Returns(1);
+
+			Mocker.Setup<ICaptchaSolver, string>(m => m.Solve(It.IsAny<string>()))
+				.Returns("123456");
+
+			Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x =>
 					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
 						It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
 				.Callback(Callback)
@@ -106,11 +119,14 @@ namespace VkNet.Tests
 					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url));
 				});
 
-			mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
+			Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
 					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
 				.Throws<ArgumentException>();
 
-			Api = mocker.CreateInstance<VkApi>();
+			Api = Mocker.CreateInstance<VkApi>();
+			Api.RestClient = Mocker.Get<IRestClient>();
+			Api.NeedValidationHandler = Mocker.Get<INeedValidationHandler>();
+			Api.CaptchaSolver = Mocker.Get<ICaptchaSolver>();
 
 			Api.Authorize(new ApiAuthParams
 			{
@@ -121,7 +137,7 @@ namespace VkNet.Tests
 				Phone = "89510000000"
 			});
 
-			Api.RequestsPerSecond = 999999999; // Чтобы тесты быстрее выполнялись
+			Api.RequestsPerSecond = int.MaxValue;
 		}
 
 		/// <summary>
@@ -138,7 +154,10 @@ namespace VkNet.Tests
 		{
 			var response = JToken.Parse(Json);
 
-			return new VkResponse(response) { RawJson = Json };
+			return new VkResponse(response)
+			{
+				RawJson = Json
+			};
 		}
 
 		private void Callback()
@@ -165,7 +184,8 @@ namespace VkNet.Tests
 		{
 			var folders = new List<string>
 			{
-				AppContext.BaseDirectory, "TestData"
+				AppContext.BaseDirectory,
+				"TestData"
 			};
 
 			folders.AddRange(jsonRelativePaths);

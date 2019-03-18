@@ -20,6 +20,7 @@ namespace VkNet.Tests.Categories.Account
 		protected override string Folder => "Account";
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void BanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -58,10 +59,10 @@ namespace VkNet.Tests.Categories.Account
 			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
-		[Test]
+		[Test, Ignore("TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки")]
 		public void GetBanned_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
+			//
 			var account = new AccountCategory(new VkApi());
 			Assert.That(() => account.GetBanned(), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
@@ -171,6 +172,7 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void GetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -203,6 +205,7 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void GetProfileInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -259,6 +262,7 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void RegisterDevice_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -420,6 +424,7 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void SetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -485,6 +490,7 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void SetOffline_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account =
@@ -511,6 +517,7 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void SetOnline_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -543,6 +550,7 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void SetSilenceMode_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -597,6 +605,7 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void UnbanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -637,6 +646,7 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void UnregisterDevice_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки

@@ -21,6 +21,7 @@ namespace VkNet.Tests.Categories.Wall
 		protected override string Folder => "Wall";
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			Assert.That(() => new WallCategory(new VkApi()).Delete(1, 1), Throws.InstanceOf<AccessTokenInvalidException>());
@@ -155,6 +156,7 @@ namespace VkNet.Tests.Categories.Wall
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			Assert.That(() => new WallCategory(new VkApi()).GetById(new[]

@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Flurl;
@@ -68,7 +69,7 @@ namespace VkNet.Tests.Infrastructure
 				{
 					ResponseUrl = "https://m.vk.com/login?act=authcheck&m=442",
 					RequestUrl = "https://m.vk.com/login?act=authcheck&m=442",
-					Cookies = new Cookies()
+					Cookies = new CookieContainer()
 				});
 
 			mocker.Setup<IAuthorizationFormFactory, IAuthorizationForm>(x => x.Create(It.IsAny<ImplicitFlowPageType>()))

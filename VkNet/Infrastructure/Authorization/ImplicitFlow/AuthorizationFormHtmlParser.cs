@@ -16,21 +16,23 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <inheritdoc />
 		public async Task<VkHtmlFormResult> GetFormAsync(Url url)
 		{
-			var html = await url.GetStringAsync().ConfigureAwait(false);
-			var doc = new HtmlDocument();
-			doc.LoadHtml(html);
-			var formNode = GetFormNode(doc);
-			var inputs = ParseInputs(formNode);
+				var httpResponseMessage = await url.GetAsync().ConfigureAwait(false);
+				var stream = await httpResponseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false);
 
-			var actionUrl = GetActionUrl(formNode, url);
-			var method = GetMethod(formNode);
+				var doc = new HtmlDocument();
+				doc.Load(stream);
+				var formNode = GetFormNode(doc);
+				var inputs = ParseInputs(formNode);
 
-			return new VkHtmlFormResult
-			{
-				Fields = inputs,
-				Action = actionUrl,
-				Method = method
-			};
+				var actionUrl = GetActionUrl(formNode, url);
+				var method = GetMethod(formNode);
+
+				return new VkHtmlFormResult
+				{
+					Fields = inputs,
+					Action = actionUrl,
+					Method = method
+				};
 		}
 
 		/// <summary>

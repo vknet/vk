@@ -139,6 +139,18 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
+		/// С полем.
+		/// </summary>
+		/// <param name="name"> Наименование поля. </param>
+		/// <returns> WEB форма. </returns>
+		public string GetFieldValue(string name)
+		{
+			return _inputs.TryGetValue(name, out var result)
+				? result
+				: default;
+		}
+
+		/// <summary>
 		/// Заполнить поле с.
 		/// </summary>
 		/// <param name="value"> Значение. </param>

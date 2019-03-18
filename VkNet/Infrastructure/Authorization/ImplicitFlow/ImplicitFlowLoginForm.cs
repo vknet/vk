@@ -13,7 +13,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 		/// <inheritdoc />
 		public ImplicitFlowLoginForm(DefaultHttpClientFactory httpClientFactory, IAuthorizationFormHtmlParser htmlParser,
-									IApiAuthParams authorizationParameters) : base(htmlParser, httpClientFactory)
+									IApiAuthParams authorizationParameters, IFlurlClientFactory factory)
+			: base(htmlParser, httpClientFactory, factory)
 		{
 			_authorizationParameters = authorizationParameters;
 		}

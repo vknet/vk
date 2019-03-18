@@ -14,7 +14,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 		/// <inheritdoc />
 		public TwoFactorForm(IApiAuthParams authorizationParameters, DefaultHttpClientFactory httpClientFactory,
-							IAuthorizationFormHtmlParser htmlParser) : base(htmlParser, httpClientFactory)
+							IAuthorizationFormHtmlParser htmlParser, IFlurlClientFactory _factory)
+			: base(htmlParser, httpClientFactory, _factory)
 		{
 			_authorizationParameters = authorizationParameters;
 		}

@@ -23,7 +23,7 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public int MaxCaptchaRecognitionCount { get; set; }
+		public int MaxCaptchaRecognitionCount { get; set; } = 0;
 
 		/// <inheritdoc />
 		public T Perform<T>(Func<long?, string, T> action)
@@ -64,9 +64,9 @@ namespace VkNet.Utils
 		}
 
 		private void RepeatSolveCaptchaAsync(CaptchaNeededException captchaNeededException,
-												ref int numberOfRemainingAttemptsToSolveCaptcha,
-												ref long? captchaSidTemp,
-												ref string captchaKeyTemp)
+											ref int numberOfRemainingAttemptsToSolveCaptcha,
+											ref long? captchaSidTemp,
+											ref string captchaKeyTemp)
 		{
 			_logger?.LogWarning("Повторная обработка капчи");
 

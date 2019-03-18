@@ -17,8 +17,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 		/// <inheritdoc />
 		public ImplicitFlowCaptchaLoginForm(IAuthorizationFormHtmlParser htmlParser, DefaultHttpClientFactory httpClientFactory,
-											IApiAuthParams authorizationParameters, ICaptchaSolver captchaSolver)
-			: base(htmlParser, httpClientFactory)
+											IApiAuthParams authorizationParameters, ICaptchaSolver captchaSolver, IFlurlClientFactory _factory)
+			: base(htmlParser, httpClientFactory, _factory)
 		{
 			_authorizationParameters = authorizationParameters;
 			_captchaSolver = captchaSolver;

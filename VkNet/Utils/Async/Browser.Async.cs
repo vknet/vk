@@ -35,19 +35,14 @@ namespace VkNet.Utils
 		/// <param name="authParams"> Параметры авторизации </param>
 		/// <returns> Информация об авторизации приложения </returns>
 		[UsedImplicitly]
-		public async Task<VkAuthorization2> AuthorizeAsync(IApiAuthParams authParams)
+		public async Task<AuthorizationResult> AuthorizeAsync(IApiAuthParams authParams)
 		{
-			_logger?.LogDebug(message: "Шаг 1. Открытие диалога авторизации");
-
 			var authorizeUrlResult = await OpenAuthDialogAsync(authParams.ApplicationId, authParams.Settings)
 				.ConfigureAwait(false);
 
-			if (IsAuthSuccessfull(webCallResult: authorizeUrlResult))
-			{
-				return await EndAuthorizeAsync(authorizeUrlResult, Proxy).ConfigureAwait(false);
-			}
+			return await NextStepAsync(authorizeUrlResult).ConfigureAwait(false);
 
-			_logger?.LogDebug(message: "Шаг 2. Заполнение формы логина");
+/*
 
 			var loginFormPostResult = await FilledLoginFormAsync(authParams.Login,
 					authParams.Password,
@@ -69,7 +64,7 @@ namespace VkNet.Utils
 			_logger?.LogDebug(message: "Шаг 2.5.1. Заполнить код двухфакторной авторизации");
 
 			var twoFactorFormResult =
-				await FilledTwoFactorFormAsync(authParams.TwoFactorAuthorization, loginFormPostResult);
+				await FilledTwoFactorFormAsync(authParams.TwoFactorAuthorization, loginFormPostResult).ConfigureAwait(false);
 
 			if (IsAuthSuccessfull(webCallResult: twoFactorFormResult))
 			{
@@ -83,7 +78,7 @@ namespace VkNet.Utils
 
 			// todo: Нужно обработать капчу
 
-			return await EndAuthorizeAsync(captcha, Proxy).ConfigureAwait(false);
+			return await EndAuthorizeAsync(captcha, Proxy).ConfigureAwait(false);*/
 		}
 
 		/// <summary>
@@ -102,6 +97,23 @@ namespace VkNet.Utils
 			task.ConfigureAwait(false);
 
 			return task;
+		}
+
+		private Task<WebCallResult> FilledConsentAsync(WebCallResult loginFormPostResult)
+		{
+			var form = WebForm.From(result: loginFormPostResult);
+
+			var task = WebCall.PostAsync(form, Proxy);
+			task.ConfigureAwait(false);
+
+			return task;
+		}
+
+		private WebCallResult FilledConsent(WebCallResult loginFormPostResult)
+		{
+			var form = WebForm.From(result: loginFormPostResult);
+
+			return WebCall.Post(form, Proxy);
 		}
 
 		/// <summary>
