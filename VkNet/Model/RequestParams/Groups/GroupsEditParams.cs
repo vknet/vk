@@ -218,13 +218,33 @@ namespace VkNet.Model.RequestParams
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "main_section")]
+		[JsonProperty("main_section")]
 		public uint? MainSection { get; set; }
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "secondary_section")]
+		[JsonProperty("secondary_section")]
 		public uint? SecondarySection { get; set; }
+
+		/// <summary>
+		/// </summary>
+		[JsonProperty("country")]
+		public uint? Country { get; set; }
+
+		/// <summary>
+		/// </summary>
+		[JsonProperty("city")]
+		public uint? City { get; set; }
+
+		/// <summary>
+		/// </summary>
+		[JsonProperty("articles")]
+		public bool? Articles { get; set; }
+
+		/// <summary>
+		/// </summary>
+		[JsonProperty("addresses")]
+		public bool? Addresses { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -233,50 +253,54 @@ namespace VkNet.Model.RequestParams
 		/// <returns> Объект типа GroupsEditParams </returns>
 		public static VkParameters ToVkParameters(GroupsEditParams p)
 		{
-			var result = new VkParameters
+			return new VkParameters
 			{
-					{ "group_id", p.GroupId }
-					, { "title", p.Title }
-					, { "description", p.Description }
-					, { "screen_name", p.ScreenName }
-					, { "access", p.Access }
-					, { "website", p.Website }
-					, { "subject", p.Subject }
-					, { "email", p.Email }
-					, { "phone", p.Phone }
-					, { "rss", p.Rss }
-					, { "event_start_date", p.EventStartDate }
-					, { "event_finish_date", p.EventFinishDate }
-					, { "event_group_id", p.EventGroupId }
-					, { "public_category", p.PublicCategory }
-					, { "public_subcategory", p.PublicSubcategory }
-					, { "public_date", p.PublicDate }
-					, { "wall", p.Wall }
-					, { "topics", p.Topics }
-					, { "photos", p.Photos }
-					, { "video", p.Video }
-					, { "audio", p.Audio }
-					, { "links", p.Links }
-					, { "events", p.Events }
-					, { "places", p.Places }
-					, { "contacts", p.Contacts }
-					, { "docs", p.Docs }
-					, { "wiki", p.Wiki }
-					, { "messages", p.Messages }
-					, { "age_limits", p.AgeLimits }
-					, { "market", p.Market }
-					, { "market_comments", p.MarketComments }
-					, { "market_country", p.MarketCountry }
-					, { "market_city", p.MarketCity }
-					, { "market_currency", p.MarketCurrency }
-					, { "market_contact", p.MarketContact }
-					, { "market_wiki", p.MarketWiki }
-					, { "obscene_filter", p.ObsceneFilter }
-					, { "obscene_stopwords", p.ObsceneStopwords }
-					, { "obscene_words", p.ObsceneWords }
+				{ "group_id", p.GroupId },
+				{ "title", p.Title },
+				{ "description", p.Description },
+				{ "screen_name", p.ScreenName },
+				{ "access", p.Access },
+				{ "website", p.Website },
+				{ "subject", p.Subject },
+				{ "email", p.Email },
+				{ "phone", p.Phone },
+				{ "rss", p.Rss },
+				{ "event_start_date", p.EventStartDate },
+				{ "event_finish_date", p.EventFinishDate },
+				{ "event_group_id", p.EventGroupId },
+				{ "public_category", p.PublicCategory },
+				{ "public_subcategory", p.PublicSubcategory },
+				{ "public_date", p.PublicDate },
+				{ "wall", p.Wall },
+				{ "topics", p.Topics },
+				{ "photos", p.Photos },
+				{ "video", p.Video },
+				{ "audio", p.Audio },
+				{ "links", p.Links },
+				{ "events", p.Events },
+				{ "places", p.Places },
+				{ "contacts", p.Contacts },
+				{ "docs", p.Docs },
+				{ "wiki", p.Wiki },
+				{ "messages", p.Messages },
+				{ "age_limits", p.AgeLimits },
+				{ "market", p.Market },
+				{ "market_comments", p.MarketComments },
+				{ "market_country", p.MarketCountry },
+				{ "market_city", p.MarketCity },
+				{ "market_currency", p.MarketCurrency },
+				{ "market_contact", p.MarketContact },
+				{ "market_wiki", p.MarketWiki },
+				{ "obscene_filter", p.ObsceneFilter },
+				{ "obscene_stopwords", p.ObsceneStopwords },
+				{ "obscene_words", p.ObsceneWords },
+				{ "articles", p.Articles },
+				{ "addresses", p.Addresses },
+				{ "main_section", p.MainSection },
+				{ "secondary_section", p.SecondarySection },
+				{ "country", p.Country },
+				{ "city", p.City }
 			};
-
-			return result;
 		}
 
 		/// <summary>
@@ -286,55 +310,54 @@ namespace VkNet.Model.RequestParams
 		/// <returns> </returns>
 		public static GroupsEditParams FromJson(VkResponse response)
 		{
-			var marketCountry = (VkResponseArray) response[key: "market_country"];
-			var marketCity = (VkResponseArray) response[key: "market_city"];
-
-			var result = new GroupsEditParams
+			return new GroupsEditParams
 			{
-					GroupId = response[key: "group_id"] ?? 0UL
-					, Title = response[key: "title"]
-					, Description = response[key: "description"]
-					, ScreenName = response[key: "screen_name"]
-					, Access = response[key: "access"]
-					, Website = response[key: "website"]
-					, Subject = response[key: "seubject"]
-					, Email = response[key: "email"]
-					, Phone = response[key: "phone"]
-					, Rss = response[key: "rss"]
-					, EventStartDate = response[key: "event_start_date"]
-					, EventFinishDate = response[key: "event_finish_date"]
-					, EventGroupId = response[key: "event_group_id"]
-					, PublicCategory = response[key: "public_category"]
-					, PublicSubcategory = response[key: "public_subcategory"]
-					, PublicDate = response[key: "public_date"]
-					, Wall = response[key: "wall"]
-					, Topics = response[key: "topics"]
-					, Photos = response[key: "photos"]
-					, Video = response[key: "video"]
-					, Audio = response[key: "audio"]
-					, Links = response[key: "links"]
-					, Events = response[key: "events"]
-					, Places = response[key: "places"]
-					, Contacts = response[key: "contacts"]
-					, Docs = response[key: "docs"]
-					, Wiki = response[key: "wiki"]
-					, Messages = response[key: "messages"]
-					, AgeLimits = response[key: "age_limits"]
-					, Market = response[key: "market"]
-					, MarketComments = response[key: "market_comments"]
-					, MarketCountry = marketCountry.ToReadOnlyCollectionOf<ulong>(selector: o => o)
-					, MarketCity = marketCity.ToReadOnlyCollectionOf<ulong>(selector: o => o)
-					, MarketCurrency = response[key: "market_currency"]
-					, MarketContact = response[key: "market_contact"]
-					, MarketWiki = response[key: "market_wiki"]
-					, ObsceneFilter = response[key: "obscene_filter"]
-					, ObsceneStopwords = response[key: "obscene_stopwords"]
-					, ObsceneWords = response[key: "obscene_words"].ToReadOnlyCollectionOf<string>(selector: o => o)
-					, MainSection = response[key: "main_section"]
-					, SecondarySection = response[key: "secondary_section"]
+				GroupId = response["group_id"] ?? 0UL,
+				Title = response["title"],
+				Description = response["description"],
+				ScreenName = response["screen_name"],
+				Access = response["access"],
+				Website = response["website"],
+				Subject = response["seubject"],
+				Email = response["email"],
+				Phone = response["phone"],
+				Rss = response["rss"],
+				EventStartDate = response["event_start_date"],
+				EventFinishDate = response["event_finish_date"],
+				EventGroupId = response["event_group_id"],
+				PublicCategory = response["public_category"],
+				PublicSubcategory = response["public_subcategory"],
+				PublicDate = response["public_date"],
+				Wall = response["wall"],
+				Topics = response["topics"],
+				Photos = response["photos"],
+				Video = response["video"],
+				Audio = response["audio"],
+				Links = response["links"],
+				Events = response["events"],
+				Places = response["places"],
+				Contacts = response["contacts"],
+				Docs = response["docs"],
+				Wiki = response["wiki"],
+				Messages = response["messages"],
+				AgeLimits = response["age_limits"],
+				Market = response["market"],
+				MarketComments = response["market_comments"],
+				MarketCountry = response["market_country"].ToReadOnlyCollectionOf<ulong>(o => o),
+				MarketCity = response["market_city"].ToReadOnlyCollectionOf<ulong>(o => o),
+				MarketCurrency = response["market_currency"],
+				MarketContact = response["market_contact"],
+				MarketWiki = response["market_wiki"],
+				ObsceneFilter = response["obscene_filter"],
+				ObsceneStopwords = response["obscene_stopwords"],
+				ObsceneWords = response["obscene_words"].ToReadOnlyCollectionOf<string>(o => o),
+				MainSection = response["main_section"],
+				SecondarySection = response["secondary_section"],
+				Articles = response["articles"],
+				Addresses = response["addresses"],
+				Country = response["country"],
+				City = response["city"]
 			};
-
-			return result;
 		}
 	}
 }

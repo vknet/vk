@@ -92,10 +92,29 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "object", @object }
-					, { "message", message }
-					, { "group_id", groupId }
-					, { "mark_as_ads", markAsAds }
+				{ "object", @object },
+				{ "message", message },
+				{ "group_id", groupId },
+				{ "mark_as_ads", markAsAds }
+			};
+
+			return _vk.Call(methodName: "wall.repost", parameters: parameters);
+		}
+
+		/// <inheritdoc />
+		public RepostResult Repost(string @object, string message, long? groupId, bool markAsAds, long captchaSid, string captchaKey)
+		{
+			VkErrors.ThrowIfNullOrEmpty(expr: () => @object);
+			VkErrors.ThrowIfNumberIsNegative(expr: () => groupId);
+
+			var parameters = new VkParameters
+			{
+				{ "object", @object },
+				{ "message", message },
+				{ "group_id", groupId },
+				{ "mark_as_ads", markAsAds },
+				{ "captcha_sid", captchaSid },
+				{ "captcha_key", captchaKey }
 			};
 
 			return _vk.Call(methodName: "wall.repost", parameters: parameters);
