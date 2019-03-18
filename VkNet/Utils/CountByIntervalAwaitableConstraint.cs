@@ -88,6 +88,11 @@ namespace VkNet.Utils
 				return new DisposableAction(OnEnded);
 			}
 
+			if (last == null)
+			{
+				return new DisposableAction(OnEnded);
+			}
+
 			var timeToWait = last.Value.Add(_timeSpan) - now;
 
 			try

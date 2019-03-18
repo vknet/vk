@@ -34,7 +34,7 @@ namespace VkNet.Tests
 			ReadJsonFile(nameof(VkApi), nameof(Call_NotMoreThen3CallsPerSecond));
 
 			Api.RequestsPerSecond = 3; // Переопределение значения в базовом классе
-			SetupIRestClient(Mock.Get(Api.RestClient));
+			// SetupIRestClient(Mock.Get(Api.RestClient));
 
 			var start = DateTimeOffset.Now;
 
@@ -121,7 +121,7 @@ namespace VkNet.Tests
 		public void Validate()
 		{
 			var uri = new Uri("https://m.vk.com/activation?act=validate&api_hash=f2fed5f22ebadc301e&hash=c8acf371111c938417");
-			Api.Validate(uri.ToString(), "+7894561230");
+			Api.Validate(uri.ToString());
 		}
 
 		[Test]

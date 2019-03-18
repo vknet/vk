@@ -3,7 +3,7 @@ namespace VkNet.Infrastructure
 	/// <summary>
 	/// Константы проекта
 	/// </summary>
-	public class Constants
+	public static class Constants
 	{
 		/// <summary>
 		/// Токен

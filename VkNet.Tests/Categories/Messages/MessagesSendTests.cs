@@ -15,6 +15,7 @@ namespace VkNet.Tests.Categories.Messages
 	public class MessagesSendTests : MessagesBaseTests
 	{
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());

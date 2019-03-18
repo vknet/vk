@@ -31,7 +31,7 @@ namespace VkNet.Tests
 													+ "&m=4"
 													+ "&email=mail";
 
-			var authorization = VkAuthorization.From(urlWithBadLoginOrPassword);
+			var authorization = VkAuthorization2.From(urlWithBadLoginOrPassword);
 
 			Assert.IsFalse(authorization.IsAuthorized);
 			Assert.IsFalse(authorization.IsAuthorizationRequired);
@@ -40,7 +40,7 @@ namespace VkNet.Tests
 		[Test]
 		public void CorrectParseInputString()
 		{
-			var auth = VkAuthorization.From(Input);
+			var auth = VkAuthorization2.From(Input);
 
 			Assert.AreEqual("token"
 					, auth.AccessToken);
@@ -53,7 +53,7 @@ namespace VkNet.Tests
 		[Test]
 		public void GetExpiresIn_Exception()
 		{
-			var auth = VkAuthorization.From(Input.Replace("86400", "qwe"));
+			var auth = VkAuthorization2.From(Input.Replace("86400", "qwe"));
 
 			var error = Assert.Throws<VkApiException>(() =>
 			{
@@ -67,7 +67,7 @@ namespace VkNet.Tests
 		[Test]
 		public void GetUserId_Exception()
 		{
-			var auth = VkAuthorization.From(Input.Replace("32190123", "qwe"));
+			var auth = VkAuthorization2.From(Input.Replace("32190123", "qwe"));
 
 			var error = Assert.Throws<VkApiException>(() =>
 			{
@@ -81,7 +81,7 @@ namespace VkNet.Tests
 		[Test]
 		public void IsAuthorizationRequired_False()
 		{
-			var auth = VkAuthorization.From(Input);
+			var auth = VkAuthorization2.From(Input);
 			Assert.IsFalse(auth.IsAuthorizationRequired);
 		}
 
@@ -98,21 +98,21 @@ namespace VkNet.Tests
 									+ "&display=page"
 									+ "&__q_hash=90f3ddf308ca69fca660e32b09e3617b";
 
-			var auth = VkAuthorization.From(uriQuery);
+			var auth = VkAuthorization2.From(uriQuery);
 			Assert.IsTrue(auth.IsAuthorizationRequired);
 		}
 
 		[Test]
 		public void IsAuthorized_Failed()
 		{
-			var auth = VkAuthorization.From(Input.Replace("access_token", "qwe"));
+			var auth = VkAuthorization2.From(Input.Replace("access_token", "qwe"));
 			Assert.IsFalse(auth.IsAuthorized);
 		}
 
 		[Test]
 		public void IsAuthorized_Success()
 		{
-			var auth = VkAuthorization.From(Input);
+			var auth = VkAuthorization2.From(Input);
 			Assert.IsTrue(auth.IsAuthorized);
 		}
 	}

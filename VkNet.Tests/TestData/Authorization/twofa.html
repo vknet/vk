@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)https://m.vk.com/login?act=authcheck&api_hash=6567fd6ffe44c3d6ce -->
+<html class="vk vk_js_yes  vk_flex_yes r m h vk_withVolumeLine vk_appAuth_no mp4_enabled ">
+<head class="push_notifier_default push_notifier_supported">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="MobileOptimized" content="176">
+	<meta name="HandheldFriendly" content="True">
+	<meta name="theme-color" content="#5181b8">
+	<!--<base id="base">-->
+	<base href=".">
+	<meta name="robots" content="noindex,nofollow">
+	<meta name="msApplication-ID" content="C6965DD5.VK">
+	<meta name="msApplication-PackageFamilyName" content="C6965DD5.VK_v422avzh127ra">
+	<style>
+		@media screen and (-ms-view-state: snapped) {
+			@-ms-viewport {
+				width: device-width
+			}
+		}
+	</style>
+	<title>Вход | ВКонтакте</title>
+	<link rel="shortcut icon" href="https://m.vk.com/images/icons/favicons/fav_logo.ico?8">
+	<script>
+		(function () {
+			window.isMVK = true;
+			window.isNewNavigation = false;
+			window.isNewMail = true;
+			window.isNewLongpoll = true;
+			window.audioSubscribe = false;
+			window.isArticleWebView = false;
+			window.isPWAStart = false;
+
+			var vkElem = document.querySelector('.vk');
+			var vkClass = vkElem.getAttribute('class');
+
+			var supports = {
+				js: true,
+				flex: window.CSS && CSS.supports && (
+					CSS.supports('display', 'flex') ||
+					CSS.supports('display', '-webkit-flex') ||
+					CSS.supports('display', '-ms-flexbox')
+				)
+			};
+
+			supports.js && (vkClass = vkClass.replace('vk_js_no', 'vk_js_yes'));
+			supports.flex && (vkClass = vkClass.replace('vk_flex_no', 'vk_flex_yes'));
+			vkElem.setAttribute('class', vkClass);
+		})();
+	</script>
+
+	<script type="text/javascript">
+		<!--
+		(function (k, a, d, e, f) {
+			function l() {
+				var c = function () {
+					var b = !1;
+					try {
+						b = new XMLHttpRequest
+					} catch (a) {
+						try {
+							b = new ActiveXObject("Msxml2.XMLHTTP")
+						} catch (d) {
+							try {
+								b = new ActiveXObject("Microsoft.XMLHTTP")
+							} catch (c) {
+								b = !1
+							}
+						}
+					}
+					return b ? e : f
+				}(), g = function () {
+					var b = k.createElement("div");
+					b.innerHTML = '<input type="file" />';
+					b = b.getElementsByTagName("input")[0];
+					return "file" != b.type || b.disabled ? f : e
+				}(), h = "ontouchstart" in a ? e : f, m;
+				try {
+					m = typeof navigator.geolocation !== d ? e : typeof a.google !== d && typeof google.gears !== d ? e : typeof device !== d && typeof device.getServiceObject !== d ? e : typeof Mojo !== d && "Mojo.Service.Request" !== typeof Mojo.Service.Request ? e : f
+				} catch (p) {
+					m = f
+				}
+				var l = function (b) {
+					try {
+						var d = a.Audio ? new Audio : k.createElement("audio");
+						if (d.canPlayType && d.canPlayType(b) && "no" != d.canPlayType(b)) return e
+					} catch (c) {
+					}
+					return f
+				}("audio/mpeg"), n = function (b) {
+					try {
+						for (var a = k.createElement("div"), c = 0, g = ["webkit", "Moz", "ms", "O", ""], h = g.length; c < h; c++) {
+							var l = g[c], m = l ? l + b : b.toLowerCase();
+							if (typeof a.style[m] !== d) return e
+						}
+						return f
+					} catch (n) {
+						return f
+					}
+				}("Transform");
+				return c + g + h + m + l + n + ((a.XMLHttpRequest || a.XDomainRequest) && (a.FormData || a.FileReader && (a.XMLHttpRequest && XMLHttpRequest.sendAsBinary || a.ArrayBuffer && a.Uint8Array && (a.MozBlobBuilder || a.WebKitBlobBuilder || a.BlobBuilder))) ? e : f)
+			}
+
+			var c = a.screen, g = c.width || 0, c = c.height || 0, n = a.devicePixelRatio || 1,
+				p = (k.cookie.match(/(^|;\s+)remixmdevice=([^;]+)/) || [])[2] || "", h = p.split("/");
+			p && g == h[0] && c == h[1] && 7 == h[3].length || (g = [g, c, n, l()].join("/"), k.cookie = "remixmdevice=; expires=" + (new Date(0)).toUTCString() + "; path=/", k.cookie = "remixmdevice=" + g + "; expires=" + (new Date((new Date).getTime() + 7776E6)).toUTCString() + "; path=/; domain=.vk.com", (location.search.indexOf('?mode=standalone') !== 0 && k.cookie !== "") && location.replace(location.toString()))
+		})(document, window, "undefined", "!", "-");
+		!function (o, a) {
+			var e = o.hash || "", t = e.substr(2);
+			if ("#/" == e.substr(0, 2)) {
+				var i = window.locDomain, n = new Date;
+				n.setTime(n.getTime() + 864e5);
+				var r = "; expires=" + n.toGMTString();
+				document.cookie = ["remixtmp_hash_nav", "=", o.href, r, "; path=/", i ? "; domain=." + i : ""].join(""), !a && (t.match(/^\/*(away|login)(\.php)?([^a-z0-9\.]|$)/) && (t = ""), o.replace(o.protocol + "//" + o.host + "/" + t))
+			}
+		}(location);
+		var al = {ver: 519932436};
+		setTimeout(function () {
+			!location.hash && window.scrollTo(0, /android/i.test(navigator.userAgent) ? 1 : 0)
+		}, 0);
+		//-->
+	</script>
+	<link type="text/css" rel="stylesheet" media="" href="./twofa_files/common.css">
+	<script type="text/javascript" src="./twofa_files/common.js.Без названия"></script>
+
+
+	<link rel="canonical" href="https://vk.com/login?act=authcheck">
+	<link rel="alternate" href="android-app://com.vkontakte.android/vkontakte/m.vk.com/login?act=authcheck">
+
+
+</head>
+
+<body
+	class="vk__page _hover vk_ios_no _hfixed vk_stickers_hints_support_yes opera_mini_no vk_safari_no vk__page vk__page_login-check-auth vk_al_yes"
+	onresize="uVK.onResize(); onBodyResize(true);" onorientationchange="uVK.onOrientationChange(); null">
+<div class="layout">
+
+
+	<div class="layout__header mhead" id="vk_head"></div>
+	<div class="layout__body qs_enabled _js _copts" id="vk_wrap">
+		<div class="layout__leftMenu" id="l">
+
+		</div>
+		<div class="layout__basis" id="m">
+			<div class="basis">
+				<div class="basis__header mhead" id="mhead">
+					<div class="hb_wrap mhb_logo mh_rb">
+						<div class="hb_btn mhi_logo">&nbsp;</div>
+						<h1 class="hb_btn mh_header">&nbsp;</h1>
+					</div>
+					<a href="https://m.vk.com/login?act=authcheck_logout&amp;hash=49973cae0821fa2b9c"
+					   class="hb_wrap mhb_notify mh_nobl" accesskey="#">
+						<div class="hb_btn">
+							<em class="mh_btn_label">выйти</em>
+						</div>
+					</a></div>
+				<div class="basis__menu"></div>
+
+				<div class="basis__content mcont " id="mcont" data-canonical="https://vk.com/login?act=authcheck">
+					<div class="pcont fit_box bl_cont new_form">
+						<div class="PageBlock">
+							<h4 class="sub_header">Проверка безопасности</h4>
+							<div class="form_item fi_fat">
+								<div class="fi_row">Пожалуйста, введите <b>код</b> из личного сообщения от Администрации
+									или из приложения для генерации кодов, чтобы подтвердить, что Вы — владелец
+									страницы.
+								</div>
+								<form method="post"
+									  action="https://m.vk.com/login?act=authcheck_code&amp;hash=1552162040_c98f31a6e83d3c91c1"
+									  novalidate="">
+									<dl class="fi_row">
+										<dt class="fi_label">Код подтверждения:</dt>
+										<dd>
+											<div class="iwrap"><input type="text" name="code" class="textfield"
+																	  autocomplete="off" autocorrect="off"
+																	  autocapitalize="off"></div>
+											<div class="fi_subrow"><label class="option_row " onclick="">
+												<input type="checkbox" class="checkbox" name="remember" value="1"
+													   checked="checked">
+												<span class="option_label">Запомнить браузер</span></label>
+											</div>
+										</dd>
+									</dl>
+									<div class="fi_row">
+										<input class="button" type="submit" value="Отправить код"
+											   onclick="return ajax.click(this, LoginCheckAuthCodePage, {lock: true});">
+									</div>
+									<div class="fi_row wide_button">
+										<div class="near_btn"><a
+											href="https://m.vk.com/login?act=authcheck&amp;api_hash=6567fd6ffe44c3d6ce&amp;help_opened"
+											onclick="show(&#39;otp_check_alternative&#39;);hide(gpeByClass(&#39;wide_button&#39;, this));return false;">Проблема
+											с получением кода?</a></div>
+									</div>
+									<div class="fi_row" id="otp_check_alternative" style="display:none">
+										Другие способы подтверждения:
+										<ul class="listing">
+											<li>
+												<div class="listing_row _resend_link"
+													 style="color: rgb(0, 0, 0); cursor: auto;">Отправить SMS c кодом
+													через 1:45
+												</div>
+											</li>
+											<li><span class="listing_row ">Ввести резервный код подтверждения</span>
+											</li>
+											<li><span class="listing_row "><a
+												href="https://static.vk.com/restore?act=return_page" target="_blank">Отправить заявку на восстановление доступа</a></span>
+											</li>
+										</ul>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="basis__footer mfoot" id="mfoot">
+					<div class="pfoot">
+						<ul class="footer_menu">
+
+							<li class="fm_row"><a class="fm_item"
+												  href="https://m.vk.com/settings?act=change_regional&amp;api_hash=6567fd6ffe44c3d6ce&amp;from=ac0cc0fbG9naW4%2FYWN0PWF1dGhjaGVjayZhcGlfaGFzaD02NTY3ZmQ2ZmZlNDRjM2Q2Y2U-&amp;hash=c7f14914bf629f9429&amp;lang_id=3">English</a>
+							</li>
+							<li class="fm_row"><a class="fm_item"
+												  href="https://m.vk.com/settings?act=change_regional&amp;api_hash=6567fd6ffe44c3d6ce&amp;from=ac0cc0fbG9naW4%2FYWN0PWF1dGhjaGVjayZhcGlfaGFzaD02NTY3ZmQ2ZmZlNDRjM2Q2Y2U-&amp;hash=c7f14914bf629f9429&amp;lang_id=1">Українська</a>
+							</li>
+							<li class="fm_row"><a class="fm_item"
+												  href="https://m.vk.com/settings?act=select_lang&amp;api_hash=6567fd6ffe44c3d6ce&amp;from=ac0cc0fbG9naW4%2FYWN0PWF1dGhjaGVjayZhcGlfaGFzaD02NTY3ZmQ2ZmZlNDRjM2Q2Y2U-">all
+								languages »</a></li>
+						</ul>
+
+					</div>
+				</div>
+				<script id="page_script" type="text/javascript">
+					<!--
+					extend(cur, {
+						resendTime: 1552162160,
+						resendLink: geByClass1('_resend_link', 'mcont'),
+						resendLabel: false,
+						resendUpdate: function () {
+							var delay = cur.resendTime - parseInt(Date.now() / 1000);
+							if (delay > 0) {
+								if (!cur.resendLabel) {
+									cur.resendLabel = ce('div', {className: cur.resendLink.className}, {
+										color: '#000',
+										cursor: 'auto'
+									});
+									domPN(cur.resendLink).replaceChild(cur.resendLabel, cur.resendLink);
+								}
+								val(cur.resendLabel, 'Отправить SMS c кодом через %s'.replace('%s', formatTime(delay)));
+							} else {
+								domPN(cur.resendLabel) && domPN(cur.resendLabel).replaceChild(cur.resendLink, cur.resendLabel);
+								clearInterval(cur.resendInt);
+							}
+						}
+					});
+					if (cur.resendTime > parseInt(Date.now() / 1000)) {
+						cur.resendUpdate();
+						cur.resendInt = setInterval(cur.resendUpdate, 1000);
+						cur.destroy.push(function () {
+							clearInterval(cur.resendInt);
+						});
+					}
+					;extend(cur, {module: 'login'});
+					!window.__jsInited && (function () {
+						window.langConfig = {
+							"id": 0,
+							"numDel": "<span class=\"num_delim\"> <\/span>",
+							"numDelS": " ",
+							"numDec": ",",
+							"prepTags": ["{prep_with}", "{prep_With}", "{prep_about}", "{prep_About}", "{prep_into}", "{prep_Into}"],
+							"prep": [["{prep_with},{prep_With}", "С*,З*,Льв*", "со,Со"], ["{prep_with},{prep_With}", "*,Са*,Се*,Сё*,Си*,Со*,Су*,Сэ*,Сю*,Ся*,За*,Зе*,Зё*,Зи*,Зо*,Зу*,Зэ*,Зю*,Зя*", "с,С"], ["{prep_about},{prep_About}", "А*,О*,У*,И*,Э*", "об,Об"], ["{prep_about},{prep_About}", "*", "о,О"], ["{prep_into},{prep_Into}", "В*,Ф*,Льв*", "во,Во"], ["{prep_into},{prep_Into}", "*,Ва*,Ве*,Вё*,Ви*,Во*,Ву*,Вэ*,Вю*,Вя*,Фа*,Фе*,Фё*,Фи*,Фо*,Фу*,Фэ*,Фю*,Фя*", "в,В"]],
+							"parent": 0,
+							"timeSys": ["24hour"],
+							"yearOffset": 0,
+							"flexLast": false,
+							"revOrder": false,
+							"RTL": false,
+							"numRules": {
+								"int": [[100, [11, 12, 13, 14], 3], [10, [1], 1], [10, [2, 3, 4], 2], ["*", 0, 3]],
+								"float": 2
+							},
+							"sexRules": [[1, 2], ["*", 1]],
+							"larr": "&larr;",
+							"rarr": "&rarr;"
+						};
+						extend(lang, {
+							"mobile_search": "Поиск",
+							"mobile_online": "Online",
+							"mobile_like": "Нравится",
+							"mobile_wall_post_publish": "Поделиться",
+							"mobile_wall_post_comments": ["", "%s комментарий", "%s комментария", "%s комментариев"],
+							"mobile_wall_post_replies_title": "Комментарии",
+							"mobile_wall_only_you_liked": "Понравилось только Вам",
+							"mobile_wall_you_and_x_people_liked": ["", "Понравилось Вам и ещё <b>%s<\/b> человеку", "Понравилось Вам и ещё <b>%s<\/b> людям", "Понравилось Вам и ещё <b>%s<\/b> людям"],
+							"mobile_wall_x_people_liked": ["", "Понравилось %s человеку", "Понравилось %s людям", "Понравилось %s людям"],
+							"mobile_wall_only_you_shared": "Поделились только Вы",
+							"mobile_wall_you_and_x_people_shared": ["", "Поделились Вы и ещё <b>%s<\/b> человек", "Поделились Вы и ещё <b>%s<\/b> человека", "Поделились Вы и ещё <b>%s<\/b> человек"],
+							"mobile_wall_x_people_shared": ["", "Поделился <b>%s<\/b> человек", "Поделились <b>%s<\/b> человека", "Поделились <b>%s<\/b> человек"],
+							"mobile_group_head_title": "Группа",
+							"mobile_public_head_title": "Страница",
+							"mobile_event_head_title": "Мероприятие",
+							"mobile_photos_photo_header": "Фотография %s из {count}",
+							"mobile_photos_on_this_photo": "На этой фотографии:",
+							"mobile_photos_photo_was_edited": "Фотография отредактирована",
+							"mobile_photos_photo_album_label": "Альбом:",
+							"mobile_photos_photo_author_label": "Отправитель:",
+							"mobile_photos_photo_head_title": "Фотография",
+							"mobile_photos_photoview_header": "%s из {count}",
+							"mobile_menu_player_head_title": "Плейлист",
+							"mobile_audio_player_not_support": "Устройство не поддерживает воспроизведение встроенного аудио",
+							"mobile_audio_search_btn": "Искать",
+							"mobile_audio_search_placeholder": "Введите название..",
+							"mobile_audio_search_placeholder_simple": "Поиск",
+							"mobile_audio_search_not_found": "По запросу «<b>%s<\/b>» не найдено ни одной аудиозаписи",
+							"mobile_audio_no_audio": "Нет ни одной аудиозаписи.",
+							"mobile_gif_popup_title": "Документ",
+							"mobile_gif_popup_share": "Поделиться",
+							"mobile_gif_popup_add": "Добавить",
+							"mobile_wall_gif_size_warning": "Размер файла составляет {size}. Продолжить?",
+							"mobile_wall_gif_size_warning_popup_title": "Предупреждение",
+							"mobile_continue": "Продолжить",
+							"mobile_cancel": "Отмена",
+							"mobile_delete": "Удалить",
+							"mobile_open": "Открыть",
+							"mobile_warning_header": "Предупреждение",
+							"mobile_prometheus_edit_warn_popup_title": "Отметка огня пропадёт после редактирования",
+							"mobile_wall_prometheus_edit_warn": "Запись отмечена огнём. Если Вы отредактируете её, то метка пропадёт и продвижение в разделе «Рекомендации» завершится. Уверены, что хотите продолжить?",
+							"mobile_mail_edited": "Отредактировано",
+							"mobile_mail_edited_short": "(ред.)",
+							"mobile_mail_wait_until_uploaded": "Пожалуйста, дождитесь окончания загрузки файлов.",
+							"mobile_mail_typing_1_short": "печатает",
+							"mobile_mail_typing_1": "{name} печатает",
+							"mobile_mail_typing_2": "{name1} и {name2} печатают",
+							"mobile_mail_typing_many": "{name} и ещё {count} печатают",
+							"mobile_mail_recaudio_1_short": "записывает аудио",
+							"mobile_mail_recaudio_1": "{name} записывает аудио",
+							"mobile_mail_recaudio_2": "{name1} и {name2} записывают аудио",
+							"mobile_mail_recaudio_many": "{name} и ещё {count} записывают аудио",
+							"mobile_mail_mixtyping_2": "{name1} и {name2}",
+							"mobile_mail_mixtyping_many": "{name} и ещё {count}",
+							"mobile_mail_typing": ["", "{user} пишет..", "{user} пишет.."],
+							"mobile_mail_multi_typing": "{users} и {last_user} пишут..",
+							"mobile_mail_messages_selected": ["", "Выбрано {count} сообщение", "Выбрано {count} сообщения", "Выбрано {count} сообщений"],
+							"mobile_mail_message_placeholder": "Ваше сообщение",
+							"mobile_mail_show_previous_dialogs": "Показать предыдущие диалоги",
+							"mobile_mail_show_previous_messages": "Показать предыдущие сообщения",
+							"mobile_mail_tab_all": "Все сообщения",
+							"mobile_mail_tab_unread": "Непрочитанные",
+							"mobile_mail_tab_important": "Важные",
+							"mobile_mail_tab_unrespond": "Неотвеченные",
+							"mobile_mail_message_editing": "Редактирование сообщения",
+							"mobile_mail_messages_actions_reply": "Ответить",
+							"mobile_mail_messages_actions_forward": "Переслать",
+							"mobile_mail_messages_actions_edit": "Редактировать сообщение",
+							"mobile_mail_messages_actions_pin": "Закрепить сообщение",
+							"mobile_mail_messages_actions_unpin": "Открепить сообщение",
+							"mobile_mail_messages_actions_important": "Отметить как важное",
+							"mobile_mail_messages_actions_important_off": "Снять отметку",
+							"mobile_mail_messages_actions_delete": "Удалить",
+							"mobile_mail_messages_actions_spam": "Спам",
+							"mobile_mail_no_peers": "Ни одного диалога не найдено",
+							"mobile_mail_not_found": "По Вашему запросу не найдено ни одного сообщения",
+							"mobile_mail_no_messages": "У Вас нет ни одного сообщения.",
+							"mobile_mail_sublist_empty": "Список диалогов пуст.",
+							"mobile_mail_no_important": "У Вас нет важных сообщений.",
+							"mobile_mail_no_unreaded": "У Вас нет непрочитанных сообщений.",
+							"mobile_mail_search_only_messages": "Искать в личных сообщениях",
+							"mobile_mail_you": "Вы",
+							"mobile_mail_show_medias": "Показать вложения",
+							"mobile_mail_delete_history": "Очистить диалог",
+							"mobile_mail_block_community": "Запретить сообщения",
+							"mobile_mail_unblock_community": "Разрешить сообщения",
+							"mobile_mail_add_to_chat": "Добавить собеседника",
+							"mobile_mail_chat_info": "Информация о беседе",
+							"mobile_mail_delete_chat_history": "Очистить беседу",
+							"mobile_mail_chat_leave": "Покинуть беседу",
+							"mobile_mail_channel_leave": "Отписаться от канала",
+							"mobile_mail_chat_return": "Вернуться в беседу",
+							"mobile_mail_N_members": ["", "%s участник", "%s участника", "%s участников"],
+							"mobile_mail_channel_N_members": ["", "%s подписчик", "%s подписчика", "%s подписчиков"],
+							"mobile_mail_online": "онлайн",
+							"mobile_mail_date": ["", "{day} {month} {year}", "вчера", "сегодня", "завтра"],
+							"mobile_mail_last_activity_tip": ["", "был в сети {time}", "была в сети {time}"],
+							"mobile_mail_short_date_time": ["", "{day} {month} в {hour}:{minute}", "вчера в {hour}:{minute}", "сегодня в {hour}:{minute}", "завтра в {hour}:{minute}"],
+							"mobile_mail_choose_recipient": "Выберите получателя",
+							"mobile_mail_messages": ["", "%s сообщение", "%s сообщения", "%s сообщений"],
+							"mobile_mail_mark_as_important": "Отметить как важный",
+							"mobile_mail_remove_important_mark": "Убрать из важных",
+							"mobile_mail_mark_as_answered": "Отметить как отвеченный",
+							"mobile_mail_chat_selected_peers_new": ["", "Выбран: %s", "Выбрано: %s", "Выбрано: %s"],
+							"mobile_mail_new_msgs": "Новые сообщения",
+							"mobile_mail_attachments_limit": "Вы можете прикрепить к сообщению не более 10 файлов.",
+							"mobile_mail_history_is_empty": "История сообщений пуста.",
+							"mobile_mail_unpin_msg": "Открепить сообщение",
+							"mobile_settings_blacklist_unban_user": "Разблокировать",
+							"mobile_settings_blacklist_ban_user": "Заблокировать",
+							"mobile_mail_invite_link": "Ссылка на беседу",
+							"mobile_mail_pin_show": "Показать закрепл. сообщение",
+							"mobile_mail_pin_hide": "Скрыть закрепл. сообщение",
+							"mobile_mail_dialog_msg_delete_N": ["", "Вы действительно хотите <b>удалить<\/b> %s сообщение?", "Вы действительно хотите <b>удалить<\/b> %s сообщения?", "Вы действительно хотите <b>удалить<\/b> %s сообщений?"],
+							"mobile_mail_dialog_msg_delete_for_all": "Вы действительно хотите <b>удалить сообщение для всех<\/b>?",
+							"mobile_mail_delete_for_all": "Удалить для всех",
+							"mobile_mail_delete_popup_delete": "Удалить",
+							"mobile_mail_delete_popup_cancel": "Отмена",
+							"mobile_mail_channel_invite_link": "Ссылка на канал",
+							"mobile_mail_return_to_channel": "Подписаться на канал",
+							"mail_greeting_good_morning": null,
+							"mail_greeting_good_afternoon": null,
+							"mail_greeting_good_evening": null,
+							"mail_greeting_good_night": null,
+							"mobile_mail_attachments": ["", "%s вложение", "%s вложения", "%s вложений"],
+							"mobile_mail_added_poll": "Опрос",
+							"global_article": "Статья",
+							"mobile_mail_added_photo": "Фотография",
+							"mobile_mail_added_video": "Видеозапись",
+							"mobile_mail_added_audio": "Аудиозапись",
+							"mobile_mail_added_audio_playlist": "Плейлист",
+							"mobile_mail_added_money_transfer": "Денежный перевод",
+							"mobile_mail_added_podcast": "Подкаст",
+							"mobile_mail_added_money_request": "Запрос денежного перевода",
+							"mobile_mail_added_vkpay": "VK Pay",
+							"mobile_mail_added_story": "История",
+							"mobile_mail_added_narrative": "Сюжет",
+							"mobile_mail_added_graffiti": "Граффити",
+							"mobile_mail_added_audiomsg": "Голосовое сообщение",
+							"mobile_mail_added_doc": "Документ",
+							"mobile_mail_added_geo": "Карта",
+							"mobile_mail_added_wall": "Запись на стене",
+							"mobile_mail_added_wall_reply": "Комментарий на стене",
+							"mobile_mail_added_gift": "Подарок",
+							"mobile_mail_added_link": "Ссылка",
+							"mobile_mail_added_sticker": "Стикер",
+							"mobile_mail_added_market_item": "Товар",
+							"mobile_mail_added_call": "Звонок",
+							"mobile_mail_added_photos": ["", "%s фотография", "%s фотографии", "%s фотографий"],
+							"mobile_mail_added_videos": ["", "%s видеозапись", "%s видеозаписи", "%s видеозаписей"],
+							"mobile_mail_added_audios": ["", "%s аудиозапись", "%s аудиозаписи", "%s аудиозаписей"],
+							"mobile_mail_added_docs": ["", "%s документ", "%s документа", "%s документов"],
+							"mobile_mail_N_forwards": ["", "Пересланное сообщение", "%s пересланных сообщения", "%s пересланных сообщений"],
+							"mobile_mail_templates_panel_title": "Шаблоны",
+							"mobile_mail_templates_action_edit": "Редактировать",
+							"mobile_mail_templates_action_delete": "Удалить",
+							"mobile_mail_templates_delete_popup_text": "Вы действительно хотите <b>удалить<\/b> шаблон «{name}»?",
+							"mobile_mail_templates_empty_info": "У Вас пока нет ни одного шаблона",
+							"mobile_mail_templates_empty_button": "Создать шаблон",
+							"mobile_mail_templates_delete_error": "Не удалось удалить шаблон «{name}»",
+							"mobile_mail_templates_toast_action_ok": "ОК",
+							"mobile_mail_templates_greeting_morning": "Доброе утро",
+							"mobile_mail_templates_greeting_afternoon": "Добрый день",
+							"mobile_mail_templates_greeting_evening": "Добрый вечер",
+							"mobile_mail_templates_greeting_night": "Доброй ночи",
+							"mobile_mail_mrs_page_title": "Запросы",
+							"mobile_mail_mrs_page_info": "Здесь отображаются сообщения от людей, которых нет в Вашем списке контактов. Они не узнают, что Вы увидели их сообщение, пока Вы не нажмёте на кнопку «Принять».",
+							"mobile_mail_mrs_empty_info": "Пока нет ни одного запроса",
+							"mobile_mail_mrs_confirm_info": "Пользователь не знает, что Вы прочитали его сообщения, и не видит информацию о Вас, пока Вы не нажмёте на кнопку «Принять».",
+							"mobile_mail_mrs_rejected_info": "Недавно Вы отклонили запрос на переписку от этого пользователя. Он пока не может Вам написать, а Вы можете начать с ним диалог.",
+							"mobile_mail_mrs_request_count": ["", "%s запрос", "%s запроса", "%s запросов"],
+							"mobile_mail_mrs_button_accept": "Принять",
+							"mobile_mail_mrs_button_reject": "Отклонить",
+							"mobile_mail_mrs_button_reject_all": "Отклонить все",
+							"mobile_profile_status_just_now": "только что",
+							"mobile_profile_status_mins_ago": ["", "%s минуту назад", "%s минуты назад", "%s минут назад"],
+							"mobile_profile_status_word_mins_ago": ["", "минуту назад", "две минуты назад", "три минуты назад", "4 минуты назад", "5 минут назад"],
+							"mobile_profile_status_hours_ago": ["", "%s час назад", "%s часа назад", "%s часов назад"],
+							"mobile_profile_status_word_hours_ago": ["", "час назад", "два часа назад", "три часа назад", "четыре часа назад", "пять часов назад"],
+							"mobile_unknown_error": "Неизвестная ошибка",
+							"mobile_flood_detected": "Вы попытались загрузить более одной однотипной страницы в секунду. Вернитесь назад и повторите попытку.",
+							"mobile_msg_no_rights": "У Вас недостаточно прав для совершения этого действия.",
+							"mobile_msg_reported": "Жалоба отправлена.",
+							"mobile_msg_cant_send_msg": "Вы не можете отправить сообщение этому пользователю, так как он ограничил круг лиц, которые могут присылать ему сообщения.",
+							"mobile_msg_cant_send_msg2": "Вы не можете отправить сообщение этому пользователю, так как он ограничил круг лиц, которые могут присылать ему сообщения.",
+							"mobile_msg_cant_send_notfriend": "Сообщение не может быть отправлено, так как Вы не состоите в друзьях у этого пользователя.",
+							"mobile_msg_mail_spam_chain_detected": "Вы только что попытались отправить сообщение, относящееся к так называемым «письмам-цепочкам». Такие письма загружают сервер и обычно не несут смысловой нагрузки (ложные сообщения о «вирусах», послания, заканчивающиеся угрозами и т.д.). Рассылка таких писем на нашем сайте не приветствуется.",
+							"mobile_msg_mail_server_error": "Сообщение не отправлено из-за ошибки на сервере.",
+							"mobile_msg_mail_privacy_error": "Вы не можете отправить сообщение этому пользователю, поскольку он ограничил круг лиц, которые могут присылать ему сообщения.",
+							"mobile_msg_mail_too_many_recipients": "Сообщение не может быть отправлено, так как Вы разослали слишком много сообщений за последнее время.",
+							"mobile_msg_mail_not_friend_in_chat": "Вы не можете создать беседу с человеком, который не является Вашим другом.",
+							"mobile_msg_mail_message_sent": "Сообщение отправлено.",
+							"mobile_like_publish_back": "Вернуться к оригиналу »",
+							"mobile_restore": "Восстановить",
+							"mobile_msg_mail_message_deleted": "Сообщение удалено.",
+							"mobile_msg_mail_message_marked_as_spam": "Сообщение помечено как спам и удалено.",
+							"mobile_zphoto_release_to_close": "Отпустите, чтобы закрыть..",
+							"mobile_zphoto_move_to_close": "Потяните, чтобы закрыть..",
+							"mobile_zphoto_close": "Закрыть",
+							"mobile_zphoto_upload_header": "Загрузка фотографии",
+							"mobile_zphoto_owner_crop_header": "Выбор миниатюры",
+							"mobile_zphoto_save_btn": "Сохранить",
+							"mobile_zphoto_cancel_btn": "Отмена",
+							"mobile_mail_head_title": "Сообщения",
+							"mobile_attachments_add_photo_vk": "Фото из альбома",
+							"mobile_attachments_add_video": "Видеозапись",
+							"mobile_attachments_add_audio": "Аудиозапись",
+							"mobile_attachments_add_doc": "Документ",
+							"mobile_attachments_add_money": "Деньги",
+							"mobile_attachments_add_poll": "Опрос",
+							"text_N_symbols_remain": ["", "Остался %s знак.", "Осталось %s знака.", "Осталось %s знаков."],
+							"mobile_playlist_add": "Добавить",
+							"mobile_playlist_added": "Добавлен",
+							"global_delete_audio": "Удалить аудиозапись",
+							"global_add_to_audio": "Добавить в мою музыку",
+							"global_ads_wall_post_mark_as_ads_action": "Это реклама",
+							"mobile_audio_count": ["", "%s аудиозапись", "%s аудиозаписи", "%s аудиозаписей"],
+							"months_sm_of": {
+								"1": "янв",
+								"2": "фев",
+								"3": "мар",
+								"4": "апр",
+								"5": "мая",
+								"6": "июн",
+								"7": "июл",
+								"8": "авг",
+								"9": "сен",
+								"10": "окт",
+								"11": "ноя",
+								"12": "дек"
+							},
+							"mobile_friends_got_notification": "Заявка отправлена.",
+							"mobile_friends_accept_request": "Добавить в друзья",
+							"mobile_friends_feed_recom_got_notification": "Заявка отправлена",
+							"mobile_friends_feed_recom_accept_request": "ДОБАВИТЬ",
+							"mobile_groups_public_subscribe": "Подписаться",
+							"mobile_groups_you_are_in_public": "Вы подписаны",
+							"mobile_assistance_profile_photo_uploaded_desc": "Поддерживайте её актуальность, чтобы друзьям было проще Вас узнать.",
+							"mobile_assistance_profile_photo_uploaded_title": "Фотография профиля обновлена",
+							"mobile_notifications_new": ["", "%s новое уведомление", "%s новых уведомления", "%s новых уведомлений"],
+							"mobile_notifications_title": "Уведомления",
+							"mobile_notifications_restore": "Отменить",
+							"mobile_notifications_hidden": "Уведомление скрыто",
+							"mobile_friends_import_error": "Произошла ошибка. Пожалуйста, попробуйте ещё раз.",
+							"mobile_join_friends_found_count": ["", "Найден %s друг", "Найдено %s друга", "Найдено %s друзей"],
+							"mobile_stories_views_title": ["", "%s просмотр", "%s просмотра", "%s просмотров"],
+							"mobile_stories_views_title_replies_and_views": "Ответы и просмотры",
+							"mobile_stories_views_title_replies": "Ответы",
+							"mobile_stories_replies_title": ["", "%s ответ", "%s ответа", "%s ответов"],
+							"mobile_stories_reply_deleted_title": "История удалена",
+							"mobile_stories_reply_private_title": "История скрыта",
+							"mobile_stories_reply_you": "Вы",
+							"mobile_stories_delete_story": "Вы действительно хотите удалить историю?<br/>Отменить действие будет невозможно.",
+							"mobile_stories_delete_narrative": "Вы действительно хотите удалить сюжет?<br/>Отменить действие будет невозможно.",
+							"mobile_stories_error_expired": "Историю можно было посмотреть<br/>в течение 24 часов после публикации",
+							"mobile_stories_menu_share_title": "Поделиться",
+							"mobile_stories_menu_remove_title": "Удалить историю",
+							"mobile_stories_menu_remove_narrative_title": "Удалить сюжет",
+							"mobile_stories_menu_report_title": "Пожаловаться",
+							"mobile_stories_comment_placeholder": "Сообщение...",
+							"mobile_stories_comment_textarea": "Написать сообщение...",
+							"mobile_stories_comment_title": "Сообщение к истории",
+							"mobile_stories_comment_narrative_title": "Сообщение к сюжету",
+							"mobile_stories_comment_ok": "Отправить",
+							"mobile_stories_comment_cancel": "Отмена",
+							"mobile_stories_comment_success": "Сообщение отправлено",
+							"mobile_stories_video_error": "Ваш браузер не поддерживает видео",
+							"mobile_stories_inline_video_error": "Ваш браузер не поддерживает воспроизведение встроенного видео",
+							"mobile_stories_is_promo_title": "Реклама",
+							"mobile_stories_menu_bookmarked_title": "Удалить из закладок",
+							"mobile_stories_menu_bookmark_title": "Сохранить в закладках",
+							"mobile_stories_unmute": "Включить звук",
+							"global_type_narrative": "Сюжет",
+							"mobile_narratives_repeat_bottom": "Просмотреть ещё раз",
+							"mobile_narratives_back_bottom": "Вернуться к историям",
+							"mobile_narratives_more_bottom": "Ещё немного сюжетов",
+							"mobile_bookmarks_snackbar_added": "Сохранено в закладках",
+							"mobile_bookmarks_snackbar_edit_tags": "Добавить метку",
+							"mobile_menu_refresh_button": "Новые записи"
+						});
+						window.vk = {"id": 0, "ts": 1552162041, "__debug": false, "iu_ex": true, "rv": "18453"};
+						vk.started = vkNow();
+						PushNotifier.init();
+						window.__jsInited = true;
+					})();
+					//-->
+				</script>
+				<div class="_cntrs" style="height:0;overflow:hidden;">
+					<img width="1" height="1" src="./twofa_files/p" alt="" align="left">
+
+					<img src="./twofa_files/counter" style="border:0;" height="1" width="1">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<a class="FloatBtn FloatBtn_nowrap" href="https://m.vk.com/join?from=float"><span class="FloatBtn__text"
+																				  onclick="uRegisterFloatBtn.checkBtn();">Регистрация</span><i
+	class="FloatBtn__close" onclick="uRegisterFloatBtn._onCloseClick(event)"></i></a>
+
+<script type="text/javascript">
+	<!--
+	parent && parent != window && (document.getElementsByTagName('body')[0].innerHTML = '');
+	page.save(page.getHash(nav), {
+		title: document.title,
+		html: val('m'),
+		js: val('page_script'),
+		lm: {fv_link: ge('lm_fv_link') ? attr('lm_fv_link', 'href') : '', tab: '', is_tab_page: ''},
+		bc: geByTag1('body').className,
+		options: {}
+	});
+	onDOMReady(nav.zInit);
+	window.store.stickers = {"url_template": "https:\/\/vk.com\/sticker\/1-%id%-%size%-9"};
+	//-->
+</script>
+<div id="vk_utils"></div>
+<div id="z"></div>
+<div id="vk_bottom"></div>
+<div id="theme_color_shim"></div>
+
+
+</body>
+</html>

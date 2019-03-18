@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Flurl.Http;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -22,6 +24,7 @@ using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
+using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
 using VkNet.Utils;
 using VkNet.Utils.AntiCaptcha;
@@ -82,6 +85,54 @@ namespace VkNet
 		public IRestClient RestClient;
 	#pragma warning restore S1104 // Fields should not have public accessibility
 
+		/// <summary>
+		/// Токен для доступа к методам API
+		/// </summary>
+		private string AccessToken { get; set; }
+
+		/// <inheritdoc />
+		public IVkApiVersionManager VkApiVersion { get; set; }
+
+		/// <inheritdoc />
+		public event VkApiDelegate OnTokenExpires;
+
+		/// <inheritdoc />
+		[Obsolete("Нужно использовать AuthorizationFlow", false)]
+		public IBrowser Browser { get; set; }
+
+		/// <inheritdoc />
+		public IAuthorizationFlow AuthorizationFlow { get; set; }
+
+		/// <inheritdoc />
+		public INeedValidationHandler NeedValidationHandler { get; set; }
+
+		/// <inheritdoc />
+		public bool IsAuthorized => !string.IsNullOrWhiteSpace(AccessToken);
+
+		/// <inheritdoc />
+		public string Token => AccessToken;
+
+		/// <inheritdoc />
+		public long? UserId { get; set; }
+
+		/// <inheritdoc />
+		public int MaxCaptchaRecognitionCount { get; set; }
+
+		/// <inheritdoc />
+		public ICaptchaSolver CaptchaSolver { get; set; }
+
+		/// <inheritdoc />
+		public void SetLanguage(Language language)
+		{
+			_language.SetLanguage(language);
+		}
+
+		/// <inheritdoc />
+		public Language? GetLanguage()
+		{
+			return _language.GetLanguage();
+		}
+
 		/// <inheritdoc />
 		public VkApi(ILogger<VkApi> logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
 		{
@@ -121,66 +172,9 @@ namespace VkNet
 			Initialization(serviceProvider);
 		}
 
-		/// <summary>
-		/// Токен для доступа к методам API
-		/// </summary>
-		private string AccessToken { get; set; }
-
-		/// <inheritdoc />
-		public IVkApiVersionManager VkApiVersion { get; set; }
-
-		/// <inheritdoc />
-		public event VkApiDelegate OnTokenExpires;
-
-		/// <inheritdoc />
-		public IBrowser Browser { get; set; }
-
-		/// <inheritdoc />
-		public IAuthorizationFlow AuthorizationFlow { get; set; }
-
-		/// <inheritdoc />
-		public bool IsAuthorized => !string.IsNullOrWhiteSpace(AccessToken);
-
-		/// <inheritdoc />
-		public string Token => AccessToken;
-
-		/// <inheritdoc />
-		public long? UserId { get; set; }
-
-		/// <inheritdoc />
-		public int MaxCaptchaRecognitionCount { get; set; }
-
-		/// <inheritdoc />
-		public ICaptchaSolver CaptchaSolver { get; set; }
-
-		/// <inheritdoc />
-		public void SetLanguage(Language language)
-		{
-			_language.SetLanguage(language);
-		}
-
-		/// <inheritdoc />
-		public Language? GetLanguage()
-		{
-			return _language.GetLanguage();
-		}
-
 		/// <inheritdoc />
 		public void Authorize(IApiAuthParams @params)
 		{
-			// подключение браузера через прокси
-			if (@params.Host != null)
-			{
-				_logger?.LogDebug("Настройка прокси");
-
-				Browser.Proxy = WebProxy.GetProxy(@params.Host,
-					@params.Port,
-					@params.ProxyLogin,
-					@params.ProxyPassword);
-
-				RestClient.Proxy = Browser.Proxy;
-			}
-
 			// если токен не задан - обычная авторизация
 			if (@params.AccessToken == null)
 			{
@@ -259,7 +253,10 @@ namespace VkNet
 
 			var rawResponse = json["response"];
 
-			return new VkResponse(rawResponse) { RawJson = answer };
+			return new VkResponse(rawResponse)
+			{
+				RawJson = answer
+			};
 		}
 
 		/// <inheritdoc />
@@ -343,7 +340,10 @@ namespace VkNet
 
 			var rawResponse = json.Root;
 
-			return new VkResponse(rawResponse) { RawJson = answer };
+			return new VkResponse(rawResponse)
+			{
+				RawJson = answer
+			};
 		}
 
 		/// <inheritdoc />
@@ -368,7 +368,7 @@ namespace VkNet
 
 			var answer = InvokeBase(server, parameters);
 
-			_logger?.LogTrace($"Uri = \"{server}\"");
+			_logger?.LogTrace($"Uri = '{server}'");
 			_logger?.LogTrace($"Json ={Environment.NewLine}{Utilities.PrettyPrintJson(answer)}");
 
 			VkErrors.IfErrorThrowException(answer);
@@ -396,8 +396,7 @@ namespace VkNet
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
-			Browser.SetAuthParams(_ap);
-			var authorization = Browser.Validate(validateUrl);
+			var authorization = NeedValidationHandler.Validate(validateUrl);
 
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
@@ -795,8 +794,8 @@ namespace VkNet
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
-			Browser.SetAuthParams(authParams);
-			var authorization = Browser.Authorize();
+
+			var authorization = AuthorizationFlow.AuthorizeAsync().GetAwaiter().GetResult();
 
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
@@ -811,12 +810,17 @@ namespace VkNet
 
 		private void Initialization(IServiceProvider serviceProvider)
 		{
+			FlurlHttp.Configure(settings =>
+			{
+				settings.HttpClientFactory = serviceProvider.GetService<ProxyHttpClientFactory>();
+			});
+
 			_logger = serviceProvider.GetService<ILogger<VkApi>>();
 			_captchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
 			_language = serviceProvider.GetRequiredService<ILanguageService>();
 			_rateLimiter = serviceProvider.GetRequiredService<IRateLimiter>();
 
-			Browser = serviceProvider.GetRequiredService<IBrowser>();
+			NeedValidationHandler = serviceProvider.GetRequiredService<INeedValidationHandler>();
 			AuthorizationFlow = serviceProvider.GetRequiredService<IAuthorizationFlow>();
 			CaptchaSolver = serviceProvider.GetService<ICaptchaSolver>();
 			RestClient = serviceProvider.GetRequiredService<IRestClient>();

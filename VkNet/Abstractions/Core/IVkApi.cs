@@ -30,6 +30,11 @@ namespace VkNet.Abstractions
 		IAuthorizationFlow AuthorizationFlow { get; set; }
 
 		/// <summary>
+		/// Выполняет обход ошибки валидации: https://vk.com/dev/need_validation
+		/// </summary>
+		INeedValidationHandler NeedValidationHandler { get; set; }
+
+		/// <summary>
 		/// Версия API vk.com.
 		/// </summary>
 		IVkApiVersionManager VkApiVersion { get; set; }

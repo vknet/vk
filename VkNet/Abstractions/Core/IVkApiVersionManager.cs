@@ -21,19 +21,23 @@
 		void SetVersion(int major, int minor);
 
 		/// <summary>
-		/// Проверить что версия больше либо равна значению <see cref="major"/> и <see cref="minor"/>
+		/// Проверить что версия больше либо равна значению <paramref name="major"/> и <paramref name="minor"/>
 		/// </summary>
 		/// <param name="major">Мажорная версия Vk Api</param>
 		/// <param name="minor">Минорная версия Vk Api</param>
-		/// <returns><c>true</c> если версия больше или равна значению <see cref="major"/> и <see cref="minor"/></returns>
+		/// <returns>
+		/// <c>true</c> если версия больше или равна значению <paramref name="major"/> и <paramref name="minor"/>
+		/// </returns>
 		bool IsGreaterThanOrEqual(int major, int minor);
 
 		/// <summary>
-		/// Проверить что версия меньше либо равна значению <see cref="major"/> и <see cref="minor"/>
+		/// Проверить что версия меньше либо равна значению <paramref name="major"/> и <paramref name="minor"/>
 		/// </summary>
-		/// <param name="major"></param>
-		/// <param name="minor"></param>
-		/// <returns></returns>
+		/// <param name="major">Мажорная версия Vk Api</param>
+		/// <param name="minor">Минорная версия Vk Api</param>
+		/// <returns>
+		/// <c>true</c> если версия меньше или равна значению <paramref name="major"/> и <paramref name="minor"/>
+		/// </returns>
 		bool IsLessThanOrEqual(int major, int minor);
 	}
 }

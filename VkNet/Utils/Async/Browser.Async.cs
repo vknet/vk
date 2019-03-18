@@ -23,7 +23,7 @@ namespace VkNet.Utils
 		[UsedImplicitly]
 		public async Task<string> GetJsonAsync(string methodUrl, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
-			var result = await WebCall.PostCallAsync(url: methodUrl, parameters: parameters, webProxy: Proxy)
+			var result = await WebCall.PostCallAsync(methodUrl, parameters, Proxy)
 				.ConfigureAwait(false);
 
 			return result.Response;
@@ -35,55 +35,50 @@ namespace VkNet.Utils
 		/// <param name="authParams"> Параметры авторизации </param>
 		/// <returns> Информация об авторизации приложения </returns>
 		[UsedImplicitly]
-		public async Task<VkAuthorization> AuthorizeAsync(IApiAuthParams authParams)
+		public async Task<AuthorizationResult> AuthorizeAsync(IApiAuthParams authParams)
 		{
-			_logger?.LogDebug(message: "Шаг 1. Открытие диалога авторизации");
-
-			var authorizeUrlResult = await OpenAuthDialogAsync(appId: authParams.ApplicationId, settings: authParams.Settings)
+			var authorizeUrlResult = await OpenAuthDialogAsync(authParams.ApplicationId, authParams.Settings)
 				.ConfigureAwait(false);
 
-			if (IsAuthSuccessfull(webCallResult: authorizeUrlResult))
-			{
-				return await EndAuthorizeAsync(result: authorizeUrlResult, webProxy: Proxy).ConfigureAwait(false);
-			}
+			return await NextStepAsync(authorizeUrlResult).ConfigureAwait(false);
 
-			_logger?.LogDebug(message: "Шаг 2. Заполнение формы логина");
+/*
 
-			var loginFormPostResult = await FilledLoginFormAsync(email: authParams.Login,
-					password: authParams.Password,
-					captchaSid: authParams.CaptchaSid,
-					captchaKey: authParams.CaptchaKey,
-					authorizeUrlResult: authorizeUrlResult)
+			var loginFormPostResult = await FilledLoginFormAsync(authParams.Login,
+					authParams.Password,
+					authParams.CaptchaSid,
+					authParams.CaptchaKey,
+					authorizeUrlResult)
 				.ConfigureAwait(false);
 
 			if (IsAuthSuccessfull(webCallResult: loginFormPostResult))
 			{
-				return await EndAuthorizeAsync(result: loginFormPostResult, webProxy: Proxy).ConfigureAwait(false);
+				return await EndAuthorizeAsync(loginFormPostResult, Proxy).ConfigureAwait(false);
 			}
 
-			if (HasNotTwoFactor(code: authParams.TwoFactorAuthorization, loginFormPostResult: loginFormPostResult))
+			if (HasNotTwoFactor(authParams.TwoFactorAuthorization, loginFormPostResult))
 			{
-				return await EndAuthorizeAsync(result: loginFormPostResult, webProxy: Proxy).ConfigureAwait(false);
+				return await EndAuthorizeAsync(loginFormPostResult, Proxy).ConfigureAwait(false);
 			}
 
 			_logger?.LogDebug(message: "Шаг 2.5.1. Заполнить код двухфакторной авторизации");
 
 			var twoFactorFormResult =
-				await FilledTwoFactorFormAsync(code: authParams.TwoFactorAuthorization, loginFormPostResult: loginFormPostResult);
+				await FilledTwoFactorFormAsync(authParams.TwoFactorAuthorization, loginFormPostResult).ConfigureAwait(false);
 
 			if (IsAuthSuccessfull(webCallResult: twoFactorFormResult))
 			{
-				return await EndAuthorizeAsync(result: twoFactorFormResult, webProxy: Proxy).ConfigureAwait(false);
+				return await EndAuthorizeAsync(twoFactorFormResult, Proxy).ConfigureAwait(false);
 			}
 
 			_logger?.LogDebug(message: "Шаг 2.5.2 Капча");
 			var captchaForm = WebForm.From(result: twoFactorFormResult);
 
-			var captcha = await WebCall.PostAsync(form: captchaForm, webProxy: Proxy).ConfigureAwait(false);
+			var captcha = await WebCall.PostAsync(captchaForm, Proxy).ConfigureAwait(false);
 
 			// todo: Нужно обработать капчу
 
-			return await EndAuthorizeAsync(result: captcha, webProxy: Proxy).ConfigureAwait(false);
+			return await EndAuthorizeAsync(captcha, Proxy).ConfigureAwait(false);*/
 		}
 
 		/// <summary>
@@ -98,9 +93,27 @@ namespace VkNet.Utils
 				.WithField(name: "code")
 				.FilledWith(value: code.Invoke());
 
-			var task = WebCall.PostAsync(form: codeForm, webProxy: Proxy);
+			var task = WebCall.PostAsync(codeForm, Proxy);
 			task.ConfigureAwait(false);
+
 			return task;
+		}
+
+		private Task<WebCallResult> FilledConsentAsync(WebCallResult loginFormPostResult)
+		{
+			var form = WebForm.From(result: loginFormPostResult);
+
+			var task = WebCall.PostAsync(form, Proxy);
+			task.ConfigureAwait(false);
+
+			return task;
+		}
+
+		private WebCallResult FilledConsent(WebCallResult loginFormPostResult)
+		{
+			var form = WebForm.From(result: loginFormPostResult);
+
+			return WebCall.Post(form, Proxy);
 		}
 
 		/// <summary>
@@ -113,10 +126,10 @@ namespace VkNet.Utils
 		/// <param name="authorizeUrlResult"> </param>
 		/// <returns> </returns>
 		private Task<WebCallResult> FilledLoginFormAsync(string email
-																, string password
-																, long? captchaSid
-																, string captchaKey
-																, WebCallResult authorizeUrlResult)
+														, string password
+														, long? captchaSid
+														, string captchaKey
+														, WebCallResult authorizeUrlResult)
 		{
 			var loginForm = WebForm.From(result: authorizeUrlResult)
 				.WithField(name: "email")
@@ -135,8 +148,9 @@ namespace VkNet.Utils
 					.FilledWith(value: captchaKey);
 			}
 
-			var task = WebCall.PostAsync(form: loginForm, webProxy: Proxy);
+			var task = WebCall.PostAsync(loginForm, Proxy);
 			task.ConfigureAwait(false);
+
 			return task;
 		}
 
@@ -149,7 +163,7 @@ namespace VkNet.Utils
 		/// странице валидации
 		/// </param>
 		/// <returns> Информация об авторизации приложения. </returns>
-		public Task<VkAuthorization> ValidateAsync(string validateUrl, string phoneNumber)
+		public Task<VkAuthorization2> ValidateAsync(string validateUrl, string phoneNumber)
 		{
 			if (string.IsNullOrWhiteSpace(value: validateUrl))
 			{
@@ -163,20 +177,21 @@ namespace VkNet.Utils
 
 			var task = ValidateInternalAsync(validateUrl, phoneNumber);
 			task.ConfigureAwait(false);
+
 			return task;
 		}
 
-		private async Task<VkAuthorization> ValidateInternalAsync(string validateUrl, string phoneNumber)
+		private async Task<VkAuthorization2> ValidateInternalAsync(string validateUrl, string phoneNumber)
 		{
-			var validateUrlResult = await WebCall.MakeCallAsync(url: validateUrl, webProxy: Proxy).ConfigureAwait(false);
+			var validateUrlResult = await WebCall.MakeCallAsync(validateUrl, Proxy).ConfigureAwait(false);
 
 			var codeForm = WebForm.From(result: validateUrlResult)
 				.WithField(name: "code")
-				.FilledWith(value: phoneNumber.Substring(startIndex: 1, length: 8));
+				.FilledWith(value: phoneNumber.Substring(1, 8));
 
-			var codeFormPostResult = await WebCall.PostAsync(form: codeForm, webProxy: Proxy).ConfigureAwait(false);
+			var codeFormPostResult = await WebCall.PostAsync(codeForm, Proxy).ConfigureAwait(false);
 
-			return await EndAuthorizeAsync(result: codeFormPostResult, webProxy: Proxy).ConfigureAwait(false);
+			return await EndAuthorizeAsync(codeFormPostResult, Proxy).ConfigureAwait(false);
 		}
 
 		/// <summary>
@@ -186,13 +201,13 @@ namespace VkNet.Utils
 		/// <param name="webProxy"> Настройки прокси </param>
 		/// <returns> </returns>
 		/// <exception cref="CaptchaNeededException"> </exception>
-		private async Task<VkAuthorization> EndAuthorizeAsync(WebCallResult result, IWebProxy webProxy = null)
+		private async Task<VkAuthorization2> EndAuthorizeAsync(WebCallResult result, IWebProxy webProxy = null)
 		{
 			if (IsAuthSuccessfull(webCallResult: result))
 			{
 				var auth = GetTokenUri(webCallResult: result);
 
-				return VkAuthorization.From(uriFragment: auth.ToString());
+				return VkAuthorization2.From(uriFragment: auth.ToString());
 			}
 
 			if (HasСonfirmationRights(result: result))
@@ -201,7 +216,7 @@ namespace VkNet.Utils
 				var authorizationForm = WebForm.From(result: result);
 
 				var authorizationFormPostResult =
-					await WebCall.PostAsync(form: authorizationForm, webProxy: webProxy).ConfigureAwait(false);
+					await WebCall.PostAsync(authorizationForm, webProxy).ConfigureAwait(false);
 
 				if (!IsAuthSuccessfull(webCallResult: authorizationFormPostResult))
 				{
@@ -210,7 +225,7 @@ namespace VkNet.Utils
 
 				var tokenUri = GetTokenUri(webCallResult: authorizationFormPostResult);
 
-				return VkAuthorization.From(uriFragment: tokenUri.ToString());
+				return VkAuthorization2.From(uriFragment: tokenUri.ToString());
 			}
 
 			var captchaSid = HasCaptchaInput(result: result);
@@ -226,19 +241,18 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Открытие окна авторизацииасинхронно
+		/// Открытие окна авторизации асинхронно
 		/// </summary>
 		/// <param name="appId"> id приложения </param>
 		/// <param name="settings"> Настройки приложения </param>
 		/// <returns> </returns>
-		private Task<WebCallResult> OpenAuthDialogAsync(ulong appId
-															, [NotNull]
-															Settings settings)
+		private Task<WebCallResult> OpenAuthDialogAsync(ulong appId, [NotNull] Settings settings)
 		{
 			var url = CreateAuthorizeUrl(appId, settings.ToUInt64(), Display.Page, "123456");
 
-			var task = WebCall.MakeCallAsync(url: url.ToString(), webProxy: Proxy);
+			var task = WebCall.MakeCallAsync(url.ToString(), Proxy);
 			task.ConfigureAwait(false);
+
 			return task;
 		}
 	}

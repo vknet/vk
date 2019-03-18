@@ -28,7 +28,7 @@ namespace VkNet.Model
 		/// См. описание <see href="https://vk.com/dev/permissions" />
 		/// </summary>
 		/// <remarks>
-		/// ВНИМАНИЕ!!! Settings.All по умолчанию не содержит Settings.Offline
+		/// ВНИМАНИЕ!!! Settings.All по умолчанию не содержит Settings.Offline и Settings.Messages
 		/// </remarks>
 		Settings Settings { get; set; }
 

@@ -863,6 +863,7 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void Join_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
@@ -923,6 +924,7 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void Leave_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());

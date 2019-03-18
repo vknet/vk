@@ -16,7 +16,7 @@ namespace VkNet.Utils
 		/// <param name="cookies"> Куки. </param>
 		public WebCallResult(string url, Cookies cookies)
 		{
-			RequestUrl = new Uri(uriString: url);
+			RequestUrl = new Uri(url);
 			Cookies = cookies;
 			Response = string.Empty;
 		}
@@ -47,7 +47,7 @@ namespace VkNet.Utils
 		/// <param name="cookies"> Куки. </param>
 		public void SaveCookies(CookieCollection cookies)
 		{
-			Cookies.AddFrom(responseUrl: ResponseUrl, cookies: cookies);
+			Cookies.AddFrom(ResponseUrl, cookies);
 		}
 
 		/// <summary>
@@ -60,7 +60,7 @@ namespace VkNet.Utils
 		{
 			ResponseUrl = responseUrl;
 
-			using (var reader = new StreamReader(stream: stream, encoding: encoding))
+			using (var reader = new StreamReader(stream, encoding))
 			{
 				Response = reader.ReadToEnd();
 			}

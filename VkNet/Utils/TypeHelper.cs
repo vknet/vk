@@ -2,15 +2,18 @@ using System;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Flurl.Http.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
+using VkNet.Enums;
 using VkNet.Infrastructure;
+using VkNet.Infrastructure.Authorization.ImplicitFlow;
+using VkNet.Model;
 using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils
@@ -26,9 +29,9 @@ namespace VkNet.Utils
 		/// <param name="container"> DI контейнер </param>
 		public static void RegisterDefaultDependencies(this IServiceCollection container)
 		{
-			container.TryAddSingleton<IBrowser, Browser>();
-			container.TryAddSingleton<IAuthorizationFlow, Browser>();
-			container.TryAddSingleton<INeedValidationHandler, Browser>();
+			//container.TryAddSingleton<IBrowser, Browser>();
+			container.TryAddSingleton<INeedValidationHandler, NeedValidationHandler>();
+			container.TryAddSingleton<IApiAuthParams>(t => null);
 			container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
 			container.TryAddSingleton<IRestClient, RestClient>();
 			container.TryAddSingleton<IWebProxy>(t => null);
@@ -39,6 +42,7 @@ namespace VkNet.Utils
 			container.TryAddSingleton<HttpClient>();
 			container.TryAddSingleton<IRateLimiter, RateLimiter>();
 			container.TryAddSingleton<IAwaitableConstraint, CountByIntervalAwaitableConstraint>();
+			container.RegisterAuthorization();
 		}
 
 		/// <summary>
@@ -99,6 +103,25 @@ namespace VkNet.Utils
 			});
 
 			return tcs.Task;
+		}
+
+		private static void RegisterAuthorization(this IServiceCollection services)
+		{
+			services.TryAddSingleton<IAuthorizationFlow, Browser>();
+			services.TryAddSingleton<IVkAuthorization<ImplicitFlowPageType>, ImplicitFlowVkAuthorization>();
+			services.TryAddSingleton<IAuthorizationFormHtmlParser, AuthorizationFormHtmlParser>();
+			services.TryAddSingleton<IAuthorizationFormFactory, AuthorizationFormFactory>();
+
+			services.AddSingleton<IAuthorizationForm, ImplicitFlowCaptchaLoginForm>();
+			services.AddSingleton<IAuthorizationForm, ImplicitFlowLoginForm>();
+			services.AddSingleton<IAuthorizationForm, TwoFactorForm>();
+			services.AddSingleton<IAuthorizationForm, ConsentForm>();
+			services.TryAddSingleton<IFlurlClientFactory, PerBaseUrlFlurlClientFactory>();
+			services.TryAddSingleton<DefaultHttpClientFactory, ProxyHttpClientFactory>();
+			services.TryAddSingleton<DefaultHttpClientFactory, NoRedirectHttpClientFactory>();
+			services.TryAddSingleton<ProxyHttpClientFactory>();
+			services.TryAddSingleton<NoRedirectHttpClientFactory>();
+			services.TryAddSingleton<CookieContainer>();
 		}
 	}
 }

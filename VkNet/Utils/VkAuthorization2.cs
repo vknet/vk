@@ -9,7 +9,7 @@ namespace VkNet.Utils
 	/// <summary>
 	/// Информация об авторизации приложения на действия.
 	/// </summary>
-	public class VkAuthorization
+	public class VkAuthorization2
 	{
 		/// <summary>
 		/// Список наименования полей.
@@ -20,7 +20,7 @@ namespace VkNet.Utils
 		/// Конструктор.
 		/// </summary>
 		/// <param name="uriFragment"> URL ответа. </param>
-		private VkAuthorization(string uriFragment)
+		private VkAuthorization2(string uriFragment)
 		{
 			_nameValues = Decode(urlFragment: uriFragment);
 		}
@@ -82,9 +82,9 @@ namespace VkNet.Utils
 		/// URL, на которую произошло перенаправление при авторизации.
 		/// </param>
 		/// <returns> Информация об авторизации. </returns>
-		public static VkAuthorization From(string uriFragment)
+		public static VkAuthorization2 From(string uriFragment)
 		{
-			return new VkAuthorization(uriFragment: uriFragment);
+			return new VkAuthorization2(uriFragment: uriFragment);
 		}
 
 		/// <summary>

@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Flurl;
 using VkNet.Exception;
 
 namespace VkNet.Utils
@@ -18,11 +19,11 @@ namespace VkNet.Utils
 		/// <returns> Результат </returns>
 		public static async Task<WebCallResult> MakeCallAsync(string url, IWebProxy webProxy = null)
 		{
-			using (var call = new WebCall(url: url, cookies: new Cookies(), webProxy: webProxy))
+			using (var call = new WebCall(url, new Cookies(), webProxy))
 			{
-				var response = await call._request.GetAsync(requestUri: url);
+				var response = await call._request.GetAsync(url).ConfigureAwait(false);
 
-				return await call.MakeRequestAsync(response: response, uri: new Uri(uriString: url), webProxy: webProxy)
+				return await call.MakeRequestAsync(response, new Uri(url), webProxy)
 					.ConfigureAwait(false);
 			}
 		}
@@ -34,17 +35,16 @@ namespace VkNet.Utils
 		/// <param name="parameters"> Параметры запроса. </param>
 		/// <param name="webProxy"> Хост. </param>
 		/// <returns> Результат </returns>
-		public static async Task<WebCallResult> PostCallAsync(string url
-															, IEnumerable<KeyValuePair<string, string>> parameters
-															, IWebProxy webProxy)
+		public static async Task<WebCallResult> PostCallAsync(string url, IEnumerable<KeyValuePair<string, string>> parameters,
+															IWebProxy webProxy)
 		{
-			using (var call = new WebCall(url: url, cookies: new Cookies(), webProxy: webProxy))
+			using (var call = new WebCall(url, new Cookies(), webProxy))
 			{
 				var request = await call._request
-					.PostAsync(requestUri: url, content: new FormUrlEncodedContent(nameValueCollection: parameters))
+					.PostAsync(url, new FormUrlEncodedContent(parameters))
 					.ConfigureAwait(false);
 
-				return await call.MakeRequestAsync(response: request, uri: new Uri(uriString: url), webProxy: webProxy)
+				return await call.MakeRequestAsync(request, new Uri(url), webProxy)
 					.ConfigureAwait(false);
 			}
 		}
@@ -57,15 +57,15 @@ namespace VkNet.Utils
 		/// <returns> Результат </returns>
 		public static async Task<WebCallResult> PostAsync(WebForm form, IWebProxy webProxy)
 		{
-			using (var call = new WebCall(url: form.ActionUrl, cookies: form.Cookies, webProxy: webProxy, allowAutoRedirect: false))
+			using (var call = new WebCall(form.ActionUrl, form.Cookies, webProxy, false))
 			{
-				SpecifyHeadersForFormRequest(form: form, call: call);
+				SpecifyHeadersForFormRequest(form, call);
 
-				var request = await call._request.PostAsync(requestUri: form.ActionUrl,
-						content: new FormUrlEncodedContent(nameValueCollection: form.GetFormFields()))
+				var request = await call._request.PostAsync(form.ActionUrl,
+						new FormUrlEncodedContent(form.GetFormFields()))
 					.ConfigureAwait(false);
 
-				return await call.MakeRequestAsync(response: request, uri: new Uri(uriString: form.ActionUrl), webProxy: webProxy)
+				return await call.MakeRequestAsync(request, new Uri(form.ActionUrl), webProxy)
 					.ConfigureAwait(false);
 			}
 		}
@@ -78,15 +78,15 @@ namespace VkNet.Utils
 		/// <returns> Результат </returns>
 		private async Task<WebCallResult> RedirectToAsync(string url, IWebProxy webProxy = null)
 		{
-			using (var call = new WebCall(url: url, cookies: _result.Cookies, webProxy: webProxy))
+			using (var call = new WebCall(url, _result.Cookies, webProxy))
 			{
 				var headers = call._request.DefaultRequestHeaders;
-				headers.Add(name: "Method", value: "GET");
-				headers.Add(name: "ContentType", value: "text/html");
+				headers.Add("Method", "GET");
+				headers.Add("ContentType", "text/html");
 
-				var response = await call._request.GetAsync(requestUri: url).ConfigureAwait(false);
+				var response = await call._request.GetAsync(url).ConfigureAwait(false);
 
-				return await call.MakeRequestAsync(response: response, uri: new Uri(uriString: url), webProxy: webProxy)
+				return await call.MakeRequestAsync(response, new Uri(url), webProxy)
 					.ConfigureAwait(false);
 			}
 		}
@@ -105,20 +105,43 @@ namespace VkNet.Utils
 			{
 				if (stream == null)
 				{
-					throw new VkApiException(message: "Response is null.");
+					throw new VkApiException("Response is null.");
 				}
 
 				var encoding = Encoding.UTF8;
-				_result.SaveResponse(responseUrl: response.RequestMessage.RequestUri, stream: stream, encoding: encoding);
+				_result.SaveResponse(response.RequestMessage.RequestUri, stream, encoding);
 
 				var cookies = _result.Cookies.Container;
 
-				_result.SaveCookies(cookies: cookies.GetCookies(uri: uri));
+				_result.SaveCookies(cookies.GetCookies(uri));
+
+				if (IsAbsoluteUrl(response.Headers.Location?.ToString()))
+				{
+					return response.StatusCode == HttpStatusCode.Redirect
+						? await RedirectToAsync(response.Headers.Location.AbsoluteUri, webProxy).ConfigureAwait(false)
+						: _result;
+				}
 
 				return response.StatusCode == HttpStatusCode.Redirect
-					? await RedirectToAsync(url: response.Headers.Location.AbsoluteUri, webProxy: webProxy).ConfigureAwait(false)
+					? await RedirectToAsync(Url.Combine(_result.RequestUrl.GetLeftPart(UriPartial.Authority), response.Headers.Location.OriginalString), webProxy)
+						.ConfigureAwait(false)
 					: _result;
 			}
+		}
+
+		private bool IsAbsoluteUrl(string url)
+		{
+			if (string.IsNullOrWhiteSpace(url))
+			{
+				return false;
+			}
+
+			return Uri.TryCreate(url, UriKind.Absolute, out _);
+		}
+
+		private string GetDomain(Uri uri)
+		{
+			return uri.GetLeftPart(UriPartial.Authority);
 		}
 	}
 }

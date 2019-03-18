@@ -1,4 +1,5 @@
-﻿using VkNet.Model;
+﻿using System.Threading.Tasks;
+using VkNet.Model;
 
 namespace VkNet.Abstractions.Authorization
 {
@@ -11,6 +12,6 @@ namespace VkNet.Abstractions.Authorization
 		/// Авторизация
 		/// </summary>
 		/// <returns> Access token. </returns>
-		AuthorizationResult Authorize();
+		Task<AuthorizationResult> AuthorizeAsync();
 	}
 }

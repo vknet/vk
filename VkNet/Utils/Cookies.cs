@@ -33,7 +33,7 @@ namespace VkNet.Utils
 		{
 			foreach (Cookie cookie in cookies)
 			{
-				Container.Add(uri: responseUrl, cookie: cookie);
+				Container.Add(responseUrl, cookie);
 			}
 
 			BugFixCookieDomain();
@@ -46,15 +46,15 @@ namespace VkNet.Utils
 		{
 			var table = Container.GetType()
 			#if NET40
-				.InvokeMember(name: "m_domainTable"
-					, invokeAttr: BindingFlags.NonPublic|BindingFlags.GetField|BindingFlags.Instance
-					, binder: null
-					, target: Container
-					, args: new object[] {}) as IDictionary;
+				.InvokeMember("m_domainTable"
+					, BindingFlags.NonPublic|BindingFlags.GetField|BindingFlags.Instance
+					, null
+					, Container
+					, new object[] {}) as IDictionary;
 		#else
 					.GetRuntimeFields()
-					.FirstOrDefault(predicate: x => x.Name == "m_domainTable" || x.Name == "_domainTable")
-					?.GetValue(obj: Container) as IDictionary;
+					.FirstOrDefault(x => x.Name == "m_domainTable" || x.Name == "_domainTable")
+					?.GetValue(Container) as IDictionary;
 		#endif
 
 			if (table == null)
@@ -66,20 +66,20 @@ namespace VkNet.Utils
 
 			foreach (var key in table.Keys.OfType<string>().ToList())
 			{
-				if (key[index: 0] != '.')
+				if (key[0] != '.')
 				{
 					continue;
 				}
 
-				var newKey = key.Remove(startIndex: 0, count: 1);
+				var newKey = key.Remove(0, 1);
 
-				if (keys.Contains(item: newKey))
+				if (keys.Contains(newKey))
 				{
 					continue;
 				}
 
-				table[key: newKey] = table[key: key];
-				keys.Add(item: newKey);
+				table[newKey] = table[key];
+				keys.Add(newKey);
 			}
 		}
 	}

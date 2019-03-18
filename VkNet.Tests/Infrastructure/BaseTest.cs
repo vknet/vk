@@ -6,12 +6,16 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
+using Moq.AutoMock;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using VkNet.Abstractions.Authorization;
+using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
 using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Utils;
+using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Tests
 {
@@ -26,6 +30,8 @@ namespace VkNet.Tests
 		/// Экземпляр класса API.
 		/// </summary>
 		protected VkApi Api;
+
+		protected readonly AutoMocker Mocker = new AutoMocker();
 
 		/// <summary>
 		/// Ответ от сервера.
@@ -51,44 +57,76 @@ namespace VkNet.Tests
 		[SetUp]
 		public void Init()
 		{
-			var browser = new Mock<IBrowser>();
-
-			browser.Setup(o => o.Authorize())
-				.Returns(new AuthorizationResult
-				{
-					AccessToken = "token",
-					ExpiresIn = 1000,
-					UserId = 1,
-					State = "123456"
-				});
-
-			browser.Setup(m => m.Validate(It.IsAny<string>(), It.IsAny<string>()))
-				.Returns(new AuthorizationResult
-				{
-					AccessToken = "token",
-					ExpiresIn = 1000,
-					UserId = 1,
-					State = "123456"
-				});
-
-			browser.Setup(m => m.Validate(It.IsAny<string>()))
-				.Returns(new AuthorizationResult
-				{
-					AccessToken = "token",
-					ExpiresIn = 1000,
-					UserId = 1,
-					State = "123456"
-				});
-
-			var restClient = new Mock<IRestClient>();
-
-			SetupIRestClient(restClient);
-
-			Api = new VkApi
+			Mocker.Use<IApiAuthParams>(new ApiAuthParams
 			{
-				Browser = browser.Object,
-				RestClient = restClient.Object
-			};
+				ApplicationId = 1,
+				Login = "login",
+				Password = "pass",
+				Settings = Settings.All,
+				Phone = "89510000000"
+			});
+
+			Mocker.Setup<IAuthorizationFlow, Task<AuthorizationResult>>(o => o.AuthorizeAsync())
+				.ReturnsAsync(new AuthorizationResult
+				{
+					AccessToken = "token",
+					ExpiresIn = 1000,
+					UserId = 1,
+					State = "123456"
+				});
+
+			Mocker.Setup<INeedValidationHandler, AuthorizationResult>(m => m.Validate(It.IsAny<string>(), It.IsAny<string>()))
+				.Returns(new AuthorizationResult
+				{
+					AccessToken = "token",
+					ExpiresIn = 1000,
+					UserId = 1,
+					State = "123456"
+				});
+
+			Mocker.Setup<INeedValidationHandler, AuthorizationResult>(m => m.Validate(It.IsAny<string>()))
+				.Returns(new AuthorizationResult
+				{
+					AccessToken = "token",
+					ExpiresIn = 1000,
+					UserId = 1,
+					State = "123456"
+				});
+
+			Mocker.Setup<ICaptchaHandler, string>(m => m.Perform(It.IsAny<Func<long?, string, string>>()))
+				.Returns(Json);
+
+			Mocker.Setup<ICaptchaHandler, bool>(m => m.Perform(It.IsAny<Func<long?, string, bool>>()))
+				.Returns(true);
+
+			Mocker.Setup<ICaptchaHandler, int>(m => m.MaxCaptchaRecognitionCount)
+				.Returns(1);
+
+			Mocker.Setup<ICaptchaSolver, string>(m => m.Solve(It.IsAny<string>()))
+				.Returns("123456");
+
+			Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x =>
+					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
+						It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+				.Callback(Callback)
+				.Returns(() =>
+				{
+					if (string.IsNullOrWhiteSpace(Json))
+					{
+						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
+					}
+
+					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url));
+				});
+
+			Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
+					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+				.Throws<ArgumentException>();
+
+			Api = Mocker.CreateInstance<VkApi>();
+			Api.RestClient = Mocker.Get<IRestClient>();
+			Api.NeedValidationHandler = Mocker.Get<INeedValidationHandler>();
+			Api.CaptchaSolver = Mocker.Get<ICaptchaSolver>();
 
 			Api.Authorize(new ApiAuthParams
 			{
@@ -99,7 +137,7 @@ namespace VkNet.Tests
 				Phone = "89510000000"
 			});
 
-			Api.RequestsPerSecond = 999999999; // Чтобы тесты быстрее выполнялись
+			Api.RequestsPerSecond = int.MaxValue;
 		}
 
 		/// <summary>
@@ -116,7 +154,10 @@ namespace VkNet.Tests
 		{
 			var response = JToken.Parse(Json);
 
-			return new VkResponse(response) { RawJson = Json };
+			return new VkResponse(response)
+			{
+				RawJson = Json
+			};
 		}
 
 		private void Callback()
@@ -143,7 +184,8 @@ namespace VkNet.Tests
 		{
 			var folders = new List<string>
 			{
-				AppContext.BaseDirectory, "TestData"
+				AppContext.BaseDirectory,
+				"TestData"
 			};
 
 			folders.AddRange(jsonRelativePaths);
@@ -164,27 +206,6 @@ namespace VkNet.Tests
 			{
 				Api?.Dispose();
 			}
-		}
-
-		protected void SetupIRestClient(Mock<IRestClient> restClient)
-		{
-			restClient.Setup(x =>
-					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
-						It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-				.Callback(Callback)
-				.Returns(() =>
-				{
-					if (string.IsNullOrWhiteSpace(Json))
-					{
-						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
-					}
-
-					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url));
-				});
-
-			restClient.Setup(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
-					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
-				.Throws<ArgumentException>();
 		}
 	}
 }

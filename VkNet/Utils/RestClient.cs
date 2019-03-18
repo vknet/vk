@@ -48,7 +48,7 @@ namespace VkNet.Utils
 
 			_logger?.LogDebug($"GET request: {url.Uri}");
 
-			var request = new HttpRequestMessage(HttpMethod.Get, uri);
+			var request = new HttpRequestMessage(HttpMethod.Get, url.Uri);
 
 			return CallAsync(httpClient => httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead));
 		}
@@ -90,6 +90,9 @@ namespace VkNet.Utils
 			GC.SuppressFinalize(this);
 		}
 
+		/// <summary>
+		/// Releases unmanaged and - optionally - managed resources.
+		/// </summary>
 		~RestClient()
 		{
 			Dispose(false);

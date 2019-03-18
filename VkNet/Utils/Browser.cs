@@ -2,14 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
+using Flurl;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
-using VkNet.Abstractions;
 using VkNet.Abstractions.Core;
+using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Infrastructure.Authorization;
+using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
+using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils
 {
@@ -22,25 +27,27 @@ namespace VkNet.Utils
 		[CanBeNull]
 		private readonly ILogger<Browser> _logger;
 
-		private IApiAuthParams _authParams;
+		private readonly IApiAuthParams _authParams;
 
 		/// <summary>
 		/// Менеджер версий VkApi
 		/// </summary>
 		private readonly IVkApiVersionManager _versionManager;
 
+		private readonly IVkAuthorization<ImplicitFlowPageType> _vkAuthorization;
+
+		private readonly ICaptchaSolver _captchaSolver;
+
 		/// <inheritdoc />
-		public Browser([CanBeNull]
-						ILogger<Browser> logger, IVkApiVersionManager versionManager)
+		public Browser([CanBeNull] ILogger<Browser> logger, IVkApiVersionManager versionManager, IApiAuthParams authParams, IWebProxy proxy,
+						IVkAuthorization<ImplicitFlowPageType> vkAuthorization, ICaptchaSolver captchaSolver)
 		{
 			_logger = logger;
 			_versionManager = versionManager;
-		}
-
-		/// <inheritdoc />
-		public void SetAuthParams(IApiAuthParams authParams)
-		{
 			_authParams = authParams;
+			Proxy = proxy;
+			_vkAuthorization = vkAuthorization;
+			_captchaSolver = captchaSolver;
 		}
 
 		/// <inheritdoc />
@@ -49,36 +56,36 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public string GetJson(string url, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
-			return WebCall.PostCall(url: url, parameters: parameters, webProxy: Proxy).Response;
+			return WebCall.PostCall(url, parameters, Proxy).Response;
 		}
 
 		/// <inheritdoc />
-		public AuthorizationResult Authorize()
+		public void SetAuthParams(IApiAuthParams authParams)
 		{
-			var result = Authorize(_authParams);
-
-			return new AuthorizationResult
-			{
-				AccessToken = result.AccessToken,
-				ExpiresIn = result.ExpiresIn,
-				UserId = result.UserId,
-				State = result.State
-			};
+			throw new NotImplementedException();
 		}
 
 		/// <inheritdoc />
-		public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
+		public async Task<AuthorizationResult> AuthorizeAsync()
 		{
-			var builder = new StringBuilder(value: "https://oauth.vk.com/authorize?");
+			var result = await AuthorizeAsync(_authParams).ConfigureAwait(false);
 
-			builder.Append(value: $"client_id={clientId}&");
-			builder.Append(value: "redirect_uri=https://oauth.vk.com/blank.html&");
-			builder.Append(value: $"display={display}&");
-			builder.Append(value: $"scope={scope}&");
-			builder.Append(value: "response_type=token&");
-			builder.Append(value: $"v={_versionManager.Version}&");
-			builder.Append(value: $"state={state}&");
-			builder.Append(value: "revoke=1");
+			return result;
+		}
+
+		/// <inheritdoc />
+		public Url CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
+		{
+			var builder = new StringBuilder("https://oauth.vk.com/authorize?");
+
+			builder.Append($"client_id={clientId}&");
+			builder.Append("redirect_uri=https://oauth.vk.com/blank.html&");
+			builder.Append($"display={display}&");
+			builder.Append($"scope={scope}&");
+			builder.Append("response_type=token&");
+			builder.Append($"v={_versionManager.Version}&");
+			builder.Append($"state={state}&");
+			builder.Append("revoke=1");
 
 			return new Uri(builder.ToString());
 		}
@@ -111,6 +118,20 @@ namespace VkNet.Utils
 			};
 		}
 
+		/// <inheritdoc />
+		public async Task<AuthorizationResult> ValidateAsync(string validateUrl)
+		{
+			var result = await OldValidateAsync(validateUrl, _authParams.Phone).ConfigureAwait(false);
+
+			return new AuthorizationResult
+			{
+				AccessToken = result.AccessToken,
+				ExpiresIn = result.ExpiresIn,
+				UserId = result.ExpiresIn,
+				State = result.State
+			};
+		}
+
 		/// <summary>
 		/// Заполнить форму двухфакторной авторизации
 		/// </summary>
@@ -119,11 +140,11 @@ namespace VkNet.Utils
 		/// <returns> Ответ сервера vk </returns>
 		private WebCallResult FilledTwoFactorForm(Func<string> code, WebCallResult loginFormPostResult)
 		{
-			var codeForm = WebForm.From(result: loginFormPostResult)
-				.WithField(name: "code")
-				.FilledWith(value: code.Invoke());
+			var codeForm = WebForm.From(loginFormPostResult)
+				.WithField("code")
+				.FilledWith(code.Invoke());
 
-			return WebCall.Post(form: codeForm, webProxy: Proxy);
+			return WebCall.Post(codeForm, Proxy);
 		}
 
 		/// <summary>
@@ -134,9 +155,9 @@ namespace VkNet.Utils
 		/// <returns> </returns>
 		private bool HasNotTwoFactor(Func<string> code, WebCallResult loginFormPostResult)
 		{
-			_logger?.LogDebug(message: "Проверка наличия двухфакторной авторизации");
+			_logger?.LogDebug("Проверка наличия двухфакторной авторизации");
 
-			return code == null || WebForm.IsOAuthBlank(result: loginFormPostResult);
+			return code == null || WebForm.IsOAuthBlank(loginFormPostResult);
 		}
 
 		/// <summary>
@@ -150,30 +171,46 @@ namespace VkNet.Utils
 		/// <returns> </returns>
 		private WebCallResult FilledLoginForm(string email
 											, string password
-											, long? captchaSid
-											, string captchaKey
 											, WebCallResult authorizeUrlResult)
 		{
-			var loginForm = WebForm.From(result: authorizeUrlResult)
-				.WithField(name: "email")
-				.FilledWith(value: email)
+			var loginForm = WebForm.From(authorizeUrlResult)
+				.WithField("email")
+				.FilledWith(email)
 				.And()
-				.WithField(name: "pass")
-				.FilledWith(value: password);
+				.WithField("pass")
+				.FilledWith(password);
 
-			if (!captchaSid.HasValue)
-			{
-				return WebCall.Post(form: loginForm, webProxy: Proxy);
-			}
+			return WebCall.Post(loginForm, Proxy);
+		}
 
-			_logger?.LogDebug(message: "Шаг 2. Заполнение формы логина. Капча");
+		/// <summary>
+		/// Заполнить форму логин и пароль
+		/// </summary>
+		/// <param name="email"> Логин </param>
+		/// <param name="password"> Пароль </param>
+		/// <param name="authorizeUrlResult"> </param>
+		/// <returns> </returns>
+		private WebCallResult FilledCaptchaLoginForm(string email
+													, string password
+													, WebCallResult authorizeUrlResult)
+		{
+			var loginForm = WebForm.From(authorizeUrlResult)
+				.WithField("email")
+				.FilledWith(email)
+				.And()
+				.WithField("pass")
+				.FilledWith(password);
 
-			loginForm.WithField(name: "captcha_sid")
-				.FilledWith(value: captchaSid.Value.ToString())
-				.WithField(name: "captcha_key")
-				.FilledWith(value: captchaKey);
+			_logger?.LogDebug("Шаг 2. Заполнение формы логина. Капча");
 
-			return WebCall.Post(form: loginForm, webProxy: Proxy);
+			var captchaKey =
+				_captchaSolver.Solve(
+					$"https://api.vk.com//captcha.php?sid={loginForm.GetFieldValue(AuthorizationFormFields.CaptchaSid)}&s=1");
+
+			loginForm.WithField("captcha_key")
+				.FilledWith(captchaKey);
+
+			return WebCall.Post(loginForm, Proxy);
 		}
 
 		/// <summary>
@@ -183,55 +220,55 @@ namespace VkNet.Utils
 		/// <param name="webProxy"> Настройки прокси </param>
 		/// <returns> </returns>
 		/// <exception cref="CaptchaNeededException"> </exception>
-		private VkAuthorization EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
+		private VkAuthorization2 EndAuthorize(WebCallResult result, IWebProxy webProxy = null)
 		{
-			if (IsAuthSuccessfull(webCallResult: result))
+			if (IsAuthSuccessfull(result))
 			{
-				var auth = GetTokenUri(webCallResult: result);
+				var auth = GetTokenUri(result);
 
-				return VkAuthorization.From(uriFragment: auth.ToString());
+				return VkAuthorization2.From(auth.ToString());
 			}
 
-			if (HasСonfirmationRights(result: result))
+			if (HasСonfirmationRights(result))
 			{
-				_logger?.LogDebug(message: "Требуется подтверждение прав");
-				var authorizationForm = WebForm.From(result: result);
-				var authorizationFormPostResult = WebCall.Post(form: authorizationForm, webProxy: webProxy);
+				_logger?.LogDebug("Требуется подтверждение прав");
+				var authorizationForm = WebForm.From(result);
+				var authorizationFormPostResult = WebCall.Post(authorizationForm, webProxy);
 
-				if (!IsAuthSuccessfull(webCallResult: authorizationFormPostResult))
+				if (!IsAuthSuccessfull(authorizationFormPostResult))
 				{
-					throw new VkApiException(message: "URI должен содержать токен!");
+					throw new VkApiException("URI должен содержать токен!");
 				}
 
-				var tokenUri = GetTokenUri(webCallResult: authorizationFormPostResult);
+				var tokenUri = GetTokenUri(authorizationFormPostResult);
 
-				return VkAuthorization.From(uriFragment: tokenUri.ToString());
+				return VkAuthorization2.From(tokenUri.ToString());
 			}
 
-			var captchaSid = HasCaptchaInput(result: result);
+			var captchaSid = HasCaptchaInput(result);
 
 			if (!captchaSid.HasValue)
 			{
-				throw new VkApiException(message: "Непредвиденная ошибка авторизации. Обратитесь к разработчику.");
+				throw new VkApiException("Непредвиденная ошибка авторизации. Обратитесь к разработчику.");
 			}
 
-			_logger?.LogDebug(message: "Требуется ввод капчи");
+			_logger?.LogDebug("Требуется ввод капчи");
 
-			throw new CaptchaNeededException(sid: captchaSid.Value, img: "https://m.vk.com/captcha.php?sid=" + captchaSid.Value);
+			throw new CaptchaNeededException(captchaSid.Value, "https://m.vk.com/captcha.php?sid=" + captchaSid.Value);
 		}
 
 		private bool HasСonfirmationRights(WebCallResult result)
 		{
-			var request = VkAuthorization.From(uriFragment: result.RequestUrl.ToString());
-			var response = VkAuthorization.From(uriFragment: result.ResponseUrl.ToString());
+			var request = VkAuthorization2.From(result.RequestUrl.ToString());
+			var response = VkAuthorization2.From(result.ResponseUrl.ToString());
 
 			return request.IsAuthorizationRequired || response.IsAuthorizationRequired;
 		}
 
 		private long? HasCaptchaInput(WebCallResult result)
 		{
-			var request = VkAuthorization.From(uriFragment: result.RequestUrl.ToString());
-			var response = VkAuthorization.From(uriFragment: result.ResponseUrl.ToString());
+			var request = VkAuthorization2.From(result.RequestUrl.ToString());
+			var response = VkAuthorization2.From(result.ResponseUrl.ToString());
 
 			if (request.IsCaptchaNeeded)
 			{
@@ -252,12 +289,11 @@ namespace VkNet.Utils
 		/// <param name="appId"> id приложения </param>
 		/// <param name="settings"> Настройки приложения </param>
 		/// <returns> </returns>
-		private WebCallResult OpenAuthDialog(ulong appId, [NotNull]
-											Settings settings)
+		private WebCallResult OpenAuthDialog(ulong appId, [NotNull] Settings settings)
 		{
 			var url = CreateAuthorizeUrl(appId, settings.ToUInt64(), Display.Page, "123456");
 
-			return WebCall.MakeCall(url: url.ToString(), webProxy: Proxy);
+			return WebCall.MakeCall(url.ToString(), Proxy);
 		}
 
 		/// <summary>
@@ -267,7 +303,7 @@ namespace VkNet.Utils
 		/// <returns> true, если авторизация прошла успешно </returns>
 		private static bool IsAuthSuccessfull(WebCallResult webCallResult)
 		{
-			return UriHasAccessToken(uri: webCallResult.RequestUrl) || UriHasAccessToken(uri: webCallResult.ResponseUrl);
+			return UriHasAccessToken(webCallResult.RequestUrl) || UriHasAccessToken(webCallResult.ResponseUrl);
 		}
 
 		/// <summary>
@@ -278,7 +314,7 @@ namespace VkNet.Utils
 		private static bool UriHasAccessToken(Uri uri)
 		{
 			return uri.Fragment
-				.StartsWith(value: "#access_token=", comparisonType: StringComparison.Ordinal);
+				.StartsWith("#access_token=", StringComparison.Ordinal);
 		}
 
 		/// <summary>
@@ -289,16 +325,16 @@ namespace VkNet.Utils
 		/// <exception cref="VkApiException"> URI должен содержать токен! </exception>
 		private Uri GetTokenUri(WebCallResult webCallResult)
 		{
-			if (UriHasAccessToken(uri: webCallResult.RequestUrl))
+			if (UriHasAccessToken(webCallResult.RequestUrl))
 			{
-				_logger?.LogDebug(message: "Запрос: " + webCallResult.RequestUrl);
+				_logger?.LogDebug("Запрос: " + webCallResult.RequestUrl);
 
 				return webCallResult.RequestUrl;
 			}
 
-			if (UriHasAccessToken(uri: webCallResult.ResponseUrl))
+			if (UriHasAccessToken(webCallResult.ResponseUrl))
 			{
-				_logger?.LogDebug(message: "Ответ: " + webCallResult.ResponseUrl);
+				_logger?.LogDebug("Ответ: " + webCallResult.ResponseUrl);
 
 				return webCallResult.ResponseUrl;
 			}
@@ -306,75 +342,186 @@ namespace VkNet.Utils
 			return null;
 		}
 
-		private VkAuthorization Authorize(IApiAuthParams authParams)
+		private AuthorizationResult Authorize(IApiAuthParams authParams)
 		{
-			_logger?.LogDebug(message: "Шаг 1. Открытие диалога авторизации");
-			var authorizeUrlResult = OpenAuthDialog(appId: authParams.ApplicationId, settings: authParams.Settings);
+			var authorizeUrlResult = OpenAuthDialog(authParams.ApplicationId, authParams.Settings);
 
-			if (IsAuthSuccessfull(webCallResult: authorizeUrlResult))
-			{
-				return EndAuthorize(result: authorizeUrlResult, webProxy: Proxy);
-			}
-
-			_logger?.LogDebug(message: "Шаг 2. Заполнение формы логина");
-
-			var loginFormPostResult = FilledLoginForm(email: authParams.Login,
-				password: authParams.Password,
-				captchaSid: authParams.CaptchaSid,
-				captchaKey: authParams.CaptchaKey,
-				authorizeUrlResult: authorizeUrlResult);
-
-			if (IsAuthSuccessfull(webCallResult: loginFormPostResult))
-			{
-				return EndAuthorize(result: loginFormPostResult, webProxy: Proxy);
-			}
-
-			if (HasNotTwoFactor(code: authParams.TwoFactorAuthorization, loginFormPostResult: loginFormPostResult))
-			{
-				return EndAuthorize(result: loginFormPostResult, webProxy: Proxy);
-			}
-
-			_logger?.LogDebug(message: "Шаг 2.5.1. Заполнить код двухфакторной авторизации");
-
-			var twoFactorFormResult =
-				FilledTwoFactorForm(code: authParams.TwoFactorAuthorization, loginFormPostResult: loginFormPostResult);
-
-			if (IsAuthSuccessfull(webCallResult: twoFactorFormResult))
-			{
-				return EndAuthorize(result: twoFactorFormResult, webProxy: Proxy);
-			}
-
-			_logger?.LogDebug(message: "Шаг 2.5.2 Капча");
-			var captchaForm = WebForm.From(result: twoFactorFormResult);
-
-			var captcha = WebCall.Post(form: captchaForm, webProxy: Proxy);
-
-			// todo: Нужно обработать капчу
-
-			return EndAuthorize(result: captcha, webProxy: Proxy);
+			return NextStep(authorizeUrlResult);
 		}
 
-		private VkAuthorization OldValidate(string validateUrl, string phoneNumber)
+		private VkAuthorization2 OldValidate(string validateUrl, string phoneNumber)
 		{
-			if (string.IsNullOrWhiteSpace(value: validateUrl))
+			if (string.IsNullOrWhiteSpace(validateUrl))
 			{
-				throw new ArgumentException(message: "Не задан адрес валидации!");
+				throw new ArgumentException("Не задан адрес валидации!");
 			}
 
-			if (string.IsNullOrWhiteSpace(value: phoneNumber))
+			if (string.IsNullOrWhiteSpace(phoneNumber))
 			{
-				throw new ArgumentException(message: "Не задан номер телефона!");
+				throw new ArgumentException("Не задан номер телефона!");
 			}
 
-			var validateUrlResult = WebCall.MakeCall(url: validateUrl, webProxy: Proxy);
+			var validateUrlResult = WebCall.MakeCall(validateUrl, Proxy);
 
-			var codeForm = WebForm.From(result: validateUrlResult)
-				.WithField(name: "code")
-				.FilledWith(value: phoneNumber.Substring(startIndex: 1, length: 8));
+			var codeForm = WebForm.From(validateUrlResult)
+				.WithField("code")
+				.FilledWith(phoneNumber.Substring(1, 8));
 
-			var codeFormPostResult = WebCall.Post(form: codeForm, webProxy: Proxy);
+			var codeFormPostResult = WebCall.Post(codeForm, Proxy);
 
-			return EndAuthorize(result: codeFormPostResult, webProxy: Proxy);
+			return EndAuthorize(codeFormPostResult, Proxy);
+		}
+		private async Task<VkAuthorization2> OldValidateAsync(string validateUrl, string phoneNumber)
+		{
+			if (string.IsNullOrWhiteSpace(validateUrl))
+			{
+				throw new ArgumentException("Не задан адрес валидации!");
+			}
+
+			if (string.IsNullOrWhiteSpace(phoneNumber))
+			{
+				throw new ArgumentException("Не задан номер телефона!");
+			}
+
+			var validateUrlResult = await WebCall.MakeCallAsync(validateUrl, Proxy).ConfigureAwait(false);
+
+			var codeForm = WebForm.From(validateUrlResult)
+				.WithField("code")
+				.FilledWith(phoneNumber.Substring(1, 8));
+
+			var codeFormPostResult = await WebCall.PostAsync(codeForm, Proxy).ConfigureAwait(false);
+
+			return await EndAuthorizeAsync(codeFormPostResult, Proxy).ConfigureAwait(false);
+		}
+
+		private async Task<AuthorizationResult> NextStepAsync(WebCallResult formResult)
+		{
+			var pageType = _vkAuthorization.GetPageType(formResult.ResponseUrl);
+			WebCallResult resultForm = null;
+
+			switch (pageType)
+			{
+				case ImplicitFlowPageType.Error:
+
+				{
+					_logger?.LogError("При авторизации произошла ошибка.");
+
+					throw new VkAuthorizationException("При авторизации произошла ошибка.");
+				}
+				case ImplicitFlowPageType.LoginPassword:
+
+				{
+					_logger?.LogDebug("Ввод логина и пароля.");
+
+					resultForm = await FilledLoginFormAsync(_authParams.Login,
+							_authParams.Password,
+							_authParams.CaptchaSid,
+							_authParams.CaptchaKey,
+							formResult)
+						.ConfigureAwait(false);
+
+					break;
+				}
+				case ImplicitFlowPageType.Captcha:
+
+				{
+					_logger?.LogDebug("Капча.");
+
+					resultForm = await FilledLoginFormAsync(_authParams.Login,
+							_authParams.Password,
+							_authParams.CaptchaSid,
+							_authParams.CaptchaKey,
+							formResult)
+						.ConfigureAwait(false);
+
+					break;
+				}
+				case ImplicitFlowPageType.TwoFactor:
+
+				{
+					_logger?.LogDebug("Двухфакторная авторизация.");
+					resultForm = await FilledTwoFactorFormAsync(_authParams.TwoFactorAuthorization, formResult).ConfigureAwait(false);
+
+					break;
+				}
+				case ImplicitFlowPageType.Consent:
+
+				{
+					_logger?.LogDebug("Страница подтверждения доступа к скоупам.");
+					resultForm = await FilledConsentAsync(formResult).ConfigureAwait(false);
+
+					break;
+				}
+				case ImplicitFlowPageType.Result:
+
+				{
+					return _vkAuthorization.GetAuthorizationResult(formResult.ResponseUrl);
+				}
+			}
+
+			return await NextStepAsync(resultForm).ConfigureAwait(false);
+		}
+
+		private AuthorizationResult NextStep(WebCallResult formResult)
+		{
+			var pageType = _vkAuthorization.GetPageType(formResult.ResponseUrl);
+			WebCallResult resultForm = null;
+
+			switch (pageType)
+			{
+				case ImplicitFlowPageType.Error:
+
+				{
+					_logger?.LogError("При авторизации произошла ошибка.");
+
+					throw new VkAuthorizationException("При авторизации произошла ошибка.");
+				}
+				case ImplicitFlowPageType.LoginPassword:
+
+				{
+					_logger?.LogDebug("Ввод логина и пароля.");
+
+					resultForm = FilledLoginForm(_authParams.Login,
+						_authParams.Password,
+						formResult);
+
+					break;
+				}
+				case ImplicitFlowPageType.Captcha:
+
+				{
+					_logger?.LogDebug("Капча.");
+
+					resultForm = FilledLoginForm(_authParams.Login,
+						_authParams.Password,
+						formResult);
+
+					break;
+				}
+				case ImplicitFlowPageType.TwoFactor:
+
+				{
+					_logger?.LogDebug("Двухфакторная авторизация.");
+					resultForm = FilledTwoFactorForm(_authParams.TwoFactorAuthorization, formResult);
+
+					break;
+				}
+				case ImplicitFlowPageType.Consent:
+
+				{
+					_logger?.LogDebug("Страница подтверждения доступа к скоупам.");
+					resultForm = FilledConsent(formResult);
+
+					break;
+				}
+				case ImplicitFlowPageType.Result:
+
+				{
+					return _vkAuthorization.GetAuthorizationResult(formResult.ResponseUrl);
+				}
+			}
+
+			return NextStep(resultForm);
 		}
 	}
 }

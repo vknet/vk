@@ -45,7 +45,7 @@ namespace VkNet.Utils
 			OriginalUrl = result.RequestUrl.OriginalString;
 
 			_html = new HtmlDocument();
-			_html.LoadHtml(html: result.Response);
+			_html.LoadHtml(result.Response);
 
 			var uri = result.ResponseUrl;
 
@@ -68,14 +68,14 @@ namespace VkNet.Utils
 			{
 				var formNode = GetFormNode();
 
-				if (formNode.Attributes[name: "action"] == null)
+				if (formNode.Attributes["action"] == null)
 				{
 					return OriginalUrl;
 				}
 
-				var link = formNode.Attributes[name: "action"].Value;
+				var link = formNode.Attributes["action"].Value;
 
-				if (!string.IsNullOrEmpty(value: link) && !link.StartsWith(value: "http", comparisonType: StringComparison.Ordinal)
+				if (!string.IsNullOrEmpty(link) && !link.StartsWith("http", StringComparison.Ordinal)
 				) // относительный URL
 				{
 					link = _responseBaseUrl + link;
@@ -100,7 +100,7 @@ namespace VkNet.Utils
 		/// <returns> WEB форма. </returns>
 		public static WebForm From(WebCallResult result)
 		{
-			return new WebForm(result: result);
+			return new WebForm(result);
 		}
 
 		/// <summary>
@@ -111,8 +111,8 @@ namespace VkNet.Utils
 		public static bool IsOAuthBlank(WebCallResult result)
 		{
 			var html = new HtmlDocument();
-			html.LoadHtml(html: result.Response);
-			var title = html.DocumentNode.SelectSingleNode(xpath: "//head/title");
+			html.LoadHtml(result.Response);
+			var title = html.DocumentNode.SelectSingleNode("//head/title");
 
 			return title.InnerText.ToLowerInvariant() == "oauth blank";
 		}
@@ -139,6 +139,18 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
+		/// С полем.
+		/// </summary>
+		/// <param name="name"> Наименование поля. </param>
+		/// <returns> WEB форма. </returns>
+		public string GetFieldValue(string name)
+		{
+			return _inputs.TryGetValue(name, out var result)
+				? result
+				: default;
+		}
+
+		/// <summary>
 		/// Заполнить поле с.
 		/// </summary>
 		/// <param name="value"> Значение. </param>
@@ -146,19 +158,19 @@ namespace VkNet.Utils
 		/// <exception cref="System.InvalidOperationException"> Field name not set! </exception>
 		public WebForm FilledWith(string value)
 		{
-			if (string.IsNullOrEmpty(value: _lastName))
+			if (string.IsNullOrEmpty(_lastName))
 			{
-				throw new InvalidOperationException(message: "Field name not set!");
+				throw new InvalidOperationException("Field name not set!");
 			}
 
 			var encodedValue = value;
 
-			if (_inputs.ContainsKey(key: _lastName))
+			if (_inputs.ContainsKey(_lastName))
 			{
-				_inputs[key: _lastName] = encodedValue;
+				_inputs[_lastName] = encodedValue;
 			} else
 			{
-				_inputs.Add(key: _lastName, value: encodedValue);
+				_inputs.Add(_lastName, encodedValue);
 			}
 
 			return this;
@@ -170,7 +182,7 @@ namespace VkNet.Utils
 		/// <returns> Массив байт </returns>
 		public byte[] GetRequest()
 		{
-			return Encoding.UTF8.GetBytes(s: GetRequestAsStringArray().JoinNonEmpty(separator: "&"));
+			return Encoding.UTF8.GetBytes(GetRequestAsStringArray().JoinNonEmpty("&"));
 		}
 
 		/// <summary>
@@ -179,7 +191,7 @@ namespace VkNet.Utils
 		/// <returns> Массив байт </returns>
 		public IEnumerable<string> GetRequestAsStringArray()
 		{
-			return _inputs.Select(selector: x => $"{x.Key}={x.Value}");
+			return _inputs.Select(x => $"{x.Key}={x.Value}");
 		}
 
 		/// <summary>
@@ -188,7 +200,7 @@ namespace VkNet.Utils
 		/// <returns> Словарь значений по именам полей. </returns>
 		public IDictionary<string, string> GetFormFields()
 		{
-			return new Dictionary<string, string>(dictionary: _inputs, comparer: _inputs.Comparer);
+			return new Dictionary<string, string>(_inputs, _inputs.Comparer);
 		}
 
 		/// <summary>
@@ -201,20 +213,20 @@ namespace VkNet.Utils
 
 			var form = GetFormNode();
 
-			foreach (var node in form.SelectNodes(xpath: "//input"))
+			foreach (var node in form.SelectNodes("//input"))
 			{
-				var nameAttribute = node.Attributes[name: "name"];
-				var valueAttribute = node.Attributes[name: "value"];
+				var nameAttribute = node.Attributes["name"];
+				var valueAttribute = node.Attributes["value"];
 
 				var name = nameAttribute != null ? nameAttribute.Value : string.Empty;
 				var value = valueAttribute != null ? valueAttribute.Value : string.Empty;
 
-				if (string.IsNullOrEmpty(value: name))
+				if (string.IsNullOrEmpty(name))
 				{
 					continue;
 				}
 
-				inputs.Add(key: name, value: Uri.EscapeDataString(stringToEscape: value));
+				inputs.Add(name, Uri.EscapeDataString(value));
 			}
 
 			return inputs;
@@ -227,12 +239,12 @@ namespace VkNet.Utils
 		/// <exception cref="VkApiException"> Элемент не найден на форме. </exception>
 		private HtmlNode GetFormNode()
 		{
-			HtmlNode.ElementsFlags.Remove(key: "form");
-			var form = _html.DocumentNode.SelectSingleNode(xpath: "//form");
+			HtmlNode.ElementsFlags.Remove("form");
+			var form = _html.DocumentNode.SelectSingleNode("//form");
 
 			if (form == null)
 			{
-				throw new VkApiException(message: "Form element not found.");
+				throw new VkApiException("Form element not found.");
 			}
 
 			return form;
