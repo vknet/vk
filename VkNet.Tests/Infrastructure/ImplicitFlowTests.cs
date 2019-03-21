@@ -57,11 +57,6 @@ namespace VkNet.Tests.Infrastructure
 		{
 			var mocker = new AutoMocker();
 
-			mocker.Setup<IApiAuthParams, string>(x => x.Login).Returns("login");
-			mocker.Setup<IApiAuthParams, string>(x => x.Password).Returns("pass");
-			mocker.Setup<IApiAuthParams, ulong>(x => x.ApplicationId).Returns(4268118);
-			mocker.Setup<IApiAuthParams, Settings>(x => x.Settings).Returns(Settings.All);
-
 			mocker.Setup<IVkApiVersionManager, string>(x => x.Version).Returns("5.92");
 
 			mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x => x.ExecuteAsync(It.IsAny<Url>()))
@@ -93,6 +88,15 @@ namespace VkNet.Tests.Infrastructure
 				});
 
 			var implicitFlow = mocker.CreateInstance<ImplicitFlow>();
+
+			implicitFlow.SetAuthorizationParams(new ApiAuthParams
+			{
+				Login = "login",
+				Password = "pass",
+				ApplicationId = 4268118,
+				Settings = Settings.All
+			});
+
 			var result = await implicitFlow.AuthorizeAsync().ConfigureAwait(false);
 
 			Assert.NotNull(result);
@@ -103,11 +107,15 @@ namespace VkNet.Tests.Infrastructure
 		{
 			var mocker = new AutoMocker();
 
-			mocker.Setup<IApiAuthParams, string>(x => x.Login).Returns("login");
-
 			mocker.Setup<IVkApiVersionManager, string>(x => x.Version).Returns("5.92");
 
 			var implicitFlow = mocker.CreateInstance<ImplicitFlow>();
+
+			implicitFlow.SetAuthorizationParams(new ApiAuthParams
+			{
+				Login = "login"
+			});
+
 			Assert.ThrowsAsync<VkAuthorizationException>(() => implicitFlow.AuthorizeAsync());
 		}
 	}

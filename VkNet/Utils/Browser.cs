@@ -11,7 +11,6 @@ using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
-using VkNet.Infrastructure.Authorization;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
 using VkNet.Utils.AntiCaptcha;
@@ -27,7 +26,7 @@ namespace VkNet.Utils
 		[CanBeNull]
 		private readonly ILogger<Browser> _logger;
 
-		private readonly IApiAuthParams _authParams;
+		private IApiAuthParams _authParams;
 
 		/// <summary>
 		/// Менеджер версий VkApi
@@ -39,12 +38,14 @@ namespace VkNet.Utils
 		private readonly ICaptchaSolver _captchaSolver;
 
 		/// <inheritdoc />
-		public Browser([CanBeNull] ILogger<Browser> logger, IVkApiVersionManager versionManager, IApiAuthParams authParams, IWebProxy proxy,
-						IVkAuthorization<ImplicitFlowPageType> vkAuthorization, ICaptchaSolver captchaSolver)
+		public Browser([CanBeNull] ILogger<Browser> logger,
+						IVkApiVersionManager versionManager,
+						IWebProxy proxy,
+						IVkAuthorization<ImplicitFlowPageType> vkAuthorization,
+						ICaptchaSolver captchaSolver)
 		{
 			_logger = logger;
 			_versionManager = versionManager;
-			_authParams = authParams;
 			Proxy = proxy;
 			_vkAuthorization = vkAuthorization;
 			_captchaSolver = captchaSolver;
@@ -60,9 +61,9 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public void SetAuthParams(IApiAuthParams authParams)
+		public void SetAuthorizationParams(IApiAuthParams authorizationParams)
 		{
-			throw new NotImplementedException();
+			_authParams = authorizationParams;
 		}
 
 		/// <inheritdoc />
@@ -371,6 +372,7 @@ namespace VkNet.Utils
 
 			return EndAuthorize(codeFormPostResult, Proxy);
 		}
+
 		private async Task<VkAuthorization2> OldValidateAsync(string validateUrl, string phoneNumber)
 		{
 			if (string.IsNullOrWhiteSpace(validateUrl))
@@ -408,6 +410,7 @@ namespace VkNet.Utils
 
 					throw new VkAuthorizationException("При авторизации произошла ошибка.");
 				}
+
 				case ImplicitFlowPageType.LoginPassword:
 
 				{
@@ -422,6 +425,7 @@ namespace VkNet.Utils
 
 					break;
 				}
+
 				case ImplicitFlowPageType.Captcha:
 
 				{
@@ -436,6 +440,7 @@ namespace VkNet.Utils
 
 					break;
 				}
+
 				case ImplicitFlowPageType.TwoFactor:
 
 				{
@@ -444,6 +449,7 @@ namespace VkNet.Utils
 
 					break;
 				}
+
 				case ImplicitFlowPageType.Consent:
 
 				{
@@ -452,6 +458,7 @@ namespace VkNet.Utils
 
 					break;
 				}
+
 				case ImplicitFlowPageType.Result:
 
 				{
@@ -476,6 +483,7 @@ namespace VkNet.Utils
 
 					throw new VkAuthorizationException("При авторизации произошла ошибка.");
 				}
+
 				case ImplicitFlowPageType.LoginPassword:
 
 				{
@@ -487,6 +495,7 @@ namespace VkNet.Utils
 
 					break;
 				}
+
 				case ImplicitFlowPageType.Captcha:
 
 				{
@@ -498,6 +507,7 @@ namespace VkNet.Utils
 
 					break;
 				}
+
 				case ImplicitFlowPageType.TwoFactor:
 
 				{
@@ -506,6 +516,7 @@ namespace VkNet.Utils
 
 					break;
 				}
+
 				case ImplicitFlowPageType.Consent:
 
 				{
@@ -514,6 +525,7 @@ namespace VkNet.Utils
 
 					break;
 				}
+
 				case ImplicitFlowPageType.Result:
 
 				{
