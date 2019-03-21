@@ -475,7 +475,7 @@ namespace VkNet
 		}
 
 	#endregion
-	
+
 	#region Captcha handler stuff
 
 		/// <summary>
@@ -816,6 +816,7 @@ namespace VkNet
 
 			LastInvokeTime = DateTimeOffset.Now;
 
+			AuthorizationFlow.SetAuthorizationParams(authParams);
 			var authorization = AuthorizationFlow.AuthorizeAsync().GetAwaiter().GetResult();
 
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))

@@ -13,5 +13,11 @@ namespace VkNet.Abstractions.Authorization
 		/// </summary>
 		/// <returns> Access token. </returns>
 		Task<AuthorizationResult> AuthorizeAsync();
+
+		/// <summary>
+		/// Задать параметры авторизации
+		/// </summary>
+		/// <param name="authorizationParams">Параметры авторизации</param>
+		void SetAuthorizationParams(IApiAuthParams authorizationParams);
 	}
 }

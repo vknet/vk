@@ -27,12 +27,5 @@ namespace VkNet.Utils
 		/// <param name="parameters"> Параметры метода api </param>
 		/// <returns> Результат выполнения запроса, полученный от сервера в формате JSON. </returns>
 		string GetJson(string url, IEnumerable<KeyValuePair<string, string>> parameters);
-
-		/// <summary>
-		/// Задать параметры авторизации
-		/// </summary>
-		/// <param name="authParams">Параметры авторизации</param>
-		[Obsolete(ObsoleteText.SettingsDependencyInjection, true)]
-		void SetAuthParams(IApiAuthParams authParams);
 	}
 }

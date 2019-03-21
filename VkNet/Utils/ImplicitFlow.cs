@@ -29,7 +29,7 @@ namespace VkNet.Utils
 		/// </summary>
 		private readonly IVkApiVersionManager _versionManager;
 
-		private readonly IApiAuthParams _authorizationParameters;
+		private IApiAuthParams _authorizationParameters;
 
 		[NotNull]
 		private readonly IAuthorizationFormFactory _authorizationFormsFactory;
@@ -39,13 +39,11 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public ImplicitFlow([CanBeNull] ILogger<ImplicitFlow> logger,
 							IVkApiVersionManager versionManager,
-							IApiAuthParams apiAuthParams,
 							IAuthorizationFormFactory authorizationFormsFactory,
 							IVkAuthorization<ImplicitFlowPageType> vkAuthorization)
 		{
 			_logger = logger;
 			_versionManager = versionManager;
-			_authorizationParameters = apiAuthParams;
 			_authorizationFormsFactory = authorizationFormsFactory;
 			_vkAuthorization = vkAuthorization;
 		}
@@ -68,6 +66,12 @@ namespace VkNet.Utils
 				.ConfigureAwait(false);
 
 			return await NextStepAsync(loginFormResult).ConfigureAwait(false);
+		}
+
+		/// <inheritdoc />
+		public void SetAuthorizationParams(IApiAuthParams authorizationParams)
+		{
+			_authorizationParameters = authorizationParams;
 		}
 
 		/// <inheritdoc />
