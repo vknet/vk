@@ -59,11 +59,6 @@ namespace VkNet
 		private IApiAuthParams _ap;
 
 		/// <summary>
-		/// Обработчик ошибки капчи
-		/// </summary>
-		private ICaptchaHandler _captchaHandler;
-
-		/// <summary>
 		/// Таймер.
 		/// </summary>
 		private Timer _expireTimer;
@@ -114,9 +109,6 @@ namespace VkNet
 
 		/// <inheritdoc />
 		public long? UserId { get; set; }
-
-		/// <inheritdoc />
-		public int MaxCaptchaRecognitionCount { get; set; }
 
 		/// <inheritdoc />
 		public ICaptchaSolver CaptchaSolver { get; set; }
@@ -473,12 +465,41 @@ namespace VkNet
 
 				_requestsPerSecond = value;
 
-				if (_requestsPerSecond <= 0)
+				if (_requestsPerSecond == 0)
 				{
 					return;
 				}
 
 				_rateLimiter.SetRate(_requestsPerSecond, TimeSpan.FromSeconds(1));
+			}
+		}
+
+	#endregion
+	
+	#region Captcha handler stuff
+
+		/// <summary>
+		/// Обработчик ошибки капчи
+		/// </summary>
+		private ICaptchaHandler _captchaHandler;
+
+		/// <inheritdoc />
+		public int MaxCaptchaRecognitionCount
+		{
+			get => _captchaHandler.MaxCaptchaRecognitionCount;
+			set
+			{
+				if (value < 0)
+				{
+					throw new ArgumentException(@"Value must be positive", nameof(value));
+				}
+
+				if (value == 0)
+				{
+					return;
+				}
+
+				_captchaHandler.MaxCaptchaRecognitionCount = value;
 			}
 		}
 
