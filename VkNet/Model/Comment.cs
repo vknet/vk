@@ -21,11 +21,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор комментария.
 		/// </summary>
+		[JsonProperty("id")]
 		public long Id { get; set; }
 
 		/// <summary>
 		/// Идентификатор автора комментария.
 		/// </summary>
+		[JsonProperty("from_id")]
 		public long? FromId { get; set; }
 
 		/// <summary>
@@ -56,30 +58,35 @@ namespace VkNet.Model
 		/// Дата и время создания комментария.
 		/// </summary>
 		[JsonConverter(typeof(UnixDateTimeConverter))]
+		[JsonProperty("date")]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
 		/// Текст комментария.
 		/// </summary>
+		[JsonProperty("text")]
 		public string Text { get; set; }
 
 		/// <summary>
 		/// Идентификатор пользователя или сообщества, в ответ которому оставлен текущий
 		/// комментарий (если применимо).
 		/// </summary>
-		public long? ReplyToUserId { get; set; }
+		[JsonProperty("reply_to_user")]
+		public long? ReplyToUser { get; set; }
 
 		/// <summary>
 		/// Идентификатор комментария, в ответ на который оставлен текущий комментарий
 		/// (если применимо).
 		/// </summary>
-		public long? ReplyToCommentId { get; set; }
+		[JsonProperty("reply_to_comment")]
+		public long? ReplyToComment { get; set; }
 
 		/// <summary>
 		/// Объект, содержащий информацию о медиавложениях в комментарии. См. описание
 		/// формата медиавложений.
 		/// </summary>
 		[JsonConverter(typeof(AttachmentJsonConverter))]
+		[JsonProperty("attachments")]
 		public ReadOnlyCollection<Attachment> Attachments { get; set; }
 
 		/// <summary>
@@ -92,6 +99,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Информация о числе людей, которым понравился данный комментарий.
 		/// </summary>
+		[JsonProperty("likes")]
 		public Likes Likes { get; set; }
 
 	#endregion
@@ -111,8 +119,8 @@ namespace VkNet.Model
 				FromId = response["from_id"],
 				Date = response["date"],
 				Text = response["text"],
-				ReplyToUserId = response["reply_to_user"],
-				ReplyToCommentId = response["reply_to_comment"],
+				ReplyToUser = response["reply_to_user"],
+				ReplyToComment = response["reply_to_comment"],
 				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
 				Likes = response["likes"],
 				PostId = response["post_id"],

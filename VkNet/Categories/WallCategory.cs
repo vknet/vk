@@ -32,22 +32,20 @@ namespace VkNet.Categories
 		{
 			if (@params.Filter != null && @params.Filter == WallFilter.Suggests && @params.OwnerId >= 0)
 			{
-				throw new ArgumentException(message: "OwnerID must be negative in case filter equal to Suggests"
-						, paramName: nameof(@params));
+				throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests",
+					nameof(@params));
 			}
 
 			return
-					_vk.Call(methodName: "wall.get"
-							, parameters: @params
-							, skipAuthorization:
-							skipAuthorization); //, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
+				_vk.Call("wall.get",
+					@params,
+					skipAuthorization); //, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
 		}
 
 		/// <inheritdoc />
-		public VkCollection<Comment> GetComments(WallGetCommentsParams @params, bool skipAuthorization = false)
+		public WallGetCommentsResult GetComments(WallGetCommentsParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call(methodName: "wall.getComments", parameters: @params, skipAuthorization: skipAuthorization)
-					.ToVkCollectionOf<Comment>(selector: x => x);
+			return _vk.Call<WallGetCommentsResult>("wall.getComments", @params, skipAuthorization);
 		}
 
 		/// <inheritdoc />
@@ -64,24 +62,24 @@ namespace VkNet.Categories
 
 			if (!posts.Any())
 			{
-				throw new ArgumentException(message: "Posts collection was empty.", paramName: nameof(posts));
+				throw new ArgumentException("Posts collection was empty.", nameof(posts));
 			}
 
 			var parameters = new VkParameters
 			{
-					{ "posts", posts }
-					, { "extended", extended }
-					, { "copy_history_depth", copyHistoryDepth }
-					, { "fields", fields }
+				{ "posts", posts },
+				{ "extended", extended },
+				{ "copy_history_depth", copyHistoryDepth },
+				{ "fields", fields }
 			};
 
-			return _vk.Call(methodName: "wall.getById", parameters: parameters, skipAuthorization: skipAuthorization);
+			return _vk.Call("wall.getById", parameters, skipAuthorization);
 		}
 
 		/// <inheritdoc />
 		public long Post(WallPostParams @params)
 		{
-			return _vk.Call(methodName: "wall.post", parameters: @params)[key: "post_id"];
+			return _vk.Call("wall.post", @params)[key: "post_id"];
 		}
 
 		/// <inheritdoc />
@@ -98,11 +96,12 @@ namespace VkNet.Categories
 				{ "mark_as_ads", markAsAds }
 			};
 
-			return _vk.Call(methodName: "wall.repost", parameters: parameters);
+			return _vk.Call("wall.repost", parameters);
 		}
 
 		/// <inheritdoc />
-		public RepostResult Repost(string @object, string message, long? groupId, bool markAsAds, long captchaSid, string captchaKey)
+		public RepostResult Repost(string @object, string message, long? groupId, bool markAsAds, long captchaSid,
+									string captchaKey)
 		{
 			VkErrors.ThrowIfNullOrEmpty(expr: () => @object);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => groupId);
@@ -117,13 +116,13 @@ namespace VkNet.Categories
 				{ "captcha_key", captchaKey }
 			};
 
-			return _vk.Call(methodName: "wall.repost", parameters: parameters);
+			return _vk.Call("wall.repost", parameters);
 		}
 
 		/// <inheritdoc />
 		public bool Edit(WallEditParams @params)
 		{
-			return _vk.Call(methodName: "wall.edit", parameters: @params);
+			return _vk.Call("wall.edit", @params);
 		}
 
 		/// <inheritdoc />
@@ -133,11 +132,11 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "post_id", postId }
+				{ "owner_id", ownerId },
+				{ "post_id", postId }
 			};
 
-			return _vk.Call(methodName: "wall.delete", parameters: parameters);
+			return _vk.Call("wall.delete", parameters);
 		}
 
 		/// <inheritdoc />
@@ -145,17 +144,17 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "post_id", postId }
+				{ "owner_id", ownerId },
+				{ "post_id", postId }
 			};
 
-			return _vk.Call(methodName: "wall.restore", parameters: parameters);
+			return _vk.Call("wall.restore", parameters);
 		}
 
 		/// <inheritdoc />
 		public long CreateComment(WallCreateCommentParams @params)
 		{
-			return _vk.Call(methodName: "wall.createComment", parameters: @params)[key: "comment_id"];
+			return _vk.Call("wall.createComment", @params)[key: "comment_id"];
 		}
 
 		/// <inheritdoc />
@@ -163,11 +162,11 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "comment_id", commentId }
+				{ "owner_id", ownerId },
+				{ "comment_id", commentId }
 			};
 
-			return _vk.Call(methodName: "wall.deleteComment", parameters: parameters);
+			return _vk.Call("wall.deleteComment", parameters);
 		}
 
 		/// <inheritdoc />
@@ -175,17 +174,17 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "comment_id", commentId }
+				{ "owner_id", ownerId },
+				{ "comment_id", commentId }
 			};
 
-			return _vk.Call(methodName: "wall.restoreComment", parameters: parameters);
+			return _vk.Call("wall.restoreComment", parameters);
 		}
 
 		/// <inheritdoc />
 		public WallGetObject Search(WallSearchParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call(methodName: "wall.search", parameters: @params, skipAuthorization: skipAuthorization);
+			return _vk.Call("wall.search", @params, skipAuthorization);
 		}
 
 		/// <inheritdoc />
@@ -193,13 +192,13 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "post_id", postId }
-					, { "offset", offset }
-					, { "count", count }
+				{ "owner_id", ownerId },
+				{ "post_id", postId },
+				{ "offset", offset },
+				{ "count", count }
 			};
 
-			return _vk.Call(methodName: "wall.getReposts", parameters: parameters, skipAuthorization: skipAuthorization);
+			return _vk.Call("wall.getReposts", parameters, skipAuthorization);
 		}
 
 		/// <inheritdoc />
@@ -207,11 +206,11 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "post_id", postId }
+				{ "owner_id", ownerId },
+				{ "post_id", postId }
 			};
 
-			return _vk.Call(methodName: "wall.pin", parameters: parameters);
+			return _vk.Call("wall.pin", parameters);
 		}
 
 		/// <inheritdoc />
@@ -219,11 +218,11 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "post_id", postId }
+				{ "owner_id", ownerId },
+				{ "post_id", postId }
 			};
 
-			return _vk.Call(methodName: "wall.unpin", parameters: parameters);
+			return _vk.Call("wall.unpin", parameters);
 		}
 
 		/// <inheritdoc />
@@ -231,13 +230,13 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "comment_id", commentId }
-					, { "message", message }
-					, { "attachments", attachments }
+				{ "owner_id", ownerId },
+				{ "comment_id", commentId },
+				{ "message", message },
+				{ "attachments", attachments }
 			};
 
-			return _vk.Call(methodName: "wall.editComment", parameters: parameters);
+			return _vk.Call("wall.editComment", parameters);
 		}
 
 		/// <inheritdoc />
@@ -245,12 +244,12 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "post_id", postId }
-					, { "reason", reason }
+				{ "owner_id", ownerId },
+				{ "post_id", postId },
+				{ "reason", reason }
 			};
 
-			return _vk.Call(methodName: "wall.reportPost", parameters: parameters);
+			return _vk.Call("wall.reportPost", parameters);
 		}
 
 		/// <inheritdoc />
@@ -258,24 +257,24 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", ownerId }
-					, { "comment_id", commentId }
-					, { "reason", reason }
+				{ "owner_id", ownerId },
+				{ "comment_id", commentId },
+				{ "reason", reason }
 			};
 
-			return _vk.Call(methodName: "wall.reportComment", parameters: parameters);
+			return _vk.Call("wall.reportComment", parameters);
 		}
 
 		/// <inheritdoc />
 		public bool EditAdsStealth(EditAdsStealthParams @params)
 		{
-			return _vk.Call(methodName: "wall.editAdsStealth", parameters: @params);
+			return _vk.Call("wall.editAdsStealth", @params);
 		}
 
 		/// <inheritdoc />
 		public long PostAdsStealth(PostAdsStealthParams @params)
 		{
-			return _vk.Call(methodName: "wall.postAdsStealth", parameters: @params);
+			return _vk.Call("wall.postAdsStealth", @params);
 		}
 
 		/// <inheritdoc />
@@ -283,10 +282,11 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "owner_id", ownerId }, { "post_id", postId }
+				{ "owner_id", ownerId },
+				{ "post_id", postId }
 			};
 
-			return _vk.Call(methodName: "wall.openComments", parameters: parameters);
+			return _vk.Call("wall.openComments", parameters);
 		}
 
 		/// <inheritdoc />
@@ -294,10 +294,11 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "owner_id", ownerId }, { "post_id", postId }
+				{ "owner_id", ownerId },
+				{ "post_id", postId }
 			};
 
-			return _vk.Call(methodName: "wall.closeComments", parameters: parameters);
+			return _vk.Call("wall.closeComments", parameters);
 		}
 	}
 }

@@ -54,7 +54,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.getComments
 		/// </remarks>
-		Task<VkCollection<Comment>> GetCommentsAsync(WallGetCommentsParams @params, bool skipAuthorization = false);
+		Task<WallGetCommentsResult> GetCommentsAsync(WallGetCommentsParams @params, bool skipAuthorization = false);
 
 		/// <summary>
 		/// Возвращает список записей со стен пользователей или сообществ по их

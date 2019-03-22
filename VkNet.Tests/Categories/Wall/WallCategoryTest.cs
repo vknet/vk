@@ -222,10 +222,9 @@ namespace VkNet.Tests.Categories.Wall
 				OwnerId = 12312, PostId = 12345, Sort = SortOrderBy.Asc, NeedLikes = true
 			});
 
-			Assert.That(comments.TotalCount, Is.EqualTo(2));
 			Assert.That(comments.Count, Is.EqualTo(2));
 
-			var comment0 = comments[0];
+			var comment0 = comments.Items[0];
 			Assert.That(comment0.Id, Is.EqualTo(3809));
 			Assert.That(comment0.FromId, Is.EqualTo(6733856));
 
@@ -243,7 +242,7 @@ namespace VkNet.Tests.Categories.Wall
 			Assert.That(comment0.Likes, Is.Not.Null);
 			Assert.That(comment0.Likes.Count, Is.EqualTo(1));
 
-			var comment1 = comments[1];
+			var comment1 = comments.Items[1];
 			Assert.That(comment1.Id, Is.EqualTo(3810));
 			Assert.That(comment1.FromId, Is.EqualTo(3073863));
 
