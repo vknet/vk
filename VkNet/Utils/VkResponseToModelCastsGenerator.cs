@@ -376,18 +376,6 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator Comment(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : Comment.FromJson(response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
 		public static implicit operator Comments(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues ? null : Comments.FromJson(response);

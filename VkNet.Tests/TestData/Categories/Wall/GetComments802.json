@@ -1,0 +1,56 @@
+{
+  "response": {
+    "count": 3,
+    "items": [
+      {
+        "id": 482124,
+        "from_id": 287979664,
+        "post_id": 482121,
+        "owner_id": -69459624,
+        "parents_stack": [],
+        "date": 1553180396,
+        "text": "Текст 1го комментария",
+        "thread": {
+          "count": 1,
+          "items": [],
+          "can_post": true,
+          "show_reply_button": true,
+          "groups_can_post": true
+        }
+      },
+      {
+        "id": 482127,
+        "parents_stack": [],
+        "date": 1553180629,
+        "thread": {
+          "count": 1,
+          "items": [],
+          "can_post": true,
+          "show_reply_button": true,
+          "groups_can_post": true
+        },
+        "deleted": true
+      },
+      {
+        "id": 482418,
+        "from_id": 197900038,
+        "post_id": 482121,
+        "owner_id": -69459624,
+        "parents_stack": [],
+        "date": 1553231537,
+        "text": "Текст 3го комментария",
+        "thread": {
+          "count": 1,
+          "items": [],
+          "can_post": true,
+          "show_reply_button": true,
+          "groups_can_post": true
+        }
+      }
+    ],
+    "current_level_count": 6,
+    "can_post": true,
+    "show_reply_button": true,
+    "groups_can_post": true
+  }
+}

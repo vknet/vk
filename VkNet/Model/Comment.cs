@@ -14,7 +14,7 @@ namespace VkNet.Model
 	/// Комментарий к записи.
 	/// См. описание <see href="http://vk.com/devcomment_object" />.
 	/// </summary>
-	[DebuggerDisplay(value: "Id = {Id}, Text = {Text}, Date = {Date}")]
+	[DebuggerDisplay("Id = {Id}, Text = {Text}, Date = {Date}")]
 	[Serializable]
 	public class Comment
 	{
@@ -26,12 +26,36 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор автора комментария.
 		/// </summary>
-		public long FromId { get; set; }
+		public long? FromId { get; set; }
+
+		/// <summary>
+		/// Идентификатор автора комментария.
+		/// </summary>
+		[JsonProperty("post_id")]
+		public long? PostId { get; set; }
+
+		/// <summary>
+		/// Идентификатор автора комментария.
+		/// </summary>
+		[JsonProperty("owner_id")]
+		public long? OwnerId { get; set; }
+
+		/// <summary>
+		/// Идентификатор автора комментария.
+		/// </summary>
+		[JsonProperty("parents_stack")]
+		public ReadOnlyCollection<long> ParentsStack { get; set; }
+
+		/// <summary>
+		/// Идентификатор автора комментария.
+		/// </summary>
+		[JsonProperty("thread")]
+		public CommentThread thread { get; set; }
 
 		/// <summary>
 		/// Дата и время создания комментария.
 		/// </summary>
-		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
 
 		/// <summary>
@@ -81,19 +105,38 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static Comment FromJson(VkResponse response)
 		{
-			var comment = new Comment
+			return new Comment
 			{
-					Id = response[key: "id"]
-					, FromId = response[key: "from_id"]
-					, Date = response[key: "date"]
-					, Text = response[key: "text"]
-					, ReplyToUserId = response[key: "reply_to_user"]
-					, ReplyToCommentId = response[key: "reply_to_comment"]
-					, Attachments = response[key: "attachments"].ToReadOnlyCollectionOf<Attachment>(selector: x => x)
-					, Likes = response[key: "likes"] // установлено экcпериментальным путем
+				Id = response["id"],
+				FromId = response["from_id"],
+				Date = response["date"],
+				Text = response["text"],
+				ReplyToUserId = response["reply_to_user"],
+				ReplyToCommentId = response["reply_to_comment"],
+				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
+				Likes = response["likes"],
+				PostId = response["post_id"],
+				OwnerId = response["owner_id"],
+				ParentsStack = response["parents_stack"].ToReadOnlyCollectionOf<long>(x => x),
+				thread = response["thread"]
 			};
+		}
 
-			return comment;
+		/// <summary>
+		/// Преобразование класса <see cref="Comment" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Comment" /></returns>
+		public static implicit operator Comment(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 
 	#endregion
