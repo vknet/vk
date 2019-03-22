@@ -5,10 +5,9 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Wall
 {
 	[TestFixture]
-	public class WallGetCommentsTests: CategoryBaseTest
+	public class WallGetCommentsTests : CategoryBaseTest
 	{
 		protected override string Folder => "Wall";
-
 
 		[Test]
 		public void GetComments802()
@@ -27,6 +26,5 @@ namespace VkNet.Tests.Categories.Wall
 
 			Assert.NotNull(result);
 		}
-
 	}
 }
