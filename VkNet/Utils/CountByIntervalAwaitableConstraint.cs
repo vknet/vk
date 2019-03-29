@@ -16,23 +16,20 @@ namespace VkNet.Utils
 		private int _count;
 
 		private TimeSpan _timeSpan;
+
 	#if NET40
 		private readonly AsyncSemaphoreSlim _semaphore = new AsyncSemaphoreSlim(1);
 	#else
 		private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 	#endif
 
-		private readonly object _sync = new object();
-
+		/// <inheritdoc />
 		/// <summary>
-		/// Initializes a new instance of the <see cref="CountByIntervalAwaitableConstraint"/> class
+		/// Initializes a new instance of the <see cref="CountByIntervalAwaitableConstraint" /> class
 		/// with default values.
 		/// </summary>
-		public CountByIntervalAwaitableConstraint()
+		public CountByIntervalAwaitableConstraint() : this(3, TimeSpan.FromSeconds(1))
 		{
-			_count = 3;
-			_timeSpan = TimeSpan.FromSeconds(1);
-			_timeStamps = new LimitedSizeStack<DateTime>(_count);
 		}
 
 		/// <summary>
@@ -69,12 +66,14 @@ namespace VkNet.Utils
 		public async Task<IDisposable> WaitForReadiness(CancellationToken cancellationToken)
 		{
 			await _semaphore.WaitAsync(cancellationToken).ConfigureAwait(false);
+
 			var count = 0;
 			var now = DateTime.Now;
 			var target = now - _timeSpan;
 
-			LinkedListNode<DateTime> element = _timeStamps.First,
-				last = null;
+			var element = _timeStamps.First;
+
+			LinkedListNode<DateTime> last = null;
 
 			while (element?.Value > target)
 			{
@@ -103,11 +102,9 @@ namespace VkNet.Utils
 				await Task.Delay(timeToWait, cancellationToken).ConfigureAwait(false);
 			#endif
 			}
-			catch (System.Exception)
+			finally
 			{
 				_semaphore.Release();
-
-				throw;
 			}
 
 			return new DisposableAction(OnEnded);
@@ -116,11 +113,8 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public void SetRate(int number, TimeSpan timeSpan)
 		{
-			lock (_sync)
-			{
-				_count = number;
-				_timeSpan = timeSpan;
-			}
+			_count = number;
+			_timeSpan = timeSpan;
 		}
 
 		private void OnEnded()
