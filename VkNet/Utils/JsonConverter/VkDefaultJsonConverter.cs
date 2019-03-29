@@ -50,12 +50,12 @@ namespace VkNet.Utils.JsonConverter
 			var obj = JObject.Load(reader: reader);
 			var response = obj[propertyName: "response"] ?? obj;
 
-			return IsDataTime(objectType: objectType, token: response.Type)
+			return IsDateTime(objectType: objectType, token: response.Type)
 					? VkResponse.TimestampToDateTime(unixTimeStamp: response.ToObject<long>())
 					: response.ToObject(objectType: objectType);
 		}
 
-		private static bool IsDataTime(Type objectType, JTokenType token)
+		private static bool IsDateTime(Type objectType, JTokenType token)
 		{
 			return objectType == typeof(DateTime) && token == JTokenType.Integer;
 		}
