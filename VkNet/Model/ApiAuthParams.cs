@@ -1,6 +1,8 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -62,6 +64,7 @@ namespace VkNet.Model
 		public bool? ForceSms { get; set; }
 
 		/// <inheritdoc />
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public Display Display { get; set; }
 
 		/// <inheritdoc />
@@ -74,9 +77,11 @@ namespace VkNet.Model
 		public bool? TwoFactorSupported { get; set; }
 
 		/// <inheritdoc />
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public GrantType GrantType { get; set; }
 
 		/// <inheritdoc />
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public ResponseType ResponseType { get; set; }
 
 		/// <inheritdoc />

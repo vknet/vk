@@ -1,6 +1,8 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -105,6 +107,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Указывает тип отображения страницы авторизации.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		Display Display { get; set; }
 
 		/// <summary>
@@ -125,11 +128,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Тип авторизации.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		GrantType GrantType { get; set; }
 
 		/// <summary>
 		/// Тип ответа, который Вы хотите получить.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		ResponseType ResponseType { get; set; }
 
 		/// <summary>
