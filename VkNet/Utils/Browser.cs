@@ -37,6 +37,10 @@ namespace VkNet.Utils
 
 		private readonly ICaptchaSolver _captchaSolver;
 
+		private ushort LoginPasswordError { get; set; }
+
+		private const ushort MaxLoginPasswordError = 1;
+
 		/// <inheritdoc />
 		public Browser([CanBeNull] ILogger<Browser> logger,
 						IVkApiVersionManager versionManager,
@@ -166,13 +170,9 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="email"> Логин </param>
 		/// <param name="password"> Пароль </param>
-		/// <param name="captchaSid"> ИД капчи </param>
-		/// <param name="captchaKey"> Значение капчи </param>
 		/// <param name="authorizeUrlResult"> </param>
 		/// <returns> </returns>
-		private WebCallResult FilledLoginForm(string email
-											, string password
-											, WebCallResult authorizeUrlResult)
+		private WebCallResult FilledLoginForm(string email, string password, WebCallResult authorizeUrlResult)
 		{
 			var loginForm = WebForm.From(authorizeUrlResult)
 				.WithField("email")
@@ -191,9 +191,7 @@ namespace VkNet.Utils
 		/// <param name="password"> Пароль </param>
 		/// <param name="authorizeUrlResult"> </param>
 		/// <returns> </returns>
-		private WebCallResult FilledCaptchaLoginForm(string email
-													, string password
-													, WebCallResult authorizeUrlResult)
+		private WebCallResult FilledCaptchaLoginForm(string email, string password, WebCallResult authorizeUrlResult)
 		{
 			var loginForm = WebForm.From(authorizeUrlResult)
 				.WithField("email")
@@ -414,6 +412,13 @@ namespace VkNet.Utils
 				case ImplicitFlowPageType.LoginPassword:
 
 				{
+					LoginPasswordError++;
+
+					if (LoginPasswordError >= MaxLoginPasswordError)
+					{
+						throw new VkAuthorizationException("Неверный логин или пароль.");
+					}
+
 					_logger?.LogDebug("Ввод логина и пароля.");
 
 					resultForm = await FilledLoginFormAsync(_authParams.Login,
@@ -487,6 +492,13 @@ namespace VkNet.Utils
 				case ImplicitFlowPageType.LoginPassword:
 
 				{
+					LoginPasswordError++;
+
+					if (LoginPasswordError >= MaxLoginPasswordError)
+					{
+						throw new VkAuthorizationException("Неверный логин или пароль.");
+					}
+
 					_logger?.LogDebug("Ввод логина и пароля.");
 
 					resultForm = FilledLoginForm(_authParams.Login,
@@ -531,6 +543,9 @@ namespace VkNet.Utils
 				{
 					return _vkAuthorization.GetAuthorizationResult(formResult.ResponseUrl);
 				}
+				default:
+
+					throw new VkApiException("Не найден ни один тип для параметра " + nameof(pageType));
 			}
 
 			return NextStep(resultForm);
