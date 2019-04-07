@@ -1,5 +1,8 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -54,6 +57,36 @@ namespace VkNet.Model
 		/// <inheritdoc />
 		public string Phone { get; set; }
 
+		/// <inheritdoc />
+		public string ClientSecret { get; set; }
+
+		/// <inheritdoc />
+		public bool? ForceSms { get; set; }
+
+		/// <inheritdoc />
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public Display Display { get; set; }
+
+		/// <inheritdoc />
+		public Uri RedirectUri { get; set; }
+
+		/// <inheritdoc />
+		public string State { get; set; }
+
+		/// <inheritdoc />
+		public bool? TwoFactorSupported { get; set; }
+
+		/// <inheritdoc />
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public GrantType GrantType { get; set; }
+
+		/// <inheritdoc />
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public ResponseType ResponseType { get; set; }
+
+		/// <inheritdoc />
+		public bool? Revoke { get; set; }
+
 		/// <summary>
 		/// Формирует параметры авторизации по минимальному набору необходимых полей
 		/// </summary>
@@ -64,7 +97,7 @@ namespace VkNet.Model
 		/// <returns></returns>
 		public static ApiAuthParams Format(ulong appId, string login, string password, Settings settings)
 		{
-			return new ApiAuthParams()
+			return new ApiAuthParams
 			{
 				ApplicationId = appId,
 				Login = login,

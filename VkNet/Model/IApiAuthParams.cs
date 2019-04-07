@@ -1,5 +1,8 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -89,5 +92,55 @@ namespace VkNet.Model
 		/// Номер телефона
 		/// </summary>
 		string Phone { get; set; }
+
+		/// <summary>
+		/// Cекретный ключ Вашего приложения.
+		/// </summary>
+		string ClientSecret { get; set; }
+
+		/// <summary>
+		/// Если возникли проблемы с получением кода из приложения или пользователь не хочет использовать приложение для генерации кодов,
+		/// Вы можете форсировать получение кода по SMS, повторно передав запрос авторизации с этим параметром равным <c>true</c>
+		/// </summary>
+		bool? ForceSms { get; set; }
+
+		/// <summary>
+		/// Указывает тип отображения страницы авторизации.
+		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		Display Display { get; set; }
+
+		/// <summary>
+		/// Адрес, на который будет переадресован пользователь после прохождения авторизации / передан code.
+		/// </summary>
+		Uri RedirectUri { get; set; }
+
+		/// <summary>
+		/// Произвольная строка, которая будет возвращена вместе с результатом авторизации.
+		/// </summary>
+		string State { get; set; }
+
+		/// <summary>
+		/// Передайте <c>true</c>, чтобы включить поддержку двухфакторной аутентификации.
+		/// </summary>
+		bool? TwoFactorSupported { get; set; }
+
+		/// <summary>
+		/// Тип авторизации.
+		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		GrantType GrantType { get; set; }
+
+		/// <summary>
+		/// Тип ответа, который Вы хотите получить.
+		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		ResponseType ResponseType { get; set; }
+
+		/// <summary>
+		/// Параметр, указывающий, что необходимо не пропускать этап подтверждения прав, даже если пользователь уже авторизован.
+		/// (При <c>true</c>)
+		/// </summary>
+		bool? Revoke { get; set; }
 	}
 }
