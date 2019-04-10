@@ -39,7 +39,7 @@ namespace VkNet.Utils
 
 		private ushort LoginPasswordError { get; set; }
 
-		private const ushort MaxLoginPasswordError = 1;
+		private const ushort MaxLoginPasswordError = 2;
 
 		/// <inheritdoc />
 		public Browser([CanBeNull] ILogger<Browser> logger,
