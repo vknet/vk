@@ -11,6 +11,7 @@ using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Infrastructure;
 using VkNet.Infrastructure.Authorization;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
@@ -28,26 +29,34 @@ namespace VkNet.Tests.Infrastructure
 			var scope = Settings.All|Settings.Offline;
 			const string state = "123";
 			var display = Display.Mobile;
+
 			var builder = new StringBuilder("https://oauth.vk.com/authorize?");
-
 			builder.Append($"client_id={clientId}&");
-			builder.Append("redirect_uri=https://oauth.vk.com/blank.html&");
-
+			builder.Append($"redirect_uri={Constants.DefaultRedirectUri}&");
 			builder.Append($"display={display}&");
-			builder.Append($"scope={scope.ToUInt64()}&");
-			builder.Append("response_type=token&");
+			builder.Append($"scope={scope}&");
+			builder.Append($"response_type={ResponseType.Token}&");
 			builder.Append("v=5.92&");
-
 			builder.Append($"state={state}&");
 			builder.Append("revoke=1");
-
 			var expected = builder.ToString();
+
 			var mocker = new AutoMocker();
 			mocker.Setup<IVkApiVersionManager, string>(x => x.Version).Returns("5.92");
 
 			var implicitFlow = mocker.CreateInstance<ImplicitFlow>();
 
-			var authorizeUrl = implicitFlow.CreateAuthorizeUrl(clientId, scope.ToUInt64(), display, state);
+			implicitFlow.SetAuthorizationParams(new ApiAuthParams
+			{
+				ApplicationId = clientId,
+				Settings = scope,
+				Display = display,
+				State = state,
+				RedirectUri = new Uri(Constants.DefaultRedirectUri),
+				Revoke = true
+			});
+
+			var authorizeUrl = implicitFlow.CreateAuthorizeUrl();
 
 			Assert.AreEqual(new Url(expected), authorizeUrl);
 		}
@@ -94,7 +103,8 @@ namespace VkNet.Tests.Infrastructure
 				Login = "login",
 				Password = "pass",
 				ApplicationId = 4268118,
-				Settings = Settings.All
+				Settings = Settings.All,
+				RedirectUri = new Uri(Constants.DefaultRedirectUri)
 			});
 
 			var result = await implicitFlow.AuthorizeAsync().ConfigureAwait(false);

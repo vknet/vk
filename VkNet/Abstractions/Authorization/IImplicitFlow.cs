@@ -1,4 +1,5 @@
-﻿using Flurl;
+﻿using System;
+using Flurl;
 using JetBrains.Annotations;
 using VkNet.Enums.SafetyEnums;
 
@@ -35,6 +36,13 @@ namespace VkNet.Abstractions.Authorization
 		/// результатом авторизации.
 		/// </param>
 		/// <returns> Возвращает Uri для авторизации </returns>
+		[Obsolete("Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
 		Url CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state);
+
+		/// <summary>
+		/// Построить URL для авторизации.
+		/// </summary>
+		/// <returns> Возвращает Uri для авторизации </returns>
+		Url CreateAuthorizeUrl();
 	}
 }

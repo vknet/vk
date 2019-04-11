@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -75,21 +76,40 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
+		[Obsolete("Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
 		public Url CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 		{
+			_authorizationParameters.ApplicationId = clientId;
+			_authorizationParameters.Display = display;
+			_authorizationParameters.State = state;
+
+			return CreateAuthorizeUrl();
+		}
+
+		/// <inheritdoc />
+		public Url CreateAuthorizeUrl()
+		{
 			_logger?.LogDebug("Построение url для авторизации.");
-			var builder = new StringBuilder("https://oauth.vk.com/authorize?");
 
-			builder.Append($"client_id={clientId}&");
-			builder.Append("redirect_uri=https://oauth.vk.com/blank.html&");
-			builder.Append($"display={display}&");
-			builder.Append($"scope={scope}&");
-			builder.Append("response_type=token&");
-			builder.Append($"v={_versionManager.Version}&");
-			builder.Append($"state={state}&");
-			builder.Append("revoke=1");
+			const string url = "https://oauth.vk.com/authorize?";
 
-			return new Uri(builder.ToString());
+			var vkAuthParams = new VkParameters
+			{
+				{ "client_id", _authorizationParameters.ApplicationId },
+				{ "redirect_uri", _authorizationParameters.RedirectUri },
+				{ "display", _authorizationParameters.Display },
+				{ "scope", _authorizationParameters.Settings },
+				{ "response_type", ResponseType.Token },
+				{ "v", _versionManager.Version },
+				{ "state", _authorizationParameters.State },
+				{ "revoke", _authorizationParameters.Revoke }
+			};
+
+			var query = vkAuthParams.Select(x => $"{x.Key}={x.Value}");
+			var stringQuery = string.Join("&",query);
+			var result = $"{url}{stringQuery}";
+
+			return new Uri(result);
 		}
 
 		private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult)
@@ -105,6 +125,7 @@ namespace VkNet.Utils
 
 					throw new VkAuthorizationException("При авторизации произошла ошибка.");
 				}
+
 				case ImplicitFlowPageType.LoginPassword:
 
 				{
@@ -112,6 +133,7 @@ namespace VkNet.Utils
 
 					break;
 				}
+
 				case ImplicitFlowPageType.Captcha:
 
 				{
@@ -119,6 +141,7 @@ namespace VkNet.Utils
 
 					break;
 				}
+
 				case ImplicitFlowPageType.TwoFactor:
 
 				{
@@ -126,6 +149,7 @@ namespace VkNet.Utils
 
 					break;
 				}
+
 				case ImplicitFlowPageType.Consent:
 
 				{
@@ -133,6 +157,7 @@ namespace VkNet.Utils
 
 					break;
 				}
+
 				case ImplicitFlowPageType.Result:
 
 				{
@@ -155,24 +180,30 @@ namespace VkNet.Utils
 		{
 			var errorsBuilder = new StringBuilder();
 
-			if (_authorizationParameters.ApplicationId == 0)
+			if (_authorizationParameters == null)
 			{
-				errorsBuilder.AppendLine("ApplicationId обязательный параметр");
-			}
+				errorsBuilder.AppendLine("Параметры авторизации не установленны");
+			} else
+			{
+				if (_authorizationParameters.ApplicationId == 0)
+				{
+					errorsBuilder.AppendLine($"{nameof(_authorizationParameters.ApplicationId)} обязательный параметр");
+				}
 
-			if (string.IsNullOrWhiteSpace(_authorizationParameters.Login))
-			{
-				errorsBuilder.AppendLine("Login обязательный параметр");
-			}
+				if (string.IsNullOrWhiteSpace(_authorizationParameters.Login))
+				{
+					errorsBuilder.AppendLine($"{nameof(_authorizationParameters.Login)} обязательный параметр");
+				}
 
-			if (string.IsNullOrWhiteSpace(_authorizationParameters.Password))
-			{
-				errorsBuilder.AppendLine("Password обязательный параметр");
-			}
+				if (string.IsNullOrWhiteSpace(_authorizationParameters.Password))
+				{
+					errorsBuilder.AppendLine($"{nameof(_authorizationParameters.Password)} обязательный параметр");
+				}
 
-			if (_authorizationParameters.Settings == null)
-			{
-				errorsBuilder.AppendLine("Settings обязательный параметр");
+				if (_authorizationParameters.RedirectUri == null)
+				{
+					errorsBuilder.AppendLine($"{nameof(_authorizationParameters.RedirectUri)} обязательный параметр");
+				}
 			}
 
 			var errors = errorsBuilder.ToString();

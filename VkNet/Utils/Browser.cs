@@ -11,6 +11,7 @@ using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Infrastructure;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
 using VkNet.Utils.AntiCaptcha;
@@ -79,17 +80,28 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
+		[Obsolete("Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
 		public Url CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 		{
+			_authParams.ApplicationId = clientId;
+			_authParams.Display = display;
+			_authParams.State = state;
+			return CreateAuthorizeUrl();
+		}
+
+		/// <inheritdoc />
+		public Url CreateAuthorizeUrl()
+		{
+			_logger?.LogDebug("Построение url для авторизации.");
 			var builder = new StringBuilder("https://oauth.vk.com/authorize?");
 
-			builder.Append($"client_id={clientId}&");
-			builder.Append("redirect_uri=https://oauth.vk.com/blank.html&");
-			builder.Append($"display={display}&");
-			builder.Append($"scope={scope}&");
-			builder.Append("response_type=token&");
+			builder.Append($"client_id={_authParams.ApplicationId}&");
+			builder.Append($"redirect_uri={Constants.DefaultRedirectUri}&");
+			builder.Append($"display={Display.Page}&");
+			builder.Append($"scope={_authParams.Settings}&");
+			builder.Append($"response_type={ResponseType.Token}&");
 			builder.Append($"v={_versionManager.Version}&");
-			builder.Append($"state={state}&");
+			builder.Append("state=123456&");
 			builder.Append("revoke=1");
 
 			return new Uri(builder.ToString());
@@ -290,7 +302,7 @@ namespace VkNet.Utils
 		/// <returns> </returns>
 		private WebCallResult OpenAuthDialog(ulong appId, [NotNull] Settings settings)
 		{
-			var url = CreateAuthorizeUrl(appId, settings.ToUInt64(), Display.Page, "123456");
+			var url = CreateAuthorizeUrl();
 
 			return WebCall.MakeCall(url.ToString(), Proxy);
 		}

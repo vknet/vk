@@ -4,8 +4,6 @@ using System.Net;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
-using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
 
@@ -37,7 +35,7 @@ namespace VkNet.Utils
 		[UsedImplicitly]
 		public async Task<AuthorizationResult> AuthorizeAsync(IApiAuthParams authParams)
 		{
-			var authorizeUrlResult = await OpenAuthDialogAsync(authParams.ApplicationId, authParams.Settings)
+			var authorizeUrlResult = await OpenAuthDialogAsync()
 				.ConfigureAwait(false);
 
 			return await NextStepAsync(authorizeUrlResult).ConfigureAwait(false);
@@ -243,12 +241,10 @@ namespace VkNet.Utils
 		/// <summary>
 		/// Открытие окна авторизации асинхронно
 		/// </summary>
-		/// <param name="appId"> id приложения </param>
-		/// <param name="settings"> Настройки приложения </param>
 		/// <returns> </returns>
-		private Task<WebCallResult> OpenAuthDialogAsync(ulong appId, [NotNull] Settings settings)
+		private Task<WebCallResult> OpenAuthDialogAsync()
 		{
-			var url = CreateAuthorizeUrl(appId, settings.ToUInt64(), Display.Page, "123456");
+			var url = CreateAuthorizeUrl();
 
 			var task = WebCall.MakeCallAsync(url.ToString(), Proxy);
 			task.ConfigureAwait(false);

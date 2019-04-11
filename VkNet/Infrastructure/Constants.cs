@@ -9,5 +9,10 @@ namespace VkNet.Infrastructure
 		/// Токен
 		/// </summary>
 		public const string AccessToken = "access_token";
+
+		/// <summary>
+		/// redirect_uri по умолчанию.
+		/// </summary>
+		public const string DefaultRedirectUri = "https://oauth.vk.com/blank.html";
 	}
 }
