@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using VkNet.Utils;
 using VkNet.UWP.Model.Attachments;
 
@@ -153,6 +153,11 @@ namespace VkNet.Model.Attachments
 					return UnknownAttachment;
 				}
 
+				if (Type == typeof(MoneyTransfer))
+				{
+					return MoneyTransfer;
+				}
+
 				return null;
 			}
 		}
@@ -183,6 +188,14 @@ namespace VkNet.Model.Attachments
 				{
 					attachment.Type = typeof(Photo);
 					attachment.Photo = response[type];
+
+					break;
+				}
+				case "money_transfer":
+
+				{
+					attachment.Type = typeof(MoneyTransfer);
+					attachment.MoneyTransfer = response[type];
 
 					break;
 				}
@@ -533,6 +546,11 @@ namespace VkNet.Model.Attachments
 		/// Плейлист.
 		/// </summary>
 		private UnknownAttachment UnknownAttachment { get; set; }
+
+		/// <summary>
+		/// Денежный перевод.
+		/// </summary>
+		private MoneyTransfer MoneyTransfer { get; set; }
 
 	#endregion
 	}

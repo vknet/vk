@@ -1,0 +1,19 @@
+{
+  "type": "money_transfer",
+  "money_transfer": {
+    "id": 10263042,
+    "from_id": 62103461,
+    "to_id": 286927336,
+    "status": 1,
+    "date": 1526637398,
+    "amount": {
+      "amount": "30000",
+      "currency": {
+        "id": 643,
+        "name": "RUB"
+      },
+      "text": "300 руб."
+    },
+    "comment": "И еще раз"
+  }
+}
