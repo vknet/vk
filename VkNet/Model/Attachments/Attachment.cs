@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 using VkNet.UWP.Model.Attachments;
 
@@ -148,12 +149,12 @@ namespace VkNet.Model.Attachments
 					return AudioPlaylist;
 				}
 
-				if (Type == typeof(UnknownAttachment))
+				if (Type == typeof(MoneyTransfer))
 				{
-					return UnknownAttachment;
+					return MoneyTransfer;
 				}
 
-				return null;
+				return UnknownAttachment;
 			}
 		}
 
@@ -239,6 +240,14 @@ namespace VkNet.Model.Attachments
 				{
 					attachment.Type = typeof(Link);
 					attachment.Link = response["link"];
+
+					break;
+				}
+				case "money_transfer":
+
+				{
+					attachment.Type = typeof(MoneyTransfer);
+					attachment.MoneyTransfer = response["money_transfer"];
 
 					break;
 				}
@@ -533,6 +542,11 @@ namespace VkNet.Model.Attachments
 		/// Плейлист.
 		/// </summary>
 		private UnknownAttachment UnknownAttachment { get; set; }
+
+		/// <summary>
+		/// Плейлист.
+		/// </summary>
+		private MoneyTransfer MoneyTransfer { get; set; }
 
 	#endregion
 	}
