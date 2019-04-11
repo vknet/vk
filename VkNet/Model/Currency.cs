@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -12,16 +13,19 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор валюты
 		/// </summary>
+		[JsonProperty("id")]
 		public long? Id { get; set; }
 
 		/// <summary>
 		/// Буквенное обозначение валюты
 		/// </summary>
+		[JsonProperty("currency")]
 		public string Сurrency { get; set; }
 
 		/// <summary>
 		/// Буквенное обозначение валюты
 		/// </summary>
+		[JsonProperty("name")]
 		public string Name { get; set; }
 
 		/// <summary>
@@ -31,14 +35,12 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static Currency FromJson(VkResponse response)
 		{
-			var currency = new Currency
+			return new Currency
 			{
-					Id = response[key: "id"]
-					, Сurrency = response[key: "currency"]
-					, Name = response[key: "name"]
+				Id = response[key: "id"],
+				Сurrency = response[key: "currency"],
+				Name = response[key: "name"]
 			};
-
-			return currency;
 		}
 	}
 }
