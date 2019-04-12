@@ -105,11 +105,11 @@ namespace VkNet.Tests.Categories.Account
 		{
 			Url = "https://api.vk.com/method/account.getBanned";
 
-			ReadCategoryJsonPath(nameof(GetBanned_WithCorrectCountParameter));
+			ReadCategoryJsonPath("GetBannedResult");
 
 			var items = Api.Account.GetBanned(count: 2);
 
-			Assert.That(items.Count, Is.EqualTo(10));
+			Assert.That(items.Count, Is.EqualTo(2));
 		}
 
 		[Test]
@@ -117,10 +117,10 @@ namespace VkNet.Tests.Categories.Account
 		{
 			Url = "https://api.vk.com/method/account.getBanned";
 
-			ReadCategoryJsonPath(nameof(GetBanned_WithCorrectOffsetParameter));
+			ReadCategoryJsonPath("GetBannedResult");
 
-			var items = Api.Account.GetBanned(null, 10);
-			Assert.That(items.Count, Is.EqualTo(10));
+			var items = Api.Account.GetBanned(null, 2);
+			Assert.That(items.Count, Is.EqualTo(2));
 		}
 
 		[Test]
@@ -128,17 +128,13 @@ namespace VkNet.Tests.Categories.Account
 		{
 			Url = "https://api.vk.com/method/account.getBanned";
 
-			ReadCategoryJsonPath(nameof(GetBanned_WithDefaultParameters));
+			ReadCategoryJsonPath("GetBannedResult");
 
 			var items = Api.Account.GetBanned();
-			Assert.That(items.Count, Is.EqualTo(10));
-			Assert.That(items, Has.Count.EqualTo(10));
+			Assert.That(items.Count, Is.EqualTo(2));
+			Assert.That(items, Has.Count.EqualTo(2));
 			var banned = items.Items.FirstOrDefault();
-			Assert.That(banned, Is.Not.Null);
-			Assert.That(banned.Id, Is.EqualTo(247704457));
-			Assert.That(banned.FirstName, Is.EqualTo("Твой"));
-			Assert.That(banned.LastName, Is.EqualTo("День-Рождения"));
-			Assert.That(banned.Deactivated, Is.EqualTo(Deactivated.Banned));
+			Assert.That(banned, Is.EqualTo(256477844));
 		}
 
 		[Test]
@@ -270,7 +266,9 @@ namespace VkNet.Tests.Categories.Account
 
 			Assert.Throws<AccessTokenInvalidException>(() => account.RegisterDevice(new AccountRegisterDeviceParams
 			{
-				Token = "tokenVal", DeviceModel = null, SystemVersion = null
+				Token = "tokenVal",
+				DeviceModel = null,
+				SystemVersion = null
 			}));
 		}
 
@@ -282,7 +280,9 @@ namespace VkNet.Tests.Categories.Account
 
 			Assert.That(Api.Account.RegisterDevice(new AccountRegisterDeviceParams
 				{
-					Token = "tokenVal", DeviceModel = "deviceModelVal", SystemVersion = "systemVersionVal"
+					Token = "tokenVal",
+					DeviceModel = "deviceModelVal",
+					SystemVersion = "systemVersionVal"
 				}),
 				Is.False);
 		}
@@ -295,7 +295,9 @@ namespace VkNet.Tests.Categories.Account
 
 			Assert.That(Api.Account.RegisterDevice(new AccountRegisterDeviceParams
 				{
-					Token = "tokenVal", DeviceModel = "deviceModelVal", SystemVersion = "systemVersionVal"
+					Token = "tokenVal",
+					DeviceModel = "deviceModelVal",
+					SystemVersion = "systemVersionVal"
 				}),
 				Is.True);
 		}
@@ -308,13 +310,17 @@ namespace VkNet.Tests.Categories.Account
 
 			Assert.That(() => account.RegisterDevice(new AccountRegisterDeviceParams
 				{
-					Token = null, DeviceModel = "example", SystemVersion = "example"
+					Token = null,
+					DeviceModel = "example",
+					SystemVersion = "example"
 				}),
 				Throws.InstanceOf<ArgumentNullException>());
 
 			Assert.That(() => account.RegisterDevice(new AccountRegisterDeviceParams
 				{
-					Token = string.Empty, DeviceModel = "example", SystemVersion = "example"
+					Token = string.Empty,
+					DeviceModel = "example",
+					SystemVersion = "example"
 				}),
 				Throws.InstanceOf<ArgumentNullException>());
 		}
@@ -327,13 +333,17 @@ namespace VkNet.Tests.Categories.Account
 
 			Assert.That(() => Api.Account.RegisterDevice(new AccountRegisterDeviceParams
 				{
-					Token = "tokenVal", DeviceModel = null, SystemVersion = null
+					Token = "tokenVal",
+					DeviceModel = null,
+					SystemVersion = null
 				}),
 				Throws.Nothing);
 
 			Assert.That(() => Api.Account.RegisterDevice(new AccountRegisterDeviceParams
 				{
-					Token = "tokenVal", DeviceModel = string.Empty, SystemVersion = string.Empty
+					Token = "tokenVal",
+					DeviceModel = string.Empty,
+					SystemVersion = string.Empty
 				}),
 				Throws.Nothing);
 		}
@@ -348,11 +358,26 @@ namespace VkNet.Tests.Categories.Account
 			Assert.That(() => Api.Account.SaveProfileInfo(out var _,
 					new AccountSaveProfileInfoParams
 					{
-						FirstName = "fn", LastName = "ln", MaidenName = "mn", Sex = Sex.Female, Relation = RelationType.Married,
-						RelationPartner = new User { Id = 10 },
+						FirstName = "fn",
+						LastName = "ln",
+						MaidenName = "mn",
+						Sex = Sex.Female,
+						Relation = RelationType.Married,
+						RelationPartner = new User
+						{
+							Id = 10
+						},
 						BirthDate = new DateTime(1984, 11, 15, 0, 0, 0, DateTimeKind.Utc).ToShortDateString(),
-						BirthdayVisibility = BirthdayVisibility.Full, HomeTown = "ht", Country = new Country { Id = 1 },
-						City = new City { Id = 2 }
+						BirthdayVisibility = BirthdayVisibility.Full,
+						HomeTown = "ht",
+						Country = new Country
+						{
+							Id = 1
+						},
+						City = new City
+						{
+							Id = 2
+						}
 					}),
 				Is.True);
 		}
@@ -394,7 +419,7 @@ namespace VkNet.Tests.Categories.Account
 
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 
-			Assert.That(() => Api.Account.SaveProfileInfo(out var _,
+			Assert.That(() => Api.Account.SaveProfileInfo(out _,
 					new AccountSaveProfileInfoParams
 					{
 						BirthDate = new DateTime(2014, 9, 8, 0, 0, 0, DateTimeKind.Utc)
