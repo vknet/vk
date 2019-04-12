@@ -628,5 +628,16 @@ namespace VkNet.Utils
 		public static implicit operator KeyboardButtonColor(VkResponse response) {
 			return response == null ? null : KeyboardButtonColor.FromJson(response: response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator MarketItemButtonTitle(VkResponse response) {
+			return response == null ? null : MarketItemButtonTitle.FromJson(response: response);
+		}
 	}
 }

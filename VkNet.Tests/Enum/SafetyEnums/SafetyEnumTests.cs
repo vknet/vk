@@ -820,5 +820,19 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(StoryLinkText.FromJsonString("watch"), Is.EqualTo(StoryLinkText.Watch));
 			Assert.That(StoryLinkText.FromJsonString("write"), Is.EqualTo(StoryLinkText.Write));
 		}
+
+		[Test]
+		public void MarketItemButtonTitleTest()
+		{
+			// get test
+			Assert.That(MarketItemButtonTitle.Buy.ToString(), Is.EqualTo("Купить"));
+			Assert.That(MarketItemButtonTitle.BuyATicket.ToString(), Is.EqualTo("Купить билет"));
+			Assert.That(MarketItemButtonTitle.GoToTheStore.ToString(), Is.EqualTo("Перейти в магазин"));
+
+			// parse test
+			Assert.That(MarketItemButtonTitle.FromJsonString("Купить"), Is.EqualTo(MarketItemButtonTitle.Buy));
+			Assert.That(MarketItemButtonTitle.FromJsonString("Купить билет"), Is.EqualTo(MarketItemButtonTitle.BuyATicket));
+			Assert.That(MarketItemButtonTitle.FromJsonString("Перейти в магазин"), Is.EqualTo(MarketItemButtonTitle.GoToTheStore));
+		}
 	}
 }
