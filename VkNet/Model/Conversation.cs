@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using VkNet.Model.Keyboard;
 
 namespace VkNet.Model
 {
@@ -68,5 +69,11 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("last_message_id")]
 		public long LastMessageId { get; set; }
+
+		/// <summary>
+		/// Клавиатура.
+		/// </summary>
+		[JsonProperty("current_keyboard ")]
+		public MessageKeyboard CurrentKeyboard { get; set; }
 	}
 }
