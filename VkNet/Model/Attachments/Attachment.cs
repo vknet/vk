@@ -154,6 +154,11 @@ namespace VkNet.Model.Attachments
 					return MoneyTransfer;
 				}
 
+				if (Type == typeof(MoneyRequest))
+				{
+					return MoneyRequest;
+				}
+
 				return UnknownAttachment;
 			}
 		}
@@ -248,6 +253,14 @@ namespace VkNet.Model.Attachments
 				{
 					attachment.Type = typeof(MoneyTransfer);
 					attachment.MoneyTransfer = response["money_transfer"];
+
+					break;
+				}
+				case "money_request":
+
+				{
+					attachment.Type = typeof(MoneyRequest);
+					attachment.MoneyRequest = response[type];
 
 					break;
 				}
@@ -395,7 +408,7 @@ namespace VkNet.Model.Attachments
 
 				{
 					attachment.Type = typeof(UnknownAttachment);
-					attachment.AudioPlaylist = response[type];
+					attachment.UnknownAttachment = response[type];
 
 					break;
 				}
@@ -539,14 +552,19 @@ namespace VkNet.Model.Attachments
 		private AudioPlaylist AudioPlaylist { get; set; }
 
 		/// <summary>
-		/// Плейлист.
+		/// Неизвестное вложение.
 		/// </summary>
 		private UnknownAttachment UnknownAttachment { get; set; }
 
 		/// <summary>
-		/// Плейлист.
+		/// Перевод денег.
 		/// </summary>
 		private MoneyTransfer MoneyTransfer { get; set; }
+
+		/// <summary>
+		/// Выставление счета
+		/// </summary>
+		private MoneyRequest MoneyRequest { get; set; }
 
 	#endregion
 	}
