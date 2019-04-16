@@ -25,7 +25,8 @@ namespace VkNet.Utils
 
 		/// <inheritdoc />
 		/// <summary>
-		/// Initializes a new instance of the <see cref="CountByIntervalAwaitableConstraint" /> class
+		/// Initializes a new instance of the
+		/// <see cref="CountByIntervalAwaitableConstraint" /> class
 		/// with default values.
 		/// </summary>
 		public CountByIntervalAwaitableConstraint() : this(3, TimeSpan.FromSeconds(1))
@@ -33,17 +34,19 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="CountByIntervalAwaitableConstraint"/> class,
+		/// Initializes a new instance of the
+		/// <see cref="CountByIntervalAwaitableConstraint" /> class,
 		/// specifying the maximum number of requests per time interval.
 		/// </summary>
 		/// <param name="number">
-		/// Maximum <paramref name="number"/> times per <paramref name="timeSpan"/>.
+		/// Maximum <paramref name="number" /> times per <paramref name="timeSpan" />.
 		/// </param>
 		/// <param name="timeSpan">
 		/// Time interval.
 		/// </param>
 		/// <exception cref="ArgumentException">
-		/// The <paramref name="number"/> and <paramref name="timeSpan"/> should be strictly positive.
+		/// The <paramref name="number" /> and <paramref name="timeSpan" /> should be
+		/// strictly positive.
 		/// </exception>
 		public CountByIntervalAwaitableConstraint(int number, TimeSpan timeSpan)
 		{
@@ -102,9 +105,9 @@ namespace VkNet.Utils
 				await Task.Delay(timeToWait, cancellationToken).ConfigureAwait(false);
 			#endif
 			}
-			finally
+			catch
 			{
-				_semaphore.Release();
+				return new DisposableAction(OnEnded);
 			}
 
 			return new DisposableAction(OnEnded);
