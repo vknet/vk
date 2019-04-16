@@ -3,8 +3,10 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -74,6 +76,17 @@ namespace VkNet.Model
 		public Likes Likes { get; set; }
 
 		/// <summary>
+		/// Cсылка на товар во внешних ресурсах.
+		/// </summary>
+		public Uri Url { get; set; }
+
+		/// <summary>
+		/// Текст на кнопке товара.
+		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public MarketItemButtonTitle ButtonTitle { get; set; }
+
+		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
@@ -94,7 +107,9 @@ namespace VkNet.Model
 				Photos = response["photos"].ToReadOnlyCollectionOf<Photo>(x => x),
 				CanComment = response["can_comment"],
 				CanRepost = response["can_repost"],
-				Likes = response["likes"]
+				Likes = response["likes"],
+				Url = response["url"],
+				ButtonTitle = response["button_title"]
 			};
 		}
 	}

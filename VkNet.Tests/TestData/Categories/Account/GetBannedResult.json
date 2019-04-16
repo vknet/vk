@@ -1,0 +1,25 @@
+{
+  "response": {
+    "count": 2,
+    "items": [
+      256477844,
+      504090456
+    ],
+    "profiles": [
+      {
+        "id": 256477844,
+        "first_name": "Милан",
+        "last_name": "Абубакаров",
+        "is_closed": false,
+        "can_access_closed": true
+      },
+      {
+        "id": 504090456,
+        "first_name": "Silvester",
+        "last_name": "Bellucci",
+        "deactivated": "banned"
+      }
+    ],
+    "groups": []
+  }
+}

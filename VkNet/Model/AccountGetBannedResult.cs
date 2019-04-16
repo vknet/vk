@@ -1,11 +1,13 @@
 using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Model.Attachments;
-using VkNet.Utils;
+using VkNet.Abstractions;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Результат вызова метода <see cref="IAccountCategory.GetBanned"/>
+	/// </summary>
 	[Serializable]
 	public class AccountGetBannedResult
 	{
@@ -19,7 +21,7 @@ namespace VkNet.Model
 		/// Посты.
 		/// </summary>
 		[JsonProperty("items")]
-		public ReadOnlyCollection<User> Items { get; set; }
+		public ReadOnlyCollection<long> Items { get; set; }
 
 		/// <summary>
 		/// Профили.
@@ -32,21 +34,5 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("groups")]
 		public ReadOnlyCollection<Group> Groups { get; set; }
-
-		/*/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static AccountGetBannedResult FromJson(VkResponse response)
-		{
-			return new AccountGetBannedResult
-			{
-				Items = response[key: "items"].ToReadOnlyCollectionOf<User>(selector: r => r),
-				Profiles = response[key: "profiles"].ToReadOnlyCollectionOf<User>(selector: r => r),
-				Groups = response[key: "groups"].ToReadOnlyCollectionOf<Group>(selector: r => r),
-				TotalCount = response[key: "count"] ?? 1UL
-			};
-		}*/
 	}
 }
