@@ -1,18 +1,19 @@
 {
-  "type": "money_request",
-  "money_request": {
-    "id": 139,
-    "from_id": 123,
-    "to_id": 62103461,
-    "processed": 0,
+  "type": "money_transfer",
+  "money_transfer": {
+    "id": 10263042,
+    "from_id": 62103461,
+    "to_id": 1,
+    "status": 1,
+    "date": 1526637398,
     "amount": {
-      "amount": "10000",
+      "amount": "30000",
       "currency": {
         "id": 643,
         "name": "RUB"
       },
-      "text": "100 руб."
+      "text": "300 руб."
     },
-    "init_url": "https://m.vk.com/payments?act=init_money_transfer&to_id=123&request_id=139&amount=100&currency=RUB&hash=HASH&hash_2=HASH2&user_id=62103461&from=api"
+    "comment": "bug"
   }
 }

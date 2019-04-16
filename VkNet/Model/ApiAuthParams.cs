@@ -87,14 +87,17 @@ namespace VkNet.Model
 		/// <inheritdoc />
 		public bool? Revoke { get; set; }
 
+		/// <inheritdoc />
+		public string Code { get; set; }
+
 		/// <summary>
 		/// Формирует параметры авторизации по минимальному набору необходимых полей
 		/// </summary>
-		/// <param name="appId"></param>
-		/// <param name="login"></param>
-		/// <param name="password"></param>
-		/// <param name="settings"></param>
-		/// <returns></returns>
+		/// <param name="appId"> </param>
+		/// <param name="login"> </param>
+		/// <param name="password"> </param>
+		/// <param name="settings"> </param>
+		/// <returns> </returns>
 		public static ApiAuthParams Format(ulong appId, string login, string password, Settings settings)
 		{
 			return new ApiAuthParams
