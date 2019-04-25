@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Flurl;
+using Flurl.Http;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -15,14 +17,11 @@ namespace VkNet.Utils
 	[UsedImplicitly]
 	public class RestClient : IRestClient
 	{
-		private readonly HttpClient _httpClient;
-
 		private readonly ILogger<RestClient> _logger;
 
 		/// <inheritdoc />
-		public RestClient(HttpClient httpClient, ILogger<RestClient> logger)
+		public RestClient(ILogger<RestClient> logger)
 		{
-			_httpClient = httpClient;
 			_logger = logger;
 		}
 
@@ -37,20 +36,17 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
-			var queries = parameters
-				.Where(parameter => !string.IsNullOrWhiteSpace(parameter.Value))
-				.Select(parameter => $"{parameter.Key.ToLowerInvariant()}={parameter.Value}");
-
-			var url = new UriBuilder(uri)
+			if (_logger != null)
 			{
-				Query = string.Join("&", queries)
-			};
+				var uriBuilder = new UriBuilder(uri)
+				{
+					Query = string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"))
+				};
 
-			_logger?.LogDebug($"GET request: {url.Uri}");
+				_logger.LogDebug($"GET request: {uriBuilder.Uri}");
+			}
 
-			var request = new HttpRequestMessage(HttpMethod.Get, url.Uri);
-
-			return CallAsync(httpClient => httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead));
+			return CallAsync(() => uri.ToString().SetQueryParams(parameters).GetAsync());
 		}
 
 		/// <inheritdoc />
@@ -64,14 +60,18 @@ namespace VkNet.Utils
 
 			var content = new FormUrlEncodedContent(parameters);
 
-			var request = new HttpRequestMessage(HttpMethod.Post, uri) { Content = content };
-
-			return CallAsync(httpClient => httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead));
+			return CallAsync(() => uri.ToString().PostAsync(content));
 		}
 
-		private async Task<HttpResponse<string>> CallAsync(Func<HttpClient, Task<HttpResponseMessage>> method)
+		/// <inheritdoc />
+		public void Dispose()
 		{
-			var response = await method(_httpClient).ConfigureAwait(false);
+			GC.SuppressFinalize(this);
+		}
+
+		private async Task<HttpResponse<string>> CallAsync(Func<Task<HttpResponseMessage>> method)
+		{
+			var response = await method().ConfigureAwait(false);
 
 			var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
@@ -81,37 +81,6 @@ namespace VkNet.Utils
 			return response.IsSuccessStatusCode
 				? HttpResponse<string>.Success(response.StatusCode, content, url)
 				: HttpResponse<string>.Fail(response.StatusCode, content, url);
-		}
-
-		/// <inheritdoc />
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
-		/// <summary>
-		/// Releases unmanaged and - optionally - managed resources.
-		/// </summary>
-		~RestClient()
-		{
-			Dispose(false);
-		}
-
-		/// <summary>
-		/// Releases unmanaged and - optionally - managed resources.
-		/// </summary>
-		/// <param name="disposing">
-		/// <c> true </c> to release both managed and unmanaged resources; <c> false </c>
-		/// to release only
-		/// unmanaged resources.
-		/// </param>
-		protected virtual void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				_httpClient?.Dispose();
-			}
 		}
 	}
 }

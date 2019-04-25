@@ -1,6 +1,5 @@
 using System;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Flurl.Http.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,7 +38,6 @@ namespace VkNet.Utils
 			container.TryAddSingleton<ICaptchaHandler, CaptchaHandler>();
 			container.TryAddSingleton<ILanguageService, LanguageService>();
 			container.TryAddSingleton<ICaptchaSolver>(sp => null);
-			container.TryAddSingleton<HttpClient>();
 			container.TryAddSingleton<IRateLimiter, RateLimiter>();
 			container.TryAddSingleton<IAwaitableConstraint, CountByIntervalAwaitableConstraint>();
 			container.RegisterAuthorization();
