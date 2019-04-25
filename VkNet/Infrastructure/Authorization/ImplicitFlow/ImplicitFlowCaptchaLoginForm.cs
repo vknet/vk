@@ -1,4 +1,3 @@
-using Flurl.Http.Configuration;
 using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Exception;
@@ -16,9 +15,9 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		private readonly ICaptchaSolver _captchaSolver;
 
 		/// <inheritdoc />
-		public ImplicitFlowCaptchaLoginForm(IAuthorizationFormHtmlParser htmlParser, DefaultHttpClientFactory httpClientFactory,
-											IApiAuthParams authorizationParameters, ICaptchaSolver captchaSolver, IFlurlClientFactory _factory)
-			: base(htmlParser, httpClientFactory, _factory)
+		public ImplicitFlowCaptchaLoginForm(IAuthorizationFormHtmlParser htmlParser,
+											IApiAuthParams authorizationParameters, ICaptchaSolver captchaSolver)
+			: base(htmlParser)
 		{
 			_authorizationParameters = authorizationParameters;
 			_captchaSolver = captchaSolver;
@@ -45,7 +44,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				form.Fields[AuthorizationFormFields.Password] = _authorizationParameters.Password;
 			}
 
-			var captchaKey = _captchaSolver.Solve($"https://api.vk.com//captcha.php?sid={form.Fields[AuthorizationFormFields.CaptchaSid]}&s=1");
+			var captchaKey =
+				_captchaSolver.Solve($"https://api.vk.com//captcha.php?sid={form.Fields[AuthorizationFormFields.CaptchaSid]}&s=1");
 
 			if (form.Fields.ContainsKey(AuthorizationFormFields.CaptchaKey))
 			{

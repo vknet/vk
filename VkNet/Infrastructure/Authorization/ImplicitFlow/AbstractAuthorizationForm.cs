@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
-using Flurl.Http.Configuration;
 using VkNet.Enums;
 using VkNet.Exception;
 
@@ -14,17 +13,10 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 	{
 		private readonly IAuthorizationFormHtmlParser _htmlParser;
 
-		private readonly DefaultHttpClientFactory _httpClientFactory;
-
-		private readonly IFlurlClientFactory _clientFactory;
-
 		/// <inheritdoc />
-		protected AbstractAuthorizationForm(IAuthorizationFormHtmlParser htmlParser, DefaultHttpClientFactory httpClientFactory,
-											IFlurlClientFactory clientFactory)
+		protected AbstractAuthorizationForm(IAuthorizationFormHtmlParser htmlParser)
 		{
 			_htmlParser = htmlParser;
-			_httpClientFactory = httpClientFactory;
-			_clientFactory = clientFactory;
 		}
 
 		/// <inheritdoc />
@@ -37,7 +29,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 			FillFormFields(form);
 
-			using (var cli = _clientFactory.Get(form.Action))
+			using (var cli = new FlurlClient(form.Action).EnableCookies())
 			{
 				var responseMessage = await cli.Request()
 					.PostMultipartAsync(mp => mp.Add(new FormUrlEncodedContent(form.Fields)))
@@ -67,7 +59,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <summary>
 		/// Заполнение полей формы
 		/// </summary>
-		/// <param name="form">Форма</param>
+		/// <param name="form"> Форма </param>
 		protected abstract void FillFormFields(VkHtmlFormResult form);
 	}
 }

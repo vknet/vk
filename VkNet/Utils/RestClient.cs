@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Flurl;
 using Flurl.Http;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
@@ -46,7 +45,7 @@ namespace VkNet.Utils
 				_logger.LogDebug($"GET request: {uriBuilder.Uri}");
 			}
 
-			return CallAsync(() => uri.ToString().SetQueryParams(parameters).GetAsync());
+			return CallAsync(() => uri.ToString().AllowAnyHttpStatus().SetQueryParams(parameters).GetAsync());
 		}
 
 		/// <inheritdoc />
@@ -60,7 +59,7 @@ namespace VkNet.Utils
 
 			var content = new FormUrlEncodedContent(parameters);
 
-			return CallAsync(() => uri.ToString().PostAsync(content));
+			return CallAsync(() => uri.ToString().AllowAnyHttpStatus().PostAsync(content));
 		}
 
 		/// <inheritdoc />
