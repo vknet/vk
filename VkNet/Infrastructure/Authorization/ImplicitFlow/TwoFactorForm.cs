@@ -1,4 +1,3 @@
-using Flurl.Http.Configuration;
 using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Exception;
@@ -13,9 +12,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		private readonly IApiAuthParams _authorizationParameters;
 
 		/// <inheritdoc />
-		public TwoFactorForm(IApiAuthParams authorizationParameters, DefaultHttpClientFactory httpClientFactory,
-							IAuthorizationFormHtmlParser htmlParser, IFlurlClientFactory _factory)
-			: base(htmlParser, httpClientFactory, _factory)
+		public TwoFactorForm(IApiAuthParams authorizationParameters, IAuthorizationFormHtmlParser htmlParser)
+			: base(htmlParser)
 		{
 			_authorizationParameters = authorizationParameters;
 		}

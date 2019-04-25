@@ -1,4 +1,3 @@
-using Flurl.Http.Configuration;
 using JetBrains.Annotations;
 using VkNet.Enums;
 
@@ -9,8 +8,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 	public sealed class ConsentForm : AbstractAuthorizationForm
 	{
 		/// <inheritdoc />
-		public ConsentForm(IAuthorizationFormHtmlParser htmlParser, DefaultHttpClientFactory httpClientFactory, IFlurlClientFactory _factory)
-			: base(htmlParser, httpClientFactory, _factory)
+		public ConsentForm(IAuthorizationFormHtmlParser htmlParser)
+			: base(htmlParser)
 		{
 		}
 

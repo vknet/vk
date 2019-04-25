@@ -7,7 +7,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Flurl.Http;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -832,11 +831,6 @@ namespace VkNet
 
 		private void Initialization(IServiceProvider serviceProvider)
 		{
-			FlurlHttp.Configure(settings =>
-			{
-				settings.HttpClientFactory = serviceProvider.GetService<ProxyHttpClientFactory>();
-			});
-
 			_logger = serviceProvider.GetService<ILogger<VkApi>>();
 			_captchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
 			_language = serviceProvider.GetRequiredService<ILanguageService>();

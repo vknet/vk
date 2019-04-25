@@ -1,7 +1,6 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Flurl.Http.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
@@ -114,12 +113,6 @@ namespace VkNet.Utils
 			services.AddSingleton<IAuthorizationForm, ImplicitFlowLoginForm>();
 			services.AddSingleton<IAuthorizationForm, TwoFactorForm>();
 			services.AddSingleton<IAuthorizationForm, ConsentForm>();
-			services.TryAddSingleton<IFlurlClientFactory, PerBaseUrlFlurlClientFactory>();
-			services.TryAddSingleton<DefaultHttpClientFactory, ProxyHttpClientFactory>();
-			services.TryAddSingleton<DefaultHttpClientFactory, NoRedirectHttpClientFactory>();
-			services.TryAddSingleton<ProxyHttpClientFactory>();
-			services.TryAddSingleton<NoRedirectHttpClientFactory>();
-			services.TryAddSingleton<CookieContainer>();
 		}
 	}
 }
