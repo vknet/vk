@@ -132,6 +132,12 @@ namespace VkNet.Model.RequestParams
 		[JsonProperty("captcha_key")]
 		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public string CaptchaKey { get; set; }
+		
+		/// <summary>
+		/// 1 - отключить уведомление об упоминании в сообщении, может принимать значения 1 или 0, по умолчанию
+		/// </summary>
+		[JsonProperty("disable_mentions")]
+		public bool DisableMentions { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -159,7 +165,8 @@ namespace VkNet.Model.RequestParams
 				{ "peer_id", p.PeerId },
 				{ "payload", p.Payload },
 				{ "group_id", p.GroupId },
-				{ "dont_parse_links", p.DontParseLinks }
+				{ "dont_parse_links", p.DontParseLinks },
+				{ "disable_mentions", p.DisableMentions }
 			};
 		}
 	}
