@@ -51,5 +51,13 @@ namespace VkNet.Tests.Utils
 			var attribute = Attribute.GetCustomAttribute(typeof(VkCollection<>), typeof(DataContractAttribute));
 			Assert.That(attribute, Is.Null);
 		}
+
+		[Test]
+		public void PrettyPrintJsonShouldNotThrowException()
+		{
+			const string invalidJson = "ERROR";
+
+			Assert.DoesNotThrow(() => Utilities.PrettyPrintJson(invalidJson));
+		}
 	}
 }
