@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace VkNet.Utils
 {
@@ -97,16 +97,13 @@ namespace VkNet.Utils
 		/// <returns> Json </returns>
 		public static string PrettyPrintJson(string json)
 		{
-			using (var stringReader = new StringReader(json))
+			try
 			{
-				using (var stringWriter = new StringWriter())
-				{
-					var jsonReader = new JsonTextReader(stringReader);
-					var jsonWriter = new JsonTextWriter(stringWriter) { Formatting = Formatting.Indented };
-					jsonWriter.WriteToken(jsonReader);
-
-					return stringWriter.ToString();
-				}
+				return JToken.Parse(json).ToString(Formatting.Indented);
+			}
+			catch (JsonReaderException)
+			{
+				return json;
 			}
 		}
 
