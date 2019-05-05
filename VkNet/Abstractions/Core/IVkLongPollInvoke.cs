@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Utils;
 
@@ -23,8 +24,9 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="server"> Сервер. </param>
 		/// <param name="parameters"> Параметры. </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns> </returns>
-		Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters);
+		Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Прямой вызов LongPoll API
@@ -40,8 +42,9 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="server"> Сервер </param>
 		/// <param name="parameters"> Вход. параметры LongPoll. </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <exception cref="ArgumentException"> </exception>
 		/// <returns> Ответ сервера в формате JSON. </returns>
-		Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters);
+		Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters, CancellationToken cancellationToken = default);
 	}
 }

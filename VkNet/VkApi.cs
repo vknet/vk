@@ -320,7 +320,14 @@ namespace VkNet
 		/// <inheritdoc />
 		public VkResponse CallLongPoll(string server, VkParameters parameters)
 		{
-			var answer = InvokeLongPoll(server, parameters);
+			return CallLongPollAsync(server, parameters, CancellationToken.None).GetAwaiter().GetResult();
+		}
+
+		/// <inheritdoc />
+		public async Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters,
+														CancellationToken cancellationToken = default)
+		{
+			var answer = await InvokeLongPollAsync(server, parameters, cancellationToken).ConfigureAwait(false);
 
 			var json = JObject.Parse(answer);
 
@@ -333,13 +340,14 @@ namespace VkNet
 		}
 
 		/// <inheritdoc />
-		public Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters)
+		public string InvokeLongPoll(string server, Dictionary<string, string> parameters)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => CallLongPoll(server, parameters));
+			return InvokeLongPollAsync(server, parameters, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
-		public string InvokeLongPoll(string server, Dictionary<string, string> parameters)
+		public async Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters,
+													CancellationToken cancellationToken = default)
 		{
 			if (string.IsNullOrEmpty(server))
 			{
@@ -352,7 +360,7 @@ namespace VkNet
 			_logger?.LogDebug(
 				$"Вызов GetLongPollHistory с сервером {server}, с параметрами {string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}"))}");
 
-			var answer = InvokeBase(server, parameters);
+			var answer = await InvokeBaseAsync(server, parameters, cancellationToken).ConfigureAwait(false);
 
 			_logger?.LogTrace($"Uri = '{server}'");
 			_logger?.LogTrace($"Json ={Environment.NewLine}{Utilities.PrettyPrintJson(answer)}");
@@ -360,13 +368,6 @@ namespace VkNet
 			VkErrors.IfErrorThrowException(answer);
 
 			return answer;
-		}
-
-		/// <inheritdoc />
-		public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters)
-		{
-			return TypeHelper.TryInvokeMethodAsync(() =>
-				InvokeLongPoll(server, parameters));
 		}
 
 		/// <inheritdoc cref="IDisposable" />
