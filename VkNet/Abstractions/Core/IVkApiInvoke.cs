@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using VkNet.Exception;
@@ -47,8 +48,12 @@ namespace VkNet.Abstractions
 		/// <param name="methodName"> Название метода. </param>
 		/// <param name="parameters"> Параметры. </param>
 		/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns> </returns>
-		Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false);
+		Task<VkResponse> CallAsync(string methodName,
+									VkParameters parameters,
+									bool skipAuthorization = false,
+									CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Вызвать метод.
@@ -56,8 +61,12 @@ namespace VkNet.Abstractions
 		/// <param name="methodName"> Название метода. </param>
 		/// <param name="parameters"> Параметры. </param>
 		/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
+		/// <param name="jsonConverters">JsonConverters</param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns> </returns>
-		Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false);
+		Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false,
+							IEnumerable<JsonConverter> jsonConverters = default,
+							CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Прямой вызов API-метода
@@ -81,7 +90,9 @@ namespace VkNet.Abstractions
 		/// Флаг, что метод можно вызывать без
 		/// авторизации.
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns> Ответ сервера в формате JSON. </returns>
-		Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false);
+		Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false,
+								CancellationToken cancellationToken = default);
 	}
 }

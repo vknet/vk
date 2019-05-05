@@ -238,7 +238,14 @@ namespace VkNet
 		[MethodImpl(MethodImplOptions.NoInlining)]
 		public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
 		{
-			var answer = CallBase(methodName, parameters, skipAuthorization);
+			return CallAsync(methodName, parameters, skipAuthorization, CancellationToken.None).GetAwaiter().GetResult();
+		}
+
+		/// <inheritdoc />
+		public async Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false,
+												CancellationToken cancellationToken = default)
+		{
+			var answer = await CallBaseAsync(methodName, parameters, skipAuthorization, cancellationToken).ConfigureAwait(false);
 
 			var json = JObject.Parse(answer);
 
@@ -251,34 +258,15 @@ namespace VkNet
 		}
 
 		/// <inheritdoc />
-		public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
+		public async Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false,
+										IEnumerable<JsonConverter> jsonConverters = default,
+										CancellationToken cancellationToken = default)
 		{
-			var task = TypeHelper.TryInvokeMethodAsync(() =>
-				Call(methodName, parameters, skipAuthorization));
+			var converters = jsonConverters?.ToArray() ?? Enumerable.Empty<JsonConverter>().ToArray();
 
-			task.ConfigureAwait(false);
+			var answer = await CallBaseAsync(methodName, parameters, skipAuthorization, cancellationToken).ConfigureAwait(false);
 
-			return task;
-		}
-
-		/// <inheritdoc />
-		public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
-		{
-			var task = TypeHelper.TryInvokeMethodAsync(() =>
-				Call<T>(methodName, parameters, skipAuthorization));
-
-			task.ConfigureAwait(false);
-
-			return task;
-		}
-
-		/// <inheritdoc />
-		[MethodImpl(MethodImplOptions.NoInlining)]
-		public T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters)
-		{
-			var answer = CallBase(methodName, parameters, skipAuthorization);
-
-			if (!jsonConverters.Any())
+			if (!converters.Any())
 			{
 				return JsonConvert.DeserializeObject<T>(answer,
 					new VkCollectionJsonConverter(),
@@ -288,12 +276,27 @@ namespace VkNet
 					new StringEnumConverter());
 			}
 
-			return JsonConvert.DeserializeObject<T>(answer, jsonConverters);
+			return JsonConvert.DeserializeObject<T>(answer, converters);
+		}
+
+		/// <inheritdoc />
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		public T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters)
+		{
+			return CallAsync<T>(methodName, parameters, skipAuthorization, jsonConverters, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		[CanBeNull]
 		public string Invoke(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
+		{
+			return InvokeAsync(methodName, parameters, skipAuthorization, CancellationToken.None).GetAwaiter().GetResult();
+		}
+
+		/// <inheritdoc />
+		[CanBeNull]
+		public async Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false,
+											CancellationToken cancellationToken = default)
 		{
 			if (!skipAuthorization && !IsAuthorized)
 			{
@@ -304,7 +307,7 @@ namespace VkNet
 			}
 
 			var url = $"https://api.vk.com/method/{methodName}";
-			var answer = InvokeBase(url, parameters);
+			var answer = await InvokeBaseAsync(url, parameters, cancellationToken).ConfigureAwait(false);
 
 			_logger?.LogTrace($"Uri = \"{url}\"");
 			_logger?.LogTrace($"Json ={Environment.NewLine}{Utilities.PrettyPrintJson(answer)}");
@@ -312,14 +315,6 @@ namespace VkNet
 			VkErrors.IfErrorThrowException(answer);
 
 			return answer;
-		}
-
-		/// <inheritdoc />
-		[CanBeNull]
-		public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false)
-		{
-			return TypeHelper.TryInvokeMethodAsync(() =>
-				Invoke(methodName, parameters, skipAuthorization));
 		}
 
 		/// <inheritdoc />
@@ -633,9 +628,11 @@ namespace VkNet
 		/// <param name="methodName"> Наименование метода </param>
 		/// <param name="parameters"> Параметры запроса </param>
 		/// <param name="skipAuthorization"> Пропустить авторизацию </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns> Ответ от vk.com в формате json </returns>
 		/// <exception cref="CaptchaNeededException"> Требуется ввести капчу </exception>
-		private string CallBase(string methodName, VkParameters parameters, bool skipAuthorization)
+		private async Task<string> CallBaseAsync(string methodName, VkParameters parameters, bool skipAuthorization,
+												CancellationToken cancellationToken = default)
 		{
 			if (!parameters.ContainsKey("v"))
 			{
@@ -655,50 +652,36 @@ namespace VkNet
 			_logger?.LogDebug(
 				$"Вызов метода {methodName}, с параметрами {string.Join(",", parameters.Where(x => x.Key != Constants.AccessToken).Select(x => $"{x.Key}={x.Value}"))}");
 
-			string answer;
+			return CaptchaSolver == null
+				? await InvokeAsync(methodName, parameters, skipAuthorization, cancellationToken).ConfigureAwait(false)
+				: await _captchaHandler.PerformAsync(async (sid, key) =>
+						{
+							parameters.Add("captcha_sid", sid);
+							parameters.Add("captcha_key", key);
 
-			if (CaptchaSolver == null)
-			{
-				answer = Invoke(methodName, parameters, skipAuthorization);
-			} else
-			{
-				answer = _captchaHandler.Perform((sid, key) =>
-				{
-					parameters.Add("captcha_sid", sid);
-					parameters.Add("captcha_key", key);
-
-					return Invoke(methodName, parameters, skipAuthorization);
-				});
-			}
-
-			return answer;
+							return await InvokeAsync(methodName, parameters, skipAuthorization, cancellationToken).ConfigureAwait(false);
+						},
+						cancellationToken)
+					.ConfigureAwait(false);
 		}
 
-		private string InvokeBase(string url, IDictionary<string, string> @params)
+		private Task<string> InvokeBaseAsync(string url, IDictionary<string, string> @params, CancellationToken cancellationToken = default)
 		{
-			var answer = string.Empty;
-
-			void SendRequest()
-			{
-				LastInvokeTime = DateTimeOffset.Now;
-
-				var response = RestClient.PostAsync(new Uri(url), @params)
-					.ConfigureAwait(false)
-					.GetAwaiter()
-					.GetResult();
-
-				answer = response.Message ?? response.Value;
-			}
-
 			if (_expireTimer == null)
 			{
 				SetTimer(0);
 			}
 
-			// Защита от превышения количества запросов в секунду
-			_rateLimiter.Perform(() => SendRequest()).ConfigureAwait(false).GetAwaiter().GetResult();
+			return _rateLimiter.Perform(async () =>
+				{
+					LastInvokeTime = DateTimeOffset.Now;
 
-			return answer;
+					var response = await RestClient.PostAsync(new Uri(url), @params, cancellationToken)
+						.ConfigureAwait(false);
+
+					return response.Value ?? response.Message;
+				},
+				cancellationToken);
 		}
 
 		/// <summary>
