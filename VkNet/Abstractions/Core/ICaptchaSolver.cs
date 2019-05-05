@@ -1,4 +1,7 @@
 ﻿// ReSharper disable CheckNamespace
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace VkNet.Utils.AntiCaptcha
 {
 	/// <summary>
@@ -14,8 +17,21 @@ namespace VkNet.Utils.AntiCaptcha
 		string Solve(string url);
 
 		/// <summary>
+		/// Распознает текст капчи.
+		/// </summary>
+		/// <param name="url"> Ссылка на изображение капчи. </param>
+		/// <param name="cancellationToken">CancellationToken</param>
+		/// <returns> Строка, содержащая текст, который был закодирован в капче. </returns>
+		Task<string> SolveAsync(string url, CancellationToken cancellationToken = default);
+
+		/// <summary>
 		/// Сообщает сервису, что последняя капча была распознана неверно.
 		/// </summary>
 		void CaptchaIsFalse();
+
+		/// <summary>
+		/// Сообщает сервису, что последняя капча была распознана неверно.
+		/// </summary>
+		Task CaptchaIsFalseAsync(CancellationToken cancellationToken = default);
 	}
 }
