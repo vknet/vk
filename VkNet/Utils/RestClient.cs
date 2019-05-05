@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Flurl.Http;
 using JetBrains.Annotations;
@@ -33,7 +34,8 @@ namespace VkNet.Utils
 		public TimeSpan Timeout { get; set; }
 
 		/// <inheritdoc />
-		public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
+		public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters,
+													CancellationToken cancellationToken = default)
 		{
 			if (_logger != null)
 			{
@@ -45,11 +47,15 @@ namespace VkNet.Utils
 				_logger.LogDebug($"GET request: {uriBuilder.Uri}");
 			}
 
-			return CallAsync(() => uri.ToString().AllowAnyHttpStatus().SetQueryParams(parameters).GetAsync());
+			return CallAsync(() => uri.ToString()
+				.AllowAnyHttpStatus()
+				.SetQueryParams(parameters)
+				.GetAsync(cancellationToken));
 		}
 
 		/// <inheritdoc />
-		public Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
+		public Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters,
+													CancellationToken cancellationToken = default)
 		{
 			if (_logger != null)
 			{
@@ -59,7 +65,9 @@ namespace VkNet.Utils
 
 			var content = new FormUrlEncodedContent(parameters);
 
-			return CallAsync(() => uri.ToString().AllowAnyHttpStatus().PostAsync(content));
+			return CallAsync(() => uri.ToString()
+				.AllowAnyHttpStatus()
+				.PostAsync(content, cancellationToken));
 		}
 
 		/// <inheritdoc />

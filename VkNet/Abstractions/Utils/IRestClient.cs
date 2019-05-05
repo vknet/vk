@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Utils;
 
@@ -28,7 +29,7 @@ namespace VkNet.Abstractions.Utils
 		/// <param name="uri"> Uri </param>
 		/// <param name="parameters"> </param>
 		/// <returns> String result </returns>
-		Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters);
+		Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// POST запрос
@@ -36,6 +37,6 @@ namespace VkNet.Abstractions.Utils
 		/// <param name="uri"> Uri </param>
 		/// <param name="parameters"> Параметры </param>
 		/// <returns> Строковый результат </returns>
-		Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters);
+		Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, CancellationToken cancellationToken = default);
 	}
 }
