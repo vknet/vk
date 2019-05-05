@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Core;
@@ -23,10 +25,16 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public int MaxCaptchaRecognitionCount { get; set; } = 0;
+		public int MaxCaptchaRecognitionCount { get; set; }
 
 		/// <inheritdoc />
 		public T Perform<T>(Func<long?, string, T> action)
+		{
+			return PerformAsync(Transform(action), CancellationToken.None).GetAwaiter().GetResult();
+		}
+
+		/// <inheritdoc />
+		public async Task<T> PerformAsync<T>(Func<long?, string, Task<T>> action, CancellationToken cancellationToken = default)
 		{
 			var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
 			var numberOfRemainingAttemptsToAuthorize = MaxCaptchaRecognitionCount + 1;
@@ -39,16 +47,30 @@ namespace VkNet.Utils
 			{
 				try
 				{
-					result = action.Invoke(captchaSidTemp, captchaKeyTemp);
+					result = await action(captchaSidTemp, captchaKeyTemp).ConfigureAwait(false);
 					numberOfRemainingAttemptsToAuthorize--;
 					callCompleted = true;
 				}
 				catch (CaptchaNeededException captchaNeededException)
 				{
-					RepeatSolveCaptchaAsync(captchaNeededException,
-						ref numberOfRemainingAttemptsToSolveCaptcha,
-						ref captchaSidTemp,
-						ref captchaKeyTemp);
+					_logger?.LogWarning("Повторная обработка капчи");
+
+					if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
+					{
+						await _captchaSolver.CaptchaIsFalseAsync(cancellationToken).ConfigureAwait(false);
+					}
+
+					if (numberOfRemainingAttemptsToSolveCaptcha <= 0)
+					{
+						continue;
+					}
+
+					captchaSidTemp = captchaNeededException.Sid;
+
+					captchaKeyTemp = await _captchaSolver.SolveAsync(captchaNeededException.Img?.AbsoluteUri, cancellationToken)
+						.ConfigureAwait(false);
+
+					numberOfRemainingAttemptsToSolveCaptcha--;
 				}
 			} while (numberOfRemainingAttemptsToAuthorize > 0 && !callCompleted);
 
@@ -63,26 +85,19 @@ namespace VkNet.Utils
 			throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
 		}
 
-		private void RepeatSolveCaptchaAsync(CaptchaNeededException captchaNeededException,
-											ref int numberOfRemainingAttemptsToSolveCaptcha,
-											ref long? captchaSidTemp,
-											ref string captchaKeyTemp)
+		private Func<long?, string, Task<T>> Transform<T>(Func<long?, string, T> action)
 		{
-			_logger?.LogWarning("Повторная обработка капчи");
+			Func<long?, string, Task<T>> transform;
 
-			if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
-			{
-				_captchaSolver?.CaptchaIsFalse();
-			}
+		#if NET40
+			transform = (sid, key) => TaskEx.FromResult(action(sid, key));
 
-			if (numberOfRemainingAttemptsToSolveCaptcha <= 0)
-			{
-				return;
-			}
+			return transform;
+		#else
+			transform = (sid, key) => Task.FromResult(action(sid, key));
 
-			captchaSidTemp = captchaNeededException.Sid;
-			captchaKeyTemp = _captchaSolver?.Solve(captchaNeededException.Img?.AbsoluteUri);
-			numberOfRemainingAttemptsToSolveCaptcha--;
+			return transform;
+		#endif
 		}
 	}
 }

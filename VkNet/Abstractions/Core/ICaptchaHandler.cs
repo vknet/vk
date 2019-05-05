@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace VkNet.Abstractions.Core
 {
@@ -20,5 +22,14 @@ namespace VkNet.Abstractions.Core
 		/// <typeparam name="T"> Тип результата </typeparam>
 		/// <returns> Результат действия </returns>
 		T Perform<T>(Func<long?, string, T> action);
+
+		/// <summary>
+		/// Обработка капчи
+		/// </summary>
+		/// <param name="action"> Действие </param>
+		/// <param name="cancellationToken">CancellationToken</param>
+		/// <typeparam name="T"> Тип результата </typeparam>
+		/// <returns> Результат действия </returns>
+		Task<T> PerformAsync<T>(Func<long?, string, Task<T>> action, CancellationToken cancellationToken = default);
 	}
 }
