@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Flurl;
 using VkNet.Exception;
@@ -16,12 +17,13 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="url"> URL. </param>
 		/// <param name="webProxy"> Данные прокси сервера. </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns> Результат </returns>
-		public static async Task<WebCallResult> MakeCallAsync(string url, IWebProxy webProxy = null)
+		public static async Task<WebCallResult> MakeCallAsync(string url, IWebProxy webProxy = null, CancellationToken cancellationToken = default)
 		{
 			using (var call = new WebCall(url, new Cookies(), webProxy))
 			{
-				var response = await call._request.GetAsync(url).ConfigureAwait(false);
+				var response = await call._request.GetAsync(url, cancellationToken).ConfigureAwait(false);
 
 				return await call.MakeRequestAsync(response, new Uri(url), webProxy)
 					.ConfigureAwait(false);
@@ -34,14 +36,15 @@ namespace VkNet.Utils
 		/// <param name="url"> URL. </param>
 		/// <param name="parameters"> Параметры запроса. </param>
 		/// <param name="webProxy"> Хост. </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns> Результат </returns>
 		public static async Task<WebCallResult> PostCallAsync(string url, IEnumerable<KeyValuePair<string, string>> parameters,
-															IWebProxy webProxy)
+															IWebProxy webProxy, CancellationToken cancellationToken = default)
 		{
 			using (var call = new WebCall(url, new Cookies(), webProxy))
 			{
 				var request = await call._request
-					.PostAsync(url, new FormUrlEncodedContent(parameters))
+					.PostAsync(url, new FormUrlEncodedContent(parameters), cancellationToken)
 					.ConfigureAwait(false);
 
 				return await call.MakeRequestAsync(request, new Uri(url), webProxy)
@@ -54,15 +57,17 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="form"> Форма. </param>
 		/// <param name="webProxy"> Хост. </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns> Результат </returns>
-		public static async Task<WebCallResult> PostAsync(WebForm form, IWebProxy webProxy)
+		public static async Task<WebCallResult> PostAsync(WebForm form, IWebProxy webProxy, CancellationToken cancellationToken = default)
 		{
 			using (var call = new WebCall(form.ActionUrl, form.Cookies, webProxy, false))
 			{
 				SpecifyHeadersForFormRequest(form, call);
 
 				var request = await call._request.PostAsync(form.ActionUrl,
-						new FormUrlEncodedContent(form.GetFormFields()))
+						new FormUrlEncodedContent(form.GetFormFields()),
+						cancellationToken)
 					.ConfigureAwait(false);
 
 				return await call.MakeRequestAsync(request, new Uri(form.ActionUrl), webProxy)
@@ -75,8 +80,9 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="url"> URL. </param>
 		/// <param name="webProxy"> Хост. </param>
+		/// <param name="cancellationToken"></param>
 		/// <returns> Результат </returns>
-		private async Task<WebCallResult> RedirectToAsync(string url, IWebProxy webProxy = null)
+		private async Task<WebCallResult> RedirectToAsync(string url, IWebProxy webProxy = null, CancellationToken cancellationToken = default)
 		{
 			using (var call = new WebCall(url, _result.Cookies, webProxy))
 			{
@@ -84,7 +90,7 @@ namespace VkNet.Utils
 				headers.Add("Method", "GET");
 				headers.Add("ContentType", "text/html");
 
-				var response = await call._request.GetAsync(url).ConfigureAwait(false);
+				var response = await call._request.GetAsync(url, cancellationToken).ConfigureAwait(false);
 
 				return await call.MakeRequestAsync(response, new Uri(url), webProxy)
 					.ConfigureAwait(false);
@@ -99,7 +105,7 @@ namespace VkNet.Utils
 		/// <param name="response"> Ответ сервера </param>
 		/// <returns> Результат </returns>
 		/// <exception cref="VkApiException"> Response is null. </exception>
-		private async Task<WebCallResult> MakeRequestAsync(HttpResponseMessage response, Uri uri, IWebProxy webProxy)
+		private async Task<WebCallResult> MakeRequestAsync(HttpResponseMessage response, Uri uri, IWebProxy webProxy, CancellationToken cancellationToken = default)
 		{
 			using (var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
 			{
@@ -118,12 +124,12 @@ namespace VkNet.Utils
 				if (IsAbsoluteUrl(response.Headers.Location?.ToString()))
 				{
 					return response.StatusCode == HttpStatusCode.Redirect
-						? await RedirectToAsync(response.Headers.Location.AbsoluteUri, webProxy).ConfigureAwait(false)
+						? await RedirectToAsync(response.Headers.Location.AbsoluteUri, webProxy, cancellationToken).ConfigureAwait(false)
 						: _result;
 				}
 
 				return response.StatusCode == HttpStatusCode.Redirect
-					? await RedirectToAsync(Url.Combine(_result.RequestUrl.GetLeftPart(UriPartial.Authority), response.Headers.Location.OriginalString), webProxy)
+					? await RedirectToAsync(Url.Combine(_result.RequestUrl.GetLeftPart(UriPartial.Authority), response.Headers.Location.OriginalString), webProxy, cancellationToken)
 						.ConfigureAwait(false)
 					: _result;
 			}
