@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
@@ -14,9 +15,9 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 	public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 	{
 		/// <inheritdoc />
-		public async Task<VkHtmlFormResult> GetFormAsync(Url url)
+		public async Task<VkHtmlFormResult> GetFormAsync(Url url, CancellationToken cancellationToken = default)
 		{
-				var httpResponseMessage = await url.GetAsync().ConfigureAwait(false);
+				var httpResponseMessage = await url.GetAsync(cancellationToken).ConfigureAwait(false);
 				var stream = await httpResponseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false);
 
 				var doc = new HtmlDocument();
