@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Flurl;
 using Moq;
@@ -68,7 +69,7 @@ namespace VkNet.Tests.Infrastructure
 
 			mocker.Setup<IVkApiVersionManager, string>(x => x.Version).Returns("5.92");
 
-			mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x => x.ExecuteAsync(It.IsAny<Url>()))
+			mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x => x.ExecuteAsync(It.IsAny<Url>(), CancellationToken.None))
 				.ReturnsAsync(new AuthorizationFormResult
 				{
 					ResponseUrl = "https://m.vk.com/login?act=authcheck&m=442",

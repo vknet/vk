@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading;
 using Moq;
 using NUnit.Framework;
 using VkNet.Enums;
@@ -54,7 +55,7 @@ namespace VkNet.Tests
 			// переписать тест, когда придумаю более подходящий метод проверки
 			Mock.Get(Api.RestClient)
 				.Verify(m =>
-						m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()),
+						m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>(), CancellationToken.None),
 					Times.AtMost(4));
 		}
 
