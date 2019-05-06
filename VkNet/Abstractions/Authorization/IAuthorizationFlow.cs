@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using VkNet.Model;
 
 namespace VkNet.Abstractions.Authorization
@@ -11,8 +12,9 @@ namespace VkNet.Abstractions.Authorization
 		/// <summary>
 		/// Авторизация
 		/// </summary>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns> Access token. </returns>
-		Task<AuthorizationResult> AuthorizeAsync();
+		Task<AuthorizationResult> AuthorizeAsync(CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Задать параметры авторизации

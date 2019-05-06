@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
@@ -50,7 +51,7 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public async Task<AuthorizationResult> AuthorizeAsync()
+		public async Task<AuthorizationResult> AuthorizeAsync(CancellationToken cancellationToken = default)
 		{
 			_logger?.LogDebug("Валидация данных.");
 			ValidateAuthorizationParameters();
@@ -63,10 +64,10 @@ namespace VkNet.Utils
 				"123435");
 
 			var loginFormResult = await _authorizationFormsFactory.Create(ImplicitFlowPageType.LoginPassword)
-				.ExecuteAsync(authorizeUrlResult)
+				.ExecuteAsync(authorizeUrlResult, cancellationToken)
 				.ConfigureAwait(false);
 
-			return await NextStepAsync(loginFormResult).ConfigureAwait(false);
+			return await NextStepAsync(loginFormResult, cancellationToken).ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
@@ -106,13 +107,13 @@ namespace VkNet.Utils
 			};
 
 			var query = vkAuthParams.Select(x => $"{x.Key}={x.Value}");
-			var stringQuery = string.Join("&",query);
+			var stringQuery = string.Join("&", query);
 			var result = $"{url}{stringQuery}";
 
 			return new Uri(result);
 		}
 
-		private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult)
+		private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult, CancellationToken cancellationToken = default)
 		{
 			var pageType = _vkAuthorization.GetPageType(formResult.ResponseUrl.ToUri());
 
@@ -166,10 +167,10 @@ namespace VkNet.Utils
 			}
 
 			var resultForm = await _authorizationFormsFactory.Create(pageType)
-				.ExecuteAsync(formResult.ResponseUrl)
+				.ExecuteAsync(formResult.ResponseUrl, cancellationToken)
 				.ConfigureAwait(false);
 
-			return await NextStepAsync(resultForm).ConfigureAwait(false);
+			return await NextStepAsync(resultForm, cancellationToken).ConfigureAwait(false);
 		}
 
 		/// <summary>

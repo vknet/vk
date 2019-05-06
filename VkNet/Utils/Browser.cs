@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using System.Threading;
 using Flurl;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
@@ -115,7 +116,7 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public AuthorizationResult Validate(string validateUrl)
 		{
-			return ValidateAsync(validateUrl).Result;
+			return ValidateAsync(validateUrl, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		private bool HasСonfirmationRights(WebCallResult result)
@@ -192,7 +193,7 @@ namespace VkNet.Utils
 
 		private VkAuthorization2 OldValidate(string validateUrl, string phoneNumber)
 		{
-			return OldValidateAsync(validateUrl, phoneNumber).Result;
+			return OldValidateAsync(validateUrl, phoneNumber, CancellationToken.None).GetAwaiter().GetResult();
 		}
 	}
 }
