@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using Flurl;
 using VkNet.Enums;
@@ -21,7 +22,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// Выполнить авторизацию
 		/// </summary>
 		/// <param name="url">Url запроса</param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>Содержимое ответа от vk</returns>
-		Task<AuthorizationFormResult> ExecuteAsync(Url url);
+		Task<AuthorizationFormResult> ExecuteAsync(Url url, CancellationToken cancellationToken = default);
 	}
 }

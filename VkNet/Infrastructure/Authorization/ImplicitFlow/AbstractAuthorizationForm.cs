@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
@@ -23,16 +24,16 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		public abstract ImplicitFlowPageType GetPageType();
 
 		/// <inheritdoc />
-		public async Task<AuthorizationFormResult> ExecuteAsync(Url url)
+		public async Task<AuthorizationFormResult> ExecuteAsync(Url url, CancellationToken cancellationToken = default)
 		{
-			var form = await _htmlParser.GetFormAsync(url).ConfigureAwait(false);
+			var form = await _htmlParser.GetFormAsync(url, cancellationToken).ConfigureAwait(false);
 
 			FillFormFields(form);
 
 			using (var cli = new FlurlClient(form.Action).EnableCookies())
 			{
 				var responseMessage = await cli.Request()
-					.PostMultipartAsync(mp => mp.Add(new FormUrlEncodedContent(form.Fields)))
+					.PostMultipartAsync(mp => mp.Add(new FormUrlEncodedContent(form.Fields)), cancellationToken)
 					.ConfigureAwait(false);
 
 				if (!responseMessage.IsSuccessStatusCode)
