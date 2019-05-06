@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,7 +22,6 @@ using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
-using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
 using VkNet.Utils;
 using VkNet.Utils.AntiCaptcha;
@@ -166,14 +164,22 @@ namespace VkNet
 		/// <inheritdoc />
 		public void Authorize(IApiAuthParams @params)
 		{
+			AuthorizeAsync(@params).GetAwaiter().GetResult();
+		}
+
+		/// <inheritdoc />
+		public void Authorize(ApiAuthParams @params)
+		{
+			Authorize((IApiAuthParams) @params);
+		}
+
+		/// <inheritdoc />
+		public async Task AuthorizeAsync(IApiAuthParams @params, CancellationToken cancellationToken = default)
+		{
 			// если токен не задан - обычная авторизация
 			if (@params.AccessToken == null)
 			{
-				AuthorizeWithAntiCaptcha(@params);
-
-				// Сбросить после использования
-				@params.CaptchaSid = null;
-				@params.CaptchaKey = "";
+				await BaseAuthorizeAsync(@params, cancellationToken).ConfigureAwait(false);
 			}
 
 			// если токен задан - авторизация с помощью токена полученного извне
@@ -187,24 +193,24 @@ namespace VkNet
 		}
 
 		/// <inheritdoc />
-		public void Authorize(ApiAuthParams @params)
-		{
-			Authorize((IApiAuthParams) @params);
-		}
-
-		/// <inheritdoc />
-		public Task AuthorizeAsync(IApiAuthParams @params)
-		{
-			return TypeHelper.TryInvokeMethodAsync(() => Authorize(@params));
-		}
-
-		/// <inheritdoc />
 		public void RefreshToken(Func<string> code = null)
+		{
+			RefreshTokenAsync(code, CancellationToken.None).GetAwaiter().GetResult();
+		}
+
+		/// <inheritdoc />
+		public void LogOut()
+		{
+			LogOutAsync(CancellationToken.None).GetAwaiter().GetResult();
+		}
+
+		/// <inheritdoc />
+		public async Task RefreshTokenAsync(Func<string> code = null, CancellationToken cancellationToken = default)
 		{
 			if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
 			{
 				_ap.TwoFactorAuthorization = _ap.TwoFactorAuthorization ?? code;
-				AuthorizeWithAntiCaptcha(_ap);
+				await BaseAuthorizeAsync(_ap, cancellationToken).ConfigureAwait(false);
 			} else
 			{
 				const string message =
@@ -217,21 +223,9 @@ namespace VkNet
 		}
 
 		/// <inheritdoc />
-		public void LogOut()
+		public async Task LogOutAsync(CancellationToken cancellationToken = default)
 		{
 			AccessToken = string.Empty;
-		}
-
-		/// <inheritdoc />
-		public Task RefreshTokenAsync(Func<string> code = null)
-		{
-			return TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code));
-		}
-
-		/// <inheritdoc />
-		public Task LogOutAsync()
-		{
-			return TypeHelper.TryInvokeMethodAsync(LogOut);
 		}
 
 		/// <inheritdoc />
@@ -686,32 +680,6 @@ namespace VkNet
 		}
 
 		/// <summary>
-		/// Авторизация и получение токена
-		/// </summary>
-		/// <param name="authParams"> Параметры авторизации </param>
-		/// <exception cref="VkApiAuthorizationException"> </exception>
-		private void AuthorizeWithAntiCaptcha(IApiAuthParams authParams)
-		{
-			_logger?.LogDebug("Старт авторизации");
-
-			if (CaptchaSolver == null)
-			{
-				BaseAuthorize(authParams);
-			} else
-			{
-				_captchaHandler.Perform((sid, key) =>
-				{
-					_logger?.LogDebug("Авторизация с использование капчи.");
-					authParams.CaptchaSid = sid;
-					authParams.CaptchaKey = key;
-					BaseAuthorize(authParams);
-
-					return true;
-				});
-			}
-		}
-
-		/// <summary>
 		/// Авторизация через установку токена
 		/// </summary>
 		/// <param name="accessToken"> Токен </param>
@@ -792,15 +760,18 @@ namespace VkNet
 		/// Авторизация и получение токена
 		/// </summary>
 		/// <param name="authParams"> Параметры авторизации </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <exception cref="VkApiAuthorizationException"> </exception>
-		private void BaseAuthorize(IApiAuthParams authParams)
+		private async Task BaseAuthorizeAsync(IApiAuthParams authParams, CancellationToken cancellationToken = default)
 		{
+			_logger?.LogDebug("Старт авторизации");
+
 			StopTimer();
 
 			LastInvokeTime = DateTimeOffset.Now;
 
 			AuthorizationFlow.SetAuthorizationParams(authParams);
-			var authorization = AuthorizationFlow.AuthorizeAsync().GetAwaiter().GetResult();
+			var authorization = await AuthorizationFlow.AuthorizeAsync(cancellationToken).ConfigureAwait(false);
 
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
