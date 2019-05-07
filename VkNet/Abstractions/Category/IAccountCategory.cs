@@ -3,7 +3,6 @@ using JetBrains.Annotations;
 using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
-using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
@@ -55,9 +54,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setNameInMenu
 		/// </remarks>
-		bool SetNameInMenu([NotNull]
-							string name
-							, long? userId = null);
+		bool SetNameInMenu([NotNull] string name, long? userId = null);
 
 		/// <summary>
 		/// Помечает текущего пользователя как online на 15 минут.
@@ -148,11 +145,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setSilenceMode
 		/// </remarks>
-		bool SetSilenceMode([NotNull]
-							string deviceId
-							, int? time = null
-							, int? peerId = null
-							, bool? sound = null);
+		bool SetSilenceMode([NotNull] string deviceId, int? time = null, int? peerId = null, bool? sound = null);
 
 		/// <summary>
 		/// Позволяет получать настройки Push уведомлений.
@@ -201,7 +194,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setPushSettings
 		/// </remarks>
-		bool SetPushSettings(string deviceId, PushSettings settings, string key, List<string> value);
+		bool SetPushSettings(string deviceId, PushSettings settings, string key, IEnumerable<string> value);
 
 		/// <summary>
 		/// Получает настройки текущего пользователя в данном приложении.
@@ -357,10 +350,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setInfo
 		/// </remarks>
-		bool SetInfo([NotNull]
-					string name
-					, [NotNull]
-					string value);
+		bool SetInfo([NotNull] string name, [NotNull] string value);
 
 		/// <summary>
 		/// Позволяет сменить пароль пользователя после успешного восстановления доступа к
@@ -392,10 +382,10 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.changePassword
 		/// </remarks>
-		AccountChangePasswordResult ChangePassword(string oldPassword
-													, string newPassword
-													, string restoreSid = null
-													, string changePasswordHash = null);
+		AccountChangePasswordResult ChangePassword(string oldPassword,
+													string newPassword,
+													string restoreSid = null,
+													string changePasswordHash = null);
 
 		/// <summary>
 		/// Возвращает информацию о текущем профиле.

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using JetBrains.Annotations;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
@@ -49,7 +50,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Counters GetCounters(CountersFilter filter)
 		{
-			return _vk.Call(methodName: "account.getCounters", parameters: new VkParameters { { "filter", filter } });
+			return GetCountersAsync(filter, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -75,15 +76,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool SetNameInMenu(string name, long? userId = null)
 		{
-			VkErrors.ThrowIfNullOrEmpty(expr: () => name);
-
-			var parameters = new VkParameters
-			{
-					{ "name", name }
-					, { "user_id", userId }
-			};
-
-			return _vk.Call(methodName: "account.setNameInMenu", parameters: parameters);
+			return SetNameInMenuAsync(name, userId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -102,9 +95,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool SetOnline(bool? voip = null)
 		{
-			var parameters = new VkParameters { { "voip", voip } };
-
-			return _vk.Call(methodName: "account.setOnline", parameters: parameters);
+			return SetOnlineAsync(voip).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -118,7 +109,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool SetOffline()
 		{
-			return _vk.Call(methodName: "account.setOffline", parameters: VkParameters.Empty);
+			return SetOfflineAsync(CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -137,9 +128,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool RegisterDevice(AccountRegisterDeviceParams @params)
 		{
-			VkErrors.ThrowIfNullOrEmpty(expr: () => @params.Token);
-
-			return _vk.Call(methodName: "account.registerDevice", parameters: @params);
+			return RegisterDeviceAsync(@params, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -165,15 +154,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool UnregisterDevice(string deviceId, bool? sandbox = null)
 		{
-			VkErrors.ThrowIfNullOrEmpty(expr: () => deviceId);
-
-			var parameters = new VkParameters
-			{
-					{ "device_id", deviceId }
-					, { "sandbox", sandbox }
-			};
-
-			return _vk.Call(methodName: "account.unregisterDevice", parameters: parameters);
+			return UnregisterDeviceAsync(deviceId, sandbox, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -201,17 +182,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool SetSilenceMode(string deviceId, int? time = null, int? peerId = null, bool? sound = null)
 		{
-			VkErrors.ThrowIfNullOrEmpty(expr: () => deviceId);
-
-			var parameters = new VkParameters
-			{
-					{ "device_id", deviceId }
-					, { "time", time }
-					, { "peer_id", peerId }
-					, { "sound", sound }
-			};
-
-			return _vk.Call(methodName: "account.setSilenceMode", parameters: parameters);
+			return SetSilenceModeAsync(deviceId, time, peerId, sound, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -236,12 +207,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public AccountPushSettings GetPushSettings(string deviceId)
 		{
-			var parameters = new VkParameters
-			{
-					{ "device_id", deviceId }
-			};
-
-			return _vk.Call(methodName: "account.getPushSettings", parameters: parameters);
+			return GetPushSettingsAsync(deviceId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -269,17 +235,9 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setPushSettings
 		/// </remarks>
-		public bool SetPushSettings(string deviceId, PushSettings settings, string key, List<string> value)
+		public bool SetPushSettings(string deviceId, PushSettings settings, string key, IEnumerable<string> value)
 		{
-			var parameters = new VkParameters
-			{
-					{ "device_id", deviceId }
-					, { "settings", settings }
-					, { "key", key }
-					, { "value", value }
-			};
-
-			return _vk.Call(methodName: "account.setPushSettings", parameters: parameters);
+			return SetPushSettingsAsync(deviceId, settings, key, value, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -311,10 +269,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "user_id", userId }
+				{ "user_id", userId }
 			};
 
-			return _vk.Call(methodName: "account.getAppPermissions", parameters: parameters);
+			return _vk.Call("account.getAppPermissions", parameters);
 		}
 
 		/// <summary>
@@ -346,13 +304,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public InformationAboutOffers GetActiveOffers(ulong? offset = null, ulong? count = null)
 		{
-			var parameters = new VkParameters
-			{
-					{ "offset", offset }
-					, { "count", count }
-			};
-
-			return _vk.Call(methodName: "account.getActiveOffers", parameters: parameters);
+			return GetActiveOffersAsync(offset, count, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -371,14 +323,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool BanUser(long userId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
-
-			var parameters = new VkParameters
-			{
-					{ "user_id", userId }
-			};
-
-			return _vk.Call(methodName: "account.banUser", parameters: parameters);
+			return BanUserAsync(userId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -397,14 +342,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool UnbanUser(long userId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
-
-			var parameters = new VkParameters
-			{
-					{ "user_id", userId }
-			};
-
-			return _vk.Call(methodName: "account.unbanUser", parameters: parameters);
+			return UnbanUserAsync(userId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -428,16 +366,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public AccountGetBannedResult GetBanned(int? offset = null, int? count = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
-			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
-
-			var parameters = new VkParameters
-			{
-					{ "offset", offset }
-					, { "count", count }
-			};
-
-			return _vk.Call<AccountGetBannedResult>(methodName: "account.getBanned", parameters: parameters);
+			return GetBannedAsync(offset, count, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -474,7 +403,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public AccountInfo GetInfo(AccountFields fields = null)
 		{
-			return _vk.Call(methodName: "account.getInfo", parameters: new VkParameters { { "fields", fields } });
+			return GetInfoAsync(fields, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -490,13 +419,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool SetInfo(string name, string value)
 		{
-			var parameters = new VkParameters
-			{
-					{ "name", name }
-					, { "value", value }
-			};
-
-			return _vk.Call(methodName: "account.setInfo", parameters: parameters);
+			return SetInfoAsync(name, value, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -529,17 +452,14 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.changePassword
 		/// </remarks>
-		public AccountChangePasswordResult ChangePassword(string oldPassword, string newPassword, string restoreSid = null, string changePasswordHash = null)
+		public AccountChangePasswordResult ChangePassword(string oldPassword,
+														string newPassword,
+														string restoreSid = null,
+														string changePasswordHash = null)
 		{
-			var parameters = new VkParameters
-			{
-				{ "restore_sid", restoreSid },
-				{ "change_password_hash", changePasswordHash },
-				{ "old_password", oldPassword },
-				{ "new_password", newPassword }
-			};
-
-			return _vk.Call<AccountChangePasswordResult>(methodName: "account.changePassword", parameters: parameters);
+			return ChangePasswordAsync(oldPassword, newPassword, restoreSid, changePasswordHash, CancellationToken.None)
+				.GetAwaiter()
+				.GetResult();
 		}
 
 		/// <summary>
@@ -552,25 +472,7 @@ namespace VkNet.Categories
 		[Pure]
 		public AccountSaveProfileInfoParams GetProfileInfo()
 		{
-			User user = _vk.Call(methodName: "account.getProfileInfo", parameters: VkParameters.Empty);
-
-			return new AccountSaveProfileInfoParams
-			{
-					City = user.City
-					, Country = user.Country
-					, BirthDate = user.BirthDate
-					, BirthdayVisibility = user.BirthdayVisibility
-					, FirstName = user.FirstName
-					, LastName = user.LastName
-					, HomeTown = user.HomeTown
-					, MaidenName = user.MaidenName
-					, Relation = user.Relation
-					, Sex = user.Sex
-					, RelationPartner = user.RelationPartner
-					, ScreenName = user.ScreenName
-					, Status = user.Status
-					, Phone = user.MobilePhone
-			};
+			return GetProfileInfoAsync(CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -591,10 +493,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool SaveProfileInfo(int cancelRequestId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => cancelRequestId);
-
-			return _vk.Call(methodName: "account.saveProfileInfo"
-					, parameters: new VkParameters { { "cancel_request_id", cancelRequestId } })[key: "changed"];
+			return SaveProfileInfoAsync(cancelRequestId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -613,7 +512,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveProfileInfoParams @params)
 		{
-			var response = _vk.Call(methodName: "account.saveProfileInfo", parameters: @params);
+			var response = _vk.Call("account.saveProfileInfo", @params);
 
 			changeNameRequest = null;
 

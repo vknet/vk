@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -11,130 +12,281 @@ namespace VkNet.Categories
 	public partial class AccountCategory
 	{
 		/// <inheritdoc />
-		public Task<Counters> GetCountersAsync(CountersFilter filter)
+		public async Task<Counters> GetCountersAsync(CountersFilter filter, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetCounters(filter));
+			return await _vk.CallAsync("account.getCounters",
+					new VkParameters
+					{
+						{ "filter", filter }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SetNameInMenuAsync(string name, long? userId = null)
+		public async Task<bool> SetNameInMenuAsync(string name, long? userId = null, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => SetNameInMenu(name, userId));
+			return await _vk.CallAsync("account.setNameInMenu",
+					new VkParameters
+					{
+						{ "name", name },
+						{ "user_id", userId }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SetOnlineAsync(bool? voip = null)
+		public async Task<bool> SetOnlineAsync(bool? voip = null, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => SetOnline(voip));
+			return await _vk.CallAsync("account.setOnline",
+					new VkParameters
+					{
+						{ "voip", voip }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SetOfflineAsync()
+		public async Task<bool> SetOfflineAsync(CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => SetOffline());
+			return await _vk.CallAsync("account.setOffline",
+					VkParameters.Empty,
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> RegisterDeviceAsync(AccountRegisterDeviceParams @params)
+		public async Task<bool> RegisterDeviceAsync(AccountRegisterDeviceParams @params, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => RegisterDevice(@params));
+			return await _vk.CallAsync("account.registerDevice",
+					@params,
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> UnregisterDeviceAsync(string deviceId, bool? sandbox = null)
+		public async Task<bool> UnregisterDeviceAsync(string deviceId, bool? sandbox = null, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => UnregisterDevice(deviceId, sandbox));
+			return await _vk.CallAsync("account.unregisterDevice",
+					new VkParameters
+					{
+						{ "device_id", deviceId },
+						{ "sandbox", sandbox }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SetSilenceModeAsync(string deviceId, int? time = null, int? peerId = null, bool? sound = null)
+		public async Task<bool> SetSilenceModeAsync(string deviceId,
+													int? time = null,
+													int? peerId = null,
+													bool? sound = null,
+													CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() =>
-				SetSilenceMode(deviceId, time, peerId, sound));
+			return await _vk.CallAsync("account.setSilenceMode",
+					new VkParameters
+					{
+						{ "device_id", deviceId },
+						{ "time", time },
+						{ "peer_id", peerId },
+						{ "sound", sound }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<AccountPushSettings> GetPushSettingsAsync(string deviceId)
+		public async Task<AccountPushSettings> GetPushSettingsAsync(string deviceId, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetPushSettings(deviceId));
+			return await _vk.CallAsync("account.getPushSettings",
+					new VkParameters
+					{
+						{ "device_id", deviceId }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SetPushSettingsAsync(string deviceId, PushSettings settings, string key, List<string> value)
+		public async Task<bool> SetPushSettingsAsync(string deviceId,
+													PushSettings settings,
+													string key,
+													IEnumerable<string> value,
+													CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() =>
-				SetPushSettings(deviceId, settings, key, value));
+			return await _vk.CallAsync("account.setPushSettings",
+					new VkParameters
+					{
+						{ "device_id", deviceId },
+						{ "settings", settings },
+						{ "key", key },
+						{ "value", value }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<long> GetAppPermissionsAsync(long userId)
+		public async Task<long> GetAppPermissionsAsync(long userId, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetAppPermissions(userId));
+			return await _vk.CallAsync("account.getAppPermissions",
+					new VkParameters
+					{
+						{ "user_id", userId }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<InformationAboutOffers> GetActiveOffersAsync(ulong? offset = null, ulong? count = null)
+		public async Task<InformationAboutOffers> GetActiveOffersAsync(ulong? offset = null,
+																		ulong? count = null,
+																		CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetActiveOffers(offset, count));
+			return await _vk.CallAsync("account.getActiveOffers",
+					new VkParameters
+					{
+						{ "offset", offset },
+						{ "count", count }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> BanUserAsync(long userId)
+		public async Task<bool> BanUserAsync(long userId, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => BanUser(userId));
+			return await _vk.CallAsync("account.banUser",
+					new VkParameters
+					{
+						{ "user_id", userId }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> UnbanUserAsync(long userId)
+		public async Task<bool> UnbanUserAsync(long userId, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => UnbanUser(userId));
+			return await _vk.CallAsync("account.unbanUser",
+					new VkParameters
+					{
+						{ "user_id", userId }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<AccountGetBannedResult> GetBannedAsync(int? offset = null, int? count = null)
+		public Task<AccountGetBannedResult> GetBannedAsync(int? offset = null,
+															int? count = null,
+															CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetBanned(offset, count));
+			return _vk.CallAsync<AccountGetBannedResult>("account.getBanned",
+				new VkParameters
+				{
+					{ "offset", offset },
+					{ "count", count }
+				},
+				cancellationToken: cancellationToken);
 		}
 
 		/// <inheritdoc />
-		public Task<AccountInfo> GetInfoAsync(AccountFields fields = null)
+		public async Task<AccountInfo> GetInfoAsync(AccountFields fields = null, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetInfo(fields));
+			return await _vk.CallAsync("account.getInfo",
+					new VkParameters
+					{
+						{ "fields", fields }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SetInfoAsync(string name, string value)
+		public async Task<bool> SetInfoAsync(string name, string value, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => SetInfo(name, value));
+			return await _vk.CallAsync("account.setInfo",
+					new VkParameters
+					{
+						{ "name", name },
+						{ "value", value }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<AccountChangePasswordResult> ChangePasswordAsync(string oldPassword, string newPassword, string restoreSid = null,
-																	string changePasswordHash = null)
+		public Task<AccountChangePasswordResult> ChangePasswordAsync(string oldPassword,
+																	string newPassword,
+																	string restoreSid = null,
+																	string changePasswordHash = null,
+																	CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => ChangePassword(oldPassword,
-				newPassword,
-				restoreSid,
-				changePasswordHash));
+			return _vk.CallAsync<AccountChangePasswordResult>("account.changePassword",
+				new VkParameters
+				{
+					{ "restore_sid", restoreSid },
+					{ "change_password_hash", changePasswordHash },
+					{ "old_password", oldPassword },
+					{ "new_password", newPassword }
+				},
+				cancellationToken: cancellationToken);
 		}
 
 		/// <inheritdoc />
-		public Task<AccountSaveProfileInfoParams> GetProfileInfoAsync()
+		public async Task<AccountSaveProfileInfoParams> GetProfileInfoAsync(CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetProfileInfo());
+			var user = await _vk.CallAsync<User>("account.getProfileInfo",
+					VkParameters.Empty,
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
+
+			return new AccountSaveProfileInfoParams
+			{
+				City = user.City,
+				Country = user.Country,
+				BirthDate = user.BirthDate,
+				BirthdayVisibility = user.BirthdayVisibility,
+				FirstName = user.FirstName,
+				LastName = user.LastName,
+				HomeTown = user.HomeTown,
+				MaidenName = user.MaidenName,
+				Relation = user.Relation,
+				Sex = user.Sex,
+				RelationPartner = user.RelationPartner,
+				ScreenName = user.ScreenName,
+				Status = user.Status,
+				Phone = user.MobilePhone
+			};
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SaveProfileInfoAsync(int cancelRequestId)
+		public async Task<bool> SaveProfileInfoAsync(int cancelRequestId, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => SaveProfileInfo(cancelRequestId));
+			var result = await _vk.CallAsync("account.saveProfileInfo",
+					new VkParameters
+					{
+						{ "cancel_request_id", cancelRequestId }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
+
+			return result["changed"];
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params)
+		public async Task<bool> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() =>
-				SaveProfileInfo(out var _, @params));
+			var response = await _vk.CallAsync("account.saveProfileInfo",
+					@params,
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
+
+			return response["changed"];
 		}
 	}
 }
