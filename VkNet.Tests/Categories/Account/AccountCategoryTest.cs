@@ -23,7 +23,6 @@ namespace VkNet.Tests.Categories.Account
 		[Ignore(TestIgnoreConstants.Excess)]
 		public void BanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
 			Assert.That(() => account.BanUser(42), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
@@ -45,10 +44,9 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
-		[Ignore("Будет переписываться")]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void BanUser_IncorrectUserID_ThrowArgumentException()
 		{
-			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(Api);
 
 			// ReSharper disable AssignNullToNotNullAttribute
@@ -59,7 +57,8 @@ namespace VkNet.Tests.Categories.Account
 			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
-		[Test, Ignore("TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки")]
+		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void GetBanned_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			//
@@ -68,9 +67,9 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void GetBanned_IncorrectParameters_ThrowArgumentException()
 		{
-			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(Api);
 
 			Assert.That(() => account.GetBanned(-1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("offset"));
@@ -303,6 +302,7 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void RegisterDevice_NullOrEmptyToken_ThrowArgumentNullException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -367,7 +367,13 @@ namespace VkNet.Tests.Categories.Account
 						{
 							Id = 10
 						},
-						BirthDate = new DateTime(1984, 11, 15, 0, 0, 0, DateTimeKind.Utc).ToShortDateString(),
+						BirthDate = new DateTime(1984,
+							11,
+							15,
+							0,
+							0,
+							0,
+							DateTimeKind.Utc).ToShortDateString(),
 						BirthdayVisibility = BirthdayVisibility.Full,
 						HomeTown = "ht",
 						Country = new Country
@@ -383,6 +389,7 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void SaveProfileInfo_CancelChangeNameRequest_NegativeRequestId_ThrowArgumentException()
 		{
 			ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
@@ -412,7 +419,13 @@ namespace VkNet.Tests.Categories.Account
 			Assert.That(() => Api.Account.SaveProfileInfo(out var _,
 					new AccountSaveProfileInfoParams
 					{
-						BirthDate = new DateTime(1984, 11, 150, 0, 0, 0, DateTimeKind.Utc)
+						BirthDate = new DateTime(1984,
+								11,
+								150,
+								0,
+								0,
+								0,
+								DateTimeKind.Utc)
 							.ToShortDateString()
 					}),
 				Is.True);
@@ -422,7 +435,13 @@ namespace VkNet.Tests.Categories.Account
 			Assert.That(() => Api.Account.SaveProfileInfo(out _,
 					new AccountSaveProfileInfoParams
 					{
-						BirthDate = new DateTime(2014, 9, 8, 0, 0, 0, DateTimeKind.Utc)
+						BirthDate = new DateTime(2014,
+								9,
+								8,
+								0,
+								0,
+								0,
+								DateTimeKind.Utc)
 							.ToShortDateString()
 					}),
 				Is.True);
@@ -493,6 +512,7 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void SetNameInMenu_EmptyName_ThrowArgumentNullException()
 		{
 			Assert.Throws<ArgumentNullException>(() => Api.Account.SetNameInMenu(string.Empty));
@@ -518,9 +538,7 @@ namespace VkNet.Tests.Categories.Account
 		[Ignore(TestIgnoreConstants.Excess)]
 		public void SetOffline_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			var account =
-				new AccountCategory(
-					new VkApi()); // TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
+			var account = new AccountCategory(new VkApi());
 
 			Assert.Throws<AccessTokenInvalidException>(() => account.SetOffline());
 		}
@@ -545,7 +563,6 @@ namespace VkNet.Tests.Categories.Account
 		[Ignore(TestIgnoreConstants.Excess)]
 		public void SetOnline_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
 			Assert.Throws<AccessTokenInvalidException>(() => account.SetOnline());
 		}
@@ -578,7 +595,6 @@ namespace VkNet.Tests.Categories.Account
 		[Ignore(TestIgnoreConstants.Excess)]
 		public void SetSilenceMode_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
 			Assert.That(() => account.SetSilenceMode("tokenVal"), Throws.InstanceOf<AccessTokenInvalidException>());
 		}
@@ -601,9 +617,9 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void SetSilenceMode_NullOrEmptyToken_ThrowArgumentNullException()
 		{
-			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(Api);
 
 			// ReSharper disable AssignNullToNotNullAttribute
@@ -655,10 +671,9 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
-		[Ignore("Будет переписываться")]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void UnbanUser_IncorrectUserID_ThrowArgumentException()
 		{
-			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(Api);
 
 			// ReSharper disable AssignNullToNotNullAttribute
@@ -696,9 +711,9 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		[Ignore(TestIgnoreConstants.Excess)]
 		public void UnregisterDevice_NullOrEmptyToken_ThrowArgumentNullException()
 		{
-			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(Api);
 
 			// ReSharper disable AssignNullToNotNullAttribute
