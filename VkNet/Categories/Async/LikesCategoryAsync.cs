@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -11,41 +12,78 @@ namespace VkNet.Categories
 	public partial class LikesCategory
 	{
 		/// <inheritdoc />
-		public Task<VkCollection<long>> GetListAsync(LikesGetListParams @params, bool skipAuthorization = false)
+		public async Task<VkCollection<long>> GetListAsync(LikesGetListParams @params,
+															bool skipAuthorization = false,
+															CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				GetList(@params: @params, skipAuthorization: skipAuthorization));
+			@params.Extended = false;
+
+			return (await _vk.CallAsync("likes.getList", @params, skipAuthorization, cancellationToken)
+					.ConfigureAwait(false))
+				.ToVkCollectionOf<long>(x => x);
 		}
 
 		/// <inheritdoc />
-		public Task<UserOrGroup> GetListExAsync(LikesGetListParams @params)
+
+		//TODO: сделать кастомный JsonConverter
+		public async Task<UserOrGroup> GetListExAsync(LikesGetListParams @params, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => GetListEx(@params: @params));
+			@params.Extended = true;
+
+			return await _vk.CallAsync("likes.getList", @params, true, cancellationToken).ConfigureAwait(false);
 		}
 
 		/// <inheritdoc />
-		public Task<long> AddAsync(LikesAddParams @params)
+		public async Task<long> AddAsync(LikesAddParams @params, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => Add(@params: @params));
+			var response = await _vk.CallAsync("likes.add", @params, cancellationToken: cancellationToken).ConfigureAwait(false);
+
+			return response["likes"];
 		}
 
 		/// <inheritdoc />
 		[Obsolete(ObsoleteText.CaptchaNeeded)]
-		public Task<long> DeleteAsync(LikeObjectType type
-									, long itemId
-									, long? ownerId = null
-									, long? captchaSid = null
-									, string captchaKey = null)
+		public async Task<long> DeleteAsync(LikeObjectType type,
+											long itemId,
+											long? ownerId = null,
+											long? captchaSid = null,
+											string captchaKey = null,
+											CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				Delete(type: type, itemId: itemId, ownerId: ownerId, captchaSid: captchaSid, captchaKey: captchaKey));
+			var parameters = new VkParameters
+			{
+				{ "type", type },
+				{ "item_id", itemId },
+				{ "owner_id", ownerId },
+				{ "captcha_sid", captchaSid },
+				{ "captcha_key", captchaKey }
+			};
+
+			var response = await _vk.CallAsync("likes.delete", parameters, cancellationToken: cancellationToken).ConfigureAwait(false);
+
+			return response["likes"];
 		}
 
 		/// <inheritdoc />
-		public Task<bool> IsLikedAsync(LikeObjectType type, long itemId, long? userId = null, long? ownerId = null)
+
+		//TODO: сделать объект с полями liked, copied.
+		public async Task<bool> IsLikedAsync(LikeObjectType type,
+											long itemId,
+											long? userId = null,
+											long? ownerId = null,
+											CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				IsLiked(copied: out var _, type: type, itemId: itemId, userId: userId, ownerId: ownerId));
+			var parameters = new VkParameters
+			{
+				{ "type", type },
+				{ "item_id", itemId },
+				{ "user_id", userId },
+				{ "owner_id", ownerId }
+			};
+
+			var resp = await _vk.CallAsync("likes.isLiked", parameters, cancellationToken: cancellationToken).ConfigureAwait(false);
+
+			return resp["liked"];
 		}
 	}
 }

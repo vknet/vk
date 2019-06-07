@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -43,10 +44,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = false)
 		{
-			@params.Extended = false;
-
-			return _vk.Call(methodName: "likes.getList", parameters: @params, skipAuthorization: skipAuthorization)
-					.ToVkCollectionOf<long>(selector: x => x);
+			return GetListAsync(@params, skipAuthorization, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -62,11 +60,10 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/likes.getList
 		/// </remarks>
+		//TODO: сделать кастомный JsonConverter
 		public UserOrGroup GetListEx(LikesGetListParams @params)
 		{
-			@params.Extended = true;
-
-			return _vk.Call(methodName: "likes.getList", parameters: @params, skipAuthorization: true);
+			return GetListExAsync(@params, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -83,9 +80,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public long Add(LikesAddParams @params)
 		{
-			var response = _vk.Call(methodName: "likes.add", parameters: @params);
-
-			return response[key: "likes"];
+			return AddAsync(@params, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -113,18 +108,7 @@ namespace VkNet.Categories
 		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public long Delete(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null)
 		{
-			var parameters = new VkParameters
-			{
-					{ "type", type }
-					, { "item_id", itemId }
-					, { "owner_id", ownerId }
-					, { "captcha_sid", captchaSid }
-					, { "captcha_key", captchaKey }
-			};
-
-			var response = _vk.Call(methodName: "likes.delete", parameters: parameters);
-
-			return response[key: "likes"];
+			return DeleteAsync(type, itemId, ownerId, captchaSid, captchaKey, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
@@ -159,21 +143,23 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/likes.isLiked
 		/// </remarks>
+
+		//TODO: сделать объект с полями liked, copied.
 		public bool IsLiked(out bool copied, LikeObjectType type, long itemId, long? userId = null, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
-					{ "type", type }
-					, { "item_id", itemId }
-					, { "user_id", userId }
-					, { "owner_id", ownerId }
+				{ "type", type },
+				{ "item_id", itemId },
+				{ "user_id", userId },
+				{ "owner_id", ownerId }
 			};
 
-			var resp = _vk.Call(methodName: "likes.isLiked", parameters: parameters);
+			var resp = _vk.Call("likes.isLiked", parameters);
 
-			copied = resp[key: "copied"];
+			copied = resp["copied"];
 
-			return resp[key: "liked"];
+			return resp["liked"];
 		}
 	}
 }
