@@ -267,12 +267,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public long GetAppPermissions(long userId)
 		{
-			var parameters = new VkParameters
-			{
-				{ "user_id", userId }
-			};
-
-			return _vk.Call("account.getAppPermissions", parameters);
+			return GetAppPermissionsAsync(userId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
