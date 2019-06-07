@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions
@@ -21,6 +22,7 @@ namespace VkNet.Abstractions
 		/// Алгоритм должен завершаться командой return %выражение%. Операторы должны быть
 		/// разделены точкой с запятой.
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает данные, запрошенные алгоритмом.
 		/// При работе с методом execute структура ответа в XML ближе к JSON и может
@@ -30,7 +32,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/execute
 		/// </remarks>
-		Task<VkResponse> ExecuteAsync(string code);
+		Task<VkResponse> ExecuteAsync(string code, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Универсальный метод, который позволяет запускать последовательность других
@@ -44,6 +46,7 @@ namespace VkNet.Abstractions
 		/// Алгоритм должен завершаться командой return %выражение%. Операторы должны быть
 		/// разделены точкой с запятой.
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает данные, запрошенные алгоритмом.
 		/// При работе с методом execute структура ответа в XML ближе к JSON и может
@@ -53,13 +56,14 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/execute
 		/// </remarks>
-		Task<T> ExecuteAsync<T>(string code);
+		Task<T> ExecuteAsync<T>(string code, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Универсальный метод, который позволяет запускать хранимые процедуры.
 		/// </summary>
 		/// <param name="procedureName"> Имя хранимой процедуры </param>
 		/// <param name="vkParameters"> Параметры хранимой процедуры </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает данные, запрошенные алгоритмом.
 		/// При работе с методом execute структура ответа в XML ближе к JSON и может
@@ -69,6 +73,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/execute
 		/// </remarks>
-		Task<T> StoredProcedureAsync<T>(string procedureName, VkParameters vkParameters);
+		Task<T> StoredProcedureAsync<T>(string procedureName, VkParameters vkParameters, CancellationToken cancellationToken = default);
 	}
 }

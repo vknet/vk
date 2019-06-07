@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Abstractions;
 using VkNet.Utils;
@@ -24,22 +25,33 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<VkResponse> ExecuteAsync(string code)
+		public Task<VkResponse> ExecuteAsync(string code, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Execute(code: code));
+			return _vk.CallAsync("execute",
+				new VkParameters
+				{
+					{ "code", code }
+				},
+				cancellationToken: cancellationToken);
 		}
 
 		/// <inheritdoc />
-		public Task<T> ExecuteAsync<T>(string code)
+		public Task<T> ExecuteAsync<T>(string code, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Execute<T>(code: code));
+			return _vk.CallAsync<T>("execute",
+				new VkParameters
+				{
+					{ "code", code }
+				},
+				cancellationToken: cancellationToken);
 		}
 
 		/// <inheritdoc />
-		public Task<T> StoredProcedureAsync<T>(string procedureName, VkParameters vkParameters)
+		public Task<T> StoredProcedureAsync<T>(string procedureName,
+												VkParameters vkParameters,
+												CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					StoredProcedure<T>(procedureName: procedureName, vkParameters: vkParameters));
+			return _vk.CallAsync<T>($"execute.{procedureName}", vkParameters, cancellationToken: cancellationToken);
 		}
 	}
 }
