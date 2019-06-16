@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Авторизация" Height="600" Width="600">
 	<StackPanel>
-		<WebBrowser x:Name="WebBrowser" Width="600" Height="600"  />
+		<WebBrowser x:Name="WebBrowser" Width="600" Height="600" />
 	</StackPanel>
 </Window>

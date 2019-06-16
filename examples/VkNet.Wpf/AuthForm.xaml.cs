@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
 using VkNet.Model;
-using VkNet.Utils;
 
 namespace VkNet.Wpf
 {
