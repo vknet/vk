@@ -17,22 +17,64 @@ namespace VkNet.Model.Keyboard
 		/// <summary>
 		/// Содержит 'text'
 		/// </summary>
-		[JsonProperty(propertyName: "type")]
+		[JsonProperty("type")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public KeyboardButtonActionType Type { get; set; } = KeyboardButtonActionType.Text;
 
 		/// <summary>
-		/// JSON строка с payload, до 255 символов
+		/// Дополнительная информация.
 		/// </summary>
+		/// <remarks>JSON строка с payload, до 255 символов</remarks>
 		[CanBeNull]
-		[JsonProperty(propertyName: "payload", NullValueHandling = NullValueHandling.Ignore)]
+		[JsonProperty("payload", NullValueHandling = NullValueHandling.Ignore)]
 		public string Payload { get; set; }
 
 		/// <summary>
 		/// Текст на кнопке, до 40 символов
 		/// </summary>
-		[JsonProperty(propertyName: "label")]
+		[JsonProperty("label")]
 		public string Label { get; set; }
+
+		/// <summary>
+		/// <list type="KeyboardButtonActionType">
+		/// <listheader>
+		/// <term>Значение параметра <see cref="Type"/></term>
+		/// <description>description</description>
+		/// </listheader>
+		/// <item>
+		/// <term><see cref="KeyboardButtonActionType.VkApp"/></term>
+		/// <description>хэш для навигации в приложении, будет передан в строке параметров запуска после символа #</description>
+		/// </item>
+		/// <item>
+		/// <term><see cref="KeyboardButtonActionType.VkPay"/></term>
+		/// <description>строка, содержащая параметры платежа VK Pay и идентификатор приложения в параметре aid , разделенные &amp;.</description>
+		/// </item>
+		/// </list>
+		/// </summary>
+		/// <remarks>
+		/// Пример: action=transfer-to-group&amp;group_id=1&amp;aid=10.
+		/// </remarks>
+		[JsonProperty("hash")]
+		public string Hash { get; set; }
+
+		/// <summary>
+		/// Идентификатор вызываемого приложения с типом <see cref="KeyboardButtonActionType.VkApp"/>.
+		/// </summary>
+		/// <remarks>
+		/// Пока может использоваться только приложение, которому мы выдали под это доступ.
+		/// Получить доступ для Вашего приложения Вы можете <a href="https://vk.com/support?act=home_api">здесь </a>;
+		/// </remarks>
+		[JsonProperty("app_id", NullValueHandling = NullValueHandling.Ignore)]
+		public ulong AppId { get; set; }
+
+		/// <summary>
+		/// Идентификатор сообщества, в котором установлено приложение, если требуется открыть в контексте сообщества.
+		/// </summary>
+		/// <remarks>
+		/// Для <see cref="Type"/> со значением <see cref="KeyboardButtonActionType.VkApp"/>
+		/// </remarks>
+		[JsonProperty("owner_id", NullValueHandling = NullValueHandling.Ignore)]
+		public ulong OwnerId { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -43,9 +85,12 @@ namespace VkNet.Model.Keyboard
 		{
 			return new MessageKeyboardButtonAction
 			{
-				Type = response[key: "type"],
-				Payload = response[key: "payload"],
-				Label = response[key: "label"]
+				Type = response["type"],
+				Payload = response["payload"],
+				Label = response["label"],
+				AppId = response["app_id"],
+				OwnerId = response["owner_id"],
+				Hash = response["hash"]
 			};
 		}
 

@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -16,13 +17,13 @@ namespace VkNet.Model.Keyboard
 		/// <summary>
 		/// Информация содержащаяся в кнопке
 		/// </summary>
-		[JsonProperty(propertyName: "action")]
+		[JsonProperty("action")]
 		public MessageKeyboardButtonAction Action { get; set; }
 
 		/// <summary>
 		/// Цвет кнопки
 		/// </summary>
-		[JsonProperty(propertyName: "color")]
+		[JsonProperty("color")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public KeyboardButtonColor Color { get; set; } = KeyboardButtonColor.Default;
 
@@ -31,12 +32,12 @@ namespace VkNet.Model.Keyboard
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
-		public static MessageKeyboardButton FromJson(VkResponse response)
+		public static MessageKeyboardButton FromJson([NotNull] VkResponse response)
 		{
 			return new MessageKeyboardButton
 			{
-				Action = response[key: "action"],
-				Color = response[key: "color"]
+				Action = response["action"],
+				Color = response["color"]
 			};
 		}
 
