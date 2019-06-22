@@ -34,7 +34,8 @@ namespace VkNet.Tests.Categories
 
 			var cities = Api.Database.GetCities(new GetCitiesParams
 			{
-				CountryId = 1, Count = 3
+				CountryId = 1,
+				Count = 3
 			});
 
 			Assert.That(cities.Count, Is.EqualTo(3));
@@ -66,7 +67,10 @@ namespace VkNet.Tests.Categories
 
 			var cities = Api.Database.GetCities(new GetCitiesParams
 			{
-				CountryId = 1, RegionId = 1004118, Count = 2, Offset = 1
+				CountryId = 1,
+				RegionId = 1004118,
+				Count = 2,
+				Offset = 1
 			});
 
 			Assert.That(cities.Count, Is.EqualTo(2));
@@ -87,7 +91,8 @@ namespace VkNet.Tests.Categories
 		{
 			Assert.That(() => new DatabaseCategory(Api).GetCities(new GetCitiesParams
 				{
-					CountryId = 1, RegionId = -2
+					CountryId = 1,
+					RegionId = -2
 				}),
 				Throws.InstanceOf<ArgumentException>());
 		}
@@ -137,7 +142,8 @@ namespace VkNet.Tests.Categories
 
 			var countries = Api.Database.GetCountries(codes: new List<Iso3166>
 			{
-				Iso3166.RU, Iso3166.DE
+				Iso3166.RU,
+				Iso3166.DE
 			});
 
 			Assert.That(countries.Count, Is.EqualTo(2));
@@ -352,6 +358,28 @@ namespace VkNet.Tests.Categories
 			var universities = Api.Database.GetUniversities(1, 1, "ThisUniverDoesNotExist");
 
 			Assert.That(universities.Count, Is.EqualTo(0));
+		}
+
+		[Test]
+		public void GetMetroStations()
+		{
+			Url = "https://api.vk.com/method/database.getMetroStations";
+			ReadCategoryJsonPath(nameof(GetMetroStations));
+
+			var universities = Api.Database.GetMetroStations(2, 10, 10, true);
+
+			Assert.That(universities.TotalCount, Is.EqualTo(69));
+		}
+
+		[Test]
+		public void GetMetroStationsById()
+		{
+			Url = "https://api.vk.com/method/database.getMetroStationsById";
+			ReadCategoryJsonPath(nameof(GetMetroStationsById));
+
+			var universities = Api.Database.GetMetroStationsById(new ulong[]{189, 181});
+
+			Assert.That(universities.Count, Is.EqualTo(2));
 		}
 	}
 }
