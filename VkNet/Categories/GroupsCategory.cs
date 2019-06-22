@@ -32,7 +32,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "not_sure", notSure }
+				{ "group_id", groupId },
+				{ "not_sure", notSure }
 			};
 
 			return _vk.Call("groups.join", parameters);
@@ -58,17 +59,18 @@ namespace VkNet.Categories
 			// в первой записи количество членов группы для (response["items"])
 			if (@params.Extended == null || !@params.Extended.Value)
 			{
-				return response.ToVkCollectionOf(id => new Group { Id = id });
+				return response.ToVkCollectionOf(id => new Group
+				{
+					Id = id
+				});
 			}
 
 			return response.ToVkCollectionOf<Group>(r => r);
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds
-												, string groupId
-												, GroupsFields fields
-												, bool skipAuthorization = false)
+		public ReadOnlyCollection<Group> GetById(IEnumerable<string> groupIds, string groupId, GroupsFields fields,
+												bool skipAuthorization = false)
 		{
 			var parameters = new VkParameters
 			{
@@ -85,15 +87,17 @@ namespace VkNet.Categories
 		public VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("groups.getMembers", @params, skipAuthorization)
-				.ToVkCollectionOf(x => @params.Fields != null ? x : new User { Id = x });
+				.ToVkCollectionOf(x => @params.Fields != null
+					? x
+					: new User
+					{
+						Id = x
+					});
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<GroupMember> IsMember(string groupId
-														, long? userId
-														, IEnumerable<long> userIds
-														, bool? extended
-														, bool skipAuthorization = false)
+		public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended,
+														bool skipAuthorization = false)
 		{
 			if (userId.HasValue)
 			{
@@ -123,7 +127,9 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "user_ids", userIds }, { "extended", Convert.ToInt32(extended) }
+				{ "group_id", groupId },
+				{ "user_ids", userIds },
+				{ "extended", Convert.ToInt32(extended) }
 			};
 
 			var result = _vk.Call("groups.isMember", parameters, skipAuthorization);
@@ -143,7 +149,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "offset", offset }, { "count", count }, { "extended", extended }
+				{ "offset", offset },
+				{ "count", count },
+				{ "extended", extended }
 			};
 
 			return _vk.Call("groups.getInvites", parameters).ToVkCollectionOf<Group>(x => x);
@@ -156,15 +164,16 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public VkCollection<GetBannedResult> GetBanned(long groupId
-														, long? offset = null
-														, long? count = null
-														, GroupsFields fields = null
-														, long? ownerId = null)
+		public VkCollection<GetBannedResult> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null,
+														long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "offset", offset }, { "count", count }, { "fields", fields }, { "owner_id", ownerId }
+				{ "group_id", groupId },
+				{ "offset", offset },
+				{ "count", count },
+				{ "fields", fields },
+				{ "owner_id", ownerId }
 			};
 
 			return _vk.Call<VkCollection<GetBannedResult>>("groups.getBanned", parameters);
@@ -178,7 +187,8 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "user_id", userId }
+				{ "group_id", groupId },
+				{ "user_id", userId }
 			};
 
 			return _vk.Call("groups.unbanUser", parameters);
@@ -213,6 +223,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.Obsolete)]
 		public bool EditPlace(long groupId, Place place = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
@@ -224,8 +235,13 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "title", place.Title }, { "address", place.Address }, { "country_id", place.CountryId },
-				{ "city_id", place.CityId }, { "latitude", place.Latitude }, { "longitude", place.Longitude }
+				{ "group_id", groupId },
+				{ "title", place.Title },
+				{ "address", place.Address },
+				{ "country_id", place.CountryId },
+				{ "city_id", place.CityId },
+				{ "latitude", place.Latitude },
+				{ "longitude", place.Longitude }
 			};
 
 			var result = _vk.Call("groups.editPlace", parameters);
@@ -234,17 +250,18 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public VkCollection<User> GetInvitedUsers(long groupId
-												, long? offset = null
-												, long? count = null
-												, UsersFields fields = null
-												, NameCase nameCase = null)
+		public VkCollection<User> GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null,
+												NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "offset", offset }, { "count", count }, { "fields", fields }, { "name_case", nameCase }
+				{ "group_id", groupId },
+				{ "offset", offset },
+				{ "count", count },
+				{ "fields", fields },
+				{ "name_case", nameCase }
 			};
 
 			return _vk.Call("groups.getInvitedUsers", parameters).ToVkCollectionOf<User>(x => x);
@@ -259,7 +276,10 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "user_id", userId }, { "captcha_sid", captchaSid }, { "captcha_key", captchaKey }
+				{ "group_id", groupId },
+				{ "user_id", userId },
+				{ "captcha_sid", captchaSid },
+				{ "captcha_key", captchaKey }
 			};
 
 			return _vk.Call("groups.invite", parameters);
@@ -272,7 +292,9 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "link", link }, { "text", text }
+				{ "group_id", groupId },
+				{ "link", link },
+				{ "text", text }
 			};
 
 			return _vk.Call("groups.addLink", parameters);
@@ -285,7 +307,8 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "link_id", linkId }
+				{ "group_id", groupId },
+				{ "link_id", linkId }
 			};
 
 			return _vk.Call("groups.deleteLink", parameters);
@@ -298,7 +321,9 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "link_id", linkId }, { "text", text }
+				{ "group_id", groupId },
+				{ "link_id", linkId },
+				{ "text", text }
 			};
 
 			return _vk.Call("groups.editLink", parameters);
@@ -309,7 +334,9 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "link_id", linkId }, { "after", after }
+				{ "group_id", groupId },
+				{ "link_id", linkId },
+				{ "after", after }
 			};
 
 			return _vk.Call("groups.reorderLink", parameters);
@@ -323,7 +350,8 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "user_id", userId }
+				{ "group_id", groupId },
+				{ "user_id", userId }
 			};
 
 			return _vk.Call("groups.removeUser", parameters);
@@ -337,7 +365,8 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "user_id", userId }
+				{ "group_id", groupId },
+				{ "user_id", userId }
 			};
 
 			return _vk.Call("groups.approveRequest", parameters);
@@ -348,7 +377,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "title", title }, { "description", description }, { "type", type }, { "subtype", subtype }
+				{ "title", title },
+				{ "description", description },
+				{ "type", type },
+				{ "subtype", subtype }
 			};
 
 			return _vk.Call("groups.create", parameters);
@@ -359,7 +391,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "offset", offset }, { "count", count }, { "fields", fields }
+				{ "group_id", groupId },
+				{ "offset", offset },
+				{ "count", count },
+				{ "fields", fields }
 			};
 
 			return _vk.Call("groups.getRequests", parameters).ToVkCollectionOf<User>(x => x);
@@ -370,7 +405,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "category_id", categoryId }, { "subcategory_id", subcategoryId }
+				{ "category_id", categoryId },
+				{ "subcategory_id", subcategoryId }
 			};
 
 			return _vk.Call("groups.getCatalog", parameters, true)
@@ -382,7 +418,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "extended", extended }, { "subcategories", subcategories }
+				{ "extended", extended },
+				{ "subcategories", subcategories }
 			};
 
 			return _vk.Call("groups.getCatalogInfo", parameters, true);
@@ -393,7 +430,10 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "url", url }, { "title", title }, { "secret_key", secretKey }
+				{ "group_id", groupId },
+				{ "url", url },
+				{ "title", title },
+				{ "secret_key", secretKey }
 			};
 
 			return _vk.Call("groups.addCallbackServer", parameters)["server_id"];
@@ -404,7 +444,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "server_id", serverId }
+				{ "group_id", groupId },
+				{ "server_id", serverId }
 			};
 
 			return _vk.Call("groups.deleteCallbackServer", parameters);
@@ -415,7 +456,11 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "server_id", serverId }, { "url", url }, { "title", title }, { "secret_key", secretKey }
+				{ "group_id", groupId },
+				{ "server_id", serverId },
+				{ "url", url },
+				{ "title", title },
+				{ "secret_key", secretKey }
 			};
 
 			return _vk.Call("groups.editCallbackServer", parameters);
@@ -425,7 +470,10 @@ namespace VkNet.Categories
 		public string GetCallbackConfirmationCode(ulong groupId)
 		{
 			var response = _vk.Call("groups.getCallbackConfirmationCode",
-				new VkParameters { { "group_id", groupId } });
+				new VkParameters
+				{
+					{ "group_id", groupId }
+				});
 
 			return response["code"];
 		}
@@ -435,7 +483,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "server_ids", serverIds }
+				{ "group_id", groupId },
+				{ "server_ids", serverIds }
 			};
 
 			return _vk.Call("groups.getCallbackServers", parameters)
@@ -447,7 +496,8 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId }, { "server_id", serverId }
+				{ "group_id", groupId },
+				{ "server_id", serverId }
 			};
 
 			return _vk.Call("groups.getCallbackSettings", parameters);
@@ -463,19 +513,30 @@ namespace VkNet.Categories
 		public LongPollServerResponse GetLongPollServer(ulong groupId)
 		{
 			return _vk.Call<LongPollServerResponse>("groups.getLongPollServer",
-				new VkParameters { { "group_id", groupId } });
+				new VkParameters
+				{
+					{ "group_id", groupId }
+				});
 		}
 
 		/// <inheritdoc/>
 		public bool DisableOnline(ulong groupId)
 		{
-			return _vk.Call<bool>("groups.disableOnline", new VkParameters { { "group_id", groupId } });
+			return _vk.Call<bool>("groups.disableOnline",
+				new VkParameters
+				{
+					{ "group_id", groupId }
+				});
 		}
 
 		/// <inheritdoc/>
 		public bool EnableOnline(ulong groupId)
 		{
-			return _vk.Call<bool>("groups.enableOnline", new VkParameters { { "group_id", groupId } });
+			return _vk.Call<bool>("groups.enableOnline",
+				new VkParameters
+				{
+					{ "group_id", groupId }
+				});
 		}
 
 		/// <inheritdoc />
