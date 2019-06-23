@@ -19,7 +19,7 @@ namespace VkNet.Model.Keyboard
 		/// </summary>
 		[JsonProperty("type")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public KeyboardButtonActionType Type { get; set; } = KeyboardButtonActionType.Text;
+		public KeyboardButtonActionType Type { get; set; }
 
 		/// <summary>
 		/// Дополнительная информация.
@@ -32,7 +32,7 @@ namespace VkNet.Model.Keyboard
 		/// <summary>
 		/// Текст на кнопке, до 40 символов
 		/// </summary>
-		[JsonProperty("label")]
+		[JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
 		public string Label { get; set; }
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace VkNet.Model.Keyboard
 		/// <remarks>
 		/// Пример: action=transfer-to-group&amp;group_id=1&amp;aid=10.
 		/// </remarks>
-		[JsonProperty("hash")]
+		[JsonProperty("hash", NullValueHandling = NullValueHandling.Ignore)]
 		public string Hash { get; set; }
 
 		/// <summary>
@@ -65,7 +65,7 @@ namespace VkNet.Model.Keyboard
 		/// Получить доступ для Вашего приложения Вы можете <a href="https://vk.com/support?act=home_api">здесь </a>;
 		/// </remarks>
 		[JsonProperty("app_id", NullValueHandling = NullValueHandling.Ignore)]
-		public ulong AppId { get; set; }
+		public ulong? AppId { get; set; }
 
 		/// <summary>
 		/// Идентификатор сообщества, в котором установлено приложение, если требуется открыть в контексте сообщества.
@@ -74,7 +74,7 @@ namespace VkNet.Model.Keyboard
 		/// Для <see cref="Type"/> со значением <see cref="KeyboardButtonActionType.VkApp"/>
 		/// </remarks>
 		[JsonProperty("owner_id", NullValueHandling = NullValueHandling.Ignore)]
-		public ulong OwnerId { get; set; }
+		public ulong? OwnerId { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
