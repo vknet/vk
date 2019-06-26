@@ -10,7 +10,7 @@ namespace VkNet.Model
 	public class AddressResult
 	{
 		[JsonProperty("id")]
-		public long Id { get; set; }
+		public ulong Id { get; set; }
 
 		[JsonProperty("additional_address")]
 		public string AdditionalAddress { get; set; }
@@ -19,25 +19,25 @@ namespace VkNet.Model
 		public string Address { get; set; }
 
 		[JsonProperty("city_id")]
-		public long CityId { get; set; }
+		public long? CityId { get; set; }
 
 		[JsonProperty("country_id")]
-		public long CountryId { get; set; }
+		public long? CountryId { get; set; }
 
 		[JsonProperty("latitude")]
-		public double Latitude { get; set; }
+		public double? Latitude { get; set; }
 
 		[JsonProperty("longitude")]
-		public double Longitude { get; set; }
+		public double? Longitude { get; set; }
 
 		[JsonProperty("metro_station_id")]
-		public long MetroStationId { get; set; }
+		public long? MetroStationId { get; set; }
 
 		[JsonProperty("phone")]
 		public string Phone { get; set; }
 
 		[JsonProperty("time_offset")]
-		public long TimeOffset { get; set; }
+		public long? TimeOffset { get; set; }
 
 		[JsonProperty("timetable")]
 		public Timetable Timetable { get; set; }

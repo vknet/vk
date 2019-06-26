@@ -50,6 +50,7 @@ namespace VkNet.Categories
 				});
 		}
 
+		/// <inheritdoc />
 		public AddressResult EditAddress(EditAddressParams @params)
 		{
 			return _vk.Call<AddressResult>("groups.editAddress",
@@ -72,6 +73,7 @@ namespace VkNet.Categories
 				});
 		}
 
+		/// <inheritdoc />
 		public bool DeleteAddress(ulong groupId, ulong addressId)
 		{
 			return _vk.Call<bool>("groups.deleteAddress",
@@ -79,6 +81,22 @@ namespace VkNet.Categories
 				{
 					{ "group_id", groupId },
 					{ "address_id", addressId }
+				});
+		}
+
+		/// <inheritdoc />
+		public VkCollection<AddressResult> GetAddresses(GetAddressesParams @params)
+		{
+			return _vk.Call<VkCollection<AddressResult>>("groups.getAddresses",
+				new VkParameters
+				{
+					{ "group_id", @params.GroupId },
+					{ "fields", @params.Fields },
+					{ "address_ids", @params.AddressIds },
+					{ "latitude", @params.Latitude },
+					{ "longitude", @params.Longitude },
+					{ "offset", @params.Offset },
+					{ "count", @params.Count }
 				});
 		}
 

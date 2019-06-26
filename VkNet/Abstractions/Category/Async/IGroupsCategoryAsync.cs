@@ -870,6 +870,7 @@ namespace VkNet.Abstractions
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
+		/// Данные о добавленном адресе сообщества
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.addAddress
@@ -885,6 +886,7 @@ namespace VkNet.Abstractions
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
+		/// Данные об адресе отредактированного сообщества
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.editAddress
@@ -907,5 +909,19 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.deleteAddress
 		/// </remarks>
 		Task<bool> DeleteAddressAsync(ulong groupId, ulong addressId);
+
+		/// <summary>
+		/// Получить данные об адресах.
+		/// </summary>
+		/// <param name = "params">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <returns>
+		/// Коллекция адресов сообщества
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getAddresses
+		/// </remarks>
+		Task<VkCollection<AddressResult>> GetAddressesAsync(GetAddressesParams @params);
 	}
 }

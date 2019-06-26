@@ -24,6 +24,9 @@ namespace VkNet.Abstractions
 		/// <inheritdoc cref = "IGroupsCategoryAsync.DeleteAddressAsync"/>
 		bool DeleteAddress(ulong groupId, ulong addressId);
 
+		/// <inheritdoc cref = "IGroupsCategoryAsync.GetAddressesAsync"/>
+		VkCollection<AddressResult> GetAddresses(GetAddressesParams @params);
+
 		/// <inheritdoc cref="IGroupsCategoryAsync.JoinAsync"/>
 		bool Join(long? groupId, bool? notSure = null);
 
