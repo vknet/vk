@@ -6,6 +6,7 @@ using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Model.RequestParams.Groups;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -245,6 +246,12 @@ namespace VkNet.Categories
 		public Task<BotsLongPollHistoryResponse> GetBotsLongPollHistoryAsync(BotsLongPollHistoryParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetBotsLongPollHistory(@params));
+		}
+
+		/// <inheritdoc />
+		public Task<AddressResult> AddAddressAsync(AddAddressParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => AddAddress(@params));
 		}
 	}
 }

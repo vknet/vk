@@ -6,6 +6,7 @@ using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Model.RequestParams.Groups;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions
@@ -859,5 +860,20 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте https://vk.com/dev/bots_longpoll
 		/// </remarks>
 		Task<BotsLongPollHistoryResponse> GetBotsLongPollHistoryAsync(BotsLongPollHistoryParams @params);
+
+		/// <summary>
+		/// Позволяет добавить адрес в сообщество.
+		/// Список адресов может быть получен методом groups.getAddresses.
+		/// Для того, чтобы воспользоваться этим методом, Вы должны быть администратором сообщества
+		/// </summary>
+		/// <param name = "params">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <returns>
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.addAddress
+		/// </remarks>
+		Task<AddressResult> AddAddressAsync(AddAddressParams @params);
 	}
 }

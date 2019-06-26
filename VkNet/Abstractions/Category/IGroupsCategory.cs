@@ -5,6 +5,7 @@ using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Model.RequestParams.Groups;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions
@@ -14,6 +15,9 @@ namespace VkNet.Abstractions
 	/// </summary>
 	public interface IGroupsCategory : IGroupsCategoryAsync
 	{
+		/// <inheritdoc cref = "IGroupsCategoryAsync.AddAddressAsync"/>
+		AddressResult AddAddress(AddAddressParams @params);
+
 		/// <inheritdoc cref="IGroupsCategoryAsync.JoinAsync"/>
 		bool Join(long? groupId, bool? notSure = null);
 

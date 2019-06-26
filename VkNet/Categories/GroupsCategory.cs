@@ -7,6 +7,7 @@ using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Model.RequestParams.Groups;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -25,6 +26,28 @@ namespace VkNet.Categories
 		public GroupsCategory(IVkInvoke vk)
 		{
 			_vk = vk;
+		}
+
+		/// <inheritdoc />
+		public AddressResult AddAddress(AddAddressParams @params)
+		{
+			return _vk.Call<AddressResult>("groups.addAddress",
+				new VkParameters
+				{
+					{ "group_id", @params.GroupId },
+					{ "title", @params.Title },
+					{ "address", @params.Address },
+					{ "additional_address", @params.AdditionalAddress },
+					{ "country_id", @params.CountryId },
+					{ "city_id", @params.CityId },
+					{ "latitude", @params.Latitude },
+					{ "longitude", @params.Longitude },
+					{ "phone", @params.Phone },
+					{ "work_info_status", @params.WorkInfoStatus },
+					{ "metro_id", @params.MetroId },
+					{ "timetable", @params.Timetable },
+					{ "is_main_address", @params.IsMainAddress }
+				});
 		}
 
 		/// <inheritdoc />
@@ -129,7 +152,7 @@ namespace VkNet.Categories
 			{
 				{ "group_id", groupId },
 				{ "user_ids", userIds },
-				{ "extended", Convert.ToInt32(extended) }
+				{ "extended", extended }
 			};
 
 			var result = _vk.Call("groups.isMember", parameters, skipAuthorization);

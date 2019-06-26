@@ -1,0 +1,16 @@
+{
+  "response": {
+    "id": 58227,
+    "additional_address": "Парковая дорожка между футбольным полем и спортивной площадкой",
+    "address": "Сосновкий лесопарк",
+    "city_id": 2,
+    "country_id": 1,
+    "latitude": 60.017941,
+    "longitude": 30.365817,
+    "metro_station_id": 189,
+    "phone": "+7 (951) 111-11-11",
+    "time_offset": 180,
+    "title": "Точка встречи parkrun",
+    "work_info_status": "always_opened"
+  }
+}
