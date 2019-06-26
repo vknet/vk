@@ -7,6 +7,7 @@ namespace VkNet.Model
 	/// Расписание
 	/// </summary>
 	[Serializable]
+	[JsonObject(MemberSerialization.OptOut)]
 	public class Timetable
 	{
 		/// <summary>
