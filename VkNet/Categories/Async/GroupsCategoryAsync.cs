@@ -253,5 +253,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => AddAddress(@params));
 		}
+
+		/// <inheritdoc />
+		public Task<AddressResult> EditAddressAsync(EditAddressParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => EditAddress(@params));
+		}
 	}
 }

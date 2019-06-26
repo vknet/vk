@@ -875,5 +875,20 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.addAddress
 		/// </remarks>
 		Task<AddressResult> AddAddressAsync(AddAddressParams @params);
+
+		/// <summary>
+		/// Позволяет отредактировать адрес в сообществе.
+		/// Список адресов может быть получен методом groups.getAddresses.
+		/// Для того, чтобы воспользоваться этим методом, Вы должны быть администратором сообщества
+		/// </summary>
+		/// <param name = "params">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <returns>
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.editAddress
+		/// </remarks>
+		Task<AddressResult> EditAddressAsync(EditAddressParams @params);
 	}
 }

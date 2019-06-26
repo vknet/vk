@@ -50,6 +50,28 @@ namespace VkNet.Categories
 				});
 		}
 
+		public AddressResult EditAddress(EditAddressParams @params)
+		{
+			return _vk.Call<AddressResult>("groups.editAddress",
+				new VkParameters
+				{
+					{ "group_id", @params.GroupId },
+					{ "address_id", @params.AddressId },
+					{ "title", @params.Title },
+					{ "address", @params.Address },
+					{ "additional_address", @params.AdditionalAddress },
+					{ "phone", @params.Phone },
+					{ "work_info_status", @params.WorkInfoStatus },
+					{ "country_id", @params.CountryId },
+					{ "city_id", @params.CityId },
+					{ "metro_id", @params.MetroId },
+					{ "latitude", @params.Latitude },
+					{ "longitude", @params.Longitude },
+					{ "timetable", @params.Timetable },
+					{ "is_main_address", @params.IsMainAddress }
+				});
+		}
+
 		/// <inheritdoc />
 		public bool Join(long? groupId, bool? notSure = null)
 		{
