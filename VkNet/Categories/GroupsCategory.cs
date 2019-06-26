@@ -72,6 +72,16 @@ namespace VkNet.Categories
 				});
 		}
 
+		public bool DeleteAddress(ulong groupId, ulong addressId)
+		{
+			return _vk.Call<bool>("groups.deleteAddress",
+				new VkParameters
+				{
+					{ "group_id", groupId },
+					{ "address_id", addressId }
+				});
+		}
+
 		/// <inheritdoc />
 		public bool Join(long? groupId, bool? notSure = null)
 		{

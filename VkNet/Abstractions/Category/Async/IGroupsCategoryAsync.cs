@@ -890,5 +890,22 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.editAddress
 		/// </remarks>
 		Task<AddressResult> EditAddressAsync(EditAddressParams @params);
+
+		/// <summary>
+		/// Позволяет удалить адрес в сообществе.
+		/// </summary>
+		/// <param name = "groupId">
+		/// Id группы положительное число, обязательный параметр
+		/// </param>
+		/// <param name = "addressId">
+		/// Id адреса положительное число, обязательный параметр
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c>true</c>.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.deleteAddress
+		/// </remarks>
+		Task<bool> DeleteAddressAsync(ulong groupId, ulong addressId);
 	}
 }

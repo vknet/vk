@@ -259,5 +259,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => EditAddress(@params));
 		}
+
+		/// <inheritdoc />
+		public Task<bool> DeleteAddressAsync(ulong groupId, ulong addressId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => DeleteAddress(groupId, addressId));
+		}
 	}
 }
