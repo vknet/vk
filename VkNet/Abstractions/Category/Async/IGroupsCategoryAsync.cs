@@ -942,5 +942,21 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.getOnlineStatus
 		/// </remarks>
 		Task<OnlineStatus> GetOnlineStatusAsync(ulong groupId);
+
+
+		/// <summary>
+		/// Возвращает настройки прав для ключа доступа сообщества.
+		/// </summary>
+		/// <returns>
+		/// Возвращает объект, который содержит поля:
+		/// mask (integer) — битовая маска ключа доступа;
+		/// settings (array) — массив объектов, описывающих права доступа. Каждый объект в массиве содержит поля:
+		/// setting (integer) — битовая маска права доступа;
+		/// name (string) — название права доступа.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getTokenPermissions
+		/// </remarks>
+		Task<TokenPermissions> GetTokenPermissionsAsync();
 	}
 }

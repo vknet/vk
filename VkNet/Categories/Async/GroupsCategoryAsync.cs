@@ -277,5 +277,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetOnlineStatus(@groupId));
 		}
+
+		/// <inheritdoc />
+		public Task<TokenPermissions> GetTokenPermissionsAsync()
+		{
+			return TypeHelper.TryInvokeMethodAsync(GetTokenPermissions);
+		}
 	}
 }

@@ -149,5 +149,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref = "IGroupsCategoryAsync.GetOnlineStatusAsync"/>
 		OnlineStatus GetOnlineStatus(ulong groupId);
+
+		/// <inheritdoc cref = "IGroupsCategoryAsync.GetTokenPermissionsAsync"/>
+		TokenPermissions GetTokenPermissions();
 	}
 }

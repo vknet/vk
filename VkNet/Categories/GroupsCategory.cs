@@ -627,5 +627,11 @@ namespace VkNet.Categories
 					{ "group_id", groupId }
 				});
 		}
+
+		/// <inheritdoc />
+		public TokenPermissions GetTokenPermissions()
+		{
+			return _vk.Call<TokenPermissions>("groups.getTokenPermissions", VkParameters.Empty);
+		}
 	}
 }
