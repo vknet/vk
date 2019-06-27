@@ -146,5 +146,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IGroupsCategoryAsync.GetBotsLongPollHistoryAsync"/>
 		BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params);
+
+		/// <inheritdoc cref = "IGroupsCategoryAsync.GetOnlineStatusAsync"/>
+		OnlineStatus GetOnlineStatus(ulong groupId);
 	}
 }

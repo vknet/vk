@@ -923,5 +923,24 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.getAddresses
 		/// </remarks>
 		Task<VkCollection<AddressResult>> GetAddressesAsync(GetAddressesParams @params);
+
+		/// <summary>
+		/// Получает информацию о статусе «онлайн» в сообществе.
+		/// </summary>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества. положительное число, обязательный параметр
+		/// </param>
+		/// <returns>
+		/// Возвращает объект, который содержит поля:
+		/// status — статус сообщества. Возможные значения:
+		/// none — сообщество не онлайн;
+		/// online — сообщество онлайн (отвечает мгновенно);
+		/// answer_mark — сообщество отвечает быстро.
+		/// minutes — оценка времени ответа в минутах (для status = answer_mark).
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getOnlineStatus
+		/// </remarks>
+		Task<OnlineStatus> GetOnlineStatusAsync(ulong groupId);
 	}
 }

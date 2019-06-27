@@ -26,6 +26,18 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
+		public static implicit operator OnlineStatusType(VkResponse response)
+		{
+			return response == null ? null : OnlineStatusType.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
 		public static implicit operator AppFilter(VkResponse response)
 		{
 			return response == null ? null : AppFilter.FromJson(response: response);
@@ -614,7 +626,8 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator KeyboardButtonActionType(VkResponse response) {
+		public static implicit operator KeyboardButtonActionType(VkResponse response)
+		{
 			return response == null ? null : KeyboardButtonActionType.FromJson(response: response);
 		}
 
@@ -625,7 +638,8 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator KeyboardButtonColor(VkResponse response) {
+		public static implicit operator KeyboardButtonColor(VkResponse response)
+		{
 			return response == null ? null : KeyboardButtonColor.FromJson(response: response);
 		}
 
@@ -636,7 +650,8 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator MarketItemButtonTitle(VkResponse response) {
+		public static implicit operator MarketItemButtonTitle(VkResponse response)
+		{
 			return response == null ? null : MarketItemButtonTitle.FromJson(response: response);
 		}
 	}

@@ -617,5 +617,15 @@ namespace VkNet.Categories
 		{
 			return _vk.CallLongPoll(@params.Server, @params);
 		}
+
+		/// <inheritdoc />
+		public OnlineStatus GetOnlineStatus(ulong groupId)
+		{
+			return _vk.Call<OnlineStatus>("groups.getOnlineStatus",
+				new VkParameters
+				{
+					{ "group_id", groupId }
+				});
+		}
 	}
 }

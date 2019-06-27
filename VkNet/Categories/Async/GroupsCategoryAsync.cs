@@ -271,5 +271,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetAddresses(@params));
 		}
+
+		/// <inheritdoc />
+		public Task<OnlineStatus> GetOnlineStatusAsync(ulong groupId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetOnlineStatus(@groupId));
+		}
 	}
 }
