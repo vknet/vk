@@ -289,5 +289,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => SetLongPollSettings(@params));
 		}
+
+		/// <inheritdoc />
+		public Task<GetLongPollSettingsResult> GetLongPollSettingsAsync(ulong groupId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetLongPollSettings(groupId));
+		}
 	}
 }

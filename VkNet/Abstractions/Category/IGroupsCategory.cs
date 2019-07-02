@@ -155,5 +155,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref = "IGroupsCategoryAsync.SetLongPollSettingsAsync"/>
 		bool SetLongPollSettings(SetLongPollSettingsParams @params);
+
+		/// <inheritdoc cref = "IGroupsCategoryAsync.GetLongPollSettingsAsync"/>
+		GetLongPollSettingsResult GetLongPollSettings(ulong groupId);
 	}
 }

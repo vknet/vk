@@ -943,7 +943,6 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<OnlineStatus> GetOnlineStatusAsync(ulong groupId);
 
-
 		/// <summary>
 		/// Возвращает настройки прав для ключа доступа сообщества.
 		/// </summary>
@@ -959,7 +958,6 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<TokenPermissionsResult> GetTokenPermissionsAsync();
 
-
 		/// <summary>
 		/// Задаёт настройки для Bots Long Poll API в сообществе.
 		/// </summary>
@@ -973,5 +971,60 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.setLongPollSettings
 		/// </remarks>
 		Task<bool> SetLongPollSettingsAsync(SetLongPollSettingsParams @params);
+
+		/// <summary>
+		/// Получает настройки Bots Longpoll API для сообщества.
+		/// </summary>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества. положительное число, обязательный параметр
+		/// </param>
+		/// <returns>
+		/// Возвращает объект, который содержит следующие поля:
+		/// is_enabled (boolean) — true, если Bots Longpoll включен в сообществе.
+		/// events (object) — настройки Bots Longpoll. объект, содержащий настройки уведомлений в формате «название события»
+		/// : «статус» (0 — уведомления о событии выключены, 1 — уведомления о событии включены).
+		/// Объект содержит следующие поля:
+		/// message_new новое сообщение
+		/// integer, [0,1] message_reply новое исходящее сообщение
+		/// integer, [0,1] message_allow новая подписка на сообщения
+		/// integer, [0,1] message_deny новый запрет сообщений
+		/// integer, [0,1] photo_new добавление новой фотографии
+		/// integer, [0,1] audio_new добавление новой аудиозаписи
+		/// integer, [0,1] video_new добавление новой видеозаписи
+		/// integer, [0,1] wall_reply_new добавление нового комментария на стене
+		/// integer, [0,1] wall_reply_edit редактирование комментария на стене
+		/// integer, [0,1] wall_reply_delete удаление комментария на стене
+		/// integer, [0,1] wall_post_new добавление новой записи на стене
+		/// integer, [0,1] wall_repost новый репост записи на стене
+		/// integer, [0,1] board_post_new добавление нового комментария в обсуждении
+		/// integer, [0,1] board_post_edit редактирование комментария в обсуждении
+		/// integer, [0,1] board_post_delete удаление комментария в обсуждении
+		/// integer, [0,1] board_post_restore восстановление комментария в обсуждении
+		/// integer, [0,1] photo_comment_new добавление нового комментария к фото
+		/// integer, [0,1] photo_comment_edit редактирование комментария к фото
+		/// integer, [0,1] photo_comment_delete удаление комментария к фото
+		/// integer, [0,1] photo_comment_restore восстановление комментария к фото
+		/// integer, [0,1] video_comment_new добавление нового комментария к видео
+		/// integer, [0,1] video_comment_edit редактирование комментария к видео
+		/// integer, [0,1] video_comment_delete удаление комментария к видео
+		/// integer, [0,1] video_comment_restore восстановление комментария к видео
+		/// integer, [0,1] market_comment_new добавление нового комментария к товару
+		/// integer, [0,1] market_comment_edit редактирование комментария к товару
+		/// integer, [0,1] market_comment_delete удаление комментария к товару
+		/// integer, [0,1] market_comment_restore восстановление удалённого комментария к товару
+		/// integer, [0,1] poll_vote_new новый голос в публичном опросе
+		/// integer, [0,1] group_join вступление в сообщество
+		/// integer, [0,1] group_leave выход участника из сообщества
+		/// integer, [0,1] user_block занесение пользователя в черный список
+		/// integer, [0,1] user_unblock удаление пользователя из черного списка
+		/// integer, [0,1] group_change_settings изменение настроек сообщества
+		/// integer, [0,1] group_change_photo изменение главной фотографии
+		/// integer, [0,1] group_officers_edit изменение руководства сообщества
+		/// integer, [0,1]
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getLongPollSettings
+		/// </remarks>
+		Task<GetLongPollSettingsResult> GetLongPollSettingsAsync(ulong groupId);
 	}
 }

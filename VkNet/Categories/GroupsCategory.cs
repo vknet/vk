@@ -684,5 +684,15 @@ namespace VkNet.Categories
 					{ "user_unblock", @params.UserUnblock }
 				});
 		}
+
+		/// <inheritdoc />
+		public GetLongPollSettingsResult GetLongPollSettings(ulong groupId)
+		{
+			return _vk.Call<GetLongPollSettingsResult>("groups.getLongPollSettings",
+				new VkParameters
+				{
+					{ "group_id", groupId }
+				});
+		}
 	}
 }
