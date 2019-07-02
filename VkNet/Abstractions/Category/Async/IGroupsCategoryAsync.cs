@@ -958,5 +958,20 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.getTokenPermissions
 		/// </remarks>
 		Task<TokenPermissionsResult> GetTokenPermissionsAsync();
+
+
+		/// <summary>
+		/// Задаёт настройки для Bots Long Poll API в сообществе.
+		/// </summary>
+		/// <param name = "params">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.setLongPollSettings
+		/// </remarks>
+		Task<bool> SetLongPollSettingsAsync(SetLongPollSettingsParams @params);
 	}
 }

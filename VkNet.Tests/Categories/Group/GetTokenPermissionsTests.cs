@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Group
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class GetTokenPermissionsTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";

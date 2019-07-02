@@ -633,5 +633,56 @@ namespace VkNet.Categories
 		{
 			return _vk.Call<TokenPermissionsResult>("groups.getTokenPermissions", VkParameters.Empty);
 		}
+
+		/// <inheritdoc />
+		public bool SetLongPollSettings(SetLongPollSettingsParams @params)
+		{
+			return _vk.Call<bool>("groups.setLongPollSettings",
+				new VkParameters
+				{
+					{ "group_id", @params.GroupId },
+					{ "api_version", @params.ApiVersion },
+					{ "enabled", @params.Enabled },
+					{ "message_new", @params.MessageNew },
+					{ "message_reply", @params.MessageReply },
+					{ "message_allow", @params.MessageAllow },
+					{ "message_deny", @params.MessageDeny },
+					{ "message_edit", @params.MessageEdit },
+					{ "message_typing_state", @params.MessageTypingState },
+					{ "photo_new", @params.PhotoNew },
+					{ "audio_new", @params.AudioNew },
+					{ "video_new", @params.VideoNew },
+					{ "wall_reply_new", @params.WallReplyNew },
+					{ "wall_reply_edit", @params.WallReplyEdit },
+					{ "wall_reply_delete", @params.WallReplyDelete },
+					{ "wall_reply_restore", @params.WallReplyRestore },
+					{ "wall_post_new", @params.WallPostNew },
+					{ "wall_repost", @params.WallRepost },
+					{ "board_post_new", @params.BoardPostNew },
+					{ "board_post_edit", @params.BoardPostEdit },
+					{ "board_post_restore", @params.BoardPostRestore },
+					{ "board_post_delete", @params.BoardPostDelete },
+					{ "photo_comment_new", @params.PhotoCommentNew },
+					{ "photo_comment_edit", @params.PhotoCommentEdit },
+					{ "photo_comment_delete", @params.PhotoCommentDelete },
+					{ "photo_comment_restore", @params.PhotoCommentRestore },
+					{ "video_comment_new", @params.VideoCommentNew },
+					{ "video_comment_edit", @params.VideoCommentEdit },
+					{ "video_comment_delete", @params.VideoCommentDelete },
+					{ "video_comment_restore", @params.VideoCommentRestore },
+					{ "market_comment_new", @params.MarketCommentNew },
+					{ "market_comment_edit", @params.MarketCommentEdit },
+					{ "market_comment_delete", @params.MarketCommentDelete },
+					{ "market_comment_restore", @params.MarketCommentRestore },
+					{ "poll_vote_new", @params.PollVoteNew },
+					{ "group_join", @params.GroupJoin },
+					{ "group_leave", @params.GroupLeave },
+					{ "group_change_settings", @params.GroupChangeSettings },
+					{ "group_change_photo", @params.GroupChangePhoto },
+					{ "group_officers_edit", @params.GroupOfficersEdit },
+					{ "user_block", @params.UserBlock },
+					{ "user_unblock", @params.UserUnblock }
+				});
+		}
 	}
 }

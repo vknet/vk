@@ -152,5 +152,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref = "IGroupsCategoryAsync.GetTokenPermissionsAsync"/>
 		TokenPermissionsResult GetTokenPermissions();
+
+		/// <inheritdoc cref = "IGroupsCategoryAsync.SetLongPollSettingsAsync"/>
+		bool SetLongPollSettings(SetLongPollSettingsParams @params);
 	}
 }
