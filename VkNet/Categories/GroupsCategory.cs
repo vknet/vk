@@ -629,9 +629,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public TokenPermissions GetTokenPermissions()
+		public TokenPermissionsResult GetTokenPermissions()
 		{
-			return _vk.Call<TokenPermissions>("groups.getTokenPermissions", VkParameters.Empty);
+			return _vk.Call<TokenPermissionsResult>("groups.getTokenPermissions", VkParameters.Empty);
 		}
 	}
 }

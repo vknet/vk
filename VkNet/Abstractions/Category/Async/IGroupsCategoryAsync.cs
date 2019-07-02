@@ -957,6 +957,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.getTokenPermissions
 		/// </remarks>
-		Task<TokenPermissions> GetTokenPermissionsAsync();
+		Task<TokenPermissionsResult> GetTokenPermissionsAsync();
 	}
 }

@@ -7,7 +7,7 @@ namespace VkNet.Model
 	/// Настройка
 	/// </summary>
 	[Serializable]
-	public class SettingItem
+	public class TokenPermission
 	{
 		/// <summary>
 		/// Битовая маска права доступа

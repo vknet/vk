@@ -151,6 +151,6 @@ namespace VkNet.Abstractions
 		OnlineStatus GetOnlineStatus(ulong groupId);
 
 		/// <inheritdoc cref = "IGroupsCategoryAsync.GetTokenPermissionsAsync"/>
-		TokenPermissions GetTokenPermissions();
+		TokenPermissionsResult GetTokenPermissions();
 	}
 }

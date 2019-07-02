@@ -8,7 +8,7 @@ namespace VkNet.Model
 	/// Права токена
 	/// </summary>
 	[Serializable]
-	public class TokenPermissions
+	public class TokenPermissionsResult
 	{
 		/// <summary>
 		/// Битовая масска
@@ -19,7 +19,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Права доступа
 		/// </summary>
-		[JsonProperty("settings")]
-		public ReadOnlyCollection<SettingItem> Settings { get; set; }
+		[JsonProperty("permissions")]
+		public ReadOnlyCollection<TokenPermission> Permissions { get; set; }
 	}
 }

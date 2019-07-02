@@ -279,7 +279,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<TokenPermissions> GetTokenPermissionsAsync()
+		public Task<TokenPermissionsResult> GetTokenPermissionsAsync()
 		{
 			return TypeHelper.TryInvokeMethodAsync(GetTokenPermissions);
 		}

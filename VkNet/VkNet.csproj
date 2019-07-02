@@ -51,7 +51,7 @@
 	<ItemGroup>
 		<PackageReference Include="AsyncFixer" Version="1.1.6" PrivateAssets="all" />
 		<PackageReference Include="Flurl" Version="2.8.2" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.7" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.8" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
 		<PackageReference Include="SonarAnalyzer.CSharp" Version="7.15.0.8572" PrivateAssets="all" />
 		<PackageReference Include="JetBrains.Annotations" Version="2019.1.1" PrivateAssets="all" />
