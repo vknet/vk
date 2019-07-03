@@ -262,7 +262,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
-			return DeleteConversation(userId, peerId, offset, count, null);
+			return DeleteConversation(userId, peerId, null);
 		}
 
 		/// <inheritdoc />
