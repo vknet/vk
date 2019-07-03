@@ -159,6 +159,11 @@ namespace VkNet.Model.Attachments
 					return MoneyRequest;
 				}
 
+				if (Type == typeof(Event))
+				{
+					return Event;
+				}
+
 				return UnknownAttachment;
 			}
 		}
@@ -192,6 +197,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "video":
 
 				{
@@ -200,6 +206,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "audio":
 
 				{
@@ -208,6 +215,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "doc":
 
 				{
@@ -216,6 +224,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "podcast":
 
 				{
@@ -224,6 +233,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "article":
 
 				{
@@ -232,6 +242,16 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
+				case "event":
+
+				{
+					attachment.Type = typeof(Event);
+					attachment.Event = response[type];
+
+					break;
+				}
+
 				case "graffiti":
 
 				{
@@ -240,6 +260,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "link":
 
 				{
@@ -248,6 +269,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "money_transfer":
 
 				{
@@ -256,6 +278,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "money_request":
 
 				{
@@ -264,6 +287,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "note":
 
 				{
@@ -272,6 +296,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "app":
 
 				{
@@ -280,6 +305,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "poll":
 
 				{
@@ -288,6 +314,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "page":
 
 				{
@@ -296,6 +323,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "album":
 
 				{
@@ -304,6 +332,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "photos_list":
 
 				{
@@ -312,6 +341,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "wall":
 
 				{
@@ -320,6 +350,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "sticker":
 
 				{
@@ -328,6 +359,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "gift":
 
 				{
@@ -336,6 +368,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "wall_reply":
 
 				{
@@ -344,6 +377,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "market_album":
 
 				{
@@ -352,6 +386,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "market":
 
 				{
@@ -360,6 +395,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "pretty_cards":
 
 				{
@@ -395,6 +431,7 @@ namespace VkNet.Model.Attachments
 
 					break;
 				}
+
 				case "audio_playlist":
 
 				{
@@ -565,6 +602,11 @@ namespace VkNet.Model.Attachments
 		/// Выставление счета
 		/// </summary>
 		private MoneyRequest MoneyRequest { get; set; }
+
+		/// <summary>
+		/// Встреча
+		/// </summary>
+		private Event Event { get; set; }
 
 	#endregion
 	}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
+using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
 {
@@ -10,13 +11,10 @@ namespace VkNet.Model.Attachments
 	/// Встреча
 	/// </summary>
 	[Serializable]
-	public class Event
+	public class Event : MediaAttachment
 	{
-		/// <summary>
-		/// Идентификатор встречи.
-		/// </summary>
-		[JsonProperty("id")]
-		public long Id { get; set; }
+		/// <inheritdoc />
+		protected override string Alias => "event";
 
 		/// <summary>
 		/// Время начала встречи в Unixtime
@@ -60,5 +58,34 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[JsonProperty("friends")]
 		public IEnumerable<ulong> Friends { get; set; }
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static Event FromJson(VkResponse response)
+		{
+			return response != null
+				? JsonConvert.DeserializeObject<Event>(response.ToString())
+				: null;
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="Event" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns>Результат преобразования в <see cref="Event" /></returns>
+		public static implicit operator Event(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }
