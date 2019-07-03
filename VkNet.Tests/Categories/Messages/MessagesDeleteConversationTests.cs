@@ -14,7 +14,7 @@ namespace VkNet.Tests.Categories.Messages
 			Url = "https://api.vk.com/method/messages.deleteConversation";
 			ReadJsonFile(JsonPaths.True);
 
-			var result = Api.Messages.DeleteConversation(123);
+			var result = Api.Messages.DeleteConversation(123, 123, 123);
 
 			Assert.IsTrue(result);
 		}

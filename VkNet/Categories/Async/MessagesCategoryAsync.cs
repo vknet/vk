@@ -25,9 +25,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<GetRecentCallsResult> GetRecentCallsAsync(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null, bool? extended = null)
+		public Task<GetRecentCallsResult> GetRecentCallsAsync(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null,
+															bool? extended = null)
 		{
-			return  TypeHelper.TryInvokeMethodAsync(() => GetRecentCalls(fields, count, startMessageId, extended));
+			return TypeHelper.TryInvokeMethodAsync(() => GetRecentCalls(fields, count, startMessageId, extended));
 		}
 
 		/// <inheritdoc />
@@ -63,10 +64,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null,
-												long? groupId = null)
+		public Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => DeleteConversation(userId, peerId, offset, count, groupId));
+			return TypeHelper.TryInvokeMethodAsync(() => DeleteConversation(userId, peerId, groupId));
 		}
 
 		/// <inheritdoc />

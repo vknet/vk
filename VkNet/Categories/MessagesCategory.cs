@@ -146,7 +146,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool DeleteConversation(long? userId, long? peerId = null, uint? offset = null, uint? count = null, long? groupId = null)
+		public bool DeleteConversation(long? userId, long? peerId = null, ulong? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -154,18 +154,6 @@ namespace VkNet.Categories
 				{ "peer_id", peerId },
 				{ "group_id", groupId }
 			};
-
-			if (_vk.VkApiVersion.IsGreaterThanOrEqual(5, 100))
-			{
-				return _vk.Call<bool>("messages.deleteConversation", parameters);
-			}
-
-			if (count <= 10000)
-			{
-				parameters.Add("count", count);
-			}
-
-			parameters.Add("offset", offset);
 
 			return _vk.Call<bool>("messages.deleteConversation", parameters);
 		}
