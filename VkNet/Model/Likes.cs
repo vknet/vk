@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -13,22 +15,26 @@ namespace VkNet.Model
 		/// <summary>
 		/// Число пользователей, которым понравилась запись.
 		/// </summary>
+		[JsonProperty("count")]
 		public int Count { get; set; }
 
 		/// <summary>
 		/// Признак понравилась ли запись текущему пользователю.
 		/// </summary>
+		[JsonProperty("user_likes")]
 		public bool UserLikes { get; set; }
 
 		/// <summary>
 		/// Признак может ли текущий пользователь поставить отметку "Мне нравится".
 		/// </summary>
+		[JsonProperty("can_like")]
 		public bool CanLike { get; set; }
 
 		/// <summary>
 		/// Признак может ли текущий пользователь сделать репост записи (опубликовать у
 		/// себя запись).
 		/// </summary>
+		[JsonProperty("can_publish")]
 		public bool? CanPublish { get; set; }
 
 	#region Методы
