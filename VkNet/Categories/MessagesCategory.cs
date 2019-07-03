@@ -60,7 +60,11 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool DenyMessagesFromGroup(long groupId)
 		{
-			return _vk.Call("messages.denyMessagesFromGroup", new VkParameters { { "group_id", groupId } });
+			return _vk.Call("messages.denyMessagesFromGroup",
+				new VkParameters
+				{
+					{ "group_id", groupId }
+				});
 		}
 
 		/// <inheritdoc />
@@ -147,17 +151,23 @@ namespace VkNet.Categories
 			var parameters = new VkParameters
 			{
 				{ "user_id", userId },
-				{ "offset", offset },
 				{ "peer_id", peerId },
 				{ "group_id", groupId }
 			};
+
+			if (_vk.VkApiVersion.IsGreaterThanOrEqual(5, 100))
+			{
+				return _vk.Call<bool>("messages.deleteConversation", parameters);
+			}
 
 			if (count <= 10000)
 			{
 				parameters.Add("count", count);
 			}
 
-			return _vk.Call("messages.deleteConversation", parameters);
+			parameters.Add("offset", offset);
+
+			return _vk.Call<bool>("messages.deleteConversation", parameters);
 		}
 
 		/// <inheritdoc />
@@ -362,7 +372,13 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null)
 		{
-			return GetChat(new[] { chatId }, fields, nameCase).FirstOrDefault();
+			return GetChat(new[]
+					{
+						chatId
+					},
+					fields,
+					nameCase)
+				.FirstOrDefault();
 		}
 
 		/// <inheritdoc />
@@ -404,7 +420,10 @@ namespace VkNet.Categories
 
 			return chatIds.Count() > 1
 				? response.ToReadOnlyCollectionOf<Chat>(c => c)
-				: new ReadOnlyCollection<Chat>(new List<Chat> { response });
+				: new ReadOnlyCollection<Chat>(new List<Chat>
+				{
+					response
+				});
 		}
 
 		/// <inheritdoc />
@@ -460,7 +479,13 @@ namespace VkNet.Categories
 			foreach (var chatId in collection)
 			{
 				var chatResponse = response[chatId.ToString()];
-				var users = chatResponse.ToReadOnlyCollectionOf(x => fields != null ? x : new User { Id = (long) x });
+
+				var users = chatResponse.ToReadOnlyCollectionOf(x => fields != null
+					? x
+					: new User
+					{
+						Id = (long) x
+					});
 
 				foreach (var user in users)
 				{
@@ -603,7 +628,11 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long JoinChatByInviteLink(string link)
 		{
-			return _vk.Call("messages.joinChatByInviteLink", new VkParameters { { "link", link } })["chat_id"];
+			return _vk.Call("messages.joinChatByInviteLink",
+				new VkParameters
+				{
+					{ "link", link }
+				})["chat_id"];
 		}
 
 		/// <inheritdoc />
@@ -651,7 +680,12 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool Unpin(long peerId, ulong? groupId = null)
 		{
-			return _vk.Call<bool>("messages.unpin", new VkParameters { { "peer_id", peerId }, { "group_id", groupId } });
+			return _vk.Call<bool>("messages.unpin",
+				new VkParameters
+				{
+					{ "peer_id", peerId },
+					{ "group_id", groupId }
+				});
 		}
 
 		/// <inheritdoc />
@@ -660,7 +694,12 @@ namespace VkNet.Categories
 		{
 			return _vk.Call<GetRecentCallsResult>("messages.getRecentCalls",
 				new VkParameters
-					{ { "fields", fields }, { "count", count }, { "start_message_id", startMessageId }, { "extended", extended } });
+				{
+					{ "fields", fields },
+					{ "count", count },
+					{ "start_message_id", startMessageId },
+					{ "extended", extended }
+				});
 		}
 
 		/// <summary>
@@ -685,7 +724,12 @@ namespace VkNet.Categories
 		[Obsolete(ObsoleteText.MessageGetById, true)]
 		public Message GetById(ulong messageId, uint? previewLength = null)
 		{
-			var result = GetById(new[] { messageId }, null, previewLength);
+			var result = GetById(new[]
+				{
+					messageId
+				},
+				null,
+				previewLength);
 
 			if (result.Count > 0)
 			{

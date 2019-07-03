@@ -9,7 +9,7 @@ namespace VkNet.Infrastructure
 	{
 		private int Major { get; set; } = 5;
 
-		private int Minor { get; set; } = 95;
+		private int Minor { get; set; } = 101;
 
 		/// <inheritdoc />
 		public string Version => $"{Major}.{Minor}";
