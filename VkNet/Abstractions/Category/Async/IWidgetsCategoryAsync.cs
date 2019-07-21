@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -16,6 +17,7 @@ namespace VkNet.Abstractions
 		/// <param name="getCommentsParams">
 		/// Входные параметры запроса.
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// В случае успеха возвращает объект со следующими полями:
 		/// count — общее количество комментариев первого уровня к странице (без учета
@@ -36,7 +38,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/widgets.getComments
 		/// </remarks>
-		Task<VkCollection<Comment>> GetCommentsAsync(GetCommentsParams getCommentsParams);
+		Task<VkCollection<Comment>> GetCommentsAsync(GetCommentsParams getCommentsParams, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Получает список страниц приложения/сайта, на которых установлен Виджет
@@ -63,6 +65,7 @@ namespace VkNet.Abstractions
 		/// минимальное значение 10, максимальное
 		/// значение 200
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// В случае успеха возвращает объект со следующими полями:
 		/// count — общее количество страниц (без учета ограничений входного параметра
@@ -94,10 +97,11 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/widgets.getPages
 		/// </remarks>
-		Task<VkCollection<WidgetPage>> GetPagesAsync(long? widgetApiId = null
-													, string order = null
-													, string period = null
-													, ulong? offset = null
-													, ulong? count = null);
+		Task<VkCollection<WidgetPage>> GetPagesAsync(long? widgetApiId = null,
+													string order = null,
+													string period = null,
+													ulong? offset = null,
+													ulong? count = null,
+													CancellationToken cancellationToken = default);
 	}
 }
