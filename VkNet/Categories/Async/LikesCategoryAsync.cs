@@ -12,15 +12,13 @@ namespace VkNet.Categories
 	public partial class LikesCategory
 	{
 		/// <inheritdoc />
-		public async Task<VkCollection<long>> GetListAsync(LikesGetListParams @params,
-															bool skipAuthorization = false,
-															CancellationToken cancellationToken = default)
+		public Task<VkCollection<long>> GetListAsync(LikesGetListParams @params,
+													bool skipAuthorization = false,
+													CancellationToken cancellationToken = default)
 		{
 			@params.Extended = false;
 
-			return (await _vk.CallAsync("likes.getList", @params, skipAuthorization, cancellationToken)
-					.ConfigureAwait(false))
-				.ToVkCollectionOf<long>(x => x);
+			return _vk.CallAsync<VkCollection<long>>("likes.getList", @params, skipAuthorization, cancellationToken: cancellationToken);
 		}
 
 		/// <inheritdoc />
@@ -50,16 +48,17 @@ namespace VkNet.Categories
 											string captchaKey = null,
 											CancellationToken cancellationToken = default)
 		{
-			var parameters = new VkParameters
-			{
-				{ "type", type },
-				{ "item_id", itemId },
-				{ "owner_id", ownerId },
-				{ "captcha_sid", captchaSid },
-				{ "captcha_key", captchaKey }
-			};
-
-			var response = await _vk.CallAsync("likes.delete", parameters, cancellationToken: cancellationToken).ConfigureAwait(false);
+			var response = await _vk.CallAsync("likes.delete",
+					new VkParameters
+					{
+						{ "type", type },
+						{ "item_id", itemId },
+						{ "owner_id", ownerId },
+						{ "captcha_sid", captchaSid },
+						{ "captcha_key", captchaKey }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 
 			return response["likes"];
 		}
@@ -73,17 +72,18 @@ namespace VkNet.Categories
 											long? ownerId = null,
 											CancellationToken cancellationToken = default)
 		{
-			var parameters = new VkParameters
-			{
-				{ "type", type },
-				{ "item_id", itemId },
-				{ "user_id", userId },
-				{ "owner_id", ownerId }
-			};
+			var response = await _vk.CallAsync("likes.isLiked",
+					new VkParameters
+					{
+						{ "type", type },
+						{ "item_id", itemId },
+						{ "user_id", userId },
+						{ "owner_id", ownerId }
+					},
+					cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 
-			var resp = await _vk.CallAsync("likes.isLiked", parameters, cancellationToken: cancellationToken).ConfigureAwait(false);
-
-			return resp["liked"];
+			return response["liked"];
 		}
 	}
 }

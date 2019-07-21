@@ -9,7 +9,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронное API для работы с лайками.
+	/// Методы для работы с лайками.
 	/// </summary>
 	public interface ILikesCategoryAsync
 	{
@@ -20,7 +20,7 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="params"> Параметры запроса. </param>
 		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-		/// <param name="cancellationToken"></param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает список идентификаторов пользователей или сообществ, которые добавили
 		/// заданный объект в свой список Мне
@@ -29,7 +29,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/likes.getList
 		/// </remarks>
-		Task<VkCollection<long>> GetListAsync(LikesGetListParams @params, bool skipAuthorization = false,
+		Task<VkCollection<long>> GetListAsync(LikesGetListParams @params,
+											bool skipAuthorization = false,
 											CancellationToken cancellationToken = default);
 
 		/// <summary>
@@ -38,7 +39,7 @@ namespace VkNet.Abstractions
 		/// нравится.
 		/// </summary>
 		/// <param name="params"> Параметры запроса. </param>
-		/// <param name="cancellationToken"></param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает список пользователей и сообществ, которые добавили заданный объект в
 		/// свой список Мне нравится.
@@ -87,7 +88,12 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/likes.delete
 		/// </remarks>
 		[Obsolete(ObsoleteText.CaptchaNeeded)]
-		Task<long> DeleteAsync(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null, CancellationToken cancellationToken = default);
+		Task<long> DeleteAsync(LikeObjectType type,
+								long itemId,
+								long? ownerId = null,
+								long? captchaSid = null,
+								string captchaKey = null,
+								CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Проверяет, находится ли объект в списке Мне нравится заданного пользователя.
@@ -121,6 +127,10 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/likes.isLiked
 		/// </remarks>
-		Task<bool> IsLikedAsync(LikeObjectType type, long itemId, long? userId = null, long? ownerId = null, CancellationToken cancellationToken = default);
+		Task<bool> IsLikedAsync(LikeObjectType type,
+								long itemId,
+								long? userId = null,
+								long? ownerId = null,
+								CancellationToken cancellationToken = default);
 	}
 }
