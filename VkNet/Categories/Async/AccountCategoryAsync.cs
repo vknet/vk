@@ -240,7 +240,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public async Task<AccountSaveProfileInfoParams> GetProfileInfoAsync(CancellationToken cancellationToken = default)
 		{
-			var user = await _vk.CallAsync<User>("account.getProfileInfo",
+			User user = await _vk.CallAsync("account.getProfileInfo",
 					VkParameters.Empty,
 					cancellationToken: cancellationToken)
 				.ConfigureAwait(false);
