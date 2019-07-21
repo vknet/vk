@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с подарками.
+	/// Методы для работы с подарками.
 	/// </summary>
 	public interface IGiftsCategoryAsync
 	{
@@ -21,6 +22,7 @@ namespace VkNet.Abstractions
 		/// Смещение, необходимое для выборки определенного
 		/// подмножества подарков.
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// В случае успешного вступления в группу метод вернёт <c> true </c>, иначе
 		/// <c> false </c>.
@@ -45,6 +47,9 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/gifts.get
 		/// </remarks>
-		Task<VkCollection<GiftItem>> GetAsync(long userId, int? count = null, int? offset = null);
+		Task<VkCollection<GiftItem>> GetAsync(long userId,
+											int? count = null,
+											int? offset = null,
+											CancellationToken cancellationToken = default);
 	}
 }
