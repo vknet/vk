@@ -1,4 +1,5 @@
-﻿using VkNet.Abstractions;
+﻿using System.Threading;
+using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -22,7 +23,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<SearchHintsItem> GetHints(SearchGetHintsParams @params)
 		{
-			return _vk.Call<VkCollection<SearchHintsItem>>(methodName: "search.getHints", parameters: @params);
+			return GetHintsAsync(@params, CancellationToken.None).GetAwaiter().GetResult();
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -6,7 +7,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с поиском.
+	/// Методы для работы с поиском.
 	/// </summary>
 	public interface ISearchCategoryAsync
 	{
@@ -14,11 +15,12 @@ namespace VkNet.Abstractions
 		/// Метод позволяет получить результаты быстрого поиска по произвольной подстроке
 		/// </summary>
 		/// <param name="params"> Параметры запроса </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/search.getHints
 		/// </remarks>
-		Task<VkCollection<SearchHintsItem>> GetHintsAsync(SearchGetHintsParams @params);
+		Task<VkCollection<SearchHintsItem>> GetHintsAsync(SearchGetHintsParams @params, CancellationToken cancellationToken = default);
 	}
 }
