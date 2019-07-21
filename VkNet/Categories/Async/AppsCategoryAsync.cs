@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -10,166 +11,79 @@ namespace VkNet.Categories
 	/// <inheritdoc />
 	public partial class AppsCategory
 	{
-		/// <summary>
-		/// Возвращает список приложений, доступных для пользователей сайта через каталог
-		/// приложений.
-		/// </summary>
-		/// <param name="params"> Параметры запроса. </param>
-		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-		/// <returns>
-		/// После успешного выполнения возвращает общее число найденных приложений и массив
-		/// объектов приложений.
-		/// </returns>
-		/// <remarks>
-		/// К методу можно делать не более 60 запросов в минуту с одного IP или id.
-		/// Страница документации ВКонтакте http://vk.com/dev/apps.getCatalog
-		/// </remarks>
-		public Task<VkCollection<App>> GetCatalogAsync(AppGetCatalogParams @params, bool skipAuthorization = false)
+		/// <inheritdoc />
+		public async Task<VkCollection<App>> GetCatalogAsync(AppGetCatalogParams @params, bool skipAuthorization = false,
+															CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				GetCatalog(@params: @params, skipAuthorization: skipAuthorization));
+			return (await _vk.CallAsync("apps.getCatalog", @params, skipAuthorization, cancellationToken).ConfigureAwait(false))
+				.ToVkCollectionOf<App>(selector: x => x);
 		}
 
-		/// <summary>
-		/// Возвращает данные о запрошенном приложении на платформе ВКонтакте
-		/// </summary>
-		/// <param name="params"> Параметры запроса. </param>
-		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-		/// <returns>
-		/// После успешного выполнения возвращает объект приложения.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/apps.get
-		/// </remarks>
-		public Task<AppGetObject> GetAsync(AppGetParams @params, bool skipAuthorization = false)
+		/// <inheritdoc />
+		public async Task<AppGetObject> GetAsync(AppGetParams @params, bool skipAuthorization = false,
+												CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => Get(@params: @params, skipAuthorization: skipAuthorization));
+			return await _vk.CallAsync("apps.get", @params, skipAuthorization, cancellationToken).ConfigureAwait(false);
 		}
 
-		/// <summary>
-		/// Позволяет отправить запрос другому пользователю в приложении, использующем
-		/// авторизацию ВКонтакте.
-		/// </summary>
-		/// <param name="params"> Параметры запроса. </param>
-		/// <returns>
-		/// В случае удачного выполнения метод возвращает идентификатор созданного запроса,
-		/// например:
-		/// 10013.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/apps.sendRequest
-		/// </remarks>
-		public Task<long> SendRequestAsync(AppSendRequestParams @params)
+		/// <inheritdoc />
+		public async Task<long> SendRequestAsync(AppSendRequestParams @params, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => SendRequest(@params: @params));
+			return await _vk.CallAsync("apps.sendRequest", @params, cancellationToken: cancellationToken).ConfigureAwait(false);
 		}
 
-		/// <summary>
-		/// Удаляет все уведомления о запросах, отправленных из текущего приложения.
-		/// </summary>
-		/// <returns>
-		/// В случае успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/apps.deleteAppRequests
-		/// </remarks>
-		public Task<bool> DeleteAppRequestsAsync()
+		/// <inheritdoc />
+		public async Task<bool> DeleteAppRequestsAsync(CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => DeleteAppRequests());
+			return await _vk.CallAsync("apps.deleteAppRequests", VkParameters.Empty, cancellationToken: cancellationToken)
+				.ConfigureAwait(false);
 		}
 
-		/// <summary>
-		/// Создает список друзей, который будет использоваться при отправке пользователем
-		/// приглашений в приложение.
-		/// </summary>
-		/// <param name="type"> Tип создаваемого списка друзей. </param>
-		/// <param name="extended">
-		/// Параметр, определяющий необходимость возвращать расширенную информацию о
-		/// пользователях.
-		/// 0 — возвращаются только идентификаторы;
-		/// 1 — будут дополнительно возвращены имя и фамилия. флаг, может принимать
-		/// значения 1 или 0, по умолчанию 0
-		/// Async(Флаг, может принимать значения 1 или 0, по умолчанию 0).
-		/// </param>
-		/// <param name="count"> Количество пользователей в создаваемом списке. </param>
-		/// <param name="offset">
-		/// Смещение относительно первого пользователя для выборки определенного
-		/// подмножества.
-		/// </param>
-		/// <param name="fields">
-		/// Список дополнительных полей профилей, которые необходимо вернуть. См. подробное
-		/// описание.
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает список пользователей.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/apps.getFriendsList
-		/// </remarks>
-		public Task<VkCollection<User>> GetFriendsListAsync(AppRequestType type
-															, bool? extended = null
-															, long? count = null
-															, long? offset = null
-															, UsersFields fields = null)
+		/// <inheritdoc />
+		public async Task<VkCollection<User>> GetFriendsListAsync(AppRequestType type,
+																bool? extended = null,
+																long? count = null,
+																long? offset = null,
+																UsersFields fields = null,
+																CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				GetFriendsList(type: type, extended: extended, count: count, offset: offset));
+			var parameters = new VkParameters
+			{
+				{ "extended", extended },
+				{ "offset", offset },
+				{ "type", type },
+				{ "fields", fields }
+			};
+
+			return (await _vk.CallAsync("apps.getFriendsList", parameters, cancellationToken: cancellationToken).ConfigureAwait(false))
+				.ToVkCollectionOf<User>(selector: x => x);
 		}
 
-		/// <summary>
-		/// Возвращает рейтинг пользователей в игре.
-		/// </summary>
-		/// <param name="type">
-		/// Level — рейтинг по уровням,
-		/// points — рейтинг по очкам, начисленным за выполнение миссий.
-		/// score — рейтинг по очкам, начисленным напрямую Async(apps.getScore). строка,
-		/// обязательный параметр Async(Строка,
-		/// обязательный параметр).
-		/// </param>
-		/// <param name="global">
-		/// 1 — глобальный рейтинг по всем игрокам,
-		/// 0 — рейтинг по друзьям пользователя флаг, может принимать значения 1 или 0, по
-		/// умолчанию 1 Async(Флаг, может
-		/// принимать значения 1 или 0, по умолчанию 1).
-		/// </param>
-		/// <param name="extended">
-		/// 1 — дополнительно возвращает информацию о пользователе. флаг, может принимать
-		/// значения 1 или 0,
-		/// по умолчанию 0 Async(Флаг, может принимать значения 1 или 0, по умолчанию 0).
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает список друзей с текущим уровнем и
-		/// количеством очков в игре, отсортированный
-		/// по убыванию текущего уровня или количества очков.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/apps.getLeaderboard
-		/// </remarks>
-		public Task<LeaderboardResult> GetLeaderboardAsync(AppRatingType type, bool? global = null, bool? extended = null)
+		/// <inheritdoc />
+		public Task<LeaderboardResult> GetLeaderboardAsync(AppRatingType type,
+															bool? global = null,
+															bool? extended = null,
+															CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				GetLeaderboard(type: type, global: global, extended: extended));
+			var parameters = new VkParameters
+			{
+				{ "type", type },
+				{ "global", global },
+				{ "extended", extended }
+			};
+
+			return _vk.CallAsync<LeaderboardResult>("apps.getLeaderboard", parameters, true, cancellationToken: cancellationToken);
 		}
 
-		/// <summary>
-		/// Метод возвращает количество очков пользователя в этой игре.
-		/// </summary>
-		/// <param name="userId">
-		/// Идентификатор пользователя. положительное число, по умолчанию идентификатор
-		/// текущего пользователя,
-		/// обязательный параметр Async(Положительное число, по умолчанию идентификатор
-		/// текущего пользователя, обязательный
-		/// параметр).
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает число очков для пользователя.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/apps.getScore
-		/// </remarks>
-		public Task<long> GetScoreAsync(long userId)
+		/// <inheritdoc />
+		public async Task<long> GetScoreAsync(long userId, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => GetScore(userId: userId));
+			var parameters = new VkParameters
+			{
+				{ "user_id", userId }
+			};
+
+			return await _vk.CallAsync("apps.getScore", parameters, cancellationToken: cancellationToken).ConfigureAwait(false);
 		}
 	}
 }
