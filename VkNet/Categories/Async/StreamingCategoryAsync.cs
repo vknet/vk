@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -11,31 +12,44 @@ namespace VkNet.Categories
 	public partial class StreamingCategory
 	{
 		/// <inheritdoc />
-		public Task<StreamingServerUrl> GetServerUrlAsync()
+		public Task<StreamingServerUrl> GetServerUrlAsync(CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetServerUrl());
+			return _vk.CallAsync<StreamingServerUrl>("streaming.getServerUrl", VkParameters.Empty, cancellationToken: cancellationToken);
 		}
 
 		/// <inheritdoc />
-		public Task<StreamingSettings> GetSettingsAsync()
+		public Task<StreamingSettings> GetSettingsAsync(CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetSettings());
+			return _vk.CallAsync<StreamingSettings>("streaming.getSettings", VkParameters.Empty, cancellationToken: cancellationToken);
 		}
 
 		/// <inheritdoc />
-		public Task<ReadOnlyCollection<StreamingStats>> GetStatsAsync(string type
-																			, string interval
-																			, DateTime? startTime = null
-																			, DateTime? endTime = null)
+		public Task<ReadOnlyCollection<StreamingStats>> GetStatsAsync(string type,
+																	string interval,
+																	DateTime? startTime = null,
+																	DateTime? endTime = null,
+																	CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					GetStats(type: type, interval: interval, startTime: startTime, endTime: endTime));
+			return _vk.CallAsync<ReadOnlyCollection<StreamingStats>>("streaming.getStats",
+				new VkParameters
+				{
+					{ "type", type },
+					{ "interval", interval },
+					{ "start_time", startTime },
+					{ "end_time", endTime }
+				},
+				cancellationToken: cancellationToken);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SetSettingsAsync(MonthlyLimit monthlyTier)
+		public Task<bool> SetSettingsAsync(MonthlyLimit monthlyTier, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>SetSettings(monthlyTier: monthlyTier));
+			return _vk.CallAsync<bool>("streaming.setSettings",
+				new VkParameters
+				{
+					{ "monthly_tier", monthlyTier }
+				},
+				cancellationToken: cancellationToken);
 		}
 	}
 }

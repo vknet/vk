@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -14,6 +15,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Позволяет получить данные для подключения к Streaming API.
 		/// </summary>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает объект, который содержит следующие поля:
 		/// endpoint (string) — хост для подключения к серверу;
@@ -23,11 +25,12 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.getServerUrl
 		/// </remarks>
-		Task<StreamingServerUrl> GetServerUrlAsync();
+		Task<StreamingServerUrl> GetServerUrlAsync(CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет получить значение порога для Streaming API.
 		/// </summary>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает объект с единственным полем monthly_limit (string), которое содержит
 		/// значение tier_1-tier_6 или
@@ -36,7 +39,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.getSettings
 		/// </remarks>
-		Task<StreamingSettings> GetSettingsAsync();
+		Task<StreamingSettings> GetSettingsAsync(CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет получить статистику для подготовленных и доставленных событий
@@ -63,6 +66,7 @@ namespace VkNet.Abstractions
 		/// Время окончания отсчёта в Unixtime. По умолчанию: текущее время. положительное
 		/// число
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает массив объектов, каждый из которых содержит поля:
 		/// event_type (string) — тип событий. Возможные значения:
@@ -77,10 +81,11 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.getStats
 		/// </remarks>
-		Task<ReadOnlyCollection<StreamingStats>> GetStatsAsync(string type
-																, string interval
-																, DateTime? startTime = null
-																, DateTime? endTime = null);
+		Task<ReadOnlyCollection<StreamingStats>> GetStatsAsync(string type,
+																string interval,
+																DateTime? startTime = null,
+																DateTime? endTime = null,
+																CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет задать значение порога для Streaming API.
@@ -88,12 +93,13 @@ namespace VkNet.Abstractions
 		/// <param name="monthlyTier">
 		/// Значение порога в месяц. Возможные значения:
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.setSettings
 		/// </remarks>
-		Task<bool> SetSettingsAsync(MonthlyLimit monthlyTier);
+		Task<bool> SetSettingsAsync(MonthlyLimit monthlyTier, CancellationToken cancellationToken = default);
 	}
 }

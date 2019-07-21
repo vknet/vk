@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
-using VkNet.Utils;
 
 namespace VkNet.Categories
 {
@@ -27,37 +27,28 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public StreamingServerUrl GetServerUrl()
 		{
-			return _vk.Call<StreamingServerUrl>(methodName: "streaming.getServerUrl", parameters: VkParameters.Empty);
+			return GetServerUrlAsync(CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public StreamingSettings GetSettings()
 		{
-			return _vk.Call<StreamingSettings>(methodName: "streaming.getSettings", parameters: VkParameters.Empty);
+			return GetSettingsAsync(CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<StreamingStats> GetStats(string type
-															, string interval
-															, DateTime? startTime = null
-															, DateTime? endTime = null)
+		public ReadOnlyCollection<StreamingStats> GetStats(string type,
+															string interval,
+															DateTime? startTime = null,
+															DateTime? endTime = null)
 		{
-			var result = _vk.Call<ReadOnlyCollection<StreamingStats>>(methodName: "streaming.getStats"
-					, parameters: new VkParameters
-					{
-							{ "type", type }
-							, { "interval", interval }
-							, { "start_time", startTime }
-							, { "end_time", endTime }
-					});
-
-			return result;
+			return GetStatsAsync(type, interval, startTime, endTime, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public bool SetSettings(MonthlyLimit monthlyTier)
 		{
-			return _vk.Call<bool>(methodName: "streaming.setSettings", parameters: new VkParameters { { "monthly_tier", monthlyTier } });
+			return SetSettingsAsync(monthlyTier, CancellationToken.None).GetAwaiter().GetResult();
 		}
 	}
 }
