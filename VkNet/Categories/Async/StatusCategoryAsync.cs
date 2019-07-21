@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Utils;
@@ -8,15 +9,27 @@ namespace VkNet.Categories
 	public partial class StatusCategory
 	{
 		/// <inheritdoc />
-		public Task<Status> GetAsync(long userId, long? groupId = null)
+		public Task<Status> GetAsync(long userId, long? groupId = null, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Get(userId: userId, groupId: groupId));
+			return _vk.CallAsync<Status>("status.get",
+				new VkParameters
+				{
+					{ "user_id", userId },
+					{ "group_id", groupId }
+				},
+				cancellationToken: cancellationToken);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SetAsync(string text, long? groupId = null)
+		public Task<bool> SetAsync(string text, long? groupId = null, CancellationToken cancellationToken = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Set(text: text, groupId: groupId));
+			return _vk.CallAsync<bool>("status.set",
+				new VkParameters
+				{
+					{ "text", text },
+					{ "group_id", groupId }
+				},
+				cancellationToken: cancellationToken);
 		}
 	}
 }
