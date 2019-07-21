@@ -1,7 +1,7 @@
 using System;
+using System.Threading;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 
 namespace VkNet.Categories
 {
@@ -25,62 +25,50 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public Uri GetAppImageUploadServer(AppWidgetImageType imageType)
 		{
-			return _vk.Call("appWidgets.getAppImageUploadServer", new VkParameters { { "image_type", imageType } })["upload_url"];
+			return GetAppImageUploadServerAsync(imageType, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc/>
 		public Uri GetAppImages(int offset, int count, AppWidgetImageType imageType)
 		{
-			return _vk.Call<Uri>("appWidgets.getAppImages",
-				new VkParameters
-				{
-					{ "offset", offset },
-					{ "count", count },
-					{ "image_type", imageType }
-				});
+			return GetAppImagesAsync(offset, count, imageType, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc/>
 		public Uri GetGroupImageUploadServer(AppWidgetImageType imageType)
 		{
-			return _vk.Call<Uri>("appWidgets.getGroupImageUploadServer", new VkParameters { { "image_type", imageType } });
+			return GetGroupImageUploadServerAsync(imageType, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc/>
 		public Uri GetGroupImages(int offset, int count, AppWidgetImageType imageType)
 		{
-			return _vk.Call<Uri>("appWidgets.getGroupImages",
-				new VkParameters
-				{
-					{ "offset", offset },
-					{ "count", count },
-					{ "image_type", imageType }
-				});
+			return GetGroupImagesAsync(offset, count, imageType, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <param name="images"></param>
 		/// <inheritdoc/>
 		public Uri GetImagesById(string images)
 		{
-			return _vk.Call<Uri>("appWidgets.getImagesById", VkParameters.Empty);
+			return GetImagesByIdAsync(images, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc/>
 		public Uri SaveAppImage(string hash, string image)
 		{
-			return _vk.Call<Uri>("appWidgets.saveAppImage", new VkParameters { { "hash", hash }, { "image", image } });
+			return SaveAppImageAsync(hash, image).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc/>
 		public Uri SaveGroupImage()
 		{
-			return _vk.Call<Uri>("appWidgets.saveGroupImage", VkParameters.Empty);
+			return SaveGroupImageAsync(CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc/>
 		public bool Update()
 		{
-			return _vk.Call<bool>("appWidgets.update", VkParameters.Empty);
+			return UpdateAsync(CancellationToken.None).GetAwaiter().GetResult();
 		}
 	}
 }

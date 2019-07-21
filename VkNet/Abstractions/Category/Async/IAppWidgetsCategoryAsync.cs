@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 
@@ -21,6 +22,7 @@ namespace VkNet.Abstractions.Category
 		/// 510x128.
 		/// обязательный параметр
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает объект с единственным полем upload_url, содержащим URL для загрузки изображения.
 		/// Для загрузки изображения сгенерируйте POST-запрос с файлом в поле image на полученный адрес, а затем вызовите метод appWidgets.saveAppImage.
@@ -28,7 +30,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getAppImageUploadServer
 		/// </remarks>
-		Task<Uri> GetAppImageUploadServerAsync(AppWidgetImageType imageType);
+		Task<Uri> GetAppImageUploadServerAsync(AppWidgetImageType imageType, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
@@ -36,10 +38,13 @@ namespace VkNet.Abstractions.Category
 		/// <param name="offset">Смещение для получения определённого подмножества результатов.</param>
 		/// <param name="count">Максимальное число результатов для получения.</param>
 		/// <param name="imageType">Тип изображения.</param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает общее число результатов в поле count (integer) и массив объектов, описывающих изображения, в поле items (array).
 		/// Каждый объект массива  items содержит следующие поля:
-		/// id (string) — идентификатор изображения. Обратите внимание, идентификаторы изображений для виджетов отличаются от обычных фотографий, и НЕ представляют собой сочетание owner_id+"_"+photo_id. Полученный идентификатор нужно использовать в коде виджета «как есть».
+		/// id (string) — идентификатор изображения. Обратите внимание,
+		/// идентификаторы изображений для виджетов отличаются от обычных фотографий,
+		/// и НЕ представляют собой сочетание owner_id+"_"+photo_id. Полученный идентификатор нужно использовать в коде виджета «как есть».
 		/// type (string) — тип изображения. Возможные значения:
 		/// 160x160,
 		/// 160x240,
@@ -54,12 +59,13 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getAppImages
 		/// </remarks>
-		Task<Uri> GetAppImagesAsync(int offset, int count, AppWidgetImageType imageType);
+		Task<Uri> GetAppImagesAsync(int offset, int count, AppWidgetImageType imageType, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет получить адрес для загрузки фотографии в коллекцию сообщества для виджетов приложений сообществ.
 		/// </summary>
 		/// <param name="imageType">Тип изображения.</param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает объект с единственным полем upload_url, содержащим URL для загрузки изображения.
 		/// Для загрузки изображения сгенерируйте POST-запрос с файлом в поле image на полученный адрес, а затем вызовите метод appWidgets.saveGroupImage.
@@ -67,7 +73,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getGroupImageUploadServer
 		/// </remarks>
-		Task<Uri> GetGroupImageUploadServerAsync(AppWidgetImageType imageType);
+		Task<Uri> GetGroupImageUploadServerAsync(AppWidgetImageType imageType, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
@@ -75,10 +81,13 @@ namespace VkNet.Abstractions.Category
 		/// <param name="offset">Смещение для получения определённого подмножества результатов.</param>
 		/// <param name="count">Максимальное число результатов для получения.</param>
 		/// <param name="imageType">Тип изображения.</param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает общее число результатов в поле count (integer) и массив объектов, описывающих изображения, в поле items (array).
 		/// Каждый объект массива  items содержит следующие поля:
-		/// id (string) — идентификатор изображения. Обратите внимание, идентификаторы изображений для виджетов отличаются от обычных фотографий, и НЕ представляют собой сочетание owner_id+"_"+photo_id. Полученный идентификатор нужно использовать в коде виджета «как есть».
+		/// id (string) — идентификатор изображения.
+		/// Обратите внимание, идентификаторы изображений для виджетов отличаются от обычных фотографий,
+		/// и НЕ представляют собой сочетание owner_id+"_"+photo_id. Полученный идентификатор нужно использовать в коде виджета «как есть».
 		/// type (string) — тип изображения. Возможные значения:
 		/// 160x160,
 		/// 160x240,
@@ -93,15 +102,18 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getGroupImages
 		/// </remarks>
-		Task<Uri> GetGroupImagesAsync(int offset, int count, AppWidgetImageType imageType);
+		Task<Uri> GetGroupImagesAsync(int offset, int count, AppWidgetImageType imageType, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет получить изображение для виджетов приложений сообществ по его идентификатору.
 		/// </summary>
 		/// <param name="images">список идентификаторов изображений для получения.</param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает объект, который содержит следующие поля:
-		/// id (string) — идентификатор изображения. Обратите внимание, идентификаторы изображений для виджетов отличаются от обычных фотографий, и НЕ представляют собой сочетание owner_id+"_"+photo_id. Полученный идентификатор нужно использовать в коде виджета «как есть».
+		/// id (string) — идентификатор изображения.
+		/// Обратите внимание, идентификаторы изображений для виджетов отличаются от обычных фотографий,
+		/// и НЕ представляют собой сочетание owner_id+"_"+photo_id. Полученный идентификатор нужно использовать в коде виджета «как есть».
 		/// type (string) — тип изображения. Возможные значения:
 		/// 160x160,
 		/// 160x240,
@@ -116,7 +128,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getImagesById
 		/// </remarks>
-		Task<Uri> GetImagesByIdAsync(string images);
+		Task<Uri> GetImagesByIdAsync(string images, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет сохранить изображение в коллекцию приложения для виджетов приложений сообществ после загрузки на сервер.
@@ -127,6 +139,7 @@ namespace VkNet.Abstractions.Category
 		/// <param name = "image">
 		/// Параметр image, полученный после загрузки на сервер. строка, обязательный параметр
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает объект, который содержит следующие поля:
 		/// id (string) — идентификатор изображения.
@@ -144,11 +157,12 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.saveAppImage
 		/// </remarks>
-		Task<Uri> SaveAppImageAsync(string hash, string image);
+		Task<Uri> SaveAppImageAsync(string hash, string image, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет сохранить изображение в коллекцию сообщества для виджетов приложений сообществ. после загрузки на сервер.
 		/// </summary>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Возвращает объект, который содержит следующие поля:
 		/// id (string) — идентификатор изображения.
@@ -166,17 +180,18 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.saveGroupImage
 		/// </remarks>
-		Task<Uri> SaveGroupImageAsync();
+		Task<Uri> SaveGroupImageAsync(CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет обновить виджет приложения сообщества.
 		/// </summary>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.update
 		/// </remarks>
-		Task<bool> UpdateAsync();
+		Task<bool> UpdateAsync(CancellationToken cancellationToken = default);
 	}
 }
