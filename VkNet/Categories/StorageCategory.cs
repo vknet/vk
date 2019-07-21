@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Utils;
@@ -18,7 +19,7 @@ namespace VkNet.Categories
 		/// <param name="api">
 		/// Api vk.com
 		/// </param>
-		public StorageCategory(VkApi api = null)
+		public StorageCategory(IVkApiInvoke api)
 		{
 			_vk = api;
 		}
@@ -26,39 +27,19 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public ReadOnlyCollection<StorageObject> Get(IEnumerable<string> keys = null, ulong? userId = null, bool? global = null)
 		{
-			return _vk.Call<ReadOnlyCollection<StorageObject>>(methodName: "storage.get"
-					, parameters: new VkParameters
-					{
-							{ "keys", keys }
-							, { "user_id", userId }
-							, { "global", global }
-					});
+			return GetAsync(keys, userId, global, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public ReadOnlyCollection<string> GetKeys(ulong? userId = null, bool? global = null, ulong? offset = null, ulong? count = null)
 		{
-			return _vk.Call<ReadOnlyCollection<string>>(methodName: "storage.getKeys"
-					, parameters: new VkParameters
-					{
-							{ "user_id", userId }
-							, { "global", global }
-							, { "offset", offset }
-							, { "count", count }
-					});
+			return GetKeysAsync(userId, global, offset, count, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public bool Set(string key, string value = null, ulong? userId = null, bool? global = null)
 		{
-			return _vk.Call<bool>(methodName: "storage.set"
-					, parameters: new VkParameters
-					{
-							{ "key", key }
-							, { "value", value }
-							, { "user_id", userId }
-							, { "global", global }
-					});
+			return SetAsync(key, value, userId, global, CancellationToken.None).GetAwaiter().GetResult();
 		}
 	}
 }
