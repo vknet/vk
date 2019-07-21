@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading;
 using VkNet.Abstractions;
 using VkNet.Model;
-using VkNet.Utils;
 
 namespace VkNet.Categories
 {
@@ -25,39 +25,19 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public ReadOnlyCollection<StatsPeriod> Get(StatsGetParams getParams)
 		{
-			return _vk.Call<ReadOnlyCollection<StatsPeriod>>("stats.get",
-				new VkParameters
-				{
-					{ "interval", getParams.Interval },
-					{ "filters", getParams.Filters },
-					{ "stats_groups", getParams.StatsGroups },
-					{ "group_id", getParams.GroupId },
-					{ "app_id", getParams.AppId },
-					{ "timestamp_from", getParams.TimestampFrom },
-					{ "timestamp_to", getParams.TimestampTo },
-					{ "intervals_count", getParams.IntervalsCount },
-					{ "extended", getParams.Extended }
-				});
+			return GetAsync(getParams, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public bool TrackVisitor()
 		{
-			return _vk.Call(methodName: "stats.trackVisitor", parameters: VkParameters.Empty);
+			return TrackVisitorAsync(CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public PostReach GetPostReach(long ownerId, long postId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => postId);
-
-			var parameters = new VkParameters
-			{
-				{ "owner_id", ownerId },
-				{ "post_id", postId }
-			};
-
-			return _vk.Call(methodName: "stats.getPostReach", parameters: parameters);
+			return GetPostReachAsync(ownerId, postId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 	}
 }
