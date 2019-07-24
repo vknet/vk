@@ -167,6 +167,7 @@ namespace VkNet.Tests.Categories.Wall
 		}
 
 		[Test]
+		[Ignore("Убрана валидация параметров из кода")]
 		public void GetById_IncorrectParameters_ThrowException()
 		{
 			Assert.That(() => new WallCategory(Api).GetById(null), Throws.TypeOf<ArgumentNullException>());
