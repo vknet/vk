@@ -1,16 +1,16 @@
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
-using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы со стеной пользователя.
+	/// Методы для работы со стеной пользователя.
 	/// </summary>
 	public interface IWallCategoryAsync
 	{
@@ -19,6 +19,7 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="params"> Входные параметры. </param>
 		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// В случае успеха возвращается запрошенный список записей со стены.
 		/// </returns>
@@ -29,13 +30,14 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.get
 		/// </remarks>
-		Task<WallGetObject> GetAsync(WallGetParams @params, bool skipAuthorization = false);
+		Task<WallGetObject> GetAsync(WallGetParams @params, bool skipAuthorization = false, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Возвращает список комментариев к записи на стене.
 		/// </summary>
 		/// <param name="params"> Входные параметры выборки. </param>
 		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов комментариев.
 		/// Если был задан параметр need_likes=1, у объектов комментариев возвращается
@@ -54,7 +56,9 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.getComments
 		/// </remarks>
-		Task<WallGetCommentsResult> GetCommentsAsync(WallGetCommentsParams @params, bool skipAuthorization = false);
+		Task<WallGetCommentsResult> GetCommentsAsync(WallGetCommentsParams @params,
+													bool skipAuthorization = false,
+													CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Возвращает список записей со стен пользователей или сообществ по их
@@ -96,6 +100,7 @@ namespace VkNet.Abstractions
 		/// строк, разделенных через запятую).
 		/// </param>
 		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов записей со стены.
 		/// Если был задан параметр extended=1, ответ содержит три отдельных списка:
@@ -110,23 +115,25 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.getById
 		/// </remarks>
-		Task<WallGetObject> GetByIdAsync(IEnumerable<string> posts
-										, bool? extended = null
-										, long? copyHistoryDepth = null
-										, ProfileFields fields = null
-										, bool skipAuthorization = false);
+		Task<WallGetObject> GetByIdAsync(IEnumerable<string> posts,
+										bool? extended = null,
+										long? copyHistoryDepth = null,
+										ProfileFields fields = null,
+										bool skipAuthorization = false,
+										CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Публикует новую запись на своей или чужой стене.
 		/// </summary>
 		/// <param name="params"> Входные параметры выборки. </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает идентификатор созданной записи (post_id).
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.post
 		/// </remarks>
-		Task<long> PostAsync(WallPostParams @params);
+		Task<long> PostAsync(WallPostParams @params, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Копирует объект на стену пользователя или сообщества.
@@ -148,6 +155,7 @@ namespace VkNet.Abstractions
 		/// (Положительное число).
 		/// </param>
 		/// <param name="markAsAds"> Строка (Строка). </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает объект со следующими полями:
 		/// success
@@ -158,19 +166,24 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.repost
 		/// </remarks>
-		Task<RepostResult> RepostAsync(string @object, string message, long? groupId, bool markAsAds);
+		Task<RepostResult> RepostAsync(string @object,
+										string message,
+										long? groupId,
+										bool markAsAds,
+										CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Редактирует запись на стене.
 		/// </summary>
 		/// <param name="params"> Входные параметры выборки. </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.edit
 		/// </remarks>
-		Task<bool> EditAsync(WallEditParams @params);
+		Task<bool> EditAsync(WallEditParams @params, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Удаляет запись со стены.
@@ -188,13 +201,14 @@ namespace VkNet.Abstractions
 		/// Идентификатор записи на стене. положительное число
 		/// (Положительное число).
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.delete
 		/// </remarks>
-		Task<bool> DeleteAsync(long? ownerId = null, long? postId = null);
+		Task<bool> DeleteAsync(long? ownerId = null, long? postId = null, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Восстанавливает удаленную запись на стене пользователя или сообщества.
@@ -213,18 +227,20 @@ namespace VkNet.Abstractions
 		/// Идентификатор записи на стене. положительное число
 		/// (Положительное число).
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.restore
 		/// </remarks>
-		Task<bool> RestoreAsync(long? ownerId = null, long? postId = null);
+		Task<bool> RestoreAsync(long? ownerId = null, long? postId = null, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Добавляет комментарий к записи на стене.
 		/// </summary>
 		/// <param name="params"> Входные параметры выборки. </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает идентификатор добавленного комментария
 		/// (comment_id).
@@ -232,7 +248,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.createComment
 		/// </remarks>
-		Task<long> CreateCommentAsync(WallCreateCommentParams @params);
+		Task<long> CreateCommentAsync(WallCreateCommentParams @params, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Удаляет комментарий текущего пользователя к записи на своей или чужой стене.
@@ -251,13 +267,14 @@ namespace VkNet.Abstractions
 		/// (Положительное число,
 		/// обязательный параметр).
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.deleteComment
 		/// </remarks>
-		Task<bool> DeleteCommentAsync(long? ownerId, long commentId);
+		Task<bool> DeleteCommentAsync(long? ownerId, long commentId, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Восстанавливает комментарий текущего пользователя к записи на своей или чужой
@@ -278,26 +295,30 @@ namespace VkNet.Abstractions
 		/// число,
 		/// обязательный параметр).
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.restoreComment
 		/// </remarks>
-		Task<bool> RestoreCommentAsync(long commentId, long? ownerId);
+		Task<bool> RestoreCommentAsync(long commentId, long? ownerId, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Метод, позволяющий осуществлять поиск по стенам пользователей.
 		/// </summary>
 		/// <param name="params"> Входные параметры выборки. </param>
 		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает список объектов записей на стене.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.search
 		/// </remarks>
-		Task<WallGetObject> SearchAsync(WallSearchParams @params, bool skipAuthorization = false);
+		Task<WallGetObject> SearchAsync(WallSearchParams @params,
+										bool skipAuthorization = false,
+										CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет получать список репостов заданной записи.
@@ -329,6 +350,7 @@ namespace VkNet.Abstractions
 		/// 1000).
 		/// </param>
 		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает объект, содержащий поля:
 		/// items — содержит массив записей-репостов;
@@ -340,7 +362,12 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.getReposts
 		/// </remarks>
-		Task<WallGetObject> GetRepostsAsync(long? ownerId, long? postId, long? offset, long? count, bool skipAuthorization = false);
+		Task<WallGetObject> GetRepostsAsync(long? ownerId,
+											long? postId,
+											long? offset,
+											long? count,
+											bool skipAuthorization = false,
+											CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Закрепляет запись на стене (запись будет отображаться выше остальных).
@@ -359,13 +386,14 @@ namespace VkNet.Abstractions
 		/// (Положительное число,
 		/// обязательный параметр).
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.pin
 		/// </remarks>
-		Task<bool> PinAsync(long postId, long? ownerId = null);
+		Task<bool> PinAsync(long postId, long? ownerId = null, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Отменяет закрепление записи на стене.
@@ -384,13 +412,14 @@ namespace VkNet.Abstractions
 		/// (Положительное число,
 		/// обязательный параметр).
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.unpin
 		/// </remarks>
-		Task<bool> UnpinAsync(long postId, long? ownerId = null);
+		Task<bool> UnpinAsync(long postId, long? ownerId = null, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Редактирует комментарий на стене пользователя или сообщества.
@@ -411,13 +440,18 @@ namespace VkNet.Abstractions
 		/// строк,
 		/// разделенных через запятую).
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.editComment
 		/// </remarks>
-		Task<bool> EditCommentAsync(long commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null);
+		Task<bool> EditCommentAsync(long commentId,
+									string message,
+									long? ownerId = null,
+									IEnumerable<MediaAttachment> attachments = null,
+									CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет пожаловаться на запись.
@@ -443,13 +477,14 @@ namespace VkNet.Abstractions
 		/// 6 — оскорбление.
 		/// положительное число (Положительное число).
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.reportPost
 		/// </remarks>
-		Task<bool> ReportPostAsync(long ownerId, long postId, ReportReason? reason = null);
+		Task<bool> ReportPostAsync(long ownerId, long postId, ReportReason? reason = null, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет пожаловаться на комментарий к записи.
@@ -475,25 +510,27 @@ namespace VkNet.Abstractions
 		/// 6 — оскорбление.
 		/// положительное число (Положительное число).
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.reportComment
 		/// </remarks>
-		Task<bool> ReportCommentAsync(long ownerId, long commentId, ReportReason? reason);
+		Task<bool> ReportCommentAsync(long ownerId, long commentId, ReportReason? reason, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет отредактировать скрытую запись.
 		/// </summary>
 		/// <param name="params"> Параметры запроса </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.editAdsStealth
 		/// </remarks>
-		Task<bool> EditAdsStealthAsync(EditAdsStealthParams @params);
+		Task<bool> EditAdsStealthAsync(EditAdsStealthParams @params, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет создать скрытую запись,
@@ -501,13 +538,14 @@ namespace VkNet.Abstractions
 		/// для создания рекламного объявления типа "Запись в сообществе".
 		/// </summary>
 		/// <param name="params"> Параметры запроса </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// Идентификатор созданной записи
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.postAdsStealth
 		/// </remarks>
-		Task<long> PostAdsStealthAsync(PostAdsStealthParams @params);
+		Task<long> PostAdsStealthAsync(PostAdsStealthParams @params, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Включает комментирование записи
@@ -526,13 +564,14 @@ namespace VkNet.Abstractions
 		/// (Положительное число,
 		/// обязательный параметр).
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.openComments
 		/// </remarks>
-		Task<bool> OpenCommentsAsync(long ownerId, long postId);
+		Task<bool> OpenCommentsAsync(long ownerId, long postId, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Выключает комментирование записи
@@ -549,12 +588,13 @@ namespace VkNet.Abstractions
 		/// (Положительное число,
 		/// обязательный параметр).
 		/// </param>
+		/// <param name="cancellationToken">CancellationToken</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.closeComments
 		/// </remarks>
-		Task<bool> CloseCommentsAsync(long ownerId, long postId);
+		Task<bool> CloseCommentsAsync(long ownerId, long postId, CancellationToken cancellationToken = default);
 	}
 }
