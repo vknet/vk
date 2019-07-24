@@ -20,14 +20,6 @@ namespace VkNet.Model
 	public class Group : IVkModel
 	{
 		/// <summary>
-		/// Конструктор
-		/// </summary>
-		public Group()
-		{
-			Type = new GroupType();
-		}
-
-		/// <summary>
 		/// Преобразовать из JSON
 		/// </summary>
 		/// <param name="response"> Ответ от сервера. </param>
@@ -167,16 +159,19 @@ namespace VkNet.Model
 		/// <summary>
 		/// url фотографии сообщества с размером 50x50px
 		/// </summary>
+		[JsonProperty("photo_50")]
 		public Uri Photo50 { get; set; }
 
 		/// <summary>
 		/// url фотографии сообщества с размером 100x100px
 		/// </summary>
+		[JsonProperty("photo_100")]
 		public Uri Photo100 { get; set; }
 
 		/// <summary>
 		/// url фотографии сообщества с размером 200x200px
 		/// </summary>
+		[JsonProperty("photo_200")]
 		public Uri Photo200 { get; set; }
 
 	#endregion
@@ -392,6 +387,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Информация о ссылках на предпросмотр фотографий сообщества.
 		/// </summary>
+		[Obsolete]
 		public Previews PhotoPreviews { get; set; }
 
 		/// <summary>
