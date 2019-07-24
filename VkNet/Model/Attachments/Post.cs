@@ -97,7 +97,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Первое вложение.
 		/// </summary>
-		public Attachment Attachment => Attachments.FirstOrDefault();
+		public Attachment Attachment => Attachments?.FirstOrDefault();
 
 		/// <summary>
 		/// Информация о местоположении.
