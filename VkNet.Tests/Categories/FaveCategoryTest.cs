@@ -241,10 +241,10 @@ namespace VkNet.Tests.Categories
 			Assert.That(profile.Sex, Is.EqualTo(Sex.Female));
 			Assert.That(profile.ScreenName, Is.EqualTo("deadlymanul"));
 
-			Assert.That(profile.PhotoPreviews.Photo50,
+			Assert.That(profile.Photo50,
 				Is.EqualTo(new Uri("https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg")));
 
-			Assert.That(profile.PhotoPreviews.Photo100,
+			Assert.That(profile.Photo100,
 				Is.EqualTo(new Uri("https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg")));
 
 			Assert.That(profile.Online, Is.EqualTo(true));
@@ -259,13 +259,13 @@ namespace VkNet.Tests.Categories
 			Assert.That(group.IsAdmin, Is.EqualTo(false));
 			Assert.That(group.IsMember, Is.EqualTo(true));
 
-			Assert.That(group.PhotoPreviews.Photo50,
+			Assert.That(group.Photo50,
 				Is.EqualTo(new Uri("https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg")));
 
-			Assert.That(group.PhotoPreviews.Photo100,
+			Assert.That(group.Photo100,
 				Is.EqualTo(new Uri("https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg")));
 
-			Assert.That(group.PhotoPreviews.Photo200,
+			Assert.That(group.Photo200,
 				Is.EqualTo(new Uri("https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg")));
 		}
 
