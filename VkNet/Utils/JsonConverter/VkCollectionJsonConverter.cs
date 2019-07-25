@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +31,17 @@ namespace VkNet.Utils.JsonConverter
 			}
 
 			var constructedToListGenericMethod = toListMethod.MakeGenericMethod(vkCollectionGenericArgument);
-			var castToListObject = constructedToListGenericMethod.Invoke(null, new[] { value });
+
+			var castToListObject = constructedToListGenericMethod.Invoke(null,
+				new[]
+				{
+					value
+				});
 
 			var vkCollectionSurrogate = new
 			{
-				TotalCount = vkCollectionType.GetProperty("TotalCount")?.GetValue(value, null),
-				Items = castToListObject
+				count = vkCollectionType.GetProperty("TotalCount")?.GetValue(value, null),
+				items = castToListObject
 			};
 
 			serializer.Serialize(writer, vkCollectionSurrogate);
