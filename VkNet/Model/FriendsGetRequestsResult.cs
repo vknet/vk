@@ -22,7 +22,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// </summary>
 		[JsonProperty(propertyName: "mutual")]
-		[JsonConverter(typeof(VkCollectionJsonConverter), "users")]
+		[JsonConverter(typeof(VkCollectionJsonConverter))]
 		public VkCollection<long> Mutual { get; set; }
 
 		/// <summary>

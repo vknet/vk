@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,36 +13,11 @@ namespace VkNet.Utils.JsonConverter
 	public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
 	{
 		/// <summary>
-		/// Инициализация
-		/// </summary>
-		/// <param name="collectionField"> Collection Field </param>
-		public VkCollectionJsonConverter(string collectionField)
-		{
-			CollectionField = string.IsNullOrWhiteSpace(collectionField) ? "items" : collectionField;
-		}
-
-		/// <inheritdoc />
-		public VkCollectionJsonConverter() : this("items")
-		{
-		}
-
-		/// <summary>
-		/// Количество
+		/// A field with a total number of items.
 		/// </summary>
 		private static string CountField => "count";
 
-		/// <summary>
-		/// Поле с коллекцией данных
-		/// </summary>
-		private string CollectionField { get; }
-
-		/// <summary>
-		/// Сериализация объекта в Json
-		/// </summary>
-		/// <param name="writer"> Json writer </param>
-		/// <param name="value"> Значение </param>
-		/// <param name="serializer"> Сериализатор </param>
-		/// <exception cref="NotImplementedException"> </exception>
+		/// <inheritdoc />
 		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 		{
 			var vkCollectionType = value.GetType();
@@ -67,15 +42,7 @@ namespace VkNet.Utils.JsonConverter
 			serializer.Serialize(writer, vkCollectionSurrogate);
 		}
 
-		/// <summary>
-		/// Преобразование JSON в VkCollection
-		/// </summary>
-		/// <param name="reader"> Json reader </param>
-		/// <param name="objectType"> Тип объекта </param>
-		/// <param name="existingValue"> Существующее значение </param>
-		/// <param name="serializer"> Seerilizer </param>
-		/// <returns> </returns>
-		/// <exception cref="TypeAccessException"> </exception>
+		/// <inheritdoc />
 		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 		{
 			if (!objectType.IsGenericType)
@@ -97,33 +64,25 @@ namespace VkNet.Utils.JsonConverter
 			var vkCollection = typeof(VkCollection<>).MakeGenericType(keyType);
 
 			var obj = JObject.Load(reader);
-			var response = obj["response"] ?? obj;
-			var totalCount = response[CountField].Value<ulong>();
 
-			var converter =
-				serializer.Converters.FirstOrDefault(x => x.GetType() == typeof(VkCollectionJsonConverter)) as
-					VkCollectionJsonConverter;
+			var itemsArray = obj.Properties().FirstOrDefault(x => obj[x.Path] != null && obj[x.Path].Type == JTokenType.Array);
 
-			var collectionField = CollectionField;
-
-			if (converter != null)
+			if (itemsArray == null)
 			{
-				collectionField = converter.CollectionField;
+				throw new InvalidOperationException("There is no property of an array of items.");
 			}
 
-			foreach (var item in response[collectionField])
+			foreach (var item in itemsArray.Value)
 			{
-				list.Add(item.ToObject(keyType));
+				list.Add(item.ToObject(keyType, serializer));
 			}
+
+			var totalCount = obj[CountField]?.Value<ulong>() ?? (ulong) list.Count;
 
 			return Activator.CreateInstance(vkCollection, totalCount, list);
 		}
 
-		/// <summary>
-		/// Может преобразовать
-		/// </summary>
-		/// <param name="objectType"> Тип объекта </param>
-		/// <returns> <c> true </c> если можно преобразовать </returns>
+		/// <inheritdoc />
 		public override bool CanConvert(Type objectType)
 		{
 			return typeof(VkCollection<>).IsAssignableFrom(objectType);

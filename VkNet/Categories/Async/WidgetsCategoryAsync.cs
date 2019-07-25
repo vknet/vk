@@ -16,10 +16,6 @@ namespace VkNet.Categories
 		{
 			return _vk.CallAsync<VkCollection<Comment>>("widgets.getComments",
 				getCommentsParams,
-				jsonConverters: new[]
-				{
-					new VkCollectionJsonConverter(collectionField: "posts")
-				},
 				cancellationToken: cancellationToken);
 		}
 
@@ -39,10 +35,6 @@ namespace VkNet.Categories
 					{ "period", period },
 					{ "offset", offset },
 					{ "count", count }
-				},
-				jsonConverters: new[]
-				{
-					new VkCollectionJsonConverter(collectionField: "pages")
 				},
 				cancellationToken: cancellationToken);
 		}
