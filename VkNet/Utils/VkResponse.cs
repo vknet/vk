@@ -13,9 +13,6 @@ namespace VkNet.Utils
 	[CanBeNull]
 	public sealed partial class VkResponse
 	{
-		/// <summary>
-		/// JSON токен
-		/// </summary>
 		private readonly JToken _token;
 
 		/// <summary>
@@ -26,6 +23,11 @@ namespace VkNet.Utils
 		{
 			_token = token;
 		}
+
+		/// <summary>
+		/// JSON токен.
+		/// </summary>
+		public JToken Token => _token;
 
 		/// <summary>
 		/// Сырой JSON.
@@ -325,7 +327,7 @@ namespace VkNet.Utils
 			var dateStringValue = response?.ToString();
 
 			if (string.IsNullOrWhiteSpace(value: dateStringValue)
-				|| !long.TryParse(s: dateStringValue, result: out var unixTimeStamp)
+				|| !long.TryParse(dateStringValue, out var unixTimeStamp)
 				|| unixTimeStamp <= 0)
 			{
 				return null;
@@ -352,12 +354,12 @@ namespace VkNet.Utils
 
 			if (string.IsNullOrWhiteSpace(value: dateStringValue))
 			{
-				throw new ArgumentException(message: "Пустое значение невозможно преобразовать в дату", paramName: nameof(response));
+				throw new ArgumentException("Пустое значение невозможно преобразовать в дату", nameof(response));
 			}
 
-			if (!long.TryParse(s: dateStringValue, result: out var unixTimeStamp) || unixTimeStamp <= 0)
+			if (!long.TryParse(dateStringValue, out var unixTimeStamp) || unixTimeStamp <= 0)
 			{
-				throw new ArgumentException(message: "Невозможно преобразовать в дату", paramName: nameof(response));
+				throw new ArgumentException("Невозможно преобразовать в дату", nameof(response));
 			}
 
 			return TimestampToDateTime(unixTimeStamp: unixTimeStamp);
@@ -370,7 +372,7 @@ namespace VkNet.Utils
 		/// <returns> </returns>
 		public static DateTime TimestampToDateTime(long unixTimeStamp)
 		{
-			var dt = new DateTime(year: 1970, month: 1, day: 1, hour: 0, minute: 0, second: 0, millisecond: 0, kind: DateTimeKind.Utc);
+			var dt = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
 
 			return dt.AddSeconds(value: unixTimeStamp);
 		}
@@ -384,7 +386,7 @@ namespace VkNet.Utils
 		/// </returns>
 		public static implicit operator Uri(VkResponse response)
 		{
-			return Uri.TryCreate(uriString: response, uriKind: UriKind.Absolute, result: out var uriResult) ? uriResult : null;
+			return Uri.TryCreate(response, UriKind.Absolute, out var uriResult) ? uriResult : null;
 		}
 
 	#endregion
