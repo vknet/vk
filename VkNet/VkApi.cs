@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Category;
@@ -69,6 +70,11 @@ namespace VkNet
 		/// Логгер
 		/// </summary>
 		private ILogger<VkApi> _logger;
+
+		/// <summary>
+		/// JsonSerializer
+		/// </summary>
+		private JsonSerializer _jsonSerializer;
 
 	#pragma warning disable S1104 // Fields should not have public accessibility
 		/// <summary>
@@ -243,7 +249,7 @@ namespace VkNet
 
 			var json = JObject.Parse(answer);
 
-			var rawResponse = json["response"];
+			var rawResponse = json["response"] ?? json;
 
 			return new VkResponse(rawResponse)
 			{
@@ -256,21 +262,9 @@ namespace VkNet
 										IEnumerable<JsonConverter> jsonConverters = default,
 										CancellationToken cancellationToken = default)
 		{
-			var converters = jsonConverters?.ToArray() ?? Enumerable.Empty<JsonConverter>().ToArray();
+			var vkResponse = await CallAsync(methodName, parameters, skipAuthorization, cancellationToken).ConfigureAwait(false);
 
-			var answer = await CallBaseAsync(methodName, parameters, skipAuthorization, cancellationToken).ConfigureAwait(false);
-
-			if (!converters.Any())
-			{
-				return JsonConvert.DeserializeObject<T>(answer,
-					new VkCollectionJsonConverter(),
-					new VkDefaultJsonConverter(),
-					new UnixDateTimeConverter(),
-					new AttachmentJsonConverter(),
-					new StringEnumConverter());
-			}
-
-			return JsonConvert.DeserializeObject<T>(answer, converters);
+			return vkResponse.Token.ToObject<T>(_jsonSerializer);
 		}
 
 		/// <inheritdoc />
@@ -790,6 +784,24 @@ namespace VkNet
 			_captchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
 			_language = serviceProvider.GetRequiredService<ILanguageService>();
 			_rateLimiter = serviceProvider.GetRequiredService<IRateLimiter>();
+
+			_jsonSerializer = new JsonSerializer
+			{
+				Converters =
+				{
+					new VkCollectionJsonConverter(),
+					new WallGetObjectJsonConverter(),
+					new UnixDateTimeConverter(),
+					new AttachmentJsonConverter(),
+					new StringEnumConverter()
+				},
+				ContractResolver = new DefaultContractResolver
+				{
+					NamingStrategy = new SnakeCaseNamingStrategy()
+				},
+				NullValueHandling = NullValueHandling.Ignore,
+				DefaultValueHandling = DefaultValueHandling.Ignore
+			};
 
 			NeedValidationHandler = serviceProvider.GetRequiredService<INeedValidationHandler>();
 			AuthorizationFlow = serviceProvider.GetRequiredService<IAuthorizationFlow>();
