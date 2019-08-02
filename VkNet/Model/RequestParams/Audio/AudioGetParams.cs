@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
@@ -47,6 +48,12 @@ namespace VkNet.Model.RequestParams
 		public long? Count { get; set; }
 
 		/// <summary>
+		/// Токен доступа
+		/// </summary>
+		[JsonProperty("access_key")]
+		public string AccessKey { get; set; }
+
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p"> Параметры. </param>
@@ -60,7 +67,8 @@ namespace VkNet.Model.RequestParams
 				{ "playlist_id", p.PlaylistId },
 				{ "audio_ids", p.AudioIds },
 				{ "offset", p.Offset },
-				{ "count", p.Count }
+				{ "count", p.Count },
+				{ "access_key", p.AccessKey }
 			};
 
 			return parameters;
