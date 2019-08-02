@@ -20,6 +20,7 @@ namespace VkNet.Model.RequestParams
 		/// (справедливо для вызова с передачей access_token).
 		/// целое число.
 		/// </summary>
+		[JsonProperty("user_id")]
 		public long? UserId { get; set; }
 
 		/// <summary>
@@ -36,6 +37,7 @@ namespace VkNet.Model.RequestParams
 		/// fields)
 		/// строка.
 		/// </summary>
+		[JsonProperty("order")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public FriendsOrder Order { get; set; }
 
@@ -46,18 +48,21 @@ namespace VkNet.Model.RequestParams
 		/// текущего пользователя.
 		/// Данный параметр доступен только для Desktop-приложений. положительное число.
 		/// </summary>
+		[JsonProperty("list_id")]
 		public long? ListId { get; set; }
 
 		/// <summary>
 		/// Количество друзей, которое нужно вернуть. (по умолчанию – все друзья)
 		/// положительное число.
 		/// </summary>
+		[JsonProperty("count")]
 		public long? Count { get; set; }
 
 		/// <summary>
 		/// Смещение, необходимое для выборки определенного подмножества друзей.
 		/// положительное число.
 		/// </summary>
+		[JsonProperty("offset")]
 		public long? Offset { get; set; }
 
 		/// <summary>
@@ -68,6 +73,7 @@ namespace VkNet.Model.RequestParams
 		/// can_write_private_message, can_see_all_posts,
 		/// can_post, universities список строк, разделенных через запятую.
 		/// </summary>
+		[JsonProperty("fields")]
 		public ProfileFields Fields { get; set; }
 
 		/// <summary>
@@ -76,8 +82,15 @@ namespace VkNet.Model.RequestParams
 		/// дательный – dat, винительный – acc, творительный – ins, предложный – abl. По
 		/// умолчанию nom. строка.
 		/// </summary>
+		[JsonProperty("name_case")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public NameCase NameCase { get; set; }
+
+		/// <summary>
+		/// Ссылка?
+		/// </summary>
+		[JsonProperty("ref")]
+		public string Reference { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -88,13 +101,14 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-					{ "user_id", p.UserId }
-					, { "order", p.Order }
-					, { "list_id", p.ListId }
-					, { "count", p.Count }
-					, { "offset", p.Offset }
-					, { "fields", p.Fields }
-					, { "name_case", p.NameCase }
+				{ "user_id", p.UserId },
+				{ "order", p.Order },
+				{ "list_id", p.ListId },
+				{ "count", p.Count },
+				{ "offset", p.Offset },
+				{ "fields", p.Fields },
+				{ "name_case", p.NameCase },
+				{ "ref", p.Reference }
 			};
 
 			return parameters;
