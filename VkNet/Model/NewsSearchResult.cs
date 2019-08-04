@@ -14,7 +14,7 @@ namespace VkNet.Model
 		/// Список новостей
 		/// </summary>
 		[JsonProperty("items")]
-		public NewsSearchItem[] Items { get; set; }
+		public ReadOnlyCollection<NewsSearchItem> Items { get; set; }
 
 		/// <summary>
 		/// Количество новостей
