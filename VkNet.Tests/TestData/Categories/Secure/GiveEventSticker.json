@@ -1,0 +1,16 @@
+{
+  "response": [
+    {
+      "user_id": 1,
+      "status": "OK"
+    },
+    {
+      "user_id": 2,
+      "status": "ERROR_ACHIEVEMENT_ALREADY_OPENED"
+    },
+    {
+      "user_id": 3,
+      "status": "ERROR_UNKNOWN_ERROR"
+    }
+  ]
+}
