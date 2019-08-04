@@ -1,5 +1,4 @@
 ﻿using System;
-using Newtonsoft.Json;
 using VkNet.Utils;
 using VkNet.UWP.Model.Attachments;
 
@@ -455,6 +454,11 @@ namespace VkNet.Model.Attachments
 		}
 
 	#endregion
+
+		public override string ToString()
+		{
+			return $"{Type.Name}";
+		}
 
 	#region Поля
 
