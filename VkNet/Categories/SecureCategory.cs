@@ -25,9 +25,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public object AddAppEvent(ulong userId, ulong activityId, ulong? value = null)
+		public bool AddAppEvent(ulong userId, ulong activityId, ulong? value = null)
 		{
-			return _vk.Call<object>("secure.addAppEvent",
+			return _vk.Call<bool>("secure.addAppEvent",
 				new VkParameters
 				{
 					{ "user_id", userId },

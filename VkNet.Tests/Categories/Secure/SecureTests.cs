@@ -10,6 +10,17 @@ namespace VkNet.Tests.Categories.Secure
 		protected override string Folder => "Secure";
 
 		[Test]
+		public void AddAppEvent()
+		{
+			Url = "https://api.vk.com/method/secure.addAppEvent";
+			ReadJsonFile(JsonPaths.True);
+
+			var app = Api.Secure.AddAppEvent(1, 2, 1500);
+
+			Assert.IsTrue(app);
+		}
+
+		[Test]
 		public void CheckToken()
 		{
 			Url = "https://api.vk.com/method/secure.checkToken";

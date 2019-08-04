@@ -47,7 +47,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/secure.addAppEvent
 		/// </remarks>
-		Task<object> AddAppEventAsync(ulong userId, ulong activityId, ulong? value = null);
+		Task<bool> AddAppEventAsync(ulong userId, ulong activityId, ulong? value = null);
 
 		/// <summary>
 		/// Позволяет проверять валидность пользователя в IFrame, Flash  и

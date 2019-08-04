@@ -10,7 +10,7 @@ namespace VkNet.Abstractions
 	public interface ISecureCategory : ISecureCategoryAsync
 	{
 		/// <inheritdoc cref="ISecureCategoryAsync.AddAppEventAsync" />
-		object AddAppEvent(ulong userId, ulong activityId, ulong? value = null);
+		bool AddAppEvent(ulong userId, ulong activityId, ulong? value = null);
 
 		/// <inheritdoc cref="ISecureCategoryAsync.CheckTokenAsync" />
 		CheckTokenResult CheckToken(string token, string ip = null);

@@ -11,7 +11,7 @@ namespace VkNet.Categories
 	public partial class SecureCategory
 	{
 		/// <inheritdoc />
-		public Task<object> AddAppEventAsync(ulong userId, ulong activityId, ulong? value = null)
+		public Task<bool> AddAppEventAsync(ulong userId, ulong activityId, ulong? value = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => AddAppEvent(userId, activityId, value));
 		}
