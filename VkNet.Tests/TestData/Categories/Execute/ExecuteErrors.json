@@ -1,0 +1,20 @@
+{
+  "response": null,
+  "execute_errors": [
+    {
+      "method": "messages.removeChatUser",
+      "error_code": 1,
+      "error_msg": "Unknown error occured"
+    },
+    {
+      "method": "messages.removeChatUser",
+      "error_code": 935,
+      "error_msg": "User not found in chat"
+    },
+    {
+      "method": "execute",
+      "error_code": 15,
+      "error_msg": "Access denied: you can not join this private community"
+    }
+  ]
+}

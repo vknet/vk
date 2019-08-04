@@ -65,14 +65,34 @@ namespace VkNet.Tests.Categories
 			Assert.That(() => Api.Execute.Execute(code), Throws.InstanceOf<VkApiException>());
 		}
 
+		[Test]
+		public void ExecuteErrors()
+		{
+			Url = "https://api.vk.com/method/execute";
+			ReadCategoryJsonPath(nameof(ExecuteErrors));
+
+			var code = ReadScript(nameof(ExecuteErrorTest));
+
+			var exception = Assert.Throws<AggregateException>(() => Api.Execute.Execute(code));
+
+			Assert.IsInstanceOf<AggregateException>(exception);
+			Assert.AreEqual(3, exception.InnerExceptions.Count);
+		}
+
 		private string ReadScript(string scriptPath)
 		{
 			var folders = new List<string>
 			{
-				AppContext.BaseDirectory, "TestData"
+				AppContext.BaseDirectory,
+				"TestData"
 			};
 
-			folders.AddRange(new[] { "Categories", Folder, scriptPath });
+			folders.AddRange(new[]
+			{
+				"Categories",
+				Folder,
+				scriptPath
+			});
 
 			var path = Path.Combine(folders.ToArray()) + ".vkscript";
 
