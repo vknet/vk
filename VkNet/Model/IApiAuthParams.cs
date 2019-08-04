@@ -62,7 +62,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор капчи (если установлена)
 		/// </summary>
-		long? CaptchaSid { get; set; }
+		ulong? CaptchaSid { get; set; }
 
 		/// <summary>
 		/// Ключ капчи (если необходимо)

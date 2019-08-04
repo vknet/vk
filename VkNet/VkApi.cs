@@ -79,6 +79,45 @@ namespace VkNet
 		public IRestClient RestClient;
 	#pragma warning restore S1104 // Fields should not have public accessibility
 
+		/// <inheritdoc />
+		public VkApi(ILogger<VkApi> logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
+		{
+			var container = new ServiceCollection();
+
+			if (logger != null)
+			{
+				container.TryAddSingleton(logger);
+			}
+
+			if (captchaSolver != null)
+			{
+				container.TryAddSingleton(captchaSolver);
+			}
+
+			if (authorizationFlow != null)
+			{
+				container.TryAddSingleton(authorizationFlow);
+			}
+
+			container.RegisterDefaultDependencies();
+
+			IServiceProvider serviceProvider = container.BuildServiceProvider();
+
+			Initialization(serviceProvider);
+		}
+
+		/// <inheritdoc />
+		public VkApi(IServiceCollection serviceCollection = null)
+		{
+			var container = serviceCollection ?? new ServiceCollection();
+
+			container.RegisterDefaultDependencies();
+
+			IServiceProvider serviceProvider = container.BuildServiceProvider();
+
+			Initialization(serviceProvider);
+		}
+
 		/// <summary>
 		/// Токен для доступа к методам API
 		/// </summary>
@@ -122,45 +161,6 @@ namespace VkNet
 		public Language? GetLanguage()
 		{
 			return _language.GetLanguage();
-		}
-
-		/// <inheritdoc />
-		public VkApi(ILogger<VkApi> logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
-		{
-			var container = new ServiceCollection();
-
-			if (logger != null)
-			{
-				container.TryAddSingleton(logger);
-			}
-
-			if (captchaSolver != null)
-			{
-				container.TryAddSingleton(captchaSolver);
-			}
-
-			if (authorizationFlow != null)
-			{
-				container.TryAddSingleton(authorizationFlow);
-			}
-
-			container.RegisterDefaultDependencies();
-
-			IServiceProvider serviceProvider = container.BuildServiceProvider();
-
-			Initialization(serviceProvider);
-		}
-
-		/// <inheritdoc />
-		public VkApi(IServiceCollection serviceCollection = null)
-		{
-			var container = serviceCollection ?? new ServiceCollection();
-
-			container.RegisterDefaultDependencies();
-
-			IServiceProvider serviceProvider = container.BuildServiceProvider();
-
-			Initialization(serviceProvider);
 		}
 
 		/// <inheritdoc />
@@ -394,7 +394,11 @@ namespace VkNet
 				const string message = "Не удалось автоматически пройти валидацию!";
 				_logger?.LogError(message);
 
-				throw new NeedValidationException(message, validateUrl);
+				throw new NeedValidationException(new VkError
+				{
+					ErrorMessage = message,
+					RedirectUri = new Uri(validateUrl)
+				});
 			}
 
 			AccessToken = authorization.AccessToken;

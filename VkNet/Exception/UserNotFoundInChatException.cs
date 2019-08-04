@@ -1,4 +1,5 @@
 using System;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -10,34 +11,14 @@ namespace VkNet.Exception
 	/// Код ошибки - 935
 	/// </remarks>
 	[Serializable]
-	public class UserNotFoundInChatException : VkApiMethodInvokeException
+	public sealed class UserNotFoundInChatException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
-		/// <summary>
-		/// Инициализирует новый экземпляр класса UserAuthorizationFailException
-		/// </summary>
-		public UserNotFoundInChatException(string message) : base(message)
+		public UserNotFoundInChatException(VkError response) : base(response)
 		{
 		}
 
 		/// <inheritdoc />
-		/// <summary>
-		/// Инициализирует новый экземпляр класса UserAuthorizationFailException
-		/// </summary>
-		/// <param name="message"> Описание исключения. </param>
-		/// <param name="code"> Код ошибки, полученный от сервера ВКонтакте. </param>
-		public UserNotFoundInChatException(string message, int code) : base(message, code)
-		{
-		}
-
-		/// <inheritdoc />
-		/// <summary>
-		/// Инициализирует новый экземпляр класса UserAuthorizationFailException
-		/// </summary>
-		/// <param name="response"> Ответ от сервера vk </param>
-		public UserNotFoundInChatException(VkResponse response) : base(response["error_msg"])
-		{
-			ErrorCode = response["error_code"];
-		}
+		internal override int ErrorCode => VkErrorCode.UserNotFoundInChat;
 	}
 }

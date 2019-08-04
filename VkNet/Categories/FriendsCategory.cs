@@ -7,7 +7,6 @@ using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -31,7 +30,12 @@ namespace VkNet.Categories
 		public VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call("friends.get", @params, skipAuthorization)
-				.ToVkCollectionOf(x => @params.Fields != null ? x : new User { Id = x });
+				.ToVkCollectionOf(x => @params.Fields != null
+					? x
+					: new User
+					{
+						Id = x
+					});
 		}
 
 		/// <inheritdoc />
@@ -189,7 +193,11 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => count);
 
-			var parameters = new VkParameters { { "count", count } };
+			var parameters = new VkParameters
+			{
+				{ "count", count }
+			};
+
 			VkResponseArray response = _vk.Call("friends.getRecent", parameters);
 
 			return response.ToReadOnlyCollectionOf<long>(x => x);
@@ -198,19 +206,6 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public GetRequestsResult GetRequests(FriendsGetRequestsParams @params)
 		{
-			const string errorMessage =
-				"Для получения расширенной информации используйте метод GetRequestsExtended(FriendsGetRequestsParams @params)";
-
-			if (@params.Extended.HasValue && @params.Extended.Value)
-			{
-				throw new ParameterMissingOrInvalidException(errorMessage);
-			}
-
-			if (@params.NeedMutual.HasValue && @params.NeedMutual.Value)
-			{
-				throw new ParameterMissingOrInvalidException(errorMessage);
-			}
-
 			return _vk.Call<GetRequestsResult>("friends.getRequests", @params);
 		}
 
@@ -316,7 +311,12 @@ namespace VkNet.Categories
 			};
 
 			return _vk.Call("friends.getAvailableForCall", parameters)
-				.ToVkCollectionOf(x => fields != null ? new User { Id = x } : x);
+				.ToVkCollectionOf(x => fields != null
+					? new User
+					{
+						Id = x
+					}
+					: x);
 		}
 	}
 }

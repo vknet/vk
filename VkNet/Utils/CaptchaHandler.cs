@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Core;
 using VkNet.Exception;
+using VkNet.Model;
 using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils
@@ -11,9 +12,9 @@ namespace VkNet.Utils
 	[UsedImplicitly]
 	public class CaptchaHandler : ICaptchaHandler
 	{
-		private readonly ILogger<CaptchaHandler> _logger;
-
 		private readonly ICaptchaSolver _captchaSolver;
+
+		private readonly ILogger<CaptchaHandler> _logger;
 
 		/// <inheritdoc />
 		public CaptchaHandler(ILogger<CaptchaHandler> logger, ICaptchaSolver captchaSolver)
@@ -26,11 +27,11 @@ namespace VkNet.Utils
 		public int MaxCaptchaRecognitionCount { get; set; } = 0;
 
 		/// <inheritdoc />
-		public T Perform<T>(Func<long?, string, T> action)
+		public T Perform<T>(Func<ulong?, string, T> action)
 		{
 			var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
 			var numberOfRemainingAttemptsToAuthorize = MaxCaptchaRecognitionCount + 1;
-			long? captchaSidTemp = null;
+			ulong? captchaSidTemp = null;
 			string captchaKeyTemp = null;
 			var callCompleted = false;
 			var result = default(T);
@@ -60,12 +61,15 @@ namespace VkNet.Utils
 
 			_logger?.LogError("Капча ни разу не была распознана верно");
 
-			throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
+			throw new CaptchaNeededException(new VkError
+			{
+				CaptchaSid = captchaSidTemp.Value
+			});
 		}
 
 		private void RepeatSolveCaptchaAsync(CaptchaNeededException captchaNeededException,
 											ref int numberOfRemainingAttemptsToSolveCaptcha,
-											ref long? captchaSidTemp,
+											ref ulong? captchaSidTemp,
 											ref string captchaKeyTemp)
 		{
 			_logger?.LogWarning("Повторная обработка капчи");

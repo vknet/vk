@@ -19,6 +19,6 @@ namespace VkNet.Abstractions.Core
 		/// <param name="action"> Действие </param>
 		/// <typeparam name="T"> Тип результата </typeparam>
 		/// <returns> Результат действия </returns>
-		T Perform<T>(Func<long?, string, T> action);
+		T Perform<T>(Func<ulong?, string, T> action);
 	}
 }

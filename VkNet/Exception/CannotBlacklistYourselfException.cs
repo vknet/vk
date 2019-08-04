@@ -1,4 +1,5 @@
 ﻿using System;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -12,49 +13,14 @@ namespace VkNet.Exception
 	/// Код ошибки - 15
 	/// </summary>
 	[Serializable]
-	public class CannotBlacklistYourselfException : VkApiMethodInvokeException
+	public sealed class CannotBlacklistYourselfException : VkApiMethodInvokeException
 	{
-		/// <summary>
-		/// Инициализирует новый экземпляр класса CannotBlacklistYourselfException
-		/// </summary>
-		public CannotBlacklistYourselfException()
+		/// <inheritdoc />
+		public CannotBlacklistYourselfException(VkError response) : base(response)
 		{
 		}
 
-		/// <summary>
-		/// Инициализирует новый экземпляр класса CannotBlacklistYourselfException
-		/// </summary>
-		/// <param name="message"> Описание исключения. </param>
-		public CannotBlacklistYourselfException(string message) : base(message: message)
-		{
-		}
-
-		/// <summary>
-		/// Инициализирует новый экземпляр класса CannotBlacklistYourselfException
-		/// </summary>
-		/// <param name="message"> Описание исключения. </param>
-		/// <param name="innerException"> Внутреннее исключение. </param>
-		public CannotBlacklistYourselfException(string message, System.Exception innerException) : base(message: message
-				, innerException: innerException)
-		{
-		}
-
-		/// <summary>
-		/// Инициализирует новый экземпляр класса CannotBlacklistYourselfException
-		/// </summary>
-		/// <param name="message"> Описание исключения. </param>
-		/// <param name="code"> Код ошибки, полученный от сервера ВКонтакте. </param>
-		public CannotBlacklistYourselfException(string message, int code) : base(message: message, code: code)
-		{
-		}
-
-		/// <summary>
-		/// Инициализирует новый экземпляр класса VkApiException
-		/// </summary>
-		/// <param name="response"> Ответ от сервера vk </param>
-		public CannotBlacklistYourselfException(VkResponse response) : base(message: response[key: "error_msg"])
-		{
-			ErrorCode = response[key: "error_code"];
-		}
+		/// <inheritdoc />
+		internal override int ErrorCode => VkErrorCode.CannotBlacklistYourself;
 	}
 }

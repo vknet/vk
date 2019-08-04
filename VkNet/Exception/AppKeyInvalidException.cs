@@ -1,4 +1,5 @@
 ﻿using System;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -12,9 +13,11 @@ namespace VkNet.Exception
 	public class AppKeyInvalidException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
-		public AppKeyInvalidException(VkResponse response) : base(message: response[key: "error_msg"])
+		public AppKeyInvalidException(VkError response) : base(response)
 		{
-			ErrorCode = response[key: "error_code"];
 		}
+
+		/// <inheritdoc />
+		internal override int ErrorCode => VkErrorCode.AppKeyInvalid;
 	}
 }

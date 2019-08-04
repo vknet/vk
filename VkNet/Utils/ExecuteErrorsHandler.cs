@@ -32,7 +32,13 @@ namespace VkNet.Utils
 			}
 
 			var exceptionList = executeErrorsResponse.ExecuteErrors
-				.Select(exception => new VkApiMethodInvokeException(exception.ErrorMessage, exception.ErrorCode))
+				.Select(exception => new VkApiException(new VkError
+				{
+					ErrorCode = exception.ErrorCode,
+					ErrorMessage = exception.ErrorMessage,
+					Method = exception.Method,
+					RequestParams = exception.RequestParams
+				}))
 				.ToList();
 
 			return new AggregateException(exceptionList);

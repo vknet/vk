@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -20,6 +21,6 @@ namespace VkNet.Model
 		/// Массив ошибок при вызове метода execute
 		/// </summary>
 		[JsonProperty("execute_errors")]
-		public ExecuteError[] ExecuteErrors { get; set; }
+		public ReadOnlyCollection<VkError> ExecuteErrors { get; set; }
 	}
 }

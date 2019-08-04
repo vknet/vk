@@ -1,4 +1,5 @@
 ﻿using System;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -9,12 +10,14 @@ namespace VkNet.Exception
 	/// Код ошибки - 27
 	/// </summary>
 	[Serializable]
-	public class GroupKeyInvalidException : VkApiMethodInvokeException
+	public sealed class GroupKeyInvalidException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
-		public GroupKeyInvalidException(VkResponse response) : base(message: response[key: "error_msg"])
+		public GroupKeyInvalidException(VkError response) : base(response)
 		{
-			ErrorCode = response[key: "error_code"];
 		}
+
+		/// <inheritdoc />
+		internal override int ErrorCode => VkErrorCode.GroupKeyInvalid;
 	}
 }
