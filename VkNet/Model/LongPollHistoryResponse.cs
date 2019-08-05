@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Utils;
 
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-
-// ReSharper disable MemberCanBePrivate.Global
-
 namespace VkNet.Model
 {
 	/// <summary>
@@ -16,18 +12,8 @@ namespace VkNet.Model
 	public class LongPollHistoryResponse
 	{
 		/// <summary>
-		/// Обновления в личных сообщениях пользователя.
-		/// </summary>
-		public LongPollHistoryResponse()
-		{
-			History = new List<ReadOnlyCollection<long>>();
-		}
-
-		/// <summary>
 		/// История.
 		/// </summary>
-
-		// ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
 		public List<ReadOnlyCollection<long>> History { get; set; }
 
 		/// <summary>
@@ -38,7 +24,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Колекция сообщений.
 		/// </summary>
-		public ReadOnlyCollection<Message> Messages { get; set; }
+		public VkCollection<Message> Messages { get; set; }
 
 		/// <summary>
 		/// Колекция профилей.
@@ -73,7 +59,7 @@ namespace VkNet.Model
 			var fromJson = new LongPollHistoryResponse
 			{
 				UnreadMessages = response[key: "messages"][key: "count"],
-				Messages = response[key: "messages"][key: "items"].ToReadOnlyCollectionOf<Message>(selector: x => x),
+				Messages = response[key: "messages"].ToVkCollectionOf<Message>(selector: x => x),
 				Profiles = response[key: "profiles"].ToReadOnlyCollectionOf<User>(selector: x => x),
 				Groups = response[key: "groups"].ToReadOnlyCollectionOf<Group>(selector: x => x),
 				NewPts = response[key: "new_pts"],
