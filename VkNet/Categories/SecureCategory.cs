@@ -7,7 +7,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <inheritdoc/>
+	/// <inheritdoc />
 	public partial class SecureCategory : ISecureCategory
 	{
 		/// <summary>
@@ -15,8 +15,8 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly IVkApiInvoke _vk;
 
-		/// <inheritdoc/>
-		/// <param name = "api">
+		/// <inheritdoc />
+		/// <param name="api">
 		/// Api vk.com
 		/// </param>
 		public SecureCategory(IVkApiInvoke api)
@@ -24,14 +24,19 @@ namespace VkNet.Categories
 			_vk = api;
 		}
 
-		/// <inheritdoc/>
-		public object AddAppEvent(ulong userId, ulong activityId, ulong? value = null)
+		/// <inheritdoc />
+		public bool AddAppEvent(ulong userId, ulong activityId, ulong? value = null)
 		{
-			return _vk.Call<object>("secure.addAppEvent",
-				new VkParameters { { "user_id", userId }, { "activity_id", activityId }, { "value", value } });
+			return _vk.Call<bool>("secure.addAppEvent",
+				new VkParameters
+				{
+					{ "user_id", userId },
+					{ "activity_id", activityId },
+					{ "value", value }
+				});
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public CheckTokenResult CheckToken(string token, string ip = null)
 		{
 			return _vk.Call<CheckTokenResult>("secure.checkToken",
@@ -42,13 +47,13 @@ namespace VkNet.Categories
 				});
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public ulong GetAppBalance()
 		{
 			return _vk.Call<ulong>("secure.getAppBalance", VkParameters.Empty);
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public ReadOnlyCollection<SmsHistoryItem> GetSmsHistory(ulong? userId = null, DateTime? dateFrom = null, DateTime? dateTo = null,
 																ulong? limit = null)
 		{
@@ -62,19 +67,33 @@ namespace VkNet.Categories
 				});
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public ReadOnlyCollection<Transaction> GetTransactionsHistory()
 		{
 			return _vk.Call<ReadOnlyCollection<Transaction>>("secure.getTransactionsHistory", VkParameters.Empty);
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public ReadOnlyCollection<SecureLevel> GetUserLevel(IEnumerable<long> userIds)
 		{
-			return _vk.Call<ReadOnlyCollection<SecureLevel>>("secure.getUserLevel", new VkParameters { { "user_ids", userIds } });
+			return _vk.Call<ReadOnlyCollection<SecureLevel>>("secure.getUserLevel",
+				new VkParameters
+				{
+					{ "user_ids", userIds }
+				});
 		}
 
-		/// <inheritdoc/>
+		public ReadOnlyCollection<EventSticker> GiveEventSticker(IEnumerable<ulong> userIds, ulong achievementId)
+		{
+			return _vk.Call<ReadOnlyCollection<EventSticker>>("secure.giveEventSticker",
+				new VkParameters
+				{
+					{ "user_ids", userIds },
+					{ "achievement_id", achievementId }
+				});
+		}
+
+		/// <inheritdoc />
 		public ReadOnlyCollection<ulong> SendNotification(string message, IEnumerable<ulong> userIds = null)
 		{
 			return _vk.Call<ReadOnlyCollection<ulong>>("secure.sendNotification",
@@ -85,7 +104,7 @@ namespace VkNet.Categories
 				});
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public bool SendSmsNotification(ulong userId, string message)
 		{
 			return _vk.Call<bool>("secure.sendSMSNotification",
@@ -96,7 +115,7 @@ namespace VkNet.Categories
 				});
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public bool SetCounter(IEnumerable<string> counters, ulong? userId = null, long? counter = null, bool? increment = null)
 		{
 			return _vk.Call<bool>("secure.setCounter",

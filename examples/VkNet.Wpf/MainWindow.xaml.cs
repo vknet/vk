@@ -8,7 +8,6 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.NLog.Extensions.Logging;
 using VkNet.NLog.Extensions.Logging.Extensions;
-using VkNet.Utils;
 using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace VkNet.Wpf
@@ -51,7 +50,7 @@ namespace VkNet.Wpf
 		{
 			var di = new ServiceCollection();
 
-			di.AddSingleton<IBrowser, WpfAuthorize>();
+			di.AddSingleton<IAuthorizationFlow, WpfAuthorize>();
 			di.AddSingleton<ILoggerFactory, LoggerFactory>();
 			di.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
 			di.AddLogging(builder =>

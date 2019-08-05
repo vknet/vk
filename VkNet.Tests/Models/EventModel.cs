@@ -1,0 +1,23 @@
+using System.Diagnostics.CodeAnalysis;
+using NUnit.Framework;
+using VkNet.Model.Attachments;
+
+namespace VkNet.Tests.Models
+{
+	[TestFixture]
+	[ExcludeFromCodeCoverage]
+	public class EventModel : BaseTest
+	{
+		[Test]
+		public void EventModel_ImplicitEvent()
+		{
+			ReadJsonFile("Models", nameof(EventModel_ImplicitEvent));
+
+			var response = GetResponse();
+
+			var attachment = Attachment.FromJson(response);
+
+			Assert.True(attachment.Instance is Event);
+		}
+	}
+}

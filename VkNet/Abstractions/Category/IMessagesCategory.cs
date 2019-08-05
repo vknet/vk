@@ -110,7 +110,7 @@ namespace VkNet.Abstractions
 		bool Edit(MessageEditParams @params);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.DeleteConversationAsync" />
-		bool DeleteConversation(long? userId, long? peerId = null, uint? offset = null, uint? count = null, long? groupId = null);
+		bool DeleteConversation(long? userId, long? peerId = null, ulong? groupId = null);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetConversationsByIdAsync" />
 		ConversationResultObject GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields, bool? extended = null, ulong? groupId = null);

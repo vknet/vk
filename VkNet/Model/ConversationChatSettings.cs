@@ -51,13 +51,19 @@ namespace VkNet.Model
 		public ReadOnlyCollection<long> ActiveIds { get; set; }
 
 		/// <summary>
-		///
+		/// Идентификаторы администраторов чата.
+		/// </summary>
+		[JsonProperty("admin_ids")]
+		public ReadOnlyCollection<long> AdminIds { get; set; }
+
+		/// <summary>
+		/// Идентификатор владельца чата
 		/// </summary>
 		[JsonProperty("owner_id")]
 		public long OwnerId { get; set; }
 
 		/// <summary>
-		///
+		/// Признак группового канала
 		/// </summary>
 		[JsonProperty("is_group_channel")]
 		public bool IsGroupChannel { get; set; }

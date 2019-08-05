@@ -40,10 +40,8 @@ namespace VkNet.Abstractions
 		/// то будут возвращены только страны с перечисленными ISO 3166-1 alpha-2 кодами.
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getCountries
 		/// </remarks>
-		Task<VkCollection<Country>> GetCountriesAsync(bool? needAll = null
-													, IEnumerable<Iso3166> codes = null
-													, int? count = null
-													, int? offset = null);
+		Task<VkCollection<Country>> GetCountriesAsync(bool? needAll = null, IEnumerable<Iso3166> codes = null, int? count = null,
+													int? offset = null);
 
 		/// <summary>
 		/// Возвращает список регионов.
@@ -134,11 +132,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getUniversities
 		/// </remarks>
-		Task<VkCollection<University>> GetUniversitiesAsync(int countryId
-															, int cityId
-															, string query = ""
-															, int? count = null
-															, int? offset = null);
+		Task<VkCollection<University>> GetUniversitiesAsync(int countryId, int cityId, string query = "", int? count = null,
+															int? offset = null);
 
 		/// <summary>
 		/// Возвращает список школ.
@@ -211,5 +206,50 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/database.getChairs
 		/// </remarks>
 		Task<VkCollection<Chair>> GetChairsAsync(long facultyId, int? count = null, int? offset = null);
+
+		/// <summary>
+		/// Возвращает информацию об одной или нескольких станциях метро по их идентификаторам.
+		/// </summary>
+		/// <param name = "stationIds">
+		/// Список идентификаторов станций метро список положительных чисел, разделенных запятыми
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает массив объектов, описывающих станции метро.
+		/// Каждый объект содержит следующие поля:
+		/// id (integer) — идентификатор;
+		/// name (string) — название;
+		/// color (string) — цвет линии.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/database.getMetroStationsById
+		/// </remarks>
+		Task<ReadOnlyCollection<MetroStation>> GetMetroStationsByIdAsync(IEnumerable<ulong> stationIds);
+
+		/// <summary>
+		/// Возвращает список станций метро
+		/// </summary>
+		/// <param name = "cityId">
+		/// Идентификатор города, полученный методом database.getCities. положительное число, обязательный параметр
+		/// </param>
+		/// <param name = "offset">
+		/// Отступ, необходимый для выбора определенного подмножества станций. положительное число
+		/// </param>
+		/// <param name = "count">
+		/// Количество станций, которое необходимо вернуть. положительное число, по умолчанию 100, максимальное значение 500
+		/// </param>
+		/// <param name = "extended">
+		/// Флаг, может принимать значения 1 или 0, по умолчанию
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и массив объектов, описывающих станции метро, в поле items.
+		/// Каждый объект содержит следующие поля:
+		/// id (integer) — идентификатор;
+		/// name (string) — название;
+		/// color (string) — цвет линии.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/database.getMetroStations
+		/// </remarks>
+		Task<VkCollection<MetroStation>> GetMetroStationsAsync(ulong cityId, int? offset = null, int? count = null, bool extended = false);
 	}
 }

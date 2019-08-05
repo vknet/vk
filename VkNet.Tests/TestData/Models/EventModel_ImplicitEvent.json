@@ -1,0 +1,17 @@
+{
+  "type": "event",
+  "event": {
+    "id": 139,
+    "time": 1528218042,
+    "member_status": 1,
+    "is_favorite": 1,
+    "address": "Улица кукуева 43",
+    "text": "hard party",
+    "button_text": "текст на кнопке",
+    "friends": [
+      1,
+      2,
+      3
+    ]
+  }
+}

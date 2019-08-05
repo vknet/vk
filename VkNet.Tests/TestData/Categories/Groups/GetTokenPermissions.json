@@ -1,0 +1,19 @@
+{
+  "response": {
+    "mask": 274432,
+    "permissions": [
+      {
+        "setting": 4096,
+        "name": "messages"
+      },
+      {
+        "setting": 8192,
+        "name": "wall"
+      },
+      {
+        "setting": 262144,
+        "name": "manage"
+      }
+    ]
+  }
+}

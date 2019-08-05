@@ -1,4 +1,5 @@
 ﻿using System;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -16,26 +17,18 @@ namespace VkNet.Exception
 	/// Код ошибки - 17
 	/// </summary>
 	[Serializable]
-	public class NeedValidationException : VkApiMethodInvokeException
+	[VkError(VkErrorCode.NeedValidationOfUser)]
+	public sealed class NeedValidationException : VkApiMethodInvokeException
 	{
-		/// <summary>
-		/// Инициализирует новый экземпляр класса VkApiAuthorizationException
-		/// </summary>
-		/// <param name="message"> Описание исключения. </param>
-		/// <param name="strRedirectUri"> Адрес который необходимо открыть в браузере. </param>
-		public NeedValidationException(string message, string strRedirectUri) : base(message: message)
+		/// <inheritdoc />
+		public NeedValidationException(VkError response) : base(response)
 		{
-			RedirectUri = new Uri(uriString: strRedirectUri);
-		}
+			if (response == null)
+			{
+				return;
+			}
 
-		/// <summary>
-		/// Инициализирует новый экземпляр класса NeedValidationException
-		/// </summary>
-		/// <param name="response"> Ответ от сервера vk </param>
-		public NeedValidationException(VkResponse response) : base(message: response[key: "error_msg"])
-		{
-			ErrorCode = response[key: "error_code"];
-			RedirectUri = response[key: "redirect_uri"];
+			RedirectUri = response.RedirectUri;
 		}
 
 		/// <summary>

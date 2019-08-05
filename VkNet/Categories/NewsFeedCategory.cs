@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -64,16 +63,16 @@ namespace VkNet.Categories
 
 			if (count <= 50)
 			{
-				parameters.Add(name: "count", nullableValue: count);
+				parameters.Add("count", count);
 			}
 
-			return _vk.Call(methodName: "newsfeed.getMentions", parameters: parameters).ToVkCollectionOf<Mention>(selector: x => x);
+			return _vk.Call("newsfeed.getMentions", parameters).ToVkCollectionOf<Mention>(selector: x => x);
 		}
 
 		/// <inheritdoc />
 		public NewsBannedList GetBanned()
 		{
-			return _vk.Call(methodName: "newsfeed.getBanned", parameters: VkParameters.Empty);
+			return _vk.Call("newsfeed.getBanned", VkParameters.Empty);
 		}
 
 		/// <inheritdoc />
@@ -86,7 +85,7 @@ namespace VkNet.Categories
 				{ "name_case", nameCase }
 			};
 
-			return _vk.Call(methodName: "newsfeed.getBanned", parameters: parameters);
+			return _vk.Call("newsfeed.getBanned", parameters);
 		}
 
 		/// <inheritdoc />
@@ -98,7 +97,7 @@ namespace VkNet.Categories
 				{ "group_ids", groupIds }
 			};
 
-			return _vk.Call(methodName: "newsfeed.addBan", parameters: parameters);
+			return _vk.Call("newsfeed.addBan", parameters);
 		}
 
 		/// <inheritdoc />
@@ -110,7 +109,7 @@ namespace VkNet.Categories
 				{ "group_ids", groupIds }
 			};
 
-			return _vk.Call(methodName: "newsfeed.deleteBan", parameters: parameters);
+			return _vk.Call("newsfeed.deleteBan", parameters);
 		}
 
 		/// <inheritdoc />
@@ -123,7 +122,7 @@ namespace VkNet.Categories
 				{ "item_id", itemId }
 			};
 
-			return _vk.Call(methodName: "newsfeed.ignoreItem", parameters: parameters);
+			return _vk.Call("newsfeed.ignoreItem", parameters);
 		}
 
 		/// <inheritdoc />
@@ -136,15 +135,13 @@ namespace VkNet.Categories
 				{ "item_id", itemId }
 			};
 
-			return _vk.Call(methodName: "newsfeed.unignoreItem", parameters: parameters);
+			return _vk.Call("newsfeed.unignoreItem", parameters);
 		}
 
 		/// <inheritdoc />
-		public ReadOnlyCollection<NewsSearchResult> Search(NewsFeedSearchParams @params)
+		public NewsSearchResult Search(NewsFeedSearchParams @params)
 		{
-			VkResponseArray response = _vk.Call(methodName: "newsfeed.search", parameters: @params);
-
-			return response.ToReadOnlyCollectionOf<NewsSearchResult>(selector: x => x);
+			return _vk.Call<NewsSearchResult>("newsfeed.search", @params);
 		}
 
 		/// <inheritdoc />
@@ -156,7 +153,7 @@ namespace VkNet.Categories
 				{ "extended", extended }
 			};
 
-			return _vk.Call(methodName: "newsfeed.getLists", parameters: parameters).ToVkCollectionOf<NewsUserListItem>(selector: x => x);
+			return _vk.Call("newsfeed.getLists", parameters).ToVkCollectionOf<NewsUserListItem>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -170,7 +167,7 @@ namespace VkNet.Categories
 				{ "no_reposts", noReposts }
 			};
 
-			return _vk.Call(methodName: "newsfeed.saveList", parameters: parameters);
+			return _vk.Call("newsfeed.saveList", parameters);
 		}
 
 		/// <inheritdoc />
@@ -181,7 +178,7 @@ namespace VkNet.Categories
 				{ "list_id", listId }
 			};
 
-			return _vk.Call(methodName: "newsfeed.deleteList", parameters: parameters);
+			return _vk.Call("newsfeed.deleteList", parameters);
 		}
 
 		/// <inheritdoc />
@@ -194,7 +191,7 @@ namespace VkNet.Categories
 				{ "item_id", itemId }
 			};
 
-			return _vk.Call(methodName: "newsfeed.unsubscribe", parameters: parameters);
+			return _vk.Call("newsfeed.unsubscribe", parameters);
 		}
 
 		/// <inheritdoc />
@@ -209,10 +206,10 @@ namespace VkNet.Categories
 
 			if (count <= 1000)
 			{
-				parameters.Add(name: "count", nullableValue: count);
+				parameters.Add("count", count);
 			}
 
-			return _vk.Call(methodName: "newsfeed.getSuggestedSources", parameters: parameters);
+			return _vk.Call("newsfeed.getSuggestedSources", parameters);
 		}
 	}
 }

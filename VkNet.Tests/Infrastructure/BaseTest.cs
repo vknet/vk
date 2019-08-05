@@ -27,12 +27,14 @@ namespace VkNet.Tests
 	[ExcludeFromCodeCoverage]
 	public abstract class BaseTest : IDisposable
 	{
+		protected readonly AutoMocker Mocker = new AutoMocker();
+
 		/// <summary>
 		/// Экземпляр класса API.
 		/// </summary>
 		protected VkApi Api;
 
-		protected readonly AutoMocker Mocker = new AutoMocker();
+		protected Encoding Encoding = Encoding.UTF8;
 
 		/// <summary>
 		/// Ответ от сервера.
@@ -43,8 +45,6 @@ namespace VkNet.Tests
 		/// Url запроса.
 		/// </summary>
 		protected string Url;
-
-		protected Encoding Encoding = Encoding.UTF8;
 
 		public void Dispose()
 		{
@@ -94,10 +94,10 @@ namespace VkNet.Tests
 					State = "123456"
 				});
 
-			Mocker.Setup<ICaptchaHandler, string>(m => m.Perform(It.IsAny<Func<long?, string, string>>()))
+			Mocker.Setup<ICaptchaHandler, string>(m => m.Perform(It.IsAny<Func<ulong?, string, string>>()))
 				.Returns(Json);
 
-			Mocker.Setup<ICaptchaHandler, bool>(m => m.Perform(It.IsAny<Func<long?, string, bool>>()))
+			Mocker.Setup<ICaptchaHandler, bool>(m => m.Perform(It.IsAny<Func<ulong?, string, bool>>()))
 				.Returns(true);
 
 			Mocker.Setup<ICaptchaHandler, int>(m => m.MaxCaptchaRecognitionCount)

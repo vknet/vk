@@ -7,9 +7,13 @@ namespace VkNet.Infrastructure
 	[UsedImplicitly]
 	public class VkApiVersionManager : IVkApiVersionManager
 	{
-		private int Major { get; set; } = 5;
+		private const int CurrentMajorVersion = 5;
 
-		private int Minor { get; set; } = 95;
+		private const int CurrentMinorVersion = 101;
+
+		private int Major { get; set; } = CurrentMajorVersion;
+
+		private int Minor { get; set; } = CurrentMinorVersion;
 
 		/// <inheritdoc />
 		public string Version => $"{Major}.{Minor}";

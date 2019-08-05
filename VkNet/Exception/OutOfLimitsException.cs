@@ -1,4 +1,5 @@
 ﻿using System;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Exception
@@ -9,23 +10,12 @@ namespace VkNet.Exception
 	/// </summary>
 	/// <seealso cref="VkNet.Exception.VkApiException" />
 	[Serializable]
-	public class OutOfLimitsException : VkApiMethodInvokeException
+	[VkError(VkErrorCode.OutOfLimits)]
+	public sealed class OutOfLimitsException : VkApiMethodInvokeException
 	{
-		/// <summary>
-		/// Конструктор.
-		/// </summary>
-		/// <param name="message"> Описание исключения. </param>
-		public OutOfLimitsException(string message) : base(message: message)
+		/// <inheritdoc />
+		public OutOfLimitsException(VkError response) : base(response)
 		{
-		}
-
-		/// <summary>
-		/// Инициализирует новый экземпляр класса NeedValidationException
-		/// </summary>
-		/// <param name="response"> Ответ от сервера vk </param>
-		public OutOfLimitsException(VkResponse response) : base(message: response[key: "error_msg"])
-		{
-			ErrorCode = response[key: "error_code"];
 		}
 	}
 }

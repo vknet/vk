@@ -7,29 +7,29 @@
 		/// <summary>
 		/// не является участником
 		/// </summary>
-		NotParticipiant = 0
+		NotParticipiant = 0,
 
-		, /// <summary>
+		/// <summary>
 		/// является участником
 		/// </summary>
-		Participiant = 1
+		Participiant = 1,
 
-		, /// <summary>
+		/// <summary>
 		/// не уверен, что посетит мероприятие
 		/// </summary>
-		NotShureThatVisist = 2
+		NotShureThatVisist = 2,
 
-		, /// <summary>
+		/// <summary>
 		/// отклонил приглашение
 		/// </summary>
-		Rejected = 3
+		Rejected = 3,
 
-		, /// <summary>
+		/// <summary>
 		/// подал заявку на вступление
 		/// </summary>
-		SendRequest = 4
+		SendRequest = 4,
 
-		, /// <summary>
+		/// <summary>
 		/// приглашен
 		/// </summary>
 		Invited = 5

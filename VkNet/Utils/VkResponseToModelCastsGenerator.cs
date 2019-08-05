@@ -3,7 +3,6 @@
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
-using VkNet.UWP.Model.Attachments;
 
 namespace VkNet.Utils
 {
@@ -957,18 +956,6 @@ namespace VkNet.Utils
 		public static implicit operator NewsBannedList(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues ? null : NewsBannedList.FromJson(response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator NewsSearchResult(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : NewsSearchResult.FromJson(response);
 		}
 
 		/// <summary>

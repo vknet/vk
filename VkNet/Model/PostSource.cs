@@ -21,12 +21,14 @@ namespace VkNet.Model
 		/// <summary>
 		/// На данный момент поддерживаются следующие типы источников записи на стене.
 		/// </summary>
+		[JsonProperty("type")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public PostSourceType Type { get; set; }
 
 		/// <summary>
 		/// Название платформы, если оно доступно: android, iphone, wphone.
 		/// </summary>
+		[JsonProperty("platform", NullValueHandling = NullValueHandling.Ignore)]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public Platform Platform { get; set; }
 
@@ -34,11 +36,13 @@ namespace VkNet.Model
 		/// Поле data является опциональным и содержит следующие данные в зависимости от
 		/// значения поля type:
 		/// </summary>
+		[JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
 		public PostSourceData Data { get; set; }
 
 		/// <summary>
 		/// Cодержит внешнюю ссылку на ресурс, с которого была опубликована запись.
 		/// </summary>
+		[JsonProperty("source_url")]
 		public Uri Uri { get; set; }
 
 	#region Методы
@@ -52,10 +56,10 @@ namespace VkNet.Model
 		{
 			var postSource = new PostSource
 			{
-					Type = response[key: "type"]
-					, Data = response[key: "data"]
-					, Platform = response[key: "source_platform"]
-					, Uri = response[key: "source_url"]
+				Type = response["type"],
+				Data = response["data"],
+				Platform = response["source_platform"],
+				Uri = response["source_url"]
 			};
 
 			return postSource;

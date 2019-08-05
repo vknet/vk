@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -202,7 +201,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.search
 		/// </remarks>
-		Task<ReadOnlyCollection<NewsSearchResult>> SearchAsync(NewsFeedSearchParams @params);
+		Task<NewsSearchResult> SearchAsync(NewsFeedSearchParams @params);
 
 		/// <summary>
 		/// Возвращает пользовательские списки новостей.

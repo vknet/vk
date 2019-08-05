@@ -80,9 +80,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool DeleteConversation(long? userId, long? peerId = null, uint? offset = null, uint? count = null, long? groupId = null)
+		public bool DeleteConversation(long? userId, long? peerId = null, ulong? groupId = null)
 		{
-			return DeleteConversationAsync(userId, peerId, offset, count, groupId, CancellationToken.None).GetAwaiter().GetResult();
+			return DeleteConversationAsync(userId, peerId, groupId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
@@ -292,7 +292,11 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long JoinChatByInviteLink(string link)
 		{
-			return _vk.Call("messages.joinChatByInviteLink", new VkParameters { { "link", link } })["chat_id"];
+			return _vk.Call("messages.joinChatByInviteLink",
+				new VkParameters
+				{
+					{ "link", link }
+				})["chat_id"];
 		}
 
 		/// <inheritdoc />

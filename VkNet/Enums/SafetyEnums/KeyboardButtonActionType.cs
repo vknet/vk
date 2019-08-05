@@ -4,7 +4,6 @@ namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Тип кнопки сообщений.
-	/// Содержит "text"
 	/// </summary>
 	public class KeyboardButtonActionType : SafetyEnum<KeyboardButtonActionType>
 	{
@@ -12,6 +11,21 @@ namespace VkNet.Enums.SafetyEnums
 		/// Text
 		/// </summary>
 		[DefaultValue]
-		public static readonly KeyboardButtonActionType Text = RegisterPossibleValue(value: "text");
+		public static readonly KeyboardButtonActionType Text = RegisterPossibleValue("text");
+
+		/// <summary>
+		/// Location
+		/// </summary>
+		public static readonly KeyboardButtonActionType Location = RegisterPossibleValue("location");
+
+		/// <summary>
+		/// VkPay
+		/// </summary>
+		public static readonly KeyboardButtonActionType VkPay = RegisterPossibleValue("vkpay");
+
+		/// <summary>
+		/// Vk Apps
+		/// </summary>
+		public static readonly KeyboardButtonActionType VkApp = RegisterPossibleValue("open_app");
 	}
 }

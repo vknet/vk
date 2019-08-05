@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Exception;
@@ -7,6 +8,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture]
+	[ExcludeFromCodeCoverage]
 	public class ImplicitFlowVkAuthorizationTests
 	{
 		[Test]
@@ -36,30 +38,6 @@ namespace VkNet.Tests.Utils
 		}
 
 		[Test]
-		public void GetPageType_LoginPassword()
-		{
-			var url = new Uri(
-				"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https://oauth.vk.com/blank.html&display=mobile&scope=140492255&response_type=token&v=5.92&state=123&revoke=1");
-
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
-
-			Assert.AreEqual(ImplicitFlowPageType.LoginPassword, result);
-		}
-
-		[Test]
-		public void GetPageType_LoginPassword_AfterIncorrectEnter()
-		{
-			var url = new Uri(
-				"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140492255&v=5.92&state=123&revoke=1&display=mobile&m=4&email=");
-
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
-
-			Assert.AreEqual(ImplicitFlowPageType.LoginPassword, result);
-		}
-
-		[Test]
 		public void GetPageType_Captcha()
 		{
 			var url = new Uri(
@@ -84,39 +62,6 @@ namespace VkNet.Tests.Utils
 		}
 
 		[Test]
-		public void GetPageType_TwoFactor()
-		{
-			var url = new Uri("https://m.vk.com/login?act=authcheck&api_hash=api_hash");
-
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
-
-			Assert.AreEqual(ImplicitFlowPageType.TwoFactor, result);
-		}
-
-		[Test]
-		public void GetPageType_TwoFactor_AfterIncorrectEnter()
-		{
-			var url = new Uri("https://m.vk.com/login?act=authcheck&m=442");
-
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
-
-			Assert.AreEqual(ImplicitFlowPageType.TwoFactor, result);
-		}
-
-		[Test]
-		public void GetPageType_Result()
-		{
-			var url = new Uri("https://oauth.vk.com/blank.html#access_token=access_token&expires_in=0&user_id=32190123&email=inyutin_maxim@mail.ru&state=123");
-
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
-
-			Assert.AreEqual(ImplicitFlowPageType.Result, result);
-		}
-
-		[Test]
 		public void GetPageType_Consent()
 		{
 			var url = new Uri(
@@ -138,6 +83,64 @@ namespace VkNet.Tests.Utils
 			var result = auth.GetPageType(url);
 
 			Assert.AreEqual(ImplicitFlowPageType.Error, result);
+		}
+
+		[Test]
+		public void GetPageType_LoginPassword()
+		{
+			var url = new Uri(
+				"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https://oauth.vk.com/blank.html&display=mobile&scope=140492255&response_type=token&v=5.92&state=123&revoke=1");
+
+			var auth = new ImplicitFlowVkAuthorization();
+			var result = auth.GetPageType(url);
+
+			Assert.AreEqual(ImplicitFlowPageType.LoginPassword, result);
+		}
+
+		[Test]
+		public void GetPageType_LoginPassword_AfterIncorrectEnter()
+		{
+			var url = new Uri(
+				"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140492255&v=5.92&state=123&revoke=1&display=mobile&m=4&email=");
+
+			var auth = new ImplicitFlowVkAuthorization();
+			var result = auth.GetPageType(url);
+
+			Assert.AreEqual(ImplicitFlowPageType.LoginPassword, result);
+		}
+
+		[Test]
+		public void GetPageType_Result()
+		{
+			var url = new Uri(
+				"https://oauth.vk.com/blank.html#access_token=access_token&expires_in=0&user_id=32190123&email=inyutin_maxim@mail.ru&state=123");
+
+			var auth = new ImplicitFlowVkAuthorization();
+			var result = auth.GetPageType(url);
+
+			Assert.AreEqual(ImplicitFlowPageType.Result, result);
+		}
+
+		[Test]
+		public void GetPageType_TwoFactor()
+		{
+			var url = new Uri("https://m.vk.com/login?act=authcheck&api_hash=api_hash");
+
+			var auth = new ImplicitFlowVkAuthorization();
+			var result = auth.GetPageType(url);
+
+			Assert.AreEqual(ImplicitFlowPageType.TwoFactor, result);
+		}
+
+		[Test]
+		public void GetPageType_TwoFactor_AfterIncorrectEnter()
+		{
+			var url = new Uri("https://m.vk.com/login?act=authcheck&m=442");
+
+			var auth = new ImplicitFlowVkAuthorization();
+			var result = auth.GetPageType(url);
+
+			Assert.AreEqual(ImplicitFlowPageType.TwoFactor, result);
 		}
 	}
 }

@@ -62,6 +62,42 @@ namespace VkNet.Model.Attachments
 		public Uri Photo800 { get; set; }
 
 		/// <summary>
+		/// Uri изображения-обложки ролика с размером до 1280 px по ширине (если размер есть).
+		/// </summary>
+		[JsonProperty("photo_1280")]
+		public Uri Photo1280 { get; set; }
+
+		/// <summary>
+		/// URL изображения первого кадра ролика с размером 130x98px.
+		/// </summary>
+		[JsonProperty("first_frame_130")]
+		public Uri FirstFrame130 { get; set; }
+
+		/// <summary>
+		/// URL изображения первого кадра ролика с размером 320x240px.
+		/// </summary>
+		[JsonProperty("first_frame_320")]
+		public Uri FirstFrame320 { get; set; }
+
+		/// <summary>
+		/// URL изображения первого кадра ролика с размером 640x480px (если размер есть).
+		/// </summary>
+		[JsonProperty("first_frame_640")]
+		public Uri FirstFrame640 { get; set; }
+
+		/// <summary>
+		/// URL изображения первого кадра ролика с размером 800x450px (если размер есть).
+		/// </summary>
+		[JsonProperty("first_frame_800")]
+		public Uri FirstFrame800 { get; set; }
+
+		/// <summary>
+		/// URL изображения первого кадра ролика с шириной до 1028 px (если размер есть).
+		/// </summary>
+		[JsonProperty("first_frame_1280")]
+		public Uri FirstFrame1280 { get; set; }
+
+		/// <summary>
 		/// Дата добавления видеозаписи.
 		/// </summary>
 		[JsonProperty("date")]
@@ -142,6 +178,12 @@ namespace VkNet.Model.Attachments
 		[JsonProperty("upcoming")]
 		public bool? Upcoming { get; set; }
 
+		/// <summary>
+		/// true, если объект добавлен в закладки у текущего пользователя.
+		/// </summary>
+		[JsonProperty("is_favorite")]
+		public bool IsFavorite { get; set; }
+
 	#region Методы
 
 		/// <summary>
@@ -151,44 +193,9 @@ namespace VkNet.Model.Attachments
 		/// <returns> </returns>
 		public static Video FromJson(VkResponse response)
 		{
-			return new Video
-			{
-				Id = response["video_id"] ?? response["vid"] ?? response["id"],
-				OwnerId = response["owner_id"],
-				Title = response["title"],
-				Description = response["description"],
-				Duration = response["duration"],
-				Photo130 = response["photo_130"],
-				Photo320 = response["photo_320"],
-				Photo640 = response["photo_640"],
-				Photo800 = response["photo_800"],
-				Date = response["date"],
-				Views = response["views"],
-				Comments = response["comments"],
-				Player = response["player"],
-				AccessKey = response["access_key"],
-				Processing = response["processing"],
-				Live = response["live"],
-
-				// Устаревшие или не документированные
-				CanAdd = response["can_add"],
-				CanComment = response["can_comment"],
-				CanRepost = response["can_repost"],
-				Repeat = response["repeat"],
-				Likes = response["likes"],
-				AlbumId = Utilities.GetNullableLongId(response["album_id"]),
-				UploadUrl = response["upload_url"],
-				Tag = response,
-				AddingDate = response["adding_date"],
-				Files = response["files"],
-				Reposts = response["reposts"],
-				Platform = response["platform"],
-				Width = response["width"],
-				Height = response["height"],
-				CanEdit = response["can_edit"],
-				IsPrivate = response["is_private"],
-				Upcoming = response["upcoming"]
-			};
+			return response != null
+				? JsonConvert.DeserializeObject<Video>(response.ToString())
+				: null;
 		}
 
 		/// <summary>

@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Список кодов ошибок.
 	/// </summary>
-	public static class ErrorCode
+	public static class VkErrorCode
 	{
 		/// <summary>
 		/// Произошла неизвестная ошибка.

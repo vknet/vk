@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Core;
 using VkNet.Exception;
+using VkNet.Model;
 using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils
@@ -13,9 +14,9 @@ namespace VkNet.Utils
 	[UsedImplicitly]
 	public class CaptchaHandler : ICaptchaHandler
 	{
-		private readonly ILogger<CaptchaHandler> _logger;
-
 		private readonly ICaptchaSolver _captchaSolver;
+
+		private readonly ILogger<CaptchaHandler> _logger;
 
 		/// <inheritdoc />
 		public CaptchaHandler(ILogger<CaptchaHandler> logger, ICaptchaSolver captchaSolver)
@@ -25,20 +26,20 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public int MaxCaptchaRecognitionCount { get; set; }
+		public int MaxCaptchaRecognitionCount { get; set; } = 0;
 
 		/// <inheritdoc />
-		public T Perform<T>(Func<long?, string, T> action)
+		public T Perform<T>(Func<ulong?, string, T> action)
 		{
 			return PerformAsync(Transform(action), CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
-		public async Task<T> PerformAsync<T>(Func<long?, string, Task<T>> action, CancellationToken cancellationToken = default)
+		public async Task<T> PerformAsync<T>(Func<ulong?, string, Task<T>> action, CancellationToken cancellationToken = default)
 		{
 			var numberOfRemainingAttemptsToSolveCaptcha = MaxCaptchaRecognitionCount;
 			var numberOfRemainingAttemptsToAuthorize = MaxCaptchaRecognitionCount + 1;
-			long? captchaSidTemp = null;
+			ulong? captchaSidTemp = null;
 			string captchaKeyTemp = null;
 			var callCompleted = false;
 			var result = default(T);
@@ -82,12 +83,15 @@ namespace VkNet.Utils
 
 			_logger?.LogError("Капча ни разу не была распознана верно");
 
-			throw new CaptchaNeededException(captchaSidTemp.Value, captchaKeyTemp);
+			throw new CaptchaNeededException(new VkError
+			{
+				CaptchaSid = captchaSidTemp.Value
+			});
 		}
 
-		private Func<long?, string, Task<T>> Transform<T>(Func<long?, string, T> action)
+		private Func<ulong?, string, Task<T>> Transform<T>(Func<ulong?, string, T> action)
 		{
-			Func<long?, string, Task<T>> transform;
+			Func<ulong?, string, Task<T>> transform;
 
 		#if NET40
 			transform = (sid, key) => TaskEx.FromResult(action(sid, key));

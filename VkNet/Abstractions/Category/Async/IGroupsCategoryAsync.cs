@@ -6,6 +6,7 @@ using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Model.RequestParams.Groups;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions
@@ -97,10 +98,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.getById
 		/// </remarks>
-		Task<ReadOnlyCollection<Group>> GetByIdAsync(IEnumerable<string> groupIds
-													, string groupId
-													, GroupsFields fields
-													, bool skipAuthorization = false);
+		Task<ReadOnlyCollection<Group>> GetByIdAsync(IEnumerable<string> groupIds, string groupId, GroupsFields fields,
+													bool skipAuthorization = false);
 
 		/// <summary>
 		/// Возвращает список участников сообщества.
@@ -164,11 +163,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.isMember
 		/// </remarks>
-		Task<ReadOnlyCollection<GroupMember>> IsMemberAsync(string groupId
-															, long? userId
-															, IEnumerable<long> userIds
-															, bool? extended
-															, bool skipAuthorization = false);
+		Task<ReadOnlyCollection<GroupMember>> IsMemberAsync(string groupId, long? userId, IEnumerable<long> userIds, bool? extended,
+															bool skipAuthorization = false);
 
 		/// <summary>
 		/// Осуществляет поиск сообществ по заданной подстроке.
@@ -282,11 +278,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.getBanned
 		/// </remarks>
-		Task<VkCollection<GetBannedResult>> GetBannedAsync(long groupId
-															, long? offset = null
-															, long? count = null
-															, GroupsFields fields = null
-															, long? ownerId = null);
+		Task<VkCollection<GetBannedResult>> GetBannedAsync(long groupId, long? offset = null, long? count = null,
+															GroupsFields fields = null, long? ownerId = null);
 
 		/// <summary>
 		/// Убирает пользователя из черного списка сообщества.
@@ -362,6 +355,7 @@ namespace VkNet.Abstractions
 		/// группы.
 		/// Страница документации ВКонтакте https://vk.com/dev/groups.editPlace
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		Task<bool> EditPlaceAsync(long groupId, Place place = null);
 
 		/// <summary>
@@ -402,11 +396,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.getInvitedUsers
 		/// </remarks>
-		Task<VkCollection<User>> GetInvitedUsersAsync(long groupId
-													, long? offset = null
-													, long? count = null
-													, UsersFields fields = null
-													, NameCase nameCase = null);
+		Task<VkCollection<User>> GetInvitedUsersAsync(long groupId, long? offset = null, long? count = null, UsersFields fields = null,
+													NameCase nameCase = null);
 
 		/// <summary>
 		/// Позволяет приглашать друзей в группу.
@@ -869,5 +860,171 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте https://vk.com/dev/bots_longpoll
 		/// </remarks>
 		Task<BotsLongPollHistoryResponse> GetBotsLongPollHistoryAsync(BotsLongPollHistoryParams @params);
+
+		/// <summary>
+		/// Позволяет добавить адрес в сообщество.
+		/// Список адресов может быть получен методом groups.getAddresses.
+		/// Для того, чтобы воспользоваться этим методом, Вы должны быть администратором сообщества
+		/// </summary>
+		/// <param name = "params">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <returns>
+		/// Данные о добавленном адресе сообщества
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.addAddress
+		/// </remarks>
+		Task<AddressResult> AddAddressAsync(AddAddressParams @params);
+
+		/// <summary>
+		/// Позволяет отредактировать адрес в сообществе.
+		/// Список адресов может быть получен методом groups.getAddresses.
+		/// Для того, чтобы воспользоваться этим методом, Вы должны быть администратором сообщества
+		/// </summary>
+		/// <param name = "params">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <returns>
+		/// Данные об адресе отредактированного сообщества
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.editAddress
+		/// </remarks>
+		Task<AddressResult> EditAddressAsync(EditAddressParams @params);
+
+		/// <summary>
+		/// Позволяет удалить адрес в сообществе.
+		/// </summary>
+		/// <param name = "groupId">
+		/// Id группы положительное число, обязательный параметр
+		/// </param>
+		/// <param name = "addressId">
+		/// Id адреса положительное число, обязательный параметр
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c>true</c>.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.deleteAddress
+		/// </remarks>
+		Task<bool> DeleteAddressAsync(ulong groupId, ulong addressId);
+
+		/// <summary>
+		/// Получить данные об адресах.
+		/// </summary>
+		/// <param name = "params">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <returns>
+		/// Коллекция адресов сообщества
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getAddresses
+		/// </remarks>
+		Task<VkCollection<AddressResult>> GetAddressesAsync(GetAddressesParams @params);
+
+		/// <summary>
+		/// Получает информацию о статусе «онлайн» в сообществе.
+		/// </summary>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества. положительное число, обязательный параметр
+		/// </param>
+		/// <returns>
+		/// Возвращает объект, который содержит поля:
+		/// status — статус сообщества. Возможные значения:
+		/// none — сообщество не онлайн;
+		/// online — сообщество онлайн (отвечает мгновенно);
+		/// answer_mark — сообщество отвечает быстро.
+		/// minutes — оценка времени ответа в минутах (для status = answer_mark).
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getOnlineStatus
+		/// </remarks>
+		Task<OnlineStatus> GetOnlineStatusAsync(ulong groupId);
+
+		/// <summary>
+		/// Возвращает настройки прав для ключа доступа сообщества.
+		/// </summary>
+		/// <returns>
+		/// Возвращает объект, который содержит поля:
+		/// mask (integer) — битовая маска ключа доступа;
+		/// settings (array) — массив объектов, описывающих права доступа. Каждый объект в массиве содержит поля:
+		/// setting (integer) — битовая маска права доступа;
+		/// name (string) — название права доступа.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getTokenPermissions
+		/// </remarks>
+		Task<TokenPermissionsResult> GetTokenPermissionsAsync();
+
+		/// <summary>
+		/// Задаёт настройки для Bots Long Poll API в сообществе.
+		/// </summary>
+		/// <param name = "params">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.setLongPollSettings
+		/// </remarks>
+		Task<bool> SetLongPollSettingsAsync(SetLongPollSettingsParams @params);
+
+		/// <summary>
+		/// Получает настройки Bots Longpoll API для сообщества.
+		/// </summary>
+		/// <param name = "groupId">
+		/// Идентификатор сообщества. положительное число, обязательный параметр
+		/// </param>
+		/// <returns>
+		/// Возвращает объект, который содержит следующие поля:
+		/// is_enabled (boolean) — true, если Bots Longpoll включен в сообществе.
+		/// events (object) — настройки Bots Longpoll. объект, содержащий настройки уведомлений в формате «название события»
+		/// : «статус» (0 — уведомления о событии выключены, 1 — уведомления о событии включены).
+		/// Объект содержит следующие поля:
+		/// message_new новое сообщение
+		/// integer, [0,1] message_reply новое исходящее сообщение
+		/// integer, [0,1] message_allow новая подписка на сообщения
+		/// integer, [0,1] message_deny новый запрет сообщений
+		/// integer, [0,1] photo_new добавление новой фотографии
+		/// integer, [0,1] audio_new добавление новой аудиозаписи
+		/// integer, [0,1] video_new добавление новой видеозаписи
+		/// integer, [0,1] wall_reply_new добавление нового комментария на стене
+		/// integer, [0,1] wall_reply_edit редактирование комментария на стене
+		/// integer, [0,1] wall_reply_delete удаление комментария на стене
+		/// integer, [0,1] wall_post_new добавление новой записи на стене
+		/// integer, [0,1] wall_repost новый репост записи на стене
+		/// integer, [0,1] board_post_new добавление нового комментария в обсуждении
+		/// integer, [0,1] board_post_edit редактирование комментария в обсуждении
+		/// integer, [0,1] board_post_delete удаление комментария в обсуждении
+		/// integer, [0,1] board_post_restore восстановление комментария в обсуждении
+		/// integer, [0,1] photo_comment_new добавление нового комментария к фото
+		/// integer, [0,1] photo_comment_edit редактирование комментария к фото
+		/// integer, [0,1] photo_comment_delete удаление комментария к фото
+		/// integer, [0,1] photo_comment_restore восстановление комментария к фото
+		/// integer, [0,1] video_comment_new добавление нового комментария к видео
+		/// integer, [0,1] video_comment_edit редактирование комментария к видео
+		/// integer, [0,1] video_comment_delete удаление комментария к видео
+		/// integer, [0,1] video_comment_restore восстановление комментария к видео
+		/// integer, [0,1] market_comment_new добавление нового комментария к товару
+		/// integer, [0,1] market_comment_edit редактирование комментария к товару
+		/// integer, [0,1] market_comment_delete удаление комментария к товару
+		/// integer, [0,1] market_comment_restore восстановление удалённого комментария к товару
+		/// integer, [0,1] poll_vote_new новый голос в публичном опросе
+		/// integer, [0,1] group_join вступление в сообщество
+		/// integer, [0,1] group_leave выход участника из сообщества
+		/// integer, [0,1] user_block занесение пользователя в черный список
+		/// integer, [0,1] user_unblock удаление пользователя из черного списка
+		/// integer, [0,1] group_change_settings изменение настроек сообщества
+		/// integer, [0,1] group_change_photo изменение главной фотографии
+		/// integer, [0,1] group_officers_edit изменение руководства сообщества
+		/// integer, [0,1]
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/groups.getLongPollSettings
+		/// </remarks>
+		Task<GetLongPollSettingsResult> GetLongPollSettingsAsync(ulong groupId);
 	}
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using VkNet.Model;
 
 namespace VkNet.Exception
 {
@@ -9,51 +11,25 @@ namespace VkNet.Exception
 	[Serializable]
 	public class VkApiMethodInvokeException : VkApiException
 	{
-		/// <summary>
-		/// Инициализирует новый экземпляр класса VkApiMethodInvokeException
-		/// </summary>
-		public VkApiMethodInvokeException()
+		private readonly VkError _error;
+
+		/// <inheritdoc />
+		public VkApiMethodInvokeException(VkError error) : base(error.ErrorMessage)
 		{
+			_error = error;
 		}
 
 		/// <summary>
-		/// Инициализирует новый экземпляр класса VkApiMethodInvokeException
+		/// Код ошибки
 		/// </summary>
-		/// <param name="message"> Описание исключения. </param>
-		public VkApiMethodInvokeException(string message) : base(message: message)
-		{
-		}
+		public new int ErrorCode => _error.ErrorCode;
 
 		/// <summary>
-		/// Инициализирует новый экземпляр класса VkApiMethodInvokeException
+		/// Параметры запроса
 		/// </summary>
-		/// <param name="message"> Описание исключения. </param>
-		/// <param name="innerException"> Внутреннее исключение. </param>
-		public VkApiMethodInvokeException(string message, System.Exception innerException) : base(message: message
-				, innerException: innerException)
-		{
-		}
+		public new ReadOnlyCollection<RequestParam> RequestParams => _error.RequestParams;
 
-		/// <summary>
-		/// Инициализирует новый экземпляр класса VkApiMethodInvokeException
-		/// </summary>
-		/// <param name="message"> Описание исключения. </param>
-		/// <param name="code"> Код ошибки, полученный от сервера ВКонтакте. </param>
-		public VkApiMethodInvokeException(string message, int code) : base(message: message)
-		{
-			ErrorCode = code;
-		}
-
-		/// <summary>
-		/// Инициализирует новый экземпляр класса VkApiMethodInvokeException
-		/// </summary>
-		/// <param name="message"> Описание исключения. </param>
-		/// <param name="code"> Код ошибки, полученный от сервера ВКонтакте. </param>
-		/// <param name="innerException"> Внутреннее исключение. </param>
-		public VkApiMethodInvokeException(string message, int code, System.Exception innerException) : base(message: message
-				, innerException: innerException)
-		{
-			ErrorCode = code;
-		}
+		/// <inheritdoc />
+		public override string Message => _error.ErrorMessage;
 	}
 }

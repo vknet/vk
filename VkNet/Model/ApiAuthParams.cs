@@ -37,7 +37,7 @@ namespace VkNet.Model
 		public long UserId { get; set; }
 
 		/// <inheritdoc />
-		public long? CaptchaSid { get; set; }
+		public ulong? CaptchaSid { get; set; }
 
 		/// <inheritdoc />
 		public string CaptchaKey { get; set; }

@@ -693,40 +693,29 @@ namespace VkNet.Abstractions
 		Task<bool> EditAsync(MessageEditParams @params, CancellationToken cancellationToken = default);
 
 		/// <summary>
-		/// Удаляет личные сообщения в беседе.
+		/// Удаляет беседу.
 		/// </summary>
-		/// <param name="userId">
-		/// Идентификатор пользователя.
-		/// Если требуется очистить историю беседы, используйте peer_id.
+		/// <param name = "userId">
+		/// Идентификатор пользователя. Если требуется очистить историю беседы, используйте peer_id. строка
 		/// </param>
-		/// <param name="peerId">
+		/// <param name = "peerId">
 		/// Идентификатор назначения.
-		/// Для групповой беседы: 2000000000 + id беседы.
-		/// Для сообщества: -id сообщества.
+		/// Для групповой беседы:
+		/// 2000000000 + id беседы.
+		/// Для сообщества:
+		/// -id сообщества.
+		/// целое число, доступен начиная с версии 5.38
 		/// </param>
-		/// <param name="offset">
-		/// Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются
-		/// все сообщения,
-		/// начиная с первого).
+		/// <param name = "groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
 		/// </param>
-		/// <param name="count">
-		/// Как много сообщений нужно удалить. Обратите внимание что на метод наложено
-		/// ограничение, за один вызов
-		/// нельзя удалить больше 10000 сообщений, поэтому если сообщений в переписке
-		/// больше - метод нужно вызывать несколько
-		/// раз.
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор группы
-		/// </param>
-		/// <param name="cancellationToken">CancellationToken</param>
-		/// <returns> После успешного выполнения возвращает <c> true </c>. </returns>
+		/// <returns>
+		/// После успешного выполнения возвращает поле last_deleted_id, содержащее идентификатор последнего удалённого сообщения в переписке.
+		/// </returns>
 		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteConversation
 		/// </remarks>
-		Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null, long? groupId = null, CancellationToken cancellationToken = default);
+		Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		/// Позволяет получить беседу по её идентификатору.

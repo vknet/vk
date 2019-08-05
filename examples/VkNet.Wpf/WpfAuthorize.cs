@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
+﻿using System.Threading.Tasks;
+using Flurl;
 using JetBrains.Annotations;
-using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
+using VkNet.Abstractions.Core;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Utils;
@@ -13,7 +11,7 @@ namespace VkNet.Wpf
 {
 	/// <inheritdoc />
 	[UsedImplicitly]
-	public class WpfAuthorize : IBrowser
+	public class WpfAuthorize : IAuthorizationFlow
 	{
 		/// <summary>
 		/// Менеджер версий VkApi
@@ -27,29 +25,20 @@ namespace VkNet.Wpf
 			_versionManager = versionManager;
 		}
 
-		public string GetJson(string url, IEnumerable<KeyValuePair<string, string>> parameters)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void SetAuthParams(IApiAuthParams authParams)
-		{
-			_authParams = authParams;
-		}
-
-		public IWebProxy Proxy { get; set; }
-
-		/// <inheritdoc />
-		public AuthorizationResult Authorize()
+		public Task<AuthorizationResult> AuthorizeAsync()
 		{
 			var dlg = new AuthForm();
 
 			dlg.WebBrowser.Navigate(
-				CreateAuthorizeUrl(_authParams.ApplicationId, _authParams.Settings.ToUInt64(), Display.Mobile, "123456"));
+				CreateAuthorizeUrl(_authParams.ApplicationId, _authParams.Settings.ToUInt64(), Display.Mobile, "123456"),
+				null,
+				null,
+				"User-Agent: CustomUserAgent");
 
 			dlg.WebBrowser.Navigated += (sender, args) =>
 			{
-				var result = VkAuthorization.From(args.Uri.AbsoluteUri);
+				dlg.WebBrowser.SetSilent();
+				var result = VkAuthorization2.From(args.Uri.AbsoluteUri);
 
 				if (!result.IsAuthorized)
 				{
@@ -69,34 +58,32 @@ namespace VkNet.Wpf
 
 			dlg.ShowDialog();
 
-			return dlg.Auth;
+			return Task.FromResult(dlg.Auth);
 		}
 
-		/// <inheritdoc />
-		public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
+		public void SetAuthorizationParams(IApiAuthParams authorizationParams)
 		{
-			var builder = new StringBuilder("https://oauth.vk.com/authorize?");
-
-			builder.Append($"client_id={clientId}&");
-			builder.Append("redirect_uri=https://oauth.vk.com/blank.html&");
-			builder.Append($"display={display}&");
-			builder.Append($"scope={scope}&");
-			builder.Append("response_type=token&");
-			builder.Append($"v={_versionManager.Version}&");
-			builder.Append($"state={state}&");
-			builder.Append("revoke=1");
-
-			return new Uri(builder.ToString());
+			_authParams = authorizationParams;
 		}
 
-		public AuthorizationResult Validate(string validateUrl, string phoneNumber)
+		public Url CreateAuthorizeUrl()
 		{
-			throw new NotImplementedException();
+			var url = new Url("https://oauth.vk.com/authorize")
+				.SetQueryParam("client_id", _authParams.ApplicationId)
+				.SetQueryParam("redirect_uri", "https://oauth.vk.com/blank.html")
+				.SetQueryParam("display", Display.Mobile)
+				.SetQueryParam("scope", _authParams.Settings.ToUInt64())
+				.SetQueryParam("response_type", "token")
+				.SetQueryParam("v", _versionManager.Version)
+				.SetQueryParam("state", "1234567")
+				.SetQueryParam("revoke", "1");
+
+			return url;
 		}
 
-		public AuthorizationResult Validate(string validateUrl)
+		public Url CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 		{
-			throw new NotImplementedException();
+			return CreateAuthorizeUrl().ToUri();
 		}
 	}
 }

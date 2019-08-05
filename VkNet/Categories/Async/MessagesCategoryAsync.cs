@@ -320,15 +320,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null, long? groupId = null, CancellationToken cancellationToken = default)
+		public Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null, CancellationToken cancellationToken = default)
 		{
 			return _vk.CallAsync<bool>("messages.deleteConversation", new VkParameters
 			{
 				{ "user_id", userId },
-				{ "offset", offset },
 				{ "peer_id", peerId },
-				{ "group_id", groupId },
-				{ "count", count }
+				{ "group_id", groupId }
 			}, cancellationToken: cancellationToken);
 		}
 

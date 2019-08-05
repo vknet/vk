@@ -21,15 +21,15 @@ namespace VkNet.Abstractions.Core
 		/// <param name="action"> Действие </param>
 		/// <typeparam name="T"> Тип результата </typeparam>
 		/// <returns> Результат действия </returns>
-		T Perform<T>(Func<long?, string, T> action);
+		T Perform<T>(Func<ulong?, string, T> action);
 
 		/// <summary>
 		/// Обработка капчи
 		/// </summary>
 		/// <param name="action"> Действие </param>
-		/// <param name="cancellationToken">CancellationToken</param>
+		/// <param name="cancellationToken"> CancellationToken </param>
 		/// <typeparam name="T"> Тип результата </typeparam>
 		/// <returns> Результат действия </returns>
-		Task<T> PerformAsync<T>(Func<long?, string, Task<T>> action, CancellationToken cancellationToken = default);
+		Task<T> PerformAsync<T>(Func<ulong?, string, Task<T>> action, CancellationToken cancellationToken = default);
 	}
 }
