@@ -37,8 +37,7 @@ namespace VkNet.Utils
 					ErrorMessage = exception.ErrorMessage,
 					Method = exception.Method,
 					RequestParams = exception.RequestParams
-				}))
-				.ToList();
+				}));
 
 			return new AggregateException(exceptionList);
 		}

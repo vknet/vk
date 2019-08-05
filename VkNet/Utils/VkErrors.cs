@@ -139,9 +139,11 @@ namespace VkNet.Utils
 		/// </exception>
 		public static void IfErrorThrowException(string json)
 		{
+			JObject obj;
+
 			try
 			{
-				JObject.Parse(json);
+				obj = JObject.Parse(json);
 			}
 			catch (JsonReaderException ex)
 			{
@@ -155,7 +157,12 @@ namespace VkNet.Utils
 				throw exceptions;
 			}
 
-			var vkError = JsonConvert.DeserializeObject<VkError>(json);
+			if (!obj.TryGetValue("error", StringComparison.InvariantCulture, out var error))
+			{
+				return;
+			}
+
+			var vkError = JsonConvert.DeserializeObject<VkError>(error.ToString());
 
 			if (vkError == null || vkError.ErrorCode == 0)
 			{
