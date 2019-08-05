@@ -52,7 +52,6 @@ namespace VkNet.Model
 				ForwardedMessages = response["fwd_messages"].ToReadOnlyCollectionOf<Message>(x => x),
 				ReadState = response["read_state"],
 				Action = response["action"],
-				Type = response["out"],
 				Title = response["title"],
 				Body = response["body"],
 				Emoji = response["emoji"],
@@ -150,11 +149,10 @@ namespace VkNet.Model
 		public MessageReadState? ReadState { get; set; }
 
 		/// <summary>
-		/// тип сообщения (0 — полученное, 1 — отправленное, не возвращается для
-		/// пересланных сообщений).
+		/// тип сообщения (не возвращается для пересланных сообщений).
 		/// </summary>
 		[JsonProperty("out")]
-		public bool? Out { get; set; }
+		public MessageType? Out { get; set; }
 
 		/// <summary>
 		/// Заголовок сообщения или беседы.
@@ -316,11 +314,6 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("conversation_message_id")]
 		public long? ConversationMessageId { get; set; }
-
-		/// <summary>
-		/// Тип сообщения (не возвращается для пересланных сообщений).
-		/// </summary>
-		public MessageType? Type { get; set; }
 
 		/// <summary>
 		/// Содержит количество непрочитанных сообщений в текущем диалоге (если это
