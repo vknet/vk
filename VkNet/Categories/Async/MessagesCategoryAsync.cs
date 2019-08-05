@@ -430,52 +430,5 @@ namespace VkNet.Categories
 				{ "extended", extended }
 			}, cancellationToken: cancellationToken);
 		}
-
-		/// <inheritdoc />
-		public Task<SearchDialogsResponse> SearchDialogsAsync(string query, ProfileFields fields = null, uint? limit = null)
-		{
-			return _vk.CallAsync<SearchDialogsResponse>("messages.searchDialogs", new VkParameters
-			{
-				{ "q", query },
-				{ "fields", fields },
-				{ "limit", limit }
-			});
-		}
-
-		/// <inheritdoc />
-		public Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
-		{
-			throw new NotImplementedException();
-		}
-
-		/// <inheritdoc />
-		public Task<bool> MarkAsAnsweredDialogAsync(long peerId, bool answered = true)
-		{
-			throw new NotImplementedException();
-		}
-
-		/// <inheritdoc />
-		public Task<bool> MarkAsImportantDialogAsync(long peerId, bool important = true)
-		{
-			throw new NotImplementedException();
-		}
-
-		/// <inheritdoc />
-		public Task<MessagesGetObject> GetAsync(MessagesGetParams @params)
-		{
-			throw new NotImplementedException();
-		}
-
-		/// <inheritdoc />
-		public Task<ReadOnlyCollection<User>> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
-		{
-			throw new NotImplementedException();
-		}
-
-		/// <inheritdoc />
-		public Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }

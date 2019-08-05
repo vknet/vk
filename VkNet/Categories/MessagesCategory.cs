@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,7 +7,6 @@ using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -51,13 +49,6 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public MessagesGetObject Get(MessagesGetParams @params)
-		{
-			return _vk.Call("messages.get", @params);
-		}
-
-		/// <inheritdoc />
-		[Pure]
 		public MessageGetHistoryObject GetHistory(MessagesGetHistoryParams @params)
 		{
 			return GetHistoryAsync(@params, CancellationToken.None).GetAwaiter().GetResult();
@@ -68,20 +59,6 @@ namespace VkNet.Categories
 		public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null, bool? extended = null, ulong? groupId = null)
 		{
 			return GetByIdAsync(messageIds, fields, previewLength, extended, groupId, CancellationToken.None).GetAwaiter().GetResult();
-		}
-
-		/// <inheritdoc />
-		[Pure]
-		public MessagesGetObject GetDialogs(MessagesDialogsGetParams @params)
-		{
-			return GetDialogsAsync(@params).GetAwaiter().GetResult();
-		}
-
-		/// <inheritdoc />
-		[Pure]
-		public SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null, uint? limit = null)
-		{
-			return SearchDialogsAsync(query, fields, limit).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
@@ -151,12 +128,6 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
-		{
-			return DeleteConversationAsync(userId, peerId, offset, count, null, CancellationToken.None).GetAwaiter().GetResult();
-		}
-
-		/// <inheritdoc />
 		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null, bool? deleteForAll = null)
 		{
 			return DeleteAsync(messageIds, spam, groupId, deleteForAll, CancellationToken.None).GetAwaiter().GetResult();
@@ -214,12 +185,6 @@ namespace VkNet.Categories
 		public bool EditChat(long chatId, string title)
 		{
 			return EditChatAsync(chatId, title, CancellationToken.None).GetAwaiter().GetResult();
-		}
-
-		/// <inheritdoc />
-		public ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
-		{
-			return GetChatUsersAsync(chatIds, fields, nameCase).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
@@ -342,12 +307,6 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool MarkAsAnsweredDialog(long peerId, bool answered = true)
-		{
-			return MarkAsAnsweredConversation(peerId, answered);
-		}
-
-		/// <inheritdoc />
 		public bool MarkAsImportantConversation(long peerId, bool? important = null, ulong? groupId = null)
 		{
 			return _vk.Call("messages.markAsImportantConversation", new VkParameters
@@ -356,12 +315,6 @@ namespace VkNet.Categories
 				{ "important", important },
 				{ "group_id", groupId }
 			});
-		}
-
-		/// <inheritdoc />
-		public bool MarkAsImportantDialog(long peerId, bool important = true)
-		{
-			return MarkAsImportantConversation(peerId, important);
 		}
 
 		/// <inheritdoc />
@@ -380,38 +333,6 @@ namespace VkNet.Categories
 		public GetRecentCallsResult GetRecentCalls(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null, bool? extended = null)
 		{
 			return GetRecentCallsAsync(fields, count, startMessageId, extended, CancellationToken.None).GetAwaiter().GetResult();
-		}
-
-		/// <summary>
-		/// Ворзвращает указанное сообщение по его идентификатору.
-		/// </summary>
-		/// <param name="messageId"> Идентификатор запрошенного сообщения. </param>
-		/// <param name="previewLength">
-		/// Количество символов, по которому нужно обрезать сообщение.
-		/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не
-		/// обрезаются).
-		/// </param>
-		/// <returns>
-		/// Запрошенное сообщение, null если сообщение с заданным идентификатором не
-		/// найдено.
-		/// </returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
-		/// </remarks>
-		[Pure]
-		[Obsolete(ObsoleteText.MessageGetById, true)]
-		public Message GetById(ulong messageId, uint? previewLength = null)
-		{
-			var result = GetById(new[] { messageId }, null, previewLength);
-
-			if (result.Count > 0)
-			{
-				return result.First();
-			}
-
-			throw new VkApiException("Сообщения с таким ID не существует.");
 		}
 	}
 }
