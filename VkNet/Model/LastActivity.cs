@@ -20,6 +20,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Текущий статус пользователя (true - в сети, false - не в сети).
 		/// </summary>
+		[JsonProperty("online")]
 		public bool? IsOnline { get; set; }
 
 		/// <summary>
