@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
+using System.Threading;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
@@ -18,9 +18,6 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <inheritdoc />
-	/// <summary>
-	/// Методы для работы с сообщениями.
-	/// </summary>
 	public partial class MessagesCategory : IMessagesCategory
 	{
 		private readonly IVkApi _vk;
@@ -37,30 +34,19 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool AddChatUser(long chatId, long userId)
 		{
-			var parameters = new VkParameters
-			{
-				{ "chat_id", chatId },
-				{ "user_id", userId }
-			};
-
-			return _vk.Call("messages.addChatUser", parameters);
+			return AddChatUserAsync(chatId, userId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public bool AllowMessagesFromGroup(long groupId, string key)
 		{
-			return _vk.Call("messages.allowMessagesFromGroup",
-				new VkParameters
-				{
-					{ "group_id", groupId },
-					{ "key", key }
-				});
+			return AllowMessagesFromGroupAsync(groupId, key, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public bool DenyMessagesFromGroup(long groupId)
 		{
-			return _vk.Call("messages.denyMessagesFromGroup", new VkParameters { { "group_id", groupId } });
+			return DenyMessagesFromGroupAsync(groupId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
@@ -74,289 +60,130 @@ namespace VkNet.Categories
 		[Pure]
 		public MessageGetHistoryObject GetHistory(MessagesGetHistoryParams @params)
 		{
-			return _vk.Call<MessageGetHistoryObject>("messages.getHistory", @params);
+			return GetHistoryAsync(@params, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		[Pure]
-		public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null,
-											bool? extended = null, ulong? groupId = null)
+		public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null, bool? extended = null, ulong? groupId = null)
 		{
-			return _vk.Call("messages.getById",
-					new VkParameters
-					{
-						{ "message_ids", messageIds },
-						{ "fields", fields },
-						{ "preview_length", previewLength },
-						{ "extended", extended },
-						{ "group_id", groupId }
-					})
-				.ToVkCollectionOf<Message>(r => r);
+			return GetByIdAsync(messageIds, fields, previewLength, extended, groupId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		[Pure]
 		public MessagesGetObject GetDialogs(MessagesDialogsGetParams @params)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
-
-			return _vk.Call("messages.getDialogs", @params);
+			return GetDialogsAsync(@params).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		[Pure]
 		public SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null, uint? limit = null)
 		{
-			var parameters = new VkParameters
-			{
-				{ "q", query },
-				{ "fields", fields },
-				{ "limit", limit }
-			};
-
-			return _vk.Call("messages.searchDialogs", parameters);
+			return SearchDialogsAsync(query, fields, limit).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public MessageSearchResult Search(MessagesSearchParams @params)
 		{
-			return _vk.Call<MessageSearchResult>("messages.search", @params);
+			return SearchAsync(@params, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
-		/// <exception cref="ArgumentNullException"> </exception>
 		/// <inheritdoc />
 		public long Send(MessagesSendParams @params)
 		{
-			if (_vk.VkApiVersion.IsGreaterThanOrEqual(5, 90) && @params.RandomId == null)
-			{
-				throw new ArgumentException($"{nameof(@params.RandomId)} обязательное значение.");
-			}
-
-			return _vk.Call("messages.send", @params);
+			return SendAsync(@params, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params)
 		{
-			return _vk.Call("messages.send", @params).ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
+			return SendToUserIdsAsync(@params, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public bool DeleteConversation(long? userId, long? peerId = null, uint? offset = null, uint? count = null, long? groupId = null)
 		{
-			var parameters = new VkParameters
-			{
-				{ "user_id", userId },
-				{ "offset", offset },
-				{ "peer_id", peerId },
-				{ "group_id", groupId }
-			};
-
-			if (count <= 10000)
-			{
-				parameters.Add("count", count);
-			}
-
-			return _vk.Call("messages.deleteConversation", parameters);
+			return DeleteConversationAsync(userId, peerId, offset, count, groupId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
-		public ConversationResultObject GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields, bool? extended = null,
-															ulong? groupId = null)
+		public ConversationResultObject GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields, bool? extended = null, ulong? groupId = null)
 		{
-			return _vk.Call<ConversationResultObject>("messages.getConversationsById",
-				new VkParameters
-				{
-					{ "peer_ids", peerIds },
-					{ "fields", fields },
-					{ "extended", extended },
-					{ "group_id", groupId }
-				});
+			return GetConversationsByIdAsync(peerIds, fields, extended, groupId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public GetConversationsResult GetConversations(GetConversationsParams getConversationsParams)
 		{
-			return _vk.Call<GetConversationsResult>("messages.getConversations",
-				new VkParameters
-				{
-					{ "filter", getConversationsParams.Filter },
-					{ "fields", getConversationsParams.Fields },
-					{ "offset", getConversationsParams.Offset },
-					{ "count", getConversationsParams.Count },
-					{ "extended", getConversationsParams.Extended },
-					{ "start_message_id", getConversationsParams.StartMessageId },
-					{ "group_id", getConversationsParams.GroupId }
-				});
+			return GetConversationsAsync(getConversationsParams, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public GetConversationMembersResult GetConversationMembers(long peerId, IEnumerable<string> fields, ulong? groupId = null)
 		{
-			return _vk.Call<GetConversationMembersResult>("messages.getConversationMembers",
-				new VkParameters
-				{
-					{ "peer_id", peerId },
-					{ "fields", fields },
-					{ "group_id", groupId }
-				});
+			return GetConversationMembersAsync(peerId, fields, groupId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
-		public GetByConversationMessageIdResult GetByConversationMessageId(long peerId, IEnumerable<ulong> conversationMessageIds,
-																			IEnumerable<string> fields, bool? extended = null,
-																			ulong? groupId = null)
+		public GetByConversationMessageIdResult GetByConversationMessageId(long peerId, IEnumerable<ulong> conversationMessageIds, IEnumerable<string> fields, bool? extended = null, ulong? groupId = null)
 		{
-			return _vk.Call<GetByConversationMessageIdResult>("messages.getByConversationMessageId",
-				new VkParameters
-				{
-					{ "peer_id", peerId },
-					{ "conversation_message_ids", conversationMessageIds },
-					{ "fields", fields },
-					{ "extended", extended },
-					{ "group_id", groupId }
-				});
+			return GetByConversationMessageIdAsync(peerId, conversationMessageIds, fields, extended, groupId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
-		public SearchConversationsResult SearchConversations(string q, IEnumerable<string> fields, ulong? count = null,
-															bool? extended = null,
-															ulong? groupId = null)
+		public SearchConversationsResult SearchConversations(string q, IEnumerable<string> fields, ulong? count = null, bool? extended = null, ulong? groupId = null)
 		{
-			return _vk.Call<SearchConversationsResult>("messages.searchConversations",
-				new VkParameters
-				{
-					{ "q", q },
-					{ "fields", fields },
-					{ "count", count },
-					{ "extended", extended },
-					{ "group_id", groupId }
-				});
+			return SearchConversationsAsync(q, fields, count, extended, groupId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public PinnedMessage Pin(long peerId, ulong? messageId = null)
 		{
-			return _vk.Call<PinnedMessage>("messages.pin",
-				new VkParameters
-				{
-					{ "peer_id", peerId },
-					{ "message_id", messageId }
-				});
+			return PinAsync(peerId, messageId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public GetImportantMessagesResult GetImportantMessages(GetImportantMessagesParams getImportantMessagesParams)
 		{
-			return _vk.Call<GetImportantMessagesResult>("messages.getImportantMessages",
-				new VkParameters
-				{
-					{ "fields", getImportantMessagesParams.Fields },
-					{ "count", getImportantMessagesParams.Count },
-					{ "offset", getImportantMessagesParams.Offset },
-					{ "start_message_id", getImportantMessagesParams.StartMessageId },
-					{ "preview_length", getImportantMessagesParams.PreviewLength },
-					{ "extended", getImportantMessagesParams.Extended },
-					{ "group_id", getImportantMessagesParams.GroupId }
-				});
+			return GetImportantMessagesAsync(getImportantMessagesParams, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
-			return DeleteConversation(userId, peerId, offset, count, null);
+			return DeleteConversationAsync(userId, peerId, offset, count, null, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
-		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
-												bool? deleteForAll = null)
+		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null, bool? deleteForAll = null)
 		{
-			if (messageIds == null)
-			{
-				throw new ArgumentNullException(nameof(messageIds), "Parameter messageIds can not be null.");
-			}
-
-			var ids = messageIds.ToList();
-
-			if (ids.Count == 0)
-			{
-				throw new ArgumentException("Parameter messageIds has no elements.", nameof(messageIds));
-			}
-
-			var parameters = new VkParameters
-			{
-				{ "message_ids", ids },
-				{ "spam", spam },
-				{ "group_id", groupId },
-				{ "delete_for_all", deleteForAll }
-			};
-
-			var response = _vk.Call("messages.delete", parameters);
-
-			var result = new Dictionary<ulong, bool>();
-
-			foreach (var id in ids)
-			{
-				bool isDeleted = response[id.ToString(CultureInfo.InvariantCulture)];
-				result.Add(id, isDeleted);
-			}
-
-			return result;
+			return DeleteAsync(messageIds, spam, groupId, deleteForAll, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public bool Restore(ulong messageId, ulong? groupId = null)
 		{
-			var parameters = new VkParameters
-			{
-				{ "message_id", messageId },
-				{ "group_id", groupId }
-			};
-
-			return _vk.Call("messages.restore", parameters);
+			return RestoreAsync(messageId, groupId).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public bool MarkAsRead(string peerId, long? startMessageId = null, long? groupId = null)
 		{
-			var parameters = new VkParameters
-			{
-				{ "peer_id", peerId },
-				{ "start_message_id", startMessageId },
-				{ "group_id", groupId }
-			};
-
-			return _vk.Call("messages.markAsRead", parameters);
+			return MarkAsReadAsync(peerId, startMessageId, groupId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public bool SetActivity(string userId, MessageActivityType type, long? peerId = null, ulong? groupId = null)
 		{
-			var parameters = new VkParameters
-			{
-				{ "used_id", userId },
-				{ "type", type },
-				{ "peer_id", peerId },
-				{ "group_id", groupId }
-			};
-
-			return _vk.Call("messages.setActivity", parameters);
+			return SetActivityAsync(userId, type, peerId, groupId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public LastActivity GetLastActivity(long userId)
 		{
-			var parameters = new VkParameters
-			{
-				{ "user_id", userId }
-			};
-
-			var response = _vk.Call("messages.getLastActivity", parameters);
-
-			LastActivity activity = response;
-			activity.UserId = userId;
-
-			return activity;
+			return GetLastActivityAsync(userId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
@@ -368,150 +195,52 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public ChatPreview GetChatPreview(string link, ProfileFields fields)
 		{
-			return _vk.Call("messages.getChatPreview",
-				new VkParameters
-				{
-					{ "link", link },
-					{ "fields", fields }
-				});
+			return GetChatPreviewAsync(link, fields, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null)
 		{
-			var isNoEmpty = chatIds == null || !chatIds.Any();
-
-			if (isNoEmpty)
-			{
-				throw new ArgumentException("At least one chat ID must be defined", nameof(chatIds));
-			}
-
-			var parameters = new VkParameters
-			{
-				{ "fields", fields },
-				{ "name_case", nameCase }
-			};
-
-			if (chatIds.Count() > 1)
-			{
-				parameters.Add("chat_ids", chatIds);
-			} else
-			{
-				parameters.Add("chat_id", chatIds.ElementAt(0));
-			}
-
-			var response = _vk.Call("messages.getChat", parameters);
-
-			return chatIds.Count() > 1
-				? response.ToReadOnlyCollectionOf<Chat>(c => c)
-				: new ReadOnlyCollection<Chat>(new List<Chat> { response });
+			return GetChatAsync(chatIds, fields, nameCase, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public long CreateChat(IEnumerable<ulong> userIds, string title)
 		{
-			if (string.IsNullOrEmpty(title))
-			{
-				throw new ArgumentException("Title can not be empty or null.", nameof(userIds));
-			}
-
-			var parameters = new VkParameters
-			{
-				{ "user_ids", userIds },
-				{ "title", title }
-			};
-
-			return _vk.Call("messages.createChat", parameters);
+			return CreateChatAsync(userIds, title, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public bool EditChat(long chatId, string title)
 		{
-			if (string.IsNullOrEmpty(title))
-			{
-				throw new ArgumentException("Title can not be empty or null.", nameof(title));
-			}
-
-			var parameters = new VkParameters
-			{
-				{ "chat_id", chatId },
-				{ "title", title }
-			};
-
-			return _vk.Call("messages.editChat", parameters);
+			return EditChatAsync(chatId, title, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
 		{
-			var collection = chatIds.ToList();
-
-			var parameters = new VkParameters
-			{
-				{ "chat_ids", collection },
-				{ "fields", fields },
-				{ "name_case", nameCase }
-			};
-
-			var response = _vk.Call("messages.getChatUsers", parameters);
-
-			var list = new List<User>();
-
-			foreach (var chatId in collection)
-			{
-				var chatResponse = response[chatId.ToString()];
-				var users = chatResponse.ToReadOnlyCollectionOf(x => fields != null ? x : new User { Id = (long) x });
-
-				foreach (var user in users)
-				{
-					var exist = list.Exists(first => first.Id == user.Id);
-
-					if (!exist)
-					{
-						list.Add(user);
-					}
-				}
-			}
-
-			return list.ToReadOnlyCollection();
+			return GetChatUsersAsync(chatIds, fields, nameCase).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public bool RemoveChatUser(ulong chatId, long? userId = null, long? memberId = null)
 		{
-			var parameters = new VkParameters
-			{
-				{ "chat_id", chatId },
-				{ "user_id", userId },
-				{ "member_id", memberId }
-			};
-
-			return _vk.Call<bool>("messages.removeChatUser", parameters);
+			return RemoveChatUserAsync(chatId, userId, memberId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		[Pure]
+
+		//TODO: изменить тип lpVersion на nullable
 		public LongPollServerResponse GetLongPollServer(bool needPts = false, uint lpVersion = 2, ulong? groupId = null)
 		{
-			var parameters = new VkParameters
-			{
-				{ "group_id", groupId },
-				{ "lp_version", lpVersion },
-				{ "need_pts", needPts }
-			};
-
-			return _vk.Call("messages.getLongPollServer", parameters);
+			return GetLongPollServerAsync(needPts, lpVersion, groupId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
 		public LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => @params.PreviewLength);
-			VkErrors.ThrowIfNumberIsNegative(() => @params.EventsLimit);
-			VkErrors.ThrowIfNumberIsNegative(() => @params.MsgsLimit);
-			VkErrors.ThrowIfNumberIsNegative(() => @params.MaxMsgId);
-
-			return _vk.Call("messages.getLongPollHistory", @params);
+			return GetLongPollHistoryAsync(@params, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
@@ -535,10 +264,7 @@ namespace VkNet.Categories
 			var json = JObject.Parse(file);
 			var rawResponse = json["response"];
 
-			var parameters = new VkParameters
-			{
-				{ "file", rawResponse }
-			};
+			var parameters = new VkParameters { { "file", rawResponse } };
 
 			var result = _vk.Call("messages.setChatPhoto", parameters);
 			messageId = result["message_id"];
@@ -581,23 +307,21 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public string GetInviteLink(ulong peerId, bool reset)
 		{
-			return _vk.Call("messages.getInviteLink",
-				new VkParameters
-				{
-					{ "peer_id", peerId },
-					{ "reset", reset }
-				})["link"];
+			return _vk.Call("messages.getInviteLink", new VkParameters
+			{
+				{ "peer_id", peerId },
+				{ "reset", reset }
+			})["link"];
 		}
 
 		/// <inheritdoc />
 		public bool IsMessagesFromGroupAllowed(ulong groupId, ulong userId)
 		{
-			return _vk.Call("messages.isMessagesFromGroupAllowed",
-				new VkParameters
-				{
-					{ "group_id", groupId },
-					{ "user_id", userId }
-				})["is_allowed"];
+			return _vk.Call("messages.isMessagesFromGroupAllowed", new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "user_id", userId }
+			})["is_allowed"];
 		}
 
 		/// <inheritdoc />
@@ -609,13 +333,12 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool MarkAsAnsweredConversation(long peerId, bool? answered = null, ulong? groupId = null)
 		{
-			return _vk.Call("messages.markAsAnsweredConversation",
-				new VkParameters
-				{
-					{ "peer_id", peerId },
-					{ "answered", answered },
-					{ "group_id", groupId }
-				});
+			return _vk.Call("messages.markAsAnsweredConversation", new VkParameters
+			{
+				{ "peer_id", peerId },
+				{ "answered", answered },
+				{ "group_id", groupId }
+			});
 		}
 
 		/// <inheritdoc />
@@ -627,13 +350,12 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool MarkAsImportantConversation(long peerId, bool? important = null, ulong? groupId = null)
 		{
-			return _vk.Call("messages.markAsImportantConversation",
-				new VkParameters
-				{
-					{ "peer_id", peerId },
-					{ "important", important },
-					{ "group_id", groupId }
-				});
+			return _vk.Call("messages.markAsImportantConversation", new VkParameters
+			{
+				{ "peer_id", peerId },
+				{ "important", important },
+				{ "group_id", groupId }
+			});
 		}
 
 		/// <inheritdoc />
@@ -651,16 +373,13 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool Unpin(long peerId, ulong? groupId = null)
 		{
-			return _vk.Call<bool>("messages.unpin", new VkParameters { { "peer_id", peerId }, { "group_id", groupId } });
+			return UnpinAsync(peerId, groupId, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
-		public GetRecentCallsResult GetRecentCalls(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null,
-													bool? extended = null)
+		public GetRecentCallsResult GetRecentCalls(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null, bool? extended = null)
 		{
-			return _vk.Call<GetRecentCallsResult>("messages.getRecentCalls",
-				new VkParameters
-					{ { "fields", fields }, { "count", count }, { "start_message_id", startMessageId }, { "extended", extended } });
+			return GetRecentCallsAsync(fields, count, startMessageId, extended, CancellationToken.None).GetAwaiter().GetResult();
 		}
 
 		/// <summary>

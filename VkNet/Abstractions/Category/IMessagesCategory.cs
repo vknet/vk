@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using JetBrains.Annotations;
@@ -10,970 +10,136 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
-	/// <summary>
-	/// Методы для работы с личными сообщениями. Для моментального получения входящих
-	/// сообщений используйте LongPoll сервер.
-	/// </summary>
+	/// <inheritdoc />
 	public interface IMessagesCategory : IMessagesCategoryAsync
 	{
-		/// <summary>
-		/// Добавляет в мультидиалог нового пользователя.
-		/// </summary>
-		/// <param name="chatId">
-		/// Идентификатор беседы. положительное число, обязательный параметр, максимальное
-		/// значение 100000000
-		/// </param>
-		/// <param name="userId">
-		/// Идентификатор пользователя, которого необходимо включить в беседу.
-		/// положительное число, обязательный параметр
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.addChatUser
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.AddChatUserAsync" />
 		bool AddChatUser(long chatId, long userId);
 
-		/// <summary>
-		/// Позволяет разрешить отправку сообщений от сообщества текущему пользователю.
-		/// </summary>
-		/// <param name="groupId">
-		/// Идентификатор сообщества. положительное число, обязательный параметр
-		/// </param>
-		/// <param name="key">
-		/// Произвольная строка. Этот параметр можно использовать для идентификации
-		/// пользователя.
-		/// Его значение будет возвращено в событии message_allow Callback API. строка
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// http://vk.com/dev/messages.allowMessagesFromGroup
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.AllowMessagesFromGroupAsync" />
 		bool AllowMessagesFromGroup(long groupId, string key);
 
-		/// <summary>
-		/// Создаёт беседу с несколькими участниками.
-		/// </summary>
-		/// <param name="title">
-		/// Название беседы. строка
-		/// </param>
-		/// <param name="userIds">
-		/// Идентификаторы пользователей, которых нужно включить в мультидиалог.
-		/// Должны быть в друзьях у текущего пользователя. список положительных чисел,
-		/// разделенных запятыми
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает  идентификатор созданного чата (chat_id).
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.createChat
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.CreateChatAsync" />
 		long CreateChat(IEnumerable<ulong> userIds, [NotNull] string title);
 
-		/// <summary>
-		/// Удаляет сообщение.
-		/// </summary>
-		/// <param name="messageIds">
-		/// Список идентификаторов сообщений, разделённых через запятую. список
-		/// положительных чисел, разделенных запятыми
-		/// </param>
-		/// <param name="spam">
-		/// Пометить сообщения как спам. флаг, может принимать значения 1 или 0
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя). положительное число
-		/// </param>
-		/// <param name="deleteForAll">
-		/// 1 — если сообщение нужно удалить для получателей (если с момента отправки
-		/// сообщения прошло не более 24 часов ).
-		/// флаг, может принимать значения 1 или 0, по умолчанию
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает 1 для каждого удаленного сообщения.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.delete
-		/// </remarks>
-		IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
-										bool? deleteForAll = null);
+		/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync" />
+		IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null, bool? deleteForAll = null);
 
-		/// <summary>
-		/// Позволяет удалить фотографию мультидиалога.
-		/// </summary>
-		/// <param name="messageId"> Идентификатор отправленного системного сообщения; </param>
-		/// <param name="chatId">
-		/// Идентификатор беседы. положительное число, обязательный параметр, максимальное
-		/// значение 100000000
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя). положительное число
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает объект, содержащий следующие поля:
-		/// message_id — идентификатор отправленного системного сообщения;
-		/// chat — объект мультидиалога.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteChatPhoto
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.DeleteChatPhotoAsync" />
 		Chat DeleteChatPhoto(out ulong messageId, ulong chatId, ulong? groupId = null);
 
-		/// <summary>
-		/// Позволяет запретить отправку сообщений от сообщества текущему пользователю.
-		/// </summary>
-		/// <param name="groupId"> Идентификатор сообщества. </param>
-		/// <returns>
-		/// После успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// https://vk.com/dev/messages.denyMessagesFromGroup
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.DenyMessagesFromGroupAsync" />
 		bool DenyMessagesFromGroup(long groupId);
 
-		/// <summary>
-		/// Изменяет название беседы.
-		/// </summary>
-		/// <param name="chatId">
-		/// Идентификатор беседы. целое число, обязательный параметр (Целое число,
-		/// обязательный параметр).
-		/// </param>
-		/// <param name="title">
-		/// Новое название для беседы. строка, обязательный параметр (Строка, обязательный
-		/// параметр).
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.editChat
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.EditChatAsync" />
 		bool EditChat(long chatId, [NotNull] string title);
 
-		/// <summary>
-		/// Возвращает сообщения по их идентификаторам.
-		/// </summary>
-		/// <param name="messageIds">
-		/// Идентификаторы сообщений. Максимум 100 идентификаторов. список положительных
-		/// чисел, разделенных запятыми, обязательный параметр
-		/// </param>
-		/// <param name="fields">
-		/// Список дополнительных полей для пользователей и сообществ. список слов,
-		/// разделенных через запятую
-		/// </param>
-		/// <param name="previewLength">
-		/// Количество символов, по которому нужно обрезать сообщение. Укажите 0, если Вы
-		/// не хотите обрезать сообщение. (по умолчанию сообщения не обрезаются).
-		/// положительное число, по умолчанию 0
-		/// </param>
-		/// <param name="extended">
-		/// 1 — возвращать дополнительные поля. флаг, может принимать значения 1 или 0
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя). положительное число
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает объект, содержащий число результатов в
-		/// поле count и массив объектов, описывающих  сообщения, в поле items.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
-		/// </remarks>
-		VkCollection<Message> GetById([NotNull] IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null,
-									bool? extended = null, ulong? groupId = null);
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetByIdAsync" />
+		VkCollection<Message> GetById([NotNull] IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null, bool? extended = null, ulong? groupId = null);
 
-		/// <summary>
-		/// Возвращает список найденных личных сообщений текущего пользователя по введенной
-		/// строке поиска.
-		/// </summary>
-		/// <param name="params">
-		/// Входные параметры запроса.
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает объект, содержащий число результатов в
-		/// поле count и массив объектов, описывающих личные сообщения, в поле items.
-		/// Обратите внимание, даже при использовании параметра offset максимальное число
-		/// доступных результатов — 10000.
-		/// Если extended = 1, в поле items возвращается массив объектов бесед.
-		/// Дополнительно возвращаются массивы profiles и groups, содержащие объекты
-		/// пользователей и сообществ.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.search
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.SearchAsync" />
 		MessageSearchResult Search(MessagesSearchParams @params);
 
-		/// <summary>
-		/// Посылает личное сообщение.
-		/// </summary>
-		/// <param name="params"> Параметры запроса. </param>
-		/// <returns>
-		/// Возвращается идентификатор отправленного сообщения.
-		/// </returns>
-		/// <exception cref="System.ArgumentException"> Message can not be <c> null </c>. </exception>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.send
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.SendAsync" />
 		long Send(MessagesSendParams @params);
 
-		/// <summary>
-		/// Посылает личное сообщение.
-		/// </summary>
-		/// <param name="params"> Параметры запроса. </param>
-		/// <returns>
-		/// Возвращается идентификатор отправленного сообщения.
-		/// </returns>
-		/// <exception cref="System.ArgumentException"> Message can not be <c> null </c>. </exception>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.send
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.SendToUserIdsAsync" />
 		ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params);
 
-		/// <summary>
-		/// Восстанавливает удаленное сообщение.
-		/// </summary>
-		/// <param name="messageId">
-		/// Идентификатор сообщения, которое нужно восстановить.
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя). положительное число
-		/// </param>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.restore
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.RestoreAsync" />
 		bool Restore(ulong messageId, ulong? groupId = null);
 
-		/// <summary>
-		/// Помечает сообщения как прочитанные.
-		/// </summary>
-		/// <param name="peerId">
-		/// Идентификатор чата или пользователя, если это диалог.
-		/// строка (Строка).
-		/// </param>
-		/// <param name="startMessageId">
-		/// При передаче этого параметра будут помечены как прочитанные все сообщения,
-		/// начиная с
-		/// данного. положительное число (Положительное число).
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя).
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsRead
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.MarkAsReadAsync" />
 		bool MarkAsRead(string peerId, long? startMessageId = null, long? groupId = null);
 
-		/// <summary>
-		/// Изменяет статус набора текста пользователем в диалоге.
-		/// </summary>
-		/// <param name="userId"> Идентификатор пользователя </param>
-		/// <param name="peerId">
-		/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для
-		/// сообщества: -id
-		/// сообщества.
-		/// </param>
-		/// <param name="type"> typing — пользователь начал набирать текст. </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя).
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает true, false в противном случае.
-		/// Текст «N набирает сообщение...» отображается в течение 10 секунд после вызова
-		/// метода, либо до момента отправки
-		/// сообщения.
-		/// </returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.setActivity
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.SetActivityAsync" />
 		bool SetActivity(string userId, MessageActivityType type, long? peerId = null, ulong? groupId = null);
 
-		/// <summary>
-		/// Возвращает текущий статус и дату последней активности указанного пользователя.
-		/// </summary>
-		/// <param name="userId">
-		/// Идентификатор пользователя, информацию о последней активности которого
-		/// требуется получить. целое
-		/// число, обязательный параметр (Целое число, обязательный параметр).
-		/// </param>
-		/// <returns>
-		/// Возвращает объект, содержащий следующие поля:
-		/// online — текущий статус пользователя (1 — в сети, 0 — не в сети);
-		/// time — дата последней активности пользователя в формате unixtime.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.getLastActivity
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetLastActivityAsync" />
 		LastActivity GetLastActivity(long userId);
 
-		/// <summary>
-		/// Gets the chat.
-		/// </summary>
-		/// <param name="chatId"> The chat identifier. </param>
-		/// <param name="fields"> The fields. </param>
-		/// <param name="nameCase"> The name case. </param>
-		/// <returns>
-		/// После успешного выполнения возвращает объект (или список объектов)
-		/// мультидиалога.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/messages.getChat
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(long,VkNet.Enums.Filters.ProfileFields,VkNet.Enums.SafetyEnums.NameCase,System.Threading.CancellationToken)" />
 		Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null);
 
-		/// <summary>
-		/// Возвращает информацию о беседе.
-		/// </summary>
-		/// <param name="chatIds">
-		/// Список идентификаторов бесед. список целых чисел, разделенных запятыми (Список
-		/// целых чисел,
-		/// разделенных запятыми).
-		/// </param>
-		/// <param name="fields">
-		/// Список дополнительных полей профилей, которые необходимо вернуть.
-		/// Доступные значения: nickname, screen_name, sex, bdate, city, country, timezone,
-		/// photo_50, photo_100,
-		/// photo_200_orig, has_mobile, contacts, education, online, counters, relation,
-		/// last_seen, status,
-		/// can_write_private_message, can_see_all_posts, can_post, universities список
-		/// строк, разделенных через запятую
-		/// (Список строк, разделенных через запятую).
-		/// </param>
-		/// <param name="nameCase">
-		/// Падеж для склонения имени и фамилии пользователя. Возможные значения:
-		/// именительный – nom,
-		/// родительный – gen, дательный – dat, винительный – acc, творительный – ins,
-		/// предложный – abl. По умолчанию nom.
-		/// строка (Строка).
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает объект (или список объектов)
-		/// мультидиалога.
-		/// Если был задан параметр fields, поле users содержит список объектов
-		/// пользователей с дополнительным полем
-		/// invited_by, содержащим идентификатор пользователя, пригласившего в беседу.
-		/// </returns>
-		/// <exception cref="System.ArgumentException">
-		/// At least one chat ID must be
-		/// defined;chatIds
-		/// </exception>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.getChat
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(IEnumerable{long}, ProfileFields, NameCase)" />
 		ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null);
 
-		/// <summary>
-		/// Получает данные для превью чата с приглашением по ссылке.
-		/// </summary>
-		/// <param name="link"> Ссылка-приглашение. </param>
-		/// <param name="fields"> Список полей профилей, данные о которых нужно получить. </param>
-		/// <returns> Возвращает объект представляющий описание чата </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/messages.getChatPreview
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetChatPreviewAsync" />
 		ChatPreview GetChatPreview(string link, ProfileFields fields);
 
-		/// <summary>
-		/// Возвращает историю сообщений текущего пользователя с указанным пользователя или
-		/// групповой беседы.
-		/// </summary>
-		/// <param name="params"> Входные параметры выборки. </param>
-		/// <returns>
-		/// Возвращает историю сообщений с указанным пользователем или из
-		/// указанной беседы
-		/// </returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.getHistory
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetHistoryAsync" />
 		MessageGetHistoryObject GetHistory(MessagesGetHistoryParams @params);
 
-		/// <summary>
-		/// Исключает из мультидиалога пользователя, если текущий пользователь был
-		/// создателем беседы либо пригласил исключаемого пользователя.
-		/// </summary>
-		/// <param name="chatId">
-		/// Идентификатор беседы. положительное число, обязательный параметр, максимальное
-		/// значение 100000000
-		/// </param>
-		/// <param name="userId">
-		/// Идентификатор пользователя, которого необходимо исключить из беседы. Может быть
-		/// меньше нуля в случае, если пользователь приглашён по email. целое число
-		/// </param>
-		/// <param name="memberId">
-		/// Идентификатор участника, которого необходимо исключить из беседы. Для сообществ
-		/// — идентификатор сообщества со знаком «минус». целое число, доступен начиная с
-		/// версии 5.81
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает 1.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.removeChatUser
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.RemoveChatUserAsync" />
 		bool RemoveChatUser(ulong chatId, long? userId = null, long? memberId = null);
 
-		/// <summary>
-		/// Возвращает данные, необходимые для подключения к Long Poll серверу.
-		/// Long Poll подключение позволит Вам моментально узнавать о приходе новых
-		/// сообщений и других событий.
-		/// </summary>
-		/// <param name="lpVersion">
-		/// Версия для подключения к Long Poll. Актуальная версия:
-		/// 2.
-		/// </param>
-		/// <param name="needPts">
-		/// <c> true </c> — возвращать поле pts, необходимое для работы метода
-		/// messages.getLongPollHistory
-		/// </param>
-		/// <param name="groupId">
-		/// Айди группы, от которой получать данные
-		/// </param>
-		/// <returns>
-		/// Возвращает объект, с помощью которого можно подключиться к серверу быстрых
-		/// сообщений для мгновенного
-		/// получения приходящих сообщений и других событий.
-		/// </returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollServer
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetLongPollServerAsync" />
 		LongPollServerResponse GetLongPollServer(bool needPts = false, uint lpVersion = 2, ulong? groupId = null);
 
-		/// <summary>
-		/// Возвращает обновления в личных сообщениях пользователя.
-		/// Для ускорения работы с личными сообщениями может быть полезно кешировать уже
-		/// загруженные ранее сообщения на
-		/// мобильном устройстве / ПК пользователя, чтобы не получать их повторно при
-		/// каждом обращении.
-		/// Этот метод помогает осуществить синхронизацию локальной копии списка сообщений
-		/// с актуальной версией.
-		/// </summary>
-		/// <param name="params">
-		/// Параметры запроса к LongPool серверу
-		/// MessagesGetLongPollHistoryParams
-		/// </param>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollHistory
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetLongPollHistoryAsync" />
 		LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params);
 
-		/// <summary>
-		/// Позволяет установить фотографию мультидиалога, загруженную с помощью метода
-		/// photos.getChatUploadServer.
-		/// </summary>
-		/// <param name="file">
-		/// Содержимое поля response из ответа специального upload сервера, полученного в
-		/// результате загрузки
-		/// изображения на адрес, полученный методом photos.getChatUploadServer. строка,
-		/// обязательный параметр (Строка,
-		/// обязательный параметр).
-		/// </param>
-		/// <param name="messageId"> Идентификатор отправленного системного сообщения; </param>
-		/// <returns>
-		/// После успешного выполнения возвращает объект, содержащий следующие поля:
-		/// message_id — идентификатор отправленного системного сообщения;
-		/// chat — объект мультидиалога.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.setChatPhoto
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.SetChatPhotoAsync" />
 		long SetChatPhoto(out long messageId, string file);
 
-		/// <summary>
-		/// Помечает сообщения как важные либо снимает отметку.
-		/// </summary>
-		/// <param name="messageIds">
-		/// Список идентификаторов сообщений, которые необходимо пометить.список
-		/// положительных чисел,
-		/// разделенных запятыми (Список положительных чисел, разделенных запятыми).
-		/// </param>
-		/// <param name="important">
-		/// &#39;&#39;1&#39;&#39;, если сообщения необходимо пометить, как важные;&#39;
-		/// &#39;0&#39;&#39;,
-		/// если необходимо снять пометку.положительное число (Положительное число).
-		/// </param>
-		/// <returns>
-		/// Возвращает список идентификаторов успешно помеченных сообщений.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsImportant
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.MarkAsImportantAsync" />
 		ReadOnlyCollection<long> MarkAsImportant([NotNull] IEnumerable<long> messageIds, bool important = true);
 
-		/// <summary>
-		/// Отправляет стикер.
-		/// </summary>
-		/// <param name="params"> Параметры запроса. </param>
-		/// <returns>
-		/// После успешного выполнения возвращает идентификатор отправленного сообщения
-		/// (mid).
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.sendSticker
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.SendStickerAsync" />
 		long SendSticker(MessagesSendStickerParams @params);
 
-		/// <summary>
-		/// Возвращает материалы диалога или беседы..
-		/// </summary>
-		/// <param name="params"> Параметры запроса. </param>
-		/// <param name="nextFrom"> Новое значение start_from. </param>
-		/// <returns>
-		/// После успешного выполнения возвращает массив объектов photo, video, audio или
-		/// doc, в зависимости от значения
-		/// media_type, а также дополнительное поле next_from, содержащее новое значение
-		/// start_from.
-		/// Если в media_type передано значение link, возвращает список объектов-ссылок:
-		/// url URL ссылки.
-		/// строка title заголовок сниппета.
-		/// строка description описание сниппета.
-		/// строка image_src URL изображения сниппета.
-		/// строка.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// http://vk.com/dev/messages.getHistoryAttachments
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetHistoryAttachmentsAsync" />
 		ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom);
 
-		/// <summary>
-		/// Получает ссылку для приглашения пользователя в беседу.
-		/// </summary>
-		/// <param name="peerId"> Идентификатор назначения. </param>
-		/// <param name="reset">
-		/// 1 — сгенерировать новую ссылку, сбросив предыдущую.
-		/// 0 — получить предыдущую ссылку.
-		/// </param>
-		/// <returns>
-		/// Возвращает объект с единственным полем link (string), которое содержит ссылку
-		/// для приглашения в беседу.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.getInviteLink
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetInviteLinkAsync" />
 		string GetInviteLink(ulong peerId, bool reset);
 
-		/// <summary>
-		/// Возвращает информацию о том, разрешена ли отправка сообщений от сообщества
-		/// пользователю.
-		/// </summary>
-		/// <param name="groupId"> Идентификатор сообщества. </param>
-		/// <param name="userId"> Идентификатор пользователя. </param>
-		/// <returns>
-		/// Возвращает объект с единственным полем is_allowed (integer, [0,1]). Если
-		/// отправка сообщений разрешена, поле
-		/// содержит 1, иначе — 0.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// http://vk.com/dev/messages.isMessagesFromGroupAllowed
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.IsMessagesFromGroupAllowedAsync" />
 		bool IsMessagesFromGroupAllowed(ulong groupId, ulong userId);
 
-		/// <summary>
-		/// Позволяет присоединиться к чату по ссылке-приглашению.
-		/// </summary>
-		/// <param name="link"> Ссылка-приглашение. </param>
-		/// <returns>
-		/// Возвращает идентификатор чата в поле chat_id.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.joinChatByInviteLink
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.JoinChatByInviteLinkAsync" />
 		long JoinChatByInviteLink(string link);
 
-		/// <summary>
-		/// Помечает беседу как отвеченную либо снимает отметку.
-		/// </summary>
-		/// <param name="peerId">
-		/// Идентификатор беседы целое число, обязательный параметр
-		/// </param>
-		/// <param name="answered">
-		/// <c> true </c> - беседа отмечена отвеченной, <c> false </c> - неотвеченной флаг,
-		/// может принимать значения <c> true </c> или <c> false </c>, по умолчанию
-		/// <c> true </c>
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя). положительное число
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// http://vk.com/dev/messages.markAsAnsweredConversation
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.MarkAsAnsweredConversationAsync" />
 		bool MarkAsAnsweredConversation(long peerId, bool? answered = null, ulong? groupId = null);
 
-		/// <summary>
-		/// Помечает беседу как важную либо снимает отметку.
-		/// </summary>
-		/// <param name="peerId"> Идентификатор беседы </param>
-		/// <param name="important">
-		/// <c> true </c>, если сообщения необходимо пометить, как важные;
-		/// <c> false </c>, если необходимо снять пометку. положительное число
-		/// (Положительное число).
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя). положительное число
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// http://vk.com/dev/messages.markAsImportantConversation
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.MarkAsImportantConversationAsync" />
 		bool MarkAsImportantConversation(long peerId, bool? important = null, ulong? groupId = null);
 
-		/// <summary>
-		/// Редактирует сообщение.
-		/// </summary>
-		/// <param name="params">
-		/// Входные параметры запроса.
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.edit
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.EditAsync" />
 		bool Edit(MessageEditParams @params);
 
-		/// <summary>
-		/// Удаляет личные сообщения в беседе.
-		/// </summary>
-		/// <param name="userId">
-		/// Идентификатор пользователя.
-		/// Если требуется очистить историю беседы, используйте peer_id.
-		/// </param>
-		/// <param name="peerId">
-		/// Идентификатор назначения.
-		/// Для групповой беседы: 2000000000 + id беседы.
-		/// Для сообщества: -id сообщества.
-		/// </param>
-		/// <param name="offset">
-		/// Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются
-		/// все сообщения,
-		/// начиная с первого).
-		/// </param>
-		/// <param name="count">
-		/// Как много сообщений нужно удалить. Обратите внимание что на метод наложено
-		/// ограничение, за один вызов
-		/// нельзя удалить больше 10000 сообщений, поэтому если сообщений в переписке
-		/// больше - метод нужно вызывать несколько
-		/// раз.
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор группы
-		/// </param>
-		/// <returns> После успешного выполнения возвращает <c> true </c>. </returns>
-		/// <remarks>
-		/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-		/// содержащей Settings.Messages
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteConversation
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.DeleteConversationAsync" />
 		bool DeleteConversation(long? userId, long? peerId = null, uint? offset = null, uint? count = null, long? groupId = null);
 
-		/// <summary>
-		/// Позволяет получить беседу по её идентификатору.
-		/// </summary>
-		/// <param name="peerIds">
-		/// Идентификаторы назначений, разделённые запятой.
-		/// Для пользователя:
-		/// id  пользователя.
-		/// Для групповой беседы:
-		/// 2000000000 + id беседы.
-		/// Для сообщества:
-		/// -id сообщества.
-		/// список целых чисел, разделенных запятыми, обязательный параметр
-		/// </param>
-		/// <param name="fields">
-		/// Дополнительные поля пользователей и сообществ, которые необходимо вернуть в
-		/// ответе. список слов, разделенных через запятую
-		/// </param>
-		/// <param name="extended">
-		/// 1 — возвращать дополнительные поля. флаг, может принимать значения 1 или 0
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя). положительное число
-		/// </param>
-		/// <returns>
-		/// Возвращает общее число результатов в поле count (integer) и массив объектов
-		/// бесед в поле items.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversationsById
-		/// </remarks>
-		ConversationResultObject GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields, bool? extended = null,
-													ulong? groupId = null);
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetConversationsByIdAsync" />
+		ConversationResultObject GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields, bool? extended = null, ulong? groupId = null);
 
-		/// <summary>
-		/// Возвращает список бесед пользователя.
-		/// </summary>
-		/// <param name="getConversationsParams">
-		/// Входные параметры запроса.
-		/// </param>
-		/// <returns>
-		/// Возвращает объект, который содержит следующие поля:
-		/// count
-		/// integerчисло результатов. items
-		/// array беседы. Массив объектов, каждый из которых содержит поля:
-		/// conversation (object) — объект беседы.
-		/// last_message (object) — объект, описывающий последнее сообщение в беседе.
-		/// unread_count
-		/// integer число непрочитанных бесед. profiles
-		/// array массив объектов пользователей. groups
-		/// array массив объектов сообществ.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversations
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetConversationsAsync" />
 		GetConversationsResult GetConversations(GetConversationsParams getConversationsParams);
 
-		/// <summary>
-		/// Позволяет получить список участников беседы.
-		/// </summary>
-		/// <param name="peerId">
-		/// Идентификатор назначения.
-		/// Для пользователя:
-		/// id  пользователя.
-		/// Для групповой беседы:
-		/// 2000000000 + id беседы.
-		/// Для сообщества:
-		/// -id сообщества.
-		/// целое число, обязательный параметр
-		/// </param>
-		/// <param name="fields">
-		/// Дополнительные поля пользователей и сообществ, которые необходимо вернуть в
-		/// ответе. список слов, разделенных через запятую
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя). положительное число
-		/// </param>
-		/// <returns>
-		/// Возвращает объет, который содержит следующие поля:
-		/// count
-		/// integerчисло участников беседы. items
-		/// arrayучастники беседы. Массив объектов, каждый из которых содержит поля:
-		/// member_id (integer) — идентификатор участника беседы;
-		/// invited_by (integer) — идентификатор пользователя, который пригласил участника;
-		/// join_date (integer) — дата добавления в беседу;
-		/// is_admin (boolean) — является ли пользователь администратором. profiles
-		/// arrayмассив объектов пользователей. groups
-		/// arrayмассив объектов сообществ.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// http://vk.com/dev/messages.getConversationMembers
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetConversationMembersAsync" />
 		GetConversationMembersResult GetConversationMembers(long peerId, IEnumerable<string> fields, ulong? groupId = null);
 
-		/// <summary>
-		/// Возвращает сообщения по их идентификаторам в рамках беседы.
-		/// </summary>
-		/// <param name="peerId">
-		/// Идентификаторы назначений, разделённые запятой.
-		/// Для пользователя:
-		/// id  пользователя.
-		/// Для групповой беседы:
-		/// 2000000000 + id беседы.
-		/// Для сообщества:
-		/// -id сообщества.
-		/// целое число, обязательный параметр
-		/// </param>
-		/// <param name="conversationMessageIds">
-		/// Идентификаторы сообщений. Максимум 100 идентификаторов. список положительных
-		/// чисел, разделенных запятыми, обязательный параметр
-		/// </param>
-		/// <param name="fields">
-		/// Дополнительные поля пользователей и сообществ, которые необходимо вернуть в
-		/// ответе. список слов, разделенных через запятую
-		/// </param>
-		/// <param name="extended">
-		/// 1 — возвращать дополнительные поля. флаг, может принимать значения 1 или 0
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя). положительное число
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает объект, содержащий число результатов в
-		/// поле count и массив объектов, описывающих  сообщения, в поле items.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// http://vk.com/dev/messages.getByConversationMessageId
-		/// </remarks>
-		GetByConversationMessageIdResult GetByConversationMessageId(long peerId, [NotNull] IEnumerable<ulong> conversationMessageIds,
-																	IEnumerable<string> fields,
-																	bool? extended = null, ulong? groupId = null);
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetByConversationMessageIdAsync" />
+		GetByConversationMessageIdResult GetByConversationMessageId(long peerId, [NotNull] IEnumerable<ulong> conversationMessageIds, IEnumerable<string> fields, bool? extended = null, ulong? groupId = null);
 
-		/// <summary>
-		/// Позволяет искать диалоги.
-		/// </summary>
-		/// <param name="q">
-		/// Поисковой запрос. строка
-		/// </param>
-		/// <param name="fields">
-		/// Дополнительные поля пользователей и сообществ, которые необходимо вернуть в
-		/// ответе. список слов, разделенных через запятую
-		/// </param>
-		/// <param name="count">
-		/// Максимальное число результатов для получения. положительное число, по умолчанию
-		/// 20
-		/// </param>
-		/// <param name="extended">
-		/// 1 — возвращать дополнительные поля. флаг, может принимать значения 1 или 0
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя). положительное число
-		/// </param>
-		/// <returns>
-		/// Возвращает общее число результатов в поле count (integer) и массив объектов
-		/// диалогов в поле items.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.searchConversations
-		/// </remarks>
-		SearchConversationsResult SearchConversations(string q, IEnumerable<string> fields, ulong? count = null, bool? extended = null,
-													ulong? groupId = null);
+		/// <inheritdoc cref="IMessagesCategoryAsync.SearchConversationsAsync" />
+		SearchConversationsResult SearchConversations(string q, IEnumerable<string> fields, ulong? count = null, bool? extended = null, ulong? groupId = null);
 
-		/// <summary>
-		/// Закрепляет сообщение.
-		/// </summary>
-		/// <param name="peerId">
-		/// Идентификатор назначения.
-		/// Для пользователя:
-		/// id  пользователя.
-		/// Для групповой беседы:
-		/// 2000000000 + id беседы.
-		/// Для сообщества:
-		/// -id сообщества.
-		/// целое число, обязательный параметр
-		/// </param>
-		/// <param name="messageId">
-		/// Идентификатор сообщения, которое нужно закрепить. положительное число
-		/// </param>
-		/// <returns>
-		/// Возвращает объект закрепленного сообщения.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.pin
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.PinAsync" />
 		PinnedMessage Pin(long peerId, ulong? messageId = null);
 
-		/// <summary>
-		/// Открепляет сообщение.
-		/// </summary>
-		/// <param name="peerId">
-		/// Идентификатор назначения.
-		/// Для пользователя:
-		/// id  пользователя.
-		/// Для групповой беседы:
-		/// 2000000000 + id беседы.
-		/// Для сообщества:
-		/// -id сообщества.
-		/// целое число, обязательный параметр
-		/// </param>
-		/// <param name="groupId">
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
-		/// пользователя). положительное число
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает 1.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.unpin
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.UnpinAsync" />
 		bool Unpin(long peerId, ulong? groupId = null);
 
-		/// <summary>
-		/// Возвращает список важных сообщений пользователя.
-		/// </summary>
-		/// <param name="getImportantMessagesParams">
-		/// Входные параметры запроса.
-		/// </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.getImportantMessages
-		/// </remarks>
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetImportantMessagesAsync" />
 		GetImportantMessagesResult GetImportantMessages(GetImportantMessagesParams getImportantMessagesParams);
 
-		/// <summary>
-		/// Возвращает информацию о недавних звонках.
-		/// </summary>
-		/// <param name="fields">
-		/// Список дополнительных полей для пользователей и сообществ. список слов,
-		/// разделенных через запятую
-		/// </param>
-		/// <param name="count">
-		/// Максимальное число результатов, которые нужно получить. положительное число, по
-		/// умолчанию 40, максимальное значение 500
-		/// </param>
-		/// <param name="startMessageId">
-		/// Идентификатор сообщения, начиная с которого нужно возвращать звонки.
-		/// положительное число
-		/// </param>
-		/// <param name="extended">
-		/// 1 — возвращать дополнительные поля для пользователей и сообществ. флаг, может
-		/// принимать значения 1 или 0
-		/// </param>
-		/// <returns>
-		/// Возвращает объект, который содержит следующие поля:
-		/// count
-		/// integerчисло результатов. items
-		/// arrayбеседы. Массив объектов, каждый из которых содержит поля:
-		/// call (object) — объект со следующими полями
-		/// initiator_id (integer) — инициатор звонка.
-		/// receiver_id (integer) — получатель звонка.
-		/// state (string) — состояние.
-		/// canceled_by_initiator — сброшен инициатором
-		/// canceled_by_receiver — сброшен получателем
-		/// reached — состоялся
-		/// duration (integer) — длительность звонка в секундах.
-		/// message_id  (integer) — индетификатор сообщения profiles
-		/// arrayмассив объектов пользователей. groups
-		/// arrayмассив объектов сообществ.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/messages.getRecentCalls
-		/// </remarks>
-		GetRecentCallsResult GetRecentCalls(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null,
-											bool? extended = null);
+		/// <inheritdoc cref="IMessagesCategoryAsync.GetRecentCallsAsync" />
+		GetRecentCallsResult GetRecentCalls(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null, bool? extended = null);
 
-	#region Obsoleted
+		#region Obsoleted
 
 		/// <summary>
 		/// Удаляет все личные сообщения в диалоге.
@@ -1123,6 +289,6 @@ namespace VkNet.Abstractions
 		[Obsolete(ObsoleteText.MessageGet)]
 		MessagesGetObject GetDialogs(MessagesDialogsGetParams @params);
 
-	#endregion
+		#endregion
 	}
 }
