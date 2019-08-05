@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 150
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.InvalidTimestamp)]
 	public sealed class InvalidTimestampException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public InvalidTimestampException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.InvalidTimestamp;
 	}
 }

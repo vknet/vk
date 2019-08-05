@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 170
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.UserAccessDenied)]
 	public sealed class UserAccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public UserAccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.UserAccessDenied;
 	}
 }

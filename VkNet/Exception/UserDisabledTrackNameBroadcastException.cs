@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 221
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.UserDisabledTrackNameBroadcast)]
 	public sealed class UserDisabledTrackNameBroadcastException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public UserDisabledTrackNameBroadcastException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.UserDisabledTrackNameBroadcast;
 	}
 }

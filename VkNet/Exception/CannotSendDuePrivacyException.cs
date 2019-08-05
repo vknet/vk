@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 902
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.CannotSendDuePrivacy)]
 	public sealed class CannotSendDuePrivacyException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public CannotSendDuePrivacyException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.CannotSendDuePrivacy;
 	}
 }

@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 603
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.ErrorWorkWithAds)]
 	public sealed class ErrorWorkWithAdsException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public ErrorWorkWithAdsException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.ErrorWorkWithAds;
 	}
 }

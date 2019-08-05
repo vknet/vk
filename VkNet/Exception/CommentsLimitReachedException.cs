@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 223
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.CommentsLimitReached)]
 	public sealed class CommentsLimitReachedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public CommentsLimitReachedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.CommentsLimitReached;
 	}
 }

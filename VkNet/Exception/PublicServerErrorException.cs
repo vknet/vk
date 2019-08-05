@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 10
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.PublicServerError)]
 	public sealed class PublicServerErrorException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public PublicServerErrorException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.PublicServerError;
 	}
 }

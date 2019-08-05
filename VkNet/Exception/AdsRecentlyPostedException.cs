@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 219
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.AdsRecentlyPosted)]
 	public sealed class AdsRecentlyPostedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public AdsRecentlyPostedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.AdsRecentlyPosted;
 	}
 }

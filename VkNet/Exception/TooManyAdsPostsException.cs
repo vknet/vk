@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 224
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.ToomanyAdsPosts)]
 	public sealed class TooManyAdsPostsException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public TooManyAdsPostsException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.ToomanyAdsPosts;
 	}
 }

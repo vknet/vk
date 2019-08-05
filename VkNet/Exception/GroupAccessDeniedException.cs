@@ -12,14 +12,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 203
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.GroupAccessDenied)]
 	public sealed class GroupAccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public GroupAccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.GroupAccessDenied;
 	}
 }

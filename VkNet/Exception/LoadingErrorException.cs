@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 22
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.LoadingError)]
 	public class LoadingErrorException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public LoadingErrorException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.LoadingError;
 	}
 }

@@ -11,14 +11,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 300
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.AlbumIsFull)]
 	public sealed class AlbumIsFullException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public AlbumIsFullException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.AlbumIsFull;
 	}
 }

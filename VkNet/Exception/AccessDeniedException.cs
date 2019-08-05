@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 500
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.PermissionDenied)]
 	public sealed class AccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public AccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.PermissionDenied;
 	}
 }

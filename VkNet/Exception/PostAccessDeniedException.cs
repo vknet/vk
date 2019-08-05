@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 210
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.PostAccessDenied)]
 	public sealed class PostAccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public PostAccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.PostAccessDenied;
 	}
 }

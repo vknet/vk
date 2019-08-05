@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 19
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.ContentDenied)]
 	public sealed class ContentDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public ContentDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.ContentDenied;
 	}
 }

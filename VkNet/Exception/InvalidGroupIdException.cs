@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 125
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.InvalidGroupId)]
 	public sealed class InvalidGroupIdException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public InvalidGroupIdException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.InvalidGroupId;
 	}
 }

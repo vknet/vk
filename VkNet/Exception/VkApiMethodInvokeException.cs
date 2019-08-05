@@ -9,12 +9,12 @@ namespace VkNet.Exception
 	/// API ВКонтакте.
 	/// </summary>
 	[Serializable]
-	public abstract class VkApiMethodInvokeException : VkApiException
+	public class VkApiMethodInvokeException : VkApiException
 	{
 		private readonly VkError _error;
 
 		/// <inheritdoc />
-		protected VkApiMethodInvokeException(VkError error) : base(error.ErrorMessage)
+		public VkApiMethodInvokeException(VkError error) : base(error.ErrorMessage)
 		{
 			_error = error;
 		}
@@ -22,7 +22,7 @@ namespace VkNet.Exception
 		/// <summary>
 		/// Код ошибки
 		/// </summary>
-		internal new abstract int ErrorCode { get; }
+		public new int ErrorCode => _error.ErrorCode;
 
 		/// <summary>
 		/// Параметры запроса

@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 220
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.StatusAccessDenied)]
 	public sealed class StatusAccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public StatusAccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.StatusAccessDenied;
 	}
 }

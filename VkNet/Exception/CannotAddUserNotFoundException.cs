@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 177
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.CannotAddUserNotFound)]
 	public class CannotAddUserNotFoundException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public CannotAddUserNotFoundException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.CannotAddUserNotFound;
 	}
 }

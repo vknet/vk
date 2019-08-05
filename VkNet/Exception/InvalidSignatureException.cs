@@ -11,14 +11,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 4
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.InvalidSignature)]
 	public sealed class InvalidSignatureException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public InvalidSignatureException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.InvalidSignature;
 	}
 }

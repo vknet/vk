@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 212
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.CommentsPostAccessDenied)]
 	public sealed class CommentsPostAccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public CommentsPostAccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.CommentsPostAccessDenied;
 	}
 }

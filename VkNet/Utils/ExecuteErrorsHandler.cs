@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using Newtonsoft.Json;
-using VkNet.Exception;
 using VkNet.Model;
 
 namespace VkNet.Utils
@@ -32,7 +31,7 @@ namespace VkNet.Utils
 			}
 
 			var exceptionList = executeErrorsResponse.ExecuteErrors
-				.Select(exception => new VkApiException(new VkError
+				.Select(exception => VkErrorFactory.Create(new VkError
 				{
 					ErrorCode = exception.ErrorCode,
 					ErrorMessage = exception.ErrorMessage,

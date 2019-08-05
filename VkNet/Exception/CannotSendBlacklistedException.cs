@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 900
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.CannotSendBlacklisted)]
 	public sealed class CannotSendBlacklistedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public CannotSendBlacklistedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.CannotSendBlacklisted;
 	}
 }

@@ -13,14 +13,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 2
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.AppOff)]
 	public sealed class AppOffException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public AppOffException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.AppOff;
 	}
 }

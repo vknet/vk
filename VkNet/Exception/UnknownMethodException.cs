@@ -11,14 +11,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 3
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.UnknownMethod)]
 	public sealed class UnknownMethodException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public UnknownMethodException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.UnknownMethod;
 	}
 }

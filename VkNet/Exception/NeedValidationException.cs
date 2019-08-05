@@ -17,6 +17,7 @@ namespace VkNet.Exception
 	/// Код ошибки - 17
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.NeedValidationOfUser)]
 	public sealed class NeedValidationException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
@@ -34,8 +35,5 @@ namespace VkNet.Exception
 		/// Адрес который необходимо открыть в браузере.
 		/// </summary>
 		public Uri RedirectUri { get; }
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.NeedValidationOfUser;
 	}
 }

@@ -13,14 +13,12 @@ namespace VkNet.Exception
 	/// есть в полной версии сайта.
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.AlbumAccessDenied)]
 	public sealed class AlbumAccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public AlbumAccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.AlbumAccessDenied;
 	}
 }

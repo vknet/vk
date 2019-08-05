@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 121
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.InvalidHash)]
 	public sealed class InvalidHashException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public InvalidHashException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.InvalidHash;
 	}
 }

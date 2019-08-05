@@ -11,14 +11,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 23
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.MethodHasBeenSwitchedOff)]
 	public sealed class MethodHasBeenSwitchedOffException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public MethodHasBeenSwitchedOffException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.MethodHasBeenSwitchedOff;
 	}
 }

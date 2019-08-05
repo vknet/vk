@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// </summary>
 	/// <seealso cref="VkNet.Exception.VkApiException" />
 	[Serializable]
+	[VkError(VkErrorCode.OutOfLimits)]
 	public sealed class OutOfLimitsException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public OutOfLimitsException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.OutOfLimits;
 	}
 }

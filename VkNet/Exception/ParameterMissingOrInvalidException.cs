@@ -12,14 +12,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 100
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.ParameterMissingOrInvalid)]
 	public sealed class ParameterMissingOrInvalidException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public ParameterMissingOrInvalidException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.ParameterMissingOrInvalid;
 	}
 }

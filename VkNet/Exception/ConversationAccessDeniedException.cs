@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 917
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.ConversationAccessDenied)]
 	public sealed class ConversationAccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public ConversationAccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.ConversationAccessDenied;
 	}
 }

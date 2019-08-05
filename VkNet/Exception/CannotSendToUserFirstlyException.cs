@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 901
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.CannotSendToUserFirstly)]
 	public sealed class CannotSendToUserFirstlyException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public CannotSendToUserFirstlyException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.CannotSendToUserFirstly;
 	}
 }

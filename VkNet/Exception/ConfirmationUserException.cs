@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 24
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.ConfirmationUser)]
 	public sealed class ConfirmationUserException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public ConfirmationUserException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.ConfirmationUser;
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using VkNet.Model;
+using VkNet.Utils;
 
 namespace VkNet.Exception
 {
@@ -8,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 13
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.ErrorExecutingCode)]
 	public sealed class ErrorExecutingCodeException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public ErrorExecutingCodeException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode { get; }
 	}
 }

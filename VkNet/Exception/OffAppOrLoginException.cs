@@ -11,14 +11,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 11
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.OffAppOrLogin)]
 	public sealed class OffAppOrLoginException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public OffAppOrLoginException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.OffAppOrLogin;
 	}
 }

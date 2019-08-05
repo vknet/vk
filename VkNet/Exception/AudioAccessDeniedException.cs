@@ -13,14 +13,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 201
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.AudioAccessDenied)]
 	public sealed class AudioAccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public AudioAccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.AudioAccessDenied;
 	}
 }

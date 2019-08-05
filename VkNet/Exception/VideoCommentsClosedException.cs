@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 801
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.VideoCommentsClosed)]
 	public sealed class VideoCommentsClosedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public VideoCommentsClosedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.VideoCommentsClosed;
 	}
 }

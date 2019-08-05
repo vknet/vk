@@ -11,14 +11,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 175
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.CannotAddYouBlacklisted)]
 	public sealed class CannotAddYouBlacklistedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public CannotAddYouBlacklistedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.CannotAddYouBlacklisted;
 	}
 }

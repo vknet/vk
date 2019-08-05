@@ -1,12 +1,17 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using JetBrains.Annotations;
 using VkNet.Exception;
 using VkNet.Model;
 
 namespace VkNet.Utils
 {
-	public class VkErrorFactory
+	/// <summary>
+	/// Фабрика по созданию исключений
+	/// </summary>
+	[UsedImplicitly]
+	public static class VkErrorFactory
 	{
 		/// <summary>
 		/// Создать ошибку
@@ -19,37 +24,20 @@ namespace VkNet.Utils
 		{
 			var vkApiMethodInvokeExceptions = typeof(VkApiMethodInvokeException).Assembly
 				.GetTypes()
-				.FirstOrDefault(x =>
-					x.IsSubclassOf(typeof(VkApiMethodInvokeException))
-					&& HasErrorCode(error.ErrorCode, x));
+				.FirstOrDefault(x => x.IsSubclassOf(typeof(VkApiMethodInvokeException))
+									&& HasErrorCode(x, error.ErrorCode));
+
+			if (vkApiMethodInvokeExceptions == null)
+			{
+				return new VkApiMethodInvokeException(error);
+			}
 
 			return (VkApiMethodInvokeException) Activator.CreateInstance(vkApiMethodInvokeExceptions, error);
 		}
 
-		private static bool HasErrorCode(int error, Type x)
+		private static bool HasErrorCode(MemberInfo x, int errorCode)
 		{
-			if (x == null)
-			{
-				return false;
-			}
-
-			var value = 0;
-		#if NET40
-			value = (int) (x.InvokeMember(nameof(VkApiMethodInvokeException.ErrorCode),
-								BindingFlags.GetProperty | ,
-								null,
-								x,
-								new object[]
-								{
-								},
-								CultureInfo.InvariantCulture)
-							?? 0);
-		#else
-			value = (int) (x.GetRuntimeProperty(nameof(VkApiMethodInvokeException.ErrorCode))
-								?.GetValue(x, null)
-							?? 0);
-		#endif
-			return value == error;
+			return ((VkErrorAttribute) Attribute.GetCustomAttribute(x, typeof(VkErrorAttribute))).ErrorCode == errorCode;
 		}
 	}
 }

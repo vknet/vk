@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 5
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.AuthorizationFailed)]
 	public sealed class UserAuthorizationFailException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public UserAuthorizationFailException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.AuthorizationFailed;
 	}
 }

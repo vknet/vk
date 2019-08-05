@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 174
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.CannotAddYourself)]
 	public sealed class CannotAddYourselfException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public CannotAddYourselfException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.CannotAddYourself;
 	}
 }

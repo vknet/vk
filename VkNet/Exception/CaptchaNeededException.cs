@@ -9,6 +9,7 @@ namespace VkNet.Exception
 	/// Код ошибки - 14
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.CaptchaNeeded)]
 	public sealed class CaptchaNeededException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
@@ -32,8 +33,5 @@ namespace VkNet.Exception
 		/// Uri-адрес изображения с капчей
 		/// </summary>
 		public Uri Img { get; }
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.CaptchaNeeded;
 	}
 }

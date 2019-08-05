@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 214
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.AccessToAddingPostDenied)]
 	public sealed class PostLimitException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public PostLimitException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.AccessToAddingPostDenied;
 	}
 }

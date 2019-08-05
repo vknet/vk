@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 12
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.ImpossibleToCompileCode)]
 	public sealed class ImpossibleToCompileCodeException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public ImpossibleToCompileCodeException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.ImpossibleToCompileCode;
 	}
 }

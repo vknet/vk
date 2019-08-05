@@ -12,14 +12,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 7
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.PermissionToPerformThisAction)]
 	public sealed class PermissionToPerformThisActionException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public PermissionToPerformThisActionException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.PermissionToPerformThisAction;
 	}
 }

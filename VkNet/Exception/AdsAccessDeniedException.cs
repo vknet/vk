@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 600
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.AdsAccessDenied)]
 	public sealed class AdsAccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public AdsAccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.AdsAccessDenied;
 	}
 }

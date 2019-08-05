@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 213
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.AccessToCommentDenied)]
 	public sealed class AccessToCommentDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public AccessToCommentDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.AccessToCommentDenied;
 	}
 }

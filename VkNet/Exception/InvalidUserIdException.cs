@@ -12,14 +12,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 113
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.InvalidUserId)]
 	public sealed class InvalidUserIdException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public InvalidUserIdException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.InvalidUserId;
 	}
 }

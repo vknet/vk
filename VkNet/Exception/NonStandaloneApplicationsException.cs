@@ -14,14 +14,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 20
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.NonStandaloneApplications)]
 	public sealed class NonStandaloneApplicationsException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public NonStandaloneApplicationsException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.NonStandaloneApplications;
 	}
 }

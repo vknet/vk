@@ -11,14 +11,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 8
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.InvalidRequest)]
 	public sealed class InvalidRequestException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public InvalidRequestException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.InvalidRequest;
 	}
 }

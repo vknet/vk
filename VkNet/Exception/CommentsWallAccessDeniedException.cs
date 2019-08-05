@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 211
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.CommentsWallAccessDenied)]
 	public sealed class CommentsWallAccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public CommentsWallAccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.CommentsWallAccessDenied;
 	}
 }

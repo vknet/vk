@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 204
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.VideoAccessDenied)]
 	public sealed class VideoAccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public VideoAccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.VideoAccessDenied;
 	}
 }

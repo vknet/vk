@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 27
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.GroupKeyInvalid)]
 	public sealed class GroupKeyInvalidException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public GroupKeyInvalidException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.GroupKeyInvalid;
 	}
 }

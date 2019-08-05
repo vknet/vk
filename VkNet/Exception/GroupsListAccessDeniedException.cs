@@ -11,14 +11,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 260
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.GroupsListAccessDenied)]
 	public sealed class GroupsListAccessDeniedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public GroupsListAccessDeniedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.GroupsListAccessDenied;
 	}
 }

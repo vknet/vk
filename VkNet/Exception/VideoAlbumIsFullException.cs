@@ -11,14 +11,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 302
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.VideoAlbumIsFull)]
 	public sealed class VideoAlbumIsFullException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public VideoAlbumIsFullException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.VideoAlbumIsFull;
 	}
 }

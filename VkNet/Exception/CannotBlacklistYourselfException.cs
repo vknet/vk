@@ -13,14 +13,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 15
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.CannotBlacklistYourself)]
 	public sealed class CannotBlacklistYourselfException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public CannotBlacklistYourselfException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.CannotBlacklistYourself;
 	}
 }

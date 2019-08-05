@@ -13,14 +13,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 101
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.InvalidAppId)]
 	public class InvalidAppIdException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public InvalidAppIdException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.InvalidAppId;
 	}
 }

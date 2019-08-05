@@ -11,14 +11,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 9
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.TooMuchOfTheSameTypeOfAction)]
 	public sealed class TooMuchOfTheSameTypeOfActionException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public TooMuchOfTheSameTypeOfActionException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.TooMuchOfTheSameTypeOfAction;
 	}
 }

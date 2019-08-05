@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 18
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.UserDeletedOrBanned)]
 	public sealed class UserDeletedOrBannedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public UserDeletedOrBannedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.UserDeletedOrBanned;
 	}
 }

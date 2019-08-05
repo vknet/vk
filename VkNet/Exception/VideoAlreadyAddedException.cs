@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 800
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.VideoAlreadyAdded)]
 	public sealed class VideoAlreadyAddedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public VideoAlreadyAddedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.VideoAlreadyAdded;
 	}
 }

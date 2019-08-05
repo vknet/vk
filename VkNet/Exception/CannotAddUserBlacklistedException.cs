@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 176
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.CannotAddUserBlacklisted)]
 	public sealed class CannotAddUserBlacklistedException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public CannotAddUserBlacklistedException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.CannotAddUserBlacklisted;
 	}
 }

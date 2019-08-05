@@ -9,14 +9,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 118
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.InvalidServer)]
 	public sealed class InvalidServerException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public InvalidServerException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.InvalidServer;
 	}
 }

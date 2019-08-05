@@ -10,14 +10,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 1
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.Unknown)]
 	public sealed class UnknownException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public UnknownException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.Unknown;
 	}
 }

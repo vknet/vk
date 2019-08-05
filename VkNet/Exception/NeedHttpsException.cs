@@ -15,14 +15,12 @@ namespace VkNet.Exception
 	/// Код ошибки - 16
 	/// </summary>
 	[Serializable]
+	[VkError(VkErrorCode.NeedHttps)]
 	public sealed class NeedHttpsException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />
 		public NeedHttpsException(VkError response) : base(response)
 		{
 		}
-
-		/// <inheritdoc />
-		internal override int ErrorCode => VkErrorCode.NeedHttps;
 	}
 }
