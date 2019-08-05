@@ -1,0 +1,32 @@
+{
+  "error": {
+    "error_code": 100,
+    "error_msg": "One of the parameters specified was missing or invalid: random_id is a required parameter",
+    "request_params": [
+      {
+        "key": "oauth",
+        "value": "1"
+      },
+      {
+        "key": "method",
+        "value": "messages.send"
+      },
+      {
+        "key": "disable_mentions",
+        "value": "0"
+      },
+      {
+        "key": "dont_parse_links",
+        "value": "0"
+      },
+      {
+        "key": "user_id",
+        "value": "11111"
+      },
+      {
+        "key": "v",
+        "value": "5.101"
+      }
+    ]
+  }
+}

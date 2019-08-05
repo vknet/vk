@@ -98,16 +98,16 @@ namespace VkNet.Tests.Categories.Messages
 		}
 
 		[Test]
-		public void MessagesSend_SetUserIdsParam_ArgumentException()
+		public void MessagesSend_SetUserIdsParam_ParameterMissingOrInvalidException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-			ReadCategoryJsonPath(nameof(MessagesSend_SetUserIdsParam_ArgumentException));
+			ReadCategoryJsonPath(nameof(MessagesSend_SetUserIdsParam_ParameterMissingOrInvalidException));
 
 			Assert.That(() => Api.Messages.Send(new MessagesSendParams
 				{
 					UserIds = new List<long> { 7550525 }, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743
 				}),
-				Throws.InstanceOf<ArgumentException>());
+				Throws.InstanceOf<ParameterMissingOrInvalidException>());
 		}
 
 		[Test]
@@ -144,32 +144,29 @@ namespace VkNet.Tests.Categories.Messages
 		}
 
 		[Test]
-		public void MessagesSend_RandomIdRequired_ArgumentException()
+		public void MessagesSend_RandomIdRequired_ParameterMissingOrInvalidException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-			ReadCategoryJsonPath(nameof(MessagesSend_RandomIdRequired_ArgumentException));
+			ReadCategoryJsonPath(nameof(MessagesSend_RandomIdRequired_ParameterMissingOrInvalidException));
 
-			Assert.That(() => Api.Messages.Send(new MessagesSendParams
-				{
-					UserIds = new List<long> { 7550525 }, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743
-				}),
-				Throws.InstanceOf<ArgumentException>());
+			Assert.Throws<ParameterMissingOrInvalidException>(() => Api.Messages.Send(new MessagesSendParams
+			{
+				UserIds = new List<long> { 7550525 }, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743
+			}));
 		}
 
 		[Test]
-		public void MessagesSend_RandomIdNotRequiredInLessThan_5_90_ArgumentException()
+		public void MessagesSend_RandomIdNotRequiredInLessThan_5_90_DoesNotThrow()
 		{
 			Url = "https://api.vk.com/method/messages.send";
-			ReadCategoryJsonPath(nameof(MessagesSend_RandomIdNotRequiredInLessThan_5_90_ArgumentException));
+			ReadCategoryJsonPath(nameof(MessagesSend_RandomIdNotRequiredInLessThan_5_90_DoesNotThrow));
 
 			Api.VkApiVersion.SetVersion(5, 88);
 
-			var id = Api.Messages.Send(new MessagesSendParams
+			Assert.DoesNotThrow(() => Api.Messages.Send(new MessagesSendParams
 			{
 				UserId = 7550525, Message = "Работает # 2 --  еще разок"
-			});
-
-			Assert.That(id, Is.EqualTo(4464));
+			}));
 		}
 	}
 }
