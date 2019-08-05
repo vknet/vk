@@ -160,7 +160,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null)
 		{
-			return GetChat(new[] { chatId }, fields, nameCase).FirstOrDefault();
+			return GetChatAsync(chatId, fields, nameCase).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />

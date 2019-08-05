@@ -157,11 +157,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public async Task<Chat> GetChatAsync(long chatId, ProfileFields fields = null, NameCase nameCase = null, CancellationToken cancellationToken = default)
+		public Task<Chat> GetChatAsync(long chatId, ProfileFields fields = null, NameCase nameCase = null, CancellationToken cancellationToken = default)
 		{
-			var chats = await GetChatAsync(new[] { chatId }, fields, nameCase, cancellationToken).ConfigureAwait(false);
-
-			return chats.FirstOrDefault();
+			return _vk.CallAsync<Chat>("messages.getChat", new VkParameters
+			{
+				{ "fields", fields },
+				{ "name_case", nameCase },
+				{ "chat_id", chatId }
+			}, cancellationToken: cancellationToken);
 		}
 
 		/// <inheritdoc />
