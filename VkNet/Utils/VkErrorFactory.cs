@@ -32,7 +32,15 @@ namespace VkNet.Utils
 				return new VkApiMethodInvokeException(error);
 			}
 
-			return (VkApiMethodInvokeException) Activator.CreateInstance(vkApiMethodInvokeExceptions, error);
+			var exception =
+				PerformanceActivator.CreateInstance<VkApiMethodInvokeException>(vkApiMethodInvokeExceptions, Predicate(), error);
+
+			return exception ?? new VkApiMethodInvokeException(error);
+		}
+
+		private static Func<ConstructorInfo, bool> Predicate()
+		{
+			return x => x.GetParameters().Any(p => p.ParameterType == typeof(VkError));
 		}
 
 		private static bool HasErrorCode(MemberInfo x, int errorCode)
