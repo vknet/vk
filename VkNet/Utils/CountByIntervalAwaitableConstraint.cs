@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Abstractions.Core;
@@ -11,8 +10,6 @@ namespace VkNet.Utils
 	/// </summary>
 	public class CountByIntervalAwaitableConstraint : IAwaitableConstraint
 	{
-		private readonly LimitedSizeStack<DateTime> _timeStamps;
-
 		private int _count;
 
 		private TimeSpan _timeSpan;
@@ -62,7 +59,6 @@ namespace VkNet.Utils
 
 			_count = number;
 			_timeSpan = timeSpan;
-			_timeStamps = new LimitedSizeStack<DateTime>(_count);
 		}
 
 		/// <inheritdoc />
@@ -70,32 +66,9 @@ namespace VkNet.Utils
 		{
 			await _semaphore.WaitAsync(cancellationToken).ConfigureAwait(false);
 
-			var count = 0;
-			var now = DateTime.Now;
-			var target = now - _timeSpan;
+			var milliseconds = _timeSpan.TotalMilliseconds / _count;
 
-			var element = _timeStamps.First;
-
-			LinkedListNode<DateTime> last = null;
-
-			while (element?.Value > target)
-			{
-				last = element;
-				element = element.Next;
-				count++;
-			}
-
-			if (count < _count)
-			{
-				return new DisposableAction(OnEnded);
-			}
-
-			if (last == null)
-			{
-				return new DisposableAction(OnEnded);
-			}
-
-			var timeToWait = last.Value.Add(_timeSpan) - now;
+			var timeToWait = (int) Math.Ceiling(milliseconds);
 
 			try
 			{
@@ -105,12 +78,12 @@ namespace VkNet.Utils
 				await Task.Delay(timeToWait, cancellationToken).ConfigureAwait(false);
 			#endif
 			}
-			catch
+			finally
 			{
-				return new DisposableAction(OnEnded);
+				_semaphore.Release();
 			}
 
-			return new DisposableAction(OnEnded);
+			return new DisposableAction(() => { });
 		}
 
 		/// <inheritdoc />
@@ -118,13 +91,6 @@ namespace VkNet.Utils
 		{
 			_count = number;
 			_timeSpan = timeSpan;
-		}
-
-		private void OnEnded()
-		{
-			var now = DateTime.Now;
-			_timeStamps.Push(now);
-			_semaphore.Release();
 		}
 	}
 }
