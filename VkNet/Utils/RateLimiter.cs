@@ -41,10 +41,10 @@ namespace VkNet.Utils
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 
-			var disposable = await _awaitableConstraint.WaitForReadiness(cancellationToken).ConfigureAwait(false);
-			disposable.Dispose();
-
-			await perform().ConfigureAwait(false);
+			using (await _awaitableConstraint.WaitForReadiness(cancellationToken).ConfigureAwait(false))
+			{
+				await perform().ConfigureAwait(false);
+			}
 		}
 
 		/// <inheritdoc />
@@ -52,10 +52,10 @@ namespace VkNet.Utils
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 
-			var disposable = await _awaitableConstraint.WaitForReadiness(cancellationToken).ConfigureAwait(false);
-			disposable.Dispose();
-
-			return await perform().ConfigureAwait(false);
+			using (await _awaitableConstraint.WaitForReadiness(cancellationToken).ConfigureAwait(false))
+			{
+				return await perform().ConfigureAwait(false);
+			}
 		}
 
 		/// <inheritdoc />
