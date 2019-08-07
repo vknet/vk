@@ -1,14 +1,18 @@
 {
   "response": {
-    "views": {
+    "answer": {
       "state": "on",
       "count": 0
     },
-    "replies": {
+    "bans": {
       "state": "on",
-      "count": 1
+      "count": 0
     },
-    "answer": {
+    "open_link": {
+      "state": "hidden",
+      "count": 0
+    },
+    "replies": {
       "state": "on",
       "count": 0
     },
@@ -20,12 +24,9 @@
       "state": "on",
       "count": 0
     },
-    "bans": {
+    "views": {
       "state": "on",
       "count": 0
-    },
-    "open_link": {
-      "state": "hidden"
     }
   }
 }

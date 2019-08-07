@@ -10,17 +10,18 @@ namespace VkNet.Model
 	/// </summary>
 	[Serializable]
 	public class StoryStatsObject
-    {
+	{
 		/// <summary>
 		/// Доступность значения.
 		/// </summary>
 		[JsonProperty("state")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public StoryObjectState State { get; set; }
+
 		/// <summary>
 		/// Значение счётчика.
 		/// </summary>
-		[JsonProperty("count")]
+		[JsonProperty("count", NullValueHandling = NullValueHandling.Ignore)]
 		public int? Count { get; set; }
-    }
+	}
 }
