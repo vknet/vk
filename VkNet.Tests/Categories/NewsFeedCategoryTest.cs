@@ -11,7 +11,7 @@ namespace VkNet.Tests.Categories
 	public class NewsFeedCategoryTest : CategoryBaseTest
 	{
 		/// <inheritdoc />
-		protected override string Folder { get; } = "Newsfeed";
+		protected override string Folder { get; } = "NewsFeed";
 
 		[Test]
 		public void Get()
