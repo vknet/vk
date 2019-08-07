@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using VkNet.Enums;
@@ -21,41 +21,33 @@ namespace VkNet.Tests
 		{
 			Api.Authorize(new ApiAuthParams
 			{
-				AccessToken = "token", UserId = 1
+				AccessToken = "token",
+				UserId = 1
 			});
 
 			Assert.That(Api.UserId, Is.EqualTo(1));
 		}
 
 		[Test]
-		public void Call_NotMoreThen3CallsPerSecond()
+		public async Task Call_NotMoreThen3CallsPerSecond()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
 			ReadJsonFile(nameof(VkApi), nameof(Call_NotMoreThen3CallsPerSecond));
+			const int callsCount = 3;
+			Api.RequestsPerSecond = callsCount;
 
-			Api.RequestsPerSecond = 3; // Переопределение значения в базовом классе
-			// SetupIRestClient(Mock.Get(Api.RestClient));
+			var taskList = new List<Task>();
 
-			var start = DateTimeOffset.Now;
-
-			while (true)
+			for (var i = 0; i < callsCount + 1; i++)
 			{
-				Api.Call("friends.getRequests", VkParameters.Empty, true);
-				Debug.Print($"{DateTime.Now:HH:mm:ss.fff}{Environment.NewLine}");
-				var total = (int) (DateTimeOffset.Now - start).TotalMilliseconds;
-
-				if (total > 999)
-				{
-					break;
-				}
+				taskList.Add(Api.CallAsync("friends.getRequests", VkParameters.Empty, true));
 			}
 
-			// Не больше 4 раз, т.к. 4-ый раз вызывается через 1002 мс после первого вызова, а total выходит через 1040 мс
-			// переписать тест, когда придумаю более подходящий метод проверки
-			Mock.Get(Api.RestClient)
-				.Verify(m =>
-						m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()),
-					Times.AtMost(4));
+			Task.WhenAll(taskList);
+
+			await Task.Delay(1000);
+
+			Mock.Get(Api.RestClient).Verify(m => m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()), Times.AtMost(callsCount));
 		}
 
 		[Test]
