@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -135,6 +136,12 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
 				SaveProfileInfo(out var _, @params));
+		}
+
+		/// <inheritdoc />
+		public Task<PrivacySettings> GetPrivacySettingsAsync(CancellationToken token)
+		{
+			return TypeHelper.TryInvokeMethodAsync(GetPrivacySettings);
 		}
 	}
 }

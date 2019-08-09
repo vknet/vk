@@ -1,0 +1,328 @@
+{
+  "response": {
+    "settings": [
+      {
+        "key": "profile",
+        "title": "Кто видит основную информацию моей страницы",
+        "value": [
+          "only_me"
+        ],
+        "section": "profile",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      },
+      {
+        "key": "photos_with",
+        "title": "Кто видит фотографии, на которых меня отметили",
+        "value": [
+          "only_me"
+        ],
+        "section": "profile",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      },
+      {
+        "key": "photos_saved",
+        "title": "Кто видит список моих сохранённых фотографий",
+        "value": [
+          "only_me"
+        ],
+        "section": "profile",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      },
+      {
+        "key": "groups",
+        "title": "Кто видит список моих групп",
+        "value": [
+          "only_me"
+        ],
+        "section": "profile",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      },
+      {
+        "key": "audios",
+        "title": "Кто видит список моих аудиозаписей",
+        "value": [
+          170390149,
+          170699639,
+          172248179,
+          261525343,
+          262551645,
+          277901426,
+          395679472,
+          422979757,
+          431864975
+        ],
+        "section": "profile",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      },
+      {
+        "key": "gifts",
+        "title": "Кто видит список моих подарков",
+        "value": [
+          "only_me"
+        ],
+        "section": "profile",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      },
+      {
+        "key": "places",
+        "title": "Кто видит местоположение моих фотографий",
+        "value": [
+          "only_me"
+        ],
+        "section": "profile",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      },
+      {
+        "key": "hidden_friends",
+        "title": "Кто видит моих скрытых друзей",
+        "value": [
+          "only_me"
+        ],
+        "section": "profile",
+        "supported_values": [
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "hidden_friends_only",
+          "some"
+        ]
+      },
+      {
+        "key": "wall",
+        "title": "Кто видит чужие записи на моей странице",
+        "value": [
+          "all"
+        ],
+        "section": "posts",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      },
+      {
+        "key": "wall_send",
+        "title": "Кто может оставлять записи на моей странице",
+        "value": [
+          "only_me"
+        ],
+        "section": "posts",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      },
+      {
+        "key": "replies_view",
+        "title": "Кто видит комментарии к записям",
+        "value": [
+          "only_me"
+        ],
+        "section": "posts",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      },
+      {
+        "key": "status_replies",
+        "title": "Кто может комментировать мои записи",
+        "value": [
+          "only_me"
+        ],
+        "section": "posts",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      },
+      {
+        "key": "photos_tagme",
+        "title": "Кто может отмечать меня на фотографиях",
+        "value": [
+          "only_me"
+        ],
+        "section": "posts",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      },
+      {
+        "key": "mail_send",
+        "title": "Кто может писать мне личные сообщения",
+        "value": [
+          "all"
+        ],
+        "section": "contacts",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "nobody",
+          "some"
+        ]
+      },
+      {
+        "key": "appscall",
+        "title": "Кто может вызывать меня в приложениях",
+        "value": [
+          "nobody"
+        ],
+        "section": "contacts",
+        "supported_values": [
+          "friends",
+          "nobody",
+          "some"
+        ]
+      },
+      {
+        "key": "groups_invite",
+        "title": "Кто может приглашать меня в сообщества",
+        "value": [
+          "nobody"
+        ],
+        "section": "contacts",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "nobody",
+          "some"
+        ]
+      },
+      {
+        "key": "apps_invite",
+        "title": "Кто может приглашать меня в приложения",
+        "value": [
+          "nobody"
+        ],
+        "section": "contacts",
+        "supported_values": [
+          "friends",
+          "nobody",
+          "some"
+        ]
+      },
+      {
+        "key": "friends_requests",
+        "title": "Кто может отправлять мне заявку в друзья",
+        "value": [
+          "all"
+        ],
+        "section": "contacts",
+        "supported_values": [
+          "all",
+          "friends_of_friends_only"
+        ]
+      },
+      {
+        "key": "search_by_reg_phone",
+        "title": "Кто может найти меня при импорте контактов по номеру +7 *** *** ** 92",
+        "value": [
+          "nobody"
+        ],
+        "section": "contacts",
+        "supported_values": [
+          "all",
+          "friends_of_friends",
+          "nobody",
+          "some"
+        ]
+      },
+      {
+        "key": "stories",
+        "title": "Кто видит мои истории",
+        "value": [
+          "only_me"
+        ],
+        "section": "stories",
+        "supported_values": [
+          "all",
+          "friends",
+          "friends_of_friends",
+          "only_me",
+          "some"
+        ]
+      }
+    ],
+    "sections": [
+      {
+        "name": "profile",
+        "title": "Моя страница"
+      },
+      {
+        "name": "posts",
+        "title": "Записи на странице"
+      },
+      {
+        "name": "contacts",
+        "title": "Связь со мной"
+      },
+      {
+        "name": "stories",
+        "title": "Истории"
+      },
+      {
+        "name": "others",
+        "title": "Прочее"
+      }
+    ]
+  }
+}

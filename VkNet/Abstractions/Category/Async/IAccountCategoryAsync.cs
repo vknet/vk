@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
-using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
@@ -58,9 +58,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setNameInMenu
 		/// </remarks>
-		Task<bool> SetNameInMenuAsync([NotNull]
-									string name
-									, long? userId = null);
+		Task<bool> SetNameInMenuAsync([NotNull] string name, long? userId = null);
 
 		/// <summary>
 		/// Помечает текущего пользователя как online на 15 минут.
@@ -152,11 +150,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setSilenceMode
 		/// </remarks>
-		Task<bool> SetSilenceModeAsync([NotNull]
-										string deviceId
-										, int? time = null
-										, int? peerId = null
-										, bool? sound = null);
+		Task<bool> SetSilenceModeAsync([NotNull] string deviceId, int? time = null, int? peerId = null, bool? sound = null);
 
 		/// <summary>
 		/// Позволяет получать настройки Push уведомлений.
@@ -362,10 +356,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setInfo
 		/// </remarks>
-		Task<bool> SetInfoAsync([NotNull]
-								string name
-								, [NotNull]
-								string value);
+		Task<bool> SetInfoAsync([NotNull] string name, [NotNull] string value);
 
 		/// <summary>
 		/// Позволяет сменить пароль пользователя после успешного восстановления доступа к
@@ -399,10 +390,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.changePassword
 		/// </remarks>
-		Task<AccountChangePasswordResult> ChangePasswordAsync(string oldPassword
-															, string newPassword
-															, string restoreSid = null
-															, string changePasswordHash = null);
+		Task<AccountChangePasswordResult> ChangePasswordAsync(string oldPassword, string newPassword, string restoreSid = null,
+															string changePasswordHash = null);
 
 		/// <summary>
 		/// Возвращает информацию о текущем профиле.
@@ -442,5 +431,11 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/account.saveProfileInfo
 		/// </remarks>
 		Task<bool> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params);
+
+		/// <summary>
+		/// Получить список приватных настроек
+		/// </summary>
+		/// <returns> Список приватных настроек </returns>
+		Task<PrivacySettings> GetPrivacySettingsAsync(CancellationToken token);
 	}
 }

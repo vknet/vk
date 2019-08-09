@@ -59,7 +59,8 @@ namespace VkNet.Tests.Categories.Account
 			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
-		[Test, Ignore("TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки")]
+		[Test]
+		[Ignore("TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки")]
 		public void GetBanned_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			//
@@ -198,6 +199,22 @@ namespace VkNet.Tests.Categories.Account
 			Url = "https://api.vk.com/method/account.getInfo";
 			ReadJsonFile(JsonPaths.EmptyObject);
 			Assert.That(Api.Account.GetInfo(), Is.Null);
+		}
+
+		[Test]
+		public void GetPrivacySettings()
+		{
+			// Arrange
+			Url = "https://api.vk.com/method/account.getPrivacySettings";
+			ReadCategoryJsonPath(nameof(GetPrivacySettings));
+
+			// Act
+			var settings = Api.Account.GetPrivacySettings();
+
+			// Assert
+			Assert.NotNull(settings);
+			Assert.IsNotEmpty(settings.Sections);
+			Assert.IsNotEmpty(settings.Settings);
 		}
 
 		[Test]
@@ -367,7 +384,13 @@ namespace VkNet.Tests.Categories.Account
 						{
 							Id = 10
 						},
-						BirthDate = new DateTime(1984, 11, 15, 0, 0, 0, DateTimeKind.Utc).ToShortDateString(),
+						BirthDate = new DateTime(1984,
+							11,
+							15,
+							0,
+							0,
+							0,
+							DateTimeKind.Utc).ToShortDateString(),
 						BirthdayVisibility = BirthdayVisibility.Full,
 						HomeTown = "ht",
 						Country = new Country
@@ -412,17 +435,29 @@ namespace VkNet.Tests.Categories.Account
 			Assert.That(() => Api.Account.SaveProfileInfo(out var _,
 					new AccountSaveProfileInfoParams
 					{
-						BirthDate = new DateTime(1984, 11, 150, 0, 0, 0, DateTimeKind.Utc)
+						BirthDate = new DateTime(1984,
+								11,
+								150,
+								0,
+								0,
+								0,
+								DateTimeKind.Utc)
 							.ToShortDateString()
 					}),
 				Is.True);
 
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 
-			Assert.That(() => Api.Account.SaveProfileInfo(out _,
+			Assert.That(() => Api.Account.SaveProfileInfo(out var _,
 					new AccountSaveProfileInfoParams
 					{
-						BirthDate = new DateTime(2014, 9, 8, 0, 0, 0, DateTimeKind.Utc)
+						BirthDate = new DateTime(2014,
+								9,
+								8,
+								0,
+								0,
+								0,
+								DateTimeKind.Utc)
 							.ToShortDateString()
 					}),
 				Is.True);

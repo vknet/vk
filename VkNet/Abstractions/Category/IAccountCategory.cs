@@ -3,7 +3,6 @@ using JetBrains.Annotations;
 using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
-using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
@@ -55,8 +54,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setNameInMenu
 		/// </remarks>
-		bool SetNameInMenu([NotNull]
-							string name
+		bool SetNameInMenu([NotNull] string name
 							, long? userId = null);
 
 		/// <summary>
@@ -148,8 +146,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setSilenceMode
 		/// </remarks>
-		bool SetSilenceMode([NotNull]
-							string deviceId
+		bool SetSilenceMode([NotNull] string deviceId
 							, int? time = null
 							, int? peerId = null
 							, bool? sound = null);
@@ -357,10 +354,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setInfo
 		/// </remarks>
-		bool SetInfo([NotNull]
-					string name
-					, [NotNull]
-					string value);
+		bool SetInfo([NotNull] string name
+					, [NotNull] string value);
 
 		/// <summary>
 		/// Позволяет сменить пароль пользователя после успешного восстановления доступа к
@@ -439,5 +434,8 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/account.saveProfileInfo
 		/// </remarks>
 		bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveProfileInfoParams @params);
+
+		/// <inheritdoc cref="IAccountCategoryAsync.GetPrivacySettingsAsync" />
+		PrivacySettings GetPrivacySettings();
 	}
 }
