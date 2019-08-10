@@ -645,5 +645,16 @@ namespace VkNet.Categories
 		{
 			return _vk.Call<PrivacySettings>("account.getPrivacySettings", VkParameters.Empty);
 		}
+
+		/// <inheritdoc />
+		public string SetPrivacy(string key, string value)
+		{
+			return _vk.Call<string>("account.setPrivacy",
+				new VkParameters
+				{
+					{ "key", key },
+					{ "value", value }
+				});
+		}
 	}
 }

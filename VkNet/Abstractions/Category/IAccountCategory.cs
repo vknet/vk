@@ -437,5 +437,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IAccountCategoryAsync.GetPrivacySettingsAsync" />
 		PrivacySettings GetPrivacySettings();
+
+		/// <inheritdoc cref="IAccountCategoryAsync.SetPrivacyAsync" />
+		string SetPrivacy(string key, string value);
 	}
 }

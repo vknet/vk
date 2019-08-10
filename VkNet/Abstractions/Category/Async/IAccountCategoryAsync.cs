@@ -437,5 +437,13 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <returns> Список приватных настроек </returns>
 		Task<PrivacySettings> GetPrivacySettingsAsync(CancellationToken token);
+
+		/// <summary>
+		/// Установить приватные настройки
+		/// </summary>
+		/// <param name="key"> Ключ </param>
+		/// <param name="value"> Значение </param>
+		/// <returns> Значение параметра <see cref="value" /> </returns>
+		Task<string> SetPrivacyAsync(string key, string value);
 	}
 }

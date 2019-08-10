@@ -143,5 +143,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(GetPrivacySettings);
 		}
+
+		/// <inheritdoc />
+		public Task<string> SetPrivacyAsync(string key, string value)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => SetPrivacy(key, value));
+		}
 	}
 }

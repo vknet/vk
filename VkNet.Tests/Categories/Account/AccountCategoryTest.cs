@@ -610,6 +610,20 @@ namespace VkNet.Tests.Categories.Account
 		}
 
 		[Test]
+		public void SetPrivacy()
+		{
+			// Arrange
+			Url = "https://api.vk.com/method/account.setPrivacy";
+			ReadCategoryJsonPath(nameof(SetPrivacy));
+
+			// Act
+			var result = Api.Account.SetPrivacy("key", "value");
+
+			// Assert
+			Assert.AreEqual("value", result);
+		}
+
+		[Test]
 		[Ignore(TestIgnoreConstants.Excess)]
 		public void SetSilenceMode_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
