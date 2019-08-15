@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VkNet.Utils;
@@ -234,9 +234,7 @@ namespace VkNet.Enums.Filters
 				if (MaskMap.ContainsKey(key: v.ToLower()))
 				{
 					res = res|GetByName(name: v);
-				}
-
-				if (Alias.ContainsKey(key: v.ToLower()))
+				} else if (Alias.ContainsKey(key: v.ToLower()))
 				{
 					res = res|GetByName(name: v);
 				}
