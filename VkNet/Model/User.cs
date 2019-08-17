@@ -767,6 +767,7 @@ namespace VkNet.Model
 		/// Признак использует ли пользователь мобильное приложение либо мобильную версию
 		/// сайта.
 		/// </summary>
+		[JsonProperty("online_mobile")]
 		public bool? OnlineMobile { get; set; }
 
 		/// <summary>
