@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -20,8 +20,15 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор пользователя, которого нужно добавить в черный список.
 		/// положительное число, обязательный параметр.
+		/// Использовать <see cref="OwnerId"/> для более новых версий API
 		/// </summary>
-		public long UserId { get; set; }
+		public long? UserId { get; set; }
+
+		/// <summary>
+		/// Идентификатор пользователя или сообщества,  которое будет добавлено в черный список.
+		/// обязательный параметр.
+		/// </summary>
+		public long? OwnerId { get; set; }
 
 		/// <summary>
 		/// Дата завершения срока действия бана в формате unixtime. Максимальный возможный
@@ -65,12 +72,13 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-					{ "group_id", p.GroupId }
-					, { "user_id", p.UserId }
-					, { "end_date", p.EndDate }
-					, { "reason", p.Reason }
-					, { "comment", p.Comment }
-					, { "comment_visible", p.CommentVisible }
+				{ "group_id", p.GroupId },
+				{ "user_id", p.UserId},
+				{ "owner_id", p.OwnerId },
+				{ "end_date", p.EndDate },
+				{ "reason", p.Reason },
+				{ "comment", p.Comment },
+				{ "comment_visible", p.CommentVisible }
 			};
 
 			return parameters;
