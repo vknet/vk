@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -35,7 +35,7 @@ namespace VkNet.Model
 	#region Стандартные поля
 
 		/// <summary>
-		/// Идентификатор сообщества.
+		/// Идентификатор пользователя ВК.
 		/// </summary>
 		public ulong? UserId { get; set; }
 
