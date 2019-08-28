@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -11,14 +11,14 @@ namespace VkNet.Model.RequestParams
 	public class BoardCommentParams
 	{
 		/// <summary>
-		/// Идентификатор сообщества, в котором находится обсуждение.положительное число,
+		/// Идентификатор сообщества, в котором находится обсуждение. положительное число,
 		/// обязательный параметр
 		/// </summary>
 		[JsonProperty(propertyName: "group_id")]
 		public long GroupId { get; set; }
 
 		/// <summary>
-		/// Идентификатор сообщества, в котором находится обсуждение.положительное число,
+		/// Идентификатор обсуждения. положительное число,
 		/// обязательный параметр
 		/// </summary>
 		[JsonProperty(propertyName: "topic_id")]
@@ -53,11 +53,11 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-					{ "group_id", p.GroupId }
-					, { "topic_id", p.TopicId }
-					, { "comment_id", p.CommentId }
-					, { "captcha_sid", p.CaptchaSid }
-					, { "captcha_key", p.CaptchaKey }
+				{ "group_id", p.GroupId },
+				{ "topic_id", p.TopicId },
+				{ "comment_id", p.CommentId },
+				{ "captcha_sid", p.CaptchaSid },
+				{ "captcha_key", p.CaptchaKey }
 			};
 
 			return parameters;
