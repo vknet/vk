@@ -122,7 +122,17 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool Edit(WallEditParams @params)
 		{
-			return _vk.Call("wall.edit", @params);
+			var resp = _vk.Call("wall.edit", @params);
+
+			if (resp != null)
+			{
+				if (resp.ContainsKey("post_id"))  // Начиная с версии 5.100 
+					return true;
+
+				if (resp == 1)                    // версии <5.100
+					return true;
+			}
+			return false;
 		}
 
 		/// <inheritdoc />
