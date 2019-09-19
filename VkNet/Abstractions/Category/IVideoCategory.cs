@@ -22,7 +22,7 @@ namespace VkNet.Abstractions
 		long Add(long videoId, long ownerId, long? targetId = null);
 
 		/// <inheritdoc cref="IVideoCategoryAsync.SaveAsync"/>
-		Video Save(VideoSaveParams @params);
+		SavedVideo Save(VideoSaveParams @params);
 
 		/// <inheritdoc cref="IVideoCategoryAsync.DeleteAsync"/>
 		bool Delete(long videoId, long? ownerId = null, long? targetId = null);

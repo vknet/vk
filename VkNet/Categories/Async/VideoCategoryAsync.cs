@@ -32,7 +32,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<Video> SaveAsync(VideoSaveParams @params)
+		public Task<SavedVideo> SaveAsync(VideoSaveParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Save(@params));
 		}

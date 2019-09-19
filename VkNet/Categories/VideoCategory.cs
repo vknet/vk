@@ -56,7 +56,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Video Save(VideoSaveParams @params)
+		public SavedVideo Save(VideoSaveParams @params)
 		{
 			return _vk.Call("video.save", @params);
 		}

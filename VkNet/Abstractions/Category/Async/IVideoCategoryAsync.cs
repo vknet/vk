@@ -105,7 +105,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/video.save
 		/// </remarks>
-		Task<Video> SaveAsync(VideoSaveParams @params);
+		Task<SavedVideo> SaveAsync(VideoSaveParams @params);
 
 		/// <summary>
 		/// Удаляет видеозапись со страницы пользователя.
