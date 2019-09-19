@@ -20,6 +20,16 @@ namespace VkNet.Model.Attachments
 		protected override string Alias => "video";
 
 		/// <summary>
+		/// Идентификатор вложения.
+		/// </summary>
+		[JsonProperty("video_id")]
+		private long? VideoId
+		{
+			get => Id;
+			set => Id = value;
+		}
+
+		/// <summary>
 		/// Название видеозаписи.
 		/// </summary>
 		[JsonProperty("title")]
