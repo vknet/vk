@@ -12,14 +12,44 @@ namespace VkNet.Model
 	/// <remarks>
 	/// См. описание https://vk.com/dev/video.save
 	/// </remarks>
-	[DebuggerDisplay("Id = {Id}, Title = {Title}")]
 	[Serializable]
 	public class SavedVideo
 	{
 		/// <summary>
-		/// Поле с ответом
+		/// Ссылка по которой требуется перейти (GET запрос), чтобы подтвердить загрузку видео с внешнего источника
 		/// </summary>
-		public SavedVideoResponse Response { get; set; }
+		[JsonProperty("upload_url")]
+		public string UploadUrl { get; set; }
+
+		/// <summary>
+		/// Идентификатор видеозаписи
+		/// </summary>
+		[JsonProperty("vid")]
+		public int Vid { get; set; }
+
+		/// <summary>
+		/// Идентификатор владельца видеозаписи
+		/// </summary>
+		[JsonProperty("owner_id")]
+		public int OwnerId { get; set; }
+
+		/// <summary>
+		/// Название видеозаписи
+		/// </summary>
+		[JsonProperty("name")]
+		public string Name { get; set; }
+
+		/// <summary>
+		/// Описание видеозаписи
+		/// </summary>
+		[JsonProperty("description")]
+		public string Description { get; set; }
+
+		/// <summary>
+		/// Ключ доступа
+		/// </summary>
+		[JsonProperty("access_key")]
+		public string AccessKey { get; set; }
 
 	#region Методы
 

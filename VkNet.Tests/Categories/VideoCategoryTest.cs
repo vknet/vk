@@ -432,22 +432,21 @@ namespace VkNet.Tests.Categories
 
 			ReadCategoryJsonPath(nameof(Save_NormalCase));
 
-			var savedVideo = Api.Video.Save(new VideoSaveParams
+			var video = Api.Video.Save(new VideoSaveParams
 			{
-				Name = "Название из ютуба", Description = "Описание из ютуба", Wallpost = true,
-				Link = "https://www.youtube.com/watch?v=lhQtzv5a408&list=PLBC36AAAE4E4E0CAA"
+				Name = "Название из ютуба",
+				Description = "Описание из ютуба",
+				Wallpost = false,
+				Link = "https://www.youtube.com/watch?v=QUvVdTlA23w"
 			});
 
-			var response = savedVideo?.Response;
+			Assert.That(video, Is.Not.Null);
+			Assert.That(video.OwnerId, Is.EqualTo(2346958));
+			//Assert.That(video.Name, Is.EqualTo("Название из ютуба")); Не соответствует документации
+			Assert.That(video.Description, Is.EqualTo("Описание из ютуба"));
+			Assert.That(video.AccessKey, Is.EqualTo("f2ec9f3982f05bc"));
 
-			Assert.That(response, Is.Not.Null);
-			Assert.That(response.Name, Is.EqualTo(1673994));
-			Assert.That(response.OwnerId, Is.EqualTo(2346958));
-			Assert.That(response.Name, Is.EqualTo("Название из ютуба"));
-			Assert.That(response.Description, Is.EqualTo("Описание из ютуба"));
-			Assert.That(response.AccessKey, Is.EqualTo("f2ec9f3982f05bc"));
-
-			Assert.That(response.UploadUrl,
+			Assert.That(video.UploadUrl,
 				Is.EqualTo(new Uri(
 					"http://cs6058.vk.com/upload.php?act=parse_share&hash=d5371f57b935d1b3b0c6cde1100ecb&rhash=5c623ee8b80db0d3af5078a5dfb2&mid=234695118&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlhQtzv5a408&api_callback=06ec8115dfc9a66eec&remotely=1&photo_server=607423&photo_server_hash=7874a144e80b8bb3c1a1eee5c9043")));
 		}
