@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -16,7 +16,8 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор полученного подарка.
 		/// </summary>
-		public ulong Id { get; set; }
+		[JsonProperty("id")]
+		public long Id { get; set; }
 
 		/// <summary>
 		/// Идентификатор пользователя, который отправил подарок, или 0, если отправитель
