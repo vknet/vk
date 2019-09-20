@@ -8,9 +8,9 @@ namespace VkNet.Categories
 	public partial class GiftsCategory
 	{
 		/// <inheritdoc />
-		public Task<VkCollection<GiftItem>> GetAsync(long userId, int? count = null, int? offset = null)
+		public Task<VkCollection<GiftItem>> GetAsync(long? userId = null, int? count = null, int? offset = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Get(userId: userId, count: count, offset: offset));
+			return TypeHelper.TryInvokeMethodAsync(() => Get(userId, count, offset));
 		}
 	}
 }

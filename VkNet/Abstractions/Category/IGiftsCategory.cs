@@ -13,7 +13,7 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="userId">
 		/// Идентификатор пользователя, для которого необходимо
-		/// получить список подарков.
+		/// получить список подарков. По умолчанию идентификатор текущего пользователя.
 		/// </param>
 		/// <param name="count"> Количество подарков, которое нужно вернуть. </param>
 		/// <param name="offset">
@@ -44,6 +44,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/gifts.get
 		/// </remarks>
-		VkCollection<GiftItem> Get(long userId, int? count = null, int? offset = null);
+		VkCollection<GiftItem> Get(long? userId = null, int? count = null, int? offset = null);
 	}
 }
