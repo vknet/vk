@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -15,16 +16,19 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Изображение 48х48.
 		/// </summary>
+		[JsonProperty("thumb_48")]
 		public Uri Thumb48 { get; set; }
 
 		/// <summary>
 		/// Изображение 96х96.
 		/// </summary>
+		[JsonProperty("thumb_96")]
 		public Uri Thumb96 { get; set; }
 
 		/// <summary>
 		/// Изображение 256х256.
 		/// </summary>
+		[JsonProperty("thumb_256")]
 		public Uri Thumb256 { get; set; }
 
 		/// <summary>
@@ -36,10 +40,10 @@ namespace VkNet.Model.Attachments
 		{
 			return new Gift
 			{
-				Id = response[key: "id"],
-				Thumb48 = response[key: "thumb_48"],
-				Thumb96 = response[key: "thumb_96"],
-				Thumb256 = response[key: "thumb_256"]
+				Id = response["id"],
+				Thumb48 = response["thumb_48"],
+				Thumb96 = response["thumb_96"],
+				Thumb256 = response["thumb_256"]
 			};
 		}
 
@@ -55,9 +59,7 @@ namespace VkNet.Model.Attachments
 				return null;
 			}
 
-			return response.HasToken()
-				? FromJson(response)
-				: null;
+			return response.HasToken() ? FromJson(response) : null;
 		}
 	}
 }
