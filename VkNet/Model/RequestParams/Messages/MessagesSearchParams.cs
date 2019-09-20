@@ -38,7 +38,7 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty("date")]
 		[JsonConverter(typeof(DateTimeToStringFormatConverter), "ddMMyyyy")]
-		public DateTime Date { get; set; }
+		public DateTime? Date { get; set; }
 
 		/// <summary>
 		/// Количество символов, по которому нужно обрезать сообщение.
