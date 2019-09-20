@@ -27,7 +27,8 @@ namespace VkNet.Tests.Utils.JsonConverter
 
 			var message = new MessagesSearchParams
 			{
-				Date = new DateTime(2018, 11, 5)
+				Date = new DateTime(2018, 11, 5),
+				Count = 20
 			};
 
 			var json = JsonConvert.SerializeObject(message,
