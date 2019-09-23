@@ -29,6 +29,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getUsers
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		VkCollection<User> GetUsers(int? count = null, int? offset = null);
 
 		/// <summary>
@@ -56,6 +57,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPhotos
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		VkCollection<Photo> GetPhotos(int? count = null, int? offset = null, bool? photoSizes = null);
 
 		/// <summary>
@@ -83,6 +85,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPosts
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		WallGetObject GetPosts(int? count = null, int? offset = null, bool extended = false);
 
 		/// <summary>
@@ -109,6 +112,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getVideos
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		FaveVideoEx GetVideos(int? count = null, int? offset = null, bool extended = false);
 
 		/// <summary>
@@ -132,6 +136,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getLinks
 		/// </remarks>
+		
+		[Obsolete(ObsoleteText.Obsolete)]
 		VkCollection<ExternalLink> GetLinks(int? count = null, int? offset = null);
 
 		/// <summary>
@@ -148,6 +154,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.addUser
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		bool AddUser(long userId);
 
 		/// <summary>
@@ -164,6 +171,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeUser
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		bool RemoveUser(long userId);
 
 		/// <summary>
@@ -180,6 +188,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.addGroup
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		bool AddGroup(long groupId);
 
 		/// <summary>
@@ -196,6 +205,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeGroup
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		bool RemoveGroup(long groupId);
 
 		/// <summary>
@@ -256,6 +266,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getMarketItems
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		VkCollection<Market> GetMarketItems(ulong? count = null, ulong? offset = null, bool? extended = null);
 	}
 }

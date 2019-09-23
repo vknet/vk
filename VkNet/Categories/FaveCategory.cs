@@ -44,6 +44,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getUsers
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		public VkCollection<User> GetUsers(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
@@ -83,6 +84,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPhotos
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		public VkCollection<Photo> GetPhotos(int? count = null, int? offset = null, bool? photoSizes = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
@@ -123,6 +125,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPosts
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		public WallGetObject GetPosts(int? count = null, int? offset = null, bool extended = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
@@ -162,6 +165,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getVideos
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		public FaveVideoEx GetVideos(int? count = null, int? offset = null, bool extended = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
@@ -198,6 +202,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getLinks
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		public VkCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
@@ -226,6 +231,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.addUser
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		public bool AddUser(long userId)
 		{
 			var parameters = new VkParameters
@@ -250,6 +256,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeUser
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		public bool RemoveUser(long userId)
 		{
 			var parameters = new VkParameters
@@ -274,6 +281,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.addGroup
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		public bool AddGroup(long groupId)
 		{
 			var parameters = new VkParameters
@@ -298,6 +306,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeGroup
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		public bool RemoveGroup(long groupId)
 		{
 			var parameters = new VkParameters
@@ -383,6 +392,7 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getMarketItems
 		/// </remarks>
+		[Obsolete(ObsoleteText.Obsolete)]
 		public VkCollection<Market> GetMarketItems(ulong? count = null, ulong? offset = null, bool? extended = null)
 		{
 			var parameters = new VkParameters

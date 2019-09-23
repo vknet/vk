@@ -10,12 +10,14 @@ namespace VkNet.Categories
 	public partial class FaveCategory
 	{
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.Obsolete)]
 		public Task<VkCollection<User>> GetUsersAsync(int? count = null, int? offset = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>GetUsers(count: count, offset: offset));
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.Obsolete)]
 		public Task<VkCollection<Photo>> GetPhotosAsync(int? count = null, int? offset = null, bool? photoSizes = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
@@ -23,42 +25,49 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.Obsolete)]
 		public Task<WallGetObject> GetPostsAsync(int? count = null, int? offset = null, bool extended = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>GetPosts(count: count, offset: offset, extended: extended));
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.Obsolete)]
 		public Task<FaveVideoEx> GetVideosAsync(int? count = null, int? offset = null, bool extended = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>GetVideos(count: count, offset: offset, extended: extended));
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.Obsolete)]
 		public Task<VkCollection<ExternalLink>> GetLinksAsync(int? count = null, int? offset = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>GetLinks(count: count, offset: offset));
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.Obsolete)]
 		public Task<bool> AddUserAsync(long userId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>AddUser(userId: userId));
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.Obsolete)]
 		public Task<bool> RemoveUserAsync(long userId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>RemoveUser(userId: userId));
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.Obsolete)]
 		public Task<bool> AddGroupAsync(long groupId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>AddGroup(groupId: groupId));
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.Obsolete)]
 		public Task<bool> RemoveGroupAsync(long groupId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>RemoveGroup(groupId: groupId));
@@ -77,6 +86,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.Obsolete)]
 		public Task<VkCollection<Market>> GetMarketItemsAsync(ulong? count = null, ulong? offset = null, bool? extended = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
