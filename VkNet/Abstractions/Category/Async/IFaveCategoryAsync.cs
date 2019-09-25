@@ -128,10 +128,10 @@ namespace VkNet.Abstractions
 		/// owner_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1).
 		/// </param>
 		/// <param name = "id">
-		/// Идентификатор видеозаписи. целое число, обязательный параметр
+		/// Идентификатор видеозаписи.
 		/// </param>
 		/// <param name = "accessKey">
-		/// Специальный код доступа для приватных видеозаписей. строка
+		/// Специальный код доступа для приватных видеозаписей.
 		/// </param>
 		/// <param name = "ref"/>
 		/// <returns>
@@ -140,7 +140,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.addVideo
 		/// </remarks>
-		Task<bool> AddVideoAsync(long ownerId, long id, string accessKey, string @ref);
+		Task<bool> AddVideoAsync(long ownerId, long id, string accessKey = null, string @ref = null);
 
 		/// <summary>
 		/// Редактирует метку.

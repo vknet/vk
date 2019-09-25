@@ -48,7 +48,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<bool> AddVideoAsync(long ownerId, long id, string accessKey, string @ref)
+		public Task<bool> AddVideoAsync(long ownerId, long id, string accessKey = null, string @ref = null)
 
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => AddVideo(ownerId, id, accessKey, @ref));

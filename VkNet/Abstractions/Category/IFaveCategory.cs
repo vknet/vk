@@ -31,7 +31,7 @@ namespace VkNet.Abstractions
 		FaveTag AddTag(string name, string position);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.AddVideoAsync"/>
-		bool AddVideo(long ownerId, long id, string accessKey, string @ref);
+		bool AddVideo(long ownerId, long id, string accessKey = null, string @ref = null);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.EditTagAsync"/>
 		bool EditTag(long id, string name);

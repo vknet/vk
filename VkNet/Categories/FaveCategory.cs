@@ -91,7 +91,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public bool AddVideo(long ownerId, long id, string accessKey, string @ref)
+		public bool AddVideo(long ownerId, long id, string accessKey = null, string @ref = null)
 		{
 			return _vk.Call<bool>("fave.addVideo", new VkParameters
 			{
