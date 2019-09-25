@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
@@ -113,17 +113,17 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public VkCollection<FaveGetObject> Get(FaveGetParams getParams)
+		public VkCollection<FaveGetObject> Get(FaveGetParams @params)
 		{
 			return _vk.Call<VkCollection<FaveGetObject>>("fave.get", new VkParameters
 			{
-				{ "item_type", getParams.ItemType },
-				{ "fields", getParams.Fields },
-				{ "extended", getParams.Extended },
-				{ "tag_id", getParams.TagId },
-				{ "offset", getParams.Offset },
-				{ "count", getParams.Count },
-				{ "is_from_snackbar", getParams.IsFromSnackbar }
+				{ "item_type", @params.ItemType },
+				{ "fields", @params.Fields },
+				{ "extended", @params.Extended },
+				{ "tag_id", @params.TagId },
+				{ "offset", @params.Offset },
+				{ "count", @params.Count },
+				{ "is_from_snackbar", @params.IsFromSnackbar }
 			});
 		}
 
