@@ -58,5 +58,9 @@ namespace VkNet.Model.Fave
 		/// <inheritdoc cref="Attachments.Podcast" />
 		[JsonProperty("podcast")]
 		public Podcast Podcast { get; set; }
+
+		/// <inheritdoc cref="Attachments.Link" />
+		[JsonProperty("link")]
+		public Link Link { get; set; }
 	}
 }
