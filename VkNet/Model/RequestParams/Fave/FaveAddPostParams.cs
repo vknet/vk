@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json;
 
 namespace VkNet.Model.RequestParams.Fave
@@ -5,6 +6,7 @@ namespace VkNet.Model.RequestParams.Fave
 	/// <summary>
 	/// Параметры запроса метода fave.addPost
 	/// </summary>
+	[Serializable]
 	public class FaveAddPostParams
 	{
 		/// <summary>

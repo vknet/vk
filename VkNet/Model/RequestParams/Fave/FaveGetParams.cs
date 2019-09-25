@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Utils.JsonConverter;
@@ -7,6 +8,7 @@ namespace VkNet.Model.RequestParams.Fave
 	/// <summary>
 	/// Параметры запроса метода fave.get
 	/// </summary>
+	[Serializable]
 	public class FaveGetParams
 	{
 		/// <summary>
