@@ -26,7 +26,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public bool AddArticle(string url, string @ref, string trackCode, string source)
+		public bool AddArticle(Uri url, string @ref = null, string trackCode = null, string source = null)
 		{
 			return _vk.Call<bool>("fave.addArticle", new VkParameters
 			{

@@ -12,7 +12,7 @@ namespace VkNet.Categories
 	public partial class FaveCategory
 	{
 		/// <inheritdoc/>
-		public Task<bool> AddArticleAsync(string url, string @ref, string trackCode, string source)
+		public Task<bool> AddArticleAsync(Uri url, string @ref = null, string trackCode = null, string source = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => AddArticle(url, @ref, trackCode, source));
 		}

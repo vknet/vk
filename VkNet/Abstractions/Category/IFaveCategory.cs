@@ -13,7 +13,7 @@ namespace VkNet.Abstractions
 	public partial interface IFaveCategory : IFaveCategoryAsync
 	{
 		/// <inheritdoc cref = "IFaveCategoryAsync.AddArticleAsync"/>
-		bool AddArticle(string url, string @ref, string trackCode, string source);
+		bool AddArticle(Uri url, string @ref = null, string trackCode = null, string source = null);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.AddLinkAsync(Uri)"/>
 		bool AddLink(Uri link);
@@ -40,7 +40,11 @@ namespace VkNet.Abstractions
 		VkCollection<FaveGetObject> Get(FaveGetParams faveGetParams);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.GetPagesAsync"/>
-		VkCollection<FaveGetPagesObject> GetPages(FavePageType type = null, IEnumerable<string> fields = null, ulong? offset = null, ulong? count = null, long? tagId = null);
+		VkCollection<FaveGetPagesObject> GetPages(FavePageType type = null,
+												  IEnumerable<string> fields = null,
+												  ulong? offset = null,
+												  ulong? count = null,
+												  long? tagId = null);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.GetTagsAsync"/>
 		VkCollection<FaveTag> GetTags();

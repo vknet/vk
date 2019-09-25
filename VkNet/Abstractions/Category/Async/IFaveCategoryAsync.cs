@@ -29,7 +29,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.addArticle
 		/// </remarks>
-		Task<bool> AddArticleAsync(string url, string @ref, string trackCode, string source);
+		Task<bool> AddArticleAsync(Uri url, string @ref = null, string trackCode = null, string source = null);
 
 		/// <summary>
 		/// Добавляет ссылку в закладки.
@@ -214,7 +214,11 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPages
 		/// </remarks>
-		Task<VkCollection<FaveGetPagesObject>> GetPagesAsync(FavePageType type = null, IEnumerable<string> fields = null, ulong? offset = null, ulong? count = null, long? tagId = null);
+		Task<VkCollection<FaveGetPagesObject>> GetPagesAsync(FavePageType type = null,
+															 IEnumerable<string> fields = null,
+															 ulong? offset = null,
+															 ulong? count = null,
+															 long? tagId = null);
 
 		/// <summary>
 		/// Возвращает список меток в закладках.
