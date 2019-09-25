@@ -226,7 +226,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getTags
 		/// </remarks>
-		Task<IEnumerable<object>> GetTagsAsync();
+		Task<VkCollection<FaveTag>> GetTagsAsync();
 
 		/// <summary>
 		/// Отмечает закладки как просмотренные.

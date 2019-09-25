@@ -77,7 +77,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<IEnumerable<object>> GetTagsAsync()
+		public Task<VkCollection<FaveTag>> GetTagsAsync()
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetTags());
 		}

@@ -145,9 +145,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> GetTags()
+		public VkCollection<FaveTag> GetTags()
 		{
-			return _vk.Call<IEnumerable<object>>("fave.getTags", VkParameters.Empty);
+			return _vk.Call<VkCollection<FaveTag>>("fave.getTags", VkParameters.Empty);
 		}
 
 		/// <inheritdoc/>

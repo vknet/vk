@@ -43,7 +43,7 @@ namespace VkNet.Abstractions
 		VkCollection<FaveGetPagesObject> GetPages(FavePageType type = null, IEnumerable<string> fields = null, ulong? offset = null, ulong? count = null, long? tagId = null);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.GetTagsAsync"/>
-		IEnumerable<object> GetTags();
+		VkCollection<FaveTag> GetTags();
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.MarkSeenAsync"/>
 		bool MarkSeen();
