@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -16,16 +17,19 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Адрес граффити, по которому его можно загрузить.
 		/// </summary>
-		public string Url { get; set; }
+		[JsonProperty("url")]
+		public Uri Url { get; set; }
 
 		/// <summary>
 		/// Ширина изображения в px.
 		/// </summary>
+		[JsonProperty("width")]
 		public int Width { get; set; }
 
 		/// <summary>
 		/// Высота изображения в px.
 		/// </summary>
+		[JsonProperty("height")]
 		public int Height { get; set; }
 
 	#region Методы
