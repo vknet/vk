@@ -1,7 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using VkNet.Model;
-using VkNet.Model.Attachments;
+using VkNet.Model.RequestParams.Fave;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -9,88 +9,144 @@ namespace VkNet.Categories
 	/// <inheritdoc />
 	public partial class FaveCategory
 	{
-		/// <inheritdoc />
-		[Obsolete(ObsoleteText.Obsolete)]
-		public Task<VkCollection<User>> GetUsersAsync(int? count = null, int? offset = null)
+		/// <inheritdoc/>
+		public Task<bool> AddArticleAsync(string url, string @ref, string trackCode, string source)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetUsers(count: count, offset: offset));
+			return TypeHelper.TryInvokeMethodAsync(() => AddArticle(url, @ref, trackCode, source));
 		}
 
-		/// <inheritdoc />
-		[Obsolete(ObsoleteText.Obsolete)]
-		public Task<VkCollection<Photo>> GetPhotosAsync(int? count = null, int? offset = null, bool? photoSizes = null)
+		/// <inheritdoc/>
+		public Task<bool> AddLinkAsync(Uri link)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					GetPhotos(count: count, offset: offset, photoSizes: photoSizes));
+			return TypeHelper.TryInvokeMethodAsync(() => AddLink(link));
 		}
 
-		/// <inheritdoc />
-		[Obsolete(ObsoleteText.Obsolete)]
-		public Task<WallGetObject> GetPostsAsync(int? count = null, int? offset = null, bool extended = false)
+		/// <inheritdoc/>
+		public Task<bool> AddPageAsync(ulong? userId = null, ulong? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetPosts(count: count, offset: offset, extended: extended));
+			return TypeHelper.TryInvokeMethodAsync(() => AddPage(userId, groupId));
 		}
 
-		/// <inheritdoc />
-		[Obsolete(ObsoleteText.Obsolete)]
-		public Task<FaveVideoEx> GetVideosAsync(int? count = null, int? offset = null, bool extended = false)
+		/// <inheritdoc/>
+		public Task<bool> AddPostAsync(FaveAddPostParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetVideos(count: count, offset: offset, extended: extended));
+			return TypeHelper.TryInvokeMethodAsync(() => AddPost(@params));
 		}
 
-		/// <inheritdoc />
-		[Obsolete(ObsoleteText.Obsolete)]
-		public Task<VkCollection<ExternalLink>> GetLinksAsync(int? count = null, int? offset = null)
+		/// <inheritdoc/>
+		public Task<bool> AddProductAsync(long ownerId, long id, string accessKey, string @ref, string source)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetLinks(count: count, offset: offset));
+			return TypeHelper.TryInvokeMethodAsync(() => AddProduct(ownerId, id, accessKey, @ref, source));
 		}
 
-		/// <inheritdoc />
-		[Obsolete(ObsoleteText.Obsolete)]
-		public Task<bool> AddUserAsync(long userId)
+		/// <inheritdoc/>
+		public Task<object> AddTagAsync(string name, string position)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>AddUser(userId: userId));
+			return TypeHelper.TryInvokeMethodAsync(() => AddTag(name, position));
 		}
 
-		/// <inheritdoc />
-		[Obsolete(ObsoleteText.Obsolete)]
-		public Task<bool> RemoveUserAsync(long userId)
+		/// <inheritdoc/>
+		public Task<bool> AddVideoAsync(long ownerId, long id, string accessKey, string @ref)
+
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>RemoveUser(userId: userId));
+			return TypeHelper.TryInvokeMethodAsync(() => AddVideo(ownerId, id, accessKey, @ref));
 		}
 
-		/// <inheritdoc />
-		[Obsolete(ObsoleteText.Obsolete)]
-		public Task<bool> AddGroupAsync(long groupId)
+		/// <inheritdoc/>
+		public Task<bool> EditTagAsync(long id, string name)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>AddGroup(groupId: groupId));
+			return TypeHelper.TryInvokeMethodAsync(() => EditTag(id, name));
 		}
 
-		/// <inheritdoc />
-		[Obsolete(ObsoleteText.Obsolete)]
-		public Task<bool> RemoveGroupAsync(long groupId)
+		/// <inheritdoc/>
+		public Task<IEnumerable<object>> GetAsync(FaveGetParams @params)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>RemoveGroup(groupId: groupId));
+			return TypeHelper.TryInvokeMethodAsync(() => Get(@params));
 		}
 
-		/// <inheritdoc />
-		public Task<bool> AddLinkAsync(Uri link, string text)
+		/// <inheritdoc/>
+		public Task<object> GetPagesAsync(string type, IEnumerable<string> fields, ulong? offset = null, ulong? count = null, long? tagId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>AddLink(link: link, text: text));
+			return TypeHelper.TryInvokeMethodAsync(() => GetPages(type, fields, offset, count, tagId));
 		}
 
-		/// <inheritdoc />
+		/// <inheritdoc/>
+		public Task<IEnumerable<object>> GetTagsAsync()
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetTags());
+		}
+
+		/// <inheritdoc/>
+		public Task<bool> MarkSeenAsync()
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => MarkSeen());
+		}
+
+		/// <inheritdoc/>
+		public Task<bool> RemoveArticleAsync(long ownerId, ulong articleId, string @ref)
+
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => RemoveArticle(ownerId, articleId, @ref));
+		}
+
+		/// <inheritdoc/>
 		public Task<bool> RemoveLinkAsync(string linkId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>RemoveLink(linkId: linkId));
+			return TypeHelper.TryInvokeMethodAsync(() => RemoveLink(linkId));
 		}
 
-		/// <inheritdoc />
-		[Obsolete(ObsoleteText.Obsolete)]
-		public Task<VkCollection<Market>> GetMarketItemsAsync(ulong? count = null, ulong? offset = null, bool? extended = null)
+		/// <inheritdoc/>
+		public Task<bool> RemovePageAsync(long? userId = null, long? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					GetMarketItems(count: count, offset: offset, extended: extended));
+			return TypeHelper.TryInvokeMethodAsync(() => RemovePage(userId, groupId));
+		}
+
+		/// <inheritdoc/>
+		public Task<bool> RemovePostAsync(long ownerId, long id)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => RemovePost(ownerId, id));
+		}
+
+		/// <inheritdoc/>
+		public Task<bool> RemoveProductAsync(long ownerId, long id)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => RemoveProduct(ownerId, id));
+		}
+
+		/// <inheritdoc/>
+		public Task<bool> RemoveTagAsync(long id)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => RemoveTag(id));
+		}
+
+		/// <inheritdoc/>
+		public Task<bool> RemoveVideoAsync(long ownerId, long id)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => RemoveVideo(ownerId, id));
+		}
+
+		/// <inheritdoc/>
+		public Task<bool> ReorderTagsAsync(IEnumerable<long> ids)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => ReorderTags(ids));
+		}
+
+		/// <inheritdoc/>
+		public Task<bool> SetPageTagsAsync(ulong? userId = null, ulong? groupId = null, IEnumerable<long> tagIds = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => SetPageTags(userId, groupId, tagIds));
+		}
+
+		/// <inheritdoc/>
+		public Task<bool> SetTagsAsync(FaveSetTagsParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => SetTags(@params));
+		}
+
+		/// <inheritdoc/>
+		public Task<bool> TrackPageInteractionAsync(ulong? userId = null, ulong? groupId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => TrackPageInteraction(userId, groupId));
 		}
 	}
 }

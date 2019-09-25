@@ -1,14 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using VkNet.Abstractions;
-using VkNet.Model;
-using VkNet.Model.Attachments;
+using VkNet.Model.RequestParams.Fave;
 using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Категория работы с закладками.
-	/// </summary>
+	/// <inheritdoc />
 	public partial class FaveCategory : IFaveCategory
 	{
 		/// <summary>
@@ -25,384 +23,235 @@ namespace VkNet.Categories
 			_vk = vk;
 		}
 
-		/// <summary>
-		/// Возвращает список пользователей, добавленных текущим пользователем в закладки.
-		/// </summary>
-		/// <param name="offset">
-		/// Смещение, необходимое для выборки определенного подмножества пользователей. По
-		/// умолчанию — 0.
-		/// положительное число (Положительное число).
-		/// </param>
-		/// <param name="count">
-		/// Количество пользователей, информацию о которых необходимо вернуть.
-		/// положительное число, по
-		/// умолчанию 50 (Положительное число, по умолчанию 50).
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов пользователей.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.getUsers
-		/// </remarks>
-		[Obsolete(ObsoleteText.Obsolete)]
-		public VkCollection<User> GetUsers(int? count = null, int? offset = null)
+		/// <inheritdoc/>
+		public bool AddArticle(string url, string @ref, string trackCode, string source)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
-			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
-
-			var parameters = new VkParameters
+			return _vk.Call<bool>("fave.addArticle", new VkParameters
 			{
-					{ "count", count }
-					, { "offset", offset }
-			};
-
-			return _vk.Call(methodName: "fave.getUsers", parameters: parameters).ToVkCollectionOf<User>(selector: x => x);
+				{ "url", url },
+				{ "ref", @ref },
+				{ "track_code", trackCode },
+				{ "source", source }
+			});
 		}
 
-		/// <summary>
-		/// Возвращает фотографии, на которых текущий пользователь поставил отметку "Мне
-		/// нравится".
-		/// </summary>
-		/// <param name="offset">
-		/// Смещение, необходимое для выборки определенного подмножества фотографий.
-		/// По умолчанию 0. положительное число (Положительное число).
-		/// </param>
-		/// <param name="count">
-		/// Число фотографий, информацию о которых необходимо вернуть. положительное число,
-		/// по умолчанию 50
-		/// (Положительное число, по умолчанию 50).
-		/// </param>
-		/// <param name="photoSizes">
-		/// Параметр, указывающий нужно ли возвращать ли доступные размеры фотографии в
-		/// специальном
-		/// формате. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения
-		/// 1 или 0).
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов фотографий.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPhotos
-		/// </remarks>
-		[Obsolete(ObsoleteText.Obsolete)]
-		public VkCollection<Photo> GetPhotos(int? count = null, int? offset = null, bool? photoSizes = null)
+		/// <inheritdoc/>
+		public bool AddLink(Uri link)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
-			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
-
-			var parameters = new VkParameters
-			{
-					{ "count", count }
-					, { "offset", offset }
-					, { "photo_sizes", photoSizes }
-			};
-
-			return _vk.Call(methodName: "fave.getPhotos", parameters: parameters).ToVkCollectionOf<Photo>(selector: x => x);
+			return _vk.Call<bool>("fave.addLink", new VkParameters { { "link", link } });
 		}
 
-		/// <summary>
-		/// Возвращает записи, на которых текущий пользователь поставил отметку "Мне
-		/// нравится".
-		/// </summary>
-		/// <param name="offset">
-		/// Смещение, необходимо для выборки определенного подмножества записей.
-		/// По умолчанию — 0.
-		/// (Положительное число).
-		/// </param>
-		/// <param name="count">
-		/// Количество записей, информацию о которых нужно вернуть (но не более 100).
-		/// (Положительное число, по умолчанию 50).
-		/// </param>
-		/// <param name="extended">
-		/// 1 — в ответе будут возвращены дополнительные поля profiles и groups, содержащие
-		/// информацию о пользователях и
-		/// сообществах.
-		/// По умолчанию: 0.
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов записей на стене.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPosts
-		/// </remarks>
-		[Obsolete(ObsoleteText.Obsolete)]
-		public WallGetObject GetPosts(int? count = null, int? offset = null, bool extended = false)
+		/// <inheritdoc/>
+		public bool AddPage(ulong? userId = null, ulong? groupId = null)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
-			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
-
-			var parameters = new VkParameters
+			return _vk.Call<bool>("fave.addPage", new VkParameters
 			{
-					{ "count", count }
-					, { "offset", offset }
-					, { "extended", true }
-			};
-
-			return _vk.Call(methodName: "fave.getPosts", parameters: parameters);
+				{ "user_id", userId },
+				{ "group_id", groupId }
+			});
 		}
 
-		/// <summary>
-		/// Возвращает список видеозаписей, на которых текущий пользователь поставил
-		/// отметку "Мне нравится".
-		/// </summary>
-		/// <param name="offset">
-		/// Смещение, необходимое для выборки определенного подмножества видеозаписей.
-		/// (Положительное число).
-		/// </param>
-		/// <param name="count">
-		/// Количество видеозаписей, информацию о которых необходимо вернуть.
-		/// (Положительное число, по умолчанию 50).
-		/// </param>
-		/// <param name="extended">
-		/// 1 — в ответе будут возвращены дополнительные поля profiles и groups, содержащие
-		/// информацию о пользователях и
-		/// сообществах.
-		/// По умолчанию: 0.
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов видеозаписей.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.getVideos
-		/// </remarks>
-		[Obsolete(ObsoleteText.Obsolete)]
-		public FaveVideoEx GetVideos(int? count = null, int? offset = null, bool extended = false)
+		/// <inheritdoc/>
+		public bool AddPost(FaveAddPostParams addPostParams)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
-			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
-
-			var parameters = new VkParameters
+			return _vk.Call<bool>("fave.addPost", new VkParameters
 			{
-					{ "count", count }
-					, { "offset", offset }
-					, { "extended", true }
-			};
-
-			return _vk.Call(methodName: "fave.getVideos", parameters: parameters);
+				{ "owner_id", addPostParams.OwnerId },
+				{ "id", addPostParams.Id },
+				{ "access_key", addPostParams.AccessKey },
+				{ "ref", addPostParams.Ref },
+				{ "track_code", addPostParams.TrackCode },
+				{ "source", addPostParams.Source }
+			});
 		}
 
-		/// <summary>
-		/// Возвращает ссылки, добавленные в закладки текущим пользователем.
-		/// </summary>
-		/// <param name="offset">
-		/// Смещение, необходимое для выборки определенного подмножества ссылок.
-		/// положительное число
-		/// (Положительное число).
-		/// </param>
-		/// <param name="count">
-		/// Количество ссылок, информацию о которых необходимо вернуть. положительное
-		/// число, по умолчанию 50
-		/// (Положительное число, по умолчанию 50).
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает общее количество ссылок и массив объектов
-		/// link, каждый из которых содержит
-		/// поля id, URL, title, description, photo_50 и photo_100.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.getLinks
-		/// </remarks>
-		[Obsolete(ObsoleteText.Obsolete)]
-		public VkCollection<ExternalLink> GetLinks(int? count = null, int? offset = null)
+		/// <inheritdoc/>
+		public bool AddProduct(long ownerId, long id, string accessKey, string @ref, string source)
 		{
-			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
-			VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
-
-			var parameters = new VkParameters
+			return _vk.Call<bool>("fave.addProduct", new VkParameters
 			{
-					{ "count", count }
-					, { "offset", offset }
-			};
-
-			return _vk.Call(methodName: "fave.getLinks", parameters: parameters).ToVkCollectionOf<ExternalLink>(selector: x => x);
+				{ "owner_id", ownerId },
+				{ "id", id },
+				{ "access_key", accessKey },
+				{ "ref", @ref },
+				{ "source", source }
+			});
 		}
 
-		/// <summary>
-		/// Добавляет пользователя в закладки.
-		/// </summary>
-		/// <param name="userId">
-		/// Идентификатор пользователя, которого нужно добавить в закладки. положительное
-		/// число, обязательный
-		/// параметр (Положительное число, обязательный параметр).
-		/// </param>
-		/// <returns>
-		/// В случае успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.addUser
-		/// </remarks>
-		[Obsolete(ObsoleteText.Obsolete)]
-		public bool AddUser(long userId)
+		/// <inheritdoc/>
+		public object AddTag(string name, string position)
 		{
-			var parameters = new VkParameters
+			return _vk.Call<object>("fave.addTag", new VkParameters
 			{
-					{ "user_id", userId }
-			};
-
-			return _vk.Call(methodName: "fave.addUser", parameters: parameters);
+				{ "name", name },
+				{ "position", position }
+			});
 		}
 
-		/// <summary>
-		/// Удаляет пользователя из закладок.
-		/// </summary>
-		/// <param name="userId">
-		/// Идентификатор пользователя, которого нужно удалить из закладок. положительное
-		/// число, обязательный
-		/// параметр (Положительное число, обязательный параметр).
-		/// </param>
-		/// <returns>
-		/// В случае успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeUser
-		/// </remarks>
-		[Obsolete(ObsoleteText.Obsolete)]
-		public bool RemoveUser(long userId)
+		/// <inheritdoc/>
+		public bool AddVideo(long ownerId, long id, string accessKey, string @ref)
 		{
-			var parameters = new VkParameters
+			return _vk.Call<bool>("fave.addVideo", new VkParameters
 			{
-					{ "user_id", userId }
-			};
-
-			return _vk.Call(methodName: "fave.removeUser", parameters: parameters);
+				{ "owner_id", ownerId },
+				{ "id", id },
+				{ "access_key", accessKey },
+				{ "ref", @ref }
+			});
 		}
 
-		/// <summary>
-		/// Добавляет сообщество в закладки.
-		/// </summary>
-		/// <param name="groupId">
-		/// Идентификатор сообщества, которое нужно добавить в закладки. положительное
-		/// число, обязательный
-		/// параметр (Положительное число, обязательный параметр).
-		/// </param>
-		/// <returns>
-		/// В случае успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.addGroup
-		/// </remarks>
-		[Obsolete(ObsoleteText.Obsolete)]
-		public bool AddGroup(long groupId)
+		/// <inheritdoc/>
+		public bool EditTag(long id, string name)
 		{
-			var parameters = new VkParameters
+			return _vk.Call<bool>("fave.editTag", new VkParameters
 			{
-					{ "group_id", groupId }
-			};
-
-			return _vk.Call(methodName: "fave.addGroup", parameters: parameters);
+				{ "id", id },
+				{ "name", name }
+			});
 		}
 
-		/// <summary>
-		/// Удаляет сообщество из закладок.
-		/// </summary>
-		/// <param name="groupId">
-		/// Идентификатор сообщества, которое нужно удалить из закладок. положительное
-		/// число, обязательный
-		/// параметр (Положительное число, обязательный параметр).
-		/// </param>
-		/// <returns>
-		/// В случае успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeGroup
-		/// </remarks>
-		[Obsolete(ObsoleteText.Obsolete)]
-		public bool RemoveGroup(long groupId)
+		/// <inheritdoc/>
+		public IEnumerable<object> Get(FaveGetParams getParams)
 		{
-			var parameters = new VkParameters
+			return _vk.Call<IEnumerable<object>>("fave.get", new VkParameters
 			{
-					{ "group_id", groupId }
-			};
-
-			return _vk.Call(methodName: "fave.removeGroup", parameters: parameters);
+				{ "item_type", getParams.ItemType },
+				{ "fields", getParams.Fields },
+				{ "extended", getParams.Extended },
+				{ "tag_id", getParams.TagId },
+				{ "offset", getParams.Offset },
+				{ "count", getParams.Count },
+				{ "is_from_snackbar", getParams.IsFromSnackbar }
+			});
 		}
 
-		/// <summary>
-		/// Добавляет ссылку в закладки.
-		/// </summary>
-		/// <param name="link">
-		/// Адрес добавляемой ссылки. Поддерживаются только внутренние ссылки на
-		/// http://vk.com/. строка,
-		/// обязательный параметр (Строка, обязательный параметр).
-		/// </param>
-		/// <param name="text"> Текст ссылки. строка (Строка). </param>
-		/// <returns>
-		/// В случае успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.addLink
-		/// </remarks>
-		public bool AddLink(Uri link, string text)
+		/// <inheritdoc/>
+		public object GetPages(string type, IEnumerable<string> fields, ulong? offset = null, ulong? count = null, long? tagId = null)
 		{
-			var parameters = new VkParameters
+			return _vk.Call<object>("fave.getPages", new VkParameters
 			{
-					{ "link", link }
-					, { "text", text }
-			};
-
-			return _vk.Call(methodName: "fave.addLink", parameters: parameters);
+				{ "type", type },
+				{ "fields", fields },
+				{ "offset", offset },
+				{ "count", count },
+				{ "tag_id", tagId }
+			});
 		}
 
-		/// <summary>
-		/// Удаляет ссылку из закладок.
-		/// </summary>
-		/// <param name="linkId">
-		/// Идентификатор ссылки, которую нужно удалить, полученный методом fave.getLinks.
-		/// строка,
-		/// обязательный параметр (Строка, обязательный параметр).
-		/// </param>
-		/// <returns>
-		/// В случае успешного выполнения возвращает <c> true </c>.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeLink
-		/// </remarks>
+		/// <inheritdoc/>
+		public IEnumerable<object> GetTags()
+		{
+			return _vk.Call<IEnumerable<object>>("fave.getTags", VkParameters.Empty);
+		}
+
+		/// <inheritdoc/>
+		public bool MarkSeen()
+		{
+			return _vk.Call<bool>("fave.markSeen", VkParameters.Empty);
+		}
+
+		/// <inheritdoc/>
+		public bool RemoveArticle(long ownerId, ulong articleId, string @ref)
+		{
+			return _vk.Call<bool>("fave.removeArticle", new VkParameters
+			{
+				{ "owner_id", ownerId },
+				{ "article_id", articleId },
+				{ "ref", @ref }
+			});
+		}
+
+		/// <inheritdoc/>
 		public bool RemoveLink(string linkId)
 		{
-			var parameters = new VkParameters
-			{
-					{ "link_id", linkId }
-			};
-
-			return _vk.Call(methodName: "fave.removeLink", parameters: parameters);
+			return _vk.Call<bool>("fave.removeLink", new VkParameters { { "link_id", linkId } });
 		}
 
-		/// <summary>
-		/// Возвращает товары, добавленные в закладки текущим пользователем.
-		/// </summary>
-		/// <param name="count">
-		/// Число товаров, информацию о которых необходимо вернуть. положительное число, по
-		/// умолчанию 50
-		/// (Положительное число, по умолчанию 50).
-		/// </param>
-		/// <param name="offset">
-		/// Смещение, необходимое для выборки определенного подмножества товаров.
-		/// положительное число, по
-		/// умолчанию 0 (Положительное число, по умолчанию 0).
-		/// </param>
-		/// <param name="extended">
-		/// 1 — будут возвращены дополнительные поля likes, can_comment, can_repost,
-		/// photos. По умолчанию
-		/// данные поля не возвращается. флаг, может принимать значения 1 или 0 (Флаг,
-		/// может принимать значения 1 или 0).
-		/// </param>
-		/// <returns>
-		/// После успешного выполнения возвращает список объектов товаров.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/fave.getMarketItems
-		/// </remarks>
-		[Obsolete(ObsoleteText.Obsolete)]
-		public VkCollection<Market> GetMarketItems(ulong? count = null, ulong? offset = null, bool? extended = null)
+		/// <inheritdoc/>
+		public bool RemovePage(long? userId = null, long? groupId = null)
 		{
-			var parameters = new VkParameters
+			return _vk.Call<bool>("fave.removePage", new VkParameters
 			{
-					{ "count", count }
-					, { "offset", offset }
-					, { "extended", extended }
-			};
+				{ "user_id", userId },
+				{ "group_id", groupId }
+			});
+		}
 
-			return _vk.Call(methodName: "fave.getMarketItems", parameters: parameters).ToVkCollectionOf<Market>(selector: x => x);
+		/// <inheritdoc/>
+		public bool RemovePost(long ownerId, long id)
+		{
+			return _vk.Call<bool>("fave.removePost", new VkParameters
+			{
+				{ "owner_id", ownerId },
+				{ "id", id }
+			});
+		}
+
+		/// <inheritdoc/>
+		public bool RemoveProduct(long ownerId, long id)
+		{
+			return _vk.Call<bool>("fave.removeProduct", new VkParameters
+			{
+				{ "owner_id", ownerId },
+				{ "id", id }
+			});
+		}
+
+		/// <inheritdoc/>
+		public bool RemoveTag(long id)
+		{
+			return _vk.Call<bool>("fave.removeTag", new VkParameters { { "id", id } });
+		}
+
+		/// <inheritdoc/>
+		public bool RemoveVideo(long ownerId, long id)
+		{
+			return _vk.Call<bool>("fave.removeVideo", new VkParameters
+			{
+				{ "owner_id", ownerId },
+				{ "id", id }
+			});
+		}
+
+		/// <inheritdoc/>
+		public bool ReorderTags(IEnumerable<long> ids)
+		{
+			return _vk.Call<bool>("fave.reorderTags", new VkParameters { { "ids", ids } });
+		}
+
+		/// <inheritdoc/>
+		public bool SetPageTags(ulong? userId = null, ulong? groupId = null, IEnumerable<long> tagIds = null)
+		{
+			return _vk.Call<bool>("fave.setPageTags", new VkParameters
+			{
+				{ "user_id", userId },
+				{ "group_id", groupId },
+				{ "tag_ids", tagIds }
+			});
+		}
+
+		/// <inheritdoc/>
+		public bool SetTags(FaveSetTagsParams setTagsParams)
+		{
+			return _vk.Call<bool>("fave.setTags", new VkParameters
+			{
+				{ "item_type", setTagsParams.ItemType },
+				{ "link_id", setTagsParams.LinkId },
+				{ "link_url", setTagsParams.LinkUrl },
+				{ "item_owner_id", setTagsParams.ItemOwnerId },
+				{ "item_id", setTagsParams.ItemId },
+				{ "tag_ids", setTagsParams.TagIds }
+			});
+		}
+
+		/// <inheritdoc/>
+		public bool TrackPageInteraction(ulong? userId = null, ulong? groupId = null)
+		{
+			return _vk.Call<bool>("fave.trackPageInteraction", new VkParameters
+			{
+				{ "user_id", userId },
+				{ "group_id", groupId }
+			});
 		}
 	}
 }
