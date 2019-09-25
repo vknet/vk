@@ -5,7 +5,7 @@ using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model.Fave
+namespace VkNet.Model
 {
 	/// <summary>
 	/// Ответ метода fave.getPages

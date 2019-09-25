@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.Fave
+namespace VkNet.Model
 {
 	/// <summary>
 	/// Метка закладки.
