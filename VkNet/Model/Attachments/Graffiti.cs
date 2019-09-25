@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -13,6 +13,21 @@ namespace VkNet.Model.Attachments
 	{
 		/// <inheritdoc />
 		protected override string Alias => "graffiti";
+
+		/// <summary>
+		/// Адрес изображения для предпросмотра.
+		/// </summary>
+		[Obsolete("Это свойство устарело, используйте Uri Url")]
+		[JsonProperty("photo_200")]
+		public string Photo200 { get; set; }
+
+
+		/// <summary>
+		/// Адрес полноразмерного изображения.
+		/// </summary>
+		[Obsolete("Это свойство устарело, используйте Uri Url")]
+		[JsonProperty("photo_586")]
+		public string Photo586 { get; set; }
 
 		/// <summary>
 		/// Адрес граффити, по которому его можно загрузить.
