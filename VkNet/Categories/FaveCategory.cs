@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using VkNet.Abstractions;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Fave;
 using VkNet.Model.RequestParams.Fave;
 using VkNet.Utils;
@@ -127,9 +128,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object GetPages(string type, IEnumerable<string> fields, ulong? offset = null, ulong? count = null, long? tagId = null)
+		public VkCollection<FaveGetPagesObject> GetPages(FavePageType type = null,
+														 IEnumerable<string> fields = null,
+														 ulong? offset = null,
+														 ulong? count = null,
+														 long? tagId = null)
 		{
-			return _vk.Call<object>("fave.getPages", new VkParameters
+			return _vk.Call<VkCollection<FaveGetPagesObject>>("fave.getPages", new VkParameters
 			{
 				{ "type", type },
 				{ "fields", fields },

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Fave;
 using VkNet.Model.RequestParams.Fave;
 using VkNet.Utils;
@@ -39,7 +40,7 @@ namespace VkNet.Abstractions
 		VkCollection<FaveGetObject> Get(FaveGetParams faveGetParams);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.GetPagesAsync"/>
-		object GetPages(string type, IEnumerable<string> fields, ulong? offset = null, ulong? count = null, long? tagId = null);
+		VkCollection<FaveGetPagesObject> GetPages(FavePageType type = null, IEnumerable<string> fields = null, ulong? offset = null, ulong? count = null, long? tagId = null);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.GetTagsAsync"/>
 		IEnumerable<object> GetTags();

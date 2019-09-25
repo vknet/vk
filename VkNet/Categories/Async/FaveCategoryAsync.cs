@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Fave;
 using VkNet.Model.RequestParams.Fave;
 using VkNet.Utils;
@@ -66,7 +67,11 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<object> GetPagesAsync(string type, IEnumerable<string> fields, ulong? offset = null, ulong? count = null, long? tagId = null)
+		public Task<VkCollection<FaveGetPagesObject>> GetPagesAsync(FavePageType type = null,
+																	IEnumerable<string> fields = null,
+																	ulong? offset = null,
+																	ulong? count = null,
+																	long? tagId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetPages(type, fields, offset, count, tagId));
 		}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Fave;
 using VkNet.Model.RequestParams.Fave;
 using VkNet.Utils;
@@ -213,7 +214,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.getPages
 		/// </remarks>
-		Task<object> GetPagesAsync(string type, IEnumerable<string> fields, ulong? offset = null, ulong? count = null, long? tagId = null);
+		Task<VkCollection<FaveGetPagesObject>> GetPagesAsync(FavePageType type = null, IEnumerable<string> fields = null, ulong? offset = null, ulong? count = null, long? tagId = null);
 
 		/// <summary>
 		/// Возвращает список меток в закладках.
