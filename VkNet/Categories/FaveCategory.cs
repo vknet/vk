@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
@@ -237,16 +237,16 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public bool SetTags(FaveSetTagsParams setTagsParams)
+		public bool SetTags(FaveSetTagsParams @params)
 		{
 			return _vk.Call<bool>("fave.setTags", new VkParameters
 			{
-				{ "item_type", setTagsParams.ItemType },
-				{ "link_id", setTagsParams.LinkId },
-				{ "link_url", setTagsParams.LinkUrl },
-				{ "item_owner_id", setTagsParams.ItemOwnerId },
-				{ "item_id", setTagsParams.ItemId },
-				{ "tag_ids", setTagsParams.TagIds }
+				{ "item_type", @params.ItemType },
+				{ "link_id", @params.LinkId },
+				{ "link_url", @params.LinkUrl },
+				{ "item_owner_id", @params.ItemOwnerId },
+				{ "item_id", @params.ItemId },
+				{ "tag_ids", @params.TagIds }
 			});
 		}
 

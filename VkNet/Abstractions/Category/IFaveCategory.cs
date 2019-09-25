@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Fave;
@@ -80,7 +80,7 @@ namespace VkNet.Abstractions
 		bool SetPageTags(ulong? userId = null, ulong? groupId = null, IEnumerable<long> tagIds = null);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.SetTagsAsync"/>
-		bool SetTags(FaveSetTagsParams faveSetTagsParams);
+		bool SetTags(FaveSetTagsParams @params);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.TrackPageInteractionAsync"/>
 		bool TrackPageInteraction(ulong? userId = null, ulong? groupId = null);
