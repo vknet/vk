@@ -99,7 +99,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.addProduct
 		/// </remarks>
-		Task<bool> AddProductAsync(long ownerId, long id, string accessKey, string @ref, string source);
+		Task<bool> AddProductAsync(long ownerId, long id, string accessKey = null, string @ref = null, string source = null);
 
 		/// <summary>
 		/// Создает метку закладок.

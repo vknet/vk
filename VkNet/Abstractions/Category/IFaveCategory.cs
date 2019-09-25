@@ -25,7 +25,7 @@ namespace VkNet.Abstractions
 		bool AddPost(FaveAddPostParams addPostParams);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.AddProductAsync"/>
-		bool AddProduct(long ownerId, long id, string accessKey, string @ref, string source);
+		bool AddProduct(long ownerId, long id, string accessKey = null, string @ref = null, string source = null);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.AddTagAsync"/>
 		FaveTag AddTag(string name, string position);

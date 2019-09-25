@@ -36,7 +36,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<bool> AddProductAsync(long ownerId, long id, string accessKey, string @ref, string source)
+		public Task<bool> AddProductAsync(long ownerId, long id, string accessKey = null, string @ref = null, string source = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => AddProduct(ownerId, id, accessKey, @ref, source));
 		}

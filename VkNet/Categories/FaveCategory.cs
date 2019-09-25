@@ -68,7 +68,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public bool AddProduct(long ownerId, long id, string accessKey, string @ref, string source)
+		public bool AddProduct(long ownerId, long id, string accessKey = null, string @ref = null, string source = null)
 		{
 			return _vk.Call<bool>("fave.addProduct", new VkParameters
 			{
