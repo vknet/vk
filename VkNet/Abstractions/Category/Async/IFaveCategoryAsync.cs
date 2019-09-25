@@ -116,7 +116,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.addTag
 		/// </remarks>
-		Task<object> AddTagAsync(string name, string position);
+		Task<FaveTag> AddTagAsync(string name, string position);
 
 		/// <summary>
 		/// Добавляет видеозапись в закладки.

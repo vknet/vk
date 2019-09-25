@@ -80,9 +80,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object AddTag(string name, string position)
+		public FaveTag AddTag(string name, string position)
 		{
-			return _vk.Call<object>("fave.addTag", new VkParameters
+			return _vk.Call<FaveTag>("fave.addTag", new VkParameters
 			{
 				{ "name", name },
 				{ "position", position }

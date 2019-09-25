@@ -27,7 +27,7 @@ namespace VkNet.Abstractions
 		bool AddProduct(long ownerId, long id, string accessKey, string @ref, string source);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.AddTagAsync"/>
-		object AddTag(string name, string position);
+		FaveTag AddTag(string name, string position);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.AddVideoAsync"/>
 		bool AddVideo(long ownerId, long id, string accessKey, string @ref);

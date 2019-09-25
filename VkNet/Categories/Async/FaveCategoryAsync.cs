@@ -41,7 +41,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<object> AddTagAsync(string name, string position)
+		public Task<FaveTag> AddTagAsync(string name, string position)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => AddTag(name, position));
 		}
