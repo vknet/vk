@@ -14,14 +14,19 @@ namespace VkNet.Model.Attachments
 		protected override string Alias => "graffiti";
 
 		/// <summary>
-		/// Адрес изображения для предпросмотра.
+		/// Адрес граффити, по которому его можно загрузить.
 		/// </summary>
-		public string Photo200 { get; set; }
+		public string Url { get; set; }
 
 		/// <summary>
-		/// Адрес полноразмерного изображения.
+		/// Ширина изображения в px.
 		/// </summary>
-		public string Photo586 { get; set; }
+		public int Width { get; set; }
+
+		/// <summary>
+		/// Высота изображения в px.
+		/// </summary>
+		public int Height { get; set; }
 
 	#region Методы
 
@@ -36,8 +41,9 @@ namespace VkNet.Model.Attachments
 			{
 				Id = response["id"],
 				OwnerId = response["owner_id"],
-				Photo200 = response["photo_200"],
-				Photo586 = response["photo_586"]
+				Url = response["url"],
+				Width = response["width"],
+				Height = response["height"]
 			};
 		}
 
