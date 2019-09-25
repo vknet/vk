@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Model.Fave;
 using VkNet.Model.RequestParams.Fave;
+using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
@@ -182,7 +184,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.get
 		/// </remarks>
-		Task<IEnumerable<object>> GetAsync(FaveGetParams @params);
+		Task<VkCollection<FaveGetObject>> GetAsync(FaveGetParams @params);
 
 		/// <summary>
 		/// Возвращает страницы пользователей и сообществ, добавленных в закладки.

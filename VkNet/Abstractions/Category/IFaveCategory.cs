@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using VkNet.Model.Fave;
 using VkNet.Model.RequestParams.Fave;
+using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
@@ -34,7 +36,7 @@ namespace VkNet.Abstractions
 		bool EditTag(long id, string name);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.GetAsync"/>
-		IEnumerable<object> Get(FaveGetParams faveGetParams);
+		VkCollection<FaveGetObject> Get(FaveGetParams faveGetParams);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.GetPagesAsync"/>
 		object GetPages(string type, IEnumerable<string> fields, ulong? offset = null, ulong? count = null, long? tagId = null);

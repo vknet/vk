@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using VkNet.Abstractions;
+using VkNet.Model.Fave;
 using VkNet.Model.RequestParams.Fave;
 using VkNet.Utils;
 
@@ -111,9 +112,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public IEnumerable<object> Get(FaveGetParams getParams)
+		public VkCollection<FaveGetObject> Get(FaveGetParams getParams)
 		{
-			return _vk.Call<IEnumerable<object>>("fave.get", new VkParameters
+			return _vk.Call<VkCollection<FaveGetObject>>("fave.get", new VkParameters
 			{
 				{ "item_type", getParams.ItemType },
 				{ "fields", getParams.Fields },

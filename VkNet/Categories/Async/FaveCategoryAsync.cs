@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VkNet.Model.Fave;
 using VkNet.Model.RequestParams.Fave;
 using VkNet.Utils;
 
@@ -59,7 +60,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<IEnumerable<object>> GetAsync(FaveGetParams @params)
+		public Task<VkCollection<FaveGetObject>> GetAsync(FaveGetParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Get(@params));
 		}
