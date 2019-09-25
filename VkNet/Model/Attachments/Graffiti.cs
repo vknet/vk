@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -16,12 +17,35 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Адрес изображения для предпросмотра.
 		/// </summary>
+		[Obsolete("Это свойство устарело, используйте Uri Url")]
+		[JsonProperty("photo_200")]
 		public string Photo200 { get; set; }
+
 
 		/// <summary>
 		/// Адрес полноразмерного изображения.
 		/// </summary>
+		[Obsolete("Это свойство устарело, используйте Uri Url")]
+		[JsonProperty("photo_586")]
 		public string Photo586 { get; set; }
+
+		/// <summary>
+		/// Адрес граффити, по которому его можно загрузить.
+		/// </summary>
+		[JsonProperty("url")]
+		public Uri Url { get; set; }
+
+		/// <summary>
+		/// Ширина изображения в px.
+		/// </summary>
+		[JsonProperty("width")]
+		public int Width { get; set; }
+
+		/// <summary>
+		/// Высота изображения в px.
+		/// </summary>
+		[JsonProperty("height")]
+		public int Height { get; set; }
 
 	#region Методы
 
@@ -36,8 +60,9 @@ namespace VkNet.Model.Attachments
 			{
 				Id = response["id"],
 				OwnerId = response["owner_id"],
-				Photo200 = response["photo_200"],
-				Photo586 = response["photo_586"]
+				Url = response["url"],
+				Width = response["width"],
+				Height = response["height"]
 			};
 		}
 

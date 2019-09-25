@@ -489,7 +489,7 @@ namespace VkNet.Model.Attachments
 		private Podcast Podcast { get; set; }
 
 		/// <summary>
-		/// Документ.
+		/// Граффити.
 		/// </summary>
 		private Graffiti Graffiti { get; set; }
 
