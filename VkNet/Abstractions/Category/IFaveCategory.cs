@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Fave;
@@ -53,7 +53,7 @@ namespace VkNet.Abstractions
 		bool MarkSeen();
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.RemoveArticleAsync"/>
-		bool RemoveArticle(long ownerId, ulong articleId, string @ref);
+		bool RemoveArticle(long ownerId, ulong articleId, string @ref = null);
 
 		/// <inheritdoc cref = "IFaveCategoryAsync.RemoveLinkAsync" />
 		bool RemoveLink(string linkId);

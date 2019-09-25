@@ -89,7 +89,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<bool> RemoveArticleAsync(long ownerId, ulong articleId, string @ref)
+		public Task<bool> RemoveArticleAsync(long ownerId, ulong articleId, string @ref = null)
 
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => RemoveArticle(ownerId, articleId, @ref));

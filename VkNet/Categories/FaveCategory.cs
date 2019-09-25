@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
@@ -157,7 +157,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public bool RemoveArticle(long ownerId, ulong articleId, string @ref)
+		public bool RemoveArticle(long ownerId, ulong articleId, string @ref = null)
 		{
 			return _vk.Call<bool>("fave.removeArticle", new VkParameters
 			{

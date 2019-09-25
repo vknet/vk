@@ -259,7 +259,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/fave.removeArticle
 		/// </remarks>
-		Task<bool> RemoveArticleAsync(long ownerId, ulong articleId, string @ref);
+		Task<bool> RemoveArticleAsync(long ownerId, ulong articleId, string @ref = null);
 
 		/// <summary>
 		/// Удаляет ссылку из списка закладок пользователя.
