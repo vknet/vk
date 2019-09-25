@@ -11,6 +11,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Результат метода fave.get
 	/// </summary>
+	[Serializable]
 	public class FaveGetObject
 	{
 		/// <summary>

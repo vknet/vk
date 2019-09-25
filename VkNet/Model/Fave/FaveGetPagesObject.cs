@@ -10,6 +10,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// Ответ метода fave.getPages
 	/// </summary>
+	[Serializable]
 	public class FaveGetPagesObject
 	{
 		/// <summary>
