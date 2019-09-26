@@ -175,6 +175,12 @@ namespace VkNet.Model.Attachments
 		public bool? IsPrivate { get; set; }
 
 		/// <summary>
+		/// Список изображений обложки видеозаписи.
+		/// </summary>
+		[JsonProperty("image")]
+		public IEnumerable<VideoImage> Image { get; set; }
+
+		/// <summary>
 		/// Поле возвращается в том случае, если видеоролик находится в процессе обработки,
 		/// всегда содержит 1.
 		/// </summary>
