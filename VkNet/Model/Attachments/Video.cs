@@ -51,30 +51,35 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Uri изображения-обложки ролика с размером 130x98px.
 		/// </summary>
+		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		[JsonProperty("photo_130")]
 		public Uri Photo130 { get; set; }
 
 		/// <summary>
 		/// Uri изображения-обложки ролика с размером 320x240px.
 		/// </summary>
+		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		[JsonProperty("photo_320")]
 		public Uri Photo320 { get; set; }
 
 		/// <summary>
 		/// Uri изображения-обложки ролика с размером 640x480px (если размер есть).
 		/// </summary>
+		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		[JsonProperty("photo_640")]
 		public Uri Photo640 { get; set; }
 
 		/// <summary>
 		/// Uri изображения-обложки ролика с размером 800x450px (если размер есть).
 		/// </summary>
+		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		[JsonProperty("photo_800")]
 		public Uri Photo800 { get; set; }
 
 		/// <summary>
 		/// Uri изображения-обложки ролика с размером до 1280 px по ширине (если размер есть).
 		/// </summary>
+		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		[JsonProperty("photo_1280")]
 		public Uri Photo1280 { get; set; }
 
@@ -87,30 +92,35 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// URL изображения первого кадра ролика с размером 130x98px.
 		/// </summary>
+		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> FirstFrame")]
 		[JsonProperty("first_frame_130")]
 		public Uri FirstFrame130 { get; set; }
 
 		/// <summary>
 		/// URL изображения первого кадра ролика с размером 320x240px.
 		/// </summary>
+		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> FirstFrame")]
 		[JsonProperty("first_frame_320")]
 		public Uri FirstFrame320 { get; set; }
 
 		/// <summary>
 		/// URL изображения первого кадра ролика с размером 640x480px (если размер есть).
 		/// </summary>
+		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> FirstFrame")]
 		[JsonProperty("first_frame_640")]
 		public Uri FirstFrame640 { get; set; }
 
 		/// <summary>
 		/// URL изображения первого кадра ролика с размером 800x450px (если размер есть).
 		/// </summary>
+		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> FirstFrame")]
 		[JsonProperty("first_frame_800")]
 		public Uri FirstFrame800 { get; set; }
 
 		/// <summary>
 		/// URL изображения первого кадра ролика с шириной до 1028 px (если размер есть).
 		/// </summary>
+		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> FirstFrame")]
 		[JsonProperty("first_frame_1280")]
 		public Uri FirstFrame1280 { get; set; }
 
