@@ -153,6 +153,7 @@ namespace VkNet.Model.Attachments
 				Likes = response["likes"],
 				Comments = response["comments"],
 				CanComment = response["can_comment"],
+				Reposts = response["reposts"],
 				Tags = response["tags"],
 				PhotoSrc = response["photo_src"],
 				PhotoHash = response["photo_hash"],
@@ -228,6 +229,12 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[JsonProperty("comments")]
 		public Comments Comments { get; set; }
+
+		/// <summary>
+		/// Комментарии
+		/// </summary>
+		[JsonProperty("reposts")]
+		public Reposts Reposts { get; set; }
 
 		/// <summary>
 		/// Теги
