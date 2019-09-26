@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Model.Keyboard;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -132,12 +134,19 @@ namespace VkNet.Model.RequestParams
 		[JsonProperty("captcha_key")]
 		[Obsolete(ObsoleteText.CaptchaNeeded)]
 		public string CaptchaKey { get; set; }
-		
+
 		/// <summary>
 		/// 1 - отключить уведомление об упоминании в сообщении, может принимать значения 1 или 0, по умолчанию
 		/// </summary>
 		[JsonProperty("disable_mentions")]
 		public bool DisableMentions { get; set; }
+
+		/// <summary>
+		/// Метка, которая обозначает приблизительное содержание сообщения от сообщества
+		/// </summary>
+		[JsonProperty("intent")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public Intent Intent { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
@@ -166,7 +175,8 @@ namespace VkNet.Model.RequestParams
 				{ "payload", p.Payload },
 				{ "group_id", p.GroupId },
 				{ "dont_parse_links", p.DontParseLinks },
-				{ "disable_mentions", p.DisableMentions }
+				{ "disable_mentions", p.DisableMentions },
+				{ "intent", p.Intent }
 			};
 		}
 	}
