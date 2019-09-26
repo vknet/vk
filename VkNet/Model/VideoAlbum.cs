@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -73,18 +73,23 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static VideoAlbum FromJson(VkResponse response)
 		{
-			var album = new VideoAlbum
-			{
-					Id = Utilities.GetNullableLongId(response: response[key: "id"])
-					, OwnerId = response[key: "owner_id"]
-					, Title = response[key: "title"]
-					, Count = Utilities.GetNullableLongId(response: response[key: "count"])
-					, Photo160 = response[key: "photo_160"]
-					, Photo320 = response[key: "photo_320"]
-					, UpdatedTime = response[key: "updated_time"]
-			};
+			return response != null
+				? JsonConvert.DeserializeObject<VideoAlbum>(response.ToString())
+				: null;
+		}
 
-			return album;
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator VideoAlbum(VkResponse response)
+		{
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }
