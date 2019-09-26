@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -76,6 +77,12 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[JsonProperty("photo_1280")]
 		public Uri Photo1280 { get; set; }
+
+		/// <summary>
+		/// Список изображений первого кадра ролика.
+		/// </summary>
+		[JsonProperty("first_frame")]
+		public IEnumerable<VideoImage> FirstFrame { get; set; }
 
 		/// <summary>
 		/// URL изображения первого кадра ролика с размером 130x98px.
