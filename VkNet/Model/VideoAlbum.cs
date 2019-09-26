@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -43,6 +44,12 @@ namespace VkNet.Model
 		/// URL изображения предпросмотра альбома шириной в 320 пикселов.
 		/// </summary>
 		public string Photo320 { get; set; }
+
+		/// <summary>
+		/// Список изображений обложки альбома.
+		/// </summary>
+		[JsonProperty("image")]
+		public IEnumerable<VideoImage> Image { get; set; }
 
 		/// <summary>
 		/// время последнего обновления в формате unixtime
