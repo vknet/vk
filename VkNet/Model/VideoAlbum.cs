@@ -38,11 +38,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// URL изображения предпросмотра альбома шириной в 160 пикселов.
 		/// </summary>
+		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		public string Photo160 { get; set; }
 
 		/// <summary>
 		/// URL изображения предпросмотра альбома шириной в 320 пикселов.
 		/// </summary>
+		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		public string Photo320 { get; set; }
 
 		/// <summary>
