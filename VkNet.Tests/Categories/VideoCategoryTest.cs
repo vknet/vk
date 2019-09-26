@@ -135,82 +135,41 @@ namespace VkNet.Tests.Categories
 
 			var result = Api.Video.Get(new VideoGetParams
 			{
-				OwnerId = 1, Count = 3, Offset = 2, Extended = true
+				OwnerId = -129440544,
+				Count = 1,
+				Extended = true
 			});
 
-			Assert.That(result, Is.Not.Null);
-			Assert.That(result.Count, Is.EqualTo(3));
-
 			var video = result.FirstOrDefault();
-			Assert.That(video, Is.Not.Null);
-			Assert.That(video.Id, Is.EqualTo(166481021));
-			Assert.That(video.OwnerId, Is.EqualTo(1));
-			Assert.That(video.Title, Is.EqualTo("Лидия Аркадьевна"));
-			Assert.That(video.Duration, Is.EqualTo(131));
-			Assert.That(video.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384867255)));
-			Assert.That(video.Views, Is.EqualTo(81677));
-			Assert.That(video.Comments, Is.EqualTo(2098));
 
-			Assert.That(video.Photo130, Is.EqualTo(new Uri("http://cs419529.vk.me/u9258277/video/s_af2727af.jpg")));
-
-			Assert.That(video.Photo320, Is.EqualTo(new Uri("http://cs419529.vk.me/u9258277/video/l_aba9c1ab.jpg")));
-
-			Assert.That(video.Player, Is.EqualTo(new Uri("http://www.youtube.com/embed/VQaHFisdf-s")));
-
-			Assert.That(video.CanComment, Is.EqualTo(true));
-			Assert.That(video.CanRepost, Is.EqualTo(true));
-			Assert.That(video.Repeat, Is.EqualTo(false));
-			Assert.That(video.Likes, Is.Not.Null);
-			Assert.That(video.Likes.UserLikes, Is.EqualTo(false));
-			Assert.That(video.Likes.Count, Is.EqualTo(1789));
-
-			var video1 = result.Skip(1).FirstOrDefault();
-			Assert.That(video1, Is.Not.Null);
-			Assert.That(video1.Id, Is.EqualTo(166468673));
-			Assert.That(video1.OwnerId, Is.EqualTo(1));
-			Assert.That(video1.Title, Is.EqualTo("Лидия Аркадьевна"));
-			Assert.That(video1.Duration, Is.EqualTo(62));
-			Assert.That(video1.Description, Is.EqualTo(string.Empty));
-			Assert.That(video1.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1384721483)));
-			Assert.That(video1.Views, Is.EqualTo(42107));
-			Assert.That(video1.Comments, Is.EqualTo(1243));
-
-			Assert.That(video1.Photo130, Is.EqualTo(new Uri("http://cs409217.vk.me/u9258277/video/s_4e281f24.jpg")));
-
-			Assert.That(video1.Photo320, Is.EqualTo(new Uri("http://cs409217.vk.me/u9258277/video/l_aa616ea2.jpg")));
-
-			Assert.That(video1.Player, Is.EqualTo(new Uri("http://www.youtube.com/embed/YfLytrkbAfM")));
-
-			Assert.That(video1.CanComment, Is.EqualTo(true));
-			Assert.That(video1.CanRepost, Is.EqualTo(true));
-			Assert.That(video1.Repeat, Is.EqualTo(false));
-			Assert.That(video1.Likes, Is.Not.Null);
-			Assert.That(video1.Likes.UserLikes, Is.EqualTo(false));
-			Assert.That(video1.Likes.Count, Is.EqualTo(640));
-
-			var video2 = result.Skip(2).FirstOrDefault();
-			Assert.That(video2, Is.Not.Null);
-			Assert.That(video2.Id, Is.EqualTo(164841344));
-			Assert.That(video2.OwnerId, Is.EqualTo(1));
-			Assert.That(video2.Title, Is.EqualTo("This is SPARTA"));
-			Assert.That(video2.Duration, Is.EqualTo(16));
-			Assert.That(video2.Description, Is.EqualTo(string.Empty));
-			Assert.That(video2.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1366495075)));
-			Assert.That(video2.Views, Is.EqualTo(218659));
-			Assert.That(video2.Comments, Is.EqualTo(2578));
-
-			Assert.That(video2.Photo130, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/s_df53315c.jpg")));
-
-			Assert.That(video2.Photo320, Is.EqualTo(new Uri("http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg")));
-
-			Assert.That(video2.Player, Is.EqualTo(new Uri("http://vk.com/video_ext.php?oid=1&id=164841344&hash=c8de45fc73389353")));
-
-			Assert.That(video2.CanComment, Is.EqualTo(true));
-			Assert.That(video2.CanRepost, Is.EqualTo(true));
-			Assert.That(video2.Repeat, Is.EqualTo(true));
-			Assert.That(video2.Likes, Is.Not.Null);
-			Assert.That(video2.Likes.UserLikes, Is.EqualTo(true));
-			Assert.That(video2.Likes.Count, Is.EqualTo(4137));
+			Assert.NotNull(result);
+			Assert.AreEqual(1, result.Count);
+			Assert.NotNull(video);
+			Assert.AreEqual(456245310, video.Id);
+			Assert.AreEqual(-129440544, video.OwnerId);
+			Assert.AreEqual("ec", video.Title);
+			Assert.AreEqual(20, video.Duration);
+			Assert.AreEqual(DateHelper.TimeStampToDateTime(1569151132), video.Date);
+			Assert.AreEqual(6, video.Comments);
+			Assert.AreEqual(40308, video.Views);
+			Assert.AreEqual(640, video.Width);
+			Assert.AreEqual(640, video.Height);
+			Assert.IsNotEmpty(video.Image);
+			Assert.IsNotEmpty(video.FirstFrame);
+			Assert.IsFalse(video.IsFavorite);
+			Assert.AreEqual(DateHelper.TimeStampToDateTime(1569151132), video.AddingDate);
+			Assert.IsTrue(video.Repeat);
+			Assert.NotNull(video.Files);
+			Assert.AreEqual(new Uri("https://vk.com/vi/dec_GQ3DKNZUGI4TAMQ"), video.Player);
+			Assert.True(video.CanAdd);
+			Assert.True(video.CanComment);
+			Assert.True(video.CanRepost);
+			Assert.NotNull(video.Likes);
+			Assert.False(video.Likes.UserLikes);
+			Assert.AreEqual(369, video.Likes.Count);
+			Assert.NotNull(video.Reposts);
+			Assert.False(video.Reposts.UserReposted);
+			Assert.AreEqual(1, video.Reposts.Count);
 		}
 
 		[Test]
