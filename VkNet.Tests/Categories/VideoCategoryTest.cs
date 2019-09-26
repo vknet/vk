@@ -241,29 +241,23 @@ namespace VkNet.Tests.Categories
 
 		// todo add not extended version
 		[Test]
-		public void GetAlbums_NormalCase_Extended_TwoItems()
+		public void GetAlbums_NormalCase_Extended()
 		{
 			Url = "https://api.vk.com/method/video.getAlbums";
 
-			ReadCategoryJsonPath(nameof(GetAlbums_NormalCase_Extended_TwoItems));
+			ReadCategoryJsonPath(nameof(GetAlbums_NormalCase_Extended));
 
-			var result = Api.Video.GetAlbums(234695119, extended: true);
-			Assert.That(result, Is.Not.Null);
-			Assert.That(result.Count, Is.EqualTo(2));
-
+			var result = Api.Video.GetAlbums(-129440544, extended: true, needSystem: true);
 			var videoAlbum = result.FirstOrDefault();
-			Assert.That(videoAlbum, Is.Not.Null);
-			Assert.That(videoAlbum.Id, Is.EqualTo(52154345));
-			Assert.That(videoAlbum.OwnerId, Is.EqualTo(234695119));
-			Assert.That(videoAlbum.Title, Is.EqualTo("Второй новый альбом видеозаписей"));
-			Assert.That(videoAlbum.Count, Is.EqualTo(0));
 
-			var videoAlbum1 = result.Skip(1).FirstOrDefault();
-			Assert.That(videoAlbum1, Is.Not.Null);
-			Assert.That(videoAlbum1.Id, Is.EqualTo(52152803));
-			Assert.That(videoAlbum1.OwnerId, Is.EqualTo(234695119));
-			Assert.That(videoAlbum1.Title, Is.EqualTo("Новый альбом видеозаписей"));
-			Assert.That(videoAlbum1.Count, Is.EqualTo(0));
+			Assert.NotNull(result);
+			Assert.AreEqual(2, result.TotalCount);
+			Assert.NotNull(videoAlbum);
+			Assert.AreEqual(3790, videoAlbum.Count);
+			Assert.AreEqual(-2, videoAlbum.Id);
+			Assert.AreEqual(-129440544, videoAlbum.OwnerId);
+			Assert.AreEqual("Добавленные", videoAlbum.Title);
+			Assert.IsNotEmpty(videoAlbum.Image);
 		}
 
 		[Test]

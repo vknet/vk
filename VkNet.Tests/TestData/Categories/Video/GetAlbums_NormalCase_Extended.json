@@ -1,0 +1,66 @@
+{
+  "response": {
+    "count": 2,
+    "items": [
+      {
+        "count": 3790,
+        "owner_id": -129440544,
+        "title": "Добавленные",
+        "updated_time": 1569151132,
+        "id": -2,
+        "image": [
+          {
+            "height": 96,
+            "url": "https://sun1-22.u/775/_H2H8VU99A4.jpg",
+            "width": 130,
+            "with_padding": 1
+          },
+          {
+            "height": 120,
+            "url": "https://sun1-18.u/774/V-9tliJEX6c.jpg",
+            "width": 160,
+            "with_padding": 1
+          },
+          {
+            "height": 240,
+            "url": "https://sun1-85.u/773/UedJ1GOGp48.jpg",
+            "width": 320,
+            "with_padding": 1
+          },
+          {
+            "height": 450,
+            "url": "https://sun1-30.u/76d/L_YJ0L7dWO0.jpg",
+            "width": 800,
+            "with_padding": 1
+          },
+          {
+            "height": 720,
+            "url": "https://sun1-16.u/76e/7pVes0uh3Mw.jpg",
+            "width": 720
+          },
+          {
+            "height": 320,
+            "url": "https://sun1-25.u/76f/oXt467urasM.jpg",
+            "width": 320
+          },
+          {
+            "height": 720,
+            "url": "https://sun1-85.u/770/k1N7Ho6SErk.jpg",
+            "width": 720
+          },
+          {
+            "height": 1024,
+            "url": "https://sun1-20.u/771/xiolQ3kEcsc.jpg",
+            "width": 1024
+          },
+          {
+            "height": 4096,
+            "url": "https://sun1-22.u/772/XuhJ7tnho8s.jpg",
+            "width": 4096
+          }
+        ],
+        "is_system": 1
+      }
+    ]
+  }
+}
