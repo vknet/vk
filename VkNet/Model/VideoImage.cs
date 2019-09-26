@@ -7,6 +7,7 @@ namespace VkNet.Model
 	/// Объект, описывающий размер обложки видео.
 	/// См. описание https://vk.com/dev/objects/video_image
 	/// </summary>
+	[Serializable]
 	public class VideoImage
 	{
 		/// <summary>
