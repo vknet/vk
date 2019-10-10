@@ -13,7 +13,7 @@
 		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<VersionPrefix>1.47.0</VersionPrefix>
+		<VersionPrefix>1.48.0</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -24,9 +24,9 @@
 			Список методов см. https://vknet.github.io/vk/
 		</Description>
 		<Authors>inyutin_maxim;azhidkov</Authors>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageLicenseFile>LICENCE</PackageLicenseFile>
 		<PackageProjectUrl>https://vknet.github.io/vk/</PackageProjectUrl>
-		<PackageIconUrl>https://raw.githubusercontent.com/vknet/vk/master/tools/vknet-icon.PNG</PackageIconUrl>
+		<PackageIcon>vknet-icon.PNG</PackageIcon>
 		<RepositoryUrl>https://github.com/vknet/vk</RepositoryUrl>
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>vk;vk api;vknet;vkontakte;api</PackageTags>
@@ -34,7 +34,7 @@
 			Обсуждение в Telegram: http://bit.ly/2rvEOWD
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: http://bit.ly/2PAN4Un
+			Список изменений: http://bit.ly/2AZWJKc
 		</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -72,5 +72,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\tools\vknet-icon.PNG" Pack="true" PackagePath="\"/>
+		<None Include="..\LICENCE" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 </Project>
