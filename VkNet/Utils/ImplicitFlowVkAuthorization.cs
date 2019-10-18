@@ -23,7 +23,7 @@ namespace VkNet.Utils
 		private const string UserId = "user_id";
 
 		/// <inheritdoc />
-		[NotNull]
+		[JetBrains.Annotations.NotNull]
 		[UsedImplicitly]
 		public AuthorizationResult GetAuthorizationResult(Uri url)
 		{
