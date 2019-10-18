@@ -8,9 +8,9 @@ variables:
 
 steps:
 - task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 2.1.402'
+  displayName: 'Use .NET Core sdk 3.0.100'
   inputs:
-    version: 2.1.402
+    version: 3.0.100
 
 
 - task: DotNetCoreCLI@2
@@ -20,7 +20,7 @@ steps:
 
     projects: '*[Tt]ests/*.csproj'
 
-    arguments: '-c $(BuildConfiguration) -f netcoreapp2.1'
+    arguments: '-c $(BuildConfiguration)'
 
 
 - task: DotNetCoreCLI@2
