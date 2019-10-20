@@ -14,8 +14,9 @@ namespace VkNet
 			var str = $"https://vk.com/foaf.php?id={id}".GetStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
 			var doc = new HtmlDocument() ;
 			doc.LoadHtml(str);
-			var created =doc.DocumentNode.Descendants("ya:created").ToArray()[0];
-			var dataStr = created.Attributes["dc:date"].Value;
+			var dataStr = created?.Attributes["dc:date"]?.Value == null
+				? created.Attributes["dc:date"].Value
+				: throw new InvalidOperationException("can't parse meta files");
 			return  Convert.ToDateTime(dataStr);
 		}
 	}
