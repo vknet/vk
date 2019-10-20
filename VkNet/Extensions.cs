@@ -4,21 +4,48 @@ using System.Threading.Tasks;
 using Flurl.Http;
 using HtmlAgilityPack;
 using VkNet.Model;
-using VkNet.Utils;
+
 
 namespace VkNet
 {
 	public static class Extensions
 	{
-		public static async Task<DateTime> GetRegistarationDate(this User user,long id)
+		/// <summary>
+		///  Return registration date
+		/// </summary>
+		/// <param name="user"></param>
+		/// <param name="id">id of user</param>
+		/// <returns></returns>
+		public static async Task<DateTime> GetRegistarationDate(this User user, long id)
 		{
 			var str = await $"https://vk.com/foaf.php?id={id}".GetStringAsync();
-			var doc = new HtmlDocument() ;
+			var doc = new HtmlDocument();
 			doc.LoadHtml(str);
+			var created = doc.DocumentNode.Descendants("ya:created").FirstOrDefault();
+
 			var dataStr = created?.Attributes["dc:date"]?.Value == null
 				? created.Attributes["dc:date"].Value
 				: throw new InvalidOperationException("can't parse meta files");
-			return  Convert.ToDateTime(dataStr);
+
+			return Convert.ToDateTime(dataStr);
+		}
+		/// <summary>
+		/// return self registration date
+		/// </summary>
+		/// <param name="user"></param>
+		/// <returns></returns>
+		public static async Task<DateTime> GetRegistarationDate(this User user)
+		{
+			var str = await $"https://vk.com/foaf.php?id={user.Id}".GetStringAsync();
+			var doc = new HtmlDocument();
+			doc.LoadHtml(str);
+			var created = doc.DocumentNode.Descendants("ya:created").FirstOrDefault();
+
+			var dataStr = created?.Attributes["dc:date"]?.Value == null
+				? created.Attributes["dc:date"].Value
+				: throw new InvalidOperationException("can't parse meta files");
+
+			return Convert.ToDateTime(dataStr);
 		}
 	}
 }
