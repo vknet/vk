@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Flurl.Http;
 using HtmlAgilityPack;
 using VkNet.Model;
@@ -9,9 +10,9 @@ namespace VkNet
 {
 	public static class Extensions
 	{
-		public static DateTime GetRegistarationDate(this User user,long id)
+		public static async Task<DateTime> GetRegistarationDate(this User user,long id)
 		{
-			var str = $"https://vk.com/foaf.php?id={id}".GetStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+			var str = await $"https://vk.com/foaf.php?id={id}".GetStringAsync();
 			var doc = new HtmlDocument() ;
 			doc.LoadHtml(str);
 			var dataStr = created?.Attributes["dc:date"]?.Value == null
