@@ -5,7 +5,6 @@ using Flurl.Http;
 using HtmlAgilityPack;
 using VkNet.Model;
 
-
 namespace VkNet
 {
 	public static class Extensions
@@ -23,12 +22,11 @@ namespace VkNet
 			doc.LoadHtml(str);
 			var created = doc.DocumentNode.Descendants("ya:created").FirstOrDefault();
 
-			var dataStr = created?.Attributes["dc:date"]?.Value == null
-				? created.Attributes["dc:date"].Value
-				: throw new InvalidOperationException("can't parse meta files");
+			var dataStr = created?.Attributes["dc:date"]?.Value ?? throw new InvalidOperationException("can't parse meta files");
 
 			return Convert.ToDateTime(dataStr);
 		}
+
 		/// <summary>
 		/// return self registration date
 		/// </summary>
@@ -41,9 +39,7 @@ namespace VkNet
 			doc.LoadHtml(str);
 			var created = doc.DocumentNode.Descendants("ya:created").FirstOrDefault();
 
-			var dataStr = created?.Attributes["dc:date"]?.Value == null
-				? created.Attributes["dc:date"].Value
-				: throw new InvalidOperationException("can't parse meta files");
+			var dataStr = created?.Attributes["dc:date"]?.Value ?? throw new InvalidOperationException("can't parse meta files");
 
 			return Convert.ToDateTime(dataStr);
 		}
