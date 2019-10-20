@@ -16,7 +16,7 @@ namespace VkNet
 		/// <param name="user"></param>
 		/// <param name="id">id of user</param>
 		/// <returns></returns>
-		public static async Task<DateTime> GetRegistarationDate(this User user, long id)
+		public static async Task<DateTime> GetRegistrationDate(this User user, long id)
 		{
 			var str = await $"https://vk.com/foaf.php?id={id}".GetStringAsync();
 			var doc = new HtmlDocument();
@@ -34,7 +34,7 @@ namespace VkNet
 		/// </summary>
 		/// <param name="user"></param>
 		/// <returns></returns>
-		public static async Task<DateTime> GetRegistarationDate(this User user)
+		public static async Task<DateTime> GetRegistrationDate(this User user)
 		{
 			var str = await $"https://vk.com/foaf.php?id={user.Id}".GetStringAsync();
 			var doc = new HtmlDocument();
