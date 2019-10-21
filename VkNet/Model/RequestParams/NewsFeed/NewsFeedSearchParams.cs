@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.Filters;
@@ -62,7 +62,7 @@ namespace VkNet.Model.RequestParams
 		/// Значение, необходимое для передачи в этом
 		/// параметре, возвращается в поле ответа next_from.
 		/// </summary>
-		public long? StartFrom { get; set; }
+		public string StartFrom { get; set; }
 
 		/// <summary>
 		/// Список дополнительных полей профилей, которые необходимо вернуть. Игнорируется
