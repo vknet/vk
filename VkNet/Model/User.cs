@@ -796,9 +796,18 @@ namespace VkNet.Model
 		/// </summary>
 		public ChangeNameRequest ChangeNameRequest { get; set; }
 
-	#endregion
+		#endregion
 
-	#region private
+		#region Поля для Groups.GetMembers
+
+		/// <summary>
+		/// Полномочия руководителя (для Groups.GetMembers)
+		/// </summary>
+		public MemberManagerRole Role { get; set; }
+
+		#endregion
+
+		#region private
 
 		[JsonProperty("uid")]
 		private long Uid

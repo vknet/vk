@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -39,6 +40,12 @@ namespace VkNet.Model
 		public bool CanOpen { get; set; }
 
 		/// <summary>
+		/// Комментарии
+		/// </summary>
+		[JsonProperty("list")]
+		public ReadOnlyCollection<Comment> List { get; set; }
+
+		/// <summary>
 		/// Разобрать из JSON.
 		/// </summary>
 		/// <param name="response"> Ответ от vk. </param>
@@ -51,7 +58,8 @@ namespace VkNet.Model
 				CanPost = response["can_post"],
 				GroupsCanPost = response["groups_can_post"],
 				CanOpen = response["can_open"],
-				CanClose = response["can_close"]
+				CanClose = response["can_close"],
+                List = response["list"].ToReadOnlyCollectionOf<Comment>(x => x),
 			};
 		}
 
