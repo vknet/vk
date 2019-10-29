@@ -1,11 +1,11 @@
-﻿namespace VkNet.Enums.SafetyEnums
+namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Уровень полномочий пользователя в сообществе (Используется для задания
 	/// полномочий пользователя в методе
 	/// EditManager).
 	/// </summary>
-	public sealed class ManagerRole : SafetyEnum<ManagerRole>
+	public class ManagerRole : SafetyEnum<ManagerRole>
 	{
 		/// <summary>
 		/// Пользователь является модератором собщества.
