@@ -79,9 +79,9 @@ namespace VkNet.Model.Keyboard
 		}
 
 		/// <inheritdoc />
-		public IKeyboardBuilder SetInline()
+		public IKeyboardBuilder SetInline(bool inline = true)
 		{
-			IsInline = true;
+			IsInline = inline;
 
 			return this;
 		}
