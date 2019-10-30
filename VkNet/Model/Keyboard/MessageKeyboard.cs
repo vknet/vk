@@ -19,6 +19,12 @@ namespace VkNet.Model.Keyboard
 		public bool OneTime { get; set; }
 
 		/// <summary>
+		/// Должна ли клавиатура отображаться внутри сообщения.
+		/// </summary>
+		[JsonProperty(propertyName: "inline")]
+		public bool Inline { get; set; }
+
+		/// <summary>
 		/// Массив кнопок отправляемых ботом, размером до 4х10
 		/// </summary>
 		[JsonProperty(propertyName: "buttons")]
@@ -34,6 +40,7 @@ namespace VkNet.Model.Keyboard
 			return new MessageKeyboard
 			{
 				OneTime = response[key: "one_time"],
+				Inline = response[key: "inline"],
 				Buttons = response[key: "buttons"]
 					.ToReadOnlyCollectionOf(x => x.ToReadOnlyCollectionOf<MessageKeyboardButton>(y => y))
 			};

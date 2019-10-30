@@ -13,6 +13,7 @@ namespace VkNet.Model.Keyboard
 	public class KeyboardBuilder : IKeyboardBuilder
 	{
 		private bool IsOneTime { get; set; }
+		private bool IsInline { get; set; }
 
 		private readonly List<List<MessageKeyboardButton>> _fullKeyboard = new List<List<MessageKeyboardButton>>();
 
@@ -78,6 +79,14 @@ namespace VkNet.Model.Keyboard
 		}
 
 		/// <inheritdoc />
+		public IKeyboardBuilder SetInline(bool inline = true)
+		{
+			IsInline = inline;
+
+			return this;
+		}
+
+		/// <inheritdoc />
 		public IKeyboardBuilder Clear()
 		{
 			_currentLine.Clear();
@@ -98,6 +107,7 @@ namespace VkNet.Model.Keyboard
 			return new MessageKeyboard
 			{
 				OneTime = IsOneTime,
+				Inline = IsInline,
 				Buttons = _fullKeyboard.Select(e => e.ToReadOnlyCollection()).ToReadOnlyCollection()
 			};
 		}
