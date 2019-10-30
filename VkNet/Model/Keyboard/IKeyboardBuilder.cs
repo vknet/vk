@@ -36,7 +36,7 @@ namespace VkNet.Model.Keyboard
 		/// Сделать отображение клавиатуры внутри сообщения
 		/// </summary>
 		/// <returns>Конструктор клавиатур</returns>
-		IKeyboardBuilder SetInline(bool inline);
+		IKeyboardBuilder SetInline(bool inline = true);
 
 		/// <summary>
 		/// Удалить все добавленные кнопки и строки из клавиатуры
