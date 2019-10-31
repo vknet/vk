@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions;
@@ -420,14 +420,17 @@ namespace VkNet.Categories
 		public bool UpdateTargetGroup(UpdateTargetGroupParams updateTargetGroupParams)
 		{
 			return _vk.Call<bool>("ads.updateTargetGroup",
-				new VkParameters
-				{
-					{ "account_id", updateTargetGroupParams.AccountId }, { "target_group_id", updateTargetGroupParams.TargetGroupId },
-					{ "name", updateTargetGroupParams.Name }, { "domain", updateTargetGroupParams.Domain },
-					{ "client_id", updateTargetGroupParams.ClientId }, { "lifetime", updateTargetGroupParams.Lifetime },
-					{ "target_pixel_id", updateTargetGroupParams.TargetPixelId },
-					{ "target_pixel_rules", updateTargetGroupParams.TargetPixelRules }
-				});
+								  new VkParameters
+								  {
+									  { "account_id", updateTargetGroupParams.AccountId },
+									  { "target_group_id", updateTargetGroupParams.TargetGroupId },
+									  { "name", updateTargetGroupParams.Name },
+									  { "domain", updateTargetGroupParams.Domain },
+									  { "client_id", updateTargetGroupParams.ClientId },
+									  { "lifetime", updateTargetGroupParams.Lifetime },
+									  { "target_pixel_id", updateTargetGroupParams.TargetPixelId },
+									  { "target_pixel_rules", Utilities.SerializeToJson(updateTargetGroupParams.TargetPixelRules) }
+								  });
 		}
 
 		/// <inheritdoc/>
