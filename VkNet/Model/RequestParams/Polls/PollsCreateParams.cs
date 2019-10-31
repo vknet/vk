@@ -38,7 +38,7 @@ namespace VkNet.Model.RequestParams.Polls
 		/// </summary>
 		[JsonProperty("end_date")]
 		[JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime EndDate { get; set; }
+		public DateTime? EndDate { get; set; }
 
 		/// <summary>
 		/// Если опрос будет добавлен в группу, необходимо передать отрицательный идентификатор группы.
