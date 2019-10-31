@@ -31,7 +31,7 @@ namespace VkNet.Model.RequestParams.Polls
 		/// <c>true</c> — для создания опроса с мультивыбором. флаг, может принимать значения <c>true</c> или <c>false</c>
 		/// </summary>
 		[JsonProperty("is_multiple")]
-		public bool IsMultiple { get; set; }
+		public bool? IsMultiple { get; set; }
 
 		/// <summary>
 		/// Дата завершения опроса в Unixtime. положительное число, минимальное значение 1536692688
@@ -45,25 +45,25 @@ namespace VkNet.Model.RequestParams.Polls
 		/// По умолчанию текущий пользователь.
 		/// </summary>
 		[JsonProperty("owner_id")]
-		public long OwnerId { get; set; }
+		public long? OwnerId { get; set; }
 
 		/// <summary>
 		/// Список вариантов ответов.
 		/// </summary>
 		[JsonProperty("add_answers")]
-		public List<string> AddAnswers { get; set; }
+		public IEnumerable<string> AddAnswers { get; set; }
 
 		/// <summary>
 		/// Идентификатор фотографии для использования в качестве фона сниппета. положительное число
 		/// </summary>
 		[JsonProperty("photo_id")]
-		public ulong PhotoId { get; set; }
+		public ulong? PhotoId { get; set; }
 
 		/// <summary>
 		/// Идентификатор стандартного фона для сниппета.
 		/// </summary>
 		[JsonProperty("background_id")]
-		public long BackgroundId { get; set; }
+		public long? BackgroundId { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.
