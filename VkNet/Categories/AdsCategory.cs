@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions;
@@ -98,13 +98,15 @@ namespace VkNet.Categories
 		public object CreateTargetGroup(CreateTargetGroupParams createTargetGroupParams)
 		{
 			return _vk.Call<object>("ads.createTargetGroup",
-				new VkParameters
-				{
-					{ "account_id", createTargetGroupParams.AccountId }, { "name", createTargetGroupParams.Name },
-					{ "client_id", createTargetGroupParams.ClientId }, { "lifetime", createTargetGroupParams.Lifetime },
-					{ "target_pixel_id", createTargetGroupParams.TargetPixelId },
-					{ "target_pixel_rules", createTargetGroupParams.TargetPixelRules }
-				});
+									new VkParameters
+									{
+										{ "account_id", createTargetGroupParams.AccountId },
+										{ "name", createTargetGroupParams.Name },
+										{ "client_id", createTargetGroupParams.ClientId },
+										{ "lifetime", createTargetGroupParams.Lifetime },
+										{ "target_pixel_id", createTargetGroupParams.TargetPixelId },
+										{ "target_pixel_rules", Utilities.SerializeToJson(createTargetGroupParams.TargetPixelRules) }
+									});
 		}
 
 		/// <inheritdoc/>

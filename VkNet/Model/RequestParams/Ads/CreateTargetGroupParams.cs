@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model.RequestParams.Ads
@@ -26,7 +27,7 @@ namespace VkNet.Model.RequestParams.Ads
 		/// id клиента, в рекламном кабинете которого будет создаваться аудитория. целое число
 		/// </summary>
 		[JsonProperty("client_id")]
-		public long ClientId { get; set; }
+		public long? ClientId { get; set; }
 
 		/// <summary>
 		/// Только для аудиторий, которые собираются с помощью кода на сайте.
@@ -40,7 +41,7 @@ namespace VkNet.Model.RequestParams.Ads
 		/// Идентификатор пикселя, если требуется собирать аудиторию с веб-сайта. целое число
 		/// </summary>
 		[JsonProperty("target_pixel_id")]
-		public long TargetPixelId { get; set; }
+		public long? TargetPixelId { get; set; }
 
 		/// <summary>
 		/// Массив правил для пополнения аудитории из пикселя. Имеет вид:
@@ -52,6 +53,6 @@ namespace VkNet.Model.RequestParams.Ads
 		/// ] данные в формате JSON
 		/// </summary>
 		[JsonProperty("target_pixel_rules")]
-		public object TargetPixelRules { get; set; }
+		public IDictionary<string, string> TargetPixelRules { get; set; }
 	}
 }
