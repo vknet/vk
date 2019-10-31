@@ -119,6 +119,16 @@ namespace VkNet.Utils
 
 		/// <summary>
 		/// Добавляет параметр-дату.
+		/// </summary>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="dateTime"> Значение параметра. </param>
+		public void Add(string name, DateTime dateTime)
+		{
+			Add(name, (DateTime?) dateTime);
+		}
+
+		/// <summary>
+		/// Добавляет параметр-дату.
 		/// Если передан null, то добавление не производится.
 		/// </summary>
 		/// <param name="name"> Имя параметра запроса. </param>
