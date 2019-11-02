@@ -72,10 +72,10 @@ namespace VkNet.Model
 				Photo100 = response["photo_100"],
 				Photo200 = response["photo_200"],
 				InRead = response["in_read"],
+				IsCropped = response["is_cropped"],
 				OutRead = response["out_read"],
 				Out = response["out"],
 				UpdateTime = response["update_time"],
-
 				Keyboard = response["keyboard"],
 				ConversationMessageId = response["conversation_message_id"],
 				Ref = response["ref"],
@@ -306,6 +306,12 @@ namespace VkNet.Model
 		/// Клавиатура, присланная ботом
 		/// </summary>
 		public MessageKeyboard Keyboard { get; set; }
+
+		/// <summary>
+		/// Является ли сообщение обрезаным.
+		/// </summary>
+		[JsonProperty("is_cropped")]
+		public bool? IsCropped { get; set; }
 
 	#endregion
 
