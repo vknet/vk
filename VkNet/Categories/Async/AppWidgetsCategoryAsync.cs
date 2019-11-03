@@ -51,9 +51,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<bool> UpdateAsync()
+		public Task<bool> UpdateAsync(string code, string type)
 		{
-			return TypeHelper.TryInvokeMethodAsync(Update);
+			return TypeHelper.TryInvokeMethodAsync((() => Update(code, type)));
 		}
 	}
 }

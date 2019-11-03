@@ -171,12 +171,18 @@ namespace VkNet.Abstractions.Category
 		/// <summary>
 		/// Позволяет обновить виджет приложения сообщества.
 		/// </summary>
+		/// <param name = "code">
+		/// Код виджета. Подробное описание см. на https://vk.com/dev/apps_widgets
+		/// </param>
+		/// <param name = "type">
+		/// Тип виджета. Список всех доступных типов см. на https://vk.com/dev/objects/appWidget.
+		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.update
 		/// </remarks>
-		Task<bool> UpdateAsync();
+		Task<bool> UpdateAsync(string code, string type);
 	}
 }

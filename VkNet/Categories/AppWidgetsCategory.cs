@@ -78,9 +78,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public bool Update()
+		public bool Update(string code, string type)
 		{
-			return _vk.Call<bool>("appWidgets.update", VkParameters.Empty);
+			return _vk.Call<bool>("appWidgets.update", new VkParameters
+			{
+				{ "code", code },
+				{ "type", type }
+			});
 		}
 	}
 }

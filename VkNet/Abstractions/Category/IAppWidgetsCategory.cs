@@ -29,6 +29,6 @@ namespace VkNet.Abstractions
 		Uri SaveGroupImage();
 
 		/// <inheritdoc cref="IAppWidgetsCategoryAsync.UpdateAsync"/>
-		bool Update();
+		bool Update(string code, string type);
 	}
 }
