@@ -1,5 +1,6 @@
 using System.Linq;
 using NUnit.Framework;
+using VkNet.Enums;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
@@ -12,10 +13,6 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageNewTest));
 
-			const int userId = 123;
-			const int groupId = 1234;
-			const string text = "test";
-
 			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
 				Key = "test",
@@ -26,9 +23,24 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.Message.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.Message.Text);
+			var messageNew = update.MessageNew;
+
+			var message = messageNew?.Message;
+
+			var clientInfo = messageNew?.ClientInfo;
+
+			Assert.NotNull(messageNew);
+			Assert.NotNull(message);	
+			Assert.NotNull(clientInfo);
+
+			Assert.IsNotEmpty(clientInfo.ButtonActions);
+			Assert.True(clientInfo.Keyboard);
+			Assert.False(clientInfo.InlineKeyboard);
+			Assert.AreEqual(Language.Ru, clientInfo.LangId);
+
+			Assert.AreEqual(123456789, message.FromId);
+			Assert.AreEqual(123456789, update.GroupId);
+			Assert.AreEqual("f", message.Text);
 		}
 
 		[Test]
