@@ -20,7 +20,12 @@ namespace VkNet.Model.GroupUpdate
 		public GroupUpdateType Type { get; set; }
 
 		/// <summary>
-		/// Сообщение для типов событий с сообщением в ответе(MessageNew, MessageEdit, MessageReply)
+		/// Сообщение для типов событий с сообщением в ответе.
+		/// </summary>
+		public MessageNew MessageNew { get; set; }
+
+		/// <summary>
+		/// Сообщение для типов событий с сообщением в ответе(MessageEdit, MessageReply, для версий API ниже 5.103 также MessageNew).
 		/// </summary>
 		public Message Message { get; set; }
 
@@ -166,7 +171,14 @@ namespace VkNet.Model.GroupUpdate
 				|| fromJson.Type == GroupUpdateType.MessageEdit
 				|| fromJson.Type == GroupUpdateType.MessageReply)
 			{
-				fromJson.Message = resObj;
+				if (resObj.ContainsKey("client_info"))
+				{
+					fromJson.MessageNew = resObj;
+				}
+				else
+				{
+					fromJson.Message = resObj;
+				}
 			} else if (fromJson.Type == GroupUpdateType.MessageAllow)
 			{
 				fromJson.MessageAllow = MessageAllow.FromJson(resObj);
