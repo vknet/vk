@@ -5,6 +5,7 @@ using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.GroupUpdate;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -17,7 +18,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Массив кнопок, которые поддерживает клиент.
 		/// </summary>
-		[JsonProperty("button_actions")]
+		[JsonProperty("button_actions", ItemConverterType = typeof(SafetyEnumJsonConverter))]
 		public IEnumerable<KeyboardButtonActionType> ButtonActions { get; set; }
 
 		/// <summary>
