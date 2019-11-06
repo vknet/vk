@@ -50,27 +50,11 @@ namespace VkNet.Utils
 		/// <returns> Результат выполнения функции. </returns>
 		public static Task<T> TryInvokeMethodAsync<T>(Func<T> func)
 		{
-			var tcs = new TaskCompletionSource<T>();
-
-			Task.Factory.StartNew(() =>
-				{
-					try
-					{
-						var result = func.Invoke();
-						tcs.SetResult(result);
-					}
-					catch (OperationCanceledException)
-					{
-						tcs.SetCanceled();
-					}
-					catch (System.Exception ex)
-					{
-						tcs.SetException(ex);
-					}
-				})
-				.ConfigureAwait(false);
-
-			return tcs.Task;
+		#if NET40
+			return TaskEx.Run(func);
+		#else
+			return Task.Run(func);
+		#endif
 		}
 
 		/// <summary>
@@ -80,26 +64,11 @@ namespace VkNet.Utils
 		/// <returns> Результат выполнения функции. </returns>
 		public static Task TryInvokeMethodAsync(Action func)
 		{
-			var tcs = new TaskCompletionSource<Task>();
-
-			Task.Factory.StartNew(() =>
-			{
-				try
-				{
-					func.Invoke();
-					tcs.SetResult(null);
-				}
-				catch (OperationCanceledException)
-				{
-					tcs.SetCanceled();
-				}
-				catch (System.Exception ex)
-				{
-					tcs.SetException(ex);
-				}
-			});
-
-			return tcs.Task;
+		#if NET40
+			return TaskEx.Run(func);
+		#else
+			return Task.Run(func);
+		#endif
 		}
 
 		private static void RegisterAuthorization(this IServiceCollection services)
