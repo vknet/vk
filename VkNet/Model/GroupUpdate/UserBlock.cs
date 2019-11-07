@@ -34,7 +34,7 @@ namespace VkNet.Model.GroupUpdate
 		/// Причины блокировки пользователя
 		/// </summary>
 		[JsonProperty("reason")]
-		public GroupUserBlockReason? Reason { get; set; }
+		public BanReason? Reason { get; set; }
 
 		/// <summary>
 		/// Комментарий администратора к блокировке
