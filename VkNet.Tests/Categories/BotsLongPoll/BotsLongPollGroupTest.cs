@@ -139,7 +139,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			const int groupId = 1234;
 			const int adminId = 123;
 			const string comment = "test";
-			const GroupUserBlockReason reason = GroupUserBlockReason.Other;
+			const BanReason reason = BanReason.Other;
 
 			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
@@ -168,7 +168,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			const int groupId = 1234;
 			const int adminId = 123;
 			const string comment = "test";
-			const GroupUserBlockReason reason = GroupUserBlockReason.MessagesOffTopic;
+			const BanReason reason = BanReason.IrrelevantMessages;
 
 			var unblockDate = new DateTime(2018,
 				8,
