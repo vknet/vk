@@ -71,6 +71,8 @@ namespace VkNet
 		/// Логгер
 		/// </summary>
 		private ILogger<VkApi> _logger;
+		
+		private readonly ServiceProvider _serviceProvider;
 
 	#pragma warning disable S1104 // Fields should not have public accessibility
 		/// <summary>
@@ -101,9 +103,9 @@ namespace VkNet
 
 			container.RegisterDefaultDependencies();
 
-			IServiceProvider serviceProvider = container.BuildServiceProvider();
+			_serviceProvider = container.BuildServiceProvider();
 
-			Initialization(serviceProvider);
+			Initialization(_serviceProvider);
 		}
 
 		/// <inheritdoc />
@@ -113,9 +115,9 @@ namespace VkNet
 
 			container.RegisterDefaultDependencies();
 
-			IServiceProvider serviceProvider = container.BuildServiceProvider();
+			_serviceProvider = container.BuildServiceProvider();
 
-			Initialization(serviceProvider);
+			Initialization(_serviceProvider);
 		}
 
 		/// <summary>
@@ -423,7 +425,7 @@ namespace VkNet
 		protected virtual void Dispose(bool disposing)
 		{
 			_expireTimer?.Dispose();
-			RestClient?.Dispose();
+			_serviceProvider.Dispose();
 		}
 
 	#region Requests limit stuff
