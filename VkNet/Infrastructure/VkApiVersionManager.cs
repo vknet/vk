@@ -24,7 +24,7 @@ namespace VkNet.Infrastructure
 		{
 			if (major < CurrentMajorVersion)
 			{
-				throw new VkApiException
+				throw new VkApiException("С 27 мая 2019 года версии API ниже 5.0 больше не поддерживаются.")
 				{
 					HelpLink = "https://vk.com/dev/version_update_2.0"
 				};
