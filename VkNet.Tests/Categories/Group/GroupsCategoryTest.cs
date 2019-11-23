@@ -89,7 +89,10 @@ namespace VkNet.Tests.Categories.Group
 			// 1, true, GroupsFilters.Events, GroupsFields.All
 			var groups = Api.Groups.Get(new GroupsGetParams
 				{
-					UserId = 1, Extended = true, Filter = GroupsFilters.Events, Fields = GroupsFields.All
+					UserId = 1,
+					Extended = true,
+					Filter = GroupsFilters.Events,
+					Fields = GroupsFields.All
 				})
 				.ToList();
 
@@ -101,7 +104,14 @@ namespace VkNet.Tests.Categories.Group
 			Assert.That(groups[1].Country.Id, Is.EqualTo(1));
 			Assert.That(groups[1].Description, Is.EqualTo("В связи с небольшим количеством..."));
 
-			Assert.That(groups[1].StartDate, Is.EqualTo(new DateTime(2008, 1, 15, 7, 0, 0, DateTimeKind.Utc)));
+			Assert.That(groups[1].StartDate,
+			Is.EqualTo(new DateTime(2008,
+				1,
+				15,
+				7,
+				0,
+				0,
+				DateTimeKind.Utc)));
 
 			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
 			Assert.That(groups[1].IsAdmin, Is.False);
@@ -123,7 +133,14 @@ namespace VkNet.Tests.Categories.Group
 
 			Assert.That(groups[0].Description, Is.EqualTo("Попади в не реальную сказку пришествия..."));
 
-			Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2008, 04, 20, 14, 0, 30, DateTimeKind.Utc)));
+			Assert.That(groups[0].StartDate,
+			Is.EqualTo(new DateTime(2008,
+				04,
+				20,
+				14,
+				0,
+				30,
+				DateTimeKind.Utc)));
 
 			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
 			Assert.That(groups[0].IsAdmin, Is.False);
@@ -210,7 +227,13 @@ namespace VkNet.Tests.Categories.Group
 
 			ReadJsonFile("Errors", "125");
 
-			Assert.That(() => Api.Groups.GetById(new[] { "0" }, null, null), Throws.InstanceOf<InvalidGroupIdException>());
+			Assert.That(() => Api.Groups.GetById(new[]
+					{
+						"0"
+					},
+					null,
+					null),
+				Throws.InstanceOf<InvalidGroupIdException>());
 		}
 
 		[Test]
@@ -224,7 +247,8 @@ namespace VkNet.Tests.Categories.Group
 
 			var groups = Api.Groups.GetById(new[]
 					{
-						"17683660", "637247"
+						"17683660",
+						"637247"
 					},
 					null,
 					GroupsFields.All)
@@ -250,7 +274,14 @@ namespace VkNet.Tests.Categories.Group
 
 			Assert.That(groups[0].Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21..."));
 
-			Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0, DateTimeKind.Utc)));
+			Assert.That(groups[0].StartDate,
+			Is.EqualTo(new DateTime(2012,
+				7,
+				21,
+				10,
+				0,
+				0,
+				DateTimeKind.Utc)));
 
 			Assert.That(groups[1].Id, Is.EqualTo(637247));
 			Assert.That(groups[1].Name, Is.EqualTo("Чак Паланик - Сумасшедший гений литературы"));
@@ -284,7 +315,8 @@ namespace VkNet.Tests.Categories.Group
 
 			var groups = Api.Groups.GetById(new[]
 					{
-						"17683660", "637247"
+						"17683660",
+						"637247"
 					},
 					null,
 					null)
@@ -350,7 +382,14 @@ namespace VkNet.Tests.Categories.Group
 
 			Assert.That(group.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
 
-			Assert.That(group.StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0, DateTimeKind.Utc)));
+			Assert.That(group.StartDate,
+			Is.EqualTo(new DateTime(2012,
+				7,
+				21,
+				10,
+				0,
+				0,
+				DateTimeKind.Utc)));
 		}
 
 		[Test]
@@ -745,19 +784,18 @@ namespace VkNet.Tests.Categories.Group
 
 			var ids = Api.Groups.GetMembers(new GroupsGetMembersParams
 			{
-				GroupId = "17683660", Count = 7, Offset = 15, Sort = GroupsSort.IdAsc
+				GroupId = "17683660",
+				Count = 7,
+				Offset = 15,
+				Sort = GroupsSort.IdAsc,
+				Fields = UsersFields.Nickname
 			});
 
 			Assert.That(ids.TotalCount, Is.EqualTo(861));
-			Assert.That(ids.Count, Is.EqualTo(7));
+			Assert.That(ids.Count, Is.EqualTo(2));
 
-			Assert.That(ids[0].Id, Is.EqualTo(1129147));
-			Assert.That(ids[1].Id, Is.EqualTo(1137997));
-			Assert.That(ids[2].Id, Is.EqualTo(1201582));
-			Assert.That(ids[3].Id, Is.EqualTo(1205554));
-			Assert.That(ids[4].Id, Is.EqualTo(1220166));
-			Assert.That(ids[5].Id, Is.EqualTo(1238937));
-			Assert.That(ids[6].Id, Is.EqualTo(1239796));
+			Assert.That(ids[0].Id, Is.EqualTo(5));
+			Assert.That(ids[1].Id, Is.EqualTo(6));
 		}
 
 		[Test]
@@ -973,7 +1011,9 @@ namespace VkNet.Tests.Categories.Group
 
 			var groups = Api.Groups.Search(new GroupsSearchParams
 				{
-					Query = "Music", Offset = 20, Count = 3
+					Query = "Music",
+					Offset = 20,
+					Count = 3
 				},
 				true);
 
@@ -1088,7 +1128,9 @@ namespace VkNet.Tests.Categories.Group
 
 			var groups = Api.Groups.Search(new GroupsSearchParams
 				{
-					Query = "ThisQueryDoesNotExistAtAll", Offset = 20, Count = 3
+					Query = "ThisQueryDoesNotExistAtAll",
+					Offset = 20,
+					Count = 3
 				},
 				true);
 
