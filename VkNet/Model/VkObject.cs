@@ -31,7 +31,7 @@ namespace VkNet.Model
 		{
 			var obj = new VkObject
 			{
-					Id = Utilities.GetNullableLongId(response: response[key: "object_id"])
+				Id = Utilities.GetNullableLongId(response: response[key: "object_id"])
 			};
 
 			string type = response[key: "type"];
@@ -56,6 +56,13 @@ namespace VkNet.Model
 
 				{
 					obj.Type = VkObjectType.Application;
+
+					break;
+				}
+				case "page":
+
+				{
+					obj.Type = VkObjectType.Page;
 
 					break;
 				}
