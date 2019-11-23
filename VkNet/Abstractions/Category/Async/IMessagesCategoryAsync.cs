@@ -687,7 +687,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteConversation
 		/// </remarks>
-		Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null);
+		Task<ulong> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null);
 
 		/// <summary>
 		/// Позволяет получить беседу по её идентификатору.
@@ -1017,7 +1017,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
 		/// </remarks>
 		[Obsolete(ObsoleteText.MessageDeleteDialog, true)]
-		Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null);
+		Task<ulong> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null);
 
 		/// <summary>
 		/// Помечает диалог как отвеченный либо снимает отметку.

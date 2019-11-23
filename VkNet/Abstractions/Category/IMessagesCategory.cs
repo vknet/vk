@@ -690,7 +690,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteConversation
 		/// </remarks>
-		bool DeleteConversation(long? userId, long? peerId = null, ulong? groupId = null);
+		ulong DeleteConversation(long? userId, long? peerId = null, ulong? groupId = null);
 
 		/// <summary>
 		/// Позволяет получить беседу по её идентификатору.
@@ -996,7 +996,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
 		/// </remarks>
 		[Obsolete(ObsoleteText.MessageDeleteDialog)]
-		bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null);
+		ulong DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null);
 
 		/// <summary>
 		/// Помечает диалог как отвеченный либо снимает отметку.

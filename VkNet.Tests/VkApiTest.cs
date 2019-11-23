@@ -47,7 +47,8 @@ namespace VkNet.Tests
 
 			await Task.Delay(1000);
 
-			Mock.Get(Api.RestClient).Verify(m => m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()), Times.AtMost(callsCount));
+			Mock.Get(Api.RestClient)
+				.Verify(m => m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()), Times.AtMost(callsCount));
 		}
 
 		[Test]
@@ -91,7 +92,11 @@ namespace VkNet.Tests
 			Url = "https://api.vk.com/method/example.get";
 			ReadJsonFile(JsonPaths.EmptyArray);
 
-			var parameters = new Dictionary<string, string> { { "count", "23" } };
+			var parameters = new Dictionary<string, string>
+			{
+				{ "count", "23" }
+			};
+
 			var json = Api.Invoke("example.get", parameters, true);
 
 			StringAssert.AreEqualIgnoringCase(json, Json);
@@ -103,7 +108,11 @@ namespace VkNet.Tests
 			Url = "https://api.vk.com/method/example.get";
 			ReadJsonFile(JsonPaths.EmptyArray);
 
-			var parameters = new VkParameters { { "count", 23 } };
+			var parameters = new VkParameters
+			{
+				{ "count", 23 }
+			};
+
 			var json = Api.Invoke("example.get", parameters, true);
 
 			StringAssert.AreEqualIgnoringCase(json, Json);
@@ -162,9 +171,9 @@ namespace VkNet.Tests
 		[Test]
 		public void VersionShouldBeenChanged()
 		{
-			Api.VkApiVersion.SetVersion(0, 0);
+			Api.VkApiVersion.SetVersion(999, 0);
 
-			Assert.AreEqual("0.0", Api.VkApiVersion.Version);
+			Assert.AreEqual("999.0", Api.VkApiVersion.Version);
 		}
 
 		[Test]

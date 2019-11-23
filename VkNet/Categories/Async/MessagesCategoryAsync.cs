@@ -64,7 +64,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null)
+		public Task<ulong> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => DeleteConversation(userId, peerId, groupId));
 		}
@@ -114,7 +114,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
+		public Task<ulong> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
 				DeleteDialog(userId, peerId, offset, count));

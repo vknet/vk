@@ -26,8 +26,8 @@ namespace VkNet.Tests
 		[Test]
 		public void VersionIsChanged()
 		{
-			Manager.SetVersion(0, 0);
-			Assert.AreEqual("0.0", Manager.Version);
+			Manager.SetVersion(999, 0);
+			Assert.AreEqual("999.0", Manager.Version);
 		}
 
 		[Test]

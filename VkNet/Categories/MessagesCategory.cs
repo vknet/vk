@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -146,7 +146,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool DeleteConversation(long? userId, long? peerId = null, ulong? groupId = null)
+		public ulong DeleteConversation(long? userId, long? peerId = null, ulong? groupId = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -155,7 +155,7 @@ namespace VkNet.Categories
 				{ "group_id", groupId }
 			};
 
-			return _vk.Call<bool>("messages.deleteConversation", parameters);
+			return _vk.Call("messages.deleteConversation", parameters)["last_deleted_id"];
 		}
 
 		/// <inheritdoc />
@@ -260,7 +260,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
+		public ulong DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return DeleteConversation(userId, peerId, null);
 		}
