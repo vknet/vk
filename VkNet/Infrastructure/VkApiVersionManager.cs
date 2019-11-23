@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using VkNet.Abstractions.Core;
+using VkNet.Exception;
 
 namespace VkNet.Infrastructure
 {
@@ -21,6 +22,14 @@ namespace VkNet.Infrastructure
 		/// <inheritdoc />
 		public void SetVersion(int major, int minor)
 		{
+			if (major < CurrentMajorVersion)
+			{
+				throw new VkApiException
+				{
+					HelpLink = "https://vk.com/dev/version_update_2.0"
+				};
+			}
+
 			Major = major;
 			Minor = minor;
 		}
