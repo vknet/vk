@@ -1,11 +1,7 @@
 using System;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
-using Flurl.Http;
 using VkNet.Abstractions.Core;
-using VkNet.Exception;
-using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -36,7 +32,7 @@ namespace VkNet.Infrastructure
 			var result = ValidateAsync(validateUrl);
 			Task.WaitAll(result);
 
-			return result.Result;
+			return result.GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />

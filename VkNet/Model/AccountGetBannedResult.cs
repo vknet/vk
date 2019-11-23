@@ -1,12 +1,11 @@
 using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Abstractions;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Результат вызова метода <see cref="IAccountCategory.GetBanned"/>
+	/// Результат вызова метода <see cref="VkNet.Abstractions.IAccountCategory.GetBanned"/>
 	/// </summary>
 	[Serializable]
 	public class AccountGetBannedResult

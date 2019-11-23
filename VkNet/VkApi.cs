@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,7 +21,6 @@ using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
-using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
 using VkNet.Utils;
 using VkNet.Utils.AntiCaptcha;
@@ -71,7 +68,7 @@ namespace VkNet
 		/// Логгер
 		/// </summary>
 		private ILogger<VkApi> _logger;
-		
+
 		private readonly ServiceProvider _serviceProvider;
 
 	#pragma warning disable S1104 // Fields should not have public accessibility

@@ -4,7 +4,7 @@
 		<TargetFramework>netcoreapp3.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
 		<PackageReference Include="Moq" Version="4.13.1" />
 		<PackageReference Include="Moq.AutoMock" Version="1.2.0.120" />
 		<PackageReference Include="NUnit" Version="3.12.0" />
