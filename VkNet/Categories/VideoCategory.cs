@@ -293,18 +293,26 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool AddToAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null)
+		public VkCollection<ulong> AddToAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null,
+											long? albumId = null)
 		{
+			if (albumIds == null && albumId.HasValue)
+			{
+				albumIds = new[]
+				{
+					albumId.Value.ToString()
+				};
+			}
+
 			var parameters = new VkParameters
 			{
 				{ "target_id", targetId },
-				{ "album_id", albumId },
 				{ "album_ids", albumIds },
 				{ "owner_id", ownerId },
 				{ "video_id", videoId }
 			};
 
-			return _vk.Call("video.addToAlbum", parameters);
+			return _vk.Call<VkCollection<ulong>>("video.addToAlbum", parameters);
 		}
 
 		/// <inheritdoc />

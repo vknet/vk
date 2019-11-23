@@ -142,8 +142,8 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> AddToAlbumAsync(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null,
-										long? albumId = null)
+		public Task<VkCollection<ulong>> AddToAlbumAsync(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null,
+														long? albumId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => AddToAlbum(ownerId, videoId, albumIds, targetId, albumId));
 		}

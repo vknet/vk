@@ -50,7 +50,9 @@ namespace VkNet.Tests.Categories
 
 			var id = Api.Video.CreateComment(new VideoCreateCommentParams
 			{
-				VideoId = 166613182, Message = "забавное видео", OwnerId = 1
+				VideoId = 166613182,
+				Message = "забавное видео",
+				OwnerId = 1
 			});
 
 			Assert.That(id, Is.EqualTo(35634));
@@ -98,7 +100,10 @@ namespace VkNet.Tests.Categories
 
 			var result = Api.Video.Edit(new VideoEditParams
 			{
-				VideoId = 167538, OwnerId = 23469, Name = "Новое название", Desc = "Новое описание"
+				VideoId = 167538,
+				OwnerId = 23469,
+				Name = "Новое название",
+				Desc = "Новое описание"
 			});
 
 			Assert.That(result, Is.True);
@@ -182,7 +187,9 @@ namespace VkNet.Tests.Categories
 // 1, width: VideoWidth.Large320, count: 3, offset: 2
 			var result = Api.Video.Get(new VideoGetParams
 			{
-				OwnerId = 1, Count = 3, Offset = 2
+				OwnerId = 1,
+				Count = 3,
+				Offset = 2
 			});
 
 			Assert.That(result, Is.Not.Null);
@@ -269,7 +276,12 @@ namespace VkNet.Tests.Categories
 
 			var comments = Api.Video.GetComments(new VideoGetCommentsParams
 			{
-				VideoId = 166481021, OwnerId = 1, NeedLikes = true, Count = 2, Offset = 3, Sort = CommentsSort.Asc
+				VideoId = 166481021,
+				OwnerId = 1,
+				NeedLikes = true,
+				Count = 2,
+				Offset = 3,
+				Sort = CommentsSort.Asc
 			});
 
 			Assert.That(comments, Is.Not.Null);
@@ -310,7 +322,12 @@ namespace VkNet.Tests.Categories
 
 			var comments = Api.Video.GetComments(new VideoGetCommentsParams
 			{
-				VideoId = 166481021, OwnerId = 1, NeedLikes = false, Count = 2, Offset = 3, Sort = CommentsSort.Asc
+				VideoId = 166481021,
+				OwnerId = 1,
+				NeedLikes = false,
+				Count = 2,
+				Offset = 3,
+				Sort = CommentsSort.Asc
 			});
 
 			Assert.That(comments, Is.Not.Null);
@@ -387,7 +404,9 @@ namespace VkNet.Tests.Categories
 
 			var video = Api.Video.Save(new VideoSaveParams
 			{
-				Name = "Название из ютуба", Description = "Описание из ютуба", Wallpost = true,
+				Name = "Название из ютуба",
+				Description = "Описание из ютуба",
+				Wallpost = true,
 				Link = "https://www.youtube.com/watch?v=lhQtzv5a408&list=PLBC36AAAE4E4E0CAA"
 			});
 
@@ -421,8 +440,14 @@ namespace VkNet.Tests.Categories
 			// , VideoSort.Relevance, false, true, VideoFilters.Long, false, 5, 1
 			var result = Api.Video.Search(new VideoSearchParams
 			{
-				Query = "саша грей", Sort = VideoSort.Relevance, Hd = false, Adult = true, Filters = VideoFilters.Long, SearchOwn = false,
-				Count = 5, Offset = 1
+				Query = "саша грей",
+				Sort = VideoSort.Relevance,
+				Hd = false,
+				Adult = true,
+				Filters = VideoFilters.Long,
+				SearchOwn = false,
+				Count = 5,
+				Offset = 1
 			});
 
 			Assert.That(result, Is.Not.Null);
@@ -502,6 +527,19 @@ namespace VkNet.Tests.Categories
 			Assert.That(video2.Photo320, Is.EqualTo(new Uri("http://cs535107.vk.me/u146564541/video/l_cb794198.jpg")));
 
 			Assert.That(video2.Player, Is.EqualTo(new Uri("http://vk.com/video_ext.php?oid=-54257090&id=166728490&hash=15a0552ca76bedac")));
+		}
+
+		[Test]
+		public void AddToAlbum()
+		{
+			Url = "https://api.vk.com/method/video.addToAlbum";
+
+			ReadCategoryJsonPath(nameof(AddToAlbum));
+
+			var result = Api.Video.AddToAlbum(123, 123, null, null, 123);
+
+			Assert.That(result.TotalCount, Is.EqualTo(0));
+			Assert.Contains(2, result);
 		}
 	}
 }
