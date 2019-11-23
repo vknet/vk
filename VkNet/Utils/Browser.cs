@@ -115,7 +115,7 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public AuthorizationResult Validate(string validateUrl)
 		{
-			return ValidateAsync(validateUrl).Result;
+			return ValidateAsync(validateUrl).GetAwaiter().GetResult();
 		}
 
 		private bool HasСonfirmationRights(WebCallResult result)
@@ -192,7 +192,7 @@ namespace VkNet.Utils
 
 		private VkAuthorization2 OldValidate(string validateUrl, string phoneNumber)
 		{
-			return OldValidateAsync(validateUrl, phoneNumber).Result;
+			return OldValidateAsync(validateUrl, phoneNumber).GetAwaiter().GetResult();
 		}
 	}
 }

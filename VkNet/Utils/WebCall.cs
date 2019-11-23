@@ -125,7 +125,7 @@ namespace VkNet.Utils
 
 			using (var call = new WebCall(url, new Cookies(), webProxy))
 			{
-				var response = call._request.GetAsync(url).Result;
+				var response = call._request.GetAsync(url).GetAwaiter().GetResult();
 				var res = call.MakeRequest(response, new Uri(url), webProxy);
 
 			#if DEBUG_HTTP
@@ -155,7 +155,8 @@ namespace VkNet.Utils
 			{
 				var response = call._request
 					.PostAsync(url, new FormUrlEncodedContent(parameters))
-					.Result;
+					.GetAwaiter()
+					.GetResult();
 
 				var res = call.MakeRequest(response, new Uri(url), webProxy);
 
@@ -187,7 +188,8 @@ namespace VkNet.Utils
 
 				var response = call._request
 					.PostAsync(form.ActionUrl, new FormUrlEncodedContent(form.GetFormFields()))
-					.Result;
+					.GetAwaiter()
+					.GetResult();
 
 				var res = call.MakeRequest(response, new Uri(form.ActionUrl), webProxy);
 
@@ -219,7 +221,7 @@ namespace VkNet.Utils
 				headers.Add("Method", "GET");
 				headers.Add("ContentType", "text/html");
 
-				var response = call._request.GetAsync(url).Result;
+				var response = call._request.GetAsync(url).GetAwaiter().GetResult();
 				var res = call.MakeRequest(response, new Uri(url), webProxy);
 
 			#if DEBUG_HTTP
@@ -241,7 +243,7 @@ namespace VkNet.Utils
 		/// <exception cref="VkApiException"> Response is null. </exception>
 		private WebCallResult MakeRequest(HttpResponseMessage response, Uri uri, IWebProxy webProxy)
 		{
-			using (var stream = response.Content.ReadAsStreamAsync().Result)
+			using (var stream = response.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
 			{
 				if (stream == null)
 				{

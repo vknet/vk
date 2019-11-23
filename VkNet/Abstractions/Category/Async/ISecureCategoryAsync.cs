@@ -161,8 +161,8 @@ namespace VkNet.Abstractions.Category
 		/// <returns>
 		/// Возвращает список результатов выполнения в виде списка объектов:
 		/// {
-		/// &nbsp;&nbsp;"user_id": int,
-		/// &nbsp;&nbsp;"status": string
+		/// "user_id": int,
+		/// "status": string
 		/// }
 		/// status может принимать значения:
 		/// OK - операция успешна
