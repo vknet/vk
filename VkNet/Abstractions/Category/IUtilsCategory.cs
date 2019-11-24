@@ -22,9 +22,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
 		/// </remarks>
-		LinkAccessType CheckLink([NotNull]
-								string url
-								, bool skipAuthorization = true);
+		LinkAccessType CheckLink([NotNull] string url, bool skipAuthorization = true);
 
 		/// <summary>
 		/// Возвращает информацию о том, является ли внешняя ссылка заблокированной на
@@ -36,9 +34,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
 		/// </remarks>
-		LinkAccessType CheckLink([NotNull]
-								Uri url
-								, bool skipAuthorization = true);
+		LinkAccessType CheckLink([NotNull] Uri url, bool skipAuthorization = true);
 
 		/// <summary>
 		/// Определяет тип объекта (пользователь, сообщество, приложение) и его
@@ -49,8 +45,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/utils.resolveScreenName
 		/// </remarks>
-		VkObject ResolveScreenName([NotNull]
-									string screenName);
+		VkObject ResolveScreenName([NotNull] string screenName);
 
 		/// <summary>
 		/// Возвращает текущее время на сервере ВКонтакте в unixtime.

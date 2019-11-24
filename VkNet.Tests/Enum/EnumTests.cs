@@ -93,14 +93,11 @@ namespace VkNet.Tests.Enum
 		[Test]
 		public void BirthdayVisibilityTest()
 		{
-			Assert.That(Utilities.EnumFrom<BirthdayVisibility>(0)
-					, Is.EqualTo(BirthdayVisibility.Invisible));
+			Assert.That(Utilities.EnumFrom<BirthdayVisibility>(0), Is.EqualTo(BirthdayVisibility.Invisible));
 
-			Assert.That(Utilities.EnumFrom<BirthdayVisibility>(1)
-					, Is.EqualTo(BirthdayVisibility.Full));
+			Assert.That(Utilities.EnumFrom<BirthdayVisibility>(1), Is.EqualTo(BirthdayVisibility.Full));
 
-			Assert.That(Utilities.EnumFrom<BirthdayVisibility>(2)
-					, Is.EqualTo(BirthdayVisibility.OnlyDayAndMonth));
+			Assert.That(Utilities.EnumFrom<BirthdayVisibility>(2), Is.EqualTo(BirthdayVisibility.OnlyDayAndMonth));
 		}
 
 		[Test]
@@ -114,17 +111,13 @@ namespace VkNet.Tests.Enum
 		[Test]
 		public void DeleteFriendStatusTest()
 		{
-			Assert.That(Utilities.EnumFrom<DeleteFriendStatus>(0)
-					, Is.EqualTo(DeleteFriendStatus.Unknown));
+			Assert.That(Utilities.EnumFrom<DeleteFriendStatus>(0), Is.EqualTo(DeleteFriendStatus.Unknown));
 
-			Assert.That(Utilities.EnumFrom<DeleteFriendStatus>(1)
-					, Is.EqualTo(DeleteFriendStatus.UserIsDeleted));
+			Assert.That(Utilities.EnumFrom<DeleteFriendStatus>(1), Is.EqualTo(DeleteFriendStatus.UserIsDeleted));
 
-			Assert.That(Utilities.EnumFrom<DeleteFriendStatus>(2)
-					, Is.EqualTo(DeleteFriendStatus.RequestRejected));
+			Assert.That(Utilities.EnumFrom<DeleteFriendStatus>(2), Is.EqualTo(DeleteFriendStatus.RequestRejected));
 
-			Assert.That(Utilities.EnumFrom<DeleteFriendStatus>(3)
-					, Is.EqualTo(DeleteFriendStatus.RecommendationDeleted));
+			Assert.That(Utilities.EnumFrom<DeleteFriendStatus>(3), Is.EqualTo(DeleteFriendStatus.RecommendationDeleted));
 		}
 
 		[Test]
@@ -154,11 +147,9 @@ namespace VkNet.Tests.Enum
 		{
 			Assert.That(Utilities.EnumFrom<GiftPrivacy>(0), Is.EqualTo(GiftPrivacy.All));
 
-			Assert.That(Utilities.EnumFrom<GiftPrivacy>(1)
-					, Is.EqualTo(GiftPrivacy.NameAllMessageUser));
+			Assert.That(Utilities.EnumFrom<GiftPrivacy>(1), Is.EqualTo(GiftPrivacy.NameAllMessageUser));
 
-			Assert.That(Utilities.EnumFrom<GiftPrivacy>(2)
-					, Is.EqualTo(GiftPrivacy.NameHideMessageUser));
+			Assert.That(Utilities.EnumFrom<GiftPrivacy>(2), Is.EqualTo(GiftPrivacy.NameHideMessageUser));
 		}
 
 		[Test]
@@ -195,8 +186,7 @@ namespace VkNet.Tests.Enum
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(2), Is.EqualTo(GroupSubjects.Leisure));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(3), Is.EqualTo(GroupSubjects.Business));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(4)
-					, Is.EqualTo(GroupSubjects.DomesticAnimals));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(4), Is.EqualTo(GroupSubjects.DomesticAnimals));
 
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(5), Is.EqualTo(GroupSubjects.Health));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(6), Is.EqualTo(GroupSubjects.MeetAndChat));
@@ -204,31 +194,26 @@ namespace VkNet.Tests.Enum
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(8), Is.EqualTo(GroupSubjects.It));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(9), Is.EqualTo(GroupSubjects.Cinema));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(10)
-					, Is.EqualTo(GroupSubjects.BeautyAndFashion));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(10), Is.EqualTo(GroupSubjects.BeautyAndFashion));
 
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(11), Is.EqualTo(GroupSubjects.Cookery));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(12)
-					, Is.EqualTo(GroupSubjects.CultureAndArt));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(12), Is.EqualTo(GroupSubjects.CultureAndArt));
 
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(13), Is.EqualTo(GroupSubjects.References));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(14)
-					, Is.EqualTo(GroupSubjects.MobileTelephonyAndInternet));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(14), Is.EqualTo(GroupSubjects.MobileTelephonyAndInternet));
 
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(15), Is.EqualTo(GroupSubjects.Music));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(16)
-					, Is.EqualTo(GroupSubjects.ScienceAndTechnology));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(16), Is.EqualTo(GroupSubjects.ScienceAndTechnology));
 
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(17), Is.EqualTo(GroupSubjects.RealEstate));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(18), Is.EqualTo(GroupSubjects.NewsAndMedia));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(19), Is.EqualTo(GroupSubjects.Security));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(20), Is.EqualTo(GroupSubjects.Forming));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(21)
-					, Is.EqualTo(GroupSubjects.ConstructionAndRepair));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(21), Is.EqualTo(GroupSubjects.ConstructionAndRepair));
 
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(22), Is.EqualTo(GroupSubjects.Policy));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(23), Is.EqualTo(GroupSubjects.FoodItems));
@@ -236,54 +221,44 @@ namespace VkNet.Tests.Enum
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(25), Is.EqualTo(GroupSubjects.Travels));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(26), Is.EqualTo(GroupSubjects.Job));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(27)
-					, Is.EqualTo(GroupSubjects.Entertainment));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(27), Is.EqualTo(GroupSubjects.Entertainment));
 
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(28), Is.EqualTo(GroupSubjects.Religion));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(29)
-					, Is.EqualTo(GroupSubjects.HomeAndFamily));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(29), Is.EqualTo(GroupSubjects.HomeAndFamily));
 
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(30), Is.EqualTo(GroupSubjects.Sports));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(31), Is.EqualTo(GroupSubjects.Coverage));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(32), Is.EqualTo(GroupSubjects.Tv));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(33)
-					, Is.EqualTo(GroupSubjects.GoodsAndServices));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(33), Is.EqualTo(GroupSubjects.GoodsAndServices));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(34)
-					, Is.EqualTo(GroupSubjects.InterestsAndHobbies));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(34), Is.EqualTo(GroupSubjects.InterestsAndHobbies));
 
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(35), Is.EqualTo(GroupSubjects.Finances));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(36), Is.EqualTo(GroupSubjects.Photography));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(37), Is.EqualTo(GroupSubjects.Esoterics));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(38)
-					, Is.EqualTo(GroupSubjects.ElectronicsAndAppliances));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(38), Is.EqualTo(GroupSubjects.ElectronicsAndAppliances));
 
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(39), Is.EqualTo(GroupSubjects.Erotica));
 			Assert.That(Utilities.EnumFrom<GroupSubjects>(40), Is.EqualTo(GroupSubjects.Humor));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(41)
-					, Is.EqualTo(GroupSubjects.SocietyHumanities));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(41), Is.EqualTo(GroupSubjects.SocietyHumanities));
 
-			Assert.That(Utilities.EnumFrom<GroupSubjects>(42)
-					, Is.EqualTo(GroupSubjects.DesignAndGraphics));
+			Assert.That(Utilities.EnumFrom<GroupSubjects>(42), Is.EqualTo(GroupSubjects.DesignAndGraphics));
 		}
 
 		[Test]
 		public void GroupSubTypeTest()
 		{
-			Assert.That(Utilities.EnumFrom<GroupSubType>(1)
-					, Is.EqualTo(GroupSubType.PlaceOrSmallCompany));
+			Assert.That(Utilities.EnumFrom<GroupSubType>(1), Is.EqualTo(GroupSubType.PlaceOrSmallCompany));
 
-			Assert.That(Utilities.EnumFrom<GroupSubType>(2)
-					, Is.EqualTo(GroupSubType.OrganizationOrWebsite));
+			Assert.That(Utilities.EnumFrom<GroupSubType>(2), Is.EqualTo(GroupSubType.OrganizationOrWebsite));
 
 			Assert.That(Utilities.EnumFrom<GroupSubType>(3), Is.EqualTo(GroupSubType.PersonOrTeam));
 
-			Assert.That(Utilities.EnumFrom<GroupSubType>(4)
-					, Is.EqualTo(GroupSubType.ProductOrProducts));
+			Assert.That(Utilities.EnumFrom<GroupSubType>(4), Is.EqualTo(GroupSubType.ProductOrProducts));
 		}
 
 		[Test]
@@ -538,13 +513,11 @@ namespace VkNet.Tests.Enum
 		[Test]
 		public void LeaderboardTypesTest()
 		{
-			Assert.That(Utilities.EnumFrom<LeaderboardTypes>(0)
-					, Is.EqualTo(LeaderboardTypes.NotSupported));
+			Assert.That(Utilities.EnumFrom<LeaderboardTypes>(0), Is.EqualTo(LeaderboardTypes.NotSupported));
 
 			Assert.That(Utilities.EnumFrom<LeaderboardTypes>(1), Is.EqualTo(LeaderboardTypes.ByLevel));
 
-			Assert.That(Utilities.EnumFrom<LeaderboardTypes>(2)
-					, Is.EqualTo(LeaderboardTypes.ByPoints));
+			Assert.That(Utilities.EnumFrom<LeaderboardTypes>(2), Is.EqualTo(LeaderboardTypes.ByPoints));
 		}
 
 		[Test]
@@ -580,11 +553,9 @@ namespace VkNet.Tests.Enum
 			Assert.That(Utilities.EnumFrom<MaritalStatus>(3), Is.EqualTo(MaritalStatus.Engaged));
 			Assert.That(Utilities.EnumFrom<MaritalStatus>(4), Is.EqualTo(MaritalStatus.Married));
 
-			Assert.That(Utilities.EnumFrom<MaritalStatus>(5)
-					, Is.EqualTo(MaritalStatus.ItsComplicated));
+			Assert.That(Utilities.EnumFrom<MaritalStatus>(5), Is.EqualTo(MaritalStatus.ItsComplicated));
 
-			Assert.That(Utilities.EnumFrom<MaritalStatus>(6)
-					, Is.EqualTo(MaritalStatus.TheActiveSearch));
+			Assert.That(Utilities.EnumFrom<MaritalStatus>(6), Is.EqualTo(MaritalStatus.TheActiveSearch));
 
 			Assert.That(Utilities.EnumFrom<MaritalStatus>(7), Is.EqualTo(MaritalStatus.InLove));
 		}
@@ -602,8 +573,7 @@ namespace VkNet.Tests.Enum
 		[Test]
 		public void MessageReadStateTest()
 		{
-			Assert.That(Utilities.EnumFrom<MessageReadState>(0)
-					, Is.EqualTo(MessageReadState.Unreaded));
+			Assert.That(Utilities.EnumFrom<MessageReadState>(0), Is.EqualTo(MessageReadState.Unreaded));
 
 			Assert.That(Utilities.EnumFrom<MessageReadState>(1), Is.EqualTo(MessageReadState.Readed));
 		}
@@ -625,13 +595,11 @@ namespace VkNet.Tests.Enum
 		[Test]
 		public void PageAccessKindTest()
 		{
-			Assert.That(Utilities.EnumFrom<PageAccessKind>(0)
-					, Is.EqualTo(PageAccessKind.OnlyAdministrators));
+			Assert.That(Utilities.EnumFrom<PageAccessKind>(0), Is.EqualTo(PageAccessKind.OnlyAdministrators));
 
 			Assert.That(Utilities.EnumFrom<PageAccessKind>(1), Is.EqualTo(PageAccessKind.OnlyMembers));
 
-			Assert.That(Utilities.EnumFrom<PageAccessKind>(2)
-					, Is.EqualTo(PageAccessKind.Unrestricted));
+			Assert.That(Utilities.EnumFrom<PageAccessKind>(2), Is.EqualTo(PageAccessKind.Unrestricted));
 		}
 
 		[Test]
@@ -643,8 +611,7 @@ namespace VkNet.Tests.Enum
 			Assert.That(Utilities.EnumFrom<PeopleMain>(3), Is.EqualTo(PeopleMain.HealthAndBeauty));
 			Assert.That(Utilities.EnumFrom<PeopleMain>(4), Is.EqualTo(PeopleMain.PowerAndWealth));
 
-			Assert.That(Utilities.EnumFrom<PeopleMain>(5)
-					, Is.EqualTo(PeopleMain.CourageAndPersistence));
+			Assert.That(Utilities.EnumFrom<PeopleMain>(5), Is.EqualTo(PeopleMain.CourageAndPersistence));
 
 			Assert.That(Utilities.EnumFrom<PeopleMain>(6), Is.EqualTo(PeopleMain.HumorAndLoveForLife));
 		}
@@ -652,48 +619,35 @@ namespace VkNet.Tests.Enum
 		[Test]
 		public void PoliticalPreferencesTest()
 		{
-			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(0)
-					, Is.EqualTo(PoliticalPreferences.Unknown));
+			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(0), Is.EqualTo(PoliticalPreferences.Unknown));
 
-			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(1)
-					, Is.EqualTo(PoliticalPreferences.Communist));
+			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(1), Is.EqualTo(PoliticalPreferences.Communist));
 
-			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(2)
-					, Is.EqualTo(PoliticalPreferences.Socialist));
+			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(2), Is.EqualTo(PoliticalPreferences.Socialist));
 
-			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(3)
-					, Is.EqualTo(PoliticalPreferences.Moderate));
+			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(3), Is.EqualTo(PoliticalPreferences.Moderate));
 
-			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(4)
-					, Is.EqualTo(PoliticalPreferences.Liberal));
+			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(4), Is.EqualTo(PoliticalPreferences.Liberal));
 
-			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(5)
-					, Is.EqualTo(PoliticalPreferences.Conservative));
+			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(5), Is.EqualTo(PoliticalPreferences.Conservative));
 
-			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(6)
-					, Is.EqualTo(PoliticalPreferences.Monarchist));
+			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(6), Is.EqualTo(PoliticalPreferences.Monarchist));
 
-			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(7)
-					, Is.EqualTo(PoliticalPreferences.Ultraconservative));
+			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(7), Is.EqualTo(PoliticalPreferences.Ultraconservative));
 
-			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(8)
-					, Is.EqualTo(PoliticalPreferences.Apathetic));
+			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(8), Is.EqualTo(PoliticalPreferences.Apathetic));
 
-			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(9)
-					, Is.EqualTo(PoliticalPreferences.Libertarian));
+			Assert.That(Utilities.EnumFrom<PoliticalPreferences>(9), Is.EqualTo(PoliticalPreferences.Libertarian));
 		}
 
 		[Test]
 		public void ProductAvailabilityTest()
 		{
-			Assert.That(Utilities.EnumFrom<ProductAvailability>(0)
-					, Is.EqualTo(ProductAvailability.Available));
+			Assert.That(Utilities.EnumFrom<ProductAvailability>(0), Is.EqualTo(ProductAvailability.Available));
 
-			Assert.That(Utilities.EnumFrom<ProductAvailability>(1)
-					, Is.EqualTo(ProductAvailability.Removed));
+			Assert.That(Utilities.EnumFrom<ProductAvailability>(1), Is.EqualTo(ProductAvailability.Removed));
 
-			Assert.That(Utilities.EnumFrom<ProductAvailability>(2)
-					, Is.EqualTo(ProductAvailability.Unavailable));
+			Assert.That(Utilities.EnumFrom<ProductAvailability>(2), Is.EqualTo(ProductAvailability.Unavailable));
 		}
 
 		[Test]
@@ -723,8 +677,7 @@ namespace VkNet.Tests.Enum
 		{
 			Assert.That(Utilities.EnumFrom<ReportReason>(0), Is.EqualTo(ReportReason.Spam));
 
-			Assert.That(Utilities.EnumFrom<ReportReason>(1)
-					, Is.EqualTo(ReportReason.ChildPornography));
+			Assert.That(Utilities.EnumFrom<ReportReason>(1), Is.EqualTo(ReportReason.ChildPornography));
 
 			Assert.That(Utilities.EnumFrom<ReportReason>(2), Is.EqualTo(ReportReason.Extremism));
 			Assert.That(Utilities.EnumFrom<ReportReason>(3), Is.EqualTo(ReportReason.Violence));
@@ -777,6 +730,7 @@ namespace VkNet.Tests.Enum
 			Assert.That(Utilities.EnumFrom<VkObjectType>(0), Is.EqualTo(VkObjectType.User));
 			Assert.That(Utilities.EnumFrom<VkObjectType>(1), Is.EqualTo(VkObjectType.Group));
 			Assert.That(Utilities.EnumFrom<VkObjectType>(2), Is.EqualTo(VkObjectType.Application));
+			Assert.That(Utilities.EnumFrom<VkObjectType>(3), Is.EqualTo(VkObjectType.Page));
 		}
 
 		[Test]
@@ -784,14 +738,11 @@ namespace VkNet.Tests.Enum
 		{
 			Assert.That(Utilities.EnumFrom<WallContentAccess>(0), Is.EqualTo(WallContentAccess.Off));
 
-			Assert.That(Utilities.EnumFrom<WallContentAccess>(1)
-					, Is.EqualTo(WallContentAccess.Opened));
+			Assert.That(Utilities.EnumFrom<WallContentAccess>(1), Is.EqualTo(WallContentAccess.Opened));
 
-			Assert.That(Utilities.EnumFrom<WallContentAccess>(2)
-					, Is.EqualTo(WallContentAccess.Restricted));
+			Assert.That(Utilities.EnumFrom<WallContentAccess>(2), Is.EqualTo(WallContentAccess.Restricted));
 
-			Assert.That(Utilities.EnumFrom<WallContentAccess>(3)
-					, Is.EqualTo(WallContentAccess.Closed));
+			Assert.That(Utilities.EnumFrom<WallContentAccess>(3), Is.EqualTo(WallContentAccess.Closed));
 		}
 	}
 }

@@ -151,7 +151,7 @@ namespace VkNet.Tests.Categories
 		public void ResolveScreenName_BadScreenName()
 		{
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
-			ReadJsonFile(JsonPaths.EmptyArray);
+			ReadJsonFile(JsonPaths.EmptyObject);
 
 			var obj = Api.Utils.ResolveScreenName("3f625aef-b285-4006-a87f-0367a04f1138");
 
