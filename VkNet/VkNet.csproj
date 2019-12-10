@@ -62,9 +62,9 @@
 	    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.0.1" />
     </ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net461'">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[2.2.0]" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[2.2.0]" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[2.2.0]" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.0" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net45' OR '$(TargetFramework)' == 'net40'">
 		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="[2.2.0]" />
