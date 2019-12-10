@@ -13,9 +13,9 @@ namespace VkNet.Categories
 	public partial class AudioCategory
 	{
 		/// <inheritdoc />
-		public Task<long> AddAsync(long audioId, long ownerId, long? groupId = null, long? albumId = null)
+		public Task<long> AddAsync(long audioId, long ownerId, string accessKey = null, long? groupId = null, long? albumId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => Add(audioId, ownerId, groupId, albumId));
+			return TypeHelper.TryInvokeMethodAsync(() => Add(audioId, ownerId, accessKey, groupId, albumId));
 		}
 
 		/// <inheritdoc />

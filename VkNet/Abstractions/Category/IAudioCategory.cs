@@ -24,6 +24,9 @@ namespace VkNet.Abstractions
 		/// <param name="ownerId">
 		/// Идентификатор владельца аудиозаписи.
 		/// </param>
+		/// <param name="accessKey">
+		/// Ключ доступа.
+		/// </param>
 		/// <param name="groupId">
 		/// Идентификатор сообщества (если аудиозапись необходимо скопировать в список
 		/// сообщества).
@@ -37,7 +40,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.add
 		/// </remarks>
-		long Add(long audioId, long ownerId, long? groupId = null, long? albumId = null);
+		long Add(long audioId, long ownerId, string accessKey = null, long? groupId = null, long? albumId = null);
 
 		/// <summary>
 		/// Создает пустой плейлист.

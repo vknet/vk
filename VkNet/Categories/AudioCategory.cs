@@ -27,12 +27,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public long Add(long audioId, long ownerId, long? groupId = null, long? albumId = null)
+		public long Add(long audioId, long ownerId, string accessKey = null, long? groupId = null, long? albumId = null)
 		{
 			var parameters = new VkParameters
 			{
 				{ "audio_id", audioId },
 				{ "owner_id", ownerId },
+				{ "access_key", accessKey },
 				{ "group_id", groupId },
 				{ "album_id", albumId }
 			};
