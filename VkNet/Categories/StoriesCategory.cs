@@ -99,12 +99,29 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public VkCollection<User> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null, bool? extended = null)
+		public VkCollection<long> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null)
+		{
+			return _vk.Call<VkCollection<long>>("stories.getViewers",
+				new VkParameters
+				{
+					{ "owner_id", ownerId },
+					{ "story_id", storyId },
+					{ "count", count },
+					{ "offset", offset }
+				});
+		}
+
+		/// <inheritdoc />
+		public VkCollection<User> GetViewersExtended(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null)
 		{
 			return _vk.Call<VkCollection<User>>("stories.getViewers",
 				new VkParameters
 				{
-					{ "owner_id", ownerId }, { "story_id", storyId }, { "count", count }, { "offset", offset }, { "extended", extended }
+					{ "owner_id", ownerId },
+					{ "story_id", storyId },
+					{ "count", count },
+					{ "offset", offset },
+					{ "extended", true }
 				});
 		}
 

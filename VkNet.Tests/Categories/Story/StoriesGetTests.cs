@@ -71,6 +71,23 @@ namespace VkNet.Tests.Categories.Story
 
 			Assert.That(users.Count, Is.EqualTo(1));
 			Assert.NotNull(userId);
+			Assert.That(userId, Is.EqualTo(123456789));
+		}
+
+		[Test]
+		public void GetViewersExtended()
+		{
+			Url = "https://api.vk.com/method/stories.getViewers";
+			ReadCategoryJsonPath(nameof(GetViewersExtended));
+
+			var users = Api.Stories.GetViewersExtended(123456789, 123456789);
+			var user = users.FirstOrDefault();
+
+			Assert.That(users.Count, Is.EqualTo(1));
+			Assert.NotNull(user);
+			Assert.That(user.Id, Is.EqualTo(123456789));
+			Assert.That(user.FirstName, Is.EqualTo("test"));
+			Assert.That(user.LastName, Is.EqualTo("test1"));
 		}
 
 		[Test]

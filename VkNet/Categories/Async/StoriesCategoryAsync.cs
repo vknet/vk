@@ -65,10 +65,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<VkCollection<User>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null,
-																bool? extended = null)
+		public Task<VkCollection<long>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetViewers(ownerId, storyId, count, offset, extended));
+			return TypeHelper.TryInvokeMethodAsync(() => GetViewers(ownerId, storyId, count, offset));
+		}
+
+		/// <inheritdoc />
+		public Task<VkCollection<User>> GetViewersExtendedAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetViewersExtended(ownerId, storyId, count, offset));
 		}
 
 		/// <inheritdoc/>
