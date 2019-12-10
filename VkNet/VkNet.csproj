@@ -70,10 +70,10 @@
 		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="[2.2.0]" />
 		<PackageReference Include="NetFx.Extensions.Logging.Abstractions" Version="[2.2.0]" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1' OR '$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net461' OR '$(TargetFramework)' == 'net45'">
+	<ItemGroup Condition="'$(TargetFramework)' != 'net40'">
 		<PackageReference Include="Flurl.Http" Version="2.4.2" />
 	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net40'">
 		<PackageReference Include="Flurl.Http.Net40" Version="1.0.1" />
 	</ItemGroup>
 	<ItemGroup>
