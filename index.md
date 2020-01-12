@@ -48,53 +48,55 @@ PM> Install-Package VkNet
 + [Friends.DeleteAllRequests](/vk/friends/deleteAllRequests/) - Отмечает все входящие заявки на добавление в друзья как просмотренные.
 + [Friends.GetSuggestions](/vk/friends/getSuggestions/) - Возвращает список профилей пользователей, которые могут быть друзьями текущего пользователя.
 + [Friends.AreFriends](/vk/friends/areFriends/) - Возвращает информацию о том, добавлен ли текущий пользователь в друзья у указанных пользователей.
-+ [Friends.GetAvailableForCall](/vk/friends/getAvailableForCall/) - Позволяет получить список идентификаторов пользователей, доступных для вызова в приложении, используя метод JSAPI callUser.  Подробнее о схеме вызова из приложений.
 + [Friends.Search](/vk/friends/search/) - Позволяет искать по списку друзей пользователей.
++ (Устаревший) [Friends.GetAvailableForCall](/vk/friends/getAvailableForCall/) - Позволяет получить список идентификаторов пользователей, доступных для вызова в приложении, используя метод JSAPI callUser. Подробнее о схеме вызова из приложений.
 
 ## Группы
-+ [Groups.IsMember](/vk/groups/isMember/) - Возвращает информацию о том, является ли пользователь участником сообщества.
-+ [Groups.GetById](/vk/groups/getById/) - Возвращает информацию о заданном сообществе или о нескольких сообществах.
-+ [Groups.Get](/vk/groups/get/) - Возвращает список сообществ указанного пользователя.
-+ [Groups.GetMembers](/vk/groups/getMembers/) - Возвращает список участников сообщества.
-+ [Groups.Join](/vk/groups/join/) - Данный метод позволяет вступить в группу, публичную страницу, а также подтвердить участие во встрече.
-+ [Groups.Leave](/vk/groups/leave/) - Позволяет покинуть сообщество.
-+ [Groups.Search](/vk/groups/search/) - Осуществляет поиск сообществ по заданной подстроке.
-+ [Groups.GetLongPollServer](/vk/groups/getLongPollServer/) - Возвращает данные для подключения к Bots Longpoll API.
-+ [Groups.GetCatalog](/vk/groups/getCatalog/) - Возвращает список сообществ выбранной категории каталога.
-+ [Groups.GetCatalogInfo](/vk/groups/getCatalogInfo/) - Возвращает список категорий для каталога сообществ.
-+ [Groups.GetInvites](/vk/groups/getInvites/) - Данный метод возвращает список приглашений в сообщества и встречи текущего пользователя.
-+ [Groups.GetInvitedUsers](/vk/groups/getInvitedUsers/) - Возвращает список пользователей, которые были приглашены в группу.
-+ [Groups.BanUser](/vk/groups/banUser/) - Добавляет пользователя в черный список сообщества.
-+ [Groups.UnbanUser](/vk/groups/unbanUser/) - Убирает пользователя из черного списка сообщества.
-+ [Groups.GetBanned](/vk/groups/getBanned/) - Возвращает список забаненных пользователей в сообществе.
-+ [Groups.Create](/vk/groups/create/) - Создает новое сообщество.
-+ [Groups.Edit](/vk/groups/edit/) - Редактирует сообщество.
-+ [Groups.EditPlace](/vk/groups/editPlace/) - Позволяет редактировать информацию о месте группы.
-+ [Groups.GetSettings](/vk/groups/getSettings/) - Позволяет получать данные, необходимые для отображения страницы редактирования данных сообщества.
-+ [Groups.GetRequests](/vk/groups/getRequests/) - Возвращает список заявок на вступление в сообщество.
-+ [Groups.EditManager](/vk/groups/editManager/) - Позволяет назначить/разжаловать руководителя в сообществе или изменить уровень его полномочий.
-+ [Groups.Invite](/vk/groups/invite/) - Позволяет приглашать друзей в группу.
-+ [Groups.AddLink](/vk/groups/addLink/) - Позволяет добавлять ссылки в сообщество.
-+ [Groups.DeleteLink](/vk/groups/deleteLink/) - Позволяет удалить ссылки из сообщества.
-+ [Groups.EditLink](/vk/groups/editLink/) - Позволяет редактировать ссылки в сообществе.
-+ [Groups.ReorderLink](/vk/groups/reorderLink/) - Позволяет менять местоположение ссылки в списке.
-+ [Groups.RemoveUser](/vk/groups/removeUser/) - Позволяет исключить пользователя из группы или отклонить заявку на вступление.
-+ [Groups.ApproveRequest](/vk/groups/approveRequest/) - Позволяет одобрить заявку в группу от пользователя.
++ [Groups.addAddress](/vk/groups/addAddresses/) - Позволяет добавить адрес в сообщество. 
 + [Groups.AddCallbackServer](/vk/groups/addCallbackServer/) - !!Добавляет сервер для Callback API в сообщество.
++ [Groups.AddLink](/vk/groups/addLink/) - Позволяет добавлять ссылки в сообщество.
++ [Groups.ApproveRequest](/vk/groups/approveRequest/) - Позволяет одобрить заявку в группу от пользователя.
++ [Groups.Ban](/vk/groups/banUser/) - Добавляет пользователя в черный список сообщества.
++ [Groups.Create](/vk/groups/create/) - Создает новое сообщество.
++ [Groups.DeleteAddress](/vk/groups/deleteAddresses/) - Позволяет удалить адрес в сообществе.
 + [Groups.DeleteCallbackServer](/vk/groups/deleteCallbackServer/) - !!Удаляет сервер для Callback API из сообщества.
++ [Groups.DeleteLink](/vk/groups/deleteLink/) - Позволяет удалить ссылки из сообщества.
 + [Groups.DisableOnline](/vk/groups/disableOnline/) - !!Выключает статус «онлайн» в сообществе.
++ [Groups.Edit](/vk/groups/edit/) - Редактирует сообщество.
++ [Groups.EditAddress](/vk/groups/editAddresses/) - Позволяет отредактировать адрес в сообществе. 
 + [Groups.EditCallbackServer](/vk/groups/editCallbackServer/) - !!Редактирует данные сервера для Callback API в сообществе.
++ [Groups.EditLink](/vk/groups/editLink/) - Позволяет редактировать ссылки в сообществе.
++ [Groups.EditManager](/vk/groups/editManager/) - Позволяет назначить/разжаловать руководителя в сообществе или изменить уровень его полномочий.
 + [Groups.EnableOnline](/vk/groups/enableOnline/) - !!Включает статус «онлайн» в сообществе.
-+ [Groups.GetAddresses](/vk/groups/getAddresses/) - !!addresses
++ (Устаревший) [Groups.EditPlace](/vk/groups/editPlace/) - Позволяет редактировать информацию о месте группы.
++ [Groups.Get](/vk/groups/get/) - Возвращает список сообществ указанного пользователя.
++ [Groups.GetAddress](/vk/groups/GetAddresses/) - Позволяет отредактировать адрес в сообществе. 
++ [Groups.GetBanned](/vk/groups/getBanned/) - Возвращает список забаненных пользователей в сообществе.
++ [Groups.GetById](/vk/groups/getById/) - Возвращает информацию о заданном сообществе или о нескольких сообществах.
 + [Groups.GetCallbackConfirmationCode](/vk/groups/getCallbackConfirmationCode/) - Позволяет получить строку, необходимую для подтверждения адреса сервера в Callback API.
 + [Groups.GetCallbackServers](/vk/groups/getCallbackServers/) - !!Получает информацию о серверах для Callback API в сообществе.
 + [Groups.GetCallbackSettings](/vk/groups/getCallbackSettings/) - !!Позволяет получить настройки уведомлений Callback API для сообщества.
++ [Groups.GetCatalog](/vk/groups/getCatalog/) - Возвращает список сообществ выбранной категории каталога.
++ [Groups.GetCatalogInfo](/vk/groups/getCatalogInfo/) - Возвращает список категорий для каталога сообществ.
++ [Groups.GetInvitedUsers](/vk/groups/getInvitedUsers/) - Возвращает список пользователей, которые были приглашены в группу.
++ [Groups.GetInvites](/vk/groups/getInvites/) - Данный метод возвращает список приглашений в сообщества и встречи текущего пользователя.
++ [Groups.GetLongPollServer](/vk/groups/getLongPollServer/) - Возвращает данные для подключения к Bots Longpoll API.
 + [Groups.GetLongPollSettings](/vk/groups/getLongPollSettings/) - !!Получает настройки Bots Longpoll API для сообщества.
++ [Groups.GetMembers](/vk/groups/getMembers/) - Возвращает список участников сообщества.
 + [Groups.GetOnlineStatus](/vk/groups/getOnlineStatus/) - !!Получает информацию о статусе «онлайн» в сообществе.
++ [Groups.GetRequests](/vk/groups/getRequests/) - Возвращает список заявок на вступление в сообщество.
++ [Groups.GetSettings](/vk/groups/getSettings/) - Позволяет получать данные, необходимые для отображения страницы редактирования данных сообщества.
 + [Groups.GetTokenPermissions](/vk/groups/getTokenPermissions/) - !!Возвращает настройки прав для ключа доступа сообщества.
++ [Groups.Invite](/vk/groups/invite/) - Позволяет приглашать друзей в группу.
++ [Groups.IsMember](/vk/groups/isMember/) - Возвращает информацию о том, является ли пользователь участником сообщества.
++ [Groups.Join](/vk/groups/join/) - Данный метод позволяет вступить в группу, публичную страницу, а также подтвердить участие во встрече.
++ [Groups.Leave](/vk/groups/leave/) - Позволяет покинуть сообщество.
++ [Groups.RemoveUser](/vk/groups/removeUser/) - Позволяет исключить пользователя из группы или отклонить заявку на вступление.
++ [Groups.ReorderLink](/vk/groups/reorderLink/) - Позволяет менять местоположение ссылки в списке.
++ [Groups.Search](/vk/groups/search/) - Осуществляет поиск сообществ по заданной подстроке.
 + [Groups.SetCallbackSettings](/vk/groups/setCallbackSettings/) - !!Позволяет задать настройки уведомлений о событиях в Callback API.
 + [Groups.SetLongPollSettings](/vk/groups/setLongPollSettings/) - !!Задаёт настройки для Bots Long Poll API в сообществе.
-
++ [Groups.Unban](/vk/groups/unbanUser/) - Убирает пользователя из черного списка сообщества.
 
 ## Аудиозаписи [Решение по обходу блокировки API Audio](https://github.com/atckun/VkNet.AudioBypass)
 ### Установка через Nuget
@@ -129,321 +131,336 @@ PM> Install-Package VkNet.AudioBypassService
 + [Audio.GetCount](/vk/audio/getCount/) - Возвращает количество аудиозаписей пользователя или сообщества.
 
 ## Сообщения
-+ [Messages.Get](/vk/messages/get/) - Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
-+ [Messages.GetDialogs](/vk/messages/getDialogs/) - Возвращает список диалогов текущего пользователя.
-+ [Messages.GetById](/vk/messages/getById/) - Возвращает сообщения по их id.
-+ [Messages.Search](/vk/messages/search/) - Возвращает список найденных личных сообщений текущего пользователя по введенной строке поиска.
-+ [Messages.GetHistory](/vk/messages/getHistory/) - Возвращает историю сообщений для указанного пользователя.
-+ [Messages.Send](/vk/messages/send/) - Отправляет сообщение.
-+ [Messages.Delete](/vk/messages/delete/) - Удаляет сообщение.
-+ [Messages.DeleteDialog](/vk/messages/deleteDialog/) - Удаляет все личные сообщения в диалоге.
-+ [Messages.Restore](/vk/messages/restore/) - Восстанавливает удаленное сообщение.
-+ [Messages.MarkAsRead](/vk/messages/markAsRead/) - Помечает сообщения как прочитанные.
-+ [Messages.MarkAsImportant](/vk/messages/markAsImportant/) - Помечает сообщения как важные либо снимает отметку.
-+ [Messages.GetLongPollServer](/vk/messages/getLongPollServer/) - Возвращает данные, необходимые для подключения к Long Poll серверу.
-+ [Messages.GetLongPollHistory](/vk/messages/getLongPollHistory/) - Возвращает обновления в личных сообщениях пользователя.
-+ [Messages.GetChat](/vk/messages/getChat/) - Возвращает информацию о беседе.
-+ [Messages.CreateChat](/vk/messages/createChat/) - Создаёт беседу с несколькими участниками.
-+ [Messages.EditChat](/vk/messages/editChat/) - Изменяет название беседы.
-+ [Messages.GetChatUsers](/vk/messages/getChatUsers/) - Позволяет получить список пользователей мультидиалога по его id.
-+ [Messages.SetActivity](/vk/messages/setActivity/) - Изменяет статус набора текста пользователем в диалоге.
-+ [Messages.SearchDialogs](/vk/messages/searchDialogs/) - Возвращает список найденных диалогов текущего пользователя по введенной строке поиска.
 + [Messages.AddChatUser](/vk/messages/addChatUser/) - Добавляет в мультидиалог нового пользователя.
-+ [Messages.RemoveChatUser](/vk/messages/removeChatUser/) - Исключает из мультидиалога пользователя, если текущий пользователь был создателем беседы либо пригласил исключаемого пользователя.
-+ [Messages.GetLastActivity](/vk/messages/getLastActivity/) - Возвращает текущий статус и дату последней активности указанного пользователя.
-+ [Messages.SetChatPhoto](/vk/messages/setChatPhoto/) - Позволяет установить фотографию мультидиалога, загруженную с помощью метода photos.getChatUploadServer.
-+ [Messages.DeleteChatPhoto](/vk/messages/deleteChatPhoto/) - Позволяет удалить фотографию мультидиалога.
 + [Messages.AllowMessagesFromGroup](/vk/messages/allowMessagesFromGroup/) - !!Позволяет разрешить отправку сообщений от сообщества текущему пользователю.
++ [Messages.CreateChat](/vk/messages/createChat/) - Создаёт беседу с несколькими участниками.
++ [Messages.Delete](/vk/messages/delete/) - Удаляет сообщение.
++ [Messages.DeleteChatPhoto](/vk/messages/deleteChatPhoto/) - Позволяет удалить фотографию мультидиалога.
++ [Messages.DeleteConversation](/vk/messages/deleteConversation/) - Удаляет все личные сообщения в диалоге.
++ (Устаревший) [Messages.DeleteDialog](/vk/messages/deleteDialog/) - Удаляет все личные сообщения в диалоге.
 + [Messages.DenyMessagesFromGroup](/vk/messages/denyMessagesFromGroup/) - !!Позволяет запретить отправку сообщений от сообщества текущему пользователю.
 + [Messages.Edit](/vk/messages/edit/) - !!Редактирует сообщение.
++ [Messages.EditChat](/vk/messages/editChat/) - Изменяет название беседы.
++ (Устаревший) [Messages.Get](/vk/messages/get/) - Возвращает список входящих либо исходящих личных сообщений текущего пользователя.
 + [Messages.GetByConversationMessageId](/vk/messages/getByConversationMessageId/) - !!Возвращает сообщения по их идентификаторам в рамках беседы.
++ [Messages.GetById](/vk/messages/getByConversationMessageId/) - !!Возвращает сообщения по их идентификаторам в рамках беседы.
++ [Messages.GetChat](/vk/messages/getChat/) - Возвращает информацию о беседе.
++ (Устаревший) [Messages.GetChatUsers](/vk/messages/getChatUsers/) - Позволяет получить список пользователей мультидиалога по его id.
 + [Messages.GetChatPreview](/vk/messages/getChatPreview/) - !!Получает данные для превью чата с приглашением по ссылке.
-+ [Messages.Pin](/vk/messages/pin/) - !!Закрепляет сообщение.
-+ [Messages.Unpin](/vk/messages/unpin/) - !!Открепляет сообщение.
-+ [Messages.MarkAsImportantConversation](/vk/messages/markAsImportantConversation/) - !!Помечает беседу как важную либо снимает отметку.
-+ [Messages.MarkAsAnsweredConversation](/vk/messages/markAsAnsweredConversation/) - !!Помечает беседу как отвеченную либо снимает отметку.
-+ [Messages.JoinChatByInviteLink](/vk/messages/joinChatByInviteLink/) - !!Позволяет присоединиться к чату по ссылке-приглашению.
-+ [Messages.IsMessagesFromGroupAllowed](/vk/messages/isMessagesFromGroupAllowed/) - !!Возвращает информацию о том, разрешена ли отправка сообщений от сообщества пользователю.
-+ [Messages.GetInviteLink](/vk/messages/getInviteLink/) - !!Получает ссылку для приглашения пользователя в беседу.
-+ [Messages.GetImportantMessages](/vk/messages/getImportantMessages/) - !!Возвращает список важных сообщений пользователя.
++ [Messages.GetConversationMembers](/vk/messages/getConversationMembers/) - Позволяет получить список участников беседы.
++ [Messages.GetConversations](/vk/messages/getConversations/) - Возвращает список бесед пользователя.
++ [Messages.GetConversationsById](/vk/messages/getConversationsById/) - Возвращает список бесед пользователя.
++ (Устаревший) [Messages.GetDialogs](/vk/messages/getDialogs/) - Возвращает список диалогов текущего пользователя.
++ [Messages.GetHistory](/vk/messages/getHistory/) - Возвращает историю сообщений для указанного пользователя.
 + [Messages.GetHistoryAttachments](/vk/messages/getHistoryAttachments/) - !!Возвращает материалы диалога или беседы.
-+ [Messages.GetHistory](/vk/messages/getHistory/) - !!Возвращает историю сообщений для указанного диалога.
-+ [Messages.GetConversationsById](/vk/messages/getConversationsById/) - !!Позволяет получить беседу по её идентификатору.
-+ [Messages.GetConversations](/vk/messages/getConversations/) - !!Возвращает список бесед пользователя.
++ [Messages.GetImportantMessages](/vk/messages/getImportantMessages/) - !!Возвращает список важных сообщений пользователя.
++ [Messages.GetInviteLink](/vk/messages/getInviteLink/) - !!Получает ссылку для приглашения пользователя в беседу.
++ [Messages.GetLastActivity](/vk/messages/getLastActivity/) - Возвращает текущий статус и дату последней активности указанного пользователя.
++ [Messages.GetLongPollHistory](/vk/messages/getLongPollHistory/) - Возвращает обновления в личных сообщениях пользователя.
++ [Messages.GetLongPollServer](/vk/messages/getLongPollServer/) - Возвращает данные, необходимые для подключения к Long Poll серверу.
++ [Messages.IsMessagesFromGroupAllowed](/vk/messages/isMessagesFromGroupAllowed/) - !!Возвращает информацию о том, разрешена ли отправка сообщений от сообщества пользователю.
++ [Messages.JoinChatByInviteLink](/vk/messages/joinChatByInviteLink/) - !!Позволяет присоединиться к чату по ссылке-приглашению.
++ [Messages.MarkAsAnsweredConversation](/vk/messages/markAsAnsweredConversation/) - !!Помечает беседу как отвеченную либо снимает отметку.
++ [Messages.MarkAsImportant](/vk/messages/markAsImportant/) - !!Помечает сообщения как важные либо снимает отметку.
++ [Messages.MarkAsImportantConversation](/vk/messages/markAsImportantConversation/) - !!Помечает беседу как важную либо снимает отметку.
++ [Messages.MarkAsRead](/vk/messages/markAsRead/) - Помечает сообщения как прочитанные.
++ [Messages.Pin](/vk/messages/pin/) - !!Закрепляет сообщение.
++ [Messages.RemoveChatUser](/vk/messages/removeChatUser/) - Исключает из мультидиалога пользователя, если текущий пользователь был создателем беседы либо пригласил исключаемого пользователя.
++ [Messages.Restore](/vk/messages/restore/) - Восстанавливает удаленное сообщение.
++ [Messages.Search](/vk/messages/search/) - Возвращает список найденных личных сообщений текущего пользователя по введенной строке поиска.
++ (Устаревший) [Messages.SearchDialogs](/vk/messages/searchDialogs/) - Возвращает список найденных диалогов текущего пользователя по введенной строке поиска.
++ [Messages.SearchConversations](/vk/messages/searchConversations/) - Позволяет искать диалоги.
++ [Messages.Send](/vk/messages/send/) - Отправляет сообщение.
++ [Messages.SetActivity](/vk/messages/setActivity/) - Изменяет статус набора текста пользователем в диалоге.
++ [Messages.SetChatPhoto](/vk/messages/setChatPhoto/) - Позволяет установить фотографию мультидиалога, загруженную с помощью метода pho/tos.getChatUploadServer.
++ [Messages.Unpin](/vk/messages/unpin/) - !!Открепляет сообщение.
 
 ## Стена
-+ [Wall.Get](/vk/wall/get/) - Возвращает список записей со стены пользователя или сообщества.
-+ [Wall.Search](/vk/wall/search/) - Метод, позволяющий осуществлять поиск по стенам пользователей.
-+ [Wall.GetById](/vk/wall/getById/) - Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
-+ [Wall.Post](/vk/wall/post/) - Публикует новую запись на своей или чужой стене.
-+ [Wall.Repost](/vk/wall/repost/) - Копирует объект на стену пользователя или сообщества.
-+ [Wall.GetReposts](/vk/wall/getReposts/) - Позволяет получать список репостов заданной записи.
-+ [Wall.Edit](/vk/wall/edit/) - Редактирует запись на стене.
-+ [Wall.Delete](/vk/wall/delete/) - Удаляет запись со стены.
-+ [Wall.Restore](/vk/wall/restore/) - Восстанавливает удаленную запись на стене пользователя или сообщества.
-+ [Wall.Pin](/vk/wall/pin/) - Закрепляет запись на стене (запись будет отображаться выше остальных).
-+ [Wall.Unpin](/vk/wall/unpin/) - Отменяет закрепление записи на стене.
-+ [Wall.GetComments](/vk/wall/getComments/) - Возвращает список комментариев к записи на стене.
-+ [Wall.AddComment](/vk/wall/addComment/) - Добавляет комментарий к записи на стене пользователя или сообщества.
-+ [Wall.EditComment](/vk/wall/editComment/) - Редактирует комментарий на стене пользователя или сообщества.
-+ [Wall.DeleteComment](/vk/wall/deleteComment/) - Удаляет комментарий текущего пользователя к записи на своей или чужой стене.
-+ [Wall.RestoreComment](/vk/wall/restoreComment/) - Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене.
-+ [Wall.ReportPost](/vk/wall/reportPost/) - Позволяет пожаловаться на запись.
-+ [Wall.ReportComment](/vk/wall/reportComment/) - Позволяет пожаловаться на комментарий к записи.
-+ [Wall.CloseComments](/vk/wall/closeComments/) - !!Выключает комментирование записи
++ [Wall.CloseComments](/vk/wall/closeComments/) - !!Выключает комментирование записи.
++ (Устаревший метод) [Wall.AddComment](/vk/wall/addComment/) - Добавляет комментарий к записи на стене пользователя или сообщества.
 + [Wall.CreateComment](/vk/wall/createComment/) - !!Добавляет комментарий к записи на стене.
++ [Wall.Delete](/vk/wall/delete/) - Удаляет запись со стены.
++ [Wall.DeleteComment](/vk/wall/deleteComment/) - Удаляет комментарий текущего пользователя к записи на своей или чужой стене.
++ [Wall.Edit](/vk/wall/edit/) - Редактирует запись на стене.
 + [Wall.EditAdsStealth](/vk/wall/editAdsStealth/) - !!Позволяет отредактировать скрытую запись.
-+ [Wall.GetComment](/vk/wall/getComment/) - !!Получает информацию о комментарии на стене.
++ [Wall.EditComment](/vk/wall/editComment/) - Редактирует комментарий на стене пользователя или сообщества.
++ [Wall.Get](/vk/wall/get/) - Возвращает список записей со стены пользователя или сообщества.
++ [Wall.GetById](/vk/wall/getById/) - Возвращает список записей со стен пользователей или сообществ по их идентификаторам.
++ [Wall.GetComments](/vk/wall/getComments/) - Возвращает список комментариев к записи на стене.
++ [Wall.GetReposts](/vk/wall/getReposts/) - Позволяет получать список репостов заданной записи.
 + [Wall.OpenComments](/vk/wall/openComments/) - !!Включает комментирование записи
++ [Wall.Pin](/vk/wall/pin/) - Закрепляет запись на стене (запись будет отображаться выше остальных).
++ [Wall.Post](/vk/wall/post/) - Публикует новую запись на своей или чужой стене.
 + [Wall.PostAdsStealth](/vk/wall/postAdsStealth/) - !!Позволяет создать скрытую запись, которая не попадает на стену сообщества и в дальнейшем может быть использована для создания рекламного объявления типа "Запись в сообществе".
++ [Wall.ReportComment](/vk/wall/reportComment/) - Позволяет пожаловаться на комментарий к записи.
++ [Wall.ReportPost](/vk/wall/reportPost/) - Позволяет пожаловаться на запись.
++ [Wall.Repost](/vk/wall/repost/) - Копирует объект на стену пользователя или сообщества.
++ [Wall.Restore](/vk/wall/restore/) - Восстанавливает удаленную запись на стене пользователя или сообщества.
++ [Wall.RestoreComment](/vk/wall/restoreComment/) - Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене.
++ [Wall.Search](/vk/wall/search/) - Метод, позволяющий осуществлять поиск по стенам пользователей.
++ [Wall.Unpin](/vk/wall/unpin/) - Отменяет закрепление записи на стене.
 
 ## Статус
 + [Status.Get](/vk/status/get/) - Получает статус пользователя.
 + [Status.Set](/vk/status/set/) - Устанавливает статус текущему пользователю.
 
 ## Фотографии
++ [Photos.ConfirmTag](/vk/photos/confirmTag/) - Подтверждает отметку на фотографии.
++ [Photos.Copy](/vk/photos/copy/) - Позволяет скопировать фотографию в альбом "Сохраненные фотографии".
 + [Photos.CreateAlbum](/vk/photos/createAlbum/) - Создает пустой альбом для фотографий.
-+ [Photos.EditAlbum](/vk/photos/editAlbum/) - Редактирует данные альбома для фотографий пользователя.
-+ [Photos.GetAlbums](/vk/photos/getAlbums/) - Возвращает список альбомов пользователя или сообщества.
-+ [Photos.Get](/vk/photos/get/) - Возвращает список фотографий в альбоме.
-+ [Photos.GetAlbumsCount](/vk/photos/getAlbumsCount/) - Возвращает количество доступных альбомов пользователя или сообщества.
-+ [Photos.GetById](/vk/photos/getById/) - Возвращает информацию о фотографиях по их идентификаторам.
-+ [Photos.GetUploadServer](/vk/photos/getUploadServer/) - Возвращает адрес сервера для загрузки фотографий.
-+ [Photos.GetOwnerPhotoUploadServer](/vk/photos/getOwnerPhotoUploadServer/) - Возвращает адрес сервера для загрузки главной фотографии на страницу пользователя или сообщества.
-+ [Photos.GetChatUploadServer](/vk/photos/getChatUploadServer/) - Позволяет получить адрес для загрузки фотографий мультидиалогов.
-+ [Photos.GetMarketUploadServer](/vk/photos/getMarketUploadServer/) - Возвращает адрес сервера для загрузки фотографии товаров сообщества.
-+ [Photos.GetMarketAlbumUploadServer](/vk/photos/getMarketAlbumUploadServer/) - Возвращает адрес сервера для загрузки фотографии подборки товаров в сообществе.
-+ [Photos.SaveMarketPhoto](/vk/photos/saveMarketPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketUploadServer.
-+ [Photos.SaveMarketAlbumPhoto](/vk/photos/saveMarketAlbumPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getMarketAlbumUploadServer.
-+ [Photos.SaveOwnerPhoto](/vk/photos/saveOwnerPhoto/) - Позволяет сохранить главную фотографию пользователя или сообщества.
-+ [Photos.SaveWallPhoto](/vk/photos/saveWallPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом photos.getWallUploadServer.
-+ [Photos.GetWallUploadServer](/vk/photos/getWallUploadServer/) - Возвращает адрес сервера для загрузки фотографии на стену пользователя или сообщества.
-+ [Photos.GetMessagesUploadServer](/vk/photos/getMessagesUploadServer/) - Возвращает адрес сервера для загрузки фотографии в личное сообщение пользователю.
-+ [Photos.SaveMessagesPhoto](/vk/photos/saveMessagesPhoto/) - Сохраняет фотографию после успешной загрузки на URI, полученный методом photos.getMessagesUploadServer.
-+ [Photos.Report](/vk/photos/report/) - Позволяет пожаловаться на фотографию.
-+ [Photos.ReportComment](/vk/photos/reportComment/) - Позволяет пожаловаться на комментарий к фотографии.
-+ [Photos.Search](/vk/photos/search/) - Осуществляет поиск изображений по местоположению или описанию.
-+ [Photos.Save](/vk/photos/save/) - Сохраняет фотографии после успешной загрузки.
-+ [Photos.Copy](/vk/photos/copy/) - Позволяет скопировать фотографию в альбом "Сохраненные фотографии"
++ [Photos.CreateComment](/vk/photos/createComment/) - Создает новый комментарий к фотографии.
++ [Photos.Delete](/vk/photos/delete/) - Удаление фотографии на сайте.
++ [Photos.DeleteAlbum](/vk/photos/deleteAlbum/) - Удаляет указанный альбом для фотографий у текущего пользователя.
++ [Photos.DeleteComment](/vk/photos/deleteComment/) - Удаляет комментарий к фотографии.
 + [Photos.Edit](/vk/photos/edit/) - Изменяет описание у выбранной фотографии.
++ [Photos.EditAlbum](/vk/photos/editAlbum/) - Редактирует данные альбома для фотографий пользователя.
++ [Photos.EditComment](/vk/photos/editComment/) - Изменяет текст комментария к фотографии.
++ [Photos.Get](/vk/photos/get/) - Возвращает список фотографий в альбоме.
++ [Photos.GetAlbums](/vk/photos/getAlbums/) - Возвращает список альбомов пользователя или сообщества.
++ [Photos.GetAlbumsCount](/vk/photos/getAlbumsCount/) - Возвращает количество доступных альбомов пользователя или сообщества.
++ [Photos.GetAll](/vk/photos/getAll/) - Возвращает все фотографии пользователя или сообщества в антихронологическом порядке.
++ [Photos.GetAllComments](/vk/photos/getAllComments/) - Возвращает отсортированный в антихронологическом порядке список всех комментариев к конкретному альбому или ко всем альбомам пользователя.
++ [Photos.GetById](/vk/photos/getById/) - Возвращает информацию о фотографиях по их идентификаторам.
++ [Photos.GetChatUploadServer](/vk/photos/getChatUploadServer/) - Позволяет получить адрес для загрузки фотографий мультидиалогов.
++ [Photos.GetComments](/vk/photos/getComments/) - Возвращает список комментариев к фотографии.
++ [Photos.GetMarketAlbumUploadServer](/vk/photos/getMarketAlbumUploadServer/) - Возвращает адрес сервера для загрузки фотографии подборки товаров в сообществе.
++ [Photos.GetMarketUploadServer](/vk/photos/getMarketUploadServer/) - Возвращает адрес сервера для загрузки фотографии товаров сообщества.
++ [Photos.GetMessagesUploadServer](/vk/photos/getMessagesUploadServer/) - Возвращает адрес сервера для загрузки фотографии в личное сообщение пользователю.
++ [Photos.GetNewTags](/vk/photos/getNewTags/) - Возвращает список фотографий, на которых есть непросмотренные отметки.
++ [Photos.GetOwnerCoverPhotoUploadServer](/vk/photos/getOwnerCoverPhotoUploadServer/) - Получает адрес для загрузки обложки сообщества.
++ [Photos.GetOwnerPhotoUploadServer](/vk/photos/getOwnerPhotoUploadServer/) - Возвращает адрес сервера для загрузки главной фотографии на страницу пользователя или сообщества.
++ [Photos.GetTags](/vk/photos/getTags/) - Возвращает список отметок на фотографии.
++ [Photos.GetUploadServer](/vk/photos/getUploadServer/) - Возвращает адрес сервера для загрузки фотографий.
++ [Photos.GetUserPhotos](/vk/photos/getUserPhotos/) - Возвращает список фотографий, на которых отмечен пользователь.
++ [Photos.GetWallUploadServer](/vk/photos/getWallUploadServer/) - Возвращает адрес сервера для загрузки фотографии на стену пользователя или сообщества.
 + [Photos.Move](/vk/photos/move/) - Переносит фотографию из одного альбома в другой.
 + [Photos.MakeCover](/vk/photos/makeCover/) - Делает фотографию обложкой альбома.
-+ [Photos.ReorderAlbums](/vk/photos/reorderAlbums/) - Меняет порядок альбома в списке альбомов пользователя.
-+ [Photos.ReorderPhotos](/vk/photos/reorderPhotos/) - Меняет порядок фотографии в списке фотографий альбома пользователя.
-+ [Photos.GetAll](/vk/photos/getAll/) - Возвращает все фотографии пользователя или сообщества в антихронологическом порядке.
-+ [Photos.GetUserPhotos](/vk/photos/getUserPhotos/) - Возвращает список фотографий, на которых отмечен пользователь
-+ [Photos.DeleteAlbum](/vk/photos/deleteAlbum/) - Удаляет указанный альбом для фотографий у текущего пользователя
-+ [Photos.Delete](/vk/photos/delete/) - Удаление фотографии на сайте.
-+ [Photos.Restore](/vk/photos/restore/) - Восстанавливает удаленную фотографию.
-+ [Photos.ConfirmTag](/vk/photos/confirmTag/) - Подтверждает отметку на фотографии.
-+ [Photos.GetComments](/vk/photos/getComments/) - Возвращает список комментариев к фотографии.
-+ [Photos.GetAllComments](/vk/photos/getAllComments/) - Возвращает отсортированный в антихронологическом порядке список всех комментариев к конкретному альбому или ко всем альбомам пользователя.
-+ [Photos.CreateComment](/vk/photos/createComment/) - Создает новый комментарий к фотографии.
-+ [Photos.DeleteComment](/vk/photos/deleteComment/) - Удаляет комментарий к фотографии.
-+ [Photos.RestoreComment](/vk/photos/restoreComment/) - Восстанавливает удаленный комментарий к фотографии.
-+ [Photos.EditComment](/vk/photos/editComment/) - Изменяет текст комментария к фотографии.
-+ [Photos.GetTags](/vk/photos/getTags/) - Возвращает список отметок на фотографии.
 + [Photos.PutTag](/vk/photos/putTag/) - Добавляет отметку на фотографию.
 + [Photos.RemoveTag](/vk/photos/removeTag/) - Удаляет отметку с фотографии.
-+ [Photos.GetNewTags](/vk/photos/getNewTags/) - Возвращает список фотографий, на которых есть непросмотренные отметки.
++ [Photos.ReorderAlbums](/vk/photos/reorderAlbums/) - Меняет порядок альбома в списке альбомов пользователя.
++ [Photos.ReorderPhotos](/vk/photos/reorderPhotos/) - Меняет порядок фотографии в списке фотографий альбома пользователя.
++ [Photos.Report](/vk/photos/report/) - Позволяет пожаловаться на фотографию.
++ [Photos.ReportComment](/vk/photos/reportComment/) - Позволяет пожаловаться на комментарий к фотографии.
++ [Photos.Restore](/vk/photos/restore/) - Восстанавливает удаленную фотографию.
++ [Photos.RestoreComment](/vk/photos/restoreComment/) - Восстанавливает удаленный комментарий к фотографии.
++ [Photos.Save](/vk/photos/save/) - Сохраняет фотографии после успешной загрузки.
++ [Photos.SaveMarketAlbumPhoto](/vk/photos/saveMarketAlbumPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом ph/otos.getMarketAlbumUploadServer.
++ [Photos.SaveMarketPhoto](/vk/photos/saveMarketPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом ph/otos.getMarketUploadServer.
++ [Photos.SaveMessagesPhoto](/vk/photos/saveMessagesPhoto/) - Сохраняет фотографию после успешной загрузки на URI, полученный методом ph/otos.getMessagesUploadServer.
++ [Photos.SaveOwnerCoverPhoto](/vk/photos/saveOwnerCoverPhoto/) - Сохраняет изображение для обложки сообщества после успешной загрузки.
++ [Photos.SaveOwnerPhoto](/vk/photos/saveOwnerPhoto/) - Позволяет сохранить главную фотографию пользователя или сообщества.
++ [Photos.SaveWallPhoto](/vk/photos/saveWallPhoto/) - Сохраняет фотографии после успешной загрузки на URI, полученный методом ph/   otos.getWallUploadServer.
++ [Photos.Search](/vk/photos/search/) - Осуществляет поиск изображений по местоположению или описанию.
 
 ## Видео
-+ [Video.Get](/vk/video/get/) - Возвращает информацию о видеозаписях.
-+ [Video.Edit](/vk/video/edit/) - Редактирует данные видеозаписи.
 + [Video.Add](/vk/video/add/) - Добавляет видеозапись в список пользователя.
-+ [Video.Save](/vk/video/save/) - Возвращает адрес сервера (необходимый для загрузки) и данные видеозаписи.
-+ [Video.Delete](/vk/video/delete/) - Удаляет видеозапись со страницы пользователя.
-+ [Video.Restore](/vk/video/restore/) - Восстанавливает удаленную видеозапись.
-+ [Video.Search](/vk/video/search/) - Возвращает список видеозаписей в соответствии с заданным критерием поиска.
-+ [Video.GetUserVideos](/vk/video/getUserVideos/) - Возвращает список видеозаписей, на которых отмечен пользователь.
-+ [Video.GetAlbums](/vk/video/getAlbums/) - Возвращает список альбомов видеозаписей пользователя или сообщества.
-+ [Video.GetAlbumById](/vk/video/getAlbumById/) - Позволяет получить информацию об альбоме с видео.
 + [Video.AddAlbum](/vk/video/addAlbum/) - Создает пустой альбом видеозаписей.
-+ [Video.EditAlbum](/vk/video/editAlbum/) - Редактирует название альбома видеозаписей.
++ [Video.AddToAlbum](/vk/video/addToAlbum/) - Позволяет добавить видеозапись в альбом.
++ [Video.CreateComment](/vk/video/createComment/) - Cоздает новый комментарий к видеозаписи.
++ [Video.Delete](/vk/video/delete/) - Удаляет видеозапись со страницы пользователя.
 + [Video.DeleteAlbum](/vk/video/deleteAlbum/) - Удаляет альбом видеозаписей.
++ [Video.DeleteComment](/vk/video/deleteComment/) - Удаляет комментарий к видеозаписи.
++ [Video.Edit](/vk/video/edit/) - Редактирует данные видеозаписи.
++ [Video.EditAlbum](/vk/video/editAlbum/) - Редактирует название альбома видеозаписей.
++ [Video.EditComment](/vk/video/editComment/) - Изменяет текст комментария к видеозаписи.
++ [Video.Get](/vk/video/get/) - Возвращает информацию о видеозаписях.
++ [Video.GetAlbumById](/vk/video/getAlbumById/) - Позволяет получить информацию об альбоме с видео.
++ [Video.GetAlbums](/vk/video/getAlbums/) - Возвращает список альбомов видеозаписей пользователя или сообщества.
++ [Video.GetAlbumsByVideo](/vk/video/getAlbumsByVideo/) - Возвращает список альбомов, в которых находится видеозапись.
++ (Устаревший) [Video.GetCatalog](/vk/video/getCatalog/) - Позволяет получить представление каталога видео.
++ (Устаревший) [Video.GetCatalogSection](/vk/video/getCatalogSection/) - Позволяет получить отдельный блок видеокаталога.
++ [Video.GetComments](/vk/video/getComments/) - Возвращает список комментариев к видеозаписи.
++ (Устаревший) [Video.HideCatalogSection](/vk/video/hideCatalogSection/) - Скрывает для пользователя раздел видеокаталога.
++ [Video.RemoveFromAlbum](/vk/video/removeFromAlbum/) - Позволяет убрать видеозапись из альбома.
++ (Устаревший) [Video.RemoveTag](/vk/video/removeTag/) - Удаляет отметку с видеозаписи.
 + [Video.ReorderAlbums](/vk/video/reorderAlbums/) - Позволяет изменить порядок альбомов с видео.
 + [Video.ReorderVideos](/vk/video/reorderVideos/) - Позволяет переместить видеозапись в альбоме.
-+ [Video.AddToAlbum](/vk/video/addToAlbum/) - Позволяет добавить видеозапись в альбом.
-+ [Video.RemoveFromAlbum](/vk/video/removeFromAlbum/) - Позволяет убрать видеозапись из альбома.
-+ [Video.GetAlbumsByVideo](/vk/video/getAlbumsByVideo/) - Возвращает список альбомов, в которых находится видеозапись.
-+ [Video.GetComments](/vk/video/getComments/) - Возвращает список комментариев к видеозаписи.
-+ [Video.CreateComment](/vk/video/createComment/) - Cоздает новый комментарий к видеозаписи
-+ [Video.DeleteComment](/vk/video/deleteComment/) - Удаляет комментарий к видеозаписи.
-+ [Video.RestoreComment](/vk/video/restoreComment/) - Восстанавливает удаленный комментарий к видеозаписи.
-+ [Video.EditComment](/vk/video/editComment/) - Изменяет текст комментария к видеозаписи.
-+ [Video.GetTags](/vk/video/getTags/) - Возвращает список отметок на видеозаписи.
-+ [Video.PutTag](/vk/video/putTag/) - Добавляет отметку на видеозапись.
-+ [Video.RemoveTag](/vk/video/removeTag/) - Удаляет отметку с видеозаписи.
-+ [Video.GetNewTags](/vk/video/getNewTags/) - Возвращает список видеозаписей, на которых есть непросмотренные отметки.
 + [Video.Report](/vk/video/report/) - Позволяет пожаловаться на видеозапись.
 + [Video.ReportComment](/vk/video/reportComment/) - Позволяет пожаловаться на комментарий к видеозаписи.
-+ [Video.GetCatalog](/vk/video/getCatalog/) - Позволяет получить представление каталога видео.
-+ [Video.GetCatalogSection](/vk/video/getCatalogSection/) - Позволяет получить отдельный блок видеокаталога.
-+ [Video.HideCatalogSection](/vk/video/hideCatalogSection/) - Скрывает для пользователя раздел видеокаталога.
++ [Video.Restore](/vk/video/restore/) - Восстанавливает удаленную видеозапись.
++ [Video.RestoreComment](/vk/video/restoreComment/) - Восстанавливает удаленный комментарий к видеозаписи.
++ [Video.Save](/vk/video/save/) - Возвращает адрес сервера (необходимый для загрузки) и данные видеозаписи.
++ [Video.Search](/vk/video/search/) - Возвращает список видеозаписей в соответствии с заданным критерием поиска.
+
 
 ## Закладки
-+ [Fave.GetUsers](/vk/fave/getUsers/) - Возвращает список пользователей, добавленных текущим пользователем в закладки.
-+ [Fave.GetPhotos](/vk/fave/getPhotos/) - Возвращает фотографии, на которых текущий пользователь поставил отметку "Мне нравится".
-+ [Fave.GetPosts](/vk/fave/getPosts/) - Возвращает записи, на которых текущий пользователь поставил отметку «Мне нравится».
-+ [Fave.GetVideos](/vk/fave/getVideos/) - Возвращает список видеозаписей, на которых текущий пользователь поставил отметку «Мне нравится».
-+ [Fave.GetLinks](/vk/fave/getLinks/) - Возвращает ссылки, добавленные в закладки текущим пользователем.
-+ [Fave.GetMarketItems](/vk/fave/getMarketItems/) - Возвращает товары, добавленные в закладки текущим пользователем.
-+ [Fave.AddUser](/vk/fave/addUser/) - Добавляет пользователя в закладки.
-+ [Fave.RemoveUser](/vk/fave/removeUser/) - Удаляет пользователя из закладок.
-+ [Fave.AddGroup](/vk/fave/addGroup/) - Добавляет сообщество в закладки.
-+ [Fave.RemoveGroup](/vk/fave/removeGroup/) - Удаляет сообщество из закладок.
+
++ [Fave.AddArticle](/vk/fave/addArticle/) - Добавляет статью в закладки.
++ (Устаревший) [Fave.AddGroup](/vk/fave/addGroup/) - Добавляет сообщество в закладки.
 + [Fave.AddLink](/vk/fave/addLink/) - Добавляет ссылку в закладки.
-+ [Fave.RemoveLink](/vk/fave/removeLink/) - Удаляет ссылку из закладок.
++ [Fave.AddPage](/vk/fave/addPage/) - Добавляет сообщество или пользователя в закладки.
++ [Fave.AddPost](/vk/fave/addPost/) - Добавляет запись со стены пользователя или сообщества в закладки.
++ [Fave.AddProduct](/vk/fave/addProduct/) - Добавляет товар в закладки.
++ [Fave.AddTag](/vk/fave/addTag/) - Создает метку  в закладки.
++ (Устаревший) [Fave.AddUser](/vk/fave/addUser/) - Добавляет пользователя в закладки.
++ [Fave.AddVideo](/vk/fave/addVideo/) - Добавляет видеозапись в закладки.
++ [Fave.EditTag](/vk/fave/editTag/) - Редактирует метку.
++ [Fave.Get](/vk/fave/get/) - Возвращает объекты, добавленные в закладки пользователя..
++ (Устаревший) [Fave.GetLinks](/vk/fave/getLinks/) - Возвращает ссылки, добавленные в закладки текущим пользователем.
++ (Устаревший) [Fave.GetMarketItems](/vk/fave/getMarketItems/) - Возвращает товары, добавленные в закладки текущим пользователем.
++ [Fave.GetPages](/vk/fave/getPages/) - Возвращает страницы пользователей и сообществ, добавленных в закладки.
++ (Устаревший) [Fave.GetPhotos](/vk/fave/getPhotos/) - Возвращает фотографии, на которых текущий пользователь поставил отметку "Мне нравится".
++ (Устаревший) [Fave.GetPosts](/vk/fave/getPosts/) - Возвращает записи, на которых текущий пользователь поставил отметку «Мне нравится».
++ [Fave.GetTags](/vk/fave/getTags/) - Возвращает список меток в закладках.
++ (Устаревший) [Fave.GetUsers](/vk/fave/getUsers/) - Возвращает список пользователей, добавленных текущим пользователем в закладки.
++ (Устаревший) [Fave.GetVideos](/vk/fave/getVideos/) - Возвращает список видеозаписей, на которых текущий пользователь поставил отметку «Мне нравится».
++ [Fave.MarkSeen](/vk/fave/markSeen/) - Отмечает закладки как просмотренные.
++ [Fave.RemoveArticle](/vk/fave/removeArticle/) - Добавляет видеозапись в закладки.
++ (Устаревший) [Fave.RemoveGroup](/vk/fave/removeGroup/) - Удаляет сообщество из закладок.
++ [Fave.RemoveLink](/vk/fave/removeLink/) - Добавляет видеозапись в закладки.
++ [Fave.RemovePage](/vk/fave/removePage/) - Добавляет видеозапись в закладки.
++ [Fave.RemovePost](/vk/fave/removePost/) - Добавляет видеозапись в закладки.
++ [Fave.RemoveProduct](/vk/fave/removeProduct/) - Добавляет видеозапись в закладки.
++ [Fave.RemoveTag](/vk/fave/removeTag/) - Добавляет видеозапись в закладки.
++ (Устаревший) [Fave.RemoveUser](/vk/fave/removeUser/) - Удаляет пользователя из закладок.
++ [Fave.RemoveVideo](/vk/fave/removeVideo/) - Добавляет видеозапись в закладки.
++ [Fave.ReorderTags](/vk/fave/reorderTags/) - Добавляет видеозапись в закладки.
++ [Fave.SetPageTags](/vk/fave/setPageTags/) - Добавляет видеозапись в закладки.
++ [Fave.SetTags](/vk/fave/setTags/) - Добавляет видеозапись в закладки.
++ [Fave.TrackPageInteraction](/vk/fave/trackPageInteraction/) - Добавляет видеозапись в закладки.
 
 ## Служебные
 + [Utils.CheckLink](/vk/utils/checkLink/) - Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте.
-+ [Utils.ResolveScreenName](/vk/utils/resolveScreenName/) - Определяет тип объекта (пользователь, сообщество, приложение) и его идентификатор по короткому имени screenName.
-+ [Utils.GetServerTime](/vk/utils/getServerTime/) - Возвращает текущее время на сервере ВКонтакте.
 + [Utils.deleteFromLastShortened](/vk/utils/deleteFromLastShortened/) - !!Удаляет сокращенную ссылку из списка пользователя.
 + [Utils.getLastShortenedLinks](/vk/utils/getLastShortenedLinks/) - !!Получает список сокращенных ссылок для текущего пользователя.
 + [Utils.getLinkStats](/vk/utils/getLinkStats/) - !!Возвращает статистику переходов по сокращенной ссылке.
++ [Utils.GetServerTime](/vk/utils/getServerTime/) - Возвращает текущее время на сервере ВКонтакте.
 + [Utils.getShortLink](/vk/utils/getShortLink/) - !!Позволяет получить URL, сокращенный с помощью vk.cc.
++ [Utils.ResolveScreenName](/vk/utils/resolveScreenName/) - Определяет тип объекта (пользователь, сообщество, приложение) и его идентификатор по короткому имени screenName.
 
 ## Данные ВК
-+ [Database.GetCountries](/vk/database/getCountries/) - Возвращает список стран.
-+ [Database.GetRegions](/vk/database/getRegions/) - Возвращает список регионов.
-+ [Database.GetStreetsById](/vk/database/getStreetsById/) - Возвращает информацию об улицах по их идентификаторам (id).
-+ [Database.GetCountriesById](/vk/database/getCountriesById/) - Возвращает информацию о странах по их идентификаторам
++ [Database.GetChairs](/vk/database/getChairs/) - Возвращает список кафедр университета по указанному факультету.
 + [Database.GetCities](/vk/database/getCities/) - Возвращает список городов.
 + [Database.GetCitiesById](/vk/database/getCitiesById/) - Возвращает информацию о городах по их идентификаторам.
-+ [Database.GetUniversities](/vk/database/getUniversities/) - Возвращает список высших учебных заведений.
-+ [Database.GetSchools](/vk/database/getSchools/) - Возвращает список школ.
-+ [Database.GetSchoolClasses](/vk/database/getSchoolClasses/) - Возвращает список классов, характерных для школ определенной страны.
++ [Database.GetCountries](/vk/database/getCountries/) - Возвращает список стран.
++ [Database.GetCountriesById](/vk/database/getCountriesById/) - Возвращает информацию о странах по их идентификаторам
 + [Database.GetFaculties](/vk/database/getFaculties/) - Возвращает список факультетов.
-+ [Database.GetChairs](/vk/database/getChairs/) - Возвращает список кафедр университета по указанному факультету.
++ [Database.GetMetroStations](/vk/database/getMetroStations/) - Возвращает список станций метро.
++ [Database.getMetroStationsById](/vk/database/getMetroStationsById/) - Возвращает информацию об одной или нескольких станциях метро по их идентификаторам.
++ [Database.GetRegions](/vk/database/getRegions/) - Возвращает список регионов.
++ [Database.GetSchoolClasses](/vk/database/getSchoolClasses/) - Возвращает список классов, характерных для школ определенной страны.
++ [Database.GetSchools](/vk/database/getSchools/) - Возвращает список школ.
++ (Устаревший) [Database.GetStreetsById](/vk/database/getStreetsById/) - Возвращает информацию об улицах по их идентификаторам (id).
++ [Database.GetUniversities](/vk/database/getUniversities/) - Возвращает список высших учебных заведений.
 
 ## Новости
-+ [Newsfeed.Get](/vk/newsfeed/get/) - Возвращает данные, необходимые для показа списка новостей для текущего пользователя.
-+ [Newsfeed.GetRecommended](/vk/newsfeed/getRecommended/) - Получает список новостей, рекомендованных пользователю.
-+ [Newsfeed.GetComments](/vk/newsfeed/getComments/) - Возвращает данные, необходимые для показа раздела комментариев в новостях пользователя.
-+ [Newsfeed.GetMentions](/vk/newsfeed/getMentions/) - Возвращает список записей пользователей на своих стенах, в которых упоминается указанный пользователь.
-+ [Newsfeed.GetBanned](/vk/newsfeed/getBanned/) - Возвращает список пользователей и групп, которые текущий пользователь скрыл из ленты новостей.
 + [Newsfeed.AddBan](/vk/newsfeed/addBan/) - Запрещает показывать новости от заданных пользователей и групп в ленте новостей текущего пользователя.
 + [Newsfeed.DeleteBan](/vk/newsfeed/deleteBan/) - Разрешает показывать новости от заданных пользователей и групп в ленте новостей текущего пользователя.
-+ [Newsfeed.IgnoreItem](/vk/newsfeed/ignoreItem/) - Позволяет скрыть объект из ленты новостей.
-+ [Newsfeed.UnignoreItem](/vk/newsfeed/unignoreItem/) - Позволяет вернуть ранее скрытый объект в ленту новостей.
-+ [Newsfeed.Search](/vk/newsfeed/search/) - Возвращает результаты поиска по статусам. Новости возвращаются в порядке от более новых к более старым.
-+ [Newsfeed.GetLists](/vk/newsfeed/getLists/) - Возвращает пользовательские списки новостей.
-+ [Newsfeed.SaveList](/vk/newsfeed/saveList/) - Метод позволяет создавать или редактировать пользовательские списки для просмотра новостей.
 + [Newsfeed.DeleteList](/vk/newsfeed/deleteList/) - Метод позволяет удалить пользовательский список новостей
-+ [Newsfeed.Unsubscribe](/vk/newsfeed/unsubscribe/) - Отписывает текущего пользователя от комментариев к заданному объекту.
++ [Newsfeed.Get](/vk/newsfeed/get/) - Возвращает данные, необходимые для показа списка новостей для текущего пользователя.
++ [Newsfeed.GetBanned](/vk/newsfeed/getBanned/) - Возвращает список пользователей и групп, которые текущий пользователь скрыл из ленты новостей.
++ [Newsfeed.GetComments](/vk/newsfeed/getComments/) - Возвращает данные, необходимые для показа раздела комментариев в новостях пользователя.
++ [Newsfeed.GetLists](/vk/newsfeed/getLists/) - Возвращает пользовательские списки новостей.
++ [Newsfeed.GetMentions](/vk/newsfeed/getMentions/) - Возвращает список записей пользователей на своих стенах, в которых упоминается указанный пользователь.
++ [Newsfeed.GetRecommended](/vk/newsfeed/getRecommended/) - Получает список новостей, рекомендованных пользователю.
 + [Newsfeed.GetSuggestedSources](/vk/newsfeed/getSuggestedSources/) - Возвращает сообщества и пользователей, на которые текущему пользователю рекомендуется подписаться.
-+ [Newsfeed.GetDiscoverForContestant](/vk/newsfeed/getDiscoverForContestant/) - !!Получение ленты рекомендаций (Discover) в упрощённом виде.
++ [Newsfeed.IgnoreItem](/vk/newsfeed/ignoreItem/) - Позволяет скрыть объект из ленты новостей.
++ [Newsfeed.SaveList](/vk/newsfeed/saveList/) - Метод позволяет создавать или редактировать пользовательские списки для просмотра новостей.
++ [Newsfeed.Search](/vk/newsfeed/search/) - Возвращает результаты поиска по статусам. Новости возвращаются в порядке от более новых к более старым.
++ [Newsfeed.UnignoreItem](/vk/newsfeed/unignoreItem/) - Позволяет вернуть ранее скрытый объект в ленту новостей.
++ [Newsfeed.Unsubscribe](/vk/newsfeed/unsubscribe/) - Отписывает текущего пользователя от комментариев к заданному объекту.
 
 ## Мне нравится
-+ [Likes.GetList](/vk/likes/getList/) - Получает список идентификаторов пользователей, которые добавили заданный объект в свой список Мне нравится.
 + [Likes.Add](/vk/likes/add/) - Добавляет указанный объект в список Мне нравится текущего пользователя.
-+ [Likes.Delete](/vk/likes/delete/) - Удаляет указанный объект из списка Мне нравится текущего пользователя
++ [Likes.Delete](/vk/likes/delete/) - Удаляет указанный объект из списка Мне нравится текущего пользователя.
++ [Likes.GetList](/vk/likes/getList/) - Получает список идентификаторов пользователей, которые добавили заданный объект в свой список Мне нравится.
 + [Likes.IsLiked](/vk/likes/isLiked/) - Проверяет, находится ли объект в списке Мне нравится заданного пользователя.
 
 ## Авторизация
 + [Auth.CheckPhone](/vk/auth/checkPhone/) - Проверяет правильность введённого номера.
-+ [Auth.Signup](/vk/auth/signup/) - Регистрирует нового пользователя по номеру телефона.
-+ [Auth.Confirm](/vk/auth/confirm/) - Завершает регистрацию нового пользователя, начатую методом auth.signup, по коду, полученному через SMS.
 + [Auth.Restore](/vk/auth/restore/) - Позволяет восстановить доступ к аккаунту, используя код, полученный через SMS.  Данный метод доступен только приложениям, имеющим доступ к Прямой авторизации.
++ (Устаревший) [Auth.Signup](/vk/auth/signup/) - Регистрирует нового пользователя по номеру телефона.
++ (Устаревший) [Auth.Confirm](/vk/auth/confirm/) - Завершает регистрацию нового пользователя, начатую методом auth.signup, по коду, полученному через SMS.
 
 ## Статистика
 + [Stats.Get](/vk/stats/get/) - Возвращает статистику сообщества или приложения.
-+ [Stats.TrackVisitor](/vk/stats/trackVisitor/) - Добавляет данные о текущем сеансе в статистику посещаемости приложения.
 + [Stats.GetPostReach](/vk/stats/getPostReach/) - Возвращает статистику для записи на стене.
++ [Stats.TrackVisitor](/vk/stats/trackVisitor/) - Добавляет данные о текущем сеансе в статистику посещаемости приложения.
 
 ## Подарки
 + [Gifts.Get](/vk/gifts/get/) - Возвращает список полученных подарков пользователя.
 
 ## Страницы
++ [Pages.ClearCache](/vk/pages/clearCache/) - Позволяет очистить кеш отдельных внешних страниц, которые могут быть прикреплены к записям ВКонтакте. После очистки кеша при последующем прикреплении ссылки к записи, данные о странице будут обновлены.
 + [Pages.Get](/vk/pages/get/) - Возвращает информацию о вики-странице.
-+ [Pages.Save](/vk/pages/save/) - Сохраняет текст вики-страницы.
-+ [Pages.SaveAccess](/vk/pages/saveAccess/) - Сохраняет новые настройки доступа на чтение и редактирование вики-страницы.
 + [Pages.GetHistory](/vk/pages/getHistory/) - Возвращает список всех старых версий вики-страницы.
 + [Pages.GetTitles](/vk/pages/getTitles/) - Возвращает список вики-страниц в группе.
 + [Pages.GetVersion](/vk/pages/getVersion/) - Возвращает текст одной из старых версий страницы.
 + [Pages.ParseWiki](/vk/pages/parseWiki/) - Возвращает html-представление вики-разметки.
-+ [Pages.ClearCache](/vk/pages/clearCache/) - Позволяет очистить кеш отдельных внешних страниц, которые могут быть прикреплены к записям ВКонтакте. После очистки кеша при последующем прикреплении ссылки к записи, данные о странице будут обновлены.
++ [Pages.Save](/vk/pages/save/) - Сохраняет текст вики-страницы.
++ [Pages.SaveAccess](/vk/pages/saveAccess/) - Сохраняет новые настройки доступа на чтение и редактирование вики-страницы.
 
 ## Документы
++ [Docs.Add](/vk/docs/add/) - Копирует документ в документы текущего пользователя.
++ [Docs.Delete](/vk/docs/delete/) - Удаляет документ пользователя или группы.
++ [Docs.Edit](/vk/docs/edit/) - Редактирует документ пользователя или группы.
 + [Docs.Get](/vk/docs/get/) - Возвращает расширенную информацию о документах пользователя или сообщества.
 + [Docs.GetById](/vk/docs/getById/) - Возвращает информацию о документах по их идентификаторам.
++ [Docs.GetMessagesUploadServer](/vk/docs/getMessagesUploadServer/) - !!Получает адрес сервера для загрузки документа в личное сообщение.
++ [Docs.GetTypes](/vk/docs/getTypes/) - Возвращает доступные типы документы для пользователя
 + [Docs.GetUploadServer](/vk/docs/getUploadServer/) - Возвращает адрес сервера для загрузки документов.
 + [Docs.GetWallUploadServer](/vk/docs/getWallUploadServer/) - Возвращает адрес сервера для загрузки документов в папку Отправленные, для последующей отправки документа на стену или личным сообщением.
 + [Docs.Save](/vk/docs/save/) - Сохраняет документ после его успешной загрузки на сервер.
-+ [Docs.Delete](/vk/docs/delete/) - Удаляет документ пользователя или группы.
-+ [Docs.Add](/vk/docs/add/) - Копирует документ в документы текущего пользователя.
-+ [Docs.GetTypes](/vk/docs/getTypes/) - Возвращает доступные типы документы для пользователя
 + [Docs.Search](/vk/docs/search/) - Возвращает результаты поиска по документам.
-+ [Docs.Edit](/vk/docs/edit/) - Редактирует документ пользователя или группы.
-+ [Docs.GetMessagesUploadServer](/vk/docs/getMessagesUploadServer/) - !!Получает адрес сервера для загрузки документа в личное сообщение.
 
 ## Приложения
-+ [Apps.GetCatalog](/vk/apps/getCatalog/) - Возвращает список приложений, доступных для пользователей сайта через каталог приложений.
-+ [Apps.Get](/vk/apps/get/) - Возвращает данные о запрошенном приложении на платформе ВКонтакте
-+ [Apps.SendRequest](/vk/apps/sendRequest/) - Позволяет отправить запрос другому пользователю в приложении, использующем авторизацию ВКонтакте.
 + [Apps.DeleteAppRequests](/vk/apps/deleteAppRequests/) - Удаляет все уведомления о запросах, отправленных из текущего приложения
++ [Apps.Get](/vk/apps/get/) - Возвращает данные о запрошенном приложении на платформе ВКонтакте
++ [Apps.GetCatalog](/vk/apps/getCatalog/) - Возвращает список приложений, доступных для пользователей сайта через каталог приложений.
 + [Apps.GetFriendsList](/vk/apps/getFriendsList/) - Создает список друзей, который будет использоваться при отправке пользователем приглашений в приложение и игровых запросов.
 + [Apps.GetLeaderboard](/vk/apps/getLeaderboard/) - Возвращает рейтинг пользователей в игре.
-+ [Apps.GetScore](/vk/apps/getScore/) - Метод возвращает количество очков пользователя в этой игре.
 + [Apps.GetScopes](/vk/apps/getScopes/) - !!Нет данных.
++ [Apps.GetScore](/vk/apps/getScore/) - Метод возвращает количество очков пользователя в этой игре.
++ [Apps.PromoHasActiveGift](/vk/apps/promoHasActiveGift/) - Проверяет есть ли у пользователя подарок в игре.
++ [Apps.PromoUseGift](/vk/apps/promoUseGift/) - Использовать подарок, полученный пользователем в промо-акции.
++ [Apps.SendRequest](/vk/apps/sendRequest/) - Позволяет отправить запрос другому пользователю в приложении, использующем авторизацию ВКонтакте.
 
 ## Товары
++ [Market.Add](/vk/market/add/) - Добавляет новый товар.
++ [Market.AddAlbum](/vk/market/addAlbum/) - Добавляет новую подборку с товарами.
++ [Market.AddToAlbum](/vk/market/addToAlbum/) - Добавляет товар в одну или несколько выбранных подборок.
++ [Market.CreateComment](/vk/market/createComment/) - Создает новый комментарий к товару.
++ [Market.Delete](/vk/market/delete/) - Удаляет товар.
++ [Market.DeleteAlbum](/vk/market/deleteAlbum/) - Удаляет подборку с товарами.
++ [Market.DeleteComment](/vk/market/deleteComment/) - Удаляет комментарий к товару.
++ [Market.Edit](/vk/market/edit/) - Редактирует товар.
++ [Market.EditAlbum](/vk/market/editAlbum/) - Редактирует подборку с товарами.
++ [Market.EditComment](/vk/market/editComment/) - Изменяет текст комментария к товару.
 + [Market.Get](/vk/market/get/) - Возвращает список товаров в сообществе.
-+ [Market.GetById](/vk/market/getById/) - Возвращает информацию о товарах по идентификаторам.
-+ [Market.Search](/vk/market/search/) - Ищет товары в каталоге сообщества.
 + [Market.GetAlbums](/vk/market/getAlbums/) - Возвращает список подборок с товарами.
 + [Market.GetAlbumById](/vk/market/getAlbumById/) - Возвращает данные подборки с товарами.
-+ [Market.CreateComment](/vk/market/createComment/) - Создает новый комментарий к товару.
-+ [Market.GetComments](/vk/market/getComments/) - Возвращает список комментариев к товару.
-+ [Market.DeleteComment](/vk/market/deleteComment/) - Удаляет комментарий к товару.
-+ [Market.RestoreComment](/vk/market/restoreComment/) - Восстанавливает удаленный комментарий к товару.
-+ [Market.EditComment](/vk/market/editComment/) - Изменяет текст комментария к товару.
-+ [Market.ReportComment](/vk/market/reportComment/) - Позволяет оставить жалобу на комментарий к товару.
++ [Market.GetById](/vk/market/getById/) - Возвращает информацию о товарах по идентификаторам.
 + [Market.GetCategories](/vk/market/getCategories/) - Возвращает список категорий для товаров.
-+ [Market.Report](/vk/market/report/) - Позволяет отправить жалобу на товар.
-+ [Market.Add](/vk/market/add/) - Добавляет новый товар.
-+ [Market.Edit](/vk/market/edit/) - Редактирует товар.
-+ [Market.Delete](/vk/market/delete/) - Удаляет товар.
-+ [Market.Restore](/vk/market/restore/) - Восстанавливает удаленный товар.
-+ [Market.ReorderItems](/vk/market/reorderItems/) - Изменяет положение товара в подборке.
-+ [Market.ReorderAlbums](/vk/market/reorderAlbums/) - Изменяет положение подборки с товарами в списке.
-+ [Market.AddAlbum](/vk/market/addAlbum/) - Добавляет новую подборку с товарами.
-+ [Market.EditAlbum](/vk/market/editAlbum/) - Редактирует подборку с товарами.
-+ [Market.DeleteAlbum](/vk/market/deleteAlbum/) - Удаляет подборку с товарами.
++ [Market.GetComments](/vk/market/getComments/) - Возвращает список комментариев к товару.
 + [Market.RemoveFromAlbum](/vk/market/removeFromAlbum/) - Удаляет товар из одной или нескольких выбранных подборок.
-+ [Market.AddToAlbum](/vk/market/addToAlbum/) - Добавляет товар в одну или несколько выбранных подборок.
++ [Market.ReorderAlbums](/vk/market/reorderAlbums/) - Изменяет положение подборки с товарами в списке.
++ [Market.ReorderItems](/vk/market/reorderItems/) - Изменяет положение товара в подборке.
++ [Market.Report](/vk/market/report/) - Позволяет отправить жалобу на товар.
++ [Market.ReportComment](/vk/market/reportComment/) - Позволяет оставить жалобу на комментарий к товару.
++ [Market.Restore](/vk/market/restore/) - Восстанавливает удаленный товар.
++ [Market.RestoreComment](/vk/market/restoreComment/) - Восстанавливает удаленный комментарий к товару.
++ [Market.Search](/vk/market/search/) - Ищет товары в каталоге сообщества.
 
 ## Аккаунт
-+ [Account.GetCounters](/vk/account/getCounters/) - Возвращает ненулевые значения счетчиков пользователя.
-+ [Account.SetNameInMenu](/vk/account/setNameInMenu/) - Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню.
-+ [Account.SetOnline](/vk/account/setOnline/) - Помечает текущего пользователя как online на 15 минут.
-+ [Account.SetOffline](/vk/account/setOffline/) - Помечает текущего пользователя как offline.
-+ [Account.LookupContacts](/vk/account/lookupContacts/) - Позволяет искать пользователей ВКонтакте, используя телефонные номера, email-адреса, и идентификаторы пользователей в других сервисах. Найденные пользователи могут быть также в дальнейшем получены методом friends.getSuggestions.
-+ [Account.RegisterDevice](/vk/account/registerDevice/) - Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений.
-+ [Account.UnregisterDevice](/vk/account/unregisterDevice/) - Отписывает устройство от Push уведомлений.
-+ [Account.SetSilenceMode](/vk/account/setSilenceMode/) - Отключает push-уведомления на заданный промежуток времени.
-+ [Account.GetPushSettings](/vk/account/getPushSettings/) - Позволяет получать настройки Push уведомлений.
-+ [Account.SetPushSettings](/vk/account/setPushSettings/) - Изменяет настройку Push-уведомлений.
-+ [Account.GetAppPermissions](/vk/account/getAppPermissions/) - Получает настройки текущего пользователя в данном приложении.
-+ [Account.GetActiveOffers](/vk/account/getActiveOffers/) - Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения.
-+ [Account.BanUser](/vk/account/banUser/) - Добавляет пользователя в черный список.
-+ [Account.UnbanUser](/vk/account/unbanUser/) - Убирает пользователя из черного списка.
-+ [Account.GetBanned](/vk/account/getBanned/) - Возвращает список пользователей, находящихся в черном списке.
-+ [Account.GetInfo](/vk/account/getInfo/) - Возвращает информацию о текущем аккаунте.
-+ [Account.SetInfo](/vk/account/setInfo/) - Позволяет редактировать информацию о текущем аккаунте.
++ [Account.Ban](/vk/account/ban/) - Добавляет пользователя или группу в черный список.
 + [Account.ChangePassword](/vk/account/changePassword/) - Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore.
++ [Account.GetActiveOffers](/vk/account/getActiveOffers/) - Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения.
++ [Account.GetAppPermissions](/vk/account/getAppPermissions/) - Получает настройки текущего пользователя в данном приложении.
++ [Account.GetBanned](/vk/account/getBanned/) - Возвращает список пользователей, находящихся в черном списке.
++ [Account.GetCounters](/vk/account/getCounters/) - Возвращает ненулевые значения счетчиков пользователя.
++ [Account.GetInfo](/vk/account/getInfo/) - Возвращает информацию о текущем аккаунте.
 + [Account.GetProfileInfo](/vk/account/getProfileInfo/) - Возвращает информацию о текущем профиле.
++ [Account.GetPushSettings](/vk/account/getPushSettings/) - Позволяет получать настройки Push уведомлений.
++ [Account.RegisterDevice](/vk/account/registerDevice/) - Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений.
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
-
-# Не реализованные методы
-## Группы
-+ [Groups.SetLongPollSettings](/vk/groups/setLongPollSettings/) - !!Задаёт настройки для Bots Long Poll API в сообществе.
-+ [Groups.EnableOnline](/vk/groups/enableOnline/) - !!Включает статус «онлайн» в сообществе.
-+ [Groups.GetAddresses](/vk/groups/getAddresses/) - !!addresses
-+ [Groups.GetLongPollSettings](/vk/groups/getLongPollSettings/) - !!Получает настройки Bots Longpoll API для сообщества.
-+ [Groups.GetOnlineStatus](/vk/groups/getOnlineStatus/) - !!Получает информацию о статусе «онлайн» в сообществе.
-+ [Groups.GetTokenPermissions](/vk/groups/getTokenPermissions/) - !!Возвращает настройки прав для ключа доступа сообщества.
++ [Account.SetInfo](/vk/account/setInfo/) - Позволяет редактировать информацию о текущем аккаунте.
++ [Account.SetNameInMenu](/vk/account/setNameInMenu/) - Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню.
++ [Account.SetOffline](/vk/account/setOffline/) - Помечает текущего пользователя как offline.
++ [Account.SetOnline](/vk/account/setOnline/) - Помечает текущего пользователя как online на 15 минут.
++ [Account.SetPushSettings](/vk/account/setPushSettings/) - Изменяет настройку Push-уведомлений.
++ [Account.SetSilenceMode](/vk/account/setSilenceMode/) - Отключает push-уведомления на заданный промежуток времени.
++ [Account.Unban](/vk/account/unban/) - Убирает пользователя из черного списка.
++ [Account.UnregisterDevice](/vk/account/unregisterDevice/) - Отписывает устройство от Push уведомлений.
 
 ## Рекламный Кабинет
 + [Ads.AddOfficeUsers](/vk/ads/addOfficeUsers/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
@@ -529,21 +546,17 @@ PM> Install-Package VkNet.AudioBypassService
 ## Оповещения
 + [Notifications.Get](/vk/notifications/get/) - Возвращает список оповещений об ответах других пользователей на записи текущего пользователя.
 + [Notifications.MarkAsViewed](/vk/notifications/markAsViewed/) - Сбрасывает счетчик непросмотренных оповещений об ответах других пользователей на записи текущего пользователя.
-+ [Notifications.SendMessage](/vk/notifications/sendMessage/) - Отправляет уведомление пользователю приложения VK Apps.
 
 ## Опросы
 + [Polls.AddVote](/vk/polls/addVote/) - Отдает голос текущего пользователя за выбранный вариант ответа в указанном опросе.
 + [Polls.Create](/vk/polls/create/) - Позволяет создавать опросы, которые впоследствии можно прикреплять к записям на странице пользователя или сообщества.
 + [Polls.DeleteVote](/vk/polls/deleteVote/) - Снимает голос текущего пользователя с выбранного варианта ответа в указанном опросе.
 + [Polls.Edit](/vk/polls/edit/) - Позволяет редактировать созданные опросы.
-+ [Polls.GetBackgrounds](/vk/polls/getBackgrounds/) - Возвращает варианты фонового изображения для опросов.
 + [Polls.GetById](/vk/polls/getById/) - Возвращает детальную информацию об опросе по его идентификатору.
-+ [Polls.GetPhotoUploadServer](/vk/polls/getPhotoUploadServer/) - Возвращает адрес сервера для загрузки фоновой фотографии в опрос.
 + [Polls.GetVoters](/vk/polls/getVoters/) - Получает список идентификаторов пользователей, которые выбрали определенные варианты ответа в опросе.
-+ [Polls.SavePhoto](/vk/polls/savePhoto/) - Сохраняет фотографию, загруженную в опрос.
 
 ## Поиск
-+ [Search.getHints](/vk/search/getHints/) - Метод позволяет получить результаты быстрого поиска по произвольной подстроке/) 
++ [Search.GetHints](/vk/search/getHints/) - Метод позволяет получить результаты быстрого поиска по произвольной подстроке. 
 
 ## Административные методы от имени приложения
 + [Secure.AddAppEvent](/vk/secure/addAppEvent/) - Добавляет информацию о достижениях пользователя в приложении.
@@ -552,20 +565,15 @@ PM> Install-Package VkNet.AudioBypassService
 + [Secure.GetSMSHistory](/vk/secure/getSMSHistory/) - Выводит список SMS-уведомлений, отосланных приложением с помощью метода secure.sendSMSNotification.
 + [Secure.GetTransactionsHistory](/vk/secure/getTransactionsHistory/) - Выводит историю транзакций по переводу голосов между пользователями и приложением.
 + [Secure.GetUserLevel](/vk/secure/getUserLevel/) - Возвращает ранее выставленный игровой уровень одного или нескольких пользователей в приложении.
++ [Secure.GiveEventSticker](/vk/secure/giveEventSticker/) - Выдает пользователю стикер и открывает игровое достижение.
 + [Secure.SendNotification](/vk/secure/sendNotification/) - Отправляет уведомление пользователю.
 + [Secure.SendSMSNotification](/vk/secure/sendSMSNotification/) - Отправляет SMS-уведомление на мобильный телефон пользователя.
 + [Secure.SetCounter](/vk/secure/setCounter/) - Устанавливает счетчик, который выводится пользователю жирным шрифтом в левом меню.
 
 ## Переменные в приложении
-+ [Storage.Get](/vk/storage/get/) - Возвращает значение переменной, название которой передано в параметре key
++ [Storage.Get](/vk/storage/get/) - Возвращает значение переменной, название которой передано в параметре key.
 + [Storage.GetKeys](/vk/storage/getKeys/) - Возвращает названия всех переменных.
 + [Storage.Set](/vk/storage/set/) - Сохраняет значение переменной, название которой передано в параметре key.
-
-## Места
-+ [Places.](/vk/places/nodata/) - Нет данных. 
-
-## Подкасты 
-+ [Podcasts.](/vk/podcasts/nodata/) - Нет данных. 
 
 ## Формы сбора заявок
 + [LeadForms.Create](/vk/leadForms/create/) - Создаёт форму сбора заявок.
@@ -575,14 +583,6 @@ PM> Install-Package VkNet.AudioBypassService
 + [LeadForms.GetUploadURL](/vk/leadForms/getUploadURL/) - Возвращает URL для загрузки обложки для формы.
 + [LeadForms.List](/vk/leadForms/list/) - Возвращает список форм сообщества.
 + [LeadForms.Update](/vk/leadForms/update/) - Обновляет форму сбора заявок.
-
-## Карусель
-+ [PrettyCards.Create](/vk/prettyCards/create/) - Создаёт карточку карусели.
-+ [PrettyCards.Delete](/vk/prettyCards/delete/) - Удаляет карточку.
-+ [PrettyCards.Edit](/vk/prettyCards/edit/) - Редактирует карточку карусели.
-+ [PrettyCards.Get](/vk/prettyCards/get/) - Возвращает неиспользованные карточки владельца.
-+ [PrettyCards.GetById](/vk/prettyCards/getById/) - Возвращает информацию о карточке.
-+ [PrettyCards.GetUploadURL](/vk/prettyCards/getUploadURL/) - Возвращает URL для загрузки фотографии для карточки.
 
 ## Истории
 + [Stories.BanOwner](/vk/stories/banOwner/) - Позволяет скрыть из ленты новостей истории от выбранных источников.
@@ -613,7 +613,6 @@ PM> Install-Package VkNet.AudioBypassService
 + [Streaming.GetServerUrl](/vk/streaming/getServerUrl/) - Позволяет получить данные для подключения к Streaming API.
 + [Streaming.GetSettings](/vk/streaming/getSettings/) - Позволяет получить значение порога для Streaming API.
 + [Streaming.GetStats](/vk/streaming/getStats/) - Позволяет получить статистику для подготовленных и доставленных событий Streaming API.
-+ [Streaming.GetStem](/vk/streaming/getStem/) - Позволяет получить основу слова.
 + [Streaming.SetSettings](/vk/streaming/setSettings/) - Позволяет задать значение порога для Streaming API.
 
 ## Состояние заказов
@@ -629,3 +628,38 @@ PM> Install-Package VkNet.AudioBypassService
 ## Виджеты
 + [Widgets.GetComments](/vk/widgets/getComments/) - Получает список комментариев к странице, оставленных через Виджет комментариев.
 + [Widgets.GetPages](/vk/widgets/getPages/) - Получает список страниц приложения/сайта, на которых установлен Виджет комментариев или «Мне нравится».
+
+# Не реализованные методы
+## Группы
++ [Groups.setSettings](/vk/groups/setSettings/) - Устанавливает настройки сообщества.
+
+## Стена
++ [Wall.GetComment](/vk/wall/getComment/) - !!Получает информацию о комментарии на стене.
+
+## Оповещения
++ [Notifications.SendMessage](/vk/notifications/sendMessage/) - Отправляет уведомление пользователю приложения VK Apps.
+
+## Опросы
++ [Polls.SavePhoto](/vk/polls/savePhoto/) - Сохраняет фотографию, загруженную в опрос.
++ [Polls.GetBackgrounds](/vk/polls/getBackgrounds/) - Возвращает варианты фонового изображения для опросов.
++ [Polls.GetPhotoUploadServer](/vk/polls/getPhotoUploadServer/) - Возвращает адрес сервера для загрузки фоновой фотографии в опрос.
+
+## Места
++ [Places.](/vk/places/nodata/) - Нет данных. 
+
+## Подкасты 
++ [Podcasts.](/vk/podcasts/nodata/) - Нет данных. 
+
+## Карусель
++ [PrettyCards.Create](/vk/prettyCards/create/) - Создаёт карточку карусели.
++ [PrettyCards.Delete](/vk/prettyCards/delete/) - Удаляет карточку.
++ [PrettyCards.Edit](/vk/prettyCards/edit/) - Редактирует карточку карусели.
++ [PrettyCards.Get](/vk/prettyCards/get/) - Возвращает неиспользованные карточки владельца.
++ [PrettyCards.GetById](/vk/prettyCards/getById/) - Возвращает информацию о карточке.
++ [PrettyCards.GetUploadURL](/vk/prettyCards/getUploadURL/) - Возвращает URL для загрузки фотографии для карточки.
+
+## Истории
++ [Stories.Search](/vk/stories/search/) - Возвращает результаты поиска по историям.
+
+## Streaming API
++ [Streaming.GetStem](/vk/streaming/getStem/) - Позволяет получить основу слова.
