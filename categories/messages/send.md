@@ -18,8 +18,6 @@ public long Send(MessagesSendParams @params)
 Класс **`MessagesSendParams`** содержит следующие свойства:
 
 + **UserId** - Идентификатор пользователя, которому отправляется сообщение. целое число
-+ **RandomId** - Уникальный (в привязке к API_ID и ID отправителя) идентификатор, предназначенный для предотвращения повторной отправки одинакового сообщения. Сохраняется вместе с сообщением и доступен в истории сообщений. Заданный RandomId используется для проверки уникальности за всю историю сообщений, поэтому используйте большой диапазон(до int32).
-целое число, доступен начиная с версии 5.45
 + **PeerId** - Идентификатор назначения. 
 Для групповой беседы: 
 2000000000 + id беседы. 
@@ -59,7 +57,6 @@ photo100172_166443618
 ``` csharp
 api.Messages.Send(new VkNet.Model.RequestParams.MessagesSendParams
 {
-    RandomId = 123, // уникальный
     UserId = 1,
     Message = "message"
 });
@@ -75,7 +72,6 @@ var photos = Api.Photo.Get(new PhotoGetParams
 });
 Api.Messages.Send(new MessagesSendParams
 {
-    RandomId = 123, // уникальный
 	Attachments = photos,
 	Message = "Message",
 	PeerId = Api.UserId.Value
@@ -98,7 +94,6 @@ var photos = Api.Photo.Save(new PhotoSaveParams
 });
 Api.Messages.Send(new MessagesSendParams
 {
-    RandomId = 123, // уникальный
 	Attachments = photos,
 	Message = "Message",
 	PeerId = Api.UserId.Value
