@@ -16,9 +16,9 @@ public ReadOnlyCollection<User> GetAvailableForCall(ProfileFields fields, NameCa
 ```
 
 ## Параметры
-+ **fields** - Список дополнительных полей, которые необходимо вернуть. 
++ **fields** — Список дополнительных полей, которые необходимо вернуть. 
 Доступные значения: nickname, domain, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities список строк, разделенных через запятую
-+ **nameCase** - Падеж для склонения имени и фамилии пользователя. Возможные значения: именительный – nom, родительный – gen, дательный – dat, винительный – acc, творительный – ins, предложный – abl. По умолчанию nom. строка, по умолчанию Nom
++ **nameCase** — Падеж для склонения имени и фамилии пользователя. Возможные значения: именительный – nom, родительный – gen, дательный – dat, винительный – acc, творительный – ins, предложный – abl. По умолчанию nom. строка, по умолчанию Nom
 
 ## Результат
 После успешного выполнения возвращает список идентификаторов (id) друзей пользователя, доступных для вызова, если параметр fields не использовался. 

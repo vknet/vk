@@ -15,8 +15,8 @@ public LongPollServerResponse GetLongPollServer(bool useSsl = false, bool needPt
 ```
 
 ## Параметры
-+ **useSsl** - 1 — использовать SSL. флаг, может принимать значения 1 или 0
-+ **needPts** - 1 — возвращать поле pts, необходимое для работы метода messages.getLongPollHistory флаг, может принимать значения 1 или 0
++ **useSsl** — 1 — использовать SSL. флаг, может принимать значения 1 или 0
++ **needPts** — 1 — возвращать поле pts, необходимое для работы метода messages.getLongPollHistory флаг, может принимать значения 1 или 0
 
 ## Результат
 Возвращает объект, который содержит поля key, server, ts. 

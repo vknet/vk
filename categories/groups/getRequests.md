@@ -15,10 +15,10 @@ public ReadOnlyCollection<User> GetRequests(long groupId, long? offset, long? co
 ```
 
 ## Параметры
-+ **groupId** - Идентификатор сообщества (указывается без знака «минус»). положительное число, обязательный параметр
-+ **offset** - Смещение, необходимое для выборки определенного подмножества результатов. По умолчанию — 0. положительное число
-+ **count** - Число результатов, которые необходимо вернуть. положительное число, по умолчанию 20, максимальное значение 200
-+ **fields** - Список дополнительных полей профилей, которые необходимо вернуть. См. подробное описание. 
++ **groupId** — Идентификатор сообщества (указывается без знака «минус»). положительное число, обязательный параметр
++ **offset** — Смещение, необходимое для выборки определенного подмножества результатов. По умолчанию — 0. положительное число
++ **count** — Число результатов, которые необходимо вернуть. положительное число, по умолчанию 20, максимальное значение 200
++ **fields** — Список дополнительных полей профилей, которые необходимо вернуть. См. подробное описание. 
 Доступные значения: sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters, screen_name, maiden_name, timezone, occupation,activities, interests, music, movies, tv, books, games, about, quotes список строк, разделенных через запятую
 
 ## Результат

@@ -19,9 +19,9 @@ public SearchDialogsResponse SearchDialogs(
 ```
 
 ## Параметры
-+ **query** - Подстрока, по которой будет производиться поиск. строка
-+ **limit** - Положительное число, по умолчанию 20
-+ **fields** - Список дополнительных полей профилей, которые необходимо вернуть. 
++ **query** — Подстрока, по которой будет производиться поиск. строка
++ **limit** — Положительное число, по умолчанию 20
++ **fields** — Список дополнительных полей профилей, которые необходимо вернуть. 
 Доступные значения: nickname, screen_name, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, counters, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities список слов, разделенных через запятую
 
 ## Результат

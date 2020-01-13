@@ -15,7 +15,7 @@ public AccountInfo GetInfo(AccountFields fields = null)
 ```
 
 ## Параметры
-+ **fields** - Список полей, которые необходимо вернуть. Возможные значения: 
++ **fields** — Список полей, которые необходимо вернуть. Возможные значения: 
 country, 
 https_required, 
 own_posts_default, 

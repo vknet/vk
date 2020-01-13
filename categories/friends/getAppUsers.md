@@ -21,7 +21,7 @@ public ReadOnlyCollection<long> GetAppUsers()
 После успешного выполнения возвращает список идентификаторов (id) друзей текущего пользователя, установивших приложение.
 
 ## Исключения
-+ **AccessTokenInvalidException** - не задан или используется неверный AccessToken.
++ **AccessTokenInvalidException** — не задан или используется неверный AccessToken.
 
 ## Пример
 ```csharp

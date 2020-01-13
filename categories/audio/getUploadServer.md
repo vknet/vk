@@ -21,7 +21,7 @@ public Uri GetUploadServer()
 После успешного выполнения возвращает объект с единственным полем upload_url.
 
 ## Исключения
-+ **AccessTokenInvalidException** - не задан или используется неверный AccessToken.
++ **AccessTokenInvalidException** — не задан или используется неверный AccessToken.
 
 ## Пример
 ```csharp

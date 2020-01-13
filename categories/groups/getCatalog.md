@@ -15,8 +15,8 @@ public VkCollection<Group> GetCatalog(ulong? categoryId = null, ulong? subcatego
 ```
 
 ## Параметры
-+ **categoryId** - Идентификатор категории, полученный в методе groups.getCatalogInfo. положительное число
-+ **subcategoryId** - Идентификатор подкатегории, полученный в методе groups.getCatalogInfo. положительное число, максимальное значение 99
++ **categoryId** — Идентификатор категории, полученный в методе groups.getCatalogInfo. положительное число
++ **subcategoryId** — Идентификатор подкатегории, полученный в методе groups.getCatalogInfo. положительное число, максимальное значение 99
 
 ## Результат
 Возвращает список объектов сообществ в соответствии с выбранной категорией каталога.

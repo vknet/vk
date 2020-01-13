@@ -15,10 +15,10 @@ public ReadOnlyCollection<User> GetByPhones(IEnumerable<string> phones, ProfileF
 ```
 
 ## Параметры
-+ **phones** - Список телефонных номеров в формате MSISDN, разделеннных запятыми. Например
++ **phones** — Список телефонных номеров в формате MSISDN, разделеннных запятыми. Например
 +79219876543,+79111234567
 Максимальное количество номеров в списке — 1000. список строк, разделенных через запятую
-+ **fields** - Список дополнительных полей, которые необходимо вернуть. 
++ **fields** — Список дополнительных полей, которые необходимо вернуть. 
 Доступные значения: nickname, screen_name, sex, bdate, city, country, timezone, photo_50, photo_100, photo_200_orig, has_mobile, contacts, education, online, counters, relation, last_seen, status, can_write_private_message, can_see_all_posts, can_post, universities список строк, разделенных через запятую
 
 ## Результат

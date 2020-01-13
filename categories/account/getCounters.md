@@ -15,7 +15,7 @@ public Counters GetCounters(CountersFilter filter)
 ```
 
 ## Параметры
-+ **filter** - Счетчики, информацию о которых нужно вернуть (friends, messages, photos, videos, notes, gifts, events, groups, notifications, sdk, app_requests). 
++ **filter** — Счетчики, информацию о которых нужно вернуть (friends, messages, photos, videos, notes, gifts, events, groups, notifications, sdk, app_requests). 
 sdk - возвращает количество запросов в приложениях. 
 app_requests - возвращает количество непрочитанных запросов в приложениях. список слов, разделенных через запятую
 

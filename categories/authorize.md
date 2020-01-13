@@ -8,17 +8,17 @@ comments: true
 Для возможности использования методов из [VK.NET](http://vknet.github.io/vk), необходимо получить [AccessToken](https://goo.gl/N2gpoV). Без него (или с неверным [AccessToken](https://goo.gl/N2gpoV)) все методы будут выбрасывать исключение *AccessTokenInvalidException*. Если возникает такое исключение это говорит о том, что вы либо забыли авторизоваться, либо закончился срок действия ключа авторизации.
 
 ## Параметры
-+ **appID** - ID приложения
-+ **login** - E-mail или телефон
-+ **password** - Пароль для авторизации
-+ **settings** - [Права доступа приложения](https://vk.com/dev/permissions). Тип параметра - Settings
++ **appID** — ID приложения
++ **login** — E-mail или телефон
++ **password** — Пароль для авторизации
++ **settings** — [Права доступа приложения](https://vk.com/dev/permissions). Тип параметра - Settings
 
 ## Результат
 Метод Authorize получает и устанавливает значение свойства [AccessToken](https://goo.gl/N2gpoV). Метод ничего не возвращает.
 
 ## Исключения
-+ **VkApiAuthorizationException** - неправильный логин или пароль.
-+ **VkApiException** - неизвестная ошибка.
++ **VkApiAuthorizationException** — неправильный логин или пароль.
++ **VkApiException** — неизвестная ошибка.
 
 ## Примеры
 
