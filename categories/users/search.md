@@ -58,7 +58,7 @@ public ReadOnlyCollection<User> Search(out int itemsCount, UserSearchParams @par
 ## Исключения
 + **AccessTokenInvalidException** — не задан или используется неверный AccessToken.
 + **ArgumentException** — строка поискового запроса пуста или равна значению null.
-+ В ходе выполнения могут произойти общие ошибки. Их описание находится на [отдельной странице](https://vk.com/dev/objects/user).
++ В ходе выполнения могут произойти общие ошибки. Их описание находится на [отдельной странице](https://vk.com/dev/errors).
 
 ## Пример
 ```csharp
