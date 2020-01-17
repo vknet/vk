@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Utils;
 
 namespace VkNet.Model.Keyboard
@@ -13,6 +14,7 @@ namespace VkNet.Model.Keyboard
 	public class KeyboardBuilder : IKeyboardBuilder
 	{
 		private bool IsOneTime { get; set; }
+
 		private bool IsInline { get; set; }
 
 		private readonly List<List<MessageKeyboardButton>> _fullKeyboard = new List<List<MessageKeyboardButton>>();
@@ -41,11 +43,17 @@ namespace VkNet.Model.Keyboard
 		}
 
 		/// <inheritdoc />
-		public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor color = default(KeyboardButtonColor),
+		public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor color = default,
 										string type = null)
 		{
-			color = color ?? KeyboardButtonColor.Default;
-			type = type ?? _type ?? Button;
+			color ??= KeyboardButtonColor.Default;
+			type ??= _type ?? Button;
+			var payload = $"{{\"{type}\":\"{extra}\"}}";
+
+			if (payload.Length > 255 && type == Button)
+			{
+				throw new VkKeyboardPayloadMaxLengthException("Для кнопки payload должен быть максимум 255 символов: " + payload);
+			}
 
 			_currentLine.Add(new MessageKeyboardButton
 			{
@@ -53,7 +61,7 @@ namespace VkNet.Model.Keyboard
 				Action = new MessageKeyboardButtonAction
 				{
 					Label = label,
-					Payload = $"{{\"{type}\":\"{extra}\"}}",
+					Payload = payload,
 					Type = KeyboardButtonActionType.Text
 				}
 			});
@@ -90,7 +98,7 @@ namespace VkNet.Model.Keyboard
 		public IKeyboardBuilder Clear()
 		{
 			_currentLine.Clear();
-			_fullKeyboard.ForEach(x=>x.Clear());
+			_fullKeyboard.ForEach(x => x.Clear());
 			_fullKeyboard.Clear();
 
 			return this;
@@ -102,6 +110,16 @@ namespace VkNet.Model.Keyboard
 			if (_currentLine.Count != 0)
 			{
 				_fullKeyboard.Add(_currentLine);
+			}
+
+			var totalPayloadLength = _fullKeyboard.Aggregate(0,
+				(current, list) =>
+					list.Any() ? list.Aggregate(current, (length, button) => length + button.Action.Payload.Length) : current);
+
+			if (totalPayloadLength > 1000)
+			{
+				throw new VkKeyboardPayloadMaxLengthException(
+					"Суммарная длина для payload всех кнопок должен быть максимум 1000 символов.");
 			}
 
 			return new MessageKeyboard
