@@ -35,5 +35,5 @@ public bool EditList(long listId, string name = null, IEnumerable<long> userIds 
 var editList = _api.Friends.EditList(listId: 0);
 ```
 
-## Версия Вконтакте API v.5.44
-Дата обновления: 25.01.2016 13:09:06
+## Версия Вконтакте API v.5.103
+Дата обновления: 17.01.2020 16:21.
