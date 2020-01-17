@@ -159,13 +159,17 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = false)
 		{
+			if (@params.Fields != null || @params.Filter != null)
+			{
+				return _vk.Call("groups.getMembers", @params, skipAuthorization)
+					.ToVkCollectionOf<User>(x => x);
+			}
+
 			return _vk.Call("groups.getMembers", @params, skipAuthorization)
-				.ToVkCollectionOf(x => @params.Fields != null
-					? x
-					: new User
-					{
-						Id = x
-					});
+				.ToVkCollectionOf(x => new User
+				{
+					Id = x
+				});
 		}
 
 		/// <inheritdoc />
