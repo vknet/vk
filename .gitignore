@@ -3,11 +3,6 @@ _site/
 .DS_Store
 *.swp
 *~
-VkNet/obj/Debug/net40/VkNet.AssemblyInfo.cs
-VkNet/obj/Debug/net40/VkNet.AssemblyInfoInputs.cache
-VkNet/obj/Debug/net40/VkNet.csprojAssemblyReference.cache
-VkNet.Core.Abstractions/obj/Debug/net40/VkNet.Core.Abstractions.AssemblyInfo.cs
-VkNet.Core.Abstractions/obj/Debug/net40/VkNet.Core.Abstractions.AssemblyInfoInputs.cache
-VkNet.Tests/obj/Debug/netcoreapp3.0/VkNet.Tests.AssemblyInfo.cs
-VkNet.Tests/obj/Debug/netcoreapp3.0/VkNet.Tests.AssemblyInfoInputs.cache
-VkNet.Tests/obj/Debug/netcoreapp3.0/VkNet.Tests.csprojAssemblyReference.cache
+VkNet/obj/*
+VkNet.Core.Abstractions/obj/*
+VkNet.Tests/obj/*
