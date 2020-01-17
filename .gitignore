@@ -3,3 +3,6 @@ _site/
 .DS_Store
 *.swp
 *~
+VkNet/obj/*
+VkNet.Core.Abstractions/obj/*
+VkNet.Tests/obj/*
