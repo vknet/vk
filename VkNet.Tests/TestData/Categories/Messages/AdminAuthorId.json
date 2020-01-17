@@ -1,0 +1,22 @@
+﻿{
+  "response": {
+    "count": 6,
+    "items": [
+      {
+        "date": 1579187026,
+        "from_id": -67,
+        "id": 25273,
+        "out": 1,
+        "peer_id": 18,
+        "text": "sdfsdf",
+        "conversation_message_id": 6,
+        "fwd_messages": [],
+        "important": false,
+        "random_id": 459382534,
+        "attachments": [],
+        "admin_author_id": 45,
+        "is_hidden": false
+      }
+    ]
+  }
+}

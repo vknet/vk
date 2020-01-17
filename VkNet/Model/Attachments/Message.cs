@@ -80,7 +80,8 @@ namespace VkNet.Model
 				ConversationMessageId = response["conversation_message_id"],
 				Ref = response["ref"],
 				RefSource = response["ref_source"],
-				ReplyMessage = response["reply_message"]
+				ReplyMessage = response["reply_message"],
+				AdminAuthorId = response["admin_author_id"]
 			};
 
 			return message;
@@ -322,6 +323,12 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("conversation_message_id")]
 		public long? ConversationMessageId { get; set; }
+
+		/// <summary>
+		/// Идентификатор администратора в беседе
+		/// </summary>
+		[JsonProperty("admin_author_id")]
+		public long? AdminAuthorId { get; set; }
 
 		/// <summary>
 		/// Тип сообщения (не возвращается для пересланных сообщений).
