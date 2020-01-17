@@ -30,6 +30,10 @@ public ReadOnlyCollection<Group> GetSubscriptions(long? userId = null, int? coun
 
 Если был задан параметр *extended* = 1, возвращает объединенный массив объектов *[user](https://vk.com/dev/objects/user)* и *[group](https://vk.com/dev/objects/group)*, а также общее число результатов в поле TotalCount.
 
+## Исключения
++ Код ошибки 30 — This profile is private.
++ В ходе выполнения могут произойти общие ошибки. Их описание находится на [отдельной странице](https://vk.com/dev/errors).
+
 ## Примечания 
 Пока возвращается только список групп.
 
