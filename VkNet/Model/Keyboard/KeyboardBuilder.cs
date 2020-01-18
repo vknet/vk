@@ -25,6 +25,13 @@ namespace VkNet.Model.Keyboard
 
 		private const string Button = "button";
 
+		private int _totalPayloadLength;
+
+		public const string ButtonPayloadLengthExceptionTemplate = "Для кнопки payload должен быть максимум 255 символов: {0}";
+
+		public const string SumPayloadLengthExceptionTemplate =
+			"Суммарная длина для payload всех кнопок должен быть максимум 1000 символов.";
+
 		/// <inheritdoc />
 		public KeyboardBuilder() : this(Button)
 		{
@@ -35,7 +42,6 @@ namespace VkNet.Model.Keyboard
 		{
 		}
 
-		/// <inheritdoc />
 		public KeyboardBuilder(string type, bool isOneTime = false)
 		{
 			IsOneTime = isOneTime;
@@ -49,10 +55,16 @@ namespace VkNet.Model.Keyboard
 			color ??= KeyboardButtonColor.Default;
 			type ??= _type ?? Button;
 			var payload = $"{{\"{type}\":\"{extra}\"}}";
+			_totalPayloadLength += payload.Length;
 
 			if (payload.Length > 255 && type == Button)
 			{
-				throw new VkKeyboardPayloadMaxLengthException("Для кнопки payload должен быть максимум 255 символов: " + payload);
+				throw new VkKeyboardPayloadMaxLengthException(string.Format(ButtonPayloadLengthExceptionTemplate, payload));
+			}
+
+			if (_totalPayloadLength > 1000)
+			{
+				throw new VkKeyboardPayloadMaxLengthException(SumPayloadLengthExceptionTemplate);
 			}
 
 			_currentLine.Add(new MessageKeyboardButton
@@ -110,16 +122,6 @@ namespace VkNet.Model.Keyboard
 			if (_currentLine.Count != 0)
 			{
 				_fullKeyboard.Add(_currentLine);
-			}
-
-			var totalPayloadLength = _fullKeyboard.Aggregate(0,
-				(current, list) =>
-					list.Any() ? list.Aggregate(current, (length, button) => length + button.Action.Payload.Length) : current);
-
-			if (totalPayloadLength > 1000)
-			{
-				throw new VkKeyboardPayloadMaxLengthException(
-					"Суммарная длина для payload всех кнопок должен быть максимум 1000 символов.");
 			}
 
 			return new MessageKeyboard
