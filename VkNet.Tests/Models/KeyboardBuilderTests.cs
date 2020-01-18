@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using VkNet.Exception;
-using VkNet.Model;
 using VkNet.Model.Keyboard;
 
 namespace VkNet.Tests.Models
@@ -8,7 +7,7 @@ namespace VkNet.Tests.Models
 	[TestFixture]
 	public class KeyboardBuilderTests
 	{
-		const string payload =
+		private const string Payload =
 			"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
 
 		[Test]
@@ -18,10 +17,10 @@ namespace VkNet.Tests.Models
 			var builder = new KeyboardBuilder();
 
 			// Act
-			var exception = Assert.Throws<VkKeyboardPayloadMaxLengthException>(() => builder.AddButton("Button", payload + payload));
+			var exception = Assert.Throws<VkKeyboardPayloadMaxLengthException>(() => builder.AddButton("Button", Payload + Payload));
 
 			// Assert
-			var currentPayload = $"{{\"button\":\"{payload + payload}\"}}";
+			var currentPayload = $"{{\"button\":\"{Payload + Payload}\"}}";
 			Assert.AreEqual(string.Format(KeyboardBuilder.ButtonPayloadLengthExceptionTemplate, currentPayload), exception.Message);
 		}
 
@@ -34,7 +33,7 @@ namespace VkNet.Tests.Models
 			// Act
 
 			// Assert
-			Assert.DoesNotThrow(() => builder.AddButton("Button", payload));
+			Assert.DoesNotThrow(() => builder.AddButton("Button", Payload));
 		}
 
 		[Test]
@@ -44,14 +43,14 @@ namespace VkNet.Tests.Models
 			var builder = new KeyboardBuilder();
 
 			// Act
-			builder.AddButton("Button", payload)
-				.AddButton("Button", payload)
+			builder.AddButton("Button", Payload)
+				.AddButton("Button", Payload)
 				.AddLine()
-				.AddButton("Button", payload)
-				.AddButton("Button", payload);
+				.AddButton("Button", Payload)
+				.AddButton("Button", Payload);
 
 			// Assert
-			var exception = Assert.Throws<VkKeyboardPayloadMaxLengthException>(() => builder.AddButton("Button", payload));
+			var exception = Assert.Throws<VkKeyboardPayloadMaxLengthException>(() => builder.AddButton("Button", Payload));
 			Assert.AreEqual(KeyboardBuilder.SumPayloadLengthExceptionTemplate, exception.Message);
 		}
 
@@ -62,9 +61,9 @@ namespace VkNet.Tests.Models
 			var builder = new KeyboardBuilder();
 
 			// Act
-			builder.AddButton("Button", payload)
+			builder.AddButton("Button", Payload)
 				.AddLine()
-				.AddButton("Button", payload);
+				.AddButton("Button", Payload);
 
 			// Assert
 			Assert.DoesNotThrow(() => builder.Build());
