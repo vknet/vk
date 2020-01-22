@@ -31,7 +31,7 @@ public ReadOnlyCollection<User> GetFollowers(long? userId = null, int? count = n
 
 ## Исключения
 + Код ошибки 30 — This profile is private.
-+ В ходе выполнения могут произойти общие ошибки. Их описание находится на [отдельной странице](https://vk.com/dev/objects/user)
++ В ходе выполнения могут произойти общие ошибки. Их описание находится на [отдельной странице](https://vk.com/dev/errors).
 
 ## Пример
 ``` csharp

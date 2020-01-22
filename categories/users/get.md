@@ -31,7 +31,7 @@ public ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds, Profile
 
 ## Исключения
 + **AccessTokenInvalidException** — не задан или используется неверный AccessToken.
-+ В ходе выполнения могут произойти общие ошибки. Их описание находится на [отдельной странице](https://vk.com/dev/objects/user).
++ В ходе выполнения могут произойти общие ошибки. Их описание находится на [отдельной странице](https://vk.com/dev/errors).
 
 ## Пример
 ```csharp
