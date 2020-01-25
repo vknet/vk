@@ -347,6 +347,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(MediaType.Market.ToString(), Is.EqualTo("market"));
 			Assert.That(MediaType.Wall.ToString(), Is.EqualTo("wall"));
 			Assert.That(MediaType.Share.ToString(), Is.EqualTo("share"));
+			Assert.That(MediaType.Graffiti.ToString(), Is.EqualTo("graffiti"));
 
 			// parse test
 			Assert.That(MediaType.FromJsonString("photo"), Is.EqualTo(MediaType.Photo));
@@ -357,6 +358,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(MediaType.FromJsonString("market"), Is.EqualTo(MediaType.Market));
 			Assert.That(MediaType.FromJsonString("wall"), Is.EqualTo(MediaType.Wall));
 			Assert.That(MediaType.FromJsonString("share"), Is.EqualTo(MediaType.Share));
+			Assert.That(MediaType.FromJsonString("graffiti"), Is.EqualTo(MediaType.Graffiti));
 		}
 
 		[Test]
