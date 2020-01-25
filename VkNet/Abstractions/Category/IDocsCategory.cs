@@ -248,6 +248,7 @@ namespace VkNet.Abstractions
 		/// тип документа. Возможные значения:
 		/// doc — обычный документ;
 		/// audio_message — голосовое сообщение.
+		/// graffiti - граффити
 		/// </param>
 		/// <returns> </returns>
 		UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType type = null);
