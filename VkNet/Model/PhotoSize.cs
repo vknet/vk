@@ -50,7 +50,7 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static PhotoSize FromJson(VkResponse response)
 		{
-			var giftItem = new PhotoSize
+			var photoSize = new PhotoSize
 			{
 				Url = response["url"],
 				Width = response[key: "width"],
@@ -58,7 +58,7 @@ namespace VkNet.Model
 				Type = response[key: "type"]
 			};
 
-			return giftItem;
+			return photoSize;
 		}
 	}
 }
