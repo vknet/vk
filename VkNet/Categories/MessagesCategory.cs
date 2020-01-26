@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -131,6 +131,11 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long Send(MessagesSendParams @params)
 		{
+			if (@params.UserIds != null && @params.UserIds.Any())
+			{
+				throw new ArgumentException($"This method not intended to use with many target users. Use {nameof(SendToUserIds)} instead.");
+			}
+
 			if (_vk.VkApiVersion.IsGreaterThanOrEqual(5, 90) && @params.RandomId == null)
 			{
 				throw new ArgumentException($"{nameof(@params.RandomId)} обязательное значение.");
