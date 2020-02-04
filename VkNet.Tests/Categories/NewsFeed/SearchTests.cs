@@ -22,5 +22,21 @@ namespace VkNet.Tests.Categories.NewsFeed
 			Assert.NotNull(result);
 			Assert.IsNotEmpty(result.NextFrom);
 		}
+
+		[Test]
+		public void Search_Coordinates_Exception()
+		{
+			Url = "https://api.vk.com/method/newsfeed.search";
+			ReadCategoryJsonPath(nameof(Search_Coordinates_Exception));
+
+			var result = Api.NewsFeed.Search(new NewsFeedSearchParams{
+				Query = "word",
+				Extended = false,
+				Count = 20
+			});
+
+			Assert.NotNull(result);
+			Assert.IsNotEmpty(result.NextFrom);
+		}
 	}
 }

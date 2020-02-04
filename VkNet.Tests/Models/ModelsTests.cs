@@ -7,6 +7,7 @@ using System.Reflection;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model;
 using VkNet.Model.Attachments;
 
 namespace VkNet.Tests.Models
@@ -98,6 +99,30 @@ namespace VkNet.Tests.Models
 			Assert.IsEmpty(enumerable);
 		}
 
+		[Test]
+		public void ModelsShouldHaveJsonConverterAttributeForCoordinatesType()
+		{
+			var models = typeof(VkApi).Assembly
+				.GetTypes()
+				.Where(t =>
+					t.Namespace != null
+					&& t.Namespace.StartsWith("VkNet.Model")
+					&& t.GetProperties()
+						.Any(p =>
+							p.PropertyType == typeof(Coordinates)
+							&& p.GetCustomAttributes(typeof(JsonConverterAttribute), false).Length
+							< 1));
+
+			var enumerable = models.ToList();
+
+			if (enumerable.Any())
+			{
+				Assert.Fail(string.Join(Environment.NewLine, enumerable.Select(x => x.FullName)));
+			}
+
+			Assert.IsEmpty(enumerable);
+		}
+
 		public static string AssemblyDirectory
 		{
 			get
@@ -105,6 +130,7 @@ namespace VkNet.Tests.Models
 				var codeBase = Assembly.GetExecutingAssembly().CodeBase;
 				var uri = new UriBuilder(codeBase);
 				var path = Uri.UnescapeDataString(uri.Path);
+
 				return Path.GetDirectoryName(path);
 			}
 		}

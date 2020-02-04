@@ -1,0 +1,120 @@
+﻿{
+  "response": {
+    "items": [
+      {
+        "id": 5225,
+        "date": 1580657908,
+        "owner_id": -168119259,
+        "from_id": -168119259,
+        "post_type": "post",
+        "text": "&#9992;&#65039; Вильнюс (Литва) &#8594; Прага (Чехия) &#12288;",
+      "marked_as_ads": 0,
+      "attachments": [{
+        "type": "photo",
+        "photo": {
+          "id": 457241109,
+          "album_id": -7,
+          "owner_id": -168119259,
+          "user_id": 100,
+          "sizes": [{
+            "type": "m",
+            "url": "https://sun9-25.u...2f1/YaJcK9S5n98.jpg",
+            "width": 130,
+            "height": 97
+          }, {
+            "type": "o",
+            "url": "https://sun9-11.u...2f4/n-uNGV3nFHU.jpg",
+            "width": 130,
+            "height": 98
+          }, {
+            "type": "p",
+            "url": "https://sun9-23.u...2f5/dUNZ8C-Jk8A.jpg",
+            "width": 200,
+            "height": 150
+          }, {
+            "type": "q",
+            "url": "https://sun9-10.u...2f6/aniPw8_lA20.jpg",
+            "width": 320,
+            "height": 240
+          }, {
+            "type": "r",
+            "url": "https://sun9-43.u...2f7/jlUJCooQsLc.jpg",
+            "width": 510,
+            "height": 383
+          }, {
+            "type": "s",
+            "url": "https://sun9-59.u...2f0/qHZIwwjln54.jpg",
+            "width": 75,
+            "height": 56
+          }, {
+            "type": "x",
+            "url": "https://sun9-26.u...2f2/y0pdZlA-EfU.jpg",
+            "width": 604,
+            "height": 453
+          }, {
+            "type": "y",
+            "url": "https://sun9-38.u...2f3/8xfjqzk-SBE.jpg",
+            "width": 800,
+            "height": 600
+          }],
+          "text": "Вильнюс (Литва) &#8594; Прага (Чехия)",
+          "date": 1578175476,
+          "post_id": 4718,
+          "access_key": "6cd8cc83c4671379b5"
+        }
+      }, {
+        "type": "page",
+        "page": {
+          "id": 52936676,
+          "group_id": 22763723,
+          "title": "Города и страны вылета",
+          "who_can_view": 2,
+          "who_can_edit": 0,
+          "edited": 0,
+          "created": 1513159999,
+          "views": 28417,
+          "view_url": "https://m.vk.com/...f9d4c1f63938808b0c6"
+        }
+      }],
+      "geo": {
+        "type": "point",
+        "coordinates": "50.075544478827 14.437798116462",
+        "place": {
+          "created": 0,
+          "id": 0,
+          "is_deleted": false,
+          "latitude": 0,
+          "longitude": 0,
+          "title": "N&#225;m&#283;st&#237; M&#237;ru Peace Square, Прага",
+          "total_checkins": 0,
+          "updated": 0,
+          "country": "Чехія",
+          "city": "Прага"
+        }
+      },
+      "post_source": {
+        "type": "api"
+      },
+      "comments": {
+        "count": 0,
+        "can_post": 0,
+        "groups_can_post": true
+      },
+      "likes": {
+        "count": 0,
+        "user_likes": 0,
+        "can_like": 1,
+        "can_publish": 1
+      },
+      "reposts": {
+        "count": 0,
+        "user_reposted": 0
+      },
+      "is_favorite": false
+      }
+    ],
+    "next_from": "20/-190929809_22",
+    "count": 1000,
+    "total_count": 4493112
+  }
+}
