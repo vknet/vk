@@ -21,10 +21,10 @@ namespace VkNet.Tests.Categories.Audio
 
 			var result = Api.Audio.AddToPlaylist(123456789,
 					1,
-					new List<long>
+					new List<string>
 					{
-						456239288,
-						456239289
+						"456239288",
+						"456239289"
 					})
 				.ToList();
 

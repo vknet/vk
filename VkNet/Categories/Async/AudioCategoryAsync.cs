@@ -113,7 +113,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<IEnumerable<long>> AddToPlaylistAsync(long ownerId, long playlistId, IEnumerable<long> audioIds)
+		public Task<IEnumerable<long>> AddToPlaylistAsync(long ownerId, long playlistId, IEnumerable<string> audioIds)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => AddToPlaylist(ownerId, playlistId, audioIds));
 		}
