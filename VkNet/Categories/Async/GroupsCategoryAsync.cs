@@ -159,7 +159,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<Group> CreateAsync(string title, string description, GroupType type, GroupSubType? subtype, uint? publicCategory = null)
+		public Task<Group> CreateAsync(string title, string description = null, GroupType type = null, GroupSubType? subtype = null, uint? publicCategory = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Create(title, description, type, subtype, publicCategory));
 		}

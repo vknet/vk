@@ -103,7 +103,7 @@ namespace VkNet.Abstractions
 		bool ApproveRequest(long groupId, long userId);
 
 		/// <inheritdoc cref="IGroupsCategoryAsync.CreateAsync"/>
-		Group Create(string title, string description, GroupType type, GroupSubType? subtype, uint? publicCategory = null);
+		Group Create(string title, string description = null, GroupType type = null, GroupSubType? subtype = null, uint? publicCategory = null);
 
 		/// <inheritdoc cref="IGroupsCategoryAsync.GetRequestsAsync"/>
 		VkCollection<User> GetRequests(long groupId, long? offset, long? count, UsersFields fields);
