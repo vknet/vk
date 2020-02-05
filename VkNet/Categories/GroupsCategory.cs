@@ -450,7 +450,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Group Create(string title, string description, GroupType type, GroupSubType? subtype, uint? publicCategory = null)
+		public Group Create(string title, string description = null, GroupType type = null, GroupSubType? subtype = null, uint? publicCategory = null)
 		{
 			var parameters = new VkParameters
 			{
