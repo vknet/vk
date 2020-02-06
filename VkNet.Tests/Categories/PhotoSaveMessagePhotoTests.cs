@@ -28,9 +28,9 @@ namespace VkNet.Tests.Categories
 
 			var result = Api.Photo.SaveMessagesPhoto(parameter);
 			Assert.IsNotEmpty(result);
-			var first = result.FirstOrDefault();
-			var size = first.Sizes.FirstOrDefault();
-			Assert.AreEqual(new Uri("https://pp.userapi.com/c847017/v847017534/66e9c/PAZHqnQBYt4.jpg"), size.Src);
+			var first = result.First();
+			var size = first.Sizes.First();
+			Assert.AreEqual(new Uri("https://pp.userapi.com/c847017/v847017534/66e9c/PAZHqnQBYt4.jpg"), size.Url);
 		}
 	}
 }

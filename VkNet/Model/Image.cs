@@ -33,9 +33,9 @@ namespace VkNet.Model
 		{
 			return new Image
 			{
-					Url = response[key: "url"]
-					, Width = response[key: "width"]
-					, Height = response[key: "height"]
+				Url = response[key: "url"],
+				Width = response[key: "width"],
+				Height = response[key: "height"]
 			};
 		}
 
