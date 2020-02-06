@@ -26,7 +26,8 @@ namespace VkNet.Tests.Categories
 			var album = Api.Photo
 				.CreateAlbum(new PhotoCreateAlbumParams
 				{
-					Title = "hello world", Description = "description for album"
+					Title = "hello world",
+					Description = "description for album"
 				});
 
 			Assert.That(album, Is.Not.Null);
@@ -63,7 +64,9 @@ namespace VkNet.Tests.Categories
 			var result = Api.Photo
 				.EditAlbum(new PhotoEditAlbumParams
 				{
-					AlbumId = 19726, Title = "new album title", Description = "new description"
+					AlbumId = 19726,
+					Title = "new album title",
+					Description = "new description"
 				});
 
 			Assert.That(result, Is.Not.Null);
@@ -170,7 +173,9 @@ namespace VkNet.Tests.Categories
 			var photos = Api.Photo
 				.GetAll(new PhotoGetAllParams
 				{
-					OwnerId = 1, Offset = 4, Count = 2
+					OwnerId = 1,
+					Offset = 4,
+					Count = 2
 				});
 
 			Assert.That(photos, Is.Not.Null);
@@ -341,7 +346,10 @@ namespace VkNet.Tests.Categories
 			var photos = Api.Photo
 				.Search(new PhotoSearchParams
 				{
-					Query = "", Latitude = 30, Longitude = 30, Count = 2
+					Query = "",
+					Latitude = 30,
+					Longitude = 30,
+					Count = 2
 				});
 
 			Assert.That(photos, Is.Not.Null);
@@ -369,7 +377,9 @@ namespace VkNet.Tests.Categories
 			var photos = Api.Photo
 				.Search(new PhotoSearchParams
 				{
-					Query = "порно", Offset = 2, Count = 3
+					Query = "порно",
+					Offset = 2,
+					Count = 3
 				});
 
 			Assert.That(photos, Is.Not.Null);
@@ -399,6 +409,31 @@ namespace VkNet.Tests.Categories
 					"🍓 [club49512556|ЗАХОДИ К НАМ]\nчастное фото секси обнаженные девочки малолетки порно голые сиськи попки эротика няша шлюха грудь секс instagirls instagram лето\n#секс #девушки #девочки #instagram #instagirls #няша #InstaSize #лето #ПОПКИ"));
 
 			Assert.That(photo.CreateTime, Is.EqualTo(DateHelper.TimeStampToDateTime(1403455788))); //  2014-06-22 20:49:48.000
+		}
+
+		[Test]
+		public void GetAlbums_Photo_Sizes()
+		{
+			Url = "https://api.vk.com/method/photos.getAlbums";
+			ReadCategoryJsonPath(nameof(GetAlbums_Photo_Sizes));
+
+			long[] albumsids =
+			{
+				270417281
+			};
+
+			var result = Api.Photo.GetAlbums(new PhotoGetAlbumsParams
+			{
+				AlbumIds = albumsids,
+				OwnerId = 504736359,
+				NeedSystem = true,
+				NeedCovers = true,
+				PhotoSizes = true
+			});
+
+			Assert.That(result, Is.Not.Null);
+			Assert.AreEqual(albumsids[0], result[2].Id);
+			Assert.AreEqual("https://sun9-46.userapi.com/c858232/v858232634/16acf0/SNHX0daieLw.jpg",result[2].Sizes.Last().Src.AbsoluteUri);
 		}
 	}
 }

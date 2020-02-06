@@ -98,7 +98,7 @@ namespace VkNet.Tests.Categories
 
 			Assert.That(photos, Is.Not.Null);
 			Assert.That(photos.Count, Is.EqualTo(1));
-			var photo = photos.FirstOrDefault();
+			var photo = photos.First();
 
 			Assert.That(photo.Id, Is.EqualTo(390044361));
 			Assert.That(photo.AlbumId, Is.EqualTo(-7));
@@ -106,7 +106,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(photo.UserId, Is.EqualTo(100));
 			Assert.That(photos[0].Sizes[0].Height, Is.EqualTo(67));
 
-			Assert.That(photos[0].Sizes[0].Src,
+			Assert.That(photos[0].Sizes[0].Url,
 				Is.EqualTo(new Uri("http://cs629301.vk.me/v629301456/1caaf/XpHNgelMOc0.jpg")));
 
 			Assert.That(photos[0].Sizes[0].Width, Is.EqualTo(75));

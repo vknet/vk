@@ -15,8 +15,8 @@ namespace VkNet.Model
 		/// <summary>
 		/// Uri копии изображения.
 		/// </summary>
-		[Obsolete("Используйте поле url. Данное поле будет удалено в релизе 2.0.0")]
-		public Uri Src => Url;
+		[JsonProperty("src")]
+		public Uri Src { get; set; }
 
 		/// <summary>
 		/// Uri копии изображения.
@@ -52,6 +52,7 @@ namespace VkNet.Model
 		{
 			var photoSize = new PhotoSize
 			{
+				Src = response["src"],
 				Url = response["url"],
 				Width = response[key: "width"],
 				Height = response[key: "height"],
