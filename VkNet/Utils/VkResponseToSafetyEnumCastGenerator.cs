@@ -32,6 +32,16 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static implicit operator AppWidgetImageType(VkResponse response)
+		{
+			return response == null ? null : AppWidgetImageType.FromJson(response: response);
+		}
+
+		/// <summary>
 		/// Преобразовать из VkResponse
 		/// </summary>
 		/// <param name="response"> Ответ. </param>
@@ -149,6 +159,18 @@ namespace VkNet.Utils
 		public static implicit operator AppType(VkResponse response)
 		{
 			return response == null ? null : AppType.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator AppWidgetType(VkResponse response)
+		{
+			return response == null ? null : AppWidgetType.FromJson(response: response);
 		}
 
 		/// <summary>
