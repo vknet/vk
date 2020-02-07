@@ -1,6 +1,7 @@
-using System;
+using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -23,15 +24,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri GetAppImageUploadServer(AppWidgetImageType imageType)
+		public UploadServerInfo GetAppImageUploadServer(AppWidgetImageType imageType)
 		{
-			return _vk.Call("appWidgets.getAppImageUploadServer", new VkParameters { { "image_type", imageType } })["upload_url"];
+			return _vk.Call("appWidgets.getAppImageUploadServer", new VkParameters { { "image_type", imageType } });
 		}
 
 		/// <inheritdoc/>
-		public Uri GetAppImages(int offset, int count, AppWidgetImageType imageType)
+		public AppImageResult GetAppImages(int offset, int count, AppWidgetImageType imageType)
 		{
-			return _vk.Call<Uri>("appWidgets.getAppImages",
+			return _vk.Call<AppImageResult>("appWidgets.getAppImages",
 				new VkParameters
 				{
 					{ "offset", offset },
@@ -41,15 +42,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri GetGroupImageUploadServer(AppWidgetImageType imageType)
+		public UploadServerInfo GetGroupImageUploadServer(AppWidgetImageType imageType)
 		{
-			return _vk.Call<Uri>("appWidgets.getGroupImageUploadServer", new VkParameters { { "image_type", imageType } });
+			return _vk.Call<UploadServerInfo>("appWidgets.getGroupImageUploadServer", new VkParameters { { "image_type", imageType } });
 		}
 
 		/// <inheritdoc/>
-		public Uri GetGroupImages(int offset, int count, AppWidgetImageType imageType)
+		public AppImageResult GetGroupImages(int offset, int count, AppWidgetImageType imageType)
 		{
-			return _vk.Call<Uri>("appWidgets.getGroupImages",
+			return _vk.Call<AppImageResult>("appWidgets.getGroupImages",
 				new VkParameters
 				{
 					{ "offset", offset },
@@ -60,25 +61,29 @@ namespace VkNet.Categories
 
 		/// <param name="images"></param>
 		/// <inheritdoc/>
-		public Uri GetImagesById(string images)
+		public ReadOnlyCollection<AppImage> GetImagesById(string images)
 		{
-			return _vk.Call<Uri>("appWidgets.getImagesById", VkParameters.Empty);
+			var parameters = new VkParameters
+			{
+				{ "images", images }
+			};
+			return _vk.Call("appWidgets.getImagesById", parameters).ToReadOnlyCollectionOf<AppImage>(x => x);
 		}
 
 		/// <inheritdoc/>
-		public Uri SaveAppImage(string hash, string image)
+		public AppImage SaveAppImage(string hash, string image)
 		{
-			return _vk.Call<Uri>("appWidgets.saveAppImage", new VkParameters { { "hash", hash }, { "image", image } });
+			return _vk.Call<AppImage>("appWidgets.saveAppImage", new VkParameters { { "hash", hash }, { "image", image } });
 		}
 
 		/// <inheritdoc/>
-		public Uri SaveGroupImage()
+		public AppImage SaveGroupImage(string hash, string image)
 		{
-			return _vk.Call<Uri>("appWidgets.saveGroupImage", VkParameters.Empty);
+			return _vk.Call<AppImage>("appWidgets.saveGroupImage", new VkParameters { { "hash", hash }, { "image", image } });
 		}
 
 		/// <inheritdoc/>
-		public bool Update(string code, string type)
+		public bool Update(string code, AppWidgetType type)
 		{
 			return _vk.Call<bool>("appWidgets.update", new VkParameters
 			{
