@@ -28,7 +28,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/execute
 		/// </remarks>
-		VkResponse Execute(string code);
+		VkResponse Execute(string code, VkParameters vkParameters = default);
 
 		/// <summary>
 		/// Универсальный метод, который позволяет запускать последовательность других
@@ -51,7 +51,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/execute
 		/// </remarks>
-		T Execute<T>(string code);
+		T Execute<T>(string code, VkParameters vkParameters = default);
 
 		/// <summary>
 		/// Универсальный метод, который позволяет запускать хранимые процедуры.

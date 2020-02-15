@@ -30,7 +30,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/execute
 		/// </remarks>
-		Task<VkResponse> ExecuteAsync(string code);
+		Task<VkResponse> ExecuteAsync(string code, VkParameters vkParameters = default);
 
 		/// <summary>
 		/// Универсальный метод, который позволяет запускать последовательность других
@@ -53,7 +53,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/execute
 		/// </remarks>
-		Task<T> ExecuteAsync<T>(string code);
+		Task<T> ExecuteAsync<T>(string code, VkParameters vkParameters = default);
 
 		/// <summary>
 		/// Универсальный метод, который позволяет запускать хранимые процедуры.
