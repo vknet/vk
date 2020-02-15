@@ -292,6 +292,24 @@ namespace VkNet.Categories
 			return _vk.Call("photos.getChatUploadServer", parameters);
 		}
 
+		/// <inheritdoc />
+		public Photo SaveOwnerPhoto(string response)
+		{
+			var responseJson = JObject.Parse(json: response);
+			var server = responseJson[propertyName: "server"].ToString();
+			var hash = responseJson[propertyName: "hash"].ToString();
+			var photo = responseJson[propertyName: "photo"].ToString();
+
+			var parameters = new VkParameters
+			{
+				{ "server", server },
+				{ "hash", hash },
+				{ "photo", photo }
+			};
+
+			return _vk.Call("photos.saveOwnerPhoto", parameters);
+		}
+
 		/// <summary>
 		/// Позволяет сохранить главную фотографию пользователя или сообщества.
 		/// </summary>
@@ -313,24 +331,10 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerPhoto
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey)
 		{
-			var responseJson = JObject.Parse(json: response);
-			var server = responseJson[propertyName: "server"].ToString();
-			var hash = responseJson[propertyName: "hash"].ToString();
-			var photo = responseJson[propertyName: "photo"].ToString();
-
-			var parameters = new VkParameters
-			{
-				{ "server", server },
-				{ "hash", hash },
-				{ "photo", photo },
-				{ "captcha_sid", captchaSid },
-				{ "captcha_key", captchaKey }
-			};
-
-			return _vk.Call("photos.saveOwnerPhoto", parameters);
+			return SaveOwnerPhoto(response);
 		}
 
 		/// <summary>
@@ -416,7 +420,11 @@ namespace VkNet.Categories
 		/// </remarks>
 		public UploadServerInfo GetMessagesUploadServer(long peerId)
 		{
-			return _vk.Call("photos.getMessagesUploadServer", new VkParameters { { "peer_id", peerId } });
+			return _vk.Call("photos.getMessagesUploadServer",
+				new VkParameters
+				{
+					{ "peer_id", peerId }
+				});
 		}
 
 		/// <summary>

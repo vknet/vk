@@ -238,7 +238,9 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerPhoto
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		Photo SaveOwnerPhoto(string response);
+
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey);
 
 		/// <summary>
