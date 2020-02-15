@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VkNet.Model.Attachments;
@@ -77,7 +77,7 @@ namespace VkNet.Model.RequestParams
 			var parameters = new VkParameters
 			{
 				{ "owner_id", p.OwnerId },
-				{ "videos", p.Videos?.Select(selector: o => $"{o.OwnerId}_{o.Id}") },
+				{ "videos", p.Videos?.Select(selector: o => $"{o.OwnerId}_{o.Id}" + (!string.IsNullOrEmpty(o.AccessKey) ? $"_{o.AccessKey}" : "")) },
 				{ "album_id", p.AlbumId },
 				{ "count", p.Count },
 				{ "offset", p.Offset },
