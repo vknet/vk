@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -73,9 +73,9 @@ namespace VkNet.Tests.Categories
 
 			var code = ReadScript(nameof(ExecuteErrorTest));
 
-			var exception = Assert.Throws<AggregateException>(() => Api.Execute.Execute(code));
+			var exception = Assert.Throws<ExecuteException>(() => Api.Execute.Execute(code));
 
-			Assert.IsInstanceOf<AggregateException>(exception);
+			Assert.IsInstanceOf<ExecuteException>(exception);
 			Assert.AreEqual(3, exception.InnerExceptions.Count);
 		}
 
