@@ -11,7 +11,7 @@ namespace VkNet.Exception
 	public sealed class ExecuteException : AggregateException
 	{
 		/// <summary>
-		/// Оригинальный ответ метода execute.
+		/// Поле response из ответа метода execute.
 		/// </summary>
 		public JRaw Response { get; }
 
