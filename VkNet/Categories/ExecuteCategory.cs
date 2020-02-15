@@ -23,7 +23,7 @@ namespace VkNet.Categories
 
 			foreach (var pair in vkParameters)
 			{
-				parameters.Add(pair.Key.StartsWith("Args.") ? pair.Key : $"Args.{pair.Key}", pair.Value);
+				parameters.Add(pair.Key, pair.Value);
 			}
 
 			return _vk.Call("execute", parameters);
@@ -44,7 +44,7 @@ namespace VkNet.Categories
 
 			foreach (var pair in vkParameters)
 			{
-				parameters.Add(pair.Key.StartsWith("Args.") ? pair.Key : $"Args.{pair.Key}", pair.Value);
+				parameters.Add(pair.Key, pair.Value);
 			}
 
 			return _vk.Call<T>("execute", parameters);
