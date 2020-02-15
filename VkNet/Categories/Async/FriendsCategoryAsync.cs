@@ -78,7 +78,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		public Task<AddFriendStatus> AddAsync(long userId, string text = "", bool? follow = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Add(userId, text, follow));
+		}
+
+		/// <inheritdoc />
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public Task<AddFriendStatus> AddAsync(long userId, string text = "", bool? follow = null, long? captchaSid = null,
 											string captchaKey = null)
 		{

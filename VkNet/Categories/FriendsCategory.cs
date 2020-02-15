@@ -146,16 +146,20 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public AddFriendStatus Add(long userId, string text = "", bool? follow = null, long? captchaSid = null, string captchaKey = null)
+		{
+			return Add(userId, text, follow);
+		}
+
+		/// <inheritdoc />
+		public AddFriendStatus Add(long userId, string text = "", bool? follow = null)
 		{
 			var parameters = new VkParameters
 			{
 				{ "user_id", userId },
 				{ "text", text },
-				{ "follow", follow },
-				{ "captcha_sid", captchaSid },
-				{ "captcha_key", captchaKey }
+				{ "follow", follow }
 			};
 
 			return _vk.Call("friends.add", parameters);

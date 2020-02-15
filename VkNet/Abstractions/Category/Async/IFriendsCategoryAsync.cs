@@ -265,7 +265,9 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.add
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		Task<AddFriendStatus> AddAsync(long userId, string text = "", bool? follow = null);
+
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<AddFriendStatus> AddAsync(long userId, string text = "", bool? follow = null, long? captchaSid = null,
 										string captchaKey = null);
 
