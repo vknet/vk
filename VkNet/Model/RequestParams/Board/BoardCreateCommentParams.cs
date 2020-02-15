@@ -71,14 +71,14 @@ namespace VkNet.Model.RequestParams
 		/// Идентификатор капчи
 		/// </summary>
 		[JsonProperty(propertyName: "captcha_sid")]
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public long? CaptchaSid { get; set; }
 
 		/// <summary>
 		/// Текст, который ввел пользователь
 		/// </summary>
 		[JsonProperty(propertyName: "captcha_key")]
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public string CaptchaKey { get; set; }
 
 		/// <summary>
@@ -97,15 +97,13 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-					{ "group_id", p.GroupId }
-					, { "topic_id", p.TopicId }
-					, { "from_group", p.FromGroup }
-					, { "message", p.Message }
-					, { "attachments", p.Attachments }
-					, { "sticker_id", p.StickerId }
-					, { "captcha_sid", p.CaptchaSid }
-					, { "captcha_key", p.CaptchaKey }
-					, { "guid", p.Guid }
+				{ "group_id", p.GroupId },
+				{ "topic_id", p.TopicId },
+				{ "from_group", p.FromGroup },
+				{ "message", p.Message },
+				{ "attachments", p.Attachments },
+				{ "sticker_id", p.StickerId },
+				{ "guid", p.Guid }
 			};
 
 			return parameters;

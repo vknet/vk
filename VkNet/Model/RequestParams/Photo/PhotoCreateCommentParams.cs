@@ -68,13 +68,13 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор капчи
 		/// </summary>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public long? CaptchaSid { get; set; }
 
 		/// <summary>
 		/// текст, который ввел пользователь
 		/// </summary>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public string CaptchaKey { get; set; }
 
 		/// <summary>
@@ -99,8 +99,6 @@ namespace VkNet.Model.RequestParams
 				{ "reply_to_comment", p.ReplyToComment },
 				{ "sticker_id", p.StickerId },
 				{ "access_key", p.AccessKey },
-				{ "captcha_sid", p.CaptchaSid },
-				{ "captcha_key", p.CaptchaKey },
 				{ "guid", p.Guid }
 			};
 

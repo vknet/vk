@@ -118,13 +118,13 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор капчи
 		/// </summary>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public long? CaptchaSid { get; set; }
 
 		/// <summary>
 		/// текст, который ввел пользователь
 		/// </summary>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public string CaptchaKey { get; set; }
 
 		/// <summary>
@@ -171,8 +171,6 @@ namespace VkNet.Model.RequestParams
 				{ "lat", p.Lat },
 				{ "long", p.Long },
 				{ "place_id", p.PlaceId },
-				{ "captcha_sid", p.CaptchaSid },
-				{ "captcha_key", p.CaptchaKey },
 				{ "mark_as_ads", p.MarkAsAds },
 				{ "close_comments", p.CloseComments },
 				{ "poster_bkg_id", p.PosterBackgroundId }
