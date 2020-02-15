@@ -80,13 +80,13 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор капчи
 		/// </summary>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public long? CaptchaSid { get; set; }
 
 		/// <summary>
 		/// текст, который ввел пользователь
 		/// </summary>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public string CaptchaKey { get; set; }
 
 		/// <summary>
@@ -98,16 +98,14 @@ namespace VkNet.Model.RequestParams
 		{
 			var parameters = new VkParameters
 			{
-					{ "owner_id", p.OwnerId }
-					, { "post_id", p.PostId }
-					, { "from_group", p.FromGroup }
-					, { "text", p.Text }
-					, { "reply_to_comment", p.ReplyToComment }
-					, { "attachments", p.Attachments }
-					, { "sticker_id", p.StickerId }
-					, { "ref", p.Ref }
-					, { "captcha_sid", p.CaptchaSid }
-					, { "captcha_key", p.CaptchaKey }
+				{ "owner_id", p.OwnerId },
+				{ "post_id", p.PostId },
+				{ "from_group", p.FromGroup },
+				{ "text", p.Text },
+				{ "reply_to_comment", p.ReplyToComment },
+				{ "attachments", p.Attachments },
+				{ "sticker_id", p.StickerId },
+				{ "ref", p.Ref }
 			};
 
 			return parameters;

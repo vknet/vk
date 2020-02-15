@@ -105,7 +105,9 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/docs.save
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null);
+
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
 											string captchaKey = null);
 
@@ -153,7 +155,9 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/docs.add
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		long Add(long ownerId, long docId, string accessKey = null);
+
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		long Add(long ownerId, long docId, string accessKey = null, long? captchaSid = null, string captchaKey = null);
 
 		/// <summary>

@@ -14,7 +14,7 @@ namespace VkNet.Categories
 		public Task<VkCollection<long>> GetListAsync(LikesGetListParams @params, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				GetList(@params: @params, skipAuthorization: skipAuthorization));
+				GetList(@params, skipAuthorization));
 		}
 
 		/// <inheritdoc />
@@ -30,7 +30,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		public Task<long> DeleteAsync(LikeObjectType type, long itemId, long? ownerId = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () =>
+				Delete(type, itemId, ownerId));
+		}
+
+		/// <inheritdoc />
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public Task<long> DeleteAsync(LikeObjectType type
 									, long itemId
 									, long? ownerId = null
@@ -38,14 +45,14 @@ namespace VkNet.Categories
 									, string captchaKey = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				Delete(type: type, itemId: itemId, ownerId: ownerId, captchaSid: captchaSid, captchaKey: captchaKey));
+				Delete(type, itemId, ownerId, captchaSid, captchaKey));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> IsLikedAsync(LikeObjectType type, long itemId, long? userId = null, long? ownerId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				IsLiked(copied: out var _, type: type, itemId: itemId, userId: userId, ownerId: ownerId));
+				IsLiked(out var _, type, itemId, userId, ownerId));
 		}
 	}
 }

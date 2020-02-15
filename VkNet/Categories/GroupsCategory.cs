@@ -345,8 +345,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public bool Invite(long groupId, long userId, long? captchaSid = null, string captchaKey = null)
+		{
+			return Invite(groupId, userId);
+		}
+
+		/// <inheritdoc />
+		public bool Invite(long groupId, long userId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
 			VkErrors.ThrowIfNumberIsNegative(() => userId);
@@ -354,9 +360,7 @@ namespace VkNet.Categories
 			var parameters = new VkParameters
 			{
 				{ "group_id", groupId },
-				{ "user_id", userId },
-				{ "captcha_sid", captchaSid },
-				{ "captcha_key", captchaKey }
+				{ "user_id", userId }
 			};
 
 			return _vk.Call("groups.invite", parameters);
@@ -450,7 +454,8 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Group Create(string title, string description = null, GroupType type = null, GroupSubType? subtype = null, uint? publicCategory = null)
+		public Group Create(string title, string description = null, GroupType type = null, GroupSubType? subtype = null,
+							uint? publicCategory = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -596,7 +601,7 @@ namespace VkNet.Categories
 				});
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public bool DisableOnline(ulong groupId)
 		{
 			return _vk.Call<bool>("groups.disableOnline",
@@ -606,7 +611,7 @@ namespace VkNet.Categories
 				});
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public bool EnableOnline(ulong groupId)
 		{
 			return _vk.Call<bool>("groups.enableOnline",

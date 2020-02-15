@@ -42,7 +42,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		public Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title, string tags = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => Save(file, title, tags));
+		}
+
+		/// <inheritdoc />
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public Task<ReadOnlyCollection<Attachment>> SaveAsync(string file
 															, string title
 															, string tags = null
@@ -60,7 +66,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		public Task<long> AddAsync(long ownerId, long docId, string accessKey = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => Add(ownerId, docId, accessKey));
+		}
+
+		/// <inheritdoc />
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public Task<long> AddAsync(long ownerId
 									, long docId
 									, string accessKey = null
