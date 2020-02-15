@@ -22,7 +22,8 @@ namespace VkNet.Tests.Categories
 
 			var like = Api.Likes.Add(new LikesAddParams
 			{
-				Type = LikeObjectType.Post, ItemId = 701
+				Type = LikeObjectType.Post,
+				ItemId = 701
 			});
 
 			Assert.That(like, Is.EqualTo(5));
@@ -34,7 +35,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/likes.delete";
 			ReadCategoryJsonPath(nameof(Delete_NormalCase));
 
-			var like = Api.Likes.Delete(LikeObjectType.Post, 701);
+			var like = Api.Likes.Delete(LikeObjectType.Post, 701, null);
 
 			Assert.That(like, Is.EqualTo(4));
 		}

@@ -45,8 +45,8 @@ namespace VkNet.Categories
 		{
 			@params.Extended = false;
 
-			return _vk.Call(methodName: "likes.getList", parameters: @params, skipAuthorization: skipAuthorization)
-					.ToVkCollectionOf<long>(selector: x => x);
+			return _vk.Call("likes.getList", @params, skipAuthorization)
+				.ToVkCollectionOf<long>(selector: x => x);
 		}
 
 		/// <summary>
@@ -66,7 +66,7 @@ namespace VkNet.Categories
 		{
 			@params.Extended = true;
 
-			return _vk.Call(methodName: "likes.getList", parameters: @params, skipAuthorization: true);
+			return _vk.Call("likes.getList", @params, true);
 		}
 
 		/// <summary>
@@ -83,7 +83,7 @@ namespace VkNet.Categories
 		/// </remarks>
 		public long Add(LikesAddParams @params)
 		{
-			var response = _vk.Call(methodName: "likes.add", parameters: @params);
+			var response = _vk.Call("likes.add", @params);
 
 			return response[key: "likes"];
 		}
@@ -110,19 +110,23 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/likes.delete
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public long Delete(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null)
+		{
+			return Delete(type, itemId, ownerId);
+		}
+
+		/// <inheritdoc />
+		public long Delete(LikeObjectType type, long itemId, long? ownerId = null)
 		{
 			var parameters = new VkParameters
 			{
-					{ "type", type }
-					, { "item_id", itemId }
-					, { "owner_id", ownerId }
-					, { "captcha_sid", captchaSid }
-					, { "captcha_key", captchaKey }
+				{ "type", type },
+				{ "item_id", itemId },
+				{ "owner_id", ownerId }
 			};
 
-			var response = _vk.Call(methodName: "likes.delete", parameters: parameters);
+			var response = _vk.Call("likes.delete", parameters);
 
 			return response[key: "likes"];
 		}
@@ -163,13 +167,13 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "type", type }
-					, { "item_id", itemId }
-					, { "user_id", userId }
-					, { "owner_id", ownerId }
+				{ "type", type },
+				{ "item_id", itemId },
+				{ "user_id", userId },
+				{ "owner_id", ownerId }
 			};
 
-			var resp = _vk.Call(methodName: "likes.isLiked", parameters: parameters);
+			var resp = _vk.Call("likes.isLiked", parameters);
 
 			copied = resp[key: "copied"];
 

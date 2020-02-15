@@ -80,7 +80,9 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/likes.delete
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		Task<long> DeleteAsync(LikeObjectType type, long itemId, long? ownerId = null);
+
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<long> DeleteAsync(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null);
 
 		/// <summary>
