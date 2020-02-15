@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories.Docs
 
 			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-			var result = Api.Docs.Save(docUploadResult, "IMG_907");
+			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
 			Assert.IsNotEmpty(result);
 		}
@@ -32,7 +32,7 @@ namespace VkNet.Tests.Categories.Docs
 
 			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-			var result = Api.Docs.Save(docUploadResult, "IMG_907");
+			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
 			Assert.IsNotEmpty(result);
 		}
@@ -45,7 +45,7 @@ namespace VkNet.Tests.Categories.Docs
 
 			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-			var result = Api.Docs.Save(docUploadResult, "IMG_907");
+			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
 			Assert.IsNotEmpty(result);
 		}
@@ -58,7 +58,7 @@ namespace VkNet.Tests.Categories.Docs
 
 			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-			var result = Api.Docs.Save(docUploadResult, "IMG_907");
+			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
 			Assert.IsNotEmpty(result);
 			var item = result.FirstOrDefault();
