@@ -44,5 +44,10 @@
 		/// Ссылки, товары и записи.
 		/// </summary>
 		public static readonly MediaType Share = RegisterPossibleValue(value: "share");
+
+		/// <summary>
+		/// Граффити.
+		/// </summary>
+		public static readonly MediaType Graffiti = RegisterPossibleValue(value: "graffiti");
 	}
 }

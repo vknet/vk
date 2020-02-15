@@ -360,7 +360,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте -неизвестно-
 		/// </remarks>
-		IEnumerable<long> AddToPlaylist(long ownerId, long playlistId, IEnumerable<long> audioIds);
+		IEnumerable<long> AddToPlaylist(long ownerId, long playlistId, IEnumerable<string> audioIds);
 
 		/// <summary>
 		/// Изменяет порядок аудиозаписи, перенося ее между аудиозаписями, идентификаторы

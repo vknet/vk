@@ -591,7 +591,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.create
 		/// </remarks>
-		Task<Group> CreateAsync(string title, string description, GroupType type, GroupSubType? subtype, uint? publicCategory = null);
+		Task<Group> CreateAsync(string title, string description = null, GroupType type = null, GroupSubType? subtype = null, uint? publicCategory = null);
 
 		/// <summary>
 		/// Возвращает список заявок на вступление в сообщество.

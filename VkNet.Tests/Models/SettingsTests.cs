@@ -16,6 +16,13 @@ namespace VkNet.Tests.Models
 		}
 
 		[Test]
+		public void All_Offline()
+		{
+			var settings = Settings.All | Settings.Offline;
+			Assert.AreEqual(140488159, settings.ToUInt64());
+		}
+
+		[Test]
 		public void FromJson()
 		{
 			Json = "'notify'";

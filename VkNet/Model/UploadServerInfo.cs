@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -12,16 +13,19 @@ namespace VkNet.Model
 		/// <summary>
 		/// Адрес для загрузки фотографий
 		/// </summary>
+		[JsonProperty("upload_url")]
 		public string UploadUrl { get; set; }
 
 		/// <summary>
 		/// Идентификатор альбома, в который будет загружена фотография
 		/// </summary>
+		[JsonProperty("album_id")]
 		public long? AlbumId { get; set; }
 
 		/// <summary>
 		/// Идентификатор пользователя, от чьего имени будет загружено фото
 		/// </summary>
+		[JsonProperty("user_id")]
 		public long? UserId { get; set; }
 
 	#region Methods

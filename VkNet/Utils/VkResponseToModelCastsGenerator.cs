@@ -43,6 +43,30 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
+		public static implicit operator AppImageResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues
+				? null
+				: AppImageResult.FromJson(response);
+		}
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static implicit operator Image(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : Image.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
 		public static implicit operator FriendsDeleteResult(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues

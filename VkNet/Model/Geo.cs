@@ -1,5 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -21,6 +24,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Координаты места, в котором была сделана запись.
 		/// </summary>
+		[JsonConverter(typeof(CoordinatesJsonConverter))]
 		public Coordinates Coordinates { get; set; }
 
 		/// <summary>

@@ -8,28 +8,22 @@ variables:
 
 steps:
 - task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 3.0.100'
+  displayName: 'Use .NET Core sdk 3.1.101'
   inputs:
-    version: 3.0.100
-
+    version: 3.1.101
 
 - task: DotNetCoreCLI@2
   displayName: Test
   inputs:
     command: test
-
     projects: '*[Tt]ests/*.csproj'
-
     arguments: '-c $(BuildConfiguration)'
 - task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
   displayName: 'Send Telegram Notification'
   inputs:
     botToken: '$(Parameters.botToken)'
-
     chats: '$(Parameters.chats)'
-
     message: '<code>Reason: $(Build.Reason) 
-	Build №: $(Build.BuildNumber)
-	Pull Request для VkNet был успешно собран!</code>'
-
+    Build №: $(Build.BuildNumber)
+    Pull Request для VkNet был успешно собран!</code>'
     buildQueuedBy: true

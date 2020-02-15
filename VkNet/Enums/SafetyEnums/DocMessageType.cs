@@ -14,5 +14,10 @@
 		/// голосовое сообщение
 		/// </summary>
 		public static readonly DocMessageType AudioMessage = RegisterPossibleValue(value: "audio_message");
+
+		/// <summary>
+		/// Граффити
+		/// </summary>
+		public static readonly DocMessageType Graffiti = RegisterPossibleValue(value: "graffiti");
 	}
 }

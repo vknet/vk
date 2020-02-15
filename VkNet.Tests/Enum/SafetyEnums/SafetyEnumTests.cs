@@ -347,6 +347,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(MediaType.Market.ToString(), Is.EqualTo("market"));
 			Assert.That(MediaType.Wall.ToString(), Is.EqualTo("wall"));
 			Assert.That(MediaType.Share.ToString(), Is.EqualTo("share"));
+			Assert.That(MediaType.Graffiti.ToString(), Is.EqualTo("graffiti"));
 
 			// parse test
 			Assert.That(MediaType.FromJsonString("photo"), Is.EqualTo(MediaType.Photo));
@@ -357,6 +358,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(MediaType.FromJsonString("market"), Is.EqualTo(MediaType.Market));
 			Assert.That(MediaType.FromJsonString("wall"), Is.EqualTo(MediaType.Wall));
 			Assert.That(MediaType.FromJsonString("share"), Is.EqualTo(MediaType.Share));
+			Assert.That(MediaType.FromJsonString("graffiti"), Is.EqualTo(MediaType.Graffiti));
 		}
 
 		[Test]
@@ -833,6 +835,31 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(MarketItemButtonTitle.FromJsonString("Купить"), Is.EqualTo(MarketItemButtonTitle.Buy));
 			Assert.That(MarketItemButtonTitle.FromJsonString("Купить билет"), Is.EqualTo(MarketItemButtonTitle.BuyATicket));
 			Assert.That(MarketItemButtonTitle.FromJsonString("Перейти в магазин"), Is.EqualTo(MarketItemButtonTitle.GoToTheStore));
+		}
+
+		[Test]
+		public void AppWidgetTypeTest()
+		{
+			// get test
+			Assert.That(AppWidgetType.Donation.ToString(), Is.EqualTo("donation"));
+			Assert.That(AppWidgetType.List.ToString(), Is.EqualTo("list"));
+			Assert.That(AppWidgetType.Match.ToString(), Is.EqualTo("match"));
+			Assert.That(AppWidgetType.Matches.ToString(), Is.EqualTo("matches"));
+			Assert.That(AppWidgetType.Table.ToString(), Is.EqualTo("table"));
+			Assert.That(AppWidgetType.Text.ToString(), Is.EqualTo("text"));
+			Assert.That(AppWidgetType.Tiles.ToString(), Is.EqualTo("tiles"));
+			Assert.That(AppWidgetType.CompactList.ToString(), Is.EqualTo("compact_list"));
+			Assert.That(AppWidgetType.CoverList.ToString(), Is.EqualTo("cover_list"));
+			// parse test
+			Assert.That(AppWidgetType.FromJsonString("donation"), Is.EqualTo(AppWidgetType.Donation));
+			Assert.That(AppWidgetType.FromJsonString("list"), Is.EqualTo(AppWidgetType.List));
+			Assert.That(AppWidgetType.FromJsonString("match"), Is.EqualTo(AppWidgetType.Match));
+			Assert.That(AppWidgetType.FromJsonString("matches"), Is.EqualTo(AppWidgetType.Matches));
+			Assert.That(AppWidgetType.FromJsonString("table"), Is.EqualTo(AppWidgetType.Table));
+			Assert.That(AppWidgetType.FromJsonString("text"), Is.EqualTo(AppWidgetType.Text));
+			Assert.That(AppWidgetType.FromJsonString("tiles"), Is.EqualTo(AppWidgetType.Tiles));
+			Assert.That(AppWidgetType.FromJsonString("compact_list"), Is.EqualTo(AppWidgetType.CompactList));
+			Assert.That(AppWidgetType.FromJsonString("cover_list"), Is.EqualTo(AppWidgetType.CoverList));
 		}
 	}
 }

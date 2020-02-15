@@ -1,0 +1,14 @@
+﻿{
+  "response": {
+    "admin_level":3,
+    "id": 191674739,
+    "is_admin": 1,
+    "is_member": 1,
+    "name": "Test_Group",
+    "photo_100": "https://",
+    "photo_200": "https://",
+    "photo_50": "https://",
+    "screen_name": "club191674739",
+    "type": "group"
+  }
+}

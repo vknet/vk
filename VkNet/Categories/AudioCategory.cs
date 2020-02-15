@@ -214,7 +214,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<long> AddToPlaylist(long ownerId, long playlistId, IEnumerable<long> audioIds)
+		public IEnumerable<long> AddToPlaylist(long ownerId, long playlistId, IEnumerable<string> audioIds)
 		{
 			var parameters = new VkParameters
 			{
