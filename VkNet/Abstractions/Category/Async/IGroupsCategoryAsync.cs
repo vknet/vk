@@ -420,7 +420,9 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.invite
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		Task<bool> InviteAsync(long groupId, long userId);
+
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<bool> InviteAsync(long groupId, long userId, long? captchaSid, string captchaKey);
 
 		/// <summary>
@@ -591,7 +593,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.create
 		/// </remarks>
-		Task<Group> CreateAsync(string title, string description = null, GroupType type = null, GroupSubType? subtype = null, uint? publicCategory = null);
+		Task<Group> CreateAsync(string title, string description = null, GroupType type = null, GroupSubType? subtype = null,
+								uint? publicCategory = null);
 
 		/// <summary>
 		/// Возвращает список заявок на вступление в сообщество.
@@ -824,7 +827,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Выключает статус «онлайн» в сообществе.
 		/// </summary>
-		/// <param name = "groupId">
+		/// <param name="groupId">
 		/// Идентификатор сообщества. положительное число, обязательный параметр
 		/// </param>
 		/// <returns>
@@ -838,7 +841,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Включает статус «онлайн» в сообществе.
 		/// </summary>
-		/// <param name = "groupId">
+		/// <param name="groupId">
 		/// Идентификатор сообщества. положительное число, обязательный параметр
 		/// </param>
 		/// <returns>
@@ -852,7 +855,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращаем обновления событий группы
 		/// </summary>
-		/// <param name="params">Параметры запроса к BotsLongPoll API</param>
+		/// <param name="params"> Параметры запроса к BotsLongPoll API </param>
 		/// <returns>
 		/// Новые события в группе
 		/// </returns>
@@ -864,9 +867,10 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Позволяет добавить адрес в сообщество.
 		/// Список адресов может быть получен методом groups.getAddresses.
-		/// Для того, чтобы воспользоваться этим методом, Вы должны быть администратором сообщества
+		/// Для того, чтобы воспользоваться этим методом, Вы должны быть администратором
+		/// сообщества
 		/// </summary>
-		/// <param name = "params">
+		/// <param name="params">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -880,9 +884,10 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Позволяет отредактировать адрес в сообществе.
 		/// Список адресов может быть получен методом groups.getAddresses.
-		/// Для того, чтобы воспользоваться этим методом, Вы должны быть администратором сообщества
+		/// Для того, чтобы воспользоваться этим методом, Вы должны быть администратором
+		/// сообщества
 		/// </summary>
-		/// <param name = "params">
+		/// <param name="params">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -896,14 +901,14 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Позволяет удалить адрес в сообществе.
 		/// </summary>
-		/// <param name = "groupId">
+		/// <param name="groupId">
 		/// Id группы положительное число, обязательный параметр
 		/// </param>
-		/// <param name = "addressId">
+		/// <param name="addressId">
 		/// Id адреса положительное число, обязательный параметр
 		/// </param>
 		/// <returns>
-		/// После успешного выполнения возвращает <c>true</c>.
+		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.deleteAddress
@@ -913,7 +918,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Получить данные об адресах.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name="params">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -927,7 +932,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Получает информацию о статусе «онлайн» в сообществе.
 		/// </summary>
-		/// <param name = "groupId">
+		/// <param name="groupId">
 		/// Идентификатор сообщества. положительное число, обязательный параметр
 		/// </param>
 		/// <returns>
@@ -949,7 +954,8 @@ namespace VkNet.Abstractions
 		/// <returns>
 		/// Возвращает объект, который содержит поля:
 		/// mask (integer) — битовая маска ключа доступа;
-		/// settings (array) — массив объектов, описывающих права доступа. Каждый объект в массиве содержит поля:
+		/// settings (array) — массив объектов, описывающих права доступа. Каждый объект в
+		/// массиве содержит поля:
 		/// setting (integer) — битовая маска права доступа;
 		/// name (string) — название права доступа.
 		/// </returns>
@@ -961,7 +967,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Задаёт настройки для Bots Long Poll API в сообществе.
 		/// </summary>
-		/// <param name = "params">
+		/// <param name="params">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -975,14 +981,16 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Получает настройки Bots Longpoll API для сообщества.
 		/// </summary>
-		/// <param name = "groupId">
+		/// <param name="groupId">
 		/// Идентификатор сообщества. положительное число, обязательный параметр
 		/// </param>
 		/// <returns>
 		/// Возвращает объект, который содержит следующие поля:
 		/// is_enabled (boolean) — true, если Bots Longpoll включен в сообществе.
-		/// events (object) — настройки Bots Longpoll. объект, содержащий настройки уведомлений в формате «название события»
-		/// : «статус» (0 — уведомления о событии выключены, 1 — уведомления о событии включены).
+		/// events (object) — настройки Bots Longpoll. объект, содержащий настройки
+		/// уведомлений в формате «название события»
+		/// : «статус» (0 — уведомления о событии выключены, 1 — уведомления о событии
+		/// включены).
 		/// Объект содержит следующие поля:
 		/// message_new новое сообщение
 		/// integer, [0,1] message_reply новое исходящее сообщение
@@ -1011,7 +1019,8 @@ namespace VkNet.Abstractions
 		/// integer, [0,1] market_comment_new добавление нового комментария к товару
 		/// integer, [0,1] market_comment_edit редактирование комментария к товару
 		/// integer, [0,1] market_comment_delete удаление комментария к товару
-		/// integer, [0,1] market_comment_restore восстановление удалённого комментария к товару
+		/// integer, [0,1] market_comment_restore восстановление удалённого комментария к
+		/// товару
 		/// integer, [0,1] poll_vote_new новый голос в публичном опросе
 		/// integer, [0,1] group_join вступление в сообщество
 		/// integer, [0,1] group_leave выход участника из сообщества
