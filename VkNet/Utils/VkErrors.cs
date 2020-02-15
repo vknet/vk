@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq.Expressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -37,14 +37,14 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Ошибка если число не в диапозоне.
+		/// Ошибка если число не в диапазоне.
 		/// </summary>
 		/// <typeparam name="T"> Тип данных </typeparam>
 		/// <param name="value"> Значение. </param>
 		/// <param name="min"> Минимальное значение. </param>
 		/// <param name="max"> Максимальное значение. </param>
 		/// <exception cref="System.ArgumentOutOfRangeException">
-		/// Значение {value} не должно выходить за пределы диапозона [{min},
+		/// Значение {value} не должно выходить за пределы диапазона [{min},
 		/// {max}]
 		/// </exception>
 		public static void ThrowIfNumberNotInRange<T>(T value, T min, T max)
@@ -52,7 +52,7 @@ namespace VkNet.Utils
 		{
 			if (value.CompareTo(min) < 0 || value.CompareTo(max) > 0)
 			{
-				throw new ArgumentOutOfRangeException($@"Значение {value} не должно выходить за пределы диапозона [{min}, {max}]");
+				throw new ArgumentOutOfRangeException($@"Значение {value} не должно выходить за пределы диапазона [{min}, {max}]");
 			}
 		}
 
@@ -111,7 +111,7 @@ namespace VkNet.Utils
 
 			var name = string.Empty;
 
-			// Если значение передатеся из вызывающего метода
+			// Если значение передаётся из вызывающего метода
 			var unary = expr.Body as UnaryExpression;
 
 			if (unary?.Operand is MemberExpression member)
@@ -119,7 +119,7 @@ namespace VkNet.Utils
 				name = member.Member.Name;
 			}
 
-			// Если в метод передается значение напрямую
+			// Если в метод передаётся значение напрямую
 			if (expr.Body is MemberExpression body)
 			{
 				name = body.Member.Name;
