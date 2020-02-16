@@ -21,7 +21,18 @@ namespace VkNet.Tests.Categories.Wall
 		protected override string Folder => "Wall";
 
 		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		public void CloseComments_ReturnTrue()
+		{
+			Url = "https://api.vk.com/method/wall.closeComments";
+
+			ReadJsonFile(JsonPaths.True);
+
+			var result = Api.Wall.CloseComments(3, 3);
+
+			Assert.IsTrue(result);
+		}
+
+		[Test]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			Assert.That(() => new WallCategory(new VkApi()).Delete(1, 1), Throws.InstanceOf<AccessTokenInvalidException>());
@@ -35,7 +46,9 @@ namespace VkNet.Tests.Categories.Wall
 
 			var posts = Api.Wall.Get(new WallGetParams
 			{
-				OwnerId = 26033241, Count = 1, Offset = 2
+				OwnerId = 26033241,
+				Count = 1,
+				Offset = 2
 			});
 
 			Assert.That(posts.TotalCount, Is.EqualTo(100u));
@@ -64,7 +77,10 @@ namespace VkNet.Tests.Categories.Wall
 			// 10, out posts, out profiles, out groups, 1, 1, WallFilter.Owner
 			var count = Api.Wall.Get(new WallGetParams
 			{
-				OwnerId = 10, Count = 1, Offset = 1, Filter = WallFilter.Owner
+				OwnerId = 10,
+				Count = 1,
+				Offset = 1,
+				Filter = WallFilter.Owner
 			});
 
 			Assert.That(count.TotalCount, Is.EqualTo(42));
@@ -80,7 +96,6 @@ namespace VkNet.Tests.Categories.Wall
 		}
 
 		[Test]
-		[Ignore("undone")]
 		public void Get_Geo_NormalCase()
 		{
 			Url = "https://api.vk.com/method/wall.get";
@@ -88,13 +103,13 @@ namespace VkNet.Tests.Categories.Wall
 
 			var posts = Api.Wall.Get(new WallGetParams
 			{
-				OwnerId = 1563369, Count = 3, Offset = 2
+				OwnerId = 1563369,
+				Count = 3,
+				Offset = 2
 			});
 
 			Assert.That(posts.TotalCount, Is.EqualTo(165));
 			Assert.That(posts, Is.Not.Null);
-
-			Assert.Fail("undone");
 		}
 
 		[Test]
@@ -105,7 +120,10 @@ namespace VkNet.Tests.Categories.Wall
 
 			var posts = Api.Wall.Get(new WallGetParams
 			{
-				OwnerId = 46476924, Count = 1, Offset = 213, Filter = WallFilter.Owner
+				OwnerId = 46476924,
+				Count = 1,
+				Offset = 213,
+				Filter = WallFilter.Owner
 			});
 
 			Assert.That(posts.TotalCount, Is.EqualTo(1724));
@@ -127,7 +145,8 @@ namespace VkNet.Tests.Categories.Wall
 
 			var posts = Api.Wall.Get(new WallGetParams
 			{
-				OwnerId = -103292418, Count = 1
+				OwnerId = -103292418,
+				Count = 1
 			});
 
 			Assert.That(posts.TotalCount, Is.EqualTo(2u));
@@ -156,12 +175,13 @@ namespace VkNet.Tests.Categories.Wall
 		}
 
 		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			Assert.That(() => new WallCategory(new VkApi()).GetById(new[]
 				{
-					"93388_21539", "93388_20904", "2943_4276"
+					"93388_21539",
+					"93388_20904",
+					"2943_4276"
 				}),
 				Throws.TypeOf<AccessTokenInvalidException>());
 		}
@@ -181,7 +201,9 @@ namespace VkNet.Tests.Categories.Wall
 
 			var records = Api.Wall.GetById(new[]
 			{
-				"1_619", "1_617", "1_616"
+				"1_619",
+				"1_617",
+				"1_616"
 			});
 
 			Assert.That(records.TotalCount == 1);
@@ -219,7 +241,10 @@ namespace VkNet.Tests.Categories.Wall
 
 			var comments = Api.Wall.GetComments(new WallGetCommentsParams
 			{
-				OwnerId = 12312, PostId = 12345, Sort = SortOrderBy.Asc, NeedLikes = true
+				OwnerId = 12312,
+				PostId = 12345,
+				Sort = SortOrderBy.Asc,
+				NeedLikes = true
 			});
 
 			Assert.That(comments.Count, Is.EqualTo(2));
@@ -291,6 +316,18 @@ namespace VkNet.Tests.Categories.Wall
 		}
 
 		[Test]
+		public void OpenComments_ReturnTrue()
+		{
+			Url = "https://api.vk.com/method/wall.openComments";
+
+			ReadJsonFile(JsonPaths.True);
+
+			var result = Api.Wall.OpenComments(3, 3);
+
+			Assert.IsTrue(result);
+		}
+
+		[Test]
 		public void Repost_ReturnCorrectResults()
 		{
 			Url = "https://api.vk.com/method/wall.repost";
@@ -318,30 +355,6 @@ namespace VkNet.Tests.Categories.Wall
 			Assert.That(result.PostId, Is.EqualTo(2587));
 			Assert.That(result.RepostsCount, Is.EqualTo(21));
 			Assert.That(result.LikesCount, Is.EqualTo(105));
-		}
-
-		[Test]
-		public void OpenComments_ReturnTrue()
-		{
-			Url = "https://api.vk.com/method/wall.openComments";
-
-			ReadJsonFile(JsonPaths.True);
-
-			var result = Api.Wall.OpenComments(3, 3);
-
-			Assert.IsTrue(result);
-		}
-
-		[Test]
-		public void CloseComments_ReturnTrue()
-		{
-			Url = "https://api.vk.com/method/wall.closeComments";
-
-			ReadJsonFile(JsonPaths.True);
-
-			var result = Api.Wall.CloseComments(3, 3);
-
-			Assert.IsTrue(result);
 		}
 	}
 }

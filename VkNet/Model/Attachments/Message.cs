@@ -91,7 +91,7 @@ namespace VkNet.Model
 		/// Преобразование класса <see cref="Message" /> в <see cref="VkParameters" />
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
-		/// <returns>Результат преобразования в <see cref="Message" /></returns>
+		/// <returns> Результат преобразования в <see cref="Message" /> </returns>
 		public static implicit operator Message(VkResponse response)
 		{
 			if (response == null)
@@ -112,6 +112,7 @@ namespace VkNet.Model
 		/// Идентификатор автора сообщения (для исходящего сообщения — идентификатор
 		/// получателя).
 		/// </summary>
+		[JsonProperty("user_id")]
 		public long? UserId { get; set; }
 
 		/// <summary>
@@ -148,6 +149,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Статус сообщения (не возвращается для пересланных сообщений).
 		/// </summary>
+		[JsonProperty("read_state")]
 		public MessageReadState? ReadState { get; set; }
 
 		/// <summary>
@@ -160,11 +162,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Заголовок сообщения или беседы.
 		/// </summary>
+		[JsonProperty("title")]
 		public string Title { get; set; }
 
 		/// <summary>
 		/// Текст сообщения.
 		/// </summary>
+		[JsonProperty("body")]
 		public string Body { get; set; }
 
 		/// <summary>
@@ -189,6 +193,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Содержатся ли в сообщении emoji-смайлы.
 		/// </summary>
+		[JsonProperty("emoji")]
 		public bool? Emoji { get; set; }
 
 		/// <summary>
@@ -200,6 +205,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Удалено ли сообщение.
 		/// </summary>
+		[JsonProperty("deleted")]
 		public bool? Deleted { get; set; }
 
 		/// <summary>
@@ -234,26 +240,31 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор беседы.
 		/// </summary>
+		[JsonProperty("chat_id")]
 		public long? ChatId { get; set; }
 
 		/// <summary>
 		/// Идентификаторы участников беседы.
 		/// </summary>
+		[JsonProperty("chat_active")]
 		public ReadOnlyCollection<long> ChatActive { get; set; }
 
 		/// <summary>
 		/// Настройки уведомлений для беседы, если они есть. sound и disabled_until
 		/// </summary>
+		[JsonProperty("push_settings")]
 		public ChatPushSettings PushSettings { get; set; }
 
 		/// <summary>
 		/// Количество участников беседы.
 		/// </summary>
+		[JsonProperty("users_count")]
 		public int? UsersCount { get; set; }
 
 		/// <summary>
 		/// Идентификатор создателя беседы.
 		/// </summary>
+		[JsonProperty("admin_id")]
 		public long? AdminId { get; set; }
 
 		/// <summary>
@@ -272,31 +283,37 @@ namespace VkNet.Model
 		/// Идентификатор пользователя (если больше 0) или email (если меньше 0), которого
 		/// пригласили или исключили.
 		/// </summary>
+		[JsonProperty("action_mid")]
 		public long? ActionMid { get; set; }
 
 		/// <summary>
 		/// email, который пригласили или исключили.
 		/// </summary>
+		[JsonProperty("action_email")]
 		public string ActionEmail { get; set; }
 
 		/// <summary>
 		/// Название беседы.
 		/// </summary>
+		[JsonProperty("action_text")]
 		public string ActionText { get; set; }
 
 		/// <summary>
 		/// <c> Uri </c> копии фотографии беседы шириной 50px.
 		/// </summary>
+		[JsonProperty("photo_50")]
 		public string Photo50 { get; set; }
 
 		/// <summary>
 		/// <c> Uri </c> копии фотографии беседы шириной 100px.
 		/// </summary>
+		[JsonProperty("photo_100")]
 		public string Photo100 { get; set; }
 
 		/// <summary>
 		/// <c> Uri </c> копии фотографии беседы шириной 200px.
 		/// </summary>
+		[JsonProperty("photo_200")]
 		public string Photo200 { get; set; }
 
 	#endregion
@@ -306,6 +323,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Клавиатура, присланная ботом
 		/// </summary>
+		[JsonProperty("keyboard")]
 		public MessageKeyboard Keyboard { get; set; }
 
 		/// <summary>
@@ -333,27 +351,32 @@ namespace VkNet.Model
 		/// <summary>
 		/// Тип сообщения (не возвращается для пересланных сообщений).
 		/// </summary>
+		[JsonProperty("type")]
 		public MessageType? Type { get; set; }
 
 		/// <summary>
 		/// Содержит количество непрочитанных сообщений в текущем диалоге (если это
 		/// значение было возвращено, иначе 0)
 		/// </summary>
+		[JsonProperty("unread")]
 		public int? Unread { get; set; }
 
 		/// <summary>
 		/// Информация о ссылках на предпросмотр фотографий беседы.
 		/// </summary>
+		[JsonProperty("photo_previews")]
 		public Previews PhotoPreviews { get; set; }
 
 		/// <summary>
 		/// Идентификатор последнего прочитанного сообщения текущим пользователем
 		/// </summary>
+		[JsonProperty("in_read")]
 		public ulong? InRead { get; set; }
 
 		/// <summary>
 		/// Идентификатор последнего прочитанного сообщения собеседником
 		/// </summary>
+		[JsonProperty("out_read")]
 		public ulong? OutRead { get; set; }
 
 		/// <summary>

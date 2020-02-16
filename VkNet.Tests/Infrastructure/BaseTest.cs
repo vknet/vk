@@ -93,15 +93,6 @@ namespace VkNet.Tests
 					State = "123456"
 				});
 
-			Mocker.Setup<ICaptchaHandler, string>(m => m.Perform(It.IsAny<Func<ulong?, string, string>>()))
-				.Returns(Json);
-
-			Mocker.Setup<ICaptchaHandler, bool>(m => m.Perform(It.IsAny<Func<ulong?, string, bool>>()))
-				.Returns(true);
-
-			Mocker.Setup<ICaptchaHandler, int>(m => m.MaxCaptchaRecognitionCount)
-				.Returns(1);
-
 			Mocker.Setup<ICaptchaSolver, string>(m => m.Solve(It.IsAny<string>()))
 				.Returns("123456");
 
@@ -127,6 +118,7 @@ namespace VkNet.Tests
 			Api.RestClient = Mocker.Get<IRestClient>();
 			Api.NeedValidationHandler = Mocker.Get<INeedValidationHandler>();
 			Api.CaptchaSolver = Mocker.Get<ICaptchaSolver>();
+			SetupCaptchaHandler();
 
 			Api.Authorize(new ApiAuthParams
 			{
@@ -148,6 +140,10 @@ namespace VkNet.Tests
 		{
 			Json = null;
 			Url = null;
+		}
+
+		protected virtual void SetupCaptchaHandler()
+		{
 		}
 
 		protected VkResponse GetResponse()

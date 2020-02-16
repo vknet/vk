@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Category;
@@ -49,6 +50,8 @@ namespace VkNet
 	/// </summary>
 	public class VkApi : IVkApi
 	{
+		private readonly ServiceProvider _serviceProvider;
+
 		/// <summary>
 		/// Параметры авторизации.
 		/// </summary>
@@ -68,8 +71,6 @@ namespace VkNet
 		/// Логгер
 		/// </summary>
 		private ILogger<VkApi> _logger;
-
-		private readonly ServiceProvider _serviceProvider;
 
 	#pragma warning disable S1104 // Fields should not have public accessibility
 		/// <summary>
@@ -277,17 +278,30 @@ namespace VkNet
 		{
 			var answer = CallBase(methodName, parameters, skipAuthorization);
 
-			if (!jsonConverters.Any())
+			var settings = new JsonSerializerSettings
 			{
-				return JsonConvert.DeserializeObject<T>(answer,
-					new VkCollectionJsonConverter(),
-					new VkDefaultJsonConverter(),
-					new UnixDateTimeConverter(),
-					new AttachmentJsonConverter(),
-					new StringEnumConverter());
+				Converters = new List<JsonConverter>(),
+				ContractResolver = new DefaultContractResolver
+				{
+					NamingStrategy = new SnakeCaseNamingStrategy()
+				}
+			};
+
+			if (jsonConverters.Any())
+			{
+				foreach (var jsonConverter in jsonConverters)
+				{
+					settings.Converters.Add(jsonConverter);
+				}
 			}
 
-			return JsonConvert.DeserializeObject<T>(answer, jsonConverters);
+			settings.Converters.Add(new VkCollectionJsonConverter());
+			settings.Converters.Add(new VkDefaultJsonConverter());
+			settings.Converters.Add(new UnixDateTimeConverter());
+			settings.Converters.Add(new AttachmentJsonConverter());
+			settings.Converters.Add(new StringEnumConverter());
+
+			return JsonConvert.DeserializeObject<T>(answer, settings);
 		}
 
 		/// <inheritdoc />
@@ -483,12 +497,12 @@ namespace VkNet
 		/// <summary>
 		/// Обработчик ошибки капчи
 		/// </summary>
-		private ICaptchaHandler _captchaHandler;
+		public ICaptchaHandler CaptchaHandler;
 
 		/// <inheritdoc />
 		public int MaxCaptchaRecognitionCount
 		{
-			get => _captchaHandler.MaxCaptchaRecognitionCount;
+			get => CaptchaHandler.MaxCaptchaRecognitionCount;
 			set
 			{
 				if (value < 0)
@@ -501,7 +515,7 @@ namespace VkNet
 					return;
 				}
 
-				_captchaHandler.MaxCaptchaRecognitionCount = value;
+				CaptchaHandler.MaxCaptchaRecognitionCount = value;
 			}
 		}
 
@@ -665,7 +679,7 @@ namespace VkNet
 				answer = Invoke(methodName, parameters, skipAuthorization);
 			} else
 			{
-				answer = _captchaHandler.Perform((sid, key) =>
+				answer = CaptchaHandler.Perform((sid, key) =>
 				{
 					parameters.Add("captcha_sid", sid);
 					parameters.Add("captcha_key", key);
@@ -718,7 +732,7 @@ namespace VkNet
 				BaseAuthorize(authParams);
 			} else
 			{
-				_captchaHandler.Perform((sid, key) =>
+				CaptchaHandler.Perform((sid, key) =>
 				{
 					_logger?.LogDebug("Авторизация с использование капчи.");
 					authParams.CaptchaSid = sid;
@@ -835,7 +849,7 @@ namespace VkNet
 		private void Initialization(IServiceProvider serviceProvider)
 		{
 			_logger = serviceProvider.GetService<ILogger<VkApi>>();
-			_captchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
+			CaptchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
 			_language = serviceProvider.GetRequiredService<ILanguageService>();
 			_rateLimiter = serviceProvider.GetRequiredService<IRateLimiter>();
 

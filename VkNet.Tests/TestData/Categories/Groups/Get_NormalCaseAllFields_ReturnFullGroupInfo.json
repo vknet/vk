@@ -1,49 +1,51 @@
 {
-	"response": [
-		92,
-		{
-			"id": 1153959,
-			"name": "The middle of spring",
-			"screen_name": "club1153959",
-			"is_closed": 0,
-			"city": {
-				"id": 10,
-				"title": "Санкт-Петербург"
-			},
-			"country": {
-				"id": 1,
-				"title": "Россия"
-			},
-			"description": "Попади в не реальную сказку пришествия...",
-			"start_date": "1208700030",
-			"type": "event",
-			"is_admin": 0,
-			"is_member": 1,
-			"photo_50": "http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg",
-			"photo_100": "http://cs1122.userapi.com/g1153959/b_5bad925c.jpg",
-			"photo_200": "http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"
-		},
-		{
-			"id": 1181795,
-			"name": "Геннадий Бачинский",
-			"screen_name": "club1181795",
-			"is_closed": 0,
-			"city": {
-				"id": 1,
-				"title": "Санкт-Петербург"
-			},
-			"country": {
-				"id": 1,
-				"title": "Россия"
-			},
-			"description": "В связи с небольшим количеством...",
-			"start_date": "1200380400",
-			"type": "event",
-			"is_admin": 0,
-			"is_member": 1,
-			"photo_50": "http://cs1122.userapi.com/g1181795/c_efd67aca.jpg",
-			"photo_100": "http://cs1122.userapi.com/g1181795/b_369a1c47.jpg",
-			"photo_200": "http://cs1122.userapi.com/g1181795/a_c58272b3.jpg"
-		}
-	]
+  "response": {
+    "count": 92,
+    "items": [
+      {
+        "id": 1153959,
+        "name": "The middle of spring",
+        "screen_name": "club1153959",
+        "is_closed": 0,
+        "city": {
+          "id": 10,
+          "title": "Санкт-Петербург"
+        },
+        "country": {
+          "id": 1,
+          "title": "Россия"
+        },
+        "description": "Попади в не реальную сказку пришествия...",
+        "start_date": "1208700030",
+        "type": "event",
+        "is_admin": 0,
+        "is_member": 1,
+        "photo_50": "http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg",
+        "photo_100": "http://cs1122.userapi.com/g1153959/b_5bad925c.jpg",
+        "photo_200": "http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"
+      },
+      {
+        "id": 1181795,
+        "name": "Геннадий Бачинский",
+        "screen_name": "club1181795",
+        "is_closed": 0,
+        "city": {
+          "id": 1,
+          "title": "Санкт-Петербург"
+        },
+        "country": {
+          "id": 1,
+          "title": "Россия"
+        },
+        "description": "В связи с небольшим количеством...",
+        "start_date": "1200380400",
+        "type": "event",
+        "is_admin": 0,
+        "is_member": 1,
+        "photo_50": "http://cs1122.userapi.com/g1181795/c_efd67aca.jpg",
+        "photo_100": "http://cs1122.userapi.com/g1181795/b_369a1c47.jpg",
+        "photo_200": "http://cs1122.userapi.com/g1181795/a_c58272b3.jpg"
+      }
+    ]
+  }
 }

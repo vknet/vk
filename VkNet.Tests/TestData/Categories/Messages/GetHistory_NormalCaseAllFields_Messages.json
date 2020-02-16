@@ -1,32 +1,21 @@
 {
-  "response": [
-    18,
-    {
-      "body": "Таких литовкиных и сычевых",
-      "id": 2093,
-      "user_id": 4793858,
-      "from_id": 4793858,
-      "date": 1285439088,
-      "read_state": 1,
-      "out": 1
-    },
-    {
-      "body": "в одноклассниках и в майле есть.",
-      "id": 2094,
-      "user_id": 7712,
-      "from_id": 7712,
-      "date": 1285439216,
-      "read_state": 1,
-      "out": 0
-    },
-    {
-      "body": "думаю пива предложит попить",
-      "id": 2095,
-      "user_id": 4793858,
-      "from_id": 4793858,
-      "date": 1285439644,
-      "read_state": 1,
-      "out": 1
-    }
-  ]
+  "response": {
+    "count": 1493,
+    "items": [
+      {
+        "date": 1581528361,
+        "from_id": 228907945,
+        "id": 266005,
+        "out": 0,
+        "peer_id": 228907945,
+        "text": "Спс бро",
+        "conversation_message_id": 2199,
+        "fwd_messages": [],
+        "important": false,
+        "random_id": 0,
+        "attachments": [],
+        "is_hidden": false
+      }
+    ]
+  }
 }

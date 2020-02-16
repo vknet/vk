@@ -54,7 +54,13 @@ namespace VkNet.Tests.Categories.Messages
 
 			ReadCategoryJsonPath(nameof(Delete_Id4446_True));
 
-			var result = Api.Messages.Delete(new ulong[] { 4446 }, false, null, false);
+			var result = Api.Messages.Delete(new ulong[]
+				{
+					4446
+				},
+				false,
+				null,
+				false);
 
 			Assert.That(result[4446], Is.True);
 		}
@@ -66,7 +72,13 @@ namespace VkNet.Tests.Categories.Messages
 
 			ReadErrorsJsonFile(1);
 
-			Assert.That(() => Api.Messages.Delete(new ulong[] { 999999 }, false, null, false),
+			Assert.That(() => Api.Messages.Delete(new ulong[]
+					{
+						999999
+					},
+					false,
+					null,
+					false),
 				Throws.InstanceOf<VkApiException>());
 		}
 
@@ -205,31 +217,33 @@ namespace VkNet.Tests.Categories.Messages
 		}
 
 		[Test]
-		[Ignore("")]
 		public void GetById_NormalCase_Message()
 		{
 			Url = "https://api.vk.com/method/messages.getById";
 
 			ReadCategoryJsonPath(nameof(GetById_NormalCase_Message));
 
-			var msg = Api.Messages.GetById(new ulong[] { 1 }, null).FirstOrDefault();
+			var msg = Api.Messages.GetById(new ulong[]
+					{
+						1
+					},
+					null)
+				.FirstOrDefault();
 
-			Assert.That(msg.Id, Is.EqualTo(1));
+			Assert.That(msg.Id, Is.EqualTo(265999));
 
 			Assert.That(msg.Date,
-				Is.EqualTo(new DateTime(2007,
-					12,
-					18,
+				Is.EqualTo(new DateTime(2020,
 					2,
-					5,
-					20,
+					12,
+					9,
+					7,
+					42,
 					DateTimeKind.Utc)));
 
-			Assert.That(msg.Type, Is.EqualTo(MessageType.Received));
-			Assert.That(msg.UserId, Is.EqualTo(684559));
-			Assert.That(msg.ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msg.Title, Is.EqualTo(" ... "));
-			Assert.That(msg.Body, Is.EqualTo("Привеееет!!!!!!!!!!!"));
+			Assert.That(msg.Type, Is.EqualTo(MessageType.Sended));
+			Assert.That(msg.PeerId, Is.EqualTo(228907945));
+			Assert.That(msg.Attachments.Count, Is.EqualTo(1));
 		}
 
 		[Test]
@@ -257,7 +271,13 @@ namespace VkNet.Tests.Categories.Messages
 
 			ReadCategoryJsonPath(nameof(GetChatUsers_ChatId_UserIds));
 
-			var users = Api.Messages.GetChatUsers(new List<long> { 2 }, null, null).ToList();
+			var users = Api.Messages.GetChatUsers(new List<long>
+					{
+						2
+					},
+					null,
+					null)
+				.ToList();
 
 			Assert.That(users.Count, Is.EqualTo(3));
 		}
@@ -269,7 +289,12 @@ namespace VkNet.Tests.Categories.Messages
 
 			ReadCategoryJsonPath(nameof(GetChatUsers_ChatIdWithFields_Users));
 
-			var users = Api.Messages.GetChatUsers(new List<long> { 2 }, UsersFields.Education, null);
+			var users = Api.Messages.GetChatUsers(new List<long>
+				{
+					2
+				},
+				UsersFields.Education,
+				null);
 
 			Assert.That(users.Count, Is.EqualTo(3));
 			Assert.That(users[0].Id, Is.EqualTo(4793858));
@@ -294,7 +319,6 @@ namespace VkNet.Tests.Categories.Messages
 		}
 
 		[Test]
-		[Ignore("")]
 		public void GetDialogs_NormalCase_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.getDialogs";
@@ -307,24 +331,23 @@ namespace VkNet.Tests.Categories.Messages
 				Unread = false
 			});
 
-			Assert.That(msgs.TotalCount, Is.EqualTo(18));
-			Assert.That(msgs.Messages.Count, Is.EqualTo(1));
-			Assert.That(msgs.Messages[0].Id, Is.EqualTo(2105));
+			Assert.That(msgs.TotalCount, Is.EqualTo(299));
+			Assert.That(msgs.Messages.Count, Is.EqualTo(20));
+			Assert.That(msgs.Messages[0].Id, Is.EqualTo(266284));
 
 			Assert.That(msgs.Messages[0].Date,
-				Is.EqualTo(new DateTime(2010,
+				Is.EqualTo(new DateTime(2020,
+					2,
+					16,
 					9,
-					25,
-					19,
-					17,
-					32,
+					50,
+					50,
 					DateTimeKind.Utc)));
 
-			Assert.That(msgs.Messages[0].Type, Is.EqualTo(MessageType.Received));
-			Assert.That(msgs.Messages[0].UserId, Is.EqualTo(77128));
+			Assert.That(msgs.Messages[0].Type, Is.EqualTo(MessageType.Sended));
+			Assert.That(msgs.Messages[0].UserId, Is.EqualTo(71469725));
 			Assert.That(msgs.Messages[0].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs.Messages[0].Title, Is.EqualTo("Re(15): Привет!"));
-			Assert.That(msgs.Messages[0].Body, Is.EqualTo("не..не зеленая точно..."));
+			Assert.That(msgs.Messages[0].Body, Is.EqualTo("😂"));
 		}
 
 		[Test]
@@ -396,7 +419,6 @@ namespace VkNet.Tests.Categories.Messages
 		}
 
 		[Test]
-		[Ignore("")]
 		public void GetHistory_NormalCaseAllFields_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.getHistory";
@@ -405,56 +427,21 @@ namespace VkNet.Tests.Categories.Messages
 			var msgs = Api.Messages.GetHistory(new MessagesGetHistoryParams());
 			var messages = msgs.Messages.ToList();
 
-			Assert.That(messages[2].Body, Is.EqualTo("думаю пива предложит попить"));
-			Assert.That(messages[2].Id, Is.EqualTo(2095));
-			Assert.That(messages[2].UserId, Is.EqualTo(4793858));
+			Assert.That(msgs.TotalCount, Is.EqualTo(1493));
+			Assert.That(messages.Count, Is.EqualTo(1));
 
-			Assert.That(messages[2].Date,
-				Is.EqualTo(new DateTime(2010,
-					9,
-					25,
-					18,
-					34,
-					4,
-					DateTimeKind.Utc)));
-
-			Assert.That(messages[2].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(messages[2].Type, Is.EqualTo(MessageType.Sended));
-
-			Assert.That(msgs.TotalCount, Is.EqualTo(18));
-			Assert.That(messages.Count, Is.EqualTo(3));
-
-			Assert.That(messages[0].Id, Is.EqualTo(2093));
-			Assert.That(messages[0].Body, Is.EqualTo("Таких литовкиных и сычевых"));
-			Assert.That(messages[0].UserId, Is.EqualTo(4793858));
+			Assert.That(messages[0].Id, Is.EqualTo(266005));
+			Assert.That(messages[0].Text, Is.EqualTo("Спс бро"));
+			Assert.That(messages[0].PeerId, Is.EqualTo(228907945));
 
 			Assert.That(messages[0].Date,
-				Is.EqualTo(new DateTime(2010,
-					9,
-					25,
-					18,
-					24,
-					48,
-					DateTimeKind.Utc)));
-
-			Assert.That(messages[0].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(messages[0].Type, Is.EqualTo(MessageType.Sended));
-
-			Assert.That(messages[1].Body, Is.EqualTo("в одноклассниках и в майле есть."));
-			Assert.That(messages[1].Id, Is.EqualTo(2094));
-			Assert.That(messages[1].UserId, Is.EqualTo(7712));
-
-			Assert.That(messages[1].Date,
-				Is.EqualTo(new DateTime(2010,
-					9,
-					25,
-					18,
+				Is.EqualTo(new DateTime(2020,
+					2,
+					12,
+					17,
 					26,
-					56,
+					01,
 					DateTimeKind.Utc)));
-
-			Assert.That(messages[1].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(messages[1].Type, Is.EqualTo(MessageType.Received));
 		}
 
 		[Test]
@@ -546,7 +533,6 @@ namespace VkNet.Tests.Categories.Messages
 		}
 
 		[Test]
-		[Ignore("")]
 		public void Search_NormalCase_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.search";
@@ -560,69 +546,65 @@ namespace VkNet.Tests.Categories.Messages
 
 			var msgs = result.Items;
 
-			Assert.That(result.Count, Is.EqualTo(680));
+			Assert.That(result.Count, Is.EqualTo(18));
 			Assert.NotNull(msgs);
 			Assert.That(msgs.Count, Is.EqualTo(3));
 
-			Assert.That(msgs[2].Id, Is.EqualTo(4414));
+			Assert.That(msgs[2].Id, Is.EqualTo(131291));
 
 			Assert.That(msgs[2].Date,
-				Is.EqualTo(new DateTime(2012,
-					7,
-					13,
-					8,
-					46,
-					32,
+				Is.EqualTo(new DateTime(2015,
+					10,
+					06,
+					4,
+					33,
+					24,
 					DateTimeKind.Utc)));
 
-			Assert.That(msgs[2].Type, Is.EqualTo(MessageType.Received));
-			Assert.That(msgs[2].UserId, Is.EqualTo(245242));
+			Assert.That(msgs[2].UserId, Is.EqualTo(310881357));
 			Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
 			Assert.That(msgs[2].Title, Is.EqualTo(" ... "));
 			Assert.That(msgs[2].Body, Is.EqualTo("привет, антон))"));
 
-			Assert.That(msgs[1].Id, Is.EqualTo(4415));
+			Assert.That(msgs[1].Id, Is.EqualTo(131304));
 
 			Assert.That(msgs[1].Date,
-				Is.EqualTo(new DateTime(2012,
-					7,
-					13,
-					8,
-					46,
-					48,
+				Is.EqualTo(new DateTime(2015,
+					10,
+					6,
+					9,
+					17,
+					57,
 					DateTimeKind.Utc)));
 
-			Assert.That(msgs[1].Type, Is.EqualTo(MessageType.Sended));
-			Assert.That(msgs[1].UserId, Is.EqualTo(245242));
+			Assert.That(msgs[1].UserId, Is.EqualTo(72815776));
 			Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
 			Assert.That(msgs[1].Title, Is.EqualTo(" ... "));
-			Assert.That(msgs[1].Body, Is.EqualTo("привет))"));
+			Assert.That(msgs[1].Body, Is.EqualTo("Привет"));
 
-			Assert.That(msgs[0].Id, Is.EqualTo(4442));
+			Assert.That(msgs[0].Id, Is.EqualTo(131307));
 
 			Assert.That(msgs[0].Date,
-				Is.EqualTo(new DateTime(2012,
-					7,
-					31,
-					20,
-					2,
-					52,
+				Is.EqualTo(new DateTime(2015,
+					10,
+					6,
+					9,
+					26,
+					26,
 					DateTimeKind.Utc)));
 
-			Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Received));
-			Assert.That(msgs[0].UserId, Is.EqualTo(1016149));
+			Assert.That(msgs[0].UserId, Is.EqualTo(72815776));
 			Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[0].Title, Is.EqualTo("..."));
-			Assert.That(msgs[0].Body, Is.EqualTo("Привет, Антон! Как дела?"));
+			Assert.That(msgs[0].Title, Is.EqualTo(" ... "));
+			Assert.That(msgs[0].Body, Is.EqualTo("Привет"));
 		}
 
 		[Test]
-		[Ignore("")]
 		public void Search_NotExistedQuery_EmptyList()
 		{
 			Url = "https://api.vk.com/method/messages.search";
 
-			ReadCategoryJsonPath(JsonPaths.EmptyVkCollection);
+			ReadJsonFile(JsonPaths.EmptyVkCollection);
 
 			var msgs = Api.Messages.Search(new MessagesSearchParams
 			{
