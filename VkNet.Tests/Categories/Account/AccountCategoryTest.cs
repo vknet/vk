@@ -474,7 +474,7 @@ namespace VkNet.Tests.Categories.Account
 			var account = new AccountCategory(Api);
 			Url = "https://api.vk.com/method/account.setInfo";
 
-			ReadJsonFile("Errors", "100");
+			ReadErrorsJsonFile(100);
 
 			Assert.That(() => account.SetInfo("intro", "-10"), Throws.InstanceOf<ParameterMissingOrInvalidException>());
 		}

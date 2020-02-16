@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Exception;
-using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Utils
@@ -17,17 +16,6 @@ namespace VkNet.Tests.Utils
 			{
 				VkErrors.ThrowIfNumberIsNegative(() => count);
 			}
-		}
-
-		[Test]
-		public void Call_ThrowsCaptchaNeededException()
-		{
-			Url = "https://api.vk.com/method/messages.send";
-			ReadErrorsJsonFile(14);
-
-			var ex = Api.Call<VkCollection<Message>>("messages.send", VkParameters.Empty, true);
-
-			Assert.That(ex.TotalCount, Is.EqualTo(1));
 		}
 
 		[Test]
