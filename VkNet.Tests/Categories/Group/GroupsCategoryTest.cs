@@ -79,7 +79,6 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
-		[Ignore("")]
 		public void Get_NormalCaseAllFields_ReturnFullGroupInfo()
 		{
 			Url = "https://api.vk.com/method/groups.get";
@@ -105,23 +104,23 @@ namespace VkNet.Tests.Categories.Group
 			Assert.That(groups[1].Description, Is.EqualTo("В связи с небольшим количеством..."));
 
 			Assert.That(groups[1].StartDate,
-			Is.EqualTo(new DateTime(2008,
-				1,
-				15,
-				7,
-				0,
-				0,
-				DateTimeKind.Utc)));
+				Is.EqualTo(new DateTime(2008,
+					1,
+					15,
+					7,
+					0,
+					0,
+					DateTimeKind.Utc)));
 
 			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
 			Assert.That(groups[1].IsAdmin, Is.False);
 			Assert.That(groups[1].IsMember, Is.True);
 
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs1122.userapi.com/g1181795/c_efd67aca.jpg"));
+			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs1122.userapi.com/g1181795/c_efd67aca.jpg")));
 
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs1122.userapi.com/g1181795/b_369a1c47.jpg"));
+			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs1122.userapi.com/g1181795/b_369a1c47.jpg")));
 
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs1122.userapi.com/g1181795/a_c58272b3.jpg"));
+			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs1122.userapi.com/g1181795/a_c58272b3.jpg")));
 
 			Assert.That(groups.Count, Is.EqualTo(2));
 			Assert.That(groups[0].Id, Is.EqualTo(1153959));
@@ -134,23 +133,23 @@ namespace VkNet.Tests.Categories.Group
 			Assert.That(groups[0].Description, Is.EqualTo("Попади в не реальную сказку пришествия..."));
 
 			Assert.That(groups[0].StartDate,
-			Is.EqualTo(new DateTime(2008,
-				04,
-				20,
-				14,
-				0,
-				30,
-				DateTimeKind.Utc)));
+				Is.EqualTo(new DateTime(2008,
+					04,
+					20,
+					14,
+					0,
+					30,
+					DateTimeKind.Utc)));
 
 			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
 			Assert.That(groups[0].IsAdmin, Is.False);
 			Assert.That(groups[0].IsMember, Is.True);
 
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg"));
+			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg")));
 
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs1122.userapi.com/g1153959/b_5bad925c.jpg"));
+			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs1122.userapi.com/g1153959/b_5bad925c.jpg")));
 
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"));
+			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg")));
 		}
 
 		[Test]
@@ -175,7 +174,6 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
-		[Ignore("Этот метод можно вызвать без ключа доступа. Возвращаются только общедоступные данные.")]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
@@ -212,7 +210,6 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
-		[Ignore("Этот метод можно вызвать без ключа доступа. Возвращаются только общедоступные данные.")]
 		public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
@@ -237,7 +234,6 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
-		[Ignore("")]
 		public void GetById_Multiple_NormalCaseAllFields_ReturnTwoItems()
 		{
 			Url =
@@ -263,11 +259,11 @@ namespace VkNet.Tests.Categories.Group
 			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
 			Assert.That(groups[0].IsMember, Is.False);
 
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg")));
 
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg")));
 
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg")));
 
 			Assert.That(groups[0].City.Id, Is.EqualTo(95));
 			Assert.That(groups[0].Country.Id, Is.EqualTo(1));
@@ -275,13 +271,13 @@ namespace VkNet.Tests.Categories.Group
 			Assert.That(groups[0].Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21..."));
 
 			Assert.That(groups[0].StartDate,
-			Is.EqualTo(new DateTime(2012,
-				7,
-				21,
-				10,
-				0,
-				0,
-				DateTimeKind.Utc)));
+				Is.EqualTo(new DateTime(2012,
+					7,
+					21,
+					6,
+					0,
+					0,
+					DateTimeKind.Utc)));
 
 			Assert.That(groups[1].Id, Is.EqualTo(637247));
 			Assert.That(groups[1].Name, Is.EqualTo("Чак Паланик - Сумасшедший гений литературы"));
@@ -292,11 +288,11 @@ namespace VkNet.Tests.Categories.Group
 			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
 			Assert.That(groups[1].IsMember, Is.True);
 
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
+			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg")));
 
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
+			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg")));
 
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
+			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs11418.userapi.com/g637247/a_6be98c68.jpg")));
 
 			Assert.That(groups[1].City.Id, Is.EqualTo(95));
 			Assert.That(groups[1].Country.Id, Is.EqualTo(1));
@@ -353,7 +349,6 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
-		[Ignore("")]
 		public void GetById_NormalCaseAllFields_ReturnTwoItems()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
@@ -371,11 +366,11 @@ namespace VkNet.Tests.Categories.Group
 			Assert.That(group.Type, Is.EqualTo(GroupType.Event));
 			Assert.That(group.IsMember, Is.False);
 
-			Assert.That(group.PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+			Assert.That(group.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg")));
 
-			Assert.That(group.PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+			Assert.That(group.PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg")));
 
-			Assert.That(group.PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+			Assert.That(group.PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg")));
 
 			Assert.That(group.City.Id, Is.EqualTo(95));
 			Assert.That(group.Country.Id, Is.EqualTo(1));
@@ -383,13 +378,13 @@ namespace VkNet.Tests.Categories.Group
 			Assert.That(group.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
 
 			Assert.That(group.StartDate,
-			Is.EqualTo(new DateTime(2012,
-				7,
-				21,
-				10,
-				0,
-				0,
-				DateTimeKind.Utc)));
+				Is.EqualTo(new DateTime(2012,
+					7,
+					21,
+					6,
+					0,
+					0,
+					DateTimeKind.Utc)));
 		}
 
 		[Test]
@@ -823,7 +818,6 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
-		[Ignore("Это открытый метод, не требующий access_token.")]
 		public void IsMember_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
@@ -832,31 +826,7 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
-		public void IsMember_WrongGid_ThrowsInvalidParameterException()
-		{
-			Url = "https://api.vk.com/method/groups.isMember";
-
-			ReadErrorsJsonFile(125);
-
-			var ex = Assert.Throws<InvalidGroupIdException>(() =>
-				Api.Groups.IsMember("0", 4793858, null, null));
-
-			Assert.That(ex.Message, Is.EqualTo("Invalid group id"));
-		}
-
-		[Test]
-		public void IsMember_WrongUid_ReturnFalse()
-		{
-			Url = "https://api.vk.com/method/groups.isMember";
-			ReadJsonFile(JsonPaths.False);
-
-			var result = Api.Groups.IsMember("637247", 1000000000000, null, null);
-			Assert.That(result.Count > 0 && result[0].Member, Is.False);
-		}
-
-		[Test]
-		[Ignore("Это открытый метод, не требующий access_token.")]
-		public void IsMemeber_UserAuthorizationFail_ThrowUserAuthorizationFailException()
+		public void IsMember_UserAuthorizationFail_ThrowUserAuthorizationFailException()
 		{
 			Url = "https://api.vk.com/method/groups.isMember";
 
@@ -891,6 +861,29 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
+		public void IsMember_WrongGid_ThrowsInvalidParameterException()
+		{
+			Url = "https://api.vk.com/method/groups.isMember";
+
+			ReadErrorsJsonFile(125);
+
+			var ex = Assert.Throws<InvalidGroupIdException>(() =>
+				Api.Groups.IsMember("0", 4793858, null, null));
+
+			Assert.That(ex.Message, Is.EqualTo("Invalid group id"));
+		}
+
+		[Test]
+		public void IsMember_WrongUid_ReturnFalse()
+		{
+			Url = "https://api.vk.com/method/groups.isMember";
+			ReadJsonFile(JsonPaths.False);
+
+			var result = Api.Groups.IsMember("637247", 1000000000000, null, null);
+			Assert.That(result.Count > 0 && result[0].Member, Is.False);
+		}
+
+		[Test]
 		public void Join_AccessDenied_ThrowAccessDeniedException()
 		{
 			Url = "https://api.vk.com/method/groups.join";
@@ -901,7 +894,6 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
 		public void Join_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
@@ -962,7 +954,6 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
 		public void Leave_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
@@ -1000,6 +991,51 @@ namespace VkNet.Tests.Categories.Group
 			var result = Api.Groups.Leave(0);
 
 			Assert.That(result, Is.True);
+		}
+
+		[Test]
+		public void Search_DefaultCase_ListOfGroups()
+		{
+			Url = "https://api.vk.com/method/groups.search";
+
+			ReadCategoryJsonPath(nameof(Search_DefaultCase_ListOfGroups));
+
+			var groups = Api.Groups.Search(new GroupsSearchParams
+				{
+					Query = "Music"
+				},
+				true);
+
+			Assert.That(groups.Count, Is.EqualTo(2));
+			Assert.That(groups.TotalCount, Is.EqualTo(78152));
+
+			Assert.That(groups[1].Id, Is.EqualTo(27895931));
+			Assert.That(groups[1].Name, Is.EqualTo("MUSIC 2012"));
+			Assert.That(groups[1].ScreenName, Is.EqualTo("exclusive_muzic"));
+			Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
+			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
+			Assert.That(groups[1].IsAdmin, Is.False);
+			Assert.That(groups[1].IsMember, Is.False);
+
+			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg")));
+
+			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/d_2869e827.jpg")));
+
+			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/a_32935e91.jpg")));
+
+			Assert.That(groups[0].Id, Is.EqualTo(339767));
+			Assert.That(groups[0].Name, Is.EqualTo("A-ONE HIP-HOP MUSIC CHANNEL"));
+			Assert.That(groups[0].ScreenName, Is.EqualTo("a1tv"));
+			Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
+			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Group));
+			Assert.That(groups[0].IsAdmin, Is.False);
+			Assert.That(groups[0].IsMember, Is.False);
+
+			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/e_a590d16b.jpg")));
+
+			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/d_f653c773.jpg")));
+
+			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/a_4653ba99.jpg")));
 		}
 
 		[Test]
@@ -1061,51 +1097,6 @@ namespace VkNet.Tests.Categories.Group
 			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg")));
 
 			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg")));
-		}
-
-		[Test]
-		public void Search_DefaultCase_ListOfGroups()
-		{
-			Url = "https://api.vk.com/method/groups.search";
-
-			ReadCategoryJsonPath(nameof(Search_DefaultCase_ListOfGroups));
-
-			var groups = Api.Groups.Search(new GroupsSearchParams
-				{
-					Query = "Music"
-				},
-				true);
-
-			Assert.That(groups.Count, Is.EqualTo(2));
-			Assert.That(groups.TotalCount, Is.EqualTo(78152));
-
-			Assert.That(groups[1].Id, Is.EqualTo(27895931));
-			Assert.That(groups[1].Name, Is.EqualTo("MUSIC 2012"));
-			Assert.That(groups[1].ScreenName, Is.EqualTo("exclusive_muzic"));
-			Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
-			Assert.That(groups[1].IsAdmin, Is.False);
-			Assert.That(groups[1].IsMember, Is.False);
-
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg")));
-
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/d_2869e827.jpg")));
-
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/a_32935e91.jpg")));
-
-			Assert.That(groups[0].Id, Is.EqualTo(339767));
-			Assert.That(groups[0].Name, Is.EqualTo("A-ONE HIP-HOP MUSIC CHANNEL"));
-			Assert.That(groups[0].ScreenName, Is.EqualTo("a1tv"));
-			Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Group));
-			Assert.That(groups[0].IsAdmin, Is.False);
-			Assert.That(groups[0].IsMember, Is.False);
-
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/e_a590d16b.jpg")));
-
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/d_f653c773.jpg")));
-
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/a_4653ba99.jpg")));
 		}
 
 		[Test]

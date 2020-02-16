@@ -62,7 +62,6 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
 		public void AreFriends_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
@@ -177,7 +176,6 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore("Этот метод можно вызвать без ключа доступа. Возвращаются только общедоступные данные.")]
 		public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
@@ -240,7 +238,6 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
 		public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
@@ -290,7 +287,6 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
 		public void GetMutual_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var category = new FriendsCategory(new VkApi());
@@ -336,7 +332,6 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
 		public void GetOnline_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());

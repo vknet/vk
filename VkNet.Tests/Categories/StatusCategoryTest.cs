@@ -24,7 +24,6 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
 		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var status = new StatusCategory(new VkApi());
@@ -76,7 +75,6 @@ namespace VkNet.Tests.Categories
 		}
 
 		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
 		public void Set_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var status = new StatusCategory(new VkApi());

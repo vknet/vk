@@ -94,7 +94,8 @@ namespace VkNet.Tests
 				});
 
 			Mocker.Setup<ICaptchaHandler, string>(m => m.Perform(It.IsAny<Func<ulong?, string, string>>()))
-				.Returns(Json);
+				.Callback(() => ReadJsonFile("Categories", "Messages", "GetById_NormalCase_Message"))
+				.Returns(() => Json);
 
 			Mocker.Setup<ICaptchaHandler, bool>(m => m.Perform(It.IsAny<Func<ulong?, string, bool>>()))
 				.Returns(true);
@@ -127,6 +128,7 @@ namespace VkNet.Tests
 			Api.RestClient = Mocker.Get<IRestClient>();
 			Api.NeedValidationHandler = Mocker.Get<INeedValidationHandler>();
 			Api.CaptchaSolver = Mocker.Get<ICaptchaSolver>();
+			Api.CaptchaHandler = Mocker.Get<ICaptchaHandler>();
 
 			Api.Authorize(new ApiAuthParams
 			{
