@@ -561,7 +561,7 @@ namespace VkNet.Categories
 			var result = _vk.Call("messages.setChatPhoto", parameters);
 			messageId = result["message_id"];
 
-			return result["chat"];
+			return result["chat"]["id"];
 		}
 
 		/// <inheritdoc />
