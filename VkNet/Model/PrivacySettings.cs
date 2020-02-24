@@ -20,5 +20,11 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("sections")]
 		public PrivacySettingsSection[] Sections { get; set; }
+
+		/// <summary>
+		/// Поддерживаемые категории
+		/// </summary>
+		[JsonProperty("supported_categories")]
+		public SupportedCategories[] SupportedCategories { get; set; }
 	}
 }

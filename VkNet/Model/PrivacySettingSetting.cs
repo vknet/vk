@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
@@ -25,7 +26,7 @@ namespace VkNet.Model
 		/// Текущее значение
 		/// </summary>
 		[JsonProperty("value")]
-		public string[] Value { get; set; }
+		public PrivacySettingsValue Value { get; set; }
 
 		/// <summary>
 		/// Секция
@@ -34,9 +35,15 @@ namespace VkNet.Model
 		public string Section { get; set; }
 
 		/// <summary>
-		/// Поддерживаемые значения
+		/// Тип
 		/// </summary>
-		[JsonProperty("supported_values")]
-		public string[] SupportedValues { get; set; }
+		[JsonProperty("type")]
+		public string Type { get; set; }
+
+		/// <summary>
+		/// Поддерживаемые категории
+		/// </summary>
+		[JsonProperty("supported_categories")]
+		public string[] SupportedCategories { get; set; }
 	}
 }
