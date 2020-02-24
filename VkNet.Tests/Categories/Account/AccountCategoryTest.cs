@@ -197,6 +197,7 @@ namespace VkNet.Tests.Categories.Account
 			Assert.NotNull(settings);
 			Assert.IsNotEmpty(settings.Sections);
 			Assert.IsNotEmpty(settings.Settings);
+			Assert.IsNotEmpty(settings.SupportedCategories);
 		}
 
 		[Test]

@@ -20,5 +20,11 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("title")]
 		public string Title { get; set; }
+
+		/// <summary>
+		/// Описание
+		/// </summary>
+		[JsonProperty("description")]
+		public string Description { get; set; }
 	}
 }

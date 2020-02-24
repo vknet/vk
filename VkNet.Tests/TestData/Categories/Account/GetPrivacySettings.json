@@ -4,14 +4,15 @@
       {
         "key": "profile",
         "title": "Кто видит основную информацию моей страницы",
-        "value": [
-          "only_me"
-        ],
+        "value": {
+          "category": "friends_of_friends"
+        },
         "section": "profile",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "only_me",
           "some"
         ]
@@ -19,14 +20,15 @@
       {
         "key": "photos_with",
         "title": "Кто видит фотографии, на которых меня отметили",
-        "value": [
-          "only_me"
-        ],
+        "value": {
+          "category": "only_me"
+        },
         "section": "profile",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "only_me",
           "some"
         ]
@@ -34,14 +36,15 @@
       {
         "key": "photos_saved",
         "title": "Кто видит список моих сохранённых фотографий",
-        "value": [
-          "only_me"
-        ],
+        "value": {
+          "category": "only_me"
+        },
         "section": "profile",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "only_me",
           "some"
         ]
@@ -49,14 +52,15 @@
       {
         "key": "groups",
         "title": "Кто видит список моих групп",
-        "value": [
-          "only_me"
-        ],
+        "value": {
+          "category": "only_me"
+        },
         "section": "profile",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "only_me",
           "some"
         ]
@@ -64,22 +68,15 @@
       {
         "key": "audios",
         "title": "Кто видит список моих аудиозаписей",
-        "value": [
-          170390149,
-          170699639,
-          172248179,
-          261525343,
-          262551645,
-          277901426,
-          395679472,
-          422979757,
-          431864975
-        ],
+        "value": {
+          "category": "friends_of_friends"
+        },
         "section": "profile",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "only_me",
           "some"
         ]
@@ -87,14 +84,15 @@
       {
         "key": "gifts",
         "title": "Кто видит список моих подарков",
-        "value": [
-          "only_me"
-        ],
+        "value": {
+          "category": "only_me"
+        },
         "section": "profile",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "only_me",
           "some"
         ]
@@ -102,14 +100,15 @@
       {
         "key": "places",
         "title": "Кто видит местоположение моих фотографий",
-        "value": [
-          "only_me"
-        ],
+        "value": {
+          "category": "only_me"
+        },
         "section": "profile",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "only_me",
           "some"
         ]
@@ -117,13 +116,14 @@
       {
         "key": "hidden_friends",
         "title": "Кто видит моих скрытых друзей",
-        "value": [
-          "only_me"
-        ],
+        "value": {
+          "category": "only_me"
+        },
         "section": "profile",
-        "supported_values": [
-          "friends",
+        "type": "list",
+        "supported_categories": [
           "friends_of_friends",
+          "friends",
           "only_me",
           "hidden_friends_only",
           "some"
@@ -132,14 +132,15 @@
       {
         "key": "wall",
         "title": "Кто видит чужие записи на моей странице",
-        "value": [
-          "all"
-        ],
+        "value": {
+          "category": "only_me"
+        },
         "section": "posts",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "only_me",
           "some"
         ]
@@ -147,14 +148,15 @@
       {
         "key": "wall_send",
         "title": "Кто может оставлять записи на моей странице",
-        "value": [
-          "only_me"
-        ],
+        "value": {
+          "category": "only_me"
+        },
         "section": "posts",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "only_me",
           "some"
         ]
@@ -162,14 +164,15 @@
       {
         "key": "replies_view",
         "title": "Кто видит комментарии к записям",
-        "value": [
-          "only_me"
-        ],
+        "value": {
+          "category": "only_me"
+        },
         "section": "posts",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "only_me",
           "some"
         ]
@@ -177,14 +180,15 @@
       {
         "key": "status_replies",
         "title": "Кто может комментировать мои записи",
-        "value": [
-          "only_me"
-        ],
+        "value": {
+          "category": "only_me"
+        },
         "section": "posts",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "only_me",
           "some"
         ]
@@ -192,14 +196,15 @@
       {
         "key": "photos_tagme",
         "title": "Кто может отмечать меня на фотографиях",
-        "value": [
-          "only_me"
-        ],
+        "value": {
+          "category": "only_me"
+        },
         "section": "posts",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "only_me",
           "some"
         ]
@@ -207,14 +212,15 @@
       {
         "key": "mail_send",
         "title": "Кто может писать мне личные сообщения",
-        "value": [
-          "all"
-        ],
+        "value": {
+          "category": "all"
+        },
         "section": "contacts",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "nobody",
           "some"
         ]
@@ -222,11 +228,12 @@
       {
         "key": "appscall",
         "title": "Кто может вызывать меня в приложениях",
-        "value": [
-          "nobody"
-        ],
+        "value": {
+          "category": "nobody"
+        },
         "section": "contacts",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "friends",
           "nobody",
           "some"
@@ -235,14 +242,15 @@
       {
         "key": "groups_invite",
         "title": "Кто может приглашать меня в сообщества",
-        "value": [
-          "nobody"
-        ],
+        "value": {
+          "category": "nobody"
+        },
         "section": "contacts",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
           "friends_of_friends",
+          "friends",
           "nobody",
           "some"
         ]
@@ -250,11 +258,12 @@
       {
         "key": "apps_invite",
         "title": "Кто может приглашать меня в приложения",
-        "value": [
-          "nobody"
-        ],
+        "value": {
+          "category": "nobody"
+        },
         "section": "contacts",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "friends",
           "nobody",
           "some"
@@ -262,24 +271,26 @@
       },
       {
         "key": "friends_requests",
-        "title": "Кто может отправлять мне заявку в друзья",
-        "value": [
-          "all"
-        ],
+        "title": "Кто может отправлять мне заявки в друзья",
+        "value": {
+          "category": "all"
+        },
         "section": "contacts",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
           "friends_of_friends_only"
         ]
       },
       {
         "key": "search_by_reg_phone",
-        "title": "Кто может найти меня при импорте контактов по номеру +7 *** *** ** 92",
-        "value": [
-          "nobody"
-        ],
+        "title": "Кто может найти меня при импорте контактов по номеру +7 *** *** ** 33",
+        "value": {
+          "category": "nobody"
+        },
         "section": "contacts",
-        "supported_values": [
+        "type": "list",
+        "supported_categories": [
           "all",
           "friends_of_friends",
           "nobody",
@@ -287,19 +298,56 @@
         ]
       },
       {
-        "key": "stories",
-        "title": "Кто видит мои истории",
-        "value": [
-          "only_me"
-        ],
-        "section": "stories",
-        "supported_values": [
+        "key": "online",
+        "title": "",
+        "value": {
+          "category": "all"
+        },
+        "section": "online",
+        "type": "list",
+        "supported_categories": [
           "all",
-          "friends",
-          "friends_of_friends",
+          "friends_and_contacts",
           "only_me",
           "some"
         ]
+      },
+      {
+        "key": "page_access",
+        "title": "Кому в интернете видна моя страница",
+        "value": {
+          "category": "vk_users_only"
+        },
+        "section": "others",
+        "type": "list",
+        "supported_categories": [
+          "all",
+          "all_except_of_search_engines",
+          "vk_users_only"
+        ]
+      },
+      {
+        "key": "company_messages",
+        "title": "Какие сообщества могут посылать мне сообщения по номеру телефона",
+        "value": {
+          "category": "none"
+        },
+        "section": "others",
+        "type": "list",
+        "supported_categories": [
+          "any",
+          "none"
+        ]
+      },
+      {
+        "key": "closed_profile",
+        "title": "Закрытый профиль",
+        "value": {
+          "is_enabled": false
+        },
+        "section": "others",
+        "type": "binary",
+        "supported_categories": []
       }
     ],
     "sections": [
@@ -321,7 +369,62 @@
       },
       {
         "name": "others",
-        "title": "Прочее"
+        "title": "Прочее",
+        "description": "Если Вы закроете страницу, она будет доступна только Вашим друзьям."
+      }
+    ],
+    "supported_categories": [
+      {
+        "value": "all",
+        "title": "Все пользователи"
+      },
+      {
+        "value": "friends_of_friends",
+        "title": "Друзья и друзья друзей"
+      },
+      {
+        "value": "friends",
+        "title": "Все друзья"
+      },
+      {
+        "value": "only_me",
+        "title": "Только я"
+      },
+      {
+        "value": "some",
+        "title": "Некоторые друзья"
+      },
+      {
+        "value": "hidden_friends_only",
+        "title": "Скрытые друзья"
+      },
+      {
+        "value": "nobody",
+        "title": "Никто"
+      },
+      {
+        "value": "friends_of_friends_only",
+        "title": "Друзья друзей"
+      },
+      {
+        "value": "friends_and_contacts",
+        "title": "Друзья и контакты"
+      },
+      {
+        "value": "all_except_of_search_engines",
+        "title": "Всем, кроме поисковых сайтов"
+      },
+      {
+        "value": "vk_users_only",
+        "title": "Только пользователям ВКонтакте"
+      },
+      {
+        "value": "any",
+        "title": "Все"
+      },
+      {
+        "value": "none",
+        "title": "Никакие"
       }
     ]
   }
