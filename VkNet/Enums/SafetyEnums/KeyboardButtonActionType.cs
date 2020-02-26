@@ -27,5 +27,10 @@ namespace VkNet.Enums.SafetyEnums
 		/// Vk Apps
 		/// </summary>
 		public static readonly KeyboardButtonActionType VkApp = RegisterPossibleValue("open_app");
+
+		/// <summary>
+		/// Open Link
+		/// </summary>
+		public static readonly KeyboardButtonActionType OpenLink = RegisterPossibleValue("open_link");
 	}
 }

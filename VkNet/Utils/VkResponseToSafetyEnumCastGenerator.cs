@@ -676,5 +676,17 @@ namespace VkNet.Utils
 		{
 			return response == null ? null : MarketItemButtonTitle.FromJson(response: response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator CarouselElementActionType(VkResponse response)
+		{
+			return response == null ? null : CarouselElementActionType.FromJson(response: response);
+		}
 	}
 }

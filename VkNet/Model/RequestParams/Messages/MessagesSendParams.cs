@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Model.Keyboard;
+using VkNet.Model.Template;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
@@ -152,6 +153,15 @@ namespace VkNet.Model.RequestParams
 		public Intent Intent { get; set; }
 
 		/// <summary>
+		/// Объект, описывающий шаблон сообщения для бота.
+		/// </summary>
+		/// <remarks>
+		/// Рекомендуется для построения использовать <see cref="ITemplateBuilder" />
+		/// </remarks>
+		[JsonProperty("template")]
+		public MessageTemplate Template { get; set; }
+
+		/// <summary>
 		/// Привести к типу VkParameters.
 		/// </summary>
 		/// <param name="p"> Параметры. </param>
@@ -177,7 +187,8 @@ namespace VkNet.Model.RequestParams
 				{ "group_id", p.GroupId },
 				{ "dont_parse_links", p.DontParseLinks },
 				{ "disable_mentions", p.DisableMentions },
-				{ "intent", p.Intent }
+				{ "intent", p.Intent },
+				{ "template", p.Template != null ? JsonConvert.SerializeObject(p.Template) : ""}
 			};
 		}
 	}
