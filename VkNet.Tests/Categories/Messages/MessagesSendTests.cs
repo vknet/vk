@@ -4,8 +4,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Model.Keyboard;
 using VkNet.Model.RequestParams;
+using VkNet.Model.Template;
+using VkNet.Model.Template.Carousel;
 
 namespace VkNet.Tests.Categories.Messages
 {
@@ -196,6 +200,61 @@ namespace VkNet.Tests.Categories.Messages
 				UserId = 7550525,
 				Message = "Работает # 2 --  еще разок",
 				RandomId = 1
+			});
+
+			Assert.That(id, Is.EqualTo(4464));
+		}
+
+		[Test]
+		public void Template_Carousel()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+			ReadCategoryJsonPath(nameof(Template_Carousel));
+
+			var button = new MessageKeyboardButton
+			{
+				Color = KeyboardButtonColor.Primary,
+				Action = new MessageKeyboardButtonAction
+				{
+					Type = KeyboardButtonActionType.Text,
+					Label = "Label"
+				}
+			};
+
+			var buttons = new[]
+			{
+				button
+			};
+
+			var carouselAction = new CarouselElementAction()
+			{
+				Link = new Uri("https://vk.com/"),
+				Type = CarouselElementActionType.OpenLink
+			};
+
+			var carousel = new CarouselElement
+			{
+				Description = "Desc",
+				Action = carouselAction,
+				Buttons = buttons,
+				PhotoId = "-126102803_425491011",
+				Title = "Title"
+			};
+
+			var templateElements = new[] { carousel };
+
+			var template = new MessageTemplate
+			{
+				Type = TemplateType.Carousel,
+				Elements = templateElements
+			};
+
+			var id = Api.Messages.Send(new MessagesSendParams
+			{
+				UserId = 7550525,
+				Message = "Работает # 2 --  еще разок",
+				RandomId = 1,
+				Template = template
 			});
 
 			Assert.That(id, Is.EqualTo(4464));
