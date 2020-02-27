@@ -35,6 +35,13 @@ namespace VkNet.Model.Keyboard
 		[JsonProperty("label", NullValueHandling = NullValueHandling.Ignore)]
 		public string Label { get; set; }
 
+
+		/// <summary>
+		/// Ссылка, которую необходимо открыть по нажатию на кнопку.
+		/// </summary>
+		[JsonProperty("link", NullValueHandling = NullValueHandling.Ignore)]
+		public Uri Link { get; set; }
+
 		/// <summary>
 		/// <list type="KeyboardButtonActionType">
 		/// <listheader>
@@ -48,6 +55,14 @@ namespace VkNet.Model.Keyboard
 		/// <item>
 		/// <term><see cref="KeyboardButtonActionType.VkPay"/></term>
 		/// <description>строка, содержащая параметры платежа VK Pay и идентификатор приложения в параметре aid , разделенные &amp;.</description>
+		/// </item>
+		/// <item>
+		/// <term><see cref="KeyboardButtonActionType.Location"/></term>
+		/// <description>По нажатию отправляет местоположение в диалог с ботом/беседу.</description>
+		/// </item>
+		/// <item>
+		/// <term><see cref="KeyboardButtonActionType.OpenLink"/></term>
+		/// <description>Открывает указанную ссылку.</description>
 		/// </item>
 		/// </list>
 		/// </summary>
@@ -88,6 +103,7 @@ namespace VkNet.Model.Keyboard
 				Type = response["type"],
 				Payload = response["payload"],
 				Label = response["label"],
+				Link = response["link"],
 				AppId = response["app_id"],
 				OwnerId = response["owner_id"],
 				Hash = response["hash"]
