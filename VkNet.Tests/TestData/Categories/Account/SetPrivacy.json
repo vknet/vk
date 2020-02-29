@@ -1,3 +1,5 @@
 {
-  "response": "value"
+  "response": {
+    "category": "only_me"
+  }
 }

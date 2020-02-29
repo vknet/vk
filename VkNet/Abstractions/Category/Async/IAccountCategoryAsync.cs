@@ -444,6 +444,6 @@ namespace VkNet.Abstractions
 		/// <param name="key"> Ключ </param>
 		/// <param name="value"> Значение </param>
 		/// <returns> Значение параметра <see cref="value" /> </returns>
-		Task<string> SetPrivacyAsync(string key, string value);
+		Task<PrivacySettingsValue> SetPrivacyAsync(string key, string value);
 	}
 }
