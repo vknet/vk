@@ -592,10 +592,11 @@ namespace VkNet.Tests.Categories.Account
 			ReadCategoryJsonPath(nameof(SetPrivacy));
 
 			// Act
-			var result = Api.Account.SetPrivacy("key", "value");
+			var result = Api.Account.SetPrivacy("key", "only_me");
 
 			// Assert
-			Assert.AreEqual("value", result);
+			Assert.That(result, Is.Not.Null);
+			Assert.AreEqual("only_me", result.Category);
 		}
 
 		[Test]

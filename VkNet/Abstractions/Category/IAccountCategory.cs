@@ -439,6 +439,6 @@ namespace VkNet.Abstractions
 		PrivacySettings GetPrivacySettings();
 
 		/// <inheritdoc cref="IAccountCategoryAsync.SetPrivacyAsync" />
-		string SetPrivacy(string key, string value);
+		PrivacySettingsValue SetPrivacy(string key, string value);
 	}
 }

@@ -647,9 +647,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public string SetPrivacy(string key, string value)
+		public PrivacySettingsValue SetPrivacy(string key, string value)
 		{
-			return _vk.Call<string>("account.setPrivacy",
+			return _vk.Call<PrivacySettingsValue>("account.setPrivacy",
 				new VkParameters
 				{
 					{ "key", key },
