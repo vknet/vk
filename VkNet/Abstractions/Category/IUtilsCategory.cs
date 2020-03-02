@@ -17,24 +17,22 @@ namespace VkNet.Abstractions
 		/// сайте ВКонтакте.
 		/// </summary>
 		/// <param name="url"> Внешняя ссылка, которую необходимо проверить. </param>
-		/// <param name="skipAuthorization"> Без авторизации </param>
 		/// <returns> Статус ссылки </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
 		/// </remarks>
-		LinkAccessType CheckLink([NotNull] string url, bool skipAuthorization = true);
+		LinkAccessType CheckLink([NotNull] string url);
 
 		/// <summary>
 		/// Возвращает информацию о том, является ли внешняя ссылка заблокированной на
 		/// сайте ВКонтакте.
 		/// </summary>
 		/// <param name="url"> Внешняя ссылка, которую необходимо проверить. </param>
-		/// <param name="skipAuthorization"> Без авторизации </param>
 		/// <returns> Статус ссылки </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
 		/// </remarks>
-		LinkAccessType CheckLink([NotNull] Uri url, bool skipAuthorization = true);
+		LinkAccessType CheckLink([NotNull] Uri url);
 
 		/// <summary>
 		/// Определяет тип объекта (пользователь, сообщество, приложение) и его
