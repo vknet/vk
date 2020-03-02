@@ -25,21 +25,21 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public LinkAccessType CheckLink(string url, bool skipAuthorization = true)
+		public LinkAccessType CheckLink(string url)
 		{
-			return CheckLink(new Uri(uriString: url), skipAuthorization);
+			return CheckLink(new Uri(uriString: url));
 		}
 
 		/// <inheritdoc />
 		[Pure]
-		public LinkAccessType CheckLink(Uri url, bool skipAuthorization = true)
+		public LinkAccessType CheckLink(Uri url)
 		{
 			var parameters = new VkParameters
 			{
 				{ "url", url }
 			};
 
-			return _vk.Call("utils.checkLink", parameters, skipAuthorization);
+			return _vk.Call("utils.checkLink", parameters);
 		}
 
 		/// <inheritdoc />
@@ -53,14 +53,14 @@ namespace VkNet.Categories
 				{ "screen_name", screenName }
 			};
 
-			return _vk.Call("utils.resolveScreenName", parameters, true);
+			return _vk.Call("utils.resolveScreenName", parameters);
 		}
 
 		/// <inheritdoc />
 		[Pure]
 		public DateTime GetServerTime()
 		{
-			return _vk.Call<DateTime>("utils.getServerTime", VkParameters.Empty, true);
+			return _vk.Call<DateTime>("utils.getServerTime", VkParameters.Empty);
 		}
 
 		/// <inheritdoc />

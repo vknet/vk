@@ -11,15 +11,15 @@ namespace VkNet.Categories
 	public partial class UtilsCategory
 	{
 		/// <inheritdoc />
-		public Task<LinkAccessType> CheckLinkAsync(string url, bool skipAuthorization = true)
+		public Task<LinkAccessType> CheckLinkAsync(string url)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>CheckLink(url: url, skipAuthorization: skipAuthorization));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>CheckLink(url: url));
 		}
 
 		/// <inheritdoc />
-		public Task<LinkAccessType> CheckLinkAsync(Uri url, bool skipAuthorization = true)
+		public Task<LinkAccessType> CheckLinkAsync(Uri url)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>CheckLink(url: url, skipAuthorization: skipAuthorization));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>CheckLink(url: url));
 		}
 
 		/// <inheritdoc />
