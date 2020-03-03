@@ -81,7 +81,6 @@ namespace VkNet.Categories
 		/// </param>
 		/// <param name="fields"> Поля профилей, которые необходимо возвратить. </param>
 		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
-		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 		/// <returns> Список объектов с запрошенной информацией о пользователях. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/users.get
@@ -89,8 +88,7 @@ namespace VkNet.Categories
 		[Pure]
 		public ReadOnlyCollection<User> Get(IEnumerable<long> userIds
 											, ProfileFields fields = null
-											, NameCase nameCase = null
-											, bool skipAuthorization = false)
+											, NameCase nameCase = null)
 		{
 			if (userIds == null)
 			{
@@ -104,7 +102,7 @@ namespace VkNet.Categories
 					, { "user_ids", userIds }
 			};
 
-			VkResponseArray response = _vk.Call(methodName: "users.get", parameters: parameters, skipAuthorization: skipAuthorization);
+			VkResponseArray response = _vk.Call(methodName: "users.get", parameters: parameters);
 
 			return response.ToReadOnlyCollectionOf<User>(selector: x => x);
 		}
@@ -118,7 +116,6 @@ namespace VkNet.Categories
 		/// </param>
 		/// <param name="fields"> Поля профилей, которые необходимо возвратить. </param>
 		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
-		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 		/// <returns> Список объектов с запрошенной информацией о пользователях. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/users.get
@@ -128,8 +125,7 @@ namespace VkNet.Categories
 		[ContractAnnotation(contract: "screenNames:null => halt")]
 		public ReadOnlyCollection<User> Get(IEnumerable<string> screenNames
 											, ProfileFields fields = null
-											, NameCase nameCase = null
-											, bool skipAuthorization = false)
+											, NameCase nameCase = null)
 		{
 			if (screenNames == null)
 			{
@@ -143,7 +139,7 @@ namespace VkNet.Categories
 					, { "name_case", nameCase }
 			};
 
-			VkResponseArray response = _vk.Call(methodName: "users.get", parameters: parameters, skipAuthorization: skipAuthorization);
+			VkResponseArray response = _vk.Call(methodName: "users.get", parameters: parameters);
 
 			return response.ToReadOnlyCollectionOf<User>(selector: x => x);
 		}
@@ -165,7 +161,6 @@ namespace VkNet.Categories
 		/// Список дополнительных полей для объектов user и group, которые необходимо
 		/// вернуть.
 		/// </param>
-		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 		/// <returns>
 		/// Пока возвращается только список групп.
 		/// </returns>
@@ -176,8 +171,7 @@ namespace VkNet.Categories
 		public VkCollection<Group> GetSubscriptions(long? userId = null
 													, int? count = null
 													, int? offset = null
-													, GroupsFields fields = null
-													, bool skipAuthorization = false)
+													, GroupsFields fields = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
@@ -192,7 +186,7 @@ namespace VkNet.Categories
 					, { "fields", fields }
 			};
 
-			return _vk.Call(methodName: "users.getSubscriptions", parameters: parameters, skipAuthorization: skipAuthorization)
+			return _vk.Call(methodName: "users.getSubscriptions", parameters: parameters)
 					.ToVkCollectionOf<Group>(selector: x => x);
 		}
 
@@ -211,7 +205,6 @@ namespace VkNet.Categories
 		/// </param>
 		/// <param name="fields"> Список дополнительных полей, которые необходимо вернуть </param>
 		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
-		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 		/// <returns> Список подписчиков </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/users.getFollowers
@@ -221,8 +214,7 @@ namespace VkNet.Categories
 												, int? count = null
 												, int? offset = null
 												, ProfileFields fields = null
-												, NameCase nameCase = null
-												, bool skipAuthorization = false)
+												, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => count);
@@ -237,7 +229,7 @@ namespace VkNet.Categories
 					, { "name_case", nameCase }
 			};
 
-			return _vk.Call(methodName: "users.getFollowers", parameters: parameters, skipAuthorization: skipAuthorization)
+			return _vk.Call(methodName: "users.getFollowers", parameters: parameters)
 					.ToVkCollectionOf(selector: x => x.ContainsKey(key: "id") ? x : new User { Id = x });
 		}
 
@@ -290,16 +282,15 @@ namespace VkNet.Categories
 		/// <param name="userId"> Идентификатор пользователя. </param>
 		/// <param name="fields"> Поля профиля, которые необходимо возвратить. </param>
 		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
-		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 		/// <returns> Объект, содержащий запрошенную информацию о пользователе. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/getProfiles
 		/// </remarks>
 		[Pure]
-		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null, bool skipAuthorization = false)
+		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
-			var users = Get(userIds: new[] { userId }, fields: fields, nameCase: nameCase, skipAuthorization: skipAuthorization);
+			var users = Get(userIds: new[] { userId }, fields: fields, nameCase: nameCase);
 
 			return users.FirstOrDefault();
 		}
@@ -310,7 +301,6 @@ namespace VkNet.Categories
 		/// <param name="screenName"> Короткое имя пользователя </param>
 		/// <param name="fields"> Поля профилей, которые необходимо возвратить. </param>
 		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
-		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 		/// <returns> Объект User </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/users.get
@@ -318,12 +308,11 @@ namespace VkNet.Categories
 		public User Get([NotNull]
 						string screenName
 						, ProfileFields fields = null
-						, NameCase nameCase = null
-						, bool skipAuthorization = false)
+						, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(expr: () => screenName);
 
-			var users = Get(screenNames: new[] { screenName }, fields: fields, nameCase: nameCase, skipAuthorization: skipAuthorization);
+			var users = Get(screenNames: new[] { screenName }, fields: fields, nameCase: nameCase);
 
 			return users.Count > 0 ? users[index: 0] : null;
 		}

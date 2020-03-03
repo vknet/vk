@@ -57,7 +57,6 @@ namespace VkNet.Abstractions
 		/// </param>
 		/// <param name="fields"> Поля профилей, которые необходимо возвратить. </param>
 		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
-		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 		/// <returns> Список объектов с запрошенной информацией о пользователях. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/users.get
@@ -65,8 +64,7 @@ namespace VkNet.Abstractions
 		Task<ReadOnlyCollection<User>> GetAsync([NotNull]
 												IEnumerable<long> userIds
 												, ProfileFields fields = null
-												, NameCase nameCase = null
-												, bool skipAuthorization = false);
+												, NameCase nameCase = null);
 
 		/// <summary>
 		/// Возвращает расширенную информацию о пользователях.
@@ -77,7 +75,6 @@ namespace VkNet.Abstractions
 		/// </param>
 		/// <param name="fields"> Поля профилей, которые необходимо возвратить. </param>
 		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
-		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 		/// <returns> Список объектов с запрошенной информацией о пользователях. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/users.get
@@ -85,8 +82,7 @@ namespace VkNet.Abstractions
 		Task<ReadOnlyCollection<User>> GetAsync([NotNull]
 												IEnumerable<string> screenNames
 												, ProfileFields fields = null
-												, NameCase nameCase = null
-												, bool skipAuthorization = false);
+												, NameCase nameCase = null);
 
 		/// <summary>
 		/// Возвращает список идентификаторов пользователей и групп, которые входят в
@@ -105,7 +101,6 @@ namespace VkNet.Abstractions
 		/// Список дополнительных полей для объектов user и group, которые необходимо
 		/// вернуть.
 		/// </param>
-		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 		/// <returns>
 		/// Пока возвращается только список групп.
 		/// </returns>
@@ -115,8 +110,7 @@ namespace VkNet.Abstractions
 		Task<VkCollection<Group>> GetSubscriptionsAsync(long? userId = null
 														, int? count = null
 														, int? offset = null
-														, GroupsFields fields = null
-														, bool skipAuthorization = false);
+														, GroupsFields fields = null);
 
 		/// <summary>
 		/// Возвращает список идентификаторов пользователей, которые являются подписчиками
@@ -133,7 +127,6 @@ namespace VkNet.Abstractions
 		/// </param>
 		/// <param name="fields"> Список дополнительных полей, которые необходимо вернуть </param>
 		/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
-		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 		/// <returns> Список подписчиков </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/users.getFollowers
@@ -142,8 +135,7 @@ namespace VkNet.Abstractions
 													, int? count = null
 													, int? offset = null
 													, ProfileFields fields = null
-													, NameCase nameCase = null
-													, bool skipAuthorization = false);
+													, NameCase nameCase = null);
 
 		/// <summary>
 		/// Позволяет пожаловаться на пользователя.
