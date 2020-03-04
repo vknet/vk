@@ -16,7 +16,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Добавляет администраторов и/или наблюдателей в рекламный кабинет.
 		/// </summary>
-		/// <param name = "addOfficeUsersParams">
+		/// <param name = "adsDataSpecification">
 		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
@@ -25,7 +25,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.addOfficeUsers
 		/// </remarks>
-		ReadOnlyCollection<bool> AddOfficeUsers(AddOfficeUsersParams addOfficeUsersParams);
+		ReadOnlyCollection<bool> AddOfficeUsers(AdsDataSpecification<UserSpecification> adsDataSpecification);
 
 		/// <summary>
 		/// Проверяет ссылку на рекламируемый объект.
@@ -65,29 +65,14 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Создает рекламные объявления.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "data">
-		/// Сериализованный JSON-массив объектов, описывающих создаваемые объявления. Описание объектов ad_specification см. ниже.
-		/// Пример значения data: [{
-		/// "campaign_id": 123456,
-		/// "ad_format": 1,
-		/// "cost_type": 0,
-		/// "cpc": 2.00,
-		/// "category1_id" : 5,
-		/// "title": "Test Title",
-		/// "link_url" : "https://mysite.com",
-		/// "name": "My ad"
-		/// }] обязательный параметр, строка
-		/// </param>
+		/// <param name="adsDataSpecification"></param>
 		/// <returns>
 		/// Возвращает массив объектов - ответов на каждый запрос в массиве data. Соответствующий объект в выходном массиве имеет свойство id, соответствующее id созданного объявления (или 0 в случае неудачи), а также, возможно, поля error_code и error_desc, описывающие ошибку, при ее возникновении. Наличие одновременно ненулевого id и error_code говорит о том, что объявление было создано, однако, возможно, не все параметры установлены (например, объявление не запущено).
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createAds
 		/// </remarks>
-		ReadOnlyCollection<object> CreateAds(long accountId, string data);
+		ReadOnlyCollection<CreateAdsResult> CreateAds(AdsDataSpecification<AdSpecification> adsDataSpecification);
 
 		/// <summary>
 		/// Создает рекламные кампании.
@@ -833,24 +818,14 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращает URL-адрес для загрузки фотографии рекламного объявления.
 		/// </summary>
-		/// <param name = "adFormat">
-		/// Формат объявления:
-		/// 1 — изображение и текст;
-		/// 2 — большое изображение;
-		/// 3 — эксклюзивный формат;
-		/// 4 — продвижение сообществ или приложений, квадратное изображение;
-		/// 5 — приложение в новостной ленте (устаревший);
-		/// 6 — мобильное приложение;
-		/// 9 — запись в сообществе.
-		/// обязательный параметр, целое число
-		/// </param>
+		/// <param name="getUploadUrlParams"></param>
 		/// <returns>
 		/// Возвращает url-адрес для загрузки изображения.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getUploadURl
 		/// </remarks>
-		Uri GetUploadUrl(long adFormat);
+		Uri GetUploadUrl(GetUploadUrlParams getUploadUrlParams);
 
 		/// <summary>
 		/// Возвращает URL-адрес для загрузки видеозаписи рекламного объявления.

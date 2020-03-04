@@ -7,7 +7,7 @@ namespace VkNet.Model.RequestParams.Ads
 	/// Параметры запроса ads.addOfficeUsers
 	/// </summary>
 	[Serializable]
-	public class AddOfficeUsersParams
+	public class AdsDataSpecification <TSpecification>
 	{
 		/// <summary>
 		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
@@ -19,6 +19,6 @@ namespace VkNet.Model.RequestParams.Ads
 		/// Массив объектов UserSpecification
 		/// </summary>
 		[JsonProperty("data")]
-		public UserSpecification[] Data { get; set; }
+		public TSpecification[] Data { get; set; }
 	}
 }

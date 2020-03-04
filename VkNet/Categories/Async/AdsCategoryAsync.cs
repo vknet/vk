@@ -13,9 +13,9 @@ namespace VkNet.Categories
 	public partial class AdsCategory
 	{
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<bool>> AddOfficeUsersAsync(AddOfficeUsersParams addOfficeUsersParams)
+		public Task<ReadOnlyCollection<bool>> AddOfficeUsersAsync(AdsDataSpecification<UserSpecification> adsDataSpecification)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => AddOfficeUsers(addOfficeUsersParams));
+			return TypeHelper.TryInvokeMethodAsync(() => AddOfficeUsers(adsDataSpecification));
 		}
 
 		/// <inheritdoc/>
@@ -25,9 +25,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> CreateAdsAsync(long accountId, string data)
+		public Task<ReadOnlyCollection<CreateAdsResult>> CreateAdsAsync(AdsDataSpecification<AdSpecification> adsDataSpecification)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => CreateAds(accountId, data));
+			return TypeHelper.TryInvokeMethodAsync(() => CreateAds(adsDataSpecification));
 		}
 
 		/// <inheritdoc/>
@@ -208,9 +208,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> GetUploadUrlAsync(long adFormat)
+		public Task<Uri> GetUploadUrlAsync(GetUploadUrlParams getUploadUrlParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetUploadUrl(adFormat));
+			return TypeHelper.TryInvokeMethodAsync(() => GetUploadUrl(getUploadUrlParams));
 		}
 
 		/// <inheritdoc/>

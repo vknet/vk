@@ -688,5 +688,17 @@ namespace VkNet.Utils
 		{
 			return response == null ? null : CarouselElementActionType.FromJson(response: response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator AdPlatform(VkResponse response)
+		{
+			return response == null ? null : AdPlatform.FromJson(response: response);
+		}
 	}
 }

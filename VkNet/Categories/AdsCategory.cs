@@ -28,13 +28,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<bool> AddOfficeUsers(AddOfficeUsersParams addOfficeUsersParams)
+		public ReadOnlyCollection<bool> AddOfficeUsers(AdsDataSpecification<UserSpecification> adsDataSpecification)
 		{
 			return _vk.Call<ReadOnlyCollection<bool>>("ads.addOfficeUsers",
 				new VkParameters
 				{
-					{ "account_id", addOfficeUsersParams.AccountId },
-					{ "data", JsonConvert.SerializeObject(addOfficeUsersParams.Data)}
+					{ "account_id", adsDataSpecification.AccountId },
+					{ "data", JsonConvert.SerializeObject(adsDataSpecification.Data)}
 				});
 		}
 
@@ -52,13 +52,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> CreateAds(long accountId, string data)
+		public ReadOnlyCollection<CreateAdsResult> CreateAds(AdsDataSpecification<AdSpecification> adsDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.createAds",
+			return _vk.Call<ReadOnlyCollection<CreateAdsResult>>("ads.createAds",
 				new VkParameters
 				{
-					{ "account_id", accountId },
-					{ "data", data }
+					{ "account_id", adsDataSpecification.AccountId },
+					{ "data", adsDataSpecification.Data }
 				});
 		}
 
@@ -339,15 +339,19 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri GetUploadUrl(long adFormat)
+		public Uri GetUploadUrl(GetUploadUrlParams getUploadUrlParams)
 		{
-			return _vk.Call<Uri>("ads.getUploadURl", new VkParameters { { "ad_format", adFormat } });
+			return _vk.Call<Uri>("ads.getUploadUrl", new VkParameters
+			{
+				{ "ad_format", getUploadUrlParams.AdFormat},
+				{ "icon", getUploadUrlParams.Icon }
+			});
 		}
 
 		/// <inheritdoc/>
 		public Uri GetVideoUploadUrl()
 		{
-			return _vk.Call<Uri>("ads.getVideoUploadURl", VkParameters.Empty);
+			return _vk.Call<Uri>("ads.getVideoUploadUrl", VkParameters.Empty);
 		}
 
 		/// <inheritdoc/>

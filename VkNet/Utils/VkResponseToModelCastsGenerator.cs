@@ -1511,5 +1511,53 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : UserSpecification.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator AdSpecification(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : AdSpecification.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator UploadUrlResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : UploadUrlResult.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator VideoUploadUrlResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : VideoUploadUrlResult.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator CreateAdsResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : CreateAdsResult.FromJson(response);
+		}
 	}
 }

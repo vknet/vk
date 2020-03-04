@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
@@ -16,7 +17,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Добавляет администраторов и/или наблюдателей в рекламный кабинет.
 		/// </summary>
-		/// <param name = "addOfficeUsersParams">
+		/// <param name = "adsDataSpecification">
 		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
 		/// </param>
 		/// <returns>
@@ -25,7 +26,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.addOfficeUsers
 		/// </remarks>
-		Task<ReadOnlyCollection<bool>> AddOfficeUsersAsync(AddOfficeUsersParams addOfficeUsersParams);
+		Task<ReadOnlyCollection<bool>> AddOfficeUsersAsync(AdsDataSpecification<UserSpecification> adsDataSpecification);
 
 		/// <summary>
 		/// Проверяет ссылку на рекламируемый объект.
@@ -87,7 +88,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createAds
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> CreateAdsAsync(long accountId, string data);
+		Task<ReadOnlyCollection<CreateAdsResult>> CreateAdsAsync(AdsDataSpecification<AdSpecification> adsDataSpecification);
 
 		/// <summary>
 		/// Создает рекламные кампании.
@@ -834,24 +835,14 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращает URL-адрес для загрузки фотографии рекламного объявления.
 		/// </summary>
-		/// <param name = "adFormat">
-		/// Формат объявления:
-		/// 1 — изображение и текст;
-		/// 2 — большое изображение;
-		/// 3 — эксклюзивный формат;
-		/// 4 — продвижение сообществ или приложений, квадратное изображение;
-		/// 5 — приложение в новостной ленте (устаревший);
-		/// 6 — мобильное приложение;
-		/// 9 — запись в сообществе.
-		/// обязательный параметр, целое число
-		/// </param>
+		/// <param name="getUploadUrlParams"></param>
 		/// <returns>
 		/// Возвращает url-адрес для загрузки изображения.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getUploadURl
 		/// </remarks>
-		Task<Uri> GetUploadUrlAsync(long adFormat);
+		Task<Uri> GetUploadUrlAsync(GetUploadUrlParams getUploadUrlParams);
 
 		/// <summary>
 		/// Возвращает URL-адрес для загрузки видеозаписи рекламного объявления.
