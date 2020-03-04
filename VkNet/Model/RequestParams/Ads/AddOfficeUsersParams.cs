@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model.RequestParams.Ads
 {
 	/// <summary>
-	/// Параметры запроса ads.createTargetGroup
+	/// Параметры запроса ads.addOfficeUsers
 	/// </summary>
 	[Serializable]
 	public class AddOfficeUsersParams
@@ -16,7 +16,7 @@ namespace VkNet.Model.RequestParams.Ads
 		public long AccountId { get; set; }
 
 		/// <summary>
-		/// Название аудитории ретаргетинга — строка до 64 символов. обязательный параметр, строка
+		/// Массив объектов UserSpecification
 		/// </summary>
 		[JsonProperty("data")]
 		public UserSpecification[] Data { get; set; }

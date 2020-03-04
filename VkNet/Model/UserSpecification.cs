@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -8,27 +7,26 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Методы этого класса позволяют производить действия с рекламными кабинетам
-	/// пользователя.
+	/// Массив объектов UserSpecification
 	/// </summary>
 	[Serializable]
 	public class UserSpecification
 	{
 		/// <summary>
-		/// Тип действия. Возможные значения.
+		/// Идентификатор пользователя, добавляемого как администратор/наблюдатель.
 		/// </summary>
 		[JsonProperty(propertyName: "user_id")]
 		public long UserId { get; set; }
 
 		/// <summary>
-		/// Тип действия. Возможные значения.
+		/// Флаг, описывающий тип полномочий
 		/// </summary>
 		[JsonProperty(propertyName: "role")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public AccessRole Role { get; set; }
 
 		/// <summary>
-		/// Тип действия. Возможные значения.
+		/// Идентификатор клиента
 		/// </summary>
 		[JsonProperty(propertyName: "client_id")]
 		public long ClientId{ get; set; }
