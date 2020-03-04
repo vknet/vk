@@ -77,36 +77,26 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Создает рекламные кампании.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "data">
-		/// Сериализованный JSON-массив объектов, описывающих создаваемые кампании. Описание объектов campaign_specification см. ниже. обязательный параметр, строка
-		/// </param>
+		/// <param name="campaignsDataSpecification"></param>
 		/// <returns>
 		/// Возвращает массив ответов на запросы в массиве data. Соответствующий объект в выходном массиве содержит id созданной кампании (ноль в случае неудачи), и поля error_code и error_desc в случае возникновения ошибки. Ненулевой id и наличие error_code 602 говорит о том, что кампания создана, но, возможно, некоторые поля не были ей присвоены по причине их некорректности.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createCampaigns
 		/// </remarks>
-		ReadOnlyCollection<object> CreateCampaigns(long accountId, string data);
+		ReadOnlyCollection<CreateCampaignResult> CreateCampaigns(AdsDataSpecification<CampaignSpecification> campaignsDataSpecification);
 
 		/// <summary>
 		/// Создаёт клиентов рекламного агентства.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Id рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "data">
-		/// Сериализованный JSON-массив объектов, описывающих создаваемые кампании. Описание объектов client_specification см. ниже. обязательный параметр, строка
-		/// </param>
+		/// <param name="clientDataSpecification"></param>
 		/// <returns>
 		/// Возвращает массив ответов на запросы в массиве data. Соответствующий объект в выходном массиве содержит id созданного клиента (ноль в случае неудачи), и поля error_code и error_desc в случае возникновения ошибки. Ненулевой id и наличие error_code 602 говорит о том, что клиент создан, но, возможно, некоторые поля не были ему присвоены по причине их некорректности.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createClients
 		/// </remarks>
-		ReadOnlyCollection<object> CreateClients(long accountId, string data);
+		ReadOnlyCollection<CreateClientResult> CreateClients(AdsDataSpecification<ClientSpecification> clientDataSpecification);
 
 		/// <summary>
 		/// Создаёт запрос на поиск похожей аудитории.

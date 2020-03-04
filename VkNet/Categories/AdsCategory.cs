@@ -63,24 +63,24 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> CreateCampaigns(long accountId, string data)
+		public ReadOnlyCollection<CreateCampaignResult> CreateCampaigns(AdsDataSpecification<CampaignSpecification> campaignDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.createCampaigns",
+			return _vk.Call<ReadOnlyCollection<CreateCampaignResult>>("ads.createCampaigns",
 				new VkParameters
 				{
-					{ "account_id", accountId },
-					{ "data", data }
+					{ "account_id", campaignDataSpecification.AccountId },
+					{ "data", campaignDataSpecification.Data }
 				});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> CreateClients(long accountId, string data)
+		public ReadOnlyCollection<CreateClientResult> CreateClients(AdsDataSpecification<ClientSpecification> clientDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.createClients",
+			return _vk.Call<ReadOnlyCollection<CreateClientResult>>("ads.createClients",
 				new VkParameters
 				{
-					{ "account_id", accountId },
-					{ "data", data }
+					{ "account_id", clientDataSpecification.AccountId },
+					{ "data", clientDataSpecification.Data }
 				});
 		}
 

@@ -31,15 +31,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> CreateCampaignsAsync(long accountId, string data)
+		public Task<ReadOnlyCollection<CreateCampaignResult>> CreateCampaignsAsync(AdsDataSpecification<CampaignSpecification> campaignsDataSpecification)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => CreateCampaigns(accountId, data));
+			return TypeHelper.TryInvokeMethodAsync(() => CreateCampaigns(campaignsDataSpecification));
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> CreateClientsAsync(long accountId, string data)
+		public Task<ReadOnlyCollection<CreateClientResult>> CreateClientsAsync(AdsDataSpecification<ClientSpecification> clientDataSpecification)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => CreateClients(accountId, data));
+			return TypeHelper.TryInvokeMethodAsync(() => CreateClients(clientDataSpecification));
 		}
 
 		/// <inheritdoc/>

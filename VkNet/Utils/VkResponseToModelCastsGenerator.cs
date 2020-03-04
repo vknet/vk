@@ -1559,5 +1559,53 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : CreateAdsResult.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator CreateCampaignResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : CreateCampaignResult.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator ClientSpecification(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : ClientSpecification.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator CampaignSpecification(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : CampaignSpecification.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator CreateClientResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : CreateClientResult.FromJson(response);
+		}
 	}
 }

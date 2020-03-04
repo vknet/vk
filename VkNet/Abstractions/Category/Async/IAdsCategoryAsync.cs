@@ -66,22 +66,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Создает рекламные объявления.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "data">
-		/// Сериализованный JSON-массив объектов, описывающих создаваемые объявления. Описание объектов ad_specification см. ниже.
-		/// Пример значения data: [{
-		/// "campaign_id": 123456,
-		/// "ad_format": 1,
-		/// "cost_type": 0,
-		/// "cpc": 2.00,
-		/// "category1_id" : 5,
-		/// "title": "Test Title",
-		/// "link_url" : "https://mysite.com",
-		/// "name": "My ad"
-		/// }] обязательный параметр, строка
-		/// </param>
+		/// <param name="adsDataSpecification"></param>
 		/// <returns>
 		/// Возвращает массив объектов - ответов на каждый запрос в массиве data. Соответствующий объект в выходном массиве имеет свойство id, соответствующее id созданного объявления (или 0 в случае неудачи), а также, возможно, поля error_code и error_desc, описывающие ошибку, при ее возникновении. Наличие одновременно ненулевого id и error_code говорит о том, что объявление было создано, однако, возможно, не все параметры установлены (например, объявление не запущено).
 		/// </returns>
@@ -93,36 +78,26 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Создает рекламные кампании.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "data">
-		/// Сериализованный JSON-массив объектов, описывающих создаваемые кампании. Описание объектов campaign_specification см. ниже. обязательный параметр, строка
-		/// </param>
+		/// <param name="campaignsDataSpecification"></param>
 		/// <returns>
 		/// Возвращает массив ответов на запросы в массиве data. Соответствующий объект в выходном массиве содержит id созданной кампании (ноль в случае неудачи), и поля error_code и error_desc в случае возникновения ошибки. Ненулевой id и наличие error_code 602 говорит о том, что кампания создана, но, возможно, некоторые поля не были ей присвоены по причине их некорректности.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createCampaigns
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> CreateCampaignsAsync(long accountId, string data);
+		Task<ReadOnlyCollection<CreateCampaignResult>> CreateCampaignsAsync(AdsDataSpecification<CampaignSpecification> campaignsDataSpecification);
 
 		/// <summary>
 		/// Создаёт клиентов рекламного агентства.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Id рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "data">
-		/// Сериализованный JSON-массив объектов, описывающих создаваемые кампании. Описание объектов client_specification см. ниже. обязательный параметр, строка
-		/// </param>
+		/// <param name="clientDataSpecification"></param>
 		/// <returns>
 		/// Возвращает массив ответов на запросы в массиве data. Соответствующий объект в выходном массиве содержит id созданного клиента (ноль в случае неудачи), и поля error_code и error_desc в случае возникновения ошибки. Ненулевой id и наличие error_code 602 говорит о том, что клиент создан, но, возможно, некоторые поля не были ему присвоены по причине их некорректности.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createClients
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> CreateClientsAsync(long accountId, string data);
+		Task<ReadOnlyCollection<CreateClientResult>> CreateClientsAsync(AdsDataSpecification<ClientSpecification> clientDataSpecification);
 
 		/// <summary>
 		/// Создаёт запрос на поиск похожей аудитории.
