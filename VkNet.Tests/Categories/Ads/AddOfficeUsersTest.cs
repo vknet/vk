@@ -34,13 +34,13 @@ namespace VkNet.Tests.Categories.Ads
 				Role = AccessRole.Reports
 			};
 
-			UserSpecification[] data = new[]
+			UserSpecification[] data =
 			{
 				userSpecification1,
 				userSpecification2
 			};
 
-			var officeUsers = Api.Ads.AddOfficeUsers(new AddOfficeUsersParams
+			var officeUsers = Api.Ads.AddOfficeUsers(new AdsDataSpecification<UserSpecification>
 			{
 				Data = data,
 				AccountId = 1605245430
