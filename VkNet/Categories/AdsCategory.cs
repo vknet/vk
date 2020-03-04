@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -27,13 +28,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> AddOfficeUsers(long accountId, string data)
+		public ReadOnlyCollection<bool> AddOfficeUsers(AddOfficeUsersParams addOfficeUsersParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.addOfficeUsers",
+			return _vk.Call<ReadOnlyCollection<bool>>("ads.addOfficeUsers",
 				new VkParameters
 				{
-					{ "account_id", accountId },
-					{ "data", data }
+					{ "account_id", addOfficeUsersParams.AccountId },
+					{ "data", JsonConvert.SerializeObject(addOfficeUsersParams.Data)}
 				});
 		}
 

@@ -13,9 +13,9 @@ namespace VkNet.Categories
 	public partial class AdsCategory
 	{
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> AddOfficeUsersAsync(long accountId, string data)
+		public Task<ReadOnlyCollection<bool>> AddOfficeUsersAsync(AddOfficeUsersParams addOfficeUsersParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => AddOfficeUsers(accountId, data));
+			return TypeHelper.TryInvokeMethodAsync(() => AddOfficeUsers(addOfficeUsersParams));
 		}
 
 		/// <inheritdoc/>

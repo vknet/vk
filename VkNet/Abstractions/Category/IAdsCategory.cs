@@ -16,11 +16,8 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Добавляет администраторов и/или наблюдателей в рекламный кабинет.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "data">
-		/// Сериализованный JSON-массив объектов, описывающих добавляемых администраторов. Описание объектов user_specification см. ниже. обязательный параметр, строка
+		/// <param name = "addOfficeUsersParams">
+		/// Входные параметры запроса.
 		/// </param>
 		/// <returns>
 		/// Возвращает массив значений - ответов на каждый запрос в массиве data. Соответствующее значение в выходном массиве равно true, если администратор успешно добавлен, и false в другом случае.
@@ -28,7 +25,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.addOfficeUsers
 		/// </remarks>
-		ReadOnlyCollection<object> AddOfficeUsers(long accountId, string data);
+		ReadOnlyCollection<bool> AddOfficeUsers(AddOfficeUsersParams addOfficeUsersParams);
 
 		/// <summary>
 		/// Проверяет ссылку на рекламируемый объект.
