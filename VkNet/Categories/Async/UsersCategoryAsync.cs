@@ -27,36 +27,32 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<User>> GetAsync(IEnumerable<long> userIds
 															, ProfileFields fields = null
-															, NameCase nameCase = null
-															, bool skipAuthorization = false)
+															, NameCase nameCase = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					Get(userIds: userIds, fields: fields, nameCase: nameCase, skipAuthorization: skipAuthorization));
+					Get(userIds: userIds, fields: fields, nameCase: nameCase));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<User>> GetAsync(IEnumerable<string> screenNames
 															, ProfileFields fields = null
-															, NameCase nameCase = null
-															, bool skipAuthorization = false)
+															, NameCase nameCase = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					Get(screenNames: screenNames, fields: fields, nameCase: nameCase, skipAuthorization: skipAuthorization));
+					Get(screenNames: screenNames, fields: fields, nameCase: nameCase));
 		}
 
 		/// <inheritdoc />
 		public Task<VkCollection<Group>> GetSubscriptionsAsync(long? userId = null
 																	, int? count = null
 																	, int? offset = null
-																	, GroupsFields fields = null
-																	, bool skipAuthorization = false)
+																	, GroupsFields fields = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
 					GetSubscriptions(userId: userId
 							, count: count
 							, offset: offset
-							, fields: fields
-							, skipAuthorization: skipAuthorization));
+							, fields: fields));
 		}
 
 		/// <inheritdoc />
@@ -64,16 +60,14 @@ namespace VkNet.Categories
 																, int? count = null
 																, int? offset = null
 																, ProfileFields fields = null
-																, NameCase nameCase = null
-																, bool skipAuthorization = false)
+																, NameCase nameCase = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
 					GetFollowers(userId: userId
 							, count: count
 							, offset: offset
 							, fields: fields
-							, nameCase: nameCase
-							, skipAuthorization: skipAuthorization));
+							, nameCase: nameCase));
 		}
 
 		/// <inheritdoc />
