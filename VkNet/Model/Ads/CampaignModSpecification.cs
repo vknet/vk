@@ -9,23 +9,16 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Массив объектов CampaignSpecification
+	/// Массив объектов CampaignModSpecification
 	/// </summary>
 	[Serializable]
-	public class CampaignSpecification
+	public class CampaignModSpecification
 	{
 		/// <summary>
 		/// Идентификатор кампании.
 		/// </summary>
-		[JsonProperty("client_id")]
-		public long ClientId { get; set; }
-
-		/// <summary>
-		/// Формат объявления
-		/// </summary>
-		[JsonProperty("type")]
-		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public CampaignType Type { get; set; }
+		[JsonProperty("campaign_id")]
+		public long CampaignId { get; set; }
 
 		/// <summary>
 		/// Название рекламной кампании.
@@ -70,17 +63,16 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
-		public static CampaignSpecification FromJson(VkResponse response)
+		public static CampaignModSpecification FromJson(VkResponse response)
 		{
-			return new CampaignSpecification
+			return new CampaignModSpecification
 			{
 
 				AllLimit = response["all_limit"],
 				DayLimit = response["day_limit"],
 				Status = response["status"],
 				Name = response["name"],
-				ClientId = response["repeat_video"],
-				Type = response["disclaimer_medical"],
+				CampaignId = response["campaign_id"],
 				StopTime = response["disclaimer_specialist"],
 				StartTime = response["disclaimer_supplements"]
 			};

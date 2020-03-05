@@ -254,9 +254,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> UpdateCampaignsAsync(long accountId, string data)
+		public Task<ReadOnlyCollection<UpdateCampaignsResult>> UpdateCampaignsAsync(AdsDataSpecificationParams<CampaignModSpecification> campaignModDataSpecification)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => UpdateCampaigns(accountId, data));
+			return TypeHelper.TryInvokeMethodAsync(() => UpdateCampaigns(campaignModDataSpecification));
 		}
 
 		/// <inheritdoc/>

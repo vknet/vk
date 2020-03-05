@@ -410,10 +410,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> UpdateCampaigns(long accountId, string data)
+		public ReadOnlyCollection<UpdateCampaignsResult> UpdateCampaigns(AdsDataSpecificationParams<CampaignModSpecification> campaignModDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.updateCampaigns",
-				new VkParameters { { "account_id", accountId }, { "data", data } });
+			return _vk.Call<ReadOnlyCollection<UpdateCampaignsResult>>("ads.updateCampaigns",
+				new VkParameters { { "account_id", campaignModDataSpecification.AccountId }, { "data", campaignModDataSpecification.Data } });
 		}
 
 		/// <inheritdoc/>
