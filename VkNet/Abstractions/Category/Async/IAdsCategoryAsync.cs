@@ -798,19 +798,14 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Удаляет администраторов и/или наблюдателей из рекламного кабинета.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "ids">
-		/// Сериализованный JSON-массив, содержащий id удаляемых администраторов. обязательный параметр, строка
-		/// </param>
+		/// <param name="removeOfficeUsersParams"></param>
 		/// <returns>
 		/// Возвращает массив значений - ответов на каждый запрос в массиве data. Соответствующее значение в выходном массиве равно true, если администратор успешно удален, и false в другом случае.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.removeOfficeUsers
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> RemoveOfficeUsersAsync(long accountId, string ids);
+		Task<ReadOnlyCollection<bool>> RemoveOfficeUsersAsync(RemoveOfficeUsersParams removeOfficeUsersParams);
 
 		/// <summary>
 		/// Принимает запрос на исключение контактов рекламодателя из аудитории ретаргетинга.
@@ -822,7 +817,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.removeTargetContacts
 		/// </remarks>
-		Task<bool> RemoveTargetContactsAsync(RemoveTargetContactsParams removeTargetContactsParams);
+		Task<RemoveTargetContactsResult> RemoveTargetContactsAsync(RemoveTargetContactsParams removeTargetContactsParams);
 
 		/// <summary>
 		/// Сохраняет результат поиска похожей аудитории.

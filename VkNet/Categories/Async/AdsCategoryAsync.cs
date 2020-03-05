@@ -224,13 +224,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> RemoveOfficeUsersAsync(long accountId, string ids)
+		public Task<ReadOnlyCollection<bool>> RemoveOfficeUsersAsync(RemoveOfficeUsersParams removeOfficeUsersParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => RemoveOfficeUsers(accountId, ids));
+			return TypeHelper.TryInvokeMethodAsync(() => RemoveOfficeUsers(removeOfficeUsersParams));
 		}
 
 		/// <inheritdoc/>
-		public Task<bool> RemoveTargetContactsAsync(RemoveTargetContactsParams removeTargetContactsParams)
+		public Task<RemoveTargetContactsResult> RemoveTargetContactsAsync(RemoveTargetContactsParams removeTargetContactsParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => RemoveTargetContacts(removeTargetContactsParams));
 		}

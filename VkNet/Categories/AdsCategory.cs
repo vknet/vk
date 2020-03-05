@@ -366,16 +366,16 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> RemoveOfficeUsers(long accountId, string ids)
+		public ReadOnlyCollection<bool> RemoveOfficeUsers(RemoveOfficeUsersParams removeOfficeUsersParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.removeOfficeUsers",
-				new VkParameters { { "account_id", accountId }, { "ids", ids } });
+			return _vk.Call<ReadOnlyCollection<bool>>("ads.removeOfficeUsers",
+				new VkParameters { { "account_id", removeOfficeUsersParams.AccountId }, { "ids", JsonConvert.SerializeObject(removeOfficeUsersParams.Ids) } });
 		}
 
 		/// <inheritdoc/>
-		public bool RemoveTargetContacts(RemoveTargetContactsParams removeTargetContactsParams)
+		public RemoveTargetContactsResult RemoveTargetContacts(RemoveTargetContactsParams removeTargetContactsParams)
 		{
-			return _vk.Call<bool>("ads.removeTargetContacts",
+			return _vk.Call<RemoveTargetContactsResult>("ads.removeTargetContacts",
 				new VkParameters
 				{
 					{ "account_id", removeTargetContactsParams.AccountId }, { "target_group_id", removeTargetContactsParams.TargetGroupId },
@@ -390,7 +390,8 @@ namespace VkNet.Categories
 				new VkParameters
 					{
 						{ "account_id", saveLookalikeRequestResultParams.AccountId }, { "request_id", saveLookalikeRequestResultParams.RequestId },
-						{ "level", saveLookalikeRequestResultParams.Level }, { "client_id", saveLookalikeRequestResultParams.ClientId } });
+						{ "level", saveLookalikeRequestResultParams.Level }, { "client_id", saveLookalikeRequestResultParams.ClientId }
+					});
 		}
 
 		/// <inheritdoc/>
