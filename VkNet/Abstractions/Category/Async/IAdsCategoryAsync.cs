@@ -175,44 +175,26 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Удаляет аудиторию ретаргетинга.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "targetGroupId">
-		/// Идентификатор аудитории. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "clientId">
-		/// Только для рекламных агентств.
-		/// id клиента, в рекламном кабинете которого будет удаляться аудитория. целое число
-		/// </param>
+		/// <param name="deleteTargetGroupParams"></param>
 		/// <returns>
 		/// В случае успеха метод возвратит 1.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteTargetGroup
 		/// </remarks>
-		Task<bool> DeleteTargetGroupAsync(long accountId, long targetGroupId, long? clientId = null);
+		Task<bool> DeleteTargetGroupAsync(DeleteTargetGroupParams deleteTargetGroupParams);
 
 		/// <summary>
 		/// Удаляет пиксель ретаргетинга.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "targetPixelId">
-		/// Идентификатор пикселя. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "clientId">
-		/// Только для рекламных агентств.
-		/// id клиента, в рекламном кабинете которого будет удаляться пиксель. целое число
-		/// </param>
+		/// <param name="deleteTargetPixelParams"></param>
 		/// <returns>
 		/// В случае успеха метод возвратит 1.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteTargetPixel
 		/// </remarks>
-		Task<bool> DeleteTargetPixelAsync(long accountId, long targetPixelId, long? clientId = null);
+		Task<bool> DeleteTargetPixelAsync(DeleteTargetPixelParams deleteTargetPixelParams);
 
 		/// <summary>
 		/// Возвращает список рекламных кабинетов.

@@ -78,15 +78,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<bool> DeleteTargetGroupAsync(long accountId, long targetGroupId, long? clientId = null)
+		public Task<bool> DeleteTargetGroupAsync(DeleteTargetGroupParams deleteTargetGroupParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => DeleteTargetGroup(accountId, targetGroupId, clientId));
+			return TypeHelper.TryInvokeMethodAsync(() => DeleteTargetGroup(deleteTargetGroupParams));
 		}
 
 		/// <inheritdoc/>
-		public Task<bool> DeleteTargetPixelAsync(long accountId, long targetPixelId, long? clientId = null)
+		public Task<bool> DeleteTargetPixelAsync(DeleteTargetPixelParams deleteTargetPixelParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => DeleteTargetPixel(accountId, targetPixelId, clientId));
+			return TypeHelper.TryInvokeMethodAsync(() => DeleteTargetPixel(deleteTargetPixelParams));
 		}
 
 		/// <inheritdoc/>

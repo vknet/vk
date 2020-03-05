@@ -142,17 +142,22 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public bool DeleteTargetGroup(long accountId, long targetGroupId, long? clientId = null)
+		public bool DeleteTargetGroup(DeleteTargetGroupParams deleteTargetGroupParams)
 		{
 			return _vk.Call<bool>("ads.deleteTargetGroup",
-				new VkParameters { { "account_id", accountId }, { "target_group_id", targetGroupId }, { "client_id", clientId } });
+				new VkParameters 
+				{ 
+					{ "account_id", deleteTargetGroupParams.AccountId }, { "target_group_id", deleteTargetGroupParams.TargetGroupId }, 
+					{ "client_id", deleteTargetGroupParams.ClientId } 
+				});
 		}
 
 		/// <inheritdoc/>
-		public bool DeleteTargetPixel(long accountId, long targetPixelId, long? clientId = null)
+		public bool DeleteTargetPixel(DeleteTargetPixelParams deleteTargetPixelParams)
 		{
 			return _vk.Call<bool>("ads.deleteTargetPixel",
-				new VkParameters { { "account_id", accountId }, { "target_pixel_id", targetPixelId }, { "client_id", clientId } });
+				new VkParameters { { "account_id", deleteTargetPixelParams.AccountId }, { "target_pixel_id", deleteTargetPixelParams.TargetPixelId },
+					{ "client_id", deleteTargetPixelParams.ClientId } });
 		}
 
 		/// <inheritdoc/>
