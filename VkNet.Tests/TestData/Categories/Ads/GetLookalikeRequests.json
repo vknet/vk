@@ -1,0 +1,48 @@
+﻿{
+  "response": {
+    "count": 1,
+    "items": [
+      {
+      "id": 37564,
+      "create_time": 1583411608,
+      "update_time": 1583413596,
+      "status": "save_done",
+      "scheduled_delete_time": 1584599392,
+      "source_type": "retargeting_group",
+      "source_retargeting_group_id": 29859236,
+      "source_name": "tdu",
+      "audience_count": 10000,
+      "save_audience_levels": [{
+        "level": 1,
+        "audience_count": 86000
+      }, {
+        "level": 2,
+        "audience_count": 173000
+      }, {
+        "level": 3,
+        "audience_count": 260000
+      }, {
+        "level": 4,
+        "audience_count": 347000
+      }, {
+        "level": 5,
+        "audience_count": 434000
+      }, {
+        "level": 6,
+        "audience_count": 521000
+      }, {
+        "level": 7,
+        "audience_count": 608000
+      }, {
+        "level": 8,
+        "audience_count": 695000
+      }, {
+        "level": 9,
+        "audience_count": 782000
+      }, {
+        "level": 10,
+        "audience_count": 869000
+      }]
+    }]
+  }
+}
