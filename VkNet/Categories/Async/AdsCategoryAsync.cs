@@ -60,21 +60,21 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> DeleteAdsAsync(long accountId, string ids)
+		public Task<ReadOnlyCollection<bool>> DeleteAdsAsync(DeleteAdsParams deleteAdsParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => DeleteAds(accountId, ids));
+			return TypeHelper.TryInvokeMethodAsync(() => DeleteAds(deleteAdsParams));
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> DeleteCampaignsAsync(long accountId, string ids)
+		public Task<ReadOnlyCollection<bool>> DeleteCampaignsAsync(DeleteCampaignsParams deleteCampaignsParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => DeleteCampaigns(accountId, ids));
+			return TypeHelper.TryInvokeMethodAsync(() => DeleteCampaigns(deleteCampaignsParams));
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> DeleteClientsAsync(long accountId, string ids)
+		public Task<ReadOnlyCollection<bool>> DeleteClientsAsync(DeleteClientsParams deleteClientsParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => DeleteClients(accountId, ids));
+			return TypeHelper.TryInvokeMethodAsync(() => DeleteClients(deleteClientsParams));
 		}
 
 		/// <inheritdoc/>

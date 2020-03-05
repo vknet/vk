@@ -124,53 +124,38 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Архивирует рекламные объявления.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "ids">
-		/// Сериализованный JSON-массив, содержащий идентификаторы объявлений. обязательный параметр, строка
-		/// </param>
+		/// <param name="deleteAdsParams"></param>
 		/// <returns>
 		/// Возвращает массив ответов на каждый запрос. Каждый ответ является либо 0, что означает успешное удаление, либо код ошибки.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteAds
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> DeleteAdsAsync(long accountId, string ids);
+		Task<ReadOnlyCollection<bool>> DeleteAdsAsync(DeleteAdsParams deleteAdsParams);
 
 		/// <summary>
 		/// Архивирует рекламные кампании.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "ids">
-		/// Сериализованный JSON-массив, содержащий id удаляемых кампаний. обязательный параметр, строка
-		/// </param>
+		/// <param name="deleteCampaignsParams"></param>
 		/// <returns>
 		/// Возвращает массив ответов на каждый запрос. Каждый ответ является либо 0, что означает успешное удаление, либо код ошибки.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteCampaigns
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> DeleteCampaignsAsync(long accountId, string ids);
+		Task<ReadOnlyCollection<bool>> DeleteCampaignsAsync(DeleteCampaignsParams deleteCampaignsParams);
 
 		/// <summary>
 		/// Архивирует клиентов рекламного агентства.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "ids">
-		/// Сериализованный JSON-массив, содержащий id удаляемых клиентов. обязательный параметр, строка
-		/// </param>
+		/// <param name="deleteClientsParams"></param>
 		/// <returns>
 		/// Возвращает массив ответов на каждый запрос. Каждый ответ является либо 0, что означает успешное удаление, либо код ошибки.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteClients
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> DeleteClientsAsync(long accountId, string ids);
+		Task<ReadOnlyCollection<bool>> DeleteClientsAsync(DeleteClientsParams deleteClientsParams);
 
 		/// <summary>
 		/// Удаляет аудиторию ретаргетинга.

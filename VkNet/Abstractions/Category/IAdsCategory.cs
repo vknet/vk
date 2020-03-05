@@ -124,53 +124,38 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Архивирует рекламные объявления.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "ids">
-		/// Сериализованный JSON-массив, содержащий идентификаторы объявлений. обязательный параметр, строка
-		/// </param>
+		/// <param name="deleteAdsParams"></param>
 		/// <returns>
 		/// Возвращает массив ответов на каждый запрос. Каждый ответ является либо 0, что означает успешное удаление, либо код ошибки.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteAds
 		/// </remarks>
-		ReadOnlyCollection<object> DeleteAds(long accountId, string ids);
+		ReadOnlyCollection<bool> DeleteAds(DeleteAdsParams deleteAdsParams);
 
 		/// <summary>
 		/// Архивирует рекламные кампании.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "ids">
-		/// Сериализованный JSON-массив, содержащий id удаляемых кампаний. обязательный параметр, строка
-		/// </param>
+		/// <param name="deleteCampaignsParams"></param>
 		/// <returns>
 		/// Возвращает массив ответов на каждый запрос. Каждый ответ является либо 0, что означает успешное удаление, либо код ошибки.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteCampaigns
 		/// </remarks>
-		ReadOnlyCollection<object> DeleteCampaigns(long accountId, string ids);
+		ReadOnlyCollection<bool> DeleteCampaigns(DeleteCampaignsParams deleteCampaignsParams);
 
 		/// <summary>
 		/// Архивирует клиентов рекламного агентства.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "ids">
-		/// Сериализованный JSON-массив, содержащий id удаляемых клиентов. обязательный параметр, строка
-		/// </param>
+		/// <param name="deleteClientsParams"></param>
 		/// <returns>
 		/// Возвращает массив ответов на каждый запрос. Каждый ответ является либо 0, что означает успешное удаление, либо код ошибки.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteClients
 		/// </remarks>
-		ReadOnlyCollection<object> DeleteClients(long accountId, string ids);
+		ReadOnlyCollection<bool> DeleteClients(DeleteClientsParams deleteClientsParams);
 
 		/// <summary>
 		/// Удаляет аудиторию ретаргетинга.

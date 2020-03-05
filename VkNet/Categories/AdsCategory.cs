@@ -122,33 +122,43 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> DeleteAds(long accountId, string ids)
+		public ReadOnlyCollection<bool> DeleteAds(DeleteAdsParams deleteAdsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.deleteAds", new VkParameters { { "account_id", accountId }, { "ids", ids } });
+			return _vk.Call<ReadOnlyCollection<bool>>("ads.deleteAds", new VkParameters
+			{
+				{ "account_id", deleteAdsParams.AccountId }, { "ids", JsonConvert.SerializeObject(deleteAdsParams.Ids) }
+			});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> DeleteCampaigns(long accountId, string ids)
+		public ReadOnlyCollection<bool> DeleteCampaigns(DeleteCampaignsParams deleteCampaignsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.deleteCampaigns",
-				new VkParameters { { "account_id", accountId }, { "ids", ids } });
+			return _vk.Call<ReadOnlyCollection<bool>>("ads.deleteCampaigns",
+				new VkParameters
+				{
+					{ "account_id", deleteCampaignsParams.AccountId },
+					{ "ids", JsonConvert.SerializeObject(deleteCampaignsParams.Ids)
+					} });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> DeleteClients(long accountId, string ids)
+		public ReadOnlyCollection<bool> DeleteClients(DeleteClientsParams deleteClientsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.deleteClients",
-				new VkParameters { { "account_id", accountId }, { "ids", ids } });
+			return _vk.Call<ReadOnlyCollection<bool>>("ads.deleteClients",
+				new VkParameters
+				{
+					{ "account_id", deleteClientsParams.AccountId }, { "ids", JsonConvert.SerializeObject(deleteClientsParams.Ids) }
+				});
 		}
 
 		/// <inheritdoc/>
 		public bool DeleteTargetGroup(DeleteTargetGroupParams deleteTargetGroupParams)
 		{
 			return _vk.Call<bool>("ads.deleteTargetGroup",
-				new VkParameters 
-				{ 
-					{ "account_id", deleteTargetGroupParams.AccountId }, { "target_group_id", deleteTargetGroupParams.TargetGroupId }, 
-					{ "client_id", deleteTargetGroupParams.ClientId } 
+				new VkParameters
+				{
+					{ "account_id", deleteTargetGroupParams.AccountId }, { "target_group_id", deleteTargetGroupParams.TargetGroupId },
+					{ "client_id", deleteTargetGroupParams.ClientId }
 				});
 		}
 
