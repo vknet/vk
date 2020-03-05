@@ -219,9 +219,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object GetBudget(long accountId)
+		public double GetBudget(long accountId)
 		{
-			return _vk.Call<object>("ads.getBudget", new VkParameters { { "account_id", accountId } });
+			return _vk.Call<double>("ads.getBudget", new VkParameters { { "account_id", accountId } });
 		}
 
 		/// <inheritdoc/>

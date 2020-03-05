@@ -114,7 +114,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<object> GetBudgetAsync(long accountId)
+		public Task<double> GetBudgetAsync(long accountId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetBudget(accountId));
 		}

@@ -346,7 +346,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getBudget
 		/// </remarks>
-		object GetBudget(long accountId);
+		double GetBudget(long accountId);
 
 		/// <summary>
 		/// Возвращает список кампаний рекламного кабинета.
