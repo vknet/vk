@@ -1775,5 +1775,17 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : RemoveTargetContactsResult.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator AdsTargetingResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : AdsTargetingResult.FromJson(response);
+		}
 	}
 }

@@ -102,13 +102,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> GetAdsLayoutAsync(GetAdsLayoutParams getAdsLayoutParams)
+		public Task<ReadOnlyCollection<object>> GetAdsLayoutAsync(GetAdsLayoutParams getAdsLayoutParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetAdsLayout(getAdsLayoutParams));
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> GetAdsTargetingAsync(GetAdsTargetingParams getAdsTargetingParams)
+		public Task<ReadOnlyCollection<AdsTargetingResult>> GetAdsTargetingAsync(GetAdsTargetingParams getAdsTargetingParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetAdsTargeting(getAdsTargetingParams));
 		}
@@ -120,11 +120,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<AdsCampaign>> GetCampaignsAsync(long accountId, IEnumerable<long> campaignIds,
-																		long? clientId = null,
-																		bool? includeDeleted = null)
+		public Task<ReadOnlyCollection<AdsCampaign>> GetCampaignsAsync(AdsGetCampaignsParams adsGetCampaignsParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetCampaigns(accountId, campaignIds, clientId, includeDeleted));
+			return TypeHelper.TryInvokeMethodAsync(() => GetCampaigns(adsGetCampaignsParams));
 		}
 
 		/// <inheritdoc/>

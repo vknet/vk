@@ -193,9 +193,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri GetAdsLayout(GetAdsLayoutParams getAdsLayoutParams)
+		public ReadOnlyCollection<object> GetAdsLayout(GetAdsLayoutParams getAdsLayoutParams)
 		{
-			return _vk.Call<Uri>("ads.getAdsLayout",
+			return _vk.Call<ReadOnlyCollection<object>>("ads.getAdsLayout",
 				new VkParameters
 				{
 					{ "account_id", getAdsLayoutParams.AccountId }, { "campaign_ids", getAdsLayoutParams.CampaignIds },
@@ -206,9 +206,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetAdsTargeting(GetAdsTargetingParams getAdsTargetingParams)
+		public ReadOnlyCollection<AdsTargetingResult> GetAdsTargeting(GetAdsTargetingParams getAdsTargetingParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getAdsTargeting",
+			return _vk.Call<ReadOnlyCollection<AdsTargetingResult>>("ads.getAdsTargeting",
 				new VkParameters
 				{
 					{ "account_id", getAdsTargetingParams.AccountId }, { "campaign_ids", getAdsTargetingParams.CampaignIds },
@@ -225,14 +225,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<AdsCampaign> GetCampaigns(long accountId, IEnumerable<long> campaignIds, long? clientId = null,
-															bool? includeDeleted = null)
+		public ReadOnlyCollection<AdsCampaign> GetCampaigns(AdsGetCampaignsParams adsGetCampaignsParams)
 		{
 			return _vk.Call<ReadOnlyCollection<AdsCampaign>>("ads.getCampaigns",
 				new VkParameters
 				{
-					{ "account_id", accountId }, { "campaign_ids", campaignIds }, { "client_id", clientId },
-					{ "include_deleted", includeDeleted }
+					{ "account_id", adsGetCampaignsParams.AccountId }, { "campaign_ids", adsGetCampaignsParams.CampaignIds },
+					{ "client_id", adsGetCampaignsParams.ClientId }, { "include_deleted", adsGetCampaignsParams.IncludeDeleted }
 				});
 		}
 

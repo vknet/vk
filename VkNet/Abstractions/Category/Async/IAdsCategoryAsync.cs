@@ -316,7 +316,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getAdsLayout
 		/// </remarks>
-		Task<Uri> GetAdsLayoutAsync(GetAdsLayoutParams getAdsLayoutParams);
+		Task<ReadOnlyCollection<object>> GetAdsLayoutAsync(GetAdsLayoutParams getAdsLayoutParams);
 
 		/// <summary>
 		/// Возвращает параметры таргетинга рекламных объявлений
@@ -332,7 +332,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getAdsTargeting
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> GetAdsTargetingAsync(GetAdsTargetingParams getAdsTargetingParams);
+		Task<ReadOnlyCollection<AdsTargetingResult>> GetAdsTargetingAsync(GetAdsTargetingParams getAdsTargetingParams);
 
 		/// <summary>
 		/// Возвращает текущий бюджет рекламного кабинета.
@@ -351,22 +351,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Возвращает список кампаний рекламного кабинета.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "campaignIds">
-		/// Фильтр выводимых рекламных кампаний.
-		/// Сериализованный JSON-массив, содержащий id кампаний. Выводиться будут только кампании, присутствующие в campaign_ids и являющиеся кампаниями указанного рекламного кабинета. Если параметр равен строке null, то выводиться будут все кампании. строка
-		/// </param>
-		/// <param name = "clientId">
-		/// Обязателен для рекламных агентств, в остальных случаях не используется. Идентификатор клиента, у которого запрашиваются рекламные кампании. целое число
-		/// </param>
-		/// <param name = "includeDeleted">
-		/// Флаг, задающий необходимость вывода архивных объявлений.
-		/// 0 — выводить только активные кампании;
-		/// 1 — выводить все кампании.
-		/// флаг, может принимать значения 1 или 0
-		/// </param>
+		/// <param name="adsGetCampaignsParams"></param>
 		/// <returns>
 		/// Возвращает массив объектов campaign, каждый из которых содержит следующие поля:
 		/// id — идентификатор кампании
@@ -392,8 +377,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getCampaigns
 		/// </remarks>
-		Task<ReadOnlyCollection<AdsCampaign>> GetCampaignsAsync(long accountId, IEnumerable<long> campaignIds, long? clientId = null,
-																bool? includeDeleted = null);
+		Task<ReadOnlyCollection<AdsCampaign>> GetCampaignsAsync(AdsGetCampaignsParams adsGetCampaignsParams);
 
 		/// <summary>
 		/// Позволяет получить возможные тематики рекламных объявлений.
