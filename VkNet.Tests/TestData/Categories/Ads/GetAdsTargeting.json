@@ -1,0 +1,11 @@
+﻿{
+  "response": [{
+    "id": "11021348",
+    "campaign_id": "1001980695",
+    "country": "3",
+    "cities": "2179",
+    "cities_not": "649",
+    "count": "1206",
+    "statuses": "7"
+  }]
+}
