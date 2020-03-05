@@ -786,26 +786,14 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Импортирует список контактов рекламодателя для учета зарегистрированных во ВКонтакте пользователей в аудитории ретаргетинга.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "targetGroupId">
-		/// Идентификатор аудитории таргетинга. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "contacts">
-		/// Список телефонов, email адресов или идентификаторов пользователей, указанных через запятую. Также принимаются их MD5-хеши. обязательный параметр, строка
-		/// </param>
-		/// <param name = "clientId">
-		/// Только для рекламных агентств.
-		/// id клиента, в рекламном кабинете которого находится аудитория. целое число
-		/// </param>
+		/// <param name="importTargetContactsParams"></param>
 		/// <returns>
 		/// Возвращает количество обработанных контактов.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.importTargetContacts
 		/// </remarks>
-		Task<object> ImportTargetContactsAsync(long accountId, long targetGroupId, string contacts, long? clientId = null);
+		Task<long> ImportTargetContactsAsync(ImportTargetContactsParams importTargetContactsParams);
 
 		/// <summary>
 		/// Удаляет администраторов и/или наблюдателей из рекламного кабинета.

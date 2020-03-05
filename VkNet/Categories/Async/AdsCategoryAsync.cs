@@ -218,9 +218,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<object> ImportTargetContactsAsync(long accountId, long targetGroupId, string contacts, long? clientId = null)
+		public Task<long> ImportTargetContactsAsync(ImportTargetContactsParams importTargetContactsParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => ImportTargetContacts(accountId, targetGroupId, contacts, clientId));
+			return TypeHelper.TryInvokeMethodAsync(() => ImportTargetContacts(importTargetContactsParams));
 		}
 
 		/// <inheritdoc/>

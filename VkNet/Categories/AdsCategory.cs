@@ -355,12 +355,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object ImportTargetContacts(long accountId, long targetGroupId, string contacts, long? clientId = null)
+		public long ImportTargetContacts(ImportTargetContactsParams importTargetContactsParams)
 		{
-			return _vk.Call<object>("ads.importTargetContacts",
+			return _vk.Call<long>("ads.importTargetContacts",
 				new VkParameters
 				{
-					{ "account_id", accountId }, { "target_group_id", targetGroupId }, { "contacts", contacts }, { "client_id", clientId }
+					{ "account_id", importTargetContactsParams.AccountId }, { "target_group_id", importTargetContactsParams.TargetGroupId },
+					{ "contacts", importTargetContactsParams.Contacts }, { "client_id", importTargetContactsParams.ClientId }
 				});
 		}
 
