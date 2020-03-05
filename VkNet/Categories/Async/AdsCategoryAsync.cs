@@ -230,9 +230,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<bool> RemoveTargetContactsAsync(long accountId, long targetGroupId, string contacts, long? clientId = null)
+		public Task<bool> RemoveTargetContactsAsync(RemoveTargetContactsParams removeTargetContactsParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => RemoveTargetContacts(accountId, targetGroupId, contacts, clientId));
+			return TypeHelper.TryInvokeMethodAsync(() => RemoveTargetContacts(removeTargetContactsParams));
 		}
 
 		/// <inheritdoc/>

@@ -373,12 +373,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public bool RemoveTargetContacts(long accountId, long targetGroupId, string contacts, long? clientId = null)
+		public bool RemoveTargetContacts(RemoveTargetContactsParams removeTargetContactsParams)
 		{
 			return _vk.Call<bool>("ads.removeTargetContacts",
 				new VkParameters
 				{
-					{ "account_id", accountId }, { "target_group_id", targetGroupId }, { "contacts", contacts }, { "client_id", clientId }
+					{ "account_id", removeTargetContactsParams.AccountId }, { "target_group_id", removeTargetContactsParams.TargetGroupId },
+					{ "contacts", removeTargetContactsParams.Contacts }, { "client_id", removeTargetContactsParams.ClientId }
 				});
 		}
 
