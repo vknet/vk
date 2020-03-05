@@ -316,7 +316,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getAdsLayout
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> GetAdsLayoutAsync(GetAdsLayoutParams getAdsLayoutParams);
+		Task<ReadOnlyCollection<Layout>> GetAdsLayoutAsync(GetAdsLayoutParams getAdsLayoutParams);
 
 		/// <summary>
 		/// Возвращает параметры таргетинга рекламных объявлений

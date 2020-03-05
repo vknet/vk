@@ -33,7 +33,7 @@ namespace VkNet.Model.RequestParams.Ads
 		/// Для рекламных агентств. Идентификатор клиента, у которого запрашиваются рекламные объявления. целое число
 		/// </summary>
 		[JsonProperty("client_id")]
-		public long ClientId { get; set; }
+		public long? ClientId { get; set; }
 
 		/// <summary>
 		/// Флаг, задающий необходимость вывода архивных объявлений.
@@ -42,18 +42,18 @@ namespace VkNet.Model.RequestParams.Ads
 		/// флаг, может принимать значения 1 или 0
 		/// </summary>
 		[JsonProperty("include_deleted")]
-		public bool IncludeDeleted { get; set; }
+		public bool? IncludeDeleted { get; set; }
 
 		/// <summary>
 		/// Ограничение на количество возвращаемых объявлений. Используется, только если параметр ad_ids равен null, а параметр campaign_ids содержит id только одной кампании. целое число
 		/// </summary>
 		[JsonProperty("limit")]
-		public long Limit { get; set; }
+		public long? Limit { get; set; }
 
 		/// <summary>
 		/// Смещение. Используется в тех же случаях, что и параметр limit. целое число
 		/// </summary>
 		[JsonProperty("offset")]
-		public long Offset { get; set; }
+		public long? Offset { get; set; }
 	}
 }

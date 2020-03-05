@@ -193,13 +193,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetAdsLayout(GetAdsLayoutParams getAdsLayoutParams)
+		public ReadOnlyCollection<Layout> GetAdsLayout(GetAdsLayoutParams getAdsLayoutParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getAdsLayout",
+			return _vk.Call<ReadOnlyCollection<Layout>>("ads.getAdsLayout",
 				new VkParameters
 				{
-					{ "account_id", getAdsLayoutParams.AccountId }, { "campaign_ids", getAdsLayoutParams.CampaignIds },
-					{ "ad_ids", getAdsLayoutParams.AdIds }, { "client_id", getAdsLayoutParams.ClientId },
+					{ "account_id", getAdsLayoutParams.AccountId }, { "campaign_ids", JsonConvert.SerializeObject(getAdsLayoutParams.CampaignIds) },
+					{ "ad_ids", JsonConvert.SerializeObject(getAdsLayoutParams.AdIds) }, { "client_id", getAdsLayoutParams.ClientId },
 					{ "include_deleted", getAdsLayoutParams.IncludeDeleted }, { "limit", getAdsLayoutParams.Limit },
 					{ "offset", getAdsLayoutParams.Offset }
 				});
