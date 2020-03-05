@@ -105,7 +105,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createTargetGroup
 		/// </remarks>
-		object CreateTargetGroup(CreateTargetGroupParams createTargetGroupParams);
+		CreateTargetGroupResult CreateTargetGroup(CreateTargetGroupParams createTargetGroupParams);
 
 		/// <summary>
 		/// Создаёт пиксель ретаргетинга.

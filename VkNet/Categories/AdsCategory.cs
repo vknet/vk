@@ -95,9 +95,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object CreateTargetGroup(CreateTargetGroupParams createTargetGroupParams)
+		public CreateTargetGroupResult CreateTargetGroup(CreateTargetGroupParams createTargetGroupParams)
 		{
-			return _vk.Call<object>("ads.createTargetGroup",
+			return _vk.Call<CreateTargetGroupResult>("ads.createTargetGroup",
 									new VkParameters
 									{
 										{ "account_id", createTargetGroupParams.AccountId },

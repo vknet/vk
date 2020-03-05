@@ -1667,5 +1667,17 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : CreateTargetPixelResult.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator CreateTargetGroupResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : CreateTargetGroupResult.FromJson(response);
+		}
 	}
 }
