@@ -44,6 +44,6 @@ namespace VkNet.Model.RequestParams.Ads
 		/// id клиента, в рекламном кабинете которого находится пиксель. целое число
 		/// </summary>
 		[JsonProperty("client_id")]
-		public long ClientId { get; set; }
+		public long? ClientId { get; set; }
 	}
 }
