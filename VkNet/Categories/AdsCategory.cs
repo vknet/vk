@@ -251,9 +251,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetLookalikeRequests(GetLookalikeRequestsParams getLookalikeRequestsParams)
+		public GetLookalikeRequestsResult GetLookalikeRequests(GetLookalikeRequestsParams getLookalikeRequestsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getLookalikeRequests",
+			return _vk.Call<GetLookalikeRequestsResult>("ads.getLookalikeRequests",
 				new VkParameters
 				{
 					{ "account_id", getLookalikeRequestsParams.AccountId },

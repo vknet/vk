@@ -1619,5 +1619,41 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : CreateLookALikeRequestResult.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator SaveAudienceLevels(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : SaveAudienceLevels.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator LookalikeRequestItem(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : LookalikeRequestItem.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator GetLookalikeRequestsResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : GetLookalikeRequestsResult.FromJson(response);
+		}
 	}
 }

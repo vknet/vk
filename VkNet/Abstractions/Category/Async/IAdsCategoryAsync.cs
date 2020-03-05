@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
 
@@ -31,24 +29,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Проверяет ссылку на рекламируемый объект.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "linkType">
-		/// Вид рекламируемого объекта:
-		/// community — сообщество;
-		/// post — запись в сообществе;
-		/// application — приложение ВКонтакте;
-		/// video — видеозапись;
-		/// site — внешний сайт.
-		/// обязательный параметр, строка
-		/// </param>
-		/// <param name = "linkUrl">
-		/// Ссылка на рекламируемый объект. обязательный параметр, строка
-		/// </param>
-		/// <param name = "campaignId">
-		/// Id кампании, в которой будет создаваться объявление. целое число
-		/// </param>
+		/// <param name="checkLinkParams"></param>
 		/// <returns>
 		/// Возвращается структура со следующими полями:
 		/// status — статус ссылки:
@@ -102,19 +83,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Создаёт запрос на поиск похожей аудитории.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "sourceType">
-		/// Тип источника исходной аудитории. На данный момент может принимать единственное значение retargeting_group. строка, обязательный параметр
-		/// </param>
-		/// <param name = "clientId">
-		/// Только для рекламных агентств.
-		/// идентификатор клиента, для которого будет создаваться аудитория. целое число
-		/// </param>
-		/// <param name = "retargetingGroupId">
-		/// Только для источника типа retargeting_group: идентификатор аудитории ретаргетинга.
-		/// </param>
+		/// <param name="createLookALikeRequestParams"></param>
 		/// <returns>
 		/// Поле request_id, в котором указан идентификатор созданного запроса на поиск похожей аудитории.
 		/// </returns>
@@ -591,7 +560,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getLookalikeRequests
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> GetLookalikeRequestsAsync(GetLookalikeRequestsParams getLookalikeRequestsParams);
+		Task<GetLookalikeRequestsResult> GetLookalikeRequestsAsync(GetLookalikeRequestsParams getLookalikeRequestsParams);
 
 		/// <summary>
 		/// Возвращает список администраторов и наблюдателей рекламного кабинета.
@@ -897,19 +866,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Сохраняет результат поиска похожей аудитории.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "requestId">
-		/// Идентификатор запроса на поиск похожей аудитории. Получить список всех запросов на поиск похожей аудитории для данного кабинета можно с помощью ads.getLookalikeRequests обязательный параметр, целое число
-		/// </param>
-		/// <param name = "level">
-		/// Уровень конкретного размера похожей аудитории для сохранения. Получить список всех доступных размеров аудиторий можно с помощью ads.getLookalikeRequests. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "clientId">
-		/// Только для рекламных агентств.
-		/// идентификатор клиента, для которого будут сохраняться аудитория. целое число
-		/// </param>
+		/// <param name="saveLookalikeRequestResultParams"></param>
 		/// <returns>
 		/// Возвращает объект с полями:
 		///
