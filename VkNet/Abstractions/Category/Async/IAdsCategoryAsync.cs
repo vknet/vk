@@ -903,19 +903,14 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Редактирует клиентов рекламного агентства.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "data">
-		/// Сериализованный JSON-массив объектов, описывающих изменения в клиентах. Описание объектов client_mod_specification см. ниже. обязательный параметр, строка
-		/// </param>
+		/// <param name="clientModDataSpecification"></param>
 		/// <returns>
 		/// Возвращает массив ответов на каждый запрос в массиве data. Соответствующий объект в выходном массиве содержит id изменяемого клиента и, в случае возникновения ошибки, поля error_code и error_desc.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.updateClients
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> UpdateClientsAsync(long accountId, string data);
+		Task<ReadOnlyCollection<UpdateClientsResult>> UpdateClientsAsync(AdsDataSpecificationParams<ClientModSpecification> clientModDataSpecification);
 
 		/// <summary>
 		/// Редактирует аудиторию ретаргетинга.

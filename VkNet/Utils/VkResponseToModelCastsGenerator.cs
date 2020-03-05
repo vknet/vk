@@ -1739,5 +1739,29 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : UpdateCampaignsResult.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator ClientModSpecification(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : ClientModSpecification.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator UpdateClientsResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : UpdateClientsResult.FromJson(response);
+		}
 	}
 }

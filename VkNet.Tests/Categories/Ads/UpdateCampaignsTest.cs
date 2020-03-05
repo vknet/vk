@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
