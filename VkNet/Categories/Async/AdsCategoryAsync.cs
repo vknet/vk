@@ -92,7 +92,7 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetAccounts());
+			return TypeHelper.TryInvokeMethodAsync(GetAccounts);
 		}
 
 		/// <inheritdoc/>
@@ -248,9 +248,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> UpdateAdsAsync(long accountId, string data)
+		public Task<ReadOnlyCollection<UpdateAdsResult>> UpdateAdsAsync(AdsDataSpecificationParams<AdEditSpecification> adEditDataSpecification)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => UpdateAds(accountId, data));
+			return TypeHelper.TryInvokeMethodAsync(() => UpdateAds(adEditDataSpecification));
 		}
 
 		/// <inheritdoc/>
