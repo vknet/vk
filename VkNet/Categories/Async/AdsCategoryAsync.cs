@@ -237,9 +237,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<object> SaveLookalikeRequestResultAsync(long accountId, long requestId, long level, long? clientId = null)
+		public Task<SaveLookALikeRequestResultResult> SaveLookalikeRequestResultAsync(SaveLookalikeRequestResultParams saveLookalikeRequestResultParams )
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => SaveLookalikeRequestResult(accountId, requestId, level, clientId));
+			return TypeHelper.TryInvokeMethodAsync(() => SaveLookalikeRequestResult(saveLookalikeRequestResultParams));
 		}
 
 		/// <inheritdoc/>

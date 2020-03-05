@@ -381,11 +381,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object SaveLookalikeRequestResult(long accountId, long requestId, long level, long? clientId = null)
+		public SaveLookALikeRequestResultResult SaveLookalikeRequestResult(SaveLookalikeRequestResultParams saveLookalikeRequestResultParams)
 		{
-			return _vk.Call<object>("ads.saveLookalikeRequestResult",
+			return _vk.Call<SaveLookALikeRequestResultResult>("ads.saveLookalikeRequestResult",
 				new VkParameters
-					{ { "account_id", accountId }, { "request_id", requestId }, { "level", level }, { "client_id", clientId } });
+					{
+						{ "account_id", saveLookalikeRequestResultParams.AccountId }, { "request_id", saveLookalikeRequestResultParams.RequestId },
+						{ "level", saveLookalikeRequestResultParams.Level }, { "client_id", saveLookalikeRequestResultParams.ClientId } });
 		}
 
 		/// <inheritdoc/>

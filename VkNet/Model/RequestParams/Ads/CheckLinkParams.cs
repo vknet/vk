@@ -35,7 +35,7 @@ namespace VkNet.Model.RequestParams.Ads
 		///
 		/// </summary>
 		[JsonProperty(propertyName: "campaign_id")]
-		public long CampaignId { get; set; }
+		public long? CampaignId { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.

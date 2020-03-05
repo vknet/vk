@@ -919,7 +919,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.saveLookalikeRequestResult
 		/// </remarks>
-		Task<object> SaveLookalikeRequestResultAsync(long accountId, long requestId, long level, long? clientId = null);
+		Task<SaveLookALikeRequestResultResult> SaveLookalikeRequestResultAsync(SaveLookalikeRequestResultParams saveLookalikeRequestResultParams);
 
 		/// <summary>
 		/// Предоставляет доступ к аудитории ретаргетинга другому рекламному кабинету. В результате выполнения метода возвращается идентификатор аудитории для указанного кабинета.

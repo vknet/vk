@@ -16,7 +16,7 @@ namespace VkNet.Model
 		/// Идентификатор клиента, для которого будет создаваться аудитория.
 		/// </summary>
 		[JsonProperty("client_id")]
-		public long ClientId { get; set; }
+		public long? ClientId { get; set; }
 
 		/// <summary>
 		/// Идентификатор рекламного кабинета.
@@ -35,7 +35,7 @@ namespace VkNet.Model
 		/// Идентификатор аудитории ретаргетинга.
 		/// </summary>
 		[JsonProperty("retargeting_group_id")]
-		public long RetargetingGroupId { get; set; }
+		public long? RetargetingGroupId { get; set; }
 
 		/// <summary>
 		/// Привести к типу VkParameters.

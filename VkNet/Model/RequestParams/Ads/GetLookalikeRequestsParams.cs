@@ -36,13 +36,13 @@ namespace VkNet.Model.RequestParams.Ads
 		/// идентификатор клиента, для которого возвращаются запросы. целое число
 		/// </summary>
 		[JsonProperty("client_id")]
-		public long ClientId { get; set; }
+		public long? ClientId { get; set; }
 
 		/// <summary>
 		/// Смещение. Используется в связке с параметром limit. целое число, минимальное значение 0, по умолчанию 0
 		/// </summary>
 		[JsonProperty("offset")]
-		public long Offset { get; set; }
+		public long? Offset { get; set; }
 
 		/// <summary>
 		/// Ограничение на количество возвращаемых запросов на поиск похожей аудитории. Используется в связке с параметром offset.
@@ -50,6 +50,6 @@ namespace VkNet.Model.RequestParams.Ads
 		/// целое число, по умолчанию 10, минимальное значение 0, максимальное значение 200
 		/// </summary>
 		[JsonProperty("limit")]
-		public long Limit { get; set; }
+		public long? Limit { get; set; }
 	}
 }
