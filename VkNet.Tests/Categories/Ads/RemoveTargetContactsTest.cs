@@ -26,7 +26,7 @@ namespace VkNet.Tests.Categories.Ads
 				TargetGroupId = 29859003
 			});
 
-			Assert.That(result, Is.EqualTo(2));
+			Assert.That(result.Result, Is.EqualTo(true));
 		}
 	}
 }
