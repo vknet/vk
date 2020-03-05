@@ -54,9 +54,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<object> CreateTargetPixelAsync(long accountId, string name, string domain, long categoryId, long? clientId = null)
+		public Task<CreateTargetPixelResult> CreateTargetPixelAsync(CreateTargetPixelParams createTargetPixelParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => CreateTargetPixel(accountId, name, domain, categoryId, clientId));
+			return TypeHelper.TryInvokeMethodAsync(() => CreateTargetPixel(createTargetPixelParams));
 		}
 
 		/// <inheritdoc/>

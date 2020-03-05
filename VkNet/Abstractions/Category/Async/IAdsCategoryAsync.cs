@@ -110,22 +110,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Создаёт пиксель ретаргетинга.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "name">
-		/// Название пикселя — строка до 64 символов. обязательный параметр, строка
-		/// </param>
-		/// <param name = "domain">
-		/// Домен сайта, на котором будет размещен пиксель. строка
-		/// </param>
-		/// <param name = "categoryId">
-		/// Идентификатор категории сайта, на котором будет размещен пиксель. Для получения списка возможных идентификаторов следует использовать метод ads.getSuggestions (раздел interest_categories_v2). обязательный параметр, целое число
-		/// </param>
-		/// <param name = "clientId">
-		/// Только для рекламных агентств.
-		/// id клиента, в рекламном кабинете которого будет создаваться пиксель. целое число
-		/// </param>
+		/// <param name="createTargetPixelParams"></param>
 		/// <returns>
 		/// Возвращает объект со следующими полями:
 		/// id — идентификатор пикселя
@@ -134,7 +119,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createTargetPixel
 		/// </remarks>
-		Task<object> CreateTargetPixelAsync(long accountId, string name, string domain, long categoryId, long? clientId = null);
+		Task<CreateTargetPixelResult> CreateTargetPixelAsync(CreateTargetPixelParams createTargetPixelParams);
 
 		/// <summary>
 		/// Архивирует рекламные объявления.

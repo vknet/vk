@@ -62,13 +62,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<CreateCampaignResult> CreateCampaigns(AdsDataSpecificationParams<CampaignSpecification> campaignDataSpecification)
+		public ReadOnlyCollection<CreateCampaignResult> CreateCampaigns(AdsDataSpecificationParams<CampaignSpecification> campaignsDataSpecification)
 		{
 			return _vk.Call<ReadOnlyCollection<CreateCampaignResult>>("ads.createCampaigns",
 				new VkParameters
 				{
-					{ "account_id", campaignDataSpecification.AccountId },
-					{ "data", JsonConvert.SerializeObject(campaignDataSpecification.Data) }
+					{ "account_id", campaignsDataSpecification.AccountId },
+					{ "data", JsonConvert.SerializeObject(campaignsDataSpecification.Data) }
 				});
 		}
 
@@ -110,13 +110,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object CreateTargetPixel(long accountId, string name, string domain, long categoryId, long? clientId = null)
+		public CreateTargetPixelResult CreateTargetPixel(CreateTargetPixelParams createTargetPixelParams)
 		{
-			return _vk.Call<object>("ads.createTargetPixel",
+			return _vk.Call<CreateTargetPixelResult>("ads.createTargetPixel",
 				new VkParameters
 				{
-					{ "account_id", accountId }, { "name", name }, { "domain", domain }, { "category_id", categoryId },
-					{ "client_id", clientId }
+					{ "account_id", createTargetPixelParams.AccountId }, { "name", createTargetPixelParams.Name },
+					{ "domain", createTargetPixelParams.Domain }, { "category_id", createTargetPixelParams.CategoryId },
+					{ "client_id", createTargetPixelParams.ClientId }
 				});
 		}
 
