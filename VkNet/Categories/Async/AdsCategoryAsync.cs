@@ -13,40 +13,39 @@ namespace VkNet.Categories
 	public partial class AdsCategory
 	{
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<bool>> AddOfficeUsersAsync(AdsDataSpecification<UserSpecification> adsDataSpecification)
+		public Task<ReadOnlyCollection<bool>> AddOfficeUsersAsync(AdsDataSpecificationParams<UserSpecification> adsDataSpecification)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => AddOfficeUsers(adsDataSpecification));
 		}
 
 		/// <inheritdoc/>
-		public Task<LinkStatus> CheckLinkAsync(long accountId, AdsLinkType linkType, string linkUrl, long? campaignId = null)
+		public Task<LinkStatus> CheckLinkAsync(CheckLinkParams checkLinkParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => CheckLink(accountId, linkType, linkUrl, campaignId));
+			return TypeHelper.TryInvokeMethodAsync(() => CheckLink(checkLinkParams));
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<CreateAdsResult>> CreateAdsAsync(AdsDataSpecification<AdSpecification> adsDataSpecification)
+		public Task<ReadOnlyCollection<CreateAdsResult>> CreateAdsAsync(AdsDataSpecificationParams<AdSpecification> adsDataSpecification)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => CreateAds(adsDataSpecification));
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<CreateCampaignResult>> CreateCampaignsAsync(AdsDataSpecification<CampaignSpecification> campaignsDataSpecification)
+		public Task<ReadOnlyCollection<CreateCampaignResult>> CreateCampaignsAsync(AdsDataSpecificationParams<CampaignSpecification> campaignsDataSpecification)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => CreateCampaigns(campaignsDataSpecification));
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<CreateClientResult>> CreateClientsAsync(AdsDataSpecification<ClientSpecification> clientDataSpecification)
+		public Task<ReadOnlyCollection<CreateClientResult>> CreateClientsAsync(AdsDataSpecificationParams<ClientSpecification> clientDataSpecification)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => CreateClients(clientDataSpecification));
 		}
 
 		/// <inheritdoc/>
-		public Task<object> CreateLookalikeRequestAsync(long accountId, string sourceType, long? clientId = null,
-														object retargetingGroupId = null)
+		public Task<CreateLookALikeRequestResult> CreateLookalikeRequestAsync(CreateLookALikeRequestParams createLookALikeRequestParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => CreateLookalikeRequest(accountId, sourceType, clientId, retargetingGroupId));
+			return TypeHelper.TryInvokeMethodAsync(() => CreateLookalikeRequest(createLookALikeRequestParams));
 		}
 
 		/// <inheritdoc/>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Utils;
@@ -28,7 +27,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<bool> AddOfficeUsers(AdsDataSpecification<UserSpecification> adsDataSpecification)
+		public ReadOnlyCollection<bool> AddOfficeUsers(AdsDataSpecificationParams<UserSpecification> adsDataSpecification)
 		{
 			return _vk.Call<ReadOnlyCollection<bool>>("ads.addOfficeUsers",
 				new VkParameters
@@ -39,59 +38,59 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public LinkStatus CheckLink(long accountId, AdsLinkType linkType, string linkUrl, long? campaignId = null)
+		public LinkStatus CheckLink(CheckLinkParams checkLinkParams)
 		{
 			return _vk.Call<LinkStatus>("ads.checkLink",
 				new VkParameters
 				{
-					{ "account_id", accountId },
-					{ "link_type", linkType },
-					{ "link_url", linkUrl },
-					{ "campaign_id", campaignId }
+					{ "account_id", checkLinkParams.AccountId },
+					{ "link_type", checkLinkParams.LinkType },
+					{ "link_url", checkLinkParams.LinkUrl },
+					{ "campaign_id", checkLinkParams.CampaignId }
 				});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<CreateAdsResult> CreateAds(AdsDataSpecification<AdSpecification> adsDataSpecification)
+		public ReadOnlyCollection<CreateAdsResult> CreateAds(AdsDataSpecificationParams<AdSpecification> adsDataSpecification)
 		{
 			return _vk.Call<ReadOnlyCollection<CreateAdsResult>>("ads.createAds",
 				new VkParameters
 				{
 					{ "account_id", adsDataSpecification.AccountId },
-					{ "data", adsDataSpecification.Data }
+					{ "data", JsonConvert.SerializeObject(adsDataSpecification.Data) }
 				});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<CreateCampaignResult> CreateCampaigns(AdsDataSpecification<CampaignSpecification> campaignDataSpecification)
+		public ReadOnlyCollection<CreateCampaignResult> CreateCampaigns(AdsDataSpecificationParams<CampaignSpecification> campaignDataSpecification)
 		{
 			return _vk.Call<ReadOnlyCollection<CreateCampaignResult>>("ads.createCampaigns",
 				new VkParameters
 				{
 					{ "account_id", campaignDataSpecification.AccountId },
-					{ "data", campaignDataSpecification.Data }
+					{ "data", JsonConvert.SerializeObject(campaignDataSpecification.Data) }
 				});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<CreateClientResult> CreateClients(AdsDataSpecification<ClientSpecification> clientDataSpecification)
+		public ReadOnlyCollection<CreateClientResult> CreateClients(AdsDataSpecificationParams<ClientSpecification> clientDataSpecification)
 		{
 			return _vk.Call<ReadOnlyCollection<CreateClientResult>>("ads.createClients",
 				new VkParameters
 				{
 					{ "account_id", clientDataSpecification.AccountId },
-					{ "data", clientDataSpecification.Data }
+					{ "data", JsonConvert.SerializeObject(clientDataSpecification.Data) }
 				});
 		}
 
 		/// <inheritdoc/>
-		public object CreateLookalikeRequest(long accountId, string sourceType, long? clientId = null, object retargetingGroupId = null)
+		public CreateLookALikeRequestResult CreateLookalikeRequest(CreateLookALikeRequestParams createLookALikeRequestParams)
 		{
-			return _vk.Call<object>("ads.createLookalikeRequest",
+			return _vk.Call<CreateLookALikeRequestResult>("ads.createLookalikeRequest",
 				new VkParameters
 				{
-					{ "account_id", accountId }, { "source_type", sourceType }, { "client_id", clientId },
-					{ "retargeting_group_id", retargetingGroupId }
+					{ "account_id", createLookALikeRequestParams.AccountId }, { "source_type", createLookALikeRequestParams.SourceType }, { "client_id", createLookALikeRequestParams.ClientId },
+					{ "retargeting_group_id", createLookALikeRequestParams.RetargetingGroupId }
 				});
 		}
 

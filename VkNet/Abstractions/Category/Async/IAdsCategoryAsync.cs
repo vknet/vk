@@ -26,7 +26,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.addOfficeUsers
 		/// </remarks>
-		Task<ReadOnlyCollection<bool>> AddOfficeUsersAsync(AdsDataSpecification<UserSpecification> adsDataSpecification);
+		Task<ReadOnlyCollection<bool>> AddOfficeUsersAsync(AdsDataSpecificationParams<UserSpecification> adsDataSpecification);
 
 		/// <summary>
 		/// Проверяет ссылку на рекламируемый объект.
@@ -61,7 +61,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.checkLink
 		/// </remarks>
-		Task<LinkStatus> CheckLinkAsync(long accountId, AdsLinkType linkType, string linkUrl, long? campaignId = null);
+		Task<LinkStatus> CheckLinkAsync(CheckLinkParams checkLinkParams);
 
 		/// <summary>
 		/// Создает рекламные объявления.
@@ -73,7 +73,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createAds
 		/// </remarks>
-		Task<ReadOnlyCollection<CreateAdsResult>> CreateAdsAsync(AdsDataSpecification<AdSpecification> adsDataSpecification);
+		Task<ReadOnlyCollection<CreateAdsResult>> CreateAdsAsync(AdsDataSpecificationParams<AdSpecification> adsDataSpecification);
 
 		/// <summary>
 		/// Создает рекламные кампании.
@@ -85,7 +85,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createCampaigns
 		/// </remarks>
-		Task<ReadOnlyCollection<CreateCampaignResult>> CreateCampaignsAsync(AdsDataSpecification<CampaignSpecification> campaignsDataSpecification);
+		Task<ReadOnlyCollection<CreateCampaignResult>> CreateCampaignsAsync(AdsDataSpecificationParams<CampaignSpecification> campaignsDataSpecification);
 
 		/// <summary>
 		/// Создаёт клиентов рекламного агентства.
@@ -97,7 +97,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createClients
 		/// </remarks>
-		Task<ReadOnlyCollection<CreateClientResult>> CreateClientsAsync(AdsDataSpecification<ClientSpecification> clientDataSpecification);
+		Task<ReadOnlyCollection<CreateClientResult>> CreateClientsAsync(AdsDataSpecificationParams<ClientSpecification> clientDataSpecification);
 
 		/// <summary>
 		/// Создаёт запрос на поиск похожей аудитории.
@@ -121,8 +121,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.createLookalikeRequest
 		/// </remarks>
-		Task<object> CreateLookalikeRequestAsync(long accountId, string sourceType, long? clientId = null,
-												object retargetingGroupId = null);
+		Task<CreateLookALikeRequestResult> CreateLookalikeRequestAsync(CreateLookALikeRequestParams createLookALikeRequestParams);
 
 		/// <summary>
 		/// Создает аудиторию для ретаргетинга рекламных объявлений на пользователей, которые посетили сайт рекламодателя (просмотрели информации о товаре, зарегистрировались и т.д.).

@@ -1,6 +1,8 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Ads
@@ -18,7 +20,12 @@ namespace VkNet.Tests.Categories.Ads
 
 			ReadCategoryJsonPath(nameof(Api.Ads.CheckLink));
 
-			var link = Api.Ads.CheckLink(123, AdsLinkType.Application, Url);
+			var link = Api.Ads.CheckLink(new CheckLinkParams
+			{
+				AccountId = 123,
+				LinkType = AdsLinkType.Application,
+				LinkUrl = new Uri(Url)
+			});
 
 			Assert.NotNull(link);
 

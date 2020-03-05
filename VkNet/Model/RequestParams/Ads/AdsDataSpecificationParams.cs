@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Ads
 {
@@ -7,7 +8,7 @@ namespace VkNet.Model.RequestParams.Ads
 	/// Параметры запроса ads.addOfficeUsers
 	/// </summary>
 	[Serializable]
-	public class AdsDataSpecification <TSpecification>
+	public class AdsDataSpecificationParams <TSpecification>
 	{
 		/// <summary>
 		/// Идентификатор рекламного кабинета. обязательный параметр, целое число

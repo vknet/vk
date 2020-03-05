@@ -53,7 +53,7 @@ namespace VkNet.Tests.Categories.Ads
 				campaignSpecification2
 			};
 
-			var officeUsers = Api.Ads.CreateCampaigns(new AdsDataSpecification<CampaignSpecification>
+			var officeUsers = Api.Ads.CreateCampaigns(new AdsDataSpecificationParams<CampaignSpecification>
 			{
 				Data = data,
 				AccountId = 1605245430
