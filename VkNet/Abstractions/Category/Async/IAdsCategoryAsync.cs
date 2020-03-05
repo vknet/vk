@@ -866,19 +866,7 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Предоставляет доступ к аудитории ретаргетинга другому рекламному кабинету. В результате выполнения метода возвращается идентификатор аудитории для указанного кабинета.
 		/// </summary>
-		/// <param name = "accountId">
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "targetGroupId">
-		/// Идентификатор исходной аудитории. обязательный параметр, целое число
-		/// </param>
-		/// <param name = "clientId">
-		/// Только для рекламных агентств.
-		/// id клиента, в рекламном кабинете которого находится исходная аудитория. целое число
-		/// </param>
-		/// <param name = "shareWithClientId">
-		/// Id клиента, рекламному кабинету которого необходимо предоставить доступ к аудитории. целое число
-		/// </param>
+		/// <param name="shareTargetGroupParams"></param>
 		/// <returns>
 		/// Возвращает объект со следующими полями:
 		/// id — идентификатор аудитории.
@@ -886,7 +874,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.shareTargetGroup
 		/// </remarks>
-		Task<object> ShareTargetGroupAsync(long accountId, long targetGroupId, long? clientId = null, long? shareWithClientId = null);
+		Task<ShareTargetGroupResult> ShareTargetGroupAsync(ShareTargetGroupParams shareTargetGroupParams);
 
 		/// <summary>
 		/// Редактирует рекламные объявления.

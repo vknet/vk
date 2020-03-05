@@ -392,13 +392,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object ShareTargetGroup(long accountId, long targetGroupId, long? clientId = null, long? shareWithClientId = null)
+		public ShareTargetGroupResult ShareTargetGroup(ShareTargetGroupParams shareTargetGroupParams)
 		{
-			return _vk.Call<object>("ads.shareTargetGroup",
+			return _vk.Call<ShareTargetGroupResult>("ads.shareTargetGroup",
 				new VkParameters
 				{
-					{ "account_id", accountId }, { "target_group_id", targetGroupId }, { "client_id", clientId },
-					{ "share_with_client_id", shareWithClientId }
+					{ "account_id", shareTargetGroupParams.AccountId }, { "target_group_id", shareTargetGroupParams.TargetGroupId },
+					{ "client_id", shareTargetGroupParams.ClientId}, { "share_with_client_id", shareTargetGroupParams.ShareWithClientId }
 				});
 		}
 

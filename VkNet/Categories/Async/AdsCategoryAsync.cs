@@ -242,10 +242,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<object> ShareTargetGroupAsync(long accountId, long targetGroupId, long? clientId = null,
-												long? shareWithClientId = null)
+		public Task<ShareTargetGroupResult> ShareTargetGroupAsync(ShareTargetGroupParams shareTargetGroupParams)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => ShareTargetGroup(accountId, targetGroupId, clientId, shareWithClientId));
+			return TypeHelper.TryInvokeMethodAsync(() => ShareTargetGroup(shareTargetGroupParams));
 		}
 
 		/// <inheritdoc/>
