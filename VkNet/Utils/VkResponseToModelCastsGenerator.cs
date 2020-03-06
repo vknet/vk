@@ -1931,5 +1931,17 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : RejectionRules.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator GetTargetPixelsResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : GetTargetPixelsResult.FromJson(response);
+		}
 	}
 }

@@ -193,7 +193,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> GetTargetPixelsAsync(long accountId, long? clientId = null)
+		public Task<ReadOnlyCollection<GetTargetPixelsResult>> GetTargetPixelsAsync(long accountId, long? clientId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetTargetPixels(accountId, clientId));
 		}

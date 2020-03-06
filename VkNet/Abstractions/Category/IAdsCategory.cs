@@ -692,7 +692,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getTargetPixels
 		/// </remarks>
-		ReadOnlyCollection<object> GetTargetPixels(long accountId, long? clientId = null);
+		ReadOnlyCollection<GetTargetPixelsResult> GetTargetPixels(long accountId, long? clientId = null);
 
 		/// <summary>
 		/// Возвращает размер целевой аудитории таргетинга, а также рекомендованные значения CPC и CPM.

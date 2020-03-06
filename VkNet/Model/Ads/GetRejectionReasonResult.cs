@@ -11,11 +11,6 @@ namespace VkNet.Model
 	[Serializable]
 	public class GetRejectionReasonResult
 	{
-		/// Ответ обязательно содержит хотя бы одно из полей comment или rules.
-		/// Каждый элемент массива rules состоит из поля title (текстового пояснения)
-		/// и массива paragraphs, каждый элемент которого содержит отдельный пункт правил.
-		/// Элементы массива paragraphs могут содержать простую html-разметку.
-
 		/// <summary>
 		/// Количество оставшихся методов;
 		/// </summary>

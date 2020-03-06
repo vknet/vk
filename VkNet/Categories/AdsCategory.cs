@@ -333,9 +333,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetTargetPixels(long accountId, long? clientId = null)
+		public ReadOnlyCollection<GetTargetPixelsResult> GetTargetPixels(long accountId, long? clientId = null)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getTargetPixels",
+			return _vk.Call<ReadOnlyCollection<GetTargetPixelsResult>>("ads.getTargetPixels",
 				new VkParameters { { "account_id", accountId }, { "client_id", clientId } });
 		}
 
