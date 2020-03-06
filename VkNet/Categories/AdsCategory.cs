@@ -243,9 +243,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetClients(long accountId)
+		public ReadOnlyCollection<GetClientsResult> GetClients(long accountId)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getClients", new VkParameters { { "account_id", accountId } });
+			return _vk.Call<ReadOnlyCollection<GetClientsResult>>("ads.getClients", new VkParameters { { "account_id", accountId } });
 		}
 
 		/// <inheritdoc/>

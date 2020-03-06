@@ -416,7 +416,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getClients
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> GetClientsAsync(long accountId);
+		Task<ReadOnlyCollection<GetClientsResult>> GetClientsAsync(long accountId);
 
 		/// <summary>
 		/// Возвращает демографическую статистику по рекламным объявлениям или кампаниям.

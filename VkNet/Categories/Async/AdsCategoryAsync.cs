@@ -133,7 +133,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> GetClientsAsync(long accountId)
+		public Task<ReadOnlyCollection<GetClientsResult>> GetClientsAsync(long accountId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetClients(accountId));
 		}
