@@ -25,7 +25,7 @@ namespace VkNet.Tests.Categories.Ads
 				DateFrom = "123",
 				DateTo = "123",
 				Ids = "123,123",
-				IdsType = DemographicsType.Ad,
+				IdsType = IdsType.Ad,
 				Period = "123"
 			});
 

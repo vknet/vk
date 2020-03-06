@@ -3,17 +3,17 @@
 	/// <summary>
 	/// Права пользователя в рекламном кабинете.
 	/// </summary>
-	public sealed class DemographicsType : SafetyEnum<DemographicsType>
+	public sealed class IdsType : SafetyEnum<IdsType>
 	{
 		/// <summary>
 		/// Объявление.
 		/// </summary>
-		public static readonly DemographicsType Ad = RegisterPossibleValue(value: "ad");
+		public static readonly IdsType Ad = RegisterPossibleValue(value: "ad");
 
 		/// <summary>
 		/// Кампания.
 		/// </summary>
-		public static readonly DemographicsType Campaign = RegisterPossibleValue(value: "campaign");
+		public static readonly IdsType Campaign = RegisterPossibleValue(value: "campaign");
 
 	}
 }

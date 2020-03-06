@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Utils;
@@ -163,7 +164,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> GetPostsReachAsync(long accountId, string idsType, string ids)
+		public Task<ReadOnlyCollection<GetPostsReachResult>> GetPostsReachAsync(long accountId, IdsType idsType, string ids)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetPostsReach(accountId, idsType, ids));
 		}

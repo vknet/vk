@@ -25,7 +25,7 @@ namespace VkNet.Model.RequestParams.Ads
 		/// </summary>
 		[JsonProperty("ids_type")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public DemographicsType IdsType { get; set; }
+		public IdsType IdsType { get; set; }
 
 		/// <summary>
 		/// Перечисленные через запятую id запрашиваемых объявлений или кампаний, в зависимости от того, что указано в параметре ids_type. Максимум 2000 объектов. обязательный параметр, строка

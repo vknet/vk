@@ -18,7 +18,7 @@ namespace VkNet.Tests.Categories.Ads
 			ReadCategoryJsonPath(nameof(Api.Ads.GetTargetGroups));
 
 			var result = Api.Ads.GetTargetGroups(123);
-			Assert.That(result[0].Name, Is.EqualTo("фывыфвв"));
+			Assert.That(result[0].Name, Is.EqualTo("Test1"));
 		}
 	}
 }

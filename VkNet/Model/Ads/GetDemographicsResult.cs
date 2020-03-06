@@ -30,7 +30,7 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("type")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public DemographicsType Type { get; set; }
+		public IdsType Type { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

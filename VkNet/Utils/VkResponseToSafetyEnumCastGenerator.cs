@@ -732,9 +732,9 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator DemographicsType(VkResponse response)
+		public static implicit operator IdsType(VkResponse response)
 		{
-			return response == null ? null : DemographicsType.FromJson(response: response);
+			return response == null ? null : IdsType.FromJson(response: response);
 		}
 	}
 }

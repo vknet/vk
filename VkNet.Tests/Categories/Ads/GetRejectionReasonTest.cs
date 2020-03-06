@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories.Ads
 			ReadCategoryJsonPath(nameof(Api.Ads.GetRejectionReason));
 
 			var result = Api.Ads.GetRejectionReason(123,123);
-			Assert.That(result.Comment, Is.EqualTo(123));
+			Assert.That(result.Comment, Is.EqualTo("123"));
 		}
 	}
 }

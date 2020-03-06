@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Utils;
@@ -288,9 +289,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetPostsReach(long accountId, string idsType, string ids)
+		public ReadOnlyCollection<GetPostsReachResult> GetPostsReach(long accountId, IdsType idsType, string ids)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getPostsReach",
+			return _vk.Call<ReadOnlyCollection<GetPostsReachResult>>("ads.getPostsReach",
 				new VkParameters { { "account_id", accountId }, { "ids_type", idsType }, { "ids", ids } });
 		}
 

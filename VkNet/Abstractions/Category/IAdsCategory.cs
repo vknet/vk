@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
 
@@ -551,7 +552,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getPostsReach
 		/// </remarks>
-		ReadOnlyCollection<object> GetPostsReach(long accountId, string idsType, string ids);
+		ReadOnlyCollection<GetPostsReachResult> GetPostsReach(long accountId, IdsType idsType, string ids);
 
 		/// <summary>
 		/// Возвращает причину, по которой указанному объявлению было отказано в прохождении премодерации.
