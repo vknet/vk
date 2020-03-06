@@ -1943,5 +1943,17 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : GetTargetPixelsResult.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator GetTargetGroupsResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : GetTargetGroupsResult.FromJson(response);
+		}
 	}
 }

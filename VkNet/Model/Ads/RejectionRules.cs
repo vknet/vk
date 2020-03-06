@@ -21,7 +21,7 @@ namespace VkNet.Model
 		///
 		/// </summary>
 		[JsonProperty("paragraphs")]
-		public IEnumerable<string> Paragraphs { get; set; }
+		public string Paragraphs { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
@@ -33,7 +33,7 @@ namespace VkNet.Model
 			return new RejectionRules
 			{
 				Title = response["title"],
-				Paragraphs = response["paragraphs"].ToReadOnlyCollectionOf<string>(x=>x)
+				Paragraphs = response["paragraphs"]
 			};
 		}
 	}

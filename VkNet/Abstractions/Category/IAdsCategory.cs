@@ -668,7 +668,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getTargetGroups
 		/// </remarks>
-		ReadOnlyCollection<object> GetTargetGroups(long accountId, long? clientId = null, bool? extended = null);
+		ReadOnlyCollection<GetTargetGroupsResult> GetTargetGroups(long accountId, long? clientId = null, bool? extended = null);
 
 		/// <summary>
 		/// Возвращает список пикселей ретаргетинга.

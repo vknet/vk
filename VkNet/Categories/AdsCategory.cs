@@ -326,9 +326,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetTargetGroups(long accountId, long? clientId = null, bool? extended = null)
+		public ReadOnlyCollection<GetTargetGroupsResult> GetTargetGroups(long accountId, long? clientId = null, bool? extended = null)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getTargetGroups",
+			return _vk.Call<ReadOnlyCollection<GetTargetGroupsResult>>("ads.getTargetGroups",
 				new VkParameters { { "account_id", accountId }, { "client_id", clientId }, { "extended", extended } });
 		}
 
