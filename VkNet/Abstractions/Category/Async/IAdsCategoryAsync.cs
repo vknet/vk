@@ -635,7 +635,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getSuggestions
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> GetSuggestionsAsync(GetSuggestionsParams getSuggestionsParams);
+		Task<ReadOnlyCollection<GetSuggestionsResult>> GetSuggestionsAsync(GetSuggestionsParams getSuggestionsParams);
 
 		/// <summary>
 		/// Возвращает список аудиторий ретаргетинга.

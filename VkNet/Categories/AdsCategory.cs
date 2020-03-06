@@ -315,9 +315,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetSuggestions(GetSuggestionsParams getSuggestionsParams)
+		public ReadOnlyCollection<GetSuggestionsResult> GetSuggestions(GetSuggestionsParams getSuggestionsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getSuggestions",
+			return _vk.Call<ReadOnlyCollection<GetSuggestionsResult>>("ads.getSuggestions",
 				new VkParameters
 				{
 					{ "section", getSuggestionsParams.Section }, { "ids", getSuggestionsParams.Ids }, { "q", getSuggestionsParams.Q },

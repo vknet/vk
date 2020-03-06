@@ -1979,5 +1979,29 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : GetTargetingStatsResult.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator GetSuggestionsResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : GetSuggestionsResult.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator GetStatisticsResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : GetStatisticsResult.FromJson(response);
+		}
 	}
 }

@@ -182,7 +182,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> GetSuggestionsAsync(GetSuggestionsParams getSuggestionsParams)
+		public Task<ReadOnlyCollection<GetSuggestionsResult>> GetSuggestionsAsync(GetSuggestionsParams getSuggestionsParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetSuggestions(getSuggestionsParams));
 		}
