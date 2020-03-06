@@ -9,7 +9,7 @@ namespace VkNet.Model
 	///
 	/// </summary>
 	[Serializable]
-	public class DemographicsStats
+	public class StatisticsStats
 	{
 		/// <summary>
 		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
@@ -58,9 +58,9 @@ namespace VkNet.Model
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
-		public static DemographicsStats FromJson(VkResponse response)
+		public static StatisticsStats FromJson(VkResponse response)
 		{
-			return new DemographicsStats
+			return new StatisticsStats
 			{
 				Day = response["day"],
 				Month = response["month"],

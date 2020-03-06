@@ -26,7 +26,7 @@ namespace VkNet.Tests.Categories.Ads
 				Cities = "1",
 				Q = "1"
 			});
-			Assert.That(result[0].Id, Is.EqualTo("123"));
+			Assert.That(result[0].Id, Is.EqualTo(201187289));
 		}
 	}
 }

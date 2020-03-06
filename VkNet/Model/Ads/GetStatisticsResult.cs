@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -8,45 +11,39 @@ namespace VkNet.Model
 	///
 	/// </summary>
 	[Serializable]
-	public class DemographicsStatsSexAgeCities
+	public class GetStatisticsResult
 	{
 		/// <summary>
 		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
 		/// </summary>
-		[JsonProperty("impressions_rate")]
-		public long ImpressionsRate { get; set; }
+		[JsonProperty("id")]
+		public long Id { get; set; }
 
 		/// <summary>
 		/// обязательный параметр, строка
 		/// </summary>
-		[JsonProperty("clicks_rate")]
-		public long ClicksRate { get; set; }
+		[JsonProperty("stats")]
+		public ReadOnlyCollection<StatisticsStats> Stats { get; set; }
 
 		/// <summary>
 		/// обязательный параметр, строка
 		/// </summary>
-		[JsonProperty("value")]
-		public string Value { get; set; }
-
-		/// <summary>
-		/// обязательный параметр, строка
-		/// </summary>
-		[JsonProperty("name")]
-		public string Name { get; set; }
+		[JsonProperty("type")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public IdsType Type { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
-		public static DemographicsStatsSexAgeCities FromJson(VkResponse response)
+		public static GetStatisticsResult FromJson(VkResponse response)
 		{
-			return new DemographicsStatsSexAgeCities
+			return new GetStatisticsResult
 			{
-				Name = response["name"],
-				Value = response["value"],
-				ImpressionsRate = response["impressions_rate"],
-				ClicksRate = response["clicks_rate"]
+				Id = response["id"],
+				Type = response["type"],
+				Stats = response["stats"].ToReadOnlyCollectionOf<StatisticsStats>(x=>x)
 			};
 		}
 	}

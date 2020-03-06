@@ -303,9 +303,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetStatistics(GetStatisticsParams getStatisticsParams)
+		public ReadOnlyCollection<GetStatisticsResult> GetStatistics(GetStatisticsParams getStatisticsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getStatistics",
+			return _vk.Call<ReadOnlyCollection<GetStatisticsResult>>("ads.getStatistics",
 				new VkParameters
 				{
 					{ "account_id", getStatisticsParams.AccountId }, { "ids_type", getStatisticsParams.IdsType },

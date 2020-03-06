@@ -599,7 +599,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getStatistics
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> GetStatisticsAsync(GetStatisticsParams getStatisticsParams);
+		Task<ReadOnlyCollection<GetStatisticsResult>> GetStatisticsAsync(GetStatisticsParams getStatisticsParams);
 
 		/// <summary>
 		/// Возвращает набор подсказок для различных параметров таргетинга.

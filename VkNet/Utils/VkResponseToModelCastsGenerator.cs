@@ -1879,9 +1879,9 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator DemographicsStatsSexAgeCities(VkResponse response)
+		public static implicit operator StatsSexAgeCities(VkResponse response)
 		{
-			return response?._token == null || !response._token.HasValues ? null : DemographicsStatsSexAgeCities.FromJson(response);
+			return response?._token == null || !response._token.HasValues ? null : StatsSexAgeCities.FromJson(response);
 		}
 
 		/// <summary>
@@ -2002,6 +2002,18 @@ namespace VkNet.Utils
 		public static implicit operator GetStatisticsResult(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues ? null : GetStatisticsResult.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator StatisticsStats(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : StatisticsStats.FromJson(response);
 		}
 	}
 }

@@ -176,7 +176,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> GetStatisticsAsync(GetStatisticsParams getStatisticsParams)
+		public Task<ReadOnlyCollection<GetStatisticsResult>> GetStatisticsAsync(GetStatisticsParams getStatisticsParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetStatistics(getStatisticsParams));
 		}
