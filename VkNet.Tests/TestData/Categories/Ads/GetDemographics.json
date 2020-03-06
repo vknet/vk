@@ -1,0 +1,43 @@
+﻿{
+  "response": [{
+    "id": 1012219949,
+    "type": "campaign",
+    "stats": [
+      {
+        "day": "1",
+        "sex": [
+          {
+            "impression_date": 1,
+            "clicks_rate": 1,
+            "value": "sex",
+            "name": "123"
+          }
+        ],
+        "age": [
+          {
+            "impression_date": 1,
+            "clicks_rate": 1,
+            "value": "sex",
+            "name": "123"
+          }
+        ],
+        "sex_age": [
+          {
+            "impression_date": 1,
+            "clicks_rate": 1,
+            "value": "sex",
+            "name": "123"
+          }
+        ],
+        "cities": [
+          {
+            "impression_date": 1,
+            "clicks_rate": 1,
+            "value": "sex",
+            "name": "123"
+          }
+        ]
+      }
+    ]
+  }]
+}
