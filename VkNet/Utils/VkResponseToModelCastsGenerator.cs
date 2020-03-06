@@ -1847,5 +1847,41 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : GetFloodStatsResult.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator GetDemographicsResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : GetDemographicsResult.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator DemographicsStats(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : DemographicsStats.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator DemographicsStatsSexAgeCities(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : DemographicsStatsSexAgeCities.FromJson(response);
+		}
 	}
 }

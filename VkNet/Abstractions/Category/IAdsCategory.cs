@@ -450,7 +450,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getDemographics
 		/// </remarks>
-		ReadOnlyCollection<object> GetDemographics(GetDemographicsParams getDemographicsParams);
+		ReadOnlyCollection<GetDemographicsResult> GetDemographics(GetDemographicsParams getDemographicsParams);
 
 		/// <summary>
 		/// Возвращает информацию о текущем состоянии счетчика — количество оставшихся запусков методов и время до следующего обнуления счетчика в секундах.

@@ -249,9 +249,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetDemographics(GetDemographicsParams getDemographicsParams)
+		public ReadOnlyCollection<GetDemographicsResult> GetDemographics(GetDemographicsParams getDemographicsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getDemographics",
+			return _vk.Call<ReadOnlyCollection<GetDemographicsResult>>("ads.getDemographics",
 				new VkParameters
 				{
 					{ "account_id", getDemographicsParams.AccountId }, { "ids_type", getDemographicsParams.IdsType },

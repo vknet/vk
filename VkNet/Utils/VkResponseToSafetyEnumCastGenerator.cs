@@ -724,5 +724,17 @@ namespace VkNet.Utils
 		{
 			return response == null ? null : AdRequestStatus.FromJson(response: response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator DemographicsType(VkResponse response)
+		{
+			return response == null ? null : DemographicsType.FromJson(response: response);
+		}
 	}
 }

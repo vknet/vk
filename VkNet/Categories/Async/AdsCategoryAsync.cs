@@ -139,7 +139,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> GetDemographicsAsync(GetDemographicsParams getDemographicsParams)
+		public Task<ReadOnlyCollection<GetDemographicsResult>> GetDemographicsAsync(GetDemographicsParams getDemographicsParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetDemographics(getDemographicsParams));
 		}
