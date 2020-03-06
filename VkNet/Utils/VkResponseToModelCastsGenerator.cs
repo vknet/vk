@@ -1883,5 +1883,29 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : DemographicsStatsSexAgeCities.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator GetOfficeUsersResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : GetOfficeUsersResult.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator OfficeUsersAccesses(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : OfficeUsersAccesses.FromJson(response);
+		}
 	}
 }

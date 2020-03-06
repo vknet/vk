@@ -157,7 +157,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> GetOfficeUsersAsync(long accountId)
+		public Task<ReadOnlyCollection<GetOfficeUsersResult>> GetOfficeUsersAsync(long accountId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetOfficeUsers(accountId));
 		}

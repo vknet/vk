@@ -511,7 +511,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getOfficeUsers
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> GetOfficeUsersAsync(long accountId);
+		Task<ReadOnlyCollection<GetOfficeUsersResult>> GetOfficeUsersAsync(long accountId);
 
 		/// <summary>
 		/// Возвращает подробную статистику по охвату рекламных записей из объявлений и кампаний для продвижения записей сообщества.
