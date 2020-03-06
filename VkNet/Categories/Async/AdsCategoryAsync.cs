@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Utils;
@@ -126,7 +127,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> GetCategoriesAsync(string lang)
+		public Task<GetCategoriesResult> GetCategoriesAsync(Language lang)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetCategories(lang));
 		}

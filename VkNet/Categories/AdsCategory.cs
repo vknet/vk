@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
+using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Utils;
@@ -236,9 +237,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetCategories(string lang)
+		public GetCategoriesResult GetCategories(Language lang)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getCategories", new VkParameters { { "lang", lang } });
+			return _vk.Call<GetCategoriesResult>("ads.getCategories", new VkParameters { { "lang", lang } });
 		}
 
 		/// <inheritdoc/>

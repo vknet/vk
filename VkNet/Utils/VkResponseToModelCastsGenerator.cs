@@ -1799,5 +1799,29 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : Layout.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator GetCategoriesResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : GetCategoriesResult.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator AdsCategories(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : AdsCategories.FromJson(response);
+		}
 	}
 }
