@@ -11,31 +11,31 @@ namespace VkNet.Model
 	/// См. описание https://vk.com/dev/ads.getAccounts
 	/// </remarks>
 	[Serializable]
-	public class GetClientsResult
+	public class GetFloodStatsResult
 	{
 		/// <summary>
-		/// Идентификатор рекламного объявления.
+		/// Количество оставшихся методов;
 		/// </summary>
-		[JsonProperty("id")]
-		public long Id { get; set; }
+		[JsonProperty("left")]
+		public long Left { get; set; }
 
 		/// <summary>
-		/// Общий лимит объявления в рублях. 0 — лимит не задан.
+		/// Время до следующего обновления в секундах.
 		/// </summary>
-		[JsonProperty("all_limit")]
-		public long AllLimit { get; set; }
+		[JsonProperty("refresh")]
+		public long Refresh { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
-		public static GetClientsResult FromJson(VkResponse response)
+		public static GetFloodStatsResult FromJson(VkResponse response)
 		{
-			return new GetClientsResult
+			return new GetFloodStatsResult
 			{
-				Id = response["id"],
-				AllLimit = response["all_limit"]
+				Left = response["left"],
+				Refresh = response["refresh"]
 			};
 		}
 	}

@@ -466,7 +466,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getFloodStats
 		/// </remarks>
-		Task<object> GetFloodStatsAsync(long accountId);
+		Task<GetFloodStatsResult> GetFloodStatsAsync(long accountId);
 
 		/// <summary>
 		/// Возвращает список запросов на поиск похожей аудитории.

@@ -466,7 +466,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getFloodStats
 		/// </remarks>
-		object GetFloodStats(long accountId);
+		GetFloodStatsResult GetFloodStats(long accountId);
 
 		/// <summary>
 		/// Возвращает список запросов на поиск похожей аудитории.

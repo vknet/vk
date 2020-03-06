@@ -261,9 +261,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object GetFloodStats(long accountId)
+		public GetFloodStatsResult GetFloodStats(long accountId)
 		{
-			return _vk.Call<object>("ads.getFloodStats", new VkParameters { { "account_id", accountId } });
+			return _vk.Call<GetFloodStatsResult>("ads.getFloodStats", new VkParameters { { "account_id", accountId } });
 		}
 
 		/// <inheritdoc/>

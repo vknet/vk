@@ -145,7 +145,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<object> GetFloodStatsAsync(long accountId)
+		public Task<GetFloodStatsResult> GetFloodStatsAsync(long accountId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetFloodStats(accountId));
 		}
