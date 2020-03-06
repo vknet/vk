@@ -341,9 +341,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object GetTargetingStats(GetTargetingStatsParams getTargetingStatsParams)
+		public GetTargetingStatsResult GetTargetingStats(GetTargetingStatsParams getTargetingStatsParams)
 		{
-			return _vk.Call<object>("ads.getTargetingStats",
+			return _vk.Call<GetTargetingStatsResult>("ads.getTargetingStats",
 				new VkParameters
 				{
 					{ "account_id", getTargetingStatsParams.AccountId }, { "criteria", getTargetingStatsParams.Criteria },

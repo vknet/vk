@@ -711,7 +711,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getTargetingStats
 		/// </remarks>
-		Task<object> GetTargetingStatsAsync(GetTargetingStatsParams getTargetingStatsParams);
+		Task<GetTargetingStatsResult> GetTargetingStatsAsync(GetTargetingStatsParams getTargetingStatsParams);
 
 		/// <summary>
 		/// Возвращает URL-адрес для загрузки фотографии рекламного объявления.

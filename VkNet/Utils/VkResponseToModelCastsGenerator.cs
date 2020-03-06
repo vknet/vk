@@ -1967,5 +1967,17 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : GetPostsReachResult.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator GetTargetingStatsResult(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : GetTargetingStatsResult.FromJson(response);
+		}
 	}
 }

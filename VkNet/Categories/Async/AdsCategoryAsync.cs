@@ -200,7 +200,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<object> GetTargetingStatsAsync(GetTargetingStatsParams getTargetingStatsParams)
+		public Task<GetTargetingStatsResult> GetTargetingStatsAsync(GetTargetingStatsParams getTargetingStatsParams)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetTargetingStats(getTargetingStatsParams));
 		}
