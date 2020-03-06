@@ -295,9 +295,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetRejectionReason(long accountId, long adId)
+		public GetRejectionReasonResult GetRejectionReason(long accountId, long adId)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getRejectionReason",
+			return _vk.Call<GetRejectionReasonResult>("ads.getRejectionReason",
 				new VkParameters { { "account_id", accountId }, { "ad_id", adId } });
 		}
 

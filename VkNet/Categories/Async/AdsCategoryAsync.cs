@@ -169,7 +169,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<ReadOnlyCollection<object>> GetRejectionReasonAsync(long accountId, long adId)
+		public Task<GetRejectionReasonResult> GetRejectionReasonAsync(long accountId, long adId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetRejectionReason(accountId, adId));
 		}

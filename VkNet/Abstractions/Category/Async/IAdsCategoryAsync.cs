@@ -568,7 +568,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getRejectionReason
 		/// </remarks>
-		Task<ReadOnlyCollection<object>> GetRejectionReasonAsync(long accountId, long adId);
+		Task<GetRejectionReasonResult> GetRejectionReasonAsync(long accountId, long adId);
 
 		/// <summary>
 		/// Возвращает статистику показателей эффективности по рекламным объявлениям, кампаниям, клиентам или всему кабинету.
