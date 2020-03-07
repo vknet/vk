@@ -1,0 +1,17 @@
+﻿{
+  "response": [{
+    "target_pixel_id": 462641,
+    "name": "фывыфвв",
+    "domain": "",
+    "category_id": 1,
+    "pixel": "123",
+    "last_updated": 0
+  }, {
+    "target_pixel_id": 462653,
+    "name": "name123",
+    "domain": "",
+    "category_id": 1,
+    "pixel": "123",
+    "last_updated": 0
+  }]
+}

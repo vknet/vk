@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Ads
@@ -40,16 +41,19 @@ namespace VkNet.Tests.Categories.Ads
 
 			ReadCategoryJsonPath(nameof(Api.Ads.GetCampaigns));
 
-			var campaigns = Api.Ads.GetCampaigns(1900013324,
-				new List<long>
+			var campaigns = Api.Ads.GetCampaigns(new AdsGetCampaignsParams
+			{
+				AccountId = 1900013324,
+				CampaignIds = new List<long>
 				{
 					1009157560,
 					1009088099,
 					1009150293,
 					1009316667
 				},
-				1604555949,
-				true);
+				ClientId = 123,
+				IncludeDeleted = true
+			});
 
 			Assert.That(campaigns.Count, Is.EqualTo(4));
 
@@ -64,7 +68,12 @@ namespace VkNet.Tests.Categories.Ads
 
 			ReadCategoryJsonPath(nameof(GetCampaigns_GeneralAccount_OutParametersCorrect));
 
-			var campaigns = Api.Ads.GetCampaigns(1603879239, new List<long>());
+			var campaigns = Api.Ads.GetCampaigns(new AdsGetCampaignsParams
+			{
+				AccountId = 123,
+				CampaignIds = new List<long>(),
+				IncludeDeleted = true
+			});
 
 			Assert.That(campaigns.Count, Is.EqualTo(6));
 

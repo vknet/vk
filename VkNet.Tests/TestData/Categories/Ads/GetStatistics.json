@@ -1,0 +1,13 @@
+﻿{
+  "response": [{
+    "id": 1012219949,
+    "type": "campaign",
+    "stats": [{
+      "overall": 1,
+      "spent": 100,
+      "impressions": 100,
+      "clicks": 100,
+      "join_rate": 123
+    }]
+  }]
+}

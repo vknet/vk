@@ -1,5 +1,7 @@
 using System;
 using Newtonsoft.Json;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams.Ads
 {
@@ -22,7 +24,8 @@ namespace VkNet.Model.RequestParams.Ads
 		/// обязательный параметр, строка
 		/// </summary>
 		[JsonProperty("ids_type")]
-		public string IdsType { get; set; }
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public IdsType IdsType { get; set; }
 
 		/// <summary>
 		/// Перечисленные через запятую id запрашиваемых объявлений или кампаний, в зависимости от того, что указано в параметре ids_type. Максимум 2000 объектов. обязательный параметр, строка

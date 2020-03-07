@@ -1,0 +1,12 @@
+﻿{
+  "response": [
+    {
+      "id": 1,
+      "error_code": 100,
+      "error_desc": "asdas"
+    },
+    {
+      "id": 2
+    }
+  ]
+}

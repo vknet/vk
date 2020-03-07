@@ -13,6 +13,11 @@ namespace VkNet.Enums
 		/// <summary>
 		/// Оплата за показы
 		/// </summary>
-		Cpm
+		Cpm = 1,
+
+		/// <summary>
+		/// Отправка заявок
+		/// </summary>
+		OCpm = 3
 	}
 }

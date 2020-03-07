@@ -1,64 +1,50 @@
-using System;
-using System.Collections.Generic;
+﻿using System;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Описание рекламного аккаунта.
+	/// Массив объектов UserSpecification
 	/// </summary>
-	/// <remarks>
-	/// См. описание https://vk.com/dev/ads.getAccounts
-	/// </remarks>
 	[Serializable]
-	public class Ad
+	public class AdEditSpecification
 	{
-		/// <summary>
-		/// Идентификатор рекламного объявления.
-		/// </summary>
-		[JsonProperty("id")]
-		public long Id { get; set; }
-
 		/// <summary>
 		/// Идентификатор кампании.
 		/// </summary>
-		[JsonProperty("campaign_id")]
-		public long CampaignId { get; set; }
-
-		/// <summary>
-		/// Формат объявления
-		/// </summary>
-		[JsonProperty("ad_format")]
-		public AdFormat AdFormat { get; set; }
-
-		/// <summary>
-		/// Тип оплаты
-		/// </summary>
-		[JsonProperty("cost_type")]
-		public CostType CostType { get; set; }
+		[JsonProperty("ad_id")]
+		public long AdId { get; set; }
 
 		/// <summary>
 		/// Цена за переход в копейках. (если cost_type = 0)
 		/// </summary>
 		[JsonProperty("cpc")]
-		public long Cpc { get; set; }
+		public double? Cpc { get; set; }
 
 		/// <summary>
 		/// Цена за 1000 показов в копейках. (если cost_type = 1)
 		/// </summary>
 		[JsonProperty("cpm")]
-		public long Cpm { get; set; }
+		public double? Cpm { get; set; }
+
+		/// <summary>
+		/// Цена указывается в рублях с копейками в дробной части. (если cost_type = 1)
+		/// </summary>
+		[JsonProperty("ocpm")]
+		public double? OCpm { get; set; }
 
 		/// <summary>
 		/// (если задано) Ограничение количества показов данного объявления на одного пользователя.
 		/// Может присутствовать для некоторых форматов объявлений, для которых разрешена установка точного значения.
 		/// </summary>
 		[JsonProperty("impressions_limit")]
-		public long ImpressionsLimit { get; set; }
+		public long? ImpressionsLimit { get; set; }
 
 		/// <summary>
 		/// (если задано) Признак того, что количество показов объявления на одного пользователя ограничено.
@@ -66,7 +52,7 @@ namespace VkNet.Model
 		/// 1 — не более 100 показов на одного пользователя.
 		/// </summary>
 		[JsonProperty("impressions_limited")]
-		public long ImpressionsLimited { get; set; }
+		public long? ImpressionsLimited { get; set; }
 
 		/// <summary>
 		/// Рекламные площадки, на которых будет показываться объявление. (если значение применимо к данному формату объявления)
@@ -79,31 +65,31 @@ namespace VkNet.Model
 		/// 1 — для объявления задано ограничение «Не показывать на стенах сообществ».
 		/// </summary>
 		[JsonProperty("ad_platform_no_wall")]
-		public bool AdPPlatformNoWall { get; set; }
+		public bool? AdPPlatformNoWall { get; set; }
 
 		/// <summary>
 		/// 1 — для объявления задано ограничение «Показывать в рекламной сети».
 		/// </summary>
 		[JsonProperty("ad_platform_no_ad_network")]
-		public bool AdPlatformNoAdNetwork { get; set; }
+		public bool? AdPlatformNoAdNetwork { get; set; }
 
 		/// <summary>
 		/// Общий лимит объявления в рублях. 0 — лимит не задан.
 		/// </summary>
 		[JsonProperty("all_limit")]
-		public long AllLimit { get; set; }
+		public long? AllLimit { get; set; }
 
 		/// <summary>
 		/// Дневной лимит объявления в рублях. 0 — лимит не задан.
 		/// </summary>
 		[JsonProperty("day_limit")]
-		public long DayLimit { get; set; }
+		public long? DayLimit { get; set; }
 
 		/// <summary>
 		/// Ограничение по возрасту
 		/// </summary>
 		[JsonProperty("age_restriction")]
-		public AdAgeRestriction AgeRestriction { get; set; }
+		public AdAgeRestriction? AgeRestriction { get; set; }
 
 		/// <summary>
 		/// Время создания объявления
@@ -123,19 +109,19 @@ namespace VkNet.Model
 		/// ID тематики или подраздела тематики объявления.
 		/// </summary>
 		[JsonProperty(propertyName: "category1_id")]
-		public long Category1Id { get; set; }
+		public long? Category1Id { get; set; }
 
 		/// <summary>
 		/// ID тематики или подраздела тематики объявления. Дополнительная тематика.
 		/// </summary>
 		[JsonProperty(propertyName: "category2_id")]
-		public long Category2Id { get; set; }
+		public long? Category2Id { get; set; }
 
 		/// <summary>
 		/// Cтатус объявления.
 		/// </summary>
 		[JsonProperty(propertyName: "status")]
-		public AdStatus Status { get; set; }
+		public AdStatus? Status { get; set; }
 
 		/// <summary>
 		/// Название объявления.
@@ -144,43 +130,121 @@ namespace VkNet.Model
 		public string Name { get; set; }
 
 		/// <summary>
-		/// Cтатус модерации объявления
+		/// Заголовок объявления.
 		/// </summary>
-		[JsonProperty(propertyName: "approved")]
-		public ModerationStatus ModerationStatus { get; set; }
+		[JsonProperty(propertyName: "title")]
+		public string Title { get; set; }
 
 		/// <summary>
-		/// Объявление является видеорекламой
+		/// Описание объявления.
+		/// </summary>
+		[JsonProperty(propertyName: "description")]
+		public string Description { get; set; }
+
+		/// <summary>
+		/// Cсылка на рекламируемый объект в формате.
+		/// http://yoursite.cоm, или
+		/// https://vk.com/wall-22822305_383737, или
+		/// http://vk.cоm/club1
+		/// </summary>
+		[JsonProperty(propertyName: "link_url")]
+		public Uri LinkUrl { get; set; }
+
+		/// <summary>
+		/// домен рекламируемого объекта в формате
+		/// yoursite.cоm
+		/// </summary>
+		[JsonProperty(propertyName: "link_domain")]
+		public Uri LinkDomain { get; set; }
+
+		/// <summary>
+		/// Заголовок рядом с кнопкой.
+		/// </summary>
+		[JsonProperty(propertyName: "link_title")]
+		public Uri LinkTitle { get; set; }
+
+		/// <summary>
+		/// Идентификатор кнопки объявления.
+		/// </summary>
+		[JsonProperty(propertyName: "link_button")]
+		public Uri LinkButton { get; set; }
+
+		/// <summary>
+		/// Основное изображение.
+		/// </summary>
+		[JsonProperty(propertyName: "photo")]
+		public UploadUrlResult Photo { get; set; }
+
+		/// <summary>
+		/// Основное видео.
 		/// </summary>
 		[JsonProperty(propertyName: "video")]
-		public long Video { get; set; }
+		[CanBeNull]
+		public UploadUrlResult Video { get; set; }
+
+		/// <summary>
+		/// Зацикливание видео.
+		/// </summary>
+		[JsonProperty(propertyName: "repeat_video")]
+		public RepeatVideo? RepeatVideo { get; set; }
 
 		/// <summary>
 		/// Включено отображение предупреждения: «Есть противопоказания.Требуется консультация специалиста.»
 		/// </summary>
 		[JsonProperty(propertyName: "disclaimer_medical")]
-		public long DisclaimerMedical { get; set; }
+		public long? DisclaimerMedical { get; set; }
 
 		/// <summary>
 		/// Включено отображение предупреждения: «Необходима консультация специалистов.»
 		/// </summary>
 		[JsonProperty(propertyName: "disclaimer_specialist")]
-		public long DisclaimerSpecialist { get; set; }
+		public long? DisclaimerSpecialist { get; set; }
 
 		/// <summary>
 		/// Включено отображение предупреждения: «БАД.Не является лекарственным препаратом.»
 		/// </summary>
 		[JsonProperty(propertyName: "disclaimer_supplements")]
-		public long DisclaimerSupplements { get; set; }
+		public long? DisclaimerSupplements { get; set; }
 
 		/// <summary>
-		/// Только для ad_format = 9 (Public). Описание событий, собираемых в группы ретаргетинга. Массив объектов, где ключом является id группы ретаргетинга, а значением - массив событий.
+		/// Разобрать из json.
 		/// </summary>
-		/// <remarks>
-		/// TODO: выпилить ToNullIfArrayConverter
-		/// </remarks>
-		[JsonProperty("events_retargeting_groups")]
-		[JsonConverter(typeof(ToNullIfArrayConverter<Dictionary<long, List<EventsRetargetingGroup>>>))]
-		public Dictionary<long, List<EventsRetargetingGroup>> EventsRetargetingGroups { get; set; }
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static AdEditSpecification FromJson(VkResponse response)
+		{
+			return new AdEditSpecification
+			{
+				AdId = response["ad_id"],
+				Cpc = response["cpc"],
+				Cpm= response["cpm"],
+				OCpm = response["ocpm"],
+				ImpressionsLimit = response["impressions_limit"],
+				ImpressionsLimited = response["impressions_limited"],
+				AdPlatform = response["ad_platform"],
+				AdPlatformNoAdNetwork = response["ad_platform_no_ad_network"],
+				AllLimit = response["all_limit"],
+				DayLimit = response["day_limit"],
+				AgeRestriction = response["age_restriction"],
+				CreateTime = response["create_time"],
+				UpdateTime = response["update_time"],
+				Category1Id = response["category1_id"],
+				Category2Id = response["category2_id"],
+				Status = response["status"],
+				Name = response["name"],
+				Title = response["title"],
+				Description = response["description"],
+				LinkButton = response["link_button"],
+				LinkDomain = response["link_domain"],
+				LinkTitle = response["link_title"],
+				LinkUrl = response["link_url"],
+				Photo = response["photo"],
+				Video = response["video"],
+				RepeatVideo = response["repeat_video"],
+				DisclaimerMedical = response["disclaimer_medical"],
+				DisclaimerSpecialist = response["disclaimer_specialist"],
+				DisclaimerSupplements = response["disclaimer_supplements"]
+			};
+		}
 	}
 }

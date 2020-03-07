@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 using VkNet.Abstractions;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
@@ -27,77 +29,77 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> AddOfficeUsers(long accountId, string data)
+		public ReadOnlyCollection<bool> AddOfficeUsers(AdsDataSpecificationParams<UserSpecification> adsDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.addOfficeUsers",
+			return _vk.Call<ReadOnlyCollection<bool>>("ads.addOfficeUsers",
 				new VkParameters
 				{
-					{ "account_id", accountId },
-					{ "data", data }
+					{ "account_id", adsDataSpecification.AccountId },
+					{ "data", JsonConvert.SerializeObject(adsDataSpecification.Data)}
 				});
 		}
 
 		/// <inheritdoc/>
-		public LinkStatus CheckLink(long accountId, AdsLinkType linkType, string linkUrl, long? campaignId = null)
+		public LinkStatus CheckLink(CheckLinkParams checkLinkParams)
 		{
 			return _vk.Call<LinkStatus>("ads.checkLink",
 				new VkParameters
 				{
-					{ "account_id", accountId },
-					{ "link_type", linkType },
-					{ "link_url", linkUrl },
-					{ "campaign_id", campaignId }
+					{ "account_id", checkLinkParams.AccountId },
+					{ "link_type", checkLinkParams.LinkType },
+					{ "link_url", checkLinkParams.LinkUrl },
+					{ "campaign_id", checkLinkParams.CampaignId }
 				});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> CreateAds(long accountId, string data)
+		public ReadOnlyCollection<CreateAdsResult> CreateAds(AdsDataSpecificationParams<AdSpecification> adsDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.createAds",
+			return _vk.Call<ReadOnlyCollection<CreateAdsResult>>("ads.createAds",
 				new VkParameters
 				{
-					{ "account_id", accountId },
-					{ "data", data }
+					{ "account_id", adsDataSpecification.AccountId },
+					{ "data", JsonConvert.SerializeObject(adsDataSpecification.Data) }
 				});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> CreateCampaigns(long accountId, string data)
+		public ReadOnlyCollection<CreateCampaignResult> CreateCampaigns(AdsDataSpecificationParams<CampaignSpecification> campaignsDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.createCampaigns",
+			return _vk.Call<ReadOnlyCollection<CreateCampaignResult>>("ads.createCampaigns",
 				new VkParameters
 				{
-					{ "account_id", accountId },
-					{ "data", data }
+					{ "account_id", campaignsDataSpecification.AccountId },
+					{ "data", JsonConvert.SerializeObject(campaignsDataSpecification.Data) }
 				});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> CreateClients(long accountId, string data)
+		public ReadOnlyCollection<CreateClientResult> CreateClients(AdsDataSpecificationParams<ClientSpecification> clientDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.createClients",
+			return _vk.Call<ReadOnlyCollection<CreateClientResult>>("ads.createClients",
 				new VkParameters
 				{
-					{ "account_id", accountId },
-					{ "data", data }
+					{ "account_id", clientDataSpecification.AccountId },
+					{ "data", JsonConvert.SerializeObject(clientDataSpecification.Data) }
 				});
 		}
 
 		/// <inheritdoc/>
-		public object CreateLookalikeRequest(long accountId, string sourceType, long? clientId = null, object retargetingGroupId = null)
+		public CreateLookALikeRequestResult CreateLookalikeRequest(CreateLookALikeRequestParams createLookALikeRequestParams)
 		{
-			return _vk.Call<object>("ads.createLookalikeRequest",
+			return _vk.Call<CreateLookALikeRequestResult>("ads.createLookalikeRequest",
 				new VkParameters
 				{
-					{ "account_id", accountId }, { "source_type", sourceType }, { "client_id", clientId },
-					{ "retargeting_group_id", retargetingGroupId }
+					{ "account_id", createLookALikeRequestParams.AccountId }, { "source_type", createLookALikeRequestParams.SourceType }, { "client_id", createLookALikeRequestParams.ClientId },
+					{ "retargeting_group_id", createLookALikeRequestParams.RetargetingGroupId }
 				});
 		}
 
 		/// <inheritdoc/>
-		public object CreateTargetGroup(CreateTargetGroupParams createTargetGroupParams)
+		public CreateTargetGroupResult CreateTargetGroup(CreateTargetGroupParams createTargetGroupParams)
 		{
-			return _vk.Call<object>("ads.createTargetGroup",
+			return _vk.Call<CreateTargetGroupResult>("ads.createTargetGroup",
 									new VkParameters
 									{
 										{ "account_id", createTargetGroupParams.AccountId },
@@ -110,48 +112,64 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object CreateTargetPixel(long accountId, string name, string domain, long categoryId, long? clientId = null)
+		public CreateTargetPixelResult CreateTargetPixel(CreateTargetPixelParams createTargetPixelParams)
 		{
-			return _vk.Call<object>("ads.createTargetPixel",
+			return _vk.Call<CreateTargetPixelResult>("ads.createTargetPixel",
 				new VkParameters
 				{
-					{ "account_id", accountId }, { "name", name }, { "domain", domain }, { "category_id", categoryId },
-					{ "client_id", clientId }
+					{ "account_id", createTargetPixelParams.AccountId }, { "name", createTargetPixelParams.Name },
+					{ "domain", createTargetPixelParams.Domain }, { "category_id", createTargetPixelParams.CategoryId },
+					{ "client_id", createTargetPixelParams.ClientId }
 				});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> DeleteAds(long accountId, string ids)
+		public ReadOnlyCollection<bool> DeleteAds(DeleteAdsParams deleteAdsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.deleteAds", new VkParameters { { "account_id", accountId }, { "ids", ids } });
+			return _vk.Call<ReadOnlyCollection<bool>>("ads.deleteAds", new VkParameters
+			{
+				{ "account_id", deleteAdsParams.AccountId }, { "ids", JsonConvert.SerializeObject(deleteAdsParams.Ids) }
+			});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> DeleteCampaigns(long accountId, string ids)
+		public ReadOnlyCollection<bool> DeleteCampaigns(DeleteCampaignsParams deleteCampaignsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.deleteCampaigns",
-				new VkParameters { { "account_id", accountId }, { "ids", ids } });
+			return _vk.Call<ReadOnlyCollection<bool>>("ads.deleteCampaigns",
+				new VkParameters
+				{
+					{ "account_id", deleteCampaignsParams.AccountId },
+					{ "ids", JsonConvert.SerializeObject(deleteCampaignsParams.Ids)
+					} });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> DeleteClients(long accountId, string ids)
+		public ReadOnlyCollection<bool> DeleteClients(DeleteClientsParams deleteClientsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.deleteClients",
-				new VkParameters { { "account_id", accountId }, { "ids", ids } });
+			return _vk.Call<ReadOnlyCollection<bool>>("ads.deleteClients",
+				new VkParameters
+				{
+					{ "account_id", deleteClientsParams.AccountId }, { "ids", JsonConvert.SerializeObject(deleteClientsParams.Ids) }
+				});
 		}
 
 		/// <inheritdoc/>
-		public bool DeleteTargetGroup(long accountId, long targetGroupId, long? clientId = null)
+		public bool DeleteTargetGroup(DeleteTargetGroupParams deleteTargetGroupParams)
 		{
 			return _vk.Call<bool>("ads.deleteTargetGroup",
-				new VkParameters { { "account_id", accountId }, { "target_group_id", targetGroupId }, { "client_id", clientId } });
+				new VkParameters
+				{
+					{ "account_id", deleteTargetGroupParams.AccountId }, { "target_group_id", deleteTargetGroupParams.TargetGroupId },
+					{ "client_id", deleteTargetGroupParams.ClientId }
+				});
 		}
 
 		/// <inheritdoc/>
-		public bool DeleteTargetPixel(long accountId, long targetPixelId, long? clientId = null)
+		public bool DeleteTargetPixel(DeleteTargetPixelParams deleteTargetPixelParams)
 		{
 			return _vk.Call<bool>("ads.deleteTargetPixel",
-				new VkParameters { { "account_id", accountId }, { "target_pixel_id", targetPixelId }, { "client_id", clientId } });
+				new VkParameters { { "account_id", deleteTargetPixelParams.AccountId }, { "target_pixel_id", deleteTargetPixelParams.TargetPixelId },
+					{ "client_id", deleteTargetPixelParams.ClientId } });
 		}
 
 		/// <inheritdoc/>
@@ -177,22 +195,22 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri GetAdsLayout(GetAdsLayoutParams getAdsLayoutParams)
+		public ReadOnlyCollection<Layout> GetAdsLayout(GetAdsLayoutParams getAdsLayoutParams)
 		{
-			return _vk.Call<Uri>("ads.getAdsLayout",
+			return _vk.Call<ReadOnlyCollection<Layout>>("ads.getAdsLayout",
 				new VkParameters
 				{
-					{ "account_id", getAdsLayoutParams.AccountId }, { "campaign_ids", getAdsLayoutParams.CampaignIds },
-					{ "ad_ids", getAdsLayoutParams.AdIds }, { "client_id", getAdsLayoutParams.ClientId },
+					{ "account_id", getAdsLayoutParams.AccountId }, { "campaign_ids", JsonConvert.SerializeObject(getAdsLayoutParams.CampaignIds) },
+					{ "ad_ids", JsonConvert.SerializeObject(getAdsLayoutParams.AdIds) }, { "client_id", getAdsLayoutParams.ClientId },
 					{ "include_deleted", getAdsLayoutParams.IncludeDeleted }, { "limit", getAdsLayoutParams.Limit },
 					{ "offset", getAdsLayoutParams.Offset }
 				});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetAdsTargeting(GetAdsTargetingParams getAdsTargetingParams)
+		public ReadOnlyCollection<AdsTargetingResult> GetAdsTargeting(GetAdsTargetingParams getAdsTargetingParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getAdsTargeting",
+			return _vk.Call<ReadOnlyCollection<AdsTargetingResult>>("ads.getAdsTargeting",
 				new VkParameters
 				{
 					{ "account_id", getAdsTargetingParams.AccountId }, { "campaign_ids", getAdsTargetingParams.CampaignIds },
@@ -203,39 +221,38 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object GetBudget(long accountId)
+		public double GetBudget(long accountId)
 		{
-			return _vk.Call<object>("ads.getBudget", new VkParameters { { "account_id", accountId } });
+			return _vk.Call<double>("ads.getBudget", new VkParameters { { "account_id", accountId } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<AdsCampaign> GetCampaigns(long accountId, IEnumerable<long> campaignIds, long? clientId = null,
-															bool? includeDeleted = null)
+		public ReadOnlyCollection<AdsCampaign> GetCampaigns(AdsGetCampaignsParams adsGetCampaignsParams)
 		{
 			return _vk.Call<ReadOnlyCollection<AdsCampaign>>("ads.getCampaigns",
 				new VkParameters
 				{
-					{ "account_id", accountId }, { "campaign_ids", campaignIds }, { "client_id", clientId },
-					{ "include_deleted", includeDeleted }
+					{ "account_id", adsGetCampaignsParams.AccountId }, { "campaign_ids", adsGetCampaignsParams.CampaignIds },
+					{ "client_id", adsGetCampaignsParams.ClientId }, { "include_deleted", adsGetCampaignsParams.IncludeDeleted }
 				});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetCategories(string lang)
+		public GetCategoriesResult GetCategories(Language lang)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getCategories", new VkParameters { { "lang", lang } });
+			return _vk.Call<GetCategoriesResult>("ads.getCategories", new VkParameters { { "lang", lang } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetClients(long accountId)
+		public ReadOnlyCollection<GetClientsResult> GetClients(long accountId)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getClients", new VkParameters { { "account_id", accountId } });
+			return _vk.Call<ReadOnlyCollection<GetClientsResult>>("ads.getClients", new VkParameters { { "account_id", accountId } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetDemographics(GetDemographicsParams getDemographicsParams)
+		public ReadOnlyCollection<GetDemographicsResult> GetDemographics(GetDemographicsParams getDemographicsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getDemographics",
+			return _vk.Call<ReadOnlyCollection<GetDemographicsResult>>("ads.getDemographics",
 				new VkParameters
 				{
 					{ "account_id", getDemographicsParams.AccountId }, { "ids_type", getDemographicsParams.IdsType },
@@ -245,15 +262,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public object GetFloodStats(long accountId)
+		public GetFloodStatsResult GetFloodStats(long accountId)
 		{
-			return _vk.Call<object>("ads.getFloodStats", new VkParameters { { "account_id", accountId } });
+			return _vk.Call<GetFloodStatsResult>("ads.getFloodStats", new VkParameters { { "account_id", accountId } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetLookalikeRequests(GetLookalikeRequestsParams getLookalikeRequestsParams)
+		public GetLookalikeRequestsResult GetLookalikeRequests(GetLookalikeRequestsParams getLookalikeRequestsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getLookalikeRequests",
+			return _vk.Call<GetLookalikeRequestsResult>("ads.getLookalikeRequests",
 				new VkParameters
 				{
 					{ "account_id", getLookalikeRequestsParams.AccountId },
@@ -266,29 +283,29 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetOfficeUsers(long accountId)
+		public ReadOnlyCollection<GetOfficeUsersResult> GetOfficeUsers(long accountId)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getOfficeUsers", new VkParameters { { "account_id", accountId } });
+			return _vk.Call<ReadOnlyCollection<GetOfficeUsersResult>>("ads.getOfficeUsers", new VkParameters { { "account_id", accountId } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetPostsReach(long accountId, string idsType, string ids)
+		public ReadOnlyCollection<GetPostsReachResult> GetPostsReach(long accountId, IdsType idsType, string ids)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getPostsReach",
+			return _vk.Call<ReadOnlyCollection<GetPostsReachResult>>("ads.getPostsReach",
 				new VkParameters { { "account_id", accountId }, { "ids_type", idsType }, { "ids", ids } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetRejectionReason(long accountId, long adId)
+		public GetRejectionReasonResult GetRejectionReason(long accountId, long adId)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getRejectionReason",
+			return _vk.Call<GetRejectionReasonResult>("ads.getRejectionReason",
 				new VkParameters { { "account_id", accountId }, { "ad_id", adId } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetStatistics(GetStatisticsParams getStatisticsParams)
+		public ReadOnlyCollection<GetStatisticsResult> GetStatistics(GetStatisticsParams getStatisticsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getStatistics",
+			return _vk.Call<ReadOnlyCollection<GetStatisticsResult>>("ads.getStatistics",
 				new VkParameters
 				{
 					{ "account_id", getStatisticsParams.AccountId }, { "ids_type", getStatisticsParams.IdsType },
@@ -298,9 +315,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetSuggestions(GetSuggestionsParams getSuggestionsParams)
+		public ReadOnlyCollection<GetSuggestionsResult> GetSuggestions(GetSuggestionsParams getSuggestionsParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getSuggestions",
+			return _vk.Call<ReadOnlyCollection<GetSuggestionsResult>>("ads.getSuggestions",
 				new VkParameters
 				{
 					{ "section", getSuggestionsParams.Section }, { "ids", getSuggestionsParams.Ids }, { "q", getSuggestionsParams.Q },
@@ -310,23 +327,23 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetTargetGroups(long accountId, long? clientId = null, bool? extended = null)
+		public ReadOnlyCollection<GetTargetGroupsResult> GetTargetGroups(long accountId, long? clientId = null, bool? extended = null)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getTargetGroups",
+			return _vk.Call<ReadOnlyCollection<GetTargetGroupsResult>>("ads.getTargetGroups",
 				new VkParameters { { "account_id", accountId }, { "client_id", clientId }, { "extended", extended } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> GetTargetPixels(long accountId, long? clientId = null)
+		public ReadOnlyCollection<GetTargetPixelsResult> GetTargetPixels(long accountId, long? clientId = null)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.getTargetPixels",
+			return _vk.Call<ReadOnlyCollection<GetTargetPixelsResult>>("ads.getTargetPixels",
 				new VkParameters { { "account_id", accountId }, { "client_id", clientId } });
 		}
 
 		/// <inheritdoc/>
-		public object GetTargetingStats(GetTargetingStatsParams getTargetingStatsParams)
+		public GetTargetingStatsResult GetTargetingStats(GetTargetingStatsParams getTargetingStatsParams)
 		{
-			return _vk.Call<object>("ads.getTargetingStats",
+			return _vk.Call<GetTargetingStatsResult>("ads.getTargetingStats",
 				new VkParameters
 				{
 					{ "account_id", getTargetingStatsParams.AccountId }, { "criteria", getTargetingStatsParams.Criteria },
@@ -338,82 +355,91 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri GetUploadUrl(long adFormat)
+		public Uri GetUploadUrl(GetUploadUrlParams getUploadUrlParams)
 		{
-			return _vk.Call<Uri>("ads.getUploadURl", new VkParameters { { "ad_format", adFormat } });
+			return _vk.Call<Uri>("ads.getUploadUrl", new VkParameters
+			{
+				{ "ad_format", getUploadUrlParams.AdFormat},
+				{ "icon", getUploadUrlParams.Icon }
+			});
 		}
 
 		/// <inheritdoc/>
 		public Uri GetVideoUploadUrl()
 		{
-			return _vk.Call<Uri>("ads.getVideoUploadURl", VkParameters.Empty);
+			return _vk.Call<Uri>("ads.getVideoUploadUrl", VkParameters.Empty);
 		}
 
 		/// <inheritdoc/>
-		public object ImportTargetContacts(long accountId, long targetGroupId, string contacts, long? clientId = null)
+		public long ImportTargetContacts(ImportTargetContactsParams importTargetContactsParams)
 		{
-			return _vk.Call<object>("ads.importTargetContacts",
+			return _vk.Call<long>("ads.importTargetContacts",
 				new VkParameters
 				{
-					{ "account_id", accountId }, { "target_group_id", targetGroupId }, { "contacts", contacts }, { "client_id", clientId }
+					{ "account_id", importTargetContactsParams.AccountId }, { "target_group_id", importTargetContactsParams.TargetGroupId },
+					{ "contacts", importTargetContactsParams.Contacts }, { "client_id", importTargetContactsParams.ClientId }
 				});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> RemoveOfficeUsers(long accountId, string ids)
+		public ReadOnlyCollection<bool> RemoveOfficeUsers(RemoveOfficeUsersParams removeOfficeUsersParams)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.removeOfficeUsers",
-				new VkParameters { { "account_id", accountId }, { "ids", ids } });
+			return _vk.Call<ReadOnlyCollection<bool>>("ads.removeOfficeUsers",
+				new VkParameters { { "account_id", removeOfficeUsersParams.AccountId }, { "ids", JsonConvert.SerializeObject(removeOfficeUsersParams.Ids) } });
 		}
 
 		/// <inheritdoc/>
-		public bool RemoveTargetContacts(long accountId, long targetGroupId, string contacts, long? clientId = null)
+		public RemoveTargetContactsResult RemoveTargetContacts(RemoveTargetContactsParams removeTargetContactsParams)
 		{
-			return _vk.Call<bool>("ads.removeTargetContacts",
+			return _vk.Call<RemoveTargetContactsResult>("ads.removeTargetContacts",
 				new VkParameters
 				{
-					{ "account_id", accountId }, { "target_group_id", targetGroupId }, { "contacts", contacts }, { "client_id", clientId }
+					{ "account_id", removeTargetContactsParams.AccountId }, { "target_group_id", removeTargetContactsParams.TargetGroupId },
+					{ "contacts", removeTargetContactsParams.Contacts }, { "client_id", removeTargetContactsParams.ClientId }
 				});
 		}
 
 		/// <inheritdoc/>
-		public object SaveLookalikeRequestResult(long accountId, long requestId, long level, long? clientId = null)
+		public SaveLookALikeRequestResultResult SaveLookalikeRequestResult(SaveLookalikeRequestResultParams saveLookalikeRequestResultParams)
 		{
-			return _vk.Call<object>("ads.saveLookalikeRequestResult",
+			return _vk.Call<SaveLookALikeRequestResultResult>("ads.saveLookalikeRequestResult",
 				new VkParameters
-					{ { "account_id", accountId }, { "request_id", requestId }, { "level", level }, { "client_id", clientId } });
+					{
+						{ "account_id", saveLookalikeRequestResultParams.AccountId }, { "request_id", saveLookalikeRequestResultParams.RequestId },
+						{ "level", saveLookalikeRequestResultParams.Level }, { "client_id", saveLookalikeRequestResultParams.ClientId }
+					});
 		}
 
 		/// <inheritdoc/>
-		public object ShareTargetGroup(long accountId, long targetGroupId, long? clientId = null, long? shareWithClientId = null)
+		public ShareTargetGroupResult ShareTargetGroup(ShareTargetGroupParams shareTargetGroupParams)
 		{
-			return _vk.Call<object>("ads.shareTargetGroup",
+			return _vk.Call<ShareTargetGroupResult>("ads.shareTargetGroup",
 				new VkParameters
 				{
-					{ "account_id", accountId }, { "target_group_id", targetGroupId }, { "client_id", clientId },
-					{ "share_with_client_id", shareWithClientId }
+					{ "account_id", shareTargetGroupParams.AccountId }, { "target_group_id", shareTargetGroupParams.TargetGroupId },
+					{ "client_id", shareTargetGroupParams.ClientId}, { "share_with_client_id", shareTargetGroupParams.ShareWithClientId }
 				});
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> UpdateAds(long accountId, string data)
+		public ReadOnlyCollection<UpdateAdsResult> UpdateAds(AdsDataSpecificationParams<AdEditSpecification> adEditDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.updateAds",
-				new VkParameters { { "account_id", accountId }, { "data", data } });
+			return _vk.Call<ReadOnlyCollection<UpdateAdsResult>>("ads.updateAds",
+				new VkParameters { { "account_id", adEditDataSpecification.AccountId }, { "data", adEditDataSpecification.Data } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> UpdateCampaigns(long accountId, string data)
+		public ReadOnlyCollection<UpdateCampaignsResult> UpdateCampaigns(AdsDataSpecificationParams<CampaignModSpecification> campaignModDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.updateCampaigns",
-				new VkParameters { { "account_id", accountId }, { "data", data } });
+			return _vk.Call<ReadOnlyCollection<UpdateCampaignsResult>>("ads.updateCampaigns",
+				new VkParameters { { "account_id", campaignModDataSpecification.AccountId }, { "data", campaignModDataSpecification.Data } });
 		}
 
 		/// <inheritdoc/>
-		public ReadOnlyCollection<object> UpdateClients(long accountId, string data)
+		public ReadOnlyCollection<UpdateClientsResult> UpdateClients(AdsDataSpecificationParams<ClientModSpecification> clientModDataSpecification)
 		{
-			return _vk.Call<ReadOnlyCollection<object>>("ads.updateClients",
-				new VkParameters { { "account_id", accountId }, { "data", data } });
+			return _vk.Call<ReadOnlyCollection<UpdateClientsResult>>("ads.updateClients",
+				new VkParameters { { "account_id", clientModDataSpecification.AccountId }, { "data", clientModDataSpecification.Data } });
 		}
 
 		/// <inheritdoc/>

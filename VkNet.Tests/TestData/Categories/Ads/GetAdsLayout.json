@@ -1,0 +1,24 @@
+﻿{
+  "response": [
+    {
+      "id": 1,
+      "campaign_id": 1,
+      "ad_format": 1,
+      "cost_type": 1,
+      "goal_type": 1,
+      "video": 1,
+      "repeat_video": 1,
+      "title": "123",
+      "description": "12321",
+      "link_url": "123",
+      "link_domain": "123123",
+      "link_title": "123123",
+      "link_button": "123123",
+      "preview_link": "123123",
+      "image_src": "123123",
+      "image_src_2x": "123123",
+      "icon_src": "123123",
+      "icon_src_2x": "123123"
+    }
+  ]
+}
