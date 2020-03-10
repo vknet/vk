@@ -366,7 +366,7 @@ namespace VkNet.Categories
 		/// Добавляет пользователя в черный список.
 		/// </summary>
 		/// <param name="userId">
-		/// Идентификатор пользователя, которого нужно добавить в черный список.
+		/// Идентификатор пользователя или сообщества, которое будет добавлено в черный список.
 		/// положительное число,
 		/// обязательный параметр (Положительное число, обязательный параметр).
 		/// </param>
@@ -376,13 +376,13 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.banUser
 		/// </remarks>
-		public bool BanUser(long userId)
+		public bool BanUser(long ownerId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
+			VkErrors.ThrowIfNumberIsNegative(() => ownerId);
 
 			var parameters = new VkParameters
 			{
-				{ "user_id", userId }
+				{ "owner_id", ownerId }
 			};
 
 			return _vk.Call("account.banUser", parameters);
@@ -391,8 +391,8 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Убирает пользователя из черного списка.
 		/// </summary>
-		/// <param name="userId">
-		/// Идентификатор пользователя, которого нужно убрать из черного списка.
+		/// <param name="ownerId">
+		/// Идентификатор пользователя или группы, которого нужно удалить из черного списка.
 		/// положительное число,
 		/// обязательный параметр (Положительное число, обязательный параметр).
 		/// </param>
@@ -402,13 +402,13 @@ namespace VkNet.Categories
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.unbanUser
 		/// </remarks>
-		public bool UnbanUser(long userId)
+		public bool UnbanUser(long ownerId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => userId);
+			VkErrors.ThrowIfNumberIsNegative(() => ownerId);
 
 			var parameters = new VkParameters
 			{
-				{ "user_id", userId }
+				{ "owner_id", ownerId }
 			};
 
 			return _vk.Call("account.unbanUser", parameters);

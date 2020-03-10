@@ -80,15 +80,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> BanUserAsync(long userId)
+		public Task<bool> BanUserAsync(long ownerId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => BanUser(userId));
+			return TypeHelper.TryInvokeMethodAsync(() => BanUser(ownerId));
 		}
 
 		/// <inheritdoc />
-		public Task<bool> UnbanUserAsync(long userId)
+		public Task<bool> UnbanUserAsync(long ownerId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => UnbanUser(userId));
+			return TypeHelper.TryInvokeMethodAsync(() => UnbanUser(ownerId));
 		}
 
 		/// <inheritdoc />

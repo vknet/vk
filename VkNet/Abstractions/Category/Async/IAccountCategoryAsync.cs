@@ -260,8 +260,8 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Добавляет пользователя в черный список.
 		/// </summary>
-		/// <param name="userId">
-		/// Идентификатор пользователя, которого нужно добавить в черный список.
+		/// <param name="ownerId">
+		/// Идентификатор пользователя или сообщества, которое будет добавлено в черный список.
 		/// положительное число,
 		/// обязательный параметр Async(Положительное число, обязательный параметр).
 		/// </param>
@@ -271,13 +271,13 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.banUser
 		/// </remarks>
-		Task<bool> BanUserAsync(long userId);
+		Task<bool> BanUserAsync(long ownerId);
 
 		/// <summary>
 		/// Убирает пользователя из черного списка.
 		/// </summary>
-		/// <param name="userId">
-		/// Идентификатор пользователя, которого нужно убрать из черного списка.
+		/// <param name="ownerId">
+		/// Идентификатор пользователя или группы, которого нужно удалить из черного списка.
 		/// положительное число,
 		/// обязательный параметр Async(Положительное число, обязательный параметр).
 		/// </param>
@@ -287,7 +287,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.unbanUser
 		/// </remarks>
-		Task<bool> UnbanUserAsync(long userId);
+		Task<bool> UnbanUserAsync(long ownerId);
 
 		/// <summary>
 		/// Возвращает список пользователей, находящихся в черном списке.
