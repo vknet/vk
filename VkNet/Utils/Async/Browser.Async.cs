@@ -17,6 +17,7 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public async Task<AuthorizationResult> AuthorizeAsync()
 		{
+			LoginPasswordError = 0;
 			var authorizeUrlResult = await OpenAuthDialogAsync().ConfigureAwait(false);
 
 			return await NextStepAsync(authorizeUrlResult).ConfigureAwait(false);
