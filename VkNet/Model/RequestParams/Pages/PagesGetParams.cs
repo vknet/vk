@@ -1,5 +1,4 @@
 ﻿using System;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -49,26 +48,5 @@ namespace VkNet.Model.RequestParams
 		/// значения 1 или 0.
 		/// </summary>
 		public bool? NeedHtml { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> Объект типа PagesGetParams </returns>
-		public static VkParameters ToVkParameters(PagesGetParams p)
-		{
-			var result = new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "page_id", p.PageId }
-					, { "global", p.Global }
-					, { "site_preview", p.SitePreview }
-					, { "title", p.Title }
-					, { "need_source", p.NeedSource }
-					, { "need_html", p.NeedHtml }
-			};
-
-			return result;
-		}
 	}
 }

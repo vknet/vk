@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Ads
 {
@@ -27,21 +26,5 @@ namespace VkNet.Model.RequestParams.Ads
 		/// </summary>
 		[JsonProperty("target_group_id")]
 		public long TargetGroupId { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(DeleteTargetGroupParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{"account_id", p.AccountId},
-				{"client_id", p.ClientId},
-				{"target_group_id", p.TargetGroupId}
-			};
-			return parameters;
-		}
 	}
 }

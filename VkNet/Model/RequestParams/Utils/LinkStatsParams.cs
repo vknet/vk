@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -44,22 +43,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "extended")]
 		public bool? Extended { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(LinkStatsParams p)
-		{
-			return new VkParameters
-			{
-					{ "key", p.Key }
-					, { "access_key", p.AccessKey }
-					, { "interval", p.Interval }
-					, { "intervals_count", p.IntervalsCount }
-					, { "extended", p.Extended }
-			};
-		}
 	}
 }

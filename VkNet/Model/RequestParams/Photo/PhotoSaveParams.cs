@@ -1,6 +1,4 @@
 ﻿using System;
-using Newtonsoft.Json.Linq;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -39,32 +37,5 @@ namespace VkNet.Model.RequestParams
 		/// Текст описания фотографии.
 		/// </summary>
 		public string Caption { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PhotoSaveParams p)
-		{
-			var responseJson = JObject.Parse(json: p.SaveFileResponse);
-			var server = responseJson[propertyName: "server"].ToString();
-			var hash = responseJson[propertyName: "hash"].ToString();
-			var photosList = responseJson[propertyName: "photos_list"].ToString();
-
-			var parameters = new VkParameters
-			{
-					{ "album_id", p.AlbumId }
-					, { "group_id", p.GroupId }
-					, { "server", server }
-					, { "photos_list", photosList }
-					, { "hash", hash }
-					, { "latitude", p.Latitude }
-					, { "longitude", p.Longitude }
-					, { "caption", p.Caption }
-			};
-
-			return parameters;
-		}
 	}
 }

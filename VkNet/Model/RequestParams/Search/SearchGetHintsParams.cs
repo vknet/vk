@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -48,23 +47,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "search_global")]
 		public bool SearchGlobal { get; set; } = true;
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(SearchGetHintsParams p)
-		{
-			return new VkParameters
-			{
-					{ "q", p.Query }
-					, { "offset", p.Offset }
-					, { "limit", p.Limit }
-					, { "filters", p.Filters }
-					, { "fields", p.ProfileFields }
-					, { "search_global", p.SearchGlobal }
-			};
-		}
 	}
 }

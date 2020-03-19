@@ -97,7 +97,15 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(() => getCitiesParams.CountryId);
 			VkErrors.ThrowIfNumberIsNegative(() => getCitiesParams.RegionId);
 
-			return _vk.Call("database.getCities", getCitiesParams, true)
+			return _vk.Call("database.getCities", new VkParameters
+				{
+					{ "country_id", getCitiesParams.CountryId }
+					, { "region_id", getCitiesParams.RegionId }
+					, { "q", getCitiesParams.Query }
+					, { "need_all", getCitiesParams.NeedAll }
+					, { "count", getCitiesParams.Count }
+					, { "offset", getCitiesParams.Offset }
+				}, true)
 				.ToVkCollectionOf<City>( x => x);
 		}
 

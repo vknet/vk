@@ -1,5 +1,4 @@
 ﻿using System;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -56,24 +55,5 @@ namespace VkNet.Model.RequestParams
 		/// 1 — вернуть диалоги с пометкой «Неотвеченные» (для сообщений сообществ).
 		/// </summary>
 		public bool? Unanswered { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MessagesDialogsGetParams p)
-		{
-			return new VkParameters
-			{
-					{ "start_message_id", p.StartMessageId }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "unread", p.Unread }
-					, { "preview_length", p.PreviewLength }
-					, { "important", p.Important }
-					, { "unanswered", p.Unanswered }
-			};
-		}
 	}
 }

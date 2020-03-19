@@ -160,36 +160,5 @@ namespace VkNet.Model.RequestParams
 		/// </remarks>
 		[JsonProperty("template")]
 		public MessageTemplate Template { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MessagesSendParams p)
-		{
-			return new VkParameters
-			{
-				{ "user_id", p.UserId },
-				{ "domain", p.Domain },
-				{ "chat_id", p.ChatId },
-				{ "user_ids", p.UserIds },
-				{ "message", p.Message },
-				{ "random_id", p.RandomId },
-				{ "lat", p.Lat },
-				{ "long", p.Longitude },
-				{ "attachment", p.Attachments },
-				{ "forward_messages", p.ForwardMessages },
-				{ "keyboard", p.Keyboard != null ? JsonConvert.SerializeObject(p.Keyboard) : "" },
-				{ "sticker_id", p.StickerId },
-				{ "peer_id", p.PeerId },
-				{ "payload", p.Payload },
-				{ "group_id", p.GroupId },
-				{ "dont_parse_links", p.DontParseLinks },
-				{ "disable_mentions", p.DisableMentions },
-				{ "intent", p.Intent },
-				{ "template", p.Template != null ? JsonConvert.SerializeObject(p.Template) : ""}
-			};
-		}
 	}
 }

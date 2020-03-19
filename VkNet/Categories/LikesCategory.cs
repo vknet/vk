@@ -45,7 +45,34 @@ namespace VkNet.Categories
 		{
 			@params.Extended = false;
 
-			return _vk.Call("likes.getList", @params, skipAuthorization)
+			var parameters = new VkParameters
+			{
+				{ "type", @params.Type }
+				, { "owner_id", @params.OwnerId }
+				, { "item_id", @params.ItemId }
+				, { "page_url", @params.PageUrl }
+				, { "filter", @params.Filter }
+				, { "friends_only", @params.FriendsOnly }
+				, { "extended", @params.Extended }
+				, { "offset", @params.Offset }
+				, { "skip_own", @params.SkipOwn }
+			};
+
+			if (@params.FriendsOnly.HasValue && @params.FriendsOnly.Value)
+			{
+				if (@params.Count <= 100)
+				{
+					parameters.Add(name: "count", nullableValue: @params.Count);
+				}
+			} else
+			{
+				if (@params.Count <= 1000)
+				{
+					parameters.Add(name: "count", nullableValue: @params.Count);
+				}
+			}
+
+			return _vk.Call("likes.getList", parameters, skipAuthorization)
 				.ToVkCollectionOf<long>(selector: x => x);
 		}
 
@@ -66,7 +93,34 @@ namespace VkNet.Categories
 		{
 			@params.Extended = true;
 
-			return _vk.Call("likes.getList", @params, true);
+			var parameters = new VkParameters
+			{
+				{ "type", @params.Type }
+				, { "owner_id", @params.OwnerId }
+				, { "item_id", @params.ItemId }
+				, { "page_url", @params.PageUrl }
+				, { "filter", @params.Filter }
+				, { "friends_only", @params.FriendsOnly }
+				, { "extended", @params.Extended }
+				, { "offset", @params.Offset }
+				, { "skip_own", @params.SkipOwn }
+			};
+
+			if (@params.FriendsOnly.HasValue && @params.FriendsOnly.Value)
+			{
+				if (@params.Count <= 100)
+				{
+					parameters.Add(name: "count", nullableValue: @params.Count);
+				}
+			} else
+			{
+				if (@params.Count <= 1000)
+				{
+					parameters.Add(name: "count", nullableValue: @params.Count);
+				}
+			}
+
+			return _vk.Call("likes.getList", parameters, true);
 		}
 
 		/// <summary>
@@ -83,7 +137,14 @@ namespace VkNet.Categories
 		/// </remarks>
 		public long Add(LikesAddParams @params)
 		{
-			var response = _vk.Call("likes.add", @params);
+			var response = _vk.Call("likes.add", new VkParameters
+			{
+				{ "type", @params.Type },
+				{ "item_id", @params.ItemId },
+				{ "owner_id", @params.OwnerId },
+				{ "access_key", @params.AccessKey },
+				{ "ref", @params.Reference }
+			});
 
 			return response[key: "likes"];
 		}

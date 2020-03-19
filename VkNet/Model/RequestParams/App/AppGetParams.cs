@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -62,25 +61,5 @@ namespace VkNet.Model.RequestParams
 		[JsonProperty(propertyName: "name_case")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public NameCase NameCase { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(AppGetParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "app_ids", p.AppIds }
-					, { "platform", p.Platform }
-					, { "extended", p.Extended }
-					, { "return_friends", p.ReturnFriends }
-					, { "fields", p.Fields }
-					, { "name_case", p.NameCase }
-			};
-
-			return parameters;
-		}
 	}
 }

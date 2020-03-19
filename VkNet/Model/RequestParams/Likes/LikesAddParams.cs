@@ -67,24 +67,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public string CaptchaKey { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(LikesAddParams p)
-		{
-			var result = new VkParameters
-			{
-				{ "type", p.Type },
-				{ "item_id", p.ItemId },
-				{ "owner_id", p.OwnerId },
-				{ "access_key", p.AccessKey },
-				{ "ref", p.Reference }
-			};
-
-			return result;
-		}
 	}
 }

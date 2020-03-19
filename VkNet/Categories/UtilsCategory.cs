@@ -99,7 +99,15 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public LinkStatsResult GetLinkStats(LinkStatsParams @params)
 		{
-			return _vk.Call<LinkStatsResult>("utils.getLinkStats", @params);
+			return _vk.Call<LinkStatsResult>("utils.getLinkStats",
+				new VkParameters
+				{
+					{ "key", @params.Key }
+					, { "access_key", @params.AccessKey }
+					, { "interval", @params.Interval }
+					, { "intervals_count", @params.IntervalsCount }
+					, { "extended", @params.Extended }
+				});
 		}
 	}
 }

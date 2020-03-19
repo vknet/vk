@@ -1,7 +1,6 @@
 ﻿using System;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -85,30 +84,5 @@ namespace VkNet.Model.RequestParams
 		/// может принимать значения 1 или 0, по умолчанию 0.
 		/// </summary>
 		public bool? Extended { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(VideoSearchParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "q", p.Query }
-					, { "sort", p.Sort }
-					, { "hd", p.Hd }
-					, { "adult", p.Adult }
-					, { "filters", p.Filters }
-					, { "search_own", p.SearchOwn }
-					, { "offset", p.Offset }
-					, { "longer", p.Longer }
-					, { "shorter", p.Shorter }
-					, { "count", p.Count }
-					, { "extended", p.Extended }
-			};
-
-			return parameters;
-		}
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using VkNet.Enums.Filters;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -62,27 +61,5 @@ namespace VkNet.Model.RequestParams
 		/// строк, разделенных через запятую.
 		/// </summary>
 		public GroupsFields Fields { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(WallSearchParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "domain", p.Domain }
-					, { "query", p.Query }
-					, { "owners_only", p.OwnersOnly }
-					, { "count", p.Count }
-					, { "offset", p.Offset }
-					, { "extended", p.Extended }
-					, { "fields", p.Fields }
-			};
-
-			return parameters;
-		}
 	}
 }

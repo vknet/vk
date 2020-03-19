@@ -33,7 +33,17 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call(methodName: "board.getTopics", parameters: @params, skipAuthorization: skipAuthorization)
+			return _vk.Call(methodName: "board.getTopics", new VkParameters
+				{
+					{ "group_id", @params.GroupId }
+					, { "topic_ids", @params.TopicIds }
+					, { "order", @params.Order }
+					, { "offset", @params.Offset }
+					, { "count", @params.Count }
+					, { "extended", @params.Extended }
+					, { "preview", @params.Preview }
+					, { "preview_length", @params.PreviewLength }
+				}, skipAuthorization: skipAuthorization)
 					.ToVkCollectionOf<Topic>(selector: x => x);
 		}
 
@@ -50,7 +60,18 @@ namespace VkNet.Categories
 		/// </remarks>
 		public TopicsFeed GetComments(BoardGetCommentsParams @params, bool skipAuthorization = false)
 		{
-			var response = _vk.Call(methodName: "board.getComments", parameters: @params, skipAuthorization: skipAuthorization);
+			var response = _vk.Call(methodName: "board.getComments", new VkParameters
+			{
+				{ "group_id", @params.GroupId }
+				, { "topic_id", @params.TopicId }
+				, { "need_likes", @params.NeedLikes }
+				, { "start_comment_id", @params.StartCommentId }
+				, { "offset", @params.Offset }
+				, { "count", @params.Count }
+				, { "sort", @params.Sort }
+				, { "preview_length", @params.PreviewLength }
+				, { "extended", @params.Extended }
+			}, skipAuthorization: skipAuthorization);
 
 			var result = new TopicsFeed
 			{
@@ -74,7 +95,14 @@ namespace VkNet.Categories
 		/// </remarks>
 		public long AddTopic(BoardAddTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.addTopic", parameters: @params);
+			return _vk.Call(methodName: "board.addTopic", new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "title", @params.Title },
+				{ "text", @params.Text },
+				{ "from_group", @params.FromGroup },
+				{ "attachments", @params.Attachments }
+			});
 		}
 
 		/// <summary>
@@ -88,7 +116,11 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool DeleteTopic(BoardTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.deleteTopic", parameters: @params);
+			return _vk.Call(methodName: "board.deleteTopic", parameters: new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "topic_id", @params.TopicId }
+			});
 		}
 
 		/// <summary>
@@ -103,7 +135,11 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool CloseTopic(BoardTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.closeTopic", parameters: @params);
+			return _vk.Call(methodName: "board.closeTopic", parameters: new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "topic_id", @params.TopicId }
+			});
 		}
 
 		/// <summary>
@@ -118,7 +154,11 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool OpenTopic(BoardTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.openTopic", parameters: @params);
+			return _vk.Call(methodName: "board.openTopic", parameters: new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "topic_id", @params.TopicId }
+			});
 		}
 
 		/// <summary>
@@ -133,7 +173,11 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool FixTopic(BoardTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.fixTopic", parameters: @params);
+			return _vk.Call(methodName: "board.fixTopic", parameters: new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "topic_id", @params.TopicId }
+			});
 		}
 
 		/// <summary>
@@ -148,7 +192,11 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool UnFixTopic(BoardTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.unfixTopic", parameters: @params);
+			return _vk.Call(methodName: "board.unfixTopic", parameters: new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "topic_id", @params.TopicId }
+			});
 		}
 
 		/// <summary>
@@ -162,7 +210,12 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool EditTopic(BoardEditTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.editTopic", parameters: @params);
+			return _vk.Call(methodName: "board.editTopic", parameters: new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "topic_id", @params.TopicId },
+				{ "title", @params.Title }
+			});
 		}
 
 		/// <summary>
@@ -177,7 +230,16 @@ namespace VkNet.Categories
 		/// </remarks>
 		public long CreateComment(BoardCreateCommentParams @params)
 		{
-			return _vk.Call(methodName: "board.createComment", parameters: @params);
+			return _vk.Call(methodName: "board.createComment", parameters: new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "topic_id", @params.TopicId },
+				{ "from_group", @params.FromGroup },
+				{ "message", @params.Message },
+				{ "attachments", @params.Attachments },
+				{ "sticker_id", @params.StickerId },
+				{ "guid", @params.Guid }
+			});
 		}
 
 		/// <summary>
@@ -192,7 +254,12 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool DeleteComment(BoardCommentParams @params)
 		{
-			return _vk.Call(methodName: "board.deleteComment", parameters: @params);
+			return _vk.Call(methodName: "board.deleteComment", parameters: new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "topic_id", @params.TopicId },
+				{ "comment_id", @params.CommentId }
+			});
 		}
 
 		/// <summary>
@@ -206,7 +273,14 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool EditComment(BoardEditCommentParams @params)
 		{
-			return _vk.Call(methodName: "board.editComment", parameters: @params);
+			return _vk.Call(methodName: "board.editComment", parameters: new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "topic_id", @params.TopicId },
+				{ "comment_id", @params.CommentId },
+				{ "message", @params.Message },
+				{ "attachments", @params.Attachments }
+			});
 		}
 
 		/// <summary>
@@ -220,7 +294,12 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool RestoreComment(BoardCommentParams @params)
 		{
-			return _vk.Call(methodName: "board.restoreComment", parameters: @params);
+			return _vk.Call<bool>(methodName: "board.restoreComment", parameters: new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "topic_id", @params.TopicId },
+				{ "comment_id", @params.CommentId }
+			});
 		}
 	}
 }

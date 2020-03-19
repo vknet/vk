@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Market
 {
@@ -62,25 +61,5 @@ namespace VkNet.Model.RequestParams.Market
 		/// одинакового комментария.
 		/// </summary>
 		public string Guid { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MarketCreateCommentParams p)
-		{
-			return new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "item_id", p.ItemId }
-					, { "message", p.Message }
-					, { "attachments", p.Attachments }
-					, { "from_group", p.FromGroup }
-					, { "reply_to_comment", p.ReplyToComment }
-					, { "sticker_id", p.StickerId }
-					, { "guid", p.Guid }
-			};
-		}
 	}
 }

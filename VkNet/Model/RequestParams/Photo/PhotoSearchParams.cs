@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -69,28 +68,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public PhotoSearchRadius Radius { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PhotoSearchParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "q", p.Query }
-					, { "lat", p.Latitude }
-					, { "long", p.Longitude }
-					, { "start_time", p.StartTime }
-					, { "end_time", p.EndTime }
-					, { "sort", p.Sort }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "radius", p.Radius }
-			};
-
-			return parameters;
-		}
 	}
 }

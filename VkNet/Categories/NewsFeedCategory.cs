@@ -31,19 +31,48 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public NewsFeed Get(NewsFeedGetParams @params)
 		{
-			return _vk.Call<NewsFeed>("newsfeed.get", @params);
+			return _vk.Call<NewsFeed>("newsfeed.get", new VkParameters
+			{
+				{ "filters", @params.Filters },
+				{ "return_banned", @params.ReturnBanned },
+				{ "start_time", @params.StartTime },
+				{ "end_time", @params.EndTime },
+				{ "max_photos", @params.MaxPhotos },
+				{ "source_ids", @params.SourceIds },
+				{ "start_from", @params.StartFrom },
+				{ "count", @params.Count },
+				{ "fields", @params.Fields }
+			});
 		}
 
 		/// <inheritdoc />
 		public NewsFeed GetRecommended(NewsFeedGetRecommendedParams @params)
 		{
-			return _vk.Call<NewsFeed>("newsfeed.getRecommended", @params);
+			return _vk.Call<NewsFeed>("newsfeed.getRecommended", new VkParameters
+			{
+				{ "start_time", @params.StartTime },
+				{ "end_time", @params.EndTime },
+				{ "max_photos", @params.MaxPhotos },
+				{ "start_from", @params.StartFrom },
+				{ "count", @params.Count },
+				{ "fields", @params.Fields }
+			});
 		}
 
 		/// <inheritdoc />
 		public NewsFeed GetComments(NewsFeedGetCommentsParams @params)
 		{
-			return _vk.Call<NewsFeed>("newsfeed.getComments", @params);
+			return _vk.Call<NewsFeed>("newsfeed.getComments", new VkParameters
+			{
+				{ "count", @params.Count },
+				{ "filters", @params.Filters },
+				{ "reposts", @params.Reposts },
+				{ "start_time", @params.StartTime },
+				{ "end_time", @params.EndTime },
+				{ "last_comments_count", @params.LastCommentsCount },
+				{ "start_from", @params.StartFrom },
+				{ "fields", @params.Fields }
+			});
 		}
 
 		/// <inheritdoc />
@@ -141,7 +170,24 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public NewsSearchResult Search(NewsFeedSearchParams @params)
 		{
-			return _vk.Call<NewsSearchResult>("newsfeed.search", @params);
+			var parameters = new VkParameters
+			{
+				{ "q", @params.Query },
+				{ "extended", @params.Extended },
+				{ "latitude", @params.Latitude },
+				{ "longitude", @params.Longitude },
+				{ "start_time", @params.StartTime },
+				{ "end_time", @params.EndTime },
+				{ "start_from", @params.StartFrom },
+				{ "fields", @params.Fields }
+			};
+
+			if (@params.Count <= 200)
+			{
+				parameters.Add(name: "count", nullableValue: @params.Count);
+			}
+
+			return _vk.Call<NewsSearchResult>("newsfeed.search", parameters);
 		}
 
 		/// <inheritdoc />

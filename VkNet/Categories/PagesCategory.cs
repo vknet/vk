@@ -44,7 +44,16 @@ namespace VkNet.Categories
 		/// </remarks>
 		public Page Get(PagesGetParams @params)
 		{
-			return _vk.Call(methodName: "pages.get", parameters: @params);
+			return _vk.Call(methodName: "pages.get", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "page_id", @params.PageId }
+				, { "global", @params.Global }
+				, { "site_preview", @params.SitePreview }
+				, { "title", @params.Title }
+				, { "need_source", @params.NeedSource }
+				, { "need_html", @params.NeedHtml }
+			});
 		}
 
 		/// <summary>

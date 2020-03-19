@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -146,7 +147,17 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => @params.Token);
 
-			return _vk.Call("account.registerDevice", @params);
+			return _vk.Call("account.registerDevice",
+				new VkParameters
+				{
+					{ "token", @params.Token }
+					, { "device_model", @params.DeviceModel }
+					, { "device_year", @params.DeviceYear }
+					, { "device_id", @params.DeviceId }
+					, { "system_version", @params.SystemVersion }
+					, { "settings", JsonConvert.SerializeObject(@params.Settings) }
+					, { "sandbox", @params.Sandbox }
+				});
 		}
 
 		/// <summary>
@@ -365,11 +376,7 @@ namespace VkNet.Categories
 		/// <summary>
 		/// Добавляет пользователя в черный список.
 		/// </summary>
-		/// <param name="userId">
-		/// Идентификатор пользователя или сообщества, которое будет добавлено в черный список.
-		/// положительное число,
-		/// обязательный параметр (Положительное число, обязательный параметр).
-		/// </param>
+		/// <param name="ownerId"></param>
 		/// <returns>
 		/// В случае успеха метод вернет <c> true </c>.
 		/// </returns>
@@ -628,7 +635,39 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveProfileInfoParams @params)
 		{
-			var response = _vk.Call("account.saveProfileInfo", @params);
+			if (@params.RelationPartner != null)
+			{
+				VkErrors.ThrowIfNumberIsNegative(expr: () => @params.RelationPartner.Id);
+			}
+
+			if (@params.Country != null)
+			{
+				VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Country.Id);
+			}
+
+			if (@params.City != null)
+			{
+				VkErrors.ThrowIfNumberIsNegative(expr: () => @params.City.Id);
+			}
+
+
+			var response = _vk.Call("account.saveProfileInfo", new VkParameters
+			{
+				{ "first_name", @params.FirstName }
+				, { "last_name", @params.LastName }
+				, { "maiden_name", @params.MaidenName }
+				, { "screen_name", @params.ScreenName }
+				, { "sex", @params.Sex }
+				, { "relation", @params.Relation }
+				, { "relation_partner_id", @params.RelationPartner?.Id }
+				, { "bdate", @params.BirthDate }
+				, { "bdate_visibility", @params.BirthdayVisibility }
+				, { "home_town", @params.HomeTown }
+				, { "country_id", @params.Country?.Id }
+				, { "city_id", @params.City?.Id }
+				, { "status", @params.Status }
+				, { "phone", @params.Phone }
+			});
 
 			changeNameRequest = null;
 

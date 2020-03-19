@@ -87,26 +87,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "guid")]
 		public string Guid { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(BoardCreateCommentParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "group_id", p.GroupId },
-				{ "topic_id", p.TopicId },
-				{ "from_group", p.FromGroup },
-				{ "message", p.Message },
-				{ "attachments", p.Attachments },
-				{ "sticker_id", p.StickerId },
-				{ "guid", p.Guid }
-			};
-
-			return parameters;
-		}
 	}
 }

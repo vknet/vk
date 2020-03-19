@@ -1,6 +1,5 @@
 using System.Net;
 using Flurl;
-using VkNet.Utils;
 
 namespace VkNet.Infrastructure.Authorization
 {

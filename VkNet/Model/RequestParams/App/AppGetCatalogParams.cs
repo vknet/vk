@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -93,30 +92,5 @@ namespace VkNet.Model.RequestParams
 		[JsonProperty(propertyName: "filter")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public AppFilter Filter { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(AppGetCatalogParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "sort", p.Sort }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "platform", p.Platform }
-					, { "extended", p.Extended }
-					, { "return_friends", p.ReturnFriends }
-					, { "fields", p.Fields }
-					, { "name_case", p.NameCase }
-					, { "q", p.Query }
-					, { "genre_id", p.GenreId }
-					, { "filter", p.Filter }
-			};
-
-			return parameters;
-		}
 	}
 }

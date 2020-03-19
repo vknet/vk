@@ -1,7 +1,6 @@
 ﻿using System;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Market
 {
@@ -88,28 +87,5 @@ namespace VkNet.Model.RequestParams.Market
 		/// (список строк, разделенных через запятую).
 		/// </summary>
 		public UsersFields Fields { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MarketGetCommentsParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "item_id", p.ItemId }
-					, { "need_likes", p.NeedLikes }
-					, { "start_comment_id", p.StartCommentId }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "sort", p.Sort }
-					, { "extended", p.Extended }
-					, { "fields", p.Fields }
-			};
-
-			return parameters;
-		}
 	}
 }

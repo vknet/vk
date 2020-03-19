@@ -27,7 +27,16 @@ namespace VkNet.Categories
 		public VkCollection<Comment> GetComments(GetCommentsParams getCommentsParams)
 		{
 			return _vk.Call<VkCollection<Comment>>("widgets.getComments"
-					, getCommentsParams
+					, new VkParameters
+					{
+						{ "widget_api_id", getCommentsParams.WidgetApiId }
+						, { "url", getCommentsParams.Url }
+						, { "page_id", getCommentsParams.PageId }
+						, { "order", getCommentsParams.Order }
+						, { "fields", getCommentsParams.Fields }
+						, { "offset", getCommentsParams.Offset }
+						, { "count", getCommentsParams.Count }
+					}
 					, false
 					, new VkCollectionJsonConverter(collectionField: "posts"));
 		}

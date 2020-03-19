@@ -1,5 +1,4 @@
 ﻿using System;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -24,20 +23,5 @@ namespace VkNet.Model.RequestParams
 		/// Идентификатор опроса.
 		/// </summary>
 		public long PollId { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PollsGetByIdParams p)
-		{
-			return new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "is_board", p.IsBoard }
-					, { "poll_id", p.PollId }
-			};
-		}
 	}
 }

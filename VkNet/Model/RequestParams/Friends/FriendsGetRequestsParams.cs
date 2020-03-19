@@ -1,5 +1,4 @@
 ﻿using System;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -65,27 +64,5 @@ namespace VkNet.Model.RequestParams
 		/// учитывается). флаг, может принимать значения 1 или 0, по умолчанию 0.
 		/// </summary>
 		public bool? NeedViewed { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(FriendsGetRequestsParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "offset", p.Offset }
-					, { "count", p.Count }
-					, { "extended", p.Extended }
-					, { "need_mutual", p.NeedMutual }
-					, { "out", p.Out }
-					, { "sort", p.Sort }
-					, { "suggested", p.Suggested }
-					, { "need_viewed", p.NeedViewed }
-			};
-
-			return parameters;
-		}
 	}
 }

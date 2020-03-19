@@ -1,5 +1,4 @@
 using System;
-using VkNet.Enums;
 using VkNet.Model;
 
 namespace VkNet.Utils

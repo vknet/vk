@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -75,26 +74,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty("group_id")]
 		public ulong? GroupId { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MessagesSearchParams p)
-		{
-			return new VkParameters
-			{
-				{ "q", p.Query },
-				{ "fields", p.Fields },
-				{ "peer_id", p.PeerId },
-				{ "date", p.Date },
-				{ "preview_length", p.PreviewLength },
-				{ "offset", p.Offset },
-				{ "count", p.Count },
-				{ "extended", p.Extended },
-				{ "group_id", p.GroupId }
-			};
-		}
 	}
 }

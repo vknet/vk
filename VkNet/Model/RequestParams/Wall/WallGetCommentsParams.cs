@@ -1,7 +1,6 @@
 ﻿using System;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -85,29 +84,5 @@ namespace VkNet.Model.RequestParams
 		/// Дополнительные поля для пользователя
 		/// </summary>
 		public long? ThreadItemsCount { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(WallGetCommentsParams p)
-		{
-			return new VkParameters
-			{
-				{ "owner_id", p.OwnerId },
-				{ "post_id", p.PostId },
-				{ "need_likes", p.NeedLikes },
-				{ "start_comment_id", p.StartCommentId },
-				{ "offset", p.Offset },
-				{ "count", p.Count },
-				{ "sort", p.Sort },
-				{ "preview_length", p.PreviewLength },
-				{ "extended", p.Extended },
-				{ "fields", p.Fields },
-				{ "comment_id", p.CommentId },
-				{ "thread_items_count", p.ThreadItemsCount }
-			};
-		}
 	}
 }

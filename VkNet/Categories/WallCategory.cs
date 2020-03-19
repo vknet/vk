@@ -36,16 +36,38 @@ namespace VkNet.Categories
 					nameof(@params));
 			}
 
-			return
-				_vk.Call("wall.get",
-					@params,
-					skipAuthorization); //, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
+			return _vk.Call("wall.get",
+				new VkParameters
+				{
+					{ "owner_id", @params.OwnerId },
+					{ "domain", @params.Domain },
+					{ "offset", @params.Offset },
+					{ "count", @params.Count },
+					{ "filter", @params.Filter },
+					{ "extended", @params.Extended },
+					{ "fields", @params.Fields }
+				}, skipAuthorization); //, @params.Filter != WallFilter.Suggests && @params.Filter != WallFilter.Postponed);
 		}
 
 		/// <inheritdoc />
 		public WallGetCommentsResult GetComments(WallGetCommentsParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call<WallGetCommentsResult>("wall.getComments", @params, skipAuthorization);
+			return _vk.Call<WallGetCommentsResult>("wall.getComments",
+				new VkParameters
+				{
+					{ "owner_id", @params.OwnerId },
+					{ "post_id", @params.PostId },
+					{ "need_likes", @params.NeedLikes },
+					{ "start_comment_id", @params.StartCommentId },
+					{ "offset", @params.Offset },
+					{ "count", @params.Count },
+					{ "sort", @params.Sort },
+					{ "preview_length", @params.PreviewLength },
+					{ "extended", @params.Extended },
+					{ "fields", @params.Fields },
+					{ "comment_id", @params.CommentId },
+					{ "thread_items_count", @params.ThreadItemsCount }
+				}, skipAuthorization);
 		}
 
 		/// <inheritdoc />
@@ -79,7 +101,24 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long Post(WallPostParams @params)
 		{
-			return _vk.Call("wall.post", @params)[key: "post_id"];
+			return _vk.Call("wall.post", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId },
+				{ "friends_only", @params.FriendsOnly },
+				{ "from_group", @params.FromGroup },
+				{ "message", @params.Message },
+				{ "attachments", @params.Attachments },
+				{ "services", @params.Services },
+				{ "signed", @params.Signed },
+				{ "publish_date", @params.PublishDate },
+				{ "lat", @params.Lat },
+				{ "long", @params.Long },
+				{ "place_id", @params.PlaceId },
+				{ "post_id", @params.PostId },
+				{ "guid", @params.Guid },
+				{ "mark_as_ads", @params.MarkAsAds },
+				{ "close_comments", @params.CloseComments }
+			})[key: "post_id"];
 		}
 
 		/// <inheritdoc />
@@ -122,11 +161,27 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool Edit(WallEditParams @params)
 		{
-			var resp = _vk.Call("wall.edit", @params);
+			var resp = _vk.Call("wall.edit", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId },
+				{ "post_id", @params.PostId },
+				{ "friends_only", @params.FriendsOnly },
+				{ "message", @params.Message },
+				{ "attachments", @params.Attachments },
+				{ "services", @params.Services },
+				{ "signed", @params.Signed },
+				{ "publish_date", @params.PublishDate },
+				{ "lat", @params.Lat },
+				{ "long", @params.Long },
+				{ "place_id", @params.PlaceId },
+				{ "mark_as_ads", @params.MarkAsAds },
+				{ "close_comments", @params.CloseComments },
+				{ "poster_bkg_id", @params.PosterBackgroundId }
+			});
 
 			if (resp != null)
 			{
-				if (resp.ContainsKey("post_id"))  // Начиная с версии 5.100 
+				if (resp.ContainsKey("post_id"))  // Начиная с версии 5.100
 					return true;
 
 				if (resp == 1)                    // версии <5.100
@@ -164,7 +219,17 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long CreateComment(WallCreateCommentParams @params)
 		{
-			return _vk.Call("wall.createComment", @params)[key: "comment_id"];
+			return _vk.Call("wall.createComment", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId },
+				{ "post_id", @params.PostId },
+				{ "from_group", @params.FromGroup },
+				{ "message", @params.Message },
+				{ "reply_to_comment", @params.ReplyToComment },
+				{ "attachments", @params.Attachments },
+				{ "sticker_id", @params.StickerId },
+				{ "guid", @params.Guid }
+			})[key: "comment_id"];
 		}
 
 		/// <inheritdoc />
@@ -194,7 +259,17 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public WallGetObject Search(WallSearchParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call("wall.search", @params, skipAuthorization);
+			return _vk.Call("wall.search", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "domain", @params.Domain }
+				, { "query", @params.Query }
+				, { "owners_only", @params.OwnersOnly }
+				, { "count", @params.Count }
+				, { "offset", @params.Offset }
+				, { "extended", @params.Extended }
+				, { "fields", @params.Fields }
+			}, skipAuthorization);
 		}
 
 		/// <inheritdoc />
@@ -278,13 +353,38 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool EditAdsStealth(EditAdsStealthParams @params)
 		{
-			return _vk.Call("wall.editAdsStealth", @params);
+			return _vk.Call("wall.editAdsStealth", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "post_id", @params.PostId }
+				, { "message", @params.Message }
+				, { "attachments", @params.Attachments }
+				, { "signed", @params.Signed }
+				, { "lat", @params.Lat }
+				, { "long", @params.Long }
+				, { "place_id", @params.PlaceId }
+				, { "link_title", @params.LinkTitle }
+				, { "link_image", @params.LinkImage }
+			});
 		}
 
 		/// <inheritdoc />
 		public long PostAdsStealth(PostAdsStealthParams @params)
 		{
-			return _vk.Call("wall.postAdsStealth", @params);
+			return _vk.Call("wall.postAdsStealth", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "message", @params.Message }
+				, { "attachments", @params.Attachments }
+				, { "signed", @params.Signed }
+				, { "lat", @params.Lat }
+				, { "long", @params.Long }
+				, { "place_id", @params.PlaceId }
+				, { "link_title", @params.LinkTitle }
+				, { "link_image", @params.LinkImage }
+				, { "guid", @params.Guid }
+				, { "link_button", @params.LinkButton }
+			});
 		}
 
 		/// <inheritdoc />

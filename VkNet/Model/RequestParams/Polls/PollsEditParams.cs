@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -39,23 +38,5 @@ namespace VkNet.Model.RequestParams
 		/// Список для удаления вариантов ответа.
 		/// </summary>
 		public List<long> DeleteAnswers { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PollsEditParams p)
-		{
-			return new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "poll_id", p.PollId }
-					, { "question", p.Question }
-					, { "add_answers", Utilities.SerializeToJson(@object: p.AddAnswers) }
-					, { "edit_answers", Utilities.SerializeToJson(@object: p.EditAnswers) }
-					, { "delete_answers", Utilities.SerializeToJson(@object: p.DeleteAnswers) }
-			};
-		}
 	}
 }

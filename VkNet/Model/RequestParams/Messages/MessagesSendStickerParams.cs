@@ -1,5 +1,4 @@
 ﻿using System;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -41,25 +40,5 @@ namespace VkNet.Model.RequestParams
 		/// Идентификатор стикера. положительное число, обязательный параметр.
 		/// </summary>
 		public long StickerId { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> Объект типа MessagesSendStickerParams </returns>
-		public static VkParameters ToVkParameters(MessagesSendStickerParams p)
-		{
-			var result = new VkParameters
-			{
-					{ "user_id", p.UserId }
-					, { "domain", p.Domain }
-					, { "peer_id", p.PeerId }
-					, { "chat_id", p.ChatId }
-					, { "random_id", p.RandomId }
-					, { "sticker_id", p.StickerId }
-			};
-
-			return result;
-		}
 	}
 }

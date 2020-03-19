@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions.Category.Async;
 using VkNet.Model;

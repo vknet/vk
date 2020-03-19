@@ -29,7 +29,17 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call("friends.get", @params, skipAuthorization)
+			return _vk.Call("friends.get", new VkParameters
+				{
+					{ "user_id", @params.UserId },
+					{ "order", @params.Order },
+					{ "list_id", @params.ListId },
+					{ "count", @params.Count },
+					{ "offset", @params.Offset },
+					{ "fields", @params.Fields },
+					{ "name_case", @params.NameCase },
+					{ "ref", @params.Reference }
+				}, skipAuthorization)
 				.ToVkCollectionOf(x => @params.Fields != null
 					? x
 					: new User
@@ -50,7 +60,15 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public FriendOnline GetOnline(FriendsGetOnlineParams @params)
 		{
-			var result = _vk.Call("friends.getOnline", @params);
+			var result = _vk.Call("friends.getOnline", new VkParameters
+			{
+				{ "user_id", @params.UserId }
+				, { "list_id", @params.ListId }
+				, { "online_mobile", @params.OnlineMobile }
+				, { "order", @params.Order }
+				, { "count", @params.Count }
+				, { "offset", @params.Offset }
+			});
 
 			return FriendOnline.FromJson(result);
 		}
@@ -58,7 +76,19 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public ReadOnlyCollection<MutualFriend> GetMutual(FriendsGetMutualParams @params)
 		{
-			VkResponseArray response = _vk.Call("friends.getMutual", @params);
+			if (@params.TargetUid.HasValue)
+			{
+				@params.TargetUids = new[] { @params.TargetUid.Value };
+			}
+
+			VkResponseArray response = _vk.Call("friends.getMutual", new VkParameters
+			{
+				{ "source_uid", @params.SourceUid },
+				{ "target_uids", @params.TargetUids },
+				{ "order", @params.Order },
+				{ "count", @params.Count },
+				{ "offset", @params.Offset }
+			});
 
 			return response.ToReadOnlyCollectionOf<MutualFriend>(x => x);
 		}
@@ -210,7 +240,17 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public GetRequestsResult GetRequests(FriendsGetRequestsParams @params)
 		{
-			return _vk.Call<GetRequestsResult>("friends.getRequests", @params);
+			return _vk.Call<GetRequestsResult>("friends.getRequests", new VkParameters
+			{
+				{ "offset", @params.Offset }
+				, { "count", @params.Count }
+				, { "extended", @params.Extended }
+				, { "need_mutual", @params.NeedMutual }
+				, { "out", @params.Out }
+				, { "sort", @params.Sort }
+				, { "suggested", @params.Suggested }
+				, { "need_viewed", @params.NeedViewed }
+			});
 		}
 
 		/// <inheritdoc />
@@ -218,7 +258,17 @@ namespace VkNet.Categories
 		{
 			@params.Extended = true;
 
-			return _vk.Call<VkCollection<FriendsGetRequestsResult>>("friends.getRequests", @params);
+			return _vk.Call<VkCollection<FriendsGetRequestsResult>>("friends.getRequests", new VkParameters
+			{
+				{ "offset", @params.Offset }
+				, { "count", @params.Count }
+				, { "extended", @params.Extended }
+				, { "need_mutual", @params.NeedMutual }
+				, { "out", @params.Out }
+				, { "sort", @params.Sort }
+				, { "suggested", @params.Suggested }
+				, { "need_viewed", @params.NeedViewed }
+			});
 		}
 
 		/// <inheritdoc />
@@ -252,7 +302,15 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<User> Search(FriendsSearchParams @params)
 		{
-			return _vk.Call("friends.search", @params).ToVkCollectionOf<User>(x => x);
+			return _vk.Call("friends.search", new VkParameters
+			{
+				{ "user_id", @params.UserId }
+				, { "q", @params.Query }
+				, { "fields", @params.Fields }
+				, { "name_case", @params.NameCase }
+				, { "offset", @params.Offset }
+				, { "count", @params.Count }
+			}).ToVkCollectionOf<User>(x => x);
 		}
 
 		/// <summary>

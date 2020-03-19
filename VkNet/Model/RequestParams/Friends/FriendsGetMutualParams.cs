@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -54,27 +53,5 @@ namespace VkNet.Model.RequestParams
 		/// положительное число.
 		/// </summary>
 		public long? Offset { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(FriendsGetMutualParams p)
-		{
-			if (p.TargetUid.HasValue)
-			{
-				p.TargetUids = new[] { p.TargetUid.Value };
-			}
-
-			return new VkParameters
-			{
-				{ "source_uid", p.SourceUid },
-				{ "target_uids", p.TargetUids },
-				{ "order", p.Order },
-				{ "count", p.Count },
-				{ "offset", p.Offset }
-			};
-		}
 	}
 }

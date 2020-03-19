@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -70,25 +69,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public GroupsMemberFilters Filter { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(GroupsGetMembersParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "group_id", p.GroupId }
-					, { "sort", p.Sort }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "fields", p.Fields }
-					, { "filter", p.Filter }
-			};
-
-			return parameters;
-		}
 	}
 }

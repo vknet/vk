@@ -72,24 +72,5 @@ namespace VkNet.Model.RequestParams
 		[JsonProperty(propertyName: "captcha_key")]
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public string CaptchaKey { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(BoardAddTopicParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "group_id", p.GroupId },
-				{ "title", p.Title },
-				{ "text", p.Text },
-				{ "from_group", p.FromGroup },
-				{ "attachments", p.Attachments }
-			};
-
-			return parameters;
-		}
 	}
 }

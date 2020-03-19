@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Ads
 {
@@ -39,23 +38,5 @@ namespace VkNet.Model.RequestParams.Ads
 		/// </summary>
 		[JsonProperty("category_id")]
 		public long CategoryId { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(CreateTargetPixelParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{"account_id", p.AccountId},
-				{"client_id", p.ClientId},
-				{"name", p.Name},
-				{"domain", p.Domain},
-				{"category_id", p.CategoryId}
-			};
-			return parameters;
-		}
 	}
 }
