@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -55,26 +54,5 @@ namespace VkNet.Model.RequestParams
 		/// Email пользователя, отображаемый в блоке контактов. строка.
 		/// </summary>
 		public string ContactEmail { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(GroupsEditManagerParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "group_id", p.GroupId }
-					, { "user_id", p.UserId }
-					, { "role", p.Role }
-					, { "is_contact", p.IsContact }
-					, { "contact_position", p.ContactPosition }
-					, { "contact_phone", p.ContactPhone }
-					, { "contact_email", p.ContactEmail }
-			};
-
-			return parameters;
-		}
 	}
 }

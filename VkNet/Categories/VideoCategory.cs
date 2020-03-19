@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -29,7 +30,15 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
-			return _vk.Call("video.get", @params).ToVkCollectionOf<Video>(selector: x => x);
+			return _vk.Call("video.get", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId },
+				{ "videos", @params.Videos?.Select(selector: o => $"{o.OwnerId}_{o.Id}" + (!string.IsNullOrEmpty(o.AccessKey) ? $"_{o.AccessKey}" : "")) },
+				{ "album_id", @params.AlbumId },
+				{ "count", @params.Count },
+				{ "offset", @params.Offset },
+				{ "extended", @params.Extended }
+			}).ToVkCollectionOf<Video>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -37,7 +46,17 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.VideoId);
 
-			return _vk.Call("video.edit", @params);
+			return _vk.Call("video.edit", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "video_id", @params.VideoId }
+				, { "name", @params.Name }
+				, { "desc", @params.Desc }
+				, { "privacy_view", @params.PrivacyView }
+				, { "privacy_comment", @params.PrivacyComment }
+				, { "no_comments", @params.NoComments }
+				, { "repeat", @params.Repeat }
+			});
 		}
 
 		/// <inheritdoc />
@@ -58,7 +77,20 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Video Save(VideoSaveParams @params)
 		{
-			return _vk.Call("video.save", @params);
+			return _vk.Call("video.save", new VkParameters
+			{
+				{ "name", @params.Name }
+				, { "description", @params.Description }
+				, { "is_private", @params.IsPrivate }
+				, { "wallpost", @params.Wallpost }
+				, { "link", @params.Link }
+				, { "group_id", @params.GroupId }
+				, { "album_id", @params.AlbumId }
+				, { "privacy_view", @params.PrivacyView }
+				, { "privacy_comment", @params.PrivacyComment }
+				, { "no_comments", @params.NoComments }
+				, { "repeat", @params.Repeat }
+			});
 		}
 
 		/// <inheritdoc />
@@ -95,7 +127,20 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
-			return _vk.Call("video.search", @params).ToVkCollectionOf<Video>(selector: x => x);
+			return _vk.Call("video.search", new VkParameters
+			{
+				{ "q", @params.Query }
+				, { "sort", @params.Sort }
+				, { "hd", @params.Hd }
+				, { "adult", @params.Adult }
+				, { "filters", @params.Filters }
+				, { "search_own", @params.SearchOwn }
+				, { "offset", @params.Offset }
+				, { "longer", @params.Longer }
+				, { "shorter", @params.Shorter }
+				, { "count", @params.Count }
+				, { "extended", @params.Extended }
+			}).ToVkCollectionOf<Video>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -171,7 +216,18 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
-			return _vk.Call("video.getComments", @params).ToVkCollectionOf<Comment>(selector: x => x);
+			return _vk.Call("video.getComments", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "video_id", @params.VideoId }
+				, { "need_likes", @params.NeedLikes }
+				, { "start_comment_id", @params.StartCommentId }
+				, { "offset", @params.Offset }
+				, { "count", @params.Count }
+				, { "sort", @params.Sort }
+				, { "extended", @params.Extended }
+				, { "fields", @params.Fields }
+			}).ToVkCollectionOf<Comment>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -180,7 +236,17 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNullOrEmpty(expr: () => @params.Message);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.VideoId);
 
-			return _vk.Call("video.createComment", @params);
+			return _vk.Call("video.createComment", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId },
+				{ "video_id", @params.VideoId },
+				{ "message", @params.Message },
+				{ "attachments", @params.Attachments },
+				{ "from_group", @params.FromGroup },
+				{ "reply_to_comment", @params.ReplyToComment },
+				{ "sticker_id", @params.StickerId },
+				{ "guid", @params.Guid }
+			});
 		}
 
 		/// <inheritdoc />
@@ -289,7 +355,17 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool ReorderVideos(VideoReorderVideosParams @params)
 		{
-			return _vk.Call("video.reorderVideos", @params);
+			return _vk.Call("video.reorderVideos", new VkParameters
+			{
+				{ "target_id", @params.TargetId },
+				{ "album_id", @params.AlbumId },
+				{ "owner_id", @params.OwnerId },
+				{ "video_id", @params.VideoId },
+				{ "before_owner_id", @params.BeforeOwnerId },
+				{ "before_video_id", @params.BeforeVideoId },
+				{ "after_owner_id", @params.AfterOwnerId },
+				{ "after_video_id", @params.AfterVideoId }
+			});
 		}
 
 		/// <inheritdoc />
@@ -352,7 +428,8 @@ namespace VkNet.Categories
 				{ "count", @params.Count },
 				{ "items_count", @params.ItemsCount },
 				{ "from", @params.From },
-				{ "extended", @params.Extended }
+				{ "extended", @params.Extended },
+				{ "filters", @params.Filters }
 			};
 
 			return _vk.Call("video.getCatalog", parameters).ToReadOnlyCollectionOf<VideoCatalog>(selector: x => x);

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
@@ -91,7 +90,9 @@ namespace VkNet.Categories
 			return _vk.Call<CreateLookALikeRequestResult>("ads.createLookalikeRequest",
 				new VkParameters
 				{
-					{ "account_id", createLookALikeRequestParams.AccountId }, { "source_type", createLookALikeRequestParams.SourceType }, { "client_id", createLookALikeRequestParams.ClientId },
+					{ "account_id", createLookALikeRequestParams.AccountId },
+					{ "source_type", createLookALikeRequestParams.SourceType },
+					{ "client_id", createLookALikeRequestParams.ClientId },
 					{ "retargeting_group_id", createLookALikeRequestParams.RetargetingGroupId }
 				});
 		}
@@ -117,9 +118,11 @@ namespace VkNet.Categories
 			return _vk.Call<CreateTargetPixelResult>("ads.createTargetPixel",
 				new VkParameters
 				{
-					{ "account_id", createTargetPixelParams.AccountId }, { "name", createTargetPixelParams.Name },
-					{ "domain", createTargetPixelParams.Domain }, { "category_id", createTargetPixelParams.CategoryId },
-					{ "client_id", createTargetPixelParams.ClientId }
+					{ "account_id", createTargetPixelParams.AccountId },
+					{ "client_id", createTargetPixelParams.ClientId },
+					{ "name", createTargetPixelParams.Name },
+					{ "domain", createTargetPixelParams.Domain },
+					{ "category_id", createTargetPixelParams.CategoryId }
 				});
 		}
 
@@ -159,7 +162,8 @@ namespace VkNet.Categories
 			return _vk.Call<bool>("ads.deleteTargetGroup",
 				new VkParameters
 				{
-					{ "account_id", deleteTargetGroupParams.AccountId }, { "target_group_id", deleteTargetGroupParams.TargetGroupId },
+					{ "account_id", deleteTargetGroupParams.AccountId },
+					{ "target_group_id", deleteTargetGroupParams.TargetGroupId },
 					{ "client_id", deleteTargetGroupParams.ClientId }
 				});
 		}
@@ -168,8 +172,12 @@ namespace VkNet.Categories
 		public bool DeleteTargetPixel(DeleteTargetPixelParams deleteTargetPixelParams)
 		{
 			return _vk.Call<bool>("ads.deleteTargetPixel",
-				new VkParameters { { "account_id", deleteTargetPixelParams.AccountId }, { "target_pixel_id", deleteTargetPixelParams.TargetPixelId },
-					{ "client_id", deleteTargetPixelParams.ClientId } });
+				new VkParameters
+				{
+					{ "account_id", deleteTargetPixelParams.AccountId },
+					{ "client_id", deleteTargetPixelParams.ClientId },
+					{ "target_pixel_id", deleteTargetPixelParams.TargetPixelId }
+				});
 		}
 
 		/// <inheritdoc/>
@@ -232,8 +240,10 @@ namespace VkNet.Categories
 			return _vk.Call<ReadOnlyCollection<AdsCampaign>>("ads.getCampaigns",
 				new VkParameters
 				{
-					{ "account_id", adsGetCampaignsParams.AccountId }, { "campaign_ids", adsGetCampaignsParams.CampaignIds },
-					{ "client_id", adsGetCampaignsParams.ClientId }, { "include_deleted", adsGetCampaignsParams.IncludeDeleted }
+					{ "account_id", adsGetCampaignsParams.AccountId }
+					, { "client_id", adsGetCampaignsParams.ClientId }
+					, { "include_deleted", adsGetCampaignsParams.IncludeDeleted }
+					, { "campaign_ids", adsGetCampaignsParams.CampaignIds != null ? "[" + string.Join(",",adsGetCampaignsParams.CampaignIds) + "]" : null }
 				});
 		}
 
@@ -405,8 +415,10 @@ namespace VkNet.Categories
 			return _vk.Call<SaveLookALikeRequestResultResult>("ads.saveLookalikeRequestResult",
 				new VkParameters
 					{
-						{ "account_id", saveLookalikeRequestResultParams.AccountId }, { "request_id", saveLookalikeRequestResultParams.RequestId },
-						{ "level", saveLookalikeRequestResultParams.Level }, { "client_id", saveLookalikeRequestResultParams.ClientId }
+						{ "account_id", saveLookalikeRequestResultParams.AccountId },
+						{ "client_id", saveLookalikeRequestResultParams.ClientId },
+						{ "request_id", saveLookalikeRequestResultParams.RequestId },
+						{ "level", saveLookalikeRequestResultParams.Level }
 					});
 		}
 

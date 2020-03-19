@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams.Ads
@@ -36,23 +35,5 @@ namespace VkNet.Model.RequestParams.Ads
 		/// </summary>
 		[JsonProperty(propertyName: "campaign_id")]
 		public long? CampaignId { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(CheckLinkParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "account_id", p.AccountId }
-				, { "client_id", p.LinkUrl }
-				, { "include_deleted", p.LinkType }
-				, { "campaign_id", p.CampaignId }
-			};
-
-			return parameters;
-		}
 	}
 }

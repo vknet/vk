@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.Filters;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -68,27 +67,5 @@ namespace VkNet.Model.RequestParams
 		/// Список дополнительных полей профилей и сообществ, которые необходимо вернуть.
 		/// </summary>
 		public string Fields { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(NewsFeedGetCommentsParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "count", p.Count },
-				{ "filters", p.Filters },
-				{ "reposts", p.Reposts },
-				{ "start_time", p.StartTime },
-				{ "end_time", p.EndTime },
-				{ "last_comments_count", p.LastCommentsCount },
-				{ "start_from", p.StartFrom },
-				{ "fields", p.Fields }
-			};
-
-			return parameters;
-		}
 	}
 }

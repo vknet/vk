@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Database
 {
@@ -47,23 +46,5 @@ namespace VkNet.Model.RequestParams.Database
 		/// </summary>
 		[JsonProperty(propertyName: "offset")]
 		public uint? Offset { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(GetCitiesParams p)
-		{
-			return new VkParameters
-			{
-					{ "country_id", p.CountryId }
-					, { "region_id", p.RegionId }
-					, { "q", p.Query }
-					, { "need_all", p.NeedAll }
-					, { "count", p.Count }
-					, { "offset", p.Offset }
-			};
-		}
 	}
 }

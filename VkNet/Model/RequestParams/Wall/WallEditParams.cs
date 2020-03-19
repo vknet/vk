@@ -150,33 +150,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "poster_bkg_id")]
 		public long? PosterBackgroundId { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(WallEditParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "owner_id", p.OwnerId },
-				{ "post_id", p.PostId },
-				{ "friends_only", p.FriendsOnly },
-				{ "message", p.Message },
-				{ "attachments", p.Attachments },
-				{ "services", p.Services },
-				{ "signed", p.Signed },
-				{ "publish_date", p.PublishDate },
-				{ "lat", p.Lat },
-				{ "long", p.Long },
-				{ "place_id", p.PlaceId },
-				{ "mark_as_ads", p.MarkAsAds },
-				{ "close_comments", p.CloseComments },
-				{ "poster_bkg_id", p.PosterBackgroundId }
-			};
-
-			return parameters;
-		}
 	}
 }

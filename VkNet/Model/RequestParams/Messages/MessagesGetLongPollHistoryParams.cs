@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -93,27 +92,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "lp_version")]
 		public ulong? LpVersion { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MessagesGetLongPollHistoryParams p)
-		{
-			return new VkParameters
-			{
-				{ "ts", p.Ts },
-				{ "pts", p.Pts },
-				{ "preview_length", p.PreviewLength },
-				{ "onlines", p.Onlines },
-				{ "fields", p.Fields },
-				{ "events_limit", p.EventsLimit },
-				{ "msgs_limit", p.MsgsLimit },
-				{ "max_msg_id", p.MaxMsgId },
-				{ "lp_version", p.LpVersion },
-				{ "group_id", p.GroupId }
-			};
-		}
 	}
 }

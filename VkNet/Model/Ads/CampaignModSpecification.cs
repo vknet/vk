@@ -2,9 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {

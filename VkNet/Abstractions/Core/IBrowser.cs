@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
-using VkNet.Model;
 
 namespace VkNet.Utils
 {

@@ -1,6 +1,4 @@
 ﻿using System;
-using VkNet.Utils;
-using Newtonsoft.Json;
 
 namespace VkNet.Model.RequestParams
 {
@@ -51,26 +49,5 @@ namespace VkNet.Model.RequestParams
 		/// использовать флаг, может принимать значения 1 или 0, по умолчанию 0.
 		/// </summary>
 		public bool? Sandbox { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> Объект типа AccountRegisterDeviceParams </returns>
-		public static VkParameters ToVkParameters(AccountRegisterDeviceParams p)
-		{
-			var result = new VkParameters
-			{
-					{ "token", p.Token }
-					, { "device_model", p.DeviceModel }
-					, { "device_year", p.DeviceYear }
-					, { "device_id", p.DeviceId }
-					, { "system_version", p.SystemVersion }
-					, { "settings", JsonConvert.SerializeObject(p.Settings) }
-					, { "sandbox", p.Sandbox }
-			};
-
-			return result;
-		}
 	}
 }

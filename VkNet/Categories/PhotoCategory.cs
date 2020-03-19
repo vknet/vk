@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
@@ -38,7 +40,32 @@ namespace VkNet.Categories
 		/// </remarks>
 		public PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params)
 		{
-			return _vk.Call("photos.createAlbum", @params);
+			if (@params.PrivacyView == null)
+			{
+				@params.PrivacyView = new List<Privacy>();
+			}
+
+			if (@params.PrivacyComment == null)
+			{
+				@params.PrivacyComment = new List<Privacy>();
+			}
+
+			if (@params.Title.Length < 2)
+			{
+				throw new VkApiException(message: "Параметр title обязательный, минимальная длина 2 символа");
+			}
+
+			var parameters = new VkParameters
+			{
+				{ "title", @params.Title },
+				{ "group_id", @params.GroupId },
+				{ "description", @params.Description },
+				{ "privacy_view", string.Join(separator: ",", values: @params.PrivacyView) },
+				{ "privacy_comment", string.Join(separator: ",", values: @params.PrivacyComment) },
+				{ "upload_by_admins_only", @params.UploadByAdminsOnly }, { "comments_disabled", @params.CommentsDisabled }
+			};
+
+			return _vk.Call("photos.createAlbum", parameters);
 		}
 
 		/// <summary>
@@ -53,7 +80,29 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool EditAlbum(PhotoEditAlbumParams @params)
 		{
-			return _vk.Call("photos.editAlbum", @params);
+			if (@params.PrivacyView == null)
+			{
+				@params.PrivacyView = new List<Privacy>();
+			}
+
+			if (@params.PrivacyComment == null)
+			{
+				@params.PrivacyComment = new List<Privacy>();
+			}
+
+			var parameters = new VkParameters
+			{
+				{ "album_id", @params.AlbumId }
+				, { "title", @params.Title }
+				, { "description", @params.Description }
+				, { "owner_id", @params.OwnerId }
+				, { "privacy_view", string.Join(separator: ",", values: @params.PrivacyView) }
+				, { "privacy_comment", string.Join(separator: ",", values: @params.PrivacyComment) }
+				, { "upload_by_admins_only", @params.UploadByAdminsOnly }
+				, { "comments_disabled", @params.CommentsDisabled }
+			};
+
+			return _vk.Call("photos.editAlbum", parameters);
 		}
 
 		/// <summary>
@@ -69,7 +118,16 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call("photos.getAlbums", @params, skipAuthorization)
+			return _vk.Call("photos.getAlbums", new VkParameters
+				{
+					{ "owner_id", @params.OwnerId }
+					, { "album_ids", @params.AlbumIds }
+					, { "offset", @params.Offset }
+					, { "count", @params.Count }
+					, { "need_system", @params.NeedSystem }
+					, { "need_covers", @params.NeedCovers }
+					, { "photo_sizes", @params.PhotoSizes }
+				}, skipAuthorization)
 				.ToVkCollectionOf<PhotoAlbum>(selector: x => x);
 		}
 
@@ -86,7 +144,19 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call("photos.get", @params, skipAuthorization)
+			return _vk.Call("photos.get", new VkParameters
+				{
+					{ "owner_id", @params.OwnerId }
+					, { "album_id", @params.AlbumId }
+					, { "photo_ids", @params.PhotoIds }
+					, { "rev", @params.Reversed }
+					, { "extended", @params.Extended }
+					, { "feed_type", @params.FeedType }
+					, { "feed", @params.Feed }
+					, { "photo_sizes", @params.PhotoSizes }
+					, { "offset", @params.Offset }
+					, { "count", @params.Count }
+				}, skipAuthorization)
 				.ToVkCollectionOf<Photo>(selector: x => x);
 		}
 
@@ -642,7 +712,18 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call("photos.search", @params, skipAuthorization)
+			return _vk.Call("photos.search", new VkParameters
+				{
+					{ "q", @params.Query }
+					, { "lat", @params.Latitude }
+					, { "long", @params.Longitude }
+					, { "start_time", @params.StartTime }
+					, { "end_time", @params.EndTime }
+					, { "sort", @params.Sort }
+					, { "offset", @params.Offset }
+					, { "count", @params.Count }
+					, { "radius", @params.Radius }
+				}, skipAuthorization)
 				.ToVkCollectionOf<Photo>(selector: x => x);
 		}
 
@@ -658,7 +739,24 @@ namespace VkNet.Categories
 		/// </remarks>
 		public ReadOnlyCollection<Photo> Save(PhotoSaveParams @params)
 		{
-			VkResponseArray response = _vk.Call("photos.save", @params);
+			var responseJson = JObject.Parse(json: @params.SaveFileResponse);
+			var server = responseJson[propertyName: "server"].ToString();
+			var hash = responseJson[propertyName: "hash"].ToString();
+			var photosList = responseJson[propertyName: "photos_list"].ToString();
+
+			var parameters = new VkParameters
+			{
+				{ "album_id", @params.AlbumId }
+				, { "group_id", @params.GroupId }
+				, { "server", server }
+				, { "photos_list", photosList }
+				, { "hash", hash }
+				, { "latitude", @params.Latitude }
+				, { "longitude", @params.Longitude }
+				, { "caption", @params.Caption }
+			};
+
+			VkResponseArray response = _vk.Call("photos.save", parameters);
 
 			return response.ToReadOnlyCollectionOf<Photo>(selector: x => x);
 		}
@@ -710,7 +808,19 @@ namespace VkNet.Categories
 		/// </remarks>
 		public bool Edit(PhotoEditParams @params)
 		{
-			return _vk.Call("photos.edit", @params);
+			return _vk.Call("photos.edit", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "photo_id", @params.PhotoId }
+				, { "caption", @params.Caption }
+				, { "latitude", @params.Latitude }
+				, { "longitude", @params.Longitude }
+				, { "place_str", @params.PlaceStr }
+				, { "foursquare_id", @params.FoursquareId }
+				, { "delete_place", @params.DeletePlace }
+				, { "captcha_sid", @params.CaptchaSid }
+				, { "captcha_key", @params.CaptchaKey }
+			});
 		}
 
 		/// <summary>
@@ -900,7 +1010,17 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Photo> GetAll(PhotoGetAllParams @params)
 		{
-			return _vk.Call("photos.getAll", @params).ToVkCollectionOf<Photo>(selector: x => x);
+			return _vk.Call("photos.getAll", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "extended", @params.Extended }
+				, { "offset", @params.Offset }
+				, { "count", @params.Count }
+				, { "photo_sizes", @params.PhotoSizes }
+				, { "no_service_albums", @params.NoServiceAlbums }
+				, { "need_hidden", @params.NeedHidden }
+				, { "skip_hidden", @params.SkipHidden }
+			}).ToVkCollectionOf<Photo>(selector: x => x);
 		}
 
 		/// <summary>
@@ -915,7 +1035,14 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params)
 		{
-			return _vk.Call("photos.getUserPhotos", @params).ToVkCollectionOf<Photo>(selector: x => x);
+			return _vk.Call("photos.getUserPhotos", new VkParameters
+			{
+				{ "user_id", @params.UserId }
+				, { "count", @params.Count }
+				, { "offset", @params.Offset }
+				, { "extended", @params.Extended }
+				, { "sort", @params.Sort }
+			}).ToVkCollectionOf<Photo>(selector: x => x);
 		}
 
 		/// <summary>
@@ -1067,7 +1194,19 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Comment> GetComments(PhotoGetCommentsParams @params)
 		{
-			return _vk.Call("photos.getComments", @params).ToVkCollectionOf<Comment>(selector: x => x);
+			return _vk.Call("photos.getComments", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "photo_id", @params.PhotoId }
+				, { "need_likes", @params.NeedLikes }
+				, { "start_comment_id", @params.StartCommentId }
+				, { "offset", @params.Offset }
+				, { "count", @params.Count }
+				, { "sort", @params.Sort }
+				, { "access_key", @params.AccessKey }
+				, { "extended", @params.Extended }
+				, { "fields", @params.Fields }
+			}).ToVkCollectionOf<Comment>(selector: x => x);
 		}
 
 		/// <summary>
@@ -1084,7 +1223,14 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params)
 		{
-			return _vk.Call("photos.getAllComments", @params).ToVkCollectionOf<Comment>(selector: x => x);
+			return _vk.Call("photos.getAllComments", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "album_id", @params.AlbumId }
+				, { "need_likes", @params.NeedLikes }
+				, { "offset", @params.Offset }
+				, { "count", @params.Count }
+			}).ToVkCollectionOf<Comment>(selector: x => x);
 		}
 
 		/// <summary>
@@ -1099,7 +1245,25 @@ namespace VkNet.Categories
 		/// </remarks>
 		public long CreateComment(PhotoCreateCommentParams @params)
 		{
-			return _vk.Call("photos.createComment", @params);
+			if (@params.Message.Length > 2048)
+			{
+				throw new VkApiException(message: "Максимальное количество символов: 2048.");
+			}
+
+			var parameters = new VkParameters
+			{
+				{ "owner_id", @params.OwnerId },
+				{ "photo_id", @params.PhotoId },
+				{ "message", @params.Message },
+				{ "attachments", @params.Attachments },
+				{ "from_group", @params.FromGroup },
+				{ "reply_to_comment", @params.ReplyToComment },
+				{ "sticker_id", @params.StickerId },
+				{ "access_key", @params.AccessKey },
+				{ "guid", @params.Guid }
+			};
+
+			return _vk.Call("photos.createComment", parameters);
 		}
 
 		/// <summary>
@@ -1288,7 +1452,16 @@ namespace VkNet.Categories
 		/// </remarks>
 		public ulong PutTag(PhotoPutTagParams @params)
 		{
-			return _vk.Call("photos.putTag", @params);
+			return _vk.Call("photos.putTag", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "photo_id", @params.PhotoId }
+				, { "user_id", @params.UserId }
+				, { "x", @params.X }
+				, { "y", @params.Y }
+				, { "x2", @params.X2 }
+				, { "y2", @params.Y2 }
+			});
 		}
 
 		/// <summary>

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -71,27 +70,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty("dont_parse_links")]
 		public bool DontParseLinks { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MessageEditParams p)
-		{
-			return new VkParameters
-			{
-				{ "peer_id", p.PeerId },
-				{ "message", p.Message },
-				{ "message_id", p.MessageId },
-				{ "lat", p.Latitude },
-				{ "long", p.Longitude },
-				{ "attachment", p.Attachments },
-				{ "keep_forward_messages", p.KeepForwardMessages },
-				{ "keep_snippets", p.KeepSnippets },
-				{ "group_id", p.GroupId },
-				{ "dont_parse_links", p.DontParseLinks }
-			};
-		}
 	}
 }

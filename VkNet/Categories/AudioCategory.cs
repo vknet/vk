@@ -82,7 +82,16 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long Edit(AudioEditParams @params)
 		{
-			return _vk.Call<long>("audio.edit", @params);
+			return _vk.Call<long>("audio.edit", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "audio_id", @params.AudioId }
+				, { "artist", @params.Artist }
+				, { "title", @params.Title }
+				, { "text", @params.Text }
+				, { "genre_id", @params.GenreId }
+				, { "no_search", @params.NoSearch }
+			});
 		}
 
 		/// <inheritdoc />
@@ -103,7 +112,16 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<Audio> Get(AudioGetParams @params)
 		{
-			return _vk.Call<VkCollection<Audio>>("audio.get", @params);
+			return _vk.Call<VkCollection<Audio>>("audio.get", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId },
+				{ "album_id", @params.AlbumId },
+				{ "playlist_id", @params.PlaylistId },
+				{ "audio_ids", @params.AudioIds },
+				{ "offset", @params.Offset },
+				{ "count", @params.Count },
+				{ "access_key", @params.AccessKey }
+			});
 		}
 
 		/// <inheritdoc />
@@ -276,7 +294,17 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<Audio> Search(AudioSearchParams @params)
 		{
-			return _vk.Call<VkCollection<Audio>>("audio.search", @params);
+			return _vk.Call<VkCollection<Audio>>("audio.search", new VkParameters
+			{
+				{ "q", @params.Query }
+				, { "auto_complete", @params.Autocomplete }
+				, { "sort", @params.Sort }
+				, { "lyrics", @params.Lyrics }
+				, { "performer_only", @params.PerformerOnly }
+				, { "search_own", @params.SearchOwn }
+				, { "count", @params.Count }
+				, { "offset", @params.Offset }
+			});
 		}
 
 		/// <inheritdoc />

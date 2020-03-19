@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -80,42 +79,5 @@ namespace VkNet.Model.RequestParams
 		/// или сделавших репост. По умолчанию — 0.
 		/// </summary>
 		public bool? Extended { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(LikesGetListParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "type", p.Type }
-					, { "owner_id", p.OwnerId }
-					, { "item_id", p.ItemId }
-					, { "page_url", p.PageUrl }
-					, { "filter", p.Filter }
-					, { "friends_only", p.FriendsOnly }
-					, { "extended", p.Extended }
-					, { "offset", p.Offset }
-					, { "skip_own", p.SkipOwn }
-			};
-
-			if (p.FriendsOnly.HasValue && p.FriendsOnly.Value)
-			{
-				if (p.Count <= 100)
-				{
-					parameters.Add(name: "count", nullableValue: p.Count);
-				}
-			} else
-			{
-				if (p.Count <= 1000)
-				{
-					parameters.Add(name: "count", nullableValue: p.Count);
-				}
-			}
-
-			return parameters;
-		}
 	}
 }

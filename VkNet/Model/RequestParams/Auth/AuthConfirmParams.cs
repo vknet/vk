@@ -1,5 +1,4 @@
 ﻿using System;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -52,26 +51,5 @@ namespace VkNet.Model.RequestParams
 		/// положительное число.
 		/// </summary>
 		public long? Intro { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(AuthConfirmParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "client_id", p.ClientId },
-				{ "client_secret", p.ClientSecret },
-				{ "phone", p.Phone },
-				{ "code", p.Code },
-				{ "password", p.Password },
-				{ "test_mode", p.TestMode },
-				{ "intro", p.Intro }
-			};
-
-			return parameters;
-		}
 	}
 }

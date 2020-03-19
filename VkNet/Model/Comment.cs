@@ -52,7 +52,7 @@ namespace VkNet.Model
 		/// Идентификатор автора комментария.
 		/// </summary>
 		[JsonProperty("thread")]
-		public CommentThread thread { get; set; }
+		public CommentThread Thread { get; set; }
 
 		/// <summary>
 		/// Дата и время создания комментария.
@@ -126,7 +126,7 @@ namespace VkNet.Model
 				PostId = response["post_id"],
 				OwnerId = response["owner_id"],
 				ParentsStack = response["parents_stack"].ToReadOnlyCollectionOf<long>(x => x),
-				thread = response["thread"]
+				Thread = response["thread"]
 			};
 		}
 

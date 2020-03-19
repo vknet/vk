@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -81,28 +80,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "extended")]
 		public bool? Extended { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(BoardGetCommentsParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "group_id", p.GroupId }
-					, { "topic_id", p.TopicId }
-					, { "need_likes", p.NeedLikes }
-					, { "start_comment_id", p.StartCommentId }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "sort", p.Sort }
-					, { "preview_length", p.PreviewLength }
-					, { "extended", p.Extended }
-			};
-
-			return parameters;
-		}
 	}
 }

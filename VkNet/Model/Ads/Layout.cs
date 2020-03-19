@@ -77,43 +77,43 @@ namespace VkNet.Model
 		[JsonProperty("link_domain")]
 		public Uri LinkDomain { get; set; }
 
-		// <summary>
+		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("link_title")]
 		public Uri LinkTitle { get; set; }
 
-		// <summary>
+		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("link_button")]
 		public Uri LinkButton { get; set; }
 
-		// <summary>
+		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("preview_link")]
 		public Uri PreviewLink { get; set; }
 
-		// <summary>
+		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("image_src")]
 		public Uri ImageSrc { get; set; }
 
-		// <summary>
+		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("image_src_2x")]
 		public Uri ImageSrc2X { get; set; }
 
-		// <summary>
+		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("icon_src")]
 		public Uri IconSrc { get; set; }
 
-		// <summary>
+		/// <summary>
 		/// Идентификатор кампании
 		/// </summary>
 		[JsonProperty("icon_src_2x")]

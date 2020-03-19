@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Net;
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -184,52 +182,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public UserSection FromList { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(UserSearchParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "q", WebUtility.HtmlEncode(value: p.Query) }
-					, { "sort", p.Sort }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "fields", p.Fields }
-					, { "city", p.City }
-					, { "country", p.Country }
-					, { "hometown", WebUtility.HtmlEncode(value: p.Hometown) }
-					, { "university_country", p.UniversityCountry }
-					, { "university", p.University }
-					, { "university_year", p.UniversityYear }
-					, { "university_faculty", p.UniversityFaculty }
-					, { "university_chair", p.UniversityChair }
-					, { "sex", p.Sex }
-					, { "status", p.Status }
-					, { "age_from", p.AgeFrom }
-					, { "age_to", p.AgeTo }
-					, { "birth_day", p.BirthDay }
-					, { "birth_month", p.BirthMonth }
-					, { "birth_year", p.BirthYear }
-					, { "online", p.Online }
-					, { "has_photo", p.HasPhoto }
-					, { "school_country", p.SchoolCountry }
-					, { "school_city", p.SchoolCity }
-					, { "school_class", p.SchoolClass }
-					, { "school", p.School }
-					, { "school_year", p.SchoolYear }
-					, { "religion", WebUtility.HtmlEncode(value: p.Religion) }
-					, { "interests", WebUtility.HtmlEncode(value: p.Interests) }
-					, { "company", WebUtility.HtmlEncode(value: p.Company) }
-					, { "position", WebUtility.HtmlEncode(value: p.Position) }
-					, { "group_id", p.GroupId }
-					, { "from_list", p.FromList }
-			};
-
-			return parameters;
-		}
 	}
 }

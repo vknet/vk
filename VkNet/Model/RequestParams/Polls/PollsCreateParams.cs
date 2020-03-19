@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Polls
 {
@@ -64,25 +63,5 @@ namespace VkNet.Model.RequestParams.Polls
 		/// </summary>
 		[JsonProperty("background_id")]
 		public long? BackgroundId { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PollsCreateParams p)
-		{
-			return new VkParameters
-			{
-				{ "question", p.Question },
-				{ "is_anonymous", p.IsAnonymous },
-				{ "is_multiple", p.IsMultiple },
-				{ "end_date", p.EndDate },
-				{ "owner_id", p.OwnerId },
-				{ "add_answers", Utilities.SerializeToJson(p.AddAnswers) },
-				{ "photo_id", p.PhotoId },
-				{ "background_id", p.BackgroundId }
-			};
-		}
 	}
 }

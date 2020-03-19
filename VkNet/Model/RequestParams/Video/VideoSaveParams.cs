@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -82,30 +81,5 @@ namespace VkNet.Model.RequestParams
 		/// 0.
 		/// </summary>
 		public bool? Repeat { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(VideoSaveParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "name", p.Name }
-					, { "description", p.Description }
-					, { "is_private", p.IsPrivate }
-					, { "wallpost", p.Wallpost }
-					, { "link", p.Link }
-					, { "group_id", p.GroupId }
-					, { "album_id", p.AlbumId }
-					, { "privacy_view", p.PrivacyView }
-					, { "privacy_comment", p.PrivacyComment }
-					, { "no_comments", p.NoComments }
-					, { "repeat", p.Repeat }
-			};
-
-			return parameters;
-		}
 	}
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -47,22 +46,5 @@ namespace VkNet.Model.RequestParams
 		[JsonProperty(propertyName: "filters")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public VideoCatalogFilters Filters { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(VideoGetCatalogParams p)
-		{
-			return new VkParameters
-			{
-				{ "items_count", p.ItemsCount },
-				{ "count", p.Count },
-				{ "extended", p.Extended },
-				{ "from", p.From },
-				{ "filters", p.Filters }
-			};
-		}
 	}
 }

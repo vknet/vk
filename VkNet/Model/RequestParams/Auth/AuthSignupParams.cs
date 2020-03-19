@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -82,30 +81,5 @@ namespace VkNet.Model.RequestParams
 		/// первом вызове этот параметр не передается. строка.
 		/// </summary>
 		public string Sid { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(AuthSignupParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "first_name", p.FirstName }
-					, { "last_name", p.LastName }
-					, { "birthday", p.Birthday }
-					, { "client_id", p.ClientId }
-					, { "client_secret", p.ClientSecret }
-					, { "phone", p.Phone }
-					, { "password", p.Password }
-					, { "test_mode", p.TestMode }
-					, { "voice", p.Voice }
-					, { "sex", p.Sex }
-					, { "sid", p.Sid }
-			};
-
-			return parameters;
-		}
 	}
 }

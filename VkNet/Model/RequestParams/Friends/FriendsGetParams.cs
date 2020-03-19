@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -91,27 +90,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty("ref")]
 		public string Reference { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(FriendsGetParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "user_id", p.UserId },
-				{ "order", p.Order },
-				{ "list_id", p.ListId },
-				{ "count", p.Count },
-				{ "offset", p.Offset },
-				{ "fields", p.Fields },
-				{ "name_case", p.NameCase },
-				{ "ref", p.Reference }
-			};
-
-			return parameters;
-		}
 	}
 }

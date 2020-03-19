@@ -8,7 +8,7 @@ namespace VkNet.Utils
 	/// <summary>
 	/// Параметры запроса к ВКонтакте.
 	/// </summary>
-	public partial class VkParameters : Dictionary<string, string>
+	public class VkParameters : Dictionary<string, string>
 	{
 		/// <inheritdoc />
 		/// <summary>

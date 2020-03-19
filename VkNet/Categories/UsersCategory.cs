@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
+using System.Net;
 using JetBrains.Annotations;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
@@ -43,7 +45,42 @@ namespace VkNet.Categories
 		[Pure]
 		public VkCollection<User> Search(UserSearchParams @params)
 		{
-			return _vk.Call(methodName: "users.search", parameters: @params).ToVkCollectionOf<User>(selector: r => r);
+			return _vk.Call(methodName: "users.search", new VkParameters
+			{
+				{ "q", WebUtility.HtmlEncode(value: @params.Query) }
+				, { "sort", @params.Sort }
+				, { "offset", @params.Offset }
+				, { "count", @params.Count }
+				, { "fields", @params.Fields }
+				, { "city", @params.City }
+				, { "country", @params.Country }
+				, { "hometown", WebUtility.HtmlEncode(value: @params.Hometown) }
+				, { "university_country", @params.UniversityCountry }
+				, { "university", @params.University }
+				, { "university_year", @params.UniversityYear }
+				, { "university_faculty", @params.UniversityFaculty }
+				, { "university_chair", @params.UniversityChair }
+				, { "sex", @params.Sex }
+				, { "status", @params.Status }
+				, { "age_from", @params.AgeFrom }
+				, { "age_to", @params.AgeTo }
+				, { "birth_day", @params.BirthDay }
+				, { "birth_month", @params.BirthMonth }
+				, { "birth_year", @params.BirthYear }
+				, { "online", @params.Online }
+				, { "has_photo", @params.HasPhoto }
+				, { "school_country", @params.SchoolCountry }
+				, { "school_city", @params.SchoolCity }
+				, { "school_class", @params.SchoolClass }
+				, { "school", @params.School }
+				, { "school_year", @params.SchoolYear }
+				, { "religion", WebUtility.HtmlEncode(value: @params.Religion) }
+				, { "interests", WebUtility.HtmlEncode(value: @params.Interests) }
+				, { "company", WebUtility.HtmlEncode(value: @params.Company) }
+				, { "position", WebUtility.HtmlEncode(value: @params.Position) }
+				, { "group_id", @params.GroupId }
+				, { "from_list", @params.FromList }
+			}).ToVkCollectionOf<User>(selector: r => r);
 		}
 
 		/// <summary>
@@ -273,7 +310,18 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<User> GetNearby(UsersGetNearbyParams @params)
 		{
-			return _vk.Call(methodName: "users.getNearby", parameters: @params).ToVkCollectionOf<User>(selector: x => x);
+			return _vk.Call(methodName: "users.getNearby", new VkParameters
+			{
+				{ "latitude", @params.Latitude.ToString(provider: CultureInfo.InvariantCulture) }
+				, //Vk API не принимает дробные числа с запятой, нужна точка
+				{ "longitude", @params.Longitude.ToString(provider: CultureInfo.InvariantCulture) }
+				, { "accuracy", @params.Accuracy }
+				, { "timeout", @params.Timeout }
+				, { "radius", @params.Radius }
+				, { "fields", @params.Fields }
+				, { "name_case", @params.NameCase }
+				, { "need_description", @params.NeedDescription }
+			}).ToVkCollectionOf<User>(selector: x => x);
 		}
 
 		/// <summary>

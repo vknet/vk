@@ -160,34 +160,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty("close_comments")]
 		public bool? CloseComments { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(WallPostParams p)
-		{
-			var result = new VkParameters
-			{
-				{ "owner_id", p.OwnerId },
-				{ "friends_only", p.FriendsOnly },
-				{ "from_group", p.FromGroup },
-				{ "message", p.Message },
-				{ "attachments", p.Attachments },
-				{ "services", p.Services },
-				{ "signed", p.Signed },
-				{ "publish_date", p.PublishDate },
-				{ "lat", p.Lat },
-				{ "long", p.Long },
-				{ "place_id", p.PlaceId },
-				{ "post_id", p.PostId },
-				{ "guid", p.Guid },
-				{ "mark_as_ads", p.MarkAsAds },
-				{ "close_comments", p.CloseComments }
-			};
-
-			return result;
-		}
 	}
 }

@@ -91,26 +91,5 @@ namespace VkNet.Model.RequestParams
 		[CanBeNull]
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public string CaptchaKey { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		[NotNull]
-		public static VkParameters ToVkParameters([NotNull] WallCreateCommentParams p)
-		{
-			return new VkParameters
-			{
-				{ "owner_id", p.OwnerId },
-				{ "post_id", p.PostId },
-				{ "from_group", p.FromGroup },
-				{ "message", p.Message },
-				{ "reply_to_comment", p.ReplyToComment },
-				{ "attachments", p.Attachments },
-				{ "sticker_id", p.StickerId },
-				{ "guid", p.Guid }
-			};
-		}
 	}
 }

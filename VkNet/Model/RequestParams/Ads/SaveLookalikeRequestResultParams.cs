@@ -1,8 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams.Ads
 {
@@ -35,23 +32,5 @@ namespace VkNet.Model.RequestParams.Ads
 		/// </summary>
 		[JsonProperty("level")]
 		public long Level { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(SaveLookalikeRequestResultParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "account_id", p.AccountId }
-				, { "client_id", p.ClientId }
-				, { "request_id", p.RequestId }
-				, { "level", p.Level }
-			};
-
-			return parameters;
-		}
 	}
 }

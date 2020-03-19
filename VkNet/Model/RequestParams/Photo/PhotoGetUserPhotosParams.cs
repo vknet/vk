@@ -1,6 +1,5 @@
 ﻿using System;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -38,24 +37,5 @@ namespace VkNet.Model.RequestParams
 		/// возрастания).
 		/// </summary>
 		public SortOrderBy Sort { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PhotoGetUserPhotosParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "user_id", p.UserId }
-					, { "count", p.Count }
-					, { "offset", p.Offset }
-					, { "extended", p.Extended }
-					, { "sort", p.Sort }
-			};
-
-			return parameters;
-		}
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using VkNet.Enums.Filters;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -60,25 +59,5 @@ namespace VkNet.Model.RequestParams
 		/// максимальное значение 1000.
 		/// </summary>
 		public long? Count { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(GroupsGetParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "user_id", p.UserId }
-					, { "extended", p.Extended }
-					, { "filter", p.Filter }
-					, { "fields", p.Fields }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-			};
-
-			return parameters;
-		}
 	}
 }

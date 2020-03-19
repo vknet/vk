@@ -77,7 +77,20 @@ namespace VkNet.Categories
 		/// </remarks>
 		public string Signup(AuthSignupParams @params)
 		{
-			return _vk.Call(methodName: "auth.signup", parameters: @params);
+			return _vk.Call(methodName: "auth.signup", new VkParameters
+			{
+				{ "first_name", @params.FirstName }
+				, { "last_name", @params.LastName }
+				, { "birthday", @params.Birthday }
+				, { "client_id", @params.ClientId }
+				, { "client_secret", @params.ClientSecret }
+				, { "phone", @params.Phone }
+				, { "password", @params.Password }
+				, { "test_mode", @params.TestMode }
+				, { "voice", @params.Voice }
+				, { "sex", @params.Sex }
+				, { "sid", @params.Sid }
+			});
 		}
 
 		/// <summary>
@@ -93,7 +106,16 @@ namespace VkNet.Categories
 		/// </remarks>
 		public AuthConfirmResult Confirm(AuthConfirmParams @params)
 		{
-			return _vk.Call(methodName: "auth.confirm", parameters: @params);
+			return _vk.Call(methodName: "auth.confirm", new VkParameters
+			{
+				{ "client_id", @params.ClientId },
+				{ "client_secret", @params.ClientSecret },
+				{ "phone", @params.Phone },
+				{ "code", @params.Code },
+				{ "password", @params.Password },
+				{ "test_mode", @params.TestMode },
+				{ "intro", @params.Intro }
+			});
 		}
 
 		/// <summary>

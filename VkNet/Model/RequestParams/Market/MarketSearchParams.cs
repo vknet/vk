@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Market
 {
@@ -67,30 +66,5 @@ namespace VkNet.Model.RequestParams.Market
 		/// ''photos'''.
 		/// </summary>
 		public bool? Extended { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MarketSearchParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "album_id", p.AlbumId }
-					, { "q", p.Query }
-					, { "price_from", p.PriceFrom }
-					, { "price_to", p.PriceTo }
-					, { "tags", p.Tags }
-					, { "sort", p.Sort }
-					, { "rev", p.Rev }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "extended", p.Extended }
-			};
-
-			return parameters;
-		}
 	}
 }

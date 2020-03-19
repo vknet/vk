@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using VkNet.Exception;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -76,33 +75,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public string CaptchaKey { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PhotoCreateCommentParams p)
-		{
-			if (p.Message.Length > 2048)
-			{
-				throw new VkApiException(message: "Максимальное количество символов: 2048.");
-			}
-
-			var parameters = new VkParameters
-			{
-				{ "owner_id", p.OwnerId },
-				{ "photo_id", p.PhotoId },
-				{ "message", p.Message },
-				{ "attachments", p.Attachments },
-				{ "from_group", p.FromGroup },
-				{ "reply_to_comment", p.ReplyToComment },
-				{ "sticker_id", p.StickerId },
-				{ "access_key", p.AccessKey },
-				{ "guid", p.Guid }
-			};
-
-			return parameters;
-		}
 	}
 }

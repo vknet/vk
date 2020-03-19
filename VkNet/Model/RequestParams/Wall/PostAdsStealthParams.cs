@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -86,30 +85,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "link_image")]
 		public string LinkImage { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PostAdsStealthParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "message", p.Message }
-					, { "attachments", p.Attachments }
-					, { "signed", p.Signed }
-					, { "lat", p.Lat }
-					, { "long", p.Long }
-					, { "place_id", p.PlaceId }
-					, { "link_title", p.LinkTitle }
-					, { "link_image", p.LinkImage }
-					, { "guid", p.Guid }
-					, { "link_button", p.LinkButton }
-			};
-
-			return parameters;
-		}
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -42,24 +41,5 @@ namespace VkNet.Model.RequestParams
 		/// доступны только первые 10000 комментариев.
 		/// </summary>
 		public ulong? Count { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PhotoGetAllCommentsParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "album_id", p.AlbumId }
-					, { "need_likes", p.NeedLikes }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-			};
-
-			return parameters;
-		}
 	}
 }

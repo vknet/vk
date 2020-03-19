@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Market
 {
@@ -97,27 +96,5 @@ namespace VkNet.Model.RequestParams.Market
 		/// </remarks>
 		[JsonProperty("url")]
 		public Uri Url { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MarketProductParams p)
-		{
-			return new VkParameters
-			{
-				{ "owner_id", p.OwnerId },
-				{ "item_id", p.ItemId },
-				{ "name", p.Name },
-				{ "description", p.Description },
-				{ "category_id", p.CategoryId },
-				{ "price", p.Price },
-				{ "deleted", p.Deleted },
-				{ "main_photo_id", p.MainPhotoId },
-				{ "photo_ids", p.PhotoIds },
-				{ "url", p.Url }
-			};
-		}
 	}
 }

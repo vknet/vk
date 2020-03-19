@@ -42,7 +42,20 @@ namespace VkNet.Categories
 		/// </remarks>
 		public VkCollection<App> GetCatalog(AppGetCatalogParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call(methodName: "apps.getCatalog", parameters: @params, skipAuthorization: skipAuthorization)
+			return _vk.Call(methodName: "apps.getCatalog", new VkParameters
+				{
+					{ "sort", @params.Sort }
+					, { "offset", @params.Offset }
+					, { "count", @params.Count }
+					, { "platform", @params.Platform }
+					, { "extended", @params.Extended }
+					, { "return_friends", @params.ReturnFriends }
+					, { "fields", @params.Fields }
+					, { "name_case", @params.NameCase }
+					, { "q", @params.Query }
+					, { "genre_id", @params.GenreId }
+					, { "filter", @params.Filter }
+				}, skipAuthorization: skipAuthorization)
 					.ToVkCollectionOf<App>(selector: x => x);
 		}
 
@@ -59,7 +72,15 @@ namespace VkNet.Categories
 		/// </remarks>
 		public AppGetObject Get(AppGetParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call(methodName: "apps.get", parameters: @params, skipAuthorization: skipAuthorization);
+			return _vk.Call(methodName: "apps.get", new VkParameters
+			{
+				{ "app_ids", @params.AppIds }
+				, { "platform", @params.Platform }
+				, { "extended", @params.Extended }
+				, { "return_friends", @params.ReturnFriends }
+				, { "fields", @params.Fields }
+				, { "name_case", @params.NameCase }
+			}, skipAuthorization: skipAuthorization);
 		}
 
 		/// <summary>
@@ -77,7 +98,15 @@ namespace VkNet.Categories
 		/// </remarks>
 		public long SendRequest(AppSendRequestParams @params)
 		{
-			return _vk.Call(methodName: "apps.sendRequest", parameters: @params);
+			return _vk.Call(methodName: "apps.sendRequest", new VkParameters
+			{
+				{ "user_id", @params.UserId }
+				, { "text", @params.Text }
+				, { "type", @params.Type }
+				, { "name", @params.Name }
+				, { "key", @params.Key }
+				, { "separate", @params.Separate }
+			});
 		}
 
 		/// <summary>

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -75,25 +74,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "guid")]
 		public string Guid { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(VideoCreateCommentParams p)
-		{
-			return new VkParameters
-			{
-				{ "owner_id", p.OwnerId },
-				{ "video_id", p.VideoId },
-				{ "message", p.Message },
-				{ "attachments", p.Attachments },
-				{ "from_group", p.FromGroup },
-				{ "reply_to_comment", p.ReplyToComment },
-				{ "sticker_id", p.StickerId },
-				{ "guid", p.Guid }
-			};
-		}
 	}
 }

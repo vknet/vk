@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -78,29 +77,5 @@ namespace VkNet.Model.RequestParams
 		/// Количество записей, которое будет получено.
 		/// </summary>
 		public ulong? Count { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PhotoGetParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "album_id", p.AlbumId }
-					, { "photo_ids", p.PhotoIds }
-					, { "rev", p.Reversed }
-					, { "extended", p.Extended }
-					, { "feed_type", p.FeedType }
-					, { "feed", p.Feed }
-					, { "photo_sizes", p.PhotoSizes }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-			};
-
-			return parameters;
-		}
 	}
 }

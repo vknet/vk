@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -52,24 +51,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty("group_id")]
 		public ulong GroupId { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(GetImportantMessagesParams p)
-		{
-			return new VkParameters
-			{
-				{ "fields", p.Fields },
-				{ "count", p.Count },
-				{ "offset", p.Offset },
-				{ "start_message_id", p.StartMessageId },
-				{ "preview_length", p.PreviewLength },
-				{ "extended", p.Extended },
-				{ "group_id", p.GroupId }
-			};
-		}
 	}
 }
