@@ -19,6 +19,12 @@ namespace VkNet.Model.Attachments
 		protected override string Alias => "photo";
 
 		/// <summary>
+		/// Количество фотографий
+		/// </summary>
+		[JsonProperty("count")]
+		public long? Count { get; set; }
+
+		/// <summary>
 		/// Идентификатор альбома, в котором находится фотография.
 		/// </summary>
 		[JsonProperty("album_id")]
@@ -50,6 +56,12 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[JsonProperty("sizes")]
 		public ReadOnlyCollection<PhotoSize> Sizes { get; set; }
+
+		/// <summary>
+		/// Размеры фотографий.
+		/// </summary>
+		[JsonProperty("items")]
+		public VkCollection<Photo> Items { get; set; }
 
 		/// <summary>
 		/// Uri фотографии с максимальным размером 50x50px.
