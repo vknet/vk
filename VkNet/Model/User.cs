@@ -124,7 +124,8 @@ namespace VkNet.Model
 				LastNameIns = response["last_name_ins"],
 				LastNameAbl = response["last_name_abl"],
 				IsClosed = response["is_closed"],
-				CanAccessClosed = response["can_access_closed"]
+				CanAccessClosed = response["can_access_closed"],
+				Count = response["count"]
 			};
 
 			user.IsDeactivated = user.Deactivated != null;
@@ -804,6 +805,16 @@ namespace VkNet.Model
 		/// Полномочия руководителя (для Groups.GetMembers)
 		/// </summary>
 		public MemberManagerRole Role { get; set; }
+
+		#endregion
+
+		#region Поля для NewsFeed.Get
+
+			/// <summary>
+			/// Количество друзей (для Groups.GetMembers)
+			/// </summary>
+			[JsonProperty("count")]
+			public long? Count { get; set; }
 
 		#endregion
 
