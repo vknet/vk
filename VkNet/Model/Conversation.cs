@@ -57,6 +57,11 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("can_write")]
 		public ConversationCanWrite CanWrite { get; set; }
+		/// <summary>
+		/// Информация о том, может ли пользователь получать деньги.
+		/// </summary>
+		[JsonProperty("can_receive_money")]
+		public bool CanReceiveMoney { get; set; }
 
 		/// <summary>
 		/// Настройки чата.

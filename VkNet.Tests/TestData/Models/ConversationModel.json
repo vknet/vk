@@ -1,0 +1,37 @@
+﻿{
+  "peer": {
+    "id": 2000000038,
+    "type": "chat",
+    "local_id": 38
+  },
+  "last_message_id": 1210504,
+  "in_read": 115082,
+  "out_read": 1210504,
+  "unread_count": 7,
+  "can_write": {
+    "allowed": true
+  },
+  "can_receive_money": true,
+  "chat_settings": {
+    "owner_id": 321779994,
+    "title": "bug",
+    "state": "in",
+    "acl": {
+      "can_change_info": true,
+      "can_change_invite_link": false,
+      "can_change_pin": true,
+      "can_invite": true,
+      "can_promote_users": false,
+      "can_see_invite_link": false,
+      "can_moderate": false,
+      "can_copy_chat": false
+    },
+    "members_count": 13,
+    "active_ids": [
+      328798488,
+      112498272,
+      173879288,
+      217583301
+    ]
+  }
+}
