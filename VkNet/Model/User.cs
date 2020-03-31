@@ -155,6 +155,24 @@ namespace VkNet.Model
 			user.BirthdayVisibility = birthdayParts.Length > 2
 				? Enums.BirthdayVisibility.Full
 				: Enums.BirthdayVisibility.OnlyDayAndMonth;
+		
+			switch (response["role"]) {
+				case "creator":
+					user.Role = MemberManagerRole.Creator;
+					break;
+				case "administrator":
+					user.Role = MemberManagerRole.Administrator;
+					break;
+				case "editor":
+					user.Role = MemberManagerRole.Editor;
+					break;
+				case "moderator":
+					user.Role = MemberManagerRole.Moderator;
+					break;
+				default:
+					user.Role = null;
+					break;
+			}
 
 			return user;
 		}
