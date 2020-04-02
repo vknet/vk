@@ -8,9 +8,9 @@ variables:
 
 steps:
 - task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 3.0.100'
+  displayName: 'Use .NET Core sdk 2.1.402'
   inputs:
-    version: 3.0.100
+    version: 2.1.402
 
 
 - task: DotNetCoreCLI@2
@@ -18,7 +18,7 @@ steps:
   inputs:
     command: test
     projects: '*[Tt]ests/*.csproj'
-    arguments: '-c $(BuildConfiguration)'
+    arguments: '-c $(BuildConfiguration) -f netcoreapp2.0'
 
 
 - task: DotNetCoreCLI@2
@@ -28,7 +28,7 @@ steps:
     arguments: '-o $(Build.ArtifactStagingDirectory) -c $(BuildConfiguration) --version-suffix $(Build.BuildId)'
 
 
-- script: 'dotnet nuget push *.nupkg -k $(Parameters.MyGetKey) -s $(Parameters.MyGetFeed)' 
+- script: 'dotnet nuget push *.nupkg -k $(Parameters.MyGetKey) -s $(Parameters.MyGetFeed)'
   workingDirectory: '$(Build.ArtifactStagingDirectory)'
   displayName: 'Command Line Script'
 
@@ -37,7 +37,7 @@ steps:
   inputs:
     botToken: '$(Parameters.botToken)'
     chats: '$(Parameters.chats)'
-    message: '<code>Reason: $(Build.Reason) 
+    message: '<code>Reason: $(Build.Reason)
     Build №: $(Build.BuildNumber)
     VkNet был успешно собран!</code>'
     buildQueuedBy: true
