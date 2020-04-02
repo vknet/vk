@@ -8,9 +8,9 @@ variables:
 
 steps:
 - task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 3.1.101'
+  displayName: 'Use .NET Core sdk 3.1.200'
   inputs:
-    version: 3.1.101
+    version: 3.1.200
 
 - task: DotNetCoreCLI@2
   displayName: Test
@@ -23,7 +23,7 @@ steps:
   inputs:
     botToken: '$(Parameters.botToken)'
     chats: '$(Parameters.chats)'
-    message: '<code>Reason: $(Build.Reason) 
+    message: '<code>Reason: $(Build.Reason)
     Build №: $(Build.BuildNumber)
     Pull Request для VkNet был успешно собран!</code>'
     buildQueuedBy: true
