@@ -156,18 +156,18 @@ namespace VkNet.Model
 				? Enums.BirthdayVisibility.Full
 				: Enums.BirthdayVisibility.OnlyDayAndMonth;
 		
-			switch (response["role"]) {
+			switch (response["role"]?.ToString()) {
 				case "creator":
-					user.Role = MemberManagerRole.Creator;
+					user.Role = ManagerRole.Creator;
 					break;
 				case "administrator":
-					user.Role = MemberManagerRole.Administrator;
+					user.Role = ManagerRole.Administrator;
 					break;
 				case "editor":
-					user.Role = MemberManagerRole.Editor;
+					user.Role = ManagerRole.Editor;
 					break;
 				case "moderator":
-					user.Role = MemberManagerRole.Moderator;
+					user.Role = ManagerRole.Moderator;
 					break;
 				default:
 					user.Role = null;
@@ -822,7 +822,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Полномочия руководителя (для Groups.GetMembers)
 		/// </summary>
-		public MemberManagerRole Role { get; set; }
+		public ManagerRole Role { get; set; }
 
 		#endregion
 
