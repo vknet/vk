@@ -21,7 +21,7 @@ namespace VkNet.Tests.Models
 		}
 
 		[Test]
-		public void ShouldDeserializeResponseFromIssue960ToAttachment()
+		public void ShouldDeserializeOldApiResponseToAttachment()
 		{
 			ReadJsonFile("Models", "graffiti_attachment_for_960");
 
