@@ -822,6 +822,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Полномочия руководителя (для Groups.GetMembers)
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public ManagerRole Role { get; set; }
 
 		#endregion
