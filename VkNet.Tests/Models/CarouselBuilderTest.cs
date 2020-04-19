@@ -66,5 +66,14 @@ namespace VkNet.Tests.Models
 			Assert.AreEqual(carousel.Title, title);
 			Assert.AreEqual(carousel.PhotoId, photoId);
 		}
+
+		[Test]
+		public void ClearButtons()
+		{
+			var builder = new CarouselElementBuilder();
+			builder.AddButton("label", "");
+			builder.ClearButtons();
+			Assert.AreEqual(builder.Buttons.Count, 0);
+		}
 	}
 }

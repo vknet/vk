@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model.Template;
 using VkNet.Model.Template.Carousel;
 
@@ -56,6 +57,24 @@ namespace VkNet.Tests.Models
 
 			builder.ClearElements();
 			Assert.AreEqual(builder.Elements.Count, 0);
+		}
+
+		[Test]
+		public void TheNumberOfElementsIsMoreThan10()
+		{
+			var builder = new TemplateBuilder();
+
+			for (int i = 0; i < 10; i++)
+			{
+				builder.AddTemplateElement(new CarouselElementBuilder()
+					.SetTitle("title")
+					.Build());
+			}
+
+			Assert.Throws<TooMuchElementsInTemplate>(() =>
+				builder.AddTemplateElement(new CarouselElementBuilder()
+					.SetTitle("title")
+					.Build()));
 		}
 	}
 }
