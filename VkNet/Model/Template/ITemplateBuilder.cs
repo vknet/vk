@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Template
 {
@@ -12,6 +14,7 @@ namespace VkNet.Model.Template
 		/// <summary>
 		/// Тип шаблона
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		TemplateType Type { get; }
 
 		/// <summary>
