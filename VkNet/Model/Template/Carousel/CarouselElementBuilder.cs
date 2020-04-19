@@ -44,7 +44,7 @@ namespace VkNet.Model.Template.Carousel
 		{
 		}
 
-		private CarouselElementBuilder(string type)
+		public CarouselElementBuilder(string type)
 		{
 			_type = type;
 		}
