@@ -44,5 +44,18 @@ namespace VkNet.Tests.Models
 				.Build());
 			Assert.AreEqual(builder.Elements.First().Title, "title");
 		}
+
+		[Test]
+		public void ClearElements()
+		{
+			var builder = new TemplateBuilder();
+
+			builder.AddTemplateElement(new CarouselElementBuilder()
+				.SetTitle("title")
+				.Build());
+
+			builder.ClearElements();
+			Assert.AreEqual(builder.Elements.Count, 0);
+		}
 	}
 }
