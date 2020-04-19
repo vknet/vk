@@ -26,7 +26,7 @@ namespace VkNet.Model.Template
 		/// Массив элементов шаблона.
 		/// </summary>
 		[JsonProperty(propertyName: "elements")]
-		public IEnumerable<ITemplateElement> Elements { get; set; }
+		public IEnumerable<CarouselElement> Elements { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

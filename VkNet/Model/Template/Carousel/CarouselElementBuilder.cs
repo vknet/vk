@@ -13,15 +13,19 @@ namespace VkNet.Model.Template.Carousel
 	public class CarouselElementBuilder : ICarouselElementBuilder
 	{
 		/// <inheritdoc />
+		[CanBeNull]
 		public string Title { get; private set; }
 
 		/// <inheritdoc />
+		[CanBeNull]
 		public string Description { get; private set; }
 
 		/// <inheritdoc />
+		[CanBeNull]
 		public string PhotoId { get; private set; }
 
 		/// <inheritdoc />
+		[CanBeNull]
 		public CarouselElementAction Action { get; private set; }
 
 		/// <inheritdoc />
@@ -50,7 +54,7 @@ namespace VkNet.Model.Template.Carousel
 		}
 
 		/// <inheritdoc />
-		public ICarouselElementBuilder AddButton(string label, string extra, KeyboardButtonColor color = default(KeyboardButtonColor), string type = null)
+		public CarouselElementBuilder AddButton(string label, string extra, KeyboardButtonColor color = default(KeyboardButtonColor), string type = null)
 		{
 			color ??= KeyboardButtonColor.Default;
 			type ??= _type ?? Button;
@@ -87,7 +91,7 @@ namespace VkNet.Model.Template.Carousel
 		}
 
 		/// <inheritdoc />
-		public ICarouselElementBuilder SetTitle(string title)
+		public CarouselElementBuilder SetTitle(string title)
 		{
 			Title = title;
 
@@ -95,7 +99,7 @@ namespace VkNet.Model.Template.Carousel
 		}
 
 		/// <inheritdoc />
-		public ICarouselElementBuilder SetDescription(string description)
+		public CarouselElementBuilder SetDescription(string description)
 		{
 			Description = description;
 
@@ -103,7 +107,7 @@ namespace VkNet.Model.Template.Carousel
 		}
 
 		/// <inheritdoc />
-		public ICarouselElementBuilder SetPhotoId(string photoId)
+		public CarouselElementBuilder SetPhotoId(string photoId)
 		{
 			PhotoId = photoId;
 
@@ -111,7 +115,7 @@ namespace VkNet.Model.Template.Carousel
 		}
 
 		/// <inheritdoc />
-		public ICarouselElementBuilder SetAction(CarouselElementAction action)
+		public CarouselElementBuilder SetAction(CarouselElementAction action)
 		{
 			Action = action;
 
@@ -119,7 +123,7 @@ namespace VkNet.Model.Template.Carousel
 		}
 
 		/// <inheritdoc />
-		public ICarouselElementBuilder ClearButtons()
+		public CarouselElementBuilder ClearButtons()
 		{
 			Buttons.Clear();
 

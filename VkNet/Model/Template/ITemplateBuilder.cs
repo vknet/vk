@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Model.Template.Carousel;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Template
@@ -20,7 +21,7 @@ namespace VkNet.Model.Template
 		/// <summary>
 		/// Список элементов шаблона
 		/// </summary>
-		List<ITemplateElement> Elements { get; }
+		List<CarouselElement> Elements { get; }
 
 		/// <summary>
 		/// Добавить элемент шаблона
@@ -28,7 +29,7 @@ namespace VkNet.Model.Template
 		/// <param name="element">Элемент шаблона</param>
 		/// <exception cref="TooMuchElementsInTemplate">Максимальное количество элементов не больше 10</exception>
 		/// <returns>Конструктор шаблона</returns>
-		TemplateBuilder AddTemplateElement(ITemplateElement element);
+		TemplateBuilder AddTemplateElement(CarouselElement element);
 
 		/// <summary>
 		/// Установить тип шаблона

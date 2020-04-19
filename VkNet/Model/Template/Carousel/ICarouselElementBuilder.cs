@@ -46,7 +46,7 @@ namespace VkNet.Model.Template.Carousel
 		/// <exception cref="VkKeyboardPayloadMaxLengthException">Максимальная длина payload 255 символов для одной кнопки
 		/// и 1000 символов для всех кнопок вместе</exception>
 		/// <returns>Конструктор элемента карусели</returns>
-		ICarouselElementBuilder AddButton(string label,
+		CarouselElementBuilder AddButton(string label,
 										string extra,
 										KeyboardButtonColor color = default(KeyboardButtonColor),
 										string type = null);
@@ -56,14 +56,14 @@ namespace VkNet.Model.Template.Carousel
 		/// </summary>
 		/// <param name="title">Заголовок, максимум 80 символов</param>
 		/// <returns>Конструктор элемента карусели</returns>
-		ICarouselElementBuilder SetTitle(string title);
+		CarouselElementBuilder SetTitle(string title);
 
 		/// <summary>
 		/// Установить подзаголовок элемента карусели
 		/// </summary>
 		/// <param name="description">Подзаголовок, максимум 80 символов</param>
 		/// <returns>Конструктор элемента карусели</returns>
-		ICarouselElementBuilder SetDescription(string description);
+		CarouselElementBuilder SetDescription(string description);
 
 		/// <summary>
 		/// Установить прикрепленное изображение
@@ -75,20 +75,20 @@ namespace VkNet.Model.Template.Carousel
 		/// Пример: -123218_50548844
 		/// </param>
 		/// <returns>Конструктор элемента карусели</returns>
-		ICarouselElementBuilder SetPhotoId(string photoId);
+		CarouselElementBuilder SetPhotoId(string photoId);
 
 		/// <summary>
 		/// Установить действие при нажатии
 		/// </summary>
 		/// <param name="action">Объект, описывающий действие, которое необходимо выполнить при нажатии на элемент карусели</param>
 		/// <returns>Конструктор элемента карусели</returns>
-		ICarouselElementBuilder SetAction(CarouselElementAction action);
+		CarouselElementBuilder SetAction(CarouselElementAction action);
 
 		/// <summary>
 		/// Удалить все добавленные кнопки
 		/// </summary>
 		/// <returns>Конструктор элемента карусели</returns>
-		ICarouselElementBuilder ClearButtons();
+		CarouselElementBuilder ClearButtons();
 
 		/// <summary>
 		/// Построить элемент карусели

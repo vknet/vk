@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Model.Template.Carousel;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Template
@@ -19,12 +20,12 @@ namespace VkNet.Model.Template
 		public TemplateType Type { get; private set; } = TemplateType.Carousel;
 
 		/// <inheritdoc />
-		public List<ITemplateElement> Elements { get; private set; }
+		public List<CarouselElement> Elements { get; private set; } = new List<CarouselElement>();
 
 		private string TooMuchElementsExceptionTemplate = "Максимальное количество элементов в шаблоне 10";
 
 		/// <inheritdoc />
-		public TemplateBuilder AddTemplateElement(ITemplateElement element)
+		public TemplateBuilder AddTemplateElement(CarouselElement element)
 		{
 			if(Elements.Count >= 10)
 			{

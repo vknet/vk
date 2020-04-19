@@ -1,4 +1,6 @@
 
+using System;
+using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Template;
@@ -13,12 +15,34 @@ namespace VkNet.Tests.Models
 		public void CreateTemplate()
 		{
 			var builder = new TemplateBuilder();
-			builder.AddTemplateElement(new CarouselElementBuilder().SetTitle("title").Build());
+			builder.AddTemplateElement(
+				new CarouselElementBuilder().
+					SetTitle("title")
+					.SetDescription("test")
+					.SetPhotoId("-123218_50548844")
+					.SetAction(new CarouselElementAction()
+					{
+						Link = new Uri("https://google.com/"),
+						Type = CarouselElementActionType.OpenLink
+					})
+					.AddButton("label", "")
+					.Build());
 			builder.SetType(TemplateType.Carousel);
 			var template = builder.Build();
 
 			Assert.AreEqual(builder.Type, TemplateType.Carousel);
 			Assert.AreEqual(template.Type, TemplateType.Carousel);
+		}
+
+		[Test]
+		public void PartialTemplate()
+		{
+			var builder = new TemplateBuilder();
+
+			builder.AddTemplateElement(new CarouselElementBuilder()
+				.SetTitle("title")
+				.Build());
+			Assert.AreEqual(builder.Elements.First().Title, "title");
 		}
 	}
 }
