@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Model.Keyboard;
@@ -10,7 +10,7 @@ namespace VkNet.Model.Template.Carousel
 	/// Объект элементов карусели.
 	/// </summary>
 	[Serializable]
-	public class CarouselElement
+	public class CarouselElement : ITemplateElement
 	{
 		/// <summary>
 		/// Заголовок, максимум 80 символов

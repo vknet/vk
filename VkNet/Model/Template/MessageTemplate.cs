@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
@@ -26,7 +26,7 @@ namespace VkNet.Model.Template
 		/// Массив элементов шаблона.
 		/// </summary>
 		[JsonProperty(propertyName: "elements")]
-		public IEnumerable<CarouselElement> Elements { get; set; }
+		public IEnumerable<ITemplateElement> Elements { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
