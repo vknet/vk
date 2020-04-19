@@ -12,7 +12,7 @@ namespace VkNet.Model.Template
 	public interface ITemplateBuilder
 	{
 		/// <summary>
-		/// Тип шаблона
+		/// Тип шаблона, по умолчанию карусель
 		/// </summary>
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		TemplateType Type { get; }
@@ -28,20 +28,20 @@ namespace VkNet.Model.Template
 		/// <param name="element">Элемент шаблона</param>
 		/// <exception cref="TooMuchElementsInTemplate">Максимальное количество элементов не больше 10</exception>
 		/// <returns>Конструктор шаблона</returns>
-		ITemplateBuilder AddTemplateElement(ITemplateElement element);
+		TemplateBuilder AddTemplateElement(ITemplateElement element);
 
 		/// <summary>
 		/// Установить тип шаблона
 		/// </summary>
 		/// <param name="type">Тип шаблона</param>
 		/// <returns>Конструктор шаблона</returns>
-		ITemplateBuilder SetType(TemplateType type);
+		TemplateBuilder SetType(TemplateType type);
 
 		/// <summary>
 		/// Очистить все добавленные шаблоны
 		/// </summary>
 		/// <returns>Конструктор шаблона</returns>
-		ITemplateBuilder ClearElements();
+		TemplateBuilder ClearElements();
 
 		/// <summary>
 		/// Построить шаблон

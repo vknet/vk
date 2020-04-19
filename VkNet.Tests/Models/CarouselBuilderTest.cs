@@ -65,9 +65,6 @@ namespace VkNet.Tests.Models
 			Assert.AreEqual(carousel.Description, description);
 			Assert.AreEqual(carousel.Title, title);
 			Assert.AreEqual(carousel.PhotoId, photoId);
-			//Assert.AreEqual(carousel.Buttons.GetEnumerator().Current.Action.Type, buttonType);
-			//Assert.AreEqual(carousel.Buttons.GetEnumerator().Current.Color, buttonColor);
-			//Assert.AreEqual(carousel.Buttons.GetEnumerator().Current.Action.Label, buttonLabel);
 		}
 	}
 }

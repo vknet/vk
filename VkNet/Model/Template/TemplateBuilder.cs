@@ -16,7 +16,7 @@ namespace VkNet.Model.Template
 	{
 		/// <inheritdoc />
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public TemplateType Type { get; private set; }
+		public TemplateType Type { get; private set; } = TemplateType.Carousel;
 
 		/// <inheritdoc />
 		public List<ITemplateElement> Elements { get; private set; }
@@ -24,7 +24,7 @@ namespace VkNet.Model.Template
 		private string TooMuchElementsExceptionTemplate = "Максимальное количество элементов в шаблоне 10";
 
 		/// <inheritdoc />
-		public ITemplateBuilder AddTemplateElement(ITemplateElement element)
+		public TemplateBuilder AddTemplateElement(ITemplateElement element)
 		{
 			if(Elements.Count >= 10)
 			{
@@ -37,7 +37,7 @@ namespace VkNet.Model.Template
 		}
 
 		/// <inheritdoc />
-		public ITemplateBuilder SetType(TemplateType type)
+		public TemplateBuilder SetType(TemplateType type)
 		{
 			Type = type;
 
@@ -45,7 +45,7 @@ namespace VkNet.Model.Template
 		}
 
 		/// <inheritdoc />
-		public ITemplateBuilder ClearElements()
+		public TemplateBuilder ClearElements()
 		{
 			Elements.Clear();
 
