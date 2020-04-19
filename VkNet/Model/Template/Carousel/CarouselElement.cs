@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Model.Keyboard;
 using VkNet.Utils;
@@ -16,12 +17,14 @@ namespace VkNet.Model.Template.Carousel
 		/// Заголовок, максимум 80 символов
 		/// </summary>
 		[JsonProperty("title")]
+		[CanBeNull]
 		public string Title { get; set; }
 
 		/// <summary>
 		/// Подзаголовок, максимум 80 символов
 		/// </summary>
 		[JsonProperty("description")]
+		[CanBeNull]
 		public string Description { get; set; }
 
 		/// <summary>
@@ -31,6 +34,7 @@ namespace VkNet.Model.Template.Carousel
 		/// Пример: -123218_50548844
 		/// </summary>
 		[JsonProperty("photo_id")]
+		[CanBeNull]
 		public string PhotoId { get; set; }
 
 		/// <summary>
@@ -43,6 +47,7 @@ namespace VkNet.Model.Template.Carousel
 		/// Объект, описывающий действие, которое необходимо выполнить при нажатии на элемент карусели.
 		/// </summary>
 		[JsonProperty("action")]
+		[CanBeNull]
 		public CarouselElementAction Action { get; set; }
 
 		/// <summary>
