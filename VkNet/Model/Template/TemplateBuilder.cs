@@ -25,11 +25,11 @@ namespace VkNet.Model.Template
 		private string TooMuchElementsExceptionTemplate = "Максимальное количество элементов в шаблоне 10";
 
 		/// <inheritdoc />
-		public TemplateBuilder AddTemplateElement(CarouselElement element)
+		public ITemplateBuilder AddTemplateElement(CarouselElement element)
 		{
 			if(Elements.Count >= 10)
 			{
-				throw new TooMuchElementsInTemplate(TooMuchElementsExceptionTemplate);
+				throw new TooMuchElementsInTemplateException(TooMuchElementsExceptionTemplate);
 			}
 
 			Elements.Add(element);
@@ -38,7 +38,7 @@ namespace VkNet.Model.Template
 		}
 
 		/// <inheritdoc />
-		public TemplateBuilder SetType(TemplateType type)
+		public ITemplateBuilder SetType(TemplateType type)
 		{
 			Type = type;
 
@@ -46,7 +46,7 @@ namespace VkNet.Model.Template
 		}
 
 		/// <inheritdoc />
-		public TemplateBuilder ClearElements()
+		public ITemplateBuilder ClearElements()
 		{
 			Elements.Clear();
 

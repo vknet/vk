@@ -71,7 +71,7 @@ namespace VkNet.Tests.Models
 					.Build());
 			}
 
-			Assert.Throws<TooMuchElementsInTemplate>(() =>
+			Assert.Throws<TooMuchElementsInTemplateException>(() =>
 				builder.AddTemplateElement(new CarouselElementBuilder()
 					.SetTitle("title")
 					.Build()));

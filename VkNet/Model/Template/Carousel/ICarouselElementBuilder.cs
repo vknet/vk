@@ -42,11 +42,11 @@ namespace VkNet.Model.Template.Carousel
 		/// <param name="extra">Дополнительная информация о кнопке</param>
 		/// <param name="type">Основная информация о кнопке</param>
 		/// <param name="color">Цвет кнопки</param>
-		/// <exception cref="TooMuchButtons">Максимальное число кнопок не больше трех</exception>
+		/// <exception cref="TooMuchButtonsException">Максимальное число кнопок не больше трех</exception>
 		/// <exception cref="VkKeyboardPayloadMaxLengthException">Максимальная длина payload 255 символов для одной кнопки
 		/// и 1000 символов для всех кнопок вместе</exception>
 		/// <returns>Конструктор элемента карусели</returns>
-		CarouselElementBuilder AddButton(string label,
+		ICarouselElementBuilder AddButton(string label,
 										string extra,
 										KeyboardButtonColor color = default(KeyboardButtonColor),
 										string type = null);
@@ -56,14 +56,14 @@ namespace VkNet.Model.Template.Carousel
 		/// </summary>
 		/// <param name="title">Заголовок, максимум 80 символов</param>
 		/// <returns>Конструктор элемента карусели</returns>
-		CarouselElementBuilder SetTitle(string title);
+		ICarouselElementBuilder SetTitle(string title);
 
 		/// <summary>
 		/// Установить подзаголовок элемента карусели
 		/// </summary>
 		/// <param name="description">Подзаголовок, максимум 80 символов</param>
 		/// <returns>Конструктор элемента карусели</returns>
-		CarouselElementBuilder SetDescription(string description);
+		ICarouselElementBuilder SetDescription(string description);
 
 		/// <summary>
 		/// Установить прикрепленное изображение
@@ -75,20 +75,20 @@ namespace VkNet.Model.Template.Carousel
 		/// Пример: -123218_50548844
 		/// </param>
 		/// <returns>Конструктор элемента карусели</returns>
-		CarouselElementBuilder SetPhotoId(string photoId);
+		ICarouselElementBuilder SetPhotoId(string photoId);
 
 		/// <summary>
 		/// Установить действие при нажатии
 		/// </summary>
 		/// <param name="action">Объект, описывающий действие, которое необходимо выполнить при нажатии на элемент карусели</param>
 		/// <returns>Конструктор элемента карусели</returns>
-		CarouselElementBuilder SetAction(CarouselElementAction action);
+		ICarouselElementBuilder SetAction(CarouselElementAction action);
 
 		/// <summary>
 		/// Удалить все добавленные кнопки
 		/// </summary>
 		/// <returns>Конструктор элемента карусели</returns>
-		CarouselElementBuilder ClearButtons();
+		ICarouselElementBuilder ClearButtons();
 
 		/// <summary>
 		/// Построить элемент карусели

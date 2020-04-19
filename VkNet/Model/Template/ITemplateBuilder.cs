@@ -27,22 +27,22 @@ namespace VkNet.Model.Template
 		/// Добавить элемент шаблона
 		/// </summary>
 		/// <param name="element">Элемент шаблона</param>
-		/// <exception cref="TooMuchElementsInTemplate">Максимальное количество элементов не больше 10</exception>
+		/// <exception cref="TooMuchElementsInTemplateException">Максимальное количество элементов не больше 10</exception>
 		/// <returns>Конструктор шаблона</returns>
-		TemplateBuilder AddTemplateElement(CarouselElement element);
+		ITemplateBuilder AddTemplateElement(CarouselElement element);
 
 		/// <summary>
 		/// Установить тип шаблона
 		/// </summary>
 		/// <param name="type">Тип шаблона</param>
 		/// <returns>Конструктор шаблона</returns>
-		TemplateBuilder SetType(TemplateType type);
+		ITemplateBuilder SetType(TemplateType type);
 
 		/// <summary>
 		/// Очистить все добавленные шаблоны
 		/// </summary>
 		/// <returns>Конструктор шаблона</returns>
-		TemplateBuilder ClearElements();
+		ITemplateBuilder ClearElements();
 
 		/// <summary>
 		/// Построить шаблон

@@ -54,7 +54,7 @@ namespace VkNet.Model.Template.Carousel
 		}
 
 		/// <inheritdoc />
-		public CarouselElementBuilder AddButton(string label, string extra, KeyboardButtonColor color = default(KeyboardButtonColor), string type = null)
+		public ICarouselElementBuilder AddButton(string label, string extra, KeyboardButtonColor color = default(KeyboardButtonColor), string type = null)
 		{
 			color ??= KeyboardButtonColor.Default;
 			type ??= _type ?? Button;
@@ -63,7 +63,7 @@ namespace VkNet.Model.Template.Carousel
 
 			if (Buttons.Count >= 3)
 			{
-				throw new TooMuchButtons(TooMuchButtonsExceptionTemplate);
+				throw new TooMuchButtonsException(TooMuchButtonsExceptionTemplate);
 			}
 
 			if (payload.Length > 255 && type == Button)
@@ -91,7 +91,7 @@ namespace VkNet.Model.Template.Carousel
 		}
 
 		/// <inheritdoc />
-		public CarouselElementBuilder SetTitle(string title)
+		public ICarouselElementBuilder SetTitle(string title)
 		{
 			Title = title;
 
@@ -99,7 +99,7 @@ namespace VkNet.Model.Template.Carousel
 		}
 
 		/// <inheritdoc />
-		public CarouselElementBuilder SetDescription(string description)
+		public ICarouselElementBuilder SetDescription(string description)
 		{
 			Description = description;
 
@@ -107,7 +107,7 @@ namespace VkNet.Model.Template.Carousel
 		}
 
 		/// <inheritdoc />
-		public CarouselElementBuilder SetPhotoId(string photoId)
+		public ICarouselElementBuilder SetPhotoId(string photoId)
 		{
 			PhotoId = photoId;
 
@@ -115,7 +115,7 @@ namespace VkNet.Model.Template.Carousel
 		}
 
 		/// <inheritdoc />
-		public CarouselElementBuilder SetAction(CarouselElementAction action)
+		public ICarouselElementBuilder SetAction(CarouselElementAction action)
 		{
 			Action = action;
 
@@ -123,7 +123,7 @@ namespace VkNet.Model.Template.Carousel
 		}
 
 		/// <inheritdoc />
-		public CarouselElementBuilder ClearButtons()
+		public ICarouselElementBuilder ClearButtons()
 		{
 			Buttons.Clear();
 
