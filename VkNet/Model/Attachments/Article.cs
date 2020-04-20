@@ -62,11 +62,13 @@ namespace VkNet.Model.Attachments
 		public int? Shares { get; set; }
 
 		/// <summary>
+		/// Информация о том, есть ли статья в закладках у текущего пользователя
 		/// </summary>
 		[JsonProperty("is_favorite")]
 		public bool? IsFavorite { get; set; }
 
 		/// <summary>
+		/// Ссылка на статью
 		/// </summary>
 		[JsonProperty("url")]
 		public Uri Url { get; set; }
@@ -77,12 +79,14 @@ namespace VkNet.Model.Attachments
 		public Uri ViewUrl { get; set; }
 
 		/// <summary>
+		/// Дата публикации статьи
 		/// </summary>
 		[JsonProperty("published_date")]
 		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? PublishedDate { get; set; }
 
 		/// <summary>
+		/// Обложка статьи
 		/// </summary>
 		[JsonProperty("photo")]
 		public Photo Photo { get; set; }
