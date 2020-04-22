@@ -153,7 +153,7 @@ namespace VkNet.Model
 		public MessageReadState? ReadState { get; set; }
 
 		/// <summary>
-		/// тип сообщения (0 — полученное, 1 — отправленное, не возвращается для
+		/// Тип сообщения (0 — полученное, 1 — отправленное, не возвращается для
 		/// пересланных сообщений).
 		/// </summary>
 		[JsonProperty("out")]
@@ -209,7 +209,7 @@ namespace VkNet.Model
 		public bool? Deleted { get; set; }
 
 		/// <summary>
-		/// идентификатор, используемый при отправке сообщения. Возвращается только для
+		/// Идентификатор, используемый при отправке сообщения. Возвращается только для
 		/// исходящих сообщений.
 		/// </summary>
 		[JsonProperty("random_id")]
@@ -268,12 +268,12 @@ namespace VkNet.Model
 		public long? AdminId { get; set; }
 
 		/// <summary>
-		/// поле передано, если это служебное сообщение
+		/// Поле передано, если это служебное сообщение
 		/// </summary>
 		/// <remarks>
-		/// строка, может быть chat_photo_update или chat_photo_remove, а с версии 5.14 еще
-		/// и chat_create, chat_title_update,
-		/// chat_invite_user, chat_kick_user
+		/// Строка, может быть <c>chat_photo_update</c> или <c>chat_photo_remove</c>, а с версии 5.14 еще
+		/// и <c>chat_create</c>, <c>chat_title_update</c>,
+		/// <c>chat_invite_user</c>, <c>chat_kick_user</c>
 		/// </remarks>
 
 		[JsonProperty("action")]
@@ -287,7 +287,7 @@ namespace VkNet.Model
 		public long? ActionMid { get; set; }
 
 		/// <summary>
-		/// email, который пригласили или исключили.
+		/// Email, который пригласили или исключили.
 		/// </summary>
 		[JsonProperty("action_email")]
 		public string ActionEmail { get; set; }
