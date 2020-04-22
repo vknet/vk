@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -20,7 +20,7 @@ namespace VkNet.Model.Attachments
 		public long? FromId { get; set; }
 
 		/// <summary>
-		/// Дата создания комментария в формате unixtime.
+		/// Дата создания комментария в формате Unixtime.
 		/// </summary>
 		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? Date { get; set; }
