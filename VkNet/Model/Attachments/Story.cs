@@ -24,13 +24,13 @@ namespace VkNet.Model.Attachments
 		public DateTime Date { get; set; }
 
 		/// <summary>
-		/// true, если срок хранения истории истёк.
+		/// <c>true</c>, если срок хранения истории истёк.
 		/// </summary>
 		[JsonProperty("is_expired")]
 		public bool? IsExpired { get; set; }
 
 		/// <summary>
-		/// true, если история удалена или не существует.
+		/// <c>true</c>, если история удалена или не существует.
 		/// </summary>
 		[JsonProperty("is_deleted")]
 		public bool? IsDeleted { get; set; }
@@ -42,7 +42,7 @@ namespace VkNet.Model.Attachments
 		public bool CanSee { get; set; }
 
 		/// <summary>
-		/// true, если история просмотрена текущим пользователем.
+		/// <c>true</c>, если история просмотрена текущим пользователем.
 		/// </summary>
 		[JsonProperty("seen")]
 		public bool? Seen { get; set; }
