@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Newtonsoft.Json;
@@ -165,7 +165,7 @@ namespace VkNet.Model.Attachments
 		public string Platform { set; get; }
 
 		/// <summary>
-		/// поле возвращается, если пользователь может редактировать видеозапись, всегда
+		/// Поле возвращается, если пользователь может редактировать видеозапись, всегда
 		/// содержит 1.
 		/// </summary>
 		[JsonProperty("can_edit")]
@@ -178,7 +178,7 @@ namespace VkNet.Model.Attachments
 		public bool? CanAdd { get; set; }
 
 		/// <summary>
-		/// поле возвращается, если видеозапись приватная (например, была загружена в
+		/// Поле возвращается, если видеозапись приватная (например, была загружена в
 		/// личное сообщение), всегда содержит 1.
 		/// </summary>
 		[JsonProperty("is_private")]
