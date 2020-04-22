@@ -243,7 +243,7 @@ namespace VkNet.Model.Attachments
 		public Comments Comments { get; set; }
 
 		/// <summary>
-		/// Комментарии
+		/// Репосты
 		/// </summary>
 		[JsonProperty("reposts")]
 		public Reposts Reposts { get; set; }
