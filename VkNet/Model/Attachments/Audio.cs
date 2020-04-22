@@ -55,13 +55,13 @@ namespace VkNet.Model.Attachments
 		public AudioAlbum Album { get; set; }
 
 		/// <summary>
-		/// true, если аудиозапись лицензируется.
+		/// <c>true</c>, если аудиозапись лицензируется.
 		/// </summary>
 		[JsonProperty("is_licensed")]
 		public bool? IsLicensed { get; set; }
 
 		/// <summary>
-		/// true, если аудиозапись в высоком качестве.
+		/// <c>true</c>, если аудиозапись в высоком качестве.
 		/// </summary>
 		[JsonProperty("is_hq")]
 		public bool? IsHq { get; set; }
