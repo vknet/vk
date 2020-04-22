@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Подписка на сообщения от сообщества(MessageAllow, ваш капитан!)
+	/// Подписка на сообщения от сообщества (<c>MessageAllow</c>, ваш капитан!)
 	/// </summary>
 	[Serializable]
 	public class MessageAllow
@@ -15,7 +15,7 @@ namespace VkNet.Model.GroupUpdate
 		public long? UserId { get; set; }
 
 		/// <summary>
-		/// Параметр, переданный в методе messages.allowMessagesFromGroup
+		/// Параметр, переданный в методе <c>messages.allowMessagesFromGroup</c>
 		/// </summary>
 		public string Key { get; set; }
 
