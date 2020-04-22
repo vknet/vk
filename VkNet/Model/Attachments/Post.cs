@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -76,7 +76,7 @@ namespace VkNet.Model.Attachments
 		public PostView Views { get; set; }
 
 		/// <summary>
-		/// Тип записи (post, copy, reply, postpone, suggest). Если PostType равен "copy",
+		/// Тип записи (<c>post</c>, <c>copy</c>, <c>reply</c>, <c>postpone</c>, <c>suggest</c>). Если <c>PostType</c> равен <c>"copy"</c>,
 		/// то запись является копией записи с
 		/// чужой стены.
 		/// </summary>
@@ -105,7 +105,7 @@ namespace VkNet.Model.Attachments
 		public Geo Geo { get; set; }
 
 		/// <summary>
-		/// Если запись закрепленная - вернет true
+		/// Если запись закрепленная - вернет <c>true</c>
 		/// </summary>
 		public bool? IsPinned { get; set; }
 
@@ -155,8 +155,9 @@ namespace VkNet.Model.Attachments
 	#region Методы
 
 		/// <summary>
+		/// Разобрать из JSON
 		/// </summary>
-		/// <param name="response"> </param>
+		/// <param name="response"> Ответ сервера </param>
 		/// <returns> </returns>
 		public static Post FromJson(VkResponse response)
 		{
