@@ -24,7 +24,7 @@ namespace VkNet.Model.Keyboard
 		/// <summary>
 		/// Дополнительная информация.
 		/// </summary>
-		/// <remarks>JSON строка с payload, до 255 символов</remarks>
+		/// <remarks>JSON строка с <c>payload</c>, до 255 символов</remarks>
 		[CanBeNull]
 		[JsonProperty("payload", NullValueHandling = NullValueHandling.Ignore)]
 		public string Payload { get; set; }
