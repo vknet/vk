@@ -32,14 +32,13 @@ PM> Install-Package VkNet
 
 # План развития проекта
 
-- Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.101.
-- [Недостающие классы и методы](http://bit.ly/2slXKrI)
+- Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.103.
 - Обновить документацию проекта
 
 # Credits
 
 Большое спасибо следующим организациям и проектам, работа которых имеет важное значение для развития проекта:
-- [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper) лицензия для разработки VkNet
+- [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper)/[Rider](https://www.jetbrains.com/rider/) лицензия для разработки VkNet
 - [Json.Net](http://www.newtonsoft.com/json) - Popular high-performance JSON framework for .NET
 - [HtmlAgilityPack](http://html-agility-pack.net/)
 - [NUnit](http://www.nunit.org/) - NUnit is a unit-testing framework for all .Net languages.
