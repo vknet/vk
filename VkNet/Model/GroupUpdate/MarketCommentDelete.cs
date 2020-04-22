@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Удаление комментария к товару(MarketCommentDelete)
+	/// Удаление комментария к товару (<c>MarketCommentDelete</c>)
 	/// </summary>
 	[Serializable]
 	public class MarketCommentDelete
