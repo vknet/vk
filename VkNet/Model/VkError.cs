@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Ошибка при вызове метода exeute
+	/// Ошибка при вызове метода exeсute
 	/// </summary>
 	[Serializable]
 	public class VkError
