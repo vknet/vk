@@ -64,55 +64,55 @@ namespace VkNet.Model.Attachments
 		public VkCollection<Photo> Items { get; set; }
 
 		/// <summary>
-		/// Uri фотографии с максимальным размером 50x50px.
+		/// <c>Uri</c> фотографии с максимальным размером 50x50px.
 		/// </summary>
 		[JsonProperty("photo_50")]
 		public Uri Photo50 { get; set; }
 
 		/// <summary>
-		/// Uri фотографии с максимальным размером 75x75px.
+		/// <c>Uri</c> фотографии с максимальным размером 75x75px.
 		/// </summary>
 		[JsonProperty("photo_75")]
 		public Uri Photo75 { get; set; }
 
 		/// <summary>
-		/// Uri фотографии с максимальным размером 100x100px.
+		/// <c>Uri</c> фотографии с максимальным размером 100x100px.
 		/// </summary>
 		[JsonProperty("photo_100")]
 		public Uri Photo100 { get; set; }
 
 		/// <summary>
-		/// Uri фотографии с максимальным размером 130x130px.
+		/// <c>Uri></c> фотографии с максимальным размером 130x130px.
 		/// </summary>
 		[JsonProperty("photo_130")]
 		public Uri Photo130 { get; set; }
 
 		/// <summary>
-		/// Uri фотографии с максимальным размером 200x200px.
+		/// <c>Uri</c> фотографии с максимальным размером 200x200px.
 		/// </summary>
 		[JsonProperty("photo_200")]
 		public Uri Photo200 { get; set; }
 
 		/// <summary>
-		/// Uri фотографии с максимальным размером 604x604px.
+		/// <c>Uri</c> фотографии с максимальным размером 604x604px.
 		/// </summary>
 		[JsonProperty("photo_604")]
 		public Uri Photo604 { get; set; }
 
 		/// <summary>
-		/// Uri фотографии с максимальным размером 807x807px.
+		/// <c>Uri</c> фотографии с максимальным размером 807x807px.
 		/// </summary>
 		[JsonProperty("photo_807")]
 		public Uri Photo807 { get; set; }
 
 		/// <summary>
-		/// Uri фотографии с максимальным размером 1280x1024px.
+		/// <c>Uri</c> фотографии с максимальным размером 1280x1024px.
 		/// </summary>
 		[JsonProperty("photo_1280")]
 		public Uri Photo1280 { get; set; }
 
 		/// <summary>
-		/// Uri фотографии с максимальным размером  2560x2048px.
+		/// <c>Uri</c> фотографии с максимальным размером  2560x2048px.
 		/// </summary>
 		[JsonProperty("photo_2560")]
 		public Uri Photo2560 { get; set; }
@@ -279,13 +279,13 @@ namespace VkNet.Model.Attachments
 		public double? Longitude { get; set; }
 
 		/// <summary>
-		/// Uri фотографии с максимальным размером.
+		/// <c>Uri</c> фотографии с максимальным размером.
 		/// </summary>
 		[JsonProperty("big_photo_src")]
 		public Uri BigPhotoSrc { get; set; }
 
 		/// <summary>
-		/// Uri фотографии с минимальным размером.
+		/// <c>Uri</c> фотографии с минимальным размером.
 		/// </summary>
 		[JsonProperty("src_small")]
 		public Uri SmallPhotoSrc { get; set; }
