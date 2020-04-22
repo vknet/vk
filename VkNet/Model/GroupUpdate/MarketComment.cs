@@ -5,7 +5,9 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Добавление/редактирование/восстановление комментария к товару(MarketCommentNew, MarketCommentEdit, MarketCommentRestore)(Comment с дополнительными полями)
+	/// Добавление/редактирование/восстановление комментария к товару
+	/// (<c>MarketCommentNew</c>, <c>MarketCommentEdit</c>, <c>MarketCommentRestore</c>)
+	/// (<c>Comment</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
 	public class MarketComment : Comment
