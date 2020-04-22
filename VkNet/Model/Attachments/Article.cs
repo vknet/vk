@@ -33,6 +33,7 @@ namespace VkNet.Model.Attachments
 		public string State { get; set; }
 
 		/// <summary>
+		/// Можно ли пожаловаться на статью
 		/// </summary>
 		[JsonProperty("can_report")]
 		public bool? CanReport { get; set; }
