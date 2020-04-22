@@ -15,7 +15,7 @@ namespace VkNet.Model.GroupUpdate
 		public long? UserId { get; set; }
 
 		/// <summary>
-		/// Самостояльный ли был выход
+		/// Самостоятельный ли был выход
 		/// </summary>
 		public bool? IsSelf { get; set; }
 
