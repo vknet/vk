@@ -5,7 +5,8 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Добавление/редактирование/восстановление комментария в обсуждении(BoardPostNew, BoardPostEdit, BoardPostRestore)(CommentBoard с дополнительными полями)
+	/// Добавление/редактирование/восстановление комментария в обсуждении(<c>BoardPostNew</c>, <c>BoardPostEdit</c>, <c>BoardPostRestore</c>)
+	/// (<c>CommentBoard</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
 	public class BoardPost : CommentBoard
