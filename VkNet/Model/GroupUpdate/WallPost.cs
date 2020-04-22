@@ -5,13 +5,14 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Новая запись на стене(WallPost, WallRepost)(Post с дополнительными полями)
+	/// Новая запись на стене (<c>WallPost</c>, <c>WallRepost</c>)
+	/// (<c>Post</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
 	public class WallPost : Post
 	{
 		/// <summary>
-		/// Id отложенной записи
+		/// <c>Id</c> отложенной записи
 		/// </summary>
 		public long? PostponedId { get; set; }
 
