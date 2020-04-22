@@ -49,35 +49,35 @@ namespace VkNet.Model.Attachments
 		public int? Duration { get; set; }
 
 		/// <summary>
-		/// Uri изображения-обложки ролика с размером 130x98px.
+		/// <c>Uri</c> изображения-обложки ролика с размером 130x98px.
 		/// </summary>
 		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		[JsonProperty("photo_130")]
 		public Uri Photo130 { get; set; }
 
 		/// <summary>
-		/// Uri изображения-обложки ролика с размером 320x240px.
+		/// <c>Uri</c> изображения-обложки ролика с размером 320x240px.
 		/// </summary>
 		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		[JsonProperty("photo_320")]
 		public Uri Photo320 { get; set; }
 
 		/// <summary>
-		/// Uri изображения-обложки ролика с размером 640x480px (если размер есть).
+		/// <c>Uri</c> изображения-обложки ролика с размером 640x480px (если размер есть).
 		/// </summary>
 		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		[JsonProperty("photo_640")]
 		public Uri Photo640 { get; set; }
 
 		/// <summary>
-		/// Uri изображения-обложки ролика с размером 800x450px (если размер есть).
+		/// <c>Uri</c> изображения-обложки ролика с размером 800x450px (если размер есть).
 		/// </summary>
 		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		[JsonProperty("photo_800")]
 		public Uri Photo800 { get; set; }
 
 		/// <summary>
-		/// Uri изображения-обложки ролика с размером до 1280 px по ширине (если размер есть).
+		/// <c>Uri</c> изображения-обложки ролика с размером до 1280 px по ширине (если размер есть).
 		/// </summary>
 		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> Image")]
 		[JsonProperty("photo_1280")]
@@ -90,35 +90,35 @@ namespace VkNet.Model.Attachments
 		public IEnumerable<VideoImage> FirstFrame { get; set; }
 
 		/// <summary>
-		/// URL изображения первого кадра ролика с размером 130x98px.
+		/// <c>Uri</c> изображения первого кадра ролика с размером 130x98px.
 		/// </summary>
 		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> FirstFrame")]
 		[JsonProperty("first_frame_130")]
 		public Uri FirstFrame130 { get; set; }
 
 		/// <summary>
-		/// URL изображения первого кадра ролика с размером 320x240px.
+		/// <c>Uri</c> изображения первого кадра ролика с размером 320x240px.
 		/// </summary>
 		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> FirstFrame")]
 		[JsonProperty("first_frame_320")]
 		public Uri FirstFrame320 { get; set; }
 
 		/// <summary>
-		/// URL изображения первого кадра ролика с размером 640x480px (если размер есть).
+		/// <c>Uri</c> изображения первого кадра ролика с размером 640x480px (если размер есть).
 		/// </summary>
 		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> FirstFrame")]
 		[JsonProperty("first_frame_640")]
 		public Uri FirstFrame640 { get; set; }
 
 		/// <summary>
-		/// URL изображения первого кадра ролика с размером 800x450px (если размер есть).
+		/// <c>Uri</c> изображения первого кадра ролика с размером 800x450px (если размер есть).
 		/// </summary>
 		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> FirstFrame")]
 		[JsonProperty("first_frame_800")]
 		public Uri FirstFrame800 { get; set; }
 
 		/// <summary>
-		/// URL изображения первого кадра ролика с шириной до 1028 px (если размер есть).
+		/// <c>Uri</c> изображения первого кадра ролика с шириной до 1028 px (если размер есть).
 		/// </summary>
 		[Obsolete("Это свойство устарело в версии api 5.101. Используйте свойство IEnumerable<VideoImage> FirstFrame")]
 		[JsonProperty("first_frame_1280")]
@@ -132,7 +132,7 @@ namespace VkNet.Model.Attachments
 		public DateTime? Date { get; set; }
 
 		/// <summary>
-		/// Дата добавления видеозаписи пользователем или группой в формате unixtime.
+		/// Дата добавления видеозаписи пользователем или группой в формате Unixtime.
 		/// </summary>
 		[JsonProperty("adding_date")]
 		[JsonConverter(typeof(UnixDateTimeConverter))]
@@ -200,19 +200,19 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Поле возвращается в том случае, если видеозапись является прямой трансляцией,
 		/// всегда содержит 1. Обратите внимание,
-		/// в этом случае в поле duration содержится значение 0.
+		/// в этом случае в поле <c>duration</c> содержится значение 0.
 		/// </summary>
 		[JsonProperty("live")]
 		public bool? Live { get; set; }
 
 		/// <summary>
-		/// (для live = 1). Поле свидетельствует о том, что трансляция скоро начнётся.
+		/// (для <c>live = 1</c>). Поле свидетельствует о том, что трансляция скоро начнётся.
 		/// </summary>
 		[JsonProperty("upcoming")]
 		public bool? Upcoming { get; set; }
 
 		/// <summary>
-		/// true, если объект добавлен в закладки у текущего пользователя.
+		/// <c>true</c>, если объект добавлен в закладки у текущего пользователя.
 		/// </summary>
 		[JsonProperty("is_favorite")]
 		public bool IsFavorite { get; set; }
@@ -277,14 +277,14 @@ namespace VkNet.Model.Attachments
 		public bool? Repeat { get; set; }
 
 		/// <summary>
-		/// Идентификатор видеоальбома VideoAlbum
+		/// Идентификатор видеоальбома <c>VideoAlbum</c>
 		/// </summary>
 		[JsonProperty("album_id")]
 		public long? AlbumId { get; set; }
 
 		/// <summary>
-		/// Uri, по которому необходимо выполнить загрузку видеов (см. метод
-		/// VideoCategory.Save
+		/// <c>Uri</c>, по которому необходимо выполнить загрузку видеов (см. метод
+		/// <c>VideoCategory.Save</c>
 		/// </summary>
 		[JsonProperty("upload_url")]
 		public Uri UploadUrl { get; set; }
