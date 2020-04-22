@@ -21,7 +21,7 @@ namespace VkNet.Model.Attachments
 		public string OwnerName { get; set; }
 
 		/// <summary>
-		/// URI к фотографии владельца
+		/// <c>Uri</c> к фотографии владельца
 		/// </summary>
 		[JsonProperty("owner_photo")]
 		public Uri OwnerPhoto { get; set; }
