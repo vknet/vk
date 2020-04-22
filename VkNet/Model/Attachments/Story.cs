@@ -36,7 +36,7 @@ namespace VkNet.Model.Attachments
 		public bool? IsDeleted { get; set; }
 
 		/// <summary>
-		/// информация о том, может ли пользователь просмотреть историю.
+		/// Информация о том, может ли пользователь просмотреть историю.
 		/// </summary>
 		[JsonProperty("can_see")]
 		public bool CanSee { get; set; }
