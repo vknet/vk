@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Новый запрет сообщений от сообщества(MessageDeny)
+	/// Новый запрет сообщений от сообщества (<c>MessageDeny</c>)
 	/// </summary>
 	[Serializable]
 	public class MessageDeny

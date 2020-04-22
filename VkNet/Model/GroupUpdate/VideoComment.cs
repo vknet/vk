@@ -5,7 +5,9 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Добавление/редактирование/восстановление комментария к видео(VideoCommentNew, VideoCommentEdit, VideoCommentRestore)(Comment с дополнительными полями)
+	/// Добавление/редактирование/восстановление комментария к видео
+	/// (<c>VideoCommentNew</c>, <c>VideoCommentEdit</c>, <c>VideoCommentRestore</c>)
+	/// (<c>Comment</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
 	public class VideoComment : Comment

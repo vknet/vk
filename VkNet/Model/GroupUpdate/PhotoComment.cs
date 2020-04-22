@@ -5,7 +5,9 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Добавление/редактирование/восстановление комментария к фотографии(PhotoCommentNew, PhotoCommentEdit, PhotoCommentRestore)(Comment с дополнительными полями)
+	/// Добавление/редактирование/восстановление комментария к фотографии
+	/// (<c>PhotoCommentNew</c>, <c>PhotoCommentEdit</c>, <c>PhotoCommentRestore</c>)
+	/// (<c>Comment</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
 	public class PhotoComment : Comment

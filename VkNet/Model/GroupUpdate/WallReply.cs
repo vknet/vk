@@ -5,7 +5,9 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Добавление/редактирование/восстановление комментария на стене(WallReplyNew, WallReplyEdit, WallReplyRestore)(Comment с дополнительными полями)
+	/// Добавление/редактирование/восстановление комментария на стене
+	/// (<c>WallReplyNew</c>, <c>WallReplyEdit</c>, <c>WallReplyRestore</c>)
+	/// (<c>Comment</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
 	public class WallReply : Comment

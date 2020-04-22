@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils;
@@ -50,8 +50,9 @@ namespace VkNet.Model.Attachments
 	#region Методы
 
 		/// <summary>
+		/// Разобрать из JSON
 		/// </summary>
-		/// <param name="response"> </param>
+		/// <param name="response"> Ответ сервера </param>
 		/// <returns> </returns>
 		public static Album FromJson(VkResponse response)
 		{

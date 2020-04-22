@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Удаление комментария к фотографии(PhotoCommentDelete)
+	/// Удаление комментария к фотографии (<c>PhotoCommentDelete</c>)
 	/// </summary>
 	[Serializable]
 	public class PhotoCommentDelete

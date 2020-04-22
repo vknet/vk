@@ -15,7 +15,7 @@ namespace VkNet.Model.Keyboard
 	public class MessageKeyboardButtonAction
 	{
 		/// <summary>
-		/// Содержит 'text'
+		/// Содержит <c>'text'</c>
 		/// </summary>
 		[JsonProperty("type")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
@@ -24,7 +24,7 @@ namespace VkNet.Model.Keyboard
 		/// <summary>
 		/// Дополнительная информация.
 		/// </summary>
-		/// <remarks>JSON строка с payload, до 255 символов</remarks>
+		/// <remarks>JSON строка с <c>payload</c>, до 255 символов</remarks>
 		[CanBeNull]
 		[JsonProperty("payload", NullValueHandling = NullValueHandling.Ignore)]
 		public string Payload { get; set; }
@@ -54,7 +54,7 @@ namespace VkNet.Model.Keyboard
 		/// </item>
 		/// <item>
 		/// <term><see cref="KeyboardButtonActionType.VkPay"/></term>
-		/// <description>строка, содержащая параметры платежа VK Pay и идентификатор приложения в параметре aid , разделенные &amp;.</description>
+		/// <description>строка, содержащая параметры платежа VK Pay и идентификатор приложения в параметре <c>aid</c>, разделенные &amp;.</description>
 		/// </item>
 		/// <item>
 		/// <term><see cref="KeyboardButtonActionType.Location"/></term>
@@ -67,7 +67,7 @@ namespace VkNet.Model.Keyboard
 		/// </list>
 		/// </summary>
 		/// <remarks>
-		/// Пример: action=transfer-to-group&amp;group_id=1&amp;aid=10.
+		/// Пример: <c>action=transfer-to-group&amp;group_id=1&amp;aid=10.</c>
 		/// </remarks>
 		[JsonProperty("hash", NullValueHandling = NullValueHandling.Ignore)]
 		public string Hash { get; set; }

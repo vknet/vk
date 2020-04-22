@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -44,13 +44,13 @@ namespace VkNet.Model.Attachments
 		public DateTime? Date { get; set; }
 
 		/// <summary>
-		/// тип документа
+		/// Тип документа
 		/// </summary>
 		[JsonProperty("type")]
 		public DocumentTypeEnum Type { get; set; }
 
 		/// <summary>
-		/// Gets or sets the preview.
+		/// Информация для предварительного просмотра документа
 		/// </summary>
 		public DocumentPreview Preview { get; set; }
 

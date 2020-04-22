@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Удаление комментария к видео(VideoCommentDelete)
+	/// Удаление комментария к видео (<c>VideoCommentDelete</c>)
 	/// </summary>
 	[Serializable]
 	public class VideoCommentDelete

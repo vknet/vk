@@ -40,7 +40,7 @@ namespace VkNet.Model.Attachments
 		public DateTime? Date { get; set; }
 
 		/// <summary>
-		/// URL на подкаст
+		/// <c>Uri</c> на подкаст
 		/// </summary>
 		[JsonProperty("url")]
 		public Uri Url { get; set; }

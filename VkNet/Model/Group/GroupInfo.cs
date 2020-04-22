@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -109,7 +109,7 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// Дата основания компании, организации,
-		/// которой посвящена публичная страница в виде строки формата "dd.mm.YYYY".
+		/// которой посвящена публичная страница в виде строки формата <c>"dd.mm.YYYY"</c>.
 		/// </summary>
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? PublicDate { get; set; }

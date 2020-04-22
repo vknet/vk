@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using VkNet.Utils;
 
@@ -53,7 +53,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Идентификатр wiki страницы с контентом для предпросмотра содержимого страницы.
 		/// Идентификатор возвращается в формате
-		/// "owner_id_page_id".
+		/// <c>"owner_id_page_id"</c>.
 		/// </summary>
 		public string PreviewPage { get; set; }
 

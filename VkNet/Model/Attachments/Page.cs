@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -106,8 +106,9 @@ namespace VkNet.Model.Attachments
 	#region Методы
 
 		/// <summary>
+		/// Разобрать из JSON
 		/// </summary>
-		/// <param name="response"> </param>
+		/// <param name="response"> Ответ сервера </param>
 		/// <returns> </returns>
 		public static Page FromJson(VkResponse response)
 		{

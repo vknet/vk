@@ -25,7 +25,8 @@ namespace VkNet.Model.GroupUpdate
 		public MessageNew MessageNew { get; set; }
 
 		/// <summary>
-		/// Сообщение для типов событий с сообщением в ответе(MessageEdit, MessageReply, для версий API ниже 5.103 также MessageNew).
+		/// Сообщение для типов событий с сообщением в ответе
+		/// (<c>MessageEdit</c>, <c>MessageReply</c>, для версий API ниже 5.103 также <c>MessageNew</c>).
 		/// </summary>
 		public Message Message { get; set; }
 
@@ -55,32 +56,35 @@ namespace VkNet.Model.GroupUpdate
 		public MessageDeny MessageDeny { get; set; }
 
 		/// <summary>
-		/// Добавление/редактирование/восстановление комментария к фотографии(PhotoCommentNew, PhotoCommentEdit, PhotoCommentRestore)
+		/// Добавление/редактирование/восстановление комментария к фотографии
+		/// (<c>PhotoCommentNew</c>, <c>PhotoCommentEdit</c>, <c>PhotoCommentRestore</c>)
 		/// </summary>
 		public PhotoComment PhotoComment { get; set; }
 
 		/// <summary>
-		/// Удаление комментария к фотографии(PhotoCommentDelete)
+		/// Удаление комментария к фотографии (<c>PhotoCommentDelete</c>)
 		/// </summary>
 		public PhotoCommentDelete PhotoCommentDelete { get; set; }
 
 		/// <summary>
-		/// Добавление/редактирование/восстановление комментария к видео(VideoCommentNew, VideoCommentEdit, VideoCommentRestore)
+		/// Добавление/редактирование/восстановление комментария к видео
+		/// (<c>VideoCommentNew</c>, <c>VideoCommentEdit</c>, <c>VideoCommentRestore</c>)
 		/// </summary>
 		public VideoComment VideoComment { get; set; }
 
 		/// <summary>
-		/// Удаление комментария к видео(VideoCommentDelete)
+		/// Удаление комментария к видео (<c>VideoCommentDelete</c>)
 		/// </summary>
 		public VideoCommentDelete VideoCommentDelete { get; set; }
 
 		/// <summary>
-		/// Добавление/редактирование/восстановление комментария в обсуждении(BoardPostNew, BoardPostEdit, BoardPostRestore)
+		/// Добавление/редактирование/восстановление комментария в обсуждении
+		/// (<c>BoardPostNew</c>, <c>BoardPostEdit</c>, <c>BoardPostRestore</c>)
 		/// </summary>
 		public BoardPost BoardPost { get; set; }
 
 		/// <summary>
-		/// Удаление комментария в обсуждении(BoardPostDelete)
+		/// Удаление комментария в обсуждении (<c>BoardPostDelete</c>)
 		/// </summary>
 		public BoardPostDelete BoardPostDelete { get; set; }
 
@@ -105,12 +109,13 @@ namespace VkNet.Model.GroupUpdate
 		public GroupOfficersEdit GroupOfficersEdit { get; set; }
 
 		/// <summary>
-		/// Добавление/редактирование/восстановление комментария к товару(MarketCommentNew, MarketCommentEdit, MarketCommentRestore)
+		/// Добавление/редактирование/восстановление комментария к товару
+		/// (<c>MarketCommentNew</c>, <c>MarketCommentEdit</c>, <c>MarketCommentRestore</c>)
 		/// </summary>
 		public MarketComment MarketComment { get; set; }
 
 		/// <summary>
-		/// Удаление комментария к товару(MarketCommentDelete)
+		/// Удаление комментария к товару (<c>MarketCommentDelete</c>)
 		/// </summary>
 		public MarketCommentDelete MarketCommentDelete { get; set; }
 
@@ -130,17 +135,18 @@ namespace VkNet.Model.GroupUpdate
 		public UserUnblock UserUnblock { get; set; }
 
 		/// <summary>
-		/// Новая запись на стене(WallPost, WallRepost)
+		/// Новая запись на стене (<c>WallPost</c>, <c>WallRepost</c>)
 		/// </summary>
 		public WallPost WallPost { get; set; }
 
 		/// <summary>
-		/// Добавление/редактирование/восстановление комментария на стене(WallReplyNew, WallReplyEdit, WallReplyRestore)
+		/// Добавление/редактирование/восстановление комментария на стене
+		/// (<c>WallReplyNew</c>, <c>WallReplyEdit</c>, <c>WallReplyRestore</c>)
 		/// </summary>
 		public WallReply WallReply { get; set; }
 
 		/// <summary>
-		/// Удаление комментария к записи(WallReplyDelete)
+		/// Удаление комментария к записи (<c>WallReplyDelete</c>)
 		/// </summary>
 		public WallReplyDelete WallReplyDelete { get; set; }
 
@@ -151,7 +157,7 @@ namespace VkNet.Model.GroupUpdate
 		public ulong? GroupId { get; set; }
 
 		/// <summary>
-		/// Secret Key для Callback
+		/// <c>Secret Key</c> для Callback
 		/// </summary>
 		[JsonProperty("secret")]
 		public string Secret { get; set; }
