@@ -138,7 +138,7 @@ namespace VkNet.Model
 		public Deactivated Deactivated { get; set; }
 
 		/// <summary>
-		/// Признак яляется ли текущий пользователь руководителем сообщества.
+		/// Информация о том, является ли текущий пользователь руководителем сообщества.
 		/// </summary>
 		public bool IsAdmin { get; set; }
 
@@ -149,7 +149,7 @@ namespace VkNet.Model
 		public AdminLevel? AdminLevel { get; set; }
 
 		/// <summary>
-		/// Признак является ли текущий пользователь участником сообщества.
+		/// Информация о том, является ли текущий пользователь участником сообщества.
 		/// </summary>
 		public bool? IsMember { get; set; }
 
@@ -165,17 +165,17 @@ namespace VkNet.Model
 		public GroupType Type { get; set; }
 
 		/// <summary>
-		/// url фотографии сообщества с размером 50x50px
+		/// Uri фотографии сообщества с размером 50x50px
 		/// </summary>
 		public Uri Photo50 { get; set; }
 
 		/// <summary>
-		/// url фотографии сообщества с размером 100x100px
+		/// Uri фотографии сообщества с размером 100x100px
 		/// </summary>
 		public Uri Photo100 { get; set; }
 
 		/// <summary>
-		/// url фотографии сообщества с размером 200x200px
+		/// Uri фотографии сообщества с размером 200x200px
 		/// </summary>
 		public Uri Photo200 { get; set; }
 
@@ -191,6 +191,7 @@ namespace VkNet.Model
 		public string Activity { get; set; }
 
 		/// <summary>
+		/// Возрастное ограничение
 		/// </summary>
 		[JsonProperty("age_limits")]
 		public AgeLimit AgeLimits { get; set; }
@@ -209,7 +210,7 @@ namespace VkNet.Model
 		public bool CanCreateTopic { get; set; }
 
 		/// <summary>
-		/// информация о том, может ли текущий пользователь написать сообщение сообществу.
+		/// Информация о том, может ли текущий пользователь написать сообщение сообществу.
 		/// </summary>
 		[JsonProperty("can_message")]
 		public bool CanMessage { get; set; }
@@ -264,7 +265,7 @@ namespace VkNet.Model
 		public Country Country { get; set; }
 
 		/// <summary>
-		/// обложка сообщества
+		/// Обложка сообщества
 		/// </summary>
 		[JsonProperty("cover")]
 		public GroupCover Cover { get; set; }
@@ -318,12 +319,13 @@ namespace VkNet.Model
 		public MainSection? MainSection { get; set; }
 
 		/// <summary>
+		/// Информация о магазине
 		/// </summary>
 		[JsonProperty("market")]
 		public GroupMarket Market { get; set; }
 
 		/// <summary>
-		/// статус участника текущего пользователя.
+		/// Статус участника текущего пользователя.
 		/// </summary>
 		[JsonProperty("member_status")]
 		public MemberStatus MemberStatus { get; set; }
@@ -339,7 +341,7 @@ namespace VkNet.Model
 		public Place Place { get; set; }
 
 		/// <summary>
-		/// возвращается для публичных страниц. Текст описания для поля start_date.
+		/// Возвращается для публичных страниц. Текст описания для поля start_date.
 		/// </summary>
 		[JsonProperty("public_date_label")]
 		public string PublicDateLabel { get; set; }
