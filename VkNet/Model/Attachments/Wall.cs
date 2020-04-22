@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Newtonsoft.Json;
@@ -82,7 +82,7 @@ namespace VkNet.Model.Attachments
 		public PostView Views { get; set; }
 
 		/// <summary>
-		/// Тип записи (post, copy, reply, postpone, suggest). Если PostType равен "copy",
+		/// Тип записи (<c>post</c>, <c>copy</c>, <c>reply</c>, <c>postpone</c>, <c>suggest</c>). Если <c>PostType</c> равен <c>"copy"</c>,
 		/// то запись является копией записи с
 		/// чужой стены.
 		/// </summary>
@@ -124,17 +124,17 @@ namespace VkNet.Model.Attachments
 		public bool CanPin { get; set; }
 
 		/// <summary>
-		/// Признак может ли текущий пользователь удалить эту запись.
+		/// Информация о том, может ли текущий пользователь удалить эту запись.
 		/// </summary>
 		public bool CanDelete { get; set; }
 
 		/// <summary>
-		/// Признак может ли текущий пользователь редактировать эту запись.
+		/// Информация о том, может ли текущий пользователь редактировать эту запись.
 		/// </summary>
 		public bool CanEdit { get; set; }
 
 		/// <summary>
-		/// Если запись закрепленная - вернет true
+		/// Если запись закрепленная - вернет <c>true</c>
 		/// </summary>
 		public bool? IsPinned { get; set; }
 
