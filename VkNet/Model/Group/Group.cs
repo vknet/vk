@@ -121,8 +121,8 @@ namespace VkNet.Model
 		public string Name { get; set; }
 
 		/// <summary>
-		/// Короткий адрес страницы сообщества, например, apiclub. Если он не назначен, то
-		/// 'club'+gid, например, club35828305.
+		/// Короткий адрес страницы сообщества, например, <c>apiclub</c>. Если он не назначен, то
+		/// <c>'club'+gid</c>, например, <c>club35828305</c>.
 		/// </summary>
 		public string ScreenName { get; set; }
 
@@ -144,7 +144,7 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// Уровень административных полномочий текущего пользователя в сообществе
-		/// (действительно, если IsAdmin = true).
+		/// (действительно, если <c>IsAdmin = true</c>).
 		/// </summary>
 		public AdminLevel? AdminLevel { get; set; }
 
@@ -165,17 +165,17 @@ namespace VkNet.Model
 		public GroupType Type { get; set; }
 
 		/// <summary>
-		/// Uri фотографии сообщества с размером 50x50px
+		/// <c>Uri</c> фотографии сообщества с размером 50x50px
 		/// </summary>
 		public Uri Photo50 { get; set; }
 
 		/// <summary>
-		/// Uri фотографии сообщества с размером 100x100px
+		/// <c>Uri</c> фотографии сообщества с размером 100x100px
 		/// </summary>
 		public Uri Photo100 { get; set; }
 
 		/// <summary>
-		/// Uri фотографии сообщества с размером 200x200px
+		/// <c>Uri</c> фотографии сообщества с размером 200x200px
 		/// </summary>
 		public Uri Photo200 { get; set; }
 
@@ -260,7 +260,7 @@ namespace VkNet.Model
 		/// Идентификатор страны, указанной в информации о сообществе. Возвращается
 		/// идентификатор страны, который можно
 		/// использовать для
-		/// получения ее названия с помощью метода DatabaseCategory.GetCountriesById
+		/// получения ее названия с помощью метода <c>DatabaseCategory.GetCountriesById</c>
 		/// </summary>
 		public Country Country { get; set; }
 
@@ -277,8 +277,8 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// Идентификатор закрепленного поста сообщества. Сам пост можно получить,
-		/// используя WallCategory.GetById
-		/// передав идентификатор в виде – {group_id}_{post_id}.
+		/// используя <c>WallCategory.GetById</c>
+		/// передав идентификатор в виде – <c>{group_id}_{post_id}</c>.
 		/// </summary>
 		public long? FixedPost { get; set; }
 
@@ -341,7 +341,7 @@ namespace VkNet.Model
 		public Place Place { get; set; }
 
 		/// <summary>
-		/// Возвращается для публичных страниц. Текст описания для поля start_date.
+		/// Возвращается для публичных страниц. Текст описания для поля <c>start_date</c>.
 		/// </summary>
 		[JsonProperty("public_date_label")]
 		public string PublicDateLabel { get; set; }
