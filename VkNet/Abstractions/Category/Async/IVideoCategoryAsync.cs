@@ -11,7 +11,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с видеофайлами.
+	/// Методы для работы с видеофайлами.
 	/// </summary>
 	public interface IVideoCategoryAsync
 	{

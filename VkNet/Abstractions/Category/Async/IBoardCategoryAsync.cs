@@ -6,7 +6,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы со темами группы.
+	/// Методы для работы со темами группы.
 	/// </summary>
 	public interface IBoardCategoryAsync
 	{

@@ -19,9 +19,6 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <inheritdoc />
-	/// <summary>
-	/// Методы для работы с сообщениями.
-	/// </summary>
 	public partial class MessagesCategory : IMessagesCategory
 	{
 		private readonly IVkApi _vk;

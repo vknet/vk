@@ -6,7 +6,6 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
-
 	/// <inheritdoc cref="IPrettyCardsCategoryAsync"/>
 	public interface IPrettyCardsCategory : IPrettyCardsCategoryAsync
 	{

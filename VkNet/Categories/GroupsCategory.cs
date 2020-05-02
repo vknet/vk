@@ -15,14 +15,12 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	/// <inheritdoc />
-	/// <summary>
-	/// Методы для работы с сообществами (группами).
-	/// </summary>
 	public partial class GroupsCategory : IGroupsCategory
 	{
 		private readonly IVkInvoke _vk;
 
 		/// <summary>
+		/// api vk.com
 		/// </summary>
 		/// <param name="vk"> </param>
 		public GroupsCategory(IVkInvoke vk)

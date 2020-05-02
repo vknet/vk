@@ -7,9 +7,7 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
-	/// <summary>
-	/// Методы для работы с закладками.
-	/// </summary>
+	/// <inheritdoc cref="IFaveCategoryAsync" />
 	public partial interface IFaveCategory : IFaveCategoryAsync
 	{
 		/// <inheritdoc cref = "IFaveCategoryAsync.AddArticleAsync"/>

@@ -4,9 +4,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы для работы с подарками.
-	/// </summary>
+	/// <inheritdoc />
 	public partial class GiftsCategory : IGiftsCategory
 	{
 		/// <summary>

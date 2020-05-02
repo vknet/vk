@@ -13,9 +13,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы для работы с документами (получение списка, загрузка, удаление и т.д.)
-	/// </summary>
+	/// <inheritdoc />
 	public partial class DocsCategory : IDocsCategory
 	{
 		/// <summary>

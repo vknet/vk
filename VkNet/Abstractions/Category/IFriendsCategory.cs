@@ -45,7 +45,7 @@ namespace VkNet.Abstractions
 		/// <inheritdoc cref="IFriendsCategoryAsync.DeleteAllRequestsAsync" />
 		bool DeleteAllRequests();
 
-		/// <inheritdoc cref="IFriendsCategoryAsync.AddAsync" />
+		/// <inheritdoc cref="IFriendsCategoryAsync.AddAsync(long, string, bool?)" />
 		AddFriendStatus Add(long userId, string text = "", bool? follow = null);
 
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]

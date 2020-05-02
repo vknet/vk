@@ -4,162 +4,46 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
-	/// <summary>
-	/// Методы для работы со темами группы.
-	/// </summary>
+	/// <inheritdoc cref="IBoardCategoryAsync" />
 	public interface IBoardCategory : IBoardCategoryAsync
 	{
-		/// <summary>
-		/// Возвращает список тем в обсуждениях указанной группы.
-		/// </summary>
-		/// <param name="params"> Входные параметры выборки. </param>
-		/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// <see href="https://new.vk.com/dev/board.getTopics" />.
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.GetTopicsAsync"/>
 		VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = false);
 
-		/// <summary>
-		/// Возвращает список сообщений в указанной теме.
-		/// </summary>
-		/// <param name="params"> Входные параметры выборки. </param>
-		/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// <see href="https://new.vk.com/dev/board.getComments" />.
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.GetCommentsAsync"/>
 		TopicsFeed GetComments(BoardGetCommentsParams @params, bool skipAuthorization = false);
 
-		/// <summary>
-		/// Создает новую тему в списке обсуждений группы.
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.addTopic
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.AddTopicAsync"/>
 		long AddTopic(BoardAddTopicParams @params);
 
-		/// <summary>
-		/// Удаляет тему в обсуждениях группы.
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.deleteTopic
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.DeleteTopicAsync"/>
 		bool DeleteTopic(BoardTopicParams @params);
 
-		/// <summary>
-		/// Закрывает тему в списке обсуждений группы (в такой теме невозможно оставлять
-		/// новые сообщения).
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.closeTopic
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.CloseTopicAsync"/>
 		bool CloseTopic(BoardTopicParams @params);
 
-		/// <summary>
-		/// Открывает ранее закрытую тему (в ней станет возможно оставлять новые
-		/// сообщения).
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.openTopic
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.OpenTopicAsync"/>
 		bool OpenTopic(BoardTopicParams @params);
 
-		/// <summary>
-		/// Закрепляет тему в списке обсуждений группы (такая тема при любой сортировке
-		/// выводится выше остальных).
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.fixTopic
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.FixTopicAsync"/>
 		bool FixTopic(BoardTopicParams @params);
 
-		/// <summary>
-		/// Отменяет прикрепление темы в списке обсуждений группы (тема будет выводиться
-		/// согласно выбранной сортировке).
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.unfixTopic
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.UnFixTopicAsync"/>
 		bool UnFixTopic(BoardTopicParams @params);
 
-		/// <summary>
-		/// Изменяет заголовок темы в списке обсуждений группы.
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.editTopic
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.EditTopicAsync"/>
 		bool EditTopic(BoardEditTopicParams @params);
 
-		/// <summary>
-		/// Добавляет новый комментарий в обсуждении.
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// <see href="https://new.vk.com/dev/board.createComment" />.
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.CreateCommentAsync"/>
 		long CreateComment(BoardCreateCommentParams @params);
 
-		/// <summary>
-		/// Удаляет сообщение в обсуждениях сообщества.
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// <see href="https://new.vk.com/dev/board.deleteComment" />.
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.DeleteCommentAsync"/>
 		bool DeleteComment(BoardCommentParams @params);
 
-		/// <summary>
-		/// Редактирует одно из сообщений в обсуждении сообщества..
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.editComment
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.EditCommentAsync"/>
 		bool EditComment(BoardEditCommentParams @params);
 
-		/// <summary>
-		/// Восстанавливает удаленное сообщение темы в обсуждениях группы.
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.restoreComment
-		/// </remarks>
+		/// <inheritdoc cref="IBoardCategoryAsync.RestoreCommentAsync"/>
 		bool RestoreComment(BoardCommentParams @params);
 	}
 }

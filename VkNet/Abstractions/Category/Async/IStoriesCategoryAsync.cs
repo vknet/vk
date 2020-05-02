@@ -8,7 +8,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions.Category
 {
 	/// <summary>
-	/// Stories
+	/// Методы для работы с историями
 	/// </summary>
 	public interface IStoriesCategoryAsync
 	{

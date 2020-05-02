@@ -17,6 +17,7 @@ namespace VkNet.Categories
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
+		/// Api Vk.com
 		/// </summary>
 		/// <param name="vk"> </param>
 		public VideoCategory(IVkApiInvoke vk)

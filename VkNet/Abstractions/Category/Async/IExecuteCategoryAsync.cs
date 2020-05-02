@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Методы этого класса позволяют производить асинхронные действия с универсальным
+	/// Методы этого класса позволяют производить действия с универсальным
 	/// методом.
 	/// </summary>
 	public interface IExecuteCategoryAsync

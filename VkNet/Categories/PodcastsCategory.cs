@@ -6,6 +6,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
+	/// <inheritdoc />
 	public partial class PodcastsCategory : IPodcastsCategory
 	{
 		/// <summary>

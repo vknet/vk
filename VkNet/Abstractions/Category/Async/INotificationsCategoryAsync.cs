@@ -5,7 +5,7 @@ using VkNet.Model;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с Уведомлениями
+	/// Методы для работы с Уведомлениями
 	/// </summary>
 	public interface INotificationsCategoryAsync
 	{

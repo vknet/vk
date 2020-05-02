@@ -9,9 +9,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы этого класса позволяют производить действия с опросами.
-	/// </summary>
+	/// <inheritdoc />
 	public partial class PollsCategory : IPollsCategory
 	{
 		/// <summary>
@@ -28,11 +26,7 @@ namespace VkNet.Categories
 			_vk = vk;
 		}
 
-		/// <summary>
-		/// Возвращает детальную информацию об опросе по его идентификатору.
-		/// </summary>
-		/// <param name="params"> Параметры </param>
-		/// <returns> </returns>
+		/// <inheritdoc />
 		public Poll GetById(PollsGetByIdParams @params)
 		{
 			return _vk.Call("polls.getById", new VkParameters
@@ -43,11 +37,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Позволяет редактировать созданные опросы.
-		/// </summary>
-		/// <param name="params"> Параметры </param>
-		/// <returns> </returns>
+		/// <inheritdoc />
 		public bool Edit(PollsEditParams @params)
 		{
 			return _vk.Call("polls.edit", new VkParameters
@@ -61,12 +51,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Отдает голос текущего пользователя за выбранный вариант ответа в указанном
-		/// опросе.
-		/// </summary>
-		/// <param name="params"> Параметры </param>
-		/// <returns> </returns>
+		/// <inheritdoc />
 		public bool AddVote(PollsAddVoteParams @params)
 		{
 			return _vk.Call("polls.addVote", new VkParameters
@@ -78,12 +63,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Снимает голос текущего пользователя с выбранного варианта ответа в указанном
-		/// опросе.
-		/// </summary>
-		/// <param name="params"> Параметры </param>
-		/// <returns> </returns>
+		/// <inheritdoc />
 		public bool DeleteVote(PollsDeleteVoteParams @params)
 		{
 			return _vk.Call("polls.deleteVote", new VkParameters
@@ -95,12 +75,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Получает список идентификаторов пользователей, которые выбрали определенные
-		/// варианты ответа в опросе.
-		/// </summary>
-		/// <param name="params"> Параметры </param>
-		/// <returns> </returns>
+		/// <inheritdoc />
 		public VkCollection<PollAnswerVoters> GetVoters(PollsGetVotersParams @params)
 		{
 			object FormatList(IList<long> answersIds)
@@ -139,13 +114,7 @@ namespace VkNet.Categories
 			}).ToVkCollectionOf<PollAnswerVoters>(x => x);
 		}
 
-		/// <summary>
-		/// Позволяет создавать опросы, которые впоследствии можно прикреплять к записям на
-		/// странице пользователя или
-		/// сообщества.
-		/// </summary>
-		/// <param name="params"> Параметры </param>
-		/// <returns> </returns>
+		/// <inheritdoc />
 		public Poll Create(PollsCreateParams @params)
 		{
 			return _vk.Call("polls.create", new VkParameters

@@ -6,7 +6,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с поиском.
+	/// Методы для работы с поиском.
 	/// </summary>
 	public interface ISearchCategoryAsync
 	{

@@ -6,7 +6,7 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions
 {
-	/// <inheritdoc />
+	/// <inheritdoc cref="ISecureCategoryAsync"/>
 	public interface ISecureCategory : ISecureCategoryAsync
 	{
 		/// <inheritdoc cref="ISecureCategoryAsync.AddAppEventAsync" />

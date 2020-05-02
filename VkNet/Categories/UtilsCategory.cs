@@ -8,14 +8,13 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Служебные методы.
-	/// </summary>
+	/// <inheritdoc />
 	public partial class UtilsCategory : IUtilsCategory
 	{
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
+		/// Api vk.com
 		/// </summary>
 		/// <param name="vk"> </param>
 		public UtilsCategory(IVkApiInvoke vk)

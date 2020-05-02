@@ -8,7 +8,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Places Методы для работы с местами.
+	/// Методы для работы с местами.
 	/// </summary>
 	public interface IPlacesCategoryAsync
 	{

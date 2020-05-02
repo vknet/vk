@@ -8,7 +8,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы этого класса позволяют производить действия с опросами.
+	/// Методы этого класса позволяют производить действия с опросами.
 	/// </summary>
 	public interface IPollsCategoryAsync
 	{

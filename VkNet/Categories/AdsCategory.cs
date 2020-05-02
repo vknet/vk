@@ -10,7 +10,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <inheritdoc/>
+	/// <inheritdoc />
 	public partial class AdsCategory : IAdsCategory
 	{
 		/// <summary>
@@ -18,10 +18,10 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly IVkApiInvoke _vk;
 
-		/// <inheritdoc/>
-		/// <param name = "vk">
-		/// Api vk.com
-		/// </param>
+		/// <summary>
+		/// api vk.com
+		/// </summary>
+		/// <param name="vk"> API. </param>
 		public AdsCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;

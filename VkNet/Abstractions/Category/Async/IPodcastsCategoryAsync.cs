@@ -6,7 +6,7 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с подкастами.
+	/// Методы для работы с подкастами.
 	/// </summary>
 	public interface IPodcastsCategoryAsync
 	{

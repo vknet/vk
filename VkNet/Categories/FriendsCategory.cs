@@ -19,6 +19,7 @@ namespace VkNet.Categories
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
+		/// api vk.com
 		/// </summary>
 		/// <param name="vk"> </param>
 		public FriendsCategory(IVkApiInvoke vk)

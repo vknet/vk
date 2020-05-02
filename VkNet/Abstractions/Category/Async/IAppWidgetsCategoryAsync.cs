@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 
-namespace VkNet.Abstractions.Category
+namespace VkNet.Abstractions
 {
 	/// <summary>
 	/// Список методов секции appWidgets

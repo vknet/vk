@@ -5,7 +5,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с подарками.
+	/// Методы для работы с подарками.
 	/// </summary>
 	public interface IGiftsCategoryAsync
 	{
