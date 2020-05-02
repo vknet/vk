@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -59,6 +60,7 @@ namespace VkNet.Model.RequestParams
 		/// Не передавайте этот параметр, чтобы не использовать кнопку.
 		/// </summary>
 		[JsonProperty("button")]
-		public string Button { get; set; }
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public Enums.SafetyEnums.Button Button { get; set; }
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
@@ -25,7 +26,8 @@ namespace VkNet.Tests.Categories.PrettyCards
 				Price = "123",
 				PriceOld = "140",
 				Title = "123",
-				Link = "tel:+79111234567"
+				Link = "tel:+79111234567",
+				Button = Button.Call
 			});
 
 			Assert.NotNull(result);
