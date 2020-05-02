@@ -16,6 +16,6 @@ namespace VkNet.Model
 		/// Идентификатор карточки.
 		/// </summary>
 		[JsonProperty("card_id")]
-		public long? CardId { get; set; }
+		public string CardId { get; set; }
 	}
 }

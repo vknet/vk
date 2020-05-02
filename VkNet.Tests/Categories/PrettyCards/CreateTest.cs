@@ -24,11 +24,12 @@ namespace VkNet.Tests.Categories.PrettyCards
 				Photo = "-126102803_457239118",
 				Price = "123",
 				PriceOld = "140",
-				Title = "123"
+				Title = "123",
+				Link = "tel:+79111234567"
 			});
 
 			Assert.NotNull(result);
-			Assert.AreEqual(result.CardId, 545435);
+			Assert.AreEqual(result.CardId, "545435");
 		}
 	}
 }
