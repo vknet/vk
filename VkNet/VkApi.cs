@@ -622,6 +622,9 @@ namespace VkNet
 		/// <inheritdoc />
 		public IPlacesCategory Places { get; set; }
 
+		/// <inheritdoc />
+		public IPrettyCardsCategory PrettyCards { get; set; }
+
 		///<inheritdoc />
 		public INotesCategory Notes { get; set; }
 
@@ -898,6 +901,7 @@ namespace VkNet
 			Secure = new SecureCategory(this);
 			Stories = new StoriesCategory(this);
 			LeadForms = new LeadFormsCategory(this);
+			PrettyCards = new PrettyCardsCategory(this);
 
 			RequestsPerSecond = 3;
 

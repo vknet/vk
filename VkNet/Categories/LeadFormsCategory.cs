@@ -17,12 +17,12 @@ namespace VkNet.Categories
 		private readonly IVkApiInvoke _vk;
 
 		/// <inheritdoc/>
-		/// <param name = "api">
+		/// <param name = "vk">
 		/// Api vk.com
 		/// </param>
-		public LeadFormsCategory(IVkApiInvoke api)
+		public LeadFormsCategory(IVkApiInvoke vk)
 		{
-			_vk = api;
+			_vk = vk;
 		}
 
 		/// <inheritdoc/>

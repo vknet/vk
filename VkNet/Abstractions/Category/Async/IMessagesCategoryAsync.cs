@@ -720,7 +720,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversationsById
 		/// </remarks>
-		Task<ConversationResultObject> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields = null,
+		Task<ConversationResult> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields = null,
 																bool? extended = null, ulong? groupId = null);
 
 		/// <summary>

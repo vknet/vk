@@ -839,20 +839,6 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator LookupContactsResult(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues
-				? null
-				: LookupContactsResult.FromJson(response);
-		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
 		public static implicit operator Lyrics(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues ? null : Lyrics.FromJson(response);

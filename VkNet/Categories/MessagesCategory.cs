@@ -246,10 +246,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public ConversationResultObject GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields = null, bool? extended = null,
+		public ConversationResult GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields = null, bool? extended = null,
 															ulong? groupId = null)
 		{
-			return _vk.Call<ConversationResultObject>("messages.getConversationsById",
+			return _vk.Call<ConversationResult>("messages.getConversationsById",
 				new VkParameters
 				{
 					{ "peer_ids", peerIds },

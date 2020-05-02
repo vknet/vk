@@ -70,7 +70,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<ConversationResultObject> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields = null,
+		public Task<ConversationResult> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields = null,
 																		bool? extended = null, ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetConversationsById(peerIds, fields, extended, groupId));

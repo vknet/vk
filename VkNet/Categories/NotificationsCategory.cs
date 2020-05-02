@@ -14,12 +14,12 @@ namespace VkNet.Categories
 		private readonly IVkApiInvoke _vk;
 
 		/// <inheritdoc />
-		/// <param name="api">
+		/// <param name="vk">
 		/// Api vk.com
 		/// </param>
-		public NotificationsCategory(VkApi api = null)
+		public NotificationsCategory(VkApi vk = null)
 		{
-			_vk = api;
+			_vk = vk;
 		}
 
 		/// <inheritdoc />
