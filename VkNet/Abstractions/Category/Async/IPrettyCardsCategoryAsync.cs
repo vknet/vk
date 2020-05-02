@@ -34,7 +34,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.delete
 		/// </remarks>
-		Task<object> DeleteAsync(object @params);
+		Task<PrettyCardsDeleteResult> DeleteAsync(PrettyCardsDeleteParams @params);
 
 		/// <summary>
 		/// Метод редактирует карточку карусели.

@@ -11,7 +11,7 @@ namespace VkNet.Abstractions
 		PrettyCardsCreateResult Create(PrettyCardsCreateParams @params);
 
 		/// <inheritdoc cref="IPrettyCardsCategoryAsync.DeleteAsync"/>
-		object Delete(object @params);
+		PrettyCardsDeleteResult Delete(PrettyCardsDeleteParams @params);
 
 		/// <inheritdoc cref="IPrettyCardsCategoryAsync.EditAsync"/>
 		object Edit(object @params);

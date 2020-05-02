@@ -38,9 +38,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public object Delete(object @params)
+		public PrettyCardsDeleteResult Delete(PrettyCardsDeleteParams @params)
 		{
-			return _vk.Call("prettyCards.delete", VkParameters.Empty);
+			return _vk.Call<PrettyCardsDeleteResult>("prettyCards.delete",
+				new VkParameters
+				{
+					{ "owner_id", @params.OwnerId },
+					{ "card_id", @params.CardId }
+				});
 		}
 
 		/// <inheritdoc />

@@ -15,7 +15,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<object> DeleteAsync(object @params)
+		public Task<PrettyCardsDeleteResult> DeleteAsync(PrettyCardsDeleteParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>Delete(@params: @params));
 		}
