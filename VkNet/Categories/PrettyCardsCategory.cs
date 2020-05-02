@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -82,9 +83,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public object GetUploadUrl()
+		public Uri GetUploadUrl()
 		{
-			return _vk.Call("prettyCards.getUploadURL", VkParameters.Empty);
+			return _vk.Call<Uri>("prettyCards.getUploadURL", VkParameters.Empty);
 		}
 	}
 }

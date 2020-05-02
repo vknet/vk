@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -25,6 +26,6 @@ namespace VkNet.Abstractions
 		ReadOnlyCollection<PrettyCardsGetByIdResult> GetById(PrettyCardsGetByIdParams @params);
 
 		/// <inheritdoc cref="IPrettyCardsCategoryAsync.GetUploadUrlAsync"/>
-		object GetUploadUrl();
+		Uri GetUploadUrl();
 	}
 }

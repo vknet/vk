@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -40,7 +41,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<object> GetUploadUrlAsync()
+		public Task<Uri> GetUploadUrlAsync()
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: GetUploadUrl);
 		}

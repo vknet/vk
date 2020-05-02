@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -88,6 +89,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getUploadURL
 		/// </remarks>
-		Task<object> GetUploadUrlAsync();
+		Task<Uri> GetUploadUrlAsync();
 	}
 }
