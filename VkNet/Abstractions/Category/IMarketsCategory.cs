@@ -7,7 +7,7 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
-	/// <inheritdoc />
+	/// <inheritdoc cref="IMarketsCategoryAsync"/>
 	public interface IMarketsCategory : IMarketsCategoryAsync
 	{
 		/// <inheritdoc cref="IMarketsCategoryAsync.GetAsync"/>
