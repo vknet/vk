@@ -20,7 +20,7 @@ namespace VkNet.Tests.Categories.Podcasts
 			var result = Api.Podcasts.GetRecentSearchRequests();
 
 			Assert.NotNull(result);
-			Assert.AreEqual(result[0], "kukluxklan");
+			Assert.AreEqual(result[0], "navi");
 			Assert.AreEqual(result[1], "ted");
 		}
 	}
