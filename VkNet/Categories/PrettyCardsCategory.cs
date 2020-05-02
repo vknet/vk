@@ -49,9 +49,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public object Edit(object @params)
+		public PrettyCardsEditResult Edit(PrettyCardsEditParams @params)
 		{
-			return _vk.Call("prettyCards.edit", VkParameters.Empty);
+			return _vk.Call<PrettyCardsEditResult>("prettyCards.edit", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId },
+				{ "card_id", @params.CardId }
+			});
+
 		}
 
 		/// <inheritdoc />

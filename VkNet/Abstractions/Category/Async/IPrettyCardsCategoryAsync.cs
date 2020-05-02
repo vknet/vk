@@ -45,7 +45,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.edit
 		/// </remarks>
-		Task<object> EditAsync(object @params);
+		Task<PrettyCardsEditResult> EditAsync(PrettyCardsEditParams @params);
 
 		/// <summary>
 		/// Метод возвращает неиспользованные карточки владельца.

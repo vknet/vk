@@ -21,7 +21,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<object> EditAsync(object @params)
+		public Task<PrettyCardsEditResult> EditAsync(PrettyCardsEditParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>Edit(@params: @params));
 		}
