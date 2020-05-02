@@ -13,7 +13,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с друзьями.
+	/// Методы для работы с друзьями.
 	/// </summary>
 	public interface IFriendsCategoryAsync
 	{

@@ -12,7 +12,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные Методы для работы с личными сообщениями. Для моментального
+	/// Методы для работы с личными сообщениями. Для моментального
 	/// получения входящих сообщений используйте LongPoll сервер.
 	/// </summary>
 	public interface IMessagesCategoryAsync

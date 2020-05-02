@@ -10,7 +10,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
-	/// <inheritdoc cref="IAudioCategory"/>
+	/// <summary>
+	/// Методы для работы с аудиозаписями.
+	/// </summary>
 	public interface IAudioCategoryAsync
 	{
 		/// <summary>

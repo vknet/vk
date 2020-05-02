@@ -9,9 +9,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы для работы с новостной лентой пользователя.
-	/// </summary>
+	/// <inheritdoc />
 	public partial class NewsFeedCategory : INewsFeedCategory
 	{
 		/// <summary>

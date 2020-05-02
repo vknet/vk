@@ -9,7 +9,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для получения справочной информации (страны, города, школы,
+	/// Методы для получения справочной информации (страны, города, школы,
 	/// учебные заведения и т.п.).
 	/// </summary>
 	public interface IDatabaseCategoryAsync

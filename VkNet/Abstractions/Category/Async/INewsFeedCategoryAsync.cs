@@ -10,7 +10,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с новостной лентой пользователя.
+	/// Методы для работы с новостной лентой пользователя.
 	/// </summary>
 	public interface INewsFeedCategoryAsync
 	{

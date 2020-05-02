@@ -8,7 +8,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Методы для асинхронной работы с методами приложений.
+	/// Методы для работы с методами приложений.
 	/// </summary>
 	public interface IAppsCategoryAsync
 	{

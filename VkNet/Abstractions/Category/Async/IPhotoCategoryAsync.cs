@@ -11,7 +11,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с фотографиями.
+	/// Методы для работы с фотографиями.
 	/// </summary>
 	public interface IPhotoCategoryAsync
 	{

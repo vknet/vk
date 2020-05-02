@@ -5,14 +5,13 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы для работы со темами группы.
-	/// </summary>
+	/// <inheritdoc />
 	public partial class BoardCategory : IBoardCategory
 	{
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
+		/// Api vk.com
 		/// </summary>
 		/// <param name="vk"> </param>
 		public BoardCategory(IVkApiInvoke vk)
@@ -20,17 +19,7 @@ namespace VkNet.Categories
 			_vk = vk;
 		}
 
-		/// <summary>
-		/// Возвращает список тем в обсуждениях указанной группы.
-		/// </summary>
-		/// <param name="params"> Входные параметры выборки. </param>
-		/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// <see href="https://new.vk.com/dev/board.getTopics" />.
-		/// </remarks>
+		/// <inheritdoc />
 		public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = false)
 		{
 			return _vk.Call(methodName: "board.getTopics", new VkParameters
@@ -47,17 +36,7 @@ namespace VkNet.Categories
 					.ToVkCollectionOf<Topic>(selector: x => x);
 		}
 
-		/// <summary>
-		/// Возвращает список сообщений в указанной теме.
-		/// </summary>
-		/// <param name="params"> Входные параметры выборки. </param>
-		/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// <see href="https://new.vk.com/dev/board.getComments" />.
-		/// </remarks>
+		/// <inheritdoc />
 		public TopicsFeed GetComments(BoardGetCommentsParams @params, bool skipAuthorization = false)
 		{
 			var response = _vk.Call(methodName: "board.getComments", new VkParameters
@@ -84,15 +63,7 @@ namespace VkNet.Categories
 			return result;
 		}
 
-		/// <summary>
-		/// Создает новую тему в списке обсуждений группы.
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.addTopic
-		/// </remarks>
+		/// <inheritdoc />
 		public long AddTopic(BoardAddTopicParams @params)
 		{
 			return _vk.Call(methodName: "board.addTopic", new VkParameters
@@ -105,15 +76,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Удаляет тему в обсуждениях группы.
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.deleteTopic
-		/// </remarks>
+		/// <inheritdoc />
 		public bool DeleteTopic(BoardTopicParams @params)
 		{
 			return _vk.Call(methodName: "board.deleteTopic", parameters: new VkParameters
@@ -123,16 +86,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Закрывает тему в списке обсуждений группы (в такой теме невозможно оставлять
-		/// новые сообщения).
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.closeTopic
-		/// </remarks>
+		/// <inheritdoc />
 		public bool CloseTopic(BoardTopicParams @params)
 		{
 			return _vk.Call(methodName: "board.closeTopic", parameters: new VkParameters
@@ -142,16 +96,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Открывает ранее закрытую тему (в ней станет возможно оставлять новые
-		/// сообщения).
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.openTopic
-		/// </remarks>
+		/// <inheritdoc />
 		public bool OpenTopic(BoardTopicParams @params)
 		{
 			return _vk.Call(methodName: "board.openTopic", parameters: new VkParameters
@@ -161,16 +106,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Закрепляет тему в списке обсуждений группы (такая тема при любой сортировке
-		/// выводится выше остальных).
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.fixTopic
-		/// </remarks>
+		/// <inheritdoc />
 		public bool FixTopic(BoardTopicParams @params)
 		{
 			return _vk.Call(methodName: "board.fixTopic", parameters: new VkParameters
@@ -180,16 +116,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Отменяет прикрепление темы в списке обсуждений группы (тема будет выводиться
-		/// согласно выбранной сортировке).
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.unfixTopic
-		/// </remarks>
+		/// <inheritdoc />
 		public bool UnFixTopic(BoardTopicParams @params)
 		{
 			return _vk.Call(methodName: "board.unfixTopic", parameters: new VkParameters
@@ -199,15 +126,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Изменяет заголовок темы в списке обсуждений группы.
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.editTopic
-		/// </remarks>
+		/// <inheritdoc />
 		public bool EditTopic(BoardEditTopicParams @params)
 		{
 			return _vk.Call(methodName: "board.editTopic", parameters: new VkParameters
@@ -218,16 +137,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Добавляет новый комментарий в обсуждении.
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// <see href="https://new.vk.com/dev/board.createComment" />.
-		/// </remarks>
+		/// <inheritdoc />
 		public long CreateComment(BoardCreateCommentParams @params)
 		{
 			return _vk.Call(methodName: "board.createComment", parameters: new VkParameters
@@ -242,16 +152,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Удаляет сообщение в обсуждениях сообщества.
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте
-		/// <see href="https://new.vk.com/dev/board.deleteComment" />.
-		/// </remarks>
+		/// <inheritdoc />
 		public bool DeleteComment(BoardCommentParams @params)
 		{
 			return _vk.Call(methodName: "board.deleteComment", parameters: new VkParameters
@@ -262,15 +163,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Редактирует одно из сообщений в обсуждении сообщества..
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.editComment
-		/// </remarks>
+		/// <inheritdoc />
 		public bool EditComment(BoardEditCommentParams @params)
 		{
 			return _vk.Call(methodName: "board.editComment", parameters: new VkParameters
@@ -283,15 +176,7 @@ namespace VkNet.Categories
 			});
 		}
 
-		/// <summary>
-		/// Восстанавливает удаленное сообщение темы в обсуждениях группы.
-		/// </summary>
-		/// <param name="params"> Входные параметры. </param>
-		/// <returns>
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте https://vk.com/dev/board.restoreComment
-		/// </remarks>
+		/// <inheritdoc />
 		public bool RestoreComment(BoardCommentParams @params)
 		{
 			return _vk.Call<bool>(methodName: "board.restoreComment", parameters: new VkParameters

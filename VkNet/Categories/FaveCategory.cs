@@ -17,7 +17,7 @@ namespace VkNet.Categories
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
-		/// Методы для работы с закладками.
+		/// api vk.com
 		/// </summary>
 		/// <param name="vk"> API. </param>
 		public FaveCategory(IVkApiInvoke vk)

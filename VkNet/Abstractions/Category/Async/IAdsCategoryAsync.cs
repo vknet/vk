@@ -9,7 +9,7 @@ using VkNet.Model.RequestParams.Ads;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы со стеной пользователя.
+	/// Методы для работы с рекламным кабинетом пользователя.
 	/// </summary>
 	public interface IAdsCategoryAsync
 	{

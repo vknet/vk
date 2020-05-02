@@ -7,7 +7,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Устаревшие асинхронные методы работы с закладками.
+	/// Устаревшие методы работы с закладками.
 	/// </summary>
 	public partial interface IFaveCategoryAsync
 	{
@@ -28,7 +28,7 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		[Obsolete(ObsoleteText.Obsolete + "Используйте вместо него Task<bool> AddLinkAsync(Uri link)")]
 		Task<bool> AddLinkAsync(Uri link, string text);
-		
+
 		/// <summary>
 		/// Возвращает список пользователей, добавленных текущим пользователем в закладки.
 		/// </summary>

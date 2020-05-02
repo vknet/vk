@@ -5,7 +5,7 @@ using VkNet.Model;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы со статистикой.
+	/// Методы для работы со статистикой.
 	/// </summary>
 	public interface IStatsCategoryAsync
 	{

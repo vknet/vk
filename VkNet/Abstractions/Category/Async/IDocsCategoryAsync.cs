@@ -11,7 +11,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с документами (получение списка, загрузка,
+	/// Методы для работы с документами (получение списка, загрузка,
 	/// удаление и т.д.)
 	/// </summary>
 	public interface IDocsCategoryAsync

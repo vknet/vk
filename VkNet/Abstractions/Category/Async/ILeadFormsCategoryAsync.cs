@@ -107,7 +107,7 @@ namespace VkNet.Abstractions.Category.Async
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/leadForms.getUploadURl
 		/// </remarks>
-		Task<Uri> GetUploadURLAsync();
+		Task<Uri> GetUploadUrlAsync();
 
 		/// <summary>
 		/// Возвращает список форм сообщества.

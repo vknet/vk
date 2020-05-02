@@ -35,9 +35,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> GetUploadURLAsync()
+		public Task<Uri> GetUploadUrlAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(GetUploadURL);
+			return TypeHelper.TryInvokeMethodAsync(GetUploadUrl);
 		}
 
 		/// <inheritdoc/>

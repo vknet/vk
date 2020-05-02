@@ -7,7 +7,7 @@ using VkNet.Model.RequestParams.Notes;
 namespace VkNet.Abstractions.Async
 {
 	/// <summary>
-	/// Notes Методы для работы с заметками.
+	/// Методы для работы с заметками.
 	/// </summary>
 	public interface INotesCategoryAsync
 	{

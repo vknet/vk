@@ -10,9 +10,7 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
-	/// <summary>
-	/// Методы для работы с сообществами (группами).
-	/// </summary>
+	/// <inheritdoc cref="IGroupsCategoryAsync" />
 	public interface IGroupsCategory : IGroupsCategoryAsync
 	{
 		/// <inheritdoc cref="IGroupsCategoryAsync.AddAddressAsync" />

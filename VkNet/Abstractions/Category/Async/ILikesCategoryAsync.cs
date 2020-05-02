@@ -8,7 +8,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронное API для работы с лайками.
+	/// Методы для работы с лайками.
 	/// </summary>
 	public interface ILikesCategoryAsync
 	{

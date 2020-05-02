@@ -18,7 +18,7 @@ namespace VkNet.Categories
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
-		/// Методы для работы с аудиозаписями.
+		/// api vk.com
 		/// </summary>
         /// <param name="vk"> Api vk.com </param>
         public AudioCategory(IVkApiInvoke vk)

@@ -9,7 +9,7 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы со стеной пользователя.
+	/// Методы для работы со стеной пользователя.
 	/// </summary>
 	public interface IWallCategoryAsync
 	{

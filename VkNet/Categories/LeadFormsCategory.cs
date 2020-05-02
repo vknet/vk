@@ -16,7 +16,9 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly IVkApiInvoke _vk;
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// api vk.com
+		/// </summary>
 		/// <param name = "vk">
 		/// Api vk.com
 		/// </param>
@@ -84,7 +86,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Uri GetUploadURL()
+		public Uri GetUploadUrl()
 		{
 			return _vk.Call<Uri>("leadForms.getUploadURL", VkParameters.Empty);
 		}

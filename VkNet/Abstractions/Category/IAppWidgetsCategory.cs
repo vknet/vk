@@ -5,7 +5,7 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions
 {
-	/// <inheritdoc />
+	/// <inheritdoc cref="IAppWidgetsCategoryAsync"/>
 	public interface IAppWidgetsCategory : IAppWidgetsCategoryAsync
 	{
 		/// <inheritdoc cref="IAppWidgetsCategoryAsync.GetAppImageUploadServerAsync"/>

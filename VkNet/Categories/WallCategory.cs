@@ -12,9 +12,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы для работы со стеной пользователя.
-	/// </summary>
+	/// <inheritdoc />
 	public partial class WallCategory : IWallCategory
 	{
 		private readonly IVkApiInvoke _vk;

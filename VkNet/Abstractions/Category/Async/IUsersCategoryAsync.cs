@@ -12,7 +12,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с информацией о пользователях.
+	/// Методы для работы с информацией о пользователях.
 	/// </summary>
 	public interface IUsersCategoryAsync
 	{

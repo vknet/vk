@@ -9,9 +9,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы этого класса позволяют производить действия с аккаунтом пользователя.
-	/// </summary>
+	/// <inheritdoc />
 	public partial class AccountCategory : IAccountCategory
 	{
 		/// <summary>
@@ -20,7 +18,7 @@ namespace VkNet.Categories
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
-		/// Методы для работы с аккаунтом пользователя.
+		/// api vk.com
 		/// </summary>
 		/// <param name="vk"> API. </param>
 		public AccountCategory(IVkApiInvoke vk)

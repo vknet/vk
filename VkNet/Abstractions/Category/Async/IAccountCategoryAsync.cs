@@ -9,7 +9,7 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Методы этого класса позволяют асинхронно производить действия с аккаунтом
+	/// Методы этого класса позволяют производить действия с аккаунтом
 	/// пользователя.
 	/// </summary>
 	public interface IAccountCategoryAsync

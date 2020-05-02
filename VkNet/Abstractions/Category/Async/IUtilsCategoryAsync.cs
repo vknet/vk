@@ -9,7 +9,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные служебные методы.
+	/// Служебные методы.
 	/// </summary>
 	public interface IUtilsCategoryAsync
 	{

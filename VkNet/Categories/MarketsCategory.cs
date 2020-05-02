@@ -17,7 +17,7 @@ namespace VkNet.Categories
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
-		/// Методы для работы с приложениями.
+		/// api vk.com
 		/// </summary>
 		/// <param name="vk"> API. </param>
 		public MarketsCategory(IVkApiInvoke vk)

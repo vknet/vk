@@ -70,7 +70,7 @@ namespace VkNet.Tests.Categories
 			Url = "https://api.vk.com/method/leadForms.getUploadURL";
 			ReadCategoryJsonPath(nameof(GetUploadUrl));
 
-			var result = Api.LeadForms.GetUploadURL();
+			var result = Api.LeadForms.GetUploadUrl();
 
 			Assert.NotNull(result);
 			Assert.AreEqual(new Uri("https://pu.vk.com1d95424ffe4e4983a6a"), result);

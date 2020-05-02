@@ -9,15 +9,13 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы для получения справочной информации (страны, города, школы, учебные
-	/// заведения и т.п.).
-	/// </summary>
+	/// <inheritdoc />
 	public partial class DatabaseCategory : IDatabaseCategory
 	{
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
+		/// api vk.com
 		/// </summary>
 		/// <param name="vk"> </param>
 		public DatabaseCategory(IVkApiInvoke vk)

@@ -14,7 +14,7 @@ namespace VkNet.Categories
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
-		/// Методы для работы со статистикой.
+		/// api vk.com
 		/// </summary>
 		/// <param name="vk"> API. </param>
 		public StatsCategory(IVkApiInvoke vk)

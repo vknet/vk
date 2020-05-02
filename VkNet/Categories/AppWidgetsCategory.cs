@@ -6,7 +6,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <inheritdoc/>
+	/// <inheritdoc />
 	public partial class AppWidgetsCategory : IAppWidgetsCategory
 	{
 		/// <summary>
@@ -14,7 +14,9 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly IVkApiInvoke _vk;
 
-		/// <inheritdoc/>
+		/// <summary>
+		/// api vk.com
+		/// </summary>
 		/// <param name = "vk">
 		/// Api vk.com
 		/// </param>
