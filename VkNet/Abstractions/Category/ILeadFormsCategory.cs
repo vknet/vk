@@ -21,8 +21,8 @@ namespace VkNet.Abstractions.Category
 		/// <inheritdoc cref="ILeadFormsCategoryAsync.GetLeadsAsync" />
 		ReadOnlyCollection<LeadFormsGetLeadResult> GetLeads(long groupId, long formId, string nextPageToken, ulong? limit = null);
 
-		/// <inheritdoc cref="ILeadFormsCategoryAsync.GetUploadUrlAsync" />
-		Uri GetUploadUrl();
+		/// <inheritdoc cref="ILeadFormsCategoryAsync.GetUploadURLAsync" />
+		Uri GetUploadURL();
 
 		/// <inheritdoc cref="ILeadFormsCategoryAsync.ListAsync" />
 		ReadOnlyCollection<LeadFormCreateResult> List(long groupId);
