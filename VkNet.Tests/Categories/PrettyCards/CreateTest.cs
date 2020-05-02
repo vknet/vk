@@ -30,6 +30,7 @@ namespace VkNet.Tests.Categories.PrettyCards
 
 			Assert.NotNull(result);
 			Assert.AreEqual(result.CardId, "545435");
+			Assert.AreEqual(result.OwnerId, -126102803);
 		}
 	}
 }
