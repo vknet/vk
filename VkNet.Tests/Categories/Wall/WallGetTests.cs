@@ -23,26 +23,26 @@ namespace VkNet.Tests.Categories.Wall
 			Assert.That(result.TotalCount, Is.EqualTo(520));
 			var post = result.WallPosts.FirstOrDefault();
 			Assert.NotNull(post);
-			var attachement = post.Attachment.Instance as Article;
-			Assert.NotNull(attachement);
-			Assert.That(attachement.Id, Is.EqualTo(10419));
+			var attachment = post.Attachment.Instance as Article;
+			Assert.NotNull(attachment);
+			Assert.That(attachment.Id, Is.EqualTo(10419));
 		}
 
 		[Test]
-		public void PodcastAttachement()
+		public void PodcastAttachment()
 		{
 			Url = "https://api.vk.com/method/wall.get";
-			ReadCategoryJsonPath(nameof(PodcastAttachement));
+			ReadCategoryJsonPath(nameof(PodcastAttachment));
 
 			var result = Api.Wall.Get(new WallGetParams());
 
 			Assert.NotNull(result);
-			Assert.That(result.TotalCount, Is.EqualTo(16833));
+			Assert.That(result.TotalCount, Is.EqualTo(6352));
 			var post = result.WallPosts.FirstOrDefault();
 			Assert.NotNull(post);
-			var podcast = post.Attachment.Instance as Podcast;
+			var podcast = post.Attachments[1].Instance as Podcast;
 			Assert.NotNull(podcast);
-			Assert.That(podcast.Id, Is.EqualTo(456239023));
+			Assert.That(podcast.Id, Is.EqualTo(456240245));
 		}
 	}
 }
