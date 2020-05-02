@@ -625,6 +625,9 @@ namespace VkNet
 		/// <inheritdoc />
 		public IPrettyCardsCategory PrettyCards { get; set; }
 
+		/// <inheritdoc />
+		public IPodcastsCategory Podcasts { get; set; }
+
 		///<inheritdoc />
 		public INotesCategory Notes { get; set; }
 
@@ -902,6 +905,7 @@ namespace VkNet
 			Stories = new StoriesCategory(this);
 			LeadForms = new LeadFormsCategory(this);
 			PrettyCards = new PrettyCardsCategory(this);
+			Podcasts = new PodcastsCategory(this);
 
 			RequestsPerSecond = 3;
 

@@ -100,7 +100,8 @@ namespace VkNet.Model
 				AgeLimits = response["age_limits"],
 				MemberStatus = response["member_status"],
 				PublicDateLabel = response["public_date_label"],
-				Wall = response["wall"]
+				Wall = response["wall"],
+				IsAdvertiser = response["is_advertiser"]
 			};
 
 			return group;
@@ -286,6 +287,13 @@ namespace VkNet.Model
 		/// Содержит фото.
 		/// </summary>
 		public bool HasPhoto { get; set; }
+
+		/// <summary>
+		/// Возвращается 1, если пользователь является рекламодателем.
+		/// </summary>
+		[JsonProperty("is_advertiser")]
+		public bool IsAdvertiser { get; set; }
+
 
 		/// <summary>
 		/// Возвращается 1, если сообщество находится в закладках у текущего пользователя.
