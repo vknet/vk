@@ -723,7 +723,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversationsById
 		/// </remarks>
-		ConversationResultObject GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields= null, bool? extended = null,
+		ConversationResult GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields= null, bool? extended = null,
 													ulong? groupId = null);
 
 		/// <summary>

@@ -19,9 +19,9 @@ namespace VkNet.Categories
 		/// <param name="api">
 		/// Api vk.com
 		/// </param>
-		public PlacesCategory(VkApi api)
+		public PlacesCategory(VkApi vk)
 		{
-			_vk = api;
+			_vk = vk;
 		}
 
 		/// <inheritdoc />
