@@ -15,6 +15,12 @@ namespace VkNet.Model.Attachments
 		protected override string Alias => "podcast";
 
 		/// <summary>
+		/// Заголовок подкаста
+		/// </summary>
+		[JsonProperty("podcast_title")]
+		public string PodcastTitle { get; set; }
+
+		/// <summary>
 		/// Исполнитель
 		/// </summary>
 		[JsonProperty("artist")]
@@ -76,6 +82,12 @@ namespace VkNet.Model.Attachments
 		public PodcastInfo PodcastInfo { get; set; }
 
 		/// <summary>
+		/// Код трека.
+		/// </summary>
+		[JsonProperty("track_code")]
+		public string TrackCode { get; set; }
+
+		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
@@ -95,7 +107,9 @@ namespace VkNet.Model.Attachments
 				NoSearch = response["no_search"],
 				IsHq = response["is_hq"],
 				IsExplicit = response["is_explicit"],
-				PodcastInfo = response["is_explicit"]
+				PodcastInfo = response["podcast_info"],
+				PodcastTitle = response["podcast_title"],
+				TrackCode = response["track_code"]
 			};
 		}
 

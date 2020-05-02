@@ -11,25 +11,31 @@ namespace VkNet.Model
 	public class PodcastInfo
 	{
 		/// <summary>
-		/// Обложка
+		/// Обложка.
 		/// </summary>
 		[JsonProperty("cover")]
 		public Cover Cover { get; set; }
 
 		/// <summary>
-		/// Количество прослушиваний
+		/// Количество прослушиваний.
 		/// </summary>
 		[JsonProperty("plays")]
 		public long Plays { get; set; }
 
 		/// <summary>
-		/// Важный
+		/// Важный.
 		/// </summary>
 		[JsonProperty("is_favorite")]
 		public bool IsFavorite { get; set; }
 
 		/// <summary>
-		/// Описание
+		/// Позиция.
+		/// </summary>
+		[JsonProperty("position")]
+		public long Position { get; set; }
+
+		/// <summary>
+		/// Описание.
 		/// </summary>
 		[JsonProperty("description")]
 		public string Description { get; set; }
@@ -46,7 +52,8 @@ namespace VkNet.Model
 				Cover = response["cover"],
 				Plays = response["plays"],
 				IsFavorite = response["is_favorite"],
-				Description = response["description"]
+				Description = response["description"],
+				Position = response["position"]
 			};
 		}
 

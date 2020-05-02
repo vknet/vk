@@ -208,5 +208,10 @@ namespace VkNet.Abstractions
 		/// Pretty Cards
 		/// </summary>
 		IPrettyCardsCategory PrettyCards { get; set; }
+
+		/// <summary>
+		/// Podcasts
+		/// </summary>
+		IPodcastsCategory Podcasts { get; set; }
 	}
 }
