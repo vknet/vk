@@ -1,0 +1,43 @@
+﻿{
+  "response": [{
+    "owner_id": -74962618,
+    "owner_title": "Городские сказки",
+    "url": "/cityhaze"
+  }, {
+    "owner_id": -145800770,
+    "owner_title": "вДудь",
+    "url": "/vdud"
+  }, {
+    "owner_id": -152712748,
+    "owner_title": "TED на русском языке",
+    "url": "/tednarusskom"
+  }, {
+    "owner_id": -24094338,
+    "owner_title": "Лайфхакер",
+    "url": "/lifehacker_ru"
+  }, {
+    "owner_id": -80512191,
+    "owner_title": "Newочём",
+    "url": "/newochem"
+  }, {
+    "owner_id": -76982440,
+    "owner_title": "«Медуза»",
+    "url": "/meduzaproject"
+  }, {
+    "owner_id": -152386495,
+    "owner_title": "STUDIO 21",
+    "url": "/studio21"
+  }, {
+    "owner_id": -25951501,
+    "owner_title": "Disgusting Men — Отвратительные мужики",
+    "url": "/disgusting_men"
+  }, {
+    "owner_id": -126100393,
+    "owner_title": "Макияж | Косметика &#128132; Идеи и уроки",
+    "url": "/women.makeup"
+  }, {
+    "owner_id": -35744422,
+    "owner_title": "Радио «Маяк»",
+    "url": "/mayakfm"
+  }]
+}
