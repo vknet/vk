@@ -1,4 +1,5 @@
-﻿using VkNet.Abstractions;
+﻿using System.Collections.ObjectModel;
+using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -60,19 +61,28 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public object Get(object @params)
+		public VkCollection<PrettyCardsGetByIdResult> Get(PrettyCardsGetParams @params)
 		{
-			return _vk.Call("prettyCards.get", VkParameters.Empty);
+			return _vk.Call<VkCollection<PrettyCardsGetByIdResult>>("prettyCards.get", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId },
+				{ "offset", @params.Offset },
+				{ "count", @params.Count }
+			});
 		}
 
 		/// <inheritdoc />
-		public object GetById(object @params)
+		public ReadOnlyCollection<PrettyCardsGetByIdResult> GetById(PrettyCardsGetByIdParams @params)
 		{
-			return _vk.Call("prettyCards.getById", VkParameters.Empty);
+			return _vk.Call<ReadOnlyCollection<PrettyCardsGetByIdResult>>("prettyCards.getById", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId },
+				{ "card_ids", @params.CardIds }
+			});
 		}
 
 		/// <inheritdoc />
-		public object GetUploadUrl(object @params)
+		public object GetUploadUrl()
 		{
 			return _vk.Call("prettyCards.getUploadURL", VkParameters.Empty);
 		}

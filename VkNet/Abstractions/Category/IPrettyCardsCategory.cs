@@ -1,5 +1,7 @@
-﻿using VkNet.Model;
+﻿using System.Collections.ObjectModel;
+using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
@@ -17,12 +19,12 @@ namespace VkNet.Abstractions
 		PrettyCardsEditResult Edit(PrettyCardsEditParams @params);
 
 		/// <inheritdoc cref="IPrettyCardsCategoryAsync.GetAsync"/>
-		object Get(object @params);
+		VkCollection<PrettyCardsGetByIdResult> Get(PrettyCardsGetParams @params);
 
 		/// <inheritdoc cref="IPrettyCardsCategoryAsync.GetByIdAsync"/>
-		object GetById(object @params);
+		ReadOnlyCollection<PrettyCardsGetByIdResult> GetById(PrettyCardsGetByIdParams @params);
 
 		/// <inheritdoc cref="IPrettyCardsCategoryAsync.GetUploadUrlAsync"/>
-		object GetUploadUrl(object @params);
+		object GetUploadUrl();
 	}
 }

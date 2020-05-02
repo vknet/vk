@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -56,7 +57,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.get
 		/// </remarks>
-		Task<object> GetAsync(object @params);
+		Task<VkCollection<PrettyCardsGetByIdResult>> GetAsync(PrettyCardsGetParams @params);
 
 		/// <summary>
 		/// Метод возвращает информацию о карточке.
@@ -67,7 +68,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getById
 		/// </remarks>
-		Task<object> GetByIdAsync(object @params);
+		Task<ReadOnlyCollection<PrettyCardsGetByIdResult>> GetByIdAsync(PrettyCardsGetByIdParams @params);
 
 		/// <summary>
 		/// Метод возвращает URL для загрузки фотографии для карточки.
@@ -87,6 +88,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getUploadURL
 		/// </remarks>
-		Task<object> GetUploadUrlAsync(object @params);
+		Task<object> GetUploadUrlAsync();
 	}
 }

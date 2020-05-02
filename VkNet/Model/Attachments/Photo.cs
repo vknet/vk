@@ -129,6 +129,12 @@ namespace VkNet.Model.Attachments
 		[JsonProperty("height")]
 		public int? Height { get; set; }
 
+		/// <summary>
+		/// Url фотографии.
+		/// </summary>
+		[JsonProperty("url")]
+		public Uri Url { get; set; }
+
 	#region Методы
 
 		/// <summary>
@@ -152,6 +158,7 @@ namespace VkNet.Model.Attachments
 				Photo807 = response["photo_807"] ?? response["src_xbig"],
 				Photo1280 = response["photo_1280"] ?? response["src_xxbig"],
 				Photo2560 = response["photo_2560"] ?? response["src_xxxbig"],
+				Url = response["url"],
 				Width = response["width"],
 				Height = response["height"],
 				Text = response["text"],

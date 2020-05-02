@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -27,21 +28,21 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<object> GetAsync(object @params)
+		public Task<VkCollection<PrettyCardsGetByIdResult>> GetAsync(PrettyCardsGetParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>Get(@params: @params));
 		}
 
 		/// <inheritdoc />
-		public Task<object> GetByIdAsync(object @params)
+		public Task<ReadOnlyCollection<PrettyCardsGetByIdResult>> GetByIdAsync(PrettyCardsGetByIdParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>GetById(@params: @params));
 		}
 
 		/// <inheritdoc />
-		public Task<object> GetUploadUrlAsync(object @params)
+		public Task<object> GetUploadUrlAsync()
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetUploadUrl(@params: @params));
+			return TypeHelper.TryInvokeMethodAsync(func: GetUploadUrl);
 		}
 	}
 }
