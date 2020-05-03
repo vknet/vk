@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;

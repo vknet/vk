@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Net.Mime;
+﻿using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -38,7 +35,7 @@ namespace VkNet.Tests.Categories.Audio
 			Assert.AreEqual(result.Items[2].Playlists[1].Photo.Height, 300);
 			Assert.AreEqual(result.Items[2].Playlists[1].MainArtists[0].Id, "2488610606427153840");
 			Assert.AreEqual(result.Items[2].Playlists[1].AlbumType, AudioAlbumType.MainOnly);
-			Assert.AreEqual(result.Items[14].Items[0].Meta[0].ContentType, UserOrGroupType.Group);
+			Assert.AreEqual(result.Items[14].Items[0].Meta.ContentType, UserOrGroupType.Group);
 		}
 	}
 }

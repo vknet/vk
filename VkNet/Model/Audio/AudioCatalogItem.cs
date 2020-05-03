@@ -38,6 +38,6 @@ namespace VkNet.Model
 		/// Идентификатор владельца аудиозаписи.
 		/// </summary>
 		[JsonProperty("meta")]
-		public ReadOnlyCollection<AudioCatalogItemMeta> Meta { get; set; }
+		public AudioCatalogItemMeta Meta { get; set; }
 	}
 }
