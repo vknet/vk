@@ -40,12 +40,6 @@ namespace VkNet.Model
 		[JsonProperty("access_key")]
 		public string AccessKey { get; set; }
 
-		/// <summary>
-		/// Обложка альбома.
-		/// </summary>
-		[JsonProperty("thumb")]
-		public AudioCatalogAudioAlbumThumb Thumb { get; set; }
-
 	#region Методы
 
 		/// <summary>
@@ -62,7 +56,6 @@ namespace VkNet.Model
 				Title = response["title"],
 				Cover = response["thumb"],
 				AccessKey = response["access_key"],
-				Thumb = response["thumb"]
 			};
 		}
 

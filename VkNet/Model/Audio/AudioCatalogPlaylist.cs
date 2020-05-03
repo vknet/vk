@@ -97,7 +97,7 @@ namespace VkNet.Model
 		/// Фото.
 		/// </summary>
 		[JsonProperty("photo")]
-		public AudioCatalogAudioAlbumThumb Photo { get; set; }
+		public AudioCover Photo { get; set; }
 
 		/// <summary>
 		/// Ключ доступа.

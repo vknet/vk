@@ -66,7 +66,7 @@ namespace VkNet.Model
 		/// Обложки.
 		/// </summary>
 		[JsonProperty("thumbs")]
-		public ReadOnlyCollection<AudioCatalogAudioAlbumThumb> Thumbs { get; set; }
+		public ReadOnlyCollection<AudioCover> Thumbs { get; set; }
 
 		/// <summary>
 		/// Плейлисты.

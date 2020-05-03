@@ -2001,17 +2001,5 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : StatisticsStats.FromJson(response);
 		}
-
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator AudioCatalogAudioAlbumThumb(VkResponse response)
-		{
-			return response?._token == null || !response._token.HasValues ? null : AudioCatalogAudioAlbumThumb.FromJson(response);
-		}
 	}
 }
