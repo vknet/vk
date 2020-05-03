@@ -28,7 +28,7 @@ namespace VkNet.Tests.Categories.Audio
 			Assert.AreEqual(result.Items[0].Audios[0].Id, 64754323);
 			Assert.AreEqual(result.Items[0].Audios[0].Ads.Duration, "187");
 			Assert.AreEqual(result.Items[0].Audios[0].Date.Year, 2020);
-			Assert.AreEqual(result.Items[0].Audios[0].Album.Thumb.Height, 300);
+			Assert.AreEqual(result.Items[0].Audios[0].Album.Cover.Height, 300);
 			Assert.AreEqual(result.Items[0].Audios[0].MainArtists[0].Id, "4885835127738846121");
 			Assert.AreEqual(result.Items[2].Playlists[1].Genres[0].Id, 1);
 			Assert.AreEqual(result.Items[2].Playlists[1].Original.OwnerId, -2000239709);
