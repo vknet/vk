@@ -55,6 +55,7 @@ namespace VkNet.Model
 				IsAdmin = response["is_admin"],
 				AdminLevel = response["admin_level"],
 				IsMember = response["is_member"],
+				IsAdvertiser = response["is_advertiser"],
 				Type = response["type"],
 				PhotoPreviews = response,
 				Deactivated = response["deactivated"],
@@ -100,8 +101,7 @@ namespace VkNet.Model
 				AgeLimits = response["age_limits"],
 				MemberStatus = response["member_status"],
 				PublicDateLabel = response["public_date_label"],
-				Wall = response["wall"],
-				IsAdvertiser = response["is_advertiser"]
+				Wall = response["wall"]
 			};
 
 			return group;

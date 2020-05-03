@@ -233,6 +233,28 @@ namespace VkNet.Abstractions
 		Task<IEnumerable<Audio>> GetByIdAsync(IEnumerable<string> audios);
 
 		/// <summary>
+		/// Возвращает каталог пользователя.
+		/// </summary>
+		/// <param name="count">
+		/// Количество каталогов необходимое вернуть.
+		/// </param>
+		/// <param name="extended">
+		/// Возвращает дополнительную информацию о каталоге.
+		/// </param>
+		/// <param name="fields">
+		/// Дополнительные поля
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект <see cref="AudioGetCatalogResult"/>. Обратите внимание,
+		/// что ссылки на аудиозаписи привязаны
+		/// к ip адресу.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getById
+		/// </remarks>
+		Task<AudioGetCatalogResult> GetCatalogAsync(uint? count, bool? extended, UsersFields fields = null);
+
+		/// <summary>
 		/// Возвращает количество аудиозаписей пользователя или сообщества.
 		/// </summary>
 		/// <param name="ownerId">

@@ -1,6 +1,6 @@
 namespace VkNet.Enums.SafetyEnums
 {
-	
+
 	/// <summary>
 	/// Пользователь или сообщество.
 	/// </summary>
@@ -14,6 +14,6 @@ namespace VkNet.Enums.SafetyEnums
 		/// <summary>
 		/// Сообщество.
 		/// </summary>
-		public static readonly UserOrGroupType Video = RegisterPossibleValue("group");
+		public static readonly UserOrGroupType Group = RegisterPossibleValue("group");
 	}
 }

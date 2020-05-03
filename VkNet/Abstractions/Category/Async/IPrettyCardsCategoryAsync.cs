@@ -85,8 +85,6 @@ namespace VkNet.Abstractions
 		/// Максимальный объем файла: 5 Мб.
 		/// Результат загрузки изображения возвращается приложению в формате JSON.
 		/// </summary>
-		/// <returns>
-		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getUploadURL
 		/// </remarks>
