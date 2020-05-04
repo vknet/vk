@@ -8,7 +8,7 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Utils
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]

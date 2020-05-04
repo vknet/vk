@@ -64,9 +64,9 @@ namespace VkNet.Tests.Utils
 
 			Assert.DoesNotThrow(() =>
 			{
-				var value = @params["date_time"];
-			});
-
+				var unused = @params["date_time"];
+			});	
+			
 			Assert.AreEqual("1572481292",  @params["date_time"]);
 		}
 	}

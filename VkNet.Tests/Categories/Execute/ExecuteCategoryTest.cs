@@ -8,7 +8,7 @@ using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Execute
 {
 	[ExcludeFromCodeCoverage]
 	public class ExecuteCategoryTest : CategoryBaseTest

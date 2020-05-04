@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
-using VkNet.Enums.Filters;
 
 namespace VkNet.Tests.Categories.Messages
 {

@@ -43,7 +43,7 @@ namespace VkNet.Tests
 				taskList.Add(Api.CallAsync("friends.getRequests", VkParameters.Empty, true));
 			}
 
-			Task.WhenAll(taskList);
+			await Task.WhenAll(taskList);
 
 			await Task.Delay(1000);
 

@@ -8,7 +8,7 @@ using VkNet.Model.Attachments;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Fave
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
@@ -209,7 +209,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(wallPost.Reposts.Count, Is.EqualTo(91));
 			Assert.That(wallPost.Attachments.Count, Is.EqualTo(1));
 
-			var video = posts.WallPosts[0].Attachments[0].Instance as Video;
+			var video = posts.WallPosts[0].Attachments[0].Instance as Model.Attachments.Video;
 			Assert.That(video, Is.Not.Null);
 			Assert.That(video.Id, Is.EqualTo(171514588));
 			Assert.That(video.OwnerId, Is.EqualTo(235845316));
@@ -302,7 +302,7 @@ namespace VkNet.Tests.Categories
 			Assert.That(wallPost.Reposts.Count, Is.EqualTo(91));
 			Assert.That(wallPost.Attachments.Count, Is.EqualTo(1));
 
-			var video = posts.WallPosts[0].Attachments[0].Instance as Video;
+			var video = posts.WallPosts[0].Attachments[0].Instance as Model.Attachments.Video;
 			Assert.That(video, Is.Not.Null);
 			Assert.That(video.Id, Is.EqualTo(171514588));
 			Assert.That(video.OwnerId, Is.EqualTo(235845316));

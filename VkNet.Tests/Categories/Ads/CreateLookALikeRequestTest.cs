@@ -1,11 +1,7 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using Newtonsoft.Json.Converters;
+﻿using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
-using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Ads

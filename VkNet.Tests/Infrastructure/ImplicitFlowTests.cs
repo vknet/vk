@@ -113,7 +113,7 @@ namespace VkNet.Tests.Infrastructure
 		}
 
 		[Test]
-		public async Task Authorize_ValidateError()
+		public void Authorize_ValidateError()
 		{
 			var mocker = new AutoMocker();
 

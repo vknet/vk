@@ -1,6 +1,5 @@
 using System.Linq;
 using NUnit.Framework;
-using VkNet.Categories;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
