@@ -236,9 +236,23 @@ namespace VkNet.Tests.Enum.Filters
 			Assert.That(UsersFields.CommonCount.ToString(), Is.EqualTo("common_count"));
 			Assert.That(UsersFields.Relatives.ToString(), Is.EqualTo("relatives"));
 			Assert.That(UsersFields.Counters.ToString(), Is.EqualTo("counters"));
+			Assert.That(UsersFields.CanAccessClosed.ToString(), Is.EqualTo("can_access_closed"));
+			Assert.That(UsersFields.IsClosed.ToString(), Is.EqualTo("is_closed"));
+			Assert.That(UsersFields.FirstNameNom.ToString(), Is.EqualTo("first_name_nom"));
+			Assert.That(UsersFields.FirstNameGen.ToString(), Is.EqualTo("first_name_gen"));
+			Assert.That(UsersFields.FirstNameDat.ToString(), Is.EqualTo("first_name_dat"));
+			Assert.That(UsersFields.FirstNameAcc.ToString(), Is.EqualTo("first_name_acc"));
+			Assert.That(UsersFields.FirstNameIns.ToString(), Is.EqualTo("first_name_ins"));
+			Assert.That(UsersFields.FirstNameAbl.ToString(), Is.EqualTo("first_name_abl"));
+			Assert.That(UsersFields.LastNameNom.ToString(), Is.EqualTo("last_name_nom"));
+			Assert.That(UsersFields.LastNameGen.ToString(), Is.EqualTo("last_name_gen"));
+			Assert.That(UsersFields.LastNameDat.ToString(), Is.EqualTo("last_name_dat"));
+			Assert.That(UsersFields.LastNameAcc.ToString(), Is.EqualTo("last_name_acc"));
+			Assert.That(UsersFields.LastNameIns.ToString(), Is.EqualTo("last_name_ins"));
+			Assert.That(UsersFields.LastNameAbl.ToString(), Is.EqualTo("last_name_abl"));
 
 			Assert.That(UsersFields.All.ToString()
-					, Is.EqualTo("bdate,can_post,can_see_all_posts,can_see_audio,can_write_private_message,city,common_count,connections,contacts,counters,country,domain,education,has_mobile,last_seen,lists,nickname,online,online_mobile,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,sex,site,status,timezone,universities"));
+					, Is.EqualTo("bdate,can_access_closed,can_post,can_see_all_posts,can_see_audio,can_write_private_message,city,common_count,connections,contacts,counters,country,domain,education,first_name_abl,first_name_acc,first_name_dat,first_name_gen,first_name_ins,first_name_nom,has_mobile,is_closed,last_name_abl,last_name_acc,last_name_dat,last_name_gen,last_name_ins,last_name_nom,last_seen,lists,nickname,online,online_mobile,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,sex,site,status,timezone,universities"));
 
 			// parse test
 			Assert.That(UsersFields.FromJsonString("nickname"), Is.EqualTo(UsersFields.Nickname));
@@ -299,7 +313,22 @@ namespace VkNet.Tests.Enum.Filters
 			Assert.That(UsersFields.FromJsonString("relatives"), Is.EqualTo(UsersFields.Relatives));
 			Assert.That(UsersFields.FromJsonString("counters"), Is.EqualTo(UsersFields.Counters));
 
-			Assert.That(UsersFields.FromJsonString("nickname,domain,sex,bdate,city,country,timezone,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,has_mobile,contacts,education,online,online_mobile,lists,relation,last_seen,status,can_write_private_message,can_see_all_posts,can_post,universities,connections,site,schools,can_see_audio,common_count,relatives,counters")
+			Assert.That(UsersFields.FromJsonString("can_access_closed"), Is.EqualTo(UsersFields.CanAccessClosed));
+			Assert.That(UsersFields.FromJsonString("is_closed"), Is.EqualTo(UsersFields.IsClosed));
+			Assert.That(UsersFields.FromJsonString("first_name_nom"), Is.EqualTo(UsersFields.FirstNameNom));
+			Assert.That(UsersFields.FromJsonString("first_name_gen"), Is.EqualTo(UsersFields.FirstNameGen));
+			Assert.That(UsersFields.FromJsonString("first_name_dat"), Is.EqualTo(UsersFields.FirstNameDat));
+			Assert.That(UsersFields.FromJsonString("first_name_acc"), Is.EqualTo(UsersFields.FirstNameAcc));
+			Assert.That(UsersFields.FromJsonString("first_name_ins"), Is.EqualTo(UsersFields.FirstNameIns));
+			Assert.That(UsersFields.FromJsonString("first_name_abl"), Is.EqualTo(UsersFields.FirstNameAbl));
+			Assert.That(UsersFields.FromJsonString("last_name_nom"), Is.EqualTo(UsersFields.LastNameNom));
+			Assert.That(UsersFields.FromJsonString("last_name_gen"), Is.EqualTo(UsersFields.LastNameGen));
+			Assert.That(UsersFields.FromJsonString("last_name_dat"), Is.EqualTo(UsersFields.LastNameDat));
+			Assert.That(UsersFields.FromJsonString("last_name_acc"), Is.EqualTo(UsersFields.LastNameAcc));
+			Assert.That(UsersFields.FromJsonString("last_name_ins"), Is.EqualTo(UsersFields.LastNameIns));
+			Assert.That(UsersFields.FromJsonString("last_name_abl"), Is.EqualTo(UsersFields.LastNameAbl));
+
+			Assert.That(UsersFields.FromJsonString("bdate,can_access_closed,can_post,can_see_all_posts,can_see_audio,can_write_private_message,city,common_count,connections,contacts,counters,country,domain,education,first_name_abl,first_name_acc,first_name_dat,first_name_gen,first_name_ins,first_name_nom,has_mobile,is_closed,last_name_abl,last_name_acc,last_name_dat,last_name_gen,last_name_ins,last_name_nom,last_seen,lists,nickname,online,online_mobile,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,sex,site,status,timezone,universities")
 					, Is.EqualTo(UsersFields.All));
 		}
 

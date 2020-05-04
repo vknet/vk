@@ -172,6 +172,19 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public AudioGetCatalogResult GetCatalog(uint? count, bool? extended, UsersFields fields = null)
+		{
+			var parameters = new VkParameters
+			{
+				{ "extended", extended },
+				{ "count", count },
+				{ "fields", fields }
+			};
+
+			return _vk.Call<AudioGetCatalogResult>("audio.getCatalog", parameters);
+		}
+
+		/// <inheritdoc />
 		public long GetCount(long ownerId)
 		{
 			var parameters = new VkParameters

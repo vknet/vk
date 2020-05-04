@@ -45,6 +45,9 @@ namespace VkNet.Abstractions
 		/// <inheritdoc cref="IAudioCategoryAsync.GetByIdAsync"/>
 		IEnumerable<Audio> GetById(IEnumerable<string> audios);
 
+		/// <inheritdoc cref="IAudioCategoryAsync.GetCatalogAsync"/>
+		AudioGetCatalogResult GetCatalog(uint? count, bool? extended, UsersFields fields = null);
+
 		/// <inheritdoc cref="IAudioCategoryAsync.GetCountAsync"/>
 		long GetCount(long ownerId);
 

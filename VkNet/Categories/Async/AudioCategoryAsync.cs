@@ -82,6 +82,12 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public Task<AudioGetCatalogResult> GetCatalogAsync(uint? count, bool? extended, UsersFields fields = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetCatalog(count, extended, fields));
+		}
+
+		/// <inheritdoc />
 		public Task<long> GetCountAsync(long ownerId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetCount(ownerId));

@@ -32,7 +32,7 @@ namespace VkNet.Model
 		/// Обложка альбома.
 		/// </summary>
 		[JsonProperty("thumb")]
-		public AudioCover Cover { get; set; }
+		public AudioCover Thumb { get; set; }
 
 		/// <summary>
 		/// Ключ доступа.
@@ -54,8 +54,8 @@ namespace VkNet.Model
 				Id = response["id"],
 				OwnerId = response["owner_id"],
 				Title = response["title"],
-				Cover = response["thumb"],
-				AccessKey = response["access_key"]
+				Thumb = response["thumb"],
+				AccessKey = response["access_key"],
 			};
 		}
 
