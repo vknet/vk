@@ -13,7 +13,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		[NotNull]
 		private readonly IEnumerable<IAuthorizationForm> _authorizationForms;
 
-		/// <inheritdoc />
+		/// <inheritdoc cref="AuthorizationFormFactory"/>
 		public AuthorizationFormFactory([NotNull] IEnumerable<IAuthorizationForm> authorizationForms)
 		{
 			_authorizationForms = authorizationForms;

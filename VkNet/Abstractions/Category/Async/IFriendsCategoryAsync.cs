@@ -267,6 +267,7 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<AddFriendStatus> AddAsync(long userId, string text = "", bool? follow = null);
 
+		/// <inheritdoc cref="IFriendsCategoryAsync.AddAsync(long,string,bool?)" />
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<AddFriendStatus> AddAsync(long userId, string text = "", bool? follow = null, long? captchaSid = null,
 										string captchaKey = null);

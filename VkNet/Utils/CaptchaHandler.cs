@@ -16,7 +16,7 @@ namespace VkNet.Utils
 
 		private readonly ILogger<CaptchaHandler> _logger;
 
-		/// <inheritdoc />
+		/// <inheritdoc cref="CaptchaHandler"/>
 		public CaptchaHandler(ILogger<CaptchaHandler> logger, ICaptchaSolver captchaSolver)
 		{
 			_logger = logger;

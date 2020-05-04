@@ -85,6 +85,7 @@ namespace VkNet.Categories
 				});
 		}
 
+		/// <inheritdoc />
 		public ReadOnlyCollection<EventSticker> GiveEventSticker(IEnumerable<ulong> userIds, ulong achievementId)
 		{
 			return _vk.Call<ReadOnlyCollection<EventSticker>>("secure.giveEventSticker",

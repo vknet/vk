@@ -18,7 +18,7 @@ namespace VkNet.Utils
 	{
 		private readonly ILogger<RestClient> _logger;
 
-		/// <inheritdoc />
+		/// <inheritdoc cref="RestClient"/>
 		public RestClient(ILogger<RestClient> logger)
 		{
 			_logger = logger;

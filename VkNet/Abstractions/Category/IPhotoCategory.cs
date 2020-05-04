@@ -45,6 +45,7 @@ namespace VkNet.Abstractions
 		/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string)"/>
 		Photo SaveOwnerPhoto(string response);
 
+		/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string,long?,string)"/>
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey);
 

@@ -2,6 +2,9 @@ using System;
 
 namespace VkNet.Enums.SafetyEnums
 {
+	/// <summary>
+	/// Действие статуса заказа.
+	/// </summary>
 	[Serializable]
 	public sealed class OrderStateAction: SafetyEnum<OrderStateAction>
 	{

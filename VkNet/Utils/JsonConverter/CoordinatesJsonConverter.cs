@@ -6,6 +6,7 @@ using VkNet.Model;
 
 namespace VkNet.Utils.JsonConverter
 {
+	/// <inheritdoc />
 	public class CoordinatesJsonConverter : Newtonsoft.Json.JsonConverter
 	{
 		/// <inheritdoc />

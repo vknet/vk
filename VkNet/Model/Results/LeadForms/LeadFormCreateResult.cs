@@ -15,9 +15,15 @@ namespace VkNet.Model
 		[JsonProperty("form_id")]
 		public long? FormId { get; set; }
 
+		/// <summary>
+		/// Название.
+		/// </summary>
 		[JsonProperty("title")]
 		public string Title { get; set; }
 
+		/// <summary>
+		/// Описание.
+		/// </summary>
 		[JsonProperty("description")]
 		public string Description { get; set; }
 
@@ -30,6 +36,9 @@ namespace VkNet.Model
 		[JsonProperty("policy_link_url")]
 		public string PolicyLinkUrl { get; set; }
 
+		/// <summary>
+		/// Вопросы.
+		/// </summary>
 		[JsonProperty("questions")]
 		public LeadFormQuestion[] Questions { get; set; }
 

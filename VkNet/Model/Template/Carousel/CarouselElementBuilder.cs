@@ -44,10 +44,15 @@ namespace VkNet.Model.Template.Carousel
 
 		private const string TooMuchButtonsExceptionTemplate = "Количество кнопок не должно превышать трех";
 
+		/// <inheritdoc />
 		public CarouselElementBuilder() : this(Button)
 		{
 		}
 
+		/// <summary>
+		/// Тип.
+		/// </summary>
+		/// <param name="type"></param>
 		public CarouselElementBuilder(string type)
 		{
 			_type = type;

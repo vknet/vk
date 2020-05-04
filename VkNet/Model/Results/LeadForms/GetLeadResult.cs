@@ -5,6 +5,9 @@ using Newtonsoft.Json.Converters;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Lead.
+	/// </summary>
 	[Serializable]
 	public class GetLeadResult
 	{

@@ -4,6 +4,9 @@ using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums
 {
+	/// <summary>
+	/// Статус заказа.
+	/// </summary>
 	[Serializable]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public sealed class OrderState : SafetyEnum<OrderState>

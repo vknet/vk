@@ -37,7 +37,7 @@ namespace VkNet.Utils
 
 		private IApiAuthParams _authParams;
 
-		/// <inheritdoc />
+		/// <inheritdoc cref="Browser"/>
 		public Browser([CanBeNull] ILogger<Browser> logger,
 						IVkApiVersionManager versionManager,
 						IWebProxy proxy,

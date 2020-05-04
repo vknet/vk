@@ -48,6 +48,7 @@ namespace VkNet.Abstractions
 		/// <inheritdoc cref="IFriendsCategoryAsync.AddAsync(long, string, bool?)" />
 		AddFriendStatus Add(long userId, string text = "", bool? follow = null);
 
+		/// <inheritdoc cref="IFriendsCategoryAsync.AddAsync(long, string, bool?,long?,string)" />
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		AddFriendStatus Add(long userId, string text = "", bool? follow = null, long? captchaSid = null, string captchaKey = null);
 

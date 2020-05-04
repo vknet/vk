@@ -4,6 +4,9 @@ using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums
 {
+	/// <summary>
+	/// Тип актиновсти в диалоге.
+	/// </summary>
 	[Serializable]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public class MessageActivityType : SafetyEnum<MessageActivityType>

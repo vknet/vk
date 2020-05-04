@@ -78,9 +78,10 @@ namespace VkNet.Abstractions
 		VkCollection<User> GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null,
 											NameCase nameCase = null);
 
-		/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync" />
+		/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long)" />
 		bool Invite(long groupId, long userId);
 
+		/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long,long?,string)" />
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		bool Invite(long groupId, long userId, long? captchaSid = null, string captchaKey = null);
 

@@ -241,6 +241,7 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<Photo> SaveOwnerPhotoAsync(string response);
 
+		/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string)" />
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<Photo> SaveOwnerPhotoAsync(string response, long? captchaSid, string captchaKey);
 

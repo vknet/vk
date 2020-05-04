@@ -4,6 +4,9 @@ using VkNet.Utils;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Результат метода Ads.UploadUrl
+	/// </summary>
 	[Serializable]
 	public class UploadUrlResult
 	{
