@@ -5,7 +5,7 @@ using VkNet.Enums;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Pages
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]

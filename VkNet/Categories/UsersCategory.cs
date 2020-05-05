@@ -211,7 +211,7 @@ namespace VkNet.Categories
 			}).ToVkCollectionOf<User>(selector: x => x);
 		}
 
-		/// <inheritdoc />
+		/// <inheritdoc cref="User" />
 		[Pure]
 		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null)
 		{
@@ -221,7 +221,7 @@ namespace VkNet.Categories
 			return users.FirstOrDefault();
 		}
 
-		/// <inheritdoc />
+		/// <inheritdoc cref="User" />
 		public User Get([NotNull]
 						string screenName
 						, ProfileFields fields = null

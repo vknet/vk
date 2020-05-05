@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reflection;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
@@ -204,12 +203,14 @@ namespace VkNet.Categories
 			{
 				if (userIds != null)
 				{
-					if (userIds.Any(id => id < 1))
+					var enumerable = userIds as long[] ?? userIds.ToArray();
+
+					if (enumerable.Any(id => id < 1))
 					{
 						throw new ArgumentException("Идентификатор пользователя должен быть больше 0");
 					}
 
-					var tempList = userIds.ToList();
+					var tempList = enumerable.ToList();
 					tempList.Add(userId.Value);
 					userIds = tempList;
 				} else

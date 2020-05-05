@@ -3,7 +3,7 @@ using System.Linq;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.AppWidgets
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]

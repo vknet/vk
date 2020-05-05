@@ -29,7 +29,7 @@ namespace VkNet.Utils
 		/// <param name="args">Параметры конструктора</param>
 		/// <typeparam name="TResult">Возвращаемый тип</typeparam>
 		/// <returns>Экземпляр класса <typeparamref name="TResult"/></returns>
-		internal static TResult CreateInstance<TResult>(Func<ConstructorInfo, bool> constructorFilter, params object[] args)
+		private static TResult CreateInstance<TResult>(Func<ConstructorInfo, bool> constructorFilter, params object[] args)
 			where TResult : class
 		{
 			return CreateInstance<TResult>(typeof(TResult), constructorFilter, args);
@@ -38,6 +38,7 @@ namespace VkNet.Utils
 		/// <summary>
 		/// Создать экземпляр объекта
 		/// </summary>
+		/// <param name="obj"></param>
 		/// <param name="constructorFilter">Фильтр конструктора объекта</param>
 		/// <param name="args">Параметры конструктора</param>
 		/// <typeparam name="TResult">Возвращаемый тип</typeparam>

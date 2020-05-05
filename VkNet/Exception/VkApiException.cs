@@ -29,7 +29,6 @@ namespace VkNet.Exception
 		/// <summary>
 		/// Инициализирует новый экземпляр класса VkApiException
 		/// </summary>
-		/// <param name="message"> Описание исключения. </param>
 		public VkApiException(VkError error) : base(error.ErrorMessage)
 		{
 			ErrorCode = error.ErrorCode;

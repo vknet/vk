@@ -11,7 +11,7 @@ using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Video
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]

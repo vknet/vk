@@ -4,7 +4,7 @@ using VkNet.Categories;
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Status
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using VkNet.Model.LeadForms;
 using VkNet.Tests.Infrastructure;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.LeadForms
 {
 	[TestFixture]
 	public class LeadFormsTests : CategoryBaseTest

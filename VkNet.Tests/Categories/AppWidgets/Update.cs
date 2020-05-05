@@ -3,7 +3,7 @@ using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.AppWidgets
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]

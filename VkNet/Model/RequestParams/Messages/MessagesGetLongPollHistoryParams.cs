@@ -10,6 +10,9 @@ namespace VkNet.Model.RequestParams
 	[Serializable]
 	public class MessagesGetLongPollHistoryParams
 	{
+		/// <summary>
+		/// Лимит ивентов.
+		/// </summary>
 		[JsonIgnore]
 		public const long EVENTS_LIMIT_MIN = 1000;
 

@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Tests.Models
 {

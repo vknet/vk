@@ -13,7 +13,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 	{
 		private readonly IAuthorizationFormHtmlParser _htmlParser;
 
-		/// <inheritdoc />
+		/// <inheritdoc cref="AbstractAuthorizationForm"/>
 		protected AbstractAuthorizationForm(IAuthorizationFormHtmlParser htmlParser)
 		{
 			_htmlParser = htmlParser;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Newtonsoft.Json.Converters;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;

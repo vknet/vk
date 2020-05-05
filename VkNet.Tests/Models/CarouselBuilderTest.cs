@@ -2,7 +2,6 @@ using System;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
-using VkNet.Model.Keyboard;
 using VkNet.Model.Template.Carousel;
 
 namespace VkNet.Tests.Models

@@ -230,9 +230,9 @@ namespace VkNet.Tests.Categories.Messages
 					null)
 				.FirstOrDefault();
 
-			Assert.That(msg.Id, Is.EqualTo(265999));
+			Assert.That(msg?.Id, Is.EqualTo(265999));
 
-			Assert.That(msg.Date,
+			Assert.That(msg?.Date,
 				Is.EqualTo(new DateTime(2020,
 					2,
 					12,
@@ -241,9 +241,9 @@ namespace VkNet.Tests.Categories.Messages
 					42,
 					DateTimeKind.Utc)));
 
-			Assert.That(msg.Type, Is.EqualTo(MessageType.Sended));
-			Assert.That(msg.PeerId, Is.EqualTo(228907945));
-			Assert.That(msg.Attachments.Count, Is.EqualTo(1));
+			Assert.That(msg?.Type, Is.EqualTo(MessageType.Sended));
+			Assert.That(msg?.PeerId, Is.EqualTo(228907945));
+			Assert.That(msg?.Attachments.Count, Is.EqualTo(1));
 		}
 
 		[Test]

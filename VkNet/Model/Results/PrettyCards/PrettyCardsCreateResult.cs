@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Результат метода PrettyCardds.Create
+	/// </summary>
 	[Serializable]
 	public class PrettyCardsCreateResult
 	{

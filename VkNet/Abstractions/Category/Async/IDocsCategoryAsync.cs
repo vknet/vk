@@ -109,6 +109,7 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title, string tags = null);
 
+		/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string)" />
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title, string tags = null, long? captchaSid = null,
 														string captchaKey = null);
@@ -159,6 +160,7 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<long> AddAsync(long ownerId, long docId, string accessKey = null);
 
+		/// <inheritdoc cref="IDocsCategoryAsync.AddAsync(long,long,string)" />
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<long> AddAsync(long ownerId, long docId, string accessKey = null, long? captchaSid = null, string captchaKey = null);
 

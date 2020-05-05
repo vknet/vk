@@ -22,14 +22,14 @@ namespace VkNet.Model.Template
 		/// <inheritdoc />
 		public List<CarouselElement> Elements { get; private set; } = new List<CarouselElement>();
 
-		private string TooMuchElementsExceptionTemplate = "Максимальное количество элементов в шаблоне 10";
+		private string _tooMuchElementsExceptionTemplate = "Максимальное количество элементов в шаблоне 10";
 
 		/// <inheritdoc />
 		public ITemplateBuilder AddTemplateElement(CarouselElement element)
 		{
 			if(Elements.Count >= 10)
 			{
-				throw new TooMuchElementsInTemplateException(TooMuchElementsExceptionTemplate);
+				throw new TooMuchElementsInTemplateException(_tooMuchElementsExceptionTemplate);
 			}
 
 			Elements.Add(element);

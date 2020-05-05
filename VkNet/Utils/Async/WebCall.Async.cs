@@ -101,42 +101,36 @@ namespace VkNet.Utils
 		/// <exception cref="VkApiException"> Response is null. </exception>
 		private async Task<WebCallResult> MakeRequestAsync(HttpResponseMessage response, Uri uri, IWebProxy webProxy)
 		{
-			using (var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false))
+			using var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+
+			if (stream == null)
 			{
-				if (stream == null)
-				{
-					throw new VkApiException("Response is null.");
-				}
+				throw new VkApiException("Response is null.");
+			}
 
-				var encoding = Encoding.UTF8;
-				_result.SaveResponse(response.RequestMessage.RequestUri, stream, encoding);
+			var encoding = Encoding.UTF8;
+			_result.SaveResponse(response.RequestMessage.RequestUri, stream, encoding);
 
-				var cookies = _result.Cookies.Container;
+			var cookies = _result.Cookies.Container;
 
-				_result.SaveCookies(cookies.GetCookies(uri));
+			_result.SaveCookies(cookies.GetCookies(uri));
 
-				if (IsAbsoluteUrl(response.Headers.Location?.ToString()))
-				{
-					return response.StatusCode == HttpStatusCode.Redirect
-						? await RedirectToAsync(response.Headers.Location.AbsoluteUri, webProxy).ConfigureAwait(false)
-						: _result;
-				}
-
+			if (IsAbsoluteUrl(response.Headers.Location?.ToString()))
+			{
 				return response.StatusCode == HttpStatusCode.Redirect
-					? await RedirectToAsync(Url.Combine(_result.RequestUrl.GetLeftPart(UriPartial.Authority), response.Headers.Location.OriginalString), webProxy)
-						.ConfigureAwait(false)
+					? await RedirectToAsync(response.Headers.Location?.AbsoluteUri, webProxy).ConfigureAwait(false)
 					: _result;
 			}
+
+			return response.StatusCode == HttpStatusCode.Redirect
+				? await RedirectToAsync(Url.Combine(_result.RequestUrl.GetLeftPart(UriPartial.Authority), response.Headers.Location.OriginalString), webProxy)
+					.ConfigureAwait(false)
+				: _result;
 		}
 
-		private bool IsAbsoluteUrl(string url)
+		private static bool IsAbsoluteUrl(string url)
 		{
-			if (string.IsNullOrWhiteSpace(url))
-			{
-				return false;
-			}
-
-			return Uri.TryCreate(url, UriKind.Absolute, out _);
+			return !string.IsNullOrWhiteSpace(url) && Uri.TryCreate(url, UriKind.Absolute, out var _);
 		}
 
 		private string GetDomain(Uri uri)

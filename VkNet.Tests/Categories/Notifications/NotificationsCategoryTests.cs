@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Notifications
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]

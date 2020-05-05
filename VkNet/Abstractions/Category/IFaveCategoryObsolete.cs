@@ -44,7 +44,7 @@ namespace VkNet.Abstractions
 		[Obsolete(ObsoleteText.Obsolete)]
 		bool RemoveGroup(long groupId);
 
-		/// <inheritdoc cref="IFaveCategoryAsync.AddLinkAsync" />
+		/// <inheritdoc cref="IFaveCategoryAsync.AddLinkAsync(Uri,string)" />
 		[Obsolete(ObsoleteText.Obsolete + "Используйте вместо него bool AddLink(Uri link)")]
 		bool AddLink(Uri link, string text);
 

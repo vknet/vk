@@ -79,7 +79,7 @@ namespace VkNet
 		public IRestClient RestClient;
 	#pragma warning restore S1104 // Fields should not have public accessibility
 
-		/// <inheritdoc />
+		/// <inheritdoc cref="VkApi" />
 		public VkApi(ILogger<VkApi> logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
 		{
 			var container = new ServiceCollection();
@@ -106,7 +106,7 @@ namespace VkNet
 			Initialization(_serviceProvider);
 		}
 
-		/// <inheritdoc />
+		/// <inheritdoc cref="VkApi" />
 		public VkApi(IServiceCollection serviceCollection = null)
 		{
 			var container = serviceCollection ?? new ServiceCollection();

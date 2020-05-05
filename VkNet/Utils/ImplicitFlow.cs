@@ -37,7 +37,7 @@ namespace VkNet.Utils
 
 		private readonly IVkAuthorization<ImplicitFlowPageType> _vkAuthorization;
 
-		/// <inheritdoc />
+		/// <inheritdoc cref="ImplicitFlow"/>
 		public ImplicitFlow([CanBeNull] ILogger<ImplicitFlow> logger,
 							IVkApiVersionManager versionManager,
 							IAuthorizationFormFactory authorizationFormsFactory,

@@ -19,10 +19,10 @@ namespace VkNet.Tests.Categories.Audio
 			ReadCategoryJsonPath(nameof(Api.Audio.GetBroadcastList));
 
 			var result = Api.Audio.GetBroadcastList().ToList();
-			var Object = result.FirstOrDefault();
+			var firstOrDefault = result.FirstOrDefault();
 
 			Assert.IsNotEmpty(result);
-			Assert.NotNull(Object);
+			Assert.NotNull(firstOrDefault);
 		}
 	}
 }

@@ -422,6 +422,7 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<bool> InviteAsync(long groupId, long userId);
 
+		/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long)" />
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<bool> InviteAsync(long groupId, long userId, long? captchaSid, string captchaKey);
 

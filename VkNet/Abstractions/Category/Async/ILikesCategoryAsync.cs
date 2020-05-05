@@ -82,6 +82,7 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<long> DeleteAsync(LikeObjectType type, long itemId, long? ownerId = null);
 
+		/// <inheritdoc cref="ILikesCategoryAsync.DeleteAsync(LikeObjectType,long,long?)" />
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<long> DeleteAsync(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null);
 

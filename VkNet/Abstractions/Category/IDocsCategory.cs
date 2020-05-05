@@ -27,6 +27,7 @@ namespace VkNet.Abstractions
 		/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string)"/>
 		ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null);
 
+		/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string,long?,string)"/>
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
 											string captchaKey = null);
@@ -34,9 +35,10 @@ namespace VkNet.Abstractions
 		/// <inheritdoc cref="IDocsCategoryAsync.DeleteAsync"/>
 		bool Delete(long ownerId, long docId);
 
-		/// <inheritdoc cref="IDocsCategoryAsync.AddAsync"/>
+		/// <inheritdoc cref="IDocsCategoryAsync.AddAsync(long,long,string)"/>
 		long Add(long ownerId, long docId, string accessKey = null);
 
+		/// <inheritdoc cref="IDocsCategoryAsync.AddAsync(long,long,string,long?,string)"/>
 		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		long Add(long ownerId, long docId, string accessKey = null, long? captchaSid = null, string captchaKey = null);
 

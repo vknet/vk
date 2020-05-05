@@ -58,6 +58,9 @@ namespace VkNet.Model
 		[JsonProperty("fwd_messages")]
 		public ReadOnlyCollection<Message> ForwardMessages { get; set; }
 
+		/// <summary>
+		/// Идентификатор сообщения.
+		/// </summary>
 		[JsonProperty("conversation_message_id")]
 		public long ConversationMessageId { get; set; }
 
@@ -67,6 +70,9 @@ namespace VkNet.Model
 		[JsonProperty("text")]
 		public string Text { get; set; }
 
+		/// <summary>
+		/// Клавиатура.
+		/// </summary>
 		[JsonProperty("keyboard")]
 		public MessageKeyboard Keyboard { get; set; }
 	}

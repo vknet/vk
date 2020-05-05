@@ -3,7 +3,7 @@ using NUnit.Framework;
 using VkNet.Model.RequestParams.Notes;
 using VkNet.Tests.Infrastructure;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Notes
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]
