@@ -16,7 +16,7 @@
 		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<VersionPrefix>1.52.0</VersionPrefix>
+		<VersionPrefix>1.53.0</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -37,7 +37,7 @@
 			Обсуждение в Telegram: http://bit.ly/2rvEOWD
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: http://bit.ly/2AZWJKc
+			Список изменений: https://bit.ly/3b3soK5
 		</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -56,8 +56,8 @@
 		<PackageReference Include="Flurl" Version="2.8.2" />
 		<PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.5.0.15942" PrivateAssets="all" />
-		<PackageReference Include="JetBrains.Annotations" Version="2019.1.3" PrivateAssets="all" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.6.1.17183" PrivateAssets="all" />
+		<PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="all" />
 	</ItemGroup>
     <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
 	    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.1" />
