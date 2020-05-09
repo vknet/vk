@@ -281,6 +281,7 @@ namespace VkNet.Tests.Categories.Fave
 
 			var wallPost = posts.WallPosts.FirstOrDefault();
 
+			Assert.IsNotNull(wallPost);
 			Assert.That(wallPost.Id, Is.EqualTo(1258365));
 			Assert.That(wallPost.FromId, Is.EqualTo(-30666517));
 			Assert.That(wallPost.OwnerId, Is.EqualTo(-30666517));
