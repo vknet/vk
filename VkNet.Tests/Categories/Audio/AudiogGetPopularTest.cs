@@ -14,7 +14,7 @@ namespace VkNet.Tests.Categories.Audio
 		[Test]
 		public void GetGetPopularTest()
 		{
-			Url = "https://api.vk.com/method/audio.getPopular";
+			Url = "https://api.vk.me/method/audio.getPopular";
 
 			ReadCategoryJsonPath(nameof(Api.Audio.GetPopular));
 

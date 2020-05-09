@@ -14,7 +14,7 @@ namespace VkNet.Tests.Categories.Audio
 		[Test]
 		public void GetRecommendationsTest()
 		{
-			Url = "https://api.vk.com/method/audio.getRecommendations";
+			Url = "https://api.vk.me/method/audio.getRecommendations";
 
 			ReadCategoryJsonPath(nameof(Api.Audio.GetRecommendations));
 

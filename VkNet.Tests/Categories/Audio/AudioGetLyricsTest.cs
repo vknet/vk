@@ -13,7 +13,7 @@ namespace VkNet.Tests.Categories.Audio
 		[Test]
 		public void GetLyricsTest()
 		{
-			Url = "https://api.vk.com/method/audio.getLyrics";
+			Url = "https://api.vk.me/method/audio.getLyrics";
 
 			ReadCategoryJsonPath(nameof(Api.Audio.GetLyrics));
 

@@ -14,7 +14,7 @@ namespace VkNet.Tests.Categories.Audio
 		[Test]
 		public void CreatePlaylistTest()
 		{
-			Url = "https://api.vk.com/method/audio.createPlaylist";
+			Url = "https://api.vk.me/method/audio.createPlaylist";
 
 			ReadCategoryJsonPath(nameof(Api.Audio.CreatePlaylist));
 
