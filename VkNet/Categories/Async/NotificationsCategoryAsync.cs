@@ -16,7 +16,7 @@ namespace VkNet.Categories
 																		, long? endTime = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					Get(count: count, startFrom: startFrom, filters: filters, startTime: startTime, endTime: endTime));
+					Get(count, startFrom, filters, startTime, endTime));
 		}
 
 		/// <inheritdoc />

@@ -29,13 +29,13 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public StreamingServerUrl GetServerUrl()
 		{
-			return _vk.Call<StreamingServerUrl>(methodName: "streaming.getServerUrl", parameters: VkParameters.Empty);
+			return _vk.Call<StreamingServerUrl>("streaming.getServerUrl", VkParameters.Empty);
 		}
 
 		/// <inheritdoc />
 		public StreamingSettings GetSettings()
 		{
-			return _vk.Call<StreamingSettings>(methodName: "streaming.getSettings", parameters: VkParameters.Empty);
+			return _vk.Call<StreamingSettings>("streaming.getSettings", VkParameters.Empty);
 		}
 
 		/// <inheritdoc />
@@ -44,8 +44,8 @@ namespace VkNet.Categories
 															, DateTime? startTime = null
 															, DateTime? endTime = null)
 		{
-			var result = _vk.Call<ReadOnlyCollection<StreamingStats>>(methodName: "streaming.getStats"
-					, parameters: new VkParameters
+			var result = _vk.Call<ReadOnlyCollection<StreamingStats>>("streaming.getStats"
+					, new VkParameters
 					{
 							{ "type", type }
 							, { "interval", interval }
@@ -59,7 +59,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool SetSettings(MonthlyLimit monthlyTier)
 		{
-			return _vk.Call<bool>(methodName: "streaming.setSettings", parameters: new VkParameters { { "monthly_tier", monthlyTier } });
+			return _vk.Call<bool>("streaming.setSettings", new VkParameters { { "monthly_tier", monthlyTier } });
 		}
 	}
 }

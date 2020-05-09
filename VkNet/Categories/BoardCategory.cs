@@ -22,7 +22,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call(methodName: "board.getTopics", new VkParameters
+			return _vk.Call("board.getTopics", new VkParameters
 				{
 					{ "group_id", @params.GroupId }
 					, { "topic_ids", @params.TopicIds }
@@ -32,14 +32,14 @@ namespace VkNet.Categories
 					, { "extended", @params.Extended }
 					, { "preview", @params.Preview }
 					, { "preview_length", @params.PreviewLength }
-				}, skipAuthorization: skipAuthorization)
+				}, skipAuthorization)
 					.ToVkCollectionOf<Topic>(selector: x => x);
 		}
 
 		/// <inheritdoc />
 		public TopicsFeed GetComments(BoardGetCommentsParams @params, bool skipAuthorization = false)
 		{
-			var response = _vk.Call(methodName: "board.getComments", new VkParameters
+			var response = _vk.Call("board.getComments", new VkParameters
 			{
 				{ "group_id", @params.GroupId }
 				, { "topic_id", @params.TopicId }
@@ -50,7 +50,7 @@ namespace VkNet.Categories
 				, { "sort", @params.Sort }
 				, { "preview_length", @params.PreviewLength }
 				, { "extended", @params.Extended }
-			}, skipAuthorization: skipAuthorization);
+			}, skipAuthorization);
 
 			var result = new TopicsFeed
 			{
@@ -66,7 +66,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long AddTopic(BoardAddTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.addTopic", new VkParameters
+			return _vk.Call("board.addTopic", new VkParameters
 			{
 				{ "group_id", @params.GroupId },
 				{ "title", @params.Title },
@@ -79,7 +79,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool DeleteTopic(BoardTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.deleteTopic", parameters: new VkParameters
+			return _vk.Call("board.deleteTopic", new VkParameters
 			{
 				{ "group_id", @params.GroupId },
 				{ "topic_id", @params.TopicId }
@@ -89,7 +89,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool CloseTopic(BoardTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.closeTopic", parameters: new VkParameters
+			return _vk.Call("board.closeTopic", new VkParameters
 			{
 				{ "group_id", @params.GroupId },
 				{ "topic_id", @params.TopicId }
@@ -99,7 +99,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool OpenTopic(BoardTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.openTopic", parameters: new VkParameters
+			return _vk.Call("board.openTopic", new VkParameters
 			{
 				{ "group_id", @params.GroupId },
 				{ "topic_id", @params.TopicId }
@@ -109,7 +109,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool FixTopic(BoardTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.fixTopic", parameters: new VkParameters
+			return _vk.Call("board.fixTopic", new VkParameters
 			{
 				{ "group_id", @params.GroupId },
 				{ "topic_id", @params.TopicId }
@@ -119,7 +119,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool UnFixTopic(BoardTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.unfixTopic", parameters: new VkParameters
+			return _vk.Call("board.unfixTopic", new VkParameters
 			{
 				{ "group_id", @params.GroupId },
 				{ "topic_id", @params.TopicId }
@@ -129,7 +129,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool EditTopic(BoardEditTopicParams @params)
 		{
-			return _vk.Call(methodName: "board.editTopic", parameters: new VkParameters
+			return _vk.Call("board.editTopic", new VkParameters
 			{
 				{ "group_id", @params.GroupId },
 				{ "topic_id", @params.TopicId },
@@ -140,7 +140,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long CreateComment(BoardCreateCommentParams @params)
 		{
-			return _vk.Call(methodName: "board.createComment", parameters: new VkParameters
+			return _vk.Call("board.createComment", new VkParameters
 			{
 				{ "group_id", @params.GroupId },
 				{ "topic_id", @params.TopicId },
@@ -155,7 +155,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool DeleteComment(BoardCommentParams @params)
 		{
-			return _vk.Call(methodName: "board.deleteComment", parameters: new VkParameters
+			return _vk.Call("board.deleteComment", new VkParameters
 			{
 				{ "group_id", @params.GroupId },
 				{ "topic_id", @params.TopicId },
@@ -166,7 +166,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool EditComment(BoardEditCommentParams @params)
 		{
-			return _vk.Call(methodName: "board.editComment", parameters: new VkParameters
+			return _vk.Call("board.editComment", new VkParameters
 			{
 				{ "group_id", @params.GroupId },
 				{ "topic_id", @params.TopicId },
@@ -179,7 +179,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool RestoreComment(BoardCommentParams @params)
 		{
-			return _vk.Call<bool>(methodName: "board.restoreComment", parameters: new VkParameters
+			return _vk.Call<bool>("board.restoreComment", new VkParameters
 			{
 				{ "group_id", @params.GroupId },
 				{ "topic_id", @params.TopicId },

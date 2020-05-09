@@ -24,7 +24,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<SearchHintsItem> GetHints(SearchGetHintsParams @params)
 		{
-			return _vk.Call<VkCollection<SearchHintsItem>>(methodName: "search.getHints", new VkParameters
+			return _vk.Call<VkCollection<SearchHintsItem>>("search.getHints", new VkParameters
 			{
 				{ "q", @params.Query }
 				, { "offset", @params.Offset }

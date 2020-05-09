@@ -29,8 +29,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long Add(PlacesAddParams placesAddParams)
 		{
-			return _vk.Call(methodName: "places.add",
-				parameters: new VkParameters
+			return _vk.Call("places.add",
+				new VkParameters
 				{
 					{ "title", placesAddParams.Title },
 					{ "latitude", placesAddParams.Latitude },
@@ -45,8 +45,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long Checkin(PlacesCheckinParams placesCheckinParams)
 		{
-			return _vk.Call<long>(methodName: "places.checkin",
-				parameters: new VkParameters
+			return _vk.Call<long>("places.checkin",
+				new VkParameters
 				{
 					{ "text", placesCheckinParams.Text },
 					{ "services", placesCheckinParams.Services },
@@ -60,14 +60,14 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public ReadOnlyCollection<Place> GetById(IEnumerable<ulong> places)
 		{
-			return _vk.Call<ReadOnlyCollection<Place>>(methodName: "places.getById", parameters: new VkParameters { { "places", places } });
+			return _vk.Call<ReadOnlyCollection<Place>>("places.getById", new VkParameters { { "places", places } });
 		}
 
 		/// <inheritdoc />
 		public VkCollection<Checkin> GetCheckins(PlacesGetCheckinsParams placesGetCheckinsParams)
 		{
-			return _vk.Call<VkCollection<Checkin>>(methodName: "places.getCheckins",
-				parameters: new VkParameters
+			return _vk.Call<VkCollection<Checkin>>("places.getCheckins",
+				new VkParameters
 				{
 					{ "latitude", placesGetCheckinsParams.Latitude },
 					{ "longitude", placesGetCheckinsParams.Longitude },
@@ -84,14 +84,14 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public ReadOnlyCollection<PlaceType> GetTypes()
 		{
-			return _vk.Call<ReadOnlyCollection<PlaceType>>(methodName: "places.getTypes", parameters: VkParameters.Empty);
+			return _vk.Call<ReadOnlyCollection<PlaceType>>("places.getTypes", VkParameters.Empty);
 		}
 
 		/// <inheritdoc />
 		public VkCollection<Place> Search(PlacesSearchParams placesSearchParams)
 		{
-			return _vk.Call<VkCollection<Place>>(methodName: "places.search",
-				parameters: new VkParameters
+			return _vk.Call<VkCollection<Place>>("places.search",
+				new VkParameters
 				{
 					{ "q", placesSearchParams.Query },
 					{ "latitude", placesSearchParams.Latitude },

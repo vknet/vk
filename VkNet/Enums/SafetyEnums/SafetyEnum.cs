@@ -10,7 +10,7 @@ namespace VkNet.Enums.SafetyEnums
 	/// </summary>
 	/// <typeparam name="TFilter"> Непосредственно наследник </typeparam>
 	[Serializable]
-	[SuppressMessage(category: "ReSharper", checkId: "StaticMemberInGenericType")]
+	[SuppressMessage("ReSharper", "StaticMemberInGenericType")]
 	public abstract class SafetyEnum<TFilter>
 			: IEqualityComparer<SafetyEnum<TFilter>>, IEquatable<SafetyEnum<TFilter>>
 			where TFilter : SafetyEnum<TFilter>, new()
@@ -35,7 +35,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// <inheritdoc />
 		public bool Equals(SafetyEnum<TFilter> other)
 		{
-			return Equals(x: this, y: other);
+			return Equals(this, other);
 		}
 
 		/// <summary>
@@ -70,7 +70,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// </returns>
 		public static bool operator ==(SafetyEnum<TFilter> left, SafetyEnum<TFilter> right)
 		{
-			if (ReferenceEquals(objA: right, objB: left))
+			if (ReferenceEquals(right, left))
 			{
 				return true;
 			}

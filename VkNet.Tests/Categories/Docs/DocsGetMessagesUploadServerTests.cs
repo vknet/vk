@@ -15,7 +15,7 @@ namespace VkNet.Tests.Categories.Docs
 			Url = "https://api.vk.com/method/docs.getMessagesUploadServer";
 			ReadCategoryJsonPath("DocGetMessagesUploadServerResult");
 
-			var serverInfo = Api.Docs.GetMessagesUploadServer(504736359, type: DocMessageType.Graffiti);
+			var serverInfo = Api.Docs.GetMessagesUploadServer(504736359, DocMessageType.Graffiti);
 			Assert.IsNotEmpty(serverInfo.UploadUrl);
 		}
 	}

@@ -33,13 +33,13 @@ namespace VkNet.Categories
 					, { "auth_by_phone", authByPhone }
 			};
 
-			return _vk.Call(methodName: "auth.checkPhone", parameters: parameters);
+			return _vk.Call("auth.checkPhone", parameters);
 		}
 
 		/// <inheritdoc />
 		public string Signup(AuthSignupParams @params)
 		{
-			return _vk.Call(methodName: "auth.signup", new VkParameters
+			return _vk.Call("auth.signup", new VkParameters
 			{
 				{ "first_name", @params.FirstName }
 				, { "last_name", @params.LastName }
@@ -58,7 +58,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public AuthConfirmResult Confirm(AuthConfirmParams @params)
 		{
-			return _vk.Call(methodName: "auth.confirm", new VkParameters
+			return _vk.Call("auth.confirm", new VkParameters
 			{
 				{ "client_id", @params.ClientId },
 				{ "client_secret", @params.ClientSecret },
@@ -73,8 +73,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public string Restore(string phone, string lastName)
 		{
-			var response = _vk.Call(methodName: "auth.restore"
-					, parameters: new VkParameters
+			var response = _vk.Call("auth.restore"
+					, new VkParameters
 					{
 							{ "phone", phone }
 							, { "last_name", lastName }

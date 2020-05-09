@@ -28,8 +28,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public ReadOnlyCollection<StorageObject> Get(IEnumerable<string> keys = null, ulong? userId = null, bool? global = null)
 		{
-			return _vk.Call<ReadOnlyCollection<StorageObject>>(methodName: "storage.get"
-					, parameters: new VkParameters
+			return _vk.Call<ReadOnlyCollection<StorageObject>>("storage.get"
+					, new VkParameters
 					{
 							{ "keys", keys }
 							, { "user_id", userId }
@@ -40,8 +40,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public ReadOnlyCollection<string> GetKeys(ulong? userId = null, bool? global = null, ulong? offset = null, ulong? count = null)
 		{
-			return _vk.Call<ReadOnlyCollection<string>>(methodName: "storage.getKeys"
-					, parameters: new VkParameters
+			return _vk.Call<ReadOnlyCollection<string>>("storage.getKeys"
+					, new VkParameters
 					{
 							{ "user_id", userId }
 							, { "global", global }
@@ -53,8 +53,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool Set(string key, string value = null, ulong? userId = null, bool? global = null)
 		{
-			return _vk.Call<bool>(methodName: "storage.set"
-					, parameters: new VkParameters
+			return _vk.Call<bool>("storage.set"
+					, new VkParameters
 					{
 							{ "key", key }
 							, { "value", value }

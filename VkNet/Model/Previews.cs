@@ -66,7 +66,7 @@ namespace VkNet.Model
 
 			if (response.ContainsKey(key: "photo"))
 			{
-				if (Uri.IsWellFormedUriString(uriString: response[key: "photo"].ToString(), uriKind: UriKind.Absolute))
+				if (Uri.IsWellFormedUriString(response[key: "photo"].ToString(), UriKind.Absolute))
 				{
 					previews.Photo50 = response[key: "photo"];
 				} else

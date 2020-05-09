@@ -182,7 +182,7 @@ namespace VkNet.Categories
 
 			if (@params.Count <= 200)
 			{
-				parameters.Add(name: "count", nullableValue: @params.Count);
+				parameters.Add("count", @params.Count);
 			}
 
 			return _vk.Call<NewsSearchResult>("newsfeed.search", parameters);

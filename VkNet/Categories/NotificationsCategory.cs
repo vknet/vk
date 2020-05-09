@@ -31,8 +31,8 @@ namespace VkNet.Categories
 													, long? startTime = null
 													, long? endTime = null)
 		{
-			return _vk.Call<IEnumerable<NotificationGetResult>>(methodName: "notifications.get"
-					, parameters: new VkParameters
+			return _vk.Call<IEnumerable<NotificationGetResult>>("notifications.get"
+					, new VkParameters
 					{
 							{ "count", count }
 							, { "start_from", startFrom }
@@ -45,7 +45,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool MarkAsViewed()
 		{
-			return _vk.Call<bool>(methodName: "notifications.markAsViewed", parameters: VkParameters.Empty);
+			return _vk.Call<bool>("notifications.markAsViewed", VkParameters.Empty);
 		}
 	}
 }

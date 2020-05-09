@@ -12,7 +12,7 @@ namespace VkNet.Categories
 		public Task<bool> CheckPhoneAsync(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					CheckPhone(phone: phone, clientSecret: clientSecret, clientId: clientId, authByPhone: authByPhone));
+					CheckPhone(phone, clientSecret, clientId, authByPhone));
 		}
 
 		/// <inheritdoc />
@@ -30,7 +30,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<string> RestoreAsync(string phone, string lastName)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Restore(phone: phone, lastName: lastName));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Restore(phone, lastName));
 		}
 	}
 }
