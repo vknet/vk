@@ -316,7 +316,7 @@ namespace VkNet
 				throw new AccessTokenInvalidException(message);
 			}
 
-			var url = $"https://api.vk.com/method/{methodName}";
+			var url = methodName.Contains("audio") || methodName.Contains("messages") ? $"https://api.vk.me/method/{methodName}" : $"https://api.vk.com/method/{methodName}";
 			var answer = InvokeBase(url, parameters);
 
 			_logger?.LogTrace($"Uri = \"{url}\"");
