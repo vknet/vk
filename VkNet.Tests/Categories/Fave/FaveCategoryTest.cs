@@ -355,6 +355,7 @@ namespace VkNet.Tests.Categories.Fave
 
 			Assert.That(videos.Count, Is.EqualTo(2));
 			var video = videos.Videos.FirstOrDefault();
+			Assert.IsNotNull(video);
 			Assert.That(video.Id, Is.EqualTo(164841344));
 			Assert.That(video.OwnerId, Is.EqualTo(1));
 			Assert.That(video.Title, Is.EqualTo("This is SPARTA"));
