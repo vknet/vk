@@ -10,7 +10,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void DeleteConversation()
 		{
-			Url = "https://api.vk.com/method/messages.deleteConversation";
+			Url = "https://api.vk.me/method/messages.deleteConversation";
 			ReadCategoryJsonPath(nameof(DeleteConversation));
 
 			var result = Api.Messages.DeleteConversation(123, 123, 123);

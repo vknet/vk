@@ -10,7 +10,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void GetConversations()
 		{
-			Url = "https://api.vk.com/method/messages.getConversations";
+			Url = "https://api.vk.me/method/messages.getConversations";
 			ReadCategoryJsonPath(nameof(GetConversations));
 
 			var result = Api.Messages.GetConversations(new GetConversationsParams());
@@ -21,7 +21,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void GetConversations_Attachment_wall()
 		{
-			Url = "https://api.vk.com/method/messages.getConversations";
+			Url = "https://api.vk.me/method/messages.getConversations";
 			ReadCategoryJsonPath(nameof(GetConversations_Attachment_wall));
 
 			var result = Api.Messages.GetConversations(new GetConversationsParams());

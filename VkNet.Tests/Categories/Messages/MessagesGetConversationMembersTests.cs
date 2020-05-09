@@ -9,7 +9,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void GetConversationMembers()
 		{
-			Url = "https://api.vk.com/method/messages.getConversationMembers";
+			Url = "https://api.vk.me/method/messages.getConversationMembers";
 			ReadCategoryJsonPath(nameof(GetConversationMembers));
 
 			var result = Api.Messages.GetConversationMembers(123, new[] { "" });

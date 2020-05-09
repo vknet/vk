@@ -10,7 +10,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void AdminAuthorId()
 		{
-			Url = "https://api.vk.com/method/messages.getById";
+			Url = "https://api.vk.me/method/messages.getById";
 			ReadCategoryJsonPath(nameof(AdminAuthorId));
 
 			var result = Api.Messages.GetById(new ulong[]

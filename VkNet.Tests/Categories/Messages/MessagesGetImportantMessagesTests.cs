@@ -9,7 +9,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void GetImportantMessagesResult()
 		{
-			Url = "https://api.vk.com/method/messages.getImportantMessages";
+			Url = "https://api.vk.me/method/messages.getImportantMessages";
 			ReadCategoryJsonPath(nameof(GetImportantMessagesResult));
 
 			var result = Api.Messages.GetImportantMessages(new GetImportantMessagesParams());

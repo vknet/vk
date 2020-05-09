@@ -8,7 +8,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void GetRecentCalls()
 		{
-			Url = "https://api.vk.com/method/messages.getRecentCalls";
+			Url = "https://api.vk.me/method/messages.getRecentCalls";
 			ReadCategoryJsonPath(nameof(GetRecentCalls));
 
 			var result = Api.Messages.GetRecentCalls(new[] { "filter" }, 1);
