@@ -59,7 +59,7 @@ namespace VkNet.Utils.JsonConverter
 
 			result = methods
 				.FirstOrDefault(predicate: x => x.Name == "FromJsonString")
-				?.Invoke(obj: result, parameters: new object[] { $"{value}" });
+				?.Invoke(result, new object[] { $"{value}" });
 
 			var fields = result?.GetType().GetFields();
 

@@ -29,8 +29,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long Add(NotesAddParams notesAddParams)
 		{
-			return _vk.Call(methodName: "notes.add",
-				parameters: new VkParameters
+			return _vk.Call("notes.add",
+				new VkParameters
 				{
 					{"title", notesAddParams.Title },
 					{"text", notesAddParams.Text },
@@ -42,8 +42,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long CreateComment(NotesCreateCommentParams createCommentParams)
 		{
-			return _vk.Call(methodName: "notes.createComment ",
-				parameters: new VkParameters
+			return _vk.Call("notes.createComment ",
+				new VkParameters
 				{
 					{"note_id", createCommentParams.NoteId },
 					{"owner_id", createCommentParams.OwnerId },
@@ -55,8 +55,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool Delete(long noteId)
 		{
-			return _vk.Call(methodName: "notes.delete",
-				parameters: new VkParameters
+			return _vk.Call("notes.delete",
+				new VkParameters
 				{
 					{"note_id",  noteId}
 				});
@@ -65,8 +65,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool DeleteComment(NotesDeleteCommentParams deleteCommentParams)
 		{
-			return _vk.Call(methodName: "notes.deleteComment",
-				parameters: new VkParameters
+			return _vk.Call("notes.deleteComment",
+				new VkParameters
 				{
 					{"comment_id",  deleteCommentParams.CommentId},
 					{"owner_id",  deleteCommentParams.OwnerId}
@@ -76,8 +76,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool Edit(NotesEditParams editParams)
 		{
-			return _vk.Call(methodName: "notes.edit",
-				parameters: new VkParameters
+			return _vk.Call("notes.edit",
+				new VkParameters
 				{
 					{"note_id",  editParams.NoteId},
 					{"title",  editParams.Title},
@@ -90,8 +90,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool EditComment(NotesEditCommentParams editCommentParams)
 		{
-			return _vk.Call(methodName: "notes.editComment",
-				parameters: new VkParameters
+			return _vk.Call("notes.editComment",
+				new VkParameters
 				{
 					{"comment_id",  editCommentParams.CommentId},
 					{"owner_id",  editCommentParams.OwnerId},
@@ -102,8 +102,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public IEnumerable<Note> Get(NotesGetParams notesGetParams)
 		{
-			return _vk.Call(methodName: "notes.get",
-				parameters: new VkParameters
+			return _vk.Call("notes.get",
+				new VkParameters
 				{
 					{"note_ids",  notesGetParams.NoteIds},
 					{"user_id",  notesGetParams.UserId},
@@ -116,8 +116,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Note GetById(NotesGetByIdParams getByIdParams)
 		{
-			return _vk.Call(methodName: "notes.getById",
-				parameters: new VkParameters
+			return _vk.Call("notes.getById",
+				new VkParameters
 				{
 					{"note_id", getByIdParams.NoteId},
 					{"owner_id", getByIdParams.OwnerId},
@@ -128,8 +128,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public IEnumerable<CommentNote> GetComments(NotesGetCommentParams getCommentParams)
 		{
-			return _vk.Call(methodName: "notes.getComments",
-				parameters: new VkParameters
+			return _vk.Call("notes.getComments",
+				new VkParameters
 				{
 					{"note_id", getCommentParams.NoteId},
 					{"owner_id", getCommentParams.OwnerId},
@@ -142,8 +142,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool RestoreComment(NotesRestoreCommentParams restoreCommentParams)
 		{
-			return _vk.Call(methodName: "notes.restoreComment",
-				parameters: new VkParameters
+			return _vk.Call("notes.restoreComment",
+				new VkParameters
 				{
 					{"comment_id", restoreCommentParams.CommentId},
 					{"owner_id", restoreCommentParams.OwnerId},

@@ -8,27 +8,27 @@
 		/// <summary>
 		/// Возвращать видео в формате mp4 (воспроиводимое на iOS).
 		/// </summary>
-		public static readonly VideoFilters Mp4 = RegisterPossibleValue(mask: 1 << 0, value: "mp4");
+		public static readonly VideoFilters Mp4 = RegisterPossibleValue(1 << 0, "mp4");
 
 		/// <summary>
 		/// Возвращать youtube видео.
 		/// </summary>
-		public static readonly VideoFilters Youtube = RegisterPossibleValue(mask: 1 << 1, value: "youtube");
+		public static readonly VideoFilters Youtube = RegisterPossibleValue(1 << 1, "youtube");
 
 		/// <summary>
 		/// Возвращать vimeo видео.
 		/// </summary>
-		public static readonly VideoFilters Vimeo = RegisterPossibleValue(mask: 1 << 2, value: "vimeo");
+		public static readonly VideoFilters Vimeo = RegisterPossibleValue(1 << 2, "vimeo");
 
 		/// <summary>
 		/// Возвращать короткие видеозаписи.
 		/// </summary>
-		public static readonly VideoFilters Short = RegisterPossibleValue(mask: 1 << 3, value: "short");
+		public static readonly VideoFilters Short = RegisterPossibleValue(1 << 3, "short");
 
 		/// <summary>
 		/// Возвращать длинные видеозаписи
 		/// </summary>
-		public static readonly VideoFilters Long = RegisterPossibleValue(mask: 1 << 4, value: "long");
+		public static readonly VideoFilters Long = RegisterPossibleValue(1 << 4, "long");
 
 		/// <summary>
 		/// Возвращать все доступные виды видео.

@@ -32,7 +32,7 @@ namespace VkNet.Categories
 		[Pure]
 		public VkCollection<User> Search(UserSearchParams @params)
 		{
-			return _vk.Call(methodName: "users.search", new VkParameters
+			return _vk.Call("users.search", new VkParameters
 			{
 				{ "q", WebUtility.HtmlEncode(value: @params.Query) }
 				, { "sort", @params.Sort }
@@ -79,7 +79,7 @@ namespace VkNet.Categories
 					{ "user_id", userId }
 			};
 
-			return _vk.Call(methodName: "users.isAppUser", parameters: parameters);
+			return _vk.Call("users.isAppUser", parameters);
 		}
 
 		/// <inheritdoc />
@@ -100,7 +100,7 @@ namespace VkNet.Categories
 					, { "user_ids", userIds }
 			};
 
-			VkResponseArray response = _vk.Call(methodName: "users.get", parameters: parameters);
+			VkResponseArray response = _vk.Call("users.get", parameters);
 
 			return response.ToReadOnlyCollectionOf<User>(selector: x => x);
 		}
@@ -125,7 +125,7 @@ namespace VkNet.Categories
 					, { "name_case", nameCase }
 			};
 
-			VkResponseArray response = _vk.Call(methodName: "users.get", parameters: parameters);
+			VkResponseArray response = _vk.Call("users.get", parameters);
 
 			return response.ToReadOnlyCollectionOf<User>(selector: x => x);
 		}
@@ -150,7 +150,7 @@ namespace VkNet.Categories
 					, { "fields", fields }
 			};
 
-			return _vk.Call(methodName: "users.getSubscriptions", parameters: parameters)
+			return _vk.Call("users.getSubscriptions", parameters)
 					.ToVkCollectionOf<Group>(selector: x => x);
 		}
 
@@ -175,7 +175,7 @@ namespace VkNet.Categories
 					, { "name_case", nameCase }
 			};
 
-			return _vk.Call(methodName: "users.getFollowers", parameters: parameters)
+			return _vk.Call("users.getFollowers", parameters)
 					.ToVkCollectionOf(selector: x => x.ContainsKey(key: "id") ? x : new User { Id = x });
 		}
 
@@ -191,13 +191,13 @@ namespace VkNet.Categories
 					, { "comment", comment }
 			};
 
-			return _vk.Call(methodName: "users.report", parameters: parameters);
+			return _vk.Call("users.report", parameters);
 		}
 
 		/// <inheritdoc />
 		public VkCollection<User> GetNearby(UsersGetNearbyParams @params)
 		{
-			return _vk.Call(methodName: "users.getNearby", new VkParameters
+			return _vk.Call("users.getNearby", new VkParameters
 			{
 				{ "latitude", @params.Latitude.ToString(provider: CultureInfo.InvariantCulture) }
 				, //Vk API не принимает дробные числа с запятой, нужна точка
@@ -216,7 +216,7 @@ namespace VkNet.Categories
 		public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
-			var users = Get(userIds: new[] { userId }, fields: fields, nameCase: nameCase);
+			var users = Get(new[] { userId }, fields, nameCase);
 
 			return users.FirstOrDefault();
 		}
@@ -229,7 +229,7 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNullOrEmpty(expr: () => screenName);
 
-			var users = Get(screenNames: new[] { screenName }, fields: fields, nameCase: nameCase);
+			var users = Get(new[] { screenName }, fields, nameCase);
 
 			return users.Count > 0 ? users[index: 0] : null;
 		}

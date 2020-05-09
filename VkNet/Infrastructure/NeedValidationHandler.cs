@@ -14,6 +14,12 @@ namespace VkNet.Infrastructure
 
 		private readonly IApiAuthParams _authParams;
 
+
+		/// <summary>
+		/// Выполняет обход ошибки валидации.
+		/// </summary>
+		/// <param name="authParams"></param>
+		/// <param name="proxy"></param>
 		public NeedValidationHandler(IApiAuthParams authParams, IWebProxy proxy)
 		{
 			_authParams = authParams;

@@ -48,7 +48,7 @@ namespace VkNet.Utils
 		{
 			if (proxyLogin != null && proxyPassword != null)
 			{
-				return new NetworkCredential(userName: proxyLogin, password: proxyPassword);
+				return new NetworkCredential(proxyLogin, proxyPassword);
 			}
 
 			// Авторизация с реквизитами по умолчанию (для NTLM прокси)
@@ -72,7 +72,7 @@ namespace VkNet.Utils
 
 			return new WebProxy(proxyUri: new Uri(uriString: $"http://{host}:{port.Value}"))
 			{
-				Credentials = GetCredentials(proxyLogin: proxyLogin, proxyPassword: proxyPassword)
+				Credentials = GetCredentials(proxyLogin, proxyPassword)
 			};
 		}
 	}

@@ -29,7 +29,7 @@ namespace VkNet.Categories
 					, { "group_id", groupId }
 			};
 
-			return _vk.Call(methodName: "status.get", parameters: parameters);
+			return _vk.Call("status.get", parameters);
 		}
 
 		/// <inheritdoc />
@@ -41,7 +41,7 @@ namespace VkNet.Categories
 					, { "group_id", groupId }
 			};
 
-			return _vk.Call(methodName: "status.set", parameters: parameters);
+			return _vk.Call("status.set", parameters);
 		}
 	}
 }

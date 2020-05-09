@@ -38,14 +38,14 @@ namespace VkNet.Categories
 					, { "age", checkUserParams.Age }
 			};
 
-			return _vk.Call<Checked>(methodName: "leads.checkUser", parameters: result);
+			return _vk.Call<Checked>("leads.checkUser", result);
 		}
 
 		/// <inheritdoc />
 		public LeadsComplete Complete(string vkSid, string secret, string comment)
 		{
-			return _vk.Call<LeadsComplete>(methodName: "leads.complete"
-					, parameters: new VkParameters
+			return _vk.Call<LeadsComplete>("leads.complete"
+					, new VkParameters
 					{
 							{ "vk_sid", vkSid }
 							, { "secret", secret }
@@ -56,8 +56,8 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Lead GetStats(ulong leadId, string secret, string dateStart, string dateEnd)
 		{
-			return _vk.Call<Lead>(methodName: "leads.getStats"
-					, parameters: new VkParameters
+			return _vk.Call<Lead>("leads.getStats"
+					, new VkParameters
 					{
 							{ "lead_id", leadId }
 							, { "secret", secret }
@@ -79,14 +79,14 @@ namespace VkNet.Categories
 					, { "reverse", getUsersParams.Reverse }
 			};
 
-			return _vk.Call<ReadOnlyCollection<Entry>>(methodName: "leads.getUsers", parameters: result);
+			return _vk.Call<ReadOnlyCollection<Entry>>("leads.getUsers", result);
 		}
 
 		/// <inheritdoc />
 		public MetricHitResponse MetricHit(string data)
 		{
-			return _vk.Call<MetricHitResponse>(methodName: "leads.metricHit"
-					, parameters: new VkParameters
+			return _vk.Call<MetricHitResponse>("leads.metricHit"
+					, new VkParameters
 					{
 							{ "data", data }
 					});
@@ -105,7 +105,7 @@ namespace VkNet.Categories
 					, { "force", startParams.Force }
 			};
 
-			return _vk.Call<Start>(methodName: "leads.start", parameters: result);
+			return _vk.Call<Start>("leads.start", result);
 		}
 	}
 }

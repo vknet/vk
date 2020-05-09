@@ -31,7 +31,7 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void Call_ThrowsPostLimitException()
 		{
-			Url = "https://api.vk.com/method/messages.send";
+			Url = "https://api.vk.me/method/messages.send";
 			ReadErrorsJsonFile(214);
 
 			Assert.Throws<PostLimitException>(() =>
@@ -41,7 +41,7 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void Call_ThrowsPostLimitException_103()
 		{
-			Url = "https://api.vk.com/method/messages.send";
+			Url = "https://api.vk.me/method/messages.send";
 			ReadErrorsJsonFile(103);
 
 			Assert.Throws<OutOfLimitsException>(() =>
@@ -51,7 +51,7 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void IfErrorThrowException_GroupAccessDenied_ThrowAccessDeniedException()
 		{
-			Url = "https://api.vk.com/method/messages.send";
+			Url = "https://api.vk.me/method/messages.send";
 			ReadErrorsJsonFile(260);
 
 			var ex = Assert.Throws<GroupsListAccessDeniedException>(() => Api.Call("messages.send", VkParameters.Empty, true));
@@ -62,7 +62,7 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void IfErrorThrowException_NormalCase_NothingExceptions()
 		{
-			Url = "https://api.vk.com/method/messages.send";
+			Url = "https://api.vk.me/method/messages.send";
 			var json = ReadJson("VkErrors", nameof(IfErrorThrowException_NormalCase_NothingExceptions));
 
 			VkErrors.IfErrorThrowException(json);
@@ -71,7 +71,7 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void IfErrorThrowException_UserAuthorizationFail_ThrowUserAuthorizationFailException()
 		{
-			Url = "https://api.vk.com/method/messages.send";
+			Url = "https://api.vk.me/method/messages.send";
 			ReadErrorsJsonFile(5);
 			var ex = Assert.Throws<UserAuthorizationFailException>(() => Api.Call("messages.send", VkParameters.Empty, true));
 

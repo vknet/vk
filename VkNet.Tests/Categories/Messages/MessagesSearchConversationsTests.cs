@@ -9,7 +9,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void SearchConversations()
 		{
-			Url = "https://api.vk.com/method/messages.searchConversations";
+			Url = "https://api.vk.me/method/messages.searchConversations";
 			ReadCategoryJsonPath(nameof(SearchConversations));
 
 			var result = Api.Messages.SearchConversations("query", new[] { "fields" });

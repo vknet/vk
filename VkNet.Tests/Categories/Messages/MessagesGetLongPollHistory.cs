@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void GroupsField()
 		{
-			Url = "https://api.vk.com/method/messages.getLongPollHistory";
+			Url = "https://api.vk.me/method/messages.getLongPollHistory";
 
 			ReadCategoryJsonPath(nameof(Api.Messages.GetLongPollHistory));
 

@@ -27,7 +27,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<App> GetCatalog(AppGetCatalogParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call(methodName: "apps.getCatalog", new VkParameters
+			return _vk.Call("apps.getCatalog", new VkParameters
 				{
 					{ "sort", @params.Sort }
 					, { "offset", @params.Offset }
@@ -40,14 +40,14 @@ namespace VkNet.Categories
 					, { "q", @params.Query }
 					, { "genre_id", @params.GenreId }
 					, { "filter", @params.Filter }
-				}, skipAuthorization: skipAuthorization)
+				}, skipAuthorization)
 					.ToVkCollectionOf<App>(selector: x => x);
 		}
 
 		/// <inheritdoc />
 		public AppGetObject Get(AppGetParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call(methodName: "apps.get", new VkParameters
+			return _vk.Call("apps.get", new VkParameters
 			{
 				{ "app_ids", @params.AppIds }
 				, { "platform", @params.Platform }
@@ -55,13 +55,13 @@ namespace VkNet.Categories
 				, { "return_friends", @params.ReturnFriends }
 				, { "fields", @params.Fields }
 				, { "name_case", @params.NameCase }
-			}, skipAuthorization: skipAuthorization);
+			}, skipAuthorization);
 		}
 
 		/// <inheritdoc />
 		public long SendRequest(AppSendRequestParams @params)
 		{
-			return _vk.Call(methodName: "apps.sendRequest", new VkParameters
+			return _vk.Call("apps.sendRequest", new VkParameters
 			{
 				{ "user_id", @params.UserId }
 				, { "text", @params.Text }
@@ -75,7 +75,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool DeleteAppRequests()
 		{
-			return _vk.Call(methodName: "apps.deleteAppRequests", parameters: VkParameters.Empty);
+			return _vk.Call("apps.deleteAppRequests", VkParameters.Empty);
 		}
 
 		/// <inheritdoc />
@@ -95,10 +95,10 @@ namespace VkNet.Categories
 
 			if (count <= 5000)
 			{
-				parameters.Add(name: "count", nullableValue: count);
+				parameters.Add("count", count);
 			}
 
-			return _vk.Call(methodName: "apps.getFriendsList", parameters: parameters).ToVkCollectionOf<User>(selector: x => x);
+			return _vk.Call("apps.getFriendsList", parameters).ToVkCollectionOf<User>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -111,7 +111,7 @@ namespace VkNet.Categories
 					, { "extended", extended }
 			};
 
-			return _vk.Call<LeaderboardResult>(methodName: "apps.getLeaderboard", parameters: parameters, skipAuthorization: true);
+			return _vk.Call<LeaderboardResult>("apps.getLeaderboard", parameters, true);
 		}
 
 		/// <inheritdoc />
@@ -124,7 +124,7 @@ namespace VkNet.Categories
 					{ "user_id", userId }
 			};
 
-			return _vk.Call(methodName: "apps.getScore", parameters: parameters);
+			return _vk.Call("apps.getScore", parameters);
 		}
 	}
 }

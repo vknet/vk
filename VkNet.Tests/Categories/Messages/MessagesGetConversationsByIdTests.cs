@@ -10,7 +10,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void GetConversationsById()
 		{
-			Url = "https://api.vk.com/method/messages.getConversationsById";
+			Url = "https://api.vk.me/method/messages.getConversationsById";
 			ReadCategoryJsonPath(nameof(GetConversationsById));
 
 			var result = Api.Messages.GetConversationsById(new long[] { 123 });

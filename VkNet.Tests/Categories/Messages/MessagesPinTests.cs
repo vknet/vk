@@ -10,7 +10,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void Pin()
 		{
-			Url = "https://api.vk.com/method/messages.pin";
+			Url = "https://api.vk.me/method/messages.pin";
 			ReadCategoryJsonPath(nameof(Pin));
 
 			var result = Api.Messages.Pin(123, 345);

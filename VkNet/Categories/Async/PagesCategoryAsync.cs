@@ -33,14 +33,14 @@ namespace VkNet.Categories
 												, AccessPages edit = AccessPages.Leaders)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					SaveAccess(pageId: pageId, groupId: groupId, userId: userId, view: view));
+					SaveAccess(pageId, groupId, userId, view));
 		}
 
 		/// <inheritdoc />
 		public Task<ReadOnlyCollection<PageVersion>> GetHistoryAsync(long pageId, long groupId, long? userId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					GetHistory(pageId: pageId, groupId: groupId, userId: userId));
+					GetHistory(pageId, groupId, userId));
 		}
 
 		/// <inheritdoc />
@@ -53,13 +53,13 @@ namespace VkNet.Categories
 		public Task<Page> GetVersionAsync(long versionId, long groupId, bool needHtml = false, long? userId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					GetVersion(versionId: versionId, groupId: groupId, needHtml: needHtml, userId: userId));
+					GetVersion(versionId, groupId, needHtml, userId));
 		}
 
 		/// <inheritdoc />
 		public Task<string> ParseWikiAsync(string text, ulong groupId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>ParseWiki(text: text, groupId: groupId));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>ParseWiki(text, groupId));
 		}
 
 		/// <inheritdoc />

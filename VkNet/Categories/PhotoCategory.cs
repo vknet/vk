@@ -50,8 +50,8 @@ namespace VkNet.Categories
 				{ "title", @params.Title },
 				{ "group_id", @params.GroupId },
 				{ "description", @params.Description },
-				{ "privacy_view", string.Join(separator: ",", values: @params.PrivacyView) },
-				{ "privacy_comment", string.Join(separator: ",", values: @params.PrivacyComment) },
+				{ "privacy_view", string.Join(",", @params.PrivacyView) },
+				{ "privacy_comment", string.Join(",", @params.PrivacyComment) },
 				{ "upload_by_admins_only", @params.UploadByAdminsOnly }, { "comments_disabled", @params.CommentsDisabled }
 			};
 
@@ -77,8 +77,8 @@ namespace VkNet.Categories
 				, { "title", @params.Title }
 				, { "description", @params.Description }
 				, { "owner_id", @params.OwnerId }
-				, { "privacy_view", string.Join(separator: ",", values: @params.PrivacyView) }
-				, { "privacy_comment", string.Join(separator: ",", values: @params.PrivacyComment) }
+				, { "privacy_view", string.Join(",", @params.PrivacyView) }
+				, { "privacy_comment", string.Join(",", @params.PrivacyComment) }
 				, { "upload_by_admins_only", @params.UploadByAdminsOnly }
 				, { "comments_disabled", @params.CommentsDisabled }
 			};

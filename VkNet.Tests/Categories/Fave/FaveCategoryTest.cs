@@ -4,7 +4,6 @@ using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 
@@ -128,7 +127,7 @@ namespace VkNet.Tests.Categories.Fave
 			Assert.That(photos, Is.Not.Null);
 			Assert.That(photos.Count, Is.EqualTo(2));
 			var photo = photos.FirstOrDefault();
-
+			Assert.IsNotNull(photo);
 			Assert.That(photo.Id, Is.EqualTo(263113261));
 			Assert.That(photo.AlbumId, Is.EqualTo(136592355));
 			Assert.That(photo.OwnerId, Is.EqualTo(1));
@@ -155,6 +154,7 @@ namespace VkNet.Tests.Categories.Fave
 			Assert.That(photo.CreateTime, Is.EqualTo(DateHelper.TimeStampToDateTime(1307628890)));
 
 			var photo2 = photos.Skip(1).FirstOrDefault();
+			Assert.IsNotNull(photo2);
 			Assert.That(photo2.Id, Is.EqualTo(319770573));
 			Assert.That(photo2.AlbumId, Is.EqualTo(-7));
 			Assert.That(photo2.OwnerId, Is.EqualTo(-25397178));
@@ -281,6 +281,7 @@ namespace VkNet.Tests.Categories.Fave
 
 			var wallPost = posts.WallPosts.FirstOrDefault();
 
+			Assert.IsNotNull(wallPost);
 			Assert.That(wallPost.Id, Is.EqualTo(1258365));
 			Assert.That(wallPost.FromId, Is.EqualTo(-30666517));
 			Assert.That(wallPost.OwnerId, Is.EqualTo(-30666517));
@@ -354,6 +355,7 @@ namespace VkNet.Tests.Categories.Fave
 
 			Assert.That(videos.Count, Is.EqualTo(2));
 			var video = videos.Videos.FirstOrDefault();
+			Assert.IsNotNull(video);
 			Assert.That(video.Id, Is.EqualTo(164841344));
 			Assert.That(video.OwnerId, Is.EqualTo(1));
 			Assert.That(video.Title, Is.EqualTo("This is SPARTA"));

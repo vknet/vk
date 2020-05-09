@@ -11,7 +11,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void GetHistoryTest()
 		{
-			Url = "https://api.vk.com/method/messages.getHistory";
+			Url = "https://api.vk.me/method/messages.getHistory";
 
 			ReadCategoryJsonPath(nameof(Api.Messages.GetHistory));
 

@@ -10,6 +10,7 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class Sticker : MediaAttachment
 	{
+		/// <inheritdoc />
 		protected override string Alias => "sticker";
 
 		/// <summary>
@@ -36,7 +37,7 @@ namespace VkNet.Model.Attachments
 		{
 			return new Sticker
 			{
-				Id = response["id"] ?? response["sticker_id"], 
+				Id = response["id"] ?? response["sticker_id"],
 				ProductId = response["product_id"],
 				Images = response["images"].ToReadOnlyCollectionOf<Image>(x => x),
 				ImagesWithBackground = response["images_with_background"].ToReadOnlyCollectionOf<Image>(x => x)

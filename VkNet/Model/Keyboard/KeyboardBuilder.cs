@@ -42,6 +42,11 @@ namespace VkNet.Model.Keyboard
 		{
 		}
 
+		/// <summary>
+		/// Конструктор клавиатур
+		/// </summary>
+		/// <param name="type"></param>
+		/// <param name="isOneTime"></param>
 		public KeyboardBuilder(string type, bool isOneTime = false)
 		{
 			IsOneTime = isOneTime;

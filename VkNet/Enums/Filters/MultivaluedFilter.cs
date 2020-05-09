@@ -40,7 +40,7 @@ namespace VkNet.Enums.Filters
 				return false;
 			}
 
-			if (ReferenceEquals(objA: y, objB: x))
+			if (ReferenceEquals(y, x))
 			{
 				return true;
 			}
@@ -57,7 +57,7 @@ namespace VkNet.Enums.Filters
 		/// <inheritdoc />
 		public bool Equals(MultivaluedFilter<TFilter> other)
 		{
-			return Equals(x: this, y: other);
+			return Equals(this, other);
 		}
 
 		/// <summary>
@@ -122,7 +122,7 @@ namespace VkNet.Enums.Filters
 		/// </summary>
 		public override string ToString()
 		{
-			return string.Join(separator: ",", value: Selected.ToArray());
+			return string.Join(",", Selected.ToArray());
 		}
 
 		/// <summary>
@@ -139,7 +139,7 @@ namespace VkNet.Enums.Filters
 		/// <inheritdoc />
 		public override bool Equals(object obj)
 		{
-			return obj?.GetType() == GetType() && Equals(x: this, y: (MultivaluedFilter<TFilter>) obj);
+			return obj?.GetType() == GetType() && Equals(this, (MultivaluedFilter<TFilter>) obj);
 		}
 
 		/// <inheritdoc />
