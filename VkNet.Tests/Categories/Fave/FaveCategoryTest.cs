@@ -127,7 +127,7 @@ namespace VkNet.Tests.Categories.Fave
 			Assert.That(photos, Is.Not.Null);
 			Assert.That(photos.Count, Is.EqualTo(2));
 			var photo = photos.FirstOrDefault();
-
+			Assert.IsNotNull(photo);
 			Assert.That(photo.Id, Is.EqualTo(263113261));
 			Assert.That(photo.AlbumId, Is.EqualTo(136592355));
 			Assert.That(photo.OwnerId, Is.EqualTo(1));
@@ -154,6 +154,7 @@ namespace VkNet.Tests.Categories.Fave
 			Assert.That(photo.CreateTime, Is.EqualTo(DateHelper.TimeStampToDateTime(1307628890)));
 
 			var photo2 = photos.Skip(1).FirstOrDefault();
+			Assert.IsNotNull(photo2);
 			Assert.That(photo2.Id, Is.EqualTo(319770573));
 			Assert.That(photo2.AlbumId, Is.EqualTo(-7));
 			Assert.That(photo2.OwnerId, Is.EqualTo(-25397178));
