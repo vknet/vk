@@ -1,4 +1,4 @@
-﻿namespace VkNet.Utils
+namespace VkNet.Utils
 {
 	/// <summary>
 	/// Список кодов ошибок.
@@ -450,5 +450,10 @@
 		/// Пользователя нет в чате
 		/// </summary>
 		public const int UserNotFoundInChat = 935;
+
+		/// <summary>
+		/// Чат был отключен
+		/// </summary>
+		public const int ChatWasDisabled = 945;
 	}
 }
