@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using VkNet.Abstractions.Utils;
 using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Model;
@@ -15,9 +16,9 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		private readonly ICaptchaSolver _captchaSolver;
 
 		/// <inheritdoc />
-		public ImplicitFlowCaptchaLoginForm(IAuthorizationFormHtmlParser htmlParser,
+		public ImplicitFlowCaptchaLoginForm(IRestClient restClient, IAuthorizationFormHtmlParser htmlParser,
 											IApiAuthParams authorizationParameters, ICaptchaSolver captchaSolver)
-			: base(htmlParser)
+			: base(restClient, htmlParser)
 		{
 			_authorizationParameters = authorizationParameters;
 			_captchaSolver = captchaSolver;

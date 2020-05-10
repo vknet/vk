@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using VkNet.Abstractions.Utils;
 using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Model;
@@ -12,8 +13,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		private readonly IApiAuthParams _authorizationParameters;
 
 		/// <inheritdoc />
-		public TwoFactorForm(IApiAuthParams authorizationParameters, IAuthorizationFormHtmlParser htmlParser)
-			: base(htmlParser)
+		public TwoFactorForm(IRestClient restClient, IApiAuthParams authorizationParameters, IAuthorizationFormHtmlParser htmlParser)
+			: base(restClient, htmlParser)
 		{
 			_authorizationParameters = authorizationParameters;
 		}

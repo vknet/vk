@@ -14,12 +14,14 @@ namespace VkNet.Abstractions.Utils
 		/// <summary>
 		/// Proxy
 		/// </summary>
+		[Obsolete("Use HttpClientFactory to configure proxy.")]
 		IWebProxy Proxy { get; set; }
 
 		/// <summary>
 		/// Таймаут на время выполнения запроса в секундах. Значение по умолчанию 300
 		/// секунд.
 		/// </summary>
+		[Obsolete("Use HttpClientFactory to configure timeout.")]
 		TimeSpan Timeout { get; set; }
 
 		/// <summary>

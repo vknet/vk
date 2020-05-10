@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
-using Flurl;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Core;
@@ -71,7 +70,7 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		[Obsolete(
 			"Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
-		public Url CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
+		public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 		{
 			_authParams.ApplicationId = clientId;
 			_authParams.Display = display;
@@ -81,7 +80,7 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public Url CreateAuthorizeUrl()
+		public Uri CreateAuthorizeUrl()
 		{
 			_logger?.LogDebug("Построение url для авторизации.");
 			var builder = new StringBuilder("https://oauth.vk.com/authorize?");

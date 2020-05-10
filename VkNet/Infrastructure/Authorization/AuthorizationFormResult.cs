@@ -1,5 +1,5 @@
+using System;
 using System.Net;
-using Flurl;
 
 namespace VkNet.Infrastructure.Authorization
 {
@@ -11,12 +11,12 @@ namespace VkNet.Infrastructure.Authorization
 		/// <summary>
 		/// URL запроса
 		/// </summary>
-		public Url RequestUrl { get; set; }
+		public Uri RequestUrl { get; set; }
 
 		/// <summary>
 		/// URL ответа
 		/// </summary>
-		public Url ResponseUrl { get; set; }
+		public Uri ResponseUrl { get; set; }
 
 		/// <summary>
 		/// Куки.

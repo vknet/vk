@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Flurl;
 using VkNet.Exception;
 
 namespace VkNet.Utils
@@ -123,7 +123,7 @@ namespace VkNet.Utils
 			}
 
 			return response.StatusCode == HttpStatusCode.Redirect
-				? await RedirectToAsync(Url.Combine(_result.RequestUrl.GetLeftPart(UriPartial.Authority), response.Headers.Location.OriginalString), webProxy)
+				? await RedirectToAsync(Path.Combine(_result.RequestUrl.GetLeftPart(UriPartial.Authority), response.Headers.Location.OriginalString), webProxy)
 					.ConfigureAwait(false)
 				: _result;
 		}
