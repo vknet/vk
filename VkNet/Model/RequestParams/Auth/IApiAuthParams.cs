@@ -72,21 +72,25 @@ namespace VkNet.Model
 		/// <summary>
 		/// Имя узла прокси-сервера.
 		/// </summary>
+		[Obsolete("Сконфигурируйте HttpClient для установки прокси")]
 		string Host { get; set; }
 
 		/// <summary>
 		/// Номер порта используемого Host.
 		/// </summary>
+		[Obsolete("Сконфигурируйте HttpClient для установки прокси")]
 		int? Port { get; set; }
 
 		/// <summary>
 		/// Логин для прокси с авторизацией. Если прокси без авторизации - оставить пустым
 		/// </summary>
+		[Obsolete("Сконфигурируйте HttpClient для установки прокси")]
 		string ProxyLogin { get; set; }
 
 		/// <summary>
 		/// Пароль для прокси с авторищацией. Если прокси без авторизации - оставить пустым
 		/// </summary>
+		[Obsolete("Сконфигурируйте HttpClient для установки прокси")]
 		string ProxyPassword { get; set; }
 
 		/// <summary>
