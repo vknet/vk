@@ -46,13 +46,13 @@ namespace VkNet.Categories
 			{
 				if (@params.Count <= 100)
 				{
-					parameters.Add("count", @params.Count);
+					parameters.Add(name: "count", nullableValue: @params.Count);
 				}
 			} else
 			{
 				if (@params.Count <= 1000)
 				{
-					parameters.Add("count", @params.Count);
+					parameters.Add(name: "count", nullableValue: @params.Count);
 				}
 			}
 
@@ -82,13 +82,13 @@ namespace VkNet.Categories
 			{
 				if (@params.Count <= 100)
 				{
-					parameters.Add("count", @params.Count);
+					parameters.Add(name: "count", nullableValue: @params.Count);
 				}
 			} else
 			{
 				if (@params.Count <= 1000)
 				{
-					parameters.Add("count", @params.Count);
+					parameters.Add(name: "count", nullableValue: @params.Count);
 				}
 			}
 

@@ -37,7 +37,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<ShortLink> GetShortLinkAsync(Uri url, bool isPrivate)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetShortLink(url, isPrivate));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetShortLink(url: url, isPrivate: isPrivate));
 		}
 
 		/// <inheritdoc />
@@ -49,7 +49,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<VkCollection<ShortLink>> GetLastShortenedLinksAsync(ulong count = 10, ulong offset = 0)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>GetLastShortenedLinks(count, offset));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>GetLastShortenedLinks(count: count, offset: offset));
 		}
 
 		/// <inheritdoc />

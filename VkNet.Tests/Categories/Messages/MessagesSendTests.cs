@@ -34,7 +34,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void CoordsMessage()
 		{
-			Url = "https://api.vk.me/method/messages.send";
+			Url = "https://api.vk.com/method/messages.send";
 			ReadCategoryJsonPath(nameof(CoordsMessage));
 
 			var id = Api.Messages.Send(new MessagesSendParams
@@ -52,7 +52,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void DefaultFields_MessageId()
 		{
-			Url = "https://api.vk.me/method/messages.send";
+			Url = "https://api.vk.com/method/messages.send";
 			ReadCategoryJsonPath(nameof(DefaultFields_MessageId));
 
 			var id = Api.Messages.Send(new MessagesSendParams
@@ -79,7 +79,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void Exception_MessageIsTooLong()
 		{
-			Url = "https://api.vk.me/method/messages.send";
+			Url = "https://api.vk.com/method/messages.send";
 			ReadErrorsJsonFile(914);
 
 			Assert.That(() => Api.Messages.Send(new MessagesSendParams
@@ -96,7 +96,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void Exception_TooMuchSentMessages()
 		{
-			Url = "https://api.vk.me/method/messages.send";
+			Url = "https://api.vk.com/method/messages.send";
 			ReadErrorsJsonFile(913);
 
 			Assert.That(() => Api.Messages.Send(new MessagesSendParams
@@ -113,7 +113,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void MessagesSend_RandomIdNotRequiredInLessThan_5_90_ArgumentException()
 		{
-			Url = "https://api.vk.me/method/messages.send";
+			Url = "https://api.vk.com/method/messages.send";
 			ReadCategoryJsonPath(nameof(MessagesSend_RandomIdNotRequiredInLessThan_5_90_ArgumentException));
 
 			Api.VkApiVersion.SetVersion(5, 88);
@@ -130,7 +130,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void MessagesSend_RandomIdRequired_ArgumentException()
 		{
-			Url = "https://api.vk.me/method/messages.send";
+			Url = "https://api.vk.com/method/messages.send";
 			ReadCategoryJsonPath(nameof(MessagesSend_RandomIdRequired_ArgumentException));
 
 			Assert.That(() => Api.Messages.Send(new MessagesSendParams
@@ -149,7 +149,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void MessagesSend_SetUserIdsParam_ArgumentException()
 		{
-			Url = "https://api.vk.me/method/messages.send";
+			Url = "https://api.vk.com/method/messages.send";
 			ReadCategoryJsonPath(nameof(MessagesSend_SetUserIdsParam_ArgumentException));
 
 			Assert.That(() => Api.Messages.Send(new MessagesSendParams
@@ -168,7 +168,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult()
 		{
-			Url = "https://api.vk.me/method/messages.send";
+			Url = "https://api.vk.com/method/messages.send";
 			ReadCategoryJsonPath(nameof(MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult));
 
 			var result = Api.Messages.SendToUserIds(new MessagesSendParams
@@ -192,7 +192,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void RussianText_MessageId()
 		{
-			Url = "https://api.vk.me/method/messages.send";
+			Url = "https://api.vk.com/method/messages.send";
 			ReadCategoryJsonPath(nameof(RussianText_MessageId));
 
 			var id = Api.Messages.Send(new MessagesSendParams
@@ -208,7 +208,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void Template_Carousel()
 		{
-			Url = "https://api.vk.me/method/messages.send";
+			Url = "https://api.vk.com/method/messages.send";
 			ReadCategoryJsonPath(nameof(Template_Carousel));
 
 			var button = new MessageKeyboardButton

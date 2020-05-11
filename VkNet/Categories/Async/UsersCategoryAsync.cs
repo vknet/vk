@@ -30,7 +30,7 @@ namespace VkNet.Categories
 															, NameCase nameCase = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					Get(userIds, fields, nameCase));
+					Get(userIds: userIds, fields: fields, nameCase: nameCase));
 		}
 
 		/// <inheritdoc />
@@ -39,7 +39,7 @@ namespace VkNet.Categories
 															, NameCase nameCase = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					Get(screenNames, fields, nameCase));
+					Get(screenNames: screenNames, fields: fields, nameCase: nameCase));
 		}
 
 		/// <inheritdoc />
@@ -49,10 +49,10 @@ namespace VkNet.Categories
 																	, GroupsFields fields = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					GetSubscriptions(userId
-							, count
-							, offset
-							, fields));
+					GetSubscriptions(userId: userId
+							, count: count
+							, offset: offset
+							, fields: fields));
 		}
 
 		/// <inheritdoc />
@@ -63,17 +63,17 @@ namespace VkNet.Categories
 																, NameCase nameCase = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					GetFollowers(userId
-							, count
-							, offset
-							, fields
-							, nameCase));
+					GetFollowers(userId: userId
+							, count: count
+							, offset: offset
+							, fields: fields
+							, nameCase: nameCase));
 		}
 
 		/// <inheritdoc />
 		public Task<bool> ReportAsync(long userId, ReportType type, string comment = "")
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Report(userId, type, comment));
+			return TypeHelper.TryInvokeMethodAsync(func: () =>Report(userId: userId, type: type, comment: comment));
 		}
 
 		/// <inheritdoc />

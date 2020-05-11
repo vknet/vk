@@ -11,7 +11,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void MarkAsImportantConversation()
 		{
-			Url = "https://api.vk.me/method/messages.markAsImportantConversation";
+			Url = "https://api.vk.com/method/messages.markAsImportantConversation";
 			ReadJsonFile(JsonPaths.True);
 
 			var result = Api.Messages.MarkAsImportantConversation(123);

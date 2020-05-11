@@ -42,7 +42,7 @@ namespace VkNet.Model
 			return new FriendsGetRequestsResult
 			{
 				UserId = response[key: "user_id"],
-				Mutual = response[key: "mutual"].ToVkCollectionOf<long>(x => x, "users"),
+				Mutual = response[key: "mutual"].ToVkCollectionOf<long>(selector: x => x, arrayName: "users"),
 				Message = response[key: "message"]
 			};
 		}

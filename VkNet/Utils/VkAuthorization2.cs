@@ -117,16 +117,16 @@ namespace VkNet.Utils
 				? uri.Fragment.Substring(startIndex: 1)
 				: uri.Query.Substring(startIndex: 1);
 
-			return query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries)
+			return query.Split(separator: new[] { '&' }, options: StringSplitOptions.RemoveEmptyEntries)
 				.Select(selector: s => s.Split('='))
-				.ToDictionary(s => s[0], s => s[1]);
+				.ToDictionary(keySelector: s => s[0], elementSelector: s => s[1]);
 		}
 
 		private int GetExpiresIn()
 		{
 			var expiresInValue = GetFieldValue(fieldName: "expires_in");
 
-			if (!int.TryParse(expiresInValue, out var expiresIn))
+			if (!int.TryParse(s: expiresInValue, result: out var expiresIn))
 			{
 				throw new VkApiException(message: "ExpiresIn is not integer value.");
 			}
@@ -138,7 +138,7 @@ namespace VkNet.Utils
 		{
 			var userIdFieldValue = GetFieldValue(fieldName: "user_id");
 
-			if (!long.TryParse(userIdFieldValue, out var userId))
+			if (!long.TryParse(s: userIdFieldValue, result: out var userId))
 			{
 				throw new VkApiException(message: "UserId is not long value.");
 			}
@@ -150,7 +150,7 @@ namespace VkNet.Utils
 		{
 			var userIdFieldValue = GetFieldValue(fieldName: "sid");
 
-			if (!long.TryParse(userIdFieldValue, out var userId))
+			if (!long.TryParse(s: userIdFieldValue, result: out var userId))
 			{
 				throw new VkApiException(message: "sid is not long value.");
 			}

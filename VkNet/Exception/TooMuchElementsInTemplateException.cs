@@ -5,7 +5,6 @@ namespace VkNet.Exception
 	/// </summary>
 	public class TooMuchElementsInTemplateException : VkApiException
 	{
-		/// <inheritdoc />
 		public TooMuchElementsInTemplateException(string message) : base(message)
 		{
 		}

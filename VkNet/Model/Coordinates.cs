@@ -50,12 +50,12 @@ namespace VkNet.Model
 					throw new VkApiException(message: "Coordinates must have latitude and longitude!");
 				}
 
-				if (!double.TryParse(latitudeWithLongitude[0].Replace(".", ","), out latitude))
+				if (!double.TryParse(s: latitudeWithLongitude[0].Replace(oldValue: ".", newValue: ","), result: out latitude))
 				{
 					throw new VkApiException(message: "Invalid latitude!");
 				}
 
-				if (!double.TryParse(latitudeWithLongitude[1].Replace(".", ","), out longitude))
+				if (!double.TryParse(s: latitudeWithLongitude[1].Replace(oldValue: ".", newValue: ","), result: out longitude))
 				{
 					throw new VkApiException(message: "Invalid longitude!");
 				}
