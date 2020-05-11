@@ -11,7 +11,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void Unpin()
 		{
-			Url = "https://api.vk.me/method/messages.unpin";
+			Url = "https://api.vk.com/method/messages.unpin";
 			ReadJsonFile(JsonPaths.True);
 
 			var result = Api.Messages.Unpin(123, 345);

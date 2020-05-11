@@ -15,7 +15,7 @@ namespace VkNet.Tests.Categories.Audio
 		[Test]
 		public void AddToPlaylistTest()
 		{
-			Url = "https://api.vk.me/method/audio.addToPlaylist";
+			Url = "https://api.vk.com/method/audio.addToPlaylist";
 
 			ReadCategoryJsonPath(nameof(Api.Audio.AddToPlaylist));
 

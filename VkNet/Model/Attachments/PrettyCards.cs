@@ -9,7 +9,6 @@ namespace VkNet.Model.Attachments
 	[Serializable]
 	public class PrettyCards : MediaAttachment
 	{
-		/// <inheritdoc />
 		protected override string Alias => "pretty_cards";
 
 		/// <summary>

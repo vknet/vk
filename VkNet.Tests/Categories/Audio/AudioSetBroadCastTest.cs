@@ -15,7 +15,7 @@ namespace VkNet.Tests.Categories.Audio
 		[Test]
 		public void SetBroadCastTest()
 		{
-			Url = "https://api.vk.me/method/audio.setBroadcast";
+			Url = "https://api.vk.com/method/audio.setBroadcast";
 
 			ReadCategoryJsonPath(nameof(Api.Audio.SetBroadcast));
 

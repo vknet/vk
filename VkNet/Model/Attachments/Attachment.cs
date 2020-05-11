@@ -455,7 +455,6 @@ namespace VkNet.Model.Attachments
 
 	#endregion
 
-		/// <inheritdoc />
 		public override string ToString()
 		{
 			return $"{Type.Name}";

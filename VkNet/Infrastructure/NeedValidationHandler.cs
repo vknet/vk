@@ -1,30 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using VkNet.Abstractions.Core;
-using VkNet.Abstractions.Utils;
 using VkNet.Model;
-using VkNet.Utils;
 
 namespace VkNet.Infrastructure
 {
 	/// <inheritdoc />
 	public class NeedValidationHandler : INeedValidationHandler
 	{
-		private readonly IRestClient _restClient;
-
-		/// <summary>
-		/// Выполняет обход ошибки валидации.
-		/// </summary>
-		/// <param name="authParams"></param>
-		/// <param name="proxy"></param>
-		public NeedValidationHandler(IRestClient restClient)
-		{
-			_restClient = restClient;
-		}
-
 		/// <inheritdoc />
 		public AuthorizationResult Validate(string validateUrl, string phoneNumber)
 		{

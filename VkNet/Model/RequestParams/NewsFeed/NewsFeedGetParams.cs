@@ -86,5 +86,10 @@ namespace VkNet.Model.RequestParams
 		/// Список дополнительных полей профилей и сообществ, которые необходимо вернуть.
 		/// </summary>
 		public IEnumerable<string> Fields { get; set; }
+
+		/// <summary>
+		/// Раздел новостной ленты.
+		/// </summary>
+		public string Section { get; set; }
 	}
 }

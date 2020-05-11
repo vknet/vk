@@ -22,7 +22,7 @@ namespace VkNet.Categories
 																, ulong? count = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					GetPages(widgetApiId, order, period, offset, count));
+					GetPages(widgetApiId: widgetApiId, order: order, period: period, offset: offset, count: count));
 		}
 	}
 }

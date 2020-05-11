@@ -5,7 +5,6 @@ namespace VkNet.Exception
 	/// </summary>
 	public class TooMuchButtonsException : VkApiException
 	{
-		/// <inheritdoc />
 		public TooMuchButtonsException(string message) : base(message)
 		{
 		}

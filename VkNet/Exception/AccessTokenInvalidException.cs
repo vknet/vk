@@ -30,8 +30,8 @@ namespace VkNet.Exception
 		/// </summary>
 		/// <param name="message"> Описание исключения. </param>
 		/// <param name="innerException"> Внутреннее исключение. </param>
-		public AccessTokenInvalidException(string message, System.Exception innerException) : base(message
-				, innerException)
+		public AccessTokenInvalidException(string message, System.Exception innerException) : base(message: message
+				, innerException: innerException)
 		{
 		}
 

@@ -14,13 +14,13 @@ namespace VkNet.Categories
 		public Task<VkCollection<App>> GetCatalogAsync(AppGetCatalogParams @params, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				GetCatalog(@params, skipAuthorization));
+				GetCatalog(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
 		public Task<AppGetObject> GetAsync(AppGetParams @params, bool skipAuthorization = false)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => Get(@params, skipAuthorization));
+			return TypeHelper.TryInvokeMethodAsync(func: () => Get(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
@@ -43,14 +43,14 @@ namespace VkNet.Categories
 															, UsersFields fields = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				GetFriendsList(type, extended, count, offset));
+				GetFriendsList(type: type, extended: extended, count: count, offset: offset));
 		}
 
 		/// <inheritdoc />
 		public Task<LeaderboardResult> GetLeaderboardAsync(AppRatingType type, bool? global = null, bool? extended = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				GetLeaderboard(type, global, extended));
+				GetLeaderboard(type: type, global: global, extended: extended));
 		}
 
 		/// <inheritdoc />

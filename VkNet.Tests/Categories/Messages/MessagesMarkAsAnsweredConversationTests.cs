@@ -11,7 +11,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void MarkAsAnsweredConversation()
 		{
-			Url = "https://api.vk.me/method/messages.markAsAnsweredConversation";
+			Url = "https://api.vk.com/method/messages.markAsAnsweredConversation";
 			ReadJsonFile(JsonPaths.True);
 
 			var result = Api.Messages.MarkAsAnsweredConversation(123);

@@ -124,7 +124,7 @@ namespace VkNet.Enums.SafetyEnums
 					var input = response.ToString();
 					var idPattern = new Regex(pattern: @"([\d]+)");
 					long id;
-					long.TryParse(idPattern.Match(input: input).Groups[groupnum: 1].Value, out id);
+					long.TryParse(s: idPattern.Match(input: input).Groups[groupnum: 1].Value, result: out id);
 
 					if (input.StartsWith(value: "list"))
 					{

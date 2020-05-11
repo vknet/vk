@@ -60,8 +60,9 @@ namespace VkNet.Model
 					default:
 
 					{
-						throw new VkApiException(message: string.Format("Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues"
-								, item[key: "type"]));
+						throw new VkApiException(message: string.Format(format:
+								"Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues"
+								, arg0: item[key: "type"]));
 					}
 				}
 			}

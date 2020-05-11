@@ -315,11 +315,8 @@ namespace VkNet
 
 				throw new AccessTokenInvalidException(message);
 			}
-			var restrictedCategories = new List<string>{"audio", "messages"};
 
-			var url = restrictedCategories.Contains(methodName.Split('.').First())
-				? $"https://api.vk.me/method/{methodName}"
-				: $"https://api.vk.com/method/{methodName}";
+			var url = $"https://api.vk.com/method/{methodName}";
 			var answer = InvokeBase(url, parameters);
 
 			_logger?.LogTrace($"Uri = \"{url}\"");

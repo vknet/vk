@@ -29,7 +29,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Page Get(PagesGetParams @params)
 		{
-			return _vk.Call("pages.get", new VkParameters
+			return _vk.Call(methodName: "pages.get", new VkParameters
 			{
 				{ "owner_id", @params.OwnerId }
 				, { "page_id", @params.PageId }
@@ -53,7 +53,7 @@ namespace VkNet.Categories
 				{ "page_id", pageId }
 			};
 
-			return _vk.Call("pages.save", parameters);
+			return _vk.Call(methodName: "pages.save", parameters: parameters);
 		}
 
 		/// <inheritdoc />
@@ -68,7 +68,7 @@ namespace VkNet.Categories
 				{ "page_id", pageId }, { "group_id", groupId }, { "user_id", userId }, { "view", view }, { "edit", edit }
 			};
 
-			return _vk.Call("pages.saveAccess", parameters);
+			return _vk.Call(methodName: "pages.saveAccess", parameters: parameters);
 		}
 
 		/// <inheritdoc />
@@ -79,7 +79,7 @@ namespace VkNet.Categories
 				{ "page_id", pageId }, { "group_id", groupId }, { "user_id", userId }
 			};
 
-			VkResponseArray result = _vk.Call("pages.getHistory", parameters);
+			VkResponseArray result = _vk.Call(methodName: "pages.getHistory", parameters: parameters);
 
 			return result.ToReadOnlyCollectionOf<PageVersion>(selector: x => x);
 		}
@@ -92,7 +92,7 @@ namespace VkNet.Categories
 				{ "group_id", groupId }
 			};
 
-			VkResponseArray result = _vk.Call("pages.getTitles", parameters);
+			VkResponseArray result = _vk.Call(methodName: "pages.getTitles", parameters: parameters);
 
 			return result.ToReadOnlyCollectionOf<Page>(selector: x => x);
 		}
@@ -105,7 +105,7 @@ namespace VkNet.Categories
 				{ "version_id", versionId }, { "group_id", groupId }, { "user_id", userId }, { "need_html", needHtml }
 			};
 
-			return _vk.Call("pages.getVersion", parameters);
+			return _vk.Call(methodName: "pages.getVersion", parameters: parameters);
 		}
 
 		/// <inheritdoc />
@@ -116,7 +116,7 @@ namespace VkNet.Categories
 				{ "text", text }, { "group_id", groupId }
 			};
 
-			return _vk.Call("pages.parseWiki", parameters);
+			return _vk.Call(methodName: "pages.parseWiki", parameters: parameters);
 		}
 
 		/// <inheritdoc />
@@ -127,7 +127,7 @@ namespace VkNet.Categories
 				{ "url", url }
 			};
 
-			return _vk.Call("pages.clearCache", parameters);
+			return _vk.Call(methodName: "pages.clearCache", parameters: parameters);
 		}
 	}
 }
