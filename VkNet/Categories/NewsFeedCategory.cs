@@ -39,7 +39,8 @@ namespace VkNet.Categories
 				{ "source_ids", @params.SourceIds },
 				{ "start_from", @params.StartFrom },
 				{ "count", @params.Count },
-				{ "fields", @params.Fields }
+				{ "fields", @params.Fields },
+				{ "section", @params.Section }
 			});
 		}
 
