@@ -40,9 +40,10 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
+			var uriQuery = string.IsNullOrWhiteSpace(uri.Query) ? string.Empty : uri.Query + "&";
 			var uriBuilder = new UriBuilder(uri)
 			{
-				Query = string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"))
+				Query = uriQuery + string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"))
 			};
 
 			_logger?.LogDebug($"GET request: {uriBuilder.Uri}");
@@ -77,11 +78,12 @@ namespace VkNet.Utils
 			var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
 			_logger?.LogDebug($"Response:{Environment.NewLine}{Utilities.PrettyPrintJson(content)}");
-			var url = response.RequestMessage.RequestUri.ToString();
+			var requestUri = response.RequestMessage.RequestUri;
+			var responseUri = response.Headers.Location;
 
 			return response.IsSuccessStatusCode
-				? HttpResponse<string>.Success(response.StatusCode, content, url)
-				: HttpResponse<string>.Fail(response.StatusCode, content, url);
+				? HttpResponse<string>.Success(response.StatusCode, content, requestUri, responseUri)
+				: HttpResponse<string>.Fail(response.StatusCode, content, requestUri, responseUri);
 		}
 	}
 }

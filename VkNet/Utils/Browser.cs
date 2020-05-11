@@ -5,6 +5,7 @@ using System.Text;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Core;
+using VkNet.Abstractions.Utils;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
@@ -32,20 +33,22 @@ namespace VkNet.Utils
 		/// </summary>
 		private readonly IVkApiVersionManager _versionManager;
 
+		private readonly IRestClient _restClient;
+
 		private readonly IVkAuthorization<ImplicitFlowPageType> _vkAuthorization;
 
 		private IApiAuthParams _authParams;
 
 		/// <inheritdoc cref="Browser"/>
 		public Browser([CanBeNull] ILogger<Browser> logger,
-						IVkApiVersionManager versionManager,
-						IWebProxy proxy,
-						IVkAuthorization<ImplicitFlowPageType> vkAuthorization,
-						ICaptchaSolver captchaSolver)
+					   IVkApiVersionManager versionManager,
+					   IRestClient restClient,
+					   IVkAuthorization<ImplicitFlowPageType> vkAuthorization,
+					   ICaptchaSolver captchaSolver)
 		{
 			_logger = logger;
 			_versionManager = versionManager;
-			Proxy = proxy;
+			_restClient = restClient;
 			_vkAuthorization = vkAuthorization;
 			_captchaSolver = captchaSolver;
 		}
@@ -58,7 +61,7 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public string GetJson(string url, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
-			return WebCall.PostCall(url, parameters, Proxy).Response;
+			return GetJsonAsync(url, parameters).ConfigureAwait(false).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
@@ -68,8 +71,7 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		[Obsolete(
-			"Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
+		[Obsolete("Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
 		public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 		{
 			_authParams.ApplicationId = clientId;
@@ -114,21 +116,21 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public AuthorizationResult Validate(string validateUrl)
 		{
-			return ValidateAsync(validateUrl).GetAwaiter().GetResult();
+			return ValidateAsync(validateUrl).ConfigureAwait(false).GetAwaiter().GetResult();
 		}
 
-		private bool HasСonfirmationRights(WebCallResult result)
+		private bool HasСonfirmationRights(HttpResponse<string> result)
 		{
-			var request = VkAuthorization2.From(result.RequestUrl.ToString());
-			var response = VkAuthorization2.From(result.ResponseUrl.ToString());
+			var request = VkAuthorization2.From(result.RequestUri?.ToString());
+			var response = VkAuthorization2.From(result.ResponseUri?.ToString());
 
 			return request.IsAuthorizationRequired || response.IsAuthorizationRequired;
 		}
 
-		private long? HasCaptchaInput(WebCallResult result)
+		private long? HasCaptchaInput(HttpResponse<string> result)
 		{
-			var request = VkAuthorization2.From(result.RequestUrl.ToString());
-			var response = VkAuthorization2.From(result.ResponseUrl.ToString());
+			var request = VkAuthorization2.From(result.RequestUri?.ToString());
+			var response = VkAuthorization2.From(result.ResponseUri?.ToString());
 
 			if (request.IsCaptchaNeeded)
 			{
@@ -148,9 +150,9 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="webCallResult"> </param>
 		/// <returns> true, если авторизация прошла успешно </returns>
-		private static bool IsAuthSuccessfull(WebCallResult webCallResult)
+		private static bool IsAuthSuccessfull(HttpResponse<string> webCallResult)
 		{
-			return UriHasAccessToken(webCallResult.RequestUrl) || UriHasAccessToken(webCallResult.ResponseUrl);
+			return UriHasAccessToken(webCallResult.RequestUri) || UriHasAccessToken(webCallResult.ResponseUri);
 		}
 
 		/// <summary>
@@ -160,8 +162,9 @@ namespace VkNet.Utils
 		/// <returns> </returns>
 		private static bool UriHasAccessToken(Uri uri)
 		{
-			return uri.Fragment
-				.StartsWith("#access_token=", StringComparison.Ordinal);
+			var result = uri?.Fragment.StartsWith("#access_token=", StringComparison.Ordinal);
+
+			return result.GetValueOrDefault();
 		}
 
 		/// <summary>
@@ -170,20 +173,20 @@ namespace VkNet.Utils
 		/// <param name="webCallResult"> Результат запроса </param>
 		/// <returns> Возвращает uri содержащий токен </returns>
 		/// <exception cref="VkApiException"> URI должен содержать токен! </exception>
-		private Uri GetTokenUri(WebCallResult webCallResult)
+		private Uri GetTokenUri(HttpResponse<string> webCallResult)
 		{
-			if (UriHasAccessToken(webCallResult.RequestUrl))
+			if (UriHasAccessToken(webCallResult.RequestUri))
 			{
-				_logger?.LogDebug("Запрос: " + webCallResult.RequestUrl);
+				_logger?.LogDebug("Запрос: " + webCallResult.RequestUri);
 
-				return webCallResult.RequestUrl;
+				return webCallResult.RequestUri;
 			}
 
-			if (UriHasAccessToken(webCallResult.ResponseUrl))
+			if (UriHasAccessToken(webCallResult.RequestUri))
 			{
-				_logger?.LogDebug("Ответ: " + webCallResult.ResponseUrl);
+				_logger?.LogDebug("Ответ: " + webCallResult.RequestUri);
 
-				return webCallResult.ResponseUrl;
+				return webCallResult.RequestUri;
 			}
 
 			return null;
@@ -191,7 +194,7 @@ namespace VkNet.Utils
 
 		private VkAuthorization2 OldValidate(string validateUrl, string phoneNumber)
 		{
-			return OldValidateAsync(validateUrl, phoneNumber).GetAwaiter().GetResult();
+			return OldValidateAsync(validateUrl, phoneNumber).ConfigureAwait(false).GetAwaiter().GetResult();
 		}
 	}
 }

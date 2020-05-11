@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using VkNet.Abstractions.Core;
+using VkNet.Abstractions.Utils;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -10,20 +13,16 @@ namespace VkNet.Infrastructure
 	/// <inheritdoc />
 	public class NeedValidationHandler : INeedValidationHandler
 	{
-		private readonly IWebProxy _proxy;
-
-		private readonly IApiAuthParams _authParams;
-
+		private readonly IRestClient _restClient;
 
 		/// <summary>
 		/// Выполняет обход ошибки валидации.
 		/// </summary>
 		/// <param name="authParams"></param>
 		/// <param name="proxy"></param>
-		public NeedValidationHandler(IApiAuthParams authParams, IWebProxy proxy)
+		public NeedValidationHandler(IRestClient restClient)
 		{
-			_authParams = authParams;
-			_proxy = proxy;
+			_restClient = restClient;
 		}
 
 		/// <inheritdoc />
@@ -35,16 +34,13 @@ namespace VkNet.Infrastructure
 		/// <inheritdoc />
 		public AuthorizationResult Validate(string validateUrl)
 		{
-			var result = ValidateAsync(validateUrl);
-			Task.WaitAll(result);
-
-			return result.GetAwaiter().GetResult();
+			return ValidateAsync(validateUrl).ConfigureAwait(false).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
-		public async Task<AuthorizationResult> ValidateAsync(string validateUrl)
+		public Task<AuthorizationResult> ValidateAsync(string validateUrl)
 		{
-			if (string.IsNullOrWhiteSpace(validateUrl))
+			/*if (string.IsNullOrWhiteSpace(validateUrl))
 			{
 				throw new ArgumentException("Не задан адрес валидации!");
 			}
@@ -54,15 +50,15 @@ namespace VkNet.Infrastructure
 				throw new ArgumentException("Не задан номер телефона!");
 			}
 
-			var validateUrlResult = await WebCall.MakeCallAsync(validateUrl, _proxy).ConfigureAwait(false);
+			var validateUrlResult = await _restClient.GetAsync(new Uri(validateUrl), Enumerable.Empty<KeyValuePair<string, string>>());
 
 			var codeForm = WebForm.From(validateUrlResult)
 				.WithField("code")
 				.FilledWith(_authParams.Phone.Substring(1, 8));
 
-			var codeFormPostResult = await WebCall.PostAsync(codeForm, _proxy).ConfigureAwait(false);
+			var codeFormPostResult = await _restClient.PostAsync(new Uri(codeForm.ActionUrl), codeForm.GetFormFields());
 
-			var result = VkAuthorization2.From(codeFormPostResult.ResponseUrl.ToString());
+			var result = VkAuthorization2.From(codeFormPostResult.ResponseUri.ToString());
 
 			return new AuthorizationResult
 			{
@@ -70,7 +66,8 @@ namespace VkNet.Infrastructure
 				State = result.State,
 				UserId = result.UserId,
 				ExpiresIn = result.ExpiresIn
-			};
+			};*/
+			throw new NotImplementedException();
 		}
 	}
 }
