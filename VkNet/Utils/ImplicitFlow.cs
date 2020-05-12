@@ -4,7 +4,6 @@ using System.Text;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
-using Flurl;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
 using VkNet.Enums;
@@ -77,7 +76,7 @@ namespace VkNet.Utils
 
 		/// <inheritdoc />
 		[Obsolete("Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
-		public Url CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
+		public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 		{
 			_authorizationParameters.ApplicationId = clientId;
 			_authorizationParameters.Display = display;
@@ -87,7 +86,7 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public Url CreateAuthorizeUrl()
+		public Uri CreateAuthorizeUrl()
 		{
 			_logger?.LogDebug("Построение url для авторизации.");
 
@@ -114,7 +113,7 @@ namespace VkNet.Utils
 
 		private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult)
 		{
-			var pageType = _vkAuthorization.GetPageType(formResult.ResponseUrl.ToUri());
+			var pageType = _vkAuthorization.GetPageType(formResult.ResponseUrl);
 
 			switch (pageType)
 			{
@@ -161,7 +160,7 @@ namespace VkNet.Utils
 				case ImplicitFlowPageType.Result:
 
 				{
-					return _vkAuthorization.GetAuthorizationResult(formResult.ResponseUrl.ToUri());
+					return _vkAuthorization.GetAuthorizationResult(formResult.ResponseUrl);
 				}
 			}
 

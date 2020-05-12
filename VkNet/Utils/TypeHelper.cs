@@ -1,5 +1,6 @@
 using System;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -30,6 +31,7 @@ namespace VkNet.Utils
 			//container.TryAddSingleton<IBrowser, Browser>();
 			container.TryAddSingleton<INeedValidationHandler, NeedValidationHandler>();
 			container.TryAddSingleton<IApiAuthParams>(t => null);
+			container.TryAddSingleton<HttpClient>();
 			container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
 			container.TryAddSingleton<IRestClient, RestClient>();
 			container.TryAddSingleton<IWebProxy>(t => null);

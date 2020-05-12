@@ -2,7 +2,6 @@ using System;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Flurl;
 using Moq;
 using Moq.AutoMock;
 using NUnit.Framework;
@@ -58,7 +57,7 @@ namespace VkNet.Tests.Infrastructure
 
 			var authorizeUrl = implicitFlow.CreateAuthorizeUrl();
 
-			Assert.AreEqual(new Url(expected), authorizeUrl);
+			Assert.AreEqual(new Uri(expected), authorizeUrl);
 		}
 
 		[Test]
@@ -68,12 +67,11 @@ namespace VkNet.Tests.Infrastructure
 
 			mocker.Setup<IVkApiVersionManager, string>(x => x.Version).Returns("5.92");
 
-			mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x => x.ExecuteAsync(It.IsAny<Url>()))
+			mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x => x.ExecuteAsync(It.IsAny<Uri>()))
 				.ReturnsAsync(new AuthorizationFormResult
 				{
-					ResponseUrl = "https://m.vk.com/login?act=authcheck&m=442",
-					RequestUrl = "https://m.vk.com/login?act=authcheck&m=442",
-					Cookies = new CookieContainer()
+					ResponseUrl = new Uri("https://m.vk.com/login?act=authcheck&m=442"),
+					RequestUrl = new Uri("https://m.vk.com/login?act=authcheck&m=442")
 				});
 
 			mocker.Setup<IAuthorizationFormFactory, IAuthorizationForm>(x => x.Create(It.IsAny<ImplicitFlowPageType>()))

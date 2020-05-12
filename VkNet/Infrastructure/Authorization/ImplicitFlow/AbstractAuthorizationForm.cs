@@ -1,8 +1,6 @@
-using System.Net;
-using System.Net.Http;
+using System;
 using System.Threading.Tasks;
-using Flurl;
-using Flurl.Http;
+using VkNet.Abstractions.Utils;
 using VkNet.Enums;
 using VkNet.Exception;
 
@@ -11,11 +9,14 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 	/// <inheritdoc />
 	public abstract class AbstractAuthorizationForm : IAuthorizationForm
 	{
+		private readonly IRestClient _restClient;
+
 		private readonly IAuthorizationFormHtmlParser _htmlParser;
 
 		/// <inheritdoc cref="AbstractAuthorizationForm"/>
-		protected AbstractAuthorizationForm(IAuthorizationFormHtmlParser htmlParser)
+		protected AbstractAuthorizationForm(IRestClient restClient, IAuthorizationFormHtmlParser htmlParser)
 		{
+			_restClient = restClient;
 			_htmlParser = htmlParser;
 		}
 
@@ -23,37 +24,24 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		public abstract ImplicitFlowPageType GetPageType();
 
 		/// <inheritdoc />
-		public async Task<AuthorizationFormResult> ExecuteAsync(Url url)
+		public async Task<AuthorizationFormResult> ExecuteAsync(Uri url)
 		{
 			var form = await _htmlParser.GetFormAsync(url).ConfigureAwait(false);
 
 			FillFormFields(form);
 
-			using (var cli = new FlurlClient(form.Action).EnableCookies())
+			var response = await _restClient.PostAsync(new Uri(form.Action), form.Fields).ConfigureAwait(false);
+
+			if (!response.IsSuccess)
 			{
-				var responseMessage = await cli.Request()
-					.PostMultipartAsync(mp => mp.Add(new FormUrlEncodedContent(form.Fields)))
-					.ConfigureAwait(false);
-
-				if (!responseMessage.IsSuccessStatusCode)
-				{
-					throw new VkAuthorizationException(responseMessage.ReasonPhrase);
-				}
-
-				var cookieContainer = new CookieContainer();
-
-				foreach (var pair in cli.Cookies)
-				{
-					cookieContainer.Add(pair.Value);
-				}
-
-				return new AuthorizationFormResult
-				{
-					RequestUrl = url,
-					ResponseUrl = responseMessage.Headers.Location ?? url,
-					Cookies = cookieContainer
-				};
+				throw new VkAuthorizationException(response.Message);
 			}
+
+			return new AuthorizationFormResult
+			{
+				RequestUrl = response.RequestUri,
+				ResponseUrl = response.ResponseUri
+			};
 		}
 
 		/// <summary>

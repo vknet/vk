@@ -1,5 +1,5 @@
+using System;
 using System.Threading.Tasks;
-using Flurl;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
@@ -13,6 +13,6 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// </summary>
 		/// <param name="url">URL</param>
 		/// <returns>Результат с данными формы</returns>
-		Task<VkHtmlFormResult> GetFormAsync(Url url);
+		Task<VkHtmlFormResult> GetFormAsync(Uri url);
 	}
 }

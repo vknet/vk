@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using VkNet.Abstractions.Utils;
 using VkNet.Enums;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
@@ -8,8 +9,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 	public sealed class ConsentForm : AbstractAuthorizationForm
 	{
 		/// <inheritdoc />
-		public ConsentForm(IAuthorizationFormHtmlParser htmlParser)
-			: base(htmlParser)
+		public ConsentForm(IRestClient restClient, IAuthorizationFormHtmlParser htmlParser)
+			: base(restClient, htmlParser)
 		{
 		}
 

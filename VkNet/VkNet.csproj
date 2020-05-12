@@ -53,32 +53,40 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="AsyncFixer" Version="1.1.6" PrivateAssets="all" />
-		<PackageReference Include="Flurl" Version="2.8.2" />
 		<PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
 		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.6.1.17183" PrivateAssets="all" />
 		<PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="all" />
 	</ItemGroup>
+
     <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
 	    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.1" />
 	    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.1" />
 	    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.0.1" />
     </ItemGroup>
+
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net461'">
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.0" />
 	</ItemGroup>
+
 	<ItemGroup Condition="'$(TargetFramework)' == 'net45' OR '$(TargetFramework)' == 'net40'">
 		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="[2.2.0]" />
+		<PackageReference Include="NetFx.Extensions.DependencyInjection.Abstractions" Version="[2.2.0]" />
 		<PackageReference Include="NetFx.Extensions.Logging.Abstractions" Version="[2.2.0]" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' != 'net40'">
-		<PackageReference Include="Flurl.Http" Version="2.4.2" />
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net461' OR '$(TargetFramework)' == 'net45'">
+		<Reference Include="System.Net.Http" />
 	</ItemGroup>
+
 	<ItemGroup Condition="'$(TargetFramework)' == 'net40'">
-		<PackageReference Include="Flurl.Http.Net40" Version="1.0.1" />
+		<PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+		<PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
 	</ItemGroup>

@@ -1,5 +1,5 @@
+using System;
 using System.Threading.Tasks;
-using Flurl;
 using VkNet.Enums;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
@@ -22,6 +22,6 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// </summary>
 		/// <param name="url">Url запроса</param>
 		/// <returns>Содержимое ответа от vk</returns>
-		Task<AuthorizationFormResult> ExecuteAsync(Url url);
+		Task<AuthorizationFormResult> ExecuteAsync(Uri url);
 	}
 }

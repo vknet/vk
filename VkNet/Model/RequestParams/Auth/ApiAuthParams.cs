@@ -43,15 +43,19 @@ namespace VkNet.Model
 		public string CaptchaKey { get; set; }
 
 		/// <inheritdoc />
+		[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
 		public string Host { get; set; }
 
 		/// <inheritdoc />
+		[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
 		public int? Port { get; set; }
 
 		/// <inheritdoc />
+		[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
 		public string ProxyLogin { get; set; }
 
 		/// <inheritdoc />
+		[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
 		public string ProxyPassword { get; set; }
 
 		/// <inheritdoc />
