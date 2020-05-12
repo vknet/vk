@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
@@ -107,7 +106,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 			if (!string.IsNullOrWhiteSpace(link) && !link.StartsWith("http", StringComparison.Ordinal)) // относительный URL
 			{
-				link = Path.Combine(GetResponseBaseUrl(url), link);
+				link = GetResponseBaseUrl(url) + link;
 			}
 
 			return string.IsNullOrWhiteSpace(link) ? url.ToString() : link; // абсолютный путь
