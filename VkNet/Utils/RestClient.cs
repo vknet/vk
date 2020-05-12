@@ -30,11 +30,11 @@ namespace VkNet.Utils
 		public HttpClient HttpClient { get; }
 
 		/// <inheritdoc />
-		[Obsolete("Use HttpClientFactory to configure proxy.")]
+		[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
 		public IWebProxy Proxy { get; set; }
 
 		/// <inheritdoc />
-		[Obsolete("Use HttpClientFactory to configure timeout.")]
+		[Obsolete("Use HttpClient to configure timeout. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
 		public TimeSpan Timeout { get; set; }
 
 		/// <inheritdoc />
