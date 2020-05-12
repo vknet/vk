@@ -71,8 +71,7 @@ namespace VkNet.Tests.Infrastructure
 				.ReturnsAsync(new AuthorizationFormResult
 				{
 					ResponseUrl = new Uri("https://m.vk.com/login?act=authcheck&m=442"),
-					RequestUrl = new Uri("https://m.vk.com/login?act=authcheck&m=442"),
-					Cookies = new CookieContainer()
+					RequestUrl = new Uri("https://m.vk.com/login?act=authcheck&m=442")
 				});
 
 			mocker.Setup<IAuthorizationFormFactory, IAuthorizationForm>(x => x.Create(It.IsAny<ImplicitFlowPageType>()))

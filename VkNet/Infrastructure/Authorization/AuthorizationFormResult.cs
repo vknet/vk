@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 
 namespace VkNet.Infrastructure.Authorization
 {
@@ -17,10 +16,5 @@ namespace VkNet.Infrastructure.Authorization
 		/// URL ответа
 		/// </summary>
 		public Uri ResponseUrl { get; set; }
-
-		/// <summary>
-		/// Куки.
-		/// </summary>
-		public CookieContainer Cookies { get; set; }
 	}
 }

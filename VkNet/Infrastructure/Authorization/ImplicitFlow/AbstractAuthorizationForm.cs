@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 using System.Threading.Tasks;
 using VkNet.Abstractions.Utils;
 using VkNet.Enums;
@@ -31,25 +30,17 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 			FillFormFields(form);
 
-			var response = await _restClient.PostAsync(new Uri(form.Action), form.Fields);
+			var response = await _restClient.PostAsync(new Uri(form.Action), form.Fields).ConfigureAwait(false);
 
 			if (!response.IsSuccess)
 			{
-				throw new VkAuthorizationException(response.StatusCode.ToString());
+				throw new VkAuthorizationException(response.Message);
 			}
-
-			var cookieContainer = new CookieContainer();
-
-			// foreach (var pair in cli.Cookies)
-			// {
-			// 	cookieContainer.Add(pair.Value);
-			// }
 
 			return new AuthorizationFormResult
 			{
-				RequestUrl = url,
-				ResponseUrl = url,
-				Cookies = cookieContainer
+				RequestUrl = response.RequestUri,
+				ResponseUrl = response.ResponseUri
 			};
 		}
 
