@@ -40,15 +40,11 @@ namespace VkNet.Utils
 		/// <inheritdoc />
 		public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
-			var uriQuery = string.IsNullOrWhiteSpace(uri.Query) ? string.Empty : uri.Query + "&";
-			var uriBuilder = new UriBuilder(uri)
-			{
-				Query = uriQuery + string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"))
-			};
+			var url = Url.Combine(uri.ToString(), Url.QueryFrom(parameters.ToArray()));
 
-			_logger?.LogDebug($"GET request: {uriBuilder.Uri}");
+			_logger?.LogDebug($"GET request: {url}");
 
-			return CallAsync(() => HttpClient.GetAsync(uriBuilder.Uri));
+			return CallAsync(() => HttpClient.GetAsync(new Uri(url)));
 		}
 
 		/// <inheritdoc />

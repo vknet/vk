@@ -6,6 +6,7 @@ using HtmlAgilityPack;
 using JetBrains.Annotations;
 using VkNet.Abstractions.Utils;
 using VkNet.Exception;
+using VkNet.Utils;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
@@ -106,7 +107,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 			if (!string.IsNullOrWhiteSpace(link) && !link.StartsWith("http", StringComparison.Ordinal)) // относительный URL
 			{
-				link = GetResponseBaseUrl(url) + link;
+				link = Url.Combine(GetResponseBaseUrl(url), link);
 			}
 
 			return string.IsNullOrWhiteSpace(link) ? url.ToString() : link; // абсолютный путь
