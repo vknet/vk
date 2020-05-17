@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net40;net45;net461;netstandard2.0;netstandard2.1</TargetFrameworks>
+		<TargetFrameworks>net40;net45;net461;netstandard2.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
 		<VersionPrefix>1.53.0</VersionPrefix>
 		<VersionSufix>
@@ -62,12 +62,6 @@
 		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.6.1.17183" PrivateAssets="all" />
 		<PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="all" />
 	</ItemGroup>
-
-    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-	    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.1" />
-	    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.1" />
-	    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.0.1" />
-    </ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net461'">
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
