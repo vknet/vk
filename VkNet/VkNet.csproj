@@ -75,7 +75,7 @@
 		<PackageReference Include="NetFx.Extensions.Logging.Abstractions" Version="[2.2.0]" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net461' OR '$(TargetFramework)' == 'net45'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
 		<Reference Include="System.Net.Http" />
 	</ItemGroup>
 
