@@ -37,6 +37,12 @@ namespace VkNet.Model
 		public long? PostId { get; set; }
 
 		/// <summary>
+		/// Идентификатор фотографии.
+		/// </summary>
+		[JsonProperty("pid")]
+		public long? PhotoId { get; set; }
+
+		/// <summary>
 		/// Идентификатор автора комментария.
 		/// </summary>
 		[JsonProperty("owner_id")]
@@ -124,6 +130,7 @@ namespace VkNet.Model
 				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
 				Likes = response["likes"],
 				PostId = response["post_id"],
+				PhotoId = response["pid"],
 				OwnerId = response["owner_id"],
 				ParentsStack = response["parents_stack"].ToReadOnlyCollectionOf<long>(x => x),
 				Thread = response["thread"]
