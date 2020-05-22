@@ -10,33 +10,26 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 	[UsedImplicitly]
 	public sealed class TwoFactorForm : AbstractAuthorizationForm
 	{
-		private readonly IApiAuthParams _authorizationParameters;
-
 		/// <inheritdoc />
-		public TwoFactorForm(IRestClient restClient, IApiAuthParams authorizationParameters, IAuthorizationFormHtmlParser htmlParser)
+		public TwoFactorForm(IRestClient restClient, IAuthorizationFormHtmlParser htmlParser)
 			: base(restClient, htmlParser)
 		{
-			_authorizationParameters = authorizationParameters;
 		}
 
 		/// <inheritdoc />
 		public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.TwoFactor;
 
 		/// <inheritdoc />
-		/// <summary>
-		/// Заполнить форму двухфакторной авторизации
-		/// </summary>
-		/// <param name="form"> Форма </param>
-		protected override void FillFormFields(VkHtmlFormResult form)
+		protected override void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams)
 		{
-			if (_authorizationParameters.TwoFactorAuthorization == null)
+			if (authParams.TwoFactorAuthorization == null)
 			{
 				throw new VkAuthorizationException("Двухфакторная авторизация должна быть установлена в " + nameof(IApiAuthParams));
 			}
 
 			if (form.Fields.ContainsKey(AuthorizationFormFields.Code))
 			{
-				form.Fields[AuthorizationFormFields.Code] = _authorizationParameters.TwoFactorAuthorization.Invoke();
+				form.Fields[AuthorizationFormFields.Code] = authParams.TwoFactorAuthorization.Invoke();
 			}
 		}
 	}

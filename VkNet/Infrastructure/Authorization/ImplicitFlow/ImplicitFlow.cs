@@ -62,7 +62,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				"123435");
 
 			var loginFormResult = await _authorizationFormsFactory.Create(ImplicitFlowPageType.LoginPassword)
-				.ExecuteAsync(authorizeUrlResult)
+				.ExecuteAsync(authorizeUrlResult, _authorizationParameters)
 				.ConfigureAwait(false);
 
 			return await NextStepAsync(loginFormResult).ConfigureAwait(false);
@@ -165,7 +165,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 			}
 
 			var resultForm = await _authorizationFormsFactory.Create(pageType)
-				.ExecuteAsync(formResult.ResponseUrl)
+				.ExecuteAsync(formResult.ResponseUrl, _authorizationParameters)
 				.ConfigureAwait(false);
 
 			return await NextStepAsync(resultForm).ConfigureAwait(false);

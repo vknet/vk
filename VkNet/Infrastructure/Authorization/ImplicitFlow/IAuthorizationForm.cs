@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using VkNet.Enums;
+using VkNet.Model;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
@@ -21,7 +22,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// Выполнить авторизацию
 		/// </summary>
 		/// <param name="url">Url запроса</param>
+		/// <param name="authParams">Параметры авторизации.</param>
 		/// <returns>Содержимое ответа от vk</returns>
-		Task<AuthorizationFormResult> ExecuteAsync(Uri url);
+		Task<AuthorizationFormResult> ExecuteAsync(Uri url, IApiAuthParams authParams);
 	}
 }

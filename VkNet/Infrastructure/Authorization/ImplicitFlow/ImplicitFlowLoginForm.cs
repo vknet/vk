@@ -9,30 +9,27 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 	[UsedImplicitly]
 	public sealed class ImplicitFlowLoginForm : AbstractAuthorizationForm
 	{
-		private readonly IApiAuthParams _authorizationParameters;
 
 		/// <inheritdoc />
-		public ImplicitFlowLoginForm(IRestClient restClient, IAuthorizationFormHtmlParser htmlParser,
-									IApiAuthParams authorizationParameters)
+		public ImplicitFlowLoginForm(IRestClient restClient, IAuthorizationFormHtmlParser htmlParser)
 			: base(restClient, htmlParser)
 		{
-			_authorizationParameters = authorizationParameters;
 		}
 
 		/// <inheritdoc />
 		public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.LoginPassword;
 
 		/// <inheritdoc />
-		protected override void FillFormFields(VkHtmlFormResult form)
+		protected override void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams)
 		{
 			if (form.Fields.ContainsKey(AuthorizationFormFields.Email))
 			{
-				form.Fields[AuthorizationFormFields.Email] = _authorizationParameters.Login;
+				form.Fields[AuthorizationFormFields.Email] = authParams.Login;
 			}
 
 			if (form.Fields.ContainsKey(AuthorizationFormFields.Password))
 			{
-				form.Fields[AuthorizationFormFields.Password] = _authorizationParameters.Password;
+				form.Fields[AuthorizationFormFields.Password] = authParams.Password;
 			}
 		}
 	}

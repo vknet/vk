@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using VkNet.Abstractions.Utils;
 using VkNet.Enums;
+using VkNet.Model;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
@@ -18,7 +19,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.Consent;
 
 		/// <inheritdoc />
-		protected override void FillFormFields(VkHtmlFormResult form)
+		protected override void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams)
 		{
 		}
 	}
