@@ -5,7 +5,7 @@ using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Utils.AntiCaptcha;
 
-namespace VkNet.Infrastructure.Authorization.ImplicitFlow
+namespace VkNet.Infrastructure.Authorization.ImplicitFlow.Forms
 {
 	/// <inheritdoc />
 	[UsedImplicitly]

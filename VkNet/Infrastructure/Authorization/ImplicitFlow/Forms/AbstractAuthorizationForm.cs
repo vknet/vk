@@ -5,7 +5,7 @@ using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Model;
 
-namespace VkNet.Infrastructure.Authorization.ImplicitFlow
+namespace VkNet.Infrastructure.Authorization.ImplicitFlow.Forms
 {
 	/// <inheritdoc />
 	public abstract class AbstractAuthorizationForm : IAuthorizationForm

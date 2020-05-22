@@ -3,6 +3,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Exception;
+using VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {

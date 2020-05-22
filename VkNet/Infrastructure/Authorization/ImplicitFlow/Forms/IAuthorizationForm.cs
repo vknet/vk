@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
 
-namespace VkNet.Infrastructure.Authorization.ImplicitFlow
+namespace VkNet.Infrastructure.Authorization.ImplicitFlow.Forms
 {
 	/// <summary>
 	/// Страница авторизации

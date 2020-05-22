@@ -10,8 +10,8 @@ using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
-using VkNet.Infrastructure.Authorization;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
+using VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
 using VkNet.Model;
 using VkNet.Utils;
 

@@ -3,7 +3,7 @@ using VkNet.Abstractions.Utils;
 using VkNet.Enums;
 using VkNet.Model;
 
-namespace VkNet.Infrastructure.Authorization.ImplicitFlow
+namespace VkNet.Infrastructure.Authorization.ImplicitFlow.Forms
 {
 	/// <inheritdoc />
 	[UsedImplicitly]
