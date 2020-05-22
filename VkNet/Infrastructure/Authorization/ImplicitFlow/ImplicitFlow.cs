@@ -9,9 +9,8 @@ using VkNet.Abstractions.Core;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
-using VkNet.Infrastructure.Authorization;
-using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
+using VkNet.Utils;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
@@ -56,10 +55,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 			_logger?.LogDebug("Шаг 1. Открытие диалога авторизации");
 
-			var authorizeUrlResult = CreateAuthorizeUrl(_authorizationParameters.ApplicationId,
-				_authorizationParameters.Settings.ToUInt64(),
-				Display.Mobile,
-				"123435");
+			var authorizeUrlResult = CreateAuthorizeUrl();
 
 			var loginFormResult = await _authorizationFormsFactory.Create(ImplicitFlowPageType.LoginPassword)
 				.ExecuteAsync(authorizeUrlResult, _authorizationParameters)
@@ -95,20 +91,18 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 			var vkAuthParams = new VkParameters
 			{
 				{ "client_id", _authorizationParameters.ApplicationId },
-				{ "redirect_uri", _authorizationParameters.RedirectUri },
-				{ "display", _authorizationParameters.Display },
-				{ "scope", _authorizationParameters.Settings },
+				{ "redirect_uri", _authorizationParameters.RedirectUri != null ? _authorizationParameters.RedirectUri.ToString() : Constants.DefaultRedirectUri },
+				{ "display", Display.Mobile },
+				{ "scope", _authorizationParameters.Settings.ToUInt64() },
 				{ "response_type", ResponseType.Token },
 				{ "v", _versionManager.Version },
 				{ "state", _authorizationParameters.State },
 				{ "revoke", _authorizationParameters.Revoke }
 			};
 
-			var query = vkAuthParams.Select(x => $"{x.Key}={x.Value}");
-			var stringQuery = string.Join("&",query);
-			var result = $"{url}{stringQuery}";
+			var resultUrl = Url.Combine(url, Url.QueryFrom(vkAuthParams.ToArray()));
 
-			return new Uri(result);
+			return new Uri(resultUrl);
 		}
 
 		private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult)
@@ -197,11 +191,6 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				if (string.IsNullOrWhiteSpace(_authorizationParameters.Password))
 				{
 					errorsBuilder.AppendLine($"{nameof(_authorizationParameters.Password)} обязательный параметр");
-				}
-
-				if (_authorizationParameters.RedirectUri == null)
-				{
-					errorsBuilder.AppendLine($"{nameof(_authorizationParameters.RedirectUri)} обязательный параметр");
 				}
 			}
 
