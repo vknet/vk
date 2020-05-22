@@ -831,7 +831,7 @@ namespace VkNet
 		/// Авторизация и получение токена
 		/// </summary>
 		/// <param name="authParams"> Параметры авторизации </param>
-		/// <exception cref="VkApiAuthorizationException"> </exception>
+		/// <exception cref="VkAuthorizationException"> </exception>
 		private void BaseAuthorize(IApiAuthParams authParams)
 		{
 			StopTimer();
@@ -843,10 +843,10 @@ namespace VkNet
 
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
-				var message = $"Invalid authorization with {authParams.Login} - {authParams.Password}";
+				const string message = "Authorization fail: invalid access token.";
 				_logger?.LogError(message);
 
-				throw new VkApiAuthorizationException(message, authParams.Login, authParams.Password);
+				throw new VkAuthorizationException(message);
 			}
 
 			SetTokenProperties(authorization);
