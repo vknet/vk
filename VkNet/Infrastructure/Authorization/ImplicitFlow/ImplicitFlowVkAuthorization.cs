@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Model;
+using VkNet.Utils;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
 	/// <inheritdoc />
 	[UsedImplicitly]
-	[SuppressMessage("ReSharper", "SuggestBaseTypeForParameter")]
 	public class ImplicitFlowVkAuthorization : IVkAuthorization<ImplicitFlowPageType>
 	{
 		private const string AccessToken = "access_token";
@@ -23,15 +22,14 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		private const string UserId = "user_id";
 
 		/// <inheritdoc />
-		[JetBrains.Annotations.NotNull]
-		[UsedImplicitly]
+		[NotNull]
 		public AuthorizationResult GetAuthorizationResult(Uri url)
 		{
 			var pageType = GetPageType(url);
 
 			if (pageType != ImplicitFlowPageType.Result)
 			{
-				throw new VkAuthorizationException("URL должен содержать токен доступа.");
+				throw new VkAuthorizationException($"{ImplicitFlowPageType.Result} page expected, but was {pageType}.");
 			}
 
 			var parameters = GetFragmentParameters(url);
@@ -86,7 +84,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		{
 			if (!parameters.TryGetValue(AccessToken, out var token))
 			{
-				throw new VkApiException($"Параметр {AccessToken} не найден");
+				throw new VkAuthorizationException($"Missing URL parameter: '{AccessToken}'");
 			}
 
 			return token;
@@ -94,29 +92,21 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 		private static string GetState(Dictionary<string, string> parameters)
 		{
-			if (!parameters.TryGetValue(State, out var state))
-			{
-				throw new VkApiException($"Параметр {State} не найден");
-			}
+			parameters.TryGetValue(State, out var state);
 
 			return state;
 		}
 
 		private static int GetExpiresIn(Dictionary<string, string> parameters)
 		{
-			if (!parameters.TryGetValue(ExpiresIn, out var expiresIn))
-			{
-				throw new VkApiException($"Параметр {ExpiresIn} не найден");
-			}
-
-			return int.Parse(expiresIn);
+			return parameters.TryGetValue(ExpiresIn, out var expiresIn) ? int.Parse(expiresIn) : 0;
 		}
 
 		private static long GetUserId(Dictionary<string, string> parameters)
 		{
 			if (!parameters.TryGetValue(UserId, out var userId))
 			{
-				throw new VkApiException($"Параметр {UserId} не найден");
+				throw new VkAuthorizationException($"Missing URL parameter: '{UserId}'");
 			}
 
 			return long.Parse(userId);
@@ -139,15 +129,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		private static Dictionary<string, string> GetParams(string query)
 		{
 			return query.Split(new[] { "&" }, StringSplitOptions.RemoveEmptyEntries)
-				.ToDictionary(x => x.Split(new[] { "=" }, StringSplitOptions.RemoveEmptyEntries)[0],
-					ParseDictionaryValue);
-		}
-
-		private static string ParseDictionaryValue(string x)
-		{
-			var parametersPair = x.Split(new[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
-
-			return parametersPair.Length > 1 ? parametersPair[1] : string.Empty;
+				.Select(q => q.Split('='))
+				.ToDictionary(x => x.First(), x => x.Last());
 		}
 	}
 }
