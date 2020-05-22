@@ -7,7 +7,7 @@ using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Model;
 
-namespace VkNet.Utils
+namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
 	/// <inheritdoc />
 	[UsedImplicitly]
