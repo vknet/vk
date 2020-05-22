@@ -32,7 +32,7 @@ namespace VkNet.Tests.Infrastructure
 			builder.Append($"client_id={clientId}&");
 			builder.Append($"redirect_uri={Constants.DefaultRedirectUri}&");
 			builder.Append($"display={display}&");
-			builder.Append($"scope={scope}&");
+			builder.Append($"scope={scope.ToUInt64()}&");
 			builder.Append($"response_type={ResponseType.Token}&");
 			builder.Append("v=5.92&");
 			builder.Append($"state={state}&");

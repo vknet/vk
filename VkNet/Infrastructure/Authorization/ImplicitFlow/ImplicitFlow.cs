@@ -93,7 +93,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				{ "client_id", _authorizationParameters.ApplicationId },
 				{ "redirect_uri", _authorizationParameters.RedirectUri != null ? _authorizationParameters.RedirectUri.ToString() : Constants.DefaultRedirectUri },
 				{ "display", Display.Mobile },
-				{ "scope", _authorizationParameters.Settings.ToUInt64() },
+				{ "scope", _authorizationParameters.Settings?.ToUInt64() },
 				{ "response_type", ResponseType.Token },
 				{ "v", _versionManager.Version },
 				{ "state", _authorizationParameters.State },
