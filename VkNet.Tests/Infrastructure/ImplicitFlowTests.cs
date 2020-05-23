@@ -77,10 +77,7 @@ namespace VkNet.Tests.Infrastructure
 				.Returns(mocker.Get<IAuthorizationForm>());
 
 			mocker.GetMock<IVkAuthorization<ImplicitFlowPageType>>()
-				.SetupSequence(x => x.GetPageType(It.IsAny<Uri>()))
-				.Returns(ImplicitFlowPageType.LoginPassword)
-				.Returns(ImplicitFlowPageType.TwoFactor)
-				.Returns(ImplicitFlowPageType.Consent)
+				.Setup(x => x.GetPageType(It.IsAny<Uri>()))
 				.Returns(ImplicitFlowPageType.Result);
 
 			mocker.GetMock<IVkAuthorization<ImplicitFlowPageType>>()
