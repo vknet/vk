@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
-using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
@@ -124,7 +123,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				{
 					_logger?.LogDebug("Неверный логин или пароль.");
 
-					break;
+					throw new VkAuthorizationException("Неверный логин или пароль.");
 				}
 
 				case ImplicitFlowPageType.Captcha:
