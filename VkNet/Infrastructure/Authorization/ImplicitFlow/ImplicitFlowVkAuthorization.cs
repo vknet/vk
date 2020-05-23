@@ -57,6 +57,11 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				return ImplicitFlowPageType.Result;
 			}
 
+			if (original.StartsWith("https://oauth.vk.com/authorize"))
+			{
+				return ImplicitFlowPageType.LoginPassword;
+			}
+
 			if (original.StartsWith("https://oauth.vk.com/blank.html#error"))
 			{
 				return ImplicitFlowPageType.Error;
@@ -74,9 +79,12 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				return ImplicitFlowPageType.Captcha;
 			}
 
-			return parameters.ContainsKey("__q_hash")
-				? ImplicitFlowPageType.Consent
-				: ImplicitFlowPageType.LoginPassword;
+			if (parameters.ContainsKey("__q_hash"))
+			{
+				return ImplicitFlowPageType.Consent;
+			}
+
+			throw new VkAuthorizationException($"Failed to determine page type from url: {original}");
 		}
 
 		private static string GetToken(Dictionary<string, string> parameters)
