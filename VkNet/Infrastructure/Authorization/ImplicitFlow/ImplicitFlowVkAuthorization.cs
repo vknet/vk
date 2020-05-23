@@ -50,6 +50,18 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <inheritdoc />
 		public ImplicitFlowPageType GetPageType(Uri url)
 		{
+			var parameters = GetQueryParameters(url);
+
+			if (parameters.ContainsKey("sid"))
+			{
+				return ImplicitFlowPageType.Captcha;
+			}
+
+			if (parameters.ContainsKey("__q_hash"))
+			{
+				return ImplicitFlowPageType.Consent;
+			}
+
 			var original = url.OriginalString;
 
 			if (original.StartsWith("https://oauth.vk.com/blank.html#access_token"))
@@ -70,18 +82,6 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 			if (original.StartsWith("https://m.vk.com/login?act=authcheck"))
 			{
 				return ImplicitFlowPageType.TwoFactor;
-			}
-
-			var parameters = GetQueryParameters(url);
-
-			if (parameters.ContainsKey("sid"))
-			{
-				return ImplicitFlowPageType.Captcha;
-			}
-
-			if (parameters.ContainsKey("__q_hash"))
-			{
-				return ImplicitFlowPageType.Consent;
 			}
 
 			throw new VkAuthorizationException($"Failed to determine page type from url: {original}");
