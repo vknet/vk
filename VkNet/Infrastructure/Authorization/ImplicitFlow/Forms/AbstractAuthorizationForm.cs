@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using VkNet.Abstractions.Utils;
-using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Model;
 

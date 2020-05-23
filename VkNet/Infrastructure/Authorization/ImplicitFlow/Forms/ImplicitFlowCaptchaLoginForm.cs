@@ -1,6 +1,5 @@
 using JetBrains.Annotations;
 using VkNet.Abstractions.Utils;
-using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Utils.AntiCaptcha;

@@ -1,6 +1,5 @@
 using JetBrains.Annotations;
 using VkNet.Abstractions.Utils;
-using VkNet.Enums;
 using VkNet.Model;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow.Forms
