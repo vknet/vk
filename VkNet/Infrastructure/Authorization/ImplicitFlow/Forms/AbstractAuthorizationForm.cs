@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
 using VkNet.Abstractions.Utils;
-using VkNet.Enums;
 using VkNet.Exception;
+using VkNet.Model;
 
-namespace VkNet.Infrastructure.Authorization.ImplicitFlow
+namespace VkNet.Infrastructure.Authorization.ImplicitFlow.Forms
 {
 	/// <inheritdoc />
 	public abstract class AbstractAuthorizationForm : IAuthorizationForm
@@ -24,11 +24,11 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		public abstract ImplicitFlowPageType GetPageType();
 
 		/// <inheritdoc />
-		public async Task<AuthorizationFormResult> ExecuteAsync(Uri url)
+		public async Task<AuthorizationFormResult> ExecuteAsync(Uri url, IApiAuthParams authParams)
 		{
 			var form = await _htmlParser.GetFormAsync(url).ConfigureAwait(false);
 
-			FillFormFields(form);
+			FillFormFields(form, authParams);
 
 			var response = await _restClient.PostAsync(new Uri(form.Action), form.Fields).ConfigureAwait(false);
 
@@ -48,6 +48,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// Заполнение полей формы
 		/// </summary>
 		/// <param name="form"> Форма </param>
-		protected abstract void FillFormFields(VkHtmlFormResult form);
+		/// <param name="authParams">Параметры авторизации.</param>
+		protected abstract void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams);
 	}
 }

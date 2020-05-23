@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VkNet.Exception;
 
+// ReSharper disable once CheckNamespace
 namespace VkNet.Utils
 {
 	internal sealed partial class WebCall

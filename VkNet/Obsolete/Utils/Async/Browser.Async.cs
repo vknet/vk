@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
-using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
 
+// ReSharper disable once CheckNamespace
 namespace VkNet.Utils
 {
 	/// <inheritdoc />

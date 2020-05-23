@@ -4,11 +4,13 @@ using System.Linq;
 using VkNet.Exception;
 using VkNet.Infrastructure;
 
+// ReSharper disable once CheckNamespace
 namespace VkNet.Utils
 {
 	/// <summary>
 	/// Информация об авторизации приложения на действия.
 	/// </summary>
+	[Obsolete(ObsoleteText.ObsoleteClass)]
 	public class VkAuthorization2
 	{
 		/// <summary>

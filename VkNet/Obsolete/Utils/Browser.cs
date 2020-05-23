@@ -6,16 +6,18 @@ using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
-using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
+using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Model;
 using VkNet.Utils.AntiCaptcha;
 
+// ReSharper disable once CheckNamespace
 namespace VkNet.Utils
 {
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.ObsoleteClass + " Используйте ImplicitFlow вместо него.")]
 	public partial class Browser : IBrowser
 	{
 		private const ushort MaxLoginPasswordError = 2;

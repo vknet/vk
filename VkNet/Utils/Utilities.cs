@@ -118,5 +118,26 @@ namespace VkNet.Utils
 
 			return result == "null" ? null : result;
 		}
+
+		/// <summary>
+		/// Deserializes JSON for the specified .NET type. A return value indicates whether deserialization succeeded.
+		/// </summary>
+		/// <param name="json"> The JSON to deserialize. </param>
+		/// <param name="result"> Deserialized object. </param>
+		/// <typeparam name="T"> Type for deserialization. </typeparam>
+		/// <returns></returns>
+		public static bool TryDeserializeObject<T>(string json, out T result)
+		{
+			try
+			{
+				result = JsonConvert.DeserializeObject<T>(json);
+				return true;
+			}
+			catch
+			{
+				result = default;
+				return false;
+			}
+		}
 	}
 }

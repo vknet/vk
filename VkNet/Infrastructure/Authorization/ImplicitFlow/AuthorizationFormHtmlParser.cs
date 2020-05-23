@@ -6,6 +6,7 @@ using HtmlAgilityPack;
 using JetBrains.Annotations;
 using VkNet.Abstractions.Utils;
 using VkNet.Exception;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
@@ -29,6 +30,16 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		public async Task<VkHtmlFormResult> GetFormAsync(Uri url)
 		{
 			var response = await _restClient.PostAsync(url, Enumerable.Empty<KeyValuePair<string, string>>());
+
+			if (!response.IsSuccess)
+			{
+				throw new VkAuthorizationException(response.Message);
+			}
+
+			if (Utilities.TryDeserializeObject<VkAuthError>(response.Value, out var authError))
+			{
+				throw new VkAuthorizationException(authError.ErrorDescription);
+			}
 
 			var doc = new HtmlDocument();
 			doc.LoadHtml(response.Value);

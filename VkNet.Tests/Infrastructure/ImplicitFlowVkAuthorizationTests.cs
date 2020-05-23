@@ -3,9 +3,9 @@ using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Exception;
-using VkNet.Utils;
+using VkNet.Infrastructure.Authorization.ImplicitFlow;
 
-namespace VkNet.Tests.Utils
+namespace VkNet.Tests.Infrastructure
 {
 	[TestFixture]
 	[ExcludeFromCodeCoverage]

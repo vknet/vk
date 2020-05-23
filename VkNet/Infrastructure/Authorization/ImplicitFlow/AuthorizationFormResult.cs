@@ -1,6 +1,6 @@
 using System;
 
-namespace VkNet.Infrastructure.Authorization
+namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
 	/// <summary>
 	/// Результат формы авторизации

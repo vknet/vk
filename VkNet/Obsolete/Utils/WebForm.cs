@@ -5,11 +5,13 @@ using System.Text;
 using HtmlAgilityPack;
 using VkNet.Exception;
 
+// ReSharper disable once CheckNamespace
 namespace VkNet.Utils
 {
 	/// <summary>
 	/// WEB форма
 	/// </summary>
+	[Obsolete(ObsoleteText.ObsoleteClass)]
 	internal sealed class WebForm
 	{
 		/// <summary>

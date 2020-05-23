@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 
+// ReSharper disable once CheckNamespace
 namespace VkNet.Utils
 {
 	/// <summary>
 	/// Cookies
 	/// </summary>
+	[Obsolete(ObsoleteText.ObsoleteClass)]
 	public sealed class Cookies
 	{
 		/// <summary>

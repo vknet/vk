@@ -3,10 +3,12 @@ using System.IO;
 using System.Net;
 using System.Text;
 
+// ReSharper disable once CheckNamespace
 namespace VkNet.Utils
 {
 	/// <summary>
 	/// </summary>
+	[Obsolete(ObsoleteText.ObsoleteClass)]
 	public sealed class WebCallResult
 	{
 		/// <summary>

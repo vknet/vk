@@ -1,4 +1,4 @@
-namespace VkNet.Enums
+namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
 	/// <summary>
 	/// Тип страницы для авторизации Implicit Flow

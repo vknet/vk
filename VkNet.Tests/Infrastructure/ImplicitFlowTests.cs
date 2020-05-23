@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
@@ -11,8 +10,8 @@ using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
-using VkNet.Infrastructure.Authorization;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
+using VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -33,7 +32,7 @@ namespace VkNet.Tests.Infrastructure
 			builder.Append($"client_id={clientId}&");
 			builder.Append($"redirect_uri={Constants.DefaultRedirectUri}&");
 			builder.Append($"display={display}&");
-			builder.Append($"scope={scope}&");
+			builder.Append($"scope={scope.ToUInt64()}&");
 			builder.Append($"response_type={ResponseType.Token}&");
 			builder.Append("v=5.92&");
 			builder.Append($"state={state}&");
@@ -67,7 +66,7 @@ namespace VkNet.Tests.Infrastructure
 
 			mocker.Setup<IVkApiVersionManager, string>(x => x.Version).Returns("5.92");
 
-			mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x => x.ExecuteAsync(It.IsAny<Uri>()))
+			mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x => x.ExecuteAsync(It.IsAny<Uri>(), It.IsAny<IApiAuthParams>()))
 				.ReturnsAsync(new AuthorizationFormResult
 				{
 					ResponseUrl = new Uri("https://m.vk.com/login?act=authcheck&m=442"),
@@ -78,10 +77,7 @@ namespace VkNet.Tests.Infrastructure
 				.Returns(mocker.Get<IAuthorizationForm>());
 
 			mocker.GetMock<IVkAuthorization<ImplicitFlowPageType>>()
-				.SetupSequence(x => x.GetPageType(It.IsAny<Uri>()))
-				.Returns(ImplicitFlowPageType.LoginPassword)
-				.Returns(ImplicitFlowPageType.TwoFactor)
-				.Returns(ImplicitFlowPageType.Consent)
+				.Setup(x => x.GetPageType(It.IsAny<Uri>()))
 				.Returns(ImplicitFlowPageType.Result);
 
 			mocker.GetMock<IVkAuthorization<ImplicitFlowPageType>>()

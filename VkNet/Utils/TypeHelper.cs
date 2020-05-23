@@ -9,10 +9,9 @@ using Microsoft.Extensions.Logging.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
-using VkNet.Enums;
 using VkNet.Infrastructure;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
-using VkNet.Model;
+using VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
 using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils
@@ -28,9 +27,7 @@ namespace VkNet.Utils
 		/// <param name="container"> DI контейнер </param>
 		public static void RegisterDefaultDependencies(this IServiceCollection container)
 		{
-			//container.TryAddSingleton<IBrowser, Browser>();
 			container.TryAddSingleton<INeedValidationHandler, NeedValidationHandler>();
-			container.TryAddSingleton<IApiAuthParams>(t => null);
 			container.TryAddSingleton<HttpClient>();
 			container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
 			container.TryAddSingleton<IRestClient, RestClient>();
@@ -41,7 +38,7 @@ namespace VkNet.Utils
 			container.TryAddSingleton<ICaptchaSolver>(sp => null);
 			container.TryAddSingleton<IRateLimiter, RateLimiter>();
 			container.TryAddSingleton<IAwaitableConstraint, CountByIntervalAwaitableConstraint>();
-			container.RegisterAuthorization();
+			container.RegisterImplicitFlowAuthorization();
 		}
 
 		/// <summary>
@@ -73,9 +70,9 @@ namespace VkNet.Utils
 		#endif
 		}
 
-		private static void RegisterAuthorization(this IServiceCollection services)
+		private static void RegisterImplicitFlowAuthorization(this IServiceCollection services)
 		{
-			services.TryAddSingleton<IAuthorizationFlow, Browser>();
+			services.TryAddSingleton<IAuthorizationFlow, ImplicitFlow>();
 			services.TryAddSingleton<IVkAuthorization<ImplicitFlowPageType>, ImplicitFlowVkAuthorization>();
 			services.TryAddSingleton<IAuthorizationFormHtmlParser, AuthorizationFormHtmlParser>();
 			services.TryAddSingleton<IAuthorizationFormFactory, AuthorizationFormFactory>();

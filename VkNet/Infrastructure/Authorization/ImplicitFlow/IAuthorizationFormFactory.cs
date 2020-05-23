@@ -1,4 +1,4 @@
-using VkNet.Enums;
+using VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
