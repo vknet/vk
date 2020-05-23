@@ -11,12 +11,14 @@ using System.Net.Http.Headers;
 using System.Text;
 using VkNet.Exception;
 
+// ReSharper disable once CheckNamespace
 namespace VkNet.Utils
 {
 	/// <inheritdoc />
 	/// <summary>
 	/// WebCall
 	/// </summary>
+	[Obsolete(ObsoleteText.ObsoleteClass)]
 	internal sealed partial class WebCall : IDisposable
 	{
 	#if DEBUG_HTTP
