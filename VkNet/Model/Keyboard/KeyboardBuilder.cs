@@ -129,7 +129,6 @@ namespace VkNet.Model.Keyboard
 		public IKeyboardBuilder Clear()
 		{
 			_currentLine.Clear();
-			_fullKeyboard.ForEach(x => x.Clear());
 			_fullKeyboard.Clear();
 
 			return this;
@@ -138,9 +137,9 @@ namespace VkNet.Model.Keyboard
 		/// <inheritdoc />
 		public MessageKeyboard Build()
 		{
-			if (_currentLine.Count != 0)
+			if (_currentLine.Any())
 			{
-				_fullKeyboard.Add(_currentLine);
+				AddLine();
 			}
 
 			return new MessageKeyboard
