@@ -27,10 +27,19 @@ namespace VkNet.Model.Keyboard
 
 		private int _totalPayloadLength;
 
-		public const string ButtonPayloadLengthExceptionTemplate = "Для кнопки payload должен быть максимум 255 символов: {0}";
+		public static readonly string ButtonPayloadLengthExceptionTemplate = "Для кнопки payload должен быть максимум " + MaxButtonPayload + " символов: {0}";
 
-		public const string SumPayloadLengthExceptionTemplate =
-			"Суммарная длина для payload всех кнопок должен быть максимум 1000 символов.";
+		public static readonly string SumPayloadLengthExceptionTemplate =
+			"Суммарная длина для payload всех кнопок должен быть максимум " + MaxPayloadOfAllButtons + " символов.";
+
+		public static readonly string MaxButtonsPerLineExceptionTemplate = "Количество кнопок на одной линии не должно превышать " + MaxButtonsPerLine;
+
+		public static readonly string MaxButtonLinesExceptionTemplate = "Количество линий кнопок не должно превышать " + MaxButtonLines;
+
+		private const int MaxButtonPayload = 255;
+		private const int MaxPayloadOfAllButtons = 1000;
+		public const int MaxButtonsPerLine = 4;
+		public const int MaxButtonLines = 10;
 
 		/// <inheritdoc />
 		public KeyboardBuilder() : this(Button)
@@ -67,6 +76,11 @@ namespace VkNet.Model.Keyboard
 				throw new VkKeyboardPayloadMaxLengthException(SumPayloadLengthExceptionTemplate);
 			}
 
+			if(_currentLine.Count + 1 > MaxButtonsPerLine)
+            {
+				throw new VkKeyboardMaxButtonsException(MaxButtonsPerLineExceptionTemplate);
+            }
+
 			_currentLine.Add(new MessageKeyboardButton
 			{
 				Color = color,
@@ -84,6 +98,11 @@ namespace VkNet.Model.Keyboard
 		/// <inheritdoc />
 		public IKeyboardBuilder AddLine()
 		{
+			if(_fullKeyboard.Count + 1 > MaxButtonLines)
+			{
+				throw new VkKeyboardMaxButtonsException(MaxButtonLinesExceptionTemplate);
+			}
+
 			_fullKeyboard.Add(_currentLine);
 			_currentLine = new List<MessageKeyboardButton>();
 
