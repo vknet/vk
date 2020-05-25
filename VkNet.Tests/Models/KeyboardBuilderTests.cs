@@ -136,5 +136,42 @@ namespace VkNet.Tests.Models
 			// Assert
 			Assert.DoesNotThrow(() => builder.Build());
 		}
+
+		[Test]
+		public void Build_MaxButtonLines_VkKeyboardMaxButtonsException()
+		{
+			// Arrange
+			var builder = new KeyboardBuilder();
+
+			// Act
+			for (int i = 0; i < KeyboardBuilder.MaxButtonLines; i++)
+			{
+				builder.AddLine();
+			}
+
+			// Assert
+			var exception = Assert.Throws<VkKeyboardMaxButtonsException>(() =>
+			{
+				builder.AddLine();
+				builder.Build();
+			});
+			Assert.AreEqual(KeyboardBuilder.MaxButtonLinesExceptionTemplate, exception.Message);
+		}
+
+		[Test]
+		public void Build_MaxButtonLines_Success()
+		{
+			// Arrange
+			var builder = new KeyboardBuilder();
+
+			// Act
+			for (int i = 0; i < KeyboardBuilder.MaxButtonLines; i++)
+			{
+				builder.AddLine();
+			}
+
+			// Assert
+			Assert.DoesNotThrow(() => builder.Build());
+		}
 	}
 }
