@@ -82,7 +82,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields,
+		public Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields = null,
 																			ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetConversationMembers(peerId, fields, groupId));
