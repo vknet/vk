@@ -122,7 +122,7 @@ namespace VkNet.Abstractions
 		GetConversationsResult GetConversations(GetConversationsParams getConversationsParams);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetConversationMembersAsync"/>
-		GetConversationMembersResult GetConversationMembers(long peerId, IEnumerable<string> fields, ulong? groupId = null);
+		GetConversationMembersResult GetConversationMembers(long peerId, IEnumerable<string> fields = null, ulong? groupId = null);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetByConversationMessageIdAsync"/>
 		GetByConversationMessageIdResult GetByConversationMessageId(long peerId, [NotNull] IEnumerable<ulong> conversationMessageIds,
