@@ -273,7 +273,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public GetConversationMembersResult GetConversationMembers(long peerId, IEnumerable<string> fields, ulong? groupId = null)
+		public GetConversationMembersResult GetConversationMembers(long peerId, IEnumerable<string> fields = null, ulong? groupId = null)
 		{
 			return _vk.Call<GetConversationMembersResult>("messages.getConversationMembers",
 				new VkParameters

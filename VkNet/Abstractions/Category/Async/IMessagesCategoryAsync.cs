@@ -783,7 +783,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте
 		/// http://vk.com/dev/messages.getConversationMembers
 		/// </remarks>
-		Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields, ulong? groupId = null);
+		Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields = null, ulong? groupId = null);
 
 		/// <summary>
 		/// Возвращает сообщения по их идентификаторам в рамках беседы.
