@@ -9,16 +9,20 @@ comments: true
 
 Страница документации ВКонтакте [account.setPushSettings](https://vk.com/dev/account.setPushSettings).
 
+Этот метод можно вызвать с ключом доступа пользователя, полученным в [Standalone-приложении](https://vk.com/dev/standalone) через [Implicit Flow](https://vk.com/dev/implicit_flow_user).
+
 ## Синтаксис
 ``` csharp
 public bool SetPushSettings(string deviceId, PushSettings settings, string key, List<string> value)
 ```
 
 ## Параметры
-+ **deviceId** - Уникальный идентификатор устройства. строка, обязательный параметр
-+ **settings** - Сериализованный JSON-объект, описывающий настройки уведомлений в специальном формате данные в формате JSON
-+ **key** - Ключ уведомления. строка
-+ **value** - Новое значение уведомления в специальном формате. список слов, разделенных через запятую
++ **deviceId** - Уникальный идентификатор устройства.
++ **settings** - Объект **PushSettings**, описывающий настройки уведомлений
++ **key** - Ключ уведомления. 
++ **value** - Новое значение уведомления в специальном формате. Список слов
+[Формат настроек](https://vk.com/dev/objects/push_settings)
+Должен быть обязательно передан token или deviceId.
 
 ## Результат
 Возвращает **true** в случае успешного выполнения метода.
@@ -26,9 +30,9 @@ public bool SetPushSettings(string deviceId, PushSettings settings, string key, 
 ## Пример
 ``` csharp
 var setPushSettings = _api.Account.SetPushSettings(deviceId: "device_id");
-            Console.WriteLine(setPushSettings.ToString());
+            Console.WriteLine(setPushSettings);
             Console.ReadKey();
 ```
 
-## Версия Вконтакте API v.5.92
-Дата обновления: 06.12.2018 23:19:10
+## Версия Вконтакте API v.5.110
+Дата обновления: 22.06.2020 19:15
