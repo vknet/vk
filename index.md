@@ -176,9 +176,10 @@ PM> Install-Package VkNet.AudioBypassService
 + [Messages.Unpin](/vk/messages/unpin/) - !!Открепляет сообщение.
 
 ## Стена
-+ [Wall.CloseComments](/vk/wall/closeComments/) - !!Выключает комментирование записи.
++ [Wall.CheckCopyrightLink](/vk/wall/checkcopyrightlink) - Проверяет ссылку для указания источника
++ [Wall.CloseComments](/vk/wall/closeComments/) - Выключает комментирование записи.
 + (Устаревший метод) [Wall.AddComment](/vk/wall/addComment/) - Добавляет комментарий к записи на стене пользователя или сообщества.
-+ [Wall.CreateComment](/vk/wall/createComment/) - !!Добавляет комментарий к записи на стене.
++ [Wall.CreateComment](/vk/wall/createComment/) - Добавляет комментарий к записи на стене.
 + [Wall.Delete](/vk/wall/delete/) - Удаляет запись со стены.
 + [Wall.DeleteComment](/vk/wall/deleteComment/) - Удаляет комментарий текущего пользователя к записи на своей или чужой стене.
 + [Wall.Edit](/vk/wall/edit/) - Редактирует запись на стене.
@@ -450,17 +451,17 @@ PM> Install-Package VkNet.AudioBypassService
 + [Account.GetCounters](/vk/account/getCounters/) - Возвращает ненулевые значения счетчиков пользователя.
 + [Account.GetInfo](/vk/account/getInfo/) - Возвращает информацию о текущем аккаунте.
 + [Account.GetProfileInfo](/vk/account/getProfileInfo/) - Возвращает информацию о текущем профиле.
-+ [Account.GetPushSettings](/vk/account/getPushSettings/) - Позволяет получать настройки Push уведомлений.
-+ [Account.RegisterDevice](/vk/account/registerDevice/) - Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений.
++ [Account.GetPushSettings](/vk/account/getPushSettings/) - Позволяет получать настройки Push-уведомлений.
++ [Account.RegisterDevice](/vk/account/registerDevice/) - Подписывает устройство на базе iOS, Android, Windows Phone или Mac на получение Push-уведомлений.
 + [Account.SaveProfileInfo](/vk/account/saveProfileInfo/) - Редактирует информацию текущего профиля.
 + [Account.SetInfo](/vk/account/setInfo/) - Позволяет редактировать информацию о текущем аккаунте.
 + [Account.SetNameInMenu](/vk/account/setNameInMenu/) - Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню.
 + [Account.SetOffline](/vk/account/setOffline/) - Помечает текущего пользователя как offline.
-+ [Account.SetOnline](/vk/account/setOnline/) - Помечает текущего пользователя как online на 15 минут.
++ [Account.SetOnline](/vk/account/setOnline/) - Помечает текущего пользователя как online на 5 минут.
 + [Account.SetPushSettings](/vk/account/setPushSettings/) - Изменяет настройку Push-уведомлений.
 + [Account.SetSilenceMode](/vk/account/setSilenceMode/) - Отключает push-уведомления на заданный промежуток времени.
-+ [Account.Unban](/vk/account/unban/) - Убирает пользователя из черного списка.
-+ [Account.UnregisterDevice](/vk/account/unregisterDevice/) - Отписывает устройство от Push уведомлений.
++ [Account.Unban](/vk/account/unban/) - Убирает пользователя или группу из черного списка.
++ [Account.UnregisterDevice](/vk/account/unregisterDevice/) - Отписывает устройство от Push-уведомлений.
 
 ## Рекламный Кабинет
 + [Ads.AddOfficeUsers](/vk/ads/addOfficeUsers/) - Добавляет администраторов и/или наблюдателей в рекламный кабинет.
