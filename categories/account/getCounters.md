@@ -46,7 +46,7 @@ public Counters GetCounters(CountersFilter filter)
 + **groups** -
 + **notifications** - 
 + **sdk**
-+ **app_requests**
++ **app_requests**  
 со значениями счетчиков (число).
 
 ## Пример

@@ -5,7 +5,7 @@ permalink: account/setNameInMenu/
 comments: true
 ---
 # Метод Account.SetNameInMenu
-Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню.
+Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню.  
 Это происходит только в том случае, если пользователь добавил приложение в левое меню со страницы приложения, списка приложений или настроек.
 
 Страница документации ВКонтакте [account.setNameInMenu](https://vk.com/dev/account.setNameInMenu).
@@ -22,9 +22,9 @@ public bool SetNameInMenu([NotNull] string name, long? userId = null)
 + **name** - Короткое название приложения.
 
 ## Результат
-Возвращает **true** в случае успешной установки короткого названия. 
-Если пользователь не установил приложение в левое меню, метод вернет ошибку 148 (Access to the menu of the user denied). 
-Избежать этой ошибки можно с помощью метода [account.getAppPermissions](https://vknet.github.io/vk/account/getAppPermissions/).
+Возвращает **true** в случае успешной установки короткого названия.   
+Если пользователь не установил приложение в левое меню, метод вернет ошибку 148 (Access to the menu of the user denied).   
+Избежать этой ошибки можно с помощью метода [account.getAppPermissions](https://vknet.github.io/vk/account/getAppPermissions/).  
 
 ## Пример
 ``` csharp
