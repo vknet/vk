@@ -20,8 +20,8 @@ public bool SetPushSettings(string deviceId, PushSettings settings, string key, 
 + **deviceId** - Уникальный идентификатор устройства.
 + **settings** - Объект **PushSettings**, описывающий настройки уведомлений
 + **key** - Ключ уведомления. 
-+ **value** - Новое значение уведомления в специальном формате. Список слов
-[Формат настроек](https://vk.com/dev/objects/push_settings)
++ **value** - Новое значение уведомления в специальном формате. Список слов  
+[Формат настроек](https://vk.com/dev/objects/push_settings)  
 Должен быть обязательно передан token или deviceId.
 
 ## Результат

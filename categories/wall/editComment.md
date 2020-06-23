@@ -9,8 +9,8 @@ comments: true
 
 Страница документации ВКонтакте [wall.editComment](https://vk.com/dev/wall.editComment).
 
-Этот метод можно вызвать с ключом доступа пользователя, полученным в [Standalone-приложении](https://vk.com/dev/standalone) через [Implicit Flow](https://vk.com/dev/implicit_flow_user).
-Требуются [права доступа](https://vk.com/dev/permissions) wall.
+Этот метод можно вызвать с ключом доступа пользователя, полученным в [Standalone-приложении](https://vk.com/dev/standalone) через [Implicit Flow](https://vk.com/dev/implicit_flow_user).  
+Требуются [права доступа](https://vk.com/dev/permissions) wall.  
 
 ## Синтаксис
 ``` csharp

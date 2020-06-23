@@ -9,7 +9,7 @@ comments: true
 
 Страница документации ВКонтакте [wall.deleteComment](https://vk.com/dev/wall.deleteComment).
 
-Этот метод можно вызвать с ключом доступа пользователя, полученным в [Standalone-приложении](https://vk.com/dev/standalone) через [Implicit Flow](https://vk.com/dev/implicit_flow_user).
+Этот метод можно вызвать с ключом доступа пользователя, полученным в [Standalone-приложении](https://vk.com/dev/standalone) через [Implicit Flow](https://vk.com/dev/implicit_flow_user).  
 Требуются [права доступа](https://vk.com/dev/permissions) wall.
 
 ## Синтаксис
@@ -18,7 +18,8 @@ public bool DeleteComment(long? ownerId, long commentId)
 ```
 
 ## Параметры
-+ **ownerId** - Идентификатор пользователя, на чьей стене находится комментарий к записи. По умолчанию идентификатор текущего пользователя
++ **ownerId** - Идентификатор пользователя, на чьей стене находится комментарий к записи.  
+По умолчанию идентификатор текущего пользователя
 + **commentId** - Идентификатор комментария. Обязательный параметр.
 
 ## Результат

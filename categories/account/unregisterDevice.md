@@ -9,7 +9,7 @@ comments: true
 
 Страница документации ВКонтакте [account.unregisterDevice](https://vk.com/dev/account.unregisterDevice).
 
-Этот метод можно вызвать с ключом доступа пользователя, полученным в [Standalone-приложении](https://vk.com/dev/standalone) через [Implicit Flow](https://vk.com/dev/implicit_flow_user).
+Этот метод можно вызвать с ключом доступа пользователя, полученным в [Standalone-приложении](https://vk.com/dev/standalone) через [Implicit Flow](https://vk.com/dev/implicit_flow_user).  
 Требуются [права доступа](https://vk.com/dev/permissions) messages.
 
 ## Синтаксис
@@ -19,8 +19,8 @@ public bool UnregisterDevice(string deviceId, bool? sandbox)
 
 ## Параметры
 + **deviceId** - Уникальный идентификатор устройства.
-+ **sandbox** - Флаг предназначен для iOS устройств. 
-**true** — отписать устройство, использующего sandbox сервер для отправки push-уведомлений. 
++ **sandbox** - Флаг предназначен для iOS устройств.   
+**true** — отписать устройство, использующего sandbox сервер для отправки push-уведомлений.   
 **false** — отписать устройство, не использующее sandbox сервер флаг. По умолчанию.
 
 ## Результат

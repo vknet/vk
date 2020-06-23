@@ -9,7 +9,7 @@ comments: true
 
 Страница документации ВКонтакте [account.getPushSettings](https://vk.com/dev/account.getPushSettings).
 
-Этот метод можно вызвать с ключом доступа пользователя, полученным в [Standalone-приложении](https://vk.com/dev/standalone) через [Implicit Flow](https://vk.com/dev/implicit_flow_user).
+Этот метод можно вызвать с ключом доступа пользователя, полученным в [Standalone-приложении](https://vk.com/dev/standalone) через [Implicit Flow](https://vk.com/dev/implicit_flow_user).  
 Требуются [права доступа](https://vk.com/dev/permissions) messages.
 
 ## Синтаксис
