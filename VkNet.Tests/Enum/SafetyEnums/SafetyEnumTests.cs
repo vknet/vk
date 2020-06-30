@@ -861,5 +861,16 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(AppWidgetType.FromJsonString("compact_list"), Is.EqualTo(AppWidgetType.CompactList));
 			Assert.That(AppWidgetType.FromJsonString("cover_list"), Is.EqualTo(AppWidgetType.CoverList));
 		}
+
+		[Test]
+		public void TranscriptStatesTest()
+		{
+			// get test
+			Assert.That(TranscriptStates.Done.ToString(), Is.EqualTo("done"));
+			Assert.That(TranscriptStates.InProgress.ToString(), Is.EqualTo("in_progress"));
+			// parse test
+			Assert.That(TranscriptStates.FromJsonString("done"), Is.EqualTo(TranscriptStates.Done));
+			Assert.That(TranscriptStates.FromJsonString("in_progress"), Is.EqualTo(TranscriptStates.InProgress));
+		}
 	}
 }
