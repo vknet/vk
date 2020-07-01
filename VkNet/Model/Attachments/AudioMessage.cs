@@ -1,7 +1,9 @@
 using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Attachments
 {
@@ -39,6 +41,19 @@ namespace VkNet.Model.Attachments
 		public Uri LinkMp3 { get; set; }
 
 		/// <summary>
+		/// Текст транскрипции
+		/// </summary>
+		[JsonProperty("transcript")]
+		public string Transcript { get; set; }
+
+		/// <summary>
+		/// Статус транскрипции
+		/// </summary>
+		[JsonProperty("transcript_state")]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public TranscriptStates TranscriptState { get; set; }
+
+		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
@@ -53,7 +68,9 @@ namespace VkNet.Model.Attachments
 				Waveform = response["waveform"].ToReadOnlyCollectionOf<int>(x => x),
 				LinkOgg = response["link_ogg"],
 				LinkMp3 = response["link_mp3"],
-				AccessKey = response["access_key"]
+				AccessKey = response["access_key"],
+				Transcript = response["transcript"],
+				TranscriptState = response["transcript_state"]
 			};
 		}
 
