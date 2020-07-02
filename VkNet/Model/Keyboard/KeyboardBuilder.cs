@@ -130,6 +130,7 @@ namespace VkNet.Model.Keyboard
 		{
 			_currentLine.Clear();
 			_fullKeyboard.Clear();
+			_totalPayloadLength = 0;
 
 			return this;
 		}
