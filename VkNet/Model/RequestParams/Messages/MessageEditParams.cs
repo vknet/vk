@@ -75,6 +75,6 @@ namespace VkNet.Model.RequestParams
 		/// идентификатор сообщения в беседе
 		/// </summary>
 		[JsonProperty("conversation_message_id", NullValueHandling = NullValueHandling.Ignore)]
-		public long ConversationMessageId { get; set; }
+		public long? ConversationMessageId { get; set; }
 	}
 }
