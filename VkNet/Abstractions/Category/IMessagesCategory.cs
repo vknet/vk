@@ -146,6 +146,9 @@ namespace VkNet.Abstractions
 		GetRecentCallsResult GetRecentCalls(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null,
 											bool? extended = null);
 
+		/// <inheritdoc cref="IMessagesCategoryAsync.SendMessageEventAnswerAsync"/>
+		bool SendMessageEventAnswer(string eventId, long userId, long peerId, EventData eventData = null);
+
 	#region Obsoleted
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.DeleteDialogAsync"/>
