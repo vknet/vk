@@ -24,6 +24,6 @@ namespace VkNet.Enums.SafetyEnums
 		/// <summary>
 		/// открыть VK Mini App. Происходит переход в мини-приложение.
 		/// </summary>
-		public static readonly MessageEventType OpenApp = RegisterPossibleValue("open_app ");
+		public static readonly MessageEventType OpenApp = RegisterPossibleValue("open_app");
 	}
 }

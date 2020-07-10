@@ -58,18 +58,28 @@ namespace VkNet.Model.Keyboard
 		}
 
 		/// <inheritdoc />
+		public IKeyboardBuilder AddButton(MessageKeyboardButtonAction buttonAction, KeyboardButtonColor color = default)
+		{
+			_totalPayloadLength += buttonAction.Payload.Length;
+
+			CheckKeyboardSize(buttonAction.Payload);
+
+			_currentLine.Add(new MessageKeyboardButton
+			{
+				Color = color,
+				Action = buttonAction
+			});
+
+			return this;
+		}
+
+		/// <inheritdoc />
 		public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor color = default,
-										string type = null, MessageKeyboardButtonAction buttonAction = default)
+										string type = null)
 		{
 			color ??= KeyboardButtonColor.Default;
 			type ??= _type ?? Button;
 			var payload = $"{{\"{type}\":\"{extra}\"}}";
-			buttonAction ??= new MessageKeyboardButtonAction
-			{
-				Label = label,
-				Payload = payload,
-				Type = KeyboardButtonActionType.Text
-			};
 			_totalPayloadLength += payload.Length;
 
 			CheckKeyboardSize(payload);
@@ -77,7 +87,12 @@ namespace VkNet.Model.Keyboard
 			_currentLine.Add(new MessageKeyboardButton
 			{
 				Color = color,
-				Action = buttonAction
+				Action = new MessageKeyboardButtonAction
+				{
+					Label = label,
+					Payload = payload,
+					Type = KeyboardButtonActionType.Text
+				}
 			});
 
 			return this;
