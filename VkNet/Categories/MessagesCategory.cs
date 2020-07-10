@@ -189,6 +189,7 @@ namespace VkNet.Categories
 				{ "lat", @params.Lat },
 				{ "long", @params.Longitude },
 				{ "attachment", @params.Attachments },
+				{ "reply_to", @params.ReplyTo },
 				{ "forward_messages", @params.ForwardMessages },
 				{ "keyboard", @params.Keyboard != null ? JsonConvert.SerializeObject(@params.Keyboard) : "" },
 				{ "sticker_id", @params.StickerId },
