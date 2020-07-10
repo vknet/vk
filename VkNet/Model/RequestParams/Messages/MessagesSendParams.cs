@@ -36,6 +36,12 @@ namespace VkNet.Model.RequestParams
 		public IEnumerable<MediaAttachment> Attachments { get; set; }
 
 		/// <summary>
+		/// Идентификатор сообщения, на которое требуется ответить. целое число, доступен начиная с версии 5.92
+		/// </summary>
+		[JsonProperty("reply_to")]
+		public long ReplyTo { get; set; }
+
+		/// <summary>
 		/// Идентификаторы пересылаемых сообщений, перечисленные через запятую.
 		/// Перечисленные сообщения отправителя будут
 		/// отображаться в теле письма у получателя.
@@ -151,6 +157,12 @@ namespace VkNet.Model.RequestParams
 		[JsonProperty("intent")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public Intent Intent { get; set; }
+
+		/// <summary>
+		/// Положительное число, максимальное значение 100
+		/// </summary>
+		[JsonProperty("subscribe_id")]
+		public byte SubscribeId { get; set; }
 
 		/// <summary>
 		/// Объект, описывающий шаблон сообщения для бота.
