@@ -850,5 +850,18 @@ namespace VkNet.Categories
 
 			throw new VkApiException("Сообщения с таким ID не существует.");
 		}
+
+		/// <inheritdoc />
+		public bool SendMessageEventAnswer(string eventId, long userId, long peerId, EventData eventData = null)
+		{
+			return _vk.Call<bool>("messages.sendMessageEventAnswer",
+				new VkParameters
+				{
+					{ "event_id", eventId },
+					{ "user_id", userId },
+					{ "peer_id", peerId },
+					{ "event_data", eventData != null ? JsonConvert.SerializeObject(eventData) : string.Empty }
+				});
+		}
 	}
 }

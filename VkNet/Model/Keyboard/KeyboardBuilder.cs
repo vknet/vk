@@ -59,40 +59,46 @@ namespace VkNet.Model.Keyboard
 
 		/// <inheritdoc />
 		public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor color = default,
-										string type = null)
+										string type = null, MessageKeyboardButtonAction buttonAction = default)
 		{
 			color ??= KeyboardButtonColor.Default;
 			type ??= _type ?? Button;
 			var payload = $"{{\"{type}\":\"{extra}\"}}";
+			buttonAction ??= new MessageKeyboardButtonAction
+			{
+				Label = label,
+				Payload = payload,
+				Type = KeyboardButtonActionType.Text
+			};
 			_totalPayloadLength += payload.Length;
 
-			if (payload.Length > 255 && type == Button)
+			CheckKeyboardSize(payload);
+
+			_currentLine.Add(new MessageKeyboardButton
+			{
+				Color = color,
+				Action = buttonAction
+			});
+
+			return this;
+		}
+
+		private void CheckKeyboardSize(string payload)
+		{
+			if(payload.Length > 255)
 			{
 				throw new VkKeyboardPayloadMaxLengthException(string.Format(ButtonPayloadLengthExceptionTemplate, payload));
 			}
 
-			if (_totalPayloadLength > 1000)
+			if(_totalPayloadLength > 1000)
 			{
 				throw new VkKeyboardPayloadMaxLengthException(SumPayloadLengthExceptionTemplate);
 			}
 
 			if(_currentLine.Count + 1 > MaxButtonsPerLine)
-            {
-				throw new VkKeyboardMaxButtonsException(MaxButtonsPerLineExceptionTemplate);
-            }
-
-			_currentLine.Add(new MessageKeyboardButton
 			{
-				Color = color,
-				Action = new MessageKeyboardButtonAction
-				{
-					Label = label,
-					Payload = payload,
-					Type = KeyboardButtonActionType.Text
-				}
-			});
-
-			return this;
+				throw new VkKeyboardMaxButtonsException(MaxButtonsPerLineExceptionTemplate);
+			}
 		}
 
 		/// <inheritdoc />

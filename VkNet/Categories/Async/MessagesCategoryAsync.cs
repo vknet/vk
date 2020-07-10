@@ -331,5 +331,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Edit(@params));
 		}
+
+		/// <inheritdoc />
+		public Task<bool> SendMessageEventAnswerAsync(string eventId, long userId, long peerId, EventData eventData = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => SendMessageEventAnswer(eventId, userId, peerId, eventData));
+		}
 	}
 }

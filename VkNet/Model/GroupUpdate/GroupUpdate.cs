@@ -25,6 +25,11 @@ namespace VkNet.Model.GroupUpdate
 		public MessageNew MessageNew { get; set; }
 
 		/// <summary>
+		/// Сообщение callback кнопки для типов событий с сообщением callback кнопок в ответе.
+		/// </summary>
+		public MessageEvent MessageEvent { get; set; }
+
+		/// <summary>
 		/// Сообщение для типов событий с сообщением в ответе
 		/// (<c>MessageEdit</c>, <c>MessageReply</c>, для версий API ниже 5.103 также <c>MessageNew</c>).
 		/// </summary>
@@ -264,6 +269,9 @@ namespace VkNet.Model.GroupUpdate
 			} else if (fromJson.Type == GroupUpdateType.GroupOfficersEdit)
 			{
 				fromJson.GroupOfficersEdit = GroupOfficersEdit.FromJson(resObj);
+			} else if (fromJson.Type == GroupUpdateType.MessageEvent)
+			{
+				fromJson.MessageEvent = MessageEvent.FromJson(resObj);
 			}
 
 			return fromJson;
