@@ -315,11 +315,8 @@ namespace VkNet
 
 				throw new AccessTokenInvalidException(message);
 			}
-			var restrictedCategories = new List<string>{"audio", "messages"};
 
-			var url = restrictedCategories.Contains(methodName.Split('.').First())
-				? $"https://api.vk.me/method/{methodName}"
-				: $"https://api.vk.com/method/{methodName}";
+			var url = $"https://api.vk.com/method/{methodName}";
 			var answer = InvokeBase(url, parameters);
 
 			_logger?.LogTrace($"Uri = \"{url}\"");
@@ -834,7 +831,7 @@ namespace VkNet
 		/// Авторизация и получение токена
 		/// </summary>
 		/// <param name="authParams"> Параметры авторизации </param>
-		/// <exception cref="VkApiAuthorizationException"> </exception>
+		/// <exception cref="VkAuthorizationException"> </exception>
 		private void BaseAuthorize(IApiAuthParams authParams)
 		{
 			StopTimer();
@@ -846,10 +843,10 @@ namespace VkNet
 
 			if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 			{
-				var message = $"Invalid authorization with {authParams.Login} - {authParams.Password}";
+				const string message = "Authorization fail: invalid access token.";
 				_logger?.LogError(message);
 
-				throw new VkApiAuthorizationException(message, authParams.Login, authParams.Password);
+				throw new VkAuthorizationException(message);
 			}
 
 			SetTokenProperties(authorization);

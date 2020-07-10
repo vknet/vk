@@ -12,14 +12,14 @@ namespace VkNet.Categories
 		public Task<VkCollection<Topic>> GetTopicsAsync(BoardGetTopicsParams @params, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					GetTopics(@params, skipAuthorization));
+					GetTopics(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />
 		public Task<TopicsFeed> GetCommentsAsync(BoardGetCommentsParams @params, bool skipAuthorization = false)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					GetComments(@params, skipAuthorization));
+					GetComments(@params: @params, skipAuthorization: skipAuthorization));
 		}
 
 		/// <inheritdoc />

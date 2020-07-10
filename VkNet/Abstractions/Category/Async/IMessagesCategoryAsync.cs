@@ -783,7 +783,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте
 		/// http://vk.com/dev/messages.getConversationMembers
 		/// </remarks>
-		Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields, ulong? groupId = null);
+		Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields = null, ulong? groupId = null);
 
 		/// <summary>
 		/// Возвращает сообщения по их идентификаторам в рамках беседы.
@@ -960,6 +960,16 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<GetRecentCallsResult> GetRecentCallsAsync(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null,
 														bool? extended = null);
+
+		/// <summary>
+		/// Отправляет событие с действием, которое произойдет при нажатии на callback-кнопку.
+		/// </summary>
+		/// <param name="eventId">случайная строка, которая возвращается в событии message_event</param>
+		/// <param name="userId">идентификатор пользователя</param>
+		/// <param name="peerId">идентификатор диалога со стороны сообщества</param>
+		/// <param name="eventData">объект действия, которое должно произойти после нажатия на кнопку</param>
+		/// <returns></returns>
+		Task<bool> SendMessageEventAnswerAsync(string eventId, long userId, long peerId, EventData eventData = null);
 
 	#region Obsoleted
 

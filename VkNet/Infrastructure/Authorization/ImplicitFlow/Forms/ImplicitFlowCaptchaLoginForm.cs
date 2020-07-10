@@ -1,25 +1,21 @@
 using JetBrains.Annotations;
-using VkNet.Enums;
+using VkNet.Abstractions.Utils;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Utils.AntiCaptcha;
 
-namespace VkNet.Infrastructure.Authorization.ImplicitFlow
+namespace VkNet.Infrastructure.Authorization.ImplicitFlow.Forms
 {
 	/// <inheritdoc />
 	[UsedImplicitly]
 	public sealed class ImplicitFlowCaptchaLoginForm : AbstractAuthorizationForm
 	{
-		private readonly IApiAuthParams _authorizationParameters;
-
 		private readonly ICaptchaSolver _captchaSolver;
 
 		/// <inheritdoc />
-		public ImplicitFlowCaptchaLoginForm(IAuthorizationFormHtmlParser htmlParser,
-											IApiAuthParams authorizationParameters, ICaptchaSolver captchaSolver)
-			: base(htmlParser)
+		public ImplicitFlowCaptchaLoginForm(IRestClient restClient, IAuthorizationFormHtmlParser htmlParser, ICaptchaSolver captchaSolver)
+			: base(restClient, htmlParser)
 		{
-			_authorizationParameters = authorizationParameters;
 			_captchaSolver = captchaSolver;
 		}
 
@@ -27,7 +23,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.Captcha;
 
 		/// <inheritdoc />
-		protected override void FillFormFields(VkHtmlFormResult form)
+		protected override void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams)
 		{
 			if (_captchaSolver == null)
 			{
@@ -36,12 +32,12 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 
 			if (form.Fields.ContainsKey(AuthorizationFormFields.Email))
 			{
-				form.Fields[AuthorizationFormFields.Email] = _authorizationParameters.Login;
+				form.Fields[AuthorizationFormFields.Email] = authParams.Login;
 			}
 
 			if (form.Fields.ContainsKey(AuthorizationFormFields.Password))
 			{
-				form.Fields[AuthorizationFormFields.Password] = _authorizationParameters.Password;
+				form.Fields[AuthorizationFormFields.Password] = authParams.Password;
 			}
 
 			var captchaKey =

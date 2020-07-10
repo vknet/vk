@@ -43,7 +43,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool TrackVisitor()
 		{
-			return _vk.Call("stats.trackVisitor", VkParameters.Empty);
+			return _vk.Call(methodName: "stats.trackVisitor", parameters: VkParameters.Empty);
 		}
 
 		/// <inheritdoc />
@@ -57,7 +57,7 @@ namespace VkNet.Categories
 				{ "post_id", postId }
 			};
 
-			return _vk.Call("stats.getPostReach", parameters);
+			return _vk.Call(methodName: "stats.getPostReach", parameters: parameters);
 		}
 	}
 }

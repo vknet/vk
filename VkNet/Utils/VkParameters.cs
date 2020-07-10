@@ -79,7 +79,13 @@ namespace VkNet.Utils
 		/// </param>
 		public void Add<T>(string name, IEnumerable<T> collection)
 		{
+			Remove(key: name);
+			
+			if (collection == null)
+				return;
+
 			var value = collection.JoinNonEmpty();
+
 			Add(name, value);
 		}
 

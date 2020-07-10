@@ -38,7 +38,7 @@ namespace VkNet.Enums.Filters
 		private static readonly Dictionary<string, string> Alias = new Dictionary<string, string>
 		{
 			{
-				"all", string.Join(",", MaskMap.Keys.Where(predicate: x => x != "offline").OrderBy(keySelector: x => x))
+				"all", string.Join(separator: ",", values: MaskMap.Keys.Where(predicate: x => x != "offline").OrderBy(keySelector: x => x))
 			}
 		};
 
@@ -203,7 +203,7 @@ namespace VkNet.Enums.Filters
 
 			var res = new Settings();
 
-			return Alias[key: n].Split(',').Aggregate(res, (current, v) => current|GetByName(name: v));
+			return Alias[key: n].Split(',').Aggregate(seed: res, func: (current, v) => current|GetByName(name: v));
 		}
 
 		/// <summary>
@@ -249,7 +249,7 @@ namespace VkNet.Enums.Filters
 		/// <returns> </returns>
 		public override string ToString()
 		{
-			return string.Join(",", Selected.ToArray());
+			return string.Join(separator: ",", value: Selected.ToArray());
 		}
 
 		/// <summary>

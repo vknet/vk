@@ -15,7 +15,7 @@ namespace VkNet.Tests.Categories.Audio
 		[Test]
 		public void GetByIdTest()
 		{
-			Url = "https://api.vk.me/method/audio.getById";
+			Url = "https://api.vk.com/method/audio.getById";
 
 			ReadCategoryJsonPath(nameof(Api.Audio.GetById));
 

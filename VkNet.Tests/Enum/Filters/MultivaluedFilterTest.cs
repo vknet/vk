@@ -358,13 +358,13 @@ namespace VkNet.Tests.Enum.Filters
 		public void AudioBroadcastFilterTest()
 		{
 			// get test
-			Assert.That(AudioBroadcastFilter.All.ToString(), Is.EqualTo(expected: "all"));
-			Assert.That(AudioBroadcastFilter.Friends.ToString(), Is.EqualTo(expected: "friends"));
-			Assert.That(AudioBroadcastFilter.Groups.ToString(), Is.EqualTo(expected: "groups"));
+			Assert.That(actual: AudioBroadcastFilter.All.ToString(), expression: Is.EqualTo(expected: "all"));
+			Assert.That(actual: AudioBroadcastFilter.Friends.ToString(), expression: Is.EqualTo(expected: "friends"));
+			Assert.That(actual: AudioBroadcastFilter.Groups.ToString(), expression: Is.EqualTo(expected: "groups"));
 			// parse test
-			Assert.That(AudioBroadcastFilter.FromJsonString(val: "all"), Is.EqualTo(expected: AudioBroadcastFilter.All));
-			Assert.That(AudioBroadcastFilter.FromJsonString(val: "friends"), Is.EqualTo(expected: AudioBroadcastFilter.Friends));
-			Assert.That(AudioBroadcastFilter.FromJsonString(val: "groups"), Is.EqualTo(expected: AudioBroadcastFilter.Groups));
+			Assert.That(actual: AudioBroadcastFilter.FromJsonString(val: "all"), expression: Is.EqualTo(expected: AudioBroadcastFilter.All));
+			Assert.That(actual: AudioBroadcastFilter.FromJsonString(val: "friends"), expression: Is.EqualTo(expected: AudioBroadcastFilter.Friends));
+			Assert.That(actual: AudioBroadcastFilter.FromJsonString(val: "groups"), expression: Is.EqualTo(expected: AudioBroadcastFilter.Groups));
 		}
 	}
 }

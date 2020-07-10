@@ -32,5 +32,10 @@ namespace VkNet.Enums.SafetyEnums
 		/// Open Link
 		/// </summary>
 		public static readonly KeyboardButtonActionType OpenLink = RegisterPossibleValue("open_link");
+
+		/// <summary>
+		/// Callback
+		/// </summary>
+		public static readonly KeyboardButtonActionType Callback = RegisterPossibleValue("callback");
 	}
 }

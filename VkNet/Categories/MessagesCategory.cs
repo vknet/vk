@@ -273,7 +273,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public GetConversationMembersResult GetConversationMembers(long peerId, IEnumerable<string> fields, ulong? groupId = null)
+		public GetConversationMembersResult GetConversationMembers(long peerId, IEnumerable<string> fields = null, ulong? groupId = null)
 		{
 			return _vk.Call<GetConversationMembersResult>("messages.getConversationMembers",
 				new VkParameters
@@ -784,7 +784,8 @@ namespace VkNet.Categories
 				{ "keep_forward_messages", @params.KeepForwardMessages },
 				{ "keep_snippets", @params.KeepSnippets },
 				{ "group_id", @params.GroupId },
-				{ "dont_parse_links", @params.DontParseLinks }
+				{ "dont_parse_links", @params.DontParseLinks },
+				{ "conversation_message_id", @params.ConversationMessageId }
 			});
 		}
 
@@ -848,6 +849,19 @@ namespace VkNet.Categories
 			}
 
 			throw new VkApiException("Сообщения с таким ID не существует.");
+		}
+
+		/// <inheritdoc />
+		public bool SendMessageEventAnswer(string eventId, long userId, long peerId, EventData eventData = null)
+		{
+			return _vk.Call<bool>("messages.sendMessageEventAnswer",
+				new VkParameters
+				{
+					{ "event_id", eventId },
+					{ "user_id", userId },
+					{ "peer_id", peerId },
+					{ "event_data", eventData != null ? JsonConvert.SerializeObject(eventData) : string.Empty }
+				});
 		}
 	}
 }

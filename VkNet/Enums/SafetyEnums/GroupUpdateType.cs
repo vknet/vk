@@ -11,6 +11,11 @@ namespace VkNet.Enums.SafetyEnums
 		public static readonly GroupUpdateType MessageNew = RegisterPossibleValue("message_new");
 
 		/// <summary>
+		/// Нажатие на callback кнопку
+		/// </summary>
+		public static readonly GroupUpdateType MessageEvent = RegisterPossibleValue("message_event");
+
+		/// <summary>
 		/// Новое исходящее сообщение
 		/// </summary>
 		public static readonly GroupUpdateType MessageReply = RegisterPossibleValue("message_reply");

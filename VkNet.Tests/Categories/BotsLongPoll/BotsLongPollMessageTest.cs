@@ -30,7 +30,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			var clientInfo = messageNew?.ClientInfo;
 
 			Assert.NotNull(messageNew);
-			Assert.NotNull(message);	
+			Assert.NotNull(message);
 			Assert.NotNull(clientInfo);
 
 			Assert.IsNotEmpty(clientInfo.ButtonActions);
@@ -135,6 +135,32 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			Assert.AreEqual(userId, update.MessageDeny.UserId);
 			Assert.AreEqual(groupId, update.GroupId);
+		}
+
+		[Test]
+		public void GetBotsLongPollHistory_MessageEventTest()
+		{
+			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageEventTest));
+
+			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
+			{
+				Key = "test",
+				Server = "https://vk.com",
+				Ts = "0",
+				Wait = 10
+			});
+
+			var update = botsLongPollHistory.Updates.First();
+
+			var messageEvent = update.MessageEvent;
+
+			Assert.NotNull(messageEvent);
+			Assert.AreEqual("feleyinek", messageEvent.EventId);
+			Assert.AreEqual(123456789, messageEvent.UserId);
+			Assert.AreEqual(123456789, messageEvent.PeerId);
+			Assert.AreEqual(1234, messageEvent.ConversationMessageId);
+			Assert.AreEqual("{}", messageEvent.Payload);
+			Assert.AreEqual(1234, update.GroupId);
 		}
 	}
 }

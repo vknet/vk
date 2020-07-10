@@ -72,21 +72,25 @@ namespace VkNet.Model
 		/// <summary>
 		/// Имя узла прокси-сервера.
 		/// </summary>
+		[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
 		string Host { get; set; }
 
 		/// <summary>
 		/// Номер порта используемого Host.
 		/// </summary>
+		[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
 		int? Port { get; set; }
 
 		/// <summary>
 		/// Логин для прокси с авторизацией. Если прокси без авторизации - оставить пустым
 		/// </summary>
+		[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
 		string ProxyLogin { get; set; }
 
 		/// <summary>
 		/// Пароль для прокси с авторищацией. Если прокси без авторизации - оставить пустым
 		/// </summary>
+		[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
 		string ProxyPassword { get; set; }
 
 		/// <summary>

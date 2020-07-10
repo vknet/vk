@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Flurl;
-using Flurl.Http;
 using HtmlAgilityPack;
 using JetBrains.Annotations;
+using VkNet.Abstractions.Utils;
 using VkNet.Exception;
+using VkNet.Model;
+using VkNet.Utils;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
@@ -13,26 +15,46 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 	[UsedImplicitly]
 	public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 	{
-		/// <inheritdoc />
-		public async Task<VkHtmlFormResult> GetFormAsync(Url url)
+		private readonly IRestClient _restClient;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="restClient"></param>
+		public AuthorizationFormHtmlParser(IRestClient restClient)
 		{
-				var httpResponseMessage = await url.GetAsync().ConfigureAwait(false);
-				var stream = await httpResponseMessage.Content.ReadAsStreamAsync().ConfigureAwait(false);
+			_restClient = restClient;
+		}
 
-				var doc = new HtmlDocument();
-				doc.Load(stream);
-				var formNode = GetFormNode(doc);
-				var inputs = ParseInputs(formNode);
+		/// <inheritdoc />
+		public async Task<VkHtmlFormResult> GetFormAsync(Uri url)
+		{
+			var response = await _restClient.PostAsync(url, Enumerable.Empty<KeyValuePair<string, string>>());
 
-				var actionUrl = GetActionUrl(formNode, url);
-				var method = GetMethod(formNode);
+			if (!response.IsSuccess)
+			{
+				throw new VkAuthorizationException(response.Message);
+			}
 
-				return new VkHtmlFormResult
-				{
-					Fields = inputs,
-					Action = actionUrl,
-					Method = method
-				};
+			if (Utilities.TryDeserializeObject<VkAuthError>(response.Value, out var authError))
+			{
+				throw new VkAuthorizationException(authError.ErrorDescription);
+			}
+
+			var doc = new HtmlDocument();
+			doc.LoadHtml(response.Value);
+			var formNode = GetFormNode(doc);
+			var inputs = ParseInputs(formNode);
+
+			var actionUrl = GetActionUrl(formNode, url);
+			var method = GetMethod(formNode);
+
+			return new VkHtmlFormResult
+			{
+				Fields = inputs,
+				Action = actionUrl,
+				Method = method
+			};
 		}
 
 		/// <summary>
@@ -83,7 +105,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <summary>
 		/// URL действия.
 		/// </summary>
-		private static string GetActionUrl(HtmlNode formNode, Url url)
+		private static string GetActionUrl(HtmlNode formNode, Uri url)
 		{
 			var action = formNode.Attributes["action"];
 
@@ -112,10 +134,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 			return method?.Value;
 		}
 
-		private static string GetResponseBaseUrl(Url url)
+		private static string GetResponseBaseUrl(Uri uri)
 		{
-			var uri = url.ToUri();
-
 			return uri.Scheme + "://" + uri.Host + ":" + uri.Port;
 		}
 	}

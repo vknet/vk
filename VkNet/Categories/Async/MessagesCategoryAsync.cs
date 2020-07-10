@@ -82,7 +82,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields,
+		public Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields = null,
 																			ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetConversationMembers(peerId, fields, groupId));
@@ -330,6 +330,12 @@ namespace VkNet.Categories
 		public Task<bool> EditAsync(MessageEditParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Edit(@params));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> SendMessageEventAnswerAsync(string eventId, long userId, long peerId, EventData eventData = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => SendMessageEventAnswer(eventId, userId, peerId, eventData));
 		}
 	}
 }

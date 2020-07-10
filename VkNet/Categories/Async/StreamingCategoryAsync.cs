@@ -29,7 +29,7 @@ namespace VkNet.Categories
 																			, DateTime? endTime = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					GetStats(type, interval, startTime, endTime));
+					GetStats(type: type, interval: interval, startTime: startTime, endTime: endTime));
 		}
 
 		/// <inheritdoc />

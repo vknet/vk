@@ -18,14 +18,14 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<LeadsComplete> CompleteAsync(string vkSid, string secret, string comment)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => Complete(vkSid, secret, comment));
+			return TypeHelper.TryInvokeMethodAsync(func: () => Complete(vkSid: vkSid, secret: secret, comment: comment));
 		}
 
 		/// <inheritdoc />
 		public Task<Lead> GetStatsAsync(ulong leadId, string secret, string dateStart, string dateEnd)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>
-				GetStats(leadId, secret, dateStart, dateEnd));
+				GetStats(leadId: leadId, secret: secret, dateStart: dateStart, dateEnd: dateEnd));
 		}
 
 		/// <inheritdoc />

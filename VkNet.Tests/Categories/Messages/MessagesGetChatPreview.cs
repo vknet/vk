@@ -11,7 +11,7 @@ namespace VkNet.Tests.Categories.Messages
 		[Test]
 		public void DefaultParams()
 		{
-			Url = "https://api.vk.me/method/messages.getChatPreview";
+			Url = "https://api.vk.com/method/messages.getChatPreview";
 			ReadCategoryJsonPath(nameof(DefaultParams));
 
 			var result = Api.Messages.GetChatPreview("http://vk.com", ProfileFields.About);

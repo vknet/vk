@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -12,16 +13,25 @@ namespace VkNet.Model
 		/// <summary>
 		/// Целочисленное значение цены, умноженное на 100.
 		/// </summary>
+		[JsonProperty("amount")]
 		public long? Amount { get; set; }
 
 		/// <summary>
 		/// Валюта.
 		/// </summary>
+		[JsonProperty("currency")]
 		public Currency Currency { get; set; }
+
+		/// <summary>
+		/// Старая цена товара в сотых долях единицы валюты.
+		/// </summary>
+		[JsonProperty("old_amount")]
+		public long? OldAmount { get; set; }
 
 		/// <summary>
 		/// Строка с локализованной ценой и валютой.
 		/// </summary>
+		[JsonProperty("text")]
 		public string Text { get; set; }
 
 		/// <summary>
@@ -33,9 +43,10 @@ namespace VkNet.Model
 		{
 			var price = new Price
 			{
-					Amount = response[key: "amount"]
-					, Currency = response[key: "currency"]
-					, Text = response[key: "text"]
+				Amount = response["amount"],
+				Currency = response["currency"],
+				OldAmount = response["old_amount"],
+				Text = response["text"]
 			};
 
 			return price;

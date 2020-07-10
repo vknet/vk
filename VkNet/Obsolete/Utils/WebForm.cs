@@ -5,11 +5,13 @@ using System.Text;
 using HtmlAgilityPack;
 using VkNet.Exception;
 
+// ReSharper disable once CheckNamespace
 namespace VkNet.Utils
 {
 	/// <summary>
 	/// WEB форма
 	/// </summary>
+	[Obsolete(ObsoleteText.ObsoleteClass)]
 	internal sealed class WebForm
 	{
 		/// <summary>
@@ -39,17 +41,19 @@ namespace VkNet.Utils
 		/// WEB форма.
 		/// </summary>
 		/// <param name="result"> Результат. </param>
-		private WebForm(WebCallResult result)
+		private WebForm(HttpResponse<string> result)
 		{
-			Cookies = result.Cookies;
-			OriginalUrl = result.RequestUrl.OriginalString;
+			if (!result.IsSuccess)
+			{
+				throw new VkApiException(result.Message);
+			}
+
+			OriginalUrl = result.ResponseUri.ToString();
+
+			_responseBaseUrl = $"{result.ResponseUri.Scheme}://{result.RequestUri.Host}";
 
 			_html = new HtmlDocument();
-			_html.LoadHtml(result.Response);
-
-			var uri = result.ResponseUrl;
-
-			_responseBaseUrl = uri.Scheme + "://" + uri.Host + ":" + uri.Port;
+			_html.LoadHtml(result.Value);
 
 			_inputs = ParseInputs();
 		}
@@ -75,7 +79,7 @@ namespace VkNet.Utils
 
 				var link = formNode.Attributes["action"].Value;
 
-				if (!string.IsNullOrEmpty(link) && !link.StartsWith("http", StringComparison.Ordinal)
+				if (!string.IsNullOrWhiteSpace(link) && !link.StartsWith("http", StringComparison.Ordinal)
 				) // относительный URL
 				{
 					link = _responseBaseUrl + link;
@@ -98,7 +102,7 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="result"> Результат. </param>
 		/// <returns> WEB форма. </returns>
-		public static WebForm From(WebCallResult result)
+		public static WebForm From(HttpResponse<string> result)
 		{
 			return new WebForm(result);
 		}
@@ -168,7 +172,8 @@ namespace VkNet.Utils
 			if (_inputs.ContainsKey(_lastName))
 			{
 				_inputs[_lastName] = encodedValue;
-			} else
+			}
+			else
 			{
 				_inputs.Add(_lastName, encodedValue);
 			}

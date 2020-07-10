@@ -21,6 +21,14 @@ namespace VkNet.Model.Keyboard
 									string type = null);
 
 		/// <summary>
+		/// Добавить кнопку
+		/// </summary>
+		/// <param name="buttonAction">Действие при нажатии на кнопку</param>
+		/// <param name="color">Цвет кнопки</param>
+		/// <returns>Конструктор клавиатур</returns>
+		IKeyboardBuilder AddButton(MessageKeyboardButtonAction buttonAction, KeyboardButtonColor color = default(KeyboardButtonColor));
+
+		/// <summary>
 		/// Добавить строку в клавиатуру
 		/// </summary>
 		/// <returns>Конструктор клавиатур</returns>

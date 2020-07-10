@@ -760,9 +760,19 @@ namespace VkNet.Tests.Enum.SafetyEnums
 		{
 			// get test
 			Assert.That(KeyboardButtonActionType.Text.ToString(), Is.EqualTo("text"));
+			Assert.That(KeyboardButtonActionType.Location.ToString(), Is.EqualTo("location"));
+			Assert.That(KeyboardButtonActionType.OpenLink.ToString(), Is.EqualTo("open_link"));
+			Assert.That(KeyboardButtonActionType.VkApp.ToString(), Is.EqualTo("open_app"));
+			Assert.That(KeyboardButtonActionType.VkPay.ToString(), Is.EqualTo("vkpay"));
+			Assert.That(KeyboardButtonActionType.Callback.ToString(), Is.EqualTo("callback"));
 
 			// parse test
 			Assert.That(KeyboardButtonActionType.FromJsonString("text"), Is.EqualTo(KeyboardButtonActionType.Text));
+			Assert.That(KeyboardButtonActionType.FromJsonString("location"), Is.EqualTo(KeyboardButtonActionType.Location));
+			Assert.That(KeyboardButtonActionType.FromJsonString("open_link"), Is.EqualTo(KeyboardButtonActionType.OpenLink));
+			Assert.That(KeyboardButtonActionType.FromJsonString("open_app"), Is.EqualTo(KeyboardButtonActionType.VkApp));
+			Assert.That(KeyboardButtonActionType.FromJsonString("vkpay"), Is.EqualTo(KeyboardButtonActionType.VkPay));
+			Assert.That(KeyboardButtonActionType.FromJsonString("callback"), Is.EqualTo(KeyboardButtonActionType.Callback));
 		}
 
 		[Test]
@@ -860,6 +870,30 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Assert.That(AppWidgetType.FromJsonString("tiles"), Is.EqualTo(AppWidgetType.Tiles));
 			Assert.That(AppWidgetType.FromJsonString("compact_list"), Is.EqualTo(AppWidgetType.CompactList));
 			Assert.That(AppWidgetType.FromJsonString("cover_list"), Is.EqualTo(AppWidgetType.CoverList));
+		}
+
+		[Test]
+		public void TranscriptStatesTest()
+		{
+			// get test
+			Assert.That(TranscriptStates.Done.ToString(), Is.EqualTo("done"));
+			Assert.That(TranscriptStates.InProgress.ToString(), Is.EqualTo("in_progress"));
+			// parse test
+			Assert.That(TranscriptStates.FromJsonString("done"), Is.EqualTo(TranscriptStates.Done));
+			Assert.That(TranscriptStates.FromJsonString("in_progress"), Is.EqualTo(TranscriptStates.InProgress));
+		}
+
+		[Test]
+		public void MessageEventTypeTest()
+		{
+			// get test
+			Assert.That(MessageEventType.OpenApp.ToString(), Is.EqualTo("open_app"));
+			Assert.That(MessageEventType.OpenLink.ToString(), Is.EqualTo("open_link"));
+			Assert.That(MessageEventType.SnowSnackbar.ToString(), Is.EqualTo("show_snackbar"));
+			// parse test
+			Assert.That(MessageEventType.FromJsonString("open_app"), Is.EqualTo(MessageEventType.OpenApp));
+			Assert.That(MessageEventType.FromJsonString("open_link"), Is.EqualTo(MessageEventType.OpenLink));
+			Assert.That(MessageEventType.FromJsonString("show_snackbar"), Is.EqualTo(MessageEventType.SnowSnackbar));
 		}
 	}
 }

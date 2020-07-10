@@ -122,7 +122,7 @@ namespace VkNet.Abstractions
 		GetConversationsResult GetConversations(GetConversationsParams getConversationsParams);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetConversationMembersAsync"/>
-		GetConversationMembersResult GetConversationMembers(long peerId, IEnumerable<string> fields, ulong? groupId = null);
+		GetConversationMembersResult GetConversationMembers(long peerId, IEnumerable<string> fields = null, ulong? groupId = null);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetByConversationMessageIdAsync"/>
 		GetByConversationMessageIdResult GetByConversationMessageId(long peerId, [NotNull] IEnumerable<ulong> conversationMessageIds,
@@ -145,6 +145,9 @@ namespace VkNet.Abstractions
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetRecentCallsAsync"/>
 		GetRecentCallsResult GetRecentCalls(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null,
 											bool? extended = null);
+
+		/// <inheritdoc cref="IMessagesCategoryAsync.SendMessageEventAnswerAsync"/>
+		bool SendMessageEventAnswer(string eventId, long userId, long peerId, EventData eventData = null);
 
 	#region Obsoleted
 

@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 
 namespace VkNet.Utils
 {
@@ -47,7 +48,15 @@ namespace VkNet.Utils
 		/// <value>
 		/// The request URI.
 		/// </value>
-		public string RequestUri { get; private set; }
+		public Uri RequestUri { get; private set; }
+		
+		/// <summary>
+		/// Gets the request URI.
+		/// </summary>
+		/// <value>
+		/// The request URI.
+		/// </value>
+		public Uri ResponseUri { get; private set; }
 
 		/// <summary>
 		/// Creates the success response.
@@ -55,15 +64,17 @@ namespace VkNet.Utils
 		/// <param name="httpStatusCode"> The HTTP status code. </param>
 		/// <param name="value"> The value. </param>
 		/// <param name="requestUri"> The request URI. </param>
+		/// <param name="responseUri"> The response URI. </param>
 		/// <returns> The HTTP response. </returns>
-		public static HttpResponse<TResponse> Success(HttpStatusCode httpStatusCode, TResponse value, string requestUri = "")
+		public static HttpResponse<TResponse> Success(HttpStatusCode httpStatusCode, TResponse value, Uri requestUri = null, Uri responseUri = null)
 		{
 			return new HttpResponse<TResponse>
 			{
 				Value = value,
 				IsSuccess = true,
 				StatusCode = httpStatusCode,
-				RequestUri = requestUri
+				RequestUri = requestUri,
+				ResponseUri = requestUri
 			};
 		}
 
@@ -76,13 +87,14 @@ namespace VkNet.Utils
 		/// <returns>
 		/// The HTTP response.
 		/// </returns>
-		public static HttpResponse<TResponse> Fail(HttpStatusCode httpStatusCode, string message, string requestUri = "")
+		public static HttpResponse<TResponse> Fail(HttpStatusCode httpStatusCode, string message, Uri requestUri = null, Uri responseUri = null)
 		{
 			return new HttpResponse<TResponse>
 			{
 				Message = message,
 				StatusCode = httpStatusCode,
-				RequestUri = requestUri
+				RequestUri = requestUri,
+				ResponseUri = responseUri
 			};
 		}
 	}

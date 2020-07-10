@@ -107,7 +107,7 @@ namespace VkNet.Tests
 						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
 					}
 
-					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url));
+					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, new Uri(Url)));
 				});
 
 			Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),

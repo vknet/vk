@@ -14,7 +14,7 @@ namespace VkNet.Tests.Categories.Audio
 		[Test]
 		public void GetBroadcastListTest()
 		{
-			Url = "https://api.vk.me/method/audio.getBroadcastList";
+			Url = "https://api.vk.com/method/audio.getBroadcastList";
 
 			ReadCategoryJsonPath(nameof(Api.Audio.GetBroadcastList));
 
