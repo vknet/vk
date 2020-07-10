@@ -784,7 +784,8 @@ namespace VkNet.Categories
 				{ "keep_forward_messages", @params.KeepForwardMessages },
 				{ "keep_snippets", @params.KeepSnippets },
 				{ "group_id", @params.GroupId },
-				{ "dont_parse_links", @params.DontParseLinks }
+				{ "dont_parse_links", @params.DontParseLinks },
+				{ "conversation_message_id", @params.ConversationMessageId }
 			});
 		}
 

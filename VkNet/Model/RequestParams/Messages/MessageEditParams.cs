@@ -26,8 +26,8 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор сообщения.
 		/// </summary>
-		[JsonProperty("message_id")]
-		public long MessageId { get; set; }
+		[JsonProperty("message_id", NullValueHandling = NullValueHandling.Ignore)]
+		public long? MessageId { get; set; }
 
 		/// <summary>
 		/// Географическая широта (от -90 до 90).
@@ -70,5 +70,11 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty("dont_parse_links")]
 		public bool DontParseLinks { get; set; }
+
+		/// <summary>
+		/// идентификатор сообщения в беседе
+		/// </summary>
+		[JsonProperty("conversation_message_id", NullValueHandling = NullValueHandling.Ignore)]
+		public long? ConversationMessageId { get; set; }
 	}
 }
