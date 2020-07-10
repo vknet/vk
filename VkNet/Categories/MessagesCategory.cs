@@ -199,6 +199,7 @@ namespace VkNet.Categories
 				{ "dont_parse_links", @params.DontParseLinks },
 				{ "disable_mentions", @params.DisableMentions },
 				{ "intent", @params.Intent },
+				{ "subscribe_id", @params.SubscribeId },
 				{ "template", @params.Template != null ? JsonConvert.SerializeObject(@params.Template) : ""}
 			});
 		}

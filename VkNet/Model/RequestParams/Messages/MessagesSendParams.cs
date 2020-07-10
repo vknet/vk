@@ -159,6 +159,12 @@ namespace VkNet.Model.RequestParams
 		public Intent Intent { get; set; }
 
 		/// <summary>
+		/// Положительное число, максимальное значение 100
+		/// </summary>
+		[JsonProperty("subscribe_id")]
+		public byte SubscribeId { get; set; }
+
+		/// <summary>
 		/// Объект, описывающий шаблон сообщения для бота.
 		/// </summary>
 		/// <remarks>
