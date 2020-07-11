@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -160,5 +160,20 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty("close_comments")]
 		public bool? CloseComments { get; set; }
+
+
+		/// <summary>
+		/// 1 — уведомления к записи отключены.
+		/// 0 — уведомления к записи включены.
+		/// флаг, может принимать значения 1 или 0
+		/// </summary>
+		[JsonProperty("mute_notifications")]
+		public bool MuteNotifications { get; set; }
+
+		/// <summary>
+		/// Источник материала. Поддерживаются внешние и внутренние ссылки. строка
+		/// </summary>
+		[JsonProperty("copyright")]
+		public string Copyright { get; set; }
 	}
 }

@@ -150,5 +150,23 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "poster_bkg_id")]
 		public long? PosterBackgroundId { get; set; }
+
+		/// <summary>
+		/// Целое число
+		/// </summary>
+		[JsonProperty("poster_bkg_owner_id")]
+		public long PosterBackgroundOwnerId { get; set; }
+
+		/// <summary>
+		/// Строка
+		/// </summary>
+		[JsonProperty("poster_bkg_access_hash")]
+		public string PosterBackgroundAccessHash { get; set; }
+
+		/// <summary>
+		/// Источник материала. Поддерживаются внешние и внутренние ссылки. строка
+		/// </summary>
+		[JsonProperty("copyright")]
+		public string Copyright { get; set; }
 	}
 }
