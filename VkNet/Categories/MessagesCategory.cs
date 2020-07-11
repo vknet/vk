@@ -218,6 +218,7 @@ namespace VkNet.Categories
 				{ "lat", @params.Lat },
 				{ "long", @params.Longitude },
 				{ "attachment", @params.Attachments },
+				{ "reply_to", @params.ReplyTo },
 				{ "forward_messages", @params.ForwardMessages },
 				{ "keyboard", @params.Keyboard != null ? JsonConvert.SerializeObject(@params.Keyboard) : "" },
 				{ "sticker_id", @params.StickerId },
@@ -227,6 +228,7 @@ namespace VkNet.Categories
 				{ "dont_parse_links", @params.DontParseLinks },
 				{ "disable_mentions", @params.DisableMentions },
 				{ "intent", @params.Intent },
+				{ "subscribe_id", @params.SubscribeId },
 				{ "template", @params.Template != null ? JsonConvert.SerializeObject(@params.Template) : ""}
 			}).ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
 		}
