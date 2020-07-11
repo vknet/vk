@@ -169,7 +169,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.edit
 		/// </remarks>
-		Task<bool> EditAsync(WallEditParams @params);
+		Task<long> EditAsync(WallEditParams @params);
 
 		/// <summary>
 		/// Удаляет запись со стены.

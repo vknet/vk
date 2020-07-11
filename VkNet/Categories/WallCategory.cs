@@ -115,7 +115,9 @@ namespace VkNet.Categories
 				{ "post_id", @params.PostId },
 				{ "guid", @params.Guid },
 				{ "mark_as_ads", @params.MarkAsAds },
-				{ "close_comments", @params.CloseComments }
+				{ "close_comments", @params.CloseComments },
+				{ "mute_notifications", @params.MuteNotifications },
+				{ "copyright", @params.Copyright },
 			})[key: "post_id"];
 		}
 
@@ -157,9 +159,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool Edit(WallEditParams @params)
+		public long Edit(WallEditParams @params)
 		{
-			var resp = _vk.Call("wall.edit", new VkParameters
+			return _vk.Call("wall.edit", new VkParameters
 			{
 				{ "owner_id", @params.OwnerId },
 				{ "post_id", @params.PostId },
@@ -174,18 +176,12 @@ namespace VkNet.Categories
 				{ "place_id", @params.PlaceId },
 				{ "mark_as_ads", @params.MarkAsAds },
 				{ "close_comments", @params.CloseComments },
-				{ "poster_bkg_id", @params.PosterBackgroundId }
-			});
+				{ "poster_bkg_id", @params.PosterBackgroundId },
+				{ "poster_bkg_owner_id", @params.PosterBackgroundOwnerId },
+				{ "poster_bkg_access_hash", @params.PosterBackgroundAccessHash },
+				{ "copyright", @params.Copyright },
 
-			if (resp != null)
-			{
-				if (resp.ContainsKey("post_id"))  // Начиная с версии 5.100
-					return true;
-
-				if (resp == 1)                    // версии <5.100
-					return true;
-			}
-			return false;
+			})[key: "post_id"];
 		}
 
 		/// <inheritdoc />

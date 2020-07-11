@@ -35,7 +35,7 @@ namespace VkNet.Abstractions
 		RepostResult Repost(string @object, string message, long? groupId, bool markAsAds, long captchaSid, string captchaKey);
 
 		/// <inheritdoc cref="IWallCategoryAsync.EditAsync"/>
-		bool Edit(WallEditParams @params);
+		long Edit(WallEditParams @params);
 
 		/// <inheritdoc cref="IWallCategoryAsync.DeleteAsync"/>
 		bool Delete(long? ownerId = null, long? postId = null);
