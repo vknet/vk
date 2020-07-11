@@ -53,7 +53,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> EditAsync(WallEditParams @params)
+		public Task<long> EditAsync(WallEditParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => Edit(@params: @params));
 		}
