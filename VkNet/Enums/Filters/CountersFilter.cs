@@ -61,6 +61,11 @@ namespace VkNet.Enums.Filters
 		public static readonly CountersFilter AppRequests = RegisterPossibleValue(value: "app_requests");
 
 		/// <summary>
+		/// Рекомендации друзей
+		/// </summary>
+		public static readonly CountersFilter FriendsRecommendations = RegisterPossibleValue(value: "friends_recommendations");
+
+		/// <summary>
 		/// Все фильтры
 		/// </summary>
 		public static readonly CountersFilter All =
