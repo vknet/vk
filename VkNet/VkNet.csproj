@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net40;net45;net461;netstandard2.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
-		<VersionPrefix>1.53.0</VersionPrefix>
+		<VersionPrefix>1.55.0</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -23,7 +23,7 @@
 			Обсуждение в Telegram: http://bit.ly/2rvEOWD
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: https://bit.ly/3b3soK5
+			Список изменений: https://bit.ly/2DAwO06
 		</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
