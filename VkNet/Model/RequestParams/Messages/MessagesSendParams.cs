@@ -38,15 +38,15 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор сообщения, на которое требуется ответить. целое число, доступен начиная с версии 5.92
 		/// </summary>
-		[JsonProperty("reply_to")]
-		public long ReplyTo { get; set; }
+		[JsonProperty("reply_to", NullValueHandling = NullValueHandling.Ignore)]
+		public long? ReplyTo { get; set; }
 
 		/// <summary>
 		/// Идентификаторы пересылаемых сообщений, перечисленные через запятую.
 		/// Перечисленные сообщения отправителя будут
 		/// отображаться в теле письма у получателя.
 		/// </summary>
-		[JsonProperty("forward_messages")]
+		[JsonProperty("forward_messages", NullValueHandling = NullValueHandling.Ignore)]
 		public IEnumerable<long> ForwardMessages { get; set; }
 
 		/// <summary>
