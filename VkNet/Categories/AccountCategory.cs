@@ -37,7 +37,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool SetNameInMenu(string name, long? userId = null)
+		public bool SetNameInMenu(string name, long userId)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => name);
 

@@ -58,7 +58,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.setNameInMenu
 		/// </remarks>
-		Task<bool> SetNameInMenuAsync([NotNull] string name, long? userId = null);
+		Task<bool> SetNameInMenuAsync([NotNull] string name, long userId);
 
 		/// <summary>
 		/// Помечает текущего пользователя как online на 15 минут.

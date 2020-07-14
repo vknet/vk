@@ -13,8 +13,7 @@ namespace VkNet.Abstractions
 		Counters GetCounters(CountersFilter filter);
 
 		/// <inheritdoc cref="IAccountCategoryAsync.SetNameInMenuAsync"/>
-		bool SetNameInMenu([NotNull] string name
-							, long? userId = null);
+		bool SetNameInMenu([NotNull] string name, long userId);
 
 		/// <inheritdoc cref="IAccountCategoryAsync.SetOnlineAsync"/>
 		bool SetOnline(bool? voip = null);
