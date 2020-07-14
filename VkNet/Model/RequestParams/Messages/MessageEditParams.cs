@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
+using VkNet.Model.Keyboard;
+using VkNet.Model.Template;
 
 namespace VkNet.Model.RequestParams
 {
@@ -76,5 +78,23 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty("conversation_message_id", NullValueHandling = NullValueHandling.Ignore)]
 		public long? ConversationMessageId { get; set; }
+
+		/// <summary>
+		/// Шаблон сообщений
+		/// </summary>
+		/// <remarks>
+		/// Рекомендуется для построения использовать <see cref="ITemplateBuilder" />
+		/// </remarks>
+		[JsonProperty("template")]
+		public MessageTemplate Template { get; set; }
+
+		/// <summary>
+		/// Клавиатура бота
+		/// </summary>
+		/// <remarks>
+		/// Рекомендуется для построения использовать <see cref="IKeyboardBuilder" />
+		/// </remarks>
+		[JsonProperty("keyboard")]
+		public MessageKeyboard Keyboard { get; set; }
 	}
 }
