@@ -37,7 +37,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool SetNameInMenu(string name, long? userId = null)
+		public bool SetNameInMenu(string name, long userId)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => name);
 
@@ -166,8 +166,6 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool BanUser(long ownerId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => ownerId);
-
 			var parameters = new VkParameters
 			{
 				{ "owner_id", ownerId }
@@ -179,8 +177,6 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool UnbanUser(long ownerId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => ownerId);
-
 			var parameters = new VkParameters
 			{
 				{ "owner_id", ownerId }

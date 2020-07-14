@@ -507,7 +507,7 @@ namespace VkNet.Tests.Categories.Account
 		[Test]
 		public void SetNameInMenu_EmptyName_ThrowArgumentNullException()
 		{
-			Assert.Throws<ArgumentNullException>(() => Api.Account.SetNameInMenu(string.Empty));
+			Assert.Throws<ArgumentNullException>(() => Api.Account.SetNameInMenu(string.Empty, 1));
 		}
 
 		[Test]
@@ -515,7 +515,7 @@ namespace VkNet.Tests.Categories.Account
 		{
 			Url = "https://api.vk.com/method/account.setNameInMenu";
 			ReadJsonFile(JsonPaths.False);
-			Assert.That(Api.Account.SetNameInMenu("example"), Is.False);
+			Assert.That(Api.Account.SetNameInMenu("example", 1), Is.False);
 		}
 
 		[Test]
@@ -523,7 +523,7 @@ namespace VkNet.Tests.Categories.Account
 		{
 			Url = "https://api.vk.com/method/account.setNameInMenu";
 			ReadJsonFile(JsonPaths.True);
-			Assert.That(Api.Account.SetNameInMenu("example"), Is.True);
+			Assert.That(Api.Account.SetNameInMenu("example", 1), Is.True);
 		}
 
 		[Test]

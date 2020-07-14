@@ -18,7 +18,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SetNameInMenuAsync(string name, long? userId = null)
+		public Task<bool> SetNameInMenuAsync(string name, long userId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => SetNameInMenu(name, userId));
 		}

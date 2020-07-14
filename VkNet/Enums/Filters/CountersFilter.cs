@@ -21,12 +21,12 @@ namespace VkNet.Enums.Filters
 		public static readonly CountersFilter Messages = RegisterPossibleValue(value: "messages");
 
 		/// <summary>
-		/// Количество фото
+		/// Количество новых отметок на фотографиях
 		/// </summary>
 		public static readonly CountersFilter Photos = RegisterPossibleValue(value: "photos");
 
 		/// <summary>
-		/// Количество видео
+		/// Количество новых отметок на видеозаписях
 		/// </summary>
 		public static readonly CountersFilter Videos = RegisterPossibleValue(value: "videos");
 
@@ -41,7 +41,7 @@ namespace VkNet.Enums.Filters
 		public static readonly CountersFilter Events = RegisterPossibleValue(value: "events");
 
 		/// <summary>
-		/// Количество групп
+		/// Количество сообществ
 		/// </summary>
 		public static readonly CountersFilter Groups = RegisterPossibleValue(value: "groups");
 
@@ -51,17 +51,17 @@ namespace VkNet.Enums.Filters
 		public static readonly CountersFilter Notifications = RegisterPossibleValue(value: "notifications");
 
 		/// <summary>
-		/// Количество уведомлений
+		/// Количество запросов в мобильных играх
 		/// </summary>
 		public static readonly CountersFilter Sdk = RegisterPossibleValue(value: "sdk");
 
 		/// <summary>
-		/// Количество уведомлений
+		/// Количество уведомлений от приложений
 		/// </summary>
 		public static readonly CountersFilter AppRequests = RegisterPossibleValue(value: "app_requests");
 
 		/// <summary>
-		/// Рекомендации друзей
+		/// Количество рекомендаций друзей
 		/// </summary>
 		public static readonly CountersFilter FriendsRecommendations = RegisterPossibleValue(value: "friends_recommendations");
 
