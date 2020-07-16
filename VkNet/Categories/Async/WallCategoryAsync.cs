@@ -164,5 +164,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => CloseComments(ownerId, postId));
 		}
+
+		/// <inheritdoc />
+		public Task<bool> CheckCopyrightLinkAsync(string link)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => CheckCopyrightLink(link));
+		}
 	}
 }

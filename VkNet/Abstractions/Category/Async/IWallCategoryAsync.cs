@@ -555,5 +555,16 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.closeComments
 		/// </remarks>
 		Task<bool> CloseCommentsAsync(long ownerId, long postId);
+
+		/// <summary>
+		/// Проверяет ссылку для указания источника.
+		/// </summary>
+		/// <param name="link">
+		/// Ссылка на источник. Поддерживаются внешние и внутренние ссылки.
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c> true </c>.
+		/// </returns>
+		Task<bool> CheckCopyrightLinkAsync(string link);
 	}
 }
