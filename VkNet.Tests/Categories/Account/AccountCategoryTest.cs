@@ -30,7 +30,7 @@ namespace VkNet.Tests.Categories.Account
 		[Test]
 		public void BanUser_CorrectParameters_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.banUser";
+			Url = "https://api.vk.com/method/account.ban";
 			ReadJsonFile(JsonPaths.False);
 			Assert.That(Api.Account.BanUser(1), Is.False); // Нельзя просто так взять и забанить Дурова
 		}
@@ -38,7 +38,7 @@ namespace VkNet.Tests.Categories.Account
 		[Test]
 		public void BanUser_CorrectParameters_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.banUser";
+			Url = "https://api.vk.com/method/account.ban";
 			ReadJsonFile(JsonPaths.True);
 			Assert.That(Api.Account.BanUser(4), Is.True);
 		}
@@ -664,7 +664,7 @@ namespace VkNet.Tests.Categories.Account
 		[Test]
 		public void UnbanUser_CorrectParameters_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.unbanUser";
+			Url = "https://api.vk.com/method/account.unban";
 			ReadJsonFile(JsonPaths.False);
 			Assert.That(Api.Account.UnbanUser(1), Is.False);
 		}
@@ -672,7 +672,7 @@ namespace VkNet.Tests.Categories.Account
 		[Test]
 		public void UnbanUser_CorrectParameters_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.unbanUser";
+			Url = "https://api.vk.com/method/account.unban";
 			ReadJsonFile(JsonPaths.True);
 			Assert.That(Api.Account.UnbanUser(4), Is.True);
 		}
