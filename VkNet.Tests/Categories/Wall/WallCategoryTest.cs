@@ -356,5 +356,17 @@ namespace VkNet.Tests.Categories.Wall
 			Assert.That(result.RepostsCount, Is.EqualTo(21));
 			Assert.That(result.LikesCount, Is.EqualTo(105));
 		}
+
+		[Test]
+		public void CheckCopyrightLink_ReturnTrue()
+		{
+			Url = "https://api.vk.com/method/wall.checkCopyrightLink";
+
+			ReadJsonFile(JsonPaths.True);
+
+			var result = Api.Wall.CheckCopyrightLink("https://habr.com");
+
+			Assert.IsTrue(result);
+		}
 	}
 }
