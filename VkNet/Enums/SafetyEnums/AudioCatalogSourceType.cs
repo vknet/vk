@@ -32,7 +32,7 @@ namespace VkNet.Enums.SafetyEnums
 		public static readonly AudioCatalogSourceType RecomsTopAudiosGlobal = RegisterPossibleValue("recoms_top_audios_global");
 
 		/// <summary>
-		/// GenreRap - Выводит жанры Рэп & Хип-Хоп.
+		/// GenreRap - Выводит жанры Рэп &amp; Хип-Хоп.
 		/// </summary>
 		public static readonly AudioCatalogSourceType GenreRap = RegisterPossibleValue("genre_rap");
 
