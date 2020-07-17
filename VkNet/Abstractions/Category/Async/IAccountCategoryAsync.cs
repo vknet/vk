@@ -225,6 +225,9 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<InformationAboutOffers> GetActiveOffersAsync(ulong? offset = null, ulong? count = null);
 
+		/// <inheritdoc cref="BanAsync"/>
+		Task<bool> BanUserAsync(long ownerId);
+
 		/// <summary>
 		/// Добавляет пользователя в черный список.
 		/// </summary>
@@ -238,7 +241,10 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.banUser
 		/// </remarks>
-		Task<bool> BanUserAsync(long ownerId);
+		Task<bool> BanAsync(long ownerId);
+
+		/// <inheritdoc cref="UnbanAsync"/>
+		Task<bool> UnbanUserAsync(long ownerId);
 
 		/// <summary>
 		/// Убирает пользователя из черного списка.
@@ -253,7 +259,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/account.unbanUser
 		/// </remarks>
-		Task<bool> UnbanUserAsync(long ownerId);
+		Task<bool> UnbanAsync(long ownerId);
 
 		/// <summary>
 		/// Возвращает список пользователей, находящихся в черном списке.
