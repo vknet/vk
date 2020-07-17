@@ -10,7 +10,7 @@ namespace VkNet.Infrastructure
 	{
 		private const int CurrentMajorVersion = 5;
 
-		private const int CurrentMinorVersion = 103;
+		private const int CurrentMinorVersion = 120;
 
 		private int Major { get; set; } = CurrentMajorVersion;
 
