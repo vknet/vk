@@ -63,5 +63,16 @@ namespace VkNet.Tests.Categories.Streaming
 
 			Assert.IsTrue(result);
 		}
+
+		[Test]
+		public void GetStem()
+		{
+			Url = "https://api.vk.com/method/streaming.getStem";
+			ReadCategoryJsonPath(nameof(GetStem));
+
+			var result = Api.Streaming.GetStem("коты");
+
+			Assert.AreEqual("кот", result);
+		}
 	}
 }
