@@ -37,5 +37,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>SetSettings(monthlyTier: monthlyTier));
 		}
+
+		/// <inheritdoc />
+		public Task<string> GetStemAsync(string word)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetStem(word: word));
+		}
 	}
 }
