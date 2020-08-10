@@ -164,7 +164,7 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="params"> Входные параметры выборки. </param>
 		/// <returns>
-		/// После успешного выполнения возвращает <c> true </c>.
+		/// После успешного выполнения возвращает post_id — идентификатор отредактированного поста.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.edit
