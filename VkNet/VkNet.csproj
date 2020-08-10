@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net45;net461;netstandard2.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
-		<VersionPrefix>1.55.0</VersionPrefix>
+		<VersionPrefix>1.56.0</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -20,10 +20,10 @@
 		<RepositoryType>GIT</RepositoryType>
 		<PackageTags>vk;vk api;vknet;vkontakte;api</PackageTags>
 		<PackageReleaseNotes>
-			Обсуждение в Telegram: http://bit.ly/2rvEOWD
+			Обсуждение в Telegram: https://t.me/VkDotNet
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: https://bit.ly/2DAwO06
+			Список изменений: https://github.com/vknet/vk/milestone/32?closed=1
 		</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -59,7 +59,7 @@
 		<PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.9.0.19135" PrivateAssets="all" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.10.0.19839" PrivateAssets="all" />
 		<PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="all" />
 	</ItemGroup>
 
