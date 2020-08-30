@@ -565,6 +565,9 @@ namespace VkNet.Abstractions
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте https://vk.com/dev/wall.checkCopyrightLink
+		/// </remarks>
 		Task<bool> CheckCopyrightLinkAsync(string link);
 	}
 }
