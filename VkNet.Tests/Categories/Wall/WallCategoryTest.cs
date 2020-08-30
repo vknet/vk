@@ -368,5 +368,28 @@ namespace VkNet.Tests.Categories.Wall
 
 			Assert.IsTrue(result);
 		}
+
+		[Test]
+		public void GetComment_ReturnCorrectResults()
+		{
+			Url = "https://api.vk.com/method/wall.getComment";
+
+			ReadCategoryJsonPath(nameof(GetComment_ReturnCorrectResults));
+
+
+			var wallCommentresult = Api.Wall.GetComment(66559, 73674, true);
+			var comment = wallCommentresult.Comment.FirstOrDefault();
+			var profiles = wallCommentresult.Profiles;
+			var groups = wallCommentresult.Groups;
+
+			Assert.That(comment.Date, Is.EqualTo(new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(1534927387)));
+			Assert.That(comment.FromId, Is.EqualTo(233754083));
+			Assert.That(comment.ReplyToUser, Is.EqualTo(6099));
+
+			Assert.That(groups, Is.Empty);
+
+			Assert.That(profiles.FirstOrDefault().FirstName, Is.EqualTo("Dmitry"));
+			Assert.That(profiles.FirstOrDefault().LastName, Is.EqualTo("Sergeev"));
+		}
 	}
 }
