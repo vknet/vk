@@ -85,7 +85,10 @@ namespace VkNet.Abstractions
 		/// <inheritdoc cref="IWallCategoryAsync.CloseCommentsAsync"/>
 		bool CloseComments(long ownerId, long postId);
 
-		/// <inheritdoc cref="IWallCategoryAsync.CloseCommentsAsync"/>
+		/// <inheritdoc cref="IWallCategoryAsync.CheckCopyrightLinkAsync"/>
 		bool CheckCopyrightLink(string link);
+
+		/// <inheritdoc cref="IWallCategoryAsync.GetCommentAsync"/>
+		WallGetCommentResult GetComment(int ownerId, int commentId, bool? extended = null, string fields = null, bool skipAuthorization = false);
 	}
 }

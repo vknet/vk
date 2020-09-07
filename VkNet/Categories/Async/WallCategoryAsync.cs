@@ -170,5 +170,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => CheckCopyrightLink(link));
 		}
+
+		/// <inheritdoc />
+		public Task<WallGetCommentResult> GetCommentAsync(int ownerId, int commentId, bool? extended = null, string fields = null, bool skipAuthorization = false)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetComment(ownerId, commentId, extended, fields, skipAuthorization));
+		}
 	}
 }
