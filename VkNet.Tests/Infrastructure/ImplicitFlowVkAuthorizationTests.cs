@@ -1,7 +1,5 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
-using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
 

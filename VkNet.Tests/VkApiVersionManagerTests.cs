@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using VkNet.Abstractions.Core;
 using VkNet.Exception;
 using VkNet.Infrastructure;

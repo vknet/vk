@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using VkNet.Abstractions.Utils;

@@ -5,7 +5,6 @@ using Moq;
 using Moq.AutoMock;
 using NUnit.Framework;
 using VkNet.Abstractions.Core;
-using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
