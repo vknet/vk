@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Abstractions.Core;
+using VkNet.Exception;
 using VkNet.Infrastructure;
 
 namespace VkNet.Tests
 {
 	[TestFixture]
-
 	public class VkApiVersionManagerTests
 	{
 		private IVkApiVersionManager Manager { get; }
@@ -84,6 +84,32 @@ namespace VkNet.Tests
 		{
 			Manager.SetVersion(5, 92);
 			Assert.IsFalse(Manager.IsLessThanOrEqual(4, 95));
+		}
+
+		[Test]
+		public void MinimalVersion_5_51_ShouldThrowException()
+		{
+			// Arrange
+
+			// Act
+			var exception = Assert.Throws<VkApiException>(() => Manager.SetVersion(5, 50));
+
+			// Assert
+			Assert.That(exception.Message, Is.EqualTo("С 1 сентября 2020 года перестанут поддерживаться версии ниже 5.51."));
+			Assert.That(exception.HelpLink, Is.EqualTo("https://vk.com/dev/constant_version_updates"));
+		}
+
+		[Test]
+		public void MinimalMajorVersion_5_ShouldThrowException()
+		{
+			// Arrange
+
+			// Act
+			var exception = Assert.Throws<VkApiException>(() => Manager.SetVersion(4, 50));
+
+			// Assert
+			Assert.That(exception.Message, Is.EqualTo("С 27 мая 2019 года версии API ниже 5.0 больше не поддерживаются."));
+			Assert.That(exception.HelpLink, Is.EqualTo("https://vk.com/dev/version_update_2.0"));
 		}
 	}
 }
