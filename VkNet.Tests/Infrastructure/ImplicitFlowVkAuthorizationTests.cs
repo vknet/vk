@@ -8,7 +8,7 @@ using VkNet.Infrastructure.Authorization.ImplicitFlow;
 namespace VkNet.Tests.Infrastructure
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class ImplicitFlowVkAuthorizationTests
 	{
 		[Test]

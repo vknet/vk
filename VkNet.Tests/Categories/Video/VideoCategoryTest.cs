@@ -14,7 +14,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Categories.Video
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class VideoCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Video";

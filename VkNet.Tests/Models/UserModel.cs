@@ -7,7 +7,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class UserModel : BaseTest
 	{
 		[Test]

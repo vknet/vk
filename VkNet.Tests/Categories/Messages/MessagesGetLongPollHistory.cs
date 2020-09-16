@@ -6,7 +6,7 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesGetLongPollHistory : MessagesBaseTests
 	{
 		[Test]

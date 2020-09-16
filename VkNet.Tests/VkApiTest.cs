@@ -13,7 +13,7 @@ using VkNet.Utils;
 namespace VkNet.Tests
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class VkApiTest : BaseTest
 	{
 		[Test]

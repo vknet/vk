@@ -11,7 +11,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Database
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class DatabaseCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Database";

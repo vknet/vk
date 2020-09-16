@@ -7,7 +7,7 @@ namespace VkNet.Tests.Categories.NewsFeed
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMemgitbersMustHaveComments")]
-	[ExcludeFromCodeCoverage]
+
 	public class NewsFeedCategoryTest : CategoryBaseTest
 	{
 		/// <inheritdoc />

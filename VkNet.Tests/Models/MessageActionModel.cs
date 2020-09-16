@@ -5,7 +5,7 @@ using VkNet.Enums.SafetyEnums;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MessageActionModel : BaseTest
 	{
 		[Test]

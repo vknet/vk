@@ -12,7 +12,7 @@ namespace VkNet.Tests.Categories.Fave
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	[ExcludeFromCodeCoverage]
+
 	public class FaveCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Fave";

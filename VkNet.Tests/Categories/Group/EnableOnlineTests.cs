@@ -5,7 +5,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Group
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class EnableOnlineTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";

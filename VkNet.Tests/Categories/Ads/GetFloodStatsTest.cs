@@ -5,7 +5,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Ads
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GetFloodStatsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";

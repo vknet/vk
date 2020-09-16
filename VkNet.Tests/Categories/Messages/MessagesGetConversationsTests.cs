@@ -4,7 +4,7 @@ using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesGetConversationsTests : MessagesBaseTests
 	{
 		[Test]

@@ -7,7 +7,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Photos
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class PhotoSaveMessagePhotoTests : CategoryBaseTest
 	{
 		protected override string Folder => "Photos";

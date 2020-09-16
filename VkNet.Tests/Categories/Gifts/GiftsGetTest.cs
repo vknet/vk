@@ -9,7 +9,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Gifts
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GiftsGetTest : CategoryBaseTest
 	{
 		/// <inheritdoc />

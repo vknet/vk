@@ -6,7 +6,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Search
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class SearchTests : CategoryBaseTest
 	{
 		protected override string Folder => "Search";

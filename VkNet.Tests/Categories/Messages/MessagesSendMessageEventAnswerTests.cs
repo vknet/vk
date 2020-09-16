@@ -7,7 +7,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesSendMessageEventAnswerTests : MessagesBaseTests
 	{
 		[Test]

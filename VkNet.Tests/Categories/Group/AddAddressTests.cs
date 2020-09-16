@@ -8,7 +8,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Group
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class AddAddressTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";

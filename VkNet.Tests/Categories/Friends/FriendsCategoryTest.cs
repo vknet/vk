@@ -12,7 +12,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Friends
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class FriendsCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Friends";

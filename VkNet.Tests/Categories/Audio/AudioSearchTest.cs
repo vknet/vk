@@ -6,7 +6,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Audio
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class AudioSearchTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";

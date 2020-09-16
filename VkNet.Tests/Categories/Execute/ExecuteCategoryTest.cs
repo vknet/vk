@@ -10,7 +10,7 @@ using VkNet.Utils;
 
 namespace VkNet.Tests.Categories.Execute
 {
-	[ExcludeFromCodeCoverage]
+
 	public class ExecuteCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Execute";

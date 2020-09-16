@@ -6,7 +6,7 @@ using VkNet.Model;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class TimetableTests : BaseTest
 	{
 		[Test]

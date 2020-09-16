@@ -6,7 +6,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GeoTests : BaseTest
 	{
 		[Test]

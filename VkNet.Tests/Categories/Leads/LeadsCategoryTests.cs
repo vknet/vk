@@ -5,7 +5,7 @@ using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Leads
 {
-	[ExcludeFromCodeCoverage]
+
 	public class LeadsCategoryTests : CategoryBaseTest
 	{
 		protected override string Folder => "Leads";

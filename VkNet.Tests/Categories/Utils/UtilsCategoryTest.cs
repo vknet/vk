@@ -11,7 +11,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Categories.Utils
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class UtilsCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Utils";

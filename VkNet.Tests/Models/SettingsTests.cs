@@ -5,7 +5,7 @@ using VkNet.Enums.Filters;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class SettingsTests : BaseTest
 	{
 		[Test]

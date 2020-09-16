@@ -6,7 +6,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Places
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class PlacesCategoryTests : CategoryBaseTest
 	{
 		protected override string Folder => "Places";

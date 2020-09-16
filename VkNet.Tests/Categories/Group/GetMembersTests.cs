@@ -6,7 +6,7 @@ using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Group
 {
-	[ExcludeFromCodeCoverage]
+
 	public class GetMembersTests : CategoryBaseTest
 	{
 		/// <inheritdoc />

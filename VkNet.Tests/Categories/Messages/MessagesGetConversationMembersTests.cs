@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesGetConversationMembersTests : MessagesBaseTests
 	{
 		[Test]

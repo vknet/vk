@@ -23,7 +23,7 @@ namespace VkNet.Tests
 	/// <summary>
 	/// Базовый класс для тестирования категорий методов.
 	/// </summary>
-	[ExcludeFromCodeCoverage]
+
 	public abstract class BaseTest : IDisposable
 	{
 		protected readonly AutoMocker Mocker = new AutoMocker();

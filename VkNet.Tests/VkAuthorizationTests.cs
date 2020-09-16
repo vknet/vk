@@ -6,7 +6,7 @@ using VkNet.Utils;
 namespace VkNet.Tests
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class VkAuthorizationTests
 	{
 		private const string Input =

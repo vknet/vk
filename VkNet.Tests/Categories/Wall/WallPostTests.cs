@@ -7,7 +7,7 @@ using VkNet.Utils;
 
 namespace VkNet.Tests.Categories.Wall
 {
-	[ExcludeFromCodeCoverage]
+
 	public class WallPostTests : CategoryBaseTest
 	{
 		protected override string Folder => "Wall";

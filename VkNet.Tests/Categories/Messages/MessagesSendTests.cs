@@ -14,7 +14,7 @@ using VkNet.Model.Template.Carousel;
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesSendTests : MessagesBaseTests
 	{
 		[Test]

@@ -5,7 +5,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Notifications
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class NotificationsCategoryTests : CategoryBaseTest
 	{
 		[Test]

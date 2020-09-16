@@ -7,7 +7,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.AppWidgets
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GetGroupImagesTest : CategoryBaseTest
 	{
 		protected override string Folder => "AppWidgets";

@@ -7,7 +7,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.NewsFeed
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GetTest : CategoryBaseTest
 	{
 		protected override string Folder => "NewsFeed";

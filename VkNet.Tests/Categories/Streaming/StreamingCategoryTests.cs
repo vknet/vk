@@ -7,7 +7,7 @@ using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Streaming
 {
-	[ExcludeFromCodeCoverage]
+
 	public class StreamingCategoryTests : CategoryBaseTest
 	{
 		protected override string Folder => "Streaming";

@@ -7,7 +7,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture, Parallelizable]
-	[ExcludeFromCodeCoverage]
+
 	public class UrlTests
 	{
 		[Test]

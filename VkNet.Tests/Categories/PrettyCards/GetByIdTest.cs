@@ -8,7 +8,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.PrettyCards
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GetByIdTest : CategoryBaseTest
 	{
 		protected override string Folder => "PrettyCards";

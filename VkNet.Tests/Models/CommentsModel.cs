@@ -5,7 +5,7 @@ using VkNet.Model;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class CommentsModel
 	{
 		[Test]

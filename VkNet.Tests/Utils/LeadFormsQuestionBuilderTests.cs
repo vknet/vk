@@ -9,7 +9,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class LeadFormsQuestionBuilderTests : BaseTest
 	{
 		[Test]

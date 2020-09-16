@@ -5,7 +5,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Storage
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class StorageCategoryTests : CategoryBaseTest
 	{
 		protected override string Folder => "Storage";

@@ -5,7 +5,7 @@ using VkNet.Enums.Filters;
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesGetChatPreview : MessagesBaseTests
 	{
 		[Test]

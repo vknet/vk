@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class SerializableTests
 	{
 		[Test]

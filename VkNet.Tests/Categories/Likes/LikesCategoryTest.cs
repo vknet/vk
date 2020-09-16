@@ -9,7 +9,7 @@ namespace VkNet.Tests.Categories.Likes
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	[ExcludeFromCodeCoverage]
+
 	public class LikesCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Likes";

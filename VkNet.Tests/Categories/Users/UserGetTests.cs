@@ -9,7 +9,7 @@ using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Users
 {
-	[ExcludeFromCodeCoverage]
+
 	public class UserGetTests : CategoryBaseTest
 	{
 		protected override string Folder => "Users";

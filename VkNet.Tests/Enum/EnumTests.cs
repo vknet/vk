@@ -7,7 +7,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Enum
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class EnumsTest
 	{
 		[Test]

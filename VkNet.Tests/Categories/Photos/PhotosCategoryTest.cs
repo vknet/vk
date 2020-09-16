@@ -12,7 +12,7 @@ namespace VkNet.Tests.Categories.Photos
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	[ExcludeFromCodeCoverage]
+
 	public class PhotosCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Photos";

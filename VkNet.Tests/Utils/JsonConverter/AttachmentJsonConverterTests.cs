@@ -7,7 +7,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils.JsonConverter
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class AttachmentJsonConverterTests : BaseTest
 	{
 		[Test]

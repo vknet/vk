@@ -8,7 +8,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Story
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class StoriesGetTests : CategoryBaseTest
 	{
 		protected override string Folder => "Stories";

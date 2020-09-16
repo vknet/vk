@@ -6,7 +6,7 @@ using VkNet.Infrastructure;
 namespace VkNet.Tests
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class VkApiVersionManagerTests
 	{
 		private IVkApiVersionManager Manager { get; }

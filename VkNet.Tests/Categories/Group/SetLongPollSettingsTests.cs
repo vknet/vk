@@ -6,7 +6,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Group
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class SetLongPollSettingsTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";

@@ -2,7 +2,7 @@
 
 namespace VkNet.Tests.Categories.Market
 {
-	[ExcludeFromCodeCoverage]
+
 	public class MarketCategoryTest : BaseTest
 	{
 	}

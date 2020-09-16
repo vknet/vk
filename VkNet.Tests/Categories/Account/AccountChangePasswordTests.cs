@@ -5,7 +5,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Account
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class AccountChangePasswordTests : CategoryBaseTest
 	{
 		protected override string Folder => "Account";

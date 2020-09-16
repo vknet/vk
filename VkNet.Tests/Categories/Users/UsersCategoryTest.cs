@@ -15,7 +15,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Users
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class UsersCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Users";

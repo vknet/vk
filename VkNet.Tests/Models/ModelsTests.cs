@@ -13,7 +13,7 @@ using VkNet.Model.Attachments;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class ModelsTests
 	{
 		[Test]

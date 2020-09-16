@@ -5,7 +5,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Podcasts
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class ClearRecentSearchesTest : CategoryBaseTest
 	{
 		protected override string Folder => "Podcasts";

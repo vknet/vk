@@ -5,7 +5,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Orders
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class OrdersGetTests : CategoryBaseTest
 	{
 		protected override string Folder => "Orders";

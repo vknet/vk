@@ -5,7 +5,7 @@ using VkNet.Enums.Filters;
 namespace VkNet.Tests.Enum.Filters
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MultivaluedFilterTest
 	{
 		[Test]

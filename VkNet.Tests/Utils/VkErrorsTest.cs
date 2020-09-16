@@ -7,7 +7,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class VkErrorsTest : BaseTest
 	{
 		private class TestClass
