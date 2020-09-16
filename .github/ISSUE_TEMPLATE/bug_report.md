@@ -4,32 +4,30 @@ about: Create a report to help us improve
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+Перед созданием нового бага, пожалуйста попробуйте использовать последнюю версию из nuget. 
+Если проблема продолжает воспроизводиться, то для создания нового бага отразите краткую суть проблемы в заголовке и заполните следующие пункты:
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+1. Target для .NET используемый в проекте: (Официально поддерживаем , .net 4.5, NETStandard2.0) (поставьте 'x' в квадратных скобках)
+  - [ ] .net 4.5
+  - [ ] NETStandard2.0
+  - [ ] другое. Указать строкой ниже.
+  
+2. Класс и метод в котором возникла проблема:
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+3. Пример кода для воспроизведения проблемы, пожалуйста указавыйте конкретные значения параметров запроса:
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+```csharp
+  // Вставьте пример кода сюда
+```
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+4. JSON ответа. Для удобства сбора этих данных подключите логи (https://github.com/vknet/vk/wiki/Logging):
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+```json
+{
+  "response": {}
+}
+```
 
-**Additional context**
-Add any other context about the problem here.
+5. Если в примере не указаны конкретные значения параметров запроса укажите их здесь:
+
+6. PS Если у вас появился вопрос по работе функциональности, то обратитесь за помощью в [![Telegram Chat](https://img.shields.io/badge/Chat-Telegram-0F80C1.svg)](https://t.me/VkDotNet), или напишите [мне](https://telegram.me/inyutin_maxim), не нужно плодить задачи типа как работает ф-я X, в противном случае буду закрывать без объяснения причины. После разбора проблемы будем дополнять документацию более полными примерами
