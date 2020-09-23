@@ -38,7 +38,7 @@ namespace VkNet.Model
 		public long? ConversationMessageId { get; set; }
 
 		/// <summary>
-		/// Id сообщения в беседе. Не путать с message.id профиля.
+		/// Если источником является любой другой контент на платформе (комментарий, пост, фотография и тд.).
 		/// </summary>
 		[JsonProperty("url")]
 		public string Url { get; set; }
