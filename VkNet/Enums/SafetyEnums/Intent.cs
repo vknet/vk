@@ -1,8 +1,11 @@
+using System;
+
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Метка, которая обозначает приблизительное содержание сообщения от сообщества
 	/// </summary>
+	[Serializable]
 	public sealed class Intent : SafetyEnum<Intent>
 	{
 		/// <summary>
