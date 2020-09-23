@@ -124,6 +124,12 @@ namespace VkNet.Model.RequestParams
 		public string Payload { get; set; }
 
 		/// <summary>
+		/// Объект, описывающий источник пользовательского контента для чат-ботов
+		/// </summary>
+		[JsonProperty("content_source")]
+		public MessageContentSource ContentSource { get; set; }
+
+		/// <summary>
 		/// 1 — не создавать сниппет ссылки из сообщения флаг, может принимать значения 1
 		/// или 0, по умолчанию
 		/// </summary>
