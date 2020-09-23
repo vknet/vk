@@ -23,18 +23,24 @@ namespace VkNet.Model
 		/// От чьего имени указан peer_id. т.е. вы можете использовать контент из сообщения другой группы.
 		/// </summary>
 		[JsonProperty("owner_id")]
-		public long OwnerId { get; set; }
+		public long? OwnerId { get; set; }
 
 		/// <summary>
 		/// Id диалога
 		/// </summary>
 		[JsonProperty("peer_id")]
-		public long PeerId { get; set; }
+		public long? PeerId { get; set; }
 
 		/// <summary>
 		/// Id сообщения в беседе. Не путать с message.id профиля.
 		/// </summary>
 		[JsonProperty("conversation_message_id")]
-		public long ConversationMessageId { get; set; }
+		public long? ConversationMessageId { get; set; }
+
+		/// <summary>
+		/// Id сообщения в беседе. Не путать с message.id профиля.
+		/// </summary>
+		[JsonProperty("url")]
+		public string Url { get; set; }
 	}
 }
