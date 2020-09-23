@@ -127,7 +127,7 @@ namespace VkNet.Model.RequestParams
 		/// Объект, описывающий источник пользовательского контента для чат-ботов
 		/// </summary>
 		[JsonProperty("content_source")]
-		public MessageContentSource MessageContentSource { get; set; }
+		public MessageContentSource ContentSource { get; set; }
 
 		/// <summary>
 		/// 1 — не создавать сниппет ссылки из сообщения флаг, может принимать значения 1
