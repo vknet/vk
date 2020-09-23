@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Exception;
@@ -7,7 +6,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Status
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class StatusCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Status";

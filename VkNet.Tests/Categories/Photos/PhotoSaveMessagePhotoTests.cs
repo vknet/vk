@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
@@ -7,7 +6,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Photos
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class PhotoSaveMessagePhotoTests : CategoryBaseTest
 	{
 		protected override string Folder => "Photos";

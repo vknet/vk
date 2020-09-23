@@ -19,5 +19,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IStreamingCategoryAsync.SetSettingsAsync"/>
 		bool SetSettings(MonthlyLimit monthlyTier);
+
+		/// <inheritdoc cref="IStreamingCategoryAsync.GetStemAsync"/>
+		string GetStem(string word);
 	}
 }

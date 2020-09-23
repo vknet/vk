@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Audio
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class AudioCreatePlaylistTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";

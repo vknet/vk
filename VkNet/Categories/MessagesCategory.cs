@@ -201,7 +201,7 @@ namespace VkNet.Categories
 				{ "disable_mentions", @params.DisableMentions },
 				{ "intent", @params.Intent },
 				{ "subscribe_id", @params.SubscribeId },
-				{ "template", @params.Template != null ? JsonConvert.SerializeObject(@params.Template) : ""}
+				{ "template", @params.Template != null ? JsonConvert.SerializeObject(@params.Template) : "" }
 			});
 		}
 
@@ -791,7 +791,9 @@ namespace VkNet.Categories
 				{ "keep_snippets", @params.KeepSnippets },
 				{ "group_id", @params.GroupId },
 				{ "dont_parse_links", @params.DontParseLinks },
-				{ "conversation_message_id", @params.ConversationMessageId }
+				{ "conversation_message_id", @params.ConversationMessageId },
+				{ "template", @params.Template != null ? JsonConvert.SerializeObject(@params.Template) : "" },
+				{ "keyboard", @params.Keyboard != null ? JsonConvert.SerializeObject(@params.Keyboard) : "" }
 			});
 		}
 

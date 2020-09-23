@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -14,7 +13,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Account
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class AccountCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Account";
@@ -30,7 +29,7 @@ namespace VkNet.Tests.Categories.Account
 		[Test]
 		public void BanUser_CorrectParameters_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.banUser";
+			Url = "https://api.vk.com/method/account.ban";
 			ReadJsonFile(JsonPaths.False);
 			Assert.That(Api.Account.BanUser(1), Is.False); // Нельзя просто так взять и забанить Дурова
 		}
@@ -38,7 +37,7 @@ namespace VkNet.Tests.Categories.Account
 		[Test]
 		public void BanUser_CorrectParameters_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.banUser";
+			Url = "https://api.vk.com/method/account.ban";
 			ReadJsonFile(JsonPaths.True);
 			Assert.That(Api.Account.BanUser(4), Is.True);
 		}
@@ -507,7 +506,7 @@ namespace VkNet.Tests.Categories.Account
 		[Test]
 		public void SetNameInMenu_EmptyName_ThrowArgumentNullException()
 		{
-			Assert.Throws<ArgumentNullException>(() => Api.Account.SetNameInMenu(string.Empty));
+			Assert.Throws<ArgumentNullException>(() => Api.Account.SetNameInMenu(string.Empty, 1));
 		}
 
 		[Test]
@@ -515,7 +514,7 @@ namespace VkNet.Tests.Categories.Account
 		{
 			Url = "https://api.vk.com/method/account.setNameInMenu";
 			ReadJsonFile(JsonPaths.False);
-			Assert.That(Api.Account.SetNameInMenu("example"), Is.False);
+			Assert.That(Api.Account.SetNameInMenu("example", 1), Is.False);
 		}
 
 		[Test]
@@ -523,7 +522,7 @@ namespace VkNet.Tests.Categories.Account
 		{
 			Url = "https://api.vk.com/method/account.setNameInMenu";
 			ReadJsonFile(JsonPaths.True);
-			Assert.That(Api.Account.SetNameInMenu("example"), Is.True);
+			Assert.That(Api.Account.SetNameInMenu("example", 1), Is.True);
 		}
 
 		[Test]
@@ -664,7 +663,7 @@ namespace VkNet.Tests.Categories.Account
 		[Test]
 		public void UnbanUser_CorrectParameters_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.unbanUser";
+			Url = "https://api.vk.com/method/account.unban";
 			ReadJsonFile(JsonPaths.False);
 			Assert.That(Api.Account.UnbanUser(1), Is.False);
 		}
@@ -672,7 +671,7 @@ namespace VkNet.Tests.Categories.Account
 		[Test]
 		public void UnbanUser_CorrectParameters_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.unbanUser";
+			Url = "https://api.vk.com/method/account.unban";
 			ReadJsonFile(JsonPaths.True);
 			Assert.That(Api.Account.UnbanUser(4), Is.True);
 		}

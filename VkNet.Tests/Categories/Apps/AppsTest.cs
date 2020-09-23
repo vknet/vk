@@ -10,7 +10,7 @@ namespace VkNet.Tests.Categories.Apps
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	[ExcludeFromCodeCoverage]
+
 	public class AppsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Apps";

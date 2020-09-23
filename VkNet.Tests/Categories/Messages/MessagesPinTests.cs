@@ -1,10 +1,9 @@
-using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesPinTests : MessagesBaseTests
 	{
 		[Test]

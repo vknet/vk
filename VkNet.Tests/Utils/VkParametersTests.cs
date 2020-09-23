@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Utils
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
 	public class VkParametersTests
 	{
 		[Test]
@@ -14,9 +12,7 @@ namespace VkNet.Tests.Utils
 		{
 			var @params = new VkParameters
 			{
-				{
-					"NullableBoolean", false
-				}
+				{ "NullableBoolean", false }
 			};
 
 			Assert.That(@params, Does.ContainKey("NullableBoolean"));
@@ -29,9 +25,7 @@ namespace VkNet.Tests.Utils
 		{
 			var @params = new VkParameters
 			{
-				{
-					"NullableBoolean", (bool?) null
-				}
+				{ "NullableBoolean", (bool?) null }
 			};
 
 			Assert.That(@params, Does.Not.ContainKey("NullableBoolean"));
@@ -42,9 +36,7 @@ namespace VkNet.Tests.Utils
 		{
 			var @params = new VkParameters
 			{
-				{
-					"NullableBoolean", true
-				}
+				{ "NullableBoolean", true }
 			};
 
 			Assert.That(@params, Does.ContainKey("NullableBoolean"));
@@ -55,7 +47,13 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public void AddDateTime()
 		{
-			var dateTimeNow = new DateTime(2019, 10, 31, 0, 21, 32, DateTimeKind.Utc);
+			var dateTimeNow = new DateTime(2019,
+				10,
+				31,
+				0,
+				21,
+				32,
+				DateTimeKind.Utc);
 
 			var @params = new VkParameters
 			{
@@ -65,9 +63,9 @@ namespace VkNet.Tests.Utils
 			Assert.DoesNotThrow(() =>
 			{
 				var unused = @params["date_time"];
-			});	
-			
-			Assert.AreEqual("1572481292",  @params["date_time"]);
+			});
+
+			Assert.AreEqual("1572481292", @params["date_time"]);
 		}
 	}
 }

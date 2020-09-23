@@ -1,9 +1,8 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesGetConversationMembersTests : MessagesBaseTests
 	{
 		[Test]

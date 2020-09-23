@@ -13,8 +13,7 @@ namespace VkNet.Abstractions
 		Counters GetCounters(CountersFilter filter);
 
 		/// <inheritdoc cref="IAccountCategoryAsync.SetNameInMenuAsync"/>
-		bool SetNameInMenu([NotNull] string name
-							, long? userId = null);
+		bool SetNameInMenu([NotNull] string name, long userId);
 
 		/// <inheritdoc cref="IAccountCategoryAsync.SetOnlineAsync"/>
 		bool SetOnline(bool? voip = null);
@@ -49,8 +48,14 @@ namespace VkNet.Abstractions
 		/// <inheritdoc cref="IAccountCategoryAsync.BanUserAsync"/>
 		bool BanUser(long ownerId);
 
+		/// <inheritdoc cref="IAccountCategoryAsync.BanUserAsync"/>
+		bool Ban(long ownerId);
+
 		/// <inheritdoc cref="IAccountCategoryAsync.UnbanUserAsync"/>
 		bool UnbanUser(long ownerId);
+
+		/// <inheritdoc cref="IAccountCategoryAsync.UnbanUserAsync"/>
+		bool Unban(long ownerId);
 
 		/// <inheritdoc cref="IAccountCategoryAsync.GetBannedAsync"/>
 		AccountGetBannedResult GetBanned(int? offset = null, int? count = null);

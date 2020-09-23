@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using VkNet.Model;
@@ -6,7 +5,7 @@ using VkNet.Model;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class TimetableTests : BaseTest
 	{
 		[Test]

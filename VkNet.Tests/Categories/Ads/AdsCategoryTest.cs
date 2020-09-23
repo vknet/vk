@@ -11,7 +11,7 @@ namespace VkNet.Tests.Categories.Ads
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	[ExcludeFromCodeCoverage]
+
 	public class AdsCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";

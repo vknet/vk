@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -9,7 +8,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Group
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GroupGetBannedTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";

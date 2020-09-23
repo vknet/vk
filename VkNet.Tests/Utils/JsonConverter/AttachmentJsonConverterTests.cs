@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Utils;
@@ -7,7 +6,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils.JsonConverter
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class AttachmentJsonConverterTests : BaseTest
 	{
 		[Test]

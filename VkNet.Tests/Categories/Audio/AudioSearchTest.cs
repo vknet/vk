@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
@@ -6,7 +5,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Audio
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class AudioSearchTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";

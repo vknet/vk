@@ -1,12 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GeoTests : BaseTest
 	{
 		[Test]

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using Moq;
@@ -13,7 +12,7 @@ using VkNet.Utils;
 namespace VkNet.Tests
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class VkApiTest : BaseTest
 	{
 		[Test]

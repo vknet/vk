@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums;
@@ -14,7 +13,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Categories.Video
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class VideoCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Video";

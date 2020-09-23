@@ -97,9 +97,28 @@ namespace VkNet.Utils
 		/// <returns> Json </returns>
 		public static string PrettyPrintJson(string json)
 		{
+			const string hidden = "***HIDDEN***";
+
+			var keysToHide = new[]
+			{
+				"access_token",
+				"new_password",
+				"old_password"
+			};
+
 			try
 			{
-				return JToken.Parse(json).ToString(Formatting.Indented);
+				var jObject = JObject.Parse(json);
+
+				foreach (var key in keysToHide)
+				{
+					if (jObject.ContainsKey(key))
+					{
+						jObject[key] = hidden;
+					}
+				}
+
+				return jObject.ToString(Formatting.Indented);
 			}
 			catch (JsonReaderException)
 			{

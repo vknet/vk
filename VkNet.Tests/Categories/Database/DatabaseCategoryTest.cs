@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
@@ -11,7 +10,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Database
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class DatabaseCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Database";

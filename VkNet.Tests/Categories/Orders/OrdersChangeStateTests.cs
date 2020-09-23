@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
@@ -6,7 +5,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Orders
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class ChangeStateTests : CategoryBaseTest
 	{
 		protected override string Folder => "Orders";

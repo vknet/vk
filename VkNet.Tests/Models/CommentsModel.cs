@@ -1,11 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using VkNet.Model;
 
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class CommentsModel
 	{
 		[Test]

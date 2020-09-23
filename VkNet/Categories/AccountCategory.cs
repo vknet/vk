@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
@@ -37,7 +38,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool SetNameInMenu(string name, long? userId = null)
+		public bool SetNameInMenu(string name, long userId)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => name);
 
@@ -164,29 +165,39 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.BanUser)]
 		public bool BanUser(long ownerId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => ownerId);
-
-			var parameters = new VkParameters
-			{
-				{ "owner_id", ownerId }
-			};
-
-			return _vk.Call("account.banUser", parameters);
+			return Ban(ownerId);
 		}
 
 		/// <inheritdoc />
-		public bool UnbanUser(long ownerId)
+		public bool Ban(long ownerId)
 		{
-			VkErrors.ThrowIfNumberIsNegative(() => ownerId);
-
 			var parameters = new VkParameters
 			{
 				{ "owner_id", ownerId }
 			};
 
-			return _vk.Call("account.unbanUser", parameters);
+			return _vk.Call("account.ban", parameters);
+		}
+
+		/// <inheritdoc />
+		[Obsolete(ObsoleteText.UnbanUser)]
+		public bool UnbanUser(long ownerId)
+		{
+			return Unban(ownerId);
+		}
+
+		/// <inheritdoc />
+		public bool Unban(long ownerId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "owner_id", ownerId }
+			};
+
+			return _vk.Call("account.unban", parameters);
 		}
 
 		/// <inheritdoc />

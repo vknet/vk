@@ -32,7 +32,7 @@ namespace VkNet.Model
 		/// Позиция.
 		/// </summary>
 		[JsonProperty("position")]
-		public long Position { get; set; }
+		public long? Position { get; set; }
 
 		/// <summary>
 		/// Описание.

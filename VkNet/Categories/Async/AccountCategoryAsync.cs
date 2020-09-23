@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SetNameInMenuAsync(string name, long? userId = null)
+		public Task<bool> SetNameInMenuAsync(string name, long userId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => SetNameInMenu(name, userId));
 		}
@@ -80,15 +81,29 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.BanUserAsync)]
 		public Task<bool> BanUserAsync(long ownerId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => BanUser(ownerId));
+			return BanAsync(ownerId);
 		}
 
 		/// <inheritdoc />
+		public Task<bool> BanAsync(long ownerId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Ban(ownerId));
+		}
+
+		/// <inheritdoc />
+		[Obsolete(ObsoleteText.UnbanUserAsync)]
 		public Task<bool> UnbanUserAsync(long ownerId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => UnbanUser(ownerId));
+			return UnbanAsync(ownerId);
+		}
+
+		/// <inheritdoc />
+		public Task<bool> UnbanAsync(long ownerId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Unban(ownerId));
 		}
 
 		/// <inheritdoc />

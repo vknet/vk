@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using NUnit.Framework;
 using VkNet.Exception;
@@ -10,7 +9,7 @@ using VkNet.Utils;
 
 namespace VkNet.Tests.Categories.Execute
 {
-	[ExcludeFromCodeCoverage]
+
 	public class ExecuteCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Execute";

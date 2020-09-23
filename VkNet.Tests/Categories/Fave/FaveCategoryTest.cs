@@ -4,7 +4,6 @@ using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 
@@ -12,7 +11,7 @@ namespace VkNet.Tests.Categories.Fave
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	[ExcludeFromCodeCoverage]
+
 	public class FaveCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Fave";

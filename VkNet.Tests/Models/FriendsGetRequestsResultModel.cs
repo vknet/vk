@@ -1,12 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class FriendsGetRequestsResultModel : CategoryBaseTest
 	{
 		protected override string Folder => "Friends";

@@ -404,5 +404,30 @@ namespace VkNet.Categories
 
 			return _vk.Call("wall.closeComments", parameters);
 		}
+
+		/// <inheritdoc />
+		public bool CheckCopyrightLink(string link)
+		{
+			var parameters = new VkParameters
+			{
+				{ "link", link },
+			};
+
+			return _vk.Call("wall.checkCopyrightLink", parameters);
+		}
+
+		/// <inheritdoc />
+		public WallGetCommentResult GetComment(int ownerId, int commentId, bool? extended = null, string fields = null, bool skipAuthorization = false)
+		{
+			var parameters = new VkParameters
+				{
+					{ "owner_id", ownerId },
+					{ "comment_id", commentId },
+					{ "extended", extended },
+					{ "fields", fields }
+				};
+			return _vk.Call<WallGetCommentResult>("wall.getComment", parameters, skipAuthorization);
+
+		}
 	}
 }

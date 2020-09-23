@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
@@ -7,7 +6,7 @@ using NUnit.Framework;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class SerializableTests
 	{
 		[Test]

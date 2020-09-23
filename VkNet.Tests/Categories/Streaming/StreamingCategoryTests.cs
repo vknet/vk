@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
@@ -7,7 +6,7 @@ using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Streaming
 {
-	[ExcludeFromCodeCoverage]
+
 	public class StreamingCategoryTests : CategoryBaseTest
 	{
 		protected override string Folder => "Streaming";
@@ -62,6 +61,17 @@ namespace VkNet.Tests.Categories.Streaming
 			var result = Api.Streaming.SetSettings(MonthlyLimit.Tier6);
 
 			Assert.IsTrue(result);
+		}
+
+		[Test]
+		public void GetStem()
+		{
+			Url = "https://api.vk.com/method/streaming.getStem";
+			ReadCategoryJsonPath(nameof(GetStem));
+
+			var result = Api.Streaming.GetStem("коты");
+
+			Assert.AreEqual("кот", result);
 		}
 	}
 }

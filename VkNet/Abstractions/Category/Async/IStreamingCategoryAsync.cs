@@ -95,5 +95,12 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/streaming.setSettings
 		/// </remarks>
 		Task<bool> SetSettingsAsync(MonthlyLimit monthlyTier);
+
+		/// <summary>
+		/// Позволяет получить основу слова.
+		/// </summary>
+		/// <param name="word">слово, основу которого нужно получить</param>
+		/// <returns>Основа слова</returns>
+		Task<string> GetStemAsync(string word);
 	}
 }

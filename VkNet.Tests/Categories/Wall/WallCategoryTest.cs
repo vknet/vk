@@ -15,7 +15,7 @@ namespace VkNet.Tests.Categories.Wall
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	[ExcludeFromCodeCoverage]
+
 	public class WallCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Wall";
@@ -355,6 +355,41 @@ namespace VkNet.Tests.Categories.Wall
 			Assert.That(result.PostId, Is.EqualTo(2587));
 			Assert.That(result.RepostsCount, Is.EqualTo(21));
 			Assert.That(result.LikesCount, Is.EqualTo(105));
+		}
+
+		[Test]
+		public void CheckCopyrightLink_ReturnTrue()
+		{
+			Url = "https://api.vk.com/method/wall.checkCopyrightLink";
+
+			ReadJsonFile(JsonPaths.True);
+
+			var result = Api.Wall.CheckCopyrightLink("https://habr.com");
+
+			Assert.IsTrue(result);
+		}
+
+		[Test]
+		public void GetComment_ReturnCorrectResults()
+		{
+			Url = "https://api.vk.com/method/wall.getComment";
+
+			ReadCategoryJsonPath(nameof(GetComment_ReturnCorrectResults));
+
+
+			var wallCommentresult = Api.Wall.GetComment(66559, 73674, true);
+			var comment = wallCommentresult.Comment.FirstOrDefault();
+			var profiles = wallCommentresult.Profiles;
+			var groups = wallCommentresult.Groups;
+
+			Assert.That(comment.Date, Is.EqualTo(new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(1534927387)));
+			Assert.That(comment.FromId, Is.EqualTo(233754083));
+			Assert.That(comment.ReplyToUser, Is.EqualTo(6099));
+
+			Assert.That(groups, Is.Empty);
+
+			Assert.That(profiles.FirstOrDefault().FirstName, Is.EqualTo("Dmitry"));
+			Assert.That(profiles.FirstOrDefault().LastName, Is.EqualTo("Sergeev"));
 		}
 	}
 }

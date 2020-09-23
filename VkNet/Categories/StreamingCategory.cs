@@ -61,5 +61,11 @@ namespace VkNet.Categories
 		{
 			return _vk.Call<bool>(methodName: "streaming.setSettings", parameters: new VkParameters { { "monthly_tier", monthlyTier } });
 		}
+
+		/// <inheritdoc />
+		public string GetStem(string word)
+		{
+			return _vk.Call(methodName: "streaming.getStem", parameters: new VkParameters { { "word", word } })["stem"];
+		}
 	}
 }

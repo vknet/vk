@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
@@ -7,7 +6,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.AppWidgets
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GetGroupImagesTest : CategoryBaseTest
 	{
 		protected override string Folder => "AppWidgets";

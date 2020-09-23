@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -8,7 +7,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class ExecuteErrorsTests : BaseTest
 	{
 		[Test]

@@ -1,12 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Widgets
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class WidgetsCategoryTests : CategoryBaseTest
 	{
 		protected override string Folder => "Widgets";

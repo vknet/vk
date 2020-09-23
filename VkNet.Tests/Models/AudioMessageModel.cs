@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
@@ -7,7 +6,7 @@ using VkNet.Model.Attachments;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class AudioMessageModel : BaseTest
 	{
 		[Test]

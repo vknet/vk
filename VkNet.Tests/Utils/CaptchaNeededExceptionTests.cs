@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using Moq;
 using NUnit.Framework;
 using VkNet.Abstractions.Core;
@@ -9,7 +8,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class CaptchaNeededExceptionTests : BaseTest
 	{
 		/// <inheritdoc />

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -15,7 +14,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Group
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GroupsCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
@@ -7,7 +6,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesSendMessageEventAnswerTests : MessagesBaseTests
 	{
 		[Test]

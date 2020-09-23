@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -15,7 +14,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Users
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class UsersCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Users";

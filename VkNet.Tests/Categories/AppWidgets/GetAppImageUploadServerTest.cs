@@ -1,12 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.AppWidgets
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GetAppImageUploadServerTest : CategoryBaseTest
 	{
 		protected override string Folder => "AppWidgets";

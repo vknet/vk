@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
@@ -7,7 +6,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Ads
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class ImportTargetContactsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";

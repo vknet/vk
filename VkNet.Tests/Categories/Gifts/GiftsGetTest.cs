@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Enums;
@@ -9,7 +8,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Gifts
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GiftsGetTest : CategoryBaseTest
 	{
 		/// <inheritdoc />

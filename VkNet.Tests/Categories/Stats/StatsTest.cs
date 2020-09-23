@@ -8,7 +8,7 @@ namespace VkNet.Tests.Categories.Stats
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	[ExcludeFromCodeCoverage]
+
 	public class StatsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Stats";

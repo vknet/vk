@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -8,7 +7,7 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Group
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class AddAddressTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";

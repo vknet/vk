@@ -10,7 +10,9 @@ namespace VkNet.Infrastructure
 	{
 		private const int CurrentMajorVersion = 5;
 
-		private const int CurrentMinorVersion = 103;
+		private const int CurrentMinorVersion = 124;
+
+		private const int MinimalMinorVersion = 51;
 
 		private int Major { get; set; } = CurrentMajorVersion;
 
@@ -27,6 +29,14 @@ namespace VkNet.Infrastructure
 				throw new VkApiException("С 27 мая 2019 года версии API ниже 5.0 больше не поддерживаются.")
 				{
 					HelpLink = "https://vk.com/dev/version_update_2.0"
+				};
+			}
+
+			if (major == CurrentMajorVersion && minor < MinimalMinorVersion)
+			{
+				throw new VkApiException("С 1 сентября 2020 года перестанут поддерживаться версии ниже 5.51.")
+				{
+					HelpLink = "https://vk.com/dev/constant_version_updates"
 				};
 			}
 

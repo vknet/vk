@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using VkNet.Abstractions.Utils;
@@ -9,7 +8,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class LeadFormsQuestionBuilderTests : BaseTest
 	{
 		[Test]

@@ -169,30 +169,27 @@ namespace VkNet.Categories
 			if (@params.Fields != null || @params.Filter != null)
 			{
 				return _vk.Call("groups.getMembers", new VkParameters
-					{
-						{ "group_id", @params.GroupId }
-						, { "sort", @params.Sort }
-						, { "offset", @params.Offset }
-						, { "count", @params.Count }
-						, { "fields", @params.Fields }
-						, { "filter", @params.Filter }
-					}, skipAuthorization)
+				{
+					{ "group_id", @params.GroupId },
+					{ "sort", @params.Sort },
+					{ "offset", @params.Offset },
+					{ "count", @params.Count },
+					{ "fields", @params.Fields },
+					{ "filter", @params.Filter }
+				}, skipAuthorization)
 					.ToVkCollectionOf<User>(x => x);
 			}
 
 			return _vk.Call("groups.getMembers", new VkParameters
-				{
-					{ "group_id", @params.GroupId }
-					, { "sort", @params.Sort }
-					, { "offset", @params.Offset }
-					, { "count", @params.Count }
-					, { "fields", @params.Fields }
-					, { "filter", @params.Filter }
-				}, skipAuthorization)
-				.ToVkCollectionOf(x => new User
-				{
-					Id = x
-				});
+			{
+				{ "group_id", @params.GroupId },
+				{ "sort", @params.Sort },
+				{ "offset", @params.Offset },
+				{ "count", @params.Count },
+				{ "fields", @params.Fields },
+				{ "filter", @params.Filter }
+			}, skipAuthorization)
+				.ToVkCollectionOf(x => new User { Id = x });
 		}
 
 		/// <inheritdoc />

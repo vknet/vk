@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[ExcludeFromCodeCoverage]
+
 	public abstract class BotsLongPollBaseTest : CategoryBaseTest
 	{
 		protected override string Folder => "BotsLongPoll";

@@ -1,12 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using VkNet.Model.RequestParams.Notes;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Notes
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class NotesCategoryTests : CategoryBaseTest
 	{
 		protected override string Folder => "Notes";

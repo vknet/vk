@@ -1,12 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Ads
 {
 	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GetCategoriesTest : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";

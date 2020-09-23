@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Utils;
@@ -7,7 +6,7 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture, Parallelizable]
-	[ExcludeFromCodeCoverage]
+
 	public class UrlTests
 	{
 		[Test]
