@@ -40,7 +40,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Если источником является любой другой контент на платформе (комментарий, пост, фотография и тд.).
 		/// </summary>
-		[JsonProperty("url")]
+		[JsonProperty("url", NullValueHandling = NullValueHandling.Ignore)]
 		public string Url { get; set; }
 	}
 }
