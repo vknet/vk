@@ -172,7 +172,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<VkCollection<User>> GetRequestsAsync(long groupId, long? offset, long? count, UsersFields fields)
+		public Task<VkCollection<User>> GetRequestsAsync(long groupId, long? offset = null, long? count = null, UsersFields fields = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetRequests(groupId, offset, count, fields));
 		}
