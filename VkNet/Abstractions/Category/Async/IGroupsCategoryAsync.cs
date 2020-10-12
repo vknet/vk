@@ -639,7 +639,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.getRequests
 		/// </remarks>
-		Task<VkCollection<User>> GetRequestsAsync(long groupId, long? offset, long? count, UsersFields fields);
+		Task<VkCollection<User>> GetRequestsAsync(long groupId, long? offset = null, long? count = null, UsersFields fields = null);
 
 		/// <summary>
 		/// Возвращает список сообществ выбранной категории каталога.

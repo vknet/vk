@@ -577,7 +577,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public VkCollection<User> GetRequests(long groupId, long? offset, long? count, UsersFields fields)
+		public VkCollection<User> GetRequests(long groupId, long? offset = null, long? count = null, UsersFields fields = null)
 		{
 			var parameters = new VkParameters
 			{
@@ -587,7 +587,10 @@ namespace VkNet.Categories
 				{ "fields", fields }
 			};
 
-			return _vk.Call("groups.getRequests", parameters).ToVkCollectionOf<User>(x => x);
+			var response = _vk.Call("groups.getRequests", parameters);
+			return fields == null ?
+				response.ToVkCollectionOf<User>(x => new User() { Id = (long) x }) :
+				response.ToVkCollectionOf<User>(x => x);
 		}
 
 		/// <inheritdoc />

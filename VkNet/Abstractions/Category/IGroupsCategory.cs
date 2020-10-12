@@ -108,7 +108,7 @@ namespace VkNet.Abstractions
 					uint? publicCategory = null);
 
 		/// <inheritdoc cref="IGroupsCategoryAsync.GetRequestsAsync" />
-		VkCollection<User> GetRequests(long groupId, long? offset, long? count, UsersFields fields);
+		VkCollection<User> GetRequests(long groupId, long? offset = null, long? count = null, UsersFields fields = null);
 
 		/// <inheritdoc cref="IGroupsCategoryAsync.GetCatalogAsync" />
 		VkCollection<Group> GetCatalog(ulong? categoryId = null, ulong? subcategoryId = null);
