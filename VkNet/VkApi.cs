@@ -804,10 +804,8 @@ namespace VkNet
 		/// <param name="expireTime"> Значение таймера </param>
 		private void SetTimer(int expireTime)
 		{
-			_expireTimer = new Timer(AlertExpires,
-				null,
-				expireTime > 0 ? expireTime : Timeout.Infinite,
-				Timeout.Infinite);
+			_expireTimer = new Timer(AlertExpires);
+			_expireTimer.Change(expireTime > 0 ? expireTime : Timeout.Infinite, Timeout.Infinite);
 		}
 
 		/// <summary>
