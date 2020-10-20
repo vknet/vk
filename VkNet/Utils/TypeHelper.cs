@@ -49,11 +49,7 @@ namespace VkNet.Utils
 		/// <returns> Результат выполнения функции. </returns>
 		public static Task<T> TryInvokeMethodAsync<T>(Func<T> func)
 		{
-		#if NET40
-			return TaskEx.Run(func);
-		#else
 			return Task.Run(func);
-		#endif
 		}
 
 		/// <summary>
@@ -63,11 +59,7 @@ namespace VkNet.Utils
 		/// <returns> Результат выполнения функции. </returns>
 		public static Task TryInvokeMethodAsync(Action func)
 		{
-		#if NET40
-			return TaskEx.Run(func);
-		#else
 			return Task.Run(func);
-		#endif
 		}
 
 		private static void RegisterImplicitFlowAuthorization(this IServiceCollection services)

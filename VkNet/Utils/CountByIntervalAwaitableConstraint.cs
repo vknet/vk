@@ -14,11 +14,7 @@ namespace VkNet.Utils
 
 		private TimeSpan _timeSpan;
 
-	#if NET40
-		private readonly AsyncSemaphoreSlim _semaphore = new AsyncSemaphoreSlim(1);
-	#else
 		private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
-	#endif
 
 		/// <inheritdoc />
 		/// <summary>
@@ -62,7 +58,7 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public async Task<IDisposable> WaitForReadiness(CancellationToken cancellationToken)
+		public async Task<IDisposable> WaitForReadinessAsync(CancellationToken cancellationToken)
 		{
 			await _semaphore.WaitAsync(cancellationToken).ConfigureAwait(false);
 
@@ -72,18 +68,16 @@ namespace VkNet.Utils
 
 			try
 			{
-			#if NET40
-				await TaskEx.Delay(timeToWait, cancellationToken).ConfigureAwait(false);
-			#else
 				await Task.Delay(timeToWait, cancellationToken).ConfigureAwait(false);
-			#endif
 			}
 			finally
 			{
 				_semaphore.Release();
 			}
 
-			return new DisposableAction(() => { });
+			return new DisposableAction(() =>
+			{
+			});
 		}
 
 		/// <inheritdoc />
