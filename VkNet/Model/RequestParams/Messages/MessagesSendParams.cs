@@ -50,6 +50,12 @@ namespace VkNet.Model.RequestParams
 		public IEnumerable<long> ForwardMessages { get; set; }
 
 		/// <summary>
+		/// Параметр отвечает за пересылку сообщений в другие чаты и ответ на сообщение в рамках одной беседы.
+		/// </summary>
+		[JsonProperty("forward", NullValueHandling = NullValueHandling.Ignore)]
+		public MessageForward Forward { get; set; }
+
+		/// <summary>
 		/// Объект, описывающий клавиатуру для бота.
 		/// </summary>
 		/// <remarks>
