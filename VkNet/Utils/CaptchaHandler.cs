@@ -24,7 +24,7 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public int MaxCaptchaRecognitionCount { get; set; } = 0;
+		public int MaxCaptchaRecognitionCount { get; set; } = 3;
 
 		/// <inheritdoc />
 		public T Perform<T>(Func<ulong?, string, T> action)
@@ -51,7 +51,7 @@ namespace VkNet.Utils
 						ref captchaSidTemp,
 						ref captchaKeyTemp);
 				}
-			} while (numberOfRemainingAttemptsToAuthorize > 0 && !callCompleted);
+			} while (numberOfRemainingAttemptsToSolveCaptcha > 0 && !callCompleted);
 
 			// Повторно выбрасываем исключение, если капча ни разу не была распознана верно
 			if (callCompleted || !captchaSidTemp.HasValue)
