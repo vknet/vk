@@ -59,7 +59,11 @@ namespace VkNet.Abstractions
 												long? ownerId = null);
 
 		/// <inheritdoc cref="IGroupsCategoryAsync.UnbanUserAsync" />
+		[Obsolete(ObsoleteText.UnbanUser, true)]
 		bool UnbanUser(long groupId, long userId);
+
+		/// <inheritdoc cref="IGroupsCategoryAsync.UnbanAsync" />
+		bool Unban(long groupId, long userId);
 
 		/// <inheritdoc cref="IGroupsCategoryAsync.EditManagerAsync" />
 		bool EditManager(GroupsEditManagerParams @params);

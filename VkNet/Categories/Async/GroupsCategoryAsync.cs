@@ -78,9 +78,16 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.UnbanUserAsync, true)]
 		public Task<bool> UnbanUserAsync(long groupId, long userId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => UnbanUser(groupId, userId));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> UnbanAsync(long groupId, long userId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Unban(groupId, userId));
 		}
 
 		/// <inheritdoc />

@@ -1129,13 +1129,13 @@ namespace VkNet.Tests.Categories.Group
 		}
 
 		[Test]
-		public void UnbanUser_NormalCase()
+		public void Unban_NormalCase()
 		{
-			Url = "https://api.vk.com/method/groups.unbanUser";
+			Url = "https://api.vk.com/method/groups.unban";
 
 			ReadJsonFile(JsonPaths.True);
 
-			var result = Api.Groups.UnbanUser(65960, 242508);
+			var result = Api.Groups.Unban(65960, 242508);
 
 			Assert.That(result, Is.True);
 		}

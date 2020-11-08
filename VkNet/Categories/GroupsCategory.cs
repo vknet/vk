@@ -126,15 +126,18 @@ namespace VkNet.Categories
 		public VkCollection<Group> Get(GroupsGetParams @params, bool skipAuthorization = false)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => @params.UserId);
-			var response = _vk.Call("groups.get", new VkParameters
-			{
-				{ "user_id", @params.UserId }
-				, { "extended", @params.Extended }
-				, { "filter", @params.Filter }
-				, { "fields", @params.Fields }
-				, { "offset", @params.Offset }
-				, { "count", @params.Count }
-			}, skipAuthorization);
+
+			var response = _vk.Call("groups.get",
+				new VkParameters
+				{
+					{ "user_id", @params.UserId },
+					{ "extended", @params.Extended },
+					{ "filter", @params.Filter },
+					{ "fields", @params.Fields },
+					{ "offset", @params.Offset },
+					{ "count", @params.Count }
+				},
+				skipAuthorization);
 
 			// в первой записи количество членов группы для (response["items"])
 			if (@params.Extended == null || !@params.Extended.Value)
@@ -168,28 +171,35 @@ namespace VkNet.Categories
 		{
 			if (@params.Fields != null || @params.Filter != null)
 			{
-				return _vk.Call("groups.getMembers", new VkParameters
-				{
-					{ "group_id", @params.GroupId },
-					{ "sort", @params.Sort },
-					{ "offset", @params.Offset },
-					{ "count", @params.Count },
-					{ "fields", @params.Fields },
-					{ "filter", @params.Filter }
-				}, skipAuthorization)
+				return _vk.Call("groups.getMembers",
+						new VkParameters
+						{
+							{ "group_id", @params.GroupId },
+							{ "sort", @params.Sort },
+							{ "offset", @params.Offset },
+							{ "count", @params.Count },
+							{ "fields", @params.Fields },
+							{ "filter", @params.Filter }
+						},
+						skipAuthorization)
 					.ToVkCollectionOf<User>(x => x);
 			}
 
-			return _vk.Call("groups.getMembers", new VkParameters
-			{
-				{ "group_id", @params.GroupId },
-				{ "sort", @params.Sort },
-				{ "offset", @params.Offset },
-				{ "count", @params.Count },
-				{ "fields", @params.Fields },
-				{ "filter", @params.Filter }
-			}, skipAuthorization)
-				.ToVkCollectionOf(x => new User { Id = x });
+			return _vk.Call("groups.getMembers",
+					new VkParameters
+					{
+						{ "group_id", @params.GroupId },
+						{ "sort", @params.Sort },
+						{ "offset", @params.Offset },
+						{ "count", @params.Count },
+						{ "fields", @params.Fields },
+						{ "filter", @params.Filter }
+					},
+					skipAuthorization)
+				.ToVkCollectionOf(x => new User
+				{
+					Id = x
+				});
 		}
 
 		/// <inheritdoc />
@@ -239,18 +249,20 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false)
 		{
-			return _vk.Call("groups.search", new VkParameters
-				{
-					{ "q", @params.Query }
-					, { "type", @params.Type }
-					, { "country_id", @params.CountryId }
-					, { "city_id", @params.CityId }
-					, { "future", @params.Future }
-					, { "market", @params.Market }
-					, { "sort", @params.Sort }
-					, { "offset", @params.Offset }
-					, { "count", @params.Count }
-				}, skipAuthorization)
+			return _vk.Call("groups.search",
+					new VkParameters
+					{
+						{ "q", @params.Query },
+						{ "type", @params.Type },
+						{ "country_id", @params.CountryId },
+						{ "city_id", @params.CityId },
+						{ "future", @params.Future },
+						{ "market", @params.Market },
+						{ "sort", @params.Sort },
+						{ "offset", @params.Offset },
+						{ "count", @params.Count }
+					},
+					skipAuthorization)
 				.ToVkCollectionOf<Group>(r => r);
 		}
 
@@ -270,16 +282,17 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool BanUser(GroupsBanUserParams @params)
 		{
-			return _vk.Call("groups.banUser", new VkParameters
-			{
-				{ "group_id", @params.GroupId },
-				{ "user_id", @params.UserId},
-				{ "owner_id", @params.OwnerId },
-				{ "end_date", @params.EndDate },
-				{ "reason", @params.Reason },
-				{ "comment", @params.Comment },
-				{ "comment_visible", @params.CommentVisible }
-			});
+			return _vk.Call("groups.banUser",
+				new VkParameters
+				{
+					{ "group_id", @params.GroupId },
+					{ "user_id", @params.UserId },
+					{ "owner_id", @params.OwnerId },
+					{ "end_date", @params.EndDate },
+					{ "reason", @params.Reason },
+					{ "comment", @params.Comment },
+					{ "comment_visible", @params.CommentVisible }
+				});
 		}
 
 		/// <inheritdoc />
@@ -299,6 +312,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.UnbanUser, true)]
 		public bool UnbanUser(long groupId, long userId)
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => groupId);
@@ -314,18 +328,31 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public bool Unban(long groupId, long userId)
+		{
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId },
+				{ "user_id", userId }
+			};
+
+			return _vk.Call("groups.unban", parameters);
+		}
+
+		/// <inheritdoc />
 		public bool EditManager(GroupsEditManagerParams @params)
 		{
-			return _vk.Call("groups.editManager", new VkParameters
-			{
-				{ "group_id", @params.GroupId }
-				, { "user_id", @params.UserId }
-				, { "role", @params.Role }
-				, { "is_contact", @params.IsContact }
-				, { "contact_position", @params.ContactPosition }
-				, { "contact_phone", @params.ContactPhone }
-				, { "contact_email", @params.ContactEmail }
-			});
+			return _vk.Call("groups.editManager",
+				new VkParameters
+				{
+					{ "group_id", @params.GroupId },
+					{ "user_id", @params.UserId },
+					{ "role", @params.Role },
+					{ "is_contact", @params.IsContact },
+					{ "contact_position", @params.ContactPosition },
+					{ "contact_phone", @params.ContactPhone },
+					{ "contact_email", @params.ContactEmail }
+				});
 		}
 
 		/// <inheritdoc />
@@ -349,14 +376,19 @@ namespace VkNet.Categories
 			{
 				{ "enabled", @params.MarketEnabled }
 			};
+
 			if (@params.MarketCommentsEnabled.HasValue)
 				market.Add("comments_enabled", @params.MarketCommentsEnabled);
+
 			if (@params.MarketCountry != null)
 				market.Add("country_ids", @params.MarketCountry);
+
 			if (@params.MarketCity != null)
 				market.Add("city_ids", @params.MarketCity);
+
 			if (@params.MarketContact.HasValue)
 				market.Add("contact_id", @params.MarketContact);
+
 			if (@params.MarketCurrency.HasValue)
 				market.Add("currency", @params.MarketCurrency);
 
@@ -588,9 +620,13 @@ namespace VkNet.Categories
 			};
 
 			var response = _vk.Call("groups.getRequests", parameters);
-			return fields == null ?
-				response.ToVkCollectionOf<User>(x => new User() { Id = (long) x }) :
-				response.ToVkCollectionOf<User>(x => x);
+
+			return fields == null
+				? response.ToVkCollectionOf<User>(x => new User()
+				{
+					Id = (long) x
+				})
+				: response.ToVkCollectionOf<User>(x => x);
 		}
 
 		/// <inheritdoc />
@@ -764,13 +800,14 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params)
 		{
-			return _vk.CallLongPoll(@params.Server, new VkParameters
-			{
-				{ "ts", @params.Ts },
-				{ "key", @params.Key },
-				{ "wait", @params.Wait },
-				{ "act", "a_check" }
-			});
+			return _vk.CallLongPoll(@params.Server,
+				new VkParameters
+				{
+					{ "ts", @params.Ts },
+					{ "key", @params.Key },
+					{ "wait", @params.Wait },
+					{ "act", "a_check" }
+				});
 		}
 
 		/// <inheritdoc />

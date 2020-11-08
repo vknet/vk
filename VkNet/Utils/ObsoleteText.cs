@@ -98,7 +98,7 @@ namespace VkNet.Utils
 		/// <summary>
 		/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategory.Unban"/>
 		/// </summary>
-		public const string UnbanUser = Deprecated + "bool Unban(long ownerId);";
+		public const string UnbanUser = Deprecated + "bool Unban(long groupId, long userId)";
 
 		/// <summary>
 		/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategory.BanAsync"/>
@@ -108,7 +108,7 @@ namespace VkNet.Utils
 		/// <summary>
 		/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategory.UnbanAsync"/>
 		/// </summary>
-		public const string UnbanUserAsync = Deprecated + "bool UnbanAsync(long ownerId);";
+		public const string UnbanUserAsync = Deprecated + "Task<bool> UnbanUserAsync(long groupId, long userId)";
 
 		/// <summary>
 		/// <inheritdoc cref="Obsolete"/> Используйте вместо него
