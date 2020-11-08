@@ -26,7 +26,7 @@ namespace VkNet.Model
 		/// Старая цена товара в сотых долях единицы валюты.
 		/// </summary>
 		[JsonProperty("old_amount")]
-		public long? OldAmount { get; set; }
+		public string OldAmount { get; set; }
 
 		/// <summary>
 		/// Строка с локализованной ценой и валютой.
