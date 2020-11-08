@@ -15,6 +15,34 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
+		public static implicit operator SubjectListItem(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues
+				? null
+				: SubjectListItem.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator GroupMarketSettings(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues
+				? null
+				: GroupMarketSettings.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
 		public static implicit operator MessagesSendResult(VkResponse response)
 		{
 			return response?._token == null || !response._token.HasValues
