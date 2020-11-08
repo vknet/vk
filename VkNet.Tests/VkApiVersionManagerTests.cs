@@ -86,7 +86,7 @@ namespace VkNet.Tests
 		}
 
 		[Test]
-		public void MinimalVersion_5_51_ShouldThrowException()
+		public void MinimalVersion_5_81_ShouldThrowException()
 		{
 			// Arrange
 
