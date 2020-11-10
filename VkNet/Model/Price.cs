@@ -29,6 +29,12 @@ namespace VkNet.Model
 		public string OldAmount { get; set; }
 
 		/// <summary>
+		/// Текстовое представлением старой цены.
+		/// </summary>
+		[JsonProperty("old_amount_text ")]
+		public string OldAmountText { get; set; }
+
+		/// <summary>
 		/// Строка с локализованной ценой и валютой.
 		/// </summary>
 		[JsonProperty("text")]
