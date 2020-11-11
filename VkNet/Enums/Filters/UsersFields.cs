@@ -1,4 +1,4 @@
-﻿namespace VkNet.Enums.Filters
+namespace VkNet.Enums.Filters
 {
 	/// <summary>
 	/// Описание дополнительных полей сообщества, используемых в параметре fields

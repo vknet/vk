@@ -646,9 +646,12 @@ namespace VkNet
 		/// <inheritdoc />
 		public ILeadFormsCategory LeadForms { get; set; }
 
-	#endregion
+		/// <inheritdoc />
+		public IDonutCategory Donut { get; set; }
 
-	#region private
+		#endregion
+
+		#region private
 
 		/// <summary>
 		/// Базовое обращение к vk.com
@@ -904,6 +907,7 @@ namespace VkNet
 			LeadForms = new LeadFormsCategory(this);
 			PrettyCards = new PrettyCardsCategory(this);
 			Podcasts = new PodcastsCategory(this);
+			Donut = new DonutCategory(this);
 
 			RequestsPerSecond = 3;
 

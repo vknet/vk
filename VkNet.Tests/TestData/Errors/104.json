@@ -1,0 +1,24 @@
+{
+  "error": {
+    "error_code": 104,
+    "error_msg": "Not found",
+    "request_params": [
+      {
+        "key": "oauth",
+        "value": "1"
+      },
+      {
+        "key": "method",
+        "value": "donut.getSubscription"
+      },
+      {
+        "key": "owner_id",
+        "value": "-173151748"
+      },
+      {
+        "key": "v",
+        "value": "5.126"
+      }
+    ]
+  }
+}
