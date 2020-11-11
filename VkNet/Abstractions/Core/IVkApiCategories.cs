@@ -213,5 +213,10 @@ namespace VkNet.Abstractions
 		/// Podcasts
 		/// </summary>
 		IPodcastsCategory Podcasts { get; set; }
+
+		/// <summary>
+		/// Donut
+		/// </summary>
+		IDonutCategory Donut { get; }
 	}
 }

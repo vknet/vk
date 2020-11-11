@@ -85,6 +85,6 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте https://vk.com/dev/donut.getSubscriptions
 		/// </remarks>
-		public Task<SubscriptionsInfo> GetGetSubscriptionsAsync(UsersFields fields, ulong offset, byte count);
+		public Task<SubscriptionsInfo> GetSubscriptionsAsync(UsersFields fields, ulong offset, byte count);
 	}
 }

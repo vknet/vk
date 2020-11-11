@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Utils;
@@ -7,7 +8,7 @@ using VkNet.Utils;
 namespace VkNet.Categories
 {
 	// <inheritdoc />
-	public partial class DonutCategory
+	public partial class DonutCategory : IDonutCategoryAsync
 	{
 		/// <inheritdoc/>
 		public Task<bool> IsDonAsync(long ownerId)
@@ -28,7 +29,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<SubscriptionsInfo> GetGetSubscriptionsAsync(UsersFields fields, ulong offset, byte count)
+		public Task<SubscriptionsInfo> GetSubscriptionsAsync(UsersFields fields, ulong offset, byte count)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetSubscriptions(fields, offset, count));
 		}

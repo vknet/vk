@@ -10,6 +10,9 @@ namespace VkNet.Model
 	[Serializable]
 	public class SubscriptionsInfo
 	{
+		/// <summary>
+		/// Массив объектов подписок.
+		/// </summary>
 		[JsonProperty("subscritions")]
 		public VkCollection<Subscription> Subscriptions { get; set; }
 
