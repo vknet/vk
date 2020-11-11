@@ -17,7 +17,7 @@ steps:
   inputs:
     command: test
     projects: '*[Tt]ests/*.csproj'
-    arguments: '-c $(BuildConfiguration)'
+    arguments: '-c $(BuildConfiguration) -f net5.0'
 - task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
   displayName: 'Send Telegram Notification'
   inputs:
