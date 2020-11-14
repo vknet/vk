@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace VkNet.Model
 {
 	/// <summary>
 	/// Комментарий к записи.
-	/// См. описание <see href="http://vk.com/devcomment_object" />.
+	/// См. описание <see href="https://vk.com/dev/objects/comment" />.
 	/// </summary>
 	[DebuggerDisplay("Id = {Id}, Text = {Text}, Date = {Date}")]
 	[Serializable]
@@ -74,6 +74,11 @@ namespace VkNet.Model
 		public string Text { get; set; }
 
 		/// <summary>
+		/// Информация о VK Donut.
+		/// </summary>
+		[JsonProperty("donut")]
+		public CommentDonut Donut { get; set; }
+		/// <summary>
 		/// Идентификатор пользователя или сообщества, в ответ которому оставлен текущий
 		/// комментарий (если применимо).
 		/// </summary>
@@ -125,6 +130,7 @@ namespace VkNet.Model
 				FromId = response["from_id"],
 				Date = response["date"],
 				Text = response["text"],
+				Donut = response["donut"],
 				ReplyToUser = response["reply_to_user"],
 				ReplyToComment = response["reply_to_comment"],
 				Attachments = response["attachments"].ToReadOnlyCollectionOf<Attachment>(x => x),
