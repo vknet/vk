@@ -161,7 +161,7 @@ namespace VkNet.Model.Attachments
 				IsHq = response["is_hq"],
 				IsLicensed = response["is_licensed"],
 				TrackGenre = response["track_genre_id"],
-				ContentRestricted = response["content_restricted"],
+				IsExplicit = response["is_explicit"],
 				Genre = response["genre_id"] ?? response["genre"],
 				Date = response["date"],
 				MainArtists = response["main_artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
