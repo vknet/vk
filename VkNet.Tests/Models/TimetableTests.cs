@@ -49,7 +49,7 @@ namespace VkNet.Tests.Models
 				},
 			};
 
-			Assert.AreEqual(Json, JsonConvert.SerializeObject(timetable, Formatting.Indented));
+			Assert.AreEqual(Json.Replace("\r", "").Replace("\n", ""), JsonConvert.SerializeObject(timetable, Formatting.Indented).Replace("\r", "").Replace("\n", ""));
 		}
 	}
 }
