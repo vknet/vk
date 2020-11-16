@@ -57,6 +57,7 @@ namespace VkNet.Model.GroupUpdate
 				MarkedAsAds = response[key: "marked_as_ads"],
 				AccessKey = response[key: "access_key"],
 				PostponedId = response["postponed_id"],
+				Donut = response["donut"]
 			};
 		}
 	}

@@ -2053,5 +2053,29 @@ namespace VkNet.Utils
 		{
 			return response?._token == null || !response._token.HasValues ? null : SubscriptionsInfo.FromJson(response);
 		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator CommentDonut(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : CommentDonut.FromJson(response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator PostDonut(VkResponse response)
+		{
+			return response?._token == null || !response._token.HasValues ? null : PostDonut.FromJson(response);
+		}
 	}
 }

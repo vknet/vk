@@ -179,7 +179,7 @@ namespace VkNet.Model.Attachments
 				CreatedBy = response["created_by"], CopyCommenterId = response["copy_commenter_id"],
 				CopyCommentId = response["copy_comment_id"], CanDelete = response["can_delete"], CanEdit = response["can_edit"],
 				CanPin = response["can_pin"], Views = response["views"], MarkedAsAds = response["marked_as_ads"],
-				AccessKey = response["access_key"]
+				AccessKey = response["access_key"], Donut = response["donut"]
 			};
 		}
 
@@ -247,6 +247,12 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[JsonProperty("access_key")]
 		public string AccessKey { get; set; }
+
+		/// <summary>
+		/// Информация о записи VK Donut.
+		/// </summary>
+		[JsonProperty("donut")]
+		public PostDonut Donut { get; set; }
 
 	#endregion
 	}
