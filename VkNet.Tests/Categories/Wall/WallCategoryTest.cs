@@ -234,6 +234,36 @@ namespace VkNet.Tests.Categories.Wall
 		}
 
 		[Test]
+		public void GetById_Donut()
+        {
+			Url = "https://api.vk.com/method/wall.getById";
+			ReadCategoryJsonPath(nameof(GetById_Donut));
+
+			var records = Api.Wall.GetById(new[]
+			{
+				"-322_123"
+			});
+
+			Assert.That(records.TotalCount == 1);
+
+			Assert.That(records.WallPosts[0].Id, Is.EqualTo(123));
+			Assert.That(records.WallPosts[0].FromId, Is.EqualTo(-322));
+			Assert.That(records.WallPosts[0].OwnerId, Is.EqualTo(-322));
+
+			Assert.That(records.WallPosts[0].Date,
+				Is.EqualTo(new DateTime(1970,
+					1,
+					1,
+					0,
+					0,
+					0,
+					0,
+					DateTimeKind.Utc).AddSeconds(1605698519)));
+
+			Assert.That(records.WallPosts[0].Text, Is.EqualTo("В этом посте нет доната"));
+		}
+
+		[Test]
 		public void GetComments_ReturnLikesAndAttachments()
 		{
 			Url = "https://api.vk.com/method/wall.getComments";

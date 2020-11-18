@@ -13,14 +13,14 @@ namespace VkNet.Model
 		/// <summary>
 		/// Запись доступна только платным подписчикам VK Donut.
 		/// </summary>
-		[JsonProperty("is_don")]
-		public bool IsDon { get; set; }
+		[JsonProperty("is_donut")]
+		public bool IsDonut { get; set; }
 
 		/// <summary>
 		/// Время, в течение которого запись будет доступна только платным подписчикам VK Donut.
 		/// </summary>
 		[JsonProperty("paid_duration")]
-		public int PaidDuration { get; set; }
+		public int? PaidDuration { get; set; }
 
 		/// <summary>
 		/// Заглушка для пользователей, которые не оформили подписку VK Donut.
@@ -33,7 +33,7 @@ namespace VkNet.Model
 		/// Можно ли открыть запись для всех пользователей, а не только подписчиков VK Donut.
 		/// </summary>
 		[JsonProperty("can_publish_free_copy")]
-		public bool CanPublishFreeCopy { get; set; }
+		public bool? CanPublishFreeCopy { get; set; }
 
 		/// <summary>
 		/// Информация о том, какие значения VK Donut можно изменить в записи.
@@ -51,14 +51,14 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static PostDonut FromJson(VkResponse response)
 		{
-			return new PostDonut
-			{
-				IsDon = response[key: "is_don"],
-				PaidDuration = response[key: "paid_duration"],
-				Placeholder = response[key: "placeholder"],
-				CanPublishFreeCopy = response[key: "can_publish_free_copy"],
-				EditMode = response[key: "edit_mode"]
-			};
+			var res = new PostDonut();
+			res.IsDonut = response[key: "is_donut"];
+			res.PaidDuration = response[key: "paid_duration"];
+			res.Placeholder = response[key: "placeholder"];
+			res.CanPublishFreeCopy = response[key: "can_publish_free_copy"];
+			res.EditMode = response[key: "edit_mode"];
+
+			return res;
 		}
 	}
 }

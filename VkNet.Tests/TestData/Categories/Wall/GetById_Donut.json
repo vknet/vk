@@ -1,0 +1,58 @@
+{
+   "response":{
+      "items":[
+         {
+            "id":123,
+            "from_id":-322,
+            "owner_id":-322,
+            "date":1605698519,
+            "marked_as_ads":0,
+            "post_type":"post",
+            "text":"В этом посте нет доната",
+            "attachments":[
+            ],
+            "post_source":{
+               "type":"vk"
+            },
+            "comments":{
+               "count":0,
+               "can_post":0,
+               "groups_can_post":true
+            },
+            "likes":{
+               "count":0,
+               "user_likes":0,
+               "can_like":1,
+               "can_publish":1
+            },
+            "reposts":{
+               "count":0,
+               "user_reposted":0
+            },
+            "views":{
+               "count":9
+            },
+            "donut":{
+               "is_donut":false
+            },
+            "short_text_rate":0.800000,
+            "carousel_offset":0
+         }
+      ],
+      "profiles":[
+         
+      ],
+      "groups":[
+         {
+            "id":322,
+            "name":"Группа ВК",
+            "screen_name":"xxx",
+            "is_closed":0,
+            "type":"page",
+            "photo_50":"https:\/\/sun1-20.userapi.com\/impf\/c850424\/v850424983\/4e30e\/9xj6GcokXjM.jpg?size=50x0&quality=96&crop=87,90,444,444&sign=5c2c0d13cba84352953168ec19a12c79&c_uniq_tag=yHkZP56QVcsPKbD4hTAlGasxbQfP0N9UTzpJ6BD2XiM&ava=1",
+            "photo_100":"https:\/\/sun1-20.userapi.com\/impf\/c850424\/v850424983\/4e30e\/9xj6GcokXjM.jpg?size=100x0&quality=96&crop=87,90,444,444&sign=3a6f48dd288644fc7458c5dc89e7f843&c_uniq_tag=S_adjZfIeFHsBzfCIovpf7usamL55nlnp27LV0jVAyo&ava=1",
+            "photo_200":"https:\/\/sun1-20.userapi.com\/impf\/c850424\/v850424983\/4e30e\/9xj6GcokXjM.jpg?size=200x0&quality=96&crop=87,90,444,444&sign=f231229a5ee1df0841e6d9b6cd9cbe7d&c_uniq_tag=teT1SWdEyMkHvSGSQPKHjYeYbAj13itT0z4avdXoITc&ava=1"
+         }
+      ]
+   }
+}

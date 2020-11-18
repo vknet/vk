@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
@@ -44,16 +44,17 @@ namespace VkNet.Model
 			{
 				wallGetObject = new WallGetObject
 				{
-						WallPosts = response[key: "items"].ToReadOnlyCollectionOf<Post>(selector: r => r)
-						, Profiles = response[key: "profiles"].ToReadOnlyCollectionOf<User>(selector: r => r)
-						, Groups = response[key: "groups"].ToReadOnlyCollectionOf<Group>(selector: r => r)
-						, TotalCount = response[key: "count"] ?? 1UL
+					WallPosts = response[key: "items"].ToReadOnlyCollectionOf<Post>(selector: r => r),
+					Profiles = response[key: "profiles"].ToReadOnlyCollectionOf<User>(selector: r => r),
+					Groups = response[key: "groups"].ToReadOnlyCollectionOf<Group>(selector: r => r),
+					TotalCount = response[key: "count"] ?? 1UL
 				};
-			} else
+			}
+			else
 			{
 				wallGetObject = new WallGetObject
 				{
-						WallPosts = response.ToReadOnlyCollectionOf<Post>(selector: r => r)
+					WallPosts = response.ToReadOnlyCollectionOf<Post>(selector: r => r)
 				};
 
 				wallGetObject.TotalCount = (ulong) wallGetObject.WallPosts.Count;
