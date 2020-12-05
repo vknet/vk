@@ -203,7 +203,7 @@ namespace VkNet
 		{
 			if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
 			{
-				_ap.TwoFactorAuthorization = _ap.TwoFactorAuthorization ?? code;
+				_ap.TwoFactorAuthorization ??= code;
 				AuthorizeWithAntiCaptcha(_ap);
 			} else
 			{
@@ -649,9 +649,9 @@ namespace VkNet
 		/// <inheritdoc />
 		public IDonutCategory Donut { get; set; }
 
-		#endregion
+	#endregion
 
-		#region private
+	#region private
 
 		/// <summary>
 		/// Базовое обращение к vk.com
