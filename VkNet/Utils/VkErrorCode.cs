@@ -447,6 +447,11 @@ namespace VkNet.Utils
 		public const int ConversationAccessDenied = 917;
 
 		/// <summary>
+		/// Вы не администратор в данном чате
+		/// </summary>
+		public const int YouAreNotAdminOfThisChat = 925;
+
+		/// <summary>
 		/// Пользователя нет в чате
 		/// </summary>
 		public const int UserNotFoundInChat = 935;
