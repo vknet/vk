@@ -134,7 +134,7 @@ namespace VkNet.Abstractions
 													ulong? groupId = null);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.PinAsync"/>
-		PinnedMessage Pin(long peerId, ulong? messageId = null);
+		PinnedMessage Pin(long peerId, ulong? messageId = null, ulong? conversationMessageId = null);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.UnpinAsync"/>
 		bool Unpin(long peerId, ulong? groupId = null);

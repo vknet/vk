@@ -69,33 +69,35 @@ namespace VkNet.Categories
 		[Pure]
 		public MessagesGetObject Get(MessagesGetParams @params)
 		{
-			return _vk.Call("messages.get", new VkParameters
-			{
-				{ "offset", @params.Offset }
-				, { "count", @params.Count }
-				, { "time_offset", @params.TimeOffset }
-				, { "filters", @params.Filters }
-				, { "preview_length", @params.PreviewLength }
-				, { "last_message_id", @params.LastMessageId }
-			});
+			return _vk.Call("messages.get",
+				new VkParameters
+				{
+					{ "offset", @params.Offset },
+					{ "count", @params.Count },
+					{ "time_offset", @params.TimeOffset },
+					{ "filters", @params.Filters },
+					{ "preview_length", @params.PreviewLength },
+					{ "last_message_id", @params.LastMessageId }
+				});
 		}
 
 		/// <inheritdoc />
 		[Pure]
 		public MessageGetHistoryObject GetHistory(MessagesGetHistoryParams @params)
 		{
-			return _vk.Call<MessageGetHistoryObject>("messages.getHistory", new VkParameters
-			{
-				{ "user_id", @params.UserId },
-				{ "fields", @params.Fields },
-				{ "offset", @params.Offset },
-				{ "count", @params.Count },
-				{ "peer_id", @params.PeerId },
-				{ "start_message_id", @params.StartMessageId },
-				{ "rev", @params.Reversed },
-				{ "extended", @params.Extended },
-				{ "group_id", @params.GroupId }
-			});
+			return _vk.Call<MessageGetHistoryObject>("messages.getHistory",
+				new VkParameters
+				{
+					{ "user_id", @params.UserId },
+					{ "fields", @params.Fields },
+					{ "offset", @params.Offset },
+					{ "count", @params.Count },
+					{ "peer_id", @params.PeerId },
+					{ "start_message_id", @params.StartMessageId },
+					{ "rev", @params.Reversed },
+					{ "extended", @params.Extended },
+					{ "group_id", @params.GroupId }
+				});
 		}
 
 		/// <inheritdoc />
@@ -121,16 +123,17 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
 
-			return _vk.Call("messages.getDialogs", new VkParameters
-			{
-				{ "start_message_id", @params.StartMessageId }
-				, { "offset", @params.Offset }
-				, { "count", @params.Count }
-				, { "unread", @params.Unread }
-				, { "preview_length", @params.PreviewLength }
-				, { "important", @params.Important }
-				, { "unanswered", @params.Unanswered }
-			});
+			return _vk.Call("messages.getDialogs",
+				new VkParameters
+				{
+					{ "start_message_id", @params.StartMessageId },
+					{ "offset", @params.Offset },
+					{ "count", @params.Count },
+					{ "unread", @params.Unread },
+					{ "preview_length", @params.PreviewLength },
+					{ "important", @params.Important },
+					{ "unanswered", @params.Unanswered }
+				});
 		}
 
 		/// <inheritdoc />
@@ -150,18 +153,19 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public MessageSearchResult Search(MessagesSearchParams @params)
 		{
-			return _vk.Call<MessageSearchResult>("messages.search", new VkParameters
-			{
-				{ "q", @params.Query },
-				{ "fields", @params.Fields },
-				{ "peer_id", @params.PeerId },
-				{ "date", @params.Date },
-				{ "preview_length", @params.PreviewLength },
-				{ "offset", @params.Offset },
-				{ "count", @params.Count },
-				{ "extended", @params.Extended },
-				{ "group_id", @params.GroupId }
-			});
+			return _vk.Call<MessageSearchResult>("messages.search",
+				new VkParameters
+				{
+					{ "q", @params.Query },
+					{ "fields", @params.Fields },
+					{ "peer_id", @params.PeerId },
+					{ "date", @params.Date },
+					{ "preview_length", @params.PreviewLength },
+					{ "offset", @params.Offset },
+					{ "count", @params.Count },
+					{ "extended", @params.Extended },
+					{ "group_id", @params.GroupId }
+				});
 		}
 
 		/// <exception cref="ArgumentNullException"> </exception>
@@ -170,7 +174,8 @@ namespace VkNet.Categories
 		{
 			if (@params.UserIds != null && @params.UserIds.Any())
 			{
-				throw new ArgumentException($"This method not intended to use with many target users. Use {nameof(SendToUserIds)} instead.");
+				throw new ArgumentException(
+					$"This method not intended to use with many target users. Use {nameof(SendToUserIds)} instead.");
 			}
 
 			if (_vk.VkApiVersion.IsGreaterThanOrEqual(5, 90) && @params.RandomId == null)
@@ -178,63 +183,66 @@ namespace VkNet.Categories
 				throw new ArgumentException($"{nameof(@params.RandomId)} обязательное значение.");
 			}
 
-			return _vk.Call("messages.send", new VkParameters
-			{
-				{ "user_id", @params.UserId },
-				{ "domain", @params.Domain },
-				{ "chat_id", @params.ChatId },
-				{ "user_ids", @params.UserIds },
-				{ "message", @params.Message },
-				{ "random_id", @params.RandomId },
-				{ "lat", @params.Lat },
-				{ "long", @params.Longitude },
-				{ "attachment", @params.Attachments },
-				{ "reply_to", @params.ReplyTo },
-				{ "forward_messages", @params.ForwardMessages },
-				{ "forward", @params.Forward != null ? JsonConvert.SerializeObject(@params.Forward) : "" },
-				{ "keyboard", @params.Keyboard != null ? JsonConvert.SerializeObject(@params.Keyboard) : "" },
-				{ "sticker_id", @params.StickerId },
-				{ "peer_id", @params.PeerId },
-				{ "payload", @params.Payload },
-				{ "content_source",  @params.ContentSource != null ? JsonConvert.SerializeObject(@params.ContentSource) : ""  },
-				{ "group_id", @params.GroupId },
-				{ "dont_parse_links", @params.DontParseLinks },
-				{ "disable_mentions", @params.DisableMentions },
-				{ "intent", @params.Intent },
-				{ "subscribe_id", @params.SubscribeId },
-				{ "template", @params.Template != null ? JsonConvert.SerializeObject(@params.Template) : "" }
-			});
+			return _vk.Call("messages.send",
+				new VkParameters
+				{
+					{ "user_id", @params.UserId },
+					{ "domain", @params.Domain },
+					{ "chat_id", @params.ChatId },
+					{ "user_ids", @params.UserIds },
+					{ "message", @params.Message },
+					{ "random_id", @params.RandomId },
+					{ "lat", @params.Lat },
+					{ "long", @params.Longitude },
+					{ "attachment", @params.Attachments },
+					{ "reply_to", @params.ReplyTo },
+					{ "forward_messages", @params.ForwardMessages },
+					{ "forward", @params.Forward != null ? JsonConvert.SerializeObject(@params.Forward) : "" },
+					{ "keyboard", @params.Keyboard != null ? JsonConvert.SerializeObject(@params.Keyboard) : "" },
+					{ "sticker_id", @params.StickerId },
+					{ "peer_id", @params.PeerId },
+					{ "payload", @params.Payload },
+					{ "content_source", @params.ContentSource != null ? JsonConvert.SerializeObject(@params.ContentSource) : "" },
+					{ "group_id", @params.GroupId },
+					{ "dont_parse_links", @params.DontParseLinks },
+					{ "disable_mentions", @params.DisableMentions },
+					{ "intent", @params.Intent },
+					{ "subscribe_id", @params.SubscribeId },
+					{ "template", @params.Template != null ? JsonConvert.SerializeObject(@params.Template) : "" }
+				});
 		}
 
 		/// <inheritdoc />
 		public ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params)
 		{
-			return _vk.Call("messages.send", new VkParameters
-			{
-				{ "user_id", @params.UserId },
-				{ "domain", @params.Domain },
-				{ "chat_id", @params.ChatId },
-				{ "user_ids", @params.UserIds },
-				{ "message", @params.Message },
-				{ "random_id", @params.RandomId },
-				{ "lat", @params.Lat },
-				{ "long", @params.Longitude },
-				{ "attachment", @params.Attachments },
-				{ "reply_to", @params.ReplyTo },
-				{ "forward_messages", @params.ForwardMessages },
-				{ "forward", @params.Forward != null ? JsonConvert.SerializeObject(@params.Forward) : "" },
-				{ "keyboard", @params.Keyboard != null ? JsonConvert.SerializeObject(@params.Keyboard) : "" },
-				{ "sticker_id", @params.StickerId },
-				{ "peer_id", @params.PeerId },
-				{ "payload", @params.Payload },
-				{ "content_source",  @params.ContentSource != null ? JsonConvert.SerializeObject(@params.ContentSource) : ""  },
-				{ "group_id", @params.GroupId },
-				{ "dont_parse_links", @params.DontParseLinks },
-				{ "disable_mentions", @params.DisableMentions },
-				{ "intent", @params.Intent },
-				{ "subscribe_id", @params.SubscribeId },
-				{ "template", @params.Template != null ? JsonConvert.SerializeObject(@params.Template) : ""}
-			}).ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
+			return _vk.Call("messages.send",
+					new VkParameters
+					{
+						{ "user_id", @params.UserId },
+						{ "domain", @params.Domain },
+						{ "chat_id", @params.ChatId },
+						{ "user_ids", @params.UserIds },
+						{ "message", @params.Message },
+						{ "random_id", @params.RandomId },
+						{ "lat", @params.Lat },
+						{ "long", @params.Longitude },
+						{ "attachment", @params.Attachments },
+						{ "reply_to", @params.ReplyTo },
+						{ "forward_messages", @params.ForwardMessages },
+						{ "forward", @params.Forward != null ? JsonConvert.SerializeObject(@params.Forward) : "" },
+						{ "keyboard", @params.Keyboard != null ? JsonConvert.SerializeObject(@params.Keyboard) : "" },
+						{ "sticker_id", @params.StickerId },
+						{ "peer_id", @params.PeerId },
+						{ "payload", @params.Payload },
+						{ "content_source", @params.ContentSource != null ? JsonConvert.SerializeObject(@params.ContentSource) : "" },
+						{ "group_id", @params.GroupId },
+						{ "dont_parse_links", @params.DontParseLinks },
+						{ "disable_mentions", @params.DisableMentions },
+						{ "intent", @params.Intent },
+						{ "subscribe_id", @params.SubscribeId },
+						{ "template", @params.Template != null ? JsonConvert.SerializeObject(@params.Template) : "" }
+					})
+				.ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
 		}
 
 		/// <inheritdoc />
@@ -252,7 +260,7 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		public ConversationResult GetConversationsById(IEnumerable<long> peerIds, IEnumerable<string> fields = null, bool? extended = null,
-															ulong? groupId = null)
+														ulong? groupId = null)
 		{
 			return _vk.Call<ConversationResult>("messages.getConversationsById",
 				new VkParameters
@@ -324,14 +332,16 @@ namespace VkNet.Categories
 				});
 		}
 
+
 		/// <inheritdoc />
-		public PinnedMessage Pin(long peerId, ulong? messageId = null)
+		public PinnedMessage Pin(long peerId, ulong? messageId = null, ulong? conversationMessageId = null)
 		{
 			return _vk.Call<PinnedMessage>("messages.pin",
 				new VkParameters
 				{
 					{ "peer_id", peerId },
-					{ "message_id", messageId }
+					{ "message_id", messageId },
+					{ "conversation_message_id", conversationMessageId }
 				});
 		}
 
@@ -616,19 +626,20 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(() => @params.MsgsLimit);
 			VkErrors.ThrowIfNumberIsNegative(() => @params.MaxMsgId);
 
-			return _vk.Call("messages.getLongPollHistory", new VkParameters
-			{
-				{ "ts", @params.Ts },
-				{ "pts", @params.Pts },
-				{ "preview_length", @params.PreviewLength },
-				{ "onlines", @params.Onlines },
-				{ "fields", @params.Fields },
-				{ "events_limit", @params.EventsLimit },
-				{ "msgs_limit", @params.MsgsLimit },
-				{ "max_msg_id", @params.MaxMsgId },
-				{ "lp_version", @params.LpVersion },
-				{ "group_id", @params.GroupId }
-			});
+			return _vk.Call("messages.getLongPollHistory",
+				new VkParameters
+				{
+					{ "ts", @params.Ts },
+					{ "pts", @params.Pts },
+					{ "preview_length", @params.PreviewLength },
+					{ "onlines", @params.Onlines },
+					{ "fields", @params.Fields },
+					{ "events_limit", @params.EventsLimit },
+					{ "msgs_limit", @params.MsgsLimit },
+					{ "max_msg_id", @params.MaxMsgId },
+					{ "lp_version", @params.LpVersion },
+					{ "group_id", @params.GroupId }
+				});
 		}
 
 		/// <inheritdoc />
@@ -680,30 +691,32 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long SendSticker(MessagesSendStickerParams @params)
 		{
-			return _vk.Call("messages.sendSticker", new VkParameters
-			{
-				{ "user_id", @params.UserId }
-				, { "domain", @params.Domain }
-				, { "peer_id", @params.PeerId }
-				, { "chat_id", @params.ChatId }
-				, { "random_id", @params.RandomId }
-				, { "sticker_id", @params.StickerId }
-			});
+			return _vk.Call("messages.sendSticker",
+				new VkParameters
+				{
+					{ "user_id", @params.UserId },
+					{ "domain", @params.Domain },
+					{ "peer_id", @params.PeerId },
+					{ "chat_id", @params.ChatId },
+					{ "random_id", @params.RandomId },
+					{ "sticker_id", @params.StickerId }
+				});
 		}
 
 		/// <inheritdoc />
 		public ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom)
 		{
-			var result = _vk.Call("messages.getHistoryAttachments", new VkParameters
-			{
-				{ "peer_id", @params.PeerId },
-				{ "media_type", @params.MediaType },
-				{ "start_from", @params.StartFrom },
-				{ "count", @params.Count },
-				{ "photo_sizes", @params.PhotoSizes },
-				{ "fields", @params.Fields },
-				{ "group_id", @params.GroupId }
-			});
+			var result = _vk.Call("messages.getHistoryAttachments",
+				new VkParameters
+				{
+					{ "peer_id", @params.PeerId },
+					{ "media_type", @params.MediaType },
+					{ "start_from", @params.StartFrom },
+					{ "count", @params.Count },
+					{ "photo_sizes", @params.PhotoSizes },
+					{ "fields", @params.Fields },
+					{ "group_id", @params.GroupId }
+				});
 
 			nextFrom = result["next_from"];
 
@@ -781,22 +794,23 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool Edit(MessageEditParams @params)
 		{
-			return _vk.Call("messages.edit", new VkParameters
-			{
-				{ "peer_id", @params.PeerId },
-				{ "message", @params.Message },
-				{ "message_id", @params.MessageId },
-				{ "lat", @params.Latitude },
-				{ "long", @params.Longitude },
-				{ "attachment", @params.Attachments },
-				{ "keep_forward_messages", @params.KeepForwardMessages },
-				{ "keep_snippets", @params.KeepSnippets },
-				{ "group_id", @params.GroupId },
-				{ "dont_parse_links", @params.DontParseLinks },
-				{ "conversation_message_id", @params.ConversationMessageId },
-				{ "template", @params.Template != null ? JsonConvert.SerializeObject(@params.Template) : "" },
-				{ "keyboard", @params.Keyboard != null ? JsonConvert.SerializeObject(@params.Keyboard) : "" }
-			});
+			return _vk.Call("messages.edit",
+				new VkParameters
+				{
+					{ "peer_id", @params.PeerId },
+					{ "message", @params.Message },
+					{ "message_id", @params.MessageId },
+					{ "lat", @params.Latitude },
+					{ "long", @params.Longitude },
+					{ "attachment", @params.Attachments },
+					{ "keep_forward_messages", @params.KeepForwardMessages },
+					{ "keep_snippets", @params.KeepSnippets },
+					{ "group_id", @params.GroupId },
+					{ "dont_parse_links", @params.DontParseLinks },
+					{ "conversation_message_id", @params.ConversationMessageId },
+					{ "template", @params.Template != null ? JsonConvert.SerializeObject(@params.Template) : "" },
+					{ "keyboard", @params.Keyboard != null ? JsonConvert.SerializeObject(@params.Keyboard) : "" }
+				});
 		}
 
 		/// <inheritdoc />

@@ -873,13 +873,14 @@ namespace VkNet.Abstractions
 		/// <param name="messageId">
 		/// Идентификатор сообщения, которое нужно закрепить. положительное число
 		/// </param>
+		/// <param name="conversationMessageId"></param>
 		/// <returns>
 		/// Возвращает объект закрепленного сообщения.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.pin
 		/// </remarks>
-		Task<PinnedMessage> PinAsync(long peerId, ulong? messageId = null);
+		Task<PinnedMessage> PinAsync(long peerId, ulong? messageId = null, ulong? conversationMessageId = null);
 
 		/// <summary>
 		/// Открепляет сообщение.

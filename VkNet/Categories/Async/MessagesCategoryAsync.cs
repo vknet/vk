@@ -70,7 +70,7 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		public Task<ConversationResult> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields = null,
-																		bool? extended = null, ulong? groupId = null)
+																bool? extended = null, ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetConversationsById(peerIds, fields, extended, groupId));
 		}
@@ -107,9 +107,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<PinnedMessage> PinAsync(long peerId, ulong? messageId = null)
+		public Task<PinnedMessage> PinAsync(long peerId, ulong? messageId = null, ulong? conversationMessageId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => Pin(peerId, messageId));
+			return TypeHelper.TryInvokeMethodAsync(() => Pin(peerId, messageId, conversationMessageId));
 		}
 
 		/// <inheritdoc />
