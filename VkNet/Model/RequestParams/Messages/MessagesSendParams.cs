@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
@@ -166,15 +167,16 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Метка, которая обозначает приблизительное содержание сообщения от сообщества
 		/// </summary>
-		[JsonProperty("intent")]
+		[JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public Intent Intent { get; set; }
+		[CanBeNull]
+		public Intent  Intent { get; set; }
 
 		/// <summary>
 		/// Положительное число, максимальное значение 100
 		/// </summary>
-		[JsonProperty("subscribe_id")]
-		public byte SubscribeId { get; set; }
+		[JsonProperty("subscribe_id", NullValueHandling = NullValueHandling.Ignore)]
+		public byte? SubscribeId { get; set; }
 
 		/// <summary>
 		/// Объект, описывающий шаблон сообщения для бота.
