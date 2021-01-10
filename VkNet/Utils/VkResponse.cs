@@ -200,6 +200,18 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
+		public static implicit operator byte(VkResponse response)
+		{
+			return (byte) response._token;
+		}
+
+		/// <summary>
+		/// Выполняет неявное преобразование из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ vk.com </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
 		public static implicit operator ulong(VkResponse response)
 		{
 			return (ulong) response._token;

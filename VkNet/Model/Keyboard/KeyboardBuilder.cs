@@ -184,12 +184,12 @@ namespace VkNet.Model.Keyboard
 
 		private void CheckKeyboardSize(string? payload)
 		{
-			if ((payload?.Length ?? 0) > 255)
+			if ((payload?.Length ?? 0) > MaxButtonPayload)
 			{
 				throw new VkKeyboardPayloadMaxLengthException(string.Format(ButtonPayloadLengthExceptionTemplate, payload));
 			}
 
-			if (_totalPayloadLength > 1000)
+			if (_totalPayloadLength > MaxPayloadOfAllButtons)
 			{
 				throw new VkKeyboardPayloadMaxLengthException(SumPayloadLengthExceptionTemplate);
 			}
