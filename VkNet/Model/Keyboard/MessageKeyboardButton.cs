@@ -25,7 +25,7 @@ namespace VkNet.Model.Keyboard
 		/// </summary>
 		[JsonProperty("color", NullValueHandling = NullValueHandling.Ignore)]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public KeyboardButtonColor Color { get; set; }
+		public KeyboardButtonColor? Color { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

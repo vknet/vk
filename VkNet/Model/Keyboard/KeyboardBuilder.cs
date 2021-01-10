@@ -27,18 +27,23 @@ namespace VkNet.Model.Keyboard
 
 		private int _totalPayloadLength;
 
-		public static readonly string ButtonPayloadLengthExceptionTemplate = "Для кнопки payload должен быть максимум " + MaxButtonPayload + " символов: {0}";
+		public static readonly string ButtonPayloadLengthExceptionTemplate =
+			"Для кнопки payload должен быть максимум " + MaxButtonPayload + " символов: {0}";
 
 		public static readonly string SumPayloadLengthExceptionTemplate =
 			"Суммарная длина для payload всех кнопок должен быть максимум " + MaxPayloadOfAllButtons + " символов.";
 
-		public static readonly string MaxButtonsPerLineExceptionTemplate = "Количество кнопок на одной линии не должно превышать " + MaxButtonsPerLine;
+		public static readonly string MaxButtonsPerLineExceptionTemplate =
+			"Количество кнопок на одной линии не должно превышать " + MaxButtonsPerLine;
 
 		public static readonly string MaxButtonLinesExceptionTemplate = "Количество линий кнопок не должно превышать " + MaxButtonLines;
 
 		private const int MaxButtonPayload = 255;
+
 		private const int MaxPayloadOfAllButtons = 1000;
+
 		public const int MaxButtonsPerLine = 4;
+
 		public const int MaxButtonLines = 10;
 
 		/// <inheritdoc />
@@ -74,13 +79,14 @@ namespace VkNet.Model.Keyboard
 		}
 
 		/// <inheritdoc />
-		public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor color = default,
-										string type = null)
+		public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor? color = default, string type = null,
+										KeyboardButtonActionType? actionType = null, Intent? intent = null, byte? subscribeId = null,
+										long? peerId = null)
 		{
-			color ??= KeyboardButtonColor.Default;
 			type ??= _type ?? Button;
-			var payload = $"{{\"{type}\":\"{extra}\"}}";
-			_totalPayloadLength += payload.Length;
+			actionType ??= KeyboardButtonActionType.Text;
+			string? payload = extra != null ? $"{{\"{type}\":\"{extra}\"}}" : null;
+			_totalPayloadLength += payload?.Length ?? 0;
 
 			CheckKeyboardSize(payload);
 
@@ -91,26 +97,29 @@ namespace VkNet.Model.Keyboard
 				{
 					Label = label,
 					Payload = payload,
-					Type = KeyboardButtonActionType.Text
+					Type = actionType,
+					Intent = intent,
+					SubscribeId = subscribeId,
+					PeerId = peerId,
 				}
 			});
 
 			return this;
 		}
 
-		private void CheckKeyboardSize(string payload)
+		private void CheckKeyboardSize(string? payload)
 		{
-			if(payload.Length > 255)
+			if ((payload?.Length ?? 0) > 255)
 			{
 				throw new VkKeyboardPayloadMaxLengthException(string.Format(ButtonPayloadLengthExceptionTemplate, payload));
 			}
 
-			if(_totalPayloadLength > 1000)
+			if (_totalPayloadLength > 1000)
 			{
 				throw new VkKeyboardPayloadMaxLengthException(SumPayloadLengthExceptionTemplate);
 			}
 
-			if(_currentLine.Count + 1 > MaxButtonsPerLine)
+			if (_currentLine.Count + 1 > MaxButtonsPerLine)
 			{
 				throw new VkKeyboardMaxButtonsException(MaxButtonsPerLineExceptionTemplate);
 			}
@@ -119,7 +128,7 @@ namespace VkNet.Model.Keyboard
 		/// <inheritdoc />
 		public IKeyboardBuilder AddLine()
 		{
-			if(_fullKeyboard.Count + 1 > MaxButtonLines)
+			if (_fullKeyboard.Count + 1 > MaxButtonLines)
 			{
 				throw new VkKeyboardMaxButtonsException(MaxButtonLinesExceptionTemplate);
 			}

@@ -14,11 +14,14 @@ namespace VkNet.Model.Keyboard
 		/// <param name="extra">Дополнительная информация о кнопке</param>
 		/// <param name="type">Основная информация о кнопке</param>
 		/// <param name="color">Цвет кнопки</param>
+		/// <param name="actionType">Тип клавиши</param>
+		/// <param name="intent">Любой из интентов, требующий подписки.</param>
+		/// <param name="subscribeId">Дополнительное поле для confirmed_notification.</param>
+		/// <param name="peerId">user_id: 1-2e9</param>
 		/// <returns>Конструктор клавиатур</returns>
-		IKeyboardBuilder AddButton(string label,
-									string extra,
-									KeyboardButtonColor color = default(KeyboardButtonColor),
-									string type = null);
+		IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor color = default, string type = null,
+									KeyboardButtonActionType? actionType = null, Intent? intent = null, byte? subscribeId = null,
+									long? peerId = null);
 
 		/// <summary>
 		/// Добавить кнопку

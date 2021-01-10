@@ -1,5 +1,4 @@
 using System;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -25,9 +24,8 @@ namespace VkNet.Model.Keyboard
 		/// Дополнительная информация.
 		/// </summary>
 		/// <remarks>JSON строка с <c>payload</c>, до 255 символов</remarks>
-		[CanBeNull]
 		[JsonProperty("payload", NullValueHandling = NullValueHandling.Ignore)]
-		public string Payload { get; set; }
+		public string? Payload { get; set; }
 
 		/// <summary>
 		/// Текст на кнопке, до 40 символов
@@ -92,13 +90,32 @@ namespace VkNet.Model.Keyboard
 		public ulong? OwnerId { get; set; }
 
 		/// <summary>
+		/// user_id: 1-2e9
+		/// </summary>
+		[JsonProperty("peer_id", NullValueHandling = NullValueHandling.Ignore)]
+		public long? PeerId { get; set; }
+
+		/// <summary>
+		/// Любой из интентов, требующий подписки.
+		/// </summary>
+		[JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public Intent? Intent { get; set; }
+
+		/// <summary>
+		/// Дополнительное поле для confirmed_notification.
+		/// </summary>
+		[JsonProperty("subscribe_id", NullValueHandling = NullValueHandling.Ignore)]
+		public byte? SubscribeId { get; set; }
+
+		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
 		public static MessageKeyboardButtonAction FromJson(VkResponse response)
 		{
-			return new MessageKeyboardButtonAction
+			var action = new MessageKeyboardButtonAction
 			{
 				Type = response["type"],
 				Payload = response["payload"],
@@ -106,8 +123,25 @@ namespace VkNet.Model.Keyboard
 				Link = response["link"],
 				AppId = response["app_id"],
 				OwnerId = response["owner_id"],
-				Hash = response["hash"]
+				Hash = response["hash"],
 			};
+
+			if (response.ContainsKey("subscribe_id"))
+			{
+				action.SubscribeId = Convert.ToByte(response["subscribe_id"].RawJson);
+			}
+
+			if (response.ContainsKey("peer_id"))
+			{
+				action.PeerId = response[key: "peer_id"];
+			}
+
+			if (response.ContainsKey("intent"))
+			{
+				action.Intent = Intent.FromJson(response["intent"]);
+			}
+
+			return action;
 		}
 
 		/// <summary>
