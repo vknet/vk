@@ -2,15 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Keyboard
 {
 	/// <summary>
 	/// Параметры для создания кнопки в билдере
 	/// </summary>
+	[Serializable]
 	public class AddButtonParams
 	{
 		/// <summary>
@@ -26,6 +29,7 @@ namespace VkNet.Model.Keyboard
 		/// <summary>
 		/// Цвет кнопки
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public KeyboardButtonColor Color { get; set; } = default;
 
 		/// <summary>
@@ -36,11 +40,13 @@ namespace VkNet.Model.Keyboard
 		/// <summary>
 		/// Тип клавиши
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public KeyboardButtonActionType ActionType { get; set; }
 
 		/// <summary>
 		/// Любой из интентов, требующий подписки.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public Intent Intent { get; set; }
 
 		/// <summary>
