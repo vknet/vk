@@ -10,6 +10,12 @@ namespace VkNet.Model.Keyboard
 		/// <summary>
 		/// Добавить кнопку
 		/// </summary>
+		/// <returns>Конструктор клавиатур</returns>
+		IKeyboardBuilder AddButton(AddButtonParams addButtonParams);
+
+		/// <summary>
+		/// Добавить кнопку
+		/// </summary>
 		/// <param name="label">Надписть на кнопке</param>
 		/// <param name="extra">Дополнительная информация о кнопке</param>
 		/// <param name="type">Основная информация о кнопке</param>

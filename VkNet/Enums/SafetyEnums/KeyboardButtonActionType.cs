@@ -37,5 +37,15 @@ namespace VkNet.Enums.SafetyEnums
 		/// Callback
 		/// </summary>
 		public static readonly KeyboardButtonActionType Callback = RegisterPossibleValue("callback");
+
+		/// <summary>
+		/// Отписаться
+		/// </summary>
+		public static readonly KeyboardButtonActionType IntentUnsubscribe = RegisterPossibleValue("intent_unsubscribe");
+
+		/// <summary>
+		/// Подписаться
+		/// </summary>
+		public static readonly KeyboardButtonActionType IntentSubscribe = RegisterPossibleValue("intent_subscribe");
 	}
 }
