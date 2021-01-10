@@ -124,22 +124,10 @@ namespace VkNet.Model.Keyboard
 				AppId = response["app_id"],
 				OwnerId = response["owner_id"],
 				Hash = response["hash"],
+				PeerId = response["peer_id"],
+				SubscribeId = response["subscribe_id"],
+				Intent = response["intent"],
 			};
-
-			if (response.ContainsKey("subscribe_id"))
-			{
-				action.SubscribeId = Convert.ToByte(response["subscribe_id"].RawJson);
-			}
-
-			if (response.ContainsKey("peer_id"))
-			{
-				action.PeerId = response[key: "peer_id"];
-			}
-
-			if (response.ContainsKey("intent"))
-			{
-				action.Intent = Intent.FromJson(response["intent"]);
-			}
 
 			return action;
 		}

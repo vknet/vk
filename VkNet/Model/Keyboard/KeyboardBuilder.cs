@@ -8,6 +8,52 @@ using VkNet.Utils;
 
 namespace VkNet.Model.Keyboard
 {
+	/// <summary>
+	/// Параметры для создания кнопки в билдере
+	/// </summary>
+	public class AddButtonParams
+	{
+		/// <summary>
+		/// Надписть на кнопке
+		/// </summary>
+		public string Label { get; set; }
+
+		/// <summary>
+		/// Дополнительная информация о кнопке
+		/// </summary>
+		public string Extra { get; set; }
+
+		/// <summary>
+		/// Цвет кнопки
+		/// </summary>
+		public KeyboardButtonColor Color { get; set; } = default;
+
+		/// <summary>
+		/// Основная информация о кнопке
+		/// </summary>
+		public string? Type { get; set; } = null;
+
+		/// <summary>
+		/// Тип клавиши
+		/// </summary>
+		public KeyboardButtonActionType ActionType { get; set; }
+
+		/// <summary>
+		/// Любой из интентов, требующий подписки.
+		/// </summary>
+		public Intent Intent { get; set; }
+
+		/// <summary>
+		/// Дополнительное поле для confirmed_notification.
+		/// </summary>
+		public byte? SubscribeId { get; set; }
+
+		/// <summary>
+		/// user_id: 1-2e9
+		/// </summary>
+		public long? PeerId { get; set; }
+	}
+
 	/// <inheritdoc />
 	[Serializable]
 	[UsedImplicitly]
@@ -79,14 +125,13 @@ namespace VkNet.Model.Keyboard
 		}
 
 		/// <inheritdoc />
-		public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor? color = default, string type = null,
-										KeyboardButtonActionType? actionType = null, Intent? intent = null, byte? subscribeId = null,
-										long? peerId = null)
+		public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor color = default,
+										string type = null)
 		{
+			color ??= KeyboardButtonColor.Default;
 			type ??= _type ?? Button;
-			actionType ??= KeyboardButtonActionType.Text;
-			string? payload = extra != null ? $"{{\"{type}\":\"{extra}\"}}" : null;
-			_totalPayloadLength += payload?.Length ?? 0;
+			var payload = $"{{\"{type}\":\"{extra}\"}}";
+			_totalPayloadLength += payload.Length;
 
 			CheckKeyboardSize(payload);
 
@@ -97,10 +142,34 @@ namespace VkNet.Model.Keyboard
 				{
 					Label = label,
 					Payload = payload,
-					Type = actionType,
-					Intent = intent,
-					SubscribeId = subscribeId,
-					PeerId = peerId,
+					Type = KeyboardButtonActionType.Text
+				}
+			});
+
+			return this;
+		}
+
+		/// <inheritdoc />
+		public IKeyboardBuilder AddButton(AddButtonParams addButtonParams)
+		{
+			addButtonParams.Type ??= _type ?? Button;
+			addButtonParams.ActionType ??= KeyboardButtonActionType.Text;
+			string? payload = addButtonParams.Extra != null ? $"{{\"{addButtonParams.Type}\":\"{addButtonParams.Extra}\"}}" : null;
+			_totalPayloadLength += payload?.Length ?? 0;
+
+			CheckKeyboardSize(payload);
+
+			_currentLine.Add(new MessageKeyboardButton
+			{
+				Color = addButtonParams.Color,
+				Action = new MessageKeyboardButtonAction
+				{
+					Label = addButtonParams.Label,
+					Payload = payload,
+					Type = addButtonParams.ActionType,
+					Intent = addButtonParams.Intent,
+					SubscribeId = addButtonParams.SubscribeId,
+					PeerId = addButtonParams.PeerId,
 				}
 			});
 
