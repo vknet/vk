@@ -119,65 +119,77 @@ namespace VkNet.Model
 		/// <summary>
 		/// Название сообщества.
 		/// </summary>
+		[JsonProperty("name")]
 		public string Name { get; set; }
 
 		/// <summary>
 		/// Короткий адрес страницы сообщества, например, <c>apiclub</c>. Если он не назначен, то
 		/// <c>'club'+gid</c>, например, <c>club35828305</c>.
 		/// </summary>
+		[JsonProperty("screen_name")]
 		public string ScreenName { get; set; }
 
 		/// <summary>
 		/// Публичность группы.
 		/// </summary>
+		[JsonProperty("is_closed")]
 		public GroupPublicity? IsClosed { get; set; }
 
 		/// <summary>
 		/// Возвращается в случае, если сообщество удалено или заблокировано
 		/// </summary>
+		[JsonProperty("deactivated")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public Deactivated Deactivated { get; set; }
 
 		/// <summary>
 		/// Информация о том, является ли текущий пользователь руководителем сообщества.
 		/// </summary>
+		[JsonProperty("is_admin")]
 		public bool IsAdmin { get; set; }
 
 		/// <summary>
 		/// Уровень административных полномочий текущего пользователя в сообществе
 		/// (действительно, если <c>IsAdmin = true</c>).
 		/// </summary>
+		[JsonProperty("admin_level")]
 		public AdminLevel? AdminLevel { get; set; }
 
 		/// <summary>
 		/// Информация о том, является ли текущий пользователь участником сообщества.
 		/// </summary>
+		[JsonProperty("is_member")]
 		public bool? IsMember { get; set; }
 
 		/// <summary>
 		/// Идентификатор пользователя пригласившего в группу
 		/// </summary>
+		[JsonProperty("invited_by")]
 		public long? InvitedBy { get; set; }
 
 		/// <summary>
 		/// Тип сообщества.
 		/// </summary>
+		[JsonProperty("type")]
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public GroupType Type { get; set; }
 
 		/// <summary>
 		/// <c>Uri</c> фотографии сообщества с размером 50x50px
 		/// </summary>
+		[JsonProperty("photo_50")]
 		public Uri Photo50 { get; set; }
 
 		/// <summary>
 		/// <c>Uri</c> фотографии сообщества с размером 100x100px
 		/// </summary>
+		[JsonProperty("photo_100")]
 		public Uri Photo100 { get; set; }
 
 		/// <summary>
 		/// <c>Uri</c> фотографии сообщества с размером 200x200px
 		/// </summary>
+		[JsonProperty("photo_200")]
 		public Uri Photo200 { get; set; }
 
 	#endregion
@@ -189,6 +201,7 @@ namespace VkNet.Model
 		/// открыта ли группа или нет,
 		/// а у событий дата начала.
 		/// </summary>
+		[JsonProperty("activity")]
 		public string Activity { get; set; }
 
 		/// <summary>
@@ -200,6 +213,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Информация о забанненом (добавленном в черный список) пользователе сообщества.
 		/// </summary>
+		[JsonProperty("ban_info")]
 		public BanInfo BanInfo { get; set; }
 
 		/// <summary>
@@ -208,6 +222,7 @@ namespace VkNet.Model
 		/// (<c> true </c>, если пользователь может создать обсуждение, <c> false </c> –
 		/// если не может).
 		/// </summary>
+		[JsonProperty("can_create_topic")]
 		public bool CanCreateTopic { get; set; }
 
 		/// <summary>
@@ -221,6 +236,7 @@ namespace VkNet.Model
 		/// сообщества (<c> true </c> - может,
 		/// <c> false </c> - не может).
 		/// </summary>
+		[JsonProperty("can_post")]
 		public bool CanPost { get; set; }
 
 		/// <summary>
@@ -228,6 +244,7 @@ namespace VkNet.Model
 		/// - разрешено, <c> false </c> - не
 		/// разрешено).
 		/// </summary>
+		[JsonProperty("can_see_all_posts")]
 		public bool CanSeeAllPosts { get; set; }
 
 		/// <summary>
@@ -235,26 +252,31 @@ namespace VkNet.Model
 		/// <c> true </c>, если пользователь может
 		/// загружать документы, <c> false </c> – если не может).
 		/// </summary>
+		[JsonProperty("can_upload_documents")]
 		public bool CanUploadDocuments { get; set; }
 
 		/// <summary>
 		/// Информация о том, может ли текущий пользователь загружать видеозаписи в группу.
 		/// </summary>
+		[JsonProperty("can_upload_video")]
 		public bool CanUploadVideo { get; set; }
 
 		/// <summary>
 		/// Город.
 		/// </summary>
+		[JsonProperty("city")]
 		public City City { get; set; }
 
 		/// <summary>
 		/// Информация из блока контактов публичной страницы.
 		/// </summary>
+		[JsonProperty("contacts")]
 		public ReadOnlyCollection<Contact> Contacts { get; set; }
 
 		/// <summary>
 		/// Счетчики сообщества.
 		/// </summary>
+		[JsonProperty("counters")]
 		public Counters Counters { get; set; }
 
 		/// <summary>
@@ -263,6 +285,7 @@ namespace VkNet.Model
 		/// использовать для
 		/// получения ее названия с помощью метода <c>DatabaseCategory.GetCountriesById</c>
 		/// </summary>
+		[JsonProperty("country")]
 		public Country Country { get; set; }
 
 		/// <summary>
@@ -274,6 +297,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Текст описания сообщества.
 		/// </summary>
+		[JsonProperty("description")]
 		public string Description { get; set; }
 
 		/// <summary>
@@ -281,11 +305,13 @@ namespace VkNet.Model
 		/// используя <c>WallCategory.GetById</c>
 		/// передав идентификатор в виде – <c>{group_id}_{post_id}</c>.
 		/// </summary>
+		[JsonProperty("fixed_post")]
 		public long? FixedPost { get; set; }
 
 		/// <summary>
 		/// Содержит фото.
 		/// </summary>
+		[JsonProperty("has_photo")]
 		public bool HasPhoto { get; set; }
 
 		/// <summary>
@@ -298,32 +324,38 @@ namespace VkNet.Model
 		/// <summary>
 		/// Возвращается 1, если сообщество находится в закладках у текущего пользователя.
 		/// </summary>
+		[JsonProperty("is_favorite")]
 		public bool IsFavorite { get; set; }
 
 		/// <summary>
 		/// Возвращается 1, если сообщество скрыто в новостях у текущего пользователя.
 		/// </summary>
+		[JsonProperty("is_hidden_from_feed")]
 		public bool IsHiddenFromFeed { get; set; }
 
 		/// <summary>
 		/// Информация о том, разрешено ли сообществу отправлять сообщения текущему
 		/// пользователю.
 		/// </summary>
+		[JsonProperty("is_messages_allowed")]
 		public bool? IsMessagesAllowed { get; set; }
 
 		/// <summary>
 		/// Информация из блока ссылок сообщества.
 		/// </summary>
+		[JsonProperty("links")]
 		public ReadOnlyCollection<ExternalLink> Links { get; set; }
 
 		/// <summary>
 		/// Идентификатор основного альбома сообщества.
 		/// </summary>
+		[JsonProperty("main_album_id")]
 		public uint? MainAlbumId { get; set; }
 
 		/// <summary>
 		/// Информация о главной секции в сообществе
 		/// </summary>
+		[JsonProperty("main_section")]
 		public MainSection? MainSection { get; set; }
 
 		/// <summary>
@@ -341,11 +373,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Количество участников сообщества.
 		/// </summary>
+		[JsonProperty("members_count")]
 		public int? MembersCount { get; set; }
 
 		/// <summary>
 		/// Место, указанное в информации о сообществе.
 		/// </summary>
+		[JsonProperty("place")]
 		public Place Place { get; set; }
 
 		/// <summary>
@@ -357,11 +391,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Адрес сайта из поля «веб-сайт» в описании сообщества.
 		/// </summary>
+		[JsonProperty("site")]
 		public string Site { get; set; }
 
 		/// <summary>
 		/// Время начала встречи (возвращаются только для встреч).
 		/// </summary>
+		[JsonProperty("start_date")]
 		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? StartDate { get; set; }
 
@@ -374,6 +410,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Время окончания встречи (возвращаются только для встреч).
 		/// </summary>
+		[JsonProperty("end_date")]
 		[JsonConverter(typeof(UnixDateTimeConverter))]
 		public DateTime? EndDate { get; set; }
 
@@ -382,26 +419,31 @@ namespace VkNet.Model
 		/// расположенного на странице сообщества под его
 		/// названием.
 		/// </summary>
+		[JsonProperty("status")]
 		public string Status { get; set; }
 
 		/// <summary>
 		/// Информация о том, есть ли у сообщества «огонёк».
 		/// </summary>
+		[JsonProperty("trending")]
 		public bool Trending { get; set; }
 
 		/// <summary>
 		/// Возвращает информацию о том, является ли сообщество верифицированным.
 		/// </summary>
+		[JsonProperty("verified")]
 		public bool Verified { get; set; }
 
 		/// <summary>
 		/// Название главной вики-страницы сообщества.
 		/// </summary>
+		[JsonProperty("wiki_page")]
 		public string WikiPage { get; set; }
 
 		/// <summary>
 		/// Информация о ссылках на предпросмотр фотографий сообщества.
 		/// </summary>
+		[JsonProperty("photo_previews")]
 		public Previews PhotoPreviews { get; set; }
 
 		/// <summary>
