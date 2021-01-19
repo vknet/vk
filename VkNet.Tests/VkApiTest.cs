@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,18 +36,15 @@ namespace VkNet.Tests
 			Api.RequestsPerSecond = callsCount;
 
 			var taskList = new List<Task>();
+			var calls = 0;
 
 			for (var i = 0; i < callsCount + 1; i++)
 			{
-				taskList.Add(Api.CallAsync("friends.getRequests", VkParameters.Empty, true));
+				taskList.Add(Api.CallAsync("friends.getRequests", VkParameters.Empty, true).ContinueWith((_) => calls++));
 			}
 
-			Task.WhenAll(taskList);
-
 			await Task.Delay(1000);
-
-			Mock.Get(Api.RestClient)
-				.Verify(m => m.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>()), Times.AtMost(callsCount));
+			Assert.LessOrEqual(calls, callsCount);
 		}
 
 		[Test]
