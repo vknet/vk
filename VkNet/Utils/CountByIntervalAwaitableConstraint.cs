@@ -14,6 +14,10 @@ namespace VkNet.Utils
 
 		private TimeSpan _timeSpan;
 
+		private int _left;
+
+		private DateTime _dateTime;
+
 		private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
 		/// <inheritdoc />
@@ -54,6 +58,7 @@ namespace VkNet.Utils
 			}
 
 			_count = number;
+			_left = number;
 			_timeSpan = timeSpan;
 		}
 
@@ -62,19 +67,31 @@ namespace VkNet.Utils
 		{
 			await _semaphore.WaitAsync(cancellationToken).ConfigureAwait(false);
 
-			var milliseconds = _timeSpan.TotalMilliseconds / _count;
-
-			var timeToWait = (int) Math.Ceiling(milliseconds);
-
-			try
+			if ((DateTime.Now - _dateTime) >= _timeSpan)
 			{
-				await Task.Delay(timeToWait, cancellationToken).ConfigureAwait(false);
-			}
-			finally
-			{
-				_semaphore.Release();
+				_left = _count;
+				_dateTime = DateTime.Now;
 			}
 
+			if (_left > 0)
+			{
+				_left--;
+			}
+			else
+			{
+				var timeToWait = (int)Math.Ceiling((_timeSpan - (DateTime.Now - _dateTime)).TotalMilliseconds);
+
+				try
+				{
+					await Task.Delay(timeToWait, cancellationToken).ConfigureAwait(false);
+				}
+				catch { }
+
+				_left = _count;
+				_dateTime = DateTime.Now;
+			}
+
+			_semaphore.Release();
 			return new DisposableAction(() =>
 			{
 			});
@@ -84,6 +101,7 @@ namespace VkNet.Utils
 		public void SetRate(int number, TimeSpan timeSpan)
 		{
 			_count = number;
+			_left = number;
 			_timeSpan = timeSpan;
 		}
 	}
