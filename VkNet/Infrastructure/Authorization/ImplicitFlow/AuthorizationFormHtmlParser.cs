@@ -47,12 +47,14 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 			var inputs = ParseInputs(formNode);
 
 			var actionUrl = GetActionUrl(formNode, url);
+			var urlToCaptcha = GetUrlToCaptcha(doc);
 			var method = GetMethod(formNode);
 
 			return new VkHtmlFormResult
 			{
 				Fields = inputs,
 				Action = actionUrl,
+				UrlToCaptcha = urlToCaptcha,
 				Method = method
 			};
 		}
@@ -137,6 +139,24 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		private static string GetResponseBaseUrl(Uri uri)
 		{
 			return uri.Scheme + "://" + uri.Host + ":" + uri.Port;
+		}
+
+		/// <summary>
+		/// Возвращает URL для получения капчи
+		/// </summary>
+		/// <param name="document">HTML документ</param>
+		private static string GetUrlToCaptcha(HtmlDocument document)
+		{
+			var element = document.GetElementbyId("captcha");
+
+			if (element is null)
+			{
+				return null;
+			}
+
+			var urlToCaptcha = element.Attributes["src"];
+
+			return urlToCaptcha?.Value;
 		}
 	}
 }
