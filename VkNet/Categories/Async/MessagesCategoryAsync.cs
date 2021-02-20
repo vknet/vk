@@ -177,10 +177,10 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> MarkAsReadAsync(string peerId, long? startMessageId = null, long? groupId = null)
+		public Task<bool> MarkAsReadAsync(string peerId, long? startMessageId = null, long? groupId = null, bool? markConversationAsRead = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
-				MarkAsRead(peerId, startMessageId, groupId));
+				MarkAsRead(peerId, startMessageId, groupId, markConversationAsRead));
 		}
 
 		/// <inheritdoc />

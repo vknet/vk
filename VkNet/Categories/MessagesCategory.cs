@@ -417,13 +417,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public bool MarkAsRead(string peerId, long? startMessageId = null, long? groupId = null)
+		public bool MarkAsRead(string peerId, long? startMessageId = null, long? groupId = null, bool? markConversationAsRead = null)
 		{
 			var parameters = new VkParameters
 			{
 				{ "peer_id", peerId },
 				{ "start_message_id", startMessageId },
-				{ "group_id", groupId }
+				{ "group_id", groupId },
+				{ "mark_conversation_as_read", markConversationAsRead }
 			};
 
 			return _vk.Call("messages.markAsRead", parameters);
