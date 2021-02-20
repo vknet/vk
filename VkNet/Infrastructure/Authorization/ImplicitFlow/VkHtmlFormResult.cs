@@ -18,6 +18,11 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		public string Action { get; set; }
 
 		/// <summary>
+		/// URL для получения капчи, если это необходимо
+		/// </summary>
+		public string UrlToCaptcha { get; set; }
+
+		/// <summary>
 		/// Поля формы
 		/// </summary>
 		public Dictionary<string, string> Fields { get; set; }

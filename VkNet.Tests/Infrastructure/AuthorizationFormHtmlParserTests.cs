@@ -38,6 +38,12 @@ namespace VkNet.Tests.Infrastructure
 			Assert.NotNull(result);
 			Assert.AreEqual("post", result.Method);
 			Assert.AreEqual("https://login.vk.com/?act=login&amp;soft=1&amp;utf8=1", result.Action);
+
+			Assert.IsNotNull(result.UrlToCaptcha);
+
+			var isCaptchaIndicated = result.UrlToCaptcha.Contains("captcha.php");
+			Assert.AreEqual(isCaptchaIndicated, true);
+
 			Assert.IsNotEmpty(result.Fields);
 		}
 

@@ -40,8 +40,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow.Forms
 				form.Fields[AuthorizationFormFields.Password] = authParams.Password;
 			}
 
-			var captchaKey =
-				_captchaSolver.Solve($"https://api.vk.com//captcha.php?sid={form.Fields[AuthorizationFormFields.CaptchaSid]}&s=1");
+			var captchaKey = _captchaSolver.Solve(form.UrlToCaptcha);
 
 			if (form.Fields.ContainsKey(AuthorizationFormFields.CaptchaKey))
 			{
