@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -278,7 +278,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsRead
 		/// </remarks>
-		Task<bool> MarkAsReadAsync(string peerId, long? startMessageId = null, long? groupId = null);
+		Task<bool> MarkAsReadAsync(string peerId, long? startMessageId = null, long? groupId = null, bool? markConversationAsRead = null);
 
 		/// <summary>
 		/// Изменяет статус набора текста пользователем в диалоге.

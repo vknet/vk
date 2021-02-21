@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using JetBrains.Annotations;
@@ -52,7 +52,7 @@ namespace VkNet.Abstractions
 		bool Restore(ulong messageId, ulong? groupId = null);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.MarkAsReadAsync"/>
-		bool MarkAsRead(string peerId, long? startMessageId = null, long? groupId = null);
+		bool MarkAsRead(string peerId, long? startMessageId = null, long? groupId = null, bool? markConversationAsRead = null);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.SetActivityAsync"/>
 		bool SetActivity(string userId, MessageActivityType type, long? peerId = null, ulong? groupId = null);
