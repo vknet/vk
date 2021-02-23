@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -37,6 +37,7 @@ namespace VkNet.Model
 		/// значения поля type:
 		/// </summary>
 		[JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public PostSourceData Data { get; set; }
 
 		/// <summary>

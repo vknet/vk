@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -8,48 +9,31 @@ namespace VkNet.Model
 	/// поля type:
 	/// </summary>
 	[Serializable]
-	public class PostSourceData
+	public class PostSourceData : SafetyEnum<PostSourceData>
 	{
 		/// <summary>
 		/// Изменение статуса под именем пользователя.
 		/// </summary>
-		public string ProfileActivity { get; set; }
+		public static readonly PostSourceData ProfileActivity = RegisterPossibleValue(value: "profile_activity");
 
 		/// <summary>
 		/// Изменение профильной фотографии пользователя.
 		/// </summary>
-		public string ProfilePhoto { get; set; }
+		public static readonly PostSourceData ProfilePhoto = RegisterPossibleValue(value: "profile_photo");
 
 		/// <summary>
 		/// Виджет комментариев.
 		/// </summary>
-		public string Comments { get; set; }
+		public static readonly PostSourceData Comments = RegisterPossibleValue(value: "comments");
 
 		/// <summary>
 		/// Виджет «Мне нравится».
 		/// </summary>
-		public string Like { get; set; }
+		public static readonly PostSourceData Like = RegisterPossibleValue(value: "like");
 
 		/// <summary>
 		/// Виджет опросов.
 		/// </summary>
-		public string Poll { get; set; }
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static PostSourceData FromJson(VkResponse response)
-		{
-			return new PostSourceData
-			{
-					ProfileActivity = response[key: "profile_activity"]
-					, ProfilePhoto = response[key: "profile_photo"]
-					, Comments = response[key: "comments"]
-					, Like = response[key: "like"]
-					, Poll = response[key: "poll"]
-			};
-		}
+		public static readonly PostSourceData Poll = RegisterPossibleValue(value: "poll");
 	}
 }
