@@ -182,8 +182,18 @@ namespace VkNet
 				TokenAuth(@params.AccessToken, @params.UserId, @params.TokenExpireTime);
 			}
 
+			if (@params.IsTokenUpdateAutomatically != null && @params.IsTokenUpdateAutomatically.Value)
+			{
+				OnTokenExpires += OnTokenExpired;
+			}
+
 			_ap = @params;
 			_logger?.LogDebug("Авторизация прошла успешно");
+		}
+
+		private void OnTokenExpired(VkApi sender)
+		{
+			RefreshTokenAsync(_ap.TwoFactorAuthorization).GetAwaiter().GetResult();
 		}
 
 		/// <inheritdoc />
