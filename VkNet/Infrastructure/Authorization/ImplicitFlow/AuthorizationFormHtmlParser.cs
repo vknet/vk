@@ -29,7 +29,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <inheritdoc />
 		public async Task<VkHtmlFormResult> GetFormAsync(Uri url)
 		{
-			var response = await _restClient.PostAsync(url, Enumerable.Empty<KeyValuePair<string, string>>());
+			var response = await _restClient.PostAsync(url, Enumerable.Empty<KeyValuePair<string, string>>()).ConfigureAwait(false);
 
 			if (!response.IsSuccess)
 			{
