@@ -130,6 +130,9 @@ namespace VkNet
 		public event VkApiDelegate OnTokenExpires;
 
 		/// <inheritdoc />
+		public event VkApiDelegate OnTokenUpdatedAutomatically;
+
+		/// <inheritdoc />
 		[Obsolete("Нужно использовать AuthorizationFlow", false)]
 		public IBrowser Browser { get; set; }
 
@@ -194,6 +197,7 @@ namespace VkNet
 		private void OnTokenExpired(VkApi sender)
 		{
 			RefreshTokenAsync(_ap.TwoFactorAuthorization).GetAwaiter().GetResult();
+			OnTokenUpdatedAutomatically?.Invoke(sender);
 		}
 
 		/// <inheritdoc />

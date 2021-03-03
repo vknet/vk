@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -69,7 +69,7 @@ namespace VkNet.Tests
 				.ReturnsAsync(new AuthorizationResult
 				{
 					AccessToken = "token",
-					ExpiresIn = 1000,
+					ExpiresIn = 11,
 					UserId = 1,
 					State = "123456"
 				});
