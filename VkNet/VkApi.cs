@@ -130,6 +130,9 @@ namespace VkNet
 		public event VkApiDelegate OnTokenExpires;
 
 		/// <inheritdoc />
+		public event VkApiDelegate OnTokenUpdatedAutomatically;
+
+		/// <inheritdoc />
 		[Obsolete("Нужно использовать AuthorizationFlow", false)]
 		public IBrowser Browser { get; set; }
 
@@ -182,8 +185,19 @@ namespace VkNet
 				TokenAuth(@params.AccessToken, @params.UserId, @params.TokenExpireTime);
 			}
 
+			if (@params.IsTokenUpdateAutomatically)
+			{
+				OnTokenExpires += OnTokenExpired;
+			}
+
 			_ap = @params;
 			_logger?.LogDebug("Авторизация прошла успешно");
+		}
+
+		private void OnTokenExpired(VkApi sender)
+		{
+			RefreshTokenAsync(_ap.TwoFactorAuthorization).GetAwaiter().GetResult();
+			OnTokenUpdatedAutomatically?.Invoke(sender);
 		}
 
 		/// <inheritdoc />

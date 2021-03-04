@@ -157,5 +157,10 @@ namespace VkNet.Model
 		/// прохождения авторизации.
 		/// </summary>
 		string Code { get; set; }
+
+		/// <summary>
+		/// Параметр, указывающий, что VkNet должен автоматически обновлять токен в случае если он становится недействительным
+		/// </summary>
+		bool IsTokenUpdateAutomatically { get; set; }
 	}
 }

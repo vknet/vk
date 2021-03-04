@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using VkNet.Enums;
+using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
@@ -25,6 +27,31 @@ namespace VkNet.Tests
 			});
 
 			Assert.That(Api.UserId, Is.EqualTo(1));
+		}
+
+		[Test]
+		public void AuthorizeAndUpdateTokenAutomatically()
+		{
+			Api.Authorize(new ApiAuthParams
+			{
+				ApplicationId = 1,
+				Login = "login",
+				Password = "pass",
+				Settings = Settings.All,
+				Phone = "89510000000",
+				IsTokenUpdateAutomatically = true
+			});
+
+			var waiter = new AutoResetEvent(initialState: false);
+
+			Api.OnTokenUpdatedAutomatically += (api) =>
+			{
+				waiter.Set();
+			};
+
+			var isUpdated = waiter.WaitOne();
+
+			Assert.IsTrue(isUpdated);
 		}
 
 		[Test]
