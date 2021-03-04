@@ -95,7 +95,7 @@ namespace VkNet.Model
 		public string Code { get; set; }
 
 		/// <inheritdoc />
-		public bool? IsTokenUpdateAutomatically { get; set; }
+		public bool IsTokenUpdateAutomatically { get; set; }
 
 		/// <summary>
 		/// Формирует параметры авторизации по минимальному набору необходимых полей
@@ -114,6 +114,14 @@ namespace VkNet.Model
 				Password = password,
 				Settings = settings
 			};
+		}
+
+		/// <summary>
+		/// Базовый конструктор
+		/// </summary>
+		public ApiAuthParams()
+		{
+			IsTokenUpdateAutomatically = true;
 		}
 	}
 }

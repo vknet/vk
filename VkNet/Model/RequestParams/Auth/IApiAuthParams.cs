@@ -161,6 +161,6 @@ namespace VkNet.Model
 		/// <summary>
 		/// Параметр, указывающий, что VkNet должен автоматически обновлять токен в случае если он становится недействительным
 		/// </summary>
-		bool? IsTokenUpdateAutomatically { get; set; }
+		bool IsTokenUpdateAutomatically { get; set; }
 	}
 }

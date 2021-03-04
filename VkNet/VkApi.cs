@@ -185,7 +185,7 @@ namespace VkNet
 				TokenAuth(@params.AccessToken, @params.UserId, @params.TokenExpireTime);
 			}
 
-			if (@params.IsTokenUpdateAutomatically != null && @params.IsTokenUpdateAutomatically.Value)
+			if (@params.IsTokenUpdateAutomatically)
 			{
 				OnTokenExpires += OnTokenExpired;
 			}
