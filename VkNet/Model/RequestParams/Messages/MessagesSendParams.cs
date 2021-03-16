@@ -77,7 +77,7 @@ namespace VkNet.Model.RequestParams
 		/// Сохраняется вместе с сообщением и доступен в истории сообщений.
 		/// </summary>
 		[JsonProperty("random_id")]
-		public int? RandomId { get; set; }
+		public long? RandomId { get; set; }
 
 		/// <summary>
 		/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для
