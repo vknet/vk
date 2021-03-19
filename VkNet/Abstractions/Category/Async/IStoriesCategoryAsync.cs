@@ -324,5 +324,38 @@ namespace VkNet.Abstractions.Category
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.search
 		/// </remarks>
 		Task<StoryResult<Story>> SearchAsync(StoriesSearchParams searchParams, CancellationToken token);
+
+		/// <summary>
+		/// Отправляет фидбек на историю.
+		/// </summary>
+		/// <param name = "accessKey">
+		/// Ключ доступа пользователя, полученный при подписке. Возвращает событие VKWebAppSubscribeStoryApp. строка, обязательный параметр
+		/// </param>
+		/// <param name = "message">
+		/// Текст фидбека. строка, максимальная длина 1000
+		/// </param>
+		/// <param name = "isBroadcast">
+		/// Возможные значения:
+		/// 0 —  фидбек виден только отправителю и автору истории;
+		/// 1 —  фидбек виден всем зрителям истории и автору.
+		/// флаг, может принимать значения 1 или 0, по умолчанию
+		/// </param>
+		/// <param name = "isAnonymous">
+		/// Возможные значения:
+		/// 0 — автор фидбека не  анонимный;
+		/// 1 —  автор фидбека  анонимный.
+		/// флаг, может принимать значения 1 или 0, по умолчанию
+		/// </param>
+		/// <param name = "unseenMarker">
+		/// Флаг, может принимать значения 1 или 0, по умолчанию
+		/// </param>
+		/// <param name="token">Токен отмены запроса</param>
+		/// <returns>
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/stories.sendInteraction
+		/// </remarks>
+		Task<bool> SendInteractionAsync(string accessKey, string message, bool? isBroadcast = null, bool? isAnonymous = null,
+										bool? unseenMarker = null, CancellationToken token = default);
 	}
 }

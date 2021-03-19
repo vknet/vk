@@ -58,5 +58,9 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref = "IStoriesCategoryAsync.SearchAsync"/>
 		StoryResult<Story> Search(StoriesSearchParams searchParams);
+
+		/// <inheritdoc cref = "IStoriesCategoryAsync.SendInteractionAsync"/>
+		bool SendInteraction(string accessKey, string message, bool? isBroadcast = null, bool? isAnonymous = null,
+							bool? unseenMarker = null);
 	}
 }

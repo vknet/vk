@@ -232,5 +232,20 @@ namespace VkNet.Categories
 					{ "extended", searchParams.Extended }
 				});
 		}
+
+		/// <inheritdoc />
+		public bool SendInteraction(string accessKey, string message, bool? isBroadcast = null, bool? isAnonymous = null,
+									bool? unseenMarker = null)
+		{
+			return _vk.Call<bool>("stories.sendInteraction",
+				new VkParameters
+				{
+					{ "access_key", accessKey },
+					{ "message", message },
+					{ "is_broadcast", isBroadcast },
+					{ "is_anonymous", isAnonymous },
+					{ "unseen_marker", unseenMarker }
+				});
+		}
 	}
 }

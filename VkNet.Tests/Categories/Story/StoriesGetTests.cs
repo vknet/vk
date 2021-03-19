@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams.Stories;
@@ -10,7 +9,7 @@ namespace VkNet.Tests.Categories.Story
 	[TestFixture]
 	public class StoriesGetTests : CategoryBaseTest
 	{
-		protected override string Folder => "Stories";
+		protected override string Folder => JsonTestFolderConstants.Categories.Stories;
 
 		[Test]
 		public void Get()
@@ -20,7 +19,8 @@ namespace VkNet.Tests.Categories.Story
 
 			var result = Api.Stories.Get();
 
-			Assert.That(1, Is.EqualTo(result.Count));
+			result.Should().NotBeNull();
+			result.Count.Should().Be(1);
 		}
 
 		[Test]
@@ -31,10 +31,9 @@ namespace VkNet.Tests.Categories.Story
 
 			var result = Api.Stories.GetBanned();
 
-			var userId = result.Items.FirstOrDefault();
-
-			Assert.That(result.Count, Is.EqualTo(1));
-			Assert.NotNull(userId);
+			result.Should().NotBeNull();
+			result.Count.Should().Be(1);
+			result.Items.Should().NotContainNulls();
 		}
 
 		[Test]
@@ -48,7 +47,8 @@ namespace VkNet.Tests.Categories.Story
 				AddToNews = true
 			});
 
-			Assert.NotNull(result.UploadUrl);
+			result.Should().NotBeNull();
+			result.UploadUrl.Should().NotBeNull();
 		}
 
 		[Test]
@@ -59,7 +59,8 @@ namespace VkNet.Tests.Categories.Story
 
 			var result = Api.Stories.GetReplies(12345679, 123456789, null, true, new List<string>());
 
-			Assert.That(result.Count, Is.EqualTo(1));
+			result.Should().NotBeNull();
+			result.Count.Should().Be(1);
 		}
 
 		[Test]
@@ -69,11 +70,11 @@ namespace VkNet.Tests.Categories.Story
 			ReadCategoryJsonPath(nameof(GetViewers));
 
 			var users = Api.Stories.GetViewers(123456789, 123456789);
-			var userId = users.FirstOrDefault();
 
-			Assert.That(users.Count, Is.EqualTo(1));
-			Assert.NotNull(userId);
-			Assert.That(userId, Is.EqualTo(123456789));
+			users.Should().NotBeNull();
+			users.TotalCount.Should().Be(1);
+			users.Should().NotContainNulls();
+			users.Should().Contain(x => x == 123456789);
 		}
 
 		[Test]
@@ -83,13 +84,13 @@ namespace VkNet.Tests.Categories.Story
 			ReadCategoryJsonPath(nameof(GetViewersExtended));
 
 			var users = Api.Stories.GetViewersExtended(123456789, 123456789);
-			var user = users.FirstOrDefault();
 
-			Assert.That(users.Count, Is.EqualTo(1));
-			Assert.NotNull(user);
-			Assert.That(user.Id, Is.EqualTo(123456789));
-			Assert.That(user.FirstName, Is.EqualTo("test"));
-			Assert.That(user.LastName, Is.EqualTo("test1"));
+			users.Should().NotBeNull();
+			users.TotalCount.Should().Be(1);
+			users.Should().NotContainNulls();
+			users.Should().Contain(x => x.Id == 123456789);
+			users.Should().Contain(x => x.FirstName == "test");
+			users.Should().Contain(x => x.LastName == "test1");
 		}
 
 		[Test]
@@ -100,13 +101,13 @@ namespace VkNet.Tests.Categories.Story
 
 			var stats = Api.Stories.GetStats(123456789, 123456789);
 
-			Assert.NotNull(stats.Views);
-			Assert.NotNull(stats.Answer);
-			Assert.NotNull(stats.Bans);
-			Assert.NotNull(stats.OpenLink);
-			Assert.NotNull(stats.Replies);
-			Assert.NotNull(stats.Subscribers);
-			Assert.NotNull(stats.Shares);
+			stats.Views.Should().NotBeNull();
+			stats.Answer.Should().NotBeNull();
+			stats.Bans.Should().NotBeNull();
+			stats.OpenLink.Should().NotBeNull();
+			stats.Replies.Should().NotBeNull();
+			stats.Subscribers.Should().NotBeNull();
+			stats.Shares.Should().NotBeNull();
 		}
 
 		[Test]
@@ -148,6 +149,17 @@ namespace VkNet.Tests.Categories.Story
 			result.Items.Should().NotBeNullOrEmpty();
 			result.Profiles.Should().NotBeNullOrEmpty();
 			result.Groups.Should().NotBeNull();
+		}
+
+		[Test]
+		public void SendInteraction()
+		{
+			Url = "https://api.vk.com/method/stories.sendInteraction";
+			ReadCommonJsonFile(JsonTestFolderConstants.Common.True);
+
+			var result = Api.Stories.SendInteraction("key", "message");
+
+			result.Should().BeTrue();
 		}
 	}
 }

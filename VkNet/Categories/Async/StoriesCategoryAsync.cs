@@ -108,5 +108,15 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Search(searchParams));
 		}
+
+		/// <inheritdoc />
+		public Task<bool> SendInteractionAsync(string accessKey, string message, bool? isBroadcast = null, bool? isAnonymous = null,
+												bool? unseenMarker = null,
+												CancellationToken token = default)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => SendInteraction(accessKey, message, isBroadcast, isAnonymous, unseenMarker));
+
+			;
+		}
 	}
 }
