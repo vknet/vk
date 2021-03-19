@@ -29,32 +29,56 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public bool BanOwner(IEnumerable<long> ownersIds)
 		{
-			return _vk.Call<bool>("stories.banOwner", new VkParameters { { "owners_ids", ownersIds } });
+			return _vk.Call<bool>("stories.banOwner",
+				new VkParameters
+				{
+					{ "owners_ids", ownersIds }
+				});
 		}
 
 		/// <inheritdoc/>
 		public bool Delete(long ownerId, ulong storyId)
 		{
-			return _vk.Call<bool>("stories.delete", new VkParameters { { "owner_id", ownerId }, { "story_id", storyId } });
+			return _vk.Call<bool>("stories.delete",
+				new VkParameters
+				{
+					{ "owner_id", ownerId },
+					{ "story_id", storyId }
+				});
 		}
 
 		/// <inheritdoc/>
 		public StoryResult<IEnumerable<Story>> Get(long? ownerId = null, bool? extended = null)
 		{
-			return _vk.Call<StoryResult<IEnumerable<Story>>>("stories.get", new VkParameters { { "owner_id", ownerId }, { "extended", extended } });
+			return _vk.Call<StoryResult<IEnumerable<Story>>>("stories.get",
+				new VkParameters
+				{
+					{ "owner_id", ownerId },
+					{ "extended", extended }
+				});
 		}
 
 		/// <inheritdoc/>
 		public StoryResult<long> GetBanned(bool? extended = null, IEnumerable<string> fields = null)
 		{
-			return _vk.Call<StoryResult<long>>("stories.getBanned", new VkParameters { { "fields", fields }, { "extended", extended } });
+			return _vk.Call<StoryResult<long>>("stories.getBanned",
+				new VkParameters
+				{
+					{ "fields", fields },
+					{ "extended", extended }
+				});
 		}
 
 		/// <inheritdoc/>
 		public StoryResult<Story> GetById(IEnumerable<string> stories, bool? extended = null, IEnumerable<string> fields = null)
 		{
 			return _vk.Call<StoryResult<Story>>("stories.getById",
-				new VkParameters { { "stories", stories }, { "fields", fields }, { "extended", extended } });
+				new VkParameters
+				{
+					{ "stories", stories },
+					{ "fields", fields },
+					{ "extended", extended }
+				});
 		}
 
 		/// <inheritdoc/>
@@ -63,20 +87,27 @@ namespace VkNet.Categories
 			return _vk.Call<StoryServerUrl>("stories.getPhotoUploadServer",
 				new VkParameters
 				{
-					{ "reply_to_story", getPhotoUploadServerParams.ReplyToStory }, { "link_text", getPhotoUploadServerParams.LinkText },
-					{ "link_url", getPhotoUploadServerParams.LinkUrl }, { "add_to_news", getPhotoUploadServerParams.AddToNews },
-					{ "user_ids", getPhotoUploadServerParams.UserIds }, { "group_id", getPhotoUploadServerParams.GroupId },
+					{ "reply_to_story", getPhotoUploadServerParams.ReplyToStory },
+					{ "link_text", getPhotoUploadServerParams.LinkText },
+					{ "link_url", getPhotoUploadServerParams.LinkUrl },
+					{ "add_to_news", getPhotoUploadServerParams.AddToNews },
+					{ "user_ids", getPhotoUploadServerParams.UserIds },
+					{ "group_id", getPhotoUploadServerParams.GroupId },
 					{ "clickable_stickers", Utilities.SerializeToJson(getPhotoUploadServerParams.ClickableStickers) }
 				});
 		}
 
 		/// <inheritdoc/>
-		public StoryResult<IEnumerable<Story>> GetReplies(long ownerId, ulong storyId, string accessKey = null, bool? extended = null, IEnumerable<string> fields = null)
+		public StoryResult<IEnumerable<Story>> GetReplies(long ownerId, ulong storyId, string accessKey = null, bool? extended = null,
+														IEnumerable<string> fields = null)
 		{
 			return _vk.Call<StoryResult<IEnumerable<Story>>>("stories.getReplies",
 				new VkParameters
 				{
-					{ "owner_id", ownerId }, { "story_id", storyId }, { "access_key", accessKey }, { "fields", fields },
+					{ "owner_id", ownerId },
+					{ "story_id", storyId },
+					{ "access_key", accessKey },
+					{ "fields", fields },
 					{ "extended", extended }
 				});
 		}
@@ -84,7 +115,12 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public StoryStatsResult GetStats(long ownerId, ulong storyId)
 		{
-			return _vk.Call<StoryStatsResult>("stories.getStats", new VkParameters { { "owner_id", ownerId }, { "story_id", storyId } });
+			return _vk.Call<StoryStatsResult>("stories.getStats",
+				new VkParameters
+				{
+					{ "owner_id", ownerId },
+					{ "story_id", storyId }
+				});
 		}
 
 		/// <inheritdoc/>
@@ -93,9 +129,12 @@ namespace VkNet.Categories
 			return _vk.Call<StoryServerUrl>("stories.getVideoUploadServer",
 				new VkParameters
 				{
-					{ "reply_to_story", getVideoUploadServerParams.ReplyToStory }, { "link_text", getVideoUploadServerParams.LinkText },
-					{ "link_url", getVideoUploadServerParams.LinkUrl }, { "add_to_news", getVideoUploadServerParams.AddToNews },
-					{ "user_ids", getVideoUploadServerParams.UserIds }, { "group_id", getVideoUploadServerParams.GroupId },
+					{ "reply_to_story", getVideoUploadServerParams.ReplyToStory },
+					{ "link_text", getVideoUploadServerParams.LinkText },
+					{ "link_url", getVideoUploadServerParams.LinkUrl },
+					{ "add_to_news", getVideoUploadServerParams.AddToNews },
+					{ "user_ids", getVideoUploadServerParams.UserIds },
+					{ "group_id", getVideoUploadServerParams.GroupId },
 					{ "clickable_stickers", Utilities.SerializeToJson(getVideoUploadServerParams.ClickableStickers) }
 				});
 		}
@@ -130,20 +169,50 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public bool HideAllReplies(long ownerId)
 		{
-			return _vk.Call<bool>("stories.hideAllReplies", new VkParameters { { "owner_id", ownerId } });
+			return _vk.Call<bool>("stories.hideAllReplies",
+				new VkParameters
+				{
+					{ "owner_id", ownerId }
+				});
 		}
 
 		/// <inheritdoc/>
 		public bool HideReply(long ownerId, ulong storyId, string accessKey = null)
 		{
 			return _vk.Call<bool>("stories.hideReply",
-				new VkParameters { { "owner_id", ownerId }, { "story_id", storyId }, { "access_key", accessKey } });
+				new VkParameters
+				{
+					{ "owner_id", ownerId },
+					{ "story_id", storyId },
+					{ "access_key", accessKey }
+				});
 		}
 
 		/// <inheritdoc/>
 		public bool UnbanOwner(IEnumerable<long> ownersIds)
 		{
-			return _vk.Call<bool>("stories.unbanOwner", new VkParameters { { "owners_ids", ownersIds } });
+			return _vk.Call<bool>("stories.unbanOwner",
+				new VkParameters
+				{
+					{ "owners_ids", ownersIds }
+				});
+		}
+
+		/// <inheritdoc />
+		public VkCollection<Story> Save(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields)
+		{
+			return _vk.Call<VkCollection<Story>>("stories.save",
+				new VkParameters
+				{
+					{
+						"upload_results", new VkResponseObject<StoryServerUrl>
+						{
+							Response = uploadResults
+						}
+					},
+					{ "extended", extended },
+					{ "fields", fields }
+				});
 		}
 	}
 }

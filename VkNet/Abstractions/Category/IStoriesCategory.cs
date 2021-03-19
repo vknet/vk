@@ -51,5 +51,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IStoriesCategoryAsync.UnbanOwnerAsync"/>
 		bool UnbanOwner(IEnumerable<long> ownersIds);
+
+		/// <inheritdoc cref="IStoriesCategoryAsync.SaveAsync"/>
+		VkCollection<Story> Save(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields);
 	}
 }

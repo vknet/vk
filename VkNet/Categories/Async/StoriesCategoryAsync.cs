@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -47,7 +48,8 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc/>
-		public Task<StoryResult<IEnumerable<Story>>> GetRepliesAsync(long ownerId, ulong storyId, string accessKey = null, bool? extended = null, IEnumerable<string> fields = null)
+		public Task<StoryResult<IEnumerable<Story>>> GetRepliesAsync(long ownerId, ulong storyId, string accessKey = null,
+																	bool? extended = null, IEnumerable<string> fields = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetReplies(ownerId, storyId, accessKey, extended, fields));
 		}
@@ -92,6 +94,12 @@ namespace VkNet.Categories
 		public Task<bool> UnbanOwnerAsync(IEnumerable<long> ownersIds)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => UnbanOwner(ownersIds));
+		}
+
+		/// <inheritdoc />
+		public Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields, CancellationToken token)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Save(uploadResults,extended,fields));
 		}
 	}
 }

@@ -22,7 +22,6 @@ namespace VkNet.Tests
 	/// <summary>
 	/// Базовый класс для тестирования категорий методов.
 	/// </summary>
-
 	public abstract class BaseTest : IDisposable
 	{
 		protected readonly AutoMocker Mocker = new AutoMocker();
@@ -170,9 +169,19 @@ namespace VkNet.Tests
 			Json = ReadJson(jsonRelativePaths);
 		}
 
+		protected void ReadCommonJsonFile(string fileName)
+		{
+			ReadJsonFile(JsonTestFolderConstants.RootFolder.Common, fileName);
+		}
+
+		protected void ReadCategoryJsonFile(string categoryName, string fileName)
+		{
+			ReadJsonFile(JsonTestFolderConstants.RootFolder.Categories, categoryName, fileName);
+		}
+
 		protected void ReadErrorsJsonFile(uint errorCode)
 		{
-			ReadJsonFile("Errors", errorCode.ToString());
+			ReadJsonFile(JsonTestFolderConstants.RootFolder.Errors, errorCode.ToString());
 		}
 
 		protected string ReadJson(params string[] jsonRelativePaths)
@@ -180,7 +189,7 @@ namespace VkNet.Tests
 			var folders = new List<string>
 			{
 				AppContext.BaseDirectory,
-				"TestData"
+				JsonTestFolderConstants.RootFolder.TestData
 			};
 
 			folders.AddRange(jsonRelativePaths);

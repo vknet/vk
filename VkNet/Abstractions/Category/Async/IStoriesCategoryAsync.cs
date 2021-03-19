@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -293,5 +294,17 @@ namespace VkNet.Abstractions.Category
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.unbanOwner
 		/// </remarks>
 		Task<bool> UnbanOwnerAsync(IEnumerable<long> ownersIds);
+
+		/// <summary>
+		/// Сохраняет историю.
+		/// </summary>
+		/// <param name="uploadResults">Список строк, которые возвращает stories.getPhotoUploadServer или stories.getVideoUploadServer.</param>
+		/// <param name="extended">Флаг, может принимать значения 1 или 0</param>
+		/// <param name="fields">Список слов, разделенных через запятую</param>
+		/// <param name="token"></param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект, содержащий число историй в поле count и массив историй в поле items.
+		/// </returns>
+		Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields, CancellationToken token);
 	}
 }
