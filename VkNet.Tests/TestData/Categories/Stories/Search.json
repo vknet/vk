@@ -1,0 +1,130 @@
+﻿{
+  "response": {
+    "count": 1,
+    "items": [
+      {
+        "type": "stories",
+        "stories": [
+          {
+            "id": 456239095,
+            "owner_id": 9767678,
+            "access_key": "story",
+            "can_comment": 0,
+            "can_reply": 0,
+            "can_see": 1,
+            "can_like": true,
+            "can_share": 1,
+            "can_hide": 1,
+            "date": 1616160584,
+            "expires_at": 1616246984,
+            "photo": {
+              "album_id": -81,
+              "date": 1616160583,
+              "id": 457242157,
+              "owner_id": 9767678,
+              "has_tags": false,
+              "sizes": [
+                {
+                  "height": 75,
+                  "url": "https://sun7-9.usy=96&type=story",
+                  "type": "s",
+                  "width": 35
+                },
+                {
+                  "height": 130,
+                  "url": "https://sun7-9.usy=96&type=story",
+                  "type": "m",
+                  "width": 60
+                },
+                {
+                  "height": 256,
+                  "url": "https://sun7-9.usy=96&type=story",
+                  "type": "j",
+                  "width": 118
+                },
+                {
+                  "height": 604,
+                  "url": "https://sun7-9.usy=96&type=story",
+                  "type": "x",
+                  "width": 279
+                },
+                {
+                  "height": 807,
+                  "url": "https://sun7-9.usy=96&type=story",
+                  "type": "y",
+                  "width": 373
+                },
+                {
+                  "height": 1080,
+                  "url": "https://sun7-9.usy=96&type=story",
+                  "type": "z",
+                  "width": 499
+                },
+                {
+                  "height": 1920,
+                  "url": "https://sun7-9.usy=96&type=story",
+                  "type": "w",
+                  "width": 887
+                }
+              ],
+              "text": ""
+            },
+            "replies": {
+              "count": 0,
+              "new": 0
+            },
+            "is_one_time": false,
+            "track_code": "story/nAHOAJUK/gLOGzGn9wPOAesuqwQABaAGoA==",
+            "type": "photo",
+            "clickable_stickers": {
+              "original_height": 2079,
+              "original_width": 960,
+              "clickable_stickers": [
+                {
+                  "id": 1,
+                  "type": "post",
+                  "clickable_area": [
+                    {
+                      "x": 34,
+                      "y": 232
+                    },
+                    {
+                      "x": 925,
+                      "y": 232
+                    },
+                    {
+                      "x": 925,
+                      "y": 1728
+                    },
+                    {
+                      "x": 34,
+                      "y": 1728
+                    }
+                  ],
+                  "post_owner_id": 9767678,
+                  "post_id": 44505
+                }
+              ]
+            },
+            "is_restricted": false,
+            "no_sound": true,
+            "need_mute": false,
+            "mute_reply": false,
+            "can_ask": 0,
+            "can_ask_anonymous": 0
+          }
+        ]
+      }
+    ],
+    "profiles": [
+      {
+        "first_name": "Ладамирра",
+        "id": 9767678,
+        "last_name": "Мира",
+        "can_access_closed": true,
+        "is_closed": false
+      }
+    ],
+    "groups": []
+  }
+}

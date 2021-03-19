@@ -97,9 +97,16 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields, CancellationToken token)
+		public Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields,
+													CancellationToken token)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => Save(uploadResults,extended,fields));
+			return TypeHelper.TryInvokeMethodAsync(() => Save(uploadResults, extended, fields));
+		}
+
+		/// <inheritdoc />
+		public Task<StoryResult<Story>> SearchAsync(StoriesSearchParams searchParams, CancellationToken token)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Search(searchParams));
 		}
 	}
 }

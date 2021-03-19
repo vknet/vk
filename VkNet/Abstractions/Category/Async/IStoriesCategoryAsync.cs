@@ -145,7 +145,8 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/stories.getReplies
 		/// </remarks>
-		Task<StoryResult<IEnumerable<Story>>> GetRepliesAsync(long ownerId, ulong storyId, string accessKey = null, bool? extended = null, IEnumerable<string> fields = null);
+		Task<StoryResult<IEnumerable<Story>>> GetRepliesAsync(long ownerId, ulong storyId, string accessKey = null, bool? extended = null,
+															IEnumerable<string> fields = null);
 
 		/// <summary>
 		/// Возвращает статистику истории.
@@ -301,10 +302,27 @@ namespace VkNet.Abstractions.Category
 		/// <param name="uploadResults">Список строк, которые возвращает stories.getPhotoUploadServer или stories.getVideoUploadServer.</param>
 		/// <param name="extended">Флаг, может принимать значения 1 или 0</param>
 		/// <param name="fields">Список слов, разделенных через запятую</param>
-		/// <param name="token"></param>
+		/// <param name="token">Токен отмены запроса</param>
 		/// <returns>
 		/// После успешного выполнения возвращает объект, содержащий число историй в поле count и массив историй в поле items.
 		/// </returns>
-		Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields, CancellationToken token);
+		Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields,
+											CancellationToken token);
+
+		/// <summary>
+		/// Возвращает результаты поиска по историям.
+		/// </summary>
+		/// <param name = "searchParams">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <param name="token">Токен отмены запроса</param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и массив объектов блока ленты историй в поле items.
+		/// Если был задан параметр extended=1, возвращает объекты profiles  и groups, содержащие массивы объектов, описывающих пользователей и сообщества
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/stories.search
+		/// </remarks>
+		Task<StoryResult<Story>> SearchAsync(StoriesSearchParams searchParams, CancellationToken token);
 	}
 }

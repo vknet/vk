@@ -214,5 +214,23 @@ namespace VkNet.Categories
 					{ "fields", fields }
 				});
 		}
+
+		/// <inheritdoc />
+		public StoryResult<Story> Search(StoriesSearchParams searchParams)
+		{
+			return _vk.Call<StoryResult<Story>>("stories.search",
+				new VkParameters
+				{
+					{ "q", searchParams.Query },
+					{ "fields", searchParams.Fields },
+					{ "place_id", searchParams.PlaceId },
+					{ "latitude", searchParams.Latitude },
+					{ "longitude", searchParams.Longitude },
+					{ "radius", searchParams.Radius },
+					{ "mentioned_id", searchParams.MentionedId },
+					{ "count", searchParams.Count },
+					{ "extended", searchParams.Extended }
+				});
+		}
 	}
 }

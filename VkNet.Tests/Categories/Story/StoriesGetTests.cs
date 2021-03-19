@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams.Stories;
 using VkNet.Tests.Infrastructure;
@@ -7,7 +8,6 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Story
 {
 	[TestFixture]
-
 	public class StoriesGetTests : CategoryBaseTest
 	{
 		protected override string Folder => "Stories";
@@ -43,7 +43,10 @@ namespace VkNet.Tests.Categories.Story
 			Url = "https://api.vk.com/method/stories.getPhotoUploadServer";
 			ReadCategoryJsonPath(nameof(GetPhotoUploadServer));
 
-			var result = Api.Stories.GetPhotoUploadServer(new GetPhotoUploadServerParams { AddToNews = true });
+			var result = Api.Stories.GetPhotoUploadServer(new GetPhotoUploadServerParams
+			{
+				AddToNews = true
+			});
 
 			Assert.NotNull(result.UploadUrl);
 		}
@@ -112,11 +115,39 @@ namespace VkNet.Tests.Categories.Story
 			Url = "https://api.vk.com/method/stories.getById";
 			ReadCategoryJsonPath(nameof(GetById));
 
-			var stories = Api.Stories.GetById(new List<string> { "123456789_123456789" }, true, new List<string>());
-			var story = stories.Items.FirstOrDefault();
+			var stories = Api.Stories.GetById(new List<string>
+				{
+					"123456789_123456789"
+				},
+				true,
+				new List<string>());
 
-			Assert.That(stories.Count, Is.EqualTo(1));
-			Assert.NotNull(story);
+			stories.Should().NotBeNull();
+			stories.Count.Should().Be(1);
+			stories.Items.Should().NotBeNullOrEmpty();
+		}
+
+		[Test]
+		public void Search()
+		{
+			Url = "https://api.vk.com/method/stories.search";
+			ReadCategoryJsonPath(nameof(Search));
+
+			var result = Api.Stories.Search(new StoriesSearchParams
+			{
+				Query = "Ростов",
+				Extended = true,
+				Fields = new List<string>
+				{
+					"bdate"
+				}
+			});
+
+			result.Should().NotBeNull();
+			result.Count.Should().Be(1);
+			result.Items.Should().NotBeNullOrEmpty();
+			result.Profiles.Should().NotBeNullOrEmpty();
+			result.Groups.Should().NotBeNull();
 		}
 	}
 }
