@@ -59,7 +59,7 @@
 		<PackageReference Include="HtmlAgilityPack" Version="1.11.31" />
 		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.19.0.28253" PrivateAssets="all" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.20.0.28934" PrivateAssets="all" />
 		<PackageReference Include="JetBrains.Annotations" Version="2020.3.0" PrivateAssets="all" />
 	</ItemGroup>
 
