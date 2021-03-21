@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
+using VkNet.Model.RequestParams.Notifications;
+using VkNet.Model.Results.Notifications;
 
 namespace VkNet.Abstractions
 {
@@ -48,6 +51,7 @@ namespace VkNet.Abstractions
 		/// пользователя. Если параметр не
 		/// задан, то он считается равным текущему времени. целое число
 		/// </param>
+		/// <param name="token">Токен отмены запроса</param>
 		/// <returns>
 		/// После успешного выполнения возвращает объект, содержащий поля:
 		/// items
@@ -249,16 +253,14 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/notifications.get
 		/// </remarks>
-		Task<IEnumerable<NotificationGetResult>> GetAsync(ulong? count = null
-														, string startFrom = null
-														, IEnumerable<string> filters = null
-														, long? startTime = null
-														, long? endTime = null);
+		Task<IEnumerable<NotificationGetResult>> GetAsync(ulong? count = null, string startFrom = null, IEnumerable<string> filters = null,
+														long? startTime = null, long? endTime = null, CancellationToken token = default);
 
 		/// <summary>
 		/// Сбрасывает счетчик непросмотренных оповещений об ответах других пользователей
 		/// на записи текущего пользователя.
 		/// </summary>
+		/// <param name="token">Токен отмены запроса</param>
 		/// <returns>
 		/// Если у пользователя присутствовали непросмотренные ответы, возвращает 1 в
 		/// случае успешного завершения. В противном
@@ -267,6 +269,30 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/notifications.markAsViewed
 		/// </remarks>
-		Task<bool> MarkAsViewedAsync();
+		Task<bool> MarkAsViewedAsync(CancellationToken token);
+
+		/// <summary>
+		/// Отправляет уведомление пользователю приложения VK Apps.
+		/// </summary>
+		/// <param name = "sendMessageParams">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <param name="token">Токен отмены запроса</param>
+		/// <returns>
+		/// После успешного выполнения возвращает массив объектов, каждый из которых содержит поля:
+		/// user_id (integer) —  Идентификатор пользователя;
+		/// status  (boolean)  —  true, если уведомление отправлено успешно. Иначе false.
+		/// error (object) — в случае, если статус отправки имеет значение false, дополнительно вернётся объект ошибки, содержащий код ошибки в поле code (integer) и описание description (string).
+		/// Возможные значения code:
+		/// 1 —  уведомления приложения отключены;
+		/// 2 — отправлено слишком много уведомлений за последний час;
+		/// 3 — отправлено слишком много уведомлений за последние сутки;
+		/// 4 —  приложение не установлено.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/notifications.sendMessage
+		/// </remarks>
+		Task<IEnumerable<NotificationsSendMessageResult>> SendMessageAsync(NotificationsSendMessageParams sendMessageParams,
+																			CancellationToken token);
 	}
 }
