@@ -12,6 +12,8 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Model.RequestParams.Messages;
+using VkNet.Model.Results.Messages;
 using VkNet.Utils;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -332,7 +334,6 @@ namespace VkNet.Categories
 				});
 		}
 
-
 		/// <inheritdoc />
 		public PinnedMessage Pin(long peerId, ulong? messageId = null, ulong? conversationMessageId = null)
 		{
@@ -358,6 +359,22 @@ namespace VkNet.Categories
 					{ "preview_length", getImportantMessagesParams.PreviewLength },
 					{ "extended", getImportantMessagesParams.Extended },
 					{ "group_id", getImportantMessagesParams.GroupId }
+				});
+		}
+
+		/// <inheritdoc />
+		public GetIntentUsersResult GetIntentUsers(MessagesGetIntentUsersParams getIntentUsersParams)
+		{
+			return _vk.Call<GetIntentUsersResult>("messages.getIntentUsers",
+				new VkParameters
+				{
+					{ "intent", getIntentUsersParams.Intent },
+					{ "name_case", getIntentUsersParams.NameCase },
+					{ "fields", getIntentUsersParams.Fields },
+					{ "subscribe_id", getIntentUsersParams.SubscribeId },
+					{ "offset", getIntentUsersParams.Offset },
+					{ "count", getIntentUsersParams.Count },
+					{ "extended", getIntentUsersParams.Extended }
 				});
 		}
 
@@ -839,6 +856,19 @@ namespace VkNet.Categories
 				});
 		}
 
+		/// <inheritdoc />
+		public bool SendMessageEventAnswer(string eventId, long userId, long peerId, EventData eventData = null)
+		{
+			return _vk.Call<bool>("messages.sendMessageEventAnswer",
+				new VkParameters
+				{
+					{ "event_id", eventId },
+					{ "user_id", userId },
+					{ "peer_id", peerId },
+					{ "event_data", eventData != null ? JsonConvert.SerializeObject(eventData) : string.Empty }
+				});
+		}
+
 		/// <summary>
 		/// Ворзвращает указанное сообщение по его идентификатору.
 		/// </summary>
@@ -874,19 +904,6 @@ namespace VkNet.Categories
 			}
 
 			throw new VkApiException("Сообщения с таким ID не существует.");
-		}
-
-		/// <inheritdoc />
-		public bool SendMessageEventAnswer(string eventId, long userId, long peerId, EventData eventData = null)
-		{
-			return _vk.Call<bool>("messages.sendMessageEventAnswer",
-				new VkParameters
-				{
-					{ "event_id", eventId },
-					{ "user_id", userId },
-					{ "peer_id", peerId },
-					{ "event_data", eventData != null ? JsonConvert.SerializeObject(eventData) : string.Empty }
-				});
 		}
 	}
 }

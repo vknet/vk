@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Model.RequestParams.Messages;
+using VkNet.Model.Results.Messages;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions
@@ -272,6 +275,7 @@ namespace VkNet.Abstractions
 		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 		/// пользователя).
 		/// </param>
+		/// <param name="markConversationAsRead">Пометить обсуждение как прочитанное</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
@@ -721,7 +725,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversationsById
 		/// </remarks>
 		Task<ConversationResult> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields = null,
-																bool? extended = null, ulong? groupId = null);
+															bool? extended = null, ulong? groupId = null);
 
 		/// <summary>
 		/// Возвращает список бесед пользователя.
@@ -783,7 +787,8 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте
 		/// http://vk.com/dev/messages.getConversationMembers
 		/// </remarks>
-		Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields = null, ulong? groupId = null);
+		Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields = null,
+																		ulong? groupId = null);
 
 		/// <summary>
 		/// Возвращает сообщения по их идентификаторам в рамках беседы.
@@ -971,6 +976,29 @@ namespace VkNet.Abstractions
 		/// <param name="eventData">объект действия, которое должно произойти после нажатия на кнопку</param>
 		/// <returns></returns>
 		Task<bool> SendMessageEventAnswerAsync(string eventId, long userId, long peerId, EventData eventData = null);
+
+		/// <summary>
+		/// Метод отдает пользователей, которые подписались на определенные интенты.
+		/// https://vk.com/dev/bots_reply_rules
+		/// </summary>
+		/// <param name = "getIntentUsersParams">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <param name="token">Токен отмены запроса</param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект, содержащий число результатов в поле count (integer) и массив идентификаторов пользователей в поле items ([integer]).
+		/// Если указан параметр extended:
+		/// profiles
+		/// Возвращает объект, который содержит следующие поля:
+		/// count
+		/// integerчисло результатов. items
+		/// arrayмассив идентификаторов пользователей в поле items ([integer]). profiles
+		/// arrayмассив объектов пользователей. (Если был указан параметр extended)
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getIntentUsers
+		/// </remarks>
+		Task<GetIntentUsersResult> GetIntentUsersAsync(MessagesGetIntentUsersParams getIntentUsersParams, CancellationToken token);
 
 	#region Obsoleted
 

@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Model.RequestParams.Messages;
+using VkNet.Model.Results.Messages;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -141,8 +144,13 @@ namespace VkNet.Categories
 		public Task<VkCollection<Message>> GetByIdAsync(IEnumerable<ulong> messageIds, IEnumerable<string> fields,
 														ulong? previewLength = null, bool? extended = null, ulong? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() =>
-				GetById(messageIds, fields, previewLength, extended, groupId));
+			return TypeHelper.TryInvokeMethodAsync(() => GetById(messageIds, fields, previewLength, extended, groupId));
+		}
+
+		/// <inheritdoc />
+		public Task<GetIntentUsersResult> GetIntentUsersAsync(MessagesGetIntentUsersParams getIntentUsersParams, CancellationToken token)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetIntentUsers(getIntentUsersParams));
 		}
 
 		/// <inheritdoc />
@@ -177,7 +185,8 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> MarkAsReadAsync(string peerId, long? startMessageId = null, long? groupId = null, bool? markConversationAsRead = null)
+		public Task<bool> MarkAsReadAsync(string peerId, long? startMessageId = null, long? groupId = null,
+										bool? markConversationAsRead = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
 				MarkAsRead(peerId, startMessageId, groupId, markConversationAsRead));
