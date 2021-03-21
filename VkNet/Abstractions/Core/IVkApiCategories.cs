@@ -218,5 +218,10 @@ namespace VkNet.Abstractions
 		/// Donut
 		/// </summary>
 		IDonutCategory Donut { get; }
+
+		/// <summary>
+		/// Donut
+		/// </summary>
+		IDownloadedGamesCategory DownloadedGames { get; }
 	}
 }

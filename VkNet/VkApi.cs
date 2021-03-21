@@ -194,12 +194,6 @@ namespace VkNet
 			_logger?.LogDebug("Авторизация прошла успешно");
 		}
 
-		private void OnTokenExpired(VkApi sender)
-		{
-			RefreshTokenAsync(_ap.TwoFactorAuthorization).GetAwaiter().GetResult();
-			OnTokenUpdatedAutomatically?.Invoke(sender);
-		}
-
 		/// <inheritdoc />
 		public void Authorize(ApiAuthParams @params)
 		{
@@ -429,6 +423,12 @@ namespace VkNet
 
 			AccessToken = authorization.AccessToken;
 			UserId = authorization.UserId;
+		}
+
+		private void OnTokenExpired(VkApi sender)
+		{
+			RefreshTokenAsync(_ap.TwoFactorAuthorization).GetAwaiter().GetResult();
+			OnTokenUpdatedAutomatically?.Invoke(sender);
 		}
 
 		/// <inheritdoc cref="IVkApi.Validate" />
@@ -662,6 +662,9 @@ namespace VkNet
 
 		/// <inheritdoc />
 		public IDonutCategory Donut { get; set; }
+
+		/// <inheritdoc />
+		public IDownloadedGamesCategory DownloadedGames { get; set; }
 
 	#endregion
 
@@ -921,6 +924,7 @@ namespace VkNet
 			PrettyCards = new PrettyCardsCategory(this);
 			Podcasts = new PodcastsCategory(this);
 			Donut = new DonutCategory(this);
+			DownloadedGames = new DownloadedGamesCategory(this);
 
 			RequestsPerSecond = 3;
 
