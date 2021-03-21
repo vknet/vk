@@ -63,6 +63,14 @@ namespace VkNet.Model.RequestParams.Market
 		public decimal Price { get; set; }
 
 		/// <summary>
+		/// Цена товара. дробное число, обязательный параметр, минимальное значение 0.01
+		/// (дробное число, обязательный параметр,
+		/// минимальное значение 0.01).
+		/// </summary>
+		[JsonProperty("old_price")]
+		public decimal OldPrice { get; set; }
+
+		/// <summary>
 		/// Статус товара (1 — товар удален, 0 — товар не удален). флаг, может принимать
 		/// значения 1 или 0 (флаг, может
 		/// принимать значения 1 или 0).
@@ -96,5 +104,35 @@ namespace VkNet.Model.RequestParams.Market
 		/// </remarks>
 		[JsonProperty("url")]
 		public Uri Url { get; set; }
+
+		/// <summary>
+		/// Ширина в миллиметрах.
+		/// </summary>
+		[JsonProperty("dimension_width")]
+		public int DimensionWidth { get; set; }
+
+		/// <summary>
+		/// Высота в миллиметрах.
+		/// </summary>
+		[JsonProperty("dimension_height")]
+		public int DimensionHeight { get; set; }
+
+		/// <summary>
+		/// Глубина в миллиметрах.
+		/// </summary>
+		[JsonProperty("dimension_length")]
+		public int DimensionLength { get; set; }
+
+		/// <summary>
+		/// Вес в граммах.
+		/// </summary>
+		[JsonProperty("weight")]
+		public int Weight { get; set; }
+
+		/// <summary>
+		/// Артикул товара, произвольная строка
+		/// </summary>
+		[JsonProperty("sku")]
+		public int Sku { get; set; }
 	}
 }

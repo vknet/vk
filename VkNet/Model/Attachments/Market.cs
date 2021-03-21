@@ -35,6 +35,11 @@ namespace VkNet.Model
 		public Price Price { get; set; }
 
 		/// <summary>
+		/// Габариты товара.
+		/// </summary>
+		public Dimensions Dimensions { get; set; }
+
+		/// <summary>
 		/// Категория товара
 		/// </summary>
 		public MarketCategory Category { get; set; }
