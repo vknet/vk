@@ -29,6 +29,6 @@ namespace VkNet.Enums.SafetyEnums
 		/// donuts — будут возвращены доны 
 		/// строка.
 		/// </summary>
-		public static readonly GroupsMemberFilters Donuts = RegisterPossibleValue(value: "donuts");
+		public static readonly GroupsMemberFilters Donut = RegisterPossibleValue(value: "donut");
 	}
 }
