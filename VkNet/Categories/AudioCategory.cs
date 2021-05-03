@@ -296,7 +296,8 @@ namespace VkNet.Categories
 			var parameters = new VkParameters
 			{
 				{ "server", server },
-				{ "audio", Uri.EscapeDataString(audio) },
+				// Фикс #161. Из-за URL Decode строка audio передавалась неверно, из-за чего появлялась ошибка Invalid hash
+				{ "audio", audio },
 				{ "hash", hash },
 				{ "artist", artist },
 				{ "title", title }
