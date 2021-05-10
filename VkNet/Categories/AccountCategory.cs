@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -343,13 +343,15 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public PrivacySettingsValue SetPrivacy(string key, string value)
+		public Privacy SetPrivacy(string key, Privacy privacy)
 		{
-			return _vk.Call<PrivacySettingsValue>("account.setPrivacy",
+			return _vk.Call<Privacy>("account.setPrivacy",
 				new VkParameters
 				{
 					{ "key", key },
-					{ "value", value }
+					{ "category", privacy.Category },
+					{ "allowed_owners", privacy.Owners?.Allowed },
+					{ "excluded_owners", privacy.Owners?.Excluded }
 				});
 		}
 	}

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -86,6 +86,6 @@ namespace VkNet.Abstractions
 		PrivacySettings GetPrivacySettings();
 
 		/// <inheritdoc cref="IAccountCategoryAsync.SetPrivacyAsync" />
-		PrivacySettingsValue SetPrivacy(string key, string value);
+		Privacy SetPrivacy(string key, Privacy privacy);
 	}
 }

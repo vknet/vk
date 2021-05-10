@@ -63,7 +63,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<long> AddAlbumAsync(string title, long? groupId = null, IEnumerable<Privacy> privacy = null)
+		public Task<long> AddAlbumAsync(string title, long? groupId = null, Privacy privacy = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => AddAlbum(title, groupId, privacy));
 		}

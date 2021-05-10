@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums;
@@ -252,7 +252,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/video.addAlbum
 		/// </remarks>
-		Task<long> AddAlbumAsync(string title, long? groupId = null, IEnumerable<Privacy> privacy = null);
+		Task<long> AddAlbumAsync(string title, long? groupId = null, Privacy privacy = null);
 
 		/// <summary>
 		/// Редактирует название альбома видеозаписей.

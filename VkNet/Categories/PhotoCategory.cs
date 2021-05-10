@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json.Linq;
@@ -30,16 +30,6 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params)
 		{
-			if (@params.PrivacyView == null)
-			{
-				@params.PrivacyView = new List<Privacy>();
-			}
-
-			if (@params.PrivacyComment == null)
-			{
-				@params.PrivacyComment = new List<Privacy>();
-			}
-
 			if (@params.Title.Length < 2)
 			{
 				throw new VkApiException(message: "Параметр title обязательный, минимальная длина 2 символа");
@@ -50,8 +40,8 @@ namespace VkNet.Categories
 				{ "title", @params.Title },
 				{ "group_id", @params.GroupId },
 				{ "description", @params.Description },
-				{ "privacy_view", string.Join(separator: ",", values: @params.PrivacyView) },
-				{ "privacy_comment", string.Join(separator: ",", values: @params.PrivacyComment) },
+				{ "privacy_view", @params.PrivacyView },
+				{ "privacy_comment", @params.PrivacyComment },
 				{ "upload_by_admins_only", @params.UploadByAdminsOnly }, { "comments_disabled", @params.CommentsDisabled }
 			};
 
@@ -61,24 +51,14 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool EditAlbum(PhotoEditAlbumParams @params)
 		{
-			if (@params.PrivacyView == null)
-			{
-				@params.PrivacyView = new List<Privacy>();
-			}
-
-			if (@params.PrivacyComment == null)
-			{
-				@params.PrivacyComment = new List<Privacy>();
-			}
-
 			var parameters = new VkParameters
 			{
 				{ "album_id", @params.AlbumId }
 				, { "title", @params.Title }
 				, { "description", @params.Description }
 				, { "owner_id", @params.OwnerId }
-				, { "privacy_view", string.Join(separator: ",", values: @params.PrivacyView) }
-				, { "privacy_comment", string.Join(separator: ",", values: @params.PrivacyComment) }
+				, { "privacy_view", @params.PrivacyView }
+				, { "privacy_comment", @params.PrivacyComment }
 				, { "upload_by_admins_only", @params.UploadByAdminsOnly }
 				, { "comments_disabled", @params.CommentsDisabled }
 			};

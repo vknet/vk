@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -38,8 +38,8 @@ namespace VkNet.Tests.Categories.Photos
 			Assert.That(album.Description, Is.EqualTo("description for album"));
 			Assert.That(album.Created, Is.EqualTo(DateHelper.TimeStampToDateTime(1403185184)));
 			Assert.That(album.Updated, Is.EqualTo(DateHelper.TimeStampToDateTime(1403185184)));
-			Assert.That(album.PrivacyView[0], Is.EqualTo(Privacy.All));
-			Assert.That(album.PrivacyComment[0], Is.EqualTo(Privacy.All));
+			Assert.That(album.PrivacyView.Category, Is.Null);
+			Assert.That(album.PrivacyComment.Category, Is.Null); ;
 
 			Assert.That(album.Size, Is.EqualTo(0));
 		}
@@ -147,9 +147,10 @@ namespace VkNet.Tests.Categories.Photos
 
 			Assert.That(album.Size, Is.EqualTo(6));
 			Assert.That(album.ThumbIsLast, Is.True);
-			Assert.That(album.PrivacyView[0].ToString(), Is.EqualTo("list28"));
-			Assert.That(album.PrivacyComment[0].ToString(), Is.EqualTo("list28"));
-			Assert.That(album.PrivacyComment[1].ToString(), Is.EqualTo("-list1"));
+			Assert.That(album.PrivacyView.Category.ToString(), Is.EqualTo("all"));
+			Assert.That(album.PrivacyView.Owners.Excluded.First().ToString(), Is.EqualTo("1"));
+			Assert.That(album.PrivacyComment.Category.ToString(), Is.EqualTo("friends"));
+			Assert.That(album.PrivacyComment.Owners.Allowed.First().ToString(), Is.EqualTo("1"));
 		}
 
 		[Test]

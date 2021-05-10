@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
 
@@ -28,12 +28,12 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Настройки приватности просмотра альбома в специальном формате.
 		/// </summary>
-		public List<Privacy> PrivacyView { get; set; }
+		public Privacy PrivacyView { get; set; }
 
 		/// <summary>
 		/// Настройки приватности комментирования альбома в специальном формате.
 		/// </summary>
-		public List<Privacy> PrivacyComment { get; set; }
+		public Privacy PrivacyComment { get; set; }
 
 		/// <summary>
 		/// Кто может загружать фотографии в альбом (только для альбома сообщества).

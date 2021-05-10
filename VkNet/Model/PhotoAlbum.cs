@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
@@ -60,12 +60,12 @@ namespace VkNet.Model
 		/// Настройки приватности для альбома в формате настроек приватности; (не приходит
 		/// для системных альбомов)
 		/// </summary>
-		public ReadOnlyCollection<Privacy> PrivacyView { get; set; }
+		public Privacy PrivacyView { get; set; }
 
 		/// <summary>
 		/// Настройки приватности для комментирования альбома
 		/// </summary>
-		public ReadOnlyCollection<Privacy> PrivacyComment { get; set; }
+		public Privacy PrivacyComment { get; set; }
 
 		/// <summary>
 		/// Может ли текущий пользователь добавлять фотографии в альбом
@@ -109,9 +109,6 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static PhotoAlbum FromJson(VkResponse response)
 		{
-			VkResponseArray privacy = response[key: "privacy_view"];
-			VkResponseArray privacyComment = response[key: "privacy_comment"];
-
 			return new PhotoAlbum
 			{
 					Id = response[key: "album_id"] ?? response[key: "aid"] ?? response[key: "id"]
@@ -122,8 +119,8 @@ namespace VkNet.Model
 					, Created = response[key: "created"]
 					, Updated = response[key: "updated"]
 					, Size = response[key: "size"]
-					, PrivacyView = privacy.ToReadOnlyCollectionOf<Privacy>(selector: x => x)
-					, PrivacyComment = privacyComment.ToReadOnlyCollectionOf<Privacy>(selector: x => x)
+					, PrivacyView = response[key: "privacy_view"]
+					, PrivacyComment = response[key: "privacy_comment"]
 					, CanUpload = response[key: "can_upload"]
 					, ThumbSrc = response[key: "thumb_src"]
 					, Sizes = response[key: "sizes"].ToReadOnlyCollectionOf<PhotoSize>(selector: x => x)

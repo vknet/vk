@@ -25,7 +25,7 @@ namespace VkNet.Model
 		/// Текущее значение
 		/// </summary>
 		[JsonProperty("value")]
-		public PrivacySettingsValue Value { get; set; }
+		public Privacy Value { get; set; }
 
 		/// <summary>
 		/// Секция

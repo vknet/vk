@@ -12,13 +12,22 @@
         "updated": 1398625473,
         "size": 6,
         "thumb_is_last": 1,
-        "privacy_view": [
-          "list28"
-        ],
-        "privacy_comment": [
-          "list28",
-          "-list1"
-        ]
+        "privacy_view": {
+          "category": "all",
+          "owners": {
+            "excluded": [
+              "1"
+            ]
+          }
+        },
+        "privacy_comment": {
+          "category": "friends",
+          "owners": {
+            "allowed": [
+              "1"
+            ]
+          }
+        }
       }
     ]
   }

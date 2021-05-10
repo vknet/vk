@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -403,8 +403,8 @@ namespace VkNet.Abstractions
 		/// Установить приватные настройки
 		/// </summary>
 		/// <param name="key"> Ключ </param>
-		/// <param name="value"> Значение </param>
-		/// <returns> Значение параметра <see cref="value" /> </returns>
-		Task<PrivacySettingsValue> SetPrivacyAsync(string key, string value);
+		/// <param name="privacy"> Значение </param>
+		/// <returns> Значение параметра <see cref="Privacy" /> </returns>
+		Task<Privacy> SetPrivacyAsync(string key, Privacy privacy);
 	}
 }
