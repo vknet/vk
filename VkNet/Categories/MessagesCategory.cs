@@ -869,6 +869,16 @@ namespace VkNet.Categories
 				});
 		}
 
+		/// <inheritdoc />
+		public bool MarkAsUnreadConversation(long peerId)
+		{
+			return _vk.Call<bool>("messages.markAsUnreadConversation",
+				new VkParameters
+				{
+					{ "peer_id", peerId }
+				});
+		}
+
 		/// <summary>
 		/// Ворзвращает указанное сообщение по его идентификатору.
 		/// </summary>

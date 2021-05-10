@@ -346,5 +346,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => SendMessageEventAnswer(eventId, userId, peerId, eventData));
 		}
+
+		/// <inheritdoc />
+		public Task<bool> MarkAsUnreadConversationAsync(long peerId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => MarkAsUnreadConversation(peerId));
+		}
 	}
 }
