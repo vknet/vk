@@ -151,6 +151,9 @@ namespace VkNet.Abstractions
 		/// <inheritdoc cref="IMessagesCategoryAsync.SendMessageEventAnswerAsync"/>
 		bool SendMessageEventAnswer(string eventId, long userId, long peerId, EventData eventData = null);
 
+		/// <inheritdoc cref="IMessagesCategoryAsync.MarkAsUnreadConversationAsync"/>
+		bool MarkAsUnreadConversation(long peerId);
+
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetIntentUsersAsync"/>
 		GetIntentUsersResult GetIntentUsers(MessagesGetIntentUsersParams getIntentUsersParams);
 

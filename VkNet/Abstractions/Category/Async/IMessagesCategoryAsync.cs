@@ -1000,6 +1000,19 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<GetIntentUsersResult> GetIntentUsersAsync(MessagesGetIntentUsersParams getIntentUsersParams, CancellationToken token);
 
+
+		/// <summary>
+		/// Помечает диалог пользователя непрочитанным.
+		/// </summary>
+		/// <param name="peerId">
+		/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для
+		/// сообщества: -id сообщества.
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает true.
+		/// </returns>
+		Task<bool> MarkAsUnreadConversationAsync(long peerId);
+
 	#region Obsoleted
 
 		/// <summary>
