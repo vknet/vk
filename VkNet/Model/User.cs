@@ -145,18 +145,8 @@ namespace VkNet.Model
 				}
 			}
 
-			if (user.BirthDate == null || response["bdate_visibility"] != null)
+			switch (response["role"]?.ToString())
 			{
-				return user;
-			}
-
-			var birthdayParts = user.BirthDate.Split('.');
-
-			user.BirthdayVisibility = birthdayParts.Length > 2
-				? Enums.BirthdayVisibility.Full
-				: Enums.BirthdayVisibility.OnlyDayAndMonth;
-		
-			switch (response["role"]?.ToString()) {
 				case "creator":
 					user.Role = ManagerRole.Creator;
 					break;
@@ -173,6 +163,20 @@ namespace VkNet.Model
 					user.Role = null;
 					break;
 			}
+
+			if (response["bdate_visibility"] == null)
+			{
+				if (!string.IsNullOrEmpty(user.BirthDate))
+				{
+					var birthdayParts = user.BirthDate.Split('.');
+
+					user.BirthdayVisibility = birthdayParts.Length > 2
+						? Enums.BirthdayVisibility.Full
+						: Enums.BirthdayVisibility.OnlyDayAndMonth;
+				}
+			}
+			else
+				user.BirthdayVisibility = response["bdate_visibility"];
 
 			return user;
 		}
