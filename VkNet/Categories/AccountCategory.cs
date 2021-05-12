@@ -351,7 +351,9 @@ namespace VkNet.Categories
 					{ "key", key },
 					{ "category", privacy.Category },
 					{ "allowed_owners", privacy.Owners?.Allowed },
-					{ "excluded_owners", privacy.Owners?.Excluded }
+					{ "excluded_owners", privacy.Owners?.Excluded },
+					{ "allowed_lists", privacy.Lists?.Allowed },
+					{ "excluded_lists", privacy.Lists?.Excluded }
 				});
 		}
 	}

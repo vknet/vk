@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
 {
@@ -41,16 +37,6 @@ namespace VkNet.Model
 				Allowed = response["allowed"].ToReadOnlyCollectionOf<ulong>(x => x),
 				Excluded = response["excluded"].ToReadOnlyCollectionOf<ulong>(x => x)
 			};
-		}
-
-		/// <summary>
-		/// Преобразовать в строку.
-		/// </summary>
-		public override string ToString()
-		{
-			var allowed = Allowed?.Select(x => (long) x) ?? Enumerable.Empty<long>();
-			var excluded = Excluded?.Select(x => -(long) x) ?? Enumerable.Empty<long>();
-			return string.Join(",", allowed.Concat(excluded));
 		}
 
 		/// <summary>
