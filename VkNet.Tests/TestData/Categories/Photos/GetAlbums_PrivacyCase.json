@@ -21,9 +21,13 @@
           }
         },
         "privacy_comment": {
-          "category": "friends",
-          "owners": {
+          "lists": {
             "allowed": [
+              21
+            ]
+          },
+          "owners": {
+            "excluded": [
               "1"
             ]
           }

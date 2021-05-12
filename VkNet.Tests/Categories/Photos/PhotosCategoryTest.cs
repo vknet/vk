@@ -149,8 +149,9 @@ namespace VkNet.Tests.Categories.Photos
 			Assert.That(album.ThumbIsLast, Is.True);
 			Assert.That(album.PrivacyView.Category.ToString(), Is.EqualTo("all"));
 			Assert.That(album.PrivacyView.Owners.Excluded.First().ToString(), Is.EqualTo("1"));
-			Assert.That(album.PrivacyComment.Category.ToString(), Is.EqualTo("friends"));
-			Assert.That(album.PrivacyComment.Owners.Allowed.First().ToString(), Is.EqualTo("1"));
+			Assert.That(album.PrivacyComment.Category, Is.Null);
+			Assert.That(album.PrivacyComment.Lists.Allowed.First().ToString(), Is.EqualTo("21"));
+			Assert.That(album.PrivacyComment.Owners.Excluded.First().ToString(), Is.EqualTo("1"));
 		}
 
 		[Test]
