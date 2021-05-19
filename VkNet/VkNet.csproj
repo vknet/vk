@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net45;net461;netstandard2.0;net5.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
-		<VersionPrefix>1.62.0</VersionPrefix>
+		<VersionPrefix>1.63.0</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -23,7 +23,7 @@
 			Обсуждение в Telegram: https://t.me/VkDotNet
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: https://github.com/vknet/vk/milestone/38?closed=1
+			Список изменений: https://github.com/vknet/vk/milestone/39?closed=1
 		</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -55,12 +55,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncFixer" Version="1.5.1" PrivateAssets="all" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.32" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.20.0.28934" PrivateAssets="all" />
-		<PackageReference Include="JetBrains.Annotations" Version="2020.3.0" PrivateAssets="all" />
+		<PackageReference Include="AsyncFixer" Version="1.5.1" PrivateAssets="all"/>
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.33"/>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all"/>
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.22.0.31243" PrivateAssets="all"/>
+		<PackageReference Include="JetBrains.Annotations" Version="2021.1.0" PrivateAssets="all"/>
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net461'">
