@@ -6,7 +6,6 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture, Parallelizable]
-
 	public class UrlTests
 	{
 		[Test]
