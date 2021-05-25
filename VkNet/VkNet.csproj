@@ -42,16 +42,10 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	<PropertyGroup>
 		<DefineConstants>TRACE;DEBUG;UWP</DefineConstants>
-		<DocumentationFile>..\Build\Debug\VkNet.xml</DocumentationFile>
-		<OutputPath>..\Build\Debug\</OutputPath>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>TRACE;UWP</DefineConstants>
-		<DocumentationFile>..\Build\Release\VkNet.xml</DocumentationFile>
-		<OutputPath>..\Build\Release\</OutputPath>
+		<DocumentationFile>..\Build\$(Configuration)\VkNet.xml</DocumentationFile>
+		<OutputPath>..\Build\$(Configuration)\</OutputPath>
 	</PropertyGroup>
 
 	<ItemGroup>
