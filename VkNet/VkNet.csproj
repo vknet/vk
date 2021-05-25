@@ -55,12 +55,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncFixer" Version="1.5.1" PrivateAssets="all" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.33" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.22.0.31243" PrivateAssets="all" />
-		<PackageReference Include="JetBrains.Annotations" Version="2021.1.0" PrivateAssets="all" />
+		<PackageReference Include="AsyncFixer" Version="1.5.1" PrivateAssets="all"/>
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.33"/>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all"/>
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.23.0.32424" PrivateAssets="all"/>
+		<PackageReference Include="JetBrains.Annotations" Version="2021.1.0" PrivateAssets="all"/>
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net461'">
