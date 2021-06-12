@@ -113,7 +113,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				responseUrl = GetRedirectUrl(responseUrl);
 			}
 
-			var pageType = _vkAuthorization.GetPageType(formResult.ResponseUrl);
+			var pageType = _vkAuthorization.GetPageType(responseUrl);
 
 			switch (pageType)
 			{
@@ -160,12 +160,12 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				case ImplicitFlowPageType.Result:
 
 				{
-					return _vkAuthorization.GetAuthorizationResult(formResult.ResponseUrl);
+					return _vkAuthorization.GetAuthorizationResult(responseUrl);
 				}
 			}
 
 			var resultForm = await _authorizationFormsFactory.Create(pageType)
-				.ExecuteAsync(formResult.ResponseUrl, _authorizationParameters)
+				.ExecuteAsync(responseUrl, _authorizationParameters)
 				.ConfigureAwait(false);
 
 			return await NextStepAsync(resultForm).ConfigureAwait(false);
