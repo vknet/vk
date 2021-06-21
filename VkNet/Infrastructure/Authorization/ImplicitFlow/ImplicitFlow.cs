@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Authorization;
@@ -50,7 +49,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <inheritdoc />
 		public async Task<AuthorizationResult> AuthorizeAsync()
 		{
-			_logger?.LogDebug("Валидация данных.");
+			_logger?.LogDebug("Валидация данных");
 			ValidateAuthorizationParameters();
 
 			_logger?.LogDebug("Шаг 1. Открытие диалога авторизации");
@@ -71,7 +70,8 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		}
 
 		/// <inheritdoc />
-		[Obsolete("Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
+		[Obsolete(
+			"Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
 		public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 		{
 			_authorizationParameters.ApplicationId = clientId;
@@ -84,14 +84,18 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <inheritdoc />
 		public Uri CreateAuthorizeUrl()
 		{
-			_logger?.LogDebug("Построение url для авторизации.");
+			_logger?.LogDebug("Построение url для авторизации");
 
 			const string url = "https://oauth.vk.com/authorize?";
 
 			var vkAuthParams = new VkParameters
 			{
 				{ "client_id", _authorizationParameters.ApplicationId },
-				{ "redirect_uri", _authorizationParameters.RedirectUri != null ? _authorizationParameters.RedirectUri.ToString() : Constants.DefaultRedirectUri },
+				{
+					"redirect_uri", _authorizationParameters.RedirectUri != null
+						? _authorizationParameters.RedirectUri.ToString()
+						: Constants.DefaultRedirectUri
+				},
 				{ "display", Display.Mobile },
 				{ "scope", _authorizationParameters.Settings?.ToUInt64() },
 				{ "response_type", ResponseType.Token },
@@ -108,6 +112,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult)
 		{
 			var responseUrl = formResult.ResponseUrl;
+
 			if (responseUrl.OriginalString.StartsWith("https://oauth.vk.com/auth_redirect"))
 			{
 				responseUrl = GetRedirectUrl(responseUrl);
@@ -120,7 +125,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				case ImplicitFlowPageType.Error:
 
 				{
-					_logger?.LogError("При авторизации произошла ошибка.");
+					_logger?.LogError("При авторизации произошла ошибка");
 
 					throw new VkAuthorizationException("При авторизации произошла ошибка.");
 				}
@@ -128,7 +133,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				case ImplicitFlowPageType.LoginPassword:
 
 				{
-					_logger?.LogDebug("Неверный логин или пароль.");
+					_logger?.LogDebug("Неверный логин или пароль");
 
 					throw new VkAuthorizationException("Неверный логин или пароль.");
 				}
@@ -136,7 +141,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				case ImplicitFlowPageType.Captcha:
 
 				{
-					_logger?.LogDebug("Капча.");
+					_logger?.LogDebug("Капча");
 
 					break;
 				}
@@ -144,7 +149,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				case ImplicitFlowPageType.TwoFactor:
 
 				{
-					_logger?.LogDebug("Двухфакторная авторизация.");
+					_logger?.LogDebug("Двухфакторная авторизация");
 
 					break;
 				}
@@ -152,7 +157,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				case ImplicitFlowPageType.Consent:
 
 				{
-					_logger?.LogDebug("Страница подтверждения доступа к скоупам.");
+					_logger?.LogDebug("Страница подтверждения доступа к скоупам");
 
 					break;
 				}
@@ -174,9 +179,16 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		private static Uri GetRedirectUrl(Uri originalUrl)
 		{
 			var originalString = originalUrl.OriginalString;
-			var query = HttpUtility.ParseQueryString(originalString);
+			var query = Url.ParseQueryString(originalString);
+
+			if (!query.ContainsKey("authorize_url"))
+			{
+				return originalUrl;
+			}
+
 			var escapedUrl = query["authorize_url"];
 			var unEscapedUrl = Uri.UnescapeDataString(escapedUrl);
+
 			return new Uri(unEscapedUrl);
 		}
 

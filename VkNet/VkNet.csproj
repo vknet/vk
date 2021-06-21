@@ -83,8 +83,4 @@
 		<None Include="..\tools\vknet-icon.PNG" Pack="true" PackagePath="\" />
 		<None Include="..\LICENCE" Pack="true" PackagePath="\" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Include="System.Web" />
-	</ItemGroup>
 </Project>

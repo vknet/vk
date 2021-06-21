@@ -133,5 +133,34 @@ namespace VkNet.Utils
 
 			return pairs.Any() ? string.Join("&", pairs.Select(pair => $"{pair.Key}={pair.Value}")) : string.Empty;
 		}
+
+		/// <summary>
+		/// Получить словарь query параметров
+		/// </summary>
+		/// <param name="url">Исходный URL</param>
+		/// <returns>Словарь query параметров</returns>
+		/// <exception cref="UriFormatException">URL должен содержать query параметры</exception>
+		public static Dictionary<string, string> ParseQueryString(string url)
+		{
+			var urlParts = url.Split('?');
+
+			if (urlParts.Length <= 1)
+			{
+				throw new UriFormatException("URL должен содержать query параметры");
+			}
+
+			var query = urlParts[1];
+
+			var result = query.Split('&')
+				.Select(x =>
+				{
+					var keyValue = x.Split('=');
+
+					return new KeyValuePair<string, string>(keyValue[0], keyValue.Length <= 1 ? null : keyValue[1]);
+				})
+				.ToDictionary(f => f.Key, v => v.Value);
+
+			return result;
+		}
 	}
 }
