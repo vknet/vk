@@ -8,9 +8,9 @@ variables:
 
 steps:
 - task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 5.0.100'
+  displayName: 'Use .NET Core sdk 5.0.300'
   inputs:
-    version: 5.0.100
+    version: 5.0.300
 
 
 - task: DotNetCoreCLI@2
