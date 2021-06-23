@@ -57,5 +57,18 @@ namespace VkNet.Tests.Utils
 
 			result.Should().Throw<UriFormatException>();
 		}
+
+		[Test]
+		public void ParseQueryString_UrlShouldReturnExpectedValue()
+		{
+			const string inputUrl =
+				"https://oauth.vk.com/auth_redirect?app_id=4268118&authorize_url=https%253A%252F%252Foauth.vk.com%252Fblank.html%2523access_token%253D52d42d4e710d5b2ac4a2b913e0ef2476cd17b71ade612c0c0d756e1492f83cbea27772d5fcda63065e5b1%2526expires_in%253D86400%2526user_id%253D32190123%2526email%253Dinyutin_maxim%2540mail.ru&redirect_hash=1aae42f9a6908e5978";
+
+			var result = Url.ParseQueryString(inputUrl);
+
+			result.Should()
+				.ContainValue(
+					"https%3A%2F%2Foauth.vk.com%2Fblank.html%23access_token%3D52d42d4e710d5b2ac4a2b913e0ef2476cd17b71ade612c0c0d756e1492f83cbea27772d5fcda63065e5b1%26expires_in%3D86400%26user_id%3D32190123%26email%3Dinyutin_maxim%40mail.ru");
+		}
 	}
 }

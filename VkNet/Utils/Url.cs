@@ -158,7 +158,7 @@ namespace VkNet.Utils
 
 					return new KeyValuePair<string, string>(keyValue[0], keyValue.Length <= 1 ? null : keyValue[1]);
 				})
-				.ToDictionary(f => f.Key, v => v.Value);
+				.ToDictionary(f => f.Key, v => Uri.UnescapeDataString(v.Value));
 
 			return result;
 		}
