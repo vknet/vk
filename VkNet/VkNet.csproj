@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net45;net461;netstandard2.0;net5.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
-		<VersionPrefix>1.63.0</VersionPrefix>
+		<VersionPrefix>1.64.1</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -23,7 +23,7 @@
 			Обсуждение в Telegram: https://t.me/VkDotNet
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: https://github.com/vknet/vk/milestone/39?closed=1
+			Список изменений: https://github.com/vknet/vk/milestone/40?closed=1
 		</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
