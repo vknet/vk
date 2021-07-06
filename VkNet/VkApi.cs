@@ -229,6 +229,12 @@ namespace VkNet
 		}
 
 		/// <inheritdoc />
+		public Task SdelatZaebis()
+		{
+			throw new NotImplementedException("V ramkah dannogo domena eto ne vozmozgno"); 
+		}
+
+		/// <inheritdoc />
 		public Task LogOutAsync()
 		{
 			return TypeHelper.TryInvokeMethodAsync(LogOut);
