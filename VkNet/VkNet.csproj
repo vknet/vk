@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net45;net461;netstandard2.0;net5.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
 		<VersionPrefix>1.64.1</VersionPrefix>
 		<VersionSufix>
@@ -57,9 +57,10 @@
 		<PackageReference Include="JetBrains.Annotations" Version="2021.1.0" PrivateAssets="all" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net461'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.0" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
@@ -68,28 +69,9 @@
 		<PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="[2.2.0]" />
-		<PackageReference Include="NetFx.Extensions.Logging.Abstractions" Version="[2.2.0]" />
-
-		<!--Должен быть именно Package так как могут возникать конфликты-->
-		<Reference Include="System.Net.Http" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-	</ItemGroup>
-
 	<ItemGroup>
 		<None Include="..\tools\vknet-icon.PNG" Pack="true" PackagePath="\" />
 		<None Include="..\LICENCE" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-	  <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-	  <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
-	</ItemGroup>
 </Project>
