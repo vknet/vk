@@ -37,7 +37,6 @@ namespace VkNet.Model.GroupUpdate
 		/// <returns> </returns>
 		public static MessageTypingState FromJson(VkResponse response)
 		{
-			System.Console.WriteLine(	"MessageTypingState инициализирова н");
 			return new MessageTypingState
 			{
 				FromId = response["from_id"],
