@@ -23,6 +23,10 @@ namespace VkNet.Model.GroupUpdate
 		/// Сообщение для типов событий с сообщением в ответе.
 		/// </summary>
 		public MessageNew MessageNew { get; set; }
+		/// <summary>
+		/// Собеседник набиревет сообщение
+		/// </summary>
+		public MessageTypingState MessageTypingState { get; set; }
 
 		/// <summary>
 		/// Сообщение callback кнопки для типов событий с сообщением callback кнопок в ответе.
@@ -193,6 +197,9 @@ namespace VkNet.Model.GroupUpdate
 			} else if (fromJson.Type == GroupUpdateType.MessageAllow)
 			{
 				fromJson.MessageAllow = MessageAllow.FromJson(resObj);
+			}else if (fromJson.Type == GroupUpdateType.MessageTypingState)
+			{
+				fromJson.MessageTypingState = MessageTypingState.FromJson(resObj);
 			} else if (fromJson.Type == GroupUpdateType.MessageDeny)
 			{
 				fromJson.MessageDeny = MessageDeny.FromJson(resObj);
@@ -272,6 +279,9 @@ namespace VkNet.Model.GroupUpdate
 			} else if (fromJson.Type == GroupUpdateType.MessageEvent)
 			{
 				fromJson.MessageEvent = MessageEvent.FromJson(resObj);
+			}else if (fromJson.Type == GroupUpdateType.MessageTypingState)
+			{
+				fromJson.MessageTypingState = MessageTypingState.FromJson(resObj);
 			}
 
 			return fromJson;
