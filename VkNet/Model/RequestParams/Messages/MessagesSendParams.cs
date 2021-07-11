@@ -24,6 +24,13 @@ namespace VkNet.Model.RequestParams
 		public string Domain { get; set; }
 
 		/// <summary>
+		/// Текст заголовка
+		/// attachment)
+		/// </summary>
+		[JsonProperty("title")]
+		public string Title { get; set; }
+
+		/// <summary>
 		/// Текст личного сообщения (является обязательным, если не задан параметр
 		/// attachment)
 		/// </summary>
