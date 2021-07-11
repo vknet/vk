@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -930,11 +929,6 @@ namespace VkNet
 			RequestsPerSecond = 3;
 
 			MaxCaptchaRecognitionCount = 5;
-		#if NET45
-			_logger?.LogError("Могут быть проблемы при выполнении запросов с Кодировкой 1251. Если проблема воспроизводится рекомендуется обновиться на NETFramework 4.6.1 или выше");
-		#else
-				Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-		#endif
 			_logger?.LogDebug("VkApi Initialization successfully");
 		}
 

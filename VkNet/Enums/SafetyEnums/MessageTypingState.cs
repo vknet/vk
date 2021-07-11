@@ -52,6 +52,7 @@ namespace VkNet.Model.GroupUpdate
 		/// <returns>Результат преобразования в <see cref="MessageTypingState" /></returns>
 		public static implicit operator MessageTypingState(VkResponse response)
 		{
+			Console.WriteLine("Преобразование");
 			if (response == null)
 			{
 				return null;
