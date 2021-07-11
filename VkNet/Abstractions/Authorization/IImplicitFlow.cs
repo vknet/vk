@@ -23,7 +23,7 @@ namespace VkNet.Abstractions.Authorization
 		/// <summary>
 		/// Построить URL для авторизации.
 		/// </summary>
-		/// <param name="clientId"> Идентификатор Вашего приложения. </param>
+		/// <param name="clientId"> Идентификатор приложения. </param>
 		/// <param name="scope">
 		/// Битовая маска настроек доступа приложения, которые необходимо проверить при
 		/// авторизации

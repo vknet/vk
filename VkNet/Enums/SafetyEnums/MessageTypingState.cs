@@ -11,22 +11,22 @@ namespace VkNet.Model.GroupUpdate
 	public class MessageTypingState
 	{
 		/// <summary>
-		///  идентификатор пользователя, который набирает текст;
+		/// Bдентификатор пользователя, который набирает текст.
 		/// </summary>
 		[JsonProperty("from_id")]
 		public long? FromId { get; set; }
 
 		/// <summary>
-		/// состояние статуса набора текста;
-		/// </summary>
-		[JsonProperty("state")]
-		public string? State { get; set; }
-
-		/// <summary>
-		/// идентификатор сообщества, которому пользователь пишет сообщение.
+		/// Идентификатор сообщества, которому пользователь пишет сообщение.
 		/// </summary>
 		[JsonProperty("to_id")]
 		public long? ToId { get; set; }
+
+		/// <summary>
+		/// Состояние статуса набора текста.
+		/// </summary>
+		[JsonProperty("state")]
+		public string? State { get; set; }
 
 
 		#region Методы
@@ -40,8 +40,8 @@ namespace VkNet.Model.GroupUpdate
 			return new MessageTypingState
 			{
 				FromId = response["from_id"],
-				State = response["state"],
-				ToId = response["to_id"]
+				ToId = response["to_id"],
+				State = response["state"]
 			};
 		}
 
@@ -52,7 +52,6 @@ namespace VkNet.Model.GroupUpdate
 		/// <returns>Результат преобразования в <see cref="MessageTypingState" /></returns>
 		public static implicit operator MessageTypingState(VkResponse response)
 		{
-			Console.WriteLine("Преобразование");
 			if (response == null)
 			{
 				return null;
