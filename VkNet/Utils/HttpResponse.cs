@@ -49,7 +49,7 @@ namespace VkNet.Utils
 		/// The request URI.
 		/// </value>
 		public Uri RequestUri { get; private set; }
-		
+
 		/// <summary>
 		/// Gets the request URI.
 		/// </summary>
@@ -74,7 +74,7 @@ namespace VkNet.Utils
 				IsSuccess = true,
 				StatusCode = httpStatusCode,
 				RequestUri = requestUri,
-				ResponseUri = responseUri
+				ResponseUri = requestUri
 			};
 		}
 
