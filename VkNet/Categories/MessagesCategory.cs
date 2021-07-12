@@ -190,6 +190,7 @@ namespace VkNet.Categories
 				{
 					{ "user_id", @params.UserId },
 					{ "domain", @params.Domain },
+					{ "title", @params.Title },
 					{ "chat_id", @params.ChatId },
 					{ "user_ids", @params.UserIds },
 					{ "message", @params.Message },
@@ -222,6 +223,7 @@ namespace VkNet.Categories
 					{
 						{ "user_id", @params.UserId },
 						{ "domain", @params.Domain },
+						{ "title", @params.Title },
 						{ "chat_id", @params.ChatId },
 						{ "user_ids", @params.UserIds },
 						{ "message", @params.Message },
