@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
@@ -46,7 +47,7 @@ namespace VkNet.Utils
 		[UsedImplicitly]
 		public async Task<string> GetJsonAsync(string methodUrl, IEnumerable<KeyValuePair<string, string>> parameters)
 		{
-			var result = await _restClient.GetAsync(new Uri(methodUrl), parameters).ConfigureAwait(false);
+			var result = await _restClient.GetAsync(new Uri(methodUrl), parameters, Encoding.GetEncoding(1251)).ConfigureAwait(false);
 
 			return result.Value;
 		}
@@ -63,14 +64,14 @@ namespace VkNet.Utils
 								  .WithField("code")
 								  .FilledWith(code.Invoke());
 
-			return _restClient.PostAsync(new Uri(codeForm.ActionUrl), codeForm.GetFormFields());
+			return _restClient.PostAsync(new Uri(codeForm.ActionUrl), codeForm.GetFormFields(), Encoding.GetEncoding(1251));
 		}
 
 		private Task<HttpResponse<string>> FilledConsentAsync(HttpResponse<string> loginFormPostResult)
 		{
 			var form = WebForm.From(loginFormPostResult);
 
-			return _restClient.PostAsync(new Uri(form.ActionUrl), form.GetFormFields());
+			return _restClient.PostAsync(new Uri(form.ActionUrl), form.GetFormFields(), Encoding.GetEncoding(1251));
 		}
 
 		/// <summary>
@@ -89,7 +90,7 @@ namespace VkNet.Utils
 								   .WithField("pass")
 								   .FilledWith(password);
 
-			return _restClient.PostAsync(new Uri(loginForm.ActionUrl), loginForm.GetFormFields());
+			return _restClient.PostAsync(new Uri(loginForm.ActionUrl), loginForm.GetFormFields(), Encoding.GetEncoding(1251));
 		}
 
 		/// <summary>
@@ -116,7 +117,7 @@ namespace VkNet.Utils
 			loginForm.WithField("captcha_key")
 					 .FilledWith(captchaKey);
 
-			return _restClient.PostAsync(new Uri(loginForm.ActionUrl), loginForm.GetFormFields());
+			return _restClient.PostAsync(new Uri(loginForm.ActionUrl), loginForm.GetFormFields(), Encoding.GetEncoding(1251));
 		}
 
 		/// <summary>
@@ -145,13 +146,13 @@ namespace VkNet.Utils
 
 		private async Task<VkAuthorization2> ValidateInternalAsync(string validateUrl, string phoneNumber)
 		{
-			var validateUrlResult = await _restClient.GetAsync(new Uri(validateUrl), Enumerable.Empty<KeyValuePair<string, string>>());
+			var validateUrlResult = await _restClient.GetAsync(new Uri(validateUrl), Enumerable.Empty<KeyValuePair<string, string>>(), Encoding.GetEncoding(1251));
 
 			var codeForm = WebForm.From(validateUrlResult)
 								  .WithField("code")
 								  .FilledWith(phoneNumber.Substring(1, 8));
 
-			var codeFormPostResult = await _restClient.PostAsync(new Uri(codeForm.ActionUrl), codeForm.GetFormFields()).ConfigureAwait(false);
+			var codeFormPostResult = await _restClient.PostAsync(new Uri(codeForm.ActionUrl), codeForm.GetFormFields(), Encoding.GetEncoding(1251)).ConfigureAwait(false);
 
 			return await EndAuthorizeAsync(codeFormPostResult).ConfigureAwait(false);
 		}
@@ -178,7 +179,7 @@ namespace VkNet.Utils
 				var authorizationForm = WebForm.From(result);
 
 				var authorizationFormPostResult =
-					await _restClient.PostAsync(new Uri(authorizationForm.ActionUrl), authorizationForm.GetFormFields()).ConfigureAwait(false);
+					await _restClient.PostAsync(new Uri(authorizationForm.ActionUrl), authorizationForm.GetFormFields(), Encoding.GetEncoding(1251)).ConfigureAwait(false);
 
 				if (!IsAuthSuccessfull(authorizationFormPostResult))
 				{
@@ -210,7 +211,7 @@ namespace VkNet.Utils
 		{
 			var url = CreateAuthorizeUrl();
 
-			return _restClient.GetAsync(url, Enumerable.Empty<KeyValuePair<string, string>>());
+			return _restClient.GetAsync(url, Enumerable.Empty<KeyValuePair<string, string>>(), Encoding.GetEncoding(1251));
 		}
 
 		private async Task<VkAuthorization2> OldValidateAsync(string validateUrl, string phoneNumber)
@@ -226,13 +227,13 @@ namespace VkNet.Utils
 			}
 
 			var validateUrlResult =
-				await _restClient.GetAsync(new Uri(validateUrl), Enumerable.Empty<KeyValuePair<string, string>>()).ConfigureAwait(false);
+				await _restClient.GetAsync(new Uri(validateUrl), Enumerable.Empty<KeyValuePair<string, string>>(), Encoding.GetEncoding(1251)).ConfigureAwait(false);
 
 			var codeForm = WebForm.From(validateUrlResult)
 								  .WithField("code")
 								  .FilledWith(phoneNumber.Substring(1, 8));
 
-			var codeFormPostResult = await _restClient.PostAsync(new Uri(codeForm.ActionUrl), codeForm.GetFormFields()).ConfigureAwait(false);
+			var codeFormPostResult = await _restClient.PostAsync(new Uri(codeForm.ActionUrl), codeForm.GetFormFields(), Encoding.GetEncoding(1251)).ConfigureAwait(false);
 
 			return await EndAuthorizeAsync(codeFormPostResult).ConfigureAwait(false);
 		}

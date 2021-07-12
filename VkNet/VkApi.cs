@@ -726,7 +726,7 @@ namespace VkNet
 			{
 				LastInvokeTime = DateTimeOffset.Now;
 
-				var response = RestClient.PostAsync(new Uri(url), @params)
+				var response = RestClient.PostAsync(new Uri(url), @params, Encoding.UTF8)
 					.ConfigureAwait(false)
 					.GetAwaiter()
 					.GetResult();

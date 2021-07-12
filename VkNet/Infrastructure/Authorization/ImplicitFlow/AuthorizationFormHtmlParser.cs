@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using JetBrains.Annotations;
@@ -18,7 +19,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		private readonly IRestClient _restClient;
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="restClient"></param>
 		public AuthorizationFormHtmlParser(IRestClient restClient)
@@ -29,7 +30,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		/// <inheritdoc />
 		public async Task<VkHtmlFormResult> GetFormAsync(Uri url)
 		{
-			var response = await _restClient.PostAsync(url, Enumerable.Empty<KeyValuePair<string, string>>()).ConfigureAwait(false);
+			var response = await _restClient.PostAsync(url, Enumerable.Empty<KeyValuePair<string, string>>(), Encoding.GetEncoding(1251)).ConfigureAwait(false);
 
 			if (!response.IsSuccess)
 			{
