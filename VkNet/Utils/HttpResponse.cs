@@ -74,7 +74,7 @@ namespace VkNet.Utils
 				IsSuccess = true,
 				StatusCode = httpStatusCode,
 				RequestUri = requestUri,
-				ResponseUri = requestUri
+				ResponseUri = responseUri
 			};
 		}
 
@@ -84,6 +84,7 @@ namespace VkNet.Utils
 		/// <param name="httpStatusCode"> The HTTP status code. </param>
 		/// <param name="message"> The message. </param>
 		/// <param name="requestUri"> The request URI. </param>
+		/// <param name="responseUri"> The response URI. </param>
 		/// <returns>
 		/// The HTTP response.
 		/// </returns>
