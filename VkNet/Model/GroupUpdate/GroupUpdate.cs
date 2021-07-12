@@ -24,7 +24,7 @@ namespace VkNet.Model.GroupUpdate
 		/// </summary>
 		public MessageNew MessageNew { get; set; }
 		/// <summary>
-		/// Собеседник набиревет сообщение
+		/// Собеседник набираеет сообщение
 		/// </summary>
 		public MessageTypingState MessageTypingState { get; set; }
 

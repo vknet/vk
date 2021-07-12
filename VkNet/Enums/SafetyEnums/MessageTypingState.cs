@@ -11,7 +11,7 @@ namespace VkNet.Model.GroupUpdate
 	public class MessageTypingState
 	{
 		/// <summary>
-		/// Bдентификатор пользователя, который набирает текст.
+		/// Идентификатор пользователя, который набирает текст.
 		/// </summary>
 		[JsonProperty("from_id")]
 		public long? FromId { get; set; }
