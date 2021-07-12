@@ -197,7 +197,10 @@ namespace VkNet.Model.GroupUpdate
 			} else if (fromJson.Type == GroupUpdateType.MessageAllow)
 			{
 				fromJson.MessageAllow = MessageAllow.FromJson(resObj);
-			} else if (fromJson.Type == GroupUpdateType.MessageDeny)
+			}  else if (fromJson.Type == GroupUpdateType.MessageTypingState)
+			{
+				fromJson.MessageTypingState = MessageTypingState.FromJson(resObj);
+			}else if (fromJson.Type == GroupUpdateType.MessageDeny)
 			{
 				fromJson.MessageDeny = MessageDeny.FromJson(resObj);
 			} else if (fromJson.Type == GroupUpdateType.PhotoNew)

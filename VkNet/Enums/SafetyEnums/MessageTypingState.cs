@@ -11,16 +11,22 @@ namespace VkNet.Model.GroupUpdate
 	public class MessageTypingState
 	{
 		/// <summary>
-		/// Идентификатор пользователя.
+		/// Идентификатор пользователя, который набирает текст.
 		/// </summary>
-		[JsonProperty("user_id")]
-		public long? UserId { get; set; }
+		[JsonProperty("from_id")]
+		public long? FromId { get; set; }
 
 		/// <summary>
-		/// Идентификатор чата.
+		/// Идентификатор сообщества, которому пользователь пишет сообщение.
 		/// </summary>
-		[JsonProperty("peer_id")]
-		public long? PeerId { get; set; }
+		[JsonProperty("to_id")]
+		public long? ToId { get; set; }
+
+		/// <summary>
+		/// Состояние статуса набора текста.
+		/// </summary>
+		[JsonProperty("state")]
+		public string? State { get; set; }
 
 
 		#region Методы
@@ -33,8 +39,9 @@ namespace VkNet.Model.GroupUpdate
 		{
 			return new MessageTypingState
 			{
-				UserId = response["user_id"],
-				PeerId = response["peer_id"]
+				FromId = response["from_id"],
+				ToId = response["to_id"],
+				State = response["state"]
 			};
 		}
 
