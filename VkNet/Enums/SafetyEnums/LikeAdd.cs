@@ -1,6 +1,7 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model.GroupUpdate
@@ -18,8 +19,9 @@ namespace VkNet.Model.GroupUpdate
 		public long? LikerId { get; set; }
 
 		/// <summary>
-		/// Тип материала. 
+		/// Тип материала.
 		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		[JsonProperty("object_type")]
 		public LikeObjectType ObjectType { get; set; }
 
