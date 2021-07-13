@@ -21,6 +21,11 @@ namespace VkNet.Enums.SafetyEnums
 		public static readonly GroupUpdateType MessageTypingState = RegisterPossibleValue("message_typing_state");
 
 		/// <summary>
+		/// Событие о новой отметке "Мне нравится"
+		/// </summary>
+		public static readonly GroupUpdateType LikeAdd = RegisterPossibleValue("like_add");
+
+		/// <summary>
 		/// Новое исходящее сообщение
 		/// </summary>
 		public static readonly GroupUpdateType MessageReply = RegisterPossibleValue("message_reply");

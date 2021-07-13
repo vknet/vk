@@ -29,6 +29,11 @@ namespace VkNet.Model.GroupUpdate
 		public MessageTypingState MessageTypingState { get; set; }
 
 		/// <summary>
+		/// Событие о новой отметке "Мне нравится"
+		/// </summary>
+		public LikeAdd LikeAdd { get; set; }
+
+		/// <summary>
 		/// Сообщение callback кнопки для типов событий с сообщением callback кнопок в ответе.
 		/// </summary>
 		public MessageEvent MessageEvent { get; set; }
@@ -200,6 +205,9 @@ namespace VkNet.Model.GroupUpdate
 			}  else if (fromJson.Type == GroupUpdateType.MessageTypingState)
 			{
 				fromJson.MessageTypingState = MessageTypingState.FromJson(resObj);
+			}else if (fromJson.Type == GroupUpdateType.LikeAdd)
+			{
+				fromJson.LikeAdd = LikeAdd.FromJson(resObj);
 			}else if (fromJson.Type == GroupUpdateType.MessageDeny)
 			{
 				fromJson.MessageDeny = MessageDeny.FromJson(resObj);

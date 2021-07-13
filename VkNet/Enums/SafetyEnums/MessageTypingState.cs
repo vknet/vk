@@ -1,4 +1,5 @@
-﻿using System;
+
+using System;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -24,10 +25,9 @@ namespace VkNet.Model.GroupUpdate
 
 		/// <summary>
 		/// Состояние статуса набора текста.
-		/// Пока сраный вк не пофиксит во всех случаях возвращает "typing"
 		/// </summary>
 		[JsonProperty("state")]
-		public string? State { get; set; }
+		public string State { get; set; }
 
 
 		#region Методы
@@ -65,4 +65,5 @@ namespace VkNet.Model.GroupUpdate
 
 		#endregion
 	}
+
 }
