@@ -1,5 +1,5 @@
 
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -27,7 +27,7 @@ namespace VkNet.Model.GroupUpdate
 		/// Состояние статуса набора текста.
 		/// </summary>
 		[JsonProperty("state")]
-		public string? State { get; set; }
+		public string State { get; set; }
 
 
 		#region Методы

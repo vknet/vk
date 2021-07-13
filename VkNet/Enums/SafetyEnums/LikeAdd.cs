@@ -7,7 +7,7 @@ using VkNet.Enums.SafetyEnums;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Объект, который содержит информацию о статусе печатании
+	/// Событие о новой отметке "Мне нравится"
 	/// </summary>
 	[Serializable]
 	public class LikeAdd
