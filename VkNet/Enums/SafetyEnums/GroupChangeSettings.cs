@@ -12,6 +12,7 @@ namespace VkNet.Model.GroupUpdate
 	[Serializable]
 	public class GroupChangeSettings
 	{
+		public VkResponse res { get; set; }
 		/// <summary>
 		/// Идентификатор пользователя, который внёс изменения;
 		/// </summary>
@@ -22,7 +23,7 @@ namespace VkNet.Model.GroupUpdate
 		/// Тип материала.
 		/// </summary>
 		[JsonProperty("changes")]
-		public string Changes { get; set; }
+		public Changes Changes { get; set; }
 
 
 		#region Методы
@@ -35,8 +36,10 @@ namespace VkNet.Model.GroupUpdate
 		{
 			return new GroupChangeSettings
 			{
+				res = response,
 				UserId = response["user_id"],
-				Changes = response["changes"]
+				Changes = response["changes"],
+
 			};
 		}
 
