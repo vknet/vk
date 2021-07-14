@@ -31,7 +31,7 @@ namespace VkNet.Enums.SafetyEnums
 		public static readonly GroupUpdateType LikeRemove = RegisterPossibleValue("like_remove");
 
 		/// <summary>
-		/// Событие о удалении отметки "Мне нравится"
+		/// Событие о изменении настроек сообщества
 		/// </summary>
 		public static readonly GroupUpdateType GroupChangeSettings = RegisterPossibleValue("group_change_settings");
 
