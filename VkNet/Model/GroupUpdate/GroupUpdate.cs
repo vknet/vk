@@ -34,6 +34,11 @@ namespace VkNet.Model.GroupUpdate
 		public LikeAdd LikeAdd { get; set; }
 
 		/// <summary>
+		/// Событие о удалении отметки "Мне нравится"
+		/// </summary>
+		public LikeRemove LikeRemove { get; set; }
+
+		/// <summary>
 		/// Сообщение callback кнопки для типов событий с сообщением callback кнопок в ответе.
 		/// </summary>
 		public MessageEvent MessageEvent { get; set; }
@@ -208,6 +213,9 @@ namespace VkNet.Model.GroupUpdate
 			}else if (fromJson.Type == GroupUpdateType.LikeAdd)
 			{
 				fromJson.LikeAdd = LikeAdd.FromJson(resObj);
+			}else if (fromJson.Type == GroupUpdateType.LikeRemove)
+			{
+				fromJson.LikeRemove = LikeRemove.FromJson(resObj);
 			}else if (fromJson.Type == GroupUpdateType.MessageDeny)
 			{
 				fromJson.MessageDeny = MessageDeny.FromJson(resObj);
