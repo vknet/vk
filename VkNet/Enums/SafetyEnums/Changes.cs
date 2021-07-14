@@ -38,32 +38,32 @@ namespace VkNet.Enums.SafetyEnums
 		public static Changes FromJson(VkResponse response)
 		{
 			var field = "";
-			if(response["changes"]["title"]!=null)
+			if(response["title"]!=null)
 			field = "title";
-			else if(response["changes"]["description"]!=null)
+			else if(response["description"]!=null)
 			field = "description";
-			else if(response["changes"]["access"]!=null)
+			else if(response["access"]!=null)
 			field = "access";
-			else if(response["changes"]["screen_name"]!=null)
+			else if(response["screen_name"]!=null)
 			field = "screen_name";
-			else if(response["changes"]["public_category"]!=null)
+			else if(response["public_category"]!=null)
 			field = "public_category";
-			else if(response["changes"]["age_limits"]!=null)
+			else if(response["age_limits"]!=null)
 			field = "age_limits";
-			else if(response["changes"]["website"]!=null)
+			else if(response["website"]!=null)
 			field = "website";
-			else if(response["changes"]["public_subcategory"]!=null)
+			else if(response["public_subcategory"]!=null)
 			field = "public_subcategory";
 
-			else if(response["changes"]["enable_status_default"]!=null)
+			else if(response["enable_status_default"]!=null)
 			field = "enable_status_default";
-			else if(response["changes"]["enable_audio"]!=null)
+			else if(response["enable_audio"]!=null)
 			field = "enable_audio";
-			else if(response["changes"]["enable_photo"]!=null)
+			else if(response["enable_photo"]!=null)
 			field = "enable_photo";
-			else if(response["changes"]["enable_video"]!=null)
+			else if(response["enable_video"]!=null)
 			field = "enable_video";
-			else if(response["changes"]["enable_market"]!=null)
+			else if(response["enable_market"]!=null)
 			field = "enable_market";
 			if(field!="")
 			return new Changes
