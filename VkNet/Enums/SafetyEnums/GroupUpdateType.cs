@@ -26,6 +26,11 @@ namespace VkNet.Enums.SafetyEnums
 		public static readonly GroupUpdateType LikeAdd = RegisterPossibleValue("like_add");
 
 		/// <summary>
+		/// Событие о удалении отметки "Мне нравится"
+		/// </summary>
+		public static readonly GroupUpdateType LikeRemove = RegisterPossibleValue("like_remove");
+
+		/// <summary>
 		/// Новое исходящее сообщение
 		/// </summary>
 		public static readonly GroupUpdateType MessageReply = RegisterPossibleValue("message_reply");
