@@ -1,6 +1,8 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Utils;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using VkNet.Utils.JsonConverter;
 using VkNet.Enums.SafetyEnums;
 
@@ -22,7 +24,7 @@ namespace VkNet.Model.GroupUpdate
 		/// Описание внесённых изменений
 		/// </summary>
 		[JsonProperty("changes")]
-		public Changes Changes { get; set; }
+		public ReadOnlyCollection<Change> Changes { get; set; }
 
 
 		#region Методы
@@ -36,7 +38,7 @@ namespace VkNet.Model.GroupUpdate
 			return new GroupChangeSettings
 			{
 				UserId = response["user_id"],
-				Changes = response["changes"],
+				Changes = response["changes"].ToReadOnlyCollectionOf<Change>(x => x)
 
 			};
 		}

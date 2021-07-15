@@ -9,7 +9,7 @@ namespace VkNet.Enums.SafetyEnums
 	/// Изменение настроек сообщества
 	/// </summary>
 	[Serializable]
-    public class Changes
+    public class Change
     {
 		/// <summary>
 		/// Название секции или раздела, который был изменён
@@ -35,7 +35,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// </summary>
 		/// <param name="response"> </param>
 		/// <returns> </returns>
-		public static Changes FromJson(VkResponse response)
+		public static Change FromJson(VkResponse response)
 		{
 			var field = "";
 			if(response["title"]!=null)
@@ -66,12 +66,12 @@ namespace VkNet.Enums.SafetyEnums
 			else if(response["enable_market"]!=null)
 			field = "enable_market";
 			if(field!="")
-			return new Changes
+			return new Change
 			{
 				Field = field,
 				NewValue = response[field]["new_value"],
 				OldValue = response[field]["old_value"]
-			}; else return new Changes
+			}; else return new Change
 			{
 				Field = field,
 				NewValue = null,
@@ -80,11 +80,11 @@ namespace VkNet.Enums.SafetyEnums
 		}
 
 		/// <summary>
-		/// Преобразование класса <see cref="Changes" /> в <see cref="VkParameters" />
+		/// Преобразование класса <see cref="Change" /> в <see cref="VkParameters" />
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
-		/// <returns>Результат преобразования в <see cref="Changes" /></returns>
-		public static implicit operator Changes(VkResponse response)
+		/// <returns>Результат преобразования в <see cref="Change" /></returns>
+		public static implicit operator Change(VkResponse response)
 		{
 			if (response == null)
 			{
