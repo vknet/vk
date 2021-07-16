@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 using VkNet.Utils;
 using VkNet.Enums.SafetyEnums;
+using Newtonsoft.Json.Converters;
 
 namespace VkNet.Model.GroupUpdate
 {
@@ -32,6 +33,7 @@ namespace VkNet.Model.GroupUpdate
         /// <summary>
 		/// Время отправки перевода в Unixtime.
 		/// </summary>
+		[JsonConverter(typeof(UnixDateTimeConverter))]
 		[JsonProperty("date")]
 		public DateTime Date { get; set; }
 
