@@ -51,15 +51,10 @@ namespace VkNet.Model.GroupUpdate
 				FromId = response["from_id"],
 				Amount = response["amount"],
 				Description = response["description"],
-                Date = UnixTimeStampToDateTime(response["date"])
+                Date = response["date"]
 			};
 		}
-		public static DateTime UnixTimeStampToDateTime( double unixTimeStamp )
-{
-    System.DateTime dtDateTime = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
-    dtDateTime = dtDateTime.AddSeconds( unixTimeStamp ).ToLocalTime();
-    return dtDateTime;
-}
+
 
 		/// <summary>
 		/// Преобразование класса <see cref="VkPayTransaction" /> в <see cref="VkParameters" />
