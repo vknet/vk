@@ -28,12 +28,12 @@ namespace VkNet.Model.RequestParams.Notes
 		/// Настройки приватности просмотра заметки в специальном формате.
 		/// </summary>
 		[JsonProperty(propertyName: "privacy_view")]
-		public List<Privacy> PrivacyView { get; set; }
+		public Privacy PrivacyView { get; set; }
 
 		/// <summary>
 		/// Настройки приватности комментирования заметки в специальном формате.
 		/// </summary>
 		[JsonProperty(propertyName: "privacy_comment")]
-		public List<Privacy> PrivacyComment { get; set; }
+		public Privacy PrivacyComment { get; set; }
 	}
 }

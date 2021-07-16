@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using NUnit.Framework;
 using VkNet.Categories;
@@ -591,11 +591,11 @@ namespace VkNet.Tests.Categories.Account
 			ReadCategoryJsonPath(nameof(SetPrivacy));
 
 			// Act
-			var result = Api.Account.SetPrivacy("key", "only_me");
+			var result = Api.Account.SetPrivacy("key", new Privacy { Category = PrivacyCategory.OnlyMe });
 
 			// Assert
 			Assert.That(result, Is.Not.Null);
-			Assert.AreEqual("only_me", result.Category);
+			Assert.AreEqual("only_me", result.Category.ToString());
 		}
 
 		[Test]

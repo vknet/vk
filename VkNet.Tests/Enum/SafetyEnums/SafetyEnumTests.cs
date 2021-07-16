@@ -587,28 +587,26 @@ namespace VkNet.Tests.Enum.SafetyEnums
 		}
 
 		[Test]
-		public void PrivacyTest()
+		public void PrivacyCategoryTest()
 		{
 			// get test
-			Assert.That(Privacy.All.ToString(), Is.EqualTo("all"));
-			Assert.That(Privacy.Friends.ToString(), Is.EqualTo("friends"));
-			Assert.That(Privacy.FriendsOfFriends.ToString(), Is.EqualTo("friends_of_friends"));
-			Assert.That(Privacy.FriendsOfFriendsOnly.ToString(), Is.EqualTo("friends_of_friends_only"));
-			Assert.That(Privacy.Nobody.ToString(), Is.EqualTo("nobody"));
-			Assert.That(Privacy.OnlyMe.ToString(), Is.EqualTo("only_me"));
+			Assert.That(PrivacyCategory.All.ToString(), Is.EqualTo("all"));
+			Assert.That(PrivacyCategory.Friends.ToString(), Is.EqualTo("friends"));
+			Assert.That(PrivacyCategory.FriendsOfFriends.ToString(), Is.EqualTo("friends_of_friends"));
+			Assert.That(PrivacyCategory.FriendsOfFriendsOnly.ToString(), Is.EqualTo("friends_of_friends_only"));
+			Assert.That(PrivacyCategory.OnlyMe.ToString(), Is.EqualTo("only_me"));
 
 			// parse test
-			Assert.That(Privacy.FromJsonString("all"), Is.EqualTo(Privacy.All));
-			Assert.That(Privacy.FromJsonString("friends"), Is.EqualTo(Privacy.Friends));
+			Assert.That(PrivacyCategory.FromJsonString("all"), Is.EqualTo(PrivacyCategory.All));
+			Assert.That(PrivacyCategory.FromJsonString("friends"), Is.EqualTo(PrivacyCategory.Friends));
 
-			Assert.That(Privacy.FromJsonString("friends_of_friends")
-					, Is.EqualTo(Privacy.FriendsOfFriends));
+			Assert.That(PrivacyCategory.FromJsonString("friends_of_friends")
+					, Is.EqualTo(PrivacyCategory.FriendsOfFriends));
 
-			Assert.That(Privacy.FromJsonString("friends_of_friends_only")
-					, Is.EqualTo(Privacy.FriendsOfFriendsOnly));
+			Assert.That(PrivacyCategory.FromJsonString("friends_of_friends_only")
+					, Is.EqualTo(PrivacyCategory.FriendsOfFriendsOnly));
 
-			Assert.That(Privacy.FromJsonString("nobody"), Is.EqualTo(Privacy.Nobody));
-			Assert.That(Privacy.FromJsonString("only_me"), Is.EqualTo(Privacy.OnlyMe));
+			Assert.That(PrivacyCategory.FromJsonString("only_me"), Is.EqualTo(PrivacyCategory.OnlyMe));
 		}
 
 		[Test]

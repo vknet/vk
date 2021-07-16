@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using VkNet.Abstractions;
@@ -164,7 +164,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public long AddAlbum(string title, long? groupId = null, IEnumerable<Privacy> privacy = null)
+		public long AddAlbum(string title, long? groupId = null, Privacy privacy = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(expr: () => title);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => groupId);

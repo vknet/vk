@@ -516,9 +516,9 @@ namespace VkNet.Utils
 		/// <returns>
 		/// Результат преобразования.
 		/// </returns>
-		public static implicit operator Privacy(VkResponse response)
+		public static implicit operator PrivacyCategory(VkResponse response)
 		{
-			return response == null ? null : Privacy.FromJson(response: response);
+			return response == null ? null : PrivacyCategory.FromJson(response: response);
 		}
 
 		/// <summary>

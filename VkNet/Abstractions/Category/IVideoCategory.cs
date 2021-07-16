@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -38,7 +38,7 @@ namespace VkNet.Abstractions
 											bool? needSystem = null);
 
 		/// <inheritdoc cref="IVideoCategoryAsync.AddAlbumAsync"/>
-		long AddAlbum(string title, long? groupId = null, IEnumerable<Privacy> privacy = null);
+		long AddAlbum(string title, long? groupId = null, Privacy privacy = null);
 
 		/// <inheritdoc cref="IVideoCategoryAsync.EditAlbumAsync"/>
 		bool EditAlbum(long albumId, string title, long? groupId = null, Privacy privacy = null);

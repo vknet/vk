@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
 
@@ -40,7 +40,7 @@ namespace VkNet.Model.RequestParams
 		/// доступна для видеозаписей, которые
 		/// пользователь загрузил в профиль. список строк, разделенных через запятую.
 		/// </summary>
-		public IEnumerable<Privacy> PrivacyView { get; set; }
+		public Privacy PrivacyView { get; set; }
 
 		/// <summary>
 		/// Настройки приватности комментирования видеозаписи в специальном формате.
@@ -48,7 +48,7 @@ namespace VkNet.Model.RequestParams
 		/// список строк, разделенных через
 		/// запятую.
 		/// </summary>
-		public IEnumerable<Privacy> PrivacyComment { get; set; }
+		public Privacy PrivacyComment { get; set; }
 
 		/// <summary>
 		/// Закрыть комментарии (для видео из сообществ). флаг, может принимать значения 1

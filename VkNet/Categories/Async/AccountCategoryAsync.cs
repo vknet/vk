@@ -160,9 +160,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<PrivacySettingsValue> SetPrivacyAsync(string key, string value)
+		public Task<Privacy> SetPrivacyAsync(string key, Privacy privacy)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => SetPrivacy(key, value));
+			return TypeHelper.TryInvokeMethodAsync(() => SetPrivacy(key, privacy));
 		}
 	}
 }
