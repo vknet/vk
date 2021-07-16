@@ -31,6 +31,11 @@ namespace VkNet.Enums.SafetyEnums
 		public static readonly GroupUpdateType LikeRemove = RegisterPossibleValue("like_remove");
 
 		/// <summary>
+		/// Платёж через VK Pay
+		/// </summary>
+		public static readonly GroupUpdateType VkPayTransaction = RegisterPossibleValue("vkpay_transaction");
+
+		/// <summary>
 		/// Событие о изменении настроек сообщества
 		/// </summary>
 		public static readonly GroupUpdateType GroupChangeSettings = RegisterPossibleValue("group_change_settings");
