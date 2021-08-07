@@ -120,6 +120,8 @@ namespace VkNet.Model.Keyboard
 				{
 					Label = addButtonParams.Label,
 					Payload = payload,
+					Link = new Uri(addButtonParams.Link),
+					Hash = addButtonParams.Hash,
 					Type = addButtonParams.ActionType,
 					Intent = addButtonParams.Intent,
 					SubscribeId = addButtonParams.SubscribeId,

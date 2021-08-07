@@ -15,6 +15,15 @@ namespace VkNet.Model.Keyboard
 		/// Надписть на кнопке
 		/// </summary>
 		public string Label { get; set; }
+		/// <summary>
+		/// Ссылка на кнопке
+		/// </summary>
+		public string Link { get; set; }
+
+		/// <summary>
+		/// Парметры для платежа
+		/// </summary>
+		public string Hash { get; set; }
 
 		/// <summary>
 		/// Дополнительная информация о кнопке
