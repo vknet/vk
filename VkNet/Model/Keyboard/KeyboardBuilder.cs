@@ -125,7 +125,7 @@ namespace VkNet.Model.Keyboard
 					Type = addButtonParams.ActionType,
 					Intent = addButtonParams.Intent,
 					SubscribeId = addButtonParams.SubscribeId,
-					PeerId = addButtonParams.PeerId,
+					PeerId = addButtonParams.PeerId
 				}
 			});
 
