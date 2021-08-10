@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions;
-using Moq.AutoMock;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using VkNet.Model;

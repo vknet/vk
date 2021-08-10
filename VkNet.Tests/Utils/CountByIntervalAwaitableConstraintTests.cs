@@ -1,14 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Moq;
 using NUnit.Framework;
-using VkNet.Enums;
-using VkNet.Model;
-using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
 
 namespace VkNet.Tests.Utils

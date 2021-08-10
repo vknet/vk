@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Moq;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -44,7 +43,7 @@ namespace VkNet.Tests
 
 			var waiter = new AutoResetEvent(initialState: false);
 
-			Api.OnTokenUpdatedAutomatically += (api) =>
+			Api.OnTokenUpdatedAutomatically += (_) =>
 			{
 				waiter.Set();
 			};

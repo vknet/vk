@@ -1,9 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
-using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
 
