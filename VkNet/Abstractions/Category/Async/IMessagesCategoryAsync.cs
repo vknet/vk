@@ -104,13 +104,14 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
 													bool? deleteForAll = null);
-					/// <summary>
+
+		/// <summary>
 		/// Удаляет сообщение в беседе.
 		/// </summary>
 		/// <param name="conversationMessageIds">
 		/// Список идентификаторов сообщений.
 		/// </param>
-		/// <param name="PeerId">
+		/// <param name="peerId">
 		/// Идентификатор назначения.
 		/// </param>
 		/// <param name="spam">
@@ -131,9 +132,9 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.delete
 		/// </remarks>
-		Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> conversationMessageIds,ulong PeerId, bool? spam = null, ulong? groupId = null,
+		Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> conversationMessageIds, ulong peerId, bool? spam = null,
+													ulong? groupId = null,
 													bool? deleteForAll = null);
-												
 
 		/// <summary>
 		/// Позволяет удалить фотографию мультидиалога.
@@ -1028,7 +1029,6 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getIntentUsers
 		/// </remarks>
 		Task<GetIntentUsersResult> GetIntentUsersAsync(MessagesGetIntentUsersParams getIntentUsersParams, CancellationToken token);
-
 
 		/// <summary>
 		/// Помечает диалог пользователя непрочитанным.
