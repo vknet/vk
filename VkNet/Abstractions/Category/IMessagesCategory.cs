@@ -28,6 +28,11 @@ namespace VkNet.Abstractions
 		IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
 										bool? deleteForAll = null);
 
+		/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync"/>
+		IDictionary<long, bool> Delete([NotNull] IEnumerable<long> conversationMessageIds, long PeerId, 
+												bool? spam = null, ulong? groupId = null,
+												bool? deleteForAll = null);
+
 		/// <inheritdoc cref="IMessagesCategoryAsync.DeleteChatPhotoAsync"/>
 		Chat DeleteChatPhoto(out ulong messageId, ulong chatId, ulong? groupId = null);
 

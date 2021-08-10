@@ -424,6 +424,48 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public IDictionary<long, bool> Delete(IEnumerable<long> conversationMessageIds, long PeerId, 
+												bool? spam = null, ulong? groupId = null,
+												bool? deleteForAll = null)
+		{
+			if (conversationMessageIds == null)
+			{
+				throw new ArgumentNullException(nameof(conversationMessageIds), "Parameter conversationMessageIds can not be null.");
+			}
+
+			var ids = conversationMessageIds.ToList();
+
+			if (ids.Count == 0)
+			{
+				throw new ArgumentException("Parameter conversationMessageIds has no elements.", nameof(conversationMessageIds));
+			}if (ids.Count >100)
+			{
+				throw new ArgumentException("Parameter conversationMessageIds is more than 100.", nameof(conversationMessageIds));
+			}
+
+			var parameters = new VkParameters
+			{
+				{ "conversation_message_ids", ids },
+				{ "peer_id", PeerId },
+				{ "spam", spam },
+				{ "group_id", groupId },
+				{ "delete_for_all", deleteForAll }
+			};
+
+			var response = _vk.Call("messages.delete", parameters);
+
+			var result = new Dictionary<long, bool>();
+
+			foreach (var id in ids)
+			{
+				bool isDeleted = response[id.ToString(CultureInfo.InvariantCulture)];
+				result.Add(id, isDeleted);
+			}
+
+			return result;
+		}
+		
+		/// <inheritdoc />
 		public bool Restore(ulong messageId, ulong? groupId = null)
 		{
 			var parameters = new VkParameters
