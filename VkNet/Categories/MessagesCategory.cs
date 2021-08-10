@@ -386,25 +386,24 @@ namespace VkNet.Categories
 			return DeleteConversation(userId, peerId, null);
 		}
 
-		/// <inheritdoc />
-		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
+		private IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, IEnumerable<ulong> conversationMessageIds = null, ulong? PeerId = null, bool? spam = null, ulong? groupId = null,
 												bool? deleteForAll = null)
 		{
-			if (messageIds == null)
-			{
-				throw new ArgumentNullException(nameof(messageIds), "Parameter messageIds can not be null.");
-			}
-
-			var ids = messageIds.ToList();
+			if (messageIds == null&&conversationMessageIds==null)
+				throw new ArgumentNullException(nameof(conversationMessageIds), "Parameter conversationMessageIds or messageIds can not be null.");
+			List<ulong> ids = messageIds!=null? messageIds.ToList():conversationMessageIds.ToList();
 
 			if (ids.Count == 0)
 			{
-				throw new ArgumentException("Parameter messageIds has no elements.", nameof(messageIds));
+				throw new ArgumentException("Parameter Ids has no elements.", nameof(messageIds));
 			}
+			
 
 			var parameters = new VkParameters
 			{
-				{ "message_ids", ids },
+				{ "message_ids", messageIds!=null?messageIds.ToList():null },
+				{ "conversation_message_ids", conversationMessageIds!=null?conversationMessageIds.ToList():null },
+				{ "peer_id", PeerId },
 				{ "spam", spam },
 				{ "group_id", groupId },
 				{ "delete_for_all", deleteForAll }
@@ -420,9 +419,24 @@ namespace VkNet.Categories
 				result.Add(id, isDeleted);
 			}
 
-			return result;
+			return result;}
+
+		/// <inheritdoc />
+		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
+												bool? deleteForAll = null)
+		{
+			return Delete(messageIds,null,null,spam,groupId, deleteForAll );
 		}
 
+		/// <inheritdoc />
+		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> conversationMessageIds, ulong PeerId, 
+												bool? spam = null, ulong? groupId = null,
+												bool? deleteForAll = null)
+		{
+
+			return Delete(null,conversationMessageIds,PeerId,spam,groupId);
+		}
+		
 		/// <inheritdoc />
 		public bool Restore(ulong messageId, ulong? groupId = null)
 		{

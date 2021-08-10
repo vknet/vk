@@ -82,8 +82,7 @@ namespace VkNet.Abstractions
 		/// Удаляет сообщение.
 		/// </summary>
 		/// <param name="messageIds">
-		/// Список идентификаторов сообщений, разделённых через запятую. список
-		/// положительных чисел, разделенных запятыми
+		/// Список идентификаторов сообщений.
 		/// </param>
 		/// <param name="spam">
 		/// Пометить сообщения как спам. флаг, может принимать значения 1 или 0
@@ -105,6 +104,36 @@ namespace VkNet.Abstractions
 		/// </remarks>
 		Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
 													bool? deleteForAll = null);
+					/// <summary>
+		/// Удаляет сообщение в беседе.
+		/// </summary>
+		/// <param name="conversationMessageIds">
+		/// Список идентификаторов сообщений.
+		/// </param>
+		/// <param name="PeerId">
+		/// Идентификатор назначения.
+		/// </param>
+		/// <param name="spam">
+		/// Пометить сообщения как спам. флаг, может принимать значения 1 или 0
+		/// </param>
+		/// <param name="groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
+		/// пользователя). положительное число
+		/// </param>
+		/// <param name="deleteForAll">
+		/// 1 — если сообщение нужно удалить для получателей (если с момента отправки
+		/// сообщения прошло не более 24 часов ). флаг, может принимать значения 1 или 0,
+		/// по умолчанию
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1 для каждого удаленного сообщения.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.delete
+		/// </remarks>
+		Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> conversationMessageIds,ulong PeerId, bool? spam = null, ulong? groupId = null,
+													bool? deleteForAll = null);
+												
 
 		/// <summary>
 		/// Позволяет удалить фотографию мультидиалога.
