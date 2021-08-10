@@ -60,6 +60,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> conversationMessageIds,ulong? PeerId, bool? spam = null, ulong? groupId = null,
+														bool? deleteForAll = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() =>
+				Delete(null,conversationMessageIds,PeerId, spam, groupId, deleteForAll));
+		}
+
+		/// <inheritdoc />
 		public Task<Chat> DeleteChatPhotoAsync(ulong chatId, ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => DeleteChatPhoto(out var _, chatId, groupId));
