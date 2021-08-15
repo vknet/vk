@@ -862,5 +862,15 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.updateTargetPixel
 		/// </remarks>
 		Task<bool> UpdateTargetPixelAsync(UpdateTargetPixelParams updateTargetPixelParams);
+
+		/// <summary>
+		/// Возвращает информацию о музыкантах (по имени музыканта), на слушателей которых доступно таргетирование.
+		/// </summary>
+		/// <param name="artistName"></param>
+		/// <returns>Возвращает массив всех подходящих под запрос artistName музыкантов.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/ads.getMusicians
+		/// </remarks>
+		Task<ReadOnlyCollection<GetMusiciansResult>> GetMusiciansAsync(string artistName);
 	}
 }

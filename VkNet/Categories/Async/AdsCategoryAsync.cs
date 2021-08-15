@@ -275,5 +275,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => UpdateTargetPixel(updateTargetPixelParams));
 		}
+
+		/// <inheritdoc/>
+		public Task<ReadOnlyCollection<GetMusiciansResult>> GetMusiciansAsync(string artistName)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetMusicians(artistName));
+		}
 	}
 }

@@ -482,5 +482,15 @@ namespace VkNet.Categories
 					{ "category_id", updateTargetPixelParams.CategoryId }, { "client_id", updateTargetPixelParams.ClientId }
 				});
 		}
+
+		/// <inheritdoc/>
+		public ReadOnlyCollection<GetMusiciansResult> GetMusicians(string artistName)
+		{
+			return _vk.Call<ReadOnlyCollection<GetMusiciansResult>>("ads.getMusicians",
+				new VkParameters
+				{
+					{ "artist_name", artistName }
+				});
+		}
 	}
 }
