@@ -872,5 +872,15 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getMusicians
 		/// </remarks>
 		Task<ReadOnlyCollection<GetMusiciansResult>> GetMusiciansAsync(string artistName);
+
+		/// <summary>
+		/// Возвращает информацию о музыкантах (по id музыкантов) на слушателей, для которых доступно таргетирование.
+		/// </summary>
+		/// <param name="ids"></param>
+		/// <returns>Возвращает массив музыкантов с соответствующими идентификаторами из запроса.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/ads.getMusiciansByIds
+		/// </remarks>
+		Task<ReadOnlyCollection<GetMusiciansByIdsResult>> GetMusiciansByIdsAsync(string ids);
 	}
 }

@@ -144,5 +144,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IAdsCategoryAsync.GetMusiciansAsync"/>
 		ReadOnlyCollection<GetMusiciansResult> GetMusicians(string artistName);
+
+		/// <inheritdoc cref="IAdsCategoryAsync.GetMusiciansByIdsAsync"/>
+		ReadOnlyCollection<GetMusiciansByIdsResult> GetMusiciansByIds(string ids);
 	}
 }

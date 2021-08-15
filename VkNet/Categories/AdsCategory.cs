@@ -492,5 +492,15 @@ namespace VkNet.Categories
 					{ "artist_name", artistName }
 				});
 		}
+
+		/// <inheritdoc/>
+		public ReadOnlyCollection<GetMusiciansByIdsResult> GetMusiciansByIds(string ids)
+		{
+			return _vk.Call<ReadOnlyCollection<GetMusiciansByIdsResult>>("ads.getMusiciansByIds",
+				new VkParameters
+				{
+					{ "ids", ids }
+				});
+		}
 	}
 }
