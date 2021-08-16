@@ -287,5 +287,12 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetMusiciansByIds(ids));
 		}
+
+		/// <inheritdoc/>
+		public Task<ReadOnlyCollection<UpdateOfficeUsersResult>> UpdateOfficeUsersAsync(
+			AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => UpdateOfficeUsers(officeUsersSpecification));
+		}
 	}
 }

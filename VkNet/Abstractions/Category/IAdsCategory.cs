@@ -147,5 +147,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IAdsCategoryAsync.GetMusiciansByIdsAsync"/>
 		ReadOnlyCollection<GetMusiciansByIdsResult> GetMusiciansByIds(string ids);
+
+		/// <inheritdoc cref="IAdsCategoryAsync.UpdateOfficeUsersAsync"/>
+		ReadOnlyCollection<UpdateOfficeUsersResult> UpdateOfficeUsers(AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification);
 	}
 }

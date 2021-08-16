@@ -882,5 +882,17 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.getMusiciansByIds
 		/// </remarks>
 		Task<ReadOnlyCollection<GetMusiciansByIdsResult>> GetMusiciansByIdsAsync(string ids);
+
+		/// <summary>
+		/// Добавляет/редактирует администраторов и/или наблюдателей в рекламный кабинет.
+		/// </summary>
+		/// <param name="officeUsersSpecification"></param>
+		/// <returns>
+		/// Возвращает массив значений - ответов на каждый запрос в массиве response
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/ads.updateOfficeUsers
+		/// </remarks>
+		Task<ReadOnlyCollection<UpdateOfficeUsersResult>> UpdateOfficeUsersAsync(AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification);
 	}
 }

@@ -502,5 +502,17 @@ namespace VkNet.Categories
 					{ "ids", ids }
 				});
 		}
+
+		/// <inheritdoc/>
+		public ReadOnlyCollection<UpdateOfficeUsersResult> UpdateOfficeUsers(
+			AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification)
+		{
+			return _vk.Call<ReadOnlyCollection<UpdateOfficeUsersResult>>("ads.updateOfficeUsers",
+				 new VkParameters
+				{
+					{ "account_id", officeUsersSpecification.AccountId },
+					{ "data", officeUsersSpecification.Data }
+				});
+		}
 	}
 }
