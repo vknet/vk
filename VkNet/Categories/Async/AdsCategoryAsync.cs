@@ -275,5 +275,24 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => UpdateTargetPixel(updateTargetPixelParams));
 		}
+
+		/// <inheritdoc/>
+		public Task<ReadOnlyCollection<GetMusiciansResult>> GetMusiciansAsync(string artistName)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetMusicians(artistName));
+		}
+
+		/// <inheritdoc/>
+		public Task<ReadOnlyCollection<GetMusiciansByIdsResult>> GetMusiciansByIdsAsync(string ids)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetMusiciansByIds(ids));
+		}
+
+		/// <inheritdoc/>
+		public Task<ReadOnlyCollection<UpdateOfficeUsersResult>> UpdateOfficeUsersAsync(
+			AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => UpdateOfficeUsers(officeUsersSpecification));
+		}
 	}
 }

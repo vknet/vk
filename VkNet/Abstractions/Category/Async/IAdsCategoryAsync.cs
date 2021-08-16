@@ -862,5 +862,37 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/ads.updateTargetPixel
 		/// </remarks>
 		Task<bool> UpdateTargetPixelAsync(UpdateTargetPixelParams updateTargetPixelParams);
+
+		/// <summary>
+		/// Возвращает информацию о музыкантах (по имени музыканта), на слушателей которых доступно таргетирование.
+		/// </summary>
+		/// <param name="artistName"></param>
+		/// <returns>Возвращает массив всех подходящих под запрос artistName музыкантов.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/ads.getMusicians
+		/// </remarks>
+		Task<ReadOnlyCollection<GetMusiciansResult>> GetMusiciansAsync(string artistName);
+
+		/// <summary>
+		/// Возвращает информацию о музыкантах (по id музыкантов) на слушателей, для которых доступно таргетирование.
+		/// </summary>
+		/// <param name="ids"></param>
+		/// <returns>Возвращает массив музыкантов с соответствующими идентификаторами из запроса.</returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/ads.getMusiciansByIds
+		/// </remarks>
+		Task<ReadOnlyCollection<GetMusiciansByIdsResult>> GetMusiciansByIdsAsync(string ids);
+
+		/// <summary>
+		/// Добавляет/редактирует администраторов и/или наблюдателей в рекламный кабинет.
+		/// </summary>
+		/// <param name="officeUsersSpecification"></param>
+		/// <returns>
+		/// Возвращает массив значений - ответов на каждый запрос в массиве response
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/ads.updateOfficeUsers
+		/// </remarks>
+		Task<ReadOnlyCollection<UpdateOfficeUsersResult>> UpdateOfficeUsersAsync(AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification);
 	}
 }

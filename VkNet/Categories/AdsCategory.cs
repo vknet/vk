@@ -482,5 +482,37 @@ namespace VkNet.Categories
 					{ "category_id", updateTargetPixelParams.CategoryId }, { "client_id", updateTargetPixelParams.ClientId }
 				});
 		}
+
+		/// <inheritdoc/>
+		public ReadOnlyCollection<GetMusiciansResult> GetMusicians(string artistName)
+		{
+			return _vk.Call<ReadOnlyCollection<GetMusiciansResult>>("ads.getMusicians",
+				new VkParameters
+				{
+					{ "artist_name", artistName }
+				});
+		}
+
+		/// <inheritdoc/>
+		public ReadOnlyCollection<GetMusiciansByIdsResult> GetMusiciansByIds(string ids)
+		{
+			return _vk.Call<ReadOnlyCollection<GetMusiciansByIdsResult>>("ads.getMusiciansByIds",
+				new VkParameters
+				{
+					{ "ids", ids }
+				});
+		}
+
+		/// <inheritdoc/>
+		public ReadOnlyCollection<UpdateOfficeUsersResult> UpdateOfficeUsers(
+			AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification)
+		{
+			return _vk.Call<ReadOnlyCollection<UpdateOfficeUsersResult>>("ads.updateOfficeUsers",
+				 new VkParameters
+				{
+					{ "account_id", officeUsersSpecification.AccountId },
+					{ "data", officeUsersSpecification.Data }
+				});
+		}
 	}
 }
