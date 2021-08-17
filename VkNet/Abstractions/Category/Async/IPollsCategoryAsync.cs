@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
@@ -86,5 +87,16 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте https://vk.com/dev/polls.create
 		/// </remarks>
 		Task<Poll> CreateAsync(PollsCreateParams @params);
+
+		/// <summary>
+		/// Получает варианты фонового изображения для опросов.
+		/// </summary>
+		/// <returns>
+		/// Возвращает массив объектов, описывающих фоновое изображение опроса.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте https://vk.com/dev/polls.getBackgrounds
+		/// </remarks>
+		Task<ReadOnlyCollection<GetBackgroundsResult>> GetBackgroundsAsync();
 	}
 }

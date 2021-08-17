@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
@@ -44,6 +45,12 @@ namespace VkNet.Categories
 		public Task<Poll> CreateAsync(PollsCreateParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () =>Create(@params: @params));
+		}
+
+		/// <inheritdoc />
+		public Task<ReadOnlyCollection<GetBackgroundsResult>> GetBackgroundsAsync()
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetBackgrounds());
 		}
 	}
 }

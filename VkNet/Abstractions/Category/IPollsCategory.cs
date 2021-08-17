@@ -1,4 +1,5 @@
-﻿using VkNet.Model;
+﻿using System.Collections.ObjectModel;
+using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Polls;
@@ -26,5 +27,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IPollsCategoryAsync.CreateAsync"/>
 		Poll Create(PollsCreateParams @params);
+
+		/// <inheritdoc cref="IPollsCategoryAsync.GetBackgroundsAsync"/>
+		ReadOnlyCollection<GetBackgroundsResult> GetBackgrounds();
 	}
 }

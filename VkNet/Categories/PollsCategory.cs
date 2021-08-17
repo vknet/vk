@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using VkNet.Abstractions;
 using VkNet.Model;
@@ -128,6 +129,13 @@ namespace VkNet.Categories
 				{ "photo_id", @params.PhotoId },
 				{ "background_id", @params.BackgroundId }
 			});
+		}
+
+		/// <inheritdoc />
+		public ReadOnlyCollection<GetBackgroundsResult> GetBackgrounds()
+		{
+			return _vk.Call<ReadOnlyCollection<GetBackgroundsResult>>("polls.getBackgrounds",
+				new VkParameters());
 		}
 	}
 }
