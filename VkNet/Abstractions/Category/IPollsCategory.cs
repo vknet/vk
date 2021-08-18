@@ -30,5 +30,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IPollsCategoryAsync.GetBackgroundsAsync"/>
 		ReadOnlyCollection<GetBackgroundsResult> GetBackgrounds();
+
+		/// <inheritdoc cref="IPollsCategoryAsync.GetPhotoUploadServerAsync"/>
+		PhotoUploadServer GetPhotoUploadServer(long ownerId);
 	}
 }

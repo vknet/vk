@@ -137,5 +137,12 @@ namespace VkNet.Categories
 			return _vk.Call<ReadOnlyCollection<GetBackgroundsResult>>("polls.getBackgrounds",
 				new VkParameters());
 		}
+
+		/// <inheritdoc />
+		public PhotoUploadServer GetPhotoUploadServer(long ownerId)
+		{
+			return _vk.Call<PhotoUploadServer>("polls.getPhotoUploadServer",
+				new VkParameters { {"owner_id", ownerId} });
+		}
 	}
 }

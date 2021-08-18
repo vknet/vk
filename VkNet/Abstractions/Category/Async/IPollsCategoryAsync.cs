@@ -98,5 +98,17 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте https://vk.com/dev/polls.getBackgrounds
 		/// </remarks>
 		Task<ReadOnlyCollection<GetBackgroundsResult>> GetBackgroundsAsync();
+
+		/// <summary>
+		/// Получает адрес сервера для загрузки фоновой фотографии в опрос.
+		/// </summary>
+		/// <param name="ownerId"></param>
+		/// <returns>
+		/// Возвращает объект с полем содержащим URL для загрузки фотографии
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev.php?method=polls.getPhotoUploadServer
+		/// </remarks>
+		Task<PhotoUploadServer> GetPhotoUploadServerAsync(long ownerId);
 	}
 }
