@@ -110,5 +110,17 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev.php?method=polls.getPhotoUploadServer
 		/// </remarks>
 		Task<PhotoUploadServer> GetPhotoUploadServerAsync(long ownerId);
+
+		/// <summary>
+		/// Сохраняет фотографию, загруженную в опрос.
+		/// </summary>
+		/// <param name="params"></param>
+		/// <returns>
+		///	В случае успешного сохранения возвращает объект описывающий фотографию
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/polls.savePhoto
+		/// </remarks>
+		public Task<SavePhotoResult> SavePhotoAsync(SavePhotoParams @params);
 	}
 }

@@ -33,5 +33,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IPollsCategoryAsync.GetPhotoUploadServerAsync"/>
 		PhotoUploadServer GetPhotoUploadServer(long ownerId);
+
+		/// <inheritdoc cref="IPollsCategoryAsync.SavePhotoAsync"/>
+		SavePhotoResult SavePhoto(SavePhotoParams @params);
 	}
 }

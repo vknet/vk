@@ -144,5 +144,16 @@ namespace VkNet.Categories
 			return _vk.Call<PhotoUploadServer>("polls.getPhotoUploadServer",
 				new VkParameters { {"owner_id", ownerId} });
 		}
+
+		/// <inheritdoc />
+		public SavePhotoResult SavePhoto(SavePhotoParams @params)
+		{
+			return _vk.Call<SavePhotoResult>("polls.savePhoto",
+				new VkParameters
+				{
+					{ "photo", @params.Photo },
+					{ "hash", @params.Hash }
+				});
+		}
 	}
 }

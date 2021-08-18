@@ -58,5 +58,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => GetPhotoUploadServer(ownerId));
 		}
+
+		/// <inheritdoc />
+		public Task<SavePhotoResult> SavePhotoAsync(SavePhotoParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(func: () => SavePhoto(@params: @params));
+		}
 	}
 }
