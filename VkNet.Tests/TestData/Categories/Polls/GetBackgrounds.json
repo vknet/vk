@@ -1,0 +1,29 @@
+{
+  "response": [{
+    "angle": 225,
+    "color": "6248cb",
+    "id": 1,
+    "name": "фон в тёплых тонах",
+    "points": [{
+      "color": "f24973",
+      "position": 0
+    }, {
+      "color": "3948e6",
+      "position": 1
+    }],
+    "type": "gradient"
+  }, {
+    "angle": 180,
+    "color": "4b8642",
+    "id": 2,
+    "name": "зелёный фон",
+    "points": [{
+      "color": "679945",
+      "position": 0
+    }, {
+      "color": "2f733f",
+      "position": 1
+    }],
+    "type": "gradient"
+  }]
+}
