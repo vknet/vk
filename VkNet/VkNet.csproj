@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
-		<VersionPrefix>1.65.0</VersionPrefix>
+		<VersionPrefix>1.66.0</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -23,7 +23,7 @@
 			Обсуждение в Telegram: https://t.me/VkDotNet
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: https://github.com/vknet/vk/milestone/41?closed=1
+			Список изменений: https://github.com/vknet/vk/milestone/42?closed=1
 		</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -50,20 +50,11 @@
 
 	<ItemGroup>
 		<PackageReference Include="AsyncFixer" Version="1.5.1" PrivateAssets="all" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.35" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.36" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
 		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.27.0.35380" PrivateAssets="all" />
 		<PackageReference Include="JetBrains.Annotations" Version="2021.2.0" PrivateAssets="all" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.0" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[5.0.0,)" />
 		<PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />

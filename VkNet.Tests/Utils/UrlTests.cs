@@ -42,11 +42,11 @@ namespace VkNet.Tests.Utils
 			const string inputUrl = "https://www.google.com/search?q=dictionary&sourceid=chrome&ie=UTF-8&key1=value1&key2=value2";
 			var result = Url.ParseQueryString(inputUrl);
 
-			result.Should().ContainKey("q").WhichValue.Should().Be("dictionary");
-			result.Should().ContainKey("sourceid").WhichValue.Should().Be("chrome");
-			result.Should().ContainKey("ie").WhichValue.Should().Be("UTF-8");
-			result.Should().ContainKey("key1").WhichValue.Should().Be("value1");
-			result.Should().ContainKey("key2").WhichValue.Should().Be("value2");
+			result.Should().ContainKey("q").WhoseValue.Should().Be("dictionary");
+			result.Should().ContainKey("sourceid").WhoseValue.Should().Be("chrome");
+			result.Should().ContainKey("ie").WhoseValue.Should().Be("UTF-8");
+			result.Should().ContainKey("key1").WhoseValue.Should().Be("value1");
+			result.Should().ContainKey("key2").WhoseValue.Should().Be("value2");
 		}
 
 		[Test]
