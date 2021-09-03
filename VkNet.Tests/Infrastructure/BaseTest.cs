@@ -118,14 +118,10 @@ namespace VkNet.Tests
 			Api.CaptchaSolver = Mocker.Get<ICaptchaSolver>();
 			SetupCaptchaHandler();
 
-			Api.Authorize(new ApiAuthParams
-			{
-				ApplicationId = 1,
-				Login = "login",
-				Password = "pass",
-				Settings = Settings.All,
-				Phone = "89510000000"
-			});
+			Api.Authorize
+			(
+				Mocker.Get<IApiAuthParams>()
+			);
 
 			Api.RequestsPerSecond = int.MaxValue;
 		}

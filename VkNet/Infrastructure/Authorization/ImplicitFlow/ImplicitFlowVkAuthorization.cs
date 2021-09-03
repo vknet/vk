@@ -79,7 +79,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 				return ImplicitFlowPageType.Error;
 			}
 
-			if (original.StartsWith("https://m.vk.com/login?act=authcheck"))
+			if (original.Contains("/login?act=authcheck"))
 			{
 				return ImplicitFlowPageType.TwoFactor;
 			}
