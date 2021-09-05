@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -50,7 +50,7 @@ namespace VkNet.Model
 		/// Для <see cref="Type"/> со значением <see cref="MessageEventType.OpenApp"/>.
 		/// </remarks>
 		[JsonProperty("owner_id", NullValueHandling = NullValueHandling.Ignore)]
-		public ulong? OwnerId { get; set; }
+		public long? OwnerId { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.

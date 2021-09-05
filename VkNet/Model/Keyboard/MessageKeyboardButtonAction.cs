@@ -87,7 +87,7 @@ namespace VkNet.Model.Keyboard
 		/// Для <see cref="Type"/> со значением <see cref="KeyboardButtonActionType.VkApp"/>
 		/// </remarks>
 		[JsonProperty("owner_id", NullValueHandling = NullValueHandling.Ignore)]
-		public ulong? OwnerId { get; set; }
+		public long? OwnerId { get; set; }
 
 		/// <summary>
 		/// user_id: 1-2e9
