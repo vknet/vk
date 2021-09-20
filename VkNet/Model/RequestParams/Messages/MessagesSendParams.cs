@@ -23,7 +23,7 @@ namespace VkNet.Model.RequestParams
 		[JsonProperty("domain")]
 		public string Domain { get; set; }
 
-		// <summary>
+		/// <summary>
 		/// Заголовок сообщения(выделется жирным)
 		/// </summary>
 		[JsonProperty("title")]
