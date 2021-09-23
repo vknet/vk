@@ -14,7 +14,7 @@ namespace VkNet.Model
 		/// Идентификатор контента.
 		/// </summary>
 		[Obsolete(ObsoleteText.ObsoleteCyrillicProperty, true)]
-		[JsonProperty("content_id")]
+		[JsonIgnore]
 		public string СontentId { get; set; }
 
 		/// <summary>
