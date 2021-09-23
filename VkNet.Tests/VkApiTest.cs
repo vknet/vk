@@ -66,7 +66,7 @@ namespace VkNet.Tests
 
 			for (var i = 0; i < callsCount + 1; i++)
 			{
-				taskList.Add(Api.CallAsync("friends.getRequests", VkParameters.Empty, true).ContinueWith((_) => calls++));
+				taskList.Add(Api.CallAsync("friends.getRequests", VkParameters.Empty, true).ContinueWith(_ => Interlocked.Increment(ref calls)));
 			}
 
 			await Task.Delay(1000);
