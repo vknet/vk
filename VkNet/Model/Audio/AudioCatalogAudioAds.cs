@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -12,8 +13,15 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор контента.
 		/// </summary>
+		[Obsolete(ObsoleteText.ObsoleteCyrillicProperty, true)]
 		[JsonProperty("content_id")]
 		public string СontentId { get; set; }
+
+		/// <summary>
+		/// Идентификатор контента.
+		/// </summary>
+		[JsonProperty("content_id")]
+		public string ContentId { get; set; }
 
 		/// <summary>
 		/// Длительность.
