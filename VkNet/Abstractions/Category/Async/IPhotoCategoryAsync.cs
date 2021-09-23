@@ -225,8 +225,6 @@ namespace VkNet.Abstractions
 		/// Параметр, возвращаемый в результате загрузки фотографии
 		/// на сервер.
 		/// </param>
-		/// <param name="captchaSid"> Идентификатор капчи </param>
-		/// <param name="captchaKey"> текст, который ввел пользователь </param>
 		/// <returns>
 		/// После успешного выполнения возвращает объект, содержащий поля photo_hash и
 		/// photo_src (при работе через VK.api метод
