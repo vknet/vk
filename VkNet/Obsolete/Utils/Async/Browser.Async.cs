@@ -161,19 +161,18 @@ namespace VkNet.Utils
 		/// Закончить авторизацию асинхронно
 		/// </summary>
 		/// <param name="result"> Результат </param>
-		/// <param name="webProxy"> Настройки прокси </param>
 		/// <returns> </returns>
 		/// <exception cref="CaptchaNeededException"> </exception>
 		private async Task<VkAuthorization2> EndAuthorizeAsync(HttpResponse<string> result)
 		{
-			if (IsAuthSuccessfull(result))
+			if (IsAuthSuccessful(result))
 			{
 				var auth = GetTokenUri(result);
 
 				return VkAuthorization2.From(auth.ToString());
 			}
 
-			if (HasСonfirmationRights(result))
+			if (HasConfirmationRights(result))
 			{
 				_logger?.LogDebug("Требуется подтверждение прав");
 				var authorizationForm = WebForm.From(result);
@@ -181,7 +180,7 @@ namespace VkNet.Utils
 				var authorizationFormPostResult =
 					await _restClient.PostAsync(new Uri(authorizationForm.ActionUrl), authorizationForm.GetFormFields(), Encoding.GetEncoding(1251)).ConfigureAwait(false);
 
-				if (!IsAuthSuccessfull(authorizationFormPostResult))
+				if (!IsAuthSuccessful(authorizationFormPostResult))
 				{
 					throw new VkApiException("URI должен содержать токен!");
 				}

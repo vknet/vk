@@ -121,7 +121,7 @@ namespace VkNet.Utils
 			return ValidateAsync(validateUrl).ConfigureAwait(false).GetAwaiter().GetResult();
 		}
 
-		private bool HasСonfirmationRights(HttpResponse<string> result)
+		private bool HasConfirmationRights(HttpResponse<string> result)
 		{
 			var request = VkAuthorization2.From(result.RequestUri?.ToString());
 			var response = VkAuthorization2.From(result.ResponseUri?.ToString());
@@ -152,7 +152,7 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="webCallResult"> </param>
 		/// <returns> true, если авторизация прошла успешно </returns>
-		private static bool IsAuthSuccessfull(HttpResponse<string> webCallResult)
+		private static bool IsAuthSuccessful(HttpResponse<string> webCallResult)
 		{
 			return UriHasAccessToken(webCallResult.RequestUri) || UriHasAccessToken(webCallResult.ResponseUri);
 		}
