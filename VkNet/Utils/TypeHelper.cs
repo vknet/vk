@@ -31,11 +31,11 @@ namespace VkNet.Utils
 			container.TryAddSingleton<HttpClient>();
 			container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
 			container.TryAddSingleton<IRestClient, RestClient>();
-			container.TryAddSingleton<IWebProxy>(t => null);
+			container.TryAddSingleton<IWebProxy>(_ => null);
 			container.TryAddSingleton<IVkApiVersionManager, VkApiVersionManager>();
 			container.TryAddSingleton<ICaptchaHandler, CaptchaHandler>();
 			container.TryAddSingleton<ILanguageService, LanguageService>();
-			container.TryAddSingleton<ICaptchaSolver>(sp => null);
+			container.TryAddSingleton<ICaptchaSolver>(_ => null);
 			container.TryAddSingleton<IRateLimiter, RateLimiter>();
 			container.TryAddSingleton<IAwaitableConstraint, CountByIntervalAwaitableConstraint>();
 			container.RegisterImplicitFlowAuthorization();
