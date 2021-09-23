@@ -15,7 +15,7 @@ namespace VkNet.Tests.Utils
 			int count = 3;
 			var t = TimeSpan.FromSeconds(1);
 			var awaitableConstraint = new CountByIntervalAwaitableConstraint(count, t);
-			var token = new CancellationToken();
+			var token = new CancellationTokenSource().Token;
 			var sw = Stopwatch.StartNew();
 			for (int i = 0; i < count; i++)
 			{
