@@ -370,7 +370,7 @@ namespace VkNet.Tests.Models
 
 			Assert.That(Settings.All.ToString(),
 				Is.EqualTo(
-					"notify,friends,photos,audio,video,app_widget,pages,addlinktoleftmenu,status,notes,wall,ads,docs,groups,notifications,stats,email,market"));
+					"addlinktoleftmenu,ads,app_widget,audio,docs,email,friends,groups,market,notes,notifications,notify,pages,photos,stats,status,video,wall"));
 
 			// parse test
 			Assert.That(Settings.FromJsonString("notify"), Is.EqualTo(Settings.Notify));

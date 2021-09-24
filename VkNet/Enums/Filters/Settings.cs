@@ -165,24 +165,24 @@ namespace VkNet.Enums.Filters
 		/// <summary>
 		/// Доступ ко всем возможным операциям (без Off line и NoHttps).
 		/// </summary>
-		public static Settings All => Notify
-									|Friends
-									|Photos
-									|Audio
-									|Video
-									|AppWidget
-									|Pages
-									|AddLinkToLeftMenu
-									|Status
-									|Notes
-									|Wall
+		public static Settings All => AddLinkToLeftMenu
 									|Ads
+									|AppWidget
+									|Audio
 									|Documents
-									|Groups
-									|Notifications
-									|Stats
 									|Email
-									|Market;
+									|Friends
+									|Groups
+									|Market
+									|Notes
+									|Notifications
+									|Notify
+									|Pages
+									|Photos
+									|Stats
+									|Status
+									|Video
+									|Wall;
 
 		private static Settings GetByName(string name)
 		{
