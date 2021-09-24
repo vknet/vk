@@ -473,7 +473,7 @@ namespace VkNet.Categories
 
 			if (peerId is not null && groupId is not null)
 			{
-				throw new VkApiException("This method doesn't accept 'peerId' and 'groupId' specified simultaneously");
+				throw new VkApiException("This method doesn't accept 'peerId' and 'groupId' being specified simultaneously");
 			}
 
 			var parameters = new VkParameters
