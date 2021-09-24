@@ -10,8 +10,6 @@ namespace VkNet.Model
 	[Serializable]
 	public class ApiAuthParams : IApiAuthParams
 	{
-		// TODO: добавить поле IsValid в котором проверять достаточно ли параметров для авторизации
-
 		/// <inheritdoc />
 		public ulong ApplicationId { get; set; }
 
@@ -96,6 +94,35 @@ namespace VkNet.Model
 
 		/// <inheritdoc />
 		public bool IsTokenUpdateAutomatically { get; set; }
+
+		/// <inheritdoc />
+		public bool IsValid
+		{
+			get
+			{
+				if (!string.IsNullOrEmpty(AccessToken))
+				{
+					// If only access_token is provided, it's enough to perform calls aka authorize
+					return true;
+				}
+
+				if (!string.IsNullOrEmpty(Login) &&
+					!string.IsNullOrEmpty(Password) &&
+					TwoFactorAuthorization is not null &&
+					ApplicationId != 0 &&
+					Settings is not null && Settings.ToUInt64() != 0
+				)
+				{
+					// TODO: Are AppId and Settings really required? I used to authorize without them
+					// If login-password pair is provided, it's enough to perform an authorization
+					return true;
+				}
+
+				// TODO: Discover, if there are any other possibilities to authorize via this class
+
+				return false;
+			}
+		}
 
 		/// <summary>
 		/// Формирует параметры авторизации по минимальному набору необходимых полей
