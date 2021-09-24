@@ -6,7 +6,7 @@ using VkNet.Model.Attachments;
 namespace VkNet.Model.RequestParams
 {
 	/// <summary>
-	/// TODO: Description
+	/// параметры запроса wall.editAdsStealth
 	/// </summary>
 	[Serializable]
 	public class EditAdsStealthParams
