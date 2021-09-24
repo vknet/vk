@@ -53,7 +53,7 @@ namespace VkNet.Tests
 			Assert.IsTrue(isUpdated);
 		}
 
-		[Test, Ignore("Тест врет и не проверяет стабильное воспроизведение, ошибка либо в реализации либо в базовом классе теста")]
+		[Test, /*Ignore("Тест врет и не проверяет стабильное воспроизведение, ошибка либо в реализации либо в базовом классе теста")*/]
 		public async Task Call_NotMoreThen3CallsPerSecond()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
@@ -66,7 +66,7 @@ namespace VkNet.Tests
 
 			for (var i = 0; i < callsCount + 1; i++)
 			{
-				taskList.Add(Api.CallAsync("friends.getRequests", VkParameters.Empty, true).ContinueWith((_) => calls++));
+				taskList.Add(Api.CallAsync("friends.getRequests", VkParameters.Empty, true).ContinueWith(_ => Interlocked.Increment(ref calls)));
 			}
 
 			await Task.Delay(1000);
