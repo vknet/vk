@@ -74,7 +74,7 @@ namespace VkNet.Utils
 				IsSuccess = true,
 				StatusCode = httpStatusCode,
 				RequestUri = requestUri,
-				ResponseUri = requestUri
+				ResponseUri = responseUri
 			};
 		}
 
