@@ -5,7 +5,7 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Массив объектов CampaignSpecification
+	/// Результат выполнения метода ads.createCampaigns
 	/// </summary>
 	[Serializable]
 	public class CreateCampaignResult
@@ -13,6 +13,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор созданного объявления.
 		/// </summary>
+		/// <remarks>Выполнение этого метода может вернуть id = null в случае ошибки</remarks>
 		[JsonProperty("id")]
 		public long? Id { get; set; }
 
