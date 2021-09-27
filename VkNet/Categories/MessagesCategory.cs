@@ -397,12 +397,12 @@ namespace VkNet.Categories
 			{
 				throw new ArgumentException("Parameter Ids has no elements.", nameof(messageIds));
 			}
-			
+
 
 			var parameters = new VkParameters
 			{
-				{ "message_ids", messageIds!=null?messageIds.ToList():null },
-				{ "conversation_message_ids", conversationMessageIds!=null?conversationMessageIds.ToList():null },
+				{ "message_ids", messageIds?.ToList() },
+				{ "conversation_message_ids", conversationMessageIds?.ToList() },
 				{ "peer_id", PeerId },
 				{ "spam", spam },
 				{ "group_id", groupId },
@@ -425,18 +425,18 @@ namespace VkNet.Categories
 		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
 												bool? deleteForAll = null)
 		{
-			return Delete(messageIds,null,null,spam,groupId, deleteForAll );
+			return Delete(messageIds, null, null, spam, groupId, deleteForAll);
 		}
 
 		/// <inheritdoc />
-		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> conversationMessageIds, ulong PeerId, 
+		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> conversationMessageIds, ulong PeerId,
 												bool? spam = null, ulong? groupId = null,
 												bool? deleteForAll = null)
 		{
 
-			return Delete(null,conversationMessageIds,PeerId,spam,groupId);
+			return Delete(null, conversationMessageIds, PeerId, spam, groupId);
 		}
-		
+
 		/// <inheritdoc />
 		public bool Restore(ulong messageId, ulong? groupId = null)
 		{
@@ -466,6 +466,16 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool SetActivity(string userId, MessageActivityType type, long? peerId = null, ulong? groupId = null)
 		{
+			if (peerId is null && groupId is null)
+			{
+				throw new VkApiException("Either one of the parameters 'peerId' and 'groupId' must be specified.");
+			}
+
+			if (peerId is not null && groupId is not null)
+			{
+				throw new VkApiException("This method doesn't accept 'peerId' and 'groupId' being specified simultaneously");
+			}
+
 			var parameters = new VkParameters
 			{
 				{ "used_id", userId },

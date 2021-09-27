@@ -666,17 +666,5 @@ namespace VkNet.Tests.Categories.Messages
 			Assert.That(response.Chats[0].Users.ElementAt(1), Is.EqualTo(6492));
 			Assert.That(response.Chats[0].Users.ElementAt(2), Is.EqualTo(1708231));
 		}
-
-		[Test]
-		public void SetActivity_NormalCase_True()
-		{
-			Url = "https://api.vk.com/method/messages.setActivity";
-
-			ReadJsonFile(JsonPaths.True);
-
-			var result = Api.Messages.SetActivity("7550525", MessageActivityType.Typing);
-
-			Assert.That(result, Is.True);
-		}
 	}
 }
