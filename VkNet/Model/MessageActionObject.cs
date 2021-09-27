@@ -41,7 +41,7 @@ namespace VkNet.Model
 		public long? ConversationMessageId { get; set; }
 
 		/// <summary>
-		/// Текст сообщения с которым произведено действие (для служебных сообщений с type = chat_pin_message или chat_unpin_message).
+		/// Текст сообщения с которым произведено действие (для служебных сообщений с type = chat_pin_message).
 		/// </summary>
 		[JsonProperty("message")]
 		public string Message { get; set; }
