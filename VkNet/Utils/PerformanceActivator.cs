@@ -19,7 +19,7 @@ namespace VkNet.Utils
 		internal static TResult CreateInstance<TResult>(params object[] args)
 			where TResult : class
 		{
-			return CreateInstance<TResult>(x => true, args);
+			return CreateInstance<TResult>(_ => true, args);
 		}
 
 		/// <summary>

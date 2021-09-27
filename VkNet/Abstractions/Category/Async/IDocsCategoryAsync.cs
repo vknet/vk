@@ -95,14 +95,6 @@ namespace VkNet.Abstractions
 		/// </param>
 		/// <param name="title"> Название документа. </param>
 		/// <param name="tags"> Метки для поиска. </param>
-		/// <param name="captchaSid">
-		/// Id капчи (только если для вызова метода необходимо
-		/// ввести капчу)
-		/// </param>
-		/// <param name="captchaKey">
-		/// Текст капчи (только если для вызова метода необходимо
-		/// ввести капчу)
-		/// </param>
 		/// <returns> Возвращает массив с загруженными объектами. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/docs.save
@@ -149,8 +141,6 @@ namespace VkNet.Abstractions
 		/// остальными данными о
 		/// документе было возвращено поле access_key.
 		/// </param>
-		/// <param name="captchaSid"> Идентификатор капчи </param>
-		/// <param name="captchaKey"> Текст капчи, который ввел пользователь </param>
 		/// <returns>
 		/// После успешного выполнения возвращает идентификатор созданного
 		/// документа (did).

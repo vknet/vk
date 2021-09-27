@@ -24,13 +24,26 @@ namespace VkNet.Model
 		/// <summary>
 		/// Дата создания (в формате unixtime).
 		/// </summary>
+		[Obsolete(ObsoleteText.ObsoleteCyrillicProperty, true)]
 		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 		public DateTime? Сreated { get; set; }
 
 		/// <summary>
+		/// Дата создания (в формате unixtime).
+		/// </summary>
+		[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
+		public DateTime? Created { get; set; }
+
+		/// <summary>
 		/// Идентификатор пользователя, создавшего тему.
 		/// </summary>
+		[Obsolete(ObsoleteText.ObsoleteCyrillicProperty, true)]
 		public long СreatedBy { get; set; }
+
+		/// <summary>
+		/// Идентификатор пользователя, создавшего тему.
+		/// </summary>
+		public long CreatedBy { get; set; }
 
 		/// <summary>
 		/// Дата последнего сообщения (в формате unixtime).
@@ -78,17 +91,17 @@ namespace VkNet.Model
 		{
 			var topicItem = new Topic
 			{
-					Id = response[key: "id"]
-					, Title = response[key: "title"]
-					, Сreated = response[key: "created"]
-					, СreatedBy = response[key: "created_by"]
-					, Updated = response[key: "updated"]
-					, UpdatedBy = response[key: "updated_by"]
-					, IsClosed = response[key: "is_closed"]
-					, IsFixed = response[key: "is_fixed"]
-					, Comments = response[key: "comments"]
-					, FirstComment = response[key: "first_comment"]
-					, LastComment = response[key: "last_comment"]
+				Id = response[key: "id"],
+				Title = response[key: "title"],
+				Created = response[key: "created"],
+				CreatedBy = response[key: "created_by"],
+				Updated = response[key: "updated"],
+				UpdatedBy = response[key: "updated_by"],
+				IsClosed = response[key: "is_closed"],
+				IsFixed = response[key: "is_fixed"],
+				Comments = response[key: "comments"],
+				FirstComment = response[key: "first_comment"],
+				LastComment = response[key: "last_comment"]
 			};
 
 			return topicItem;

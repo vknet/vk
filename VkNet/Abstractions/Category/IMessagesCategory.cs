@@ -29,7 +29,7 @@ namespace VkNet.Abstractions
 										bool? deleteForAll = null);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync"/>
-		IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> conversationMessageIds, ulong PeerId, 
+		IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> conversationMessageIds, ulong peerId, 
 												bool? spam = null, ulong? groupId = null,
 												bool? deleteForAll = null);
 

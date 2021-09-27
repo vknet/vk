@@ -52,7 +52,7 @@ namespace VkNet.Enums.Filters
 		/// <summary>
 		/// Список выбранных прав
 		/// </summary>
-		private IEnumerable<string> Selected => _settings ?? (_settings = new List<string>());
+		private IEnumerable<string> Selected => _settings ??= new List<string>();
 
 		/// <summary>
 		/// Пользователь разрешил отправлять ему уведомления.
@@ -233,10 +233,10 @@ namespace VkNet.Enums.Filters
 			{
 				if (MaskMap.ContainsKey(key: v.ToLower()))
 				{
-					res = res|GetByName(name: v);
+					res |= GetByName(name: v);
 				} else if (Alias.ContainsKey(key: v.ToLower()))
 				{
-					res = res|GetByName(name: v);
+					res |= GetByName(name: v);
 				}
 			}
 

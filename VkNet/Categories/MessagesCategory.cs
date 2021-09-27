@@ -386,7 +386,7 @@ namespace VkNet.Categories
 			return DeleteConversation(userId, peerId, null);
 		}
 
-		private IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, IEnumerable<ulong> conversationMessageIds = null, ulong? PeerId = null, bool? spam = null, ulong? groupId = null,
+		private IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, IEnumerable<ulong> conversationMessageIds = null, ulong? peerId = null, bool? spam = null, ulong? groupId = null,
 												bool? deleteForAll = null)
 		{
 			if (messageIds == null&&conversationMessageIds==null)
@@ -403,7 +403,7 @@ namespace VkNet.Categories
 			{
 				{ "message_ids", messageIds?.ToList() },
 				{ "conversation_message_ids", conversationMessageIds?.ToList() },
-				{ "peer_id", PeerId },
+				{ "peer_id", peerId },
 				{ "spam", spam },
 				{ "group_id", groupId },
 				{ "delete_for_all", deleteForAll }
@@ -429,12 +429,12 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> conversationMessageIds, ulong PeerId,
+		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> conversationMessageIds, ulong peerId,
 												bool? spam = null, ulong? groupId = null,
 												bool? deleteForAll = null)
 		{
 
-			return Delete(null, conversationMessageIds, PeerId, spam, groupId);
+			return Delete(null, conversationMessageIds, peerId, spam, groupId);
 		}
 
 		/// <inheritdoc />
