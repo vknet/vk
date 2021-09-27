@@ -1,0 +1,26 @@
+{
+  "date": 1632770481,
+  "from_id": 12345678,
+  "id": 714376,
+  "out": 0,
+  "peer_id": 2012345678,
+  "text": "",
+  "conversation_message_id": 31,
+  "fwd_messages": [],
+  "important": false,
+  "random_id": 0,
+  "attachments": [
+    {
+      "type": "call",
+      "call": {
+        "initiator_id": 12345678,
+        "receiver_id": 2012345678,
+        "state": "reached",
+        "time": 1632770481,
+        "duration": 30,
+        "video": true
+      }
+    }
+  ],
+  "is_hidden": false
+}
