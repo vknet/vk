@@ -14,7 +14,7 @@ namespace VkNet.Model
 		/// Идентификатор созданного объявления.
 		/// </summary>
 		[JsonProperty("id")]
-		public long Id { get; set; }
+		public long? Id { get; set; }
 
 		/// <summary>
 		/// Массив объектов UserSpecification

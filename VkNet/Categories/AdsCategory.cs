@@ -65,6 +65,11 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public ReadOnlyCollection<CreateCampaignResult> CreateCampaigns(AdsDataSpecificationParams<CampaignSpecification> campaignsDataSpecification)
 		{
+			if (campaignsDataSpecification.Data.Length > 50)
+			{
+				throw new ArgumentOutOfRangeException(nameof(campaignsDataSpecification), "This method doesn't support more than 50 campaigns per call");
+			}
+
 			return _vk.Call<ReadOnlyCollection<CreateCampaignResult>>("ads.createCampaigns",
 				new VkParameters
 				{
@@ -76,6 +81,11 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public ReadOnlyCollection<CreateClientResult> CreateClients(AdsDataSpecificationParams<ClientSpecification> clientDataSpecification)
 		{
+			if (clientDataSpecification.Data.Length > 50)
+			{
+				throw new ArgumentOutOfRangeException(nameof(clientDataSpecification), "This method doesn't support more than 50 clients per call");
+			}
+
 			return _vk.Call<ReadOnlyCollection<CreateClientResult>>("ads.createClients",
 				new VkParameters
 				{
