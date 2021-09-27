@@ -1,0 +1,39 @@
+{
+  "date": 1632748835,
+  "from_id": 12345678,
+  "id": 714037,
+  "out": 0,
+  "peer_id": 2012345678,
+  "text": "",
+  "conversation_message_id": 8,
+  "fwd_messages": [],
+  "important": false,
+  "random_id": 0,
+  "attachments": [
+    {
+      "type": "audio_message",
+      "audio_message": {
+        "id": 614226760,
+        "owner_id": 12345678,
+        "duration": 2,
+        "waveform": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "link_ogg": "ogg_link_here",
+        "link_mp3": "mp3_link_here",
+        "access_key": "access_key_here",
+        "transcript_state": "done",
+        "transcript": "Короткое голосовое."
+      }
+    }
+  ],
+  "is_hidden": false,
+  "was_listened": true
+}

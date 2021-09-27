@@ -35,6 +35,18 @@ namespace VkNet.Model
 		public string Text { get; set; }
 
 		/// <summary>
+		/// Id сообщения, с которым произведено действие (для служебных сообщений с type = chat_pin_message или chat_unpin_message).
+		/// </summary>
+		[JsonProperty("conversation_message_id")]
+		public long? ConversationMessageId { get; set; }
+
+		/// <summary>
+		/// Текст сообщения с которым произведено действие (для служебных сообщений с type = chat_pin_message).
+		/// </summary>
+		[JsonProperty("message")]
+		public string Message { get; set; }
+
+		/// <summary>
 		/// Email, который пригласили или исключили (для служебных сообщений с type = chat_invite_user или chat_kick_user и отрицательным member_id).
 		/// </summary>
 		[JsonProperty("email")]
@@ -58,6 +70,8 @@ namespace VkNet.Model
 				Type = response["type"],
 				MemberId = response["member_id"],
 				Text = response["text"],
+				ConversationMessageId = response["conversation_message_id"],
+				Message = response["message"],
 				Email = response["email"],
 				Photo = response["photo"]
 			};
