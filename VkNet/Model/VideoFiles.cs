@@ -39,6 +39,11 @@ namespace VkNet.Model
 		/// </summary>
 		public Uri External { get; set; }
 
+		/// <summary>
+		/// Ссылка на HLS плейлист
+		/// </summary>
+		public Uri Hls { get; set; }
+
 	#region public Methods
 
 		/// <summary>
@@ -50,12 +55,13 @@ namespace VkNet.Model
 		{
 			return new VideoFiles
 			{
-					Mp4_240 = response[key: "mp4_240"]
-					, Mp4_360 = response[key: "mp4_360"]
-					, Mp4_480 = response[key: "mp4_480"]
-					, Mp4_720 = response[key: "mp4_720"]
-					, Mp4_1080 = response[key: "mp4_1080"]
-					, External = response[key: "external"]
+				Mp4_240 = response["mp4_240"],
+				Mp4_360 = response["mp4_360"],
+				Mp4_480 = response["mp4_480"],
+				Mp4_720 = response["mp4_720"],
+				Mp4_1080 = response["mp4_1080"],
+				External = response["external"],
+				Hls = response["hls"]
 			};
 		}
 
