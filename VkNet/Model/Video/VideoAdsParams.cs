@@ -4,7 +4,7 @@ using VkNet.Enums;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Undocumented structure, which returns inside ads field in Video
+	/// TODO: Undocumented structure, which returns inside ads field in Video
 	/// </summary>
 	public class VideoAdsParams
 	{
@@ -13,7 +13,6 @@ namespace VkNet.Model
 		/// <remarks>
 		/// In my tests it contained my UserId
 		/// </remarks>
-		/// >
 		/// </summary>
 		[JsonProperty("vk_id")]
 		public long? VkId { get; set; }
@@ -227,8 +226,11 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// TODO: Undocumented
+		/// <remarks>
+		/// Must be some Category Id, in my tests it was 4, 29
+		/// </remarks>
 		/// </summary>
 		[JsonProperty("vk_catid")]
-		public int VkCatId { get; set; }
+		public int? VkCatId { get; set; }
 	}
 }
