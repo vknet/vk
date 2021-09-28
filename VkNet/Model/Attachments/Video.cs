@@ -158,11 +158,10 @@ namespace VkNet.Model.Attachments
 		[JsonProperty("player")]
 		public Uri Player { get; set; }
 
-		/// <summary>
-		/// Платформа размещения видеозаписи
-		/// </summary>
-
 		// TODO: This should be a SafetyEnum
+		/// <summary>
+		/// Платформа размещения видеозаписи (например Youtube)
+		/// </summary>
 		[JsonProperty("platform")]
 		public string Platform { set; get; }
 

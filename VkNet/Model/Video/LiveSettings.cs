@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -26,5 +27,19 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("max_duration")]
 		public int? MaxDuration { get; set; }
+
+	#region public Methods
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static LiveSettings FromJson(VkResponse response)
+		{
+			return JsonConvert.DeserializeObject<LiveSettings>(response.ToString());
+		}
+
+	#endregion
 	}
 }
