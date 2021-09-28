@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Enums;
 
 namespace VkNet.Model
@@ -6,6 +7,7 @@ namespace VkNet.Model
 	/// <summary>
 	/// TODO: Undocumented structure, which returns inside ads field in Video
 	/// </summary>
+	[Serializable]
 	public class VideoAdsParams
 	{
 		/// <summary>
