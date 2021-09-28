@@ -420,7 +420,7 @@ namespace VkNet.Model.Attachments
 		/// Количество зрителей прямой трансляции
 		/// </summary>
 		[JsonProperty("spectators")]
-		public string Spectators { get; set; }
+		public int? Spectators { get; set; }
 
 		/// <summary>
 		/// Параметры прямой трансляции
