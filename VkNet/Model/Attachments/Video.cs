@@ -283,7 +283,7 @@ namespace VkNet.Model.Attachments
 		public long? AlbumId { get; set; }
 
 		/// <summary>
-		/// <c>Uri</c>, по которому необходимо выполнить загрузку видеов (см. метод
+		/// <c>Uri</c>, по которому необходимо выполнить загрузку видео (см. метод
 		/// <c>VideoCategory.Save</c>
 		/// </summary>
 		[JsonProperty("upload_url")]
@@ -318,6 +318,15 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[JsonProperty("height")]
 		public int? Height { get; set; }
+
+		/// <summary>
+		/// TODO: Undocumented
+		/// <remarks>
+		/// This might be all the info for the end application to play ads in the video
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("ads")]
+		public VideoAds Ads { get; set; }
 
 	#endregion
 	}
