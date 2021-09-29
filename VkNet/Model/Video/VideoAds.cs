@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -16,6 +17,9 @@ namespace VkNet.Model
 	{
 		/// <summary>
 		/// TODO: Undocumented
+		/// <remarks>
+		///	In my tests it contained basically random number
+		/// </remarks>>
 		/// </summary>
 		[JsonProperty("slot_id")]
 		public long? SlotId { get; set; }
@@ -53,9 +57,31 @@ namespace VkNet.Model
 		/// This field should be pointing to normalized video positions, where the ads
 		/// should be played
 		/// </remarks>
-		/// >
 		/// </summary>
 		[JsonProperty("midroll_percents")]
 		public ReadOnlyCollection<float> MidrollPercents { get; set; }
+
+		/// <summary>
+		/// TODO: Undocumented
+		/// <remarks>
+		/// Должен ли преролл проигрываться автоматически ???
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("autoplay_preroll")]
+		public int? AutoPlayPreroll { get; set; }
+
+	#region public Methods
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static VideoAds FromJson(VkResponse response)
+		{
+			return JsonConvert.DeserializeObject<VideoAds>(response.ToString());
+		}
+
+	#endregion
 	}
 }

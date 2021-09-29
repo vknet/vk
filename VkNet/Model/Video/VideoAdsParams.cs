@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -234,5 +235,19 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("vk_catid")]
 		public int? VkCatId { get; set; }
+
+	#region public Methods
+
+		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static VideoAdsParams FromJson(VkResponse response)
+		{
+			return JsonConvert.DeserializeObject<VideoAdsParams>(response.ToString());
+		}
+
+	#endregion
 	}
 }
