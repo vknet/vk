@@ -1,0 +1,109 @@
+﻿{
+  "can_comment": 1,
+  "can_like": 1,
+  "can_repost": 1,
+  "can_subscribe": 1,
+  "can_add_to_faves": 1,
+  "can_add": 1,
+  "comments": 601890,
+  "date": 1608386115,
+  "description": "Прямой эфир Нового Радио. 24/7",
+  "duration": 0,
+  "image": [
+    {
+      "height": 96,
+      "url": "https://sun1-24.userapi.com/impf/nS0TlHPDNzx5uQCVwScy5GS0j1Ajkr4eqNQ1hg/agSb_04_W4Y.jpg?size=130x96&quality=96&keep_aspect_ratio=1&background=000000&sign=37d30674c7d7b866669e4b59bdec66b5&c_uniq_tag=TVSTapW3_URcAWKs4RNWmXuDVHvKEx2GeJ1mxcF1Fi0&type=video_thumb",
+      "width": 130,
+      "with_padding": 1
+    },
+    {
+      "height": 120,
+      "url": "https://sun1-24.userapi.com/impf/nS0TlHPDNzx5uQCVwScy5GS0j1Ajkr4eqNQ1hg/agSb_04_W4Y.jpg?size=160x120&quality=96&keep_aspect_ratio=1&background=000000&sign=2d9f49e411ae87c49ff690cb6202cbf0&c_uniq_tag=E6naMKFRfCEh33f1hJwELC4VW0dEoO7bRuzR8_xkv1I&type=video_thumb",
+      "width": 160,
+      "with_padding": 1
+    },
+    {
+      "height": 240,
+      "url": "https://sun1-24.userapi.com/impf/nS0TlHPDNzx5uQCVwScy5GS0j1Ajkr4eqNQ1hg/agSb_04_W4Y.jpg?size=320x240&quality=96&keep_aspect_ratio=1&background=000000&sign=0e528546d74cdd25529dc286e3244bd0&c_uniq_tag=t8ygIO-EC5rdi-_tAZfWddg4VRFcBz_NyOmcysnp5Bc&type=video_thumb",
+      "width": 320,
+      "with_padding": 1
+    },
+    {
+      "height": 450,
+      "url": "https://sun1-24.userapi.com/impf/nS0TlHPDNzx5uQCVwScy5GS0j1Ajkr4eqNQ1hg/agSb_04_W4Y.jpg?size=800x450&quality=96&keep_aspect_ratio=1&background=000000&sign=0ab2ae433b9d201d9a934fbb15ce6f3c&c_uniq_tag=8nZS8Ix9ojza_ejxhqZER9rgQCkktMfeqUvfXh5BhmU&type=video_thumb",
+      "width": 800,
+      "with_padding": 1
+    },
+    {
+      "height": 720,
+      "url": "https://sun1-24.userapi.com/impf/nS0TlHPDNzx5uQCVwScy5GS0j1Ajkr4eqNQ1hg/agSb_04_W4Y.jpg?size=1280x720&quality=96&sign=eeb54797eb9a47f7ec08d39767dbf369&c_uniq_tag=PeGgETm14HFZ8coUvZfZF35yPV3V3ZMZclhAAZuXdV0&type=video_thumb",
+      "width": 1280
+    },
+    {
+      "height": 180,
+      "url": "https://sun1-24.userapi.com/impf/nS0TlHPDNzx5uQCVwScy5GS0j1Ajkr4eqNQ1hg/agSb_04_W4Y.jpg?size=320x180&quality=96&sign=ac4eaf0f10f7b41033cb9b73c8a1a12b&c_uniq_tag=hSvnN-sYrsIaodEN7AUPg3tmX7xnChs4mZVX0kKUdJQ&type=video_thumb",
+      "width": 320
+    },
+    {
+      "height": 405,
+      "url": "https://sun1-24.userapi.com/impf/nS0TlHPDNzx5uQCVwScy5GS0j1Ajkr4eqNQ1hg/agSb_04_W4Y.jpg?size=720x405&quality=96&sign=933b83488f01f082f36339421e6281ab&c_uniq_tag=tEZgtQJyxsziCMMeEfr4C8-oOTQG9O-9cRQFcbIfFRs&type=video_thumb",
+      "width": 720
+    },
+    {
+      "height": 576,
+      "url": "https://sun1-24.userapi.com/impf/nS0TlHPDNzx5uQCVwScy5GS0j1Ajkr4eqNQ1hg/agSb_04_W4Y.jpg?size=1024x576&quality=96&sign=c823870cb19ce8b587a18a7ad5b57075&c_uniq_tag=mIMYdZ12Gym1B6s-WbGKPcOqQ8MJ6tF_92cOqOaStVs&type=video_thumb",
+      "width": 1024
+    },
+    {
+      "height": 2304,
+      "url": "https://sun1-24.userapi.com/impf/nS0TlHPDNzx5uQCVwScy5GS0j1Ajkr4eqNQ1hg/agSb_04_W4Y.jpg?size=0x0&quality=90&proxy=1&sign=5477bb133fadd4b7bea820058c05a1a9&c_uniq_tag=oqzH5NpMhm5tTThQkoZ2hmhfl_6_7Vqx_g1JNBg7PkA&type=video_thumb",
+      "width": 4096
+    }
+  ],
+  "first_frame": [
+    {
+      "height": 180,
+      "url": "https://sun1-27.userapi.com/impf/c849320/v849320527/eb1e7/-UditLgGxdc.jpg?size=320x180&quality=96&sign=2ae42b7ebb00270c62cf97beb02bcb8c&c_uniq_tag=7Q-SAqhDq7aRgTpdxHrBdc6d_xbOqNohJ69tAJiuylk&type=video_first_frame",
+      "width": 320
+    },
+    {
+      "height": 90,
+      "url": "https://sun1-27.userapi.com/impf/c849320/v849320527/eb1e7/-UditLgGxdc.jpg?size=160x90&quality=96&sign=5f925213221f519a99d509c60904e826&c_uniq_tag=4Y4AV6OC3-6mceqMZNqodGO-MbsAFJBhJuRU9DPvIK4&type=video_first_frame",
+      "width": 160
+    },
+    {
+      "height": 74,
+      "url": "https://sun1-27.userapi.com/impf/c849320/v849320527/eb1e7/-UditLgGxdc.jpg?size=130x73&quality=96&sign=e420f4090996eedd2a90789ab8521048&c_uniq_tag=BUljuPorPced4YX_J_BZeVVboUr1U5A3R6ls_oxr1_g&type=video_first_frame",
+      "width": 130
+    },
+    {
+      "height": 450,
+      "url": "https://sun1-27.userapi.com/impf/c849320/v849320527/eb1e7/-UditLgGxdc.jpg?size=800x450&quality=96&sign=ec372aed771caff9d371d7675c4543a4&c_uniq_tag=qEU5CFjAsKN1p3auC3V7AH0fTvTrRwJ4F6De-zCDWdk&type=video_first_frame",
+      "width": 800
+    }
+  ],
+  "width": 1920,
+  "height": 1080,
+  "id": 456240719,
+  "owner_id": -106042931,
+  "ov_id": "2669706881869",
+  "title": "Новое Радио. LIVE 24/7",
+  "is_favorite": false,
+  "player": "https://vk.com/video_ext.php?oid=-106042931&id=456240719&hash=4820cc5ea64efc74&__ref=vk.admin_android&api_hash=163279354242f7a11d60bff2126b_GM4DMNZYG42TANA",
+  "type": "live",
+  "views": 28878860,
+  "live_status": "started",
+  "live": 1,
+  "spectators": 89,
+  "files": {
+    "hls": "https://vkvsd16.mycdn.me/hls/1095312673357.m3u8/sig/OWp_G67RlXg/srcIp/217.70.31.125/expires/1633252742236/clientType/13/srcAg/UNKNOWN/fromCache/1/mid/2669706881869/id/1095312673357/video.m3u8?p",
+    "dash_uni": "https://vkvsd16.mycdn.me/dash/stream_1095312673357/stream.manifest/sig/OWp_G67RlXg/srcIp/217.70.31.125/expires/1633252742236/clientType/13/srcAg/UNKNOWN/fromCache/1/mid/2669706881869/id/1095312673357/video",
+    "hls_live_playback": "https://vkvsd16.mycdn.me/hls/1095312673357_offset_p.m3u8/sig/OWp_G67RlXg/srcIp/217.70.31.125/expires/1633252742236/clientType/13/srcAg/UNKNOWN/fromCache/1/mid/2669706881869/id/1095312673357/video.m3u8?p",
+    "dash_live_playback": "https://vkvsd16.mycdn.me/dash/stream_1095312673357_offset_p/stream.manifest/sig/OWp_G67RlXg/srcIp/217.70.31.125/expires/1633252742236/clientType/13/srcAg/UNKNOWN/fromCache/1/mid/2669706881869/id/1095312673357/video"
+  },
+  "live_settings": {
+    "can_rewind": 1,
+    "is_endless": 1,
+    "max_duration": 7200
+  }
+}

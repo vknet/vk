@@ -158,6 +158,15 @@ namespace VkNet.Model.Attachments
 		[JsonProperty("player")]
 		public Uri Player { get; set; }
 
+		/// <summary>
+		/// Тип видеозаписи
+		/// <remarks>
+		/// возвращается live для прямых трансляций
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("type")]
+		public string Type { get; set; }
+
 		// TODO: This should be a SafetyEnum
 		/// <summary>
 		/// Платформа размещения видеозаписи (например Youtube)

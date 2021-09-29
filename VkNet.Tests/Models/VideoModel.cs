@@ -218,5 +218,59 @@ namespace VkNet.Tests.Models
 			Assert.AreEqual(136270576, @params.GroupId);
 			Assert.AreEqual(29, @params.VkCatId);
 		}
+
+		[Test]
+		public void Video_Live_AllFields_ArePresent()
+		{
+			ReadJsonFile("Models", "video_live");
+
+			var response = GetResponse();
+
+			var video = Video.FromJson(response);
+
+			Assert.AreEqual(0, video.Duration);
+			Assert.AreEqual("live", video.Type);
+			Assert.AreEqual("started", video.LiveStatus);
+			Assert.True(video.Live);
+			Assert.AreEqual(89, video.Spectators);
+		}
+
+		[Test]
+		public void Video_Live_Files_Contains_Live_Uris()
+		{
+			ReadJsonFile("Models", "video_live");
+
+			var response = GetResponse();
+
+			var video = Video.FromJson(response);
+
+			var files = video.Files;
+
+			Assert.AreEqual(
+				new Uri(
+					"https://vkvsd16.mycdn.me/hls/1095312673357_offset_p.m3u8/sig/OWp_G67RlXg/srcIp/217.70.31.125/expires/1633252742236/clientType/13/srcAg/UNKNOWN/fromCache/1/mid/2669706881869/id/1095312673357/video.m3u8?p"),
+				files.HlsLivePlayback);
+
+			Assert.AreEqual(
+				new Uri(
+					"https://vkvsd16.mycdn.me/dash/stream_1095312673357_offset_p/stream.manifest/sig/OWp_G67RlXg/srcIp/217.70.31.125/expires/1633252742236/clientType/13/srcAg/UNKNOWN/fromCache/1/mid/2669706881869/id/1095312673357/video"),
+				files.DashLivePlayback);
+		}
+
+		[Test]
+		public void Video_Live_LiveSettings_AllFields_ArePresent()
+		{
+			ReadJsonFile("Models", "video_live");
+
+			var response = GetResponse();
+
+			var video = Video.FromJson(response);
+
+			var liveSettings = video.LiveSettings;
+
+			Assert.AreEqual(1, liveSettings.CanRewind);
+			Assert.AreEqual(1, liveSettings.IsEndless);
+			Assert.AreEqual(7200, liveSettings.MaxDuration);
+		}
 	}
 }
