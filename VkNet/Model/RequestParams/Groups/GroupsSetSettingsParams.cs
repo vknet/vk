@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkNet.Model.RequestParams.Groups
 {
+	/// <summary>
+	/// Параметры метода groups.setSettings
+	/// </summary>
 	[Serializable]
 	public class GroupsSetSettingsParams
 	{

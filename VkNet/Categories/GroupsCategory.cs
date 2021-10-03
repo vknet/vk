@@ -911,5 +911,17 @@ namespace VkNet.Categories
 					{ "bots_add_to_chat", @params.BotsAddToChats }
 				});
 		}
+
+		/// <inheritdoc />
+		public bool SetUserNote(GroupsSetUserNoteParams @params)
+		{
+			return _vk.Call<bool>("groups.setUserNote",
+				new VkParameters
+				{
+					{ "group_id", @params.GroupId },
+					{ "user_id", @params.UserId },
+					{ "note", @params.Note }
+				});
+		}
 	}
 }

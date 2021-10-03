@@ -1068,5 +1068,15 @@ namespace VkNet.Abstractions
 		/// </param>
 		/// <returns> 1 в случае успеха </returns>
 		Task<bool> SetSettingsAsync(GroupsSetSettingsParams @params);
+
+		/// <summary>
+		/// Позволяет создать или отредактировать заметку о пользователе в рамках переписки
+		/// пользователя с сообществом
+		/// </summary>
+		/// <param name="params">
+		/// Параметры редактирования заметки о пользователе
+		/// </param>
+		/// <returns> 1 в случае успеха </returns>
+		Task<bool> SetUserNoteAsync(GroupsSetUserNoteParams @params);
 	}
 }

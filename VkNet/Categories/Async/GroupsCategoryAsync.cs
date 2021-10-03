@@ -321,5 +321,10 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => SetSettings(@params));
 		}
+
+		public Task<bool> SetUserNoteAsync(GroupsSetUserNoteParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => SetUserNote(@params));
+		}
 	}
 }
