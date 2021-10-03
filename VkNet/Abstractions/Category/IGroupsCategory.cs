@@ -167,5 +167,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IGroupsCategoryAsync.GetTagListAsync" />
 		VkCollection<GroupTag> GetTagList(ulong groupId);
+
+		/// <inheritdoc cref="IGroupsCategoryAsync.SetSettingsAsync" />
+		bool SetSettings(GroupsSetSettingsParams @params);
 	}
 }

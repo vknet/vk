@@ -315,5 +315,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetTagList(groupId));
 		}
+
+		/// <inheritdoc />
+		public Task<bool> SetSettingsAsync(GroupsSetSettingsParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => SetSettings(@params));
+		}
 	}
 }

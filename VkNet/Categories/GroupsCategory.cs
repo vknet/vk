@@ -897,5 +897,19 @@ namespace VkNet.Categories
 					})
 				.ToVkCollectionOf<GroupTag>(x => x);
 		}
+
+		/// <inheritdoc />
+		public bool SetSettings(GroupsSetSettingsParams @params)
+		{
+			return _vk.Call<bool>("groups.setSettings",
+				new VkParameters
+				{
+					{ "group_id", @params.GroupId },
+					{ "messages", @params.Messages },
+					{ "bots_capabilities", @params.BotsCapabilities },
+					{ "bots_start_button", @params.BotsStartButton },
+					{ "bots_add_to_chat", @params.BotsAddToChats }
+				});
+		}
 	}
 }

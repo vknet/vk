@@ -1059,5 +1059,14 @@ namespace VkNet.Abstractions
 		/// </param>
 		/// <returns> Массив объектов тэгов </returns>
 		Task<VkCollection<GroupTag>> GetTagListAsync(ulong groupId);
+
+		/// <summary>
+		/// Устанавливает настройки сообщества
+		/// </summary>
+		/// <param name="params">
+		/// Параметры изменения настроек сообщества
+		/// </param>
+		/// <returns> 1 в случае успеха </returns>
+		Task<bool> SetSettingsAsync(GroupsSetSettingsParams @params);
 	}
 }
