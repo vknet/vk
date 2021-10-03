@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
@@ -87,7 +88,7 @@ namespace VkNet.Tests.Categories.Friends
 				3505305
 			});
 
-			Assert.NotNull(dict);
+			dict.Should().NotBeNull();
 			Assert.That(dict.Count, Is.EqualTo(4));
 			Assert.That(dict.FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.NotFriend));
 			Assert.That(dict.Skip(1).FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.Friend));

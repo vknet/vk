@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
@@ -24,7 +25,7 @@ namespace VkNet.Tests.Categories.Podcasts
 				Count = 100
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(result.Podcasts[0].OwnerId, -189167851);
 			Assert.AreEqual(result.Episodes[0].Id, 456239643);
 			Assert.AreEqual(result.Groups[0].Id, 189167851);

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Storage
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Categories.Storage
 
 			var result = Api.Storage.Get(new[] { "qwe" });
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result);
 		}
 
@@ -29,7 +30,7 @@ namespace VkNet.Tests.Categories.Storage
 
 			var result = Api.Storage.GetKeys();
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result);
 		}
 

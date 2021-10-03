@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -19,7 +20,7 @@ namespace VkNet.Tests.Categories.Audio
 
 			var result = Api.Audio.CreatePlaylist(123456789, "test title", "test description", new List<string> { "123456789_123456789" });
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.That(result.Id, Is.EqualTo(11));
 			Assert.That(result.OwnerId, Is.EqualTo(123456789));
 			Assert.That(result.Title, Is.EqualTo("test title"));

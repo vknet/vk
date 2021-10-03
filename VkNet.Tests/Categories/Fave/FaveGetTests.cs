@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams.Fave;
 using VkNet.Tests.Infrastructure;
@@ -21,7 +22,7 @@ namespace VkNet.Tests.Categories.Fave
 			var fave = faves.FirstOrDefault();
 
 			Assert.IsTrue(faves.Any());
-			Assert.NotNull(fave);
+			fave.Should().NotBeNull();
 		}
 	}
 }

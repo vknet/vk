@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FluentAssertions;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Utils;
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Utils.JsonConverter
 
 			CommentBoard result = Api.Call("friends.getRequests", VkParameters.Empty);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.That(result.Id, Is.EqualTo(3));
 			Assert.That(result.FromId, Is.EqualTo(32190123));
 			Assert.IsNotEmpty(result.Attachments);
@@ -40,7 +41,7 @@ namespace VkNet.Tests.Utils.JsonConverter
 
 			var result = JsonConvert.DeserializeObject<Message>(json);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result.Attachments);
 		}
 	}

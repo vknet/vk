@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -20,7 +21,7 @@ namespace VkNet.Tests.Categories.Fave
 			var tag = tags.FirstOrDefault();
 
 			Assert.IsNotEmpty(tags);
-			Assert.NotNull(tag);
+			tag.Should().NotBeNull();
 		}
 	}
 }

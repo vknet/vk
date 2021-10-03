@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Messages
@@ -14,7 +15,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.Pin(123, 345);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 	}
 }

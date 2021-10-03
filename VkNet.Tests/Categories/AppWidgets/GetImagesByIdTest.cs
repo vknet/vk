@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -19,7 +20,7 @@ namespace VkNet.Tests.Categories.AppWidgets
 
 			var result = Api.AppWidgets.GetImagesById("7309583_1192027");
 
-			Assert.IsNotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual("7309583_1192027", result.First().Id);
 		}
 	}

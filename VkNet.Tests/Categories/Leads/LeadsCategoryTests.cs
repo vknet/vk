@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams.Leads;
 using VkNet.Tests.Infrastructure;
 
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Categories.Leads
 
 			var result = Api.Leads.Complete("test8f4f23fb62c5c89fbb", "bb4f37150027a9cf51", string.Empty);
 
-			Assert.IsNotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(1000, result.Limit);
 			Assert.AreEqual(500, result.DayLimit);
 			Assert.AreEqual(10, result.Spent);
@@ -34,7 +35,7 @@ namespace VkNet.Tests.Categories.Leads
 
 			var result = Api.Leads.Start(new StartParams());
 
-			Assert.IsNotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(1, result.TestMode);
 			Assert.AreEqual("vk_sid", result.VkSid);
 		}
@@ -47,7 +48,7 @@ namespace VkNet.Tests.Categories.Leads
 
 			var result = Api.Leads.GetUsers(new GetUsersParams());
 
-			Assert.IsNotNull(result);
+			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result);
 		}
 	}

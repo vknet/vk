@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Messages
@@ -22,7 +23,7 @@ namespace VkNet.Tests.Categories.Messages
 				});
 
 			var message = result.FirstOrDefault();
-			Assert.NotNull(message);
+			message.Should().NotBeNull();
 			Assert.AreEqual(45, message.AdminAuthorId);
 		}
 	}

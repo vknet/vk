@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
@@ -24,7 +25,7 @@ namespace VkNet.Tests.Categories.NewsFeed
 				Count = 100
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result.NextFrom);
 		}
 
@@ -41,7 +42,7 @@ namespace VkNet.Tests.Categories.NewsFeed
 				Count = 100
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result.NextFrom);
 		}
 	}

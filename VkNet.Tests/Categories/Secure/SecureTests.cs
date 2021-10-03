@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -28,7 +29,7 @@ namespace VkNet.Tests.Categories.Secure
 
 			var app = Api.Secure.CheckToken("access_token", "");
 
-			Assert.IsNotNull(app);
+			app.Should().NotBeNull();
 		}
 
 		[Test]
@@ -52,7 +53,7 @@ namespace VkNet.Tests.Categories.Secure
 
 			Assert.IsNotEmpty(app);
 			var item = app.FirstOrDefault();
-			Assert.NotNull(item);
+			item.Should().NotBeNull();
 			Assert.AreEqual(1238497, item.Id);
 		}
 

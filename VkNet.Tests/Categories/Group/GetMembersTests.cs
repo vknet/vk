@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
@@ -24,7 +25,7 @@ namespace VkNet.Tests.Categories.Group
 				GroupId = "187905748"
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 	}
 }

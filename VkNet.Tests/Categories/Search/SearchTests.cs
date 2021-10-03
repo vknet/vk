@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Categories.Search
 
 			var result = Api.Search.GetHints(new SearchGetHintsParams());
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 	}
 }

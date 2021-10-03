@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -73,7 +74,7 @@ namespace VkNet.Tests.Categories.Utils
 
 			var result = Api.Utils.GetLastShortenedLinks();
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 
 		[Test]
@@ -84,26 +85,26 @@ namespace VkNet.Tests.Categories.Utils
 
 			var result = Api.Utils.GetLinkStats(new LinkStatsParams());
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.That(result.Key, Is.EqualTo("6drK78"));
 			Assert.That(result.Stats, Is.Not.Empty);
 			var stat = result.Stats.FirstOrDefault();
-			Assert.NotNull(stat);
+			stat.Should().NotBeNull();
 			Assert.That(stat.Views, Is.EqualTo(1));
 
 			Assert.That(stat.Timestamp, Is.EqualTo(VkResponse.TimestampToDateTime(1489309200)));
 
 			var sexAge = stat.SexAge.FirstOrDefault();
-			Assert.NotNull(sexAge);
+			sexAge.Should().NotBeNull();
 			Assert.That(sexAge.AgeRange, Is.EqualTo("18-21"));
 			Assert.That(sexAge.Female, Is.EqualTo(2));
 			Assert.That(sexAge.Male, Is.EqualTo(1));
 			var country = stat.Countries.FirstOrDefault();
-			Assert.NotNull(country);
+			country.Should().NotBeNull();
 			Assert.That(country.CountryId, Is.EqualTo(1));
 			Assert.That(country.Views, Is.EqualTo(1));
 			var city = stat.Cities.FirstOrDefault();
-			Assert.NotNull(city);
+			city.Should().NotBeNull();
 			Assert.That(city.CityId, Is.EqualTo(1));
 			Assert.That(city.Views, Is.EqualTo(1));
 		}
@@ -127,7 +128,7 @@ namespace VkNet.Tests.Categories.Utils
 
 			var result = Api.Utils.GetShortLink(new Uri("http://google.ru"), false);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.That(result.ShortUrl, Is.EqualTo(new Uri("https://vk.cc/7dMDvY")));
 			Assert.That(result.Url, Is.EqualTo(new Uri("http://google.ru")));
 			Assert.That(result.Key, Is.EqualTo("7dMDvY"));
@@ -141,7 +142,7 @@ namespace VkNet.Tests.Categories.Utils
 
 			var result = Api.Utils.ResolveScreenName("durov");
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(result.Type, VkObjectType.User);
 			Assert.That(result.Id, Is.EqualTo(1));
 		}

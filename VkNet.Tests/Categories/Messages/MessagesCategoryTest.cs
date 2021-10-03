@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -547,7 +548,7 @@ namespace VkNet.Tests.Categories.Messages
 			var msgs = result.Items;
 
 			Assert.That(result.Count, Is.EqualTo(18));
-			Assert.NotNull(msgs);
+			msgs.Should().NotBeNull();
 			Assert.That(msgs.Count, Is.EqualTo(3));
 
 			Assert.That(msgs[2].Id, Is.EqualTo(131291));

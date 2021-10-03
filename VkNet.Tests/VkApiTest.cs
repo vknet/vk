@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -81,7 +82,7 @@ namespace VkNet.Tests
 
 			var result = Api.Call<FriendsGetRequestsResult>("friends.getRequests", VkParameters.Empty);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.That(result.UserId, Is.EqualTo(221634238));
 			Assert.That(result.Message, Is.EqualTo("text"));
 			Assert.IsNotEmpty(result.Mutual);
@@ -186,7 +187,7 @@ namespace VkNet.Tests
 			var callMethod = myArrayMethodInfo.FirstOrDefault(x => x.Name.Contains("Call"));
 
 			// Assert
-			Assert.IsNotNull(callMethod);
+			callMethod.Should().NotBeNull();
 			Assert.IsTrue(callMethod.IsPublic);
 		}
 

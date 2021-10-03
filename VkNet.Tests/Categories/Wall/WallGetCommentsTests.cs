@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
@@ -24,7 +25,7 @@ namespace VkNet.Tests.Categories.Wall
 				Offset = 0
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 	}
 }

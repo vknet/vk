@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams.Notes;
 using VkNet.Tests.Infrastructure;
 
@@ -95,7 +96,7 @@ namespace VkNet.Tests.Categories.Notes
 
 			var result = Api.Notes.GetById(new NotesGetByIdParams());
 
-			Assert.IsNotNull(result);
+			result.Should().NotBeNull();
 		}
 
 		[Test]

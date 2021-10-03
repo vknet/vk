@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
@@ -20,7 +21,7 @@ namespace VkNet.Tests.Categories.Fave
 			var page = pages.FirstOrDefault();
 
 			Assert.IsTrue(pages.Any());
-			Assert.NotNull(page);
+			page.Should().NotBeNull();
 		}
 	}
 }

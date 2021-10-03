@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -22,10 +23,10 @@ namespace VkNet.Tests.Categories.Friends
 
 			var result = Api.Friends.GetSuggestions(FriendsFilter.Mutual, 1, 0, UsersFields.Sex, NameCase.Gen);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(182, result.TotalCount);
 			var user = result.FirstOrDefault();
-			Assert.NotNull(user);
+			user.Should().NotBeNull();
 			Assert.AreEqual(Sex.Male, user.Sex);
 		}
 
@@ -37,7 +38,7 @@ namespace VkNet.Tests.Categories.Friends
 			ReadCategoryJsonPath(nameof(Api.Friends.GetSuggestions));
 
 			var result = Api.Friends.GetSuggestions();
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(182, result.TotalCount);
 		}
 	}

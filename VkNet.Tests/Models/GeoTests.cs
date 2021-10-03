@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Models
 
 			var geo = Geo.FromJson(response);
 
-			Assert.NotNull(geo);
+			geo.Should().NotBeNull();
 		}
 
 		[Test]
@@ -30,7 +31,7 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/friends.getRequests";
 			var result = Api.Call<Geo>("friends.getRequests", VkParameters.Empty);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 	}
 }

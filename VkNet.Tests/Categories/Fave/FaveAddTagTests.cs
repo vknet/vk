@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Categories.Fave
 
 			var tag = Api.Fave.AddTag("Важное", null);
 
-			Assert.NotNull(tag);
+			tag.Should().NotBeNull();
 		}
 	}
 }

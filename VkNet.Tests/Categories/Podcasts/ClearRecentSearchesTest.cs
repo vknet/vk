@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Podcasts
@@ -18,7 +19,6 @@ namespace VkNet.Tests.Categories.Podcasts
 
 			var result = Api.Podcasts.ClearRecentSearches();
 
-			Assert.NotNull(result);
 			Assert.AreEqual(result, true);
 		}
 	}

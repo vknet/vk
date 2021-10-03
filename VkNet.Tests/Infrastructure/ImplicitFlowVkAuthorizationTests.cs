@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Infrastructure
 
 			var authorizationResult = auth.GetAuthorizationResult(url);
 
-			Assert.NotNull(authorizationResult);
+			authorizationResult.Should().NotBeNull();
 			Assert.AreEqual("123", authorizationResult.State);
 			Assert.AreEqual(32190123, authorizationResult.UserId);
 			Assert.AreEqual(86400, authorizationResult.ExpiresIn);

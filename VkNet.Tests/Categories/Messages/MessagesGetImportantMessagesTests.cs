@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
@@ -14,7 +15,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.GetImportantMessages(new GetImportantMessagesParams());
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result.Messages);
 			Assert.IsNotEmpty(result.Profiles);
 			Assert.IsNotEmpty(result.Conversations);

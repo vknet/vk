@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -21,7 +22,7 @@ namespace VkNet.Tests.Categories.Audio
 			var firstOrDefault = result.FirstOrDefault();
 
 			Assert.IsNotEmpty(result);
-			Assert.NotNull(firstOrDefault);
+			firstOrDefault.Should().NotBeNull();
 		}
 	}
 }

@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -21,7 +22,7 @@ namespace VkNet.Tests.Categories.Group
 			Assert.AreEqual("5.50", result.ApiVersion);
 
 			Assert.IsTrue(result.IsEnabled);
-			Assert.NotNull(result.Events);
+			result.Events.Should().NotBeNull();
 		}
 	}
 }

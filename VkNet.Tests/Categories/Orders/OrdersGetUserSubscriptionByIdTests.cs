@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Categories.Orders
 
 			var result = Api.Orders.GetUserSubscriptionById(123, 234);
 
-			Assert.IsNotNull(result);
+			result.Should().NotBeNull();
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
@@ -20,7 +21,7 @@ namespace VkNet.Tests.Categories.Audio
 
 			var result = Api.Audio.GetCatalog(20, true, UsersFields.FirstNameGen| UsersFields.Photo100);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(result.Items[0].Type, AudioCatalogType.AudiosSpecial);
 			Assert.AreEqual(result.Items[0].Source, AudioCatalogSourceType.RecomsRecoms);
 			Assert.AreEqual(result.Items[0].Thumbs[0].Width, 300);

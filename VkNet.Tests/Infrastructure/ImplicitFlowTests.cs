@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Moq;
 using Moq.AutoMock;
 using NUnit.Framework;
@@ -102,7 +103,7 @@ namespace VkNet.Tests.Infrastructure
 
 			var result = await implicitFlow.AuthorizeAsync().ConfigureAwait(false);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 
 		[Test]
