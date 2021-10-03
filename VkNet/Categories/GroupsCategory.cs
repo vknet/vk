@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Groups;
@@ -915,6 +916,11 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public bool SetUserNote(GroupsSetUserNoteParams @params)
 		{
+			if (@params.Note is { Length: > 96 })
+			{
+				throw new VkApiException("Поле Note не может быть длиннее 96 символов");
+			}
+
 			return _vk.Call<bool>("groups.setUserNote",
 				new VkParameters
 				{
