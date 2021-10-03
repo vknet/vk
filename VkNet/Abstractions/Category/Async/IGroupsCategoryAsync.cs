@@ -1049,5 +1049,15 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/groups.getLongPollSettings
 		/// </remarks>
 		Task<GetLongPollSettingsResult> GetLongPollSettingsAsync(ulong groupId);
+
+		/// <summary>
+		/// Возвращает список тегов сообщества
+		/// </summary>
+		/// <param name="groupId">
+		/// Идентификатор сообщества. положительное число,
+		/// обязательный параметр
+		/// </param>
+		/// <returns> Массив объектов тэгов </returns>
+		Task<VkCollection<GroupTag>> GetTagListAsync(ulong groupId);
 	}
 }

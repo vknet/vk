@@ -309,5 +309,11 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetLongPollSettings(groupId));
 		}
+
+		/// <inheritdoc />
+		public Task<VkCollection<GroupTag>> GetTagListAsync(ulong groupId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetTagList(groupId));
+		}
 	}
 }

@@ -886,5 +886,16 @@ namespace VkNet.Categories
 					{ "group_id", groupId }
 				});
 		}
+
+		/// <inheritdoc />
+		public VkCollection<GroupTag> GetTagList(ulong groupId)
+		{
+			return _vk.Call("groups.getTagList",
+					new VkParameters
+					{
+						{ "group_id", groupId }
+					})
+				.ToVkCollectionOf<GroupTag>(x => x);
+		}
 	}
 }

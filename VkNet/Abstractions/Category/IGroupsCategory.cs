@@ -164,5 +164,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IGroupsCategoryAsync.GetLongPollSettingsAsync" />
 		GetLongPollSettingsResult GetLongPollSettings(ulong groupId);
+
+		/// <inheritdoc cref="IGroupsCategoryAsync.GetTagListAsync" />
+		VkCollection<GroupTag> GetTagList(ulong groupId);
 	}
 }
