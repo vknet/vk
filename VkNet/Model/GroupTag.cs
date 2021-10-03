@@ -1,8 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
 {
+	/// <summary>
+	/// Тэг группы
+	/// </summary>
+	[Serializable]
 	public class GroupTag
 	{
 		/// <summary>
