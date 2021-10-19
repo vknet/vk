@@ -27,13 +27,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<NotificationGetResult> Get(ulong? count = null
-													, string startFrom = null
-													, IEnumerable<string> filters = null
-													, long? startTime = null
-													, long? endTime = null)
+		public NotificationGetResult Get(ulong? count = null
+										, string startFrom = null
+										, IEnumerable<string> filters = null
+										, long? startTime = null
+										, long? endTime = null)
 		{
-			return _vk.Call<IEnumerable<NotificationGetResult>>(methodName: "notifications.get",
+			return _vk.Call<NotificationGetResult>("notifications.get",
 				parameters: new VkParameters
 				{
 					{ "count", count },
