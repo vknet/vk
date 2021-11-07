@@ -1,6 +1,7 @@
 // ReSharper disable once RedundantUsingDirective
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -348,7 +349,21 @@ namespace VkNet
 		{
 			var answer = InvokeLongPoll(server, parameters);
 
-			var json = JObject.Parse(answer);
+			JObject json;
+
+			try
+			{
+				using var stringReader = new StringReader(answer);
+				using JsonReader jsonReader = new JsonTextReader(stringReader)
+				{
+					MaxDepth = null
+				};
+				json = JObject.Load(jsonReader);
+			}
+			catch (JsonReaderException ex)
+			{
+				throw new VkApiException("Wrong json data.", ex);
+			}
 
 			var rawResponse = json.Root;
 

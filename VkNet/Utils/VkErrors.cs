@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq.Expressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -143,7 +144,12 @@ namespace VkNet.Utils
 
 			try
 			{
-				obj = JObject.Parse(json);
+				using var stringReader = new StringReader(json);
+				using JsonReader jsonReader = new JsonTextReader(stringReader)
+				{
+					MaxDepth = null
+				};
+				obj = JObject.Load(jsonReader);
 			}
 			catch (JsonReaderException ex)
 			{
