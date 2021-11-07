@@ -136,9 +136,9 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="json"> JSON. </param>
 		/// <exception cref="VkApiException">
-		/// Неправильный данные JSON.
+		/// Неправильные данные JSON.
 		/// </exception>
-		public static void IfErrorThrowException(string json)
+		public static JObject IfErrorThrowException(string json)
 		{
 			JObject obj;
 
@@ -165,14 +165,14 @@ namespace VkNet.Utils
 
 			if (!obj.TryGetValue("error", StringComparison.InvariantCulture, out var error))
 			{
-				return;
+				return obj;
 			}
 
 			var vkError = JsonConvert.DeserializeObject<VkError>(error.ToString());
 
 			if (vkError == null || vkError.ErrorCode == 0)
 			{
-				return;
+				return obj;
 			}
 
 			throw VkErrorFactory.Create(vkError);
