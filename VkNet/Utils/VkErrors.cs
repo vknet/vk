@@ -139,10 +139,12 @@ namespace VkNet.Utils
 			try
 			{
 				using var stringReader = new StringReader(json);
+
 				using JsonReader jsonReader = new JsonTextReader(stringReader)
 				{
 					MaxDepth = null
 				};
+
 				obj = JObject.Load(jsonReader);
 			}
 			catch (JsonReaderException ex)

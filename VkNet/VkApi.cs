@@ -347,12 +347,12 @@ namespace VkNet
 		/// <inheritdoc />
 		public VkResponse CallLongPoll(string server, VkParameters parameters)
 		{
-			var (answer, json) = InvokeLongPollExtended(server, parameters);
+			var json = InvokeLongPollExtended(server, parameters);
 			var rawResponse = json.Root;
 
 			return new VkResponse(rawResponse)
 			{
-				RawJson = answer
+				RawJson = json.ToString()
 			};
 		}
 
@@ -365,11 +365,11 @@ namespace VkNet
 		/// <inheritdoc />
 		public string InvokeLongPoll(string server, Dictionary<string, string> parameters)
 		{
-			return InvokeLongPollExtended(server, parameters).answer;
+			return InvokeLongPollExtended(server, parameters).ToString();
 		}
 
 		/// <inheritdoc />
-		public (string answer, JObject answerObject) InvokeLongPollExtended(string server, Dictionary<string, string> parameters)
+		public JObject InvokeLongPollExtended(string server, Dictionary<string, string> parameters)
 		{
 			if (string.IsNullOrEmpty(server))
 			{
@@ -388,20 +388,18 @@ namespace VkNet
 			_logger?.LogTrace("Uri = \"{Url}\"", server);
 			_logger?.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
 
-			var answerObj = VkErrors.IfErrorThrowException(answer);
-
-			return (answer, answerObj);
+			return VkErrors.IfErrorThrowException(answer);
 		}
 
 		/// <inheritdoc />
 		public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
-				InvokeLongPollExtended(server, parameters).answer);
+				InvokeLongPollExtended(server, parameters).ToString());
 		}
 
 		/// <inheritdoc />
-		public Task<(string answer, JObject answerObject)> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters)
+		public Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
 				InvokeLongPollExtended(server, parameters));
