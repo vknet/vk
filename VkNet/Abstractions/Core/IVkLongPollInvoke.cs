@@ -42,7 +42,7 @@ namespace VkNet.Abstractions
 		/// <param name="parameters"> Вход. параметры LongPoll. </param>
 		/// <exception cref="ArgumentException"> </exception>
 		/// <returns> Ответ сервера в формате JSON. </returns>
-		(string answer, JObject answerObj) InvokeLongPollExtended(string server, Dictionary<string, string> parameters);
+		(string answer, JObject answerObject) InvokeLongPollExtended(string server, Dictionary<string, string> parameters);
 
 		/// <summary>
 		/// Прямой вызов LongPoll API в асинхронном режиме
@@ -60,6 +60,6 @@ namespace VkNet.Abstractions
 		/// <param name="parameters"> Вход. параметры LongPoll. </param>
 		/// <exception cref="ArgumentException"> </exception>
 		/// <returns> Ответ сервера в формате JSON. </returns>
-		Task<(string answer, JObject answerObj)> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters);
+		Task<(string answer, JObject answerObject)> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters);
 	}
 }

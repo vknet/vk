@@ -23,7 +23,7 @@ namespace VkNet.Utils
 		/// </exception>
 		public static void ThrowIfNullOrEmpty(Expression<Func<string>> expr)
 		{
-			if (!(expr.Body is MemberExpression body))
+			if (expr.Body is not MemberExpression body)
 			{
 				return;
 			}
@@ -69,7 +69,7 @@ namespace VkNet.Utils
 			var name = result.Item1;
 			var value = result.Item2();
 
-			if (value.HasValue && value < 0)
+			if (value is < 0)
 			{
 				throw new ArgumentException("Отрицательное значение.", name);
 			}
@@ -110,21 +110,15 @@ namespace VkNet.Utils
 				throw new ArgumentNullException(nameof(expr), "Выражение не может быть равно null");
 			}
 
-			var name = string.Empty;
-
-			// Если значение передаётся из вызывающего метода
-			var unary = expr.Body as UnaryExpression;
-
-			if (unary?.Operand is MemberExpression member)
+			var name = expr.Body switch
 			{
-				name = member.Member.Name;
-			}
+				// Если значение передаётся из вызывающего метода
+				UnaryExpression { Operand: MemberExpression member } => member.Member.Name,
 
-			// Если в метод передаётся значение напрямую
-			if (expr.Body is MemberExpression body)
-			{
-				name = body.Member.Name;
-			}
+				// Если в метод передаётся значение напрямую
+				MemberExpression body => body.Member.Name,
+				var _ => string.Empty
+			};
 
 			var func = expr.Compile();
 

@@ -349,6 +349,7 @@ namespace VkNet
 		{
 			var (answer, json) = InvokeLongPollExtended(server, parameters);
 			var rawResponse = json.Root;
+
 			return new VkResponse(rawResponse)
 			{
 				RawJson = answer
@@ -360,6 +361,7 @@ namespace VkNet
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => CallLongPoll(server, parameters));
 		}
+
 		/// <inheritdoc />
 		public string InvokeLongPoll(string server, Dictionary<string, string> parameters)
 		{
@@ -367,7 +369,7 @@ namespace VkNet
 		}
 
 		/// <inheritdoc />
-		public (string answer, JObject answerObj) InvokeLongPollExtended(string server, Dictionary<string, string> parameters)
+		public (string answer, JObject answerObject) InvokeLongPollExtended(string server, Dictionary<string, string> parameters)
 		{
 			if (string.IsNullOrEmpty(server))
 			{
@@ -377,8 +379,9 @@ namespace VkNet
 				throw new ArgumentException(message);
 			}
 
-			_logger?.LogDebug(
-				$"Вызов GetLongPollHistory с сервером {server}, с параметрами {string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}"))}");
+			_logger?.LogDebug("Вызов GetLongPollHistory с сервером {Server}, с параметрами {Parameters}",
+				server,
+				string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}")));
 
 			var answer = InvokeBase(server, parameters);
 
@@ -398,7 +401,7 @@ namespace VkNet
 		}
 
 		/// <inheritdoc />
-		public Task<(string answer, JObject answerObj)> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters)
+		public Task<(string answer, JObject answerObject)> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
 				InvokeLongPollExtended(server, parameters));
@@ -705,8 +708,9 @@ namespace VkNet
 				parameters.Add(Constants.Language, _language.GetLanguage());
 			}
 
-			_logger?.LogDebug(
-				$"Вызов метода {methodName}, с параметрами {string.Join(",", parameters.Where(x => x.Key != Constants.AccessToken).Select(x => $"{x.Key}={x.Value}"))}");
+			_logger?.LogDebug("Вызов метода {MethodName}, с параметрами {Parameters}",
+				methodName,
+				string.Join(",", parameters.Where(x => x.Key != Constants.AccessToken).Select(x => $"{x.Key}={x.Value}")));
 
 			string answer;
 
@@ -942,7 +946,7 @@ namespace VkNet
 		#if NET45
 			_logger?.LogError("Могут быть проблемы при выполнении запросов с Кодировкой 1251. Если проблема воспроизводится рекомендуется обновиться на NETFramework 4.6.1 или выше");
 		#else
-				Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 		#endif
 			_logger?.LogDebug("VkApi Initialization successfully");
 		}
