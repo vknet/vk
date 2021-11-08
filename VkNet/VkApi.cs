@@ -1,6 +1,7 @@
 // ReSharper disable once RedundantUsingDirective
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -346,12 +347,8 @@ namespace VkNet
 		/// <inheritdoc />
 		public VkResponse CallLongPoll(string server, VkParameters parameters)
 		{
-			var answer = InvokeLongPoll(server, parameters);
-
-			var json = JObject.Parse(answer);
-
+			var (answer, json) = InvokeLongPollExtended(server, parameters);
 			var rawResponse = json.Root;
-
 			return new VkResponse(rawResponse)
 			{
 				RawJson = answer
@@ -363,9 +360,14 @@ namespace VkNet
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => CallLongPoll(server, parameters));
 		}
-
 		/// <inheritdoc />
 		public string InvokeLongPoll(string server, Dictionary<string, string> parameters)
+		{
+			return InvokeLongPollExtended(server, parameters).answer;
+		}
+
+		/// <inheritdoc />
+		public (string answer, JObject answerObj) InvokeLongPollExtended(string server, Dictionary<string, string> parameters)
 		{
 			if (string.IsNullOrEmpty(server))
 			{
@@ -383,16 +385,23 @@ namespace VkNet
 			_logger?.LogTrace("Uri = \"{Url}\"", server);
 			_logger?.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
 
-			VkErrors.IfErrorThrowException(answer);
+			var answerObj = VkErrors.IfErrorThrowException(answer);
 
-			return answer;
+			return (answer, answerObj);
 		}
 
 		/// <inheritdoc />
 		public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
-				InvokeLongPoll(server, parameters));
+				InvokeLongPollExtended(server, parameters).answer);
+		}
+
+		/// <inheritdoc />
+		public Task<(string answer, JObject answerObj)> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() =>
+				InvokeLongPollExtended(server, parameters));
 		}
 
 		/// <inheritdoc cref="IDisposable" />

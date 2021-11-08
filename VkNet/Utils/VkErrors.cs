@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq.Expressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -135,15 +136,20 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="json"> JSON. </param>
 		/// <exception cref="VkApiException">
-		/// Неправильный данные JSON.
+		/// Неправильные данные JSON.
 		/// </exception>
-		public static void IfErrorThrowException(string json)
+		public static JObject IfErrorThrowException(string json)
 		{
 			JObject obj;
 
 			try
 			{
-				obj = JObject.Parse(json);
+				using var stringReader = new StringReader(json);
+				using JsonReader jsonReader = new JsonTextReader(stringReader)
+				{
+					MaxDepth = null
+				};
+				obj = JObject.Load(jsonReader);
 			}
 			catch (JsonReaderException ex)
 			{
@@ -159,14 +165,14 @@ namespace VkNet.Utils
 
 			if (!obj.TryGetValue("error", StringComparison.InvariantCulture, out var error))
 			{
-				return;
+				return obj;
 			}
 
 			var vkError = JsonConvert.DeserializeObject<VkError>(error.ToString());
 
 			if (vkError == null || vkError.ErrorCode == 0)
 			{
-				return;
+				return obj;
 			}
 
 			throw VkErrorFactory.Create(vkError);
