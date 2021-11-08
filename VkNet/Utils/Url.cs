@@ -25,8 +25,8 @@ namespace VkNet.Utils
 
 			var result = "";
 
-			bool inQuery = false,
-				inFragment = false;
+			var inQuery = false;
+			var inFragment = false;
 
 			static string CombineEnsureSingleSeparator(string a, string b, char separator)
 			{
@@ -67,11 +67,11 @@ namespace VkNet.Utils
 					result = CombineEnsureSingleSeparator(result, part, '/');
 				}
 
-				if (part.Contains("#"))
+				if (part.Contains('#'))
 				{
 					inQuery = false;
 					inFragment = true;
-				} else if (!inFragment && part.Contains("?"))
+				} else if (!inFragment && part.Contains('?'))
 				{
 					inQuery = true;
 				}
@@ -86,7 +86,7 @@ namespace VkNet.Utils
 		/// <param name="s">The string to encode.</param>
 		/// <param name="encodeSpaceAsPlus">If true, spaces will be encoded as + signs. Otherwise, they'll be encoded as %20.</param>
 		/// <returns>The encoded URL.</returns>
-		public static string EncodeIllegalCharacters(string s, bool encodeSpaceAsPlus = false)
+		private static string EncodeIllegalCharacters(string s, bool encodeSpaceAsPlus = false)
 		{
 			if (string.IsNullOrWhiteSpace(s))
 			{
@@ -102,7 +102,7 @@ namespace VkNet.Utils
 			// in that % isn't illegal if it's the start of a %-encoded sequence https://stackoverflow.com/a/47636037/62600
 
 			// no % characters, so avoid the regex overhead
-			if (!s.Contains("%"))
+			if (!s.Contains('%'))
 			{
 				return Uri.EscapeUriString(s);
 			}

@@ -11,14 +11,16 @@ steps:
   displayName: 'Use .NET Core sdk 6.0.100'
   inputs:
     packageType: 'sdk'
-    version: 6.0.100
+    version: 6.0.x
+    performMultiLevelLookup: true
+    includePreviewVersions: true
 
 - task: DotNetCoreCLI@2
   displayName: Test
   inputs:
     command: test
     projects: '*[Tt]ests/*.csproj'
-    arguments: '-c $(BuildConfiguration) -f net5.0'
+    arguments: '-c $(BuildConfiguration) -f net6.0'
 
 
 - task: DotNetCoreCLI@2
