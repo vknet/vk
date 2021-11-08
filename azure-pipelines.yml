@@ -20,7 +20,7 @@ steps:
   inputs:
     command: test
     projects: '*[Tt]ests/*.csproj'
-    arguments: '-c $(BuildConfiguration) -f net6.0'
+    arguments: '-c $(BuildConfiguration) -f net5.0'
 
 
 - task: DotNetCoreCLI@2
