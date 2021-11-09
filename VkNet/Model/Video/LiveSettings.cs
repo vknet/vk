@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using VkNet.Infrastructure;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -37,7 +38,7 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static LiveSettings FromJson(VkResponse response)
 		{
-			return JsonConvert.DeserializeObject<LiveSettings>(response.ToString());
+			return JsonConvert.DeserializeObject<LiveSettings>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 		}
 
 	#endregion

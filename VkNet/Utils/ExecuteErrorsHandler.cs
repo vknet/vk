@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Newtonsoft.Json;
 using VkNet.Exception;
+using VkNet.Infrastructure;
 using VkNet.Model;
 
 namespace VkNet.Utils
@@ -24,7 +25,7 @@ namespace VkNet.Utils
 				throw new ArgumentException($"{nameof(response)} should have value", nameof(response));
 			}
 
-			var executeErrorsResponse = JsonConvert.DeserializeObject<ExecuteErrorsResponse>(response);
+			var executeErrorsResponse = JsonConvert.DeserializeObject<ExecuteErrorsResponse>(response, JsonConfigure.JsonSerializerSettings);
 
 			if (executeErrorsResponse?.ExecuteErrors == null)
 			{

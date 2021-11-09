@@ -1,6 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
+using VkNet.Infrastructure;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -245,7 +246,7 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static VideoAdsParams FromJson(VkResponse response)
 		{
-			return JsonConvert.DeserializeObject<VideoAdsParams>(response.ToString());
+			return JsonConvert.DeserializeObject<VideoAdsParams>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 		}
 
 	#endregion

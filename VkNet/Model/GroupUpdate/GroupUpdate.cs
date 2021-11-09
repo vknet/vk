@@ -1,6 +1,7 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Infrastructure;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
@@ -199,7 +200,7 @@ namespace VkNet.Model.GroupUpdate
 		/// <returns> </returns>
 		public static GroupUpdate FromJson(VkResponse response)
 		{
-			var fromJson = JsonConvert.DeserializeObject<GroupUpdate>(response.ToString());
+			var fromJson = JsonConvert.DeserializeObject<GroupUpdate>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 
 			var resObj = response["object"];
 

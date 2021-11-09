@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using VkNet.Infrastructure;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -88,7 +89,7 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static TimelineThumbs FromJson(VkResponse response)
 		{
-			return JsonConvert.DeserializeObject<TimelineThumbs>(response.ToString());
+			return JsonConvert.DeserializeObject<TimelineThumbs>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 		}
 
 	#endregion
