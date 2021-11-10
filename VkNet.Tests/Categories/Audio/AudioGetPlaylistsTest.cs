@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -22,7 +23,7 @@ namespace VkNet.Tests.Categories.Audio
 
 			Assert.That(result.TotalCount, Is.EqualTo(3));
 			Assert.IsNotEmpty(result);
-			Assert.NotNull(playlist);
+			playlist.Should().NotBeNull();
 		}
 	}
 }

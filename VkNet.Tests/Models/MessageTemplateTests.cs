@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.Template;
 
 namespace VkNet.Tests.Models
@@ -16,7 +17,7 @@ namespace VkNet.Tests.Models
 
 			var result = MessageTemplate.FromJson(response);
 
-			Assert.IsNotNull(result);
+			result.Should().NotBeNull();
 		}
 	}
 }

@@ -1,7 +1,6 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Group
@@ -19,10 +18,10 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.GetRequests(1, null, null, UsersFields.LastSeen);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(3, result.Count);
 			foreach (var user in result)
-				Assert.NotNull(user);
+				user.Should().NotBeNull();
 		}
 
 		[Test]
@@ -34,10 +33,10 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.GetRequests(1);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(3, result.Count);
 			foreach (var user in result)
-				Assert.NotNull(user);
+				user.Should().NotBeNull();
 		}
 	}
 }

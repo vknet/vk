@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using VkNet.Infrastructure;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -74,7 +75,7 @@ namespace VkNet.Model
 		public static VideoAlbum FromJson(VkResponse response)
 		{
 			return response != null
-				? JsonConvert.DeserializeObject<VideoAlbum>(response.ToString())
+				? JsonConvert.DeserializeObject<VideoAlbum>(response.ToString(), JsonConfigure.JsonSerializerSettings)
 				: null;
 		}
 

@@ -1,9 +1,6 @@
-using System.Collections.Generic;
-using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
-using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
 
@@ -28,7 +25,7 @@ namespace VkNet.Tests.Categories.Donut
 			Url = "https://api.vk.com/method/donut.getFriends";
 			ReadJsonFile(JsonPaths.EmptyArray);
 			var result = Api.Donut.GetFriends(-173151748, 0, 3, new UsersFields());
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 
 		[Test]
@@ -44,7 +41,7 @@ namespace VkNet.Tests.Categories.Donut
 		{
 			Url = "https://api.vk.com/method/donut.getSubscriptions";
 			ReadCategoryJsonPath(nameof(GetSubscriptions));
-			Assert.NotNull(Api.Donut.GetSubscriptions(new UsersFields(), 1, 1));
+			Api.Donut.GetSubscriptions(new UsersFields(), 1, 1).Should().NotBeNull();
 		}
 	}
 }

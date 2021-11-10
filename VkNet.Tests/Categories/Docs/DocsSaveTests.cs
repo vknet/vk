@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model.Attachments;
@@ -62,9 +63,9 @@ namespace VkNet.Tests.Categories.Docs
 
 			Assert.IsNotEmpty(result);
 			var item = result.FirstOrDefault();
-			Assert.NotNull(item);
+			item.Should().NotBeNull();
 			var doc = item.Instance as Document;
-			Assert.NotNull(doc);
+			doc.Should().NotBeNull();
 			Assert.AreEqual(DocumentTypeEnum.Text, doc.Type);
 		}
 	}

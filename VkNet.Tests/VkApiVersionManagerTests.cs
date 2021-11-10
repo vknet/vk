@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Abstractions.Core;
 using VkNet.Exception;
 using VkNet.Infrastructure;
@@ -18,7 +19,7 @@ namespace VkNet.Tests
 		[Test]
 		public void VersionIsNotEmpty()
 		{
-			Assert.IsNotNull(Manager);
+			Manager.Should().NotBeNull();
 			Assert.IsFalse(string.IsNullOrWhiteSpace(Manager.Version));
 		}
 

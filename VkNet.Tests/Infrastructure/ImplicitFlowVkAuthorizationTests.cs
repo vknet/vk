@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Infrastructure
 
 			var authorizationResult = auth.GetAuthorizationResult(url);
 
-			Assert.NotNull(authorizationResult);
+			authorizationResult.Should().NotBeNull();
 			Assert.AreEqual("123", authorizationResult.State);
 			Assert.AreEqual(32190123, authorizationResult.UserId);
 			Assert.AreEqual(86400, authorizationResult.ExpiresIn);
@@ -120,9 +121,11 @@ namespace VkNet.Tests.Infrastructure
 		}
 
 		[Test]
-		public void GetPageType_TwoFactor()
+		[TestCase("https://m.vk.com/login?act=authcheck&api_hash=api_hash")]
+		[TestCase("https://m.vk.com:443/login?act=authcheck&api_hash=api_hash")]
+		public void GetPageType_TwoFactor(string uriString)
 		{
-			var url = new Uri("https://m.vk.com/login?act=authcheck&api_hash=api_hash");
+			var url = new Uri(uriString);
 
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
@@ -131,9 +134,11 @@ namespace VkNet.Tests.Infrastructure
 		}
 
 		[Test]
-		public void GetPageType_TwoFactor_AfterIncorrectEnter()
+		[TestCase("https://m.vk.com/login?act=authcheck&m=442")]
+		[TestCase("https://m.vk.com:443/login?act=authcheck&m=442")]
+		public void GetPageType_TwoFactor_AfterIncorrectEnter(string uriString)
 		{
-			var url = new Uri("https://m.vk.com/login?act=authcheck&m=442");
+			var url = new Uri(uriString);
 
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);

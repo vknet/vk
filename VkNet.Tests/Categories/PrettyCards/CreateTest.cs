@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
@@ -29,7 +30,7 @@ namespace VkNet.Tests.Categories.PrettyCards
 				Button = Button.Call
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(result.CardId, "545435");
 			Assert.AreEqual(result.OwnerId, -126102803);
 		}

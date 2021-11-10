@@ -19,6 +19,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Буквенное обозначение валюты
 		/// </summary>
+		[Obsolete(ObsoleteText.ObsoleteCyrillicProperty)]
 		[JsonProperty("currency")]
 		public string Сurrency { get; set; }
 

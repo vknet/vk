@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Messages
@@ -13,7 +14,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.GetRecentCalls(new[] { "filter" }, 1);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result.Messages);
 			Assert.IsNotEmpty(result.Profiles);
 		}

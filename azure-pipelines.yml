@@ -7,11 +7,13 @@ variables:
   BuildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 5.0.100'
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk 6.0.100'
   inputs:
-    version: 5.0.100
-
+    packageType: 'sdk'
+    version: 6.0.x
+    performMultiLevelLookup: true
+    includePreviewVersions: true
 
 - task: DotNetCoreCLI@2
   displayName: Test

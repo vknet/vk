@@ -79,7 +79,7 @@ namespace VkNet.Utils
 			}
 			else
 			{
-				var timeToWait = (int)Math.Ceiling((_timeSpan - (DateTime.Now - _dateTime)).TotalMilliseconds);
+				var timeToWait = (int)Math.Ceiling((_timeSpan - (DateTime.Now - _dateTime)).TotalMilliseconds + 15);
 
 				try
 				{
@@ -87,7 +87,7 @@ namespace VkNet.Utils
 				}
 				catch { }
 
-				_left = _count;
+				_left = _count - 1;
 				_dateTime = DateTime.Now;
 			}
 

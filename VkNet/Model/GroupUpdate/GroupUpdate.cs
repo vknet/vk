@@ -1,6 +1,7 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Infrastructure;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
@@ -23,6 +24,31 @@ namespace VkNet.Model.GroupUpdate
 		/// Сообщение для типов событий с сообщением в ответе.
 		/// </summary>
 		public MessageNew MessageNew { get; set; }
+		/// <summary>
+		/// Собеседник набираеет сообщение
+		/// </summary>
+		public MessageTypingState MessageTypingState { get; set; }
+
+		/// <summary>
+		/// Событие о новой отметке "Мне нравится"
+		/// </summary>
+		public LikeAdd LikeAdd { get; set; }
+
+		/// <summary>
+		/// Событие о удалении отметки "Мне нравится"
+		/// </summary>
+		public LikeRemove LikeRemove { get; set; }
+
+		/// <summary>
+		/// Событие о изменении настроек сообщества
+		/// </summary>
+		public GroupChangeSettings GroupChangeSettings { get; set; }
+
+		/// <summary>
+		/// Платёж через VK Pay
+		/// </summary>
+		public VkPayTransaction VkPayTransaction { get; set; }
+
 
 		/// <summary>
 		/// Сообщение callback кнопки для типов событий с сообщением callback кнопок в ответе.
@@ -174,7 +200,7 @@ namespace VkNet.Model.GroupUpdate
 		/// <returns> </returns>
 		public static GroupUpdate FromJson(VkResponse response)
 		{
-			var fromJson = JsonConvert.DeserializeObject<GroupUpdate>(response.ToString());
+			var fromJson = JsonConvert.DeserializeObject<GroupUpdate>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 
 			var resObj = response["object"];
 
@@ -193,7 +219,22 @@ namespace VkNet.Model.GroupUpdate
 			} else if (fromJson.Type == GroupUpdateType.MessageAllow)
 			{
 				fromJson.MessageAllow = MessageAllow.FromJson(resObj);
-			} else if (fromJson.Type == GroupUpdateType.MessageDeny)
+			}  else if (fromJson.Type == GroupUpdateType.MessageTypingState)
+			{
+				fromJson.MessageTypingState = MessageTypingState.FromJson(resObj);
+			}else if (fromJson.Type == GroupUpdateType.VkPayTransaction)
+			{
+				fromJson.VkPayTransaction = VkPayTransaction.FromJson(resObj);
+			}else if (fromJson.Type == GroupUpdateType.LikeAdd)
+			{
+				fromJson.LikeAdd = LikeAdd.FromJson(resObj);
+			}else if (fromJson.Type == GroupUpdateType.LikeRemove)
+			{
+				fromJson.LikeRemove = LikeRemove.FromJson(resObj);
+			}else if (fromJson.Type == GroupUpdateType.GroupChangeSettings)
+			{
+				fromJson.GroupChangeSettings = GroupChangeSettings.FromJson(resObj);
+			}else if (fromJson.Type == GroupUpdateType.MessageDeny)
 			{
 				fromJson.MessageDeny = MessageDeny.FromJson(resObj);
 			} else if (fromJson.Type == GroupUpdateType.PhotoNew)

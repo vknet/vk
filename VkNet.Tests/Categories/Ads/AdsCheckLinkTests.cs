@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams.Ads;
@@ -26,7 +27,7 @@ namespace VkNet.Tests.Categories.Ads
 				LinkUrl = new Uri(Url)
 			});
 
-			Assert.NotNull(link);
+			link.Should().NotBeNull();
 
 			Assert.IsNotEmpty(link.Description);
 			Assert.That(link.Status, Is.EqualTo(LinkStatusType.Disallowed));

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -547,7 +548,7 @@ namespace VkNet.Tests.Categories.Messages
 			var msgs = result.Items;
 
 			Assert.That(result.Count, Is.EqualTo(18));
-			Assert.NotNull(msgs);
+			msgs.Should().NotBeNull();
 			Assert.That(msgs.Count, Is.EqualTo(3));
 
 			Assert.That(msgs[2].Id, Is.EqualTo(131291));
@@ -665,18 +666,6 @@ namespace VkNet.Tests.Categories.Messages
 			Assert.That(response.Chats[0].Users.ElementAt(0), Is.EqualTo(66748));
 			Assert.That(response.Chats[0].Users.ElementAt(1), Is.EqualTo(6492));
 			Assert.That(response.Chats[0].Users.ElementAt(2), Is.EqualTo(1708231));
-		}
-
-		[Test]
-		public void SetActivity_NormalCase_True()
-		{
-			Url = "https://api.vk.com/method/messages.setActivity";
-
-			ReadJsonFile(JsonPaths.True);
-
-			var result = Api.Messages.SetActivity("7550525", MessageActivityType.Typing);
-
-			Assert.That(result, Is.True);
 		}
 	}
 }

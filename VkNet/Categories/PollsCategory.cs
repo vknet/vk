@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using VkNet.Abstractions;
 using VkNet.Model;
@@ -128,6 +129,31 @@ namespace VkNet.Categories
 				{ "photo_id", @params.PhotoId },
 				{ "background_id", @params.BackgroundId }
 			});
+		}
+
+		/// <inheritdoc />
+		public ReadOnlyCollection<GetBackgroundsResult> GetBackgrounds()
+		{
+			return _vk.Call<ReadOnlyCollection<GetBackgroundsResult>>("polls.getBackgrounds",
+				new VkParameters());
+		}
+
+		/// <inheritdoc />
+		public PhotoUploadServer GetPhotoUploadServer(long ownerId)
+		{
+			return _vk.Call<PhotoUploadServer>("polls.getPhotoUploadServer",
+				new VkParameters { {"owner_id", ownerId} });
+		}
+
+		/// <inheritdoc />
+		public SavePhotoResult SavePhoto(SavePhotoParams @params)
+		{
+			return _vk.Call<SavePhotoResult>("polls.savePhoto",
+				new VkParameters
+				{
+					{ "photo", @params.Photo },
+					{ "hash", @params.Hash }
+				});
 		}
 	}
 }

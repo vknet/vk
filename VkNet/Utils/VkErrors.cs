@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Linq.Expressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Exception;
+using VkNet.Infrastructure;
 using VkNet.Model;
 
 namespace VkNet.Utils
@@ -22,7 +24,7 @@ namespace VkNet.Utils
 		/// </exception>
 		public static void ThrowIfNullOrEmpty(Expression<Func<string>> expr)
 		{
-			if (!(expr.Body is MemberExpression body))
+			if (expr.Body is not MemberExpression body)
 			{
 				return;
 			}
@@ -68,7 +70,7 @@ namespace VkNet.Utils
 			var name = result.Item1;
 			var value = result.Item2();
 
-			if (value.HasValue && value < 0)
+			if (value is < 0)
 			{
 				throw new ArgumentException("Отрицательное значение.", name);
 			}
@@ -109,21 +111,15 @@ namespace VkNet.Utils
 				throw new ArgumentNullException(nameof(expr), "Выражение не может быть равно null");
 			}
 
-			var name = string.Empty;
-
-			// Если значение передаётся из вызывающего метода
-			var unary = expr.Body as UnaryExpression;
-
-			if (unary?.Operand is MemberExpression member)
+			var name = expr.Body switch
 			{
-				name = member.Member.Name;
-			}
+				// Если значение передаётся из вызывающего метода
+				UnaryExpression { Operand: MemberExpression member } => member.Member.Name,
 
-			// Если в метод передаётся значение напрямую
-			if (expr.Body is MemberExpression body)
-			{
-				name = body.Member.Name;
-			}
+				// Если в метод передаётся значение напрямую
+				MemberExpression body => body.Member.Name,
+				var _ => string.Empty
+			};
 
 			var func = expr.Compile();
 
@@ -135,15 +131,22 @@ namespace VkNet.Utils
 		/// </summary>
 		/// <param name="json"> JSON. </param>
 		/// <exception cref="VkApiException">
-		/// Неправильный данные JSON.
+		/// Неправильные данные JSON.
 		/// </exception>
-		public static void IfErrorThrowException(string json)
+		public static JObject IfErrorThrowException(string json)
 		{
 			JObject obj;
 
 			try
 			{
-				obj = JObject.Parse(json);
+				using var stringReader = new StringReader(json);
+
+				using JsonReader jsonReader = new JsonTextReader(stringReader)
+				{
+					MaxDepth = null
+				};
+
+				obj = JObject.Load(jsonReader);
 			}
 			catch (JsonReaderException ex)
 			{
@@ -159,14 +162,14 @@ namespace VkNet.Utils
 
 			if (!obj.TryGetValue("error", StringComparison.InvariantCulture, out var error))
 			{
-				return;
+				return obj;
 			}
 
-			var vkError = JsonConvert.DeserializeObject<VkError>(error.ToString());
+			var vkError = JsonConvert.DeserializeObject<VkError>(error.ToString(), JsonConfigure.JsonSerializerSettings);
 
 			if (vkError == null || vkError.ErrorCode == 0)
 			{
-				return;
+				return obj;
 			}
 
 			throw VkErrorFactory.Create(vkError);

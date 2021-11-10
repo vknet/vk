@@ -141,5 +141,14 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IAdsCategoryAsync.UpdateTargetPixelAsync"/>
 		bool UpdateTargetPixel(UpdateTargetPixelParams updateTargetPixelParams);
+
+		/// <inheritdoc cref="IAdsCategoryAsync.GetMusiciansAsync"/>
+		ReadOnlyCollection<GetMusiciansResult> GetMusicians(string artistName);
+
+		/// <inheritdoc cref="IAdsCategoryAsync.GetMusiciansByIdsAsync"/>
+		ReadOnlyCollection<GetMusiciansByIdsResult> GetMusiciansByIds(string ids);
+
+		/// <inheritdoc cref="IAdsCategoryAsync.UpdateOfficeUsersAsync"/>
+		ReadOnlyCollection<UpdateOfficeUsersResult> UpdateOfficeUsers(AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification);
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -35,9 +36,81 @@ namespace VkNet.Model
 		public Uri Mp4_1080 { get; set; }
 
 		/// <summary>
-		/// Внешняя ссылка
+		/// Внешняя ссылка (например для видео из Youtube)
 		/// </summary>
 		public Uri External { get; set; }
+
+		/// <summary>
+		/// Ссылка на HLS плейлист
+		/// <remarks>
+		/// Содержит файл в формате .m3u8 (MPEG-2 TS)
+		/// </remarks>
+		/// </summary>
+		public Uri Hls { get; set; }
+
+		/// <summary>
+		/// Ссылка на MPEG-DASH плейлист(тип 2)
+		/// </summary>
+		[JsonProperty("dash_uni")]
+		public Uri DashUni { get; set; }
+
+		/// <summary>
+		/// Ссылка на MPEG-DASH плейлист(тип 1)
+		/// </summary>
+		[JsonProperty("dash_sep")]
+		public Uri DashSep { get; set; }
+
+		/// <summary>
+		/// Ссылка на MPEG-DASH плейлист(тип 4) (video/webm)
+		/// </summary>
+		[JsonProperty("dash_webm")]
+		public Uri DashWebm { get; set; }
+
+		/// <summary>
+		/// Ссылка на HLS плейлист по требованию. Файл .m3u8 (MPEG-2 TS)
+		/// <remarks>
+		/// Без понятия, что это означает
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("hls_ondemand")]
+		public Uri HlsOnDemand { get; set; }
+
+		/// <summary>
+		/// Ссылка на MPEG-DASH плейлист по требованию (video/mp4)
+		/// <remarks>
+		/// Без понятия, что это означает
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("dash_ondemand")]
+		public Uri DashOnDemand { get; set; }
+
+	#region Live Uris
+
+		/// <summary>
+		/// Ссылка на HLS плейлист прямой трансляции. Файл .m3u8 (MPEG-2 TS)
+		/// <remarks>
+		/// В Postman выдаёт 403 ошибку
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("hls_live_playback")]
+		public Uri HlsLivePlayback { get; set; }
+
+		/// <summary>
+		/// Ссылка на MPEG-DASH плейлист прямой трансляции (video/mp4)
+		/// <remarks>
+		/// В Postman выдаёт 403 ошибку
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("dash_live_playback")]
+		public Uri DashLivePlayback { get; set; }
+
+	#endregion
+
+		/// <summary>
+		/// Хост для запросов, в случае ошибки основного хоста, указанного в других Uri
+		/// </summary>
+		[JsonProperty("failover_host")]
+		public string FailOverHost { get; set; }
 
 	#region public Methods
 
@@ -50,12 +123,21 @@ namespace VkNet.Model
 		{
 			return new VideoFiles
 			{
-					Mp4_240 = response[key: "mp4_240"]
-					, Mp4_360 = response[key: "mp4_360"]
-					, Mp4_480 = response[key: "mp4_480"]
-					, Mp4_720 = response[key: "mp4_720"]
-					, Mp4_1080 = response[key: "mp4_1080"]
-					, External = response[key: "external"]
+				Mp4_240 = response["mp4_240"],
+				Mp4_360 = response["mp4_360"],
+				Mp4_480 = response["mp4_480"],
+				Mp4_720 = response["mp4_720"],
+				Mp4_1080 = response["mp4_1080"],
+				External = response["external"],
+				Hls = response["hls"],
+				DashUni = response["dash_uni"],
+				DashSep = response["dash_sep"],
+				DashWebm = response["dash_webm"],
+				DashOnDemand = response["dash_ondemand"],
+				HlsOnDemand = response["hls_ondemand"],
+				HlsLivePlayback = response["hls_live_playback"],
+				DashLivePlayback = response["dash_live_playback"],
+				FailOverHost = response["failover_host"]
 			};
 		}
 

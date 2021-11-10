@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.Filters;
 
 namespace VkNet.Tests.Categories.Messages
@@ -15,7 +16,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.GetChatPreview("http://vk.com", ProfileFields.About);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.That(result.Emails, Is.Not.Empty);
 			Assert.That(result.Groups, Is.Not.Empty);
 			Assert.That(result.Profiles, Is.Not.Empty);

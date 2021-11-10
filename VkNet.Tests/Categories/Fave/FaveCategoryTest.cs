@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -43,7 +44,7 @@ namespace VkNet.Tests.Categories.Fave
 
 			var marketItems = Api.Fave.GetMarketItems(1, 0, true);
 
-			Assert.NotNull(marketItems);
+			marketItems.Should().NotBeNull();
 			Assert.That(marketItems.TotalCount, Is.EqualTo(1));
 			CollectionAssert.IsNotEmpty(marketItems);
 		}
@@ -56,7 +57,7 @@ namespace VkNet.Tests.Categories.Fave
 
 			var marketItems = Api.Fave.GetMarketItems(1);
 
-			Assert.NotNull(marketItems);
+			marketItems.Should().NotBeNull();
 			Assert.That(marketItems.TotalCount, Is.EqualTo(1));
 			CollectionAssert.IsNotEmpty(marketItems);
 		}
@@ -69,7 +70,7 @@ namespace VkNet.Tests.Categories.Fave
 
 			var marketItems = Api.Fave.GetMarketItems(1, 0);
 
-			Assert.NotNull(marketItems);
+			marketItems.Should().NotBeNull();
 			Assert.That(marketItems.TotalCount, Is.EqualTo(1));
 			CollectionAssert.IsNotEmpty(marketItems);
 		}
@@ -82,7 +83,7 @@ namespace VkNet.Tests.Categories.Fave
 
 			var marketItems = Api.Fave.GetMarketItems();
 
-			Assert.NotNull(marketItems);
+			marketItems.Should().NotBeNull();
 			Assert.That(marketItems.TotalCount, Is.EqualTo(1));
 			CollectionAssert.IsNotEmpty(marketItems);
 		}

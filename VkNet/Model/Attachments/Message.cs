@@ -81,7 +81,13 @@ namespace VkNet.Model
 				Ref = response["ref"],
 				RefSource = response["ref_source"],
 				ReplyMessage = response["reply_message"],
-				AdminAuthorId = response["admin_author_id"]
+				AdminAuthorId = response["admin_author_id"],
+				PinnedAt = response["pinned_at"],
+				IsSilent = response["is_silent"],
+				ExpireTtl = response["expire_ttl"],
+				IsExpired = response["is_expired"],
+				WasListened = response["was_listened"],
+				IsHidden = response["is_hidden"]
 			};
 
 			return message;
@@ -380,9 +386,67 @@ namespace VkNet.Model
 		public ulong? OutRead { get; set; }
 
 		/// <summary>
+		/// Время последнего редактирования сообщения.
+		/// <remarks>
+		/// Присутствует только для отредактированных сообщений. Во всех остальных случаях - <c>null</c>
+		/// </remarks>
 		/// </summary>
 		[JsonProperty("update_time")]
-		public string UpdateTime { get; set; }
+		[JsonConverter(typeof(UnixDateTimeConverter))]
+		public DateTime? UpdateTime { get; set; }
+
+		/// <summary>
+		/// Служебное поле, назначение неизвестно
+		/// <remarks>
+		/// Возможно это поле отвечает за новую фичу ВК - скрытие сообщение с нецензурными выражениями.
+		/// TODO @sampletext32
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("is_hidden")]
+		public bool IsHidden { get; set; }
+
+		/// <summary>
+		/// Время закрепления сообщения
+		/// <remarks>
+		/// Присутствует только в закреплённых сообщениях. Во всех остальных случаях - <c>null</c>.
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("pinned_at")]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
+		public DateTime? PinnedAt { get; set; }
+
+		/// <summary>
+		/// Было ли прослушано голосовое сообщение
+		/// <remarks>
+		/// Присутствует только в сообщениях с <b>прослушанным</b> <see cref="AudioMessage">голосовым Attachment</see>. Во всех остальных случаях - <c>null</c>.
+		/// </remarks>>
+		/// </summary>
+		[JsonProperty("was_listened")]
+		public bool? WasListened { get; set; }
+
+		/// <summary>
+		/// Было ли сообщение отправлено с пометкой "Без звука"
+		/// </summary>
+		[JsonProperty("is_silent")]
+		public bool? IsSilent { get; set; }
+
+		/// <summary>
+		/// Время жизни саморазрушаемого сообщения
+		/// <remarks>
+		/// Присутствует только в саморазрушаемых сообщениях. Во всех остальных случаях - <c>null</c>.
+		/// </remarks>>
+		/// </summary>
+		[JsonProperty("expire_ttl")]
+		public uint? ExpireTtl { get; set; }
+
+		/// <summary>
+		/// Истекло ли время жизни саморазрушаемого сообщения
+		/// <remarks>
+		/// Присутствует только в <b>истёкших</b> саморазрушаемых сообщениях. Во всех остальных случаях - <c>null</c>.
+		/// </remarks>>
+		/// </summary>
+		[JsonProperty("is_expired")]
+		public bool? IsExpired { get; set; }
 
 	#endregion
 	}

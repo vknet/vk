@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.LeadForms;
 using VkNet.Tests.Infrastructure;
@@ -26,7 +27,7 @@ namespace VkNet.Tests.Categories.LeadForms
 				PolicyLinkUrl = "ya.ru"
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(1, result.FormId);
 			Assert.AreEqual(new Uri("https://vk.com/apform_id=1#form_id=1"), result.Url);
 		}
@@ -38,7 +39,7 @@ namespace VkNet.Tests.Categories.LeadForms
 			ReadCategoryJsonPath(nameof(Delete));
 
 			var result = Api.LeadForms.Delete(103292418, 1);
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(1, result.FormId);
 		}
 
@@ -49,7 +50,7 @@ namespace VkNet.Tests.Categories.LeadForms
 			ReadCategoryJsonPath(nameof(Get));
 
 			var result = Api.LeadForms.Get(103292418, 1);
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(2, result.FormId);
 		}
 
@@ -60,7 +61,7 @@ namespace VkNet.Tests.Categories.LeadForms
 			ReadCategoryJsonPath(nameof(List));
 
 			var result = Api.LeadForms.List(103292418);
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result);
 		}
 
@@ -72,7 +73,7 @@ namespace VkNet.Tests.Categories.LeadForms
 
 			var result = Api.LeadForms.GetUploadURL();
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(new Uri("https://pu.vk.com1d95424ffe4e4983a6a"), result);
 		}
 
@@ -92,7 +93,7 @@ namespace VkNet.Tests.Categories.LeadForms
 				PolicyLinkUrl = "ya.ru"
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(2, result.FormId);
 			Assert.AreEqual(new Uri("https://vk.com/apform_id=2#form_id=2"), result.Url);
 		}

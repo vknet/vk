@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using VkNet.Infrastructure;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -43,7 +44,7 @@ namespace VkNet.Model.Attachments
 		public string Description { get; set; }
 
 		/// <summary>
-		/// Длительность ролика в секундах.
+		/// Длительность видеозаписи в секундах (для Live видео - 0)
 		/// </summary>
 		[JsonProperty("duration")]
 		public int? Duration { get; set; }
@@ -159,7 +160,17 @@ namespace VkNet.Model.Attachments
 		public Uri Player { get; set; }
 
 		/// <summary>
-		/// Платформа
+		/// Тип видеозаписи
+		/// <remarks>
+		/// возвращается live для прямых трансляций
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("type")]
+		public string Type { get; set; }
+
+		// TODO: This should be a SafetyEnum
+		/// <summary>
+		/// Платформа размещения видеозаписи (например Youtube)
 		/// </summary>
 		[JsonProperty("platform")]
 		public string Platform { set; get; }
@@ -227,7 +238,7 @@ namespace VkNet.Model.Attachments
 		public static Video FromJson(VkResponse response)
 		{
 			return response != null
-				? JsonConvert.DeserializeObject<Video>(response.ToString())
+				? JsonConvert.DeserializeObject<Video>(response.ToString(), JsonConfigure.JsonSerializerSettings)
 				: null;
 		}
 
@@ -265,6 +276,33 @@ namespace VkNet.Model.Attachments
 		public bool? CanRepost { get; set; }
 
 		/// <summary>
+		/// Признак может ли текущий пользователь добавлять в избранное данную видеозапись.
+		/// </summary>
+		[JsonProperty("can_add_to_faves")]
+		public bool? CanAddToFaves { get; set; }
+
+		/// <summary>
+		/// Признак может ли текущий пользователь лайкать данную видеозапись.
+		/// </summary>
+		[JsonProperty("can_like")]
+		public bool? CanLike { get; set; }
+
+		/// <summary>
+		/// Признак может ли текущий пользователь подписаться на автора видеозаписи.
+		/// </summary>
+		[JsonProperty("can_subscribe")]
+		public bool? CanSubscribe { get; set; }
+
+		/// <summary>
+		/// Признак может ли текущий пользователь прикрепить ссылку.
+		/// <remarks>
+		/// Куда он может её прикрепить я так и не понял
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("can_attach_link")]
+		public bool? CanAttachLink { get; set; }
+
+		/// <summary>
 		/// Информация о лайках к видеозаписи.
 		/// </summary>
 		[JsonProperty("likes")]
@@ -277,13 +315,19 @@ namespace VkNet.Model.Attachments
 		public bool? Repeat { get; set; }
 
 		/// <summary>
+		/// Добавлена ли текущая видеозапись пользователю.
+		/// </summary>
+		[JsonProperty("added")]
+		public bool? Added { get; set; }
+
+		/// <summary>
 		/// Идентификатор видеоальбома <c>VideoAlbum</c>
 		/// </summary>
 		[JsonProperty("album_id")]
 		public long? AlbumId { get; set; }
 
 		/// <summary>
-		/// <c>Uri</c>, по которому необходимо выполнить загрузку видеов (см. метод
+		/// <c>Uri</c>, по которому необходимо выполнить загрузку видео (см. метод
 		/// <c>VideoCategory.Save</c>
 		/// </summary>
 		[JsonProperty("upload_url")]
@@ -318,6 +362,81 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[JsonProperty("height")]
 		public int? Height { get; set; }
+
+		/// <summary>
+		/// TODO: Undocumented
+		/// <remarks>
+		/// This might be all the info for the end application to play ads in the video
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("ads")]
+		public VideoAds Ads { get; set; }
+
+		/// <summary>
+		/// Информация о кадрах предпросмотра
+		/// </summary>
+		[JsonProperty("timeline_thumbs")]
+		public TimelineThumbs TimelineThumbs { get; set; }
+
+		/// <summary>
+		/// TODO: Undocumented
+		/// <remarks>
+		/// Из моих исследований, OV это какой-то внутренние Id для адресации плейлистов
+		/// Возможно OV - Organization Validated
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("ov_id")]
+		public string OvId { get; set; }
+
+		/// <summary>
+		/// Конвертируется ли сейчас видео (1 - да, 0 - нет)
+		/// <remarks>
+		/// При тестах я увидел этот параметр только в собственной видеозаписи
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("converting")]
+		public int? Converting { get; set; }
+
+		/// <summary>
+		/// Количество локальных просмотров
+		/// <remarks>
+		/// При тестах я увидел этот параметр только в собственной видеозаписи
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("local_views")]
+		public int? LocalViews { get; set; }
+
+		/// <summary>
+		/// Трек-код видеозаписи.
+		/// <remarks>
+		/// Во время тестов я увидел этот параметр, когда отправил трансляцию в сообщении
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("track_code")]
+		public string TrackCode { get; set; }
+
+		/// <summary>
+		/// Статус прямой трансляции
+		/// <remarks>
+		/// Во время тестов я увидел только статус <c> started </c> на самой видеозаписи.
+		/// Во вложении он отсутствует.
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("live_status")]
+		public string LiveStatus { get; set; }
+
+		/// <summary>
+		/// Количество зрителей прямой трансляции
+		/// </summary>
+		[JsonProperty("spectators")]
+		public int? Spectators { get; set; }
+
+		/// <summary>
+		/// Параметры прямой трансляции
+		/// (можно ли перематывать, бесконечность, максимальная длительность)
+		/// </summary>
+		[JsonProperty("live_settings")]
+		public LiveSettings LiveSettings { get; set; }
 
 	#endregion
 	}

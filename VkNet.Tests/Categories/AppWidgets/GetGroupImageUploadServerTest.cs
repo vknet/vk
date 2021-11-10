@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 
@@ -19,7 +20,7 @@ namespace VkNet.Tests.Categories.AppWidgets
 
 			var result = Api.AppWidgets.GetGroupImageUploadServer(AppWidgetImageType.FiftyOnFifty);
 
-			Assert.IsNotNull(result.UploadUrl);
+			result.UploadUrl.Should().NotBeNull();
 		}
 	}
 }

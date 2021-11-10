@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Categories.Friends
 			ReadCategoryJsonPath(nameof(Api.Friends.GetRequests));
 
 			var result = Api.Friends.GetRequests(new FriendsGetRequestsParams());
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(1, result.Count);
 		}
 
@@ -34,7 +35,7 @@ namespace VkNet.Tests.Categories.Friends
 				Extended = true
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(1, result.Count);
 		}
 	}

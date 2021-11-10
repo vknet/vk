@@ -49,7 +49,7 @@ namespace VkNet.Utils
 		/// The request URI.
 		/// </value>
 		public Uri RequestUri { get; private set; }
-		
+
 		/// <summary>
 		/// Gets the request URI.
 		/// </summary>
@@ -84,6 +84,7 @@ namespace VkNet.Utils
 		/// <param name="httpStatusCode"> The HTTP status code. </param>
 		/// <param name="message"> The message. </param>
 		/// <param name="requestUri"> The request URI. </param>
+		/// <param name="responseUri"> The response URI. </param>
 		/// <returns>
 		/// The HTTP response.
 		/// </returns>

@@ -28,6 +28,11 @@ namespace VkNet.Abstractions
 		IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
 										bool? deleteForAll = null);
 
+		/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync"/>
+		IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> conversationMessageIds, ulong peerId, 
+												bool? spam = null, ulong? groupId = null,
+												bool? deleteForAll = null);
+
 		/// <inheritdoc cref="IMessagesCategoryAsync.DeleteChatPhotoAsync"/>
 		Chat DeleteChatPhoto(out ulong messageId, ulong chatId, ulong? groupId = null);
 
@@ -150,6 +155,9 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.SendMessageEventAnswerAsync"/>
 		bool SendMessageEventAnswer(string eventId, long userId, long peerId, EventData eventData = null);
+
+		/// <inheritdoc cref="IMessagesCategoryAsync.MarkAsUnreadConversationAsync"/>
+		bool MarkAsUnreadConversation(long peerId);
 
 		/// <inheritdoc cref="IMessagesCategoryAsync.GetIntentUsersAsync"/>
 		GetIntentUsersResult GetIntentUsers(MessagesGetIntentUsersParams getIntentUsersParams);

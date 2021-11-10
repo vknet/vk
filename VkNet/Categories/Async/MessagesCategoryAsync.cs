@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -57,6 +58,28 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
 				Delete(messageIds, spam, groupId, deleteForAll));
+		}
+
+		/// <inheritdoc />
+		public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> conversationMessageIds, ulong peerId, bool? spam = null,
+														ulong? groupId = null, bool? deleteForAll = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() =>
+				Delete(conversationMessageIds, peerId, spam, groupId, deleteForAll));
+		}
+
+		/// <inheritdoc />
+		public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> conversationMessageIds, ulong? peerId, bool? spam = null,
+														ulong? groupId = null,
+														bool? deleteForAll = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() =>
+				Delete(null,
+					conversationMessageIds,
+					peerId,
+					spam,
+					groupId,
+					deleteForAll));
 		}
 
 		/// <inheritdoc />
@@ -345,6 +368,12 @@ namespace VkNet.Categories
 		public Task<bool> SendMessageEventAnswerAsync(string eventId, long userId, long peerId, EventData eventData = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => SendMessageEventAnswer(eventId, userId, peerId, eventData));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> MarkAsUnreadConversationAsync(long peerId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => MarkAsUnreadConversation(peerId));
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
@@ -31,7 +32,7 @@ namespace VkNet.Tests.Categories.Stats
 					DateTimeKind.Utc)
 			});
 
-			Assert.NotNull(statsPeriods[0]);
+			statsPeriods[0].Should().NotBeNull();
 			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
 		}
 
@@ -53,7 +54,7 @@ namespace VkNet.Tests.Categories.Stats
 					DateTimeKind.Utc)
 			});
 
-			Assert.NotNull(statsPeriods[0]);
+			statsPeriods[0].Should().NotBeNull();
 			Assert.Null(statsPeriods[0].Activity);
 
 			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
@@ -77,7 +78,7 @@ namespace VkNet.Tests.Categories.Stats
 					DateTimeKind.Utc)
 			});
 
-			Assert.NotNull(statsPeriods[0]);
+			statsPeriods[0].Should().NotBeNull();
 
 			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
 		}

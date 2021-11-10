@@ -1,8 +1,10 @@
 // ReSharper disable once RedundantUsingDirective
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -292,7 +294,9 @@ namespace VkNet
 				ContractResolver = new DefaultContractResolver
 				{
 					NamingStrategy = new SnakeCaseNamingStrategy()
-				}
+				},
+				MaxDepth = null,
+				ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
 			};
 
 			if (jsonConverters.Any())
@@ -345,15 +349,12 @@ namespace VkNet
 		/// <inheritdoc />
 		public VkResponse CallLongPoll(string server, VkParameters parameters)
 		{
-			var answer = InvokeLongPoll(server, parameters);
-
-			var json = JObject.Parse(answer);
-
+			var json = InvokeLongPollExtended(server, parameters);
 			var rawResponse = json.Root;
 
 			return new VkResponse(rawResponse)
 			{
-				RawJson = answer
+				RawJson = json.ToString()
 			};
 		}
 
@@ -366,6 +367,12 @@ namespace VkNet
 		/// <inheritdoc />
 		public string InvokeLongPoll(string server, Dictionary<string, string> parameters)
 		{
+			return InvokeLongPollExtended(server, parameters).ToString();
+		}
+
+		/// <inheritdoc />
+		public JObject InvokeLongPollExtended(string server, Dictionary<string, string> parameters)
+		{
 			if (string.IsNullOrEmpty(server))
 			{
 				const string message = "Server не должен быть пустым или null";
@@ -374,24 +381,30 @@ namespace VkNet
 				throw new ArgumentException(message);
 			}
 
-			_logger?.LogDebug(
-				$"Вызов GetLongPollHistory с сервером {server}, с параметрами {string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}"))}");
+			_logger?.LogDebug("Вызов GetLongPollHistory с сервером {Server}, с параметрами {Parameters}",
+				server,
+				string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}")));
 
 			var answer = InvokeBase(server, parameters);
 
 			_logger?.LogTrace("Uri = \"{Url}\"", server);
 			_logger?.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
 
-			VkErrors.IfErrorThrowException(answer);
-
-			return answer;
+			return VkErrors.IfErrorThrowException(answer);
 		}
 
 		/// <inheritdoc />
 		public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
-				InvokeLongPoll(server, parameters));
+				InvokeLongPollExtended(server, parameters).ToString());
+		}
+
+		/// <inheritdoc />
+		public Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() =>
+				InvokeLongPollExtended(server, parameters));
 		}
 
 		/// <inheritdoc cref="IDisposable" />
@@ -695,8 +708,9 @@ namespace VkNet
 				parameters.Add(Constants.Language, _language.GetLanguage());
 			}
 
-			_logger?.LogDebug(
-				$"Вызов метода {methodName}, с параметрами {string.Join(",", parameters.Where(x => x.Key != Constants.AccessToken).Select(x => $"{x.Key}={x.Value}"))}");
+			_logger?.LogDebug("Вызов метода {MethodName}, с параметрами {Parameters}",
+				methodName,
+				string.Join(",", parameters.Where(x => x.Key != Constants.AccessToken).Select(x => $"{x.Key}={x.Value}")));
 
 			string answer;
 
@@ -725,7 +739,7 @@ namespace VkNet
 			{
 				LastInvokeTime = DateTimeOffset.Now;
 
-				var response = RestClient.PostAsync(new Uri(url), @params)
+				var response = RestClient.PostAsync(new Uri(url), @params, Encoding.UTF8)
 					.ConfigureAwait(false)
 					.GetAwaiter()
 					.GetResult();
@@ -929,6 +943,11 @@ namespace VkNet
 			RequestsPerSecond = 3;
 
 			MaxCaptchaRecognitionCount = 5;
+		#if NET45
+			_logger?.LogError("Могут быть проблемы при выполнении запросов с Кодировкой 1251. Если проблема воспроизводится рекомендуется обновиться на NETFramework 4.6.1 или выше");
+		#else
+			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+		#endif
 			_logger?.LogDebug("VkApi Initialization successfully");
 		}
 

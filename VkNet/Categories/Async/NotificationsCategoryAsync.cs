@@ -12,9 +12,9 @@ namespace VkNet.Categories
 	public partial class NotificationsCategory
 	{
 		/// <inheritdoc />
-		public Task<IEnumerable<NotificationGetResult>> GetAsync(ulong? count = null, string startFrom = null,
-																IEnumerable<string> filters = null, long? startTime = null,
-																long? endTime = null, CancellationToken token = default)
+		public Task<NotificationGetResult> GetAsync(ulong? count = null, string startFrom = null,
+													IEnumerable<string> filters = null, long? startTime = null,
+													long? endTime = null, CancellationToken token = default)
 		{
 			return TypeHelper.TryInvokeMethodAsync(func: () => Get(count, startFrom, filters, startTime, endTime));
 		}

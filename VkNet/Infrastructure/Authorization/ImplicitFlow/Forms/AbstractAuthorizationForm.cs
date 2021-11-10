@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Threading.Tasks;
 using VkNet.Abstractions.Utils;
 using VkNet.Exception;
@@ -30,7 +31,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow.Forms
 
 			FillFormFields(form, authParams);
 
-			var response = await _restClient.PostAsync(new Uri(form.Action), form.Fields).ConfigureAwait(false);
+			var response = await _restClient.PostAsync(new Uri(form.Action), form.Fields, Encoding.GetEncoding(1251)).ConfigureAwait(false);
 
 			if (!response.IsSuccess)
 			{

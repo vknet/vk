@@ -96,7 +96,7 @@ namespace VkNet.Tests
 
 			Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x =>
 					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
-						It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+						It.IsAny<IEnumerable<KeyValuePair<string, string>>>(), It.IsAny<Encoding>()))
 				.Callback(Callback)
 				.Returns(() =>
 				{
@@ -109,7 +109,7 @@ namespace VkNet.Tests
 				});
 
 			Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
-					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+					It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),It.IsAny<Encoding>()))
 				.Throws<ArgumentException>();
 
 			Api = Mocker.CreateInstance<VkApi>();
@@ -118,14 +118,10 @@ namespace VkNet.Tests
 			Api.CaptchaSolver = Mocker.Get<ICaptchaSolver>();
 			SetupCaptchaHandler();
 
-			Api.Authorize(new ApiAuthParams
-			{
-				ApplicationId = 1,
-				Login = "login",
-				Password = "pass",
-				Settings = Settings.All,
-				Phone = "89510000000"
-			});
+			Api.Authorize
+			(
+				Mocker.Get<IApiAuthParams>()
+			);
 
 			Api.RequestsPerSecond = int.MaxValue;
 		}

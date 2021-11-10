@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
@@ -31,7 +32,7 @@ namespace VkNet.Tests.Categories.PrettyCards
 				CardIds = list,
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(result[0].CardId, "7037403");
 			Assert.AreEqual(result[2].Images[0].Url, new Uri("https://vk.com/8Jseb63OJSE.jpg"));
 		}

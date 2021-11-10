@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Group
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.Create("Test_Group");
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(true, result.IsMember);
 		}
 	}

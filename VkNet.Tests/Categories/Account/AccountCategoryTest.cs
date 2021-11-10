@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
@@ -193,7 +194,7 @@ namespace VkNet.Tests.Categories.Account
 			var settings = Api.Account.GetPrivacySettings();
 
 			// Assert
-			Assert.NotNull(settings);
+			settings.Should().NotBeNull();
 			Assert.IsNotEmpty(settings.Sections);
 			Assert.IsNotEmpty(settings.Settings);
 			Assert.IsNotEmpty(settings.SupportedCategories);

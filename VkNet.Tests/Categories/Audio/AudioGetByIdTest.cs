@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -22,7 +23,7 @@ namespace VkNet.Tests.Categories.Audio
 			var audio = result.FirstOrDefault();
 
 			Assert.IsNotEmpty(result);
-			Assert.NotNull(audio);
+			audio.Should().NotBeNull();
 		}
 	}
 }

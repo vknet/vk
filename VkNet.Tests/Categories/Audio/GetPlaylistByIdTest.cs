@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -16,7 +17,7 @@ namespace VkNet.Tests.Categories.Audio
 
 			var result = Api.Audio.GetPlaylistById(-77288583, 84820009);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 	}
 }

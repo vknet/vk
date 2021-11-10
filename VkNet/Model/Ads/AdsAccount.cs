@@ -62,7 +62,7 @@ namespace VkNet.Model
 				return null;
 			}
 
-			var adsaccount = new AdsAccount
+			var adsAccount = new AdsAccount
 			{
 					AccountId = response[key: "account_id"]
 					, AccountType = response[key: "account_type"]
@@ -71,7 +71,7 @@ namespace VkNet.Model
 					, AccessRole = response[key: "access_role"]
 			};
 
-			return adsaccount;
+			return adsAccount;
 		}
 
 	#endregion

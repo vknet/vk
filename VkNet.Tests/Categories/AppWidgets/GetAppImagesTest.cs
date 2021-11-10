@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
@@ -20,7 +21,7 @@ namespace VkNet.Tests.Categories.AppWidgets
 
 			var result = Api.AppWidgets.GetAppImages(0, 10, AppWidgetImageType.FiftyOnFifty);
 
-			Assert.IsNotNull(result.Items.First().Images.First().Url);
+			result.Items.First().Images.First().Url.Should().NotBeNull();
 		}
 	}
 }

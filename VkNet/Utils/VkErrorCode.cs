@@ -1,3 +1,5 @@
+using System;
+
 namespace VkNet.Utils
 {
 	/// <summary>
@@ -150,7 +152,13 @@ namespace VkNet.Utils
 		/// <summary>
 		/// Данное действие разрешено только для Standalone и Open API приложений.
 		/// </summary>
+		[Obsolete("Используйте константу OnlyStandaloneOrOpenApi", true)]
 		public const int OnlySandaloneOrOpenApi = 21;
+
+		/// <summary>
+		/// Данное действие разрешено только для Standalone и Open API приложений.
+		/// </summary>
+		public const int OnlyStandaloneOrOpenApi = 21;
 
 		/// <summary>
 		/// Ошибка загрузки документа.
@@ -366,7 +374,13 @@ namespace VkNet.Utils
 		/// <summary>
 		/// Превышен лимит комментариев на стене
 		/// </summary>
+		[Obsolete("Используйте константу TooManyAdsPosts")]
 		public const int ToomanyAdsPosts = 224;
+
+		/// <summary>
+		/// Превышен лимит комментариев на стене
+		/// </summary>
+		public const int TooManyAdsPosts = 224;
 
 		/// <summary>
 		/// Доступ к списку групп запрещен из-за настроек конфиденциальности пользователя.

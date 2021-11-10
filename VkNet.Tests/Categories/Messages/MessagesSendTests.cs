@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums.SafetyEnums;
@@ -183,7 +184,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			Assert.IsNotEmpty(result);
 			var message = result.FirstOrDefault();
-			Assert.NotNull(message);
+			message.Should().NotBeNull();
 			Assert.AreEqual(32190123, message.PeerId);
 			Assert.AreEqual(210525, message.MessageId);
 		}

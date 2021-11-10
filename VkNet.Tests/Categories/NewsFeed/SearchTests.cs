@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Linq;
+using FluentAssertions;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
@@ -19,7 +20,7 @@ namespace VkNet.Tests.Categories.NewsFeed
 
 			var result = Api.NewsFeed.Search(new NewsFeedSearchParams());
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result.NextFrom);
 		}
 
@@ -35,7 +36,7 @@ namespace VkNet.Tests.Categories.NewsFeed
 				Count = 20
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result.NextFrom);
 		}
 
@@ -52,10 +53,10 @@ namespace VkNet.Tests.Categories.NewsFeed
 				Count = 20
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 
 			var first = result.Items.First();
-			Assert.NotNull(first.PostSource.Data);
+			first.PostSource.Data.Should().NotBeNull();
 
 			var second = result.Items.Last();
 			Assert.IsNull(second.PostSource.Data);

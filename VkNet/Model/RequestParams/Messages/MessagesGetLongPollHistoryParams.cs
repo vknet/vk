@@ -65,7 +65,7 @@ namespace VkNet.Model.RequestParams
 		public long? EventsLimit
 		{
 			get => _eventsLimit;
-			set => _eventsLimit = (!value.HasValue || value >= EVENTS_LIMIT_MIN) ? value : EVENTS_LIMIT_MIN;
+			set => _eventsLimit = (!value.HasValue || value <= EVENTS_LIMIT_MIN) ? value : EVENTS_LIMIT_MIN;
 		}
 
 		/// <summary>

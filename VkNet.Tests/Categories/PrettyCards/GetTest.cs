@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
@@ -24,7 +25,7 @@ namespace VkNet.Tests.Categories.PrettyCards
 				Count = 100
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(result[0].CardId, "7037403");
 			Assert.AreEqual(result[1].PriceOld, "123.00");
 		}

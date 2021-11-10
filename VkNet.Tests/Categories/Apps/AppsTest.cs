@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -84,7 +85,7 @@ namespace VkNet.Tests.Categories.Apps
 
 			var app = Api.Apps.GetLeaderboard(AppRatingType.Points, null, true);
 
-			Assert.IsNotNull(app);
+			app.Should().NotBeNull();
 			Assert.That(app.Count, Is.EqualTo(130));
 			Assert.That(app.Items, Is.Not.Empty);
 			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
@@ -101,7 +102,7 @@ namespace VkNet.Tests.Categories.Apps
 
 			var app = Api.Apps.GetLeaderboard(AppRatingType.Level);
 
-			Assert.IsNotNull(app);
+			app.Should().NotBeNull();
 			Assert.That(app.Count, Is.EqualTo(130));
 			Assert.That(app.Items, Is.Not.Empty);
 			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
@@ -117,7 +118,7 @@ namespace VkNet.Tests.Categories.Apps
 
 			var app = Api.Apps.GetLeaderboard(AppRatingType.Points);
 
-			Assert.IsNotNull(app);
+			app.Should().NotBeNull();
 			Assert.That(app.Count, Is.EqualTo(130));
 			Assert.That(app.Items, Is.Not.Empty);
 			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));

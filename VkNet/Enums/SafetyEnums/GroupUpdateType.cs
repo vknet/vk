@@ -16,6 +16,31 @@ namespace VkNet.Enums.SafetyEnums
 		public static readonly GroupUpdateType MessageEvent = RegisterPossibleValue("message_event");
 
 		/// <summary>
+		/// Собеседник печатает
+		/// </summary>
+		public static readonly GroupUpdateType MessageTypingState = RegisterPossibleValue("message_typing_state");
+
+		/// <summary>
+		/// Событие о новой отметке "Мне нравится"
+		/// </summary>
+		public static readonly GroupUpdateType LikeAdd = RegisterPossibleValue("like_add");
+
+		/// <summary>
+		/// Событие о удалении отметки "Мне нравится"
+		/// </summary>
+		public static readonly GroupUpdateType LikeRemove = RegisterPossibleValue("like_remove");
+
+		/// <summary>
+		/// Платёж через VK Pay
+		/// </summary>
+		public static readonly GroupUpdateType VkPayTransaction = RegisterPossibleValue("vkpay_transaction");
+
+		/// <summary>
+		/// Событие о изменении настроек сообщества
+		/// </summary>
+		public static readonly GroupUpdateType GroupChangeSettings = RegisterPossibleValue("group_change_settings");
+
+		/// <summary>
 		/// Новое исходящее сообщение
 		/// </summary>
 		public static readonly GroupUpdateType MessageReply = RegisterPossibleValue("message_reply");

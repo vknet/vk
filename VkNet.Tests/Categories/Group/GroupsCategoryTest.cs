@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
@@ -356,7 +357,7 @@ namespace VkNet.Tests.Categories.Group
 
 			var group = Api.Groups.GetById(new List<string>(), "17683660", GroupsFields.All).FirstOrDefault();
 
-			Assert.NotNull(group);
+			@group.Should().NotBeNull();
 			Assert.That(group.Id, Is.EqualTo(17683660));
 			Assert.That(group.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
 			Assert.That(group.ScreenName, Is.EqualTo("club17683660"));
@@ -395,7 +396,7 @@ namespace VkNet.Tests.Categories.Group
 
 			var g = Api.Groups.GetById(new List<string>(), "17683660", null).FirstOrDefault();
 
-			Assert.NotNull(g);
+			g.Should().NotBeNull();
 			Assert.That(g.Id, Is.EqualTo(17683660));
 			Assert.That(g.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
 			Assert.That(g.ScreenName, Is.EqualTo("club17683660"));
@@ -554,7 +555,7 @@ namespace VkNet.Tests.Categories.Group
 
 			var catalogInfo = Api.Groups.GetCatalogInfo();
 
-			Assert.NotNull(catalogInfo);
+			catalogInfo.Should().NotBeNull();
 			Assert.That(catalogInfo.Enabled, Is.True);
 			CollectionAssert.IsNotEmpty(catalogInfo.Categories);
 			Assert.That(catalogInfo.Categories.Count(), Is.EqualTo(13));

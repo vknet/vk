@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
@@ -19,7 +20,7 @@ namespace VkNet.Tests.Categories.Streaming
 
 			var result = Api.Streaming.GetServerUrl();
 
-			Assert.IsNotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual("streaming.vk.com", result.Endpoint);
 			Assert.AreEqual("be8d29c05546e58cb52420aaf2b9f51f0a440f89", result.Key);
 		}
@@ -32,7 +33,7 @@ namespace VkNet.Tests.Categories.Streaming
 
 			var result = Api.Streaming.GetSettings();
 
-			Assert.IsNotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(MonthlyLimit.Tier6, result.MonthlyLimit);
 		}
 
@@ -47,7 +48,7 @@ namespace VkNet.Tests.Categories.Streaming
 			Assert.IsNotEmpty(result);
 
 			var stats = result.FirstOrDefault();
-			Assert.NotNull(stats);
+			stats.Should().NotBeNull();
 			Assert.AreEqual(StreamingEventType.Post, stats.EventType);
 			Assert.IsNotEmpty(stats.Stats);
 		}

@@ -97,7 +97,7 @@ namespace VkNet.Model
 				return null;
 			}
 
-			var compaign = new AdsCampaign
+			var campaign = new AdsCampaign
 			{
 					Id = response[key: "id"]
 					, Type = response[key: "type"]
@@ -109,7 +109,7 @@ namespace VkNet.Model
 					, StopTime = response[key: "stop_time"]
 			};
 
-			return compaign;
+			return campaign;
 		}
 
 	#endregion

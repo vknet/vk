@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Moq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -44,7 +44,7 @@ namespace VkNet.Tests
 
 			var waiter = new AutoResetEvent(initialState: false);
 
-			Api.OnTokenUpdatedAutomatically += (api) =>
+			Api.OnTokenUpdatedAutomatically += (_) =>
 			{
 				waiter.Set();
 			};
@@ -54,7 +54,7 @@ namespace VkNet.Tests
 			Assert.IsTrue(isUpdated);
 		}
 
-		[Test]
+		[Test, /*Ignore("Тест врет и не проверяет стабильное воспроизведение, ошибка либо в реализации либо в базовом классе теста")*/]
 		public async Task Call_NotMoreThen3CallsPerSecond()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
@@ -67,7 +67,7 @@ namespace VkNet.Tests
 
 			for (var i = 0; i < callsCount + 1; i++)
 			{
-				taskList.Add(Api.CallAsync("friends.getRequests", VkParameters.Empty, true).ContinueWith((_) => calls++));
+				taskList.Add(Api.CallAsync("friends.getRequests", VkParameters.Empty, true).ContinueWith(_ => Interlocked.Increment(ref calls)));
 			}
 
 			await Task.Delay(1000);
@@ -82,7 +82,7 @@ namespace VkNet.Tests
 
 			var result = Api.Call<FriendsGetRequestsResult>("friends.getRequests", VkParameters.Empty);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.That(result.UserId, Is.EqualTo(221634238));
 			Assert.That(result.Message, Is.EqualTo("text"));
 			Assert.IsNotEmpty(result.Mutual);
@@ -187,7 +187,7 @@ namespace VkNet.Tests
 			var callMethod = myArrayMethodInfo.FirstOrDefault(x => x.Name.Contains("Call"));
 
 			// Assert
-			Assert.IsNotNull(callMethod);
+			callMethod.Should().NotBeNull();
 			Assert.IsTrue(callMethod.IsPublic);
 		}
 

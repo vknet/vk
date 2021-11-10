@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
+using VkNet.Infrastructure;
 using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate
@@ -48,7 +49,7 @@ namespace VkNet.Model.GroupUpdate
 		/// <param name="response"> Ответ сервера. </param>
 		public static UserBlock FromJson(VkResponse response)
 		{
-			var userBlock = JsonConvert.DeserializeObject<UserBlock>(response.ToString());
+			var userBlock = JsonConvert.DeserializeObject<UserBlock>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 
 			userBlock.UnblockDate = response["unblock_date"];
 

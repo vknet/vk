@@ -65,6 +65,11 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public ReadOnlyCollection<CreateCampaignResult> CreateCampaigns(AdsDataSpecificationParams<CampaignSpecification> campaignsDataSpecification)
 		{
+			if (campaignsDataSpecification.Data.Length > 50)
+			{
+				throw new ArgumentOutOfRangeException(nameof(campaignsDataSpecification), "This method doesn't support more than 50 campaigns per call");
+			}
+
 			return _vk.Call<ReadOnlyCollection<CreateCampaignResult>>("ads.createCampaigns",
 				new VkParameters
 				{
@@ -76,6 +81,11 @@ namespace VkNet.Categories
 		/// <inheritdoc/>
 		public ReadOnlyCollection<CreateClientResult> CreateClients(AdsDataSpecificationParams<ClientSpecification> clientDataSpecification)
 		{
+			if (clientDataSpecification.Data.Length > 50)
+			{
+				throw new ArgumentOutOfRangeException(nameof(clientDataSpecification), "This method doesn't support more than 50 clients per call");
+			}
+
 			return _vk.Call<ReadOnlyCollection<CreateClientResult>>("ads.createClients",
 				new VkParameters
 				{
@@ -480,6 +490,38 @@ namespace VkNet.Categories
 					{ "account_id", updateTargetPixelParams.AccountId }, { "target_pixel_id", updateTargetPixelParams.TargetPixelId },
 					{ "name", updateTargetPixelParams.Name }, { "domain", updateTargetPixelParams.Domain },
 					{ "category_id", updateTargetPixelParams.CategoryId }, { "client_id", updateTargetPixelParams.ClientId }
+				});
+		}
+
+		/// <inheritdoc/>
+		public ReadOnlyCollection<GetMusiciansResult> GetMusicians(string artistName)
+		{
+			return _vk.Call<ReadOnlyCollection<GetMusiciansResult>>("ads.getMusicians",
+				new VkParameters
+				{
+					{ "artist_name", artistName }
+				});
+		}
+
+		/// <inheritdoc/>
+		public ReadOnlyCollection<GetMusiciansByIdsResult> GetMusiciansByIds(string ids)
+		{
+			return _vk.Call<ReadOnlyCollection<GetMusiciansByIdsResult>>("ads.getMusiciansByIds",
+				new VkParameters
+				{
+					{ "ids", ids }
+				});
+		}
+
+		/// <inheritdoc/>
+		public ReadOnlyCollection<UpdateOfficeUsersResult> UpdateOfficeUsers(
+			AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification)
+		{
+			return _vk.Call<ReadOnlyCollection<UpdateOfficeUsersResult>>("ads.updateOfficeUsers",
+				 new VkParameters
+				{
+					{ "account_id", officeUsersSpecification.AccountId },
+					{ "data", officeUsersSpecification.Data }
 				});
 		}
 	}

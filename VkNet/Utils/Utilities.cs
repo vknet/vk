@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using VkNet.Infrastructure;
 
 namespace VkNet.Utils
 {
@@ -149,7 +150,7 @@ namespace VkNet.Utils
 		{
 			try
 			{
-				result = JsonConvert.DeserializeObject<T>(json);
+				result = JsonConvert.DeserializeObject<T>(json, JsonConfigure.JsonSerializerSettings);
 				return true;
 			}
 			catch

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Utils;
@@ -15,8 +16,8 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/friends.getRequests";
 			var conversation = Api.Call<Conversation>("friends.getRequests", VkParameters.Empty);
 
-			Assert.NotNull(conversation);
-			Assert.NotNull(conversation.Peer);
+			conversation.Should().NotBeNull();
+			conversation.Peer.Should().NotBeNull();
 			Assert.AreEqual(2000000038, conversation.Peer.Id);
 			Assert.AreEqual(ConversationPeerType.Chat, conversation.Peer.Type);
 			Assert.AreEqual(38, conversation.Peer.LocalId);
@@ -24,14 +25,14 @@ namespace VkNet.Tests.Models
 			Assert.AreEqual(115082, conversation.InRead);
 			Assert.AreEqual(1210504, conversation.OutRead);
 			Assert.AreEqual(7, conversation.UnreadCount);
-			Assert.NotNull(conversation.CanWrite);
+			conversation.CanWrite.Should().NotBeNull();
 			Assert.IsTrue(conversation.CanWrite.Allowed);
 			Assert.IsTrue(conversation.CanReceiveMoney);
-			Assert.NotNull(conversation.ChatSettings);
+			conversation.ChatSettings.Should().NotBeNull();
 			Assert.AreEqual(321779994, conversation.ChatSettings.OwnerId);
 			Assert.AreEqual("bug", conversation.ChatSettings.Title);
 			Assert.AreEqual(ConversationChatSettingsState.In, conversation.ChatSettings.State);
-			Assert.NotNull(conversation.ChatSettings.Acl);
+			conversation.ChatSettings.Acl.Should().NotBeNull();
 			Assert.IsTrue(conversation.ChatSettings.Acl.CanChangeInfo);
 			Assert.IsFalse(conversation.ChatSettings.Acl.CanChangeInviteLink);
 			Assert.IsTrue(conversation.ChatSettings.Acl.CanChangePin);

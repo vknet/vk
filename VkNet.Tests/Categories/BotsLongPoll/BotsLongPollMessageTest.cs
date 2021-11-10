@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model.RequestParams;
@@ -29,9 +30,9 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var clientInfo = messageNew?.ClientInfo;
 
-			Assert.NotNull(messageNew);
-			Assert.NotNull(message);
-			Assert.NotNull(clientInfo);
+			messageNew.Should().NotBeNull();
+			message.Should().NotBeNull();
+			clientInfo.Should().NotBeNull();
 
 			Assert.IsNotEmpty(clientInfo.ButtonActions);
 			Assert.True(clientInfo.Keyboard);
@@ -154,7 +155,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var messageEvent = update.MessageEvent;
 
-			Assert.NotNull(messageEvent);
+			messageEvent.Should().NotBeNull();
 			Assert.AreEqual("feleyinek", messageEvent.EventId);
 			Assert.AreEqual(123456789, messageEvent.UserId);
 			Assert.AreEqual(123456789, messageEvent.PeerId);

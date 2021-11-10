@@ -10,7 +10,7 @@ namespace VkNet.Exception
 	/// Код ошибки - 21
 	/// </summary>
 	[Serializable]
-	[VkError(VkErrorCode.OnlySandaloneOrOpenApi)]
+	[VkError(VkErrorCode.OnlyStandaloneOrOpenApi)]
 	public sealed class OnlyStandaloneOrOpenApiException : VkApiMethodInvokeException
 	{
 		/// <inheritdoc />

@@ -1,0 +1,202 @@
+﻿{
+  "can_comment": 1,
+  "can_like": 1,
+  "can_repost": 1,
+  "can_subscribe": 1,
+  "can_add_to_faves": 1,
+  "can_add": 1,
+  "comments": 0,
+  "date": 1632744912,
+  "description": "Актриса Кристен Белл откровенно рассказала Tatler о трудностях, с которыми сталкивалась в работе, сериалах «Сплетница» и «Вероника Марс», а также о том, как сочиняла персонажа Анны в диснеевском хите «Холодное сердце».",
+  "duration": 1039,
+  "image": [
+    {
+      "height": 96,
+      "url": "https://sun9-3.userapi.com/impf/PA8ce21AWmKgWf9QE1vTvZ9Y1bDoZ5F-SjhiAg/6q3amS1IiAY.jpg?size=130x96&quality=96&keep_aspect_ratio=1&background=000000&sign=a19b9e964a9126bb312ef91ad96cd246&c_uniq_tag=rmcMOf4dv4ohmjJhG4COIPYRYPq1McKQdCBqZvQlU_I&type=video_thumb",
+      "width": 130,
+      "with_padding": 1
+    },
+    {
+      "height": 120,
+      "url": "https://sun9-3.userapi.com/impf/PA8ce21AWmKgWf9QE1vTvZ9Y1bDoZ5F-SjhiAg/6q3amS1IiAY.jpg?size=160x120&quality=96&keep_aspect_ratio=1&background=000000&sign=292bf48fba8613d6a3aecb7935a8c4a7&c_uniq_tag=3BMNtntwh-cMQMhWNv2eyyWa5eS33ygW-JCHwmB8bH0&type=video_thumb",
+      "width": 160,
+      "with_padding": 1
+    },
+    {
+      "height": 240,
+      "url": "https://sun9-3.userapi.com/impf/PA8ce21AWmKgWf9QE1vTvZ9Y1bDoZ5F-SjhiAg/6q3amS1IiAY.jpg?size=320x240&quality=96&keep_aspect_ratio=1&background=000000&sign=5c27e0026c309005990ab613f0607b74&c_uniq_tag=BdvNDqVeWCkflQrdjFu7XlnIzmOv2rgAqHJZ2pdLRRc&type=video_thumb",
+      "width": 320,
+      "with_padding": 1
+    },
+    {
+      "height": 450,
+      "url": "https://sun1-94.userapi.com/impf/PA8ce21AWmKgWf9QE1vTvZ9Y1bDoZ5F-SjhiAg/6q3amS1IiAY.jpg?size=800x450&quality=96&keep_aspect_ratio=1&background=000000&sign=32efb8f3b777dc1b2b6a9c725759b085&c_uniq_tag=NcituGzGUDqP4S0Jk-Z9Ukc7ajVXmsXx8AYX6n3_x5I&type=video_thumb",
+      "width": 800,
+      "with_padding": 1
+    },
+    {
+      "height": 720,
+      "url": "https://sun9-3.userapi.com/impf/PA8ce21AWmKgWf9QE1vTvZ9Y1bDoZ5F-SjhiAg/6q3amS1IiAY.jpg?size=1280x720&quality=96&sign=c738e9a891371511be58491df19c3dda&c_uniq_tag=vMcfjvqJkW4EH4U8nQP_q1VaR4Q1iU18bivvkPvRgmM&type=video_thumb",
+      "width": 1280
+    },
+    {
+      "height": 180,
+      "url": "https://sun9-3.userapi.com/impf/PA8ce21AWmKgWf9QE1vTvZ9Y1bDoZ5F-SjhiAg/6q3amS1IiAY.jpg?size=320x180&quality=96&sign=56029275341901c85f5928827dc6e038&c_uniq_tag=mScLLG0QbBFg0cPG6SXt_WglMF1nW-feQ1Q07X3IT5E&type=video_thumb",
+      "width": 320
+    },
+    {
+      "height": 405,
+      "url": "https://sun9-3.userapi.com/impf/PA8ce21AWmKgWf9QE1vTvZ9Y1bDoZ5F-SjhiAg/6q3amS1IiAY.jpg?size=720x405&quality=96&sign=d490b9732eca3a306163c31b6c8c8eeb&c_uniq_tag=ZMbEDt8Y8nxFezV1wtmJCSpsUmHDGqfSYJLpitNjoII&type=video_thumb",
+      "width": 720
+    },
+    {
+      "height": 576,
+      "url": "https://sun9-3.userapi.com/impf/PA8ce21AWmKgWf9QE1vTvZ9Y1bDoZ5F-SjhiAg/6q3amS1IiAY.jpg?size=1024x576&quality=96&sign=bea7f8f3260d46355770c93dc9ed510e&c_uniq_tag=w2qfq-lmiwTKrSl0Yr-yWa8lv-bNFtcr8bvqcwCsbNg&type=video_thumb",
+      "width": 1024
+    },
+    {
+      "height": 2304,
+      "url": "https://sun9-3.userapi.com/impf/PA8ce21AWmKgWf9QE1vTvZ9Y1bDoZ5F-SjhiAg/6q3amS1IiAY.jpg?size=0x0&quality=90&proxy=1&sign=db00127948a5db5cd3af04b7c5e7846a&c_uniq_tag=K_Q67dX7_xYg7l7cApkt7LgbuZb4Fhjk_9uURjgaKx0&type=video_thumb",
+      "width": 4096
+    }
+  ],
+  "first_frame": [
+    {
+      "height": 405,
+      "url": "https://i.mycdn.me/getVideoPreview?id=1777443670608&idx=0&type=32&tkn=2Kafw9nua9eUE32lyxBPfIiLVCc",
+      "width": 720
+    },
+    {
+      "height": 270,
+      "url": "https://i.mycdn.me/getVideoPreview?id=1777443670608&idx=0&type=33&tkn=QWrahpn-bZgS27GJekzexTF8LFA",
+      "width": 480
+    },
+    {
+      "height": 135,
+      "url": "https://i.mycdn.me/getVideoPreview?id=1777443670608&idx=0&type=34&tkn=n0BDYMSugJn-SQhrLyLR0uZ-1xM",
+      "width": 240
+    },
+    {
+      "height": 72,
+      "url": "https://i.mycdn.me/getVideoPreview?id=1777443670608&idx=0&type=35&tkn=13Z1oMSkxZb3U4Wpyr5upgD3NzM",
+      "width": 128
+    },
+    {
+      "height": 720,
+      "url": "https://i.mycdn.me/getVideoPreview?id=1777443670608&idx=0&type=37&tkn=cnnMNKHmI35fh0U7u0eCYanAzQ4",
+      "width": 1280
+    },
+    {
+      "height": 540,
+      "url": "https://i.mycdn.me/getVideoPreview?id=1777443670608&idx=0&type=38&tkn=FQmXz01IOAEc4lkN7ZtVEbZwt3M",
+      "width": 960
+    },
+    {
+      "height": 720,
+      "url": "https://i.mycdn.me/getVideoPreview?id=1777443670608&idx=0&type=39&tkn=1_RZVQ9jxBIcI-CDJ-t4QFoZJDA",
+      "width": 1280
+    }
+  ],
+  "width": 1920,
+  "height": 1080,
+  "id": 456239929,
+  "owner_id": -136270576,
+  "ov_id": "2930947729488",
+  "title": "Кристен Белл о своей карьере — «Холодное сердце», «Сплетница» и другое",
+  "is_favorite": false,
+  "player": "https://vk.com/video_ext.php?oid=-136270576&id=456239929&hash=637a77ff5f69bec9&__ref=vk.admin_android&api_hash=16327905846cb18cb1c97379e175_GM4DMNZYG42TANA",
+  "repeat": 1,
+  "type": "video",
+  "views": 12032,
+  "files": {
+    "mp4_240": "https://vkvd79.mycdn.me/?sig=hJ-nQdUFlJE&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=0",
+    "mp4_360": "https://vkvd79.mycdn.me/?sig=AaOYcMVln7E&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=1",
+    "mp4_480": "https://vkvd79.mycdn.me/?sig=stO4D-MNhVA&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=2",
+    "mp4_720": "https://vkvd79.mycdn.me/?sig=6zFPxlcmMW0&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=3",
+    "mp4_1080": "https://vkvd79.mycdn.me/?sig=P479kIBCu5M&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=5",
+    "hls": "https://vkvd79.mycdn.me/video.m3u8?srcIp=217.70.31.125&expires=1633249784334&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&mid=2930947729488&type=4&sig=kKC4Rp0aao4&ct=8&urls=185.226.52.190&clientType=13&cmd=videoPlayerCdn&id=1777443670608",
+    "dash_uni": "https://vkvd79.mycdn.me/?sig=stO4D-MNhVA&ct=6&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=2",
+    "dash_sep": "https://vkvd79.mycdn.me/?sig=AaOYcMVln7E&ct=6&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=1",
+    "dash_webm": "https://vkvd79.mycdn.me/?sig=_PmzhECbdtY&ct=6&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=4",
+    "hls_ondemand": "https://vkvd79.mycdn.me/srcIp/217.70.31.125/expires/1633249784334/srcAg/UNKNOWN/fromCache/1/ms/45.136.22.169/mid/2930947729488/type/2/sig/JahccvslsEY/ct/28/urls/185.226.52.190/clientType/13/id/1777443670608/ondemand/hls_1777443670608.m3u8",
+    "dash_ondemand": "https://vkvd79.mycdn.me/srcIp/217.70.31.125/expires/1633249784334/srcAg/UNKNOWN/fromCache/1/ms/45.136.22.169/mid/2930947729488/type/2/sig/JahccvslsEY/ct/29/urls/185.226.52.190/clientType/13/id/1777443670608/ondemand/dash_1777443670608.mpd",
+    "failover_host": "vkvd185.mycdn.me"
+  },
+  "timeline_thumbs": {
+    "count_per_image": 9,
+    "count_per_row": 3,
+    "count_total": 208,
+    "frame_height": 180,
+    "frame_width": 320.0,
+    "links": [
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=0",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=1",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=2",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=3",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=4",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=5",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=6",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=7",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=8",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=9",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=10",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=11",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=12",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=13",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=14",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=15",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=16",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=17",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=18",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=19",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=20",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=21",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=22",
+      "https://i.mycdn.me/videoPreview?id=1777443670608&type=42&tkn=bUlVzyQiIoWXKoUYQCpBYcq1ht0&uidx=23"
+    ],
+    "is_uv": true,
+    "frequency": 5
+  },
+  "ads": {
+    "slot_id": 551874,
+    "timeout": 1.0,
+    "can_play": 1,
+    "params": {
+      "vk_id": 12345678,
+      "duration": 1039,
+      "video_id": "-136270576_456239929",
+      "pl": 21469,
+      "content_id": "-585277666870842567",
+      "lang": 1,
+      "puid1": 986,
+      "puid2": 17,
+      "puid3": 1,
+      "puid4": 1,
+      "puid5": 14,
+      "puid6": 86,
+      "puid7": 1,
+      "puid8": 9,
+      "puid9": 0,
+      "puid10": 4,
+      "puid12": 16,
+      "puid13": 2,
+      "puid14": 2,
+      "puid15": 1,
+      "puid18": 0,
+      "puid21": 2,
+      "sign": "4551227ff8b9944114687581748264426f663db8",
+      "groupId": 136270576,
+      "vk_catid": 29
+    },
+    "sections": [
+      "preroll",
+      "midroll",
+      "postroll"
+    ],
+    "midroll_percents": [
+      0.25,
+      0.75
+    ],
+    "autoplay_preroll": 1
+  }
+}

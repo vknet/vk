@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net45;net461;netstandard2.0;net5.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net5.0;net6.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
-		<VersionPrefix>1.62.0</VersionPrefix>
+		<VersionPrefix>1.68.0</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -23,7 +23,7 @@
 			Обсуждение в Telegram: https://t.me/VkDotNet
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: https://github.com/vknet/vk/milestone/38?closed=1
+			Список изменений: https://github.com/vknet/vk/milestone/42?closed=1
 		</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -42,51 +42,27 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	<PropertyGroup>
 		<DefineConstants>TRACE;DEBUG;UWP</DefineConstants>
-		<DocumentationFile>..\Build\Debug\VkNet.xml</DocumentationFile>
-		<OutputPath>..\Build\Debug\</OutputPath>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>TRACE;UWP</DefineConstants>
-		<DocumentationFile>..\Build\Release\VkNet.xml</DocumentationFile>
-		<OutputPath>..\Build\Release\</OutputPath>
+		<DocumentationFile>..\Build\$(Configuration)\VkNet.xml</DocumentationFile>
+		<OutputPath>..\Build\$(Configuration)\</OutputPath>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="AsyncFixer" Version="1.5.1" PrivateAssets="all" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.32" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.37" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.20.0.28934" PrivateAssets="all" />
-		<PackageReference Include="JetBrains.Annotations" Version="2020.3.0" PrivateAssets="all" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net461'">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[5.0.1,)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[5.0.0,)" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="[2.2.0]" />
-		<PackageReference Include="NetFx.Extensions.Logging.Abstractions" Version="[2.2.0]" />
-
-		<!--Должен быть именно Package так как могут возникать конфликты-->
-		<Reference Include="System.Net.Http" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.30.0.37606" PrivateAssets="all" />
+		<PackageReference Include="JetBrains.Annotations" Version="2021.3.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="..\tools\vknet-icon.PNG" Pack="true" PackagePath="\" />
 		<None Include="..\LICENCE" Pack="true" PackagePath="\" />
 	</ItemGroup>
+
 </Project>

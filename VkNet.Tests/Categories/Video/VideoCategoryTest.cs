@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -146,9 +147,9 @@ namespace VkNet.Tests.Categories.Video
 
 			var video = result.FirstOrDefault();
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(1, result.Count);
-			Assert.NotNull(video);
+			video.Should().NotBeNull();
 			Assert.AreEqual(456245310, video.Id);
 			Assert.AreEqual(-129440544, video.OwnerId);
 			Assert.AreEqual("ec", video.Title);
@@ -163,15 +164,15 @@ namespace VkNet.Tests.Categories.Video
 			Assert.IsFalse(video.IsFavorite);
 			Assert.AreEqual(DateHelper.TimeStampToDateTime(1569151132), video.AddingDate);
 			Assert.IsTrue(video.Repeat);
-			Assert.NotNull(video.Files);
+			video.Files.Should().NotBeNull();
 			Assert.AreEqual(new Uri("https://vk.com/vi/dec_GQ3DKNZUGI4TAMQ"), video.Player);
 			Assert.True(video.CanAdd);
 			Assert.True(video.CanComment);
 			Assert.True(video.CanRepost);
-			Assert.NotNull(video.Likes);
+			video.Likes.Should().NotBeNull();
 			Assert.False(video.Likes.UserLikes);
 			Assert.AreEqual(369, video.Likes.Count);
-			Assert.NotNull(video.Reposts);
+			video.Reposts.Should().NotBeNull();
 			Assert.False(video.Reposts.UserReposted);
 			Assert.AreEqual(1, video.Reposts.Count);
 		}
@@ -256,9 +257,9 @@ namespace VkNet.Tests.Categories.Video
 			var result = Api.Video.GetAlbums(-129440544, extended: true, needSystem: true);
 			var videoAlbum = result.FirstOrDefault();
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 			Assert.AreEqual(2, result.TotalCount);
-			Assert.NotNull(videoAlbum);
+			videoAlbum.Should().NotBeNull();
 			Assert.AreEqual(3790, videoAlbum.Count);
 			Assert.AreEqual(-2, videoAlbum.Id);
 			Assert.AreEqual(-129440544, videoAlbum.OwnerId);
