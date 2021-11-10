@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using VkNet.Infrastructure;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -237,7 +238,7 @@ namespace VkNet.Model.Attachments
 		public static Video FromJson(VkResponse response)
 		{
 			return response != null
-				? JsonConvert.DeserializeObject<Video>(response.ToString())
+				? JsonConvert.DeserializeObject<Video>(response.ToString(), JsonConfigure.JsonSerializerSettings)
 				: null;
 		}
 

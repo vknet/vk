@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using VkNet.Infrastructure;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -39,7 +40,7 @@ namespace VkNet.Tests.Utils.JsonConverter
 					DefaultValueHandling = DefaultValueHandling.Ignore
 				});
 
-			var result = JsonConvert.DeserializeObject<Message>(json);
+			var result = JsonConvert.DeserializeObject<Message>(json, JsonConfigure.JsonSerializerSettings);
 
 			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result.Attachments);

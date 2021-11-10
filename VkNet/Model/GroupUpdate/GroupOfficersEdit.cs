@@ -1,6 +1,7 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
+using VkNet.Infrastructure;
 using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate
@@ -41,7 +42,7 @@ namespace VkNet.Model.GroupUpdate
 		/// <param name="response"> Ответ сервера. </param>
 		public static GroupOfficersEdit FromJson(VkResponse response)
 		{
-			return JsonConvert.DeserializeObject<GroupOfficersEdit>(response.ToString());
+			return JsonConvert.DeserializeObject<GroupOfficersEdit>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 		}
 	}
 }

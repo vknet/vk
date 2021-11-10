@@ -3,6 +3,7 @@ using System.Globalization;
 using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using VkNet.Infrastructure;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
@@ -40,7 +41,7 @@ namespace VkNet.Tests.Utils.JsonConverter
 					Formatting = Formatting.Indented
 				});
 
-			var result = JsonConvert.DeserializeObject<MessagesSearchParams>(json);
+			var result = JsonConvert.DeserializeObject<MessagesSearchParams>(json, JsonConfigure.JsonSerializerSettings);
 
 			result.Should().NotBeNull();
 			var compare = string.Compare(json, Json, CultureInfo.InvariantCulture, CompareOptions.IgnoreSymbols);

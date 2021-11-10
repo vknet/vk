@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Exception;
+using VkNet.Infrastructure;
 using VkNet.Model;
 
 namespace VkNet.Utils
@@ -164,7 +165,7 @@ namespace VkNet.Utils
 				return obj;
 			}
 
-			var vkError = JsonConvert.DeserializeObject<VkError>(error.ToString());
+			var vkError = JsonConvert.DeserializeObject<VkError>(error.ToString(), JsonConfigure.JsonSerializerSettings);
 
 			if (vkError == null || vkError.ErrorCode == 0)
 			{

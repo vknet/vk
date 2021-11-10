@@ -294,7 +294,9 @@ namespace VkNet
 				ContractResolver = new DefaultContractResolver
 				{
 					NamingStrategy = new SnakeCaseNamingStrategy()
-				}
+				},
+				MaxDepth = null,
+				ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
 			};
 
 			if (jsonConverters.Any())

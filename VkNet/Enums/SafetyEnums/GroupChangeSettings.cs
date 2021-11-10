@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Infrastructure;
 
 namespace VkNet.Model.GroupUpdate
 {
@@ -32,7 +33,7 @@ namespace VkNet.Model.GroupUpdate
 		/// <returns> </returns>
 		public static GroupChangeSettings FromJson(VkResponse response)
 		{
-			return JsonConvert.DeserializeObject<GroupChangeSettings>(response.RawJson);
+			return JsonConvert.DeserializeObject<GroupChangeSettings>(response.RawJson, JsonConfigure.JsonSerializerSettings);
 		}
 
 		/// <summary>

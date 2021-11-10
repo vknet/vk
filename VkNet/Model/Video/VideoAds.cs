@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Infrastructure;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -79,7 +80,7 @@ namespace VkNet.Model
 		/// <returns> </returns>
 		public static VideoAds FromJson(VkResponse response)
 		{
-			return JsonConvert.DeserializeObject<VideoAds>(response.ToString());
+			return JsonConvert.DeserializeObject<VideoAds>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 		}
 
 	#endregion
