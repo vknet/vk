@@ -55,6 +55,15 @@
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
 		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.30.0.37606" PrivateAssets="all" />
 		<PackageReference Include="JetBrains.Annotations" Version="2021.3.0" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework) != 'net6.0'">
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework) == 'net6.0'">
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
 		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
