@@ -52,6 +52,6 @@ namespace VkNet.Abstractions
 		bool Edit(long ownerId, long docId, string title, IEnumerable<string> tags);
 
 		/// <inheritdoc cref="IDocsCategoryAsync.GetMessagesUploadServerAsync"/>
-		UploadServerInfo GetMessagesUploadServer(long? group_id = null, DocMessageType type = null);
+		UploadServerInfo GetMessagesUploadServer(long? groupId = null, DocMessageType type = null);
 	}
 }

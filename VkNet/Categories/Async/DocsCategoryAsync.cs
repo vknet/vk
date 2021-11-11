@@ -104,9 +104,9 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<UploadServerInfo> GetMessagesUploadServerAsync(long? group_id = null, DocMessageType type = null)
+		public Task<UploadServerInfo> GetMessagesUploadServerAsync(long? groupId = null, DocMessageType type = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () => GetMessagesUploadServer(group_id, type));
+			return TypeHelper.TryInvokeMethodAsync(func: () => GetMessagesUploadServer(groupId, type));
 		}
 	}
 }
