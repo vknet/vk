@@ -248,7 +248,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public UploadServerInfo GetMessagesUploadServer(long groupId)
+		public UploadServerInfo GetMessagesUploadServer(long? groupId)
 		{
 			return _vk.Call("photos.getMessagesUploadServer",
 				new VkParameters

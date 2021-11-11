@@ -300,7 +300,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте
 		/// http://vk.com/dev/photos.getMessagesUploadServer
 		/// </remarks>
-		Task<UploadServerInfo> GetMessagesUploadServerAsync(long groupId);
+		Task<UploadServerInfo> GetMessagesUploadServerAsync(long? groupId);
 
 		/// <summary>
 		/// Сохраняет фотографию после успешной загрузки на URI, полученный методом
