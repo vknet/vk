@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums;
@@ -52,6 +52,6 @@ namespace VkNet.Abstractions
 		bool Edit(long ownerId, long docId, string title, IEnumerable<string> tags);
 
 		/// <inheritdoc cref="IDocsCategoryAsync.GetMessagesUploadServerAsync"/>
-		UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType type = null);
+		UploadServerInfo GetMessagesUploadServer(long? groupId = null, DocMessageType type = null);
 	}
 }

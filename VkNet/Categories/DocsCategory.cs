@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -218,11 +218,11 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType type = null)
+		public UploadServerInfo GetMessagesUploadServer(long? groupId = null, DocMessageType type = null)
 		{
 			var parameters = new VkParameters
 			{
-				{ "peer_id", peerId },
+				{ "group_id", groupId },
 				{ "type", type }
 			};
 

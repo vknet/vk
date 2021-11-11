@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json.Linq;
@@ -248,12 +248,12 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public UploadServerInfo GetMessagesUploadServer(long peerId)
+		public UploadServerInfo GetMessagesUploadServer(long? groupId)
 		{
 			return _vk.Call("photos.getMessagesUploadServer",
 				new VkParameters
 				{
-					{ "peer_id", peerId }
+					{ "group_id", groupId }
 				});
 		}
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums;
@@ -56,7 +56,7 @@ namespace VkNet.Abstractions
 		UploadServerInfo GetWallUploadServer(long? groupId = null);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.GetMessagesUploadServerAsync"/>
-		UploadServerInfo GetMessagesUploadServer(long peerId);
+		UploadServerInfo GetMessagesUploadServer(long? groupId);
 
 		/// <inheritdoc cref="IPhotoCategoryAsync.SaveMessagesPhotoAsync"/>
 		ReadOnlyCollection<Photo> SaveMessagesPhoto(string response);
