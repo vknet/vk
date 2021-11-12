@@ -109,7 +109,7 @@ namespace VkNet.Utils
 
 			try
 			{
-				var jObject = JObject.Parse(json);
+				var jObject = json.ToJObject();
 
 				foreach (var key in keysToHide)
 				{

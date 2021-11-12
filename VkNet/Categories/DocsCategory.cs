@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Infrastructure;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
@@ -112,7 +113,7 @@ namespace VkNet.Categories
 
 			if (VkResponseEx.IsValidJson(file))
 			{
-				var responseJson = JObject.Parse(file);
+				var responseJson = file.ToJObject();
 				file = responseJson["file"].ToString();
 			}
 

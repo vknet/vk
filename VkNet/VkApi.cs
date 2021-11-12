@@ -250,7 +250,7 @@ namespace VkNet
 		{
 			var answer = CallBase(methodName, parameters, skipAuthorization);
 
-			var json = JObject.Parse(answer);
+			var json = answer.ToJObject();
 
 			var rawResponse = json["response"];
 
