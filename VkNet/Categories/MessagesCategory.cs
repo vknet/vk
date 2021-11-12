@@ -10,6 +10,7 @@ using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Infrastructure;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Messages;
@@ -704,7 +705,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long SetChatPhoto(out long messageId, string file)
 		{
-			var json = JObject.Parse(file);
+			var json = file.ToJObject();
 			var rawResponse = json["response"];
 
 			var parameters = new VkParameters

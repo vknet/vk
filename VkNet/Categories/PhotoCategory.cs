@@ -6,6 +6,7 @@ using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Infrastructure;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
@@ -191,7 +192,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Photo SaveOwnerPhoto(string response)
 		{
-			var responseJson = JObject.Parse(json: response);
+			var responseJson = response.ToJObject();
 			var server = responseJson[propertyName: "server"].ToString();
 			var hash = responseJson[propertyName: "hash"].ToString();
 			var photo = responseJson[propertyName: "photo"].ToString();
@@ -216,7 +217,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId, ulong? groupId = null, string caption = null)
 		{
-			var responseJson = JObject.Parse(json: response);
+			var responseJson = response.ToJObject();
 			var server = responseJson[propertyName: "server"].ToString();
 			var hash = responseJson[propertyName: "hash"].ToString();
 			var photo = responseJson[propertyName: "photo"].ToString();
@@ -260,7 +261,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public ReadOnlyCollection<Photo> SaveMessagesPhoto(string response)
 		{
-			var responseJson = JObject.Parse(json: response);
+			var responseJson = response.ToJObject();
 			var server = responseJson[propertyName: "server"].ToString();
 			var hash = responseJson[propertyName: "hash"].ToString();
 			var photo = responseJson[propertyName: "photo"].ToString();
@@ -299,7 +300,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public GroupCover SaveOwnerCoverPhoto(string response)
 		{
-			var responseJson = JObject.Parse(json: response);
+			var responseJson = response.ToJObject();
 			var hash = responseJson[propertyName: "hash"].ToString();
 			var photo = responseJson[propertyName: "photo"].ToString();
 
@@ -359,7 +360,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public ReadOnlyCollection<Photo> Save(PhotoSaveParams @params)
 		{
-			var responseJson = JObject.Parse(json: @params.SaveFileResponse);
+			var responseJson = @params.SaveFileResponse.ToJObject();
 			var server = responseJson[propertyName: "server"].ToString();
 			var hash = responseJson[propertyName: "hash"].ToString();
 			var photosList = responseJson[propertyName: "photos_list"].ToString();
@@ -725,7 +726,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public ReadOnlyCollection<Photo> SaveMarketPhoto(long groupId, string response)
 		{
-			var responseJson = JObject.Parse(json: response);
+			var responseJson = response.ToJObject();
 			var server = responseJson[propertyName: "server"].ToString();
 			var hash = responseJson[propertyName: "hash"].ToString();
 			var photo = responseJson[propertyName: "photo"].ToString();
@@ -748,7 +749,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public ReadOnlyCollection<Photo> SaveMarketAlbumPhoto(long groupId, string response)
 		{
-			var responseJson = JObject.Parse(json: response);
+			var responseJson = response.ToJObject();
 			var server = responseJson[propertyName: "server"].ToString();
 			var hash = responseJson[propertyName: "hash"].ToString();
 			var photo = responseJson[propertyName: "photo"].ToString();

@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
+using VkNet.Infrastructure;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
@@ -288,7 +289,7 @@ namespace VkNet.Categories
 		public Audio Save(string response, string artist = null, string title = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => response);
-			var responseJson = JObject.Parse(response);
+			var responseJson = response.ToJObject();
 			var server = responseJson["server"].ToString();
 			var hash = responseJson["hash"].ToString();
 			var audio = responseJson["audio"].ToString();

@@ -135,23 +135,7 @@ namespace VkNet.Utils
 		/// </exception>
 		public static JObject IfErrorThrowException(string json)
 		{
-			JObject obj;
-
-			try
-			{
-				using var stringReader = new StringReader(json);
-
-				using JsonReader jsonReader = new JsonTextReader(stringReader)
-				{
-					MaxDepth = null
-				};
-
-				obj = JObject.Load(jsonReader);
-			}
-			catch (JsonReaderException ex)
-			{
-				throw new VkApiException("Wrong json data.", ex);
-			}
+			JObject obj = json.ToJObject();
 
 			var exceptions = ExecuteErrorsHandler.GetExecuteExceptions(json);
 
