@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using VkNet.Exception;
 using VkNet.Infrastructure;
 
 namespace VkNet.Utils
@@ -121,7 +122,7 @@ namespace VkNet.Utils
 
 				return jObject.ToString(Formatting.Indented);
 			}
-			catch (JsonReaderException)
+			catch (VkApiException)
 			{
 				return json;
 			}
