@@ -8,7 +8,6 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils.JsonConverter
 {
 	[TestFixture]
-
 	public class AttachmentJsonConverterTests : BaseTest
 	{
 		[Test]
@@ -40,7 +39,12 @@ namespace VkNet.Tests.Utils.JsonConverter
 					DefaultValueHandling = DefaultValueHandling.Ignore
 				});
 
-			var result = JsonConvert.DeserializeObject<Message>(json, JsonConfigure.JsonSerializerSettings);
+			var result = JsonConvert.DeserializeObject<Message>(json,
+				new JsonSerializerSettings
+				{
+					MaxDepth = null,
+					ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+				});
 
 			result.Should().NotBeNull();
 			Assert.IsNotEmpty(result.Attachments);

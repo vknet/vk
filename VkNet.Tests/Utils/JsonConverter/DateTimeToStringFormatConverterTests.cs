@@ -41,7 +41,12 @@ namespace VkNet.Tests.Utils.JsonConverter
 					Formatting = Formatting.Indented
 				});
 
-			var result = JsonConvert.DeserializeObject<MessagesSearchParams>(json, JsonConfigure.JsonSerializerSettings);
+			var result = JsonConvert.DeserializeObject<MessagesSearchParams>(json,
+				new JsonSerializerSettings
+				{
+					MaxDepth = null,
+					ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+				});
 
 			result.Should().NotBeNull();
 			var compare = string.Compare(json, Json, CultureInfo.InvariantCulture, CompareOptions.IgnoreSymbols);
