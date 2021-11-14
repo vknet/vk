@@ -50,10 +50,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="AsyncFixer" Version="1.5.1" PrivateAssets="all" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.37" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.38" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.30.0.37606" PrivateAssets="all" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.31.0.39249" PrivateAssets="all" />
 		<PackageReference Include="JetBrains.Annotations" Version="2021.3.0" PrivateAssets="all" />
 	</ItemGroup>
 
