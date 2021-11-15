@@ -28,15 +28,13 @@ steps:
   inputs:
     command: test
     projects: '*[Tt]ests/*.csproj'
-    arguments: '-c $(BuildConfiguration) -f net5.0'
-
+    arguments: '-c $(BuildConfiguration) -f net6.0'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
     projects: VkNet/VkNet.csproj
     arguments: '-o $(Build.ArtifactStagingDirectory) -c $(BuildConfiguration) --version-suffix $(Build.BuildId)'
-
 
 - script: 'dotnet nuget push *.nupkg -k $(Parameters.MyGetKey) -s $(Parameters.MyGetFeed)'
   workingDirectory: '$(Build.ArtifactStagingDirectory)'
