@@ -93,10 +93,10 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Вывести в консоль Json.
+		/// Конвертировать JSON в читаемый формат с отступами
 		/// </summary>
-		/// <param name="json"> Json. </param>
-		/// <returns> Json </returns>
+		/// <param name="json"> JSON. </param>
+		/// <returns> JSON с отступами </returns>
 		public static string PrettyPrintJson(string json)
 		{
 			const string hidden = "***HIDDEN***";

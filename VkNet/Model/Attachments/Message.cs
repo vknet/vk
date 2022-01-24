@@ -25,8 +25,9 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
+		/// Разобрать из JSON
 		/// </summary>
-		/// <param name="response"> </param>
+		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
 		public static Message FromJson(VkResponse response)
 		{
@@ -274,14 +275,13 @@ namespace VkNet.Model
 		public long? AdminId { get; set; }
 
 		/// <summary>
-		/// Поле передано, если это служебное сообщение
+		/// Для служебных сообщений содержит информацию о действии в беседе.
 		/// </summary>
 		/// <remarks>
 		/// Строка, может быть <c>chat_photo_update</c> или <c>chat_photo_remove</c>, а с версии 5.14 еще
 		/// и <c>chat_create</c>, <c>chat_title_update</c>,
 		/// <c>chat_invite_user</c>, <c>chat_kick_user</c>
 		/// </remarks>
-
 		[JsonProperty("action")]
 		public MessageActionObject Action { get; set; }
 

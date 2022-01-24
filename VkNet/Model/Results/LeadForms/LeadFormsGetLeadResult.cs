@@ -5,8 +5,9 @@ using Newtonsoft.Json;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Результат метода LeadsForms.GetLead
+	/// Результат метода leadForms.getLeads
 	/// </summary>
+	// TODO: правильное название этого объекта LeadFormsGetLeadsResult
 	[Serializable]
 	public class LeadFormsGetLeadResult
 	{

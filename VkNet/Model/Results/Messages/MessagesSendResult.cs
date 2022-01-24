@@ -4,6 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
+	/// результат выполнения запроса messages.send
 	/// </summary>
 	[Serializable]
 	public class MessagesSendResult

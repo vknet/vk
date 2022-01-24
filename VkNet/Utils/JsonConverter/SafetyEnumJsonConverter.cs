@@ -11,16 +11,23 @@ namespace VkNet.Utils.JsonConverter
 	public class SafetyEnumJsonConverter : Newtonsoft.Json.JsonConverter
 	{
 		/// <summary>
-		/// TODO: Description
+		/// Сериализация объекта в JSON
 		/// </summary>
+		/// <param name="writer"> Json writer </param>
+		/// <param name="value"> Значение </param>
+		/// <param name="serializer"> Сериализатор </param>
 		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 		{
 			writer.WriteValue(value.ToString());
 		}
 
 		/// <summary>
-		/// TODO: Description
+		/// Десериализация объекта из JSON
 		/// </summary>
+		/// <param name="reader"> Json reader </param>
+		/// <param name="objectType"> CLR тип десериализуемого объекта </param>
+		/// <param name="existingValue"> Значение </param>
+		/// <param name="serializer"> Сериализатор </param>
 		public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 		{
 			if (reader.TokenType == JsonToken.Null)
