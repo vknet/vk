@@ -1,0 +1,8 @@
+{
+  "type": "donut_money_withdraw",
+  "object": {
+    "amount": 50,
+    "amount_without_fee": 49.8
+  },
+  "group_id": 1234
+}

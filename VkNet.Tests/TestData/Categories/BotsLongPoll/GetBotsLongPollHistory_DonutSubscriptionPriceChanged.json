@@ -1,0 +1,11 @@
+{
+  "type": "donut_subscription_price_changed",
+  "object": {
+    "amount_old": 50,
+    "amount_new": 100,
+    "amount_diff": 50.0,
+    "amount_diff_without_fee": 49.8,
+    "user_id": 1234
+  },
+  "group_id": 1234
+}

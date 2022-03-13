@@ -1,0 +1,7 @@
+{
+  "type": "donut_subscription_expired",
+  "object": {
+    "user_id": 1234
+  },
+  "group_id": 1234
+}

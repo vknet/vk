@@ -1,0 +1,9 @@
+{
+  "type": "donut_subscription_prolonged",
+  "object": {
+    "amount": 50,
+    "amount_without_fee": 49.8,
+    "user_id": 1234
+  },
+  "group_id": 1234
+}
