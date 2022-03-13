@@ -224,5 +224,40 @@ namespace VkNet.Enums.SafetyEnums
 		/// Подтверждение адреса сервера
 		/// </summary>
 		public static readonly GroupUpdateType Confirmation = RegisterPossibleValue("confirmation");
+
+		/// <summary>
+		/// Cоздание подписки
+		/// </summary>
+		public static readonly GroupUpdateType DonutSubscriptionCreate = RegisterPossibleValue("donut_subscription_create");
+
+		/// <summary>
+		/// Продление подписки
+		/// </summary>
+		public static readonly GroupUpdateType DonutSubscriptionProlonged = RegisterPossibleValue("donut_subscription_prolonged");
+
+		/// <summary>
+		/// Подписка истекла
+		/// </summary>
+		public static readonly GroupUpdateType DonutSubscriptionExpired = RegisterPossibleValue("donut_subscription_expired");
+
+		/// <summary>
+		/// Отмена подписки
+		/// </summary>
+		public static readonly GroupUpdateType DonutSubscriptionCanceled = RegisterPossibleValue("donut_subscription_cancelled");
+
+		/// <summary>
+		/// Изменение стоимости подписки
+		/// </summary>
+		public static readonly GroupUpdateType DonutSubscriptionPriceChanged = RegisterPossibleValue("donut_subscription_price_changed");
+
+		/// <summary>
+		/// Вывод денег
+		/// </summary>
+		public static readonly GroupUpdateType DonutMoneyWithdraw = RegisterPossibleValue("donut_money_withdraw");
+
+		/// <summary>
+		/// Ошибка вывода денег
+		/// </summary>
+		public static readonly GroupUpdateType DonutMoneyWithdrawError = RegisterPossibleValue("donut_money_withdraw_error");
 	}
 }
