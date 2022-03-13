@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using VkNet.Utils;
 using VkNet.UWP.Model.Attachments;
 
@@ -31,16 +30,37 @@ namespace VkNet.Model.Attachments
 		/// <returns> </returns>
 		public static Attachment FromJson(VkResponse response)
 		{
-			var attachment = new Attachment();
-
 			string type = response["type"];
 
-			attachment.Type = _typeMapping.TryGetValue(type, out var attachmentType)
-				? attachmentType
-				: typeof(UnknownAttachment);
-			attachment.Instance = response[type];
-
-			return attachment;
+			return type switch
+			{
+				"photo" or "posted_photo" => CreateTyped<Photo>(response[type]),
+				"audio" => CreateTyped<Audio>(response[type]),
+				"video" => CreateTyped<Video>(response[type]),
+				"doc" => CreateTyped<Document>(response[type]),
+				"podcast" => CreateTyped<Podcast>(response[type]),
+				"article" => CreateTyped<Article>(response[type]),
+				"event" => CreateTyped<Event>(response[type]),
+				"graffiti" => CreateTyped<Graffiti>(response[type]),
+				"money_transfer" => CreateTyped<MoneyTransfer>(response[type]),
+				"money_request" => CreateTyped<MoneyRequest>(response[type]),
+				"note" => CreateTyped<Note>(response[type]),
+				"poll" => CreateTyped<Poll>(response[type]),
+				"page" => CreateTyped<Page>(response[type]),
+				"album" => CreateTyped<Album>(response[type]),
+				"photos_list" => CreateTyped<PhotosList>(response[type]),
+				"wall" => CreateTyped<Wall>(response[type]),
+				"sticker" => CreateTyped<Sticker>(response[type]),
+				"wall_reply" => CreateTyped<WallReply>(response[type]),
+				"market_album" => CreateTyped<MarketAlbum>(response[type]),
+				"market" => CreateTyped<Market>(response[type]),
+				"pretty_cards" => CreateTyped<PrettyCards>(response[type]),
+				"audio_message" => CreateTyped<AudioMessage>(response[type]),
+				"call" => CreateTyped<Call>(response[type]),
+				"story" => CreateTyped<Story>(response[type]),
+				"audio_playlist" => CreateTyped<AudioPlaylist>(response[type]),
+				_ => CreateTyped<UnknownAttachment>(response[type])
+			};
 		}
 
 	#endregion
@@ -50,38 +70,19 @@ namespace VkNet.Model.Attachments
 			return $"{Type.Name}";
 		}
 
-	#region Поля
+	#region Приватные методы
 
-		private static Dictionary<string, Type> _typeMapping = new()
+		private static Attachment CreateTyped<TAttachment>(TAttachment instance)
+			where TAttachment : MediaAttachment
 		{
-			["photo"] = typeof(Photo),
-			["posted_photo"] = typeof(Photo),
-			["audio"] = typeof(Audio),
-			["video"] = typeof(Video),
-			["doc"] = typeof(Document),
-			["podcast"] = typeof(Podcast),
-			["article"] = typeof(Article),
-			["event"] = typeof(Event),
-			["graffiti"] = typeof(Graffiti),
-			["money_transfer"] = typeof(MoneyTransfer),
-			["money_request"] = typeof(MoneyRequest),
-			["note"] = typeof(Note),
-			["poll"] = typeof(Poll),
-			["page"] = typeof(Page),
-			["album"] = typeof(Album),
-			["photos_list"] = typeof(PhotosList),
-			["wall"] = typeof(Wall),
-			["sticker"] = typeof(Sticker),
-			["gift"] = typeof(Gift),
-			["wall_reply"] = typeof(WallReply),
-			["market_album"] = typeof(MarketAlbum),
-			["market"] = typeof(Market),
-			["pretty_cards"] = typeof(PrettyCards),
-			["audio_message"] = typeof(AudioMessage),
-			["call"] = typeof(Call),
-			["story"] = typeof(Story),
-			["audio_playlist"] = typeof(AudioPlaylist),
-		};
+			var attachment = new Attachment
+			{
+				Type = typeof(TAttachment),
+				Instance = instance
+			};
+
+			return attachment;
+		}
 
 	#endregion
 	}
