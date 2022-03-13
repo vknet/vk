@@ -182,6 +182,29 @@ namespace VkNet.Model.GroupUpdate
 		public WallReplyDelete WallReplyDelete { get; set; }
 
 		/// <summary>
+		/// Cоздание/Продление подписки
+		/// (<c>DonutSubscriptionCreate</c>, <c>DonutSubscriptionProlonged</c>)
+		/// </summary>
+		public DonutNew DonutSubscriptionNew { get; set; }
+
+		/// <summary>
+		/// Подписка истекла/отменена
+		/// (<c>DonutSubscriptionExpired</c>, <c>DonutSubscriptionCancelled</c>)
+		/// </summary>
+		public DonutEnd DonutSubscriptionEnd { get; set; }
+
+		/// <summary>
+		/// Изменение стоимости подписки (<c>DonutSubscriptionPriceChanged</c>)
+		/// </summary>
+		public DonutChanged DonutSubscriptionPriceChanged { get; set; }
+
+		/// <summary>
+		/// Вывод денег
+		/// (<c>DonutMoneyWithdraw</c>, <c>DonutMoneyWithdrawError</c>)
+		/// </summary>
+		public DonutWithdraw DonutMoneyWithdraw { get; set; }
+
+		/// <summary>
 		/// ID группы
 		/// </summary>
 		[JsonProperty("group_id")]
@@ -194,6 +217,11 @@ namespace VkNet.Model.GroupUpdate
 		public string Secret { get; set; }
 
 		/// <summary>
+		/// Необработанные данные
+		/// </summary>
+		public VkResponse Raw { get; set; }
+
+		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
@@ -201,8 +229,9 @@ namespace VkNet.Model.GroupUpdate
 		public static GroupUpdate FromJson(VkResponse response)
 		{
 			var fromJson = JsonConvert.DeserializeObject<GroupUpdate>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-
+			
 			var resObj = response["object"];
+			fromJson.Raw = resObj;
 
 			if (fromJson.Type == GroupUpdateType.MessageNew
 				|| fromJson.Type == GroupUpdateType.MessageEdit
@@ -313,6 +342,21 @@ namespace VkNet.Model.GroupUpdate
 			} else if (fromJson.Type == GroupUpdateType.MessageEvent)
 			{
 				fromJson.MessageEvent = MessageEvent.FromJson(resObj);
+			} else if (fromJson.Type == GroupUpdateType.DonutSubscriptionCreate
+				|| fromJson.Type == GroupUpdateType.DonutSubscriptionProlonged)
+			{
+				fromJson.DonutSubscriptionNew = DonutNew.FromJson(resObj);
+			} else if (fromJson.Type == GroupUpdateType.DonutSubscriptionCanceled
+				|| fromJson.Type == GroupUpdateType.DonutSubscriptionExpired)
+			{
+				fromJson.DonutSubscriptionEnd = DonutEnd.FromJson(resObj);
+			} else if (fromJson.Type == GroupUpdateType.DonutSubscriptionPriceChanged)
+			{
+				fromJson.DonutSubscriptionPriceChanged = DonutChanged.FromJson(resObj);
+			} else if (fromJson.Type == GroupUpdateType.DonutMoneyWithdraw
+				|| fromJson.Type == GroupUpdateType.DonutMoneyWithdrawError)
+			{
+				fromJson.DonutMoneyWithdraw = DonutWithdraw.FromJson(resObj);
 			}
 
 			return fromJson;
