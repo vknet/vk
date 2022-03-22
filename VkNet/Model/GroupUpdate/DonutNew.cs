@@ -21,7 +21,7 @@ namespace VkNet.Model.GroupUpdate
 		/// <summary>
 		/// Цена в рублях
 		/// </summary>
-		public int? Amount { get; set; }
+		public float? Amount { get; set; }
 
 		/// <summary>
 		/// Цена без комиссии (в рублях)
