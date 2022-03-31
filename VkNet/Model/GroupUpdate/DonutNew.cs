@@ -21,12 +21,12 @@ namespace VkNet.Model.GroupUpdate
 		/// <summary>
 		/// Цена в рублях
 		/// </summary>
-		public float? Amount { get; set; }
+		public decimal? Amount { get; set; }
 
 		/// <summary>
 		/// Цена без комиссии (в рублях)
 		/// </summary>
-		public float? AmountWithoutFee { get; set; }
+		public decimal? AmountWithoutFee { get; set; }
 
 		/// <summary>
 		/// Разобрать из json.
