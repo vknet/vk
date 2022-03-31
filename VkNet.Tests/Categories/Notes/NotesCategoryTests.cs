@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories.Notes
 
 			var result = Api.Notes.Add(new NotesAddParams());
 
-			Assert.AreEqual(11825220, result);
+			result.Should().Be(11825220);
 		}
 
 		[Test]
@@ -30,7 +30,7 @@ namespace VkNet.Tests.Categories.Notes
 
 			var result = Api.Notes.CreateComment(new NotesCreateCommentParams());
 
-			Assert.AreEqual(11825220, result);
+			result.Should().Be(11825220);
 		}
 
 		[Test]

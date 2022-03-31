@@ -24,7 +24,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var message = result.FirstOrDefault();
 			message.Should().NotBeNull();
-			Assert.AreEqual(45, message.AdminAuthorId);
+			message.AdminAuthorId.Should().Be(45);
 		}
 	}
 }

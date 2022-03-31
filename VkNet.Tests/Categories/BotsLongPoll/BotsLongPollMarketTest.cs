@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
@@ -26,10 +27,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.MarketComment.FromId);
-			Assert.AreEqual(text, update.MarketComment.Text);
-			Assert.AreEqual(-groupId, update.MarketComment.MarketOwnerId);
+			update.GroupId.Should().Be(groupId);
+			update.MarketComment.FromId.Should().Be(userId);
+			update.MarketComment.Text.Should().Be(text);
+			update.MarketComment.MarketOwnerId.Should().Be(-groupId);
 		}
 
 		[Test]
@@ -51,10 +52,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.MarketComment.FromId);
-			Assert.AreEqual(text, update.MarketComment.Text);
-			Assert.AreEqual(-groupId, update.MarketComment.MarketOwnerId);
+			update.GroupId.Should().Be(groupId);
+			update.MarketComment.FromId.Should().Be(userId);
+			update.MarketComment.Text.Should().Be(text);
+			update.MarketComment.MarketOwnerId.Should().Be(-groupId);
 		}
 
 		[Test]
@@ -76,10 +77,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.MarketComment.FromId);
-			Assert.AreEqual(text, update.MarketComment.Text);
-			Assert.AreEqual(-groupId, update.MarketComment.MarketOwnerId);
+			update.GroupId.Should().Be(groupId);
+			update.MarketComment.FromId.Should().Be(userId);
+			update.MarketComment.Text.Should().Be(text);
+			update.MarketComment.MarketOwnerId.Should().Be(-groupId);
 		}
 
 		[Test]
@@ -102,11 +103,11 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(-groupId, update.MarketCommentDelete.OwnerId);
-			Assert.AreEqual(deleterId, update.MarketCommentDelete.DeleterId);
-			Assert.AreEqual(itemId, update.MarketCommentDelete.ItemId);
-			Assert.AreEqual(id, update.MarketCommentDelete.Id);
+			update.GroupId.Should().Be(groupId);
+			update.MarketCommentDelete.OwnerId.Should().Be(-groupId);
+			update.MarketCommentDelete.DeleterId.Should().Be(deleterId);
+			update.MarketCommentDelete.ItemId.Should().Be(itemId);
+			update.MarketCommentDelete.Id.Should().Be(id);
 		}
 	}
 }

@@ -1,3 +1,4 @@
+using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using VkNet.Model;
@@ -49,7 +50,7 @@ namespace VkNet.Tests.Models
 				},
 			};
 
-			Assert.AreEqual(Json.Replace("\r", "").Replace("\n", ""), JsonConvert.SerializeObject(timetable, Formatting.Indented).Replace("\r", "").Replace("\n", ""));
+			JsonConvert.SerializeObject(timetable, Formatting.Indented).Replace("\r", "").Replace("\n", "").Should().Be(Json.Replace("\r", "").Replace("\n", ""));
 		}
 	}
 }

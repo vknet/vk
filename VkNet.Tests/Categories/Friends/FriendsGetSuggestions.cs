@@ -24,7 +24,7 @@ namespace VkNet.Tests.Categories.Friends
 			var result = Api.Friends.GetSuggestions(FriendsFilter.Mutual, 1, 0, UsersFields.Sex, NameCase.Gen);
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(182, result.TotalCount);
+			result.TotalCount.Should().Be(182);
 			var user = result.FirstOrDefault();
 			user.Should().NotBeNull();
 			Assert.AreEqual(Sex.Male, user.Sex);
@@ -39,7 +39,7 @@ namespace VkNet.Tests.Categories.Friends
 
 			var result = Api.Friends.GetSuggestions();
 			result.Should().NotBeNull();
-			Assert.AreEqual(182, result.TotalCount);
+			result.TotalCount.Should().Be(182);
 		}
 	}
 }

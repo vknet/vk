@@ -26,10 +26,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var donutNew = update.DonutSubscriptionNew;
 
-			Assert.AreEqual(50, donutNew.Amount);
-			Assert.AreEqual(49.8f, donutNew.AmountWithoutFee);
-			Assert.AreEqual(1234, donutNew.UserId);
-			Assert.AreEqual(1234, update.GroupId);
+			donutNew.Amount.Should().Be(50);
+			donutNew.AmountWithoutFee.Should().Be(49.8M);
+			donutNew.UserId.Should().Be(1234);
+			update.GroupId.Should().Be(1234);
 		}
 		[Test]
 		public void GetBotsLongPollHistory_DonutSubscriptionProlonged()
@@ -48,10 +48,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var donutNew = update.DonutSubscriptionNew;
 
-			Assert.AreEqual(50, donutNew.Amount);
-			Assert.AreEqual(49.8f, donutNew.AmountWithoutFee);
-			Assert.AreEqual(1234, donutNew.UserId);
-			Assert.AreEqual(1234, update.GroupId);
+			donutNew.Amount.Should().Be(50);
+			donutNew.AmountWithoutFee.Should().Be(49.8M);
+			donutNew.UserId.Should().Be(1234);
+			update.GroupId.Should().Be(1234);
 		}
 		[Test]
 		public void GetBotsLongPollHistory_DonutSubscriptionCancelled()
@@ -70,8 +70,8 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var donutNew = update.DonutSubscriptionEnd;
 
-			Assert.AreEqual(1234, donutNew.UserId);
-			Assert.AreEqual(1234, update.GroupId);
+			donutNew.UserId.Should().Be(1234);
+			update.GroupId.Should().Be(1234);
 		}
 		[Test]
 		public void GetBotsLongPollHistory_DonutSubscriptionExpired()
@@ -90,8 +90,8 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var donutNew = update.DonutSubscriptionEnd;
 
-			Assert.AreEqual(1234, donutNew.UserId);
-			Assert.AreEqual(1234, update.GroupId);
+			donutNew.UserId.Should().Be(1234);
+			update.GroupId.Should().Be(1234);
 		}
 		[Test]
 		public void GetBotsLongPollHistory_DonutSubscriptionPriceChanged()
@@ -110,12 +110,12 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var donutNew = update.DonutSubscriptionPriceChanged;
 
-			Assert.AreEqual(50, donutNew.AmountOld);
-			Assert.AreEqual(100, donutNew.AmountNew);
-			Assert.AreEqual(50.0f, donutNew.AmountDiff);
-			Assert.AreEqual(49.8f, donutNew.AmountDiffWithoutFee);
-			Assert.AreEqual(1234, donutNew.UserId);
-			Assert.AreEqual(1234, update.GroupId);
+			donutNew.AmountOld.Should().Be(50);
+			donutNew.AmountNew.Should().Be(100);
+			donutNew.AmountDiff.Should().Be(50.0f);
+			donutNew.AmountDiffWithoutFee.Should().Be(49.8f);
+			donutNew.UserId.Should().Be(1234);
+			update.GroupId.Should().Be(1234);
 		}
 		[Test]
 		public void GetBotsLongPollHistory_DonutWithdraw()
@@ -134,10 +134,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var donutNew = update.DonutMoneyWithdraw;
 
-			Assert.AreEqual(50, donutNew.Amount);
-			Assert.AreEqual(49.8f, donutNew.AmountWithoutFee);
-			Assert.AreEqual(false, donutNew.Error);
-			Assert.AreEqual(1234, update.GroupId);
+			donutNew.Amount.Should().Be(50);
+			donutNew.AmountWithoutFee.Should().Be(49.8f);
+			donutNew.Error.Should().Be(false);
+			update.GroupId.Should().Be(1234);
 		}
 		[Test]
 		public void GetBotsLongPollHistory_DonutWithdrawError()
@@ -156,11 +156,11 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var donutNew = update.DonutMoneyWithdraw;
 
-			Assert.AreEqual(null, donutNew.Amount);
-			Assert.AreEqual(null, donutNew.AmountWithoutFee);
-			Assert.AreEqual(true, donutNew.Error);
-			Assert.AreEqual("test", donutNew.Reason);
-			Assert.AreEqual(1234, update.GroupId);
+			donutNew.Amount.Should().BeNull();
+			donutNew.AmountWithoutFee.Should().BeNull();
+			donutNew.Error.Should().BeTrue();
+			donutNew.Reason.Should().Be("test");
+			update.GroupId.Should().Be(1234);
 		}
 	}
 }

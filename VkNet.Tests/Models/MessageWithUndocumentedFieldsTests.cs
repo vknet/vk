@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -15,10 +16,10 @@ namespace VkNet.Tests.Models
 
 			var message = Message.FromJson(GetResponse());
 
-			Assert.IsNotNull(message.Action);
-			Assert.AreEqual(MessageAction.ChatUnpinMessage, message.Action.Type);
-			Assert.IsNotNull(message.Action.MemberId);
-			Assert.AreEqual(12345678, message.Action.MemberId!);
+			message.Action.Should().NotBeNull();
+			message.Action.Type.Should().Be(MessageAction.ChatUnpinMessage);
+			message.Action.MemberId.Should().NotBeNull();
+			message.Action.MemberId!.Should().Be(12345678);
 		}
 
 		[Test]
@@ -28,10 +29,10 @@ namespace VkNet.Tests.Models
 
 			var message = Message.FromJson(GetResponse());
 
-			Assert.IsNotNull(message.Action);
-			Assert.AreEqual(MessageAction.ChatUnpinMessage, message.Action.Type);
-			Assert.IsNotNull(message.Action.ConversationMessageId);
-			Assert.AreEqual(3, message.Action.ConversationMessageId!);
+			message.Action.Should().NotBeNull();
+			message.Action.Type.Should().Be(MessageAction.ChatUnpinMessage);
+			message.Action.ConversationMessageId.Should().NotBeNull();
+			message.Action.ConversationMessageId!.Should().Be(3);
 		}
 
 		[Test]
@@ -41,10 +42,10 @@ namespace VkNet.Tests.Models
 
 			var message = Message.FromJson(GetResponse());
 
-			Assert.IsNotNull(message.Action);
-			Assert.AreEqual(MessageAction.ChatPinMessage, message.Action.Type);
-			Assert.IsNotNull(message.Action.MemberId);
-			Assert.AreEqual(12345678, message.Action.MemberId!);
+			message.Action.Should().NotBeNull();
+			message.Action.Type.Should().Be(MessageAction.ChatPinMessage);
+			message.Action.MemberId.Should().NotBeNull();
+			message.Action.MemberId!.Should().Be(12345678);
 		}
 
 		[Test]
@@ -54,10 +55,10 @@ namespace VkNet.Tests.Models
 
 			var message = Message.FromJson(GetResponse());
 
-			Assert.IsNotNull(message.Action);
-			Assert.AreEqual(MessageAction.ChatPinMessage, message.Action.Type);
-			Assert.IsNotNull(message.Action.ConversationMessageId);
-			Assert.AreEqual(3, message.Action.ConversationMessageId!);
+			message.Action.Should().NotBeNull();
+			message.Action.Type.Should().Be(MessageAction.ChatPinMessage);
+			message.Action.ConversationMessageId.Should().NotBeNull();
+			message.Action.ConversationMessageId!.Should().Be(3);
 		}
 
 		[Test]
@@ -67,9 +68,9 @@ namespace VkNet.Tests.Models
 
 			var message = Message.FromJson(GetResponse());
 
-			Assert.IsNotNull(message.Action);
-			Assert.AreEqual(MessageAction.ChatPinMessage, message.Action.Type);
-			Assert.AreEqual("test", message.Action.Message);
+			message.Action.Should().NotBeNull();
+			message.Action.Type.Should().Be(MessageAction.ChatPinMessage);
+			message.Action.Message.Should().Be("test");
 		}
 
 		[Test]
@@ -90,7 +91,7 @@ namespace VkNet.Tests.Models
 
 			var message = Message.FromJson(GetResponse());
 
-			Assert.AreEqual(60, message.ExpireTtl);
+			message.ExpireTtl.Should().Be(60);
 		}
 
 		[Test]

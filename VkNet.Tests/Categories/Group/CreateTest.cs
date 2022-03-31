@@ -20,7 +20,7 @@ namespace VkNet.Tests.Categories.Group
 			var result = Api.Groups.Create("Test_Group");
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(true, result.IsMember);
+			result.IsMember.Should().BeTrue();
 		}
 	}
 }

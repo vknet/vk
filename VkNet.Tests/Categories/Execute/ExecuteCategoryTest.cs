@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model;
@@ -75,7 +76,7 @@ namespace VkNet.Tests.Categories.Execute
 			var exception = Assert.Throws<ExecuteException>(() => Api.Execute.Execute(code));
 
 			Assert.IsInstanceOf<ExecuteException>(exception);
-			Assert.AreEqual(3, exception.InnerExceptions.Count);
+			exception.InnerExceptions.Count.Should().Be(3);
 		}
 
 		private string ReadScript(string scriptPath)

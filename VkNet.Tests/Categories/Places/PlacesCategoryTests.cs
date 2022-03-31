@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Categories.Places
 
 			var result = Api.Places.Add(new PlacesAddParams());
 
-			Assert.AreEqual(6162171, result);
+			result.Should().Be(6162171);
 		}
 
 		[Test]
@@ -29,7 +30,7 @@ namespace VkNet.Tests.Categories.Places
 
 			var result = Api.Places.Checkin(new PlacesCheckinParams());
 
-			Assert.AreEqual(6162171, result);
+			result.Should().Be(6162171);
 		}
 
 		[Test]

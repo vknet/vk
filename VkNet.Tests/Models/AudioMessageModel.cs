@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
@@ -21,7 +22,7 @@ namespace VkNet.Tests.Models
 
 			var result = audioMessage.ToString();
 
-			Assert.AreEqual(result, "audio_message1234_1234_test");
+			result.Should().Be("audio_message1234_1234_test");
 		}
 
 		[Test]

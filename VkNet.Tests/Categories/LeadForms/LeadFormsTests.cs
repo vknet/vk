@@ -28,8 +28,8 @@ namespace VkNet.Tests.Categories.LeadForms
 			});
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(1, result.FormId);
-			Assert.AreEqual(new Uri("https://vk.com/apform_id=1#form_id=1"), result.Url);
+			result.FormId.Should().Be(1);
+			result.Url.Should().Be(new Uri("https://vk.com/apform_id=1#form_id=1"));
 		}
 
 		[Test]
@@ -40,7 +40,7 @@ namespace VkNet.Tests.Categories.LeadForms
 
 			var result = Api.LeadForms.Delete(103292418, 1);
 			result.Should().NotBeNull();
-			Assert.AreEqual(1, result.FormId);
+			result.FormId.Should().Be(1);
 		}
 
 		[Test]
@@ -51,7 +51,7 @@ namespace VkNet.Tests.Categories.LeadForms
 
 			var result = Api.LeadForms.Get(103292418, 1);
 			result.Should().NotBeNull();
-			Assert.AreEqual(2, result.FormId);
+			result.FormId.Should().Be(2);
 		}
 
 		[Test]
@@ -74,7 +74,7 @@ namespace VkNet.Tests.Categories.LeadForms
 			var result = Api.LeadForms.GetUploadURL();
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(new Uri("https://pu.vk.com1d95424ffe4e4983a6a"), result);
+			result.Should().Be(new Uri("https://pu.vk.com1d95424ffe4e4983a6a"));
 		}
 
 		[Test]
@@ -94,8 +94,8 @@ namespace VkNet.Tests.Categories.LeadForms
 			});
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(2, result.FormId);
-			Assert.AreEqual(new Uri("https://vk.com/apform_id=2#form_id=2"), result.Url);
+			result.FormId.Should().Be(2);
+			result.Url.Should().Be(new Uri("https://vk.com/apform_id=2#form_id=2"));
 		}
 	}
 }

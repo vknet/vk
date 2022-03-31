@@ -21,7 +21,7 @@ namespace VkNet.Tests.Categories.AppWidgets
 			var result = Api.AppWidgets.GetImagesById("7309583_1192027");
 
 			result.Should().NotBeNull();
-			Assert.AreEqual("7309583_1192027", result.First().Id);
+			result.First().Id.Should().Be("7309583_1192027");
 		}
 	}
 }

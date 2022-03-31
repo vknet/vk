@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Utils;
 
@@ -41,12 +42,11 @@ namespace VkNet.Tests
 		{
 			var auth = VkAuthorization2.From(Input);
 
-			Assert.AreEqual("token"
-					, auth.AccessToken);
+			auth.AccessToken.Should().Be("token");
 
-			Assert.AreEqual(86400, auth.ExpiresIn);
-			Assert.AreEqual(32190123L, auth.UserId);
-			Assert.AreEqual("inyutin_maxim@mail.ru", auth.Email);
+			auth.ExpiresIn.Should().Be(86400);
+			auth.UserId.Should().Be(32190123L);
+			auth.Email.Should().Be("inyutin_maxim@mail.ru");
 		}
 
 		[Test]
@@ -60,7 +60,7 @@ namespace VkNet.Tests
 				Assert.NotZero(expiresIn);
 			});
 
-			Assert.AreEqual("ExpiresIn is not integer value.", error.Message);
+			error.Message.Should().Be("ExpiresIn is not integer value.");
 		}
 
 		[Test]
@@ -74,7 +74,7 @@ namespace VkNet.Tests
 				Assert.NotZero(authUserId);
 			});
 
-			Assert.AreEqual("UserId is not long value.", error.Message);
+			error.Message.Should().Be("UserId is not long value.");
 		}
 
 		[Test]

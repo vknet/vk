@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Categories.Orders
 
 			var result = Api.Orders.ChangeState(123, OrderStateAction.Charge);
 
-			Assert.AreEqual(OrderState.Charged, result);
+			result.Should().Be(OrderState.Charged);
 		}
 	}
 }

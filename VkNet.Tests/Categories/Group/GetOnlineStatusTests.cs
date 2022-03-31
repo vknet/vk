@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
@@ -19,7 +20,7 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.GetOnlineStatus(123456);
 
-			Assert.AreEqual(OnlineStatusType.None, result.Status);
+			result.Status.Should().Be(OnlineStatusType.None);
 		}
 	}
 }

@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.Attachments;
 
@@ -19,7 +20,7 @@ namespace VkNet.Tests.Models
 
 			var result = audio.ToString();
 
-			Assert.AreEqual(result, "audio1234_1234_test");
+			result.Should().Be("audio1234_1234_test");
 		}
 	}
 }

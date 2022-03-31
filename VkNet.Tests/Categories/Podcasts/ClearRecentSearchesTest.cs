@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories.Podcasts
 
 			var result = Api.Podcasts.ClearRecentSearches();
 
-			Assert.AreEqual(result, true);
+			result.Should().BeTrue();
 		}
 	}
 }

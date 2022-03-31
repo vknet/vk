@@ -21,8 +21,8 @@ namespace VkNet.Tests.Categories.Streaming
 			var result = Api.Streaming.GetServerUrl();
 
 			result.Should().NotBeNull();
-			Assert.AreEqual("streaming.vk.com", result.Endpoint);
-			Assert.AreEqual("be8d29c05546e58cb52420aaf2b9f51f0a440f89", result.Key);
+			result.Endpoint.Should().Be("streaming.vk.com");
+			result.Key.Should().Be("be8d29c05546e58cb52420aaf2b9f51f0a440f89");
 		}
 
 		[Test]
@@ -34,7 +34,7 @@ namespace VkNet.Tests.Categories.Streaming
 			var result = Api.Streaming.GetSettings();
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(MonthlyLimit.Tier6, result.MonthlyLimit);
+			result.MonthlyLimit.Should().Be(MonthlyLimit.Tier6);
 		}
 
 		[Test]
@@ -49,7 +49,7 @@ namespace VkNet.Tests.Categories.Streaming
 
 			var stats = result.FirstOrDefault();
 			stats.Should().NotBeNull();
-			Assert.AreEqual(StreamingEventType.Post, stats.EventType);
+			stats.EventType.Should().Be(StreamingEventType.Post);
 			Assert.IsNotEmpty(stats.Stats);
 		}
 
@@ -72,7 +72,7 @@ namespace VkNet.Tests.Categories.Streaming
 
 			var result = Api.Streaming.GetStem("коты");
 
-			Assert.AreEqual("кот", result);
+			result.Should().Be("кот");
 		}
 	}
 }

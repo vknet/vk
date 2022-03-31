@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams.Groups;
 using VkNet.Tests.Infrastructure;
@@ -23,7 +24,7 @@ namespace VkNet.Tests.Categories.Group
 				AddressIds = new ulong[]{ 58227}
 			});
 
-			Assert.AreEqual(3, result.TotalCount);
+			result.TotalCount.Should().Be(3);
 		}
 	}
 }

@@ -26,8 +26,8 @@ namespace VkNet.Tests.Categories.PrettyCards
 			});
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(result[0].CardId, "7037403");
-			Assert.AreEqual(result[1].PriceOld, "123.00");
+			result[0].CardId.Should().Be("7037403");
+			result[1].PriceOld.Should().Be("123.00");
 		}
 	}
 }

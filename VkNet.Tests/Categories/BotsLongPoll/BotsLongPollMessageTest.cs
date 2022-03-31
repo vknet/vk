@@ -63,9 +63,9 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.Message.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.Message.Text);
+			update.Message.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.Message.Text.Should().Be(text);
 		}
 
 		[Test]
@@ -87,9 +87,9 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.Message.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.Message.Text);
+			update.Message.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.Message.Text.Should().Be(text);
 		}
 
 		[Test]
@@ -111,9 +111,9 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.MessageAllow.UserId);
-			Assert.AreEqual(key, update.MessageAllow.Key);
-			Assert.AreEqual(groupId, update.GroupId);
+			update.MessageAllow.UserId.Should().Be(userId);
+			update.MessageAllow.Key.Should().Be(key);
+			update.GroupId.Should().Be(groupId);
 		}
 
 		[Test]
@@ -134,8 +134,8 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.MessageDeny.UserId);
-			Assert.AreEqual(groupId, update.GroupId);
+			update.MessageDeny.UserId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
 		}
 
 		[Test]
@@ -156,12 +156,12 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			var messageEvent = update.MessageEvent;
 
 			messageEvent.Should().NotBeNull();
-			Assert.AreEqual("feleyinek", messageEvent.EventId);
-			Assert.AreEqual(123456789, messageEvent.UserId);
-			Assert.AreEqual(123456789, messageEvent.PeerId);
-			Assert.AreEqual(1234, messageEvent.ConversationMessageId);
-			Assert.AreEqual("{}", messageEvent.Payload);
-			Assert.AreEqual(1234, update.GroupId);
+			messageEvent.EventId.Should().Be("feleyinek");
+			messageEvent.UserId.Should().Be(123456789);
+			messageEvent.PeerId.Should().Be(123456789);
+			messageEvent.ConversationMessageId.Should().Be(1234);
+			messageEvent.Payload.Should().Be("{}");
+			update.GroupId.Should().Be(1234);
 		}
 	}
 }

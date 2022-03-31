@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
@@ -27,7 +28,7 @@ namespace VkNet.Tests.Categories.Widgets
 			});
 
 			Assert.IsNotEmpty(result);
-			Assert.AreEqual(10, result.TotalCount);
+			result.TotalCount.Should().Be(10);
 		}
 
 		[Test]
@@ -39,7 +40,7 @@ namespace VkNet.Tests.Categories.Widgets
 
 			var result = Api.Widgets.GetPages(5553257, null, "alltime", 0, 10);
 			Assert.IsNotEmpty(result);
-			Assert.AreEqual(50, result.TotalCount);
+			result.TotalCount.Should().Be(50);
 		}
 	}
 }

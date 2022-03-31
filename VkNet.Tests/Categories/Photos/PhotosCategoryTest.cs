@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
@@ -432,8 +433,8 @@ namespace VkNet.Tests.Categories.Photos
 			});
 
 			Assert.That(result, Is.Not.Null);
-			Assert.AreEqual(albumsids[0], result[2].Id);
-			Assert.AreEqual("https://sun9-46.userapi.com/c858232/v858232634/16acf0/SNHX0daieLw.jpg",result[2].Sizes.Last().Src.AbsoluteUri);
+			result[2].Id.Should().Be(270417281);
+			result[2].Sizes.Last().Src.AbsoluteUri.Should().Be("https://sun9-46.userapi.com/c858232/v858232634/16acf0/SNHX0daieLw.jpg");
 		}
 	}
 }

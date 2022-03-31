@@ -27,7 +27,7 @@ namespace VkNet.Tests
 		public void VersionIsChanged()
 		{
 			Manager.SetVersion(999, 0);
-			Assert.AreEqual("999.0", Manager.Version);
+			Manager.Version.Should().Be("999.0");
 		}
 
 		[Test]

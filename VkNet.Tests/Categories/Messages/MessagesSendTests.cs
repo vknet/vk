@@ -185,8 +185,8 @@ namespace VkNet.Tests.Categories.Messages
 			Assert.IsNotEmpty(result);
 			var message = result.FirstOrDefault();
 			message.Should().NotBeNull();
-			Assert.AreEqual(32190123, message.PeerId);
-			Assert.AreEqual(210525, message.MessageId);
+			message.PeerId.Should().Be(32190123);
+			message.MessageId.Should().Be(210525);
 		}
 
 		[Test]

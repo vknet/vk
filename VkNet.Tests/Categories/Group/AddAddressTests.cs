@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -70,7 +71,7 @@ namespace VkNet.Tests.Categories.Group
 				IsMainAddress = true
 			});
 
-			Assert.AreEqual(58227, result.Id);
+			result.Id.Should().Be(58227);
 		}
 		[Test]
 		public void AddAddress_Timetable()
@@ -130,7 +131,7 @@ namespace VkNet.Tests.Categories.Group
 				IsMainAddress = true
 			});
 
-			Assert.AreEqual(58230, result.Id);
+			result.Id.Should().Be(58230);
 		}
 	}
 }

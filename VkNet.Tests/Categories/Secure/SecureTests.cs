@@ -40,7 +40,7 @@ namespace VkNet.Tests.Categories.Secure
 
 			var app = Api.Secure.GetAppBalance();
 
-			Assert.AreEqual(5000, app);
+			app.Should().Be(5000);
 		}
 
 		[Test]
@@ -54,7 +54,7 @@ namespace VkNet.Tests.Categories.Secure
 			Assert.IsNotEmpty(app);
 			var item = app.FirstOrDefault();
 			item.Should().NotBeNull();
-			Assert.AreEqual(1238497, item.Id);
+			item.Id.Should().Be(1238497);
 		}
 
 		[Test]

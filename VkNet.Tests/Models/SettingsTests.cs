@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.Filters;
 
 namespace VkNet.Tests.Models
@@ -11,14 +12,14 @@ namespace VkNet.Tests.Models
 		public void All()
 		{
 			var settings = Settings.All;
-			Assert.AreEqual(140422623, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(140422623);
 		}
 
 		[Test]
 		public void All_Offline()
 		{
 			var settings = Settings.All | Settings.Offline;
-			Assert.AreEqual(140488159, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(140488159);
 		}
 
 		[Test]
@@ -26,35 +27,35 @@ namespace VkNet.Tests.Models
 		{
 			Json = "'notify'";
 			var response = GetResponse();
-			Assert.AreEqual(Settings.FromJson(response), Settings.Notify);
+			Settings.Notify.Should().Be(Settings.FromJson(response));
 		}
 
 		[Test]
 		public void Notify_Friends()
 		{
 			var settings = Settings.Notify|Settings.Friends;
-			Assert.AreEqual(3, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(3);
 		}
 
 		[Test]
 		public void Notify_Friends_Photos()
 		{
 			var settings = Settings.Notify|Settings.Friends|Settings.Photos;
-			Assert.AreEqual(7, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(7);
 		}
 
 		[Test]
 		public void Notify_Friends_Photos_Audio()
 		{
 			var settings = Settings.Notify|Settings.Friends|Settings.Photos|Settings.Audio;
-			Assert.AreEqual(15, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(15);
 		}
 
 		[Test]
 		public void Notify_Friends_Photos_Audio_Video()
 		{
 			var settings = Settings.Notify|Settings.Friends|Settings.Photos|Settings.Audio|Settings.Video;
-			Assert.AreEqual(31, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(31);
 		}
 
 		[Test]
@@ -67,7 +68,7 @@ namespace VkNet.Tests.Models
 							|Settings.Video
 							|Settings.Pages;
 
-			Assert.AreEqual(159, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(159);
 		}
 
 		[Test]
@@ -81,7 +82,7 @@ namespace VkNet.Tests.Models
 							|Settings.Pages
 							|Settings.AddLinkToLeftMenu;
 
-			Assert.AreEqual(415, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(415);
 		}
 
 		[Test]
@@ -96,7 +97,7 @@ namespace VkNet.Tests.Models
 							|Settings.AddLinkToLeftMenu
 							|Settings.Status;
 
-			Assert.AreEqual(1439, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(1439);
 		}
 
 		[Test]
@@ -112,7 +113,7 @@ namespace VkNet.Tests.Models
 							|Settings.Status
 							|Settings.Notes;
 
-			Assert.AreEqual(3487, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(3487);
 		}
 
 		[Test]
@@ -129,7 +130,7 @@ namespace VkNet.Tests.Models
 							|Settings.Notes
 							|Settings.Messages;
 
-			Assert.AreEqual(7583, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(7583);
 		}
 
 		[Test]
@@ -147,7 +148,7 @@ namespace VkNet.Tests.Models
 							|Settings.Messages
 							|Settings.Wall;
 
-			Assert.AreEqual(15775, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(15775);
 		}
 
 		[Test]
@@ -166,7 +167,7 @@ namespace VkNet.Tests.Models
 							|Settings.Wall
 							|Settings.Ads;
 
-			Assert.AreEqual(48543, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(48543);
 		}
 
 		[Test]
@@ -186,7 +187,7 @@ namespace VkNet.Tests.Models
 							|Settings.Ads
 							|Settings.Documents;
 
-			Assert.AreEqual(179615, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(179615);
 		}
 
 		[Test]
@@ -207,7 +208,7 @@ namespace VkNet.Tests.Models
 							|Settings.Documents
 							|Settings.Groups;
 
-			Assert.AreEqual(441759, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(441759);
 		}
 
 		[Test]
@@ -230,7 +231,7 @@ namespace VkNet.Tests.Models
 							|Settings.Groups
 							|Settings.Notifications;
 
-			Assert.AreEqual(966047, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(966047);
 		}
 
 		[Test]
@@ -254,7 +255,7 @@ namespace VkNet.Tests.Models
 							|Settings.Notifications
 							|Settings.Stats;
 
-			Assert.AreEqual(2014623, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(2014623);
 		}
 
 		[Test]
@@ -279,7 +280,7 @@ namespace VkNet.Tests.Models
 							|Settings.Stats
 							|Settings.Email;
 
-			Assert.AreEqual(6208927, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(6208927);
 		}
 
 		[Test]
@@ -305,7 +306,7 @@ namespace VkNet.Tests.Models
 							|Settings.Email
 							|Settings.Market;
 
-			Assert.AreEqual(140426655, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(140426655);
 		}
 
 		[Test]
@@ -332,7 +333,7 @@ namespace VkNet.Tests.Models
 							|Settings.Market
 							|Settings.AppWidget;
 
-			Assert.AreEqual(140426719, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(140426719);
 		}
 
 		[Test]
@@ -340,7 +341,7 @@ namespace VkNet.Tests.Models
 		{
 		#pragma warning disable S1764
 			var settings = Settings.Notify|Settings.Notify;
-			Assert.AreEqual(1, settings.ToUInt64());
+			settings.ToUInt64().Should().Be(1);
 		#pragma warning restore S1764
 		}
 

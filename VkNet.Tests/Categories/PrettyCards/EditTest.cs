@@ -25,8 +25,8 @@ namespace VkNet.Tests.Categories.PrettyCards
 			});
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(result.CardId, "1488");
-			Assert.AreEqual(result.OwnerId, -126102803);
+			result.CardId.Should().Be("1488");
+			result.OwnerId.Should().Be(-126102803);
 		}
 	}
 }

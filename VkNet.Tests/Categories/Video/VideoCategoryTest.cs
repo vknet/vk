@@ -148,33 +148,33 @@ namespace VkNet.Tests.Categories.Video
 			var video = result.FirstOrDefault();
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(1, result.Count);
+			result.Should().ContainSingle();
 			video.Should().NotBeNull();
-			Assert.AreEqual(456245310, video.Id);
-			Assert.AreEqual(-129440544, video.OwnerId);
-			Assert.AreEqual("ec", video.Title);
-			Assert.AreEqual(20, video.Duration);
-			Assert.AreEqual(DateHelper.TimeStampToDateTime(1569151132), video.Date);
-			Assert.AreEqual(6, video.Comments);
-			Assert.AreEqual(40308, video.Views);
-			Assert.AreEqual(640, video.Width);
-			Assert.AreEqual(640, video.Height);
+			video.Id.Should().Be(456245310);
+			video.OwnerId.Should().Be(-129440544);
+			video.Title.Should().Be("ec");
+			video.Duration.Should().Be(20);
+			video.Date.Should().Be(DateHelper.TimeStampToDateTime(1569151132));
+			video.Comments.Should().Be(6);
+			video.Views.Should().Be(40308);
+			video.Width.Should().Be(640);
+			video.Height.Should().Be(640);
 			Assert.IsNotEmpty(video.Image);
 			Assert.IsNotEmpty(video.FirstFrame);
 			Assert.IsFalse(video.IsFavorite);
-			Assert.AreEqual(DateHelper.TimeStampToDateTime(1569151132), video.AddingDate);
+			video.AddingDate.Should().Be(DateHelper.TimeStampToDateTime(1569151132));
 			Assert.IsTrue(video.Repeat);
 			video.Files.Should().NotBeNull();
-			Assert.AreEqual(new Uri("https://vk.com/vi/dec_GQ3DKNZUGI4TAMQ"), video.Player);
+			video.Player.Should().Be(new Uri("https://vk.com/vi/dec_GQ3DKNZUGI4TAMQ"));
 			Assert.True(video.CanAdd);
 			Assert.True(video.CanComment);
 			Assert.True(video.CanRepost);
 			video.Likes.Should().NotBeNull();
 			Assert.False(video.Likes.UserLikes);
-			Assert.AreEqual(369, video.Likes.Count);
+			video.Likes.Count.Should().Be(369);
 			video.Reposts.Should().NotBeNull();
 			Assert.False(video.Reposts.UserReposted);
-			Assert.AreEqual(1, video.Reposts.Count);
+			video.Reposts.Count.Should().Be(1);
 		}
 
 		[Test]
@@ -258,12 +258,12 @@ namespace VkNet.Tests.Categories.Video
 			var videoAlbum = result.FirstOrDefault();
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(2, result.TotalCount);
+			result.TotalCount.Should().Be(2);
 			videoAlbum.Should().NotBeNull();
-			Assert.AreEqual(3790, videoAlbum.Count);
-			Assert.AreEqual(-2, videoAlbum.Id);
-			Assert.AreEqual(-129440544, videoAlbum.OwnerId);
-			Assert.AreEqual("Добавленные", videoAlbum.Title);
+			videoAlbum.Count.Should().Be(3790);
+			videoAlbum.Id.Should().Be(-2);
+			videoAlbum.OwnerId.Should().Be(-129440544);
+			videoAlbum.Title.Should().Be("Добавленные");
 			Assert.IsNotEmpty(videoAlbum.Image);
 		}
 

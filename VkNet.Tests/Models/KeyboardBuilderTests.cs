@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Linq;
+using FluentAssertions;
 using VkNet.Exception;
 using VkNet.Model.Keyboard;
 
@@ -23,7 +24,7 @@ namespace VkNet.Tests.Models
 
 			// Assert
 			var currentPayload = $"{{\"button\":\"{Payload200 + Payload200}\"}}";
-			Assert.AreEqual(string.Format(KeyboardBuilder.ButtonPayloadLengthExceptionTemplate, currentPayload), exception.Message);
+			exception.Message.Should().Be(string.Format(KeyboardBuilder.ButtonPayloadLengthExceptionTemplate, currentPayload));
 		}
 
 		[Test]
@@ -52,7 +53,7 @@ namespace VkNet.Tests.Models
 
 			// Assert
 			var exception = Assert.Throws<VkKeyboardMaxButtonsException>(() => builder.AddLine());
-			Assert.AreEqual(KeyboardBuilder.MaxButtonLinesExceptionTemplate, exception.Message);
+			exception.Message.Should().Be(KeyboardBuilder.MaxButtonLinesExceptionTemplate);
 		}
 
 		[Test]
@@ -85,7 +86,7 @@ namespace VkNet.Tests.Models
 
 			// Assert
 			var exception = Assert.Throws<VkKeyboardMaxButtonsException>(() => builder.AddButton("sample label", "sample extra"));
-			Assert.AreEqual(KeyboardBuilder.MaxButtonsPerLineExceptionTemplate, exception.Message);
+			exception.Message.Should().Be(KeyboardBuilder.MaxButtonsPerLineExceptionTemplate);
 		}
 
 		[Test]
@@ -119,7 +120,7 @@ namespace VkNet.Tests.Models
 
 			// Assert
 			var exception = Assert.Throws<VkKeyboardPayloadMaxLengthException>(() => builder.AddButton("Button", Payload200));
-			Assert.AreEqual(KeyboardBuilder.SumPayloadLengthExceptionTemplate, exception.Message);
+			exception.Message.Should().Be(KeyboardBuilder.SumPayloadLengthExceptionTemplate);
 		}
 
 		[Test]
@@ -155,7 +156,7 @@ namespace VkNet.Tests.Models
 				builder.AddLine();
 				builder.Build();
 			});
-			Assert.AreEqual(KeyboardBuilder.MaxButtonLinesExceptionTemplate, exception.Message);
+			exception.Message.Should().Be(KeyboardBuilder.MaxButtonLinesExceptionTemplate);
 		}
 
 		[Test]

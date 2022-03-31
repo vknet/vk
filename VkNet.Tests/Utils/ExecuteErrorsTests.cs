@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -34,7 +35,7 @@ namespace VkNet.Tests.Utils
 			var ex = ExecuteErrorsHandler.GetExecuteExceptions(Json);
 
 			// Assert
-			Assert.AreEqual(3, ex.InnerExceptions.Count);
+			ex.InnerExceptions.Count.Should().Be(3);
 		}
 
 		[Test]
@@ -44,7 +45,7 @@ namespace VkNet.Tests.Utils
 			var exception = Assert.Throws<ArgumentException>(() => ExecuteErrorsHandler.GetExecuteExceptions(null));
 
 			// Assert
-			Assert.AreEqual("response", exception.ParamName);
+			exception.ParamName.Should().Be("response");
 			Assert.IsInstanceOf<ArgumentException>(exception);
 		}
 	}

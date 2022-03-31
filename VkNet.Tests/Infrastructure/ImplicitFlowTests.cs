@@ -56,7 +56,7 @@ namespace VkNet.Tests.Infrastructure
 
 			var authorizeUrl = implicitFlow.CreateAuthorizeUrl();
 
-			Assert.AreEqual(new Uri(expected), authorizeUrl);
+			authorizeUrl.Should().Be(new Uri(expected));
 		}
 
 		[Test]

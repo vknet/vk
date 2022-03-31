@@ -22,20 +22,20 @@ namespace VkNet.Tests.Categories.Audio
 			var result = Api.Audio.GetCatalog(20, true, UsersFields.FirstNameGen| UsersFields.Photo100);
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(result.Items[0].Type, AudioCatalogType.AudiosSpecial);
-			Assert.AreEqual(result.Items[0].Source, AudioCatalogSourceType.RecomsRecoms);
-			Assert.AreEqual(result.Items[0].Thumbs[0].Width, 300);
-			Assert.AreEqual(result.Items[0].Audios[0].Id, 64754323);
-			Assert.AreEqual(result.Items[0].Audios[0].Ads.Duration, "187");
-			Assert.AreEqual(result.Items[0].Audios[0].Date.Year, 2020);
-			Assert.AreEqual(result.Items[0].Audios[0].Album.Thumb.Height, 300);
-			Assert.AreEqual(result.Items[0].Audios[0].MainArtists[0].Id, "4885835127738846121");
-			Assert.AreEqual(result.Items[1].Playlists[0].Genres[0].Id, 1);
-			Assert.AreEqual(result.Items[1].Playlists[0].Original.OwnerId, -2000239709);
-			Assert.AreEqual(result.Items[1].Playlists[0].Photo.Height, 300);
-			Assert.AreEqual(result.Items[1].Playlists[0].MainArtists[0].Id, "2488610606427153840");
-			Assert.AreEqual(result.Items[1].Playlists[0].AlbumType, AudioAlbumType.MainOnly);
-			Assert.AreEqual(result.Items[2].Items[0].Meta.ContentType, UserOrGroupType.Group);
+			AudioCatalogType.AudiosSpecial.Should().Be(result.Items[0].Type);
+			AudioCatalogSourceType.RecomsRecoms.Should().Be(result.Items[0].Source);
+			result.Items[0].Thumbs[0].Width.Should().Be(300);
+			result.Items[0].Audios[0].Id.Should().Be(64754323);
+			result.Items[0].Audios[0].Ads.Duration.Should().Be("187");
+			result.Items[0].Audios[0].Date.Year.Should().Be(2020);
+			result.Items[0].Audios[0].Album.Thumb.Height.Should().Be(300);
+			result.Items[0].Audios[0].MainArtists[0].Id.Should().Be("4885835127738846121");
+			result.Items[1].Playlists[0].Genres[0].Id.Should().Be(1);
+			result.Items[1].Playlists[0].Original.OwnerId.Should().Be(-2000239709);
+			result.Items[1].Playlists[0].Photo.Height.Should().Be(300);
+			result.Items[1].Playlists[0].MainArtists[0].Id.Should().Be("2488610606427153840");
+			result.Items[1].Playlists[0].AlbumType.Should().Be(AudioAlbumType.MainOnly);
+			result.Items[2].Items[0].Meta.ContentType.Should().Be(UserOrGroupType.Group);
 		}
 	}
 }

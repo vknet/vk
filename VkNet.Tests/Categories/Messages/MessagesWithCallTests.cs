@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using FluentAssertions.Extensions;
 using NUnit.Framework;
 using VkNet.Model;
@@ -20,15 +21,15 @@ namespace VkNet.Tests.Categories.Messages
 
 			var call = message.Attachments[0].Instance as Call;
 
-			Assert.IsNotNull(call);
+			call.Should().NotBeNull();
 
 			Assert.IsTrue(call.Video);
 
-			Assert.AreEqual("reached", call.State);
-			Assert.AreEqual(12345678, call.InitiatorId);
-			Assert.AreEqual(2012345678, call.ReceiverId);
+			call.State.Should().Be("reached");
+			call.InitiatorId.Should().Be(12345678);
+			call.ReceiverId.Should().Be(2012345678);
 			Assert.IsTrue(call.Duration.HasValue);
-			Assert.AreEqual(30, call.Duration.Value);
+			call.Duration.Value.Should().Be(30);
 
 			Assert.AreEqual(new DateTime(2021,
 					9,

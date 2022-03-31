@@ -19,12 +19,12 @@ namespace VkNet.Tests.Categories.Leads
 			var result = Api.Leads.Complete("test8f4f23fb62c5c89fbb", "bb4f37150027a9cf51", string.Empty);
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(1000, result.Limit);
-			Assert.AreEqual(500, result.DayLimit);
-			Assert.AreEqual(10, result.Spent);
-			Assert.AreEqual("1", result.Cost);
-			Assert.AreEqual(1, result.TestMode);
-			Assert.AreEqual(1, result.Success);
+			result.Limit.Should().Be(1000);
+			result.DayLimit.Should().Be(500);
+			result.Spent.Should().Be(10);
+			result.Cost.Should().Be("1");
+			result.TestMode.Should().Be(1);
+			result.Success.Should().Be(1);
 		}
 
 		[Test]
@@ -36,8 +36,8 @@ namespace VkNet.Tests.Categories.Leads
 			var result = Api.Leads.Start(new StartParams());
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(1, result.TestMode);
-			Assert.AreEqual("vk_sid", result.VkSid);
+			result.TestMode.Should().Be(1);
+			result.VkSid.Should().Be("vk_sid");
 		}
 
 		[Test]

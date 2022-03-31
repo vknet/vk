@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -29,7 +30,7 @@ namespace VkNet.Tests.Categories.Photos
 			Assert.IsNotEmpty(result);
 			var first = result.First();
 			var size = first.Sizes.First();
-			Assert.AreEqual(new Uri("https://pp.userapi.com/c847017/v847017534/66e9c/PAZHqnQBYt4.jpg"), size.Url);
+			size.Url.Should().Be(new Uri("https://pp.userapi.com/c847017/v847017534/66e9c/PAZHqnQBYt4.jpg"));
 		}
 	}
 }

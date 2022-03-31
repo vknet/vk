@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories.Group
 			var result = Api.Groups.GetRequests(1, null, null, UsersFields.LastSeen);
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(3, result.Count);
+			result.Should().HaveCount(3);
 			foreach (var user in result)
 				user.Should().NotBeNull();
 		}
@@ -34,7 +34,7 @@ namespace VkNet.Tests.Categories.Group
 			var result = Api.Groups.GetRequests(1);
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(3, result.Count);
+			result.Should().HaveCount(3);
 			foreach (var user in result)
 				user.Should().NotBeNull();
 		}

@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.GetTokenPermissions();
 
-			Assert.AreEqual(274432, result.Mask);
+			result.Mask.Should().Be(274432);
 			Assert.IsNotEmpty(result.Permissions);
 		}
 	}

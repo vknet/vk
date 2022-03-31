@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Utils;
 
@@ -65,7 +66,7 @@ namespace VkNet.Tests.Utils
 				var unused = @params["date_time"];
 			});
 
-			Assert.AreEqual("1572481292", @params["date_time"]);
+			@params["date_time"].Should().Be("1572481292");
 		}
 	}
 }

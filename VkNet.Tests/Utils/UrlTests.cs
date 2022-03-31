@@ -21,7 +21,7 @@ namespace VkNet.Tests.Utils
 
 			var query = Url.QueryFrom(parameters.ToArray());
 
-			Assert.AreEqual("key1=value1&key2=value2", query);
+			query.Should().Be("key1=value1&key2=value2");
 		}
 
 		[Test]
@@ -33,7 +33,7 @@ namespace VkNet.Tests.Utils
 
 			var actualUrl = Url.Combine(testUrl, query);
 
-			Assert.AreEqual(expectedUrl, actualUrl);
+			actualUrl.Should().Be(expectedUrl);
 		}
 
 		[Test]

@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
@@ -25,9 +26,9 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(-groupId, update.Photo.OwnerId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(photoId, update.Photo.Id);
+			update.Photo.OwnerId.Should().Be(-groupId);
+			update.GroupId.Should().Be(groupId);
+			update.Photo.Id.Should().Be(photoId);
 		}
 
 		[Test]
@@ -50,11 +51,11 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.PhotoComment.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.PhotoComment.Text);
-			Assert.AreEqual(-groupId, update.PhotoComment.PhotoOwnerId);
-			Assert.AreEqual(photoId, update.PhotoComment.PhotoId);
+			update.PhotoComment.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.PhotoComment.Text.Should().Be(text);
+			update.PhotoComment.PhotoOwnerId.Should().Be(-groupId);
+			update.PhotoComment.PhotoId.Should().Be(photoId);
 		}
 
 		[Test]
@@ -76,10 +77,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.PhotoComment.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.PhotoComment.Text);
-			Assert.AreEqual(-groupId, update.PhotoComment.PhotoOwnerId);
+			update.PhotoComment.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.PhotoComment.Text.Should().Be(text);
+			update.PhotoComment.PhotoOwnerId.Should().Be(-groupId);
 		}
 
 		[Test]
@@ -101,10 +102,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.PhotoComment.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.PhotoComment.Text);
-			Assert.AreEqual(-groupId, update.PhotoComment.PhotoOwnerId);
+			update.PhotoComment.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.PhotoComment.Text.Should().Be(text);
+			update.PhotoComment.PhotoOwnerId.Should().Be(-groupId);
 		}
 
 		[Test]
@@ -128,12 +129,12 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(deleterId, update.PhotoCommentDelete.DeleterId);
-			Assert.AreEqual(userId, update.PhotoCommentDelete.UserId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(-groupId, update.PhotoCommentDelete.OwnerId);
-			Assert.AreEqual(photoId, update.PhotoCommentDelete.PhotoId);
-			Assert.AreEqual(id, update.PhotoCommentDelete.Id);
+			update.PhotoCommentDelete.DeleterId.Should().Be(deleterId);
+			update.PhotoCommentDelete.UserId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.PhotoCommentDelete.OwnerId.Should().Be(-groupId);
+			update.PhotoCommentDelete.PhotoId.Should().Be(photoId);
+			update.PhotoCommentDelete.Id.Should().Be(id);
 		}
 	}
 }

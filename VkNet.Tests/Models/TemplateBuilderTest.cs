@@ -1,6 +1,7 @@
 
 using System;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
@@ -31,8 +32,8 @@ namespace VkNet.Tests.Models
 			builder.SetType(TemplateType.Carousel);
 			var template = builder.Build();
 
-			Assert.AreEqual(builder.Type, TemplateType.Carousel);
-			Assert.AreEqual(template.Type, TemplateType.Carousel);
+			TemplateType.Carousel.Should().Be(builder.Type);
+			TemplateType.Carousel.Should().Be(template.Type);
 		}
 
 		[Test]
@@ -43,7 +44,7 @@ namespace VkNet.Tests.Models
 			builder.AddTemplateElement(new CarouselElementBuilder()
 				.SetTitle("title")
 				.Build());
-			Assert.AreEqual(builder.Elements.First().Title, "title");
+			"title".Should().Be(builder.Elements.First().Title);
 		}
 
 		[Test]
@@ -56,7 +57,7 @@ namespace VkNet.Tests.Models
 				.Build());
 
 			builder.ClearElements();
-			Assert.AreEqual(builder.Elements.Count, 0);
+			0.Should().Be(builder.Elements.Count);
 		}
 
 		[Test]

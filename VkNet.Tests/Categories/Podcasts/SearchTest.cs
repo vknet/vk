@@ -26,9 +26,9 @@ namespace VkNet.Tests.Categories.Podcasts
 			});
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(result.Podcasts[0].OwnerId, -189167851);
-			Assert.AreEqual(result.Episodes[0].Id, 456239643);
-			Assert.AreEqual(result.Groups[0].Id, 189167851);
+			result.Podcasts[0].OwnerId.Should().Be(-189167851);
+			result.Episodes[0].Id.Should().Be(456239643);
+			result.Groups[0].Id.Should().Be(189167851);
 		}
 	}
 }

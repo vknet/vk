@@ -20,7 +20,7 @@ namespace VkNet.Tests.Categories.Friends
 
 			var result = Api.Friends.GetRequests(new FriendsGetRequestsParams());
 			result.Should().NotBeNull();
-			Assert.AreEqual(1, result.Count);
+			result.Count.Should().Be(1);
 		}
 
 		[Test]
@@ -36,7 +36,7 @@ namespace VkNet.Tests.Categories.Friends
 			});
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(1, result.Count);
+			result.Count.Should().Be(1);
 		}
 	}
 }

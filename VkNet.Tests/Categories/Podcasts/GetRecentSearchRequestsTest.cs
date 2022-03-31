@@ -20,8 +20,8 @@ namespace VkNet.Tests.Categories.Podcasts
 			var result = Api.Podcasts.GetRecentSearchRequests();
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(result[0], "navi");
-			Assert.AreEqual(result[1], "ted");
+			result.Should().HaveElementAt(0, "navi");
+			result.Should().HaveElementAt(1, "ted");
 		}
 	}
 }

@@ -596,7 +596,7 @@ namespace VkNet.Tests.Categories.Account
 
 			// Assert
 			Assert.That(result, Is.Not.Null);
-			Assert.AreEqual("only_me", result.Category);
+			result.Category.Should().Be("only_me");
 		}
 
 		[Test]

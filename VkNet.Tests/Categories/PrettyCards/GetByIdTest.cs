@@ -33,8 +33,8 @@ namespace VkNet.Tests.Categories.PrettyCards
 			});
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(result[0].CardId, "7037403");
-			Assert.AreEqual(result[2].Images[0].Url, new Uri("https://vk.com/8Jseb63OJSE.jpg"));
+			result[0].CardId.Should().Be("7037403");
+			result[2].Images[0].Url.Should().Be(new Uri("https://vk.com/8Jseb63OJSE.jpg"));
 		}
 	}
 }

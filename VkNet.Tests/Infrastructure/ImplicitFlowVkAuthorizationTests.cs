@@ -20,10 +20,10 @@ namespace VkNet.Tests.Infrastructure
 			var authorizationResult = auth.GetAuthorizationResult(url);
 
 			authorizationResult.Should().NotBeNull();
-			Assert.AreEqual("123", authorizationResult.State);
-			Assert.AreEqual(32190123, authorizationResult.UserId);
-			Assert.AreEqual(86400, authorizationResult.ExpiresIn);
-			Assert.AreEqual("access_token", authorizationResult.AccessToken);
+			authorizationResult.State.Should().Be("123");
+			authorizationResult.UserId.Should().Be(32190123);
+			authorizationResult.ExpiresIn.Should().Be(86400);
+			authorizationResult.AccessToken.Should().Be("access_token");
 		}
 
 		[Test]

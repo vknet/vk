@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.GetLongPollSettings(123456);
 
-			Assert.AreEqual("5.50", result.ApiVersion);
+			result.ApiVersion.Should().Be("5.50");
 
 			Assert.IsTrue(result.IsEnabled);
 			result.Events.Should().NotBeNull();

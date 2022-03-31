@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
@@ -25,9 +26,9 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.WallPost.FromId);
-			Assert.AreEqual(-groupId, update.WallPost.OwnerId);
+			update.GroupId.Should().Be(groupId);
+			update.WallPost.FromId.Should().Be(userId);
+			update.WallPost.OwnerId.Should().Be(-groupId);
 		}
 
 		[Test]
@@ -50,11 +51,11 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.WallReply.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.WallReply.Text);
-			Assert.AreEqual(-groupId, update.WallReply.PostOwnerId);
-			Assert.AreEqual(postId, update.WallReply.PostId);
+			update.WallReply.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.WallReply.Text.Should().Be(text);
+			update.WallReply.PostOwnerId.Should().Be(-groupId);
+			update.WallReply.PostId.Should().Be(postId);
 		}
 
 		[Test]
@@ -76,10 +77,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.WallReply.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.WallReply.Text);
-			Assert.AreEqual(-groupId, update.WallReply.PostOwnerId);
+			update.WallReply.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.WallReply.Text.Should().Be(text);
+			update.WallReply.PostOwnerId.Should().Be(-groupId);
 		}
 
 		[Test]
@@ -101,10 +102,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.WallReply.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.WallReply.Text);
-			Assert.AreEqual(-groupId, update.WallReply.PostOwnerId);
+			update.WallReply.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.WallReply.Text.Should().Be(text);
+			update.WallReply.PostOwnerId.Should().Be(-groupId);
 		}
 
 		[Test]
@@ -127,11 +128,11 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(deleterId, update.WallReplyDelete.DeleterId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(-groupId, update.WallReplyDelete.OwnerId);
-			Assert.AreEqual(postId, update.WallReplyDelete.PostId);
-			Assert.AreEqual(id, update.WallReplyDelete.Id);
+			update.WallReplyDelete.DeleterId.Should().Be(deleterId);
+			update.GroupId.Should().Be(groupId);
+			update.WallReplyDelete.OwnerId.Should().Be(-groupId);
+			update.WallReplyDelete.PostId.Should().Be(postId);
+			update.WallReplyDelete.Id.Should().Be(id);
 		}
 	}
 }

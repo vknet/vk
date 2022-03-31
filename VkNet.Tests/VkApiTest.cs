@@ -196,7 +196,7 @@ namespace VkNet.Tests
 		{
 			Api.VkApiVersion.SetVersion(999, 0);
 
-			Assert.AreEqual("999.0", Api.VkApiVersion.Version);
+			Api.VkApiVersion.Version.Should().Be("999.0");
 		}
 
 		[Test]

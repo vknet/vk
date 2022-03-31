@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
@@ -25,9 +26,9 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(-groupId, update.Video.OwnerId);
-			Assert.AreEqual(id, update.Video.Id);
+			update.GroupId.Should().Be(groupId);
+			update.Video.OwnerId.Should().Be(-groupId);
+			update.Video.Id.Should().Be(id);
 		}
 
 		[Test]
@@ -50,11 +51,11 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.VideoComment.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.VideoComment.Text);
-			Assert.AreEqual(-groupId, update.VideoComment.VideoOwnerId);
-			Assert.AreEqual(videoId, update.VideoComment.VideoId);
+			update.VideoComment.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.VideoComment.Text.Should().Be(text);
+			update.VideoComment.VideoOwnerId.Should().Be(-groupId);
+			update.VideoComment.VideoId.Should().Be(videoId);
 		}
 
 		[Test]
@@ -76,10 +77,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.VideoComment.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.VideoComment.Text);
-			Assert.AreEqual(-groupId, update.VideoComment.VideoOwnerId);
+			update.VideoComment.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.VideoComment.Text.Should().Be(text);
+			update.VideoComment.VideoOwnerId.Should().Be(-groupId);
 		}
 
 		[Test]
@@ -101,10 +102,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.VideoComment.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.VideoComment.Text);
-			Assert.AreEqual(-groupId, update.VideoComment.VideoOwnerId);
+			update.VideoComment.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.VideoComment.Text.Should().Be(text);
+			update.VideoComment.VideoOwnerId.Should().Be(-groupId);
 		}
 
 		[Test]
@@ -127,11 +128,11 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(deleterId, update.VideoCommentDelete.DeleterId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(-groupId, update.VideoCommentDelete.OwnerId);
-			Assert.AreEqual(videoId, update.VideoCommentDelete.VideoId);
-			Assert.AreEqual(id, update.VideoCommentDelete.Id);
+			update.VideoCommentDelete.DeleterId.Should().Be(deleterId);
+			update.GroupId.Should().Be(groupId);
+			update.VideoCommentDelete.OwnerId.Should().Be(-groupId);
+			update.VideoCommentDelete.VideoId.Should().Be(videoId);
+			update.VideoCommentDelete.Id.Should().Be(id);
 		}
 	}
 }

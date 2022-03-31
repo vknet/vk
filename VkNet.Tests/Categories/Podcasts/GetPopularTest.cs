@@ -20,8 +20,8 @@ namespace VkNet.Tests.Categories.Podcasts
 			var result = Api.Podcasts.GetPopular();
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(result[0].OwnerId, -74962618);
-			Assert.AreEqual(result[1].OwnerTitle, "вДудь");
+			result[0].OwnerId.Should().Be(-74962618);
+			result[1].OwnerTitle.Should().Be("вДудь");
 		}
 	}
 }
