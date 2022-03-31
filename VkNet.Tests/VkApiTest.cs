@@ -71,7 +71,7 @@ namespace VkNet.Tests
 			}
 
 			await Task.Delay(1000);
-			Assert.LessOrEqual(calls, callsCount);
+			calls.Should().BeLessThanOrEqualTo(callsCount);
 		}
 
 		[Test]
