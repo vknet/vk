@@ -34,7 +34,7 @@ namespace VkNet.Model.GroupUpdate
 			{
 				UserId = response["user_id"],
 				AdminId = response["admin_id"],
-				ByEndDate = response["by_end_date"],
+				ByEndDate = (long) response["by_end_date"] > 0
 			};
 		}
 	}
