@@ -52,7 +52,7 @@ namespace VkNet.Tests.Categories.Photos
 			ReadJsonFile(JsonPaths.True);
 
 			var result = Api.Photo.DeleteAlbum(197303);
-			Assert.That(result, Is.Not.Null);
+
 			Assert.That(result, Is.True);
 		}
 
@@ -70,7 +70,6 @@ namespace VkNet.Tests.Categories.Photos
 					Description = "new description"
 				});
 
-			Assert.That(result, Is.Not.Null);
 			Assert.That(result, Is.True);
 		}
 
@@ -161,7 +160,6 @@ namespace VkNet.Tests.Categories.Photos
 
 			var count = Api.Photo.GetAlbumsCount(1);
 
-			Assert.That(count, Is.Not.Null);
 			Assert.That(count, Is.EqualTo(1));
 		}
 

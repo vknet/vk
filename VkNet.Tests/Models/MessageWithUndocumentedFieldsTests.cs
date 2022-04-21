@@ -115,7 +115,7 @@ namespace VkNet.Tests.Models
 
 			var attachment = message.Attachments[0];
 
-			attachment.Type.Should().BeOfType<AudioMessage>();
+			attachment.Type.Should().BeAssignableTo<AudioMessage>();
 
 			var audioMessage = attachment.Instance as AudioMessage;
 

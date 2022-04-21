@@ -20,7 +20,7 @@ namespace VkNet.Tests
 		public void VersionIsNotEmpty()
 		{
 			Manager.Should().NotBeNull();
-			Manager.Version.Should().BeNullOrWhiteSpace();
+			Manager.Version.Should().NotBeNullOrWhiteSpace();
 		}
 
 		[Test]

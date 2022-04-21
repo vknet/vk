@@ -667,7 +667,7 @@ namespace VkNet.Tests.Categories.Users
 
 			var result = Api.Users.IsAppUser(1);
 
-			Assert.That(result, Is.Not.Null);
+
 			Assert.That(result, Is.False);
 		}
 
@@ -679,7 +679,7 @@ namespace VkNet.Tests.Categories.Users
 
 			var result = Api.Users.IsAppUser(123);
 
-			Assert.That(result, Is.Not.Null);
+
 			Assert.That(result, Is.True);
 		}
 
@@ -691,7 +691,7 @@ namespace VkNet.Tests.Categories.Users
 
 			var result = Api.Users.Report(243663122, ReportType.Insult, "комментарий");
 
-			Assert.That(result, Is.Not.Null);
+
 			Assert.That(result, Is.True);
 		}
 
