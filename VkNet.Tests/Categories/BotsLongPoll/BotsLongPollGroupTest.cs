@@ -56,7 +56,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			update.GroupId.Should().Be(groupId);
 			update.GroupJoin.UserId.Should().Be(userId);
-			Assert.AreEqual(joinType, update.GroupJoin.JoinType);
+			update.GroupJoin.JoinType.Should().Be(joinType);
 		}
 
 		[Test]
@@ -79,7 +79,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			update.GroupId.Should().Be(groupId);
 			update.GroupLeave.UserId.Should().Be(userId);
-			Assert.IsFalse(update.GroupLeave.IsSelf);
+			update.GroupLeave.IsSelf.Should().BeFalse();
 		}
 
 		[Test]
@@ -102,7 +102,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			update.GroupId.Should().Be(groupId);
 			update.GroupLeave.UserId.Should().Be(userId);
-			Assert.IsTrue(update.GroupLeave.IsSelf);
+			update.GroupLeave.IsSelf.Should().BeTrue();
 		}
 
 		[Test]
@@ -127,8 +127,8 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			update.GroupId.Should().Be(groupId);
 			update.GroupOfficersEdit.UserId.Should().Be(userId);
-			Assert.AreEqual(oldLevel, update.GroupOfficersEdit.LevelOld);
-			Assert.AreEqual(newLevel, update.GroupOfficersEdit.LevelNew);
+			update.GroupOfficersEdit.LevelOld.Should().Be(oldLevel);
+			update.GroupOfficersEdit.LevelNew.Should().Be(newLevel);
 		}
 
 		[Test]
@@ -156,8 +156,8 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.UserBlock.UserId.Should().Be(userId);
 			update.UserBlock.AdminId.Should().Be(adminId);
 			update.UserBlock.Comment.Should().Be(comment);
-			Assert.AreEqual(reason, update.UserBlock.Reason);
-			Assert.IsNull(update.UserBlock.UnblockDate);
+			update.UserBlock.Reason.Should().Be(reason);
+			update.UserBlock.UnblockDate.Should().BeNull();
 		}
 
 		[Test]
@@ -192,7 +192,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.UserBlock.UserId.Should().Be(userId);
 			update.UserBlock.AdminId.Should().Be(adminId);
 			update.UserBlock.Comment.Should().Be(comment);
-			Assert.AreEqual(reason, update.UserBlock.Reason);
+			update.UserBlock.Reason.Should().Be(reason);
 			update.UserBlock.UnblockDate.Should().Be(unblockDate);
 		}
 
@@ -218,7 +218,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.GroupId.Should().Be(groupId);
 			update.UserUnblock.UserId.Should().Be(userId);
 			update.UserUnblock.AdminId.Should().Be(adminId);
-			Assert.IsFalse(update.UserUnblock.ByEndDate);
+			update.UserUnblock.ByEndDate.Should().BeFalse();
 		}
 
 		[Test]
@@ -243,7 +243,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.GroupId.Should().Be(groupId);
 			update.UserUnblock.UserId.Should().Be(userId);
 			update.UserUnblock.AdminId.Should().Be(adminId);
-			Assert.IsTrue(update.UserUnblock.ByEndDate);
+			update.UserUnblock.ByEndDate.Should().BeTrue();
 		}
 
 		[Test]

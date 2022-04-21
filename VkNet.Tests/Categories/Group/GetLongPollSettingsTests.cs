@@ -21,7 +21,7 @@ namespace VkNet.Tests.Categories.Group
 
 			result.ApiVersion.Should().Be("5.50");
 
-			Assert.IsTrue(result.IsEnabled);
+			result.IsEnabled.Should().BeTrue();
 			result.Events.Should().NotBeNull();
 		}
 	}

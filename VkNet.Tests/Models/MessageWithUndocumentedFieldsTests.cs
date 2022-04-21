@@ -80,8 +80,8 @@ namespace VkNet.Tests.Models
 
 			var message = Message.FromJson(GetResponse());
 
-			Assert.IsNotNull(message.IsExpired);
-			Assert.IsTrue(message.IsExpired);
+			message.IsExpired.Should().NotBeNull();
+			message.IsExpired.Should().BeTrue();
 		}
 
 		[Test]
@@ -101,7 +101,7 @@ namespace VkNet.Tests.Models
 
 			var message = Message.FromJson(GetResponse());
 
-			Assert.IsTrue(message.IsSilent);
+			message.IsSilent.Should().BeTrue();
 		}
 
 		[Test]
@@ -115,13 +115,13 @@ namespace VkNet.Tests.Models
 
 			var attachment = message.Attachments[0];
 
-			Assert.AreEqual(attachment.Type, typeof(AudioMessage));
+			attachment.Type.Should().BeOfType<AudioMessage>();
 
 			var audioMessage = attachment.Instance as AudioMessage;
 
-			Assert.IsNotNull(audioMessage);
+			audioMessage.Should().NotBeNull();
 
-			Assert.IsTrue(message.WasListened);
+			message.WasListened.Should().BeTrue();
 		}
 	}
 }

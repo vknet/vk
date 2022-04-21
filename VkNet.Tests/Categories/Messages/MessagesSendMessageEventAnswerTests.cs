@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
@@ -22,7 +23,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.SendMessageEventAnswer("testEventId", 1, 1, data);
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 	}
 }

@@ -63,7 +63,7 @@ namespace VkNet.Tests.Categories.Utils
 
 			var result = Api.Utils.DeleteFromLastShortened("qwe");
 
-			Assert.True(result);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -143,7 +143,7 @@ namespace VkNet.Tests.Categories.Utils
 			var result = Api.Utils.ResolveScreenName("durov");
 
 			result.Should().NotBeNull();
-			Assert.AreEqual(result.Type, VkObjectType.User);
+			result.Type.Should().Be(VkObjectType.User);
 			Assert.That(result.Id, Is.EqualTo(1));
 		}
 

@@ -66,7 +66,7 @@ namespace VkNet.Tests.Categories.Docs
 			item.Should().NotBeNull();
 			var doc = item.Instance as Document;
 			doc.Should().NotBeNull();
-			Assert.AreEqual(DocumentTypeEnum.Text, doc.Type);
+			doc.Type.Should().Be(DocumentTypeEnum.Text);
 		}
 	}
 }

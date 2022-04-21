@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Notifications
@@ -15,7 +16,7 @@ namespace VkNet.Tests.Categories.Notifications
 
 			var result = Api.Notifications.MarkAsViewed();
 
-			Assert.True(result);
+			result.Should().BeTrue();
 		}
 
 		protected override string Folder => "Notifications";

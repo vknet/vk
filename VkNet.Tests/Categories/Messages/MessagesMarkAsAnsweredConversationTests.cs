@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Messages
@@ -15,7 +16,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.MarkAsAnsweredConversation(123);
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Model;
 
@@ -12,7 +13,7 @@ namespace VkNet.Tests.Categories.Auth
 		{
 			var apiAuthParams = new ApiAuthParams();
 
-			Assert.IsFalse(apiAuthParams.IsValid);
+			apiAuthParams.IsValid.Should().BeFalse();
 		}
 
 		[Test]
@@ -23,7 +24,7 @@ namespace VkNet.Tests.Categories.Auth
 				AccessToken = "some_token"
 			};
 
-			Assert.IsTrue(apiAuthParams.IsValid);
+			apiAuthParams.IsValid.Should().BeTrue();
 		}
 
 		[Test]
@@ -38,7 +39,7 @@ namespace VkNet.Tests.Categories.Auth
 				TwoFactorAuthorization = () => ""
 			};
 
-			Assert.IsTrue(apiAuthParams.IsValid);
+			apiAuthParams.IsValid.Should().BeTrue();
 		}
 
 		[Test]
@@ -52,7 +53,7 @@ namespace VkNet.Tests.Categories.Auth
 				Settings = Settings.All
 			};
 
-			Assert.IsFalse(apiAuthParams.IsValid);
+			apiAuthParams.IsValid.Should().BeFalse();
 		}
 
 		[Test]
@@ -66,7 +67,7 @@ namespace VkNet.Tests.Categories.Auth
 				TwoFactorAuthorization = () => ""
 			};
 
-			Assert.IsFalse(apiAuthParams.IsValid);
+			apiAuthParams.IsValid.Should().BeFalse();
 		}
 
 		[Test]
@@ -81,7 +82,7 @@ namespace VkNet.Tests.Categories.Auth
 				Settings = new Settings()
 			};
 
-			Assert.IsFalse(apiAuthParams.IsValid);
+			apiAuthParams.IsValid.Should().BeFalse();
 		}
 	}
 }

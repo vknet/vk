@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -15,7 +16,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.Unpin(123, 345);
 
-			Assert.True(result);
+			result.Should().BeTrue();
 		}
 	}
 }

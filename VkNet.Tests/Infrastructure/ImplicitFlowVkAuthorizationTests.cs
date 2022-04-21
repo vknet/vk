@@ -45,7 +45,7 @@ namespace VkNet.Tests.Infrastructure
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
 
-			Assert.AreEqual(ImplicitFlowPageType.Captcha, result);
+			result.Should().Be(ImplicitFlowPageType.Captcha);
 		}
 
 		[Test]
@@ -57,7 +57,7 @@ namespace VkNet.Tests.Infrastructure
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
 
-			Assert.AreEqual(ImplicitFlowPageType.Captcha, result);
+			result.Should().Be(ImplicitFlowPageType.Captcha);
 		}
 
 		[Test]
@@ -69,7 +69,7 @@ namespace VkNet.Tests.Infrastructure
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
 
-			Assert.AreEqual(ImplicitFlowPageType.Consent, result);
+			result.Should().Be(ImplicitFlowPageType.Consent);
 		}
 
 		[Test]
@@ -81,7 +81,7 @@ namespace VkNet.Tests.Infrastructure
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
 
-			Assert.AreEqual(ImplicitFlowPageType.Error, result);
+			result.Should().Be(ImplicitFlowPageType.Error);
 		}
 
 		[Test]
@@ -93,7 +93,7 @@ namespace VkNet.Tests.Infrastructure
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
 
-			Assert.AreEqual(ImplicitFlowPageType.LoginPassword, result);
+			result.Should().Be(ImplicitFlowPageType.LoginPassword);
 		}
 
 		[Test]
@@ -105,7 +105,7 @@ namespace VkNet.Tests.Infrastructure
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
 
-			Assert.AreEqual(ImplicitFlowPageType.LoginPassword, result);
+			result.Should().Be(ImplicitFlowPageType.LoginPassword);
 		}
 
 		[Test]
@@ -117,7 +117,7 @@ namespace VkNet.Tests.Infrastructure
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
 
-			Assert.AreEqual(ImplicitFlowPageType.Result, result);
+			result.Should().Be(ImplicitFlowPageType.Result);
 		}
 
 		[Test]
@@ -130,7 +130,7 @@ namespace VkNet.Tests.Infrastructure
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
 
-			Assert.AreEqual(ImplicitFlowPageType.TwoFactor, result);
+			result.Should().Be(ImplicitFlowPageType.TwoFactor);
 		}
 
 		[Test]
@@ -143,7 +143,7 @@ namespace VkNet.Tests.Infrastructure
 			var auth = new ImplicitFlowVkAuthorization();
 			var result = auth.GetPageType(url);
 
-			Assert.AreEqual(ImplicitFlowPageType.TwoFactor, result);
+			result.Should().Be(ImplicitFlowPageType.TwoFactor);
 		}
 	}
 }

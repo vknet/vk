@@ -35,13 +35,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			clientInfo.Should().NotBeNull();
 
 			Assert.IsNotEmpty(clientInfo.ButtonActions);
-			Assert.True(clientInfo.Keyboard);
-			Assert.False(clientInfo.InlineKeyboard);
-			Assert.AreEqual(Language.Ru, clientInfo.LangId);
+			clientInfo.Keyboard.Should().BeTrue();
+			clientInfo.InlineKeyboard.Should().BeFalse();
+			clientInfo.LangId.Should().Be(Language.Ru);
 
-			Assert.AreEqual(123456789, message.FromId);
-			Assert.AreEqual(123456789, update.GroupId);
-			Assert.AreEqual("f", message.Text);
+			message.FromId.Should().Be(123456789);
+			update.GroupId.Should().Be(123456789);
+			message.Text.Should().Be("f");
 		}
 
 		[Test]

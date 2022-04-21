@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.DisableOnline(3);
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 	}
 }

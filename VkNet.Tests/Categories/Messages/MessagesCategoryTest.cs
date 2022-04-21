@@ -112,7 +112,7 @@ namespace VkNet.Tests.Categories.Messages
 			ReadJsonFile(JsonPaths.True);
 
 			var result = Api.Messages.EditChat(2, "new title");
-			Assert.True(result);
+			result.Should().BeTrue();
 		}
 
 		[Test]

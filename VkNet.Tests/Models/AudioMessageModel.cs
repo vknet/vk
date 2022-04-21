@@ -33,7 +33,7 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 
 			var attachment = Attachment.FromJson(response);
-			Assert.True(attachment.Instance is AudioMessage);
+			attachment.Instance.Should().BeOfType<AudioMessage>();
 
 			var audioMessage = attachment.Instance as AudioMessage;
 			Assert.That(audioMessage.Duration, Is.EqualTo(25));
@@ -51,7 +51,7 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 
 			var attachment = Attachment.FromJson(response);
-			Assert.True(attachment.Instance is AudioMessage);
+			attachment.Instance.Should().BeOfType<AudioMessage>();
 
 			var audioMessage = attachment.Instance as AudioMessage;
 			Assert.That(audioMessage.Duration, Is.EqualTo(25));

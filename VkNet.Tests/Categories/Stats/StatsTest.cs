@@ -55,7 +55,7 @@ namespace VkNet.Tests.Categories.Stats
 			});
 
 			statsPeriods[0].Should().NotBeNull();
-			Assert.Null(statsPeriods[0].Activity);
+			statsPeriods[0].Activity.Should().BeNull();
 
 			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
 		}

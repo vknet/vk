@@ -14,7 +14,6 @@ using VkNet.Utils;
 namespace VkNet.Tests
 {
 	[TestFixture]
-
 	public class VkApiTest : BaseTest
 	{
 		[Test]
@@ -51,7 +50,7 @@ namespace VkNet.Tests
 
 			var isUpdated = waiter.WaitOne();
 
-			Assert.IsTrue(isUpdated);
+			isUpdated.Should().BeTrue();
 		}
 
 		[Test, /*Ignore("Тест врет и не проверяет стабильное воспроизведение, ошибка либо в реализации либо в базовом классе теста")*/]
@@ -67,7 +66,8 @@ namespace VkNet.Tests
 
 			for (var i = 0; i < callsCount + 1; i++)
 			{
-				taskList.Add(Api.CallAsync("friends.getRequests", VkParameters.Empty, true).ContinueWith(_ => Interlocked.Increment(ref calls)));
+				taskList.Add(Api.CallAsync("friends.getRequests", VkParameters.Empty, true)
+					.ContinueWith(_ => Interlocked.Increment(ref calls)));
 			}
 
 			await Task.Delay(1000);
@@ -92,7 +92,7 @@ namespace VkNet.Tests
 		public void DefaultLanguageValue()
 		{
 			var lang = Api.GetLanguage();
-			Assert.IsNull(lang);
+			lang.Should().BeNull();
 		}
 
 		[Test]
@@ -106,7 +106,7 @@ namespace VkNet.Tests
 		{
 			Api.SetLanguage(Language.En);
 			var lang = Api.GetLanguage();
-			Assert.AreEqual(lang, Language.En);
+			lang.Should().Be(Language.En);
 		}
 
 		[Test]
@@ -188,7 +188,7 @@ namespace VkNet.Tests
 
 			// Assert
 			callMethod.Should().NotBeNull();
-			Assert.IsTrue(callMethod.IsPublic);
+			callMethod.IsPublic.Should().BeTrue();
 		}
 
 		[Test]

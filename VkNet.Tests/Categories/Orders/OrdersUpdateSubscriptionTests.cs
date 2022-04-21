@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Categories.Orders
 
 			var result = Api.Orders.UpdateSubscription(123, 234, 500);
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 	}
 }

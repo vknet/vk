@@ -59,7 +59,7 @@ namespace VkNet.Tests.Categories.NewsFeed
 			first.PostSource.Data.Should().NotBeNull();
 
 			var second = result.Items.Last();
-			Assert.IsNull(second.PostSource.Data);
+			second.PostSource.Data.Should().BeNull();
 		}
 	}
 }

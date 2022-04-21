@@ -27,7 +27,7 @@ namespace VkNet.Tests.Categories.Friends
 			result.TotalCount.Should().Be(182);
 			var user = result.FirstOrDefault();
 			user.Should().NotBeNull();
-			Assert.AreEqual(Sex.Male, user.Sex);
+			user.Sex.Should().Be(Sex.Male);
 		}
 
 		[Test]

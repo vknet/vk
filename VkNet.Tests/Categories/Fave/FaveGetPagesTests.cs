@@ -20,7 +20,7 @@ namespace VkNet.Tests.Categories.Fave
 			var pages = Api.Fave.GetPages(FavePageType.Users);
 			var page = pages.FirstOrDefault();
 
-			Assert.IsTrue(pages.Any());
+			pages.Should().NotBeEmpty();
 			page.Should().NotBeNull();
 		}
 	}

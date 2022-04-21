@@ -61,7 +61,7 @@ namespace VkNet.Tests.Categories.Streaming
 
 			var result = Api.Streaming.SetSettings(MonthlyLimit.Tier6);
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 
 		[Test]

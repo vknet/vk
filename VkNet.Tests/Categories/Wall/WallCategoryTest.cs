@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
@@ -29,7 +30,7 @@ namespace VkNet.Tests.Categories.Wall
 
 			var result = Api.Wall.CloseComments(3, 3);
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -354,7 +355,7 @@ namespace VkNet.Tests.Categories.Wall
 
 			var result = Api.Wall.OpenComments(3, 3);
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -396,7 +397,7 @@ namespace VkNet.Tests.Categories.Wall
 
 			var result = Api.Wall.CheckCopyrightLink("https://habr.com");
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 
 		[Test]

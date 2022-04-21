@@ -50,7 +50,7 @@ namespace VkNet.Tests.Utils.JsonConverter
 
 			result.Should().NotBeNull();
 			var compare = string.Compare(json, Json, CultureInfo.InvariantCulture, CompareOptions.IgnoreSymbols);
-			Assert.IsTrue(compare == 0);
+			compare.Should().Be(0);
 		}
 	}
 }

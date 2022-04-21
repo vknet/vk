@@ -21,7 +21,7 @@ namespace VkNet.Tests.Categories.Fave
 
 			var fave = faves.FirstOrDefault();
 
-			Assert.IsTrue(faves.Any());
+			faves.Should().NotBeEmpty();
 			fave.Should().NotBeNull();
 		}
 	}

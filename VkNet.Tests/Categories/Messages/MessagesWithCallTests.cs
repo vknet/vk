@@ -23,22 +23,21 @@ namespace VkNet.Tests.Categories.Messages
 
 			call.Should().NotBeNull();
 
-			Assert.IsTrue(call.Video);
+			call.Video.Should().BeTrue();
 
 			call.State.Should().Be("reached");
 			call.InitiatorId.Should().Be(12345678);
 			call.ReceiverId.Should().Be(2012345678);
-			Assert.IsTrue(call.Duration.HasValue);
+			call.Duration.HasValue.Should().BeTrue();
 			call.Duration.Value.Should().Be(30);
 
-			Assert.AreEqual(new DateTime(2021,
-					9,
-					27,
-					19,
-					21,
-					21,
-					DateTimeKind.Utc),
-				call.Time.AsUtc());
+			AssertionExtensions.Should((object)call.Time.AsUtc()).Be(new DateTime(2021,
+				9,
+				27,
+				19,
+				21,
+				21,
+				DateTimeKind.Utc));
 		}
 	}
 }

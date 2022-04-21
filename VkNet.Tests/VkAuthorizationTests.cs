@@ -33,8 +33,8 @@ namespace VkNet.Tests
 
 			var authorization = VkAuthorization2.From(urlWithBadLoginOrPassword);
 
-			Assert.IsFalse(authorization.IsAuthorized);
-			Assert.IsFalse(authorization.IsAuthorizationRequired);
+			authorization.IsAuthorized.Should().BeFalse();
+			authorization.IsAuthorizationRequired.Should().BeFalse();
 		}
 
 		[Test]
@@ -57,7 +57,7 @@ namespace VkNet.Tests
 			var error = Assert.Throws<VkApiException>(() =>
 			{
 				var expiresIn = auth.ExpiresIn;
-				Assert.NotZero(expiresIn);
+				expiresIn.Should().NotBe(0);
 			});
 
 			error.Message.Should().Be("ExpiresIn is not integer value.");
@@ -71,7 +71,7 @@ namespace VkNet.Tests
 			var error = Assert.Throws<VkApiException>(() =>
 			{
 				var authUserId = auth.UserId;
-				Assert.NotZero(authUserId);
+				authUserId.Should().NotBe(0);
 			});
 
 			error.Message.Should().Be("UserId is not long value.");
@@ -81,7 +81,7 @@ namespace VkNet.Tests
 		public void IsAuthorizationRequired_False()
 		{
 			var auth = VkAuthorization2.From(Input);
-			Assert.IsFalse(auth.IsAuthorizationRequired);
+			auth.IsAuthorizationRequired.Should().BeFalse();
 		}
 
 		[Test]
@@ -98,21 +98,21 @@ namespace VkNet.Tests
 									+ "&__q_hash=90f3ddf308ca69fca660e32b09e3617b";
 
 			var auth = VkAuthorization2.From(uriQuery);
-			Assert.IsTrue(auth.IsAuthorizationRequired);
+			auth.IsAuthorizationRequired.Should().BeTrue();
 		}
 
 		[Test]
 		public void IsAuthorized_Failed()
 		{
 			var auth = VkAuthorization2.From(Input.Replace("access_token", "qwe"));
-			Assert.IsFalse(auth.IsAuthorized);
+			auth.IsAuthorized.Should().BeFalse();
 		}
 
 		[Test]
 		public void IsAuthorized_Success()
 		{
 			var auth = VkAuthorization2.From(Input);
-			Assert.IsTrue(auth.IsAuthorized);
+			auth.IsAuthorized.Should().BeTrue();
 		}
 	}
 }

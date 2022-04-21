@@ -42,7 +42,7 @@ namespace VkNet.Tests.Categories.Storage
 
 			var result = Api.Storage.Set("qwe", "qwe");
 
-			Assert.True(result);
+			result.Should().BeTrue();
 		}
 	}
 }

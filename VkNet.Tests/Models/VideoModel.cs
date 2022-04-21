@@ -33,12 +33,12 @@ namespace VkNet.Tests.Models
 
 			var video = Video.FromJson(response);
 
-			Assert.True(video.CanComment);
-			Assert.True(video.CanLike);
-			Assert.True(video.CanRepost);
-			Assert.True(video.CanSubscribe);
-			Assert.True(video.CanAddToFaves);
-			Assert.True(video.CanAdd);
+			video.CanComment.Should().BeTrue();
+			video.CanLike.Should().BeTrue();
+			video.CanRepost.Should().BeTrue();
+			video.CanSubscribe.Should().BeTrue();
+			video.CanAddToFaves.Should().BeTrue();
+			video.CanAdd.Should().BeTrue();
 		}
 
 		[Test]
@@ -117,7 +117,7 @@ namespace VkNet.Tests.Models
 			timelineThumbs.FrameHeight.Should().Be(180);
 			timelineThumbs.FrameWidth.Should().Be(320.0f);
 			timelineThumbs.Links.Count.Should().Be(24);
-			Assert.IsTrue(timelineThumbs.IsUv);
+			timelineThumbs.IsUv.Should().BeTrue();
 			timelineThumbs.Frequency.Should().Be(5);
 		}
 
@@ -210,7 +210,7 @@ namespace VkNet.Tests.Models
 			video.Duration.Should().Be(0);
 			video.Type.Should().Be("live");
 			video.LiveStatus.Should().Be("started");
-			Assert.True(video.Live);
+			video.Live.Should().BeTrue();
 			video.Spectators.Should().Be(89);
 		}
 

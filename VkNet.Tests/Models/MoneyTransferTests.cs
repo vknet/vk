@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.Attachments;
 
@@ -14,7 +15,7 @@ namespace VkNet.Tests.Models
 
 			var attachment = Attachment.FromJson(response);
 
-			Assert.True(attachment.Instance is MoneyTransfer);
+			attachment.Instance.Should().BeOfType<MoneyTransfer>();
 		}
 	}
 }

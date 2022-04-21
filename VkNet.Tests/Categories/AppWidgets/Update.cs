@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 
@@ -19,7 +20,7 @@ namespace VkNet.Tests.Categories.AppWidgets
 
 			var result = Api.AppWidgets.Update("string", AppWidgetType.Donation);
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 	}
 }

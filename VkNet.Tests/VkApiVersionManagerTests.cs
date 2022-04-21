@@ -20,7 +20,7 @@ namespace VkNet.Tests
 		public void VersionIsNotEmpty()
 		{
 			Manager.Should().NotBeNull();
-			Assert.IsFalse(string.IsNullOrWhiteSpace(Manager.Version));
+			Manager.Version.Should().BeNullOrWhiteSpace();
 		}
 
 		[Test]
@@ -34,56 +34,56 @@ namespace VkNet.Tests
 		public void IsGreaterThanOrEqual_GreaterValue()
 		{
 			Manager.SetVersion(5, 92);
-			Assert.IsFalse(Manager.IsGreaterThanOrEqual(5, 93));
+			Manager.IsGreaterThanOrEqual(5, 93).Should().BeFalse();
 		}
 
 		[Test]
 		public void IsGreaterThanOrEqual_EqualValue()
 		{
 			Manager.SetVersion(5, 92);
-			Assert.IsTrue(Manager.IsGreaterThanOrEqual(5, 92));
+			Manager.IsGreaterThanOrEqual(5, 92).Should().BeTrue();
 		}
 
 		[Test]
 		public void IsGreaterThanOrEqual_MinorLessValue()
 		{
 			Manager.SetVersion(5, 92);
-			Assert.IsTrue(Manager.IsGreaterThanOrEqual(5, 91));
+			Manager.IsGreaterThanOrEqual(5, 91).Should().BeTrue();
 		}
 
 		[Test]
 		public void IsGreaterThanOrEqual_MajorLessValue()
 		{
 			Manager.SetVersion(5, 92);
-			Assert.IsTrue(Manager.IsGreaterThanOrEqual(4, 95));
+			Manager.IsGreaterThanOrEqual(4, 95).Should().BeTrue();
 		}
 
 		[Test]
 		public void IsLessThanOrEqual_GreaterValue()
 		{
 			Manager.SetVersion(5, 92);
-			Assert.IsTrue(Manager.IsLessThanOrEqual(5, 93));
+			Manager.IsLessThanOrEqual(5, 93).Should().BeTrue();
 		}
 
 		[Test]
 		public void IsLessThanOrEqual_EqualValue()
 		{
 			Manager.SetVersion(5, 92);
-			Assert.IsTrue(Manager.IsLessThanOrEqual(5, 92));
+			Manager.IsLessThanOrEqual(5, 92).Should().BeTrue();
 		}
 
 		[Test]
 		public void IsLessThanOrEqual_MinorLessValue()
 		{
 			Manager.SetVersion(5, 92);
-			Assert.IsFalse(Manager.IsLessThanOrEqual(5, 91));
+			Manager.IsLessThanOrEqual(5, 91).Should().BeFalse();
 		}
 
 		[Test]
 		public void IsLessThanOrEqual_MajorLessValue()
 		{
 			Manager.SetVersion(5, 92);
-			Assert.IsFalse(Manager.IsLessThanOrEqual(4, 95));
+			Manager.IsLessThanOrEqual(4, 95).Should().BeFalse();
 		}
 
 		[Test]

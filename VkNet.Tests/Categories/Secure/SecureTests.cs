@@ -18,7 +18,7 @@ namespace VkNet.Tests.Categories.Secure
 
 			var app = Api.Secure.AddAppEvent(1, 2, 1500);
 
-			Assert.IsTrue(app);
+			app.Should().BeTrue();
 		}
 
 		[Test]

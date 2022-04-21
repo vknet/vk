@@ -41,7 +41,7 @@ namespace VkNet.Tests.Categories.Notes
 
 			var result = Api.Notes.Delete(11825220);
 
-			Assert.True(result);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -52,7 +52,7 @@ namespace VkNet.Tests.Categories.Notes
 
 			var result = Api.Notes.DeleteComment(new NotesDeleteCommentParams());
 
-			Assert.True(result);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -63,7 +63,7 @@ namespace VkNet.Tests.Categories.Notes
 
 			var result = Api.Notes.Edit(new NotesEditParams());
 
-			Assert.True(result);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -74,7 +74,7 @@ namespace VkNet.Tests.Categories.Notes
 
 			var result = Api.Notes.EditComment(new NotesEditCommentParams());
 
-			Assert.True(result);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -118,7 +118,7 @@ namespace VkNet.Tests.Categories.Notes
 
 			var result = Api.Notes.RestoreComment(new NotesRestoreCommentParams());
 
-			Assert.True(result);
+			result.Should().BeTrue();
 		}
 	}
 }

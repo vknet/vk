@@ -1,3 +1,4 @@
+using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using VkNet.Abstractions.Utils;
@@ -24,7 +25,7 @@ namespace VkNet.Tests.Utils
 			var expected = JToken.Parse(json);
 			var actual = JToken.Parse(questions);
 
-			Assert.IsTrue(JToken.DeepEquals(expected, actual));
+			JToken.DeepEquals(expected, actual).Should().BeTrue();
 		}
 
 		[Test]
@@ -87,7 +88,7 @@ namespace VkNet.Tests.Utils
 			var expected = JToken.Parse(json);
 			var actual = JToken.Parse(questions);
 
-			Assert.IsTrue(JToken.DeepEquals(expected, actual));
+			JToken.DeepEquals(expected, actual).Should().BeTrue();
 		}
 	}
 }

@@ -161,19 +161,19 @@ namespace VkNet.Tests.Categories.Video
 			video.Height.Should().Be(640);
 			Assert.IsNotEmpty(video.Image);
 			Assert.IsNotEmpty(video.FirstFrame);
-			Assert.IsFalse(video.IsFavorite);
+			video.IsFavorite.Should().BeFalse();
 			video.AddingDate.Should().Be(DateHelper.TimeStampToDateTime(1569151132));
-			Assert.IsTrue(video.Repeat);
+			video.Repeat.Should().BeTrue();
 			video.Files.Should().NotBeNull();
 			video.Player.Should().Be(new Uri("https://vk.com/vi/dec_GQ3DKNZUGI4TAMQ"));
-			Assert.True(video.CanAdd);
-			Assert.True(video.CanComment);
-			Assert.True(video.CanRepost);
+			video.CanAdd.Should().BeTrue();
+			video.CanComment.Should().BeTrue();
+			video.CanRepost.Should().BeTrue();
 			video.Likes.Should().NotBeNull();
-			Assert.False(video.Likes.UserLikes);
+			video.Likes.UserLikes.Should().BeFalse();
 			video.Likes.Count.Should().Be(369);
 			video.Reposts.Should().NotBeNull();
-			Assert.False(video.Reposts.UserReposted);
+			video.Reposts.UserReposted.Should().BeFalse();
 			video.Reposts.Count.Should().Be(1);
 		}
 
