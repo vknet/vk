@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -34,6 +34,16 @@ namespace VkNet.Model
 		/// Uri ролика с размером 1920х1080px.
 		/// </summary>
 		public Uri Mp4_1080 { get; set; }
+
+		/// <summary>
+		/// Uri ролика с размером 1440х2560px.
+		/// </summary>
+		public Uri Mp4_1440 { get; set; }
+
+		/// <summary>
+		/// Uri ролика с размером 2160х3840px.
+		/// </summary>
+		public Uri Mp4_2160 { get; set; }
 
 		/// <summary>
 		/// Внешняя ссылка (например для видео из Youtube)
