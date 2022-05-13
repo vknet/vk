@@ -49,12 +49,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncFixer" Version="1.5.1" PrivateAssets="all" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.38" />
+		<PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="all" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.42" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.32.0.39516" PrivateAssets="all"/>
-		<PackageReference Include="JetBrains.Annotations" Version="2021.3.0" PrivateAssets="all" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.39.0.47922" PrivateAssets="all" />
+		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="all" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(TargetFramework) != 'net6.0'">
@@ -65,7 +65,7 @@
 
 	<ItemGroup Condition="$(TargetFramework) == 'net6.0'">
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
 		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
 	</ItemGroup>
 

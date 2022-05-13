@@ -133,6 +133,6 @@ namespace VkNet.Model.RequestParams.Market
 		/// Артикул товара, произвольная строка
 		/// </summary>
 		[JsonProperty("sku")]
-		public int Sku { get; set; }
+		public string Sku { get; set; }
 	}
 }
