@@ -27,23 +27,41 @@ namespace VkNet.Model.Keyboard
 
 		private int _totalPayloadLength;
 
+		/// <summary>
+		/// Шаблон сообщения для исключения максимальной длины полезной нагрузки сообщения
+		/// </summary>
 		public static readonly string ButtonPayloadLengthExceptionTemplate =
 			"Для кнопки payload должен быть максимум " + MaxButtonPayload + " символов: {0}";
 
+		/// <summary>
+		/// Шаблон сообщения для исключения сумм всех максимальных длин полезной нагрузки сообщения
+		/// </summary>
 		public static readonly string SumPayloadLengthExceptionTemplate =
 			"Суммарная длина для payload всех кнопок должен быть максимум " + MaxPayloadOfAllButtons + " символов.";
 
+		/// <summary>
+		/// Шаблон сообщения для исключения максимального количества кнопок в строке
+		/// </summary>
 		public static readonly string MaxButtonsPerLineExceptionTemplate =
 			"Количество кнопок на одной линии не должно превышать " + MaxButtonsPerLine;
 
+		/// <summary>
+		/// Шаблон сообщения для исключения максимального количества строк
+		/// </summary>
 		public static readonly string MaxButtonLinesExceptionTemplate = "Количество линий кнопок не должно превышать " + MaxButtonLines;
 
 		private const int MaxButtonPayload = 255;
 
 		private const int MaxPayloadOfAllButtons = 1000;
 
+		/// <summary>
+		/// Максимальное количество кнопок в строке
+		/// </summary>
 		public const int MaxButtonsPerLine = 4;
 
+		/// <summary>
+		/// Максимальное количество строк
+		/// </summary>
 		public const int MaxButtonLines = 10;
 
 		/// <inheritdoc />
@@ -56,6 +74,11 @@ namespace VkNet.Model.Keyboard
 		{
 		}
 
+		/// <summary>
+		/// Конструктор клавиатур
+		/// </summary>
+		/// <param name="type">Тип</param>
+		/// <param name="isOneTime">Одноразовая</param>
 		public KeyboardBuilder(string type, bool isOneTime = false)
 		{
 			IsOneTime = isOneTime;
@@ -65,9 +88,12 @@ namespace VkNet.Model.Keyboard
 		/// <inheritdoc />
 		public IKeyboardBuilder AddButton(MessageKeyboardButtonAction buttonAction, KeyboardButtonColor color = default)
 		{
-			_totalPayloadLength += buttonAction.Payload.Length;
+			if (buttonAction.Payload != null)
+			{
+				_totalPayloadLength += buttonAction.Payload.Length;
 
-			CheckKeyboardSize(buttonAction.Payload);
+				CheckKeyboardSize(buttonAction.Payload);
+			}
 
 			_currentLine.Add(new MessageKeyboardButton
 			{
@@ -120,8 +146,8 @@ namespace VkNet.Model.Keyboard
 				{
 					Label = addButtonParams.Label,
 					Payload = payload,
-					Link =addButtonParams.Link!=null? new Uri(addButtonParams.Link):null,
-					Hash =addButtonParams.Hash!=null? addButtonParams.Hash:null,
+					Link = addButtonParams.Link != null ? new Uri(addButtonParams.Link) : null,
+					Hash = addButtonParams.Hash,
 					Type = addButtonParams.ActionType,
 					Intent = addButtonParams.Intent,
 					SubscribeId = addButtonParams.SubscribeId,
