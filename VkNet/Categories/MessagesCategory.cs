@@ -387,23 +387,27 @@ namespace VkNet.Categories
 			return DeleteConversation(userId, peerId, null);
 		}
 
-		private IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, IEnumerable<ulong> conversationMessageIds = null, ulong? peerId = null, bool? spam = null, ulong? groupId = null,
+		private IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, IEnumerable<ulong> conversationMessageIds = null,
+												ulong? peerId = null, bool? spam = null, ulong? groupId = null,
 												bool? deleteForAll = null)
 		{
-			if (messageIds == null&&conversationMessageIds==null)
-				throw new ArgumentNullException(nameof(conversationMessageIds), "Parameter conversationMessageIds or messageIds can not be null.");
-			List<ulong> ids = messageIds!=null? messageIds.ToList():conversationMessageIds.ToList();
+			if (messageIds == null && conversationMessageIds == null)
+			{
+				throw new ArgumentNullException(nameof(conversationMessageIds),
+					"Parameter conversationMessageIds or messageIds can not be null.");
+			}
+
+			var ids = messageIds != null ? messageIds.ToList() : conversationMessageIds.ToList();
 
 			if (ids.Count == 0)
 			{
 				throw new ArgumentException("Parameter Ids has no elements.", nameof(messageIds));
 			}
 
-
 			var parameters = new VkParameters
 			{
 				{ "message_ids", messageIds?.ToList() },
-				{ "conversation_message_ids", conversationMessageIds?.ToList() },
+				{ "cmids", conversationMessageIds?.ToList() },
 				{ "peer_id", peerId },
 				{ "spam", spam },
 				{ "group_id", groupId },
@@ -420,7 +424,8 @@ namespace VkNet.Categories
 				result.Add(id, isDeleted);
 			}
 
-			return result;}
+			return result;
+		}
 
 		/// <inheritdoc />
 		public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
