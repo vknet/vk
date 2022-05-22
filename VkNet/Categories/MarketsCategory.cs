@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Model;
@@ -208,12 +208,18 @@ namespace VkNet.Categories
 					{ "item_id", @params.ItemId },
 					{ "name", @params.Name },
 					{ "description", @params.Description },
+					{ "url", @params.Url },
+					{ "sku", @params.Sku },
 					{ "category_id", @params.CategoryId },
 					{ "price", @params.Price },
+					{ "old_price", @params.OldPrice },
 					{ "deleted", @params.Deleted },
 					{ "main_photo_id", @params.MainPhotoId },
 					{ "photo_ids", @params.PhotoIds },
-					{ "url", @params.Url }
+					{ "dimension_width", @params.DimensionWidth },
+					{ "dimension_height", @params.DimensionHeight },
+					{ "dimension_length", @params.DimensionLength },
+					{ "weight", @params.Weight }
 				})[key: "market_item_id"];
 		}
 
