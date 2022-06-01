@@ -11,7 +11,6 @@ using VkNet.Utils;
 namespace VkNet.Tests.Categories.Utils
 {
 	[TestFixture]
-
 	public class UtilsCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Utils";
@@ -24,11 +23,11 @@ namespace VkNet.Tests.Categories.Utils
 
 			var type = Api.Utils.CheckLink("http://www.kreml.ru/‎");
 
-			Assert.That(type, Is.EqualTo(LinkAccessType.Banned));
+			type.Should().Be(LinkAccessType.Banned);
 
 			type = Api.Utils.CheckLink(new Uri("http://www.kreml.ru/‎"));
 
-			Assert.That(type, Is.EqualTo(LinkAccessType.Banned));
+			type.Should().Be(LinkAccessType.Banned);
 		}
 
 		[Test]
@@ -39,11 +38,11 @@ namespace VkNet.Tests.Categories.Utils
 
 			var type = Api.Utils.CheckLink("https://www.google.ru/");
 
-			Assert.That(type, Is.EqualTo(LinkAccessType.NotBanned));
+			type.Should().Be(LinkAccessType.NotBanned);
 
 			type = Api.Utils.CheckLink(new Uri("https://www.google.ru/"));
 
-			Assert.That(type, Is.EqualTo(LinkAccessType.NotBanned));
+			type.Should().Be(LinkAccessType.NotBanned);
 		}
 
 		[Test]
@@ -52,7 +51,7 @@ namespace VkNet.Tests.Categories.Utils
 			Url = "https://api.vk.com/method/utils.checkLink";
 			ReadCategoryJsonPath(nameof(CheckLink_NotLink));
 
-			Assert.That(() => Api.Utils.CheckLink("hsfasfsf"), Throws.InstanceOf<UriFormatException>());
+			FluentActions.Invoking(() => Api.Utils.CheckLink("hsfasfsf")).Should().ThrowExactly<UriFormatException>();
 		}
 
 		[Test]
@@ -86,27 +85,27 @@ namespace VkNet.Tests.Categories.Utils
 			var result = Api.Utils.GetLinkStats(new LinkStatsParams());
 
 			result.Should().NotBeNull();
-			Assert.That(result.Key, Is.EqualTo("6drK78"));
-			Assert.That(result.Stats, Is.Not.Empty);
+			result.Key.Should().Be("6drK78");
+			result.Stats.Should().NotBeEmpty();
 			var stat = result.Stats.FirstOrDefault();
 			stat.Should().NotBeNull();
-			Assert.That(stat.Views, Is.EqualTo(1));
+			stat.Views.Should().Be(1);
 
-			Assert.That(stat.Timestamp, Is.EqualTo(VkResponse.TimestampToDateTime(1489309200)));
+			stat.Timestamp.Should().Be(VkResponse.TimestampToDateTime(1489309200));
 
 			var sexAge = stat.SexAge.FirstOrDefault();
 			sexAge.Should().NotBeNull();
-			Assert.That(sexAge.AgeRange, Is.EqualTo("18-21"));
-			Assert.That(sexAge.Female, Is.EqualTo(2));
-			Assert.That(sexAge.Male, Is.EqualTo(1));
+			sexAge.AgeRange.Should().Be("18-21");
+			sexAge.Female.Should().Be(2);
+			sexAge.Male.Should().Be(1);
 			var country = stat.Countries.FirstOrDefault();
 			country.Should().NotBeNull();
-			Assert.That(country.CountryId, Is.EqualTo(1));
-			Assert.That(country.Views, Is.EqualTo(1));
+			country.CountryId.Should().Be(1);
+			country.Views.Should().Be(1);
 			var city = stat.Cities.FirstOrDefault();
 			city.Should().NotBeNull();
-			Assert.That(city.CityId, Is.EqualTo(1));
-			Assert.That(city.Views, Is.EqualTo(1));
+			city.CityId.Should().Be(1);
+			city.Views.Should().Be(1);
 		}
 
 		[Test]
@@ -117,7 +116,7 @@ namespace VkNet.Tests.Categories.Utils
 
 			var result = Api.Utils.GetServerTime();
 
-			Assert.That(result, Is.EqualTo(VkResponse.TimestampToDateTime(1489309200)));
+			result.Should().Be(VkResponse.TimestampToDateTime(1489309200));
 		}
 
 		[Test]
@@ -129,9 +128,9 @@ namespace VkNet.Tests.Categories.Utils
 			var result = Api.Utils.GetShortLink(new Uri("http://google.ru"), false);
 
 			result.Should().NotBeNull();
-			Assert.That(result.ShortUrl, Is.EqualTo(new Uri("https://vk.cc/7dMDvY")));
-			Assert.That(result.Url, Is.EqualTo(new Uri("http://google.ru")));
-			Assert.That(result.Key, Is.EqualTo("7dMDvY"));
+			result.ShortUrl.Should().Be(new Uri("https://vk.cc/7dMDvY"));
+			result.Url.Should().Be(new Uri("http://google.ru"));
+			result.Key.Should().Be("7dMDvY");
 		}
 
 		[Test]
@@ -144,7 +143,7 @@ namespace VkNet.Tests.Categories.Utils
 
 			result.Should().NotBeNull();
 			result.Type.Should().Be(VkObjectType.User);
-			Assert.That(result.Id, Is.EqualTo(1));
+			result.Id.Should().Be(1);
 		}
 
 		[Test]
@@ -155,13 +154,13 @@ namespace VkNet.Tests.Categories.Utils
 
 			var obj = Api.Utils.ResolveScreenName("3f625aef-b285-4006-a87f-0367a04f1138");
 
-			Assert.That(obj, Is.Null);
+			obj.Should().BeNull();
 		}
 
 		[Test]
 		public void ResolveScreenName_EmptyStringName_ThrowException()
 		{
-			Assert.That(() => Api.Utils.ResolveScreenName(string.Empty), Throws.InstanceOf<ArgumentNullException>());
+			FluentActions.Invoking(() => Api.Utils.ResolveScreenName(string.Empty)).Should().ThrowExactly<ArgumentNullException>();
 		}
 
 		[Test]
@@ -173,9 +172,9 @@ namespace VkNet.Tests.Categories.Utils
 			var obj = Api.Utils.ResolveScreenName("mdk");
 
 			// assert
-			Assert.That(obj, Is.Not.Null);
-			Assert.That(obj.Type, Is.EqualTo(VkObjectType.Group));
-			Assert.That(obj.Id, Is.EqualTo(10639516));
+			obj.Should().NotBeNull();
+			obj.Type.Should().Be(VkObjectType.Group);
+			obj.Id.Should().Be(10639516);
 		}
 
 		[Test]
@@ -187,9 +186,9 @@ namespace VkNet.Tests.Categories.Utils
 			var obj = Api.Utils.ResolveScreenName("azhidkov");
 
 			// assert
-			Assert.That(obj, Is.Not.Null);
-			Assert.That(obj.Id, Is.EqualTo(922337203685471));
-			Assert.That(obj.Type, Is.EqualTo(VkObjectType.User));
+			obj.Should().NotBeNull();
+			obj.Id.Should().Be(922337203685471);
+			obj.Type.Should().Be(VkObjectType.User);
 		}
 
 		[Test]
@@ -201,9 +200,9 @@ namespace VkNet.Tests.Categories.Utils
 			var obj = Api.Utils.ResolveScreenName("azhidkov");
 
 			// assert
-			Assert.That(obj, Is.Not.Null);
-			Assert.That(obj.Id, Is.EqualTo(186085938));
-			Assert.That(obj.Type, Is.EqualTo(VkObjectType.User));
+			obj.Should().NotBeNull();
+			obj.Id.Should().Be(186085938);
+			obj.Type.Should().Be(VkObjectType.User);
 		}
 	}
 }

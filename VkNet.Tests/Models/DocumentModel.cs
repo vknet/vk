@@ -1,10 +1,10 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.Attachments;
 
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-
 	public class DocumentModel
 	{
 		[Test]
@@ -19,7 +19,7 @@ namespace VkNet.Tests.Models
 
 			var result = document.ToString();
 
-			Assert.AreEqual(result, "doc1234_1234_test");
+			result.Should().Be("doc1234_1234_test");
 		}
 	}
 }

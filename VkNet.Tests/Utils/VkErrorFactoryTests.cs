@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model;
@@ -15,7 +16,7 @@ namespace VkNet.Tests.Utils
 				ErrorCode = 14
 			});
 
-			Assert.IsInstanceOf<CaptchaNeededException>(exception);
+			exception.Should().BeOfType<CaptchaNeededException>();
 		}
 	}
 }

@@ -111,7 +111,7 @@ namespace VkNet.Tests.Models
 
 			var message = Message.FromJson(GetResponse());
 
-			Assert.IsNotEmpty(message.Attachments);
+			message.Attachments.Should().NotBeEmpty();
 
 			var attachment = message.Attachments[0];
 

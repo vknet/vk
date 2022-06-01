@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Utils;
@@ -8,7 +9,6 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture]
-
 	public class UtilitiesTests
 	{
 		[Test]
@@ -20,9 +20,9 @@ namespace VkNet.Tests.Utils
 				LastName = "Inyutin"
 			});
 
-			Assert.AreNotEqual(result, "{}");
+			result.Should().NotBe("{}");
 			var attribute = Attribute.GetCustomAttribute(typeof(User), typeof(DataContractAttribute));
-			Assert.That(attribute, Is.Null);
+			attribute.Should().BeNull();
 		}
 
 		[Test]
@@ -31,13 +31,13 @@ namespace VkNet.Tests.Utils
 			var vkCollection = new VkCollection<User>(10,
 				new List<User>
 				{
-					new User
+					new()
 					{
 						Id = 12,
 						FirstName = "Andrew",
 						LastName = "Teleshev"
 					},
-					new User
+					new()
 					{
 						Id = 13,
 						FirstName = "Даниил",
@@ -46,9 +46,9 @@ namespace VkNet.Tests.Utils
 				});
 
 			var result = Utilities.SerializeToJson(vkCollection);
-			Assert.AreNotEqual(result, "{}");
+			result.Should().NotBe("{}");
 			var attribute = Attribute.GetCustomAttribute(typeof(VkCollection<>), typeof(DataContractAttribute));
-			Assert.That(attribute, Is.Null);
+			attribute.Should().BeNull();
 		}
 
 		[Test]
@@ -56,7 +56,7 @@ namespace VkNet.Tests.Utils
 		{
 			const string invalidJson = "ERROR";
 
-			Assert.DoesNotThrow(() => Utilities.PrettyPrintJson(invalidJson));
+			FluentActions.Invoking(() => Utilities.PrettyPrintJson(invalidJson)).Should().NotThrow();
 		}
 	}
 }

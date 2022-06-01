@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Utils;
@@ -6,7 +7,6 @@ using VkNet.Utils;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-
 	public class VkObjectTests : BaseTest
 	{
 		[Test]
@@ -17,8 +17,8 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
 			var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
 
-			Assert.That(result.Id, Is.EqualTo(179331040));
-			Assert.That(result.Type, Is.EqualTo(VkObjectType.Page));
+			result.Id.Should().Be(179331040);
+			result.Type.Should().Be(VkObjectType.Page);
 		}
 
 		[Test]
@@ -29,8 +29,8 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
 			var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
 
-			Assert.That(result.Id, Is.EqualTo(179331040));
-			Assert.That(result.Type, Is.EqualTo(VkObjectType.Application));
+			result.Id.Should().Be(179331040);
+			result.Type.Should().Be(VkObjectType.Application);
 		}
 
 		[Test]
@@ -41,8 +41,8 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
 			var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
 
-			Assert.That(result.Id, Is.EqualTo(179331040));
-			Assert.That(result.Type, Is.EqualTo(VkObjectType.Group));
+			result.Id.Should().Be(179331040);
+			result.Type.Should().Be(VkObjectType.Group);
 		}
 
 		[Test]
@@ -53,8 +53,8 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
 			var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
 
-			Assert.That(result.Id, Is.EqualTo(179331040));
-			Assert.That(result.Type, Is.EqualTo(VkObjectType.User));
+			result.Id.Should().Be(179331040);
+			result.Type.Should().Be(VkObjectType.User);
 		}
 
 		[Test]
@@ -65,8 +65,8 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
 			var result = Api.Utils.ResolveScreenName("page");
 
-			Assert.That(result.Id, Is.EqualTo(179331040));
-			Assert.That(result.Type, Is.EqualTo(VkObjectType.Page));
+			result.Id.Should().Be(179331040);
+			result.Type.Should().Be(VkObjectType.Page);
 		}
 
 		[Test]
@@ -77,8 +77,8 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
 			var result = Api.Utils.ResolveScreenName("application");
 
-			Assert.That(result.Id, Is.EqualTo(179331040));
-			Assert.That(result.Type, Is.EqualTo(VkObjectType.Application));
+			result.Id.Should().Be(179331040);
+			result.Type.Should().Be(VkObjectType.Application);
 		}
 
 		[Test]
@@ -89,8 +89,8 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
 			var result = Api.Utils.ResolveScreenName("group");
 
-			Assert.That(result.Id, Is.EqualTo(179331040));
-			Assert.That(result.Type, Is.EqualTo(VkObjectType.Group));
+			result.Id.Should().Be(179331040);
+			result.Type.Should().Be(VkObjectType.Group);
 		}
 
 		[Test]
@@ -101,8 +101,8 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
 			var result = Api.Utils.ResolveScreenName("user");
 
-			Assert.That(result.Id, Is.EqualTo(179331040));
-			Assert.That(result.Type, Is.EqualTo(VkObjectType.User));
+			result.Id.Should().Be(179331040);
+			result.Type.Should().Be(VkObjectType.User);
 		}
 	}
 }

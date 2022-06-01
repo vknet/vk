@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-
 	public class SerializableTests
 	{
 		[Test]
@@ -23,12 +23,7 @@ namespace VkNet.Tests.Models
 
 			var enumerable = models.ToList();
 
-			if (enumerable.Any())
-			{
-				Assert.Fail(string.Join(Environment.NewLine, enumerable.Select(x => x.Name)));
-			}
-
-			Assert.IsEmpty(enumerable);
+			enumerable.Should().BeEmpty();
 		}
 	}
 }

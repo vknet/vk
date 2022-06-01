@@ -1,6 +1,6 @@
-using NUnit.Framework;
 using System.Linq;
 using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model.Keyboard;
 
@@ -18,13 +18,14 @@ namespace VkNet.Tests.Models
 		{
 			// Arrange
 			var builder = new KeyboardBuilder();
-
-			// Act
-			var exception = Assert.Throws<VkKeyboardPayloadMaxLengthException>(() => builder.AddButton("Button", Payload200 + Payload200));
+			var currentPayload = $"{{\"button\":\"{Payload200 + Payload200}\"}}";
 
 			// Assert
-			var currentPayload = $"{{\"button\":\"{Payload200 + Payload200}\"}}";
-			exception.Message.Should().Be(string.Format(KeyboardBuilder.ButtonPayloadLengthExceptionTemplate, currentPayload));
+			FluentActions.Invoking(() => builder.AddButton("Button", Payload200 + Payload200))
+				.Should()
+				.ThrowExactly<VkKeyboardPayloadMaxLengthException>()
+				.And.Message.Should()
+				.Be(string.Format(KeyboardBuilder.ButtonPayloadLengthExceptionTemplate, currentPayload));
 		}
 
 		[Test]
@@ -36,7 +37,7 @@ namespace VkNet.Tests.Models
 			// Act
 
 			// Assert
-			Assert.DoesNotThrow(() => builder.AddButton("Button", Payload200));
+			FluentActions.Invoking(() => builder.AddButton("Button", Payload200)).Should().NotThrow();
 		}
 
 		[Test]
@@ -46,14 +47,17 @@ namespace VkNet.Tests.Models
 			var builder = new KeyboardBuilder();
 
 			// Act
-			for (int i = 0; i < KeyboardBuilder.MaxButtonLines; i++)
+			for (var i = 0; i < KeyboardBuilder.MaxButtonLines; i++)
 			{
 				builder.AddLine();
 			}
 
 			// Assert
-			var exception = Assert.Throws<VkKeyboardMaxButtonsException>(() => builder.AddLine());
-			exception.Message.Should().Be(KeyboardBuilder.MaxButtonLinesExceptionTemplate);
+			FluentActions.Invoking(() => builder.AddLine())
+				.Should()
+				.ThrowExactly<VkKeyboardMaxButtonsException>()
+				.And.Message.Should()
+				.Be(KeyboardBuilder.MaxButtonLinesExceptionTemplate);
 		}
 
 		[Test]
@@ -63,13 +67,13 @@ namespace VkNet.Tests.Models
 			var builder = new KeyboardBuilder();
 
 			// Act
-			for (int i = 0; i < KeyboardBuilder.MaxButtonLines - 1; i++)
+			for (var i = 0; i < KeyboardBuilder.MaxButtonLines - 1; i++)
 			{
 				builder.AddLine();
 			}
 
 			// Assert
-			Assert.DoesNotThrow(() => builder.AddLine());
+			FluentActions.Invoking(() => builder.AddLine()).Should().NotThrow();
 		}
 
 		[Test]
@@ -79,14 +83,17 @@ namespace VkNet.Tests.Models
 			var builder = new KeyboardBuilder();
 
 			// Act
-			for (int i = 0; i < KeyboardBuilder.MaxButtonsPerLine; i++)
+			for (var i = 0; i < KeyboardBuilder.MaxButtonsPerLine; i++)
 			{
 				builder.AddButton("sample label", "sample extra");
 			}
 
 			// Assert
-			var exception = Assert.Throws<VkKeyboardMaxButtonsException>(() => builder.AddButton("sample label", "sample extra"));
-			exception.Message.Should().Be(KeyboardBuilder.MaxButtonsPerLineExceptionTemplate);
+			FluentActions.Invoking(() => builder.AddButton("sample label", "sample extra"))
+				.Should()
+				.ThrowExactly<VkKeyboardMaxButtonsException>()
+				.And.Message.Should()
+				.Be(KeyboardBuilder.MaxButtonsPerLineExceptionTemplate);
 		}
 
 		[Test]
@@ -96,13 +103,13 @@ namespace VkNet.Tests.Models
 			var builder = new KeyboardBuilder();
 
 			// Act
-			for (int i = 0; i < KeyboardBuilder.MaxButtonsPerLine - 1; i++)
+			for (var i = 0; i < KeyboardBuilder.MaxButtonsPerLine - 1; i++)
 			{
 				builder.AddButton("sample label", "sample extra");
 			}
 
 			// Assert
-			Assert.DoesNotThrow(() => builder.AddButton("sample label", "sample extra"));
+			FluentActions.Invoking(() => builder.AddButton("sample label", "sample extra")).Should().NotThrow();
 		}
 
 		[Test]
@@ -119,8 +126,11 @@ namespace VkNet.Tests.Models
 				.AddButton("Button", Payload200);
 
 			// Assert
-			var exception = Assert.Throws<VkKeyboardPayloadMaxLengthException>(() => builder.AddButton("Button", Payload200));
-			exception.Message.Should().Be(KeyboardBuilder.SumPayloadLengthExceptionTemplate);
+			FluentActions.Invoking(() => builder.AddButton("Button", Payload200))
+				.Should()
+				.ThrowExactly<VkKeyboardPayloadMaxLengthException>()
+				.And.Message.Should()
+				.Be(KeyboardBuilder.SumPayloadLengthExceptionTemplate);
 		}
 
 		[Test]
@@ -135,7 +145,7 @@ namespace VkNet.Tests.Models
 				.AddButton("Button", Payload200);
 
 			// Assert
-			Assert.DoesNotThrow(() => builder.Build());
+			FluentActions.Invoking(() => builder.Build()).Should().NotThrow();
 		}
 
 		[Test]
@@ -145,18 +155,21 @@ namespace VkNet.Tests.Models
 			var builder = new KeyboardBuilder();
 
 			// Act
-			for (int i = 0; i < KeyboardBuilder.MaxButtonLines; i++)
+			for (var i = 0; i < KeyboardBuilder.MaxButtonLines; i++)
 			{
 				builder.AddLine();
 			}
 
 			// Assert
-			var exception = Assert.Throws<VkKeyboardMaxButtonsException>(() =>
-			{
-				builder.AddLine();
-				builder.Build();
-			});
-			exception.Message.Should().Be(KeyboardBuilder.MaxButtonLinesExceptionTemplate);
+			FluentActions.Invoking(() =>
+				{
+					builder.AddLine();
+					builder.Build();
+				})
+				.Should()
+				.ThrowExactly<VkKeyboardMaxButtonsException>()
+				.And.Message.Should()
+				.Be(KeyboardBuilder.MaxButtonLinesExceptionTemplate);
 		}
 
 		[Test]
@@ -166,13 +179,13 @@ namespace VkNet.Tests.Models
 			var builder = new KeyboardBuilder();
 
 			// Act
-			for (int i = 0; i < KeyboardBuilder.MaxButtonLines; i++)
+			for (var i = 0; i < KeyboardBuilder.MaxButtonLines; i++)
 			{
 				builder.AddLine();
 			}
 
 			// Assert
-			Assert.DoesNotThrow(() => builder.Build());
+			FluentActions.Invoking(() => builder.Build()).Should().NotThrow();
 		}
 	}
 }

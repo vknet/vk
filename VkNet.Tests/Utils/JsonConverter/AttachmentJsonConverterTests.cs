@@ -19,9 +19,9 @@ namespace VkNet.Tests.Utils.JsonConverter
 			CommentBoard result = Api.Call("friends.getRequests", VkParameters.Empty);
 
 			result.Should().NotBeNull();
-			Assert.That(result.Id, Is.EqualTo(3));
-			Assert.That(result.FromId, Is.EqualTo(32190123));
-			Assert.IsNotEmpty(result.Attachments);
+			result.Id.Should().Be(3);
+			result.FromId.Should().Be(32190123);
+			result.Attachments.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -47,7 +47,7 @@ namespace VkNet.Tests.Utils.JsonConverter
 				});
 
 			result.Should().NotBeNull();
-			Assert.IsNotEmpty(result.Attachments);
+			result.Attachments.Should().NotBeEmpty();
 		}
 	}
 }

@@ -42,7 +42,7 @@ namespace VkNet.Tests.Models
 			conversation.ChatSettings.Acl.CanModerate.Should().BeFalse();
 			conversation.ChatSettings.Acl.CanCopyChat.Should().BeFalse();
 			conversation.ChatSettings.MembersCount.Should().Be(13);
-			Assert.IsNotEmpty(conversation.ChatSettings.ActiveIds);
+			conversation.ChatSettings.ActiveIds.Should().NotBeEmpty();
 		}
 	}
 }

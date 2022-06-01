@@ -1,4 +1,5 @@
 using System;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
@@ -17,7 +18,9 @@ namespace VkNet.Tests.Models
 		{
 			var builder = new CarouselElementBuilder();
 
-			Assert.Throws<VkKeyboardPayloadMaxLengthException>(() => builder.AddButton("Button", Payload + Payload));
+			FluentActions.Invoking(() => builder.AddButton("Button", Payload + Payload))
+				.Should()
+				.ThrowExactly<VkKeyboardPayloadMaxLengthException>();
 		}
 
 		[Test]
@@ -25,7 +28,7 @@ namespace VkNet.Tests.Models
 		{
 			var builder = new CarouselElementBuilder();
 
-			Assert.DoesNotThrow(() => builder.AddButton("Button", Payload));
+			FluentActions.Invoking(() => builder.AddButton("Button", Payload)).Should().NotThrow();
 		}
 
 		[Test]
@@ -47,23 +50,24 @@ namespace VkNet.Tests.Models
 				Link = uri,
 				Type = carouselType
 			});
+
 			builder.SetDescription(description);
 			builder.SetPhotoId(photoId);
 			builder.SetTitle(title);
 			builder.AddButton(buttonLabel, buttonPayload, buttonColor, buttonType);
 			var carousel = builder.Build();
 
-			Assert.AreEqual(builder.Action.Link, uri);
-			Assert.AreEqual(builder.Action.Type, carouselType);
-			Assert.AreEqual(builder.Description, description);
-			Assert.AreEqual(builder.Title, title);
-			Assert.AreEqual(builder.PhotoId, photoId);
+			uri.Should().Be(builder.Action.Link);
+			carouselType.Should().Be(builder.Action.Type);
+			description.Should().Be(builder.Description);
+			title.Should().Be(builder.Title);
+			photoId.Should().Be(builder.PhotoId);
 
-			Assert.AreEqual(carousel.Action.Link, uri);
-			Assert.AreEqual(carousel.Action.Type, carouselType);
-			Assert.AreEqual(carousel.Description, description);
-			Assert.AreEqual(carousel.Title, title);
-			Assert.AreEqual(carousel.PhotoId, photoId);
+			uri.Should().Be(carousel.Action.Link);
+			carouselType.Should().Be(carousel.Action.Type);
+			description.Should().Be(carousel.Description);
+			title.Should().Be(carousel.Title);
+			photoId.Should().Be(carousel.PhotoId);
 		}
 
 		[Test]
@@ -72,7 +76,7 @@ namespace VkNet.Tests.Models
 			var builder = new CarouselElementBuilder();
 			builder.AddButton("label", "");
 			builder.ClearButtons();
-			Assert.AreEqual(builder.Buttons.Count, 0);
+			builder.Buttons.Should().BeEmpty();
 		}
 	}
 }

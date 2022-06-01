@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 			var result = FriendsGetRequestsResult.FromJson(response);
 
-			Assert.That(result.Message, Is.EqualTo("text"));
+			result.Message.Should().Be("text");
 		}
 
 		[Test]
@@ -29,7 +30,7 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 			var result = FriendsGetRequestsResult.FromJson(response);
 
-			Assert.IsNotEmpty(result.Mutual);
+			result.Mutual.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -40,7 +41,7 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 			var result = FriendsGetRequestsResult.FromJson(response);
 
-			Assert.That(result.UserId, Is.EqualTo(221634238L));
+			result.UserId.Should().Be(221634238L);
 		}
 	}
 }

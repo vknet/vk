@@ -95,8 +95,8 @@ namespace VkNet.Tests
 			var exception = Assert.Throws<VkApiException>(() => Manager.SetVersion(5, 50));
 
 			// Assert
-			Assert.That(exception.Message, Is.EqualTo("С 14 октября 2020 года прекратится поддержка версий ниже 5.81."));
-			Assert.That(exception.HelpLink, Is.EqualTo("https://vk.com/dev/constant_version_updates"));
+			exception.Message.Should().Be("С 14 октября 2020 года прекратится поддержка версий ниже 5.81.");
+			exception.HelpLink.Should().Be("https://vk.com/dev/constant_version_updates");
 		}
 
 		[Test]
@@ -108,8 +108,8 @@ namespace VkNet.Tests
 			var exception = Assert.Throws<VkApiException>(() => Manager.SetVersion(4, 50));
 
 			// Assert
-			Assert.That(exception.Message, Is.EqualTo("С 27 мая 2019 года версии API ниже 5.0 больше не поддерживаются."));
-			Assert.That(exception.HelpLink, Is.EqualTo("https://vk.com/dev/version_update_2.0"));
+			exception.Message.Should().Be("С 27 мая 2019 года версии API ниже 5.0 больше не поддерживаются.");
+			exception.HelpLink.Should().Be("https://vk.com/dev/version_update_2.0");
 		}
 	}
 }

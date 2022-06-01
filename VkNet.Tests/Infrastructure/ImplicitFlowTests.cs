@@ -66,7 +66,8 @@ namespace VkNet.Tests.Infrastructure
 
 			mocker.Setup<IVkApiVersionManager, string>(x => x.Version).Returns("5.92");
 
-			mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x => x.ExecuteAsync(It.IsAny<Uri>(), It.IsAny<IApiAuthParams>()))
+			mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x =>
+					x.ExecuteAsync(It.IsAny<Uri>(), It.IsAny<IApiAuthParams>()))
 				.ReturnsAsync(new AuthorizationFormResult
 				{
 					ResponseUrl = new Uri("https://m.vk.com/login?act=authcheck&m=442"),
@@ -120,7 +121,7 @@ namespace VkNet.Tests.Infrastructure
 				Login = "login"
 			});
 
-			Assert.ThrowsAsync<VkAuthorizationException>(() => implicitFlow.AuthorizeAsync());
+			FluentActions.Invoking(() => implicitFlow.AuthorizeAsync()).Should().ThrowExactlyAsync<VkAuthorizationException>();
 		}
 	}
 }

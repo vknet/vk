@@ -21,7 +21,7 @@ namespace VkNet.Tests.Models
 
 			var result = video.ToString();
 
-			"video1234_1234_test".Should().Be(result);
+			result.Should().Be("video1234_1234_test");
 		}
 
 		[Test]
@@ -64,38 +64,49 @@ namespace VkNet.Tests.Models
 
 			var files = video.Files;
 
-			files.Mp4_240.Should().Be(new Uri(
-				"https://vkvd79.mycdn.me/?sig=hJ-nQdUFlJE&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=0"));
+			files.Mp4_240.Should()
+				.Be(new Uri(
+					"https://vkvd79.mycdn.me/?sig=hJ-nQdUFlJE&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=0"));
 
-			files.Mp4_360.Should().Be(new Uri(
-				"https://vkvd79.mycdn.me/?sig=AaOYcMVln7E&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=1"));
+			files.Mp4_360.Should()
+				.Be(new Uri(
+					"https://vkvd79.mycdn.me/?sig=AaOYcMVln7E&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=1"));
 
-			files.Mp4_480.Should().Be(new Uri(
-				"https://vkvd79.mycdn.me/?sig=stO4D-MNhVA&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=2"));
+			files.Mp4_480.Should()
+				.Be(new Uri(
+					"https://vkvd79.mycdn.me/?sig=stO4D-MNhVA&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=2"));
 
-			files.Mp4_720.Should().Be(new Uri(
-				"https://vkvd79.mycdn.me/?sig=6zFPxlcmMW0&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=3"));
+			files.Mp4_720.Should()
+				.Be(new Uri(
+					"https://vkvd79.mycdn.me/?sig=6zFPxlcmMW0&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=3"));
 
-			files.Mp4_1080.Should().Be(new Uri(
-				"https://vkvd79.mycdn.me/?sig=P479kIBCu5M&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=5"));
+			files.Mp4_1080.Should()
+				.Be(new Uri(
+					"https://vkvd79.mycdn.me/?sig=P479kIBCu5M&ct=0&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=5"));
 
-			files.Hls.Should().Be(new Uri(
-				"https://vkvd79.mycdn.me/video.m3u8?srcIp=217.70.31.125&expires=1633249784334&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&mid=2930947729488&type=4&sig=kKC4Rp0aao4&ct=8&urls=185.226.52.190&clientType=13&cmd=videoPlayerCdn&id=1777443670608"));
+			files.Hls.Should()
+				.Be(new Uri(
+					"https://vkvd79.mycdn.me/video.m3u8?srcIp=217.70.31.125&expires=1633249784334&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&mid=2930947729488&type=4&sig=kKC4Rp0aao4&ct=8&urls=185.226.52.190&clientType=13&cmd=videoPlayerCdn&id=1777443670608"));
 
-			files.DashUni.Should().Be(new Uri(
-				"https://vkvd79.mycdn.me/?sig=stO4D-MNhVA&ct=6&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=2"));
+			files.DashUni.Should()
+				.Be(new Uri(
+					"https://vkvd79.mycdn.me/?sig=stO4D-MNhVA&ct=6&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=2"));
 
-			files.DashSep.Should().Be(new Uri(
-				"https://vkvd79.mycdn.me/?sig=AaOYcMVln7E&ct=6&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=1"));
+			files.DashSep.Should()
+				.Be(new Uri(
+					"https://vkvd79.mycdn.me/?sig=AaOYcMVln7E&ct=6&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=1"));
 
-			files.DashWebm.Should().Be(new Uri(
-				"https://vkvd79.mycdn.me/?sig=_PmzhECbdtY&ct=6&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=4"));
+			files.DashWebm.Should()
+				.Be(new Uri(
+					"https://vkvd79.mycdn.me/?sig=_PmzhECbdtY&ct=6&srcIp=217.70.31.125&urls=185.226.52.190&expires=1633249784334&clientType=13&srcAg=UNKNOWN&fromCache=1&ms=45.136.22.169&appId=512000384397&id=1777443670608&type=4"));
 
-			files.HlsOnDemand.Should().Be(new Uri(
-				"https://vkvd79.mycdn.me/srcIp/217.70.31.125/expires/1633249784334/srcAg/UNKNOWN/fromCache/1/ms/45.136.22.169/mid/2930947729488/type/2/sig/JahccvslsEY/ct/28/urls/185.226.52.190/clientType/13/id/1777443670608/ondemand/hls_1777443670608.m3u8"));
+			files.HlsOnDemand.Should()
+				.Be(new Uri(
+					"https://vkvd79.mycdn.me/srcIp/217.70.31.125/expires/1633249784334/srcAg/UNKNOWN/fromCache/1/ms/45.136.22.169/mid/2930947729488/type/2/sig/JahccvslsEY/ct/28/urls/185.226.52.190/clientType/13/id/1777443670608/ondemand/hls_1777443670608.m3u8"));
 
-			files.DashOnDemand.Should().Be(new Uri(
-				"https://vkvd79.mycdn.me/srcIp/217.70.31.125/expires/1633249784334/srcAg/UNKNOWN/fromCache/1/ms/45.136.22.169/mid/2930947729488/type/2/sig/JahccvslsEY/ct/29/urls/185.226.52.190/clientType/13/id/1777443670608/ondemand/dash_1777443670608.mpd"));
+			files.DashOnDemand.Should()
+				.Be(new Uri(
+					"https://vkvd79.mycdn.me/srcIp/217.70.31.125/expires/1633249784334/srcAg/UNKNOWN/fromCache/1/ms/45.136.22.169/mid/2930947729488/type/2/sig/JahccvslsEY/ct/29/urls/185.226.52.190/clientType/13/id/1777443670608/ondemand/dash_1777443670608.mpd"));
 
 			files.FailOverHost.Should().Be("vkvd185.mycdn.me");
 		}
@@ -140,15 +151,15 @@ namespace VkNet.Tests.Models
 
 			var sections = ads.Sections;
 
-			sections.Count.Should().Be(3);
-			sections[0].Should().Be(VideoAdsSection.Preroll);
-			sections[1].Should().Be(VideoAdsSection.Midroll);
-			sections[2].Should().Be(VideoAdsSection.Postroll);
+			sections.Should().HaveCount(3);
+			sections.Should().HaveElementAt(0, VideoAdsSection.Preroll);
+			sections.Should().HaveElementAt(1, VideoAdsSection.Midroll);
+			sections.Should().HaveElementAt(2, VideoAdsSection.Postroll);
 
 			var midrollPercents = ads.MidrollPercents;
-			midrollPercents.Count.Should().Be(2);
-			midrollPercents[0].Should().Be(0.25f);
-			midrollPercents[1].Should().Be(0.75f);
+			midrollPercents.Should().HaveCount(2);
+			midrollPercents.Should().HaveElementAt(0, 0.25f);
+			midrollPercents.Should().HaveElementAt(1, 0.75f);
 
 			ads.AutoPlayPreroll.Should().Be(1);
 		}
@@ -225,11 +236,13 @@ namespace VkNet.Tests.Models
 
 			var files = video.Files;
 
-			files.HlsLivePlayback.Should().Be(new Uri(
-				"https://vkvsd16.mycdn.me/hls/1095312673357_offset_p.m3u8/sig/OWp_G67RlXg/srcIp/217.70.31.125/expires/1633252742236/clientType/13/srcAg/UNKNOWN/fromCache/1/mid/2669706881869/id/1095312673357/video.m3u8?p"));
+			files.HlsLivePlayback.Should()
+				.Be(new Uri(
+					"https://vkvsd16.mycdn.me/hls/1095312673357_offset_p.m3u8/sig/OWp_G67RlXg/srcIp/217.70.31.125/expires/1633252742236/clientType/13/srcAg/UNKNOWN/fromCache/1/mid/2669706881869/id/1095312673357/video.m3u8?p"));
 
-			files.DashLivePlayback.Should().Be(new Uri(
-				"https://vkvsd16.mycdn.me/dash/stream_1095312673357_offset_p/stream.manifest/sig/OWp_G67RlXg/srcIp/217.70.31.125/expires/1633252742236/clientType/13/srcAg/UNKNOWN/fromCache/1/mid/2669706881869/id/1095312673357/video"));
+			files.DashLivePlayback.Should()
+				.Be(new Uri(
+					"https://vkvsd16.mycdn.me/dash/stream_1095312673357_offset_p/stream.manifest/sig/OWp_G67RlXg/srcIp/217.70.31.125/expires/1633252742236/clientType/13/srcAg/UNKNOWN/fromCache/1/mid/2669706881869/id/1095312673357/video"));
 		}
 
 		[Test]

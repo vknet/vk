@@ -8,7 +8,6 @@ using VkNet.Utils;
 namespace VkNet.Tests.Utils
 {
 	[TestFixture]
-
 	public class ExecuteErrorsTests : BaseTest
 	{
 		[Test]
@@ -18,10 +17,9 @@ namespace VkNet.Tests.Utils
 			var response = new VkResponse(new JRaw("{"));
 
 			// Act
-			var exception = Assert.Throws<JsonSerializationException>(() => ExecuteErrorsHandler.GetExecuteExceptions(response));
-
-			// Assert
-			Assert.IsInstanceOf<JsonSerializationException>(exception);
+			FluentActions.Invoking(() => ExecuteErrorsHandler.GetExecuteExceptions(response))
+				.Should()
+				.ThrowExactly<JsonSerializationException>();
 		}
 
 		[Test]
@@ -42,11 +40,11 @@ namespace VkNet.Tests.Utils
 		public void IfResponseIsEmptyThen_ThrowArgumentException()
 		{
 			// Act
-			var exception = Assert.Throws<ArgumentException>(() => ExecuteErrorsHandler.GetExecuteExceptions(null));
-
-			// Assert
-			exception.ParamName.Should().Be("response");
-			Assert.IsInstanceOf<ArgumentException>(exception);
+			FluentActions.Invoking(() => ExecuteErrorsHandler.GetExecuteExceptions(null))
+				.Should()
+				.ThrowExactly<ArgumentException>()
+				.And.ParamName.Should()
+				.Be("response");
 		}
 	}
 }

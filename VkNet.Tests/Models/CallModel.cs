@@ -5,7 +5,6 @@ using VkNet.Model.Attachments;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-
 	public class CallModel : BaseTest
 	{
 		[Test]

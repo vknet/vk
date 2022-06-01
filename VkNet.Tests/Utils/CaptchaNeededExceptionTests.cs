@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using VkNet.Abstractions.Core;
@@ -35,7 +36,7 @@ namespace VkNet.Tests.Utils
 
 			var ex = Api.Call<VkCollection<Message>>("messages.send", VkParameters.Empty, true);
 
-			Assert.That(ex.TotalCount, Is.EqualTo(1));
+			ex.TotalCount.Should().Be(1);
 		}
 	}
 }

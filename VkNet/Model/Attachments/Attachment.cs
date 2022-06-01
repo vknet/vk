@@ -59,15 +59,16 @@ namespace VkNet.Model.Attachments
 				"call" => CreateTyped<Call>(response[type]),
 				"story" => CreateTyped<Story>(response[type]),
 				"audio_playlist" => CreateTyped<AudioPlaylist>(response[type]),
-				_ => CreateTyped<UnknownAttachment>(response[type])
+				var _ => CreateTyped<UnknownAttachment>(response[type])
 			};
 		}
 
 	#endregion
 
+		/// <inheritdoc />
 		public override string ToString()
 		{
-			return $"{Type.Name}";
+			return Type.Name;
 		}
 
 	#region Приватные методы

@@ -1,17 +1,17 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model;
 
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-
 	public class GroupModel : BaseTest
 	{
 		[Test]
 		public void ShouldHaveField_Trending()
 		{
 			var group = new Group();
-			Assert.That(group, Has.Property("Trending"));
+			group.Trending.Should().BeFalse();
 		}
 
 		[Test]
@@ -22,7 +22,7 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 			var group = Group.FromJson(response);
 
-			Assert.That(group.Trending, Is.False);
+			group.Trending.Should().BeFalse();
 		}
 
 		[Test]
@@ -32,7 +32,7 @@ namespace VkNet.Tests.Models
 
 			var response = GetResponse();
 			var group = Group.FromJson(response);
-			Assert.That(group.Trending, Is.False);
+			group.Trending.Should().BeFalse();
 		}
 
 		[Test]
@@ -42,7 +42,7 @@ namespace VkNet.Tests.Models
 
 			var response = GetResponse();
 			var group = Group.FromJson(response);
-			Assert.That(group.Trending, Is.True);
+			group.Trending.Should().BeTrue();
 		}
 	}
 }

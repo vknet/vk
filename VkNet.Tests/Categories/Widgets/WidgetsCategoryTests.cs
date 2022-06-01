@@ -27,7 +27,7 @@ namespace VkNet.Tests.Categories.Widgets
 				Offset = 0
 			});
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 			result.TotalCount.Should().Be(10);
 		}
 
@@ -39,7 +39,7 @@ namespace VkNet.Tests.Categories.Widgets
 			ReadCategoryJsonPath(nameof(GetPages));
 
 			var result = Api.Widgets.GetPages(5553257, null, "alltime", 0, 10);
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 			result.TotalCount.Should().Be(50);
 		}
 	}

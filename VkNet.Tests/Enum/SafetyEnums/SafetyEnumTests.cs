@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -5,7 +6,6 @@ using VkNet.Enums.SafetyEnums;
 namespace VkNet.Tests.Enum.SafetyEnums
 {
 	[TestFixture]
-
 	public class SafetyEnumsTest
 	{
 		[Test]
@@ -13,823 +13,782 @@ namespace VkNet.Tests.Enum.SafetyEnums
 		{
 			var result = AppFilter.FromJsonString("");
 
-			Assert.That(result == null);
+			result.Should().BeNull();
 		}
 
 		[Test]
 		public void AppFilterTest()
 		{
 			// get test
-			Assert.That(AppFilter.Installed.ToString(), Is.EqualTo("installed"));
-			Assert.That(AppFilter.Featured.ToString(), Is.EqualTo("featured"));
+			AppFilter.Installed.ToString().Should().Be("installed");
+			AppFilter.Featured.ToString().Should().Be("featured");
 
 			// parse test
-			Assert.That(AppFilter.FromJsonString("installed"), Is.EqualTo(AppFilter.Installed));
-			Assert.That(AppFilter.FromJsonString("featured"), Is.EqualTo(AppFilter.Featured));
+			AppFilter.FromJsonString("installed").Should().Be(AppFilter.Installed);
+			AppFilter.FromJsonString("featured").Should().Be(AppFilter.Featured);
 		}
 
 		[Test]
 		public void AppPlatformsTest()
 		{
 			// get test
-			Assert.That(AppPlatforms.Ios.ToString(), Is.EqualTo("ios"));
-			Assert.That(AppPlatforms.Android.ToString(), Is.EqualTo("android"));
-			Assert.That(AppPlatforms.WinPhone.ToString(), Is.EqualTo("winphone"));
-			Assert.That(AppPlatforms.Web.ToString(), Is.EqualTo("web"));
+			AppPlatforms.Ios.ToString().Should().Be("ios");
+			AppPlatforms.Android.ToString().Should().Be("android");
+			AppPlatforms.WinPhone.ToString().Should().Be("winphone");
+			AppPlatforms.Web.ToString().Should().Be("web");
 
 			// parse test
-			Assert.That(AppPlatforms.FromJsonString("ios"), Is.EqualTo(AppPlatforms.Ios));
-			Assert.That(AppPlatforms.FromJsonString("android"), Is.EqualTo(AppPlatforms.Android));
-			Assert.That(AppPlatforms.FromJsonString("winphone"), Is.EqualTo(AppPlatforms.WinPhone));
-			Assert.That(AppPlatforms.FromJsonString("web"), Is.EqualTo(AppPlatforms.Web));
+			AppPlatforms.FromJsonString("ios").Should().Be(AppPlatforms.Ios);
+			AppPlatforms.FromJsonString("android").Should().Be(AppPlatforms.Android);
+			AppPlatforms.FromJsonString("winphone").Should().Be(AppPlatforms.WinPhone);
+			AppPlatforms.FromJsonString("web").Should().Be(AppPlatforms.Web);
 		}
 
 		[Test]
 		public void AppRatingTypeTest()
 		{
 			// get test
-			Assert.That(AppRatingType.Level.ToString(), Is.EqualTo("level"));
-			Assert.That(AppRatingType.Points.ToString(), Is.EqualTo("points"));
+			AppRatingType.Level.ToString().Should().Be("level");
+			AppRatingType.Points.ToString().Should().Be("points");
 
 			// parse test
-			Assert.That(AppRatingType.FromJsonString("level"), Is.EqualTo(AppRatingType.Level));
-			Assert.That(AppRatingType.FromJsonString("points"), Is.EqualTo(AppRatingType.Points));
+			AppRatingType.FromJsonString("level").Should().Be(AppRatingType.Level);
+			AppRatingType.FromJsonString("points").Should().Be(AppRatingType.Points);
 		}
 
 		[Test]
 		public void AppRequestTypeTest()
 		{
 			// get test
-			Assert.That(AppRequestType.Invite.ToString(), Is.EqualTo("invite"));
-			Assert.That(AppRequestType.Request.ToString(), Is.EqualTo("request"));
+			AppRequestType.Invite.ToString().Should().Be("invite");
+			AppRequestType.Request.ToString().Should().Be("request");
 
 			// parse test
-			Assert.That(AppRequestType.FromJsonString("invite"), Is.EqualTo(AppRequestType.Invite));
-
-			Assert.That(AppRequestType.FromJsonString("request")
-					, Is.EqualTo(AppRequestType.Request));
+			AppRequestType.FromJsonString("invite").Should().Be(AppRequestType.Invite);
+			AppRequestType.FromJsonString("request").Should().Be(AppRequestType.Request);
 		}
 
 		[Test]
 		public void AppSortTest()
 		{
 			// get test
-			Assert.That(AppSort.PopularToday.ToString(), Is.EqualTo("popular_today"));
-			Assert.That(AppSort.Visitors.ToString(), Is.EqualTo("visitors"));
-			Assert.That(AppSort.CreateDate.ToString(), Is.EqualTo("create_date"));
-			Assert.That(AppSort.GrowthRate.ToString(), Is.EqualTo("growth_rate"));
-			Assert.That(AppSort.PopularWeek.ToString(), Is.EqualTo("popular_week"));
+			AppSort.PopularToday.ToString().Should().Be("popular_today");
+			AppSort.Visitors.ToString().Should().Be("visitors");
+			AppSort.CreateDate.ToString().Should().Be("create_date");
+			AppSort.GrowthRate.ToString().Should().Be("growth_rate");
+			AppSort.PopularWeek.ToString().Should().Be("popular_week");
 
 			// parse test
-			Assert.That(AppSort.FromJsonString("popular_today"), Is.EqualTo(AppSort.PopularToday));
-			Assert.That(AppSort.FromJsonString("visitors"), Is.EqualTo(AppSort.Visitors));
-			Assert.That(AppSort.FromJsonString("create_date"), Is.EqualTo(AppSort.CreateDate));
-			Assert.That(AppSort.FromJsonString("growth_rate"), Is.EqualTo(AppSort.GrowthRate));
-			Assert.That(AppSort.FromJsonString("popular_week"), Is.EqualTo(AppSort.PopularWeek));
+			AppSort.FromJsonString("popular_today").Should().Be(AppSort.PopularToday);
+			AppSort.FromJsonString("visitors").Should().Be(AppSort.Visitors);
+			AppSort.FromJsonString("create_date").Should().Be(AppSort.CreateDate);
+			AppSort.FromJsonString("growth_rate").Should().Be(AppSort.GrowthRate);
+			AppSort.FromJsonString("popular_week").Should().Be(AppSort.PopularWeek);
 		}
 
 		[Test]
 		public void ChangeNameStatusTest()
 		{
 			// get test
-			Assert.That(ChangeNameStatus.Processing.ToString(), Is.EqualTo("processing"));
-			Assert.That(ChangeNameStatus.Declined.ToString(), Is.EqualTo("declined"));
-			Assert.That(ChangeNameStatus.Success.ToString(), Is.EqualTo("success"));
-			Assert.That(ChangeNameStatus.WasAccepted.ToString(), Is.EqualTo("was_accepted"));
-			Assert.That(ChangeNameStatus.WasDeclined.ToString(), Is.EqualTo("was_declined"));
+			ChangeNameStatus.Processing.ToString().Should().Be("processing");
+			ChangeNameStatus.Declined.ToString().Should().Be("declined");
+			ChangeNameStatus.Success.ToString().Should().Be("success");
+			ChangeNameStatus.WasAccepted.ToString().Should().Be("was_accepted");
+			ChangeNameStatus.WasDeclined.ToString().Should().Be("was_declined");
 
 			// parse test
-			Assert.That(ChangeNameStatus.FromJsonString("processing")
-					, Is.EqualTo(ChangeNameStatus.Processing));
+			ChangeNameStatus.FromJsonString("processing").Should().Be(ChangeNameStatus.Processing);
 
-			Assert.That(ChangeNameStatus.FromJsonString("declined")
-					, Is.EqualTo(ChangeNameStatus.Declined));
+			ChangeNameStatus.FromJsonString("declined").Should().Be(ChangeNameStatus.Declined);
 
-			Assert.That(ChangeNameStatus.FromJsonString("success")
-					, Is.EqualTo(ChangeNameStatus.Success));
+			ChangeNameStatus.FromJsonString("success").Should().Be(ChangeNameStatus.Success);
 
-			Assert.That(ChangeNameStatus.FromJsonString("was_accepted")
-					, Is.EqualTo(ChangeNameStatus.WasAccepted));
+			ChangeNameStatus.FromJsonString("was_accepted").Should().Be(ChangeNameStatus.WasAccepted);
 
-			Assert.That(ChangeNameStatus.FromJsonString("was_declined")
-					, Is.EqualTo(ChangeNameStatus.WasDeclined));
+			ChangeNameStatus.FromJsonString("was_declined").Should().Be(ChangeNameStatus.WasDeclined);
 		}
 
 		[Test]
 		public void CommentObjectTypeTest()
 		{
 			// get test
-			Assert.That(CommentObjectType.Post.ToString(), Is.EqualTo("post"));
-			Assert.That(CommentObjectType.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(CommentObjectType.Video.ToString(), Is.EqualTo("video"));
-			Assert.That(CommentObjectType.Topic.ToString(), Is.EqualTo("topic"));
-			Assert.That(CommentObjectType.Note.ToString(), Is.EqualTo("note"));
+			CommentObjectType.Post.ToString().Should().Be("post");
+			CommentObjectType.Photo.ToString().Should().Be("photo");
+			CommentObjectType.Video.ToString().Should().Be("video");
+			CommentObjectType.Topic.ToString().Should().Be("topic");
+			CommentObjectType.Note.ToString().Should().Be("note");
 
 			// parse test
-			Assert.That(CommentObjectType.FromJsonString("post")
-					, Is.EqualTo(CommentObjectType.Post));
+			CommentObjectType.FromJsonString("post").Should().Be(CommentObjectType.Post);
 
-			Assert.That(CommentObjectType.FromJsonString("photo")
-					, Is.EqualTo(CommentObjectType.Photo));
+			CommentObjectType.FromJsonString("photo").Should().Be(CommentObjectType.Photo);
 
-			Assert.That(CommentObjectType.FromJsonString("video")
-					, Is.EqualTo(CommentObjectType.Video));
+			CommentObjectType.FromJsonString("video").Should().Be(CommentObjectType.Video);
 
-			Assert.That(CommentObjectType.FromJsonString("topic")
-					, Is.EqualTo(CommentObjectType.Topic));
+			CommentObjectType.FromJsonString("topic").Should().Be(CommentObjectType.Topic);
 
-			Assert.That(CommentObjectType.FromJsonString("note")
-					, Is.EqualTo(CommentObjectType.Note));
+			CommentObjectType.FromJsonString("note").Should().Be(CommentObjectType.Note);
 		}
 
 		[Test]
 		public void CommentsSortTest()
 		{
 			// get test
-			Assert.That(CommentsSort.Asc.ToString(), Is.EqualTo("asc"));
-			Assert.That(CommentsSort.Desc.ToString(), Is.EqualTo("desc"));
+			CommentsSort.Asc.ToString().Should().Be("asc");
+			CommentsSort.Desc.ToString().Should().Be("desc");
 
 			// parse test
-			Assert.That(CommentsSort.FromJsonString("asc"), Is.EqualTo(CommentsSort.Asc));
-			Assert.That(CommentsSort.FromJsonString("desc"), Is.EqualTo(CommentsSort.Desc));
+			CommentsSort.FromJsonString("asc").Should().Be(CommentsSort.Asc);
+			CommentsSort.FromJsonString("desc").Should().Be(CommentsSort.Desc);
 		}
 
 		[Test]
 		public void DeactivatedTest()
 		{
 			// get test
-			Assert.That(Deactivated.Deleted.ToString(), Is.EqualTo("deleted"));
-			Assert.That(Deactivated.Banned.ToString(), Is.EqualTo("banned"));
-			Assert.That(Deactivated.Activated.ToString(), Is.EqualTo("activated"));
+			Deactivated.Deleted.ToString().Should().Be("deleted");
+			Deactivated.Banned.ToString().Should().Be("banned");
+			Deactivated.Activated.ToString().Should().Be("activated");
 
 			// parse test
-			Assert.That(Deactivated.FromJsonString("deleted"), Is.EqualTo(Deactivated.Deleted));
-			Assert.That(Deactivated.FromJsonString("banned"), Is.EqualTo(Deactivated.Banned));
-			Assert.That(Deactivated.FromJsonString("activated"), Is.EqualTo(Deactivated.Activated));
+			Deactivated.FromJsonString("deleted").Should().Be(Deactivated.Deleted);
+			Deactivated.FromJsonString("banned").Should().Be(Deactivated.Banned);
+			Deactivated.FromJsonString("activated").Should().Be(Deactivated.Activated);
 		}
 
 		[Test]
 		public void DisplayTest()
 		{
 			// get test
-			Assert.That(Display.Page.ToString(), Is.EqualTo("page"));
-			Assert.That(Display.Popup.ToString(), Is.EqualTo("popup"));
-			Assert.That(Display.Mobile.ToString(), Is.EqualTo("mobile"));
+			Display.Page.ToString().Should().Be("page");
+			Display.Popup.ToString().Should().Be("popup");
+			Display.Mobile.ToString().Should().Be("mobile");
 
 			// parse test
-			Assert.That(Display.FromJsonString("page"), Is.EqualTo(Display.Page));
-			Assert.That(Display.FromJsonString("popup"), Is.EqualTo(Display.Popup));
-			Assert.That(Display.FromJsonString("mobile"), Is.EqualTo(Display.Mobile));
+			Display.FromJsonString("page").Should().Be(Display.Page);
+			Display.FromJsonString("popup").Should().Be(Display.Popup);
+			Display.FromJsonString("mobile").Should().Be(Display.Mobile);
 		}
 
 		[Test]
 		public void FeedTypeTest()
 		{
 			// get test
-			Assert.That(FeedType.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(FeedType.PhotoTag.ToString(), Is.EqualTo("photo_tag"));
+			FeedType.Photo.ToString().Should().Be("photo");
+			FeedType.PhotoTag.ToString().Should().Be("photo_tag");
 
 			// parse test
-			Assert.That(FeedType.FromJsonString("photo"), Is.EqualTo(FeedType.Photo));
-			Assert.That(FeedType.FromJsonString("photo_tag"), Is.EqualTo(FeedType.PhotoTag));
+			FeedType.FromJsonString("photo").Should().Be(FeedType.Photo);
+			FeedType.FromJsonString("photo_tag").Should().Be(FeedType.PhotoTag);
 		}
 
 		[Test]
 		public void FriendsFilterTest()
 		{
 			// get test
-			Assert.That(FriendsFilter.Mutual.ToString(), Is.EqualTo("mutual"));
-			Assert.That(FriendsFilter.Contacts.ToString(), Is.EqualTo("contacts"));
-			Assert.That(FriendsFilter.MutualContacts.ToString(), Is.EqualTo("mutual_contacts"));
+			FriendsFilter.Mutual.ToString().Should().Be("mutual");
+			FriendsFilter.Contacts.ToString().Should().Be("contacts");
+			FriendsFilter.MutualContacts.ToString().Should().Be("mutual_contacts");
 
 			// parse test
-			Assert.That(FriendsFilter.FromJsonString("mutual"), Is.EqualTo(FriendsFilter.Mutual));
+			FriendsFilter.FromJsonString("mutual").Should().Be(FriendsFilter.Mutual);
 
-			Assert.That(FriendsFilter.FromJsonString("contacts")
-					, Is.EqualTo(FriendsFilter.Contacts));
+			FriendsFilter.FromJsonString("contacts").Should().Be(FriendsFilter.Contacts);
 
-			Assert.That(FriendsFilter.FromJsonString("mutual_contacts")
-					, Is.EqualTo(FriendsFilter.MutualContacts));
+			FriendsFilter.FromJsonString("mutual_contacts").Should().Be(FriendsFilter.MutualContacts);
 		}
 
 		[Test]
 		public void FriendsOrderTest()
 		{
 			// get test
-			Assert.That(FriendsOrder.Name.ToString(), Is.EqualTo("name"));
-			Assert.That(FriendsOrder.Hints.ToString(), Is.EqualTo("hints"));
-			Assert.That(FriendsOrder.Random.ToString(), Is.EqualTo("random"));
+			FriendsOrder.Name.ToString().Should().Be("name");
+			FriendsOrder.Hints.ToString().Should().Be("hints");
+			FriendsOrder.Random.ToString().Should().Be("random");
 
 			// parse test
-			Assert.That(FriendsOrder.FromJsonString("name"), Is.EqualTo(FriendsOrder.Name));
-			Assert.That(FriendsOrder.FromJsonString("hints"), Is.EqualTo(FriendsOrder.Hints));
-			Assert.That(FriendsOrder.FromJsonString("random"), Is.EqualTo(FriendsOrder.Random));
+			FriendsOrder.FromJsonString("name").Should().Be(FriendsOrder.Name);
+			FriendsOrder.FromJsonString("hints").Should().Be(FriendsOrder.Hints);
+			FriendsOrder.FromJsonString("random").Should().Be(FriendsOrder.Random);
 		}
 
 		[Test]
 		public void GroupsSortTest()
 		{
 			// get test
-			Assert.That(GroupsSort.IdAsc.ToString(), Is.EqualTo("id_asc"));
-			Assert.That(GroupsSort.IdDesc.ToString(), Is.EqualTo("id_desc"));
-			Assert.That(GroupsSort.TimeAsc.ToString(), Is.EqualTo("time_asc"));
-			Assert.That(GroupsSort.TimeDesc.ToString(), Is.EqualTo("time_desc"));
+			GroupsSort.IdAsc.ToString().Should().Be("id_asc");
+			GroupsSort.IdDesc.ToString().Should().Be("id_desc");
+			GroupsSort.TimeAsc.ToString().Should().Be("time_asc");
+			GroupsSort.TimeDesc.ToString().Should().Be("time_desc");
 
 			// parse test
-			Assert.That(GroupsSort.FromJsonString("id_asc"), Is.EqualTo(GroupsSort.IdAsc));
-			Assert.That(GroupsSort.FromJsonString("id_desc"), Is.EqualTo(GroupsSort.IdDesc));
-			Assert.That(GroupsSort.FromJsonString("time_asc"), Is.EqualTo(GroupsSort.TimeAsc));
-			Assert.That(GroupsSort.FromJsonString("time_desc"), Is.EqualTo(GroupsSort.TimeDesc));
+			GroupsSort.FromJsonString("id_asc").Should().Be(GroupsSort.IdAsc);
+			GroupsSort.FromJsonString("id_desc").Should().Be(GroupsSort.IdDesc);
+			GroupsSort.FromJsonString("time_asc").Should().Be(GroupsSort.TimeAsc);
+			GroupsSort.FromJsonString("time_desc").Should().Be(GroupsSort.TimeDesc);
 		}
 
 		[Test]
 		public void GroupTypeTest()
 		{
 			// get test
-			Assert.That(GroupType.Page.ToString(), Is.EqualTo("page"));
-			Assert.That(GroupType.Group.ToString(), Is.EqualTo("group"));
-			Assert.That(GroupType.Event.ToString(), Is.EqualTo("event"));
-			Assert.That(GroupType.Undefined.ToString(), Is.EqualTo("undefined"));
+			GroupType.Page.ToString().Should().Be("page");
+			GroupType.Group.ToString().Should().Be("group");
+			GroupType.Event.ToString().Should().Be("event");
+			GroupType.Undefined.ToString().Should().Be("undefined");
 
 			// parse test
-			Assert.That(GroupType.FromJsonString("page"), Is.EqualTo(GroupType.Page));
-			Assert.That(GroupType.FromJsonString("group"), Is.EqualTo(GroupType.Group));
-			Assert.That(GroupType.FromJsonString("event"), Is.EqualTo(GroupType.Event));
-			Assert.That(GroupType.FromJsonString("undefined"), Is.EqualTo(GroupType.Undefined));
+			GroupType.FromJsonString("page").Should().Be(GroupType.Page);
+			GroupType.FromJsonString("group").Should().Be(GroupType.Group);
+			GroupType.FromJsonString("event").Should().Be(GroupType.Event);
+			GroupType.FromJsonString("undefined").Should().Be(GroupType.Undefined);
 		}
 
 		[Test]
 		public void LikeObjectTypeTest()
 		{
 			// get test
-			Assert.That(LikeObjectType.Post.ToString(), Is.EqualTo("post"));
-			Assert.That(LikeObjectType.Comment.ToString(), Is.EqualTo("comment"));
-			Assert.That(LikeObjectType.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(LikeObjectType.Audio.ToString(), Is.EqualTo("audio"));
-			Assert.That(LikeObjectType.Video.ToString(), Is.EqualTo("video"));
-			Assert.That(LikeObjectType.Note.ToString(), Is.EqualTo("note"));
-			Assert.That(LikeObjectType.PhotoComment.ToString(), Is.EqualTo("photo_comment"));
-			Assert.That(LikeObjectType.VideoComment.ToString(), Is.EqualTo("video_comment"));
-			Assert.That(LikeObjectType.TopicComment.ToString(), Is.EqualTo("topic_comment"));
-			Assert.That(LikeObjectType.SitePage.ToString(), Is.EqualTo("sitepage"));
-			Assert.That(LikeObjectType.Market.ToString(), Is.EqualTo("market"));
-			Assert.That(LikeObjectType.MarketComment.ToString(), Is.EqualTo("market_comment"));
+			LikeObjectType.Post.ToString().Should().Be("post");
+			LikeObjectType.Comment.ToString().Should().Be("comment");
+			LikeObjectType.Photo.ToString().Should().Be("photo");
+			LikeObjectType.Audio.ToString().Should().Be("audio");
+			LikeObjectType.Video.ToString().Should().Be("video");
+			LikeObjectType.Note.ToString().Should().Be("note");
+			LikeObjectType.PhotoComment.ToString().Should().Be("photo_comment");
+			LikeObjectType.VideoComment.ToString().Should().Be("video_comment");
+			LikeObjectType.TopicComment.ToString().Should().Be("topic_comment");
+			LikeObjectType.SitePage.ToString().Should().Be("sitepage");
+			LikeObjectType.Market.ToString().Should().Be("market");
+			LikeObjectType.MarketComment.ToString().Should().Be("market_comment");
 
 			// parse test
-			Assert.That(LikeObjectType.FromJsonString("post"), Is.EqualTo(LikeObjectType.Post));
+			LikeObjectType.FromJsonString("post").Should().Be(LikeObjectType.Post);
 
-			Assert.That(LikeObjectType.FromJsonString("comment")
-					, Is.EqualTo(LikeObjectType.Comment));
+			LikeObjectType.FromJsonString("comment").Should().Be(LikeObjectType.Comment);
 
-			Assert.That(LikeObjectType.FromJsonString("photo"), Is.EqualTo(LikeObjectType.Photo));
-			Assert.That(LikeObjectType.FromJsonString("audio"), Is.EqualTo(LikeObjectType.Audio));
-			Assert.That(LikeObjectType.FromJsonString("video"), Is.EqualTo(LikeObjectType.Video));
-			Assert.That(LikeObjectType.FromJsonString("note"), Is.EqualTo(LikeObjectType.Note));
+			LikeObjectType.FromJsonString("photo").Should().Be(LikeObjectType.Photo);
+			LikeObjectType.FromJsonString("audio").Should().Be(LikeObjectType.Audio);
+			LikeObjectType.FromJsonString("video").Should().Be(LikeObjectType.Video);
+			LikeObjectType.FromJsonString("note").Should().Be(LikeObjectType.Note);
 
-			Assert.That(LikeObjectType.FromJsonString("photo_comment")
-					, Is.EqualTo(LikeObjectType.PhotoComment));
+			LikeObjectType.FromJsonString("photo_comment").Should().Be(LikeObjectType.PhotoComment);
 
-			Assert.That(LikeObjectType.FromJsonString("video_comment")
-					, Is.EqualTo(LikeObjectType.VideoComment));
+			LikeObjectType.FromJsonString("video_comment").Should().Be(LikeObjectType.VideoComment);
 
-			Assert.That(LikeObjectType.FromJsonString("topic_comment")
-					, Is.EqualTo(LikeObjectType.TopicComment));
+			LikeObjectType.FromJsonString("topic_comment").Should().Be(LikeObjectType.TopicComment);
 
-			Assert.That(LikeObjectType.FromJsonString("sitepage")
-					, Is.EqualTo(LikeObjectType.SitePage));
+			LikeObjectType.FromJsonString("sitepage").Should().Be(LikeObjectType.SitePage);
 
-			Assert.That(LikeObjectType.FromJsonString("market"), Is.EqualTo(LikeObjectType.Market));
+			LikeObjectType.FromJsonString("market").Should().Be(LikeObjectType.Market);
 
-			Assert.That(LikeObjectType.FromJsonString("market_comment")
-					, Is.EqualTo(LikeObjectType.MarketComment));
+			LikeObjectType.FromJsonString("market_comment").Should().Be(LikeObjectType.MarketComment);
 		}
 
 		[Test]
 		public void LikesFilterTest()
 		{
 			// get test
-			Assert.That(LikesFilter.Likes.ToString(), Is.EqualTo("likes"));
-			Assert.That(LikesFilter.Copies.ToString(), Is.EqualTo("copies"));
+			LikesFilter.Likes.ToString().Should().Be("likes");
+			LikesFilter.Copies.ToString().Should().Be("copies");
 
 			// parse test
-			Assert.That(LikesFilter.FromJsonString("likes"), Is.EqualTo(LikesFilter.Likes));
-			Assert.That(LikesFilter.FromJsonString("copies"), Is.EqualTo(LikesFilter.Copies));
+			LikesFilter.FromJsonString("likes").Should().Be(LikesFilter.Likes);
+			LikesFilter.FromJsonString("copies").Should().Be(LikesFilter.Copies);
 		}
 
 		[Test]
 		public void LinkAccessTypeTest()
 		{
 			// get test
-			Assert.That(LinkAccessType.NotBanned.ToString(), Is.EqualTo("not_banned"));
-			Assert.That(LinkAccessType.Banned.ToString(), Is.EqualTo("banned"));
-			Assert.That(LinkAccessType.Processing.ToString(), Is.EqualTo("processing"));
+			LinkAccessType.NotBanned.ToString().Should().Be("not_banned");
+			LinkAccessType.Banned.ToString().Should().Be("banned");
+			LinkAccessType.Processing.ToString().Should().Be("processing");
 
 			// parse test
-			Assert.That(LinkAccessType.FromJsonString("not_banned")
-					, Is.EqualTo(LinkAccessType.NotBanned));
+			LinkAccessType.FromJsonString("not_banned").Should().Be(LinkAccessType.NotBanned);
 
-			Assert.That(LinkAccessType.FromJsonString("banned"), Is.EqualTo(LinkAccessType.Banned));
+			LinkAccessType.FromJsonString("banned").Should().Be(LinkAccessType.Banned);
 
-			Assert.That(LinkAccessType.FromJsonString("processing")
-					, Is.EqualTo(LinkAccessType.Processing));
+			LinkAccessType.FromJsonString("processing").Should().Be(LinkAccessType.Processing);
 		}
 
 		[Test]
 		public void MediaTypeTest()
 		{
 			// get test
-			Assert.That(MediaType.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(MediaType.Video.ToString(), Is.EqualTo("video"));
-			Assert.That(MediaType.Audio.ToString(), Is.EqualTo("audio"));
-			Assert.That(MediaType.Doc.ToString(), Is.EqualTo("doc"));
-			Assert.That(MediaType.Link.ToString(), Is.EqualTo("link"));
-			Assert.That(MediaType.Market.ToString(), Is.EqualTo("market"));
-			Assert.That(MediaType.Wall.ToString(), Is.EqualTo("wall"));
-			Assert.That(MediaType.Share.ToString(), Is.EqualTo("share"));
-			Assert.That(MediaType.Graffiti.ToString(), Is.EqualTo("graffiti"));
+			MediaType.Photo.ToString().Should().Be("photo");
+			MediaType.Video.ToString().Should().Be("video");
+			MediaType.Audio.ToString().Should().Be("audio");
+			MediaType.Doc.ToString().Should().Be("doc");
+			MediaType.Link.ToString().Should().Be("link");
+			MediaType.Market.ToString().Should().Be("market");
+			MediaType.Wall.ToString().Should().Be("wall");
+			MediaType.Share.ToString().Should().Be("share");
+			MediaType.Graffiti.ToString().Should().Be("graffiti");
 
 			// parse test
-			Assert.That(MediaType.FromJsonString("photo"), Is.EqualTo(MediaType.Photo));
-			Assert.That(MediaType.FromJsonString("video"), Is.EqualTo(MediaType.Video));
-			Assert.That(MediaType.FromJsonString("audio"), Is.EqualTo(MediaType.Audio));
-			Assert.That(MediaType.FromJsonString("doc"), Is.EqualTo(MediaType.Doc));
-			Assert.That(MediaType.FromJsonString("link"), Is.EqualTo(MediaType.Link));
-			Assert.That(MediaType.FromJsonString("market"), Is.EqualTo(MediaType.Market));
-			Assert.That(MediaType.FromJsonString("wall"), Is.EqualTo(MediaType.Wall));
-			Assert.That(MediaType.FromJsonString("share"), Is.EqualTo(MediaType.Share));
-			Assert.That(MediaType.FromJsonString("graffiti"), Is.EqualTo(MediaType.Graffiti));
+			MediaType.FromJsonString("photo").Should().Be(MediaType.Photo);
+			MediaType.FromJsonString("video").Should().Be(MediaType.Video);
+			MediaType.FromJsonString("audio").Should().Be(MediaType.Audio);
+			MediaType.FromJsonString("doc").Should().Be(MediaType.Doc);
+			MediaType.FromJsonString("link").Should().Be(MediaType.Link);
+			MediaType.FromJsonString("market").Should().Be(MediaType.Market);
+			MediaType.FromJsonString("wall").Should().Be(MediaType.Wall);
+			MediaType.FromJsonString("share").Should().Be(MediaType.Share);
+			MediaType.FromJsonString("graffiti").Should().Be(MediaType.Graffiti);
 		}
 
 		[Test]
 		public void NameCaseTest()
 		{
 			// get test
-			Assert.That(NameCase.Nom.ToString(), Is.EqualTo("nom"));
-			Assert.That(NameCase.Gen.ToString(), Is.EqualTo("gen"));
-			Assert.That(NameCase.Dat.ToString(), Is.EqualTo("dat"));
-			Assert.That(NameCase.Acc.ToString(), Is.EqualTo("acc"));
-			Assert.That(NameCase.Ins.ToString(), Is.EqualTo("ins"));
-			Assert.That(NameCase.Abl.ToString(), Is.EqualTo("abl"));
+			NameCase.Nom.ToString().Should().Be("nom");
+			NameCase.Gen.ToString().Should().Be("gen");
+			NameCase.Dat.ToString().Should().Be("dat");
+			NameCase.Acc.ToString().Should().Be("acc");
+			NameCase.Ins.ToString().Should().Be("ins");
+			NameCase.Abl.ToString().Should().Be("abl");
 
 			// parse test
-			Assert.That(NameCase.FromJsonString("nom"), Is.EqualTo(NameCase.Nom));
-			Assert.That(NameCase.FromJsonString("gen"), Is.EqualTo(NameCase.Gen));
-			Assert.That(NameCase.FromJsonString("dat"), Is.EqualTo(NameCase.Dat));
-			Assert.That(NameCase.FromJsonString("acc"), Is.EqualTo(NameCase.Acc));
-			Assert.That(NameCase.FromJsonString("ins"), Is.EqualTo(NameCase.Ins));
-			Assert.That(NameCase.FromJsonString("abl"), Is.EqualTo(NameCase.Abl));
+			NameCase.FromJsonString("nom").Should().Be(NameCase.Nom);
+			NameCase.FromJsonString("gen").Should().Be(NameCase.Gen);
+			NameCase.FromJsonString("dat").Should().Be(NameCase.Dat);
+			NameCase.FromJsonString("acc").Should().Be(NameCase.Acc);
+			NameCase.FromJsonString("ins").Should().Be(NameCase.Ins);
+			NameCase.FromJsonString("abl").Should().Be(NameCase.Abl);
 		}
 
 		[Test]
 		public void NewsObjectTypesTest()
 		{
 			// get test
-			Assert.That(NewsObjectTypes.Wall.ToString(), Is.EqualTo("wall"));
-			Assert.That(NewsObjectTypes.Tag.ToString(), Is.EqualTo("tag"));
-			Assert.That(NewsObjectTypes.ProfilePhoto.ToString(), Is.EqualTo("profilephoto"));
-			Assert.That(NewsObjectTypes.Video.ToString(), Is.EqualTo("video"));
-			Assert.That(NewsObjectTypes.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(NewsObjectTypes.Audio.ToString(), Is.EqualTo("audio"));
+			NewsObjectTypes.Wall.ToString().Should().Be("wall");
+			NewsObjectTypes.Tag.ToString().Should().Be("tag");
+			NewsObjectTypes.ProfilePhoto.ToString().Should().Be("profilephoto");
+			NewsObjectTypes.Video.ToString().Should().Be("video");
+			NewsObjectTypes.Photo.ToString().Should().Be("photo");
+			NewsObjectTypes.Audio.ToString().Should().Be("audio");
 
 			// parse test
-			Assert.That(NewsObjectTypes.FromJsonString("wall"), Is.EqualTo(NewsObjectTypes.Wall));
-			Assert.That(NewsObjectTypes.FromJsonString("tag"), Is.EqualTo(NewsObjectTypes.Tag));
+			NewsObjectTypes.FromJsonString("wall").Should().Be(NewsObjectTypes.Wall);
+			NewsObjectTypes.FromJsonString("tag").Should().Be(NewsObjectTypes.Tag);
 
-			Assert.That(NewsObjectTypes.FromJsonString("profilephoto")
-					, Is.EqualTo(NewsObjectTypes.ProfilePhoto));
+			NewsObjectTypes.FromJsonString("profilephoto").Should().Be(NewsObjectTypes.ProfilePhoto);
 
-			Assert.That(NewsObjectTypes.FromJsonString("video"), Is.EqualTo(NewsObjectTypes.Video));
-			Assert.That(NewsObjectTypes.FromJsonString("photo"), Is.EqualTo(NewsObjectTypes.Photo));
-			Assert.That(NewsObjectTypes.FromJsonString("audio"), Is.EqualTo(NewsObjectTypes.Audio));
+			NewsObjectTypes.FromJsonString("video").Should().Be(NewsObjectTypes.Video);
+			NewsObjectTypes.FromJsonString("photo").Should().Be(NewsObjectTypes.Photo);
+			NewsObjectTypes.FromJsonString("audio").Should().Be(NewsObjectTypes.Audio);
 		}
 
 		[Test]
 		public void NewsTypesTest()
 		{
 			// get test
-			Assert.That(NewsTypes.Post.ToString(), Is.EqualTo("post"));
-			Assert.That(NewsTypes.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(NewsTypes.PhotoTag.ToString(), Is.EqualTo("photo_tag"));
-			Assert.That(NewsTypes.WallPhoto.ToString(), Is.EqualTo("wall_photo"));
-			Assert.That(NewsTypes.Friend.ToString(), Is.EqualTo("friend"));
-			Assert.That(NewsTypes.Note.ToString(), Is.EqualTo("note"));
+			NewsTypes.Post.ToString().Should().Be("post");
+			NewsTypes.Photo.ToString().Should().Be("photo");
+			NewsTypes.PhotoTag.ToString().Should().Be("photo_tag");
+			NewsTypes.WallPhoto.ToString().Should().Be("wall_photo");
+			NewsTypes.Friend.ToString().Should().Be("friend");
+			NewsTypes.Note.ToString().Should().Be("note");
 
 			// parse test
-			Assert.That(NewsTypes.FromJsonString("post"), Is.EqualTo(NewsTypes.Post));
-			Assert.That(NewsTypes.FromJsonString("photo"), Is.EqualTo(NewsTypes.Photo));
-			Assert.That(NewsTypes.FromJsonString("photo_tag"), Is.EqualTo(NewsTypes.PhotoTag));
-			Assert.That(NewsTypes.FromJsonString("wall_photo"), Is.EqualTo(NewsTypes.WallPhoto));
-			Assert.That(NewsTypes.FromJsonString("friend"), Is.EqualTo(NewsTypes.Friend));
-			Assert.That(NewsTypes.FromJsonString("note"), Is.EqualTo(NewsTypes.Note));
+			NewsTypes.FromJsonString("post").Should().Be(NewsTypes.Post);
+			NewsTypes.FromJsonString("photo").Should().Be(NewsTypes.Photo);
+			NewsTypes.FromJsonString("photo_tag").Should().Be(NewsTypes.PhotoTag);
+			NewsTypes.FromJsonString("wall_photo").Should().Be(NewsTypes.WallPhoto);
+			NewsTypes.FromJsonString("friend").Should().Be(NewsTypes.Friend);
+			NewsTypes.FromJsonString("note").Should().Be(NewsTypes.Note);
 		}
 
 		[Test]
 		public void OccupationTypeTest()
 		{
 			// get test
-			Assert.That(OccupationType.Work.ToString(), Is.EqualTo("work"));
-			Assert.That(OccupationType.School.ToString(), Is.EqualTo("school"));
-			Assert.That(OccupationType.University.ToString(), Is.EqualTo("university"));
+			OccupationType.Work.ToString().Should().Be("work");
+			OccupationType.School.ToString().Should().Be("school");
+			OccupationType.University.ToString().Should().Be("university");
 
 			// parse test
-			Assert.That(OccupationType.FromJsonString("work"), Is.EqualTo(OccupationType.Work));
-			Assert.That(OccupationType.FromJsonString("school"), Is.EqualTo(OccupationType.School));
+			OccupationType.FromJsonString("work").Should().Be(OccupationType.Work);
+			OccupationType.FromJsonString("school").Should().Be(OccupationType.School);
 
-			Assert.That(OccupationType.FromJsonString("university")
-					, Is.EqualTo(OccupationType.University));
+			OccupationType.FromJsonString("university").Should().Be(OccupationType.University);
 		}
 
 		[Test]
 		public void PhotoAlbumTypeTest()
 		{
 			// get test
-			Assert.That(PhotoAlbumType.Wall.ToString(), Is.EqualTo("wall"));
-			Assert.That(PhotoAlbumType.Profile.ToString(), Is.EqualTo("profile"));
-			Assert.That(PhotoAlbumType.Saved.ToString(), Is.EqualTo("saved"));
+			PhotoAlbumType.Wall.ToString().Should().Be("wall");
+			PhotoAlbumType.Profile.ToString().Should().Be("profile");
+			PhotoAlbumType.Saved.ToString().Should().Be("saved");
 
 			// parse test
-			Assert.That(PhotoAlbumType.FromJsonString("wall"), Is.EqualTo(PhotoAlbumType.Wall));
+			PhotoAlbumType.FromJsonString("wall").Should().Be(PhotoAlbumType.Wall);
 
-			Assert.That(PhotoAlbumType.FromJsonString("profile")
-					, Is.EqualTo(PhotoAlbumType.Profile));
+			PhotoAlbumType.FromJsonString("profile").Should().Be(PhotoAlbumType.Profile);
 
-			Assert.That(PhotoAlbumType.FromJsonString("saved"), Is.EqualTo(PhotoAlbumType.Saved));
+			PhotoAlbumType.FromJsonString("saved").Should().Be(PhotoAlbumType.Saved);
 		}
 
 		[Test]
 		public void PhotoFeedTypeTest()
 		{
 			// get test
-			Assert.That(PhotoFeedType.Photo.ToString(), Is.EqualTo("photo"));
-			Assert.That(PhotoFeedType.PhotoTag.ToString(), Is.EqualTo("photo_tag"));
+			PhotoFeedType.Photo.ToString().Should().Be("photo");
+			PhotoFeedType.PhotoTag.ToString().Should().Be("photo_tag");
 
 			// parse test
-			Assert.That(PhotoFeedType.FromJsonString("photo"), Is.EqualTo(PhotoFeedType.Photo));
+			PhotoFeedType.FromJsonString("photo").Should().Be(PhotoFeedType.Photo);
 
-			Assert.That(PhotoFeedType.FromJsonString("photo_tag")
-					, Is.EqualTo(PhotoFeedType.PhotoTag));
+			PhotoFeedType.FromJsonString("photo_tag").Should().Be(PhotoFeedType.PhotoTag);
 		}
 
 		[Test]
 		public void PhotoSearchRadiusTest()
 		{
 			// get test
-			Assert.That(PhotoSearchRadius.Ten.ToString(), Is.EqualTo("10"));
-			Assert.That(PhotoSearchRadius.OneHundred.ToString(), Is.EqualTo("100"));
-			Assert.That(PhotoSearchRadius.Eighty.ToString(), Is.EqualTo("800"));
-			Assert.That(PhotoSearchRadius.SixThousand.ToString(), Is.EqualTo("6000"));
-			Assert.That(PhotoSearchRadius.FiftyThousand.ToString(), Is.EqualTo("50000"));
+			PhotoSearchRadius.Ten.ToString().Should().Be("10");
+			PhotoSearchRadius.OneHundred.ToString().Should().Be("100");
+			PhotoSearchRadius.Eighty.ToString().Should().Be("800");
+			PhotoSearchRadius.SixThousand.ToString().Should().Be("6000");
+			PhotoSearchRadius.FiftyThousand.ToString().Should().Be("50000");
 
 			// parse test
-			Assert.That(PhotoSearchRadius.FromJsonString("10"), Is.EqualTo(PhotoSearchRadius.Ten));
+			PhotoSearchRadius.FromJsonString("10").Should().Be(PhotoSearchRadius.Ten);
 
-			Assert.That(PhotoSearchRadius.FromJsonString("100")
-					, Is.EqualTo(PhotoSearchRadius.OneHundred));
+			PhotoSearchRadius.FromJsonString("100").Should().Be(PhotoSearchRadius.OneHundred);
 
-			Assert.That(PhotoSearchRadius.FromJsonString("800")
-					, Is.EqualTo(PhotoSearchRadius.Eighty));
+			PhotoSearchRadius.FromJsonString("800").Should().Be(PhotoSearchRadius.Eighty);
 
-			Assert.That(PhotoSearchRadius.FromJsonString("6000")
-					, Is.EqualTo(PhotoSearchRadius.SixThousand));
+			PhotoSearchRadius.FromJsonString("6000").Should().Be(PhotoSearchRadius.SixThousand);
 
-			Assert.That(PhotoSearchRadius.FromJsonString("50000")
-					, Is.EqualTo(PhotoSearchRadius.FiftyThousand));
+			PhotoSearchRadius.FromJsonString("50000").Should().Be(PhotoSearchRadius.FiftyThousand);
 		}
 
 		[Test]
 		public void PhotoSizeTypeTest()
 		{
 			// get test
-			Assert.That(PhotoSizeType.S.ToString(), Is.EqualTo("s"));
-			Assert.That(PhotoSizeType.M.ToString(), Is.EqualTo("m"));
-			Assert.That(PhotoSizeType.X.ToString(), Is.EqualTo("x"));
-			Assert.That(PhotoSizeType.O.ToString(), Is.EqualTo("o"));
-			Assert.That(PhotoSizeType.P.ToString(), Is.EqualTo("p"));
-			Assert.That(PhotoSizeType.Q.ToString(), Is.EqualTo("q"));
-			Assert.That(PhotoSizeType.R.ToString(), Is.EqualTo("r"));
-			Assert.That(PhotoSizeType.Y.ToString(), Is.EqualTo("y"));
-			Assert.That(PhotoSizeType.Z.ToString(), Is.EqualTo("z"));
-			Assert.That(PhotoSizeType.W.ToString(), Is.EqualTo("w"));
+			PhotoSizeType.S.ToString().Should().Be("s");
+			PhotoSizeType.M.ToString().Should().Be("m");
+			PhotoSizeType.X.ToString().Should().Be("x");
+			PhotoSizeType.O.ToString().Should().Be("o");
+			PhotoSizeType.P.ToString().Should().Be("p");
+			PhotoSizeType.Q.ToString().Should().Be("q");
+			PhotoSizeType.R.ToString().Should().Be("r");
+			PhotoSizeType.Y.ToString().Should().Be("y");
+			PhotoSizeType.Z.ToString().Should().Be("z");
+			PhotoSizeType.W.ToString().Should().Be("w");
 
 			// parse test
-			Assert.That(PhotoSizeType.FromJsonString("s"), Is.EqualTo(PhotoSizeType.S));
-			Assert.That(PhotoSizeType.FromJsonString("m"), Is.EqualTo(PhotoSizeType.M));
-			Assert.That(PhotoSizeType.FromJsonString("x"), Is.EqualTo(PhotoSizeType.X));
-			Assert.That(PhotoSizeType.FromJsonString("o"), Is.EqualTo(PhotoSizeType.O));
-			Assert.That(PhotoSizeType.FromJsonString("p"), Is.EqualTo(PhotoSizeType.P));
-			Assert.That(PhotoSizeType.FromJsonString("q"), Is.EqualTo(PhotoSizeType.Q));
-			Assert.That(PhotoSizeType.FromJsonString("r"), Is.EqualTo(PhotoSizeType.R));
-			Assert.That(PhotoSizeType.FromJsonString("y"), Is.EqualTo(PhotoSizeType.Y));
-			Assert.That(PhotoSizeType.FromJsonString("z"), Is.EqualTo(PhotoSizeType.Z));
-			Assert.That(PhotoSizeType.FromJsonString("w"), Is.EqualTo(PhotoSizeType.W));
+			PhotoSizeType.FromJsonString("s").Should().Be(PhotoSizeType.S);
+			PhotoSizeType.FromJsonString("m").Should().Be(PhotoSizeType.M);
+			PhotoSizeType.FromJsonString("x").Should().Be(PhotoSizeType.X);
+			PhotoSizeType.FromJsonString("o").Should().Be(PhotoSizeType.O);
+			PhotoSizeType.FromJsonString("p").Should().Be(PhotoSizeType.P);
+			PhotoSizeType.FromJsonString("q").Should().Be(PhotoSizeType.Q);
+			PhotoSizeType.FromJsonString("r").Should().Be(PhotoSizeType.R);
+			PhotoSizeType.FromJsonString("y").Should().Be(PhotoSizeType.Y);
+			PhotoSizeType.FromJsonString("z").Should().Be(PhotoSizeType.Z);
+			PhotoSizeType.FromJsonString("w").Should().Be(PhotoSizeType.W);
 		}
 
 		[Test]
 		public void PlatformTest()
 		{
 			// get test
-			Assert.That(Platform.Android.ToString(), Is.EqualTo("android"));
-			Assert.That(Platform.IPhone.ToString(), Is.EqualTo("iphone"));
-			Assert.That(Platform.WindowsPhone.ToString(), Is.EqualTo("wphone"));
+			Platform.Android.ToString().Should().Be("android");
+			Platform.IPhone.ToString().Should().Be("iphone");
+			Platform.WindowsPhone.ToString().Should().Be("wphone");
 
 			// parse test
-			Assert.That(Platform.FromJsonString("android"), Is.EqualTo(Platform.Android));
-			Assert.That(Platform.FromJsonString("iphone"), Is.EqualTo(Platform.IPhone));
-			Assert.That(Platform.FromJsonString("wphone"), Is.EqualTo(Platform.WindowsPhone));
+			Platform.FromJsonString("android").Should().Be(Platform.Android);
+			Platform.FromJsonString("iphone").Should().Be(Platform.IPhone);
+			Platform.FromJsonString("wphone").Should().Be(Platform.WindowsPhone);
 		}
 
 		[Test]
 		public void PostSourceTypeTest()
 		{
 			// get test
-			Assert.That(PostSourceType.Vk.ToString(), Is.EqualTo("vk"));
-			Assert.That(PostSourceType.Widget.ToString(), Is.EqualTo("widget"));
-			Assert.That(PostSourceType.Api.ToString(), Is.EqualTo("api"));
-			Assert.That(PostSourceType.Rss.ToString(), Is.EqualTo("rss"));
-			Assert.That(PostSourceType.Sms.ToString(), Is.EqualTo("sms"));
+			PostSourceType.Vk.ToString().Should().Be("vk");
+			PostSourceType.Widget.ToString().Should().Be("widget");
+			PostSourceType.Api.ToString().Should().Be("api");
+			PostSourceType.Rss.ToString().Should().Be("rss");
+			PostSourceType.Sms.ToString().Should().Be("sms");
 
 			// parse test
-			Assert.That(PostSourceType.FromJsonString("vk"), Is.EqualTo(PostSourceType.Vk));
-			Assert.That(PostSourceType.FromJsonString("widget"), Is.EqualTo(PostSourceType.Widget));
-			Assert.That(PostSourceType.FromJsonString("api"), Is.EqualTo(PostSourceType.Api));
-			Assert.That(PostSourceType.FromJsonString("rss"), Is.EqualTo(PostSourceType.Rss));
-			Assert.That(PostSourceType.FromJsonString("sms"), Is.EqualTo(PostSourceType.Sms));
+			PostSourceType.FromJsonString("vk").Should().Be(PostSourceType.Vk);
+			PostSourceType.FromJsonString("widget").Should().Be(PostSourceType.Widget);
+			PostSourceType.FromJsonString("api").Should().Be(PostSourceType.Api);
+			PostSourceType.FromJsonString("rss").Should().Be(PostSourceType.Rss);
+			PostSourceType.FromJsonString("sms").Should().Be(PostSourceType.Sms);
 		}
 
 		[Test]
 		public void PostTypeOrderTest()
 		{
 			// get test
-			Assert.That(PostTypeOrder.Post.ToString(), Is.EqualTo("post"));
-			Assert.That(PostTypeOrder.Copy.ToString(), Is.EqualTo("copy"));
+			PostTypeOrder.Post.ToString().Should().Be("post");
+			PostTypeOrder.Copy.ToString().Should().Be("copy");
 
 			// parse test
-			Assert.That(PostTypeOrder.FromJsonString("post"), Is.EqualTo(PostTypeOrder.Post));
-			Assert.That(PostTypeOrder.FromJsonString("copy"), Is.EqualTo(PostTypeOrder.Copy));
+			PostTypeOrder.FromJsonString("post").Should().Be(PostTypeOrder.Post);
+			PostTypeOrder.FromJsonString("copy").Should().Be(PostTypeOrder.Copy);
 		}
 
 		[Test]
 		public void PostTypeTest()
 		{
 			// get test
-			Assert.That(PostType.Post.ToString(), Is.EqualTo("post"));
-			Assert.That(PostType.Copy.ToString(), Is.EqualTo("copy"));
-			Assert.That(PostType.Reply.ToString(), Is.EqualTo("reply"));
-			Assert.That(PostType.Postpone.ToString(), Is.EqualTo("postpone"));
-			Assert.That(PostType.Suggest.ToString(), Is.EqualTo("suggest"));
+			PostType.Post.ToString().Should().Be("post");
+			PostType.Copy.ToString().Should().Be("copy");
+			PostType.Reply.ToString().Should().Be("reply");
+			PostType.Postpone.ToString().Should().Be("postpone");
+			PostType.Suggest.ToString().Should().Be("suggest");
 
 			// parse test
-			Assert.That(PostType.FromJsonString("post"), Is.EqualTo(PostType.Post));
-			Assert.That(PostType.FromJsonString("copy"), Is.EqualTo(PostType.Copy));
-			Assert.That(PostType.FromJsonString("reply"), Is.EqualTo(PostType.Reply));
-			Assert.That(PostType.FromJsonString("postpone"), Is.EqualTo(PostType.Postpone));
-			Assert.That(PostType.FromJsonString("suggest"), Is.EqualTo(PostType.Suggest));
+			PostType.FromJsonString("post").Should().Be(PostType.Post);
+			PostType.FromJsonString("copy").Should().Be(PostType.Copy);
+			PostType.FromJsonString("reply").Should().Be(PostType.Reply);
+			PostType.FromJsonString("postpone").Should().Be(PostType.Postpone);
+			PostType.FromJsonString("suggest").Should().Be(PostType.Suggest);
 		}
 
 		[Test]
 		public void PrivacyTest()
 		{
 			// get test
-			Assert.That(Privacy.All.ToString(), Is.EqualTo("all"));
-			Assert.That(Privacy.Friends.ToString(), Is.EqualTo("friends"));
-			Assert.That(Privacy.FriendsOfFriends.ToString(), Is.EqualTo("friends_of_friends"));
-			Assert.That(Privacy.FriendsOfFriendsOnly.ToString(), Is.EqualTo("friends_of_friends_only"));
-			Assert.That(Privacy.Nobody.ToString(), Is.EqualTo("nobody"));
-			Assert.That(Privacy.OnlyMe.ToString(), Is.EqualTo("only_me"));
+			Privacy.All.ToString().Should().Be("all");
+			Privacy.Friends.ToString().Should().Be("friends");
+			Privacy.FriendsOfFriends.ToString().Should().Be("friends_of_friends");
+			Privacy.FriendsOfFriendsOnly.ToString().Should().Be("friends_of_friends_only");
+			Privacy.Nobody.ToString().Should().Be("nobody");
+			Privacy.OnlyMe.ToString().Should().Be("only_me");
 
 			// parse test
-			Assert.That(Privacy.FromJsonString("all"), Is.EqualTo(Privacy.All));
-			Assert.That(Privacy.FromJsonString("friends"), Is.EqualTo(Privacy.Friends));
+			Privacy.FromJsonString("all").Should().Be(Privacy.All);
+			Privacy.FromJsonString("friends").Should().Be(Privacy.Friends);
 
-			Assert.That(Privacy.FromJsonString("friends_of_friends")
-					, Is.EqualTo(Privacy.FriendsOfFriends));
+			Privacy.FromJsonString("friends_of_friends").Should().Be(Privacy.FriendsOfFriends);
 
-			Assert.That(Privacy.FromJsonString("friends_of_friends_only")
-					, Is.EqualTo(Privacy.FriendsOfFriendsOnly));
+			Privacy.FromJsonString("friends_of_friends_only").Should().Be(Privacy.FriendsOfFriendsOnly);
 
-			Assert.That(Privacy.FromJsonString("nobody"), Is.EqualTo(Privacy.Nobody));
-			Assert.That(Privacy.FromJsonString("only_me"), Is.EqualTo(Privacy.OnlyMe));
+			Privacy.FromJsonString("nobody").Should().Be(Privacy.Nobody);
+			Privacy.FromJsonString("only_me").Should().Be(Privacy.OnlyMe);
 		}
 
 		[Test]
 		public void RelativeTypeTest()
 		{
 			// get test
-			Assert.That(RelativeType.Sibling.ToString(), Is.EqualTo("sibling"));
-			Assert.That(RelativeType.Parent.ToString(), Is.EqualTo("parent"));
-			Assert.That(RelativeType.Child.ToString(), Is.EqualTo("child"));
-			Assert.That(RelativeType.Grandparent.ToString(), Is.EqualTo("grandparent"));
-			Assert.That(RelativeType.Grandchild.ToString(), Is.EqualTo("grandchild"));
+			RelativeType.Sibling.ToString().Should().Be("sibling");
+			RelativeType.Parent.ToString().Should().Be("parent");
+			RelativeType.Child.ToString().Should().Be("child");
+			RelativeType.Grandparent.ToString().Should().Be("grandparent");
+			RelativeType.Grandchild.ToString().Should().Be("grandchild");
 
 			// parse test
-			Assert.That(RelativeType.FromJsonString("sibling"), Is.EqualTo(RelativeType.Sibling));
-			Assert.That(RelativeType.FromJsonString("parent"), Is.EqualTo(RelativeType.Parent));
-			Assert.That(RelativeType.FromJsonString("child"), Is.EqualTo(RelativeType.Child));
+			RelativeType.FromJsonString("sibling").Should().Be(RelativeType.Sibling);
+			RelativeType.FromJsonString("parent").Should().Be(RelativeType.Parent);
+			RelativeType.FromJsonString("child").Should().Be(RelativeType.Child);
 
-			Assert.That(RelativeType.FromJsonString("grandparent")
-					, Is.EqualTo(RelativeType.Grandparent));
+			RelativeType.FromJsonString("grandparent").Should().Be(RelativeType.Grandparent);
 
-			Assert.That(RelativeType.FromJsonString("grandchild")
-					, Is.EqualTo(RelativeType.Grandchild));
+			RelativeType.FromJsonString("grandchild").Should().Be(RelativeType.Grandchild);
 		}
 
 		[Test]
 		public void ReportTypeTest()
 		{
 			// get test
-			Assert.That(ReportType.Porn.ToString(), Is.EqualTo("porn"));
-			Assert.That(ReportType.Spam.ToString(), Is.EqualTo("spam"));
-			Assert.That(ReportType.Insult.ToString(), Is.EqualTo("insult"));
-			Assert.That(ReportType.Advertisment.ToString(), Is.EqualTo("advertisment"));
+			ReportType.Porn.ToString().Should().Be("porn");
+			ReportType.Spam.ToString().Should().Be("spam");
+			ReportType.Insult.ToString().Should().Be("insult");
+			ReportType.Advertisment.ToString().Should().Be("advertisment");
 
 			// parse test
-			Assert.That(ReportType.FromJsonString("porn"), Is.EqualTo(ReportType.Porn));
-			Assert.That(ReportType.FromJsonString("spam"), Is.EqualTo(ReportType.Spam));
-			Assert.That(ReportType.FromJsonString("insult"), Is.EqualTo(ReportType.Insult));
+			ReportType.FromJsonString("porn").Should().Be(ReportType.Porn);
+			ReportType.FromJsonString("spam").Should().Be(ReportType.Spam);
+			ReportType.FromJsonString("insult").Should().Be(ReportType.Insult);
 
-			Assert.That(ReportType.FromJsonString("advertisment")
-					, Is.EqualTo(ReportType.Advertisment));
+			ReportType.FromJsonString("advertisment").Should().Be(ReportType.Advertisment);
 		}
 
 		[Test]
 		public void ServicesTest()
 		{
 			// get test
-			Assert.That(Services.Email.ToString(), Is.EqualTo("email"));
-			Assert.That(Services.Phone.ToString(), Is.EqualTo("phone"));
-			Assert.That(Services.Twitter.ToString(), Is.EqualTo("twitter"));
-			Assert.That(Services.Facebook.ToString(), Is.EqualTo("facebook"));
-			Assert.That(Services.Odnoklassniki.ToString(), Is.EqualTo("odnoklassniki"));
-			Assert.That(Services.Instagram.ToString(), Is.EqualTo("instagram"));
-			Assert.That(Services.Google.ToString(), Is.EqualTo("google"));
+			Services.Email.ToString().Should().Be("email");
+			Services.Phone.ToString().Should().Be("phone");
+			Services.Twitter.ToString().Should().Be("twitter");
+			Services.Facebook.ToString().Should().Be("facebook");
+			Services.Odnoklassniki.ToString().Should().Be("odnoklassniki");
+			Services.Instagram.ToString().Should().Be("instagram");
+			Services.Google.ToString().Should().Be("google");
 
 			// parse test
-			Assert.That(Services.FromJsonString("email"), Is.EqualTo(Services.Email));
-			Assert.That(Services.FromJsonString("phone"), Is.EqualTo(Services.Phone));
-			Assert.That(Services.FromJsonString("twitter"), Is.EqualTo(Services.Twitter));
-			Assert.That(Services.FromJsonString("facebook"), Is.EqualTo(Services.Facebook));
+			Services.FromJsonString("email").Should().Be(Services.Email);
+			Services.FromJsonString("phone").Should().Be(Services.Phone);
+			Services.FromJsonString("twitter").Should().Be(Services.Twitter);
+			Services.FromJsonString("facebook").Should().Be(Services.Facebook);
 
-			Assert.That(Services.FromJsonString("odnoklassniki")
-					, Is.EqualTo(Services.Odnoklassniki));
+			Services.FromJsonString("odnoklassniki").Should().Be(Services.Odnoklassniki);
 
-			Assert.That(Services.FromJsonString("instagram"), Is.EqualTo(Services.Instagram));
-			Assert.That(Services.FromJsonString("google"), Is.EqualTo(Services.Google));
+			Services.FromJsonString("instagram").Should().Be(Services.Instagram);
+			Services.FromJsonString("google").Should().Be(Services.Google);
 		}
 
 		[Test]
 		public void UserSectionTest()
 		{
 			// get test
-			Assert.That(UserSection.Friends.ToString(), Is.EqualTo("friends"));
-			Assert.That(UserSection.Subscriptions.ToString(), Is.EqualTo("subscriptions"));
+			UserSection.Friends.ToString().Should().Be("friends");
+			UserSection.Subscriptions.ToString().Should().Be("subscriptions");
 
 			// parse test
-			Assert.That(UserSection.FromJsonString("friends"), Is.EqualTo(UserSection.Friends));
+			UserSection.FromJsonString("friends").Should().Be(UserSection.Friends);
 
-			Assert.That(UserSection.FromJsonString("subscriptions")
-					, Is.EqualTo(UserSection.Subscriptions));
+			UserSection.FromJsonString("subscriptions").Should().Be(UserSection.Subscriptions);
 		}
 
 		[Test]
 		public void VideoCatalogItemTypeTest()
 		{
 			// get test
-			Assert.That(VideoCatalogItemType.Video.ToString(), Is.EqualTo("video"));
-			Assert.That(VideoCatalogItemType.Album.ToString(), Is.EqualTo("album"));
+			VideoCatalogItemType.Video.ToString().Should().Be("video");
+			VideoCatalogItemType.Album.ToString().Should().Be("album");
 
 			// parse test
-			Assert.That(VideoCatalogItemType.FromJsonString("video")
-					, Is.EqualTo(VideoCatalogItemType.Video));
+			VideoCatalogItemType.FromJsonString("video").Should().Be(VideoCatalogItemType.Video);
 
-			Assert.That(VideoCatalogItemType.FromJsonString("album")
-					, Is.EqualTo(VideoCatalogItemType.Album));
+			VideoCatalogItemType.FromJsonString("album").Should().Be(VideoCatalogItemType.Album);
 		}
 
 		[Test]
 		public void VideoCatalogTypeTest()
 		{
 			// get test
-			Assert.That(VideoCatalogType.Channel.ToString(), Is.EqualTo("channel"));
-			Assert.That(VideoCatalogType.Category.ToString(), Is.EqualTo("category"));
+			VideoCatalogType.Channel.ToString().Should().Be("channel");
+			VideoCatalogType.Category.ToString().Should().Be("category");
 
 			// parse test
-			Assert.That(VideoCatalogType.FromJsonString("channel")
-					, Is.EqualTo(VideoCatalogType.Channel));
+			VideoCatalogType.FromJsonString("channel").Should().Be(VideoCatalogType.Channel);
 
-			Assert.That(VideoCatalogType.FromJsonString("category")
-					, Is.EqualTo(VideoCatalogType.Category));
+			VideoCatalogType.FromJsonString("category").Should().Be(VideoCatalogType.Category);
 		}
 
 		[Test]
 		public void WallFilterTest()
 		{
 			// get test
-			Assert.That(WallFilter.Owner.ToString(), Is.EqualTo("owner"));
-			Assert.That(WallFilter.Others.ToString(), Is.EqualTo("others"));
-			Assert.That(WallFilter.All.ToString(), Is.EqualTo("all"));
-			Assert.That(WallFilter.Suggests.ToString(), Is.EqualTo("suggests"));
-			Assert.That(WallFilter.Postponed.ToString(), Is.EqualTo("postponed"));
+			WallFilter.Owner.ToString().Should().Be("owner");
+			WallFilter.Others.ToString().Should().Be("others");
+			WallFilter.All.ToString().Should().Be("all");
+			WallFilter.Suggests.ToString().Should().Be("suggests");
+			WallFilter.Postponed.ToString().Should().Be("postponed");
 
 			// parse test
-			Assert.That(WallFilter.FromJsonString("owner"), Is.EqualTo(WallFilter.Owner));
-			Assert.That(WallFilter.FromJsonString("others"), Is.EqualTo(WallFilter.Others));
-			Assert.That(WallFilter.FromJsonString("all"), Is.EqualTo(WallFilter.All));
-			Assert.That(WallFilter.FromJsonString("suggests"), Is.EqualTo(WallFilter.Suggests));
-			Assert.That(WallFilter.FromJsonString("postponed"), Is.EqualTo(WallFilter.Postponed));
+			WallFilter.FromJsonString("owner").Should().Be(WallFilter.Owner);
+			WallFilter.FromJsonString("others").Should().Be(WallFilter.Others);
+			WallFilter.FromJsonString("all").Should().Be(WallFilter.All);
+			WallFilter.FromJsonString("suggests").Should().Be(WallFilter.Suggests);
+			WallFilter.FromJsonString("postponed").Should().Be(WallFilter.Postponed);
 		}
 
 		[Test]
 		public void KeyboardButtonColorTest()
 		{
 			// get test
-			Assert.That(KeyboardButtonColor.Default.ToString(), Is.EqualTo("default"));
-			Assert.That(KeyboardButtonColor.Negative.ToString(), Is.EqualTo("negative"));
-			Assert.That(KeyboardButtonColor.Positive.ToString(), Is.EqualTo("positive"));
-			Assert.That(KeyboardButtonColor.Primary.ToString(), Is.EqualTo("primary"));
+			KeyboardButtonColor.Default.ToString().Should().Be("default");
+			KeyboardButtonColor.Negative.ToString().Should().Be("negative");
+			KeyboardButtonColor.Positive.ToString().Should().Be("positive");
+			KeyboardButtonColor.Primary.ToString().Should().Be("primary");
 
 			// parse test
-			Assert.That(KeyboardButtonColor.FromJsonString("default"), Is.EqualTo(KeyboardButtonColor.Default));
-			Assert.That(KeyboardButtonColor.FromJsonString("negative"), Is.EqualTo(KeyboardButtonColor.Negative));
-			Assert.That(KeyboardButtonColor.FromJsonString("positive"), Is.EqualTo(KeyboardButtonColor.Positive));
-			Assert.That(KeyboardButtonColor.FromJsonString("primary"), Is.EqualTo(KeyboardButtonColor.Primary));
+			KeyboardButtonColor.FromJsonString("default").Should().Be(KeyboardButtonColor.Default);
+			KeyboardButtonColor.FromJsonString("negative").Should().Be(KeyboardButtonColor.Negative);
+			KeyboardButtonColor.FromJsonString("positive").Should().Be(KeyboardButtonColor.Positive);
+			KeyboardButtonColor.FromJsonString("primary").Should().Be(KeyboardButtonColor.Primary);
 		}
 
 		[Test]
 		public void KeyboardButtonActionTypeTest()
 		{
 			// get test
-			Assert.That(KeyboardButtonActionType.Text.ToString(), Is.EqualTo("text"));
-			Assert.That(KeyboardButtonActionType.Location.ToString(), Is.EqualTo("location"));
-			Assert.That(KeyboardButtonActionType.OpenLink.ToString(), Is.EqualTo("open_link"));
-			Assert.That(KeyboardButtonActionType.VkApp.ToString(), Is.EqualTo("open_app"));
-			Assert.That(KeyboardButtonActionType.VkPay.ToString(), Is.EqualTo("vkpay"));
-			Assert.That(KeyboardButtonActionType.Callback.ToString(), Is.EqualTo("callback"));
+			KeyboardButtonActionType.Text.ToString().Should().Be("text");
+			KeyboardButtonActionType.Location.ToString().Should().Be("location");
+			KeyboardButtonActionType.OpenLink.ToString().Should().Be("open_link");
+			KeyboardButtonActionType.VkApp.ToString().Should().Be("open_app");
+			KeyboardButtonActionType.VkPay.ToString().Should().Be("vkpay");
+			KeyboardButtonActionType.Callback.ToString().Should().Be("callback");
 
 			// parse test
-			Assert.That(KeyboardButtonActionType.FromJsonString("text"), Is.EqualTo(KeyboardButtonActionType.Text));
-			Assert.That(KeyboardButtonActionType.FromJsonString("location"), Is.EqualTo(KeyboardButtonActionType.Location));
-			Assert.That(KeyboardButtonActionType.FromJsonString("open_link"), Is.EqualTo(KeyboardButtonActionType.OpenLink));
-			Assert.That(KeyboardButtonActionType.FromJsonString("open_app"), Is.EqualTo(KeyboardButtonActionType.VkApp));
-			Assert.That(KeyboardButtonActionType.FromJsonString("vkpay"), Is.EqualTo(KeyboardButtonActionType.VkPay));
-			Assert.That(KeyboardButtonActionType.FromJsonString("callback"), Is.EqualTo(KeyboardButtonActionType.Callback));
+			KeyboardButtonActionType.FromJsonString("text").Should().Be(KeyboardButtonActionType.Text);
+			KeyboardButtonActionType.FromJsonString("location").Should().Be(KeyboardButtonActionType.Location);
+			KeyboardButtonActionType.FromJsonString("open_link").Should().Be(KeyboardButtonActionType.OpenLink);
+			KeyboardButtonActionType.FromJsonString("open_app").Should().Be(KeyboardButtonActionType.VkApp);
+			KeyboardButtonActionType.FromJsonString("vkpay").Should().Be(KeyboardButtonActionType.VkPay);
+			KeyboardButtonActionType.FromJsonString("callback").Should().Be(KeyboardButtonActionType.Callback);
 		}
 
 		[Test]
 		public void StoryObjectStateTest()
 		{
 			// get test
-			Assert.That(StoryObjectState.Hidden.ToString(), Is.EqualTo("hidden"));
-			Assert.That(StoryObjectState.On.ToString(), Is.EqualTo("on"));
-			Assert.That(StoryObjectState.Off.ToString(), Is.EqualTo("off"));
+			StoryObjectState.Hidden.ToString().Should().Be("hidden");
+			StoryObjectState.On.ToString().Should().Be("on");
+			StoryObjectState.Off.ToString().Should().Be("off");
 
 			// parse test
-			Assert.That(StoryObjectState.FromJsonString("hidden"), Is.EqualTo(StoryObjectState.Hidden));
-			Assert.That(StoryObjectState.FromJsonString("on"), Is.EqualTo(StoryObjectState.On));
-			Assert.That(StoryObjectState.FromJsonString("off"), Is.EqualTo(StoryObjectState.Off));
+			StoryObjectState.FromJsonString("hidden").Should().Be(StoryObjectState.Hidden);
+			StoryObjectState.FromJsonString("on").Should().Be(StoryObjectState.On);
+			StoryObjectState.FromJsonString("off").Should().Be(StoryObjectState.Off);
 		}
 
 		[Test]
 		public void StoryLinkTextTest()
 		{
 			// get test
-			Assert.That(StoryLinkText.Book.ToString(), Is.EqualTo("book"));
-			Assert.That(StoryLinkText.Buy.ToString(), Is.EqualTo("buy"));
-			Assert.That(StoryLinkText.Contact.ToString(), Is.EqualTo("contact"));
-			Assert.That(StoryLinkText.Enroll.ToString(), Is.EqualTo("enroll"));
-			Assert.That(StoryLinkText.Fill.ToString(), Is.EqualTo("fill"));
-			Assert.That(StoryLinkText.GoTo.ToString(), Is.EqualTo("go_to"));
-			Assert.That(StoryLinkText.Install.ToString(), Is.EqualTo("install"));
-			Assert.That(StoryLinkText.LearnMore.ToString(), Is.EqualTo("learn_more"));
-			Assert.That(StoryLinkText.More.ToString(), Is.EqualTo("more"));
-			Assert.That(StoryLinkText.Open.ToString(), Is.EqualTo("open"));
-			Assert.That(StoryLinkText.Order.ToString(), Is.EqualTo("order"));
-			Assert.That(StoryLinkText.Play.ToString(), Is.EqualTo("play"));
-			Assert.That(StoryLinkText.Read.ToString(), Is.EqualTo("read"));
-			Assert.That(StoryLinkText.Signup.ToString(), Is.EqualTo("signup"));
-			Assert.That(StoryLinkText.View.ToString(), Is.EqualTo("view"));
-			Assert.That(StoryLinkText.Vote.ToString(), Is.EqualTo("vote"));
-			Assert.That(StoryLinkText.Watch.ToString(), Is.EqualTo("watch"));
-			Assert.That(StoryLinkText.Write.ToString(), Is.EqualTo("write"));
+			StoryLinkText.Book.ToString().Should().Be("book");
+			StoryLinkText.Buy.ToString().Should().Be("buy");
+			StoryLinkText.Contact.ToString().Should().Be("contact");
+			StoryLinkText.Enroll.ToString().Should().Be("enroll");
+			StoryLinkText.Fill.ToString().Should().Be("fill");
+			StoryLinkText.GoTo.ToString().Should().Be("go_to");
+			StoryLinkText.Install.ToString().Should().Be("install");
+			StoryLinkText.LearnMore.ToString().Should().Be("learn_more");
+			StoryLinkText.More.ToString().Should().Be("more");
+			StoryLinkText.Open.ToString().Should().Be("open");
+			StoryLinkText.Order.ToString().Should().Be("order");
+			StoryLinkText.Play.ToString().Should().Be("play");
+			StoryLinkText.Read.ToString().Should().Be("read");
+			StoryLinkText.Signup.ToString().Should().Be("signup");
+			StoryLinkText.View.ToString().Should().Be("view");
+			StoryLinkText.Vote.ToString().Should().Be("vote");
+			StoryLinkText.Watch.ToString().Should().Be("watch");
+			StoryLinkText.Write.ToString().Should().Be("write");
 
 			// parse test
-			Assert.That(StoryLinkText.FromJsonString("book"), Is.EqualTo(StoryLinkText.Book));
-			Assert.That(StoryLinkText.FromJsonString("buy"), Is.EqualTo(StoryLinkText.Buy));
-			Assert.That(StoryLinkText.FromJsonString("contact"), Is.EqualTo(StoryLinkText.Contact));
-			Assert.That(StoryLinkText.FromJsonString("enroll"), Is.EqualTo(StoryLinkText.Enroll));
-			Assert.That(StoryLinkText.FromJsonString("fill"), Is.EqualTo(StoryLinkText.Fill));
-			Assert.That(StoryLinkText.FromJsonString("go_to"), Is.EqualTo(StoryLinkText.GoTo));
-			Assert.That(StoryLinkText.FromJsonString("install"), Is.EqualTo(StoryLinkText.Install));
-			Assert.That(StoryLinkText.FromJsonString("learn_more"), Is.EqualTo(StoryLinkText.LearnMore));
-			Assert.That(StoryLinkText.FromJsonString("more"), Is.EqualTo(StoryLinkText.More));
-			Assert.That(StoryLinkText.FromJsonString("open"), Is.EqualTo(StoryLinkText.Open));
-			Assert.That(StoryLinkText.FromJsonString("order"), Is.EqualTo(StoryLinkText.Order));
-			Assert.That(StoryLinkText.FromJsonString("play"), Is.EqualTo(StoryLinkText.Play));
-			Assert.That(StoryLinkText.FromJsonString("read"), Is.EqualTo(StoryLinkText.Read));
-			Assert.That(StoryLinkText.FromJsonString("signup"), Is.EqualTo(StoryLinkText.Signup));
-			Assert.That(StoryLinkText.FromJsonString("view"), Is.EqualTo(StoryLinkText.View));
-			Assert.That(StoryLinkText.FromJsonString("vote"), Is.EqualTo(StoryLinkText.Vote));
-			Assert.That(StoryLinkText.FromJsonString("watch"), Is.EqualTo(StoryLinkText.Watch));
-			Assert.That(StoryLinkText.FromJsonString("write"), Is.EqualTo(StoryLinkText.Write));
+			StoryLinkText.FromJsonString("book").Should().Be(StoryLinkText.Book);
+			StoryLinkText.FromJsonString("buy").Should().Be(StoryLinkText.Buy);
+			StoryLinkText.FromJsonString("contact").Should().Be(StoryLinkText.Contact);
+			StoryLinkText.FromJsonString("enroll").Should().Be(StoryLinkText.Enroll);
+			StoryLinkText.FromJsonString("fill").Should().Be(StoryLinkText.Fill);
+			StoryLinkText.FromJsonString("go_to").Should().Be(StoryLinkText.GoTo);
+			StoryLinkText.FromJsonString("install").Should().Be(StoryLinkText.Install);
+			StoryLinkText.FromJsonString("learn_more").Should().Be(StoryLinkText.LearnMore);
+			StoryLinkText.FromJsonString("more").Should().Be(StoryLinkText.More);
+			StoryLinkText.FromJsonString("open").Should().Be(StoryLinkText.Open);
+			StoryLinkText.FromJsonString("order").Should().Be(StoryLinkText.Order);
+			StoryLinkText.FromJsonString("play").Should().Be(StoryLinkText.Play);
+			StoryLinkText.FromJsonString("read").Should().Be(StoryLinkText.Read);
+			StoryLinkText.FromJsonString("signup").Should().Be(StoryLinkText.Signup);
+			StoryLinkText.FromJsonString("view").Should().Be(StoryLinkText.View);
+			StoryLinkText.FromJsonString("vote").Should().Be(StoryLinkText.Vote);
+			StoryLinkText.FromJsonString("watch").Should().Be(StoryLinkText.Watch);
+			StoryLinkText.FromJsonString("write").Should().Be(StoryLinkText.Write);
 		}
 
 		[Test]
@@ -850,49 +809,52 @@ namespace VkNet.Tests.Enum.SafetyEnums
 		public void AppWidgetTypeTest()
 		{
 			// get test
-			Assert.That(AppWidgetType.Donation.ToString(), Is.EqualTo("donation"));
-			Assert.That(AppWidgetType.List.ToString(), Is.EqualTo("list"));
-			Assert.That(AppWidgetType.Match.ToString(), Is.EqualTo("match"));
-			Assert.That(AppWidgetType.Matches.ToString(), Is.EqualTo("matches"));
-			Assert.That(AppWidgetType.Table.ToString(), Is.EqualTo("table"));
-			Assert.That(AppWidgetType.Text.ToString(), Is.EqualTo("text"));
-			Assert.That(AppWidgetType.Tiles.ToString(), Is.EqualTo("tiles"));
-			Assert.That(AppWidgetType.CompactList.ToString(), Is.EqualTo("compact_list"));
-			Assert.That(AppWidgetType.CoverList.ToString(), Is.EqualTo("cover_list"));
+			AppWidgetType.Donation.ToString().Should().Be("donation");
+			AppWidgetType.List.ToString().Should().Be("list");
+			AppWidgetType.Match.ToString().Should().Be("match");
+			AppWidgetType.Matches.ToString().Should().Be("matches");
+			AppWidgetType.Table.ToString().Should().Be("table");
+			AppWidgetType.Text.ToString().Should().Be("text");
+			AppWidgetType.Tiles.ToString().Should().Be("tiles");
+			AppWidgetType.CompactList.ToString().Should().Be("compact_list");
+			AppWidgetType.CoverList.ToString().Should().Be("cover_list");
+
 			// parse test
-			Assert.That(AppWidgetType.FromJsonString("donation"), Is.EqualTo(AppWidgetType.Donation));
-			Assert.That(AppWidgetType.FromJsonString("list"), Is.EqualTo(AppWidgetType.List));
-			Assert.That(AppWidgetType.FromJsonString("match"), Is.EqualTo(AppWidgetType.Match));
-			Assert.That(AppWidgetType.FromJsonString("matches"), Is.EqualTo(AppWidgetType.Matches));
-			Assert.That(AppWidgetType.FromJsonString("table"), Is.EqualTo(AppWidgetType.Table));
-			Assert.That(AppWidgetType.FromJsonString("text"), Is.EqualTo(AppWidgetType.Text));
-			Assert.That(AppWidgetType.FromJsonString("tiles"), Is.EqualTo(AppWidgetType.Tiles));
-			Assert.That(AppWidgetType.FromJsonString("compact_list"), Is.EqualTo(AppWidgetType.CompactList));
-			Assert.That(AppWidgetType.FromJsonString("cover_list"), Is.EqualTo(AppWidgetType.CoverList));
+			AppWidgetType.FromJsonString("donation").Should().Be(AppWidgetType.Donation);
+			AppWidgetType.FromJsonString("list").Should().Be(AppWidgetType.List);
+			AppWidgetType.FromJsonString("match").Should().Be(AppWidgetType.Match);
+			AppWidgetType.FromJsonString("matches").Should().Be(AppWidgetType.Matches);
+			AppWidgetType.FromJsonString("table").Should().Be(AppWidgetType.Table);
+			AppWidgetType.FromJsonString("text").Should().Be(AppWidgetType.Text);
+			AppWidgetType.FromJsonString("tiles").Should().Be(AppWidgetType.Tiles);
+			AppWidgetType.FromJsonString("compact_list").Should().Be(AppWidgetType.CompactList);
+			AppWidgetType.FromJsonString("cover_list").Should().Be(AppWidgetType.CoverList);
 		}
 
 		[Test]
 		public void TranscriptStatesTest()
 		{
 			// get test
-			Assert.That(TranscriptStates.Done.ToString(), Is.EqualTo("done"));
-			Assert.That(TranscriptStates.InProgress.ToString(), Is.EqualTo("in_progress"));
+			TranscriptStates.Done.ToString().Should().Be("done");
+			TranscriptStates.InProgress.ToString().Should().Be("in_progress");
+
 			// parse test
-			Assert.That(TranscriptStates.FromJsonString("done"), Is.EqualTo(TranscriptStates.Done));
-			Assert.That(TranscriptStates.FromJsonString("in_progress"), Is.EqualTo(TranscriptStates.InProgress));
+			TranscriptStates.FromJsonString("done").Should().Be(TranscriptStates.Done);
+			TranscriptStates.FromJsonString("in_progress").Should().Be(TranscriptStates.InProgress);
 		}
 
 		[Test]
 		public void MessageEventTypeTest()
 		{
 			// get test
-			Assert.That(MessageEventType.OpenApp.ToString(), Is.EqualTo("open_app"));
-			Assert.That(MessageEventType.OpenLink.ToString(), Is.EqualTo("open_link"));
-			Assert.That(MessageEventType.SnowSnackbar.ToString(), Is.EqualTo("show_snackbar"));
+			MessageEventType.OpenApp.ToString().Should().Be("open_app");
+			MessageEventType.OpenLink.ToString().Should().Be("open_link");
+			MessageEventType.SnowSnackbar.ToString().Should().Be("show_snackbar");
+
 			// parse test
-			Assert.That(MessageEventType.FromJsonString("open_app"), Is.EqualTo(MessageEventType.OpenApp));
-			Assert.That(MessageEventType.FromJsonString("open_link"), Is.EqualTo(MessageEventType.OpenLink));
-			Assert.That(MessageEventType.FromJsonString("show_snackbar"), Is.EqualTo(MessageEventType.SnowSnackbar));
+			MessageEventType.FromJsonString("open_app").Should().Be(MessageEventType.OpenApp);
+			MessageEventType.FromJsonString("open_link").Should().Be(MessageEventType.OpenLink);
+			MessageEventType.FromJsonString("show_snackbar").Should().Be(MessageEventType.SnowSnackbar);
 		}
 	}
 }

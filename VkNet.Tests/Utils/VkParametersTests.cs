@@ -16,9 +16,9 @@ namespace VkNet.Tests.Utils
 				{ "NullableBoolean", false }
 			};
 
-			Assert.That(@params, Does.ContainKey("NullableBoolean"));
+			@params.Should().ContainKey("NullableBoolean");
 			var val = @params["NullableBoolean"];
-			Assert.That(val, Is.EqualTo("0"));
+			val.Should().Be("0");
 		}
 
 		[Test]
@@ -29,7 +29,7 @@ namespace VkNet.Tests.Utils
 				{ "NullableBoolean", (bool?) null }
 			};
 
-			Assert.That(@params, Does.Not.ContainKey("NullableBoolean"));
+			@params.Should().NotContainKey("NullableBoolean");
 		}
 
 		[Test]
@@ -40,9 +40,9 @@ namespace VkNet.Tests.Utils
 				{ "NullableBoolean", true }
 			};
 
-			Assert.That(@params, Does.ContainKey("NullableBoolean"));
+			@params.Should().ContainKey("NullableBoolean");
 			var val = @params["NullableBoolean"];
-			Assert.That(val, Is.EqualTo("1"));
+			val.Should().Be("1");
 		}
 
 		[Test]
@@ -61,10 +61,12 @@ namespace VkNet.Tests.Utils
 				{ "date_time", dateTimeNow }
 			};
 
-			Assert.DoesNotThrow(() =>
-			{
-				var unused = @params["date_time"];
-			});
+			FluentActions.Invoking(() =>
+				{
+					var unused = @params["date_time"];
+				})
+				.Should()
+				.NotThrow();
 
 			@params["date_time"].Should().Be("1572481292");
 		}

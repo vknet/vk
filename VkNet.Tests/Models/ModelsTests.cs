@@ -62,8 +62,7 @@ namespace VkNet.Tests.Models
 				(
 					!p.PropertyType.IsAbstract
 					&& !p.PropertyType.IsInterface
-					&& p.PropertyType.BaseType != null
-					&& p.PropertyType.BaseType.IsGenericType
+					&& p.PropertyType.BaseType is { IsGenericType: true }
 					&& p.PropertyType.BaseType.GetGenericTypeDefinition() == typeof(SafetyEnum<>)
 				))
 				.Select(x => $"{x.DeclaringType?.FullName} с полем {x.Name}");

@@ -16,7 +16,6 @@ namespace VkNet.Tests.Categories.Wall
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-
 	public class WallCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Wall";
@@ -36,7 +35,7 @@ namespace VkNet.Tests.Categories.Wall
 		[Test]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			Assert.That(() => new WallCategory(new VkApi()).Delete(1, 1), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => new WallCategory(new VkApi()).Delete(1, 1)).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -52,21 +51,21 @@ namespace VkNet.Tests.Categories.Wall
 				Offset = 2
 			});
 
-			Assert.That(posts.TotalCount, Is.EqualTo(100u));
-			Assert.That(posts.WallPosts[0].Attachments.Count, Is.EqualTo(1));
+			posts.TotalCount.Should().Be(100u);
+			posts.WallPosts[0].Attachments.Count.Should().Be(1);
 			var doc = (Document) posts.WallPosts[0].Attachment.Instance;
-			Assert.That(doc, Is.Not.Null);
-			Assert.That(doc.Id, Is.EqualTo(237844408));
-			Assert.That(doc.OwnerId, Is.EqualTo(26033241));
-			Assert.That(doc.Title, Is.EqualTo("2e857c8f-aaf8-4399-9856-e4fda3199e3d.gif"));
-			Assert.That(doc.Size, Is.EqualTo(2006654));
-			Assert.That(doc.Ext, Is.EqualTo("gif"));
+			doc.Should().NotBeNull();
+			doc.Id.Should().Be(237844408);
+			doc.OwnerId.Should().Be(26033241);
+			doc.Title.Should().Be("2e857c8f-aaf8-4399-9856-e4fda3199e3d.gif");
+			doc.Size.Should().Be(2006654);
+			doc.Ext.Should().Be("gif");
 
-			Assert.That(doc.Uri, Is.EqualTo("http://vk.com/doc26033241_237844408?hash=126f761781ce2ebfc5&dl=f2c681ec7740f9a3a0&api=1"));
+			doc.Uri.Should().Be("http://vk.com/doc26033241_237844408?hash=126f761781ce2ebfc5&dl=f2c681ec7740f9a3a0&api=1");
 
-			Assert.That(doc.Photo100, Is.EqualTo("http://cs537313.vk.me/u26033241/-3/s_48ba682f61.jpg"));
-			Assert.That(doc.Photo130, Is.EqualTo("http://cs537313.vk.me/u26033241/-3/m_48ba682f61.jpg"));
-			Assert.That(doc.AccessKey, Is.EqualTo("5bf7103aa95aacb8ad"));
+			doc.Photo100.Should().Be("http://cs537313.vk.me/u26033241/-3/s_48ba682f61.jpg");
+			doc.Photo130.Should().Be("http://cs537313.vk.me/u26033241/-3/m_48ba682f61.jpg");
+			doc.AccessKey.Should().Be("5bf7103aa95aacb8ad");
 		}
 
 		[Test]
@@ -84,16 +83,16 @@ namespace VkNet.Tests.Categories.Wall
 				Filter = WallFilter.Owner
 			});
 
-			Assert.That(count.TotalCount, Is.EqualTo(42));
+			count.TotalCount.Should().Be(42);
 
-			Assert.That(count.WallPosts.Count, Is.EqualTo(1));
-			Assert.That(count.WallPosts[0].Id, Is.EqualTo(41));
+			count.WallPosts.Count.Should().Be(1);
+			count.WallPosts[0].Id.Should().Be(41);
 
-			Assert.That(count.Profiles.Count, Is.EqualTo(1));
-			Assert.That(count.Profiles[0].Id, Is.EqualTo(10));
+			count.Profiles.Count.Should().Be(1);
+			count.Profiles[0].Id.Should().Be(10);
 
-			Assert.That(count.Groups.Count, Is.EqualTo(1));
-			Assert.That(count.Groups[0].Id, Is.EqualTo(29246653));
+			count.Groups.Should().HaveCount(1);
+			count.Groups[0].Id.Should().Be(29246653);
 		}
 
 		[Test]
@@ -109,8 +108,8 @@ namespace VkNet.Tests.Categories.Wall
 				Offset = 2
 			});
 
-			Assert.That(posts.TotalCount, Is.EqualTo(165));
-			Assert.That(posts, Is.Not.Null);
+			posts.TotalCount.Should().Be(165);
+			posts.Should().NotBeNull();
 		}
 
 		[Test]
@@ -127,15 +126,15 @@ namespace VkNet.Tests.Categories.Wall
 				Filter = WallFilter.Owner
 			});
 
-			Assert.That(posts.TotalCount, Is.EqualTo(1724));
-			Assert.That(posts.WallPosts, Is.Not.Null);
-			Assert.That(posts.WallPosts.Count, Is.EqualTo(1));
-			Assert.That(posts.WallPosts[0].CopyHistory, Is.Not.Null);
-			Assert.That(posts.WallPosts[0].CopyHistory.Count, Is.EqualTo(1));
+			posts.TotalCount.Should().Be(1724);
+			posts.WallPosts.Should().NotBeNull();
+			posts.WallPosts.Should().HaveCount(1);
+			posts.WallPosts[0].CopyHistory.Should().NotBeNull();
+			posts.WallPosts[0].CopyHistory.Should().HaveCount(1);
 
 			var attach = posts.WallPosts[0].CopyHistory[0].Attachment;
-			Assert.That(attach, Is.Not.Null);
-			Assert.That(attach.Instance, Is.Null);
+			attach.Should().NotBeNull();
+			attach.Instance.Should().BeNull();
 		}
 
 		[Test]
@@ -150,48 +149,52 @@ namespace VkNet.Tests.Categories.Wall
 				Count = 1
 			});
 
-			Assert.That(posts.TotalCount, Is.EqualTo(2u));
-			Assert.That(posts.WallPosts.Count, Is.EqualTo(1));
+			posts.TotalCount.Should().Be(2u);
+			posts.WallPosts.Should().HaveCount(1);
 
 			var post = posts.WallPosts.FirstOrDefault();
-			Assert.That(post, Is.Not.Null);
+			post.Should().NotBeNull();
 
-			Assert.That(post.Id, Is.EqualTo(3));
-			Assert.That(post.FromId, Is.EqualTo(-103292418));
-			Assert.That(post.OwnerId, Is.EqualTo(-103292418));
-			Assert.That(post.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1447252575)));
-			Assert.That(post.PostType, Is.EqualTo(PostType.Post));
-			Assert.That(post.Text, Is.EqualTo("Тест"));
-			Assert.That(post.CanDelete, Is.True);
-			Assert.That(post.CanEdit, Is.False);
-			Assert.That(post.PostSource.Type, Is.EqualTo(PostSourceType.Api));
-			Assert.That(post.Comments, Is.Not.Null);
-			Assert.That(post.Comments.Count, Is.EqualTo(0));
-			Assert.That(post.Likes.Count, Is.EqualTo(0));
-			Assert.That(post.Likes.UserLikes, Is.False);
-			Assert.That(post.Likes.CanLike, Is.True);
-			Assert.That(post.Likes.CanPublish, Is.EqualTo(true));
-			Assert.That(post.Reposts.Count, Is.EqualTo(0));
-			Assert.That(post.Reposts.UserReposted, Is.False);
+			post.Id.Should().Be(3);
+			post.FromId.Should().Be(-103292418);
+			post.OwnerId.Should().Be(-103292418);
+			post.Date.Should().Be(DateHelper.TimeStampToDateTime(1447252575));
+			post.PostType.Should().Be(PostType.Post);
+			post.Text.Should().Be("Тест");
+			post.CanDelete.Should().BeTrue();
+			post.CanEdit.Should().BeFalse();
+			post.PostSource.Type.Should().Be(PostSourceType.Api);
+			post.Comments.Should().NotBeNull();
+			post.Comments.Count.Should().Be(0);
+			post.Likes.Count.Should().Be(0);
+			post.Likes.UserLikes.Should().BeFalse();
+			post.Likes.CanLike.Should().BeTrue();
+			post.Likes.CanPublish.Should().BeTrue();
+			post.Reposts.Count.Should().Be(0);
+			post.Reposts.UserReposted.Should().BeFalse();
 		}
 
 		[Test]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
-			Assert.That(() => new WallCategory(new VkApi()).GetById(new[]
+			FluentActions.Invoking(() => new WallCategory(new VkApi()).GetById(new[]
 				{
 					"93388_21539",
 					"93388_20904",
 					"2943_4276"
-				}),
-				Throws.TypeOf<AccessTokenInvalidException>());
+				}))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
 		[Test]
 		public void GetById_IncorrectParameters_ThrowException()
 		{
-			Assert.That(() => new WallCategory(Api).GetById(null), Throws.TypeOf<ArgumentNullException>());
-			Assert.That(() => new WallCategory(Api).GetById(Enumerable.Empty<string>()), Throws.TypeOf<ArgumentException>());
+			FluentActions.Invoking(() => new WallCategory(Api).GetById(null)).Should().ThrowExactly<ArgumentNullException>();
+
+			FluentActions.Invoking(() => new WallCategory(Api).GetById(Enumerable.Empty<string>()))
+				.Should()
+				.ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -207,36 +210,37 @@ namespace VkNet.Tests.Categories.Wall
 				"1_616"
 			});
 
-			Assert.That(records.TotalCount == 1);
+			records.TotalCount.Should().Be(1);
 
-			Assert.That(records.WallPosts[0].Id, Is.EqualTo(617));
-			Assert.That(records.WallPosts[0].FromId, Is.EqualTo(1));
-			Assert.That(records.WallPosts[0].OwnerId, Is.EqualTo(1));
+			records.WallPosts[0].Id.Should().Be(617);
+			records.WallPosts[0].FromId.Should().Be(1);
+			records.WallPosts[0].OwnerId.Should().Be(1);
 
-			Assert.That(records.WallPosts[0].Date,
-				Is.EqualTo(new DateTime(1970,
+			records.WallPosts[0]
+				.Date.Should()
+				.Be(new DateTime(1970,
 					1,
 					1,
 					0,
 					0,
 					0,
 					0,
-					DateTimeKind.Utc).AddSeconds(1171758699)));
+					DateTimeKind.Utc).AddSeconds(1171758699));
 
-			Assert.That(records.WallPosts[0].Text, Is.Null.Or.Empty);
-			Assert.That(records.WallPosts[0].Comments.Count == 0);
-			Assert.That(records.WallPosts[0].Comments.CanPost, Is.True);
-			Assert.That(records.WallPosts[0].Likes.Count, Is.EqualTo(2));
-			Assert.That(records.WallPosts[0].Likes.UserLikes, Is.False);
-			Assert.That(records.WallPosts[0].Likes.CanLike, Is.True);
-			Assert.That(records.WallPosts[0].Likes.CanPublish, Is.False);
-			Assert.That(records.WallPosts[0].Reposts.Count, Is.EqualTo(0));
-			Assert.That(records.WallPosts[0].Reposts.UserReposted, Is.False);
+			records.WallPosts[0].Text.Should().BeNullOrEmpty();
+			records.WallPosts[0].Comments.Count.Should().Be(0);
+			records.WallPosts[0].Comments.CanPost.Should().BeTrue();
+			records.WallPosts[0].Likes.Count.Should().Be(2);
+			records.WallPosts[0].Likes.UserLikes.Should().BeFalse();
+			records.WallPosts[0].Likes.CanLike.Should().BeTrue();
+			records.WallPosts[0].Likes.CanPublish.Should().BeFalse();
+			records.WallPosts[0].Reposts.Count.Should().Be(0);
+			records.WallPosts[0].Reposts.UserReposted.Should().BeFalse();
 		}
 
 		[Test]
 		public void GetById_Donut()
-        {
+		{
 			Url = "https://api.vk.com/method/wall.getById";
 			ReadCategoryJsonPath(nameof(GetById_Donut));
 
@@ -245,23 +249,24 @@ namespace VkNet.Tests.Categories.Wall
 				"-322_123"
 			});
 
-			Assert.That(records.TotalCount == 1);
+			records.TotalCount.Should().Be(1);
 
-			Assert.That(records.WallPosts[0].Id, Is.EqualTo(123));
-			Assert.That(records.WallPosts[0].FromId, Is.EqualTo(-322));
-			Assert.That(records.WallPosts[0].OwnerId, Is.EqualTo(-322));
+			records.WallPosts[0].Id.Should().Be(123);
+			records.WallPosts[0].FromId.Should().Be(-322);
+			records.WallPosts[0].OwnerId.Should().Be(-322);
 
-			Assert.That(records.WallPosts[0].Date,
-				Is.EqualTo(new DateTime(1970,
+			records.WallPosts[0]
+				.Date.Should()
+				.Be(new DateTime(1970,
 					1,
 					1,
 					0,
 					0,
 					0,
 					0,
-					DateTimeKind.Utc).AddSeconds(1605698519)));
+					DateTimeKind.Utc).AddSeconds(1605698519));
 
-			Assert.That(records.WallPosts[0].Text, Is.EqualTo("В этом посте нет доната"));
+			records.WallPosts[0].Text.Should().Be("В этом посте нет доната");
 		}
 
 		[Test]
@@ -278,72 +283,72 @@ namespace VkNet.Tests.Categories.Wall
 				NeedLikes = true
 			});
 
-			Assert.That(comments.Count, Is.EqualTo(2));
+			comments.Count.Should().Be(2);
 
 			var comment0 = comments.Items[0];
-			Assert.That(comment0.Id, Is.EqualTo(3809));
-			Assert.That(comment0.FromId, Is.EqualTo(6733856));
+			comment0.Id.Should().Be(3809);
+			comment0.FromId.Should().Be(6733856);
 
-			Assert.That(comment0.Date,
-				Is.EqualTo(new DateTime(2013,
+			comment0.Date.Should()
+				.Be(new DateTime(2013,
 					11,
 					22,
 					05,
 					45,
 					44,
-					DateTimeKind.Utc)));
+					DateTimeKind.Utc));
 
-			Assert.That(comment0.Text, Is.EqualTo("Поздравляю вас!!!<br>Растите здоровыми, счастливыми и красивыми!"));
+			comment0.Text.Should().Be("Поздравляю вас!!!<br>Растите здоровыми, счастливыми и красивыми!");
 
-			Assert.That(comment0.Likes, Is.Not.Null);
-			Assert.That(comment0.Likes.Count, Is.EqualTo(1));
+			comment0.Likes.Should().NotBeNull();
+			comment0.Likes.Count.Should().Be(1);
 
 			var comment1 = comments.Items[1];
-			Assert.That(comment1.Id, Is.EqualTo(3810));
-			Assert.That(comment1.FromId, Is.EqualTo(3073863));
+			comment1.Id.Should().Be(3810);
+			comment1.FromId.Should().Be(3073863);
 
-			Assert.That(comment1.Date,
-				Is.EqualTo(new DateTime(2013,
+			comment1.Date.Should()
+				.Be(new DateTime(2013,
 					11,
 					22,
 					6,
 					21,
 					06,
-					DateTimeKind.Utc)));
+					DateTimeKind.Utc));
 
-			Assert.That(comment1.Text, Is.EqualTo("C днем рождения малышку и родителей!!!"));
-			Assert.That(comment1.Likes, Is.Not.Null);
-			Assert.That(comment1.Likes.Count, Is.EqualTo(1));
+			comment1.Text.Should().Be("C днем рождения малышку и родителей!!!");
+			comment1.Likes.Should().NotBeNull();
+			comment1.Likes.Count.Should().Be(1);
 
 			var attachment = comment1.Attachment;
-			Assert.That(attachment, Is.Not.Null);
-			Assert.That(attachment.Type, Is.EqualTo(typeof(Photo)));
+			attachment.Should().NotBeNull();
+			attachment.Type.Should().Be(typeof(Photo));
 
 			var photo = (Photo) attachment.Instance;
-			Assert.That(photo.Id, Is.EqualTo(315467755));
-			Assert.That(photo.AlbumId, Is.EqualTo(-5));
-			Assert.That(photo.OwnerId, Is.EqualTo(3073863));
+			photo.Id.Should().Be(315467755);
+			photo.AlbumId.Should().Be(-5);
+			photo.OwnerId.Should().Be(3073863);
 
-			Assert.That(photo.Photo130, Is.EqualTo(new Uri("http://cs425830.vk.me/v425830763/48fd/PvqwvqEOG2A.jpg")));
+			photo.Photo130.Should().Be(new Uri("http://cs425830.vk.me/v425830763/48fd/PvqwvqEOG2A.jpg"));
 
-			Assert.That(photo.Photo604, Is.EqualTo(new Uri("http://cs425830.vk.me/v425830763/48fe/XhRY9Pmoo70.jpg")));
+			photo.Photo604.Should().Be(new Uri("http://cs425830.vk.me/v425830763/48fe/XhRY9Pmoo70.jpg"));
 
-			Assert.That(photo.Photo75, Is.EqualTo(new Uri("http://cs425830.vk.me/v425830763/48fc/iJaRiL3vPfA.jpg")));
+			photo.Photo75.Should().Be(new Uri("http://cs425830.vk.me/v425830763/48fc/iJaRiL3vPfA.jpg"));
 
-			Assert.That(photo.Photo807, Is.Null);
-			Assert.That(photo.Photo1280, Is.Null);
-			Assert.That(photo.Width, Is.EqualTo(510));
-			Assert.That(photo.Height, Is.EqualTo(383));
-			Assert.That(photo.Text, Is.EqualTo(string.Empty));
+			photo.Photo807.Should().BeNull();
+			photo.Photo1280.Should().BeNull();
+			photo.Width.Should().Be(510);
+			photo.Height.Should().Be(383);
+			photo.Text.Should().BeEmpty();
 
-			Assert.That(photo.CreateTime,
-				Is.EqualTo(new DateTime(2013,
+			photo.CreateTime.Should()
+				.Be(new DateTime(2013,
 					11,
 					22,
 					6,
 					20,
 					31,
-					DateTimeKind.Utc)));
+					DateTimeKind.Utc));
 		}
 
 		[Test]
@@ -366,11 +371,11 @@ namespace VkNet.Tests.Categories.Wall
 
 			var result = Api.Wall.Repost("id", null, null, false);
 
-			Assert.That(result, Is.Not.Null);
-			Assert.That(result.Success, Is.True);
-			Assert.That(result.PostId, Is.EqualTo(2587));
-			Assert.That(result.RepostsCount, Is.EqualTo(21));
-			Assert.That(result.LikesCount, Is.EqualTo(105));
+			result.Should().NotBeNull();
+			result.Success.Should().BeTrue();
+			result.PostId.Should().Be(2587);
+			result.RepostsCount.Should().Be(21);
+			result.LikesCount.Should().Be(105);
 		}
 
 		[Test]
@@ -381,11 +386,11 @@ namespace VkNet.Tests.Categories.Wall
 
 			var result = Api.Wall.Repost("id", "example", 50, false);
 
-			Assert.That(result, Is.Not.Null);
-			Assert.That(result.Success, Is.True);
-			Assert.That(result.PostId, Is.EqualTo(2587));
-			Assert.That(result.RepostsCount, Is.EqualTo(21));
-			Assert.That(result.LikesCount, Is.EqualTo(105));
+			result.Should().NotBeNull();
+			result.Success.Should().BeTrue();
+			result.PostId.Should().Be(2587);
+			result.RepostsCount.Should().Be(21);
+			result.LikesCount.Should().Be(105);
 		}
 
 		[Test]
@@ -407,20 +412,27 @@ namespace VkNet.Tests.Categories.Wall
 
 			ReadCategoryJsonPath(nameof(GetComment_ReturnCorrectResults));
 
-
 			var wallCommentresult = Api.Wall.GetComment(66559, 73674, true);
 			var comment = wallCommentresult.Comment.FirstOrDefault();
 			var profiles = wallCommentresult.Profiles;
 			var groups = wallCommentresult.Groups;
 
-			Assert.That(comment.Date, Is.EqualTo(new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(1534927387)));
-			Assert.That(comment.FromId, Is.EqualTo(233754083));
-			Assert.That(comment.ReplyToUser, Is.EqualTo(6099));
+			comment.Date.Should()
+				.Be(new DateTime(1970,
+					1,
+					1,
+					0,
+					0,
+					0,
+					0).AddSeconds(1534927387));
 
-			Assert.That(groups, Is.Empty);
+			comment.FromId.Should().Be(233754083);
+			comment.ReplyToUser.Should().Be(6099);
 
-			Assert.That(profiles.FirstOrDefault().FirstName, Is.EqualTo("Dmitry"));
-			Assert.That(profiles.FirstOrDefault().LastName, Is.EqualTo("Sergeev"));
+			groups.Should().BeEmpty();
+
+			profiles.FirstOrDefault().FirstName.Should().Be("Dmitry");
+			profiles.FirstOrDefault().LastName.Should().Be("Sergeev");
 		}
 	}
 }

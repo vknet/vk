@@ -19,7 +19,7 @@ namespace VkNet.Tests.Utils.JsonConverter
 			Url = "https://api.vk.com/method/friends.getRequests";
 			var result = Api.Call<MessagesSearchParams>("friends.getRequests", VkParameters.Empty);
 			result.Should().NotBeNull();
-			Assert.That(result.Date, Is.EqualTo(new DateTime(2018, 11, 5)));
+			result.Date.Should().Be(new DateTime(2018, 11, 5));
 		}
 
 		[Test]

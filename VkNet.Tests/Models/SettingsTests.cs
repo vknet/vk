@@ -5,7 +5,6 @@ using VkNet.Enums.Filters;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-
 	public class SettingsTests : BaseTest
 	{
 		[Test]
@@ -18,7 +17,7 @@ namespace VkNet.Tests.Models
 		[Test]
 		public void All_Offline()
 		{
-			var settings = Settings.All | Settings.Offline;
+			var settings = Settings.All|Settings.Offline;
 			settings.ToUInt64().Should().Be(140488159);
 		}
 
@@ -349,56 +348,58 @@ namespace VkNet.Tests.Models
 		public void SettingsTest()
 		{
 			// get test
-			Assert.That(Settings.Notify.ToString(), Is.EqualTo("notify"));
-			Assert.That(Settings.Friends.ToString(), Is.EqualTo("friends"));
-			Assert.That(Settings.Photos.ToString(), Is.EqualTo("photos"));
-			Assert.That(Settings.Audio.ToString(), Is.EqualTo("audio"));
-			Assert.That(Settings.Video.ToString(), Is.EqualTo("video"));
-			Assert.That(Settings.Pages.ToString(), Is.EqualTo("pages"));
-			Assert.That(Settings.AddLinkToLeftMenu.ToString(), Is.EqualTo("addlinktoleftmenu"));
-			Assert.That(Settings.Status.ToString(), Is.EqualTo("status"));
-			Assert.That(Settings.Notes.ToString(), Is.EqualTo("notes"));
-			Assert.That(Settings.Messages.ToString(), Is.EqualTo("messages"));
-			Assert.That(Settings.Wall.ToString(), Is.EqualTo("wall"));
-			Assert.That(Settings.Ads.ToString(), Is.EqualTo("ads"));
-			Assert.That(Settings.Offline.ToString(), Is.EqualTo("offline"));
-			Assert.That(Settings.Documents.ToString(), Is.EqualTo("docs"));
-			Assert.That(Settings.Groups.ToString(), Is.EqualTo("groups"));
-			Assert.That(Settings.Notifications.ToString(), Is.EqualTo("notifications"));
-			Assert.That(Settings.Statistic.ToString(), Is.EqualTo("stats"));
-			Assert.That(Settings.Email.ToString(), Is.EqualTo("email"));
-			Assert.That(Settings.Market.ToString(), Is.EqualTo("market"));
+			Settings.Notify.ToString().Should().Be("notify");
+			Settings.Friends.ToString().Should().Be("friends");
+			Settings.Photos.ToString().Should().Be("photos");
+			Settings.Audio.ToString().Should().Be("audio");
+			Settings.Video.ToString().Should().Be("video");
+			Settings.Pages.ToString().Should().Be("pages");
+			Settings.AddLinkToLeftMenu.ToString().Should().Be("addlinktoleftmenu");
+			Settings.Status.ToString().Should().Be("status");
+			Settings.Notes.ToString().Should().Be("notes");
+			Settings.Messages.ToString().Should().Be("messages");
+			Settings.Wall.ToString().Should().Be("wall");
+			Settings.Ads.ToString().Should().Be("ads");
+			Settings.Offline.ToString().Should().Be("offline");
+			Settings.Documents.ToString().Should().Be("docs");
+			Settings.Groups.ToString().Should().Be("groups");
+			Settings.Notifications.ToString().Should().Be("notifications");
+			Settings.Statistic.ToString().Should().Be("stats");
+			Settings.Email.ToString().Should().Be("email");
+			Settings.Market.ToString().Should().Be("market");
 
-			Assert.That(Settings.All.ToString(),
-				Is.EqualTo(
-					"addlinktoleftmenu,ads,app_widget,audio,docs,email,friends,groups,market,notes,notifications,notify,pages,photos,stats,status,video,wall"));
+			Settings.All.ToString()
+				.Should()
+				.Be(
+					"addlinktoleftmenu,ads,app_widget,audio,docs,email,friends,groups,market,notes,notifications,notify,pages,photos,stats,status,video,wall");
 
 			// parse test
-			Assert.That(Settings.FromJsonString("notify"), Is.EqualTo(Settings.Notify));
-			Assert.That(Settings.FromJsonString("friends"), Is.EqualTo(Settings.Friends));
-			Assert.That(Settings.FromJsonString("photos"), Is.EqualTo(Settings.Photos));
-			Assert.That(Settings.FromJsonString("audio"), Is.EqualTo(Settings.Audio));
-			Assert.That(Settings.FromJsonString("video"), Is.EqualTo(Settings.Video));
-			Assert.That(Settings.FromJsonString("pages"), Is.EqualTo(Settings.Pages));
+			Settings.FromJsonString("notify").Should().Be(Settings.Notify);
+			Settings.FromJsonString("friends").Should().Be(Settings.Friends);
+			Settings.FromJsonString("photos").Should().Be(Settings.Photos);
+			Settings.FromJsonString("audio").Should().Be(Settings.Audio);
+			Settings.FromJsonString("video").Should().Be(Settings.Video);
+			Settings.FromJsonString("pages").Should().Be(Settings.Pages);
 
-			Assert.That(Settings.FromJsonString("addlinktoleftmenu"), Is.EqualTo(Settings.AddLinkToLeftMenu));
+			Settings.FromJsonString("addlinktoleftmenu").Should().Be(Settings.AddLinkToLeftMenu);
 
-			Assert.That(Settings.FromJsonString("status"), Is.EqualTo(Settings.Status));
-			Assert.That(Settings.FromJsonString("notes"), Is.EqualTo(Settings.Notes));
-			Assert.That(Settings.FromJsonString("messages"), Is.EqualTo(Settings.Messages));
-			Assert.That(Settings.FromJsonString("wall"), Is.EqualTo(Settings.Wall));
-			Assert.That(Settings.FromJsonString("ads"), Is.EqualTo(Settings.Ads));
-			Assert.That(Settings.FromJsonString("offline"), Is.EqualTo(Settings.Offline));
-			Assert.That(Settings.FromJsonString("docs"), Is.EqualTo(Settings.Documents));
-			Assert.That(Settings.FromJsonString("groups"), Is.EqualTo(Settings.Groups));
-			Assert.That(Settings.FromJsonString("notifications"), Is.EqualTo(Settings.Notifications));
-			Assert.That(Settings.FromJsonString("stats"), Is.EqualTo(Settings.Statistic));
-			Assert.That(Settings.FromJsonString("email"), Is.EqualTo(Settings.Email));
-			Assert.That(Settings.FromJsonString("market"), Is.EqualTo(Settings.Market));
+			Settings.FromJsonString("status").Should().Be(Settings.Status);
+			Settings.FromJsonString("notes").Should().Be(Settings.Notes);
+			Settings.FromJsonString("messages").Should().Be(Settings.Messages);
+			Settings.FromJsonString("wall").Should().Be(Settings.Wall);
+			Settings.FromJsonString("ads").Should().Be(Settings.Ads);
+			Settings.FromJsonString("offline").Should().Be(Settings.Offline);
+			Settings.FromJsonString("docs").Should().Be(Settings.Documents);
+			Settings.FromJsonString("groups").Should().Be(Settings.Groups);
+			Settings.FromJsonString("notifications").Should().Be(Settings.Notifications);
+			Settings.FromJsonString("stats").Should().Be(Settings.Statistic);
+			Settings.FromJsonString("email").Should().Be(Settings.Email);
+			Settings.FromJsonString("market").Should().Be(Settings.Market);
 
-			Assert.That(Settings.FromJsonString(
-					"addlinktoleftmenu,ads,audio,app_widget,docs,email,friends,groups,market,notes,notifications,notify,pages,photos,stats,status,video,wall"),
-				Is.EqualTo(Settings.All));
+			Settings.FromJsonString(
+					"addlinktoleftmenu,ads,audio,app_widget,docs,email,friends,groups,market,notes,notifications,notify,pages,photos,stats,status,video,wall")
+				.Should()
+				.Be(Settings.All);
 		}
 	}
 }

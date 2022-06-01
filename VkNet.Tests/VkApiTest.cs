@@ -25,7 +25,7 @@ namespace VkNet.Tests
 				UserId = 1
 			});
 
-			Assert.That(Api.UserId, Is.EqualTo(1));
+			Api.UserId.Should().Be(1);
 		}
 
 		[Test]
@@ -83,9 +83,9 @@ namespace VkNet.Tests
 			var result = Api.Call<FriendsGetRequestsResult>("friends.getRequests", VkParameters.Empty);
 
 			result.Should().NotBeNull();
-			Assert.That(result.UserId, Is.EqualTo(221634238));
-			Assert.That(result.Message, Is.EqualTo("text"));
-			Assert.IsNotEmpty(result.Mutual);
+			result.UserId.Should().Be(221634238);
+			result.Message.Should().Be("text");
+			result.Mutual.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -122,7 +122,7 @@ namespace VkNet.Tests
 
 			var json = Api.Invoke("example.get", parameters, true);
 
-			StringAssert.AreEqualIgnoringCase(json, Json);
+			Json.Should().BeEquivalentTo(json);
 		}
 
 		[Test]
@@ -138,7 +138,7 @@ namespace VkNet.Tests
 
 			var json = Api.Invoke("example.get", parameters, true);
 
-			StringAssert.AreEqualIgnoringCase(json, Json);
+			Json.Should().BeEquivalentTo(json);
 		}
 
 		[Test]
@@ -151,29 +151,29 @@ namespace VkNet.Tests
 		[Test]
 		public void VkApi_Constructor_SetDefaultMethodCategories()
 		{
-			Assert.That(Api.Users, Is.Not.Null);
-			Assert.That(Api.Friends, Is.Not.Null);
-			Assert.That(Api.Status, Is.Not.Null);
-			Assert.That(Api.Messages, Is.Not.Null);
-			Assert.That(Api.Groups, Is.Not.Null);
-			Assert.That(Api.Audio, Is.Not.Null);
-			Assert.That(Api.Wall, Is.Not.Null);
-			Assert.That(Api.Database, Is.Not.Null);
-			Assert.That(Api.Utils, Is.Not.Null);
-			Assert.That(Api.Fave, Is.Not.Null);
-			Assert.That(Api.Video, Is.Not.Null);
-			Assert.That(Api.Account, Is.Not.Null);
-			Assert.That(Api.Photo, Is.Not.Null);
-			Assert.That(Api.Docs, Is.Not.Null);
-			Assert.That(Api.Likes, Is.Not.Null);
-			Assert.That(Api.Pages, Is.Not.Null);
-			Assert.That(Api.Gifts, Is.Not.Null);
-			Assert.That(Api.Apps, Is.Not.Null);
-			Assert.That(Api.NewsFeed, Is.Not.Null);
-			Assert.That(Api.Stats, Is.Not.Null);
-			Assert.That(Api.Auth, Is.Not.Null);
-			Assert.That(Api.Markets, Is.Not.Null);
-			Assert.That(Api.Ads, Is.Not.Null);
+			Api.Users.Should().NotBeNull();
+			Api.Friends.Should().NotBeNull();
+			Api.Status.Should().NotBeNull();
+			Api.Messages.Should().NotBeNull();
+			Api.Groups.Should().NotBeNull();
+			Api.Audio.Should().NotBeNull();
+			Api.Wall.Should().NotBeNull();
+			Api.Database.Should().NotBeNull();
+			Api.Utils.Should().NotBeNull();
+			Api.Fave.Should().NotBeNull();
+			Api.Video.Should().NotBeNull();
+			Api.Account.Should().NotBeNull();
+			Api.Photo.Should().NotBeNull();
+			Api.Docs.Should().NotBeNull();
+			Api.Likes.Should().NotBeNull();
+			Api.Pages.Should().NotBeNull();
+			Api.Gifts.Should().NotBeNull();
+			Api.Apps.Should().NotBeNull();
+			Api.NewsFeed.Should().NotBeNull();
+			Api.Stats.Should().NotBeNull();
+			Api.Auth.Should().NotBeNull();
+			Api.Markets.Should().NotBeNull();
+			Api.Ads.Should().NotBeNull();
 		}
 
 		[Test]
@@ -203,7 +203,7 @@ namespace VkNet.Tests
 		public void Logout()
 		{
 			Api.LogOut();
-			Assert.IsEmpty(Api.Token);
+			Api.Token.Should().BeEmpty();
 		}
 	}
 }

@@ -7,7 +7,6 @@ using VkNet.Model.Attachments;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-
 	public class AudioMessageModel : BaseTest
 	{
 		[Test]
@@ -36,11 +35,11 @@ namespace VkNet.Tests.Models
 			attachment.Instance.Should().BeOfType<AudioMessage>();
 
 			var audioMessage = attachment.Instance as AudioMessage;
-			Assert.That(audioMessage.Duration, Is.EqualTo(25));
-			Assert.That(audioMessage.LinkOgg, Is.EqualTo(new Uri("https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.ogg")));
-			Assert.That(audioMessage.LinkMp3, Is.EqualTo(new Uri("https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.mp3")));
-			Assert.That(audioMessage.Transcript, Is.EqualTo("demo message"));
-			Assert.That(audioMessage.TranscriptState, Is.EqualTo(TranscriptStates.Done));
+			audioMessage.Duration.Should().Be(25);
+			audioMessage.LinkOgg.Should().Be(new Uri("https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.ogg"));
+			audioMessage.LinkMp3.Should().Be(new Uri("https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.mp3"));
+			audioMessage.Transcript.Should().Be("demo message");
+			audioMessage.TranscriptState.Should().Be(TranscriptStates.Done);
 		}
 
 		[Test]
@@ -54,10 +53,10 @@ namespace VkNet.Tests.Models
 			attachment.Instance.Should().BeOfType<AudioMessage>();
 
 			var audioMessage = attachment.Instance as AudioMessage;
-			Assert.That(audioMessage.Duration, Is.EqualTo(25));
-			Assert.That(audioMessage.LinkOgg, Is.EqualTo(new Uri("https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.ogg")));
-			Assert.That(audioMessage.LinkMp3, Is.EqualTo(new Uri("https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.mp3")));
-			Assert.That(audioMessage.Transcript, Is.EqualTo(null));
+			audioMessage.Duration.Should().Be(25);
+			audioMessage.LinkOgg.Should().Be(new Uri("https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.ogg"));
+			audioMessage.LinkMp3.Should().Be(new Uri("https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.mp3"));
+			audioMessage.Transcript.Should().Be(null);
 		}
 	}
 }

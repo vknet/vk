@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
@@ -6,7 +7,6 @@ using VkNet.Utils;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-
 	public class UserModel : BaseTest
 	{
 		[Test]
@@ -17,7 +17,7 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/friends.getRequests";
 			var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
-			Assert.That(result.Id, Is.EqualTo(165614770));
+			result.Id.Should().Be(165614770);
 		}
 
 		[Test]
@@ -28,7 +28,7 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/friends.getRequests";
 			var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
-			Assert.That(result.Id, Is.EqualTo(165614770));
+			result.Id.Should().Be(165614770);
 		}
 
 		[Test]
@@ -39,7 +39,7 @@ namespace VkNet.Tests.Models
 			Url = "https://api.vk.com/method/friends.getRequests";
 			var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
-			Assert.That(result.Id, Is.EqualTo(165614770));
+			result.Id.Should().Be(165614770);
 		}
 
 		[Test(Description = "Поле 'name' может иметь одно слово")]
@@ -50,29 +50,29 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 			var user = User.FromJson(response);
 
-			Assert.That(user.FirstName, Is.EqualTo("бот"));
-			Assert.That(user.LastName, Is.Null);
+			user.FirstName.Should().Be("бот");
+			user.LastName.Should().BeNull();
 		}
 
 		[Test]
 		public void ShouldHaveField_CanAccessClosed()
 		{
 			var user = new User();
-			Assert.That(user, Has.Property("CanAccessClosed"));
+			user.CanAccessClosed.Should().BeNull();
 		}
 
 		[Test]
 		public void ShouldHaveField_IsClosed()
 		{
 			var user = new User();
-			Assert.That(user, Has.Property("IsClosed"));
+			user.IsClosed.Should().BeNull();
 		}
 
 		[Test]
 		public void ShouldHaveField_Trending()
 		{
 			var user = new User();
-			Assert.That(user, Has.Property("Trending"));
+			user.Trending.Should().BeFalse();
 		}
 
 		[Test]
@@ -83,7 +83,7 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 			var user = User.FromJson(response);
 
-			Assert.That(user.Trending, Is.False);
+			user.Trending.Should().BeFalse();
 		}
 
 		[Test]
@@ -94,7 +94,7 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 			var user = User.FromJson(response);
 
-			Assert.That(user.Trending, Is.False);
+			user.Trending.Should().BeFalse();
 		}
 
 		[Test]
@@ -105,7 +105,7 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 			var user = User.FromJson(response);
 
-			Assert.That(user.Trending, Is.True);
+			user.Trending.Should().BeTrue();
 		}
 	}
 }

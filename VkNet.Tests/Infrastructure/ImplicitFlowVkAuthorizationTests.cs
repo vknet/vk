@@ -33,7 +33,7 @@ namespace VkNet.Tests.Infrastructure
 
 			var auth = new ImplicitFlowVkAuthorization();
 
-			Assert.Throws<VkAuthorizationException>(() => auth.GetAuthorizationResult(url));
+			FluentActions.Invoking(() => auth.GetAuthorizationResult(url)).Should().ThrowExactly<VkAuthorizationException>();
 		}
 
 		[Test]

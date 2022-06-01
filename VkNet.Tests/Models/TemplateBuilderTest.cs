@@ -1,4 +1,3 @@
-
 using System;
 using System.Linq;
 using FluentAssertions;
@@ -11,24 +10,24 @@ using VkNet.Model.Template.Carousel;
 namespace VkNet.Tests.Models
 {
 	[TestFixture]
-	class TemplateBuilderTest
+	internal class TemplateBuilderTest
 	{
 		[Test]
 		public void CreateTemplate()
 		{
 			var builder = new TemplateBuilder();
-			builder.AddTemplateElement(
-				new CarouselElementBuilder().
-					SetTitle("title")
-					.SetDescription("test")
-					.SetPhotoId("-123218_50548844")
-					.SetAction(new CarouselElementAction()
-					{
-						Link = new Uri("https://google.com/"),
-						Type = CarouselElementActionType.OpenLink
-					})
-					.AddButton("label", "")
-					.Build());
+
+			builder.AddTemplateElement(new CarouselElementBuilder().SetTitle("title")
+				.SetDescription("test")
+				.SetPhotoId("-123218_50548844")
+				.SetAction(new CarouselElementAction()
+				{
+					Link = new Uri("https://google.com/"),
+					Type = CarouselElementActionType.OpenLink
+				})
+				.AddButton("label", "")
+				.Build());
+
 			builder.SetType(TemplateType.Carousel);
 			var template = builder.Build();
 
@@ -44,7 +43,8 @@ namespace VkNet.Tests.Models
 			builder.AddTemplateElement(new CarouselElementBuilder()
 				.SetTitle("title")
 				.Build());
-			"title".Should().Be(builder.Elements.First().Title);
+
+			builder.Elements.First().Title.Should().Be("title");
 		}
 
 		[Test]
@@ -57,7 +57,7 @@ namespace VkNet.Tests.Models
 				.Build());
 
 			builder.ClearElements();
-			0.Should().Be(builder.Elements.Count);
+			builder.Elements.Should().BeEmpty();
 		}
 
 		[Test]
@@ -65,17 +65,19 @@ namespace VkNet.Tests.Models
 		{
 			var builder = new TemplateBuilder();
 
-			for (int i = 0; i < 10; i++)
+			for (var i = 0; i < 10; i++)
 			{
 				builder.AddTemplateElement(new CarouselElementBuilder()
 					.SetTitle("title")
 					.Build());
 			}
 
-			Assert.Throws<TooMuchElementsInTemplateException>(() =>
-				builder.AddTemplateElement(new CarouselElementBuilder()
-					.SetTitle("title")
-					.Build()));
+			FluentActions.Invoking(() =>
+					builder.AddTemplateElement(new CarouselElementBuilder()
+						.SetTitle("title")
+						.Build()))
+				.Should()
+				.ThrowExactly<TooMuchElementsInTemplateException>();
 		}
 	}
 }

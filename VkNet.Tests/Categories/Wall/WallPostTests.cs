@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
@@ -6,7 +7,6 @@ using VkNet.Utils;
 
 namespace VkNet.Tests.Categories.Wall
 {
-
 	public class WallPostTests : CategoryBaseTest
 	{
 		protected override string Folder => "Wall";
@@ -17,7 +17,7 @@ namespace VkNet.Tests.Categories.Wall
 			Url = "https://api.vk.com/method/wall.post";
 			ReadErrorsJsonFile(17);
 
-			Assert.That(() => VkErrors.IfErrorThrowException(Json), Throws.TypeOf<NeedValidationException>());
+			FluentActions.Invoking(() => VkErrors.IfErrorThrowException(Json)).Should().ThrowExactly<NeedValidationException>();
 		}
 
 		[Test]
@@ -26,7 +26,7 @@ namespace VkNet.Tests.Categories.Wall
 			Url = "https://api.vk.com/method/wall.post";
 			ReadErrorsJsonFile(214);
 
-			Assert.Throws<PostLimitException>(() => Api.Wall.Post(new WallPostParams()));
+			FluentActions.Invoking(() => Api.Wall.Post(new WallPostParams())).Should().ThrowExactly<PostLimitException>();
 		}
 	}
 }
