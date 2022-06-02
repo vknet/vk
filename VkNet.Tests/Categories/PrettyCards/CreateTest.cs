@@ -1,18 +1,18 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.PrettyCards
 {
-	[TestFixture]
+
 
 	public class CreateTest : CategoryBaseTest
 	{
 		protected override string Folder => "PrettyCards";
 
-		[Test]
+		[Fact]
 		public void Create()
 		{
 			Url = "https://api.vk.com/method/prettyCards.create";

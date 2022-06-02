@@ -1,20 +1,20 @@
 ﻿using System;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Ads
 {
-	[TestFixture]
+
 
 	public class UpdateCampaignsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";
 
-		[Test]
+		[Fact]
 		public void UpdateCampaigns()
 		{
 			Url = "https://api.vk.com/method/ads.updateCampaigns";

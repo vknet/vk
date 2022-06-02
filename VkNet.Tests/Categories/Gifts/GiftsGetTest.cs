@@ -1,20 +1,20 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Gifts
 {
-	[TestFixture]
+
 	public class GiftsGetTest : CategoryBaseTest
 	{
 		/// <inheritdoc />
 		protected override string Folder => "Gifts";
 
-		[Test]
+		[Fact]
 		public void Get_NormalCase()
 		{
 			Url = "https://api.vk.com/method/gifts.get";

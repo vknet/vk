@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Photos
 {
-	[TestFixture]
+
 	public class PhotoSaveMessagePhotoTests : CategoryBaseTest
 	{
 		protected override string Folder => "Photos";
 
-		[Test]
+		[Fact]
 		public void SaveMessagePhoto()
 		{
 			Url = "https://api.vk.com/method/photos.saveMessagesPhoto";

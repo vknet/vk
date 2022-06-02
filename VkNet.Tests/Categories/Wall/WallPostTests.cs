@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Wall
 {
@@ -11,7 +11,7 @@ namespace VkNet.Tests.Categories.Wall
 	{
 		protected override string Folder => "Wall";
 
-		[Test]
+		[Fact]
 		public void Post_ReturnValidateNeeded()
 		{
 			Url = "https://api.vk.com/method/wall.post";
@@ -20,7 +20,7 @@ namespace VkNet.Tests.Categories.Wall
 			FluentActions.Invoking(() => VkErrors.IfErrorThrowException(Json)).Should().ThrowExactly<NeedValidationException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Post_AccessToAddingPostDenied()
 		{
 			Url = "https://api.vk.com/method/wall.post";

@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests
 {
-	[TestFixture]
 	public class VkAuthorizationTests
 	{
 		private const string Input =
@@ -16,7 +15,7 @@ namespace VkNet.Tests
 			+ "&email=inyutin_maxim@mail.ru"
 			+ "&state=123456";
 
-		[Test]
+		[Fact]
 		public void Authorize_InvalidLoginOrPassword_NotAuthorizedAndAuthorizationNotRequired()
 		{
 			const string urlWithBadLoginOrPassword = "http://oauth.vk.com/oauth/authorize"
@@ -36,7 +35,7 @@ namespace VkNet.Tests
 			authorization.IsAuthorizationRequired.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void CorrectParseInputString()
 		{
 			var auth = VkAuthorization2.From(Input);
@@ -48,7 +47,7 @@ namespace VkNet.Tests
 			auth.Email.Should().Be("inyutin_maxim@mail.ru");
 		}
 
-		[Test]
+		[Fact]
 		public void GetExpiresIn_Exception()
 		{
 			var auth = VkAuthorization2.From(Input.Replace("86400", "qwe"));
@@ -63,7 +62,7 @@ namespace VkNet.Tests
 				.WithMessage("ExpiresIn is not integer value.");
 		}
 
-		[Test]
+		[Fact]
 		public void GetUserId_Exception()
 		{
 			var auth = VkAuthorization2.From(Input.Replace("32190123", "qwe"));
@@ -78,14 +77,14 @@ namespace VkNet.Tests
 				.WithMessage("UserId is not long value.");
 		}
 
-		[Test]
+		[Fact]
 		public void IsAuthorizationRequired_False()
 		{
 			var auth = VkAuthorization2.From(Input);
 			auth.IsAuthorizationRequired.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void IsAuthorizationRequired_True()
 		{
 			const string uriQuery = "https://oauth.vk.com/authorize"
@@ -102,14 +101,14 @@ namespace VkNet.Tests
 			auth.IsAuthorizationRequired.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void IsAuthorized_Failed()
 		{
 			var auth = VkAuthorization2.From(Input.Replace("access_token", "qwe"));
 			auth.IsAuthorized.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void IsAuthorized_Success()
 		{
 			var auth = VkAuthorization2.From(Input);

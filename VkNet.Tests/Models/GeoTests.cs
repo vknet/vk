@@ -1,15 +1,15 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 
 	public class GeoTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void GeoFromJson()
 		{
 			ReadJsonFile("Models", nameof(Geo));
@@ -21,7 +21,7 @@ namespace VkNet.Tests.Models
 			geo.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GeoJsonConvert()
 		{
 			ReadJsonFile("Models", nameof(Geo));

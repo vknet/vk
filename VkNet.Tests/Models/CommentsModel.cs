@@ -1,13 +1,13 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class CommentsModel
 	{
-		[Test]
+		[Fact]
 		public void ShouldHaveField_GroupsCanPost()
 		{
 			var comments = new Comments();

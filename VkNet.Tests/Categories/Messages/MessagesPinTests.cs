@@ -1,13 +1,13 @@
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 
 	public class MessagesPinTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void Pin()
 		{
 			Url = "https://api.vk.com/method/messages.pin";

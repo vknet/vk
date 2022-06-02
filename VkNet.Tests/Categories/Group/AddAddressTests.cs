@@ -1,19 +1,19 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Groups;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
-	[TestFixture]
+
 
 	public class AddAddressTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void AddAddress_AlwaysOpened()
 		{
 			Url = "https://api.vk.com/method/groups.addAddress";
@@ -73,7 +73,8 @@ namespace VkNet.Tests.Categories.Group
 
 			result.Id.Should().Be(58227);
 		}
-		[Test]
+
+		[Fact]
 		public void AddAddress_Timetable()
 		{
 			Url = "https://api.vk.com/method/groups.addAddress";

@@ -1,15 +1,14 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
-using VkNet.Enums;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollDonutTest : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_DonutSubscriptionCreate()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionCreate));
@@ -31,7 +30,8 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			donutNew.UserId.Should().Be(1234);
 			update.GroupId.Should().Be(1234);
 		}
-		[Test]
+
+		[Fact]
 		public void GetBotsLongPollHistory_DonutSubscriptionProlonged()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionProlonged));
@@ -53,7 +53,8 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			donutNew.UserId.Should().Be(1234);
 			update.GroupId.Should().Be(1234);
 		}
-		[Test]
+
+		[Fact]
 		public void GetBotsLongPollHistory_DonutSubscriptionCancelled()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionCancelled));
@@ -73,7 +74,8 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			donutNew.UserId.Should().Be(1234);
 			update.GroupId.Should().Be(1234);
 		}
-		[Test]
+
+		[Fact]
 		public void GetBotsLongPollHistory_DonutSubscriptionExpired()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionExpired));
@@ -93,7 +95,8 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			donutNew.UserId.Should().Be(1234);
 			update.GroupId.Should().Be(1234);
 		}
-		[Test]
+
+		[Fact]
 		public void GetBotsLongPollHistory_DonutSubscriptionPriceChanged()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionPriceChanged));
@@ -117,7 +120,8 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			donutNew.UserId.Should().Be(1234);
 			update.GroupId.Should().Be(1234);
 		}
-		[Test]
+
+		[Fact]
 		public void GetBotsLongPollHistory_DonutWithdraw()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutWithdraw));
@@ -139,7 +143,8 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			donutNew.Error.Should().Be(false);
 			update.GroupId.Should().Be(1234);
 		}
-		[Test]
+
+		[Fact]
 		public void GetBotsLongPollHistory_DonutWithdrawError()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutWithdrawError));

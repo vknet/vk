@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Stats
 {
-	[TestFixture]
+
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	public class StatsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Stats";
 
-		[Test]
+		[Fact]
 		public void GetByApp_NormalCase()
 		{
 			Url = "https://api.vk.com/method/stats.get";
@@ -35,7 +35,7 @@ namespace VkNet.Tests.Categories.Stats
 			statsPeriods[0].PeriodFrom.Should().Be(new DateTime(2013, 09, 08));
 		}
 
-		[Test]
+		[Fact]
 		public void GetByGroup_EmptyActivityCase()
 		{
 			Url = "https://api.vk.com/method/stats.get";
@@ -59,7 +59,7 @@ namespace VkNet.Tests.Categories.Stats
 			statsPeriods[0].PeriodFrom.Should().Be(new DateTime(2013, 09, 08));
 		}
 
-		[Test]
+		[Fact]
 		public void GetByGroup_NormalCase()
 		{
 			Url = "https://api.vk.com/method/stats.get";
@@ -82,7 +82,7 @@ namespace VkNet.Tests.Categories.Stats
 			statsPeriods[0].PeriodFrom.Should().Be(new DateTime(2013, 09, 08));
 		}
 
-		[Test]
+		[Fact]
 		public void TrackVisitorTest()
 		{
 			Url = "https://api.vk.com/method/stats.trackVisitor";

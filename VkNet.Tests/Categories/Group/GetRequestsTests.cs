@@ -1,7 +1,7 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
@@ -9,7 +9,7 @@ namespace VkNet.Tests.Categories.Group
 	{
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void GetRequests_With_Fields()
 		{
 			Url = "https://api.vk.com/method/groups.getRequests";
@@ -23,7 +23,7 @@ namespace VkNet.Tests.Categories.Group
 			result.Should().AllSatisfy(user => user.Should().NotBeNull());
 		}
 
-		[Test]
+		[Fact]
 		public void GetRequests_Without_Fields()
 		{
 			Url = "https://api.vk.com/method/groups.getRequests";

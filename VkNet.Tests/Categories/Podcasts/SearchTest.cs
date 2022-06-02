@@ -1,17 +1,17 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Podcasts
 {
-	[TestFixture]
+
 
 	public class SearchTest : CategoryBaseTest
 	{
 		protected override string Folder => "Podcasts";
 
-		[Test]
+		[Fact]
 		public void Search()
 		{
 			Url = "https://api.vk.com/method/podcasts.search";

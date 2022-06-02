@@ -1,16 +1,16 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Storage
 {
-	[TestFixture]
+
 
 	public class StorageCategoryTests : CategoryBaseTest
 	{
 		protected override string Folder => "Storage";
 
-		[Test]
+		[Fact]
 		public void Get()
 		{
 			Url = "https://api.vk.com/method/storage.get";
@@ -22,7 +22,7 @@ namespace VkNet.Tests.Categories.Storage
 			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetKeys()
 		{
 			Url = "https://api.vk.com/method/storage.getKeys";
@@ -34,7 +34,7 @@ namespace VkNet.Tests.Categories.Storage
 			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Set()
 		{
 			Url = "https://api.vk.com/method/storage.set";

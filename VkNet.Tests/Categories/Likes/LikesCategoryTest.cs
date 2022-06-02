@@ -1,20 +1,20 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Likes
 {
-	[TestFixture]
+
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	public class LikesCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Likes";
 
-		[Test]
+		[Fact]
 		public void Add_NormalCase()
 		{
 			Url = "https://api.vk.com/method/likes.add";
@@ -29,7 +29,7 @@ namespace VkNet.Tests.Categories.Likes
 			like.Should().Be(5);
 		}
 
-		[Test]
+		[Fact]
 		public void Delete_NormalCase()
 		{
 			Url = "https://api.vk.com/method/likes.delete";
@@ -40,7 +40,7 @@ namespace VkNet.Tests.Categories.Likes
 			like.Should().Be(4);
 		}
 
-		[Test]
+		[Fact]
 		public void GetList_NormalCase()
 		{
 			Url = "https://api.vk.com/method/likes.getList";
@@ -54,7 +54,7 @@ namespace VkNet.Tests.Categories.Likes
 			like.Should().HaveCount(5);
 		}
 
-		[Test]
+		[Fact]
 		public void GetListEx_NormalCase()
 		{
 			Url = "https://api.vk.com/method/likes.getList";
@@ -72,7 +72,7 @@ namespace VkNet.Tests.Categories.Likes
 			like.Groups.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void IsLiked_NormalCase()
 		{
 			Url = "https://api.vk.com/method/likes.isLiked";

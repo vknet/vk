@@ -3,19 +3,19 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using FluentAssertions;
 using Newtonsoft.Json;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class ModelsTests
 	{
 		private const string VkNetModelBaseNamespace = "VkNet.Model";
 
-		[Test]
+		[Fact]
 		public void ModelsWithNullableDateTimeFieldsShouldHaveJsonConverterAttribute()
 		{
 			var types = typeof(VkApi).Assembly.Types()
@@ -27,7 +27,7 @@ namespace VkNet.Tests.Models
 			types.Should().BeDecoratedWith<JsonConverterAttribute>();
 		}
 
-		[Test]
+		[Fact]
 		public void ModelsWithDateTimeFieldsShouldHaveJsonConverterAttribute()
 		{
 			var types = typeof(VkApi).Assembly.Types()
@@ -39,7 +39,7 @@ namespace VkNet.Tests.Models
 			types.Should().BeDecoratedWith<JsonConverterAttribute>();
 		}
 
-		[Test]
+		[Fact]
 		public void ModelsAttachmentsFieldsShouldHaveJsonConverterAttribute()
 		{
 			var types = typeof(VkApi).Assembly.Types()
@@ -51,7 +51,7 @@ namespace VkNet.Tests.Models
 			types.Should().BeDecoratedWith<JsonConverterAttribute>();
 		}
 
-		[Test]
+		[Fact]
 		public void ModelsSafetyEnumFieldsShouldHaveJsonConverterAttribute()
 		{
 			var models = typeof(VkApi).Assembly.Types()
@@ -70,7 +70,7 @@ namespace VkNet.Tests.Models
 			models.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void ModelsShouldHaveJsonConverterAttributeForCoordinatesType()
 		{
 			var types = typeof(VkApi).Assembly.Types()

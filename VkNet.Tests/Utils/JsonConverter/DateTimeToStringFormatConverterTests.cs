@@ -2,17 +2,16 @@ using System;
 using System.Globalization;
 using FluentAssertions;
 using Newtonsoft.Json;
-using NUnit.Framework;
-using VkNet.Infrastructure;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
+using Xunit;
 
 namespace VkNet.Tests.Utils.JsonConverter
 {
 	public class DateTimeToStringFormatConverterTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void Deserialize()
 		{
 			ReadJsonFile(nameof(JsonConverter), nameof(DateTimeToStringFormatConverter), nameof(Deserialize));
@@ -22,7 +21,7 @@ namespace VkNet.Tests.Utils.JsonConverter
 			result.Date.Should().Be(new DateTime(2018, 11, 5));
 		}
 
-		[Test]
+		[Fact]
 		public void Serialization()
 		{
 			ReadJsonFile(nameof(JsonConverter), nameof(DateTimeToStringFormatConverter), nameof(Serialization));

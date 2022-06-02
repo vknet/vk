@@ -1,19 +1,19 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model.Keyboard;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class KeyboardBuilderTests
 	{
 		private const char Filler = '0';
 
 		private static readonly string Payload200 = string.Join("", Enumerable.Repeat(Filler, 200));
 
-		[Test]
+		[Fact]
 		public void AddButton_PayloadMaxLength255_VkKeyboardPayloadMaxLengthException()
 		{
 			// Arrange
@@ -28,7 +28,7 @@ namespace VkNet.Tests.Models
 				.Be(string.Format(KeyboardBuilder.ButtonPayloadLengthExceptionTemplate, currentPayload));
 		}
 
-		[Test]
+		[Fact]
 		public void AddButton_PayloadMaxLength255_Success()
 		{
 			// Arrange
@@ -40,7 +40,7 @@ namespace VkNet.Tests.Models
 			FluentActions.Invoking(() => builder.AddButton("Button", Payload200)).Should().NotThrow();
 		}
 
-		[Test]
+		[Fact]
 		public void AddLine_MaxButtonLines_VkKeyboardMaxButtonsException()
 		{
 			// Arrange
@@ -60,7 +60,7 @@ namespace VkNet.Tests.Models
 				.Be(KeyboardBuilder.MaxButtonLinesExceptionTemplate);
 		}
 
-		[Test]
+		[Fact]
 		public void AddLine_MaxButtonLines_Success()
 		{
 			// Arrange
@@ -76,7 +76,7 @@ namespace VkNet.Tests.Models
 			FluentActions.Invoking(() => builder.AddLine()).Should().NotThrow();
 		}
 
-		[Test]
+		[Fact]
 		public void AddButton_MaxButtonsPerLine_VkKeyboardMaxButtonsException()
 		{
 			// Arrange
@@ -96,7 +96,7 @@ namespace VkNet.Tests.Models
 				.Be(KeyboardBuilder.MaxButtonsPerLineExceptionTemplate);
 		}
 
-		[Test]
+		[Fact]
 		public void AddButton_MaxButtonsPerLine_Success()
 		{
 			// Arrange
@@ -112,7 +112,7 @@ namespace VkNet.Tests.Models
 			FluentActions.Invoking(() => builder.AddButton("sample label", "sample extra")).Should().NotThrow();
 		}
 
-		[Test]
+		[Fact]
 		public void Build_PayloadMaxLength255_VkKeyboardPayloadMaxLengthException()
 		{
 			// Arrange
@@ -133,7 +133,7 @@ namespace VkNet.Tests.Models
 				.Be(KeyboardBuilder.SumPayloadLengthExceptionTemplate);
 		}
 
-		[Test]
+		[Fact]
 		public void Build_PayloadMaxLength255_Success()
 		{
 			// Arrange
@@ -148,7 +148,7 @@ namespace VkNet.Tests.Models
 			FluentActions.Invoking(() => builder.Build()).Should().NotThrow();
 		}
 
-		[Test]
+		[Fact]
 		public void Build_MaxButtonLines_VkKeyboardMaxButtonsException()
 		{
 			// Arrange
@@ -172,7 +172,7 @@ namespace VkNet.Tests.Models
 				.Be(KeyboardBuilder.MaxButtonLinesExceptionTemplate);
 		}
 
-		[Test]
+		[Fact]
 		public void Build_MaxButtonLines_Success()
 		{
 			// Arrange

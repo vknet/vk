@@ -1,17 +1,17 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Ads
 {
-	[TestFixture]
+
 
 	public class GetPostsReachTest : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";
 
-		[Test]
+		[Fact]
 		public void GetPostsReach()
 		{
 			Url = "https://api.vk.com/method/ads.getPostsReach";

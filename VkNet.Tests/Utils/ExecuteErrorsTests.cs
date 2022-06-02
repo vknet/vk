@@ -2,15 +2,15 @@ using System;
 using FluentAssertions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NUnit.Framework;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
-	[TestFixture]
+
 	public class ExecuteErrorsTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void IfResponseContainInvalidJson_ThrowJsonException()
 		{
 			// Arrange
@@ -22,7 +22,7 @@ namespace VkNet.Tests.Utils
 				.ThrowExactly<JsonSerializationException>();
 		}
 
-		[Test]
+		[Fact]
 		public void IfResponseContainsExecuteErrors_ThanReturnAggregateException()
 		{
 			// Arrange
@@ -36,7 +36,7 @@ namespace VkNet.Tests.Utils
 			ex.InnerExceptions.Count.Should().Be(3);
 		}
 
-		[Test]
+		[Fact]
 		public void IfResponseIsEmptyThen_ThrowArgumentException()
 		{
 			// Act

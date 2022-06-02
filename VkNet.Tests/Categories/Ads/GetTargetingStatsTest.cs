@@ -1,17 +1,17 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Ads
 {
-	[TestFixture]
+
 
 	public class GetTargetingStatsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";
 
-		[Test]
+		[Fact]
 		public void GetTargetingStats()
 		{
 			Url = "https://api.vk.com/method/ads.getTargetingStats";

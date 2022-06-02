@@ -1,13 +1,13 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 	public class MessagesGetHistoryTest : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void GetHistoryTest()
 		{
 			Url = "https://api.vk.com/method/messages.getHistory";

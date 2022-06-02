@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Model.RequestParams.Database;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Database
 {
-	[TestFixture]
+
 	public class DatabaseCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Database";
 
-		[Test]
+		[Fact]
 		public void GetCities_CountryIdIsNegative_ThrowException()
 		{
 			FluentActions.Invoking(() => new DatabaseCategory(Api).GetCities(new GetCitiesParams
@@ -26,7 +26,7 @@ namespace VkNet.Tests.Categories.Database
 				.ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetCities_GetBiggestCitiesOfRussia()
 		{
 			Url = "https://api.vk.com/method/database.getCities";
@@ -59,7 +59,7 @@ namespace VkNet.Tests.Categories.Database
 			cities[2].Region.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetCities_NormalCase()
 		{
 			Url = "https://api.vk.com/method/database.getCities";
@@ -86,7 +86,7 @@ namespace VkNet.Tests.Categories.Database
 			cities[1].Region.Should().Be("Астраханская область");
 		}
 
-		[Test]
+		[Fact]
 		public void GetCities_RegionIdIsNegative_ThrowException()
 		{
 			FluentActions.Invoking(() => new DatabaseCategory(Api).GetCities(new GetCitiesParams
@@ -98,7 +98,7 @@ namespace VkNet.Tests.Categories.Database
 				.ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetCitiesById_EmptyList()
 		{
 			Url = "https://api.vk.com/method/database.getCitiesById";
@@ -109,7 +109,7 @@ namespace VkNet.Tests.Categories.Database
 			cities.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetCitiesById_MskSpbVlg()
 		{
 			Url = "https://api.vk.com/method/database.getCitiesById";
@@ -129,13 +129,13 @@ namespace VkNet.Tests.Categories.Database
 			cities[2].Title.Should().Be("Волгоград");
 		}
 
-		[Test]
+		[Fact]
 		public void GetCountries_CountIsNegative_ThrowArgumentException()
 		{
 			FluentActions.Invoking(() => new DatabaseCategory(Api).GetCountries(count: -2)).Should().ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetCountries_ListOfCodes_ListOfCountries()
 		{
 			Url = "https://api.vk.com/method/database.getCountries";
@@ -156,7 +156,7 @@ namespace VkNet.Tests.Categories.Database
 			countries[1].Title.Should().Be("Германия");
 		}
 
-		[Test]
+		[Fact]
 		public void GetCountries_NormalCase_ListOfCountries()
 		{
 			Url = "https://api.vk.com/method/database.getCountries";
@@ -176,13 +176,13 @@ namespace VkNet.Tests.Categories.Database
 			countries[2].Title.Should().Be("Ангола");
 		}
 
-		[Test]
+		[Fact]
 		public void GetCountries_OffsetIsNegative_ThrowArgumentException()
 		{
 			FluentActions.Invoking(() => new DatabaseCategory(Api).GetCountries(offset: -2)).Should().ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetCountriesById_1And65_RussiaAndGermany()
 		{
 			Url = "https://api.vk.com/method/database.getCountriesById";
@@ -199,7 +199,7 @@ namespace VkNet.Tests.Categories.Database
 			countries[1].Title.Should().Be("Германия");
 		}
 
-		[Test]
+		[Fact]
 		public void GetCountriesById_EmptyList()
 		{
 			Url = "https://api.vk.com/method/database.getCountriesById";
@@ -211,7 +211,7 @@ namespace VkNet.Tests.Categories.Database
 			countries.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetFaculties_ListVstuFaculties()
 		{
 			Url = "https://api.vk.com/method/database.getFaculties";
@@ -232,19 +232,19 @@ namespace VkNet.Tests.Categories.Database
 			faculties[2].Title.Should().Be("Электроники и вычислительной техники");
 		}
 
-		[Test]
+		[Fact]
 		public void GetRegions_CountIsNegative_ThrowArgumentException()
 		{
 			FluentActions.Invoking(() => new DatabaseCategory(Api).GetRegions(1, count: -2)).Should().ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetRegions_CountryIdIsNegative_ThrowArgumentException()
 		{
 			FluentActions.Invoking(() => new DatabaseCategory(Api).GetRegions(-1)).Should().ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetRegions_NormalCase_ListOfRegions()
 		{
 			Url = "https://api.vk.com/method/database.getRegions";
@@ -264,13 +264,13 @@ namespace VkNet.Tests.Categories.Database
 			regions[2].Title.Should().Be("Белгородская область");
 		}
 
-		[Test]
+		[Fact]
 		public void GetRegions_OffsetIsNegative_ThrowArgumentException()
 		{
 			FluentActions.Invoking(() => new DatabaseCategory(Api).GetRegions(1, offset: -2)).Should().ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetSchools_BadQuery_EmptyList()
 		{
 			Url = "https://api.vk.com/method/database.getSchools";
@@ -281,7 +281,7 @@ namespace VkNet.Tests.Categories.Database
 			schools.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetSchools_LiceumsInVolgograd_ListOfLiceums()
 		{
 			Url = "https://api.vk.com/method/database.getSchools";
@@ -301,7 +301,7 @@ namespace VkNet.Tests.Categories.Database
 			schools[2].Name.Should().Be("Библейский колледж «Новая жизнь»");
 		}
 
-		[Test]
+		[Fact]
 		public void GetStreetsById_1_89_437()
 		{
 			Url = "https://api.vk.com/method/database.getStreetsById";
@@ -321,7 +321,7 @@ namespace VkNet.Tests.Categories.Database
 			streets[2].Title.Should().Be("Синяя ул.");
 		}
 
-		[Test]
+		[Fact]
 		public void GetStreetsById_EmptyList()
 		{
 			Url = "https://api.vk.com/method/database.getStreetsById";
@@ -338,7 +338,7 @@ namespace VkNet.Tests.Categories.Database
 				.Be("One of the parameters specified was missing or invalid: value should be positive");
 		}
 
-		[Test]
+		[Fact]
 		public void GetUniversities_FindVstu()
 		{
 			Url = "https://api.vk.com/method/database.getUniversities";
@@ -351,7 +351,7 @@ namespace VkNet.Tests.Categories.Database
 			universities[0].Name.Should().Be("ВолгГТУ");
 		}
 
-		[Test]
+		[Fact]
 		public void GetUniversities_ListOfUniversities()
 		{
 			Url = "https://api.vk.com/method/database.getUniversities";
@@ -362,7 +362,7 @@ namespace VkNet.Tests.Categories.Database
 			universities.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetMetroStations()
 		{
 			Url = "https://api.vk.com/method/database.getMetroStations";
@@ -373,7 +373,7 @@ namespace VkNet.Tests.Categories.Database
 			universities.TotalCount.Should().Be(69);
 		}
 
-		[Test]
+		[Fact]
 		public void GetMetroStationsById()
 		{
 			Url = "https://api.vk.com/method/database.getMetroStationsById";

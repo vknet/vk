@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -11,16 +10,17 @@ using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Wall
 {
-	[TestFixture]
+
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	public class WallCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Wall";
 
-		[Test]
+		[Fact]
 		public void CloseComments_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/wall.closeComments";
@@ -32,13 +32,13 @@ namespace VkNet.Tests.Categories.Wall
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			FluentActions.Invoking(() => new WallCategory(new VkApi()).Delete(1, 1)).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_Document_NormalCase()
 		{
 			Url = "https://api.vk.com/method/wall.get";
@@ -68,7 +68,7 @@ namespace VkNet.Tests.Categories.Wall
 			doc.AccessKey.Should().Be("5bf7103aa95aacb8ad");
 		}
 
-		[Test]
+		[Fact]
 		public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
 		{
 			Url = "https://api.vk.com/method/wall.get";
@@ -95,7 +95,7 @@ namespace VkNet.Tests.Categories.Wall
 			count.Groups[0].Id.Should().Be(29246653);
 		}
 
-		[Test]
+		[Fact]
 		public void Get_Geo_NormalCase()
 		{
 			Url = "https://api.vk.com/method/wall.get";
@@ -112,7 +112,7 @@ namespace VkNet.Tests.Categories.Wall
 			posts.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_With_PhotoListAttachment()
 		{
 			Url = "https://api.vk.com/method/wall.get";
@@ -137,7 +137,7 @@ namespace VkNet.Tests.Categories.Wall
 			attach.Instance.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_WithPoll_NormalCase()
 		{
 			Url = "https://api.vk.com/method/wall.get";
@@ -174,7 +174,7 @@ namespace VkNet.Tests.Categories.Wall
 			post.Reposts.UserReposted.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			FluentActions.Invoking(() => new WallCategory(new VkApi()).GetById(new[]
@@ -187,7 +187,7 @@ namespace VkNet.Tests.Categories.Wall
 				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_IncorrectParameters_ThrowException()
 		{
 			FluentActions.Invoking(() => new WallCategory(Api).GetById(null)).Should().ThrowExactly<ArgumentNullException>();
@@ -197,7 +197,7 @@ namespace VkNet.Tests.Categories.Wall
 				.ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_ReturnWallRecords()
 		{
 			Url = "https://api.vk.com/method/wall.getById";
@@ -238,7 +238,7 @@ namespace VkNet.Tests.Categories.Wall
 			records.WallPosts[0].Reposts.UserReposted.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_Donut()
 		{
 			Url = "https://api.vk.com/method/wall.getById";
@@ -269,7 +269,7 @@ namespace VkNet.Tests.Categories.Wall
 			records.WallPosts[0].Text.Should().Be("В этом посте нет доната");
 		}
 
-		[Test]
+		[Fact]
 		public void GetComments_ReturnLikesAndAttachments()
 		{
 			Url = "https://api.vk.com/method/wall.getComments";
@@ -351,7 +351,7 @@ namespace VkNet.Tests.Categories.Wall
 					DateTimeKind.Utc));
 		}
 
-		[Test]
+		[Fact]
 		public void OpenComments_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/wall.openComments";
@@ -363,7 +363,7 @@ namespace VkNet.Tests.Categories.Wall
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Repost_ReturnCorrectResults()
 		{
 			Url = "https://api.vk.com/method/wall.repost";
@@ -378,7 +378,7 @@ namespace VkNet.Tests.Categories.Wall
 			result.LikesCount.Should().Be(105);
 		}
 
-		[Test]
+		[Fact]
 		public void Repost_UrlIsGeneratedCorrectly()
 		{
 			Url = "https://api.vk.com/method/wall.repost";
@@ -393,7 +393,7 @@ namespace VkNet.Tests.Categories.Wall
 			result.LikesCount.Should().Be(105);
 		}
 
-		[Test]
+		[Fact]
 		public void CheckCopyrightLink_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/wall.checkCopyrightLink";
@@ -405,7 +405,7 @@ namespace VkNet.Tests.Categories.Wall
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void GetComment_ReturnCorrectResults()
 		{
 			Url = "https://api.vk.com/method/wall.getComment";

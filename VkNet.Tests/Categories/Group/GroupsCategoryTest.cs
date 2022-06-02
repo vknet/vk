@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -11,15 +10,16 @@ using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
-	[TestFixture]
+
 	public class GroupsCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void BanUser_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.banUser";
@@ -37,7 +37,7 @@ namespace VkNet.Tests.Categories.Group
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Edit_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.edit";
@@ -55,7 +55,7 @@ namespace VkNet.Tests.Categories.Group
 			groups.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void EditPlace_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.editPlace";
@@ -77,7 +77,7 @@ namespace VkNet.Tests.Categories.Group
 			groups.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_NormalCaseAllFields_ReturnFullGroupInfo()
 		{
 			Url = "https://api.vk.com/method/groups.get";
@@ -153,7 +153,7 @@ namespace VkNet.Tests.Categories.Group
 			groups[0].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void Get_NormalCaseDefaultFields_ReturnOnlyGroupIds()
 		{
 			Url = "https://api.vk.com/method/groups.get";
@@ -176,7 +176,7 @@ namespace VkNet.Tests.Categories.Group
 					x => x.Id.Should().Be(36346468));
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
@@ -186,7 +186,7 @@ namespace VkNet.Tests.Categories.Group
 				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_BanInfo()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
@@ -204,7 +204,7 @@ namespace VkNet.Tests.Categories.Group
 			group.BanInfo.Comment.Should().Be("Сам попросил :D");
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_InvalidGid_ThrowsInvalidParameterException()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
@@ -216,7 +216,7 @@ namespace VkNet.Tests.Categories.Group
 				.ThrowExactly<InvalidGroupIdException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
@@ -226,7 +226,7 @@ namespace VkNet.Tests.Categories.Group
 				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_Multiple_InvalidGids_ThrowsInvalidParameterException()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
@@ -243,7 +243,7 @@ namespace VkNet.Tests.Categories.Group
 				.ThrowExactly<InvalidGroupIdException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_Multiple_NormalCaseAllFields_ReturnTwoItems()
 		{
 			Url =
@@ -313,7 +313,7 @@ namespace VkNet.Tests.Categories.Group
 			groups[1].StartDate.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_Multiple_NormalCaseDefaultFields_ReturnTowItems()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
@@ -359,7 +359,7 @@ namespace VkNet.Tests.Categories.Group
 			groups[1].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_NormalCaseAllFields_ReturnTwoItems()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
@@ -398,7 +398,7 @@ namespace VkNet.Tests.Categories.Group
 					DateTimeKind.Utc));
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_NormalCaseDefaultFields_ReturnTwoItems()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
@@ -423,7 +423,7 @@ namespace VkNet.Tests.Categories.Group
 			g.PhotoPreviews.Photo200.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalog_WithAllParams()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalog";
@@ -468,7 +468,7 @@ namespace VkNet.Tests.Categories.Group
 			group2.Photo200.Should().Be(new Uri("https://pp.vk.me/c631129/v631129289/a7b0/1Xle1sPdGWU.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalog_WithoutParams()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalog";
@@ -512,7 +512,7 @@ namespace VkNet.Tests.Categories.Group
 			group2.Photo200.Should().Be(new Uri("https://pp.vk.me/c629511/v629511851/2dec4/VRFDlbtQGH4.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalog_WithParamCategoryId()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalog";
@@ -557,7 +557,7 @@ namespace VkNet.Tests.Categories.Group
 			group2.Photo200.Should().Be(new Uri("https://pp.vk.me/c629121/v629121767/1fb38/gz5b7w4k7u4.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalogInfo()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalogInfo";
@@ -577,7 +577,7 @@ namespace VkNet.Tests.Categories.Group
 			category.Name.Should().Be("Рекомендации");
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalogInfo_AllParams()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalogInfo";
@@ -620,7 +620,7 @@ namespace VkNet.Tests.Categories.Group
 			sub2.PagePreviews.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalogInfo_Extended()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalogInfo";
@@ -648,7 +648,7 @@ namespace VkNet.Tests.Categories.Group
 			category1.PagePreviews.Count().Should().Be(2);
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalogInfo_Subcategories()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalogInfo";
@@ -683,7 +683,7 @@ namespace VkNet.Tests.Categories.Group
 			sub2.Name.Should().Be("Электроника");
 		}
 
-		[Test]
+		[Fact]
 		public void GetInivites_NotInvites()
 		{
 			Url = "https://api.vk.com/method/groups.getInvites";
@@ -695,7 +695,7 @@ namespace VkNet.Tests.Categories.Group
 			groups.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetInvitedUsers_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.getInvitedUsers";
@@ -712,7 +712,7 @@ namespace VkNet.Tests.Categories.Group
 			user.BirthDate.Should().Be("23.6.2000");
 		}
 
-		[Test]
+		[Fact]
 		public void GetInvites_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.getInvites";
@@ -742,7 +742,7 @@ namespace VkNet.Tests.Categories.Group
 			group.InvitedBy.Should().Be(242508789);
 		}
 
-		[Test]
+		[Fact]
 		public void GetMembers_InvalidGid_ThrowsInvalidParameterException()
 		{
 			Url = "https://api.vk.com/method/groups.getMembers";
@@ -757,7 +757,7 @@ namespace VkNet.Tests.Categories.Group
 				.ThrowExactly<InvalidGroupIdException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetMembers_NormalCase_ListOfUsesIds()
 		{
 			Url = "https://api.vk.com/method/groups.getMembers";
@@ -782,7 +782,7 @@ namespace VkNet.Tests.Categories.Group
 			ids[7].Id.Should().Be(38690458);
 		}
 
-		[Test]
+		[Fact]
 		public void GetMembers_NormalCaseAllInputParameters_ListOfUsesIds()
 		{
 			Url = "https://api.vk.com/method/groups.getMembers";
@@ -805,7 +805,7 @@ namespace VkNet.Tests.Categories.Group
 			ids[1].Id.Should().Be(6);
 		}
 
-		[Test]
+		[Fact]
 		public void GetSettings_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.getSettings";
@@ -817,7 +817,7 @@ namespace VkNet.Tests.Categories.Group
 			groups.GroupId.Should().Be(103292418);
 		}
 
-		[Test]
+		[Fact]
 		public void Invite_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.invite";
@@ -829,7 +829,7 @@ namespace VkNet.Tests.Categories.Group
 			users.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void IsMember_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
@@ -837,7 +837,7 @@ namespace VkNet.Tests.Categories.Group
 			FluentActions.Invoking(() => groups.IsMember("2", 1, null, null)).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void IsMember_UserAuthorizationFail_ThrowUserAuthorizationFailException()
 		{
 			Url = "https://api.vk.com/method/groups.isMember";
@@ -852,7 +852,7 @@ namespace VkNet.Tests.Categories.Group
 				.Be("User authorization failed: access_token was given to another ip address.");
 		}
 
-		[Test]
+		[Fact]
 		public void IsMember_UserIsAMember_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/groups.isMember";
@@ -864,7 +864,7 @@ namespace VkNet.Tests.Categories.Group
 			result[0].Member.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void IsMember_UserNotAMember_ReturnFalse()
 		{
 			Url = "https://api.vk.com/method/groups.isMember";
@@ -876,7 +876,7 @@ namespace VkNet.Tests.Categories.Group
 			result[0].Member.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void IsMember_WrongGid_ThrowsInvalidParameterException()
 		{
 			Url = "https://api.vk.com/method/groups.isMember";
@@ -891,7 +891,7 @@ namespace VkNet.Tests.Categories.Group
 				.Be("Invalid group id");
 		}
 
-		[Test]
+		[Fact]
 		public void IsMember_WrongUid_ReturnFalse()
 		{
 			Url = "https://api.vk.com/method/groups.isMember";
@@ -901,7 +901,7 @@ namespace VkNet.Tests.Categories.Group
 			(result.Count > 0 && result[0].Member).Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void Join_AccessDenied_ThrowAccessDeniedException()
 		{
 			Url = "https://api.vk.com/method/groups.join";
@@ -911,14 +911,14 @@ namespace VkNet.Tests.Categories.Group
 			FluentActions.Invoking(() => Api.Groups.Join(2, true)).Should().ThrowExactly<PermissionToPerformThisActionException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Join_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
 			FluentActions.Invoking(() => groups.Join(1)).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Join_NormalCase_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/groups.join";
@@ -930,7 +930,7 @@ namespace VkNet.Tests.Categories.Group
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Join_NormalCaseNotSure_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/groups.join";
@@ -942,7 +942,7 @@ namespace VkNet.Tests.Categories.Group
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Join_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
 		{
 			Url = "https://api.vk.com/method/groups.join";
@@ -951,7 +951,7 @@ namespace VkNet.Tests.Categories.Group
 			FluentActions.Invoking(() => Api.Groups.Join(1)).Should().ThrowExactly<UserAuthorizationFailException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Join_WrongGid_ThrowAccessDeniedException()
 		{
 			Url = "https://api.vk.com/method/groups.join";
@@ -964,7 +964,7 @@ namespace VkNet.Tests.Categories.Group
 				.Be("Access denied: you can not join this private community");
 		}
 
-		[Test]
+		[Fact]
 		public void Leave_AccessDenied_ThrowAccessDeniedException()
 		{
 			Url = "https://api.vk.com/method/groups.leave";
@@ -974,14 +974,14 @@ namespace VkNet.Tests.Categories.Group
 			FluentActions.Invoking(() => Api.Groups.Leave(2)).Should().ThrowExactly<PermissionToPerformThisActionException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Leave_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
 			FluentActions.Invoking(() => groups.Leave(1)).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Leave_NormalCase_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/groups.leave";
@@ -993,7 +993,7 @@ namespace VkNet.Tests.Categories.Group
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Leave_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
 		{
 			Url = "https://api.vk.com/method/groups.leave";
@@ -1002,7 +1002,7 @@ namespace VkNet.Tests.Categories.Group
 			FluentActions.Invoking(() => Api.Groups.Leave(1)).Should().ThrowExactly<UserAuthorizationFailException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Leave_WrongGid_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/groups.leave";
@@ -1014,7 +1014,7 @@ namespace VkNet.Tests.Categories.Group
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Search_DefaultCase_ListOfGroups()
 		{
 			Url = "https://api.vk.com/method/groups.search";
@@ -1059,7 +1059,7 @@ namespace VkNet.Tests.Categories.Group
 			groups[0].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs9365.userapi.com/g339767/a_4653ba99.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void Search_DefaultCaseAllParams_ListOfGroups()
 		{
 			Url = "https://api.vk.com/method/groups.search";
@@ -1120,7 +1120,7 @@ namespace VkNet.Tests.Categories.Group
 			groups[0].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void Search_EmptyQuery_ThrowsArgumentException()
 		{
 			var groups = new GroupsCategory(Api);
@@ -1133,7 +1133,7 @@ namespace VkNet.Tests.Categories.Group
 				.ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Search_GroupsNotFounded_EmptyList()
 		{
 			Url = "https://api.vk.com/method/groups.search";
@@ -1151,7 +1151,7 @@ namespace VkNet.Tests.Categories.Group
 			groups.TotalCount.Should().Be(0);
 		}
 
-		[Test]
+		[Fact]
 		public void Unban_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.unban";

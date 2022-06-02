@@ -1,17 +1,17 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Places
 {
-	[TestFixture]
+
 
 	public class PlacesCategoryTests : CategoryBaseTest
 	{
 		protected override string Folder => "Places";
 
-		[Test]
+		[Fact]
 		public void Add()
 		{
 			Url = "https://api.vk.com/method/places.add";
@@ -22,7 +22,7 @@ namespace VkNet.Tests.Categories.Places
 			result.Should().Be(6162171);
 		}
 
-		[Test]
+		[Fact]
 		public void Checkin()
 		{
 			Url = "https://api.vk.com/method/places.checkin";
@@ -33,7 +33,7 @@ namespace VkNet.Tests.Categories.Places
 			result.Should().Be(6162171);
 		}
 
-		[Test]
+		[Fact]
 		public void GetById()
 		{
 			Url = "https://api.vk.com/method/places.getById";
@@ -44,7 +44,7 @@ namespace VkNet.Tests.Categories.Places
 			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetCheckins()
 		{
 			Url = "https://api.vk.com/method/places.getCheckins";
@@ -55,7 +55,7 @@ namespace VkNet.Tests.Categories.Places
 			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetTypes()
 		{
 			Url = "https://api.vk.com/method/places.getTypes";
@@ -66,7 +66,7 @@ namespace VkNet.Tests.Categories.Places
 			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Search()
 		{
 			Url = "https://api.vk.com/method/places.search";

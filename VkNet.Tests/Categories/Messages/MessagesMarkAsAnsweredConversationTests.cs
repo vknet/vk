@@ -1,14 +1,14 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 
 	public class MessagesMarkAsAnsweredConversationTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void MarkAsAnsweredConversation()
 		{
 			Url = "https://api.vk.com/method/messages.markAsAnsweredConversation";

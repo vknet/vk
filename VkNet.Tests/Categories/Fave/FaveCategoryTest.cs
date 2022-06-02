@@ -2,22 +2,22 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Fave
 {
-	[TestFixture]
+
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 
 	public class FaveCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Fave";
 
-		[Test]
+		[Fact]
 		public void GetLinks_NormalCase()
 		{
 			Url = "https://api.vk.com/method/fave.getLinks";
@@ -36,7 +36,7 @@ namespace VkNet.Tests.Categories.Fave
 			link.Photo100.Should().Be("https://pp.vk.me/c400/g00001/e_5ba03323.jpg");
 		}
 
-		[Test]
+		[Fact]
 		public void GetMarketItems_AllParams()
 		{
 			Url = "https://api.vk.com/method/fave.getMarketItems";
@@ -49,7 +49,7 @@ namespace VkNet.Tests.Categories.Fave
 			marketItems.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetMarketItems_count()
 		{
 			Url = "https://api.vk.com/method/fave.getMarketItems";
@@ -62,7 +62,7 @@ namespace VkNet.Tests.Categories.Fave
 			marketItems.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetMarketItems_countAndOffset()
 		{
 			Url = "https://api.vk.com/method/fave.getMarketItems";
@@ -75,7 +75,7 @@ namespace VkNet.Tests.Categories.Fave
 			marketItems.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetMarketItems_WithoutParams()
 		{
 			Url = "https://api.vk.com/method/fave.getMarketItems";
@@ -88,7 +88,7 @@ namespace VkNet.Tests.Categories.Fave
 			marketItems.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetPhotos_ExtendedCase()
 		{
 			Url = "https://api.vk.com/method/fave.getPhotos";
@@ -116,7 +116,7 @@ namespace VkNet.Tests.Categories.Fave
 			photo.AccessKey.Should().Be("1e2008462f1a012b95");
 		}
 
-		[Test]
+		[Fact]
 		public void GetPhotos_NormalCase()
 		{
 			Url = "https://api.vk.com/method/fave.getPhotos";
@@ -166,7 +166,7 @@ namespace VkNet.Tests.Categories.Fave
 			photo2.CreateTime.Should().Be(DateHelper.TimeStampToDateTime(1390533904));
 		}
 
-		[Test]
+		[Fact]
 		public void GetPosts_Extended()
 		{
 			Url = "https://api.vk.com/method/fave.getPosts";
@@ -248,7 +248,7 @@ namespace VkNet.Tests.Categories.Fave
 			group.PhotoPreviews.Photo200.Should().Be(new Uri("https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void GetPosts_NotExtended()
 		{
 			Url = "https://api.vk.com/method/fave.getPosts";
@@ -300,7 +300,7 @@ namespace VkNet.Tests.Categories.Fave
 			video.AccessKey.Should().Be("733701ff4d7eb85ed7");
 		}
 
-		[Test]
+		[Fact]
 		public void GetUsers_OneItem()
 		{
 			Url = "https://api.vk.com/method/fave.getUsers";
@@ -317,7 +317,7 @@ namespace VkNet.Tests.Categories.Fave
 			user.LastName.Should().Be("Дуров");
 		}
 
-		[Test]
+		[Fact]
 		public void GetVideos_NormalCase()
 		{
 			Url = "https://api.vk.com/method/fave.getVideos";

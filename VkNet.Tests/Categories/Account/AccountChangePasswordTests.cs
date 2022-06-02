@@ -1,16 +1,16 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Account
 {
-	[TestFixture]
+
 
 	public class AccountChangePasswordTests : CategoryBaseTest
 	{
 		protected override string Folder => "Account";
 
-		[Test]
+		[Fact]
 		public void ChangePassword()
 		{
 			Url = "https://api.vk.com/method/account.changePassword";

@@ -1,17 +1,17 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams.Notes;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Notes
 {
-	[TestFixture]
+
 
 	public class NotesCategoryTests : CategoryBaseTest
 	{
 		protected override string Folder => "Notes";
 
-		[Test]
+		[Fact]
 		public void Add()
 		{
 			Url = "https://api.vk.com/method/notes.add";
@@ -22,7 +22,7 @@ namespace VkNet.Tests.Categories.Notes
 			result.Should().Be(11825220);
 		}
 
-		[Test]
+		[Fact]
 		public void CreateComment()
 		{
 			Url = "https://api.vk.com/method/notes.createComment";
@@ -33,7 +33,7 @@ namespace VkNet.Tests.Categories.Notes
 			result.Should().Be(11825220);
 		}
 
-		[Test]
+		[Fact]
 		public void Delete()
 		{
 			Url = "https://api.vk.com/method/notes.delete";
@@ -44,7 +44,7 @@ namespace VkNet.Tests.Categories.Notes
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void DeleteComment()
 		{
 			Url = "https://api.vk.com/method/notes.deleteComment";
@@ -55,7 +55,7 @@ namespace VkNet.Tests.Categories.Notes
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Edit()
 		{
 			Url = "https://api.vk.com/method/notes.edit";
@@ -66,7 +66,7 @@ namespace VkNet.Tests.Categories.Notes
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void EditComment()
 		{
 			Url = "https://api.vk.com/method/notes.editComment";
@@ -77,7 +77,7 @@ namespace VkNet.Tests.Categories.Notes
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Get()
 		{
 			Url = "https://api.vk.com/method/notes.get";
@@ -88,7 +88,7 @@ namespace VkNet.Tests.Categories.Notes
 			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById()
 		{
 			Url = "https://api.vk.com/method/notes.getById";
@@ -99,7 +99,7 @@ namespace VkNet.Tests.Categories.Notes
 			result.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetComments()
 		{
 			Url = "https://api.vk.com/method/notes.getComments";
@@ -110,7 +110,7 @@ namespace VkNet.Tests.Categories.Notes
 			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void RestoreComment()
 		{
 			Url = "https://api.vk.com/method/notes.restoreComment";

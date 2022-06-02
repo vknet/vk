@@ -1,12 +1,12 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
 	public class MoneyTransferTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void ShouldDeserializeFromVkResponseToAttachment()
 		{
 			ReadJsonFile("Models", "money_transfer");

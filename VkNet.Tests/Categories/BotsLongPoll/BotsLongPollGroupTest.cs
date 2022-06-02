@@ -1,16 +1,16 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollGroupTest : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_GroupChangePhotoTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupChangePhotoTest));
@@ -35,7 +35,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.GroupChangePhoto.Photo.Id.Should().Be(id);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_GroupJoinTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupJoinTest));
@@ -59,7 +59,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.GroupJoin.JoinType.Should().Be(joinType);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_GroupLeaveTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupLeaveTest));
@@ -82,7 +82,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.GroupLeave.IsSelf.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_GroupLeaveSelfTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupLeaveSelfTest));
@@ -105,7 +105,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.GroupLeave.IsSelf.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_GroupOfficersEditTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupOfficersEditTest));
@@ -131,7 +131,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.GroupOfficersEdit.LevelNew.Should().Be(newLevel);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_UserBlockTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserBlockTest));
@@ -160,7 +160,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.UserBlock.UnblockDate.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_UserBlockTemporaryTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserBlockTemporaryTest));
@@ -196,7 +196,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.UserBlock.UnblockDate.Should().Be(unblockDate);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_UserUnblockTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserUnblockTest));
@@ -221,7 +221,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.UserUnblock.ByEndDate.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_UserUnblockByEndDateTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserUnblockByEndDateTest));
@@ -246,7 +246,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.UserUnblock.ByEndDate.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_PollVoteNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PollVoteNewTest));

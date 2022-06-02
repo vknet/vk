@@ -1,16 +1,15 @@
 ﻿using FluentAssertions;
 using Newtonsoft.Json;
-using NUnit.Framework;
-using VkNet.Infrastructure;
 using VkNet.Model;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils.JsonConverter
 {
-	[TestFixture]
+
 	public class AttachmentJsonConverterTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void CallAndConvertToType()
 		{
 			ReadJsonFile("Attachment", nameof(CallAndConvertToType));
@@ -24,7 +23,7 @@ namespace VkNet.Tests.Utils.JsonConverter
 			result.Attachments.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void SerializationTest()
 		{
 			ReadJsonFile("Attachment", nameof(SerializationTest));

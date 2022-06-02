@@ -1,15 +1,15 @@
 using FluentAssertions;
 using Newtonsoft.Json;
-using NUnit.Framework;
 using VkNet.Model;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 
 	public class TimetableTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void TimetableToJson()
 		{
 			ReadJsonFile("Models", nameof(TimetableToJson));

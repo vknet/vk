@@ -1,17 +1,17 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Search
 {
-	[TestFixture]
+
 
 	public class SearchTests : CategoryBaseTest
 	{
 		protected override string Folder => "Search";
 
-		[Test]
+		[Fact]
 		public void GetHints()
 		{
 			Url = "https://api.vk.com/method/search.getHints";

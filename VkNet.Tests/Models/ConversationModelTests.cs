@@ -1,15 +1,15 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class ConversationModelTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void ConversationModel()
 		{
 			ReadJsonFile("Models", nameof(ConversationModel));

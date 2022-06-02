@@ -1,16 +1,16 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Docs
 {
-	[TestFixture]
+
 	public class DocsGetMessagesUploadServerTests : CategoryBaseTest
 	{
 		protected override string Folder => "Docs";
 
-		[Test]
+		[Fact]
 		public void GetMessagesUploadServerTest()
 		{
 			Url = "https://api.vk.com/method/docs.getMessagesUploadServer";

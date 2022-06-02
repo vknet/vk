@@ -1,17 +1,17 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Widgets
 {
-	[TestFixture]
+
 
 	public class WidgetsCategoryTests : CategoryBaseTest
 	{
 		protected override string Folder => "Widgets";
 
-		[Test]
+		[Fact]
 		public void GetComments()
 		{
 			Url = "https://api.vk.com/method/widgets.getComments";
@@ -31,7 +31,7 @@ namespace VkNet.Tests.Categories.Widgets
 			result.TotalCount.Should().Be(10);
 		}
 
-		[Test]
+		[Fact]
 		public void GetPages()
 		{
 			Url = "https://api.vk.com/method/widgets.getPages";

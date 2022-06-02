@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams.Stories;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Story
 {
-	[TestFixture]
+
 	public class StoriesGetTests : CategoryBaseTest
 	{
 		protected override string Folder => JsonTestFolderConstants.Categories.Stories;
 
-		[Test]
+		[Fact]
 		public void Get()
 		{
 			Url = "https://api.vk.com/method/stories.get";
@@ -23,7 +23,7 @@ namespace VkNet.Tests.Categories.Story
 			result.Count.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBanned()
 		{
 			Url = "https://api.vk.com/method/stories.getBanned";
@@ -36,7 +36,7 @@ namespace VkNet.Tests.Categories.Story
 			result.Items.Should().NotContainNulls();
 		}
 
-		[Test]
+		[Fact]
 		public void GetPhotoUploadServer()
 		{
 			Url = "https://api.vk.com/method/stories.getPhotoUploadServer";
@@ -51,7 +51,7 @@ namespace VkNet.Tests.Categories.Story
 			result.UploadUrl.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetReplies()
 		{
 			Url = "https://api.vk.com/method/stories.getReplies";
@@ -63,7 +63,7 @@ namespace VkNet.Tests.Categories.Story
 			result.Count.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void GetViewers()
 		{
 			Url = "https://api.vk.com/method/stories.getViewers";
@@ -77,7 +77,7 @@ namespace VkNet.Tests.Categories.Story
 			users.Should().Contain(x => x == 123456789);
 		}
 
-		[Test]
+		[Fact]
 		public void GetViewersExtended()
 		{
 			Url = "https://api.vk.com/method/stories.getViewers";
@@ -93,7 +93,7 @@ namespace VkNet.Tests.Categories.Story
 			users.Should().Contain(x => x.LastName == "test1");
 		}
 
-		[Test]
+		[Fact]
 		public void GetStats()
 		{
 			Url = "https://api.vk.com/method/stories.getStats";
@@ -110,7 +110,7 @@ namespace VkNet.Tests.Categories.Story
 			stats.Shares.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById()
 		{
 			Url = "https://api.vk.com/method/stories.getById";
@@ -128,7 +128,7 @@ namespace VkNet.Tests.Categories.Story
 			stories.Items.Should().NotBeNullOrEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Search()
 		{
 			Url = "https://api.vk.com/method/stories.search";
@@ -151,7 +151,7 @@ namespace VkNet.Tests.Categories.Story
 			result.Groups.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void SendInteraction()
 		{
 			Url = "https://api.vk.com/method/stories.sendInteraction";

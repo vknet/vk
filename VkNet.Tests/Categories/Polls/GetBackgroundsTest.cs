@@ -1,16 +1,16 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Polls
 {
-	[TestFixture]
+
 	public class GetBackgroundsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Polls";
 
-		[Test]
+		[Fact]
 		public void GetBackgrounds()
 		{
 			Url = "https://api.vk.com/method/polls.getBackgrounds";

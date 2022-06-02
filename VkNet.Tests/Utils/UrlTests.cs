@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
-	[TestFixture, Parallelizable]
+
 	public class UrlTests
 	{
-		[Test]
+		[Fact]
 		public void Query_From()
 		{
 			var parameters = new Dictionary<string, string>
@@ -24,7 +24,7 @@ namespace VkNet.Tests.Utils
 			query.Should().Be("key1=value1&key2=value2");
 		}
 
-		[Test]
+		[Fact]
 		public void Combine_With_Query()
 		{
 			const string testUrl = "https://www.google.com/search?q=dictionary&sourceid=chrome&ie=UTF-8";
@@ -36,7 +36,7 @@ namespace VkNet.Tests.Utils
 			actualUrl.Should().Be(expectedUrl);
 		}
 
-		[Test]
+		[Fact]
 		public void ParseQueryString()
 		{
 			const string inputUrl = "https://www.google.com/search?q=dictionary&sourceid=chrome&ie=UTF-8&key1=value1&key2=value2";
@@ -49,7 +49,7 @@ namespace VkNet.Tests.Utils
 			result.Should().ContainKey("key2").WhoseValue.Should().Be("value2");
 		}
 
-		[Test]
+		[Fact]
 		public void ParseQueryString_UrlShouldContainQueryParameters()
 		{
 			const string inputUrl = "https://www.google.com/search";
@@ -58,7 +58,7 @@ namespace VkNet.Tests.Utils
 			result.Should().Throw<UriFormatException>();
 		}
 
-		[Test]
+		[Fact]
 		public void ParseQueryString_UrlShouldReturnExpectedValue()
 		{
 			const string inputUrl =

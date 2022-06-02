@@ -1,15 +1,15 @@
 using System;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class AudioMessageModel : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void ToString_AudioMessageShouldHaveAccessKey()
 		{
 			var audioMessage = new AudioMessage
@@ -24,7 +24,7 @@ namespace VkNet.Tests.Models
 			result.Should().Be("audio_message1234_1234_test");
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldDeserializeFromVkResponseToAudioMessageWithTranscript()
 		{
 			ReadJsonFile("Models", "audio_message_with_transcription");
@@ -42,7 +42,7 @@ namespace VkNet.Tests.Models
 			audioMessage.TranscriptState.Should().Be(TranscriptStates.Done);
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldDeserializeFromVkResponseToAudioMessage()
 		{
 			ReadJsonFile("Models", "audio_message_without_transcription");

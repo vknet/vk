@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
 using Moq.AutoMock;
-using NUnit.Framework;
 using VkNet.Abstractions.Core;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -14,13 +13,14 @@ using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
 using VkNet.Model;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Infrastructure
 {
-	[TestFixture]
+
 	public class ImplicitFlowTests
 	{
-		[Test]
+		[Fact]
 		public void CreateAuthorizeUrl()
 		{
 			const int clientId = 4268118;
@@ -59,7 +59,7 @@ namespace VkNet.Tests.Infrastructure
 			authorizeUrl.Should().Be(new Uri(expected));
 		}
 
-		[Test]
+		[Fact]
 		public async Task Authorize()
 		{
 			var mocker = new AutoMocker();
@@ -107,7 +107,7 @@ namespace VkNet.Tests.Infrastructure
 			result.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void Authorize_ValidateError()
 		{
 			var mocker = new AutoMocker();

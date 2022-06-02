@@ -1,16 +1,16 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Podcasts
 {
-	[TestFixture]
+
 
 	public class GetPopularTest : CategoryBaseTest
 	{
 		protected override string Folder => "Podcasts";
 
-		[Test]
+		[Fact]
 		public void GetPopular()
 		{
 			Url = "https://api.vk.com/method/podcasts.getPopular";

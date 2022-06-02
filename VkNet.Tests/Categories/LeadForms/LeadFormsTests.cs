@@ -1,17 +1,17 @@
 using System;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.LeadForms;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.LeadForms
 {
-	[TestFixture]
+
 	public class LeadFormsTests : CategoryBaseTest
 	{
 		protected override string Folder => "LeadForms";
 
-		[Test]
+		[Fact]
 		public void Create()
 		{
 			Url = "https://api.vk.com/method/leadForms.create";
@@ -32,7 +32,7 @@ namespace VkNet.Tests.Categories.LeadForms
 			result.Url.Should().Be(new Uri("https://vk.com/apform_id=1#form_id=1"));
 		}
 
-		[Test]
+		[Fact]
 		public void Delete()
 		{
 			Url = "https://api.vk.com/method/leadForms.delete";
@@ -43,7 +43,7 @@ namespace VkNet.Tests.Categories.LeadForms
 			result.FormId.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void Get()
 		{
 			Url = "https://api.vk.com/method/leadForms.get";
@@ -54,7 +54,7 @@ namespace VkNet.Tests.Categories.LeadForms
 			result.FormId.Should().Be(2);
 		}
 
-		[Test]
+		[Fact]
 		public void List()
 		{
 			Url = "https://api.vk.com/method/leadForms.list";
@@ -65,7 +65,7 @@ namespace VkNet.Tests.Categories.LeadForms
 			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetUploadUrl()
 		{
 			Url = "https://api.vk.com/method/leadForms.getUploadURL";
@@ -77,7 +77,7 @@ namespace VkNet.Tests.Categories.LeadForms
 			result.Should().Be(new Uri("https://pu.vk.com1d95424ffe4e4983a6a"));
 		}
 
-		[Test]
+		[Fact]
 		public void Update()
 		{
 			Url = "https://api.vk.com/method/leadForms.update";

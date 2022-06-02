@@ -1,20 +1,15 @@
-﻿using System;
-using FluentAssertions;
-using NUnit.Framework;
-using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model;
-using VkNet.Model.RequestParams.Ads;
+﻿using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Ads
 {
-	[TestFixture]
+
 	public class GetMusiciansTest : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";
 
-		[Test]
+		[Fact]
 		public void GetMusicians()
 		{
 			Url = "https://api.vk.com/method/ads.getMusicians";

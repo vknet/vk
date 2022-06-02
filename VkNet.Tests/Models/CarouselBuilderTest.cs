@@ -1,19 +1,19 @@
 using System;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Template.Carousel;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class CarouselBuilderTests
 	{
 		private const string Payload =
 			"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
 
-		[Test]
+		[Fact]
 		public void AddButton_PayloadMaxLength255_VkKeyboardPayloadMaxLengthException()
 		{
 			var builder = new CarouselElementBuilder();
@@ -23,7 +23,7 @@ namespace VkNet.Tests.Models
 				.ThrowExactly<VkKeyboardPayloadMaxLengthException>();
 		}
 
-		[Test]
+		[Fact]
 		public void AddButton_PayloadMaxLength255_Success()
 		{
 			var builder = new CarouselElementBuilder();
@@ -31,7 +31,7 @@ namespace VkNet.Tests.Models
 			FluentActions.Invoking(() => builder.AddButton("Button", Payload)).Should().NotThrow();
 		}
 
-		[Test]
+		[Fact]
 		public void CreateCarousel()
 		{
 			var builder = new CarouselElementBuilder();
@@ -70,7 +70,7 @@ namespace VkNet.Tests.Models
 			photoId.Should().Be(carousel.PhotoId);
 		}
 
-		[Test]
+		[Fact]
 		public void ClearButtons()
 		{
 			var builder = new CarouselElementBuilder();

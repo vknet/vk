@@ -1,18 +1,18 @@
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
-using NUnit.Framework;
 using VkNet.Abstractions.Utils;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
-	[TestFixture]
+
 
 	public class LeadFormsQuestionBuilderTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void AddTextArea()
 		{
 			var json = ReadJson("Utils", nameof(LeadFormsQuestionBuilder), nameof(AddTextArea));
@@ -28,7 +28,7 @@ namespace VkNet.Tests.Utils
 			JToken.DeepEquals(expected, actual).Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Default()
 		{
 			var json = ReadJson("Utils", nameof(LeadFormsQuestionBuilder), nameof(Default));

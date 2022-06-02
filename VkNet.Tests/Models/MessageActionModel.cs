@@ -1,13 +1,13 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class MessageActionModel : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void ShouldHaveField_ChatCreate()
 		{
 			ReadJsonFile("Models", nameof(ShouldHaveField_ChatCreate));
@@ -18,7 +18,7 @@ namespace VkNet.Tests.Models
 			action.Should().Be(MessageAction.ChatCreate);
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_ChatInviteUser()
 		{
 			ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUser));
@@ -29,7 +29,7 @@ namespace VkNet.Tests.Models
 			action.Should().Be(MessageAction.ChatInviteUser);
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_ChatInviteUserByLink()
 		{
 			ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUserByLink));
@@ -40,7 +40,7 @@ namespace VkNet.Tests.Models
 			action.Should().Be(MessageAction.ChatInviteUserByLink);
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_ChatKickUser()
 		{
 			ReadJsonFile("Models", nameof(ShouldHaveField_ChatKickUser));
@@ -51,7 +51,7 @@ namespace VkNet.Tests.Models
 			action.Should().Be(MessageAction.ChatKickUser);
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_ChatPhotoRemove()
 		{
 			ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoRemove));
@@ -62,7 +62,7 @@ namespace VkNet.Tests.Models
 			action.Should().Be(MessageAction.ChatPhotoRemove);
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_ChatPhotoUpdate()
 		{
 			ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoUpdate));
@@ -73,7 +73,7 @@ namespace VkNet.Tests.Models
 			action.Should().Be(MessageAction.ChatPhotoUpdate);
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_ChatPinMessage()
 		{
 			ReadJsonFile("Models", nameof(ShouldHaveField_ChatPinMessage));
@@ -84,7 +84,7 @@ namespace VkNet.Tests.Models
 			action.Should().Be(MessageAction.ChatPinMessage);
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_ChatTitleUpdate()
 		{
 			ReadJsonFile("Models", nameof(ShouldHaveField_ChatTitleUpdate));
@@ -95,7 +95,7 @@ namespace VkNet.Tests.Models
 			action.Should().Be(MessageAction.ChatTitleUpdate);
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_ChatUnpinMessage()
 		{
 			ReadJsonFile("Models", nameof(ShouldHaveField_ChatUnpinMessage));

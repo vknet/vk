@@ -1,15 +1,15 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Ads
 {
-	[TestFixture]
+
 	public class GetMusiciansByIdsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";
 
-		[Test]
+		[Fact]
 		public void GetMusiciansByIds()
 		{
 			Url = "https://api.vk.com/method/ads.getMusiciansByIds";

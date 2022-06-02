@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	public class MessagesSearchConversationsTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void SearchConversations()
 		{
 			Url = "https://api.vk.com/method/messages.searchConversations";

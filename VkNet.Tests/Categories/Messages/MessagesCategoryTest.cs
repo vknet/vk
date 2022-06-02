@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -12,14 +11,15 @@ using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	public class MessagesCategoryTest : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void AddChatUser_NormalCase_True()
 		{
 			Url = "https://api.vk.com/method/messages.addChatUser";
@@ -31,7 +31,7 @@ namespace VkNet.Tests.Categories.Messages
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void CreateChat_NormalCase_ChatId()
 		{
 			Url = "https://api.vk.com/method/messages.createChat";
@@ -47,7 +47,7 @@ namespace VkNet.Tests.Categories.Messages
 			chatId.Should().Be(3);
 		}
 
-		[Test]
+		[Fact]
 		public void Delete_Id4446_True()
 		{
 			Url = "https://api.vk.com/method/messages.delete";
@@ -65,7 +65,7 @@ namespace VkNet.Tests.Categories.Messages
 			result[4446].Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Delete_Id999999_False()
 		{
 			Url = "https://api.vk.com/method/messages.delete";
@@ -83,7 +83,7 @@ namespace VkNet.Tests.Categories.Messages
 				.ThrowExactly<UnknownException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Delete_Multiple_4457And4464_True()
 		{
 			Url = "https://api.vk.com/method/messages.delete";
@@ -104,7 +104,7 @@ namespace VkNet.Tests.Categories.Messages
 			dict[4464].Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void EditChat_NormalCase_True()
 		{
 			Url = "https://api.vk.com/method/messages.editChat";
@@ -115,7 +115,7 @@ namespace VkNet.Tests.Categories.Messages
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_NormalCase_V521()
 		{
 			Url = "https://api.vk.com/method/messages.get";
@@ -149,7 +149,7 @@ namespace VkNet.Tests.Categories.Messages
 			message1.Title.Should().Be(" ... ");
 		}
 
-		[Test]
+		[Fact]
 		public void Get_WithLastMessageIdParam_NormalCase_V521()
 		{
 			Url = "https://api.vk.com/method/messages.get";
@@ -176,7 +176,7 @@ namespace VkNet.Tests.Categories.Messages
 			message.Body.Should().Be("may");
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_Multiple_NormalCase_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.getById";
@@ -216,7 +216,7 @@ namespace VkNet.Tests.Categories.Messages
 			msgs[0].Body.Should().Be("Привеееет!!!!!!!!!!!");
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_NormalCase_Message()
 		{
 			Url = "https://api.vk.com/method/messages.getById";
@@ -246,7 +246,7 @@ namespace VkNet.Tests.Categories.Messages
 			(msg?.Attachments.Count).Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void GetChat_NormalCase_ChatObject()
 		{
 			Url = "https://api.vk.com/method/messages.getChat";
@@ -264,7 +264,7 @@ namespace VkNet.Tests.Categories.Messages
 			chat.Users.ElementAt(2).Should().Be(10657891);
 		}
 
-		[Test]
+		[Fact]
 		public void GetChatUsers_ChatId_UserIds()
 		{
 			Url = "https://api.vk.com/method/messages.getChatUsers";
@@ -282,7 +282,7 @@ namespace VkNet.Tests.Categories.Messages
 			users.Should().HaveCount(3);
 		}
 
-		[Test]
+		[Fact]
 		public void GetChatUsers_ChatIdWithFields_Users()
 		{
 			Url = "https://api.vk.com/method/messages.getChatUsers";
@@ -318,7 +318,7 @@ namespace VkNet.Tests.Categories.Messages
 			users[2].InvitedBy.Should().Be(4793858);
 		}
 
-		[Test]
+		[Fact]
 		public void GetDialogs_NormalCase_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.getDialogs";
@@ -351,7 +351,7 @@ namespace VkNet.Tests.Categories.Messages
 			msgs.Messages[0].Body.Should().Be("😂");
 		}
 
-		[Test]
+		[Fact]
 		public void GetHistory_ContainsRepost_Error46()
 		{
 			Url = "https://api.vk.com/method/messages.getHistory";
@@ -391,7 +391,7 @@ namespace VkNet.Tests.Categories.Messages
 			photo.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetHistory_ContainsSticker_Error47()
 		{
 			Url = "https://api.vk.com/method/messages.getHistory";
@@ -419,7 +419,7 @@ namespace VkNet.Tests.Categories.Messages
 			sticker.ProductId.Should().Be(54321);
 		}
 
-		[Test]
+		[Fact]
 		public void GetHistory_NormalCaseAllFields_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.getHistory";
@@ -446,7 +446,7 @@ namespace VkNet.Tests.Categories.Messages
 					DateTimeKind.Utc));
 		}
 
-		[Test]
+		[Fact]
 		public void GetLastActivity_NormalCast_LastActivityObject()
 		{
 			Url = "https://api.vk.com/method/messages.getLastActivity";
@@ -467,7 +467,7 @@ namespace VkNet.Tests.Categories.Messages
 					DateTimeKind.Utc));
 		}
 
-		[Test]
+		[Fact]
 		public void GetLongPollServer_NormalCase_LongPollServerResponse()
 		{
 			Url = "https://api.vk.com/method/messages.getLongPollServer";
@@ -480,13 +480,13 @@ namespace VkNet.Tests.Categories.Messages
 			response.Ts.Should().Be("1627957305");
 		}
 
-		[Test]
+		[Fact]
 		public void GetLongPollServer_ThrowArgumentNullException()
 		{
 			FluentActions.Invoking(() => Api.Messages.GetLongPollServer()).Should().ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void MarkAsRead_Multiple_NormalCase_True()
 		{
 			Url = "https://api.vk.com/method/messages.markAsRead";
@@ -498,7 +498,7 @@ namespace VkNet.Tests.Categories.Messages
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void MarkAsRead_NormalCase_True()
 		{
 			Url = "https://api.vk.com/method/messages.markAsRead";
@@ -510,7 +510,7 @@ namespace VkNet.Tests.Categories.Messages
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void RemoveChatUser_NormalCase_True()
 		{
 			Url = "https://api.vk.com/method/messages.removeChatUser";
@@ -522,7 +522,7 @@ namespace VkNet.Tests.Categories.Messages
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Restore_NormalCase_True()
 		{
 			Url = "https://api.vk.com/method/messages.restore";
@@ -534,7 +534,7 @@ namespace VkNet.Tests.Categories.Messages
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Search_NormalCase_Messages()
 		{
 			Url = "https://api.vk.com/method/messages.search";
@@ -604,7 +604,7 @@ namespace VkNet.Tests.Categories.Messages
 			msgs[0].Body.Should().Be("Привет");
 		}
 
-		[Test]
+		[Fact]
 		public void Search_NotExistedQuery_EmptyList()
 		{
 			Url = "https://api.vk.com/method/messages.search";
@@ -620,7 +620,7 @@ namespace VkNet.Tests.Categories.Messages
 			msgs.Count.Should().Be(0);
 		}
 
-		[Test]
+		[Fact]
 		public void SearchDialogs_EmptyResponse_MessageResponseWithEmptyLists()
 		{
 			Url = "https://api.vk.com/method/messages.searchDialogs";
@@ -631,7 +631,7 @@ namespace VkNet.Tests.Categories.Messages
 			response.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void SearchDialogs_NastyaQuery_TwoProfiles()
 		{
 			Url = "https://api.vk.com/method/messages.searchDialogs";
@@ -649,7 +649,7 @@ namespace VkNet.Tests.Categories.Messages
 			response.Users.ElementAt(1).LastName.Should().Be("Петрова");
 		}
 
-		[Test]
+		[Fact]
 		public void SearchDialogs_ProfileAndChat_Response()
 		{
 			Url = "https://api.vk.com/method/messages.searchDialogs";

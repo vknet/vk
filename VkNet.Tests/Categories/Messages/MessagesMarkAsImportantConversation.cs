@@ -1,14 +1,14 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 
 	public class MessagesMarkAsImportantConversation : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void MarkAsImportantConversation()
 		{
 			Url = "https://api.vk.com/method/messages.markAsImportantConversation";

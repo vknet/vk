@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.PrettyCards
 {
-	[TestFixture]
+
 
 	public class GetByIdTest : CategoryBaseTest
 	{
 		protected override string Folder => "PrettyCards";
 
-		[Test]
+		[Fact]
 		public void GetById()
 		{
 			Url = "https://api.vk.com/method/prettyCards.getById";

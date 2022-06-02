@@ -1,23 +1,15 @@
 ﻿using System;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
-	[TestFixture]
+
 	public class VkErrorsTest : BaseTest
 	{
-		private class TestClass
-		{
-			public void Execute(int count)
-			{
-				VkErrors.ThrowIfNumberIsNegative(() => count);
-			}
-		}
-
-		[Test]
+		[Fact]
 		public void Call_ThrowsImpossibleToCompileCode_12()
 		{
 			Url = "https://api.vk.com/method/execute";
@@ -29,7 +21,7 @@ namespace VkNet.Tests.Utils
 				.ThrowExactly<ImpossibleToCompileCodeException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Call_ThrowsPostLimitException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -41,7 +33,7 @@ namespace VkNet.Tests.Utils
 				.ThrowExactly<PostLimitException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Call_ThrowsPostLimitException_103()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -53,7 +45,7 @@ namespace VkNet.Tests.Utils
 				.ThrowExactly<OutOfLimitsException>();
 		}
 
-		[Test]
+		[Fact]
 		public void IfErrorThrowException_GroupAccessDenied_ThrowAccessDeniedException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -66,7 +58,7 @@ namespace VkNet.Tests.Utils
 				.BeEquivalentTo("Access to the groups list is denied due to the user privacy settings.");
 		}
 
-		[Test]
+		[Fact]
 		public void IfErrorThrowException_NormalCase_NothingExceptions()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -75,7 +67,7 @@ namespace VkNet.Tests.Utils
 			VkErrors.IfErrorThrowException(json);
 		}
 
-		[Test]
+		[Fact]
 		public void IfErrorThrowException_UserAuthorizationFail_ThrowUserAuthorizationFailException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -90,7 +82,7 @@ namespace VkNet.Tests.Utils
 			ex.ErrorCode.Should().Be(5);
 		}
 
-		[Test]
+		[Fact]
 		public void IfErrorThrowException_WrongJson_ThrowVkApiException()
 		{
 			const string json = "ThisIsNotJson";
@@ -102,7 +94,7 @@ namespace VkNet.Tests.Utils
 				.Be("Wrong json data.");
 		}
 
-		[Test]
+		[Fact]
 		public void ThrowIfNumberIsNegative_ExpressionVersion_Long()
 		{
 			const long paramName = -1;
@@ -114,7 +106,7 @@ namespace VkNet.Tests.Utils
 				.StartWith("Отрицательное значение.");
 		}
 
-		[Test]
+		[Fact]
 		public void ThrowIfNumberIsNegative_ExpressionVersion_NullableLong()
 		{
 			long? param = -1;
@@ -128,31 +120,39 @@ namespace VkNet.Tests.Utils
 			ex.Message.Should().Contain("param");
 		}
 
-		[Test]
+		[Fact]
 		public void ThrowIfNumberIsNegative_InnerTestClass_ThrowException()
 		{
 			var cls = new TestClass();
 			FluentActions.Invoking(() => cls.Execute(-2)).Should().ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void ThrowIfNumberNotInRange_LessThenMin_ThrowsException()
 		{
 			FluentActions.Invoking(() => VkErrors.ThrowIfNumberNotInRange(2, 5, 10)).Should().ThrowExactly<ArgumentOutOfRangeException>();
 		}
 
-		[Test]
+		[Fact]
 		public void ThrowIfNumberNotInRange_MoreThanMax_ThrowsException()
 		{
 			FluentActions.Invoking(() => VkErrors.ThrowIfNumberNotInRange(12, 5, 10)).Should().ThrowExactly<ArgumentOutOfRangeException>();
 		}
 
-		[Test]
+		[Fact]
 		public void ThrowIfNumberNotInRange_ValueInRange_ExceptionNotThrowed()
 		{
 			FluentActions.Invoking(() => VkErrors.ThrowIfNumberNotInRange(5, 2, 7)).Should().NotThrow();
 			FluentActions.Invoking(() => VkErrors.ThrowIfNumberNotInRange(5, 5, 7)).Should().NotThrow();
 			FluentActions.Invoking(() => VkErrors.ThrowIfNumberNotInRange(5, 2, 5)).Should().NotThrow();
+		}
+
+		private class TestClass
+		{
+			public void Execute(int count)
+			{
+				VkErrors.ThrowIfNumberIsNegative(() => count);
+			}
 		}
 	}
 }

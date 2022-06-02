@@ -1,15 +1,15 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class VkObjectTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void VkObjectPage()
 		{
 			ReadJsonFile("Models", nameof(VkObjectPage));
@@ -21,7 +21,7 @@ namespace VkNet.Tests.Models
 			result.Type.Should().Be(VkObjectType.Page);
 		}
 
-		[Test]
+		[Fact]
 		public void VkObjectApplication()
 		{
 			ReadJsonFile("Models", nameof(VkObjectApplication));
@@ -33,7 +33,7 @@ namespace VkNet.Tests.Models
 			result.Type.Should().Be(VkObjectType.Application);
 		}
 
-		[Test]
+		[Fact]
 		public void VkObjectGroup()
 		{
 			ReadJsonFile("Models", nameof(VkObjectGroup));
@@ -45,7 +45,7 @@ namespace VkNet.Tests.Models
 			result.Type.Should().Be(VkObjectType.Group);
 		}
 
-		[Test]
+		[Fact]
 		public void VkObjectUser()
 		{
 			ReadJsonFile("Models", nameof(VkObjectUser));
@@ -57,7 +57,7 @@ namespace VkNet.Tests.Models
 			result.Type.Should().Be(VkObjectType.User);
 		}
 
-		[Test]
+		[Fact]
 		public void VkObjectPage_ResolveScreenName()
 		{
 			ReadJsonFile("Models", nameof(VkObjectPage));
@@ -69,7 +69,7 @@ namespace VkNet.Tests.Models
 			result.Type.Should().Be(VkObjectType.Page);
 		}
 
-		[Test]
+		[Fact]
 		public void VkObjectApplication_ResolveScreenName()
 		{
 			ReadJsonFile("Models", nameof(VkObjectApplication));
@@ -81,7 +81,7 @@ namespace VkNet.Tests.Models
 			result.Type.Should().Be(VkObjectType.Application);
 		}
 
-		[Test]
+		[Fact]
 		public void VkObjectGroup_ResolveScreenName()
 		{
 			ReadJsonFile("Models", nameof(VkObjectGroup));
@@ -93,7 +93,7 @@ namespace VkNet.Tests.Models
 			result.Type.Should().Be(VkObjectType.Group);
 		}
 
-		[Test]
+		[Fact]
 		public void VkObjectUser_ResolveScreenName()
 		{
 			ReadJsonFile("Models", nameof(VkObjectUser));

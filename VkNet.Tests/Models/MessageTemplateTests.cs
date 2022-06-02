@@ -1,14 +1,13 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.Template;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class MessageTemplateTests : BaseTest
 	{
-
-		[Test]
+		[Fact]
 		public void Template_Carousel()
 		{
 			ReadJsonFile("Models", "Template_Carousel");

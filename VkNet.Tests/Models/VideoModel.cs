@@ -1,15 +1,15 @@
 using System;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class VideoModel : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void ToString_VideoShouldHaveAccessKey()
 		{
 			var video = new Video
@@ -24,7 +24,7 @@ namespace VkNet.Tests.Models
 			result.Should().Be("video1234_1234_test");
 		}
 
-		[Test]
+		[Fact]
 		public void Cans_ArePresent()
 		{
 			ReadJsonFile("Models", "video_with_ads_and_timeline");
@@ -41,7 +41,7 @@ namespace VkNet.Tests.Models
 			video.CanAdd.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void OvId_IsPresent()
 		{
 			ReadJsonFile("Models", "video_with_ads_and_timeline");
@@ -53,7 +53,7 @@ namespace VkNet.Tests.Models
 			video.OvId.Should().Be("2930947729488");
 		}
 
-		[Test]
+		[Fact]
 		public void Files_AllFields_ArePresent()
 		{
 			ReadJsonFile("Models", "video_with_ads_and_timeline");
@@ -111,7 +111,7 @@ namespace VkNet.Tests.Models
 			files.FailOverHost.Should().Be("vkvd185.mycdn.me");
 		}
 
-		[Test]
+		[Fact]
 		public void TimelineThumbs_AllFields_ArePresent()
 		{
 			ReadJsonFile("Models", "video_with_ads_and_timeline");
@@ -132,7 +132,7 @@ namespace VkNet.Tests.Models
 			timelineThumbs.Frequency.Should().Be(5);
 		}
 
-		[Test]
+		[Fact]
 		public void Ads_AllFields_ArePresent()
 		{
 			ReadJsonFile("Models", "video_with_ads_and_timeline");
@@ -164,7 +164,7 @@ namespace VkNet.Tests.Models
 			ads.AutoPlayPreroll.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void AdsParams_AllFields_ArePresent()
 		{
 			ReadJsonFile("Models", "video_with_ads_and_timeline");
@@ -209,7 +209,7 @@ namespace VkNet.Tests.Models
 			@params.VkCatId.Should().Be(29);
 		}
 
-		[Test]
+		[Fact]
 		public void Video_Live_AllFields_ArePresent()
 		{
 			ReadJsonFile("Models", "video_live");
@@ -225,7 +225,7 @@ namespace VkNet.Tests.Models
 			video.Spectators.Should().Be(89);
 		}
 
-		[Test]
+		[Fact]
 		public void Video_Live_Files_Contains_Live_Uris()
 		{
 			ReadJsonFile("Models", "video_live");
@@ -245,7 +245,7 @@ namespace VkNet.Tests.Models
 					"https://vkvsd16.mycdn.me/dash/stream_1095312673357_offset_p/stream.manifest/sig/OWp_G67RlXg/srcIp/217.70.31.125/expires/1633252742236/clientType/13/srcAg/UNKNOWN/fromCache/1/mid/2669706881869/id/1095312673357/video"));
 		}
 
-		[Test]
+		[Fact]
 		public void Video_Live_LiveSettings_AllFields_ArePresent()
 		{
 			ReadJsonFile("Models", "video_live");

@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Execute
 {
@@ -14,7 +14,7 @@ namespace VkNet.Tests.Categories.Execute
 	{
 		protected override string Folder => "Execute";
 
-		[Test]
+		[Fact]
 		public void ExecuteTest()
 		{
 			Url = "https://api.vk.com/method/execute";
@@ -27,7 +27,7 @@ namespace VkNet.Tests.Categories.Execute
 			result.RawJson.Should().Be(Json);
 		}
 
-		[Test]
+		[Fact]
 		public void ExecuteTopicsFeedTest()
 		{
 			Url = "https://api.vk.com/method/execute";
@@ -39,7 +39,7 @@ namespace VkNet.Tests.Categories.Execute
 			result.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void ExecuteGetUniversitiesTest()
 		{
 			Url = "https://api.vk.com/method/execute";
@@ -53,7 +53,7 @@ namespace VkNet.Tests.Categories.Execute
 			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void ExecuteErrorTest()
 		{
 			Url = "https://api.vk.com/method/execute";
@@ -64,7 +64,7 @@ namespace VkNet.Tests.Categories.Execute
 			FluentActions.Invoking(() => Api.Execute.Execute(code)).Should().ThrowExactly<ImpossibleToCompileCodeException>();
 		}
 
-		[Test]
+		[Fact]
 		public void ExecuteErrors()
 		{
 			Url = "https://api.vk.com/method/execute";

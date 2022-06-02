@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Ads
 {
@@ -15,7 +15,7 @@ namespace VkNet.Tests.Categories.Ads
 	{
 		protected override string Folder => "Ads";
 
-		[Test]
+		[Fact]
 		public void GetAds_GenerateAdsCorrectly()
 		{
 			Url = "https://api.vk.com/method/ads.getAds";

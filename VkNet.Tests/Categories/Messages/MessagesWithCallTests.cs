@@ -1,16 +1,16 @@
 ﻿using System;
 using FluentAssertions;
 using FluentAssertions.Extensions;
-using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 	public class MessagesWithCallTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void Message_WithCallAttachment_AllFieldsArePresent()
 		{
 			ReadJsonFile("Models", "message_with_call");

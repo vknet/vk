@@ -1,18 +1,18 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Audio
 {
-	[TestFixture]
+
 
 	public class AudioGetCatalogTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";
 
-		[Test]
+		[Fact]
 		public void GetCatalog()
 		{
 			Url = "https://api.vk.com/method/audio.getCatalog";

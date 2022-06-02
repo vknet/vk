@@ -1,18 +1,18 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Wall
 {
-	[TestFixture]
+
 	public class WallGetTests : CategoryBaseTest
 	{
 		protected override string Folder => "Wall";
 
-		[Test]
+		[Fact]
 		public void ArticleAttachement()
 		{
 			Url = "https://api.vk.com/method/wall.get";
@@ -29,7 +29,7 @@ namespace VkNet.Tests.Categories.Wall
 			attachment.Id.Should().Be(10419);
 		}
 
-		[Test]
+		[Fact]
 		public void PodcastAttachment()
 		{
 			Url = "https://api.vk.com/method/wall.get";

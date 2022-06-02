@@ -1,16 +1,16 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Podcasts
 {
-	[TestFixture]
+
 
 	public class ClearRecentSearchesTest : CategoryBaseTest
 	{
 		protected override string Folder => "Podcasts";
 
-		[Test]
+		[Fact]
 		public void ClearRecentSearches()
 		{
 			Url = "https://api.vk.com/method/podcasts.clearRecentSearches";

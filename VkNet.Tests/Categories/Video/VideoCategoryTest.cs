@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -10,15 +9,16 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Video
 {
-	[TestFixture]
+
 	public class VideoCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Video";
 
-		[Test]
+		[Fact]
 		public void Add_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.add";
@@ -29,7 +29,7 @@ namespace VkNet.Tests.Categories.Video
 			id.Should().Be(167593944);
 		}
 
-		[Test]
+		[Fact]
 		public void AddAlbum_ToCurrentUser()
 		{
 			Url = "https://api.vk.com/method/video.addAlbum";
@@ -40,7 +40,7 @@ namespace VkNet.Tests.Categories.Video
 			id.Should().Be(49273471);
 		}
 
-		[Test]
+		[Fact]
 		public void CreateComment_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.createComment";
@@ -57,7 +57,7 @@ namespace VkNet.Tests.Categories.Video
 			id.Should().Be(35634);
 		}
 
-		[Test]
+		[Fact]
 		public void Delete_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.delete";
@@ -68,7 +68,7 @@ namespace VkNet.Tests.Categories.Video
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void DeleteAlbum_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.deleteAlbum";
@@ -79,7 +79,7 @@ namespace VkNet.Tests.Categories.Video
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void DeleteComment_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.deleteComment";
@@ -90,7 +90,7 @@ namespace VkNet.Tests.Categories.Video
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Edit_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.edit";
@@ -108,7 +108,7 @@ namespace VkNet.Tests.Categories.Video
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void EditAlbum_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.editAlbum";
@@ -119,7 +119,7 @@ namespace VkNet.Tests.Categories.Video
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void EditComment_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.editComment";
@@ -130,7 +130,7 @@ namespace VkNet.Tests.Categories.Video
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_Extended()
 		{
 			Url = "https://api.vk.com/method/video.get";
@@ -176,7 +176,7 @@ namespace VkNet.Tests.Categories.Video
 			video.Reposts.Count.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void Get_NotExtended()
 		{
 			Url = "https://api.vk.com/method/video.get";
@@ -246,7 +246,7 @@ namespace VkNet.Tests.Categories.Video
 		}
 
 		// todo add not extended version
-		[Test]
+		[Fact]
 		public void GetAlbums_NormalCase_Extended()
 		{
 			Url = "https://api.vk.com/method/video.getAlbums";
@@ -266,7 +266,7 @@ namespace VkNet.Tests.Categories.Video
 			videoAlbum.Image.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetComments_WithLikes()
 		{
 			Url = "https://api.vk.com/method/video.getComments";
@@ -312,7 +312,7 @@ namespace VkNet.Tests.Categories.Video
 			comment1.Likes.CanLike.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void GetComments_WithoutLikes()
 		{
 			Url = "https://api.vk.com/method/video.getComments";
@@ -350,7 +350,7 @@ namespace VkNet.Tests.Categories.Video
 				.Be("Я опять на странице Дурова, опять передаю привет Маме, Бабушке и своим друзьям! Дела у меня очень отлично!");
 		}
 
-		[Test]
+		[Fact]
 		public void Report_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.report";
@@ -361,7 +361,7 @@ namespace VkNet.Tests.Categories.Video
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void ReportComment_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.reportComment";
@@ -372,7 +372,7 @@ namespace VkNet.Tests.Categories.Video
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Restore_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.restore";
@@ -383,7 +383,7 @@ namespace VkNet.Tests.Categories.Video
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void RestoreComment_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.restoreComment";
@@ -394,7 +394,7 @@ namespace VkNet.Tests.Categories.Video
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Save_NormalCase()
 		{
 			Url = "https://api.vk.com/method/video.save";
@@ -421,7 +421,7 @@ namespace VkNet.Tests.Categories.Video
 					"http://cs6058.vk.com/upload.php?act=parse_share&hash=d5371f57b935d1b3b0c6cde1100ecb&rhash=5c623ee8b80db0d3af5078a5dfb2&mid=234695118&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlhQtzv5a408&api_callback=06ec8115dfc9a66eec&remotely=1&photo_server=607423&photo_server_hash=7874a144e80b8bb3c1a1eee5c9043"));
 		}
 
-		[Test]
+		[Fact]
 		public void Save_ReturnError()
 		{
 			ReadErrorsJsonFile(204);
@@ -429,7 +429,7 @@ namespace VkNet.Tests.Categories.Video
 			FluentActions.Invoking(() => VkErrors.IfErrorThrowException(Json)).Should().ThrowExactly<VideoAccessDeniedException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Search_NormalCase_ListOfVideos()
 		{
 			Url = "https://api.vk.com/method/video.search";
@@ -525,7 +525,7 @@ namespace VkNet.Tests.Categories.Video
 			video2.Player.Should().Be(new Uri("http://vk.com/video_ext.php?oid=-54257090&id=166728490&hash=15a0552ca76bedac"));
 		}
 
-		[Test]
+		[Fact]
 		public void AddToAlbum()
 		{
 			Url = "https://api.vk.com/method/video.addToAlbum";

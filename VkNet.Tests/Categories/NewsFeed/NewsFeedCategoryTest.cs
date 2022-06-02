@@ -1,19 +1,19 @@
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.NewsFeed
 {
-	[TestFixture]
+
 	[SuppressMessage("ReSharper", "PublicMemgitbersMustHaveComments")]
 	public class NewsFeedCategoryTest : CategoryBaseTest
 	{
 		/// <inheritdoc />
 		protected override string Folder => "NewsFeed";
 
-		[Test]
+		[Fact]
 		public void Get()
 		{
 			Url = "https://api.vk.com/method/newsfeed.get";
@@ -31,7 +31,7 @@ namespace VkNet.Tests.Categories.NewsFeed
 			result.Items.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetRecommended()
 		{
 			Url = "https://api.vk.com/method/newsfeed.getRecommended";

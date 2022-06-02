@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams.Leads;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Leads
 {
@@ -10,7 +10,7 @@ namespace VkNet.Tests.Categories.Leads
 	{
 		protected override string Folder => "Leads";
 
-		[Test]
+		[Fact]
 		public void Complete()
 		{
 			Url = "https://api.vk.com/method/leads.complete";
@@ -27,7 +27,7 @@ namespace VkNet.Tests.Categories.Leads
 			result.Success.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void Start()
 		{
 			Url = "https://api.vk.com/method/leads.start";
@@ -40,7 +40,7 @@ namespace VkNet.Tests.Categories.Leads
 			result.VkSid.Should().Be("vk_sid");
 		}
 
-		[Test]
+		[Fact]
 		public void GetUsers()
 		{
 			Url = "https://api.vk.com/method/leads.getUsers";

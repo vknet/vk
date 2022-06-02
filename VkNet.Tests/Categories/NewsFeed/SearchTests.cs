@@ -1,18 +1,18 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.NewsFeed
 {
-	[TestFixture]
+
 
 	public class SearchTests : CategoryBaseTest
 	{
 		protected override string Folder => "NewsFeed";
 
-		[Test]
+		[Fact]
 		public void Search_NextFrom_NotNull()
 		{
 			Url = "https://api.vk.com/method/newsfeed.search";
@@ -24,7 +24,7 @@ namespace VkNet.Tests.Categories.NewsFeed
 			result.NextFrom.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Search_Coordinates_Exception()
 		{
 			Url = "https://api.vk.com/method/newsfeed.search";
@@ -40,7 +40,7 @@ namespace VkNet.Tests.Categories.NewsFeed
 			result.NextFrom.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Search_PostSourceData_Parsing()
 		{
 			Url = "https://api.vk.com/method/newsfeed.search";

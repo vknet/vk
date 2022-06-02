@@ -1,27 +1,27 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.Filters;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class SettingsTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void All()
 		{
 			var settings = Settings.All;
 			settings.ToUInt64().Should().Be(140422623);
 		}
 
-		[Test]
+		[Fact]
 		public void All_Offline()
 		{
 			var settings = Settings.All|Settings.Offline;
 			settings.ToUInt64().Should().Be(140488159);
 		}
 
-		[Test]
+		[Fact]
 		public void FromJson()
 		{
 			Json = "'notify'";
@@ -29,35 +29,35 @@ namespace VkNet.Tests.Models
 			Settings.Notify.Should().Be(Settings.FromJson(response));
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends()
 		{
 			var settings = Settings.Notify|Settings.Friends;
 			settings.ToUInt64().Should().Be(3);
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends_Photos()
 		{
 			var settings = Settings.Notify|Settings.Friends|Settings.Photos;
 			settings.ToUInt64().Should().Be(7);
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends_Photos_Audio()
 		{
 			var settings = Settings.Notify|Settings.Friends|Settings.Photos|Settings.Audio;
 			settings.ToUInt64().Should().Be(15);
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends_Photos_Audio_Video()
 		{
 			var settings = Settings.Notify|Settings.Friends|Settings.Photos|Settings.Audio|Settings.Video;
 			settings.ToUInt64().Should().Be(31);
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends_Photos_Audio_Video_Pages()
 		{
 			var settings = Settings.Notify
@@ -70,7 +70,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(159);
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu()
 		{
 			var settings = Settings.Notify
@@ -84,7 +84,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(415);
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status()
 		{
 			var settings = Settings.Notify
@@ -99,7 +99,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(1439);
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes()
 		{
 			var settings = Settings.Notify
@@ -115,7 +115,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(3487);
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages()
 		{
 			var settings = Settings.Notify
@@ -132,7 +132,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(7583);
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall()
 		{
 			var settings = Settings.Notify
@@ -150,7 +150,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(15775);
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads()
 		{
 			var settings = Settings.Notify
@@ -169,7 +169,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(48543);
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents()
 		{
 			var settings = Settings.Notify
@@ -189,7 +189,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(179615);
 		}
 
-		[Test]
+		[Fact]
 		public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups()
 		{
 			var settings = Settings.Notify
@@ -210,7 +210,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(441759);
 		}
 
-		[Test]
+		[Fact]
 		public void
 			Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications()
 		{
@@ -233,7 +233,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(966047);
 		}
 
-		[Test]
+		[Fact]
 		public void
 			Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats()
 		{
@@ -257,7 +257,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(2014623);
 		}
 
-		[Test]
+		[Fact]
 		public void
 			Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats_Email()
 		{
@@ -282,7 +282,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(6208927);
 		}
 
-		[Test]
+		[Fact]
 		public void
 			Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats_Email_Market()
 		{
@@ -308,7 +308,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(140426655);
 		}
 
-		[Test]
+		[Fact]
 		public void
 			Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats_Email_Market_AppWidget()
 		{
@@ -335,7 +335,7 @@ namespace VkNet.Tests.Models
 			settings.ToUInt64().Should().Be(140426719);
 		}
 
-		[Test]
+		[Fact]
 		public void OperatorOrDuplicateSettings()
 		{
 		#pragma warning disable S1764
@@ -344,7 +344,7 @@ namespace VkNet.Tests.Models
 		#pragma warning restore S1764
 		}
 
-		[Test]
+		[Fact]
 		public void SettingsTest()
 		{
 			// get test

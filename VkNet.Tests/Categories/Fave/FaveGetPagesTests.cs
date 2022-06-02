@@ -1,8 +1,8 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Fave
 {
@@ -11,7 +11,7 @@ namespace VkNet.Tests.Categories.Fave
 		/// <inheritdoc />
 		protected override string Folder => "Fave";
 
-		[Test]
+		[Fact]
 		public void GetPages()
 		{
 			Url = "https://api.vk.com/method/fave.getPages";

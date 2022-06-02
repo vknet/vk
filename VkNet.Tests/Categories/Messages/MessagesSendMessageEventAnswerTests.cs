@@ -1,16 +1,16 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 
 	public class MessagesSendMessageEventAnswerTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void SendMessageEventAnswer()
 		{
 			Url = "https://api.vk.com/method/messages.sendMessageEventAnswer";

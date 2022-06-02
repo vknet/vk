@@ -1,14 +1,14 @@
 ﻿using System;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 	public class MessagesGetLongPollHistory : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void GetLongPollHistory_ThrowArgumentException()
 		{
 			FluentActions.Invoking(() => Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams()))
@@ -16,7 +16,7 @@ namespace VkNet.Tests.Categories.Messages
 				.ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GroupsField()
 		{
 			Url = "https://api.vk.com/method/messages.getLongPollHistory";

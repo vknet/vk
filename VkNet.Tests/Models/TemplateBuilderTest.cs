@@ -1,18 +1,17 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Template;
 using VkNet.Model.Template.Carousel;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	internal class TemplateBuilderTest
+	public class TemplateBuilderTest
 	{
-		[Test]
+		[Fact]
 		public void CreateTemplate()
 		{
 			var builder = new TemplateBuilder();
@@ -35,7 +34,7 @@ namespace VkNet.Tests.Models
 			TemplateType.Carousel.Should().Be(template.Type);
 		}
 
-		[Test]
+		[Fact]
 		public void PartialTemplate()
 		{
 			var builder = new TemplateBuilder();
@@ -47,7 +46,7 @@ namespace VkNet.Tests.Models
 			builder.Elements.First().Title.Should().Be("title");
 		}
 
-		[Test]
+		[Fact]
 		public void ClearElements()
 		{
 			var builder = new TemplateBuilder();
@@ -60,7 +59,7 @@ namespace VkNet.Tests.Models
 			builder.Elements.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void TheNumberOfElementsIsMoreThan10()
 		{
 			var builder = new TemplateBuilder();

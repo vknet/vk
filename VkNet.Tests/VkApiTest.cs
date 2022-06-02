@@ -4,19 +4,18 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests
 {
-	[TestFixture]
 	public class VkApiTest : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void AuthorizeByToken()
 		{
 			Api.Authorize(new ApiAuthParams
@@ -28,7 +27,7 @@ namespace VkNet.Tests
 			Api.UserId.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void AuthorizeAndUpdateTokenAutomatically()
 		{
 			Api.Authorize(new ApiAuthParams
@@ -53,7 +52,7 @@ namespace VkNet.Tests
 			isUpdated.Should().BeTrue();
 		}
 
-		[Test, /*Ignore("Тест врет и не проверяет стабильное воспроизведение, ошибка либо в реализации либо в базовом классе теста")*/]
+		[Fact]
 		public async Task Call_NotMoreThen3CallsPerSecond()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
@@ -74,7 +73,7 @@ namespace VkNet.Tests
 			calls.Should().BeLessThanOrEqualTo(callsCount);
 		}
 
-		[Test]
+		[Fact]
 		public void CallAndConvertToType()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
@@ -88,20 +87,20 @@ namespace VkNet.Tests
 			result.Mutual.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void DefaultLanguageValue()
 		{
 			var lang = Api.GetLanguage();
 			lang.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void DisposeTest()
 		{
 			Api.Dispose();
 		}
 
-		[Test]
+		[Fact]
 		public void EnglishLanguageValue()
 		{
 			Api.SetLanguage(Language.En);
@@ -109,7 +108,7 @@ namespace VkNet.Tests
 			lang.Should().Be(Language.En);
 		}
 
-		[Test]
+		[Fact]
 		public void Invoke_DictionaryParams()
 		{
 			Url = "https://api.vk.com/method/example.get";
@@ -125,7 +124,7 @@ namespace VkNet.Tests
 			Json.Should().BeEquivalentTo(json);
 		}
 
-		[Test]
+		[Fact]
 		public void Invoke_VkParams()
 		{
 			Url = "https://api.vk.com/method/example.get";
@@ -141,14 +140,14 @@ namespace VkNet.Tests
 			Json.Should().BeEquivalentTo(json);
 		}
 
-		[Test]
+		[Fact]
 		public void Validate()
 		{
 			var uri = new Uri("https://m.vk.com/activation?act=validate&api_hash=f2fed5f22ebadc301e&hash=c8acf371111c938417");
 			Api.Validate(uri.ToString());
 		}
 
-		[Test]
+		[Fact]
 		public void VkApi_Constructor_SetDefaultMethodCategories()
 		{
 			Api.Users.Should().NotBeNull();
@@ -176,7 +175,7 @@ namespace VkNet.Tests
 			Api.Ads.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void VkCallShouldBePublic()
 		{
 			// arrange
@@ -191,7 +190,7 @@ namespace VkNet.Tests
 			callMethod.IsPublic.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void VersionShouldBeenChanged()
 		{
 			Api.VkApiVersion.SetVersion(999, 0);
@@ -199,7 +198,7 @@ namespace VkNet.Tests
 			Api.VkApiVersion.Version.Should().Be("999.0");
 		}
 
-		[Test]
+		[Fact]
 		public void Logout()
 		{
 			Api.LogOut();

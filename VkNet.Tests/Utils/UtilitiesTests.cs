@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
-	[TestFixture]
+
 	public class UtilitiesTests
 	{
-		[Test]
+		[Fact]
 		public void JsonConvert()
 		{
 			var result = Utilities.SerializeToJson(new User
@@ -25,7 +25,7 @@ namespace VkNet.Tests.Utils
 			attribute.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void JsonConvertWrite()
 		{
 			var vkCollection = new VkCollection<User>(10,
@@ -51,7 +51,7 @@ namespace VkNet.Tests.Utils
 			attribute.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void PrettyPrintJsonShouldNotThrowException()
 		{
 			const string invalidJson = "ERROR";

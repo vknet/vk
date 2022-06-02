@@ -1,18 +1,18 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model.Attachments;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Docs
 {
-	[TestFixture]
+
 	public class DocsSaveTests : CategoryBaseTest
 	{
 		protected override string Folder => "Docs";
 
-		[Test]
+		[Fact]
 		public void Save()
 		{
 			Url = "https://api.vk.com/method/docs.save";
@@ -25,7 +25,7 @@ namespace VkNet.Tests.Categories.Docs
 			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Save2()
 		{
 			Url = "https://api.vk.com/method/docs.save";
@@ -38,7 +38,7 @@ namespace VkNet.Tests.Categories.Docs
 			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Save3()
 		{
 			Url = "https://api.vk.com/method/docs.save";
@@ -51,7 +51,7 @@ namespace VkNet.Tests.Categories.Docs
 			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Save_Type()
 		{
 			Url = "https://api.vk.com/method/docs.save";

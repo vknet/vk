@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using FluentAssertions;
 using Moq;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -12,17 +11,18 @@ using VkNet.Exception;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Users
 {
-	[TestFixture]
+
 	public class UsersCategoryTest : CategoryBaseTest
 	{
-		protected override string Folder => "Users";
-
 		private const string Query = "Masha Ivanova";
 
-		[Test]
+		protected override string Folder => "Users";
+
+		[Fact]
 		public void Get_CountersFields_CountersObject()
 		{
 			Url = "https://api.vk.com/method/users.get";
@@ -55,7 +55,7 @@ namespace VkNet.Tests.Categories.Users
 			user.Counters.Pages.Should().Be(51);
 		}
 
-		[Test]
+		[Fact]
 		public void Get_DefaultFields_UidFirstNameLastName()
 		{
 			Url = "https://api.vk.com/method/users.get";
@@ -74,7 +74,7 @@ namespace VkNet.Tests.Categories.Users
 			user.LastName.Should().Be("Дуров");
 		}
 
-		[Test]
+		[Fact]
 		public void Get_DeletedUser()
 		{
 			Url = "https://api.vk.com/method/users.get";
@@ -96,7 +96,7 @@ namespace VkNet.Tests.Categories.Users
 			user.IsDeactivated.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_Dimon_SingleUser()
 		{
 			Url = "https://api.vk.com/method/users.get";
@@ -122,7 +122,7 @@ namespace VkNet.Tests.Categories.Users
 			user.City.Title.Should().Be("Москва");
 		}
 
-		[Test]
+		[Fact]
 		public void Get_DmAndDurov_ListOfUsers()
 		{
 			Url = "https://api.vk.com/method/users.get";
@@ -160,14 +160,14 @@ namespace VkNet.Tests.Categories.Users
 			user1.City.Title.Should().Be("Санкт-Петербург");
 		}
 
-		[Test]
+		[Fact]
 		public void Get_EmptyListOfUids_ThrowArgumentNullException()
 		{
 			IEnumerable<long> userIds = null;
 			FluentActions.Invoking(() => Api.Users.Get(userIds)).Should().ThrowExactly<ArgumentNullException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_ListOfUsers()
 		{
 			Url = "https://api.vk.com/method/users.get";
@@ -265,7 +265,7 @@ namespace VkNet.Tests.Categories.Users
 			user.Relatives.Count.Should().Be(0);
 		}
 
-		[Test]
+		[Fact]
 		public void Get_Mutliple_TwoUidsDefaultFields_TwoProfiles()
 		{
 			Url = "https://api.vk.com/method/users.get";
@@ -289,7 +289,7 @@ namespace VkNet.Tests.Categories.Users
 			lst[1].LastName.Should().Be("Смирнова");
 		}
 
-		[Test]
+		[Fact]
 		public void Get_NotAccessToInternet_ThrowVkApiException()
 		{
 			Mock.Get(Api.RestClient)
@@ -307,7 +307,7 @@ namespace VkNet.Tests.Categories.Users
 				.Be("The remote name could not be resolved: 'api.vk.com'");
 		}
 
-		[Test]
+		[Fact]
 		public void Get_SingleUser()
 		{
 			Url = "https://api.vk.com/method/users.get";
@@ -404,7 +404,7 @@ namespace VkNet.Tests.Categories.Users
 			user.Relatives.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_TwoUidsEducationField_TwoProfiles()
 		{
 			Url = "https://api.vk.com/method/users.get";
@@ -443,7 +443,7 @@ namespace VkNet.Tests.Categories.Users
 			lst[1].Education.Graduation.Should().Be(2012);
 		}
 
-		[Test]
+		[Fact]
 		public void Get_WithSomeFields_FirstNameLastNameEducation()
 		{
 			Url = "https://api.vk.com/method/users.get";
@@ -472,7 +472,7 @@ namespace VkNet.Tests.Categories.Users
 			user.Education.Graduation.Should().Be(2006);
 		}
 
-		[Test]
+		[Fact]
 		public void Get_WrongAccessToken_Throw_ThrowUserAuthorizationException()
 		{
 			Url = "https://api.vk.com/method/users.get";
@@ -486,7 +486,7 @@ namespace VkNet.Tests.Categories.Users
 				.Be("User authorization failed: access_token was given to another ip address.");
 		}
 
-		[Test]
+		[Fact]
 		public void GetFollowers_WithAllFields()
 		{
 			Url = "https://api.vk.com/method/users.getFollowers";
@@ -602,7 +602,7 @@ namespace VkNet.Tests.Categories.Users
 			user1.Relatives[1].Type.Should().Be(RelativeType.Sibling);
 		}
 
-		[Test]
+		[Fact]
 		public void GetFollowers_WithoutFields()
 		{
 			Url = "https://api.vk.com/method/users.getFollowers";
@@ -617,7 +617,7 @@ namespace VkNet.Tests.Categories.Users
 			result[1].Id.Should().Be(179652233);
 		}
 
-		[Test]
+		[Fact]
 		public void GetSubscriptions_Extended()
 		{
 			Url = "https://api.vk.com/method/users.getSubscriptions";
@@ -664,7 +664,7 @@ namespace VkNet.Tests.Categories.Users
 		}
 
 		// ===================================================================
-		[Test]
+		[Fact]
 		public void IsAppUser_5_5_version_of_api_return_false()
 		{
 			Url = "https://api.vk.com/method/users.isAppUser";
@@ -675,7 +675,7 @@ namespace VkNet.Tests.Categories.Users
 			result.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void IsAppUser_5_5_version_of_api_return_true()
 		{
 			Url = "https://api.vk.com/method/users.isAppUser";
@@ -686,7 +686,7 @@ namespace VkNet.Tests.Categories.Users
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Report_NormalCase()
 		{
 			Url = "https://api.vk.com/method/users.report";
@@ -697,7 +697,7 @@ namespace VkNet.Tests.Categories.Users
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Search_BadQuery_EmptyList()
 		{
 			Url = "https://api.vk.com/method/users.search";
@@ -713,7 +713,7 @@ namespace VkNet.Tests.Categories.Users
 			lst.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Search_CarierCase()
 		{
 			Url = "https://api.vk.com/method/users.search";
@@ -740,7 +740,7 @@ namespace VkNet.Tests.Categories.Users
 			(maria.Career.FirstOrDefault()?.Until).Should().Be(9223372036854777856);
 		}
 
-		[Test]
+		[Fact]
 		public void Search_DefaultFields_ListOfProfileObjects()
 		{
 			Url = "https://api.vk.com/method/users.search";
@@ -769,7 +769,7 @@ namespace VkNet.Tests.Categories.Users
 			lst[2].LastName.Should().Be("Ivanova");
 		}
 
-		[Test]
+		[Fact]
 		public void Search_EducationField_ListofProfileObjects()
 		{
 			Url = "https://api.vk.com/method/users.search";

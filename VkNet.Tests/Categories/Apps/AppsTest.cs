@@ -1,21 +1,21 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Apps
 {
-	[TestFixture]
+
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	public class AppsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Apps";
 
-		[Test]
+		[Fact]
 		public void DeleteAppRequests_NormalCase()
 		{
 			Url = "https://api.vk.com/method/apps.deleteAppRequests";
@@ -26,7 +26,7 @@ namespace VkNet.Tests.Categories.Apps
 			app.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_NormalCase()
 		{
 			Url = "https://api.vk.com/method/apps.get";
@@ -45,7 +45,7 @@ namespace VkNet.Tests.Categories.Apps
 			app.Apps.First().Title.Should().Be("raventestapp");
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalog_NormalCase()
 		{
 			Url = "https://api.vk.com/method/apps.getCatalog";
@@ -57,7 +57,7 @@ namespace VkNet.Tests.Categories.Apps
 			(app.FirstOrDefault()?.Title).Should().Be("Подземелья!");
 		}
 
-		[Test]
+		[Fact]
 		public void GetFriendsList_NormalCase()
 		{
 			Url = "https://api.vk.com/method/apps.getFriendsList";
@@ -69,7 +69,7 @@ namespace VkNet.Tests.Categories.Apps
 			app.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetFriendsListEx_NormalCase()
 		{
 			Url = "https://api.vk.com/method/apps.getFriendsList";
@@ -81,7 +81,7 @@ namespace VkNet.Tests.Categories.Apps
 			app.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetLeaderboard_Extended()
 		{
 			Url = "https://api.vk.com/method/apps.getLeaderboard";
@@ -98,7 +98,7 @@ namespace VkNet.Tests.Categories.Apps
 			app.Profiles.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetLeaderboard_Level()
 		{
 			Url = "https://api.vk.com/method/apps.getLeaderboard";
@@ -114,7 +114,7 @@ namespace VkNet.Tests.Categories.Apps
 			app.Items[0].UserId.Should().Be(123);
 		}
 
-		[Test]
+		[Fact]
 		public void GetLeaderboard_Points()
 		{
 			Url = "https://api.vk.com/method/apps.getLeaderboard";

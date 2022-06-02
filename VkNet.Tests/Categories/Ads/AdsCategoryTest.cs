@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Ads
 {
-	[TestFixture]
+
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 
 	public class AdsCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";
 
-		[Test]
+		[Fact]
 		public void GetAccounts_GenerateOutParametersCorrectly()
 		{
 			Url = "https://api.vk.com/method/ads.getAccounts";
@@ -35,7 +35,7 @@ namespace VkNet.Tests.Categories.Ads
 			accounts[1].AccessRole.Should().Be(AccessRole.Manager);
 		}
 
-		[Test]
+		[Fact]
 		public void GetCampaigns_AgencyAccount_Arch_Filtered_OutParametersCorrect()
 		{
 			Url = "https://api.vk.com/method/ads.getCampaigns";
@@ -62,7 +62,7 @@ namespace VkNet.Tests.Categories.Ads
 			campaigns[3].Id.Should().Be(1009316667);
 		}
 
-		[Test]
+		[Fact]
 		public void GetCampaigns_GeneralAccount_OutParametersCorrect()
 		{
 			Url = "https://api.vk.com/method/ads.getCampaigns";

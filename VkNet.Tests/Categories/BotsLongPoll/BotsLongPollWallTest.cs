@@ -1,14 +1,14 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollWallTest : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_WallPostNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallPostNewTest));
@@ -31,7 +31,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.WallPost.OwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_WallReplyNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyNewTest));
@@ -58,7 +58,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.WallReply.PostId.Should().Be(postId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_WallReplyEditTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyEditTest));
@@ -83,7 +83,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.WallReply.PostOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_WallReplyRestoreTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyRestoreTest));
@@ -108,7 +108,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.WallReply.PostOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_WallReplyDeleteTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyDeleteTest));

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class SerializableTests
 	{
-		[Test]
+		[Fact]
 		public void ModelsShouldHaveSerializableAttribute()
 		{
 			var models = typeof(VkApi).Assembly

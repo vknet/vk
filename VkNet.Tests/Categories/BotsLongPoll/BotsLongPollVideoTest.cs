@@ -1,14 +1,14 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollVideoTest : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_VideoNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoNewTest));
@@ -31,7 +31,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.Video.Id.Should().Be(id);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_VideoCommentNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentNewTest));
@@ -58,7 +58,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.VideoComment.VideoId.Should().Be(videoId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_VideoCommentEditTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentEditTest));
@@ -83,7 +83,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.VideoComment.VideoOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_VideoCommentRestoreTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentRestoreTest));
@@ -108,7 +108,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.VideoComment.VideoOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_VideoCommentDeleteTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentDeleteTest));

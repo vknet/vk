@@ -1,14 +1,14 @@
 ﻿using System;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
-	[TestFixture]
+
 	public class VkParametersTests
 	{
-		[Test]
+		[Fact]
 		public void AddNullableBoolean_FalseValue()
 		{
 			var @params = new VkParameters
@@ -21,7 +21,7 @@ namespace VkNet.Tests.Utils
 			val.Should().Be("0");
 		}
 
-		[Test]
+		[Fact]
 		public void AddNullableBoolean_NullValue()
 		{
 			var @params = new VkParameters
@@ -32,7 +32,7 @@ namespace VkNet.Tests.Utils
 			@params.Should().NotContainKey("NullableBoolean");
 		}
 
-		[Test]
+		[Fact]
 		public void AddNullableBoolean_TrueValue()
 		{
 			var @params = new VkParameters
@@ -45,7 +45,7 @@ namespace VkNet.Tests.Utils
 			val.Should().Be("1");
 		}
 
-		[Test]
+		[Fact]
 		public void AddDateTime()
 		{
 			var dateTimeNow = new DateTime(2019,

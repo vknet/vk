@@ -1,6 +1,6 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Audio
 {
@@ -8,7 +8,7 @@ namespace VkNet.Tests.Categories.Audio
 	{
 		protected override string Folder => "Audio";
 
-		[Test]
+		[Fact]
 		public void GetPlaylistByIdTestTest()
 		{
 			Url = "https://api.vk.com/method/audio.getPlaylistById";

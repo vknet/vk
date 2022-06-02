@@ -1,16 +1,16 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Enum
 {
-	[TestFixture]
+
 
 	public class EnumsTest
 	{
-		[Test]
+		[Fact]
 		public void AccessPagesTest()
 		{
 			Utilities.EnumFrom<AccessPages>(0).Should().Be(AccessPages.Leaders);
@@ -18,7 +18,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<AccessPages>(2).Should().Be(AccessPages.All);
 		}
 
-		[Test]
+		[Fact]
 		public void AddFriendStatusTest()
 		{
 			Utilities.EnumFrom<AddFriendStatus>(0).Should().Be(AddFriendStatus.Unknown);
@@ -27,7 +27,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<AddFriendStatus>(4).Should().Be(AddFriendStatus.Resubmit);
 		}
 
-		[Test]
+		[Fact]
 		public void AdminLevelTest()
 		{
 			Utilities.EnumFrom<AdminLevel>(1).Should().Be(AdminLevel.Moderator);
@@ -35,7 +35,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<AdminLevel>(3).Should().Be(AdminLevel.Administrator);
 		}
 
-		[Test]
+		[Fact]
 		public void AttitudeTest()
 		{
 			Utilities.EnumFrom<Attitude>(0).Should().Be(Attitude.Unknown);
@@ -46,7 +46,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<Attitude>(5).Should().Be(Attitude.Positive);
 		}
 
-		[Test]
+		[Fact]
 		public void AudioGenreTest()
 		{
 			Utilities.EnumFrom<AudioGenre>(1).Should().Be(AudioGenre.Rock);
@@ -72,7 +72,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<AudioGenre>(18).Should().Be(AudioGenre.Other);
 		}
 
-		[Test]
+		[Fact]
 		public void AudioSortTest()
 		{
 			Utilities.EnumFrom<AudioSort>(0).Should().Be(AudioSort.AddedDate);
@@ -80,7 +80,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<AudioSort>(2).Should().Be(AudioSort.Popularity);
 		}
 
-		[Test]
+		[Fact]
 		public void BanReasonTest()
 		{
 			Utilities.EnumFrom<BanReason>(0).Should().Be(BanReason.Other);
@@ -90,7 +90,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<BanReason>(4).Should().Be(BanReason.IrrelevantMessages);
 		}
 
-		[Test]
+		[Fact]
 		public void BirthdayVisibilityTest()
 		{
 			Utilities.EnumFrom<BirthdayVisibility>(0).Should().Be(BirthdayVisibility.Invisible);
@@ -98,7 +98,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<BirthdayVisibility>(2).Should().Be(BirthdayVisibility.OnlyDayAndMonth);
 		}
 
-		[Test]
+		[Fact]
 		public void ContentAccessTest()
 		{
 			Utilities.EnumFrom<ContentAccess>(0).Should().Be(ContentAccess.Off);
@@ -106,7 +106,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<ContentAccess>(2).Should().Be(ContentAccess.Restricted);
 		}
 
-		[Test]
+		[Fact]
 		public void DeleteFriendStatusTest()
 		{
 			Utilities.EnumFrom<DeleteFriendStatus>(0).Should().Be(DeleteFriendStatus.Unknown);
@@ -115,7 +115,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<DeleteFriendStatus>(3).Should().Be(DeleteFriendStatus.RecommendationDeleted);
 		}
 
-		[Test]
+		[Fact]
 		public void DocFilterTest()
 		{
 			Utilities.EnumFrom<DocFilter>(1).Should().Be(DocFilter.Text);
@@ -128,7 +128,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<DocFilter>(8).Should().Be(DocFilter.Unknown);
 		}
 
-		[Test]
+		[Fact]
 		public void FriendStatusTest()
 		{
 			Utilities.EnumFrom<FriendStatus>(0).Should().Be(FriendStatus.NotFriend);
@@ -137,7 +137,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<FriendStatus>(3).Should().Be(FriendStatus.Friend);
 		}
 
-		[Test]
+		[Fact]
 		public void GiftPrivacyTest()
 		{
 			Utilities.EnumFrom<GiftPrivacy>(0).Should().Be(GiftPrivacy.All);
@@ -147,7 +147,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<GiftPrivacy>(2).Should().Be(GiftPrivacy.NameHideMessageUser);
 		}
 
-		[Test]
+		[Fact]
 		public void GroupAccessTest()
 		{
 			Utilities.EnumFrom<GroupAccess>(0).Should().Be(GroupAccess.Open);
@@ -155,7 +155,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<GroupAccess>(2).Should().Be(GroupAccess.Private);
 		}
 
-		[Test]
+		[Fact]
 		public void GroupPublicityTest()
 		{
 			Utilities.EnumFrom<GroupPublicity>(0).Should().Be(GroupPublicity.Public);
@@ -163,7 +163,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<GroupPublicity>(2).Should().Be(GroupPublicity.Private);
 		}
 
-		[Test]
+		[Fact]
 		public void GroupSortTest()
 		{
 			Utilities.EnumFrom<GroupSort>(0).Should().Be(GroupSort.Normal);
@@ -174,7 +174,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<GroupSort>(5).Should().Be(GroupSort.Records);
 		}
 
-		[Test]
+		[Fact]
 		public void GroupSubjectsTest()
 		{
 			Utilities.EnumFrom<GroupSubjects>(1).Should().Be(GroupSubjects.AutoMoto);
@@ -244,7 +244,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<GroupSubjects>(42).Should().Be(GroupSubjects.DesignAndGraphics);
 		}
 
-		[Test]
+		[Fact]
 		public void GroupSubTypeTest()
 		{
 			Utilities.EnumFrom<GroupSubType>(1).Should().Be(GroupSubType.PlaceOrSmallCompany);
@@ -256,7 +256,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<GroupSubType>(4).Should().Be(GroupSubType.ProductOrProducts);
 		}
 
-		[Test]
+		[Fact]
 		public void Iso3166Test()
 		{
 			Utilities.EnumFrom<Iso3166>(0).Should().Be(Iso3166.AU);
@@ -505,7 +505,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<Iso3166>(243).Should().Be(Iso3166.WF);
 		}
 
-		[Test]
+		[Fact]
 		public void LeaderboardTypesTest()
 		{
 			Utilities.EnumFrom<LeaderboardTypes>(0).Should().Be(LeaderboardTypes.NotSupported);
@@ -515,7 +515,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<LeaderboardTypes>(2).Should().Be(LeaderboardTypes.ByPoints);
 		}
 
-		[Test]
+		[Fact]
 		public void LifeMainTest()
 		{
 			Utilities.EnumFrom<LifeMain>(0).Should().Be(LifeMain.Unknown);
@@ -529,7 +529,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<LifeMain>(8).Should().Be(LifeMain.FameAndInfluence);
 		}
 
-		[Test]
+		[Fact]
 		public void MainSectionTest()
 		{
 			Utilities.EnumFrom<MainSection>(0).Should().Be(MainSection.NoSection);
@@ -540,7 +540,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<MainSection>(5).Should().Be(MainSection.Goods);
 		}
 
-		[Test]
+		[Fact]
 		public void MaritalStatusTest()
 		{
 			Utilities.EnumFrom<MaritalStatus>(1).Should().Be(MaritalStatus.Single);
@@ -555,7 +555,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<MaritalStatus>(7).Should().Be(MaritalStatus.InLove);
 		}
 
-		[Test]
+		[Fact]
 		public void MarketCurrencyIdTest()
 		{
 			Utilities.EnumFrom<MarketCurrencyId>(643).Should().Be(MarketCurrencyId.Rub);
@@ -565,7 +565,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<MarketCurrencyId>(840).Should().Be(MarketCurrencyId.Usd);
 		}
 
-		[Test]
+		[Fact]
 		public void MessageReadStateTest()
 		{
 			Utilities.EnumFrom<MessageReadState>(0).Should().Be(MessageReadState.Unreaded);
@@ -573,21 +573,21 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<MessageReadState>(1).Should().Be(MessageReadState.Readed);
 		}
 
-		[Test]
+		[Fact]
 		public void MessagesFilterTest()
 		{
 			Utilities.EnumFrom<MessagesFilter>(0).Should().Be(MessagesFilter.All);
 			Utilities.EnumFrom<MessagesFilter>(8).Should().Be(MessagesFilter.Important);
 		}
 
-		[Test]
+		[Fact]
 		public void MessageTypeTest()
 		{
 			Utilities.EnumFrom<MessageType>(0).Should().Be(MessageType.Received);
 			Utilities.EnumFrom<MessageType>(1).Should().Be(MessageType.Sended);
 		}
 
-		[Test]
+		[Fact]
 		public void PageAccessKindTest()
 		{
 			Utilities.EnumFrom<PageAccessKind>(0).Should().Be(PageAccessKind.OnlyAdministrators);
@@ -597,7 +597,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<PageAccessKind>(2).Should().Be(PageAccessKind.Unrestricted);
 		}
 
-		[Test]
+		[Fact]
 		public void PeopleMainTest()
 		{
 			Utilities.EnumFrom<PeopleMain>(0).Should().Be(PeopleMain.Unknown);
@@ -611,7 +611,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<PeopleMain>(6).Should().Be(PeopleMain.HumorAndLoveForLife);
 		}
 
-		[Test]
+		[Fact]
 		public void PoliticalPreferencesTest()
 		{
 			Utilities.EnumFrom<PoliticalPreferences>(0).Should().Be(PoliticalPreferences.Unknown);
@@ -635,7 +635,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<PoliticalPreferences>(9).Should().Be(PoliticalPreferences.Libertarian);
 		}
 
-		[Test]
+		[Fact]
 		public void ProductAvailabilityTest()
 		{
 			Utilities.EnumFrom<ProductAvailability>(0).Should().Be(ProductAvailability.Available);
@@ -645,7 +645,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<ProductAvailability>(2).Should().Be(ProductAvailability.Unavailable);
 		}
 
-		[Test]
+		[Fact]
 		public void ProductSortTest()
 		{
 			Utilities.EnumFrom<ProductSort>(0).Should().Be(ProductSort.UserSort);
@@ -654,7 +654,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<ProductSort>(3).Should().Be(ProductSort.ByPopularity);
 		}
 
-		[Test]
+		[Fact]
 		public void RelationTypeTest()
 		{
 			Utilities.EnumFrom<RelationType>(0).Should().Be(RelationType.Unknown);
@@ -667,7 +667,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<RelationType>(7).Should().Be(RelationType.Amorous);
 		}
 
-		[Test]
+		[Fact]
 		public void ReportReasonTest()
 		{
 			Utilities.EnumFrom<ReportReason>(0).Should().Be(ReportReason.Spam);
@@ -681,7 +681,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<ReportReason>(6).Should().Be(ReportReason.Abuse);
 		}
 
-		[Test]
+		[Fact]
 		public void SexTest()
 		{
 			Utilities.EnumFrom<Sex>(0).Should().Be(Sex.Unknown);
@@ -689,21 +689,21 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<Sex>(2).Should().Be(Sex.Male);
 		}
 
-		[Test]
+		[Fact]
 		public void SortOrderByTest()
 		{
 			Utilities.EnumFrom<SortOrderBy>(0).Should().Be(SortOrderBy.Desc);
 			Utilities.EnumFrom<SortOrderBy>(1).Should().Be(SortOrderBy.Asc);
 		}
 
-		[Test]
+		[Fact]
 		public void UserSortTest()
 		{
 			Utilities.EnumFrom<UserSort>(0).Should().Be(UserSort.ByPopularity);
 			Utilities.EnumFrom<UserSort>(1).Should().Be(UserSort.ByRegDate);
 		}
 
-		[Test]
+		[Fact]
 		public void VideoSortTest()
 		{
 			Utilities.EnumFrom<VideoSort>(0).Should().Be(VideoSort.AddedDate);
@@ -711,7 +711,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<VideoSort>(2).Should().Be(VideoSort.Relevance);
 		}
 
-		[Test]
+		[Fact]
 		public void VideoWidthTest()
 		{
 			Utilities.EnumFrom<VideoWidth>(130).Should().Be(VideoWidth.Small130);
@@ -719,7 +719,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<VideoWidth>(320).Should().Be(VideoWidth.Large320);
 		}
 
-		[Test]
+		[Fact]
 		public void VkObjectTypeTest()
 		{
 			Utilities.EnumFrom<VkObjectType>(0).Should().Be(VkObjectType.User);
@@ -728,7 +728,7 @@ namespace VkNet.Tests.Enum
 			Utilities.EnumFrom<VkObjectType>(3).Should().Be(VkObjectType.Page);
 		}
 
-		[Test]
+		[Fact]
 		public void WallContentAccessTest()
 		{
 			Utilities.EnumFrom<WallContentAccess>(0).Should().Be(WallContentAccess.Off);

@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Utils
 {
-	[TestFixture]
+
 	public class UtilsCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Utils";
 
-		[Test]
+		[Fact]
 		public void CheckLink_BannedLink()
 		{
 			Url = "https://api.vk.com/method/utils.checkLink";
@@ -30,7 +30,7 @@ namespace VkNet.Tests.Categories.Utils
 			type.Should().Be(LinkAccessType.Banned);
 		}
 
-		[Test]
+		[Fact]
 		public void CheckLink_GoogleLink()
 		{
 			Url = "https://api.vk.com/method/utils.checkLink";
@@ -45,7 +45,7 @@ namespace VkNet.Tests.Categories.Utils
 			type.Should().Be(LinkAccessType.NotBanned);
 		}
 
-		[Test]
+		[Fact]
 		public void CheckLink_NotLink()
 		{
 			Url = "https://api.vk.com/method/utils.checkLink";
@@ -54,7 +54,7 @@ namespace VkNet.Tests.Categories.Utils
 			FluentActions.Invoking(() => Api.Utils.CheckLink("hsfasfsf")).Should().ThrowExactly<UriFormatException>();
 		}
 
-		[Test]
+		[Fact]
 		public void DeleteFromLastShortened()
 		{
 			Url = "https://api.vk.com/method/utils.deleteFromLastShortened";
@@ -65,7 +65,7 @@ namespace VkNet.Tests.Categories.Utils
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void GetLastShortenedLinks()
 		{
 			Url = "https://api.vk.com/method/utils.getLastShortenedLinks";
@@ -76,7 +76,7 @@ namespace VkNet.Tests.Categories.Utils
 			result.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetLinksStats()
 		{
 			Url = "https://api.vk.com/method/utils.getLinkStats";
@@ -108,7 +108,7 @@ namespace VkNet.Tests.Categories.Utils
 			city.Views.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void GetServerTime()
 		{
 			Url = "https://api.vk.com/method/utils.getServerTime";
@@ -119,7 +119,7 @@ namespace VkNet.Tests.Categories.Utils
 			result.Should().Be(VkResponse.TimestampToDateTime(1489309200));
 		}
 
-		[Test]
+		[Fact]
 		public void GetShortLink()
 		{
 			Url = "https://api.vk.com/method/utils.getShortLink";
@@ -133,7 +133,7 @@ namespace VkNet.Tests.Categories.Utils
 			result.Key.Should().Be("7dMDvY");
 		}
 
-		[Test]
+		[Fact]
 		public void ResolveScreenName()
 		{
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
@@ -146,7 +146,7 @@ namespace VkNet.Tests.Categories.Utils
 			result.Id.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void ResolveScreenName_BadScreenName()
 		{
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
@@ -157,13 +157,13 @@ namespace VkNet.Tests.Categories.Utils
 			obj.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void ResolveScreenName_EmptyStringName_ThrowException()
 		{
 			FluentActions.Invoking(() => Api.Utils.ResolveScreenName(string.Empty)).Should().ThrowExactly<ArgumentNullException>();
 		}
 
-		[Test]
+		[Fact]
 		public void ResolveScreenName_Group()
 		{
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
@@ -177,7 +177,7 @@ namespace VkNet.Tests.Categories.Utils
 			obj.Id.Should().Be(10639516);
 		}
 
-		[Test]
+		[Fact]
 		public void ResolveScreenName_ObjectIdIsVeryBig_User()
 		{
 			Url = "https://api.vk.com/method/utils.resolveScreenName";
@@ -191,7 +191,7 @@ namespace VkNet.Tests.Categories.Utils
 			obj.Type.Should().Be(VkObjectType.User);
 		}
 
-		[Test]
+		[Fact]
 		public void ResolveScreenName_User()
 		{
 			Url = "https://api.vk.com/method/utils.resolveScreenName";

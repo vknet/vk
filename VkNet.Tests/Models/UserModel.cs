@@ -1,15 +1,14 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
 	public class UserModel : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void MultiPropertyId()
 		{
 			ReadJsonFile("Models", nameof(MultiPropertyId));
@@ -20,7 +19,7 @@ namespace VkNet.Tests.Models
 			result.Id.Should().Be(165614770);
 		}
 
-		[Test]
+		[Fact]
 		public void MultiPropertyUid()
 		{
 			ReadJsonFile("Models", nameof(MultiPropertyUid));
@@ -31,7 +30,7 @@ namespace VkNet.Tests.Models
 			result.Id.Should().Be(165614770);
 		}
 
-		[Test]
+		[Fact]
 		public void MultiPropertyUserId()
 		{
 			ReadJsonFile("Models", nameof(MultiPropertyUserId));
@@ -42,7 +41,7 @@ namespace VkNet.Tests.Models
 			result.Id.Should().Be(165614770);
 		}
 
-		[Test(Description = "Поле 'name' может иметь одно слово")]
+		[Fact(DisplayName = "Поле 'name' может иметь одно слово")]
 		public void Name_ShouldCanBeOneWord()
 		{
 			ReadJsonFile("Models", nameof(Name_ShouldCanBeOneWord));
@@ -54,28 +53,28 @@ namespace VkNet.Tests.Models
 			user.LastName.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_CanAccessClosed()
 		{
 			var user = new User();
 			user.CanAccessClosed.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_IsClosed()
 		{
 			var user = new User();
 			user.IsClosed.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_Trending()
 		{
 			var user = new User();
 			user.Trending.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void Trending_ShouldBeFalse()
 		{
 			ReadJsonFile("Models", nameof(Trending_ShouldBeFalse));
@@ -86,7 +85,7 @@ namespace VkNet.Tests.Models
 			user.Trending.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void Trending_ShouldBeFalse2()
 		{
 			ReadJsonFile(JsonPaths.Object);
@@ -97,7 +96,7 @@ namespace VkNet.Tests.Models
 			user.Trending.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void Trending_ShouldBeTrue()
 		{
 			ReadJsonFile("Models", nameof(Trending_ShouldBeTrue));

@@ -1,14 +1,14 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 
 	public class AudioModel
 	{
-		[Test]
+		[Fact]
 		public void ToString_AudioShouldHaveAccessKey()
 		{
 			var audio = new Audio

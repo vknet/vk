@@ -1,15 +1,15 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollMessageTest : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MessageNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageNewTest));
@@ -44,7 +44,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			message.Text.Should().Be("f");
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MessageEditTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageEditTest));
@@ -68,7 +68,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.Message.Text.Should().Be(text);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MessageReplyTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageReplyTest));
@@ -92,7 +92,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.Message.Text.Should().Be(text);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MessageAllowTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageAllowTest));
@@ -116,7 +116,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.GroupId.Should().Be(groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MessageDenyTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageDenyTest));
@@ -138,7 +138,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.GroupId.Should().Be(groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MessageEventTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageEventTest));

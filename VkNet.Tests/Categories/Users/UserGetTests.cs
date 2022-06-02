@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Users
 {
@@ -14,7 +14,7 @@ namespace VkNet.Tests.Categories.Users
 	{
 		protected override string Folder => "Users";
 
-		[Test]
+		[Fact]
 		public void Get_Olesya_SingleUser()
 		{
 			Url = "https://api.vk.com/method/users.get";

@@ -1,17 +1,17 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Friends
 {
-	[TestFixture]
+
 
 	public class FriendsGetRequests : CategoryBaseTest
 	{
 		protected override string Folder => "Friends";
 
-		[Test]
+		[Fact]
 		public void DefaultParams()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
@@ -23,7 +23,7 @@ namespace VkNet.Tests.Categories.Friends
 			result.Count.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void Extended()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";

@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Pages
 {
-	[TestFixture]
+
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	public class PagesCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Pages";
 
-		[Test]
+		[Fact]
 		public void ClearCache()
 		{
 			Url = "https://api.vk.com/method/pages.clearCache";
@@ -25,7 +25,7 @@ namespace VkNet.Tests.Categories.Pages
 			cache.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Get1_NormalCase()
 		{
 			Url = "https://api.vk.com/method/pages.get";
@@ -53,7 +53,7 @@ namespace VkNet.Tests.Categories.Pages
 			page.ViewUrl.Should().Be("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
 		}
 
-		[Test]
+		[Fact]
 		public void Get2_NormalCase()
 		{
 			Url = "https://api.vk.com/method/pages.get";
@@ -81,7 +81,7 @@ namespace VkNet.Tests.Categories.Pages
 			page.ViewUrl.Should().Be("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
 		}
 
-		[Test]
+		[Fact]
 		public void GetHistory_NormalCase()
 		{
 			Url = "https://api.vk.com/method/pages.getHistory";
@@ -92,7 +92,7 @@ namespace VkNet.Tests.Categories.Pages
 			histories.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetTitles_NormalCase()
 		{
 			Url = "https://api.vk.com/method/pages.getTitles";
@@ -103,7 +103,7 @@ namespace VkNet.Tests.Categories.Pages
 			titles.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetVersion_NormalCase()
 		{
 			Url = "https://api.vk.com/method/pages.getVersion";
@@ -123,7 +123,7 @@ namespace VkNet.Tests.Categories.Pages
 			version.Html.Should().Be("<!--4-->test ");
 		}
 
-		[Test]
+		[Fact]
 		public void Save1_NormalCase()
 		{
 			Url = "https://api.vk.com/method/pages.save";
@@ -134,7 +134,7 @@ namespace VkNet.Tests.Categories.Pages
 			page.Should().Be(50050492);
 		}
 
-		[Test]
+		[Fact]
 		public void Save2_NormalCase()
 		{
 			Url = "https://api.vk.com/method/pages.save";
@@ -145,7 +145,7 @@ namespace VkNet.Tests.Categories.Pages
 			page.Should().Be(50050492);
 		}
 
-		[Test]
+		[Fact]
 		public void SaveAccess_NormalCase()
 		{
 			Url = "https://api.vk.com/method/pages.saveAccess";

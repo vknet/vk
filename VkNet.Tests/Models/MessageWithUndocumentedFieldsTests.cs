@@ -1,15 +1,15 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class MessageWithUndocumentedFieldsTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void Message_With_Action_ChatUnpinMessage_MemberId_IsPresentAndEquals()
 		{
 			ReadJsonFile("Models", "message_with_unpin_action");
@@ -22,7 +22,7 @@ namespace VkNet.Tests.Models
 			message.Action.MemberId!.Should().Be(12345678);
 		}
 
-		[Test]
+		[Fact]
 		public void Message_With_Action_ChatUnpinMessage_ConversationMessageId_IsPresentAndEquals()
 		{
 			ReadJsonFile("Models", "message_with_unpin_action");
@@ -35,7 +35,7 @@ namespace VkNet.Tests.Models
 			message.Action.ConversationMessageId!.Should().Be(3);
 		}
 
-		[Test]
+		[Fact]
 		public void Message_With_Action_ChatPinMessage_MemberId_IsPresentAndEquals()
 		{
 			ReadJsonFile("Models", "message_with_pin_action");
@@ -48,7 +48,7 @@ namespace VkNet.Tests.Models
 			message.Action.MemberId!.Should().Be(12345678);
 		}
 
-		[Test]
+		[Fact]
 		public void Message_With_Action_ChatPinMessage_ConversationMessageId_IsPresentAndEquals()
 		{
 			ReadJsonFile("Models", "message_with_pin_action");
@@ -61,7 +61,7 @@ namespace VkNet.Tests.Models
 			message.Action.ConversationMessageId!.Should().Be(3);
 		}
 
-		[Test]
+		[Fact]
 		public void Message_With_Action_ChatPinMessage_Message_IsPresentAndEquals()
 		{
 			ReadJsonFile("Models", "message_with_pin_action");
@@ -73,7 +73,7 @@ namespace VkNet.Tests.Models
 			message.Action.Message.Should().Be("test");
 		}
 
-		[Test]
+		[Fact]
 		public void Message_With_Self_Destruct_IsExpired_IsPresentAndEquals()
 		{
 			ReadJsonFile("Models", "message_self_destruct_with_is_expired");
@@ -84,7 +84,7 @@ namespace VkNet.Tests.Models
 			message.IsExpired.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Message_With_Self_Destruct_ExpireTtl_IsPresentAndEquals()
 		{
 			ReadJsonFile("Models", "message_self_destruct_with_expire_ttl");
@@ -94,7 +94,7 @@ namespace VkNet.Tests.Models
 			message.ExpireTtl.Should().Be(60);
 		}
 
-		[Test]
+		[Fact]
 		public void Message_With_IsSilent_IsPresentAndEquals()
 		{
 			ReadJsonFile("Models", "message_with_is_silent");
@@ -104,7 +104,7 @@ namespace VkNet.Tests.Models
 			message.IsSilent.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Message_With_WasListened_IsPresentAndEquals()
 		{
 			ReadJsonFile("Models", "message_with_was_listened");

@@ -1,16 +1,16 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
-	[TestFixture]
+
 
 	public class DisableOnlineTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void DisableOnline()
 		{
 			Url = "https://api.vk.com/method/groups.disableOnline";

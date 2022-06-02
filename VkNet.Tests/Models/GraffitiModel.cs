@@ -1,14 +1,14 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 
 	public class GraffitiModel : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void ShouldDeserializeFromVkResponseToAttachment()
 		{
 			ReadJsonFile("Models", "graffiti_attachment");
@@ -20,7 +20,7 @@ namespace VkNet.Tests.Models
 			attachment.Instance.Should().BeOfType<Graffiti>();
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldDeserializeOldApiResponseToAttachment()
 		{
 			ReadJsonFile("Models", "graffiti_attachment_for_960");

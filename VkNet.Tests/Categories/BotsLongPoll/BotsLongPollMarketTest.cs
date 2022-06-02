@@ -1,14 +1,14 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollMarketTest : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MarketCommentNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentNewTest));
@@ -33,7 +33,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.MarketComment.MarketOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MarketCommentEditTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentEditTest));
@@ -58,7 +58,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.MarketComment.MarketOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MarketCommentRestoreTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentRestoreTest));
@@ -83,7 +83,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.MarketComment.MarketOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MarketCommentDeleteTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentDeleteTest));

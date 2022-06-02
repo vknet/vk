@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
@@ -10,13 +9,14 @@ using VkNet.Model.Keyboard;
 using VkNet.Model.RequestParams;
 using VkNet.Model.Template;
 using VkNet.Model.Template.Carousel;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 	public class MessagesSendTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
@@ -31,7 +31,7 @@ namespace VkNet.Tests.Categories.Messages
 				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void CoordsMessage()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -49,7 +49,7 @@ namespace VkNet.Tests.Categories.Messages
 			id.Should().Be(4464);
 		}
 
-		[Test]
+		[Fact]
 		public void DefaultFields_MessageId()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -65,7 +65,7 @@ namespace VkNet.Tests.Categories.Messages
 			id.Should().Be(4457);
 		}
 
-		[Test]
+		[Fact]
 		public void EmptyMessage_ThrowsInvalidParameterException()
 		{
 			FluentActions.Invoking(() => Api.Messages.Send(new MessagesSendParams
@@ -77,7 +77,7 @@ namespace VkNet.Tests.Categories.Messages
 				.ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Exception_MessageIsTooLong()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -95,7 +95,7 @@ namespace VkNet.Tests.Categories.Messages
 				.ThrowExactly<MessageIsTooLongException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Exception_TooMuchSentMessages()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -113,7 +113,7 @@ namespace VkNet.Tests.Categories.Messages
 				.ThrowExactly<TooMuchSentMessagesException>();
 		}
 
-		[Test]
+		[Fact]
 		public void MessagesSend_RandomIdNotRequiredInLessThan_5_90_ArgumentException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -130,7 +130,7 @@ namespace VkNet.Tests.Categories.Messages
 			id.Should().Be(4464);
 		}
 
-		[Test]
+		[Fact]
 		public void MessagesSend_RandomIdRequired_ArgumentException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -150,7 +150,7 @@ namespace VkNet.Tests.Categories.Messages
 				.ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void MessagesSend_SetUserIdsParam_ArgumentException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -170,7 +170,7 @@ namespace VkNet.Tests.Categories.Messages
 				.ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -194,7 +194,7 @@ namespace VkNet.Tests.Categories.Messages
 			message.MessageId.Should().Be(210525);
 		}
 
-		[Test]
+		[Fact]
 		public void RussianText_MessageId()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -210,7 +210,7 @@ namespace VkNet.Tests.Categories.Messages
 			id.Should().Be(4464);
 		}
 
-		[Test]
+		[Fact]
 		public void Template_Carousel()
 		{
 			Url = "https://api.vk.com/method/messages.send";

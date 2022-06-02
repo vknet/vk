@@ -1,14 +1,14 @@
 ﻿using FluentAssertions;
 using Newtonsoft.Json;
-using NUnit.Framework;
 using VkNet.Model.GroupUpdate;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class GroupChangeSettingsTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void GroupChangeSettings_should_correct_deserialize_from_VkResponse()
 		{
 			ReadJsonFile("Models", nameof(GroupChangeSettings));
@@ -24,7 +24,7 @@ namespace VkNet.Tests.Models
 			result.Changes.Should().ContainKey("description");
 		}
 
-		[Test]
+		[Fact]
 		public void GroupChangeSettings_should_correct_deserialize_from_JsonConverter()
 		{
 			ReadJsonFile("Models", nameof(GroupChangeSettings));

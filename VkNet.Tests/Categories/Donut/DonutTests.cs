@@ -1,17 +1,17 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Donut
 {
-	class DonutTests : CategoryBaseTest
+	public class DonutTests : CategoryBaseTest
 	{
 		/// <inheritdoc />
 		protected override string Folder => "Donut";
 
-		[Test]
+		[Fact]
 		public void IsDon()
 		{
 			Url = "https://api.vk.com/method/donut.isDon";
@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories.Donut
 			Api.Donut.IsDon(-173151748).Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void GetFriends()
 		{
 			Url = "https://api.vk.com/method/donut.getFriends";
@@ -28,7 +28,7 @@ namespace VkNet.Tests.Categories.Donut
 			result.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetSubscription()
 		{
 			Url = "https://api.vk.com/method/donut.getSubscription";
@@ -36,7 +36,7 @@ namespace VkNet.Tests.Categories.Donut
 			FluentActions.Invoking(() => Api.Donut.GetSubscription(-173151748)).Should().ThrowExactly<VkApiMethodInvokeException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetSubscriptions()
 		{
 			Url = "https://api.vk.com/method/donut.getSubscriptions";

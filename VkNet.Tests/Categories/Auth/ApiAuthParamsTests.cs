@@ -1,14 +1,14 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Model;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Auth
 {
-	[TestFixture]
+
 	public class ApiAuthParamsTests
 	{
-		[Test]
+		[Fact]
 		public void ApiAuthParams_Empty_IsValid_ReturnsFalse()
 		{
 			var apiAuthParams = new ApiAuthParams();
@@ -16,7 +16,7 @@ namespace VkNet.Tests.Categories.Auth
 			apiAuthParams.IsValid.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void ApiAuthParams_AccessTokenOnly_IsValid_ReturnsTrue()
 		{
 			var apiAuthParams = new ApiAuthParams()
@@ -27,7 +27,7 @@ namespace VkNet.Tests.Categories.Auth
 			apiAuthParams.IsValid.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void ApiAuthParams_LoginAndPassword_AllCorrect_IsValid_ReturnsTrue()
 		{
 			var apiAuthParams = new ApiAuthParams()
@@ -42,7 +42,7 @@ namespace VkNet.Tests.Categories.Auth
 			apiAuthParams.IsValid.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void ApiAuthParams_LoginAndPasswordWithoutTwoFactor_IsValid_ReturnsFalse()
 		{
 			var apiAuthParams = new ApiAuthParams()
@@ -56,7 +56,7 @@ namespace VkNet.Tests.Categories.Auth
 			apiAuthParams.IsValid.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void ApiAuthParams_LoginAndPasswordWithoutSettings_IsValid_ReturnsFalse()
 		{
 			var apiAuthParams = new ApiAuthParams()
@@ -70,7 +70,7 @@ namespace VkNet.Tests.Categories.Auth
 			apiAuthParams.IsValid.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void ApiAuthParams_LoginAndPasswordWithEmptySettings_IsValid_ReturnsFalse()
 		{
 			var apiAuthParams = new ApiAuthParams()

@@ -2,15 +2,15 @@
 using System.Linq;
 using FluentAssertions;
 using Newtonsoft.Json;
-using NUnit.Framework;
 using VkNet.Model;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class VkResponseObjectTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void VkResponseObjectOfEmptyObjectCorrectSerialize()
 		{
 			// Arrange
@@ -32,7 +32,7 @@ namespace VkNet.Tests.Models
 			result.Should().BeEquivalentTo(Json.Replace("\t", "  "));
 		}
 
-		[Test]
+		[Fact]
 		public void VkResponseObjectOfEmptyObjectArrayCorrectSerialize()
 		{
 			// Arrange
@@ -54,7 +54,7 @@ namespace VkNet.Tests.Models
 			result.Should().BeEquivalentTo(Json.Replace("\t", "  "));
 		}
 
-		[Test]
+		[Fact]
 		public void VkResponseObjectOfStoryServerUrlCorrectSerialize()
 		{
 			// Arrange

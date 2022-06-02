@@ -1,20 +1,18 @@
 ﻿using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Friends
 {
-	[TestFixture]
-
 	public class FriendsGetSuggestions : CategoryBaseTest
 	{
 		protected override string Folder => "Friends";
 
-		[Test]
+		[Fact]
 		public void GetSuggestions_AllParameters()
 		{
 			Url = "https://api.vk.com/method/friends.getSuggestions";
@@ -30,7 +28,7 @@ namespace VkNet.Tests.Categories.Friends
 			user.Sex.Should().Be(Sex.Male);
 		}
 
-		[Test]
+		[Fact]
 		public void GetSuggestions_WithoutParameters()
 		{
 			Url = "https://api.vk.com/method/friends.getSuggestions";

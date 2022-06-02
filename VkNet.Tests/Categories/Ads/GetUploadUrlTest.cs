@@ -1,18 +1,18 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Ads
 {
-	[TestFixture]
+
 
 	public class GetUploadUrlTest : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";
 
-		[Test]
+		[Fact]
 		public void GetUploadUrl()
 		{
 			Url = "https://api.vk.com/method/ads.getUploadUrl";

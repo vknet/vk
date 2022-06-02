@@ -1,16 +1,16 @@
 using System;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
+using Xunit;
 
 namespace VkNet.Tests.Infrastructure
 {
-	[TestFixture]
+
 
 	public class ImplicitFlowVkAuthorizationTests
 	{
-		[Test]
+		[Fact]
 		public void GetAuthorizationResult()
 		{
 			var url = new Uri("https://oauth.vk.com/blank.html#access_token=access_token&expires_in=86400&user_id=32190123&state=123");
@@ -26,7 +26,7 @@ namespace VkNet.Tests.Infrastructure
 			authorizationResult.AccessToken.Should().Be("access_token");
 		}
 
-		[Test]
+		[Fact]
 		public void GetAuthorizationResult_VkAuthorizationException()
 		{
 			var url = new Uri("https://m.vk.com/login?act=authcheck&m=442");
@@ -36,7 +36,7 @@ namespace VkNet.Tests.Infrastructure
 			FluentActions.Invoking(() => auth.GetAuthorizationResult(url)).Should().ThrowExactly<VkAuthorizationException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetPageType_Captcha()
 		{
 			var url = new Uri(
@@ -48,7 +48,7 @@ namespace VkNet.Tests.Infrastructure
 			result.Should().Be(ImplicitFlowPageType.Captcha);
 		}
 
-		[Test]
+		[Fact]
 		public void GetPageType_Captcha_AfterIncorrectEnter()
 		{
 			var url = new Uri(
@@ -60,7 +60,7 @@ namespace VkNet.Tests.Infrastructure
 			result.Should().Be(ImplicitFlowPageType.Captcha);
 		}
 
-		[Test]
+		[Fact]
 		public void GetPageType_Consent()
 		{
 			var url = new Uri(
@@ -72,7 +72,7 @@ namespace VkNet.Tests.Infrastructure
 			result.Should().Be(ImplicitFlowPageType.Consent);
 		}
 
-		[Test]
+		[Fact]
 		public void GetPageType_Error()
 		{
 			var url = new Uri(
@@ -84,7 +84,7 @@ namespace VkNet.Tests.Infrastructure
 			result.Should().Be(ImplicitFlowPageType.Error);
 		}
 
-		[Test]
+		[Fact]
 		public void GetPageType_LoginPassword()
 		{
 			var url = new Uri(
@@ -96,7 +96,7 @@ namespace VkNet.Tests.Infrastructure
 			result.Should().Be(ImplicitFlowPageType.LoginPassword);
 		}
 
-		[Test]
+		[Fact]
 		public void GetPageType_LoginPassword_AfterIncorrectEnter()
 		{
 			var url = new Uri(
@@ -108,7 +108,7 @@ namespace VkNet.Tests.Infrastructure
 			result.Should().Be(ImplicitFlowPageType.LoginPassword);
 		}
 
-		[Test]
+		[Fact]
 		public void GetPageType_Result()
 		{
 			var url = new Uri(
@@ -120,9 +120,9 @@ namespace VkNet.Tests.Infrastructure
 			result.Should().Be(ImplicitFlowPageType.Result);
 		}
 
-		[Test]
-		[TestCase("https://m.vk.com/login?act=authcheck&api_hash=api_hash")]
-		[TestCase("https://m.vk.com:443/login?act=authcheck&api_hash=api_hash")]
+		[Theory]
+		[InlineData("https://m.vk.com/login?act=authcheck&api_hash=api_hash")]
+		[InlineData("https://m.vk.com:443/login?act=authcheck&api_hash=api_hash")]
 		public void GetPageType_TwoFactor(string uriString)
 		{
 			var url = new Uri(uriString);
@@ -133,9 +133,9 @@ namespace VkNet.Tests.Infrastructure
 			result.Should().Be(ImplicitFlowPageType.TwoFactor);
 		}
 
-		[Test]
-		[TestCase("https://m.vk.com/login?act=authcheck&m=442")]
-		[TestCase("https://m.vk.com:443/login?act=authcheck&m=442")]
+		[Theory]
+		[InlineData("https://m.vk.com/login?act=authcheck&m=442")]
+		[InlineData("https://m.vk.com:443/login?act=authcheck&m=442")]
 		public void GetPageType_TwoFactor_AfterIncorrectEnter(string uriString)
 		{
 			var url = new Uri(uriString);

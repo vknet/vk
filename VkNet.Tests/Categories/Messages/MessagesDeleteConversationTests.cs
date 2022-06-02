@@ -1,13 +1,13 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 
 	public class MessagesDeleteConversationTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void DeleteConversation()
 		{
 			Url = "https://api.vk.com/method/messages.deleteConversation";

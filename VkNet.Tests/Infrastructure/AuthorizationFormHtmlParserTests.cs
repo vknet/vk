@@ -4,15 +4,15 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
+using Xunit;
 
 namespace VkNet.Tests.Infrastructure
 {
-	[TestFixture]
+
 	public class AuthorizationFormHtmlParserTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public async Task LoginForm()
 		{
 			Url = "https://m.vk.com/login?act=authcheck&m=442";
@@ -27,7 +27,7 @@ namespace VkNet.Tests.Infrastructure
 			result.Fields.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public async Task CaptchaForm()
 		{
 			Url = "https://m.vk.com/login?act=authcheck&m=442";
@@ -48,7 +48,7 @@ namespace VkNet.Tests.Infrastructure
 			result.Fields.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public async Task TwoFaForm()
 		{
 			Url = "https://m.vk.com/login?act=authcheck&m=442";
@@ -63,7 +63,7 @@ namespace VkNet.Tests.Infrastructure
 			result.Fields.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public async Task ConsentForm()
 		{
 			Url = "https://m.vk.com/login?act=authcheck&m=442";

@@ -1,19 +1,19 @@
 ﻿using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
-	[TestFixture]
+
 	public class GroupGetBannedTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void GetBanned_Profile()
 		{
 			Url = "https://api.vk.com/method/groups.getBanned";
@@ -39,7 +39,7 @@ namespace VkNet.Tests.Categories.Group
 			user.BanInfo.EndDate.Should().Be(DateHelper.TimeStampToDateTime(1517585141));
 		}
 
-		[Test]
+		[Fact]
 		public void GetBanned_Group()
 		{
 			Url = "https://api.vk.com/method/groups.getBanned";

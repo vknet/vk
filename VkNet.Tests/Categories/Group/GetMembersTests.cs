@@ -1,8 +1,8 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
@@ -12,7 +12,7 @@ namespace VkNet.Tests.Categories.Group
 		/// <inheritdoc />
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void GetMembers()
 		{
 			Url = "https://api.vk.com/method/groups.getMembers";

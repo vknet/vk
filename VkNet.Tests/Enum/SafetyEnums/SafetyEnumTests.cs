@@ -1,14 +1,14 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using Xunit;
 
 namespace VkNet.Tests.Enum.SafetyEnums
 {
-	[TestFixture]
+
 	public class SafetyEnumsTest
 	{
-		[Test]
+		[Fact]
 		public void NullTest()
 		{
 			var result = AppFilter.FromJsonString("");
@@ -16,7 +16,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			result.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void AppFilterTest()
 		{
 			// get test
@@ -28,7 +28,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			AppFilter.FromJsonString("featured").Should().Be(AppFilter.Featured);
 		}
 
-		[Test]
+		[Fact]
 		public void AppPlatformsTest()
 		{
 			// get test
@@ -44,7 +44,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			AppPlatforms.FromJsonString("web").Should().Be(AppPlatforms.Web);
 		}
 
-		[Test]
+		[Fact]
 		public void AppRatingTypeTest()
 		{
 			// get test
@@ -56,7 +56,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			AppRatingType.FromJsonString("points").Should().Be(AppRatingType.Points);
 		}
 
-		[Test]
+		[Fact]
 		public void AppRequestTypeTest()
 		{
 			// get test
@@ -68,7 +68,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			AppRequestType.FromJsonString("request").Should().Be(AppRequestType.Request);
 		}
 
-		[Test]
+		[Fact]
 		public void AppSortTest()
 		{
 			// get test
@@ -86,7 +86,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			AppSort.FromJsonString("popular_week").Should().Be(AppSort.PopularWeek);
 		}
 
-		[Test]
+		[Fact]
 		public void ChangeNameStatusTest()
 		{
 			// get test
@@ -108,7 +108,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			ChangeNameStatus.FromJsonString("was_declined").Should().Be(ChangeNameStatus.WasDeclined);
 		}
 
-		[Test]
+		[Fact]
 		public void CommentObjectTypeTest()
 		{
 			// get test
@@ -130,7 +130,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			CommentObjectType.FromJsonString("note").Should().Be(CommentObjectType.Note);
 		}
 
-		[Test]
+		[Fact]
 		public void CommentsSortTest()
 		{
 			// get test
@@ -142,7 +142,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			CommentsSort.FromJsonString("desc").Should().Be(CommentsSort.Desc);
 		}
 
-		[Test]
+		[Fact]
 		public void DeactivatedTest()
 		{
 			// get test
@@ -156,7 +156,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Deactivated.FromJsonString("activated").Should().Be(Deactivated.Activated);
 		}
 
-		[Test]
+		[Fact]
 		public void DisplayTest()
 		{
 			// get test
@@ -170,7 +170,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Display.FromJsonString("mobile").Should().Be(Display.Mobile);
 		}
 
-		[Test]
+		[Fact]
 		public void FeedTypeTest()
 		{
 			// get test
@@ -182,7 +182,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			FeedType.FromJsonString("photo_tag").Should().Be(FeedType.PhotoTag);
 		}
 
-		[Test]
+		[Fact]
 		public void FriendsFilterTest()
 		{
 			// get test
@@ -198,7 +198,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			FriendsFilter.FromJsonString("mutual_contacts").Should().Be(FriendsFilter.MutualContacts);
 		}
 
-		[Test]
+		[Fact]
 		public void FriendsOrderTest()
 		{
 			// get test
@@ -212,7 +212,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			FriendsOrder.FromJsonString("random").Should().Be(FriendsOrder.Random);
 		}
 
-		[Test]
+		[Fact]
 		public void GroupsSortTest()
 		{
 			// get test
@@ -228,7 +228,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			GroupsSort.FromJsonString("time_desc").Should().Be(GroupsSort.TimeDesc);
 		}
 
-		[Test]
+		[Fact]
 		public void GroupTypeTest()
 		{
 			// get test
@@ -244,7 +244,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			GroupType.FromJsonString("undefined").Should().Be(GroupType.Undefined);
 		}
 
-		[Test]
+		[Fact]
 		public void LikeObjectTypeTest()
 		{
 			// get test
@@ -284,7 +284,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			LikeObjectType.FromJsonString("market_comment").Should().Be(LikeObjectType.MarketComment);
 		}
 
-		[Test]
+		[Fact]
 		public void LikesFilterTest()
 		{
 			// get test
@@ -296,7 +296,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			LikesFilter.FromJsonString("copies").Should().Be(LikesFilter.Copies);
 		}
 
-		[Test]
+		[Fact]
 		public void LinkAccessTypeTest()
 		{
 			// get test
@@ -312,7 +312,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			LinkAccessType.FromJsonString("processing").Should().Be(LinkAccessType.Processing);
 		}
 
-		[Test]
+		[Fact]
 		public void MediaTypeTest()
 		{
 			// get test
@@ -338,7 +338,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			MediaType.FromJsonString("graffiti").Should().Be(MediaType.Graffiti);
 		}
 
-		[Test]
+		[Fact]
 		public void NameCaseTest()
 		{
 			// get test
@@ -358,7 +358,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			NameCase.FromJsonString("abl").Should().Be(NameCase.Abl);
 		}
 
-		[Test]
+		[Fact]
 		public void NewsObjectTypesTest()
 		{
 			// get test
@@ -380,7 +380,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			NewsObjectTypes.FromJsonString("audio").Should().Be(NewsObjectTypes.Audio);
 		}
 
-		[Test]
+		[Fact]
 		public void NewsTypesTest()
 		{
 			// get test
@@ -400,7 +400,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			NewsTypes.FromJsonString("note").Should().Be(NewsTypes.Note);
 		}
 
-		[Test]
+		[Fact]
 		public void OccupationTypeTest()
 		{
 			// get test
@@ -415,7 +415,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			OccupationType.FromJsonString("university").Should().Be(OccupationType.University);
 		}
 
-		[Test]
+		[Fact]
 		public void PhotoAlbumTypeTest()
 		{
 			// get test
@@ -431,7 +431,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			PhotoAlbumType.FromJsonString("saved").Should().Be(PhotoAlbumType.Saved);
 		}
 
-		[Test]
+		[Fact]
 		public void PhotoFeedTypeTest()
 		{
 			// get test
@@ -444,7 +444,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			PhotoFeedType.FromJsonString("photo_tag").Should().Be(PhotoFeedType.PhotoTag);
 		}
 
-		[Test]
+		[Fact]
 		public void PhotoSearchRadiusTest()
 		{
 			// get test
@@ -466,7 +466,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			PhotoSearchRadius.FromJsonString("50000").Should().Be(PhotoSearchRadius.FiftyThousand);
 		}
 
-		[Test]
+		[Fact]
 		public void PhotoSizeTypeTest()
 		{
 			// get test
@@ -494,7 +494,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			PhotoSizeType.FromJsonString("w").Should().Be(PhotoSizeType.W);
 		}
 
-		[Test]
+		[Fact]
 		public void PlatformTest()
 		{
 			// get test
@@ -508,7 +508,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Platform.FromJsonString("wphone").Should().Be(Platform.WindowsPhone);
 		}
 
-		[Test]
+		[Fact]
 		public void PostSourceTypeTest()
 		{
 			// get test
@@ -526,7 +526,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			PostSourceType.FromJsonString("sms").Should().Be(PostSourceType.Sms);
 		}
 
-		[Test]
+		[Fact]
 		public void PostTypeOrderTest()
 		{
 			// get test
@@ -538,7 +538,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			PostTypeOrder.FromJsonString("copy").Should().Be(PostTypeOrder.Copy);
 		}
 
-		[Test]
+		[Fact]
 		public void PostTypeTest()
 		{
 			// get test
@@ -556,7 +556,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			PostType.FromJsonString("suggest").Should().Be(PostType.Suggest);
 		}
 
-		[Test]
+		[Fact]
 		public void PrivacyTest()
 		{
 			// get test
@@ -579,7 +579,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Privacy.FromJsonString("only_me").Should().Be(Privacy.OnlyMe);
 		}
 
-		[Test]
+		[Fact]
 		public void RelativeTypeTest()
 		{
 			// get test
@@ -599,7 +599,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			RelativeType.FromJsonString("grandchild").Should().Be(RelativeType.Grandchild);
 		}
 
-		[Test]
+		[Fact]
 		public void ReportTypeTest()
 		{
 			// get test
@@ -616,7 +616,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			ReportType.FromJsonString("advertisment").Should().Be(ReportType.Advertisment);
 		}
 
-		[Test]
+		[Fact]
 		public void ServicesTest()
 		{
 			// get test
@@ -640,7 +640,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			Services.FromJsonString("google").Should().Be(Services.Google);
 		}
 
-		[Test]
+		[Fact]
 		public void UserSectionTest()
 		{
 			// get test
@@ -653,7 +653,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			UserSection.FromJsonString("subscriptions").Should().Be(UserSection.Subscriptions);
 		}
 
-		[Test]
+		[Fact]
 		public void VideoCatalogItemTypeTest()
 		{
 			// get test
@@ -666,7 +666,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			VideoCatalogItemType.FromJsonString("album").Should().Be(VideoCatalogItemType.Album);
 		}
 
-		[Test]
+		[Fact]
 		public void VideoCatalogTypeTest()
 		{
 			// get test
@@ -679,7 +679,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			VideoCatalogType.FromJsonString("category").Should().Be(VideoCatalogType.Category);
 		}
 
-		[Test]
+		[Fact]
 		public void WallFilterTest()
 		{
 			// get test
@@ -697,7 +697,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			WallFilter.FromJsonString("postponed").Should().Be(WallFilter.Postponed);
 		}
 
-		[Test]
+		[Fact]
 		public void KeyboardButtonColorTest()
 		{
 			// get test
@@ -713,7 +713,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			KeyboardButtonColor.FromJsonString("primary").Should().Be(KeyboardButtonColor.Primary);
 		}
 
-		[Test]
+		[Fact]
 		public void KeyboardButtonActionTypeTest()
 		{
 			// get test
@@ -733,7 +733,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			KeyboardButtonActionType.FromJsonString("callback").Should().Be(KeyboardButtonActionType.Callback);
 		}
 
-		[Test]
+		[Fact]
 		public void StoryObjectStateTest()
 		{
 			// get test
@@ -747,7 +747,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			StoryObjectState.FromJsonString("off").Should().Be(StoryObjectState.Off);
 		}
 
-		[Test]
+		[Fact]
 		public void StoryLinkTextTest()
 		{
 			// get test
@@ -791,7 +791,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			StoryLinkText.FromJsonString("write").Should().Be(StoryLinkText.Write);
 		}
 
-		[Test]
+		[Fact]
 		public void MarketItemButtonTitleTest()
 		{
 			// get test
@@ -805,7 +805,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			MarketItemButtonTitle.FromJsonString("Перейти в магазин").Should().Be(MarketItemButtonTitle.GoToTheStore);
 		}
 
-		[Test]
+		[Fact]
 		public void AppWidgetTypeTest()
 		{
 			// get test
@@ -831,7 +831,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			AppWidgetType.FromJsonString("cover_list").Should().Be(AppWidgetType.CoverList);
 		}
 
-		[Test]
+		[Fact]
 		public void TranscriptStatesTest()
 		{
 			// get test
@@ -843,7 +843,7 @@ namespace VkNet.Tests.Enum.SafetyEnums
 			TranscriptStates.FromJsonString("in_progress").Should().Be(TranscriptStates.InProgress);
 		}
 
-		[Test]
+		[Fact]
 		public void MessageEventTypeTest()
 		{
 			// get test

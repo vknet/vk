@@ -1,13 +1,13 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class DocumentModel
 	{
-		[Test]
+		[Fact]
 		public void ToString_DocumentShouldHaveAccessKey()
 		{
 			var document = new Document

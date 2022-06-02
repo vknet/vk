@@ -1,13 +1,13 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	public class MessagesGetConversationsTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void GetConversations()
 		{
 			Url = "https://api.vk.com/method/messages.getConversations";
@@ -18,7 +18,7 @@ namespace VkNet.Tests.Categories.Messages
 			result.Count.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void GetConversations_Attachment_wall()
 		{
 			Url = "https://api.vk.com/method/messages.getConversations";
@@ -29,7 +29,7 @@ namespace VkNet.Tests.Categories.Messages
 			result.Count.Should().Be(253);
 		}
 
-		[Test]
+		[Fact]
 		public void GetConversations_Group_PhotoField()
 		{
 			Url = "https://api.vk.com/method/messages.getConversations";

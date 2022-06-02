@@ -1,14 +1,14 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
-	[TestFixture]
+
 	public class VkErrorFactoryTests
 	{
-		[Test]
+		[Fact]
 		public void VkErrorFactory()
 		{
 			var exception = VkNet.Utils.VkErrorFactory.Create(new VkError

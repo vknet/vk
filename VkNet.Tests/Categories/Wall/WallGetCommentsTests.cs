@@ -1,16 +1,16 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Wall
 {
-	[TestFixture]
+
 	public class WallGetCommentsTests : CategoryBaseTest
 	{
 		protected override string Folder => "Wall";
 
-		[Test]
+		[Fact]
 		public void GetComments802()
 		{
 			Url = "https://api.vk.com/method/wall.getComments";

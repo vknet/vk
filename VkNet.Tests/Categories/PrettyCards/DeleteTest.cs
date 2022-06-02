@@ -1,17 +1,17 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.PrettyCards
 {
-	[TestFixture]
+
 
 	public class DeleteTest : CategoryBaseTest
 	{
 		protected override string Folder => "PrettyCards";
 
-		[Test]
+		[Fact]
 		public void Delete()
 		{
 			Url = "https://api.vk.com/method/prettyCards.delete";

@@ -1,17 +1,17 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.AppWidgets
 {
-	[TestFixture]
+
 
 	public class GetAppImageUploadServerTest : CategoryBaseTest
 	{
 		protected override string Folder => "AppWidgets";
 
-		[Test]
+		[Fact]
 		public void GetAppImageUploadServer()
 		{
 			Url = "https://api.vk.com/method/appWidgets.getAppImageUploadServer";

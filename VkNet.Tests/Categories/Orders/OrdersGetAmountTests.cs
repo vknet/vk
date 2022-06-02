@@ -1,16 +1,16 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Orders
 {
-	[TestFixture]
+
 
 	public class OrdersGetAmountTests : CategoryBaseTest
 	{
 		protected override string Folder => "Orders";
 
-		[Test]
+		[Fact]
 		public void GetAmount()
 		{
 			Url = "https://api.vk.com/method/orders.getAmount";

@@ -1,17 +1,17 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Status
 {
-	[TestFixture]
+
 	public class StatusCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Status";
 
-		[Test]
+		[Fact]
 		public void Get_AccessDenied_ThrowAccessDeniedException()
 		{
 			Url = "https://api.vk.com/method/status.get";
@@ -25,14 +25,14 @@ namespace VkNet.Tests.Categories.Status
 				.Be("Permission to perform this action is denied");
 		}
 
-		[Test]
+		[Fact]
 		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var status = new StatusCategory(new VkApi());
 			FluentActions.Invoking(() => status.Get(1)).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_Audio_ReturnStatus()
 		{
 			Url = "https://api.vk.com/method/status.get";
@@ -54,7 +54,7 @@ namespace VkNet.Tests.Categories.Status
 			actual.Audio.LyricsId.Should().Be(7985406);
 		}
 
-		[Test]
+		[Fact]
 		public void Get_SimpleText_ReturnStatus()
 		{
 			Url = "https://api.vk.com/method/status.get";
@@ -67,7 +67,7 @@ namespace VkNet.Tests.Categories.Status
 			actual.Audio.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void Set_AccessDenied_ThrowAccessDeniedException()
 		{
 			Url = "https://api.vk.com/method/status.set";
@@ -76,14 +76,14 @@ namespace VkNet.Tests.Categories.Status
 			FluentActions.Invoking(() => Api.Status.Set("test")).Should().ThrowExactly<PermissionToPerformThisActionException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Set_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var status = new StatusCategory(new VkApi());
 			FluentActions.Invoking(() => status.Set("test")).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Set_SimpleText_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/status.set";

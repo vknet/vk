@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Streaming
 {
@@ -12,7 +12,7 @@ namespace VkNet.Tests.Categories.Streaming
 	{
 		protected override string Folder => "Streaming";
 
-		[Test]
+		[Fact]
 		public void GetServerUrl()
 		{
 			Url = "https://api.vk.com/method/streaming.getServerUrl";
@@ -25,7 +25,7 @@ namespace VkNet.Tests.Categories.Streaming
 			result.Key.Should().Be("be8d29c05546e58cb52420aaf2b9f51f0a440f89");
 		}
 
-		[Test]
+		[Fact]
 		public void GetSettings()
 		{
 			Url = "https://api.vk.com/method/streaming.getSettings";
@@ -37,7 +37,7 @@ namespace VkNet.Tests.Categories.Streaming
 			result.MonthlyLimit.Should().Be(MonthlyLimit.Tier6);
 		}
 
-		[Test]
+		[Fact]
 		public void GetStats()
 		{
 			Url = "https://api.vk.com/method/streaming.getStats";
@@ -53,7 +53,7 @@ namespace VkNet.Tests.Categories.Streaming
 			stats.Stats.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void SetSettings()
 		{
 			Url = "https://api.vk.com/method/streaming.setSettings";
@@ -64,7 +64,7 @@ namespace VkNet.Tests.Categories.Streaming
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void GetStem()
 		{
 			Url = "https://api.vk.com/method/streaming.getStem";

@@ -1,14 +1,14 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollBoardTest : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_BoardPostNew()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNew));
@@ -33,7 +33,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.BoardPost.TopicOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_BoardPostNewFirst()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNewFirst));
@@ -59,7 +59,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.BoardPost.TopicId.Should().Be(topicId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_BoardPostEditTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostEditTest));
@@ -83,7 +83,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.BoardPost.TopicOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_BoardPostRestoreTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostRestoreTest));
@@ -108,7 +108,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.BoardPost.TopicOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_BoardPostDeleteTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostDeleteTest));

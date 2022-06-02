@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Audio
 {
-	[TestFixture]
+
 
 	public class AudioAddToPlaylistTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";
 
-		[Test]
+		[Fact]
 		public void AddToPlaylistTest()
 		{
 			Url = "https://api.vk.com/method/audio.addToPlaylist";

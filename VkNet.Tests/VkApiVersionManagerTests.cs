@@ -1,92 +1,92 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Abstractions.Core;
 using VkNet.Exception;
 using VkNet.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests
 {
-	[TestFixture]
+
 	public class VkApiVersionManagerTests
 	{
-		private IVkApiVersionManager Manager { get; }
-
 		public VkApiVersionManagerTests()
 		{
 			Manager = new VkApiVersionManager();
 		}
 
-		[Test]
+		private IVkApiVersionManager Manager { get; }
+
+		[Fact]
 		public void VersionIsNotEmpty()
 		{
 			Manager.Should().NotBeNull();
 			Manager.Version.Should().NotBeNullOrWhiteSpace();
 		}
 
-		[Test]
+		[Fact]
 		public void VersionIsChanged()
 		{
 			Manager.SetVersion(999, 0);
 			Manager.Version.Should().Be("999.0");
 		}
 
-		[Test]
+		[Fact]
 		public void IsGreaterThanOrEqual_GreaterValue()
 		{
 			Manager.SetVersion(5, 92);
 			Manager.IsGreaterThanOrEqual(5, 93).Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void IsGreaterThanOrEqual_EqualValue()
 		{
 			Manager.SetVersion(5, 92);
 			Manager.IsGreaterThanOrEqual(5, 92).Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void IsGreaterThanOrEqual_MinorLessValue()
 		{
 			Manager.SetVersion(5, 92);
 			Manager.IsGreaterThanOrEqual(5, 91).Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void IsGreaterThanOrEqual_MajorLessValue()
 		{
 			Manager.SetVersion(5, 92);
 			Manager.IsGreaterThanOrEqual(4, 95).Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void IsLessThanOrEqual_GreaterValue()
 		{
 			Manager.SetVersion(5, 92);
 			Manager.IsLessThanOrEqual(5, 93).Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void IsLessThanOrEqual_EqualValue()
 		{
 			Manager.SetVersion(5, 92);
 			Manager.IsLessThanOrEqual(5, 92).Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void IsLessThanOrEqual_MinorLessValue()
 		{
 			Manager.SetVersion(5, 92);
 			Manager.IsLessThanOrEqual(5, 91).Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void IsLessThanOrEqual_MajorLessValue()
 		{
 			Manager.SetVersion(5, 92);
 			Manager.IsLessThanOrEqual(4, 95).Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void MinimalVersion_5_81_ShouldThrowException()
 		{
 			// Arrange
@@ -100,7 +100,7 @@ namespace VkNet.Tests
 				.Be("https://vk.com/dev/constant_version_updates");
 		}
 
-		[Test]
+		[Fact]
 		public void MinimalMajorVersion_5_ShouldThrowException()
 		{
 			// Arrange

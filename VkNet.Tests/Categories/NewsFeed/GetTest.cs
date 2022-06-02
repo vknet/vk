@@ -1,17 +1,17 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.Filters;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.NewsFeed
 {
-	[TestFixture]
+
 	public class GetTest : CategoryBaseTest
 	{
 		protected override string Folder => "NewsFeed";
 
-		[Test]
+		[Fact]
 		public void Get()
 		{
 			Url = "https://api.vk.com/method/newsfeed.get";
@@ -32,7 +32,7 @@ namespace VkNet.Tests.Categories.NewsFeed
 			result.NextFrom.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Get2()
 		{
 			Url = "https://api.vk.com/method/newsfeed.get";

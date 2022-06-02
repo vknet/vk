@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Moq;
 using Moq.AutoMock;
 using Newtonsoft.Json.Linq;
-using NUnit.Framework;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
@@ -43,17 +42,10 @@ namespace VkNet.Tests
 		/// </summary>
 		protected string Url;
 
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
 		/// <summary>
 		/// Пред установки выполнения каждого теста.
 		/// </summary>
-		[SetUp]
-		public void Init()
+		public BaseTest()
 		{
 			Mocker.Use<IApiAuthParams>(new ApiAuthParams
 			{
@@ -96,7 +88,8 @@ namespace VkNet.Tests
 
 			Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x =>
 					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
-						It.IsAny<IEnumerable<KeyValuePair<string, string>>>(), It.IsAny<Encoding>()))
+						It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),
+						It.IsAny<Encoding>()))
 				.Callback(Callback)
 				.Returns(() =>
 				{
@@ -109,7 +102,8 @@ namespace VkNet.Tests
 				});
 
 			Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
-					It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),It.IsAny<Encoding>()))
+					It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),
+					It.IsAny<Encoding>()))
 				.Throws<ArgumentException>();
 
 			Api = Mocker.CreateInstance<VkApi>();
@@ -118,19 +112,21 @@ namespace VkNet.Tests
 			Api.CaptchaSolver = Mocker.Get<ICaptchaSolver>();
 			SetupCaptchaHandler();
 
-			Api.Authorize
-			(
-				Mocker.Get<IApiAuthParams>()
-			);
+			Api.Authorize(Mocker.Get<IApiAuthParams>());
 
 			Api.RequestsPerSecond = int.MaxValue;
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 
 		/// <summary>
 		/// После исполнения каждого теста.
 		/// </summary>
-		[TearDown]
-		public void Cleanup()
+		~BaseTest()
 		{
 			Json = null;
 			Url = null;

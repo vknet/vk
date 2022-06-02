@@ -1,16 +1,16 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Secure
 {
-	[TestFixture]
+
 	public class SecureTests : CategoryBaseTest
 	{
 		protected override string Folder => "Secure";
 
-		[Test]
+		[Fact]
 		public void AddAppEvent()
 		{
 			Url = "https://api.vk.com/method/secure.addAppEvent";
@@ -21,7 +21,7 @@ namespace VkNet.Tests.Categories.Secure
 			app.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void CheckToken()
 		{
 			Url = "https://api.vk.com/method/secure.checkToken";
@@ -32,7 +32,7 @@ namespace VkNet.Tests.Categories.Secure
 			app.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetAppBalance()
 		{
 			Url = "https://api.vk.com/method/secure.getAppBalance";
@@ -43,7 +43,7 @@ namespace VkNet.Tests.Categories.Secure
 			app.Should().Be(5000);
 		}
 
-		[Test]
+		[Fact]
 		public void GetSmsHistory()
 		{
 			Url = "https://api.vk.com/method/secure.getSMSHistory";
@@ -57,7 +57,7 @@ namespace VkNet.Tests.Categories.Secure
 			item.Id.Should().Be(1238497);
 		}
 
-		[Test]
+		[Fact]
 		public void GetTransactionsHistory()
 		{
 			Url = "https://api.vk.com/method/secure.getTransactionsHistory";
@@ -68,7 +68,7 @@ namespace VkNet.Tests.Categories.Secure
 			app.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetUserLevel()
 		{
 			Url = "https://api.vk.com/method/secure.getUserLevel";
@@ -82,7 +82,7 @@ namespace VkNet.Tests.Categories.Secure
 			app.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GiveEventSticker()
 		{
 			Url = "https://api.vk.com/method/secure.giveEventSticker";
@@ -99,7 +99,7 @@ namespace VkNet.Tests.Categories.Secure
 			app.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void SendNotification()
 		{
 			Url = "https://api.vk.com/method/secure.sendNotification";
@@ -114,7 +114,7 @@ namespace VkNet.Tests.Categories.Secure
 			app.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void SendSmsNotification()
 		{
 			Url = "https://api.vk.com/method/secure.sendSMSNotification";
@@ -125,7 +125,7 @@ namespace VkNet.Tests.Categories.Secure
 			app.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void SetCounter()
 		{
 			Url = "https://api.vk.com/method/secure.setCounter";

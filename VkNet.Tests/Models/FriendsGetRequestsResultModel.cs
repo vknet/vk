@@ -1,17 +1,17 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 
 	public class FriendsGetRequestsResultModel : CategoryBaseTest
 	{
 		protected override string Folder => "Friends";
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_Message()
 		{
 			ReadCategoryJsonPath(nameof(ShouldHaveField_Message));
@@ -22,7 +22,7 @@ namespace VkNet.Tests.Models
 			result.Message.Should().Be("text");
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_Mutual()
 		{
 			ReadCategoryJsonPath(nameof(ShouldHaveField_Mutual));
@@ -33,7 +33,7 @@ namespace VkNet.Tests.Models
 			result.Mutual.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_UserId()
 		{
 			ReadCategoryJsonPath(nameof(ShouldHaveField_UserId));

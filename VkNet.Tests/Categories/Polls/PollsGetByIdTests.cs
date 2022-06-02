@@ -1,16 +1,16 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Polls
 {
-	[TestFixture]
+
 	public class PollsGetByIdTests : CategoryBaseTest
 	{
 		protected override string Folder => "Polls";
 
-		[Test]
+		[Fact]
 		public void GetById()
 		{
 			Url = "https://api.vk.com/method/polls.getById";

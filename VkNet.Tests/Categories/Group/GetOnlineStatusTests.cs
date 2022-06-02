@@ -1,17 +1,17 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
-	[TestFixture]
+
 
 	public class GetOnlineStatusTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void GetOnlineStatus()
 		{
 			Url = "https://api.vk.com/method/groups.getOnlineStatus";

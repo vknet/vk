@@ -1,12 +1,12 @@
 using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 	public class MessagesGetRecentCallsTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void GetRecentCalls()
 		{
 			Url = "https://api.vk.com/method/messages.getRecentCalls";

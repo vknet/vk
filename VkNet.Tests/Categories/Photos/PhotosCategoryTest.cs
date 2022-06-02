@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Photos
 {
-	[TestFixture]
+
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 	public class PhotosCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Photos";
 
-		[Test]
+		[Fact]
 		public void CreateAlbum_NormalCase()
 		{
 			Url = "https://api.vk.com/method/photos.createAlbum";
@@ -44,7 +44,7 @@ namespace VkNet.Tests.Categories.Photos
 			album.Size.Should().Be(0);
 		}
 
-		[Test]
+		[Fact]
 		public void DeleteAlbum_NormalCase()
 		{
 			Url = "https://api.vk.com/method/photos.deleteAlbum";
@@ -55,7 +55,7 @@ namespace VkNet.Tests.Categories.Photos
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void EditAlbum_NormalCase()
 		{
 			Url = "https://api.vk.com/method/photos.editAlbum";
@@ -72,7 +72,7 @@ namespace VkNet.Tests.Categories.Photos
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void GetAlbums_NormalCase()
 		{
 			Url = "https://api.vk.com/method/photos.getAlbums";
@@ -99,7 +99,7 @@ namespace VkNet.Tests.Categories.Photos
 			album.Size.Should().Be(8);
 		}
 
-		[Test]
+		[Fact]
 		public void GetAlbums_PrivacyCase()
 		{
 			Url = "https://api.vk.com/method/photos.getAlbums";
@@ -151,7 +151,7 @@ namespace VkNet.Tests.Categories.Photos
 			album.PrivacyComment[1].ToString().Should().Be("-list1");
 		}
 
-		[Test]
+		[Fact]
 		public void GetAlbumsCount_NormalCase()
 		{
 			Url = "https://api.vk.com/method/photos.getAlbumsCount";
@@ -162,7 +162,7 @@ namespace VkNet.Tests.Categories.Photos
 			count.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void GetAll_NormalCase()
 		{
 			Url = "https://api.vk.com/method/photos.getAll";
@@ -204,7 +204,7 @@ namespace VkNet.Tests.Categories.Photos
 			photo.CreateTime.Should().Be(DateHelper.TimeStampToDateTime(1398658327));
 		}
 
-		[Test]
+		[Fact]
 		public void GetMessagesUploadServer_NormalCase()
 		{
 			Url = "https://api.vk.com/method/photos.getMessagesUploadServer";
@@ -221,7 +221,7 @@ namespace VkNet.Tests.Categories.Photos
 			info.UserId.Should().Be(234618);
 		}
 
-		[Test]
+		[Fact]
 		public void GetOwnerCoverPhotoUploadServer_NormalCase()
 		{
 			Url = "https://api.vk.com/method/photos.getOwnerCoverPhotoUploadServer";
@@ -236,7 +236,7 @@ namespace VkNet.Tests.Categories.Photos
 					"http://pu.vk.com/c837421/upload.php?_query=eyJhY3QiOiJvd25lcl9jb3ZlciIsIm9pZCI6LTkzNjY5OTI0LCJhcGkiOnRydWUsImFwaV93cmFwIjp7Imhhc2giOiIxMDA4MmRjZWJlZGIzMjZkNDQiLCJwaG90byI6IntyZXN1bHR9In0sIm1pZCI6NzY2NDA4ODIsInNlcnZlciI6ODM3NDIxLCJfb3JpZ2luIjoiaHR0cHM6XC9cL2FwaS52ay5jb20iLCJfc2lnIjoiYzZjNWM4ZGVmYmE5YWQ3YWM1ZTYzYTUxMWJjMjgzZDcifQ&_crop=0,0,1590,400");
 		}
 
-		[Test]
+		[Fact]
 		public void GetProfileUploadServer_NormalCase()
 		{
 			Url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer";
@@ -249,7 +249,7 @@ namespace VkNet.Tests.Categories.Photos
 			info.UploadUrl.Should().Be("http://cs618026.vk.com/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh");
 		}
 
-		[Test]
+		[Fact]
 		public void SaveOwnerCoverPhoto_NormalCase()
 		{
 			Url = "https://api.vk.com/method/photos.saveOwnerCoverPhoto";
@@ -301,7 +301,7 @@ namespace VkNet.Tests.Categories.Photos
 			image.Height.Should().Be(400);
 		}
 
-		[Test]
+		[Fact]
 		public void SaveWallPhoto_NormalCase()
 		{
 			Url = "https://api.vk.com/method/photos.saveWallPhoto";
@@ -335,7 +335,7 @@ namespace VkNet.Tests.Categories.Photos
 			photo.CreateTime.Should().Be(DateHelper.TimeStampToDateTime(1415629651));
 		}
 
-		[Test]
+		[Fact]
 		public void Search_Error26_Lat_and_Long_in_output_photo()
 		{
 			Url = "https://api.vk.com/method/photos.search";
@@ -366,7 +366,7 @@ namespace VkNet.Tests.Categories.Photos
 			photo1.Longitude.Should().Be(29.882818222045898);
 		}
 
-		[Test]
+		[Fact]
 		public void Search_NormalCase()
 		{
 			Url = "https://api.vk.com/method/photos.search";
@@ -409,7 +409,7 @@ namespace VkNet.Tests.Categories.Photos
 			photo.CreateTime.Should().Be(DateHelper.TimeStampToDateTime(1403455788)); //  2014-06-22 20:49:48.000
 		}
 
-		[Test]
+		[Fact]
 		public void GetAlbums_Photo_Sizes()
 		{
 			Url = "https://api.vk.com/method/photos.getAlbums";

@@ -1,14 +1,14 @@
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_PhotoNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoNewTest));
@@ -31,7 +31,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.Photo.Id.Should().Be(photoId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_PhotoCommentNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentNewTest));
@@ -58,7 +58,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.PhotoComment.PhotoId.Should().Be(photoId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_PhotoCommentEditTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentEditTest));
@@ -83,7 +83,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.PhotoComment.PhotoOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_PhotoCommentRestoreTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentRestoreTest));
@@ -108,7 +108,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			update.PhotoComment.PhotoOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_PhotoCommentDeleteTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentDeleteTest));

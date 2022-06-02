@@ -3,14 +3,14 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
 	public class CountByIntervalAwaitableConstraintTests
 	{
-		[Test]
+		[Fact]
 		public async Task WaitForReadinessAsync()
 		{
 			const int count = 3;

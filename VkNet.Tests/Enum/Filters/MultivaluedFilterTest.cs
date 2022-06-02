@@ -1,13 +1,13 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.Filters;
+using Xunit;
 
 namespace VkNet.Tests.Enum.Filters
 {
-	[TestFixture]
+
 	public class MultivaluedFilterTest
 	{
-		[Test]
+		[Fact]
 		public void AccountFieldsTest()
 		{
 			// get test
@@ -31,7 +31,7 @@ namespace VkNet.Tests.Enum.Filters
 			AccountFields.FromJsonString("lang").Should().Be(AccountFields.Language);
 		}
 
-		[Test]
+		[Fact]
 		public void CountersFilterTest()
 		{
 			// get test
@@ -65,7 +65,7 @@ namespace VkNet.Tests.Enum.Filters
 				.Be(CountersFilter.All);
 		}
 
-		[Test]
+		[Fact]
 		public void GroupsFieldsTest()
 		{
 			// get test
@@ -143,7 +143,7 @@ namespace VkNet.Tests.Enum.Filters
 				.Be(GroupsFields.AllUndocumented);
 		}
 
-		[Test]
+		[Fact]
 		public void GroupsFiltersTest()
 		{
 			// get test
@@ -166,7 +166,7 @@ namespace VkNet.Tests.Enum.Filters
 			GroupsFilters.FromJsonString("admin,editor,moder,groups,publics,events").Should().Be(GroupsFilters.All);
 		}
 
-		[Test]
+		[Fact]
 		public void SubscribeFilterTest()
 		{
 			// get test
@@ -192,7 +192,7 @@ namespace VkNet.Tests.Enum.Filters
 			SubscribeFilter.FromJsonString("msg,friend,call,reply,mention,group,like").Should().Be(SubscribeFilter.All);
 		}
 
-		[Test]
+		[Fact]
 		public void UsersFieldsTest()
 		{
 			// get test
@@ -324,7 +324,7 @@ namespace VkNet.Tests.Enum.Filters
 				.Be(UsersFields.All);
 		}
 
-		[Test]
+		[Fact]
 		public void VideoFiltersTest()
 		{
 			// get test
@@ -345,7 +345,7 @@ namespace VkNet.Tests.Enum.Filters
 			VideoFilters.FromJsonString("mp4,youtube,vimeo,short,long").Should().Be(VideoFilters.All);
 		}
 
-		[Test]
+		[Fact]
 		public void AudioBroadcastFilterTest()
 		{
 			// get test

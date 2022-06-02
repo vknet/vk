@@ -1,16 +1,16 @@
 ﻿using System;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.PrettyCards
 {
-	[TestFixture]
+
 	public class GetUploadUrlTest : CategoryBaseTest
 	{
 		protected override string Folder => "PrettyCards";
 
-		[Test]
+		[Fact]
 		public void GetUploadUrl()
 		{
 			Url = "https://api.vk.com/method/prettyCards.getUploadURL";

@@ -1,14 +1,14 @@
 ﻿using System;
 using FluentAssertions;
 using Moq;
-using NUnit.Framework;
 using VkNet.Abstractions.Core;
 using VkNet.Model;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
-	[TestFixture]
+
 
 	public class CaptchaNeededExceptionTests : BaseTest
 	{
@@ -28,7 +28,7 @@ namespace VkNet.Tests.Utils
 			Api.CaptchaHandler = Mocker.Get<ICaptchaHandler>();
 		}
 
-		[Test]
+		[Fact]
 		public void Call_ThrowsCaptchaNeededException()
 		{
 			Url = "https://api.vk.com/method/messages.send";

@@ -1,14 +1,14 @@
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Exception;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollFailed : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_Failed1()
 		{
 			Url = "https://vk.com";
@@ -25,7 +25,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 				.ThrowExactly<LongPollOutdateException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_Failed1Ts()
 		{
 			Url = "https://vk.com";
@@ -46,7 +46,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 				.Be(ts);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_Failed2()
 		{
 			Url = "https://vk.com";
@@ -63,7 +63,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 				.ThrowExactly<LongPollKeyExpiredException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_Failed3()
 		{
 			Url = "https://vk.com";

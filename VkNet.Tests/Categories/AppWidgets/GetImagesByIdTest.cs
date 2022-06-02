@@ -1,17 +1,17 @@
 ﻿using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.AppWidgets
 {
-	[TestFixture]
+
 
 	public class GetImagesByIdTest : CategoryBaseTest
 	{
 		protected override string Folder => "AppWidgets";
 
-		[Test]
+		[Fact]
 		public void GetAppImages()
 		{
 			Url = "https://api.vk.com/method/appWidgets.getImagesById";

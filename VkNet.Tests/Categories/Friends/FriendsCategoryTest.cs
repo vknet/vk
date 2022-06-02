@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Friends
 {
-	[TestFixture]
+
 	public class FriendsCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Friends";
 
-		[Test]
+		[Fact]
 		public void Add_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.add";
@@ -27,13 +27,13 @@ namespace VkNet.Tests.Categories.Friends
 			status.Should().Be(AddFriendStatus.Sended);
 		}
 
-		[Test]
+		[Fact]
 		public void AddList_NameIsEmpty_ThrowException()
 		{
 			FluentActions.Invoking(() => Api.Friends.AddList("", null)).Should().ThrowExactly<ArgumentNullException>();
 		}
 
-		[Test]
+		[Fact]
 		public void AddList_OnlyName_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.addList";
@@ -44,7 +44,7 @@ namespace VkNet.Tests.Categories.Friends
 			id.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void AddList_WithUserIds_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.addList";
@@ -60,7 +60,7 @@ namespace VkNet.Tests.Categories.Friends
 			id.Should().Be(2);
 		}
 
-		[Test]
+		[Fact]
 		public void AreFriends_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
@@ -74,7 +74,7 @@ namespace VkNet.Tests.Categories.Friends
 				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void AreFriends_FourTypes_RightFriendStatuses()
 		{
 			Url = "https://api.vk.com/method/friends.areFriends";
@@ -98,13 +98,13 @@ namespace VkNet.Tests.Categories.Friends
 			(dict.Skip(3).FirstOrDefault()?.FriendStatus).Should().Be(FriendStatus.OutputRequest);
 		}
 
-		[Test]
+		[Fact]
 		public void AreFriends_NullInput_ThrowArgumentNullException()
 		{
 			FluentActions.Invoking(() => Api.Friends.AreFriends(null)).Should().ThrowExactly<ArgumentNullException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Delete_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.delete";
@@ -115,7 +115,7 @@ namespace VkNet.Tests.Categories.Friends
 			status.OutRequestDeleted.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void DeleteAllRequests_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.deleteAllRequests";
@@ -126,13 +126,13 @@ namespace VkNet.Tests.Categories.Friends
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void DeleteList_IdIsNegative_ThrowException()
 		{
 			FluentActions.Invoking(() => Api.Friends.DeleteList(-1)).Should().ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void DeleteList_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.deleteList";
@@ -143,7 +143,7 @@ namespace VkNet.Tests.Categories.Friends
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Edit_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.edit";
@@ -158,7 +158,7 @@ namespace VkNet.Tests.Categories.Friends
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void EditList_EditName_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.editList";
@@ -169,13 +169,13 @@ namespace VkNet.Tests.Categories.Friends
 			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void EditList_ListIdIsNegative_ThrowException()
 		{
 			FluentActions.Invoking(() => Api.Friends.EditList(-1)).Should().ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
@@ -188,7 +188,7 @@ namespace VkNet.Tests.Categories.Friends
 				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_FirstNameLastName_ListOfObjects()
 		{
 			Url = "https://api.vk.com/method/friends.get";
@@ -218,7 +218,7 @@ namespace VkNet.Tests.Categories.Friends
 			lst[2].Online.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_FriendsForDurov_ListOfFriends()
 		{
 			Url = "https://api.vk.com/method/friends.get";
@@ -240,14 +240,14 @@ namespace VkNet.Tests.Categories.Friends
 					x => x.Id.Should().Be(12));
 		}
 
-		[Test]
+		[Fact]
 		public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
 			FluentActions.Invoking(() => cat.GetAppUsers()).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetAppUsers_NoOne_EmptyList()
 		{
 			Url = "https://api.vk.com/method/friends.getAppUsers";
@@ -258,7 +258,7 @@ namespace VkNet.Tests.Categories.Friends
 			users.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetAppUsers_ThreeUsers_ListOfObjects()
 		{
 			Url = "https://api.vk.com/method/friends.getAppUsers";
@@ -272,7 +272,7 @@ namespace VkNet.Tests.Categories.Friends
 			ids.Should().HaveElementAt(2, 19194);
 		}
 
-		[Test]
+		[Fact]
 		public void GetLists_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.getLists";
@@ -289,7 +289,7 @@ namespace VkNet.Tests.Categories.Friends
 			list[1].Name.Should().Be("лист 3");
 		}
 
-		[Test]
+		[Fact]
 		public void GetMutual_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var category = new FriendsCategory(new VkApi());
@@ -303,7 +303,7 @@ namespace VkNet.Tests.Categories.Friends
 				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetMutual_NoOne_EmptyList()
 		{
 			Url = "https://api.vk.com/method/friends.getMutual";
@@ -319,7 +319,7 @@ namespace VkNet.Tests.Categories.Friends
 			users.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetMutual_ThreeUsers_ListOfObjects()
 		{
 			Url = "https://api.vk.com/method/friends.getMutual";
@@ -335,7 +335,7 @@ namespace VkNet.Tests.Categories.Friends
 			ids.Should().ContainSingle();
 		}
 
-		[Test]
+		[Fact]
 		public void GetOnline_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
@@ -348,7 +348,7 @@ namespace VkNet.Tests.Categories.Friends
 				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetOnline_Ex()
 		{
 			Url = "https://api.vk.com/method/friends.getOnline";
@@ -363,7 +363,7 @@ namespace VkNet.Tests.Categories.Friends
 			users.MobileOnline.Should().HaveCount(5);
 		}
 
-		[Test]
+		[Fact]
 		public void GetOnline_FiveUsers_ListOfObjects()
 		{
 			Url = "https://api.vk.com/method/friends.getOnline";
@@ -382,7 +382,7 @@ namespace VkNet.Tests.Categories.Friends
 			users.Online[4].Should().Be(13033);
 		}
 
-		[Test]
+		[Fact]
 		public void GetOnline_NoOne_EmptyList()
 		{
 			Url = "https://api.vk.com/method/friends.getOnline";
@@ -396,7 +396,7 @@ namespace VkNet.Tests.Categories.Friends
 			users.Online.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetRecent_OneItem()
 		{
 			Url = "https://api.vk.com/method/friends.getRecent";
@@ -409,7 +409,7 @@ namespace VkNet.Tests.Categories.Friends
 			ids.Should().HaveElementAt(0, 242508111);
 		}
 
-		[Test]
+		[Fact]
 		public void GetRequest_count_unread()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
@@ -429,7 +429,7 @@ namespace VkNet.Tests.Categories.Friends
 			ids.Items.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetRequest_EmptyCollection()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
@@ -447,7 +447,7 @@ namespace VkNet.Tests.Categories.Friends
 			ids.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetRequests_Basic_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
@@ -463,7 +463,7 @@ namespace VkNet.Tests.Categories.Friends
 			ids.Items[0].Should().Be(242508111);
 		}
 
-		[Test]
+		[Fact]
 		public void GetRequests_Extended_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";

@@ -1,13 +1,13 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams.Messages;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	public class MessagesGetIntentUsersTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void GetIntentUsers()
 		{
 			// Arrange
