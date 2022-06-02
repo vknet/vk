@@ -13,19 +13,20 @@ namespace VkNet.Tests.Utils
 		[Test]
 		public async Task WaitForReadinessAsync()
 		{
-			int count = 3;
+			const int count = 3;
 			var t = TimeSpan.FromSeconds(1);
 			var awaitableConstraint = new CountByIntervalAwaitableConstraint(count, t);
 			var token = new CancellationTokenSource().Token;
 			var sw = Stopwatch.StartNew();
-			for (int i = 0; i < count; i++)
+
+			for (var i = 0; i < count; i++)
 			{
 				await awaitableConstraint.WaitForReadinessAsync(token).ConfigureAwait(false);
 			}
 
 			await awaitableConstraint.WaitForReadinessAsync(token).ConfigureAwait(false);
 			var t2 = sw.Elapsed;
-			t.Should().BeGreaterThanOrEqualTo(t2);
+			t2.Should().BeGreaterThanOrEqualTo(t);
 		}
 	}
 }

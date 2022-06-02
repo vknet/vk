@@ -61,7 +61,7 @@ namespace VkNet.Tests.Categories.Execute
 
 			var code = ReadScript(nameof(ExecuteErrorTest));
 
-			FluentActions.Invoking(() => Api.Execute.Execute(code)).Should().ThrowExactly<VkApiException>();
+			FluentActions.Invoking(() => Api.Execute.Execute(code)).Should().ThrowExactly<ImpossibleToCompileCodeException>();
 		}
 
 		[Test]

@@ -80,7 +80,7 @@ namespace VkNet.Tests.Categories.Messages
 					null,
 					false))
 				.Should()
-				.ThrowExactly<VkApiException>();
+				.ThrowExactly<UnknownException>();
 		}
 
 		[Test]

@@ -898,8 +898,7 @@ namespace VkNet.Tests.Categories.Group
 			ReadJsonFile(JsonPaths.False);
 
 			var result = Api.Groups.IsMember("637247", 1000000000000, null, null);
-			result.Should().NotBeEmpty();
-			result[0].Member.Should().BeFalse();
+			(result.Count > 0 && result[0].Member).Should().BeFalse();
 		}
 
 		[Test]

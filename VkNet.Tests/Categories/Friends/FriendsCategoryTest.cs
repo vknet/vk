@@ -30,7 +30,7 @@ namespace VkNet.Tests.Categories.Friends
 		[Test]
 		public void AddList_NameIsEmpty_ThrowException()
 		{
-			FluentActions.Invoking(() => Api.Friends.AddList("", null)).Should().ThrowExactly<ArgumentException>();
+			FluentActions.Invoking(() => Api.Friends.AddList("", null)).Should().ThrowExactly<ArgumentNullException>();
 		}
 
 		[Test]

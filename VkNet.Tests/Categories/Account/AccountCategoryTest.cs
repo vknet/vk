@@ -76,7 +76,7 @@ namespace VkNet.Tests.Categories.Account
 
 			ReadJsonFile(JsonPaths.EmptyVkCollection);
 
-			Api.Account.GetBanned().Should().Be(0);
+			Api.Account.GetBanned().Count.Should().Be(0);
 		}
 
 		[Test]
