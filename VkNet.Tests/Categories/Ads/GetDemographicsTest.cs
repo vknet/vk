@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
@@ -28,7 +29,7 @@ namespace VkNet.Tests.Categories.Ads
 				Period = "123"
 			});
 
-			Assert.That(result[0].Id, Is.EqualTo(1012219949));
+			result[0].Id.Should().Be(1012219949);
 		}
 	}
 }

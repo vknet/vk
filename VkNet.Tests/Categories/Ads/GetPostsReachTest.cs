@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Categories.Ads
 			ReadCategoryJsonPath(nameof(Api.Ads.GetPostsReach));
 
 			var result = Api.Ads.GetPostsReach(123,IdsType.Campaign, "123");
-			Assert.That(result[0].Id, Is.EqualTo(1012219949));
+			result[0].Id.Should().Be(1012219949);
 		}
 	}
 }

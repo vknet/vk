@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 
@@ -26,7 +27,7 @@ namespace VkNet.Tests.Categories.Ads
 				TargetPixelId = 462641
 			});
 
-			Assert.That(result, Is.EqualTo(true));
+			result.Should().BeTrue();
 		}
 	}
 }

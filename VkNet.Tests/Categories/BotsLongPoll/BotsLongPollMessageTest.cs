@@ -34,7 +34,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			message.Should().NotBeNull();
 			clientInfo.Should().NotBeNull();
 
-			Assert.IsNotEmpty(clientInfo.ButtonActions);
+			clientInfo.ButtonActions.Should().NotBeEmpty();
 			clientInfo.Keyboard.Should().BeTrue();
 			clientInfo.InlineKeyboard.Should().BeFalse();
 			clientInfo.LangId.Should().Be(Language.Ru);

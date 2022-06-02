@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
@@ -26,7 +27,7 @@ namespace VkNet.Tests.Categories.Ads
 				RetargetingGroupId = 1
 			});
 
-			Assert.That(officeUsers.RequestId, Is.EqualTo(3667));
+			officeUsers.RequestId.Should().Be(3667);
 		}
 	}
 }

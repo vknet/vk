@@ -20,7 +20,7 @@ namespace VkNet.Tests.Categories.Group
 			var result = Api.Groups.GetTokenPermissions();
 
 			result.Mask.Should().Be(274432);
-			Assert.IsNotEmpty(result.Permissions);
+			result.Permissions.Should().NotBeEmpty();
 		}
 	}
 }

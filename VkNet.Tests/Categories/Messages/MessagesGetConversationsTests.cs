@@ -15,7 +15,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.GetConversations(new GetConversationsParams());
 
-			Assert.That(1, Is.EqualTo(result.Count));
+			result.Count.Should().Be(1);
 		}
 
 		[Test]
@@ -26,7 +26,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.GetConversations(new GetConversationsParams());
 
-			Assert.That(253, Is.EqualTo(result.Count));
+			result.Count.Should().Be(253);
 		}
 
 		[Test]

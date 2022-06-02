@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -21,7 +22,7 @@ namespace VkNet.Tests.Categories.Ads
 
 			ReadCategoryJsonPath(nameof(Api.Ads.CreateAds));
 
-			AdSpecification adSpecification1 = new AdSpecification
+			var adSpecification1 = new AdSpecification
 			{
 				CampaignId = 1012219949,
 				GoalType = GoalType.Cpm,
@@ -34,7 +35,7 @@ namespace VkNet.Tests.Categories.Ads
 				LinkUrl = new Uri("https://vk.com/nixus9?w=wall-126102803_64")
 			};
 
-			AdSpecification adSpecification2 = new AdSpecification
+			var adSpecification2 = new AdSpecification
 			{
 				CampaignId = 1012219949,
 				GoalType = GoalType.Cpm,
@@ -59,9 +60,9 @@ namespace VkNet.Tests.Categories.Ads
 				AccountId = 1605245430
 			});
 
-			Assert.That(officeUsers[0].Id, Is.EqualTo(1));
-			Assert.That(officeUsers[0].ErrorCode, Is.EqualTo(100));
-			Assert.That(officeUsers[1].Id, Is.EqualTo(2));
+			officeUsers[0].Id.Should().Be(1);
+			officeUsers[0].ErrorCode.Should().Be(100);
+			officeUsers[1].Id.Should().Be(2);
 		}
 	}
 }

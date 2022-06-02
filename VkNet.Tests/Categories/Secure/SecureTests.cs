@@ -51,7 +51,7 @@ namespace VkNet.Tests.Categories.Secure
 
 			var app = Api.Secure.GetSmsHistory(123);
 
-			Assert.IsNotEmpty(app);
+			app.Should().NotBeEmpty();
 			var item = app.FirstOrDefault();
 			item.Should().NotBeNull();
 			item.Id.Should().Be(1238497);
@@ -65,7 +65,7 @@ namespace VkNet.Tests.Categories.Secure
 
 			var app = Api.Secure.GetTransactionsHistory();
 
-			Assert.IsNotEmpty(app);
+			app.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -79,7 +79,7 @@ namespace VkNet.Tests.Categories.Secure
 				123
 			});
 
-			Assert.IsNotEmpty(app);
+			app.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -96,7 +96,7 @@ namespace VkNet.Tests.Categories.Secure
 				},
 				1);
 
-			Assert.IsNotEmpty(app);
+			app.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -111,7 +111,7 @@ namespace VkNet.Tests.Categories.Secure
 					123
 				});
 
-			Assert.IsNotEmpty(app);
+			app.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -122,7 +122,7 @@ namespace VkNet.Tests.Categories.Secure
 
 			var app = Api.Secure.SendSmsNotification(123, "SMS Message");
 
-			Assert.That(app, Is.True);
+			app.Should().BeTrue();
 		}
 
 		[Test]
@@ -140,7 +140,7 @@ namespace VkNet.Tests.Categories.Secure
 				2,
 				true);
 
-			Assert.That(app, Is.True);
+			app.Should().BeTrue();
 		}
 	}
 }

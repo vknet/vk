@@ -22,7 +22,7 @@ namespace VkNet.Tests.Categories.Audio
 			var result = Api.Audio.GetById(new List<string> { "465742902_456239281" }).ToList();
 			var audio = result.FirstOrDefault();
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 			audio.Should().NotBeNull();
 		}
 	}

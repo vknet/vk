@@ -1,10 +1,10 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
-
 	public class MessagesGetHistoryTest : MessagesBaseTests
 	{
 		[Test]
@@ -21,11 +21,11 @@ namespace VkNet.Tests.Categories.Messages
 				Extended = true
 			});
 
-			Assert.That(result.TotalCount, Is.EqualTo(226));
-			Assert.IsNotEmpty(result.Messages);
-			Assert.IsNotEmpty(result.Conversations);
-			Assert.IsNotEmpty(result.Groups);
-			Assert.IsNotEmpty(result.Users);
+			result.TotalCount.Should().Be(226);
+			result.Messages.Should().NotBeEmpty();
+			result.Conversations.Should().NotBeEmpty();
+			result.Groups.Should().NotBeEmpty();
+			result.Users.Should().NotBeEmpty();
 		}
 	}
 }

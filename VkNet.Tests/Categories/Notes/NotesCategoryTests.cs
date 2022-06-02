@@ -85,7 +85,7 @@ namespace VkNet.Tests.Categories.Notes
 
 			var result = Api.Notes.Get(new NotesGetParams());
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -107,7 +107,7 @@ namespace VkNet.Tests.Categories.Notes
 
 			var result = Api.Notes.GetComments(new NotesGetCommentParams());
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
 		[Test]

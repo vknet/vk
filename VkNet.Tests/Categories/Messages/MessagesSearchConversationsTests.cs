@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Messages
 {
-
 	public class MessagesSearchConversationsTests : MessagesBaseTests
 	{
 		[Test]
@@ -11,9 +11,13 @@ namespace VkNet.Tests.Categories.Messages
 			Url = "https://api.vk.com/method/messages.searchConversations";
 			ReadCategoryJsonPath(nameof(SearchConversations));
 
-			var result = Api.Messages.SearchConversations("query", new[] { "fields" });
+			var result = Api.Messages.SearchConversations("query",
+				new[]
+				{
+					"fields"
+				});
 
-			Assert.That(20, Is.EqualTo(result.Count));
+			result.Count.Should().Be(20);
 		}
 	}
 }

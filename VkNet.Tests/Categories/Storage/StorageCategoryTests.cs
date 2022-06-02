@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories.Storage
 			var result = Api.Storage.Get(new[] { "qwe" });
 
 			result.Should().NotBeNull();
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -31,7 +31,7 @@ namespace VkNet.Tests.Categories.Storage
 			var result = Api.Storage.GetKeys();
 
 			result.Should().NotBeNull();
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
 		[Test]

@@ -21,8 +21,8 @@ namespace VkNet.Tests.Categories.Audio
 			var result = Api.Audio.GetPlaylists(123456789, 1);
 			var playlist = result.FirstOrDefault();
 
-			Assert.That(result.TotalCount, Is.EqualTo(3));
-			Assert.IsNotEmpty(result);
+			result.TotalCount.Should().Be(3);
+			result.Should().NotBeEmpty();
 			playlist.Should().NotBeNull();
 		}
 	}

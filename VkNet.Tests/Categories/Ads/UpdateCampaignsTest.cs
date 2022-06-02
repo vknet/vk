@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model;
@@ -20,7 +21,7 @@ namespace VkNet.Tests.Categories.Ads
 
 			ReadCategoryJsonPath(nameof(Api.Ads.UpdateCampaigns));
 
-			CampaignModSpecification campaignModSpecification1 = new CampaignModSpecification
+			var campaignModSpecification1 = new CampaignModSpecification
 			{
 				CampaignId = 1012219949,
 				Status = AdStatus.Active,
@@ -31,7 +32,7 @@ namespace VkNet.Tests.Categories.Ads
 				StopTime = DateTime.Now
 			};
 
-			CampaignModSpecification campaignModSpecification2 = new CampaignModSpecification
+			var campaignModSpecification2 = new CampaignModSpecification
 			{
 				CampaignId = 1012219949,
 				Status = AdStatus.Active,
@@ -54,9 +55,9 @@ namespace VkNet.Tests.Categories.Ads
 				AccountId = 1605245430
 			});
 
-			Assert.That(officeUsers[0].Id, Is.EqualTo(1));
-			Assert.That(officeUsers[0].ErrorCode, Is.EqualTo(100));
-			Assert.That(officeUsers[1].Id, Is.EqualTo(2));
+			officeUsers[0].Id.Should().Be(1);
+			officeUsers[0].ErrorCode.Should().Be(100);
+			officeUsers[1].Id.Should().Be(2);
 		}
 	}
 }

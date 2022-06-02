@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -21,8 +22,8 @@ namespace VkNet.Tests.Categories.Ads
 			ReadCategoryJsonPath(nameof(Api.Ads.GetMusicians));
 
 			var result = Api.Ads.GetMusicians("Alan Walker");
-			Assert.That(result[0].Name, Is.EqualTo("Alan Walker"));
-			Assert.That(result[0].Id, Is.EqualTo(32697));
+			result[0].Name.Should().Be("Alan Walker");
+			result[0].Id.Should().Be(32697);
 		}
 	}
 }

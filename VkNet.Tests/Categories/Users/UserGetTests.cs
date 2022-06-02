@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -21,10 +22,10 @@ namespace VkNet.Tests.Categories.Users
 
 			var users = Api.Users.Get(new List<long> { 118312730 }, ProfileFields.Sex, NameCase.Nom);
 
-			Assert.That(users, Is.Not.Null);
+			users.Should().NotBeNull();
 			var user = users.FirstOrDefault();
-			Assert.That(user, Is.Not.Null);
-			Assert.That(user.Sex, Is.EqualTo(Sex.Deactivated));
+			user.Should().NotBeNull();
+			user.Sex.Should().Be(Sex.Deactivated);
 		}
 	}
 }

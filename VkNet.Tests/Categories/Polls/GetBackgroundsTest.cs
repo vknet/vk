@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 
@@ -18,15 +19,15 @@ namespace VkNet.Tests.Categories.Polls
 
 			var result = Api.PollsCategory.GetBackgrounds();
 
-			Assert.That(result[0].Type, Is.TypeOf<PollBackgroundType>());
-			Assert.That(result[0].Angle, Is.EqualTo("225"));
-			Assert.That(result[0].Points[0].Color, Is.EqualTo("f24973"));
-			Assert.That(result[0].Points[0].Position, Is.EqualTo(0));
+			result[0].Type.Should().BeOfType<PollBackgroundType>();
+			result[0].Angle.Should().Be("225");
+			result[0].Points[0].Color.Should().Be("f24973");
+			result[0].Points[0].Position.Should().Be(0);
 
-			Assert.That(result[1].Type, Is.TypeOf<PollBackgroundType>());
-			Assert.That(result[1].Angle, Is.EqualTo("180"));
-			Assert.That(result[1].Points[1].Color, Is.EqualTo("2f733f"));
-			Assert.That(result[1].Points[1].Position, Is.EqualTo(1));
+			result[0].Type.Should().BeOfType<PollBackgroundType>();
+			result[1].Angle.Should().Be("180");
+			result[1].Points[1].Color.Should().Be("2f733f");
+			result[1].Points[1].Position.Should().Be(1);
 		}
 	}
 }

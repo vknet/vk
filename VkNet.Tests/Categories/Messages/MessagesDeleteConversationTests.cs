@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Messages
 {
@@ -14,7 +15,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.DeleteConversation(123, 123, 123);
 
-			Assert.That(result, Is.EqualTo(12312423));
+			result.Should().Be(12312423);
 		}
 	}
 }

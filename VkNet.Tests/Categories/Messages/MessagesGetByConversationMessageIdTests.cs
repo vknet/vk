@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Messages
 {
-
 	public class MessagesGetByConversationMessageIdTests : MessagesBaseTests
 	{
 		[Test]
@@ -11,9 +11,17 @@ namespace VkNet.Tests.Categories.Messages
 			Url = "https://api.vk.com/method/messages.getByConversationMessageId";
 			ReadCategoryJsonPath(nameof(GetByConversationMessageId));
 
-			var result = Api.Messages.GetByConversationMessageId(123, new ulong[] { 123 }, new[] { "" });
+			var result = Api.Messages.GetByConversationMessageId(123,
+				new ulong[]
+				{
+					123
+				},
+				new[]
+				{
+					""
+				});
 
-			Assert.That(1, Is.EqualTo(result.Count));
+			result.Count.Should().Be(1);
 		}
 	}
 }

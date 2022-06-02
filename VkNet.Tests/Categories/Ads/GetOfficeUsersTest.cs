@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 
@@ -18,8 +19,8 @@ namespace VkNet.Tests.Categories.Ads
 			ReadCategoryJsonPath(nameof(Api.Ads.GetOfficeUsers));
 
 			var result = Api.Ads.GetOfficeUsers(123213);
-			Assert.That(result[0].UserId, Is.EqualTo(504736359));
-			Assert.That(result[0].Accesses[0].Role, Is.EqualTo(AccessRole.Admin));
+			result[0].UserId.Should().Be(504736359);
+			result[0].Accesses[0].Role.Should().Be(AccessRole.Admin);
 		}
 	}
 }

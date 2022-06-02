@@ -10,7 +10,6 @@ using VkNet.Utils;
 
 namespace VkNet.Tests.Categories.Execute
 {
-
 	public class ExecuteCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Execute";
@@ -25,7 +24,7 @@ namespace VkNet.Tests.Categories.Execute
 			var code = ReadScript(nameof(ExecuteTest));
 
 			var result = Api.Execute.Execute(code);
-			Assert.That(result.RawJson, Is.EqualTo(Json));
+			result.RawJson.Should().Be(Json);
 		}
 
 		[Test]
@@ -37,7 +36,7 @@ namespace VkNet.Tests.Categories.Execute
 			var code = ReadScript(nameof(ExecuteTopicsFeedTest));
 
 			var result = Api.Execute.Execute<TopicsFeed>(code);
-			Assert.That(result, Is.Not.Null);
+			result.Should().NotBeNull();
 		}
 
 		[Test]
@@ -49,9 +48,9 @@ namespace VkNet.Tests.Categories.Execute
 			var code = ReadScript(nameof(ExecuteGetUniversitiesTest));
 
 			var result = Api.Execute.Execute<VkCollection<University>>(code);
-			Assert.That(result, Is.Not.Null);
-			Assert.That(result.TotalCount, Is.EqualTo(93));
-			Assert.That(result, Is.Not.Empty);
+			result.Should().NotBeNull();
+			result.TotalCount.Should().Be(93);
+			result.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -62,7 +61,7 @@ namespace VkNet.Tests.Categories.Execute
 
 			var code = ReadScript(nameof(ExecuteErrorTest));
 
-			Assert.That(() => Api.Execute.Execute(code), Throws.InstanceOf<VkApiException>());
+			FluentActions.Invoking(() => Api.Execute.Execute(code)).Should().ThrowExactly<VkApiException>();
 		}
 
 		[Test]
@@ -73,10 +72,11 @@ namespace VkNet.Tests.Categories.Execute
 
 			var code = ReadScript(nameof(ExecuteErrorTest));
 
-			var exception = Assert.Throws<ExecuteException>(() => Api.Execute.Execute(code));
-
-			Assert.IsInstanceOf<ExecuteException>(exception);
-			exception.InnerExceptions.Count.Should().Be(3);
+			FluentActions.Invoking(() => Api.Execute.Execute(code))
+				.Should()
+				.ThrowExactly<ExecuteException>()
+				.And.InnerExceptions.Should()
+				.HaveCount(3);
 		}
 
 		private string ReadScript(string scriptPath)

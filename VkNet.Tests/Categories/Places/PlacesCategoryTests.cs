@@ -41,7 +41,7 @@ namespace VkNet.Tests.Categories.Places
 
 			var result = Api.Places.GetById(new ulong[] { 123 });
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -52,7 +52,7 @@ namespace VkNet.Tests.Categories.Places
 
 			var result = Api.Places.GetCheckins(new PlacesGetCheckinsParams());
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -63,7 +63,7 @@ namespace VkNet.Tests.Categories.Places
 
 			var result = Api.Places.GetTypes();
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -74,7 +74,7 @@ namespace VkNet.Tests.Categories.Places
 
 			var result = Api.Places.Search(new PlacesSearchParams());
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 	}
 }

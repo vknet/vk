@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Ads
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Categories.Ads
 			ReadCategoryJsonPath(nameof(Api.Ads.GetTargetPixels));
 
 			var result = Api.Ads.GetTargetPixels(123);
-			Assert.That(result[0].Name, Is.EqualTo("фывыфвв"));
+			result[0].Name.Should().Be("фывыфвв");
 		}
 	}
 }

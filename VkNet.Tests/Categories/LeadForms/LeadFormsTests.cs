@@ -62,7 +62,7 @@ namespace VkNet.Tests.Categories.LeadForms
 
 			var result = Api.LeadForms.List(103292418);
 			result.Should().NotBeNull();
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
 		[Test]

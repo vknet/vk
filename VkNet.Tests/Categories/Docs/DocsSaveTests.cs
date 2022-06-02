@@ -22,7 +22,7 @@ namespace VkNet.Tests.Categories.Docs
 
 			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -35,7 +35,7 @@ namespace VkNet.Tests.Categories.Docs
 
 			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -48,7 +48,7 @@ namespace VkNet.Tests.Categories.Docs
 
 			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -61,7 +61,7 @@ namespace VkNet.Tests.Categories.Docs
 
 			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 			var item = result.FirstOrDefault();
 			item.Should().NotBeNull();
 			var doc = item.Instance as Document;

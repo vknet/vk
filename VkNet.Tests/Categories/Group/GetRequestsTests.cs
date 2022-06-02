@@ -20,8 +20,7 @@ namespace VkNet.Tests.Categories.Group
 
 			result.Should().NotBeNull();
 			result.Should().HaveCount(3);
-			foreach (var user in result)
-				user.Should().NotBeNull();
+			result.Should().AllSatisfy(user => user.Should().NotBeNull());
 		}
 
 		[Test]
@@ -35,8 +34,7 @@ namespace VkNet.Tests.Categories.Group
 
 			result.Should().NotBeNull();
 			result.Should().HaveCount(3);
-			foreach (var user in result)
-				user.Should().NotBeNull();
+			result.Should().AllSatisfy(user => user.Should().NotBeNull());
 		}
 	}
 }

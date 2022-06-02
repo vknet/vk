@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 
@@ -24,7 +25,7 @@ namespace VkNet.Tests.Categories.Ads
 				Cities = "1",
 				Q = "1"
 			});
-			Assert.That(result[0].Id, Is.EqualTo(201187289));
+			result[0].Id.Should().Be(201187289);
 		}
 	}
 }

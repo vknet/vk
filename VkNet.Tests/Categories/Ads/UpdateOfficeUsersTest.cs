@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Categories.Ads
 
 			ReadCategoryJsonPath(nameof(Api.Ads.UpdateOfficeUsers));
 
-			OfficeUsersSpecification officeUsersSpecification1 = new OfficeUsersSpecification
+			var officeUsersSpecification1 = new OfficeUsersSpecification
 			{
 				UserId = 12423,
 				Role = AccessRole.Reports,
@@ -32,7 +33,7 @@ namespace VkNet.Tests.Categories.Ads
 				ViewBudget = true
 			};
 
-			OfficeUsersSpecification officeUsersSpecification2 = new OfficeUsersSpecification
+			var officeUsersSpecification2 = new OfficeUsersSpecification
 			{
 				UserId = 4324432,
 				Role = AccessRole.Manager,
@@ -58,9 +59,9 @@ namespace VkNet.Tests.Categories.Ads
 				Data = data
 			});
 
-			Assert.That(result[0].UserId, Is.EqualTo(1567));
-			Assert.That(result[0].IsSuccess, Is.False);
-			Assert.That(result[0].Error.ErrorCode, Is.EqualTo(100));
+			result[0].UserId.Should().Be(1567);
+			result[0].IsSuccess.Should().BeFalse();
+			result[0].Error.ErrorCode.Should().Be(100);
 		}
 	}
 }

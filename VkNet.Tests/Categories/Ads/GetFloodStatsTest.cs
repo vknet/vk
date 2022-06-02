@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Ads
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Categories.Ads
 
 			var result = Api.Ads.GetFloodStats(123213);
 
-			Assert.That(result.Left, Is.EqualTo(4998));
+			result.Left.Should().Be(4998);
 		}
 	}
 }

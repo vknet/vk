@@ -36,7 +36,7 @@ namespace VkNet.Tests.Categories.Friends
 			});
 
 			result.Should().NotBeNull();
-			result.Count.Should().Be(1);
+			result.Should().ContainSingle();
 		}
 	}
 }

@@ -26,8 +26,8 @@ namespace VkNet.Tests.Categories.Audio
 
 			var audio = result.FirstOrDefault();
 
-			Assert.IsNotEmpty(result);
-			Assert.That(result.Count, Is.EqualTo(1));
+			result.Should().NotBeEmpty();
+			result.Should().ContainSingle();
 			audio.Should().NotBeNull();
 		}
 	}

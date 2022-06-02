@@ -14,7 +14,6 @@ using VkNet.Model.Template.Carousel;
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
-
 	public class MessagesSendTests : MessagesBaseTests
 	{
 		[Test]
@@ -22,13 +21,14 @@ namespace VkNet.Tests.Categories.Messages
 		{
 			var cat = new MessagesCategory(new VkApi());
 
-			Assert.That(() => cat.Send(new MessagesSendParams
+			FluentActions.Invoking(() => cat.Send(new MessagesSendParams
 				{
 					UserId = 1,
 					Message = "Привет, Паша!",
 					RandomId = 1
-				}),
-				Throws.InstanceOf<AccessTokenInvalidException>());
+				}))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -46,7 +46,7 @@ namespace VkNet.Tests.Categories.Messages
 				RandomId = 1
 			});
 
-			Assert.That(id, Is.EqualTo(4464));
+			id.Should().Be(4464);
 		}
 
 		[Test]
@@ -62,18 +62,19 @@ namespace VkNet.Tests.Categories.Messages
 				RandomId = 1
 			});
 
-			Assert.That(id, Is.EqualTo(4457));
+			id.Should().Be(4457);
 		}
 
 		[Test]
 		public void EmptyMessage_ThrowsInvalidParameterException()
 		{
-			Assert.That(() => Api.Messages.Send(new MessagesSendParams
+			FluentActions.Invoking(() => Api.Messages.Send(new MessagesSendParams
 				{
 					UserId = 7550525,
 					Message = ""
-				}),
-				Throws.InstanceOf<ArgumentException>());
+				}))
+				.Should()
+				.ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -82,15 +83,16 @@ namespace VkNet.Tests.Categories.Messages
 			Url = "https://api.vk.com/method/messages.send";
 			ReadErrorsJsonFile(914);
 
-			Assert.That(() => Api.Messages.Send(new MessagesSendParams
+			FluentActions.Invoking(() => Api.Messages.Send(new MessagesSendParams
 				{
 					UserId = 7550525,
 					Message = "г. Таганрог, ул. Фрунзе 66А",
 					Lat = 47.217451,
 					Longitude = 38.922743,
 					RandomId = 1
-				}),
-				Throws.InstanceOf<MessageIsTooLongException>());
+				}))
+				.Should()
+				.ThrowExactly<MessageIsTooLongException>();
 		}
 
 		[Test]
@@ -99,15 +101,16 @@ namespace VkNet.Tests.Categories.Messages
 			Url = "https://api.vk.com/method/messages.send";
 			ReadErrorsJsonFile(913);
 
-			Assert.That(() => Api.Messages.Send(new MessagesSendParams
+			FluentActions.Invoking(() => Api.Messages.Send(new MessagesSendParams
 				{
 					UserId = 7550525,
 					Message = "г. Таганрог, ул. Фрунзе 66А",
 					Lat = 47.217451,
 					Longitude = 38.922743,
 					RandomId = 1
-				}),
-				Throws.InstanceOf<TooMuchSentMessagesException>());
+				}))
+				.Should()
+				.ThrowExactly<TooMuchSentMessagesException>();
 		}
 
 		[Test]
@@ -124,7 +127,7 @@ namespace VkNet.Tests.Categories.Messages
 				Message = "Работает # 2 --  еще разок"
 			});
 
-			Assert.That(id, Is.EqualTo(4464));
+			id.Should().Be(4464);
 		}
 
 		[Test]
@@ -133,7 +136,7 @@ namespace VkNet.Tests.Categories.Messages
 			Url = "https://api.vk.com/method/messages.send";
 			ReadCategoryJsonPath(nameof(MessagesSend_RandomIdRequired_ArgumentException));
 
-			Assert.That(() => Api.Messages.Send(new MessagesSendParams
+			FluentActions.Invoking(() => Api.Messages.Send(new MessagesSendParams
 				{
 					UserIds = new List<long>
 					{
@@ -142,8 +145,9 @@ namespace VkNet.Tests.Categories.Messages
 					Message = "г. Таганрог, ул. Фрунзе 66А",
 					Lat = 47.217451,
 					Longitude = 38.922743
-				}),
-				Throws.InstanceOf<ArgumentException>());
+				}))
+				.Should()
+				.ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -152,7 +156,7 @@ namespace VkNet.Tests.Categories.Messages
 			Url = "https://api.vk.com/method/messages.send";
 			ReadCategoryJsonPath(nameof(MessagesSend_SetUserIdsParam_ArgumentException));
 
-			Assert.That(() => Api.Messages.Send(new MessagesSendParams
+			FluentActions.Invoking(() => Api.Messages.Send(new MessagesSendParams
 				{
 					UserIds = new List<long>
 					{
@@ -161,8 +165,9 @@ namespace VkNet.Tests.Categories.Messages
 					Message = "г. Таганрог, ул. Фрунзе 66А",
 					Lat = 47.217451,
 					Longitude = 38.922743
-				}),
-				Throws.InstanceOf<ArgumentException>());
+				}))
+				.Should()
+				.ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -182,7 +187,7 @@ namespace VkNet.Tests.Categories.Messages
 				Longitude = 38.922743
 			});
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 			var message = result.FirstOrDefault();
 			message.Should().NotBeNull();
 			message.PeerId.Should().Be(32190123);
@@ -202,7 +207,7 @@ namespace VkNet.Tests.Categories.Messages
 				RandomId = 1
 			});
 
-			Assert.That(id, Is.EqualTo(4464));
+			id.Should().Be(4464);
 		}
 
 		[Test]
@@ -241,7 +246,10 @@ namespace VkNet.Tests.Categories.Messages
 				Title = "Title"
 			};
 
-			var templateElements = new[] { carousel };
+			var templateElements = new[]
+			{
+				carousel
+			};
 
 			var template = new MessageTemplate
 			{
@@ -257,7 +265,7 @@ namespace VkNet.Tests.Categories.Messages
 				Template = template
 			});
 
-			Assert.That(id, Is.EqualTo(4464));
+			id.Should().Be(4464);
 		}
 	}
 }

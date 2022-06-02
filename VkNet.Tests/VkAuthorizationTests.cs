@@ -6,16 +6,15 @@ using VkNet.Utils;
 namespace VkNet.Tests
 {
 	[TestFixture]
-
 	public class VkAuthorizationTests
 	{
 		private const string Input =
-				"http://oauth.vk.com/blank.html"
-				+ "#access_token=token"
-				+ "&expires_in=86400"
-				+ "&user_id=32190123"
-				+ "&email=inyutin_maxim@mail.ru"
-				+ "&state=123456";
+			"http://oauth.vk.com/blank.html"
+			+ "#access_token=token"
+			+ "&expires_in=86400"
+			+ "&user_id=32190123"
+			+ "&email=inyutin_maxim@mail.ru"
+			+ "&state=123456";
 
 		[Test]
 		public void Authorize_InvalidLoginOrPassword_NotAuthorizedAndAuthorizationNotRequired()
@@ -54,13 +53,14 @@ namespace VkNet.Tests
 		{
 			var auth = VkAuthorization2.From(Input.Replace("86400", "qwe"));
 
-			var error = Assert.Throws<VkApiException>(() =>
-			{
-				var expiresIn = auth.ExpiresIn;
-				expiresIn.Should().NotBe(0);
-			});
-
-			error.Message.Should().Be("ExpiresIn is not integer value.");
+			FluentActions.Invoking(() =>
+				{
+					var expiresIn = auth.ExpiresIn;
+					expiresIn.Should().NotBe(0);
+				})
+				.Should()
+				.ThrowExactly<VkApiException>()
+				.WithMessage("ExpiresIn is not integer value.");
 		}
 
 		[Test]
@@ -68,13 +68,14 @@ namespace VkNet.Tests
 		{
 			var auth = VkAuthorization2.From(Input.Replace("32190123", "qwe"));
 
-			var error = Assert.Throws<VkApiException>(() =>
-			{
-				var authUserId = auth.UserId;
-				authUserId.Should().NotBe(0);
-			});
-
-			error.Message.Should().Be("UserId is not long value.");
+			FluentActions.Invoking(() =>
+				{
+					var authUserId = auth.UserId;
+					authUserId.Should().NotBe(0);
+				})
+				.Should()
+				.ThrowExactly<VkApiException>()
+				.WithMessage("UserId is not long value.");
 		}
 
 		[Test]

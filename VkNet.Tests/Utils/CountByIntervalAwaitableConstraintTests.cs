@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Utils;
 
@@ -24,7 +25,7 @@ namespace VkNet.Tests.Utils
 
 			await awaitableConstraint.WaitForReadinessAsync(token).ConfigureAwait(false);
 			var t2 = sw.Elapsed;
-			Assert.GreaterOrEqual(t2, t);
+			t.Should().BeGreaterThanOrEqualTo(t2);
 		}
 	}
 }

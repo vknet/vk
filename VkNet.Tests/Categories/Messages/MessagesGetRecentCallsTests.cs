@@ -15,8 +15,8 @@ namespace VkNet.Tests.Categories.Messages
 			var result = Api.Messages.GetRecentCalls(new[] { "filter" }, 1);
 
 			result.Should().NotBeNull();
-			Assert.IsNotEmpty(result.Messages);
-			Assert.IsNotEmpty(result.Profiles);
+			result.Messages.Should().NotBeEmpty();
+			result.Profiles.Should().NotBeEmpty();
 		}
 	}
 }

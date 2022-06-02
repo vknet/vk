@@ -20,7 +20,7 @@ namespace VkNet.Tests.Categories.Fave
 
 			var tag = tags.FirstOrDefault();
 
-			Assert.IsNotEmpty(tags);
+			tags.Should().NotBeEmpty();
 			tag.Should().NotBeNull();
 		}
 	}

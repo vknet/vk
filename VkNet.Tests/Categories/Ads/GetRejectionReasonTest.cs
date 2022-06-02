@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Ads
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Categories.Ads
 			ReadCategoryJsonPath(nameof(Api.Ads.GetRejectionReason));
 
 			var result = Api.Ads.GetRejectionReason(123,123);
-			Assert.That(result.Comment, Is.EqualTo("123"));
+			result.Comment.Should().Be("123");
 		}
 	}
 }

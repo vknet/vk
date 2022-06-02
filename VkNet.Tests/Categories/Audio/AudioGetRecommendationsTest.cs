@@ -21,7 +21,7 @@ namespace VkNet.Tests.Categories.Audio
 			var result = Api.Audio.GetRecommendations();
 			var audio = result.FirstOrDefault();
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 			audio.Should().NotBeNull();
 		}
 	}

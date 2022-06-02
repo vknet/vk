@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Categories.Orders
 
 			var result = Api.Orders.GetAmount(123, new[] { "1" });
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 	}
 }

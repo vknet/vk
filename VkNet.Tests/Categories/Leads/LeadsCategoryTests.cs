@@ -49,7 +49,7 @@ namespace VkNet.Tests.Categories.Leads
 			var result = Api.Leads.GetUsers(new GetUsersParams());
 
 			result.Should().NotBeNull();
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 	}
 }

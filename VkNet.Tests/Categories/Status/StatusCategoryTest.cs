@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Exception;
@@ -6,7 +7,6 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Status
 {
 	[TestFixture]
-
 	public class StatusCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Status";
@@ -18,15 +18,18 @@ namespace VkNet.Tests.Categories.Status
 			ReadErrorsJsonFile(7);
 
 			// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-			var ex = Assert.Throws<PermissionToPerformThisActionException>(() => Api.Status.Get(1));
-			Assert.That(ex.Message, Is.EqualTo("Permission to perform this action is denied"));
+			FluentActions.Invoking(() => Api.Status.Get(1))
+				.Should()
+				.ThrowExactly<PermissionToPerformThisActionException>()
+				.And.Message.Should()
+				.Be("Permission to perform this action is denied");
 		}
 
 		[Test]
 		public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var status = new StatusCategory(new VkApi());
-			Assert.That(() => status.Get(1), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => status.Get(1)).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -38,17 +41,17 @@ namespace VkNet.Tests.Categories.Status
 
 			var actual = Api.Status.Get(1);
 
-			Assert.That(actual, Is.Not.Null);
-			Assert.That(actual.Text, Is.EqualTo("Тараканы! – Собачье Сердце"));
-			Assert.That(actual.Audio, Is.Not.Null);
-			Assert.That(actual.Audio.Id, Is.EqualTo(158073513));
-			Assert.That(actual.Audio.OwnerId, Is.EqualTo(4793858));
-			Assert.That(actual.Audio.Artist, Is.EqualTo("Тараканы!"));
-			Assert.That(actual.Audio.Title, Is.EqualTo("Собачье Сердце"));
-			Assert.That(actual.Audio.Duration, Is.EqualTo(230));
-			Assert.That(actual.Audio.Url.OriginalString, Is.EqualTo(expected: "https://cs1-43v4/lR-RTwXXMk_q1RrO_-g"));
+			actual.Should().NotBeNull();
+			actual.Text.Should().Be("Тараканы! – Собачье Сердце");
+			actual.Audio.Should().NotBeNull();
+			actual.Audio.Id.Should().Be(158073513);
+			actual.Audio.OwnerId.Should().Be(4793858);
+			actual.Audio.Artist.Should().Be("Тараканы!");
+			actual.Audio.Title.Should().Be("Собачье Сердце");
+			actual.Audio.Duration.Should().Be(230);
+			actual.Audio.Url.OriginalString.Should().Be("https://cs1-43v4/lR-RTwXXMk_q1RrO_-g");
 
-			Assert.That(actual.Audio.LyricsId, Is.EqualTo(expected: 7985406));
+			actual.Audio.LyricsId.Should().Be(7985406);
 		}
 
 		[Test]
@@ -59,9 +62,9 @@ namespace VkNet.Tests.Categories.Status
 
 			var actual = Api.Status.Get(1);
 
-			Assert.That(actual, Is.Not.Null);
-			Assert.That(actual.Text, Is.EqualTo("it really work!!!"));
-			Assert.That(actual.Audio, Is.Null);
+			actual.Should().NotBeNull();
+			actual.Text.Should().Be("it really work!!!");
+			actual.Audio.Should().BeNull();
 		}
 
 		[Test]
@@ -70,14 +73,14 @@ namespace VkNet.Tests.Categories.Status
 			Url = "https://api.vk.com/method/status.set";
 			ReadErrorsJsonFile(7);
 
-			Assert.That(() => Api.Status.Set("test"), Throws.InstanceOf<PermissionToPerformThisActionException>());
+			FluentActions.Invoking(() => Api.Status.Set("test")).Should().ThrowExactly<PermissionToPerformThisActionException>();
 		}
 
 		[Test]
 		public void Set_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var status = new StatusCategory(new VkApi());
-			Assert.That(() => status.Set("test"), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => status.Set("test")).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -88,7 +91,7 @@ namespace VkNet.Tests.Categories.Status
 
 			var result = Api.Status.Set("test test test");
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 	}
 }

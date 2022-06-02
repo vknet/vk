@@ -1,18 +1,19 @@
 ﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
-
 	public class MessagesGetLongPollHistory : MessagesBaseTests
 	{
 		[Test]
 		public void GetLongPollHistory_ThrowArgumentException()
 		{
-			Assert.That(() => Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams()),
-				Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams()))
+				.Should()
+				.ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -32,7 +33,7 @@ namespace VkNet.Tests.Categories.Messages
 				Onlines = true
 			});
 
-			Assert.IsNotEmpty(result.Groups);
+			result.Groups.Should().NotBeEmpty();
 		}
 	}
 }

@@ -29,8 +29,8 @@ namespace VkNet.Tests.Categories.Ads
 
 			link.Should().NotBeNull();
 
-			Assert.IsNotEmpty(link.Description);
-			Assert.That(link.Status, Is.EqualTo(LinkStatusType.Disallowed));
+			link.Description.Should().NotBeEmpty();
+			link.Status.Should().Be(LinkStatusType.Disallowed);
 		}
 	}
 }

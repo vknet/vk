@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 
 namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
-
 	public class MessagesGetConversationsByIdTests : MessagesBaseTests
 	{
 		[Test]
@@ -12,9 +12,12 @@ namespace VkNet.Tests.Categories.Messages
 			Url = "https://api.vk.com/method/messages.getConversationsById";
 			ReadCategoryJsonPath(nameof(GetConversationsById));
 
-			var result = Api.Messages.GetConversationsById(new long[] { 123 });
+			var result = Api.Messages.GetConversationsById(new long[]
+			{
+				123
+			});
 
-			Assert.That(1, Is.EqualTo(result.Count));
+			result.Count.Should().Be(1);
 		}
 	}
 }

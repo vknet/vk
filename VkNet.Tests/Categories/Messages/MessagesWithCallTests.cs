@@ -17,7 +17,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var message = Message.FromJson(GetResponse());
 
-			Assert.IsNotEmpty(message.Attachments);
+			message.Attachments.Should().NotBeEmpty();
 
 			var call = message.Attachments[0].Instance as Call;
 
@@ -31,13 +31,15 @@ namespace VkNet.Tests.Categories.Messages
 			call.Duration.HasValue.Should().BeTrue();
 			call.Duration.Value.Should().Be(30);
 
-			AssertionExtensions.Should((object)call.Time.AsUtc()).Be(new DateTime(2021,
-				9,
-				27,
-				19,
-				21,
-				21,
-				DateTimeKind.Utc));
+			call.Time.AsUtc()
+				.Should()
+				.Be(new DateTime(2021,
+					9,
+					27,
+					19,
+					21,
+					21,
+					DateTimeKind.Utc));
 		}
 	}
 }

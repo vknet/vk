@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
@@ -22,10 +23,10 @@ namespace VkNet.Tests.Categories.Polls
 				Hash = "fe8f7aaa03ff650cc2"
 			});
 
-			Assert.That(result.Id, Is.EqualTo(457245390));
-			Assert.That(result.Color, Is.EqualTo("BE272E"));
-			Assert.That(result.Images[0].Height, Is.EqualTo(600));
-			Assert.IsNotEmpty(result.Images[0].Url.ToString());
+			result.Id.Should().Be(457245390);
+			result.Color.Should().Be("BE272E");
+			result.Images[0].Height.Should().Be(600);
+			result.Images[0].Url.ToString().Should().NotBeEmpty();
 		}
 	}
 }

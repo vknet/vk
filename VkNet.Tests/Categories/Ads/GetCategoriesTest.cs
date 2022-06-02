@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Tests.Infrastructure;
 
@@ -19,7 +20,7 @@ namespace VkNet.Tests.Categories.Ads
 
 			var result = Api.Ads.GetCategories(Language.Ru);
 
-			Assert.That(result.V1[0].Name, Is.EqualTo("Авто/мото"));
+			result.V1[0].Name.Should().Be("Авто/мото");
 		}
 	}
 }

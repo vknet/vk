@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Polls
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Categories.Polls
 
 			var result = Api.PollsCategory.GetPhotoUploadServer(450138623);
 
-			Assert.IsNotEmpty(result.UploadUrl);
+			result.UploadUrl.Should().NotBeEmpty();
 		}
 	}
 }

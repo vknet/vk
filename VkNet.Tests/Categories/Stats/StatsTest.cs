@@ -9,7 +9,6 @@ namespace VkNet.Tests.Categories.Stats
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-
 	public class StatsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Stats";
@@ -33,7 +32,7 @@ namespace VkNet.Tests.Categories.Stats
 			});
 
 			statsPeriods[0].Should().NotBeNull();
-			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
+			statsPeriods[0].PeriodFrom.Should().Be(new DateTime(2013, 09, 08));
 		}
 
 		[Test]
@@ -57,7 +56,7 @@ namespace VkNet.Tests.Categories.Stats
 			statsPeriods[0].Should().NotBeNull();
 			statsPeriods[0].Activity.Should().BeNull();
 
-			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
+			statsPeriods[0].PeriodFrom.Should().Be(new DateTime(2013, 09, 08));
 		}
 
 		[Test]
@@ -80,7 +79,7 @@ namespace VkNet.Tests.Categories.Stats
 
 			statsPeriods[0].Should().NotBeNull();
 
-			Assert.That(new DateTime(2013, 09, 08), Is.EqualTo(statsPeriods[0].PeriodFrom));
+			statsPeriods[0].PeriodFrom.Should().Be(new DateTime(2013, 09, 08));
 		}
 
 		[Test]
@@ -91,7 +90,7 @@ namespace VkNet.Tests.Categories.Stats
 
 			var statsPeriods = Api.Stats.TrackVisitor();
 
-			Assert.That(statsPeriods, Is.True);
+			statsPeriods.Should().BeTrue();
 		}
 	}
 }

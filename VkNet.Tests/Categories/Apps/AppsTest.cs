@@ -11,7 +11,6 @@ namespace VkNet.Tests.Categories.Apps
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-
 	public class AppsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Apps";
@@ -24,7 +23,7 @@ namespace VkNet.Tests.Categories.Apps
 
 			var app = Api.Apps.DeleteAppRequests();
 
-			Assert.That(app, Is.True);
+			app.Should().BeTrue();
 		}
 
 		[Test]
@@ -35,11 +34,15 @@ namespace VkNet.Tests.Categories.Apps
 
 			var app = Api.Apps.Get(new AppGetParams
 			{
-				AppIds = new ulong[] { 4268118 }, Platform = AppPlatforms.Web
+				AppIds = new ulong[]
+				{
+					4268118
+				},
+				Platform = AppPlatforms.Web
 			});
 
-			Assert.That(app.TotalCount, Is.AtLeast(0));
-			Assert.That(app.Apps.First().Title, Is.EqualTo("raventestapp"));
+			app.TotalCount.Should().BeGreaterThanOrEqualTo(0);
+			app.Apps.First().Title.Should().Be("raventestapp");
 		}
 
 		[Test]
@@ -50,8 +53,8 @@ namespace VkNet.Tests.Categories.Apps
 
 			var app = Api.Apps.GetCatalog(new AppGetCatalogParams());
 
-			Assert.That(app.TotalCount, Is.AtLeast(0));
-			Assert.That(app.FirstOrDefault()?.Title, Is.EqualTo("Подземелья!"));
+			app.TotalCount.Should().BeGreaterThanOrEqualTo(0);
+			(app.FirstOrDefault()?.Title).Should().Be("Подземелья!");
 		}
 
 		[Test]
@@ -61,8 +64,9 @@ namespace VkNet.Tests.Categories.Apps
 			ReadCategoryJsonPath(nameof(GetFriendsList_NormalCase));
 
 			var app = Api.Apps.GetFriendsList(AppRequestType.Invite);
-			Assert.That(app.TotalCount, Is.GreaterThan(0));
-			Assert.That(app, Is.Not.Null);
+
+			app.TotalCount.Should().BePositive();
+			app.Should().NotBeNull();
 		}
 
 		[Test]
@@ -73,8 +77,8 @@ namespace VkNet.Tests.Categories.Apps
 
 			var app = Api.Apps.GetFriendsList(AppRequestType.Invite, true, 5, 1, UsersFields.Online);
 
-			Assert.That(app.TotalCount, Is.GreaterThan(0));
-			Assert.That(app, Is.Not.Null);
+			app.TotalCount.Should().BePositive();
+			app.Should().NotBeNull();
 		}
 
 		[Test]
@@ -86,12 +90,12 @@ namespace VkNet.Tests.Categories.Apps
 			var app = Api.Apps.GetLeaderboard(AppRatingType.Points, null, true);
 
 			app.Should().NotBeNull();
-			Assert.That(app.Count, Is.EqualTo(130));
-			Assert.That(app.Items, Is.Not.Empty);
-			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
-			Assert.That(app.Items[0].Points, Is.EqualTo(256));
-			Assert.That(app.Items[0].UserId, Is.EqualTo(123));
-			Assert.That(app.Profiles, Is.Not.Empty);
+			app.Count.Should().Be(130);
+			app.Items.Should().NotBeEmpty();
+			app.Items[0].Score.Should().Be(221634238);
+			app.Items[0].Points.Should().Be(256);
+			app.Items[0].UserId.Should().Be(123);
+			app.Profiles.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -103,11 +107,11 @@ namespace VkNet.Tests.Categories.Apps
 			var app = Api.Apps.GetLeaderboard(AppRatingType.Level);
 
 			app.Should().NotBeNull();
-			Assert.That(app.Count, Is.EqualTo(130));
-			Assert.That(app.Items, Is.Not.Empty);
-			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
-			Assert.That(app.Items[0].Level, Is.EqualTo(13));
-			Assert.That(app.Items[0].UserId, Is.EqualTo(123));
+			app.Count.Should().Be(130);
+			app.Items.Should().NotBeEmpty();
+			app.Items[0].Score.Should().Be(221634238);
+			app.Items[0].Level.Should().Be(13);
+			app.Items[0].UserId.Should().Be(123);
 		}
 
 		[Test]
@@ -119,11 +123,11 @@ namespace VkNet.Tests.Categories.Apps
 			var app = Api.Apps.GetLeaderboard(AppRatingType.Points);
 
 			app.Should().NotBeNull();
-			Assert.That(app.Count, Is.EqualTo(130));
-			Assert.That(app.Items, Is.Not.Empty);
-			Assert.That(app.Items[0].Score, Is.EqualTo(221634238));
-			Assert.That(app.Items[0].Points, Is.EqualTo(256));
-			Assert.That(app.Items[0].UserId, Is.EqualTo(123));
+			app.Count.Should().Be(130);
+			app.Items.Should().NotBeEmpty();
+			app.Items[0].Score.Should().Be(221634238);
+			app.Items[0].Points.Should().Be(256);
+			app.Items[0].UserId.Should().Be(123);
 		}
 	}
 }

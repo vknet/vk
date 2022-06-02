@@ -7,7 +7,6 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.NewsFeed
 {
 	[TestFixture]
-
 	public class GetTest : CategoryBaseTest
 	{
 		protected override string Folder => "NewsFeed";
@@ -20,13 +19,17 @@ namespace VkNet.Tests.Categories.NewsFeed
 
 			var result = Api.NewsFeed.Get(new NewsFeedGetParams
 			{
-				Filters = NewsTypes.Post | NewsTypes.Photo | NewsTypes.WallPhoto | NewsTypes.Friend,
-				SourceIds = new []{"-106879986", "-30022666"},
+				Filters = NewsTypes.Post|NewsTypes.Photo|NewsTypes.WallPhoto|NewsTypes.Friend,
+				SourceIds = new[]
+				{
+					"-106879986",
+					"-30022666"
+				},
 				Count = 100
 			});
 
 			result.Should().NotBeNull();
-			Assert.IsNotEmpty(result.NextFrom);
+			result.NextFrom.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -37,13 +40,16 @@ namespace VkNet.Tests.Categories.NewsFeed
 
 			var result = Api.NewsFeed.Get(new NewsFeedGetParams
 			{
-				Filters = NewsTypes.Post | NewsTypes.Photo | NewsTypes.WallPhoto | NewsTypes.Friend,
-				SourceIds = new []{"361347484"},
+				Filters = NewsTypes.Post|NewsTypes.Photo|NewsTypes.WallPhoto|NewsTypes.Friend,
+				SourceIds = new[]
+				{
+					"361347484"
+				},
 				Count = 100
 			});
 
 			result.Should().NotBeNull();
-			Assert.IsNotEmpty(result.NextFrom);
+			result.NextFrom.Should().NotBeEmpty();
 		}
 	}
 }

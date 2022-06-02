@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Enums;
 using VkNet.Model.RequestParams;
@@ -9,7 +10,6 @@ namespace VkNet.Tests.Categories.Pages
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-
 	public class PagesCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Pages";
@@ -22,7 +22,7 @@ namespace VkNet.Tests.Categories.Pages
 
 			var cache = Api.Pages.ClearCache(new Uri("https://www.vk.com/dev/groups.addLink"));
 
-			Assert.That(cache, Is.True);
+			cache.Should().BeTrue();
 		}
 
 		[Test]
@@ -33,23 +33,24 @@ namespace VkNet.Tests.Categories.Pages
 
 			var page = Api.Pages.Get(new PagesGetParams
 			{
-				OwnerId = -103292418, Title = "Свежие новости"
+				OwnerId = -103292418,
+				Title = "Свежие новости"
 			});
 
-			Assert.That(page.Id, Is.EqualTo(50050492));
-			Assert.That(page.GroupId, Is.EqualTo(103292418));
-			Assert.That(page.Title, Is.EqualTo("Свежие новости"));
-			Assert.That(page.CurrentUserCanEdit, Is.EqualTo(true));
-			Assert.That(page.CurrentUserCanEditAccess, Is.EqualTo(true));
+			page.Id.Should().Be(50050492);
+			page.GroupId.Should().Be(103292418);
+			page.Title.Should().Be("Свежие новости");
+			page.CurrentUserCanEdit.Should().Be(true);
+			page.CurrentUserCanEditAccess.Should().Be(true);
 
-			Assert.That(page.WhoCanEdit, Is.EqualTo(PageAccessKind.OnlyAdministrators));
-			Assert.That(page.WhoCanView, Is.EqualTo(PageAccessKind.OnlyMembers));
-			Assert.That(page.Edited, Is.EqualTo("1444643546"));
-			Assert.That(page.Created, Is.EqualTo("1444643546"));
-			Assert.That(page.EditorId, Is.EqualTo(32190123));
-			Assert.That(page.CreatorId, Is.EqualTo(32190123));
+			page.WhoCanEdit.Should().Be(PageAccessKind.OnlyAdministrators);
+			page.WhoCanView.Should().Be(PageAccessKind.OnlyMembers);
+			page.Edited.Should().Be("1444643546");
+			page.Created.Should().Be("1444643546");
+			page.EditorId.Should().Be(32190123);
+			page.CreatorId.Should().Be(32190123);
 
-			Assert.That(page.ViewUrl, Is.EqualTo("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e"));
+			page.ViewUrl.Should().Be("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
 		}
 
 		[Test]
@@ -60,23 +61,24 @@ namespace VkNet.Tests.Categories.Pages
 
 			var page = Api.Pages.Get(new PagesGetParams
 			{
-				OwnerId = -103292418, PageId = 50050492
+				OwnerId = -103292418,
+				PageId = 50050492
 			});
 
-			Assert.That(page.Id, Is.EqualTo(50050492));
-			Assert.That(page.GroupId, Is.EqualTo(103292418));
-			Assert.That(page.Title, Is.EqualTo("Свежие новости"));
-			Assert.That(page.CurrentUserCanEdit, Is.EqualTo(true));
-			Assert.That(page.CurrentUserCanEditAccess, Is.EqualTo(true));
+			page.Id.Should().Be(50050492);
+			page.GroupId.Should().Be(103292418);
+			page.Title.Should().Be("Свежие новости");
+			page.CurrentUserCanEdit.Should().Be(true);
+			page.CurrentUserCanEditAccess.Should().Be(true);
 
-			Assert.That(page.WhoCanEdit, Is.EqualTo(PageAccessKind.OnlyAdministrators));
-			Assert.That(page.WhoCanView, Is.EqualTo(PageAccessKind.OnlyMembers));
-			Assert.That(page.Edited, Is.EqualTo("1444643546"));
-			Assert.That(page.Created, Is.EqualTo("1444643546"));
-			Assert.That(page.EditorId, Is.EqualTo(32190123));
-			Assert.That(page.CreatorId, Is.EqualTo(32190123));
+			page.WhoCanEdit.Should().Be(PageAccessKind.OnlyAdministrators);
+			page.WhoCanView.Should().Be(PageAccessKind.OnlyMembers);
+			page.Edited.Should().Be("1444643546");
+			page.Created.Should().Be("1444643546");
+			page.EditorId.Should().Be(32190123);
+			page.CreatorId.Should().Be(32190123);
 
-			Assert.That(page.ViewUrl, Is.EqualTo("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e"));
+			page.ViewUrl.Should().Be("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
 		}
 
 		[Test]
@@ -87,7 +89,7 @@ namespace VkNet.Tests.Categories.Pages
 
 			var histories = Api.Pages.GetHistory(50050492, 103292418);
 
-			Assert.That(histories, Is.Not.Null);
+			histories.Should().NotBeNull();
 		}
 
 		[Test]
@@ -98,7 +100,7 @@ namespace VkNet.Tests.Categories.Pages
 
 			var titles = Api.Pages.GetTitles(103292418);
 
-			Assert.That(titles, Is.Not.Null);
+			titles.Should().NotBeNull();
 		}
 
 		[Test]
@@ -109,16 +111,16 @@ namespace VkNet.Tests.Categories.Pages
 
 			var version = Api.Pages.GetVersion(184657135, 103292418);
 
-			Assert.That(version.Id, Is.EqualTo(50050492));
-			Assert.That(version.GroupId, Is.EqualTo(103292418));
-			Assert.That(version.Title, Is.EqualTo("Свежие новости"));
-			Assert.That(version.Source, Is.EqualTo("test"));
-			Assert.That(version.CurrentUserCanEdit, Is.EqualTo(true));
-			Assert.That(version.WhoCanView, Is.EqualTo(PageAccessKind.OnlyAdministrators));
-			Assert.That(version.WhoCanEdit, Is.EqualTo(PageAccessKind.OnlyAdministrators));
-			Assert.That(version.VersionCreated, Is.EqualTo("1444644359"));
-			Assert.That(version.CreatorId, Is.EqualTo(32190123));
-			Assert.That(version.Html, Is.EqualTo("<!--4-->test "));
+			version.Id.Should().Be(50050492);
+			version.GroupId.Should().Be(103292418);
+			version.Title.Should().Be("Свежие новости");
+			version.Source.Should().Be("test");
+			version.CurrentUserCanEdit.Should().Be(true);
+			version.WhoCanView.Should().Be(PageAccessKind.OnlyAdministrators);
+			version.WhoCanEdit.Should().Be(PageAccessKind.OnlyAdministrators);
+			version.VersionCreated.Should().Be("1444644359");
+			version.CreatorId.Should().Be(32190123);
+			version.Html.Should().Be("<!--4-->test ");
 		}
 
 		[Test]
@@ -129,7 +131,7 @@ namespace VkNet.Tests.Categories.Pages
 
 			var page = Api.Pages.Save("123", 123, 32190123, "Свежие новости", 103292418);
 
-			Assert.That(page, Is.EqualTo(50050492));
+			page.Should().Be(50050492);
 		}
 
 		[Test]
@@ -140,7 +142,7 @@ namespace VkNet.Tests.Categories.Pages
 
 			var page = Api.Pages.Save("123", 50050492, 32190123, "", 103292418);
 
-			Assert.That(page, Is.EqualTo(50050492));
+			page.Should().Be(50050492);
 		}
 
 		[Test]
@@ -151,7 +153,7 @@ namespace VkNet.Tests.Categories.Pages
 
 			var page = Api.Pages.SaveAccess(50050492, 103292418);
 
-			Assert.That(page, Is.EqualTo(50050492));
+			page.Should().Be(50050492);
 		}
 	}
 }

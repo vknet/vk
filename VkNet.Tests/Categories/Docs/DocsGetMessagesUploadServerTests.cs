@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 
@@ -16,7 +17,7 @@ namespace VkNet.Tests.Categories.Docs
 			ReadCategoryJsonPath("DocGetMessagesUploadServerResult");
 
 			var serverInfo = Api.Docs.GetMessagesUploadServer(504736359, type: DocMessageType.Graffiti);
-			Assert.IsNotEmpty(serverInfo.UploadUrl);
+			serverInfo.UploadUrl.Should().NotBeEmpty();
 		}
 	}
 }

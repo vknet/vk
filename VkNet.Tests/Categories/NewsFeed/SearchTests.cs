@@ -1,6 +1,6 @@
-using NUnit.Framework;
 using System.Linq;
 using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 
@@ -21,7 +21,7 @@ namespace VkNet.Tests.Categories.NewsFeed
 			var result = Api.NewsFeed.Search(new NewsFeedSearchParams());
 
 			result.Should().NotBeNull();
-			Assert.IsNotEmpty(result.NextFrom);
+			result.NextFrom.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -37,7 +37,7 @@ namespace VkNet.Tests.Categories.NewsFeed
 			});
 
 			result.Should().NotBeNull();
-			Assert.IsNotEmpty(result.NextFrom);
+			result.NextFrom.Should().NotBeEmpty();
 		}
 
 		[Test]

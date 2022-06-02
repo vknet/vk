@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -18,8 +19,8 @@ namespace VkNet.Tests.Categories.Audio
 
 			var result = Api.Audio.GetLyrics(416041990);
 
-			Assert.That(result.Id, Is.EqualTo(416041990));
-			Assert.That(result.Text, Is.EqualTo("test"));
+			result.Id.Should().Be(416041990);
+			result.Text.Should().Be("test");
 		}
 	}
 }

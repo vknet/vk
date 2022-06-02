@@ -45,12 +45,12 @@ namespace VkNet.Tests.Categories.Streaming
 
 			var result = Api.Streaming.GetStats("prepared", "24h", new DateTime(2018, 5, 1), new DateTime(2018, 5, 20));
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 
 			var stats = result.FirstOrDefault();
 			stats.Should().NotBeNull();
 			stats.EventType.Should().Be(StreamingEventType.Post);
-			Assert.IsNotEmpty(stats.Stats);
+			stats.Stats.Should().NotBeEmpty();
 		}
 
 		[Test]

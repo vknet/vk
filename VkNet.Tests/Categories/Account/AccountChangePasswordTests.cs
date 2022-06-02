@@ -1,3 +1,4 @@
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Categories.Account
 			ReadCategoryJsonPath(nameof(Api.Account.ChangePassword));
 
 			var result = Api.Account.ChangePassword("old", "new");
-			Assert.That(result.Token, Is.EqualTo("token"));
+			result.Token.Should().Be("token");
 		}
 	}
 }

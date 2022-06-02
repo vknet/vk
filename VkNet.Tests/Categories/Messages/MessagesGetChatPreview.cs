@@ -17,14 +17,14 @@ namespace VkNet.Tests.Categories.Messages
 			var result = Api.Messages.GetChatPreview("http://vk.com", ProfileFields.About);
 
 			result.Should().NotBeNull();
-			Assert.That(result.Emails, Is.Not.Empty);
-			Assert.That(result.Groups, Is.Not.Empty);
-			Assert.That(result.Profiles, Is.Not.Empty);
-			Assert.That(result.Preview, Is.Not.Null);
-			Assert.That(result.Preview.LocalId, Is.EqualTo(43));
-			Assert.That(result.Preview.Title, Is.EqualTo("qwe"));
-			Assert.That(result.Preview.AdminId, Is.EqualTo(123));
-			Assert.That(result.Preview.Members, Is.Not.Empty);
+			result.Emails.Should().NotBeEmpty();
+			result.Groups.Should().NotBeEmpty();
+			result.Profiles.Should().NotBeEmpty();
+			result.Preview.Should().NotBeNull();
+			result.Preview.LocalId.Should().Be(43);
+			result.Preview.Title.Should().Be("qwe");
+			result.Preview.AdminId.Should().Be(123);
+			result.Preview.Members.Should().NotBeEmpty();
 		}
 	}
 }

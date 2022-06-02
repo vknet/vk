@@ -16,7 +16,7 @@ namespace VkNet.Tests.Categories.Donut
 		{
 			Url = "https://api.vk.com/method/donut.isDon";
 			ReadJsonFile(JsonPaths.False);
-			Assert.That(Api.Donut.IsDon(-173151748), Is.False);
+			Api.Donut.IsDon(-173151748).Should().BeFalse();
 		}
 
 		[Test]
@@ -33,7 +33,7 @@ namespace VkNet.Tests.Categories.Donut
 		{
 			Url = "https://api.vk.com/method/donut.getSubscription";
 			ReadErrorsJsonFile(104);
-			Assert.That(() => Api.Donut.GetSubscription(-173151748), Throws.InstanceOf<VkApiMethodInvokeException>());
+			FluentActions.Invoking(() => Api.Donut.GetSubscription(-173151748)).Should().ThrowExactly<VkApiMethodInvokeException>();
 		}
 
 		[Test]

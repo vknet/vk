@@ -17,7 +17,6 @@ namespace VkNet.Tests.Categories.Messages
 {
 	[TestFixture]
 	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-
 	public class MessagesCategoryTest : MessagesBaseTests
 	{
 		[Test]
@@ -29,7 +28,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.AddChatUser(2, 7550525);
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -45,7 +44,7 @@ namespace VkNet.Tests.Categories.Messages
 				},
 				"test chat's title");
 
-			Assert.That(chatId, Is.EqualTo(3));
+			chatId.Should().Be(3);
 		}
 
 		[Test]
@@ -63,7 +62,7 @@ namespace VkNet.Tests.Categories.Messages
 				null,
 				false);
 
-			Assert.That(result[4446], Is.True);
+			result[4446].Should().BeTrue();
 		}
 
 		[Test]
@@ -73,14 +72,15 @@ namespace VkNet.Tests.Categories.Messages
 
 			ReadErrorsJsonFile(1);
 
-			Assert.That(() => Api.Messages.Delete(new ulong[]
+			FluentActions.Invoking(() => Api.Messages.Delete(new ulong[]
 					{
 						999999
 					},
 					false,
 					null,
-					false),
-				Throws.InstanceOf<VkApiException>());
+					false))
+				.Should()
+				.ThrowExactly<VkApiException>();
 		}
 
 		[Test]
@@ -99,9 +99,9 @@ namespace VkNet.Tests.Categories.Messages
 				null,
 				false);
 
-			Assert.That(dict.Count, Is.EqualTo(2));
-			Assert.That(dict[4457], Is.True);
-			Assert.That(dict[4464], Is.True);
+			dict.Should().HaveCount(2);
+			dict[4457].Should().BeTrue();
+			dict[4464].Should().BeTrue();
 		}
 
 		[Test]
@@ -124,29 +124,29 @@ namespace VkNet.Tests.Categories.Messages
 
 			var messages = Api.Messages.Get(new MessagesGetParams());
 
-			Assert.That(messages.TotalCount, Is.EqualTo(5));
-			Assert.That(messages, Is.Not.Null);
-			Assert.That(messages.Messages.Count, Is.EqualTo(2));
+			messages.TotalCount.Should().Be(5);
+			messages.Should().NotBeNull();
+			messages.Messages.Count.Should().Be(2);
 
 			var message = messages.Messages.FirstOrDefault();
-			Assert.That(message, Is.Not.Null);
-			Assert.That(message.Body, Is.EqualTo("fun"));
-			Assert.That(message.Id, Is.EqualTo(34));
-			Assert.That(message.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1398242416)));
-			Assert.That(message.ReadState, Is.EqualTo(MessageReadState.Unreaded));
-			Assert.That(message.Type, Is.EqualTo(MessageType.Received));
-			Assert.That(message.UserId, Is.EqualTo(562508789));
-			Assert.That(message.Title, Is.EqualTo(" ... "));
+			message.Should().NotBeNull();
+			message.Body.Should().Be("fun");
+			message.Id.Should().Be(34);
+			message.Date.Should().Be(DateHelper.TimeStampToDateTime(1398242416));
+			message.ReadState.Should().Be(MessageReadState.Unreaded);
+			message.Type.Should().Be(MessageType.Received);
+			message.UserId.Should().Be(562508789);
+			message.Title.Should().Be(" ... ");
 
 			var message1 = messages.Messages.Skip(1).FirstOrDefault();
-			Assert.That(message1, Is.Not.Null);
-			Assert.That(message1.Body, Is.EqualTo("very"));
-			Assert.That(message1.Id, Is.EqualTo(33));
-			Assert.That(message1.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1398242415)));
-			Assert.That(message1.ReadState, Is.EqualTo(MessageReadState.Unreaded));
-			Assert.That(message1.Type, Is.EqualTo(MessageType.Received));
-			Assert.That(message1.UserId, Is.EqualTo(562508789));
-			Assert.That(message1.Title, Is.EqualTo(" ... "));
+			message1.Should().NotBeNull();
+			message1.Body.Should().Be("very");
+			message1.Id.Should().Be(33);
+			message1.Date.Should().Be(DateHelper.TimeStampToDateTime(1398242415));
+			message1.ReadState.Should().Be(MessageReadState.Unreaded);
+			message1.Type.Should().Be(MessageType.Received);
+			message1.UserId.Should().Be(562508789);
+			message1.Title.Should().Be(" ... ");
 		}
 
 		[Test]
@@ -161,19 +161,19 @@ namespace VkNet.Tests.Categories.Messages
 				LastMessageId = 30
 			});
 
-			Assert.That(messages.TotalCount, Is.EqualTo(5));
-			Assert.That(messages, Is.Not.Null);
-			Assert.That(messages.Messages.Count, Is.EqualTo(1));
+			messages.TotalCount.Should().Be(5);
+			messages.Should().NotBeNull();
+			messages.Messages.Should().HaveCount(1);
 
 			var message = messages.Messages.FirstOrDefault();
-			Assert.That(message, Is.Not.Null);
-			Assert.That(message.Id, Is.EqualTo(31));
-			Assert.That(message.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1398242412)));
-			Assert.That(message.Type, Is.EqualTo(MessageType.Received));
-			Assert.That(message.UserId, Is.EqualTo(123508789));
-			Assert.That(message.ReadState, Is.EqualTo(MessageReadState.Unreaded));
-			Assert.That(message.Title, Is.EqualTo(" ... "));
-			Assert.That(message.Body, Is.EqualTo("may"));
+			message.Should().NotBeNull();
+			message.Id.Should().Be(31);
+			message.Date.Should().Be(DateHelper.TimeStampToDateTime(1398242412));
+			message.Type.Should().Be(MessageType.Received);
+			message.UserId.Should().Be(123508789);
+			message.ReadState.Should().Be(MessageReadState.Unreaded);
+			message.Title.Should().Be(" ... ");
+			message.Body.Should().Be("may");
 		}
 
 		[Test]
@@ -191,30 +191,29 @@ namespace VkNet.Tests.Categories.Messages
 				},
 				null);
 
-			Assert.That(msgs.TotalCount, Is.EqualTo(3));
-			Assert.That(msgs.Count, Is.EqualTo(3));
+			msgs.TotalCount.Should().Be(3);
+			msgs.Should().HaveCount(3);
 
-			Assert.That(msgs[2].Id, Is.EqualTo(5));
-			Assert.That(msgs[2].Type, Is.EqualTo(MessageType.Received));
-			Assert.That(msgs[2].UserId, Is.EqualTo(684559));
-			Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[2].Title, Is.EqualTo("Re(2): Как там зачетная неделя продвигаетсо?)"));
+			msgs[2].Id.Should().Be(5);
+			msgs[2].Type.Should().Be(MessageType.Received);
+			msgs[2].UserId.Should().Be(684559);
+			msgs[2].ReadState.Should().Be(MessageReadState.Readed);
+			msgs[2].Title.Should().Be("Re(2): Как там зачетная неделя продвигаетсо?)");
 
-			Assert.That(msgs[2].Body,
-				Is.EqualTo("Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)"));
+			msgs[2].Body.Should().Be("Да тож не малина - последняя неделя жуть!<br>Надеюсь, домой успею ;)");
 
-			Assert.That(msgs[1].Id, Is.EqualTo(3));
-			Assert.That(msgs[1].Type, Is.EqualTo(MessageType.Sended));
-			Assert.That(msgs[1].UserId, Is.EqualTo(684559));
-			Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[1].Title, Is.EqualTo("Re: Как там зачетная неделя продвигаетсо?)"));
-			Assert.That(msgs[1].Body, Is.EqualTo("Парят и парят во все дыры)... у тебя как?"));
-			Assert.That(msgs[0].Id, Is.EqualTo(1));
-			Assert.That(msgs[0].Type, Is.EqualTo(MessageType.Received));
-			Assert.That(msgs[0].UserId, Is.EqualTo(684559));
-			Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[0].Title, Is.EqualTo(" ... "));
-			Assert.That(msgs[0].Body, Is.EqualTo("Привеееет!!!!!!!!!!!"));
+			msgs[1].Id.Should().Be(3);
+			msgs[1].Type.Should().Be(MessageType.Sended);
+			msgs[1].UserId.Should().Be(684559);
+			msgs[1].ReadState.Should().Be(MessageReadState.Readed);
+			msgs[1].Title.Should().Be("Re: Как там зачетная неделя продвигаетсо?)");
+			msgs[1].Body.Should().Be("Парят и парят во все дыры)... у тебя как?");
+			msgs[0].Id.Should().Be(1);
+			msgs[0].Type.Should().Be(MessageType.Received);
+			msgs[0].UserId.Should().Be(684559);
+			msgs[0].ReadState.Should().Be(MessageReadState.Readed);
+			msgs[0].Title.Should().Be(" ... ");
+			msgs[0].Body.Should().Be("Привеееет!!!!!!!!!!!");
 		}
 
 		[Test]
@@ -231,20 +230,20 @@ namespace VkNet.Tests.Categories.Messages
 					null)
 				.FirstOrDefault();
 
-			Assert.That(msg?.Id, Is.EqualTo(265999));
+			msg?.Id.Should().Be(265999);
 
-			Assert.That(msg?.Date,
-				Is.EqualTo(new DateTime(2020,
+			msg?.Date.Should()
+				.Be(new DateTime(2020,
 					2,
 					12,
 					9,
 					7,
 					42,
-					DateTimeKind.Utc)));
+					DateTimeKind.Utc));
 
-			Assert.That(msg?.Type, Is.EqualTo(MessageType.Sended));
-			Assert.That(msg?.PeerId, Is.EqualTo(228907945));
-			Assert.That(msg?.Attachments.Count, Is.EqualTo(1));
+			(msg?.Type).Should().Be(MessageType.Sended);
+			(msg?.PeerId).Should().Be(228907945);
+			(msg?.Attachments.Count).Should().Be(1);
 		}
 
 		[Test]
@@ -256,13 +255,13 @@ namespace VkNet.Tests.Categories.Messages
 
 			var chat = Api.Messages.GetChat(2);
 
-			Assert.That(chat.Id, Is.EqualTo(2));
-			Assert.That(chat.Title, Is.EqualTo("test chat title"));
-			Assert.That(chat.AdminId, Is.EqualTo(4793858));
-			Assert.That(chat.Users.Count, Is.EqualTo(3));
-			Assert.That(chat.Users.ElementAt(0), Is.EqualTo(4793858));
-			Assert.That(chat.Users.ElementAt(1), Is.EqualTo(5041431));
-			Assert.That(chat.Users.ElementAt(2), Is.EqualTo(10657891));
+			chat.Id.Should().Be(2);
+			chat.Title.Should().Be("test chat title");
+			chat.AdminId.Should().Be(4793858);
+			chat.Users.Should().HaveCount(3);
+			chat.Users.ElementAt(0).Should().Be(4793858);
+			chat.Users.ElementAt(1).Should().Be(5041431);
+			chat.Users.ElementAt(2).Should().Be(10657891);
 		}
 
 		[Test]
@@ -280,7 +279,7 @@ namespace VkNet.Tests.Categories.Messages
 					null)
 				.ToList();
 
-			Assert.That(users.Count, Is.EqualTo(3));
+			users.Should().HaveCount(3);
 		}
 
 		[Test]
@@ -297,26 +296,26 @@ namespace VkNet.Tests.Categories.Messages
 				UsersFields.Education,
 				null);
 
-			Assert.That(users.Count, Is.EqualTo(3));
-			Assert.That(users[0].Id, Is.EqualTo(4793858));
-			Assert.That(users[0].FirstName, Is.EqualTo("Антон"));
-			Assert.That(users[0].LastName, Is.EqualTo("Жидков"));
-			Assert.That(users[0].Education, Is.Null);
-			Assert.That(users[0].InvitedBy, Is.EqualTo(4793858));
+			users.Should().HaveCount(3);
+			users[0].Id.Should().Be(4793858);
+			users[0].FirstName.Should().Be("Антон");
+			users[0].LastName.Should().Be("Жидков");
+			users[0].Education.Should().BeNull();
+			users[0].InvitedBy.Should().Be(4793858);
 
-			Assert.That(users[1].Id, Is.EqualTo(5041431));
-			Assert.That(users[1].FirstName, Is.EqualTo("Тайфур"));
-			Assert.That(users[1].LastName, Is.EqualTo("Касеев"));
-			Assert.That(users[1].Education.UniversityId, Is.EqualTo(431));
-			Assert.That(users[1].InvitedBy, Is.EqualTo(4793858));
+			users[1].Id.Should().Be(5041431);
+			users[1].FirstName.Should().Be("Тайфур");
+			users[1].LastName.Should().Be("Касеев");
+			users[1].Education.UniversityId.Should().Be(431);
+			users[1].InvitedBy.Should().Be(4793858);
 
-			Assert.That(users[2].Id, Is.EqualTo(10657891));
-			Assert.That(users[2].FirstName, Is.EqualTo("Максим"));
-			Assert.That(users[2].LastName, Is.EqualTo("Денисов"));
-			Assert.That(users[2].Education.UniversityId, Is.EqualTo(431));
-			Assert.That(users[2].Education.FacultyId, Is.EqualTo(3162));
-			Assert.That(users[2].Education.Graduation, Is.EqualTo(2011));
-			Assert.That(users[2].InvitedBy, Is.EqualTo(4793858));
+			users[2].Id.Should().Be(10657891);
+			users[2].FirstName.Should().Be("Максим");
+			users[2].LastName.Should().Be("Денисов");
+			users[2].Education.UniversityId.Should().Be(431);
+			users[2].Education.FacultyId.Should().Be(3162);
+			users[2].Education.Graduation.Should().Be(2011);
+			users[2].InvitedBy.Should().Be(4793858);
 		}
 
 		[Test]
@@ -332,23 +331,24 @@ namespace VkNet.Tests.Categories.Messages
 				Unread = false
 			});
 
-			Assert.That(msgs.TotalCount, Is.EqualTo(299));
-			Assert.That(msgs.Messages.Count, Is.EqualTo(20));
-			Assert.That(msgs.Messages[0].Id, Is.EqualTo(266284));
+			msgs.TotalCount.Should().Be(299);
+			msgs.Messages.Should().HaveCount(20);
+			msgs.Messages[0].Id.Should().Be(266284);
 
-			Assert.That(msgs.Messages[0].Date,
-				Is.EqualTo(new DateTime(2020,
+			msgs.Messages[0]
+				.Date.Should()
+				.Be(new DateTime(2020,
 					2,
 					16,
 					9,
 					50,
 					50,
-					DateTimeKind.Utc)));
+					DateTimeKind.Utc));
 
-			Assert.That(msgs.Messages[0].Type, Is.EqualTo(MessageType.Sended));
-			Assert.That(msgs.Messages[0].UserId, Is.EqualTo(71469725));
-			Assert.That(msgs.Messages[0].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs.Messages[0].Body, Is.EqualTo("😂"));
+			msgs.Messages[0].Type.Should().Be(MessageType.Sended);
+			msgs.Messages[0].UserId.Should().Be(71469725);
+			msgs.Messages[0].ReadState.Should().Be(MessageReadState.Readed);
+			msgs.Messages[0].Body.Should().Be("😂");
 		}
 
 		[Test]
@@ -363,32 +363,32 @@ namespace VkNet.Tests.Categories.Messages
 			});
 
 			// assertions
-			Assert.That(msgs.TotalCount, Is.EqualTo(1940));
+			msgs.TotalCount.Should().Be(1940);
 			var msg = msgs.Messages.FirstOrDefault();
-			Assert.That(msg, Is.Not.Null);
-			Assert.That(msg.Attachments.Count, Is.EqualTo(1));
+			msg.Should().NotBeNull();
+			msg.Attachments.Should().HaveCount(1);
 
 			var wall = msg.Attachments[0].Instance as Model.Attachments.Wall;
 
-			Assert.That(wall, Is.Not.Null);
-			Assert.That(wall.Id, Is.EqualTo(6194));
-			Assert.That(wall.FromId, Is.EqualTo(-1267));
+			wall.Should().NotBeNull();
+			wall.Id.Should().Be(6194);
+			wall.FromId.Should().Be(-1267);
 
-			Assert.That(wall.Date, Is.EqualTo(DateHelper.TimeStampToDateTime(1414992610)));
-			Assert.That(wall.PostType, Is.EqualTo(PostType.Post));
-			Assert.That(wall.Text, Is.EqualTo(string.Empty));
-			Assert.That(wall.Comments.Count, Is.EqualTo(3));
-			Assert.That(wall.Comments.CanPost, Is.False);
-			Assert.That(wall.Likes.Count, Is.EqualTo(9191));
-			Assert.That(wall.Likes.UserLikes, Is.True);
-			Assert.That(wall.Likes.CanLike, Is.False);
-			Assert.That(wall.Likes.CanPublish, Is.EqualTo(true));
-			Assert.That(wall.Reposts.Count, Is.EqualTo(953));
-			Assert.That(wall.Reposts.UserReposted, Is.False);
-			Assert.That(wall.Attachments.Count, Is.EqualTo(1));
+			wall.Date.Should().Be(DateHelper.TimeStampToDateTime(1414992610));
+			wall.PostType.Should().Be(PostType.Post);
+			wall.Text.Should().Be(string.Empty);
+			wall.Comments.Count.Should().Be(3);
+			wall.Comments.CanPost.Should().BeFalse();
+			wall.Likes.Count.Should().Be(9191);
+			wall.Likes.UserLikes.Should().BeTrue();
+			wall.Likes.CanLike.Should().BeFalse();
+			wall.Likes.CanPublish.Should().Be(true);
+			wall.Reposts.Count.Should().Be(953);
+			wall.Reposts.UserReposted.Should().BeFalse();
+			wall.Attachments.Count.Should().Be(1);
 
 			var photo = wall.Attachments[0].Instance as Photo;
-			Assert.That(photo, Is.Not.Null);
+			photo.Should().NotBeNull();
 		}
 
 		[Test]
@@ -405,18 +405,18 @@ namespace VkNet.Tests.Categories.Messages
 			});
 
 			// asserts
-			Assert.That(msgs.TotalCount, Is.EqualTo(6));
-			Assert.That(msgs.Messages.Count, Is.EqualTo(1));
+			msgs.TotalCount.Should().Be(6);
+			msgs.Messages.Count().Should().Be(1);
 			var msg = msgs.Messages.FirstOrDefault();
 
-			Assert.That(msg, Is.Not.Null);
-			Assert.That(msg.Attachments.Count, Is.EqualTo(1));
+			msg.Should().NotBeNull();
+			msg.Attachments.Should().HaveCount(1);
 
 			var sticker = msg.Attachments[0].Instance as Sticker;
-			Assert.That(sticker, Is.Not.Null);
+			sticker.Should().NotBeNull();
 
-			Assert.That(sticker.Id, Is.EqualTo(12345));
-			Assert.That(sticker.ProductId, Is.EqualTo(54321));
+			sticker.Id.Should().Be(12345);
+			sticker.ProductId.Should().Be(54321);
 		}
 
 		[Test]
@@ -428,21 +428,22 @@ namespace VkNet.Tests.Categories.Messages
 			var msgs = Api.Messages.GetHistory(new MessagesGetHistoryParams());
 			var messages = msgs.Messages.ToList();
 
-			Assert.That(msgs.TotalCount, Is.EqualTo(1493));
-			Assert.That(messages.Count, Is.EqualTo(1));
+			msgs.TotalCount.Should().Be(1493);
+			messages.Should().ContainSingle();
 
-			Assert.That(messages[0].Id, Is.EqualTo(266005));
-			Assert.That(messages[0].Text, Is.EqualTo("Спс бро"));
-			Assert.That(messages[0].PeerId, Is.EqualTo(228907945));
+			messages[0].Id.Should().Be(266005);
+			messages[0].Text.Should().Be("Спс бро");
+			messages[0].PeerId.Should().Be(228907945);
 
-			Assert.That(messages[0].Date,
-				Is.EqualTo(new DateTime(2020,
+			messages[0]
+				.Date.Should()
+				.Be(new DateTime(2020,
 					2,
 					12,
 					17,
 					26,
 					01,
-					DateTimeKind.Utc)));
+					DateTimeKind.Utc));
 		}
 
 		[Test]
@@ -453,17 +454,17 @@ namespace VkNet.Tests.Categories.Messages
 
 			var activity = Api.Messages.GetLastActivity(77128);
 
-			Assert.That(activity.UserId, Is.EqualTo(77128));
-			Assert.That(activity.IsOnline, Is.False);
+			activity.UserId.Should().Be(77128);
+			activity.IsOnline.Should().BeFalse();
 
-			Assert.That(activity.Time,
-				Is.EqualTo(new DateTime(2012,
+			activity.Time.Should()
+				.Be(new DateTime(2012,
 					8,
 					9,
 					3,
 					57,
 					25,
-					DateTimeKind.Utc)));
+					DateTimeKind.Utc));
 		}
 
 		[Test]
@@ -474,15 +475,15 @@ namespace VkNet.Tests.Categories.Messages
 
 			var response = Api.Messages.GetLongPollServer();
 
-			Assert.That(response.Key, Is.EqualTo("6f4120988efaf3a7d398054b5bb5d019c5844bz3"));
-			Assert.That(response.Server, Is.EqualTo("im46.vk.com/im1858"));
-			Assert.That(response.Ts, Is.EqualTo("1627957305"));
+			response.Key.Should().Be("6f4120988efaf3a7d398054b5bb5d019c5844bz3");
+			response.Server.Should().Be("im46.vk.com/im1858");
+			response.Ts.Should().Be("1627957305");
 		}
 
 		[Test]
 		public void GetLongPollServer_ThrowArgumentNullException()
 		{
-			Assert.That(() => Api.Messages.GetLongPollServer(), Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => Api.Messages.GetLongPollServer()).Should().ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -494,7 +495,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.MarkAsRead(null);
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -506,7 +507,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.MarkAsRead(null);
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -518,7 +519,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.RemoveChatUser(2, 7550525);
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -530,7 +531,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.Restore(134);
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -547,57 +548,60 @@ namespace VkNet.Tests.Categories.Messages
 
 			var msgs = result.Items;
 
-			Assert.That(result.Count, Is.EqualTo(18));
+			result.Count.Should().Be(18);
 			msgs.Should().NotBeNull();
-			Assert.That(msgs.Count, Is.EqualTo(3));
+			msgs.Should().HaveCount(3);
 
-			Assert.That(msgs[2].Id, Is.EqualTo(131291));
+			msgs[2].Id.Should().Be(131291);
 
-			Assert.That(msgs[2].Date,
-				Is.EqualTo(new DateTime(2015,
+			msgs[2]
+				.Date.Should()
+				.Be(new DateTime(2015,
 					10,
 					06,
 					4,
 					33,
 					24,
-					DateTimeKind.Utc)));
+					DateTimeKind.Utc));
 
-			Assert.That(msgs[2].UserId, Is.EqualTo(310881357));
-			Assert.That(msgs[2].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[2].Title, Is.EqualTo(" ... "));
-			Assert.That(msgs[2].Body, Is.EqualTo("привет, антон))"));
+			msgs[2].UserId.Should().Be(310881357);
+			msgs[2].ReadState.Should().Be(MessageReadState.Readed);
+			msgs[2].Title.Should().Be(" ... ");
+			msgs[2].Body.Should().Be("привет, антон))");
 
-			Assert.That(msgs[1].Id, Is.EqualTo(131304));
+			msgs[1].Id.Should().Be(131304);
 
-			Assert.That(msgs[1].Date,
-				Is.EqualTo(new DateTime(2015,
+			msgs[1]
+				.Date.Should()
+				.Be(new DateTime(2015,
 					10,
 					6,
 					9,
 					17,
 					57,
-					DateTimeKind.Utc)));
+					DateTimeKind.Utc));
 
-			Assert.That(msgs[1].UserId, Is.EqualTo(72815776));
-			Assert.That(msgs[1].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[1].Title, Is.EqualTo(" ... "));
-			Assert.That(msgs[1].Body, Is.EqualTo("Привет"));
+			msgs[1].UserId.Should().Be(72815776);
+			msgs[1].ReadState.Should().Be(MessageReadState.Readed);
+			msgs[1].Title.Should().Be(" ... ");
+			msgs[1].Body.Should().Be("Привет");
 
-			Assert.That(msgs[0].Id, Is.EqualTo(131307));
+			msgs[0].Id.Should().Be(131307);
 
-			Assert.That(msgs[0].Date,
-				Is.EqualTo(new DateTime(2015,
+			msgs[0]
+				.Date.Should()
+				.Be(new DateTime(2015,
 					10,
 					6,
 					9,
 					26,
 					26,
-					DateTimeKind.Utc)));
+					DateTimeKind.Utc));
 
-			Assert.That(msgs[0].UserId, Is.EqualTo(72815776));
-			Assert.That(msgs[0].ReadState, Is.EqualTo(MessageReadState.Readed));
-			Assert.That(msgs[0].Title, Is.EqualTo(" ... "));
-			Assert.That(msgs[0].Body, Is.EqualTo("Привет"));
+			msgs[0].UserId.Should().Be(72815776);
+			msgs[0].ReadState.Should().Be(MessageReadState.Readed);
+			msgs[0].Title.Should().Be(" ... ");
+			msgs[0].Body.Should().Be("Привет");
 		}
 
 		[Test]
@@ -613,7 +617,7 @@ namespace VkNet.Tests.Categories.Messages
 				Count = 3
 			});
 
-			Assert.That(msgs.Count, Is.EqualTo(0));
+			msgs.Count.Should().Be(0);
 		}
 
 		[Test]
@@ -624,7 +628,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var response = Api.Messages.SearchDialogs("привет");
 
-			Assert.That(response, Is.Null);
+			response.Should().BeNull();
 		}
 
 		[Test]
@@ -635,14 +639,14 @@ namespace VkNet.Tests.Categories.Messages
 
 			var response = Api.Messages.SearchDialogs("Настя");
 
-			Assert.That(response.Users.Count, Is.EqualTo(2));
-			Assert.That(response.Chats.Count, Is.EqualTo(0));
-			Assert.That(response.Users.ElementAt(0).Id, Is.EqualTo(7503978));
-			Assert.That(response.Users.ElementAt(0).FirstName, Is.EqualTo("Настя"));
-			Assert.That(response.Users.ElementAt(0).LastName, Is.EqualTo("Иванова"));
-			Assert.That(response.Users.ElementAt(1).Id, Is.EqualTo(68274561));
-			Assert.That(response.Users.ElementAt(1).FirstName, Is.EqualTo("Настя"));
-			Assert.That(response.Users.ElementAt(1).LastName, Is.EqualTo("Петрова"));
+			response.Users.Should().HaveCount(2);
+			response.Chats.Should().BeEmpty();
+			response.Users.ElementAt(0).Id.Should().Be(7503978);
+			response.Users.ElementAt(0).FirstName.Should().Be("Настя");
+			response.Users.ElementAt(0).LastName.Should().Be("Иванова");
+			response.Users.ElementAt(1).Id.Should().Be(68274561);
+			response.Users.ElementAt(1).FirstName.Should().Be("Настя");
+			response.Users.ElementAt(1).LastName.Should().Be("Петрова");
 		}
 
 		[Test]
@@ -653,19 +657,19 @@ namespace VkNet.Tests.Categories.Messages
 
 			var response = Api.Messages.SearchDialogs("Маша");
 
-			Assert.That(response.Users.Count, Is.EqualTo(1));
-			Assert.That(response.Chats.Count, Is.EqualTo(1));
+			response.Users.Should().HaveCount(1);
+			response.Chats.Should().HaveCount(1);
 
-			Assert.That(response.Users[0].Id, Is.EqualTo(1708231));
-			Assert.That(response.Users[0].FirstName, Is.EqualTo("Григорий"));
-			Assert.That(response.Users[0].LastName, Is.EqualTo("Клюшников"));
+			response.Users[0].Id.Should().Be(1708231);
+			response.Users[0].FirstName.Should().Be("Григорий");
+			response.Users[0].LastName.Should().Be("Клюшников");
 
-			Assert.That(response.Chats[0].Id, Is.EqualTo(109));
-			Assert.That(response.Chats[0].Title, Is.EqualTo("Андрей, Григорий"));
-			Assert.That(response.Chats[0].Users.Count, Is.EqualTo(3));
-			Assert.That(response.Chats[0].Users.ElementAt(0), Is.EqualTo(66748));
-			Assert.That(response.Chats[0].Users.ElementAt(1), Is.EqualTo(6492));
-			Assert.That(response.Chats[0].Users.ElementAt(2), Is.EqualTo(1708231));
+			response.Chats[0].Id.Should().Be(109);
+			response.Chats[0].Title.Should().Be("Андрей, Григорий");
+			response.Chats[0].Users.Should().HaveCount(3);
+			response.Chats[0].Users.ElementAt(0).Should().Be(66748);
+			response.Chats[0].Users.ElementAt(1).Should().Be(6492);
+			response.Chats[0].Users.ElementAt(2).Should().Be(1708231);
 		}
 	}
 }

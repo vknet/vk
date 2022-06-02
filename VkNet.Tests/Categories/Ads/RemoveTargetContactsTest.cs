@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
@@ -25,7 +26,7 @@ namespace VkNet.Tests.Categories.Ads
 				TargetGroupId = 29859003
 			});
 
-			Assert.That(result.Result, Is.EqualTo(true));
+			result.Result.Should().BeTrue();
 		}
 	}
 }

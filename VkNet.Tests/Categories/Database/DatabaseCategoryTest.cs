@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FluentAssertions;
 using NUnit.Framework;
 using VkNet.Categories;
 using VkNet.Enums;
@@ -10,7 +11,6 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Database
 {
 	[TestFixture]
-
 	public class DatabaseCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Database";
@@ -18,11 +18,12 @@ namespace VkNet.Tests.Categories.Database
 		[Test]
 		public void GetCities_CountryIdIsNegative_ThrowException()
 		{
-			Assert.That(() => new DatabaseCategory(Api).GetCities(new GetCitiesParams
+			FluentActions.Invoking(() => new DatabaseCategory(Api).GetCities(new GetCitiesParams
 				{
 					CountryId = -1
-				}),
-				Throws.InstanceOf<ArgumentException>());
+				}))
+				.Should()
+				.ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -37,25 +38,25 @@ namespace VkNet.Tests.Categories.Database
 				Count = 3
 			});
 
-			Assert.That(cities.Count, Is.EqualTo(3));
+			cities.Should().HaveCount(3);
 
-			Assert.That(cities[0].Id, Is.EqualTo(1));
-			Assert.That(cities[0].Title, Is.EqualTo("Москва"));
-			Assert.That(cities[0].Important, Is.True);
-			Assert.That(cities[0].Area, Is.Null);
-			Assert.That(cities[0].Region, Is.Null);
+			cities[0].Id.Should().Be(1);
+			cities[0].Title.Should().Be("Москва");
+			cities[0].Important.Should().BeTrue();
+			cities[0].Area.Should().BeNull();
+			cities[0].Region.Should().BeNull();
 
-			Assert.That(cities[1].Id, Is.EqualTo(2));
-			Assert.That(cities[1].Title, Is.EqualTo("Санкт-Петербург"));
-			Assert.That(cities[1].Important, Is.True);
-			Assert.That(cities[1].Area, Is.Null);
-			Assert.That(cities[1].Region, Is.Null);
+			cities[1].Id.Should().Be(2);
+			cities[1].Title.Should().Be("Санкт-Петербург");
+			cities[1].Important.Should().BeTrue();
+			cities[1].Area.Should().BeNull();
+			cities[1].Region.Should().BeNull();
 
-			Assert.That(cities[2].Id, Is.EqualTo(10));
-			Assert.That(cities[2].Title, Is.EqualTo("Волгоград"));
-			Assert.That(cities[2].Important, Is.False);
-			Assert.That(cities[2].Area, Is.Null);
-			Assert.That(cities[2].Region, Is.Null);
+			cities[2].Id.Should().Be(10);
+			cities[2].Title.Should().Be("Волгоград");
+			cities[2].Important.Should().BeFalse();
+			cities[2].Area.Should().BeNull();
+			cities[2].Region.Should().BeNull();
 		}
 
 		[Test]
@@ -72,28 +73,29 @@ namespace VkNet.Tests.Categories.Database
 				Offset = 1
 			});
 
-			Assert.That(cities.Count, Is.EqualTo(2));
+			cities.Should().HaveCount(2);
 
-			Assert.That(cities[0].Id, Is.EqualTo(1004357));
-			Assert.That(cities[0].Title, Is.EqualTo("Азау"));
-			Assert.That(cities[0].Area, Is.EqualTo("Красноярский район"));
-			Assert.That(cities[0].Region, Is.EqualTo("Астраханская область"));
+			cities[0].Id.Should().Be(1004357);
+			cities[0].Title.Should().Be("Азау");
+			cities[0].Area.Should().Be("Красноярский район");
+			cities[0].Region.Should().Be("Астраханская область");
 
-			Assert.That(cities[1].Id, Is.EqualTo(1004307));
-			Assert.That(cities[1].Title, Is.EqualTo("Азовский"));
-			Assert.That(cities[1].Area, Is.EqualTo("Камызякский район"));
-			Assert.That(cities[1].Region, Is.EqualTo("Астраханская область"));
+			cities[1].Id.Should().Be(1004307);
+			cities[1].Title.Should().Be("Азовский");
+			cities[1].Area.Should().Be("Камызякский район");
+			cities[1].Region.Should().Be("Астраханская область");
 		}
 
 		[Test]
 		public void GetCities_RegionIdIsNegative_ThrowException()
 		{
-			Assert.That(() => new DatabaseCategory(Api).GetCities(new GetCitiesParams
+			FluentActions.Invoking(() => new DatabaseCategory(Api).GetCities(new GetCitiesParams
 				{
 					CountryId = 1,
 					RegionId = -2
-				}),
-				Throws.InstanceOf<ArgumentException>());
+				}))
+				.Should()
+				.ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -104,7 +106,7 @@ namespace VkNet.Tests.Categories.Database
 
 			var cities = Api.Database.GetCitiesById();
 
-			Assert.That(cities.Count, Is.EqualTo(0));
+			cities.Should().BeEmpty();
 		}
 
 		[Test]
@@ -115,22 +117,22 @@ namespace VkNet.Tests.Categories.Database
 
 			var cities = Api.Database.GetCitiesById(1, 2, 10);
 
-			Assert.That(cities.Count, Is.EqualTo(3));
+			cities.Should().HaveCount(3);
 
-			Assert.That(cities[0].Id, Is.EqualTo(1));
-			Assert.That(cities[0].Title, Is.EqualTo("Москва"));
+			cities[0].Id.Should().Be(1);
+			cities[0].Title.Should().Be("Москва");
 
-			Assert.That(cities[1].Id, Is.EqualTo(2));
-			Assert.That(cities[1].Title, Is.EqualTo("Санкт-Петербург"));
+			cities[1].Id.Should().Be(2);
+			cities[1].Title.Should().Be("Санкт-Петербург");
 
-			Assert.That(cities[2].Id, Is.EqualTo(10));
-			Assert.That(cities[2].Title, Is.EqualTo("Волгоград"));
+			cities[2].Id.Should().Be(10);
+			cities[2].Title.Should().Be("Волгоград");
 		}
 
 		[Test]
 		public void GetCountries_CountIsNegative_ThrowArgumentException()
 		{
-			Assert.That(() => new DatabaseCategory(Api).GetCountries(count: -2), Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => new DatabaseCategory(Api).GetCountries(count: -2)).Should().ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -145,13 +147,13 @@ namespace VkNet.Tests.Categories.Database
 				Iso3166.DE
 			});
 
-			Assert.That(countries.Count, Is.EqualTo(2));
+			countries.Should().HaveCount(2);
 
-			Assert.That(countries[0].Id, Is.EqualTo(1));
-			Assert.That(countries[0].Title, Is.EqualTo("Россия"));
+			countries[0].Id.Should().Be(1);
+			countries[0].Title.Should().Be("Россия");
 
-			Assert.That(countries[1].Id, Is.EqualTo(65));
-			Assert.That(countries[1].Title, Is.EqualTo("Германия"));
+			countries[1].Id.Should().Be(65);
+			countries[1].Title.Should().Be("Германия");
 		}
 
 		[Test]
@@ -162,22 +164,22 @@ namespace VkNet.Tests.Categories.Database
 
 			var countries = Api.Database.GetCountries(true, null, 3, 5);
 
-			Assert.That(countries.Count, Is.EqualTo(3));
+			countries.Should().HaveCount(3);
 
-			Assert.That(countries[0].Id, Is.EqualTo(23));
-			Assert.That(countries[0].Title, Is.EqualTo("Американское Самоа"));
+			countries[0].Id.Should().Be(23);
+			countries[0].Title.Should().Be("Американское Самоа");
 
-			Assert.That(countries[1].Id, Is.EqualTo(24));
-			Assert.That(countries[1].Title, Is.EqualTo("Ангилья"));
+			countries[1].Id.Should().Be(24);
+			countries[1].Title.Should().Be("Ангилья");
 
-			Assert.That(countries[2].Id, Is.EqualTo(25));
-			Assert.That(countries[2].Title, Is.EqualTo("Ангола"));
+			countries[2].Id.Should().Be(25);
+			countries[2].Title.Should().Be("Ангола");
 		}
 
 		[Test]
 		public void GetCountries_OffsetIsNegative_ThrowArgumentException()
 		{
-			Assert.That(() => new DatabaseCategory(Api).GetCountries(offset: -2), Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => new DatabaseCategory(Api).GetCountries(offset: -2)).Should().ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -188,13 +190,13 @@ namespace VkNet.Tests.Categories.Database
 
 			var countries = Api.Database.GetCountriesById(1, 65);
 
-			Assert.That(countries.Count, Is.EqualTo(2));
+			countries.Should().HaveCount(2);
 
-			Assert.That(countries[0].Id, Is.EqualTo(1));
-			Assert.That(countries[0].Title, Is.EqualTo("Россия"));
+			countries[0].Id.Should().Be(1);
+			countries[0].Title.Should().Be("Россия");
 
-			Assert.That(countries[1].Id, Is.EqualTo(65));
-			Assert.That(countries[1].Title, Is.EqualTo("Германия"));
+			countries[1].Id.Should().Be(65);
+			countries[1].Title.Should().Be("Германия");
 		}
 
 		[Test]
@@ -205,8 +207,8 @@ namespace VkNet.Tests.Categories.Database
 
 			var countries = Api.Database.GetCountriesById();
 
-			Assert.That(countries, Is.Not.Null);
-			Assert.That(countries.Count, Is.EqualTo(0));
+			countries.Should().NotBeNull();
+			countries.Should().BeEmpty();
 		}
 
 		[Test]
@@ -217,30 +219,29 @@ namespace VkNet.Tests.Categories.Database
 
 			var faculties = Api.Database.GetFaculties(431, 3, 2);
 
-			Assert.That(faculties.Count, Is.EqualTo(3));
+			faculties.Should().HaveCount(3);
 
-			Assert.That(faculties[0].Id, Is.EqualTo(3160));
+			faculties[0].Id.Should().Be(3160);
 
-			Assert.That(faculties[0].Title,
-				Is.EqualTo("Автоматизированных систем и технологической информатики (бывш. Машиностроительный)"));
+			faculties[0].Title.Should().Be("Автоматизированных систем и технологической информатики (бывш. Машиностроительный)");
 
-			Assert.That(faculties[1].Id, Is.EqualTo(3161));
-			Assert.That(faculties[1].Title, Is.EqualTo("Технологии конструкционных материалов"));
+			faculties[1].Id.Should().Be(3161);
+			faculties[1].Title.Should().Be("Технологии конструкционных материалов");
 
-			Assert.That(faculties[2].Id, Is.EqualTo(3162));
-			Assert.That(faculties[2].Title, Is.EqualTo("Электроники и вычислительной техники"));
+			faculties[2].Id.Should().Be(3162);
+			faculties[2].Title.Should().Be("Электроники и вычислительной техники");
 		}
 
 		[Test]
 		public void GetRegions_CountIsNegative_ThrowArgumentException()
 		{
-			Assert.That(() => new DatabaseCategory(Api).GetRegions(1, count: -2), Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => new DatabaseCategory(Api).GetRegions(1, count: -2)).Should().ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
 		public void GetRegions_CountryIdIsNegative_ThrowArgumentException()
 		{
-			Assert.That(() => new DatabaseCategory(Api).GetRegions(-1), Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => new DatabaseCategory(Api).GetRegions(-1)).Should().ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -251,22 +252,22 @@ namespace VkNet.Tests.Categories.Database
 
 			var regions = Api.Database.GetRegions(1, count: 3, offset: 5);
 
-			Assert.That(regions.Count, Is.EqualTo(3));
+			regions.Should().HaveCount(3);
 
-			Assert.That(regions[0].Id, Is.EqualTo(1004118));
-			Assert.That(regions[0].Title, Is.EqualTo("Астраханская область"));
+			regions[0].Id.Should().Be(1004118);
+			regions[0].Title.Should().Be("Астраханская область");
 
-			Assert.That(regions[1].Id, Is.EqualTo(1004565));
-			Assert.That(regions[1].Title, Is.EqualTo("Башкортостан"));
+			regions[1].Id.Should().Be(1004565);
+			regions[1].Title.Should().Be("Башкортостан");
 
-			Assert.That(regions[2].Id, Is.EqualTo(1009404));
-			Assert.That(regions[2].Title, Is.EqualTo("Белгородская область"));
+			regions[2].Id.Should().Be(1009404);
+			regions[2].Title.Should().Be("Белгородская область");
 		}
 
 		[Test]
 		public void GetRegions_OffsetIsNegative_ThrowArgumentException()
 		{
-			Assert.That(() => new DatabaseCategory(Api).GetRegions(1, offset: -2), Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => new DatabaseCategory(Api).GetRegions(1, offset: -2)).Should().ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -277,7 +278,7 @@ namespace VkNet.Tests.Categories.Database
 
 			var schools = Api.Database.GetSchools(10, "SchoolDoesNotExist");
 
-			Assert.That(schools.Count, Is.EqualTo(0));
+			schools.Should().BeEmpty();
 		}
 
 		[Test]
@@ -288,16 +289,16 @@ namespace VkNet.Tests.Categories.Database
 
 			var schools = Api.Database.GetSchools(10, count: 3);
 
-			Assert.That(schools.Count, Is.EqualTo(3));
+			schools.Should().HaveCount(3);
 
-			Assert.That(schools[0].Id, Is.EqualTo(51946));
-			Assert.That(schools[0].Name, Is.EqualTo("Астраханское речное училище (ВФ АРУ)"));
+			schools[0].Id.Should().Be(51946);
+			schools[0].Name.Should().Be("Астраханское речное училище (ВФ АРУ)");
 
-			Assert.That(schools[1].Id, Is.EqualTo(207063));
-			Assert.That(schools[1].Name, Is.EqualTo("Библейская школа «Весть»"));
+			schools[1].Id.Should().Be(207063);
+			schools[1].Name.Should().Be("Библейская школа «Весть»");
 
-			Assert.That(schools[2].Id, Is.EqualTo(224706));
-			Assert.That(schools[2].Name, Is.EqualTo("Библейский колледж «Новая жизнь»"));
+			schools[2].Id.Should().Be(224706);
+			schools[2].Name.Should().Be("Библейский колледж «Новая жизнь»");
 		}
 
 		[Test]
@@ -308,16 +309,16 @@ namespace VkNet.Tests.Categories.Database
 
 			var streets = Api.Database.GetStreetsById(1, 89, 437);
 
-			Assert.That(streets.Count, Is.EqualTo(3));
+			streets.Should().HaveCount(3);
 
-			Assert.That(streets[0].Id, Is.EqualTo(1));
-			Assert.That(streets[0].Title, Is.EqualTo("8 Марта ул."));
+			streets[0].Id.Should().Be(1);
+			streets[0].Title.Should().Be("8 Марта ул.");
 
-			Assert.That(streets[1].Id, Is.EqualTo(89));
-			Assert.That(streets[1].Title, Is.EqualTo("Черкесская ул."));
+			streets[1].Id.Should().Be(89);
+			streets[1].Title.Should().Be("Черкесская ул.");
 
-			Assert.That(streets[2].Id, Is.EqualTo(437));
-			Assert.That(streets[2].Title, Is.EqualTo("Синяя ул."));
+			streets[2].Id.Should().Be(437);
+			streets[2].Title.Should().Be("Синяя ул.");
 		}
 
 		[Test]
@@ -326,13 +327,15 @@ namespace VkNet.Tests.Categories.Database
 			Url = "https://api.vk.com/method/database.getStreetsById";
 			ReadErrorsJsonFile(100);
 
-			var ex = Assert.Throws<ParameterMissingOrInvalidException>(() =>
-			{
-				var readOnlyCollection = Api.Database.GetStreetsById();
-				Assert.IsNotEmpty(readOnlyCollection);
-			});
-
-			Assert.That(ex.Message, Is.EqualTo("One of the parameters specified was missing or invalid: value should be positive"));
+			FluentActions.Invoking(() =>
+				{
+					var readOnlyCollection = Api.Database.GetStreetsById();
+					readOnlyCollection.Should().NotBeEmpty();
+				})
+				.Should()
+				.ThrowExactly<ParameterMissingOrInvalidException>()
+				.And.Message.Should()
+				.Be("One of the parameters specified was missing or invalid: value should be positive");
 		}
 
 		[Test]
@@ -343,9 +346,9 @@ namespace VkNet.Tests.Categories.Database
 
 			var universities = Api.Database.GetUniversities(1, 10, "ВолгГТУ");
 
-			Assert.That(universities.Count, Is.EqualTo(1));
-			Assert.That(universities[0].Id, Is.EqualTo(431));
-			Assert.That(universities[0].Name, Is.EqualTo("ВолгГТУ"));
+			universities.Should().ContainSingle();
+			universities[0].Id.Should().Be(431);
+			universities[0].Name.Should().Be("ВолгГТУ");
 		}
 
 		[Test]
@@ -356,7 +359,7 @@ namespace VkNet.Tests.Categories.Database
 
 			var universities = Api.Database.GetUniversities(1, 1, "ThisUniverDoesNotExist");
 
-			Assert.That(universities.Count, Is.EqualTo(0));
+			universities.Should().BeEmpty();
 		}
 
 		[Test]
@@ -367,7 +370,7 @@ namespace VkNet.Tests.Categories.Database
 
 			var universities = Api.Database.GetMetroStations(2, 10, 10, true);
 
-			Assert.That(universities.TotalCount, Is.EqualTo(69));
+			universities.TotalCount.Should().Be(69);
 		}
 
 		[Test]
@@ -376,9 +379,13 @@ namespace VkNet.Tests.Categories.Database
 			Url = "https://api.vk.com/method/database.getMetroStationsById";
 			ReadCategoryJsonPath(nameof(GetMetroStationsById));
 
-			var universities = Api.Database.GetMetroStationsById(new ulong[]{189, 181});
+			var universities = Api.Database.GetMetroStationsById(new ulong[]
+			{
+				189,
+				181
+			});
 
-			Assert.That(universities.Count, Is.EqualTo(2));
+			universities.Should().HaveCount(2);
 		}
 	}
 }

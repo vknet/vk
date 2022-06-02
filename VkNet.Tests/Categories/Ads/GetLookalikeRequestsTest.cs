@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 
@@ -23,8 +24,8 @@ namespace VkNet.Tests.Categories.Ads
 				AccountId = 1605245430
 			});
 
-			Assert.That(result.Count, Is.EqualTo(1));
-			Assert.That(result.Items[0].Id, Is.EqualTo(37564));
+			result.Count.Should().Be(1);
+			result.Items[0].Id.Should().Be(37564);
 		}
 	}
 }

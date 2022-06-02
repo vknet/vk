@@ -21,7 +21,7 @@ namespace VkNet.Tests.Categories.Audio
 			var result = Api.Audio.GetBroadcastList().ToList();
 			var firstOrDefault = result.FirstOrDefault();
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 			firstOrDefault.Should().NotBeNull();
 		}
 	}

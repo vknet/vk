@@ -1,10 +1,10 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Ads
 {
 	[TestFixture]
-
 	public class GetTargetGroupsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";
@@ -17,7 +17,7 @@ namespace VkNet.Tests.Categories.Ads
 			ReadCategoryJsonPath(nameof(Api.Ads.GetTargetGroups));
 
 			var result = Api.Ads.GetTargetGroups(123);
-			Assert.That(result[0].Name, Is.EqualTo("Test1"));
+			result[0].Name.Should().Be("Test1");
 		}
 	}
 }

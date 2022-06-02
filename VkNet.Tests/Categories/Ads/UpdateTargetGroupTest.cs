@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 
@@ -27,7 +28,7 @@ namespace VkNet.Tests.Categories.Ads
 				Lifetime = 365
 			});
 
-			Assert.That(result, Is.EqualTo(true));
+			result.Should().BeTrue();
 		}
 	}
 }

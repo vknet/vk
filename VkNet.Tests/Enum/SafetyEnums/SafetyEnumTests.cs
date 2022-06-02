@@ -795,14 +795,14 @@ namespace VkNet.Tests.Enum.SafetyEnums
 		public void MarketItemButtonTitleTest()
 		{
 			// get test
-			Assert.That(MarketItemButtonTitle.Buy.ToString(), Is.EqualTo("Купить"));
-			Assert.That(MarketItemButtonTitle.BuyATicket.ToString(), Is.EqualTo("Купить билет"));
-			Assert.That(MarketItemButtonTitle.GoToTheStore.ToString(), Is.EqualTo("Перейти в магазин"));
+			MarketItemButtonTitle.Buy.ToString().Should().Be("Купить");
+			MarketItemButtonTitle.BuyATicket.ToString().Should().Be("Купить билет");
+			MarketItemButtonTitle.GoToTheStore.ToString().Should().Be("Перейти в магазин");
 
 			// parse test
-			Assert.That(MarketItemButtonTitle.FromJsonString("Купить"), Is.EqualTo(MarketItemButtonTitle.Buy));
-			Assert.That(MarketItemButtonTitle.FromJsonString("Купить билет"), Is.EqualTo(MarketItemButtonTitle.BuyATicket));
-			Assert.That(MarketItemButtonTitle.FromJsonString("Перейти в магазин"), Is.EqualTo(MarketItemButtonTitle.GoToTheStore));
+			MarketItemButtonTitle.FromJsonString("Купить").Should().Be(MarketItemButtonTitle.Buy);
+			MarketItemButtonTitle.FromJsonString("Купить билет").Should().Be(MarketItemButtonTitle.BuyATicket);
+			MarketItemButtonTitle.FromJsonString("Перейти в магазин").Should().Be(MarketItemButtonTitle.GoToTheStore);
 		}
 
 		[Test]

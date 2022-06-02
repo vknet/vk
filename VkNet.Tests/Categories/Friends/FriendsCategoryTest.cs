@@ -12,7 +12,6 @@ using VkNet.Tests.Infrastructure;
 namespace VkNet.Tests.Categories.Friends
 {
 	[TestFixture]
-
 	public class FriendsCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Friends";
@@ -25,13 +24,13 @@ namespace VkNet.Tests.Categories.Friends
 
 			var status = Api.Friends.Add(242508, "hello, user!", false);
 
-			Assert.That(status, Is.EqualTo(AddFriendStatus.Sended));
+			status.Should().Be(AddFriendStatus.Sended);
 		}
 
 		[Test]
 		public void AddList_NameIsEmpty_ThrowException()
 		{
-			Assert.That(() => Api.Friends.AddList("", null), Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => Api.Friends.AddList("", null)).Should().ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -42,7 +41,7 @@ namespace VkNet.Tests.Categories.Friends
 
 			var id = Api.Friends.AddList("тестовая метка", null);
 
-			Assert.That(id, Is.EqualTo(1));
+			id.Should().Be(1);
 		}
 
 		[Test]
@@ -58,7 +57,7 @@ namespace VkNet.Tests.Categories.Friends
 					2
 				});
 
-			Assert.That(id, Is.EqualTo(2));
+			id.Should().Be(2);
 		}
 
 		[Test]
@@ -66,12 +65,13 @@ namespace VkNet.Tests.Categories.Friends
 		{
 			var cat = new FriendsCategory(new VkApi());
 
-			Assert.That(() => cat.AreFriends(new long[]
+			FluentActions.Invoking(() => cat.AreFriends(new long[]
 				{
 					2,
 					3
-				}),
-				Throws.InstanceOf<AccessTokenInvalidException>());
+				}))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -89,19 +89,19 @@ namespace VkNet.Tests.Categories.Friends
 			});
 
 			dict.Should().NotBeNull();
-			Assert.That(dict.Count, Is.EqualTo(4));
-			Assert.That(dict.FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.NotFriend));
-			Assert.That(dict.Skip(1).FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.Friend));
+			dict.Should().HaveCount(4);
+			(dict.FirstOrDefault()?.FriendStatus).Should().Be(FriendStatus.NotFriend);
+			(dict.Skip(1).FirstOrDefault()?.FriendStatus).Should().Be(FriendStatus.Friend);
 
-			Assert.That(dict.Skip(2).FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.InputRequest));
+			(dict.Skip(2).FirstOrDefault()?.FriendStatus).Should().Be(FriendStatus.InputRequest);
 
-			Assert.That(dict.Skip(3).FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.OutputRequest));
+			(dict.Skip(3).FirstOrDefault()?.FriendStatus).Should().Be(FriendStatus.OutputRequest);
 		}
 
 		[Test]
 		public void AreFriends_NullInput_ThrowArgumentNullException()
 		{
-			Assert.That(() => Api.Friends.AreFriends(null), Throws.InstanceOf<ArgumentNullException>());
+			FluentActions.Invoking(() => Api.Friends.AreFriends(null)).Should().ThrowExactly<ArgumentNullException>();
 		}
 
 		[Test]
@@ -112,7 +112,7 @@ namespace VkNet.Tests.Categories.Friends
 
 			var status = Api.Friends.Delete(24250);
 
-			Assert.That(status.OutRequestDeleted, Is.True);
+			status.OutRequestDeleted.Should().BeTrue();
 		}
 
 		[Test]
@@ -123,13 +123,13 @@ namespace VkNet.Tests.Categories.Friends
 
 			var result = Api.Friends.DeleteAllRequests();
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
 		[Test]
 		public void DeleteList_IdIsNegative_ThrowException()
 		{
-			Assert.That(() => Api.Friends.DeleteList(-1), Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => Api.Friends.DeleteList(-1)).Should().ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -140,7 +140,7 @@ namespace VkNet.Tests.Categories.Friends
 
 			var result = Api.Friends.DeleteList(2);
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -155,7 +155,7 @@ namespace VkNet.Tests.Categories.Friends
 					2
 				});
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
 		[Test]
@@ -166,13 +166,13 @@ namespace VkNet.Tests.Categories.Friends
 
 			var result = Api.Friends.EditList(2, "new тестовая метка");
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
 		[Test]
 		public void EditList_ListIdIsNegative_ThrowException()
 		{
-			Assert.That(() => Api.Friends.EditList(-1), Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => Api.Friends.EditList(-1)).Should().ThrowExactly<ArgumentException>();
 		}
 
 		[Test]
@@ -180,11 +180,12 @@ namespace VkNet.Tests.Categories.Friends
 		{
 			var cat = new FriendsCategory(new VkApi());
 
-			Assert.That(() => cat.Get(new FriendsGetParams
+			FluentActions.Invoking(() => cat.Get(new FriendsGetParams
 				{
 					UserId = 1
-				}),
-				Throws.InstanceOf<AccessTokenInvalidException>());
+				}))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -200,21 +201,21 @@ namespace VkNet.Tests.Categories.Friends
 				UserId = 1
 			});
 
-			Assert.That(lst.Count, Is.EqualTo(3));
-			Assert.That(lst[0].Id, Is.EqualTo(2));
-			Assert.That(lst[0].FirstName, Is.EqualTo("Александра"));
-			Assert.That(lst[0].LastName, Is.EqualTo("Владимирова"));
-			Assert.That(lst[0].Online, Is.EqualTo(false));
+			lst.Should().HaveCount(3);
+			lst[0].Id.Should().Be(2);
+			lst[0].FirstName.Should().Be("Александра");
+			lst[0].LastName.Should().Be("Владимирова");
+			lst[0].Online.Should().BeFalse();
 
-			Assert.That(lst[1].Id, Is.EqualTo(5));
-			Assert.That(lst[1].FirstName, Is.EqualTo("Илья"));
-			Assert.That(lst[1].LastName, Is.EqualTo("Перекопский"));
-			Assert.That(lst[1].Online, Is.EqualTo(false));
+			lst[1].Id.Should().Be(5);
+			lst[1].FirstName.Should().Be("Илья");
+			lst[1].LastName.Should().Be("Перекопский");
+			lst[1].Online.Should().BeFalse();
 
-			Assert.That(lst[2].Id, Is.EqualTo(6));
-			Assert.That(lst[2].FirstName, Is.EqualTo("Николай"));
-			Assert.That(lst[2].LastName, Is.EqualTo("Дуров"));
-			Assert.That(lst[2].Online, Is.EqualTo(false));
+			lst[2].Id.Should().Be(6);
+			lst[2].FirstName.Should().Be("Николай");
+			lst[2].LastName.Should().Be("Дуров");
+			lst[2].Online.Should().BeFalse();
 		}
 
 		[Test]
@@ -229,19 +230,21 @@ namespace VkNet.Tests.Categories.Friends
 				})
 				.ToList();
 
-			Assert.That(users.Count, Is.EqualTo(5));
-			Assert.That(users[0].Id, Is.EqualTo(2));
-			Assert.That(users[1].Id, Is.EqualTo(5));
-			Assert.That(users[2].Id, Is.EqualTo(6));
-			Assert.That(users[3].Id, Is.EqualTo(7));
-			Assert.That(users[4].Id, Is.EqualTo(12));
+			users.Should().HaveCount(5);
+
+			users.Should()
+				.SatisfyRespectively(x => x.Id.Should().Be(2),
+					x => x.Id.Should().Be(5),
+					x => x.Id.Should().Be(6),
+					x => x.Id.Should().Be(7),
+					x => x.Id.Should().Be(12));
 		}
 
 		[Test]
 		public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
-			Assert.That(() => cat.GetAppUsers(), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => cat.GetAppUsers()).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -252,7 +255,7 @@ namespace VkNet.Tests.Categories.Friends
 
 			var users = Api.Friends.GetAppUsers().ToList();
 
-			Assert.That(users.Count, Is.EqualTo(0));
+			users.Should().BeEmpty();
 		}
 
 		[Test]
@@ -263,10 +266,10 @@ namespace VkNet.Tests.Categories.Friends
 
 			var ids = Api.Friends.GetAppUsers().ToList();
 
-			Assert.That(ids.Count, Is.EqualTo(3));
-			Assert.That(ids[0], Is.EqualTo(15221));
-			Assert.That(ids[1], Is.EqualTo(17836));
-			Assert.That(ids[2], Is.EqualTo(19194));
+			ids.Should().HaveCount(3);
+			ids.Should().HaveElementAt(0, 15221);
+			ids.Should().HaveElementAt(1, 17836);
+			ids.Should().HaveElementAt(2, 19194);
 		}
 
 		[Test]
@@ -277,13 +280,13 @@ namespace VkNet.Tests.Categories.Friends
 
 			var list = Api.Friends.GetLists();
 
-			Assert.That(list.Count, Is.EqualTo(2));
+			list.Should().HaveCount(2);
 
-			Assert.That(list[0].Id, Is.EqualTo(1));
-			Assert.That(list[0].Name, Is.EqualTo("тестовая метка"));
+			list[0].Id.Should().Be(1);
+			list[0].Name.Should().Be("тестовая метка");
 
-			Assert.That(list[1].Id, Is.EqualTo(2));
-			Assert.That(list[1].Name, Is.EqualTo("лист 3"));
+			list[1].Id.Should().Be(2);
+			list[1].Name.Should().Be("лист 3");
 		}
 
 		[Test]
@@ -291,12 +294,13 @@ namespace VkNet.Tests.Categories.Friends
 		{
 			var category = new FriendsCategory(new VkApi());
 
-			Assert.That(() => category.GetMutual(new FriendsGetMutualParams
+			FluentActions.Invoking(() => category.GetMutual(new FriendsGetMutualParams
 				{
 					TargetUid = 2,
 					SourceUid = 3
-				}),
-				Throws.InstanceOf<AccessTokenInvalidException>());
+				}))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -312,7 +316,7 @@ namespace VkNet.Tests.Categories.Friends
 				})
 				.ToList();
 
-			Assert.That(users.Count, Is.EqualTo(0));
+			users.Should().BeEmpty();
 		}
 
 		[Test]
@@ -328,7 +332,7 @@ namespace VkNet.Tests.Categories.Friends
 				})
 				.ToList();
 
-			Assert.That(ids.Count, Is.EqualTo(1));
+			ids.Should().ContainSingle();
 		}
 
 		[Test]
@@ -336,11 +340,12 @@ namespace VkNet.Tests.Categories.Friends
 		{
 			var cat = new FriendsCategory(new VkApi());
 
-			Assert.That(() => cat.GetOnline(new FriendsGetOnlineParams
+			FluentActions.Invoking(() => cat.GetOnline(new FriendsGetOnlineParams
 				{
 					UserId = 1
-				}),
-				Throws.InstanceOf<AccessTokenInvalidException>());
+				}))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
 		[Test]
@@ -354,8 +359,8 @@ namespace VkNet.Tests.Categories.Friends
 				OnlineMobile = true
 			});
 
-			Assert.That(users.Online.Count, Is.EqualTo(1));
-			Assert.That(users.MobileOnline.Count, Is.EqualTo(5));
+			users.Online.Should().HaveCount(1);
+			users.MobileOnline.Should().HaveCount(5);
 		}
 
 		[Test]
@@ -369,12 +374,12 @@ namespace VkNet.Tests.Categories.Friends
 				UserId = 1
 			});
 
-			Assert.That(users.Online.Count, Is.EqualTo(5));
-			Assert.That(users.Online[0], Is.EqualTo(5));
-			Assert.That(users.Online[1], Is.EqualTo(467));
-			Assert.That(users.Online[2], Is.EqualTo(2943));
-			Assert.That(users.Online[3], Is.EqualTo(4424));
-			Assert.That(users.Online[4], Is.EqualTo(13033));
+			users.Online.Should().HaveCount(5);
+			users.Online[0].Should().Be(5);
+			users.Online[1].Should().Be(467);
+			users.Online[2].Should().Be(2943);
+			users.Online[3].Should().Be(4424);
+			users.Online[4].Should().Be(13033);
 		}
 
 		[Test]
@@ -388,7 +393,7 @@ namespace VkNet.Tests.Categories.Friends
 				UserId = 1
 			});
 
-			Assert.That(users.Online.Count, Is.EqualTo(0));
+			users.Online.Should().BeEmpty();
 		}
 
 		[Test]
@@ -399,9 +404,9 @@ namespace VkNet.Tests.Categories.Friends
 
 			var ids = Api.Friends.GetRecent(3);
 
-			Assert.That(ids, Is.Not.Null);
-			Assert.That(ids.Count, Is.EqualTo(1));
-			Assert.That(ids[0], Is.EqualTo(242508111));
+			ids.Should().NotBeNull();
+			ids.Should().ContainSingle();
+			ids.Should().HaveElementAt(0, 242508111);
 		}
 
 		[Test]
@@ -418,10 +423,10 @@ namespace VkNet.Tests.Categories.Friends
 				NeedMutual = false
 			});
 
-			Assert.That(ids, Is.Not.Null);
-			Assert.That(ids.CountUnread, Is.EqualTo(1));
-			Assert.That(ids.Count, Is.EqualTo(171));
-			Assert.That(ids.Items, Is.Not.Empty);
+			ids.Should().NotBeNull();
+			ids.CountUnread.Should().Be(1);
+			ids.Count.Should().Be(171);
+			ids.Items.Should().NotBeEmpty();
 		}
 
 		[Test]
@@ -438,8 +443,8 @@ namespace VkNet.Tests.Categories.Friends
 				NeedMutual = true
 			});
 
-			Assert.That(ids, Is.Not.Null);
-			Assert.That(ids.Count, Is.EqualTo(0));
+			ids.Should().NotBeNull();
+			ids.Should().BeEmpty();
 		}
 
 		[Test]
@@ -454,8 +459,8 @@ namespace VkNet.Tests.Categories.Friends
 				Count = 3
 			});
 
-			Assert.That(ids, Is.Not.Null);
-			Assert.That(ids.Items[0], Is.EqualTo(242508111));
+			ids.Should().NotBeNull();
+			ids.Items[0].Should().Be(242508111);
 		}
 
 		[Test]
@@ -472,9 +477,9 @@ namespace VkNet.Tests.Categories.Friends
 				NeedMutual = true
 			});
 
-			Assert.That(ids, Is.Not.Null);
-			Assert.That(ids.Count, Is.EqualTo(1));
-			Assert.That(ids[0].UserId, Is.EqualTo(242508111));
+			ids.Should().NotBeNull();
+			ids.Should().ContainSingle();
+			ids[0].UserId.Should().Be(242508111);
 		}
 	}
 }

@@ -16,9 +16,9 @@ namespace VkNet.Tests.Categories.Messages
 			var result = Api.Messages.GetImportantMessages(new GetImportantMessagesParams());
 
 			result.Should().NotBeNull();
-			Assert.IsNotEmpty(result.Messages);
-			Assert.IsNotEmpty(result.Profiles);
-			Assert.IsNotEmpty(result.Conversations);
+			result.Messages.Should().NotBeEmpty();
+			result.Profiles.Should().NotBeEmpty();
+			result.Conversations.Should().NotBeEmpty();
 		}
 	}
 }

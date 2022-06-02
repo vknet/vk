@@ -21,9 +21,9 @@ namespace VkNet.Tests.Categories.Audio
 			var response = Api.Audio.GetPopular(false, null, 0, 1).ToList();
 			var audio = response.FirstOrDefault();
 
-			Assert.IsNotEmpty(response);
+			response.Should().NotBeEmpty();
 			audio.Should().NotBeNull();
-			Assert.That(audio.Id, Is.EqualTo(456240861));
+			audio.Id.Should().Be(456240861);
 		}
 	}
 }

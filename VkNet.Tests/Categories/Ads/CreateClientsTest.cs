@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
@@ -18,14 +19,14 @@ namespace VkNet.Tests.Categories.Ads
 
 			ReadCategoryJsonPath(nameof(Api.Ads.CreateClients));
 
-			ClientSpecification clientSpecification1 = new ClientSpecification
+			var clientSpecification1 = new ClientSpecification
 			{
 				DayLimit = 100,
 				AllLimit = 100,
 				Name = "123"
 			};
 
-			ClientSpecification clientSpecification2 = new ClientSpecification
+			var clientSpecification2 = new ClientSpecification
 			{
 				DayLimit = 100,
 				AllLimit = 100,
@@ -44,9 +45,9 @@ namespace VkNet.Tests.Categories.Ads
 				AccountId = 1605245430
 			});
 
-			Assert.That(officeUsers[0].Id, Is.EqualTo(1));
-			Assert.That(officeUsers[0].ErrorCode, Is.EqualTo(100));
-			Assert.That(officeUsers[1].Id, Is.EqualTo(2));
+			officeUsers[0].Id.Should().Be(1);
+			officeUsers[0].ErrorCode.Should().Be(100);
+			officeUsers[1].Id.Should().Be(2);
 		}
 	}
 }

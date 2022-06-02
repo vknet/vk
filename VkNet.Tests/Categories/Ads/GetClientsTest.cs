@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Tests.Infrastructure;
 
 namespace VkNet.Tests.Categories.Ads
@@ -18,7 +19,7 @@ namespace VkNet.Tests.Categories.Ads
 
 			var result = Api.Ads.GetClients(123213);
 
-			Assert.That(result[0].Id, Is.EqualTo(123));
+			result[0].Id.Should().Be(123);
 		}
 	}
 }

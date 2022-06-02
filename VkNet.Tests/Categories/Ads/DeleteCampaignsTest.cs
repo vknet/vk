@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 
@@ -17,7 +18,7 @@ namespace VkNet.Tests.Categories.Ads
 
 			ReadCategoryJsonPath(nameof(Api.Ads.DeleteCampaigns));
 
-			string[] a = new[]
+			var a = new[]
 			{
 				"1",
 				"2"
@@ -29,8 +30,8 @@ namespace VkNet.Tests.Categories.Ads
 				Ids = a
 			});
 
-			Assert.That(result[0], Is.EqualTo(true));
-			Assert.That(result[1], Is.EqualTo(true));
+			result.Should().HaveElementAt(0, true);
+			result.Should().HaveElementAt(1, true);
 		}
 	}
 }
