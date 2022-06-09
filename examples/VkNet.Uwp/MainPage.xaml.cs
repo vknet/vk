@@ -18,11 +18,37 @@ using Windows.UI.Xaml.Navigation;
 
 namespace VkNet.Uwp
 {
+	[Flags]
+	public enum AccessRights
+    {
+		notify = 1,
+		friends = 2,
+		photos = 4,
+		audio = 8,
+		video = 16,
+		stories = 64,
+		pages = 128,
+		status = 1024,
+		notes = 2048,
+		messages = 4096,
+		wall = 8192,
+		ads = 32768,
+		offline = 65536,
+		docs = 131072,
+		groups = 262144,
+		notifications = 524288,
+		stats = 1048576,
+		email = 4194304,
+		market = 134217728
+	}
+	
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
     {
+		AccessRights accessRights = new AccessRights();
+		
         public MainPage()
         {
             this.InitializeComponent();
@@ -38,7 +64,11 @@ namespace VkNet.Uwp
 				await message.ShowAsync();
 			}else
 			{
-				var startUri = new Uri($"https://oauth.vk.com/authorize?client_id={ClientId.Text}&display=popup&redirect_uri=https://oauth.vk.com/blank.html&scope={Scope.Text}&response_type=token&v=5.80&state=123456");
+				//Scope (Access Rights)
+				accessRights = Enum.Parse<AccessRights>(Scope.Text);
+				var scope = (int)accessRights;
+
+				var startUri = new Uri($"https://oauth.vk.com/authorize?client_id={ClientId.Text}&display=popup&redirect_uri=https://oauth.vk.com/blank.html&scope={scope.ToString()}&response_type=token&v=5.80&state=123456");
 				var endUri = new Uri("https://oauth.vk.com/blank.html");
 
 				//Авторизация в Popup окне с использованием стандартного windows web authentication broker
