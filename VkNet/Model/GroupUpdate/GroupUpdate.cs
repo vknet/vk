@@ -236,136 +236,52 @@ namespace VkNet.Model.GroupUpdate
 		/// <returns> </returns>
 		public static GroupUpdate FromJson(VkResponse response)
 		{
-			var fromJson = JsonConvert.DeserializeObject<GroupUpdate>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-
+			string type = response["type"];
 			var resObj = response["object"];
 
-			if (fromJson.Type == GroupUpdateType.MessageNew
-				|| fromJson.Type == GroupUpdateType.MessageEdit
-				|| fromJson.Type == GroupUpdateType.MessageReply)
+			var fromJson = type switch
 			{
-				if (resObj.ContainsKey("client_info"))
-				{
-					fromJson = CreateTyped(u => u.MessageNew, resObj, fromJson.Type);
-				}
-				else
-				{
-					fromJson = CreateTyped(u => u.Message, resObj, fromJson.Type);
-				}
-			} else if (fromJson.Type == GroupUpdateType.MessageAllow)
-			{
-				fromJson = CreateTyped(u => u.MessageAllow, resObj, fromJson.Type);
-			}  else if (fromJson.Type == GroupUpdateType.MessageTypingState)
-			{
-				fromJson = CreateTyped(u => u.MessageTypingState, resObj, fromJson.Type);
-			}else if (fromJson.Type == GroupUpdateType.VkPayTransaction)
-			{
-				fromJson = CreateTyped(u => u.VkPayTransaction, resObj, fromJson.Type);
-			}else if (fromJson.Type == GroupUpdateType.LikeAdd)
-			{
-				fromJson = CreateTyped(u => u.LikeAdd, resObj, fromJson.Type);
-			}else if (fromJson.Type == GroupUpdateType.LikeRemove)
-			{
-				fromJson = CreateTyped(u => u.LikeRemove, resObj, fromJson.Type);
-			}else if (fromJson.Type == GroupUpdateType.GroupChangeSettings)
-			{
-				fromJson = CreateTyped(u => u.GroupChangeSettings, resObj, fromJson.Type);
-			}else if (fromJson.Type == GroupUpdateType.MessageDeny)
-			{
-				fromJson = CreateTyped(u => u.MessageDeny, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.PhotoNew)
-			{
-				fromJson = CreateTyped(u => u.Photo, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.PhotoCommentNew
-						|| fromJson.Type == GroupUpdateType.PhotoCommentEdit
-						|| fromJson.Type == GroupUpdateType.PhotoCommentRestore)
-			{
-				fromJson = CreateTyped(u => u.PhotoComment, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.PhotoCommentDelete)
-			{
-				fromJson = CreateTyped(u => u.PhotoCommentDelete, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.AudioNew)
-			{
-				fromJson = CreateTyped(u => u.Audio, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.VideoNew)
-			{
-				fromJson = CreateTyped(u => u.Video, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.VideoCommentNew
-						|| fromJson.Type == GroupUpdateType.VideoCommentEdit
-						|| fromJson.Type == GroupUpdateType.VideoCommentRestore)
-			{
-				fromJson = CreateTyped(u => u.VideoComment, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.VideoCommentDelete)
-			{
-				fromJson = CreateTyped(u => u.VideoCommentDelete, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.WallPostNew || fromJson.Type == GroupUpdateType.WallRepost)
-			{
-				fromJson = CreateTyped(u => u.WallPost, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.WallReplyNew
-						|| fromJson.Type == GroupUpdateType.WallReplyEdit
-						|| fromJson.Type == GroupUpdateType.WallReplyRestore)
-			{
-				fromJson = CreateTyped(u => u.WallReply, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.WallReplyDelete)
-			{
-				fromJson = CreateTyped(u => u.WallReplyDelete, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.BoardPostNew
-						|| fromJson.Type == GroupUpdateType.BoardPostEdit
-						|| fromJson.Type == GroupUpdateType.BoardPostRestore)
-			{
-				fromJson = CreateTyped(u => u.BoardPost, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.BoardPostDelete)
-			{
-				fromJson = CreateTyped(u => u.BoardPostDelete, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.MarketCommentNew
-						|| fromJson.Type == GroupUpdateType.MarketCommentEdit
-						|| fromJson.Type == GroupUpdateType.MarketCommentRestore)
-			{
-				fromJson = CreateTyped(u => u.MarketComment, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.MarketCommentDelete)
-			{
-				fromJson = CreateTyped(u => u.MarketCommentDelete, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.GroupLeave)
-			{
-				fromJson = CreateTyped(u => u.GroupLeave, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.GroupJoin)
-			{
-				fromJson = CreateTyped(u => u.GroupJoin, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.UserBlock)
-			{
-				fromJson = CreateTyped(u => u.UserBlock, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.UserUnblock)
-			{
-				fromJson = CreateTyped(u => u.UserUnblock, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.PollVoteNew)
-			{
-				fromJson = CreateTyped(u => u.PollVoteNew, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.GroupChangePhoto)
-			{
-				fromJson = CreateTyped(u => u.GroupChangePhoto, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.GroupOfficersEdit)
-			{
-				fromJson = CreateTyped(u => u.GroupOfficersEdit, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.MessageEvent)
-			{
-				fromJson = CreateTyped(u => u.MessageEvent, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.DonutSubscriptionCreate
-				|| fromJson.Type == GroupUpdateType.DonutSubscriptionProlonged)
-			{
-				fromJson = CreateTyped(u => u.DonutSubscriptionNew, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.DonutSubscriptionCanceled
-				|| fromJson.Type == GroupUpdateType.DonutSubscriptionExpired)
-			{
-				fromJson = CreateTyped(u => u.DonutSubscriptionEnd, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.DonutSubscriptionPriceChanged)
-			{
-				fromJson = CreateTyped(u => u.DonutSubscriptionPriceChanged, resObj, fromJson.Type);
-			} else if (fromJson.Type == GroupUpdateType.DonutMoneyWithdraw
-				|| fromJson.Type == GroupUpdateType.DonutMoneyWithdrawError)
-			{
-				fromJson = CreateTyped(u => u.DonutMoneyWithdraw, resObj, fromJson.Type);
-			}
+				"message_new" or "message_edit" or "message_reply"
+					=> resObj.ContainsKey("client_info")
+						? CreateTyped(u => u.MessageNew, resObj)
+						: CreateTyped(u => u.Message, resObj),
+				"message_allow" => CreateTyped(u => u.MessageAllow, resObj),
+				"message_typing_state" => CreateTyped(u => u.MessageTypingState, resObj),
+				"vkpay_transaction" => CreateTyped(u => u.VkPayTransaction, resObj),
+				"like_add" => CreateTyped(u => u.LikeAdd, resObj),
+				"like_remove" => CreateTyped(u => u.LikeRemove, resObj),
+				"group_change_settings" => CreateTyped(u => u.GroupChangeSettings, resObj),
+				"message_deny" => CreateTyped(u => u.MessageDeny, resObj),
+				"photo_new" => CreateTyped(u => u.Photo, resObj),
+				"photo_comment_new" or "photo_comment_edit" or "photo_comment_restore" => CreateTyped(u => u.PhotoComment, resObj),
+				"photo_comment_delete" => CreateTyped(u => u.PhotoCommentDelete, resObj),
+				"audio_new" => CreateTyped(u => u.Audio, resObj),
+				"video_new" => CreateTyped(u => u.Video, resObj),
+				"video_comment_new" or "video_comment_edit" or "video_comment_restore" => CreateTyped(u => u.VideoComment, resObj),
+				"video_comment_delete" => CreateTyped(u => u.VideoCommentDelete, resObj),
+				"wall_post_new" or "wall_repost" => CreateTyped(u => u.WallPost, resObj),
+				"wall_reply_new" or "wall_reply_edit" or "wall_reply_restore" => CreateTyped(u => u.WallReply, resObj),
+				"wall_reply_delete" => CreateTyped(u => u.WallReplyDelete, resObj),
+				"board_post_new" or "board_post_edit" or "board_post_restore" => CreateTyped(u => u.BoardPost, resObj),
+				"board_post_delete" => CreateTyped(u => u.BoardPostDelete, resObj),
+				"market_comment_new" or "market_comment_edit" or "market_comment_restore" => CreateTyped(u => u.MarketComment, resObj),
+				"market_comment_delete" => CreateTyped(u => u.MarketCommentDelete, resObj),
+				"group_leave" => CreateTyped(u => u.GroupLeave, resObj),
+				"group_join" => CreateTyped(u => u.GroupJoin, resObj),
+				"user_block" => CreateTyped(u => u.UserBlock, resObj),
+				"user_unblock" => CreateTyped(u => u.UserUnblock, resObj),
+				"poll_vote_new" => CreateTyped(u => u.PollVoteNew, resObj),
+				"group_change_photo" => CreateTyped(u => u.GroupChangePhoto, resObj),
+				"group_officers_edit" => CreateTyped(u => u.GroupOfficersEdit, resObj),
+				"message_event" => CreateTyped(u => u.MessageEvent, resObj),
+				"donut_subscription_create" or "donut_subscription_prolonged" => CreateTyped(u => u.DonutSubscriptionNew, resObj),
+				"donut_subscription_cancelled" or "donut_subscription_expired" => CreateTyped(u => u.DonutSubscriptionEnd, resObj),
+				"donut_subscription_price_changed" => CreateTyped(u => u.DonutSubscriptionPriceChanged, resObj),
+				"donut_money_withdraw" or "donut_money_withdraw_error" => CreateTyped(u => u.DonutMoneyWithdraw, resObj),
+				var _ => JsonConvert.DeserializeObject<GroupUpdate>(response.ToString(), JsonConfigure.JsonSerializerSettings)
+			};
 
+			fromJson!.Type = GroupUpdateType.FromJsonString(type);
 			fromJson.Raw = resObj;
 			fromJson.GroupId = response["group_id"];
 
@@ -376,13 +292,11 @@ namespace VkNet.Model.GroupUpdate
 
 		private static GroupUpdate CreateTyped<TGroupUpdate>(
 			Expression<Func<GroupUpdate, TGroupUpdate>> propertySelector,
-			TGroupUpdate instance,
-			GroupUpdateType type)
+			TGroupUpdate instance)
 			where TGroupUpdate : IGroupUpdate
 		{
 			var update = new GroupUpdate
 			{
-				Type = type,
 				Instance = instance,
 			};
 
