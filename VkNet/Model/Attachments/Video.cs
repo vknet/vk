@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Infrastructure;
+using VkNet.Model.GroupUpdate;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -16,7 +17,7 @@ namespace VkNet.Model.Attachments
 	/// </remarks>
 	[DebuggerDisplay("Id = {Id}, Title = {Title}")]
 	[Serializable]
-	public class Video : MediaAttachment
+	public class Video : MediaAttachment, IGroupUpdate
 	{
 		/// <inheritdoc />
 		protected override string Alias => "video";

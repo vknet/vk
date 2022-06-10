@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Добавление голоса в публичном опросе
 	/// </summary>
 	[Serializable]
-	public class PollVoteNew
+	public class PollVoteNew : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя

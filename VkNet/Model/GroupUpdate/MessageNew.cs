@@ -8,7 +8,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Объект, который содержит сообщение и информацию о доступных пользователю функциях.
 	/// </summary>
 	[Serializable]
-	public class MessageNew
+	public class MessageNew : IGroupUpdate
 	{
 		/// <summary>
 		/// Сообщение.

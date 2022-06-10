@@ -11,7 +11,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Добавление пользователя в чёрный список
 	/// </summary>
 	[Serializable]
-	public class UserBlock
+	public class UserBlock : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя

@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Удаление комментария к фотографии (<c>PhotoCommentDelete</c>)
 	/// </summary>
 	[Serializable]
-	public class PhotoCommentDelete
+	public class PhotoCommentDelete : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор комментария

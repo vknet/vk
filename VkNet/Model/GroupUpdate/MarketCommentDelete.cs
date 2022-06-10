@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Удаление комментария к товару (<c>MarketCommentDelete</c>)
 	/// </summary>
 	[Serializable]
-	public class MarketCommentDelete
+	public class MarketCommentDelete : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор комментария

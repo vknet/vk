@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Удаление/выход участника из сообщества
 	/// </summary>
 	[Serializable]
-	public class GroupLeave
+	public class GroupLeave : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя

@@ -21,9 +21,15 @@ namespace VkNet.Model.GroupUpdate
 		public GroupUpdateType Type { get; set; }
 
 		/// <summary>
+		/// Экземпляр самого обновления группы.
+		/// </summary>
+		public IGroupUpdate Instance { get; set; }
+
+		/// <summary>
 		/// Сообщение для типов событий с сообщением в ответе.
 		/// </summary>
 		public MessageNew MessageNew { get; set; }
+
 		/// <summary>
 		/// Собеседник набираеет сообщение
 		/// </summary>
@@ -229,7 +235,7 @@ namespace VkNet.Model.GroupUpdate
 		public static GroupUpdate FromJson(VkResponse response)
 		{
 			var fromJson = JsonConvert.DeserializeObject<GroupUpdate>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-			
+
 			var resObj = response["object"];
 			fromJson.Raw = resObj;
 

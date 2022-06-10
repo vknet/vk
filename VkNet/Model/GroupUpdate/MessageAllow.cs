@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Подписка на сообщения от сообщества (<c>MessageAllow</c>, ваш капитан!)
 	/// </summary>
 	[Serializable]
-	public class MessageAllow
+	public class MessageAllow : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя

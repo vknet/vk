@@ -9,7 +9,7 @@ namespace VkNet.Model.GroupUpdate
 	/// (<c>CommentBoard</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class BoardPost : CommentBoard
+	public class BoardPost : CommentBoard, IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор обсуждения

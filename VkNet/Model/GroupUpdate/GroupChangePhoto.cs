@@ -8,7 +8,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Изменение главного фото
 	/// </summary>
 	[Serializable]
-	public class GroupChangePhoto
+	public class GroupChangePhoto : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя, который внес изменения

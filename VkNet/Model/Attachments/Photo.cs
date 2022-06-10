@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using VkNet.Model.GroupUpdate;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -13,7 +14,7 @@ namespace VkNet.Model.Attachments
 	/// См. описание http://vk.com/dev/photo
 	/// </remarks>
 	[Serializable]
-	public class Photo : MediaAttachment
+	public class Photo : MediaAttachment, IGroupUpdate
 	{
 		/// <inheritdoc />
 		protected override string Alias => "photo";

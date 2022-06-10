@@ -10,7 +10,7 @@ namespace VkNet.Model.GroupUpdate
 	/// (<c>Comment</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class MarketComment : Comment
+	public class MarketComment : Comment, IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор товара

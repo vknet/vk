@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Удаление комментария к записи (<c>WallReplyDelete</c>)
 	/// </summary>
 	[Serializable]
-	public class WallReplyDelete
+	public class WallReplyDelete : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор комментария

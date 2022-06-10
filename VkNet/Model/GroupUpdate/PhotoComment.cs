@@ -10,7 +10,7 @@ namespace VkNet.Model.GroupUpdate
 	/// (<c>Comment</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class PhotoComment : Comment
+	public class PhotoComment : Comment, IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор фотографии

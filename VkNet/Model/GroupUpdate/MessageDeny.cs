@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Новый запрет сообщений от сообщества (<c>MessageDeny</c>)
 	/// </summary>
 	[Serializable]
-	public class MessageDeny
+	public class MessageDeny : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя

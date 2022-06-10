@@ -11,7 +11,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Добавление участника или заявки на вступление в сообщество
 	/// </summary>
 	[Serializable]
-	public class GroupJoin
+	public class GroupJoin : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя

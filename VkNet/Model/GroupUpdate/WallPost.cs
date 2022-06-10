@@ -9,7 +9,7 @@ namespace VkNet.Model.GroupUpdate
 	/// (<c>Post</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class WallPost : Post
+	public class WallPost : Post, IGroupUpdate
 	{
 		/// <summary>
 		/// <c>Id</c> отложенной записи

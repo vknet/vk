@@ -10,7 +10,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Редактирование списка руководителей
 	/// </summary>
 	[Serializable]
-	public class GroupOfficersEdit
+	public class GroupOfficersEdit : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя

@@ -10,7 +10,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Событие о новой отметке "Мне нравится"
 	/// </summary>
 	[Serializable]
-	public class LikeAdd
+	public class LikeAdd : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя, который поставил отметку.

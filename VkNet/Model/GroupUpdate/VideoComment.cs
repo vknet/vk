@@ -10,7 +10,7 @@ namespace VkNet.Model.GroupUpdate
 	/// (<c>Comment</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class VideoComment : Comment
+	public class VideoComment : Comment, IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор видеозаписи

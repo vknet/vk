@@ -10,7 +10,7 @@ namespace VkNet.Model.GroupUpdate
 	/// платёж через VK Pay
 	/// </summary>
 	[Serializable]
-	public class VkPayTransaction
+	public class VkPayTransaction : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя-отправителя перевода.

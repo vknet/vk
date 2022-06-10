@@ -10,7 +10,7 @@ namespace VkNet.Model.GroupUpdate
 	/// (<c>Comment</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class WallReply : Comment
+	public class WallReply : Comment, IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор записи

@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Удаление комментария к видео (<c>VideoCommentDelete</c>)
 	/// </summary>
 	[Serializable]
-	public class VideoCommentDelete
+	public class VideoCommentDelete : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор комментария

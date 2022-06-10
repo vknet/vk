@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Удаление пользователя из чёрного списка
 	/// </summary>
 	[Serializable]
-	public class UserUnblock
+	public class UserUnblock : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя
