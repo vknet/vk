@@ -60,5 +60,22 @@ namespace VkNet.Model.GroupUpdate
 				Donut = response["donut"]
 			};
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="WallPost" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="WallPost" /> </returns>
+		public static implicit operator WallPost(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }

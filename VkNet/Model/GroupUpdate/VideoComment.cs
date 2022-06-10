@@ -42,5 +42,22 @@ namespace VkNet.Model.GroupUpdate
 				VideoOwnerId = response["video_owner_id"]
 			};
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="VideoComment" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="VideoComment" /> </returns>
+		public static implicit operator VideoComment(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }

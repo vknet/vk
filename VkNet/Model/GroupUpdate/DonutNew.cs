@@ -41,5 +41,22 @@ namespace VkNet.Model.GroupUpdate
 
 			return groupJoin;
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="DonutNew" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="DonutNew" /> </returns>
+		public static implicit operator DonutNew(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }

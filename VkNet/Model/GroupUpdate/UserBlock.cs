@@ -55,5 +55,22 @@ namespace VkNet.Model.GroupUpdate
 
 			return userBlock;
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="UserBlock" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="UserBlock" /> </returns>
+		public static implicit operator UserBlock(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }

@@ -49,5 +49,22 @@ namespace VkNet.Model.GroupUpdate
 				DeleterId = response["deleter_id"]
 			};
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="WallReplyDelete" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="WallReplyDelete" /> </returns>
+		public static implicit operator WallReplyDelete(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }

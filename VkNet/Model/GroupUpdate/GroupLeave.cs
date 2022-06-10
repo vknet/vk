@@ -31,5 +31,22 @@ namespace VkNet.Model.GroupUpdate
 				IsSelf = response["self"]
 			};
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="GroupLeave" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="GroupLeave" /> </returns>
+		public static implicit operator GroupLeave(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }

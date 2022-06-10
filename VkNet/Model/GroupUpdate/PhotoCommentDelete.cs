@@ -49,5 +49,22 @@ namespace VkNet.Model.GroupUpdate
 				DeleterId = response["deleter_id"]
 			};
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="PhotoCommentDelete" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="PhotoCommentDelete" /> </returns>
+		public static implicit operator PhotoCommentDelete(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }

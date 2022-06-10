@@ -32,5 +32,22 @@ namespace VkNet.Model.GroupUpdate
 				Photo = response["photo"]
 			};
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="GroupChangePhoto" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="GroupChangePhoto" /> </returns>
+		public static implicit operator GroupChangePhoto(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }

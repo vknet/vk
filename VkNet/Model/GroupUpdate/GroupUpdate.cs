@@ -1,4 +1,6 @@
 using System;
+using System.Linq.Expressions;
+using System.Reflection;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Infrastructure;
@@ -23,7 +25,7 @@ namespace VkNet.Model.GroupUpdate
 		/// <summary>
 		/// Экземпляр самого обновления группы.
 		/// </summary>
-		public IGroupUpdate Instance { get; set; }
+		public IGroupUpdate Instance { get; private set; }
 
 		/// <summary>
 		/// Сообщение для типов событий с сообщением в ответе.
@@ -237,7 +239,6 @@ namespace VkNet.Model.GroupUpdate
 			var fromJson = JsonConvert.DeserializeObject<GroupUpdate>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 
 			var resObj = response["object"];
-			fromJson.Raw = resObj;
 
 			if (fromJson.Type == GroupUpdateType.MessageNew
 				|| fromJson.Type == GroupUpdateType.MessageEdit
@@ -245,127 +246,157 @@ namespace VkNet.Model.GroupUpdate
 			{
 				if (resObj.ContainsKey("client_info"))
 				{
-					fromJson.MessageNew = resObj;
+					fromJson = CreateTyped(u => u.MessageNew, resObj, fromJson.Type);
 				}
 				else
 				{
-					fromJson.Message = resObj;
+					fromJson = CreateTyped(u => u.Message, resObj, fromJson.Type);
 				}
 			} else if (fromJson.Type == GroupUpdateType.MessageAllow)
 			{
-				fromJson.MessageAllow = MessageAllow.FromJson(resObj);
+				fromJson = CreateTyped(u => u.MessageAllow, resObj, fromJson.Type);
 			}  else if (fromJson.Type == GroupUpdateType.MessageTypingState)
 			{
-				fromJson.MessageTypingState = MessageTypingState.FromJson(resObj);
+				fromJson = CreateTyped(u => u.MessageTypingState, resObj, fromJson.Type);
 			}else if (fromJson.Type == GroupUpdateType.VkPayTransaction)
 			{
-				fromJson.VkPayTransaction = VkPayTransaction.FromJson(resObj);
+				fromJson = CreateTyped(u => u.VkPayTransaction, resObj, fromJson.Type);
 			}else if (fromJson.Type == GroupUpdateType.LikeAdd)
 			{
-				fromJson.LikeAdd = LikeAdd.FromJson(resObj);
+				fromJson = CreateTyped(u => u.LikeAdd, resObj, fromJson.Type);
 			}else if (fromJson.Type == GroupUpdateType.LikeRemove)
 			{
-				fromJson.LikeRemove = LikeRemove.FromJson(resObj);
+				fromJson = CreateTyped(u => u.LikeRemove, resObj, fromJson.Type);
 			}else if (fromJson.Type == GroupUpdateType.GroupChangeSettings)
 			{
-				fromJson.GroupChangeSettings = GroupChangeSettings.FromJson(resObj);
+				fromJson = CreateTyped(u => u.GroupChangeSettings, resObj, fromJson.Type);
 			}else if (fromJson.Type == GroupUpdateType.MessageDeny)
 			{
-				fromJson.MessageDeny = MessageDeny.FromJson(resObj);
+				fromJson = CreateTyped(u => u.MessageDeny, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.PhotoNew)
 			{
-				fromJson.Photo = resObj;
+				fromJson = CreateTyped(u => u.Photo, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.PhotoCommentNew
 						|| fromJson.Type == GroupUpdateType.PhotoCommentEdit
 						|| fromJson.Type == GroupUpdateType.PhotoCommentRestore)
 			{
-				fromJson.PhotoComment = PhotoComment.FromJson(resObj);
+				fromJson = CreateTyped(u => u.PhotoComment, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.PhotoCommentDelete)
 			{
-				fromJson.PhotoCommentDelete = PhotoCommentDelete.FromJson(resObj);
+				fromJson = CreateTyped(u => u.PhotoCommentDelete, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.AudioNew)
 			{
-				fromJson.Audio = resObj;
+				fromJson = CreateTyped(u => u.Audio, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.VideoNew)
 			{
-				fromJson.Video = resObj;
+				fromJson = CreateTyped(u => u.Video, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.VideoCommentNew
 						|| fromJson.Type == GroupUpdateType.VideoCommentEdit
 						|| fromJson.Type == GroupUpdateType.VideoCommentRestore)
 			{
-				fromJson.VideoComment = VideoComment.FromJson(resObj);
+				fromJson = CreateTyped(u => u.VideoComment, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.VideoCommentDelete)
 			{
-				fromJson.VideoCommentDelete = VideoCommentDelete.FromJson(resObj);
+				fromJson = CreateTyped(u => u.VideoCommentDelete, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.WallPostNew || fromJson.Type == GroupUpdateType.WallRepost)
 			{
-				fromJson.WallPost = WallPost.FromJson(resObj);
+				fromJson = CreateTyped(u => u.WallPost, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.WallReplyNew
 						|| fromJson.Type == GroupUpdateType.WallReplyEdit
 						|| fromJson.Type == GroupUpdateType.WallReplyRestore)
 			{
-				fromJson.WallReply = WallReply.FromJson(resObj);
+				fromJson = CreateTyped(u => u.WallReply, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.WallReplyDelete)
 			{
-				fromJson.WallReplyDelete = WallReplyDelete.FromJson(resObj);
+				fromJson = CreateTyped(u => u.WallReplyDelete, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.BoardPostNew
 						|| fromJson.Type == GroupUpdateType.BoardPostEdit
 						|| fromJson.Type == GroupUpdateType.BoardPostRestore)
 			{
-				fromJson.BoardPost = BoardPost.FromJson(resObj);
+				fromJson = CreateTyped(u => u.BoardPost, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.BoardPostDelete)
 			{
-				fromJson.BoardPostDelete = BoardPostDelete.FromJson(resObj);
+				fromJson = CreateTyped(u => u.BoardPostDelete, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.MarketCommentNew
 						|| fromJson.Type == GroupUpdateType.MarketCommentEdit
 						|| fromJson.Type == GroupUpdateType.MarketCommentRestore)
 			{
-				fromJson.MarketComment = MarketComment.FromJson(resObj);
+				fromJson = CreateTyped(u => u.MarketComment, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.MarketCommentDelete)
 			{
-				fromJson.MarketCommentDelete = MarketCommentDelete.FromJson(resObj);
+				fromJson = CreateTyped(u => u.MarketCommentDelete, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.GroupLeave)
 			{
-				fromJson.GroupLeave = GroupLeave.FromJson(resObj);
+				fromJson = CreateTyped(u => u.GroupLeave, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.GroupJoin)
 			{
-				fromJson.GroupJoin = GroupJoin.FromJson(resObj);
+				fromJson = CreateTyped(u => u.GroupJoin, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.UserBlock)
 			{
-				fromJson.UserBlock = UserBlock.FromJson(resObj);
+				fromJson = CreateTyped(u => u.UserBlock, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.UserUnblock)
 			{
-				fromJson.UserUnblock = UserUnblock.FromJson(resObj);
+				fromJson = CreateTyped(u => u.UserUnblock, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.PollVoteNew)
 			{
-				fromJson.PollVoteNew = PollVoteNew.FromJson(resObj);
+				fromJson = CreateTyped(u => u.PollVoteNew, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.GroupChangePhoto)
 			{
-				fromJson.GroupChangePhoto = GroupChangePhoto.FromJson(resObj);
+				fromJson = CreateTyped(u => u.GroupChangePhoto, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.GroupOfficersEdit)
 			{
-				fromJson.GroupOfficersEdit = GroupOfficersEdit.FromJson(resObj);
+				fromJson = CreateTyped(u => u.GroupOfficersEdit, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.MessageEvent)
 			{
-				fromJson.MessageEvent = MessageEvent.FromJson(resObj);
+				fromJson = CreateTyped(u => u.MessageEvent, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.DonutSubscriptionCreate
 				|| fromJson.Type == GroupUpdateType.DonutSubscriptionProlonged)
 			{
-				fromJson.DonutSubscriptionNew = DonutNew.FromJson(resObj);
+				fromJson = CreateTyped(u => u.DonutSubscriptionNew, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.DonutSubscriptionCanceled
 				|| fromJson.Type == GroupUpdateType.DonutSubscriptionExpired)
 			{
-				fromJson.DonutSubscriptionEnd = DonutEnd.FromJson(resObj);
+				fromJson = CreateTyped(u => u.DonutSubscriptionEnd, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.DonutSubscriptionPriceChanged)
 			{
-				fromJson.DonutSubscriptionPriceChanged = DonutChanged.FromJson(resObj);
+				fromJson = CreateTyped(u => u.DonutSubscriptionPriceChanged, resObj, fromJson.Type);
 			} else if (fromJson.Type == GroupUpdateType.DonutMoneyWithdraw
 				|| fromJson.Type == GroupUpdateType.DonutMoneyWithdrawError)
 			{
-				fromJson.DonutMoneyWithdraw = DonutWithdraw.FromJson(resObj);
+				fromJson = CreateTyped(u => u.DonutMoneyWithdraw, resObj, fromJson.Type);
 			}
+
+			fromJson.Raw = resObj;
+			fromJson.GroupId = response["group_id"];
 
 			return fromJson;
 		}
+
+	#region Приватные методы
+
+		private static GroupUpdate CreateTyped<TGroupUpdate>(
+			Expression<Func<GroupUpdate, TGroupUpdate>> propertySelector,
+			TGroupUpdate instance,
+			GroupUpdateType type)
+			where TGroupUpdate : IGroupUpdate
+		{
+			var update = new GroupUpdate
+			{
+				Type = type,
+				Instance = instance,
+			};
+
+			if (propertySelector.Body is MemberExpression
+				{
+					Member: PropertyInfo propertyInfo
+				})
+			{
+				propertyInfo.SetValue(update, instance);
+			}
+
+			return update;
+		}
+
+	#endregion
 	}
 }

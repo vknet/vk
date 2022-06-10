@@ -36,5 +36,22 @@ namespace VkNet.Model.GroupUpdate
 
 			return groupJoin;
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="GroupJoin" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="GroupJoin" /> </returns>
+		public static implicit operator GroupJoin(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }

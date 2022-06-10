@@ -44,5 +44,22 @@ namespace VkNet.Model.GroupUpdate
 		{
 			return JsonConvert.DeserializeObject<GroupOfficersEdit>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="GroupOfficersEdit" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="GroupOfficersEdit" /> </returns>
+		public static implicit operator GroupOfficersEdit(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }

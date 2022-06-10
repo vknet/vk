@@ -31,5 +31,22 @@ namespace VkNet.Model.GroupUpdate
 				Key = response["key"]
 			};
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="MessageAllow" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="MessageAllow" /> </returns>
+		public static implicit operator MessageAllow(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }

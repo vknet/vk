@@ -42,5 +42,22 @@ namespace VkNet.Model.GroupUpdate
 				MarketOwnerId = response["market_owner_id"]
 			};
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="MarketComment" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="MarketComment" /> </returns>
+		public static implicit operator MarketComment(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }

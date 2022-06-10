@@ -43,5 +43,22 @@ namespace VkNet.Model.GroupUpdate
 				OwnerId = response["owner_id"]
 			};
 		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="PollVoteNew" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="PollVoteNew" /> </returns>
+		public static implicit operator PollVoteNew(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
+		}
 	}
 }
