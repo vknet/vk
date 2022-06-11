@@ -10,7 +10,7 @@ namespace VkNet.Model.GroupUpdate
 	/// (<c>Comment</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class VideoComment : Comment
+	public class VideoComment : Comment, IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор видеозаписи
@@ -41,6 +41,23 @@ namespace VkNet.Model.GroupUpdate
 				VideoId = response["video_id"],
 				VideoOwnerId = response["video_owner_id"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="VideoComment" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="VideoComment" /> </returns>
+		public static implicit operator VideoComment(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

@@ -9,7 +9,7 @@ namespace VkNet.Model.GroupUpdate
 	/// (<c>CommentBoard</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class BoardPost : CommentBoard
+	public class BoardPost : CommentBoard, IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор обсуждения
@@ -38,6 +38,23 @@ namespace VkNet.Model.GroupUpdate
 				TopicId = response["topic_id"],
 				TopicOwnerId = response["topic_owner_id"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="BoardPost" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="BoardPost" /> </returns>
+		public static implicit operator BoardPost(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

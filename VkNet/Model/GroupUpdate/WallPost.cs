@@ -9,7 +9,7 @@ namespace VkNet.Model.GroupUpdate
 	/// (<c>Post</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class WallPost : Post
+	public class WallPost : Post, IGroupUpdate
 	{
 		/// <summary>
 		/// <c>Id</c> отложенной записи
@@ -59,6 +59,23 @@ namespace VkNet.Model.GroupUpdate
 				PostponedId = response["postponed_id"],
 				Donut = response["donut"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="WallPost" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="WallPost" /> </returns>
+		public static implicit operator WallPost(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

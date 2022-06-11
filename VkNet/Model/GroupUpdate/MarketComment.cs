@@ -10,7 +10,7 @@ namespace VkNet.Model.GroupUpdate
 	/// (<c>Comment</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class MarketComment : Comment
+	public class MarketComment : Comment, IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор товара
@@ -41,6 +41,23 @@ namespace VkNet.Model.GroupUpdate
 				ItemId = response["item_id"],
 				MarketOwnerId = response["market_owner_id"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="MarketComment" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="MarketComment" /> </returns>
+		public static implicit operator MarketComment(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

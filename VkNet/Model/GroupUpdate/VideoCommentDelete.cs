@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Удаление комментария к видео (<c>VideoCommentDelete</c>)
 	/// </summary>
 	[Serializable]
-	public class VideoCommentDelete
+	public class VideoCommentDelete : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор комментария
@@ -48,6 +48,23 @@ namespace VkNet.Model.GroupUpdate
 				UserId = response["user_id"],
 				DeleterId = response["deleter_id"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="VideoCommentDelete" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="VideoCommentDelete" /> </returns>
+		public static implicit operator VideoCommentDelete(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

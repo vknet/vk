@@ -10,7 +10,7 @@ namespace VkNet.Model.GroupUpdate
 	/// (<c>Comment</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class PhotoComment : Comment
+	public class PhotoComment : Comment, IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор фотографии
@@ -41,6 +41,23 @@ namespace VkNet.Model.GroupUpdate
 				PhotoId = response["photo_id"],
 				PhotoOwnerId = response["photo_owner_id"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="PhotoComment" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="PhotoComment" /> </returns>
+		public static implicit operator PhotoComment(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

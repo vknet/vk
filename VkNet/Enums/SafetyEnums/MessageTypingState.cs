@@ -9,7 +9,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Объект, который содержит информацию о статусе печатании
 	/// </summary>
 	[Serializable]
-	public class MessageTypingState
+	public class MessageTypingState : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя, который набирает текст.

@@ -1,8 +1,11 @@
+using System;
+
 namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Тип обновления
 	/// </summary>
+	[Obsolete("Типы обновлений теперь проверяются в GroupUpdate")]
 	public sealed class GroupUpdateType : SafetyEnum<GroupUpdateType>
 	{
 		/// <summary>

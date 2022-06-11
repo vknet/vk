@@ -11,7 +11,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Добавление участника или заявки на вступление в сообщество
 	/// </summary>
 	[Serializable]
-	public class DonutNew
+	public class DonutNew : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя
@@ -40,6 +40,23 @@ namespace VkNet.Model.GroupUpdate
 			groupJoin.AmountWithoutFee = response["amount_without_fee"];
 
 			return groupJoin;
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="DonutNew" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="DonutNew" /> </returns>
+		public static implicit operator DonutNew(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

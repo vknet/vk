@@ -11,7 +11,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Добавление участника или заявки на вступление в сообщество
 	/// </summary>
 	[Serializable]
-	public class GroupJoin
+	public class GroupJoin : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя
@@ -35,6 +35,23 @@ namespace VkNet.Model.GroupUpdate
 			groupJoin.UserId = response["user_id"];
 
 			return groupJoin;
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="GroupJoin" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="GroupJoin" /> </returns>
+		public static implicit operator GroupJoin(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

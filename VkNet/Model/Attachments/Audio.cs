@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
+using VkNet.Model.GroupUpdate;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -12,7 +13,7 @@ namespace VkNet.Model.Attachments
 	/// См. описание http://vk.com/dev/audio_object
 	/// </summary>
 	[Serializable]
-	public class Audio : MediaAttachment
+	public class Audio : MediaAttachment, IGroupUpdate
 	{
 		/// <inheritdoc />
 		protected override string Alias => "audio";

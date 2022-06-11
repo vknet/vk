@@ -11,7 +11,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Событие о изменении настроек сообщества
 	/// </summary>
 	[Serializable]
-	public class GroupChangeSettings
+	public class GroupChangeSettings : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя, который внёс изменения;

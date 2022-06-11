@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Удаление комментария к записи (<c>WallReplyDelete</c>)
 	/// </summary>
 	[Serializable]
-	public class WallReplyDelete
+	public class WallReplyDelete : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор комментария
@@ -48,6 +48,23 @@ namespace VkNet.Model.GroupUpdate
 				UserId = response["user_id"],
 				DeleterId = response["deleter_id"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="WallReplyDelete" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="WallReplyDelete" /> </returns>
+		public static implicit operator WallReplyDelete(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

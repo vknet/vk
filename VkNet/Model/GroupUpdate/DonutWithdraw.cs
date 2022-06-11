@@ -11,7 +11,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Добавление участника или заявки на вступление в сообщество
 	/// </summary>
 	[Serializable]
-	public class DonutWithdraw
+	public class DonutWithdraw : IGroupUpdate
 	{
 		/// <summary>
 		/// Произошла ли ошибка
@@ -48,6 +48,23 @@ namespace VkNet.Model.GroupUpdate
 			groupJoin.Error = !string.IsNullOrEmpty(groupJoin.Reason);
 
 			return groupJoin;
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="DonutWithdraw" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="DonutWithdraw" /> </returns>
+		public static implicit operator DonutWithdraw(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

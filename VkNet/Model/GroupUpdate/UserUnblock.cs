@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Удаление пользователя из чёрного списка
 	/// </summary>
 	[Serializable]
-	public class UserUnblock
+	public class UserUnblock : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя
@@ -36,6 +36,23 @@ namespace VkNet.Model.GroupUpdate
 				AdminId = response["admin_id"],
 				ByEndDate = (long) response["by_end_date"] > 0
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="UserUnblock" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="UserUnblock" /> </returns>
+		public static implicit operator UserUnblock(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Событие о снятии отметке "Мне нравится"
 	/// </summary>
 	[Serializable]
-	public class LikeRemove
+	public class LikeRemove : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя, который убрал отметку.
