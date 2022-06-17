@@ -929,5 +929,53 @@ namespace VkNet.Categories
 					{ "note", @params.Note }
 				});
 		}
+
+		private static readonly string[] ValidTagColors =
+		{
+			"4bb34b",
+			"5c9ce6",
+			"e64646",
+			"792ec0",
+			"63b9ba",
+			"ffa000",
+			"ffc107",
+			"76787a",
+			"9e8d6b",
+			"45678f",
+			"539b9c",
+			"454647",
+			"7a6c4f",
+			"6bc76b",
+			"5181b8",
+			"ff5c5c",
+			"a162de",
+			"7ececf",
+			"aaaeb3",
+			"bbaa84"
+		};
+
+		/// <inheritdoc />
+		public bool TagAdd(GroupsTagAddParams @params)
+		{
+			if (@params.TagName is { Length: > 20 })
+			{
+				throw new VkApiException("Поле TagName не может быть длиннее 20 символов");
+			}
+
+			string lowerTagColor = @params.TagColor?.ToLower() ?? throw new VkApiException("Параметр TagColor обязательный.");
+
+			if (!ValidTagColors.Contains(lowerTagColor))
+			{
+				throw new VkApiException($"Параметр TagColor должен быть одним из следующих: {string.Join(",", ValidTagColors)}. Передан: {lowerTagColor}");
+			}
+
+			return _vk.Call<bool>("groups.tagAdd",
+				new VkParameters
+				{
+					{ "group_id", @params.GroupId },
+					{ "tag_name", @params.TagName },
+					{ "tag_color", lowerTagColor }
+				});
+		}
 	}
 }

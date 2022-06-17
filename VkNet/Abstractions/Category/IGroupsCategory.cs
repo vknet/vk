@@ -173,5 +173,8 @@ namespace VkNet.Abstractions
 
 		/// <inheritdoc cref="IGroupsCategoryAsync.SetUserNoteAsync" />
 		bool SetUserNote(GroupsSetUserNoteParams @params);
+
+		/// <inheritdoc cref="IGroupsCategoryAsync.TagAddAsync" />
+		bool TagAdd(GroupsTagAddParams @params);
 	}
 }

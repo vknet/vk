@@ -326,5 +326,10 @@ namespace VkNet.Categories
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => SetUserNote(@params));
 		}
+
+		public Task<bool> TagAddAsync(GroupsTagAddParams @params)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => TagAdd(@params));
+		}
 	}
 }

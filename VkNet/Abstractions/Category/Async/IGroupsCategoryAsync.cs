@@ -1078,5 +1078,14 @@ namespace VkNet.Abstractions
 		/// </param>
 		/// <returns> 1 в случае успеха </returns>
 		Task<bool> SetUserNoteAsync(GroupsSetUserNoteParams @params);
+
+		/// <summary>
+		/// Позволяет добавить новый тег в сообщество.
+		/// </summary>
+		/// <param name="params">
+		/// Параметры редактирования заметки о пользователе
+		/// </param>
+		/// <returns> 1 в случае успеха </returns>
+		Task<bool> TagAddAsync(GroupsTagAddParams @params);
 	}
 }
