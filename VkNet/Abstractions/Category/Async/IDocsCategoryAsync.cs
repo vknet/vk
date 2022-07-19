@@ -241,13 +241,13 @@ namespace VkNet.Abstractions
 		/// <summary>
 		/// Получает адрес сервера для загрузки документа в личное сообщение.
 		/// </summary>
-		/// <param name="groupId"> идентификатор назначения </param>
+		/// <param name="peerId"> идентификатор назначения </param>
 		/// <param name="type">
 		/// тип документа. Возможные значения:
 		/// doc — обычный документ;
 		/// audio_message — голосовое сообщение.
 		/// </param>
 		/// <returns> </returns>
-		Task<UploadServerInfo> GetMessagesUploadServerAsync(long? groupId = null, DocMessageType type = null);
+		Task<UploadServerInfo> GetMessagesUploadServerAsync(long? peerId = null, DocMessageType type = null);
 	}
 }

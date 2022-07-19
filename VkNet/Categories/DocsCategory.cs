@@ -219,11 +219,11 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public UploadServerInfo GetMessagesUploadServer(long? groupId = null, DocMessageType type = null)
+		public UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType type = null)
 		{
 			var parameters = new VkParameters
 			{
-				{ "group_id", groupId },
+				{ "peer_id", peerId },
 				{ "type", type }
 			};
 
