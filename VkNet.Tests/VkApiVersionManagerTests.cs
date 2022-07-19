@@ -95,7 +95,7 @@ namespace VkNet.Tests
 			FluentActions.Invoking(() => Manager.SetVersion(5, 50))
 				.Should()
 				.ThrowExactly<VkApiException>()
-				.WithMessage("С 14 октября 2020 года прекратится поддержка версий ниже 5.81.")
+				.WithMessage("С 2 сентября 2021 года прекратилась поддержка версий ниже 5.81.")
 				.And.HelpLink.Should()
 				.Be("https://vk.com/dev/constant_version_updates");
 		}
