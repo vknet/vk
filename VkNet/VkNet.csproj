@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net5.0;net6.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
-		<VersionPrefix>1.68.0</VersionPrefix>
+		<VersionPrefix>1.70.0</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -23,7 +23,7 @@
 			Обсуждение в Telegram: https://t.me/VkDotNet
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: https://github.com/vknet/vk/milestone/42?closed=1
+			Список изменений: https://github.com/vknet/vk/milestone/46?closed=1
 		</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -50,20 +50,11 @@
 
 	<ItemGroup>
 		<PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="all" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.42" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.43" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.39.0.47922" PrivateAssets="all" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.41.0.50478" PrivateAssets="all" />
 		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="all" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(TargetFramework) != 'net6.0'">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[5.0.2, 6.0.0)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[5.0.0,6.0.0)" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="[5.0.0,6.0.0)" />
-	</ItemGroup>
-
-	<ItemGroup Condition="$(TargetFramework) == 'net6.0'">
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
 		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
