@@ -1,20 +1,18 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using NUnit.Framework;
+﻿using System.Linq;
+using FluentAssertions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Friends
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
 	public class FriendsGetSuggestions : CategoryBaseTest
 	{
 		protected override string Folder => "Friends";
 
-		[Test]
+		[Fact]
 		public void GetSuggestions_AllParameters()
 		{
 			Url = "https://api.vk.com/method/friends.getSuggestions";
@@ -23,14 +21,14 @@ namespace VkNet.Tests.Categories.Friends
 
 			var result = Api.Friends.GetSuggestions(FriendsFilter.Mutual, 1, 0, UsersFields.Sex, NameCase.Gen);
 
-			Assert.NotNull(result);
-			Assert.AreEqual(182, result.TotalCount);
+			result.Should().NotBeNull();
+			result.TotalCount.Should().Be(182);
 			var user = result.FirstOrDefault();
-			Assert.NotNull(user);
-			Assert.AreEqual(Sex.Male, user.Sex);
+			user.Should().NotBeNull();
+			user.Sex.Should().Be(Sex.Male);
 		}
 
-		[Test]
+		[Fact]
 		public void GetSuggestions_WithoutParameters()
 		{
 			Url = "https://api.vk.com/method/friends.getSuggestions";
@@ -38,8 +36,8 @@ namespace VkNet.Tests.Categories.Friends
 			ReadCategoryJsonPath(nameof(Api.Friends.GetSuggestions));
 
 			var result = Api.Friends.GetSuggestions();
-			Assert.NotNull(result);
-			Assert.AreEqual(182, result.TotalCount);
+			result.Should().NotBeNull();
+			result.TotalCount.Should().Be(182);
 		}
 	}
 }

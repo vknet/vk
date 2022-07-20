@@ -1,29 +1,36 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using System;
+using FluentAssertions;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Ads
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AdsCheckLinkTests : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";
 
-		[Test]
+		[Fact]
 		public void CheckLink()
 		{
 			Url = "https://api.vk.com/method/ads.checkLink";
 
 			ReadCategoryJsonPath(nameof(Api.Ads.CheckLink));
 
-			var link = Api.Ads.CheckLink(123, AdsLinkType.Application, Url);
+			var link = Api.Ads.CheckLink(new CheckLinkParams
+			{
+				AccountId = 123,
+				LinkType = AdsLinkType.Application,
+				LinkUrl = new Uri(Url)
+			});
 
-			Assert.NotNull(link);
+			link.Should().NotBeNull();
 
-			Assert.IsNotEmpty(link.Description);
-			Assert.That(link.Status, Is.EqualTo(LinkStatusType.Disallowed));
+			link.Description.Should().NotBeEmpty();
+			link.Status.Should().Be(LinkStatusType.Disallowed);
 		}
 	}
 }

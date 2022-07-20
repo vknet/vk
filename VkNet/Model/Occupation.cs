@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
@@ -20,7 +20,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор школы, вуза, группы компании (в которой пользователь работает).
 		/// </summary>
-		public long Id { get; set; }
+		public long? Id { get; set; }
 
 		/// <summary>
 		/// Информация о текущем роде занятия пользователя.

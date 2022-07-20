@@ -1,16 +1,16 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Audio
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AudioGetLyricsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";
 
-		[Test]
+		[Fact]
 		public void GetLyricsTest()
 		{
 			Url = "https://api.vk.com/method/audio.getLyrics";
@@ -19,8 +19,8 @@ namespace VkNet.Tests.Categories.Audio
 
 			var result = Api.Audio.GetLyrics(416041990);
 
-			Assert.That(result.Id, Is.EqualTo(416041990));
-			Assert.That(result.Text, Is.EqualTo("test"));
+			result.Id.Should().Be(416041990);
+			result.Text.Should().Be("test");
 		}
 	}
 }

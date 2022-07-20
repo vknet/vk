@@ -118,13 +118,13 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор капчи
 		/// </summary>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public long? CaptchaSid { get; set; }
 
 		/// <summary>
 		/// текст, который ввел пользователь
 		/// </summary>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public string CaptchaKey { get; set; }
 
 		/// <summary>
@@ -152,33 +152,21 @@ namespace VkNet.Model.RequestParams
 		public long? PosterBackgroundId { get; set; }
 
 		/// <summary>
-		/// Привести к типу VkParameters.
+		/// Целое число
 		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(WallEditParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "owner_id", p.OwnerId },
-				{ "post_id", p.PostId },
-				{ "friends_only", p.FriendsOnly },
-				{ "message", p.Message },
-				{ "attachments", p.Attachments },
-				{ "services", p.Services },
-				{ "signed", p.Signed },
-				{ "publish_date", p.PublishDate },
-				{ "lat", p.Lat },
-				{ "long", p.Long },
-				{ "place_id", p.PlaceId },
-				{ "captcha_sid", p.CaptchaSid },
-				{ "captcha_key", p.CaptchaKey },
-				{ "mark_as_ads", p.MarkAsAds },
-				{ "close_comments", p.CloseComments },
-				{ "poster_bkg_id", p.PosterBackgroundId }
-			};
+		[JsonProperty("poster_bkg_owner_id")]
+		public long PosterBackgroundOwnerId { get; set; }
 
-			return parameters;
-		}
+		/// <summary>
+		/// Строка
+		/// </summary>
+		[JsonProperty("poster_bkg_access_hash")]
+		public string PosterBackgroundAccessHash { get; set; }
+
+		/// <summary>
+		/// Источник материала. Поддерживаются внешние и внутренние ссылки. строка
+		/// </summary>
+		[JsonProperty("copyright")]
+		public string Copyright { get; set; }
 	}
 }

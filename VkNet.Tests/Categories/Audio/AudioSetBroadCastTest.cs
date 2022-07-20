@@ -1,18 +1,18 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Audio
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AudioSetBroadCastTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";
 
-		[Test]
+		[Fact]
 		public void SetBroadCastTest()
 		{
 			Url = "https://api.vk.com/method/audio.setBroadcast";
@@ -27,8 +27,8 @@ namespace VkNet.Tests.Categories.Audio
 					})
 				.ToList();
 
-			Assert.IsNotEmpty(result);
-			Assert.That(result.Count, Is.EqualTo(2));
+			result.Should().NotBeEmpty();
+			result.Should().HaveCount(2);
 		}
 	}
 }

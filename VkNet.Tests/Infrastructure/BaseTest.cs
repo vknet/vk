@@ -1,6 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -8,7 +7,6 @@ using System.Threading.Tasks;
 using Moq;
 using Moq.AutoMock;
 using Newtonsoft.Json.Linq;
-using NUnit.Framework;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
@@ -23,7 +21,6 @@ namespace VkNet.Tests
 	/// <summary>
 	/// Базовый класс для тестирования категорий методов.
 	/// </summary>
-	[ExcludeFromCodeCoverage]
 	public abstract class BaseTest : IDisposable
 	{
 		protected readonly AutoMocker Mocker = new AutoMocker();
@@ -45,17 +42,10 @@ namespace VkNet.Tests
 		/// </summary>
 		protected string Url;
 
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
 		/// <summary>
 		/// Пред установки выполнения каждого теста.
 		/// </summary>
-		[SetUp]
-		public void Init()
+		public BaseTest()
 		{
 			Mocker.Use<IApiAuthParams>(new ApiAuthParams
 			{
@@ -70,7 +60,7 @@ namespace VkNet.Tests
 				.ReturnsAsync(new AuthorizationResult
 				{
 					AccessToken = "token",
-					ExpiresIn = 1000,
+					ExpiresIn = 11,
 					UserId = 1,
 					State = "123456"
 				});
@@ -93,21 +83,13 @@ namespace VkNet.Tests
 					State = "123456"
 				});
 
-			Mocker.Setup<ICaptchaHandler, string>(m => m.Perform(It.IsAny<Func<ulong?, string, string>>()))
-				.Returns(Json);
-
-			Mocker.Setup<ICaptchaHandler, bool>(m => m.Perform(It.IsAny<Func<ulong?, string, bool>>()))
-				.Returns(true);
-
-			Mocker.Setup<ICaptchaHandler, int>(m => m.MaxCaptchaRecognitionCount)
-				.Returns(1);
-
 			Mocker.Setup<ICaptchaSolver, string>(m => m.Solve(It.IsAny<string>()))
 				.Returns("123456");
 
 			Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x =>
 					x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
-						It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+						It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),
+						It.IsAny<Encoding>()))
 				.Callback(Callback)
 				.Returns(() =>
 				{
@@ -116,38 +98,42 @@ namespace VkNet.Tests
 						throw new NullReferenceException(@"Json не может быть равен null. Обновите значение поля Json");
 					}
 
-					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, Url));
+					return Task.FromResult(HttpResponse<string>.Success(HttpStatusCode.OK, Json, new Uri(Url)));
 				});
 
 			Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
-					It.IsAny<IEnumerable<KeyValuePair<string, string>>>()))
+					It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),
+					It.IsAny<Encoding>()))
 				.Throws<ArgumentException>();
 
 			Api = Mocker.CreateInstance<VkApi>();
 			Api.RestClient = Mocker.Get<IRestClient>();
 			Api.NeedValidationHandler = Mocker.Get<INeedValidationHandler>();
 			Api.CaptchaSolver = Mocker.Get<ICaptchaSolver>();
+			SetupCaptchaHandler();
 
-			Api.Authorize(new ApiAuthParams
-			{
-				ApplicationId = 1,
-				Login = "login",
-				Password = "pass",
-				Settings = Settings.All,
-				Phone = "89510000000"
-			});
+			Api.Authorize(Mocker.Get<IApiAuthParams>());
 
 			Api.RequestsPerSecond = int.MaxValue;
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 
 		/// <summary>
 		/// После исполнения каждого теста.
 		/// </summary>
-		[TearDown]
-		public void Cleanup()
+		~BaseTest()
 		{
 			Json = null;
 			Url = null;
+		}
+
+		protected virtual void SetupCaptchaHandler()
+		{
 		}
 
 		protected VkResponse GetResponse()
@@ -175,9 +161,19 @@ namespace VkNet.Tests
 			Json = ReadJson(jsonRelativePaths);
 		}
 
+		protected void ReadCommonJsonFile(string fileName)
+		{
+			ReadJsonFile(JsonTestFolderConstants.RootFolder.Common, fileName);
+		}
+
+		protected void ReadCategoryJsonFile(string categoryName, string fileName)
+		{
+			ReadJsonFile(JsonTestFolderConstants.RootFolder.Categories, categoryName, fileName);
+		}
+
 		protected void ReadErrorsJsonFile(uint errorCode)
 		{
-			ReadJsonFile("Errors", errorCode.ToString());
+			ReadJsonFile(JsonTestFolderConstants.RootFolder.Errors, errorCode.ToString());
 		}
 
 		protected string ReadJson(params string[] jsonRelativePaths)
@@ -185,7 +181,7 @@ namespace VkNet.Tests
 			var folders = new List<string>
 			{
 				AppContext.BaseDirectory,
-				"TestData"
+				JsonTestFolderConstants.RootFolder.TestData
 			};
 
 			folders.AddRange(jsonRelativePaths);

@@ -1,16 +1,16 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Orders
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class OrdersGetAmountTests : CategoryBaseTest
 	{
 		protected override string Folder => "Orders";
 
-		[Test]
+		[Fact]
 		public void GetAmount()
 		{
 			Url = "https://api.vk.com/method/orders.getAmount";
@@ -18,7 +18,7 @@ namespace VkNet.Tests.Categories.Orders
 
 			var result = Api.Orders.GetAmount(123, new[] { "1" });
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 	}
 }

@@ -1,14 +1,14 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class PhotoModel
 	{
-		[Test]
+		[Fact]
 		public void ToString_PhotoShouldHaveAccessKey()
 		{
 			var photo = new Photo
@@ -20,7 +20,7 @@ namespace VkNet.Tests.Models
 
 			var result = photo.ToString();
 
-			Assert.AreEqual(result, "photo1234_1234_test");
+			result.Should().Be("photo1234_1234_test");
 		}
 	}
 }

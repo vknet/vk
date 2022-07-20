@@ -1,51 +1,39 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Friends
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class FriendsCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Friends";
 
-		[Test]
+		[Fact]
 		public void Add_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.add";
 			ReadJsonFile(JsonPaths.True);
 
-			var status = Api.Friends.Add(242508, "hello, user!");
+			var status = Api.Friends.Add(242508, "hello, user!", false);
 
-			Assert.That(status, Is.EqualTo(AddFriendStatus.Sended));
+			status.Should().Be(AddFriendStatus.Sended);
 		}
 
-		[Test]
-		public void Add_WithCaptcha_NormalCase()
-		{
-			Url = "https://api.vk.com/method/friends.add";
-			ReadJsonFile(JsonPaths.True);
-
-			var status = Api.Friends.Add(242508, "hello, user!", captchaSid: 1247329, captchaKey: "hug2z");
-
-			Assert.That(status, Is.EqualTo(AddFriendStatus.Sended));
-		}
-
-		[Test]
+		[Fact]
 		public void AddList_NameIsEmpty_ThrowException()
 		{
-			Assert.That(() => Api.Friends.AddList("", null), Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => Api.Friends.AddList("", null)).Should().ThrowExactly<ArgumentNullException>();
 		}
 
-		[Test]
+		[Fact]
 		public void AddList_OnlyName_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.addList";
@@ -53,10 +41,10 @@ namespace VkNet.Tests.Categories
 
 			var id = Api.Friends.AddList("тестовая метка", null);
 
-			Assert.That(id, Is.EqualTo(1));
+			id.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void AddList_WithUserIds_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.addList";
@@ -65,26 +53,28 @@ namespace VkNet.Tests.Categories
 			var id = Api.Friends.AddList("тестовая метка",
 				new long[]
 				{
-					1, 2
+					1,
+					2
 				});
 
-			Assert.That(id, Is.EqualTo(2));
+			id.Should().Be(2);
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void AreFriends_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
 
-			Assert.That(() => cat.AreFriends(new long[]
+			FluentActions.Invoking(() => cat.AreFriends(new long[]
 				{
-					2, 3
-				}),
-				Throws.InstanceOf<AccessTokenInvalidException>());
+					2,
+					3
+				}))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void AreFriends_FourTypes_RightFriendStatuses()
 		{
 			Url = "https://api.vk.com/method/friends.areFriends";
@@ -92,26 +82,29 @@ namespace VkNet.Tests.Categories
 
 			var dict = Api.Friends.AreFriends(new long[]
 			{
-				24181068, 22911407, 155810539, 3505305
+				24181068,
+				22911407,
+				155810539,
+				3505305
 			});
 
-			Assert.NotNull(dict);
-			Assert.That(dict.Count, Is.EqualTo(4));
-			Assert.That(dict.FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.NotFriend));
-			Assert.That(dict.Skip(1).FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.Friend));
+			dict.Should().NotBeNull();
+			dict.Should().HaveCount(4);
+			(dict.FirstOrDefault()?.FriendStatus).Should().Be(FriendStatus.NotFriend);
+			(dict.Skip(1).FirstOrDefault()?.FriendStatus).Should().Be(FriendStatus.Friend);
 
-			Assert.That(dict.Skip(2).FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.InputRequest));
+			(dict.Skip(2).FirstOrDefault()?.FriendStatus).Should().Be(FriendStatus.InputRequest);
 
-			Assert.That(dict.Skip(3).FirstOrDefault()?.FriendStatus, Is.EqualTo(FriendStatus.OutputRequest));
+			(dict.Skip(3).FirstOrDefault()?.FriendStatus).Should().Be(FriendStatus.OutputRequest);
 		}
 
-		[Test]
+		[Fact]
 		public void AreFriends_NullInput_ThrowArgumentNullException()
 		{
-			Assert.That(() => Api.Friends.AreFriends(null), Throws.InstanceOf<ArgumentNullException>());
+			FluentActions.Invoking(() => Api.Friends.AreFriends(null)).Should().ThrowExactly<ArgumentNullException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Delete_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.delete";
@@ -119,10 +112,10 @@ namespace VkNet.Tests.Categories
 
 			var status = Api.Friends.Delete(24250);
 
-			Assert.That(status.OutRequestDeleted, Is.True);
+			status.OutRequestDeleted.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void DeleteAllRequests_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.deleteAllRequests";
@@ -130,16 +123,16 @@ namespace VkNet.Tests.Categories
 
 			var result = Api.Friends.DeleteAllRequests();
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void DeleteList_IdIsNegative_ThrowException()
 		{
-			Assert.That(() => Api.Friends.DeleteList(-1), Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => Api.Friends.DeleteList(-1)).Should().ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void DeleteList_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.deleteList";
@@ -147,21 +140,25 @@ namespace VkNet.Tests.Categories
 
 			var result = Api.Friends.DeleteList(2);
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Edit_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.edit";
 			ReadJsonFile(JsonPaths.True);
 
-			var result = Api.Friends.Edit(242508111, new long[] { 2 });
+			var result = Api.Friends.Edit(242508111,
+				new long[]
+				{
+					2
+				});
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void EditList_EditName_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.editList";
@@ -169,29 +166,29 @@ namespace VkNet.Tests.Categories
 
 			var result = Api.Friends.EditList(2, "new тестовая метка");
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void EditList_ListIdIsNegative_ThrowException()
 		{
-			Assert.That(() => Api.Friends.EditList(-1), Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => Api.Friends.EditList(-1)).Should().ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
-		[Ignore("Этот метод можно вызвать без ключа доступа. Возвращаются только общедоступные данные.")]
+		[Fact]
 		public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
 
-			Assert.That(() => cat.Get(new FriendsGetParams
+			FluentActions.Invoking(() => cat.Get(new FriendsGetParams
 				{
 					UserId = 1
-				}),
-				Throws.InstanceOf<AccessTokenInvalidException>());
+				}))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_FirstNameLastName_ListOfObjects()
 		{
 			Url = "https://api.vk.com/method/friends.get";
@@ -199,27 +196,29 @@ namespace VkNet.Tests.Categories
 
 			var lst = Api.Friends.Get(new FriendsGetParams
 			{
-				Count = 3, Fields = ProfileFields.FirstName|ProfileFields.LastName, UserId = 1
+				Count = 3,
+				Fields = ProfileFields.FirstName|ProfileFields.LastName,
+				UserId = 1
 			});
 
-			Assert.That(lst.Count, Is.EqualTo(3));
-			Assert.That(lst[0].Id, Is.EqualTo(2));
-			Assert.That(lst[0].FirstName, Is.EqualTo("Александра"));
-			Assert.That(lst[0].LastName, Is.EqualTo("Владимирова"));
-			Assert.That(lst[0].Online, Is.EqualTo(false));
+			lst.Should().HaveCount(3);
+			lst[0].Id.Should().Be(2);
+			lst[0].FirstName.Should().Be("Александра");
+			lst[0].LastName.Should().Be("Владимирова");
+			lst[0].Online.Should().BeFalse();
 
-			Assert.That(lst[1].Id, Is.EqualTo(5));
-			Assert.That(lst[1].FirstName, Is.EqualTo("Илья"));
-			Assert.That(lst[1].LastName, Is.EqualTo("Перекопский"));
-			Assert.That(lst[1].Online, Is.EqualTo(false));
+			lst[1].Id.Should().Be(5);
+			lst[1].FirstName.Should().Be("Илья");
+			lst[1].LastName.Should().Be("Перекопский");
+			lst[1].Online.Should().BeFalse();
 
-			Assert.That(lst[2].Id, Is.EqualTo(6));
-			Assert.That(lst[2].FirstName, Is.EqualTo("Николай"));
-			Assert.That(lst[2].LastName, Is.EqualTo("Дуров"));
-			Assert.That(lst[2].Online, Is.EqualTo(false));
+			lst[2].Id.Should().Be(6);
+			lst[2].FirstName.Should().Be("Николай");
+			lst[2].LastName.Should().Be("Дуров");
+			lst[2].Online.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void Get_FriendsForDurov_ListOfFriends()
 		{
 			Url = "https://api.vk.com/method/friends.get";
@@ -231,23 +230,24 @@ namespace VkNet.Tests.Categories
 				})
 				.ToList();
 
-			Assert.That(users.Count, Is.EqualTo(5));
-			Assert.That(users[0].Id, Is.EqualTo(2));
-			Assert.That(users[1].Id, Is.EqualTo(5));
-			Assert.That(users[2].Id, Is.EqualTo(6));
-			Assert.That(users[3].Id, Is.EqualTo(7));
-			Assert.That(users[4].Id, Is.EqualTo(12));
+			users.Should().HaveCount(5);
+
+			users.Should()
+				.SatisfyRespectively(x => x.Id.Should().Be(2),
+					x => x.Id.Should().Be(5),
+					x => x.Id.Should().Be(6),
+					x => x.Id.Should().Be(7),
+					x => x.Id.Should().Be(12));
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
-			Assert.That(() => cat.GetAppUsers(), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => cat.GetAppUsers()).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetAppUsers_NoOne_EmptyList()
 		{
 			Url = "https://api.vk.com/method/friends.getAppUsers";
@@ -255,10 +255,10 @@ namespace VkNet.Tests.Categories
 
 			var users = Api.Friends.GetAppUsers().ToList();
 
-			Assert.That(users.Count, Is.EqualTo(0));
+			users.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetAppUsers_ThreeUsers_ListOfObjects()
 		{
 			Url = "https://api.vk.com/method/friends.getAppUsers";
@@ -266,13 +266,13 @@ namespace VkNet.Tests.Categories
 
 			var ids = Api.Friends.GetAppUsers().ToList();
 
-			Assert.That(ids.Count, Is.EqualTo(3));
-			Assert.That(ids[0], Is.EqualTo(15221));
-			Assert.That(ids[1], Is.EqualTo(17836));
-			Assert.That(ids[2], Is.EqualTo(19194));
+			ids.Should().HaveCount(3);
+			ids.Should().HaveElementAt(0, 15221);
+			ids.Should().HaveElementAt(1, 17836);
+			ids.Should().HaveElementAt(2, 19194);
 		}
 
-		[Test]
+		[Fact]
 		public void GetLists_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.getLists";
@@ -280,29 +280,30 @@ namespace VkNet.Tests.Categories
 
 			var list = Api.Friends.GetLists();
 
-			Assert.That(list.Count, Is.EqualTo(2));
+			list.Should().HaveCount(2);
 
-			Assert.That(list[0].Id, Is.EqualTo(1));
-			Assert.That(list[0].Name, Is.EqualTo("тестовая метка"));
+			list[0].Id.Should().Be(1);
+			list[0].Name.Should().Be("тестовая метка");
 
-			Assert.That(list[1].Id, Is.EqualTo(2));
-			Assert.That(list[1].Name, Is.EqualTo("лист 3"));
+			list[1].Id.Should().Be(2);
+			list[1].Name.Should().Be("лист 3");
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void GetMutual_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var category = new FriendsCategory(new VkApi());
 
-			Assert.That(() => category.GetMutual(new FriendsGetMutualParams
+			FluentActions.Invoking(() => category.GetMutual(new FriendsGetMutualParams
 				{
-					TargetUid = 2, SourceUid = 3
-				}),
-				Throws.InstanceOf<AccessTokenInvalidException>());
+					TargetUid = 2,
+					SourceUid = 3
+				}))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetMutual_NoOne_EmptyList()
 		{
 			Url = "https://api.vk.com/method/friends.getMutual";
@@ -310,14 +311,15 @@ namespace VkNet.Tests.Categories
 
 			var users = Api.Friends.GetMutual(new FriendsGetMutualParams
 				{
-					TargetUid = 2, SourceUid = 1
+					TargetUid = 2,
+					SourceUid = 1
 				})
 				.ToList();
 
-			Assert.That(users.Count, Is.EqualTo(0));
+			users.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetMutual_ThreeUsers_ListOfObjects()
 		{
 			Url = "https://api.vk.com/method/friends.getMutual";
@@ -325,27 +327,28 @@ namespace VkNet.Tests.Categories
 
 			var ids = Api.Friends.GetMutual(new FriendsGetMutualParams
 				{
-					TargetUid = 2, SourceUid = 1
+					TargetUid = 2,
+					SourceUid = 1
 				})
 				.ToList();
 
-			Assert.That(ids.Count, Is.EqualTo(1));
+			ids.Should().ContainSingle();
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void GetOnline_EmptyAccessToken_ThrowAccessTokenInvalidException()
 		{
 			var cat = new FriendsCategory(new VkApi());
 
-			Assert.That(() => cat.GetOnline(new FriendsGetOnlineParams
+			FluentActions.Invoking(() => cat.GetOnline(new FriendsGetOnlineParams
 				{
 					UserId = 1
-				}),
-				Throws.InstanceOf<AccessTokenInvalidException>());
+				}))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetOnline_Ex()
 		{
 			Url = "https://api.vk.com/method/friends.getOnline";
@@ -356,11 +359,11 @@ namespace VkNet.Tests.Categories
 				OnlineMobile = true
 			});
 
-			Assert.That(users.Online.Count, Is.EqualTo(1));
-			Assert.That(users.MobileOnline.Count, Is.EqualTo(5));
+			users.Online.Should().HaveCount(1);
+			users.MobileOnline.Should().HaveCount(5);
 		}
 
-		[Test]
+		[Fact]
 		public void GetOnline_FiveUsers_ListOfObjects()
 		{
 			Url = "https://api.vk.com/method/friends.getOnline";
@@ -371,15 +374,15 @@ namespace VkNet.Tests.Categories
 				UserId = 1
 			});
 
-			Assert.That(users.Online.Count, Is.EqualTo(5));
-			Assert.That(users.Online[0], Is.EqualTo(5));
-			Assert.That(users.Online[1], Is.EqualTo(467));
-			Assert.That(users.Online[2], Is.EqualTo(2943));
-			Assert.That(users.Online[3], Is.EqualTo(4424));
-			Assert.That(users.Online[4], Is.EqualTo(13033));
+			users.Online.Should().HaveCount(5);
+			users.Online[0].Should().Be(5);
+			users.Online[1].Should().Be(467);
+			users.Online[2].Should().Be(2943);
+			users.Online[3].Should().Be(4424);
+			users.Online[4].Should().Be(13033);
 		}
 
-		[Test]
+		[Fact]
 		public void GetOnline_NoOne_EmptyList()
 		{
 			Url = "https://api.vk.com/method/friends.getOnline";
@@ -390,10 +393,10 @@ namespace VkNet.Tests.Categories
 				UserId = 1
 			});
 
-			Assert.That(users.Online.Count, Is.EqualTo(0));
+			users.Online.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetRecent_OneItem()
 		{
 			Url = "https://api.vk.com/method/friends.getRecent";
@@ -401,12 +404,12 @@ namespace VkNet.Tests.Categories
 
 			var ids = Api.Friends.GetRecent(3);
 
-			Assert.That(ids, Is.Not.Null);
-			Assert.That(ids.Count, Is.EqualTo(1));
-			Assert.That(ids[0], Is.EqualTo(242508111));
+			ids.Should().NotBeNull();
+			ids.Should().ContainSingle();
+			ids.Should().HaveElementAt(0, 242508111);
 		}
 
-		[Test]
+		[Fact]
 		public void GetRequest_count_unread()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
@@ -414,16 +417,19 @@ namespace VkNet.Tests.Categories
 
 			var ids = Api.Friends.GetRequests(new FriendsGetRequestsParams
 			{
-				Offset = 0, Count = 3, Extended = false, NeedMutual = false
+				Offset = 0,
+				Count = 3,
+				Extended = false,
+				NeedMutual = false
 			});
 
-			Assert.That(ids, Is.Not.Null);
-			Assert.That(ids.CountUnread, Is.EqualTo(1));
-			Assert.That(ids.Count, Is.EqualTo(171));
-			Assert.That(ids.Items, Is.Not.Empty);
+			ids.Should().NotBeNull();
+			ids.CountUnread.Should().Be(1);
+			ids.Count.Should().Be(171);
+			ids.Items.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetRequest_EmptyCollection()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
@@ -431,14 +437,17 @@ namespace VkNet.Tests.Categories
 
 			var ids = Api.Friends.GetRequestsExtended(new FriendsGetRequestsParams
 			{
-				Offset = 0, Count = 3, Extended = true, NeedMutual = true
+				Offset = 0,
+				Count = 3,
+				Extended = true,
+				NeedMutual = true
 			});
 
-			Assert.That(ids, Is.Not.Null);
-			Assert.That(ids.Count, Is.EqualTo(0));
+			ids.Should().NotBeNull();
+			ids.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetRequests_Basic_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
@@ -446,14 +455,15 @@ namespace VkNet.Tests.Categories
 
 			var ids = Api.Friends.GetRequests(new FriendsGetRequestsParams
 			{
-				Offset = 0, Count = 3
+				Offset = 0,
+				Count = 3
 			});
 
-			Assert.That(ids, Is.Not.Null);
-			Assert.That(ids.Items[0], Is.EqualTo(242508111));
+			ids.Should().NotBeNull();
+			ids.Items[0].Should().Be(242508111);
 		}
 
-		[Test]
+		[Fact]
 		public void GetRequests_Extended_NormalCase()
 		{
 			Url = "https://api.vk.com/method/friends.getRequests";
@@ -461,12 +471,15 @@ namespace VkNet.Tests.Categories
 
 			var ids = Api.Friends.GetRequestsExtended(new FriendsGetRequestsParams
 			{
-				Offset = 0, Count = 3, Extended = true, NeedMutual = true
+				Offset = 0,
+				Count = 3,
+				Extended = true,
+				NeedMutual = true
 			});
 
-			Assert.That(ids, Is.Not.Null);
-			Assert.That(ids.Count, Is.EqualTo(1));
-			Assert.That(ids[0].UserId, Is.EqualTo(242508111));
+			ids.Should().NotBeNull();
+			ids.Should().ContainSingle();
+			ids[0].UserId.Should().Be(242508111);
 		}
 	}
 }

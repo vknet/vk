@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Model.RequestParams.Messages;
+using VkNet.Model.Results.Messages;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -58,20 +61,42 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> conversationMessageIds, ulong peerId, bool? spam = null,
+														ulong? groupId = null, bool? deleteForAll = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() =>
+				Delete(conversationMessageIds, peerId, spam, groupId, deleteForAll));
+		}
+
+		/// <inheritdoc />
+		public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> conversationMessageIds, ulong? peerId, bool? spam = null,
+														ulong? groupId = null,
+														bool? deleteForAll = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() =>
+				Delete(null,
+					conversationMessageIds,
+					peerId,
+					spam,
+					groupId,
+					deleteForAll));
+		}
+
+		/// <inheritdoc />
 		public Task<Chat> DeleteChatPhotoAsync(ulong chatId, ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => DeleteChatPhoto(out var _, chatId, groupId));
 		}
 
 		/// <inheritdoc />
-		public Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null)
+		public Task<ulong> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => DeleteConversation(userId, peerId, groupId));
 		}
 
 		/// <inheritdoc />
-		public Task<ConversationResultObject> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields,
-																		bool? extended = null, ulong? groupId = null)
+		public Task<ConversationResult> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields = null,
+																bool? extended = null, ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetConversationsById(peerIds, fields, extended, groupId));
 		}
@@ -83,7 +108,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields,
+		public Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields = null,
 																			ulong? groupId = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetConversationMembers(peerId, fields, groupId));
@@ -108,13 +133,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<PinnedMessage> PinAsync(long peerId, ulong? messageId = null)
+		public Task<PinnedMessage> PinAsync(long peerId, ulong? messageId = null, ulong? conversationMessageId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => Pin(peerId, messageId));
+			return TypeHelper.TryInvokeMethodAsync(() => Pin(peerId, messageId, conversationMessageId));
 		}
 
 		/// <inheritdoc />
-		public Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
+		public Task<ulong> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
 				DeleteDialog(userId, peerId, offset, count));
@@ -142,8 +167,13 @@ namespace VkNet.Categories
 		public Task<VkCollection<Message>> GetByIdAsync(IEnumerable<ulong> messageIds, IEnumerable<string> fields,
 														ulong? previewLength = null, bool? extended = null, ulong? groupId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() =>
-				GetById(messageIds, fields, previewLength, extended, groupId));
+			return TypeHelper.TryInvokeMethodAsync(() => GetById(messageIds, fields, previewLength, extended, groupId));
+		}
+
+		/// <inheritdoc />
+		public Task<GetIntentUsersResult> GetIntentUsersAsync(MessagesGetIntentUsersParams getIntentUsersParams, CancellationToken token)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetIntentUsers(getIntentUsersParams));
 		}
 
 		/// <inheritdoc />
@@ -178,10 +208,11 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> MarkAsReadAsync(string peerId, long? startMessageId = null, long? groupId = null)
+		public Task<bool> MarkAsReadAsync(string peerId, long? startMessageId = null, long? groupId = null,
+										bool? markConversationAsRead = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() =>
-				MarkAsRead(peerId, startMessageId, groupId));
+				MarkAsRead(peerId, startMessageId, groupId, markConversationAsRead));
 		}
 
 		/// <inheritdoc />
@@ -331,6 +362,18 @@ namespace VkNet.Categories
 		public Task<bool> EditAsync(MessageEditParams @params)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Edit(@params));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> SendMessageEventAnswerAsync(string eventId, long userId, long peerId, EventData eventData = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => SendMessageEventAnswer(eventId, userId, peerId, eventData));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> MarkAsUnreadConversationAsync(long peerId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => MarkAsUnreadConversation(peerId));
 		}
 	}
 }

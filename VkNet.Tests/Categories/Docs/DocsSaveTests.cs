@@ -1,17 +1,18 @@
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Enums;
 using VkNet.Model.Attachments;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Docs
 {
-	[TestFixture]
+
 	public class DocsSaveTests : CategoryBaseTest
 	{
 		protected override string Folder => "Docs";
 
-		[Test]
+		[Fact]
 		public void Save()
 		{
 			Url = "https://api.vk.com/method/docs.save";
@@ -19,12 +20,12 @@ namespace VkNet.Tests.Categories.Docs
 
 			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-			var result = Api.Docs.Save(docUploadResult, "IMG_907");
+			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Save2()
 		{
 			Url = "https://api.vk.com/method/docs.save";
@@ -32,12 +33,12 @@ namespace VkNet.Tests.Categories.Docs
 
 			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-			var result = Api.Docs.Save(docUploadResult, "IMG_907");
+			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Save3()
 		{
 			Url = "https://api.vk.com/method/docs.save";
@@ -45,12 +46,12 @@ namespace VkNet.Tests.Categories.Docs
 
 			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-			var result = Api.Docs.Save(docUploadResult, "IMG_907");
+			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void Save_Type()
 		{
 			Url = "https://api.vk.com/method/docs.save";
@@ -58,14 +59,14 @@ namespace VkNet.Tests.Categories.Docs
 
 			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-			var result = Api.Docs.Save(docUploadResult, "IMG_907");
+			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
-			Assert.IsNotEmpty(result);
+			result.Should().NotBeEmpty();
 			var item = result.FirstOrDefault();
-			Assert.NotNull(item);
+			item.Should().NotBeNull();
 			var doc = item.Instance as Document;
-			Assert.NotNull(doc);
-			Assert.AreEqual(DocumentTypeEnum.Text, doc.Type);
+			doc.Should().NotBeNull();
+			doc.Type.Should().Be(DocumentTypeEnum.Text);
 		}
 	}
 }

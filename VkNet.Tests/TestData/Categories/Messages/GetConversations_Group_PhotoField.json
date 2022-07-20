@@ -1,0 +1,58 @@
+﻿{
+  "response": {
+    "count": 177,
+    "items": [
+      {
+        "conversation": {
+          "peer": {
+            "id": -24680000,
+            "type": "group",
+            "local_id": 24680000
+          },
+          "last_message_id": 27490,
+          "in_read": 27481,
+          "out_read": 27490,
+          "sort_id": {
+            "major_id": 0,
+            "minor_id": 27490
+          },
+          "unread_count": 3,
+          "is_marked_unread": false,
+          "important": false,
+          "can_write": {
+            "allowed": true
+          }
+        },
+        "last_message": {
+          "date": 1610831019,
+          "from_id": -24680000,
+          "id": 27490,
+          "out": 0,
+          "peer_id": -24680000,
+          "text": "Номер вашего обращения – 29510663. Всего доброго!",
+          "conversation_message_id": 4,
+          "fwd_messages": [],
+          "important": false,
+          "random_id": 0,
+          "attachments": [],
+          "is_hidden": false
+        }
+      }
+    ],
+    "unread_count": 7,
+    "profiles": [],
+    "groups": [
+      {
+        "id": 9594364,
+        "name": "Образовательные программы фирмы",
+        "screen_name": "company_student",
+        "is_closed": 0,
+        "type": "group",
+        "is_admin": 0,
+        "is_member": 0,
+        "is_advertiser": 0,
+        "photo_50": "https://vk.vom/sun9uFSA90Crs&ava=1"
+      }
+    ]
+  }
+}

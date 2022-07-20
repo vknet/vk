@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Model.Attachments;
+using VkNet.Model.GroupUpdate;
 using VkNet.Model.Keyboard;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
@@ -17,7 +18,7 @@ namespace VkNet.Model
 	/// </summary>
 	[DebuggerDisplay("[{PeerId}-{Id}] {Text}")]
 	[Serializable]
-	public class Message : MediaAttachment
+	public class Message : MediaAttachment, IGroupUpdate
 	{
 		/// <inheritdoc />
 		protected override string Alias => "message";
@@ -25,8 +26,9 @@ namespace VkNet.Model
 	#region Методы
 
 		/// <summary>
+		/// Разобрать из JSON
 		/// </summary>
-		/// <param name="response"> </param>
+		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
 		public static Message FromJson(VkResponse response)
 		{
@@ -72,15 +74,22 @@ namespace VkNet.Model
 				Photo100 = response["photo_100"],
 				Photo200 = response["photo_200"],
 				InRead = response["in_read"],
+				IsCropped = response["is_cropped"],
 				OutRead = response["out_read"],
 				Out = response["out"],
 				UpdateTime = response["update_time"],
-
 				Keyboard = response["keyboard"],
 				ConversationMessageId = response["conversation_message_id"],
 				Ref = response["ref"],
 				RefSource = response["ref_source"],
-				ReplyMessage = response["reply_message"]
+				ReplyMessage = response["reply_message"],
+				AdminAuthorId = response["admin_author_id"],
+				PinnedAt = response["pinned_at"],
+				IsSilent = response["is_silent"],
+				ExpireTtl = response["expire_ttl"],
+				IsExpired = response["is_expired"],
+				WasListened = response["was_listened"],
+				IsHidden = response["is_hidden"]
 			};
 
 			return message;
@@ -90,7 +99,7 @@ namespace VkNet.Model
 		/// Преобразование класса <see cref="Message" /> в <see cref="VkParameters" />
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
-		/// <returns>Результат преобразования в <see cref="Message" /></returns>
+		/// <returns> Результат преобразования в <see cref="Message" /> </returns>
 		public static implicit operator Message(VkResponse response)
 		{
 			if (response == null)
@@ -111,6 +120,7 @@ namespace VkNet.Model
 		/// Идентификатор автора сообщения (для исходящего сообщения — идентификатор
 		/// получателя).
 		/// </summary>
+		[JsonProperty("user_id")]
 		public long? UserId { get; set; }
 
 		/// <summary>
@@ -147,10 +157,11 @@ namespace VkNet.Model
 		/// <summary>
 		/// Статус сообщения (не возвращается для пересланных сообщений).
 		/// </summary>
+		[JsonProperty("read_state")]
 		public MessageReadState? ReadState { get; set; }
 
 		/// <summary>
-		/// тип сообщения (0 — полученное, 1 — отправленное, не возвращается для
+		/// Тип сообщения (0 — полученное, 1 — отправленное, не возвращается для
 		/// пересланных сообщений).
 		/// </summary>
 		[JsonProperty("out")]
@@ -159,11 +170,13 @@ namespace VkNet.Model
 		/// <summary>
 		/// Заголовок сообщения или беседы.
 		/// </summary>
+		[JsonProperty("title")]
 		public string Title { get; set; }
 
 		/// <summary>
 		/// Текст сообщения.
 		/// </summary>
+		[JsonProperty("body")]
 		public string Body { get; set; }
 
 		/// <summary>
@@ -188,6 +201,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Содержатся ли в сообщении emoji-смайлы.
 		/// </summary>
+		[JsonProperty("emoji")]
 		public bool? Emoji { get; set; }
 
 		/// <summary>
@@ -199,10 +213,11 @@ namespace VkNet.Model
 		/// <summary>
 		/// Удалено ли сообщение.
 		/// </summary>
+		[JsonProperty("deleted")]
 		public bool? Deleted { get; set; }
 
 		/// <summary>
-		/// идентификатор, используемый при отправке сообщения. Возвращается только для
+		/// Идентификатор, используемый при отправке сообщения. Возвращается только для
 		/// исходящих сообщений.
 		/// </summary>
 		[JsonProperty("random_id")]
@@ -233,37 +248,41 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор беседы.
 		/// </summary>
+		[JsonProperty("chat_id")]
 		public long? ChatId { get; set; }
 
 		/// <summary>
 		/// Идентификаторы участников беседы.
 		/// </summary>
+		[JsonProperty("chat_active")]
 		public ReadOnlyCollection<long> ChatActive { get; set; }
 
 		/// <summary>
 		/// Настройки уведомлений для беседы, если они есть. sound и disabled_until
 		/// </summary>
+		[JsonProperty("push_settings")]
 		public ChatPushSettings PushSettings { get; set; }
 
 		/// <summary>
 		/// Количество участников беседы.
 		/// </summary>
+		[JsonProperty("users_count")]
 		public int? UsersCount { get; set; }
 
 		/// <summary>
 		/// Идентификатор создателя беседы.
 		/// </summary>
+		[JsonProperty("admin_id")]
 		public long? AdminId { get; set; }
 
 		/// <summary>
-		/// поле передано, если это служебное сообщение
+		/// Для служебных сообщений содержит информацию о действии в беседе.
 		/// </summary>
 		/// <remarks>
-		/// строка, может быть chat_photo_update или chat_photo_remove, а с версии 5.14 еще
-		/// и chat_create, chat_title_update,
-		/// chat_invite_user, chat_kick_user
+		/// Строка, может быть <c>chat_photo_update</c> или <c>chat_photo_remove</c>, а с версии 5.14 еще
+		/// и <c>chat_create</c>, <c>chat_title_update</c>,
+		/// <c>chat_invite_user</c>, <c>chat_kick_user</c>
 		/// </remarks>
-
 		[JsonProperty("action")]
 		public MessageActionObject Action { get; set; }
 
@@ -271,31 +290,37 @@ namespace VkNet.Model
 		/// Идентификатор пользователя (если больше 0) или email (если меньше 0), которого
 		/// пригласили или исключили.
 		/// </summary>
+		[JsonProperty("action_mid")]
 		public long? ActionMid { get; set; }
 
 		/// <summary>
-		/// email, который пригласили или исключили.
+		/// Email, который пригласили или исключили.
 		/// </summary>
+		[JsonProperty("action_email")]
 		public string ActionEmail { get; set; }
 
 		/// <summary>
 		/// Название беседы.
 		/// </summary>
+		[JsonProperty("action_text")]
 		public string ActionText { get; set; }
 
 		/// <summary>
 		/// <c> Uri </c> копии фотографии беседы шириной 50px.
 		/// </summary>
+		[JsonProperty("photo_50")]
 		public string Photo50 { get; set; }
 
 		/// <summary>
 		/// <c> Uri </c> копии фотографии беседы шириной 100px.
 		/// </summary>
+		[JsonProperty("photo_100")]
 		public string Photo100 { get; set; }
 
 		/// <summary>
 		/// <c> Uri </c> копии фотографии беседы шириной 200px.
 		/// </summary>
+		[JsonProperty("photo_200")]
 		public string Photo200 { get; set; }
 
 	#endregion
@@ -305,7 +330,14 @@ namespace VkNet.Model
 		/// <summary>
 		/// Клавиатура, присланная ботом
 		/// </summary>
+		[JsonProperty("keyboard")]
 		public MessageKeyboard Keyboard { get; set; }
+
+		/// <summary>
+		/// Является ли сообщение обрезаным.
+		/// </summary>
+		[JsonProperty("is_cropped")]
+		public bool? IsCropped { get; set; }
 
 	#endregion
 
@@ -318,35 +350,104 @@ namespace VkNet.Model
 		public long? ConversationMessageId { get; set; }
 
 		/// <summary>
+		/// Идентификатор администратора в беседе
+		/// </summary>
+		[JsonProperty("admin_author_id")]
+		public long? AdminAuthorId { get; set; }
+
+		/// <summary>
 		/// Тип сообщения (не возвращается для пересланных сообщений).
 		/// </summary>
+		[JsonProperty("type")]
 		public MessageType? Type { get; set; }
 
 		/// <summary>
 		/// Содержит количество непрочитанных сообщений в текущем диалоге (если это
 		/// значение было возвращено, иначе 0)
 		/// </summary>
+		[JsonProperty("unread")]
 		public int? Unread { get; set; }
 
 		/// <summary>
 		/// Информация о ссылках на предпросмотр фотографий беседы.
 		/// </summary>
+		[JsonProperty("photo_previews")]
 		public Previews PhotoPreviews { get; set; }
 
 		/// <summary>
 		/// Идентификатор последнего прочитанного сообщения текущим пользователем
 		/// </summary>
+		[JsonProperty("in_read")]
 		public ulong? InRead { get; set; }
 
 		/// <summary>
 		/// Идентификатор последнего прочитанного сообщения собеседником
 		/// </summary>
+		[JsonProperty("out_read")]
 		public ulong? OutRead { get; set; }
 
 		/// <summary>
+		/// Время последнего редактирования сообщения.
+		/// <remarks>
+		/// Присутствует только для отредактированных сообщений. Во всех остальных случаях - <c>null</c>
+		/// </remarks>
 		/// </summary>
 		[JsonProperty("update_time")]
-		public string UpdateTime { get; set; }
+		[JsonConverter(typeof(UnixDateTimeConverter))]
+		public DateTime? UpdateTime { get; set; }
+
+		/// <summary>
+		/// Служебное поле, назначение неизвестно
+		/// <remarks>
+		/// Возможно это поле отвечает за новую фичу ВК - скрытие сообщение с нецензурными выражениями.
+		/// TODO @sampletext32
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("is_hidden")]
+		public bool IsHidden { get; set; }
+
+		/// <summary>
+		/// Время закрепления сообщения
+		/// <remarks>
+		/// Присутствует только в закреплённых сообщениях. Во всех остальных случаях - <c>null</c>.
+		/// </remarks>
+		/// </summary>
+		[JsonProperty("pinned_at")]
+		[JsonConverter(typeof(UnixDateTimeConverter))]
+		public DateTime? PinnedAt { get; set; }
+
+		/// <summary>
+		/// Было ли прослушано голосовое сообщение
+		/// <remarks>
+		/// Присутствует только в сообщениях с <b>прослушанным</b> <see cref="AudioMessage">голосовым Attachment</see>. Во всех остальных случаях - <c>null</c>.
+		/// </remarks>>
+		/// </summary>
+		[JsonProperty("was_listened")]
+		public bool? WasListened { get; set; }
+
+		/// <summary>
+		/// Было ли сообщение отправлено с пометкой "Без звука"
+		/// </summary>
+		[JsonProperty("is_silent")]
+		public bool? IsSilent { get; set; }
+
+		/// <summary>
+		/// Время жизни саморазрушаемого сообщения
+		/// <remarks>
+		/// Присутствует только в саморазрушаемых сообщениях. Во всех остальных случаях - <c>null</c>.
+		/// </remarks>>
+		/// </summary>
+		[JsonProperty("expire_ttl")]
+		public uint? ExpireTtl { get; set; }
+
+		/// <summary>
+		/// Истекло ли время жизни саморазрушаемого сообщения
+		/// <remarks>
+		/// Присутствует только в <b>истёкших</b> саморазрушаемых сообщениях. Во всех остальных случаях - <c>null</c>.
+		/// </remarks>>
+		/// </summary>
+		[JsonProperty("is_expired")]
+		public bool? IsExpired { get; set; }
 
 	#endregion
 	}

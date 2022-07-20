@@ -4,9 +4,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы для работы с универсальным методом.
-	/// </summary>
+	/// <inheritdoc />
 	public partial class ExecuteCategory
 	{
 		/// <summary>
@@ -24,22 +22,22 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<VkResponse> ExecuteAsync(string code)
+		public Task<VkResponse> ExecuteAsync(string code, VkParameters vkParameters = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Execute(code: code));
+			return TypeHelper.TryInvokeMethodAsync(() => Execute(code, vkParameters));
 		}
 
 		/// <inheritdoc />
-		public Task<T> ExecuteAsync<T>(string code)
+		public Task<T> ExecuteAsync<T>(string code, VkParameters vkParameters = default)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>Execute<T>(code: code));
+			return TypeHelper.TryInvokeMethodAsync(() => Execute<T>(code, vkParameters));
 		}
 
 		/// <inheritdoc />
 		public Task<T> StoredProcedureAsync<T>(string procedureName, VkParameters vkParameters)
 		{
-			return TypeHelper.TryInvokeMethodAsync(func: () =>
-					StoredProcedure<T>(procedureName: procedureName, vkParameters: vkParameters));
+			return TypeHelper.TryInvokeMethodAsync(() =>
+				StoredProcedure<T>(procedureName, vkParameters));
 		}
 	}
 }

@@ -15,13 +15,15 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly IVkApiInvoke _vk;
 
-		/// <inheritdoc />
-		/// <param name="api">
+		/// <summary>
+		/// api vk.com
+		/// </summary>
+		/// <param name="vk">
 		/// Api vk.com
 		/// </param>
-		public NotesCategory(VkApi api)
+		public NotesCategory(VkApi vk)
 		{
-			_vk = api;
+			_vk = vk;
 		}
 
 		/// <inheritdoc />

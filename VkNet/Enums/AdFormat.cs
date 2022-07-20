@@ -13,27 +13,32 @@ namespace VkNet.Enums
 		/// <summary>
 		/// Большое изображение
 		/// </summary>
-		BigImage,
+		BigImage = 2,
 
 		/// <summary>
 		/// Эксклюзивный формат
 		/// </summary>
-		ExclusiveFormat,
+		ExclusiveFormat = 3,
 
 		/// <summary>
 		/// Продвижение сообществ или приложений, квадратное изображение
 		/// </summary>
-		SquareImage,
+		SquareImage = 4,
 
 		/// <summary>
 		/// Приложение в новостной ленте (устаревший)
 		/// </summary>
-		NewsfeedApp,
+		NewsfeedApp = 5,
 
 		/// <summary>
 		/// мобильное приложение;
 		/// </summary>
-		MobileApp,
+		MobileApp = 6,
+
+		///<summary>
+		/// Адаптивный формат
+		/// </summary>
+		AdaptiveFormat = 11,
 
 		/// <summary>
 		/// запись в сообществе.

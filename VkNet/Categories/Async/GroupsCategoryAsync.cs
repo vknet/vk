@@ -78,9 +78,16 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		[Obsolete(ObsoleteText.UnbanUserAsync, true)]
 		public Task<bool> UnbanUserAsync(long groupId, long userId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => UnbanUser(groupId, userId));
+		}
+
+		/// <inheritdoc />
+		public Task<bool> UnbanAsync(long groupId, long userId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Unban(groupId, userId));
 		}
 
 		/// <inheritdoc />
@@ -116,7 +123,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		public Task<bool> InviteAsync(long groupId, long userId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Invite(groupId, userId));
+		}
+
+		/// <inheritdoc />
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public Task<bool> InviteAsync(long groupId, long userId, long? captchaSid, string captchaKey)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Invite(groupId, userId, captchaSid, captchaKey));
@@ -159,13 +172,14 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<Group> CreateAsync(string title, string description, GroupType type, GroupSubType? subtype, uint? publicCategory = null)
+		public Task<Group> CreateAsync(string title, string description = null, GroupType type = null, GroupSubType? subtype = null,
+										uint? publicCategory = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => Create(title, description, type, subtype, publicCategory));
 		}
 
 		/// <inheritdoc />
-		public Task<VkCollection<User>> GetRequestsAsync(long groupId, long? offset, long? count, UsersFields fields)
+		public Task<VkCollection<User>> GetRequestsAsync(long groupId, long? offset = null, long? count = null, UsersFields fields = null)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetRequests(groupId, offset, count, fields));
 		}
@@ -230,13 +244,13 @@ namespace VkNet.Categories
 			return TypeHelper.TryInvokeMethodAsync(() => GetLongPollServer(groupId));
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public Task<bool> DisableOnlineAsync(ulong groupId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => DisableOnline(groupId));
 		}
 
-		/// <inheritdoc/>
+		/// <inheritdoc />
 		public Task<bool> EnableOnlineAsync(ulong groupId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => EnableOnline(groupId));
@@ -275,7 +289,7 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public Task<OnlineStatus> GetOnlineStatusAsync(ulong groupId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => GetOnlineStatus(@groupId));
+			return TypeHelper.TryInvokeMethodAsync(() => GetOnlineStatus(groupId));
 		}
 
 		/// <inheritdoc />

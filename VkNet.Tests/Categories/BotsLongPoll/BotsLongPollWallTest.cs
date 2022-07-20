@@ -1,14 +1,14 @@
 using System.Linq;
-using NUnit.Framework;
-using VkNet.Categories;
+using FluentAssertions;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollWallTest : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_WallPostNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallPostNewTest));
@@ -26,12 +26,12 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.WallPost.FromId);
-			Assert.AreEqual(-groupId, update.WallPost.OwnerId);
+			update.GroupId.Should().Be(groupId);
+			update.WallPost.FromId.Should().Be(userId);
+			update.WallPost.OwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_WallReplyNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyNewTest));
@@ -51,14 +51,14 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.WallReply.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.WallReply.Text);
-			Assert.AreEqual(-groupId, update.WallReply.PostOwnerId);
-			Assert.AreEqual(postId, update.WallReply.PostId);
+			update.WallReply.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.WallReply.Text.Should().Be(text);
+			update.WallReply.PostOwnerId.Should().Be(-groupId);
+			update.WallReply.PostId.Should().Be(postId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_WallReplyEditTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyEditTest));
@@ -77,13 +77,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.WallReply.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.WallReply.Text);
-			Assert.AreEqual(-groupId, update.WallReply.PostOwnerId);
+			update.WallReply.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.WallReply.Text.Should().Be(text);
+			update.WallReply.PostOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_WallReplyRestoreTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyRestoreTest));
@@ -102,13 +102,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.WallReply.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.WallReply.Text);
-			Assert.AreEqual(-groupId, update.WallReply.PostOwnerId);
+			update.WallReply.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.WallReply.Text.Should().Be(text);
+			update.WallReply.PostOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_WallReplyDeleteTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyDeleteTest));
@@ -128,11 +128,11 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(deleterId, update.WallReplyDelete.DeleterId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(-groupId, update.WallReplyDelete.OwnerId);
-			Assert.AreEqual(postId, update.WallReplyDelete.PostId);
-			Assert.AreEqual(id, update.WallReplyDelete.Id);
+			update.WallReplyDelete.DeleterId.Should().Be(deleterId);
+			update.GroupId.Should().Be(groupId);
+			update.WallReplyDelete.OwnerId.Should().Be(-groupId);
+			update.WallReplyDelete.PostId.Should().Be(postId);
+			update.WallReplyDelete.Id.Should().Be(id);
 		}
 	}
 }

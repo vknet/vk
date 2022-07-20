@@ -11,7 +11,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с видеофайлами.
+	/// Методы для работы с видеофайлами.
 	/// </summary>
 	public interface IVideoCategoryAsync
 	{
@@ -628,7 +628,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/video.addToAlbum
 		/// </remarks>
-		Task<bool> AddToAlbumAsync(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null);
+		Task<VkCollection<ulong>> AddToAlbumAsync(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null);
 
 		/// <summary>
 		/// Позволяет убрать видеозапись из альбома.

@@ -1,5 +1,8 @@
 using System;
 using Newtonsoft.Json;
+using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams.Ads
 {
@@ -33,7 +36,8 @@ namespace VkNet.Model.RequestParams.Ads
 		/// строка
 		/// </summary>
 		[JsonProperty("ad_platform")]
-		public string AdPlatform { get; set; }
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public AdPlatform AdPlatform { get; set; }
 
 		/// <summary>
 		/// Для ad_format = 9.
@@ -67,18 +71,9 @@ namespace VkNet.Model.RequestParams.Ads
 		public long AdId { get; set; }
 
 		/// <summary>
-		/// Формат объявления:
-		/// 1 — изображение и текст;
-		/// 2 — большое изображение;
-		/// 3 — эксклюзивный формат;
-		/// 4 — продвижение сообществ или приложений, квадратное изображение;
-		/// 7 — специальный формат приложений;
-		/// 8 — специальный формат сообществ;
-		/// 9 — запись в сообществе;
-		/// 10 — витрина приложений.
-		/// целое число
+		/// Формат объявления
 		/// </summary>
 		[JsonProperty("ad_format")]
-		public long AdFormat { get; set; }
+		public AdFormat AdFormat { get; set; }
 	}
 }

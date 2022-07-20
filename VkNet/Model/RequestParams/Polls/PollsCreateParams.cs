@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Polls
 {
@@ -31,58 +30,38 @@ namespace VkNet.Model.RequestParams.Polls
 		/// <c>true</c> — для создания опроса с мультивыбором. флаг, может принимать значения <c>true</c> или <c>false</c>
 		/// </summary>
 		[JsonProperty("is_multiple")]
-		public bool IsMultiple { get; set; }
+		public bool? IsMultiple { get; set; }
 
 		/// <summary>
 		/// Дата завершения опроса в Unixtime. положительное число, минимальное значение 1536692688
 		/// </summary>
 		[JsonProperty("end_date")]
 		[JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime EndDate { get; set; }
+		public DateTime? EndDate { get; set; }
 
 		/// <summary>
 		/// Если опрос будет добавлен в группу, необходимо передать отрицательный идентификатор группы.
 		/// По умолчанию текущий пользователь.
 		/// </summary>
 		[JsonProperty("owner_id")]
-		public long OwnerId { get; set; }
+		public long? OwnerId { get; set; }
 
 		/// <summary>
 		/// Список вариантов ответов.
 		/// </summary>
 		[JsonProperty("add_answers")]
-		public List<string> AddAnswers { get; set; }
+		public IEnumerable<string> AddAnswers { get; set; }
 
 		/// <summary>
 		/// Идентификатор фотографии для использования в качестве фона сниппета. положительное число
 		/// </summary>
 		[JsonProperty("photo_id")]
-		public ulong PhotoId { get; set; }
+		public ulong? PhotoId { get; set; }
 
 		/// <summary>
 		/// Идентификатор стандартного фона для сниппета.
 		/// </summary>
 		[JsonProperty("background_id")]
-		public long BackgroundId { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PollsCreateParams p)
-		{
-			return new VkParameters
-			{
-				{ "question", p.Question },
-				{ "is_anonymous", p.IsAnonymous },
-				{ "is_multiple", p.IsMultiple },
-				{ "end_date", p.EndDate },
-				{ "owner_id", p.OwnerId },
-				{ "add_answers", Utilities.SerializeToJson(p.AddAnswers) },
-				{ "photo_id", p.PhotoId },
-				{ "background_id", p.BackgroundId }
-			};
-		}
+		public long? BackgroundId { get; set; }
 	}
 }

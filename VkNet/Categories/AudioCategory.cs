@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
+using VkNet.Infrastructure;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
@@ -18,7 +19,7 @@ namespace VkNet.Categories
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
-		/// Методы для работы с аудиозаписями.
+		/// api vk.com
 		/// </summary>
         /// <param name="vk"> Api vk.com </param>
         public AudioCategory(IVkApiInvoke vk)
@@ -27,12 +28,13 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public long Add(long audioId, long ownerId, long? groupId = null, long? albumId = null)
+		public long Add(long audioId, long ownerId, string accessKey = null, long? groupId = null, long? albumId = null)
 		{
 			var parameters = new VkParameters
 			{
 				{ "audio_id", audioId },
 				{ "owner_id", ownerId },
+				{ "access_key", accessKey },
 				{ "group_id", groupId },
 				{ "album_id", albumId }
 			};
@@ -81,7 +83,16 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long Edit(AudioEditParams @params)
 		{
-			return _vk.Call<long>("audio.edit", @params);
+			return _vk.Call<long>("audio.edit", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId }
+				, { "audio_id", @params.AudioId }
+				, { "artist", @params.Artist }
+				, { "title", @params.Title }
+				, { "text", @params.Text }
+				, { "genre_id", @params.GenreId }
+				, { "no_search", @params.NoSearch }
+			});
 		}
 
 		/// <inheritdoc />
@@ -102,7 +113,16 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<Audio> Get(AudioGetParams @params)
 		{
-			return _vk.Call<VkCollection<Audio>>("audio.get", @params);
+			return _vk.Call<VkCollection<Audio>>("audio.get", new VkParameters
+			{
+				{ "owner_id", @params.OwnerId },
+				{ "album_id", @params.AlbumId },
+				{ "playlist_id", @params.PlaylistId },
+				{ "audio_ids", @params.AudioIds },
+				{ "offset", @params.Offset },
+				{ "count", @params.Count },
+				{ "access_key", @params.AccessKey }
+			});
 		}
 
 		/// <inheritdoc />
@@ -118,6 +138,7 @@ namespace VkNet.Categories
 			return _vk.Call<VkCollection<AudioPlaylist>>("audio.getPlaylists", parameters);
 		}
 
+		/// <inheritdoc />
 		public AudioPlaylist GetPlaylistById(long ownerId, long playlistId)
 		{
 			var parameters = new VkParameters
@@ -150,6 +171,19 @@ namespace VkNet.Categories
 			};
 
 			return _vk.Call<ReadOnlyCollection<Audio>>("audio.getById", parameters);
+		}
+
+		/// <inheritdoc />
+		public AudioGetCatalogResult GetCatalog(uint? count, bool? extended, UsersFields fields = null)
+		{
+			var parameters = new VkParameters
+			{
+				{ "extended", extended },
+				{ "count", count },
+				{ "fields", fields }
+			};
+
+			return _vk.Call<AudioGetCatalogResult>("audio.getCatalog", parameters);
 		}
 
 		/// <inheritdoc />
@@ -213,7 +247,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<long> AddToPlaylist(long ownerId, long playlistId, IEnumerable<long> audioIds)
+		public IEnumerable<long> AddToPlaylist(long ownerId, long playlistId, IEnumerable<string> audioIds)
 		{
 			var parameters = new VkParameters
 			{
@@ -255,7 +289,7 @@ namespace VkNet.Categories
 		public Audio Save(string response, string artist = null, string title = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => response);
-			var responseJson = JObject.Parse(response);
+			var responseJson = response.ToJObject();
 			var server = responseJson["server"].ToString();
 			var hash = responseJson["hash"].ToString();
 			var audio = responseJson["audio"].ToString();
@@ -263,7 +297,8 @@ namespace VkNet.Categories
 			var parameters = new VkParameters
 			{
 				{ "server", server },
-				{ "audio", Uri.EscapeDataString(audio) },
+				// Фикс #161. Из-за URL Decode строка audio передавалась неверно, из-за чего появлялась ошибка Invalid hash
+				{ "audio", audio },
 				{ "hash", hash },
 				{ "artist", artist },
 				{ "title", title }
@@ -275,7 +310,17 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<Audio> Search(AudioSearchParams @params)
 		{
-			return _vk.Call<VkCollection<Audio>>("audio.search", @params);
+			return _vk.Call<VkCollection<Audio>>("audio.search", new VkParameters
+			{
+				{ "q", @params.Query }
+				, { "auto_complete", @params.Autocomplete }
+				, { "sort", @params.Sort }
+				, { "lyrics", @params.Lyrics }
+				, { "performer_only", @params.PerformerOnly }
+				, { "search_own", @params.SearchOwn }
+				, { "count", @params.Count }
+				, { "offset", @params.Offset }
+			});
 		}
 
 		/// <inheritdoc />

@@ -1,19 +1,19 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Groups;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AddAddressTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void AddAddress_AlwaysOpened()
 		{
 			Url = "https://api.vk.com/method/groups.addAddress";
@@ -71,9 +71,10 @@ namespace VkNet.Tests.Categories.Group
 				IsMainAddress = true
 			});
 
-			Assert.AreEqual(58227, result.Id);
+			result.Id.Should().Be(58227);
 		}
-		[Test]
+
+		[Fact]
 		public void AddAddress_Timetable()
 		{
 			Url = "https://api.vk.com/method/groups.addAddress";
@@ -131,7 +132,7 @@ namespace VkNet.Tests.Categories.Group
 				IsMainAddress = true
 			});
 
-			Assert.AreEqual(58230, result.Id);
+			result.Id.Should().Be(58230);
 		}
 	}
 }

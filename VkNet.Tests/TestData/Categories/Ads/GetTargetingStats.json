@@ -1,0 +1,13 @@
+﻿{
+  "response": {
+    "audience_count": 79189000,
+    "recommended_cpc_50": "26.26",
+    "recommended_cpc_70": "48.28",
+    "recommended_cpc_90": "77.02",
+    "recommended_cpm_50": "1.20",
+    "recommended_cpm_70": "1.20",
+    "recommended_cpm_90": "1.20",
+    "recommended_cpm": "1.20",
+    "recommended_cpc": "26.26"
+  }
+}

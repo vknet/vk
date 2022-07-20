@@ -1,8 +1,10 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Attachments
 {
@@ -13,13 +15,14 @@ namespace VkNet.Model.Attachments
 	public class AudioPlaylist : MediaAttachment
 	{
 		/// <inheritdoc />
-		protected override string Alias { get; } = "audio_playlist";
+		protected override string Alias => "audio_playlist";
 
 		/// <summary>
 		/// Тип плейлиста.
 		/// </summary>
 		[JsonProperty("album_type")]
-		public string AlbumType { get; set; }
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public AudioAlbumType AlbumType { get; set; }
 
 		/// <summary>
 		/// Тип плейлиста.
@@ -43,7 +46,7 @@ namespace VkNet.Model.Attachments
 		/// Список жанров плейлиста.
 		/// </summary>
 		[JsonProperty("genres")]
-		public IEnumerable<AudioPlaylistGenre> Genres { get; set; }
+		public ReadOnlyCollection<AudioPlaylistGenre> Genres { get; set; }
 
 		/// <summary>
 		/// Количество аудиозаписей в плейлисте.
@@ -105,19 +108,19 @@ namespace VkNet.Model.Attachments
 		/// Обложка плейлиста.
 		/// </summary>
 		[JsonProperty("photo")]
-		public AudioCover Cover { get; set; }
+		public AudioCover Photo { get; set; }
 
 		/// <summary>
 		/// Миниатюры плейлиста.
 		/// </summary>
 		[JsonProperty("thumbs")]
-		public IEnumerable<AudioCover> Covers { get; set; }
+		public ReadOnlyCollection<AudioCover> Thumbs { get; set; }
 
 		/// <summary>
 		/// Неизвестно.
 		/// </summary>
 		[JsonProperty("display_owner_ids")]
-		public IEnumerable<long> OwnerIds { get; set; }
+		public ReadOnlyCollection<long> OwnerIds { get; set; }
 
 		/// <summary>
 		/// Главный исполнитель.
@@ -131,19 +134,25 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		[Obsolete("Use MainArtists property instead.")]
 		[JsonProperty("artists")]
-		public IEnumerable<AudioArtist> Artists { get; set; }
+		public ReadOnlyCollection<AudioArtist> Artists { get; set; }
 
 		/// <summary>
 		/// Список исполнителей.
 		/// </summary>
 		[JsonProperty("main_artists")]
-		public IEnumerable<AudioArtist> MainArtists { get; set; }
+		public ReadOnlyCollection<AudioArtist> MainArtists { get; set; }
 
 		/// <summary>
 		/// Список исполнителей.
 		/// </summary>
 		[JsonProperty("featured_artists")]
-		public IEnumerable<AudioArtist> FeaturedArtists { get; set; }
+		public ReadOnlyCollection<AudioArtist> FeaturedArtists { get; set; }
+
+		/// <summary>
+		/// Являетя ли откровенным контентом.
+		/// </summary>
+		[JsonProperty("is_explicit")]
+		public bool IsExplicit { get; set; }
 
 	#region Методы
 
@@ -171,14 +180,15 @@ namespace VkNet.Model.Attachments
 				Year = response["year"],
 				Original = response["original"],
 				Follower = response["followed"],
-				Cover = response["photo"],
-				Covers = response["thumbs"].ToReadOnlyCollectionOf<AudioCover>(x => x),
+				Photo = response["photo"],
+				Thumbs = response["thumbs"].ToReadOnlyCollectionOf<AudioCover>(x => x),
 				OwnerIds = response["display_owner_ids"].ToReadOnlyCollectionOf<long>(x => x),
 				MainArtist = response["main_artist"],
 				Artists = response["artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
 				MainArtists = response["main_artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
 				FeaturedArtists = response["featured_artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),
-				AccessKey = response["access_key"]
+				AccessKey = response["access_key"],
+				IsExplicit = response["is_explicit"]
 			};
 
 			return playlist;

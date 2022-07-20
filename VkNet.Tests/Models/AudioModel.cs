@@ -1,14 +1,14 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AudioModel
 	{
-		[Test]
+		[Fact]
 		public void ToString_AudioShouldHaveAccessKey()
 		{
 			var audio = new Audio
@@ -20,7 +20,7 @@ namespace VkNet.Tests.Models
 
 			var result = audio.ToString();
 
-			Assert.AreEqual(result, "audio1234_1234_test");
+			result.Should().Be("audio1234_1234_test");
 		}
 	}
 }

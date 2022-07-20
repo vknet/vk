@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Globalization;
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -93,28 +91,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "need_description")]
 		public bool? NeedDescription { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(UsersGetNearbyParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "latitude", p.Latitude.ToString(provider: CultureInfo.InvariantCulture) }
-					, //Vk API не принимает дробные числа с запятой, нужна точка
-					{ "longitude", p.Longitude.ToString(provider: CultureInfo.InvariantCulture) }
-					, { "accuracy", p.Accuracy }
-					, { "timeout", p.Timeout }
-					, { "radius", p.Radius }
-					, { "fields", p.Fields }
-					, { "name_case", p.NameCase }
-					, { "need_description", p.NeedDescription }
-			};
-
-			return parameters;
-		}
 	}
 }

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using VkNet.Enums;
 using VkNet.Exception;
+using VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 {
@@ -13,7 +13,7 @@ namespace VkNet.Infrastructure.Authorization.ImplicitFlow
 		[NotNull]
 		private readonly IEnumerable<IAuthorizationForm> _authorizationForms;
 
-		/// <inheritdoc />
+		/// <inheritdoc cref="AuthorizationFormFactory"/>
 		public AuthorizationFormFactory([NotNull] IEnumerable<IAuthorizationForm> authorizationForms)
 		{
 			_authorizationForms = authorizationForms;

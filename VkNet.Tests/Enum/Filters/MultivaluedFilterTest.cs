@@ -1,341 +1,364 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Enums.Filters;
+using Xunit;
 
 namespace VkNet.Tests.Enum.Filters
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MultivaluedFilterTest
 	{
-		[Test]
+		[Fact]
 		public void AccountFieldsTest()
 		{
 			// get test
-			Assert.That(AccountFields.Country.ToString(), Is.EqualTo("country"));
-			Assert.That(AccountFields.HttpsRequired.ToString(), Is.EqualTo("https_required"));
-			Assert.That(AccountFields.OwnPostsDefault.ToString(), Is.EqualTo("own_posts_default"));
-			Assert.That(AccountFields.NoWallReplies.ToString(), Is.EqualTo("no_wall_replies"));
-			Assert.That(AccountFields.Intro.ToString(), Is.EqualTo("intro"));
-			Assert.That(AccountFields.Language.ToString(), Is.EqualTo("lang"));
+			AccountFields.Country.ToString().Should().Be("country");
+			AccountFields.HttpsRequired.ToString().Should().Be("https_required");
+			AccountFields.OwnPostsDefault.ToString().Should().Be("own_posts_default");
+			AccountFields.NoWallReplies.ToString().Should().Be("no_wall_replies");
+			AccountFields.Intro.ToString().Should().Be("intro");
+			AccountFields.Language.ToString().Should().Be("lang");
 
 			// parse test
-			Assert.That(AccountFields.FromJsonString("country"), Is.EqualTo(AccountFields.Country));
+			AccountFields.FromJsonString("country").Should().Be(AccountFields.Country);
 
-			Assert.That(AccountFields.FromJsonString("https_required")
-					, Is.EqualTo(AccountFields.HttpsRequired));
+			AccountFields.FromJsonString("https_required").Should().Be(AccountFields.HttpsRequired);
 
-			Assert.That(AccountFields.FromJsonString("own_posts_default")
-					, Is.EqualTo(AccountFields.OwnPostsDefault));
+			AccountFields.FromJsonString("own_posts_default").Should().Be(AccountFields.OwnPostsDefault);
 
-			Assert.That(AccountFields.FromJsonString("no_wall_replies")
-					, Is.EqualTo(AccountFields.NoWallReplies));
+			AccountFields.FromJsonString("no_wall_replies").Should().Be(AccountFields.NoWallReplies);
 
-			Assert.That(AccountFields.FromJsonString("intro"), Is.EqualTo(AccountFields.Intro));
-			Assert.That(AccountFields.FromJsonString("lang"), Is.EqualTo(AccountFields.Language));
+			AccountFields.FromJsonString("intro").Should().Be(AccountFields.Intro);
+			AccountFields.FromJsonString("lang").Should().Be(AccountFields.Language);
 		}
 
-		[Test]
+		[Fact]
 		public void CountersFilterTest()
 		{
 			// get test
-			Assert.That(CountersFilter.Friends.ToString(), Is.EqualTo("friends"));
-			Assert.That(CountersFilter.Messages.ToString(), Is.EqualTo("messages"));
-			Assert.That(CountersFilter.Photos.ToString(), Is.EqualTo("photos"));
-			Assert.That(CountersFilter.Videos.ToString(), Is.EqualTo("videos"));
-			Assert.That(CountersFilter.Gifts.ToString(), Is.EqualTo("gifts"));
-			Assert.That(CountersFilter.Events.ToString(), Is.EqualTo("events"));
-			Assert.That(CountersFilter.Groups.ToString(), Is.EqualTo("groups"));
-			Assert.That(CountersFilter.Notifications.ToString(), Is.EqualTo("notifications"));
+			CountersFilter.Friends.ToString().Should().Be("friends");
+			CountersFilter.Messages.ToString().Should().Be("messages");
+			CountersFilter.Photos.ToString().Should().Be("photos");
+			CountersFilter.Videos.ToString().Should().Be("videos");
+			CountersFilter.Gifts.ToString().Should().Be("gifts");
+			CountersFilter.Events.ToString().Should().Be("events");
+			CountersFilter.Groups.ToString().Should().Be("groups");
+			CountersFilter.Notifications.ToString().Should().Be("notifications");
 
-			Assert.That(CountersFilter.All.ToString()
-					, Is.EqualTo("app_requests,events,friends,friends_suggestions,gifts,groups,messages,notifications,photos,sdk,videos"));
+			CountersFilter.All.ToString()
+				.Should()
+				.Be("app_requests,events,friends,friends_suggestions,gifts,groups,messages,notifications,photos,sdk,videos");
 
 			// parse test
-			Assert.That(CountersFilter.FromJsonString("friends"), Is.EqualTo(CountersFilter.Friends));
-			Assert.That(CountersFilter.FromJsonString("messages"), Is.EqualTo(CountersFilter.Messages));
-			Assert.That(CountersFilter.FromJsonString("photos"), Is.EqualTo(CountersFilter.Photos));
-			Assert.That(CountersFilter.FromJsonString("videos"), Is.EqualTo(CountersFilter.Videos));
-			Assert.That(CountersFilter.FromJsonString("gifts"), Is.EqualTo(CountersFilter.Gifts));
-			Assert.That(CountersFilter.FromJsonString("events"), Is.EqualTo(CountersFilter.Events));
-			Assert.That(CountersFilter.FromJsonString("groups"), Is.EqualTo(CountersFilter.Groups));
+			CountersFilter.FromJsonString("friends").Should().Be(CountersFilter.Friends);
+			CountersFilter.FromJsonString("messages").Should().Be(CountersFilter.Messages);
+			CountersFilter.FromJsonString("photos").Should().Be(CountersFilter.Photos);
+			CountersFilter.FromJsonString("videos").Should().Be(CountersFilter.Videos);
+			CountersFilter.FromJsonString("gifts").Should().Be(CountersFilter.Gifts);
+			CountersFilter.FromJsonString("events").Should().Be(CountersFilter.Events);
+			CountersFilter.FromJsonString("groups").Should().Be(CountersFilter.Groups);
 
-			Assert.That(CountersFilter.FromJsonString("notifications")
-					, Is.EqualTo(CountersFilter.Notifications));
+			CountersFilter.FromJsonString("notifications").Should().Be(CountersFilter.Notifications);
 
-			Assert.That(CountersFilter.FromJsonString(
-							"app_requests,events,friends,friends_suggestions,gifts,groups,messages,notifications,photos,sdk,videos")
-					, Is.EqualTo(CountersFilter.All));
+			CountersFilter
+				.FromJsonString("app_requests,events,friends,friends_suggestions,gifts,groups,messages,notifications,photos,sdk,videos")
+				.Should()
+				.Be(CountersFilter.All);
 		}
 
-		[Test]
+		[Fact]
 		public void GroupsFieldsTest()
 		{
 			// get test
-			Assert.That(GroupsFields.CityId.ToString(), Is.EqualTo("city"));
-			Assert.That(GroupsFields.CountryId.ToString(), Is.EqualTo("country"));
-			Assert.That(GroupsFields.Place.ToString(), Is.EqualTo("place"));
-			Assert.That(GroupsFields.Description.ToString(), Is.EqualTo("description"));
-			Assert.That(GroupsFields.WikiPage.ToString(), Is.EqualTo("wiki_page"));
-			Assert.That(GroupsFields.MembersCount.ToString(), Is.EqualTo("members_count"));
-			Assert.That(GroupsFields.Counters.ToString(), Is.EqualTo("counters"));
-			Assert.That(GroupsFields.StartDate.ToString(), Is.EqualTo("start_date"));
-			Assert.That(GroupsFields.EndDate.ToString(), Is.EqualTo("finish_date"));
-			Assert.That(GroupsFields.CanPost.ToString(), Is.EqualTo("can_post"));
-			Assert.That(GroupsFields.CanSeelAllPosts.ToString(), Is.EqualTo("can_see_all_posts"));
-			Assert.That(GroupsFields.CanUploadDocuments.ToString(), Is.EqualTo("can_upload_doc"));
-			Assert.That(GroupsFields.CanCreateTopic.ToString(), Is.EqualTo("can_create_topic"));
-			Assert.That(GroupsFields.Activity.ToString(), Is.EqualTo("activity"));
-			Assert.That(GroupsFields.Status.ToString(), Is.EqualTo("status"));
-			Assert.That(GroupsFields.Contacts.ToString(), Is.EqualTo("contacts"));
-			Assert.That(GroupsFields.Links.ToString(), Is.EqualTo("links"));
-			Assert.That(GroupsFields.FixedPostId.ToString(), Is.EqualTo("fixed_post"));
-			Assert.That(GroupsFields.IsVerified.ToString(), Is.EqualTo("verified"));
-			Assert.That(GroupsFields.Site.ToString(), Is.EqualTo("site"));
-			Assert.That(GroupsFields.BanInfo.ToString(), Is.EqualTo("ban_info"));
+			GroupsFields.CityId.ToString().Should().Be("city");
+			GroupsFields.CountryId.ToString().Should().Be("country");
+			GroupsFields.Place.ToString().Should().Be("place");
+			GroupsFields.Description.ToString().Should().Be("description");
+			GroupsFields.WikiPage.ToString().Should().Be("wiki_page");
+			GroupsFields.MembersCount.ToString().Should().Be("members_count");
+			GroupsFields.Counters.ToString().Should().Be("counters");
+			GroupsFields.StartDate.ToString().Should().Be("start_date");
+			GroupsFields.EndDate.ToString().Should().Be("finish_date");
+			GroupsFields.CanPost.ToString().Should().Be("can_post");
+			GroupsFields.CanSeelAllPosts.ToString().Should().Be("can_see_all_posts");
+			GroupsFields.CanUploadDocuments.ToString().Should().Be("can_upload_doc");
+			GroupsFields.CanCreateTopic.ToString().Should().Be("can_create_topic");
+			GroupsFields.Activity.ToString().Should().Be("activity");
+			GroupsFields.Status.ToString().Should().Be("status");
+			GroupsFields.Contacts.ToString().Should().Be("contacts");
+			GroupsFields.Links.ToString().Should().Be("links");
+			GroupsFields.FixedPostId.ToString().Should().Be("fixed_post");
+			GroupsFields.IsVerified.ToString().Should().Be("verified");
+			GroupsFields.Site.ToString().Should().Be("site");
+			GroupsFields.BanInfo.ToString().Should().Be("ban_info");
 
-			Assert.That(GroupsFields.All.ToString()
-					, Is.EqualTo("activity,ban_info,can_create_topic,can_post,can_see_all_posts,city,contacts,counters,country,description,finish_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page"));
+			GroupsFields.All.ToString()
+				.Should()
+				.Be(
+					"activity,ban_info,can_create_topic,can_post,can_see_all_posts,city,contacts,counters,country,description,finish_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page");
 
-			Assert.That(GroupsFields.AllUndocumented.ToString()
-					, Is.EqualTo("activity,ban_info,can_create_topic,can_post,can_see_all_posts,can_upload_doc,city,contacts,counters,country,description,finish_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page"));
+			GroupsFields.AllUndocumented.ToString()
+				.Should()
+				.Be(
+					"activity,ban_info,can_create_topic,can_post,can_see_all_posts,can_upload_doc,city,contacts,counters,country,description,finish_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page");
 
 			// parse test
-			Assert.That(GroupsFields.FromJsonString("city"), Is.EqualTo(GroupsFields.CityId));
-			Assert.That(GroupsFields.FromJsonString("country"), Is.EqualTo(GroupsFields.CountryId));
-			Assert.That(GroupsFields.FromJsonString("place"), Is.EqualTo(GroupsFields.Place));
+			GroupsFields.FromJsonString("city").Should().Be(GroupsFields.CityId);
+			GroupsFields.FromJsonString("country").Should().Be(GroupsFields.CountryId);
+			GroupsFields.FromJsonString("place").Should().Be(GroupsFields.Place);
 
-			Assert.That(GroupsFields.FromJsonString("description")
-					, Is.EqualTo(GroupsFields.Description));
+			GroupsFields.FromJsonString("description").Should().Be(GroupsFields.Description);
 
-			Assert.That(GroupsFields.FromJsonString("wiki_page"), Is.EqualTo(GroupsFields.WikiPage));
+			GroupsFields.FromJsonString("wiki_page").Should().Be(GroupsFields.WikiPage);
 
-			Assert.That(GroupsFields.FromJsonString("members_count")
-					, Is.EqualTo(GroupsFields.MembersCount));
+			GroupsFields.FromJsonString("members_count").Should().Be(GroupsFields.MembersCount);
 
-			Assert.That(GroupsFields.FromJsonString("counters"), Is.EqualTo(GroupsFields.Counters));
-			Assert.That(GroupsFields.FromJsonString("start_date"), Is.EqualTo(GroupsFields.StartDate));
-			Assert.That(GroupsFields.FromJsonString("finish_date"), Is.EqualTo(GroupsFields.EndDate));
-			Assert.That(GroupsFields.FromJsonString("can_post"), Is.EqualTo(GroupsFields.CanPost));
+			GroupsFields.FromJsonString("counters").Should().Be(GroupsFields.Counters);
+			GroupsFields.FromJsonString("start_date").Should().Be(GroupsFields.StartDate);
+			GroupsFields.FromJsonString("finish_date").Should().Be(GroupsFields.EndDate);
+			GroupsFields.FromJsonString("can_post").Should().Be(GroupsFields.CanPost);
 
-			Assert.That(GroupsFields.FromJsonString("can_see_all_posts")
-					, Is.EqualTo(GroupsFields.CanSeelAllPosts));
+			GroupsFields.FromJsonString("can_see_all_posts").Should().Be(GroupsFields.CanSeelAllPosts);
 
-			Assert.That(GroupsFields.FromJsonString("can_upload_doc")
-					, Is.EqualTo(GroupsFields.CanUploadDocuments));
+			GroupsFields.FromJsonString("can_upload_doc").Should().Be(GroupsFields.CanUploadDocuments);
 
-			Assert.That(GroupsFields.FromJsonString("can_create_topic")
-					, Is.EqualTo(GroupsFields.CanCreateTopic));
+			GroupsFields.FromJsonString("can_create_topic").Should().Be(GroupsFields.CanCreateTopic);
 
-			Assert.That(GroupsFields.FromJsonString("activity"), Is.EqualTo(GroupsFields.Activity));
-			Assert.That(GroupsFields.FromJsonString("status"), Is.EqualTo(GroupsFields.Status));
-			Assert.That(GroupsFields.FromJsonString("contacts"), Is.EqualTo(GroupsFields.Contacts));
-			Assert.That(GroupsFields.FromJsonString("links"), Is.EqualTo(GroupsFields.Links));
-			Assert.That(GroupsFields.FromJsonString("fixed_post"), Is.EqualTo(GroupsFields.FixedPostId));
-			Assert.That(GroupsFields.FromJsonString("verified"), Is.EqualTo(GroupsFields.IsVerified));
-			Assert.That(GroupsFields.FromJsonString("site"), Is.EqualTo(GroupsFields.Site));
-			Assert.That(GroupsFields.FromJsonString("ban_info"), Is.EqualTo(GroupsFields.BanInfo));
+			GroupsFields.FromJsonString("activity").Should().Be(GroupsFields.Activity);
+			GroupsFields.FromJsonString("status").Should().Be(GroupsFields.Status);
+			GroupsFields.FromJsonString("contacts").Should().Be(GroupsFields.Contacts);
+			GroupsFields.FromJsonString("links").Should().Be(GroupsFields.Links);
+			GroupsFields.FromJsonString("fixed_post").Should().Be(GroupsFields.FixedPostId);
+			GroupsFields.FromJsonString("verified").Should().Be(GroupsFields.IsVerified);
+			GroupsFields.FromJsonString("site").Should().Be(GroupsFields.Site);
+			GroupsFields.FromJsonString("ban_info").Should().Be(GroupsFields.BanInfo);
 
-			Assert.That(GroupsFields.FromJsonString("activity,ban_info,can_create_topic,can_post,can_see_all_posts,city,contacts,counters,country,description,finish_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page")
-					, Is.EqualTo(GroupsFields.All));
+			GroupsFields.FromJsonString(
+					"activity,ban_info,can_create_topic,can_post,can_see_all_posts,city,contacts,counters,country,description,finish_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page")
+				.Should()
+				.Be(GroupsFields.All);
 
-			Assert.That(GroupsFields.FromJsonString("activity,ban_info,can_create_topic,can_post,can_see_all_posts,can_upload_doc,city,contacts,counters,country,description,finish_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page")
-					, Is.EqualTo(GroupsFields.AllUndocumented));
+			GroupsFields.FromJsonString(
+					"activity,ban_info,can_create_topic,can_post,can_see_all_posts,can_upload_doc,city,contacts,counters,country,description,finish_date,fixed_post,links,members_count,place,site,start_date,status,verified,wiki_page")
+				.Should()
+				.Be(GroupsFields.AllUndocumented);
 		}
 
-		[Test]
+		[Fact]
 		public void GroupsFiltersTest()
 		{
 			// get test
-			Assert.That(GroupsFilters.Administrator.ToString(), Is.EqualTo("admin"));
-			Assert.That(GroupsFilters.Editor.ToString(), Is.EqualTo("editor"));
-			Assert.That(GroupsFilters.Moderator.ToString(), Is.EqualTo("moder"));
-			Assert.That(GroupsFilters.Groups.ToString(), Is.EqualTo("groups"));
-			Assert.That(GroupsFilters.Publics.ToString(), Is.EqualTo("publics"));
-			Assert.That(GroupsFilters.Events.ToString(), Is.EqualTo("events"));
-			Assert.That(GroupsFilters.All.ToString(), Is.EqualTo("admin,editor,events,groups,moder,publics"));
+			GroupsFilters.Administrator.ToString().Should().Be("admin");
+			GroupsFilters.Editor.ToString().Should().Be("editor");
+			GroupsFilters.Moderator.ToString().Should().Be("moder");
+			GroupsFilters.Groups.ToString().Should().Be("groups");
+			GroupsFilters.Publics.ToString().Should().Be("publics");
+			GroupsFilters.Events.ToString().Should().Be("events");
+			GroupsFilters.All.ToString().Should().Be("admin,editor,events,groups,moder,publics");
 
 			// parse test
-			Assert.That(GroupsFilters.FromJsonString("admin"), Is.EqualTo(GroupsFilters.Administrator));
-			Assert.That(GroupsFilters.FromJsonString("editor"), Is.EqualTo(GroupsFilters.Editor));
-			Assert.That(GroupsFilters.FromJsonString("moder"), Is.EqualTo(GroupsFilters.Moderator));
-			Assert.That(GroupsFilters.FromJsonString("groups"), Is.EqualTo(GroupsFilters.Groups));
-			Assert.That(GroupsFilters.FromJsonString("publics"), Is.EqualTo(GroupsFilters.Publics));
-			Assert.That(GroupsFilters.FromJsonString("events"), Is.EqualTo(GroupsFilters.Events));
+			GroupsFilters.FromJsonString("admin").Should().Be(GroupsFilters.Administrator);
+			GroupsFilters.FromJsonString("editor").Should().Be(GroupsFilters.Editor);
+			GroupsFilters.FromJsonString("moder").Should().Be(GroupsFilters.Moderator);
+			GroupsFilters.FromJsonString("groups").Should().Be(GroupsFilters.Groups);
+			GroupsFilters.FromJsonString("publics").Should().Be(GroupsFilters.Publics);
+			GroupsFilters.FromJsonString("events").Should().Be(GroupsFilters.Events);
 
-			Assert.That(GroupsFilters.FromJsonString("admin,editor,moder,groups,publics,events")
-					, Is.EqualTo(GroupsFilters.All));
+			GroupsFilters.FromJsonString("admin,editor,moder,groups,publics,events").Should().Be(GroupsFilters.All);
 		}
 
-		[Test]
+		[Fact]
 		public void SubscribeFilterTest()
 		{
 			// get test
-			Assert.That(SubscribeFilter.Message.ToString(), Is.EqualTo("msg"));
-			Assert.That(SubscribeFilter.Friend.ToString(), Is.EqualTo("friend"));
-			Assert.That(SubscribeFilter.Call.ToString(), Is.EqualTo("call"));
-			Assert.That(SubscribeFilter.Reply.ToString(), Is.EqualTo("reply"));
-			Assert.That(SubscribeFilter.Mention.ToString(), Is.EqualTo("mention"));
-			Assert.That(SubscribeFilter.Group.ToString(), Is.EqualTo("group"));
-			Assert.That(SubscribeFilter.Like.ToString(), Is.EqualTo("like"));
+			SubscribeFilter.Message.ToString().Should().Be("msg");
+			SubscribeFilter.Friend.ToString().Should().Be("friend");
+			SubscribeFilter.Call.ToString().Should().Be("call");
+			SubscribeFilter.Reply.ToString().Should().Be("reply");
+			SubscribeFilter.Mention.ToString().Should().Be("mention");
+			SubscribeFilter.Group.ToString().Should().Be("group");
+			SubscribeFilter.Like.ToString().Should().Be("like");
 
-			Assert.That(SubscribeFilter.All.ToString()
-					, Is.EqualTo("call,friend,group,like,mention,msg,reply"));
+			SubscribeFilter.All.ToString().Should().Be("call,friend,group,like,mention,msg,reply");
 
 			// parse test
-			Assert.That(SubscribeFilter.FromJsonString("msg"), Is.EqualTo(SubscribeFilter.Message));
-			Assert.That(SubscribeFilter.FromJsonString("friend"), Is.EqualTo(SubscribeFilter.Friend));
-			Assert.That(SubscribeFilter.FromJsonString("call"), Is.EqualTo(SubscribeFilter.Call));
-			Assert.That(SubscribeFilter.FromJsonString("reply"), Is.EqualTo(SubscribeFilter.Reply));
-			Assert.That(SubscribeFilter.FromJsonString("mention"), Is.EqualTo(SubscribeFilter.Mention));
-			Assert.That(SubscribeFilter.FromJsonString("group"), Is.EqualTo(SubscribeFilter.Group));
-			Assert.That(SubscribeFilter.FromJsonString("like"), Is.EqualTo(SubscribeFilter.Like));
+			SubscribeFilter.FromJsonString("msg").Should().Be(SubscribeFilter.Message);
+			SubscribeFilter.FromJsonString("friend").Should().Be(SubscribeFilter.Friend);
+			SubscribeFilter.FromJsonString("call").Should().Be(SubscribeFilter.Call);
+			SubscribeFilter.FromJsonString("reply").Should().Be(SubscribeFilter.Reply);
+			SubscribeFilter.FromJsonString("mention").Should().Be(SubscribeFilter.Mention);
+			SubscribeFilter.FromJsonString("group").Should().Be(SubscribeFilter.Group);
+			SubscribeFilter.FromJsonString("like").Should().Be(SubscribeFilter.Like);
 
-			Assert.That(SubscribeFilter.FromJsonString("msg,friend,call,reply,mention,group,like")
-					, Is.EqualTo(SubscribeFilter.All));
+			SubscribeFilter.FromJsonString("msg,friend,call,reply,mention,group,like").Should().Be(SubscribeFilter.All);
 		}
 
-		[Test]
+		[Fact]
 		public void UsersFieldsTest()
 		{
 			// get test
-			Assert.That(UsersFields.Nickname.ToString(), Is.EqualTo("nickname"));
-			Assert.That(UsersFields.Domain.ToString(), Is.EqualTo("domain"));
-			Assert.That(UsersFields.Sex.ToString(), Is.EqualTo("sex"));
-			Assert.That(UsersFields.BirthDate.ToString(), Is.EqualTo("bdate"));
-			Assert.That(UsersFields.City.ToString(), Is.EqualTo("city"));
-			Assert.That(UsersFields.Country.ToString(), Is.EqualTo("country"));
-			Assert.That(UsersFields.Timezone.ToString(), Is.EqualTo("timezone"));
-			Assert.That(UsersFields.Photo50.ToString(), Is.EqualTo("photo_50"));
-			Assert.That(UsersFields.Photo100.ToString(), Is.EqualTo("photo_100"));
-			Assert.That(UsersFields.Photo200Orig.ToString(), Is.EqualTo("photo_200_orig"));
-			Assert.That(UsersFields.Photo200.ToString(), Is.EqualTo("photo_200"));
-			Assert.That(UsersFields.Photo400Orig.ToString(), Is.EqualTo("photo_400_orig"));
-			Assert.That(UsersFields.PhotoMax.ToString(), Is.EqualTo("photo_max"));
-			Assert.That(UsersFields.PhotoMaxOrig.ToString(), Is.EqualTo("photo_max_orig"));
-			Assert.That(UsersFields.HasMobile.ToString(), Is.EqualTo("has_mobile"));
-			Assert.That(UsersFields.Contacts.ToString(), Is.EqualTo("contacts"));
-			Assert.That(UsersFields.Education.ToString(), Is.EqualTo("education"));
-			Assert.That(UsersFields.Online.ToString(), Is.EqualTo("online"));
-			Assert.That(UsersFields.OnlineMobile.ToString(), Is.EqualTo("online_mobile"));
-			Assert.That(UsersFields.FriendLists.ToString(), Is.EqualTo("lists"));
-			Assert.That(UsersFields.Relation.ToString(), Is.EqualTo("relation"));
-			Assert.That(UsersFields.LastSeen.ToString(), Is.EqualTo("last_seen"));
-			Assert.That(UsersFields.Status.ToString(), Is.EqualTo("status"));
+			UsersFields.Nickname.ToString().Should().Be("nickname");
+			UsersFields.Domain.ToString().Should().Be("domain");
+			UsersFields.Sex.ToString().Should().Be("sex");
+			UsersFields.BirthDate.ToString().Should().Be("bdate");
+			UsersFields.City.ToString().Should().Be("city");
+			UsersFields.Country.ToString().Should().Be("country");
+			UsersFields.Timezone.ToString().Should().Be("timezone");
+			UsersFields.Photo50.ToString().Should().Be("photo_50");
+			UsersFields.Photo100.ToString().Should().Be("photo_100");
+			UsersFields.Photo200Orig.ToString().Should().Be("photo_200_orig");
+			UsersFields.Photo200.ToString().Should().Be("photo_200");
+			UsersFields.Photo400Orig.ToString().Should().Be("photo_400_orig");
+			UsersFields.PhotoMax.ToString().Should().Be("photo_max");
+			UsersFields.PhotoMaxOrig.ToString().Should().Be("photo_max_orig");
+			UsersFields.HasMobile.ToString().Should().Be("has_mobile");
+			UsersFields.Contacts.ToString().Should().Be("contacts");
+			UsersFields.Education.ToString().Should().Be("education");
+			UsersFields.Online.ToString().Should().Be("online");
+			UsersFields.OnlineMobile.ToString().Should().Be("online_mobile");
+			UsersFields.FriendLists.ToString().Should().Be("lists");
+			UsersFields.Relation.ToString().Should().Be("relation");
+			UsersFields.LastSeen.ToString().Should().Be("last_seen");
+			UsersFields.Status.ToString().Should().Be("status");
 
-			Assert.That(UsersFields.CanWritePrivateMessage.ToString()
-					, Is.EqualTo("can_write_private_message"));
+			UsersFields.CanWritePrivateMessage.ToString().Should().Be("can_write_private_message");
 
-			Assert.That(UsersFields.CanSeeAllPosts.ToString(), Is.EqualTo("can_see_all_posts"));
-			Assert.That(UsersFields.CanPost.ToString(), Is.EqualTo("can_post"));
-			Assert.That(UsersFields.Universities.ToString(), Is.EqualTo("universities"));
-			Assert.That(UsersFields.Connections.ToString(), Is.EqualTo("connections"));
-			Assert.That(UsersFields.Site.ToString(), Is.EqualTo("site"));
-			Assert.That(UsersFields.Schools.ToString(), Is.EqualTo("schools"));
-			Assert.That(UsersFields.CanSeeAudio.ToString(), Is.EqualTo("can_see_audio"));
-			Assert.That(UsersFields.CommonCount.ToString(), Is.EqualTo("common_count"));
-			Assert.That(UsersFields.Relatives.ToString(), Is.EqualTo("relatives"));
-			Assert.That(UsersFields.Counters.ToString(), Is.EqualTo("counters"));
+			UsersFields.CanSeeAllPosts.ToString().Should().Be("can_see_all_posts");
+			UsersFields.CanPost.ToString().Should().Be("can_post");
+			UsersFields.Universities.ToString().Should().Be("universities");
+			UsersFields.Connections.ToString().Should().Be("connections");
+			UsersFields.Site.ToString().Should().Be("site");
+			UsersFields.Schools.ToString().Should().Be("schools");
+			UsersFields.CanSeeAudio.ToString().Should().Be("can_see_audio");
+			UsersFields.CommonCount.ToString().Should().Be("common_count");
+			UsersFields.Relatives.ToString().Should().Be("relatives");
+			UsersFields.Counters.ToString().Should().Be("counters");
+			UsersFields.CanAccessClosed.ToString().Should().Be("can_access_closed");
+			UsersFields.IsClosed.ToString().Should().Be("is_closed");
+			UsersFields.FirstNameNom.ToString().Should().Be("first_name_nom");
+			UsersFields.FirstNameGen.ToString().Should().Be("first_name_gen");
+			UsersFields.FirstNameDat.ToString().Should().Be("first_name_dat");
+			UsersFields.FirstNameAcc.ToString().Should().Be("first_name_acc");
+			UsersFields.FirstNameIns.ToString().Should().Be("first_name_ins");
+			UsersFields.FirstNameAbl.ToString().Should().Be("first_name_abl");
+			UsersFields.LastNameNom.ToString().Should().Be("last_name_nom");
+			UsersFields.LastNameGen.ToString().Should().Be("last_name_gen");
+			UsersFields.LastNameDat.ToString().Should().Be("last_name_dat");
+			UsersFields.LastNameAcc.ToString().Should().Be("last_name_acc");
+			UsersFields.LastNameIns.ToString().Should().Be("last_name_ins");
+			UsersFields.LastNameAbl.ToString().Should().Be("last_name_abl");
 
-			Assert.That(UsersFields.All.ToString()
-					, Is.EqualTo("bdate,can_post,can_see_all_posts,can_see_audio,can_write_private_message,city,common_count,connections,contacts,counters,country,domain,education,has_mobile,last_seen,lists,nickname,online,online_mobile,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,sex,site,status,timezone,universities"));
+			UsersFields.All.ToString()
+				.Should()
+				.Be(
+					"bdate,can_access_closed,can_post,can_see_all_posts,can_see_audio,can_write_private_message,city,common_count,connections,contacts,counters,country,domain,education,first_name_abl,first_name_acc,first_name_dat,first_name_gen,first_name_ins,first_name_nom,has_mobile,is_closed,last_name_abl,last_name_acc,last_name_dat,last_name_gen,last_name_ins,last_name_nom,last_seen,lists,nickname,online,online_mobile,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,sex,site,status,timezone,universities");
 
 			// parse test
-			Assert.That(UsersFields.FromJsonString("nickname"), Is.EqualTo(UsersFields.Nickname));
-			Assert.That(UsersFields.FromJsonString("domain"), Is.EqualTo(UsersFields.Domain));
-			Assert.That(UsersFields.FromJsonString("sex"), Is.EqualTo(UsersFields.Sex));
-			Assert.That(UsersFields.FromJsonString("bdate"), Is.EqualTo(UsersFields.BirthDate));
-			Assert.That(UsersFields.FromJsonString("city"), Is.EqualTo(UsersFields.City));
-			Assert.That(UsersFields.FromJsonString("country"), Is.EqualTo(UsersFields.Country));
-			Assert.That(UsersFields.FromJsonString("timezone"), Is.EqualTo(UsersFields.Timezone));
-			Assert.That(UsersFields.FromJsonString("photo_50"), Is.EqualTo(UsersFields.Photo50));
-			Assert.That(UsersFields.FromJsonString("photo_100"), Is.EqualTo(UsersFields.Photo100));
+			UsersFields.FromJsonString("nickname").Should().Be(UsersFields.Nickname);
+			UsersFields.FromJsonString("domain").Should().Be(UsersFields.Domain);
+			UsersFields.FromJsonString("sex").Should().Be(UsersFields.Sex);
+			UsersFields.FromJsonString("bdate").Should().Be(UsersFields.BirthDate);
+			UsersFields.FromJsonString("city").Should().Be(UsersFields.City);
+			UsersFields.FromJsonString("country").Should().Be(UsersFields.Country);
+			UsersFields.FromJsonString("timezone").Should().Be(UsersFields.Timezone);
+			UsersFields.FromJsonString("photo_50").Should().Be(UsersFields.Photo50);
+			UsersFields.FromJsonString("photo_100").Should().Be(UsersFields.Photo100);
 
-			Assert.That(UsersFields.FromJsonString("photo_200_orig")
-					, Is.EqualTo(UsersFields.Photo200Orig));
+			UsersFields.FromJsonString("photo_200_orig").Should().Be(UsersFields.Photo200Orig);
 
-			Assert.That(UsersFields.FromJsonString("photo_200"), Is.EqualTo(UsersFields.Photo200));
+			UsersFields.FromJsonString("photo_200").Should().Be(UsersFields.Photo200);
 
-			Assert.That(UsersFields.FromJsonString("photo_400_orig")
-					, Is.EqualTo(UsersFields.Photo400Orig));
+			UsersFields.FromJsonString("photo_400_orig").Should().Be(UsersFields.Photo400Orig);
 
-			Assert.That(UsersFields.FromJsonString("photo_max"), Is.EqualTo(UsersFields.PhotoMax));
+			UsersFields.FromJsonString("photo_max").Should().Be(UsersFields.PhotoMax);
 
-			Assert.That(UsersFields.FromJsonString("photo_max_orig")
-					, Is.EqualTo(UsersFields.PhotoMaxOrig));
+			UsersFields.FromJsonString("photo_max_orig").Should().Be(UsersFields.PhotoMaxOrig);
 
-			Assert.That(UsersFields.FromJsonString("has_mobile"), Is.EqualTo(UsersFields.HasMobile));
-			Assert.That(UsersFields.FromJsonString("contacts"), Is.EqualTo(UsersFields.Contacts));
-			Assert.That(UsersFields.FromJsonString("education"), Is.EqualTo(UsersFields.Education));
-			Assert.That(UsersFields.FromJsonString("online"), Is.EqualTo(UsersFields.Online));
+			UsersFields.FromJsonString("has_mobile").Should().Be(UsersFields.HasMobile);
+			UsersFields.FromJsonString("contacts").Should().Be(UsersFields.Contacts);
+			UsersFields.FromJsonString("education").Should().Be(UsersFields.Education);
+			UsersFields.FromJsonString("online").Should().Be(UsersFields.Online);
 
-			Assert.That(UsersFields.FromJsonString("online_mobile")
-					, Is.EqualTo(UsersFields.OnlineMobile));
+			UsersFields.FromJsonString("online_mobile").Should().Be(UsersFields.OnlineMobile);
 
-			Assert.That(UsersFields.FromJsonString("lists"), Is.EqualTo(UsersFields.FriendLists));
-			Assert.That(UsersFields.FromJsonString("relation"), Is.EqualTo(UsersFields.Relation));
-			Assert.That(UsersFields.FromJsonString("last_seen"), Is.EqualTo(UsersFields.LastSeen));
-			Assert.That(UsersFields.FromJsonString("status"), Is.EqualTo(UsersFields.Status));
+			UsersFields.FromJsonString("lists").Should().Be(UsersFields.FriendLists);
+			UsersFields.FromJsonString("relation").Should().Be(UsersFields.Relation);
+			UsersFields.FromJsonString("last_seen").Should().Be(UsersFields.LastSeen);
+			UsersFields.FromJsonString("status").Should().Be(UsersFields.Status);
 
-			Assert.That(UsersFields.FromJsonString("can_write_private_message")
-					, Is.EqualTo(UsersFields.CanWritePrivateMessage));
+			UsersFields.FromJsonString("can_write_private_message").Should().Be(UsersFields.CanWritePrivateMessage);
 
-			Assert.That(UsersFields.FromJsonString("can_see_all_posts")
-					, Is.EqualTo(UsersFields.CanSeeAllPosts));
+			UsersFields.FromJsonString("can_see_all_posts").Should().Be(UsersFields.CanSeeAllPosts);
 
-			Assert.That(UsersFields.FromJsonString("can_post"), Is.EqualTo(UsersFields.CanPost));
+			UsersFields.FromJsonString("can_post").Should().Be(UsersFields.CanPost);
 
-			Assert.That(UsersFields.FromJsonString("universities")
-					, Is.EqualTo(UsersFields.Universities));
+			UsersFields.FromJsonString("universities").Should().Be(UsersFields.Universities);
 
-			Assert.That(UsersFields.FromJsonString("connections"), Is.EqualTo(UsersFields.Connections));
-			Assert.That(UsersFields.FromJsonString("site"), Is.EqualTo(UsersFields.Site));
-			Assert.That(UsersFields.FromJsonString("schools"), Is.EqualTo(UsersFields.Schools));
+			UsersFields.FromJsonString("connections").Should().Be(UsersFields.Connections);
+			UsersFields.FromJsonString("site").Should().Be(UsersFields.Site);
+			UsersFields.FromJsonString("schools").Should().Be(UsersFields.Schools);
 
-			Assert.That(UsersFields.FromJsonString("can_see_audio")
-					, Is.EqualTo(UsersFields.CanSeeAudio));
+			UsersFields.FromJsonString("can_see_audio").Should().Be(UsersFields.CanSeeAudio);
 
-			Assert.That(UsersFields.FromJsonString("common_count"), Is.EqualTo(UsersFields.CommonCount));
-			Assert.That(UsersFields.FromJsonString("relatives"), Is.EqualTo(UsersFields.Relatives));
-			Assert.That(UsersFields.FromJsonString("counters"), Is.EqualTo(UsersFields.Counters));
+			UsersFields.FromJsonString("common_count").Should().Be(UsersFields.CommonCount);
+			UsersFields.FromJsonString("relatives").Should().Be(UsersFields.Relatives);
+			UsersFields.FromJsonString("counters").Should().Be(UsersFields.Counters);
 
-			Assert.That(UsersFields.FromJsonString("nickname,domain,sex,bdate,city,country,timezone,photo_50,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,has_mobile,contacts,education,online,online_mobile,lists,relation,last_seen,status,can_write_private_message,can_see_all_posts,can_post,universities,connections,site,schools,can_see_audio,common_count,relatives,counters")
-					, Is.EqualTo(UsersFields.All));
+			UsersFields.FromJsonString("can_access_closed").Should().Be(UsersFields.CanAccessClosed);
+			UsersFields.FromJsonString("is_closed").Should().Be(UsersFields.IsClosed);
+			UsersFields.FromJsonString("first_name_nom").Should().Be(UsersFields.FirstNameNom);
+			UsersFields.FromJsonString("first_name_gen").Should().Be(UsersFields.FirstNameGen);
+			UsersFields.FromJsonString("first_name_dat").Should().Be(UsersFields.FirstNameDat);
+			UsersFields.FromJsonString("first_name_acc").Should().Be(UsersFields.FirstNameAcc);
+			UsersFields.FromJsonString("first_name_ins").Should().Be(UsersFields.FirstNameIns);
+			UsersFields.FromJsonString("first_name_abl").Should().Be(UsersFields.FirstNameAbl);
+			UsersFields.FromJsonString("last_name_nom").Should().Be(UsersFields.LastNameNom);
+			UsersFields.FromJsonString("last_name_gen").Should().Be(UsersFields.LastNameGen);
+			UsersFields.FromJsonString("last_name_dat").Should().Be(UsersFields.LastNameDat);
+			UsersFields.FromJsonString("last_name_acc").Should().Be(UsersFields.LastNameAcc);
+			UsersFields.FromJsonString("last_name_ins").Should().Be(UsersFields.LastNameIns);
+			UsersFields.FromJsonString("last_name_abl").Should().Be(UsersFields.LastNameAbl);
+
+			UsersFields.FromJsonString(
+					"bdate,can_access_closed,can_post,can_see_all_posts,can_see_audio,can_write_private_message,city,common_count,connections,contacts,counters,country,domain,education,first_name_abl,first_name_acc,first_name_dat,first_name_gen,first_name_ins,first_name_nom,has_mobile,is_closed,last_name_abl,last_name_acc,last_name_dat,last_name_gen,last_name_ins,last_name_nom,last_seen,lists,nickname,online,online_mobile,photo_100,photo_200,photo_200_orig,photo_400_orig,photo_50,photo_max,photo_max_orig,relation,relatives,schools,sex,site,status,timezone,universities")
+				.Should()
+				.Be(UsersFields.All);
 		}
 
-		[Test]
+		[Fact]
 		public void VideoFiltersTest()
 		{
 			// get test
-			Assert.That(VideoFilters.Mp4.ToString(), Is.EqualTo("mp4"));
-			Assert.That(VideoFilters.Youtube.ToString(), Is.EqualTo("youtube"));
-			Assert.That(VideoFilters.Vimeo.ToString(), Is.EqualTo("vimeo"));
-			Assert.That(VideoFilters.Short.ToString(), Is.EqualTo("short"));
-			Assert.That(VideoFilters.Long.ToString(), Is.EqualTo("long"));
-			Assert.That(VideoFilters.All.ToString(), Is.EqualTo("long,mp4,short,vimeo,youtube"));
+			VideoFilters.Mp4.ToString().Should().Be("mp4");
+			VideoFilters.Youtube.ToString().Should().Be("youtube");
+			VideoFilters.Vimeo.ToString().Should().Be("vimeo");
+			VideoFilters.Short.ToString().Should().Be("short");
+			VideoFilters.Long.ToString().Should().Be("long");
+			VideoFilters.All.ToString().Should().Be("long,mp4,short,vimeo,youtube");
 
 			// parse test
-			Assert.That(VideoFilters.FromJsonString("mp4"), Is.EqualTo(VideoFilters.Mp4));
-			Assert.That(VideoFilters.FromJsonString("youtube"), Is.EqualTo(VideoFilters.Youtube));
-			Assert.That(VideoFilters.FromJsonString("vimeo"), Is.EqualTo(VideoFilters.Vimeo));
-			Assert.That(VideoFilters.FromJsonString("short"), Is.EqualTo(VideoFilters.Short));
-			Assert.That(VideoFilters.FromJsonString("long"), Is.EqualTo(VideoFilters.Long));
+			VideoFilters.FromJsonString("mp4").Should().Be(VideoFilters.Mp4);
+			VideoFilters.FromJsonString("youtube").Should().Be(VideoFilters.Youtube);
+			VideoFilters.FromJsonString("vimeo").Should().Be(VideoFilters.Vimeo);
+			VideoFilters.FromJsonString("short").Should().Be(VideoFilters.Short);
+			VideoFilters.FromJsonString("long").Should().Be(VideoFilters.Long);
 
-			Assert.That(VideoFilters.FromJsonString("mp4,youtube,vimeo,short,long")
-					, Is.EqualTo(VideoFilters.All));
+			VideoFilters.FromJsonString("mp4,youtube,vimeo,short,long").Should().Be(VideoFilters.All);
 		}
 
-		[Test]
+		[Fact]
 		public void AudioBroadcastFilterTest()
 		{
 			// get test
-			Assert.That(actual: AudioBroadcastFilter.All.ToString(), expression: Is.EqualTo(expected: "all"));
-			Assert.That(actual: AudioBroadcastFilter.Friends.ToString(), expression: Is.EqualTo(expected: "friends"));
-			Assert.That(actual: AudioBroadcastFilter.Groups.ToString(), expression: Is.EqualTo(expected: "groups"));
+			AudioBroadcastFilter.All.ToString().Should().Be("all");
+			AudioBroadcastFilter.Friends.ToString().Should().Be("friends");
+			AudioBroadcastFilter.Groups.ToString().Should().Be("groups");
+
 			// parse test
-			Assert.That(actual: AudioBroadcastFilter.FromJsonString(val: "all"), expression: Is.EqualTo(expected: AudioBroadcastFilter.All));
-			Assert.That(actual: AudioBroadcastFilter.FromJsonString(val: "friends"), expression: Is.EqualTo(expected: AudioBroadcastFilter.Friends));
-			Assert.That(actual: AudioBroadcastFilter.FromJsonString(val: "groups"), expression: Is.EqualTo(expected: AudioBroadcastFilter.Groups));
+			AudioBroadcastFilter.FromJsonString(val: "all").Should().Be(AudioBroadcastFilter.All);
+
+			AudioBroadcastFilter.FromJsonString(val: "friends").Should().Be(AudioBroadcastFilter.Friends);
+
+			AudioBroadcastFilter.FromJsonString(val: "groups").Should().Be(AudioBroadcastFilter.Groups);
 		}
 	}
 }

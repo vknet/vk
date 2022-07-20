@@ -1,13 +1,14 @@
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_PhotoNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoNewTest));
@@ -25,12 +26,12 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(-groupId, update.Photo.OwnerId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(photoId, update.Photo.Id);
+			update.Photo.OwnerId.Should().Be(-groupId);
+			update.GroupId.Should().Be(groupId);
+			update.Photo.Id.Should().Be(photoId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_PhotoCommentNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentNewTest));
@@ -50,14 +51,14 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.PhotoComment.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.PhotoComment.Text);
-			Assert.AreEqual(-groupId, update.PhotoComment.PhotoOwnerId);
-			Assert.AreEqual(photoId, update.PhotoComment.PhotoId);
+			update.PhotoComment.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.PhotoComment.Text.Should().Be(text);
+			update.PhotoComment.PhotoOwnerId.Should().Be(-groupId);
+			update.PhotoComment.PhotoId.Should().Be(photoId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_PhotoCommentEditTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentEditTest));
@@ -76,13 +77,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.PhotoComment.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.PhotoComment.Text);
-			Assert.AreEqual(-groupId, update.PhotoComment.PhotoOwnerId);
+			update.PhotoComment.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.PhotoComment.Text.Should().Be(text);
+			update.PhotoComment.PhotoOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_PhotoCommentRestoreTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentRestoreTest));
@@ -101,13 +102,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(userId, update.PhotoComment.FromId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(text, update.PhotoComment.Text);
-			Assert.AreEqual(-groupId, update.PhotoComment.PhotoOwnerId);
+			update.PhotoComment.FromId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.PhotoComment.Text.Should().Be(text);
+			update.PhotoComment.PhotoOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_PhotoCommentDeleteTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentDeleteTest));
@@ -128,12 +129,12 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(deleterId, update.PhotoCommentDelete.DeleterId);
-			Assert.AreEqual(userId, update.PhotoCommentDelete.UserId);
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(-groupId, update.PhotoCommentDelete.OwnerId);
-			Assert.AreEqual(photoId, update.PhotoCommentDelete.PhotoId);
-			Assert.AreEqual(id, update.PhotoCommentDelete.Id);
+			update.PhotoCommentDelete.DeleterId.Should().Be(deleterId);
+			update.PhotoCommentDelete.UserId.Should().Be(userId);
+			update.GroupId.Should().Be(groupId);
+			update.PhotoCommentDelete.OwnerId.Should().Be(-groupId);
+			update.PhotoCommentDelete.PhotoId.Should().Be(photoId);
+			update.PhotoCommentDelete.Id.Should().Be(id);
 		}
 	}
 }

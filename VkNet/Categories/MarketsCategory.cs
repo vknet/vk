@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Model;
@@ -17,7 +17,7 @@ namespace VkNet.Categories
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
-		/// Методы для работы с приложениями.
+		/// api vk.com
 		/// </summary>
 		/// <param name="vk"> API. </param>
 		public MarketsCategory(IVkApiInvoke vk)
@@ -55,7 +55,22 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<Market> Search(MarketSearchParams @params)
 		{
-			return _vk.Call("market.search", @params).ToVkCollectionOf<Market>(selector: x => x);
+			return _vk.Call("market.search",
+					new VkParameters
+					{
+						{ "owner_id", @params.OwnerId },
+						{ "album_id", @params.AlbumId },
+						{ "q", @params.Query },
+						{ "price_from", @params.PriceFrom },
+						{ "price_to", @params.PriceTo },
+						{ "tags", @params.Tags },
+						{ "sort", @params.Sort },
+						{ "rev", @params.Rev },
+						{ "offset", @params.Offset },
+						{ "count", @params.Count },
+						{ "extended", @params.Extended }
+					})
+				.ToVkCollectionOf<Market>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -86,13 +101,37 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long CreateComment(MarketCreateCommentParams @params)
 		{
-			return _vk.Call("market.createComment", @params);
+			return _vk.Call("market.createComment",
+				new VkParameters
+				{
+					{ "owner_id", @params.OwnerId },
+					{ "item_id", @params.ItemId },
+					{ "message", @params.Message },
+					{ "attachments", @params.Attachments },
+					{ "from_group", @params.FromGroup },
+					{ "reply_to_comment", @params.ReplyToComment },
+					{ "sticker_id", @params.StickerId },
+					{ "guid", @params.Guid }
+				});
 		}
 
 		/// <inheritdoc />
 		public VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params)
 		{
-			return _vk.Call("market.getComments", @params).ToVkCollectionOf<MarketComment>(selector: x => x);
+			return _vk.Call("market.getComments",
+					new VkParameters
+					{
+						{ "owner_id", @params.OwnerId },
+						{ "item_id", @params.ItemId },
+						{ "need_likes", @params.NeedLikes },
+						{ "start_comment_id", @params.StartCommentId },
+						{ "offset", @params.Offset },
+						{ "count", @params.Count },
+						{ "sort", @params.Sort },
+						{ "extended", @params.Extended },
+						{ "fields", @params.Fields }
+					})
+				.ToVkCollectionOf<MarketComment>(selector: x => x);
 		}
 
 		/// <inheritdoc />
@@ -162,13 +201,51 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public long Add(MarketProductParams @params)
 		{
-			return _vk.Call("market.add", @params)[key: "market_item_id"];
+			return _vk.Call("market.add",
+				new VkParameters
+				{
+					{ "owner_id", @params.OwnerId },
+					{ "item_id", @params.ItemId },
+					{ "name", @params.Name },
+					{ "description", @params.Description },
+					{ "url", @params.Url },
+					{ "sku", @params.Sku },
+					{ "category_id", @params.CategoryId },
+					{ "price", @params.Price },
+					{ "old_price", @params.OldPrice },
+					{ "deleted", @params.Deleted },
+					{ "main_photo_id", @params.MainPhotoId },
+					{ "photo_ids", @params.PhotoIds },
+					{ "dimension_width", @params.DimensionWidth },
+					{ "dimension_height", @params.DimensionHeight },
+					{ "dimension_length", @params.DimensionLength },
+					{ "weight", @params.Weight }
+				})[key: "market_item_id"];
 		}
 
 		/// <inheritdoc />
-		public bool Edit(MarketProductParams @params)
+		public bool Edit(MarketProductParams editParams)
 		{
-			return _vk.Call("market.edit", @params);
+			return _vk.Call<bool>("market.edit",
+				new VkParameters
+				{
+					{ "owner_id", editParams.OwnerId },
+					{ "item_id", editParams.ItemId },
+					{ "name", editParams.Name },
+					{ "description", editParams.Description },
+					{ "url", editParams.Url },
+					{ "sku", editParams.Sku },
+					{ "category_id", editParams.CategoryId },
+					{ "price", editParams.Price },
+					{ "old_price", editParams.OldPrice },
+					{ "deleted", editParams.Deleted },
+					{ "main_photo_id", editParams.MainPhotoId },
+					{ "photo_ids", editParams.PhotoIds },
+					{ "dimension_width", editParams.DimensionWidth },
+					{ "dimension_height", editParams.DimensionHeight },
+					{ "dimension_length", editParams.DimensionLength },
+					{ "weight", editParams.Weight }
+				});
 		}
 
 		/// <inheritdoc />

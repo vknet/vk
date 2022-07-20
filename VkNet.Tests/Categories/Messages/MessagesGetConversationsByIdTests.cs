@@ -1,21 +1,23 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using FluentAssertions;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesGetConversationsByIdTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void GetConversationsById()
 		{
 			Url = "https://api.vk.com/method/messages.getConversationsById";
 			ReadCategoryJsonPath(nameof(GetConversationsById));
 
-			var result = Api.Messages.GetConversationsById(new long[] { 123 }, null);
+			var result = Api.Messages.GetConversationsById(new long[]
+			{
+				123
+			});
 
-			Assert.That(1, Is.EqualTo(result.Count));
+			result.Count.Should().Be(1);
 		}
 	}
 }

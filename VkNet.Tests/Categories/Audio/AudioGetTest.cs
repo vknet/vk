@@ -1,18 +1,18 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Audio
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AudioGetTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";
 
-		[Test]
+		[Fact]
 		public void GetTest()
 		{
 			Url = "https://api.vk.com/method/audio.get";
@@ -26,9 +26,9 @@ namespace VkNet.Tests.Categories.Audio
 
 			var audio = result.FirstOrDefault();
 
-			Assert.IsNotEmpty(result);
-			Assert.That(result.Count, Is.EqualTo(1));
-			Assert.NotNull(audio);
+			result.Should().NotBeEmpty();
+			result.Should().ContainSingle();
+			audio.Should().NotBeNull();
 		}
 	}
 }

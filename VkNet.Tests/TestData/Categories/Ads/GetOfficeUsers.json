@@ -1,0 +1,48 @@
+﻿{
+  "response": [
+    {
+      "user_id": 504736359,
+      "accesses": [
+        {
+          "role": "admin"
+        }
+      ]
+    },
+    {
+      "user_id": 1232,
+      "accesses": [
+        {
+          "client_id": "1605245430",
+          "role": "reports"
+        }
+      ]
+    },
+    {
+      "user_id": 1488,
+      "accesses": [
+        {
+          "client_id": "1605245430",
+          "role": "reports"
+        }
+      ]
+    },
+    {
+      "user_id": 2,
+      "accesses": [
+        {
+          "client_id": "1605245430",
+          "role": "reports"
+        }
+      ]
+    },
+    {
+      "user_id": 50,
+      "accesses": [
+        {
+          "client_id": "1605245430",
+          "role": "reports"
+        }
+      ]
+    }
+  ]
+}

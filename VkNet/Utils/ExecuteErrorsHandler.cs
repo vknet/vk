@@ -1,6 +1,8 @@
 using System;
 using System.Linq;
 using Newtonsoft.Json;
+using VkNet.Exception;
+using VkNet.Infrastructure;
 using VkNet.Model;
 
 namespace VkNet.Utils
@@ -11,19 +13,19 @@ namespace VkNet.Utils
 	public static class ExecuteErrorsHandler
 	{
 		/// <summary>
-		/// Получить <see cref="AggregateException" /> со всеми ошибками запроса execute
+		/// Получить <see cref="ExecuteException" /> со всеми ошибками запроса execute
 		/// </summary>
 		/// <param name="response"> Json ответ </param>
 		/// <returns> </returns>
-		/// <exception cref="ArgumentException"> Параметр response должен иметь значение. </exception>
-		public static AggregateException GetExecuteExceptions(string response)
+		/// <exception cref="ExecuteException"> Параметр response должен иметь значение. </exception>
+		public static ExecuteException GetExecuteExceptions(string response)
 		{
 			if (string.IsNullOrWhiteSpace(response))
 			{
 				throw new ArgumentException($"{nameof(response)} should have value", nameof(response));
 			}
 
-			var executeErrorsResponse = JsonConvert.DeserializeObject<ExecuteErrorsResponse>(response);
+			var executeErrorsResponse = JsonConvert.DeserializeObject<ExecuteErrorsResponse>(response, JsonConfigure.JsonSerializerSettings);
 
 			if (executeErrorsResponse?.ExecuteErrors == null)
 			{
@@ -39,7 +41,7 @@ namespace VkNet.Utils
 					RequestParams = exception.RequestParams
 				}));
 
-			return new AggregateException(exceptionList);
+			return new ExecuteException(exceptionList, executeErrorsResponse.Response);
 		}
 	}
 }

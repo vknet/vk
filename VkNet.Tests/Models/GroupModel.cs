@@ -1,21 +1,20 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using FluentAssertions;
 using VkNet.Model;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GroupModel : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void ShouldHaveField_Trending()
 		{
 			var group = new Group();
-			Assert.That(group, Has.Property("Trending"));
+			group.Trending.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void Trending_ShouldBeFalse()
 		{
 			ReadJsonFile("Models", nameof(Trending_ShouldBeFalse));
@@ -23,27 +22,27 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 			var group = Group.FromJson(response);
 
-			Assert.That(group.Trending, Is.False);
+			group.Trending.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void Trending_ShouldBeFalse2()
 		{
 			ReadJsonFile("Models", nameof(Trending_ShouldBeFalse2));
 
 			var response = GetResponse();
 			var group = Group.FromJson(response);
-			Assert.That(group.Trending, Is.False);
+			group.Trending.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void Trending_ShouldBeTrue()
 		{
 			ReadJsonFile("Models", nameof(Trending_ShouldBeTrue));
 
 			var response = GetResponse();
 			var group = Group.FromJson(response);
-			Assert.That(group.Trending, Is.True);
+			group.Trending.Should().BeTrue();
 		}
 	}
 }

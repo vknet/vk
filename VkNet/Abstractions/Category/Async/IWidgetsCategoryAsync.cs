@@ -6,7 +6,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Widgets Методы для работы с виджетами на внешних сайтах.
+	/// Методы для работы с виджетами на внешних сайтах.
 	/// </summary>
 	public interface IWidgetsCategoryAsync
 	{

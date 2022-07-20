@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
-using Flurl.Http;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -18,68 +18,70 @@ namespace VkNet.Utils
 	{
 		private readonly ILogger<RestClient> _logger;
 
-		/// <inheritdoc />
-		public RestClient(ILogger<RestClient> logger)
+		/// <inheritdoc cref="RestClient"/>
+		public RestClient(HttpClient httpClient, ILogger<RestClient> logger)
 		{
+			HttpClient = httpClient;
 			_logger = logger;
 		}
 
+		/// <summary>
+		/// Http client
+		/// </summary>
+		public HttpClient HttpClient { get; }
+
 		/// <inheritdoc />
-		[Obsolete("Use HttpClientFactory to configure proxy.")]
+		[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
 		public IWebProxy Proxy { get; set; }
 
 		/// <inheritdoc />
-		[Obsolete("Use HttpClientFactory to configure timeout.")]
+		[Obsolete("Use HttpClient to configure timeout. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration",
+			true)]
 		public TimeSpan Timeout { get; set; }
 
 		/// <inheritdoc />
-		public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
+		public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding)
 		{
-			if (_logger != null)
-			{
-				var uriBuilder = new UriBuilder(uri)
-				{
-					Query = string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"))
-				};
+			var url = Url.Combine(uri.ToString(), Url.QueryFrom(parameters.ToArray()));
 
-				_logger.LogDebug($"GET request: {uriBuilder.Uri}");
-			}
+			_logger?.LogDebug("GET request: {Url}", url);
 
-			return CallAsync(() => uri.ToString().AllowAnyHttpStatus().SetQueryParams(parameters).GetAsync());
+			return CallAsync(() => HttpClient.GetAsync(new Uri(url)), encoding);
 		}
 
 		/// <inheritdoc />
-		public Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters)
+		public Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding)
 		{
 			if (_logger != null)
 			{
 				var json = JsonConvert.SerializeObject(parameters);
-				_logger.LogDebug($"POST request: {uri}{Environment.NewLine}{Utilities.PrettyPrintJson(json)}");
+				_logger.LogDebug("POST request: {Uri}{NewLine}{PrettyJson}", uri, Environment.NewLine, Utilities.PrettyPrintJson(json));
 			}
 
 			var content = new FormUrlEncodedContent(parameters);
 
-			return CallAsync(() => uri.ToString().AllowAnyHttpStatus().PostAsync(content));
+			return CallAsync(() => HttpClient.PostAsync(uri, content), encoding);
 		}
 
 		/// <inheritdoc />
 		public void Dispose()
 		{
-			GC.SuppressFinalize(this);
+			HttpClient?.Dispose();
 		}
 
-		private async Task<HttpResponse<string>> CallAsync(Func<Task<HttpResponseMessage>> method)
+		private async Task<HttpResponse<string>> CallAsync(Func<Task<HttpResponseMessage>> method, Encoding encoding)
 		{
 			var response = await method().ConfigureAwait(false);
 
-			var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
-			_logger?.LogDebug($"Response:{Environment.NewLine}{Utilities.PrettyPrintJson(content)}");
-			var url = response.RequestMessage.RequestUri.ToString();
+			var bytes = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
+			var content = encoding.GetString(bytes, 0, bytes.Length);
+			_logger?.LogDebug("Response:{NewLine}{PrettyJson}", Environment.NewLine, Utilities.PrettyPrintJson(content));
+			var requestUri = response.RequestMessage?.RequestUri;
+			var responseUri = response.Headers.Location;
 
 			return response.IsSuccessStatusCode
-				? HttpResponse<string>.Success(response.StatusCode, content, url)
-				: HttpResponse<string>.Fail(response.StatusCode, content, url);
+				? HttpResponse<string>.Success(response.StatusCode, content, requestUri, responseUri)
+				: HttpResponse<string>.Fail(response.StatusCode, content, requestUri, responseUri);
 		}
 	}
 }

@@ -1,17 +1,17 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Audio
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AudioGetPlaylistsTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";
 
-		[Test]
+		[Fact]
 		public void GetPlaylistsTest()
 		{
 			Url = "https://api.vk.com/method/audio.getPlaylists";
@@ -21,9 +21,9 @@ namespace VkNet.Tests.Categories.Audio
 			var result = Api.Audio.GetPlaylists(123456789, 1);
 			var playlist = result.FirstOrDefault();
 
-			Assert.That(result.TotalCount, Is.EqualTo(3));
-			Assert.IsNotEmpty(result);
-			Assert.NotNull(playlist);
+			result.TotalCount.Should().Be(3);
+			result.Should().NotBeEmpty();
+			playlist.Should().NotBeNull();
 		}
 	}
 }

@@ -14,11 +14,11 @@ namespace VkNet.Utils
 
 		private TimeSpan _timeSpan;
 
-	#if NET40
-		private readonly AsyncSemaphoreSlim _semaphore = new AsyncSemaphoreSlim(1);
-	#else
+		private int _left;
+
+		private DateTime _dateTime;
+
 		private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
-	#endif
 
 		/// <inheritdoc />
 		/// <summary>
@@ -58,38 +58,50 @@ namespace VkNet.Utils
 			}
 
 			_count = number;
+			_left = number;
 			_timeSpan = timeSpan;
 		}
 
 		/// <inheritdoc />
-		public async Task<IDisposable> WaitForReadiness(CancellationToken cancellationToken)
+		public async Task<IDisposable> WaitForReadinessAsync(CancellationToken cancellationToken)
 		{
 			await _semaphore.WaitAsync(cancellationToken).ConfigureAwait(false);
 
-			var milliseconds = _timeSpan.TotalMilliseconds / _count;
-
-			var timeToWait = (int) Math.Ceiling(milliseconds);
-
-			try
+			if ((DateTime.Now - _dateTime) >= _timeSpan)
 			{
-			#if NET40
-				await TaskEx.Delay(timeToWait, cancellationToken).ConfigureAwait(false);
-			#else
-				await Task.Delay(timeToWait, cancellationToken).ConfigureAwait(false);
-			#endif
-			}
-			finally
-			{
-				_semaphore.Release();
+				_left = _count;
+				_dateTime = DateTime.Now;
 			}
 
-			return new DisposableAction(() => { });
+			if (_left > 0)
+			{
+				_left--;
+			}
+			else
+			{
+				var timeToWait = (int)Math.Ceiling((_timeSpan - (DateTime.Now - _dateTime)).TotalMilliseconds + 15);
+
+				try
+				{
+					await Task.Delay(timeToWait, cancellationToken).ConfigureAwait(false);
+				}
+				catch { }
+
+				_left = _count - 1;
+				_dateTime = DateTime.Now;
+			}
+
+			_semaphore.Release();
+			return new DisposableAction(() =>
+			{
+			});
 		}
 
 		/// <inheritdoc />
 		public void SetRate(int number, TimeSpan timeSpan)
 		{
 			_count = number;
+			_left = number;
 			_timeSpan = timeSpan;
 		}
 	}

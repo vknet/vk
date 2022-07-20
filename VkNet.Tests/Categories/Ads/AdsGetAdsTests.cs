@@ -1,21 +1,21 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Ads
 {
-	[ExcludeFromCodeCoverage]
+
 	public class AdsGetAdsTests : CategoryBaseTest
 	{
 		protected override string Folder => "Ads";
 
-		[Test]
+		[Fact]
 		public void GetAds_GenerateAdsCorrectly()
 		{
 			Url = "https://api.vk.com/method/ads.getAds";
@@ -31,35 +31,33 @@ namespace VkNet.Tests.Categories.Ads
 				}
 			});
 
-			Assert.IsNotEmpty(ads);
+			ads.Should().NotBeEmpty();
 
 			var ad = ads.FirstOrDefault();
-			Assert.That(ads.Count, Is.EqualTo(1));
-			Assert.That(ad.Id, Is.EqualTo(42644528));
-			Assert.That(ad.CampaignId, Is.EqualTo(1009150293));
-			Assert.That(ad.Status, Is.EqualTo(AdStatus.Stopped));
-			Assert.That(ad.ModerationStatus, Is.EqualTo(ModerationStatus.Waiting));
-			Assert.That(ad.AllLimit, Is.EqualTo(0));
-			Assert.That(ad.Category1Id, Is.EqualTo(285));
-			Assert.That(ad.Category2Id, Is.EqualTo(0));
-			Assert.That(ad.Name, Is.EqualTo("Сеты шаров на свою группу."));
-			Assert.That(ad.CostType, Is.EqualTo(CostType.Cpm));
-			Assert.That(ad.AdFormat, Is.EqualTo(AdFormat.Public));
-			Assert.That(ad.Cpm, Is.EqualTo(23699));
-			Assert.That(ad.ImpressionsLimit, Is.EqualTo(1));
-			Assert.That(ad.AdPlatform, Is.EqualTo(AdPlatform.All));
-			Assert.That(ad.AdPlatformNoAdNetwork, Is.EqualTo(true));
-			Assert.That(ad.AdPPlatformNoWall, Is.EqualTo(true));
-			Assert.That(ad.CreateTime, Is.EqualTo(new DateTime(2018, 5, 23, 9, 59, 18)));
-			Assert.That(ad.UpdateTime, Is.EqualTo(new DateTime(2018, 6, 16, 14, 48, 42)));
-			Assert.That(ad.DayLimit, Is.EqualTo(0));
-			Assert.That(ad.AgeRestriction, Is.EqualTo(AdAgeRestriction.EighteeenPlus));
+			ads.Should().ContainSingle();
+			ad.Id.Should().Be(42644528);
+			ad.CampaignId.Should().Be(1009150293);
+			ad.Status.Should().Be(AdStatus.Stopped);
+			ad.ModerationStatus.Should().Be(ModerationStatus.Waiting);
+			ad.AllLimit.Should().Be(0);
+			ad.Category1Id.Should().Be(285);
+			ad.Category2Id.Should().Be(0);
+			ad.Name.Should().Be("Сеты шаров на свою группу.");
+			ad.CostType.Should().Be(CostType.Cpm);
+			ad.AdFormat.Should().Be(AdFormat.Public);
+			ad.Cpm.Should().Be(23699);
+			ad.ImpressionsLimit.Should().Be(1);
+			ad.AdPlatform.Should().Be(AdPlatform.All);
+			ad.AdPlatformNoAdNetwork.Should().Be(true);
+			ad.AdPPlatformNoWall.Should().Be(true);
+			ad.CreateTime.Should().Be(new DateTime(2018, 5, 23, 9, 59, 18));
+			ad.UpdateTime.Should().Be(new DateTime(2018, 6, 16, 14, 48, 42));
+			ad.DayLimit.Should().Be(0);
+			ad.AgeRestriction.Should().Be(AdAgeRestriction.EighteeenPlus);
 
-			Assert.That(ad.EventsRetargetingGroups[26897268][0],
-				Is.EqualTo(EventsRetargetingGroup.PublicNewsUnsubscription));
+			ad.EventsRetargetingGroups[26897268][0].Should().Be(EventsRetargetingGroup.PublicNewsUnsubscription);
 
-			Assert.That(ad.EventsRetargetingGroups[26897268][1],
-				Is.EqualTo(EventsRetargetingGroup.HidingOrComplaint));
+			ad.EventsRetargetingGroups[26897268][1].Should().Be(EventsRetargetingGroup.HidingOrComplaint);
 		}
 	}
 }

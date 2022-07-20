@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Методы этого класса позволяют производить асинхронные действия с универсальным
+	/// Методы этого класса позволяют производить действия с универсальным
 	/// методом.
 	/// </summary>
 	public interface IExecuteCategoryAsync
@@ -21,6 +21,7 @@ namespace VkNet.Abstractions
 		/// Алгоритм должен завершаться командой return %выражение%. Операторы должны быть
 		/// разделены точкой с запятой.
 		/// </param>
+		/// <param name="vkParameters"></param>
 		/// <returns>
 		/// Возвращает данные, запрошенные алгоритмом.
 		/// При работе с методом execute структура ответа в XML ближе к JSON и может
@@ -30,7 +31,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/execute
 		/// </remarks>
-		Task<VkResponse> ExecuteAsync(string code);
+		Task<VkResponse> ExecuteAsync(string code, VkParameters vkParameters = default);
 
 		/// <summary>
 		/// Универсальный метод, который позволяет запускать последовательность других
@@ -44,6 +45,7 @@ namespace VkNet.Abstractions
 		/// Алгоритм должен завершаться командой return %выражение%. Операторы должны быть
 		/// разделены точкой с запятой.
 		/// </param>
+		/// <param name="vkParameters"></param>
 		/// <returns>
 		/// Возвращает данные, запрошенные алгоритмом.
 		/// При работе с методом execute структура ответа в XML ближе к JSON и может
@@ -53,7 +55,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/execute
 		/// </remarks>
-		Task<T> ExecuteAsync<T>(string code);
+		Task<T> ExecuteAsync<T>(string code, VkParameters vkParameters = default);
 
 		/// <summary>
 		/// Универсальный метод, который позволяет запускать хранимые процедуры.

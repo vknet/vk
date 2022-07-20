@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using VkNet.Utils;
 
@@ -14,6 +14,11 @@ namespace VkNet.Model.Attachments
 	{
 		/// <inheritdoc />
 		protected override string Alias => "link";
+
+		/// <summary>
+		/// Идентификатор ссылки
+		/// </summary>
+		public string LinkId { get; set; }
 
 		/// <summary>
 		/// Адрес ссылки.
@@ -53,7 +58,7 @@ namespace VkNet.Model.Attachments
 		/// <summary>
 		/// Идентификатр wiki страницы с контентом для предпросмотра содержимого страницы.
 		/// Идентификатор возвращается в формате
-		/// "owner_id_page_id".
+		/// <c>"owner_id_page_id"</c>.
 		/// </summary>
 		public string PreviewPage { get; set; }
 
@@ -102,9 +107,18 @@ namespace VkNet.Model.Attachments
 		/// <returns> </returns>
 		public static Link FromJson(VkResponse response)
 		{
+			var id = default(long?);
+			var linkId = (string)response["id"];
+
+			if (long.TryParse(linkId, out long temporaryId))
+			{
+				id = temporaryId;
+			}
+
 			return new Link
 			{
-				Id = response["id"],
+				Id = id,
+				LinkId = linkId,
 				Uri = response["url"],
 				Title = response["title"],
 				Description = response["description"] ?? response["desc"],

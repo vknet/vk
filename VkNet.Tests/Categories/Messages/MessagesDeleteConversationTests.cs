@@ -1,22 +1,21 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
-using VkNet.Tests.Infrastructure;
+﻿using FluentAssertions;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class MessagesDeleteConversationTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void DeleteConversation()
 		{
 			Url = "https://api.vk.com/method/messages.deleteConversation";
-			ReadJsonFile(JsonPaths.True);
+			ReadCategoryJsonPath(nameof(DeleteConversation));
 
 			var result = Api.Messages.DeleteConversation(123, 123, 123);
 
-			Assert.IsTrue(result);
+			result.Should().Be(12312423);
 		}
 	}
 }

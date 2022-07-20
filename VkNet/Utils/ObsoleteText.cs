@@ -91,6 +91,26 @@ namespace VkNet.Utils
 		public const string FriendsAddList = Deprecated + "long AddList(string name, IEnumerable<long> userIds);";
 
 		/// <summary>
+		/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategory.Ban"/>
+		/// </summary>
+		public const string BanUser = Deprecated + "bool Ban(long ownerId);";
+
+		/// <summary>
+		/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategory.Unban"/>
+		/// </summary>
+		public const string UnbanUser = Deprecated + "bool Unban(long groupId, long userId)";
+
+		/// <summary>
+		/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategory.BanAsync"/>
+		/// </summary>
+		public const string BanUserAsync = Deprecated + "bool BanAsync(long ownerId);";
+
+		/// <summary>
+		/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategory.UnbanAsync"/>
+		/// </summary>
+		public const string UnbanUserAsync = Deprecated + "Task<bool> UnbanUserAsync(long groupId, long userId)";
+
+		/// <summary>
 		/// <inheritdoc cref="Obsolete"/> Используйте вместо него
 		/// </summary>
 		private const string Deprecated = Obsolete + " Используйте вместо него ";
@@ -100,5 +120,17 @@ namespace VkNet.Utils
 		/// </summary>
 		public const string Obsolete =
 			"Данный метод устарел и может быть отключён через некоторое время, пожалуйста, избегайте его использования.";
+
+		/// <summary>
+		/// Данный класс устарел и может быть удалён в будующих версиях, пожалуйста, избегайте его использования.
+		/// </summary>
+		public const string ObsoleteClass =
+			"Данный класс устарел и может быть удалён в будующих версиях, пожалуйста, избегайте его использования.";
+
+		/// <summary>
+		/// Данное поле содержало кириллицу в названии. Обновите использование на поле с латинским названием.
+		/// </summary>
+		public const string ObsoleteCyrillicProperty =
+			"Данное поле содержало кириллицу в названии. Обновите использование на поле с латинским названием.";
 	}
 }

@@ -41,7 +41,7 @@ namespace VkNet.Utils
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 
-			using (await _awaitableConstraint.WaitForReadiness(cancellationToken).ConfigureAwait(false))
+			using (await _awaitableConstraint.WaitForReadinessAsync(cancellationToken).ConfigureAwait(false))
 			{
 				await perform().ConfigureAwait(false);
 			}
@@ -52,7 +52,7 @@ namespace VkNet.Utils
 		{
 			cancellationToken.ThrowIfCancellationRequested();
 
-			using (await _awaitableConstraint.WaitForReadiness(cancellationToken).ConfigureAwait(false))
+			using (await _awaitableConstraint.WaitForReadinessAsync(cancellationToken).ConfigureAwait(false))
 			{
 				return await perform().ConfigureAwait(false);
 			}
@@ -110,11 +110,8 @@ namespace VkNet.Utils
 			return () =>
 			{
 				act();
-			#if NET40
-				return TaskEx.FromResult(0);
-			#else
+
 				return Task.FromResult(0);
-			#endif
 			};
 		}
 
@@ -129,14 +126,7 @@ namespace VkNet.Utils
 		/// </returns>
 		private static Func<Task<T>> Transform<T>(Func<T> compute)
 		{
-			return () =>
-			{
-			#if NET40
-				return TaskEx.FromResult(compute());
-			#else
-				return Task.FromResult(compute());
-			#endif
-			};
+			return () => Task.FromResult(compute());
 		}
 	}
 }

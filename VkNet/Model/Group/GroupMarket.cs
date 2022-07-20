@@ -35,7 +35,8 @@ namespace VkNet.Model
 		public long MainAlbumId { get; set; }
 
 		/// <summary>
-		/// Идентификатор контактного лица для связи с продавцом. Возвращается отрицательное значение, если для связи с продавцом используются сообщения сообщества;
+		/// Идентификатор контактного лица для связи с продавцом. Возвращается отрицательное значение,
+		/// если для связи с продавцом используются сообщения сообщества;
 		/// </summary>
 		[JsonProperty("contact_id")]
 		public long ContactId { get; set; }
@@ -53,6 +54,12 @@ namespace VkNet.Model
 		public string CurrencyText { get; set; }
 
 		/// <summary>
+		/// Тип, может иметь значения basic и advanced в зависимости от типа магазина.
+		/// </summary>
+		[JsonProperty("type")]
+		public string Type { get; set; }
+
+		/// <summary>
 		/// Десериализовать из Json.
 		/// </summary>
 		/// <param name="response"> Ответ от vk. </param>
@@ -67,7 +74,8 @@ namespace VkNet.Model
 				MainAlbumId = response["main_album_id"],
 				ContactId = response["contact_id"],
 				Currency = response["currency"],
-				CurrencyText = response["currency_text"]
+				CurrencyText = response["currency_text"],
+				Type = response["type"]
 			};
 		}
 

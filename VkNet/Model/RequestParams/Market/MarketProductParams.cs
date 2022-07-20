@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Market
 {
@@ -64,6 +63,14 @@ namespace VkNet.Model.RequestParams.Market
 		public decimal Price { get; set; }
 
 		/// <summary>
+		/// Цена товара. дробное число, обязательный параметр, минимальное значение 0.01
+		/// (дробное число, обязательный параметр,
+		/// минимальное значение 0.01).
+		/// </summary>
+		[JsonProperty("old_price")]
+		public decimal OldPrice { get; set; }
+
+		/// <summary>
 		/// Статус товара (1 — товар удален, 0 — товар не удален). флаг, может принимать
 		/// значения 1 или 0 (флаг, может
 		/// принимать значения 1 или 0).
@@ -99,25 +106,33 @@ namespace VkNet.Model.RequestParams.Market
 		public Uri Url { get; set; }
 
 		/// <summary>
-		/// Привести к типу VkParameters.
+		/// Ширина в миллиметрах.
 		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MarketProductParams p)
-		{
-			return new VkParameters
-			{
-				{ "owner_id", p.OwnerId },
-				{ "item_id", p.ItemId },
-				{ "name", p.Name },
-				{ "description", p.Description },
-				{ "category_id", p.CategoryId },
-				{ "price", p.Price },
-				{ "deleted", p.Deleted },
-				{ "main_photo_id", p.MainPhotoId },
-				{ "photo_ids", p.PhotoIds },
-				{ "url", p.Url }
-			};
-		}
+		[JsonProperty("dimension_width")]
+		public int DimensionWidth { get; set; }
+
+		/// <summary>
+		/// Высота в миллиметрах.
+		/// </summary>
+		[JsonProperty("dimension_height")]
+		public int DimensionHeight { get; set; }
+
+		/// <summary>
+		/// Глубина в миллиметрах.
+		/// </summary>
+		[JsonProperty("dimension_length")]
+		public int DimensionLength { get; set; }
+
+		/// <summary>
+		/// Вес в граммах.
+		/// </summary>
+		[JsonProperty("weight")]
+		public int Weight { get; set; }
+
+		/// <summary>
+		/// Артикул товара, произвольная строка
+		/// </summary>
+		[JsonProperty("sku")]
+		public string Sku { get; set; }
 	}
 }

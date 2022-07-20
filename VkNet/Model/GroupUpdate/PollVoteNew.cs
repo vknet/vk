@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Добавление голоса в публичном опросе
 	/// </summary>
 	[Serializable]
-	public class PollVoteNew
+	public class PollVoteNew : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя
@@ -42,6 +42,23 @@ namespace VkNet.Model.GroupUpdate
 				OptionId = response["option_id"],
 				OwnerId = response["owner_id"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="PollVoteNew" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="PollVoteNew" /> </returns>
+		public static implicit operator PollVoteNew(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

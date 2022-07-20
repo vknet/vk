@@ -5,13 +5,14 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Новая запись на стене(WallPost, WallRepost)(Post с дополнительными полями)
+	/// Новая запись на стене (<c>WallPost</c>, <c>WallRepost</c>)
+	/// (<c>Post</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class WallPost : Post
+	public class WallPost : Post, IGroupUpdate
 	{
 		/// <summary>
-		/// Id отложенной записи
+		/// <c>Id</c> отложенной записи
 		/// </summary>
 		public long? PostponedId { get; set; }
 
@@ -56,7 +57,25 @@ namespace VkNet.Model.GroupUpdate
 				MarkedAsAds = response[key: "marked_as_ads"],
 				AccessKey = response[key: "access_key"],
 				PostponedId = response["postponed_id"],
+				Donut = response["donut"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="WallPost" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="WallPost" /> </returns>
+		public static implicit operator WallPost(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

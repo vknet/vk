@@ -2,7 +2,7 @@
 ||Badge|
 |------|:------:|
 |**Build Status**|[![Build Status](https://dev.azure.com/VkDotNet/VkNet/_apis/build/status/vknet.vk)](https://dev.azure.com/VkDotNet/VkNet/_build/latest?definitionId=1)
-|**Target Frameworks**|[![Targets](https://img.shields.io/badge/.NET%20Standard-2.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/standard/net-standard) [![Targets](https://img.shields.io/badge/.NET%20-4.5-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/framework/) [![Targets](https://img.shields.io/badge/.NET%20-4.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/framework/)|
+|**Target Frameworks**|[![Targets](https://img.shields.io/badge/.NET%20Standard-2.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/standard/net-standard) [![Targets](https://img.shields.io/badge/.NET%20-5-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/core/introduction)|
 |**Nuget**|[![](http://img.shields.io/nuget/v/VkNet.svg)](http://www.nuget.org/packages/VkNet)
 |**MyGet**|[![](https://img.shields.io/myget/vknet/vpre/vknet.svg)](https://www.myget.org/F/vknet)
 |**Downloads**|[![](https://img.shields.io/nuget/dt/VkNet.svg)](https://www.nuget.org/packages/VkNet/)
@@ -32,14 +32,13 @@ PM> Install-Package VkNet
 
 # План развития проекта
 
-- Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.101.
-- [Недостающие классы и методы](http://bit.ly/2slXKrI)
+- Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.131.
 - Обновить документацию проекта
 
 # Credits
 
 Большое спасибо следующим организациям и проектам, работа которых имеет важное значение для развития проекта:
-- [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper) лицензия для разработки VkNet
+- [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper)/[Rider](https://www.jetbrains.com/rider/) лицензия для разработки VkNet
 - [Json.Net](http://www.newtonsoft.com/json) - Popular high-performance JSON framework for .NET
 - [HtmlAgilityPack](http://html-agility-pack.net/)
 - [NUnit](http://www.nunit.org/) - NUnit is a unit-testing framework for all .Net languages.

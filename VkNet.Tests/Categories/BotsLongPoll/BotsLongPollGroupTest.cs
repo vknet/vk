@@ -1,15 +1,16 @@
 using System;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Enums;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollGroupTest : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_GroupChangePhotoTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupChangePhotoTest));
@@ -28,13 +29,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.GroupChangePhoto.UserId);
-			Assert.AreEqual(-groupId, update.GroupChangePhoto.Photo.OwnerId);
-			Assert.AreEqual(id, update.GroupChangePhoto.Photo.Id);
+			update.GroupId.Should().Be(groupId);
+			update.GroupChangePhoto.UserId.Should().Be(userId);
+			update.GroupChangePhoto.Photo.OwnerId.Should().Be(-groupId);
+			update.GroupChangePhoto.Photo.Id.Should().Be(id);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_GroupJoinTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupJoinTest));
@@ -53,12 +54,12 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.GroupJoin.UserId);
-			Assert.AreEqual(joinType, update.GroupJoin.JoinType);
+			update.GroupId.Should().Be(groupId);
+			update.GroupJoin.UserId.Should().Be(userId);
+			update.GroupJoin.JoinType.Should().Be(joinType);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_GroupLeaveTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupLeaveTest));
@@ -76,12 +77,12 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.GroupLeave.UserId);
-			Assert.IsFalse(update.GroupLeave.IsSelf);
+			update.GroupId.Should().Be(groupId);
+			update.GroupLeave.UserId.Should().Be(userId);
+			update.GroupLeave.IsSelf.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_GroupLeaveSelfTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupLeaveSelfTest));
@@ -99,12 +100,12 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.GroupLeave.UserId);
-			Assert.IsTrue(update.GroupLeave.IsSelf);
+			update.GroupId.Should().Be(groupId);
+			update.GroupLeave.UserId.Should().Be(userId);
+			update.GroupLeave.IsSelf.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_GroupOfficersEditTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupOfficersEditTest));
@@ -124,13 +125,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.GroupOfficersEdit.UserId);
-			Assert.AreEqual(oldLevel, update.GroupOfficersEdit.LevelOld);
-			Assert.AreEqual(newLevel, update.GroupOfficersEdit.LevelNew);
+			update.GroupId.Should().Be(groupId);
+			update.GroupOfficersEdit.UserId.Should().Be(userId);
+			update.GroupOfficersEdit.LevelOld.Should().Be(oldLevel);
+			update.GroupOfficersEdit.LevelNew.Should().Be(newLevel);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_UserBlockTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserBlockTest));
@@ -139,7 +140,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			const int groupId = 1234;
 			const int adminId = 123;
 			const string comment = "test";
-			const GroupUserBlockReason reason = GroupUserBlockReason.Other;
+			const BanReason reason = BanReason.Other;
 
 			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
 			{
@@ -151,15 +152,15 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.UserBlock.UserId);
-			Assert.AreEqual(adminId, update.UserBlock.AdminId);
-			Assert.AreEqual(comment, update.UserBlock.Comment);
-			Assert.AreEqual(reason, update.UserBlock.Reason);
-			Assert.IsNull(update.UserBlock.UnblockDate);
+			update.GroupId.Should().Be(groupId);
+			update.UserBlock.UserId.Should().Be(userId);
+			update.UserBlock.AdminId.Should().Be(adminId);
+			update.UserBlock.Comment.Should().Be(comment);
+			update.UserBlock.Reason.Should().Be(reason);
+			update.UserBlock.UnblockDate.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_UserBlockTemporaryTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserBlockTemporaryTest));
@@ -168,7 +169,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 			const int groupId = 1234;
 			const int adminId = 123;
 			const string comment = "test";
-			const GroupUserBlockReason reason = GroupUserBlockReason.MessagesOffTopic;
+			const BanReason reason = BanReason.IrrelevantMessages;
 
 			var unblockDate = new DateTime(2018,
 				8,
@@ -187,15 +188,15 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.UserBlock.UserId);
-			Assert.AreEqual(adminId, update.UserBlock.AdminId);
-			Assert.AreEqual(comment, update.UserBlock.Comment);
-			Assert.AreEqual(reason, update.UserBlock.Reason);
-			Assert.AreEqual(unblockDate, update.UserBlock.UnblockDate);
+			update.GroupId.Should().Be(groupId);
+			update.UserBlock.UserId.Should().Be(userId);
+			update.UserBlock.AdminId.Should().Be(adminId);
+			update.UserBlock.Comment.Should().Be(comment);
+			update.UserBlock.Reason.Should().Be(reason);
+			update.UserBlock.UnblockDate.Should().Be(unblockDate);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_UserUnblockTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserUnblockTest));
@@ -214,13 +215,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.UserUnblock.UserId);
-			Assert.AreEqual(adminId, update.UserUnblock.AdminId);
-			Assert.IsFalse(update.UserUnblock.ByEndDate);
+			update.GroupId.Should().Be(groupId);
+			update.UserUnblock.UserId.Should().Be(userId);
+			update.UserUnblock.AdminId.Should().Be(adminId);
+			update.UserUnblock.ByEndDate.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_UserUnblockByEndDateTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserUnblockByEndDateTest));
@@ -239,13 +240,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.UserUnblock.UserId);
-			Assert.AreEqual(adminId, update.UserUnblock.AdminId);
-			Assert.IsTrue(update.UserUnblock.ByEndDate);
+			update.GroupId.Should().Be(groupId);
+			update.UserUnblock.UserId.Should().Be(userId);
+			update.UserUnblock.AdminId.Should().Be(adminId);
+			update.UserUnblock.ByEndDate.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_PollVoteNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PollVoteNewTest));
@@ -265,10 +266,10 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.PollVoteNew.UserId);
-			Assert.AreEqual(optionId, update.PollVoteNew.OptionId);
-			Assert.AreEqual(pollId, update.PollVoteNew.PollId);
+			update.GroupId.Should().Be(groupId);
+			update.PollVoteNew.UserId.Should().Be(userId);
+			update.PollVoteNew.OptionId.Should().Be(optionId);
+			update.PollVoteNew.PollId.Should().Be(pollId);
 		}
 	}
 }

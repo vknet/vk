@@ -1,112 +1,85 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
-using System.Reflection;
+using FluentAssertions;
 using Newtonsoft.Json;
-using NUnit.Framework;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class ModelsTests
 	{
-		[Test]
-		public void ModelsDateTimeFieldsShouldHaveJsonConverterAttribute()
+		private const string VkNetModelBaseNamespace = "VkNet.Model";
+
+		[Fact]
+		public void ModelsWithNullableDateTimeFieldsShouldHaveJsonConverterAttribute()
 		{
-			var models = typeof(VkApi).Assembly
-				.GetTypes()
-				.Where(t =>
-					t.Namespace != null
-					&& t.Namespace.StartsWith("VkNet.Model")
-					&& t.GetProperties()
-						.Any(p =>
-							(
-								p.PropertyType == typeof(DateTime)
-								|| p.PropertyType == typeof(DateTime?)
-							)
-							&& p.GetCustomAttributes(typeof(JsonConverterAttribute), false).Length
-							< 1));
+			var types = typeof(VkApi).Assembly.Types()
+				.ThatAreUnderNamespace(VkNetModelBaseNamespace)
+				.Properties()
+				.OfType<DateTime?>()
+				.ThatArePublicOrInternal;
 
-			var enumerable = models.ToList();
-
-			if (enumerable.Any())
-			{
-				Assert.Fail(string.Join(Environment.NewLine, enumerable.Select(x => x.FullName)));
-			}
-
-			Assert.IsEmpty(enumerable);
+			types.Should().BeDecoratedWith<JsonConverterAttribute>();
 		}
 
-		[Test]
+		[Fact]
+		public void ModelsWithDateTimeFieldsShouldHaveJsonConverterAttribute()
+		{
+			var types = typeof(VkApi).Assembly.Types()
+				.ThatAreUnderNamespace(VkNetModelBaseNamespace)
+				.Properties()
+				.OfType<DateTime>()
+				.ThatArePublicOrInternal;
+
+			types.Should().BeDecoratedWith<JsonConverterAttribute>();
+		}
+
+		[Fact]
 		public void ModelsAttachmentsFieldsShouldHaveJsonConverterAttribute()
 		{
-			var models = typeof(VkApi).Assembly
-				.GetTypes()
-				.Where(t =>
-					t.Namespace != null
-					&& t.Namespace.StartsWith("VkNet.Model")
-					&& t.GetProperties()
-						.Any(p =>
-							(
-								p.PropertyType == typeof(ReadOnlyCollection<Attachment>)
-							)
-							&& p.GetCustomAttributes(typeof(JsonConverterAttribute), false).Length
-							< 1));
+			var types = typeof(VkApi).Assembly.Types()
+				.ThatAreUnderNamespace(VkNetModelBaseNamespace)
+				.Properties()
+				.OfType<ReadOnlyCollection<Attachment>>()
+				.ThatArePublicOrInternal;
 
-			var enumerable = models.ToList();
-
-			if (enumerable.Any())
-			{
-				Assert.Fail(string.Join(Environment.NewLine, enumerable.Select(x => x.FullName)));
-			}
-
-			Assert.IsEmpty(enumerable);
+			types.Should().BeDecoratedWith<JsonConverterAttribute>();
 		}
 
-		[Test]
+		[Fact]
 		public void ModelsSafetyEnumFieldsShouldHaveJsonConverterAttribute()
 		{
-			var models = typeof(VkApi).Assembly
-				.GetTypes()
-				.Where(t =>
-					t.Namespace != null
-					&& t.Namespace.StartsWith("VkNet.Model")
-					&& t.GetProperties()
-						.Any(p =>
-							(
-								!p.PropertyType.IsAbstract
-								&& !p.PropertyType.IsInterface
-								&& p.PropertyType.BaseType != null
-								&& p.PropertyType.BaseType.IsGenericType
-								&& p.PropertyType.BaseType.GetGenericTypeDefinition() == typeof(SafetyEnum<>)
-							)
-							&& p.GetCustomAttributes(typeof(JsonConverterAttribute), false).Length
-							< 1));
+			var models = typeof(VkApi).Assembly.Types()
+				.ThatAreUnderNamespace(VkNetModelBaseNamespace)
+				.Properties()
+				.ThatAreNotDecoratedWith<JsonConverterAttribute>()
+				.Where(p =>
+				(
+					!p.PropertyType.IsAbstract
+					&& !p.PropertyType.IsInterface
+					&& p.PropertyType.BaseType is { IsGenericType: true }
+					&& p.PropertyType.BaseType.GetGenericTypeDefinition() == typeof(SafetyEnum<>)
+				))
+				.Select(x => $"{x.DeclaringType?.FullName} с полем {x.Name}");
 
-			var enumerable = models.ToList();
-
-			if (enumerable.Any())
-			{
-				Assert.Fail(string.Join(Environment.NewLine, enumerable.Select(x => x.FullName)));
-			}
-
-			Assert.IsEmpty(enumerable);
+			models.Should().BeEmpty();
 		}
 
-		public static string AssemblyDirectory
+		[Fact]
+		public void ModelsShouldHaveJsonConverterAttributeForCoordinatesType()
 		{
-			get
-			{
-				var codeBase = Assembly.GetExecutingAssembly().CodeBase;
-				var uri = new UriBuilder(codeBase);
-				var path = Uri.UnescapeDataString(uri.Path);
-				return Path.GetDirectoryName(path);
-			}
+			var types = typeof(VkApi).Assembly.Types()
+				.ThatAreUnderNamespace(VkNetModelBaseNamespace)
+				.Properties()
+				.OfType<Coordinates>()
+				.ThatArePublicOrInternal;
+
+			types.Should().BeDecoratedWith<JsonConverterAttribute>();
 		}
 	}
 }

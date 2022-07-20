@@ -1,14 +1,14 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AudioPlaylistModel : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void ShouldDeserializeFromVkResponseToAttachment()
 		{
 			ReadJsonFile("Models", "audio_playlist_attachment");
@@ -17,7 +17,7 @@ namespace VkNet.Tests.Models
 
 			var attachment = Attachment.FromJson(response);
 
-			Assert.True(attachment.Instance is AudioPlaylist);
+			attachment.Instance.Should().BeOfType<AudioPlaylist>();
 		}
 	}
 }

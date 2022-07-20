@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Users
 {
-	[ExcludeFromCodeCoverage]
+
 	public class UserGetTests : CategoryBaseTest
 	{
 		protected override string Folder => "Users";
 
-		[Test]
+		[Fact]
 		public void Get_Olesya_SingleUser()
 		{
 			Url = "https://api.vk.com/method/users.get";
@@ -22,10 +22,10 @@ namespace VkNet.Tests.Categories.Users
 
 			var users = Api.Users.Get(new List<long> { 118312730 }, ProfileFields.Sex, NameCase.Nom);
 
-			Assert.That(users, Is.Not.Null);
+			users.Should().NotBeNull();
 			var user = users.FirstOrDefault();
-			Assert.That(user, Is.Not.Null);
-			Assert.That(user.Sex, Is.EqualTo(Sex.Deactivated));
+			user.Should().NotBeNull();
+			user.Sex.Should().Be(Sex.Deactivated);
 		}
 	}
 }

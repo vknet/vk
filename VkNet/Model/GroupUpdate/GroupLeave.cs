@@ -7,7 +7,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Удаление/выход участника из сообщества
 	/// </summary>
 	[Serializable]
-	public class GroupLeave
+	public class GroupLeave : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя
@@ -15,7 +15,7 @@ namespace VkNet.Model.GroupUpdate
 		public long? UserId { get; set; }
 
 		/// <summary>
-		/// Самостояльный ли был выход
+		/// Самостоятельный ли был выход
 		/// </summary>
 		public bool? IsSelf { get; set; }
 
@@ -30,6 +30,23 @@ namespace VkNet.Model.GroupUpdate
 				UserId = response["user_id"],
 				IsSelf = response["self"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="GroupLeave" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="GroupLeave" /> </returns>
+		public static implicit operator GroupLeave(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

@@ -22,7 +22,7 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// </summary>
-		[JsonProperty(propertyName: "action")]
+		[JsonProperty("action")]
 		public LinkButtonAction Action { get; set; }
 
 		/// <summary>

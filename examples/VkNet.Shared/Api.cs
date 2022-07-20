@@ -24,7 +24,7 @@ namespace VkNet.Shared
 		/// <returns></returns>
 		public static VkApi GetInstance(IServiceCollection collection)
 		{
-			return _instance ?? (_instance = new VkApi(collection));
+			return _instance ??= new VkApi(collection);
 		}
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace VkNet.Shared
 		/// <returns></returns>
 		public static VkApi GetInstance()
 		{
-			return _instance ?? (_instance = new VkApi());
+			return _instance ??= new VkApi();
 		}
 	}
 }

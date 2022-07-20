@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Model
 {
 	/// <summary>
-	/// Информация о сообществе (группе).
+	/// Информация о участнике сообщества (группы).
 	/// См. описание http://vk.com/dev/fields_groups
 	/// </summary>
 	[Serializable]
@@ -15,7 +15,7 @@ namespace VkNet.Model
 		/// <summary>
 		/// Десериализовать из Json.
 		/// </summary>
-		/// <param name="response"> Jndtn. </param>
+		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
 		public static GroupMember FromJson(VkResponse response)
 		{

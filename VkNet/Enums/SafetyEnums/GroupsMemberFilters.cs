@@ -1,4 +1,4 @@
-﻿namespace VkNet.Enums.SafetyEnums
+namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Порядок сортировки членов группы.
@@ -24,5 +24,11 @@
 		/// строка.
 		/// </summary>
 		public static readonly GroupsMemberFilters Managers = RegisterPossibleValue(value: "managers");
+
+		/// <summary>
+		/// donuts — будут возвращены доны 
+		/// строка.
+		/// </summary>
+		public static readonly GroupsMemberFilters Donut = RegisterPossibleValue(value: "donut");
 	}
 }

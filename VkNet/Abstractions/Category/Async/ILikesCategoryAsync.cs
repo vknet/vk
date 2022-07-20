@@ -8,7 +8,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронное API для работы с лайками.
+	/// Методы для работы с лайками.
 	/// </summary>
 	public interface ILikesCategoryAsync
 	{
@@ -70,8 +70,6 @@ namespace VkNet.Abstractions
 		/// Идентификатор владельца объекта. целое число, по умолчанию идентификатор
 		/// текущего пользователя
 		/// </param>
-		/// <param name="captchaSid"> Идентификатор капчи </param>
-		/// <param name="captchaKey"> Текст, который ввел пользователь </param>
 		/// <returns>
 		/// В случае успеха возвращает объект с полем likes, в котором находится текущее
 		/// количество пользователей, которые
@@ -80,7 +78,10 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/likes.delete
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		Task<long> DeleteAsync(LikeObjectType type, long itemId, long? ownerId = null);
+
+		/// <inheritdoc cref="ILikesCategoryAsync.DeleteAsync(LikeObjectType,long,long?)" />
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<long> DeleteAsync(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null);
 
 		/// <summary>

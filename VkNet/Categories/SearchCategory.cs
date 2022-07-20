@@ -13,7 +13,9 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly IVkApiInvoke _vk;
 
-		/// <inheritdoc />
+		/// <summary>
+		/// api vk.com
+		/// </summary>
 		public SearchCategory(IVkApiInvoke vk)
 		{
 			_vk = vk;
@@ -22,7 +24,15 @@ namespace VkNet.Categories
 		/// <inheritdoc />
 		public VkCollection<SearchHintsItem> GetHints(SearchGetHintsParams @params)
 		{
-			return _vk.Call<VkCollection<SearchHintsItem>>(methodName: "search.getHints", parameters: @params);
+			return _vk.Call<VkCollection<SearchHintsItem>>(methodName: "search.getHints", new VkParameters
+			{
+				{ "q", @params.Query }
+				, { "offset", @params.Offset }
+				, { "limit", @params.Limit }
+				, { "filters", @params.Filters }
+				, { "fields", @params.ProfileFields }
+				, { "search_global", @params.SearchGlobal }
+			});
 		}
 	}
 }

@@ -1,19 +1,17 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.RequestParams.Stories;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Story
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class StoriesGetTests : CategoryBaseTest
 	{
-		protected override string Folder => "Stories";
+		protected override string Folder => JsonTestFolderConstants.Categories.Stories;
 
-		[Test]
+		[Fact]
 		public void Get()
 		{
 			Url = "https://api.vk.com/method/stories.get";
@@ -21,10 +19,11 @@ namespace VkNet.Tests.Categories.Story
 
 			var result = Api.Stories.Get();
 
-			Assert.That(1, Is.EqualTo(result.Count));
+			result.Should().NotBeNull();
+			result.Count.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBanned()
 		{
 			Url = "https://api.vk.com/method/stories.getBanned";
@@ -32,24 +31,27 @@ namespace VkNet.Tests.Categories.Story
 
 			var result = Api.Stories.GetBanned();
 
-			var userId = result.Items.FirstOrDefault();
-
-			Assert.That(result.Count, Is.EqualTo(1));
-			Assert.NotNull(userId);
+			result.Should().NotBeNull();
+			result.Count.Should().Be(1);
+			result.Items.Should().NotContainNulls();
 		}
 
-		[Test]
+		[Fact]
 		public void GetPhotoUploadServer()
 		{
 			Url = "https://api.vk.com/method/stories.getPhotoUploadServer";
 			ReadCategoryJsonPath(nameof(GetPhotoUploadServer));
 
-			var result = Api.Stories.GetPhotoUploadServer(new GetPhotoUploadServerParams { AddToNews = true });
+			var result = Api.Stories.GetPhotoUploadServer(new GetPhotoUploadServerParams
+			{
+				AddToNews = true
+			});
 
-			Assert.NotNull(result.UploadUrl);
+			result.Should().NotBeNull();
+			result.UploadUrl.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetReplies()
 		{
 			Url = "https://api.vk.com/method/stories.getReplies";
@@ -57,23 +59,41 @@ namespace VkNet.Tests.Categories.Story
 
 			var result = Api.Stories.GetReplies(12345679, 123456789, null, true, new List<string>());
 
-			Assert.That(result.Count, Is.EqualTo(1));
+			result.Should().NotBeNull();
+			result.Count.Should().Be(1);
 		}
 
-		[Test]
+		[Fact]
 		public void GetViewers()
 		{
 			Url = "https://api.vk.com/method/stories.getViewers";
 			ReadCategoryJsonPath(nameof(GetViewers));
 
 			var users = Api.Stories.GetViewers(123456789, 123456789);
-			var userId = users.FirstOrDefault();
 
-			Assert.That(users.Count, Is.EqualTo(1));
-			Assert.NotNull(userId);
+			users.Should().NotBeNull();
+			users.TotalCount.Should().Be(1);
+			users.Should().NotContainNulls();
+			users.Should().Contain(x => x == 123456789);
 		}
 
-		[Test]
+		[Fact]
+		public void GetViewersExtended()
+		{
+			Url = "https://api.vk.com/method/stories.getViewers";
+			ReadCategoryJsonPath(nameof(GetViewersExtended));
+
+			var users = Api.Stories.GetViewersExtended(123456789, 123456789);
+
+			users.Should().NotBeNull();
+			users.TotalCount.Should().Be(1);
+			users.Should().NotContainNulls();
+			users.Should().Contain(x => x.Id == 123456789);
+			users.Should().Contain(x => x.FirstName == "test");
+			users.Should().Contain(x => x.LastName == "test1");
+		}
+
+		[Fact]
 		public void GetStats()
 		{
 			Url = "https://api.vk.com/method/stories.getStats";
@@ -81,26 +101,65 @@ namespace VkNet.Tests.Categories.Story
 
 			var stats = Api.Stories.GetStats(123456789, 123456789);
 
-			Assert.NotNull(stats.Views);
-			Assert.NotNull(stats.Answer);
-			Assert.NotNull(stats.Bans);
-			Assert.NotNull(stats.OpenLink);
-			Assert.NotNull(stats.Replies);
-			Assert.NotNull(stats.Subscribers);
-			Assert.NotNull(stats.Shares);
+			stats.Views.Should().NotBeNull();
+			stats.Answer.Should().NotBeNull();
+			stats.Bans.Should().NotBeNull();
+			stats.OpenLink.Should().NotBeNull();
+			stats.Replies.Should().NotBeNull();
+			stats.Subscribers.Should().NotBeNull();
+			stats.Shares.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById()
 		{
 			Url = "https://api.vk.com/method/stories.getById";
 			ReadCategoryJsonPath(nameof(GetById));
 
-			var stories = Api.Stories.GetById(new List<string> { "123456789_123456789" }, true, new List<string>());
-			var story = stories.Items.FirstOrDefault();
+			var stories = Api.Stories.GetById(new List<string>
+				{
+					"123456789_123456789"
+				},
+				true,
+				new List<string>());
 
-			Assert.That(stories.Count, Is.EqualTo(1));
-			Assert.NotNull(story);
+			stories.Should().NotBeNull();
+			stories.Count.Should().Be(1);
+			stories.Items.Should().NotBeNullOrEmpty();
+		}
+
+		[Fact]
+		public void Search()
+		{
+			Url = "https://api.vk.com/method/stories.search";
+			ReadCategoryJsonPath(nameof(Search));
+
+			var result = Api.Stories.Search(new StoriesSearchParams
+			{
+				Query = "Ростов",
+				Extended = true,
+				Fields = new List<string>
+				{
+					"bdate"
+				}
+			});
+
+			result.Should().NotBeNull();
+			result.Count.Should().Be(1);
+			result.Items.Should().NotBeNullOrEmpty();
+			result.Profiles.Should().NotBeNullOrEmpty();
+			result.Groups.Should().NotBeNull();
+		}
+
+		[Fact]
+		public void SendInteraction()
+		{
+			Url = "https://api.vk.com/method/stories.sendInteraction";
+			ReadCommonJsonFile(JsonTestFolderConstants.Common.True);
+
+			var result = Api.Stories.SendInteraction("key", "message");
+
+			result.Should().BeTrue();
 		}
 	}
 }

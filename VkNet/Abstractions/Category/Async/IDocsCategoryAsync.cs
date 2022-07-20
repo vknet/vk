@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -11,7 +11,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с документами (получение списка, загрузка,
+	/// Методы для работы с документами (получение списка, загрузка,
 	/// удаление и т.д.)
 	/// </summary>
 	public interface IDocsCategoryAsync
@@ -95,19 +95,14 @@ namespace VkNet.Abstractions
 		/// </param>
 		/// <param name="title"> Название документа. </param>
 		/// <param name="tags"> Метки для поиска. </param>
-		/// <param name="captchaSid">
-		/// Id капчи (только если для вызова метода необходимо
-		/// ввести капчу)
-		/// </param>
-		/// <param name="captchaKey">
-		/// Текст капчи (только если для вызова метода необходимо
-		/// ввести капчу)
-		/// </param>
 		/// <returns> Возвращает массив с загруженными объектами. </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/docs.save
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title, string tags = null);
+
+		/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string)" />
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title, string tags = null, long? captchaSid = null,
 														string captchaKey = null);
 
@@ -146,8 +141,6 @@ namespace VkNet.Abstractions
 		/// остальными данными о
 		/// документе было возвращено поле access_key.
 		/// </param>
-		/// <param name="captchaSid"> Идентификатор капчи </param>
-		/// <param name="captchaKey"> Текст капчи, который ввел пользователь </param>
 		/// <returns>
 		/// После успешного выполнения возвращает идентификатор созданного
 		/// документа (did).
@@ -155,7 +148,10 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/docs.add
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		Task<long> AddAsync(long ownerId, long docId, string accessKey = null);
+
+		/// <inheritdoc cref="IDocsCategoryAsync.AddAsync(long,long,string)" />
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<long> AddAsync(long ownerId, long docId, string accessKey = null, long? captchaSid = null, string captchaKey = null);
 
 		/// <summary>

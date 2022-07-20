@@ -1,17 +1,17 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Audio
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AudioCreatePlaylistTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";
 
-		[Test]
+		[Fact]
 		public void CreatePlaylistTest()
 		{
 			Url = "https://api.vk.com/method/audio.createPlaylist";
@@ -20,11 +20,11 @@ namespace VkNet.Tests.Categories.Audio
 
 			var result = Api.Audio.CreatePlaylist(123456789, "test title", "test description", new List<string> { "123456789_123456789" });
 
-			Assert.NotNull(result);
-			Assert.That(result.Id, Is.EqualTo(11));
-			Assert.That(result.OwnerId, Is.EqualTo(123456789));
-			Assert.That(result.Title, Is.EqualTo("test title"));
-			Assert.That(result.Description, Is.EqualTo("test description"));
+			result.Should().NotBeNull();
+			result.Id.Should().Be(11);
+			result.OwnerId.Should().Be(123456789);
+			result.Title.Should().Be("test title");
+			result.Description.Should().Be("test description");
 		}
 	}
 }

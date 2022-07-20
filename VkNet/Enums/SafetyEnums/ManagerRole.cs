@@ -1,12 +1,22 @@
-﻿namespace VkNet.Enums.SafetyEnums
+namespace VkNet.Enums.SafetyEnums
 {
 	/// <summary>
 	/// Уровень полномочий пользователя в сообществе (Используется для задания
 	/// полномочий пользователя в методе
 	/// EditManager).
 	/// </summary>
-	public sealed class ManagerRole : SafetyEnum<ManagerRole>
+	public class ManagerRole : SafetyEnum<ManagerRole>
 	{
+		/// <summary>
+		/// Создатель сообщества
+		/// </summary>
+		public static readonly ManagerRole Creator = RegisterPossibleValue(value: "creator");
+
+		/// <summary>
+		/// Пользователь является администратором сообщества.
+		/// </summary>
+		public static readonly ManagerRole Administrator = RegisterPossibleValue(value: "administrator");
+
 		/// <summary>
 		/// Пользователь является модератором собщества.
 		/// </summary>
@@ -16,10 +26,5 @@
 		/// Пользователь является редактором сообщества.
 		/// </summary>
 		public static readonly ManagerRole Editor = RegisterPossibleValue(value: "editor");
-
-		/// <summary>
-		/// Пользователь является администратором сообщества.
-		/// </summary>
-		public static readonly ManagerRole Administrator = RegisterPossibleValue(value: "administrator");
 	}
 }

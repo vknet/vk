@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -11,6 +10,9 @@ namespace VkNet.Model.RequestParams
 	[Serializable]
 	public class MessagesGetLongPollHistoryParams
 	{
+		/// <summary>
+		/// Лимит ивентов.
+		/// </summary>
 		[JsonIgnore]
 		public const long EVENTS_LIMIT_MIN = 1000;
 
@@ -63,7 +65,7 @@ namespace VkNet.Model.RequestParams
 		public long? EventsLimit
 		{
 			get => _eventsLimit;
-			set => _eventsLimit = (!value.HasValue || value >= EVENTS_LIMIT_MIN) ? value : EVENTS_LIMIT_MIN;
+			set => _eventsLimit = (!value.HasValue || value <= EVENTS_LIMIT_MIN) ? value : EVENTS_LIMIT_MIN;
 		}
 
 		/// <summary>
@@ -93,27 +95,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "lp_version")]
 		public ulong? LpVersion { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MessagesGetLongPollHistoryParams p)
-		{
-			return new VkParameters
-			{
-				{ "ts", p.Ts },
-				{ "pts", p.Pts },
-				{ "preview_length", p.PreviewLength },
-				{ "onlines", p.Onlines },
-				{ "fields", p.Fields },
-				{ "events_limit", p.EventsLimit },
-				{ "msgs_limit", p.MsgsLimit },
-				{ "max_msg_id", p.MaxMsgId },
-				{ "lp_version", p.LpVersion },
-				{ "group_id", p.GroupId }
-			};
-		}
 	}
 }

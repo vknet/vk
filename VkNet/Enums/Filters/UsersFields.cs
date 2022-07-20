@@ -1,4 +1,4 @@
-﻿namespace VkNet.Enums.Filters
+namespace VkNet.Enums.Filters
 {
 	/// <summary>
 	/// Описание дополнительных полей сообщества, используемых в параметре fields
@@ -126,7 +126,7 @@
 		/// Для получения дополнительного поля User.CanWritePrivateMessage
 		/// </summary>
 		public static readonly UsersFields CanWritePrivateMessage =
-				RegisterPossibleValue(mask: 1L << 17, value: "can_write_private_message");
+			RegisterPossibleValue(mask: 1L << 17, value: "can_write_private_message");
 
 		/// <summary>
 		/// Для получения дополнительного поля User.CanSeeAllPosts
@@ -179,6 +179,77 @@
 		public static readonly UsersFields Counters = RegisterPossibleValue(mask: 1L << 33, value: "counters");
 
 		/// <summary>
+		/// Для получения дополнительного поля User.CanAccessClosed
+		/// </summary>
+		public static readonly UsersFields CanAccessClosed = RegisterPossibleValue(mask: 1L << 34, value: "can_access_closed");
+
+		/// <summary>
+		/// Для получения дополнительного поля User.IsClosed
+		/// </summary>
+		public static readonly UsersFields IsClosed = RegisterPossibleValue(mask: 1L << 35, value: "is_closed");
+
+		/// <summary>
+		/// Для получения дополнительного поля User.FirstNameNom
+		/// </summary>
+		public static readonly UsersFields FirstNameNom = RegisterPossibleValue(mask: 1L << 36, value: "first_name_nom");
+
+		/// <summary>
+		/// Для получения дополнительного поля User.FirstNameGen
+		/// </summary>
+		public static readonly UsersFields FirstNameGen = RegisterPossibleValue(mask: 1L << 37, value: "first_name_gen");
+
+		/// <summary>
+		/// Для получения дополнительного поля User.FirstNameDat
+		/// </summary>
+		public static readonly UsersFields FirstNameDat = RegisterPossibleValue(mask: 1L << 38, value: "first_name_dat");
+
+		/// <summary>
+		/// Для получения дополнительного поля User.FirstNameAcc
+		/// </summary>
+		public static readonly UsersFields FirstNameAcc = RegisterPossibleValue(mask: 1L << 39, value: "first_name_acc");
+
+
+		/// <summary>
+		/// Для получения дополнительного поля User.FirstNameIns
+		/// </summary>
+		public static readonly UsersFields FirstNameIns = RegisterPossibleValue(mask: 1L << 40, value: "first_name_ins");
+
+		/// <summary>
+		/// Для получения дополнительного поля User.FirstNameAbl
+		/// </summary>
+		public static readonly UsersFields FirstNameAbl = RegisterPossibleValue(mask: 1L << 41, value: "first_name_abl");
+
+		/// <summary>
+		/// Для получения дополнительного поля User.LastNameNom
+		/// </summary>
+		public static readonly UsersFields LastNameNom = RegisterPossibleValue(mask: 1L << 42, value: "last_name_nom");
+
+		/// <summary>
+		/// Для получения дополнительного поля User.LastNameGen
+		/// </summary>
+		public static readonly UsersFields LastNameGen = RegisterPossibleValue(mask: 1L << 43, value: "last_name_gen");
+
+		/// <summary>
+		/// Для получения дополнительного поля User.LastNameDat
+		/// </summary>
+		public static readonly UsersFields LastNameDat = RegisterPossibleValue(mask: 1L << 44, value: "last_name_dat");
+
+		/// <summary>
+		/// Для получения дополнительного поля User.LastNameAcc
+		/// </summary>
+		public static readonly UsersFields LastNameAcc = RegisterPossibleValue(mask: 1L << 44, value: "last_name_acc");
+
+		/// <summary>
+		/// Для получения дополнительного поля User.LastNameIns
+		/// </summary>
+		public static readonly UsersFields LastNameIns = RegisterPossibleValue(mask: 1L << 44, value: "last_name_ins");
+
+		/// <summary>
+		/// Для получения дополнительного поля User.LastNameAbl
+		/// </summary>
+		public static readonly UsersFields LastNameAbl = RegisterPossibleValue(mask: 1L << 44, value: "last_name_abl");
+
+		/// <summary>
 		/// Для получения всех дополнительных полей.
 		/// </summary>
 		public static readonly UsersFields All = Nickname
@@ -214,6 +285,20 @@
 												|CanSeeAudio
 												|CommonCount
 												|Relatives
-												|Counters;
+												|Counters
+												|FirstNameNom
+												|FirstNameGen
+												|FirstNameDat
+												|FirstNameAcc
+												|FirstNameIns
+												|FirstNameAbl
+												|LastNameNom
+												|LastNameGen
+												|LastNameDat
+												|LastNameAcc
+												|LastNameIns
+												|LastNameAbl
+												|IsClosed
+												|CanAccessClosed;
 	}
 }

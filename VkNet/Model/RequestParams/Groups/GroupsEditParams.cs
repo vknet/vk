@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Utils;
@@ -13,24 +14,94 @@ namespace VkNet.Model.RequestParams
 	public class GroupsEditParams
 	{
 		/// <summary>
-		/// Идентификатор сообщества. положительное число, обязательный параметр.
-		/// </summary>
-		public ulong GroupId { get; set; }
-
-		/// <summary>
 		/// Название сообщества. строка.
 		/// </summary>
+		[JsonProperty("title")]
 		public string Title { get; set; }
 
 		/// <summary>
 		/// Описание сообщества. строка.
 		/// </summary>
+		[JsonProperty("description")]
 		public string Description { get; set; }
 
 		/// <summary>
-		/// Короткое имя сообщества. строка.
+		/// Короткий адрес.
 		/// </summary>
-		public string ScreenName { get; set; }
+		[JsonProperty("address")]
+		public string Address { get; set; }
+
+		/// <summary>
+		/// Стена.
+		/// </summary>
+		public WallContentAccess? Wall { get; set; }
+
+		/// <summary>
+		/// Фотографии.
+		/// </summary>
+		public ContentAccess? Photos { get; set; }
+
+		/// <summary>
+		/// Видеозаписи.
+		/// </summary>
+		public ContentAccess? Video { get; set; }
+
+		/// <summary>
+		/// Аудиозаписи.
+		/// </summary>
+		public ContentAccess? Audio { get; set; }
+
+		/// <summary>
+		/// Документы сообщества.
+		/// </summary>
+		public ContentAccess? Docs { get; set; }
+
+		/// <summary>
+		/// Обсуждения.
+		/// </summary>
+		public ContentAccess? Topics { get; set; }
+
+		/// <summary>
+		/// Wiki-материалы сообщества.
+		/// </summary>
+		public ContentAccess? Wiki { get; set; }
+
+		/// <summary>
+		/// Сообщения сообщества.
+		/// </summary>
+		public bool? Messages { get; set; }
+
+		/// <summary>
+		/// Фильтр нецензурных выражений в комментариях.
+		/// </summary>
+		public bool? ObsceneFilter { get; set; }
+
+		/// <summary>
+		/// Фильтр по ключевым словам в комментариях.
+		/// </summary>
+		public bool? ObsceneStopwords { get; set; }
+
+		/// <summary>
+		/// Ключевые слова для фильтра комментариев. список слов, разделенных через
+		/// запятую.
+		/// </summary>
+		public IEnumerable<string> ObsceneWords { get; set; }
+
+		/// <summary>
+		/// Категория публичной страницы. положительное число.
+		/// </summary>
+		public ulong? PublicCategory { get; set; }
+
+		/// <summary>
+		/// Подкатегория публичной станицы. положительное число.
+		/// </summary>
+		public ulong? PublicSubcategory { get; set; }
+
+		/// <summary>
+		/// Список возможных категорий для публичных страниц.
+		/// </summary>
+		[JsonProperty("public_category_list")]
+		public ReadOnlyCollection<long> PublicCategoryList { get; set; }
 
 		/// <summary>
 		/// Тип группы.
@@ -38,14 +109,48 @@ namespace VkNet.Model.RequestParams
 		public GroupAccess? Access { get; set; }
 
 		/// <summary>
+		/// Тематика сообщества. строка.
+		/// </summary>
+		public GroupSubjects? Subject { get; set; }
+
+		/// <summary>
+		/// Список возможных тематик.
+		/// </summary>
+		[JsonProperty("subject_list")]
+		public IEnumerable<SubjectListItem> SubjectList { get; set; }
+
+		/// <summary>
+		/// Адрес rss для импорта новостей (доступен только группам, получившим
+		/// соответствующее разрешение, обратитесь в
+		/// http://vk.com/support для получения разрешения). строка.
+		/// </summary>
+		public string Rss { get; set; }
+
+		/// <summary>
 		/// Адрес сайта, который будет указан в информации о группе. строка.
 		/// </summary>
 		public string Website { get; set; }
 
 		/// <summary>
-		/// Тематика сообщества. строка.
+		/// Возрастное ограничение для сообщества. положительное число, по умолчанию 1.
 		/// </summary>
-		public GroupSubjects? Subject { get; set; }
+		public AgeLimit? AgeLimits { get; set; }
+
+		/// <summary>
+		/// настройки блока товаров.
+		/// </summary>
+		[JsonProperty("market")]
+		public GroupMarketSettings Market { get; set; }
+
+		/// <summary>
+		/// Идентификатор сообщества. положительное число, обязательный параметр.
+		/// </summary>
+		public ulong GroupId { get; set; }
+
+		/// <summary>
+		/// Короткое имя сообщества. строка.
+		/// </summary>
+		public string ScreenName { get; set; }
 
 		/// <summary>
 		/// Электронный адрес организатора (для мероприятий). строка.
@@ -56,13 +161,6 @@ namespace VkNet.Model.RequestParams
 		/// Номер телефона организатора (для мероприятий). строка.
 		/// </summary>
 		public string Phone { get; set; }
-
-		/// <summary>
-		/// Адрес rss для импорта новостей (доступен только группам, получившим
-		/// соответствующее разрешение, обратитесь в
-		/// http://vk.com/support для получения разрешения). строка.
-		/// </summary>
-		public string Rss { get; set; }
 
 		/// <summary>
 		/// Дата начала события. положительное число.
@@ -81,46 +179,11 @@ namespace VkNet.Model.RequestParams
 		public ulong? EventGroupId { get; set; }
 
 		/// <summary>
-		/// Категория публичной страницы. положительное число.
-		/// </summary>
-		public ulong? PublicCategory { get; set; }
-
-		/// <summary>
-		/// Подкатегория публичной станицы. положительное число.
-		/// </summary>
-		public ulong? PublicSubcategory { get; set; }
-
-		/// <summary>
 		/// Дата основания компании, организации, которой посвящена публичная страница в
 		/// виде строки формата "dd.mm.YYYY".
 		/// строка.
 		/// </summary>
 		public string PublicDate { get; set; }
-
-		/// <summary>
-		/// Стена.
-		/// </summary>
-		public WallContentAccess? Wall { get; set; }
-
-		/// <summary>
-		/// Обсуждения.
-		/// </summary>
-		public ContentAccess? Topics { get; set; }
-
-		/// <summary>
-		/// Фотографии.
-		/// </summary>
-		public ContentAccess? Photos { get; set; }
-
-		/// <summary>
-		/// Видеозаписи.
-		/// </summary>
-		public ContentAccess? Video { get; set; }
-
-		/// <summary>
-		/// Аудиозаписи.
-		/// </summary>
-		public ContentAccess? Audio { get; set; }
 
 		/// <summary>
 		/// Ссылки (доступно только для публичных страниц).
@@ -141,26 +204,6 @@ namespace VkNet.Model.RequestParams
 		/// Контакты (доступно только для публичных страниц).
 		/// </summary>
 		public bool? Contacts { get; set; }
-
-		/// <summary>
-		/// Документы сообщества.
-		/// </summary>
-		public ContentAccess? Docs { get; set; }
-
-		/// <summary>
-		/// Wiki-материалы сообщества.
-		/// </summary>
-		public ContentAccess? Wiki { get; set; }
-
-		/// <summary>
-		/// Сообщения сообщества.
-		/// </summary>
-		public bool? Messages { get; set; }
-
-		/// <summary>
-		/// Возрастное ограничение для сообщества. положительное число, по умолчанию 1.
-		/// </summary>
-		public AgeLimit? AgeLimits { get; set; }
 
 		/// <summary>
 		/// Товары включены.
@@ -202,22 +245,6 @@ namespace VkNet.Model.RequestParams
 		public ulong? MarketWiki { get; set; }
 
 		/// <summary>
-		/// Фильтр нецензурных выражений в комментариях.
-		/// </summary>
-		public bool? ObsceneFilter { get; set; }
-
-		/// <summary>
-		/// Фильтр по ключевым словам в комментариях.
-		/// </summary>
-		public bool? ObsceneStopwords { get; set; }
-
-		/// <summary>
-		/// Ключевые слова для фильтра комментариев. список слов, разделенных через
-		/// запятую.
-		/// </summary>
-		public IEnumerable<string> ObsceneWords { get; set; }
-
-		/// <summary>
 		/// </summary>
 		[JsonProperty("main_section")]
 		public uint? MainSection { get; set; }
@@ -248,123 +275,63 @@ namespace VkNet.Model.RequestParams
 		public bool? Addresses { get; set; }
 
 		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> Объект типа GroupsEditParams </returns>
-		public static VkParameters ToVkParameters(GroupsEditParams p)
-		{
-			Dictionary<string, object> market = new Dictionary<string, object>()
-			{
-				{ "enabled", p.MarketEnabled }
-			};
-			if (p.MarketCommentsEnabled.HasValue)
-				market.Add("comments_enabled", p.MarketCommentsEnabled);
-			if (p.MarketCountry != null)
-				market.Add("country_ids", p.MarketCountry);
-			if (p.MarketCity != null)
-				market.Add("city_ids", p.MarketCity);
-			if (p.MarketContact.HasValue)
-				market.Add("contact_id", p.MarketContact);
-			if (p.MarketCurrency.HasValue)
-				market.Add("currency", p.MarketCurrency);
-
-			return new VkParameters
-			{
-				{ "group_id", p.GroupId },
-				{ "title", p.Title },
-				{ "description", p.Description },
-				{ "screen_name", p.ScreenName },
-				{ "access", p.Access },
-				{ "website", p.Website },
-				{ "subject", p.Subject },
-				{ "email", p.Email },
-				{ "phone", p.Phone },
-				{ "rss", p.Rss },
-				{ "event_start_date", p.EventStartDate },
-				{ "event_finish_date", p.EventFinishDate },
-				{ "event_group_id", p.EventGroupId },
-				{ "public_category", p.PublicCategory },
-				{ "public_subcategory", p.PublicSubcategory },
-				{ "public_date", p.PublicDate },
-				{ "wall", p.Wall },
-				{ "topics", p.Topics },
-				{ "photos", p.Photos },
-				{ "video", p.Video },
-				{ "audio", p.Audio },
-				{ "links", p.Links },
-				{ "events", p.Events },
-				{ "places", p.Places },
-				{ "contacts", p.Contacts },
-				{ "docs", p.Docs },
-				{ "wiki", p.Wiki },
-				{ "messages", p.Messages },
-				{ "age_limits", p.AgeLimits },
-				{ "market", market },
-				{ "market_wiki", p.MarketWiki },
-				{ "obscene_filter", p.ObsceneFilter },
-				{ "obscene_stopwords", p.ObsceneStopwords },
-				{ "obscene_words", p.ObsceneWords },
-				{ "articles", p.Articles },
-				{ "addresses", p.Addresses },
-				{ "main_section", p.MainSection },
-				{ "secondary_section", p.SecondarySection },
-				{ "country", p.Country },
-				{ "city", p.City }
-			};
-		}
-
-		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
 		public static GroupsEditParams FromJson(VkResponse response)
 		{
-			var res = new GroupsEditParams();
+			var res = new GroupsEditParams
+			{
+				Title = response["title"],
+				Description = response["description"],
+				Address = response["address"],
+				Wall = response["wall"],
+				Photos = response["photos"],
+				Video = response["video"],
+				Audio = response["audio"],
+				Docs = response["docs"],
+				Topics = response["topics"],
+				Wiki = response["wiki"],
+				Messages = response["messages"],
+				ObsceneFilter = response["obscene_filter"],
+				ObsceneStopwords = response["obscene_stopwords"],
+				ObsceneWords = response["obscene_words"].ToReadOnlyCollectionOf<string>(o => o),
+				PublicCategory = response["public_category"],
+				PublicCategoryList = response["public_category_list"].ToReadOnlyCollectionOf<long>(x =>x),
+				Access = response["access"],
+				Subject = response["subject"],
+				SubjectList = response["subject_list"].ToReadOnlyCollectionOf<SubjectListItem>(x => x),
+				Rss = response["rss"],
+				Website = response["website"],
+				AgeLimits = response["age_limits"],
+				Market = response["market"],
 
-			res.GroupId = response["group_id"] ?? 0UL;
-			res.Title = response["title"];
-			res.Description = response["description"];
-			res.ScreenName = response["screen_name"];
-			res.Access = response["access"];
-			res.Website = response["website"];
-			res.Subject = response["seubject"];
-			res.Email = response["email"];
-			res.Phone = response["phone"];
-			res.Rss = response["rss"];
-			res.EventStartDate = response["event_start_date"];
-			res.EventFinishDate = response["event_finish_date"];
-			res.EventGroupId = response["event_group_id"];
-			res.PublicCategory = response["public_category"];
-			res.PublicSubcategory = response["public_subcategory"];
-			res.PublicDate = response["public_date"];
-			res.Wall = response["wall"];
-			res.Topics = response["topics"];
-			res.Photos = response["photos"];
-			res.Video = response["video"];
-			res.Audio = response["audio"];
-			res.Links = response["links"];
-			res.Events = response["events"];
-			res.Places = response["places"];
-			res.Contacts = response["contacts"];
-			res.Docs = response["docs"];
-			res.Wiki = response["wiki"];
-			res.Messages = response["messages"];
-			res.AgeLimits = response["age_limits"];
-			res.ObsceneFilter = response["obscene_filter"];
-			res.ObsceneStopwords = response["obscene_stopwords"];
-			res.ObsceneWords = response["obscene_words"].ToReadOnlyCollectionOf<string>(o => o);
-			res.MainSection = response["main_section"];
-			res.SecondarySection = response["secondary_section"];
-			res.Articles = response["articles"];
-			res.Addresses = response["addresses"];
-			res.Country = response["country"];
-			res.City = response["city"];
+				GroupId = response["group_id"] ?? 0UL,
+				ScreenName = response["screen_name"],
+				Email = response["email"],
+				Phone = response["phone"],
+				EventStartDate = response["event_start_date"],
+				EventFinishDate = response["event_finish_date"],
+				EventGroupId = response["event_group_id"],
+				PublicDate = response["public_date"],
+				Links = response["links"],
+				Events = response["events"],
+				Places = response["places"],
+				Contacts = response["contacts"],
+				MainSection = response["main_section"],
+				SecondarySection = response["secondary_section"],
+				Articles = response["articles"],
+				Addresses = response["addresses"],
+				Country = response["country"],
+				City = response["city"]
+			};
 
-			#region Market
+		#region Market
+
 			var market = response["market"];
-			if (market != null && market["enabled"] != null)
+
+			if (market?["enabled"] != null)
 			{
 				res.MarketEnabled = market["enabled"];
 				res.MarketCommentsEnabled = market["comments_enabled"];
@@ -381,11 +348,12 @@ namespace VkNet.Model.RequestParams
 				res.MarketCity = response["market_city"].ToReadOnlyCollectionOf<ulong>(o => o);
 				res.MarketCurrency = response["market_currency"];
 				res.MarketContact = response["market_contact"];
-#pragma warning disable CS0618 // Тип или член устарел
+			#pragma warning disable CS0618 // Тип или член устарел
 				res.MarketWiki = response["market_wiki"];
-#pragma warning restore CS0618 // Тип или член устарел
+			#pragma warning restore CS0618 // Тип или член устарел
 			}
-			#endregion
+
+		#endregion
 
 			return res;
 		}

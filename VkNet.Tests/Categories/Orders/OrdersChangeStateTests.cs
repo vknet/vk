@@ -1,17 +1,17 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Orders
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class ChangeStateTests : CategoryBaseTest
 	{
 		protected override string Folder => "Orders";
 
-		[Test]
+		[Fact]
 		public void ChangeState()
 		{
 			Url = "https://api.vk.com/method/orders.changeState";
@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories.Orders
 
 			var result = Api.Orders.ChangeState(123, OrderStateAction.Charge);
 
-			Assert.AreEqual(OrderState.Charged, result);
+			result.Should().Be(OrderState.Charged);
 		}
 	}
 }

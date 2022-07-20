@@ -1,13 +1,14 @@
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.RequestParams;
+using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll
 {
-	[TestFixture]
+
 	public class BotsLongPollMarketTest : BotsLongPollBaseTest
 	{
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MarketCommentNewTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentNewTest));
@@ -26,13 +27,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.MarketComment.FromId);
-			Assert.AreEqual(text, update.MarketComment.Text);
-			Assert.AreEqual(-groupId, update.MarketComment.MarketOwnerId);
+			update.GroupId.Should().Be(groupId);
+			update.MarketComment.FromId.Should().Be(userId);
+			update.MarketComment.Text.Should().Be(text);
+			update.MarketComment.MarketOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MarketCommentEditTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentEditTest));
@@ -51,13 +52,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.MarketComment.FromId);
-			Assert.AreEqual(text, update.MarketComment.Text);
-			Assert.AreEqual(-groupId, update.MarketComment.MarketOwnerId);
+			update.GroupId.Should().Be(groupId);
+			update.MarketComment.FromId.Should().Be(userId);
+			update.MarketComment.Text.Should().Be(text);
+			update.MarketComment.MarketOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MarketCommentRestoreTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentRestoreTest));
@@ -76,13 +77,13 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(userId, update.MarketComment.FromId);
-			Assert.AreEqual(text, update.MarketComment.Text);
-			Assert.AreEqual(-groupId, update.MarketComment.MarketOwnerId);
+			update.GroupId.Should().Be(groupId);
+			update.MarketComment.FromId.Should().Be(userId);
+			update.MarketComment.Text.Should().Be(text);
+			update.MarketComment.MarketOwnerId.Should().Be(-groupId);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBotsLongPollHistory_MarketCommentDeleteTest()
 		{
 			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentDeleteTest));
@@ -102,11 +103,11 @@ namespace VkNet.Tests.Categories.BotsLongPoll
 
 			var update = botsLongPollHistory.Updates.First();
 
-			Assert.AreEqual(groupId, update.GroupId);
-			Assert.AreEqual(-groupId, update.MarketCommentDelete.OwnerId);
-			Assert.AreEqual(deleterId, update.MarketCommentDelete.DeleterId);
-			Assert.AreEqual(itemId, update.MarketCommentDelete.ItemId);
-			Assert.AreEqual(id, update.MarketCommentDelete.Id);
+			update.GroupId.Should().Be(groupId);
+			update.MarketCommentDelete.OwnerId.Should().Be(-groupId);
+			update.MarketCommentDelete.DeleterId.Should().Be(deleterId);
+			update.MarketCommentDelete.ItemId.Should().Be(itemId);
+			update.MarketCommentDelete.Id.Should().Be(id);
 		}
 	}
 }

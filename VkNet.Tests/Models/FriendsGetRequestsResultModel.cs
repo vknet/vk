@@ -1,17 +1,17 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using FluentAssertions;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class FriendsGetRequestsResultModel : CategoryBaseTest
 	{
 		protected override string Folder => "Friends";
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_Message()
 		{
 			ReadCategoryJsonPath(nameof(ShouldHaveField_Message));
@@ -19,10 +19,10 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 			var result = FriendsGetRequestsResult.FromJson(response);
 
-			Assert.That(result.Message, Is.EqualTo("text"));
+			result.Message.Should().Be("text");
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_Mutual()
 		{
 			ReadCategoryJsonPath(nameof(ShouldHaveField_Mutual));
@@ -30,10 +30,10 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 			var result = FriendsGetRequestsResult.FromJson(response);
 
-			Assert.IsNotEmpty(result.Mutual);
+			result.Mutual.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void ShouldHaveField_UserId()
 		{
 			ReadCategoryJsonPath(nameof(ShouldHaveField_UserId));
@@ -41,7 +41,7 @@ namespace VkNet.Tests.Models
 			var response = GetResponse();
 			var result = FriendsGetRequestsResult.FromJson(response);
 
-			Assert.That(result.UserId, Is.EqualTo(221634238L));
+			result.UserId.Should().Be(221634238L);
 		}
 	}
 }

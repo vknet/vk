@@ -1,16 +1,16 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Orders
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class OrdersCancelSubscriptionTests : CategoryBaseTest
 	{
 		protected override string Folder => "Orders";
 
-		[Test]
+		[Fact]
 		public void CancelSubscription()
 		{
 			Url = "https://api.vk.com/method/orders.cancelSubscription";
@@ -18,7 +18,7 @@ namespace VkNet.Tests.Categories.Orders
 
 			var result = Api.Orders.CancelSubscription(123, 23);
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 	}
 }

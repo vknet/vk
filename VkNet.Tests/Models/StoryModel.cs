@@ -1,14 +1,14 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class StoryModel : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void ShouldDeserializeFromVkResponseToAttachment()
 		{
 			ReadJsonFile("Models", "story_attachment");
@@ -17,7 +17,7 @@ namespace VkNet.Tests.Models
 
 			var attachment = Attachment.FromJson(response);
 
-			Assert.True(attachment.Instance is Story);
+			attachment.Instance.Should().BeOfType<Story>();
 		}
 	}
 }

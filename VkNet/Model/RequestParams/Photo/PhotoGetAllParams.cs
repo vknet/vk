@@ -1,5 +1,4 @@
 ﻿using System;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -54,27 +53,5 @@ namespace VkNet.Model.RequestParams
 		/// owner_id > <c> false </c>, параметр no_service_albums игнорируется).
 		/// </summary>
 		public bool? SkipHidden { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PhotoGetAllParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "extended", p.Extended }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "photo_sizes", p.PhotoSizes }
-					, { "no_service_albums", p.NoServiceAlbums }
-					, { "need_hidden", p.NeedHidden }
-					, { "skip_hidden", p.SkipHidden }
-			};
-
-			return parameters;
-		}
 	}
 }

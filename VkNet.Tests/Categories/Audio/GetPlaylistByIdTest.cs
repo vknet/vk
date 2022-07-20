@@ -1,7 +1,6 @@
-using System.Linq;
-using NUnit.Framework;
-using VkNet.Model.RequestParams;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Audio
 {
@@ -9,7 +8,7 @@ namespace VkNet.Tests.Categories.Audio
 	{
 		protected override string Folder => "Audio";
 
-		[Test]
+		[Fact]
 		public void GetPlaylistByIdTestTest()
 		{
 			Url = "https://api.vk.com/method/audio.getPlaylistById";
@@ -18,7 +17,7 @@ namespace VkNet.Tests.Categories.Audio
 
 			var result = Api.Audio.GetPlaylistById(-77288583, 84820009);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 	}
 }

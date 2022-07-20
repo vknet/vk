@@ -1,7 +1,34 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net40;net45;net461;netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
+		<VersionPrefix>1.70.0</VersionPrefix>
+		<VersionSufix>
+		</VersionSufix>
+		<NeutralLanguage>ru-RU</NeutralLanguage>
+		<PackageId>VkNet</PackageId>
+		<Title>Реализация ВКонтакте API для .NET.</Title>
+		<Description>
+			Реализация ВКонтакте API для .NET.
+			Список методов см. https://vknet.github.io/vk/
+		</Description>
+		<Authors>inyutin_maxim;azhidkov</Authors>
+		<PackageLicenseFile>LICENCE</PackageLicenseFile>
+		<PackageProjectUrl>https://vknet.github.io/vk/</PackageProjectUrl>
+		<PackageIcon>vknet-icon.PNG</PackageIcon>
+		<RepositoryUrl>https://github.com/vknet/vk</RepositoryUrl>
+		<RepositoryType>GIT</RepositoryType>
+		<PackageTags>vk;vk api;vknet;vkontakte;api</PackageTags>
+		<PackageReleaseNotes>
+			Обсуждение в Telegram: https://t.me/VkDotNet
+			Группа в Контакте: https://vk.com/vknetdotnet
+			_____________________________________________
+			Список изменений: https://github.com/vknet/vk/milestone/46?closed=1
+		</PackageReleaseNotes>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
 		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
 		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -13,64 +40,29 @@
 		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<VersionPrefix>1.47.0</VersionPrefix>
-		<VersionSufix>
-		</VersionSufix>
-		<NeutralLanguage>ru-RU</NeutralLanguage>
-		<PackageId>VkNet</PackageId>
-		<Title>Реализация ВКонтакте API для .NET.</Title>
-		<Description>
-			Реализация ВКонтакте API для .NET.
-			Список методов см. https://vknet.github.io/vk/
-		</Description>
-		<Authors>inyutin_maxim;azhidkov</Authors>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://vknet.github.io/vk/</PackageProjectUrl>
-		<PackageIconUrl>https://raw.githubusercontent.com/vknet/vk/master/tools/vknet-icon.PNG</PackageIconUrl>
-		<RepositoryUrl>https://github.com/vknet/vk</RepositoryUrl>
-		<RepositoryType>GIT</RepositoryType>
-		<PackageTags>vk;vk api;vknet;vkontakte;api</PackageTags>
-		<PackageReleaseNotes>
-			Обсуждение в Telegram: http://bit.ly/2rvEOWD
-			Группа в Контакте: https://vk.com/vknetdotnet
-			_____________________________________________
-			Список изменений: http://bit.ly/2PAN4Un
-		</PackageReleaseNotes>
-		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+
+	<PropertyGroup>
 		<DefineConstants>TRACE;DEBUG;UWP</DefineConstants>
-		<DocumentationFile>..\Build\Debug\VkNet.xml</DocumentationFile>
-		<OutputPath>..\Build\Debug\</OutputPath>
+		<DocumentationFile>..\Build\$(Configuration)\VkNet.xml</DocumentationFile>
+		<OutputPath>..\Build\$(Configuration)\</OutputPath>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>TRACE;UWP</DefineConstants>
-		<DocumentationFile>..\Build\Release\VkNet.xml</DocumentationFile>
-		<OutputPath>..\Build\Release\</OutputPath>
-	</PropertyGroup>
+
 	<ItemGroup>
-		<PackageReference Include="AsyncFixer" Version="1.1.6" PrivateAssets="all" />
-		<PackageReference Include="Flurl" Version="2.8.2" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.12" />
+		<PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="all" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.43" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="7.15.0.8572" PrivateAssets="all" />
-		<PackageReference Include="JetBrains.Annotations" Version="2019.1.3" PrivateAssets="all" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.41.0.50478" PrivateAssets="all" />
+		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net461'">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net45' OR '$(TargetFramework)' == 'net40'">
-		<PackageReference Include="NetFx.Extensions.DependencyInjection" Version="2.2.0" />
-		<PackageReference Include="NetFx.Extensions.Logging.Abstractions" Version="2.2.0" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == 'net461' OR '$(TargetFramework)' == 'net45'">
-		<PackageReference Include="Flurl.Http" Version="2.4.2" />
-	</ItemGroup>
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
-		<PackageReference Include="Flurl.Http.Net40" Version="1.0.1" />
-	</ItemGroup>
+
 	<ItemGroup>
-		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+		<None Include="..\tools\vknet-icon.PNG" Pack="true" PackagePath="\" />
+		<None Include="..\LICENCE" Pack="true" PackagePath="\" />
 	</ItemGroup>
+
 </Project>

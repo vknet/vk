@@ -1,18 +1,17 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using FluentAssertions;
 using VkNet.Model;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class CommentsModel
 	{
-		[Test]
+		[Fact]
 		public void ShouldHaveField_GroupsCanPost()
 		{
 			var comments = new Comments();
-			Assert.That(comments, Has.Property("GroupsCanPost"));
+			comments.GroupsCanPost.Should().BeFalse();
 		}
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -100,48 +99,5 @@ namespace VkNet.Model.RequestParams
 		/// Обнаружено опытным путем.
 		/// </remarks>
 		public string Phone { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> Объект типа AccountSaveProfileInfoParams </returns>
-		public static VkParameters ToVkParameters(AccountSaveProfileInfoParams p)
-		{
-			if (p.RelationPartner != null)
-			{
-				VkErrors.ThrowIfNumberIsNegative(expr: () => p.RelationPartner.Id);
-			}
-
-			if (p.Country != null)
-			{
-				VkErrors.ThrowIfNumberIsNegative(expr: () => p.Country.Id);
-			}
-
-			if (p.City != null)
-			{
-				VkErrors.ThrowIfNumberIsNegative(expr: () => p.City.Id);
-			}
-
-			var result = new VkParameters
-			{
-					{ "first_name", p.FirstName }
-					, { "last_name", p.LastName }
-					, { "maiden_name", p.MaidenName }
-					, { "screen_name", p.ScreenName }
-					, { "sex", p.Sex }
-					, { "relation", p.Relation }
-					, { "relation_partner_id", p.RelationPartner?.Id }
-					, { "bdate", p.BirthDate }
-					, { "bdate_visibility", p.BirthdayVisibility }
-					, { "home_town", p.HomeTown }
-					, { "country_id", p.Country?.Id }
-					, { "city_id", p.City?.Id }
-					, { "status", p.Status }
-					, { "phone", p.Phone }
-			};
-
-			return result;
-		}
 	}
 }

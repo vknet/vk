@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Utils;
 
@@ -15,11 +17,14 @@ namespace VkNet.Model
 		/// <summary>
 		/// Идентификатор объекта
 		/// </summary>
+		[JsonProperty("object_id")]
 		public long? Id { get; set; }
 
 		/// <summary>
 		/// Тип объекта
 		/// </summary>
+		[JsonProperty("type")]
+		[JsonConverter(typeof(StringEnumConverter))]
 		public VkObjectType Type { get; set; }
 
 		/// <summary>
@@ -31,7 +36,7 @@ namespace VkNet.Model
 		{
 			var obj = new VkObject
 			{
-					Id = Utilities.GetNullableLongId(response: response[key: "object_id"])
+				Id = Utilities.GetNullableLongId(response: response[key: "object_id"])
 			};
 
 			string type = response[key: "type"];
@@ -56,6 +61,13 @@ namespace VkNet.Model
 
 				{
 					obj.Type = VkObjectType.Application;
+
+					break;
+				}
+				case "page":
+
+				{
+					obj.Type = VkObjectType.Page;
 
 					break;
 				}

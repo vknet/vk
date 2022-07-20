@@ -1,18 +1,18 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Audio
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AudioAddToPlaylistTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";
 
-		[Test]
+		[Fact]
 		public void AddToPlaylistTest()
 		{
 			Url = "https://api.vk.com/method/audio.addToPlaylist";
@@ -21,15 +21,15 @@ namespace VkNet.Tests.Categories.Audio
 
 			var result = Api.Audio.AddToPlaylist(123456789,
 					1,
-					new List<long>
+					new List<string>
 					{
-						456239288,
-						456239289
+						"456239288",
+						"456239289"
 					})
 				.ToList();
 
-			Assert.IsNotEmpty(result);
-			Assert.That(result.Count, Is.EqualTo(2));
+			result.Should().NotBeEmpty();
+			result.Should().HaveCount(2);
 		}
 	}
 }

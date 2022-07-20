@@ -1,5 +1,4 @@
 ﻿using System;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -59,29 +58,5 @@ namespace VkNet.Model.RequestParams
 		/// текст, который ввел пользователь
 		/// </summary>
 		public string CaptchaKey { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PhotoEditParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "photo_id", p.PhotoId }
-					, { "caption", p.Caption }
-					, { "latitude", p.Latitude }
-					, { "longitude", p.Longitude }
-					, { "place_str", p.PlaceStr }
-					, { "foursquare_id", p.FoursquareId }
-					, { "delete_place", p.DeletePlace }
-					, { "captcha_sid", p.CaptchaSid }
-					, { "captcha_key", p.CaptchaKey }
-			};
-
-			return parameters;
-		}
 	}
 }

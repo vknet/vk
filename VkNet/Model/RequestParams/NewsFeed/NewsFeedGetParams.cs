@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.Filters;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -89,26 +88,8 @@ namespace VkNet.Model.RequestParams
 		public IEnumerable<string> Fields { get; set; }
 
 		/// <summary>
-		/// Привести к типу VkParameters.
+		/// Раздел новостной ленты.
 		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(NewsFeedGetParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "filters", p.Filters },
-				{ "return_banned", p.ReturnBanned },
-				{ "start_time", p.StartTime },
-				{ "end_time", p.EndTime },
-				{ "max_photos", p.MaxPhotos },
-				{ "source_ids", p.SourceIds },
-				{ "start_from", p.StartFrom },
-				{ "count", p.Count },
-				{ "fields", p.Fields }
-			};
-
-			return parameters;
-		}
+		public string Section { get; set; }
 	}
 }

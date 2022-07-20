@@ -1,16 +1,16 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class GetLongPollSettingsTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void GetLongPollSettings()
 		{
 			Url = "https://api.vk.com/method/groups.getLongPollSettings";
@@ -19,10 +19,10 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.GetLongPollSettings(123456);
 
-			Assert.AreEqual("5.50", result.ApiVersion);
+			result.ApiVersion.Should().Be("5.50");
 
-			Assert.IsTrue(result.IsEnabled);
-			Assert.NotNull(result.Events);
+			result.IsEnabled.Should().BeTrue();
+			result.Events.Should().NotBeNull();
 		}
 	}
 }

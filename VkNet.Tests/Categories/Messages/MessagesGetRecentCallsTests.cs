@@ -1,12 +1,12 @@
-using NUnit.Framework;
-using VkNet.Tests.Infrastructure;
+using FluentAssertions;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 	public class MessagesGetRecentCallsTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void GetRecentCalls()
 		{
 			Url = "https://api.vk.com/method/messages.getRecentCalls";
@@ -14,9 +14,9 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.GetRecentCalls(new[] { "filter" }, 1);
 
-			Assert.NotNull(result);
-			Assert.IsNotEmpty(result.Messages);
-			Assert.IsNotEmpty(result.Profiles);
+			result.Should().NotBeNull();
+			result.Messages.Should().NotBeEmpty();
+			result.Profiles.Should().NotBeEmpty();
 		}
 	}
 }

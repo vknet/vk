@@ -1,14 +1,14 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using FluentAssertions;
 using VkNet.Enums.Filters;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class MessagesGetChatPreview : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void DefaultParams()
 		{
 			Url = "https://api.vk.com/method/messages.getChatPreview";
@@ -16,15 +16,15 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.GetChatPreview("http://vk.com", ProfileFields.About);
 
-			Assert.NotNull(result);
-			Assert.That(result.Emails, Is.Not.Empty);
-			Assert.That(result.Groups, Is.Not.Empty);
-			Assert.That(result.Profiles, Is.Not.Empty);
-			Assert.That(result.Preview, Is.Not.Null);
-			Assert.That(result.Preview.LocalId, Is.EqualTo(43));
-			Assert.That(result.Preview.Title, Is.EqualTo("qwe"));
-			Assert.That(result.Preview.AdminId, Is.EqualTo(123));
-			Assert.That(result.Preview.Members, Is.Not.Empty);
+			result.Should().NotBeNull();
+			result.Emails.Should().NotBeEmpty();
+			result.Groups.Should().NotBeEmpty();
+			result.Profiles.Should().NotBeEmpty();
+			result.Preview.Should().NotBeNull();
+			result.Preview.LocalId.Should().Be(43);
+			result.Preview.Title.Should().Be("qwe");
+			result.Preview.AdminId.Should().Be(123);
+			result.Preview.Members.Should().NotBeEmpty();
 		}
 	}
 }

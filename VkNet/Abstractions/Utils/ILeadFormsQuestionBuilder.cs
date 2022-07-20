@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 
@@ -73,6 +74,6 @@ namespace VkNet.Abstractions.Utils
 		/// <returns>
 		/// Сериализованный в массив список вопросов.
 		/// </returns>
-		string Build();
+		string Build(Formatting formatting = Formatting.Indented);
 	}
 }

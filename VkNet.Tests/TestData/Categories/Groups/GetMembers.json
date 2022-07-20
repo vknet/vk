@@ -1,0 +1,14 @@
+﻿{
+  "response": {
+    "count": 1,
+    "items": [
+      {
+        "id": 235052667,
+        "role": "creator",
+        "permissions": [
+          "ads"
+        ]
+      }
+    ]
+  }
+}

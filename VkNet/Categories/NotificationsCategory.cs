@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Model;
+using VkNet.Model.RequestParams.Notifications;
+using VkNet.Model.Results.Notifications;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -13,37 +15,54 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly IVkApiInvoke _vk;
 
-		/// <inheritdoc />
-		/// <param name="api">
+		/// <summary>
+		/// api vk.com
+		/// </summary>
+		/// <param name="vk">
 		/// Api vk.com
 		/// </param>
-		public NotificationsCategory(VkApi api = null)
+		public NotificationsCategory(VkApi vk = null)
 		{
-			_vk = api;
+			_vk = vk;
 		}
 
 		/// <inheritdoc />
-		public IEnumerable<NotificationGetResult> Get(ulong? count = null
-													, string startFrom = null
-													, IEnumerable<string> filters = null
-													, long? startTime = null
-													, long? endTime = null)
+		public NotificationGetResult Get(ulong? count = null
+										, string startFrom = null
+										, IEnumerable<string> filters = null
+										, long? startTime = null
+										, long? endTime = null)
 		{
-			return _vk.Call<IEnumerable<NotificationGetResult>>(methodName: "notifications.get"
-					, parameters: new VkParameters
-					{
-							{ "count", count }
-							, { "start_from", startFrom }
-							, { "filters", filters }
-							, { "start_time", startTime }
-							, { "end_time", endTime }
-					});
+			return _vk.Call<NotificationGetResult>("notifications.get",
+				parameters: new VkParameters
+				{
+					{ "count", count },
+					{ "start_from", startFrom },
+					{ "filters", filters },
+					{ "start_time", startTime },
+					{ "end_time", endTime }
+				});
 		}
 
 		/// <inheritdoc />
 		public bool MarkAsViewed()
 		{
 			return _vk.Call<bool>(methodName: "notifications.markAsViewed", parameters: VkParameters.Empty);
+		}
+
+		/// <inheritdoc />
+		public IEnumerable<NotificationsSendMessageResult> SendMessage(NotificationsSendMessageParams sendMessageParams)
+		{
+			return _vk.Call<IEnumerable<NotificationsSendMessageResult>>("notifications.sendMessage",
+				new VkParameters
+				{
+					{ "user_ids", sendMessageParams.UserIds },
+					{ "message", sendMessageParams.Message },
+					{ "fragment", sendMessageParams.Fragment },
+					{ "sending_mode", sendMessageParams.SendingMode },
+					{ "group_id", sendMessageParams.GroupId },
+					{ "random_id", sendMessageParams.RandomId }
+				});
 		}
 	}
 }

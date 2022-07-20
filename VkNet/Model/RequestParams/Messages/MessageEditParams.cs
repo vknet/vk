@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
+using VkNet.Model.Keyboard;
+using VkNet.Model.Template;
 
 namespace VkNet.Model.RequestParams
 {
@@ -27,8 +28,8 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор сообщения.
 		/// </summary>
-		[JsonProperty("message_id")]
-		public long MessageId { get; set; }
+		[JsonProperty("message_id", NullValueHandling = NullValueHandling.Ignore)]
+		public long? MessageId { get; set; }
 
 		/// <summary>
 		/// Географическая широта (от -90 до 90).
@@ -73,25 +74,27 @@ namespace VkNet.Model.RequestParams
 		public bool DontParseLinks { get; set; }
 
 		/// <summary>
-		/// Привести к типу VkParameters.
+		/// идентификатор сообщения в беседе
 		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MessageEditParams p)
-		{
-			return new VkParameters
-			{
-				{ "peer_id", p.PeerId },
-				{ "message", p.Message },
-				{ "message_id", p.MessageId },
-				{ "lat", p.Latitude },
-				{ "long", p.Longitude },
-				{ "attachment", p.Attachments },
-				{ "keep_forward_messages", p.KeepForwardMessages },
-				{ "keep_snippets", p.KeepSnippets },
-				{ "group_id", p.GroupId },
-				{ "dont_parse_links", p.DontParseLinks }
-			};
-		}
+		[JsonProperty("conversation_message_id", NullValueHandling = NullValueHandling.Ignore)]
+		public long? ConversationMessageId { get; set; }
+
+		/// <summary>
+		/// Шаблон сообщений
+		/// </summary>
+		/// <remarks>
+		/// Рекомендуется для построения использовать <see cref="ITemplateBuilder" />
+		/// </remarks>
+		[JsonProperty("template")]
+		public MessageTemplate Template { get; set; }
+
+		/// <summary>
+		/// Клавиатура бота
+		/// </summary>
+		/// <remarks>
+		/// Рекомендуется для построения использовать <see cref="IKeyboardBuilder" />
+		/// </remarks>
+		[JsonProperty("keyboard")]
+		public MessageKeyboard Keyboard { get; set; }
 	}
 }

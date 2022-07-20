@@ -1,18 +1,18 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Audio
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AudioGetByIdTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";
 
-		[Test]
+		[Fact]
 		public void GetByIdTest()
 		{
 			Url = "https://api.vk.com/method/audio.getById";
@@ -22,8 +22,8 @@ namespace VkNet.Tests.Categories.Audio
 			var result = Api.Audio.GetById(new List<string> { "465742902_456239281" }).ToList();
 			var audio = result.FirstOrDefault();
 
-			Assert.IsNotEmpty(result);
-			Assert.NotNull(audio);
+			result.Should().NotBeEmpty();
+			audio.Should().NotBeNull();
 		}
 	}
 }

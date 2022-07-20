@@ -1,5 +1,8 @@
 namespace VkNet.Enums
 {
+	/// <summary>
+	/// тип документа
+	/// </summary>
 	public enum DocumentTypeEnum
 	{
 		/// <summary>

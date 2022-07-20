@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -79,26 +78,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty("group_id")]
 		public ulong GroupId { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> Объект типа MessagesGetHistoryAttachmentsParams </returns>
-		public static VkParameters ToVkParameters(MessagesGetHistoryAttachmentsParams p)
-		{
-			var result = new VkParameters
-			{
-				{ "peer_id", p.PeerId },
-				{ "media_type", p.MediaType },
-				{ "start_from", p.StartFrom },
-				{ "count", p.Count },
-				{ "photo_sizes", p.PhotoSizes },
-				{ "fields", p.Fields },
-				{ "group_id", p.GroupId }
-			};
-
-			return result;
-		}
 	}
 }

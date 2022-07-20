@@ -1,6 +1,5 @@
 ﻿using System;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -47,23 +46,5 @@ namespace VkNet.Model.RequestParams
 		/// offset)
 		/// </summary>
 		public long? LastMessageId { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MessagesGetParams p)
-		{
-			return new VkParameters
-			{
-					{ "offset", p.Offset }
-					, { "count", p.Count }
-					, { "time_offset", p.TimeOffset }
-					, { "filters", p.Filters }
-					, { "preview_length", p.PreviewLength }
-					, { "last_message_id", p.LastMessageId }
-			};
-		}
 	}
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Exception;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -46,40 +44,5 @@ namespace VkNet.Model.RequestParams
 		/// Отключено ли комментирование альбома (только для альбома сообщества).
 		/// </summary>
 		public bool? CommentsDisabled { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PhotoCreateAlbumParams p)
-		{
-			if (p.PrivacyView == null)
-			{
-				p.PrivacyView = new List<Privacy>();
-			}
-
-			if (p.PrivacyComment == null)
-			{
-				p.PrivacyComment = new List<Privacy>();
-			}
-
-			if (p.Title.Length < 2)
-			{
-				throw new VkApiException(message: "Параметр title обязательный, минимальная длина 2 символа");
-			}
-
-			var parameters = new VkParameters
-			{
-				{ "title", p.Title },
-				{ "group_id", p.GroupId },
-				{ "description", p.Description },
-				{ "privacy_view", string.Join(separator: ",", values: p.PrivacyView) },
-				{ "privacy_comment", string.Join(separator: ",", values: p.PrivacyComment) },
-				{ "upload_by_admins_only", p.UploadByAdminsOnly }, { "comments_disabled", p.CommentsDisabled }
-			};
-
-			return parameters;
-		}
 	}
 }

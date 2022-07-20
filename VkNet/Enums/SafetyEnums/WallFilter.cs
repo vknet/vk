@@ -1,4 +1,4 @@
-﻿using VkNet.Utils;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums
 {
@@ -24,12 +24,12 @@ namespace VkNet.Enums.SafetyEnums
 		public static readonly WallFilter All = RegisterPossibleValue(value: "all");
 
 		/// <summary>
-		/// Отложенные записи
+		/// Предложенные записи на стене сообщества
 		/// </summary>
 		public static readonly WallFilter Suggests = RegisterPossibleValue(value: "suggests");
 
 		/// <summary>
-		/// Предложенные записи на стене сообщества
+		/// Отложенные записи
 		/// </summary>
 		public static readonly WallFilter Postponed = RegisterPossibleValue(value: "postponed");
 	}

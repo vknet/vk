@@ -1,15 +1,13 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class CallModel : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void ShouldDeserializeFromVkResponseToAttachment()
 		{
 			ReadJsonFile("Models", "call");
@@ -18,7 +16,7 @@ namespace VkNet.Tests.Models
 
 			var attachment = Attachment.FromJson(response);
 
-			Assert.True(attachment.Instance is Call);
+			attachment.Instance.Should().BeOfType<Call>();
 		}
 	}
 }

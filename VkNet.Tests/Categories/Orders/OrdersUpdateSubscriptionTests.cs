@@ -1,16 +1,16 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Orders
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class OrdersUpdateSubscriptionTests : CategoryBaseTest
 	{
 		protected override string Folder => "Orders";
 
-		[Test]
+		[Fact]
 		public void UpdateSubscription()
 		{
 			Url = "https://api.vk.com/method/orders.updateSubscription";
@@ -18,7 +18,7 @@ namespace VkNet.Tests.Categories.Orders
 
 			var result = Api.Orders.UpdateSubscription(123, 234, 500);
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 	}
 }

@@ -1,14 +1,14 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class MessagesUnpinTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void Unpin()
 		{
 			Url = "https://api.vk.com/method/messages.unpin";
@@ -16,7 +16,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.Unpin(123, 345);
 
-			Assert.True(result);
+			result.Should().BeTrue();
 		}
 	}
 }

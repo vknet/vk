@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,15 +7,14 @@ using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Infrastructure;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы для работы с документами (получение списка, загрузка, удаление и т.д.)
-	/// </summary>
+	/// <inheritdoc />
 	public partial class DocsCategory : IDocsCategory
 	{
 		/// <summary>
@@ -41,7 +40,10 @@ namespace VkNet.Categories
 
 			var parameters = new VkParameters
 			{
-				{ "count", count }, { "offset", offset }, { "owner_id", ownerId }, { "type", type }
+				{ "count", count },
+				{ "offset", offset },
+				{ "owner_id", ownerId },
+				{ "type", type }
 			};
 
 			return _vk.Call("docs.get", parameters).ToVkCollectionOf<Document>(selector: r => r);
@@ -87,22 +89,31 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => groupId);
 
-			var parameters = new VkParameters { { "group_id", groupId } };
+			var parameters = new VkParameters
+			{
+				{ "group_id", groupId }
+			};
 
 			return _vk.Call("docs.getWallUploadServer", parameters);
 		}
 
 		/// <inheritdoc />
 		[Pure]
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
 													string captchaKey = null)
+		{
+			return Save(file, title, tags);
+		}
+
+		/// <inheritdoc />
+		public ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null)
 		{
 			VkErrors.ThrowIfNullOrEmpty(() => title);
 
 			if (VkResponseEx.IsValidJson(file))
 			{
-				var responseJson = JObject.Parse(file);
+				var responseJson = file.ToJObject();
 				file = responseJson["file"].ToString();
 			}
 
@@ -110,9 +121,7 @@ namespace VkNet.Categories
 			{
 				{ "file", file },
 				{ "title", title },
-				{ "tags", tags },
-				{ "captcha_sid", captchaSid },
-				{ "captcha_key", captchaKey }
+				{ "tags", tags }
 			};
 
 			var response = _vk.Call("docs.save", parameters);
@@ -148,8 +157,14 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public long Add(long ownerId, long docId, string accessKey = null, long? captchaSid = null, string captchaKey = null)
+		{
+			return Add(ownerId, docId, accessKey);
+		}
+
+		/// <inheritdoc />
+		public long Add(long ownerId, long docId, string accessKey = null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => ownerId);
 			VkErrors.ThrowIfNumberIsNegative(expr: () => docId);
@@ -158,9 +173,7 @@ namespace VkNet.Categories
 			{
 				{ "owner_id", ownerId },
 				{ "doc_id", docId },
-				{ "access_key", accessKey },
-				{ "captcha_sid", captchaSid },
-				{ "captcha_key", captchaKey }
+				{ "access_key", accessKey }
 			};
 
 			return _vk.Call("docs.add", parameters);

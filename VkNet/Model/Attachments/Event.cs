@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
+using VkNet.Infrastructure;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -67,7 +68,7 @@ namespace VkNet.Model.Attachments
 		public static Event FromJson(VkResponse response)
 		{
 			return response != null
-				? JsonConvert.DeserializeObject<Event>(response.ToString())
+				? JsonConvert.DeserializeObject<Event>(response.ToString(), JsonConfigure.JsonSerializerSettings)
 				: null;
 		}
 

@@ -1,15 +1,13 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.RequestParams;
-using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesGetHistoryTest : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void GetHistoryTest()
 		{
 			Url = "https://api.vk.com/method/messages.getHistory";
@@ -23,11 +21,11 @@ namespace VkNet.Tests.Categories.Messages
 				Extended = true
 			});
 
-			Assert.That(result.TotalCount, Is.EqualTo(226));
-			Assert.IsNotEmpty(result.Messages);
-			Assert.IsNotEmpty(result.Conversations);
-			Assert.IsNotEmpty(result.Groups);
-			Assert.IsNotEmpty(result.Users);
+			result.TotalCount.Should().Be(226);
+			result.Messages.Should().NotBeEmpty();
+			result.Conversations.Should().NotBeEmpty();
+			result.Groups.Should().NotBeEmpty();
+			result.Users.Should().NotBeEmpty();
 		}
 	}
 }

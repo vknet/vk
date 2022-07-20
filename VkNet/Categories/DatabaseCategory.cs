@@ -9,15 +9,13 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы для получения справочной информации (страны, города, школы, учебные
-	/// заведения и т.п.).
-	/// </summary>
+	/// <inheritdoc />
 	public partial class DatabaseCategory : IDatabaseCategory
 	{
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
+		/// api vk.com
 		/// </summary>
 		/// <param name="vk"> </param>
 		public DatabaseCategory(IVkApiInvoke vk)
@@ -97,7 +95,15 @@ namespace VkNet.Categories
 			VkErrors.ThrowIfNumberIsNegative(() => getCitiesParams.CountryId);
 			VkErrors.ThrowIfNumberIsNegative(() => getCitiesParams.RegionId);
 
-			return _vk.Call("database.getCities", getCitiesParams, true)
+			return _vk.Call("database.getCities", new VkParameters
+				{
+					{ "country_id", getCitiesParams.CountryId }
+					, { "region_id", getCitiesParams.RegionId }
+					, { "q", getCitiesParams.Query }
+					, { "need_all", getCitiesParams.NeedAll }
+					, { "count", getCitiesParams.Count }
+					, { "offset", getCitiesParams.Offset }
+				}, true)
 				.ToVkCollectionOf<City>( x => x);
 		}
 

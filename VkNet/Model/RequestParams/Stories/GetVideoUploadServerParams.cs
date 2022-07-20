@@ -46,5 +46,11 @@ namespace VkNet.Model.RequestParams.Stories
 		/// </summary>
 		[JsonProperty("group_id")]
 		public ulong GroupId { get; set; }
+
+		/// <summary>
+		/// Объект кликабельного стикера.
+		/// </summary>
+		[JsonProperty("clickable_stickers")]
+		public ClickableStickersObject ClickableStickers { get; set; }
 	}
 }

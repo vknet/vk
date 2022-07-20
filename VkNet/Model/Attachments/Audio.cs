@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
+using VkNet.Model.GroupUpdate;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments
@@ -12,7 +13,7 @@ namespace VkNet.Model.Attachments
 	/// См. описание http://vk.com/dev/audio_object
 	/// </summary>
 	[Serializable]
-	public class Audio : MediaAttachment
+	public class Audio : MediaAttachment, IGroupUpdate
 	{
 		/// <inheritdoc />
 		protected override string Alias => "audio";
@@ -55,13 +56,13 @@ namespace VkNet.Model.Attachments
 		public AudioAlbum Album { get; set; }
 
 		/// <summary>
-		/// true, если аудиозапись лицензируется.
+		/// <c>true</c>, если аудиозапись лицензируется.
 		/// </summary>
 		[JsonProperty("is_licensed")]
 		public bool? IsLicensed { get; set; }
 
 		/// <summary>
-		/// true, если аудиозапись в высоком качестве.
+		/// <c>true</c>, если аудиозапись в высоком качестве.
 		/// </summary>
 		[JsonProperty("is_hq")]
 		public bool? IsHq { get; set; }
@@ -85,19 +86,43 @@ namespace VkNet.Model.Attachments
 		public long? LyricsId { get; set; }
 
 		/// <summary>
-		/// Неизвестно.
+		/// Содержит ли трек ненормативную лексику.
 		/// </summary>
-		[JsonProperty("content_restricted")]
-		public int? ContentRestricted { get; set; }
+		[JsonProperty("is_explicit")]
+		public bool IsExplicit { get; set; }
 
 		/// <summary>
-		/// Список исполнителей.
+		/// Получено экспериментально
+		/// </summary>
+		[JsonProperty("is_focus_track")]
+		public bool IsFocusTrack { get; set; }
+
+		/// <summary>
+		/// Возможно ли использование обложки этого трека в "Историях" (получено экспериментально)
+		/// </summary>
+		[JsonProperty("stories_cover_allowed")]
+		public bool? StoriesCoverAllowed { get; set; }
+
+		/// <summary>
+		/// Возможно ли использование этого трека в "Историях" (получено экспериментально)
+		/// </summary>
+		[JsonProperty("stories_allowed")]
+		public bool? StoriesAllowed { get; set; }
+
+		/// <summary>
+		/// Возможно ли использование этого трека в "Клипах" (получено экспериментально)
+		/// </summary>
+		[JsonProperty("short_videos_allowed")]
+		public bool? ShortVideosAllowed { get; set; }
+
+		/// <summary>
+		/// Список главных исполнителей.
 		/// </summary>
 		[JsonProperty("main_artists")]
 		public IEnumerable<AudioArtist> MainArtists { get; set; }
 
 		/// <summary>
-		/// Список исполнителей.
+		/// Список второстепенных исполнителей.
 		/// </summary>
 		[JsonProperty("featured_artists")]
 		public IEnumerable<AudioArtist> FeaturedArtists { get; set; }
@@ -137,7 +162,7 @@ namespace VkNet.Model.Attachments
 				IsHq = response["is_hq"],
 				IsLicensed = response["is_licensed"],
 				TrackGenre = response["track_genre_id"],
-				ContentRestricted = response["content_restricted"],
+				IsExplicit = response["is_explicit"],
 				Genre = response["genre_id"] ?? response["genre"],
 				Date = response["date"],
 				MainArtists = response["main_artists"].ToReadOnlyCollectionOf<AudioArtist>(x => x),

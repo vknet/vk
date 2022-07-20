@@ -1,11 +1,12 @@
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
 	public class MoneyTransferTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void ShouldDeserializeFromVkResponseToAttachment()
 		{
 			ReadJsonFile("Models", "money_transfer");
@@ -14,7 +15,7 @@ namespace VkNet.Tests.Models
 
 			var attachment = Attachment.FromJson(response);
 
-			Assert.True(attachment.Instance is MoneyTransfer);
+			attachment.Instance.Should().BeOfType<MoneyTransfer>();
 		}
 	}
 }

@@ -32,7 +32,7 @@ namespace VkNet.Model
 		/// Число непрочитанных сообщений.
 		/// </summary>
 		[JsonProperty("unread_count")]
-		public long UnreadCount { get; set; }
+		public long? UnreadCount { get; set; }
 
 		/// <summary>
 		/// true, если диалог помечен как важный (только для сообщений сообществ).
@@ -57,6 +57,18 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("can_write")]
 		public ConversationCanWrite CanWrite { get; set; }
+
+		/// <summary>
+		/// Информация о том, может ли пользователь получать деньги.
+		/// </summary>
+		[JsonProperty("can_receive_money")]
+		public bool? CanReceiveMoney { get; set; }
+
+		/// <summary>
+		/// Информация о том, может ли пользователь отправлять деньги.
+		/// </summary>
+		[JsonProperty("can_send_money")]
+		public bool? CanSendMoney { get; set; }
 
 		/// <summary>
 		/// Настройки чата.

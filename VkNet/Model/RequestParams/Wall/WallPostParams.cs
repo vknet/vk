@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -129,13 +129,13 @@ namespace VkNet.Model.RequestParams
 		/// <summary>
 		/// Идентификатор капчи
 		/// </summary>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public long? CaptchaSid { get; set; }
 
 		/// <summary>
 		/// Текст капчи, который ввел пользователь
 		/// </summary>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public string CaptchaKey { get; set; }
 
 		/// <summary>
@@ -161,35 +161,19 @@ namespace VkNet.Model.RequestParams
 		[JsonProperty("close_comments")]
 		public bool? CloseComments { get; set; }
 
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(WallPostParams p)
-		{
-			var result = new VkParameters
-			{
-				{ "owner_id", p.OwnerId },
-				{ "friends_only", p.FriendsOnly },
-				{ "from_group", p.FromGroup },
-				{ "message", p.Message },
-				{ "attachments", p.Attachments },
-				{ "services", p.Services },
-				{ "signed", p.Signed },
-				{ "publish_date", p.PublishDate },
-				{ "lat", p.Lat },
-				{ "long", p.Long },
-				{ "place_id", p.PlaceId },
-				{ "post_id", p.PostId },
-				{ "captcha_sid", p.CaptchaSid },
-				{ "captcha_key", p.CaptchaKey },
-				{ "guid", p.Guid },
-				{ "mark_as_ads", p.MarkAsAds },
-				{ "close_comments", p.CloseComments}
-			};
 
-			return result;
-		}
+		/// <summary>
+		/// 1 — уведомления к записи отключены.
+		/// 0 — уведомления к записи включены.
+		/// флаг, может принимать значения 1 или 0
+		/// </summary>
+		[JsonProperty("mute_notifications")]
+		public bool MuteNotifications { get; set; }
+
+		/// <summary>
+		/// Источник материала. Поддерживаются внешние и внутренние ссылки. строка
+		/// </summary>
+		[JsonProperty("copyright")]
+		public string Copyright { get; set; }
 	}
 }

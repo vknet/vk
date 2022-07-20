@@ -1,6 +1,7 @@
-using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories
@@ -9,51 +10,51 @@ namespace VkNet.Categories
 	public partial class AppWidgetsCategory
 	{
 		/// <inheritdoc/>
-		public Task<Uri> GetAppImageUploadServerAsync(AppWidgetImageType imageType)
+		public Task<UploadServerInfo> GetAppImageUploadServerAsync(AppWidgetImageType imageType)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetAppImageUploadServer(imageType));
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> GetAppImagesAsync(int offset, int count, AppWidgetImageType imageType)
+		public Task<AppImageResult> GetAppImagesAsync(int offset, int count, AppWidgetImageType imageType)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetAppImages(offset, count, imageType));
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> GetGroupImageUploadServerAsync(AppWidgetImageType imageType)
+		public Task<UploadServerInfo> GetGroupImageUploadServerAsync(AppWidgetImageType imageType)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetGroupImageUploadServer(imageType));
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> GetGroupImagesAsync(int offset, int count, AppWidgetImageType imageType)
+		public Task<AppImageResult> GetGroupImagesAsync(int offset, int count, AppWidgetImageType imageType)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetGroupImages(offset, count, imageType));
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> GetImagesByIdAsync(string images)
+		public Task<ReadOnlyCollection<AppImage>> GetImagesByIdAsync(string images)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetImagesById(images));
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> SaveAppImageAsync(string hash, string image)
+		public Task<AppImage> SaveAppImageAsync(string hash, string image)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => SaveAppImage(hash, image));
 		}
 
 		/// <inheritdoc/>
-		public Task<Uri> SaveGroupImageAsync()
+		public Task<AppImage> SaveGroupImageAsync(string hash, string image)
 		{
-			return TypeHelper.TryInvokeMethodAsync(SaveGroupImage);
+			return TypeHelper.TryInvokeMethodAsync(() => SaveGroupImage(hash, image));
 		}
 
 		/// <inheritdoc/>
-		public Task<bool> UpdateAsync()
+		public Task<bool> UpdateAsync(string code, AppWidgetType type)
 		{
-			return TypeHelper.TryInvokeMethodAsync(Update);
+			return TypeHelper.TryInvokeMethodAsync((() => Update(code, type)));
 		}
 	}
 }

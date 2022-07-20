@@ -1,16 +1,16 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
-namespace VkNet.Tests.Categories
+namespace VkNet.Tests.Categories.Account
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AccountChangePasswordTests : CategoryBaseTest
 	{
 		protected override string Folder => "Account";
 
-		[Test]
+		[Fact]
 		public void ChangePassword()
 		{
 			Url = "https://api.vk.com/method/account.changePassword";
@@ -18,7 +18,7 @@ namespace VkNet.Tests.Categories
 			ReadCategoryJsonPath(nameof(Api.Account.ChangePassword));
 
 			var result = Api.Account.ChangePassword("old", "new");
-			Assert.That(result.Token, Is.EqualTo("token"));
+			result.Token.Should().Be("token");
 		}
 	}
 }

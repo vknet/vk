@@ -4,6 +4,9 @@ using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums
 {
+	/// <summary>
+	/// Тип актиновсти в диалоге.
+	/// </summary>
 	[Serializable]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public class MessageActivityType : SafetyEnum<MessageActivityType>
@@ -17,5 +20,15 @@ namespace VkNet.Enums.SafetyEnums
 		/// Пользователь записывает голосовое сообщение.
 		/// </summary>
 		public static readonly MessageActivityType AudioMessage = RegisterPossibleValue("audiomessage");
+
+		/// <summary>
+		/// Пользователь отправляет фото.
+		/// </summary>
+		public static readonly MessageActivityType Photo = RegisterPossibleValue("photo");
+
+		/// <summary>
+		/// Пользователь отправляет видео.
+		/// </summary>
+		public static readonly MessageActivityType Video = RegisterPossibleValue("video");
 	}
 }

@@ -47,7 +47,7 @@ namespace VkNet.Enums.SafetyEnums
 		/// Mask must be a power of 2 (i.e.
 		/// only one bit must be equal to 1);mask
 		/// </exception>
-		protected static TFilter RegisterPossibleValue(string value)
+		public static TFilter RegisterPossibleValue(string value)
 		{
 			return new TFilter { _value = value };
 		}

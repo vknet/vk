@@ -1,28 +1,26 @@
 using System;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Flurl;
+using FluentAssertions;
 using Moq;
 using Moq.AutoMock;
-using NUnit.Framework;
 using VkNet.Abstractions.Core;
-using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
-using VkNet.Infrastructure.Authorization;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
+using VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
 using VkNet.Model;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Infrastructure
 {
-	[TestFixture]
+
 	public class ImplicitFlowTests
 	{
-		[Test]
+		[Fact]
 		public void CreateAuthorizeUrl()
 		{
 			const int clientId = 4268118;
@@ -34,7 +32,7 @@ namespace VkNet.Tests.Infrastructure
 			builder.Append($"client_id={clientId}&");
 			builder.Append($"redirect_uri={Constants.DefaultRedirectUri}&");
 			builder.Append($"display={display}&");
-			builder.Append($"scope={scope}&");
+			builder.Append($"scope={scope.ToUInt64()}&");
 			builder.Append($"response_type={ResponseType.Token}&");
 			builder.Append("v=5.92&");
 			builder.Append($"state={state}&");
@@ -58,32 +56,29 @@ namespace VkNet.Tests.Infrastructure
 
 			var authorizeUrl = implicitFlow.CreateAuthorizeUrl();
 
-			Assert.AreEqual(new Url(expected), authorizeUrl);
+			authorizeUrl.Should().Be(new Uri(expected));
 		}
 
-		[Test]
+		[Fact]
 		public async Task Authorize()
 		{
 			var mocker = new AutoMocker();
 
 			mocker.Setup<IVkApiVersionManager, string>(x => x.Version).Returns("5.92");
 
-			mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x => x.ExecuteAsync(It.IsAny<Url>()))
+			mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x =>
+					x.ExecuteAsync(It.IsAny<Uri>(), It.IsAny<IApiAuthParams>()))
 				.ReturnsAsync(new AuthorizationFormResult
 				{
-					ResponseUrl = "https://m.vk.com/login?act=authcheck&m=442",
-					RequestUrl = "https://m.vk.com/login?act=authcheck&m=442",
-					Cookies = new CookieContainer()
+					ResponseUrl = new Uri("https://m.vk.com/login?act=authcheck&m=442"),
+					RequestUrl = new Uri("https://m.vk.com/login?act=authcheck&m=442")
 				});
 
 			mocker.Setup<IAuthorizationFormFactory, IAuthorizationForm>(x => x.Create(It.IsAny<ImplicitFlowPageType>()))
 				.Returns(mocker.Get<IAuthorizationForm>());
 
 			mocker.GetMock<IVkAuthorization<ImplicitFlowPageType>>()
-				.SetupSequence(x => x.GetPageType(It.IsAny<Uri>()))
-				.Returns(ImplicitFlowPageType.LoginPassword)
-				.Returns(ImplicitFlowPageType.TwoFactor)
-				.Returns(ImplicitFlowPageType.Consent)
+				.Setup(x => x.GetPageType(It.IsAny<Uri>()))
 				.Returns(ImplicitFlowPageType.Result);
 
 			mocker.GetMock<IVkAuthorization<ImplicitFlowPageType>>()
@@ -109,11 +104,11 @@ namespace VkNet.Tests.Infrastructure
 
 			var result = await implicitFlow.AuthorizeAsync().ConfigureAwait(false);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 
-		[Test]
-		public async Task Authorize_ValidateError()
+		[Fact]
+		public void Authorize_ValidateError()
 		{
 			var mocker = new AutoMocker();
 
@@ -126,7 +121,7 @@ namespace VkNet.Tests.Infrastructure
 				Login = "login"
 			});
 
-			Assert.ThrowsAsync<VkAuthorizationException>(() => implicitFlow.AuthorizeAsync());
+			FluentActions.Invoking(() => implicitFlow.AuthorizeAsync()).Should().ThrowExactlyAsync<VkAuthorizationException>();
 		}
 	}
 }

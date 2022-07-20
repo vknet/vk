@@ -6,7 +6,7 @@ using VkNet.Model;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Storage Методы для работы с переменными в приложении.
+	/// Методы для работы с переменными в приложении.
 	/// </summary>
 	public interface IStorageCategoryAsync
 	{

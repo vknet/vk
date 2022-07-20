@@ -124,7 +124,8 @@ namespace VkNet.Model
 				LastNameIns = response["last_name_ins"],
 				LastNameAbl = response["last_name_abl"],
 				IsClosed = response["is_closed"],
-				CanAccessClosed = response["can_access_closed"]
+				CanAccessClosed = response["can_access_closed"],
+				Count = response["count"]
 			};
 
 			user.IsDeactivated = user.Deactivated != null;
@@ -144,16 +145,38 @@ namespace VkNet.Model
 				}
 			}
 
-			if (user.BirthDate == null || response["bdate_visibility"] != null)
+			switch (response["role"]?.ToString())
 			{
-				return user;
+				case "creator":
+					user.Role = ManagerRole.Creator;
+					break;
+				case "administrator":
+					user.Role = ManagerRole.Administrator;
+					break;
+				case "editor":
+					user.Role = ManagerRole.Editor;
+					break;
+				case "moderator":
+					user.Role = ManagerRole.Moderator;
+					break;
+				default:
+					user.Role = null;
+					break;
 			}
 
-			var birthdayParts = user.BirthDate.Split('.');
+			if (response["bdate_visibility"] == null)
+			{
+				if (!string.IsNullOrEmpty(user.BirthDate))
+				{
+					var birthdayParts = user.BirthDate.Split('.');
 
-			user.BirthdayVisibility = birthdayParts.Length > 2
-				? Enums.BirthdayVisibility.Full
-				: Enums.BirthdayVisibility.OnlyDayAndMonth;
+					user.BirthdayVisibility = birthdayParts.Length > 2
+						? Enums.BirthdayVisibility.Full
+						: Enums.BirthdayVisibility.OnlyDayAndMonth;
+				}
+			}
+			else
+				user.BirthdayVisibility = response["bdate_visibility"];
 
 			return user;
 		}
@@ -796,9 +819,29 @@ namespace VkNet.Model
 		/// </summary>
 		public ChangeNameRequest ChangeNameRequest { get; set; }
 
-	#endregion
+		#endregion
 
-	#region private
+		#region Поля для Groups.GetMembers
+
+		/// <summary>
+		/// Полномочия руководителя (для Groups.GetMembers)
+		/// </summary>
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		public ManagerRole Role { get; set; }
+
+		#endregion
+
+		#region Поля для NewsFeed.Get
+
+			/// <summary>
+			/// Количество друзей (для Groups.GetMembers)
+			/// </summary>
+			[JsonProperty("count")]
+			public long? Count { get; set; }
+
+		#endregion
+
+		#region private
 
 		[JsonProperty("uid")]
 		private long Uid

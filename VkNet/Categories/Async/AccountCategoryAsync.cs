@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> SetNameInMenuAsync(string name, long? userId = null)
+		public Task<bool> SetNameInMenuAsync(string name, long userId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => SetNameInMenu(name, userId));
 		}
@@ -80,15 +81,29 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<bool> BanUserAsync(long userId)
+		[Obsolete(ObsoleteText.BanUserAsync)]
+		public Task<bool> BanUserAsync(long ownerId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => BanUser(userId));
+			return BanAsync(ownerId);
 		}
 
 		/// <inheritdoc />
-		public Task<bool> UnbanUserAsync(long userId)
+		public Task<bool> BanAsync(long ownerId)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => UnbanUser(userId));
+			return TypeHelper.TryInvokeMethodAsync(() => Ban(ownerId));
+		}
+
+		/// <inheritdoc />
+		[Obsolete(ObsoleteText.UnbanUserAsync)]
+		public Task<bool> UnbanUserAsync(long ownerId)
+		{
+			return UnbanAsync(ownerId);
+		}
+
+		/// <inheritdoc />
+		public Task<bool> UnbanAsync(long ownerId)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => Unban(ownerId));
 		}
 
 		/// <inheritdoc />
@@ -145,7 +160,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<string> SetPrivacyAsync(string key, string value)
+		public Task<PrivacySettingsValue> SetPrivacyAsync(string key, string value)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => SetPrivacy(key, value));
 		}

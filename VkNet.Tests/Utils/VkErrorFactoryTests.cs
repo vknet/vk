@@ -1,13 +1,14 @@
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Exception;
 using VkNet.Model;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
-	[TestFixture]
+
 	public class VkErrorFactoryTests
 	{
-		[Test]
+		[Fact]
 		public void VkErrorFactory()
 		{
 			var exception = VkNet.Utils.VkErrorFactory.Create(new VkError
@@ -15,7 +16,7 @@ namespace VkNet.Tests.Utils
 				ErrorCode = 14
 			});
 
-			Assert.IsInstanceOf<CaptchaNeededException>(exception);
+			exception.Should().BeOfType<CaptchaNeededException>();
 		}
 	}
 }

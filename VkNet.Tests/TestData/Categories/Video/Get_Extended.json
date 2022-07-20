@@ -1,66 +1,156 @@
 {
   "response": {
-    "count": 8,
+    "count": 3790,
     "items": [
       {
-        "id": 166481021,
-        "owner_id": 1,
-        "title": "Лидия Аркадьевна",
-        "duration": 131,
+        "id": 456245310,
+        "owner_id": -129440544,
+        "title": "ec",
+        "duration": 20,
         "description": "",
-        "date": 1384867255,
-        "views": 81677,
-        "comments": 2098,
-        "photo_130": "http://cs419529.vk.me/u9258277/video/s_af2727af.jpg",
-        "photo_320": "http://cs419529.vk.me/u9258277/video/l_aba9c1ab.jpg",
-        "player": "http://www.youtube.com/embed/VQaHFisdf-s",
+        "date": 1569151132,
+        "comments": 6,
+        "views": 40308,
+        "width": 640,
+        "height": 640,
+        "image": [
+          {
+            "height": 96,
+            "url": "https://sun1-22.u/775/_H2H8VU99A4.jpg",
+            "width": 130,
+            "with_padding": 1
+          },
+          {
+            "height": 120,
+            "url": "https://sun1-18.u/774/V-9tliJEX6c.jpg",
+            "width": 160,
+            "with_padding": 1
+          },
+          {
+            "height": 240,
+            "url": "https://sun1-85.u/773/UedJ1GOGp48.jpg",
+            "width": 320,
+            "with_padding": 1
+          },
+          {
+            "height": 450,
+            "url": "https://sun1-30.u/76d/L_YJ0L7dWO0.jpg",
+            "width": 800,
+            "with_padding": 1
+          },
+          {
+            "height": 720,
+            "url": "https://sun1-16.u/76e/7pVes0uh3Mw.jpg",
+            "width": 720
+          },
+          {
+            "height": 320,
+            "url": "https://sun1-25.u/76f/oXt467urasM.jpg",
+            "width": 320
+          },
+          {
+            "height": 720,
+            "url": "https://sun1-85.u/770/k1N7Ho6SErk.jpg",
+            "width": 720
+          },
+          {
+            "height": 1024,
+            "url": "https://sun1-20.u/771/xiolQ3kEcsc.jpg",
+            "width": 1024
+          },
+          {
+            "height": 4096,
+            "url": "https://sun1-22.u/772/XuhJ7tnho8s.jpg",
+            "width": 4096
+          }
+        ],
+        "is_favorite": false,
+        "first_frame": [
+          {
+            "url": "https://sun1-84.u/dff/WXCaHp4baA8.jpg",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "url": "https://sun1-26.u/e00/GtKQRrlDq5A.jpg",
+            "width": 160,
+            "height": 160
+          },
+          {
+            "url": "https://sun1-19.u/dfe/pr-BpJMAedA.jpg",
+            "width": 4096,
+            "height": 4096
+          },
+          {
+            "url": "https://sun1-94.u/e01/O7eZ85Z2iAc.jpg",
+            "width": 130,
+            "height": 130
+          },
+          {
+            "url": "https://sun1-88.u/dfb/2liX9WBPhFQ.jpg",
+            "width": 320,
+            "height": 320
+          },
+          {
+            "url": "https://sun1-14.u/dfc/XWHfKHUQFf4.jpg",
+            "width": 720,
+            "height": 720
+          },
+          {
+            "url": "https://sun1-91.u/dfd/ubnlo6U606Y.jpg",
+            "width": 1024,
+            "height": 1024
+          },
+          {
+            "url": "https://sun1-22.u/dfa/PTiTgbhfQAI.jpg",
+            "width": 1280,
+            "height": 1280
+          },
+          {
+            "url": "https://sun1-85.u/df9/9ydkTV2Ue84.jpg",
+            "width": 800,
+            "height": 800
+          }
+        ],
+        "adding_date": 1569151132,
+        "repeat": 1,
+        "files": {
+          "mp4_240": "https://cs1-76v4/.qMrbPwY_MirJyV9koWA",
+          "mp4_360": "https://cs1-70v4/.ZUaaCeb25gwR4kZI9KQ",
+          "mp4_480": "https://cs1-32v4/.TzeOhs1Vn_L4qqZGXi8",
+          "mp4_720": "https://cs1-36v4/.ApGWT5Rx0CJjjqOmsvM"
+        },
+        "player": "https://vk.com/vi/dec_GQ3DKNZUGI4TAMQ",
+        "can_add": 1,
         "can_comment": 1,
         "can_repost": 1,
+        "can_like": 1,
+        "can_add_to_faves": 1,
         "likes": {
           "user_likes": 0,
-          "count": 1789
+          "count": 369
         },
-        "repeat": 0
-      },
+        "reposts": {
+          "count": 1,
+          "user_reposted": 0
+        },
+        "type": "video"
+      }
+    ],
+    "profiles": [],
+    "groups": [
       {
-        "id": 166468673,
-        "owner_id": 1,
-        "title": "Лидия Аркадьевна",
-        "duration": 62,
-        "description": "",
-        "date": 1384721483,
-        "views": 42107,
-        "comments": 1243,
-        "photo_130": "http://cs409217.vk.me/u9258277/video/s_4e281f24.jpg",
-        "photo_320": "http://cs409217.vk.me/u9258277/video/l_aa616ea2.jpg",
-        "player": "http://www.youtube.com/embed/YfLytrkbAfM",
-        "can_comment": 1,
-        "can_repost": 1,
-        "likes": {
-          "user_likes": 0,
-          "count": 640
-        },
-        "repeat": 0
-      },
-      {
-        "id": 164841344,
-        "owner_id": 1,
-        "title": "This is SPARTA",
-        "duration": 16,
-        "description": "",
-        "date": 1366495075,
-        "views": 218659,
-        "comments": 2578,
-        "photo_130": "http://cs12761.vk.me/u5705167/video/s_df53315c.jpg",
-        "photo_320": "http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg",
-        "player": "http://vk.com/video_ext.php?oid=1&id=164841344&hash=c8de45fc73389353",
-        "can_comment": 1,
-        "can_repost": 1,
-        "likes": {
-          "user_likes": 1,
-          "count": 4137
-        },
-        "repeat": 1
+        "id": 129440544,
+        "name": "eternal classic",
+        "screen_name": "eternalclassic",
+        "is_closed": 0,
+        "type": "page",
+        "is_admin": 0,
+        "is_member": 1,
+        "is_advertiser": 0,
+        "photo_50": "https://sun1-21.u/kaNZ8jsjA.jpg?ava=1",
+        "photo_100": "https://sun1-18.u/W_WpQyByk.jpg?ava=1",
+        "photo_200": "https://sun1-89.u/p2gI0SYmo.jpg?ava=1"
       }
     ]
   }

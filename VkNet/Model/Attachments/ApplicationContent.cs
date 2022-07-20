@@ -31,12 +31,12 @@ namespace VkNet.Model.Attachments
 		/// </summary>
 		public string Photo604 { get; set; }
 
-	#region ������
+	#region Методы
 
 		/// <summary>
-		/// ��������� �� json.
+		/// Разобрать из json.
 		/// </summary>
-		/// <param name="response"> ����� �������. </param>
+		/// <param name="response"> Ответ сервера. </param>
 		/// <returns> </returns>
 		public static ApplicationContent FromJson(VkResponse response)
 		{

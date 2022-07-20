@@ -41,6 +41,30 @@ namespace VkNet.Model.Attachments
 		public ReadOnlyCollection<Photo> Images { get; set; }
 
 		/// <summary>
+		/// Текст кнопки.
+		/// </summary>
+		[JsonProperty("button_text")]
+		public string ButtonText { get; set; }
+
+		/// <summary>
+		/// Идентификатор фотографии.
+		/// </summary>
+		[JsonProperty("photo")]
+		public string Photo { get; set; }
+
+		/// <summary>
+		/// Цена.
+		/// </summary>
+		[JsonProperty("price")]
+		public string Price { get; set; }
+
+		/// <summary>
+		/// Старая цена.
+		/// </summary>
+		[JsonProperty("price_old")]
+		public string PriceOld { get; set; }
+
+		/// <summary>
 		/// Разобрать из json.
 		/// </summary>
 		/// <param name="response"> Ответ сервера. </param>
@@ -54,7 +78,10 @@ namespace VkNet.Model.Attachments
 				LinkUrl = response["link_url"],
 				Title = response["title"],
 				Button = response["button"],
-				Images = response["images"].ToReadOnlyCollectionOf<Photo>(x => x)
+				Images = response["images"].ToReadOnlyCollectionOf<Photo>(x => x),
+				ButtonText = response["button_text"],
+				Price = response["price"],
+				PriceOld = response["price_old"]
 			};
 		}
 

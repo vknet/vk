@@ -1,0 +1,20 @@
+{
+  "date": 1632747483,
+  "from_id": 12345678,
+  "id": 714023,
+  "out": 1,
+  "peer_id": 2012345678,
+  "text": "",
+  "conversation_message_id": 4,
+  "action": {
+    "type": "chat_pin_message",
+    "member_id": 12345678,
+    "conversation_message_id": 3,
+    "message": "test"
+  },
+  "fwd_messages": [],
+  "important": false,
+  "random_id": 0,
+  "attachments": [],
+  "is_hidden": false
+}

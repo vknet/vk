@@ -7,44 +7,37 @@ variables:
   BuildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 2.1.402'
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk 6.0.x'
   inputs:
-    version: 2.1.402
-
+    packageType: 'sdk'
+    version: 6.0.x
+    performMultiLevelLookup: true
+    includePreviewVersions: true
 
 - task: DotNetCoreCLI@2
   displayName: Test
   inputs:
     command: test
-
     projects: '*[Tt]ests/*.csproj'
-
-    arguments: '-c $(BuildConfiguration) -f netcoreapp2.1'
-
+    arguments: '-c $(BuildConfiguration) -f net6.0'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
     projects: VkNet/VkNet.csproj
-
     arguments: '-o $(Build.ArtifactStagingDirectory) -c $(BuildConfiguration) --version-suffix $(Build.BuildId)'
 
-
-- script: 'dotnet nuget push *.nupkg -k $(Parameters.MyGetKey) -s $(Parameters.MyGetFeed)' 
+- script: 'dotnet nuget push *.nupkg -k $(Parameters.MyGetKey) -s $(Parameters.MyGetFeed)'
   workingDirectory: '$(Build.ArtifactStagingDirectory)'
-
   displayName: 'Command Line Script'
 
 - task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
   displayName: 'Send Telegram Notification'
   inputs:
     botToken: '$(Parameters.botToken)'
-
     chats: '$(Parameters.chats)'
-
-    message: '<code>Reason: $(Build.Reason) 
-	Build №: $(Build.BuildNumber)
-	VkNet был успешно собран!</code>'
-
+    message: '<code>Reason: $(Build.Reason)
+    Build №: $(Build.BuildNumber)
+    VkNet был успешно собран!</code>'
     buildQueuedBy: true

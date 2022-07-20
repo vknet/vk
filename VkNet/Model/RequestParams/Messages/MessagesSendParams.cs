@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Model.Keyboard;
+using VkNet.Model.Template;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
 {
@@ -20,6 +24,12 @@ namespace VkNet.Model.RequestParams
 		public string Domain { get; set; }
 
 		/// <summary>
+		/// Заголовок сообщения(выделется жирным)
+		/// </summary>
+		[JsonProperty("title")]
+		public string Title { get; set; }
+
+		/// <summary>
 		/// Текст личного сообщения (является обязательным, если не задан параметр
 		/// attachment)
 		/// </summary>
@@ -33,18 +43,30 @@ namespace VkNet.Model.RequestParams
 		public IEnumerable<MediaAttachment> Attachments { get; set; }
 
 		/// <summary>
+		/// Идентификатор сообщения, на которое требуется ответить. целое число, доступен начиная с версии 5.92
+		/// </summary>
+		[JsonProperty("reply_to", NullValueHandling = NullValueHandling.Ignore)]
+		public long? ReplyTo { get; set; }
+
+		/// <summary>
 		/// Идентификаторы пересылаемых сообщений, перечисленные через запятую.
 		/// Перечисленные сообщения отправителя будут
 		/// отображаться в теле письма у получателя.
 		/// </summary>
-		[JsonProperty("forward_messages")]
+		[JsonProperty("forward_messages", NullValueHandling = NullValueHandling.Ignore)]
 		public IEnumerable<long> ForwardMessages { get; set; }
+
+		/// <summary>
+		/// Параметр отвечает за пересылку сообщений в другие чаты и ответ на сообщение в рамках одной беседы.
+		/// </summary>
+		[JsonProperty("forward", NullValueHandling = NullValueHandling.Ignore)]
+		public MessageForward Forward { get; set; }
 
 		/// <summary>
 		/// Объект, описывающий клавиатуру для бота.
 		/// </summary>
 		/// <remarks>
-		/// Рекомендуется для построения использовать <see cref="IKeyboardBuilder"/>
+		/// Рекомендуется для построения использовать <see cref="IKeyboardBuilder" />
 		/// </remarks>
 		[JsonProperty("keyboard")]
 		public MessageKeyboard Keyboard { get; set; }
@@ -61,7 +83,7 @@ namespace VkNet.Model.RequestParams
 		/// Сохраняется вместе с сообщением и доступен в истории сообщений.
 		/// </summary>
 		[JsonProperty("random_id")]
-		public int? RandomId { get; set; }
+		public long? RandomId { get; set; }
 
 		/// <summary>
 		/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для
@@ -102,7 +124,8 @@ namespace VkNet.Model.RequestParams
 		public uint? StickerId { get; set; }
 
 		/// <summary>
-		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
+		/// пользователя). положительное число
 		/// </summary>
 		[JsonProperty("group_id")]
 		public ulong GroupId { get; set; }
@@ -114,60 +137,60 @@ namespace VkNet.Model.RequestParams
 		public string Payload { get; set; }
 
 		/// <summary>
-		/// 1 — не создавать сниппет ссылки из сообщения флаг, может принимать значения 1 или 0, по умолчанию
+		/// Объект, описывающий источник пользовательского контента для чат-ботов
 		/// </summary>
-		[JsonProperty("dont_parse_links")]
-		public bool DontParseLinks { get; set; }
+		[JsonProperty("content_source")]
+		public MessageContentSource ContentSource { get; set; }
+
+		/// <summary>
+		/// 1 — не создавать сниппет ссылки из сообщения флаг, может принимать значения 1
+		/// или 0, по умолчанию
+		/// </summary>
+		[JsonProperty("dont_parse_links", NullValueHandling = NullValueHandling.Ignore)]
+		public bool? DontParseLinks { get; set; }
 
 		/// <summary>
 		/// Идентификатор капчи
 		/// </summary>
 		[JsonProperty("captcha_sid")]
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public long? CaptchaSid { get; set; }
 
 		/// <summary>
 		/// текст, который ввел пользователь
 		/// </summary>
 		[JsonProperty("captcha_key")]
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public string CaptchaKey { get; set; }
-		
-		/// <summary>
-		/// 1 - отключить уведомление об упоминании в сообщении, может принимать значения 1 или 0, по умолчанию
-		/// </summary>
-		[JsonProperty("disable_mentions")]
-		public bool DisableMentions { get; set; }
 
 		/// <summary>
-		/// Привести к типу VkParameters.
+		/// 1 - отключить уведомление об упоминании в сообщении, может принимать значения 1
+		/// или 0, по умолчанию
 		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(MessagesSendParams p)
-		{
-			return new VkParameters
-			{
-				{ "user_id", p.UserId },
-				{ "domain", p.Domain },
-				{ "chat_id", p.ChatId },
-				{ "user_ids", p.UserIds },
-				{ "message", p.Message },
-				{ "random_id", p.RandomId },
-				{ "lat", p.Lat },
-				{ "long", p.Longitude },
-				{ "attachment", p.Attachments },
-				{ "forward_messages", p.ForwardMessages },
-				{ "keyboard", p.Keyboard != null ? JsonConvert.SerializeObject(p.Keyboard) : "" },
-				{ "sticker_id", p.StickerId },
-				{ "captcha_sid", p.CaptchaSid },
-				{ "captcha_key", p.CaptchaKey },
-				{ "peer_id", p.PeerId },
-				{ "payload", p.Payload },
-				{ "group_id", p.GroupId },
-				{ "dont_parse_links", p.DontParseLinks },
-				{ "disable_mentions", p.DisableMentions }
-			};
-		}
+		[JsonProperty("disable_mentions", NullValueHandling = NullValueHandling.Ignore)]
+		public bool? DisableMentions { get; set; }
+
+		/// <summary>
+		/// Метка, которая обозначает приблизительное содержание сообщения от сообщества
+		/// </summary>
+		[JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
+		[JsonConverter(typeof(SafetyEnumJsonConverter))]
+		[CanBeNull]
+		public Intent Intent { get; set; }
+
+		/// <summary>
+		/// Положительное число, максимальное значение 100
+		/// </summary>
+		[JsonProperty("subscribe_id", NullValueHandling = NullValueHandling.Ignore)]
+		public byte? SubscribeId { get; set; }
+
+		/// <summary>
+		/// Объект, описывающий шаблон сообщения для бота.
+		/// </summary>
+		/// <remarks>
+		/// Рекомендуется для построения использовать <see cref="ITemplateBuilder" />
+		/// </remarks>
+		[JsonProperty("template")]
+		public MessageTemplate Template { get; set; }
 	}
 }

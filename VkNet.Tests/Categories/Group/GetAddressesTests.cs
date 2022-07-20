@@ -1,17 +1,17 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.RequestParams.Groups;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class GetAddressesTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void GetAddresses()
 		{
 			Url = "https://api.vk.com/method/groups.getAddresses";
@@ -24,7 +24,7 @@ namespace VkNet.Tests.Categories.Group
 				AddressIds = new ulong[]{ 58227}
 			});
 
-			Assert.AreEqual(3, result.TotalCount);
+			result.TotalCount.Should().Be(3);
 		}
 	}
 }

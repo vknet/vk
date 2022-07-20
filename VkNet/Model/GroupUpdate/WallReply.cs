@@ -5,10 +5,12 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Добавление/редактирование/восстановление комментария на стене(WallReplyNew, WallReplyEdit, WallReplyRestore)(Comment с дополнительными полями)
+	/// Добавление/редактирование/восстановление комментария на стене
+	/// (<c>WallReplyNew</c>, <c>WallReplyEdit</c>, <c>WallReplyRestore</c>)
+	/// (<c>Comment</c> с дополнительными полями)
 	/// </summary>
 	[Serializable]
-	public class WallReply : Comment
+	public class WallReply : Comment, IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор записи
@@ -39,6 +41,23 @@ namespace VkNet.Model.GroupUpdate
 				PostId = response["post_id"],
 				PostOwnerId = response["post_owner_id"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="WallReply" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="WallReply" /> </returns>
+		public static implicit operator WallReply(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

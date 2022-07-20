@@ -9,7 +9,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные служебные методы.
+	/// Служебные методы.
 	/// </summary>
 	public interface IUtilsCategoryAsync
 	{
@@ -18,28 +18,24 @@ namespace VkNet.Abstractions
 		/// сайте ВКонтакте.
 		/// </summary>
 		/// <param name="url"> Внешняя ссылка, которую необходимо проверить. </param>
-		/// <param name="skipAuthorization"> Без авторизации </param>
 		/// <returns> Статус ссылки </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
 		/// </remarks>
 		Task<LinkAccessType> CheckLinkAsync([NotNull]
-											string url
-											, bool skipAuthorization = true);
+											string url);
 
 		/// <summary>
 		/// Возвращает информацию о том, является ли внешняя ссылка заблокированной на
 		/// сайте ВКонтакте.
 		/// </summary>
 		/// <param name="url"> Внешняя ссылка, которую необходимо проверить. </param>
-		/// <param name="skipAuthorization"> Без авторизации </param>
 		/// <returns> Статус ссылки </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
 		/// </remarks>
 		Task<LinkAccessType> CheckLinkAsync([NotNull]
-											Uri url
-											, bool skipAuthorization = true);
+											Uri url);
 
 		/// <summary>
 		/// Определяет тип объекта (пользователь, сообщество, приложение) и его

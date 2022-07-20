@@ -2,13 +2,12 @@
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Market;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
-	/// <inheritdoc />
+	/// <inheritdoc cref="IMarketsCategoryAsync"/>
 	public interface IMarketsCategory : IMarketsCategoryAsync
 	{
 		/// <inheritdoc cref="IMarketsCategoryAsync.GetAsync"/>

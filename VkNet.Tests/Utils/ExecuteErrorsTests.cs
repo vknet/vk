@@ -1,30 +1,28 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
+using FluentAssertions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NUnit.Framework;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class ExecuteErrorsTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void IfResponseContainInvalidJson_ThrowJsonException()
 		{
 			// Arrange
 			var response = new VkResponse(new JRaw("{"));
 
 			// Act
-			var exception = Assert.Throws<JsonSerializationException>(() => ExecuteErrorsHandler.GetExecuteExceptions(response));
-
-			// Assert
-			Assert.IsInstanceOf<JsonSerializationException>(exception);
+			FluentActions.Invoking(() => ExecuteErrorsHandler.GetExecuteExceptions(response))
+				.Should()
+				.ThrowExactly<JsonSerializationException>();
 		}
 
-		[Test]
+		[Fact]
 		public void IfResponseContainsExecuteErrors_ThanReturnAggregateException()
 		{
 			// Arrange
@@ -35,18 +33,18 @@ namespace VkNet.Tests.Utils
 			var ex = ExecuteErrorsHandler.GetExecuteExceptions(Json);
 
 			// Assert
-			Assert.AreEqual(3, ex.InnerExceptions.Count);
+			ex.InnerExceptions.Count.Should().Be(3);
 		}
 
-		[Test]
+		[Fact]
 		public void IfResponseIsEmptyThen_ThrowArgumentException()
 		{
 			// Act
-			var exception = Assert.Throws<ArgumentException>(() => ExecuteErrorsHandler.GetExecuteExceptions(null));
-
-			// Assert
-			Assert.AreEqual("response", exception.ParamName);
-			Assert.IsInstanceOf<ArgumentException>(exception);
+			FluentActions.Invoking(() => ExecuteErrorsHandler.GetExecuteExceptions(null))
+				.Should()
+				.ThrowExactly<ArgumentException>()
+				.And.ParamName.Should()
+				.Be("response");
 		}
 	}
 }

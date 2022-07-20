@@ -15,13 +15,15 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly IVkApiInvoke _vk;
 
-		/// <inheritdoc />
-		/// <param name="api">
+		/// <summary>
+		/// api vk.com
+		/// </summary>
+		/// <param name="vk">
 		/// Api vk.com
 		/// </param>
-		public StreamingCategory(VkApi api)
+		public StreamingCategory(VkApi vk)
 		{
-			_vk = api;
+			_vk = vk;
 		}
 
 		/// <inheritdoc />
@@ -58,6 +60,12 @@ namespace VkNet.Categories
 		public bool SetSettings(MonthlyLimit monthlyTier)
 		{
 			return _vk.Call<bool>(methodName: "streaming.setSettings", parameters: new VkParameters { { "monthly_tier", monthlyTier } });
+		}
+
+		/// <inheritdoc />
+		public string GetStem(string word)
+		{
+			return _vk.Call(methodName: "streaming.getStem", parameters: new VkParameters { { "word", word } })["stem"];
 		}
 	}
 }

@@ -1,23 +1,22 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.RequestParams;
-using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesGetLongPollHistory : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void GetLongPollHistory_ThrowArgumentException()
 		{
-			Assert.That(() => Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams()),
-				Throws.InstanceOf<ArgumentException>());
+			FluentActions.Invoking(() => Api.Messages.GetLongPollHistory(new MessagesGetLongPollHistoryParams()))
+				.Should()
+				.ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GroupsField()
 		{
 			Url = "https://api.vk.com/method/messages.getLongPollHistory";
@@ -34,7 +33,7 @@ namespace VkNet.Tests.Categories.Messages
 				Onlines = true
 			});
 
-			Assert.IsNotEmpty(result.Groups);
+			result.Groups.Should().NotBeEmpty();
 		}
 	}
 }

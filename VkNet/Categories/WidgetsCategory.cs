@@ -14,20 +14,31 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly IVkApiInvoke _vk;
 
-		/// <inheritdoc />
-		/// <param name="api">
+		/// <summary>
+		/// Api vk.com
+		/// </summary>
+		/// <param name="vk">
 		/// Api vk.com
 		/// </param>
-		internal WidgetsCategory(VkApi api = null)
+		internal WidgetsCategory(VkApi vk = null)
 		{
-			_vk = api;
+			_vk = vk;
 		}
 
 		/// <inheritdoc />
 		public VkCollection<Comment> GetComments(GetCommentsParams getCommentsParams)
 		{
 			return _vk.Call<VkCollection<Comment>>("widgets.getComments"
-					, getCommentsParams
+					, new VkParameters
+					{
+						{ "widget_api_id", getCommentsParams.WidgetApiId }
+						, { "url", getCommentsParams.Url }
+						, { "page_id", getCommentsParams.PageId }
+						, { "order", getCommentsParams.Order }
+						, { "fields", getCommentsParams.Fields }
+						, { "offset", getCommentsParams.Offset }
+						, { "count", getCommentsParams.Count }
+					}
 					, false
 					, new VkCollectionJsonConverter(collectionField: "posts"));
 		}

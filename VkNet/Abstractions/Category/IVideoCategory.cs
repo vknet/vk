@@ -77,7 +77,8 @@ namespace VkNet.Abstractions
 		bool ReorderVideos(VideoReorderVideosParams @params);
 
 		/// <inheritdoc cref="IVideoCategoryAsync.AddToAlbumAsync"/>
-		bool AddToAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null);
+		VkCollection<ulong> AddToAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null,
+										long? albumId = null);
 
 		/// <inheritdoc cref="IVideoCategoryAsync.RemoveFromAlbumAsync"/>
 		bool RemoveFromAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null, long? albumId = null);

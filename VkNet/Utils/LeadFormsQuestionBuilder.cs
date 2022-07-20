@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
@@ -91,9 +90,9 @@ namespace VkNet.Utils
 		}
 
 		/// <inheritdoc />
-		public string Build()
+		public string Build(Formatting formatting = Formatting.Indented)
 		{
-			return JsonConvert.SerializeObject(_list, Formatting.Indented);
+			return JsonConvert.SerializeObject(_list, formatting);
 		}
 	}
 }

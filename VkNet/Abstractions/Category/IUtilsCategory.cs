@@ -7,97 +7,31 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
-	/// <summary>
-	/// Служебные методы.
-	/// </summary>
+	/// <inheritdoc cref="IUtilsCategoryAsync"/>
 	public interface IUtilsCategory : IUtilsCategoryAsync
 	{
-		/// <summary>
-		/// Возвращает информацию о том, является ли внешняя ссылка заблокированной на
-		/// сайте ВКонтакте.
-		/// </summary>
-		/// <param name="url"> Внешняя ссылка, которую необходимо проверить. </param>
-		/// <param name="skipAuthorization"> Без авторизации </param>
-		/// <returns> Статус ссылки </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
-		/// </remarks>
-		LinkAccessType CheckLink([NotNull]
-								string url
-								, bool skipAuthorization = true);
+		/// <inheritdoc cref="IUtilsCategoryAsync.CheckLinkAsync(string)"/>
+		LinkAccessType CheckLink([NotNull] string url);
 
-		/// <summary>
-		/// Возвращает информацию о том, является ли внешняя ссылка заблокированной на
-		/// сайте ВКонтакте.
-		/// </summary>
-		/// <param name="url"> Внешняя ссылка, которую необходимо проверить. </param>
-		/// <param name="skipAuthorization"> Без авторизации </param>
-		/// <returns> Статус ссылки </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
-		/// </remarks>
-		LinkAccessType CheckLink([NotNull]
-								Uri url
-								, bool skipAuthorization = true);
+		/// <inheritdoc cref="IUtilsCategoryAsync.CheckLinkAsync(Uri)"/>
+		LinkAccessType CheckLink([NotNull] Uri url);
 
-		/// <summary>
-		/// Определяет тип объекта (пользователь, сообщество, приложение) и его
-		/// идентификатор по короткому имени ScreenName.
-		/// </summary>
-		/// <param name="screenName"> Короткое имя </param>
-		/// <returns> Тип объекта </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/utils.resolveScreenName
-		/// </remarks>
-		VkObject ResolveScreenName([NotNull]
-									string screenName);
+		/// <inheritdoc cref="IUtilsCategoryAsync.ResolveScreenNameAsync"/>
+		VkObject ResolveScreenName([NotNull] string screenName);
 
-		/// <summary>
-		/// Возвращает текущее время на сервере ВКонтакте в unixtime.
-		/// </summary>
-		/// <returns> Время на сервере ВКонтакте в unixtime </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/utils.getServerTime
-		/// </remarks>
+		/// <inheritdoc cref="IUtilsCategoryAsync.GetServerTimeAsync"/>
 		DateTime GetServerTime();
 
-		/// <summary>
-		/// Позволяет получить URL, сокращенный с помощью vk.cc.
-		/// </summary>
-		/// <returns> URL, сокращенный с помощью vk.cc </returns>
+		/// <inheritdoc cref="IUtilsCategoryAsync.GetShortLinkAsync"/>
 		ShortLink GetShortLink(Uri url, bool isPrivate);
 
-		/// <summary>
-		/// Удаляет сокращенную ссылку из списка пользователя.
-		/// </summary>
-		/// <param name="key"> сокращенная ссылка (часть URL после "vk.cc/"). </param>
-		/// <returns>
-		/// После успешного выполнения возвращает 1.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/utils.deleteFromLastShortened
-		/// </remarks>
+		/// <inheritdoc cref="IUtilsCategoryAsync.DeleteFromLastShortenedAsync"/>ии ВКонтакте http://vk.com/dev/utils.deleteFromLastShortened
 		bool DeleteFromLastShortened(string key);
 
-		/// <summary>
-		/// Получает список сокращенных ссылок для текущего пользователя.
-		/// </summary>
-		/// <param name="count"> количество ссылок, которые необходимо получить. </param>
-		/// <param name="offset"> сдвиг для получения определенного подмножества ссылок. </param>
-		/// <returns>
-		/// Возвращает количество ссылок в поле count (integer) и массив объектов items,
-		/// описывающих ссылки.
-		/// </returns>
-		/// <remarks>
-		/// Страница документации ВКонтакте http://vk.com/dev/utils.getLastShortenedLinks
-		/// </remarks>
+		/// <inheritdoc cref="IUtilsCategoryAsync.GetLastShortenedLinksAsync"/>
 		VkCollection<ShortLink> GetLastShortenedLinks(ulong count = 10, ulong offset = 0);
 
-		/// <summary>
-		/// Возвращает статистику переходов по сокращенной ссылке.
-		/// </summary>
-		/// <param name="params"> Параметры запроса </param>
-		/// <returns> </returns>
+		/// <inheritdoc cref="IUtilsCategoryAsync.GetLinkStatsAsync"/>
 		LinkStatsResult GetLinkStats(LinkStatsParams @params);
 	}
 }

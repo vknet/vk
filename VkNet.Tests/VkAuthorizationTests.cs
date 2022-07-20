@@ -1,23 +1,21 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using FluentAssertions;
 using VkNet.Exception;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
 	public class VkAuthorizationTests
 	{
 		private const string Input =
-				"http://oauth.vk.com/blank.html"
-				+ "#access_token=token"
-				+ "&expires_in=86400"
-				+ "&user_id=32190123"
-				+ "&email=inyutin_maxim@mail.ru"
-				+ "&state=123456";
+			"http://oauth.vk.com/blank.html"
+			+ "#access_token=token"
+			+ "&expires_in=86400"
+			+ "&user_id=32190123"
+			+ "&email=inyutin_maxim@mail.ru"
+			+ "&state=123456";
 
-		[Test]
+		[Fact]
 		public void Authorize_InvalidLoginOrPassword_NotAuthorizedAndAuthorizationNotRequired()
 		{
 			const string urlWithBadLoginOrPassword = "http://oauth.vk.com/oauth/authorize"
@@ -33,59 +31,60 @@ namespace VkNet.Tests
 
 			var authorization = VkAuthorization2.From(urlWithBadLoginOrPassword);
 
-			Assert.IsFalse(authorization.IsAuthorized);
-			Assert.IsFalse(authorization.IsAuthorizationRequired);
+			authorization.IsAuthorized.Should().BeFalse();
+			authorization.IsAuthorizationRequired.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void CorrectParseInputString()
 		{
 			var auth = VkAuthorization2.From(Input);
 
-			Assert.AreEqual("token"
-					, auth.AccessToken);
+			auth.AccessToken.Should().Be("token");
 
-			Assert.AreEqual(86400, auth.ExpiresIn);
-			Assert.AreEqual(32190123L, auth.UserId);
-			Assert.AreEqual("inyutin_maxim@mail.ru", auth.Email);
+			auth.ExpiresIn.Should().Be(86400);
+			auth.UserId.Should().Be(32190123L);
+			auth.Email.Should().Be("inyutin_maxim@mail.ru");
 		}
 
-		[Test]
+		[Fact]
 		public void GetExpiresIn_Exception()
 		{
 			var auth = VkAuthorization2.From(Input.Replace("86400", "qwe"));
 
-			var error = Assert.Throws<VkApiException>(() =>
-			{
-				var expiresIn = auth.ExpiresIn;
-				Assert.NotZero(expiresIn);
-			});
-
-			Assert.AreEqual("ExpiresIn is not integer value.", error.Message);
+			FluentActions.Invoking(() =>
+				{
+					var expiresIn = auth.ExpiresIn;
+					expiresIn.Should().NotBe(0);
+				})
+				.Should()
+				.ThrowExactly<VkApiException>()
+				.WithMessage("ExpiresIn is not integer value.");
 		}
 
-		[Test]
+		[Fact]
 		public void GetUserId_Exception()
 		{
 			var auth = VkAuthorization2.From(Input.Replace("32190123", "qwe"));
 
-			var error = Assert.Throws<VkApiException>(() =>
-			{
-				var authUserId = auth.UserId;
-				Assert.NotZero(authUserId);
-			});
-
-			Assert.AreEqual("UserId is not long value.", error.Message);
+			FluentActions.Invoking(() =>
+				{
+					var authUserId = auth.UserId;
+					authUserId.Should().NotBe(0);
+				})
+				.Should()
+				.ThrowExactly<VkApiException>()
+				.WithMessage("UserId is not long value.");
 		}
 
-		[Test]
+		[Fact]
 		public void IsAuthorizationRequired_False()
 		{
 			var auth = VkAuthorization2.From(Input);
-			Assert.IsFalse(auth.IsAuthorizationRequired);
+			auth.IsAuthorizationRequired.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void IsAuthorizationRequired_True()
 		{
 			const string uriQuery = "https://oauth.vk.com/authorize"
@@ -99,21 +98,21 @@ namespace VkNet.Tests
 									+ "&__q_hash=90f3ddf308ca69fca660e32b09e3617b";
 
 			var auth = VkAuthorization2.From(uriQuery);
-			Assert.IsTrue(auth.IsAuthorizationRequired);
+			auth.IsAuthorizationRequired.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void IsAuthorized_Failed()
 		{
 			var auth = VkAuthorization2.From(Input.Replace("access_token", "qwe"));
-			Assert.IsFalse(auth.IsAuthorized);
+			auth.IsAuthorized.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void IsAuthorized_Success()
 		{
 			var auth = VkAuthorization2.From(Input);
-			Assert.IsTrue(auth.IsAuthorized);
+			auth.IsAuthorized.Should().BeTrue();
 		}
 	}
 }

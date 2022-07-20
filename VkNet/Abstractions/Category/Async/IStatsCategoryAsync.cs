@@ -1,11 +1,11 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Model;
 
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы со статистикой.
+	/// Методы для работы со статистикой.
 	/// </summary>
 	public interface IStatsCategoryAsync
 	{

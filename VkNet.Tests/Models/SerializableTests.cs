@@ -1,16 +1,14 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
-using NUnit.Framework;
+using FluentAssertions;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class SerializableTests
 	{
-		[Test]
+		[Fact]
 		public void ModelsShouldHaveSerializableAttribute()
 		{
 			var models = typeof(VkApi).Assembly
@@ -24,12 +22,7 @@ namespace VkNet.Tests.Models
 
 			var enumerable = models.ToList();
 
-			if (enumerable.Any())
-			{
-				Assert.Fail(string.Join(Environment.NewLine, enumerable.Select(x => x.Name)));
-			}
-
-			Assert.IsEmpty(enumerable);
+			enumerable.Should().BeEmpty();
 		}
 	}
 }

@@ -10,7 +10,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
-	/// <inheritdoc cref="IAudioCategory"/>
+	/// <summary>
+	/// Методы для работы с аудиозаписями.
+	/// </summary>
 	public interface IAudioCategoryAsync
 	{
 		/// <summary>
@@ -21,6 +23,9 @@ namespace VkNet.Abstractions
 		/// </param>
 		/// <param name="ownerId">
 		/// Идентификатор владельца аудиозаписи.
+		/// </param>
+		/// <param name="accessKey">
+		/// Ключ доступа.
 		/// </param>
 		/// <param name="groupId">
 		/// Идентификатор сообщества (если аудиозапись необходимо скопировать в список
@@ -35,7 +40,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.add
 		/// </remarks>
-		Task<long> AddAsync(long audioId, long ownerId, long? groupId = null, long? albumId = null);
+		Task<long> AddAsync(long audioId, long ownerId, string accessKey = null, long? groupId = null, long? albumId = null);
 
 		/// <summary>
 		/// Создает пустой плейлист.
@@ -135,7 +140,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте -неизвестно-.
 		/// </remarks>
-		Task<bool> EditPlaylistAsync(long ownerId, int playlistId, string title, string description = null, IEnumerable<string> audioIds = null);
+		Task<bool> EditPlaylistAsync(long ownerId, int playlistId, string title, string description = null,
+									IEnumerable<string> audioIds = null);
 
 		/// <summary>
 		/// Возвращает список аудиозаписей пользователя или сообщества.
@@ -225,6 +231,28 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.getById
 		/// </remarks>
 		Task<IEnumerable<Audio>> GetByIdAsync(IEnumerable<string> audios);
+
+		/// <summary>
+		/// Возвращает каталог пользователя.
+		/// </summary>
+		/// <param name="count">
+		/// Количество каталогов необходимое вернуть.
+		/// </param>
+		/// <param name="extended">
+		/// Возвращает дополнительную информацию о каталоге.
+		/// </param>
+		/// <param name="fields">
+		/// Дополнительные поля
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект <see cref="AudioGetCatalogResult"/>. Обратите внимание,
+		/// что ссылки на аудиозаписи привязаны
+		/// к ip адресу.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/audio.getById
+		/// </remarks>
+		Task<AudioGetCatalogResult> GetCatalogAsync(uint? count, bool? extended, UsersFields fields = null);
 
 		/// <summary>
 		/// Возвращает количество аудиозаписей пользователя или сообщества.
@@ -322,7 +350,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/audio.getRecommendations
 		/// </remarks>
 		Task<VkCollection<Audio>> GetRecommendationsAsync(string targetAudio = null, long? userId = null, uint? count = null,
-												uint? offset = null, bool? shuffle = null);
+														uint? offset = null, bool? shuffle = null);
 
 		/// <summary>
 		/// Возвращает адрес сервера для загрузки аудиозаписей.
@@ -354,7 +382,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте -неизвестно-
 		/// </remarks>
-		Task<IEnumerable<long>> AddToPlaylistAsync(long ownerId, long playlistId, IEnumerable<long> audioIds);
+		Task<IEnumerable<long>> AddToPlaylistAsync(long ownerId, long playlistId, IEnumerable<string> audioIds);
 
 		/// <summary>
 		/// Изменяет порядок аудиозаписи, перенося ее между аудиозаписями, идентификаторы

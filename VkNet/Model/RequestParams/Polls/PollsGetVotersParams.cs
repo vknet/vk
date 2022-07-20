@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -71,48 +69,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonConverter(typeof(SafetyEnumJsonConverter))]
 		public NameCase NameCase { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PollsGetVotersParams p)
-		{
-			return new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "is_board", p.IsBoard }
-					, { "poll_id", p.PollId }
-					, { "answer_ids", FormatList(answersIds: p.AnswersIds) }
-					, { "friends_only", p.FriendsOnly }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "fields", p.Fields }
-					, { "name_case", p.NameCase }
-			};
-		}
-
-		private static object FormatList(IList<long> answersIds)
-		{
-			if (answersIds == null)
-			{
-				return null;
-			}
-
-			var stringBuilder = new StringBuilder();
-
-			for (var i = 0; i < answersIds.Count; i++)
-			{
-				stringBuilder.Append(value: answersIds[index: i]);
-
-				if (i + 1 < answersIds.Count)
-				{
-					stringBuilder.Append(value: ',');
-				}
-			}
-
-			return stringBuilder.ToString();
-		}
 	}
 }

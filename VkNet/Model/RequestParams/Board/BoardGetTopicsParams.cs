@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -71,27 +70,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "preview_length")]
 		public int? PreviewLength { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(BoardGetTopicsParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "group_id", p.GroupId }
-					, { "topic_ids", p.TopicIds }
-					, { "order", p.Order }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "extended", p.Extended }
-					, { "preview", p.Preview }
-					, { "preview_length", p.PreviewLength }
-			};
-
-			return parameters;
-		}
 	}
 }

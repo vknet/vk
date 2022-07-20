@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -50,26 +49,5 @@ namespace VkNet.Model.RequestParams
 		/// <c> true </c> — будут возвращены размеры фотографий в специальном формате.
 		/// </summary>
 		public bool? PhotoSizes { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(PhotoGetAlbumsParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "album_ids", p.AlbumIds }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "need_system", p.NeedSystem }
-					, { "need_covers", p.NeedCovers }
-					, { "photo_sizes", p.PhotoSizes }
-			};
-
-			return parameters;
-		}
 	}
 }

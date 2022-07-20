@@ -2,12 +2,7 @@
   "response": {
     "count": 1,
     "items": [
-      {
-        "type": "profile",
-        "id": 123456789,
-        "first_name": "qwe",
-        "last_name": "qwe"
-      }
+      123456789
     ]
   }
 }

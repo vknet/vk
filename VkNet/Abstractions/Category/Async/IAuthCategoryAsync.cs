@@ -5,7 +5,7 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с авторизацией.
+	/// Методы для работы с авторизацией.
 	/// </summary>
 	public interface IAuthCategoryAsync
 	{

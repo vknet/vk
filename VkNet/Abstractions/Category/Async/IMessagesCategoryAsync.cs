@@ -1,18 +1,21 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
+using VkNet.Model.RequestParams.Messages;
+using VkNet.Model.Results.Messages;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные Методы для работы с личными сообщениями. Для моментального
+	/// Методы для работы с личными сообщениями. Для моментального
 	/// получения входящих сообщений используйте LongPoll сервер.
 	/// </summary>
 	public interface IMessagesCategoryAsync
@@ -79,8 +82,7 @@ namespace VkNet.Abstractions
 		/// Удаляет сообщение.
 		/// </summary>
 		/// <param name="messageIds">
-		/// Список идентификаторов сообщений, разделённых через запятую. список
-		/// положительных чисел, разделенных запятыми
+		/// Список идентификаторов сообщений.
 		/// </param>
 		/// <param name="spam">
 		/// Пометить сообщения как спам. флаг, может принимать значения 1 или 0
@@ -101,6 +103,37 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.delete
 		/// </remarks>
 		Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
+													bool? deleteForAll = null);
+
+		/// <summary>
+		/// Удаляет сообщение в беседе.
+		/// </summary>
+		/// <param name="conversationMessageIds">
+		/// Список идентификаторов сообщений.
+		/// </param>
+		/// <param name="peerId">
+		/// Идентификатор назначения.
+		/// </param>
+		/// <param name="spam">
+		/// Пометить сообщения как спам. флаг, может принимать значения 1 или 0
+		/// </param>
+		/// <param name="groupId">
+		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
+		/// пользователя). положительное число
+		/// </param>
+		/// <param name="deleteForAll">
+		/// 1 — если сообщение нужно удалить для получателей (если с момента отправки
+		/// сообщения прошло не более 24 часов ). флаг, может принимать значения 1 или 0,
+		/// по умолчанию
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает 1 для каждого удаленного сообщения.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.delete
+		/// </remarks>
+		Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> conversationMessageIds, ulong peerId, bool? spam = null,
+													ulong? groupId = null,
 													bool? deleteForAll = null);
 
 		/// <summary>
@@ -272,13 +305,14 @@ namespace VkNet.Abstractions
 		/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 		/// пользователя).
 		/// </param>
+		/// <param name="markConversationAsRead">Пометить обсуждение как прочитанное</param>
 		/// <returns>
 		/// После успешного выполнения возвращает <c> true </c>.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsRead
 		/// </remarks>
-		Task<bool> MarkAsReadAsync(string peerId, long? startMessageId = null, long? groupId = null);
+		Task<bool> MarkAsReadAsync(string peerId, long? startMessageId = null, long? groupId = null, bool? markConversationAsRead = null);
 
 		/// <summary>
 		/// Изменяет статус набора текста пользователем в диалоге.
@@ -687,7 +721,7 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteConversation
 		/// </remarks>
-		Task<bool> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null);
+		Task<ulong> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null);
 
 		/// <summary>
 		/// Позволяет получить беседу по её идентификатору.
@@ -720,8 +754,8 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversationsById
 		/// </remarks>
-		Task<ConversationResultObject> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields,
-																bool? extended = null, ulong? groupId = null);
+		Task<ConversationResult> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields = null,
+															bool? extended = null, ulong? groupId = null);
 
 		/// <summary>
 		/// Возвращает список бесед пользователя.
@@ -783,7 +817,8 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте
 		/// http://vk.com/dev/messages.getConversationMembers
 		/// </remarks>
-		Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields, ulong? groupId = null);
+		Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields = null,
+																		ulong? groupId = null);
 
 		/// <summary>
 		/// Возвращает сообщения по их идентификаторам в рамках беседы.
@@ -873,13 +908,14 @@ namespace VkNet.Abstractions
 		/// <param name="messageId">
 		/// Идентификатор сообщения, которое нужно закрепить. положительное число
 		/// </param>
+		/// <param name="conversationMessageId"></param>
 		/// <returns>
 		/// Возвращает объект закрепленного сообщения.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.pin
 		/// </remarks>
-		Task<PinnedMessage> PinAsync(long peerId, ulong? messageId = null);
+		Task<PinnedMessage> PinAsync(long peerId, ulong? messageId = null, ulong? conversationMessageId = null);
 
 		/// <summary>
 		/// Открепляет сообщение.
@@ -961,6 +997,51 @@ namespace VkNet.Abstractions
 		Task<GetRecentCallsResult> GetRecentCallsAsync(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null,
 														bool? extended = null);
 
+		/// <summary>
+		/// Отправляет событие с действием, которое произойдет при нажатии на callback-кнопку.
+		/// </summary>
+		/// <param name="eventId">случайная строка, которая возвращается в событии message_event</param>
+		/// <param name="userId">идентификатор пользователя</param>
+		/// <param name="peerId">идентификатор диалога со стороны сообщества</param>
+		/// <param name="eventData">объект действия, которое должно произойти после нажатия на кнопку</param>
+		/// <returns></returns>
+		Task<bool> SendMessageEventAnswerAsync(string eventId, long userId, long peerId, EventData eventData = null);
+
+		/// <summary>
+		/// Метод отдает пользователей, которые подписались на определенные интенты.
+		/// https://vk.com/dev/bots_reply_rules
+		/// </summary>
+		/// <param name = "getIntentUsersParams">
+		/// Входные параметры запроса.
+		/// </param>
+		/// <param name="token">Токен отмены запроса</param>
+		/// <returns>
+		/// После успешного выполнения возвращает объект, содержащий число результатов в поле count (integer) и массив идентификаторов пользователей в поле items ([integer]).
+		/// Если указан параметр extended:
+		/// profiles
+		/// Возвращает объект, который содержит следующие поля:
+		/// count
+		/// integerчисло результатов. items
+		/// arrayмассив идентификаторов пользователей в поле items ([integer]). profiles
+		/// arrayмассив объектов пользователей. (Если был указан параметр extended)
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/messages.getIntentUsers
+		/// </remarks>
+		Task<GetIntentUsersResult> GetIntentUsersAsync(MessagesGetIntentUsersParams getIntentUsersParams, CancellationToken token);
+
+		/// <summary>
+		/// Помечает диалог пользователя непрочитанным.
+		/// </summary>
+		/// <param name="peerId">
+		/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для
+		/// сообщества: -id сообщества.
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает true.
+		/// </returns>
+		Task<bool> MarkAsUnreadConversationAsync(long peerId);
+
 	#region Obsoleted
 
 		/// <summary>
@@ -1017,7 +1098,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
 		/// </remarks>
 		[Obsolete(ObsoleteText.MessageDeleteDialog, true)]
-		Task<bool> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null);
+		Task<ulong> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null);
 
 		/// <summary>
 		/// Помечает диалог как отвеченный либо снимает отметку.

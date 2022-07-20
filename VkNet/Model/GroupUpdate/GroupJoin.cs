@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
+using VkNet.Infrastructure;
 using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate
@@ -10,7 +11,7 @@ namespace VkNet.Model.GroupUpdate
 	/// Добавление участника или заявки на вступление в сообщество
 	/// </summary>
 	[Serializable]
-	public class GroupJoin
+	public class GroupJoin : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор пользователя
@@ -30,10 +31,27 @@ namespace VkNet.Model.GroupUpdate
 		/// <param name="response"> Ответ сервера. </param>
 		public static GroupJoin FromJson(VkResponse response)
 		{
-			var groupJoin = JsonConvert.DeserializeObject<GroupJoin>(response.ToString());
+			var groupJoin = JsonConvert.DeserializeObject<GroupJoin>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 			groupJoin.UserId = response["user_id"];
 
 			return groupJoin;
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="GroupJoin" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="GroupJoin" /> </returns>
+		public static implicit operator GroupJoin(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

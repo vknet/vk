@@ -1,0 +1,56 @@
+﻿{
+  "response": {
+    "count": 3,
+    "items": [{
+      "card_id": "7037403",
+      "link_url": "tel:+79111234567",
+      "title": "123123",
+      "photo": "-126102803_457239118",
+      "images": [{
+        "url": "https://vk.com/ZIaeEUveq7c.jpg",
+        "width": 200,
+        "height": 200
+      }, {
+        "url": "https://vk.com/8Jseb63OJSE.jpg",
+        "width": 400,
+        "height": 400
+      }],
+      "price": "123.00",
+      "price_old": "150.00"
+    }, {
+      "card_id": "7041649",
+      "link_url": "tel:+79111234567",
+      "title": "123123",
+      "photo": "-126102803_457239118",
+      "images": [{
+        "url": "https://vk.com/8Jseb63OJSE.jpg",
+        "width": 200,
+        "height": 200
+      }, {
+        "url": "https://vk.com/8Jseb63OJSE.jpg",
+        "width": 400,
+        "height": 400
+      }],
+      "price": "123.00",
+      "price_old": "123.00"
+    }, {
+      "card_id": "7041891",
+      "link_url": "tel:+79111234567",
+      "title": "123123",
+      "button": "call",
+      "button_text": "Позвонить",
+      "photo": "-126102803_457239118",
+      "images": [{
+        "url": "https://vk.com/8Jseb63OJSE.jpg",
+        "width": 200,
+        "height": 200
+      }, {
+        "url": "https://vk.com/8Jseb63OJSE.jpg",
+        "width": 400,
+        "height": 400
+      }],
+      "price": "123.00",
+      "price_old": "150.00"
+    }]
+  }
+}

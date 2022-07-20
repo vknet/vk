@@ -1,16 +1,16 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class GetTokenPermissionsTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void GetTokenPermissions()
 		{
 			Url = "https://api.vk.com/method/groups.getTokenPermissions";
@@ -19,8 +19,8 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.GetTokenPermissions();
 
-			Assert.AreEqual(274432, result.Mask);
-			Assert.IsNotEmpty(result.Permissions);
+			result.Mask.Should().Be(274432);
+			result.Permissions.Should().NotBeEmpty();
 		}
 	}
 }

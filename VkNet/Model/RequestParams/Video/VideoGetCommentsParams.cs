@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -74,28 +73,5 @@ namespace VkNet.Model.RequestParams
 		/// Дополнительные поля для пользователя
 		/// </summary>
 		public ProfileFields Fields { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(VideoGetCommentsParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "owner_id", p.OwnerId }
-					, { "video_id", p.VideoId }
-					, { "need_likes", p.NeedLikes }
-					, { "start_comment_id", p.StartCommentId }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-					, { "sort", p.Sort }
-					, { "extended", p.Extended }
-					, { "fields", p.Fields }
-			};
-
-			return parameters;
-		}
 	}
 }

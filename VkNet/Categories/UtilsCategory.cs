@@ -8,14 +8,13 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Служебные методы.
-	/// </summary>
+	/// <inheritdoc />
 	public partial class UtilsCategory : IUtilsCategory
 	{
 		private readonly IVkApiInvoke _vk;
 
 		/// <summary>
+		/// Api vk.com
 		/// </summary>
 		/// <param name="vk"> </param>
 		public UtilsCategory(IVkApiInvoke vk)
@@ -25,18 +24,21 @@ namespace VkNet.Categories
 
 		/// <inheritdoc />
 		[Pure]
-		public LinkAccessType CheckLink(string url, bool skipAuthorization = true)
+		public LinkAccessType CheckLink(string url)
 		{
-			return CheckLink(url: new Uri(uriString: url), skipAuthorization: skipAuthorization);
+			return CheckLink(new Uri(uriString: url));
 		}
 
 		/// <inheritdoc />
 		[Pure]
-		public LinkAccessType CheckLink(Uri url, bool skipAuthorization = true)
+		public LinkAccessType CheckLink(Uri url)
 		{
-			var parameters = new VkParameters { { "url", url } };
+			var parameters = new VkParameters
+			{
+				{ "url", url }
+			};
 
-			return _vk.Call(methodName: "utils.checkLink", parameters: parameters, skipAuthorization: skipAuthorization);
+			return _vk.Call("utils.checkLink", parameters);
 		}
 
 		/// <inheritdoc />
@@ -45,16 +47,19 @@ namespace VkNet.Categories
 		{
 			VkErrors.ThrowIfNullOrEmpty(expr: () => screenName);
 
-			var parameters = new VkParameters { { "screen_name", screenName } };
+			var parameters = new VkParameters
+			{
+				{ "screen_name", screenName }
+			};
 
-			return _vk.Call(methodName: "utils.resolveScreenName", parameters: parameters, skipAuthorization: true);
+			return _vk.Call("utils.resolveScreenName", parameters);
 		}
 
 		/// <inheritdoc />
 		[Pure]
 		public DateTime GetServerTime()
 		{
-			return _vk.Call<DateTime>(methodName: "utils.getServerTime", parameters: VkParameters.Empty, skipAuthorization: true);
+			return _vk.Call<DateTime>("utils.getServerTime", VkParameters.Empty);
 		}
 
 		/// <inheritdoc />
@@ -62,34 +67,46 @@ namespace VkNet.Categories
 		{
 			var parameters = new VkParameters
 			{
-					{ "url", url }
-					, { "private", isPrivate }
+				{ "url", url },
+				{ "private", isPrivate }
 			};
 
-			return _vk.Call<ShortLink>(methodName: "utils.getShortLink", parameters: parameters);
+			return _vk.Call<ShortLink>("utils.getShortLink", parameters);
 		}
 
 		/// <inheritdoc />
 		public bool DeleteFromLastShortened(string key)
 		{
-			return _vk.Call<bool>(methodName: "utils.deleteFromLastShortened", parameters: new VkParameters { { "key", key } });
+			return _vk.Call<bool>("utils.deleteFromLastShortened",
+				new VkParameters
+				{
+					{ "key", key }
+				});
 		}
 
 		/// <inheritdoc />
 		public VkCollection<ShortLink> GetLastShortenedLinks(ulong count = 10, ulong offset = 0)
 		{
-			return _vk.Call<VkCollection<ShortLink>>(methodName: "utils.getLastShortenedLinks"
-					, parameters: new VkParameters
-					{
-							{ "count", count }
-							, { "offset", offset }
-					});
+			return _vk.Call<VkCollection<ShortLink>>("utils.getLastShortenedLinks",
+				new VkParameters
+				{
+					{ "count", count },
+					{ "offset", offset }
+				});
 		}
 
 		/// <inheritdoc />
 		public LinkStatsResult GetLinkStats(LinkStatsParams @params)
 		{
-			return _vk.Call<LinkStatsResult>(methodName: "utils.getLinkStats", parameters: @params);
+			return _vk.Call<LinkStatsResult>("utils.getLinkStats",
+				new VkParameters
+				{
+					{ "key", @params.Key }
+					, { "access_key", @params.AccessKey }
+					, { "interval", @params.Interval }
+					, { "intervals_count", @params.IntervalsCount }
+					, { "extended", @params.Extended }
+				});
 		}
 	}
 }

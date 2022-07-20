@@ -1,54 +1,74 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using System;
+using FluentAssertions;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class VkParametersTests
 	{
-		[Test]
+		[Fact]
 		public void AddNullableBoolean_FalseValue()
 		{
 			var @params = new VkParameters
 			{
-				{
-					"NullableBoolean", false
-				}
+				{ "NullableBoolean", false }
 			};
 
-			Assert.That(@params, Does.ContainKey("NullableBoolean"));
+			@params.Should().ContainKey("NullableBoolean");
 			var val = @params["NullableBoolean"];
-			Assert.That(val, Is.EqualTo("0"));
+			val.Should().Be("0");
 		}
 
-		[Test]
+		[Fact]
 		public void AddNullableBoolean_NullValue()
 		{
 			var @params = new VkParameters
 			{
-				{
-					"NullableBoolean", (bool?) null
-				}
+				{ "NullableBoolean", (bool?) null }
 			};
 
-			Assert.That(@params, Does.Not.ContainKey("NullableBoolean"));
+			@params.Should().NotContainKey("NullableBoolean");
 		}
 
-		[Test]
+		[Fact]
 		public void AddNullableBoolean_TrueValue()
 		{
 			var @params = new VkParameters
 			{
-				{
-					"NullableBoolean", true
-				}
+				{ "NullableBoolean", true }
 			};
 
-			Assert.That(@params, Does.ContainKey("NullableBoolean"));
+			@params.Should().ContainKey("NullableBoolean");
 			var val = @params["NullableBoolean"];
-			Assert.That(val, Is.EqualTo("1"));
+			val.Should().Be("1");
+		}
+
+		[Fact]
+		public void AddDateTime()
+		{
+			var dateTimeNow = new DateTime(2019,
+				10,
+				31,
+				0,
+				21,
+				32,
+				DateTimeKind.Utc);
+
+			var @params = new VkParameters
+			{
+				{ "date_time", dateTimeNow }
+			};
+
+			FluentActions.Invoking(() =>
+				{
+					var unused = @params["date_time"];
+				})
+				.Should()
+				.NotThrow();
+
+			@params["date_time"].Should().Be("1572481292");
 		}
 	}
 }

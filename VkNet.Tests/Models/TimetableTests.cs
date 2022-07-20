@@ -1,15 +1,15 @@
-using System.Diagnostics.CodeAnalysis;
+using FluentAssertions;
 using Newtonsoft.Json;
-using NUnit.Framework;
 using VkNet.Model;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class TimetableTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void TimetableToJson()
 		{
 			ReadJsonFile("Models", nameof(TimetableToJson));
@@ -50,7 +50,7 @@ namespace VkNet.Tests.Models
 				},
 			};
 
-			Assert.AreEqual(Json, JsonConvert.SerializeObject(timetable, Formatting.Indented));
+			JsonConvert.SerializeObject(timetable, Formatting.Indented).Replace("\r", "").Replace("\n", "").Should().Be(Json.Replace("\r", "").Replace("\n", ""));
 		}
 	}
 }

@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.Filters;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -62,39 +61,12 @@ namespace VkNet.Model.RequestParams
 		/// Значение, необходимое для передачи в этом
 		/// параметре, возвращается в поле ответа next_from.
 		/// </summary>
-		public long? StartFrom { get; set; }
+		public string StartFrom { get; set; }
 
 		/// <summary>
 		/// Список дополнительных полей профилей, которые необходимо вернуть. Игнорируется
 		/// при отсутствии параметра extended=1.
 		/// </summary>
 		public UsersFields Fields { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(NewsFeedSearchParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "q", p.Query },
-				{ "extended", p.Extended },
-				{ "latitude", p.Latitude },
-				{ "longitude", p.Longitude },
-				{ "start_time", p.StartTime },
-				{ "end_time", p.EndTime },
-				{ "start_from", p.StartFrom },
-				{ "fields", p.Fields }
-			};
-
-			if (p.Count <= 200)
-			{
-				parameters.Add(name: "count", nullableValue: p.Count);
-			}
-
-			return parameters;
-		}
 	}
 }

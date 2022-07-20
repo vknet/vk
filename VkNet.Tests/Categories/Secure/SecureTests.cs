@@ -1,15 +1,16 @@
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Secure
 {
-	[TestFixture]
+
 	public class SecureTests : CategoryBaseTest
 	{
 		protected override string Folder => "Secure";
 
-		[Test]
+		[Fact]
 		public void AddAppEvent()
 		{
 			Url = "https://api.vk.com/method/secure.addAppEvent";
@@ -17,10 +18,10 @@ namespace VkNet.Tests.Categories.Secure
 
 			var app = Api.Secure.AddAppEvent(1, 2, 1500);
 
-			Assert.IsTrue(app);
+			app.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void CheckToken()
 		{
 			Url = "https://api.vk.com/method/secure.checkToken";
@@ -28,10 +29,10 @@ namespace VkNet.Tests.Categories.Secure
 
 			var app = Api.Secure.CheckToken("access_token", "");
 
-			Assert.IsNotNull(app);
+			app.Should().NotBeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetAppBalance()
 		{
 			Url = "https://api.vk.com/method/secure.getAppBalance";
@@ -39,10 +40,10 @@ namespace VkNet.Tests.Categories.Secure
 
 			var app = Api.Secure.GetAppBalance();
 
-			Assert.AreEqual(5000, app);
+			app.Should().Be(5000);
 		}
 
-		[Test]
+		[Fact]
 		public void GetSmsHistory()
 		{
 			Url = "https://api.vk.com/method/secure.getSMSHistory";
@@ -50,13 +51,13 @@ namespace VkNet.Tests.Categories.Secure
 
 			var app = Api.Secure.GetSmsHistory(123);
 
-			Assert.IsNotEmpty(app);
+			app.Should().NotBeEmpty();
 			var item = app.FirstOrDefault();
-			Assert.NotNull(item);
-			Assert.AreEqual(1238497, item.Id);
+			item.Should().NotBeNull();
+			item.Id.Should().Be(1238497);
 		}
 
-		[Test]
+		[Fact]
 		public void GetTransactionsHistory()
 		{
 			Url = "https://api.vk.com/method/secure.getTransactionsHistory";
@@ -64,10 +65,10 @@ namespace VkNet.Tests.Categories.Secure
 
 			var app = Api.Secure.GetTransactionsHistory();
 
-			Assert.IsNotEmpty(app);
+			app.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetUserLevel()
 		{
 			Url = "https://api.vk.com/method/secure.getUserLevel";
@@ -78,10 +79,10 @@ namespace VkNet.Tests.Categories.Secure
 				123
 			});
 
-			Assert.IsNotEmpty(app);
+			app.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GiveEventSticker()
 		{
 			Url = "https://api.vk.com/method/secure.giveEventSticker";
@@ -95,10 +96,10 @@ namespace VkNet.Tests.Categories.Secure
 				},
 				1);
 
-			Assert.IsNotEmpty(app);
+			app.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void SendNotification()
 		{
 			Url = "https://api.vk.com/method/secure.sendNotification";
@@ -110,10 +111,10 @@ namespace VkNet.Tests.Categories.Secure
 					123
 				});
 
-			Assert.IsNotEmpty(app);
+			app.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void SendSmsNotification()
 		{
 			Url = "https://api.vk.com/method/secure.sendSMSNotification";
@@ -121,10 +122,10 @@ namespace VkNet.Tests.Categories.Secure
 
 			var app = Api.Secure.SendSmsNotification(123, "SMS Message");
 
-			Assert.That(app, Is.True);
+			app.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void SetCounter()
 		{
 			Url = "https://api.vk.com/method/secure.setCounter";
@@ -139,7 +140,7 @@ namespace VkNet.Tests.Categories.Secure
 				2,
 				true);
 
-			Assert.That(app, Is.True);
+			app.Should().BeTrue();
 		}
 	}
 }

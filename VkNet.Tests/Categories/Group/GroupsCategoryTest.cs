@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -11,16 +10,16 @@ using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class GroupsCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void BanUser_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.banUser";
@@ -35,10 +34,10 @@ namespace VkNet.Tests.Categories.Group
 				CommentVisible = true
 			});
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Edit_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.edit";
@@ -53,10 +52,10 @@ namespace VkNet.Tests.Categories.Group
 
 			var groups = Api.Groups.Edit(group);
 
-			Assert.That(groups, Is.True);
+			groups.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void EditPlace_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.editPlace";
@@ -75,11 +74,10 @@ namespace VkNet.Tests.Categories.Group
 
 			var groups = Api.Groups.EditPlace(103292418, place);
 
-			Assert.That(groups, Is.True);
+			groups.Should().BeTrue();
 		}
 
-		[Test]
-		[Ignore("")]
+		[Fact]
 		public void Get_NormalCaseAllFields_ReturnFullGroupInfo()
 		{
 			Url = "https://api.vk.com/method/groups.get";
@@ -89,54 +87,73 @@ namespace VkNet.Tests.Categories.Group
 			// 1, true, GroupsFilters.Events, GroupsFields.All
 			var groups = Api.Groups.Get(new GroupsGetParams
 				{
-					UserId = 1, Extended = true, Filter = GroupsFilters.Events, Fields = GroupsFields.All
+					UserId = 1,
+					Extended = true,
+					Filter = GroupsFilters.Events,
+					Fields = GroupsFields.All
 				})
 				.ToList();
 
-			Assert.That(groups[1].Id, Is.EqualTo(1181795));
-			Assert.That(groups[1].Name, Is.EqualTo("Геннадий Бачинский"));
-			Assert.That(groups[1].ScreenName, Is.EqualTo("club1181795"));
-			Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[1].City.Id, Is.EqualTo(1));
-			Assert.That(groups[1].Country.Id, Is.EqualTo(1));
-			Assert.That(groups[1].Description, Is.EqualTo("В связи с небольшим количеством..."));
+			groups[1].Id.Should().Be(1181795);
+			groups[1].Name.Should().Be("Геннадий Бачинский");
+			groups[1].ScreenName.Should().Be("club1181795");
+			groups[1].IsClosed.Should().Be(GroupPublicity.Public);
+			groups[1].City.Id.Should().Be(1);
+			groups[1].Country.Id.Should().Be(1);
+			groups[1].Description.Should().Be("В связи с небольшим количеством...");
 
-			Assert.That(groups[1].StartDate, Is.EqualTo(new DateTime(2008, 1, 15, 7, 0, 0, DateTimeKind.Utc)));
+			groups[1]
+				.StartDate.Should()
+				.Be(new DateTime(2008,
+					1,
+					15,
+					7,
+					0,
+					0,
+					DateTimeKind.Utc));
 
-			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Event));
-			Assert.That(groups[1].IsAdmin, Is.False);
-			Assert.That(groups[1].IsMember, Is.True);
+			groups[1].Type.Should().Be(GroupType.Event);
+			groups[1].IsAdmin.Should().BeFalse();
+			groups[1].IsMember.Should().BeTrue();
 
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs1122.userapi.com/g1181795/c_efd67aca.jpg"));
+			groups[1].PhotoPreviews.Photo50.Should().Be(new Uri("http://cs1122.userapi.com/g1181795/c_efd67aca.jpg"));
 
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs1122.userapi.com/g1181795/b_369a1c47.jpg"));
+			groups[1].PhotoPreviews.Photo100.Should().Be(new Uri("http://cs1122.userapi.com/g1181795/b_369a1c47.jpg"));
 
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs1122.userapi.com/g1181795/a_c58272b3.jpg"));
+			groups[1].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs1122.userapi.com/g1181795/a_c58272b3.jpg"));
 
-			Assert.That(groups.Count, Is.EqualTo(2));
-			Assert.That(groups[0].Id, Is.EqualTo(1153959));
-			Assert.That(groups[0].Name, Is.EqualTo("The middle of spring"));
-			Assert.That(groups[0].ScreenName, Is.EqualTo("club1153959"));
-			Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[0].City.Id, Is.EqualTo(10));
-			Assert.That(groups[0].Country.Id, Is.EqualTo(1));
+			groups.Should().HaveCount(2);
+			groups[0].Id.Should().Be(1153959);
+			groups[0].Name.Should().Be("The middle of spring");
+			groups[0].ScreenName.Should().Be("club1153959");
+			groups[0].IsClosed.Should().Be(GroupPublicity.Public);
+			groups[0].City.Id.Should().Be(10);
+			groups[0].Country.Id.Should().Be(1);
 
-			Assert.That(groups[0].Description, Is.EqualTo("Попади в не реальную сказку пришествия..."));
+			groups[0].Description.Should().Be("Попади в не реальную сказку пришествия...");
 
-			Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2008, 04, 20, 14, 0, 30, DateTimeKind.Utc)));
+			groups[0]
+				.StartDate.Should()
+				.Be(new DateTime(2008,
+					04,
+					20,
+					14,
+					0,
+					30,
+					DateTimeKind.Utc));
 
-			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
-			Assert.That(groups[0].IsAdmin, Is.False);
-			Assert.That(groups[0].IsMember, Is.True);
+			groups[0].Type.Should().Be(GroupType.Event);
+			groups[0].IsAdmin.Should().BeFalse();
+			groups[0].IsMember.Should().BeTrue();
 
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg"));
+			groups[0].PhotoPreviews.Photo50.Should().Be(new Uri("http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg"));
 
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs1122.userapi.com/g1153959/b_5bad925c.jpg"));
+			groups[0].PhotoPreviews.Photo100.Should().Be(new Uri("http://cs1122.userapi.com/g1153959/b_5bad925c.jpg"));
 
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"));
+			groups[0].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void Get_NormalCaseDefaultFields_ReturnOnlyGroupIds()
 		{
 			Url = "https://api.vk.com/method/groups.get";
@@ -149,72 +166,84 @@ namespace VkNet.Tests.Categories.Group
 				})
 				.ToList();
 
-			Assert.That(groups.Count, Is.EqualTo(5));
-			Assert.That(groups[0].Id, Is.EqualTo(29689780));
-			Assert.That(groups[1].Id, Is.EqualTo(33489538));
-			Assert.That(groups[2].Id, Is.EqualTo(16108331));
-			Assert.That(groups[3].Id, Is.EqualTo(40724899));
-			Assert.That(groups[4].Id, Is.EqualTo(36346468));
+			groups.Should().HaveCount(5);
+
+			groups.Should()
+				.SatisfyRespectively(x => x.Id.Should().Be(29689780),
+					x => x.Id.Should().Be(33489538),
+					x => x.Id.Should().Be(16108331),
+					x => x.Id.Should().Be(40724899),
+					x => x.Id.Should().Be(36346468));
 		}
 
-		[Test]
-		[Ignore("Этот метод можно вызвать без ключа доступа. Возвращаются только общедоступные данные.")]
+		[Fact]
 		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
 
-			Assert.That(() => groups.GetById(new List<string>(), "1", null), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => groups.GetById(new List<string>(), "1", null))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_BanInfo()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
 			ReadCategoryJsonPath(nameof(GetById_BanInfo));
 
 			var group = Api.Groups.GetById(new List<string>(), "66464944", GroupsFields.BanInfo).FirstOrDefault();
-			Assert.That(group, Is.Not.Null);
-			Assert.That(group.Id, Is.EqualTo(66464944));
-			Assert.That(group.Name, Is.EqualTo("Подслушано в Ст.Кривянской"));
-			Assert.That(group.ScreenName, Is.EqualTo("club66464944"));
-			Assert.That(group.IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(group.Type, Is.EqualTo(GroupType.Page));
-			Assert.That(group.IsAdmin, Is.EqualTo(false));
-			Assert.That(group.IsMember, Is.EqualTo(true));
-			Assert.That(group.BanInfo.Comment, Is.EqualTo("Сам попросил :D"));
+			group.Should().NotBeNull();
+			group.Id.Should().Be(66464944);
+			group.Name.Should().Be("Подслушано в Ст.Кривянской");
+			group.ScreenName.Should().Be("club66464944");
+			group.IsClosed.Should().Be(GroupPublicity.Public);
+			group.Type.Should().Be(GroupType.Page);
+			group.IsAdmin.Should().Be(false);
+			group.IsMember.Should().Be(true);
+			group.BanInfo.Comment.Should().Be("Сам попросил :D");
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_InvalidGid_ThrowsInvalidParameterException()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
 
 			ReadJsonFile("Errors", "125");
 
-			Assert.That(() => Api.Groups.GetById(new List<string>(), "0", null), Throws.InstanceOf<InvalidGroupIdException>());
+			FluentActions.Invoking(() => Api.Groups.GetById(new List<string>(), "0", null))
+				.Should()
+				.ThrowExactly<InvalidGroupIdException>();
 		}
 
-		[Test]
-		[Ignore("Этот метод можно вызвать без ключа доступа. Возвращаются только общедоступные данные.")]
+		[Fact]
 		public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
 
-			Assert.That(() => groups.GetById(new List<string>(), "2", null), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => groups.GetById(new List<string>(), "2", null))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_Multiple_InvalidGids_ThrowsInvalidParameterException()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
 
 			ReadJsonFile("Errors", "125");
 
-			Assert.That(() => Api.Groups.GetById(new[] { "0" }, null, null), Throws.InstanceOf<InvalidGroupIdException>());
+			FluentActions.Invoking(() => Api.Groups.GetById(new[]
+					{
+						"0"
+					},
+					null,
+					null))
+				.Should()
+				.ThrowExactly<InvalidGroupIdException>();
 		}
 
-		[Test]
-		[Ignore("")]
+		[Fact]
 		public void GetById_Multiple_NormalCaseAllFields_ReturnTwoItems()
 		{
 			Url =
@@ -224,58 +253,67 @@ namespace VkNet.Tests.Categories.Group
 
 			var groups = Api.Groups.GetById(new[]
 					{
-						"17683660", "637247"
+						"17683660",
+						"637247"
 					},
 					null,
 					GroupsFields.All)
 				.ToList();
 
-			Assert.That(groups.Count, Is.EqualTo(2));
-			Assert.That(groups[0].Id, Is.EqualTo(17683660));
-			Assert.That(groups[0].Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
-			Assert.That(groups[0].ScreenName, Is.EqualTo("club17683660"));
-			Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[0].IsAdmin, Is.False);
-			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
-			Assert.That(groups[0].IsMember, Is.False);
+			groups.Should().HaveCount(2);
+			groups[0].Id.Should().Be(17683660);
+			groups[0].Name.Should().Be("Творческие каникулы ART CAMP с 21 по 29 июля");
+			groups[0].ScreenName.Should().Be("club17683660");
+			groups[0].IsClosed.Should().Be(GroupPublicity.Public);
+			groups[0].IsAdmin.Should().BeFalse();
+			groups[0].Type.Should().Be(GroupType.Event);
+			groups[0].IsMember.Should().BeFalse();
 
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+			groups[0].PhotoPreviews.Photo50.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+			groups[0].PhotoPreviews.Photo100.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+			groups[0].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 
-			Assert.That(groups[0].City.Id, Is.EqualTo(95));
-			Assert.That(groups[0].Country.Id, Is.EqualTo(1));
+			groups[0].City.Id.Should().Be(95);
+			groups[0].Country.Id.Should().Be(1);
 
-			Assert.That(groups[0].Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21..."));
+			groups[0].Description.Should().Be("Творческие каникулы ART CAMP с 21 по 29 июля<br>С 21...");
 
-			Assert.That(groups[0].StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0, DateTimeKind.Utc)));
+			groups[0]
+				.StartDate.Should()
+				.Be(new DateTime(2012,
+					7,
+					21,
+					6,
+					0,
+					0,
+					DateTimeKind.Utc));
 
-			Assert.That(groups[1].Id, Is.EqualTo(637247));
-			Assert.That(groups[1].Name, Is.EqualTo("Чак Паланик - Сумасшедший гений литературы"));
-			Assert.That(groups[1].ScreenName, Is.EqualTo("club637247"));
-			Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Closed));
-			Assert.That(groups[1].IsAdmin, Is.False);
-			Assert.That(groups[1].WikiPage, Is.EqualTo("Chuk Palahniuk"));
-			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
-			Assert.That(groups[1].IsMember, Is.True);
+			groups[1].Id.Should().Be(637247);
+			groups[1].Name.Should().Be("Чак Паланик - Сумасшедший гений литературы");
+			groups[1].ScreenName.Should().Be("club637247");
+			groups[1].IsClosed.Should().Be(GroupPublicity.Closed);
+			groups[1].IsAdmin.Should().BeFalse();
+			groups[1].WikiPage.Should().Be("Chuk Palahniuk");
+			groups[1].Type.Should().Be(GroupType.Group);
+			groups[1].IsMember.Should().BeTrue();
 
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
+			groups[1].PhotoPreviews.Photo50.Should().Be(new Uri("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
 
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
+			groups[1].PhotoPreviews.Photo100.Should().Be(new Uri("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
 
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
+			groups[1].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
 
-			Assert.That(groups[1].City.Id, Is.EqualTo(95));
-			Assert.That(groups[1].Country.Id, Is.EqualTo(1));
+			groups[1].City.Id.Should().Be(95);
+			groups[1].Country.Id.Should().Be(1);
 
-			Assert.That(groups[1].Description, Is.EqualTo("Кто он, этот неординарный и талантливый человек? Его творчество спо..."));
+			groups[1].Description.Should().Be("Кто он, этот неординарный и талантливый человек? Его творчество спо...");
 
-			Assert.That(groups[1].StartDate, Is.Null);
+			groups[1].StartDate.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_Multiple_NormalCaseDefaultFields_ReturnTowItems()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
@@ -284,44 +322,44 @@ namespace VkNet.Tests.Categories.Group
 
 			var groups = Api.Groups.GetById(new[]
 					{
-						"17683660", "637247"
+						"17683660",
+						"637247"
 					},
 					null,
 					null)
 				.ToList();
 
-			Assert.That(groups.Count == 2);
-			Assert.That(groups[0].Id, Is.EqualTo(17683660));
-			Assert.That(groups[0].Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
-			Assert.That(groups[0].ScreenName, Is.EqualTo("club17683660"));
-			Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[0].IsAdmin, Is.False);
-			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Event));
-			Assert.That(groups[0].IsMember, Is.False);
+			groups.Should().HaveCount(2);
+			groups[0].Id.Should().Be(17683660);
+			groups[0].Name.Should().Be("Творческие каникулы ART CAMP с 21 по 29 июля");
+			groups[0].ScreenName.Should().Be("club17683660");
+			groups[0].IsClosed.Should().Be(GroupPublicity.Public);
+			groups[0].IsAdmin.Should().BeFalse();
+			groups[0].Type.Should().Be(GroupType.Event);
+			groups[0].IsMember.Should().BeFalse();
 
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg")));
+			groups[0].PhotoPreviews.Photo50.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg")));
+			groups[0].PhotoPreviews.Photo100.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg")));
+			groups[0].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 
-			Assert.That(groups[1].Id, Is.EqualTo(637247));
-			Assert.That(groups[1].Name, Is.EqualTo("Чак Паланик - Сумасшедший гений литературы"));
-			Assert.That(groups[1].ScreenName, Is.EqualTo("club637247"));
-			Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Closed));
-			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
-			Assert.That(groups[1].IsAdmin, Is.False);
-			Assert.That(groups[1].IsMember, Is.True);
+			groups[1].Id.Should().Be(637247);
+			groups[1].Name.Should().Be("Чак Паланик - Сумасшедший гений литературы");
+			groups[1].ScreenName.Should().Be("club637247");
+			groups[1].IsClosed.Should().Be(GroupPublicity.Closed);
+			groups[1].Type.Should().Be(GroupType.Group);
+			groups[1].IsAdmin.Should().BeFalse();
+			groups[1].IsMember.Should().BeTrue();
 
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg")));
+			groups[1].PhotoPreviews.Photo50.Should().Be(new Uri("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
 
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg")));
+			groups[1].PhotoPreviews.Photo100.Should().Be(new Uri("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
 
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs11418.userapi.com/g637247/a_6be98c68.jpg")));
+			groups[1].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
 		}
 
-		[Test]
-		[Ignore("")]
+		[Fact]
 		public void GetById_NormalCaseAllFields_ReturnTwoItems()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
@@ -330,30 +368,37 @@ namespace VkNet.Tests.Categories.Group
 
 			var group = Api.Groups.GetById(new List<string>(), "17683660", GroupsFields.All).FirstOrDefault();
 
-			Assert.NotNull(group);
-			Assert.That(group.Id, Is.EqualTo(17683660));
-			Assert.That(group.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
-			Assert.That(group.ScreenName, Is.EqualTo("club17683660"));
-			Assert.That(group.IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(group.IsAdmin, Is.False);
-			Assert.That(group.Type, Is.EqualTo(GroupType.Event));
-			Assert.That(group.IsMember, Is.False);
+			group.Should().NotBeNull();
+			group.Id.Should().Be(17683660);
+			group.Name.Should().Be("Творческие каникулы ART CAMP с 21 по 29 июля");
+			group.ScreenName.Should().Be("club17683660");
+			group.IsClosed.Should().Be(GroupPublicity.Public);
+			group.IsAdmin.Should().BeFalse();
+			group.Type.Should().Be(GroupType.Event);
+			group.IsMember.Should().BeFalse();
 
-			Assert.That(group.PhotoPreviews.Photo50, Is.EqualTo("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
+			group.PhotoPreviews.Photo50.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 
-			Assert.That(group.PhotoPreviews.Photo100, Is.EqualTo("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
+			group.PhotoPreviews.Photo100.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 
-			Assert.That(group.PhotoPreviews.Photo200, Is.EqualTo("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
+			group.PhotoPreviews.Photo200.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 
-			Assert.That(group.City.Id, Is.EqualTo(95));
-			Assert.That(group.Country.Id, Is.EqualTo(1));
+			group.City.Id.Should().Be(95);
+			group.Country.Id.Should().Be(1);
 
-			Assert.That(group.Description, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля<br>...."));
+			group.Description.Should().Be("Творческие каникулы ART CAMP с 21 по 29 июля<br>....");
 
-			Assert.That(group.StartDate, Is.EqualTo(new DateTime(2012, 7, 21, 10, 0, 0, DateTimeKind.Utc)));
+			group.StartDate.Should()
+				.Be(new DateTime(2012,
+					7,
+					21,
+					6,
+					0,
+					0,
+					DateTimeKind.Utc));
 		}
 
-		[Test]
+		[Fact]
 		public void GetById_NormalCaseDefaultFields_ReturnTwoItems()
 		{
 			Url = "https://api.vk.com/method/groups.getById";
@@ -362,23 +407,23 @@ namespace VkNet.Tests.Categories.Group
 
 			var g = Api.Groups.GetById(new List<string>(), "17683660", null).FirstOrDefault();
 
-			Assert.NotNull(g);
-			Assert.That(g.Id, Is.EqualTo(17683660));
-			Assert.That(g.Name, Is.EqualTo("Творческие каникулы ART CAMP с 21 по 29 июля"));
-			Assert.That(g.ScreenName, Is.EqualTo("club17683660"));
-			Assert.That(g.IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(g.IsAdmin, Is.False);
-			Assert.That(g.Type, Is.EqualTo(GroupType.Event));
-			Assert.That(g.IsMember, Is.False);
+			g.Should().NotBeNull();
+			g.Id.Should().Be(17683660);
+			g.Name.Should().Be("Творческие каникулы ART CAMP с 21 по 29 июля");
+			g.ScreenName.Should().Be("club17683660");
+			g.IsClosed.Should().Be(GroupPublicity.Public);
+			g.IsAdmin.Should().BeFalse();
+			g.Type.Should().Be(GroupType.Event);
+			g.IsMember.Should().BeFalse();
 
-			Assert.That(g.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg")));
+			g.PhotoPreviews.Photo50.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 
-			Assert.That(g.PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg")));
+			g.PhotoPreviews.Photo100.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 
-			Assert.That(g.PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg")));
+			g.PhotoPreviews.Photo200.Should().Be(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalog_WithAllParams()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalog";
@@ -386,88 +431,88 @@ namespace VkNet.Tests.Categories.Group
 			ReadCategoryJsonPath(nameof(GetCatalog_WithAllParams));
 
 			var catalog = Api.Groups.GetCatalog(11, 12);
-			Assert.That(catalog, Is.Not.Null);
-			Assert.That(catalog.TotalCount, Is.EqualTo(35));
-			Assert.That(catalog.Count, Is.EqualTo(2));
+			catalog.Should().NotBeNull();
+			catalog.TotalCount.Should().Be(35);
+			catalog.Should().HaveCount(2);
 
 			var group1 = catalog.FirstOrDefault();
-			Assert.That(group1, Is.Not.Null);
-			Assert.That(group1.Id, Is.EqualTo(50245628));
-			Assert.That(group1.Name, Is.EqualTo("СвадьбанаБали.СвадебнаяцеремониянаБали."));
-			Assert.That(group1.ScreenName, Is.EqualTo("svadbanabali"));
-			Assert.That(group1.IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(group1.Type, Is.EqualTo(GroupType.Group));
-			Assert.That(group1.IsAdmin, Is.False);
-			Assert.That(group1.IsMember, Is.False);
+			group1.Should().NotBeNull();
+			group1.Id.Should().Be(50245628);
+			group1.Name.Should().Be("СвадьбанаБали.СвадебнаяцеремониянаБали.");
+			group1.ScreenName.Should().Be("svadbanabali");
+			group1.IsClosed.Should().Be(GroupPublicity.Public);
+			group1.Type.Should().Be(GroupType.Group);
+			group1.IsAdmin.Should().BeFalse();
+			group1.IsMember.Should().BeFalse();
 
-			Assert.That(group1.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c620330/v620330740/cf2a/4Lal9LxRuII.jpg")));
+			group1.Photo50.Should().Be(new Uri("https://pp.vk.me/c620330/v620330740/cf2a/4Lal9LxRuII.jpg"));
 
-			Assert.That(group1.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c620330/v620330740/cf29/6anB7BfUduc.jpg")));
+			group1.Photo100.Should().Be(new Uri("https://pp.vk.me/c620330/v620330740/cf29/6anB7BfUduc.jpg"));
 
-			Assert.That(group1.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c620330/v620330740/cf28/wPYJcCw4dJA.jpg")));
+			group1.Photo200.Should().Be(new Uri("https://pp.vk.me/c620330/v620330740/cf28/wPYJcCw4dJA.jpg"));
 
 			var group2 = catalog.Skip(1).FirstOrDefault();
-			Assert.That(group2, Is.Not.Null);
-			Assert.That(group2.Id, Is.EqualTo(34267994));
-			Assert.That(group2.Name, Is.EqualTo("Логотип.Лендинг.Оформлениегрупп.Реклама"));
-			Assert.That(group2.ScreenName, Is.EqualTo("pixelike"));
-			Assert.That(group2.IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(group2.Type, Is.EqualTo(GroupType.Page));
-			Assert.That(group2.IsAdmin, Is.False);
-			Assert.That(group2.IsMember, Is.False);
+			group2.Should().NotBeNull();
+			group2.Id.Should().Be(34267994);
+			group2.Name.Should().Be("Логотип.Лендинг.Оформлениегрупп.Реклама");
+			group2.ScreenName.Should().Be("pixelike");
+			group2.IsClosed.Should().Be(GroupPublicity.Public);
+			group2.Type.Should().Be(GroupType.Page);
+			group2.IsAdmin.Should().BeFalse();
+			group2.IsMember.Should().BeFalse();
 
-			Assert.That(group2.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c631129/v631129289/a7b2/IsslJ3YB_Ho.jpg")));
+			group2.Photo50.Should().Be(new Uri("https://pp.vk.me/c631129/v631129289/a7b2/IsslJ3YB_Ho.jpg"));
 
-			Assert.That(group2.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c631129/v631129289/a7b1/Ud8vrcXY4jE.jpg")));
+			group2.Photo100.Should().Be(new Uri("https://pp.vk.me/c631129/v631129289/a7b1/Ud8vrcXY4jE.jpg"));
 
-			Assert.That(group2.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c631129/v631129289/a7b0/1Xle1sPdGWU.jpg")));
+			group2.Photo200.Should().Be(new Uri("https://pp.vk.me/c631129/v631129289/a7b0/1Xle1sPdGWU.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalog_WithoutParams()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalog";
 			ReadCategoryJsonPath(nameof(GetCatalog_WithoutParams));
 
 			var catalog = Api.Groups.GetCatalog();
-			Assert.That(catalog, Is.Not.Null);
-			Assert.That(catalog.TotalCount, Is.EqualTo(27));
-			Assert.That(catalog.Count, Is.EqualTo(2));
+			catalog.Should().NotBeNull();
+			catalog.TotalCount.Should().Be(27);
+			catalog.Should().HaveCount(2);
 
 			var group1 = catalog.FirstOrDefault();
-			Assert.That(group1, Is.Not.Null);
-			Assert.That(group1.Id, Is.EqualTo(15911874));
-			Assert.That(group1.Name, Is.EqualTo("Собака.ru"));
-			Assert.That(group1.ScreenName, Is.EqualTo("sobaka_ru"));
-			Assert.That(group1.IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(group1.Type, Is.EqualTo(GroupType.Page));
-			Assert.That(group1.IsAdmin, Is.False);
-			Assert.That(group1.IsMember, Is.False);
+			group1.Should().NotBeNull();
+			group1.Id.Should().Be(15911874);
+			group1.Name.Should().Be("Собака.ru");
+			group1.ScreenName.Should().Be("sobaka_ru");
+			group1.IsClosed.Should().Be(GroupPublicity.Public);
+			group1.Type.Should().Be(GroupType.Page);
+			group1.IsAdmin.Should().BeFalse();
+			group1.IsMember.Should().BeFalse();
 
-			Assert.That(group1.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c629209/v629209418/39246/tARC41vYcko.jpg")));
+			group1.Photo50.Should().Be(new Uri("https://pp.vk.me/c629209/v629209418/39246/tARC41vYcko.jpg"));
 
-			Assert.That(group1.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c629209/v629209418/39245/oqo-rj5a3JY.jpg")));
+			group1.Photo100.Should().Be(new Uri("https://pp.vk.me/c629209/v629209418/39245/oqo-rj5a3JY.jpg"));
 
-			Assert.That(group1.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c629209/v629209418/39244/LNkpNaZWlkE.jpg")));
+			group1.Photo200.Should().Be(new Uri("https://pp.vk.me/c629209/v629209418/39244/LNkpNaZWlkE.jpg"));
 
 			var group2 = catalog.Skip(1).FirstOrDefault();
-			Assert.That(group2, Is.Not.Null);
-			Assert.That(group2.Id, Is.EqualTo(79794));
-			Assert.That(group2.Name, Is.EqualTo("CirqueduSoleil|ЦиркдюСолей"));
-			Assert.That(group2.ScreenName, Is.EqualTo("cds"));
-			Assert.That(group2.IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(group2.Type, Is.EqualTo(GroupType.Group));
-			Assert.That(group2.IsAdmin, Is.False);
-			Assert.That(group2.IsMember, Is.False);
+			group2.Should().NotBeNull();
+			group2.Id.Should().Be(79794);
+			group2.Name.Should().Be("CirqueduSoleil|ЦиркдюСолей");
+			group2.ScreenName.Should().Be("cds");
+			group2.IsClosed.Should().Be(GroupPublicity.Public);
+			group2.Type.Should().Be(GroupType.Group);
+			group2.IsAdmin.Should().BeFalse();
+			group2.IsMember.Should().BeFalse();
 
-			Assert.That(group2.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c629511/v629511851/2dec6/FqIHKdp4u2U.jpg")));
+			group2.Photo50.Should().Be(new Uri("https://pp.vk.me/c629511/v629511851/2dec6/FqIHKdp4u2U.jpg"));
 
-			Assert.That(group2.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c629511/v629511851/2dec5/h10vBfOoRnk.jpg")));
+			group2.Photo100.Should().Be(new Uri("https://pp.vk.me/c629511/v629511851/2dec5/h10vBfOoRnk.jpg"));
 
-			Assert.That(group2.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c629511/v629511851/2dec4/VRFDlbtQGH4.jpg")));
+			group2.Photo200.Should().Be(new Uri("https://pp.vk.me/c629511/v629511851/2dec4/VRFDlbtQGH4.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalog_WithParamCategoryId()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalog";
@@ -475,44 +520,44 @@ namespace VkNet.Tests.Categories.Group
 			ReadCategoryJsonPath(nameof(GetCatalog_WithParamCategoryId));
 
 			var catalog = Api.Groups.GetCatalog(11);
-			Assert.That(catalog, Is.Not.Null);
-			Assert.That(catalog.TotalCount, Is.EqualTo(693));
-			Assert.That(catalog.Count, Is.EqualTo(2));
+			catalog.Should().NotBeNull();
+			catalog.TotalCount.Should().Be(693);
+			catalog.Should().HaveCount(2);
 
 			var group1 = catalog.FirstOrDefault();
-			Assert.That(group1, Is.Not.Null);
-			Assert.That(group1.Id, Is.EqualTo(21528946));
-			Assert.That(group1.Name, Is.EqualTo("Kochut.Ювелирныеизделияподзаказ"));
-			Assert.That(group1.ScreenName, Is.EqualTo("kochut"));
-			Assert.That(group1.IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(group1.Type, Is.EqualTo(GroupType.Group));
-			Assert.That(group1.IsAdmin, Is.False);
-			Assert.That(group1.IsMember, Is.False);
+			group1.Should().NotBeNull();
+			group1.Id.Should().Be(21528946);
+			group1.Name.Should().Be("Kochut.Ювелирныеизделияподзаказ");
+			group1.ScreenName.Should().Be("kochut");
+			group1.IsClosed.Should().Be(GroupPublicity.Public);
+			group1.Type.Should().Be(GroupType.Group);
+			group1.IsAdmin.Should().BeFalse();
+			group1.IsMember.Should().BeFalse();
 
-			Assert.That(group1.Photo50, Is.EqualTo(new Uri("https://cs7062.vk.me/c628023/v628023574/45681/YL78hc3tDzE.jpg")));
+			group1.Photo50.Should().Be(new Uri("https://cs7062.vk.me/c628023/v628023574/45681/YL78hc3tDzE.jpg"));
 
-			Assert.That(group1.Photo100, Is.EqualTo(new Uri("https://cs7062.vk.me/c628023/v628023574/45680/ga_NTah7dDo.jpg")));
+			group1.Photo100.Should().Be(new Uri("https://cs7062.vk.me/c628023/v628023574/45680/ga_NTah7dDo.jpg"));
 
-			Assert.That(group1.Photo200, Is.EqualTo(new Uri("https://cs7062.vk.me/c628023/v628023574/4567f/QD1aAZsZVHE.jpg")));
+			group1.Photo200.Should().Be(new Uri("https://cs7062.vk.me/c628023/v628023574/4567f/QD1aAZsZVHE.jpg"));
 
 			var group2 = catalog.Skip(1).FirstOrDefault();
-			Assert.That(group2, Is.Not.Null);
-			Assert.That(group2.Id, Is.EqualTo(81178058));
-			Assert.That(group2.Name, Is.EqualTo("Подушкисмайлы|интернетмагазин"));
-			Assert.That(group2.ScreenName, Is.EqualTo("emoji.shop"));
-			Assert.That(group2.IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(group2.Type, Is.EqualTo(GroupType.Group));
-			Assert.That(group2.IsAdmin, Is.False);
-			Assert.That(group2.IsMember, Is.False);
+			group2.Should().NotBeNull();
+			group2.Id.Should().Be(81178058);
+			group2.Name.Should().Be("Подушкисмайлы|интернетмагазин");
+			group2.ScreenName.Should().Be("emoji.shop");
+			group2.IsClosed.Should().Be(GroupPublicity.Public);
+			group2.Type.Should().Be(GroupType.Group);
+			group2.IsAdmin.Should().BeFalse();
+			group2.IsMember.Should().BeFalse();
 
-			Assert.That(group2.Photo50, Is.EqualTo(new Uri("https://pp.vk.me/c629121/v629121767/1fb3a/nzbm9sfxlnI.jpg")));
+			group2.Photo50.Should().Be(new Uri("https://pp.vk.me/c629121/v629121767/1fb3a/nzbm9sfxlnI.jpg"));
 
-			Assert.That(group2.Photo100, Is.EqualTo(new Uri("https://pp.vk.me/c629121/v629121767/1fb39/fz0oilONN9A.jpg")));
+			group2.Photo100.Should().Be(new Uri("https://pp.vk.me/c629121/v629121767/1fb39/fz0oilONN9A.jpg"));
 
-			Assert.That(group2.Photo200, Is.EqualTo(new Uri("https://pp.vk.me/c629121/v629121767/1fb38/gz5b7w4k7u4.jpg")));
+			group2.Photo200.Should().Be(new Uri("https://pp.vk.me/c629121/v629121767/1fb38/gz5b7w4k7u4.jpg"));
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalogInfo()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalogInfo";
@@ -521,18 +566,18 @@ namespace VkNet.Tests.Categories.Group
 
 			var catalogInfo = Api.Groups.GetCatalogInfo();
 
-			Assert.NotNull(catalogInfo);
-			Assert.That(catalogInfo.Enabled, Is.True);
-			CollectionAssert.IsNotEmpty(catalogInfo.Categories);
-			Assert.That(catalogInfo.Categories.Count(), Is.EqualTo(13));
+			catalogInfo.Should().NotBeNull();
+			catalogInfo.Enabled.Should().BeTrue();
+			catalogInfo.Categories.Should().NotBeEmpty();
+			catalogInfo.Categories.Count().Should().Be(13);
 
 			var category = catalogInfo.Categories.FirstOrDefault();
-			Assert.That(category, Is.Not.Null);
-			Assert.That(category.Id, Is.EqualTo(0));
-			Assert.That(category.Name, Is.EqualTo("Рекомендации"));
+			category.Should().NotBeNull();
+			category.Id.Should().Be(0);
+			category.Name.Should().Be("Рекомендации");
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalogInfo_AllParams()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalogInfo";
@@ -540,42 +585,42 @@ namespace VkNet.Tests.Categories.Group
 			ReadCategoryJsonPath(nameof(GetCatalogInfo_AllParams));
 
 			var catalogInfo = Api.Groups.GetCatalogInfo(true, true);
-			Assert.That(catalogInfo, Is.Not.Null);
-			Assert.That(catalogInfo.Enabled, Is.True);
-			CollectionAssert.IsNotEmpty(catalogInfo.Categories);
-			Assert.That(catalogInfo.Categories.Count(), Is.EqualTo(2));
+			catalogInfo.Should().NotBeNull();
+			catalogInfo.Enabled.Should().BeTrue();
+			catalogInfo.Categories.Should().NotBeEmpty();
+			catalogInfo.Categories.Count().Should().Be(2);
 
 			var category = catalogInfo.Categories.FirstOrDefault();
-			Assert.That(category, Is.Not.Null);
-			Assert.That(category.Id, Is.EqualTo(6));
-			Assert.That(category.Name, Is.EqualTo("Бренды"));
-			Assert.That(category.PageCount, Is.EqualTo(162));
-			Assert.That(category.PagePreviews.Count(), Is.EqualTo(1));
+			category.Should().NotBeNull();
+			category.Id.Should().Be(6);
+			category.Name.Should().Be("Бренды");
+			category.PageCount.Should().Be(162);
+			category.PagePreviews.Count().Should().Be(1);
 
 			var category1 = catalogInfo.Categories.Skip(1).FirstOrDefault();
-			Assert.That(category1, Is.Not.Null);
-			Assert.That(category1.Id, Is.EqualTo(11));
-			Assert.That(category1.Name, Is.EqualTo("Магазины"));
-			Assert.That(category1.PageCount, Is.EqualTo(696));
-			Assert.That(category1.PagePreviews.Count(), Is.EqualTo(1));
-			CollectionAssert.IsNotEmpty(category1.Subcategories);
+			category1.Should().NotBeNull();
+			category1.Id.Should().Be(11);
+			category1.Name.Should().Be("Магазины");
+			category1.PageCount.Should().Be(696);
+			category1.PagePreviews.Count().Should().Be(1);
+			category1.Subcategories.Should().NotBeEmpty();
 
 			var sub1 = category1.Subcategories.FirstOrDefault();
-			Assert.That(sub1, Is.Not.Null);
-			Assert.That(sub1.Id, Is.EqualTo(1));
-			Assert.That(sub1.Name, Is.EqualTo("Детскиетовары"));
-			Assert.That(sub1.PageCount, Is.EqualTo(63));
-			CollectionAssert.IsNotEmpty(sub1.PagePreviews);
+			sub1.Should().NotBeNull();
+			sub1.Id.Should().Be(1);
+			sub1.Name.Should().Be("Детскиетовары");
+			sub1.PageCount.Should().Be(63);
+			sub1.PagePreviews.Should().NotBeEmpty();
 
 			var sub2 = category1.Subcategories.Skip(1).FirstOrDefault();
-			Assert.That(sub2, Is.Not.Null);
-			Assert.That(sub2.Id, Is.EqualTo(2));
-			Assert.That(sub2.Name, Is.EqualTo("Электроника"));
-			Assert.That(sub2.PageCount, Is.EqualTo(38));
-			CollectionAssert.IsNotEmpty(sub2.PagePreviews);
+			sub2.Should().NotBeNull();
+			sub2.Id.Should().Be(2);
+			sub2.Name.Should().Be("Электроника");
+			sub2.PageCount.Should().Be(38);
+			sub2.PagePreviews.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalogInfo_Extended()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalogInfo";
@@ -583,27 +628,27 @@ namespace VkNet.Tests.Categories.Group
 			ReadCategoryJsonPath(nameof(GetCatalogInfo_Extended));
 
 			var catalogInfo = Api.Groups.GetCatalogInfo(true);
-			Assert.That(catalogInfo, Is.Not.Null);
-			Assert.That(catalogInfo.Enabled, Is.True);
-			CollectionAssert.IsNotEmpty(catalogInfo.Categories);
-			Assert.That(catalogInfo.Categories.Count(), Is.EqualTo(2));
+			catalogInfo.Should().NotBeNull();
+			catalogInfo.Enabled.Should().BeTrue();
+			catalogInfo.Categories.Should().NotBeEmpty();
+			catalogInfo.Categories.Count().Should().Be(2);
 
 			var category = catalogInfo.Categories.FirstOrDefault();
-			Assert.That(category, Is.Not.Null);
-			Assert.That(category.Id, Is.EqualTo(0));
-			Assert.That(category.Name, Is.EqualTo("Рекомендации"));
-			Assert.That(category.PageCount, Is.EqualTo(30));
-			Assert.That(category.PagePreviews.Count(), Is.EqualTo(2));
+			category.Should().NotBeNull();
+			category.Id.Should().Be(0);
+			category.Name.Should().Be("Рекомендации");
+			category.PageCount.Should().Be(30);
+			category.PagePreviews.Count().Should().Be(2);
 
 			var category1 = catalogInfo.Categories.Skip(1).FirstOrDefault();
-			Assert.That(category1, Is.Not.Null);
-			Assert.That(category1.Id, Is.EqualTo(1));
-			Assert.That(category1.Name, Is.EqualTo("Новости"));
-			Assert.That(category1.PageCount, Is.EqualTo(21));
-			Assert.That(category1.PagePreviews.Count(), Is.EqualTo(2));
+			category1.Should().NotBeNull();
+			category1.Id.Should().Be(1);
+			category1.Name.Should().Be("Новости");
+			category1.PageCount.Should().Be(21);
+			category1.PagePreviews.Count().Should().Be(2);
 		}
 
-		[Test]
+		[Fact]
 		public void GetCatalogInfo_Subcategories()
 		{
 			Url = "https://api.vk.com/method/groups.getCatalogInfo";
@@ -611,34 +656,34 @@ namespace VkNet.Tests.Categories.Group
 			ReadCategoryJsonPath(nameof(GetCatalogInfo_Subcategories));
 
 			var catalogInfo = Api.Groups.GetCatalogInfo(true, true);
-			Assert.That(catalogInfo, Is.Not.Null);
-			Assert.That(catalogInfo.Enabled, Is.True);
-			CollectionAssert.IsNotEmpty(catalogInfo.Categories);
-			Assert.That(catalogInfo.Categories.Count(), Is.EqualTo(2));
+			catalogInfo.Should().NotBeNull();
+			catalogInfo.Enabled.Should().BeTrue();
+			catalogInfo.Categories.Should().NotBeEmpty();
+			catalogInfo.Categories.Count().Should().Be(2);
 
 			var category = catalogInfo.Categories.FirstOrDefault();
-			Assert.That(category, Is.Not.Null);
-			Assert.That(category.Id, Is.EqualTo(6));
-			Assert.That(category.Name, Is.EqualTo("Бренды"));
+			category.Should().NotBeNull();
+			category.Id.Should().Be(6);
+			category.Name.Should().Be("Бренды");
 
 			var category1 = catalogInfo.Categories.Skip(1).FirstOrDefault();
-			Assert.That(category1, Is.Not.Null);
-			Assert.That(category1.Id, Is.EqualTo(11));
-			Assert.That(category1.Name, Is.EqualTo("Магазины"));
-			CollectionAssert.IsNotEmpty(category1.Subcategories);
+			category1.Should().NotBeNull();
+			category1.Id.Should().Be(11);
+			category1.Name.Should().Be("Магазины");
+			category1.Subcategories.Should().NotBeEmpty();
 
 			var sub1 = category1.Subcategories.FirstOrDefault();
-			Assert.That(sub1, Is.Not.Null);
-			Assert.That(sub1.Id, Is.EqualTo(1));
-			Assert.That(sub1.Name, Is.EqualTo("Детскиетовары"));
+			sub1.Should().NotBeNull();
+			sub1.Id.Should().Be(1);
+			sub1.Name.Should().Be("Детскиетовары");
 
 			var sub2 = category1.Subcategories.Skip(1).FirstOrDefault();
-			Assert.That(sub2, Is.Not.Null);
-			Assert.That(sub2.Id, Is.EqualTo(2));
-			Assert.That(sub2.Name, Is.EqualTo("Электроника"));
+			sub2.Should().NotBeNull();
+			sub2.Id.Should().Be(2);
+			sub2.Name.Should().Be("Электроника");
 		}
 
-		[Test]
+		[Fact]
 		public void GetInivites_NotInvites()
 		{
 			Url = "https://api.vk.com/method/groups.getInvites";
@@ -646,11 +691,11 @@ namespace VkNet.Tests.Categories.Group
 
 			var groups = Api.Groups.GetInvites(3, 0);
 
-			Assert.That(groups, Is.Not.Null);
-			Assert.That(groups.Count, Is.EqualTo(0));
+			groups.Should().NotBeNull();
+			groups.Should().BeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void GetInvitedUsers_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.getInvitedUsers";
@@ -658,16 +703,16 @@ namespace VkNet.Tests.Categories.Group
 			ReadCategoryJsonPath(nameof(GetInvitedUsers_NormalCase));
 			var users = Api.Groups.GetInvitedUsers(103292418, 0, 20, UsersFields.BirthDate, NameCase.Dat);
 
-			Assert.That(users, Is.Not.Null);
+			users.Should().NotBeNull();
 			var user = users.FirstOrDefault();
-			Assert.That(user, Is.Not.Null);
-			Assert.That(user.Id, Is.EqualTo(221634238));
-			Assert.That(user.FirstName, Is.EqualTo("Александру"));
-			Assert.That(user.LastName, Is.EqualTo("Инютину"));
-			Assert.That(user.BirthDate, Is.EqualTo("23.6.2000"));
+			user.Should().NotBeNull();
+			user.Id.Should().Be(221634238);
+			user.FirstName.Should().Be("Александру");
+			user.LastName.Should().Be("Инютину");
+			user.BirthDate.Should().Be("23.6.2000");
 		}
 
-		[Test]
+		[Fact]
 		public void GetInvites_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.getInvites";
@@ -676,42 +721,43 @@ namespace VkNet.Tests.Categories.Group
 
 			var groups = Api.Groups.GetInvites(3, 0);
 
-			Assert.That(groups, Is.Not.Null);
-			Assert.That(groups.Count, Is.EqualTo(1));
+			groups.Should().NotBeNull();
+			groups.Should().ContainSingle();
 			var group = groups.FirstOrDefault();
-			Assert.That(group, Is.Not.Null);
-			Assert.That(group.Id, Is.EqualTo(66528333));
-			Assert.That(group.Name, Is.EqualTo("группа 123"));
-			Assert.That(group.ScreenName, Is.EqualTo("club66528333"));
-			Assert.That(group.IsClosed, Is.EqualTo(GroupPublicity.Closed));
-			Assert.That(group.Type, Is.EqualTo(GroupType.Group));
-			Assert.That(group.IsAdmin, Is.False);
-			Assert.That(group.IsMember, Is.EqualTo(false));
+			group.Should().NotBeNull();
+			group.Id.Should().Be(66528333);
+			group.Name.Should().Be("группа 123");
+			group.ScreenName.Should().Be("club66528333");
+			group.IsClosed.Should().Be(GroupPublicity.Closed);
+			group.Type.Should().Be(GroupType.Group);
+			group.IsAdmin.Should().BeFalse();
+			group.IsMember.Should().Be(false);
 
-			Assert.That(group.PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://vk.com/images/community_50.gif")));
+			group.PhotoPreviews.Photo50.Should().Be(new Uri("http://vk.com/images/community_50.gif"));
 
-			Assert.That(group.PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://vk.com/images/community_100.gif")));
+			group.PhotoPreviews.Photo100.Should().Be(new Uri("http://vk.com/images/community_100.gif"));
 
-			Assert.That(group.PhotoPreviews.PhotoMax, Is.EqualTo(new Uri("http://vk.com/images/question_a.gif")));
+			group.PhotoPreviews.PhotoMax.Should().Be(new Uri("http://vk.com/images/question_a.gif"));
 
-			Assert.That(group.InvitedBy, Is.EqualTo(242508789));
+			group.InvitedBy.Should().Be(242508789);
 		}
 
-		[Test]
+		[Fact]
 		public void GetMembers_InvalidGid_ThrowsInvalidParameterException()
 		{
 			Url = "https://api.vk.com/method/groups.getMembers";
 
 			ReadJsonFile("Errors", "125");
 
-			Assert.That(() => Api.Groups.GetMembers(new GroupsGetMembersParams
+			FluentActions.Invoking(() => Api.Groups.GetMembers(new GroupsGetMembersParams
 				{
 					GroupId = "0"
-				}),
-				Throws.InstanceOf<InvalidGroupIdException>());
+				}))
+				.Should()
+				.ThrowExactly<InvalidGroupIdException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetMembers_NormalCase_ListOfUsesIds()
 		{
 			Url = "https://api.vk.com/method/groups.getMembers";
@@ -723,20 +769,20 @@ namespace VkNet.Tests.Categories.Group
 				GroupId = "17683660"
 			});
 
-			Assert.That(ids.TotalCount, Is.EqualTo(861));
-			Assert.That(ids.Count, Is.EqualTo(8));
+			ids.TotalCount.Should().Be(861);
+			ids.Should().HaveCount(8);
 
-			Assert.That(ids[0].Id, Is.EqualTo(116446865));
-			Assert.That(ids[1].Id, Is.EqualTo(485839));
-			Assert.That(ids[2].Id, Is.EqualTo(23483719));
-			Assert.That(ids[3].Id, Is.EqualTo(3428459));
-			Assert.That(ids[4].Id, Is.EqualTo(153698746));
-			Assert.That(ids[5].Id, Is.EqualTo(16080868));
-			Assert.That(ids[6].Id, Is.EqualTo(5054657));
-			Assert.That(ids[7].Id, Is.EqualTo(38690458));
+			ids[0].Id.Should().Be(116446865);
+			ids[1].Id.Should().Be(485839);
+			ids[2].Id.Should().Be(23483719);
+			ids[3].Id.Should().Be(3428459);
+			ids[4].Id.Should().Be(153698746);
+			ids[5].Id.Should().Be(16080868);
+			ids[6].Id.Should().Be(5054657);
+			ids[7].Id.Should().Be(38690458);
 		}
 
-		[Test]
+		[Fact]
 		public void GetMembers_NormalCaseAllInputParameters_ListOfUsesIds()
 		{
 			Url = "https://api.vk.com/method/groups.getMembers";
@@ -745,22 +791,21 @@ namespace VkNet.Tests.Categories.Group
 
 			var ids = Api.Groups.GetMembers(new GroupsGetMembersParams
 			{
-				GroupId = "17683660", Count = 7, Offset = 15, Sort = GroupsSort.IdAsc
+				GroupId = "17683660",
+				Count = 7,
+				Offset = 15,
+				Sort = GroupsSort.IdAsc,
+				Fields = UsersFields.Nickname
 			});
 
-			Assert.That(ids.TotalCount, Is.EqualTo(861));
-			Assert.That(ids.Count, Is.EqualTo(7));
+			ids.TotalCount.Should().Be(861);
+			ids.Should().HaveCount(2);
 
-			Assert.That(ids[0].Id, Is.EqualTo(1129147));
-			Assert.That(ids[1].Id, Is.EqualTo(1137997));
-			Assert.That(ids[2].Id, Is.EqualTo(1201582));
-			Assert.That(ids[3].Id, Is.EqualTo(1205554));
-			Assert.That(ids[4].Id, Is.EqualTo(1220166));
-			Assert.That(ids[5].Id, Is.EqualTo(1238937));
-			Assert.That(ids[6].Id, Is.EqualTo(1239796));
+			ids[0].Id.Should().Be(5);
+			ids[1].Id.Should().Be(6);
 		}
 
-		[Test]
+		[Fact]
 		public void GetSettings_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.getSettings";
@@ -768,11 +813,11 @@ namespace VkNet.Tests.Categories.Group
 			ReadCategoryJsonPath(nameof(GetSettings_NormalCase));
 			var groups = Api.Groups.GetSettings(103292418);
 
-			Assert.That(groups, Is.Not.Null);
-			Assert.That(groups.GroupId, Is.EqualTo(103292418));
+			groups.Should().NotBeNull();
+			groups.GroupId.Should().Be(103292418);
 		}
 
-		[Test]
+		[Fact]
 		public void Invite_NormalCase()
 		{
 			Url = "https://api.vk.com/method/groups.invite";
@@ -781,56 +826,33 @@ namespace VkNet.Tests.Categories.Group
 
 			var users = Api.Groups.Invite(103292418, 221634238);
 
-			Assert.That(users, Is.True);
+			users.Should().BeTrue();
 		}
 
-		[Test]
-		[Ignore("Это открытый метод, не требующий access_token.")]
+		[Fact]
 		public void IsMember_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
 
-			Assert.That(() => groups.IsMember("2", 1, null, null), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => groups.IsMember("2", 1, null, null)).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
-		public void IsMember_WrongGid_ThrowsInvalidParameterException()
-		{
-			Url = "https://api.vk.com/method/groups.isMember";
-
-			ReadErrorsJsonFile(125);
-
-			var ex = Assert.Throws<InvalidGroupIdException>(() =>
-				Api.Groups.IsMember("0", 4793858, null, null));
-
-			Assert.That(ex.Message, Is.EqualTo("Invalid group id"));
-		}
-
-		[Test]
-		public void IsMember_WrongUid_ReturnFalse()
-		{
-			Url = "https://api.vk.com/method/groups.isMember";
-			ReadJsonFile(JsonPaths.False);
-
-			var result = Api.Groups.IsMember("637247", 1000000000000, null, null);
-			Assert.That(result.Count > 0 && result[0].Member, Is.False);
-		}
-
-		[Test]
-		[Ignore("Это открытый метод, не требующий access_token.")]
-		public void IsMemeber_UserAuthorizationFail_ThrowUserAuthorizationFailException()
+		[Fact]
+		public void IsMember_UserAuthorizationFail_ThrowUserAuthorizationFailException()
 		{
 			Url = "https://api.vk.com/method/groups.isMember";
 
 			ReadErrorsJsonFile(5);
 
-			var ex = Assert.Throws<UserAuthorizationFailException>(() =>
-				Api.Groups.IsMember("637247", 4793858, null, null));
-
-			Assert.That(ex.Message, Is.EqualTo("User authorization failed: access_token was given to another ip address."));
+			FluentActions.Invoking(() =>
+					Api.Groups.IsMember("637247", 4793858, null, null))
+				.Should()
+				.ThrowExactly<UserAuthorizationFailException>()
+				.And.Message.Should()
+				.Be("User authorization failed: access_token was given to another ip address.");
 		}
 
-		[Test]
+		[Fact]
 		public void IsMember_UserIsAMember_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/groups.isMember";
@@ -838,10 +860,11 @@ namespace VkNet.Tests.Categories.Group
 			ReadCategoryJsonPath(nameof(IsMember_UserIsAMember_ReturnTrue));
 
 			var result = Api.Groups.IsMember("637247", 4793858, null, null);
-			Assert.That(result.Count > 0 && result[0].Member, Is.True);
+			result.Should().NotBeEmpty();
+			result[0].Member.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void IsMember_UserNotAMember_ReturnFalse()
 		{
 			Url = "https://api.vk.com/method/groups.isMember";
@@ -849,28 +872,53 @@ namespace VkNet.Tests.Categories.Group
 			ReadCategoryJsonPath(nameof(IsMember_UserNotAMember_ReturnFalse));
 
 			var result = Api.Groups.IsMember("17683660", 4793858, null, null);
-			Assert.That(result.Count > 0 && result[0].Member, Is.False);
+			result.Should().NotBeEmpty();
+			result[0].Member.Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
+		public void IsMember_WrongGid_ThrowsInvalidParameterException()
+		{
+			Url = "https://api.vk.com/method/groups.isMember";
+
+			ReadErrorsJsonFile(125);
+
+			FluentActions.Invoking(() =>
+					Api.Groups.IsMember("0", 4793858, null, null))
+				.Should()
+				.ThrowExactly<InvalidGroupIdException>()
+				.And.Message.Should()
+				.Be("Invalid group id");
+		}
+
+		[Fact]
+		public void IsMember_WrongUid_ReturnFalse()
+		{
+			Url = "https://api.vk.com/method/groups.isMember";
+			ReadJsonFile(JsonPaths.False);
+
+			var result = Api.Groups.IsMember("637247", 1000000000000, null, null);
+			(result.Count > 0 && result[0].Member).Should().BeFalse();
+		}
+
+		[Fact]
 		public void Join_AccessDenied_ThrowAccessDeniedException()
 		{
 			Url = "https://api.vk.com/method/groups.join";
 
 			ReadErrorsJsonFile(7);
 
-			Assert.That(() => Api.Groups.Join(2, true), Throws.InstanceOf<PermissionToPerformThisActionException>());
+			FluentActions.Invoking(() => Api.Groups.Join(2, true)).Should().ThrowExactly<PermissionToPerformThisActionException>();
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void Join_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
-			Assert.That(() => groups.Join(1), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => groups.Join(1)).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Join_NormalCase_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/groups.join";
@@ -879,10 +927,10 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.Join(2);
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Join_NormalCaseNotSure_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/groups.join";
@@ -891,47 +939,49 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.Join(2, true);
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Join_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
 		{
 			Url = "https://api.vk.com/method/groups.join";
 			ReadErrorsJsonFile(5);
 
-			Assert.That(() => Api.Groups.Join(1), Throws.InstanceOf<UserAuthorizationFailException>());
+			FluentActions.Invoking(() => Api.Groups.Join(1)).Should().ThrowExactly<UserAuthorizationFailException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Join_WrongGid_ThrowAccessDeniedException()
 		{
 			Url = "https://api.vk.com/method/groups.join";
 			ReadErrorsJsonFile(15);
 
-			var ex = Assert.Throws<CannotBlacklistYourselfException>(() => Api.Groups.Join(0, true));
-			Assert.That(ex.Message, Is.EqualTo("Access denied: you can not join this private community"));
+			FluentActions.Invoking(() => Api.Groups.Join(0, true))
+				.Should()
+				.ThrowExactly<CannotBlacklistYourselfException>()
+				.And.Message.Should()
+				.Be("Access denied: you can not join this private community");
 		}
 
-		[Test]
+		[Fact]
 		public void Leave_AccessDenied_ThrowAccessDeniedException()
 		{
 			Url = "https://api.vk.com/method/groups.leave";
 
 			ReadErrorsJsonFile(7);
 
-			Assert.That(() => Api.Groups.Leave(2), Throws.InstanceOf<PermissionToPerformThisActionException>());
+			FluentActions.Invoking(() => Api.Groups.Leave(2)).Should().ThrowExactly<PermissionToPerformThisActionException>();
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void Leave_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var groups = new GroupsCategory(new VkApi());
-			Assert.That(() => groups.Leave(1), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => groups.Leave(1)).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Leave_NormalCase_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/groups.leave";
@@ -940,19 +990,19 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.Leave(2);
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void Leave_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
 		{
 			Url = "https://api.vk.com/method/groups.leave";
 			ReadErrorsJsonFile(5);
 
-			Assert.That(() => Api.Groups.Leave(1), Throws.InstanceOf<UserAuthorizationFailException>());
+			FluentActions.Invoking(() => Api.Groups.Leave(1)).Should().ThrowExactly<UserAuthorizationFailException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Leave_WrongGid_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/groups.leave";
@@ -961,69 +1011,10 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.Leave(0);
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 
-		[Test]
-		public void Search_DefaultCaseAllParams_ListOfGroups()
-		{
-			Url = "https://api.vk.com/method/groups.search";
-
-			ReadCategoryJsonPath(nameof(Search_DefaultCaseAllParams_ListOfGroups));
-
-			var groups = Api.Groups.Search(new GroupsSearchParams
-				{
-					Query = "Music", Offset = 20, Count = 3
-				},
-				true);
-
-			Assert.That(groups.Count, Is.EqualTo(3));
-			Assert.That(groups.TotalCount, Is.EqualTo(78152));
-
-			Assert.That(groups[2].Id, Is.EqualTo(23995866));
-			Assert.That(groups[2].Name, Is.EqualTo(@"E:\music\"));
-			Assert.That(groups[2].ScreenName, Is.EqualTo("e_music"));
-			Assert.That(groups[2].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[2].Type, Is.EqualTo(GroupType.Page));
-			Assert.That(groups[2].IsAdmin, Is.False);
-			Assert.That(groups[2].IsMember, Is.False);
-
-			Assert.That(groups[2].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs9913.userapi.com/g23995866/e_319d8573.jpg")));
-
-			Assert.That(groups[2].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs9913.userapi.com/g23995866/d_166572a9.jpg")));
-
-			Assert.That(groups[2].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs9913.userapi.com/g23995866/a_fc553960.jpg")));
-
-			Assert.That(groups[1].Id, Is.EqualTo(23727386));
-			Assert.That(groups[1].Name, Is.EqualTo("Classical Music Humor"));
-			Assert.That(groups[1].ScreenName, Is.EqualTo("mushumor"));
-			Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Page));
-			Assert.That(groups[1].IsAdmin, Is.False);
-			Assert.That(groups[1].IsMember, Is.False);
-
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs10650.userapi.com/g23727386/e_8006da42.jpg")));
-
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs10650.userapi.com/g23727386/d_cbea0559.jpg")));
-
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs10650.userapi.com/g23727386/a_7743aab2.jpg")));
-
-			Assert.That(groups[0].Id, Is.EqualTo(26442631));
-			Assert.That(groups[0].Name, Is.EqualTo("Music Quotes. First Public."));
-			Assert.That(groups[0].ScreenName, Is.EqualTo("music_quotes_public"));
-			Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Page));
-			Assert.That(groups[0].IsAdmin, Is.False);
-			Assert.That(groups[0].IsMember, Is.False);
-
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg")));
-
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg")));
-
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg")));
-		}
-
-		[Test]
+		[Fact]
 		public void Search_DefaultCase_ListOfGroups()
 		{
 			Url = "https://api.vk.com/method/groups.search";
@@ -1036,51 +1027,113 @@ namespace VkNet.Tests.Categories.Group
 				},
 				true);
 
-			Assert.That(groups.Count, Is.EqualTo(2));
-			Assert.That(groups.TotalCount, Is.EqualTo(78152));
+			groups.Should().HaveCount(2);
+			groups.TotalCount.Should().Be(78152);
 
-			Assert.That(groups[1].Id, Is.EqualTo(27895931));
-			Assert.That(groups[1].Name, Is.EqualTo("MUSIC 2012"));
-			Assert.That(groups[1].ScreenName, Is.EqualTo("exclusive_muzic"));
-			Assert.That(groups[1].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[1].Type, Is.EqualTo(GroupType.Group));
-			Assert.That(groups[1].IsAdmin, Is.False);
-			Assert.That(groups[1].IsMember, Is.False);
+			groups[1].Id.Should().Be(27895931);
+			groups[1].Name.Should().Be("MUSIC 2012");
+			groups[1].ScreenName.Should().Be("exclusive_muzic");
+			groups[1].IsClosed.Should().Be(GroupPublicity.Public);
+			groups[1].Type.Should().Be(GroupType.Group);
+			groups[1].IsAdmin.Should().BeFalse();
+			groups[1].IsMember.Should().BeFalse();
 
-			Assert.That(groups[1].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg")));
+			groups[1].PhotoPreviews.Photo50.Should().Be(new Uri("http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg"));
 
-			Assert.That(groups[1].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/d_2869e827.jpg")));
+			groups[1].PhotoPreviews.Photo100.Should().Be(new Uri("http://cs410222.userapi.com/g27895931/d_2869e827.jpg"));
 
-			Assert.That(groups[1].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs410222.userapi.com/g27895931/a_32935e91.jpg")));
+			groups[1].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs410222.userapi.com/g27895931/a_32935e91.jpg"));
 
-			Assert.That(groups[0].Id, Is.EqualTo(339767));
-			Assert.That(groups[0].Name, Is.EqualTo("A-ONE HIP-HOP MUSIC CHANNEL"));
-			Assert.That(groups[0].ScreenName, Is.EqualTo("a1tv"));
-			Assert.That(groups[0].IsClosed, Is.EqualTo(GroupPublicity.Public));
-			Assert.That(groups[0].Type, Is.EqualTo(GroupType.Group));
-			Assert.That(groups[0].IsAdmin, Is.False);
-			Assert.That(groups[0].IsMember, Is.False);
+			groups[0].Id.Should().Be(339767);
+			groups[0].Name.Should().Be("A-ONE HIP-HOP MUSIC CHANNEL");
+			groups[0].ScreenName.Should().Be("a1tv");
+			groups[0].IsClosed.Should().Be(GroupPublicity.Public);
+			groups[0].Type.Should().Be(GroupType.Group);
+			groups[0].IsAdmin.Should().BeFalse();
+			groups[0].IsMember.Should().BeFalse();
 
-			Assert.That(groups[0].PhotoPreviews.Photo50, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/e_a590d16b.jpg")));
+			groups[0].PhotoPreviews.Photo50.Should().Be(new Uri("http://cs9365.userapi.com/g339767/e_a590d16b.jpg"));
 
-			Assert.That(groups[0].PhotoPreviews.Photo100, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/d_f653c773.jpg")));
+			groups[0].PhotoPreviews.Photo100.Should().Be(new Uri("http://cs9365.userapi.com/g339767/d_f653c773.jpg"));
 
-			Assert.That(groups[0].PhotoPreviews.Photo200, Is.EqualTo(new Uri("http://cs9365.userapi.com/g339767/a_4653ba99.jpg")));
+			groups[0].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs9365.userapi.com/g339767/a_4653ba99.jpg"));
 		}
 
-		[Test]
+		[Fact]
+		public void Search_DefaultCaseAllParams_ListOfGroups()
+		{
+			Url = "https://api.vk.com/method/groups.search";
+
+			ReadCategoryJsonPath(nameof(Search_DefaultCaseAllParams_ListOfGroups));
+
+			var groups = Api.Groups.Search(new GroupsSearchParams
+				{
+					Query = "Music",
+					Offset = 20,
+					Count = 3
+				},
+				true);
+
+			groups.Should().HaveCount(3);
+			groups.TotalCount.Should().Be(78152);
+
+			groups[2].Id.Should().Be(23995866);
+			groups[2].Name.Should().Be(@"E:\music\");
+			groups[2].ScreenName.Should().Be("e_music");
+			groups[2].IsClosed.Should().Be(GroupPublicity.Public);
+			groups[2].Type.Should().Be(GroupType.Page);
+			groups[2].IsAdmin.Should().BeFalse();
+			groups[2].IsMember.Should().BeFalse();
+
+			groups[2].PhotoPreviews.Photo50.Should().Be(new Uri("http://cs9913.userapi.com/g23995866/e_319d8573.jpg"));
+
+			groups[2].PhotoPreviews.Photo100.Should().Be(new Uri("http://cs9913.userapi.com/g23995866/d_166572a9.jpg"));
+
+			groups[2].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs9913.userapi.com/g23995866/a_fc553960.jpg"));
+
+			groups[1].Id.Should().Be(23727386);
+			groups[1].Name.Should().Be("Classical Music Humor");
+			groups[1].ScreenName.Should().Be("mushumor");
+			groups[1].IsClosed.Should().Be(GroupPublicity.Public);
+			groups[1].Type.Should().Be(GroupType.Page);
+			groups[1].IsAdmin.Should().BeFalse();
+			groups[1].IsMember.Should().BeFalse();
+
+			groups[1].PhotoPreviews.Photo50.Should().Be(new Uri("http://cs10650.userapi.com/g23727386/e_8006da42.jpg"));
+
+			groups[1].PhotoPreviews.Photo100.Should().Be(new Uri("http://cs10650.userapi.com/g23727386/d_cbea0559.jpg"));
+
+			groups[1].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs10650.userapi.com/g23727386/a_7743aab2.jpg"));
+
+			groups[0].Id.Should().Be(26442631);
+			groups[0].Name.Should().Be("Music Quotes. First Public.");
+			groups[0].ScreenName.Should().Be("music_quotes_public");
+			groups[0].IsClosed.Should().Be(GroupPublicity.Public);
+			groups[0].Type.Should().Be(GroupType.Page);
+			groups[0].IsAdmin.Should().BeFalse();
+			groups[0].IsMember.Should().BeFalse();
+
+			groups[0].PhotoPreviews.Photo50.Should().Be(new Uri("http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg"));
+
+			groups[0].PhotoPreviews.Photo100.Should().Be(new Uri("http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg"));
+
+			groups[0].PhotoPreviews.Photo200.Should().Be(new Uri("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg"));
+		}
+
+		[Fact]
 		public void Search_EmptyQuery_ThrowsArgumentException()
 		{
 			var groups = new GroupsCategory(Api);
 
-			Assert.That(() => groups.Search(new GroupsSearchParams
+			FluentActions.Invoking(() => groups.Search(new GroupsSearchParams
 				{
 					Query = ""
-				}),
-				Throws.InstanceOf<ArgumentException>());
+				}))
+				.Should()
+				.ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Search_GroupsNotFounded_EmptyList()
 		{
 			Url = "https://api.vk.com/method/groups.search";
@@ -1088,24 +1141,26 @@ namespace VkNet.Tests.Categories.Group
 
 			var groups = Api.Groups.Search(new GroupsSearchParams
 				{
-					Query = "ThisQueryDoesNotExistAtAll", Offset = 20, Count = 3
+					Query = "ThisQueryDoesNotExistAtAll",
+					Offset = 20,
+					Count = 3
 				},
 				true);
 
-			Assert.That(groups.Count, Is.EqualTo(0));
-			Assert.That(groups.TotalCount, Is.EqualTo(0));
+			groups.Should().BeEmpty();
+			groups.TotalCount.Should().Be(0);
 		}
 
-		[Test]
-		public void UnbanUser_NormalCase()
+		[Fact]
+		public void Unban_NormalCase()
 		{
-			Url = "https://api.vk.com/method/groups.unbanUser";
+			Url = "https://api.vk.com/method/groups.unban";
 
 			ReadJsonFile(JsonPaths.True);
 
-			var result = Api.Groups.UnbanUser(65960, 242508);
+			var result = Api.Groups.Unban(65960, 242508);
 
-			Assert.That(result, Is.True);
+			result.Should().BeTrue();
 		}
 	}
 }

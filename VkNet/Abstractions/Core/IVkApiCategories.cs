@@ -203,5 +203,25 @@ namespace VkNet.Abstractions
 		/// Lead Forms
 		/// </summary>
 		ILeadFormsCategory LeadForms { get; set; }
+
+		/// <summary>
+		/// Pretty Cards
+		/// </summary>
+		IPrettyCardsCategory PrettyCards { get; set; }
+
+		/// <summary>
+		/// Podcasts
+		/// </summary>
+		IPodcastsCategory Podcasts { get; set; }
+
+		/// <summary>
+		/// Donut
+		/// </summary>
+		IDonutCategory Donut { get; }
+
+		/// <summary>
+		/// Donut
+		/// </summary>
+		IDownloadedGamesCategory DownloadedGames { get; }
 	}
 }

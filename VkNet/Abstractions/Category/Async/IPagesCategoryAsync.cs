@@ -9,7 +9,7 @@ using VkNet.Model.RequestParams;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с wiki.
+	/// Методы для работы с wiki.
 	/// </summary>
 	public interface IPagesCategoryAsync
 	{

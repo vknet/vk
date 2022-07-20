@@ -1,4 +1,4 @@
-﻿namespace VkNet.Enums.Filters
+namespace VkNet.Enums.Filters
 {
 	/// <summary>
 	/// Требуемые для получения поля профиля.
@@ -349,9 +349,14 @@
 		public static readonly ProfileFields PhotoId = RegisterPossibleValue("photo_id");
 
 		/// <summary>
-		/// Для получения поля User.PhotoId
+		/// Для получения поля User.HomeTown
 		/// </summary>
 		public static readonly ProfileFields HomeTown = RegisterPossibleValue("home_town");
+
+		/// <summary>
+		/// Для получения поля User.Occupation
+		/// </summary>
+		public static readonly ProfileFields Occupation = RegisterPossibleValue("occupation");
 
 		/// <summary>
 		/// Для получения всех документированных полей.
@@ -424,6 +429,7 @@
 													|Exports
 													|MaidenName
 													|PhotoId
-													|HomeTown;
+													|HomeTown
+													|Occupation;
 	}
 }

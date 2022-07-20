@@ -1,13 +1,13 @@
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.RequestParams;
-using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
+
 	public class MessagesGetImportantMessagesTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void GetImportantMessagesResult()
 		{
 			Url = "https://api.vk.com/method/messages.getImportantMessages";
@@ -15,10 +15,10 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.GetImportantMessages(new GetImportantMessagesParams());
 
-			Assert.NotNull(result);
-			Assert.IsNotEmpty(result.Messages);
-			Assert.IsNotEmpty(result.Profiles);
-			Assert.IsNotEmpty(result.Conversations);
+			result.Should().NotBeNull();
+			result.Messages.Should().NotBeEmpty();
+			result.Profiles.Should().NotBeEmpty();
+			result.Conversations.Should().NotBeEmpty();
 		}
 	}
 }

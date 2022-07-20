@@ -1,14 +1,14 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+﻿using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class MessagesMarkAsImportantConversation : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void MarkAsImportantConversation()
 		{
 			Url = "https://api.vk.com/method/messages.markAsImportantConversation";
@@ -16,7 +16,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.MarkAsImportantConversation(123);
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 	}
 }

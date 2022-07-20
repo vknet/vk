@@ -8,7 +8,7 @@ namespace VkNet.Utils
 	/// <summary>
 	/// Параметры запроса к ВКонтакте.
 	/// </summary>
-	public partial class VkParameters : Dictionary<string, string>
+	public class VkParameters : Dictionary<string, string>
 	{
 		/// <inheritdoc />
 		/// <summary>
@@ -79,7 +79,13 @@ namespace VkNet.Utils
 		/// </param>
 		public void Add<T>(string name, IEnumerable<T> collection)
 		{
+			Remove(key: name);
+			
+			if (collection == null)
+				return;
+
 			var value = collection.JoinNonEmpty();
+
 			Add(name, value);
 		}
 
@@ -115,6 +121,16 @@ namespace VkNet.Utils
 			}
 
 			Add(name, nullableValue.Value);
+		}
+
+		/// <summary>
+		/// Добавляет параметр-дату.
+		/// </summary>
+		/// <param name="name"> Имя параметра запроса. </param>
+		/// <param name="dateTime"> Значение параметра. </param>
+		public void Add(string name, DateTime dateTime)
+		{
+			Add(name, (DateTime?) dateTime);
 		}
 
 		/// <summary>

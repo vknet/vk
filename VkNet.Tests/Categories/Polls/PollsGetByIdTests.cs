@@ -1,15 +1,16 @@
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Polls
 {
-	[TestFixture]
+
 	public class PollsGetByIdTests : CategoryBaseTest
 	{
 		protected override string Folder => "Polls";
 
-		[Test]
+		[Fact]
 		public void GetById()
 		{
 			Url = "https://api.vk.com/method/polls.getById";
@@ -21,7 +22,7 @@ namespace VkNet.Tests.Categories.Polls
 				PollId = 123
 			});
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 	}
 }

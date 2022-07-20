@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -11,7 +11,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с фотографиями.
+	/// Методы для работы с фотографиями.
 	/// </summary>
 	public interface IPhotoCategoryAsync
 	{
@@ -225,8 +225,6 @@ namespace VkNet.Abstractions
 		/// Параметр, возвращаемый в результате загрузки фотографии
 		/// на сервер.
 		/// </param>
-		/// <param name="captchaSid"> Идентификатор капчи </param>
-		/// <param name="captchaKey"> текст, который ввел пользователь </param>
 		/// <returns>
 		/// После успешного выполнения возвращает объект, содержащий поля photo_hash и
 		/// photo_src (при работе через VK.api метод
@@ -239,7 +237,10 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerPhoto
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		Task<Photo> SaveOwnerPhotoAsync(string response);
+
+		/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string)" />
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<Photo> SaveOwnerPhotoAsync(string response, long? captchaSid, string captchaKey);
 
 		/// <summary>
@@ -290,7 +291,7 @@ namespace VkNet.Abstractions
 		/// Возвращает адрес сервера для загрузки фотографии в личное сообщение
 		/// пользователю.
 		/// </summary>
-		/// <param name="peerId">
+		/// <param name="groupId">
 		/// Идентификатор назначения (для загрузки фотографии в
 		/// сообщениях сообществ).
 		/// </param>
@@ -299,7 +300,7 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте
 		/// http://vk.com/dev/photos.getMessagesUploadServer
 		/// </remarks>
-		Task<UploadServerInfo> GetMessagesUploadServerAsync(long peerId);
+		Task<UploadServerInfo> GetMessagesUploadServerAsync(long? groupId);
 
 		/// <summary>
 		/// Сохраняет фотографию после успешной загрузки на URI, полученный методом

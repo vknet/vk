@@ -1,12 +1,13 @@
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
+
 	public class UnknownAttachmentTests: BaseTest
 	{
-		[Test]
+		[Fact]
 		public void ShouldDeserializeFromVkResponseToAttachment()
 		{
 			ReadJsonFile("Models", "UnknownAttachment");
@@ -15,7 +16,7 @@ namespace VkNet.Tests.Models
 
 			var attachment = Attachment.FromJson(response);
 
-			Assert.True(attachment.Instance is UnknownAttachment);
+			attachment.Instance.Should().BeOfType<UnknownAttachment>();
 		}
 	}
 }

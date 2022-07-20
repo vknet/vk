@@ -10,12 +10,13 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
+	/// <inheritdoc />
 	public partial class AudioCategory
 	{
 		/// <inheritdoc />
-		public Task<long> AddAsync(long audioId, long ownerId, long? groupId = null, long? albumId = null)
+		public Task<long> AddAsync(long audioId, long ownerId, string accessKey = null, long? groupId = null, long? albumId = null)
 		{
-			return TypeHelper.TryInvokeMethodAsync(() => Add(audioId, ownerId, groupId, albumId));
+			return TypeHelper.TryInvokeMethodAsync(() => Add(audioId, ownerId, accessKey, groupId, albumId));
 		}
 
 		/// <inheritdoc />
@@ -81,6 +82,12 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
+		public Task<AudioGetCatalogResult> GetCatalogAsync(uint? count, bool? extended, UsersFields fields = null)
+		{
+			return TypeHelper.TryInvokeMethodAsync(() => GetCatalog(count, extended, fields));
+		}
+
+		/// <inheritdoc />
 		public Task<long> GetCountAsync(long ownerId)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => GetCount(ownerId));
@@ -113,7 +120,7 @@ namespace VkNet.Categories
 		}
 
 		/// <inheritdoc />
-		public Task<IEnumerable<long>> AddToPlaylistAsync(long ownerId, long playlistId, IEnumerable<long> audioIds)
+		public Task<IEnumerable<long>> AddToPlaylistAsync(long ownerId, long playlistId, IEnumerable<string> audioIds)
 		{
 			return TypeHelper.TryInvokeMethodAsync(() => AddToPlaylist(ownerId, playlistId, audioIds));
 		}

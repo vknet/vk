@@ -1,16 +1,15 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using FluentAssertions;
 using Newtonsoft.Json;
-using NUnit.Framework;
 using VkNet.Model;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils.JsonConverter
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class AttachmentJsonConverterTests : BaseTest
 	{
-		[Test]
+		[Fact]
 		public void CallAndConvertToType()
 		{
 			ReadJsonFile("Attachment", nameof(CallAndConvertToType));
@@ -18,13 +17,13 @@ namespace VkNet.Tests.Utils.JsonConverter
 
 			CommentBoard result = Api.Call("friends.getRequests", VkParameters.Empty);
 
-			Assert.NotNull(result);
-			Assert.That(result.Id, Is.EqualTo(3));
-			Assert.That(result.FromId, Is.EqualTo(32190123));
-			Assert.IsNotEmpty(result.Attachments);
+			result.Should().NotBeNull();
+			result.Id.Should().Be(3);
+			result.FromId.Should().Be(32190123);
+			result.Attachments.Should().NotBeEmpty();
 		}
 
-		[Test]
+		[Fact]
 		public void SerializationTest()
 		{
 			ReadJsonFile("Attachment", nameof(SerializationTest));
@@ -39,10 +38,15 @@ namespace VkNet.Tests.Utils.JsonConverter
 					DefaultValueHandling = DefaultValueHandling.Ignore
 				});
 
-			var result = JsonConvert.DeserializeObject<Message>(json);
+			var result = JsonConvert.DeserializeObject<Message>(json,
+				new JsonSerializerSettings
+				{
+					MaxDepth = null,
+					ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+				});
 
-			Assert.NotNull(result);
-			Assert.IsNotEmpty(result.Attachments);
+			result.Should().NotBeNull();
+			result.Attachments.Should().NotBeEmpty();
 		}
 	}
 }

@@ -4,10 +4,10 @@ using VkNet.Utils;
 namespace VkNet.Model.GroupUpdate
 {
 	/// <summary>
-	/// Удаление комментария к товару(MarketCommentDelete)
+	/// Удаление комментария к товару (<c>MarketCommentDelete</c>)
 	/// </summary>
 	[Serializable]
-	public class MarketCommentDelete
+	public class MarketCommentDelete : IGroupUpdate
 	{
 		/// <summary>
 		/// Идентификатор комментария
@@ -48,6 +48,23 @@ namespace VkNet.Model.GroupUpdate
 				UserId = response["user_id"],
 				DeleterId = response["deleter_id"]
 			};
+		}
+
+		/// <summary>
+		/// Преобразование класса <see cref="MarketCommentDelete" /> в <see cref="VkParameters" />
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> Результат преобразования в <see cref="Message" /> </returns>
+		public static implicit operator MarketCommentDelete(VkResponse response)
+		{
+			if (response == null)
+			{
+				return null;
+			}
+
+			return response.HasToken()
+				? FromJson(response)
+				: null;
 		}
 	}
 }

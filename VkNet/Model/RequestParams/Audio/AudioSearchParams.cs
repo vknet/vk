@@ -1,6 +1,5 @@
 ﻿using System;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -51,25 +50,5 @@ namespace VkNet.Model.RequestParams
 		/// Производить ли поиск по аудиозаписям пользователя.
 		/// </summary>
 		public bool? SearchOwn { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(AudioSearchParams p)
-		{
-			return new VkParameters
-			{
-					{ "q", p.Query }
-					, { "auto_complete", p.Autocomplete }
-					, { "sort", p.Sort }
-					, { "lyrics", p.Lyrics }
-					, { "performer_only", p.PerformerOnly }
-					, { "search_own", p.SearchOwn }
-					, { "count", p.Count }
-					, { "offset", p.Offset }
-			};
-		}
 	}
 }

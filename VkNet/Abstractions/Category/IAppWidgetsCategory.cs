@@ -1,34 +1,35 @@
-using System;
-using VkNet.Abstractions.Category;
+using System.Collections.ObjectModel;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model;
 
 namespace VkNet.Abstractions
 {
-	/// <inheritdoc />
+	/// <inheritdoc cref="IAppWidgetsCategoryAsync"/>
 	public interface IAppWidgetsCategory : IAppWidgetsCategoryAsync
 	{
 		/// <inheritdoc cref="IAppWidgetsCategoryAsync.GetAppImageUploadServerAsync"/>
-		Uri GetAppImageUploadServer(AppWidgetImageType imageType);
+		UploadServerInfo GetAppImageUploadServer(AppWidgetImageType imageType);
 
 		/// <inheritdoc cref="IAppWidgetsCategoryAsync.GetAppImagesAsync"/>
-		Uri GetAppImages(int offset, int count, AppWidgetImageType imageType);
+		AppImageResult GetAppImages(int offset, int count, AppWidgetImageType imageType);
 
 		/// <inheritdoc cref="IAppWidgetsCategoryAsync.GetGroupImageUploadServerAsync"/>
-		Uri GetGroupImageUploadServer(AppWidgetImageType imageType);
+		UploadServerInfo GetGroupImageUploadServer(AppWidgetImageType imageType);
 
 		/// <inheritdoc cref="IAppWidgetsCategoryAsync.GetGroupImagesAsync"/>
-		Uri GetGroupImages(int offset, int count, AppWidgetImageType imageType);
+		AppImageResult GetGroupImages(int offset, int count, AppWidgetImageType imageType);
 
 		/// <inheritdoc cref="IAppWidgetsCategoryAsync.GetImagesByIdAsync"/>
-		Uri GetImagesById(string images);
+		ReadOnlyCollection<AppImage> GetImagesById(string images);
 
 		/// <inheritdoc cref="IAppWidgetsCategoryAsync.SaveAppImageAsync"/>
-		Uri SaveAppImage(string hash, string image);
+		AppImage SaveAppImage(string hash, string image);
 
 		/// <inheritdoc cref="IAppWidgetsCategoryAsync.SaveGroupImageAsync"/>
-		Uri SaveGroupImage();
+		AppImage SaveGroupImage(string hash, string image);
 
+		//TODO: TEST IT!!
 		/// <inheritdoc cref="IAppWidgetsCategoryAsync.UpdateAsync"/>
-		bool Update();
+		bool Update(string code, AppWidgetType type);
 	}
 }

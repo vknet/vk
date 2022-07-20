@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using VkNet.Exception;
+using VkNet.Infrastructure;
 
 namespace VkNet.Utils
 {
@@ -91,17 +93,36 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
-		/// Вывести в консоль Json.
+		/// Конвертировать JSON в читаемый формат с отступами
 		/// </summary>
-		/// <param name="json"> Json. </param>
-		/// <returns> Json </returns>
+		/// <param name="json"> JSON. </param>
+		/// <returns> JSON с отступами </returns>
 		public static string PrettyPrintJson(string json)
 		{
+			const string hidden = "***HIDDEN***";
+
+			var keysToHide = new[]
+			{
+				"access_token",
+				"new_password",
+				"old_password"
+			};
+
 			try
 			{
-				return JToken.Parse(json).ToString(Formatting.Indented);
+				var jObject = json.ToJObject();
+
+				foreach (var key in keysToHide)
+				{
+					if (jObject.ContainsKey(key))
+					{
+						jObject[key] = hidden;
+					}
+				}
+
+				return jObject.ToString(Formatting.Indented);
 			}
-			catch (JsonReaderException)
+			catch (VkApiException)
 			{
 				return json;
 			}
@@ -117,6 +138,27 @@ namespace VkNet.Utils
 			var result = JsonConvert.SerializeObject(@object, Formatting.Indented);
 
 			return result == "null" ? null : result;
+		}
+
+		/// <summary>
+		/// Deserializes JSON for the specified .NET type. A return value indicates whether deserialization succeeded.
+		/// </summary>
+		/// <param name="json"> The JSON to deserialize. </param>
+		/// <param name="result"> Deserialized object. </param>
+		/// <typeparam name="T"> Type for deserialization. </typeparam>
+		/// <returns></returns>
+		public static bool TryDeserializeObject<T>(string json, out T result)
+		{
+			try
+			{
+				result = JsonConvert.DeserializeObject<T>(json, JsonConfigure.JsonSerializerSettings);
+				return true;
+			}
+			catch
+			{
+				result = default;
+				return false;
+			}
 		}
 	}
 }

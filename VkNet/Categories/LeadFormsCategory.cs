@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Category;
@@ -17,13 +16,15 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly IVkApiInvoke _vk;
 
-		/// <inheritdoc/>
-		/// <param name = "api">
+		/// <summary>
+		/// api vk.com
+		/// </summary>
+		/// <param name = "vk">
 		/// Api vk.com
 		/// </param>
-		public LeadFormsCategory(IVkApiInvoke api)
+		public LeadFormsCategory(IVkApiInvoke vk)
 		{
-			_vk = api;
+			_vk = vk;
 		}
 
 		/// <inheritdoc/>

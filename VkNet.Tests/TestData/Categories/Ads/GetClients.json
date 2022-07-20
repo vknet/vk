@@ -1,0 +1,17 @@
+﻿{
+  "response":
+  [
+    {
+        "all_limit": 100,
+        "day_limit": 100,
+        "id": 123,
+        "name": "Client name"
+    },
+    {
+      "all_limit": 100,
+      "day_limit": 100,
+      "id": 123,
+      "name": "Client name"
+    }
+  ]
+}

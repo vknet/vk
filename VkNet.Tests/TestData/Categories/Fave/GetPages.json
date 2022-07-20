@@ -1,0 +1,20 @@
+{
+  "response": {
+    "count": 1,
+    "items": [
+      {
+        "description": "Санкт-Петербург",
+        "type": "user",
+        "tags": [],
+        "updated_date": 1555169879,
+        "user": {
+          "id": 169375276,
+          "first_name": "Алина",
+          "last_name": "Дей",
+          "is_closed": false,
+          "can_access_closed": true
+        }
+      }
+    ]
+  }
+}

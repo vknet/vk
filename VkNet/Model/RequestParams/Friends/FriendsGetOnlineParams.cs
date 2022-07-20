@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -55,25 +54,5 @@ namespace VkNet.Model.RequestParams
 		/// положительное число.
 		/// </summary>
 		public long? Offset { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(FriendsGetOnlineParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "user_id", p.UserId }
-					, { "list_id", p.ListId }
-					, { "online_mobile", p.OnlineMobile }
-					, { "order", p.Order }
-					, { "count", p.Count }
-					, { "offset", p.Offset }
-			};
-
-			return parameters;
-		}
 	}
 }

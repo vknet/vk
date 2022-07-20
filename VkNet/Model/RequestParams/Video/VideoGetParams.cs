@@ -1,8 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -66,25 +64,5 @@ namespace VkNet.Model.RequestParams
 		/// принимать значения 1 или 0.
 		/// </summary>
 		public bool? Extended { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(VideoGetParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "owner_id", p.OwnerId },
-				{ "videos", p.Videos?.Select(selector: o => $"{o.OwnerId}_{o.Id}") },
-				{ "album_id", p.AlbumId },
-				{ "count", p.Count },
-				{ "offset", p.Offset },
-				{ "extended", p.Extended }
-			};
-
-			return parameters;
-		}
 	}
 }

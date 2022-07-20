@@ -5,12 +5,11 @@ using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
-using VkNet.Utils;
 
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы со стеной пользователя.
+	/// Методы для работы со стеной пользователя.
 	/// </summary>
 	public interface IWallCategoryAsync
 	{
@@ -165,12 +164,12 @@ namespace VkNet.Abstractions
 		/// </summary>
 		/// <param name="params"> Входные параметры выборки. </param>
 		/// <returns>
-		/// После успешного выполнения возвращает <c> true </c>.
+		/// После успешного выполнения возвращает post_id — идентификатор отредактированного поста.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.edit
 		/// </remarks>
-		Task<bool> EditAsync(WallEditParams @params);
+		Task<long> EditAsync(WallEditParams @params);
 
 		/// <summary>
 		/// Удаляет запись со стены.
@@ -556,5 +555,47 @@ namespace VkNet.Abstractions
 		/// Страница документации ВКонтакте http://vk.com/dev/wall.closeComments
 		/// </remarks>
 		Task<bool> CloseCommentsAsync(long ownerId, long postId);
+
+		/// <summary>
+		/// Проверяет ссылку для указания источника.
+		/// </summary>
+		/// <param name="link">
+		/// Ссылка на источник. Поддерживаются внешние и внутренние ссылки.
+		/// </param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c> true </c>.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте https://vk.com/dev/wall.checkCopyrightLink
+		/// </remarks>
+		Task<bool> CheckCopyrightLinkAsync(string link);
+
+		/// <summary>
+		/// Получает информацию о комментарии на стене.
+		/// </summary>
+		/// <param name="ownerId">
+		/// Идентификатор владельца стены (для сообществ — со знаком «минус»).
+		/// </param>
+		/// <param name="commentId">
+		/// Идентификатор комментария.
+		/// </param>
+		/// <param name="extended">
+		/// <c>true</c> — в ответе будут возвращены дополнительные поля profiles и groups,
+		/// содержащие информацию о пользователях и сообществах. По умолчанию: <c>false</c>.
+		/// </param>
+		/// <param name="fields">
+		/// Список дополнительных полей для профилей и сообществ, которые необходимо вернуть.
+		/// Обратите внимание, этот параметр учитывается только при extended = <c>true</c>.
+		/// </param>
+		/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+		/// <returns>
+		/// После успешного выполнения возвращает <c> true </c>.
+		/// </returns>
+		/// <remarks>
+		/// Страница документации ВКонтакте http://vk.com/dev/wall.getComment
+		/// </remarks>
+		Task<WallGetCommentResult> GetCommentAsync(int ownerId, int commentId, bool? extended = null, string fields = null, bool skipAuthorization = false);
+
+	
 	}
 }

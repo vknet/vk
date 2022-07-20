@@ -1,16 +1,16 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Group
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class EnableOnlineTests : CategoryBaseTest
 	{
 		protected override string Folder => "Groups";
 
-		[Test]
+		[Fact]
 		public void EnableOnline()
 		{
 			Url = "https://api.vk.com/method/groups.enableOnline";
@@ -19,7 +19,7 @@ namespace VkNet.Tests.Categories.Group
 
 			var result = Api.Groups.EnableOnline(3);
 
-			Assert.IsTrue(result);
+			result.Should().BeTrue();
 		}
 	}
 }

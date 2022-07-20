@@ -63,35 +63,14 @@ namespace VkNet.Model.RequestParams
 		/// Идентификатор капчи
 		/// </summary>
 		[JsonProperty(propertyName: "captcha_sid")]
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public long? CaptchaSid { get; set; }
 
 		/// <summary>
 		/// текст, который ввел пользователь
 		/// </summary>
 		[JsonProperty(propertyName: "captcha_key")]
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		public string CaptchaKey { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(BoardAddTopicParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "group_id", p.GroupId }
-					, { "title", p.Title }
-					, { "text", p.Text }
-					, { "from_group", p.FromGroup }
-					, { "attachments", p.Attachments }
-					, { "captcha_sid", p.CaptchaSid }
-					, { "captcha_key", p.CaptchaKey }
-			};
-
-			return parameters;
-		}
 	}
 }

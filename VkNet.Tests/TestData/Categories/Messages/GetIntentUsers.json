@@ -1,0 +1,29 @@
+﻿{
+  "response": {
+    "count": 1,
+    "items": [
+      61351294
+    ],
+    "profiles": [
+      {
+        "first_name": "Evgeny",
+        "id": 61351294,
+        "last_name": "Kotlyarov",
+        "can_access_closed": true,
+        "is_closed": false,
+        "sex": 2,
+        "screen_name": "eee",
+        "photo_50": "https://vk.com/u7nPXMPO5Y&ava=1",
+        "photo_100": "https://vk.com/uum8x6JShs&ava=1",
+        "online_info": {
+          "visible": true,
+          "last_seen": 1607791447,
+          "is_online": true,
+          "is_mobile": false
+        },
+        "online": 1,
+        "can_invite_to_chats": false
+      }
+    ]
+  }
+}

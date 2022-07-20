@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Model.Attachments;
+using VkNet.Model.Keyboard;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model
@@ -58,9 +59,21 @@ namespace VkNet.Model
 		public ReadOnlyCollection<Message> ForwardMessages { get; set; }
 
 		/// <summary>
+		/// Идентификатор сообщения.
+		/// </summary>
+		[JsonProperty("conversation_message_id")]
+		public long ConversationMessageId { get; set; }
+
+		/// <summary>
 		/// Текст сообщения.
 		/// </summary>
 		[JsonProperty("text")]
 		public string Text { get; set; }
+
+		/// <summary>
+		/// Клавиатура.
+		/// </summary>
+		[JsonProperty("keyboard")]
+		public MessageKeyboard Keyboard { get; set; }
 	}
 }

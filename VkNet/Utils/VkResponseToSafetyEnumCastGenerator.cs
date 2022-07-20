@@ -32,6 +32,16 @@ namespace VkNet.Utils
 		}
 
 		/// <summary>
+		/// Разобрать из json.
+		/// </summary>
+		/// <param name="response"> Ответ сервера. </param>
+		/// <returns> </returns>
+		public static implicit operator AppWidgetImageType(VkResponse response)
+		{
+			return response == null ? null : AppWidgetImageType.FromJson(response: response);
+		}
+
+		/// <summary>
 		/// Преобразовать из VkResponse
 		/// </summary>
 		/// <param name="response"> Ответ. </param>
@@ -149,6 +159,18 @@ namespace VkNet.Utils
 		public static implicit operator AppType(VkResponse response)
 		{
 			return response == null ? null : AppType.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator AppWidgetType(VkResponse response)
+		{
+			return response == null ? null : AppWidgetType.FromJson(response: response);
 		}
 
 		/// <summary>
@@ -653,6 +675,90 @@ namespace VkNet.Utils
 		public static implicit operator MarketItemButtonTitle(VkResponse response)
 		{
 			return response == null ? null : MarketItemButtonTitle.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator CarouselElementActionType(VkResponse response)
+		{
+			return response == null ? null : CarouselElementActionType.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator AdPlatform(VkResponse response)
+		{
+			return response == null ? null : AdPlatform.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator SourceType(VkResponse response)
+		{
+			return response == null ? null : SourceType.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator AdRequestStatus(VkResponse response)
+		{
+			return response == null ? null : AdRequestStatus.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator IdsType(VkResponse response)
+		{
+			return response == null ? null : IdsType.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator TranscriptStates(VkResponse response)
+		{
+			return response == null ? null : TranscriptStates.FromJson(response: response);
+		}
+
+		/// <summary>
+		/// Преобразовать из VkResponse
+		/// </summary>
+		/// <param name="response"> Ответ. </param>
+		/// <returns>
+		/// Результат преобразования.
+		/// </returns>
+		public static implicit operator MessageEventType(VkResponse response)
+		{
+			return response == null ? null : MessageEventType.FromJson(response: response);
 		}
 	}
 }

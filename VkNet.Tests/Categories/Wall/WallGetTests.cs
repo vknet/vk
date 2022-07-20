@@ -1,17 +1,18 @@
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Wall
 {
-	[TestFixture]
+
 	public class WallGetTests : CategoryBaseTest
 	{
 		protected override string Folder => "Wall";
 
-		[Test]
+		[Fact]
 		public void ArticleAttachement()
 		{
 			Url = "https://api.vk.com/method/wall.get";
@@ -19,30 +20,30 @@ namespace VkNet.Tests.Categories.Wall
 
 			var result = Api.Wall.Get(new WallGetParams());
 
-			Assert.NotNull(result);
-			Assert.That(result.TotalCount, Is.EqualTo(520));
+			result.Should().NotBeNull();
+			result.TotalCount.Should().Be(520);
 			var post = result.WallPosts.FirstOrDefault();
-			Assert.NotNull(post);
-			var attachement = post.Attachment.Instance as Article;
-			Assert.NotNull(attachement);
-			Assert.That(attachement.Id, Is.EqualTo(10419));
+			post.Should().NotBeNull();
+			var attachment = post.Attachment.Instance as Article;
+			attachment.Should().NotBeNull();
+			attachment.Id.Should().Be(10419);
 		}
 
-		[Test]
-		public void PodcastAttachement()
+		[Fact]
+		public void PodcastAttachment()
 		{
 			Url = "https://api.vk.com/method/wall.get";
-			ReadCategoryJsonPath(nameof(PodcastAttachement));
+			ReadCategoryJsonPath(nameof(PodcastAttachment));
 
 			var result = Api.Wall.Get(new WallGetParams());
 
-			Assert.NotNull(result);
-			Assert.That(result.TotalCount, Is.EqualTo(16833));
+			result.Should().NotBeNull();
+			result.TotalCount.Should().Be(6352);
 			var post = result.WallPosts.FirstOrDefault();
-			Assert.NotNull(post);
-			var podcast = post.Attachment.Instance as Podcast;
-			Assert.NotNull(podcast);
-			Assert.That(podcast.Id, Is.EqualTo(456239023));
+			post.Should().NotBeNull();
+			var podcast = post.Attachments[1].Instance as Podcast;
+			podcast.Should().NotBeNull();
+			podcast.Id.Should().Be(456240245);
 		}
 	}
 }

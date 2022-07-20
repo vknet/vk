@@ -1,0 +1,7 @@
+{
+  "type": "donut_money_withdraw_error",
+  "object": {
+    "reason": "test"
+  },
+  "group_id": 1234
+}

@@ -14,13 +14,15 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly IVkApiInvoke _vk;
 
-		/// <inheritdoc />
-		/// <param name="api">
+		/// <summary>
+		/// api vk.com
+		/// </summary>>
+		/// <param name="vk">
 		/// Api vk.com
 		/// </param>
-		public LeadsCategory(VkApi api = null)
+		public LeadsCategory(VkApi vk = null)
 		{
-			_vk = api;
+			_vk = vk;
 		}
 
 		/// <inheritdoc />

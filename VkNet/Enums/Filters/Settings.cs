@@ -52,7 +52,7 @@ namespace VkNet.Enums.Filters
 		/// <summary>
 		/// Список выбранных прав
 		/// </summary>
-		private IEnumerable<string> Selected => _settings ?? (_settings = new List<string>());
+		private IEnumerable<string> Selected => _settings ??= new List<string>();
 
 		/// <summary>
 		/// Пользователь разрешил отправлять ему уведомления.
@@ -165,24 +165,24 @@ namespace VkNet.Enums.Filters
 		/// <summary>
 		/// Доступ ко всем возможным операциям (без Off line и NoHttps).
 		/// </summary>
-		public static Settings All => Notify
-									|Friends
-									|Photos
-									|Audio
-									|Video
-									|AppWidget
-									|Pages
-									|AddLinkToLeftMenu
-									|Status
-									|Notes
-									|Wall
+		public static Settings All => AddLinkToLeftMenu
 									|Ads
+									|AppWidget
+									|Audio
 									|Documents
-									|Groups
-									|Notifications
-									|Stats
 									|Email
-									|Market;
+									|Friends
+									|Groups
+									|Market
+									|Notes
+									|Notifications
+									|Notify
+									|Pages
+									|Photos
+									|Stats
+									|Status
+									|Video
+									|Wall;
 
 		private static Settings GetByName(string name)
 		{
@@ -233,10 +233,10 @@ namespace VkNet.Enums.Filters
 			{
 				if (MaskMap.ContainsKey(key: v.ToLower()))
 				{
-					res = res|GetByName(name: v);
+					res |= GetByName(name: v);
 				} else if (Alias.ContainsKey(key: v.ToLower()))
 				{
-					res = res|GetByName(name: v);
+					res |= GetByName(name: v);
 				}
 			}
 

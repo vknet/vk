@@ -3,29 +3,49 @@ using VkNet.Utils;
 
 namespace VkNet.Categories
 {
-	/// <summary>
-	/// Методы этого класса позволяют производить действия с универсальным методом.
-	/// </summary>
+	/// <inheritdoc />
 	public partial class ExecuteCategory : IExecuteCategory
 	{
 		/// <inheritdoc />
-		public VkResponse Execute(string code)
+		public VkResponse Execute(string code, VkParameters vkParameters = default)
 		{
-			return _vk.Call("execute",
-				new VkParameters
-				{
-					{ "code", code }
-				});
+			var parameters = new VkParameters
+			{
+				{ "code", code }
+			};
+
+			if (vkParameters == default)
+			{
+				return _vk.Call("execute", parameters);
+			}
+
+			foreach (var pair in vkParameters)
+			{
+				parameters.Add(pair.Key, pair.Value);
+			}
+
+			return _vk.Call("execute", parameters);
 		}
 
 		/// <inheritdoc />
-		public T Execute<T>(string code)
+		public T Execute<T>(string code, VkParameters vkParameters = default)
 		{
-			return _vk.Call<T>("execute",
-				new VkParameters
-				{
-					{ "code", code }
-				});
+			var parameters = new VkParameters
+			{
+				{ "code", code }
+			};
+
+			if (vkParameters == default)
+			{
+				return _vk.Call<T>("execute", parameters);
+			}
+
+			foreach (var pair in vkParameters)
+			{
+				parameters.Add(pair.Key, pair.Value);
+			}
+
+			return _vk.Call<T>("execute", parameters);
 		}
 
 		/// <inheritdoc />

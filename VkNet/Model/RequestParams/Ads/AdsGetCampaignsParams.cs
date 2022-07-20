@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams.Ads
 {
@@ -43,23 +42,5 @@ namespace VkNet.Model.RequestParams.Ads
 		/// </summary>
 		[JsonProperty(propertyName: "campaign_ids")]
 		public IEnumerable<long> CampaignIds { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(AdsGetCampaignsParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "account_id", p.AccountId }
-					, { "client_id", p.ClientId }
-					, { "include_deleted", p.IncludeDeleted }
-					, { "campaign_ids", p.CampaignIds != null ? "[" + string.Join(separator: ",", values: p.CampaignIds) + "]" : null }
-			};
-
-			return parameters;
-		}
 	}
 }

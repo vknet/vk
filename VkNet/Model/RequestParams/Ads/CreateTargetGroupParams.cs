@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace VkNet.Model.RequestParams.Ads
@@ -26,12 +27,11 @@ namespace VkNet.Model.RequestParams.Ads
 		/// id клиента, в рекламном кабинете которого будет создаваться аудитория. целое число
 		/// </summary>
 		[JsonProperty("client_id")]
-		public long ClientId { get; set; }
+		public long? ClientId { get; set; }
 
 		/// <summary>
-		/// Только для аудиторий, которые собираются с помощью кода на сайте.
-		/// количество дней, через которое пользователи, добавляемые в аудиторию, будут автоматически исключены из нее.
-		/// 0 — автоудаление пользователей отсутствует. положительное число, максимальное значение 365
+		/// Количество дней, через которое пользователи, добавляемые в аудиторию, будут автоматически исключены из нее.
+		/// Положительное число от 1 до 720
 		/// </summary>
 		[JsonProperty("lifetime")]
 		public ulong Lifetime { get; set; }
@@ -40,7 +40,7 @@ namespace VkNet.Model.RequestParams.Ads
 		/// Идентификатор пикселя, если требуется собирать аудиторию с веб-сайта. целое число
 		/// </summary>
 		[JsonProperty("target_pixel_id")]
-		public long TargetPixelId { get; set; }
+		public long? TargetPixelId { get; set; }
 
 		/// <summary>
 		/// Массив правил для пополнения аудитории из пикселя. Имеет вид:
@@ -52,6 +52,6 @@ namespace VkNet.Model.RequestParams.Ads
 		/// ] данные в формате JSON
 		/// </summary>
 		[JsonProperty("target_pixel_rules")]
-		public object TargetPixelRules { get; set; }
+		public IDictionary<string, string> TargetPixelRules { get; set; }
 	}
 }

@@ -8,16 +8,21 @@
 		/// <summary>
 		/// Пользователь
 		/// </summary>
-		User
+		User,
 
-		, /// <summary>
+		/// <summary>
 		/// Группа
 		/// </summary>
-		Group
+		Group,
 
-		, /// <summary>
+		/// <summary>
 		/// Приложение
 		/// </summary>
-		Application
+		Application,
+
+		/// <summary>
+		/// Страница
+		/// </summary>
+		Page
 	}
 }

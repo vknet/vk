@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model;
 using VkNet.Utils;
+using Xunit;
 
 namespace VkNet.Tests.Utils
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class UtilitiesTests
 	{
-		[Test]
+		[Fact]
 		public void JsonConvert()
 		{
 			var result = Utilities.SerializeToJson(new User
@@ -21,24 +20,24 @@ namespace VkNet.Tests.Utils
 				LastName = "Inyutin"
 			});
 
-			Assert.AreNotEqual(result, "{}");
+			result.Should().NotBe("{}");
 			var attribute = Attribute.GetCustomAttribute(typeof(User), typeof(DataContractAttribute));
-			Assert.That(attribute, Is.Null);
+			attribute.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void JsonConvertWrite()
 		{
 			var vkCollection = new VkCollection<User>(10,
 				new List<User>
 				{
-					new User
+					new()
 					{
 						Id = 12,
 						FirstName = "Andrew",
 						LastName = "Teleshev"
 					},
-					new User
+					new()
 					{
 						Id = 13,
 						FirstName = "Даниил",
@@ -47,17 +46,17 @@ namespace VkNet.Tests.Utils
 				});
 
 			var result = Utilities.SerializeToJson(vkCollection);
-			Assert.AreNotEqual(result, "{}");
+			result.Should().NotBe("{}");
 			var attribute = Attribute.GetCustomAttribute(typeof(VkCollection<>), typeof(DataContractAttribute));
-			Assert.That(attribute, Is.Null);
+			attribute.Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void PrettyPrintJsonShouldNotThrowException()
 		{
 			const string invalidJson = "ERROR";
 
-			Assert.DoesNotThrow(() => Utilities.PrettyPrintJson(invalidJson));
+			FluentActions.Invoking(() => Utilities.PrettyPrintJson(invalidJson)).Should().NotThrow();
 		}
 	}
 }

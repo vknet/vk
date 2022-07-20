@@ -15,13 +15,15 @@ namespace VkNet.Categories
 		/// </summary>
 		private readonly IVkApiInvoke _vk;
 
-		/// <inheritdoc />
-		/// <param name="api">
+		/// <summary>
+		/// api vk.com
+		/// </summary>
+		/// <param name="vk">
 		/// Api vk.com
 		/// </param>
-		public SecureCategory(IVkApiInvoke api)
+		public SecureCategory(IVkApiInvoke vk)
 		{
-			_vk = api;
+			_vk = vk;
 		}
 
 		/// <inheritdoc />
@@ -83,6 +85,7 @@ namespace VkNet.Categories
 				});
 		}
 
+		/// <inheritdoc />
 		public ReadOnlyCollection<EventSticker> GiveEventSticker(IEnumerable<ulong> userIds, ulong achievementId)
 		{
 			return _vk.Call<ReadOnlyCollection<EventSticker>>("secure.giveEventSticker",

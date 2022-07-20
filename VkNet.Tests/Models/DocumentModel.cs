@@ -1,14 +1,13 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Model.Attachments;
+using Xunit;
 
 namespace VkNet.Tests.Models
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class DocumentModel
 	{
-		[Test]
+		[Fact]
 		public void ToString_DocumentShouldHaveAccessKey()
 		{
 			var document = new Document
@@ -20,7 +19,7 @@ namespace VkNet.Tests.Models
 
 			var result = document.ToString();
 
-			Assert.AreEqual(result, "doc1234_1234_test");
+			result.Should().Be("doc1234_1234_test");
 		}
 	}
 }

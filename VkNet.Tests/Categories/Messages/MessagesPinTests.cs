@@ -1,13 +1,13 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class MessagesPinTests : MessagesBaseTests
 	{
-		[Test]
+		[Fact]
 		public void Pin()
 		{
 			Url = "https://api.vk.com/method/messages.pin";
@@ -15,7 +15,7 @@ namespace VkNet.Tests.Categories.Messages
 
 			var result = Api.Messages.Pin(123, 345);
 
-			Assert.NotNull(result);
+			result.Should().NotBeNull();
 		}
 	}
 }

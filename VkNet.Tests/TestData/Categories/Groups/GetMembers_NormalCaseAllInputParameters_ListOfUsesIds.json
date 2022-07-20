@@ -1,14 +1,21 @@
 {
-	"response": {
-		"count": 861,
-		"items": [
-			1129147,
-			1137997,
-			1201582,
-			1205554,
-			1220166,
-			1238937,
-			1239796
-		]
-	}
+  "response": {
+    "count": 861,
+    "items": [
+      {
+        "id": 5,
+        "first_name": "Илья",
+        "last_name": "Прусикин",
+        "is_closed": false,
+        "can_access_closed": true
+      },
+      {
+        "id": 6,
+        "first_name": "Данила",
+        "last_name": "Поперечный",
+        "is_closed": true,
+        "can_access_closed": true
+      }
+    ]
+  }
 }

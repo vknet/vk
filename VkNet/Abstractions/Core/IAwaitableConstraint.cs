@@ -12,7 +12,7 @@ namespace VkNet.Abstractions.Core
 		/// <summary>
 		/// Starts a <see cref="Task"/> that will complete after readiness.
 		/// </summary>
-		Task<IDisposable> WaitForReadiness(CancellationToken cancellationToken);
+		Task<IDisposable> WaitForReadinessAsync(CancellationToken cancellationToken);
 
 		/// <summary>
 		/// Sets a rate for a constraint.

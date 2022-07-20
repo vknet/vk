@@ -1,17 +1,17 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Audio
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class AudiogGetPopularTest : CategoryBaseTest
 	{
 		protected override string Folder => "Audio";
 
-		[Test]
+		[Fact]
 		public void GetGetPopularTest()
 		{
 			Url = "https://api.vk.com/method/audio.getPopular";
@@ -21,9 +21,9 @@ namespace VkNet.Tests.Categories.Audio
 			var response = Api.Audio.GetPopular(false, null, 0, 1).ToList();
 			var audio = response.FirstOrDefault();
 
-			Assert.IsNotEmpty(response);
-			Assert.NotNull(audio);
-			Assert.That(audio.Id, Is.EqualTo(456240861));
+			response.Should().NotBeEmpty();
+			audio.Should().NotBeNull();
+			audio.Id.Should().Be(456240861);
 		}
 	}
 }

@@ -37,12 +37,12 @@ namespace VkNet.Utils.JsonConverter
 					}
 					case JsonToken.StartObject:
 						// Prevent infinite recursion by using Populate()
-						existingValue = existingValue ?? contract.DefaultCreator();
+						existingValue ??= contract.DefaultCreator();
 						serializer.Populate(reader, existingValue);
 
 						return existingValue;
 					default:
-						throw new JsonSerializationException(string.Format("Unexpected token {0}", reader.TokenType));
+						throw new JsonSerializationException($"Unexpected token {reader.TokenType}");
 				}
 			} while (reader.Read());
 

@@ -1,16 +1,16 @@
-using System.Diagnostics.CodeAnalysis;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Orders
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
+
 	public class OrdersGetUserSubscriptionByIdTests : CategoryBaseTest
 	{
 		protected override string Folder => "Orders";
 
-		[Test]
+		[Fact]
 		public void GetUserSubscriptionById()
 		{
 			Url = "https://api.vk.com/method/orders.getUserSubscriptionById";
@@ -18,7 +18,7 @@ namespace VkNet.Tests.Categories.Orders
 
 			var result = Api.Orders.GetUserSubscriptionById(123, 234);
 
-			Assert.IsNotNull(result);
+			result.Should().NotBeNull();
 		}
 	}
 }

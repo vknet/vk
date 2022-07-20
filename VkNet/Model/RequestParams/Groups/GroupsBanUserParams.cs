@@ -2,7 +2,6 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -62,26 +61,5 @@ namespace VkNet.Model.RequestParams
 		/// принимать значения 1 или 0.
 		/// </summary>
 		public bool? CommentVisible { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(GroupsBanUserParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "group_id", p.GroupId },
-				{ "user_id", p.UserId},
-				{ "owner_id", p.OwnerId },
-				{ "end_date", p.EndDate },
-				{ "reason", p.Reason },
-				{ "comment", p.Comment },
-				{ "comment_visible", p.CommentVisible }
-			};
-
-			return parameters;
-		}
 	}
 }

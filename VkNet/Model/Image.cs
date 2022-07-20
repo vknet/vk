@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model
@@ -12,16 +13,19 @@ namespace VkNet.Model
 		/// <summary>
 		/// URL копии;
 		/// </summary>
+		[JsonProperty("url")]
 		public Uri Url { get; set; }
 
 		/// <summary>
 		/// Ширина копии;
 		/// </summary>
+		[JsonProperty("width")]
 		public int Width { get; set; }
 
 		/// <summary>
 		/// Высота копии.
 		/// </summary>
+		[JsonProperty("height")]
 		public int Height { get; set; }
 
 		/// <summary>
@@ -33,27 +37,10 @@ namespace VkNet.Model
 		{
 			return new Image
 			{
-					Url = response[key: "url"]
-					, Width = response[key: "width"]
-					, Height = response[key: "height"]
+				Url = response[key: "url"],
+				Width = response[key: "width"],
+				Height = response[key: "height"]
 			};
-		}
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static implicit operator Image(VkResponse response)
-		{
-			if (response == null)
-			{
-				return null;
-			}
-
-			return response.HasToken()
-					? FromJson(response: response)
-					: null;
 		}
 	}
 }

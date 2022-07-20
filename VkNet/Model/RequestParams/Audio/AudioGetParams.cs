@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams
 {
@@ -52,26 +51,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty("access_key")]
 		public string AccessKey { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(AudioGetParams p)
-		{
-			var parameters = new VkParameters
-			{
-				{ "owner_id", p.OwnerId },
-				{ "album_id", p.AlbumId },
-				{ "playlist_id", p.PlaylistId },
-				{ "audio_ids", p.AudioIds },
-				{ "offset", p.Offset },
-				{ "count", p.Count },
-				{ "access_key", p.AccessKey }
-			};
-
-			return parameters;
-		}
 	}
 }

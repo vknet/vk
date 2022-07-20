@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -51,25 +50,5 @@ namespace VkNet.Model.RequestParams
 		/// </summary>
 		[JsonProperty(propertyName: "separate")]
 		public bool Separate { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(AppSendRequestParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "user_id", p.UserId }
-					, { "text", p.Text }
-					, { "type", p.Type }
-					, { "name", p.Name }
-					, { "key", p.Key }
-					, { "separate", p.Separate }
-			};
-
-			return parameters;
-		}
 	}
 }

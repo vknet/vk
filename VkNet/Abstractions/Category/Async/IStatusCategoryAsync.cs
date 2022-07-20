@@ -4,7 +4,7 @@ using VkNet.Model;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы со статусом пользователя или сообщества.
+	/// Методы для работы со статусом пользователя или сообщества.
 	/// </summary>
 	public interface IStatusCategoryAsync
 	{

@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams
@@ -76,28 +75,5 @@ namespace VkNet.Model.RequestParams
 		/// положительное число, по умолчанию 20, максимальное значение 1000.
 		/// </summary>
 		public long? Count { get; set; }
-
-		/// <summary>
-		/// Привести к типу VkParameters.
-		/// </summary>
-		/// <param name="p"> Параметры. </param>
-		/// <returns> </returns>
-		public static VkParameters ToVkParameters(GroupsSearchParams p)
-		{
-			var parameters = new VkParameters
-			{
-					{ "q", p.Query }
-					, { "type", p.Type }
-					, { "country_id", p.CountryId }
-					, { "city_id", p.CityId }
-					, { "future", p.Future }
-					, { "market", p.Market }
-					, { "sort", p.Sort }
-					, { "offset", p.Offset }
-					, { "count", p.Count }
-			};
-
-			return parameters;
-		}
 	}
 }

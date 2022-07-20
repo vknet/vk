@@ -59,9 +59,15 @@ namespace VkNet.Abstractions
 		[UsedImplicitly]
 		event VkApiDelegate OnTokenExpires;
 
-	#endregion
+		/// <summary>
+		/// Оповещает, если токен обновился в автоматическом режиме
+		/// </summary>
+		[UsedImplicitly]
+		event VkApiDelegate OnTokenUpdatedAutomatically;
 
-	#region Methods
+		#endregion
+
+		#region Methods
 
 		/// <summary>
 		/// Установить язык

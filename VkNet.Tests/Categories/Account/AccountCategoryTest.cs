@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -10,87 +9,77 @@ using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Account
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class AccountCategoryTest : CategoryBaseTest
 	{
 		protected override string Folder => "Account";
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void BanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
-			Assert.That(() => account.BanUser(42), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => account.BanUser(42)).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void BanUser_CorrectParameters_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.banUser";
+			Url = "https://api.vk.com/method/account.ban";
 			ReadJsonFile(JsonPaths.False);
-			Assert.That(Api.Account.BanUser(1), Is.False); // Нельзя просто так взять и забанить Дурова
+			Api.Account.BanUser(1).Should().BeFalse(); // Нельзя просто так взять и забанить Дурова
 		}
 
-		[Test]
+		[Fact]
 		public void BanUser_CorrectParameters_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.banUser";
+			Url = "https://api.vk.com/method/account.ban";
 			ReadJsonFile(JsonPaths.True);
-			Assert.That(Api.Account.BanUser(4), Is.True);
+			Api.Account.BanUser(4).Should().BeTrue();
 		}
 
-		[Test]
-		[Ignore("Будет переписываться")]
-		public void BanUser_IncorrectUserID_ThrowArgumentException()
-		{
-			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
-			var account = new AccountCategory(Api);
-
-			// ReSharper disable AssignNullToNotNullAttribute
-			Assert.That(() => account.BanUser(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userId"));
-
-			Assert.That(() => account.BanUser(0), Throws.InstanceOf<NullReferenceException>().And.Property("ParamName").EqualTo("userId"));
-
-			// ReSharper restore AssignNullToNotNullAttribute
-		}
-
-		[Test]
-		[Ignore("TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки")]
+		[Fact]
 		public void GetBanned_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			//
 			var account = new AccountCategory(new VkApi());
-			Assert.That(() => account.GetBanned(), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => account.GetBanned()).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetBanned_IncorrectParameters_ThrowArgumentException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(Api);
 
-			Assert.That(() => account.GetBanned(-1), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("offset"));
+			FluentActions.Invoking(() => account.GetBanned(-1))
+				.Should()
+				.ThrowExactly<ArgumentException>()
+				.And.ParamName.Should()
+				.Be("offset");
 
-			Assert.That(() => account.GetBanned(count: -1),
-				Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("count"));
+			FluentActions.Invoking(() => account.GetBanned(count: -1))
+				.Should()
+				.ThrowExactly<ArgumentException>()
+				.And.ParamName.Should()
+				.Be("count");
 		}
 
-		[Test]
+		[Fact]
 		public void GetBanned_WhenThereIsNoBannedUsers()
 		{
 			Url = "https://api.vk.com/method/account.getBanned";
 
 			ReadJsonFile(JsonPaths.EmptyVkCollection);
 
-			Assert.That(Api.Account.GetBanned(), Has.Count.EqualTo(0));
+			Api.Account.GetBanned().Count.Should().Be(0);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBanned_WhenThereIsSomeBannedUsersButNotInTheOffsetRange()
 		{
 			Url = "https://api.vk.com/method/account.getBanned";
@@ -98,10 +87,10 @@ namespace VkNet.Tests.Categories.Account
 			ReadCategoryJsonPath(nameof(GetBanned_WhenThereIsSomeBannedUsersButNotInTheOffsetRange));
 
 			var result = Api.Account.GetBanned(50);
-			Assert.That(result.Count, Is.EqualTo(5));
+			result.Count.Should().Be(5);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBanned_WithCorrectCountParameter()
 		{
 			Url = "https://api.vk.com/method/account.getBanned";
@@ -110,10 +99,10 @@ namespace VkNet.Tests.Categories.Account
 
 			var items = Api.Account.GetBanned(count: 2);
 
-			Assert.That(items.Count, Is.EqualTo(2));
+			items.Count.Should().Be(2);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBanned_WithCorrectOffsetParameter()
 		{
 			Url = "https://api.vk.com/method/account.getBanned";
@@ -121,10 +110,10 @@ namespace VkNet.Tests.Categories.Account
 			ReadCategoryJsonPath("GetBannedResult");
 
 			var items = Api.Account.GetBanned(null, 2);
-			Assert.That(items.Count, Is.EqualTo(2));
+			items.Count.Should().Be(2);
 		}
 
-		[Test]
+		[Fact]
 		public void GetBanned_WithDefaultParameters()
 		{
 			Url = "https://api.vk.com/method/account.getBanned";
@@ -132,76 +121,74 @@ namespace VkNet.Tests.Categories.Account
 			ReadCategoryJsonPath("GetBannedResult");
 
 			var items = Api.Account.GetBanned();
-			Assert.That(items.Count, Is.EqualTo(2));
-			Assert.That(items, Has.Count.EqualTo(2));
+			items.Count.Should().Be(2);
 			var banned = items.Items.FirstOrDefault();
-			Assert.That(banned, Is.EqualTo(256477844));
+			banned.Should().Be(256477844);
 		}
 
-		[Test]
+		[Fact]
 		public void GetCounters_WhenServerReturnsAllFields()
 		{
 			Url = "https://api.vk.com/method/account.getCounters";
 			ReadCategoryJsonPath(nameof(GetCounters_WhenServerReturnsAllFields));
 
 			var counters = Api.Account.GetCounters(CountersFilter.All);
-			Assert.That(counters, Is.Not.Null);
+			counters.Should().NotBeNull();
 
-			Assert.That(counters.Friends, Is.EqualTo(1));
-			Assert.That(counters.Messages, Is.EqualTo(2));
-			Assert.That(counters.Photos, Is.EqualTo(3));
-			Assert.That(counters.Videos, Is.EqualTo(4));
-			Assert.That(counters.Notes, Is.EqualTo(5));
-			Assert.That(counters.Gifts, Is.EqualTo(6));
-			Assert.That(counters.Events, Is.EqualTo(7));
-			Assert.That(counters.Groups, Is.EqualTo(8));
-			Assert.That(counters.Notifications, Is.EqualTo(9));
+			counters.Friends.Should().Be(1);
+			counters.Messages.Should().Be(2);
+			counters.Photos.Should().Be(3);
+			counters.Videos.Should().Be(4);
+			counters.Notes.Should().Be(5);
+			counters.Gifts.Should().Be(6);
+			counters.Events.Should().Be(7);
+			counters.Groups.Should().Be(8);
+			counters.Notifications.Should().Be(9);
 		}
 
-		[Test]
+		[Fact]
 		public void GetCounters_WhenServerReturnsEmptyResponse()
 		{
 			Url = "https://api.vk.com/method/account.getCounters";
 			ReadJsonFile(JsonPaths.EmptyArray);
 
 			var counters = Api.Account.GetCounters(CountersFilter.All);
-			Assert.That(counters, Is.Null);
+			counters.Should().BeNull();
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void GetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
-			Assert.That(() => account.GetInfo(), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => account.GetInfo()).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetInfo_WhenServerReturnsAllFields()
 		{
 			Url = "https://api.vk.com/method/account.getInfo";
 			ReadCategoryJsonPath(nameof(GetInfo_WhenServerReturnsAllFields));
 
 			var info = Api.Account.GetInfo();
-			Assert.That(info, Is.Not.Null);
+			info.Should().NotBeNull();
 
-			Assert.That(info.Country, Is.EqualTo("RU"));
-			Assert.That(info.HttpsRequired, Is.EqualTo(true));
-			Assert.That(info.Intro, Is.EqualTo(10));
-			Assert.That(info.Language, Is.EqualTo(0));
+			info.Country.Should().Be("RU");
+			info.HttpsRequired.Should().Be(true);
+			info.Intro.Should().Be(10);
+			info.Language.Should().Be(0);
 		}
 
-		[Test]
+		[Fact]
 		public void GetInfo_WhenServerReturnsEmptyResponse()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			Url = "https://api.vk.com/method/account.getInfo";
 			ReadJsonFile(JsonPaths.EmptyObject);
-			Assert.That(Api.Account.GetInfo(), Is.Null);
+			Api.Account.GetInfo().Should().BeNull();
 		}
 
-		[Test]
+		[Fact]
 		public void GetPrivacySettings()
 		{
 			// Arrange
@@ -212,48 +199,47 @@ namespace VkNet.Tests.Categories.Account
 			var settings = Api.Account.GetPrivacySettings();
 
 			// Assert
-			Assert.NotNull(settings);
-			Assert.IsNotEmpty(settings.Sections);
-			Assert.IsNotEmpty(settings.Settings);
+			settings.Should().NotBeNull();
+			settings.Sections.Should().NotBeEmpty();
+			settings.Settings.Should().NotBeEmpty();
+			settings.SupportedCategories.Should().NotBeEmpty();
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void GetProfileInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
-			Assert.That(() => account.GetProfileInfo(), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => account.GetProfileInfo()).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void GetProfileInfo_WhenServerReturnAllFields()
 		{
 			Url = "https://api.vk.com/method/account.getProfileInfo";
 			ReadCategoryJsonPath(nameof(GetProfileInfo_WhenServerReturnAllFields));
 
 			var info = Api.Account.GetProfileInfo();
-			Assert.That(info, Is.Not.Null);
+			info.Should().NotBeNull();
 
-			Assert.That(info.FirstName, Is.EqualTo("Максим"));
-			Assert.That(info.LastName, Is.EqualTo("Инютин"));
-			Assert.That(info.ScreenName, Is.EqualTo("inyutin_maxim"));
-			Assert.That(info.Sex, Is.EqualTo(Sex.Male));
-			Assert.That(info.Relation, Is.EqualTo(RelationType.InActiveSearch));
-			Assert.That(info.RelationPartner, Is.Null);
-			Assert.That(info.BirthDate, Is.EqualTo("15.1.1991"));
-			Assert.That(info.BirthdayVisibility, Is.EqualTo(BirthdayVisibility.Full));
-			Assert.That(info.HomeTown, Is.EqualTo("Новочеркасск, Станица Кривянская"));
-			Assert.That(info.Country.Title, Is.EqualTo("Россия"));
-			Assert.That(info.City.Title, Is.EqualTo("Кривянская"));
+			info.FirstName.Should().Be("Максим");
+			info.LastName.Should().Be("Инютин");
+			info.ScreenName.Should().Be("inyutin_maxim");
+			info.Sex.Should().Be(Sex.Male);
+			info.Relation.Should().Be(RelationType.InActiveSearch);
+			info.RelationPartner.Should().BeNull();
+			info.BirthDate.Should().Be("15.1.1991");
+			info.BirthdayVisibility.Should().Be(BirthdayVisibility.Full);
+			info.HomeTown.Should().Be("Новочеркасск, Станица Кривянская");
+			info.Country.Title.Should().Be("Россия");
+			info.City.Title.Should().Be("Кривянская");
 
-			Assert.That(info.Status,
-				Is.EqualTo("♠ Во мне нет ничего первоначального. Я — совместное усилие всех тех, кого я когда-то знал."));
+			info.Status.Should().Be("♠ Во мне нет ничего первоначального. Я — совместное усилие всех тех, кого я когда-то знал.");
 
-			Assert.That(info.Phone, Is.EqualTo("+7 *** *** ** 74"));
+			info.Phone.Should().Be("+7 *** *** ** 74");
 		}
 
-		[Test]
+		[Fact]
 		public void GetProfileInfo_WhenServerReturnSomeFields()
 		{
 			Url = "https://api.vk.com/method/account.getProfileInfo";
@@ -261,355 +247,363 @@ namespace VkNet.Tests.Categories.Account
 			ReadCategoryJsonPath(nameof(GetProfileInfo_WhenServerReturnSomeFields));
 
 			var info = Api.Account.GetProfileInfo();
-			Assert.That(info, Is.Not.Null);
+			info.Should().NotBeNull();
 
-			Assert.That(info.FirstName, Is.EqualTo("Анна"));
-			Assert.That(info.LastName, Is.EqualTo("Каренина"));
-			Assert.That(info.MaidenName, Is.EqualTo("Облонская"));
-			Assert.That(info.Sex, Is.EqualTo(Sex.Female));
-			Assert.That(info.Relation, Is.EqualTo(RelationType.Engaged));
-			Assert.That(info.RelationPartner, Is.Null);
-			Assert.That(info.BirthdayVisibility, Is.EqualTo(BirthdayVisibility.Invisible));
-			Assert.That(info.Country.Title, Is.EqualTo("Российская империя"));
-			Assert.That(info.City.Title, Is.EqualTo("Санкт-Петербург"));
+			info.FirstName.Should().Be("Анна");
+			info.LastName.Should().Be("Каренина");
+			info.MaidenName.Should().Be("Облонская");
+			info.Sex.Should().Be(Sex.Female);
+			info.Relation.Should().Be(RelationType.Engaged);
+			info.RelationPartner.Should().BeNull();
+			info.BirthdayVisibility.Should().Be(BirthdayVisibility.Invisible);
+			info.Country.Title.Should().Be("Российская империя");
+			info.City.Title.Should().Be("Санкт-Петербург");
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void RegisterDevice_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
 
-			Assert.Throws<AccessTokenInvalidException>(() => account.RegisterDevice(new AccountRegisterDeviceParams
-			{
-				Token = "tokenVal",
-				DeviceModel = null,
-				SystemVersion = null
-			}));
+			FluentActions.Invoking(() => account.RegisterDevice(new AccountRegisterDeviceParams
+				{
+					Token = "tokenVal",
+					DeviceModel = null,
+					SystemVersion = null
+				}))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void RegisterDevice_CorrectParameters_ReturnFalse()
 		{
 			Url = "https://api.vk.com/method/account.registerDevice";
 			ReadJsonFile(JsonPaths.False);
 
-			Assert.That(Api.Account.RegisterDevice(new AccountRegisterDeviceParams
+			Api.Account.RegisterDevice(new AccountRegisterDeviceParams
 				{
 					Token = "tokenVal",
 					DeviceModel = "deviceModelVal",
 					SystemVersion = "systemVersionVal"
-				}),
-				Is.False);
+				})
+				.Should()
+				.BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void RegisterDevice_CorrectParameters_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/account.registerDevice";
 			ReadJsonFile(JsonPaths.True);
 
-			Assert.That(Api.Account.RegisterDevice(new AccountRegisterDeviceParams
+			Api.Account.RegisterDevice(new AccountRegisterDeviceParams
 				{
 					Token = "tokenVal",
 					DeviceModel = "deviceModelVal",
 					SystemVersion = "systemVersionVal"
-				}),
-				Is.True);
+				})
+				.Should()
+				.BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void RegisterDevice_NullOrEmptyToken_ThrowArgumentNullException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(Api);
 
-			Assert.That(() => account.RegisterDevice(new AccountRegisterDeviceParams
+			FluentActions.Invoking(() => account.RegisterDevice(new AccountRegisterDeviceParams
 				{
 					Token = null,
 					DeviceModel = "example",
 					SystemVersion = "example"
-				}),
-				Throws.InstanceOf<ArgumentNullException>());
+				}))
+				.Should()
+				.ThrowExactly<ArgumentNullException>();
 
-			Assert.That(() => account.RegisterDevice(new AccountRegisterDeviceParams
+			FluentActions.Invoking(() => account.RegisterDevice(new AccountRegisterDeviceParams
 				{
 					Token = string.Empty,
 					DeviceModel = "example",
 					SystemVersion = "example"
-				}),
-				Throws.InstanceOf<ArgumentNullException>());
+				}))
+				.Should()
+				.ThrowExactly<ArgumentNullException>();
 		}
 
-		[Test]
+		[Fact]
 		public void RegisterDevice_ParametersAreEqualsToNullOrEmptyExceptToken_NotThrowsException()
 		{
 			Url = "https://api.vk.com/method/account.registerDevice";
 			ReadJsonFile(JsonPaths.True);
 
-			Assert.That(() => Api.Account.RegisterDevice(new AccountRegisterDeviceParams
+			FluentActions.Invoking(() => Api.Account.RegisterDevice(new AccountRegisterDeviceParams
 				{
 					Token = "tokenVal",
 					DeviceModel = null,
 					SystemVersion = null
-				}),
-				Throws.Nothing);
+				}))
+				.Should()
+				.NotThrow();
 
-			Assert.That(() => Api.Account.RegisterDevice(new AccountRegisterDeviceParams
+			FluentActions.Invoking(() => Api.Account.RegisterDevice(new AccountRegisterDeviceParams
 				{
 					Token = "tokenVal",
 					DeviceModel = string.Empty,
 					SystemVersion = string.Empty
-				}),
-				Throws.Nothing);
+				}))
+				.Should()
+				.NotThrow();
 		}
 
-		[Test]
+		[Fact]
 		public void SaveProfileInfo_AllParameters_UrlIsCreatedCorrectly()
 		{
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 
 			ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 
-			Assert.That(() => Api.Account.SaveProfileInfo(out var _,
-					new AccountSaveProfileInfoParams
+			var result = Api.Account.SaveProfileInfo(out var _,
+				new AccountSaveProfileInfoParams
+				{
+					FirstName = "fn",
+					LastName = "ln",
+					MaidenName = "mn",
+					Sex = Sex.Female,
+					Relation = RelationType.Married,
+					RelationPartner = new User
 					{
-						FirstName = "fn",
-						LastName = "ln",
-						MaidenName = "mn",
-						Sex = Sex.Female,
-						Relation = RelationType.Married,
-						RelationPartner = new User
-						{
-							Id = 10
-						},
-						BirthDate = new DateTime(1984,
-							11,
-							15,
-							0,
-							0,
-							0,
-							DateTimeKind.Utc).ToShortDateString(),
-						BirthdayVisibility = BirthdayVisibility.Full,
-						HomeTown = "ht",
-						Country = new Country
-						{
-							Id = 1
-						},
-						City = new City
-						{
-							Id = 2
-						}
-					}),
-				Is.True);
+						Id = 10
+					},
+					BirthDate = new DateTime(1984,
+						11,
+						15,
+						0,
+						0,
+						0,
+						DateTimeKind.Utc).ToShortDateString(),
+					BirthdayVisibility = BirthdayVisibility.Full,
+					HomeTown = "ht",
+					Country = new Country
+					{
+						Id = 1
+					},
+					City = new City
+					{
+						Id = 2
+					}
+				});
+
+			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void SaveProfileInfo_CancelChangeNameRequest_NegativeRequestId_ThrowArgumentException()
 		{
 			ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 			Url = "";
 
-			Assert.That(() => Api.Account.SaveProfileInfo(-10),
-				Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("cancelRequestId"));
+			FluentActions.Invoking(() => Api.Account.SaveProfileInfo(-10))
+				.Should()
+				.ThrowExactly<ArgumentException>()
+				.And.ParamName.Should()
+				.Be("cancelRequestId");
 		}
 
-		[Test]
+		[Fact]
 		public void SaveProfileInfo_CancelChangeNameRequest_UrlIsGeneratedCorrectly()
 		{
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 			ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
-			Assert.That(Api.Account.SaveProfileInfo(42), Is.True);
+			Api.Account.SaveProfileInfo(42).Should().BeTrue();
 		}
 
-		[Test]
-		[Ignore("Падает на Linux")]
-
-		// TODO Падает на Linux
+		[Fact]
 		public void SaveProfileInfo_DateIsParsedCorrectly()
 		{
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 			ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 
-			Assert.That(() => Api.Account.SaveProfileInfo(out var _,
-					new AccountSaveProfileInfoParams
-					{
-						BirthDate = new DateTime(1984,
-								11,
-								150,
-								0,
-								0,
-								0,
-								DateTimeKind.Utc)
-							.ToShortDateString()
-					}),
-				Is.True);
+			var result1 = Api.Account.SaveProfileInfo(out var _,
+				new AccountSaveProfileInfoParams
+				{
+					BirthDate = new DateTime(1984,
+							11,
+							15,
+							0,
+							0,
+							0,
+							DateTimeKind.Utc)
+						.ToShortDateString()
+				});
+
+			result1.Should().BeTrue();
 
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 
-			Assert.That(() => Api.Account.SaveProfileInfo(out var _,
-					new AccountSaveProfileInfoParams
-					{
-						BirthDate = new DateTime(2014,
-								9,
-								8,
-								0,
-								0,
-								0,
-								DateTimeKind.Utc)
-							.ToShortDateString()
-					}),
-				Is.True);
+			var result = Api.Account.SaveProfileInfo(out var _,
+				new AccountSaveProfileInfoParams
+				{
+					BirthDate = new DateTime(2014,
+							9,
+							8,
+							0,
+							0,
+							0,
+							DateTimeKind.Utc)
+						.ToShortDateString()
+				});
+
+			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void SaveProfileInfo_ResultWasParsedCorrectly_AndEmptyParametersIsProcessedCorrectly()
 		{
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 			ReadCategoryJsonPath($"{nameof(Api.Account.SaveProfileInfo)}_False");
 
-			Assert.That(Api.Account.SaveProfileInfo(out var request, new AccountSaveProfileInfoParams()), Is.False); // Second overload
+			Api.Account.SaveProfileInfo(out var request, new AccountSaveProfileInfoParams()).Should().BeFalse(); // Second overload
 
-			Assert.That(request, Is.Null);
+			request.Should().BeNull();
 
 			Url = "https://api.vk.com/method/account.saveProfileInfo";
 
 			ReadCategoryJsonPath($"{nameof(Api.Account.SaveProfileInfo)}_Success");
 
-			Assert.That(Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams()), Is.True); // Second overload
+			Api.Account.SaveProfileInfo(out request, new AccountSaveProfileInfoParams()).Should().BeTrue(); // Second overload
 
-			Assert.That(request, Is.Not.Null);
-			Assert.That(request.Status, Is.EqualTo(ChangeNameStatus.Success));
+			request.Should().NotBeNull();
+			request.Status.Should().Be(ChangeNameStatus.Success);
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void SetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
-			Assert.That(() => account.SetInfo("intro", "10"), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => account.SetInfo("intro", "10")).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void SetInfo_IncorrectUserID_ThrowInvalidParameterException()
 		{
 			var account = new AccountCategory(Api);
 			Url = "https://api.vk.com/method/account.setInfo";
 
-			ReadJsonFile("Errors", "100");
+			ReadErrorsJsonFile(100);
 
-			Assert.That(() => account.SetInfo("intro", "-10"), Throws.InstanceOf<ParameterMissingOrInvalidException>());
+			FluentActions.Invoking(() => account.SetInfo("intro", "-10")).Should().ThrowExactly<ParameterMissingOrInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void SetInfo_ReturnFalse()
 		{
 			Url = "https://api.vk.com/method/account.setInfo";
 			ReadJsonFile(JsonPaths.False);
-			Assert.That(Api.Account.SetInfo("own_posts_default", "1"), Is.False);
+			Api.Account.SetInfo("own_posts_default", "1").Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void SetInfo_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/account.setInfo";
 			ReadJsonFile(JsonPaths.True);
-			Assert.That(Api.Account.SetInfo("own_posts_default", "1"), Is.True);
+			Api.Account.SetInfo("own_posts_default", "1").Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void SetInfo_WithIntroParameter_ReturnFalse()
 		{
 			Url = "https://api.vk.com/method/account.setInfo";
 			ReadJsonFile(JsonPaths.True);
-			Assert.That(Api.Account.SetInfo("intro", "10"), Is.True);
+			Api.Account.SetInfo("intro", "10").Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void SetNameInMenu_EmptyName_ThrowArgumentNullException()
 		{
-			Assert.Throws<ArgumentNullException>(() => Api.Account.SetNameInMenu(string.Empty));
+			FluentActions.Invoking(() => Api.Account.SetNameInMenu(string.Empty, 1)).Should().ThrowExactly<ArgumentNullException>();
 		}
 
-		[Test]
+		[Fact]
 		public void SetNameInMenu_NotSets_ReturnFalse()
 		{
 			Url = "https://api.vk.com/method/account.setNameInMenu";
 			ReadJsonFile(JsonPaths.False);
-			Assert.That(Api.Account.SetNameInMenu("example"), Is.False);
+			Api.Account.SetNameInMenu("example", 1).Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void SetNameInMenu_SetsCorrectly_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/account.setNameInMenu";
 			ReadJsonFile(JsonPaths.True);
-			Assert.That(Api.Account.SetNameInMenu("example"), Is.True);
+			Api.Account.SetNameInMenu("example", 1).Should().BeTrue();
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void SetOffline_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var account =
 				new AccountCategory(
 					new VkApi()); // TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 
-			Assert.Throws<AccessTokenInvalidException>(() => account.SetOffline());
+			FluentActions.Invoking(() => account.SetOffline()).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void SetOffline_NotSets_ReturnFalse()
 		{
 			Url = "https://api.vk.com/method/account.setOffline";
 			ReadJsonFile(JsonPaths.False);
-			Assert.That(Api.Account.SetOffline(), Is.False);
+			Api.Account.SetOffline().Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void SetOffline_SetsCorrectly_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/account.setOffline";
 			ReadJsonFile(JsonPaths.True);
-			Assert.That(Api.Account.SetOffline(), Is.True);
+			Api.Account.SetOffline().Should().BeTrue();
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void SetOnline_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
-			Assert.Throws<AccessTokenInvalidException>(() => account.SetOnline());
+			FluentActions.Invoking(() => account.SetOnline()).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void SetOnline_NotSets_ReturnFalse()
 		{
 			Url = "https://api.vk.com/method/account.setOnline";
 			ReadJsonFile(JsonPaths.False);
-			Assert.That(Api.Account.SetOnline(), Is.False);
+			Api.Account.SetOnline().Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void SetOnline_SetsCorrectly_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/account.setOnline";
 			ReadJsonFile(JsonPaths.True);
-			Assert.That(Api.Account.SetOnline(), Is.True);
+			Api.Account.SetOnline().Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void SetOnline_WithVoipParameter()
 		{
 			Url = "https://api.vk.com/method/account.setOnline";
 			ReadJsonFile(JsonPaths.True);
-			Assert.That(() => Api.Account.SetOnline(true), Is.True);
+			var result = Api.Account.SetOnline(true);
+			result.Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void SetPrivacy()
 		{
 			// Arrange
@@ -617,142 +611,125 @@ namespace VkNet.Tests.Categories.Account
 			ReadCategoryJsonPath(nameof(SetPrivacy));
 
 			// Act
-			var result = Api.Account.SetPrivacy("key", "value");
+			var result = Api.Account.SetPrivacy("key", "only_me");
 
 			// Assert
-			Assert.AreEqual("value", result);
+			result.Should().NotBeNull();
+			result.Category.Should().Be("only_me");
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void SetSilenceMode_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
-			Assert.That(() => account.SetSilenceMode("tokenVal"), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => account.SetSilenceMode("tokenVal")).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void SetSilenceMode_AllParametersAddsToUrlCorrectly()
 		{
 			{
 				Url = "https://api.vk.com/method/account.setSilenceMode";
 				ReadJsonFile(JsonPaths.False);
-				Assert.That(() => Api.Account.SetSilenceMode("tokenVal", 10, 15, true), Is.False);
+				var result = Api.Account.SetSilenceMode("tokenVal", 10, 15, true);
+				result.Should().BeFalse();
 			}
 
 			{
 				Url = "https://api.vk.com/method/account.setSilenceMode";
 				ReadJsonFile(JsonPaths.False);
-
-				Assert.That(() => Api.Account.SetSilenceMode("tokenVal", -1, 10, false), Is.False);
+				var result = Api.Account.SetSilenceMode("tokenVal", -1, 10, false);
+				result.Should().BeFalse();
 			}
 		}
 
-		[Test]
+		[Fact]
 		public void SetSilenceMode_NullOrEmptyToken_ThrowArgumentNullException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(Api);
 
 			// ReSharper disable AssignNullToNotNullAttribute
-			Assert.That(() => account.SetSilenceMode(null), Throws.InstanceOf<ArgumentNullException>());
-			Assert.That(() => account.SetSilenceMode(string.Empty), Throws.InstanceOf<ArgumentNullException>());
+			FluentActions.Invoking(() => account.SetSilenceMode(null)).Should().ThrowExactly<ArgumentNullException>();
+			FluentActions.Invoking(() => account.SetSilenceMode(string.Empty)).Should().ThrowExactly<ArgumentNullException>();
 
 			// ReSharper restore AssignNullToNotNullAttribute
 		}
 
-		[Test]
+		[Fact]
 		public void SetSilenceMode_SetsCorrectly_ReturnFalse()
 		{
 			Url = "https://api.vk.com/method/account.setSilenceMode";
 			ReadJsonFile(JsonPaths.False);
-			Assert.That(Api.Account.SetSilenceMode("tokenVal"), Is.False);
+			Api.Account.SetSilenceMode("tokenVal").Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void SetSilenceMode_SetsCorrectly_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/account.setSilenceMode";
 			ReadJsonFile(JsonPaths.True);
-			Assert.That(Api.Account.SetSilenceMode("tokenVal"), Is.True);
+			Api.Account.SetSilenceMode("tokenVal").Should().BeTrue();
 		}
 
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void UnbanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
-			Assert.That(() => account.UnbanUser(42), Throws.InstanceOf<AccessTokenInvalidException>());
+			FluentActions.Invoking(() => account.UnbanUser(42)).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void UnbanUser_CorrectParameters_ReturnFalse()
 		{
-			Url = "https://api.vk.com/method/account.unbanUser";
+			Url = "https://api.vk.com/method/account.unban";
 			ReadJsonFile(JsonPaths.False);
-			Assert.That(Api.Account.UnbanUser(1), Is.False);
+			Api.Account.UnbanUser(1).Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void UnbanUser_CorrectParameters_ReturnTrue()
 		{
-			Url = "https://api.vk.com/method/account.unbanUser";
+			Url = "https://api.vk.com/method/account.unban";
 			ReadJsonFile(JsonPaths.True);
-			Assert.That(Api.Account.UnbanUser(4), Is.True);
+			Api.Account.UnbanUser(4).Should().BeTrue();
 		}
 
-		[Test]
-		[Ignore("Будет переписываться")]
-		public void UnbanUser_IncorrectUserID_ThrowArgumentException()
-		{
-			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
-			var account = new AccountCategory(Api);
-
-			// ReSharper disable AssignNullToNotNullAttribute
-			Assert.That(() => account.UnbanUser(-10), Throws.InstanceOf<ArgumentException>().And.Property("ParamName").EqualTo("userId"));
-
-			Assert.That(() => account.UnbanUser(0),
-				Throws.InstanceOf<NullReferenceException>().And.Property("ParamName").EqualTo("userId"));
-
-			// ReSharper restore AssignNullToNotNullAttribute
-		}
-
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void UnregisterDevice_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(new VkApi());
-			Assert.Throws<AccessTokenInvalidException>(() => account.UnregisterDevice("tokenVal"));
+			FluentActions.Invoking(() => account.UnregisterDevice("tokenVal")).Should().ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void UnregisterDevice_CorrectParameters_ReturnFalse()
 		{
 			Url = "https://api.vk.com/method/account.unregisterDevice";
 			ReadJsonFile(JsonPaths.False);
-			Assert.That(Api.Account.UnregisterDevice("tokenVal"), Is.False);
+			Api.Account.UnregisterDevice("tokenVal").Should().BeFalse();
 		}
 
-		[Test]
+		[Fact]
 		public void UnregisterDevice_CorrectParameters_ReturnTrue()
 		{
 			Url = "https://api.vk.com/method/account.unregisterDevice";
 			ReadJsonFile(JsonPaths.True);
-			Assert.That(Api.Account.UnregisterDevice("tokenVal"), Is.True);
+			Api.Account.UnregisterDevice("tokenVal").Should().BeTrue();
 		}
 
-		[Test]
+		[Fact]
 		public void UnregisterDevice_NullOrEmptyToken_ThrowArgumentNullException()
 		{
 			// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
 			var account = new AccountCategory(Api);
 
 			// ReSharper disable AssignNullToNotNullAttribute
-			Assert.That(() => account.UnregisterDevice(null), Throws.InstanceOf<ArgumentNullException>());
-			Assert.That(() => account.UnregisterDevice(string.Empty), Throws.InstanceOf<ArgumentNullException>());
+			FluentActions.Invoking(() => account.UnregisterDevice(null)).Should().ThrowExactly<ArgumentNullException>();
+			FluentActions.Invoking(() => account.UnregisterDevice(string.Empty)).Should().ThrowExactly<ArgumentNullException>();
 
 			// ReSharper restore AssignNullToNotNullAttribute
 		}

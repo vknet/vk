@@ -1,8 +1,9 @@
-using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Model;
 
-namespace VkNet.Abstractions.Category
+namespace VkNet.Abstractions
 {
 	/// <summary>
 	/// Список методов секции appWidgets
@@ -28,7 +29,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getAppImageUploadServer
 		/// </remarks>
-		Task<Uri> GetAppImageUploadServerAsync(AppWidgetImageType imageType);
+		Task<UploadServerInfo> GetAppImageUploadServerAsync(AppWidgetImageType imageType);
 
 		/// <summary>
 		/// Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
@@ -54,7 +55,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getAppImages
 		/// </remarks>
-		Task<Uri> GetAppImagesAsync(int offset, int count, AppWidgetImageType imageType);
+		Task<AppImageResult> GetAppImagesAsync(int offset, int count, AppWidgetImageType imageType);
 
 		/// <summary>
 		/// Позволяет получить адрес для загрузки фотографии в коллекцию сообщества для виджетов приложений сообществ.
@@ -67,7 +68,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getGroupImageUploadServer
 		/// </remarks>
-		Task<Uri> GetGroupImageUploadServerAsync(AppWidgetImageType imageType);
+		Task<UploadServerInfo> GetGroupImageUploadServerAsync(AppWidgetImageType imageType);
 
 		/// <summary>
 		/// Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
@@ -93,7 +94,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getGroupImages
 		/// </remarks>
-		Task<Uri> GetGroupImagesAsync(int offset, int count, AppWidgetImageType imageType);
+		Task<AppImageResult> GetGroupImagesAsync(int offset, int count, AppWidgetImageType imageType);
 
 		/// <summary>
 		/// Позволяет получить изображение для виджетов приложений сообществ по его идентификатору.
@@ -116,7 +117,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getImagesById
 		/// </remarks>
-		Task<Uri> GetImagesByIdAsync(string images);
+		Task<ReadOnlyCollection<AppImage>> GetImagesByIdAsync(string images);
 
 		/// <summary>
 		/// Позволяет сохранить изображение в коллекцию приложения для виджетов приложений сообществ после загрузки на сервер.
@@ -144,7 +145,7 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.saveAppImage
 		/// </remarks>
-		Task<Uri> SaveAppImageAsync(string hash, string image);
+		Task<AppImage> SaveAppImageAsync(string hash, string image);
 
 		/// <summary>
 		/// Позволяет сохранить изображение в коллекцию сообщества для виджетов приложений сообществ. после загрузки на сервер.
@@ -166,17 +167,23 @@ namespace VkNet.Abstractions.Category
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.saveGroupImage
 		/// </remarks>
-		Task<Uri> SaveGroupImageAsync();
+		Task<AppImage> SaveGroupImageAsync(string hash, string image);
 
 		/// <summary>
 		/// Позволяет обновить виджет приложения сообщества.
 		/// </summary>
+		/// <param name = "code">
+		/// Код виджета. Подробное описание см. на https://vk.com/dev/apps_widgets
+		/// </param>
+		/// <param name = "type">
+		/// Тип виджета. Список всех доступных типов см. на https://vk.com/dev/objects/appWidget.
+		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает 1.
 		/// </returns>
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.update
 		/// </remarks>
-		Task<bool> UpdateAsync();
+		Task<bool> UpdateAsync(string code, AppWidgetType type);
 	}
 }

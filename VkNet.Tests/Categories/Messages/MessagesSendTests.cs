@@ -1,35 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
+using FluentAssertions;
 using VkNet.Categories;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
+using VkNet.Model.Keyboard;
 using VkNet.Model.RequestParams;
-using VkNet.Tests.Infrastructure;
+using VkNet.Model.Template;
+using VkNet.Model.Template.Carousel;
+using Xunit;
 
 namespace VkNet.Tests.Categories.Messages
 {
-	[TestFixture]
-	[ExcludeFromCodeCoverage]
+
 	public class MessagesSendTests : MessagesBaseTests
 	{
-		[Test]
-		[Ignore(TestIgnoreConstants.Excess)]
+		[Fact]
 		public void AccessTokenInvalid_ThrowAccessTokenInvalidException()
 		{
 			var cat = new MessagesCategory(new VkApi());
 
-			Assert.That(() => cat.Send(new MessagesSendParams
+			FluentActions.Invoking(() => cat.Send(new MessagesSendParams
 				{
 					UserId = 1,
 					Message = "Привет, Паша!",
 					RandomId = 1
-				}),
-				Throws.InstanceOf<AccessTokenInvalidException>());
+				}))
+				.Should()
+				.ThrowExactly<AccessTokenInvalidException>();
 		}
 
-		[Test]
+		[Fact]
 		public void CoordsMessage()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -37,14 +39,17 @@ namespace VkNet.Tests.Categories.Messages
 
 			var id = Api.Messages.Send(new MessagesSendParams
 			{
-				UserId = 7550525, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743,
+				UserId = 7550525,
+				Message = "г. Таганрог, ул. Фрунзе 66А",
+				Lat = 47.217451,
+				Longitude = 38.922743,
 				RandomId = 1
 			});
 
-			Assert.That(id, Is.EqualTo(4464));
+			id.Should().Be(4464);
 		}
 
-		[Test]
+		[Fact]
 		public void DefaultFields_MessageId()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -52,111 +57,63 @@ namespace VkNet.Tests.Categories.Messages
 
 			var id = Api.Messages.Send(new MessagesSendParams
 			{
-				UserId = 7550525, Message = "Test from vk.net ;) # 2",
+				UserId = 7550525,
+				Message = "Test from vk.net ;) # 2",
 				RandomId = 1
 			});
 
-			Assert.That(id, Is.EqualTo(4457));
+			id.Should().Be(4457);
 		}
 
-		[Test]
+		[Fact]
 		public void EmptyMessage_ThrowsInvalidParameterException()
 		{
-			Assert.That(() => Api.Messages.Send(new MessagesSendParams
+			FluentActions.Invoking(() => Api.Messages.Send(new MessagesSendParams
 				{
-					UserId = 7550525, Message = ""
-				}),
-				Throws.InstanceOf<ArgumentException>());
+					UserId = 7550525,
+					Message = ""
+				}))
+				.Should()
+				.ThrowExactly<ArgumentException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Exception_MessageIsTooLong()
 		{
 			Url = "https://api.vk.com/method/messages.send";
 			ReadErrorsJsonFile(914);
 
-			Assert.That(() => Api.Messages.Send(new MessagesSendParams
+			FluentActions.Invoking(() => Api.Messages.Send(new MessagesSendParams
 				{
-					UserId = 7550525, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743,
+					UserId = 7550525,
+					Message = "г. Таганрог, ул. Фрунзе 66А",
+					Lat = 47.217451,
+					Longitude = 38.922743,
 					RandomId = 1
-				}),
-				Throws.InstanceOf<MessageIsTooLongException>());
+				}))
+				.Should()
+				.ThrowExactly<MessageIsTooLongException>();
 		}
 
-		[Test]
+		[Fact]
 		public void Exception_TooMuchSentMessages()
 		{
 			Url = "https://api.vk.com/method/messages.send";
 			ReadErrorsJsonFile(913);
 
-			Assert.That(() => Api.Messages.Send(new MessagesSendParams
+			FluentActions.Invoking(() => Api.Messages.Send(new MessagesSendParams
 				{
-					UserId = 7550525, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743,
+					UserId = 7550525,
+					Message = "г. Таганрог, ул. Фрунзе 66А",
+					Lat = 47.217451,
+					Longitude = 38.922743,
 					RandomId = 1
-				}),
-				Throws.InstanceOf<TooMuchSentMessagesException>());
+				}))
+				.Should()
+				.ThrowExactly<TooMuchSentMessagesException>();
 		}
 
-		[Test]
-		public void MessagesSend_SetUserIdsParam_ArgumentException()
-		{
-			Url = "https://api.vk.com/method/messages.send";
-			ReadCategoryJsonPath(nameof(MessagesSend_SetUserIdsParam_ArgumentException));
-
-			Assert.That(() => Api.Messages.Send(new MessagesSendParams
-				{
-					UserIds = new List<long> { 7550525 }, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743
-				}),
-				Throws.InstanceOf<ArgumentException>());
-		}
-
-		[Test]
-		public void MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult()
-		{
-			Url = "https://api.vk.com/method/messages.send";
-			ReadCategoryJsonPath(nameof(MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult));
-
-			var result = Api.Messages.SendToUserIds(new MessagesSendParams
-			{
-				UserIds = new List<long> { 7550525 }, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743
-			});
-
-			Assert.IsNotEmpty(result);
-			var message = result.FirstOrDefault();
-			Assert.NotNull(message);
-			Assert.AreEqual(32190123, message.PeerId);
-			Assert.AreEqual(210525, message.MessageId);
-		}
-
-		[Test]
-		public void RussianText_MessageId()
-		{
-			Url = "https://api.vk.com/method/messages.send";
-			ReadCategoryJsonPath(nameof(RussianText_MessageId));
-
-			var id = Api.Messages.Send(new MessagesSendParams
-			{
-				UserId = 7550525, Message = "Работает # 2 --  еще разок",
-				RandomId = 1
-			});
-
-			Assert.That(id, Is.EqualTo(4464));
-		}
-
-		[Test]
-		public void MessagesSend_RandomIdRequired_ArgumentException()
-		{
-			Url = "https://api.vk.com/method/messages.send";
-			ReadCategoryJsonPath(nameof(MessagesSend_RandomIdRequired_ArgumentException));
-
-			Assert.That(() => Api.Messages.Send(new MessagesSendParams
-				{
-					UserIds = new List<long> { 7550525 }, Message = "г. Таганрог, ул. Фрунзе 66А", Lat = 47.217451, Longitude = 38.922743
-				}),
-				Throws.InstanceOf<ArgumentException>());
-		}
-
-		[Test]
+		[Fact]
 		public void MessagesSend_RandomIdNotRequiredInLessThan_5_90_ArgumentException()
 		{
 			Url = "https://api.vk.com/method/messages.send";
@@ -166,10 +123,149 @@ namespace VkNet.Tests.Categories.Messages
 
 			var id = Api.Messages.Send(new MessagesSendParams
 			{
-				UserId = 7550525, Message = "Работает # 2 --  еще разок"
+				UserId = 7550525,
+				Message = "Работает # 2 --  еще разок"
 			});
 
-			Assert.That(id, Is.EqualTo(4464));
+			id.Should().Be(4464);
+		}
+
+		[Fact]
+		public void MessagesSend_RandomIdRequired_ArgumentException()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+			ReadCategoryJsonPath(nameof(MessagesSend_RandomIdRequired_ArgumentException));
+
+			FluentActions.Invoking(() => Api.Messages.Send(new MessagesSendParams
+				{
+					UserIds = new List<long>
+					{
+						7550525
+					},
+					Message = "г. Таганрог, ул. Фрунзе 66А",
+					Lat = 47.217451,
+					Longitude = 38.922743
+				}))
+				.Should()
+				.ThrowExactly<ArgumentException>();
+		}
+
+		[Fact]
+		public void MessagesSend_SetUserIdsParam_ArgumentException()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+			ReadCategoryJsonPath(nameof(MessagesSend_SetUserIdsParam_ArgumentException));
+
+			FluentActions.Invoking(() => Api.Messages.Send(new MessagesSendParams
+				{
+					UserIds = new List<long>
+					{
+						7550525
+					},
+					Message = "г. Таганрог, ул. Фрунзе 66А",
+					Lat = 47.217451,
+					Longitude = 38.922743
+				}))
+				.Should()
+				.ThrowExactly<ArgumentException>();
+		}
+
+		[Fact]
+		public void MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+			ReadCategoryJsonPath(nameof(MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult));
+
+			var result = Api.Messages.SendToUserIds(new MessagesSendParams
+			{
+				UserIds = new List<long>
+				{
+					7550525
+				},
+				Message = "г. Таганрог, ул. Фрунзе 66А",
+				Lat = 47.217451,
+				Longitude = 38.922743
+			});
+
+			result.Should().NotBeEmpty();
+			var message = result.FirstOrDefault();
+			message.Should().NotBeNull();
+			message.PeerId.Should().Be(32190123);
+			message.MessageId.Should().Be(210525);
+		}
+
+		[Fact]
+		public void RussianText_MessageId()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+			ReadCategoryJsonPath(nameof(RussianText_MessageId));
+
+			var id = Api.Messages.Send(new MessagesSendParams
+			{
+				UserId = 7550525,
+				Message = "Работает # 2 --  еще разок",
+				RandomId = 1
+			});
+
+			id.Should().Be(4464);
+		}
+
+		[Fact]
+		public void Template_Carousel()
+		{
+			Url = "https://api.vk.com/method/messages.send";
+			ReadCategoryJsonPath(nameof(Template_Carousel));
+
+			var button = new MessageKeyboardButton
+			{
+				Color = KeyboardButtonColor.Primary,
+				Action = new MessageKeyboardButtonAction
+				{
+					Type = KeyboardButtonActionType.Text,
+					Label = "Label"
+				}
+			};
+
+			var buttons = new[]
+			{
+				button
+			};
+
+			var carouselAction = new CarouselElementAction()
+			{
+				Link = new Uri("https://vk.com/"),
+				Type = CarouselElementActionType.OpenLink
+			};
+
+			var carousel = new CarouselElement
+			{
+				Description = "Desc",
+				Action = carouselAction,
+				Buttons = buttons,
+				PhotoId = "-126102803_425491011",
+				Title = "Title"
+			};
+
+			var templateElements = new[]
+			{
+				carousel
+			};
+
+			var template = new MessageTemplate
+			{
+				Type = TemplateType.Carousel,
+				Elements = templateElements
+			};
+
+			var id = Api.Messages.Send(new MessagesSendParams
+			{
+				UserId = 7550525,
+				Message = "Работает # 2 --  еще разок",
+				RandomId = 1,
+				Template = template
+			});
+
+			id.Should().Be(4464);
 		}
 	}
 }

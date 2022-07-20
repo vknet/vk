@@ -13,7 +13,7 @@ using VkNet.Utils;
 namespace VkNet.Abstractions
 {
 	/// <summary>
-	/// Асинхронные методы для работы с друзьями.
+	/// Методы для работы с друзьями.
 	/// </summary>
 	public interface IFriendsCategoryAsync
 	{
@@ -248,14 +248,6 @@ namespace VkNet.Abstractions
 		/// Флаг, может принимать значения 1 или 0 (Флаг, может
 		/// принимать значения 1 или 0).
 		/// </param>
-		/// <param name="captchaSid">
-		/// Id капчи (только если для вызова метода необходимо
-		/// ввести капчу)
-		/// </param>
-		/// <param name="captchaKey">
-		/// Текст капчи (только если для вызова метода необходимо
-		/// ввести капчу)
-		/// </param>
 		/// <returns>
 		/// После успешного выполнения возвращает одно из следующих значений:
 		/// 1 — заявка на добавление данного пользователя в друзья отправлена;
@@ -265,7 +257,10 @@ namespace VkNet.Abstractions
 		/// <remarks>
 		/// Страница документации ВКонтакте http://vk.com/dev/friends.add
 		/// </remarks>
-		[Obsolete(ObsoleteText.CaptchaNeeded)]
+		Task<AddFriendStatus> AddAsync(long userId, string text = "", bool? follow = null);
+
+		/// <inheritdoc cref="IFriendsCategoryAsync.AddAsync(long,string,bool?)" />
+		[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 		Task<AddFriendStatus> AddAsync(long userId, string text = "", bool? follow = null, long? captchaSid = null,
 										string captchaKey = null);
 
