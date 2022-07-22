@@ -33,6 +33,7 @@ namespace {0}
 	const string PropertyDeclaration = "{0} = response[\"{1}\"],";
 
 	const string PropertyReadonlyCollection = "{0} = response[\"{1}\"].ToReadOnlyCollectionOf<{2}>(),";
+
 	const string PropertyReadonlyCollectionWithLambda = "{0} = response[\"{1}\"].ToReadOnlyCollectionOf<{2}>(x => x),";
 
 	const string PropertyVkCollection = "{0} = response[\"{1}\"].ToVkCollectionOf<{2}>(x => x),";
@@ -74,7 +75,7 @@ namespace {0}
 	}
 
 	private (ClassDeclarationSyntax, string) CreateNewPartialClassWithFromJsonMethod(
-		ClassDeclarationSyntax model, IEnumerable<(string, string, string)> properties)
+		ClassDeclarationSyntax model, IEnumerable<(string PropertyName, string AttributeArgument, string PropertyType)> properties)
 	{
 		var className = model.Identifier.ValueText;
 		var namespaceName = GetFullNamespace(model);
@@ -88,58 +89,43 @@ namespace {0}
 			fieldDeclaration));
 	}
 
-	private string GetPropertyDeclarations(IEnumerable<(string, string, string)> properties)
+	private string GetPropertyDeclarations(IEnumerable<(string PropertyName, string AttributeArgument, string PropertyType)> properties)
 	{
 		var fieldDeclaration = new StringBuilder();
 
 		foreach (var property in properties)
 		{
-			if (property.Item3.Contains("ReadOnlyCollection"))
+			var type = property.PropertyType;
+			string baseExpression;
+			string baseType;
+
+			if (type.Contains("ReadOnlyCollection") || type.Contains("IEnumerable"))
 			{
-				var typeName = GetTypeFromGeneric(property.Item3);
+				var typeName = GetTypeFromGeneric(property.PropertyType);
 
 				if (typeName[0] == char.ToLower(typeName[0]))
 				{
-					fieldDeclaration.AppendLine(string.Format(PropertyReadonlyCollectionWithLambda,
-						property.Item1,
-						property.Item2,
-						GetTypeFromGeneric(property.Item3)));
+					baseExpression = PropertyReadonlyCollectionWithLambda;
 				} else
 				{
-					fieldDeclaration.AppendLine(string.Format(PropertyReadonlyCollection,
-						property.Item1,
-						property.Item2,
-						GetTypeFromGeneric(property.Item3)));
+					baseExpression = PropertyReadonlyCollection;
 				}
-			} else if (property.Item3.Contains("VkCollection"))
-			{
-				fieldDeclaration.AppendLine(string.Format(PropertyVkCollection,
-					property.Item1,
-					property.Item2,
-					GetTypeFromGeneric(property.Item3)));
-			} else if (property.Item3.Contains("IEnumerable"))
-			{
-				var typeName = GetTypeFromGeneric(property.Item3);
 
-				if (typeName[0] == char.ToLower(typeName[0]))
-				{
-					fieldDeclaration.AppendLine(string.Format(PropertyReadonlyCollectionWithLambda,
-						property.Item1,
-						property.Item2,
-						GetTypeFromGeneric(property.Item3)));
-				} else
-				{
-					fieldDeclaration.AppendLine(string.Format(PropertyReadonlyCollection,
-						property.Item1,
-						property.Item2,
-						GetTypeFromGeneric(property.Item3)));
-				}
+				baseType = typeName;
+			} else if (type.Contains("VkCollection"))
+			{
+				baseExpression = PropertyVkCollection;
+				baseType = GetTypeFromGeneric(property.PropertyType);
 			} else
 			{
-				fieldDeclaration.AppendLine(string.Format(PropertyDeclaration,
-					property.Item1,
-					property.Item2));
+				baseExpression = PropertyDeclaration;
+				baseType = type;
 			}
+
+			fieldDeclaration.AppendFormat(baseExpression,
+				property.PropertyName,
+				property.AttributeArgument,
+				baseType);
 		}
 
 		return fieldDeclaration.ToString();
@@ -157,7 +143,7 @@ namespace {0}
 	/// </summary>
 	/// <param name="model">  </param>
 	/// <returns>pairs from field name and JsonProperty annotation argument</returns>
-	private IEnumerable<(string, string, string)> GetAllPropreties(ClassDeclarationSyntax model)
+	private IEnumerable<(string PropertyName, string AttributeArgument, string PropertyType)> GetAllPropreties(ClassDeclarationSyntax model)
 	{
 		var dict = new List<(string, string, string)>();
 		var properties = model.Members.OfType<PropertyDeclarationSyntax>();
