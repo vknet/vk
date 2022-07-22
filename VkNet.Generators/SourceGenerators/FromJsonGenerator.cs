@@ -103,13 +103,9 @@ namespace {0}
 			{
 				var typeName = GetTypeFromGeneric(property.PropertyType);
 
-				if (typeName[0] == char.ToLower(typeName[0]))
-				{
-					baseExpression = PropertyReadonlyCollectionWithLambda;
-				} else
-				{
-					baseExpression = PropertyReadonlyCollection;
-				}
+				baseExpression = typeName[0] == char.ToLower(typeName[0])
+					? PropertyReadonlyCollectionWithLambda
+					: PropertyReadonlyCollection;
 
 				baseType = typeName;
 			} else if (type.Contains("VkCollection"))
