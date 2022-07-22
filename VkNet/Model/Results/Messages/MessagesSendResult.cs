@@ -7,7 +7,7 @@ namespace VkNet.Model
 	/// результат выполнения запроса messages.send
 	/// </summary>
 	[Serializable]
-	public class MessagesSendResult
+	public  class MessagesSendResult
 	{
 		/// <summary>
 		/// Идентификатор назначения;

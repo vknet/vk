@@ -10,7 +10,7 @@ namespace VkNet.Model
 	/// Параметры метода Messages.GetImportantMessages
 	/// </summary>
 	[Serializable]
-	public class GetImportantMessagesResult
+	public partial class GetImportantMessagesResult
 	{
 		/// <summary>
 		/// Сообщения
@@ -30,5 +30,6 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("conversations")]
 		public ReadOnlyCollection<Conversation> Conversations { get; set; }
+
 	}
 }

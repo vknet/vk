@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model
 {
@@ -8,7 +9,7 @@ namespace VkNet.Model
 	/// Результат запроса о получении беседы
 	/// </summary>
 	[Serializable]
-	public class ConversationResult
+	public partial class ConversationResult
 	{
 		/// <summary>
 		/// Общее число результатов
@@ -33,5 +34,6 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("groups")]
 		public IEnumerable<Group> Groups { get; set; }
+
 	}
 }

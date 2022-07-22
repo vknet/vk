@@ -8,7 +8,7 @@ namespace VkNet.Model
 	/// Результат метода messages.GetConversationMembersResult
 	/// </summary>
 	[Serializable]
-	public class GetConversationMembersResult
+	public partial class GetConversationMembersResult
 	{
 		/// <summary>
 		/// Число участников беседы.
@@ -34,5 +34,6 @@ namespace VkNet.Model
 		/// </summary>
 		[JsonProperty("groups")]
 		public ReadOnlyCollection<Group> Groups { get; set; }
+
 	}
 }
