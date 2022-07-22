@@ -8,7 +8,7 @@ namespace VkNet.Model
 	/// Результат запроса messages.GetRecentCalls
 	/// </summary>
 	[Serializable]
-	public class GetRecentCallsResult
+	public partial class GetRecentCallsResult
 	{
 		/// <summary>
 		/// Число результатов.
