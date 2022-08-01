@@ -2,22 +2,20 @@ using FluentAssertions;
 using VkNet.Model.Attachments;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class AudioPlaylistModel : BaseTest
 {
-
-
-	public class AudioPlaylistModel : BaseTest
+	[Fact]
+	public void ShouldDeserializeFromVkResponseToAttachment()
 	{
-		[Fact]
-		public void ShouldDeserializeFromVkResponseToAttachment()
-		{
-			ReadJsonFile("Models", "audio_playlist_attachment");
+		ReadJsonFile("Models", "audio_playlist_attachment");
 
-			var response = GetResponse();
+		var response = GetResponse();
 
-			var attachment = Attachment.FromJson(response);
+		var attachment = Attachment.FromJson(response);
 
-			attachment.Instance.Should().BeOfType<AudioPlaylist>();
-		}
+		attachment.Instance.Should()
+			.BeOfType<AudioPlaylist>();
 	}
 }

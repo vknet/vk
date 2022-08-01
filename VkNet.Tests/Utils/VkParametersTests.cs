@@ -3,72 +3,89 @@ using FluentAssertions;
 using VkNet.Utils;
 using Xunit;
 
-namespace VkNet.Tests.Utils
+namespace VkNet.Tests.Utils;
+
+public class VkParametersTests
 {
-
-	public class VkParametersTests
+	[Fact]
+	public void AddNullableBoolean_FalseValue()
 	{
-		[Fact]
-		public void AddNullableBoolean_FalseValue()
+		var @params = new VkParameters
 		{
-			var @params = new VkParameters
 			{
-				{ "NullableBoolean", false }
-			};
+				"NullableBoolean", false
+			}
+		};
 
-			@params.Should().ContainKey("NullableBoolean");
-			var val = @params["NullableBoolean"];
-			val.Should().Be("0");
-		}
+		@params.Should()
+			.ContainKey("NullableBoolean");
 
-		[Fact]
-		public void AddNullableBoolean_NullValue()
+		var val = @params["NullableBoolean"];
+
+		val.Should()
+			.Be("0");
+	}
+
+	[Fact]
+	public void AddNullableBoolean_NullValue()
+	{
+		var @params = new VkParameters
 		{
-			var @params = new VkParameters
 			{
-				{ "NullableBoolean", (bool?) null }
-			};
+				"NullableBoolean", (bool?) null
+			}
+		};
 
-			@params.Should().NotContainKey("NullableBoolean");
-		}
+		@params.Should()
+			.NotContainKey("NullableBoolean");
+	}
 
-		[Fact]
-		public void AddNullableBoolean_TrueValue()
+	[Fact]
+	public void AddNullableBoolean_TrueValue()
+	{
+		var @params = new VkParameters
 		{
-			var @params = new VkParameters
 			{
-				{ "NullableBoolean", true }
-			};
+				"NullableBoolean", true
+			}
+		};
 
-			@params.Should().ContainKey("NullableBoolean");
-			var val = @params["NullableBoolean"];
-			val.Should().Be("1");
-		}
+		@params.Should()
+			.ContainKey("NullableBoolean");
 
-		[Fact]
-		public void AddDateTime()
+		var val = @params["NullableBoolean"];
+
+		val.Should()
+			.Be("1");
+	}
+
+	[Fact]
+	public void AddDateTime()
+	{
+		var dateTimeNow = new DateTime(2019,
+			10,
+			31,
+			0,
+			21,
+			32,
+			DateTimeKind.Utc);
+
+		var @params = new VkParameters
 		{
-			var dateTimeNow = new DateTime(2019,
-				10,
-				31,
-				0,
-				21,
-				32,
-				DateTimeKind.Utc);
-
-			var @params = new VkParameters
 			{
-				{ "date_time", dateTimeNow }
-			};
+				"date_time", dateTimeNow
+			}
+		};
 
-			FluentActions.Invoking(() =>
-				{
-					var unused = @params["date_time"];
-				})
-				.Should()
-				.NotThrow();
+		FluentActions.Invoking(() =>
+			{
+				var unused = @params["date_time"];
+			})
+			.Should()
+			.NotThrow();
 
-			@params["date_time"].Should().Be("1572481292");
-		}
+		@params["date_time"]
+			.Should()
+			.Be("1572481292");
 	}
 }

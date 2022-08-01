@@ -3,54 +3,56 @@ using Newtonsoft.Json;
 using VkNet.Model;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class TimetableTests : BaseTest
 {
-
-
-	public class TimetableTests : BaseTest
+	[Fact]
+	public void TimetableToJson()
 	{
-		[Fact]
-		public void TimetableToJson()
+		ReadJsonFile("Models", nameof(TimetableToJson));
+
+		var timetable = new Timetable()
 		{
-			ReadJsonFile("Models", nameof(TimetableToJson));
-
-			var timetable = new Timetable()
+			Monday = new()
 			{
-				Monday = new TimetableItem
-				{
-					OpenTime = 1080,
-					CloseTime = 1380
-				},
-				Tuesday = new TimetableItem
-				{
-					OpenTime = 1080,
-					CloseTime = 1380
-				},
-				Wednesday = new TimetableItem
-				{
-					OpenTime = 1080,
-					CloseTime = 1320
-				},
-				Thursday = new TimetableItem
-				{
-					OpenTime = 1080,
-					CloseTime = 1320
-				},
-				Friday = new TimetableItem
-				{
-					OpenTime = 1080,
-					CloseTime = 1320
-				},
-				Saturday = new TimetableItem
-				{
-					OpenTime = 1080,
-					CloseTime = 1320,
-					BreakOpenTime = 1200,
-					BreakCloseTime = 1230
-				},
-			};
+				OpenTime = 1080,
+				CloseTime = 1380
+			},
+			Tuesday = new()
+			{
+				OpenTime = 1080,
+				CloseTime = 1380
+			},
+			Wednesday = new()
+			{
+				OpenTime = 1080,
+				CloseTime = 1320
+			},
+			Thursday = new()
+			{
+				OpenTime = 1080,
+				CloseTime = 1320
+			},
+			Friday = new()
+			{
+				OpenTime = 1080,
+				CloseTime = 1320
+			},
+			Saturday = new()
+			{
+				OpenTime = 1080,
+				CloseTime = 1320,
+				BreakOpenTime = 1200,
+				BreakCloseTime = 1230
+			}
+		};
 
-			JsonConvert.SerializeObject(timetable, Formatting.Indented).Replace("\r", "").Replace("\n", "").Should().Be(Json.Replace("\r", "").Replace("\n", ""));
-		}
+		JsonConvert.SerializeObject(timetable, Formatting.Indented)
+			.Replace("\r", "")
+			.Replace("\n", "")
+			.Should()
+			.Be(Json.Replace("\r", "")
+				.Replace("\n", ""));
 	}
 }

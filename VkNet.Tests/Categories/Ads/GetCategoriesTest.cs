@@ -3,24 +3,23 @@ using VkNet.Enums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetCategoriesTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class GetCategoriesTest : CategoryBaseTest
+	[Fact]
+	public void GetCategories()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getCategories";
 
-		[Fact]
-		public void GetCategories()
-		{
-			Url = "https://api.vk.com/method/ads.getCategories";
+		ReadCategoryJsonPath(nameof(Api.Ads.GetCategories));
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetCategories));
+		var result = Api.Ads.GetCategories(Language.Ru);
 
-			var result = Api.Ads.GetCategories(Language.Ru);
-
-			result.V1[0].Name.Should().Be("Авто/мото");
-		}
+		result.V1[0]
+			.Name.Should()
+			.Be("Авто/мото");
 	}
 }

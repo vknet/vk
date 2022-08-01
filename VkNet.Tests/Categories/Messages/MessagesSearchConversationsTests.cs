@@ -1,23 +1,23 @@
 ﻿using FluentAssertions;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Messages
+namespace VkNet.Tests.Categories.Messages;
+
+public class MessagesSearchConversationsTests : MessagesBaseTests
 {
-	public class MessagesSearchConversationsTests : MessagesBaseTests
+	[Fact]
+	public void SearchConversations()
 	{
-		[Fact]
-		public void SearchConversations()
-		{
-			Url = "https://api.vk.com/method/messages.searchConversations";
-			ReadCategoryJsonPath(nameof(SearchConversations));
+		Url = "https://api.vk.com/method/messages.searchConversations";
+		ReadCategoryJsonPath(nameof(SearchConversations));
 
-			var result = Api.Messages.SearchConversations("query",
-				new[]
-				{
-					"fields"
-				});
+		var result = Api.Messages.SearchConversations("query",
+			new[]
+			{
+				"fields"
+			});
 
-			result.Count.Should().Be(20);
-		}
+		result.Count.Should()
+			.Be(20);
 	}
 }

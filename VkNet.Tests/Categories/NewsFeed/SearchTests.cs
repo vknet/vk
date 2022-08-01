@@ -4,62 +4,71 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.NewsFeed
+namespace VkNet.Tests.Categories.NewsFeed;
+
+public class SearchTests : CategoryBaseTest
 {
+	protected override string Folder => "NewsFeed";
 
-
-	public class SearchTests : CategoryBaseTest
+	[Fact]
+	public void Search_NextFrom_NotNull()
 	{
-		protected override string Folder => "NewsFeed";
+		Url = "https://api.vk.com/method/newsfeed.search";
+		ReadCategoryJsonPath(nameof(Search_NextFrom_NotNull));
 
-		[Fact]
-		public void Search_NextFrom_NotNull()
+		var result = Api.NewsFeed.Search(new());
+
+		result.Should()
+			.NotBeNull();
+
+		result.NextFrom.Should()
+			.NotBeEmpty();
+	}
+
+	[Fact]
+	public void Search_Coordinates_Exception()
+	{
+		Url = "https://api.vk.com/method/newsfeed.search";
+		ReadCategoryJsonPath(nameof(Search_Coordinates_Exception));
+
+		var result = Api.NewsFeed.Search(new()
 		{
-			Url = "https://api.vk.com/method/newsfeed.search";
-			ReadCategoryJsonPath(nameof(Search_NextFrom_NotNull));
+			Query = "word",
+			Extended = false,
+			Count = 20
+		});
 
-			var result = Api.NewsFeed.Search(new NewsFeedSearchParams());
+		result.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			result.NextFrom.Should().NotBeEmpty();
-		}
+		result.NextFrom.Should()
+			.NotBeEmpty();
+	}
 
-		[Fact]
-		public void Search_Coordinates_Exception()
+	[Fact]
+	public void Search_PostSourceData_Parsing()
+	{
+		Url = "https://api.vk.com/method/newsfeed.search";
+		ReadCategoryJsonPath(nameof(Search_PostSourceData_Parsing));
+
+		var result = Api.NewsFeed.Search(new()
 		{
-			Url = "https://api.vk.com/method/newsfeed.search";
-			ReadCategoryJsonPath(nameof(Search_Coordinates_Exception));
+			Query = "word",
+			Extended = false,
+			Count = 20
+		});
 
-			var result = Api.NewsFeed.Search(new NewsFeedSearchParams{
-				Query = "word",
-				Extended = false,
-				Count = 20
-			});
+		result.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			result.NextFrom.Should().NotBeEmpty();
-		}
+		var first = result.Items.First();
 
-		[Fact]
-		public void Search_PostSourceData_Parsing()
-		{
-			Url = "https://api.vk.com/method/newsfeed.search";
-			ReadCategoryJsonPath(nameof(Search_PostSourceData_Parsing));
+		first.PostSource.Data.Should()
+			.NotBeNull();
 
-			var result = Api.NewsFeed.Search(new NewsFeedSearchParams()
-			{
-				Query = "word",
-				Extended = false,
-				Count = 20
-			});
+		var second = result.Items.Last();
 
-			result.Should().NotBeNull();
-
-			var first = result.Items.First();
-			first.PostSource.Data.Should().NotBeNull();
-
-			var second = result.Items.Last();
-			second.PostSource.Data.Should().BeNull();
-		}
+		second.PostSource.Data.Should()
+			.BeNull();
 	}
 }

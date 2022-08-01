@@ -4,29 +4,31 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class RemoveTargetContactsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class RemoveTargetContactsTest : CategoryBaseTest
+	[Fact]
+	public void RemoveTargetContacts()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.removeTargetContacts";
 
-		[Fact]
-		public void RemoveTargetContacts()
+		ReadCategoryJsonPath(nameof(Api.Ads.RemoveTargetContacts));
+
+		var result = Api.Ads.RemoveTargetContacts(new()
 		{
-			Url = "https://api.vk.com/method/ads.removeTargetContacts";
-
-			ReadCategoryJsonPath(nameof(Api.Ads.RemoveTargetContacts));
-
-			var result = Api.Ads.RemoveTargetContacts(new RemoveTargetContactsParams
+			AccountId = 1605245430,
+			Contacts = new()
 			{
-				AccountId = 1605245430,
-				Contacts = new List<string> { "79534998632", "79534998633" },
-				TargetGroupId = 29859003
-			});
+				"79534998632",
+				"79534998633"
+			},
+			TargetGroupId = 29859003
+		});
 
-			result.Result.Should().BeTrue();
-		}
+		result.Result.Should()
+			.BeTrue();
 	}
 }

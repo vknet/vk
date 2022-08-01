@@ -1,21 +1,20 @@
 ﻿using System;
 
-namespace VkNet.Enums
+namespace VkNet.Enums;
+
+/// <summary>
+/// Информация о том прочитано ли сообщение.
+/// </summary>
+[Serializable]
+public enum MessageReadState
 {
 	/// <summary>
-	/// Информация о том прочитано ли сообщение.
+	/// Сообщение не прочитано.
 	/// </summary>
-	[Serializable]
-	public enum MessageReadState
-	{
-		/// <summary>
-		/// Сообщение не прочитано.
-		/// </summary>
-		Unreaded = 0
+	Unreaded = 0,
 
-		, /// <summary>
-		/// Сообщение прочитано.
-		/// </summary>
-		Readed = 1
-	}
+	/// <summary>
+	/// Сообщение прочитано.
+	/// </summary>
+	Readed = 1
 }

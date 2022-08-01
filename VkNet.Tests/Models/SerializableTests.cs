@@ -3,26 +3,25 @@ using System.Reflection;
 using FluentAssertions;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class SerializableTests
 {
-
-	public class SerializableTests
+	[Fact]
+	public void ModelsShouldHaveSerializableAttribute()
 	{
-		[Fact]
-		public void ModelsShouldHaveSerializableAttribute()
-		{
-			var models = typeof(VkApi).Assembly
-				.GetTypes()
-				.Where(x =>
-					x.Namespace != null
-					&& x.Namespace.StartsWith("VkNet.Model")
-					&& !x.Attributes.HasFlag(TypeAttributes.Serializable)
-					&& !x.IsInterface)
-				.Where(x => !x.Name.StartsWith("<>c__DisplayClass56_0"));
+		var models = typeof(VkApi).Assembly
+			.GetTypes()
+			.Where(x =>
+				x.Namespace != null
+				&& x.Namespace.StartsWith("VkNet.Model")
+				&& !x.Attributes.HasFlag(TypeAttributes.Serializable)
+				&& !x.IsInterface)
+			.Where(x => !x.Name.StartsWith("<>c__DisplayClass56_0"));
 
-			var enumerable = models.ToList();
+		var enumerable = models.ToList();
 
-			enumerable.Should().BeEmpty();
-		}
+		enumerable.Should()
+			.BeEmpty();
 	}
 }

@@ -3,78 +3,84 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Places
+namespace VkNet.Tests.Categories.Places;
+
+public class PlacesCategoryTests : CategoryBaseTest
 {
+	protected override string Folder => "Places";
 
-
-	public class PlacesCategoryTests : CategoryBaseTest
+	[Fact]
+	public void Add()
 	{
-		protected override string Folder => "Places";
+		Url = "https://api.vk.com/method/places.add";
+		ReadCategoryJsonPath(nameof(Add));
 
-		[Fact]
-		public void Add()
+		var result = Api.Places.Add(new());
+
+		result.Should()
+			.Be(6162171);
+	}
+
+	[Fact]
+	public void Checkin()
+	{
+		Url = "https://api.vk.com/method/places.checkin";
+		ReadCategoryJsonPath(nameof(Checkin));
+
+		var result = Api.Places.Checkin(new());
+
+		result.Should()
+			.Be(6162171);
+	}
+
+	[Fact]
+	public void GetById()
+	{
+		Url = "https://api.vk.com/method/places.getById";
+		ReadCategoryJsonPath(nameof(GetById));
+
+		var result = Api.Places.GetById(new ulong[]
 		{
-			Url = "https://api.vk.com/method/places.add";
-			ReadCategoryJsonPath(nameof(Add));
+			123
+		});
 
-			var result = Api.Places.Add(new PlacesAddParams());
+		result.Should()
+			.NotBeEmpty();
+	}
 
-			result.Should().Be(6162171);
-		}
+	[Fact]
+	public void GetCheckins()
+	{
+		Url = "https://api.vk.com/method/places.getCheckins";
+		ReadCategoryJsonPath(nameof(GetCheckins));
 
-		[Fact]
-		public void Checkin()
-		{
-			Url = "https://api.vk.com/method/places.checkin";
-			ReadCategoryJsonPath(nameof(Checkin));
+		var result = Api.Places.GetCheckins(new());
 
-			var result = Api.Places.Checkin(new PlacesCheckinParams());
+		result.Should()
+			.NotBeEmpty();
+	}
 
-			result.Should().Be(6162171);
-		}
+	[Fact]
+	public void GetTypes()
+	{
+		Url = "https://api.vk.com/method/places.getTypes";
+		ReadCategoryJsonPath(nameof(GetTypes));
 
-		[Fact]
-		public void GetById()
-		{
-			Url = "https://api.vk.com/method/places.getById";
-			ReadCategoryJsonPath(nameof(GetById));
+		var result = Api.Places.GetTypes();
 
-			var result = Api.Places.GetById(new ulong[] { 123 });
+		result.Should()
+			.NotBeEmpty();
+	}
 
-			result.Should().NotBeEmpty();
-		}
+	[Fact]
+	public void Search()
+	{
+		Url = "https://api.vk.com/method/places.search";
+		ReadCategoryJsonPath(nameof(Search));
 
-		[Fact]
-		public void GetCheckins()
-		{
-			Url = "https://api.vk.com/method/places.getCheckins";
-			ReadCategoryJsonPath(nameof(GetCheckins));
+		var result = Api.Places.Search(new());
 
-			var result = Api.Places.GetCheckins(new PlacesGetCheckinsParams());
-
-			result.Should().NotBeEmpty();
-		}
-
-		[Fact]
-		public void GetTypes()
-		{
-			Url = "https://api.vk.com/method/places.getTypes";
-			ReadCategoryJsonPath(nameof(GetTypes));
-
-			var result = Api.Places.GetTypes();
-
-			result.Should().NotBeEmpty();
-		}
-
-		[Fact]
-		public void Search()
-		{
-			Url = "https://api.vk.com/method/places.search";
-			ReadCategoryJsonPath(nameof(Search));
-
-			var result = Api.Places.Search(new PlacesSearchParams());
-
-			result.Should().NotBeEmpty();
-		}
+		result.Should()
+			.NotBeEmpty();
 	}
 }

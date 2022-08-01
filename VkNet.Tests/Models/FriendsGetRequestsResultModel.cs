@@ -3,45 +3,45 @@ using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class FriendsGetRequestsResultModel : CategoryBaseTest
 {
+	protected override string Folder => "Friends";
 
-
-	public class FriendsGetRequestsResultModel : CategoryBaseTest
+	[Fact]
+	public void ShouldHaveField_Message()
 	{
-		protected override string Folder => "Friends";
+		ReadCategoryJsonPath(nameof(ShouldHaveField_Message));
 
-		[Fact]
-		public void ShouldHaveField_Message()
-		{
-			ReadCategoryJsonPath(nameof(ShouldHaveField_Message));
+		var response = GetResponse();
+		var result = FriendsGetRequestsResult.FromJson(response);
 
-			var response = GetResponse();
-			var result = FriendsGetRequestsResult.FromJson(response);
+		result.Message.Should()
+			.Be("text");
+	}
 
-			result.Message.Should().Be("text");
-		}
+	[Fact]
+	public void ShouldHaveField_Mutual()
+	{
+		ReadCategoryJsonPath(nameof(ShouldHaveField_Mutual));
 
-		[Fact]
-		public void ShouldHaveField_Mutual()
-		{
-			ReadCategoryJsonPath(nameof(ShouldHaveField_Mutual));
+		var response = GetResponse();
+		var result = FriendsGetRequestsResult.FromJson(response);
 
-			var response = GetResponse();
-			var result = FriendsGetRequestsResult.FromJson(response);
+		result.Mutual.Should()
+			.NotBeEmpty();
+	}
 
-			result.Mutual.Should().NotBeEmpty();
-		}
+	[Fact]
+	public void ShouldHaveField_UserId()
+	{
+		ReadCategoryJsonPath(nameof(ShouldHaveField_UserId));
 
-		[Fact]
-		public void ShouldHaveField_UserId()
-		{
-			ReadCategoryJsonPath(nameof(ShouldHaveField_UserId));
+		var response = GetResponse();
+		var result = FriendsGetRequestsResult.FromJson(response);
 
-			var response = GetResponse();
-			var result = FriendsGetRequestsResult.FromJson(response);
-
-			result.UserId.Should().Be(221634238L);
-		}
+		result.UserId.Should()
+			.Be(221634238L);
 	}
 }

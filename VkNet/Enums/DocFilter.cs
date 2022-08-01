@@ -1,48 +1,47 @@
-﻿namespace VkNet.Enums
+﻿namespace VkNet.Enums;
+
+/// <summary>
+/// Фильтр по типу документа.
+/// </summary>
+public enum DocFilter
 {
 	/// <summary>
-	/// Фильтр по типу документа.
+	/// 1 - текстовые документы
 	/// </summary>
-	public enum DocFilter
-	{
-		/// <summary>
-		/// 1 - текстовые документы
-		/// </summary>
-		Text = 1
+	Text = 1,
 
-		, /// <summary>
-		/// 2 - архивы
-		/// </summary>
-		Archive
+	/// <summary>
+	/// 2 - архивы
+	/// </summary>
+	Archive,
 
-		, /// <summary>
-		/// 3 - gif
-		/// </summary>
-		Gif
+	/// <summary>
+	/// 3 - gif
+	/// </summary>
+	Gif,
 
-		, /// <summary>
-		/// 4 - изображения
-		/// </summary>
-		Image
+	/// <summary>
+	/// 4 - изображения
+	/// </summary>
+	Image,
 
-		, /// <summary>
-		/// 5 - аудио
-		/// </summary>
-		Audio
+	/// <summary>
+	/// 5 - аудио
+	/// </summary>
+	Audio,
 
-		, /// <summary>
-		/// 6 - видео
-		/// </summary>
-		Video
+	/// <summary>
+	/// 6 - видео
+	/// </summary>
+	Video,
 
-		, /// <summary>
-		/// 7 - электронные книги
-		/// </summary>
-		EBook
+	/// <summary>
+	/// 7 - электронные книги
+	/// </summary>
+	EBook,
 
-		, /// <summary>
-		/// 8 - неизвестно
-		/// </summary>
-		Unknown
-	}
+	/// <summary>
+	/// 8 - неизвестно
+	/// </summary>
+	Unknown
 }

@@ -4,25 +4,30 @@ using VkNet.Model.RequestParams.Fave;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Fave
+namespace VkNet.Tests.Categories.Fave;
+
+public class FaveGetTests : CategoryBaseTest
 {
-	public class FaveGetTests : CategoryBaseTest
+	/// <inheritdoc />
+	protected override string Folder => "Fave";
+
+	[Fact]
+	public void Get()
 	{
-		/// <inheritdoc />
-		protected override string Folder => "Fave";
+		Url = "https://api.vk.com/method/fave.get";
+		ReadCategoryJsonPath(nameof(Get));
 
-		[Fact]
-		public void Get()
+		var faves = Api.Fave.Get(new()
 		{
-			Url = "https://api.vk.com/method/fave.get";
-			ReadCategoryJsonPath(nameof(Get));
+			Count = 1
+		});
 
-			var faves = Api.Fave.Get(new FaveGetParams { Count = 1 });
+		var fave = faves.FirstOrDefault();
 
-			var fave = faves.FirstOrDefault();
+		faves.Should()
+			.NotBeEmpty();
 
-			faves.Should().NotBeEmpty();
-			fave.Should().NotBeNull();
-		}
+		fave.Should()
+			.NotBeNull();
 	}
 }

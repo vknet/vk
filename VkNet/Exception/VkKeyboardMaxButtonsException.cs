@@ -1,12 +1,11 @@
-namespace VkNet.Exception
+namespace VkNet.Exception;
+
+/// <summary>
+/// Исключение, выбрасываемое, когда количество кнопок в клавиатуре превышает максимум
+/// </summary>
+public class VkKeyboardMaxButtonsException : VkApiException
 {
-	/// <summary>
-	/// Исключение, выбрасываемое, когда количество кнопок в клавиатуре превышает максимум
-	/// </summary>
-	public class VkKeyboardMaxButtonsException : VkApiException
+	public VkKeyboardMaxButtonsException(string message) : base(message)
 	{
-		public VkKeyboardMaxButtonsException(string message) : base(message)
-		{
-		}
 	}
 }

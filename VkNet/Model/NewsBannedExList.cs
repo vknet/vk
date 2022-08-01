@@ -2,43 +2,42 @@
 using System.Collections.ObjectModel;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Расширеный список забаненых новостей.
+/// </summary>
+[Serializable]
+public class NewsBannedExList
 {
 	/// <summary>
-	/// Расширеный список забаненых новостей.
+	/// В поле groups содержится массив идентификаторов сообществ, которые пользователь
+	/// скрыл из ленты новостей.
 	/// </summary>
-	[Serializable]
-	public class NewsBannedExList
+	public ReadOnlyCollection<Group> Groups { get; set; }
+
+	/// <summary>
+	/// В поле members содержится массив идентификаторов друзей, которые пользователь
+	/// скрыл из ленты новостей.
+	/// </summary>
+	public ReadOnlyCollection<User> Profiles { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static NewsBannedExList FromJson(VkResponse response)
 	{
-		/// <summary>
-		/// В поле groups содержится массив идентификаторов сообществ, которые пользователь
-		/// скрыл из ленты новостей.
-		/// </summary>
-		public ReadOnlyCollection<Group> Groups { get; set; }
+		VkResponseArray names = response[key: "groups"];
+		VkResponseArray profiles = response[key: "profiles"];
 
-		/// <summary>
-		/// В поле members содержится массив идентификаторов друзей, которые пользователь
-		/// скрыл из ленты новостей.
-		/// </summary>
-		public ReadOnlyCollection<User> Profiles { get; set; }
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static NewsBannedExList FromJson(VkResponse response)
+		var bannedList = new NewsBannedExList
 		{
-			VkResponseArray names = response[key: "groups"];
-			VkResponseArray profiles = response[key: "profiles"];
+			Groups = names.ToReadOnlyCollectionOf<Group>(selector: x => x),
+			Profiles = profiles.ToReadOnlyCollectionOf<User>(selector: x => x)
+		};
 
-			var bannedList = new NewsBannedExList
-			{
-					Groups = names.ToReadOnlyCollectionOf<Group>(selector: x => x)
-					, Profiles = profiles.ToReadOnlyCollectionOf<User>(selector: x => x)
-			};
-
-			return bannedList;
-		}
+		return bannedList;
 	}
 }

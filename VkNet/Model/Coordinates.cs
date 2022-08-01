@@ -2,72 +2,75 @@ using System;
 using VkNet.Exception;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Координаты места, в котором была сделана запись.
+/// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo" />.
+/// Официальная страница http://vk.com/dev/post
+/// молчит о том, что возвращаются географические координаты.
+/// </summary>
+[Serializable]
+public class Coordinates
 {
 	/// <summary>
-	/// Координаты места, в котором была сделана запись.
-	/// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo" />.
-	/// Официальная страница http://vk.com/dev/post
-	/// молчит о том, что возвращаются географические координаты.
+	/// Географическая широта.
 	/// </summary>
-	[Serializable]
-	public class Coordinates
+	public double Latitude { get; set; }
+
+	/// <summary>
+	/// Географическая долгота.
+	/// </summary>
+	public double Longitude { get; set; }
+
+	#region Методы
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static Coordinates FromJson(VkResponse response)
 	{
-		/// <summary>
-		/// Географическая широта.
-		/// </summary>
-		public double Latitude { get; set; }
+		// TODO: TEST IT!!!!!
 
-		/// <summary>
-		/// Географическая долгота.
-		/// </summary>
-		public double Longitude { get; set; }
+		double latitude;
+		double longitude;
 
-		#region Методы
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static Coordinates FromJson(VkResponse response)
+		if (response.ContainsKey("latitude") && response.ContainsKey("longitude")) //приходит в messages.geo
 		{
-			// TODO: TEST IT!!!!!
+			latitude = response["latitude"];
+			longitude = response["longitude"];
+		} else //geo со стены 
+		{
+			var latitudeWithLongitude = ((string) response).Split(' ');
 
-			double latitude;
-			double longitude;
-			if (response.ContainsKey("latitude") && response.ContainsKey("longitude")) //приходит в messages.geo
+			if (latitudeWithLongitude.Length != 2)
 			{
-				latitude = response["latitude"];
-				longitude = response["longitude"];
+				throw new VkApiException(message: "Coordinates must have latitude and longitude!");
 			}
-			else //geo со стены 
+
+			if (!double.TryParse(latitudeWithLongitude[0]
+					.Replace(".", ","), out latitude))
 			{
-				var latitudeWithLongitude = ((string) response).Split(' ');
-
-				if (latitudeWithLongitude.Length != 2)
-				{
-					throw new VkApiException(message: "Coordinates must have latitude and longitude!");
-				}
-
-				if (!double.TryParse(s: latitudeWithLongitude[0].Replace(oldValue: ".", newValue: ","), result: out latitude))
-				{
-					throw new VkApiException(message: "Invalid latitude!");
-				}
-
-				if (!double.TryParse(s: latitudeWithLongitude[1].Replace(oldValue: ".", newValue: ","), result: out longitude))
-				{
-					throw new VkApiException(message: "Invalid longitude!");
-				}
+				throw new VkApiException(message: "Invalid latitude!");
 			}
-			var coordinates = new Coordinates
+
+			if (!double.TryParse(latitudeWithLongitude[1]
+					.Replace(".", ","), out longitude))
 			{
-				Latitude = latitude,
-				Longitude = longitude
-			};
-			return coordinates;
+				throw new VkApiException(message: "Invalid longitude!");
+			}
 		}
 
-		#endregion
+		var coordinates = new Coordinates
+		{
+			Latitude = latitude,
+			Longitude = longitude
+		};
+
+		return coordinates;
 	}
+
+	#endregion
 }

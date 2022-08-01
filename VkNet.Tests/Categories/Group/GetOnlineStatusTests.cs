@@ -3,24 +3,22 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Group
+namespace VkNet.Tests.Categories.Group;
+
+public class GetOnlineStatusTests : CategoryBaseTest
 {
+	protected override string Folder => "Groups";
 
-
-	public class GetOnlineStatusTests : CategoryBaseTest
+	[Fact]
+	public void GetOnlineStatus()
 	{
-		protected override string Folder => "Groups";
+		Url = "https://api.vk.com/method/groups.getOnlineStatus";
 
-		[Fact]
-		public void GetOnlineStatus()
-		{
-			Url = "https://api.vk.com/method/groups.getOnlineStatus";
+		ReadCategoryJsonPath(nameof(GetOnlineStatus));
 
-			ReadCategoryJsonPath(nameof(GetOnlineStatus));
+		var result = Api.Groups.GetOnlineStatus(123456);
 
-			var result = Api.Groups.GetOnlineStatus(123456);
-
-			result.Status.Should().Be(OnlineStatusType.None);
-		}
+		result.Status.Should()
+			.Be(OnlineStatusType.None);
 	}
 }

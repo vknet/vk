@@ -2,47 +2,54 @@
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Storage
+namespace VkNet.Tests.Categories.Storage;
+
+public class StorageCategoryTests : CategoryBaseTest
 {
+	protected override string Folder => "Storage";
 
-
-	public class StorageCategoryTests : CategoryBaseTest
+	[Fact]
+	public void Get()
 	{
-		protected override string Folder => "Storage";
+		Url = "https://api.vk.com/method/storage.get";
+		ReadCategoryJsonPath(nameof(Get));
 
-		[Fact]
-		public void Get()
+		var result = Api.Storage.Get(new[]
 		{
-			Url = "https://api.vk.com/method/storage.get";
-			ReadCategoryJsonPath(nameof(Get));
+			"qwe"
+		});
 
-			var result = Api.Storage.Get(new[] { "qwe" });
+		result.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			result.Should().NotBeEmpty();
-		}
+		result.Should()
+			.NotBeEmpty();
+	}
 
-		[Fact]
-		public void GetKeys()
-		{
-			Url = "https://api.vk.com/method/storage.getKeys";
-			ReadCategoryJsonPath(nameof(GetKeys));
+	[Fact]
+	public void GetKeys()
+	{
+		Url = "https://api.vk.com/method/storage.getKeys";
+		ReadCategoryJsonPath(nameof(GetKeys));
 
-			var result = Api.Storage.GetKeys();
+		var result = Api.Storage.GetKeys();
 
-			result.Should().NotBeNull();
-			result.Should().NotBeEmpty();
-		}
+		result.Should()
+			.NotBeNull();
 
-		[Fact]
-		public void Set()
-		{
-			Url = "https://api.vk.com/method/storage.set";
-			ReadJsonFile(JsonPaths.True);
+		result.Should()
+			.NotBeEmpty();
+	}
 
-			var result = Api.Storage.Set("qwe", "qwe");
+	[Fact]
+	public void Set()
+	{
+		Url = "https://api.vk.com/method/storage.set";
+		ReadJsonFile(JsonPaths.True);
 
-			result.Should().BeTrue();
-		}
+		var result = Api.Storage.Set("qwe", "qwe");
+
+		result.Should()
+			.BeTrue();
 	}
 }

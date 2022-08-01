@@ -1,23 +1,22 @@
-namespace VkNet.Enums
+namespace VkNet.Enums;
+
+/// <summary>
+/// Поддерживаемая ориентация экрана.
+/// </summary>
+public enum ScreenOrientation
 {
 	/// <summary>
-	/// Поддерживаемая ориентация экрана.
+	/// альбомная и портретная
 	/// </summary>
-	public enum ScreenOrientation
-	{
-		/// <summary>
-		/// альбомная и портретная
-		/// </summary>
-		AlbumAndPortrait = 0,
+	AlbumAndPortrait = 0,
 
-		/// <summary>
-		/// Только альбомная
-		/// </summary>
-		OnlyAlbum = 1,
+	/// <summary>
+	/// Только альбомная
+	/// </summary>
+	OnlyAlbum = 1,
 
-		/// <summary>
-		/// Только портретная
-		/// </summary>
-		OnlyPortrait = 2
-	}
+	/// <summary>
+	/// Только портретная
+	/// </summary>
+	OnlyPortrait = 2
 }

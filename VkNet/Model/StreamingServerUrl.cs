@@ -1,25 +1,24 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Данные для подключения к Streaming API.
+/// </summary>
+[Serializable]
+public class StreamingServerUrl
 {
 	/// <summary>
-	/// Данные для подключения к Streaming API.
+	/// Хост для подключения к серверу;
 	/// </summary>
-	[Serializable]
-	public class StreamingServerUrl
-	{
-		/// <summary>
-		/// Хост для подключения к серверу;
-		/// </summary>
-		[JsonProperty(propertyName: "endpoint")]
-		public string Endpoint { get; set; }
+	[JsonProperty(propertyName: "endpoint")]
+	public string Endpoint { get; set; }
 
-		/// <summary>
-		/// Ключ доступа. Ключ бессрочный и прекращает действовать только после получения
-		/// нового ключа.
-		/// </summary>
-		[JsonProperty(propertyName: "key")]
-		public string Key { get; set; }
-	}
+	/// <summary>
+	/// Ключ доступа. Ключ бессрочный и прекращает действовать только после получения
+	/// нового ключа.
+	/// </summary>
+	[JsonProperty(propertyName: "key")]
+	public string Key { get; set; }
 }

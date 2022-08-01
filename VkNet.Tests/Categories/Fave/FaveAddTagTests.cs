@@ -2,23 +2,23 @@ using FluentAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Fave
+namespace VkNet.Tests.Categories.Fave;
+
+public class FaveAddTagTests : CategoryBaseTest
 {
-	public class FaveAddTagTests : CategoryBaseTest
+	/// <inheritdoc />
+	protected override string Folder => "Fave";
+
+	[Fact]
+	public void AddTag()
 	{
-		/// <inheritdoc />
-		protected override string Folder => "Fave";
+		Url = "https://api.vk.com/method/fave.addTag";
 
-		[Fact]
-		public void AddTag()
-		{
-			Url = "https://api.vk.com/method/fave.addTag";
+		ReadCategoryJsonPath(nameof(AddTag));
 
-			ReadCategoryJsonPath(nameof(AddTag));
+		var tag = Api.Fave.AddTag("Важное", null);
 
-			var tag = Api.Fave.AddTag("Важное", null);
-
-			tag.Should().NotBeNull();
-		}
+		tag.Should()
+			.NotBeNull();
 	}
 }

@@ -3,169 +3,214 @@ using FluentAssertions;
 using VkNet.Model.RequestParams;
 using Xunit;
 
-namespace VkNet.Tests.Categories.BotsLongPoll
+namespace VkNet.Tests.Categories.BotsLongPoll;
+
+public class BotsLongPollDonutTest : BotsLongPollBaseTest
 {
-
-	public class BotsLongPollDonutTest : BotsLongPollBaseTest
+	[Fact]
+	public void GetBotsLongPollHistory_DonutSubscriptionCreate()
 	{
-		[Fact]
-		public void GetBotsLongPollHistory_DonutSubscriptionCreate()
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionCreate));
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionCreate));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		var update = botsLongPollHistory.Updates.First();
 
-			var update = botsLongPollHistory.Updates.First();
+		var donutNew = update.DonutSubscriptionNew;
 
-			var donutNew = update.DonutSubscriptionNew;
+		donutNew.Amount.Should()
+			.Be(50);
 
-			donutNew.Amount.Should().Be(50);
-			donutNew.AmountWithoutFee.Should().Be(49.8M);
-			donutNew.UserId.Should().Be(1234);
-			update.GroupId.Should().Be(1234);
-		}
+		donutNew.AmountWithoutFee.Should()
+			.Be(49.8M);
 
-		[Fact]
-		public void GetBotsLongPollHistory_DonutSubscriptionProlonged()
+		donutNew.UserId.Should()
+			.Be(1234);
+
+		update.GroupId.Should()
+			.Be(1234);
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_DonutSubscriptionProlonged()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionProlonged));
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionProlonged));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		var update = botsLongPollHistory.Updates.First();
 
-			var update = botsLongPollHistory.Updates.First();
+		var donutNew = update.DonutSubscriptionNew;
 
-			var donutNew = update.DonutSubscriptionNew;
+		donutNew.Amount.Should()
+			.Be(50);
 
-			donutNew.Amount.Should().Be(50);
-			donutNew.AmountWithoutFee.Should().Be(49.8M);
-			donutNew.UserId.Should().Be(1234);
-			update.GroupId.Should().Be(1234);
-		}
+		donutNew.AmountWithoutFee.Should()
+			.Be(49.8M);
 
-		[Fact]
-		public void GetBotsLongPollHistory_DonutSubscriptionCancelled()
+		donutNew.UserId.Should()
+			.Be(1234);
+
+		update.GroupId.Should()
+			.Be(1234);
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_DonutSubscriptionCancelled()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionCancelled));
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionCancelled));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		var update = botsLongPollHistory.Updates.First();
 
-			var update = botsLongPollHistory.Updates.First();
+		var donutNew = update.DonutSubscriptionEnd;
 
-			var donutNew = update.DonutSubscriptionEnd;
+		donutNew.UserId.Should()
+			.Be(1234);
 
-			donutNew.UserId.Should().Be(1234);
-			update.GroupId.Should().Be(1234);
-		}
+		update.GroupId.Should()
+			.Be(1234);
+	}
 
-		[Fact]
-		public void GetBotsLongPollHistory_DonutSubscriptionExpired()
+	[Fact]
+	public void GetBotsLongPollHistory_DonutSubscriptionExpired()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionExpired));
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionExpired));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		var update = botsLongPollHistory.Updates.First();
 
-			var update = botsLongPollHistory.Updates.First();
+		var donutNew = update.DonutSubscriptionEnd;
 
-			var donutNew = update.DonutSubscriptionEnd;
+		donutNew.UserId.Should()
+			.Be(1234);
 
-			donutNew.UserId.Should().Be(1234);
-			update.GroupId.Should().Be(1234);
-		}
+		update.GroupId.Should()
+			.Be(1234);
+	}
 
-		[Fact]
-		public void GetBotsLongPollHistory_DonutSubscriptionPriceChanged()
+	[Fact]
+	public void GetBotsLongPollHistory_DonutSubscriptionPriceChanged()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionPriceChanged));
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionPriceChanged));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		var update = botsLongPollHistory.Updates.First();
 
-			var update = botsLongPollHistory.Updates.First();
+		var donutNew = update.DonutSubscriptionPriceChanged;
 
-			var donutNew = update.DonutSubscriptionPriceChanged;
+		donutNew.AmountOld.Should()
+			.Be(50);
 
-			donutNew.AmountOld.Should().Be(50);
-			donutNew.AmountNew.Should().Be(100);
-			donutNew.AmountDiff.Should().Be(50.0f);
-			donutNew.AmountDiffWithoutFee.Should().Be(49.8f);
-			donutNew.UserId.Should().Be(1234);
-			update.GroupId.Should().Be(1234);
-		}
+		donutNew.AmountNew.Should()
+			.Be(100);
 
-		[Fact]
-		public void GetBotsLongPollHistory_DonutWithdraw()
+		donutNew.AmountDiff.Should()
+			.Be(50.0f);
+
+		donutNew.AmountDiffWithoutFee.Should()
+			.Be(49.8f);
+
+		donutNew.UserId.Should()
+			.Be(1234);
+
+		update.GroupId.Should()
+			.Be(1234);
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_DonutWithdraw()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutWithdraw));
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutWithdraw));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		var update = botsLongPollHistory.Updates.First();
 
-			var update = botsLongPollHistory.Updates.First();
+		var donutNew = update.DonutMoneyWithdraw;
 
-			var donutNew = update.DonutMoneyWithdraw;
+		donutNew.Amount.Should()
+			.Be(50);
 
-			donutNew.Amount.Should().Be(50);
-			donutNew.AmountWithoutFee.Should().Be(49.8f);
-			donutNew.Error.Should().Be(false);
-			update.GroupId.Should().Be(1234);
-		}
+		donutNew.AmountWithoutFee.Should()
+			.Be(49.8f);
 
-		[Fact]
-		public void GetBotsLongPollHistory_DonutWithdrawError()
+		donutNew.Error.Should()
+			.Be(false);
+
+		update.GroupId.Should()
+			.Be(1234);
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_DonutWithdrawError()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutWithdrawError));
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutWithdrawError));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		var update = botsLongPollHistory.Updates.First();
 
-			var update = botsLongPollHistory.Updates.First();
+		var donutNew = update.DonutMoneyWithdraw;
 
-			var donutNew = update.DonutMoneyWithdraw;
+		donutNew.Amount.Should()
+			.BeNull();
 
-			donutNew.Amount.Should().BeNull();
-			donutNew.AmountWithoutFee.Should().BeNull();
-			donutNew.Error.Should().BeTrue();
-			donutNew.Reason.Should().Be("test");
-			update.GroupId.Should().Be(1234);
-		}
+		donutNew.AmountWithoutFee.Should()
+			.BeNull();
+
+		donutNew.Error.Should()
+			.BeTrue();
+
+		donutNew.Reason.Should()
+			.Be("test");
+
+		update.GroupId.Should()
+			.Be(1234);
 	}
 }

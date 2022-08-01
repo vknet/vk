@@ -4,31 +4,31 @@ using FluentAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Audio
+namespace VkNet.Tests.Categories.Audio;
+
+public class AudioSetBroadCastTest : CategoryBaseTest
 {
+	protected override string Folder => "Audio";
 
-
-	public class AudioSetBroadCastTest : CategoryBaseTest
+	[Fact]
+	public void SetBroadCastTest()
 	{
-		protected override string Folder => "Audio";
+		Url = "https://api.vk.com/method/audio.setBroadcast";
 
-		[Fact]
-		public void SetBroadCastTest()
-		{
-			Url = "https://api.vk.com/method/audio.setBroadcast";
+		ReadCategoryJsonPath(nameof(Api.Audio.SetBroadcast));
 
-			ReadCategoryJsonPath(nameof(Api.Audio.SetBroadcast));
+		var result = Api.Audio.SetBroadcast("123456789_123456789",
+				new List<long>
+				{
+					123456789,
+					123456789
+				})
+			.ToList();
 
-			var result = Api.Audio.SetBroadcast("123456789_123456789",
-					new List<long>
-					{
-						123456789,
-						123456789
-					})
-				.ToList();
+		result.Should()
+			.NotBeEmpty();
 
-			result.Should().NotBeEmpty();
-			result.Should().HaveCount(2);
-		}
+		result.Should()
+			.HaveCount(2);
 	}
 }

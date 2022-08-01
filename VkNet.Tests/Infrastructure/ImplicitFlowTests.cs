@@ -15,113 +15,120 @@ using VkNet.Model;
 using VkNet.Utils;
 using Xunit;
 
-namespace VkNet.Tests.Infrastructure
+namespace VkNet.Tests.Infrastructure;
+
+public class ImplicitFlowTests
 {
-
-	public class ImplicitFlowTests
+	[Fact]
+	public void CreateAuthorizeUrl()
 	{
-		[Fact]
-		public void CreateAuthorizeUrl()
+		const int clientId = 4268118;
+		var scope = Settings.All|Settings.Offline;
+		const string state = "123";
+		var display = Display.Mobile;
+
+		var builder = new StringBuilder("https://oauth.vk.com/authorize?");
+		builder.Append($"client_id={clientId}&");
+		builder.Append($"redirect_uri={Constants.DefaultRedirectUri}&");
+		builder.Append($"display={display}&");
+		builder.Append($"scope={scope.ToUInt64()}&");
+		builder.Append($"response_type={ResponseType.Token}&");
+		builder.Append("v=5.92&");
+		builder.Append($"state={state}&");
+		builder.Append("revoke=1");
+		var expected = builder.ToString();
+
+		var mocker = new AutoMocker();
+
+		mocker.Setup<IVkApiVersionManager, string>(x => x.Version)
+			.Returns("5.92");
+
+		var implicitFlow = mocker.CreateInstance<ImplicitFlow>();
+
+		implicitFlow.SetAuthorizationParams(new ApiAuthParams
 		{
-			const int clientId = 4268118;
-			var scope = Settings.All|Settings.Offline;
-			const string state = "123";
-			var display = Display.Mobile;
+			ApplicationId = clientId,
+			Settings = scope,
+			Display = display,
+			State = state,
+			RedirectUri = new(Constants.DefaultRedirectUri),
+			Revoke = true
+		});
 
-			var builder = new StringBuilder("https://oauth.vk.com/authorize?");
-			builder.Append($"client_id={clientId}&");
-			builder.Append($"redirect_uri={Constants.DefaultRedirectUri}&");
-			builder.Append($"display={display}&");
-			builder.Append($"scope={scope.ToUInt64()}&");
-			builder.Append($"response_type={ResponseType.Token}&");
-			builder.Append("v=5.92&");
-			builder.Append($"state={state}&");
-			builder.Append("revoke=1");
-			var expected = builder.ToString();
+		var authorizeUrl = implicitFlow.CreateAuthorizeUrl();
 
-			var mocker = new AutoMocker();
-			mocker.Setup<IVkApiVersionManager, string>(x => x.Version).Returns("5.92");
+		authorizeUrl.Should()
+			.Be(new Uri(expected));
+	}
 
-			var implicitFlow = mocker.CreateInstance<ImplicitFlow>();
+	[Fact]
+	public async Task Authorize()
+	{
+		var mocker = new AutoMocker();
 
-			implicitFlow.SetAuthorizationParams(new ApiAuthParams
+		mocker.Setup<IVkApiVersionManager, string>(x => x.Version)
+			.Returns("5.92");
+
+		mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x =>
+				x.ExecuteAsync(It.IsAny<Uri>(), It.IsAny<IApiAuthParams>()))
+			.ReturnsAsync(new AuthorizationFormResult
 			{
-				ApplicationId = clientId,
-				Settings = scope,
-				Display = display,
-				State = state,
-				RedirectUri = new Uri(Constants.DefaultRedirectUri),
-				Revoke = true
+				ResponseUrl = new("https://m.vk.com/login?act=authcheck&m=442"),
+				RequestUrl = new("https://m.vk.com/login?act=authcheck&m=442")
 			});
 
-			var authorizeUrl = implicitFlow.CreateAuthorizeUrl();
+		mocker.Setup<IAuthorizationFormFactory, IAuthorizationForm>(x => x.Create(It.IsAny<ImplicitFlowPageType>()))
+			.Returns(mocker.Get<IAuthorizationForm>());
 
-			authorizeUrl.Should().Be(new Uri(expected));
-		}
+		mocker.GetMock<IVkAuthorization<ImplicitFlowPageType>>()
+			.Setup(x => x.GetPageType(It.IsAny<Uri>()))
+			.Returns(ImplicitFlowPageType.Result);
 
-		[Fact]
-		public async Task Authorize()
-		{
-			var mocker = new AutoMocker();
-
-			mocker.Setup<IVkApiVersionManager, string>(x => x.Version).Returns("5.92");
-
-			mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x =>
-					x.ExecuteAsync(It.IsAny<Uri>(), It.IsAny<IApiAuthParams>()))
-				.ReturnsAsync(new AuthorizationFormResult
-				{
-					ResponseUrl = new Uri("https://m.vk.com/login?act=authcheck&m=442"),
-					RequestUrl = new Uri("https://m.vk.com/login?act=authcheck&m=442")
-				});
-
-			mocker.Setup<IAuthorizationFormFactory, IAuthorizationForm>(x => x.Create(It.IsAny<ImplicitFlowPageType>()))
-				.Returns(mocker.Get<IAuthorizationForm>());
-
-			mocker.GetMock<IVkAuthorization<ImplicitFlowPageType>>()
-				.Setup(x => x.GetPageType(It.IsAny<Uri>()))
-				.Returns(ImplicitFlowPageType.Result);
-
-			mocker.GetMock<IVkAuthorization<ImplicitFlowPageType>>()
-				.Setup(x => x.GetAuthorizationResult(It.IsAny<Uri>()))
-				.Returns(new AuthorizationResult
-				{
-					AccessToken = "access_token",
-					UserId = 123,
-					ExpiresIn = 0,
-					State = "123"
-				});
-
-			var implicitFlow = mocker.CreateInstance<ImplicitFlow>();
-
-			implicitFlow.SetAuthorizationParams(new ApiAuthParams
+		mocker.GetMock<IVkAuthorization<ImplicitFlowPageType>>()
+			.Setup(x => x.GetAuthorizationResult(It.IsAny<Uri>()))
+			.Returns(new AuthorizationResult
 			{
-				Login = "login",
-				Password = "pass",
-				ApplicationId = 4268118,
-				Settings = Settings.All,
-				RedirectUri = new Uri(Constants.DefaultRedirectUri)
+				AccessToken = "access_token",
+				UserId = 123,
+				ExpiresIn = 0,
+				State = "123"
 			});
 
-			var result = await implicitFlow.AuthorizeAsync().ConfigureAwait(false);
+		var implicitFlow = mocker.CreateInstance<ImplicitFlow>();
 
-			result.Should().NotBeNull();
-		}
-
-		[Fact]
-		public void Authorize_ValidateError()
+		implicitFlow.SetAuthorizationParams(new ApiAuthParams
 		{
-			var mocker = new AutoMocker();
+			Login = "login",
+			Password = "pass",
+			ApplicationId = 4268118,
+			Settings = Settings.All,
+			RedirectUri = new(Constants.DefaultRedirectUri)
+		});
 
-			mocker.Setup<IVkApiVersionManager, string>(x => x.Version).Returns("5.92");
+		var result = await implicitFlow.AuthorizeAsync()
+			.ConfigureAwait(false);
 
-			var implicitFlow = mocker.CreateInstance<ImplicitFlow>();
+		result.Should()
+			.NotBeNull();
+	}
 
-			implicitFlow.SetAuthorizationParams(new ApiAuthParams
-			{
-				Login = "login"
-			});
+	[Fact]
+	public void Authorize_ValidateError()
+	{
+		var mocker = new AutoMocker();
 
-			FluentActions.Invoking(() => implicitFlow.AuthorizeAsync()).Should().ThrowExactlyAsync<VkAuthorizationException>();
-		}
+		mocker.Setup<IVkApiVersionManager, string>(x => x.Version)
+			.Returns("5.92");
+
+		var implicitFlow = mocker.CreateInstance<ImplicitFlow>();
+
+		implicitFlow.SetAuthorizationParams(new ApiAuthParams
+		{
+			Login = "login"
+		});
+
+		FluentActions.Invoking(() => implicitFlow.AuthorizeAsync())
+			.Should()
+			.ThrowExactlyAsync<VkAuthorizationException>();
 	}
 }

@@ -4,49 +4,57 @@ using VkNet.Model;
 using VkNet.Utils;
 using Xunit;
 
-namespace VkNet.Tests.Utils.JsonConverter
+namespace VkNet.Tests.Utils.JsonConverter;
+
+public class AttachmentJsonConverterTests : BaseTest
 {
-
-	public class AttachmentJsonConverterTests : BaseTest
+	[Fact]
+	public void CallAndConvertToType()
 	{
-		[Fact]
-		public void CallAndConvertToType()
-		{
-			ReadJsonFile("Attachment", nameof(CallAndConvertToType));
-			Url = "https://api.vk.com/method/friends.getRequests";
+		ReadJsonFile("Attachment", nameof(CallAndConvertToType));
+		Url = "https://api.vk.com/method/friends.getRequests";
 
-			CommentBoard result = Api.Call("friends.getRequests", VkParameters.Empty);
+		CommentBoard result = Api.Call("friends.getRequests", VkParameters.Empty);
 
-			result.Should().NotBeNull();
-			result.Id.Should().Be(3);
-			result.FromId.Should().Be(32190123);
-			result.Attachments.Should().NotBeEmpty();
-		}
+		result.Should()
+			.NotBeNull();
 
-		[Fact]
-		public void SerializationTest()
-		{
-			ReadJsonFile("Attachment", nameof(SerializationTest));
+		result.Id.Should()
+			.Be(3);
 
-			var response = GetResponse();
-			var message = Message.FromJson(response);
+		result.FromId.Should()
+			.Be(32190123);
 
-			var json = JsonConvert.SerializeObject(message,
-				new JsonSerializerSettings
-				{
-					NullValueHandling = NullValueHandling.Ignore,
-					DefaultValueHandling = DefaultValueHandling.Ignore
-				});
+		result.Attachments.Should()
+			.NotBeEmpty();
+	}
 
-			var result = JsonConvert.DeserializeObject<Message>(json,
-				new JsonSerializerSettings
-				{
-					MaxDepth = null,
-					ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-				});
+	[Fact]
+	public void SerializationTest()
+	{
+		ReadJsonFile("Attachment", nameof(SerializationTest));
 
-			result.Should().NotBeNull();
-			result.Attachments.Should().NotBeEmpty();
-		}
+		var response = GetResponse();
+		var message = Message.FromJson(response);
+
+		var json = JsonConvert.SerializeObject(message,
+			new JsonSerializerSettings
+			{
+				NullValueHandling = NullValueHandling.Ignore,
+				DefaultValueHandling = DefaultValueHandling.Ignore
+			});
+
+		var result = JsonConvert.DeserializeObject<Message>(json,
+			new JsonSerializerSettings
+			{
+				MaxDepth = null,
+				ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+			});
+
+		result.Should()
+			.NotBeNull();
+
+		result.Attachments.Should()
+			.NotBeEmpty();
 	}
 }

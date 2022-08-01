@@ -1,38 +1,37 @@
 ﻿using System;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Рейтинг.
+/// </summary>
+[Serializable]
+public class Rating
 {
 	/// <summary>
-	/// Рейтинг.
+	/// Количество звезд у продукта;.
 	/// </summary>
-	[Serializable]
-	public class Rating
+	public long? Stars { get; set; }
+
+	/// <summary>
+	/// Количество отзывов о продукте;.
+	/// </summary>
+	public long? ReviewsCount { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static Rating FromJson(VkResponse response)
 	{
-		/// <summary>
-		/// Количество звезд у продукта;.
-		/// </summary>
-		public long? Stars { get; set; }
-
-		/// <summary>
-		/// Количество отзывов о продукте;.
-		/// </summary>
-		public long? ReviewsCount { get; set; }
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static Rating FromJson(VkResponse response)
+		var rating = new Rating
 		{
-			var rating = new Rating
-			{
-					Stars = response[key: "stars"]
-					, ReviewsCount = response[key: "reviews_count"]
-			};
+			Stars = response[key: "stars"],
+			ReviewsCount = response[key: "reviews_count"]
+		};
 
-			return rating;
-		}
+		return rating;
 	}
 }

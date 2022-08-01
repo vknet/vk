@@ -2,16 +2,16 @@
 using VkNet.Model;
 using Xunit;
 
-namespace VkNet.Tests.Models
-{
+namespace VkNet.Tests.Models;
 
-	public class CommentsModel
+public class CommentsModel
+{
+	[Fact]
+	public void ShouldHaveField_GroupsCanPost()
 	{
-		[Fact]
-		public void ShouldHaveField_GroupsCanPost()
-		{
-			var comments = new Comments();
-			comments.GroupsCanPost.Should().BeFalse();
-		}
+		var comments = new Comments();
+
+		comments.GroupsCanPost.Should()
+			.BeFalse();
 	}
 }

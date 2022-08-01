@@ -2,22 +2,23 @@
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetTargetGroupsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-	public class GetTargetGroupsTest : CategoryBaseTest
+	[Fact]
+	public void GetTargetGroups()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getTargetGroups";
 
-		[Fact]
-		public void GetTargetGroups()
-		{
-			Url = "https://api.vk.com/method/ads.getTargetGroups";
+		ReadCategoryJsonPath(nameof(Api.Ads.GetTargetGroups));
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetTargetGroups));
+		var result = Api.Ads.GetTargetGroups(123);
 
-			var result = Api.Ads.GetTargetGroups(123);
-			result[0].Name.Should().Be("Test1");
-		}
+		result[0]
+			.Name.Should()
+			.Be("Test1");
 	}
 }

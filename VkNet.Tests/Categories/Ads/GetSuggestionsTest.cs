@@ -3,29 +3,29 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetSuggestionsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class GetSuggestionsTest : CategoryBaseTest
+	[Fact]
+	public void GetSuggestions()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getSuggestions";
 
-		[Fact]
-		public void GetSuggestions()
+		ReadCategoryJsonPath(nameof(Api.Ads.GetSuggestions));
+
+		var result = Api.Ads.GetSuggestions(new()
 		{
-			Url = "https://api.vk.com/method/ads.getSuggestions";
+			Section = "schools",
+			Country = 1,
+			Cities = "1",
+			Q = "1"
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetSuggestions));
-
-			var result = Api.Ads.GetSuggestions(new GetSuggestionsParams
-			{
-				Section = "schools",
-				Country = 1,
-				Cities = "1",
-				Q = "1"
-			});
-			result[0].Id.Should().Be(201187289);
-		}
+		result[0]
+			.Id.Should()
+			.Be(201187289);
 	}
 }

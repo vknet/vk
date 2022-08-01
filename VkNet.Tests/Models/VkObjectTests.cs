@@ -4,105 +4,127 @@ using VkNet.Model;
 using VkNet.Utils;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class VkObjectTests : BaseTest
 {
-
-	public class VkObjectTests : BaseTest
+	[Fact]
+	public void VkObjectPage()
 	{
-		[Fact]
-		public void VkObjectPage()
-		{
-			ReadJsonFile("Models", nameof(VkObjectPage));
+		ReadJsonFile("Models", nameof(VkObjectPage));
 
-			Url = "https://api.vk.com/method/utils.resolveScreenName";
-			var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
+		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
 
-			result.Id.Should().Be(179331040);
-			result.Type.Should().Be(VkObjectType.Page);
-		}
+		result.Id.Should()
+			.Be(179331040);
 
-		[Fact]
-		public void VkObjectApplication()
-		{
-			ReadJsonFile("Models", nameof(VkObjectApplication));
+		result.Type.Should()
+			.Be(VkObjectType.Page);
+	}
 
-			Url = "https://api.vk.com/method/utils.resolveScreenName";
-			var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
+	[Fact]
+	public void VkObjectApplication()
+	{
+		ReadJsonFile("Models", nameof(VkObjectApplication));
 
-			result.Id.Should().Be(179331040);
-			result.Type.Should().Be(VkObjectType.Application);
-		}
+		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
 
-		[Fact]
-		public void VkObjectGroup()
-		{
-			ReadJsonFile("Models", nameof(VkObjectGroup));
+		result.Id.Should()
+			.Be(179331040);
 
-			Url = "https://api.vk.com/method/utils.resolveScreenName";
-			var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
+		result.Type.Should()
+			.Be(VkObjectType.Application);
+	}
 
-			result.Id.Should().Be(179331040);
-			result.Type.Should().Be(VkObjectType.Group);
-		}
+	[Fact]
+	public void VkObjectGroup()
+	{
+		ReadJsonFile("Models", nameof(VkObjectGroup));
 
-		[Fact]
-		public void VkObjectUser()
-		{
-			ReadJsonFile("Models", nameof(VkObjectUser));
+		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
 
-			Url = "https://api.vk.com/method/utils.resolveScreenName";
-			var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
+		result.Id.Should()
+			.Be(179331040);
 
-			result.Id.Should().Be(179331040);
-			result.Type.Should().Be(VkObjectType.User);
-		}
+		result.Type.Should()
+			.Be(VkObjectType.Group);
+	}
 
-		[Fact]
-		public void VkObjectPage_ResolveScreenName()
-		{
-			ReadJsonFile("Models", nameof(VkObjectPage));
+	[Fact]
+	public void VkObjectUser()
+	{
+		ReadJsonFile("Models", nameof(VkObjectUser));
 
-			Url = "https://api.vk.com/method/utils.resolveScreenName";
-			var result = Api.Utils.ResolveScreenName("page");
+		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
 
-			result.Id.Should().Be(179331040);
-			result.Type.Should().Be(VkObjectType.Page);
-		}
+		result.Id.Should()
+			.Be(179331040);
 
-		[Fact]
-		public void VkObjectApplication_ResolveScreenName()
-		{
-			ReadJsonFile("Models", nameof(VkObjectApplication));
+		result.Type.Should()
+			.Be(VkObjectType.User);
+	}
 
-			Url = "https://api.vk.com/method/utils.resolveScreenName";
-			var result = Api.Utils.ResolveScreenName("application");
+	[Fact]
+	public void VkObjectPage_ResolveScreenName()
+	{
+		ReadJsonFile("Models", nameof(VkObjectPage));
 
-			result.Id.Should().Be(179331040);
-			result.Type.Should().Be(VkObjectType.Application);
-		}
+		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		var result = Api.Utils.ResolveScreenName("page");
 
-		[Fact]
-		public void VkObjectGroup_ResolveScreenName()
-		{
-			ReadJsonFile("Models", nameof(VkObjectGroup));
+		result.Id.Should()
+			.Be(179331040);
 
-			Url = "https://api.vk.com/method/utils.resolveScreenName";
-			var result = Api.Utils.ResolveScreenName("group");
+		result.Type.Should()
+			.Be(VkObjectType.Page);
+	}
 
-			result.Id.Should().Be(179331040);
-			result.Type.Should().Be(VkObjectType.Group);
-		}
+	[Fact]
+	public void VkObjectApplication_ResolveScreenName()
+	{
+		ReadJsonFile("Models", nameof(VkObjectApplication));
 
-		[Fact]
-		public void VkObjectUser_ResolveScreenName()
-		{
-			ReadJsonFile("Models", nameof(VkObjectUser));
+		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		var result = Api.Utils.ResolveScreenName("application");
 
-			Url = "https://api.vk.com/method/utils.resolveScreenName";
-			var result = Api.Utils.ResolveScreenName("user");
+		result.Id.Should()
+			.Be(179331040);
 
-			result.Id.Should().Be(179331040);
-			result.Type.Should().Be(VkObjectType.User);
-		}
+		result.Type.Should()
+			.Be(VkObjectType.Application);
+	}
+
+	[Fact]
+	public void VkObjectGroup_ResolveScreenName()
+	{
+		ReadJsonFile("Models", nameof(VkObjectGroup));
+
+		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		var result = Api.Utils.ResolveScreenName("group");
+
+		result.Id.Should()
+			.Be(179331040);
+
+		result.Type.Should()
+			.Be(VkObjectType.Group);
+	}
+
+	[Fact]
+	public void VkObjectUser_ResolveScreenName()
+	{
+		ReadJsonFile("Models", nameof(VkObjectUser));
+
+		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		var result = Api.Utils.ResolveScreenName("user");
+
+		result.Id.Should()
+			.Be(179331040);
+
+		result.Type.Should()
+			.Be(VkObjectType.User);
 	}
 }

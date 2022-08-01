@@ -4,98 +4,121 @@ using VkNet.Model.LeadForms;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.LeadForms
+namespace VkNet.Tests.Categories.LeadForms;
+
+public class LeadFormsTests : CategoryBaseTest
 {
+	protected override string Folder => "LeadForms";
 
-	public class LeadFormsTests : CategoryBaseTest
+	[Fact]
+	public void Create()
 	{
-		protected override string Folder => "LeadForms";
+		Url = "https://api.vk.com/method/leadForms.create";
+		ReadCategoryJsonPath(nameof(Create));
 
-		[Fact]
-		public void Create()
+		var result = Api.LeadForms.Create(new()
 		{
-			Url = "https://api.vk.com/method/leadForms.create";
-			ReadCategoryJsonPath(nameof(Create));
+			GroupId = 103292418,
+			Name = "kwedkjn",
+			Title = "kjn",
+			Description = "kjn",
+			Questions = "[{}]",
+			PolicyLinkUrl = "ya.ru"
+		});
 
-			var result = Api.LeadForms.Create(new LeadFormsCreateParams
-			{
-				GroupId = 103292418,
-				Name = "kwedkjn",
-				Title = "kjn",
-				Description = "kjn",
-				Questions = "[{}]",
-				PolicyLinkUrl = "ya.ru"
-			});
+		result.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			result.FormId.Should().Be(1);
-			result.Url.Should().Be(new Uri("https://vk.com/apform_id=1#form_id=1"));
-		}
+		result.FormId.Should()
+			.Be(1);
 
-		[Fact]
-		public void Delete()
+		result.Url.Should()
+			.Be(new Uri("https://vk.com/apform_id=1#form_id=1"));
+	}
+
+	[Fact]
+	public void Delete()
+	{
+		Url = "https://api.vk.com/method/leadForms.delete";
+		ReadCategoryJsonPath(nameof(Delete));
+
+		var result = Api.LeadForms.Delete(103292418, 1);
+
+		result.Should()
+			.NotBeNull();
+
+		result.FormId.Should()
+			.Be(1);
+	}
+
+	[Fact]
+	public void Get()
+	{
+		Url = "https://api.vk.com/method/leadForms.get";
+		ReadCategoryJsonPath(nameof(Get));
+
+		var result = Api.LeadForms.Get(103292418, 1);
+
+		result.Should()
+			.NotBeNull();
+
+		result.FormId.Should()
+			.Be(2);
+	}
+
+	[Fact]
+	public void List()
+	{
+		Url = "https://api.vk.com/method/leadForms.list";
+		ReadCategoryJsonPath(nameof(List));
+
+		var result = Api.LeadForms.List(103292418);
+
+		result.Should()
+			.NotBeNull();
+
+		result.Should()
+			.NotBeEmpty();
+	}
+
+	[Fact]
+	public void GetUploadUrl()
+	{
+		Url = "https://api.vk.com/method/leadForms.getUploadURL";
+		ReadCategoryJsonPath(nameof(GetUploadUrl));
+
+		var result = Api.LeadForms.GetUploadURL();
+
+		result.Should()
+			.NotBeNull();
+
+		result.Should()
+			.Be(new Uri("https://pu.vk.com1d95424ffe4e4983a6a"));
+	}
+
+	[Fact]
+	public void Update()
+	{
+		Url = "https://api.vk.com/method/leadForms.update";
+		ReadCategoryJsonPath(nameof(Update));
+
+		var result = Api.LeadForms.Update(new()
 		{
-			Url = "https://api.vk.com/method/leadForms.delete";
-			ReadCategoryJsonPath(nameof(Delete));
+			GroupId = 103292418,
+			Name = "kwedkjn",
+			Title = "kjn",
+			Description = "kjn",
+			Questions = "[{}]",
+			PolicyLinkUrl = "ya.ru"
+		});
 
-			var result = Api.LeadForms.Delete(103292418, 1);
-			result.Should().NotBeNull();
-			result.FormId.Should().Be(1);
-		}
+		result.Should()
+			.NotBeNull();
 
-		[Fact]
-		public void Get()
-		{
-			Url = "https://api.vk.com/method/leadForms.get";
-			ReadCategoryJsonPath(nameof(Get));
+		result.FormId.Should()
+			.Be(2);
 
-			var result = Api.LeadForms.Get(103292418, 1);
-			result.Should().NotBeNull();
-			result.FormId.Should().Be(2);
-		}
-
-		[Fact]
-		public void List()
-		{
-			Url = "https://api.vk.com/method/leadForms.list";
-			ReadCategoryJsonPath(nameof(List));
-
-			var result = Api.LeadForms.List(103292418);
-			result.Should().NotBeNull();
-			result.Should().NotBeEmpty();
-		}
-
-		[Fact]
-		public void GetUploadUrl()
-		{
-			Url = "https://api.vk.com/method/leadForms.getUploadURL";
-			ReadCategoryJsonPath(nameof(GetUploadUrl));
-
-			var result = Api.LeadForms.GetUploadURL();
-
-			result.Should().NotBeNull();
-			result.Should().Be(new Uri("https://pu.vk.com1d95424ffe4e4983a6a"));
-		}
-
-		[Fact]
-		public void Update()
-		{
-			Url = "https://api.vk.com/method/leadForms.update";
-			ReadCategoryJsonPath(nameof(Update));
-
-			var result = Api.LeadForms.Update(new LeadFormsUpdateParams
-			{
-				GroupId = 103292418,
-				Name = "kwedkjn",
-				Title = "kjn",
-				Description = "kjn",
-				Questions = "[{}]",
-				PolicyLinkUrl = "ya.ru"
-			});
-
-			result.Should().NotBeNull();
-			result.FormId.Should().Be(2);
-			result.Url.Should().Be(new Uri("https://vk.com/apform_id=2#form_id=2"));
-		}
+		result.Url.Should()
+			.Be(new Uri("https://vk.com/apform_id=2#form_id=2"));
 	}
 }

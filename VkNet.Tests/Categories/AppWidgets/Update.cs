@@ -3,24 +3,22 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.AppWidgets
+namespace VkNet.Tests.Categories.AppWidgets;
+
+public class Update : CategoryBaseTest
 {
+	protected override string Folder => "AppWidgets";
 
-
-	public class Update : CategoryBaseTest
+	[Fact]
+	public void EnableOnline()
 	{
-		protected override string Folder => "AppWidgets";
+		Url = "https://api.vk.com/method/appWidgets.update";
 
-		[Fact]
-		public void EnableOnline()
-		{
-			Url = "https://api.vk.com/method/appWidgets.update";
+		ReadJsonFile(JsonPaths.True);
 
-			ReadJsonFile(JsonPaths.True);
+		var result = Api.AppWidgets.Update("string", AppWidgetType.Donation);
 
-			var result = Api.AppWidgets.Update("string", AppWidgetType.Donation);
-
-			result.Should().BeTrue();
-		}
+		result.Should()
+			.BeTrue();
 	}
 }

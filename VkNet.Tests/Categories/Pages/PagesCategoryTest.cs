@@ -6,154 +6,219 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Pages
+namespace VkNet.Tests.Categories.Pages;
+
+[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+public class PagesCategoryTest : CategoryBaseTest
 {
+	protected override string Folder => "Pages";
 
-	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class PagesCategoryTest : CategoryBaseTest
+	[Fact]
+	public void ClearCache()
 	{
-		protected override string Folder => "Pages";
+		Url = "https://api.vk.com/method/pages.clearCache";
+		ReadJsonFile(JsonPaths.True);
 
-		[Fact]
-		public void ClearCache()
+		var cache = Api.Pages.ClearCache(new("https://www.vk.com/dev/groups.addLink"));
+
+		cache.Should()
+			.BeTrue();
+	}
+
+	[Fact]
+	public void Get1_NormalCase()
+	{
+		Url = "https://api.vk.com/method/pages.get";
+		ReadCategoryJsonPath(nameof(Get1_NormalCase));
+
+		var page = Api.Pages.Get(new()
 		{
-			Url = "https://api.vk.com/method/pages.clearCache";
-			ReadJsonFile(JsonPaths.True);
+			OwnerId = -103292418,
+			Title = "Свежие новости"
+		});
 
-			var cache = Api.Pages.ClearCache(new Uri("https://www.vk.com/dev/groups.addLink"));
+		page.Id.Should()
+			.Be(50050492);
 
-			cache.Should().BeTrue();
-		}
+		page.GroupId.Should()
+			.Be(103292418);
 
-		[Fact]
-		public void Get1_NormalCase()
+		page.Title.Should()
+			.Be("Свежие новости");
+
+		page.CurrentUserCanEdit.Should()
+			.Be(true);
+
+		page.CurrentUserCanEditAccess.Should()
+			.Be(true);
+
+		page.WhoCanEdit.Should()
+			.Be(PageAccessKind.OnlyAdministrators);
+
+		page.WhoCanView.Should()
+			.Be(PageAccessKind.OnlyMembers);
+
+		page.Edited.Should()
+			.Be("1444643546");
+
+		page.Created.Should()
+			.Be("1444643546");
+
+		page.EditorId.Should()
+			.Be(32190123);
+
+		page.CreatorId.Should()
+			.Be(32190123);
+
+		page.ViewUrl.Should()
+			.Be("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
+	}
+
+	[Fact]
+	public void Get2_NormalCase()
+	{
+		Url = "https://api.vk.com/method/pages.get";
+		ReadCategoryJsonPath(nameof(Get2_NormalCase));
+
+		var page = Api.Pages.Get(new()
 		{
-			Url = "https://api.vk.com/method/pages.get";
-			ReadCategoryJsonPath(nameof(Get1_NormalCase));
+			OwnerId = -103292418,
+			PageId = 50050492
+		});
 
-			var page = Api.Pages.Get(new PagesGetParams
-			{
-				OwnerId = -103292418,
-				Title = "Свежие новости"
-			});
+		page.Id.Should()
+			.Be(50050492);
 
-			page.Id.Should().Be(50050492);
-			page.GroupId.Should().Be(103292418);
-			page.Title.Should().Be("Свежие новости");
-			page.CurrentUserCanEdit.Should().Be(true);
-			page.CurrentUserCanEditAccess.Should().Be(true);
+		page.GroupId.Should()
+			.Be(103292418);
 
-			page.WhoCanEdit.Should().Be(PageAccessKind.OnlyAdministrators);
-			page.WhoCanView.Should().Be(PageAccessKind.OnlyMembers);
-			page.Edited.Should().Be("1444643546");
-			page.Created.Should().Be("1444643546");
-			page.EditorId.Should().Be(32190123);
-			page.CreatorId.Should().Be(32190123);
+		page.Title.Should()
+			.Be("Свежие новости");
 
-			page.ViewUrl.Should().Be("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
-		}
+		page.CurrentUserCanEdit.Should()
+			.Be(true);
 
-		[Fact]
-		public void Get2_NormalCase()
-		{
-			Url = "https://api.vk.com/method/pages.get";
-			ReadCategoryJsonPath(nameof(Get2_NormalCase));
+		page.CurrentUserCanEditAccess.Should()
+			.Be(true);
 
-			var page = Api.Pages.Get(new PagesGetParams
-			{
-				OwnerId = -103292418,
-				PageId = 50050492
-			});
+		page.WhoCanEdit.Should()
+			.Be(PageAccessKind.OnlyAdministrators);
 
-			page.Id.Should().Be(50050492);
-			page.GroupId.Should().Be(103292418);
-			page.Title.Should().Be("Свежие новости");
-			page.CurrentUserCanEdit.Should().Be(true);
-			page.CurrentUserCanEditAccess.Should().Be(true);
+		page.WhoCanView.Should()
+			.Be(PageAccessKind.OnlyMembers);
 
-			page.WhoCanEdit.Should().Be(PageAccessKind.OnlyAdministrators);
-			page.WhoCanView.Should().Be(PageAccessKind.OnlyMembers);
-			page.Edited.Should().Be("1444643546");
-			page.Created.Should().Be("1444643546");
-			page.EditorId.Should().Be(32190123);
-			page.CreatorId.Should().Be(32190123);
+		page.Edited.Should()
+			.Be("1444643546");
 
-			page.ViewUrl.Should().Be("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
-		}
+		page.Created.Should()
+			.Be("1444643546");
 
-		[Fact]
-		public void GetHistory_NormalCase()
-		{
-			Url = "https://api.vk.com/method/pages.getHistory";
-			ReadCategoryJsonPath(nameof(GetHistory_NormalCase));
+		page.EditorId.Should()
+			.Be(32190123);
 
-			var histories = Api.Pages.GetHistory(50050492, 103292418);
+		page.CreatorId.Should()
+			.Be(32190123);
 
-			histories.Should().NotBeNull();
-		}
+		page.ViewUrl.Should()
+			.Be("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
+	}
 
-		[Fact]
-		public void GetTitles_NormalCase()
-		{
-			Url = "https://api.vk.com/method/pages.getTitles";
-			ReadCategoryJsonPath(nameof(GetTitles_NormalCase));
+	[Fact]
+	public void GetHistory_NormalCase()
+	{
+		Url = "https://api.vk.com/method/pages.getHistory";
+		ReadCategoryJsonPath(nameof(GetHistory_NormalCase));
 
-			var titles = Api.Pages.GetTitles(103292418);
+		var histories = Api.Pages.GetHistory(50050492, 103292418);
 
-			titles.Should().NotBeNull();
-		}
+		histories.Should()
+			.NotBeNull();
+	}
 
-		[Fact]
-		public void GetVersion_NormalCase()
-		{
-			Url = "https://api.vk.com/method/pages.getVersion";
-			ReadCategoryJsonPath(nameof(GetVersion_NormalCase));
+	[Fact]
+	public void GetTitles_NormalCase()
+	{
+		Url = "https://api.vk.com/method/pages.getTitles";
+		ReadCategoryJsonPath(nameof(GetTitles_NormalCase));
 
-			var version = Api.Pages.GetVersion(184657135, 103292418);
+		var titles = Api.Pages.GetTitles(103292418);
 
-			version.Id.Should().Be(50050492);
-			version.GroupId.Should().Be(103292418);
-			version.Title.Should().Be("Свежие новости");
-			version.Source.Should().Be("test");
-			version.CurrentUserCanEdit.Should().Be(true);
-			version.WhoCanView.Should().Be(PageAccessKind.OnlyAdministrators);
-			version.WhoCanEdit.Should().Be(PageAccessKind.OnlyAdministrators);
-			version.VersionCreated.Should().Be("1444644359");
-			version.CreatorId.Should().Be(32190123);
-			version.Html.Should().Be("<!--4-->test ");
-		}
+		titles.Should()
+			.NotBeNull();
+	}
 
-		[Fact]
-		public void Save1_NormalCase()
-		{
-			Url = "https://api.vk.com/method/pages.save";
-			ReadCategoryJsonPath(nameof(Api.Pages.Save));
+	[Fact]
+	public void GetVersion_NormalCase()
+	{
+		Url = "https://api.vk.com/method/pages.getVersion";
+		ReadCategoryJsonPath(nameof(GetVersion_NormalCase));
 
-			var page = Api.Pages.Save("123", 123, 32190123, "Свежие новости", 103292418);
+		var version = Api.Pages.GetVersion(184657135, 103292418);
 
-			page.Should().Be(50050492);
-		}
+		version.Id.Should()
+			.Be(50050492);
 
-		[Fact]
-		public void Save2_NormalCase()
-		{
-			Url = "https://api.vk.com/method/pages.save";
-			ReadCategoryJsonPath(nameof(Api.Pages.Save));
+		version.GroupId.Should()
+			.Be(103292418);
 
-			var page = Api.Pages.Save("123", 50050492, 32190123, "", 103292418);
+		version.Title.Should()
+			.Be("Свежие новости");
 
-			page.Should().Be(50050492);
-		}
+		version.Source.Should()
+			.Be("test");
 
-		[Fact]
-		public void SaveAccess_NormalCase()
-		{
-			Url = "https://api.vk.com/method/pages.saveAccess";
-			ReadCategoryJsonPath(nameof(Api.Pages.Save));
+		version.CurrentUserCanEdit.Should()
+			.Be(true);
 
-			var page = Api.Pages.SaveAccess(50050492, 103292418);
+		version.WhoCanView.Should()
+			.Be(PageAccessKind.OnlyAdministrators);
 
-			page.Should().Be(50050492);
-		}
+		version.WhoCanEdit.Should()
+			.Be(PageAccessKind.OnlyAdministrators);
+
+		version.VersionCreated.Should()
+			.Be("1444644359");
+
+		version.CreatorId.Should()
+			.Be(32190123);
+
+		version.Html.Should()
+			.Be("<!--4-->test ");
+	}
+
+	[Fact]
+	public void Save1_NormalCase()
+	{
+		Url = "https://api.vk.com/method/pages.save";
+		ReadCategoryJsonPath(nameof(Api.Pages.Save));
+
+		var page = Api.Pages.Save("123", 123, 32190123, "Свежие новости", 103292418);
+
+		page.Should()
+			.Be(50050492);
+	}
+
+	[Fact]
+	public void Save2_NormalCase()
+	{
+		Url = "https://api.vk.com/method/pages.save";
+		ReadCategoryJsonPath(nameof(Api.Pages.Save));
+
+		var page = Api.Pages.Save("123", 50050492, 32190123, "", 103292418);
+
+		page.Should()
+			.Be(50050492);
+	}
+
+	[Fact]
+	public void SaveAccess_NormalCase()
+	{
+		Url = "https://api.vk.com/method/pages.saveAccess";
+		ReadCategoryJsonPath(nameof(Api.Pages.Save));
+
+		var page = Api.Pages.SaveAccess(50050492, 103292418);
+
+		page.Should()
+			.Be(50050492);
 	}
 }

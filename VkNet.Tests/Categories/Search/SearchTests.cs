@@ -3,23 +3,21 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Search
+namespace VkNet.Tests.Categories.Search;
+
+public class SearchTests : CategoryBaseTest
 {
+	protected override string Folder => "Search";
 
-
-	public class SearchTests : CategoryBaseTest
+	[Fact]
+	public void GetHints()
 	{
-		protected override string Folder => "Search";
+		Url = "https://api.vk.com/method/search.getHints";
+		ReadCategoryJsonPath(nameof(GetHints));
 
-		[Fact]
-		public void GetHints()
-		{
-			Url = "https://api.vk.com/method/search.getHints";
-			ReadCategoryJsonPath(nameof(GetHints));
+		var result = Api.Search.GetHints(new());
 
-			var result = Api.Search.GetHints(new SearchGetHintsParams());
-
-			result.Should().NotBeNull();
-		}
+		result.Should()
+			.NotBeNull();
 	}
 }

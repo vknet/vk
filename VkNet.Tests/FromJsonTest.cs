@@ -17,9 +17,11 @@ public class FromJsonTest
 		var classes = types.Where(x => x.IsClass && x.Namespace != null && x.Namespace.Contains(nameSpace));
 
 		var count = classes
-			.Select(@class => @class.GetMethods(BindingFlags.Public|BindingFlags.Static).Where(x => x.Name.StartsWith("FromJson")))
+			.Select(@class => @class.GetMethods(BindingFlags.Public|BindingFlags.Static)
+				.Where(x => x.Name.StartsWith("FromJson")))
 			.Count(methods => methods.Any());
 
-		count.Should().BeGreaterOrEqualTo(10);
+		count.Should()
+			.BeGreaterOrEqualTo(10);
 	}
 }

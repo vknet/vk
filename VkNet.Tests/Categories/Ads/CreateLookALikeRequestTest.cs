@@ -4,30 +4,27 @@ using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class CreateLookALikeRequestTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class CreateLookALikeRequestTest : CategoryBaseTest
+	[Fact]
+	public void CreateLookalikeRequest()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.createLookalikeRequest";
 
-		[Fact]
-		public void CreateLookalikeRequest()
+		ReadCategoryJsonPath(nameof(Api.Ads.CreateLookalikeRequest));
+
+		var officeUsers = Api.Ads.CreateLookalikeRequest(new()
 		{
-			Url = "https://api.vk.com/method/ads.createLookalikeRequest";
+			AccountId = 1605245430,
+			SourceType = SourceType.RetargetingGroup,
+			RetargetingGroupId = 1
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.CreateLookalikeRequest));
-
-
-			var officeUsers = Api.Ads.CreateLookalikeRequest(new CreateLookALikeRequestParams
-			{
-				AccountId = 1605245430,
-				SourceType = SourceType.RetargetingGroup,
-				RetargetingGroupId = 1
-			});
-
-			officeUsers.RequestId.Should().Be(3667);
-		}
+		officeUsers.RequestId.Should()
+			.Be(3667);
 	}
 }

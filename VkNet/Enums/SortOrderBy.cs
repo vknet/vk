@@ -1,18 +1,17 @@
-﻿namespace VkNet.Enums
+﻿namespace VkNet.Enums;
+
+/// <summary>
+/// Порядок сортировки
+/// </summary>
+public enum SortOrderBy
 {
 	/// <summary>
-	/// Порядок сортировки
+	/// По убыванию
 	/// </summary>
-	public enum SortOrderBy
-	{
-		/// <summary>
-		/// По убыванию
-		/// </summary>
-		Desc = 0
+	Desc = 0,
 
-		, /// <summary>
-		/// По возрастанию
-		/// </summary>
-		Asc
-	}
+	/// <summary>
+	/// По возрастанию
+	/// </summary>
+	Asc
 }

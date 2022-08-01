@@ -3,48 +3,45 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Обложка
+/// </summary>
+[Serializable]
+public class Cover
 {
 	/// <summary>
-	/// Обложка
+	/// Размеры
 	/// </summary>
-	[Serializable]
-	public class Cover
+	[JsonProperty("sizes")]
+	public ReadOnlyCollection<CoverSize> Sizes { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static Cover FromJson(VkResponse response) => new()
 	{
-		/// <summary>
-		/// Размеры
-		/// </summary>
-		[JsonProperty("sizes")]
-		public ReadOnlyCollection<CoverSize> Sizes { get; set; }
+		Sizes = response["sizes"]
+			.ToReadOnlyCollectionOf<CoverSize>(x => x)
+	};
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static Cover FromJson(VkResponse response)
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static implicit operator Cover(VkResponse response)
+	{
+		if (response == null)
 		{
-			return new Cover
-			{
-				Sizes = response["sizes"].ToReadOnlyCollectionOf<CoverSize>(x => x)
-			};
+			return null;
 		}
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static implicit operator Cover(VkResponse response)
-		{
-			if (response == null)
-			{
-				return null;
-			}
-
-			return response.HasToken()
-				? FromJson(response)
-				: null;
-		}
+		return response.HasToken()
+			? FromJson(response)
+			: null;
 	}
 }

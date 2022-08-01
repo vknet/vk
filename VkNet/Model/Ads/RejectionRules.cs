@@ -2,38 +2,34 @@
 using Newtonsoft.Json;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+///
+/// </summary>
+[Serializable]
+public class RejectionRules
 {
 	/// <summary>
 	///
 	/// </summary>
-	[Serializable]
-	public class RejectionRules
+	[JsonProperty("title")]
+	public string Title { get; set; }
+
+	/// <summary>
+	///
+	/// </summary>
+	[JsonProperty("paragraphs")]
+	public string Paragraphs { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static RejectionRules FromJson(VkResponse response) => new()
 	{
-		/// <summary>
-		///
-		/// </summary>
-		[JsonProperty("title")]
-		public string Title { get; set; }
-
-		/// <summary>
-		///
-		/// </summary>
-		[JsonProperty("paragraphs")]
-		public string Paragraphs { get; set; }
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static RejectionRules FromJson(VkResponse response)
-		{
-			return new RejectionRules
-			{
-				Title = response["title"],
-				Paragraphs = response["paragraphs"]
-			};
-		}
-	}
+		Title = response["title"],
+		Paragraphs = response["paragraphs"]
+	};
 }

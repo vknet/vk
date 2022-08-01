@@ -4,28 +4,28 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetUploadUrlTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class GetUploadUrlTest : CategoryBaseTest
+	[Fact]
+	public void GetUploadUrl()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getUploadUrl";
 
-		[Fact]
-		public void GetUploadUrl()
+		ReadCategoryJsonPath(nameof(Api.Ads.GetUploadUrl));
+
+		var url = Api.Ads.GetUploadUrl(new()
 		{
-			Url = "https://api.vk.com/method/ads.getUploadUrl";
+			AdFormat = AdFormat.Public,
+			Icon = AdIcon.AdIconYes
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetUploadUrl));
-
-			var url = Api.Ads.GetUploadUrl(new GetUploadUrlParams
-			{
-				AdFormat = AdFormat.Public,
-				Icon = AdIcon.AdIconYes
-			});
-
-			url.ToString().Should().Be("https://pu.vk.com/c850608/upload.php?act=ads_add&mid=504736359&size=s&hash_time=1583351712&hash=318c03e7ca5d39a25926b70c37f1dadf&rhash=7914a36ca66600b440aca5991cba69e2&api=1");
-		}
+		url.ToString()
+			.Should()
+			.Be(
+				"https://pu.vk.com/c850608/upload.php?act=ads_add&mid=504736359&size=s&hash_time=1583351712&hash=318c03e7ca5d39a25926b70c37f1dadf&rhash=7914a36ca66600b440aca5991cba69e2&api=1");
 	}
 }

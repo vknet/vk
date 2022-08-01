@@ -1,23 +1,22 @@
-namespace VkNet.Enums
+namespace VkNet.Enums;
+
+/// <summary>
+/// Идёт ли текущий пользователь на встречу.
+/// </summary>
+public enum EventMemberStatus
 {
 	/// <summary>
-	/// Идёт ли текущий пользователь на встречу.
+	/// Точно идёт
 	/// </summary>
-	public enum EventMemberStatus
-	{
-		/// <summary>
-		/// Точно идёт
-		/// </summary>
-		Exactly = 1,
+	Exactly = 1,
 
-		/// <summary>
-		/// Возможно пойдёт
-		/// </summary>
-		Possible = 2,
+	/// <summary>
+	/// Возможно пойдёт
+	/// </summary>
+	Possible = 2,
 
-		/// <summary>
-		/// Не идёт
-		/// </summary>
-		NotGoing = 3
-	}
+	/// <summary>
+	/// Не идёт
+	/// </summary>
+	NotGoing = 3
 }

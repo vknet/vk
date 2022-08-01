@@ -6,63 +6,105 @@ using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Group
+namespace VkNet.Tests.Categories.Group;
+
+public class GroupGetBannedTests : CategoryBaseTest
 {
+	protected override string Folder => "Groups";
 
-	public class GroupGetBannedTests : CategoryBaseTest
+	[Fact]
+	public void GetBanned_Profile()
 	{
-		protected override string Folder => "Groups";
+		Url = "https://api.vk.com/method/groups.getBanned";
 
-		[Fact]
-		public void GetBanned_Profile()
-		{
-			Url = "https://api.vk.com/method/groups.getBanned";
+		ReadCategoryJsonPath(nameof(GetBanned_Profile));
 
-			ReadCategoryJsonPath(nameof(GetBanned_Profile));
+		var banned = Api.Groups.GetBanned(65968111, null, 3);
 
-			var banned = Api.Groups.GetBanned(65968111, null, 3);
+		banned.Should()
+			.NotBeNull();
 
-			banned.Should().NotBeNull();
-			banned.Should().ContainSingle();
+		banned.Should()
+			.ContainSingle();
 
-			var user = banned.FirstOrDefault();
-			user.Should().NotBeNull();
-			user.Type.Should().Be(SearchResultType.Profile);
-			user.Profile.Should().NotBeNull();
-			user.Group.Should().BeNull();
-			user.BanInfo.Should().NotBeNull();
-			user.BanInfo.AdminId.Should().Be(32190123);
-			user.BanInfo.Date.Should().Be(DateHelper.TimeStampToDateTime(1516980336));
-			user.BanInfo.Reason.Should().Be(BanReason.Other);
-			user.BanInfo.Comment.Should().Be("для теста");
+		var user = banned.FirstOrDefault();
 
-			user.BanInfo.EndDate.Should().Be(DateHelper.TimeStampToDateTime(1517585141));
-		}
+		user.Should()
+			.NotBeNull();
 
-		[Fact]
-		public void GetBanned_Group()
-		{
-			Url = "https://api.vk.com/method/groups.getBanned";
+		user.Type.Should()
+			.Be(SearchResultType.Profile);
 
-			ReadCategoryJsonPath(nameof(GetBanned_Group));
+		user.Profile.Should()
+			.NotBeNull();
 
-			var banned = Api.Groups.GetBanned(65968111, null, 3);
+		user.Group.Should()
+			.BeNull();
 
-			banned.Should().NotBeNull();
-			banned.Should().ContainSingle();
+		user.BanInfo.Should()
+			.NotBeNull();
 
-			var user = banned.FirstOrDefault();
-			user.Should().NotBeNull();
-			user.Type.Should().Be(SearchResultType.Group);
-			user.Profile.Should().BeNull();
-			user.Group.Should().NotBeNull();
-			user.BanInfo.Should().NotBeNull();
-			user.BanInfo.AdminId.Should().Be(32190123);
-			user.BanInfo.Date.Should().Be(DateHelper.TimeStampToDateTime(1516980336));
-			user.BanInfo.Reason.Should().Be(BanReason.Other);
-			user.BanInfo.Comment.Should().Be("для теста");
+		user.BanInfo.AdminId.Should()
+			.Be(32190123);
 
-			user.BanInfo.EndDate.Should().Be(DateHelper.TimeStampToDateTime(1517585141));
-		}
+		user.BanInfo.Date.Should()
+			.Be(DateHelper.TimeStampToDateTime(1516980336));
+
+		user.BanInfo.Reason.Should()
+			.Be(BanReason.Other);
+
+		user.BanInfo.Comment.Should()
+			.Be("для теста");
+
+		user.BanInfo.EndDate.Should()
+			.Be(DateHelper.TimeStampToDateTime(1517585141));
+	}
+
+	[Fact]
+	public void GetBanned_Group()
+	{
+		Url = "https://api.vk.com/method/groups.getBanned";
+
+		ReadCategoryJsonPath(nameof(GetBanned_Group));
+
+		var banned = Api.Groups.GetBanned(65968111, null, 3);
+
+		banned.Should()
+			.NotBeNull();
+
+		banned.Should()
+			.ContainSingle();
+
+		var user = banned.FirstOrDefault();
+
+		user.Should()
+			.NotBeNull();
+
+		user.Type.Should()
+			.Be(SearchResultType.Group);
+
+		user.Profile.Should()
+			.BeNull();
+
+		user.Group.Should()
+			.NotBeNull();
+
+		user.BanInfo.Should()
+			.NotBeNull();
+
+		user.BanInfo.AdminId.Should()
+			.Be(32190123);
+
+		user.BanInfo.Date.Should()
+			.Be(DateHelper.TimeStampToDateTime(1516980336));
+
+		user.BanInfo.Reason.Should()
+			.Be(BanReason.Other);
+
+		user.BanInfo.Comment.Should()
+			.Be("для теста");
+
+		user.BanInfo.EndDate.Should()
+			.Be(DateHelper.TimeStampToDateTime(1517585141));
 	}
 }

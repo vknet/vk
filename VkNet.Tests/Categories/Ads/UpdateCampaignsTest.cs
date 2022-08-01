@@ -6,58 +6,63 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class UpdateCampaignsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class UpdateCampaignsTest : CategoryBaseTest
+	[Fact]
+	public void UpdateCampaigns()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.updateCampaigns";
 
-		[Fact]
-		public void UpdateCampaigns()
+		ReadCategoryJsonPath(nameof(Api.Ads.UpdateCampaigns));
+
+		var campaignModSpecification1 = new CampaignModSpecification
 		{
-			Url = "https://api.vk.com/method/ads.updateCampaigns";
+			CampaignId = 1012219949,
+			Status = AdStatus.Active,
+			Name = "123",
+			AllLimit = 100,
+			DayLimit = 50,
+			StartTime = DateTime.Now,
+			StopTime = DateTime.Now
+		};
 
-			ReadCategoryJsonPath(nameof(Api.Ads.UpdateCampaigns));
+		var campaignModSpecification2 = new CampaignModSpecification
+		{
+			CampaignId = 1012219949,
+			Status = AdStatus.Active,
+			Name = "123",
+			AllLimit = 100,
+			DayLimit = 50,
+			StartTime = DateTime.Now,
+			StopTime = DateTime.Now
+		};
 
-			var campaignModSpecification1 = new CampaignModSpecification
-			{
-				CampaignId = 1012219949,
-				Status = AdStatus.Active,
-				Name = "123",
-				AllLimit = 100,
-				DayLimit = 50,
-				StartTime = DateTime.Now,
-				StopTime = DateTime.Now
-			};
+		CampaignModSpecification[] data =
+		{
+			campaignModSpecification1,
+			campaignModSpecification2
+		};
 
-			var campaignModSpecification2 = new CampaignModSpecification
-			{
-				CampaignId = 1012219949,
-				Status = AdStatus.Active,
-				Name = "123",
-				AllLimit = 100,
-				DayLimit = 50,
-				StartTime = DateTime.Now,
-				StopTime = DateTime.Now
-			};
+		var officeUsers = Api.Ads.UpdateCampaigns(new()
+		{
+			Data = data,
+			AccountId = 1605245430
+		});
 
-			CampaignModSpecification[] data =
-			{
-				campaignModSpecification1,
-				campaignModSpecification2
-			};
+		officeUsers[0]
+			.Id.Should()
+			.Be(1);
 
-			var officeUsers = Api.Ads.UpdateCampaigns(new AdsDataSpecificationParams<CampaignModSpecification>
-			{
-				Data = data,
-				AccountId = 1605245430
-			});
+		officeUsers[0]
+			.ErrorCode.Should()
+			.Be(100);
 
-			officeUsers[0].Id.Should().Be(1);
-			officeUsers[0].ErrorCode.Should().Be(100);
-			officeUsers[1].Id.Should().Be(2);
-		}
+		officeUsers[1]
+			.Id.Should()
+			.Be(2);
 	}
 }

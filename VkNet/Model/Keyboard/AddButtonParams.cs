@@ -3,64 +3,64 @@ using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model.Keyboard
+namespace VkNet.Model.Keyboard;
+
+/// <summary>
+/// Параметры для создания кнопки в билдере
+/// </summary>
+[Serializable]
+public class AddButtonParams
 {
 	/// <summary>
-	/// Параметры для создания кнопки в билдере
+	/// Надписть на кнопке
 	/// </summary>
-	[Serializable]
-	public class AddButtonParams
-	{
-		/// <summary>
-		/// Надписть на кнопке
-		/// </summary>
-		public string Label { get; set; }
-		/// <summary>
-		/// Ссылка на кнопке
-		/// </summary>
-		public string Link { get; set; }
+	public string Label { get; set; }
 
-		/// <summary>
-		/// Парметры для платежа
-		/// </summary>
-		public string Hash { get; set; }
+	/// <summary>
+	/// Ссылка на кнопке
+	/// </summary>
+	public string Link { get; set; }
 
-		/// <summary>
-		/// Дополнительная информация о кнопке
-		/// </summary>
-		public string Extra { get; set; }
+	/// <summary>
+	/// Парметры для платежа
+	/// </summary>
+	public string Hash { get; set; }
 
-		/// <summary>
-		/// Цвет кнопки
-		/// </summary>
-		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public KeyboardButtonColor Color { get; set; } = default;
+	/// <summary>
+	/// Дополнительная информация о кнопке
+	/// </summary>
+	public string Extra { get; set; }
 
-		/// <summary>
-		/// Основная информация о кнопке
-		/// </summary>
-		public string? Type { get; set; } = null;
+	/// <summary>
+	/// Цвет кнопки
+	/// </summary>
+	[JsonConverter(typeof(SafetyEnumJsonConverter))]
+	public KeyboardButtonColor Color { get; set; } = default;
 
-		/// <summary>
-		/// Тип клавиши
-		/// </summary>
-		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public KeyboardButtonActionType ActionType { get; set; }
+	/// <summary>
+	/// Основная информация о кнопке
+	/// </summary>
+	public string? Type { get; set; } = null;
 
-		/// <summary>
-		/// Любой из интентов, требующий подписки.
-		/// </summary>
-		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		public Intent Intent { get; set; }
+	/// <summary>
+	/// Тип клавиши
+	/// </summary>
+	[JsonConverter(typeof(SafetyEnumJsonConverter))]
+	public KeyboardButtonActionType ActionType { get; set; }
 
-		/// <summary>
-		/// Дополнительное поле для confirmed_notification.
-		/// </summary>
-		public byte? SubscribeId { get; set; }
+	/// <summary>
+	/// Любой из интентов, требующий подписки.
+	/// </summary>
+	[JsonConverter(typeof(SafetyEnumJsonConverter))]
+	public Intent Intent { get; set; }
 
-		/// <summary>
-		/// user_id: 1-2e9
-		/// </summary>
-		public long? PeerId { get; set; }
-	}
+	/// <summary>
+	/// Дополнительное поле для confirmed_notification.
+	/// </summary>
+	public byte? SubscribeId { get; set; }
+
+	/// <summary>
+	/// user_id: 1-2e9
+	/// </summary>
+	public long? PeerId { get; set; }
 }

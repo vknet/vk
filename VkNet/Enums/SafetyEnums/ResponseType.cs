@@ -1,18 +1,17 @@
-namespace VkNet.Enums.SafetyEnums
+namespace VkNet.Enums.SafetyEnums;
+
+/// <summary>
+/// Тип ответа, который необходимо получить.
+/// </summary>
+public class ResponseType : SafetyEnum<ResponseType>
 {
 	/// <summary>
-	/// Тип ответа, который необходимо получить.
+	/// Токен.
 	/// </summary>
-	public class ResponseType : SafetyEnum<ResponseType>
-	{
-		/// <summary>
-		/// Токен.
-		/// </summary>
-		public static readonly ResponseType Token = RegisterPossibleValue("token");
+	public static readonly ResponseType Token = RegisterPossibleValue("token");
 
-		/// <summary>
-		/// Код.
-		/// </summary>
-		public static readonly ResponseType Сode = RegisterPossibleValue("code");
-	}
+	/// <summary>
+	/// Код.
+	/// </summary>
+	public static readonly ResponseType Сode = RegisterPossibleValue("code");
 }

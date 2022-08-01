@@ -3,35 +3,34 @@ using VkNet.Model;
 using VkNet.Utils;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class GeoTests : BaseTest
 {
-
-
-	public class GeoTests : BaseTest
+	[Fact]
+	public void GeoFromJson()
 	{
-		[Fact]
-		public void GeoFromJson()
-		{
-			ReadJsonFile("Models", nameof(Geo));
+		ReadJsonFile("Models", nameof(Geo));
 
-			var response = GetResponse();
+		var response = GetResponse();
 
-			var geo = Geo.FromJson(response);
+		var geo = Geo.FromJson(response);
 
-			geo.Should().NotBeNull();
-		}
+		geo.Should()
+			.NotBeNull();
+	}
 
-		[Fact]
-		public void GeoJsonConvert()
-		{
-			ReadJsonFile("Models", nameof(Geo));
+	[Fact]
+	public void GeoJsonConvert()
+	{
+		ReadJsonFile("Models", nameof(Geo));
 
-			ReadJsonFile("Models", nameof(Geo));
+		ReadJsonFile("Models", nameof(Geo));
 
-			Url = "https://api.vk.com/method/friends.getRequests";
-			var result = Api.Call<Geo>("friends.getRequests", VkParameters.Empty);
+		Url = "https://api.vk.com/method/friends.getRequests";
+		var result = Api.Call<Geo>("friends.getRequests", VkParameters.Empty);
 
-			result.Should().NotBeNull();
-		}
+		result.Should()
+			.NotBeNull();
 	}
 }

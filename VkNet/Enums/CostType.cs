@@ -1,23 +1,22 @@
-namespace VkNet.Enums
+namespace VkNet.Enums;
+
+/// <summary>
+/// Тип оплаты
+/// </summary>
+public enum CostType
 {
 	/// <summary>
-	/// Тип оплаты
+	/// Оплата за переходы
 	/// </summary>
-	public enum CostType
-	{
-		/// <summary>
-		/// Оплата за переходы
-		/// </summary>
-		Cpc = 0,
+	Cpc = 0,
 
-		/// <summary>
-		/// Оплата за показы
-		/// </summary>
-		Cpm = 1,
+	/// <summary>
+	/// Оплата за показы
+	/// </summary>
+	Cpm = 1,
 
-		/// <summary>
-		/// Отправка заявок
-		/// </summary>
-		OCpm = 3
-	}
+	/// <summary>
+	/// Отправка заявок
+	/// </summary>
+	OCpm = 3
 }

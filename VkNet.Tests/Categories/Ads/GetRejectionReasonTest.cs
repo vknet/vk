@@ -2,23 +2,22 @@
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetRejectionReasonTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class GetRejectionReasonTest : CategoryBaseTest
+	[Fact]
+	public void GetRejectionReason()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getRejectionReason";
 
-		[Fact]
-		public void GetRejectionReason()
-		{
-			Url = "https://api.vk.com/method/ads.getRejectionReason";
+		ReadCategoryJsonPath(nameof(Api.Ads.GetRejectionReason));
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetRejectionReason));
+		var result = Api.Ads.GetRejectionReason(123, 123);
 
-			var result = Api.Ads.GetRejectionReason(123,123);
-			result.Comment.Should().Be("123");
-		}
+		result.Comment.Should()
+			.Be("123");
 	}
 }

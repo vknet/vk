@@ -5,28 +5,31 @@ using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Wall
+namespace VkNet.Tests.Categories.Wall;
+
+public class WallPostTests : CategoryBaseTest
 {
-	public class WallPostTests : CategoryBaseTest
+	protected override string Folder => "Wall";
+
+	[Fact]
+	public void Post_ReturnValidateNeeded()
 	{
-		protected override string Folder => "Wall";
+		Url = "https://api.vk.com/method/wall.post";
+		ReadErrorsJsonFile(17);
 
-		[Fact]
-		public void Post_ReturnValidateNeeded()
-		{
-			Url = "https://api.vk.com/method/wall.post";
-			ReadErrorsJsonFile(17);
+		FluentActions.Invoking(() => VkErrors.IfErrorThrowException(Json))
+			.Should()
+			.ThrowExactly<NeedValidationException>();
+	}
 
-			FluentActions.Invoking(() => VkErrors.IfErrorThrowException(Json)).Should().ThrowExactly<NeedValidationException>();
-		}
+	[Fact]
+	public void Post_AccessToAddingPostDenied()
+	{
+		Url = "https://api.vk.com/method/wall.post";
+		ReadErrorsJsonFile(214);
 
-		[Fact]
-		public void Post_AccessToAddingPostDenied()
-		{
-			Url = "https://api.vk.com/method/wall.post";
-			ReadErrorsJsonFile(214);
-
-			FluentActions.Invoking(() => Api.Wall.Post(new WallPostParams())).Should().ThrowExactly<PostLimitException>();
-		}
+		FluentActions.Invoking(() => Api.Wall.Post(new()))
+			.Should()
+			.ThrowExactly<PostLimitException>();
 	}
 }

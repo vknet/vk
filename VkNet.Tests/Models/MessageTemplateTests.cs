@@ -2,21 +2,20 @@
 using VkNet.Model.Template;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class MessageTemplateTests : BaseTest
 {
-
-	public class MessageTemplateTests : BaseTest
+	[Fact]
+	public void Template_Carousel()
 	{
-		[Fact]
-		public void Template_Carousel()
-		{
-			ReadJsonFile("Models", "Template_Carousel");
+		ReadJsonFile("Models", "Template_Carousel");
 
-			var response = GetResponse();
+		var response = GetResponse();
 
-			var result = MessageTemplate.FromJson(response);
+		var result = MessageTemplate.FromJson(response);
 
-			result.Should().NotBeNull();
-		}
+		result.Should()
+			.NotBeNull();
 	}
 }

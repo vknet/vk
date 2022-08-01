@@ -2,23 +2,21 @@ using FluentAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Orders
+namespace VkNet.Tests.Categories.Orders;
+
+public class OrdersGetUserSubscriptionsTests : CategoryBaseTest
 {
+	protected override string Folder => "Orders";
 
-
-	public class OrdersGetUserSubscriptionsTests : CategoryBaseTest
+	[Fact]
+	public void GetUserSubscriptions()
 	{
-		protected override string Folder => "Orders";
+		Url = "https://api.vk.com/method/orders.getUserSubscriptions";
+		ReadCategoryJsonPath(nameof(GetUserSubscriptions));
 
-		[Fact]
-		public void GetUserSubscriptions()
-		{
-			Url = "https://api.vk.com/method/orders.getUserSubscriptions";
-			ReadCategoryJsonPath(nameof(GetUserSubscriptions));
+		var result = Api.Orders.GetUserSubscriptions(123);
 
-			var result = Api.Orders.GetUserSubscriptions(123);
-
-			result.Should().NotBeEmpty();
-		}
+		result.Should()
+			.NotBeEmpty();
 	}
 }

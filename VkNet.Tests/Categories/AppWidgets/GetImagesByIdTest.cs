@@ -3,25 +3,26 @@ using FluentAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.AppWidgets
+namespace VkNet.Tests.Categories.AppWidgets;
+
+public class GetImagesByIdTest : CategoryBaseTest
 {
+	protected override string Folder => "AppWidgets";
 
-
-	public class GetImagesByIdTest : CategoryBaseTest
+	[Fact]
+	public void GetAppImages()
 	{
-		protected override string Folder => "AppWidgets";
+		Url = "https://api.vk.com/method/appWidgets.getImagesById";
 
-		[Fact]
-		public void GetAppImages()
-		{
-			Url = "https://api.vk.com/method/appWidgets.getImagesById";
+		ReadCategoryJsonPath(nameof(GetAppImages));
 
-			ReadCategoryJsonPath(nameof(GetAppImages));
+		var result = Api.AppWidgets.GetImagesById("7309583_1192027");
 
-			var result = Api.AppWidgets.GetImagesById("7309583_1192027");
+		result.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			result.First().Id.Should().Be("7309583_1192027");
-		}
+		result.First()
+			.Id.Should()
+			.Be("7309583_1192027");
 	}
 }

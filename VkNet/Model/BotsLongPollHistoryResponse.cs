@@ -4,87 +4,88 @@ using Newtonsoft.Json;
 using VkNet.Exception;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Обновление в событиях группы
+/// </summary>
+[Serializable]
+public class BotsLongPollHistoryResponse
 {
 	/// <summary>
-	/// Обновление в событиях группы
+	/// Номер последнего события, начиная с которого нужно получать данные;
 	/// </summary>
-	[Serializable]
-	public class BotsLongPollHistoryResponse
+	[JsonProperty("ts")]
+	public string Ts { get; set; }
+
+	/// <summary>
+	/// Обновления группы
+	/// </summary>
+
+	[JsonProperty("updates")]
+	public IEnumerable<GroupUpdate.GroupUpdate> Updates { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static BotsLongPollHistoryResponse FromJson(VkResponse response)
 	{
-		/// <summary>
-		/// Номер последнего события, начиная с которого нужно получать данные;
-		/// </summary>
-		[JsonProperty("ts")]
-		public string Ts { get; set; }
-
-		/// <summary>
-		/// Обновления группы
-		/// </summary>
-
-		[JsonProperty("updates")]
-		public IEnumerable<GroupUpdate.GroupUpdate> Updates { get; set; }
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static BotsLongPollHistoryResponse FromJson(VkResponse response)
+		if (response.ContainsKey("failed"))
 		{
-			if (response.ContainsKey("failed"))
+			int code = response["failed"];
+
+			if (code == LongPollException.OutdateException)
 			{
-				int code = response["failed"];
-
-				if (code == LongPollException.OutdateException)
-				{
-					throw new LongPollOutdateException(response["ts"]);
-				}
-
-				if (code == LongPollException.KeyExpiredException)
-				{
-					throw new LongPollKeyExpiredException();
-				}
-
-				if (code == LongPollException.InfoLostException)
-				{
-					throw new LongPollInfoLostException();
-				}
+				throw new LongPollOutdateException(response["ts"]);
 			}
 
-			var fromJson = new BotsLongPollHistoryResponse
+			if (code == LongPollException.KeyExpiredException)
 			{
-				Ts = response["ts"],
-			};
-
-			VkResponseArray updates = response[key: "updates"];
-			var updateList = new List<GroupUpdate.GroupUpdate>();
-
-			foreach (var update in updates)
-			{
-				updateList.Add(GroupUpdate.GroupUpdate.FromJson(update));
+				throw new LongPollKeyExpiredException();
 			}
 
-			fromJson.Updates = updateList;
-
-			return fromJson;
+			if (code == LongPollException.InfoLostException)
+			{
+				throw new LongPollInfoLostException();
+			}
 		}
 
-		/// <summary>
-		/// Преобразовать из VkResponse
-		/// </summary>
-		/// <param name="response"> Ответ. </param>
-		/// <returns>
-		/// Результат преобразования.
-		/// </returns>
-		public static implicit operator BotsLongPollHistoryResponse(VkResponse response)
+		var fromJson = new BotsLongPollHistoryResponse
 		{
-			if (response == null)
-			{
-				return null;
-			}
+			Ts = response["ts"]
+		};
 
-			return response.HasToken() ? FromJson(response: response) : null;
+		VkResponseArray updates = response[key: "updates"];
+		var updateList = new List<GroupUpdate.GroupUpdate>();
+
+		foreach (var update in updates)
+		{
+			updateList.Add(GroupUpdate.GroupUpdate.FromJson(update));
 		}
+
+		fromJson.Updates = updateList;
+
+		return fromJson;
+	}
+
+	/// <summary>
+	/// Преобразовать из VkResponse
+	/// </summary>
+	/// <param name="response"> Ответ. </param>
+	/// <returns>
+	/// Результат преобразования.
+	/// </returns>
+	public static implicit operator BotsLongPollHistoryResponse(VkResponse response)
+	{
+		if (response == null)
+		{
+			return null;
+		}
+
+		return response.HasToken()
+			? FromJson(response: response)
+			: null;
 	}
 }

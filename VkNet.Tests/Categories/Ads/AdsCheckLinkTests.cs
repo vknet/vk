@@ -5,32 +5,33 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class AdsCheckLinkTests : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class AdsCheckLinkTests : CategoryBaseTest
+	[Fact]
+	public void CheckLink()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.checkLink";
 
-		[Fact]
-		public void CheckLink()
+		ReadCategoryJsonPath(nameof(Api.Ads.CheckLink));
+
+		var link = Api.Ads.CheckLink(new()
 		{
-			Url = "https://api.vk.com/method/ads.checkLink";
+			AccountId = 123,
+			LinkType = AdsLinkType.Application,
+			LinkUrl = new(Url)
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.CheckLink));
+		link.Should()
+			.NotBeNull();
 
-			var link = Api.Ads.CheckLink(new CheckLinkParams
-			{
-				AccountId = 123,
-				LinkType = AdsLinkType.Application,
-				LinkUrl = new Uri(Url)
-			});
+		link.Description.Should()
+			.NotBeEmpty();
 
-			link.Should().NotBeNull();
-
-			link.Description.Should().NotBeEmpty();
-			link.Status.Should().Be(LinkStatusType.Disallowed);
-		}
+		link.Status.Should()
+			.Be(LinkStatusType.Disallowed);
 	}
 }

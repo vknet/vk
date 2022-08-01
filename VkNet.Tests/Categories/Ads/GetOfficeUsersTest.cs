@@ -3,24 +3,28 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetOfficeUsersTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class GetOfficeUsersTest : CategoryBaseTest
+	[Fact]
+	public void GetOfficeUsers()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getOfficeUsers";
 
-		[Fact]
-		public void GetOfficeUsers()
-		{
-			Url = "https://api.vk.com/method/ads.getOfficeUsers";
+		ReadCategoryJsonPath(nameof(Api.Ads.GetOfficeUsers));
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetOfficeUsers));
+		var result = Api.Ads.GetOfficeUsers(123213);
 
-			var result = Api.Ads.GetOfficeUsers(123213);
-			result[0].UserId.Should().Be(504736359);
-			result[0].Accesses[0].Role.Should().Be(AccessRole.Admin);
-		}
+		result[0]
+			.UserId.Should()
+			.Be(504736359);
+
+		result[0]
+			.Accesses[0]
+			.Role.Should()
+			.Be(AccessRole.Admin);
 	}
 }

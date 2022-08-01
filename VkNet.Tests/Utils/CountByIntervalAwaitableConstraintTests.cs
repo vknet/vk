@@ -6,27 +6,31 @@ using FluentAssertions;
 using VkNet.Utils;
 using Xunit;
 
-namespace VkNet.Tests.Utils
+namespace VkNet.Tests.Utils;
+
+public class CountByIntervalAwaitableConstraintTests
 {
-	public class CountByIntervalAwaitableConstraintTests
+	[Fact]
+	public async Task WaitForReadinessAsync()
 	{
-		[Fact]
-		public async Task WaitForReadinessAsync()
+		const int count = 3;
+		var t = TimeSpan.FromSeconds(1);
+		var awaitableConstraint = new CountByIntervalAwaitableConstraint(count, t);
+		var token = new CancellationTokenSource().Token;
+		var sw = Stopwatch.StartNew();
+
+		for (var i = 0; i < count; i++)
 		{
-			const int count = 3;
-			var t = TimeSpan.FromSeconds(1);
-			var awaitableConstraint = new CountByIntervalAwaitableConstraint(count, t);
-			var token = new CancellationTokenSource().Token;
-			var sw = Stopwatch.StartNew();
-
-			for (var i = 0; i < count; i++)
-			{
-				await awaitableConstraint.WaitForReadinessAsync(token).ConfigureAwait(false);
-			}
-
-			await awaitableConstraint.WaitForReadinessAsync(token).ConfigureAwait(false);
-			var t2 = sw.Elapsed;
-			t2.Should().BeGreaterThanOrEqualTo(t);
+			await awaitableConstraint.WaitForReadinessAsync(token)
+				.ConfigureAwait(false);
 		}
+
+		await awaitableConstraint.WaitForReadinessAsync(token)
+			.ConfigureAwait(false);
+
+		var t2 = sw.Elapsed;
+
+		t2.Should()
+			.BeGreaterThanOrEqualTo(t);
 	}
 }

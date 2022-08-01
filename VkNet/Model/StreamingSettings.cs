@@ -3,19 +3,18 @@ using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Streaming Settings.
+/// </summary>
+[Serializable]
+public class StreamingSettings
 {
 	/// <summary>
-	/// Streaming Settings.
+	/// Месячные ограничения
 	/// </summary>
-	[Serializable]
-	public class StreamingSettings
-	{
-		/// <summary>
-		/// Месячные ограничения
-		/// </summary>
-		[JsonProperty(propertyName: "monthly_limit")]
-		[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
-		public MonthlyLimit MonthlyLimit { get; set; }
-	}
+	[JsonProperty(propertyName: "monthly_limit")]
+	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
+	public MonthlyLimit MonthlyLimit { get; set; }
 }

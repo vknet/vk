@@ -2,21 +2,19 @@
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Messages
+namespace VkNet.Tests.Categories.Messages;
+
+public class MessagesMarkAsAnsweredConversationTests : MessagesBaseTests
 {
-
-
-	public class MessagesMarkAsAnsweredConversationTests : MessagesBaseTests
+	[Fact]
+	public void MarkAsAnsweredConversation()
 	{
-		[Fact]
-		public void MarkAsAnsweredConversation()
-		{
-			Url = "https://api.vk.com/method/messages.markAsAnsweredConversation";
-			ReadJsonFile(JsonPaths.True);
+		Url = "https://api.vk.com/method/messages.markAsAnsweredConversation";
+		ReadJsonFile(JsonPaths.True);
 
-			var result = Api.Messages.MarkAsAnsweredConversation(123);
+		var result = Api.Messages.MarkAsAnsweredConversation(123);
 
-			result.Should().BeTrue();
-		}
+		result.Should()
+			.BeTrue();
 	}
 }

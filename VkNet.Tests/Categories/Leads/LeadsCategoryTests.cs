@@ -3,53 +3,72 @@ using VkNet.Model.RequestParams.Leads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Leads
+namespace VkNet.Tests.Categories.Leads;
+
+public class LeadsCategoryTests : CategoryBaseTest
 {
+	protected override string Folder => "Leads";
 
-	public class LeadsCategoryTests : CategoryBaseTest
+	[Fact]
+	public void Complete()
 	{
-		protected override string Folder => "Leads";
+		Url = "https://api.vk.com/method/leads.complete";
+		ReadCategoryJsonPath(nameof(Complete));
 
-		[Fact]
-		public void Complete()
-		{
-			Url = "https://api.vk.com/method/leads.complete";
-			ReadCategoryJsonPath(nameof(Complete));
+		var result = Api.Leads.Complete("test8f4f23fb62c5c89fbb", "bb4f37150027a9cf51", string.Empty);
 
-			var result = Api.Leads.Complete("test8f4f23fb62c5c89fbb", "bb4f37150027a9cf51", string.Empty);
+		result.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			result.Limit.Should().Be(1000);
-			result.DayLimit.Should().Be(500);
-			result.Spent.Should().Be(10);
-			result.Cost.Should().Be("1");
-			result.TestMode.Should().Be(1);
-			result.Success.Should().Be(1);
-		}
+		result.Limit.Should()
+			.Be(1000);
 
-		[Fact]
-		public void Start()
-		{
-			Url = "https://api.vk.com/method/leads.start";
-			ReadCategoryJsonPath(nameof(Start));
+		result.DayLimit.Should()
+			.Be(500);
 
-			var result = Api.Leads.Start(new StartParams());
+		result.Spent.Should()
+			.Be(10);
 
-			result.Should().NotBeNull();
-			result.TestMode.Should().Be(1);
-			result.VkSid.Should().Be("vk_sid");
-		}
+		result.Cost.Should()
+			.Be("1");
 
-		[Fact]
-		public void GetUsers()
-		{
-			Url = "https://api.vk.com/method/leads.getUsers";
-			ReadCategoryJsonPath(nameof(GetUsers));
+		result.TestMode.Should()
+			.Be(1);
 
-			var result = Api.Leads.GetUsers(new GetUsersParams());
+		result.Success.Should()
+			.Be(1);
+	}
 
-			result.Should().NotBeNull();
-			result.Should().NotBeEmpty();
-		}
+	[Fact]
+	public void Start()
+	{
+		Url = "https://api.vk.com/method/leads.start";
+		ReadCategoryJsonPath(nameof(Start));
+
+		var result = Api.Leads.Start(new());
+
+		result.Should()
+			.NotBeNull();
+
+		result.TestMode.Should()
+			.Be(1);
+
+		result.VkSid.Should()
+			.Be("vk_sid");
+	}
+
+	[Fact]
+	public void GetUsers()
+	{
+		Url = "https://api.vk.com/method/leads.getUsers";
+		ReadCategoryJsonPath(nameof(GetUsers));
+
+		var result = Api.Leads.GetUsers(new());
+
+		result.Should()
+			.NotBeNull();
+
+		result.Should()
+			.NotBeEmpty();
 	}
 }

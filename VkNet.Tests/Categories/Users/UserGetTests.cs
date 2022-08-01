@@ -7,25 +7,32 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Users
+namespace VkNet.Tests.Categories.Users;
+
+public class UserGetTests : CategoryBaseTest
 {
+	protected override string Folder => "Users";
 
-	public class UserGetTests : CategoryBaseTest
+	[Fact]
+	public void Get_Olesya_SingleUser()
 	{
-		protected override string Folder => "Users";
+		Url = "https://api.vk.com/method/users.get";
+		ReadCategoryJsonPath(nameof(Get_Olesya_SingleUser));
 
-		[Fact]
-		public void Get_Olesya_SingleUser()
+		var users = Api.Users.Get(new List<long>
 		{
-			Url = "https://api.vk.com/method/users.get";
-			ReadCategoryJsonPath(nameof(Get_Olesya_SingleUser));
+			118312730
+		}, ProfileFields.Sex, NameCase.Nom);
 
-			var users = Api.Users.Get(new List<long> { 118312730 }, ProfileFields.Sex, NameCase.Nom);
+		users.Should()
+			.NotBeNull();
 
-			users.Should().NotBeNull();
-			var user = users.FirstOrDefault();
-			user.Should().NotBeNull();
-			user.Sex.Should().Be(Sex.Deactivated);
-		}
+		var user = users.FirstOrDefault();
+
+		user.Should()
+			.NotBeNull();
+
+		user.Sex.Should()
+			.Be(Sex.Deactivated);
 	}
 }

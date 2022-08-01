@@ -8,78 +8,82 @@ using VkNet.Model;
 using VkNet.Model.Attachments;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class ModelsTests
 {
+	private const string VkNetModelBaseNamespace = "VkNet.Model";
 
-	public class ModelsTests
+	[Fact]
+	public void ModelsWithNullableDateTimeFieldsShouldHaveJsonConverterAttribute()
 	{
-		private const string VkNetModelBaseNamespace = "VkNet.Model";
+		var types = typeof(VkApi).Assembly.Types()
+			.ThatAreUnderNamespace(VkNetModelBaseNamespace)
+			.Properties()
+			.OfType<DateTime?>()
+			.ThatArePublicOrInternal;
 
-		[Fact]
-		public void ModelsWithNullableDateTimeFieldsShouldHaveJsonConverterAttribute()
-		{
-			var types = typeof(VkApi).Assembly.Types()
-				.ThatAreUnderNamespace(VkNetModelBaseNamespace)
-				.Properties()
-				.OfType<DateTime?>()
-				.ThatArePublicOrInternal;
+		types.Should()
+			.BeDecoratedWith<JsonConverterAttribute>();
+	}
 
-			types.Should().BeDecoratedWith<JsonConverterAttribute>();
-		}
+	[Fact]
+	public void ModelsWithDateTimeFieldsShouldHaveJsonConverterAttribute()
+	{
+		var types = typeof(VkApi).Assembly.Types()
+			.ThatAreUnderNamespace(VkNetModelBaseNamespace)
+			.Properties()
+			.OfType<DateTime>()
+			.ThatArePublicOrInternal;
 
-		[Fact]
-		public void ModelsWithDateTimeFieldsShouldHaveJsonConverterAttribute()
-		{
-			var types = typeof(VkApi).Assembly.Types()
-				.ThatAreUnderNamespace(VkNetModelBaseNamespace)
-				.Properties()
-				.OfType<DateTime>()
-				.ThatArePublicOrInternal;
+		types.Should()
+			.BeDecoratedWith<JsonConverterAttribute>();
+	}
 
-			types.Should().BeDecoratedWith<JsonConverterAttribute>();
-		}
+	[Fact]
+	public void ModelsAttachmentsFieldsShouldHaveJsonConverterAttribute()
+	{
+		var types = typeof(VkApi).Assembly.Types()
+			.ThatAreUnderNamespace(VkNetModelBaseNamespace)
+			.Properties()
+			.OfType<ReadOnlyCollection<Attachment>>()
+			.ThatArePublicOrInternal;
 
-		[Fact]
-		public void ModelsAttachmentsFieldsShouldHaveJsonConverterAttribute()
-		{
-			var types = typeof(VkApi).Assembly.Types()
-				.ThatAreUnderNamespace(VkNetModelBaseNamespace)
-				.Properties()
-				.OfType<ReadOnlyCollection<Attachment>>()
-				.ThatArePublicOrInternal;
+		types.Should()
+			.BeDecoratedWith<JsonConverterAttribute>();
+	}
 
-			types.Should().BeDecoratedWith<JsonConverterAttribute>();
-		}
+	[Fact]
+	public void ModelsSafetyEnumFieldsShouldHaveJsonConverterAttribute()
+	{
+		var models = typeof(VkApi).Assembly.Types()
+			.ThatAreUnderNamespace(VkNetModelBaseNamespace)
+			.Properties()
+			.ThatAreNotDecoratedWith<JsonConverterAttribute>()
+			.Where(p =>
+				!p.PropertyType.IsAbstract
+				&& !p.PropertyType.IsInterface
+				&& p.PropertyType.BaseType is
+				{
+					IsGenericType: true
+				}
+				&& p.PropertyType.BaseType.GetGenericTypeDefinition() == typeof(SafetyEnum<>))
+			.Select(x => $"{x.DeclaringType?.FullName} с полем {x.Name}");
 
-		[Fact]
-		public void ModelsSafetyEnumFieldsShouldHaveJsonConverterAttribute()
-		{
-			var models = typeof(VkApi).Assembly.Types()
-				.ThatAreUnderNamespace(VkNetModelBaseNamespace)
-				.Properties()
-				.ThatAreNotDecoratedWith<JsonConverterAttribute>()
-				.Where(p =>
-				(
-					!p.PropertyType.IsAbstract
-					&& !p.PropertyType.IsInterface
-					&& p.PropertyType.BaseType is { IsGenericType: true }
-					&& p.PropertyType.BaseType.GetGenericTypeDefinition() == typeof(SafetyEnum<>)
-				))
-				.Select(x => $"{x.DeclaringType?.FullName} с полем {x.Name}");
+		models.Should()
+			.BeEmpty();
+	}
 
-			models.Should().BeEmpty();
-		}
+	[Fact]
+	public void ModelsShouldHaveJsonConverterAttributeForCoordinatesType()
+	{
+		var types = typeof(VkApi).Assembly.Types()
+			.ThatAreUnderNamespace(VkNetModelBaseNamespace)
+			.Properties()
+			.OfType<Coordinates>()
+			.ThatArePublicOrInternal;
 
-		[Fact]
-		public void ModelsShouldHaveJsonConverterAttributeForCoordinatesType()
-		{
-			var types = typeof(VkApi).Assembly.Types()
-				.ThatAreUnderNamespace(VkNetModelBaseNamespace)
-				.Properties()
-				.OfType<Coordinates>()
-				.ThatArePublicOrInternal;
-
-			types.Should().BeDecoratedWith<JsonConverterAttribute>();
-		}
+		types.Should()
+			.BeDecoratedWith<JsonConverterAttribute>();
 	}
 }

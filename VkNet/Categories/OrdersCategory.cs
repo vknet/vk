@@ -5,99 +5,135 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Utils;
 
-namespace VkNet.Categories
+namespace VkNet.Categories;
+
+/// <inheritdoc/>
+public partial class OrdersCategory : IOrdersCategory
 {
+	/// <summary>
+	/// API.
+	/// </summary>
+	private readonly IVkApiInvoke _vk;
+
+	/// <summary>
+	/// api vk.com
+	/// </summary>
+	/// <param name = "vk">
+	/// Api vk.com
+	/// </param>
+	public OrdersCategory(IVkApiInvoke vk) => _vk = vk;
+
 	/// <inheritdoc/>
-	public partial class OrdersCategory : IOrdersCategory
-	{
-		/// <summary>
-		/// API.
-		/// </summary>
-		private readonly IVkApiInvoke _vk;
-
-		/// <summary>
-		/// api vk.com
-		/// </summary>
-		/// <param name = "vk">
-		/// Api vk.com
-		/// </param>
-		public OrdersCategory(IVkApiInvoke vk)
+	public bool CancelSubscription(ulong userId, ulong subscriptionId, bool? pendingCancel = null) => _vk.Call<bool>(
+		"orders.cancelSubscription",
+		new()
 		{
-			_vk = vk;
-		}
+			{
+				"user_id", userId
+			},
+			{
+				"subscription_id", subscriptionId
+			},
+			{
+				"pending_cancel", pendingCancel
+			}
+		});
 
-		/// <inheritdoc/>
-		public bool CancelSubscription(ulong userId, ulong subscriptionId, bool? pendingCancel = null)
-		{
-			return _vk.Call<bool>("orders.cancelSubscription",
-				new VkParameters
+	/// <inheritdoc/>
+	public OrderState ChangeState(ulong orderId, OrderStateAction action, ulong? appOrderId = null, bool? testMode = null) =>
+		_vk.Call<OrderState>("orders.changeState",
+			new()
+			{
 				{
-					{ "user_id", userId },
-					{ "subscription_id", subscriptionId },
-					{ "pending_cancel", pendingCancel }
-				});
-		}
-
-		/// <inheritdoc/>
-		public OrderState ChangeState(ulong orderId, OrderStateAction action, ulong? appOrderId = null, bool? testMode = null)
-		{
-			return _vk.Call<OrderState>("orders.changeState",
-				new VkParameters
-					{ { "order_id", orderId }, { "action", action }, { "app_order_id", appOrderId }, { "test_mode", testMode } });
-		}
-
-		/// <inheritdoc/>
-		public IEnumerable<Order> Get(ulong? offset = null, ulong? count = null, bool? testMode = null)
-		{
-			return _vk.Call<ReadOnlyCollection<Order>>("orders.get",
-				new VkParameters
+					"order_id", orderId
+				},
 				{
-					{ "offset", offset },
-					{ "count", count },
-					{ "test_mode", testMode }
-				});
-		}
-
-		/// <inheritdoc/>
-		public IEnumerable<VotesAmount> GetAmount(ulong userId, IEnumerable<string> votes)
-		{
-			return _vk.Call<ReadOnlyCollection<VotesAmount>>("orders.getAmount",
-				new VkParameters
+					"action", action
+				},
 				{
-					{ "user_id", userId },
-					{ "votes", votes }
-				});
-		}
-
-		/// <inheritdoc/>
-		public IEnumerable<Order> GetById(IEnumerable<ulong> orderIds = null, bool? testMode = null)
-		{
-			return _vk.Call<ReadOnlyCollection<Order>>("orders.getById",
-				new VkParameters
+					"app_order_id", appOrderId
+				},
 				{
-					{ "order_ids", orderIds },
-					{ "test_mode", testMode }
-				});
-		}
+					"test_mode", testMode
+				}
+			});
 
-		/// <inheritdoc/>
-		public SubscriptionItem GetUserSubscriptionById(ulong userId, ulong subscriptionId)
+	/// <inheritdoc/>
+	public IEnumerable<Order> Get(ulong? offset = null, ulong? count = null, bool? testMode = null) => _vk.Call<ReadOnlyCollection<Order>>(
+		"orders.get",
+		new()
 		{
-			return _vk.Call<SubscriptionItem>("orders.getUserSubscriptionById",
-				new VkParameters { { "user_id", userId }, { "subscription_id", subscriptionId } });
-		}
+			{
+				"offset", offset
+			},
+			{
+				"count", count
+			},
+			{
+				"test_mode", testMode
+			}
+		});
 
-		/// <inheritdoc/>
-		public IEnumerable<SubscriptionItem> GetUserSubscriptions(ulong userId)
+	/// <inheritdoc/>
+	public IEnumerable<VotesAmount> GetAmount(ulong userId, IEnumerable<string> votes) => _vk.Call<ReadOnlyCollection<VotesAmount>>(
+		"orders.getAmount",
+		new()
 		{
-			return _vk.Call<ReadOnlyCollection<SubscriptionItem>>("orders.getUserSubscriptions", new VkParameters { { "user_id", userId } });
-		}
+			{
+				"user_id", userId
+			},
+			{
+				"votes", votes
+			}
+		});
 
-		/// <inheritdoc/>
-		public bool UpdateSubscription(ulong userId, ulong subscriptionId, ulong price)
+	/// <inheritdoc/>
+	public IEnumerable<Order> GetById(IEnumerable<ulong> orderIds = null, bool? testMode = null) => _vk.Call<ReadOnlyCollection<Order>>(
+		"orders.getById",
+		new()
 		{
-			return _vk.Call<bool>("orders.updateSubscription",
-				new VkParameters { { "user_id", userId }, { "subscription_id", subscriptionId }, { "price", price } });
-		}
-	}
+			{
+				"order_ids", orderIds
+			},
+			{
+				"test_mode", testMode
+			}
+		});
+
+	/// <inheritdoc/>
+	public SubscriptionItem GetUserSubscriptionById(ulong userId, ulong subscriptionId) => _vk.Call<SubscriptionItem>(
+		"orders.getUserSubscriptionById",
+		new()
+		{
+			{
+				"user_id", userId
+			},
+			{
+				"subscription_id", subscriptionId
+			}
+		});
+
+	/// <inheritdoc/>
+	public IEnumerable<SubscriptionItem> GetUserSubscriptions(ulong userId) => _vk.Call<ReadOnlyCollection<SubscriptionItem>>(
+		"orders.getUserSubscriptions", new()
+		{
+			{
+				"user_id", userId
+			}
+		});
+
+	/// <inheritdoc/>
+	public bool UpdateSubscription(ulong userId, ulong subscriptionId, ulong price) => _vk.Call<bool>("orders.updateSubscription",
+		new()
+		{
+			{
+				"user_id", userId
+			},
+			{
+				"subscription_id", subscriptionId
+			},
+			{
+				"price", price
+			}
+		});
 }

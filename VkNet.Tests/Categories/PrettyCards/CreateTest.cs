@@ -4,35 +4,37 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.PrettyCards
+namespace VkNet.Tests.Categories.PrettyCards;
+
+public class CreateTest : CategoryBaseTest
 {
+	protected override string Folder => "PrettyCards";
 
-
-	public class CreateTest : CategoryBaseTest
+	[Fact]
+	public void Create()
 	{
-		protected override string Folder => "PrettyCards";
+		Url = "https://api.vk.com/method/prettyCards.create";
 
-		[Fact]
-		public void Create()
+		ReadCategoryJsonPath(nameof(Api.PrettyCards.Create));
+
+		var result = Api.PrettyCards.Create(new()
 		{
-			Url = "https://api.vk.com/method/prettyCards.create";
+			OwnerId = -126102803,
+			Photo = "-126102803_457239118",
+			Price = "123",
+			PriceOld = "140",
+			Title = "123",
+			Link = "tel:+79111234567",
+			Button = Button.Call
+		});
 
-			ReadCategoryJsonPath(nameof(Api.PrettyCards.Create));
+		result.Should()
+			.NotBeNull();
 
-			var result = Api.PrettyCards.Create(new PrettyCardsCreateParams
-			{
-				OwnerId = -126102803,
-				Photo = "-126102803_457239118",
-				Price = "123",
-				PriceOld = "140",
-				Title = "123",
-				Link = "tel:+79111234567",
-				Button = Button.Call
-			});
+		result.CardId.Should()
+			.Be("545435");
 
-			result.Should().NotBeNull();
-			result.CardId.Should().Be("545435");
-			result.OwnerId.Should().Be(-126102803);
-		}
+		result.OwnerId.Should()
+			.Be(-126102803);
 	}
 }

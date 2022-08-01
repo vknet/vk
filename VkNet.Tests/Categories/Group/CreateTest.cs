@@ -2,25 +2,25 @@
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Group
+namespace VkNet.Tests.Categories.Group;
+
+public class CreateTest : CategoryBaseTest
 {
+	protected override string Folder => "Groups";
 
-
-	public class CreateTest : CategoryBaseTest
+	[Fact]
+	public void Create()
 	{
-		protected override string Folder => "Groups";
+		Url = "https://api.vk.com/method/groups.create";
 
-		[Fact]
-		public void Create()
-		{
-			Url = "https://api.vk.com/method/groups.create";
+		ReadCategoryJsonPath(nameof(Create));
 
-			ReadCategoryJsonPath(nameof(Create));
+		var result = Api.Groups.Create("Test_Group");
 
-			var result = Api.Groups.Create("Test_Group");
+		result.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			result.IsMember.Should().BeTrue();
-		}
+		result.IsMember.Should()
+			.BeTrue();
 	}
 }

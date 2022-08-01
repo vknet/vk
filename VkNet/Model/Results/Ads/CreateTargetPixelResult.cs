@@ -2,38 +2,34 @@
 using Newtonsoft.Json;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Результат метода Ads.CreateTargetPixel
+/// </summary>
+[Serializable]
+public class CreateTargetPixelResult
 {
 	/// <summary>
-	/// Результат метода Ads.CreateTargetPixel
+	/// Идентификатор пикселя
 	/// </summary>
-	[Serializable]
-	public class CreateTargetPixelResult
+	[JsonProperty("id")]
+	public long Id { get; set; }
+
+	/// <summary>
+	/// Код для размещения на сайте рекламодателя
+	/// </summary>
+	[JsonProperty("pixel")]
+	public string Pixel { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static CreateTargetPixelResult FromJson(VkResponse response) => new()
 	{
-		/// <summary>
-		/// Идентификатор пикселя
-		/// </summary>
-		[JsonProperty("id")]
-		public long Id { get; set; }
-
-		/// <summary>
-		/// Код для размещения на сайте рекламодателя
-		/// </summary>
-		[JsonProperty("pixel")]
-		public string Pixel { get; set; }
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static CreateTargetPixelResult FromJson(VkResponse response)
-		{
-			return new CreateTargetPixelResult
-			{
-				Id = response["id"],
-				Pixel = response["pixel"]
-			};
-		}
-	}
+		Id = response["id"],
+		Pixel = response["pixel"]
+	};
 }

@@ -2,24 +2,22 @@
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Podcasts
+namespace VkNet.Tests.Categories.Podcasts;
+
+public class ClearRecentSearchesTest : CategoryBaseTest
 {
+	protected override string Folder => "Podcasts";
 
-
-	public class ClearRecentSearchesTest : CategoryBaseTest
+	[Fact]
+	public void ClearRecentSearches()
 	{
-		protected override string Folder => "Podcasts";
+		Url = "https://api.vk.com/method/podcasts.clearRecentSearches";
 
-		[Fact]
-		public void ClearRecentSearches()
-		{
-			Url = "https://api.vk.com/method/podcasts.clearRecentSearches";
+		ReadCategoryJsonPath(nameof(Api.Podcasts.ClearRecentSearches));
 
-			ReadCategoryJsonPath(nameof(Api.Podcasts.ClearRecentSearches));
+		var result = Api.Podcasts.ClearRecentSearches();
 
-			var result = Api.Podcasts.ClearRecentSearches();
-
-			result.Should().BeTrue();
-		}
+		result.Should()
+			.BeTrue();
 	}
 }

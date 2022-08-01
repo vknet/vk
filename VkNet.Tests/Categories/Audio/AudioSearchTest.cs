@@ -3,28 +3,26 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Audio
+namespace VkNet.Tests.Categories.Audio;
+
+public class AudioSearchTest : CategoryBaseTest
 {
+	protected override string Folder => "Audio";
 
-
-	public class AudioSearchTest : CategoryBaseTest
+	[Fact]
+	public void SearchTest()
 	{
-		protected override string Folder => "Audio";
+		Url = "https://api.vk.com/method/audio.search";
 
-		[Fact]
-		public void SearchTest()
+		ReadCategoryJsonPath(nameof(Api.Audio.Search));
+
+		var result = Api.Audio.Search(new()
 		{
-			Url = "https://api.vk.com/method/audio.search";
+			Query = "test",
+			Count = 1
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Audio.Search));
-
-			var result = Api.Audio.Search(new AudioSearchParams
-			{
-				Query = "test",
-				Count = 1
-			});
-
-			result.Should().NotBeEmpty();
-		}
+		result.Should()
+			.NotBeEmpty();
 	}
 }

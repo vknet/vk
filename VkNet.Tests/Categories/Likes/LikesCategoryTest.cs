@@ -6,82 +6,98 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Likes
+namespace VkNet.Tests.Categories.Likes;
+
+[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+public class LikesCategoryTest : CategoryBaseTest
 {
+	protected override string Folder => "Likes";
 
-	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class LikesCategoryTest : CategoryBaseTest
+	[Fact]
+	public void Add_NormalCase()
 	{
-		protected override string Folder => "Likes";
+		Url = "https://api.vk.com/method/likes.add";
+		ReadCategoryJsonPath(nameof(Add_NormalCase));
 
-		[Fact]
-		public void Add_NormalCase()
+		var like = Api.Likes.Add(new()
 		{
-			Url = "https://api.vk.com/method/likes.add";
-			ReadCategoryJsonPath(nameof(Add_NormalCase));
+			Type = LikeObjectType.Post,
+			ItemId = 701
+		});
 
-			var like = Api.Likes.Add(new LikesAddParams
-			{
-				Type = LikeObjectType.Post,
-				ItemId = 701
-			});
+		like.Should()
+			.Be(5);
+	}
 
-			like.Should().Be(5);
-		}
+	[Fact]
+	public void Delete_NormalCase()
+	{
+		Url = "https://api.vk.com/method/likes.delete";
+		ReadCategoryJsonPath(nameof(Delete_NormalCase));
 
-		[Fact]
-		public void Delete_NormalCase()
+		var like = Api.Likes.Delete(LikeObjectType.Post, 701, null);
+
+		like.Should()
+			.Be(4);
+	}
+
+	[Fact]
+	public void GetList_NormalCase()
+	{
+		Url = "https://api.vk.com/method/likes.getList";
+		ReadCategoryJsonPath(nameof(GetList_NormalCase));
+
+		var like = Api.Likes.GetList(new()
 		{
-			Url = "https://api.vk.com/method/likes.delete";
-			ReadCategoryJsonPath(nameof(Delete_NormalCase));
+			ItemId = 701
+		});
 
-			var like = Api.Likes.Delete(LikeObjectType.Post, 701, null);
+		like.Should()
+			.HaveCount(5);
+	}
 
-			like.Should().Be(4);
-		}
+	[Fact]
+	public void GetListEx_NormalCase()
+	{
+		Url = "https://api.vk.com/method/likes.getList";
+		ReadCategoryJsonPath(nameof(GetListEx_NormalCase));
 
-		[Fact]
-		public void GetList_NormalCase()
+		var like = Api.Likes.GetListEx(new()
 		{
-			Url = "https://api.vk.com/method/likes.getList";
-			ReadCategoryJsonPath(nameof(GetList_NormalCase));
+			ItemId = 701
+		});
 
-			var like = Api.Likes.GetList(new LikesGetListParams
-			{
-				ItemId = 701
-			});
+		like.Users.Should()
+			.HaveCount(5);
 
-			like.Should().HaveCount(5);
-		}
+		like.Users.First()
+			.Id.Should()
+			.Be(32190123);
 
-		[Fact]
-		public void GetListEx_NormalCase()
-		{
-			Url = "https://api.vk.com/method/likes.getList";
-			ReadCategoryJsonPath(nameof(GetListEx_NormalCase));
+		like.Users.First()
+			.FirstName.Should()
+			.Be("Максим");
 
-			var like = Api.Likes.GetListEx(new LikesGetListParams
-			{
-				ItemId = 701
-			});
+		like.Users.First()
+			.LastName.Should()
+			.Be("Инютин");
 
-			like.Users.Should().HaveCount(5);
-			like.Users.First().Id.Should().Be(32190123);
-			like.Users.First().FirstName.Should().Be("Максим");
-			like.Users.First().LastName.Should().Be("Инютин");
-			like.Groups.Should().BeEmpty();
-		}
+		like.Groups.Should()
+			.BeEmpty();
+	}
 
-		[Fact]
-		public void IsLiked_NormalCase()
-		{
-			Url = "https://api.vk.com/method/likes.isLiked";
-			ReadCategoryJsonPath(nameof(IsLiked_NormalCase));
+	[Fact]
+	public void IsLiked_NormalCase()
+	{
+		Url = "https://api.vk.com/method/likes.isLiked";
+		ReadCategoryJsonPath(nameof(IsLiked_NormalCase));
 
-			var like = Api.Likes.IsLiked(out var copied, LikeObjectType.Post, 701);
+		var like = Api.Likes.IsLiked(out var copied, LikeObjectType.Post, 701);
 
-			like.Should().BeTrue();
-			copied.Should().BeFalse();
-		}
+		like.Should()
+			.BeTrue();
+
+		copied.Should()
+			.BeFalse();
 	}
 }

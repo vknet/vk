@@ -1,16 +1,15 @@
 ﻿using System;
 
-namespace VkNet.Model.Results.DownloadedGames
+namespace VkNet.Model.Results.DownloadedGames;
+
+/// <summary>
+/// Результат метода downloadedGames.getPaidStatus
+/// </summary>
+[Serializable]
+public class GetPaidStatusResult
 {
 	/// <summary>
-	/// Результат метода downloadedGames.getPaidStatus
+	/// Оплачено пользователем
 	/// </summary>
-	[Serializable]
-	public class GetPaidStatusResult
-	{
-		/// <summary>
-		/// Оплачено пользователем
-		/// </summary>
-		public bool IsPaid { get; set; }
-	}
+	public bool IsPaid { get; set; }
 }

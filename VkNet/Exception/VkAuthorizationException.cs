@@ -1,19 +1,18 @@
 using System;
 
-namespace VkNet.Exception
+namespace VkNet.Exception;
+
+/// <inheritdoc />
+[Serializable]
+public class VkAuthorizationException : System.Exception
 {
 	/// <inheritdoc />
-	[Serializable]
-	public class VkAuthorizationException : System.Exception
+	public VkAuthorizationException()
 	{
-		/// <inheritdoc />
-		public VkAuthorizationException()
-		{
-		}
+	}
 
-		/// <inheritdoc />
-		public VkAuthorizationException(string message) : base(message)
-		{
-		}
+	/// <inheritdoc />
+	public VkAuthorizationException(string message) : base(message)
+	{
 	}
 }

@@ -1,23 +1,22 @@
-﻿namespace VkNet.Enums
+﻿namespace VkNet.Enums;
+
+/// <summary>
+/// Информация о публичности сообщества.
+/// </summary>
+public enum GroupPublicity
 {
 	/// <summary>
-	/// Информация о публичности сообщества.
+	/// Сообщество является публичным.
 	/// </summary>
-	public enum GroupPublicity
-	{
-		/// <summary>
-		/// Сообщество является публичным.
-		/// </summary>
-		Public = 0
+	Public = 0,
 
-		, /// <summary>
-		/// Сообщество является закрытым.
-		/// </summary>
-		Closed = 1
+	/// <summary>
+	/// Сообщество является закрытым.
+	/// </summary>
+	Closed = 1,
 
-		, /// <summary>
-		/// Сообщество является частным.
-		/// </summary>
-		Private = 2
-	}
+	/// <summary>
+	/// Сообщество является частным.
+	/// </summary>
+	Private = 2
 }

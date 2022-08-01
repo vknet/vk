@@ -2,23 +2,21 @@ using FluentAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Orders
+namespace VkNet.Tests.Categories.Orders;
+
+public class OrdersCancelSubscriptionTests : CategoryBaseTest
 {
+	protected override string Folder => "Orders";
 
-
-	public class OrdersCancelSubscriptionTests : CategoryBaseTest
+	[Fact]
+	public void CancelSubscription()
 	{
-		protected override string Folder => "Orders";
+		Url = "https://api.vk.com/method/orders.cancelSubscription";
+		ReadJsonFile(JsonPaths.True);
 
-		[Fact]
-		public void CancelSubscription()
-		{
-			Url = "https://api.vk.com/method/orders.cancelSubscription";
-			ReadJsonFile(JsonPaths.True);
+		var result = Api.Orders.CancelSubscription(123, 23);
 
-			var result = Api.Orders.CancelSubscription(123, 23);
-
-			result.Should().BeTrue();
-		}
+		result.Should()
+			.BeTrue();
 	}
 }

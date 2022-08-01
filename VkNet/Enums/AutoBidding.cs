@@ -1,18 +1,17 @@
-﻿namespace VkNet.Enums
+﻿namespace VkNet.Enums;
+
+/// <summary>
+/// Автоматическое управление ценой.
+/// </summary>
+public enum AutoBidding
 {
 	/// <summary>
-	/// Автоматическое управление ценой.
+	/// Выключено.
 	/// </summary>
-	public enum AutoBidding
-	{
-		/// <summary>
-		/// Выключено.
-		/// </summary>
-		Off = 0
+	Off = 0,
 
-		, /// <summary>
-		/// Включено.
-		/// </summary>
-		On = 1
-	}
+	/// <summary>
+	/// Включено.
+	/// </summary>
+	On = 1
 }

@@ -2,24 +2,23 @@ using JetBrains.Annotations;
 using VkNet.Abstractions.Utils;
 using VkNet.Model;
 
-namespace VkNet.Infrastructure.Authorization.ImplicitFlow.Forms
+namespace VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
+
+/// <inheritdoc />
+[UsedImplicitly]
+public sealed class ConsentForm : AbstractAuthorizationForm
 {
 	/// <inheritdoc />
-	[UsedImplicitly]
-	public sealed class ConsentForm : AbstractAuthorizationForm
+	public ConsentForm(IRestClient restClient, IAuthorizationFormHtmlParser htmlParser)
+		: base(restClient, htmlParser)
 	{
-		/// <inheritdoc />
-		public ConsentForm(IRestClient restClient, IAuthorizationFormHtmlParser htmlParser)
-			: base(restClient, htmlParser)
-		{
-		}
+	}
 
-		/// <inheritdoc />
-		public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.Consent;
+	/// <inheritdoc />
+	public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.Consent;
 
-		/// <inheritdoc />
-		protected override void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams)
-		{
-		}
+	/// <inheritdoc />
+	protected override void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams)
+	{
 	}
 }

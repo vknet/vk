@@ -3,35 +3,35 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class RemoveOfficeUsersTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class RemoveOfficeUsersTest : CategoryBaseTest
+	[Fact]
+	public void RemoveOfficeUsers()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.removeOfficeUsers";
 
-		[Fact]
-		public void RemoveOfficeUsers()
+		ReadCategoryJsonPath(nameof(Api.Ads.RemoveOfficeUsers));
+
+		var a = new[]
 		{
-			Url = "https://api.vk.com/method/ads.removeOfficeUsers";
+			"1",
+			"2"
+		};
 
-			ReadCategoryJsonPath(nameof(Api.Ads.RemoveOfficeUsers));
+		var result = Api.Ads.RemoveOfficeUsers(new()
+		{
+			AccountId = 1605245430,
+			Ids = a
+		});
 
-			var a = new[]
-			{
-				"1",
-				"2"
-			};
+		result.Should()
+			.HaveElementAt(0, true);
 
-			var result = Api.Ads.RemoveOfficeUsers(new RemoveOfficeUsersParams
-			{
-				AccountId = 1605245430,
-				Ids = a
-			});
-
-			result.Should().HaveElementAt(0, true);
-			result.Should().HaveElementAt(1, true);
-		}
+		result.Should()
+			.HaveElementAt(1, true);
 	}
 }

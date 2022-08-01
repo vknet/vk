@@ -3,31 +3,35 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.PrettyCards
+namespace VkNet.Tests.Categories.PrettyCards;
+
+public class GetTest : CategoryBaseTest
 {
+	protected override string Folder => "PrettyCards";
 
-
-	public class GetTest : CategoryBaseTest
+	[Fact]
+	public void Get()
 	{
-		protected override string Folder => "PrettyCards";
+		Url = "https://api.vk.com/method/prettyCards.get";
 
-		[Fact]
-		public void Get()
+		ReadCategoryJsonPath(nameof(Api.PrettyCards.Get));
+
+		var result = Api.PrettyCards.Get(new()
 		{
-			Url = "https://api.vk.com/method/prettyCards.get";
+			OwnerId = -126102803,
+			Offset = 20,
+			Count = 100
+		});
 
-			ReadCategoryJsonPath(nameof(Api.PrettyCards.Get));
+		result.Should()
+			.NotBeNull();
 
-			var result = Api.PrettyCards.Get(new PrettyCardsGetParams
-			{
-				OwnerId = -126102803,
-				Offset = 20,
-				Count = 100
-			});
+		result[0]
+			.CardId.Should()
+			.Be("7037403");
 
-			result.Should().NotBeNull();
-			result[0].CardId.Should().Be("7037403");
-			result[1].PriceOld.Should().Be("123.00");
-		}
+		result[1]
+			.PriceOld.Should()
+			.Be("123.00");
 	}
 }

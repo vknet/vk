@@ -12,15 +12,15 @@ using System.Text;
 using VkNet.Exception;
 
 // ReSharper disable once CheckNamespace
-namespace VkNet.Utils
+namespace VkNet.Utils;
+
+/// <inheritdoc />
+/// <summary>
+/// WebCall
+/// </summary>
+[Obsolete(ObsoleteText.ObsoleteClass)]
+internal sealed partial class WebCall : IDisposable
 {
-	/// <inheritdoc />
-	/// <summary>
-	/// WebCall
-	/// </summary>
-	[Obsolete(ObsoleteText.ObsoleteClass)]
-	internal sealed partial class WebCall : IDisposable
-	{
 	#if DEBUG_HTTP
 		const string HTTP_LOG_PATH = "debug_http.log";
 		const bool WRITE_TO_FILE = false; // По умолчанию запись логов в файл отключена
@@ -57,224 +57,228 @@ namespace VkNet.Utils
 
 	#endif
 
-		/// <summary>
-		/// Получить HTTP запрос.
-		/// </summary>
-		private readonly HttpClient _request;
+	/// <summary>
+	/// Получить HTTP запрос.
+	/// </summary>
+	private readonly HttpClient _request;
 
-		/// <summary>
-		/// Результат.
-		/// </summary>
-		private readonly WebCallResult _result;
+	/// <summary>
+	/// Результат.
+	/// </summary>
+	private readonly WebCallResult _result;
 
-		/// <summary>
-		/// WebCall.
-		/// </summary>
-		/// <param name="url"> URL. </param>
-		/// <param name="cookies"> Cookies. </param>
-		/// <param name="webProxy"> Хост. </param>
-		/// <param name="allowAutoRedirect"> Разрешить авто редиррект </param>
-		private WebCall(string url, Cookies cookies, IWebProxy webProxy = null, bool allowAutoRedirect = true)
+	/// <summary>
+	/// WebCall.
+	/// </summary>
+	/// <param name="url"> URL. </param>
+	/// <param name="cookies"> Cookies. </param>
+	/// <param name="webProxy"> Хост. </param>
+	/// <param name="allowAutoRedirect"> Разрешить авто редиррект </param>
+	private WebCall(string url, Cookies cookies, IWebProxy webProxy = null, bool allowAutoRedirect = true)
+	{
+		var baseAddress = new Uri(url);
+
+		var handler = new HttpClientHandler
 		{
-			var baseAddress = new Uri(url);
+			CookieContainer = cookies.Container,
+			UseCookies = true,
+			Proxy = webProxy,
+			AllowAutoRedirect = allowAutoRedirect
+		};
 
-			var handler = new HttpClientHandler
+		_request = new(handler)
+		{
+			BaseAddress = baseAddress,
+			DefaultRequestHeaders =
 			{
-				CookieContainer = cookies.Container,
-				UseCookies = true,
-				Proxy = webProxy,
-				AllowAutoRedirect = allowAutoRedirect
-			};
-
-			_request = new HttpClient(handler)
-			{
-				BaseAddress = baseAddress,
-				DefaultRequestHeaders =
+				Accept =
 				{
-					Accept =
-					{
-						MediaTypeWithQualityHeaderValue.Parse("text/html")
-					}
+					MediaTypeWithQualityHeaderValue.Parse("text/html")
 				}
-			};
+			}
+		};
 
-			_result = new WebCallResult(url, cookies);
-		}
+		_result = new(url, cookies);
+	}
 
 	#region Implementation of IDisposable
 
-		/// <summary>
-		/// </summary>
-		public void Dispose()
-		{
-			_request?.Dispose();
-		}
+	/// <summary>
+	/// </summary>
+	public void Dispose() => _request?.Dispose();
 
 	#endregion
 
-		/// <summary>
-		/// Выполнить запрос.
-		/// </summary>
-		/// <param name="url"> URL. </param>
-		/// <param name="webProxy"> Данные прокси сервера. </param>
-		/// <returns> Результат </returns>
-		public static WebCallResult MakeCall(string url, IWebProxy webProxy = null)
-		{
+	/// <summary>
+	/// Выполнить запрос.
+	/// </summary>
+	/// <param name="url"> URL. </param>
+	/// <param name="webProxy"> Данные прокси сервера. </param>
+	/// <returns> Результат </returns>
+	public static WebCallResult MakeCall(string url, IWebProxy webProxy = null)
+	{
 		#if DEBUG_HTTP
 			LogWebCallRequestInfo("GET", url, null, webProxy);
 			var watch = System.Diagnostics.Stopwatch.StartNew();
 		#endif
 
-			using (var call = new WebCall(url, new Cookies(), webProxy))
-			{
-				var response = call._request.GetAsync(url).GetAwaiter().GetResult();
-				var res = call.MakeRequest(response, new Uri(url), webProxy);
+		using (var call = new WebCall(url, new(), webProxy))
+		{
+			var response = call._request.GetAsync(url)
+				.GetAwaiter()
+				.GetResult();
+
+			var res = call.MakeRequest(response, new(url), webProxy);
 
 			#if DEBUG_HTTP
 				watch.Stop();
 				LogWebCallResultDebugInfo("GET", url, response, res, watch.ElapsedMilliseconds);
 			#endif
 
-				return res;
-			}
+			return res;
 		}
+	}
 
-		/// <summary>
-		/// Выполнить POST запрос.
-		/// </summary>
-		/// <param name="url"> URL. </param>
-		/// <param name="parameters"> Параметры запроса. </param>
-		/// <param name="webProxy"> Хост. </param>
-		/// <returns> Результат </returns>
-		public static WebCallResult PostCall(string url, IEnumerable<KeyValuePair<string, string>> parameters, IWebProxy webProxy)
-		{
+	/// <summary>
+	/// Выполнить POST запрос.
+	/// </summary>
+	/// <param name="url"> URL. </param>
+	/// <param name="parameters"> Параметры запроса. </param>
+	/// <param name="webProxy"> Хост. </param>
+	/// <returns> Результат </returns>
+	public static WebCallResult PostCall(string url, IEnumerable<KeyValuePair<string, string>> parameters, IWebProxy webProxy)
+	{
 		#if DEBUG_HTTP
 			LogWebCallRequestInfo("POST", url, parameters, webProxy);
 			var watch = System.Diagnostics.Stopwatch.StartNew();
 		#endif
 
-			using (var call = new WebCall(url, new Cookies(), webProxy))
-			{
-				var response = call._request
-					.PostAsync(url, new FormUrlEncodedContent(parameters))
-					.GetAwaiter()
-					.GetResult();
+		using (var call = new WebCall(url, new(), webProxy))
+		{
+			var response = call._request
+				.PostAsync(url, new FormUrlEncodedContent(parameters))
+				.GetAwaiter()
+				.GetResult();
 
-				var res = call.MakeRequest(response, new Uri(url), webProxy);
+			var res = call.MakeRequest(response, new(url), webProxy);
 
 			#if DEBUG_HTTP
 				watch.Stop();
 				LogWebCallResultDebugInfo("POST", url, response, res, watch.ElapsedMilliseconds);
 			#endif
 
-				return res;
-			}
+			return res;
 		}
+	}
 
-		/// <summary>
-		/// Post запрос из формы.
-		/// </summary>
-		/// <param name="form"> Форма. </param>
-		/// <param name="webProxy"> Хост. </param>
-		/// <returns> Результат </returns>
-		public static WebCallResult Post(WebForm form, IWebProxy webProxy)
-		{
+	/// <summary>
+	/// Post запрос из формы.
+	/// </summary>
+	/// <param name="form"> Форма. </param>
+	/// <param name="webProxy"> Хост. </param>
+	/// <returns> Результат </returns>
+	public static WebCallResult Post(WebForm form, IWebProxy webProxy)
+	{
 		#if DEBUG_HTTP
 			LogWebCallRequestInfo("POST", form.ActionUrl, form.GetFormFields(), webProxy);
 			var watch = System.Diagnostics.Stopwatch.StartNew();
 		#endif
 
-			using (var call = new WebCall(form.ActionUrl, form.Cookies, webProxy, false))
-			{
-				SpecifyHeadersForFormRequest(form, call);
+		using (var call = new WebCall(form.ActionUrl, form.Cookies, webProxy, false))
+		{
+			SpecifyHeadersForFormRequest(form, call);
 
-				var response = call._request
-					.PostAsync(form.ActionUrl, new FormUrlEncodedContent(form.GetFormFields()))
-					.GetAwaiter()
-					.GetResult();
+			var response = call._request
+				.PostAsync(form.ActionUrl, new FormUrlEncodedContent(form.GetFormFields()))
+				.GetAwaiter()
+				.GetResult();
 
-				var res = call.MakeRequest(response, new Uri(form.ActionUrl), webProxy);
+			var res = call.MakeRequest(response, new(form.ActionUrl), webProxy);
 
 			#if DEBUG_HTTP
 				watch.Stop();
 				LogWebCallResultDebugInfo("POST", form.ActionUrl, response, res, watch.ElapsedMilliseconds);
 			#endif
 
-				return res;
-			}
+			return res;
 		}
+	}
 
-		/// <summary>
-		/// Пере адресация.
-		/// </summary>
-		/// <param name="url"> URL. </param>
-		/// <param name="webProxy"> Хост. </param>
-		/// <returns> Результат </returns>
-		private WebCallResult RedirectTo(string url, IWebProxy webProxy = null)
-		{
+	/// <summary>
+	/// Пере адресация.
+	/// </summary>
+	/// <param name="url"> URL. </param>
+	/// <param name="webProxy"> Хост. </param>
+	/// <returns> Результат </returns>
+	private WebCallResult RedirectTo(string url, IWebProxy webProxy = null)
+	{
 		#if DEBUG_HTTP
 			LogWebCallRequestInfo("REDIRECT GET", url, null, webProxy);
 			var watch = System.Diagnostics.Stopwatch.StartNew();
 		#endif
 
-			using (var call = new WebCall(url, _result.Cookies, webProxy))
-			{
-				var headers = call._request.DefaultRequestHeaders;
-				headers.Add("Method", "GET");
-				headers.Add("ContentType", "text/html");
+		using (var call = new WebCall(url, _result.Cookies, webProxy))
+		{
+			var headers = call._request.DefaultRequestHeaders;
+			headers.Add("Method", "GET");
+			headers.Add("ContentType", "text/html");
 
-				var response = call._request.GetAsync(url).GetAwaiter().GetResult();
-				var res = call.MakeRequest(response, new Uri(url), webProxy);
+			var response = call._request.GetAsync(url)
+				.GetAwaiter()
+				.GetResult();
+
+			var res = call.MakeRequest(response, new(url), webProxy);
 
 			#if DEBUG_HTTP
 				watch.Stop();
 				LogWebCallResultDebugInfo("REDIRECT GET", url, response, res, watch.ElapsedMilliseconds);
 			#endif
 
-				return res;
-			}
+			return res;
 		}
+	}
 
-		/// <summary>
-		/// Выполнить запрос.
-		/// </summary>
-		/// <param name="uri"> Uri из которого получаем куки </param>
-		/// <param name="webProxy"> Хост. </param>
-		/// <param name="response"> Ответ сервера </param>
-		/// <returns> Результат </returns>
-		/// <exception cref="VkApiException"> Response is null. </exception>
-		private WebCallResult MakeRequest(HttpResponseMessage response, Uri uri, IWebProxy webProxy)
+	/// <summary>
+	/// Выполнить запрос.
+	/// </summary>
+	/// <param name="uri"> Uri из которого получаем куки </param>
+	/// <param name="webProxy"> Хост. </param>
+	/// <param name="response"> Ответ сервера </param>
+	/// <returns> Результат </returns>
+	/// <exception cref="VkApiException"> Response is null. </exception>
+	private WebCallResult MakeRequest(HttpResponseMessage response, Uri uri, IWebProxy webProxy)
+	{
+		using (var stream = response.Content.ReadAsStreamAsync()
+					.GetAwaiter()
+					.GetResult())
 		{
-			using (var stream = response.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
+			if (stream == null)
 			{
-				if (stream == null)
-				{
-					throw new VkApiException("Response is null.");
-				}
-
-				var encoding = Encoding.UTF8;
-				_result.SaveResponse(response.RequestMessage.RequestUri, stream, encoding);
-
-				var cookies = _result.Cookies.Container;
-
-				_result.SaveCookies(cookies.GetCookies(uri));
-
-				return response.StatusCode == HttpStatusCode.Redirect
-					? RedirectTo(response.Headers.Location.AbsoluteUri, webProxy)
-					: _result;
+				throw new VkApiException("Response is null.");
 			}
+
+			var encoding = Encoding.UTF8;
+			_result.SaveResponse(response.RequestMessage.RequestUri, stream, encoding);
+
+			var cookies = _result.Cookies.Container;
+
+			_result.SaveCookies(cookies.GetCookies(uri));
+
+			return response.StatusCode == HttpStatusCode.Redirect
+				? RedirectTo(response.Headers.Location.AbsoluteUri, webProxy)
+				: _result;
 		}
+	}
 
-		private static void SpecifyHeadersForFormRequest(WebForm form, WebCall call)
-		{
-			var formRequest = form.GetRequest();
+	private static void SpecifyHeadersForFormRequest(WebForm form, WebCall call)
+	{
+		var formRequest = form.GetRequest();
 
-			var headers = call._request.DefaultRequestHeaders;
-			headers.Add("Method", "POST");
-			headers.Add("ContentType", "application/x-www-form-urlencoded");
+		var headers = call._request.DefaultRequestHeaders;
+		headers.Add("Method", "POST");
+		headers.Add("ContentType", "application/x-www-form-urlencoded");
 
-			headers.Add("ContentLength", formRequest.Length.ToString());
-			headers.Referrer = new Uri(form.OriginalUrl);
-		}
+		headers.Add("ContentLength", formRequest.Length.ToString());
+		headers.Referrer = new(form.OriginalUrl);
 	}
 }

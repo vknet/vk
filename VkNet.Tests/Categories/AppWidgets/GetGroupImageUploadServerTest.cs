@@ -3,24 +3,22 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.AppWidgets
+namespace VkNet.Tests.Categories.AppWidgets;
+
+public class GetGroupImageUploadServerTest : CategoryBaseTest
 {
+	protected override string Folder => "AppWidgets";
 
-
-	public class GetGroupImageUploadServerTest : CategoryBaseTest
+	[Fact]
+	public void GetGroupImageUploadServer()
 	{
-		protected override string Folder => "AppWidgets";
+		Url = "https://api.vk.com/method/appWidgets.getGroupImageUploadServer";
 
-		[Fact]
-		public void GetGroupImageUploadServer()
-		{
-			Url = "https://api.vk.com/method/appWidgets.getGroupImageUploadServer";
+		ReadCategoryJsonPath(nameof(GetGroupImageUploadServer));
 
-			ReadCategoryJsonPath(nameof(GetGroupImageUploadServer));
+		var result = Api.AppWidgets.GetGroupImageUploadServer(AppWidgetImageType.FiftyOnFifty);
 
-			var result = Api.AppWidgets.GetGroupImageUploadServer(AppWidgetImageType.FiftyOnFifty);
-
-			result.UploadUrl.Should().NotBeNull();
-		}
+		result.UploadUrl.Should()
+			.NotBeNull();
 	}
 }

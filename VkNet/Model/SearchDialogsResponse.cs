@@ -2,87 +2,89 @@
 using System.Collections.Generic;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Ответ при поиске диалогов по строке поиска.
+/// См. описание http://vk.com/dev/messages.searchDialogs
+/// </summary>
+[Serializable]
+public class SearchDialogsResponse
 {
 	/// <summary>
-	/// Ответ при поиске диалогов по строке поиска.
-	/// См. описание http://vk.com/dev/messages.searchDialogs
+	/// Список найденных пользователей.
 	/// </summary>
-	[Serializable]
-	public class SearchDialogsResponse
-	{
-		/// <summary>
-		/// Список найденных пользователей.
-		/// </summary>
-		public IList<User> Users { get; set; }
+	public IList<User> Users { get; set; }
 
-		/// <summary>
-		/// Список найденных бесед.
-		/// </summary>
-		public IList<Chat> Chats { get; set; }
+	/// <summary>
+	/// Список найденных бесед.
+	/// </summary>
+	public IList<Chat> Chats { get; set; }
 
-		/// <summary>
-		/// Список найденных сообществ.
-		/// </summary>
-		public IList<Group> Groups { get; set; }
+	/// <summary>
+	/// Список найденных сообществ.
+	/// </summary>
+	public IList<Group> Groups { get; set; }
 
 	#region Методы
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static SearchDialogsResponse FromJson(VkResponse response)
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static SearchDialogsResponse FromJson(VkResponse response)
+	{
+		var result = new SearchDialogsResponse
 		{
-			var result = new SearchDialogsResponse
+			Users = new List<User>(),
+			Chats = new List<Chat>(),
+			Groups = new List<Group>()
+		};
+
+		VkResponseArray responseArray = response;
+
+		foreach (var record in responseArray)
+		{
+			string type = record[key: "type"];
+
+			switch (type)
 			{
-					Users = new List<User>()
-					, Chats = new List<Chat>()
-					, Groups = new List<Group>()
-			};
+				case "profile":
 
-			VkResponseArray responseArray = response;
-
-			foreach (var record in responseArray)
-			{
-				string type = record[key: "type"];
-
-				switch (type)
 				{
-					case "profile":
+					result.Users.Add(item: record);
 
-					{
-						result.Users.Add(item: record);
+					break;
+				}
 
-						break;
-					}
-					case "chat":
+				case "chat":
 
-					{
-						result.Chats.Add(item: record);
+				{
+					result.Chats.Add(item: record);
 
-						break;
-					}
-					case "email":
+					break;
+				}
 
-					{
-						// TODO: Add email support.
-						continue;
-					}
-					case "group":
+				case "email":
 
-					{
-						result.Groups.Add(item: record);
+				{
+					// TODO: Add email support.
+					continue;
+				}
 
-						break;
-					}
+				case "group":
+
+				{
+					result.Groups.Add(item: record);
+
+					break;
 				}
 			}
-
-			return result;
 		}
 
-	#endregion
+		return result;
 	}
+
+	#endregion
 }

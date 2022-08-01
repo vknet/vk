@@ -1,19 +1,18 @@
-﻿namespace VkNet.Enums
+﻿namespace VkNet.Enums;
+
+/// <summary>
+/// Сортировка результатов: 1 - по дате регистрации, 0 - по популярности целое
+/// число.
+/// </summary>
+public enum UserSort
 {
 	/// <summary>
-	/// Сортировка результатов: 1 - по дате регистрации, 0 - по популярности целое
-	/// число.
+	/// По популярности
 	/// </summary>
-	public enum UserSort
-	{
-		/// <summary>
-		/// По популярности
-		/// </summary>
-		ByPopularity = 0
+	ByPopularity = 0,
 
-		, /// <summary>
-		/// По дате регистрации
-		/// </summary>
-		ByRegDate
-	}
+	/// <summary>
+	/// По дате регистрации
+	/// </summary>
+	ByRegDate
 }

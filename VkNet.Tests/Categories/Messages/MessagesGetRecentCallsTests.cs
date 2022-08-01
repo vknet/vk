@@ -1,22 +1,28 @@
 using FluentAssertions;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Messages
+namespace VkNet.Tests.Categories.Messages;
+
+public class MessagesGetRecentCallsTests : MessagesBaseTests
 {
-
-	public class MessagesGetRecentCallsTests : MessagesBaseTests
+	[Fact]
+	public void GetRecentCalls()
 	{
-		[Fact]
-		public void GetRecentCalls()
+		Url = "https://api.vk.com/method/messages.getRecentCalls";
+		ReadCategoryJsonPath(nameof(GetRecentCalls));
+
+		var result = Api.Messages.GetRecentCalls(new[]
 		{
-			Url = "https://api.vk.com/method/messages.getRecentCalls";
-			ReadCategoryJsonPath(nameof(GetRecentCalls));
+			"filter"
+		}, 1);
 
-			var result = Api.Messages.GetRecentCalls(new[] { "filter" }, 1);
+		result.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			result.Messages.Should().NotBeEmpty();
-			result.Profiles.Should().NotBeEmpty();
-		}
+		result.Messages.Should()
+			.NotBeEmpty();
+
+		result.Profiles.Should()
+			.NotBeEmpty();
 	}
 }

@@ -1,21 +1,19 @@
 using FluentAssertions;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Messages
+namespace VkNet.Tests.Categories.Messages;
+
+public class MessagesPinTests : MessagesBaseTests
 {
-
-
-	public class MessagesPinTests : MessagesBaseTests
+	[Fact]
+	public void Pin()
 	{
-		[Fact]
-		public void Pin()
-		{
-			Url = "https://api.vk.com/method/messages.pin";
-			ReadCategoryJsonPath(nameof(Pin));
+		Url = "https://api.vk.com/method/messages.pin";
+		ReadCategoryJsonPath(nameof(Pin));
 
-			var result = Api.Messages.Pin(123, 345);
+		var result = Api.Messages.Pin(123, 345);
 
-			result.Should().NotBeNull();
-		}
+		result.Should()
+			.NotBeNull();
 	}
 }

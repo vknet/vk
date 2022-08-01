@@ -1,31 +1,30 @@
 ﻿using VkNet.Utils;
 
-namespace VkNet.Enums.SafetyEnums
+namespace VkNet.Enums.SafetyEnums;
+
+/// <summary>
+/// Статус сервера
+/// </summary>
+public class CallbackServerStatus : SafetyEnum<CallbackServerStatus>
 {
 	/// <summary>
-	/// Статус сервера
+	/// Адрес не задан;
 	/// </summary>
-	public class CallbackServerStatus : SafetyEnum<CallbackServerStatus>
-	{
-		/// <summary>
-		/// Адрес не задан;
-		/// </summary>
-		[DefaultValue]
-		public static readonly CallbackServerStatus Unconfigured = RegisterPossibleValue(value: "unconfigured");
+	[DefaultValue]
+	public static readonly CallbackServerStatus Unconfigured = RegisterPossibleValue(value: "unconfigured");
 
-		/// <summary>
-		/// Подтвердить адрес не удалось
-		/// </summary>
-		public static readonly CallbackServerStatus Fail = RegisterPossibleValue(value: "fail");
+	/// <summary>
+	/// Подтвердить адрес не удалось
+	/// </summary>
+	public static readonly CallbackServerStatus Fail = RegisterPossibleValue(value: "fail");
 
-		/// <summary>
-		/// Адрес ожидает подтверждения
-		/// </summary>
-		public static readonly CallbackServerStatus Wait = RegisterPossibleValue(value: "wait");
+	/// <summary>
+	/// Адрес ожидает подтверждения
+	/// </summary>
+	public static readonly CallbackServerStatus Wait = RegisterPossibleValue(value: "wait");
 
-		/// <summary>
-		/// Сервер подключен
-		/// </summary>
-		public static readonly CallbackServerStatus Ok = RegisterPossibleValue(value: "ok");
-	}
+	/// <summary>
+	/// Сервер подключен
+	/// </summary>
+	public static readonly CallbackServerStatus Ok = RegisterPossibleValue(value: "ok");
 }

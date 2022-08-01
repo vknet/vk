@@ -5,58 +5,57 @@ using VkNet.Enums;
 using VkNet.Infrastructure;
 using VkNet.Utils;
 
-namespace VkNet.Model.GroupUpdate
+namespace VkNet.Model.GroupUpdate;
+
+/// <summary>
+/// Добавление участника или заявки на вступление в сообщество
+/// </summary>
+[Serializable]
+public class DonutNew : IGroupUpdate
 {
 	/// <summary>
-	/// Добавление участника или заявки на вступление в сообщество
+	/// Идентификатор пользователя
 	/// </summary>
-	[Serializable]
-	public class DonutNew : IGroupUpdate
+	public long? UserId { get; set; }
+
+	/// <summary>
+	/// Цена в рублях
+	/// </summary>
+	public decimal? Amount { get; set; }
+
+	/// <summary>
+	/// Цена без комиссии (в рублях)
+	/// </summary>
+	public decimal? AmountWithoutFee { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	public static DonutNew FromJson(VkResponse response)
 	{
-		/// <summary>
-		/// Идентификатор пользователя
-		/// </summary>
-		public long? UserId { get; set; }
+		var groupJoin = JsonConvert.DeserializeObject<DonutNew>(response.ToString(), JsonConfigure.JsonSerializerSettings);
+		groupJoin.UserId = response["user_id"];
+		groupJoin.Amount = response["amount"];
+		groupJoin.AmountWithoutFee = response["amount_without_fee"];
 
-		/// <summary>
-		/// Цена в рублях
-		/// </summary>
-		public decimal? Amount { get; set; }
+		return groupJoin;
+	}
 
-		/// <summary>
-		/// Цена без комиссии (в рублях)
-		/// </summary>
-		public decimal? AmountWithoutFee { get; set; }
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		public static DonutNew FromJson(VkResponse response)
+	/// <summary>
+	/// Преобразование класса <see cref="DonutNew" /> в <see cref="VkParameters" />
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> Результат преобразования в <see cref="DonutNew" /> </returns>
+	public static implicit operator DonutNew(VkResponse response)
+	{
+		if (response == null)
 		{
-			var groupJoin = JsonConvert.DeserializeObject<DonutNew>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-			groupJoin.UserId = response["user_id"];
-			groupJoin.Amount = response["amount"];
-			groupJoin.AmountWithoutFee = response["amount_without_fee"];
-
-			return groupJoin;
+			return null;
 		}
 
-		/// <summary>
-		/// Преобразование класса <see cref="DonutNew" /> в <see cref="VkParameters" />
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> Результат преобразования в <see cref="DonutNew" /> </returns>
-		public static implicit operator DonutNew(VkResponse response)
-		{
-			if (response == null)
-			{
-				return null;
-			}
-
-			return response.HasToken()
-				? FromJson(response)
-				: null;
-		}
+		return response.HasToken()
+			? FromJson(response)
+			: null;
 	}
 }

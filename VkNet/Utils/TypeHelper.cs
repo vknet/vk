@@ -14,65 +14,58 @@ using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
 using VkNet.Utils.AntiCaptcha;
 
-namespace VkNet.Utils
+namespace VkNet.Utils;
+
+/// <summary>
+/// Методы расширения для типов
+/// </summary>
+public static class TypeHelper
 {
 	/// <summary>
-	/// Методы расширения для типов
+	/// DI регистрация зависимостей по умолчанию
 	/// </summary>
-	public static class TypeHelper
+	/// <param name="container"> DI контейнер </param>
+	public static void RegisterDefaultDependencies(this IServiceCollection container)
 	{
-		/// <summary>
-		/// DI регистрация зависимостей по умолчанию
-		/// </summary>
-		/// <param name="container"> DI контейнер </param>
-		public static void RegisterDefaultDependencies(this IServiceCollection container)
-		{
-			container.TryAddSingleton<INeedValidationHandler, NeedValidationHandler>();
-			container.TryAddSingleton<HttpClient>();
-			container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
-			container.TryAddSingleton<IRestClient, RestClient>();
-			container.TryAddSingleton<IWebProxy>(_ => null);
-			container.TryAddSingleton<IVkApiVersionManager, VkApiVersionManager>();
-			container.TryAddSingleton<ICaptchaHandler, CaptchaHandler>();
-			container.TryAddSingleton<ILanguageService, LanguageService>();
-			container.TryAddSingleton<ICaptchaSolver>(_ => null);
-			container.TryAddSingleton<IRateLimiter, RateLimiter>();
-			container.TryAddSingleton<IAwaitableConstraint, CountByIntervalAwaitableConstraint>();
-			container.RegisterImplicitFlowAuthorization();
-		}
+		container.TryAddSingleton<INeedValidationHandler, NeedValidationHandler>();
+		container.TryAddSingleton<HttpClient>();
+		container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
+		container.TryAddSingleton<IRestClient, RestClient>();
+		container.TryAddSingleton<IWebProxy>(_ => null);
+		container.TryAddSingleton<IVkApiVersionManager, VkApiVersionManager>();
+		container.TryAddSingleton<ICaptchaHandler, CaptchaHandler>();
+		container.TryAddSingleton<ILanguageService, LanguageService>();
+		container.TryAddSingleton<ICaptchaSolver>(_ => null);
+		container.TryAddSingleton<IRateLimiter, RateLimiter>();
+		container.TryAddSingleton<IAwaitableConstraint, CountByIntervalAwaitableConstraint>();
+		container.RegisterImplicitFlowAuthorization();
+	}
 
-		/// <summary>
-		/// Попытаться асинхронно выполнить метод.
-		/// </summary>
-		/// <param name="func"> Синхронный метод. </param>
-		/// <typeparam name="T"> Тип ответа </typeparam>
-		/// <returns> Результат выполнения функции. </returns>
-		public static Task<T> TryInvokeMethodAsync<T>(Func<T> func)
-		{
-			return Task.Run(func);
-		}
+	/// <summary>
+	/// Попытаться асинхронно выполнить метод.
+	/// </summary>
+	/// <param name="func"> Синхронный метод. </param>
+	/// <typeparam name="T"> Тип ответа </typeparam>
+	/// <returns> Результат выполнения функции. </returns>
+	public static Task<T> TryInvokeMethodAsync<T>(Func<T> func) => Task.Run(func);
 
-		/// <summary>
-		/// Попытаться асинхронно выполнить метод.
-		/// </summary>
-		/// <param name="func"> Синхронный метод. </param>
-		/// <returns> Результат выполнения функции. </returns>
-		public static Task TryInvokeMethodAsync(Action func)
-		{
-			return Task.Run(func);
-		}
+	/// <summary>
+	/// Попытаться асинхронно выполнить метод.
+	/// </summary>
+	/// <param name="func"> Синхронный метод. </param>
+	/// <returns> Результат выполнения функции. </returns>
+	public static Task TryInvokeMethodAsync(Action func) => Task.Run(func);
 
-		private static void RegisterImplicitFlowAuthorization(this IServiceCollection services)
-		{
-			services.TryAddSingleton<IAuthorizationFlow, ImplicitFlow>();
-			services.TryAddSingleton<IVkAuthorization<ImplicitFlowPageType>, ImplicitFlowVkAuthorization>();
-			services.TryAddSingleton<IAuthorizationFormHtmlParser, AuthorizationFormHtmlParser>();
-			services.TryAddSingleton<IAuthorizationFormFactory, AuthorizationFormFactory>();
+	private static void RegisterImplicitFlowAuthorization(this IServiceCollection services)
+	{
+		services.TryAddSingleton<IAuthorizationFlow, ImplicitFlow>();
+		services.TryAddSingleton<IVkAuthorization<ImplicitFlowPageType>, ImplicitFlowVkAuthorization>();
+		services.TryAddSingleton<IAuthorizationFormHtmlParser, AuthorizationFormHtmlParser>();
+		services.TryAddSingleton<IAuthorizationFormFactory, AuthorizationFormFactory>();
 
-			services.AddSingleton<IAuthorizationForm, ImplicitFlowCaptchaLoginForm>();
-			services.AddSingleton<IAuthorizationForm, ImplicitFlowLoginForm>();
-			services.AddSingleton<IAuthorizationForm, TwoFactorForm>();
-			services.AddSingleton<IAuthorizationForm, ConsentForm>();
-		}
+		services.AddSingleton<IAuthorizationForm, ImplicitFlowCaptchaLoginForm>();
+		services.AddSingleton<IAuthorizationForm, ImplicitFlowLoginForm>();
+		services.AddSingleton<IAuthorizationForm, TwoFactorForm>();
+		services.AddSingleton<IAuthorizationForm, ConsentForm>();
 	}
 }

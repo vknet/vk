@@ -4,32 +4,31 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetDemographicsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class GetDemographicsTest : CategoryBaseTest
+	[Fact]
+	public void GetDemographics()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getDemographics";
 
-		[Fact]
-		public void GetDemographics()
+		ReadCategoryJsonPath(nameof(Api.Ads.GetDemographics));
+
+		var result = Api.Ads.GetDemographics(new()
 		{
-			Url = "https://api.vk.com/method/ads.getDemographics";
+			AccountId = 123,
+			DateFrom = "123",
+			DateTo = "123",
+			Ids = "123,123",
+			IdsType = IdsType.Ad,
+			Period = "123"
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetDemographics));
-
-			var result = Api.Ads.GetDemographics(new GetDemographicsParams
-			{
-				AccountId = 123,
-				DateFrom = "123",
-				DateTo = "123",
-				Ids = "123,123",
-				IdsType = IdsType.Ad,
-				Period = "123"
-			});
-
-			result[0].Id.Should().Be(1012219949);
-		}
+		result[0]
+			.Id.Should()
+			.Be(1012219949);
 	}
 }

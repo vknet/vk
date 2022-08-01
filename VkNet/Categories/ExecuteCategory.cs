@@ -1,57 +1,57 @@
 ﻿using VkNet.Abstractions;
 using VkNet.Utils;
 
-namespace VkNet.Categories
+namespace VkNet.Categories;
+
+/// <inheritdoc />
+public partial class ExecuteCategory : IExecuteCategory
 {
 	/// <inheritdoc />
-	public partial class ExecuteCategory : IExecuteCategory
+	public VkResponse Execute(string code, VkParameters vkParameters = default)
 	{
-		/// <inheritdoc />
-		public VkResponse Execute(string code, VkParameters vkParameters = default)
+		var parameters = new VkParameters
 		{
-			var parameters = new VkParameters
 			{
-				{ "code", code }
-			};
-
-			if (vkParameters == default)
-			{
-				return _vk.Call("execute", parameters);
+				"code", code
 			}
+		};
 
-			foreach (var pair in vkParameters)
-			{
-				parameters.Add(pair.Key, pair.Value);
-			}
-
+		if (vkParameters == default)
+		{
 			return _vk.Call("execute", parameters);
 		}
 
-		/// <inheritdoc />
-		public T Execute<T>(string code, VkParameters vkParameters = default)
+		foreach (var pair in vkParameters)
 		{
-			var parameters = new VkParameters
-			{
-				{ "code", code }
-			};
+			parameters.Add(pair.Key, pair.Value);
+		}
 
-			if (vkParameters == default)
+		return _vk.Call("execute", parameters);
+	}
+
+	/// <inheritdoc />
+	public T Execute<T>(string code, VkParameters vkParameters = default)
+	{
+		var parameters = new VkParameters
+		{
 			{
-				return _vk.Call<T>("execute", parameters);
+				"code", code
 			}
+		};
 
-			foreach (var pair in vkParameters)
-			{
-				parameters.Add(pair.Key, pair.Value);
-			}
-
+		if (vkParameters == default)
+		{
 			return _vk.Call<T>("execute", parameters);
 		}
 
-		/// <inheritdoc />
-		public T StoredProcedure<T>(string procedureName, VkParameters vkParameters)
+		foreach (var pair in vkParameters)
 		{
-			return _vk.Call<T>($"execute.{procedureName}", vkParameters);
+			parameters.Add(pair.Key, pair.Value);
 		}
+
+		return _vk.Call<T>("execute", parameters);
 	}
+
+	/// <inheritdoc />
+	public T StoredProcedure<T>(string procedureName, VkParameters vkParameters) => _vk.Call<T>($"execute.{procedureName}", vkParameters);
 }

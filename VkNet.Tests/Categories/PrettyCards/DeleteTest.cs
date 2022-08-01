@@ -3,30 +3,32 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.PrettyCards
+namespace VkNet.Tests.Categories.PrettyCards;
+
+public class DeleteTest : CategoryBaseTest
 {
+	protected override string Folder => "PrettyCards";
 
-
-	public class DeleteTest : CategoryBaseTest
+	[Fact]
+	public void Delete()
 	{
-		protected override string Folder => "PrettyCards";
+		Url = "https://api.vk.com/method/prettyCards.delete";
 
-		[Fact]
-		public void Delete()
+		ReadCategoryJsonPath(nameof(Api.PrettyCards.Delete));
+
+		var result = Api.PrettyCards.Delete(new()
 		{
-			Url = "https://api.vk.com/method/prettyCards.delete";
+			OwnerId = -126102803,
+			CardId = "1488"
+		});
 
-			ReadCategoryJsonPath(nameof(Api.PrettyCards.Delete));
+		result.Should()
+			.NotBeNull();
 
-			var result = Api.PrettyCards.Delete(new PrettyCardsDeleteParams
-			{
-				OwnerId = -126102803,
-				CardId = "1488"
-			});
+		result.CardId.Should()
+			.Be("1488");
 
-			result.Should().NotBeNull();
-			result.CardId.Should().Be("1488");
-			result.OwnerId.Should().Be(-126102803);
-		}
+		result.OwnerId.Should()
+			.Be(-126102803);
 	}
 }

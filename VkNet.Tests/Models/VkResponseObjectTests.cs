@@ -5,80 +5,81 @@ using Newtonsoft.Json;
 using VkNet.Model;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class VkResponseObjectTests : BaseTest
 {
-
-	public class VkResponseObjectTests : BaseTest
+	[Fact]
+	public void VkResponseObjectOfEmptyObjectCorrectSerialize()
 	{
-		[Fact]
-		public void VkResponseObjectOfEmptyObjectCorrectSerialize()
+		// Arrange
+		ReadCommonJsonFile(JsonTestFolderConstants.Common.EmptyObject);
+
+		var responseObject = new VkResponseObject<object>
 		{
-			// Arrange
-			ReadCommonJsonFile(JsonTestFolderConstants.Common.EmptyObject);
+			Response = new()
+		};
 
-			var responseObject = new VkResponseObject<object>
+		// Act
+		var result = JsonConvert.SerializeObject(responseObject,
+			new JsonSerializerSettings
 			{
-				Response = new object()
-			};
+				Formatting = Formatting.Indented
+			});
 
-			// Act
-			var result = JsonConvert.SerializeObject(responseObject,
-				new JsonSerializerSettings
-				{
-					Formatting = Formatting.Indented
-				});
+		// Assert
+		result.Should()
+			.BeEquivalentTo(Json.Replace("\t", "  "));
+	}
 
-			// Assert
-			result.Should().BeEquivalentTo(Json.Replace("\t", "  "));
-		}
+	[Fact]
+	public void VkResponseObjectOfEmptyObjectArrayCorrectSerialize()
+	{
+		// Arrange
+		ReadCommonJsonFile(JsonTestFolderConstants.Common.EmptyArray);
 
-		[Fact]
-		public void VkResponseObjectOfEmptyObjectArrayCorrectSerialize()
+		var responseObject = new VkResponseObject<object[]>
 		{
-			// Arrange
-			ReadCommonJsonFile(JsonTestFolderConstants.Common.EmptyArray);
+			Response = Array.Empty<object>()
+		};
 
-			var responseObject = new VkResponseObject<object[]>
+		// Act
+		var result = JsonConvert.SerializeObject(responseObject,
+			new JsonSerializerSettings
 			{
-				Response = Array.Empty<object>()
-			};
+				Formatting = Formatting.Indented
+			});
 
-			// Act
-			var result = JsonConvert.SerializeObject(responseObject,
-				new JsonSerializerSettings
-				{
-					Formatting = Formatting.Indented
-				});
+		// Assert
+		result.Should()
+			.BeEquivalentTo(Json.Replace("\t", "  "));
+	}
 
-			// Assert
-			result.Should().BeEquivalentTo(Json.Replace("\t", "  "));
-		}
+	[Fact]
+	public void VkResponseObjectOfStoryServerUrlCorrectSerialize()
+	{
+		// Arrange
+		ReadCategoryJsonFile(JsonTestFolderConstants.Categories.Stories, "GetPhotoUploadServer");
 
-		[Fact]
-		public void VkResponseObjectOfStoryServerUrlCorrectSerialize()
+		var responseObject = new VkResponseObject<StoryServerUrl>
 		{
-			// Arrange
-			ReadCategoryJsonFile(JsonTestFolderConstants.Categories.Stories, "GetPhotoUploadServer");
-
-			var responseObject = new VkResponseObject<StoryServerUrl>
+			Response = new()
 			{
-				Response = new StoryServerUrl
-				{
-					UploadUrl = new Uri("https://pu.vk.com/Tk0YjM0MjRmNzA5NSJ9"),
-					PeerIds = Enumerable.Empty<long>(),
-					UsersIds = Enumerable.Empty<long>()
-				}
-			};
+				UploadUrl = new("https://pu.vk.com/Tk0YjM0MjRmNzA5NSJ9"),
+				PeerIds = Enumerable.Empty<long>(),
+				UsersIds = Enumerable.Empty<long>()
+			}
+		};
 
-			// Act
-			var result = JsonConvert.SerializeObject(responseObject,
-				new JsonSerializerSettings
-				{
-					Formatting = Formatting.Indented
-				});
+		// Act
+		var result = JsonConvert.SerializeObject(responseObject,
+			new JsonSerializerSettings
+			{
+				Formatting = Formatting.Indented
+			});
 
-			// Assert
-			result.Should().BeEquivalentTo(Json.Replace("\t", "  "));
-		}
+		// Assert
+		result.Should()
+			.BeEquivalentTo(Json.Replace("\t", "  "));
 	}
 }

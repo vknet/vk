@@ -3,26 +3,25 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Polls
+namespace VkNet.Tests.Categories.Polls;
+
+public class PollsGetByIdTests : CategoryBaseTest
 {
+	protected override string Folder => "Polls";
 
-	public class PollsGetByIdTests : CategoryBaseTest
+	[Fact]
+	public void GetById()
 	{
-		protected override string Folder => "Polls";
+		Url = "https://api.vk.com/method/polls.getById";
 
-		[Fact]
-		public void GetById()
+		ReadCategoryJsonPath("GetById");
+
+		var result = Api.PollsCategory.GetById(new()
 		{
-			Url = "https://api.vk.com/method/polls.getById";
+			PollId = 123
+		});
 
-			ReadCategoryJsonPath("GetById");
-
-			var result = Api.PollsCategory.GetById(new PollsGetByIdParams
-			{
-				PollId = 123
-			});
-
-			result.Should().NotBeNull();
-		}
+		result.Should()
+			.NotBeNull();
 	}
 }

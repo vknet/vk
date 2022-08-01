@@ -5,45 +5,66 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Wall
+namespace VkNet.Tests.Categories.Wall;
+
+public class WallGetTests : CategoryBaseTest
 {
+	protected override string Folder => "Wall";
 
-	public class WallGetTests : CategoryBaseTest
+	[Fact]
+	public void ArticleAttachement()
 	{
-		protected override string Folder => "Wall";
+		Url = "https://api.vk.com/method/wall.get";
+		ReadCategoryJsonPath(nameof(ArticleAttachement));
 
-		[Fact]
-		public void ArticleAttachement()
-		{
-			Url = "https://api.vk.com/method/wall.get";
-			ReadCategoryJsonPath(nameof(ArticleAttachement));
+		var result = Api.Wall.Get(new());
 
-			var result = Api.Wall.Get(new WallGetParams());
+		result.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			result.TotalCount.Should().Be(520);
-			var post = result.WallPosts.FirstOrDefault();
-			post.Should().NotBeNull();
-			var attachment = post.Attachment.Instance as Article;
-			attachment.Should().NotBeNull();
-			attachment.Id.Should().Be(10419);
-		}
+		result.TotalCount.Should()
+			.Be(520);
 
-		[Fact]
-		public void PodcastAttachment()
-		{
-			Url = "https://api.vk.com/method/wall.get";
-			ReadCategoryJsonPath(nameof(PodcastAttachment));
+		var post = result.WallPosts.FirstOrDefault();
 
-			var result = Api.Wall.Get(new WallGetParams());
+		post.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			result.TotalCount.Should().Be(6352);
-			var post = result.WallPosts.FirstOrDefault();
-			post.Should().NotBeNull();
-			var podcast = post.Attachments[1].Instance as Podcast;
-			podcast.Should().NotBeNull();
-			podcast.Id.Should().Be(456240245);
-		}
+		var attachment = post.Attachment.Instance as Article;
+
+		attachment.Should()
+			.NotBeNull();
+
+		attachment.Id.Should()
+			.Be(10419);
+	}
+
+	[Fact]
+	public void PodcastAttachment()
+	{
+		Url = "https://api.vk.com/method/wall.get";
+		ReadCategoryJsonPath(nameof(PodcastAttachment));
+
+		var result = Api.Wall.Get(new());
+
+		result.Should()
+			.NotBeNull();
+
+		result.TotalCount.Should()
+			.Be(6352);
+
+		var post = result.WallPosts.FirstOrDefault();
+
+		post.Should()
+			.NotBeNull();
+
+		var podcast = post.Attachments[1]
+			.Instance as Podcast;
+
+		podcast.Should()
+			.NotBeNull();
+
+		podcast.Id.Should()
+			.Be(456240245);
 	}
 }

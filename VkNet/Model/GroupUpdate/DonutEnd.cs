@@ -5,46 +5,45 @@ using VkNet.Enums;
 using VkNet.Infrastructure;
 using VkNet.Utils;
 
-namespace VkNet.Model.GroupUpdate
+namespace VkNet.Model.GroupUpdate;
+
+/// <summary>
+/// Добавление участника или заявки на вступление в сообщество
+/// </summary>
+[Serializable]
+public class DonutEnd : IGroupUpdate
 {
 	/// <summary>
-	/// Добавление участника или заявки на вступление в сообщество
+	/// Идентификатор пользователя
 	/// </summary>
-	[Serializable]
-	public class DonutEnd : IGroupUpdate
+	public long? UserId { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	public static DonutEnd FromJson(VkResponse response)
 	{
-		/// <summary>
-		/// Идентификатор пользователя
-		/// </summary>
-		public long? UserId { get; set; }
+		var groupJoin = JsonConvert.DeserializeObject<DonutEnd>(response.ToString(), JsonConfigure.JsonSerializerSettings);
+		groupJoin.UserId = response["user_id"];
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		public static DonutEnd FromJson(VkResponse response)
+		return groupJoin;
+	}
+
+	/// <summary>
+	/// Преобразование класса <see cref="DonutEnd" /> в <see cref="VkParameters" />
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> Результат преобразования в <see cref="DonutEnd" /> </returns>
+	public static implicit operator DonutEnd(VkResponse response)
+	{
+		if (response == null)
 		{
-			var groupJoin = JsonConvert.DeserializeObject<DonutEnd>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-			groupJoin.UserId = response["user_id"];
-
-			return groupJoin;
+			return null;
 		}
 
-		/// <summary>
-		/// Преобразование класса <see cref="DonutEnd" /> в <see cref="VkParameters" />
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> Результат преобразования в <see cref="DonutEnd" /> </returns>
-		public static implicit operator DonutEnd(VkResponse response)
-		{
-			if (response == null)
-			{
-				return null;
-			}
-
-			return response.HasToken()
-				? FromJson(response)
-				: null;
-		}
+		return response.HasToken()
+			? FromJson(response)
+			: null;
 	}
 }

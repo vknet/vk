@@ -2,25 +2,22 @@
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetBudgetTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class GetBudgetTest : CategoryBaseTest
+	[Fact]
+	public void GetBudget()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getBudget";
 
-		[Fact]
-		public void GetBudget()
-		{
-			Url = "https://api.vk.com/method/ads.getBudget";
+		ReadCategoryJsonPath(nameof(Api.Ads.GetBudget));
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetBudget));
+		var result = Api.Ads.GetBudget(1605245430);
 
-
-			var result = Api.Ads.GetBudget(1605245430);
-
-			result.Should().Be(100.00);
-		}
+		result.Should()
+			.Be(100.00);
 	}
 }

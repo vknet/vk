@@ -4,28 +4,27 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Group
+namespace VkNet.Tests.Categories.Group;
+
+public class GetMembersTests : CategoryBaseTest
 {
+	/// <inheritdoc />
+	protected override string Folder => "Groups";
 
-	public class GetMembersTests : CategoryBaseTest
+	[Fact]
+	public void GetMembers()
 	{
-		/// <inheritdoc />
-		protected override string Folder => "Groups";
+		Url = "https://api.vk.com/method/groups.getMembers";
 
-		[Fact]
-		public void GetMembers()
+		ReadCategoryJsonPath(nameof(GetMembers));
+
+		var result = Api.Groups.GetMembers(new()
 		{
-			Url = "https://api.vk.com/method/groups.getMembers";
+			Filter = GroupsMemberFilters.Managers,
+			GroupId = "187905748"
+		});
 
-			ReadCategoryJsonPath(nameof(GetMembers));
-
-			var result = Api.Groups.GetMembers(new GroupsGetMembersParams
-			{
-				Filter = GroupsMemberFilters.Managers,
-				GroupId = "187905748"
-			});
-
-			result.Should().NotBeNull();
-		}
+		result.Should()
+			.NotBeNull();
 	}
 }

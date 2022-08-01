@@ -45,7 +45,8 @@ namespace {0}
 		var models =
 			context.Compilation
 				.SyntaxTrees
-				.SelectMany(syntaxTree => syntaxTree.GetRoot().DescendantNodes())
+				.SelectMany(syntaxTree => syntaxTree.GetRoot()
+					.DescendantNodes())
 				.Where(x => x is ClassDeclarationSyntax)
 				.Cast<ClassDeclarationSyntax>()
 				.Where(GetPartialModels)
@@ -117,7 +118,8 @@ namespace {0}
 
 	public static string GetTypeFromGeneric(string type)
 	{
-		var localType = type.Split('<')[1].Replace(">", string.Empty);
+		var localType = type.Split('<')[1]
+			.Replace(">", string.Empty);
 
 		return localType;
 	}
@@ -159,21 +161,15 @@ namespace {0}
 	/// </summary>
 	/// <param name="arg"></param>
 	/// <returns></returns>
-	private bool NotHaveMethodFromJson(ClassDeclarationSyntax arg)
-	{
-		return !arg.Members.Any(x =>
-			x.Kind() == SyntaxKind.MethodDeclaration && ((MethodDeclarationSyntax) x).Identifier.ValueText != "FromJSON");
-	}
+	private bool NotHaveMethodFromJson(ClassDeclarationSyntax arg) => !arg.Members.Any(x =>
+		x.Kind() == SyntaxKind.MethodDeclaration && ((MethodDeclarationSyntax) x).Identifier.ValueText != "FromJSON");
 
-	private bool GetSerializableModels(ClassDeclarationSyntax arg)
-	{
-		return arg.AttributeLists.First().Attributes.Any(x => x.Name.ToString() == "Serializable");
-	}
+	private bool GetSerializableModels(ClassDeclarationSyntax arg) => arg.AttributeLists.First()
+		.Attributes.Any(x => x.Name.ToString() == "Serializable");
 
-	private static bool GetPartialModels(ClassDeclarationSyntax x)
-	{
-		return GetFullName(x).Contains("Model") && x.Modifiers.Any(m => m.ValueText == "partial");
-	}
+	private static bool GetPartialModels(ClassDeclarationSyntax x) => GetFullName(x)
+																		.Contains("Model")
+																	&& x.Modifiers.Any(m => m.ValueText == "partial");
 
 	public const string NESTED_CLASS_DELIMITER = "+";
 
@@ -211,12 +207,16 @@ namespace {0}
 		}
 
 		var nameSpace = parent as NamespaceDeclarationSyntax;
-		var sb = new StringBuilder().Append(nameSpace.Name).Append(NAMESPACE_CLASS_DELIMITER);
+
+		var sb = new StringBuilder().Append(nameSpace.Name)
+			.Append(NAMESPACE_CLASS_DELIMITER);
+
 		items.Reverse();
 
 		items.ForEach(i =>
 		{
-			sb.Append(i).Append(NESTED_CLASS_DELIMITER);
+			sb.Append(i)
+				.Append(NESTED_CLASS_DELIMITER);
 		});
 
 		sb.Append(source.Identifier.Text);
