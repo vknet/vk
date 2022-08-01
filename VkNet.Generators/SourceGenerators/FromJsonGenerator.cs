@@ -1,6 +1,4 @@
 ﻿using System.Collections.Immutable;
-using System.Diagnostics;
-using System.Diagnostics.Contracts;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -11,7 +9,7 @@ namespace VkNet.Generators.SourceGenerators;
 [Generator]
 public class FromJsonGenerator : ISourceGenerator
 {
-	const string ClassDefinition = @" // Auto-generated code
+	private const string ClassDefinition = @" // Auto-generated code
 using System;
 using VkNet.Utils;
 
@@ -30,27 +28,20 @@ namespace {0}
 }}
 ";
 
-	const string PropertyDeclaration = "{0} = response[\"{1}\"],";
+	private const string PropertyDeclaration = "{0} = response[\"{1}\"],";
 
-	const string PropertyReadonlyCollection = "{0} = response[\"{1}\"].ToReadOnlyCollectionOf<{2}>(),";
+	private const string PropertyReadonlyCollection = "{0} = response[\"{1}\"].ToReadOnlyCollectionOf<{2}>(),";
 
-	const string PropertyReadonlyCollectionWithLambda = "{0} = response[\"{1}\"].ToReadOnlyCollectionOf<{2}>(x => x),";
+	private const string PropertyReadonlyCollectionWithLambda = "{0} = response[\"{1}\"].ToReadOnlyCollectionOf<{2}>(x => x),";
 
-	const string PropertyVkCollection = "{0} = response[\"{1}\"].ToVkCollectionOf<{2}>(x => x),";
+	private const string PropertyVkCollection = "{0} = response[\"{1}\"].ToVkCollectionOf<{2}>(x => x),";
 
 	public void Initialize(GeneratorInitializationContext context)
 	{
-		//throw new NotImplementedException();
 	}
 
 	public void Execute(GeneratorExecutionContext context)
 	{
-		/*System.Diagnostics.Debugger.Launch();
-		Debug.WriteLine("generator start");*/
-
-		var assemblySymbol =
-			context.Compilation.Assembly.NamespaceNames;
-
 		var models =
 			context.Compilation
 				.SyntaxTrees
@@ -64,14 +55,12 @@ namespace {0}
 
 		foreach (var model in models)
 		{
-			var fields = GetAllPropreties(model);
+			var fields = GetAllProperties(model);
 			var newClass = CreateNewPartialClassWithFromJsonMethod(model, fields);
 
 			context.AddSource(model.Identifier.ValueText + ".g.cs",
 				newClass.Item2);
 		}
-
-		/*Debug.WriteLine("generator end");*/
 	}
 
 	private (ClassDeclarationSyntax, string) CreateNewPartialClassWithFromJsonMethod(
@@ -93,15 +82,14 @@ namespace {0}
 	{
 		var fieldDeclaration = new StringBuilder();
 
-		foreach (var property in properties)
+		foreach (var (propertyName, attributeArgument, type) in properties)
 		{
-			var type = property.PropertyType;
 			string baseExpression;
 			string baseType;
 
 			if (type.Contains("ReadOnlyCollection") || type.Contains("IEnumerable"))
 			{
-				var typeName = GetTypeFromGeneric(property.PropertyType);
+				var typeName = GetTypeFromGeneric(type);
 
 				baseExpression = typeName[0] == char.ToLower(typeName[0])
 					? PropertyReadonlyCollectionWithLambda
@@ -111,7 +99,7 @@ namespace {0}
 			} else if (type.Contains("VkCollection"))
 			{
 				baseExpression = PropertyVkCollection;
-				baseType = GetTypeFromGeneric(property.PropertyType);
+				baseType = GetTypeFromGeneric(type);
 			} else
 			{
 				baseExpression = PropertyDeclaration;
@@ -119,8 +107,8 @@ namespace {0}
 			}
 
 			fieldDeclaration.AppendFormat(baseExpression,
-				property.PropertyName,
-				property.AttributeArgument,
+				propertyName,
+				attributeArgument,
 				baseType);
 		}
 
@@ -139,15 +127,13 @@ namespace {0}
 	/// </summary>
 	/// <param name="model">  </param>
 	/// <returns>pairs from field name and JsonProperty annotation argument</returns>
-	private IEnumerable<(string PropertyName, string AttributeArgument, string PropertyType)> GetAllPropreties(ClassDeclarationSyntax model)
+	private IEnumerable<(string PropertyName, string AttributeArgument, string PropertyType)> GetAllProperties(TypeDeclarationSyntax model)
 	{
 		var dict = new List<(string, string, string)>();
 		var properties = model.Members.OfType<PropertyDeclarationSyntax>();
 
 		foreach (var property in properties)
 		{
-			var propertyName = property.Identifier.ValueText;
-
 			var attributeArgument = property.AttributeLists.First()
 				.Attributes.First(x => x.Name.ToString() == "JsonProperty")
 				.ArgumentList?.Arguments.First()
@@ -155,9 +141,13 @@ namespace {0}
 				.First()
 				.Text.Replace("\"", string.Empty);
 
-			if (attributeArgument == null) continue;
+			if (attributeArgument == null)
+			{
+				continue;
+			}
 
 			var propertyType = property.Type.ToString();
+			var propertyName = property.Identifier.ValueText;
 			dict.Add((propertyName, attributeArgument, propertyType));
 		}
 
@@ -172,7 +162,7 @@ namespace {0}
 	private bool NotHaveMethodFromJson(ClassDeclarationSyntax arg)
 	{
 		return !arg.Members.Any(x =>
-			(x.Kind() == SyntaxKind.MethodDeclaration && ((MethodDeclarationSyntax) x).Identifier.ValueText != "FromJSON"));
+			x.Kind() == SyntaxKind.MethodDeclaration && ((MethodDeclarationSyntax) x).Identifier.ValueText != "FromJSON");
 	}
 
 	private bool GetSerializableModels(ClassDeclarationSyntax arg)
@@ -191,44 +181,36 @@ namespace {0}
 
 	public static string GetFullNamespace(ClassDeclarationSyntax source)
 	{
-		Contract.Requires(null != source);
-
 		var items = new List<string>();
 		var parent = source.Parent;
 
 		while (parent.IsKind(SyntaxKind.ClassDeclaration))
 		{
 			var parentClass = parent as ClassDeclarationSyntax;
-			Contract.Assert(null != parentClass);
 			items.Add(parentClass.Identifier.Text);
 
 			parent = parent.Parent;
 		}
 
 		var nameSpace = parent as NamespaceDeclarationSyntax;
-		Contract.Assert(null != nameSpace);
 
 		return nameSpace.Name.ToString();
 	}
 
 	public static string GetFullName(ClassDeclarationSyntax source)
 	{
-		Contract.Requires(null != source);
-
 		var items = new List<string>();
 		var parent = source.Parent;
 
 		while (parent.IsKind(SyntaxKind.ClassDeclaration))
 		{
 			var parentClass = parent as ClassDeclarationSyntax;
-			Contract.Assert(null != parentClass);
 			items.Add(parentClass.Identifier.Text);
 
 			parent = parent.Parent;
 		}
 
 		var nameSpace = parent as NamespaceDeclarationSyntax;
-		Contract.Assert(null != nameSpace);
 		var sb = new StringBuilder().Append(nameSpace.Name).Append(NAMESPACE_CLASS_DELIMITER);
 		items.Reverse();
 
