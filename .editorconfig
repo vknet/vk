@@ -15,12 +15,16 @@ indent_style=tab
 tab_width=4
 trim_trailing_whitespace=true
 
-[*.json]
-charset = utf-8
-end_of_line = crlf
-indent_style = space
-tab_width = 2
-trim_trailing_whitespace = true
+[*.yml]
+charset=utf-8
+end_of_line=crlf
+indent_style=space
+tab_width=2
+trim_trailing_whitespace=true
+
+[**/*/Migrations/**/*.cs]
+exclude = true
+generated_code = true
 
 [*.cs]
 ## Blank Lines
@@ -39,6 +43,7 @@ csharp_blank_lines_after_using_list=1
 csharp_blank_lines_around_namespace=1
 csharp_blank_lines_inside_namespace=0
 csharp_blank_lines_around_type=1
+csharp_blank_lines_around_single_line_type=1
 csharp_blank_lines_inside_type=0
 csharp_blank_lines_around_field=1
 csharp_blank_lines_around_single_line_field=1
@@ -46,6 +51,8 @@ csharp_blank_lines_around_property=1
 csharp_blank_lines_around_single_line_property=1
 csharp_blank_lines_around_auto_property=1
 csharp_blank_lines_around_single_line_auto_property=1
+csharp_blank_lines_around_accessor=1
+csharp_blank_lines_around_single_line_accessor=0
 csharp_blank_lines_around_invocable=1
 csharp_blank_lines_around_single_line_invocable=1
 
@@ -60,27 +67,25 @@ csharp_blank_lines_before_block_statements=1
 csharp_blank_lines_after_block_statements=1
 csharp_blank_lines_before_multiline_statements=1
 csharp_blank_lines_after_multiline_statements=1
-
+csharp_blank_lines_around_block_case_section=1
+csharp_blank_lines_around_multiline_case_section=1
+csharp_blank_lines_before_case=1
+csharp_blank_lines_after_case=0
 
 # Braces Layout
-csharp_type_declaration_braces=next_line
+csharp_brace_style=next_line
 csharp_indent_inside_namespace=true
-csharp_invocable_declaration_braces=next_line
-csharp_anonymous_method_declaration_braces=next_line
-csharp_accessor_owner_declaration_braces=next_line
-csharp_accessor_declaration_braces=next_line
-csharp_case_block_braces=next_line
-csharp_initializer_braces=next_line
+csharp_accessor_declaration_braces=end_of_line
 csharp_use_continuous_indent_inside_initializer_braces=true
-csharp_other_braces=next_line
 csharp_allow_comment_after_lbrace=false
 csharp_empty_block_style=multiline
 
 ## CodeStyle
 # 'var' Usage in Declarations
-csharp_for_built_in_types=use_var
-csharp_for_simple_types=use_var
-csharp_for_other_types=use_var
+csharp_for_built_in_types=use_var:error
+csharp_for_simple_types=use_var:error
+csharp_for_other_types=use_var:error
+csharp_use_roslyn_logic_for_evident_types=true
 
 # Prefer separate declarations for deconstructed variables
 csharp_prefer_separate_deconstructed_variables_declaration=false
@@ -97,11 +102,13 @@ csharp_static_members_qualify_with=declared_type
 csharp_static_members_qualify_members=none
 
 # Built-in Type Naming
-csharp_builtin_type_reference_style=keyword:error
+csharp_builtin_type_reference_style=use_keyword:error
+csharp_builtin_type_reference_for_member_access_style=use_keyword:error
 
 # Reference Qualification
 csharp_prefer_qualified_reference=false
 csharp_add_imports_to_deepest_scope=false
+csharp_sort_usings_with_system_first=true
 csharp_qualified_using_at_nested_scope=false
 csharp_allow_alias=true
 csharp_can_use_global_alias=true
@@ -121,6 +128,8 @@ csharp_arguments_other=positional
 # Parentheses
 csharp_parentheses_redundancy_style=remove_if_not_clarifies_precedence
 csharp_parentheses_non_obvious_operations=shift,bitwise
+csharp_parentheses_group_non_obvious_operations=arithmetic,relational,conditional
+csharp_parentheses_same_type_operations=true
 
 # Braces
 csharp_braces_for_ifelse=required
@@ -129,19 +138,31 @@ csharp_braces_for_foreach=required
 csharp_braces_for_while=required
 csharp_braces_for_dowhile=required
 csharp_braces_for_using=required
+csharp_braces_for_lock=required
 csharp_braces_for_fixed=required
 csharp_braces_redundant=true
-csharp_braces_for_lock=required
 
 # Code Body
-csharp_method_or_operator_body=block_body
-csharp_local_function_body=block_body
-csharp_constructor_or_destructor_body=block_body
+csharp_method_or_operator_body=expression_body
+csharp_local_function_body=expression_body
+csharp_constructor_or_destructor_body=expression_body
 csharp_accessor_owner_body=expression_body
-csharp_use_heuristics_for_body_style=true
+csharp_use_heuristics_for_body_style=false
 
 # Attributes
 csharp_force_attribute_style=separate
+
+# Trailing comma
+csharp_trailing_comma_in_multiline_lists=false
+csharp_trailing_comma_in_singleline_lists=false
+
+# Object creation
+csharp_object_creation_when_type_evident=target_typed
+csharp_object_creation_when_type_not_evident=target_typed
+
+# Default value
+csharp_default_value_when_type_evident=default_literal
+csharp_default_value_when_type_not_evident=default_literal
 
 ## - Tabs, Indents, Alignment
 
@@ -169,17 +190,21 @@ csharp_indent_typearg_angles=inside
 csharp_indent_pars=inside
 
 # Preprocessor Directives
-csharp_indent_preprocessor_if=outdent
-csharp_indent_preprocessor_region=outdent
-csharp_indent_preprocessor_other=outdent
+csharp_indent_preprocessor_if=usual_indent
+csharp_indent_preprocessor_region=usual_indent
+csharp_indent_preprocessor_other=usual_indent
 
 # Other Indents
 csharp_indent_switch_labels=true
+csharp_outdent_statement_labels=false
 csharp_indent_type_constraints=true
-csharp_stick_comment=true
+csharp_stick_comment=false
+csharp_place_comments_at_first_column=false
+csharp_use_indent_from_previous_element=false
 
 # Align Multiline Constructs
 csharp_alignment_tab_fill_style=use_tabs_only
+csharp_allow_far_alignment=false
 csharp_align_multiline_parameter=true
 csharp_align_multiline_extends_list=true
 csharp_align_linq_query=true
@@ -188,6 +213,8 @@ csharp_outdent_binary_ops=false
 csharp_align_multiline_calls_chain=false
 csharp_outdent_dots=false
 csharp_align_multiline_array_and_object_initializer=false
+csharp_align_multiline_switch_expression=false
+csharp_align_multiline_property_pattern=false
 csharp_indent_anonymous_method_block=false
 csharp_align_first_arg_by_paren=false
 csharp_align_multiline_argument=false
@@ -200,26 +227,30 @@ csharp_align_multline_type_parameter_constrains=false
 csharp_outdent_commas=false
 
 # Align Similar Code in Columns
+csharp_int_align=false
+csharp_int_align_fix_in_adjacent=false
 csharp_int_align_fields=false
 csharp_int_align_properties=false
 csharp_int_align_methods=false
 csharp_int_align_parameters=false
 csharp_int_align_variables=false
 csharp_int_align_assignments=false
+csharp_int_align_property_patterns=false
 csharp_int_align_nested_ternary=false
 csharp_int_align_invocations=false
 csharp_int_align_binary_expressions=false
 csharp_int_align_comments=false
 csharp_int_align_switch_sections=false
-
+csharp_int_align_switch_expressions=false
 
 ## - Line Breaks
 
 #General
 csharp_keep_user_linebreaks=true
 csharp_max_line_length=140
-wrap_before_comma=false
-resharper_csharp_wrap_before_comma=false
+csharp_wrap_before_comma=false
+csharp_wrap_before_eq=false
+csharp_wrap_before_comma=false
 csharp_special_else_if_treatment=true
 csharp_insert_final_newline=false
 
@@ -230,7 +261,6 @@ csharp_keep_existing_arrangement=false
 csharp_place_type_attribute_on_same_line=never
 csharp_place_attribute_on_same_line=never
 csharp_place_method_attribute_on_same_line=never
-csharp_place_attribute_on_same_line=never
 csharp_place_accessorholder_attribute_on_same_line=never
 csharp_place_accessor_attribute_on_same_line=never
 csharp_place_field_attribute_on_same_line=never
@@ -244,10 +274,9 @@ csharp_wrap_after_declaration_lpar=false
 csharp_wrap_before_declaration_rpar=false
 csharp_place_constructor_initializer_on_same_line=true
 
-
 # Arrangement of Expression Bodied Members
-csharp_keep_existing_expr_member_arrangement=true
-csharp_place_expr_method_on_single_line=if_owner_is_single_line
+csharp_keep_existing_expr_member_arrangement=false
+csharp_place_expr_method_on_single_line=always
 csharp_place_expr_property_on_single_line=if_owner_is_single_line
 csharp_place_expr_accessor_on_single_line=if_owner_is_single_line
 csharp_wrap_before_arrow_with_expressions=false
@@ -264,7 +293,7 @@ csharp_wrap_extends_list_style=wrap_if_long
 csharp_keep_existing_declaration_block_arrangement=false
 csharp_place_abstract_accessorholder_on_single_line=true
 csharp_place_simple_declaration_blocks_on_single_line=true
-place_simple_blocks_on_single_line=true
+csharp_place_simple_blocks_on_single_line=true
 csharp_place_simple_accessorholder_on_single_line=false
 csharp_place_simple_declaration_blocks_on_single_line=false
 place_simple_blocks_on_single_line=false
@@ -278,9 +307,9 @@ csharp_place_simple_method_on_single_line=false
 csharp_place_simple_declaration_blocks_on_single_line=false
 place_simple_blocks_on_single_line=false
 
-# Arrangement of Enumerations
+# Arrangement of enumerations
 csharp_keep_existing_enum_arrangement=false
-csharp_max_enum_members_on_line=0
+csharp_max_enum_members_on_line=1
 csharp_place_simple_enum_on_single_line=false
 csharp_wrap_enum_declaration=chop_always
 
@@ -289,7 +318,7 @@ csharp_new_line_before_else=false
 csharp_new_line_before_while=false
 csharp_new_line_before_catch=true
 csharp_new_line_before_finally=true
-csharp_wrap_for_stmt_header_style=chop_if_long
+csharp_wrap_for_stmt_header_style=wrap_if_long
 csharp_wrap_multiple_declaration_style=chop_always
 
 # Arrangement of Embedded Statements
@@ -299,17 +328,25 @@ csharp_place_simple_case_statement_on_same_line=never
 csharp_keep_existing_embedded_block_arrangement=false
 csharp_place_simple_embedded_block_on_same_line=false
 csharp_place_simple_anonymousmethod_on_single_line=false
+csharp_keep_existing_switch_expression_arrangement=false
+csharp_place_simple_switch_expression_on_single_line=true
+csharp_wrap_switch_expression=chop_always
+
+# Arrangement of property patterns
+csharp_keep_existing_property_patterns_arrangement=false
+csharp_place_simple_property_pattern_on_single_line=true
+csharp_wrap_property_pattern=chop_always
 
 # Arrangement of Initializers
 csharp_keep_existing_initializer_arrangement=false
-csharp_max_initializer_elements_on_line=0
-csharp_max_array_initializer_elements_on_line=0
-csharp_place_simple_initializer_on_single_line=true
+csharp_place_simple_initializer_on_single_line=false
+csharp_max_initializer_elements_on_line=1
 csharp_wrap_object_and_collection_initializer_style=chop_always
+csharp_max_array_initializer_elements_on_line=1
 csharp_wrap_array_initializer_style=chop_always
 
 # Arrangement of Invocations
-csharp_wrap_arguments_style=chop_if_long
+csharp_wrap_arguments_style=wrap_if_long
 csharp_max_invocation_arguments_on_line=5
 csharp_keep_existing_invocation_parens_arrangement=false
 csharp_wrap_before_invocation_lpar=false
@@ -318,7 +355,7 @@ csharp_wrap_before_invocation_rpar=false
 
 # Arrangement of Member Access Expressions
 csharp_wrap_after_dot_in_method_calls=false
-csharp_wrap_chained_method_calls=chop_if_long
+csharp_wrap_chained_method_calls=chop_always
 
 # Arrangement of Binary Expressions
 csharp_wrap_before_binary_opsign=true
@@ -329,8 +366,8 @@ csharp_force_chop_compound_do_expression=false
 
 # Arrangement of Ternary Expressions
 csharp_wrap_before_ternary_opsigns=true
-csharp_wrap_ternary_expr_style=chop_if_long
-csharp_nested_ternary_style=autodetect
+csharp_wrap_ternary_expr_style=chop_always
+csharp_nested_ternary_style=expanded
 
 # Arrangement of LINQ Expressions
 csharp_wrap_linq_expressions=chop_always
@@ -359,6 +396,7 @@ csharp_space_before_default_parentheses=false
 csharp_space_before_checked_parentheses=false
 csharp_space_before_sizeof_parentheses=false
 csharp_space_before_nameof_parentheses=false
+csharp_space_before_new_parentheses=false
 csharp_space_between_keyword_and_expression=true
 csharp_space_between_keyword_and_type=true
 
@@ -385,12 +423,10 @@ csharp_space_within_default_parentheses=false
 csharp_space_within_checked_parentheses=false
 csharp_space_within_sizeof_parentheses=false
 csharp_space_within_nameof_parentheses=false
+csharp_space_within_new_parentheses=false
 
 # Around Array Brackets
 csharp_space_before_open_square_brackets=false
-csharp_space_before_open_square_brackets=false
-csharp_space_between_square_brackets=false
-csharp_space_between_square_brackets=false
 csharp_space_between_empty_square_brackets=false
 csharp_space_before_type_parameter_angle=false
 csharp_space_before_type_argument_angle=false
@@ -408,6 +444,7 @@ csharp_space_within_single_line_array_initializer_braces=true
 
 # Around Binary Operators
 csharp_space_around_assignment_op=true
+csharp_space_around_binary_operator=true
 csharp_space_around_logical_op=true
 csharp_space_around_equality_op=true
 csharp_space_around_relational_op=true
@@ -420,6 +457,7 @@ csharp_space_around_arrow_op=true
 
 # After Unary Operators
 csharp_space_after_logical_not_op=false
+csharp_space_after_unary_operator=false
 csharp_space_after_unary_minus_op=false
 csharp_space_after_unary_plus_op=false
 csharp_space_after_ampersand_op=false
@@ -428,6 +466,7 @@ csharp_space_near_postfix_and_prefix_op=false
 
 # In Ternary Operator
 csharp_space_before_ternary_quest=true
+csharp_space_around_ternary_operator=true
 csharp_space_after_ternary_quest=true
 csharp_space_before_ternary_colon=true
 csharp_space_after_ternary_colon=true
@@ -570,18 +609,3 @@ html_blank_lines_around_razor_helpers=1
 
 # Blank lines around Razor sections
 html_blank_lines_around_razor_sections=1
-
-## INSPECTIONS
-
-# Code Notification
-resharper_invocation_is_skipped_highlighting=warning
-
-# Code Style
-resharper_arrange_missing_parentheses_highlighting=true:hint
-resharper_arrange_static_member_qualifier_highlighting=true:warning
-resharper_arrange_this_qualifier_highlighting=true:warning
-resharper_arrange_modifiers_order_highlighting=true:error
-resharper_arrange_attributes_highlighting=true:error
-
-resharper_possible_null_reference_exception_highlighting=error
-resharper_n_unit_non_public_method_with_test_attribute_highlighting=error
