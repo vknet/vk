@@ -1,58 +1,57 @@
 ﻿using System;
 using VkNet.Utils;
 
-namespace VkNet.Enums
+namespace VkNet.Enums;
+
+/// <summary>
+/// Семейное положение.
+/// </summary>
+[Serializable]
+public enum RelationType
 {
 	/// <summary>
-	/// Семейное положение.
+	/// Не указано.
 	/// </summary>
-	[Serializable]
-	public enum RelationType
-	{
-		/// <summary>
-		/// Не указано.
-		/// </summary>
-		[DefaultValue]
-		Unknown = 0
+	[DefaultValue]
+	Unknown = 0,
 
-		, /// <summary>
-		/// Не женат/не замужем.
-		/// </summary>
-		NotMarried = 1
+	/// <summary>
+	/// Не женат/не замужем.
+	/// </summary>
+	NotMarried = 1,
 
-		, /// <summary>
-		/// Встречаюсь.
-		/// </summary>
-		HasFriend = 2
+	/// <summary>
+	/// Встречаюсь.
+	/// </summary>
+	HasFriend = 2,
 
-		, /// <summary>
-		/// Помолвлен/помолвлена.
-		/// </summary>
-		Engaged = 3
+	/// <summary>
+	/// Помолвлен/помолвлена.
+	/// </summary>
+	Engaged = 3,
 
-		, /// <summary>
-		/// Женат/замужем.
-		/// </summary>
-		Married = 4
+	/// <summary>
+	/// Женат/замужем.
+	/// </summary>
+	Married = 4,
 
-		, /// <summary>
-		/// Всё сложно.
-		/// </summary>
-		ItsComplex = 5
+	/// <summary>
+	/// Всё сложно.
+	/// </summary>
+	ItsComplex = 5,
 
-		, /// <summary>
-		/// В активном поиске.
-		/// </summary>
-		InActiveSearch = 6
+	/// <summary>
+	/// В активном поиске.
+	/// </summary>
+	InActiveSearch = 6,
 
-		, /// <summary>
-		/// Влюблен/влюблена.
-		/// </summary>
-		Amorous = 7
+	/// <summary>
+	/// Влюблен/влюблена.
+	/// </summary>
+	Amorous = 7,
 
-		, /// <summary>
-		/// В гражданском браке
-		/// </summary>
-		CivilMarriage = 8
-	}
+	/// <summary>
+	/// В гражданском браке
+	/// </summary>
+	CivilMarriage = 8
 }

@@ -3,24 +3,23 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Ошибоки при вызове метода execute
+/// </summary>
+[Serializable]
+public class ExecuteErrorsResponse
 {
 	/// <summary>
-	/// Ошибоки при вызове метода execute
+	/// Ответ Vk
 	/// </summary>
-	[Serializable]
-	public class ExecuteErrorsResponse
-	{
-		/// <summary>
-		/// Ответ Vk
-		/// </summary>
-		[JsonProperty("response")]
-		public JRaw Response { get; set; }
+	[JsonProperty("response")]
+	public JRaw Response { get; set; }
 
-		/// <summary>
-		/// Массив ошибок при вызове метода execute
-		/// </summary>
-		[JsonProperty("execute_errors")]
-		public ReadOnlyCollection<VkError> ExecuteErrors { get; set; }
-	}
+	/// <summary>
+	/// Массив ошибок при вызове метода execute
+	/// </summary>
+	[JsonProperty("execute_errors")]
+	public ReadOnlyCollection<VkError> ExecuteErrors { get; set; }
 }

@@ -1,21 +1,20 @@
 ﻿using System;
 
-namespace VkNet.Enums.SafetyEnums
+namespace VkNet.Enums.SafetyEnums;
+
+/// <summary>
+/// Тип объекта поиска
+/// </summary>
+[Serializable]
+public class SearchResultType : SafetyEnum<SearchResultType>
 {
 	/// <summary>
-	/// Тип объекта поиска
+	/// Сообщество
 	/// </summary>
-	[Serializable]
-	public class SearchResultType : SafetyEnum<SearchResultType>
-	{
-		/// <summary>
-		/// Сообщество
-		/// </summary>
-		public static readonly SearchResultType Group = RegisterPossibleValue(value: "group");
+	public static readonly SearchResultType Group = RegisterPossibleValue(value: "group");
 
-		/// <summary>
-		/// Профиль
-		/// </summary>
-		public static readonly SearchResultType Profile = RegisterPossibleValue(value: "profile");
-	}
+	/// <summary>
+	/// Профиль
+	/// </summary>
+	public static readonly SearchResultType Profile = RegisterPossibleValue(value: "profile");
 }

@@ -7,49 +7,56 @@ using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 using Xunit;
 
-namespace VkNet.Tests.Utils.JsonConverter
+namespace VkNet.Tests.Utils.JsonConverter;
+
+public class DateTimeToStringFormatConverterTests : BaseTest
 {
-	public class DateTimeToStringFormatConverterTests : BaseTest
+	[Fact]
+	public void Deserialize()
 	{
-		[Fact]
-		public void Deserialize()
-		{
-			ReadJsonFile(nameof(JsonConverter), nameof(DateTimeToStringFormatConverter), nameof(Deserialize));
-			Url = "https://api.vk.com/method/friends.getRequests";
-			var result = Api.Call<MessagesSearchParams>("friends.getRequests", VkParameters.Empty);
-			result.Should().NotBeNull();
-			result.Date.Should().Be(new DateTime(2018, 11, 5));
-		}
+		ReadJsonFile(nameof(JsonConverter), nameof(DateTimeToStringFormatConverter), nameof(Deserialize));
+		Url = "https://api.vk.com/method/friends.getRequests";
+		var result = Api.Call<MessagesSearchParams>("friends.getRequests", VkParameters.Empty);
 
-		[Fact]
-		public void Serialization()
-		{
-			ReadJsonFile(nameof(JsonConverter), nameof(DateTimeToStringFormatConverter), nameof(Serialization));
+		result.Should()
+			.NotBeNull();
 
-			var message = new MessagesSearchParams
+		result.Date.Should()
+			.Be(new(2018, 11, 5));
+	}
+
+	[Fact]
+	public void Serialization()
+	{
+		ReadJsonFile(nameof(JsonConverter), nameof(DateTimeToStringFormatConverter), nameof(Serialization));
+
+		var message = new MessagesSearchParams
+		{
+			Date = new DateTime(2018, 11, 5),
+			Count = 20
+		};
+
+		var json = JsonConvert.SerializeObject(message,
+			new JsonSerializerSettings
 			{
-				Date = new DateTime(2018, 11, 5),
-				Count = 20
-			};
+				NullValueHandling = NullValueHandling.Ignore,
+				DefaultValueHandling = DefaultValueHandling.Ignore,
+				Formatting = Formatting.Indented
+			});
 
-			var json = JsonConvert.SerializeObject(message,
-				new JsonSerializerSettings
-				{
-					NullValueHandling = NullValueHandling.Ignore,
-					DefaultValueHandling = DefaultValueHandling.Ignore,
-					Formatting = Formatting.Indented
-				});
+		var result = JsonConvert.DeserializeObject<MessagesSearchParams>(json,
+			new JsonSerializerSettings
+			{
+				MaxDepth = null,
+				ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+			});
 
-			var result = JsonConvert.DeserializeObject<MessagesSearchParams>(json,
-				new JsonSerializerSettings
-				{
-					MaxDepth = null,
-					ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-				});
+		result.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			var compare = string.Compare(json, Json, CultureInfo.InvariantCulture, CompareOptions.IgnoreSymbols);
-			compare.Should().Be(0);
-		}
+		var compare = string.Compare(json, Json, CultureInfo.InvariantCulture, CompareOptions.IgnoreSymbols);
+
+		compare.Should()
+			.Be(0);
 	}
 }

@@ -1,20 +1,20 @@
 using System;
 
-namespace VkNet.Enums.SafetyEnums
+namespace VkNet.Enums.SafetyEnums;
+
+/// <summary>
+/// Тип фона опроса.
+/// </summary>
+[Serializable]
+public class PollBackgroundType : SafetyEnum<PollBackgroundType>
 {
 	/// <summary>
-	/// Тип фона опроса.
+	/// Gradient.
 	/// </summary>
-	[Serializable]
-	public class PollBackgroundType: SafetyEnum<PollBackgroundType>
-	{
-		/// <summary>
-		/// Gradient.
-		/// </summary>
-		public static readonly PollBackgroundType Gradient = RegisterPossibleValue("gradient");
-		/// <summary>
-		/// tile.
-		/// </summary>
-		public static readonly PollBackgroundType Tile = RegisterPossibleValue("tile");
-	}
+	public static readonly PollBackgroundType Gradient = RegisterPossibleValue("gradient");
+
+	/// <summary>
+	/// tile.
+	/// </summary>
+	public static readonly PollBackgroundType Tile = RegisterPossibleValue("tile");
 }

@@ -3,136 +3,171 @@ using FluentAssertions;
 using VkNet.Model.RequestParams;
 using Xunit;
 
-namespace VkNet.Tests.Categories.BotsLongPoll
+namespace VkNet.Tests.Categories.BotsLongPoll;
+
+public class BotsLongPollVideoTest : BotsLongPollBaseTest
 {
-
-	public class BotsLongPollVideoTest : BotsLongPollBaseTest
+	[Fact]
+	public void GetBotsLongPollHistory_VideoNewTest()
 	{
-		[Fact]
-		public void GetBotsLongPollHistory_VideoNewTest()
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoNewTest));
+
+		const int groupId = 1234;
+		const int id = 4444;
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoNewTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int groupId = 1234;
-			const int id = 4444;
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.GroupId.Should()
+			.Be(groupId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.Video.OwnerId.Should()
+			.Be(-groupId);
 
-			update.GroupId.Should().Be(groupId);
-			update.Video.OwnerId.Should().Be(-groupId);
-			update.Video.Id.Should().Be(id);
-		}
+		update.Video.Id.Should()
+			.Be(id);
+	}
 
-		[Fact]
-		public void GetBotsLongPollHistory_VideoCommentNewTest()
+	[Fact]
+	public void GetBotsLongPollHistory_VideoCommentNewTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentNewTest));
+
+		const int userId = 123;
+		const int groupId = 1234;
+		const int videoId = 4444;
+		const string text = "test";
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentNewTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int userId = 123;
-			const int groupId = 1234;
-			const int videoId = 4444;
-			const string text = "test";
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.VideoComment.FromId.Should()
+			.Be(userId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.GroupId.Should()
+			.Be(groupId);
 
-			update.VideoComment.FromId.Should().Be(userId);
-			update.GroupId.Should().Be(groupId);
-			update.VideoComment.Text.Should().Be(text);
-			update.VideoComment.VideoOwnerId.Should().Be(-groupId);
-			update.VideoComment.VideoId.Should().Be(videoId);
-		}
+		update.VideoComment.Text.Should()
+			.Be(text);
 
-		[Fact]
-		public void GetBotsLongPollHistory_VideoCommentEditTest()
+		update.VideoComment.VideoOwnerId.Should()
+			.Be(-groupId);
+
+		update.VideoComment.VideoId.Should()
+			.Be(videoId);
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_VideoCommentEditTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentEditTest));
+
+		const int userId = 123;
+		const int groupId = 1234;
+		const string text = "test1";
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentEditTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int userId = 123;
-			const int groupId = 1234;
-			const string text = "test1";
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.VideoComment.FromId.Should()
+			.Be(userId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.GroupId.Should()
+			.Be(groupId);
 
-			update.VideoComment.FromId.Should().Be(userId);
-			update.GroupId.Should().Be(groupId);
-			update.VideoComment.Text.Should().Be(text);
-			update.VideoComment.VideoOwnerId.Should().Be(-groupId);
-		}
+		update.VideoComment.Text.Should()
+			.Be(text);
 
-		[Fact]
-		public void GetBotsLongPollHistory_VideoCommentRestoreTest()
+		update.VideoComment.VideoOwnerId.Should()
+			.Be(-groupId);
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_VideoCommentRestoreTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentRestoreTest));
+
+		const int userId = 123;
+		const int groupId = 1234;
+		const string text = "test1";
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentRestoreTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int userId = 123;
-			const int groupId = 1234;
-			const string text = "test1";
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.VideoComment.FromId.Should()
+			.Be(userId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.GroupId.Should()
+			.Be(groupId);
 
-			update.VideoComment.FromId.Should().Be(userId);
-			update.GroupId.Should().Be(groupId);
-			update.VideoComment.Text.Should().Be(text);
-			update.VideoComment.VideoOwnerId.Should().Be(-groupId);
-		}
+		update.VideoComment.Text.Should()
+			.Be(text);
 
-		[Fact]
-		public void GetBotsLongPollHistory_VideoCommentDeleteTest()
+		update.VideoComment.VideoOwnerId.Should()
+			.Be(-groupId);
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_VideoCommentDeleteTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentDeleteTest));
+
+		const int groupId = 1234;
+		const int deleterId = 12345;
+		const int videoId = 123456;
+		const int id = 4;
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentDeleteTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int groupId = 1234;
-			const int deleterId = 12345;
-			const int videoId = 123456;
-			const int id = 4;
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.VideoCommentDelete.DeleterId.Should()
+			.Be(deleterId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.GroupId.Should()
+			.Be(groupId);
 
-			update.VideoCommentDelete.DeleterId.Should().Be(deleterId);
-			update.GroupId.Should().Be(groupId);
-			update.VideoCommentDelete.OwnerId.Should().Be(-groupId);
-			update.VideoCommentDelete.VideoId.Should().Be(videoId);
-			update.VideoCommentDelete.Id.Should().Be(id);
-		}
+		update.VideoCommentDelete.OwnerId.Should()
+			.Be(-groupId);
+
+		update.VideoCommentDelete.VideoId.Should()
+			.Be(videoId);
+
+		update.VideoCommentDelete.Id.Should()
+			.Be(id);
 	}
 }

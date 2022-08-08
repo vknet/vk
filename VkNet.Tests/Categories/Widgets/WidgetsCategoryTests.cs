@@ -3,44 +3,48 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Widgets
+namespace VkNet.Tests.Categories.Widgets;
+
+public class WidgetsCategoryTests : CategoryBaseTest
 {
+	protected override string Folder => "Widgets";
 
-
-	public class WidgetsCategoryTests : CategoryBaseTest
+	[Fact]
+	public void GetComments()
 	{
-		protected override string Folder => "Widgets";
+		Url = "https://api.vk.com/method/widgets.getComments";
 
-		[Fact]
-		public void GetComments()
+		ReadCategoryJsonPath(nameof(GetComments));
+
+		var result = Api.Widgets.GetComments(new()
 		{
-			Url = "https://api.vk.com/method/widgets.getComments";
+			WidgetApiId = 5553257,
+			Url = "http://griffiny.ru/season-01/4-1-sezon-1-seriya-i-u-smerti-est-ten.html",
+			Order = "date",
+			Count = 10,
+			Offset = 0
+		});
 
-			ReadCategoryJsonPath(nameof(GetComments));
+		result.Should()
+			.NotBeEmpty();
 
-			var result = Api.Widgets.GetComments(new GetCommentsParams
-			{
-				WidgetApiId = 5553257,
-				Url = "http://griffiny.ru/season-01/4-1-sezon-1-seriya-i-u-smerti-est-ten.html",
-				Order = "date",
-				Count = 10,
-				Offset = 0
-			});
+		result.TotalCount.Should()
+			.Be(10);
+	}
 
-			result.Should().NotBeEmpty();
-			result.TotalCount.Should().Be(10);
-		}
+	[Fact]
+	public void GetPages()
+	{
+		Url = "https://api.vk.com/method/widgets.getPages";
 
-		[Fact]
-		public void GetPages()
-		{
-			Url = "https://api.vk.com/method/widgets.getPages";
+		ReadCategoryJsonPath(nameof(GetPages));
 
-			ReadCategoryJsonPath(nameof(GetPages));
+		var result = Api.Widgets.GetPages(5553257, null, "alltime", 0, 10);
 
-			var result = Api.Widgets.GetPages(5553257, null, "alltime", 0, 10);
-			result.Should().NotBeEmpty();
-			result.TotalCount.Should().Be(50);
-		}
+		result.Should()
+			.NotBeEmpty();
+
+		result.TotalCount.Should()
+			.Be(50);
 	}
 }

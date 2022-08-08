@@ -3,28 +3,26 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class ShareTargetGroupTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class ShareTargetGroupTest : CategoryBaseTest
+	[Fact]
+	public void ShareTargetGroup()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.shareTargetGroup";
 
-		[Fact]
-		public void ShareTargetGroup()
+		ReadCategoryJsonPath(nameof(Api.Ads.ShareTargetGroup));
+
+		var result = Api.Ads.ShareTargetGroup(new()
 		{
-			Url = "https://api.vk.com/method/ads.shareTargetGroup";
+			AccountId = 1605245430,
+			TargetGroupId = 1
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.ShareTargetGroup));
-
-			var result = Api.Ads.ShareTargetGroup(new ShareTargetGroupParams
-			{
-				AccountId = 1605245430,
-				TargetGroupId = 1
-			});
-
-			result.Id.Should().Be(1488);
-		}
+		result.Id.Should()
+			.Be(1488);
 	}
 }

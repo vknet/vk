@@ -1,18 +1,17 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Объект, содержащий поле count
+/// </summary>
+[Serializable]
+public class ObjectCount
 {
 	/// <summary>
-	/// Объект, содержащий поле count
+	/// количество *** к странице внутри виджета
 	/// </summary>
-	[Serializable]
-	public class ObjectCount
-	{
-		/// <summary>
-		/// количество *** к странице внутри виджета
-		/// </summary>
-		[JsonProperty(propertyName: "count")]
-		public long Count { get; set; }
-	}
+	[JsonProperty(propertyName: "count")]
+	public long Count { get; set; }
 }

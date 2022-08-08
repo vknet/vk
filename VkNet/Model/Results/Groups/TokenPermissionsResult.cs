@@ -2,24 +2,23 @@ using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Права токена
+/// </summary>
+[Serializable]
+public class TokenPermissionsResult
 {
 	/// <summary>
-	/// Права токена
+	/// Битовая масска
 	/// </summary>
-	[Serializable]
-	public class TokenPermissionsResult
-	{
-		/// <summary>
-		/// Битовая масска
-		/// </summary>
-		[JsonProperty("mask")]
-		public long Mask { get; set; }
+	[JsonProperty("mask")]
+	public long Mask { get; set; }
 
-		/// <summary>
-		/// Права доступа
-		/// </summary>
-		[JsonProperty("permissions")]
-		public ReadOnlyCollection<TokenPermission> Permissions { get; set; }
-	}
+	/// <summary>
+	/// Права доступа
+	/// </summary>
+	[JsonProperty("permissions")]
+	public ReadOnlyCollection<TokenPermission> Permissions { get; set; }
 }

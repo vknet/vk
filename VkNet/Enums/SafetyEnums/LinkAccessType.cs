@@ -1,60 +1,62 @@
 ﻿using VkNet.Utils;
 
-namespace VkNet.Enums.SafetyEnums
+namespace VkNet.Enums.SafetyEnums;
+
+/// <summary>
+/// Возвращает информацию о том, является ли внешняя ссылка заблокированной на
+/// сайте ВКонтакте.
+/// </summary>
+public sealed class LinkAccessType : SafetyEnum<LinkAccessType>
 {
 	/// <summary>
-	/// Возвращает информацию о том, является ли внешняя ссылка заблокированной на
-	/// сайте ВКонтакте.
+	/// Cсылка не заблокирована
 	/// </summary>
-	public sealed class LinkAccessType : SafetyEnum<LinkAccessType>
+	public static readonly LinkAccessType NotBanned = RegisterPossibleValue(value: "not_banned");
+
+	/// <summary>
+	/// Cсылка заблокирована
+	/// </summary>
+	public static readonly LinkAccessType Banned = RegisterPossibleValue(value: "banned");
+
+	/// <summary>
+	/// Cсылка проверяется; необходимо выполнить повторный запрос через несколько
+	/// секунд
+	/// </summary>
+	public static readonly LinkAccessType Processing = RegisterPossibleValue(value: "processing");
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public new static LinkAccessType FromJson(VkResponse response)
 	{
-		/// <summary>
-		/// Cсылка не заблокирована
-		/// </summary>
-		public static readonly LinkAccessType NotBanned = RegisterPossibleValue(value: "not_banned");
+		string status = response[key: "status"];
 
-		/// <summary>
-		/// Cсылка заблокирована
-		/// </summary>
-		public static readonly LinkAccessType Banned = RegisterPossibleValue(value: "banned");
-
-		/// <summary>
-		/// Cсылка проверяется; необходимо выполнить повторный запрос через несколько
-		/// секунд
-		/// </summary>
-		public static readonly LinkAccessType Processing = RegisterPossibleValue(value: "processing");
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public new static LinkAccessType FromJson(VkResponse response)
+		switch (status)
 		{
-			string status = response[key: "status"];
+			case "banned":
 
-			switch (status)
 			{
-				case "banned":
+				return Banned;
+			}
 
-				{
-					return Banned;
-				}
-				case "not_banned":
+			case "not_banned":
 
-				{
-					return NotBanned;
-				}
-				case "processing":
+			{
+				return NotBanned;
+			}
 
-				{
-					return Processing;
-				}
-				default:
+			case "processing":
 
-				{
-					return null;
-				}
+			{
+				return Processing;
+			}
+
+			default:
+
+			{
+				return null;
 			}
 		}
 	}

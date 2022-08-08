@@ -5,74 +5,89 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Streaming
+namespace VkNet.Tests.Categories.Streaming;
+
+public class StreamingCategoryTests : CategoryBaseTest
 {
+	protected override string Folder => "Streaming";
 
-	public class StreamingCategoryTests : CategoryBaseTest
+	[Fact]
+	public void GetServerUrl()
 	{
-		protected override string Folder => "Streaming";
+		Url = "https://api.vk.com/method/streaming.getServerUrl";
+		ReadCategoryJsonPath(nameof(GetServerUrl));
 
-		[Fact]
-		public void GetServerUrl()
-		{
-			Url = "https://api.vk.com/method/streaming.getServerUrl";
-			ReadCategoryJsonPath(nameof(GetServerUrl));
+		var result = Api.Streaming.GetServerUrl();
 
-			var result = Api.Streaming.GetServerUrl();
+		result.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			result.Endpoint.Should().Be("streaming.vk.com");
-			result.Key.Should().Be("be8d29c05546e58cb52420aaf2b9f51f0a440f89");
-		}
+		result.Endpoint.Should()
+			.Be("streaming.vk.com");
 
-		[Fact]
-		public void GetSettings()
-		{
-			Url = "https://api.vk.com/method/streaming.getSettings";
-			ReadCategoryJsonPath(nameof(GetSettings));
+		result.Key.Should()
+			.Be("be8d29c05546e58cb52420aaf2b9f51f0a440f89");
+	}
 
-			var result = Api.Streaming.GetSettings();
+	[Fact]
+	public void GetSettings()
+	{
+		Url = "https://api.vk.com/method/streaming.getSettings";
+		ReadCategoryJsonPath(nameof(GetSettings));
 
-			result.Should().NotBeNull();
-			result.MonthlyLimit.Should().Be(MonthlyLimit.Tier6);
-		}
+		var result = Api.Streaming.GetSettings();
 
-		[Fact]
-		public void GetStats()
-		{
-			Url = "https://api.vk.com/method/streaming.getStats";
-			ReadCategoryJsonPath(nameof(GetStats));
+		result.Should()
+			.NotBeNull();
 
-			var result = Api.Streaming.GetStats("prepared", "24h", new DateTime(2018, 5, 1), new DateTime(2018, 5, 20));
+		result.MonthlyLimit.Should()
+			.Be(MonthlyLimit.Tier6);
+	}
 
-			result.Should().NotBeEmpty();
+	[Fact]
+	public void GetStats()
+	{
+		Url = "https://api.vk.com/method/streaming.getStats";
+		ReadCategoryJsonPath(nameof(GetStats));
 
-			var stats = result.FirstOrDefault();
-			stats.Should().NotBeNull();
-			stats.EventType.Should().Be(StreamingEventType.Post);
-			stats.Stats.Should().NotBeEmpty();
-		}
+		var result = Api.Streaming.GetStats("prepared", "24h", new DateTime(2018, 5, 1), new DateTime(2018, 5, 20));
 
-		[Fact]
-		public void SetSettings()
-		{
-			Url = "https://api.vk.com/method/streaming.setSettings";
-			ReadJsonFile(JsonPaths.True);
+		result.Should()
+			.NotBeEmpty();
 
-			var result = Api.Streaming.SetSettings(MonthlyLimit.Tier6);
+		var stats = result.FirstOrDefault();
 
-			result.Should().BeTrue();
-		}
+		stats.Should()
+			.NotBeNull();
 
-		[Fact]
-		public void GetStem()
-		{
-			Url = "https://api.vk.com/method/streaming.getStem";
-			ReadCategoryJsonPath(nameof(GetStem));
+		stats.EventType.Should()
+			.Be(StreamingEventType.Post);
 
-			var result = Api.Streaming.GetStem("коты");
+		stats.Stats.Should()
+			.NotBeEmpty();
+	}
 
-			result.Should().Be("кот");
-		}
+	[Fact]
+	public void SetSettings()
+	{
+		Url = "https://api.vk.com/method/streaming.setSettings";
+		ReadJsonFile(JsonPaths.True);
+
+		var result = Api.Streaming.SetSettings(MonthlyLimit.Tier6);
+
+		result.Should()
+			.BeTrue();
+	}
+
+	[Fact]
+	public void GetStem()
+	{
+		Url = "https://api.vk.com/method/streaming.getStem";
+		ReadCategoryJsonPath(nameof(GetStem));
+
+		var result = Api.Streaming.GetStem("коты");
+
+		result.Should()
+			.Be("кот");
 	}
 }

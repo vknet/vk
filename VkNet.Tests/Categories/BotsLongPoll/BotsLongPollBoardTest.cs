@@ -3,134 +3,169 @@ using FluentAssertions;
 using VkNet.Model.RequestParams;
 using Xunit;
 
-namespace VkNet.Tests.Categories.BotsLongPoll
+namespace VkNet.Tests.Categories.BotsLongPoll;
+
+public class BotsLongPollBoardTest : BotsLongPollBaseTest
 {
-
-	public class BotsLongPollBoardTest : BotsLongPollBaseTest
+	[Fact]
+	public void GetBotsLongPollHistory_BoardPostNew()
 	{
-		[Fact]
-		public void GetBotsLongPollHistory_BoardPostNew()
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNew));
+
+		const int userId = 123;
+		const int groupId = 1234;
+		const string text = "test";
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNew));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int userId = 123;
-			const int groupId = 1234;
-			const string text = "test";
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.GroupId.Should()
+			.Be(groupId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.BoardPost.FromId.Should()
+			.Be(userId);
 
-			update.GroupId.Should().Be(groupId);
-			update.BoardPost.FromId.Should().Be(userId);
-			update.BoardPost.Text.Should().Be(text);
-			update.BoardPost.TopicOwnerId.Should().Be(-groupId);
-		}
+		update.BoardPost.Text.Should()
+			.Be(text);
 
-		[Fact]
-		public void GetBotsLongPollHistory_BoardPostNewFirst()
+		update.BoardPost.TopicOwnerId.Should()
+			.Be(-groupId);
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_BoardPostNewFirst()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNewFirst));
+
+		const int groupId = 1234;
+		const string text = "test";
+		const int topicId = 6;
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNewFirst));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int groupId = 1234;
-			const string text = "test";
-			const int topicId = 6;
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.BoardPost.FromId.Should()
+			.Be(-groupId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.GroupId.Should()
+			.Be(groupId);
 
-			update.BoardPost.FromId.Should().Be(-groupId);
-			update.GroupId.Should().Be(groupId);
-			update.BoardPost.Text.Should().Be(text);
-			update.BoardPost.TopicOwnerId.Should().Be(-groupId);
-			update.BoardPost.TopicId.Should().Be(topicId);
-		}
+		update.BoardPost.Text.Should()
+			.Be(text);
 
-		[Fact]
-		public void GetBotsLongPollHistory_BoardPostEditTest()
+		update.BoardPost.TopicOwnerId.Should()
+			.Be(-groupId);
+
+		update.BoardPost.TopicId.Should()
+			.Be(topicId);
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_BoardPostEditTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostEditTest));
+
+		const int groupId = 1234;
+		const string text = "test1";
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostEditTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int groupId = 1234;
-			const string text = "test1";
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.BoardPost.FromId.Should()
+			.Be(-groupId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.GroupId.Should()
+			.Be(groupId);
 
-			update.BoardPost.FromId.Should().Be(-groupId);
-			update.GroupId.Should().Be(groupId);
-			update.BoardPost.Text.Should().Be(text);
-			update.BoardPost.TopicOwnerId.Should().Be(-groupId);
-		}
+		update.BoardPost.Text.Should()
+			.Be(text);
 
-		[Fact]
-		public void GetBotsLongPollHistory_BoardPostRestoreTest()
+		update.BoardPost.TopicOwnerId.Should()
+			.Be(-groupId);
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_BoardPostRestoreTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostRestoreTest));
+
+		const int userId = 123;
+		const int groupId = 1234;
+		const string text = "test";
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostRestoreTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int userId = 123;
-			const int groupId = 1234;
-			const string text = "test";
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.BoardPost.FromId.Should()
+			.Be(userId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.GroupId.Should()
+			.Be(groupId);
 
-			update.BoardPost.FromId.Should().Be(userId);
-			update.GroupId.Should().Be(groupId);
-			update.BoardPost.Text.Should().Be(text);
-			update.BoardPost.TopicOwnerId.Should().Be(-groupId);
-		}
+		update.BoardPost.Text.Should()
+			.Be(text);
 
-		[Fact]
-		public void GetBotsLongPollHistory_BoardPostDeleteTest()
+		update.BoardPost.TopicOwnerId.Should()
+			.Be(-groupId);
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_BoardPostDeleteTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostDeleteTest));
+
+		const int groupId = 1234;
+		const int topicId = 6;
+		const int id = 3;
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostDeleteTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int groupId = 1234;
-			const int topicId = 6;
-			const int id = 3;
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.GroupId.Should()
+			.Be(groupId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.BoardPostDelete.TopicOwnerId.Should()
+			.Be(-groupId);
 
-			update.GroupId.Should().Be(groupId);
-			update.BoardPostDelete.TopicOwnerId.Should().Be(-groupId);
-			update.BoardPostDelete.TopicId.Should().Be(topicId);
-			update.BoardPostDelete.Id.Should().Be(id);
-		}
+		update.BoardPostDelete.TopicId.Should()
+			.Be(topicId);
+
+		update.BoardPostDelete.Id.Should()
+			.Be(id);
 	}
 }

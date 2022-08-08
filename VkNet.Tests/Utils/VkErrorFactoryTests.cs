@@ -3,20 +3,19 @@ using VkNet.Exception;
 using VkNet.Model;
 using Xunit;
 
-namespace VkNet.Tests.Utils
+namespace VkNet.Tests.Utils;
+
+public class VkErrorFactoryTests
 {
-
-	public class VkErrorFactoryTests
+	[Fact]
+	public void VkErrorFactory()
 	{
-		[Fact]
-		public void VkErrorFactory()
+		var exception = VkNet.Utils.VkErrorFactory.Create(new()
 		{
-			var exception = VkNet.Utils.VkErrorFactory.Create(new VkError
-			{
-				ErrorCode = 14
-			});
+			ErrorCode = 14
+		});
 
-			exception.Should().BeOfType<CaptchaNeededException>();
-		}
+		exception.Should()
+			.BeOfType<CaptchaNeededException>();
 	}
 }

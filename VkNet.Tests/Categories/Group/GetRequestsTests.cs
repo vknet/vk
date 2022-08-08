@@ -3,38 +3,49 @@ using VkNet.Enums.Filters;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Group
+namespace VkNet.Tests.Categories.Group;
+
+public class GetRequestsTests : CategoryBaseTest
 {
-	public class GetRequestsTests : CategoryBaseTest
+	protected override string Folder => "Groups";
+
+	[Fact]
+	public void GetRequests_With_Fields()
 	{
-		protected override string Folder => "Groups";
+		Url = "https://api.vk.com/method/groups.getRequests";
 
-		[Fact]
-		public void GetRequests_With_Fields()
-		{
-			Url = "https://api.vk.com/method/groups.getRequests";
+		ReadCategoryJsonPath(nameof(GetRequests_With_Fields));
 
-			ReadCategoryJsonPath(nameof(GetRequests_With_Fields));
+		var result = Api.Groups.GetRequests(1, null, null, UsersFields.LastSeen);
 
-			var result = Api.Groups.GetRequests(1, null, null, UsersFields.LastSeen);
+		result.Should()
+			.NotBeNull();
 
-			result.Should().NotBeNull();
-			result.Should().HaveCount(3);
-			result.Should().AllSatisfy(user => user.Should().NotBeNull());
-		}
+		result.Should()
+			.HaveCount(3);
 
-		[Fact]
-		public void GetRequests_Without_Fields()
-		{
-			Url = "https://api.vk.com/method/groups.getRequests";
+		result.Should()
+			.AllSatisfy(user => user.Should()
+				.NotBeNull());
+	}
 
-			ReadCategoryJsonPath(nameof(GetRequests_Without_Fields));
+	[Fact]
+	public void GetRequests_Without_Fields()
+	{
+		Url = "https://api.vk.com/method/groups.getRequests";
 
-			var result = Api.Groups.GetRequests(1);
+		ReadCategoryJsonPath(nameof(GetRequests_Without_Fields));
 
-			result.Should().NotBeNull();
-			result.Should().HaveCount(3);
-			result.Should().AllSatisfy(user => user.Should().NotBeNull());
-		}
+		var result = Api.Groups.GetRequests(1);
+
+		result.Should()
+			.NotBeNull();
+
+		result.Should()
+			.HaveCount(3);
+
+		result.Should()
+			.AllSatisfy(user => user.Should()
+				.NotBeNull());
 	}
 }

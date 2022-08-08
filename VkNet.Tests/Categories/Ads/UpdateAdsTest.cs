@@ -7,56 +7,61 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class UpdateAdsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class UpdateAdsTest : CategoryBaseTest
+	[Fact]
+	public void UpdateAds()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.updateAds";
 
-		[Fact]
-		public void UpdateAds()
+		ReadCategoryJsonPath(nameof(Api.Ads.UpdateAds));
+
+		var adEditSpecification1 = new AdEditSpecification
 		{
-			Url = "https://api.vk.com/method/ads.updateAds";
+			AdId = 1012219949,
+			AgeRestriction = AdAgeRestriction.NoRestriction,
+			Name = "123",
+			Cpc = 3156,
+			AdPlatform = AdPlatform.All,
+			LinkUrl = new("https://vk.com/nixus9?w=wall-126102803_64")
+		};
 
-			ReadCategoryJsonPath(nameof(Api.Ads.UpdateAds));
+		var adEditSpecification2 = new AdEditSpecification
+		{
+			AdId = 1012219949,
+			AgeRestriction = AdAgeRestriction.NoRestriction,
+			Name = "123",
+			Cpc = 3156,
+			AdPlatform = AdPlatform.All,
+			LinkUrl = new("https://vk.com/nixus9?w=wall-126102803_64")
+		};
 
-			var adEditSpecification1 = new AdEditSpecification
-			{
-				AdId = 1012219949,
-				AgeRestriction = AdAgeRestriction.NoRestriction,
-				Name = "123",
-				Cpc = 3156,
-				AdPlatform = AdPlatform.All,
-				LinkUrl = new Uri("https://vk.com/nixus9?w=wall-126102803_64")
-			};
+		AdEditSpecification[] data =
+		{
+			adEditSpecification1,
+			adEditSpecification2
+		};
 
-			var adEditSpecification2 = new AdEditSpecification
-			{
-				AdId = 1012219949,
-				AgeRestriction = AdAgeRestriction.NoRestriction,
-				Name = "123",
-				Cpc = 3156,
-				AdPlatform = AdPlatform.All,
-				LinkUrl = new Uri("https://vk.com/nixus9?w=wall-126102803_64")
-			};
+		var officeUsers = Api.Ads.UpdateAds(new()
+		{
+			Data = data,
+			AccountId = 1605245430
+		});
 
-			AdEditSpecification[] data =
-			{
-				adEditSpecification1,
-				adEditSpecification2
-			};
+		officeUsers[0]
+			.Id.Should()
+			.Be(1);
 
-			var officeUsers = Api.Ads.UpdateAds(new AdsDataSpecificationParams<AdEditSpecification>
-			{
-				Data = data,
-				AccountId = 1605245430
-			});
+		officeUsers[0]
+			.ErrorCode.Should()
+			.Be(100);
 
-			officeUsers[0].Id.Should().Be(1);
-			officeUsers[0].ErrorCode.Should().Be(100);
-			officeUsers[1].Id.Should().Be(2);
-		}
+		officeUsers[1]
+			.Id.Should()
+			.Be(2);
 	}
 }

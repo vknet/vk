@@ -2,36 +2,35 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.RequestParams.Ads
+namespace VkNet.Model.RequestParams.Ads;
+
+/// <summary>
+/// Параметры запроса ads.importTargetContacts
+/// </summary>
+[Serializable]
+public class ImportTargetContactsParams
 {
 	/// <summary>
-	/// Параметры запроса ads.importTargetContacts
+	/// Идентификатор рекламного кабинета. обязательный параметр, целое число
 	/// </summary>
-	[Serializable]
-	public class ImportTargetContactsParams
-	{
-		/// <summary>
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </summary>
-		[JsonProperty("account_id")]
-		public long AccountId { get; set; }
+	[JsonProperty("account_id")]
+	public long AccountId { get; set; }
 
-		/// <summary>
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </summary>
-		[JsonProperty("target_group_id")]
-		public long TargetGroupId { get; set; }
+	/// <summary>
+	/// Идентификатор рекламного кабинета. обязательный параметр, целое число
+	/// </summary>
+	[JsonProperty("target_group_id")]
+	public long TargetGroupId { get; set; }
 
-		/// <summary>
-		/// Идентификатор рекламного кабинета. обязательный параметр, целое число
-		/// </summary>
-		[JsonProperty("contacts")]
-		public List<string> Contacts { get; set; }
+	/// <summary>
+	/// Идентификатор рекламного кабинета. обязательный параметр, целое число
+	/// </summary>
+	[JsonProperty("contacts")]
+	public List<string> Contacts { get; set; }
 
-		/// <summary>
-		/// Массив объектов UserSpecification
-		/// </summary>
-		[JsonProperty("client_id")]
-		public long? ClientId { get; set; }
-	}
+	/// <summary>
+	/// Массив объектов UserSpecification
+	/// </summary>
+	[JsonProperty("client_id")]
+	public long? ClientId { get; set; }
 }

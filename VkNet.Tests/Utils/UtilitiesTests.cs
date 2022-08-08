@@ -6,57 +6,66 @@ using VkNet.Model;
 using VkNet.Utils;
 using Xunit;
 
-namespace VkNet.Tests.Utils
-{
+namespace VkNet.Tests.Utils;
 
-	public class UtilitiesTests
+public class UtilitiesTests
+{
+	[Fact]
+	public void JsonConvert()
 	{
-		[Fact]
-		public void JsonConvert()
+		var result = Utilities.SerializeToJson(new User
 		{
-			var result = Utilities.SerializeToJson(new User
+			FirstName = "Maxim",
+			LastName = "Inyutin"
+		});
+
+		result.Should()
+			.NotBe("{}");
+
+		var attribute = Attribute.GetCustomAttribute(typeof(User), typeof(DataContractAttribute));
+
+		attribute.Should()
+			.BeNull();
+	}
+
+	[Fact]
+	public void JsonConvertWrite()
+	{
+		var vkCollection = new VkCollection<User>(10,
+			new List<User>
 			{
-				FirstName = "Maxim",
-				LastName = "Inyutin"
+				new()
+				{
+					Id = 12,
+					FirstName = "Andrew",
+					LastName = "Teleshev"
+				},
+				new()
+				{
+					Id = 13,
+					FirstName = "Даниил",
+					LastName = "Рыльцов"
+				}
 			});
 
-			result.Should().NotBe("{}");
-			var attribute = Attribute.GetCustomAttribute(typeof(User), typeof(DataContractAttribute));
-			attribute.Should().BeNull();
-		}
+		var result = Utilities.SerializeToJson(vkCollection);
 
-		[Fact]
-		public void JsonConvertWrite()
-		{
-			var vkCollection = new VkCollection<User>(10,
-				new List<User>
-				{
-					new()
-					{
-						Id = 12,
-						FirstName = "Andrew",
-						LastName = "Teleshev"
-					},
-					new()
-					{
-						Id = 13,
-						FirstName = "Даниил",
-						LastName = "Рыльцов"
-					}
-				});
+		result.Should()
+			.NotBe("{}");
 
-			var result = Utilities.SerializeToJson(vkCollection);
-			result.Should().NotBe("{}");
-			var attribute = Attribute.GetCustomAttribute(typeof(VkCollection<>), typeof(DataContractAttribute));
-			attribute.Should().BeNull();
-		}
+		var attribute = Attribute.GetCustomAttribute(typeof(VkCollection<>), typeof(DataContractAttribute));
 
-		[Fact]
-		public void PrettyPrintJsonShouldNotThrowException()
-		{
-			const string invalidJson = "ERROR";
+		attribute.Should()
+			.BeNull();
+	}
 
-			FluentActions.Invoking(() => Utilities.PrettyPrintJson(invalidJson)).Should().NotThrow();
-		}
+	[Fact]
+	public void PrettyPrintJsonShouldNotThrowException()
+	{
+		const string invalidJson = "ERROR";
+
+		FluentActions.Invoking(() => Utilities.PrettyPrintJson(invalidJson))
+			.Should()
+			.NotThrow();
 	}
 }

@@ -4,49 +4,45 @@ using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Messages
+namespace VkNet.Tests.Categories.Messages;
+
+public class MessagesSetActivityTests : MessagesBaseTests
 {
+	[Fact]
+	public void Messages_SetActivity_Without_PeerId_And_GroupId_Throws() => FluentActions
+		.Invoking(() => Api.Messages.SetActivity("some_user_id", MessageActivityType.Typing))
+		.Should()
+		.ThrowExactly<VkApiException>();
 
-	public class MessagesSetActivityTests : MessagesBaseTests
+	[Fact]
+	public void Messages_SetActivity_With_Both_PeerId_And_GroupId_Throws() => FluentActions.Invoking(() =>
+			Api.Messages.SetActivity("some_user_id", MessageActivityType.Typing, 125, 125))
+		.Should()
+		.ThrowExactly<VkApiException>();
+
+	[Fact]
+	public void Messages_SetActivity_With_PeerId_DoesntFail()
 	{
-		[Fact]
-		public void Messages_SetActivity_Without_PeerId_And_GroupId_Throws()
-		{
-			FluentActions.Invoking(() => Api.Messages.SetActivity("some_user_id", MessageActivityType.Typing))
-				.Should()
-				.ThrowExactly<VkApiException>();
-		}
+		Url = "https://api.vk.com/method/messages.setActivity";
 
-		[Fact]
-		public void Messages_SetActivity_With_Both_PeerId_And_GroupId_Throws()
-		{
-			FluentActions.Invoking(() => Api.Messages.SetActivity("some_user_id", MessageActivityType.Typing, 125, 125))
-				.Should()
-				.ThrowExactly<VkApiException>();
-		}
+		ReadJsonFile(JsonPaths.True);
 
-		[Fact]
-		public void Messages_SetActivity_With_PeerId_DoesntFail()
-		{
-			Url = "https://api.vk.com/method/messages.setActivity";
+		var result = Api.Messages.SetActivity("7550525", MessageActivityType.Typing, 1);
 
-			ReadJsonFile(JsonPaths.True);
+		result.Should()
+			.BeTrue();
+	}
 
-			var result = Api.Messages.SetActivity("7550525", MessageActivityType.Typing, 1);
+	[Fact]
+	public void Messages_SetActivity_With_GroupId_DoesntFail()
+	{
+		Url = "https://api.vk.com/method/messages.setActivity";
 
-			result.Should().BeTrue();
-		}
+		ReadJsonFile(JsonPaths.True);
 
-		[Fact]
-		public void Messages_SetActivity_With_GroupId_DoesntFail()
-		{
-			Url = "https://api.vk.com/method/messages.setActivity";
+		var result = Api.Messages.SetActivity("7550525", MessageActivityType.Typing, null, 2);
 
-			ReadJsonFile(JsonPaths.True);
-
-			var result = Api.Messages.SetActivity("7550525", MessageActivityType.Typing, null, 2);
-
-			result.Should().BeTrue();
-		}
+		result.Should()
+			.BeTrue();
 	}
 }

@@ -5,49 +5,49 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class AddOfficeUsersTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class AddOfficeUsersTest : CategoryBaseTest
+	[Fact]
+	public void AddOfficeUsers()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.addOfficeUsers";
 
-		[Fact]
-		public void AddOfficeUsers()
+		ReadCategoryJsonPath(nameof(Api.Ads.AddOfficeUsers));
+
+		var userSpecification1 = new UserSpecification
 		{
-			Url = "https://api.vk.com/method/ads.addOfficeUsers";
+			UserId = 1488,
+			ClientId = 5,
+			Role = AccessRole.Reports
+		};
 
-			ReadCategoryJsonPath(nameof(Api.Ads.AddOfficeUsers));
+		var userSpecification2 = new UserSpecification
+		{
+			UserId = 1488,
+			ClientId = 5,
+			Role = AccessRole.Reports
+		};
 
-			var userSpecification1 = new UserSpecification
-			{
-				UserId = 1488,
-				ClientId = 5,
-				Role = AccessRole.Reports
-			};
+		UserSpecification[] data =
+		{
+			userSpecification1,
+			userSpecification2
+		};
 
-			var userSpecification2 = new UserSpecification
-			{
-				UserId = 1488,
-				ClientId = 5,
-				Role = AccessRole.Reports
-			};
+		var officeUsers = Api.Ads.AddOfficeUsers(new()
+		{
+			Data = data,
+			AccountId = 1605245430
+		});
 
-			UserSpecification[] data =
-			{
-				userSpecification1,
-				userSpecification2
-			};
+		officeUsers.Should()
+			.HaveElementAt(0, true);
 
-			var officeUsers = Api.Ads.AddOfficeUsers(new AdsDataSpecificationParams<UserSpecification>
-			{
-				Data = data,
-				AccountId = 1605245430
-			});
-
-			officeUsers.Should().HaveElementAt(0, true);
-			officeUsers.Should().HaveElementAt(1, true);
-		}
+		officeUsers.Should()
+			.HaveElementAt(1, true);
 	}
 }

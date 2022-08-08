@@ -3,30 +3,27 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class SaveLookalikeRequestResultTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class SaveLookalikeRequestResultTest : CategoryBaseTest
+	[Fact]
+	public void SaveLookalikeRequestResult()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.saveLookalikeRequestResult";
 
-		[Fact]
-		public void SaveLookalikeRequestResult()
+		ReadCategoryJsonPath(nameof(Api.Ads.SaveLookalikeRequestResult));
+
+		var result = Api.Ads.SaveLookalikeRequestResult(new()
 		{
-			Url = "https://api.vk.com/method/ads.saveLookalikeRequestResult";
+			AccountId = 123,
+			Level = 2,
+			RequestId = 1488
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.SaveLookalikeRequestResult));
-
-
-			var result = Api.Ads.SaveLookalikeRequestResult(new SaveLookalikeRequestResultParams
-			{
-				AccountId = 123,
-				Level = 2,
-				RequestId = 1488
-			});
-
-			result.AudienceCount.Should().Be(38000);
-		}
+		result.AudienceCount.Should()
+			.Be(38000);
 	}
 }

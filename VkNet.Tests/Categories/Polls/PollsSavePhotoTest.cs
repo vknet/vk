@@ -3,30 +3,38 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Polls
+namespace VkNet.Tests.Categories.Polls;
+
+public class PollsSavePhotoTest : CategoryBaseTest
 {
+	protected override string Folder => "Polls";
 
-	public class PollsSavePhotoTest : CategoryBaseTest
+	[Fact]
+	public void PollsSavePhoto()
 	{
-		protected override string Folder => "Polls";
+		Url = "https://api.vk.com/method/polls.savePhoto";
 
-		[Fact]
-		public void PollsSavePhoto()
+		ReadCategoryJsonPath(nameof(Api.PollsCategory.SavePhoto));
+
+		var result = Api.PollsCategory.SavePhoto(new()
 		{
-			Url = "https://api.vk.com/method/polls.savePhoto";
+			Photo = "242344",
+			Hash = "fe8f7aaa03ff650cc2"
+		});
 
-			ReadCategoryJsonPath(nameof(Api.PollsCategory.SavePhoto));
+		result.Id.Should()
+			.Be(457245390);
 
-			var result = Api.PollsCategory.SavePhoto(new SavePhotoParams
-			{
-				Photo = "242344",
-				Hash = "fe8f7aaa03ff650cc2"
-			});
+		result.Color.Should()
+			.Be("BE272E");
 
-			result.Id.Should().Be(457245390);
-			result.Color.Should().Be("BE272E");
-			result.Images[0].Height.Should().Be(600);
-			result.Images[0].Url.ToString().Should().NotBeEmpty();
-		}
+		result.Images[0]
+			.Height.Should()
+			.Be(600);
+
+		result.Images[0]
+			.Url.ToString()
+			.Should()
+			.NotBeEmpty();
 	}
 }

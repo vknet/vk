@@ -4,31 +4,33 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Audio
+namespace VkNet.Tests.Categories.Audio;
+
+public class AudioGetTest : CategoryBaseTest
 {
+	protected override string Folder => "Audio";
 
-
-	public class AudioGetTest : CategoryBaseTest
+	[Fact]
+	public void GetTest()
 	{
-		protected override string Folder => "Audio";
+		Url = "https://api.vk.com/method/audio.get";
 
-		[Fact]
-		public void GetTest()
+		ReadCategoryJsonPath(nameof(Api.Audio.Get));
+
+		var result = Api.Audio.Get(new()
 		{
-			Url = "https://api.vk.com/method/audio.get";
+			Count = 1
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Audio.Get));
+		var audio = result.FirstOrDefault();
 
-			var result = Api.Audio.Get(new AudioGetParams
-			{
-				Count = 1
-			});
+		result.Should()
+			.NotBeEmpty();
 
-			var audio = result.FirstOrDefault();
+		result.Should()
+			.ContainSingle();
 
-			result.Should().NotBeEmpty();
-			result.Should().ContainSingle();
-			audio.Should().NotBeNull();
-		}
+		audio.Should()
+			.NotBeNull();
 	}
 }

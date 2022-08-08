@@ -3,29 +3,28 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Wall
+namespace VkNet.Tests.Categories.Wall;
+
+public class WallGetCommentsTests : CategoryBaseTest
 {
+	protected override string Folder => "Wall";
 
-	public class WallGetCommentsTests : CategoryBaseTest
+	[Fact]
+	public void GetComments802()
 	{
-		protected override string Folder => "Wall";
+		Url = "https://api.vk.com/method/wall.getComments";
+		ReadCategoryJsonPath(nameof(GetComments802));
 
-		[Fact]
-		public void GetComments802()
+		var result = Api.Wall.GetComments(new()
 		{
-			Url = "https://api.vk.com/method/wall.getComments";
-			ReadCategoryJsonPath(nameof(GetComments802));
+			NeedLikes = false,
+			PostId = 123,
+			OwnerId = 321,
+			Count = 100,
+			Offset = 0
+		});
 
-			var result = Api.Wall.GetComments(new WallGetCommentsParams
-			{
-				NeedLikes = false,
-				PostId = 123,
-				OwnerId = 321,
-				Count = 100,
-				Offset = 0
-			});
-
-			result.Should().NotBeNull();
-		}
+		result.Should()
+			.NotBeNull();
 	}
 }

@@ -1,26 +1,25 @@
 ﻿using VkNet.Utils;
 
-namespace VkNet.Enums
+namespace VkNet.Enums;
+
+/// <summary>
+/// Тип турнирной таблицы
+/// </summary>
+public enum LeaderboardTypes
 {
 	/// <summary>
-	/// Тип турнирной таблицы
+	/// Не поддерживается
 	/// </summary>
-	public enum LeaderboardTypes
-	{
-		/// <summary>
-		/// Не поддерживается
-		/// </summary>
-		[DefaultValue]
-		NotSupported = 0
+	[DefaultValue]
+	NotSupported = 0,
 
-		, /// <summary>
-		/// По уровню
-		/// </summary>
-		ByLevel
+	/// <summary>
+	/// По уровню
+	/// </summary>
+	ByLevel,
 
-		, /// <summary>
-		/// По очкам
-		/// </summary>
-		ByPoints
-	}
+	/// <summary>
+	/// По очкам
+	/// </summary>
+	ByPoints
 }

@@ -1,18 +1,17 @@
-﻿namespace VkNet.Enums
+﻿namespace VkNet.Enums;
+
+/// <summary>
+/// Зацикливание видео.
+/// </summary>
+public enum RepeatVideo
 {
 	/// <summary>
-	/// Зацикливание видео.
+	/// Не зацикливать.
 	/// </summary>
-	public enum RepeatVideo
-	{
-		/// <summary>
-		/// Не зацикливать.
-		/// </summary>
-		NotRepeat = 0,
+	NotRepeat = 0,
 
-		/// <summary>
-		/// Зацикливать
-		/// </summary>
-		Repeat = 1
-	}
+	/// <summary>
+	/// Зацикливать
+	/// </summary>
+	Repeat = 1
 }

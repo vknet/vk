@@ -1,30 +1,29 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Результат метода Podcasts.getPopular
+/// </summary>
+[Serializable]
+public class PodcastsGetPopularResult
 {
 	/// <summary>
-	/// Результат метода Podcasts.getPopular
+	/// Владелец подкаста.
 	/// </summary>
-	[Serializable]
-	public class PodcastsGetPopularResult
-	{
-		/// <summary>
-		/// Владелец подкаста.
-		/// </summary>
-		[JsonProperty(propertyName: "owner_id")]
-		public long OwnerId { get; set; }
+	[JsonProperty(propertyName: "owner_id")]
+	public long OwnerId { get; set; }
 
-		/// <summary>
-		/// Название подкаста.
-		/// </summary>
-		[JsonProperty(propertyName: "owner_title")]
-		public string OwnerTitle { get; set; }
+	/// <summary>
+	/// Название подкаста.
+	/// </summary>
+	[JsonProperty(propertyName: "owner_title")]
+	public string OwnerTitle { get; set; }
 
-		/// <summary>
-		/// Короткое имя группы подкаста.
-		/// </summary>
-		[JsonProperty(propertyName: "url")]
-		public string Url { get; set; }
-	}
+	/// <summary>
+	/// Короткое имя группы подкаста.
+	/// </summary>
+	[JsonProperty(propertyName: "url")]
+	public string Url { get; set; }
 }

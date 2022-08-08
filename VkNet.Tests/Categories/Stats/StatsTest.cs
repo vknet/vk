@@ -5,92 +5,107 @@ using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Stats
+namespace VkNet.Tests.Categories.Stats;
+
+[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+public class StatsTest : CategoryBaseTest
 {
+	protected override string Folder => "Stats";
 
-	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class StatsTest : CategoryBaseTest
+	[Fact]
+	public void GetByApp_NormalCase()
 	{
-		protected override string Folder => "Stats";
+		Url = "https://api.vk.com/method/stats.get";
+		ReadCategoryJsonPath(nameof(GetByApp_NormalCase));
 
-		[Fact]
-		public void GetByApp_NormalCase()
+		var statsPeriods = Api.Stats.Get(new()
 		{
-			Url = "https://api.vk.com/method/stats.get";
-			ReadCategoryJsonPath(nameof(GetByApp_NormalCase));
+			AppId = 1,
+			TimestampTo = new DateTime(2015,
+				11,
+				11,
+				0,
+				0,
+				0,
+				DateTimeKind.Utc)
+		});
 
-			var statsPeriods = Api.Stats.Get(new StatsGetParams
-			{
-				AppId = 1,
-				TimestampTo = new DateTime(2015,
-					11,
-					11,
-					0,
-					0,
-					0,
-					DateTimeKind.Utc)
-			});
+		statsPeriods[0]
+			.Should()
+			.NotBeNull();
 
-			statsPeriods[0].Should().NotBeNull();
-			statsPeriods[0].PeriodFrom.Should().Be(new DateTime(2013, 09, 08));
-		}
+		statsPeriods[0]
+			.PeriodFrom.Should()
+			.Be(new(2013, 09, 08));
+	}
 
-		[Fact]
-		public void GetByGroup_EmptyActivityCase()
+	[Fact]
+	public void GetByGroup_EmptyActivityCase()
+	{
+		Url = "https://api.vk.com/method/stats.get";
+		ReadCategoryJsonPath(nameof(GetByGroup_EmptyActivityCase));
+
+		var statsPeriods = Api.Stats.Get(new()
 		{
-			Url = "https://api.vk.com/method/stats.get";
-			ReadCategoryJsonPath(nameof(GetByGroup_EmptyActivityCase));
+			GroupId = 1,
+			TimestampFrom = new DateTime(2015,
+				11,
+				11,
+				0,
+				0,
+				0,
+				DateTimeKind.Utc)
+		});
 
-			var statsPeriods = Api.Stats.Get(new StatsGetParams
-			{
-				GroupId = 1,
-				TimestampFrom = new DateTime(2015,
-					11,
-					11,
-					0,
-					0,
-					0,
-					DateTimeKind.Utc)
-			});
+		statsPeriods[0]
+			.Should()
+			.NotBeNull();
 
-			statsPeriods[0].Should().NotBeNull();
-			statsPeriods[0].Activity.Should().BeNull();
+		statsPeriods[0]
+			.Activity.Should()
+			.BeNull();
 
-			statsPeriods[0].PeriodFrom.Should().Be(new DateTime(2013, 09, 08));
-		}
+		statsPeriods[0]
+			.PeriodFrom.Should()
+			.Be(new(2013, 09, 08));
+	}
 
-		[Fact]
-		public void GetByGroup_NormalCase()
+	[Fact]
+	public void GetByGroup_NormalCase()
+	{
+		Url = "https://api.vk.com/method/stats.get";
+		ReadCategoryJsonPath(nameof(GetByGroup_NormalCase));
+
+		var statsPeriods = Api.Stats.Get(new()
 		{
-			Url = "https://api.vk.com/method/stats.get";
-			ReadCategoryJsonPath(nameof(GetByGroup_NormalCase));
+			GroupId = 1,
+			TimestampFrom = new DateTime(2015,
+				11,
+				11,
+				0,
+				0,
+				0,
+				DateTimeKind.Utc)
+		});
 
-			var statsPeriods = Api.Stats.Get(new StatsGetParams
-			{
-				GroupId = 1,
-				TimestampFrom = new DateTime(2015,
-					11,
-					11,
-					0,
-					0,
-					0,
-					DateTimeKind.Utc)
-			});
+		statsPeriods[0]
+			.Should()
+			.NotBeNull();
 
-			statsPeriods[0].Should().NotBeNull();
+		statsPeriods[0]
+			.PeriodFrom.Should()
+			.Be(new(2013, 09, 08));
+	}
 
-			statsPeriods[0].PeriodFrom.Should().Be(new DateTime(2013, 09, 08));
-		}
+	[Fact]
+	public void TrackVisitorTest()
+	{
+		Url = "https://api.vk.com/method/stats.trackVisitor";
+		ReadJsonFile(JsonPaths.True);
 
-		[Fact]
-		public void TrackVisitorTest()
-		{
-			Url = "https://api.vk.com/method/stats.trackVisitor";
-			ReadJsonFile(JsonPaths.True);
+		var statsPeriods = Api.Stats.TrackVisitor();
 
-			var statsPeriods = Api.Stats.TrackVisitor();
-
-			statsPeriods.Should().BeTrue();
-		}
+		statsPeriods.Should()
+			.BeTrue();
 	}
 }

@@ -2,23 +2,21 @@
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Notifications
+namespace VkNet.Tests.Categories.Notifications;
+
+public class NotificationsCategoryTests : CategoryBaseTest
 {
+	protected override string Folder => "Notifications";
 
-
-	public class NotificationsCategoryTests : CategoryBaseTest
+	[Fact]
+	public void MarkAsViewed()
 	{
-		protected override string Folder => "Notifications";
+		Url = "https://api.vk.com/method/notifications.markAsViewed";
+		ReadJsonFile(JsonPaths.True);
 
-		[Fact]
-		public void MarkAsViewed()
-		{
-			Url = "https://api.vk.com/method/notifications.markAsViewed";
-			ReadJsonFile(JsonPaths.True);
+		var result = Api.Notifications.MarkAsViewed();
 
-			var result = Api.Notifications.MarkAsViewed();
-
-			result.Should().BeTrue();
-		}
+		result.Should()
+			.BeTrue();
 	}
 }

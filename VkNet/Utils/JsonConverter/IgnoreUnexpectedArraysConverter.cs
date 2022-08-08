@@ -2,29 +2,26 @@
 using System;
 using JetBrains.Annotations;
 
-namespace VkNet.Utils.JsonConverter
+namespace VkNet.Utils.JsonConverter;
+
+/// <inheritdoc />
+[UsedImplicitly]
+public class IgnoreUnexpectedArraysConverter : IgnoreUnexpectedArraysConverterBase
 {
+	private readonly IContractResolver _resolver;
+
 	/// <inheritdoc />
-	[UsedImplicitly]
-	public class IgnoreUnexpectedArraysConverter : IgnoreUnexpectedArraysConverterBase
+	public IgnoreUnexpectedArraysConverter(IContractResolver resolver) =>
+		_resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
+
+	/// <inheritdoc />
+	public override bool CanConvert(Type objectType)
 	{
-		private readonly IContractResolver _resolver;
-
-		/// <inheritdoc />
-		public IgnoreUnexpectedArraysConverter(IContractResolver resolver)
+		if (objectType.IsPrimitive || objectType == typeof(string))
 		{
-			_resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
+			return false;
 		}
 
-		/// <inheritdoc />
-		public override bool CanConvert(Type objectType)
-		{
-			if (objectType.IsPrimitive || objectType == typeof(string))
-			{
-				return false;
-			}
-
-			return _resolver.ResolveContract(objectType) is JsonObjectContract;
-		}
+		return _resolver.ResolveContract(objectType) is JsonObjectContract;
 	}
 }

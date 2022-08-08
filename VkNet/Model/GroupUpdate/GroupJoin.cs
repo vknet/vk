@@ -5,53 +5,52 @@ using VkNet.Enums;
 using VkNet.Infrastructure;
 using VkNet.Utils;
 
-namespace VkNet.Model.GroupUpdate
+namespace VkNet.Model.GroupUpdate;
+
+/// <summary>
+/// Добавление участника или заявки на вступление в сообщество
+/// </summary>
+[Serializable]
+public class GroupJoin : IGroupUpdate
 {
 	/// <summary>
-	/// Добавление участника или заявки на вступление в сообщество
+	/// Идентификатор пользователя
 	/// </summary>
-	[Serializable]
-	public class GroupJoin : IGroupUpdate
+	public long? UserId { get; set; }
+
+	/// <summary>
+	/// Указывает, как именно был добавлен участник.
+	/// </summary>
+	[JsonProperty("join_type")]
+	[JsonConverter(typeof(StringEnumConverter))]
+	public GroupJoinType? JoinType { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	public static GroupJoin FromJson(VkResponse response)
 	{
-		/// <summary>
-		/// Идентификатор пользователя
-		/// </summary>
-		public long? UserId { get; set; }
+		var groupJoin = JsonConvert.DeserializeObject<GroupJoin>(response.ToString(), JsonConfigure.JsonSerializerSettings);
+		groupJoin.UserId = response["user_id"];
 
-		/// <summary>
-		/// Указывает, как именно был добавлен участник.
-		/// </summary>
-		[JsonProperty("join_type")]
-		[JsonConverter(typeof(StringEnumConverter))]
-		public GroupJoinType? JoinType { get; set; }
+		return groupJoin;
+	}
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		public static GroupJoin FromJson(VkResponse response)
+	/// <summary>
+	/// Преобразование класса <see cref="GroupJoin" /> в <see cref="VkParameters" />
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> Результат преобразования в <see cref="GroupJoin" /> </returns>
+	public static implicit operator GroupJoin(VkResponse response)
+	{
+		if (response == null)
 		{
-			var groupJoin = JsonConvert.DeserializeObject<GroupJoin>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-			groupJoin.UserId = response["user_id"];
-
-			return groupJoin;
+			return null;
 		}
 
-		/// <summary>
-		/// Преобразование класса <see cref="GroupJoin" /> в <see cref="VkParameters" />
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> Результат преобразования в <see cref="GroupJoin" /> </returns>
-		public static implicit operator GroupJoin(VkResponse response)
-		{
-			if (response == null)
-			{
-				return null;
-			}
-
-			return response.HasToken()
-				? FromJson(response)
-				: null;
-		}
+		return response.HasToken()
+			? FromJson(response)
+			: null;
 	}
 }

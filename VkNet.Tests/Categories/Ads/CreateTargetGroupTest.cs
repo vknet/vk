@@ -3,29 +3,27 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class CreateTargetGroupTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class CreateTargetGroupTest : CategoryBaseTest
+	[Fact]
+	public void CreateTargetGroup()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.createTargetGroup";
 
-		[Fact]
-		public void CreateTargetGroup()
+		ReadCategoryJsonPath(nameof(Api.Ads.CreateTargetGroup));
+
+		var result = Api.Ads.CreateTargetGroup(new()
 		{
-			Url = "https://api.vk.com/method/ads.createTargetGroup";
+			AccountId = 1605245430,
+			Name = "123123",
+			Lifetime = 720
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.CreateTargetGroup));
-
-			var result = Api.Ads.CreateTargetGroup(new CreateTargetGroupParams
-			{
-				AccountId = 1605245430,
-				Name = "123123",
-				Lifetime = 720
-			});
-
-			result.Id.Should().Be(1488);
-		}
+		result.Id.Should()
+			.Be(1488);
 	}
 }

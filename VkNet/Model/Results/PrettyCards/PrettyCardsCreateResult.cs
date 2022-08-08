@@ -1,24 +1,23 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Результат метода PrettyCardds.Create
+/// </summary>
+[Serializable]
+public class PrettyCardsCreateResult
 {
 	/// <summary>
-	/// Результат метода PrettyCardds.Create
+	/// Идентификатор владельца карточки.
 	/// </summary>
-	[Serializable]
-	public class PrettyCardsCreateResult
-	{
-		/// <summary>
-		/// Идентификатор владельца карточки.
-		/// </summary>
-		[JsonProperty("owner_id")]
-		public long? OwnerId { get; set; }
+	[JsonProperty("owner_id")]
+	public long? OwnerId { get; set; }
 
-		/// <summary>
-		/// Идентификатор карточки.
-		/// </summary>
-		[JsonProperty("card_id")]
-		public string CardId { get; set; }
-	}
+	/// <summary>
+	/// Идентификатор карточки.
+	/// </summary>
+	[JsonProperty("card_id")]
+	public string CardId { get; set; }
 }

@@ -1,23 +1,22 @@
 ﻿using FluentAssertions;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Messages
+namespace VkNet.Tests.Categories.Messages;
+
+public class MessagesGetConversationsByIdTests : MessagesBaseTests
 {
-
-	public class MessagesGetConversationsByIdTests : MessagesBaseTests
+	[Fact]
+	public void GetConversationsById()
 	{
-		[Fact]
-		public void GetConversationsById()
+		Url = "https://api.vk.com/method/messages.getConversationsById";
+		ReadCategoryJsonPath(nameof(GetConversationsById));
+
+		var result = Api.Messages.GetConversationsById(new long[]
 		{
-			Url = "https://api.vk.com/method/messages.getConversationsById";
-			ReadCategoryJsonPath(nameof(GetConversationsById));
+			123
+		});
 
-			var result = Api.Messages.GetConversationsById(new long[]
-			{
-				123
-			});
-
-			result.Count.Should().Be(1);
-		}
+		result.Count.Should()
+			.Be(1);
 	}
 }

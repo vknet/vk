@@ -5,76 +5,74 @@ using System.Net;
 using System.Reflection;
 
 // ReSharper disable once CheckNamespace
-namespace VkNet.Utils
+namespace VkNet.Utils;
+
+/// <summary>
+/// Cookies
+/// </summary>
+[Obsolete(ObsoleteText.ObsoleteClass)]
+public sealed class Cookies
 {
 	/// <summary>
-	/// Cookies
+	/// Cookies.
 	/// </summary>
-	[Obsolete(ObsoleteText.ObsoleteClass)]
-	public sealed class Cookies
+	public Cookies() => Container = new();
+
+	/// <summary>
+	/// Получить контейнер Cookies.
+	/// </summary>
+	public CookieContainer Container { get; }
+
+	/// <summary>
+	/// Добавить из.
+	/// </summary>
+	/// <param name="responseUrl"> URL ответа. </param>
+	/// <param name="cookies"> Cookies. </param>
+	public void AddFrom(Uri responseUrl, CookieCollection cookies)
 	{
-		/// <summary>
-		/// Cookies.
-		/// </summary>
-		public Cookies()
+		foreach (Cookie cookie in cookies)
 		{
-			Container = new CookieContainer();
+			Container.Add(responseUrl, cookie);
 		}
 
-		/// <summary>
-		/// Получить контейнер Cookies.
-		/// </summary>
-		public CookieContainer Container { get; }
+		BugFixCookieDomain();
+	}
 
-		/// <summary>
-		/// Добавить из.
-		/// </summary>
-		/// <param name="responseUrl"> URL ответа. </param>
-		/// <param name="cookies"> Cookies. </param>
-		public void AddFrom(Uri responseUrl, CookieCollection cookies)
+	/// <summary>
+	/// Исправление ошибки в домене указанной куки.
+	/// </summary>
+	private void BugFixCookieDomain()
+	{
+		var table = Container.GetType()
+			.GetRuntimeFields()
+			.FirstOrDefault(x => x.Name == "m_domainTable" || x.Name == "_domainTable")
+			?.GetValue(Container) as IDictionary;
+
+		if (table == null)
 		{
-			foreach (Cookie cookie in cookies)
-			{
-				Container.Add(responseUrl, cookie);
-			}
-
-			BugFixCookieDomain();
+			return;
 		}
 
-		/// <summary>
-		/// Исправление ошибки в домене указанной куки.
-		/// </summary>
-		private void BugFixCookieDomain()
+		var keys = table.Keys.OfType<string>()
+			.ToList();
+
+		foreach (var key in table.Keys.OfType<string>()
+					.ToList())
 		{
-			var table = Container.GetType()
-				.GetRuntimeFields()
-				.FirstOrDefault(x => x.Name == "m_domainTable" || x.Name == "_domainTable")
-				?.GetValue(Container) as IDictionary;
-
-			if (table == null)
+			if (key[0] != '.')
 			{
-				return;
+				continue;
 			}
 
-			var keys = table.Keys.OfType<string>().ToList();
+			var newKey = key.Remove(0, 1);
 
-			foreach (var key in table.Keys.OfType<string>().ToList())
+			if (keys.Contains(newKey))
 			{
-				if (key[0] != '.')
-				{
-					continue;
-				}
-
-				var newKey = key.Remove(0, 1);
-
-				if (keys.Contains(newKey))
-				{
-					continue;
-				}
-
-				table[newKey] = table[key];
-				keys.Add(newKey);
+				continue;
 			}
+
+			table[newKey] = table[key];
+			keys.Add(newKey);
 		}
 	}
 }

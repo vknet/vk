@@ -2,25 +2,23 @@ using FluentAssertions;
 using VkNet.Model.Attachments;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class AudioModel
 {
-
-
-	public class AudioModel
+	[Fact]
+	public void ToString_AudioShouldHaveAccessKey()
 	{
-		[Fact]
-		public void ToString_AudioShouldHaveAccessKey()
+		var audio = new Audio
 		{
-			var audio = new Audio
-			{
-				Id = 1234,
-				OwnerId = 1234,
-				AccessKey = "test"
-			};
+			Id = 1234,
+			OwnerId = 1234,
+			AccessKey = "test"
+		};
 
-			var result = audio.ToString();
+		var result = audio.ToString();
 
-			result.Should().Be("audio1234_1234_test");
-		}
+		result.Should()
+			.Be("audio1234_1234_test");
 	}
 }

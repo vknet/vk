@@ -2,23 +2,22 @@ using FluentAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Account
+namespace VkNet.Tests.Categories.Account;
+
+public class AccountChangePasswordTests : CategoryBaseTest
 {
+	protected override string Folder => "Account";
 
-
-	public class AccountChangePasswordTests : CategoryBaseTest
+	[Fact]
+	public void ChangePassword()
 	{
-		protected override string Folder => "Account";
+		Url = "https://api.vk.com/method/account.changePassword";
 
-		[Fact]
-		public void ChangePassword()
-		{
-			Url = "https://api.vk.com/method/account.changePassword";
+		ReadCategoryJsonPath(nameof(Api.Account.ChangePassword));
 
-			ReadCategoryJsonPath(nameof(Api.Account.ChangePassword));
+		var result = Api.Account.ChangePassword("old", "new");
 
-			var result = Api.Account.ChangePassword("old", "new");
-			result.Token.Should().Be("token");
-		}
+		result.Token.Should()
+			.Be("token");
 	}
 }

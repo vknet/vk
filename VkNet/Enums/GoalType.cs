@@ -1,23 +1,22 @@
-﻿namespace VkNet.Enums
+﻿namespace VkNet.Enums;
+
+/// <summary>
+/// Тип цели.
+/// </summary>
+public enum GoalType
 {
 	/// <summary>
-	/// Тип цели.
+	/// Показы.
 	/// </summary>
-	public enum GoalType
-	{
-		/// <summary>
-		/// Показы.
-		/// </summary>
-		Cpc = 1,
+	Cpc = 1,
 
-		/// <summary>
-		/// Переходы.
-		/// </summary>
-		Cpm = 1,
+	/// <summary>
+	/// Переходы.
+	/// </summary>
+	Cpm = 1,
 
-		/// <summary>
-		/// Отправка заявок
-		/// </summary>
-		OCpm = 3
-	}
+	/// <summary>
+	/// Отправка заявок
+	/// </summary>
+	OCpm = 3
 }

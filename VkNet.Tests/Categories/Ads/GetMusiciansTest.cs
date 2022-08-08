@@ -2,23 +2,27 @@
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetMusiciansTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-	public class GetMusiciansTest : CategoryBaseTest
+	[Fact]
+	public void GetMusicians()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getMusicians";
 
-		[Fact]
-		public void GetMusicians()
-		{
-			Url = "https://api.vk.com/method/ads.getMusicians";
+		ReadCategoryJsonPath(nameof(Api.Ads.GetMusicians));
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetMusicians));
+		var result = Api.Ads.GetMusicians("Alan Walker");
 
-			var result = Api.Ads.GetMusicians("Alan Walker");
-			result[0].Name.Should().Be("Alan Walker");
-			result[0].Id.Should().Be(32697);
-		}
+		result[0]
+			.Name.Should()
+			.Be("Alan Walker");
+
+		result[0]
+			.Id.Should()
+			.Be(32697);
 	}
 }

@@ -2,24 +2,23 @@ using FluentAssertions;
 using VkNet.Model.Attachments;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class DocumentModel
 {
-
-	public class DocumentModel
+	[Fact]
+	public void ToString_DocumentShouldHaveAccessKey()
 	{
-		[Fact]
-		public void ToString_DocumentShouldHaveAccessKey()
+		var document = new Document
 		{
-			var document = new Document
-			{
-				Id = 1234,
-				OwnerId = 1234,
-				AccessKey = "test"
-			};
+			Id = 1234,
+			OwnerId = 1234,
+			AccessKey = "test"
+		};
 
-			var result = document.ToString();
+		var result = document.ToString();
 
-			result.Should().Be("doc1234_1234_test");
-		}
+		result.Should()
+			.Be("doc1234_1234_test");
 	}
 }

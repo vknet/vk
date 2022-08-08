@@ -2,47 +2,52 @@
 using VkNet.Model;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class GroupModel : BaseTest
 {
-
-	public class GroupModel : BaseTest
+	[Fact]
+	public void ShouldHaveField_Trending()
 	{
-		[Fact]
-		public void ShouldHaveField_Trending()
-		{
-			var group = new Group();
-			group.Trending.Should().BeFalse();
-		}
+		var group = new Group();
 
-		[Fact]
-		public void Trending_ShouldBeFalse()
-		{
-			ReadJsonFile("Models", nameof(Trending_ShouldBeFalse));
+		group.Trending.Should()
+			.BeFalse();
+	}
 
-			var response = GetResponse();
-			var group = Group.FromJson(response);
+	[Fact]
+	public void Trending_ShouldBeFalse()
+	{
+		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse));
 
-			group.Trending.Should().BeFalse();
-		}
+		var response = GetResponse();
+		var group = Group.FromJson(response);
 
-		[Fact]
-		public void Trending_ShouldBeFalse2()
-		{
-			ReadJsonFile("Models", nameof(Trending_ShouldBeFalse2));
+		group.Trending.Should()
+			.BeFalse();
+	}
 
-			var response = GetResponse();
-			var group = Group.FromJson(response);
-			group.Trending.Should().BeFalse();
-		}
+	[Fact]
+	public void Trending_ShouldBeFalse2()
+	{
+		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse2));
 
-		[Fact]
-		public void Trending_ShouldBeTrue()
-		{
-			ReadJsonFile("Models", nameof(Trending_ShouldBeTrue));
+		var response = GetResponse();
+		var group = Group.FromJson(response);
 
-			var response = GetResponse();
-			var group = Group.FromJson(response);
-			group.Trending.Should().BeTrue();
-		}
+		group.Trending.Should()
+			.BeFalse();
+	}
+
+	[Fact]
+	public void Trending_ShouldBeTrue()
+	{
+		ReadJsonFile("Models", nameof(Trending_ShouldBeTrue));
+
+		var response = GetResponse();
+		var group = Group.FromJson(response);
+
+		group.Trending.Should()
+			.BeTrue();
 	}
 }

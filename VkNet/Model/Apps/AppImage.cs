@@ -5,64 +5,60 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+///  Массив объектов, описывающих изображения
+/// </summary>
+[Serializable]
+public class AppImage
 {
 	/// <summary>
-	///  Массив объектов, описывающих изображения
+	/// Идентификатор изображения
 	/// </summary>
-	[Serializable]
-	public class AppImage
+	[JsonProperty("id")]
+	public string Id { get; set; }
+
+	/// <summary>
+	/// Тип изображения.
+	/// </summary>
+	[JsonConverter(typeof(SafetyEnumJsonConverter))]
+	[JsonProperty("type")]
+	public AppWidgetImageType Type { get; set; }
+
+	/// <summary>
+	/// Массив копий изображения
+	/// </summary>
+	[JsonProperty("images")]
+	public IEnumerable<Image> Images { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static AppImage FromJson(VkResponse response) => new()
 	{
-		/// <summary>
-		/// Идентификатор изображения
-		/// </summary>
-		[JsonProperty("id")]
-		public string Id { get; set; }
+		Id = response[key: "id"],
+		Type = response[key: "type"],
+		Images = response[key: "images"]
+			.ToReadOnlyCollectionOf<Image>(x => x)
+	};
 
-		/// <summary>
-		/// Тип изображения.
-		/// </summary>
-		[JsonConverter(typeof(SafetyEnumJsonConverter))]
-		[JsonProperty("type")]
-		public AppWidgetImageType Type { get; set; }
-
-		/// <summary>
-		/// Массив копий изображения
-		/// </summary>
-		[JsonProperty("images")]
-		public IEnumerable<Image> Images { get; set; }
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static AppImage FromJson(VkResponse response)
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static implicit operator AppImage(VkResponse response)
+	{
+		if (response == null)
 		{
-			return new AppImage
-			{
-				Id = response[key: "id"],
-				Type = response[key: "type"],
-				Images = response[key: "images"].ToReadOnlyCollectionOf<Image>(x => x)
-			};
+			return null;
 		}
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static implicit operator AppImage(VkResponse response)
-		{
-			if (response == null)
-			{
-				return null;
-			}
-
-			return response.HasToken()
-				? FromJson(response: response)
-				: null;
-		}
-
+		return response.HasToken()
+			? FromJson(response: response)
+			: null;
 	}
 }

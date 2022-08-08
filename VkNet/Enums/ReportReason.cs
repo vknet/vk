@@ -1,46 +1,45 @@
 ﻿using VkNet.Utils;
 
-namespace VkNet.Enums
+namespace VkNet.Enums;
+
+/// <summary>
+/// Причина жалобы.
+/// </summary>
+public enum ReportReason
 {
 	/// <summary>
-	/// Причина жалобы.
+	/// Это спам.
 	/// </summary>
-	public enum ReportReason
-	{
-		/// <summary>
-		/// Это спам.
-		/// </summary>
-		[DefaultValue]
-		Spam = 0
+	[DefaultValue]
+	Spam = 0,
 
-		, /// <summary>
-		/// Детская порнография.
-		/// </summary>
-		ChildPornography
+	/// <summary>
+	/// Детская порнография.
+	/// </summary>
+	ChildPornography,
 
-		, /// <summary>
-		/// Экстремизм.
-		/// </summary>
-		Extremism
+	/// <summary>
+	/// Экстремизм.
+	/// </summary>
+	Extremism,
 
-		, /// <summary>
-		/// Насилие.
-		/// </summary>
-		Violence
+	/// <summary>
+	/// Насилие.
+	/// </summary>
+	Violence,
 
-		, /// <summary>
-		/// Пропаганда наркотиков.
-		/// </summary>
-		DrugPropaganda
+	/// <summary>
+	/// Пропаганда наркотиков.
+	/// </summary>
+	DrugPropaganda,
 
-		, /// <summary>
-		/// Материал для взрослых.
-		/// </summary>
-		AdultMaterial
+	/// <summary>
+	/// Материал для взрослых.
+	/// </summary>
+	AdultMaterial,
 
-		, /// <summary>
-		/// Оскорбление.
-		/// </summary>
-		Abuse
-	}
+	/// <summary>
+	/// Оскорбление.
+	/// </summary>
+	Abuse
 }

@@ -3,28 +3,26 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class DeleteTargetPixelTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class DeleteTargetPixelTest : CategoryBaseTest
+	[Fact]
+	public void DeleteTargetPixel()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.deleteTargetPixel";
 
-		[Fact]
-		public void DeleteTargetPixel()
+		ReadCategoryJsonPath(nameof(Api.Ads.DeleteTargetPixel));
+
+		var result = Api.Ads.DeleteTargetPixel(new()
 		{
-			Url = "https://api.vk.com/method/ads.deleteTargetPixel";
+			AccountId = 1605245430,
+			TargetPixelId = 1
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.DeleteTargetPixel));
-
-			var result = Api.Ads.DeleteTargetPixel(new DeleteTargetPixelParams
-			{
-				AccountId = 1605245430,
-				TargetPixelId = 1
-			});
-
-			result.Should().Be(true);
-		}
+		result.Should()
+			.Be(true);
 	}
 }

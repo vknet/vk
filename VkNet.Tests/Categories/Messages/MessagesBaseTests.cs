@@ -1,9 +1,8 @@
 using VkNet.Tests.Infrastructure;
 
-namespace VkNet.Tests.Categories.Messages
+namespace VkNet.Tests.Categories.Messages;
+
+public class MessagesBaseTests : CategoryBaseTest
 {
-	public class MessagesBaseTests : CategoryBaseTest
-	{
-		protected override string Folder => "Messages";
-	}
+	protected override string Folder => "Messages";
 }

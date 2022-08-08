@@ -2,24 +2,22 @@
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetFloodStatsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class GetFloodStatsTest : CategoryBaseTest
+	[Fact]
+	public void GetFloodStats()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getFloodStats";
 
-		[Fact]
-		public void GetFloodStats()
-		{
-			Url = "https://api.vk.com/method/ads.getFloodStats";
+		ReadCategoryJsonPath(nameof(Api.Ads.GetFloodStats));
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetFloodStats));
+		var result = Api.Ads.GetFloodStats(123213);
 
-			var result = Api.Ads.GetFloodStats(123213);
-
-			result.Left.Should().Be(4998);
-		}
+		result.Left.Should()
+			.Be(4998);
 	}
 }

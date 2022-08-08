@@ -2,45 +2,41 @@
 using Newtonsoft.Json;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Копия изображения обложки.
+/// </summary>
+[Serializable]
+public class Image
 {
 	/// <summary>
-	/// Копия изображения обложки.
+	/// URL копии;
 	/// </summary>
-	[Serializable]
-	public class Image
+	[JsonProperty("url")]
+	public Uri Url { get; set; }
+
+	/// <summary>
+	/// Ширина копии;
+	/// </summary>
+	[JsonProperty("width")]
+	public int Width { get; set; }
+
+	/// <summary>
+	/// Высота копии.
+	/// </summary>
+	[JsonProperty("height")]
+	public int Height { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static Image FromJson(VkResponse response) => new()
 	{
-		/// <summary>
-		/// URL копии;
-		/// </summary>
-		[JsonProperty("url")]
-		public Uri Url { get; set; }
-
-		/// <summary>
-		/// Ширина копии;
-		/// </summary>
-		[JsonProperty("width")]
-		public int Width { get; set; }
-
-		/// <summary>
-		/// Высота копии.
-		/// </summary>
-		[JsonProperty("height")]
-		public int Height { get; set; }
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static Image FromJson(VkResponse response)
-		{
-			return new Image
-			{
-				Url = response[key: "url"],
-				Width = response[key: "width"],
-				Height = response[key: "height"]
-			};
-		}
-	}
+		Url = response[key: "url"],
+		Width = response[key: "width"],
+		Height = response[key: "height"]
+	};
 }

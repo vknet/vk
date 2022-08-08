@@ -3,32 +3,29 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class UpdateTargetGroupTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class UpdateTargetGroupTest : CategoryBaseTest
+	[Fact]
+	public void UpdateTargetGroup()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.updateTargetGroup";
 
-		[Fact]
-		public void UpdateTargetGroup()
+		ReadCategoryJsonPath(nameof(Api.Ads.UpdateTargetGroup));
+
+		var result = Api.Ads.UpdateTargetGroup(new()
 		{
-			Url = "https://api.vk.com/method/ads.updateTargetGroup";
+			AccountId = 1605245430,
+			Name = "123123",
+			TargetGroupId = 1,
+			TargetPixelId = 462641,
+			Lifetime = 365
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.UpdateTargetGroup));
-
-
-			var result = Api.Ads.UpdateTargetGroup(new UpdateTargetGroupParams
-			{
-				AccountId = 1605245430,
-				Name = "123123",
-				TargetGroupId = 1,
-				TargetPixelId = 462641,
-				Lifetime = 365
-			});
-
-			result.Should().BeTrue();
-		}
+		result.Should()
+			.BeTrue();
 	}
 }

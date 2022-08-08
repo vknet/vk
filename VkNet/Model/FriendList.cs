@@ -1,42 +1,41 @@
 ﻿using System;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Метка в списке друзей
+/// </summary>
+[Serializable]
+public class FriendList
 {
 	/// <summary>
-	/// Метка в списке друзей
+	/// Идентификатор метки
 	/// </summary>
-	[Serializable]
-	public class FriendList
-	{
-		/// <summary>
-		/// Идентификатор метки
-		/// </summary>
-		public long Id { get; set; }
+	public long Id { get; set; }
 
-		/// <summary>
-		/// Название метки
-		/// </summary>
-		public string Name { get; set; }
+	/// <summary>
+	/// Название метки
+	/// </summary>
+	public string Name { get; set; }
 
 	#region public Methods
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static FriendList FromJson(VkResponse response)
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static FriendList FromJson(VkResponse response)
+	{
+		var list = new FriendList
 		{
-			var list = new FriendList
-			{
-					Id = response[key: "list_id"] ?? response[key: "lid"] ?? response[key: "id"]
-					, Name = response[key: "name"]
-			};
+			Id = response[key: "list_id"] ?? response[key: "lid"] ?? response[key: "id"],
+			Name = response[key: "name"]
+		};
 
-			return list;
-		}
+		return list;
+	}
 
 	#endregion
-	}
 }

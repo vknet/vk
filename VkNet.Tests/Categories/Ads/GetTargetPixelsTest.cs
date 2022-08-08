@@ -2,23 +2,23 @@
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetTargetPixelsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class GetTargetPixelsTest : CategoryBaseTest
+	[Fact]
+	public void GetTargetPixels()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getTargetPixels";
 
-		[Fact]
-		public void GetTargetPixels()
-		{
-			Url = "https://api.vk.com/method/ads.getTargetPixels";
+		ReadCategoryJsonPath(nameof(Api.Ads.GetTargetPixels));
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetTargetPixels));
+		var result = Api.Ads.GetTargetPixels(123);
 
-			var result = Api.Ads.GetTargetPixels(123);
-			result[0].Name.Should().Be("фывыфвв");
-		}
+		result[0]
+			.Name.Should()
+			.Be("фывыфвв");
 	}
 }

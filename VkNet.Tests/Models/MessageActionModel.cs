@@ -2,108 +2,115 @@
 using VkNet.Enums.SafetyEnums;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class MessageActionModel : BaseTest
 {
-
-	public class MessageActionModel : BaseTest
+	[Fact]
+	public void ShouldHaveField_ChatCreate()
 	{
-		[Fact]
-		public void ShouldHaveField_ChatCreate()
-		{
-			ReadJsonFile("Models", nameof(ShouldHaveField_ChatCreate));
+		ReadJsonFile("Models", nameof(ShouldHaveField_ChatCreate));
 
-			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response["action"]);
+		var response = GetResponse();
+		var action = MessageAction.FromJsonString(response["action"]);
 
-			action.Should().Be(MessageAction.ChatCreate);
-		}
+		action.Should()
+			.Be(MessageAction.ChatCreate);
+	}
 
-		[Fact]
-		public void ShouldHaveField_ChatInviteUser()
-		{
-			ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUser));
+	[Fact]
+	public void ShouldHaveField_ChatInviteUser()
+	{
+		ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUser));
 
-			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response["action"]);
+		var response = GetResponse();
+		var action = MessageAction.FromJsonString(response["action"]);
 
-			action.Should().Be(MessageAction.ChatInviteUser);
-		}
+		action.Should()
+			.Be(MessageAction.ChatInviteUser);
+	}
 
-		[Fact]
-		public void ShouldHaveField_ChatInviteUserByLink()
-		{
-			ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUserByLink));
+	[Fact]
+	public void ShouldHaveField_ChatInviteUserByLink()
+	{
+		ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUserByLink));
 
-			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response["action"]);
+		var response = GetResponse();
+		var action = MessageAction.FromJsonString(response["action"]);
 
-			action.Should().Be(MessageAction.ChatInviteUserByLink);
-		}
+		action.Should()
+			.Be(MessageAction.ChatInviteUserByLink);
+	}
 
-		[Fact]
-		public void ShouldHaveField_ChatKickUser()
-		{
-			ReadJsonFile("Models", nameof(ShouldHaveField_ChatKickUser));
+	[Fact]
+	public void ShouldHaveField_ChatKickUser()
+	{
+		ReadJsonFile("Models", nameof(ShouldHaveField_ChatKickUser));
 
-			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response["action"]);
+		var response = GetResponse();
+		var action = MessageAction.FromJsonString(response["action"]);
 
-			action.Should().Be(MessageAction.ChatKickUser);
-		}
+		action.Should()
+			.Be(MessageAction.ChatKickUser);
+	}
 
-		[Fact]
-		public void ShouldHaveField_ChatPhotoRemove()
-		{
-			ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoRemove));
+	[Fact]
+	public void ShouldHaveField_ChatPhotoRemove()
+	{
+		ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoRemove));
 
-			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response["action"]);
+		var response = GetResponse();
+		var action = MessageAction.FromJsonString(response["action"]);
 
-			action.Should().Be(MessageAction.ChatPhotoRemove);
-		}
+		action.Should()
+			.Be(MessageAction.ChatPhotoRemove);
+	}
 
-		[Fact]
-		public void ShouldHaveField_ChatPhotoUpdate()
-		{
-			ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoUpdate));
+	[Fact]
+	public void ShouldHaveField_ChatPhotoUpdate()
+	{
+		ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoUpdate));
 
-			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response["action"]);
+		var response = GetResponse();
+		var action = MessageAction.FromJsonString(response["action"]);
 
-			action.Should().Be(MessageAction.ChatPhotoUpdate);
-		}
+		action.Should()
+			.Be(MessageAction.ChatPhotoUpdate);
+	}
 
-		[Fact]
-		public void ShouldHaveField_ChatPinMessage()
-		{
-			ReadJsonFile("Models", nameof(ShouldHaveField_ChatPinMessage));
+	[Fact]
+	public void ShouldHaveField_ChatPinMessage()
+	{
+		ReadJsonFile("Models", nameof(ShouldHaveField_ChatPinMessage));
 
-			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response["action"]);
+		var response = GetResponse();
+		var action = MessageAction.FromJsonString(response["action"]);
 
-			action.Should().Be(MessageAction.ChatPinMessage);
-		}
+		action.Should()
+			.Be(MessageAction.ChatPinMessage);
+	}
 
-		[Fact]
-		public void ShouldHaveField_ChatTitleUpdate()
-		{
-			ReadJsonFile("Models", nameof(ShouldHaveField_ChatTitleUpdate));
+	[Fact]
+	public void ShouldHaveField_ChatTitleUpdate()
+	{
+		ReadJsonFile("Models", nameof(ShouldHaveField_ChatTitleUpdate));
 
-			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response["action"]);
+		var response = GetResponse();
+		var action = MessageAction.FromJsonString(response["action"]);
 
-			action.Should().Be(MessageAction.ChatTitleUpdate);
-		}
+		action.Should()
+			.Be(MessageAction.ChatTitleUpdate);
+	}
 
-		[Fact]
-		public void ShouldHaveField_ChatUnpinMessage()
-		{
-			ReadJsonFile("Models", nameof(ShouldHaveField_ChatUnpinMessage));
+	[Fact]
+	public void ShouldHaveField_ChatUnpinMessage()
+	{
+		ReadJsonFile("Models", nameof(ShouldHaveField_ChatUnpinMessage));
 
-			var response = GetResponse();
-			var action = MessageAction.FromJsonString(response["action"]);
+		var response = GetResponse();
+		var action = MessageAction.FromJsonString(response["action"]);
 
-			action.Should().Be(MessageAction.ChatUnpinMessage);
-		}
+		action.Should()
+			.Be(MessageAction.ChatUnpinMessage);
 	}
 }

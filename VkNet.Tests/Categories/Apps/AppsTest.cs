@@ -7,127 +7,184 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Apps
+namespace VkNet.Tests.Categories.Apps;
+
+[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+public class AppsTest : CategoryBaseTest
 {
+	protected override string Folder => "Apps";
 
-	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class AppsTest : CategoryBaseTest
+	[Fact]
+	public void DeleteAppRequests_NormalCase()
 	{
-		protected override string Folder => "Apps";
+		Url = "https://api.vk.com/method/apps.deleteAppRequests";
+		ReadJsonFile(JsonPaths.True);
 
-		[Fact]
-		public void DeleteAppRequests_NormalCase()
+		var app = Api.Apps.DeleteAppRequests();
+
+		app.Should()
+			.BeTrue();
+	}
+
+	[Fact]
+	public void Get_NormalCase()
+	{
+		Url = "https://api.vk.com/method/apps.get";
+		ReadCategoryJsonPath(nameof(Get_NormalCase));
+
+		var app = Api.Apps.Get(new()
 		{
-			Url = "https://api.vk.com/method/apps.deleteAppRequests";
-			ReadJsonFile(JsonPaths.True);
-
-			var app = Api.Apps.DeleteAppRequests();
-
-			app.Should().BeTrue();
-		}
-
-		[Fact]
-		public void Get_NormalCase()
-		{
-			Url = "https://api.vk.com/method/apps.get";
-			ReadCategoryJsonPath(nameof(Get_NormalCase));
-
-			var app = Api.Apps.Get(new AppGetParams
+			AppIds = new ulong[]
 			{
-				AppIds = new ulong[]
-				{
-					4268118
-				},
-				Platform = AppPlatforms.Web
-			});
+				4268118
+			},
+			Platform = AppPlatforms.Web
+		});
 
-			app.TotalCount.Should().BeGreaterThanOrEqualTo(0);
-			app.Apps.First().Title.Should().Be("raventestapp");
-		}
+		app.TotalCount.Should()
+			.BeGreaterThanOrEqualTo(0);
 
-		[Fact]
-		public void GetCatalog_NormalCase()
-		{
-			Url = "https://api.vk.com/method/apps.getCatalog";
-			ReadCategoryJsonPath(nameof(GetCatalog_NormalCase));
+		app.Apps.First()
+			.Title.Should()
+			.Be("raventestapp");
+	}
 
-			var app = Api.Apps.GetCatalog(new AppGetCatalogParams());
+	[Fact]
+	public void GetCatalog_NormalCase()
+	{
+		Url = "https://api.vk.com/method/apps.getCatalog";
+		ReadCategoryJsonPath(nameof(GetCatalog_NormalCase));
 
-			app.TotalCount.Should().BeGreaterThanOrEqualTo(0);
-			(app.FirstOrDefault()?.Title).Should().Be("Подземелья!");
-		}
+		var app = Api.Apps.GetCatalog(new());
 
-		[Fact]
-		public void GetFriendsList_NormalCase()
-		{
-			Url = "https://api.vk.com/method/apps.getFriendsList";
-			ReadCategoryJsonPath(nameof(GetFriendsList_NormalCase));
+		app.TotalCount.Should()
+			.BeGreaterThanOrEqualTo(0);
 
-			var app = Api.Apps.GetFriendsList(AppRequestType.Invite);
+		(app.FirstOrDefault()
+				?.Title).Should()
+			.Be("Подземелья!");
+	}
 
-			app.TotalCount.Should().BePositive();
-			app.Should().NotBeNull();
-		}
+	[Fact]
+	public void GetFriendsList_NormalCase()
+	{
+		Url = "https://api.vk.com/method/apps.getFriendsList";
+		ReadCategoryJsonPath(nameof(GetFriendsList_NormalCase));
 
-		[Fact]
-		public void GetFriendsListEx_NormalCase()
-		{
-			Url = "https://api.vk.com/method/apps.getFriendsList";
-			ReadCategoryJsonPath(nameof(GetFriendsListEx_NormalCase));
+		var app = Api.Apps.GetFriendsList(AppRequestType.Invite);
 
-			var app = Api.Apps.GetFriendsList(AppRequestType.Invite, true, 5, 1, UsersFields.Online);
+		app.TotalCount.Should()
+			.BePositive();
 
-			app.TotalCount.Should().BePositive();
-			app.Should().NotBeNull();
-		}
+		app.Should()
+			.NotBeNull();
+	}
 
-		[Fact]
-		public void GetLeaderboard_Extended()
-		{
-			Url = "https://api.vk.com/method/apps.getLeaderboard";
-			ReadCategoryJsonPath(nameof(GetLeaderboard_Extended));
+	[Fact]
+	public void GetFriendsListEx_NormalCase()
+	{
+		Url = "https://api.vk.com/method/apps.getFriendsList";
+		ReadCategoryJsonPath(nameof(GetFriendsListEx_NormalCase));
 
-			var app = Api.Apps.GetLeaderboard(AppRatingType.Points, null, true);
+		var app = Api.Apps.GetFriendsList(AppRequestType.Invite, true, 5, 1, UsersFields.Online);
 
-			app.Should().NotBeNull();
-			app.Count.Should().Be(130);
-			app.Items.Should().NotBeEmpty();
-			app.Items[0].Score.Should().Be(221634238);
-			app.Items[0].Points.Should().Be(256);
-			app.Items[0].UserId.Should().Be(123);
-			app.Profiles.Should().NotBeEmpty();
-		}
+		app.TotalCount.Should()
+			.BePositive();
 
-		[Fact]
-		public void GetLeaderboard_Level()
-		{
-			Url = "https://api.vk.com/method/apps.getLeaderboard";
-			ReadCategoryJsonPath(nameof(GetLeaderboard_Level));
+		app.Should()
+			.NotBeNull();
+	}
 
-			var app = Api.Apps.GetLeaderboard(AppRatingType.Level);
+	[Fact]
+	public void GetLeaderboard_Extended()
+	{
+		Url = "https://api.vk.com/method/apps.getLeaderboard";
+		ReadCategoryJsonPath(nameof(GetLeaderboard_Extended));
 
-			app.Should().NotBeNull();
-			app.Count.Should().Be(130);
-			app.Items.Should().NotBeEmpty();
-			app.Items[0].Score.Should().Be(221634238);
-			app.Items[0].Level.Should().Be(13);
-			app.Items[0].UserId.Should().Be(123);
-		}
+		var app = Api.Apps.GetLeaderboard(AppRatingType.Points, null, true);
 
-		[Fact]
-		public void GetLeaderboard_Points()
-		{
-			Url = "https://api.vk.com/method/apps.getLeaderboard";
-			ReadCategoryJsonPath(nameof(GetLeaderboard_Points));
+		app.Should()
+			.NotBeNull();
 
-			var app = Api.Apps.GetLeaderboard(AppRatingType.Points);
+		app.Count.Should()
+			.Be(130);
 
-			app.Should().NotBeNull();
-			app.Count.Should().Be(130);
-			app.Items.Should().NotBeEmpty();
-			app.Items[0].Score.Should().Be(221634238);
-			app.Items[0].Points.Should().Be(256);
-			app.Items[0].UserId.Should().Be(123);
-		}
+		app.Items.Should()
+			.NotBeEmpty();
+
+		app.Items[0]
+			.Score.Should()
+			.Be(221634238);
+
+		app.Items[0]
+			.Points.Should()
+			.Be(256);
+
+		app.Items[0]
+			.UserId.Should()
+			.Be(123);
+
+		app.Profiles.Should()
+			.NotBeEmpty();
+	}
+
+	[Fact]
+	public void GetLeaderboard_Level()
+	{
+		Url = "https://api.vk.com/method/apps.getLeaderboard";
+		ReadCategoryJsonPath(nameof(GetLeaderboard_Level));
+
+		var app = Api.Apps.GetLeaderboard(AppRatingType.Level);
+
+		app.Should()
+			.NotBeNull();
+
+		app.Count.Should()
+			.Be(130);
+
+		app.Items.Should()
+			.NotBeEmpty();
+
+		app.Items[0]
+			.Score.Should()
+			.Be(221634238);
+
+		app.Items[0]
+			.Level.Should()
+			.Be(13);
+
+		app.Items[0]
+			.UserId.Should()
+			.Be(123);
+	}
+
+	[Fact]
+	public void GetLeaderboard_Points()
+	{
+		Url = "https://api.vk.com/method/apps.getLeaderboard";
+		ReadCategoryJsonPath(nameof(GetLeaderboard_Points));
+
+		var app = Api.Apps.GetLeaderboard(AppRatingType.Points);
+
+		app.Should()
+			.NotBeNull();
+
+		app.Count.Should()
+			.Be(130);
+
+		app.Items.Should()
+			.NotBeEmpty();
+
+		app.Items[0]
+			.Score.Should()
+			.Be(221634238);
+
+		app.Items[0]
+			.Points.Should()
+			.Be(256);
+
+		app.Items[0]
+			.UserId.Should()
+			.Be(123);
 	}
 }

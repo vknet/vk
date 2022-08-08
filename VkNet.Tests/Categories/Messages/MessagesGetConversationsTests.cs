@@ -3,54 +3,76 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Model.RequestParams;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Messages
+namespace VkNet.Tests.Categories.Messages;
+
+public class MessagesGetConversationsTests : MessagesBaseTests
 {
-	public class MessagesGetConversationsTests : MessagesBaseTests
+	[Fact]
+	public void GetConversations()
 	{
-		[Fact]
-		public void GetConversations()
+		Url = "https://api.vk.com/method/messages.getConversations";
+		ReadCategoryJsonPath(nameof(GetConversations));
+
+		var result = Api.Messages.GetConversations(new());
+
+		result.Count.Should()
+			.Be(1);
+	}
+
+	[Fact]
+	public void GetConversations_Attachment_wall()
+	{
+		Url = "https://api.vk.com/method/messages.getConversations";
+		ReadCategoryJsonPath(nameof(GetConversations_Attachment_wall));
+
+		var result = Api.Messages.GetConversations(new());
+
+		result.Count.Should()
+			.Be(253);
+	}
+
+	[Fact]
+	public void GetConversations_Group_PhotoField()
+	{
+		Url = "https://api.vk.com/method/messages.getConversations";
+		ReadCategoryJsonPath(nameof(GetConversations_Group_PhotoField));
+
+		var result = Api.Messages.GetConversations(new()
 		{
-			Url = "https://api.vk.com/method/messages.getConversations";
-			ReadCategoryJsonPath(nameof(GetConversations));
+			Filter = GetConversationFilter.All,
+			Count = 1,
+			Offset = 0,
+			Extended = true
+		});
 
-			var result = Api.Messages.GetConversations(new GetConversationsParams());
+		result.Count.Should()
+			.Be(177);
 
-			result.Count.Should().Be(1);
-		}
+		result.Groups.Should()
+			.NotBeNullOrEmpty();
 
-		[Fact]
-		public void GetConversations_Attachment_wall()
-		{
-			Url = "https://api.vk.com/method/messages.getConversations";
-			ReadCategoryJsonPath(nameof(GetConversations_Attachment_wall));
+		result.Groups[0]
+			.Should()
+			.NotBeNull();
 
-			var result = Api.Messages.GetConversations(new GetConversationsParams());
+		result.Groups[0]
+			.Photo50.Should()
+			.NotBeNull();
 
-			result.Count.Should().Be(253);
-		}
+		result.Groups[0]
+			.Id.Should()
+			.NotBe(0);
 
-		[Fact]
-		public void GetConversations_Group_PhotoField()
-		{
-			Url = "https://api.vk.com/method/messages.getConversations";
-			ReadCategoryJsonPath(nameof(GetConversations_Group_PhotoField));
+		result.Groups[0]
+			.Name.Should()
+			.NotBeNullOrEmpty();
 
-			var result = Api.Messages.GetConversations(new GetConversationsParams
-			{
-				Filter = GetConversationFilter.All,
-				Count = 1,
-				Offset = 0,
-				Extended = true
-			});
+		result.Groups[0]
+			.ScreenName.Should()
+			.NotBeNullOrEmpty();
 
-			result.Count.Should().Be(177);
-			result.Groups.Should().NotBeNullOrEmpty();
-			result.Groups[0].Should().NotBeNull();
-			result.Groups[0].Photo50.Should().NotBeNull();
-			result.Groups[0].Id.Should().NotBe(0);
-			result.Groups[0].Name.Should().NotBeNullOrEmpty();
-			result.Groups[0].ScreenName.Should().NotBeNullOrEmpty();
-			result.Groups[0].Type.Should().Be(GroupType.Group);
-		}
+		result.Groups[0]
+			.Type.Should()
+			.Be(GroupType.Group);
 	}
 }

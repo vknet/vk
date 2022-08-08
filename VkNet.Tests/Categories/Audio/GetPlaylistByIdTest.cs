@@ -2,22 +2,22 @@ using FluentAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Audio
+namespace VkNet.Tests.Categories.Audio;
+
+public class GetPlaylistByIdTest : CategoryBaseTest
 {
-	public class GetPlaylistByIdTest : CategoryBaseTest
+	protected override string Folder => "Audio";
+
+	[Fact]
+	public void GetPlaylistByIdTestTest()
 	{
-		protected override string Folder => "Audio";
+		Url = "https://api.vk.com/method/audio.getPlaylistById";
 
-		[Fact]
-		public void GetPlaylistByIdTestTest()
-		{
-			Url = "https://api.vk.com/method/audio.getPlaylistById";
+		ReadCategoryJsonPath(nameof(Api.Audio.GetPlaylistById));
 
-			ReadCategoryJsonPath(nameof(Api.Audio.GetPlaylistById));
+		var result = Api.Audio.GetPlaylistById(-77288583, 84820009);
 
-			var result = Api.Audio.GetPlaylistById(-77288583, 84820009);
-
-			result.Should().NotBeNull();
-		}
+		result.Should()
+			.NotBeNull();
 	}
 }

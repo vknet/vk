@@ -5,36 +5,41 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.PrettyCards
+namespace VkNet.Tests.Categories.PrettyCards;
+
+public class GetByIdTest : CategoryBaseTest
 {
+	protected override string Folder => "PrettyCards";
 
-
-	public class GetByIdTest : CategoryBaseTest
+	[Fact]
+	public void GetById()
 	{
-		protected override string Folder => "PrettyCards";
+		Url = "https://api.vk.com/method/prettyCards.getById";
 
-		[Fact]
-		public void GetById()
+		ReadCategoryJsonPath(nameof(Api.PrettyCards.GetById));
+
+		var list = new List<string>
 		{
-			Url = "https://api.vk.com/method/prettyCards.getById";
+			"1488",
+			"1337"
+		};
 
-			ReadCategoryJsonPath(nameof(Api.PrettyCards.GetById));
+		var result = Api.PrettyCards.GetById(new()
+		{
+			OwnerId = -126102803,
+			CardIds = list
+		});
 
-			var list = new List<string>
-			{
-				"1488",
-				"1337"
-			};
+		result.Should()
+			.NotBeNull();
 
-			var result = Api.PrettyCards.GetById(new PrettyCardsGetByIdParams
-			{
-				OwnerId = -126102803,
-				CardIds = list,
-			});
+		result[0]
+			.CardId.Should()
+			.Be("7037403");
 
-			result.Should().NotBeNull();
-			result[0].CardId.Should().Be("7037403");
-			result[2].Images[0].Url.Should().Be(new Uri("https://vk.com/8Jseb63OJSE.jpg"));
-		}
+		result[2]
+			.Images[0]
+			.Url.Should()
+			.Be(new Uri("https://vk.com/8Jseb63OJSE.jpg"));
 	}
 }

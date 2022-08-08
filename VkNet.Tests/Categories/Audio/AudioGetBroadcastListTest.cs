@@ -3,26 +3,28 @@ using FluentAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Audio
+namespace VkNet.Tests.Categories.Audio;
+
+public class AudioGetBroadcastListTest : CategoryBaseTest
 {
+	protected override string Folder => "Audio";
 
-
-	public class AudioGetBroadcastListTest : CategoryBaseTest
+	[Fact]
+	public void GetBroadcastListTest()
 	{
-		protected override string Folder => "Audio";
+		Url = "https://api.vk.com/method/audio.getBroadcastList";
 
-		[Fact]
-		public void GetBroadcastListTest()
-		{
-			Url = "https://api.vk.com/method/audio.getBroadcastList";
+		ReadCategoryJsonPath(nameof(Api.Audio.GetBroadcastList));
 
-			ReadCategoryJsonPath(nameof(Api.Audio.GetBroadcastList));
+		var result = Api.Audio.GetBroadcastList()
+			.ToList();
 
-			var result = Api.Audio.GetBroadcastList().ToList();
-			var firstOrDefault = result.FirstOrDefault();
+		var firstOrDefault = result.FirstOrDefault();
 
-			result.Should().NotBeEmpty();
-			firstOrDefault.Should().NotBeNull();
-		}
+		result.Should()
+			.NotBeEmpty();
+
+		firstOrDefault.Should()
+			.NotBeNull();
 	}
 }

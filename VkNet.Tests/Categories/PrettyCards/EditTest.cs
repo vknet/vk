@@ -3,30 +3,32 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.PrettyCards
+namespace VkNet.Tests.Categories.PrettyCards;
+
+public class EditTest : CategoryBaseTest
 {
+	protected override string Folder => "PrettyCards";
 
-
-	public class EditTest : CategoryBaseTest
+	[Fact]
+	public void Edit()
 	{
-		protected override string Folder => "PrettyCards";
+		Url = "https://api.vk.com/method/prettyCards.edit";
 
-		[Fact]
-		public void Edit()
+		ReadCategoryJsonPath(nameof(Api.PrettyCards.Edit));
+
+		var result = Api.PrettyCards.Edit(new()
 		{
-			Url = "https://api.vk.com/method/prettyCards.edit";
+			OwnerId = -126102803,
+			CardId = "1488"
+		});
 
-			ReadCategoryJsonPath(nameof(Api.PrettyCards.Edit));
+		result.Should()
+			.NotBeNull();
 
-			var result = Api.PrettyCards.Edit(new PrettyCardsEditParams
-			{
-				OwnerId = -126102803,
-				CardId = "1488"
-			});
+		result.CardId.Should()
+			.Be("1488");
 
-			result.Should().NotBeNull();
-			result.CardId.Should().Be("1488");
-			result.OwnerId.Should().Be(-126102803);
-		}
+		result.OwnerId.Should()
+			.Be(-126102803);
 	}
 }

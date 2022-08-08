@@ -3,28 +3,26 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetAdsLayoutTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class GetAdsLayoutTest : CategoryBaseTest
+	[Fact]
+	public void GetAdsLayout()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getAdsLayout";
 
-		[Fact]
-		public void GetAdsLayout()
+		ReadCategoryJsonPath(nameof(Api.Ads.GetAdsLayout));
+
+		var result = Api.Ads.GetAdsLayout(new()
 		{
-			Url = "https://api.vk.com/method/ads.getAdsLayout";
+			AccountId = 1
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetAdsLayout));
-
-
-			var result = Api.Ads.GetAdsLayout(new GetAdsLayoutParams
-			{
-				AccountId = 1
-			});
-
-			result[0].Id.Should().Be(1);
-		}
+		result[0]
+			.Id.Should()
+			.Be(1);
 	}
 }

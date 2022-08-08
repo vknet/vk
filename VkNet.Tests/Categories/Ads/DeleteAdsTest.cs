@@ -3,34 +3,35 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class DeleteAdsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-	public class DeleteAdsTest : CategoryBaseTest
+	[Fact]
+	public void DeleteAds()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.deleteAds";
 
-		[Fact]
-		public void DeleteAds()
+		ReadCategoryJsonPath(nameof(Api.Ads.DeleteAds));
+
+		var a = new[]
 		{
-			Url = "https://api.vk.com/method/ads.deleteAds";
+			"1",
+			"2"
+		};
 
-			ReadCategoryJsonPath(nameof(Api.Ads.DeleteAds));
+		var result = Api.Ads.DeleteAds(new()
+		{
+			AccountId = 1605245430,
+			Ids = a
+		});
 
-			var a = new[]
-			{
-				"1",
-				"2"
-			};
+		result.Should()
+			.HaveElementAt(0, true);
 
-			var result = Api.Ads.DeleteAds(new DeleteAdsParams
-			{
-				AccountId = 1605245430,
-				Ids = a
-			});
-
-			result.Should().HaveElementAt(0, true);
-			result.Should().HaveElementAt(1, true);
-		}
+		result.Should()
+			.HaveElementAt(1, true);
 	}
 }

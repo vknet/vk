@@ -3,24 +3,22 @@ using VkNet.Model.RequestParams.Groups;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Group
+namespace VkNet.Tests.Categories.Group;
+
+public class SetLongPollSettingsTests : CategoryBaseTest
 {
+	protected override string Folder => "Groups";
 
-
-	public class SetLongPollSettingsTests : CategoryBaseTest
+	[Fact]
+	public void SetLongPollSettings()
 	{
-		protected override string Folder => "Groups";
+		Url = "https://api.vk.com/method/groups.setLongPollSettings";
 
-		[Fact]
-		public void SetLongPollSettings()
-		{
-			Url = "https://api.vk.com/method/groups.setLongPollSettings";
+		ReadJsonFile(JsonPaths.True);
 
-			ReadJsonFile(JsonPaths.True);
+		var result = Api.Groups.SetLongPollSettings(new());
 
-			var result = Api.Groups.SetLongPollSettings(new SetLongPollSettingsParams());
-
-			result.Should().BeTrue();
-		}
+		result.Should()
+			.BeTrue();
 	}
 }

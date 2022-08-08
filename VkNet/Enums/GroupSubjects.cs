@@ -1,218 +1,217 @@
-﻿namespace VkNet.Enums
+﻿namespace VkNet.Enums;
+
+/// <summary>
+/// Тематика сообщества.
+/// </summary>
+public enum GroupSubjects
 {
 	/// <summary>
-	/// Тематика сообщества.
+	/// Авто/мото.
 	/// </summary>
-	public enum GroupSubjects
-	{
-		/// <summary>
-		/// Авто/мото.
-		/// </summary>
-		AutoMoto = 1
+	AutoMoto = 1,
 
-		, /// <summary>
-		/// Активный отдых.
-		/// </summary>
-		Leisure
+	/// <summary>
+	/// Активный отдых.
+	/// </summary>
+	Leisure,
 
-		, /// <summary>
-		/// Бизнес.
-		/// </summary>
-		Business
+	/// <summary>
+	/// Бизнес.
+	/// </summary>
+	Business,
 
-		, /// <summary>
-		/// Домашние животные.
-		/// </summary>
-		DomesticAnimals
+	/// <summary>
+	/// Домашние животные.
+	/// </summary>
+	DomesticAnimals,
 
-		, /// <summary>
-		/// Здоровье.
-		/// </summary>
-		Health
+	/// <summary>
+	/// Здоровье.
+	/// </summary>
+	Health,
 
-		, /// <summary>
-		/// Знакомство и общение.
-		/// </summary>
-		MeetAndChat
+	/// <summary>
+	/// Знакомство и общение.
+	/// </summary>
+	MeetAndChat,
 
-		, /// <summary>
-		/// Игры.
-		/// </summary>
-		Games
+	/// <summary>
+	/// Игры.
+	/// </summary>
+	Games,
 
-		, /// <summary>
-		/// ИТ.
-		/// </summary>
-		It
+	/// <summary>
+	/// ИТ.
+	/// </summary>
+	It,
 
-		, /// <summary>
-		/// Кино.
-		/// </summary>
-		Cinema
+	/// <summary>
+	/// Кино.
+	/// </summary>
+	Cinema,
 
-		, /// <summary>
-		/// Красота и мода.
-		/// </summary>
-		BeautyAndFashion
+	/// <summary>
+	/// Красота и мода.
+	/// </summary>
+	BeautyAndFashion,
 
-		, /// <summary>
-		/// Кулинария.
-		/// </summary>
-		Cookery
+	/// <summary>
+	/// Кулинария.
+	/// </summary>
+	Cookery,
 
-		, /// <summary>
-		/// Культура и искусство.
-		/// </summary>
-		CultureAndArt
+	/// <summary>
+	/// Культура и искусство.
+	/// </summary>
+	CultureAndArt,
 
-		, /// <summary>
-		/// Литература.
-		/// </summary>
-		References
+	/// <summary>
+	/// Литература.
+	/// </summary>
+	References,
 
-		, /// <summary>
-		/// Мобильная связь и интернет.
-		/// </summary>
-		MobileTelephonyAndInternet
+	/// <summary>
+	/// Мобильная связь и интернет.
+	/// </summary>
+	MobileTelephonyAndInternet,
 
-		, /// <summary>
-		/// Музыка.
-		/// </summary>
-		Music
+	/// <summary>
+	/// Музыка.
+	/// </summary>
+	Music,
 
-		, /// <summary>
-		/// Наука и техника.
-		/// </summary>
-		ScienceAndTechnology
+	/// <summary>
+	/// Наука и техника.
+	/// </summary>
+	ScienceAndTechnology,
 
-		, /// <summary>
-		/// Недвижимость.
-		/// </summary>
-		RealEstate
+	/// <summary>
+	/// Недвижимость.
+	/// </summary>
+	RealEstate,
 
-		, /// <summary>
-		/// Новости и СМИ.
-		/// </summary>
-		NewsAndMedia
+	/// <summary>
+	/// Новости и СМИ.
+	/// </summary>
+	NewsAndMedia,
 
-		, /// <summary>
-		/// Безопасность.
-		/// </summary>
-		Security
+	/// <summary>
+	/// Безопасность.
+	/// </summary>
+	Security,
 
-		, /// <summary>
-		/// Образование.
-		/// </summary>
-		Forming
+	/// <summary>
+	/// Образование.
+	/// </summary>
+	Forming,
 
-		, /// <summary>
-		/// Обустройство и ремонт.
-		/// </summary>
-		ConstructionAndRepair
+	/// <summary>
+	/// Обустройство и ремонт.
+	/// </summary>
+	ConstructionAndRepair,
 
-		, /// <summary>
-		/// Политика.
-		/// </summary>
-		Policy
+	/// <summary>
+	/// Политика.
+	/// </summary>
+	Policy,
 
-		, /// <summary>
-		/// Продукты питания.
-		/// </summary>
-		FoodItems
+	/// <summary>
+	/// Продукты питания.
+	/// </summary>
+	FoodItems,
 
-		, /// <summary>
-		/// Промышленность.
-		/// </summary>
-		Industry
+	/// <summary>
+	/// Промышленность.
+	/// </summary>
+	Industry,
 
-		, /// <summary>
-		/// Путешествия.
-		/// </summary>
-		Travels
+	/// <summary>
+	/// Путешествия.
+	/// </summary>
+	Travels,
 
-		, /// <summary>
-		/// Работа.
-		/// </summary>
-		Job
+	/// <summary>
+	/// Работа.
+	/// </summary>
+	Job,
 
-		, /// <summary>
-		/// Развлечения.
-		/// </summary>
-		Entertainment
+	/// <summary>
+	/// Развлечения.
+	/// </summary>
+	Entertainment,
 
-		, /// <summary>
-		/// Религия.
-		/// </summary>
-		Religion
+	/// <summary>
+	/// Религия.
+	/// </summary>
+	Religion,
 
-		, /// <summary>
-		/// Дом и семья.
-		/// </summary>
-		HomeAndFamily
+	/// <summary>
+	/// Дом и семья.
+	/// </summary>
+	HomeAndFamily,
 
-		, /// <summary>
-		/// Спорт.
-		/// </summary>
-		Sports
+	/// <summary>
+	/// Спорт.
+	/// </summary>
+	Sports,
 
-		, /// <summary>
-		/// Страхование.
-		/// </summary>
-		Coverage
+	/// <summary>
+	/// Страхование.
+	/// </summary>
+	Coverage,
 
-		, /// <summary>
-		/// Телевидение.
-		/// </summary>
-		Tv
+	/// <summary>
+	/// Телевидение.
+	/// </summary>
+	Tv,
 
-		, /// <summary>
-		/// Товары и услуги.
-		/// </summary>
-		GoodsAndServices
+	/// <summary>
+	/// Товары и услуги.
+	/// </summary>
+	GoodsAndServices,
 
-		, /// <summary>
-		/// Увлечения и хобби.
-		/// </summary>
-		InterestsAndHobbies
+	/// <summary>
+	/// Увлечения и хобби.
+	/// </summary>
+	InterestsAndHobbies,
 
-		, /// <summary>
-		/// Финансы.
-		/// </summary>
-		Finances
+	/// <summary>
+	/// Финансы.
+	/// </summary>
+	Finances,
 
-		, /// <summary>
-		/// Фото.
-		/// </summary>
-		Photography
+	/// <summary>
+	/// Фото.
+	/// </summary>
+	Photography,
 
-		, /// <summary>
-		/// Эзотерика.
-		/// </summary>
-		Esoterics
+	/// <summary>
+	/// Эзотерика.
+	/// </summary>
+	Esoterics,
 
-		, /// <summary>
-		/// Электроника и бытовая техника.
-		/// </summary>
-		ElectronicsAndAppliances
+	/// <summary>
+	/// Электроника и бытовая техника.
+	/// </summary>
+	ElectronicsAndAppliances,
 
-		, /// <summary>
-		/// Эротика.
-		/// </summary>
-		Erotica
+	/// <summary>
+	/// Эротика.
+	/// </summary>
+	Erotica,
 
-		, /// <summary>
-		/// Юмор.
-		/// </summary>
-		Humor
+	/// <summary>
+	/// Юмор.
+	/// </summary>
+	Humor,
 
-		, /// <summary>
-		/// Общество, гуманитарные науки.
-		/// </summary>
-		SocietyHumanities
+	/// <summary>
+	/// Общество, гуманитарные науки.
+	/// </summary>
+	SocietyHumanities,
 
-		, /// <summary>
-		/// Дизайн и графика.
-		/// </summary>
-		DesignAndGraphics
-	}
+	/// <summary>
+	/// Дизайн и графика.
+	/// </summary>
+	DesignAndGraphics
 }

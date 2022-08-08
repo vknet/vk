@@ -12,427 +12,636 @@ using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Wall
+namespace VkNet.Tests.Categories.Wall;
+
+[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
+public class WallCategoryTest : CategoryBaseTest
 {
+	protected override string Folder => "Wall";
 
-	[SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
-	public class WallCategoryTest : CategoryBaseTest
+	[Fact]
+	public void CloseComments_ReturnTrue()
 	{
-		protected override string Folder => "Wall";
+		Url = "https://api.vk.com/method/wall.closeComments";
 
-		[Fact]
-		public void CloseComments_ReturnTrue()
+		ReadJsonFile(JsonPaths.True);
+
+		var result = Api.Wall.CloseComments(3, 3);
+
+		result.Should()
+			.BeTrue();
+	}
+
+	[Fact]
+	public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException() => FluentActions
+		.Invoking(() => new WallCategory(new VkApi()).Delete(1, 1))
+		.Should()
+		.ThrowExactly<AccessTokenInvalidException>();
+
+	[Fact]
+	public void Get_Document_NormalCase()
+	{
+		Url = "https://api.vk.com/method/wall.get";
+		ReadCategoryJsonPath(nameof(Get_Document_NormalCase));
+
+		var posts = Api.Wall.Get(new()
 		{
-			Url = "https://api.vk.com/method/wall.closeComments";
+			OwnerId = 26033241,
+			Count = 1,
+			Offset = 2
+		});
 
-			ReadJsonFile(JsonPaths.True);
+		posts.TotalCount.Should()
+			.Be(100u);
 
-			var result = Api.Wall.CloseComments(3, 3);
+		posts.WallPosts[0]
+			.Attachments.Count.Should()
+			.Be(1);
 
-			result.Should().BeTrue();
-		}
+		var doc = (Document) posts.WallPosts[0]
+			.Attachment.Instance;
 
-		[Fact]
-		public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException()
+		doc.Should()
+			.NotBeNull();
+
+		doc.Id.Should()
+			.Be(237844408);
+
+		doc.OwnerId.Should()
+			.Be(26033241);
+
+		doc.Title.Should()
+			.Be("2e857c8f-aaf8-4399-9856-e4fda3199e3d.gif");
+
+		doc.Size.Should()
+			.Be(2006654);
+
+		doc.Ext.Should()
+			.Be("gif");
+
+		doc.Uri.Should()
+			.Be("http://vk.com/doc26033241_237844408?hash=126f761781ce2ebfc5&dl=f2c681ec7740f9a3a0&api=1");
+
+		doc.Photo100.Should()
+			.Be("http://cs537313.vk.me/u26033241/-3/s_48ba682f61.jpg");
+
+		doc.Photo130.Should()
+			.Be("http://cs537313.vk.me/u26033241/-3/m_48ba682f61.jpg");
+
+		doc.AccessKey.Should()
+			.Be("5bf7103aa95aacb8ad");
+	}
+
+	[Fact]
+	public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
+	{
+		Url = "https://api.vk.com/method/wall.get";
+		ReadCategoryJsonPath(nameof(Get_ExtendedVersion_GenerateOutParametersCorrectly));
+
+		// 10, out posts, out profiles, out groups, 1, 1, WallFilter.Owner
+		var count = Api.Wall.Get(new()
 		{
-			FluentActions.Invoking(() => new WallCategory(new VkApi()).Delete(1, 1)).Should().ThrowExactly<AccessTokenInvalidException>();
-		}
+			OwnerId = 10,
+			Count = 1,
+			Offset = 1,
+			Filter = WallFilter.Owner
+		});
 
-		[Fact]
-		public void Get_Document_NormalCase()
+		count.TotalCount.Should()
+			.Be(42);
+
+		count.WallPosts.Count.Should()
+			.Be(1);
+
+		count.WallPosts[0]
+			.Id.Should()
+			.Be(41);
+
+		count.Profiles.Count.Should()
+			.Be(1);
+
+		count.Profiles[0]
+			.Id.Should()
+			.Be(10);
+
+		count.Groups.Should()
+			.HaveCount(1);
+
+		count.Groups[0]
+			.Id.Should()
+			.Be(29246653);
+	}
+
+	[Fact]
+	public void Get_Geo_NormalCase()
+	{
+		Url = "https://api.vk.com/method/wall.get";
+		ReadCategoryJsonPath(nameof(Get_Geo_NormalCase));
+
+		var posts = Api.Wall.Get(new()
 		{
-			Url = "https://api.vk.com/method/wall.get";
-			ReadCategoryJsonPath(nameof(Get_Document_NormalCase));
+			OwnerId = 1563369,
+			Count = 3,
+			Offset = 2
+		});
 
-			var posts = Api.Wall.Get(new WallGetParams
+		posts.TotalCount.Should()
+			.Be(165);
+
+		posts.Should()
+			.NotBeNull();
+	}
+
+	[Fact]
+	public void Get_With_PhotoListAttachment()
+	{
+		Url = "https://api.vk.com/method/wall.get";
+		ReadCategoryJsonPath(nameof(Get_With_PhotoListAttachment));
+
+		var posts = Api.Wall.Get(new()
+		{
+			OwnerId = 46476924,
+			Count = 1,
+			Offset = 213,
+			Filter = WallFilter.Owner
+		});
+
+		posts.TotalCount.Should()
+			.Be(1724);
+
+		posts.WallPosts.Should()
+			.NotBeNull();
+
+		posts.WallPosts.Should()
+			.HaveCount(1);
+
+		posts.WallPosts[0]
+			.CopyHistory.Should()
+			.NotBeNull();
+
+		posts.WallPosts[0]
+			.CopyHistory.Should()
+			.HaveCount(1);
+
+		var attach = posts.WallPosts[0]
+			.CopyHistory[0]
+			.Attachment;
+
+		attach.Should()
+			.NotBeNull();
+
+		attach.Instance.Should()
+			.BeNull();
+	}
+
+	[Fact]
+	public void Get_WithPoll_NormalCase()
+	{
+		Url = "https://api.vk.com/method/wall.get";
+		ReadCategoryJsonPath(nameof(Get_WithPoll_NormalCase));
+
+		var posts = Api.Wall.Get(new()
+		{
+			OwnerId = -103292418,
+			Count = 1
+		});
+
+		posts.TotalCount.Should()
+			.Be(2u);
+
+		posts.WallPosts.Should()
+			.HaveCount(1);
+
+		var post = posts.WallPosts.FirstOrDefault();
+
+		post.Should()
+			.NotBeNull();
+
+		post.Id.Should()
+			.Be(3);
+
+		post.FromId.Should()
+			.Be(-103292418);
+
+		post.OwnerId.Should()
+			.Be(-103292418);
+
+		post.Date.Should()
+			.Be(DateHelper.TimeStampToDateTime(1447252575));
+
+		post.PostType.Should()
+			.Be(PostType.Post);
+
+		post.Text.Should()
+			.Be("Тест");
+
+		post.CanDelete.Should()
+			.BeTrue();
+
+		post.CanEdit.Should()
+			.BeFalse();
+
+		post.PostSource.Type.Should()
+			.Be(PostSourceType.Api);
+
+		post.Comments.Should()
+			.NotBeNull();
+
+		post.Comments.Count.Should()
+			.Be(0);
+
+		post.Likes.Count.Should()
+			.Be(0);
+
+		post.Likes.UserLikes.Should()
+			.BeFalse();
+
+		post.Likes.CanLike.Should()
+			.BeTrue();
+
+		post.Likes.CanPublish.Should()
+			.BeTrue();
+
+		post.Reposts.Count.Should()
+			.Be(0);
+
+		post.Reposts.UserReposted.Should()
+			.BeFalse();
+	}
+
+	[Fact]
+	public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException() => FluentActions.Invoking(() =>
+			new WallCategory(new VkApi()).GetById(new[]
 			{
-				OwnerId = 26033241,
-				Count = 1,
-				Offset = 2
-			});
+				"93388_21539",
+				"93388_20904",
+				"2943_4276"
+			}))
+		.Should()
+		.ThrowExactly<AccessTokenInvalidException>();
 
-			posts.TotalCount.Should().Be(100u);
-			posts.WallPosts[0].Attachments.Count.Should().Be(1);
-			var doc = (Document) posts.WallPosts[0].Attachment.Instance;
-			doc.Should().NotBeNull();
-			doc.Id.Should().Be(237844408);
-			doc.OwnerId.Should().Be(26033241);
-			doc.Title.Should().Be("2e857c8f-aaf8-4399-9856-e4fda3199e3d.gif");
-			doc.Size.Should().Be(2006654);
-			doc.Ext.Should().Be("gif");
+	[Fact]
+	public void GetById_IncorrectParameters_ThrowException()
+	{
+		FluentActions.Invoking(() => new WallCategory(Api).GetById(null))
+			.Should()
+			.ThrowExactly<ArgumentNullException>();
 
-			doc.Uri.Should().Be("http://vk.com/doc26033241_237844408?hash=126f761781ce2ebfc5&dl=f2c681ec7740f9a3a0&api=1");
+		FluentActions.Invoking(() => new WallCategory(Api).GetById(Enumerable.Empty<string>()))
+			.Should()
+			.ThrowExactly<ArgumentException>();
+	}
 
-			doc.Photo100.Should().Be("http://cs537313.vk.me/u26033241/-3/s_48ba682f61.jpg");
-			doc.Photo130.Should().Be("http://cs537313.vk.me/u26033241/-3/m_48ba682f61.jpg");
-			doc.AccessKey.Should().Be("5bf7103aa95aacb8ad");
-		}
+	[Fact]
+	public void GetById_ReturnWallRecords()
+	{
+		Url = "https://api.vk.com/method/wall.getById";
+		ReadCategoryJsonPath(nameof(GetById_ReturnWallRecords));
 
-		[Fact]
-		public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
+		var records = Api.Wall.GetById(new[]
 		{
-			Url = "https://api.vk.com/method/wall.get";
-			ReadCategoryJsonPath(nameof(Get_ExtendedVersion_GenerateOutParametersCorrectly));
+			"1_619",
+			"1_617",
+			"1_616"
+		});
 
-			// 10, out posts, out profiles, out groups, 1, 1, WallFilter.Owner
-			var count = Api.Wall.Get(new WallGetParams
-			{
-				OwnerId = 10,
-				Count = 1,
-				Offset = 1,
-				Filter = WallFilter.Owner
-			});
+		records.TotalCount.Should()
+			.Be(1);
 
-			count.TotalCount.Should().Be(42);
+		records.WallPosts[0]
+			.Id.Should()
+			.Be(617);
 
-			count.WallPosts.Count.Should().Be(1);
-			count.WallPosts[0].Id.Should().Be(41);
+		records.WallPosts[0]
+			.FromId.Should()
+			.Be(1);
 
-			count.Profiles.Count.Should().Be(1);
-			count.Profiles[0].Id.Should().Be(10);
+		records.WallPosts[0]
+			.OwnerId.Should()
+			.Be(1);
 
-			count.Groups.Should().HaveCount(1);
-			count.Groups[0].Id.Should().Be(29246653);
-		}
+		records.WallPosts[0]
+			.Date.Should()
+			.Be(new DateTime(1970,
+				1,
+				1,
+				0,
+				0,
+				0,
+				0,
+				DateTimeKind.Utc).AddSeconds(1171758699));
 
-		[Fact]
-		public void Get_Geo_NormalCase()
+		records.WallPosts[0]
+			.Text.Should()
+			.BeNullOrEmpty();
+
+		records.WallPosts[0]
+			.Comments.Count.Should()
+			.Be(0);
+
+		records.WallPosts[0]
+			.Comments.CanPost.Should()
+			.BeTrue();
+
+		records.WallPosts[0]
+			.Likes.Count.Should()
+			.Be(2);
+
+		records.WallPosts[0]
+			.Likes.UserLikes.Should()
+			.BeFalse();
+
+		records.WallPosts[0]
+			.Likes.CanLike.Should()
+			.BeTrue();
+
+		records.WallPosts[0]
+			.Likes.CanPublish.Should()
+			.BeFalse();
+
+		records.WallPosts[0]
+			.Reposts.Count.Should()
+			.Be(0);
+
+		records.WallPosts[0]
+			.Reposts.UserReposted.Should()
+			.BeFalse();
+	}
+
+	[Fact]
+	public void GetById_Donut()
+	{
+		Url = "https://api.vk.com/method/wall.getById";
+		ReadCategoryJsonPath(nameof(GetById_Donut));
+
+		var records = Api.Wall.GetById(new[]
 		{
-			Url = "https://api.vk.com/method/wall.get";
-			ReadCategoryJsonPath(nameof(Get_Geo_NormalCase));
+			"-322_123"
+		});
 
-			var posts = Api.Wall.Get(new WallGetParams
-			{
-				OwnerId = 1563369,
-				Count = 3,
-				Offset = 2
-			});
+		records.TotalCount.Should()
+			.Be(1);
 
-			posts.TotalCount.Should().Be(165);
-			posts.Should().NotBeNull();
-		}
+		records.WallPosts[0]
+			.Id.Should()
+			.Be(123);
 
-		[Fact]
-		public void Get_With_PhotoListAttachment()
+		records.WallPosts[0]
+			.FromId.Should()
+			.Be(-322);
+
+		records.WallPosts[0]
+			.OwnerId.Should()
+			.Be(-322);
+
+		records.WallPosts[0]
+			.Date.Should()
+			.Be(new DateTime(1970,
+				1,
+				1,
+				0,
+				0,
+				0,
+				0,
+				DateTimeKind.Utc).AddSeconds(1605698519));
+
+		records.WallPosts[0]
+			.Text.Should()
+			.Be("В этом посте нет доната");
+	}
+
+	[Fact]
+	public void GetComments_ReturnLikesAndAttachments()
+	{
+		Url = "https://api.vk.com/method/wall.getComments";
+		ReadCategoryJsonPath(nameof(GetComments_ReturnLikesAndAttachments));
+
+		var comments = Api.Wall.GetComments(new()
 		{
-			Url = "https://api.vk.com/method/wall.get";
-			ReadCategoryJsonPath(nameof(Get_With_PhotoListAttachment));
+			OwnerId = 12312,
+			PostId = 12345,
+			Sort = SortOrderBy.Asc,
+			NeedLikes = true
+		});
 
-			var posts = Api.Wall.Get(new WallGetParams
-			{
-				OwnerId = 46476924,
-				Count = 1,
-				Offset = 213,
-				Filter = WallFilter.Owner
-			});
+		comments.Count.Should()
+			.Be(2);
 
-			posts.TotalCount.Should().Be(1724);
-			posts.WallPosts.Should().NotBeNull();
-			posts.WallPosts.Should().HaveCount(1);
-			posts.WallPosts[0].CopyHistory.Should().NotBeNull();
-			posts.WallPosts[0].CopyHistory.Should().HaveCount(1);
+		var comment0 = comments.Items[0];
 
-			var attach = posts.WallPosts[0].CopyHistory[0].Attachment;
-			attach.Should().NotBeNull();
-			attach.Instance.Should().BeNull();
-		}
+		comment0.Id.Should()
+			.Be(3809);
 
-		[Fact]
-		public void Get_WithPoll_NormalCase()
-		{
-			Url = "https://api.vk.com/method/wall.get";
-			ReadCategoryJsonPath(nameof(Get_WithPoll_NormalCase));
+		comment0.FromId.Should()
+			.Be(6733856);
 
-			var posts = Api.Wall.Get(new WallGetParams
-			{
-				OwnerId = -103292418,
-				Count = 1
-			});
+		comment0.Date.Should()
+			.Be(new(2013,
+				11,
+				22,
+				05,
+				45,
+				44,
+				DateTimeKind.Utc));
 
-			posts.TotalCount.Should().Be(2u);
-			posts.WallPosts.Should().HaveCount(1);
+		comment0.Text.Should()
+			.Be("Поздравляю вас!!!<br>Растите здоровыми, счастливыми и красивыми!");
 
-			var post = posts.WallPosts.FirstOrDefault();
-			post.Should().NotBeNull();
+		comment0.Likes.Should()
+			.NotBeNull();
 
-			post.Id.Should().Be(3);
-			post.FromId.Should().Be(-103292418);
-			post.OwnerId.Should().Be(-103292418);
-			post.Date.Should().Be(DateHelper.TimeStampToDateTime(1447252575));
-			post.PostType.Should().Be(PostType.Post);
-			post.Text.Should().Be("Тест");
-			post.CanDelete.Should().BeTrue();
-			post.CanEdit.Should().BeFalse();
-			post.PostSource.Type.Should().Be(PostSourceType.Api);
-			post.Comments.Should().NotBeNull();
-			post.Comments.Count.Should().Be(0);
-			post.Likes.Count.Should().Be(0);
-			post.Likes.UserLikes.Should().BeFalse();
-			post.Likes.CanLike.Should().BeTrue();
-			post.Likes.CanPublish.Should().BeTrue();
-			post.Reposts.Count.Should().Be(0);
-			post.Reposts.UserReposted.Should().BeFalse();
-		}
+		comment0.Likes.Count.Should()
+			.Be(1);
 
-		[Fact]
-		public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
-		{
-			FluentActions.Invoking(() => new WallCategory(new VkApi()).GetById(new[]
-				{
-					"93388_21539",
-					"93388_20904",
-					"2943_4276"
-				}))
-				.Should()
-				.ThrowExactly<AccessTokenInvalidException>();
-		}
+		var comment1 = comments.Items[1];
 
-		[Fact]
-		public void GetById_IncorrectParameters_ThrowException()
-		{
-			FluentActions.Invoking(() => new WallCategory(Api).GetById(null)).Should().ThrowExactly<ArgumentNullException>();
+		comment1.Id.Should()
+			.Be(3810);
 
-			FluentActions.Invoking(() => new WallCategory(Api).GetById(Enumerable.Empty<string>()))
-				.Should()
-				.ThrowExactly<ArgumentException>();
-		}
+		comment1.FromId.Should()
+			.Be(3073863);
 
-		[Fact]
-		public void GetById_ReturnWallRecords()
-		{
-			Url = "https://api.vk.com/method/wall.getById";
-			ReadCategoryJsonPath(nameof(GetById_ReturnWallRecords));
+		comment1.Date.Should()
+			.Be(new(2013,
+				11,
+				22,
+				6,
+				21,
+				06,
+				DateTimeKind.Utc));
 
-			var records = Api.Wall.GetById(new[]
-			{
-				"1_619",
-				"1_617",
-				"1_616"
-			});
+		comment1.Text.Should()
+			.Be("C днем рождения малышку и родителей!!!");
 
-			records.TotalCount.Should().Be(1);
+		comment1.Likes.Should()
+			.NotBeNull();
 
-			records.WallPosts[0].Id.Should().Be(617);
-			records.WallPosts[0].FromId.Should().Be(1);
-			records.WallPosts[0].OwnerId.Should().Be(1);
+		comment1.Likes.Count.Should()
+			.Be(1);
 
-			records.WallPosts[0]
-				.Date.Should()
-				.Be(new DateTime(1970,
-					1,
-					1,
-					0,
-					0,
-					0,
-					0,
-					DateTimeKind.Utc).AddSeconds(1171758699));
+		var attachment = comment1.Attachment;
 
-			records.WallPosts[0].Text.Should().BeNullOrEmpty();
-			records.WallPosts[0].Comments.Count.Should().Be(0);
-			records.WallPosts[0].Comments.CanPost.Should().BeTrue();
-			records.WallPosts[0].Likes.Count.Should().Be(2);
-			records.WallPosts[0].Likes.UserLikes.Should().BeFalse();
-			records.WallPosts[0].Likes.CanLike.Should().BeTrue();
-			records.WallPosts[0].Likes.CanPublish.Should().BeFalse();
-			records.WallPosts[0].Reposts.Count.Should().Be(0);
-			records.WallPosts[0].Reposts.UserReposted.Should().BeFalse();
-		}
+		attachment.Should()
+			.NotBeNull();
 
-		[Fact]
-		public void GetById_Donut()
-		{
-			Url = "https://api.vk.com/method/wall.getById";
-			ReadCategoryJsonPath(nameof(GetById_Donut));
+		attachment.Type.Should()
+			.Be(typeof(Photo));
 
-			var records = Api.Wall.GetById(new[]
-			{
-				"-322_123"
-			});
+		var photo = (Photo) attachment.Instance;
 
-			records.TotalCount.Should().Be(1);
+		photo.Id.Should()
+			.Be(315467755);
 
-			records.WallPosts[0].Id.Should().Be(123);
-			records.WallPosts[0].FromId.Should().Be(-322);
-			records.WallPosts[0].OwnerId.Should().Be(-322);
+		photo.AlbumId.Should()
+			.Be(-5);
 
-			records.WallPosts[0]
-				.Date.Should()
-				.Be(new DateTime(1970,
-					1,
-					1,
-					0,
-					0,
-					0,
-					0,
-					DateTimeKind.Utc).AddSeconds(1605698519));
+		photo.OwnerId.Should()
+			.Be(3073863);
 
-			records.WallPosts[0].Text.Should().Be("В этом посте нет доната");
-		}
+		photo.Photo130.Should()
+			.Be(new Uri("http://cs425830.vk.me/v425830763/48fd/PvqwvqEOG2A.jpg"));
 
-		[Fact]
-		public void GetComments_ReturnLikesAndAttachments()
-		{
-			Url = "https://api.vk.com/method/wall.getComments";
-			ReadCategoryJsonPath(nameof(GetComments_ReturnLikesAndAttachments));
+		photo.Photo604.Should()
+			.Be(new Uri("http://cs425830.vk.me/v425830763/48fe/XhRY9Pmoo70.jpg"));
 
-			var comments = Api.Wall.GetComments(new WallGetCommentsParams
-			{
-				OwnerId = 12312,
-				PostId = 12345,
-				Sort = SortOrderBy.Asc,
-				NeedLikes = true
-			});
+		photo.Photo75.Should()
+			.Be(new Uri("http://cs425830.vk.me/v425830763/48fc/iJaRiL3vPfA.jpg"));
 
-			comments.Count.Should().Be(2);
+		photo.Photo807.Should()
+			.BeNull();
 
-			var comment0 = comments.Items[0];
-			comment0.Id.Should().Be(3809);
-			comment0.FromId.Should().Be(6733856);
+		photo.Photo1280.Should()
+			.BeNull();
 
-			comment0.Date.Should()
-				.Be(new DateTime(2013,
-					11,
-					22,
-					05,
-					45,
-					44,
-					DateTimeKind.Utc));
+		photo.Width.Should()
+			.Be(510);
 
-			comment0.Text.Should().Be("Поздравляю вас!!!<br>Растите здоровыми, счастливыми и красивыми!");
+		photo.Height.Should()
+			.Be(383);
 
-			comment0.Likes.Should().NotBeNull();
-			comment0.Likes.Count.Should().Be(1);
+		photo.Text.Should()
+			.BeEmpty();
 
-			var comment1 = comments.Items[1];
-			comment1.Id.Should().Be(3810);
-			comment1.FromId.Should().Be(3073863);
+		photo.CreateTime.Should()
+			.Be(new(2013,
+				11,
+				22,
+				6,
+				20,
+				31,
+				DateTimeKind.Utc));
+	}
 
-			comment1.Date.Should()
-				.Be(new DateTime(2013,
-					11,
-					22,
-					6,
-					21,
-					06,
-					DateTimeKind.Utc));
+	[Fact]
+	public void OpenComments_ReturnTrue()
+	{
+		Url = "https://api.vk.com/method/wall.openComments";
 
-			comment1.Text.Should().Be("C днем рождения малышку и родителей!!!");
-			comment1.Likes.Should().NotBeNull();
-			comment1.Likes.Count.Should().Be(1);
+		ReadJsonFile(JsonPaths.True);
 
-			var attachment = comment1.Attachment;
-			attachment.Should().NotBeNull();
-			attachment.Type.Should().Be(typeof(Photo));
+		var result = Api.Wall.OpenComments(3, 3);
 
-			var photo = (Photo) attachment.Instance;
-			photo.Id.Should().Be(315467755);
-			photo.AlbumId.Should().Be(-5);
-			photo.OwnerId.Should().Be(3073863);
+		result.Should()
+			.BeTrue();
+	}
 
-			photo.Photo130.Should().Be(new Uri("http://cs425830.vk.me/v425830763/48fd/PvqwvqEOG2A.jpg"));
+	[Fact]
+	public void Repost_ReturnCorrectResults()
+	{
+		Url = "https://api.vk.com/method/wall.repost";
+		ReadCategoryJsonPath(nameof(Repost_ReturnCorrectResults));
 
-			photo.Photo604.Should().Be(new Uri("http://cs425830.vk.me/v425830763/48fe/XhRY9Pmoo70.jpg"));
+		var result = Api.Wall.Repost("id", null, null, false);
 
-			photo.Photo75.Should().Be(new Uri("http://cs425830.vk.me/v425830763/48fc/iJaRiL3vPfA.jpg"));
+		result.Should()
+			.NotBeNull();
 
-			photo.Photo807.Should().BeNull();
-			photo.Photo1280.Should().BeNull();
-			photo.Width.Should().Be(510);
-			photo.Height.Should().Be(383);
-			photo.Text.Should().BeEmpty();
+		result.Success.Should()
+			.BeTrue();
 
-			photo.CreateTime.Should()
-				.Be(new DateTime(2013,
-					11,
-					22,
-					6,
-					20,
-					31,
-					DateTimeKind.Utc));
-		}
+		result.PostId.Should()
+			.Be(2587);
 
-		[Fact]
-		public void OpenComments_ReturnTrue()
-		{
-			Url = "https://api.vk.com/method/wall.openComments";
+		result.RepostsCount.Should()
+			.Be(21);
 
-			ReadJsonFile(JsonPaths.True);
+		result.LikesCount.Should()
+			.Be(105);
+	}
 
-			var result = Api.Wall.OpenComments(3, 3);
+	[Fact]
+	public void Repost_UrlIsGeneratedCorrectly()
+	{
+		Url = "https://api.vk.com/method/wall.repost";
+		ReadCategoryJsonPath(nameof(Repost_UrlIsGeneratedCorrectly));
 
-			result.Should().BeTrue();
-		}
+		var result = Api.Wall.Repost("id", "example", 50, false);
 
-		[Fact]
-		public void Repost_ReturnCorrectResults()
-		{
-			Url = "https://api.vk.com/method/wall.repost";
-			ReadCategoryJsonPath(nameof(Repost_ReturnCorrectResults));
+		result.Should()
+			.NotBeNull();
 
-			var result = Api.Wall.Repost("id", null, null, false);
+		result.Success.Should()
+			.BeTrue();
 
-			result.Should().NotBeNull();
-			result.Success.Should().BeTrue();
-			result.PostId.Should().Be(2587);
-			result.RepostsCount.Should().Be(21);
-			result.LikesCount.Should().Be(105);
-		}
+		result.PostId.Should()
+			.Be(2587);
 
-		[Fact]
-		public void Repost_UrlIsGeneratedCorrectly()
-		{
-			Url = "https://api.vk.com/method/wall.repost";
-			ReadCategoryJsonPath(nameof(Repost_UrlIsGeneratedCorrectly));
+		result.RepostsCount.Should()
+			.Be(21);
 
-			var result = Api.Wall.Repost("id", "example", 50, false);
+		result.LikesCount.Should()
+			.Be(105);
+	}
 
-			result.Should().NotBeNull();
-			result.Success.Should().BeTrue();
-			result.PostId.Should().Be(2587);
-			result.RepostsCount.Should().Be(21);
-			result.LikesCount.Should().Be(105);
-		}
+	[Fact]
+	public void CheckCopyrightLink_ReturnTrue()
+	{
+		Url = "https://api.vk.com/method/wall.checkCopyrightLink";
 
-		[Fact]
-		public void CheckCopyrightLink_ReturnTrue()
-		{
-			Url = "https://api.vk.com/method/wall.checkCopyrightLink";
+		ReadJsonFile(JsonPaths.True);
 
-			ReadJsonFile(JsonPaths.True);
+		var result = Api.Wall.CheckCopyrightLink("https://habr.com");
 
-			var result = Api.Wall.CheckCopyrightLink("https://habr.com");
+		result.Should()
+			.BeTrue();
+	}
 
-			result.Should().BeTrue();
-		}
+	[Fact]
+	public void GetComment_ReturnCorrectResults()
+	{
+		Url = "https://api.vk.com/method/wall.getComment";
 
-		[Fact]
-		public void GetComment_ReturnCorrectResults()
-		{
-			Url = "https://api.vk.com/method/wall.getComment";
+		ReadCategoryJsonPath(nameof(GetComment_ReturnCorrectResults));
 
-			ReadCategoryJsonPath(nameof(GetComment_ReturnCorrectResults));
+		var wallCommentresult = Api.Wall.GetComment(66559, 73674, true);
+		var comment = wallCommentresult.Comment.FirstOrDefault();
+		var profiles = wallCommentresult.Profiles;
+		var groups = wallCommentresult.Groups;
 
-			var wallCommentresult = Api.Wall.GetComment(66559, 73674, true);
-			var comment = wallCommentresult.Comment.FirstOrDefault();
-			var profiles = wallCommentresult.Profiles;
-			var groups = wallCommentresult.Groups;
+		comment.Date.Should()
+			.Be(new DateTime(1970,
+				1,
+				1,
+				0,
+				0,
+				0,
+				0).AddSeconds(1534927387));
 
-			comment.Date.Should()
-				.Be(new DateTime(1970,
-					1,
-					1,
-					0,
-					0,
-					0,
-					0).AddSeconds(1534927387));
+		comment.FromId.Should()
+			.Be(233754083);
 
-			comment.FromId.Should().Be(233754083);
-			comment.ReplyToUser.Should().Be(6099);
+		comment.ReplyToUser.Should()
+			.Be(6099);
 
-			groups.Should().BeEmpty();
+		groups.Should()
+			.BeEmpty();
 
-			profiles.FirstOrDefault().FirstName.Should().Be("Dmitry");
-			profiles.FirstOrDefault().LastName.Should().Be("Sergeev");
-		}
+		profiles.FirstOrDefault()
+			.FirstName.Should()
+			.Be("Dmitry");
+
+		profiles.FirstOrDefault()
+			.LastName.Should()
+			.Be("Sergeev");
 	}
 }

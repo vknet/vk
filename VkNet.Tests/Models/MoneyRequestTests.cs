@@ -2,21 +2,22 @@ using FluentAssertions;
 using VkNet.Model.Attachments;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class MoneyRequestTests : BaseTest
 {
-
-	public class MoneyRequestTests: BaseTest
+	[Fact]
+	public void ShouldDeserializeFromVkResponseToAttachment()
 	{
-		[Fact]
-		public void ShouldDeserializeFromVkResponseToAttachment()
-		{
-			ReadJsonFile("Models", "money_request");
+		ReadJsonFile("Models", "money_request");
 
-			var response = GetResponse();
+		var response = GetResponse();
 
-			var attachment = Attachment.FromJson(response);
+		var attachment = Attachment.FromJson(response);
 
-			attachment.Instance.Should().BeOfType<MoneyRequest>();;
-		}
+		attachment.Instance.Should()
+			.BeOfType<MoneyRequest>();
+
+		;
 	}
 }

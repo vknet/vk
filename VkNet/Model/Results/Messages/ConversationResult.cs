@@ -2,36 +2,35 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Результат запроса о получении беседы
+/// </summary>
+[Serializable]
+public partial class ConversationResult
 {
 	/// <summary>
-	/// Результат запроса о получении беседы
+	/// Общее число результатов
 	/// </summary>
-	[Serializable]
-	public class ConversationResult
-	{
-		/// <summary>
-		/// Общее число результатов
-		/// </summary>
-		[JsonProperty("count")]
-		public long Count { get; set; }
+	[JsonProperty("count")]
+	public long Count { get; set; }
 
-		/// <summary>
-		/// Массив объектов бесед
-		/// </summary>
-		[JsonProperty("items")]
-		public IEnumerable<Conversation> Items { get; set; }
+	/// <summary>
+	/// Массив объектов бесед
+	/// </summary>
+	[JsonProperty("items")]
+	public IEnumerable<Conversation> Items { get; set; }
 
-		/// <summary>
-		/// Профили
-		/// </summary>
-		[JsonProperty("profiles")]
-		public IEnumerable<User> Profiles { get; set; }
+	/// <summary>
+	/// Профили
+	/// </summary>
+	[JsonProperty("profiles")]
+	public IEnumerable<User> Profiles { get; set; }
 
-		/// <summary>
-		/// Группы
-		/// </summary>
-		[JsonProperty("groups")]
-		public IEnumerable<Group> Groups { get; set; }
-	}
+	/// <summary>
+	/// Группы
+	/// </summary>
+	[JsonProperty("groups")]
+	public IEnumerable<Group> Groups { get; set; }
 }

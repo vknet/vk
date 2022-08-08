@@ -1,21 +1,20 @@
 ﻿using VkNet.Utils.AntiCaptcha;
 
-namespace VkNet.Abstractions
+namespace VkNet.Abstractions;
+
+/// <summary>
+/// VkApi капча
+/// </summary>
+public interface IVkApiCaptcha
 {
 	/// <summary>
-	/// VkApi капча
+	/// Обработчик распознавания капчи
 	/// </summary>
-	public interface IVkApiCaptcha
-	{
-		/// <summary>
-		/// Обработчик распознавания капчи
-		/// </summary>
-		ICaptchaSolver CaptchaSolver { get; }
+	ICaptchaSolver CaptchaSolver { get; }
 
-		/// <summary>
-		/// Максимальное количество попыток распознавания капчи c помощью
-		/// зарегистрированного обработчика
-		/// </summary>
-		int MaxCaptchaRecognitionCount { get; set; }
-	}
+	/// <summary>
+	/// Максимальное количество попыток распознавания капчи c помощью
+	/// зарегистрированного обработчика
+	/// </summary>
+	int MaxCaptchaRecognitionCount { get; set; }
 }

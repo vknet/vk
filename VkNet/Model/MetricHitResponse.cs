@@ -1,24 +1,23 @@
 using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Событие метрики.
+/// </summary>
+[Serializable]
+public class MetricHitResponse
 {
 	/// <summary>
-	/// Событие метрики.
+	/// Redirect link
 	/// </summary>
-	[Serializable]
-	public class MetricHitResponse
-	{
-		/// <summary>
-		/// Redirect link
-		/// </summary>
-		[JsonProperty(propertyName: "redirect_link")]
-		public string RedirectLink { get; set; }
+	[JsonProperty(propertyName: "redirect_link")]
+	public string RedirectLink { get; set; }
 
-		/// <summary>
-		/// Information whether request has been processed successfully
-		/// </summary>
-		[JsonProperty(propertyName: "result")]
-		public bool? Result { get; set; }
-	}
+	/// <summary>
+	/// Information whether request has been processed successfully
+	/// </summary>
+	[JsonProperty(propertyName: "result")]
+	public bool? Result { get; set; }
 }

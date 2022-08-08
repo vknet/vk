@@ -4,52 +4,57 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class UpdateClientsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class UpdateClientsTest : CategoryBaseTest
+	[Fact]
+	public void UpdateClients()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.updateClients";
 
-		[Fact]
-		public void UpdateClients()
+		ReadCategoryJsonPath(nameof(Api.Ads.UpdateClients));
+
+		var clientModSpecification1 = new ClientModSpecification
 		{
-			Url = "https://api.vk.com/method/ads.updateClients";
+			ClientId = 1012219949,
+			Name = "123",
+			AllLimit = 100,
+			DayLimit = 50
+		};
 
-			ReadCategoryJsonPath(nameof(Api.Ads.UpdateClients));
+		var clientModSpecification2 = new ClientModSpecification
+		{
+			ClientId = 1012219949,
+			Name = "123",
+			AllLimit = 100,
+			DayLimit = 50
+		};
 
-			var clientModSpecification1 = new ClientModSpecification
-			{
-				ClientId = 1012219949,
-				Name = "123",
-				AllLimit = 100,
-				DayLimit = 50
-			};
+		ClientModSpecification[] data =
+		{
+			clientModSpecification1,
+			clientModSpecification2
+		};
 
-			var clientModSpecification2 = new ClientModSpecification
-			{
-				ClientId = 1012219949,
-				Name = "123",
-				AllLimit = 100,
-				DayLimit = 50
-			};
+		var officeUsers = Api.Ads.UpdateClients(new()
+		{
+			Data = data,
+			AccountId = 1605245430
+		});
 
-			ClientModSpecification[] data =
-			{
-				clientModSpecification1,
-				clientModSpecification2
-			};
+		officeUsers[0]
+			.Id.Should()
+			.Be(1);
 
-			var officeUsers = Api.Ads.UpdateClients(new AdsDataSpecificationParams<ClientModSpecification>
-			{
-				Data = data,
-				AccountId = 1605245430
-			});
+		officeUsers[0]
+			.ErrorCode.Should()
+			.Be(100);
 
-			officeUsers[0].Id.Should().Be(1);
-			officeUsers[0].ErrorCode.Should().Be(100);
-			officeUsers[1].Id.Should().Be(2);
-		}
+		officeUsers[1]
+			.Id.Should()
+			.Be(2);
 	}
 }

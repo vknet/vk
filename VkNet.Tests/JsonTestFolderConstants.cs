@@ -1,36 +1,35 @@
-﻿namespace VkNet.Tests
+﻿namespace VkNet.Tests;
+
+public static class JsonTestFolderConstants
 {
-	public static class JsonTestFolderConstants
+	internal static class RootFolder
 	{
-		internal static class RootFolder
-		{
-			public const string Categories = "Categories";
+		public const string Categories = "Categories";
 
-			public const string Errors = "Errors";
+		public const string Errors = "Errors";
 
-			public const string Common = "Common";
+		public const string Common = "Common";
 
-			public const string TestData = "TestData";
-		}
+		public const string TestData = "TestData";
+	}
 
-		internal static class Common
-		{
-			public const string EmptyArray = "EmptyArray";
+	internal static class Common
+	{
+		public const string EmptyArray = "EmptyArray";
 
-			public const string EmptyObject = "EmptyObject";
+		public const string EmptyObject = "EmptyObject";
 
-			public const string EmptyVkCollection = "EmptyVkCollection";
+		public const string EmptyVkCollection = "EmptyVkCollection";
 
-			public static readonly string False = bool.FalseString;
+		public static readonly string False = bool.FalseString;
 
-			public static readonly string True = bool.TrueString;
+		public static readonly string True = bool.TrueString;
 
-			public const string Object = "Object";
-		}
+		public const string Object = "Object";
+	}
 
-		internal static class Categories
-		{
-			public const string Stories = "Stories";
-		}
+	internal static class Categories
+	{
+		public const string Stories = "Stories";
 	}
 }

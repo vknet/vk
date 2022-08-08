@@ -2,40 +2,38 @@
 using Newtonsoft.Json;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// Результат метода SavePhoto
+/// </summary>
+[Serializable]
+public class SavePhotoResult
 {
 	/// <summary>
-	/// Результат метода SavePhoto
+	///
 	/// </summary>
-	[Serializable]
-	public class SavePhotoResult
+	[JsonProperty("color")]
+	public string Color { get; set; }
+
+	/// <summary>
+	/// Идентификатор загруженной фотографии
+	/// </summary>
+	[JsonProperty("id")]
+	public long Id { get; set; }
+
+	/// <summary>
+	/// Массив изображений разных размеров
+	/// </summary>
+	[JsonProperty("images")]
+	public Image[] Images { get; set; }
+
+	public static SavePhotoResult FromJson(VkResponse response) => new()
 	{
-		/// <summary>
-		///
-		/// </summary>
-		[JsonProperty("color")]
-		public string Color { get; set; }
-
-		/// <summary>
-		/// Идентификатор загруженной фотографии
-		/// </summary>
-		[JsonProperty("id")]
-		public long Id { get; set; }
-
-		/// <summary>
-		/// Массив изображений разных размеров
-		/// </summary>
-		[JsonProperty("images")]
-		public Image[] Images { get; set; }
-
-		public static SavePhotoResult FromJson(VkResponse response)
-		{
-			return new SavePhotoResult
-			{
-				Color = response["color"],
-				Id = response["id"],
-				Images = response["images"].ToListOf<Image>(x => x).ToArray()
-			};
-		}
-	}
+		Color = response["color"],
+		Id = response["id"],
+		Images = response["images"]
+			.ToListOf<Image>(x => x)
+			.ToArray()
+	};
 }

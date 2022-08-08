@@ -1,26 +1,25 @@
 using System;
 
-namespace VkNet.Enums.SafetyEnums
+namespace VkNet.Enums.SafetyEnums;
+
+/// <summary>
+/// Доступность значения.
+/// </summary>
+[Serializable]
+public sealed class StoryObjectState : SafetyEnum<StoryObjectState>
 {
 	/// <summary>
-	/// Доступность значения.
+	/// Доступно.
 	/// </summary>
-	[Serializable]
-	public sealed class StoryObjectState : SafetyEnum<StoryObjectState>
-	{
-		/// <summary>
-		/// Доступно.
-		/// </summary>
-		public static readonly StoryObjectState On = RegisterPossibleValue("on");
+	public static readonly StoryObjectState On = RegisterPossibleValue("on");
 
-		/// <summary>
-		/// Недоступно.
-		/// </summary>
-		public static readonly StoryObjectState Off = RegisterPossibleValue("off");
+	/// <summary>
+	/// Недоступно.
+	/// </summary>
+	public static readonly StoryObjectState Off = RegisterPossibleValue("off");
 
-		/// <summary>
-		/// Недоступно.
-		/// </summary>
-		public static readonly StoryObjectState Hidden = RegisterPossibleValue("hidden");
-	}
+	/// <summary>
+	/// Недоступно.
+	/// </summary>
+	public static readonly StoryObjectState Hidden = RegisterPossibleValue("hidden");
 }

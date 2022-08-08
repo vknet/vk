@@ -3,29 +3,29 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class CreateTargetPixelTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class CreateTargetPixelTest : CategoryBaseTest
+	[Fact]
+	public void CreateTargetPixel()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.createTargetPixel";
 
-		[Fact]
-		public void CreateTargetPixel()
+		ReadCategoryJsonPath(nameof(Api.Ads.CreateTargetPixel));
+
+		var result = Api.Ads.CreateTargetPixel(new()
 		{
-			Url = "https://api.vk.com/method/ads.createTargetPixel";
+			AccountId = 1605245430,
+			CategoryId = 1
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.CreateTargetPixel));
+		result.Id.Should()
+			.Be(462641);
 
-			var result = Api.Ads.CreateTargetPixel(new CreateTargetPixelParams
-			{
-				AccountId = 1605245430,
-				CategoryId = 1
-			});
-
-			result.Id.Should().Be(462641);
-			result.Pixel.Should().Be("code...");
-		}
+		result.Pixel.Should()
+			.Be("code...");
 	}
 }

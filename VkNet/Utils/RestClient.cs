@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ public class RestClient : IRestClient
 	private readonly ILogger<RestClient> _logger;
 
 	/// <inheritdoc cref="RestClient"/>
-	public RestClient(HttpClient httpClient, [NotNull] ILogger<RestClient> logger)
+	public RestClient(HttpClient httpClient, ILogger<RestClient> logger)
 	{
 		HttpClient = httpClient;
 		_logger = logger;
@@ -27,18 +28,23 @@ public class RestClient : IRestClient
 	/// <summary>
 	/// Http client
 	/// </summary>
-	[UsedImplicitly]
 	public HttpClient HttpClient { get; }
+
+	/// <inheritdoc />
+	[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
+	public IWebProxy Proxy { get; set; }
+
+	/// <inheritdoc />
+	[Obsolete("Use HttpClient to configure timeout. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration",
+		true)]
+	public TimeSpan Timeout { get; set; }
 
 	/// <inheritdoc />
 	public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding)
 	{
 		var url = Url.Combine(uri.ToString(), Url.QueryFrom(parameters.ToArray()));
 
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("GET request: {Url}", url);
-		}
+		_logger?.LogDebug("GET request: {Url}", url);
 
 		return CallAsync(() => HttpClient.GetAsync(new Uri(url)), encoding);
 	}
@@ -46,7 +52,7 @@ public class RestClient : IRestClient
 	/// <inheritdoc />
 	public Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding)
 	{
-		if (_logger.IsEnabled(LogLevel.Debug))
+		if (_logger != null)
 		{
 			var json = JsonConvert.SerializeObject(parameters);
 			_logger.LogDebug("POST request: {Uri}{NewLine}{PrettyJson}", uri, Environment.NewLine, Utilities.PrettyPrintJson(json));
@@ -58,23 +64,18 @@ public class RestClient : IRestClient
 	}
 
 	/// <inheritdoc />
-	public void Dispose()
-	{
-		HttpClient?.Dispose();
-	}
+	public void Dispose() => HttpClient?.Dispose();
 
 	private async Task<HttpResponse<string>> CallAsync(Func<Task<HttpResponseMessage>> method, Encoding encoding)
 	{
-		var response = await method().ConfigureAwait(false);
+		var response = await method()
+			.ConfigureAwait(false);
 
-		var bytes = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
+		var bytes = await response.Content.ReadAsByteArrayAsync()
+			.ConfigureAwait(false);
+
 		var content = encoding.GetString(bytes, 0, bytes.Length);
-
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("Response:{NewLine}{PrettyJson}", Environment.NewLine, Utilities.PrettyPrintJson(content));
-		}
-
+		_logger?.LogDebug("Response:{NewLine}{PrettyJson}", Environment.NewLine, Utilities.PrettyPrintJson(content));
 		var requestUri = response.RequestMessage?.RequestUri;
 		var responseUri = response.Headers.Location;
 

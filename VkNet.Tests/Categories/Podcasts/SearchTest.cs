@@ -3,32 +3,39 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Podcasts
+namespace VkNet.Tests.Categories.Podcasts;
+
+public class SearchTest : CategoryBaseTest
 {
+	protected override string Folder => "Podcasts";
 
-
-	public class SearchTest : CategoryBaseTest
+	[Fact]
+	public void Search()
 	{
-		protected override string Folder => "Podcasts";
+		Url = "https://api.vk.com/method/podcasts.search";
 
-		[Fact]
-		public void Search()
+		ReadCategoryJsonPath(nameof(Api.Podcasts.Search));
+
+		var result = Api.Podcasts.Search(new()
 		{
-			Url = "https://api.vk.com/method/podcasts.search";
+			SearchString = "дудь",
+			Offset = 0,
+			Count = 100
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Podcasts.Search));
+		result.Should()
+			.NotBeNull();
 
-			var result = Api.Podcasts.Search(new PodcastsSearchParams
-			{
-				SearchString = "дудь",
-				Offset = 0,
-				Count = 100
-			});
+		result.Podcasts[0]
+			.OwnerId.Should()
+			.Be(-189167851);
 
-			result.Should().NotBeNull();
-			result.Podcasts[0].OwnerId.Should().Be(-189167851);
-			result.Episodes[0].Id.Should().Be(456239643);
-			result.Groups[0].Id.Should().Be(189167851);
-		}
+		result.Episodes[0]
+			.Id.Should()
+			.Be(456239643);
+
+		result.Groups[0]
+			.Id.Should()
+			.Be(189167851);
 	}
 }

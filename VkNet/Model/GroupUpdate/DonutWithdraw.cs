@@ -5,66 +5,65 @@ using VkNet.Enums;
 using VkNet.Infrastructure;
 using VkNet.Utils;
 
-namespace VkNet.Model.GroupUpdate
+namespace VkNet.Model.GroupUpdate;
+
+/// <summary>
+/// Добавление участника или заявки на вступление в сообщество
+/// </summary>
+[Serializable]
+public class DonutWithdraw : IGroupUpdate
 {
 	/// <summary>
-	/// Добавление участника или заявки на вступление в сообщество
+	/// Произошла ли ошибка
 	/// </summary>
-	[Serializable]
-	public class DonutWithdraw : IGroupUpdate
+	public bool Error { get; set; }
+
+	/// <summary>
+	/// Cумма  в рублях
+	/// </summary>
+	public float? Amount { get; set; }
+
+	/// <summary>
+	/// Cумма  без комиссии (в рублях)
+	/// </summary>
+	public float? AmountWithoutFee { get; set; }
+
+	/// <summary>
+	/// Причина ошибки
+	/// </summary>
+	public string Reason { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	public static DonutWithdraw FromJson(VkResponse response)
 	{
-		/// <summary>
-		/// Произошла ли ошибка
-		/// </summary>
-		public bool Error { get; set; }
+		var groupJoin = JsonConvert.DeserializeObject<DonutWithdraw>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 
-		/// <summary>
-		/// Cумма  в рублях
-		/// </summary>
-		public float? Amount { get; set; }
+		groupJoin.Amount = response["amount"];
+		groupJoin.AmountWithoutFee = response["amount_without_fee"];
 
-		/// <summary>
-		/// Cумма  без комиссии (в рублях)
-		/// </summary>
-		public float? AmountWithoutFee { get; set; }
+		groupJoin.Reason = response["reason"];
+		groupJoin.Error = !string.IsNullOrEmpty(groupJoin.Reason);
 
-		/// <summary>
-		/// Причина ошибки
-		/// </summary>
-		public string Reason { get; set; }
+		return groupJoin;
+	}
 
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		public static DonutWithdraw FromJson(VkResponse response)
+	/// <summary>
+	/// Преобразование класса <see cref="DonutWithdraw" /> в <see cref="VkParameters" />
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> Результат преобразования в <see cref="DonutWithdraw" /> </returns>
+	public static implicit operator DonutWithdraw(VkResponse response)
+	{
+		if (response == null)
 		{
-			var groupJoin = JsonConvert.DeserializeObject<DonutWithdraw>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-
-			groupJoin.Amount = response["amount"];
-			groupJoin.AmountWithoutFee = response["amount_without_fee"];
-
-			groupJoin.Reason = response["reason"];
-			groupJoin.Error = !string.IsNullOrEmpty(groupJoin.Reason);
-
-			return groupJoin;
+			return null;
 		}
 
-		/// <summary>
-		/// Преобразование класса <see cref="DonutWithdraw" /> в <see cref="VkParameters" />
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> Результат преобразования в <see cref="DonutWithdraw" /> </returns>
-		public static implicit operator DonutWithdraw(VkResponse response)
-		{
-			if (response == null)
-			{
-				return null;
-			}
-
-			return response.HasToken()
-				? FromJson(response)
-				: null;
-		}
+		return response.HasToken()
+			? FromJson(response)
+			: null;
 	}
 }

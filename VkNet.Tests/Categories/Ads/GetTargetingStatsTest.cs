@@ -3,27 +3,25 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetTargetingStatsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class GetTargetingStatsTest : CategoryBaseTest
+	[Fact]
+	public void GetTargetingStats()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getTargetingStats";
 
-		[Fact]
-		public void GetTargetingStats()
+		ReadCategoryJsonPath(nameof(Api.Ads.GetTargetingStats));
+
+		var result = Api.Ads.GetTargetingStats(new()
 		{
-			Url = "https://api.vk.com/method/ads.getTargetingStats";
+			AccountId = 123
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetTargetingStats));
-
-			var result = Api.Ads.GetTargetingStats(new GetTargetingStatsParams
-			{
-				AccountId = 123,
-
-			});
-			result.AudienceCount.Should().Be(79189000);
-		}
+		result.AudienceCount.Should()
+			.Be(79189000);
 	}
 }

@@ -2,25 +2,25 @@ using FluentAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Group
+namespace VkNet.Tests.Categories.Group;
+
+public class GetTokenPermissionsTests : CategoryBaseTest
 {
+	protected override string Folder => "Groups";
 
-
-	public class GetTokenPermissionsTests : CategoryBaseTest
+	[Fact]
+	public void GetTokenPermissions()
 	{
-		protected override string Folder => "Groups";
+		Url = "https://api.vk.com/method/groups.getTokenPermissions";
 
-		[Fact]
-		public void GetTokenPermissions()
-		{
-			Url = "https://api.vk.com/method/groups.getTokenPermissions";
+		ReadCategoryJsonPath(nameof(GetTokenPermissions));
 
-			ReadCategoryJsonPath(nameof(GetTokenPermissions));
+		var result = Api.Groups.GetTokenPermissions();
 
-			var result = Api.Groups.GetTokenPermissions();
+		result.Mask.Should()
+			.Be(274432);
 
-			result.Mask.Should().Be(274432);
-			result.Permissions.Should().NotBeEmpty();
-		}
+		result.Permissions.Should()
+			.NotBeEmpty();
 	}
 }

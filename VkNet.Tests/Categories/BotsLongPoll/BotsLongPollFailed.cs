@@ -3,81 +3,79 @@ using VkNet.Exception;
 using VkNet.Model.RequestParams;
 using Xunit;
 
-namespace VkNet.Tests.Categories.BotsLongPoll
+namespace VkNet.Tests.Categories.BotsLongPoll;
+
+public class BotsLongPollFailed : BotsLongPollBaseTest
 {
-
-	public class BotsLongPollFailed : BotsLongPollBaseTest
+	[Fact]
+	public void GetBotsLongPollHistory_Failed1()
 	{
-		[Fact]
-		public void GetBotsLongPollHistory_Failed1()
-		{
-			Url = "https://vk.com";
-			ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed1));
+		Url = "https://vk.com";
+		ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed1));
 
-			FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-				{
-					Key = "test",
-					Server = "https://vk.com",
-					Ts = "0",
-					Wait = 10
-				}))
-				.Should()
-				.ThrowExactly<LongPollOutdateException>();
-		}
+		FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new()
+			{
+				Key = "test",
+				Server = "https://vk.com",
+				Ts = "0",
+				Wait = 10
+			}))
+			.Should()
+			.ThrowExactly<LongPollOutdateException>();
+	}
 
-		[Fact]
-		public void GetBotsLongPollHistory_Failed1Ts()
-		{
-			Url = "https://vk.com";
-			ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed1Ts));
+	[Fact]
+	public void GetBotsLongPollHistory_Failed1Ts()
+	{
+		Url = "https://vk.com";
+		ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed1Ts));
 
-			const string ts = "10";
+		const string ts = "10";
 
-			FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-				{
-					Key = "test",
-					Server = "https://vk.com",
-					Ts = "0",
-					Wait = 10
-				}))
-				.Should()
-				.ThrowExactly<LongPollOutdateException>()
-				.And.Ts.Should()
-				.Be(ts);
-		}
+		FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new()
+			{
+				Key = "test",
+				Server = "https://vk.com",
+				Ts = "0",
+				Wait = 10
+			}))
+			.Should()
+			.ThrowExactly<LongPollOutdateException>()
+			.And.Ts.Should()
+			.Be(ts);
+	}
 
-		[Fact]
-		public void GetBotsLongPollHistory_Failed2()
-		{
-			Url = "https://vk.com";
-			ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed2));
+	[Fact]
+	public void GetBotsLongPollHistory_Failed2()
+	{
+		Url = "https://vk.com";
+		ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed2));
 
-			FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-				{
-					Key = "test",
-					Server = "https://vk.com",
-					Ts = "0",
-					Wait = 10
-				}))
-				.Should()
-				.ThrowExactly<LongPollKeyExpiredException>();
-		}
+		FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new()
+			{
+				Key = "test",
+				Server = "https://vk.com",
+				Ts = "0",
+				Wait = 10
+			}))
+			.Should()
+			.ThrowExactly<LongPollKeyExpiredException>();
+	}
 
-		[Fact]
-		public void GetBotsLongPollHistory_Failed3()
-		{
-			Url = "https://vk.com";
-			ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed3));
+	[Fact]
+	public void GetBotsLongPollHistory_Failed3()
+	{
+		Url = "https://vk.com";
+		ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed3));
 
-			FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-				{
-					Key = "test",
-					Server = "https://vk.com",
-					Ts = "0",
-					Wait = 10
-				}))
-				.Should()
-				.ThrowExactly<LongPollInfoLostException>();
-		}
+		FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new()
+			{
+				Key = "test",
+				Server = "https://vk.com",
+				Ts = "0",
+				Wait = 10
+			}))
+			.Should()
+			.ThrowExactly<LongPollInfoLostException>();
 	}
 }

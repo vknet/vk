@@ -4,46 +4,46 @@ using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.NewsFeed
+namespace VkNet.Tests.Categories.NewsFeed;
+
+[SuppressMessage("ReSharper", "PublicMemgitbersMustHaveComments")]
+public class NewsFeedCategoryTest : CategoryBaseTest
 {
+	/// <inheritdoc />
+	protected override string Folder => "NewsFeed";
 
-	[SuppressMessage("ReSharper", "PublicMemgitbersMustHaveComments")]
-	public class NewsFeedCategoryTest : CategoryBaseTest
+	[Fact]
+	public void Get()
 	{
-		/// <inheritdoc />
-		protected override string Folder => "NewsFeed";
+		Url = "https://api.vk.com/method/newsfeed.get";
 
-		[Fact]
-		public void Get()
+		ReadCategoryJsonPath(nameof(Get));
+
+		var result = Api.NewsFeed.Get(new()
 		{
-			Url = "https://api.vk.com/method/newsfeed.get";
-
-			ReadCategoryJsonPath(nameof(Get));
-
-			var result = Api.NewsFeed.Get(new NewsFeedGetParams
+			SourceIds = new[]
 			{
-				SourceIds = new[]
-				{
-					"1234"
-				}
-			});
+				"1234"
+			}
+		});
 
-			result.Items.Should().NotBeEmpty();
-		}
+		result.Items.Should()
+			.NotBeEmpty();
+	}
 
-		[Fact]
-		public void GetRecommended()
+	[Fact]
+	public void GetRecommended()
+	{
+		Url = "https://api.vk.com/method/newsfeed.getRecommended";
+
+		ReadCategoryJsonPath(nameof(GetRecommended));
+
+		var result = Api.NewsFeed.GetRecommended(new()
 		{
-			Url = "https://api.vk.com/method/newsfeed.getRecommended";
+			Count = 1
+		});
 
-			ReadCategoryJsonPath(nameof(GetRecommended));
-
-			var result = Api.NewsFeed.GetRecommended(new NewsFeedGetRecommendedParams
-			{
-				Count = 1
-			});
-
-			result.Items.Should().NotBeEmpty();
-		}
+		result.Items.Should()
+			.NotBeEmpty();
 	}
 }

@@ -4,146 +4,163 @@ using VkNet.Exception;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using Xunit;
 
-namespace VkNet.Tests.Infrastructure
+namespace VkNet.Tests.Infrastructure;
+
+public class ImplicitFlowVkAuthorizationTests
 {
-
-
-	public class ImplicitFlowVkAuthorizationTests
+	[Fact]
+	public void GetAuthorizationResult()
 	{
-		[Fact]
-		public void GetAuthorizationResult()
-		{
-			var url = new Uri("https://oauth.vk.com/blank.html#access_token=access_token&expires_in=86400&user_id=32190123&state=123");
+		var url = new Uri("https://oauth.vk.com/blank.html#access_token=access_token&expires_in=86400&user_id=32190123&state=123");
 
-			var auth = new ImplicitFlowVkAuthorization();
+		var auth = new ImplicitFlowVkAuthorization();
 
-			var authorizationResult = auth.GetAuthorizationResult(url);
+		var authorizationResult = auth.GetAuthorizationResult(url);
 
-			authorizationResult.Should().NotBeNull();
-			authorizationResult.State.Should().Be("123");
-			authorizationResult.UserId.Should().Be(32190123);
-			authorizationResult.ExpiresIn.Should().Be(86400);
-			authorizationResult.AccessToken.Should().Be("access_token");
-		}
+		authorizationResult.Should()
+			.NotBeNull();
 
-		[Fact]
-		public void GetAuthorizationResult_VkAuthorizationException()
-		{
-			var url = new Uri("https://m.vk.com/login?act=authcheck&m=442");
+		authorizationResult.State.Should()
+			.Be("123");
 
-			var auth = new ImplicitFlowVkAuthorization();
+		authorizationResult.UserId.Should()
+			.Be(32190123);
 
-			FluentActions.Invoking(() => auth.GetAuthorizationResult(url)).Should().ThrowExactly<VkAuthorizationException>();
-		}
+		authorizationResult.ExpiresIn.Should()
+			.Be(86400);
 
-		[Fact]
-		public void GetPageType_Captcha()
-		{
-			var url = new Uri(
-				"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140492255&v=5.92&state=123&revoke=1&display=mobile&sid=644558728730&dif=1&email=inyutin_maxim%40mail.ru");
+		authorizationResult.AccessToken.Should()
+			.Be("access_token");
+	}
 
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
+	[Fact]
+	public void GetAuthorizationResult_VkAuthorizationException()
+	{
+		var url = new Uri("https://m.vk.com/login?act=authcheck&m=442");
 
-			result.Should().Be(ImplicitFlowPageType.Captcha);
-		}
+		var auth = new ImplicitFlowVkAuthorization();
 
-		[Fact]
-		public void GetPageType_Captcha_AfterIncorrectEnter()
-		{
-			var url = new Uri(
-				"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140492255&v=5.92&state=123&revoke=1&display=mobile&sid=955166290951&dif=1&email=inyutin_maxim%40mail.ru&m=5");
+		FluentActions.Invoking(() => auth.GetAuthorizationResult(url))
+			.Should()
+			.ThrowExactly<VkAuthorizationException>();
+	}
 
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
+	[Fact]
+	public void GetPageType_Captcha()
+	{
+		var url = new Uri(
+			"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140492255&v=5.92&state=123&revoke=1&display=mobile&sid=644558728730&dif=1&email=inyutin_maxim%40mail.ru");
 
-			result.Should().Be(ImplicitFlowPageType.Captcha);
-		}
+		var auth = new ImplicitFlowVkAuthorization();
+		var result = auth.GetPageType(url);
 
-		[Fact]
-		public void GetPageType_Consent()
-		{
-			var url = new Uri(
-				"https://oauth.vk.com/authorize?client_id=4268118&scope=140492255&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&token_type=0&state=123&display=mobile&__q_hash=d358748186f6c31d9f249769b7b4d619");
+		result.Should()
+			.Be(ImplicitFlowPageType.Captcha);
+	}
 
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
+	[Fact]
+	public void GetPageType_Captcha_AfterIncorrectEnter()
+	{
+		var url = new Uri(
+			"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140492255&v=5.92&state=123&revoke=1&display=mobile&sid=955166290951&dif=1&email=inyutin_maxim%40mail.ru&m=5");
 
-			result.Should().Be(ImplicitFlowPageType.Consent);
-		}
+		var auth = new ImplicitFlowVkAuthorization();
+		var result = auth.GetPageType(url);
 
-		[Fact]
-		public void GetPageType_Error()
-		{
-			var url = new Uri(
-				"https://oauth.vk.com/blank.html#error=access_denied&error_reason=user_denied&error_description=User%20denied%20your%20request&state=123");
+		result.Should()
+			.Be(ImplicitFlowPageType.Captcha);
+	}
 
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
+	[Fact]
+	public void GetPageType_Consent()
+	{
+		var url = new Uri(
+			"https://oauth.vk.com/authorize?client_id=4268118&scope=140492255&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&token_type=0&state=123&display=mobile&__q_hash=d358748186f6c31d9f249769b7b4d619");
 
-			result.Should().Be(ImplicitFlowPageType.Error);
-		}
+		var auth = new ImplicitFlowVkAuthorization();
+		var result = auth.GetPageType(url);
 
-		[Fact]
-		public void GetPageType_LoginPassword()
-		{
-			var url = new Uri(
-				"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https://oauth.vk.com/blank.html&display=mobile&scope=140492255&response_type=token&v=5.92&state=123&revoke=1");
+		result.Should()
+			.Be(ImplicitFlowPageType.Consent);
+	}
 
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
+	[Fact]
+	public void GetPageType_Error()
+	{
+		var url = new Uri(
+			"https://oauth.vk.com/blank.html#error=access_denied&error_reason=user_denied&error_description=User%20denied%20your%20request&state=123");
 
-			result.Should().Be(ImplicitFlowPageType.LoginPassword);
-		}
+		var auth = new ImplicitFlowVkAuthorization();
+		var result = auth.GetPageType(url);
 
-		[Fact]
-		public void GetPageType_LoginPassword_AfterIncorrectEnter()
-		{
-			var url = new Uri(
-				"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140492255&v=5.92&state=123&revoke=1&display=mobile&m=4&email=");
+		result.Should()
+			.Be(ImplicitFlowPageType.Error);
+	}
 
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
+	[Fact]
+	public void GetPageType_LoginPassword()
+	{
+		var url = new Uri(
+			"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https://oauth.vk.com/blank.html&display=mobile&scope=140492255&response_type=token&v=5.92&state=123&revoke=1");
 
-			result.Should().Be(ImplicitFlowPageType.LoginPassword);
-		}
+		var auth = new ImplicitFlowVkAuthorization();
+		var result = auth.GetPageType(url);
 
-		[Fact]
-		public void GetPageType_Result()
-		{
-			var url = new Uri(
-				"https://oauth.vk.com/blank.html#access_token=access_token&expires_in=0&user_id=32190123&email=inyutin_maxim@mail.ru&state=123");
+		result.Should()
+			.Be(ImplicitFlowPageType.LoginPassword);
+	}
 
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
+	[Fact]
+	public void GetPageType_LoginPassword_AfterIncorrectEnter()
+	{
+		var url = new Uri(
+			"https://oauth.vk.com/authorize?client_id=4268118&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&response_type=token&scope=140492255&v=5.92&state=123&revoke=1&display=mobile&m=4&email=");
 
-			result.Should().Be(ImplicitFlowPageType.Result);
-		}
+		var auth = new ImplicitFlowVkAuthorization();
+		var result = auth.GetPageType(url);
 
-		[Theory]
-		[InlineData("https://m.vk.com/login?act=authcheck&api_hash=api_hash")]
-		[InlineData("https://m.vk.com:443/login?act=authcheck&api_hash=api_hash")]
-		public void GetPageType_TwoFactor(string uriString)
-		{
-			var url = new Uri(uriString);
+		result.Should()
+			.Be(ImplicitFlowPageType.LoginPassword);
+	}
 
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
+	[Fact]
+	public void GetPageType_Result()
+	{
+		var url = new Uri(
+			"https://oauth.vk.com/blank.html#access_token=access_token&expires_in=0&user_id=32190123&email=inyutin_maxim@mail.ru&state=123");
 
-			result.Should().Be(ImplicitFlowPageType.TwoFactor);
-		}
+		var auth = new ImplicitFlowVkAuthorization();
+		var result = auth.GetPageType(url);
 
-		[Theory]
-		[InlineData("https://m.vk.com/login?act=authcheck&m=442")]
-		[InlineData("https://m.vk.com:443/login?act=authcheck&m=442")]
-		public void GetPageType_TwoFactor_AfterIncorrectEnter(string uriString)
-		{
-			var url = new Uri(uriString);
+		result.Should()
+			.Be(ImplicitFlowPageType.Result);
+	}
 
-			var auth = new ImplicitFlowVkAuthorization();
-			var result = auth.GetPageType(url);
+	[Theory]
+	[InlineData("https://m.vk.com/login?act=authcheck&api_hash=api_hash")]
+	[InlineData("https://m.vk.com:443/login?act=authcheck&api_hash=api_hash")]
+	public void GetPageType_TwoFactor(string uriString)
+	{
+		var url = new Uri(uriString);
 
-			result.Should().Be(ImplicitFlowPageType.TwoFactor);
-		}
+		var auth = new ImplicitFlowVkAuthorization();
+		var result = auth.GetPageType(url);
+
+		result.Should()
+			.Be(ImplicitFlowPageType.TwoFactor);
+	}
+
+	[Theory]
+	[InlineData("https://m.vk.com/login?act=authcheck&m=442")]
+	[InlineData("https://m.vk.com:443/login?act=authcheck&m=442")]
+	public void GetPageType_TwoFactor_AfterIncorrectEnter(string uriString)
+	{
+		var url = new Uri(uriString);
+
+		var auth = new ImplicitFlowVkAuthorization();
+		var result = auth.GetPageType(url);
+
+		result.Should()
+			.Be(ImplicitFlowPageType.TwoFactor);
 	}
 }

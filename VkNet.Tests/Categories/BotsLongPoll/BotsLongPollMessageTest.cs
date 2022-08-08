@@ -4,164 +4,210 @@ using VkNet.Enums;
 using VkNet.Model.RequestParams;
 using Xunit;
 
-namespace VkNet.Tests.Categories.BotsLongPoll
+namespace VkNet.Tests.Categories.BotsLongPoll;
+
+public class BotsLongPollMessageTest : BotsLongPollBaseTest
 {
-
-	public class BotsLongPollMessageTest : BotsLongPollBaseTest
+	[Fact]
+	public void GetBotsLongPollHistory_MessageNewTest()
 	{
-		[Fact]
-		public void GetBotsLongPollHistory_MessageNewTest()
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageNewTest));
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageNewTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		var update = botsLongPollHistory.Updates.First();
 
-			var update = botsLongPollHistory.Updates.First();
+		var messageNew = update.MessageNew;
 
-			var messageNew = update.MessageNew;
+		var message = messageNew?.Message;
 
-			var message = messageNew?.Message;
+		var clientInfo = messageNew?.ClientInfo;
 
-			var clientInfo = messageNew?.ClientInfo;
+		messageNew.Should()
+			.NotBeNull();
 
-			messageNew.Should().NotBeNull();
-			message.Should().NotBeNull();
-			clientInfo.Should().NotBeNull();
+		message.Should()
+			.NotBeNull();
 
-			clientInfo.ButtonActions.Should().NotBeEmpty();
-			clientInfo.Keyboard.Should().BeTrue();
-			clientInfo.InlineKeyboard.Should().BeFalse();
-			clientInfo.LangId.Should().Be(Language.Ru);
+		clientInfo.Should()
+			.NotBeNull();
 
-			message.FromId.Should().Be(123456789);
-			update.GroupId.Should().Be(123456789);
-			message.Text.Should().Be("f");
-		}
+		clientInfo.ButtonActions.Should()
+			.NotBeEmpty();
 
-		[Fact]
-		public void GetBotsLongPollHistory_MessageEditTest()
+		clientInfo.Keyboard.Should()
+			.BeTrue();
+
+		clientInfo.InlineKeyboard.Should()
+			.BeFalse();
+
+		clientInfo.LangId.Should()
+			.Be(Language.Ru);
+
+		message.FromId.Should()
+			.Be(123456789);
+
+		update.GroupId.Should()
+			.Be(123456789);
+
+		message.Text.Should()
+			.Be("f");
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_MessageEditTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageEditTest));
+
+		const int userId = 123;
+		const int groupId = 1234;
+		const string text = "test1";
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageEditTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int userId = 123;
-			const int groupId = 1234;
-			const string text = "test1";
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.Message.FromId.Should()
+			.Be(userId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.GroupId.Should()
+			.Be(groupId);
 
-			update.Message.FromId.Should().Be(userId);
-			update.GroupId.Should().Be(groupId);
-			update.Message.Text.Should().Be(text);
-		}
+		update.Message.Text.Should()
+			.Be(text);
+	}
 
-		[Fact]
-		public void GetBotsLongPollHistory_MessageReplyTest()
+	[Fact]
+	public void GetBotsLongPollHistory_MessageReplyTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageReplyTest));
+
+		const int userId = 123;
+		const int groupId = 1234;
+		const string text = "test";
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageReplyTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int userId = 123;
-			const int groupId = 1234;
-			const string text = "test";
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.Message.FromId.Should()
+			.Be(userId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.GroupId.Should()
+			.Be(groupId);
 
-			update.Message.FromId.Should().Be(userId);
-			update.GroupId.Should().Be(groupId);
-			update.Message.Text.Should().Be(text);
-		}
+		update.Message.Text.Should()
+			.Be(text);
+	}
 
-		[Fact]
-		public void GetBotsLongPollHistory_MessageAllowTest()
+	[Fact]
+	public void GetBotsLongPollHistory_MessageAllowTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageAllowTest));
+
+		const int userId = 123;
+		const int groupId = 1234;
+		const string key = "123456";
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageAllowTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int userId = 123;
-			const int groupId = 1234;
-			const string key = "123456";
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.MessageAllow.UserId.Should()
+			.Be(userId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.MessageAllow.Key.Should()
+			.Be(key);
 
-			update.MessageAllow.UserId.Should().Be(userId);
-			update.MessageAllow.Key.Should().Be(key);
-			update.GroupId.Should().Be(groupId);
-		}
+		update.GroupId.Should()
+			.Be(groupId);
+	}
 
-		[Fact]
-		public void GetBotsLongPollHistory_MessageDenyTest()
+	[Fact]
+	public void GetBotsLongPollHistory_MessageDenyTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageDenyTest));
+
+		const int userId = 123;
+		const int groupId = 1234;
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageDenyTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			const int userId = 123;
-			const int groupId = 1234;
+		var update = botsLongPollHistory.Updates.First();
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		update.MessageDeny.UserId.Should()
+			.Be(userId);
 
-			var update = botsLongPollHistory.Updates.First();
+		update.GroupId.Should()
+			.Be(groupId);
+	}
 
-			update.MessageDeny.UserId.Should().Be(userId);
-			update.GroupId.Should().Be(groupId);
-		}
+	[Fact]
+	public void GetBotsLongPollHistory_MessageEventTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageEventTest));
 
-		[Fact]
-		public void GetBotsLongPollHistory_MessageEventTest()
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
-			ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageEventTest));
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-			var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new BotsLongPollHistoryParams
-			{
-				Key = "test",
-				Server = "https://vk.com",
-				Ts = "0",
-				Wait = 10
-			});
+		var update = botsLongPollHistory.Updates.First();
 
-			var update = botsLongPollHistory.Updates.First();
+		var messageEvent = update.MessageEvent;
 
-			var messageEvent = update.MessageEvent;
+		messageEvent.Should()
+			.NotBeNull();
 
-			messageEvent.Should().NotBeNull();
-			messageEvent.EventId.Should().Be("feleyinek");
-			messageEvent.UserId.Should().Be(123456789);
-			messageEvent.PeerId.Should().Be(123456789);
-			messageEvent.ConversationMessageId.Should().Be(1234);
-			messageEvent.Payload.Should().Be("{}");
-			update.GroupId.Should().Be(1234);
-		}
+		messageEvent.EventId.Should()
+			.Be("feleyinek");
+
+		messageEvent.UserId.Should()
+			.Be(123456789);
+
+		messageEvent.PeerId.Should()
+			.Be(123456789);
+
+		messageEvent.ConversationMessageId.Should()
+			.Be(1234);
+
+		messageEvent.Payload.Should()
+			.Be("{}");
+
+		update.GroupId.Should()
+			.Be(1234);
 	}
 }

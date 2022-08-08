@@ -7,60 +7,65 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class CreateCampaignsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class CreateCampaignsTest : CategoryBaseTest
+	[Fact]
+	public void CreateCampaigns()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.createCampaigns";
 
-		[Fact]
-		public void CreateCampaigns()
+		ReadCategoryJsonPath(nameof(Api.Ads.CreateCampaigns));
+
+		var campaignSpecification1 = new CampaignSpecification
 		{
-			Url = "https://api.vk.com/method/ads.createCampaigns";
+			ClientId = 1012219949,
+			Type = CampaignType.Normal,
+			Name = "123",
+			Status = AdStatus.Stopped,
+			AllLimit = 100,
+			DayLimit = 100,
+			StartTime = DateTime.Today,
+			StopTime = DateTime.Now
+		};
 
-			ReadCategoryJsonPath(nameof(Api.Ads.CreateCampaigns));
+		var campaignSpecification2 = new CampaignSpecification
+		{
+			ClientId = 1012219949,
+			Type = CampaignType.Normal,
+			Name = "123",
+			Status = AdStatus.Stopped,
+			AllLimit = 100,
+			DayLimit = 100,
+			StartTime = DateTime.Today,
+			StopTime = DateTime.Now
+		};
 
-			var campaignSpecification1 = new CampaignSpecification
-			{
-				ClientId = 1012219949,
-				Type = CampaignType.Normal,
-				Name = "123",
-				Status = AdStatus.Stopped,
-				AllLimit = 100,
-				DayLimit = 100,
-				StartTime = DateTime.Today ,
-				StopTime = DateTime.Now
-			};
+		CampaignSpecification[] data =
+		{
+			campaignSpecification1,
+			campaignSpecification2
+		};
 
-			var campaignSpecification2 = new CampaignSpecification
-			{
-				ClientId = 1012219949,
-				Type = CampaignType.Normal,
-				Name = "123",
-				Status = AdStatus.Stopped,
-				AllLimit = 100,
-				DayLimit = 100,
-				StartTime = DateTime.Today,
-				StopTime = DateTime.Now
-			};
+		var officeUsers = Api.Ads.CreateCampaigns(new()
+		{
+			Data = data,
+			AccountId = 1605245430
+		});
 
-			CampaignSpecification[] data =
-			{
-				campaignSpecification1,
-				campaignSpecification2
-			};
+		officeUsers[0]
+			.Id.Should()
+			.Be(1);
 
-			var officeUsers = Api.Ads.CreateCampaigns(new AdsDataSpecificationParams<CampaignSpecification>
-			{
-				Data = data,
-				AccountId = 1605245430
-			});
+		officeUsers[0]
+			.ErrorCode.Should()
+			.Be(100);
 
-			officeUsers[0].Id.Should().Be(1);
-			officeUsers[0].ErrorCode.Should().Be(100);
-			officeUsers[1].Id.Should().Be(2);
-		}
+		officeUsers[1]
+			.Id.Should()
+			.Be(2);
 	}
 }

@@ -3,34 +3,32 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class GetAdsTargetingTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class GetAdsTargetingTest : CategoryBaseTest
+	[Fact]
+	public void GetAdsTargeting()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.getAdsTargeting";
 
-		[Fact]
-		public void GetAdsTargeting()
+		ReadCategoryJsonPath(nameof(Api.Ads.GetAdsTargeting));
+
+		var result = Api.Ads.GetAdsTargeting(new()
 		{
-			Url = "https://api.vk.com/method/ads.getAdsTargeting";
+			AccountId = 1605245430,
+			AdIds = "123",
+			CampaignIds = "123",
+			ClientId = 123,
+			IncludeDeleted = true,
+			Limit = 100,
+			Offset = 0
+		});
 
-			ReadCategoryJsonPath(nameof(Api.Ads.GetAdsTargeting));
-
-
-			var result = Api.Ads.GetAdsTargeting(new GetAdsTargetingParams
-			{
-				AccountId = 1605245430,
-				AdIds = "123",
-				CampaignIds = "123",
-				ClientId = 123,
-				IncludeDeleted = true,
-				Limit = 100,
-				Offset = 0
-			});
-
-			result[0].Id.Should().Be("11021348");
-		}
+		result[0]
+			.Id.Should()
+			.Be("11021348");
 	}
 }

@@ -1,36 +1,32 @@
 ﻿using System;
 using VkNet.Utils;
 
-namespace VkNet.Model
+namespace VkNet.Model;
+
+/// <summary>
+/// ССылочная кнопка
+/// </summary>
+[Serializable]
+public class LinkButton
 {
 	/// <summary>
-	/// ССылочная кнопка
+	/// Название кнопки.
 	/// </summary>
-	[Serializable]
-	public class LinkButton
+	public string Title { get; set; }
+
+	/// <summary>
+	/// Ссылка на которую ведет кнопка.
+	/// </summary>
+	public LinkButtonAction Uri { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> </returns>
+	public static LinkButton FromJson(VkResponse response) => new()
 	{
-		/// <summary>
-		/// Название кнопки.
-		/// </summary>
-		public string Title { get; set; }
-
-		/// <summary>
-		/// Ссылка на которую ведет кнопка.
-		/// </summary>
-		public LinkButtonAction Uri { get; set; }
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> </returns>
-		public static LinkButton FromJson(VkResponse response)
-		{
-			return new LinkButton
-			{
-					Title = response[key: "title"]
-					, Uri = response[key: "url"]
-			};
-		}
-	}
+		Title = response[key: "title"],
+		Uri = response[key: "url"]
+	};
 }

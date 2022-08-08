@@ -5,72 +5,71 @@ using VkNet.Enums;
 using VkNet.Infrastructure;
 using VkNet.Utils;
 
-namespace VkNet.Model.GroupUpdate
+namespace VkNet.Model.GroupUpdate;
+
+/// <summary>
+/// Добавление пользователя в чёрный список
+/// </summary>
+[Serializable]
+public class UserBlock : IGroupUpdate
 {
 	/// <summary>
-	/// Добавление пользователя в чёрный список
+	/// Идентификатор пользователя
 	/// </summary>
-	[Serializable]
-	public class UserBlock : IGroupUpdate
+	[JsonProperty("user_id")]
+	public long? UserId { get; set; }
+
+	/// <summary>
+	/// Идентификатор администратора, который внёс пользователя в чёрный список
+	/// </summary>
+	[JsonProperty("admin_id")]
+	public long? AdminId { get; set; }
+
+	/// <summary>
+	/// Дата разблокировки
+	/// </summary>
+	[JsonConverter(typeof(UnixDateTimeConverter))]
+	public DateTime? UnblockDate { get; set; }
+
+	/// <summary>
+	/// Причины блокировки пользователя
+	/// </summary>
+	[JsonProperty("reason")]
+	public BanReason? Reason { get; set; }
+
+	/// <summary>
+	/// Комментарий администратора к блокировке
+	/// </summary>
+	[JsonProperty("comment")]
+	public string Comment { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	public static UserBlock FromJson(VkResponse response)
 	{
-		/// <summary>
-		/// Идентификатор пользователя
-		/// </summary>
-		[JsonProperty("user_id")]
-		public long? UserId { get; set; }
+		var userBlock = JsonConvert.DeserializeObject<UserBlock>(response.ToString(), JsonConfigure.JsonSerializerSettings);
 
-		/// <summary>
-		/// Идентификатор администратора, который внёс пользователя в чёрный список
-		/// </summary>
-		[JsonProperty("admin_id")]
-		public long? AdminId { get; set; }
+		userBlock.UnblockDate = response["unblock_date"];
 
-		/// <summary>
-		/// Дата разблокировки
-		/// </summary>
-		[JsonConverter(typeof(UnixDateTimeConverter))]
-		public DateTime? UnblockDate { get; set; }
+		return userBlock;
+	}
 
-		/// <summary>
-		/// Причины блокировки пользователя
-		/// </summary>
-		[JsonProperty("reason")]
-		public BanReason? Reason { get; set; }
-
-		/// <summary>
-		/// Комментарий администратора к блокировке
-		/// </summary>
-		[JsonProperty("comment")]
-		public string Comment { get; set; }
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		public static UserBlock FromJson(VkResponse response)
+	/// <summary>
+	/// Преобразование класса <see cref="UserBlock" /> в <see cref="VkParameters" />
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> Результат преобразования в <see cref="UserBlock" /> </returns>
+	public static implicit operator UserBlock(VkResponse response)
+	{
+		if (response == null)
 		{
-			var userBlock = JsonConvert.DeserializeObject<UserBlock>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-
-			userBlock.UnblockDate = response["unblock_date"];
-
-			return userBlock;
+			return null;
 		}
 
-		/// <summary>
-		/// Преобразование класса <see cref="UserBlock" /> в <see cref="VkParameters" />
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> Результат преобразования в <see cref="UserBlock" /> </returns>
-		public static implicit operator UserBlock(VkResponse response)
-		{
-			if (response == null)
-			{
-				return null;
-			}
-
-			return response.HasToken()
-				? FromJson(response)
-				: null;
-		}
+		return response.HasToken()
+			? FromJson(response)
+			: null;
 	}
 }

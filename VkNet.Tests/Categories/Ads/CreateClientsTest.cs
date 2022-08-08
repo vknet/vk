@@ -4,50 +4,55 @@ using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Ads
+namespace VkNet.Tests.Categories.Ads;
+
+public class CreateClientsTest : CategoryBaseTest
 {
+	protected override string Folder => "Ads";
 
-
-	public class CreateClientsTest : CategoryBaseTest
+	[Fact]
+	public void CreateClients()
 	{
-		protected override string Folder => "Ads";
+		Url = "https://api.vk.com/method/ads.createClients";
 
-		[Fact]
-		public void CreateClients()
+		ReadCategoryJsonPath(nameof(Api.Ads.CreateClients));
+
+		var clientSpecification1 = new ClientSpecification
 		{
-			Url = "https://api.vk.com/method/ads.createClients";
+			DayLimit = 100,
+			AllLimit = 100,
+			Name = "123"
+		};
 
-			ReadCategoryJsonPath(nameof(Api.Ads.CreateClients));
+		var clientSpecification2 = new ClientSpecification
+		{
+			DayLimit = 100,
+			AllLimit = 100,
+			Name = "123"
+		};
 
-			var clientSpecification1 = new ClientSpecification
-			{
-				DayLimit = 100,
-				AllLimit = 100,
-				Name = "123"
-			};
+		ClientSpecification[] data =
+		{
+			clientSpecification1,
+			clientSpecification2
+		};
 
-			var clientSpecification2 = new ClientSpecification
-			{
-				DayLimit = 100,
-				AllLimit = 100,
-				Name = "123"
-			};
+		var officeUsers = Api.Ads.CreateClients(new()
+		{
+			Data = data,
+			AccountId = 1605245430
+		});
 
-			ClientSpecification[] data =
-			{
-				clientSpecification1,
-				clientSpecification2
-			};
+		officeUsers[0]
+			.Id.Should()
+			.Be(1);
 
-			var officeUsers = Api.Ads.CreateClients(new AdsDataSpecificationParams<ClientSpecification>
-			{
-				Data = data,
-				AccountId = 1605245430
-			});
+		officeUsers[0]
+			.ErrorCode.Should()
+			.Be(100);
 
-			officeUsers[0].Id.Should().Be(1);
-			officeUsers[0].ErrorCode.Should().Be(100);
-			officeUsers[1].Id.Should().Be(2);
-		}
+		officeUsers[1]
+			.Id.Should()
+			.Be(2);
 	}
 }

@@ -1,52 +1,48 @@
 using System;
 using VkNet.Utils;
 
-namespace VkNet.Model.GroupUpdate
+namespace VkNet.Model.GroupUpdate;
+
+/// <summary>
+/// Подписка на сообщения от сообщества (<c>MessageAllow</c>, ваш капитан!)
+/// </summary>
+[Serializable]
+public class MessageAllow : IGroupUpdate
 {
 	/// <summary>
-	/// Подписка на сообщения от сообщества (<c>MessageAllow</c>, ваш капитан!)
+	/// Идентификатор пользователя
 	/// </summary>
-	[Serializable]
-	public class MessageAllow : IGroupUpdate
+	public long? UserId { get; set; }
+
+	/// <summary>
+	/// Параметр, переданный в методе <c>messages.allowMessagesFromGroup</c>
+	/// </summary>
+	public string Key { get; set; }
+
+	/// <summary>
+	/// Разобрать из json.
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	public static MessageAllow FromJson(VkResponse response) => new()
 	{
-		/// <summary>
-		/// Идентификатор пользователя
-		/// </summary>
-		public long? UserId { get; set; }
+		UserId = response["user_id"],
+		Key = response["key"]
+	};
 
-		/// <summary>
-		/// Параметр, переданный в методе <c>messages.allowMessagesFromGroup</c>
-		/// </summary>
-		public string Key { get; set; }
-
-		/// <summary>
-		/// Разобрать из json.
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		public static MessageAllow FromJson(VkResponse response)
+	/// <summary>
+	/// Преобразование класса <see cref="MessageAllow" /> в <see cref="VkParameters" />
+	/// </summary>
+	/// <param name="response"> Ответ сервера. </param>
+	/// <returns> Результат преобразования в <see cref="MessageAllow" /> </returns>
+	public static implicit operator MessageAllow(VkResponse response)
+	{
+		if (response == null)
 		{
-			return new MessageAllow
-			{
-				UserId = response["user_id"],
-				Key = response["key"]
-			};
+			return null;
 		}
 
-		/// <summary>
-		/// Преобразование класса <see cref="MessageAllow" /> в <see cref="VkParameters" />
-		/// </summary>
-		/// <param name="response"> Ответ сервера. </param>
-		/// <returns> Результат преобразования в <see cref="MessageAllow" /> </returns>
-		public static implicit operator MessageAllow(VkResponse response)
-		{
-			if (response == null)
-			{
-				return null;
-			}
-
-			return response.HasToken()
-				? FromJson(response)
-				: null;
-		}
+		return response.HasToken()
+			? FromJson(response)
+			: null;
 	}
 }

@@ -3,28 +3,29 @@ using VkNet.Model.RequestParams.Groups;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Group
+namespace VkNet.Tests.Categories.Group;
+
+public class GetAddressesTests : CategoryBaseTest
 {
+	protected override string Folder => "Groups";
 
-
-	public class GetAddressesTests : CategoryBaseTest
+	[Fact]
+	public void GetAddresses()
 	{
-		protected override string Folder => "Groups";
+		Url = "https://api.vk.com/method/groups.getAddresses";
 
-		[Fact]
-		public void GetAddresses()
+		ReadCategoryJsonPath(nameof(GetAddresses));
+
+		var result = Api.Groups.GetAddresses(new()
 		{
-			Url = "https://api.vk.com/method/groups.getAddresses";
-
-			ReadCategoryJsonPath(nameof(GetAddresses));
-
-			var result = Api.Groups.GetAddresses(new GetAddressesParams
+			GroupId = 165669449,
+			AddressIds = new ulong[]
 			{
-				GroupId = 165669449,
-				AddressIds = new ulong[]{ 58227}
-			});
+				58227
+			}
+		});
 
-			result.TotalCount.Should().Be(3);
-		}
+		result.TotalCount.Should()
+			.Be(3);
 	}
 }

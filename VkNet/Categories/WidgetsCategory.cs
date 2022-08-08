@@ -4,63 +4,77 @@ using VkNet.Model.RequestParams;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Categories
+namespace VkNet.Categories;
+
+/// <inheritdoc />
+public partial class WidgetsCategory : IWidgetsCategory
 {
+	/// <summary>
+	/// API.
+	/// </summary>
+	private readonly IVkApiInvoke _vk;
+
+	/// <summary>
+	/// Api vk.com
+	/// </summary>
+	/// <param name="vk">
+	/// Api vk.com
+	/// </param>
+	internal WidgetsCategory(VkApi vk = null) => _vk = vk;
+
 	/// <inheritdoc />
-	public partial class WidgetsCategory : IWidgetsCategory
-	{
-		/// <summary>
-		/// API.
-		/// </summary>
-		private readonly IVkApiInvoke _vk;
-
-		/// <summary>
-		/// Api vk.com
-		/// </summary>
-		/// <param name="vk">
-		/// Api vk.com
-		/// </param>
-		internal WidgetsCategory(VkApi vk = null)
+	public VkCollection<Comment> GetComments(GetCommentsParams getCommentsParams) => _vk.Call<VkCollection<Comment>>("widgets.getComments"
+		, new()
 		{
-			_vk = vk;
+			{
+				"widget_api_id", getCommentsParams.WidgetApiId
+			},
+			{
+				"url", getCommentsParams.Url
+			},
+			{
+				"page_id", getCommentsParams.PageId
+			},
+			{
+				"order", getCommentsParams.Order
+			},
+			{
+				"fields", getCommentsParams.Fields
+			},
+			{
+				"offset", getCommentsParams.Offset
+			},
+			{
+				"count", getCommentsParams.Count
+			}
 		}
+		, false
+		, new VkCollectionJsonConverter(collectionField: "posts"));
 
-		/// <inheritdoc />
-		public VkCollection<Comment> GetComments(GetCommentsParams getCommentsParams)
+	/// <inheritdoc />
+	public VkCollection<WidgetPage> GetPages(long? widgetApiId = null
+											, string order = null
+											, string period = null
+											, ulong? offset = null
+											, ulong? count = null) => _vk.Call<VkCollection<WidgetPage>>("widgets.getPages"
+		, new()
 		{
-			return _vk.Call<VkCollection<Comment>>("widgets.getComments"
-					, new VkParameters
-					{
-						{ "widget_api_id", getCommentsParams.WidgetApiId }
-						, { "url", getCommentsParams.Url }
-						, { "page_id", getCommentsParams.PageId }
-						, { "order", getCommentsParams.Order }
-						, { "fields", getCommentsParams.Fields }
-						, { "offset", getCommentsParams.Offset }
-						, { "count", getCommentsParams.Count }
-					}
-					, false
-					, new VkCollectionJsonConverter(collectionField: "posts"));
+			{
+				"widget_api_id", widgetApiId
+			},
+			{
+				"order", order
+			},
+			{
+				"period", period
+			},
+			{
+				"offset", offset
+			},
+			{
+				"count", count
+			}
 		}
-
-		/// <inheritdoc />
-		public VkCollection<WidgetPage> GetPages(long? widgetApiId = null
-												, string order = null
-												, string period = null
-												, ulong? offset = null
-												, ulong? count = null)
-		{
-			return _vk.Call<VkCollection<WidgetPage>>("widgets.getPages"
-					, new VkParameters
-					{
-							{ "widget_api_id", widgetApiId }
-							, { "order", order }
-							, { "period", period }
-							, { "offset", offset }
-							, { "count", count }
-					}
-					, false
-					, new VkCollectionJsonConverter(collectionField: "pages"));
-		}
-	}
+		, false
+		, new VkCollectionJsonConverter(collectionField: "pages"));
 }

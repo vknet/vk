@@ -2,25 +2,23 @@ using FluentAssertions;
 using VkNet.Model.Attachments;
 using Xunit;
 
-namespace VkNet.Tests.Models
+namespace VkNet.Tests.Models;
+
+public class PhotoModel
 {
-
-
-	public class PhotoModel
+	[Fact]
+	public void ToString_PhotoShouldHaveAccessKey()
 	{
-		[Fact]
-		public void ToString_PhotoShouldHaveAccessKey()
+		var photo = new Photo
 		{
-			var photo = new Photo
-			{
-				Id = 1234,
-				OwnerId = 1234,
-				AccessKey = "test"
-			};
+			Id = 1234,
+			OwnerId = 1234,
+			AccessKey = "test"
+		};
 
-			var result = photo.ToString();
+		var result = photo.ToString();
 
-			result.Should().Be("photo1234_1234_test");
-		}
+		result.Should()
+			.Be("photo1234_1234_test");
 	}
 }

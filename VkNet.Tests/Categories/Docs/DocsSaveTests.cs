@@ -5,68 +5,78 @@ using VkNet.Model.Attachments;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Docs
+namespace VkNet.Tests.Categories.Docs;
+
+public class DocsSaveTests : CategoryBaseTest
 {
+	protected override string Folder => "Docs";
 
-	public class DocsSaveTests : CategoryBaseTest
+	[Fact]
+	public void Save()
 	{
-		protected override string Folder => "Docs";
+		Url = "https://api.vk.com/method/docs.save";
+		ReadCategoryJsonPath("Save");
 
-		[Fact]
-		public void Save()
-		{
-			Url = "https://api.vk.com/method/docs.save";
-			ReadCategoryJsonPath("Save");
+		var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
+		var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
-			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
+		result.Should()
+			.NotBeEmpty();
+	}
 
-			result.Should().NotBeEmpty();
-		}
+	[Fact]
+	public void Save2()
+	{
+		Url = "https://api.vk.com/method/docs.save";
+		ReadCategoryJsonPath("Save2");
 
-		[Fact]
-		public void Save2()
-		{
-			Url = "https://api.vk.com/method/docs.save";
-			ReadCategoryJsonPath("Save2");
+		var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
+		var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
-			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
+		result.Should()
+			.NotBeEmpty();
+	}
 
-			result.Should().NotBeEmpty();
-		}
+	[Fact]
+	public void Save3()
+	{
+		Url = "https://api.vk.com/method/docs.save";
+		ReadCategoryJsonPath("Save3");
 
-		[Fact]
-		public void Save3()
-		{
-			Url = "https://api.vk.com/method/docs.save";
-			ReadCategoryJsonPath("Save3");
+		var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
+		var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
-			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
+		result.Should()
+			.NotBeEmpty();
+	}
 
-			result.Should().NotBeEmpty();
-		}
+	[Fact]
+	public void Save_Type()
+	{
+		Url = "https://api.vk.com/method/docs.save";
+		ReadCategoryJsonPath("Save3");
 
-		[Fact]
-		public void Save_Type()
-		{
-			Url = "https://api.vk.com/method/docs.save";
-			ReadCategoryJsonPath("Save3");
+		var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-			var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
+		var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
 
-			var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
+		result.Should()
+			.NotBeEmpty();
 
-			result.Should().NotBeEmpty();
-			var item = result.FirstOrDefault();
-			item.Should().NotBeNull();
-			var doc = item.Instance as Document;
-			doc.Should().NotBeNull();
-			doc.Type.Should().Be(DocumentTypeEnum.Text);
-		}
+		var item = result.FirstOrDefault();
+
+		item.Should()
+			.NotBeNull();
+
+		var doc = item.Instance as Document;
+
+		doc.Should()
+			.NotBeNull();
+
+		doc.Type.Should()
+			.Be(DocumentTypeEnum.Text);
 	}
 }

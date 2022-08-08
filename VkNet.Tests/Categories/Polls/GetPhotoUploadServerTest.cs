@@ -2,23 +2,22 @@
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
-namespace VkNet.Tests.Categories.Polls
+namespace VkNet.Tests.Categories.Polls;
+
+public class GetPhotoUploadServerTest : CategoryBaseTest
 {
+	protected override string Folder => "Polls";
 
-	public class GetPhotoUploadServerTest : CategoryBaseTest
+	[Fact]
+	public void GetPhotoUploadServer()
 	{
-		protected override string Folder => "Polls";
+		Url = "https://api.vk.com/method/polls.getPhotoUploadServer";
 
-		[Fact]
-		public void GetPhotoUploadServer()
-		{
-			Url = "https://api.vk.com/method/polls.getPhotoUploadServer";
+		ReadCategoryJsonPath(nameof(Api.PollsCategory.GetPhotoUploadServer));
 
-			ReadCategoryJsonPath(nameof(Api.PollsCategory.GetPhotoUploadServer));
+		var result = Api.PollsCategory.GetPhotoUploadServer(450138623);
 
-			var result = Api.PollsCategory.GetPhotoUploadServer(450138623);
-
-			result.UploadUrl.Should().NotBeEmpty();
-		}
+		result.UploadUrl.Should()
+			.NotBeEmpty();
 	}
 }

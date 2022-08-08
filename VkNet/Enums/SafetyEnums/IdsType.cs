@@ -1,19 +1,17 @@
-﻿namespace VkNet.Enums.SafetyEnums
+﻿namespace VkNet.Enums.SafetyEnums;
+
+/// <summary>
+/// Права пользователя в рекламном кабинете.
+/// </summary>
+public sealed class IdsType : SafetyEnum<IdsType>
 {
 	/// <summary>
-	/// Права пользователя в рекламном кабинете.
+	/// Объявление.
 	/// </summary>
-	public sealed class IdsType : SafetyEnum<IdsType>
-	{
-		/// <summary>
-		/// Объявление.
-		/// </summary>
-		public static readonly IdsType Ad = RegisterPossibleValue(value: "ad");
+	public static readonly IdsType Ad = RegisterPossibleValue(value: "ad");
 
-		/// <summary>
-		/// Кампания.
-		/// </summary>
-		public static readonly IdsType Campaign = RegisterPossibleValue(value: "campaign");
-
-	}
+	/// <summary>
+	/// Кампания.
+	/// </summary>
+	public static readonly IdsType Campaign = RegisterPossibleValue(value: "campaign");
 }
