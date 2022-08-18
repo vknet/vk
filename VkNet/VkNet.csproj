@@ -49,23 +49,22 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="all"/>
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.43"/>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
-		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all"/>
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.41.0.50478" PrivateAssets="all"/>
-		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="all"/>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1"/>
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0"/>
+		<PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="all" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.43" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha" PrivateAssets="all" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.43.0.51858" PrivateAssets="all" />
+		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="..\tools\vknet-icon.PNG" Pack="true" PackagePath="\"/>
-		<None Include="..\LICENCE" Pack="true" PackagePath="\"/>
+		<None Include="..\tools\vknet-icon.PNG" Pack="true" PackagePath="\" />
+		<None Include="..\LICENCE" Pack="true" PackagePath="\" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\VkNet.Generators\VkNet.Generators.csproj" OutputItemType="Analyzer"
-						  ReferenceOutputAssembly="false"/>
+		<ProjectReference Include="..\VkNet.Generators\VkNet.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 </Project>
