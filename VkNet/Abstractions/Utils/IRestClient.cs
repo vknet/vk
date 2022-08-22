@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
@@ -40,6 +40,7 @@ public interface IRestClient : IDisposable
 	/// <param name="uri"> Uri </param>
 	/// <param name="parameters"> Параметры </param>
 	/// <param name="encoding"></param>
+	/// <param name="headers"> Заголовки </param>
 	/// <returns> Строковый результат </returns>
-	Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding);
+	Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding, IEnumerable<KeyValuePair<string, string>> headers = null);
 }

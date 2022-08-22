@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
@@ -50,12 +51,25 @@ public class RestClient : IRestClient
 	}
 
 	/// <inheritdoc />
-	public Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding)
+	public Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding, IEnumerable<KeyValuePair<string, string>> headers = null)
 	{
 		if (_logger != null)
 		{
 			var json = JsonConvert.SerializeObject(parameters);
 			_logger.LogDebug("POST request: {Uri}{NewLine}{PrettyJson}", uri, Environment.NewLine, Utilities.PrettyPrintJson(json));
+		}
+
+		if (headers != null && headers.Any())
+		{
+			headers.ToList().ForEach(header => {
+				if (header.Key.ToLower() == "content-type")
+				{
+					HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(header.Value));
+				} else
+				{
+					HttpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
+				}
+			});
 		}
 
 		var content = new FormUrlEncodedContent(parameters);

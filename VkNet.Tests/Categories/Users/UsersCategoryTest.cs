@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -560,7 +560,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	{
 		Mock.Get(Api.RestClient)
 			.Setup(f =>
-				f.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>(), Encoding.UTF8))
+				f.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>(), Encoding.UTF8, null))
 			.Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
 
 		FluentActions.Invoking(() => Api.Users.Get(new long[]
