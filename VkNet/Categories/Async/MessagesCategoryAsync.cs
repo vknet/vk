@@ -139,6 +139,10 @@ public partial class MessagesCategory
 		TypeHelper.TryInvokeMethodAsync(() => SendToUserIds(@params));
 
 	/// <inheritdoc />
+	public Task<ReadOnlyCollection<MessagesSendResult>> SendToPeerIdsAsync(MessagesSendParams @params) =>
+		TypeHelper.TryInvokeMethodAsync(() => SendToPeerIds(@params));
+
+	/// <inheritdoc />
 	public Task<bool> RestoreAsync(ulong messageId, ulong? groupId = null) =>
 		TypeHelper.TryInvokeMethodAsync(() => Restore(messageId, groupId));
 

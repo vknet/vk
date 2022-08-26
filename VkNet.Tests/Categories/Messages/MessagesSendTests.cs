@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
@@ -178,6 +178,91 @@ public class MessagesSendTests : MessagesBaseTests
 		var result = Api.Messages.SendToUserIds(new()
 		{
 			UserIds = new List<long>
+			{
+				7550525
+			},
+			Message = "г. Таганрог, ул. Фрунзе 66А",
+			Lat = 47.217451,
+			Longitude = 38.922743
+		});
+
+		result.Should()
+			.NotBeEmpty();
+
+		var message = result.FirstOrDefault();
+
+		message.Should()
+			.NotBeNull();
+
+		message.PeerId.Should()
+			.Be(32190123);
+
+		message.MessageId.Should()
+			.Be(210525);
+	}
+
+	[Fact]
+	public void MessagesSendToPeerIds_NoSetPeerIdsParam_ArrayResult()
+	{
+		Url = "https://api.vk.com/method/messages.send";
+		ReadCategoryJsonPath(nameof(MessagesSendToPeerIds_NoSetPeerIdsParam_ArrayResult));
+
+		FluentActions.Invoking(() => Api.Messages.Send(new()
+		{
+			Message = "г. Таганрог, ул. Фрунзе 66А",
+			Lat = 47.217451,
+			Longitude = 38.922743
+		}))
+			.Should()
+			.ThrowExactly<ArgumentException>();
+	}
+
+	[Fact]
+	public void MessagesSendToPeerIds_SetUserIdsParam_ArrayResult()
+	{
+		Url = "https://api.vk.com/method/messages.send";
+		ReadCategoryJsonPath(nameof(MessagesSendToPeerIds_SetUserIdsParam_ArrayResult));
+
+		FluentActions.Invoking(() => Api.Messages.Send(new()
+		{
+			UserIds = new List<long>
+			{
+				7550525
+			},
+			Message = "г. Таганрог, ул. Фрунзе 66А",
+			Lat = 47.217451,
+			Longitude = 38.922743
+		}))
+			.Should()
+			.ThrowExactly<ArgumentException>();
+	}
+
+	[Fact]
+	public void MessagesSendToPeerIds_SetPeerIdParam_ArrayResult()
+	{
+		Url = "https://api.vk.com/method/messages.send";
+		ReadCategoryJsonPath(nameof(MessagesSendToPeerIds_SetPeerIdParam_ArrayResult));
+
+		FluentActions.Invoking(() => Api.Messages.Send(new()
+		{
+			PeerId = 7550525,
+			Message = "г. Таганрог, ул. Фрунзе 66А",
+			Lat = 47.217451,
+			Longitude = 38.922743
+		}))
+			.Should()
+			.ThrowExactly<ArgumentException>();
+	}
+
+	[Fact]
+	public void MessagesSendToPeerIds_Send_ArrayResult()
+	{
+		Url = "https://api.vk.com/method/messages.send";
+		ReadCategoryJsonPath(nameof(MessagesSendToPeerIds_Send_ArrayResult));
+
+		var result = Api.Messages.SendToPeerIds(new()
+		{
+			PeerIds = new List<long>
 			{
 				7550525
 			},

@@ -55,6 +55,9 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	/// <inheritdoc cref="IMessagesCategoryAsync.SendToUserIdsAsync"/>
 	ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params);
 
+	/// <inheritdoc cref="IMessagesCategoryAsync.SendToPeerIdsAsync"/>
+	ReadOnlyCollection<MessagesSendResult> SendToPeerIds(MessagesSendParams @params);
+
 	/// <inheritdoc cref="IMessagesCategoryAsync.RestoreAsync"/>
 	bool Restore(ulong messageId, ulong? groupId = null);
 
