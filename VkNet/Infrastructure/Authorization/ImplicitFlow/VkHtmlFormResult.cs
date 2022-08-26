@@ -26,4 +26,9 @@ public class VkHtmlFormResult
 	/// Поля формы
 	/// </summary>
 	public Dictionary<string, string> Fields { get; set; }
+
+	/// <summary>
+	/// Заголовки для запросов
+	/// </summary>
+	public Dictionary<string, string> Headers { get; set; }
 }

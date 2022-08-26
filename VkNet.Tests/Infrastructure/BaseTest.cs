@@ -89,7 +89,7 @@ public abstract class BaseTest : IDisposable
 		Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x =>
 				x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
 					It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),
-					It.IsAny<Encoding>()))
+					It.IsAny<Encoding>(), null))
 			.Callback(Callback)
 			.Returns(() =>
 			{
@@ -103,7 +103,7 @@ public abstract class BaseTest : IDisposable
 
 		Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
 				It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),
-				It.IsAny<Encoding>()))
+				It.IsAny<Encoding>(), null))
 			.Throws<ArgumentException>();
 
 		Api = Mocker.CreateInstance<VkApi>();

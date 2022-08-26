@@ -32,7 +32,7 @@ public abstract class AbstractAuthorizationForm : IAuthorizationForm
 
 		FillFormFields(form, authParams);
 
-		var response = await _restClient.PostAsync(new(form.Action), form.Fields, Encoding.GetEncoding(1251))
+		var response = await _restClient.PostAsync(new(form.Action), form.Fields, Encoding.UTF8, form.Headers)
 			.ConfigureAwait(false);
 
 		if (!response.IsSuccess)
