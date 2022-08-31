@@ -34,6 +34,7 @@ public class Attachment
 
 		return type switch
 		{
+			"link" => CreateTyped<Link>(response[type]),
 			"photo" or "posted_photo" => CreateTyped<Photo>(response[type]),
 			"audio" => CreateTyped<Audio>(response[type]),
 			"video" => CreateTyped<Video>(response[type]),
