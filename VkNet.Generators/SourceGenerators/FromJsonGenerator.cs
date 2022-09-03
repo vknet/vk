@@ -36,10 +36,12 @@ namespace {0}
 
 	private const string PropertyVkCollection = "{0} = response[\"{1}\"].ToVkCollectionOf<{2}>(x => x),";
 
+	/// <inheritdoc />
 	public void Initialize(GeneratorInitializationContext context)
 	{
 	}
 
+	/// <inheritdoc />
 	public void Execute(GeneratorExecutionContext context)
 	{
 		var models =
@@ -116,7 +118,7 @@ namespace {0}
 		return fieldDeclaration.ToString();
 	}
 
-	public static string GetTypeFromGeneric(string type)
+	private static string GetTypeFromGeneric(string type)
 	{
 		var localType = type.Split('<')[1]
 			.Replace(">", string.Empty);
@@ -125,10 +127,12 @@ namespace {0}
 	}
 
 	/// <summary>
-	/// Get all fields with JsonProperty attribute
+	/// Получить все поля с атрибутом JsonProperty
 	/// </summary>
-	/// <param name="model">  </param>
-	/// <returns>pairs from field name and JsonProperty annotation argument</returns>
+	/// <param name="model"> Модель </param>
+	/// <returns>
+	/// Пары из имени поля и аргумента аннотации JsonProperty
+	/// </returns>
 	private IEnumerable<(string PropertyName, string AttributeArgument, string PropertyType)> GetAllProperties(TypeDeclarationSyntax model)
 	{
 		var dict = new List<(string, string, string)>();
@@ -157,10 +161,12 @@ namespace {0}
 	}
 
 	/// <summary>
-	/// Check that model don't have method FromJson
+	/// Убедитесь, что у модели нет метода FromJson
 	/// </summary>
-	/// <param name="arg"></param>
-	/// <returns></returns>
+	/// <param name="arg"> Объявление класса </param>
+	/// <returns>
+	/// true, если у модели нет метода FromJson
+	/// </returns>
 	private bool NotHaveMethodFromJson(ClassDeclarationSyntax arg) => !arg.Members.Any(x =>
 		x.Kind() == SyntaxKind.MethodDeclaration && ((MethodDeclarationSyntax) x).Identifier.ValueText != "FromJSON");
 
@@ -171,11 +177,11 @@ namespace {0}
 																		.Contains("Model")
 																	&& x.Modifiers.Any(m => m.ValueText == "partial");
 
-	public const string NESTED_CLASS_DELIMITER = "+";
+	private const string NestedClassDelimiter = "+";
 
-	public const string NAMESPACE_CLASS_DELIMITER = ".";
+	private const string NamespaceClassDelimiter = ".";
 
-	public static string GetFullNamespace(ClassDeclarationSyntax source)
+	private static string GetFullNamespace(SyntaxNode source)
 	{
 		var items = new List<string>();
 		var parent = source.Parent;
@@ -183,17 +189,21 @@ namespace {0}
 		while (parent.IsKind(SyntaxKind.ClassDeclaration))
 		{
 			var parentClass = parent as ClassDeclarationSyntax;
-			items.Add(parentClass.Identifier.Text);
+
+			if (parentClass?.Identifier.Text != null)
+			{
+				items.Add(parentClass.Identifier.Text);
+			}
 
 			parent = parent.Parent;
 		}
 
 		var nameSpace = parent as NamespaceDeclarationSyntax;
 
-		return nameSpace.Name.ToString();
+		return nameSpace?.Name.ToString() ?? string.Empty;
 	}
 
-	public static string GetFullName(ClassDeclarationSyntax source)
+	private static string GetFullName(BaseTypeDeclarationSyntax source)
 	{
 		var items = new List<string>();
 		var parent = source.Parent;
@@ -201,22 +211,26 @@ namespace {0}
 		while (parent.IsKind(SyntaxKind.ClassDeclaration))
 		{
 			var parentClass = parent as ClassDeclarationSyntax;
-			items.Add(parentClass.Identifier.Text);
+
+			if (parentClass?.Identifier.Text != null)
+			{
+				items.Add(parentClass.Identifier.Text);
+			}
 
 			parent = parent.Parent;
 		}
 
 		var nameSpace = parent as NamespaceDeclarationSyntax;
 
-		var sb = new StringBuilder().Append(nameSpace.Name)
-			.Append(NAMESPACE_CLASS_DELIMITER);
+		var sb = new StringBuilder().Append(nameSpace?.Name)
+			.Append(NamespaceClassDelimiter);
 
 		items.Reverse();
 
 		items.ForEach(i =>
 		{
 			sb.Append(i)
-				.Append(NESTED_CLASS_DELIMITER);
+				.Append(NestedClassDelimiter);
 		});
 
 		sb.Append(source.Identifier.Text);
