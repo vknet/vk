@@ -273,6 +273,21 @@ public interface IMessagesCategoryAsync
 	Task<ReadOnlyCollection<MessagesSendResult>> SendToUserIdsAsync(MessagesSendParams @params);
 
 	/// <summary>
+	/// Посылает личное сообщение сразу нескольким адресатам (до 100 за 1 запрос).
+	/// </summary>
+	/// <param name="params"> Параметры запроса. </param>
+	/// <returns>
+	/// Возвращается идентификатор отправленного сообщения.
+	/// </returns>
+	/// <exception cref="System.ArgumentException"> Message can not be <c> null </c>. </exception>
+	/// <remarks>
+	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+	/// содержащей Settings.Messages
+	/// Страница документации ВКонтакте http://vk.com/dev/messages.send
+	/// </remarks>
+	Task<ReadOnlyCollection<MessagesSendResult>> SendToPeerIdsAsync(MessagesSendParams @params);
+
+	/// <summary>
 	/// Восстанавливает удаленное сообщение.
 	/// </summary>
 	/// <param name="messageId">

@@ -93,6 +93,13 @@ public class MessagesSendParams
 	public long? PeerId { get; set; }
 
 	/// <summary>
+	/// Идентификаторы назначения. Для групповой беседы: 2000000000 + id беседы. Для
+	/// сообщества: -id сообщества. Максимальное количество элементов: 100.
+	/// </summary>
+	[JsonProperty("peer_ids")]
+	public IEnumerable<long> PeerIds { get; set; }
+
+	/// <summary>
 	/// Идентификатор беседы, к которой будет относиться сообщение.
 	/// </summary>
 	[JsonProperty("chat_id")]

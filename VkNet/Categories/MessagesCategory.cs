@@ -247,6 +247,11 @@ public partial class MessagesCategory : IMessagesCategory
 			throw new ArgumentException($"This method not intended to use with many target users. Use {nameof(SendToUserIds)} instead.");
 		}
 
+		if (@params.PeerIds != null && @params.PeerIds.Any())
+		{
+			throw new ArgumentException($"This method not intended to use with many target peers. Use {nameof(SendToPeerIds)} instead.");
+		}
+
 		if (_vk.VkApiVersion.IsGreaterThanOrEqual(5, 90) && @params.RandomId == null)
 		{
 			throw new ArgumentException($"{nameof(@params.RandomId)} обязательное значение.");
@@ -339,7 +344,13 @@ public partial class MessagesCategory : IMessagesCategory
 	}
 
 	/// <inheritdoc />
-	public ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params) => _vk.Call("messages.send",
+	public ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params) {
+		if (@params.PeerIds != null && @params.PeerIds.Any())
+		{
+			throw new ArgumentException($"This method not intended to use with many target peers. Use {nameof(SendToPeerIds)} instead.");
+		}
+
+		return _vk.Call("messages.send",
 			new()
 			{
 				{
@@ -424,6 +435,110 @@ public partial class MessagesCategory : IMessagesCategory
 				}
 			})
 		.ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
+	}
+
+	/// <inheritdoc />
+	public ReadOnlyCollection<MessagesSendResult> SendToPeerIds(MessagesSendParams @params)
+	{
+		if (@params.PeerIds == null || !@params.PeerIds.Any())
+		{
+			throw new ArgumentException("PeerIds cannot be null or empty");
+		}
+
+		if (@params.PeerId != null || @params.UserId != null)
+		{
+			throw new ArgumentException($"This method not intended to use with PeerId or UserId. Use {nameof(Send)} instead.");
+		}
+
+		if (@params.UserIds != null && @params.UserIds.Any())
+		{
+			throw new ArgumentException($"This method not intended to use with many target users. Use {nameof(SendToUserIds)} instead.");
+		}
+
+		return _vk.Call("messages.send",
+			new()
+			{
+				{
+					"domain", @params.Domain
+				},
+				{
+					"title", @params.Title
+				},
+				{
+					"chat_id", @params.ChatId
+				},
+				{
+					"message", @params.Message
+				},
+				{
+					"random_id", @params.RandomId
+				},
+				{
+					"lat", @params.Lat
+				},
+				{
+					"long", @params.Longitude
+				},
+				{
+					"attachment", @params.Attachments
+				},
+				{
+					"reply_to", @params.ReplyTo
+				},
+				{
+					"forward_messages", @params.ForwardMessages
+				},
+				{
+					"forward", @params.Forward != null
+						? JsonConvert.SerializeObject(@params.Forward)
+						: ""
+				},
+				{
+					"keyboard", @params.Keyboard != null
+						? JsonConvert.SerializeObject(@params.Keyboard)
+						: ""
+				},
+				{
+					"sticker_id", @params.StickerId
+				},
+				{
+					"peer_id", @params.PeerId
+				},
+				{
+					"peer_ids", @params.PeerIds
+				},
+				{
+					"payload", @params.Payload
+				},
+				{
+					"content_source", @params.ContentSource != null
+						? JsonConvert.SerializeObject(@params.ContentSource)
+						: ""
+				},
+				{
+					"group_id", @params.GroupId
+				},
+				{
+					"dont_parse_links", @params.DontParseLinks
+				},
+				{
+					"disable_mentions", @params.DisableMentions
+				},
+				{
+					"intent", @params.Intent
+				},
+				{
+					"subscribe_id", @params.SubscribeId
+				},
+				{
+					"template", @params.Template != null
+						? JsonConvert.SerializeObject(@params.Template)
+						: ""
+				}
+			})
+		.ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
+	}
+
 
 	/// <inheritdoc />
 	public ulong DeleteConversation(long? userId, long? peerId = null, ulong? groupId = null)
