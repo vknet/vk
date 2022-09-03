@@ -295,7 +295,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(Sex.Male);
 
 		user.Nickname.Should()
-			.Be(string.Empty);
+			.BeEmpty();
 
 		user.Domain.Should()
 			.Be("durov");
@@ -409,8 +409,8 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Counters.Pages.Should()
 			.Be(51);
 
-		user.Universities.Count.Should()
-			.Be(1);
+		user.Universities.Should()
+			.ContainSingle();
 
 		user.Universities[0]
 			.Id.Should()
@@ -432,8 +432,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Graduation.Should()
 			.Be(2006);
 
-		user.Schools.Count.Should()
-			.Be(2);
+		user.Schools.Should()
+			.HaveCount(2);
 
 		user.Schools[0]
 			.Id.Should()
@@ -503,8 +503,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.TypeStr.Should()
 			.Be("Гимназия");
 
-		user.Relatives.Count.Should()
-			.Be(0);
+		user.Relatives.Should()
+			.BeEmpty();
 	}
 
 	[Fact]
@@ -769,7 +769,7 @@ public class UsersCategoryTest : CategoryBaseTest
 
 		user.Schools[0]
 			.Class.Should()
-			.Be(string.Empty);
+			.BeEmpty();
 
 		user.Schools[1]
 			.Id.Should()
@@ -1111,7 +1111,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(Sex.Female);
 
 		user1.Nickname.Should()
-			.Be(string.Empty);
+			.BeEmpty();
 
 		user1.Domain.Should()
 			.Be("id239897398");
@@ -1282,7 +1282,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeFalse();
 
 		group.IsMember.Should()
-			.Be(false);
+			.BeFalse();
 
 		group.PhotoPreviews.Photo50.Should()
 			.Be(new Uri("http://cs412129.vk.me/v412129558/6cea/T3jVq9A5hN4.jpg"));
@@ -1315,10 +1315,10 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(GroupType.Page);
 
 		group1.IsAdmin.Should()
-			.Be(false);
+			.BeFalse();
 
 		group1.IsMember.Should()
-			.Be(false);
+			.BeFalse();
 
 		group1.PhotoPreviews.Photo50.Should()
 			.Be(new Uri("http://cs417031.vk.me/v417031989/59cb/65zF-xnOQsk.jpg"));
@@ -1413,6 +1413,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		maria.Should()
 			.NotBeNull();
 
+		// ReSharper disable PossibleNullReferenceException
 		maria.Id.Should()
 			.Be(165614770);
 
@@ -1428,9 +1429,11 @@ public class UsersCategoryTest : CategoryBaseTest
 		maria.Career.Should()
 			.HaveCount(1);
 
-		(maria.Career.FirstOrDefault()
-				?.Until).Should()
-			.Be(9223372036854777856);
+		maria.Career.Should()
+			.SatisfyRespectively(x => x.Until.Should()
+				.Be(9223372036854777856));
+
+		// ReSharper restore PossibleNullReferenceException
 	}
 
 	[Fact]

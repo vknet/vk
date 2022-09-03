@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using FluentAssertions;
+using FluentAssertions.Extensions;
 using Newtonsoft.Json;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -22,7 +23,7 @@ public class DateTimeToStringFormatConverterTests : BaseTest
 			.NotBeNull();
 
 		result.Date.Should()
-			.Be(new(2018, 11, 5));
+			.Be(5.November(2018));
 	}
 
 	[Fact]

@@ -32,8 +32,8 @@ public class ExecuteErrorsTests : BaseTest
 		var ex = ExecuteErrorsHandler.GetExecuteExceptions(Json);
 
 		// Assert
-		ex.InnerExceptions.Count.Should()
-			.Be(3);
+		ex.InnerExceptions.Should()
+			.HaveCount(3);
 	}
 
 	[Fact]

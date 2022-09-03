@@ -182,7 +182,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.Be("Я");
 
 		album.Description.Should()
-			.Be(string.Empty);
+			.BeEmpty();
 
 		album.Created.Should()
 			.Be(new(2011,
@@ -493,7 +493,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.Be(320);
 
 		photo.Text.Should()
-			.Be(string.Empty);
+			.BeEmpty();
 
 		photo.CreateTime.Should()
 			.Be(DateHelper.TimeStampToDateTime(1415629651));

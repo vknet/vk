@@ -142,8 +142,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 		messages.Should()
 			.NotBeNull();
 
-		messages.Messages.Count.Should()
-			.Be(2);
+		messages.Messages.Should()
+			.HaveCount(2);
 
 		var message = messages.Messages.FirstOrDefault();
 
@@ -355,10 +355,14 @@ public class MessagesCategoryTest : MessagesBaseTests
 				null)
 			.FirstOrDefault();
 
-		msg?.Id.Should()
+		msg.Should()
+			.NotBeNull();
+
+		// ReSharper disable PossibleNullReferenceException
+		msg.Id.Should()
 			.Be(265999);
 
-		msg?.Date.Should()
+		msg.Date.Should()
 			.Be(new(2020,
 				2,
 				12,
@@ -367,14 +371,16 @@ public class MessagesCategoryTest : MessagesBaseTests
 				42,
 				DateTimeKind.Utc));
 
-		(msg?.Type).Should()
+		msg.Type.Should()
 			.Be(MessageType.Sended);
 
-		(msg?.PeerId).Should()
+		msg.PeerId.Should()
 			.Be(228907945);
 
-		(msg?.Attachments.Count).Should()
-			.Be(1);
+		msg.Attachments.Should()
+			.HaveCount(1);
+
+		// ReSharper restore PossibleNullReferenceException
 	}
 
 	[Fact]
@@ -608,7 +614,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be(PostType.Post);
 
 		wall.Text.Should()
-			.Be(string.Empty);
+			.BeEmpty();
 
 		wall.Comments.Count.Should()
 			.Be(3);
@@ -626,7 +632,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.BeFalse();
 
 		wall.Likes.CanPublish.Should()
-			.Be(true);
+			.BeTrue();
 
 		wall.Reposts.Count.Should()
 			.Be(953);
@@ -835,22 +841,22 @@ public class MessagesCategoryTest : MessagesBaseTests
 			Count = 3
 		});
 
-		var msgs = result.Items;
-
 		result.Count.Should()
 			.Be(18);
 
-		msgs.Should()
+		var messages = result.Items.ToList();
+
+		messages.Should()
 			.NotBeNull();
 
-		msgs.Should()
+		messages.Should()
 			.HaveCount(3);
 
-		msgs[2]
+		messages[2]
 			.Id.Should()
 			.Be(131291);
 
-		msgs[2]
+		messages[2]
 			.Date.Should()
 			.Be(new(2015,
 				10,
@@ -860,27 +866,27 @@ public class MessagesCategoryTest : MessagesBaseTests
 				24,
 				DateTimeKind.Utc));
 
-		msgs[2]
+		messages[2]
 			.UserId.Should()
 			.Be(310881357);
 
-		msgs[2]
+		messages[2]
 			.ReadState.Should()
 			.Be(MessageReadState.Readed);
 
-		msgs[2]
+		messages[2]
 			.Title.Should()
 			.Be(" ... ");
 
-		msgs[2]
+		messages[2]
 			.Body.Should()
 			.Be("привет, антон))");
 
-		msgs[1]
+		messages[1]
 			.Id.Should()
 			.Be(131304);
 
-		msgs[1]
+		messages[1]
 			.Date.Should()
 			.Be(new(2015,
 				10,
@@ -890,27 +896,27 @@ public class MessagesCategoryTest : MessagesBaseTests
 				57,
 				DateTimeKind.Utc));
 
-		msgs[1]
+		messages[1]
 			.UserId.Should()
 			.Be(72815776);
 
-		msgs[1]
+		messages[1]
 			.ReadState.Should()
 			.Be(MessageReadState.Readed);
 
-		msgs[1]
+		messages[1]
 			.Title.Should()
 			.Be(" ... ");
 
-		msgs[1]
+		messages[1]
 			.Body.Should()
 			.Be("Привет");
 
-		msgs[0]
+		messages[0]
 			.Id.Should()
 			.Be(131307);
 
-		msgs[0]
+		messages[0]
 			.Date.Should()
 			.Be(new(2015,
 				10,
@@ -920,19 +926,19 @@ public class MessagesCategoryTest : MessagesBaseTests
 				26,
 				DateTimeKind.Utc));
 
-		msgs[0]
+		messages[0]
 			.UserId.Should()
 			.Be(72815776);
 
-		msgs[0]
+		messages[0]
 			.ReadState.Should()
 			.Be(MessageReadState.Readed);
 
-		msgs[0]
+		messages[0]
 			.Title.Should()
 			.Be(" ... ");
 
-		msgs[0]
+		messages[0]
 			.Body.Should()
 			.Be("Привет");
 	}

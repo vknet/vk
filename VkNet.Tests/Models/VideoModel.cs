@@ -150,8 +150,8 @@ public class VideoModel : BaseTest
 		timelineThumbs.FrameWidth.Should()
 			.Be(320.0f);
 
-		timelineThumbs.Links.Count.Should()
-			.Be(24);
+		timelineThumbs.Links.Should()
+			.HaveCount(24);
 
 		timelineThumbs.IsUv.Should()
 			.BeTrue();

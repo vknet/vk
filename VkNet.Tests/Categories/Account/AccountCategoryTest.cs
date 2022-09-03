@@ -87,9 +87,9 @@ public class AccountCategoryTest : CategoryBaseTest
 
 		ReadJsonFile(JsonPaths.EmptyVkCollection);
 
-		Api.Account.GetBanned()
-			.Count.Should()
-			.Be(0);
+		var result = Api.Account.GetBanned();
+
+		result.Count.Should().Be(0);
 	}
 
 	[Fact]
@@ -226,7 +226,7 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be("RU");
 
 		info.HttpsRequired.Should()
-			.Be(true);
+			.BeTrue();
 
 		info.Intro.Should()
 			.Be(10);

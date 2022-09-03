@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -80,10 +78,10 @@ public class AdsGetAdsTests : CategoryBaseTest
 			.Be(AdPlatform.All);
 
 		ad.AdPlatformNoAdNetwork.Should()
-			.Be(true);
+			.BeTrue();
 
 		ad.AdPPlatformNoWall.Should()
-			.Be(true);
+			.BeTrue();
 
 		ad.CreateTime.Should()
 			.Be(new(2018, 5, 23, 9, 59,

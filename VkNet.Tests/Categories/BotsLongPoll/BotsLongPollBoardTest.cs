@@ -1,6 +1,4 @@
-using System.Linq;
 using FluentAssertions;
-using VkNet.Model.RequestParams;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -12,9 +10,9 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNew));
 
-		const int userId = 123;
-		const int groupId = 1234;
-		const string text = "test";
+		const int expectedUserId = 123;
+		const int expectedGroupId = 1234;
+		const string expectedText = "test";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -24,19 +22,18 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				x.GroupId.Should()
+					.Be(expectedGroupId);
 
-		update.GroupId.Should()
-			.Be(groupId);
+				x.BoardPost.FromId.Should()
+					.Be(expectedUserId);
 
-		update.BoardPost.FromId.Should()
-			.Be(userId);
-
-		update.BoardPost.Text.Should()
-			.Be(text);
-
-		update.BoardPost.TopicOwnerId.Should()
-			.Be(-groupId);
+				x.BoardPost.Text.Should()
+					.Be(expectedText);
+			});
 	}
 
 	[Fact]
@@ -44,9 +41,9 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNewFirst));
 
-		const int groupId = 1234;
-		const string text = "test";
-		const int topicId = 6;
+		const int expectedGroupId = 1234;
+		const string expectedText = "test";
+		const int expectedTopicId = 6;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -56,22 +53,24 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				x.BoardPost.FromId.Should()
+					.Be(-expectedGroupId);
 
-		update.BoardPost.FromId.Should()
-			.Be(-groupId);
+				x.GroupId.Should()
+					.Be(expectedGroupId);
 
-		update.GroupId.Should()
-			.Be(groupId);
+				x.BoardPost.Text.Should()
+					.Be(expectedText);
 
-		update.BoardPost.Text.Should()
-			.Be(text);
+				x.BoardPost.TopicOwnerId.Should()
+					.Be(-expectedGroupId);
 
-		update.BoardPost.TopicOwnerId.Should()
-			.Be(-groupId);
-
-		update.BoardPost.TopicId.Should()
-			.Be(topicId);
+				x.BoardPost.TopicId.Should()
+					.Be(expectedTopicId);
+			});
 	}
 
 	[Fact]
@@ -79,8 +78,8 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostEditTest));
 
-		const int groupId = 1234;
-		const string text = "test1";
+		const int expectedGroupId = 1234;
+		const string expectedText = "test1";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -90,19 +89,21 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				x.BoardPost.FromId.Should()
+					.Be(-expectedGroupId);
 
-		update.BoardPost.FromId.Should()
-			.Be(-groupId);
+				x.GroupId.Should()
+					.Be(expectedGroupId);
 
-		update.GroupId.Should()
-			.Be(groupId);
+				x.BoardPost.Text.Should()
+					.Be(expectedText);
 
-		update.BoardPost.Text.Should()
-			.Be(text);
-
-		update.BoardPost.TopicOwnerId.Should()
-			.Be(-groupId);
+				x.BoardPost.TopicOwnerId.Should()
+					.Be(-expectedGroupId);
+			});
 	}
 
 	[Fact]
@@ -110,9 +111,9 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostRestoreTest));
 
-		const int userId = 123;
-		const int groupId = 1234;
-		const string text = "test";
+		const int expectedUserId = 123;
+		const int expectedGroupId = 1234;
+		const string expectedText = "test";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -122,19 +123,21 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				x.BoardPost.FromId.Should()
+					.Be(expectedUserId);
 
-		update.BoardPost.FromId.Should()
-			.Be(userId);
+				x.GroupId.Should()
+					.Be(expectedGroupId);
 
-		update.GroupId.Should()
-			.Be(groupId);
+				x.BoardPost.Text.Should()
+					.Be(expectedText);
 
-		update.BoardPost.Text.Should()
-			.Be(text);
-
-		update.BoardPost.TopicOwnerId.Should()
-			.Be(-groupId);
+				x.BoardPost.TopicOwnerId.Should()
+					.Be(-expectedGroupId);
+			});
 	}
 
 	[Fact]
@@ -142,9 +145,9 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostDeleteTest));
 
-		const int groupId = 1234;
-		const int topicId = 6;
-		const int id = 3;
+		const int expectedGroupId = 1234;
+		const int expectedTopicId = 6;
+		const int expectedId = 3;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -154,18 +157,20 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				x.GroupId.Should()
+					.Be(expectedGroupId);
 
-		update.GroupId.Should()
-			.Be(groupId);
+				x.BoardPostDelete.TopicOwnerId.Should()
+					.Be(-expectedGroupId);
 
-		update.BoardPostDelete.TopicOwnerId.Should()
-			.Be(-groupId);
+				x.BoardPostDelete.TopicId.Should()
+					.Be(expectedTopicId);
 
-		update.BoardPostDelete.TopicId.Should()
-			.Be(topicId);
-
-		update.BoardPostDelete.Id.Should()
-			.Be(id);
+				x.BoardPostDelete.Id.Should()
+					.Be(expectedId);
+			});
 	}
 }

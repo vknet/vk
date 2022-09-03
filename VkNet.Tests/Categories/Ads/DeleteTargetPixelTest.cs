@@ -23,6 +23,6 @@ public class DeleteTargetPixelTest : CategoryBaseTest
 		});
 
 		result.Should()
-			.Be(true);
+			.BeTrue();
 	}
 }

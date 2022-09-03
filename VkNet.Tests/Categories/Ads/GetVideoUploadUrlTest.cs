@@ -17,8 +17,7 @@ public class GetVideoUploadUrlTest : CategoryBaseTest
 
 		var url = Api.Ads.GetVideoUploadUrl();
 
-		url.ToString()
-			.Should()
+		url.Should()
 			.Be(
 				"https://cs505216.vk.me/upload_video_new.php?act=add_video&oid=16000365&mid=16000365&vid=456239123&fid=0&hash=7d17f2a1e9398a6e363c&tag=2791ceb3&vk=1&full_response=1&swfupload=1");
 	}

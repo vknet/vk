@@ -291,10 +291,10 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(GroupType.Page);
 
 		group.IsAdmin.Should()
-			.Be(false);
+			.BeFalse();
 
 		group.IsMember.Should()
-			.Be(true);
+			.BeTrue();
 
 		group.BanInfo.Comment.Should()
 			.Be("Сам попросил :D");
@@ -1304,7 +1304,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeFalse();
 
 		group.IsMember.Should()
-			.Be(false);
+			.BeFalse();
 
 		group.PhotoPreviews.Photo50.Should()
 			.Be(new Uri("http://vk.com/images/community_50.gif"));
@@ -1352,37 +1352,23 @@ public class GroupsCategoryTest : CategoryBaseTest
 		ids.Should()
 			.HaveCount(8);
 
-		ids[0]
-			.Id.Should()
-			.Be(116446865);
-
-		ids[1]
-			.Id.Should()
-			.Be(485839);
-
-		ids[2]
-			.Id.Should()
-			.Be(23483719);
-
-		ids[3]
-			.Id.Should()
-			.Be(3428459);
-
-		ids[4]
-			.Id.Should()
-			.Be(153698746);
-
-		ids[5]
-			.Id.Should()
-			.Be(16080868);
-
-		ids[6]
-			.Id.Should()
-			.Be(5054657);
-
-		ids[7]
-			.Id.Should()
-			.Be(38690458);
+		ids.Should()
+			.SatisfyRespectively(x => x.Id.Should()
+					.Be(116446865),
+				x => x.Id.Should()
+					.Be(485839),
+				x => x.Id.Should()
+					.Be(23483719),
+				x => x.Id.Should()
+					.Be(3428459),
+				x => x.Id.Should()
+					.Be(153698746),
+				x => x.Id.Should()
+					.Be(16080868),
+				x => x.Id.Should()
+					.Be(5054657),
+				x => x.Id.Should()
+					.Be(38690458));
 	}
 
 	[Fact]
@@ -1407,13 +1393,11 @@ public class GroupsCategoryTest : CategoryBaseTest
 		ids.Should()
 			.HaveCount(2);
 
-		ids[0]
-			.Id.Should()
-			.Be(5);
-
-		ids[1]
-			.Id.Should()
-			.Be(6);
+		ids.Should()
+			.SatisfyRespectively(x => x.Id.Should()
+					.Be(5),
+				x => x.Id.Should()
+					.Be(6));
 	}
 
 	[Fact]

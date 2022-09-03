@@ -69,8 +69,8 @@ public class AdsCategoryTest : CategoryBaseTest
 			IncludeDeleted = true
 		});
 
-		campaigns.Count.Should()
-			.Be(4);
+		campaigns.Should()
+			.HaveCount(4);
 
 		// ID кампании
 		campaigns[3]
@@ -92,8 +92,8 @@ public class AdsCategoryTest : CategoryBaseTest
 			IncludeDeleted = true
 		});
 
-		campaigns.Count.Should()
-			.Be(6);
+		campaigns.Should()
+			.HaveCount(6);
 
 		// ID кампании
 		campaigns[3]

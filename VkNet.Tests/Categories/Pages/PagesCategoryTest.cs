@@ -47,10 +47,10 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be("Свежие новости");
 
 		page.CurrentUserCanEdit.Should()
-			.Be(true);
+			.BeTrue();
 
 		page.CurrentUserCanEditAccess.Should()
-			.Be(true);
+			.BeTrue();
 
 		page.WhoCanEdit.Should()
 			.Be(PageAccessKind.OnlyAdministrators);
@@ -96,10 +96,10 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be("Свежие новости");
 
 		page.CurrentUserCanEdit.Should()
-			.Be(true);
+			.BeTrue();
 
 		page.CurrentUserCanEditAccess.Should()
-			.Be(true);
+			.BeTrue();
 
 		page.WhoCanEdit.Should()
 			.Be(PageAccessKind.OnlyAdministrators);
@@ -168,7 +168,7 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be("test");
 
 		version.CurrentUserCanEdit.Should()
-			.Be(true);
+			.BeTrue();
 
 		version.WhoCanView.Should()
 			.Be(PageAccessKind.OnlyAdministrators);

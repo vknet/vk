@@ -55,8 +55,8 @@ public class WallCategoryTest : CategoryBaseTest
 			.Be(100u);
 
 		posts.WallPosts[0]
-			.Attachments.Count.Should()
-			.Be(1);
+			.Attachments.Should()
+			.ContainSingle();
 
 		var doc = (Document) posts.WallPosts[0]
 			.Attachment.Instance;
@@ -110,15 +110,15 @@ public class WallCategoryTest : CategoryBaseTest
 		count.TotalCount.Should()
 			.Be(42);
 
-		count.WallPosts.Count.Should()
-			.Be(1);
+		count.WallPosts.Should()
+			.ContainSingle();
 
 		count.WallPosts[0]
 			.Id.Should()
 			.Be(41);
 
-		count.Profiles.Count.Should()
-			.Be(1);
+		count.Profiles.Should()
+			.ContainSingle();
 
 		count.Profiles[0]
 			.Id.Should()

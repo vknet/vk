@@ -171,7 +171,7 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be(PhotoSizeType.S);
 
 		photo.Text.Should()
-			.Be("");
+			.BeEmpty();
 
 		photo.CreateTime.Should()
 			.Be(DateHelper.TimeStampToDateTime(1447419206));
@@ -227,7 +227,7 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be(new Uri("http://cs9591.vk.me/u00001/136592355/w_62aef149.jpg"));
 
 		photo.Text.Should()
-			.Be("");
+			.BeEmpty();
 
 		photo.CreateTime.Should()
 			.Be(DateHelper.TimeStampToDateTime(1307628890));
@@ -263,7 +263,7 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be(530);
 
 		photo2.Text.Should()
-			.Be("");
+			.BeEmpty();
 
 		photo2.PostId.Should()
 			.Be(88997);
@@ -311,7 +311,7 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be(PostSourceType.Vk);
 
 		wallPost.Comments.CanPost.Should()
-			.Be(true);
+			.BeTrue();
 
 		wallPost.Comments.Count.Should()
 			.Be(9);
@@ -320,16 +320,16 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be(413);
 
 		wallPost.Likes.UserLikes.Should()
-			.Be(true);
+			.BeTrue();
 
 		wallPost.Likes.CanLike.Should()
-			.Be(false);
+			.BeFalse();
 
 		wallPost.Likes.CanPublish.Should()
-			.Be(true);
+			.BeTrue();
 
 		wallPost.Reposts.UserReposted.Should()
-			.Be(false);
+			.BeFalse();
 
 		wallPost.Reposts.Count.Should()
 			.Be(91);
@@ -404,7 +404,7 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be(new Uri("https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg"));
 
 		profile.Online.Should()
-			.Be(true);
+			.BeTrue();
 
 		var group = posts.Groups.FirstOrDefault();
 
@@ -427,10 +427,10 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be(GroupType.Page);
 
 		group.IsAdmin.Should()
-			.Be(false);
+			.BeFalse();
 
 		group.IsMember.Should()
-			.Be(true);
+			.BeTrue();
 
 		group.PhotoPreviews.Photo50.Should()
 			.Be(new Uri("https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg"));
@@ -478,7 +478,7 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be(PostSourceType.Vk);
 
 		wallPost.Comments.CanPost.Should()
-			.Be(true);
+			.BeTrue();
 
 		wallPost.Comments.Count.Should()
 			.Be(9);
@@ -487,16 +487,16 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be(413);
 
 		wallPost.Likes.UserLikes.Should()
-			.Be(true);
+			.BeTrue();
 
 		wallPost.Likes.CanLike.Should()
-			.Be(false);
+			.BeFalse();
 
 		wallPost.Likes.CanPublish.Should()
-			.Be(true);
+			.BeTrue();
 
 		wallPost.Reposts.UserReposted.Should()
-			.Be(false);
+			.BeFalse();
 
 		wallPost.Reposts.Count.Should()
 			.Be(91);

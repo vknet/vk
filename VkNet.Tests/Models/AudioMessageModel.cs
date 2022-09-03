@@ -78,6 +78,6 @@ public class AudioMessageModel : BaseTest
 			.Be(new Uri("https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.mp3"));
 
 		audioMessage.Transcript.Should()
-			.Be(null);
+			.BeNull();
 	}
 }

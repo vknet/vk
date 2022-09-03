@@ -175,7 +175,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			.Be(49.8f);
 
 		donutNew.Error.Should()
-			.Be(false);
+			.BeFalse();
 
 		update.GroupId.Should()
 			.Be(1234);
