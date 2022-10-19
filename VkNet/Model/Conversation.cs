@@ -85,6 +85,6 @@ public class Conversation
 	/// <summary>
 	/// Клавиатура.
 	/// </summary>
-	[JsonProperty("current_keyboard ")]
+	[JsonProperty("current_keyboard")]
 	public MessageKeyboard CurrentKeyboard { get; set; }
 }

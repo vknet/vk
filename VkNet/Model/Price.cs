@@ -31,7 +31,7 @@ public class Price
 	/// <summary>
 	/// Текстовое представлением старой цены.
 	/// </summary>
-	[JsonProperty("old_amount_text ")]
+	[JsonProperty("old_amount_text")]
 	public string OldAmountText { get; set; }
 
 	/// <summary>
