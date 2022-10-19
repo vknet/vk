@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
-		<VersionPrefix>1.71.0</VersionPrefix>
+		<VersionPrefix>1.72.0</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -23,7 +23,7 @@
 			Обсуждение в Telegram: https://t.me/VkDotNet
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: https://github.com/vknet/vk/milestone/47?closed=1
+			Список изменений: https://github.com/vknet/vk/milestone/49?closed=1
 		</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
@@ -50,12 +50,12 @@
 
 	<ItemGroup>
 		<PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="all" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.45" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" /> 
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.44.0.52574" PrivateAssets="all" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.47.0.55603" PrivateAssets="all" />
 		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.2" />
 		<PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
 	</ItemGroup>
 
