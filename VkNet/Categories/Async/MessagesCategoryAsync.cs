@@ -40,11 +40,6 @@ public partial class MessagesCategory
 
 	/// <inheritdoc />
 	public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
-													bool? deleteForAll = null) => TypeHelper.TryInvokeMethodAsync(() =>
-		Delete(messageIds, spam, groupId, deleteForAll));
-
-	/// <inheritdoc />
-	public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
             bool deleteForAll = false) => TypeHelper.TryInvokeMethodAsync(
 		() => Delete(messageIds, spam, groupId, deleteForAll));
 	
