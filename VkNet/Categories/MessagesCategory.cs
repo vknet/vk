@@ -800,7 +800,7 @@ public partial class MessagesCategory : IMessagesCategory
             //Если вы авторизованы с ключом доступа сообщества, то вы не можете удалять сообщения администратора беседы(также, как и не будете иметь данной возможности,
             //удаляя сообщения администратора, будучи обычным пользователем в беседе)
             //(На момент вызова возникнет ошибка запроса).
-            var response = Client.vkService.Call("messages.delete", parameters);
+            var response = _vk.Call("messages.delete", parameters);
 
             var result = new Dictionary<ulong, bool>();
 
