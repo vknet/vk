@@ -44,21 +44,14 @@ public partial class MessagesCategory
 		Delete(messageIds, spam, groupId, deleteForAll));
 
 	/// <inheritdoc />
-	public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> conversationMessageIds, ulong peerId, bool? spam = null,
-													ulong? groupId = null, bool? deleteForAll = null) => TypeHelper.TryInvokeMethodAsync(
-		() =>
-			Delete(conversationMessageIds, peerId, spam, groupId, deleteForAll));
-
+	public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
+            bool deleteForAll = false) => TypeHelper.TryInvokeMethodAsync(
+		() => Delete(messageIds, spam, groupId, deleteForAll));
+	
 	/// <inheritdoc />
-	public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> conversationMessageIds, ulong? peerId, bool? spam = null,
-													ulong? groupId = null,
-													bool? deleteForAll = null) => TypeHelper.TryInvokeMethodAsync(() =>
-		Delete(null,
-			conversationMessageIds,
-			peerId,
-			spam,
-			groupId,
-			deleteForAll));
+	public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> conversationMessageIds, ulong peerId, ulong? groupId = null, bool? spam = null,
+            bool deleteForAll = false) => TypeHelper.TryInvokeMethodAsync(
+		() => Delete(conversationMessageIds, peerId, groupId, spam, deleteForAll));
 
 	/// <inheritdoc />
 	public Task<Chat> DeleteChatPhotoAsync(ulong chatId, ulong? groupId = null) =>
