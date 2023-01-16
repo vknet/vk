@@ -103,7 +103,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.delete
 	/// </remarks>
 	Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
-												bool? deleteForAll = null);
+												bool deleteForAll = false);
 
 	/// <summary>
 	/// Удаляет сообщение в беседе.
@@ -134,7 +134,7 @@ public interface IMessagesCategoryAsync
 	/// </remarks>
 	Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> conversationMessageIds, ulong peerId, bool? spam = null,
 												ulong? groupId = null,
-												bool? deleteForAll = null);
+												bool deleteForAll = false);
 
 	/// <summary>
 	/// Позволяет удалить фотографию мультидиалога.

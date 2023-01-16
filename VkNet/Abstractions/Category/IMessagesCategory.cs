@@ -26,12 +26,12 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync"/>
 	IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
-									bool? deleteForAll = null);
+									bool deleteForAll = false);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync"/>
 	IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> conversationMessageIds, ulong peerId,
 									bool? spam = null, ulong? groupId = null,
-									bool? deleteForAll = null);
+									bool deleteForAll = false);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteChatPhotoAsync"/>
 	Chat DeleteChatPhoto(out ulong messageId, ulong chatId, ulong? groupId = null);

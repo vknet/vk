@@ -42,11 +42,11 @@ public partial class MessagesCategory
 	public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
             bool deleteForAll = false) => TypeHelper.TryInvokeMethodAsync(
 		() => Delete(messageIds, spam, groupId, deleteForAll));
-	
+
 	/// <inheritdoc />
-	public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> conversationMessageIds, ulong peerId, ulong? groupId = null, bool? spam = null,
+	public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> conversationMessageIds, ulong peerId, bool? spam = null, ulong? groupId = null,
             bool deleteForAll = false) => TypeHelper.TryInvokeMethodAsync(
-		() => Delete(conversationMessageIds, peerId, groupId, spam, deleteForAll));
+		() => Delete(conversationMessageIds, peerId, spam, groupId, deleteForAll));
 
 	/// <inheritdoc />
 	public Task<Chat> DeleteChatPhotoAsync(ulong chatId, ulong? groupId = null) =>
