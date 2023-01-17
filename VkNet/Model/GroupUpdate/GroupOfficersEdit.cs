@@ -13,13 +13,13 @@ namespace VkNet.Model.GroupUpdate;
 public class GroupOfficersEdit : IGroupUpdate
 {
 	/// <summary>
-	/// Идентификатор пользователя
+	/// Идентификатор пользователя, чьи полномочия были изменены
 	/// </summary>
 	[JsonProperty("user_id")]
 	public long? UserId { get; set; }
 
 	/// <summary>
-	/// Идентификатор администратора, который внёс пользователя в чёрный список
+	/// Идентификатор руководителя, который внёс изменения
 	/// </summary>
 	[JsonProperty("admin_id")]
 	public long? AdminId { get; set; }
