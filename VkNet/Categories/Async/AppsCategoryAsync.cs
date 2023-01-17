@@ -46,4 +46,7 @@ public partial class AppsCategory
 	/// <inheritdoc />
 	public Task<MiniAppPolicies> GetMiniAppPoliciesAsync(ulong appId) => TypeHelper.TryInvokeMethodAsync(func: () => GetMiniAppPolicies(appId: appId));
 
+	/// <inheritdoc />
+	public Task<AppGetScopesResult> GetScopesAsync(string type = "user") => TypeHelper.TryInvokeMethodAsync(func: () => GetScopes(type: type));
+
 }

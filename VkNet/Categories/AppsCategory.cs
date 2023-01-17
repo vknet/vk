@@ -183,4 +183,13 @@ public partial class AppsCategory : IAppsCategory
 				"app_id", appId
 			}
 		});
+
+	/// <inheritdoc />
+	public AppGetScopesResult GetScopes(string type = "user") => _vk.Call<AppGetScopesResult>("apps.getScopes",
+		new()
+		{
+			{
+				"type", type
+			}
+		});
 }

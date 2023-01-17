@@ -161,4 +161,16 @@ public interface IAppsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/apps.getMiniAppPolicies
 	/// </remarks>
 	Task<MiniAppPolicies> GetMiniAppPoliciesAsync(ulong appId);
+
+	/// <summary>
+	/// Возвращает данные о правах пользователя
+	/// </summary>
+	/// <param name="type"> Тип. По умолчанию user </param>
+	/// <returns>
+	/// После успешного выполнения возвращает массив scopes.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/apps.getScopes
+	/// </remarks>
+	Task<AppGetScopesResult> GetScopesAsync(string type = "user");
 }

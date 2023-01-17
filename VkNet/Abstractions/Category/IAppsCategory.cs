@@ -1,4 +1,5 @@
-﻿using VkNet.Enums.Filters;
+﻿using System.Collections.Generic;
+using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -36,4 +37,7 @@ public interface IAppsCategory : IAppsCategoryAsync
 
 	/// <inheritdoc cref="IAppsCategoryAsync.GetMiniAppPoliciesAsync"/>
 	MiniAppPolicies GetMiniAppPolicies(ulong appId);
+
+	/// <inheritdoc cref="IAppsCategoryAsync.GetScopesAsync"/>
+	AppGetScopesResult GetScopes(string type = "user");
 }
