@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -41,4 +42,8 @@ public partial class AppsCategory
 
 	/// <inheritdoc />
 	public Task<long> GetScoreAsync(long userId) => TypeHelper.TryInvokeMethodAsync(func: () => GetScore(userId: userId));
+
+	/// <inheritdoc />
+	public Task<MiniAppPolicies> GetMiniAppPoliciesAsync(ulong appId) => TypeHelper.TryInvokeMethodAsync(func: () => GetMiniAppPolicies(appId: appId));
+
 }

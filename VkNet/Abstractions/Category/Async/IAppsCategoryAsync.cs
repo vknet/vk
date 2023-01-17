@@ -149,4 +149,16 @@ public interface IAppsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/apps.getScore
 	/// </remarks>
 	Task<long> GetScoreAsync(long userId);
+
+	/// <summary>
+	/// Возвращает данные о политике конфиденциальности запрошенного приложения
+	/// </summary>
+	/// <param name="appId"> Идентификатор приложения </param>
+	/// <returns>
+	/// После успешного выполнения возвращает объект политики конфиденциальности.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/apps.getMiniAppPolicies
+	/// </remarks>
+	Task<MiniAppPolicies> GetMiniAppPoliciesAsync(ulong appId);
 }

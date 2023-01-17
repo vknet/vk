@@ -174,4 +174,13 @@ public partial class AppsCategory : IAppsCategory
 
 		return _vk.Call("apps.getScore", parameters);
 	}
+
+	/// <inheritdoc />
+	public MiniAppPolicies GetMiniAppPolicies(ulong appId) => _vk.Call<MiniAppPolicies>("apps.getMiniAppPolicies",
+		new()
+		{
+			{
+				"app_id", appId
+			}
+		});
 }

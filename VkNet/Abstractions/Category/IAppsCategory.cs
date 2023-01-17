@@ -33,4 +33,7 @@ public interface IAppsCategory : IAppsCategoryAsync
 
 	/// <inheritdoc cref="IAppsCategoryAsync.GetScoreAsync"/>
 	long GetScore(long userId);
+
+	/// <inheritdoc cref="IAppsCategoryAsync.GetMiniAppPoliciesAsync"/>
+	MiniAppPolicies GetMiniAppPolicies(ulong appId);
 }
