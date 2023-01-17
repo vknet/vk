@@ -1,4 +1,5 @@
-﻿using VkNet.Enums.Filters;
+﻿using System.Collections.Generic;
+using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -33,4 +34,16 @@ public interface IAppsCategory : IAppsCategoryAsync
 
 	/// <inheritdoc cref="IAppsCategoryAsync.GetScoreAsync"/>
 	long GetScore(long userId);
+
+	/// <inheritdoc cref="IAppsCategoryAsync.GetMiniAppPoliciesAsync"/>
+	MiniAppPolicies GetMiniAppPolicies(ulong appId);
+
+	/// <inheritdoc cref="IAppsCategoryAsync.GetScopesAsync"/>
+	AppGetScopesResult GetScopes(string type = "user");
+
+	/// <inheritdoc cref="IAppsCategoryAsync.PromoHasActiveGiftAsync"/>
+	bool PromoHasActiveGift(ulong promoId, ulong? userId = null);
+
+	/// <inheritdoc cref="IAppsCategoryAsync.PromoUseGiftAsync"/>
+	bool PromoUseGift(ulong promoId, ulong? userId = null);
 }

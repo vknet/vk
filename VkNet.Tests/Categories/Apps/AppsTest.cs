@@ -50,6 +50,34 @@ public class AppsTest : CategoryBaseTest
 	}
 
 	[Fact]
+	public void GetMiniAppPolicies()
+	{
+		Url = "https://api.vk.com/method/apps.getMiniAppPolicies";
+		ReadCategoryJsonPath(nameof(GetMiniAppPolicies));
+
+		var app = Api.Apps.GetMiniAppPolicies(6909581);
+
+		app.PrivacyPolicy.Should()
+			.Be("https://vk.com/dev/uprivacy");
+		app.Terms.Should()
+			.Be("https://vk.com/dev/uterms");
+	}
+
+	[Fact]
+	public void GetScopes()
+	{
+		Url = "https://api.vk.com/method/apps.getScopes";
+		ReadCategoryJsonPath(nameof(GetScopes));
+
+		var app = Api.Apps.GetScopes();
+
+		app.Items.FirstOrDefault().Name.Should()
+			.Be("friends");
+		app.Items.FirstOrDefault().Title.Should()
+			.Be("Friend list");
+	}
+
+	[Fact]
 	public void GetCatalog_NormalCase()
 	{
 		Url = "https://api.vk.com/method/apps.getCatalog";

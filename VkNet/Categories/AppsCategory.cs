@@ -174,4 +174,46 @@ public partial class AppsCategory : IAppsCategory
 
 		return _vk.Call("apps.getScore", parameters);
 	}
+
+	/// <inheritdoc />
+	public MiniAppPolicies GetMiniAppPolicies(ulong appId) => _vk.Call<MiniAppPolicies>("apps.getMiniAppPolicies",
+		new()
+		{
+			{
+				"app_id", appId
+			}
+		});
+
+	/// <inheritdoc />
+	public AppGetScopesResult GetScopes(string type = "user") => _vk.Call<AppGetScopesResult>("apps.getScopes",
+		new()
+		{
+			{
+				"type", type
+			}
+		});
+
+	/// <inheritdoc />
+	public bool PromoHasActiveGift(ulong promoId, ulong? userId = null) => _vk.Call("apps.promoHasActiveGift",
+		new()
+		{
+			{
+				"promo_id", promoId
+			},
+			{
+				"user_id", userId
+			}
+		});
+
+	/// <inheritdoc />
+	public bool PromoUseGift(ulong promoId, ulong? userId = null) => _vk.Call("apps.promoUseGift",
+		new()
+		{
+			{
+				"promo_id", promoId
+			},
+			{
+				"user_id", userId
+			}
+		});
 }

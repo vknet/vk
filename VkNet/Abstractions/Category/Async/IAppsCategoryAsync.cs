@@ -149,4 +149,58 @@ public interface IAppsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/apps.getScore
 	/// </remarks>
 	Task<long> GetScoreAsync(long userId);
+
+	/// <summary>
+	/// Возвращает данные о политике конфиденциальности запрошенного приложения
+	/// </summary>
+	/// <param name="appId"> Идентификатор приложения </param>
+	/// <returns>
+	/// После успешного выполнения возвращает объект политики конфиденциальности.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/apps.getMiniAppPolicies
+	/// </remarks>
+	Task<MiniAppPolicies> GetMiniAppPoliciesAsync(ulong appId);
+
+	/// <summary>
+	/// Возвращает данные о правах пользователя
+	/// </summary>
+	/// <param name="type"> Тип. По умолчанию user </param>
+	/// <returns>
+	/// После успешного выполнения возвращает массив scopes.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/apps.getScopes
+	/// </remarks>
+	Task<AppGetScopesResult> GetScopesAsync(string type = "user");
+
+	/// <summary>
+	/// Проверяет есть ли у пользователя подарок в игре.
+	/// </summary>
+	/// <param name="promoId"> Идентификатор промо-акции </param>
+	/// <param name="userId"> Идентификатор пользователя. Используется только при запросе с сервисным токеном. </param>
+	/// <returns>
+	/// После успешного выполнения возвращает
+	/// 1 - у пользователя есть активный подарок, нужно выдать подарок пользователю в игре и затем погасить его используя метод apps.promoUseGift.
+	/// 0 - у пользователя нет активного подарка в вашей игре.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/apps.promoHasActiveGift
+	/// </remarks>
+	Task<bool> PromoHasActiveGiftAsync(ulong promoId, ulong? userId = null);
+
+	/// <summary>
+	/// Использовать подарок, полученный пользователем в промо-акции.
+	/// </summary>
+	/// <param name="promoId"> Идентификатор промо-акции </param>
+	/// <param name="userId"> Идентификатор пользователя. Используется только при запросе с сервисным токеном. </param>
+	/// <returns>
+	/// После успешного выполнения возвращает
+	/// 1 - успех операции.
+	/// 0 - неудача.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/apps.promoUseGift
+	/// </remarks>
+	Task<bool> PromoUseGiftAsync(ulong promoId, ulong? userId = null);
 }

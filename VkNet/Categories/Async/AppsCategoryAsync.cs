@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -41,4 +43,17 @@ public partial class AppsCategory
 
 	/// <inheritdoc />
 	public Task<long> GetScoreAsync(long userId) => TypeHelper.TryInvokeMethodAsync(func: () => GetScore(userId: userId));
+
+	/// <inheritdoc />
+	public Task<MiniAppPolicies> GetMiniAppPoliciesAsync(ulong appId) => TypeHelper.TryInvokeMethodAsync(func: () => GetMiniAppPolicies(appId: appId));
+
+	/// <inheritdoc />
+	public Task<AppGetScopesResult> GetScopesAsync(string type = "user") => TypeHelper.TryInvokeMethodAsync(func: () => GetScopes(type: type));
+
+	/// <inheritdoc />
+	public Task<bool> PromoHasActiveGiftAsync(ulong promoId, ulong? userId = null) => TypeHelper.TryInvokeMethodAsync(func: () => PromoHasActiveGift(promoId, userId));
+
+	/// <inheritdoc />
+	public Task<bool> PromoUseGiftAsync(ulong promoId, ulong? userId = null) => TypeHelper.TryInvokeMethodAsync(func: () => PromoUseGift(promoId, userId));
+
 }
