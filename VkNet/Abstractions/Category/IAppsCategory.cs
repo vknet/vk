@@ -40,4 +40,7 @@ public interface IAppsCategory : IAppsCategoryAsync
 
 	/// <inheritdoc cref="IAppsCategoryAsync.GetScopesAsync"/>
 	AppGetScopesResult GetScopes(string type = "user");
+
+	/// <inheritdoc cref="IAppsCategoryAsync.PromoHasActiveGiftAsync"/>
+	bool PromoHasActiveGift(ulong promoId, ulong? userId = null);
 }
