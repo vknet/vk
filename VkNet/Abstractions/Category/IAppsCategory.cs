@@ -43,4 +43,7 @@ public interface IAppsCategory : IAppsCategoryAsync
 
 	/// <inheritdoc cref="IAppsCategoryAsync.PromoHasActiveGiftAsync"/>
 	bool PromoHasActiveGift(ulong promoId, ulong? userId = null);
+
+	/// <inheritdoc cref="IAppsCategoryAsync.PromoUseGiftAsync"/>
+	bool PromoUseGift(ulong promoId, ulong? userId = null);
 }

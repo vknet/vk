@@ -188,4 +188,19 @@ public interface IAppsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/apps.promoHasActiveGift
 	/// </remarks>
 	Task<bool> PromoHasActiveGiftAsync(ulong promoId, ulong? userId = null);
+
+	/// <summary>
+	/// Использовать подарок, полученный пользователем в промо-акции.
+	/// </summary>
+	/// <param name="promoId"> Идентификатор промо-акции </param>
+	/// <param name="userId"> Идентификатор пользователя. Используется только при запросе с сервисным токеном. </param>
+	/// <returns>
+	/// После успешного выполнения возвращает
+	/// 1 - успех операции.
+	/// 0 - неудача.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/apps.promoUseGift
+	/// </remarks>
+	Task<bool> PromoUseGiftAsync(ulong promoId, ulong? userId = null);
 }

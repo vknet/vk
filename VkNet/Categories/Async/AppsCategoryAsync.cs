@@ -53,4 +53,7 @@ public partial class AppsCategory
 	/// <inheritdoc />
 	public Task<bool> PromoHasActiveGiftAsync(ulong promoId, ulong? userId = null) => TypeHelper.TryInvokeMethodAsync(func: () => PromoHasActiveGift(promoId, userId));
 
+	/// <inheritdoc />
+	public Task<bool> PromoUseGiftAsync(ulong promoId, ulong? userId = null) => TypeHelper.TryInvokeMethodAsync(func: () => PromoUseGift(promoId, userId));
+
 }

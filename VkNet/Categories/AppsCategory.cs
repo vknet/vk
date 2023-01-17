@@ -204,4 +204,16 @@ public partial class AppsCategory : IAppsCategory
 				"user_id", userId
 			}
 		});
+
+	/// <inheritdoc />
+	public bool PromoUseGift(ulong promoId, ulong? userId = null) => _vk.Call("apps.promoUseGift",
+		new()
+		{
+			{
+				"promo_id", promoId
+			},
+			{
+				"user_id", userId
+			}
+		});
 }
