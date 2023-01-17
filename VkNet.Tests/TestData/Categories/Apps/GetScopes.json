@@ -1,0 +1,42 @@
+﻿{
+  "response": {
+	"count": 12,
+	"items": [{
+	  "name": "friends",
+	  "title": "Friend list"
+	}, {
+	  "name": "photos",
+	  "title": "Photos"
+	}, {
+	  "name": "video",
+	  "title": "Videos"
+	}, {
+	  "name": "stories",
+	  "title": "Stories"
+	}, {
+	  "name": "pages",
+	  "title": "Wiki pages"
+	}, {
+	  "name": "status",
+	  "title": "Profile status"
+	}, {
+	  "name": "notes",
+	  "title": "Notes"
+	}, {
+	  "name": "wall",
+	  "title": "Posts"
+	}, {
+	  "name": "docs",
+	  "title": "File list"
+	}, {
+	  "name": "groups",
+	  "title": "Communities"
+	}, {
+	  "name": "stats",
+	  "title": "Your community and app statistics"
+	}, {
+	  "name": "market",
+	  "title": "Your products"
+	}]
+  }
+}

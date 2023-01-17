@@ -64,6 +64,20 @@ public class AppsTest : CategoryBaseTest
 	}
 
 	[Fact]
+	public void GetScopes()
+	{
+		Url = "https://api.vk.com/method/apps.getScopes";
+		ReadCategoryJsonPath(nameof(GetScopes));
+
+		var app = Api.Apps.GetScopes();
+
+		app.Items.FirstOrDefault().Name.Should()
+			.Be("friends");
+		app.Items.FirstOrDefault().Title.Should()
+			.Be("Friend list");
+	}
+
+	[Fact]
 	public void GetCatalog_NormalCase()
 	{
 		Url = "https://api.vk.com/method/apps.getCatalog";
