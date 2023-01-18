@@ -78,4 +78,19 @@ public class EditAdsStealthParams
 	/// </summary>
 	[JsonProperty(propertyName: "link_image")]
 	public string LinkImage { get; set; }
+
+	/// <summary>
+	/// Идентификатор кнопки, которую необходимо добавить к сниппету для ссылки.
+	/// Подробнее см. документацию метода wall.postAdsStealth.
+	/// </summary>
+	[JsonProperty(propertyName: "link_button")]
+	public string LinkButton { get; set; }
+
+	/// <summary>
+	/// Идентификатор видео в формате <owner_id>_<media_id>.
+	/// Одновременно может быть указан либо параметр link_image, либо параметр link_video.
+	/// Кроме того, параметр link_video может быть указан только вместе с параметрами link_button, link_title..
+	/// </summary>
+	[JsonProperty(propertyName: "link_video")]
+	public string LinkVideo { get; set; }
 }
