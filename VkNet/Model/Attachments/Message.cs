@@ -161,8 +161,10 @@ public class Message : MediaAttachment, IGroupUpdate
 
 	/// <summary>
 	/// Статус сообщения (не возвращается для пересланных сообщений).
+	/// Не возвращается, начиная с версии апи 5.81
 	/// </summary>
 	[JsonProperty("read_state")]
+	[Obsolete(ObsoleteText.Obsolete)]
 	public MessageReadState? ReadState { get; set; }
 
 	/// <summary>
