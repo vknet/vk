@@ -236,16 +236,4 @@ public class VideoAdsParams
 	/// </summary>
 	[JsonProperty("vk_catid")]
 	public int? VkCatId { get; set; }
-
-	#region public Methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static VideoAdsParams FromJson(VkResponse response) =>
-		JsonConvert.DeserializeObject<VideoAdsParams>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-
-	#endregion
 }
