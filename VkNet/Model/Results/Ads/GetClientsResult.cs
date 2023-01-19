@@ -24,15 +24,4 @@ public class GetClientsResult
 	/// </summary>
 	[JsonProperty("all_limit")]
 	public long AllLimit { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GetClientsResult FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		AllLimit = response["all_limit"]
-	};
 }

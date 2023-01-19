@@ -80,7 +80,7 @@ public partial class AuthCategory : IAuthCategory
 	});
 
 	/// <inheritdoc />
-	public AuthConfirmResult Confirm(AuthConfirmParams @params) => _vk.Call("auth.confirm", new()
+	public AuthConfirmResult Confirm(AuthConfirmParams @params) => _vk.Call<AuthConfirmResult>("auth.confirm", new()
 	{
 		{
 			"client_id", @params.ClientId

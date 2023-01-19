@@ -15,14 +15,4 @@ public class ShareTargetGroupResult
 	/// </summary>
 	[JsonProperty("id")]
 	public long Id { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static ShareTargetGroupResult FromJson(VkResponse response) => new()
-	{
-		Id = response["id"]
-	};
 }

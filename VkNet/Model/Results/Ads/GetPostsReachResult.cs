@@ -102,28 +102,4 @@ public class GetPostsReachResult
 	/// </summary>
 	[JsonProperty("video_views_100p")]
 	public long VideoViews100P { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GetPostsReachResult FromJson(VkResponse response) => new()
-	{
-		Id = response["user_id"],
-		ReachSubscribers = response["reach_subscribers"],
-		ReachTotal = response["reach_total"],
-		Report = response["report"],
-		ToGroup = response["to_group"],
-		VideoViewsStart = response["video_views_start"],
-		Unsubscribe = response["unsubscribe"],
-		JoinGroup = response["join_group"],
-		Links = response["links"],
-		Hide = response["hide"],
-		VideoViews3S = response["video_views_3s"],
-		VideoViews25P = response["video_views_25p"],
-		VideoViews50P = response["video_views_50p"],
-		VideoViews75P = response["video_views_75p"],
-		VideoViews100P = response["video_views_100p"]
-	};
 }

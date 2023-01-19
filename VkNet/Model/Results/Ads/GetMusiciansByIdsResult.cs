@@ -27,16 +27,4 @@ public class GetMusiciansByIdsResult
 	/// </summary>
 	[JsonProperty("avatar")]
 	public string Avatar { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns></returns>
-	public static GetMusiciansByIdsResult FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		Name = response["name"],
-		Avatar = response["avatar"]
-	};
 }

@@ -21,15 +21,4 @@ public class CreateTargetPixelResult
 	/// </summary>
 	[JsonProperty("pixel")]
 	public string Pixel { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CreateTargetPixelResult FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		Pixel = response["pixel"]
-	};
 }

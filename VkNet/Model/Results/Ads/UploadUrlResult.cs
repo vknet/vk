@@ -21,15 +21,4 @@ public class UploadUrlResult
 	/// </summary>
 	[JsonProperty("errcode")]
 	public int ErrCode { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static UploadUrlResult FromJson(VkResponse response) => new()
-	{
-		Photo = response["photo"],
-		ErrCode = response["errcode"]
-	};
 }

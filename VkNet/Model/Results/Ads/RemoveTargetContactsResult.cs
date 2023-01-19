@@ -15,14 +15,4 @@ public class RemoveTargetContactsResult
 	/// </summary>
 	[JsonProperty("result")]
 	public bool Result { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static RemoveTargetContactsResult FromJson(VkResponse response) => new()
-	{
-		Result = response["result"]
-	};
 }

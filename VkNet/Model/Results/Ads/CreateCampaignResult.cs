@@ -28,16 +28,4 @@ public class CreateCampaignResult
 	/// </summary>
 	[JsonProperty("error_desc")]
 	public string ErrorDesc { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CreateCampaignResult FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		ErrorCode = response["error_code"],
-		ErrorDesc = response["error_desc"]
-	};
 }

@@ -21,15 +21,4 @@ public class SaveLookALikeRequestResultResult
 	/// </summary>
 	[JsonProperty("audience_count")]
 	public long AudienceCount { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static SaveLookALikeRequestResultResult FromJson(VkResponse response) => new()
-	{
-		RetargetingGroupId = response["retargeting_group_id"],
-		AudienceCount = response["audience_count"]
-	};
 }
