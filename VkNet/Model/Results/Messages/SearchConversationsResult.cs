@@ -8,7 +8,7 @@ namespace VkNet.Model;
 /// Результат запроса messages.searchConversations
 /// </summary>
 [Serializable]
-public partial class SearchConversationsResult
+public class SearchConversationsResult
 {
 	/// <summary>
 	/// Число результатов

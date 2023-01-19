@@ -9,7 +9,7 @@ namespace VkNet.Model;
 /// Результат метода messages.search
 /// </summary>
 [Serializable]
-public partial class MessageSearchResult
+public class MessageSearchResult
 {
 	/// <summary>
 	/// Количество найденных сообщений
