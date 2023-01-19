@@ -697,4 +697,15 @@ public partial class VkResponse
 	public static implicit operator MessageEventType(VkResponse response) => response == null
 		? null
 		: MessageEventType.FromJson(response: response);
+
+	/// <summary>
+	/// Преобразовать из VkResponse
+	/// </summary>
+	/// <param name="response"> Ответ. </param>
+	/// <returns>
+	/// Результат преобразования.
+	/// </returns>
+	public static implicit operator PostSourceData(VkResponse response) => response == null
+		? null
+		: PostSourceData.FromJson(response: response);
 }
