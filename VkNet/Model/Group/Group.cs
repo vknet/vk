@@ -52,7 +52,7 @@ public class Group : IVkModel
 			IsAdvertiser = response["is_advertiser"],
 			Type = response["type"],
 			PhotoPreviews = response,
-			Deactivated = response["deactivated"],
+			Deactivated = response["deactivated"] ?? Deactivated.Activated,
 			HasPhoto = response["has_photo"],
 			Photo50 = response["photo_50"],
 			Photo100 = response["photo_100"],
