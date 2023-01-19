@@ -30,16 +30,4 @@ public class UserSpecification
 	/// </summary>
 	[JsonProperty(propertyName: "client_id")]
 	public long ClientId { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static UserSpecification FromJson(VkResponse response) => new()
-	{
-		UserId = response[key: "user_id"],
-		Role = response[key: "role"],
-		ClientId = response["client_id"]
-	};
 }
