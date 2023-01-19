@@ -350,7 +350,7 @@ public partial class MessagesCategory : IMessagesCategory
 			throw new ArgumentException($"This method not intended to use with many target peers. Use {nameof(SendToPeerIds)} instead.");
 		}
 
-		return _vk.Call("messages.send",
+		return _vk.Call<ReadOnlyCollection<MessagesSendResult>>("messages.send",
 			new()
 			{
 				{
@@ -433,8 +433,7 @@ public partial class MessagesCategory : IMessagesCategory
 						? JsonConvert.SerializeObject(@params.Template)
 						: ""
 				}
-			})
-		.ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
+			});
 	}
 
 	/// <inheritdoc />
@@ -455,7 +454,7 @@ public partial class MessagesCategory : IMessagesCategory
 			throw new ArgumentException($"This method not intended to use with many target users. Use {nameof(SendToUserIds)} instead.");
 		}
 
-		return _vk.Call("messages.send",
+		return _vk.Call<ReadOnlyCollection<MessagesSendResult>>("messages.send",
 			new()
 			{
 				{
@@ -535,8 +534,7 @@ public partial class MessagesCategory : IMessagesCategory
 						? JsonConvert.SerializeObject(@params.Template)
 						: ""
 				}
-			})
-		.ToReadOnlyCollectionOf<MessagesSendResult>(x => x);
+			});
 	}
 
 

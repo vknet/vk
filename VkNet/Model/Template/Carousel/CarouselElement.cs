@@ -49,38 +49,4 @@ public class CarouselElement
 	[JsonProperty("action")]
 	[CanBeNull]
 	public CarouselElementAction Action { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CarouselElement FromJson(VkResponse response) => new()
-	{
-		Title = response[key: "title"],
-		Description = response[key: "description"],
-		Action = response[key: "action"],
-		PhotoId = response[key: "photo_id"],
-		Buttons = response[key: "buttons"]
-			.ToReadOnlyCollectionOf<MessageKeyboardButton>(selector: x => x)
-	};
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator CarouselElement(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

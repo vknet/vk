@@ -215,7 +215,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.repost", parameters);
+		return _vk.Call<RepostResult>("wall.repost", parameters);
 	}
 
 	/// <inheritdoc />
@@ -247,7 +247,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.repost", parameters);
+		return _vk.Call<RepostResult>("wall.repost", parameters);
 	}
 
 	/// <inheritdoc />

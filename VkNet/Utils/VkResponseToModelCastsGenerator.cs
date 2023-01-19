@@ -37,17 +37,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator MessagesSendResult(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: MessagesSendResult.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator PageVersion(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: PageVersion.FromJson(response);
@@ -60,28 +49,6 @@ public partial class VkResponse
 	public static implicit operator Image(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: Image.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator CallbackSettings(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: CallbackSettings.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator CallbackServerItem(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: CallbackServerItem.FromJson(response);
 
 	/// <summary>
 	/// Преобразовать из VkResponse
@@ -192,28 +159,6 @@ public partial class VkResponse
 	public static implicit operator Career(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: Career.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator CategoryGroup(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: CategoryGroup.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator Chair(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Chair.FromJson(response);
 
 	/// <summary>
 	/// Преобразовать из VkResponse
@@ -511,17 +456,6 @@ public partial class VkResponse
 	public static implicit operator GroupMember(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: GroupMember.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator GroupsCatalogInfo(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: GroupsCatalogInfo.FromJson(response);
 
 	/// <summary>
 	/// Преобразовать из VkResponse
@@ -893,17 +827,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator PostSourceData(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: PostSourceData.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator PostView(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: PostView.FromJson(response);
@@ -984,17 +907,6 @@ public partial class VkResponse
 	public static implicit operator Relative(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: Relative.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator RepostResult(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: RepostResult.FromJson(response);
 
 	/// <summary>
 	/// Преобразовать из VkResponse
@@ -1237,28 +1149,6 @@ public partial class VkResponse
 	public static implicit operator AudioAlbum(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: AudioAlbum.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator Subscription(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Subscription.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator SubscriptionsInfo(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: SubscriptionsInfo.FromJson(response);
 
 	/// <summary>
 	/// Преобразовать из VkResponse

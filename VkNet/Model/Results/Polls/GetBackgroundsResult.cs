@@ -56,22 +56,4 @@ public class GetBackgroundsResult
 	/// </summary>
 	[JsonProperty("id")]
 	public long Id { get; set; }
-
-	/// <summary>
-	/// Разобрать из Json
-	/// </summary>
-	/// <param name="response">Ответ сервераю</param>
-	/// <returns></returns>
-	public static GetBackgroundsResult FromJson(VkResponse response) => new()
-	{
-		Type = response["type"],
-		Angle = response["angle"],
-		Color = response["color"],
-		Width = response["width"],
-		Height = response["height"],
-		Points = response["points"]
-			.ToListOf<PollBackgroundPoint>(x => x)
-			.ToArray(),
-		Id = response["id"]
-	};
 }

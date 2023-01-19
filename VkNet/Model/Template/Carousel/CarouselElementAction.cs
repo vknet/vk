@@ -27,34 +27,4 @@ public class CarouselElementAction
 	/// </summary>
 	[JsonProperty("link")]
 	public Uri Link { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CarouselElementAction FromJson(VkResponse response) => new()
-	{
-		Type = response[key: "type"],
-		Link = response[key: "link"]
-	};
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator CarouselElementAction(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

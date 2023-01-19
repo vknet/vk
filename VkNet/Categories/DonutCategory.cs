@@ -66,7 +66,7 @@ public partial class DonutCategory : IDonutCategory
 			}
 		};
 
-		return _vk.Call("donut.getSubscription", parameters);
+		return _vk.Call<Subscription>("donut.getSubscription", parameters);
 	}
 
 	/// <inheritdoc/>
@@ -85,6 +85,6 @@ public partial class DonutCategory : IDonutCategory
 			}
 		};
 
-		return _vk.Call("donut.getSubscriptions", parameters);
+		return _vk.Call<SubscriptionsInfo>("donut.getSubscriptions", parameters);
 	}
 }

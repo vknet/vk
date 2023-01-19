@@ -999,7 +999,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getCatalogInfo", parameters, true);
+		return _vk.Call<GroupsCatalogInfo>("groups.getCatalogInfo", parameters, true);
 	}
 
 	/// <inheritdoc />
@@ -1092,8 +1092,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getCallbackServers", parameters)
-			.ToVkCollectionOf<CallbackServerItem>(x => x);
+		return _vk.Call<VkCollection<CallbackServerItem>>("groups.getCallbackServers", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1109,7 +1108,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getCallbackSettings", parameters);
+		return _vk.Call<CallbackSettings>("groups.getCallbackSettings", parameters);
 	}
 
 	/// <inheritdoc />
