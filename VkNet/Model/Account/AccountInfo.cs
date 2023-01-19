@@ -59,20 +59,4 @@ public class AccountInfo
 	/// </summary>
 	[JsonProperty("two_factor_required")]
 	public bool? TwoFactorRequired { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static AccountInfo FromJson(VkResponse response) => new()
-	{
-		Country = response[key: "country"],
-		HttpsRequired = response[key: "https_required"],
-		Intro = response[key: "intro"],
-		Language = response[key: "lang"],
-		OwnPostsDefault = response[key: "own_posts_default"],
-		NoWallReplies = response[key: "no_wall_replies"],
-		TwoFactorRequired = response[key: "2fa_required"]
-	};
 }
