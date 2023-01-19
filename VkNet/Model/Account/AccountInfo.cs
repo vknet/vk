@@ -33,7 +33,7 @@ public class AccountInfo
 	/// <summary>
 	/// Числовой идентификатор текущего языка пользователя.
 	/// </summary>
-	[JsonProperty("language")]
+	[JsonProperty("lang")]
 	public int? Language { get; set; }
 
 	/// <summary>
