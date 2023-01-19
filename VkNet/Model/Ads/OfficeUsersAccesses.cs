@@ -27,15 +27,4 @@ public class OfficeUsersAccesses
 	[JsonProperty("role")]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AccessRole Role { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static OfficeUsersAccesses FromJson(VkResponse response) => new()
-	{
-		ClientId = response["client_id"],
-		Role = response["role"]
-	};
 }

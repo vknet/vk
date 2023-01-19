@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model;
@@ -13,28 +14,18 @@ public class AdsCategories
 	/// <summary>
 	/// Название категории.
 	/// </summary>
+	[JsonProperty(propertyName: "name")]
 	public string Name { get; set; }
 
 	/// <summary>
 	/// Gets or sets the subcategories.
 	/// </summary>
+	[JsonProperty(propertyName: "subcategories")]
 	public IEnumerable<AdsCategories> Subcategories { get; set; }
 
 	/// <summary>
 	/// Идентификатор.
 	/// </summary>
+	[JsonProperty(propertyName: "id")]
 	public long Id { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static AdsCategories FromJson(VkResponse response) => new()
-	{
-		Id = response[key: "id"],
-		Name = response[key: "name"],
-		Subcategories = response[key: "subcategories"]
-			.ToReadOnlyCollectionOf<AdsCategories>(selector: x => x)
-	};
 }

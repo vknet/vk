@@ -22,7 +22,8 @@ public partial class AppsCategory : IAppsCategory
 	public AppsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
-	public VkCollection<App> GetCatalog(AppGetCatalogParams @params, bool skipAuthorization = false) => _vk.Call("apps.getCatalog", new()
+	public VkCollection<App> GetCatalog(AppGetCatalogParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<App>>(
+		"apps.getCatalog", new()
 		{
 			{
 				"sort", @params.Sort
@@ -57,31 +58,33 @@ public partial class AppsCategory : IAppsCategory
 			{
 				"filter", @params.Filter
 			}
-		}, skipAuthorization)
-		.ToVkCollectionOf<App>(selector: x => x);
+		}, skipAuthorization);
 
 	/// <inheritdoc />
-	public AppGetObject Get(AppGetParams @params, bool skipAuthorization = false) => _vk.Call("apps.get", new()
+	public AppGetObject Get(AppGetParams @params, bool skipAuthorization = false)
 	{
+		return _vk.Call<AppGetObject>("apps.get", new()
 		{
-			"app_ids", @params.AppIds
-		},
-		{
-			"platform", @params.Platform
-		},
-		{
-			"extended", @params.Extended
-		},
-		{
-			"return_friends", @params.ReturnFriends
-		},
-		{
-			"fields", @params.Fields
-		},
-		{
-			"name_case", @params.NameCase
-		}
-	}, skipAuthorization);
+			{
+				"app_ids", @params.AppIds
+			},
+			{
+				"platform", @params.Platform
+			},
+			{
+				"extended", @params.Extended
+			},
+			{
+				"return_friends", @params.ReturnFriends
+			},
+			{
+				"fields", @params.Fields
+			},
+			{
+				"name_case", @params.NameCase
+			}
+		}, skipAuthorization);
+	}
 
 	/// <inheritdoc />
 	public long SendRequest(AppSendRequestParams @params) => _vk.Call("apps.sendRequest", new()

@@ -21,15 +21,4 @@ public class RejectionRules
 	/// </summary>
 	[JsonProperty("paragraphs")]
 	public string Paragraphs { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static RejectionRules FromJson(VkResponse response) => new()
-	{
-		Title = response["title"],
-		Paragraphs = response["paragraphs"]
-	};
 }

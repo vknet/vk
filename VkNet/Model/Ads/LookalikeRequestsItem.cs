@@ -78,24 +78,4 @@ public class LookalikeRequestItem
 	/// </summary>
 	[JsonProperty(propertyName: "save_audience_levels")]
 	public ReadOnlyCollection<SaveAudienceLevels> SaveAudienceLevels { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static LookalikeRequestItem FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		CreateTime = response["create_time"],
-		UpdateTime = response["update_time"],
-		Status = response["status"],
-		SourceType = response["source_type"],
-		SourceName = response["source_name"],
-		ScheduledDeleteTime = response["scheduled_delete_time"],
-		SourceRetargetingGroupId = response["source_retargeting_group_id"],
-		AudienceCount = response["audience_count"],
-		SaveAudienceLevels = response["save_audience_levels"]
-			.ToReadOnlyCollectionOf<SaveAudienceLevels>(x => x)
-	};
 }

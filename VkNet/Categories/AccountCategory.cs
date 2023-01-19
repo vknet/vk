@@ -151,7 +151,7 @@ public partial class AccountCategory : IAccountCategory
 			}
 		};
 
-		return _vk.Call("account.getPushSettings", parameters);
+		return _vk.Call<AccountPushSettings>("account.getPushSettings", parameters);
 	}
 
 	/// <inheritdoc />
@@ -259,7 +259,7 @@ public partial class AccountCategory : IAccountCategory
 	}
 
 	/// <inheritdoc />
-	public AccountInfo GetInfo(AccountFields fields = null) => _vk.Call("account.getInfo",
+	public AccountInfo GetInfo(AccountFields fields = null) => _vk.Call<AccountInfo>("account.getInfo",
 		new()
 		{
 			{

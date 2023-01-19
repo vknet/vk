@@ -64,21 +64,4 @@ public class CampaignSpecification
 	[JsonProperty(propertyName: "stop_time")]
 	[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 	public DateTime? StopTime { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CampaignSpecification FromJson(VkResponse response) => new()
-	{
-		AllLimit = response["all_limit"],
-		DayLimit = response["day_limit"],
-		Status = response["status"],
-		Name = response["name"],
-		ClientId = response["repeat_video"],
-		Type = response["disclaimer_medical"],
-		StopTime = response["disclaimer_specialist"],
-		StartTime = response["disclaimer_supplements"]
-	};
 }

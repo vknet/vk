@@ -44,14 +44,4 @@ public class OfficeUsersSpecification
 	/// </summary>
 	[JsonProperty("view_budget")]
 	public bool? ViewBudget { get; set; }
-
-	public OfficeUsersSpecification FromJson(VkResponse response) => new()
-	{
-		UserId = response["user_id"],
-		Role = response["role"],
-		ClientsIds = response["client_ids"]
-			.ToListOf<int>(x => x)
-			.ToArray(),
-		GrantAccessToAllClients = response["grant_access_to_all_clients"]
-	};
 }

@@ -33,17 +33,4 @@ public class StatsSexAgeCities
 	/// </summary>
 	[JsonProperty("name")]
 	public string Name { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static StatsSexAgeCities FromJson(VkResponse response) => new()
-	{
-		Name = response["name"],
-		Value = response["value"],
-		ImpressionsRate = response["impressions_rate"],
-		ClicksRate = response["clicks_rate"]
-	};
 }

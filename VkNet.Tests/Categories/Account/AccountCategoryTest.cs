@@ -6,8 +6,6 @@ using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
-using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -233,18 +231,6 @@ public class AccountCategoryTest : CategoryBaseTest
 
 		info.Language.Should()
 			.Be(0);
-	}
-
-	[Fact]
-	public void GetInfo_WhenServerReturnsEmptyResponse()
-	{
-		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
-		Url = "https://api.vk.com/method/account.getInfo";
-		ReadJsonFile(JsonPaths.EmptyObject);
-
-		Api.Account.GetInfo()
-			.Should()
-			.BeNull();
 	}
 
 	[Fact]

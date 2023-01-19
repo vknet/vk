@@ -118,31 +118,4 @@ public class Layout
 	/// </summary>
 	[JsonProperty("icon_src_2x")]
 	public Uri IconSrc2X { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Layout FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		CampaignId = response["campaign_id"],
-		AdFormat = response["ad_format"],
-		CostType = response["cost_type"],
-		GoalType = response["goal_type"],
-		Video = response["video"],
-		RepeatVideo = response["repeat_video"],
-		Title = response["title"],
-		Description = response["description"],
-		LinkUrl = response["link_url"],
-		LinkDomain = response["link_domain"],
-		LinkTitle = response["link_title"],
-		LinkButton = response["link_button"],
-		PreviewLink = response["preview_link"],
-		ImageSrc = response["image_src"],
-		ImageSrc2X = response["image_src_2x"],
-		IconSrc = response["icon_src"],
-		IconSrc2X = response["icon_src_2x"]
-	};
 }

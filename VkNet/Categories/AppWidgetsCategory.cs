@@ -71,7 +71,6 @@ public partial class AppWidgetsCategory : IAppWidgetsCategory
 			}
 		});
 
-	/// <param name="images"></param>
 	/// <inheritdoc/>
 	public ReadOnlyCollection<AppImage> GetImagesById(string images)
 	{
@@ -82,8 +81,7 @@ public partial class AppWidgetsCategory : IAppWidgetsCategory
 			}
 		};
 
-		return _vk.Call("appWidgets.getImagesById", parameters)
-			.ToReadOnlyCollectionOf<AppImage>(x => x);
+		return _vk.Call<ReadOnlyCollection<AppImage>>("appWidgets.getImagesById", parameters);
 	}
 
 	/// <inheritdoc/>

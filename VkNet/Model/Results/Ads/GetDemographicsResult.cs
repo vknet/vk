@@ -31,17 +31,4 @@ public class GetDemographicsResult
 	[JsonProperty("type")]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public IdsType Type { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GetDemographicsResult FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		Type = response["type"],
-		Stats = response["stats"]
-			.ToReadOnlyCollectionOf<DemographicsStats>(x => x)
-	};
 }

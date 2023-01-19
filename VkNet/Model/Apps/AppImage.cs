@@ -31,34 +31,4 @@ public class AppImage
 	/// </summary>
 	[JsonProperty("images")]
 	public IEnumerable<Image> Images { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static AppImage FromJson(VkResponse response) => new()
-	{
-		Id = response[key: "id"],
-		Type = response[key: "type"],
-		Images = response[key: "images"]
-			.ToReadOnlyCollectionOf<Image>(x => x)
-	};
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static implicit operator AppImage(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response: response)
-			: null;
-	}
 }
