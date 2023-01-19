@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -20,11 +21,11 @@ public class AppGetObject
 	/// Приложения.
 	/// </summary>
 	[JsonProperty("items")]
-	public VkCollection<App> Apps { get; set; }
+	public IEnumerable<App> Apps { get; set; }
 
 	/// <summary>
 	/// Друзья.
 	/// </summary>
 	[JsonProperty("profiles")]
-	public VkCollection<User> Friends { get; set; }
+	public IEnumerable<User> Friends { get; set; }
 }
