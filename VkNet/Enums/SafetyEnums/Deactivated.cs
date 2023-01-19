@@ -4,7 +4,7 @@ using VkNet.Utils;
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
-/// Возможные значения параметра display, задающего внешний вид окна авторизации.
+/// Возможные значения параметра Deactivated.
 /// </summary>
 [Serializable]
 public sealed class Deactivated : SafetyEnum<Deactivated>
