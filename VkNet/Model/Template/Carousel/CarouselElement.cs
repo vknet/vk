@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Model.Keyboard;
-using VkNet.Utils;
 
 namespace VkNet.Model.Template.Carousel;
 

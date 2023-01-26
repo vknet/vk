@@ -3,7 +3,6 @@ using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Core;
 using VkNet.Exception;
-using VkNet.Model;
 using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils;
