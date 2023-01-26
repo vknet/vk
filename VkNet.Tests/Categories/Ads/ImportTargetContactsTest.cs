@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using FluentAssertions;
-using VkNet.Model.RequestParams.Ads;
+﻿using FluentAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

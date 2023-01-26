@@ -1,6 +1,5 @@
 using System;
 using FluentAssertions;
-using VkNet.Model.LeadForms;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

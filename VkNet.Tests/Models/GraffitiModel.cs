@@ -10,12 +10,11 @@ public class GraffitiModel : BaseTest
 	public void ShouldDeserializeFromVkResponseToAttachment()
 	{
 		ReadJsonFile("Models", "graffiti_attachment");
+		Url = "https://api.vk.com/method/wall.get";
 
-		var response = GetResponse();
+		var result = Api.Wall.Get(new());
 
-		var attachment = Attachment.FromJson(response);
-
-		attachment.Instance.Should()
+		result.WallPosts[0].Attachments[0].Instance.Should()
 			.BeOfType<Graffiti>();
 	}
 
@@ -24,11 +23,11 @@ public class GraffitiModel : BaseTest
 	{
 		ReadJsonFile("Models", "graffiti_attachment_for_960");
 
-		var response = GetResponse();
+		Url = "https://api.vk.com/method/wall.get";
 
-		var attachment = Attachment.FromJson(response);
+		var result = Api.Wall.Get(new());
 
-		attachment.Instance.Should()
+		result.WallPosts[0].Attachments[0].Instance.Should()
 			.BeOfType<Graffiti>();
 	}
 }

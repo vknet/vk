@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
-using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

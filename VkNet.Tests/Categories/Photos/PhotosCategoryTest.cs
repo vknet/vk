@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -526,10 +525,10 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.NotBeNull();
 
 		photo.Latitude.Should()
-			.Be(29.999996185302734);
+			.Be(29.999996);
 
 		photo.Longitude.Should()
-			.Be(29.999996185302734);
+			.Be(29.999997);
 
 		var photo1 = photos.Skip(1)
 			.FirstOrDefault();
@@ -538,10 +537,10 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.NotBeNull();
 
 		photo1.Latitude.Should()
-			.Be(29.942251205444336);
+			.Be(29.942251);
 
 		photo1.Longitude.Should()
-			.Be(29.882818222045898);
+			.Be(29.882819);
 	}
 
 	[Fact]

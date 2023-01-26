@@ -4,7 +4,6 @@ using FluentAssertions;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
-using VkNet.Model.RequestParams.Database;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

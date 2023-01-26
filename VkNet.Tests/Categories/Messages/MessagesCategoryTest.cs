@@ -8,7 +8,6 @@ using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -428,13 +427,53 @@ public class MessagesCategoryTest : MessagesBaseTests
 				{
 					2
 				},
-				null,
-				null)
-			.ToList();
+				null);
+
 
 		users.Should()
 			.HaveCount(3);
 	}
+
+	[Fact]
+	public void GetChatUsers_ChatId_WithoutFields()
+	{
+		Url = "https://api.vk.com/method/messages.getChatUsers";
+
+		ReadCategoryJsonPath(nameof(GetChatUsers_ChatId_WithoutFields));
+
+		var users = Api.Messages.GetChatUsers(2, null);
+
+
+		users.Should()
+			.HaveCount(3);
+
+		users.FirstOrDefault()
+			.Should()
+			.Be(48265913);
+	}
+
+	[Fact]
+	public void GetChatUsers_ChatId_Fields()
+	{
+		Url = "https://api.vk.com/method/messages.getChatUsers";
+
+		ReadCategoryJsonPath(nameof(GetChatUsers_ChatId_Fields));
+
+		var users = Api.Messages.GetChatUsers(2, UsersFields.Education, null);
+
+
+		users.Should()
+			.HaveCount(1);
+
+		users.First().UniversityId
+			.Should()
+			.Be(0);
+
+		users.First().Id
+			.Should()
+			.Be(111);
+	}
+
 
 	[Fact]
 	public void GetChatUsers_ChatIdWithFields_Users()
@@ -486,7 +525,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be("Касеев");
 
 		users[1]
-			.Education.UniversityId.Should()
+			.UniversityId.Should()
 			.Be(431);
 
 		users[1]
@@ -506,15 +545,15 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be("Денисов");
 
 		users[2]
-			.Education.UniversityId.Should()
+			.UniversityId.Should()
 			.Be(431);
 
 		users[2]
-			.Education.FacultyId.Should()
+			.FacultyId.Should()
 			.Be(3162);
 
 		users[2]
-			.Education.Graduation.Should()
+			.Graduation.Should()
 			.Be(2011);
 
 		users[2]
@@ -541,11 +580,11 @@ public class MessagesCategoryTest : MessagesBaseTests
 		msgs.Messages.Should()
 			.HaveCount(20);
 
-		msgs.Messages[0]
+		msgs.Messages[0].Message
 			.Id.Should()
 			.Be(266284);
 
-		msgs.Messages[0]
+		msgs.Messages[0].Message
 			.Date.Should()
 			.Be(new(2020,
 				2,
@@ -555,21 +594,21 @@ public class MessagesCategoryTest : MessagesBaseTests
 				50,
 				DateTimeKind.Utc));
 
-		msgs.Messages[0]
+		msgs.Messages[0].Message
 			.Type.Should()
 			.Be(MessageType.Sended);
 
-		msgs.Messages[0]
+		msgs.Messages[0].Message
 			.UserId.Should()
 			.Be(71469725);
 
-		msgs.Messages[0]
+		msgs.Messages[0].Message
 			.ReadState.Should()
 			.Be(MessageReadState.Readed);
 
-		msgs.Messages[0]
+		msgs.Messages[0].Message
 			.Body.Should()
-			.Be("😂");
+			.Be("&#128514;");
 	}
 
 	[Fact]
@@ -968,8 +1007,12 @@ public class MessagesCategoryTest : MessagesBaseTests
 
 		var response = Api.Messages.SearchDialogs("привет");
 
-		response.Should()
-			.BeNull();
+		response.Chats.Should()
+			.BeEmpty();
+		response.Groups.Should()
+			.BeEmpty();
+		response.Users.Should()
+			.BeEmpty();
 	}
 
 	[Fact]

@@ -1,7 +1,6 @@
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
-using VkNet.Model.RequestParams;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;

@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

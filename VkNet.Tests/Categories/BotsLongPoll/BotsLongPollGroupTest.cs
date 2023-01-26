@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
-using VkNet.Model.RequestParams;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -195,8 +194,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		update.UserBlock.Reason.Should()
 			.Be(reason);
 
-		update.UserBlock.UnblockDate.Should()
-			.BeNull();
+		update.UserBlock.UnblockDate.Should().Be(DateTime.Parse("1970-01-01"));
 	}
 
 	[Fact]

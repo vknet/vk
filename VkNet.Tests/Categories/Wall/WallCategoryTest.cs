@@ -7,7 +7,6 @@ using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -276,18 +275,18 @@ public class WallCategoryTest : CategoryBaseTest
 				"93388_21539",
 				"93388_20904",
 				"2943_4276"
-			}))
+			}, true))
 		.Should()
 		.ThrowExactly<AccessTokenInvalidException>();
 
 	[Fact]
 	public void GetById_IncorrectParameters_ThrowException()
 	{
-		FluentActions.Invoking(() => new WallCategory(Api).GetById(null))
+		FluentActions.Invoking(() => new WallCategory(Api).GetById(null, null))
 			.Should()
 			.ThrowExactly<ArgumentNullException>();
 
-		FluentActions.Invoking(() => new WallCategory(Api).GetById(Enumerable.Empty<string>()))
+		FluentActions.Invoking(() => new WallCategory(Api).GetById(Enumerable.Empty<string>(), true))
 			.Should()
 			.ThrowExactly<ArgumentException>();
 	}
@@ -305,22 +304,22 @@ public class WallCategoryTest : CategoryBaseTest
 			"1_616"
 		});
 
-		records.TotalCount.Should()
+		records.Count.Should()
 			.Be(1);
 
-		records.WallPosts[0]
+		records[0]
 			.Id.Should()
 			.Be(617);
 
-		records.WallPosts[0]
+		records[0]
 			.FromId.Should()
 			.Be(1);
 
-		records.WallPosts[0]
+		records[0]
 			.OwnerId.Should()
 			.Be(1);
 
-		records.WallPosts[0]
+		records[0]
 			.Date.Should()
 			.Be(new DateTime(1970,
 				1,
@@ -331,39 +330,39 @@ public class WallCategoryTest : CategoryBaseTest
 				0,
 				DateTimeKind.Utc).AddSeconds(1171758699));
 
-		records.WallPosts[0]
+		records[0]
 			.Text.Should()
 			.BeNullOrEmpty();
 
-		records.WallPosts[0]
+		records[0]
 			.Comments.Count.Should()
 			.Be(0);
 
-		records.WallPosts[0]
+		records[0]
 			.Comments.CanPost.Should()
 			.BeTrue();
 
-		records.WallPosts[0]
+		records[0]
 			.Likes.Count.Should()
 			.Be(2);
 
-		records.WallPosts[0]
+		records[0]
 			.Likes.UserLikes.Should()
 			.BeFalse();
 
-		records.WallPosts[0]
+		records[0]
 			.Likes.CanLike.Should()
 			.BeTrue();
 
-		records.WallPosts[0]
+		records[0]
 			.Likes.CanPublish.Should()
 			.BeFalse();
 
-		records.WallPosts[0]
+		records[0]
 			.Reposts.Count.Should()
 			.Be(0);
 
-		records.WallPosts[0]
+		records[0]
 			.Reposts.UserReposted.Should()
 			.BeFalse();
 	}
@@ -377,9 +376,9 @@ public class WallCategoryTest : CategoryBaseTest
 		var records = Api.Wall.GetById(new[]
 		{
 			"-322_123"
-		});
+		}, true);
 
-		records.TotalCount.Should()
+		records.Groups.Count.Should()
 			.Be(1);
 
 		records.WallPosts[0]

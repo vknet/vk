@@ -199,7 +199,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	{
 		var cat = new FriendsCategory(new VkApi());
 
-		FluentActions.Invoking(() => cat.Get(new()
+		FluentActions.Invoking(() => cat.Get(new FriendsGetParams2
 			{
 				UserId = 1
 			}))
@@ -213,7 +213,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 		Url = "https://api.vk.com/method/friends.get";
 		ReadCategoryJsonPath(nameof(Get_FirstNameLastName_ListOfObjects));
 
-		var lst = Api.Friends.Get(new()
+		var lst = Api.Friends.Get(new FriendsGetParams
 		{
 			Count = 3,
 			Fields = ProfileFields.FirstName|ProfileFields.LastName,
@@ -278,25 +278,24 @@ public class FriendsCategoryTest : CategoryBaseTest
 		Url = "https://api.vk.com/method/friends.get";
 		ReadCategoryJsonPath(nameof(Get_FriendsForDurov_ListOfFriends));
 
-		var users = Api.Friends.Get(new()
-			{
-				ListId = 1
-			})
-			.ToList();
+		var users = Api.Friends.Get(new FriendsGetParams2
+		{
+			UserId = 1
+		});
 
 		users.Should()
 			.HaveCount(5);
 
 		users.Should()
-			.SatisfyRespectively(x => x.Id.Should()
+			.SatisfyRespectively(x => x.Should()
 					.Be(2),
-				x => x.Id.Should()
+				x => x.Should()
 					.Be(5),
-				x => x.Id.Should()
+				x => x.Should()
 					.Be(6),
-				x => x.Id.Should()
+				x => x.Should()
 					.Be(7),
-				x => x.Id.Should()
+				x => x.Should()
 					.Be(12));
 	}
 

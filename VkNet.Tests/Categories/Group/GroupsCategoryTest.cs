@@ -8,7 +8,6 @@ using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -146,16 +145,13 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.IsMember.Should()
 			.BeTrue();
 
-		groups[1]
-			.PhotoPreviews.Photo50.Should()
+		groups[1].Photo50.Should()
 			.Be(new Uri("http://cs1122.userapi.com/g1181795/c_efd67aca.jpg"));
 
-		groups[1]
-			.PhotoPreviews.Photo100.Should()
+		groups[1].Photo100.Should()
 			.Be(new Uri("http://cs1122.userapi.com/g1181795/b_369a1c47.jpg"));
 
-		groups[1]
-			.PhotoPreviews.Photo200.Should()
+		groups[1].Photo200.Should()
 			.Be(new Uri("http://cs1122.userapi.com/g1181795/a_c58272b3.jpg"));
 
 		groups.Should()
@@ -212,15 +208,15 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeTrue();
 
 		groups[0]
-			.PhotoPreviews.Photo50.Should()
+			.Photo50.Should()
 			.Be(new Uri("http://cs1122.userapi.com/g1153959/c_6d43acf8.jpg"));
 
 		groups[0]
-			.PhotoPreviews.Photo100.Should()
+			.Photo100.Should()
 			.Be(new Uri("http://cs1122.userapi.com/g1153959/b_5bad925c.jpg"));
 
 		groups[0]
-			.PhotoPreviews.Photo200.Should()
+			.Photo200.Should()
 			.Be(new Uri("http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"));
 	}
 
@@ -388,15 +384,15 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeFalse();
 
 		groups[0]
-			.PhotoPreviews.Photo50.Should()
+			.Photo50.Should()
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 
 		groups[0]
-			.PhotoPreviews.Photo100.Should()
+			.Photo100.Should()
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 
 		groups[0]
-			.PhotoPreviews.Photo200.Should()
+			.Photo200.Should()
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 
 		groups[0]
@@ -454,15 +450,15 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeTrue();
 
 		groups[1]
-			.PhotoPreviews.Photo50.Should()
+			.Photo50.Should()
 			.Be(new Uri("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
 
 		groups[1]
-			.PhotoPreviews.Photo100.Should()
+			.Photo100.Should()
 			.Be(new Uri("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
 
 		groups[1]
-			.PhotoPreviews.Photo200.Should()
+			.Photo200.Should()
 			.Be(new Uri("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
 
 		groups[1]
@@ -479,7 +475,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 
 		groups[1]
 			.StartDate.Should()
-			.BeNull();
+			.Be(DateTime.Parse("1970-01-01"));
 	}
 
 	[Fact]
@@ -530,15 +526,15 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeFalse();
 
 		groups[0]
-			.PhotoPreviews.Photo50.Should()
+			.Photo50.Should()
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 
 		groups[0]
-			.PhotoPreviews.Photo100.Should()
+			.Photo100.Should()
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 
 		groups[0]
-			.PhotoPreviews.Photo200.Should()
+			.Photo200.Should()
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 
 		groups[1]
@@ -570,15 +566,15 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeTrue();
 
 		groups[1]
-			.PhotoPreviews.Photo50.Should()
+			.Photo50.Should()
 			.Be(new Uri("http://cs11418.userapi.com/g637247/c_f597d0f8.jpg"));
 
 		groups[1]
-			.PhotoPreviews.Photo100.Should()
+			.Photo100.Should()
 			.Be(new Uri("http://cs11418.userapi.com/g637247/b_898ae7f1.jpg"));
 
 		groups[1]
-			.PhotoPreviews.Photo200.Should()
+			.Photo200.Should()
 			.Be(new Uri("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
 	}
 
@@ -616,13 +612,13 @@ public class GroupsCategoryTest : CategoryBaseTest
 		group.IsMember.Should()
 			.BeFalse();
 
-		group.PhotoPreviews.Photo50.Should()
+		group.Photo50.Should()
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 
-		group.PhotoPreviews.Photo100.Should()
+		group.Photo100.Should()
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 
-		group.PhotoPreviews.Photo200.Should()
+		group.Photo200.Should()
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 
 		group.City.Id.Should()
@@ -678,13 +674,13 @@ public class GroupsCategoryTest : CategoryBaseTest
 		g.IsMember.Should()
 			.BeFalse();
 
-		g.PhotoPreviews.Photo50.Should()
+		g.Photo50.Should()
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/e_f700c806.jpg"));
 
-		g.PhotoPreviews.Photo100.Should()
+		g.Photo100.Should()
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/d_26f909c0.jpg"));
 
-		g.PhotoPreviews.Photo200.Should()
+		g.Photo200.Should()
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 	}
 
@@ -1306,13 +1302,13 @@ public class GroupsCategoryTest : CategoryBaseTest
 		group.IsMember.Should()
 			.BeFalse();
 
-		group.PhotoPreviews.Photo50.Should()
+		group.Photo50.Should()
 			.Be(new Uri("http://vk.com/images/community_50.gif"));
 
-		group.PhotoPreviews.Photo100.Should()
+		group.Photo100.Should()
 			.Be(new Uri("http://vk.com/images/community_100.gif"));
 
-		group.PhotoPreviews.PhotoMax.Should()
+		group.PhotoBig.Should()
 			.Be(new Uri("http://vk.com/images/question_a.gif"));
 
 		group.InvitedBy.Should()
@@ -1411,7 +1407,10 @@ public class GroupsCategoryTest : CategoryBaseTest
 		groups.Should()
 			.NotBeNull();
 
-		groups.GroupId.Should()
+		groups.Title.Should()
+			.Be("Test");
+
+		groups.Place.GroupId.Should()
 			.Be(103292418);
 	}
 
@@ -1433,7 +1432,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	{
 		var groups = new GroupsCategory(new VkApi());
 
-		FluentActions.Invoking(() => groups.IsMember("2", 1, null, null))
+		FluentActions.Invoking(() => groups.IsMember("2", 1, false))
 			.Should()
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
@@ -1446,7 +1445,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 		ReadErrorsJsonFile(5);
 
 		FluentActions.Invoking(() =>
-				Api.Groups.IsMember("637247", 4793858, null, null))
+				Api.Groups.IsMember("637247", 4793858, true))
 			.Should()
 			.ThrowExactly<UserAuthorizationFailException>()
 			.And.Message.Should()
@@ -1460,7 +1459,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 
 		ReadCategoryJsonPath(nameof(IsMember_UserIsAMember_ReturnTrue));
 
-		var result = Api.Groups.IsMember("637247", 4793858, null, null);
+		var result = Api.Groups.IsMember("637247", new long[]{4793858}, true);
 
 		result.Should()
 			.NotBeEmpty();
@@ -1477,7 +1476,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 
 		ReadCategoryJsonPath(nameof(IsMember_UserNotAMember_ReturnFalse));
 
-		var result = Api.Groups.IsMember("17683660", 4793858, null, null);
+		var result = Api.Groups.IsMember("17683660", new long[]{4793858}, null);
 
 		result.Should()
 			.NotBeEmpty();
@@ -1495,7 +1494,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 		ReadErrorsJsonFile(125);
 
 		FluentActions.Invoking(() =>
-				Api.Groups.IsMember("0", 4793858, null, null))
+				Api.Groups.IsMember("0", 4793858, true))
 			.Should()
 			.ThrowExactly<InvalidGroupIdException>()
 			.And.Message.Should()
@@ -1508,11 +1507,9 @@ public class GroupsCategoryTest : CategoryBaseTest
 		Url = "https://api.vk.com/method/groups.isMember";
 		ReadJsonFile(JsonPaths.False);
 
-		var result = Api.Groups.IsMember("637247", 1000000000000, null, null);
+		var result = Api.Groups.IsMember("637247", 1000000000000, false);
 
-		(result.Count > 0
-		&& result[0]
-			.Member).Should()
+		result.Should()
 			.BeFalse();
 	}
 
@@ -1695,15 +1692,15 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeFalse();
 
 		groups[1]
-			.PhotoPreviews.Photo50.Should()
+			.Photo50.Should()
 			.Be(new Uri("http://cs410222.userapi.com/g27895931/e_d8c8a46f.jpg"));
 
 		groups[1]
-			.PhotoPreviews.Photo100.Should()
+			.Photo100.Should()
 			.Be(new Uri("http://cs410222.userapi.com/g27895931/d_2869e827.jpg"));
 
 		groups[1]
-			.PhotoPreviews.Photo200.Should()
+			.Photo200.Should()
 			.Be(new Uri("http://cs410222.userapi.com/g27895931/a_32935e91.jpg"));
 
 		groups[0]
@@ -1735,15 +1732,15 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeFalse();
 
 		groups[0]
-			.PhotoPreviews.Photo50.Should()
+			.Photo50.Should()
 			.Be(new Uri("http://cs9365.userapi.com/g339767/e_a590d16b.jpg"));
 
 		groups[0]
-			.PhotoPreviews.Photo100.Should()
+			.Photo100.Should()
 			.Be(new Uri("http://cs9365.userapi.com/g339767/d_f653c773.jpg"));
 
 		groups[0]
-			.PhotoPreviews.Photo200.Should()
+			.Photo200.Should()
 			.Be(new Uri("http://cs9365.userapi.com/g339767/a_4653ba99.jpg"));
 	}
 
@@ -1797,15 +1794,15 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeFalse();
 
 		groups[2]
-			.PhotoPreviews.Photo50.Should()
+			.Photo50.Should()
 			.Be(new Uri("http://cs9913.userapi.com/g23995866/e_319d8573.jpg"));
 
 		groups[2]
-			.PhotoPreviews.Photo100.Should()
+			.Photo100.Should()
 			.Be(new Uri("http://cs9913.userapi.com/g23995866/d_166572a9.jpg"));
 
 		groups[2]
-			.PhotoPreviews.Photo200.Should()
+			.Photo200.Should()
 			.Be(new Uri("http://cs9913.userapi.com/g23995866/a_fc553960.jpg"));
 
 		groups[1]
@@ -1837,15 +1834,15 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeFalse();
 
 		groups[1]
-			.PhotoPreviews.Photo50.Should()
+			.Photo50.Should()
 			.Be(new Uri("http://cs10650.userapi.com/g23727386/e_8006da42.jpg"));
 
 		groups[1]
-			.PhotoPreviews.Photo100.Should()
+			.Photo100.Should()
 			.Be(new Uri("http://cs10650.userapi.com/g23727386/d_cbea0559.jpg"));
 
 		groups[1]
-			.PhotoPreviews.Photo200.Should()
+			.Photo200.Should()
 			.Be(new Uri("http://cs10650.userapi.com/g23727386/a_7743aab2.jpg"));
 
 		groups[0]
@@ -1877,15 +1874,15 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeFalse();
 
 		groups[0]
-			.PhotoPreviews.Photo50.Should()
+			.Photo50.Should()
 			.Be(new Uri("http://cs303205.userapi.com/g26442631/e_bcb8704f.jpg"));
 
 		groups[0]
-			.PhotoPreviews.Photo100.Should()
+			.Photo100.Should()
 			.Be(new Uri("http://cs303205.userapi.com/g26442631/d_a3627c6f.jpg"));
 
 		groups[0]
-			.PhotoPreviews.Photo200.Should()
+			.Photo200.Should()
 			.Be(new Uri("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg"));
 	}
 

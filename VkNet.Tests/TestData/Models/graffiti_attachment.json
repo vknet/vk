@@ -1,11 +1,84 @@
 ﻿{
-  "type": "graffiti",
-  "graffiti": {
-    "id": 474544454,
-    "owner_id": 504736359,
-    "url": "https://vk.com/doc504736359_474544454?hash=2b027a86a8be92f175&dl=GUYDINZTGYZTKOI:1569328866:2c6255c9b65cbedf0b&api=1&no_preview=1",
-    "width": 633,
-    "height": 720,
-    "access_key": "a2e272f6980d5a1d54"
+  "response": {
+	"count": 1,
+	"items": [
+	  {
+	  "id": 111,
+	  "from_id": -222,
+	  "attachments": [
+		{
+		"type": "graffiti",
+		"graffiti": {
+		  "id": 474544454,
+		  "owner_id": 504736359,
+		  "url": "https://vk.com/doc504736359_474544454?hash=2b027a86a8be92f175&dl=GUYDINZTGYZTKOI:1569328866:2c6255c9b65cbedf0b&api=1&no_preview=1",
+		  "width": 633,
+		  "height": 720,
+		  "access_key": "a2e272f6980d5a1d54"
+		}
+	  },
+		{
+		"type": "podcast",
+		"podcast": {
+		  "artist": "Городские сказки",
+		  "id": 456240245,
+		  "owner_id": -74962618,
+		  "title": "Меня учили быть светлым магом",
+		  "duration": 256,
+		  "track_code": "80dad436K-416uvfsu8yFbunAcAdNnM",
+		  "url": "https://sun9-23.ru/a7EFUdMesbg.jpg",
+		  "date": 1588169909,
+		  "lyrics_id": 447241065,
+		  "no_search": 1,
+		  "podcast_info": {
+			"cover": {
+			  "sizes": [{
+				"height": 640,
+				"url": "https://sun9-23.ru/a7EFUdMesbg.jpg",
+				"type": "a",
+				"width": 640
+			  }, {
+				"height": 320,
+				"url": "https://sun9-23.ru/a7EFUdMesbg.jpg",
+				"type": "c",
+				"width": 320
+			  }, {
+				"height": 160,
+				"url": "https://sun9-23.ru/a7EFUdMesbg.jpg",
+				"type": "e",
+				"width": 160
+			  }, {
+				"height": 240,
+				"url": "https://sun9-23.ru/a7EFUdMesbg.jpg",
+				"type": "b",
+				"width": 240
+			  }, {
+				"height": 120,
+				"url": "https://sun9-23.ru/a7EFUdMesbg.jpg",
+				"type": "d",
+				"width": 120
+			  }, {
+				"height": 100,
+				"url": "https://sun9-23.ru/a7EFUdMesbg.jpg",
+				"type": "f",
+				"width": 100
+			  }, {
+				"height": 50,
+				"url": "https://sun9-23.ru/a7EFUdMesbg.jpg",
+				"type": "h",
+				"width": 50
+			  }]
+			},
+			"description": "Текстовая версия: vk.com/wall-74962618_102481 Озвучил — Макс Рязановvk.com/id12031318",
+			"plays": 117,
+			"position": 0
+		  }
+		}
+	  }
+	  ]
+	}
+	],
+	"profiles": [],
+	"groups": []
   }
 }

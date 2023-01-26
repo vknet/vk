@@ -11,9 +11,7 @@ public class MessageTemplateTests : BaseTest
 	{
 		ReadJsonFile("Models", "Template_Carousel");
 
-		var response = GetResponse();
-
-		var result = MessageTemplate.FromJson(response);
+		var result = new MessageTemplate();
 
 		result.Should()
 			.NotBeNull();

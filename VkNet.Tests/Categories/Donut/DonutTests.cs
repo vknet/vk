@@ -1,5 +1,4 @@
 using FluentAssertions;
-using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
 using Xunit;

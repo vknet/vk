@@ -49,13 +49,13 @@ public class UserModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Name_ShouldCanBeOneWord));
 
-		var response = GetResponse();
-		var user = User.FromJson(response);
+		Url = "https://api.vk.com/method/friends.getRequests";
+		var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
-		user.FirstName.Should()
+		result.FirstName.Should()
 			.Be("бот");
 
-		user.LastName.Should()
+		result.LastName.Should()
 			.BeNull();
 	}
 
@@ -91,10 +91,10 @@ public class UserModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse));
 
-		var response = GetResponse();
-		var user = User.FromJson(response);
+		Url = "https://api.vk.com/method/friends.getRequests";
+		var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
-		user.Trending.Should()
+		result.Trending.Should()
 			.BeFalse();
 	}
 
@@ -103,10 +103,10 @@ public class UserModel : BaseTest
 	{
 		ReadJsonFile(JsonPaths.Object);
 
-		var response = GetResponse();
-		var user = User.FromJson(response);
+		Url = "https://api.vk.com/method/friends.getRequests";
+		var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
-		user.Trending.Should()
+		result.Trending.Should()
 			.BeFalse();
 	}
 
@@ -115,10 +115,10 @@ public class UserModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeTrue));
 
-		var response = GetResponse();
-		var user = User.FromJson(response);
+		Url = "https://api.vk.com/method/friends.getRequests";
+		var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
-		user.Trending.Should()
+		result.Trending.Should()
 			.BeTrue();
 	}
 }

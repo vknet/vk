@@ -5,9 +5,9 @@
     "is_admin": 1,
     "is_member": 1,
     "name": "Test_Group",
-    "photo_100": "https://",
-    "photo_200": "https://",
-    "photo_50": "https://",
+    "photo_100": "https://vk.com/images/community_50.png",
+    "photo_200": "https://vk.com/images/community_50.png",
+    "photo_50": "https://vk.com/images/community_50.png",
     "screen_name": "club191674739",
     "type": "group"
   }

@@ -1,6 +1,5 @@
 using FluentAssertions;
 using VkNet.Exception;
-using VkNet.Model.RequestParams;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;

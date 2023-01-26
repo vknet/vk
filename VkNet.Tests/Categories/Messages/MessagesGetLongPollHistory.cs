@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Linq;
 using FluentAssertions;
-using VkNet.Model.RequestParams;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
@@ -29,7 +29,7 @@ public class MessagesGetLongPollHistory : MessagesBaseTests
 			Onlines = true
 		});
 
-		result.Groups.Should()
-			.NotBeEmpty();
+		result.Groups.First().Id.Should()
+			.Be(103292418);
 	}
 }

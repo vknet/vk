@@ -8,7 +8,6 @@ using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -136,9 +135,6 @@ public class UsersCategoryTest : CategoryBaseTest
 
 		user.Deactivated.Should()
 			.Be(Deactivated.Deleted);
-
-		user.IsDeactivated.Should()
-			.BeTrue();
 	}
 
 	[Fact]
@@ -324,19 +320,19 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Timezone.Should()
 			.Be(3);
 
-		user.PhotoPreviews.Photo50.Should()
+		user.Photo50.Should()
 			.Be(new Uri("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
 
-		user.PhotoPreviews.Photo100.Should()
+		user.Photo100.Should()
 			.Be(new Uri("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg"));
 
-		user.PhotoPreviews.Photo200.Should()
+		user.Photo200.Should()
 			.Be(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
 
-		user.PhotoPreviews.Photo400.Should()
+		user.Photo400Orig.Should()
 			.Be(new Uri("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg"));
 
-		user.PhotoPreviews.PhotoMax.Should()
+		user.PhotoMax.Should()
 			.Be(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
 
 		user.HasMobile.HasValue.Should()
@@ -363,7 +359,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.CanWritePrivateMessage.Should()
 			.BeFalse();
 
-		user.Connections.Twitter.Should()
+		user.Twitter.Should()
 			.Be("durov");
 
 		user.Site.Should()
@@ -372,7 +368,9 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Status.Should()
 			.BeEmpty();
 
-		// TODO: u.LastSeen
+		user.LastSeen.Platform.Should()
+			.Be("7");
+
 		user.CommonCount.Value.Should()
 			.Be(0);
 
@@ -632,19 +630,19 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Timezone.Should()
 			.Be(3);
 
-		user.PhotoPreviews.Photo50.Should()
+		user.Photo50.Should()
 			.Be(new Uri("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
 
-		user.PhotoPreviews.Photo100.Should()
+		user.Photo100.Should()
 			.Be(new Uri("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg"));
 
-		user.PhotoPreviews.Photo200.Should()
+		user.Photo200.Should()
 			.Be(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
 
-		user.PhotoPreviews.Photo400.Should()
+		user.Photo400Orig.Should()
 			.Be(new Uri("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg"));
 
-		user.PhotoPreviews.PhotoMax.Should()
+		user.PhotoMax.Should()
 			.Be(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
 
 		user.HasMobile.Should()
@@ -671,7 +669,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.CanWritePrivateMessage.Should()
 			.BeFalse();
 
-		user.Connections.Twitter.Should()
+		user.Twitter.Should()
 			.Be("durov");
 
 		user.Site.Should()
@@ -680,7 +678,9 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Status.Should()
 			.BeEmpty();
 
-		// TODO: u.LastSeen
+		user.LastSeen.Platform.Should()
+			.Be("7");
+
 		user.CommonCount.Value.Should()
 			.Be(0);
 
@@ -847,33 +847,20 @@ public class UsersCategoryTest : CategoryBaseTest
 			.LastName.Should()
 			.Be("Дуров");
 
-		lst[0]
-			.Education.Should()
-			.NotBeNull();
-
-		lst[0]
-			.Education.UniversityId.Should()
+		lst[0].UniversityId.Should()
 			.Be(1);
 
-		lst[0]
-			.Education.UniversityName.Should()
+		lst[0].UniversityName.Should()
 			.Be("СПбГУ");
 
-		lst[0]
-			.Education.FacultyId.Should()
-			.BeNull();
+		lst[0].FacultyId.Should()
+			.Be(0);
 
-		lst[0]
-			.Education.FacultyName.Should()
+		lst[0].FacultyName.Should()
 			.BeNullOrEmpty();
 
-		lst[0]
-			.Education.Graduation.Should()
+		lst[0].Graduation.Should()
 			.Be(2006);
-
-		lst[1]
-			.Should()
-			.NotBeNull();
 
 		lst[1]
 			.Id.Should()
@@ -887,28 +874,27 @@ public class UsersCategoryTest : CategoryBaseTest
 			.LastName.Should()
 			.Be("Касеев");
 
-		lst[1]
-			.Education.Should()
+		lst[1].Should()
 			.NotBeNull();
 
 		lst[1]
-			.Education.UniversityId.Should()
+			.UniversityId.Should()
 			.Be(431);
 
 		lst[1]
-			.Education.UniversityName.Should()
+			.UniversityName.Should()
 			.Be("ВолгГТУ");
 
 		lst[1]
-			.Education.FacultyId.Should()
+			.FacultyId.Should()
 			.Be(3162);
 
 		lst[1]
-			.Education.FacultyName.Should()
+			.FacultyName.Should()
 			.Be("Электроники и вычислительной техники");
 
 		lst[1]
-			.Education.Graduation.Should()
+			.Graduation.Should()
 			.Be(2012);
 	}
 
@@ -941,22 +927,22 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.LastName.Should()
 			.Be("Дуров");
 
-		user.Education.Should()
+		user.Should()
 			.NotBeNull();
 
-		user.Education.UniversityId.Should()
+		user.UniversityId.Should()
 			.Be(1);
 
-		user.Education.UniversityName.Should()
+		user.UniversityName.Should()
 			.Be("СПбГУ");
 
-		user.Education.FacultyId.Should()
-			.BeNull();
+		user.FacultyId.Should()
+			.Be(0);
 
-		user.Education.FacultyName.Should()
+		user.FacultyName.Should()
 			.BeEmpty();
 
-		user.Education.Graduation.Should()
+		user.Graduation.Should()
 			.Be(2006);
 	}
 
@@ -980,7 +966,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		Url = "https://api.vk.com/method/users.getFollowers";
 		ReadCategoryJsonPath(nameof(GetFollowers_WithAllFields));
 
-		var users = Api.Users.GetFollowers(1, 2, 3, ProfileFields.All, NameCase.Gen);
+		var users = Api.Users.GetFollowers(ProfileFields.All, 1, 2, 3, NameCase.Gen);
 
 		users.Should()
 			.NotBeNull();
@@ -1029,16 +1015,16 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Timezone.Should()
 			.Be(3);
 
-		user.PhotoPreviews.Photo50.Should()
+		user.Photo50.Should()
 			.Be(new Uri("http://cs606327.vk.me/v606327122/35ac/R57FNUr34iw.jpg"));
 
-		user.PhotoPreviews.Photo100.Should()
+		user.Photo100.Should()
 			.Be(new Uri("http://cs606327.vk.me/v606327122/35ab/HUsGNVxBoQU.jpg"));
 
-		user.PhotoPreviews.Photo200.Should()
+		user.Photo200.Should()
 			.Be(new Uri("http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg"));
 
-		user.PhotoPreviews.PhotoMax.Should()
+		user.PhotoMax.Should()
 			.Be(new Uri("http://cs606327.vk.me/v606327122/35aa/4SIM1EWPmes.jpg"));
 
 		user.HasMobile.Should()
@@ -1134,16 +1120,16 @@ public class UsersCategoryTest : CategoryBaseTest
 		user1.Timezone.Should()
 			.Be(1);
 
-		user1.PhotoPreviews.Photo50.Should()
+		user1.Photo50.Should()
 			.Be(new Uri("http://cs310121.vk.me/v310121398/8023/LMm-uoyk1-M.jpg"));
 
-		user1.PhotoPreviews.Photo100.Should()
+		user1.Photo100.Should()
 			.Be(new Uri("http://cs310121.vk.me/v310121398/8022/KajnVK0lvFA.jpg"));
 
-		user1.PhotoPreviews.Photo200.Should()
+		user1.Photo200.Should()
 			.Be(new Uri("http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg"));
 
-		user1.PhotoPreviews.PhotoMax.Should()
+		user1.PhotoMax.Should()
 			.Be(new Uri("http://cs310121.vk.me/v310121398/8021/u0l0caRL1lY.jpg"));
 
 		user1.HasMobile.Should()
@@ -1170,8 +1156,8 @@ public class UsersCategoryTest : CategoryBaseTest
 		user1.HomePhone.Should()
 			.Be("*****");
 
-		user1.Connections.Skype.Should()
-			.Be("немає");
+		user1.Skype.Should()
+			.BeNull();
 
 		user1.Site.Should()
 			.BeEmpty();
@@ -1235,13 +1221,11 @@ public class UsersCategoryTest : CategoryBaseTest
 		result.Should()
 			.HaveCount(2);
 
-		result[0]
-			.Id.Should()
-			.Be(5984118);
+		result.Should()
+			.HaveElementAt(0, 5984118);
 
-		result[1]
-			.Id.Should()
-			.Be(179652233);
+		result.Should()
+			.HaveElementAt(1, 179652233);
 	}
 
 	[Fact]
@@ -1284,13 +1268,13 @@ public class UsersCategoryTest : CategoryBaseTest
 		group.IsMember.Should()
 			.BeFalse();
 
-		group.PhotoPreviews.Photo50.Should()
+		group.Photo50.Should()
 			.Be(new Uri("http://cs412129.vk.me/v412129558/6cea/T3jVq9A5hN4.jpg"));
 
-		group.PhotoPreviews.Photo100.Should()
+		group.Photo100.Should()
 			.Be(new Uri("http://cs412129.vk.me/v412129558/6ce9/Rs47ldlt4Ko.jpg"));
 
-		group.PhotoPreviews.Photo200.Should()
+		group.Photo200.Should()
 			.Be(new Uri("http://cs412129.vk.me/v412129604/1238/RhEgZqrsv-w.jpg"));
 
 		var group1 = result.Skip(1)
@@ -1320,13 +1304,13 @@ public class UsersCategoryTest : CategoryBaseTest
 		group1.IsMember.Should()
 			.BeFalse();
 
-		group1.PhotoPreviews.Photo50.Should()
+		group1.Photo50.Should()
 			.Be(new Uri("http://cs417031.vk.me/v417031989/59cb/65zF-xnOQsk.jpg"));
 
-		group1.PhotoPreviews.Photo100.Should()
+		group1.Photo100.Should()
 			.Be(new Uri("http://cs417031.vk.me/v417031989/59ca/eOJ7ER_eJok.jpg"));
 
-		group1.PhotoPreviews.Photo200.Should()
+		group1.Photo200.Should()
 			.Be(new Uri("http://cs417031.vk.me/v417031989/59c8/zI9aAlI-PHc.jpg"));
 	}
 

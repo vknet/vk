@@ -10,10 +10,9 @@ public class AudioPlaylistModel : BaseTest
 	public void ShouldDeserializeFromVkResponseToAttachment()
 	{
 		ReadJsonFile("Models", "audio_playlist_attachment");
+		Url = "https://api.vk.com/method/wall.get";
 
-		var response = GetResponse();
-
-		var attachment = Attachment.FromJson(response);
+		var attachment = Api.Wall.Get(new()).WallPosts[0].Attachments[0];
 
 		attachment.Instance.Should()
 			.BeOfType<AudioPlaylist>();
