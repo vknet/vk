@@ -1,4 +1,5 @@
 ﻿using System;
+using VkNet.Utils;
 
 namespace VkNet.Enums;
 
@@ -11,10 +12,11 @@ public enum MessageType
 	/// <summary>
 	/// Полученное сообщение.
 	/// </summary>
+	[DefaultValue]
 	Received = 0,
 
 	/// <summary>
 	/// Отправленное сообщение.
 	/// </summary>
-	Sended = 1
+	Sended = 1,
 }
