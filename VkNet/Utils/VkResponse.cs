@@ -3,7 +3,6 @@ using System.Net;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
 using VkNet.Enums;
-using VkNet.Model;
 
 namespace VkNet.Utils;
 
@@ -103,27 +102,6 @@ public sealed partial class VkResponse
 	/// Строковое представление объекта.
 	/// </returns>
 	public override string ToString() => _token.ToString();
-
-	#region Model exceptions
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator Coordinates(VkResponse response)
-	{
-		if (response?._token == null)
-		{
-			return null;
-		}
-
-		return Coordinates.FromJson(response: response);
-	}
-
-	#endregion
 
 	#region System types
 
