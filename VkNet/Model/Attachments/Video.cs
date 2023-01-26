@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Infrastructure;
 using VkNet.Model.GroupUpdate;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -228,36 +226,6 @@ public class Video : MediaAttachment, IGroupUpdate
 	/// </summary>
 	[JsonProperty("is_favorite")]
 	public bool IsFavorite { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Video FromJson(VkResponse response) => response != null
-		? JsonConvert.DeserializeObject<Video>(response.ToString(), JsonConfigure.JsonSerializerSettings)
-		: null;
-
-	/// <summary>
-	/// Преобразование класса <see cref="Video" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Video" /></returns>
-	public static implicit operator Video(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 
 	#region Недокументированные
 

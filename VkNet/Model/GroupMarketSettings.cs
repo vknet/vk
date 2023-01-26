@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// настройки блока товаров.
@@ -52,22 +51,4 @@ public class GroupMarketSettings
 	/// </summary>
 	[JsonProperty("currency")]
 	public Currency Currency { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GroupMarketSettings FromJson(VkResponse response) => new()
-	{
-		Enabled = response["enabled"],
-		CommentsEnabled = response["comments_enabled"],
-		CanMessage = response["can_message"],
-		CountryIds = response["country_ids"]
-			.ToReadOnlyCollectionOf<long>(x => x),
-		CityIds = response["city_ids"]
-			.ToReadOnlyCollectionOf<long>(x => x),
-		ContactId = response["contact_id"],
-		Currency = response["currency"]
-	};
 }

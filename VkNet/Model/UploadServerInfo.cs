@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -28,24 +27,24 @@ public class UploadServerInfo
 	[JsonProperty("user_id")]
 	public long? UserId { get; set; }
 
-	#region Methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static UploadServerInfo FromJson(VkResponse response)
+	[JsonProperty("aid")]
+	private long? Aid
 	{
-		var info = new UploadServerInfo
-		{
-			UploadUrl = response[key: "upload_url"],
-			AlbumId = Utilities.GetNullableLongId(response: response[key: "album_id"] ?? response[key: "aid"]),
-			UserId = Utilities.GetNullableLongId(response: response[key: "user_id"] ?? response[key: "message_id"] ?? response[key: "mid"])
-		};
-
-		return info;
+		get => AlbumId;
+		set => AlbumId = value;
 	}
 
-	#endregion
+	[JsonProperty("message_id")]
+	private long? MessageId
+	{
+		get => UserId;
+		set => UserId = value;
+	}
+
+	[JsonProperty("mid")]
+	private long? Mid
+	{
+		get => UserId;
+		set => UserId = value;
+	}
 }

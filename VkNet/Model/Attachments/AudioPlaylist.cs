@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Attachments;
@@ -153,70 +152,4 @@ public class AudioPlaylist : MediaAttachment
 	/// </summary>
 	[JsonProperty("is_explicit")]
 	public bool IsExplicit { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static AudioPlaylist FromJson(VkResponse response)
-	{
-		var playlist = new AudioPlaylist
-		{
-			Id = response["id"],
-			OwnerId = response["owner_id"],
-			Type = response["type"],
-			Title = response["title"],
-			Description = response["description"],
-			Genres = response["genres"]
-				.ToReadOnlyCollectionOf<AudioPlaylistGenre>(x => x),
-			Count = response["count"],
-			IsFollowing = response["is_following"],
-			Followers = response["followers"],
-			Plays = response["plays"],
-			CreateTime = response["create_time"],
-			UpdateTime = response["update_time"],
-			Year = response["year"],
-			Original = response["original"],
-			Follower = response["followed"],
-			Photo = response["photo"],
-			Thumbs = response["thumbs"]
-				.ToReadOnlyCollectionOf<AudioCover>(x => x),
-			OwnerIds = response["display_owner_ids"]
-				.ToReadOnlyCollectionOf<long>(x => x),
-			MainArtist = response["main_artist"],
-			Artists = response["artists"]
-				.ToReadOnlyCollectionOf<AudioArtist>(x => x),
-			MainArtists = response["main_artists"]
-				.ToReadOnlyCollectionOf<AudioArtist>(x => x),
-			FeaturedArtists = response["featured_artists"]
-				.ToReadOnlyCollectionOf<AudioArtist>(x => x),
-			AccessKey = response["access_key"],
-			IsExplicit = response["is_explicit"]
-		};
-
-		return playlist;
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="AudioPlaylist" /> в
-	/// <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Результат преобразования в <see cref="AudioPlaylist" /> </returns>
-	public static implicit operator AudioPlaylist(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -21,19 +20,4 @@ public class Email
 	/// </summary>
 	[JsonProperty(propertyName: "address")]
 	public string Address { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Email FromJson(VkResponse response) => new()
-	{
-		Id = response[key: "id"],
-		Address = response[key: "address"]
-	};
-
-	#endregion
 }

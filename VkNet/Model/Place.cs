@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -48,12 +47,14 @@ public class Place
 	/// Идентификатор страны, название которой можно получить с помощью метода
 	/// DatabaseCategory.GetCountriesById
 	/// </summary>
+	[JsonProperty("country_id")]
 	public long? CountryId { get; set; }
 
 	/// <summary>
 	/// Идентификатор города, название которого можно получить с помощью метода
 	/// DatabaseCategory.GetCitiesById
 	/// </summary>
+	[JsonProperty("city_id")]
 	public long? CityId { get; set; }
 
 	/// <summary>
@@ -65,6 +66,7 @@ public class Place
 	/// <summary>
 	/// Данный параметр указывается, если местоположение является прикреплённой картой.
 	/// </summary>
+	[JsonProperty("shop_map")]
 	public bool? ShowMap { get; set; }
 
 	/// <summary>
@@ -129,32 +131,10 @@ public class Place
 	[JsonProperty("group_photo")]
 	public Uri GroupPhoto { get; set; }
 
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Place FromJson(VkResponse response)
+	[JsonProperty("place_id")]
+	private long? PlaceId
 	{
-		var place = new Place
-		{
-			Id = response[key: "place_id"] ?? response[key: "id"],
-			Title = response[key: "title"],
-			Latitude = response[key: "latitude"],
-			Longitude = response[key: "longitude"],
-			Type = response[key: "type"],
-			CountryId = response[key: "country_id"],
-			CityId = response[key: "city_id"],
-			Address = response[key: "address"],
-			ShowMap = response[key: "showmap"],
-			Country = response[key: "country"], // установлено экcпериментальным путем
-			City = response[key: "city"] // установлено экcпериментальным путем
-		};
-
-		return place;
+		get => Id;
+		set => Id = value;
 	}
-
-	#endregion
 }

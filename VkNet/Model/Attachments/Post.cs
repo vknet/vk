@@ -5,7 +5,6 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Attachments;
@@ -174,84 +173,6 @@ public class Post : MediaAttachment
 	[JsonProperty("copy_history")]
 	public ReadOnlyCollection<Post> CopyHistory { get; set; }
 
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из JSON
-	/// </summary>
-	/// <param name="response"> Ответ сервера </param>
-	/// <returns> </returns>
-	public static Post FromJson(VkResponse response)
-	{
-		if (response["id"] == null)
-		{
-			return null;
-		}
-
-		var res = new Post()
-		{
-			Id = response["id"],
-			OwnerId = response["owner_id"],
-			FromId = response["from_id"],
-			Date = response["date"],
-			Text = response["text"],
-			ReplyOwnerId = response["reply_owner_id"],
-			ReplyPostId = response["reply_post_id"],
-			FriendsOnly = response["friends_only"],
-			SignerId = response["signer_id"],
-			CopyPostDate = response["copy_post_date"],
-			CopyPostType = response["copy_post_type"],
-			CopyOwnerId = response["copy_owner_id"],
-			CopyPostId = response["copy_post_id"],
-			CopyText = response["copy_text"],
-			IsPinned = response["is_pinned"],
-			CreatedBy = response["created_by"],
-			CopyCommenterId = response["copy_commenter_id"],
-			CopyCommentId = response["copy_comment_id"],
-			CanDelete = response["can_delete"],
-			CanEdit = response["can_edit"],
-			CanPin = response["can_pin"],
-			MarkedAsAds = response["marked_as_ads"],
-			AccessKey = response["access_key"]
-		};
-
-		res.Comments = response["comments"];
-		res.Likes = response["likes"];
-		res.Reposts = response["reposts"];
-		res.PostType = response["post_type"];
-		res.PostSource = response["post_source"];
-		res.Geo = response["geo"];
-
-		res.Attachments = response["attachments"]
-			.ToReadOnlyCollectionOf<Attachment>(x => x);
-
-		res.CopyHistory = response["copy_history"]
-			.ToReadOnlyCollectionOf<Post>(x => x);
-
-		res.Views = response["views"];
-		res.Donut = response["donut"];
-
-		return res;
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="Post" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Post" /></returns>
-	public static implicit operator Post(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 	#region Поля, установленные экспериментально
 
 	/// <summary>

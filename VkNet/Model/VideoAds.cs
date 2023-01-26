@@ -2,8 +2,6 @@
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Infrastructure;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -70,16 +68,4 @@ public class VideoAds
 	/// </summary>
 	[JsonProperty("autoplay_preroll")]
 	public int? AutoPlayPreroll { get; set; }
-
-	#region public Methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static VideoAds FromJson(VkResponse response) =>
-		JsonConvert.DeserializeObject<VideoAds>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-
-	#endregion
 }

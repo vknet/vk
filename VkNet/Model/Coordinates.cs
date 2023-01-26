@@ -1,6 +1,5 @@
 using System;
-using VkNet.Exception;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model;
 
@@ -16,61 +15,12 @@ public class Coordinates
 	/// <summary>
 	/// Географическая широта.
 	/// </summary>
+	[JsonProperty("latitude")]
 	public double Latitude { get; set; }
 
 	/// <summary>
 	/// Географическая долгота.
 	/// </summary>
+	[JsonProperty("longitude")]
 	public double Longitude { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Coordinates FromJson(VkResponse response)
-	{
-		// TODO: TEST IT!!!!!
-
-		double latitude;
-		double longitude;
-
-		if (response.ContainsKey("latitude") && response.ContainsKey("longitude")) //приходит в messages.geo
-		{
-			latitude = response["latitude"];
-			longitude = response["longitude"];
-		} else //geo со стены 
-		{
-			var latitudeWithLongitude = ((string) response).Split(' ');
-
-			if (latitudeWithLongitude.Length != 2)
-			{
-				throw new VkApiException(message: "Coordinates must have latitude and longitude!");
-			}
-
-			if (!double.TryParse(latitudeWithLongitude[0]
-					.Replace(".", ","), out latitude))
-			{
-				throw new VkApiException(message: "Invalid latitude!");
-			}
-
-			if (!double.TryParse(latitudeWithLongitude[1]
-					.Replace(".", ","), out longitude))
-			{
-				throw new VkApiException(message: "Invalid longitude!");
-			}
-		}
-
-		var coordinates = new Coordinates
-		{
-			Latitude = latitude,
-			Longitude = longitude
-		};
-
-		return coordinates;
-	}
-
-	#endregion
 }

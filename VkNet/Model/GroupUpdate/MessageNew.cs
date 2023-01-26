@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate;
 
@@ -21,35 +20,4 @@ public class MessageNew : IGroupUpdate
 	/// </summary>
 	[JsonProperty("client_info")]
 	public ClientInfo ClientInfo { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// </summary>
-	/// <param name="response"> </param>
-	/// <returns> </returns>
-	public static MessageNew FromJson(VkResponse response) => new()
-	{
-		Message = response["message"],
-		ClientInfo = response["client_info"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="MessageNew" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="MessageNew" /></returns>
-	public static implicit operator MessageNew(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

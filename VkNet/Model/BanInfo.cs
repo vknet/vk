@@ -3,7 +3,6 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -48,27 +47,4 @@ public class BanInfo
 	/// </summary>
 	[JsonProperty(propertyName: "reason")]
 	public BanReason Reason { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static BanInfo FromJson(VkResponse response)
-	{
-		var info = new BanInfo
-		{
-			AdminId = response[key: "admin_id"],
-			Date = response[key: "date"],
-			Comment = response[key: "comment"],
-			EndDate = response[key: "end_date"],
-			Reason = response[key: "reason"]
-		};
-
-		return info;
-	}
-
-	#endregion
 }

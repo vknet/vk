@@ -1,5 +1,5 @@
 using System;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model.Attachments;
 
@@ -19,49 +19,18 @@ public class ApplicationContent : MediaAttachment
 	/// <summary>
 	/// Название приложения.
 	/// </summary>
+	[JsonProperty("name")]
 	public string Name { get; set; }
 
 	/// <summary>
 	/// URL изображения для предпросмотра.
 	/// </summary>
+	[JsonProperty("photo_130")]
 	public string Photo130 { get; set; }
 
 	/// <summary>
 	/// URL полноразмерного изображения.
 	/// </summary>
+	[JsonProperty("photo_604")]
 	public string Photo604 { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static ApplicationContent FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		Name = response["name"],
-		Photo130 = response["photo_130"],
-		Photo604 = response["photo_604"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="ApplicationContent" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="ApplicationContent" /></returns>
-	public static implicit operator ApplicationContent(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

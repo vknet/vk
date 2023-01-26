@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
-using VkNet.Utils;
+using Newtonsoft.Json;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Attachments;
 
@@ -18,41 +19,57 @@ public class Link : MediaAttachment
 	/// <summary>
 	/// Идентификатор ссылки
 	/// </summary>
+	[JsonConverter(typeof(StringIdJsonConverter))]
+	[JsonProperty("id")]
 	public string LinkId { get; set; }
 
 	/// <summary>
 	/// Адрес ссылки.
 	/// </summary>
+	[JsonProperty("url")]
 	public Uri Uri { get; set; }
 
 	/// <summary>
 	/// Заголовок ссылки.
 	/// </summary>
+	[JsonProperty("title")]
 	public string Title { get; set; }
 
 	/// <summary>
 	/// Подпись ссылки (если имеется).
 	/// </summary>
+	[JsonProperty("caption")]
 	public string Caption { get; set; }
 
 	/// <summary>
 	/// Описание ссылки.
 	/// </summary>
+	[JsonProperty("description")]
 	public string Description { get; set; }
+
+	[JsonProperty("desc")]
+	private string Desc
+	{
+		get => Description;
+		set => Description = value;
+	}
 
 	/// <summary>
 	/// Фото (если имеется).
 	/// </summary>
+	[JsonProperty("photo")]
 	public Photo Photo { get; set; }
 
 	/// <summary>
 	/// Продукт.
 	/// </summary>
+	[JsonProperty("product")]
 	public Market Product { get; set; }
 
 	/// <summary>
 	/// Кнопка.
 	/// </summary>
+	[JsonProperty("button")]
 	public LinkButton Button { get; set; }
 
 	/// <summary>
@@ -60,31 +77,37 @@ public class Link : MediaAttachment
 	/// Идентификатор возвращается в формате
 	/// <c>"owner_id_page_id"</c>.
 	/// </summary>
+	[JsonProperty("preview_page")]
 	public string PreviewPage { get; set; }
 
 	/// <summary>
 	/// Адрес страницы для предпросмотра содержимого страницы.
 	/// </summary>
+	[JsonProperty("preview_url")]
 	public Uri PreviewUrl { get; set; }
 
 	/// <summary>
 	/// Адрес превью изображения к ссылке (если имеется).
 	/// </summary>
+	[JsonProperty("image_src")]
 	public string Image { get; set; }
 
 	/// <summary>
 	/// Является ли ссылкой на внешний ресурс (если имеется).
 	/// </summary>
+	[JsonProperty("is_external")]
 	public bool? IsExternal { get; set; }
 
 	/// <summary>
 	/// Рейтинг.
 	/// </summary>
+	[JsonProperty("rating")]
 	public Rating Rating { get; set; }
 
 	/// <summary>
 	/// Приложение.
 	/// </summary>
+	[JsonProperty("application")]
 	public Application Application { get; set; }
 
 	/// <summary>
@@ -94,60 +117,4 @@ public class Link : MediaAttachment
 	/// Адрес ссылки.
 	/// </returns>
 	public override string ToString() => Uri.ToString();
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Link FromJson(VkResponse response)
-	{
-		var id = default(long?);
-		var linkId = (string) response["id"];
-
-		if (long.TryParse(linkId, out var temporaryId))
-		{
-			id = temporaryId;
-		}
-
-		return new()
-		{
-			Id = id,
-			LinkId = linkId,
-			Uri = response["url"],
-			Title = response["title"],
-			Description = response["description"] ?? response["desc"],
-			Image = response["image_src"],
-			PreviewPage = response["preview_page"],
-			Caption = response["caption"],
-			Photo = response["photo"],
-			IsExternal = response["is_external"],
-			Product = response["product"],
-			Rating = response["rating"],
-			Application = response["application"],
-			Button = response["button"],
-			PreviewUrl = response["preview_url"]
-		};
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="Link" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Link" /></returns>
-	public static implicit operator Link(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

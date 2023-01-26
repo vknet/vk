@@ -1,5 +1,5 @@
 ﻿using System;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model;
 
@@ -13,84 +13,73 @@ public class School
 	/// <summary>
 	/// Идентификатор школы.
 	/// </summary>
+	[JsonProperty("id")]
 	public long? Id { get; set; }
 
 	/// <summary>
 	/// Идентификатор страны, в которой расположена школа.
 	/// </summary>
+	[JsonProperty("country")]
 	public long? Country { get; set; }
 
 	/// <summary>
 	/// Идентификатор города, в котором расположена школа.
 	/// </summary>
+	[JsonProperty("city")]
 	public long? City { get; set; }
 
 	/// <summary>
 	/// Наименование школы.
 	/// </summary>
+	[JsonProperty("name")]
 	public string Name { get; set; }
 
 	/// <summary>
 	/// Год начала обучения.
 	/// </summary>
+	[JsonProperty("year_from")]
 	public int? YearFrom { get; set; }
 
 	/// <summary>
 	/// Год окончания обучения.
 	/// </summary>
+	[JsonProperty("year_to")]
 	public int? YearTo { get; set; }
 
 	/// <summary>
 	/// Год выпуска.
 	/// </summary>
+	[JsonProperty("year_graduated")]
 	public int? YearGraduated { get; set; }
 
 	/// <summary>
 	/// Буква класса.
 	/// </summary>
+	[JsonProperty("class")]
 	public string Class { get; set; }
 
 	/// <summary>
 	/// Специализация класса.
 	/// </summary>
+	[JsonProperty("speciality")]
 	public string Speciality { get; set; }
 
 	/// <summary>
 	/// Идентификатор типа школы.
 	/// </summary>
+	[JsonProperty("type")]
 	public long? Type { get; set; }
 
 	/// <summary>
 	/// Название типа школы.
 	/// </summary>
+	[JsonProperty("type_str")]
 	public string TypeStr { get; set; }
 
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static School FromJson(VkResponse response)
+	[JsonProperty("title")]
+	private string Title
 	{
-		var school = new School
-		{
-			Id = Utilities.GetNullableLongId(response: response[key: "id"]),
-			Country = Utilities.GetNullableLongId(response: response[key: "country"]),
-			City = Utilities.GetNullableLongId(response: response[key: "city"]),
-			Name = response[key: "name"] ?? response[key: "title"],
-			YearFrom = response[key: "year_from"],
-			YearTo = response[key: "year_to"],
-			YearGraduated = response[key: "year_graduated"],
-			Class = response[key: "class"],
-			Speciality = response[key: "speciality"],
-			Type = response[key: "type"],
-			TypeStr = response[key: "type_str"]
-		};
-
-		return school;
+		get => Name;
+		set => Name = value;
 	}
-
-	#endregion
 }

@@ -1,5 +1,5 @@
 using System;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model.Attachments;
 
@@ -12,40 +12,12 @@ public class PollBackgroundPoint
 	/// <summary>
 	/// Положение точки
 	/// </summary>
+	[JsonProperty("position")]
 	public int Position { get; set; }
 
 	/// <summary>
 	/// HEX-код цвета точки
 	/// </summary>
+	[JsonProperty("color")]
 	public string Color { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static PollBackgroundPoint FromJson(VkResponse response) => new()
-	{
-		Color = response["color"],
-		Position = response["position"]
-	};
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator PollBackgroundPoint(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

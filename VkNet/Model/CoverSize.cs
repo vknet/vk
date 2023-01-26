@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -33,34 +32,4 @@ public class CoverSize
 	/// </summary>
 	[JsonProperty("type")]
 	public string Type { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CoverSize FromJson(VkResponse response) => new()
-	{
-		Url = response["url"],
-		Width = response["width"],
-		Height = response["height"],
-		Type = response["type"]
-	};
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static implicit operator CoverSize(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

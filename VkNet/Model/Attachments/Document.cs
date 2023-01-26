@@ -2,7 +2,6 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -19,16 +18,19 @@ public class Document : MediaAttachment
 	/// <summary>
 	/// Название документа.
 	/// </summary>
+	[JsonProperty("title")]
 	public string Title { get; set; }
 
 	/// <summary>
 	/// Размер документа в байтах.
 	/// </summary>
+	[JsonProperty("size")]
 	public long? Size { get; set; }
 
 	/// <summary>
 	/// Расширение документа.
 	/// </summary>
+	[JsonProperty("ext")]
 	public string Ext { get; set; }
 
 	/// <summary>
@@ -40,6 +42,7 @@ public class Document : MediaAttachment
 	/// <summary>
 	/// Дата добавления в формате unixtime.
 	/// </summary>
+	[JsonProperty("date")]
 	[JsonConverter(typeof(UnixDateTimeConverter))]
 	public DateTime? Date { get; set; }
 
@@ -52,62 +55,32 @@ public class Document : MediaAttachment
 	/// <summary>
 	/// Информация для предварительного просмотра документа
 	/// </summary>
+	[JsonProperty("preview")]
 	public DocumentPreview Preview { get; set; }
 
 	/// <summary>
 	/// Адрес изображения с размером 100x75px (если файл графический).
 	/// </summary>
+	[JsonProperty("photo_100")]
 	public string Photo100 { get; set; }
 
 	/// <summary>
 	/// Адрес изображения с размером 130x100px (если файл графический).
 	/// </summary>
+	[JsonProperty("photo_130")]
 	public string Photo130 { get; set; }
 
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Document FromJson(VkResponse response)
+	[JsonProperty("did")]
+	private long? Did
 	{
-		var document = new Document
-		{
-			Id = response["doc_id"] ?? response["did"] ?? response["id"],
-			OwnerId = response["owner_id"],
-			Title = response["title"],
-			Size = response["size"],
-			Ext = response["ext"],
-			Uri = response["url"],
-			Photo100 = response["photo_100"],
-			Photo130 = response["photo_130"],
-			AccessKey = response["access_key"],
-			Date = response["date"],
-			Preview = response["preview"],
-			Type = response["type"]
-		};
-
-		return document;
+		get => Id;
+		set => Id = value;
 	}
 
-	/// <summary>
-	/// Преобразование класса <see cref="Document" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Document" /></returns>
-	public static implicit operator Document(VkResponse response)
+	[JsonProperty("doc_id")]
+	private long? DocId
 	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
+		get => Id;
+		set => Id = value;
 	}
-
-	#endregion
 }

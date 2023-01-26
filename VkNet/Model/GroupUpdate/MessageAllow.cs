@@ -1,5 +1,5 @@
 using System;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model.GroupUpdate;
 
@@ -12,37 +12,12 @@ public class MessageAllow : IGroupUpdate
 	/// <summary>
 	/// Идентификатор пользователя
 	/// </summary>
+	[JsonProperty("user_id")]
 	public long? UserId { get; set; }
 
 	/// <summary>
 	/// Параметр, переданный в методе <c>messages.allowMessagesFromGroup</c>
 	/// </summary>
+	[JsonProperty("key")]
 	public string Key { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	public static MessageAllow FromJson(VkResponse response) => new()
-	{
-		UserId = response["user_id"],
-		Key = response["key"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="MessageAllow" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Результат преобразования в <see cref="MessageAllow" /> </returns>
-	public static implicit operator MessageAllow(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -22,185 +21,6 @@ namespace VkNet.Model;
 [Serializable]
 public class User
 {
-	#region Методы
-
-	/// <summary>
-	/// </summary>
-	/// <param name="response"> </param>
-	/// <returns> </returns>
-	public static User FromJson(VkResponse response)
-	{
-		var user = new User
-		{
-			Id = response["user_id"] ?? response["uid"] ?? response["id"] ?? 0,
-			FirstName = response["first_name"],
-			LastName = response["last_name"],
-			Sex = response["sex"],
-			BirthDate = response["bdate"],
-			City = response["city"],
-			Country = response["country"],
-			PhotoPreviews = response,
-			Online = response["online"],
-			FriendLists = response["lists"]
-				.ToReadOnlyCollectionOf<long>(x => x),
-			Domain = response["domain"],
-			HasMobile = response["has_mobile"],
-			MobilePhone = response["mobile_phone"] ?? response["phone"],
-			HomePhone = response["home_phone"],
-			Connections = response,
-			Site = response["site"],
-			Education = response,
-			Universities = response["universities"]
-				.ToReadOnlyCollectionOf<University>(x => x),
-			Schools = response["schools"]
-				.ToReadOnlyCollectionOf<School>(x => x),
-			CanPost = response["can_post"],
-			CanSeeAllPosts = response["can_see_all_posts"],
-			CanSeeAudio = response["can_see_audio"],
-			CanWritePrivateMessage = response["can_write_private_message"],
-			Status = response["status"],
-			StatusAudio = response["status_audio"],
-			LastSeen = response["last_seen"],
-			CommonCount = response["common_count"],
-			Relation = response["relation"],
-			Relatives = response["relatives"]
-				.ToReadOnlyCollectionOf<Relative>(x => x),
-			Counters = response["counters"],
-			ScreenName = response["screen_name"],
-			Nickname = response["nickname"],
-			Timezone = response["timezone"],
-			Language = response["language"],
-			OnlineMobile = response["online_mobile"],
-			OnlineApp = response["online_app"],
-			RelationPartner = response["relation_partner"],
-			StandInLife = response["personal"],
-			Interests = response["interests"],
-			Music = response["music"],
-			Activities = response["activities"],
-			Movies = response["movies"],
-			Tv = response["tv"],
-			Books = response["books"],
-			Games = response["games"],
-			About = response["about"],
-			Quotes = response["quotes"],
-			InvitedBy = response["invited_by"],
-			BanInfo = response["ban_info"],
-			Deactivated = response["deactivated"],
-			MaidenName = response["maiden_name"],
-			BirthdayVisibility = response["bdate_visibility"],
-			HomeTown = response["home_town"],
-			ChangeNameRequest = response["name_request"],
-			Contacts = response["contacts"],
-			Hidden = response["hidden"],
-			PhotoId = response["photo_id"],
-			Verified = response["verified"],
-			HasPhoto = response["has_photo"],
-			Photo50 = response["photo_50"],
-			Photo100 = response["photo_100"],
-			Photo200Orig = response["photo_200_orig"],
-			Photo200 = response["photo_200"],
-			Photo400Orig = response["photo_400_orig"],
-			PhotoMax = response["photo_max"],
-			PhotoMaxOrig = response["photo_max_orig"],
-			FollowersCount = response["followers_count"],
-			Occupation = response["occupation"],
-			Exports = response["exports"],
-			WallComments = response["wall_comments"],
-			CanSendFriendRequest = response["can_send_friend_request"],
-			IsFavorite = response["is_favorite"],
-			IsHiddenFromFeed = response["is_hidden_from_feed"],
-			CropPhoto = response["crop_photo"],
-			IsFriend = response["is_friend"] == "1",
-			FriendStatus = response["friend_status"],
-			Career = response["career"]
-				.ToReadOnlyCollectionOf<Career>(x => x),
-			Military = response["military"],
-			Blacklisted = response["blacklisted"],
-			BlacklistedByMe = response["blacklisted_by_me"],
-			Trending = response["trending"],
-			FirstNameNom = response["first_name_nom"],
-			FirstNameGen = response["first_name_gen"],
-			FirstNameDat = response["first_name_dat"],
-			FirstNameAcc = response["first_name_acc"],
-			FirstNameIns = response["first_name_ins"],
-			FirstNameAbl = response["first_name_abl"],
-			LastNameNom = response["last_name_nom"],
-			LastNameGen = response["last_name_gen"],
-			LastNameDat = response["last_name_dat"],
-			LastNameAcc = response["last_name_acc"],
-			LastNameIns = response["last_name_ins"],
-			LastNameAbl = response["last_name_abl"],
-			IsClosed = response["is_closed"],
-			CanAccessClosed = response["can_access_closed"],
-			Count = response["count"]
-		};
-
-		user.IsDeactivated = user.Deactivated != null;
-
-		if (response["name"] != null)
-		{
-			// Разделить имя и фамилию
-			var parts = ((string) response["name"]).Split(' ');
-
-			if (parts.Length < 2)
-			{
-				user.FirstName = response["name"];
-			} else
-			{
-				user.FirstName = parts[0];
-				user.LastName = parts[1];
-			}
-		}
-
-		switch (response["role"]
-					?.ToString())
-		{
-			case "creator":
-				user.Role = ManagerRole.Creator;
-
-				break;
-
-			case "administrator":
-				user.Role = ManagerRole.Administrator;
-
-				break;
-
-			case "editor":
-				user.Role = ManagerRole.Editor;
-
-				break;
-
-			case "moderator":
-				user.Role = ManagerRole.Moderator;
-
-				break;
-
-			default:
-				user.Role = null;
-
-				break;
-		}
-
-		if (response["bdate_visibility"] == null)
-		{
-			if (!string.IsNullOrEmpty(user.BirthDate))
-			{
-				var birthdayParts = user.BirthDate.Split('.');
-
-				user.BirthdayVisibility = birthdayParts.Length > 2
-					? Enums.BirthdayVisibility.Full
-					: Enums.BirthdayVisibility.OnlyDayAndMonth;
-			}
-		} else
-		{
-			user.BirthdayVisibility = response["bdate_visibility"];
-		}
-
-		return user;
-	}
-
-	#endregion
-
 	#region Базовые поля
 
 	/// <summary>
@@ -214,6 +34,13 @@ public class User
 	/// </summary>
 	[JsonProperty("first_name")]
 	public string FirstName { get; set; }
+
+	[JsonProperty("name")]
+	private string Name
+	{
+		get => FirstName;
+		set => FirstName = value;
+	}
 
 	/// <summary>
 	/// Фамилия пользователя.
@@ -255,6 +82,7 @@ public class User
 	/// <summary>
 	/// Причина блокирования аккаунта
 	/// </summary>
+	[JsonProperty("deactivated", DefaultValueHandling = DefaultValueHandling.Populate)]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public Deactivated Deactivated { get; set; }
 
@@ -263,6 +91,12 @@ public class User
 	/// </summary>
 	[JsonProperty("about")]
 	public string About { get; set; }
+
+	/// <summary>
+	/// Информация пользователя о себе.
+	/// </summary>
+	[JsonProperty("twitter")]
+	public string Twitter { get; set; }
 
 	/// <summary>
 	/// Чем занимается пользователь.
@@ -777,31 +611,38 @@ public class User
 	/// <summary>
 	/// Информация о ссылках на предпросмотр фотографий пользователя.
 	/// </summary>
+	[JsonConverter(typeof(PhotoJsonConverter))]
+	[JsonProperty("photo_previews")]
 	public Previews PhotoPreviews { get; set; }
 
 	/// <summary>
 	/// Номер мобильного телефона (если нет записи или скрыт, то null).
 	/// </summary>
+	[JsonProperty("mobile_phone")]
 	public string MobilePhone { get; set; }
 
 	/// <summary>
 	/// Номер домашнего телефона (если нет записи или скрыт, то null).
 	/// </summary>
+	[JsonProperty("home_phone")]
 	public string HomePhone { get; set; }
 
 	/// <summary>
 	/// Информация о блокировке пользователя
 	/// </summary>
+	[JsonProperty("ban_info")]
 	public BanInfo BanInfo { get; set; }
 
 	/// <summary>
 	/// Является ли пользователь заблокированным
 	/// </summary>
+	[JsonProperty("is_deactivated")]
 	public bool IsDeactivated { get; set; }
 
 	/// <summary>
 	/// Идентификатор языка, установленный в настройках.
 	/// </summary>
+	[JsonProperty("language")]
 	public long? Language { get; set; }
 
 	/// <summary>
@@ -814,27 +655,32 @@ public class User
 	/// <summary>
 	/// Если пользователь зашёл через приложение, то Id приложения иначе null.
 	/// </summary>
+	[JsonProperty("online_app")]
 	public long? OnlineApp { get; set; }
 
 	/// <summary>
 	/// Партнер в семейных отношениях.
 	/// </summary>
+	[JsonProperty("relation_partner")]
 	public User RelationPartner { get; set; }
 
 	/// <summary>
 	/// Идентификатор пользователя, пригласившего пользователя в беседу (для
 	/// GetChatUsers).
 	/// </summary>
+	[JsonProperty("invited_by")]
 	public long? InvitedBy { get; set; }
 
 	/// <summary>
 	/// Видимость даты рождения.
 	/// </summary>
+	[JsonProperty("bdate_visibility")]
 	public BirthdayVisibility? BirthdayVisibility { get; set; }
 
 	/// <summary>
 	/// Информация о заявке на смену имени.
 	/// </summary>
+	[JsonProperty("change_name_request")]
 	public ChangeNameRequest ChangeNameRequest { get; set; }
 
 	#endregion
@@ -845,6 +691,7 @@ public class User
 	/// Полномочия руководителя (для Groups.GetMembers)
 	/// </summary>
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
+	[JsonProperty("role")]
 	public ManagerRole Role { get; set; }
 
 	#endregion
@@ -883,4 +730,74 @@ public class User
 	}
 
 	#endregion
+
+	/// <summary>
+	/// Идентификатор университета.
+	/// </summary>
+	[JsonProperty("university")]
+	public long? UniversityId { get; set; }
+
+	/// <summary>
+	/// Название ВУЗа.
+	/// </summary>
+	[JsonProperty("university_name")]
+	public string UniversityName { get; set; }
+
+	/// <summary>
+	/// Идентификатор факультета.
+	/// </summary>
+	[JsonProperty("faculty")]
+	public long? FacultyId { get; set; }
+
+	/// <summary>
+	/// Название факультета.
+	/// </summary>
+	[JsonProperty("faculty_name")]
+	public string FacultyName { get; set; }
+
+	/// <summary>
+	/// Год окончания.
+	/// </summary>
+	[JsonProperty("graduation")]
+	public int? Graduation { get; set; }
+
+	#region Поля, установленные экспериментально
+
+	/// <summary>
+	/// Форма обучения.
+	/// </summary>
+	[JsonProperty("education_form")]
+	public string EducationForm { get; set; }
+
+	/// <summary>
+	/// Текущий статус пользователя в высшем учебном заведении.
+	/// </summary>
+	[JsonProperty("education_status")]
+	public string EducationStatus { get; set; }
+
+	#endregion
+
+	/// <summary>
+	/// Логин в Skype.
+	/// </summary>
+	[JsonProperty("disabled_until")]
+	public string Skype { get; set; }
+
+	/// <summary>
+	/// Идентификатор акаунта в Facebook.
+	/// </summary>
+	[JsonProperty("facebook")]
+	public string Facebook { get; set; }
+
+	/// <summary>
+	/// Имя и фамилия в facebook.
+	/// </summary>
+	[JsonProperty("facebook_name")]
+	public string FacebookName { get; set; }
+
+	/// <summary>
+	/// Акаунт в Instagram.
+	/// </summary>
+	[JsonProperty("instagram")]
+	public string Instagram { get; set; }
 }

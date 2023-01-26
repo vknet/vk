@@ -1,5 +1,5 @@
 ﻿using System;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model;
 
@@ -12,27 +12,18 @@ public class GroupCoverImage
 	/// <summary>
 	/// URL копии;
 	/// </summary>
+	[JsonProperty("url")]
 	public Uri Url { get; set; }
 
 	/// <summary>
 	/// Ширина копии;
 	/// </summary>
+	[JsonProperty("width")]
 	public int Width { get; set; }
 
 	/// <summary>
 	/// Высота копии.
 	/// </summary>
+	[JsonProperty("height")]
 	public int Height { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GroupCoverImage FromJson(VkResponse response) => new()
-	{
-		Url = response[key: "url"],
-		Width = response[key: "width"],
-		Height = response[key: "height"]
-	};
 }

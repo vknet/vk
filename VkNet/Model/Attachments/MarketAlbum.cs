@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -17,53 +16,25 @@ public class MarketAlbum : MediaAttachment
 	/// <summary>
 	/// Название подборки
 	/// </summary>
+	[JsonProperty("title")]
 	public string Title { get; set; }
 
 	/// <summary>
 	/// Обложка подборки, объект, описывающий фотографию.
 	/// </summary>
+	[JsonProperty("photo")]
 	public Photo Photo { get; set; }
 
 	/// <summary>
 	/// Число товаров в подборке.
 	/// </summary>
+	[JsonProperty("count")]
 	public int Count { get; set; }
 
 	/// <summary>
 	/// Дата обновления подборки в формате Unixtime.
 	/// </summary>
+	[JsonProperty("updated_time")]
 	[JsonConverter(typeof(UnixDateTimeConverter))]
 	public DateTime? UpdatedTime { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static MarketAlbum FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		OwnerId = response["owner_id"],
-		Title = response["title"],
-		Photo = response["photo"],
-		Count = response["count"],
-		UpdatedTime = response["updated_time"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="MarketAlbum" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="MarketAlbum" /></returns>
-	public static implicit operator MarketAlbum(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

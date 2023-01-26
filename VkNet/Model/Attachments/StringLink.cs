@@ -1,5 +1,5 @@
 ﻿using System;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model.Attachments;
 
@@ -15,30 +15,9 @@ public class StringLink : MediaAttachment
 	/// <summary>
 	/// Ссылка
 	/// </summary>
+	[JsonProperty("link")]
 	public string Link { get; set; }
 
 	/// <inheritdoc />
 	public override string ToString() => Link;
-
-	/// <summary>
-	/// Преобразование класса <see cref="StringLink" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="StringLink" /></returns>
-	public static implicit operator StringLink(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	private static StringLink FromJson(VkResponse response) => new()
-	{
-		Link = response["link"]
-	};
 }

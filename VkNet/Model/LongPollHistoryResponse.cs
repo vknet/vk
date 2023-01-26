@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -23,28 +24,26 @@ public class LongPollHistoryResponse
 	/// <summary>
 	/// История.
 	/// </summary>
-
+	[JsonProperty("history")]
 	// ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
 	public List<ReadOnlyCollection<long>> History { get; set; }
 
 	/// <summary>
-	/// Количество непрочитанных сообщений
-	/// </summary>
-	public ulong UnreadMessages { get; set; }
-
-	/// <summary>
 	/// Колекция сообщений.
 	/// </summary>
-	public ReadOnlyCollection<Message> Messages { get; set; }
+	[JsonProperty("messages")]
+	public VkCollection<Message> Messages { get; set; }
 
 	/// <summary>
 	/// Колекция профилей.
 	/// </summary>
+	[JsonProperty("profiles")]
 	public ReadOnlyCollection<User> Profiles { get; set; }
 
 	/// <summary>
 	/// Колекция профилей.
 	/// </summary>
+	[JsonProperty("groups")]
 	public ReadOnlyCollection<Group> Groups { get; set; }
 
 	/// <summary>
@@ -52,42 +51,13 @@ public class LongPollHistoryResponse
 	/// используется для получения действий, которые
 	/// хранятся всегда.
 	/// </summary>
+	[JsonProperty("new_pts")]
 	public ulong NewPts { get; set; }
 
 	/// <summary>
 	/// Если true — это означает, что нужно запросить оставшиеся данные с помощью
 	/// запроса с параметром max_msg_id
 	/// </summary>
+	[JsonProperty("more")]
 	public bool More { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static LongPollHistoryResponse FromJson(VkResponse response)
-	{
-		var fromJson = new LongPollHistoryResponse
-		{
-			UnreadMessages = response[key: "messages"][key: "count"],
-			Messages = response[key: "messages"][key: "items"]
-				.ToReadOnlyCollectionOf<Message>(selector: x => x),
-			Profiles = response[key: "profiles"]
-				.ToReadOnlyCollectionOf<User>(selector: x => x),
-			Groups = response[key: "groups"]
-				.ToReadOnlyCollectionOf<Group>(selector: x => x),
-			NewPts = response[key: "new_pts"],
-			More = response[key: "more"]
-		};
-
-		VkResponseArray histories = response[key: "history"];
-
-		foreach (var history in histories)
-		{
-			VkResponseArray item = history;
-			fromJson.History.Add(item: new(list: item.ToReadOnlyCollectionOf<long>(selector: x => x)));
-		}
-
-		return fromJson;
-	}
 }

@@ -24,92 +24,33 @@ public class Group : IVkModel
 	/// </summary>
 	public Group() => Type = new();
 
-	/// <summary>
-	/// Преобразовать из JSON
-	/// </summary>
-	/// <param name="response"> Ответ от сервера. </param>
-	/// <returns> </returns>
-	IVkModel IVkModel.FromJson(VkResponse response) => FromJson(response);
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Group FromJson(VkResponse response)
+	[JsonProperty("finish_date")]
+	private DateTime? FinishDate
 	{
-		var group = new Group
-		{
-			Id = response["group_id"] ?? response["gid"] ?? response["id"],
-			Name = response["name"],
-			ScreenName = response["screen_name"],
-			IsClosed = response["is_closed"],
-			IsAdmin = response["is_admin"],
-			AdminLevel = response["admin_level"],
-			IsMember = response["is_member"],
-			IsAdvertiser = response["is_advertiser"],
-			Type = response["type"],
-			PhotoPreviews = response,
-			Deactivated = response["deactivated"] ?? Deactivated.Activated,
-			HasPhoto = response["has_photo"],
-			Photo50 = response["photo_50"],
-			Photo100 = response["photo_100"],
-			Photo200 = response["photo_200"],
-
-			// опциональные поля
-			City = response["city"],
-			Country = response["country"],
-			Place = response["place"],
-			Description = response["description"],
-			WikiPage = response["wiki_page"],
-			MembersCount = response["members_count"],
-			Counters = response["counters"],
-			StartDate = response["start_date"],
-			EndDate = response["finish_date"] ?? response["end_date"],
-			CanPost = response["can_post"],
-			CanSeeAllPosts = response["can_see_all_posts"],
-			CanUploadDocuments = response["can_upload_doc"],
-			CanCreateTopic = response["can_create_topic"],
-			Activity = response["activity"],
-			Status = response["status"],
-			StatusAudio = response["status_audio"],
-			Contacts = response["contacts"]
-				.ToReadOnlyCollectionOf<Contact>(x => x),
-			Links = response["links"]
-				.ToReadOnlyCollectionOf<ExternalLink>(x => x),
-			FixedPost = response["fixed_post"],
-			Verified = response["verified"],
-			Site = response["site"],
-			InvitedBy = response["invited_by"],
-			IsFavorite = response["is_favorite"],
-			BanInfo = response["ban_info"],
-			CanUploadVideo = response["can_upload_video"],
-			MainAlbumId = response["main_album_id"],
-			IsHiddenFromFeed = response["is_hidden_from_feed"],
-			MainSection = response["main_section"],
-			IsMessagesAllowed = response["is_messages_allowed"],
-			Trending = response["trending"],
-			CanMessage = response["can_message"],
-			Cover = response["cover"],
-			Market = response["market"],
-			AgeLimits = response["age_limits"],
-			MemberStatus = response["member_status"],
-			PublicDateLabel = response["public_date_label"],
-			Wall = response["wall"]
-		};
-
-		return group;
+		get => EndDate;
+		set => EndDate = value;
 	}
 
-	#endregion
+	[JsonProperty("gid")]
+	private long Gid
+	{
+		get => Id;
+		set => Id = value;
+	}
+
+	[JsonProperty("group_id")]
+	private long GroupId
+	{
+		get => Id;
+		set => Id = value;
+	}
 
 	#region Стандартные поля
 
 	/// <summary>
 	/// Идентификатор сообщества.
 	/// </summary>
+	[JsonProperty("id")]
 	public long Id { get; set; }
 
 	/// <summary>
@@ -134,7 +75,7 @@ public class Group : IVkModel
 	/// <summary>
 	/// Возвращается в случае, если сообщество удалено или заблокировано
 	/// </summary>
-	[JsonProperty("deactivated")]
+	[JsonProperty("deactivated", DefaultValueHandling = DefaultValueHandling.Populate)]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public Deactivated Deactivated { get; set; }
 
@@ -170,6 +111,20 @@ public class Group : IVkModel
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public GroupType Type { get; set; }
 
+	[JsonProperty("photo")]
+	private Uri Photo
+	{
+		get => Photo50;
+		set => Photo50 = value;
+	}
+
+	[JsonProperty("photo_medium")]
+	private Uri PhotoMedium
+	{
+		get => Photo100;
+		set => Photo100 = value;
+	}
+
 	/// <summary>
 	/// <c>Uri</c> фотографии сообщества с размером 50x50px
 	/// </summary>
@@ -187,6 +142,12 @@ public class Group : IVkModel
 	/// </summary>
 	[JsonProperty("photo_200")]
 	public Uri Photo200 { get; set; }
+
+	/// <summary>
+	/// <c>Uri</c> фотографии сообщества с наибольшим размером
+	/// </summary>
+	[JsonProperty("photo_big")]
+	public Uri PhotoBig { get; set; }
 
 	#endregion
 
@@ -438,6 +399,7 @@ public class Group : IVkModel
 	/// <summary>
 	/// Информация о ссылках на предпросмотр фотографий сообщества.
 	/// </summary>
+	[JsonConverter(typeof(PhotoJsonConverter))]
 	[JsonProperty("photo_previews")]
 	public Previews PhotoPreviews { get; set; }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -15,36 +14,19 @@ public class LastActivity
 	/// <summary>
 	/// Идентификатор пользователя.
 	/// </summary>
+	[JsonProperty("user_id")]
 	public long UserId { get; set; }
 
 	/// <summary>
 	/// Текущий статус пользователя (true - в сети, false - не в сети).
 	/// </summary>
+	[JsonProperty("online")]
 	public bool? IsOnline { get; set; }
 
 	/// <summary>
 	/// Дата последней активности пользователя.
 	/// </summary>
+	[JsonProperty("time")]
 	[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 	public DateTime? Time { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static LastActivity FromJson(VkResponse response)
-	{
-		var lastActivity = new LastActivity
-		{
-			IsOnline = response[key: "online"],
-			Time = response[key: "time"]
-		};
-
-		return lastActivity;
-	}
-
-	#endregion
 }

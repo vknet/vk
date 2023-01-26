@@ -1,5 +1,5 @@
 ﻿using System;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model;
 
@@ -12,30 +12,33 @@ public class Country
 	/// <summary>
 	/// Идентификатор страны.
 	/// </summary>
+	[JsonProperty("id")]
 	public long? Id { get; set; }
+
+	[JsonProperty("cid")]
+	private long? Cid
+	{
+		get => Id;
+		set => Id = value;
+	}
+
+	[JsonProperty("comment_id")]
+	private long? CommentId
+	{
+		get => Id;
+		set => Id = value;
+	}
 
 	/// <summary>
 	/// Название страны.
 	/// </summary>
+	[JsonProperty("title")]
 	public string Title { get; set; }
 
-	#region public Methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Country FromJson(VkResponse response)
+	[JsonProperty("name")]
+	private string Name
 	{
-		var country = new Country
-		{
-			Id = response[key: "comment_id"] ?? response[key: "cid"] ?? response[key: "id"],
-			Title = response[key: "title"] ?? response[key: "name"]
-		};
-
-		return country;
+		get => Title;
+		set => Title = value;
 	}
-
-	#endregion
 }

@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Model.GroupUpdate;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -139,53 +138,10 @@ public class Audio : MediaAttachment, IGroupUpdate
 	[JsonProperty("track_code")]
 	public string TrackCode { get; set; }
 
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Audio FromJson(VkResponse response) => new()
+	[JsonProperty("genre")]
+	private AudioGenre? Genr
 	{
-		Id = response["id"],
-		OwnerId = response["owner_id"],
-		Artist = response["artist"],
-		Title = response["title"],
-		Duration = response["duration"],
-		Url = response["url"],
-		LyricsId = response["lyrics_id"],
-		Album = response["album"],
-		AccessKey = response["access_key"],
-		IsHq = response["is_hq"],
-		IsLicensed = response["is_licensed"],
-		TrackGenre = response["track_genre_id"],
-		IsExplicit = response["is_explicit"],
-		Genre = response["genre_id"] ?? response["genre"],
-		Date = response["date"],
-		MainArtists = response["main_artists"]
-			.ToReadOnlyCollectionOf<AudioArtist>(x => x),
-		FeaturedArtists = response["featured_artists"]
-			.ToReadOnlyCollectionOf<AudioArtist>(x => x),
-		Subtitle = response["subtitle"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="Audio" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Audio" /></returns>
-	public static implicit operator Audio(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
+		get => Genre;
+		set => Genre = value;
 	}
-
-	#endregion
 }

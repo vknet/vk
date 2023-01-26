@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -50,39 +49,8 @@ public class CommentNote
 
 	/// <summary>
 	/// идентификатор пользователя, в ответ на комментарий которого
-	/// был оставлен текущий комментарий (если доступно). 
+	/// был оставлен текущий комментарий (если доступно).
 	/// </summary>
 	[JsonProperty(propertyName: "reply_to")]
 	public long? ReplyTo { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response">Ответ сервера. </param>
-	/// <returns>Результат преобразования.</returns>
-	public static CommentNote FromJson(VkResponse response) => new()
-	{
-		Id = response[key: "id"],
-		UserId = response[key: "uid "],
-		NoteId = response[key: "nid "],
-		OwnerId = response[key: "oid"],
-		Date = response[key: "date "],
-		Message = response[key: "message"],
-		ReplyTo = response[key: "reply_to"]
-	};
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator CommentNote(VkResponse response) => !response.HasToken()
-		? null
-		: FromJson(response: response);
-
-	#endregion
 }

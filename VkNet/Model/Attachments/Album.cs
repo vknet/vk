@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -18,70 +17,52 @@ public class Album : MediaAttachment
 	/// <summary>
 	/// Обложка альбома.
 	/// </summary>
+	[JsonProperty("thumb")]
 	public Photo Thumb { get; set; }
 
 	/// <summary>
 	/// Название альбома.
 	/// </summary>
+	[JsonProperty("title")]
 	public string Title { get; set; }
 
 	/// <summary>
 	/// Описание альбома.
 	/// </summary>
+	[JsonProperty("description")]
 	public string Description { get; set; }
 
 	/// <summary>
 	/// Дата и время создания альбома.
 	/// </summary>
+	[JsonProperty("created")]
 	[JsonConverter(typeof(UnixDateTimeConverter))]
 	public DateTime? CreateTime { get; set; }
 
 	/// <summary>
 	/// Дата и время последнего обновления альбома.
 	/// </summary>
+	[JsonProperty("updated")]
 	[JsonConverter(typeof(UnixDateTimeConverter))]
 	public DateTime? UpdateTime { get; set; }
 
 	/// <summary>
 	/// Количество фотографий в альбоме.
 	/// </summary>
+	[JsonProperty("size")]
 	public int Size { get; set; }
 
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из JSON
-	/// </summary>
-	/// <param name="response"> Ответ сервера </param>
-	/// <returns> </returns>
-	public static Album FromJson(VkResponse response) => new()
+	[JsonProperty("aid")]
+	private long? Aid
 	{
-		Id = response["album_id"] ?? response["aid"] ?? response["id"],
-		Thumb = response["thumb"],
-		OwnerId = response["owner_id"],
-		Title = response["title"],
-		Description = response["description"],
-		CreateTime = response["created"],
-		UpdateTime = response["updated"],
-		Size = response["size"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="Album" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Album" /></returns>
-	public static implicit operator Album(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
+		get => Id;
+		set => Id = value;
 	}
 
-	#endregion
+	[JsonProperty("album_id")]
+	private long? AlbumId
+	{
+		get => Id;
+		set => Id = value;
+	}
 }

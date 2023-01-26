@@ -1,5 +1,5 @@
 using System;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model.GroupUpdate;
 
@@ -12,43 +12,18 @@ public class UserUnblock : IGroupUpdate
 	/// <summary>
 	/// Идентификатор пользователя
 	/// </summary>
+	[JsonProperty("user_id")]
 	public long? UserId { get; set; }
 
 	/// <summary>
 	/// Идентификатор администратора, который убрал пользователя из чёрного списка
 	/// </summary>
+	[JsonProperty("admin_id")]
 	public long? AdminId { get; set; }
 
 	/// <summary>
 	/// Была ли разблокировка по окончанию блокировки
 	/// </summary>
+	[JsonProperty("by_end_date")]
 	public bool? ByEndDate { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	public static UserUnblock FromJson(VkResponse response) => new()
-	{
-		UserId = response["user_id"],
-		AdminId = response["admin_id"],
-		ByEndDate = (long) response["by_end_date"] > 0
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="UserUnblock" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Результат преобразования в <see cref="UserUnblock" /> </returns>
-	public static implicit operator UserUnblock(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

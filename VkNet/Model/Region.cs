@@ -1,5 +1,5 @@
 ﻿using System;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model;
 
@@ -12,26 +12,12 @@ public class Region
 	/// <summary>
 	/// Идентификатор региона
 	/// </summary>
+	[JsonProperty("id")]
 	public int Id { get; set; }
 
 	/// <summary>
 	/// Название региона
 	/// </summary>
+	[JsonProperty("title")]
 	public string Title { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Region FromJson(VkResponse response)
-	{
-		var region = new Region
-		{
-			Id = response[key: "region_id"] ?? response[key: "id"],
-			Title = response[key: "title"]
-		};
-
-		return region;
-	}
 }

@@ -1,9 +1,6 @@
 using System;
-using System.Linq.Expressions;
-using System.Reflection;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Infrastructure;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
@@ -19,7 +16,7 @@ public class GroupUpdate
 	/// <summary>
 	/// Экземпляр самого обновления группы.
 	/// </summary>
-	public IGroupUpdate Instance { get; private set; }
+	public IGroupUpdate Instance { get; set; }
 
 	/// <summary>
 	/// Тип обновления
@@ -175,7 +172,7 @@ public class GroupUpdate
 	/// (<c>MarketCommentNew</c>, <c>MarketCommentEdit</c>, <c>MarketCommentRestore</c>)
 	/// </summary>
 	[Obsolete("Используйте свойство Instance")]
-	public MarketComment MarketComment { get; set; }
+	public VkNet.Model.GroupUpdate.MarketComment MarketComment { get; set; }
 
 	/// <summary>
 	/// Удаление комментария к товару (<c>MarketCommentDelete</c>)
@@ -242,10 +239,23 @@ public class GroupUpdate
 
 	/// <summary>
 	/// Вывод денег
-	/// (<c>DonutMoneyWithdraw</c>, <c>DonutMoneyWithdrawError</c>)
+	/// (<c>DonutMoneyWithdraw</c>)
 	/// </summary>
+	[JsonProperty("donut_money_withdraw")]
 	[Obsolete("Используйте свойство Instance")]
 	public DonutWithdraw DonutMoneyWithdraw { get; set; }
+
+	/// <summary>
+	/// Вывод денег
+	/// (<c>DonutMoneyWithdrawError</c>)
+	/// </summary>
+	[JsonProperty("donut_money_withdraw_error")]
+	[Obsolete("Используйте свойство Instance")]
+	private DonutWithdraw DonutMoneyWithdrawError
+	{
+		get => DonutMoneyWithdraw;
+		set => DonutMoneyWithdraw = value;
+	}
 
 	/// <summary>
 	/// ID группы
@@ -265,88 +275,4 @@ public class GroupUpdate
 	/// Необработанные данные
 	/// </summary>
 	public VkResponse Raw { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GroupUpdate FromJson(VkResponse response)
-	{
-		string type = response["type"];
-		var resObj = response["object"];
-
-		var fromJson = type switch
-		{
-			"message_new" or "message_edit" or "message_reply"
-				=> resObj.ContainsKey("client_info")
-					? CreateTyped(u => u.MessageNew, resObj)
-					: CreateTyped(u => u.Message, resObj),
-			"message_allow" => CreateTyped(u => u.MessageAllow, resObj),
-			"message_typing_state" => CreateTyped(u => u.MessageTypingState, resObj),
-			"vkpay_transaction" => CreateTyped(u => u.VkPayTransaction, resObj),
-			"like_add" => CreateTyped(u => u.LikeAdd, resObj),
-			"like_remove" => CreateTyped(u => u.LikeRemove, resObj),
-			"group_change_settings" => CreateTyped(u => u.GroupChangeSettings, resObj),
-			"message_deny" => CreateTyped(u => u.MessageDeny, resObj),
-			"photo_new" => CreateTyped(u => u.Photo, resObj),
-			"photo_comment_new" or "photo_comment_edit" or "photo_comment_restore" => CreateTyped(u => u.PhotoComment, resObj),
-			"photo_comment_delete" => CreateTyped(u => u.PhotoCommentDelete, resObj),
-			"audio_new" => CreateTyped(u => u.Audio, resObj),
-			"video_new" => CreateTyped(u => u.Video, resObj),
-			"video_comment_new" or "video_comment_edit" or "video_comment_restore" => CreateTyped(u => u.VideoComment, resObj),
-			"video_comment_delete" => CreateTyped(u => u.VideoCommentDelete, resObj),
-			"wall_post_new" or "wall_repost" => CreateTyped(u => u.WallPost, resObj),
-			"wall_reply_new" or "wall_reply_edit" or "wall_reply_restore" => CreateTyped(u => u.WallReply, resObj),
-			"wall_reply_delete" => CreateTyped(u => u.WallReplyDelete, resObj),
-			"board_post_new" or "board_post_edit" or "board_post_restore" => CreateTyped(u => u.BoardPost, resObj),
-			"board_post_delete" => CreateTyped(u => u.BoardPostDelete, resObj),
-			"market_comment_new" or "market_comment_edit" or "market_comment_restore" => CreateTyped(u => u.MarketComment, resObj),
-			"market_comment_delete" => CreateTyped(u => u.MarketCommentDelete, resObj),
-			"group_leave" => CreateTyped(u => u.GroupLeave, resObj),
-			"group_join" => CreateTyped(u => u.GroupJoin, resObj),
-			"user_block" => CreateTyped(u => u.UserBlock, resObj),
-			"user_unblock" => CreateTyped(u => u.UserUnblock, resObj),
-			"poll_vote_new" => CreateTyped(u => u.PollVoteNew, resObj),
-			"group_change_photo" => CreateTyped(u => u.GroupChangePhoto, resObj),
-			"group_officers_edit" => CreateTyped(u => u.GroupOfficersEdit, resObj),
-			"message_event" => CreateTyped(u => u.MessageEvent, resObj),
-			"donut_subscription_create" or "donut_subscription_prolonged" => CreateTyped(u => u.DonutSubscriptionNew, resObj),
-			"donut_subscription_cancelled" or "donut_subscription_expired" => CreateTyped(u => u.DonutSubscriptionEnd, resObj),
-			"donut_subscription_price_changed" => CreateTyped(u => u.DonutSubscriptionPriceChanged, resObj),
-			"donut_money_withdraw" or "donut_money_withdraw_error" => CreateTyped(u => u.DonutMoneyWithdraw, resObj),
-			var _ => JsonConvert.DeserializeObject<GroupUpdate>(response.ToString(), JsonConfigure.JsonSerializerSettings)
-		};
-
-		fromJson!.Type = GroupUpdateType.FromJsonString(type);
-		fromJson.Raw = resObj;
-		fromJson.GroupId = response["group_id"];
-
-		return fromJson;
-	}
-
-	#region Приватные методы
-
-	private static GroupUpdate CreateTyped<TGroupUpdate>(Expression<Func<GroupUpdate, TGroupUpdate>> propertySelector,
-														TGroupUpdate instance)
-		where TGroupUpdate : IGroupUpdate
-	{
-		var update = new GroupUpdate
-		{
-			Instance = instance
-		};
-
-		// для сохранения обратной совместимости с публичными свойствами.
-		if (propertySelector.Body is MemberExpression
-			{
-				Member: PropertyInfo propertyInfo
-			})
-		{
-			propertyInfo.SetValue(update, instance);
-		}
-
-		return update;
-	}
-
-	#endregion
 }

@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -50,35 +49,4 @@ public class MoneyTransfer : MediaAttachment
 	/// </summary>
 	[JsonProperty("comment")]
 	public string Comment { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static MoneyTransfer FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		FromId = response["from_id"],
-		Date = response["date"],
-		Amount = response["amount"],
-		Status = response["status"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="MoneyTransfer" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="MoneyTransfer" /></returns>
-	public static implicit operator MoneyTransfer(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

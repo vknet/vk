@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -63,40 +62,4 @@ public class PrettyCard
 	/// </summary>
 	[JsonProperty("price_old")]
 	public string PriceOld { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static PrettyCard FromJson(VkResponse response) => new()
-	{
-		CardId = response["card_id"],
-		LinkUrlTarget = response["link_url_target"],
-		LinkUrl = response["link_url"],
-		Title = response["title"],
-		Button = response["button"],
-		Images = response["images"]
-			.ToReadOnlyCollectionOf<Photo>(x => x),
-		ButtonText = response["button_text"],
-		Price = response["price"],
-		PriceOld = response["price_old"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="PrettyCard" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="PrettyCard" /></returns>
-	public static implicit operator PrettyCard(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

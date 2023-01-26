@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -17,69 +16,65 @@ public class WallReply : MediaAttachment
 	/// <summary>
 	/// Идентификатор автора комментария.
 	/// </summary>
+	[JsonProperty("from_id")]
 	public long? FromId { get; set; }
 
 	/// <summary>
 	/// Дата создания комментария в формате Unixtime.
 	/// </summary>
+	[JsonProperty("date")]
 	[JsonConverter(typeof(UnixDateTimeConverter))]
 	public DateTime? Date { get; set; }
 
 	/// <summary>
 	/// Текст комментария.
 	/// </summary>
+	[JsonProperty("text")]
 	public string Text { get; set; }
 
 	/// <summary>
 	/// Информация о лайках к комментарию.
 	/// </summary>
+	[JsonProperty("likes")]
 	public Likes Likes { get; set; }
 
 	/// <summary>
 	/// Идентификатор пользователя, в ответ которому был оставлен комментарий;
 	/// </summary>
+	[JsonProperty("reply_to_uid")]
 	public long? ReplyToUId { get; set; }
 
 	/// <summary>
 	/// Идентификатор комментария, в ответ на который был оставлен текущий.
 	/// </summary>
+	[JsonProperty("reply_to_cid")]
 	public long? ReplyToCId { get; set; }
 
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static WallReply FromJson(VkResponse response)
+	[JsonProperty("comment_id")]
+	private long? CommentId
 	{
-		var wallReply = new WallReply
-		{
-			Id = response["comment_id"] ?? response["cid"] ?? response["id"],
-			FromId = response["from_id"] ?? response["user_id"] ?? response["uid"],
-			Date = response["date"],
-			Text = response["text"],
-			Likes = response["likes"],
-			ReplyToUId = response["reply_to_uid"],
-			ReplyToCId = response["reply_to_cid"]
-		};
-
-		return wallReply;
+		get => Id;
+		set => Id = value;
 	}
 
-	/// <summary>
-	/// Преобразование класса <see cref="WallReply" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="WallReply" /></returns>
-	public static implicit operator WallReply(VkResponse response)
+	[JsonProperty("cid")]
+	private long? Cid
 	{
-		if (response == null)
-		{
-			return null;
-		}
+		get => Id;
+		set => Id = value;
+	}
 
-		return response.HasToken()
-			? FromJson(response)
-			: null;
+	[JsonProperty("uid")]
+	private long? Uid
+	{
+		get => FromId;
+		set => FromId = value;
+	}
+
+	[JsonProperty("user_id")]
+	private long? UserId
+	{
+		get => FromId;
+		set => FromId = value;
 	}
 }

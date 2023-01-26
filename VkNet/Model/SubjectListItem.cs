@@ -1,5 +1,5 @@
 ﻿using System;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model.RequestParams;
 
@@ -12,21 +12,12 @@ public class SubjectListItem
 	/// <summary>
 	/// идентификатор тематики;
 	/// </summary>
+	[JsonProperty("id")]
 	public int Id { get; set; }
 
 	/// <summary>
 	/// название тематики.
 	/// </summary>
+	[JsonProperty("name")]
 	public string Name { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static SubjectListItem FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		Name = response["name"]
-	};
 }

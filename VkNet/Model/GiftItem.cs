@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -56,20 +55,4 @@ public class GiftItem
 	/// </summary>
 	[JsonProperty("gift_hash")]
 	public string GiftHash { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GiftItem FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		FromId = response["from_id"],
-		Message = response["message"],
-		Date = response["date"],
-		Gift = response["gift"],
-		Privacy = response["privacy"],
-		GiftHash = response["gift_hash"]
-	};
 }

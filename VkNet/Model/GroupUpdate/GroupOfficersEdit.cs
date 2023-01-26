@@ -1,8 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
-using VkNet.Infrastructure;
-using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate;
 
@@ -35,28 +33,4 @@ public class GroupOfficersEdit : IGroupUpdate
 	/// </summary>
 	[JsonProperty("level_old")]
 	public GroupOfficerLevel? LevelOld { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	public static GroupOfficersEdit FromJson(VkResponse response) =>
-		JsonConvert.DeserializeObject<GroupOfficersEdit>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-
-	/// <summary>
-	/// Преобразование класса <see cref="GroupOfficersEdit" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Результат преобразования в <see cref="GroupOfficersEdit" /> </returns>
-	public static implicit operator GroupOfficersEdit(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

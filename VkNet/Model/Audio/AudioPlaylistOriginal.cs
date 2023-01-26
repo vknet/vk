@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -27,43 +26,4 @@ public class AudioPlaylistOriginal
 	/// </summary>
 	[JsonProperty("access_key")]
 	public string AccessKey { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static AudioPlaylistOriginal FromJson(VkResponse response)
-	{
-		var playlistOriginal = new AudioPlaylistOriginal
-		{
-			OwnerId = response["owner_id"],
-			PlaylistId = response["playlist_id"],
-			AccessKey = response["access_key"]
-		};
-
-		return playlistOriginal;
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="AudioPlaylistOriginal" /> в
-	/// <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Результат преобразования в <see cref="AudioPlaylistOriginal" /> </returns>
-	public static implicit operator AudioPlaylistOriginal(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

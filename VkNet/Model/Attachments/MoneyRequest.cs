@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -42,36 +41,4 @@ public class MoneyRequest : MediaAttachment
 	/// </summary>
 	[JsonProperty("init_url")]
 	public Uri InitUrl { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static MoneyRequest FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		FromId = response["from_id"],
-		ToId = response["to_id"],
-		Amount = response["amount"],
-		Processed = response["processed"],
-		InitUrl = response["init_url"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="MoneyTransfer" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="MoneyTransfer" /></returns>
-	public static implicit operator MoneyRequest(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

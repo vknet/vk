@@ -23,102 +23,6 @@ public class Message : MediaAttachment, IGroupUpdate
 	/// <inheritdoc />
 	protected override string Alias => "message";
 
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из JSON
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Message FromJson(VkResponse response)
-	{
-		if (response.ContainsKey("message"))
-		{
-			response = response["message"];
-		}
-
-		var message = new Message
-		{
-			Unread = response.ContainsKey("unread")
-				? response["unread"]
-				: 0,
-			Id = response["id"],
-			UserId = response["user_id"],
-			Date = response["date"],
-			PeerId = response["peer_id"],
-			FromId = response["from_id"],
-			Text = response["text"],
-			RandomId = response["random_id"],
-			Attachments = response["attachments"]
-				.ToReadOnlyCollectionOf<Attachment>(x => x),
-			Important = response["important"],
-			Geo = response["geo"],
-			Payload = response["payload"],
-			ForwardedMessages = response["fwd_messages"]
-				.ToReadOnlyCollectionOf<Message>(x => x),
-			ReadState = response["read_state"],
-			Action = response["action"],
-			Type = response["out"],
-			Title = response["title"],
-			Body = response["body"],
-			Emoji = response["emoji"],
-			Deleted = response["deleted"],
-
-			// дополнительные поля бесед
-			ChatId = response["chat_id"],
-			ChatActive = response["chat_active"]
-				.ToReadOnlyCollectionOf<long>(x => x),
-			UsersCount = response["users_count"],
-			AdminId = response["admin_id"],
-			PhotoPreviews = response,
-			PushSettings = response["push_settings"],
-			ActionMid = response["action_mid"],
-			ActionEmail = response["action_email"],
-			ActionText = response["action_text"],
-			Photo50 = response["photo_50"],
-			Photo100 = response["photo_100"],
-			Photo200 = response["photo_200"],
-			InRead = response["in_read"],
-			IsCropped = response["is_cropped"],
-			OutRead = response["out_read"],
-			Out = response["out"],
-			UpdateTime = response["update_time"],
-			Keyboard = response["keyboard"],
-			ConversationMessageId = response["conversation_message_id"],
-			Ref = response["ref"],
-			RefSource = response["ref_source"],
-			ReplyMessage = response["reply_message"],
-			AdminAuthorId = response["admin_author_id"],
-			PinnedAt = response["pinned_at"],
-			IsSilent = response["is_silent"],
-			ExpireTtl = response["expire_ttl"],
-			IsExpired = response["is_expired"],
-			WasListened = response["was_listened"],
-			IsHidden = response["is_hidden"]
-		};
-
-		return message;
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="Message" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Результат преобразования в <see cref="Message" /> </returns>
-	public static implicit operator Message(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
-
 	#region Стандартные поля
 
 	/// <summary>
@@ -166,13 +70,6 @@ public class Message : MediaAttachment, IGroupUpdate
 	[JsonProperty("read_state")]
 	[Obsolete(ObsoleteText.Obsolete)]
 	public MessageReadState? ReadState { get; set; }
-
-	/// <summary>
-	/// Тип сообщения (0 — полученное, 1 — отправленное, не возвращается для
-	/// пересланных сообщений).
-	/// </summary>
-	[JsonProperty("out")]
-	public bool? Out { get; set; }
 
 	/// <summary>
 	/// Заголовок сообщения или беседы.
@@ -365,7 +262,7 @@ public class Message : MediaAttachment, IGroupUpdate
 	/// <summary>
 	/// Тип сообщения (не возвращается для пересланных сообщений).
 	/// </summary>
-	[JsonProperty("type")]
+	[JsonProperty("out")]
 	public MessageType? Type { get; set; }
 
 	/// <summary>
@@ -378,6 +275,7 @@ public class Message : MediaAttachment, IGroupUpdate
 	/// <summary>
 	/// Информация о ссылках на предпросмотр фотографий беседы.
 	/// </summary>
+	[JsonConverter(typeof(PhotoJsonConverter))]
 	[JsonProperty("photo_previews")]
 	public Previews PhotoPreviews { get; set; }
 

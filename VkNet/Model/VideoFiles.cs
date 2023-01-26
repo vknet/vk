@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -13,41 +12,49 @@ public class VideoFiles
 	/// <summary>
 	/// Uri ролика с размером 320x240px.
 	/// </summary>
+	[JsonProperty("mp4_240")]
 	public Uri Mp4_240 { get; set; }
 
 	/// <summary>
 	/// Uri ролика с размером 640x360px.
 	/// </summary>
+	[JsonProperty("mp4_360")]
 	public Uri Mp4_360 { get; set; }
 
 	/// <summary>
 	/// Uri ролика с размером 640x480px.
 	/// </summary>
+	[JsonProperty("mp4_480")]
 	public Uri Mp4_480 { get; set; }
 
 	/// <summary>
 	/// Uri ролика с размером 1280x720px.
 	/// </summary>
+	[JsonProperty("mp4_720")]
 	public Uri Mp4_720 { get; set; }
 
 	/// <summary>
 	/// Uri ролика с размером 1920х1080px.
 	/// </summary>
+	[JsonProperty("mp4_1080")]
 	public Uri Mp4_1080 { get; set; }
 
 	/// <summary>
 	/// Uri ролика с размером 1440х2560px.
 	/// </summary>
+	[JsonProperty("mp4_1440")]
 	public Uri Mp4_1440 { get; set; }
 
 	/// <summary>
 	/// Uri ролика с размером 2160х3840px.
 	/// </summary>
+	[JsonProperty("mp4_2160")]
 	public Uri Mp4_2160 { get; set; }
 
 	/// <summary>
 	/// Внешняя ссылка (например для видео из Youtube)
 	/// </summary>
+	[JsonProperty("external")]
 	public Uri External { get; set; }
 
 	/// <summary>
@@ -56,6 +63,7 @@ public class VideoFiles
 	/// Содержит файл в формате .m3u8 (MPEG-2 TS)
 	/// </remarks>
 	/// </summary>
+	[JsonProperty("hls")]
 	public Uri Hls { get; set; }
 
 	/// <summary>
@@ -121,32 +129,4 @@ public class VideoFiles
 	/// </summary>
 	[JsonProperty("failover_host")]
 	public string FailOverHost { get; set; }
-
-	#region public Methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static VideoFiles FromJson(VkResponse response) => new()
-	{
-		Mp4_240 = response["mp4_240"],
-		Mp4_360 = response["mp4_360"],
-		Mp4_480 = response["mp4_480"],
-		Mp4_720 = response["mp4_720"],
-		Mp4_1080 = response["mp4_1080"],
-		External = response["external"],
-		Hls = response["hls"],
-		DashUni = response["dash_uni"],
-		DashSep = response["dash_sep"],
-		DashWebm = response["dash_webm"],
-		DashOnDemand = response["dash_ondemand"],
-		HlsOnDemand = response["hls_ondemand"],
-		HlsLivePlayback = response["hls_live_playback"],
-		DashLivePlayback = response["dash_live_playback"],
-		FailOverHost = response["failover_host"]
-	};
-
-	#endregion
 }
