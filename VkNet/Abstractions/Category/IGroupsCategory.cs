@@ -41,9 +41,16 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetMembersAsync" />
 	VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = false);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync" />
-	ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended,
+	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, System.Collections, bool?, bool)" />
+	ReadOnlyCollection<GroupMember> IsMember(string groupId, IEnumerable<long> userIds, bool? extended,
 											bool skipAuthorization = false);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, long, bool?, bool)" />
+	GroupMember IsMember(string groupId, long userId, bool? extended = true,
+											bool skipAuthorization = false);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, long, bool)" />
+	bool IsMember(string groupId, long userId, bool skipAuthorization = false);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.SearchAsync" />
 	VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false);

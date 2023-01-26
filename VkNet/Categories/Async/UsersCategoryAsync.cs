@@ -42,16 +42,23 @@ public partial class UsersCategory
 			, fields));
 
 	/// <inheritdoc />
-	public Task<VkCollection<User>> GetFollowersAsync(long? userId = null
-													, int? count = null
-													, int? offset = null
-													, ProfileFields fields = null
-													, NameCase nameCase = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
-		GetFollowers(userId
-			, count
-			, offset
-			, fields
-			, nameCase));
+	public Task<VkCollection<User>> GetFollowersAsync(ProfileFields fields, long? userId = null, int? count = null, int? offset = null,
+													NameCase nameCase = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
+		GetFollowers(
+			fields,
+			userId,
+			count,
+			offset,
+			nameCase));
+
+	/// <inheritdoc />
+	public Task<VkCollection<long>> GetFollowersAsync(long? userId = null, int? count = null, int? offset = null,
+											NameCase nameCase = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
+		GetFollowers(
+			userId,
+			count,
+			offset,
+			nameCase));
 
 	/// <inheritdoc />
 	public Task<bool> ReportAsync(long userId, ReportType type, string comment = "") =>

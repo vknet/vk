@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -27,7 +28,7 @@ public partial class UsersCategory : IUsersCategory
 
 	/// <inheritdoc />
 	[Pure]
-	public VkCollection<User> Search(UserSearchParams @params) => _vk.Call("users.search", new()
+	public VkCollection<User> Search(UserSearchParams @params) => _vk.Call<VkCollection<User>>("users.search", new()
 		{
 			{
 				"q", WebUtility.HtmlEncode(value: @params.Query)
@@ -128,8 +129,7 @@ public partial class UsersCategory : IUsersCategory
 			{
 				"from_list", @params.FromList
 			}
-		})
-		.ToVkCollectionOf<User>(selector: r => r);
+		});
 
 	/// <inheritdoc />
 	[Pure]
@@ -169,9 +169,7 @@ public partial class UsersCategory : IUsersCategory
 			}
 		};
 
-		VkResponseArray response = _vk.Call("users.get", parameters);
-
-		return response.ToReadOnlyCollectionOf<User>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<User>>("users.get", parameters);
 	}
 
 	/// <inheritdoc />
@@ -200,9 +198,7 @@ public partial class UsersCategory : IUsersCategory
 			}
 		};
 
-		VkResponseArray response = _vk.Call("users.get", parameters);
-
-		return response.ToReadOnlyCollectionOf<User>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<User>>("users.get", parameters);
 	}
 
 	/// <inheritdoc />
@@ -235,17 +231,13 @@ public partial class UsersCategory : IUsersCategory
 			}
 		};
 
-		return _vk.Call("users.getSubscriptions", parameters)
-			.ToVkCollectionOf<Group>(selector: x => x);
+		return _vk.Call<VkCollection<Group>>("users.getSubscriptions", parameters);
 	}
 
 	/// <inheritdoc />
 	[Pure]
-	public VkCollection<User> GetFollowers(long? userId = null
-											, int? count = null
-											, int? offset = null
-											, ProfileFields fields = null
-											, NameCase nameCase = null)
+	public VkCollection<User> GetFollowers(ProfileFields fields, long? userId = null, int? count = null,
+											int? offset = null, NameCase nameCase = null)
 	{
 		VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
 		VkErrors.ThrowIfNumberIsNegative(expr: () => count);
@@ -270,13 +262,39 @@ public partial class UsersCategory : IUsersCategory
 			}
 		};
 
-		return _vk.Call("users.getFollowers", parameters)
-			.ToVkCollectionOf(selector: x => x.ContainsKey(key: "id")
-				? x
-				: new User
-				{
-					Id = x
-				});
+		if (fields is null)
+		{
+			throw new VkApiException("fields не может быть null");
+		}
+
+		return _vk.Call<VkCollection<User>>("users.getFollowers", parameters);
+	}
+
+	/// <inheritdoc />
+	[Pure]
+	public VkCollection<long> GetFollowers(long? userId = null, int? count = null, int? offset = null, NameCase nameCase = null)
+	{
+		VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
+		VkErrors.ThrowIfNumberIsNegative(expr: () => count);
+		VkErrors.ThrowIfNumberIsNegative(expr: () => offset);
+
+		var parameters = new VkParameters
+		{
+			{
+				"user_id", userId
+			},
+			{
+				"offset", offset
+			},
+			{
+				"count", count
+			},
+			{
+				"name_case", nameCase
+			}
+		};
+
+		return _vk.Call<VkCollection<long>>("users.getFollowers", parameters);
 	}
 
 	/// <inheritdoc />
@@ -301,7 +319,7 @@ public partial class UsersCategory : IUsersCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<User> GetNearby(UsersGetNearbyParams @params) => _vk.Call("users.getNearby", new()
+	public VkCollection<User> GetNearby(UsersGetNearbyParams @params) => _vk.Call<VkCollection<User>>("users.getNearby", new()
 		{
 			{
 				"latitude", @params.Latitude.ToString(provider: CultureInfo.InvariantCulture)
@@ -327,8 +345,7 @@ public partial class UsersCategory : IUsersCategory
 			{
 				"need_description", @params.NeedDescription
 			}
-		})
-		.ToVkCollectionOf<User>(selector: x => x);
+		});
 
 	/// <inheritdoc cref="User" />
 	[Pure]

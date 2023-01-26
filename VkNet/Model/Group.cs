@@ -17,7 +17,7 @@ namespace VkNet.Model;
 /// </summary>
 [DebuggerDisplay("[{Id}] {Name}")]
 [Serializable]
-public class Group : IVkModel
+public class Group
 {
 	/// <summary>
 	/// Конструктор

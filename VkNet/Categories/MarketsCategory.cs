@@ -44,8 +44,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.get", parameters)
-			.ToVkCollectionOf<Market>(selector: x => x);
+		return _vk.Call<VkCollection<Market>>("market.get", parameters);
 	}
 
 	/// <inheritdoc />
@@ -61,12 +60,11 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.getById", parameters)
-			.ToVkCollectionOf<Market>(selector: x => x);
+		return _vk.Call<VkCollection<Market>>("market.getById", parameters);
 	}
 
 	/// <inheritdoc />
-	public VkCollection<Market> Search(MarketSearchParams @params) => _vk.Call("market.search",
+	public VkCollection<Market> Search(MarketSearchParams @params) => _vk.Call<VkCollection<Market>>("market.search",
 			new()
 			{
 				{
@@ -102,8 +100,7 @@ public partial class MarketsCategory : IMarketsCategory
 				{
 					"extended", @params.Extended
 				}
-			})
-		.ToVkCollectionOf<Market>(selector: x => x);
+			});
 
 	/// <inheritdoc />
 	public VkCollection<MarketAlbum> GetAlbums(long ownerId, int? offset = null, int? count = null)
@@ -121,8 +118,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.getAlbums", parameters)
-			.ToVkCollectionOf<MarketAlbum>(selector: x => x);
+		return _vk.Call<VkCollection<MarketAlbum>>("market.getAlbums", parameters);
 	}
 
 	/// <inheritdoc />
@@ -138,8 +134,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.getAlbumById", parameters)
-			.ToVkCollectionOf<MarketAlbum>(selector: x => x);
+		return _vk.Call<VkCollection<MarketAlbum>>("market.getAlbumById", parameters);
 	}
 
 	/// <inheritdoc />
@@ -173,7 +168,7 @@ public partial class MarketsCategory : IMarketsCategory
 		});
 
 	/// <inheritdoc />
-	public VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params) => _vk.Call("market.getComments",
+	public VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params) => _vk.Call<VkCollection<MarketComment>>("market.getComments",
 			new()
 			{
 				{
@@ -203,8 +198,7 @@ public partial class MarketsCategory : IMarketsCategory
 				{
 					"fields", @params.Fields
 				}
-			})
-		.ToVkCollectionOf<MarketComment>(selector: x => x);
+			});
 
 	/// <inheritdoc />
 	public bool DeleteComment(long ownerId, long commentId)
@@ -599,7 +593,6 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.getCategories", parameters)
-			.ToVkCollectionOf<MarketCategory>(selector: x => x);
+		return _vk.Call<VkCollection<MarketCategory>>("market.getCategories", parameters);
 	}
 }

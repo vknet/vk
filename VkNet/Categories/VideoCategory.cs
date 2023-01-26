@@ -28,31 +28,30 @@ public partial class VideoCategory : IVideoCategory
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
-		return _vk.Call("video.get", new()
+		return _vk.Call<VkCollection<Video>>("video.get", new()
+		{
 			{
-				{
-					"owner_id", @params.OwnerId
-				},
-				{
-					"videos", @params.Videos?.Select(selector: o => $"{o.OwnerId}_{o.Id}"
-																	+ (!string.IsNullOrEmpty(o.AccessKey)
-																		? $"_{o.AccessKey}"
-																		: ""))
-				},
-				{
-					"album_id", @params.AlbumId
-				},
-				{
-					"count", @params.Count
-				},
-				{
-					"offset", @params.Offset
-				},
-				{
-					"extended", @params.Extended
-				}
-			})
-			.ToVkCollectionOf<Video>(selector: x => x);
+				"owner_id", @params.OwnerId
+			},
+			{
+				"videos", @params.Videos?.Select(selector: o => $"{o.OwnerId}_{o.Id}"
+																+ (!string.IsNullOrEmpty(o.AccessKey)
+																	? $"_{o.AccessKey}"
+																	: ""))
+			},
+			{
+				"album_id", @params.AlbumId
+			},
+			{
+				"count", @params.Count
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"extended", @params.Extended
+			}
+		});
 	}
 
 	/// <inheritdoc />
@@ -111,7 +110,7 @@ public partial class VideoCategory : IVideoCategory
 	}
 
 	/// <inheritdoc />
-	public Video Save(VideoSaveParams @params) => _vk.Call("video.save", new()
+	public Video Save(VideoSaveParams @params) => _vk.Call<Video>("video.save", new()
 	{
 		{
 			"name", @params.Name
@@ -192,7 +191,7 @@ public partial class VideoCategory : IVideoCategory
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
-		return _vk.Call("video.search", new()
+		return _vk.Call<VkCollection<Video>>("video.search", new()
 			{
 				{
 					"q", @params.Query
@@ -227,8 +226,7 @@ public partial class VideoCategory : IVideoCategory
 				{
 					"extended", @params.Extended
 				}
-			})
-			.ToVkCollectionOf<Video>(selector: x => x);
+			});
 	}
 
 	/// <inheritdoc />
@@ -257,8 +255,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.getAlbums", parameters)
-			.ToVkCollectionOf<VideoAlbum>(selector: x => x);
+		return _vk.Call<VkCollection<VideoAlbum>>("video.getAlbums", parameters);
 	}
 
 	/// <inheritdoc />
@@ -333,7 +330,7 @@ public partial class VideoCategory : IVideoCategory
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
-		return _vk.Call("video.getComments", new()
+		return _vk.Call<VkCollection<Comment>>("video.getComments", new()
 			{
 				{
 					"owner_id", @params.OwnerId
@@ -362,8 +359,7 @@ public partial class VideoCategory : IVideoCategory
 				{
 					"fields", @params.Fields
 				}
-			})
-			.ToVkCollectionOf<Comment>(selector: x => x);
+			});
 	}
 
 	/// <inheritdoc />
@@ -523,7 +519,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.getAlbumById", parameters);
+		return _vk.Call<VideoAlbum>("video.getAlbumById", parameters);
 	}
 
 	/// <inheritdoc />
@@ -652,8 +648,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.getAlbumsByVideo", parameters)
-			.ToVkCollectionOf<VideoAlbum>(selector: x => x);
+		return _vk.Call<VkCollection<VideoAlbum>>("video.getAlbumsByVideo", parameters);
 	}
 
 	/// <inheritdoc />
@@ -678,8 +673,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.getCatalog", parameters)
-			.ToReadOnlyCollectionOf<VideoCatalog>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<VideoCatalog>>("video.getCatalog", parameters);
 	}
 
 	/// <inheritdoc />
@@ -702,8 +696,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.getCatalogSection", parameters)
-			.ToReadOnlyCollectionOf<VideoCatalogItem>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<VideoCatalogItem>>("video.getCatalogSection", parameters);
 	}
 
 	/// <inheritdoc />

@@ -30,7 +30,7 @@ public partial class StatusCategory : IStatusCategory
 			}
 		};
 
-		return _vk.Call("status.get", parameters);
+		return _vk.Call<Status>("status.get", parameters);
 	}
 
 	/// <inheritdoc />

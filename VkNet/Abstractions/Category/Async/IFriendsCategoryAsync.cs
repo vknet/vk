@@ -18,9 +18,26 @@ namespace VkNet.Abstractions;
 public interface IFriendsCategoryAsync
 {
 	/// <summary>
-	/// Возвращает список идентификаторов друзей пользователя или расширенную
-	/// информацию о друзьях пользователя (при
-	/// использовании параметра fields).
+	/// Возвращает расширенную информацию о друзьях пользователя
+	/// (при использовании параметра fields в params и extendedNeeded).
+	/// </summary>
+	/// <param name="params"> Входные параметры выборки. </param>
+	/// <param name="extendedNeeded">Параметр-маркер для возврата расширенной информации</param>
+	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <returns>
+	/// После успешного выполнения возвращает список идентификаторов (id) друзей
+	/// пользователя, если параметр fields не
+	/// использовался.
+	/// При использовании параметра fields  возвращает список объектов пользователей,
+	/// но не более 5000.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/friends.get
+	/// </remarks>
+	Task<VkCollection<User>> GetAsync(FriendsGetParams @params, bool extendedNeeded = true, bool skipAuthorization = false);
+
+	/// <summary>
+	/// Возвращает список идентификаторов друзей пользователя
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
@@ -34,7 +51,7 @@ public interface IFriendsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.get
 	/// </remarks>
-	Task<VkCollection<User>> GetAsync(FriendsGetParams @params, bool skipAuthorization = false);
+	Task<List<long>> GetAsync(FriendsGetParams2 @params, bool skipAuthorization = false);
 
 	/// <summary>
 	/// Возвращает список идентификаторов друзей текущего пользователя, которые
@@ -181,7 +198,7 @@ public interface IFriendsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.getLists
 	/// </remarks>
-	Task<VkCollection<FriendList>> GetListsAsync(long? userId = null, bool? returnSystem = null);
+	Task<List<FriendList>> GetListsAsync(long? userId = null, bool? returnSystem = null);
 
 	/// <summary>
 	/// Редактирует существующий список друзей текущего пользователя.

@@ -14,7 +14,7 @@ public partial class DonutCategory : IDonutCategoryAsync
 	public Task<bool> IsDonAsync(long ownerId) => TypeHelper.TryInvokeMethodAsync(() => IsDon(ownerId));
 
 	/// <inheritdoc/>
-	public Task<VkCollection<User>> GetFriendsAsync(long ownerId, ulong offset, byte count, UsersFields fields) =>
+	public Task<ReadOnlyCollection<User>> GetFriendsAsync(long ownerId, ulong offset, byte count, UsersFields fields) =>
 		TypeHelper.TryInvokeMethodAsync(() => GetFriends(ownerId, offset, count, fields));
 
 	/// <inheritdoc/>

@@ -34,9 +34,18 @@ public partial class GroupsCategory
 		TypeHelper.TryInvokeMethodAsync(() => GetMembers(@params, skipAuthorization));
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<GroupMember>> IsMemberAsync(string groupId, long? userId, IEnumerable<long> userIds, bool? extended,
+	public Task<ReadOnlyCollection<GroupMember>> IsMemberAsync(string groupId, IEnumerable<long> userIds, bool? extended,
 																bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(() =>
-		IsMember(groupId, userId, userIds, extended, skipAuthorization));
+		IsMember(groupId, userIds, extended, skipAuthorization));
+
+	/// <inheritdoc />
+	public Task<GroupMember> IsMemberAsync(string groupId, long userId, bool? extended = true,
+																bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(() =>
+		IsMember(groupId, userId, extended, skipAuthorization));
+
+	/// <inheritdoc />
+	public Task<bool> IsMemberAsync(string groupId, long userId, bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(() =>
+		IsMember(groupId, userId, skipAuthorization));
 
 	/// <inheritdoc />
 	public Task<VkCollection<Group>> SearchAsync(GroupsSearchParams @params, bool skipAuthorization = false) =>

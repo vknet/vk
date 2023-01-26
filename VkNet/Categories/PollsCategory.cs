@@ -25,7 +25,7 @@ public partial class PollsCategory : IPollsCategory
 	public PollsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
-	public Poll GetById(PollsGetByIdParams @params) => _vk.Call("polls.getById", new()
+	public Poll GetById(PollsGetByIdParams @params) => _vk.Call<Poll>("polls.getById", new()
 	{
 		{
 			"owner_id", @params.OwnerId
@@ -120,7 +120,7 @@ public partial class PollsCategory : IPollsCategory
 			return stringBuilder.ToString();
 		}
 
-		return _vk.Call("polls.getVoters", new()
+		return _vk.Call<VkCollection<PollAnswerVoters>>("polls.getVoters", new()
 			{
 				{
 					"owner_id", @params.OwnerId
@@ -149,12 +149,11 @@ public partial class PollsCategory : IPollsCategory
 				{
 					"name_case", @params.NameCase
 				}
-			})
-			.ToVkCollectionOf<PollAnswerVoters>(x => x);
+			});
 	}
 
 	/// <inheritdoc />
-	public Poll Create(PollsCreateParams @params) => _vk.Call("polls.create", new()
+	public Poll Create(PollsCreateParams @params) => _vk.Call<Poll>("polls.create", new()
 	{
 		{
 			"question", @params.Question

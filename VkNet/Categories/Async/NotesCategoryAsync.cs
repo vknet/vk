@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -33,7 +32,7 @@ public partial class NotesCategory
 	public Task<bool> EditAsync(NotesEditParams editParams) => TypeHelper.TryInvokeMethodAsync(func: () => Edit(editParams: editParams));
 
 	/// <inheritdoc />
-	public Task<IEnumerable<CommentNote>> GetCommentsAsync(NotesGetCommentParams getCommentParams) =>
+	public Task<VkCollection<CommentNote>> GetCommentsAsync(NotesGetCommentParams getCommentParams) =>
 		TypeHelper.TryInvokeMethodAsync(func: () => GetComments(getCommentParams: getCommentParams));
 
 	/// <inheritdoc />
@@ -41,7 +40,7 @@ public partial class NotesCategory
 		TypeHelper.TryInvokeMethodAsync(func: () => GetById(getByIdParams: getByIdParams));
 
 	/// <inheritdoc />
-	public Task<IEnumerable<Note>> GetAsync(NotesGetParams notesGetParams) =>
+	public Task<VkCollection<Note>> GetAsync(NotesGetParams notesGetParams) =>
 		TypeHelper.TryInvokeMethodAsync(func: () => Get(notesGetParams: notesGetParams));
 
 	/// <inheritdoc />

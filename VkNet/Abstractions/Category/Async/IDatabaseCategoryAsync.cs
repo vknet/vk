@@ -40,7 +40,7 @@ public interface IDatabaseCategoryAsync
 	/// то будут возвращены только страны с перечисленными ISO 3166-1 alpha-2 кодами.
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getCountries
 	/// </remarks>
-	Task<VkCollection<Country>> GetCountriesAsync(bool? needAll = null, IEnumerable<Iso3166> codes = null, int? count = null,
+	Task<ReadOnlyCollection<Country>> GetCountriesAsync(bool? needAll = null, IEnumerable<Iso3166> codes = null, int? count = null,
 												int? offset = null);
 
 	/// <summary>
@@ -97,7 +97,7 @@ public interface IDatabaseCategoryAsync
 	/// релевантны поисковому запросу.
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getCities
 	/// </remarks>
-	Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams getCitiesParams);
+	Task<ReadOnlyCollection<City>> GetCitiesAsync(GetCitiesParams getCitiesParams);
 
 	/// <summary>
 	/// Возвращает информацию о городах по их идентификаторам.

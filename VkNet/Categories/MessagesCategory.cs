@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
@@ -71,7 +70,7 @@ public partial class MessagesCategory : IMessagesCategory
 
 	/// <inheritdoc />
 	[Pure]
-	public MessagesGetObject Get(MessagesGetParams @params) => _vk.Call("messages.get",
+	public MessagesGetObject Get(MessagesGetParams @params) => _vk.Call<MessagesGetObject>("messages.get",
 		new()
 		{
 			{
@@ -131,7 +130,7 @@ public partial class MessagesCategory : IMessagesCategory
 	/// <inheritdoc />
 	[Pure]
 	public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null,
-										bool? extended = null, ulong? groupId = null) => _vk.Call("messages.getById",
+										bool? extended = null, ulong? groupId = null) => _vk.Call<VkCollection<Message>>("messages.getById",
 			new()
 			{
 				{
@@ -149,8 +148,7 @@ public partial class MessagesCategory : IMessagesCategory
 				{
 					"group_id", groupId
 				}
-			})
-		.ToVkCollectionOf<Message>(r => r);
+			});
 
 	/// <inheritdoc />
 	[Pure]
@@ -158,7 +156,7 @@ public partial class MessagesCategory : IMessagesCategory
 	{
 		VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
 
-		return _vk.Call("messages.getDialogs",
+		return _vk.Call<MessagesGetObject>("messages.getDialogs",
 			new()
 			{
 				{
@@ -202,7 +200,57 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.searchDialogs", parameters);
+		var response = _vk.Call("messages.searchDialogs", parameters);
+
+		var result = new SearchDialogsResponse
+		{
+			Users = new List<User>(),
+			Chats = new List<Chat>(),
+			Groups = new List<Group>()
+		};
+
+		VkResponseArray responseArray = response;
+
+		foreach (var record in responseArray)
+		{
+			string type = record[key: "type"];
+
+			switch (type)
+			{
+				case "profile":
+
+				{
+					result.Users.Add(JsonConvert.DeserializeObject<User>(record.ToString()));
+
+					break;
+				}
+
+				case "chat":
+
+				{
+					result.Chats.Add(JsonConvert.DeserializeObject<Chat>(record.ToString()));
+
+					break;
+				}
+
+				case "email":
+
+				{
+					// TODO: Add email support.
+					continue;
+				}
+
+				case "group":
+
+				{
+					result.Groups.Add(JsonConvert.DeserializeObject<Group>(record.ToString()));
+
+					break;
+				}
+			}
+		}
+
+		return result;
 	}
 
 	/// <inheritdoc />
@@ -899,25 +947,29 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		var response = _vk.Call("messages.getLastActivity", parameters);
-
-		LastActivity activity = response;
+		var activity = _vk.Call<LastActivity>("messages.getLastActivity", parameters);
 		activity.UserId = userId;
 
 		return activity;
 	}
 
 	/// <inheritdoc />
-	public Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null) => GetChat(new[]
+	public Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null) => _vk.Call<Chat>("messages.getChat",
+		new()
+		{
 			{
-				chatId
+				"chat_id", chatId
 			},
-			fields,
-			nameCase)
-		.FirstOrDefault();
+			{
+				"fields", fields
+			},
+			{
+				"name_case", nameCase
+			}
+		});
 
 	/// <inheritdoc />
-	public ChatPreview GetChatPreview(string link, ProfileFields fields) => _vk.Call("messages.getChatPreview",
+	public ChatPreview GetChatPreview(string link, ProfileFields fields) => _vk.Call<ChatPreview>("messages.getChatPreview",
 		new()
 		{
 			{
@@ -956,14 +1008,14 @@ public partial class MessagesCategory : IMessagesCategory
 			parameters.Add("chat_id", chatIds.ElementAt(0));
 		}
 
-		var response = _vk.Call("messages.getChat", parameters);
+		return _vk.Call<ReadOnlyCollection<Chat>>("messages.getChat", parameters);
 
-		return chatIds.Count() > 1
-			? response.ToReadOnlyCollectionOf<Chat>(c => c)
+		/*return chatIds.Count() > 1
+			? response.ToReadOnlyCollectionOf<Chat>()
 			: new(new List<Chat>
 			{
 				response
-			});
+			});*/
 	}
 
 	/// <inheritdoc />
@@ -1034,14 +1086,9 @@ public partial class MessagesCategory : IMessagesCategory
 		{
 			var chatResponse = response[chatId.ToString()];
 
-			var users = chatResponse.ToReadOnlyCollectionOf(x => fields != null
-				? x
-				: new User
-				{
-					Id = (long) x
-				});
+			var users = chatResponse;
 
-			foreach (var user in users)
+			foreach (var user in JsonConvert.DeserializeObject<ReadOnlyCollection<User>>(users.ToString()))
 			{
 				var exist = list.Exists(first => first.Id == user.Id);
 
@@ -1053,6 +1100,75 @@ public partial class MessagesCategory : IMessagesCategory
 		}
 
 		return list.ToReadOnlyCollection();
+	}
+
+	/// <inheritdoc />
+	public List<long> GetChatUsers(long chatId, NameCase nameCase)
+	{
+		var parameters = new VkParameters
+		{
+			{
+				"chat_id", chatId
+			},
+			{
+				"name_case", nameCase
+			}
+		};
+
+		return _vk.Call<List<long>>("messages.getChatUsers", parameters);
+	}
+
+	/// <inheritdoc />
+	public List<long> GetChatUsers(IEnumerable<long> chatIds, NameCase nameCase)
+	{
+		var collection = chatIds.ToList();
+
+		var parameters = new VkParameters
+		{
+			{
+				"chat_ids", collection
+			},
+			{
+				"name_case", nameCase
+			}
+		};
+
+		var response = _vk.Call("messages.getChatUsers", parameters);
+
+		var list = new List<long>();
+
+		foreach (var chatId in collection)
+		{
+			var chatResponse = response[chatId.ToString()];
+
+			var users = chatResponse;
+
+			foreach (var user in JsonConvert.DeserializeObject<ReadOnlyCollection<long>>(users.ToString()))
+			{
+				list.Add(user);
+			}
+		}
+
+		return list;
+	}
+
+	/// <inheritdoc />
+	public ReadOnlyCollection<User> GetChatUsers(long chatId, UsersFields fields, NameCase nameCase)
+	{
+		var parameters = new VkParameters
+		{
+			{
+				"chat_id", chatId
+			},
+			{
+				"fields", fields
+			},
+			{
+				"name_case", nameCase
+			}
+		};
+
+		return _vk.Call<ReadOnlyCollection<User>>("messages.getChatUsers", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1091,7 +1207,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.getLongPollServer", parameters);
+		return _vk.Call<LongPollServerResponse>("messages.getLongPollServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1102,7 +1218,7 @@ public partial class MessagesCategory : IMessagesCategory
 		VkErrors.ThrowIfNumberIsNegative(() => @params.MsgsLimit);
 		VkErrors.ThrowIfNumberIsNegative(() => @params.MaxMsgId);
 
-		return _vk.Call("messages.getLongPollHistory",
+		return _vk.Call<LongPollHistoryResponse>("messages.getLongPollHistory",
 			new()
 			{
 				{
@@ -1154,7 +1270,7 @@ public partial class MessagesCategory : IMessagesCategory
 		var result = _vk.Call("messages.deleteChatPhoto", parameters);
 		messageId = result["message_id"];
 
-		return result["chat"];
+		return JsonConvert.DeserializeObject<Chat>(result["chat"]);
 	}
 
 	/// <inheritdoc />
@@ -1249,7 +1365,7 @@ public partial class MessagesCategory : IMessagesCategory
 
 		nextFrom = result["next_from"];
 
-		return result.ToReadOnlyCollectionOf<HistoryAttachment>(o => o);
+		return result.ToReadOnlyCollectionOf<HistoryAttachment>();
 	}
 
 	/// <inheritdoc />

@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
 using VkNet.Enums.Filters;
 using VkNet.Model;
-using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
@@ -12,7 +11,7 @@ public interface IDonutCategory
 	bool IsDon(long ownerId);
 
 	/// <inheritdoc cref="IDonutCategoryAsync.GetFriendsAsync"/>
-	VkCollection<User> GetFriends(long ownerId, ulong offset, byte count, UsersFields fields);
+	ReadOnlyCollection<User> GetFriends(long ownerId, ulong offset, byte count, UsersFields fields);
 
 	/// <inheritdoc cref="IDonutCategoryAsync.GetSubscriptionAsync"/>
 	Subscription GetSubscription(long ownerId);

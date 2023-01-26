@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
@@ -51,8 +52,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.get", parameters)
-			.ToVkCollectionOf<Document>(selector: r => r);
+		return _vk.Call<VkCollection<Document>>("docs.get", parameters);
 	}
 
 	/// <inheritdoc />
@@ -72,9 +72,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		var response = _vk.Call("docs.getById", parameters);
-
-		return response.ToReadOnlyCollectionOf<Document>(selector: r => r);
+		return _vk.Call<ReadOnlyCollection<Document>>("docs.getById", parameters);
 	}
 
 	/// <inheritdoc />
@@ -90,7 +88,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.getUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("docs.getUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -106,7 +104,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.getWallUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("docs.getWallUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -149,11 +147,30 @@ public partial class DocsCategory : IDocsCategory
 		{
 			return new(new List<Attachment>
 			{
-				response
+				CreateTyped(JsonConvert.DeserializeObject<Document>(response["doc"].ToString()))
 			});
 		}
 
-		return response.ToReadOnlyCollectionOf<Attachment>(r => r);
+		var parsedArray = JArray.Parse(response.ToString());
+		var list = (from parsedObject in parsedArray.Children<JObject>()
+					from parsedProperty in parsedObject.Properties()
+					let propertyName = parsedProperty.Name
+					where propertyName.Equals("doc")
+					select CreateTyped(JsonConvert.DeserializeObject<Document>(parsedProperty.Value.ToString()))).ToList();
+
+		return new (list);
+	}
+
+	private static Attachment CreateTyped<TAttachment>(TAttachment instance)
+		where TAttachment : MediaAttachment
+	{
+		var attachment = new Attachment
+		{
+			Type = typeof(TAttachment),
+			Instance = instance
+		};
+
+		return attachment;
 	}
 
 	/// <inheritdoc />
@@ -214,8 +231,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.getTypes", parameters)
-			.ToVkCollectionOf<DocumentType>(selector: x => x);
+		return _vk.Call<VkCollection<DocumentType>>("docs.getTypes", parameters);
 	}
 
 	/// <inheritdoc />
@@ -237,8 +253,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.search", parameters)
-			.ToVkCollectionOf<Document>(selector: x => x);
+		return _vk.Call<VkCollection<Document>>("docs.search", parameters);
 	}
 
 	/// <inheritdoc />
@@ -276,6 +291,6 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.getMessagesUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("docs.getMessagesUploadServer", parameters);
 	}
 }

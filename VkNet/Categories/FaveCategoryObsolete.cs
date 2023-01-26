@@ -25,8 +25,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.getUsers", parameters)
-			.ToVkCollectionOf<User>(x => x);
+		return _vk.Call<VkCollection<User>>("fave.getUsers", parameters);
 	}
 
 	/// <inheritdoc />
@@ -49,8 +48,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.getPhotos", parameters)
-			.ToVkCollectionOf<Photo>(x => x);
+		return _vk.Call<VkCollection<Photo>>("fave.getPhotos", parameters);
 	}
 
 	/// <inheritdoc />
@@ -73,7 +71,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.getPosts", parameters);
+		return _vk.Call<WallGetObject>("fave.getPosts", parameters);
 	}
 
 	/// <inheritdoc />
@@ -96,7 +94,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.getVideos", parameters);
+		return _vk.Call<FaveVideoEx>("fave.getVideos", parameters);
 	}
 
 	/// <inheritdoc />
@@ -116,8 +114,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.getLinks", parameters)
-			.ToVkCollectionOf<ExternalLink>(x => x);
+		return _vk.Call<VkCollection<ExternalLink>>("fave.getLinks", parameters);
 	}
 
 	/// <inheritdoc />
@@ -210,7 +207,6 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.getMarketItems", parameters)
-			.ToVkCollectionOf<Market>(x => x);
+		return _vk.Call<VkCollection<Market>>("fave.getMarketItems", parameters);
 	}
 }

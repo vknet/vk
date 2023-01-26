@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Groups;
@@ -224,7 +225,7 @@ public partial class GroupsCategory : IGroupsCategory
 			});
 		}
 
-		return response.ToVkCollectionOf<Group>(r => r);
+		return response.ToVkCollectionOf(r => JsonConvert.DeserializeObject<Group>(r.ToString()));
 	}
 
 	/// <inheritdoc />
@@ -244,8 +245,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getById", parameters, skipAuthorization)
-			.ToReadOnlyCollectionOf<Group>(x => x);
+		return _vk.Call<ReadOnlyCollection<Group>>("groups.getById", parameters, skipAuthorization);
 	}
 
 	/// <inheritdoc />
@@ -253,7 +253,7 @@ public partial class GroupsCategory : IGroupsCategory
 	{
 		if (@params.Fields != null || @params.Filter != null)
 		{
-			return _vk.Call("groups.getMembers",
+			return _vk.Call<VkCollection<User>>("groups.getMembers",
 					new()
 					{
 						{
@@ -275,8 +275,7 @@ public partial class GroupsCategory : IGroupsCategory
 							"filter", @params.Filter
 						}
 					},
-					skipAuthorization)
-				.ToVkCollectionOf<User>(x => x);
+					skipAuthorization);
 		}
 
 		return _vk.Call("groups.getMembers",
@@ -309,37 +308,9 @@ public partial class GroupsCategory : IGroupsCategory
 	}
 
 	/// <inheritdoc />
-	public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended,
+	public ReadOnlyCollection<GroupMember> IsMember(string groupId, IEnumerable<long> userIds, bool? extended,
 													bool skipAuthorization = false)
 	{
-		if (userId.HasValue)
-		{
-			if (userIds != null)
-			{
-				var enumerable = userIds as long[] ?? userIds.ToArray();
-
-				if (enumerable.Any(id => id < 1))
-				{
-					throw new ArgumentException("Идентификатор пользователя должен быть больше 0");
-				}
-
-				var tempList = enumerable.ToList();
-				tempList.Add(userId.Value);
-				userIds = tempList;
-			} else
-			{
-				if (userId.Value < 1)
-				{
-					throw new ArgumentException("Идентификатор пользователя должен быть больше 0");
-				}
-
-				userIds = new List<long>
-				{
-					userId.Value
-				};
-			}
-		}
-
 		var parameters = new VkParameters
 		{
 			{
@@ -353,13 +324,52 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		var result = _vk.Call("groups.isMember", parameters, skipAuthorization);
-
-		return result.ToReadOnlyCollectionOf<GroupMember>(x => x);
+		return _vk.Call<ReadOnlyCollection<GroupMember>>("groups.isMember", parameters, skipAuthorization);
 	}
 
 	/// <inheritdoc />
-	public VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false) => _vk.Call("groups.search",
+	public GroupMember IsMember(string groupId, long userId, bool? extended = true,
+													bool skipAuthorization = false)
+	{
+		if (extended is false or null)
+		{
+			throw new VkApiException("Параметр extended должен либо быть true, либо отсутствовать");
+		}
+
+		var parameters = new VkParameters
+		{
+			{
+				"group_id", groupId
+			},
+			{
+				"user_id", userId
+			},
+			{
+				"extended", extended
+			}
+		};
+
+		return _vk.Call<GroupMember>("groups.isMember", parameters, skipAuthorization);
+	}
+
+	/// <inheritdoc />
+	public bool IsMember(string groupId, long userId, bool skipAuthorization = false)
+	{
+		var parameters = new VkParameters
+		{
+			{
+				"group_id", groupId
+			},
+			{
+				"user_id", userId
+			}
+		};
+
+		return _vk.Call<bool>("groups.isMember", parameters, skipAuthorization);
+	}
+
+	/// <inheritdoc />
+	public VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<Group>>("groups.search",
 			new()
 			{
 				{
@@ -390,8 +400,7 @@ public partial class GroupsCategory : IGroupsCategory
 					"count", @params.Count
 				}
 			},
-			skipAuthorization)
-		.ToVkCollectionOf<Group>(r => r);
+			skipAuthorization);
 
 	/// <inheritdoc />
 	public VkCollection<Group> GetInvites(long? count, long? offset, bool? extended = null)
@@ -409,8 +418,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getInvites", parameters)
-			.ToVkCollectionOf<Group>(x => x);
+		return _vk.Call<VkCollection<Group>>("groups.getInvites", parameters);
 	}
 
 	/// <inheritdoc />
@@ -539,10 +547,8 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		GroupsEditParams result = _vk.Call("groups.getSettings", parameters);
-		result.GroupId = groupId; // Требует метод edit но getSettings не возвращает
+		return _vk.Call<GroupsEditParams>("groups.getSettings", parameters);
 
-		return result;
 	}
 
 	/// <inheritdoc />
@@ -773,8 +779,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getInvitedUsers", parameters)
-			.ToVkCollectionOf<User>(x => x);
+		return _vk.Call<VkCollection<User>>("groups.getInvitedUsers", parameters);
 	}
 
 	/// <inheritdoc />
@@ -818,7 +823,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.addLink", parameters);
+		return _vk.Call<ExternalLink>("groups.addLink", parameters);
 	}
 
 	/// <inheritdoc />
@@ -937,7 +942,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.create", parameters);
+		return _vk.Call<Group>("groups.create", parameters);
 	}
 
 	/// <inheritdoc />
@@ -966,7 +971,7 @@ public partial class GroupsCategory : IGroupsCategory
 			{
 				Id = (long) x
 			})
-			: response.ToVkCollectionOf<User>(x => x);
+			: response.ToVkCollectionOf(r=>JsonConvert.DeserializeObject<User>(r.ToString()));
 	}
 
 	/// <inheritdoc />
@@ -982,8 +987,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getCatalog", parameters, true)
-			.ToVkCollectionOf<Group>(x => x);
+		return _vk.Call<VkCollection<Group>>("groups.getCatalog", parameters, true);
 	}
 
 	/// <inheritdoc />
@@ -1180,22 +1184,46 @@ public partial class GroupsCategory : IGroupsCategory
 		});
 
 	/// <inheritdoc />
-	public BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params) => _vk.CallLongPoll(@params.Server,
-		new()
+	public BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params)
+	{
+		var response = _vk.CallLongPoll(@params.Server,
+			new()
+			{
+				{
+					"ts", @params.Ts
+				},
+				{
+					"key", @params.Key
+				},
+				{
+					"wait", @params.Wait
+				},
+				{
+					"act", "a_check"
+				}
+			});
+
+		if (response.ContainsKey("failed"))
 		{
+			int code = response["failed"];
+
+			if (code == LongPollException.OutdateException)
 			{
-				"ts", @params.Ts
-			},
-			{
-				"key", @params.Key
-			},
-			{
-				"wait", @params.Wait
-			},
-			{
-				"act", "a_check"
+				throw new LongPollOutdateException(response["ts"]);
 			}
-		});
+
+			if (code == LongPollException.KeyExpiredException)
+			{
+				throw new LongPollKeyExpiredException();
+			}
+
+			if (code == LongPollException.InfoLostException)
+			{
+				throw new LongPollInfoLostException();
+			}
+		}
+		return JsonConvert.DeserializeObject<BotsLongPollHistoryResponse>(response.RawJson);
+	}
 
 	/// <inheritdoc />
 	public OnlineStatus GetOnlineStatus(ulong groupId) => _vk.Call<OnlineStatus>("groups.getOnlineStatus",

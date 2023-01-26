@@ -34,7 +34,7 @@ public partial class DonutCategory : IDonutCategory
 	}
 
 	/// <inheritdoc/>
-	public VkCollection<User> GetFriends(long ownerId, ulong offset, byte count, UsersFields fields)
+	public ReadOnlyCollection<User> GetFriends(long ownerId, ulong offset, byte count, UsersFields fields)
 	{
 		var parameters = new VkParameters
 		{
@@ -52,8 +52,7 @@ public partial class DonutCategory : IDonutCategory
 			}
 		};
 
-		return _vk.Call("donut.getFriends", parameters)
-			.ToVkCollectionOf<User>(x => x);
+		return _vk.Call<ReadOnlyCollection<User>>("donut.getFriends", parameters);
 	}
 
 	/// <inheritdoc/>

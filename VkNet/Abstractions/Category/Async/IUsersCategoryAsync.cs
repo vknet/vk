@@ -129,11 +129,28 @@ public interface IUsersCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/users.getFollowers
 	/// </remarks>
-	Task<VkCollection<User>> GetFollowersAsync(long? userId = null
-												, int? count = null
-												, int? offset = null
-												, ProfileFields fields = null
-												, NameCase nameCase = null);
+	Task<VkCollection<User>> GetFollowersAsync(ProfileFields fields = null, long? userId = null, int? count = null,
+												int? offset = null, NameCase nameCase = null);
+
+	/// <summary>
+	/// Возвращает список идентификаторов пользователей, которые являются подписчиками
+	/// пользователя.
+	/// </summary>
+	/// <param name="userId"> Идентификатор пользователя </param>
+	/// <param name="count">
+	/// Количество подписчиков, информацию о которых нужно
+	/// получить
+	/// </param>
+	/// <param name="offset">
+	/// Смещение, необходимое для выборки определенного
+	/// подмножества подписчиков
+	/// </param>
+	/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
+	/// <returns> Список подписчиков </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/users.getFollowers
+	/// </remarks>
+	Task<VkCollection<long>> GetFollowersAsync(long? userId = null, int? count = null, int? offset = null, NameCase nameCase = null);
 
 	/// <summary>
 	/// Позволяет пожаловаться на пользователя.

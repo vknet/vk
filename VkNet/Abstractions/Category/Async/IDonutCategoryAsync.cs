@@ -2,7 +2,6 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Model;
-using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
@@ -49,7 +48,7 @@ public interface IDonutCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/donut.getFriends
 	/// </remarks>
-	public Task<VkCollection<User>> GetFriendsAsync(long ownerId, ulong offset, byte count, UsersFields fields);
+	public Task<ReadOnlyCollection<User>> GetFriendsAsync(long ownerId, ulong offset, byte count, UsersFields fields);
 
 	/// <summary>
 	/// Возвращает информацию о подписке VK Donut.

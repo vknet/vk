@@ -114,7 +114,7 @@ public partial class AppsCategory : IAppsCategory
 
 	/// <inheritdoc />
 	public VkCollection<User> GetFriendsList(AppRequestType type
-											, bool? extended = null
+											, bool? extended = true
 											, long? count = null
 											, long? offset = null
 											, UsersFields fields = null)
@@ -122,7 +122,7 @@ public partial class AppsCategory : IAppsCategory
 		var parameters = new VkParameters
 		{
 			{
-				"extended", extended
+				"extended", true
 			},
 			{
 				"offset", offset
@@ -140,8 +140,34 @@ public partial class AppsCategory : IAppsCategory
 			parameters.Add("count", count);
 		}
 
-		return _vk.Call("apps.getFriendsList", parameters)
-			.ToVkCollectionOf<User>(selector: x => x);
+		return _vk.Call<VkCollection<User>>("apps.getFriendsList", parameters);
+	}
+
+	/// <inheritdoc />
+	public VkCollection<long> GetFriendsList(AppRequestType type
+											, long? count = null
+											, long? offset = null
+											, UsersFields fields = null)
+	{
+		var parameters = new VkParameters
+		{
+			{
+				"offset", offset
+			},
+			{
+				"type", type
+			},
+			{
+				"fields", fields
+			}
+		};
+
+		if (count <= 5000)
+		{
+			parameters.Add("count", count);
+		}
+
+		return _vk.Call<VkCollection<long>>("apps.getFriendsList", parameters);
 	}
 
 	/// <inheritdoc />

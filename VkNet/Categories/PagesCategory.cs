@@ -24,7 +24,7 @@ public partial class PagesCategory : IPagesCategory
 	public PagesCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
-	public Page Get(PagesGetParams @params) => _vk.Call("pages.get", new()
+	public Page Get(PagesGetParams @params) => _vk.Call<Page>("pages.get", new()
 	{
 		{
 			"owner_id", @params.OwnerId
@@ -119,9 +119,7 @@ public partial class PagesCategory : IPagesCategory
 			}
 		};
 
-		VkResponseArray result = _vk.Call("pages.getHistory", parameters);
-
-		return result.ToReadOnlyCollectionOf<PageVersion>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<PageVersion>>("pages.getHistory", parameters);
 	}
 
 	/// <inheritdoc />
@@ -134,9 +132,7 @@ public partial class PagesCategory : IPagesCategory
 			}
 		};
 
-		VkResponseArray result = _vk.Call("pages.getTitles", parameters);
-
-		return result.ToReadOnlyCollectionOf<Page>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<Page>>("pages.getTitles", parameters);
 	}
 
 	/// <inheritdoc />
@@ -158,7 +154,7 @@ public partial class PagesCategory : IPagesCategory
 			}
 		};
 
-		return _vk.Call("pages.getVersion", parameters);
+		return _vk.Call<Page>("pages.getVersion", parameters);
 	}
 
 	/// <inheritdoc />

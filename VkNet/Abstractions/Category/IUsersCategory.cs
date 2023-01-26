@@ -34,12 +34,12 @@ public interface IUsersCategory : IUsersCategoryAsync
 										, int? offset = null
 										, GroupsFields fields = null);
 
-	/// <inheritdoc cref="IUsersCategoryAsync.GetFollowersAsync"/>
-	VkCollection<User> GetFollowers(long? userId = null
-									, int? count = null
-									, int? offset = null
-									, ProfileFields fields = null
-									, NameCase nameCase = null);
+	/// <inheritdoc cref="IUsersCategoryAsync.GetFollowersAsync(ProfileFields, long?, int?, int?, NameCase)"/>
+	VkCollection<User> GetFollowers(ProfileFields fields = null, long? userId = null, int? count = null,
+									int? offset = null, NameCase nameCase = null);
+
+	/// <inheritdoc cref="IUsersCategoryAsync.GetFollowersAsync(long?, int?, int?, NameCase"/>
+	VkCollection<long> GetFollowers(long? userId = null, int? count = null, int? offset = null, NameCase nameCase = null);
 
 	/// <inheritdoc cref="IUsersCategoryAsync.ReportAsync"/>
 	bool Report(long userId, ReportType type, string comment = "");

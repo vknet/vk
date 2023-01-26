@@ -15,7 +15,12 @@ namespace VkNet.Categories;
 public partial class FriendsCategory
 {
 	/// <inheritdoc />
-	public Task<VkCollection<User>> GetAsync(FriendsGetParams @params, bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(
+	public Task<VkCollection<User>> GetAsync(FriendsGetParams @params, bool extendedNeeded = true, bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(
+		() =>
+			Get(@params, skipAuthorization));
+
+	/// <inheritdoc />
+	public Task<List<long>> GetAsync(FriendsGetParams2 @params, bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(
 		() =>
 			Get(@params, skipAuthorization));
 
@@ -40,7 +45,7 @@ public partial class FriendsCategory
 	public Task<bool> DeleteListAsync(long listId) => TypeHelper.TryInvokeMethodAsync(() => DeleteList(listId));
 
 	/// <inheritdoc />
-	public Task<VkCollection<FriendList>> GetListsAsync(long? userId = null, bool? returnSystem = null) =>
+	public Task<List<FriendList>> GetListsAsync(long? userId = null, bool? returnSystem = null) =>
 		TypeHelper.TryInvokeMethodAsync(() => GetLists(userId, returnSystem));
 
 	/// <inheritdoc />

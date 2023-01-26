@@ -1,6 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -125,7 +127,39 @@ public partial class LikesCategory : ILikesCategory
 			}
 		}
 
-		return _vk.Call("likes.getList", parameters, true);
+		var response = _vk.Call("likes.getList", parameters, true);
+
+		var userOrGroup = new UserOrGroup
+		{
+			Users = new(),
+			Groups = new()
+		};
+
+		if (response.ContainsKey(key: "count"))
+		{
+			userOrGroup.TotalCount = response[key: "count"];
+		}
+
+		VkResponseArray result = response;
+
+		foreach (var item in result)
+		{
+			switch (item["type"].ToString())
+			{
+				case "group":
+					userOrGroup.Groups.Add(JsonConvert.DeserializeObject<Group>(item.ToString()));
+					break;
+
+				case "profile":
+					userOrGroup.Users.Add(JsonConvert.DeserializeObject<User>(item.ToString()));
+					break;
+
+				default:
+					throw new VkApiException(message:
+						$"Типа '{item[key: "type"]}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues");
+			}
+		}
+		return userOrGroup;
 	}
 
 	/// <inheritdoc />

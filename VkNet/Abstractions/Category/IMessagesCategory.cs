@@ -187,9 +187,21 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	[Obsolete(ObsoleteText.MessageGet)]
 	MessagesGetObject Get(MessagesGetParams @params);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync"/>
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync(System.Collections, UsersFields, NameCase)"/>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
 	ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync(long, NameCase)"/>
+	[Obsolete(ObsoleteText.MessageGetChatUsers)]
+	List<long> GetChatUsers(long chatId, NameCase nameCase);
+
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync(System.Collections, NameCase)"/>
+	[Obsolete(ObsoleteText.MessageGetChatUsers)]
+	List<long> GetChatUsers(IEnumerable<long> chatIds, NameCase nameCase);
+
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync(long, UsersFields, NameCase)"/>
+	[Obsolete(ObsoleteText.MessageGetChatUsers)]
+	ReadOnlyCollection<User> GetChatUsers(long chatId, UsersFields fields, NameCase nameCase);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetDialogsAsync"/>
 	[Obsolete(ObsoleteText.MessageGet)]

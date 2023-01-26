@@ -12,8 +12,8 @@ namespace VkNet.Categories;
 public partial class DatabaseCategory
 {
 	/// <inheritdoc />
-	public Task<VkCollection<Country>> GetCountriesAsync(bool? needAll = null, IEnumerable<Iso3166> codes = null, int? count = null,
-														int? offset = null) => TypeHelper.TryInvokeMethodAsync(() =>
+	public Task<ReadOnlyCollection<Country>> GetCountriesAsync(bool? needAll = null, IEnumerable<Iso3166> codes = null, int? count = null,
+													int? offset = null) => TypeHelper.TryInvokeMethodAsync(() =>
 		GetCountries(needAll, codes, count, offset));
 
 	/// <inheritdoc />
@@ -30,7 +30,7 @@ public partial class DatabaseCategory
 		TypeHelper.TryInvokeMethodAsync(() => GetCountriesById(countryIds));
 
 	/// <inheritdoc />
-	public Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams getCitiesParams) =>
+	public Task<ReadOnlyCollection<City>> GetCitiesAsync(GetCitiesParams getCitiesParams) =>
 		TypeHelper.TryInvokeMethodAsync(() => GetCities(getCitiesParams));
 
 	/// <inheritdoc />

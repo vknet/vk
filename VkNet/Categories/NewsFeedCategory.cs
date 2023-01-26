@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -138,12 +140,11 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			parameters.Add("count", count);
 		}
 
-		return _vk.Call("newsfeed.getMentions", parameters)
-			.ToVkCollectionOf<Mention>(selector: x => x);
+		return _vk.Call<VkCollection<Mention>>("newsfeed.getMentions", parameters);
 	}
 
 	/// <inheritdoc />
-	public NewsBannedList GetBanned() => _vk.Call("newsfeed.getBanned", VkParameters.Empty);
+	public NewsBannedList GetBanned() => _vk.Call<NewsBannedList>("newsfeed.getBanned", VkParameters.Empty);
 
 	/// <inheritdoc />
 	public NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase nameCase = null)
@@ -161,7 +162,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			}
 		};
 
-		return _vk.Call("newsfeed.getBanned", parameters);
+		return _vk.Call<NewsBannedExList>("newsfeed.getBanned", parameters);
 	}
 
 	/// <inheritdoc />
@@ -286,8 +287,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			}
 		};
 
-		return _vk.Call("newsfeed.getLists", parameters)
-			.ToVkCollectionOf<NewsUserListItem>(selector: x => x);
+		return _vk.Call<VkCollection<NewsUserListItem>>("newsfeed.getLists", parameters);
 	}
 
 	/// <inheritdoc />
@@ -365,6 +365,50 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			parameters.Add("count", count);
 		}
 
-		return _vk.Call("newsfeed.getSuggestedSources", parameters);
+		var response = _vk.Call("newsfeed.getSuggestedSources", parameters);
+
+		var newsSuggestions = new NewsSuggestions
+		{
+			Users = new(),
+			Groups = new()
+		};
+
+		VkResponseArray result = response;
+
+		foreach (var item in result)
+		{
+			switch (item[key: "type"]
+						.ToString())
+			{
+				case "page":
+				case "group":
+
+				{
+					var group = JsonConvert.DeserializeObject<Group>(item);
+					newsSuggestions.Groups.Add(item: group);
+				}
+
+					break;
+
+				case "profile":
+
+				{
+					var user = JsonConvert.DeserializeObject<User>(item);
+					newsSuggestions.Users.Add(item: user);
+				}
+
+					break;
+
+				default:
+
+				{
+					throw new VkApiException(message: string.Format(
+						"Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues"
+						, item[key: "type"]));
+				}
+			}
+		}
+
+		return newsSuggestions;
 	}
 }

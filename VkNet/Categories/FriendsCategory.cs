@@ -7,6 +7,7 @@ using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -25,7 +26,9 @@ public partial class FriendsCategory : IFriendsCategory
 	public FriendsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
-	public VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false) => _vk.Call("friends.get", new()
+	public VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false)
+	{
+		var parameters = new VkParameters
 		{
 			{
 				"user_id", @params.UserId
@@ -51,13 +54,42 @@ public partial class FriendsCategory : IFriendsCategory
 			{
 				"ref", @params.Reference
 			}
-		}, skipAuthorization)
-		.ToVkCollectionOf(x => @params.Fields != null
-			? x
-			: new User
-			{
-				Id = x
-			});
+		};
+
+		if (!parameters.ContainsKey("fields"))
+		{
+			throw new VkApiException(message:
+				"Используйте параметр fields или перегрузку метода!");
+		}
+
+		return _vk.Call<VkCollection<User>>("friends.get", parameters, skipAuthorization);
+	}
+
+	/// <inheritdoc />
+	public List<long> Get(FriendsGetParams2 @params, bool skipAuthorization = false) => _vk.Call<List<long>>("friends.get", new()
+	{
+		{
+			"user_id", @params.UserId
+		},
+		{
+			"order", @params.Order
+		},
+		{
+			"list_id", @params.ListId
+		},
+		{
+			"count", @params.Count
+		},
+		{
+			"offset", @params.Offset
+		},
+		{
+			"name_case", @params.NameCase
+		},
+		{
+			"ref", @params.Reference
+		}
+	}, skipAuthorization);
 
 	/// <inheritdoc />
 	[Pure]
@@ -71,7 +103,7 @@ public partial class FriendsCategory : IFriendsCategory
 	/// <inheritdoc />
 	public FriendOnline GetOnline(FriendsGetOnlineParams @params)
 	{
-		var result = _vk.Call("friends.getOnline", new()
+		var response = _vk.Call("friends.getOnline", new()
 		{
 			{
 				"user_id", @params.UserId
@@ -93,7 +125,21 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		});
 
-		return FriendOnline.FromJson(result);
+		if (response.ContainsKey(key: "online"))
+		{
+			return new()
+			{
+				MobileOnline = response[key: "online_mobile"]
+					.ToReadOnlyCollectionOf<long>(selector: x => x),
+				Online = response[key: "online"]
+					.ToReadOnlyCollectionOf<long>(selector: x => x)
+			};
+		}
+
+		return new()
+		{
+			Online = response.ToReadOnlyCollectionOf<long>(selector: x => x)
+		};
 	}
 
 	/// <inheritdoc />
@@ -107,7 +153,7 @@ public partial class FriendsCategory : IFriendsCategory
 			};
 		}
 
-		VkResponseArray response = _vk.Call("friends.getMutual", new()
+		return _vk.Call<ReadOnlyCollection<MutualFriend>>("friends.getMutual", new()
 		{
 			{
 				"source_uid", @params.SourceUid
@@ -125,8 +171,6 @@ public partial class FriendsCategory : IFriendsCategory
 				"offset", @params.Offset
 			}
 		});
-
-		return response.ToReadOnlyCollectionOf<MutualFriend>(x => x);
 	}
 
 	/// <inheritdoc />
@@ -185,7 +229,7 @@ public partial class FriendsCategory : IFriendsCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<FriendList> GetLists(long? userId = null, bool? returnSystem = null)
+	public List<FriendList> GetLists(long? userId = null, bool? returnSystem = null)
 	{
 		var parameters = new VkParameters
 		{
@@ -197,8 +241,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.getLists", parameters)
-			.ToVkCollectionOf<FriendList>(x => x);
+		return _vk.Call<List<FriendList>>("friends.getLists", parameters);
 	}
 
 	/// <inheritdoc />
@@ -392,8 +435,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.getSuggestions", parameters)
-			.ToVkCollectionOf<User>(x => x);
+		return _vk.Call<VkCollection<User>>("friends.getSuggestions", parameters);
 	}
 
 	/// <inheritdoc />
@@ -409,12 +451,11 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.getByPhones", parameters)
-			.ToReadOnlyCollectionOf<User>(x => x);
+		return _vk.Call<ReadOnlyCollection<User>>("friends.getByPhones", parameters);
 	}
 
 	/// <inheritdoc />
-	public VkCollection<User> Search(FriendsSearchParams @params) => _vk.Call("friends.search", new()
+	public VkCollection<User> Search(FriendsSearchParams @params) => _vk.Call<VkCollection<User>>("friends.search", new()
 		{
 			{
 				"user_id", @params.UserId
@@ -434,8 +475,7 @@ public partial class FriendsCategory : IFriendsCategory
 			{
 				"count", @params.Count
 			}
-		})
-		.ToVkCollectionOf<User>(x => x);
+		});
 
 	/// <summary>
 	/// Создает новый список друзей у текущего пользователя.
@@ -497,12 +537,6 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.getAvailableForCall", parameters)
-			.ToVkCollectionOf(x => fields != null
-				? new User
-				{
-					Id = x
-				}
-				: x);
+		return _vk.Call<VkCollection<User>>("friends.getAvailableForCall", parameters);
 	}
 }

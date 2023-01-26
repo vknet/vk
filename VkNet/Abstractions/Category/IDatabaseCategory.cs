@@ -11,7 +11,7 @@ namespace VkNet.Abstractions;
 public interface IDatabaseCategory : IDatabaseCategoryAsync
 {
 	/// <inheritdoc cref="IDatabaseCategoryAsync.GetCountriesAsync"/>
-	VkCollection<Country> GetCountries(bool? needAll = null, IEnumerable<Iso3166> codes = null, int? count = null, int? offset = null);
+	ReadOnlyCollection<Country> GetCountries(bool? needAll = null, IEnumerable<Iso3166> codes = null, int? count = null, int? offset = null);
 
 	/// <inheritdoc cref="IDatabaseCategoryAsync.GetRegionsAsync"/>
 	VkCollection<Region> GetRegions(int countryId, string query = "", int? count = null, int? offset = null);
@@ -23,7 +23,7 @@ public interface IDatabaseCategory : IDatabaseCategoryAsync
 	ReadOnlyCollection<Country> GetCountriesById(params int[] countryIds);
 
 	/// <inheritdoc cref="IDatabaseCategoryAsync.GetCitiesAsync" />
-	VkCollection<City> GetCities(GetCitiesParams getCitiesParams);
+	ReadOnlyCollection<City> GetCities(GetCitiesParams getCitiesParams);
 
 	/// <inheritdoc cref="IDatabaseCategoryAsync.GetCitiesByIdAsync"/>
 	ReadOnlyCollection<City> GetCitiesById(params int[] cityIds);

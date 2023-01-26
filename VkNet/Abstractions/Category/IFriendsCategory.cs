@@ -14,8 +14,11 @@ namespace VkNet.Abstractions;
 /// <inheritdoc cref="IFriendsCategoryAsync" />
 public interface IFriendsCategory : IFriendsCategoryAsync
 {
-	/// <inheritdoc cref="IFriendsCategoryAsync.GetAsync" />
+	/// <inheritdoc cref="IFriendsCategoryAsync.GetAsync(FriendsGetParams, bool, bool)" />
 	VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false);
+
+	/// <inheritdoc cref="IFriendsCategoryAsync.GetAsync(FriendsGetParams2, bool" />
+	List<long> Get(FriendsGetParams2 @params, bool skipAuthorization = false);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetAppUsersAsync" />
 	ReadOnlyCollection<long> GetAppUsers();
@@ -36,7 +39,7 @@ public interface IFriendsCategory : IFriendsCategoryAsync
 	bool DeleteList(long listId);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetListsAsync" />
-	VkCollection<FriendList> GetLists(long? userId = null, bool? returnSystem = null);
+	List<FriendList> GetLists(long? userId = null, bool? returnSystem = null);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.EditListAsync" />
 	bool EditList(long listId, string name = null, IEnumerable<long> userIds = null, IEnumerable<long> addUserIds = null,
