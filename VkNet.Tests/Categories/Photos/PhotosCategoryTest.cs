@@ -54,11 +54,11 @@ public class PhotosCategoryTest : CategoryBaseTest
 
 		album.PrivacyView[0]
 			.Should()
-			.Be(Privacy.All);
+			.Be(Privacy.All.ToString());
 
 		album.PrivacyComment[0]
 			.Should()
-			.Be(Privacy.All);
+			.Be(Privacy.All.ToString());
 
 		album.Size.Should()
 			.Be(0);

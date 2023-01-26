@@ -68,16 +68,18 @@ public class PhotoAlbum
 	/// Настройки приватности для альбома в формате настроек приватности; (не приходит
 	/// для системных альбомов)
 	/// </summary>
+	/// TODO: Не работает конвертер с этим SafetyEnum
 	[JsonProperty("privacy_view")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public ReadOnlyCollection<Privacy> PrivacyView { get; set; }
+	//[JsonConverter(typeof(SafetyEnumJsonConverter))]
+	public ReadOnlyCollection<string> PrivacyView { get; set; }
 
 	/// <summary>
 	/// Настройки приватности для комментирования альбома
 	/// </summary>
+	/// TODO: Не работает конвертер с этим SafetyEnum
 	[JsonProperty("privacy_comment")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public ReadOnlyCollection<Privacy> PrivacyComment { get; set; }
+	//[JsonConverter(typeof(SafetyEnumJsonConverter))]
+	public ReadOnlyCollection<string> PrivacyComment { get; set; }
 
 	/// <summary>
 	/// Может ли текущий пользователь добавлять фотографии в альбом
