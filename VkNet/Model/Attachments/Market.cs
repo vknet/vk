@@ -18,16 +18,16 @@ public class Market : MediaAttachment
 	/// <inheritdoc />
 	protected override string Alias => "market";
 
-	private long? id;
+	private long? _id;
 	/// <summary>
 	/// Id
 	/// </summary>
 	[JsonProperty("id")]
 	public new long? Id
 	{
-		get => id;
+		get => _id;
 
-		set { if(value == null) id ??= -1; }
+		set { if(value == null) _id ??= -1; }
 	}
 
 	/// <summary>
