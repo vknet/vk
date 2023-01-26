@@ -1,8 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
-using VkNet.Infrastructure;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
