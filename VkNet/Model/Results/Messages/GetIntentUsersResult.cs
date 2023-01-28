@@ -8,7 +8,7 @@ namespace VkNet.Model.Results.Messages;
 /// Результат метода messages.getIntentUsers
 /// </summary>
 [Serializable]
-public class GetIntentUsersResult
+public partial class GetIntentUsersResult
 {
 	/// <summary>
 	/// Число результатов.

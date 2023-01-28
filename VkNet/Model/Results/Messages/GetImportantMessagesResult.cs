@@ -10,7 +10,7 @@ namespace VkNet.Model;
 /// Параметры метода Messages.GetImportantMessages
 /// </summary>
 [Serializable]
-public class GetImportantMessagesResult
+public partial class GetImportantMessagesResult
 {
 	/// <summary>
 	/// Сообщения

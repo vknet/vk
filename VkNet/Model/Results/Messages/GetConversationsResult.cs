@@ -8,7 +8,7 @@ namespace VkNet.Model;
 /// Результат метода messages.GetConversationsResult
 /// </summary>
 [Serializable]
-public class GetConversationsResult
+public partial class GetConversationsResult
 {
 	/// <summary>
 	/// Число результатов.
