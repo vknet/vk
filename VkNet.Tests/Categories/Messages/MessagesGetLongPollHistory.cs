@@ -29,6 +29,12 @@ public class MessagesGetLongPollHistory : MessagesBaseTests
 			Onlines = true
 		});
 
+		result.UnreadMessages.Should()
+			.Be(1);
+
+		result.Messages.TotalCount.Should()
+			.Be(1);
+
 		result.Groups.First().Id.Should()
 			.Be(103292418);
 	}

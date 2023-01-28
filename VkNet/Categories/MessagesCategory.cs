@@ -1009,13 +1009,6 @@ public partial class MessagesCategory : IMessagesCategory
 		}
 
 		return _vk.Call<ReadOnlyCollection<Chat>>("messages.getChat", parameters);
-
-		/*return chatIds.Count() > 1
-			? response.ToReadOnlyCollectionOf<Chat>()
-			: new(new List<Chat>
-			{
-				response
-			});*/
 	}
 
 	/// <inheritdoc />
@@ -1218,7 +1211,7 @@ public partial class MessagesCategory : IMessagesCategory
 		VkErrors.ThrowIfNumberIsNegative(() => @params.MsgsLimit);
 		VkErrors.ThrowIfNumberIsNegative(() => @params.MaxMsgId);
 
-		return _vk.Call<LongPollHistoryResponse>("messages.getLongPollHistory",
+		var response = _vk.Call<LongPollHistoryResponse>("messages.getLongPollHistory",
 			new()
 			{
 				{
@@ -1252,6 +1245,10 @@ public partial class MessagesCategory : IMessagesCategory
 					"group_id", @params.GroupId
 				}
 			});
+
+		response.UnreadMessages = response.Messages.TotalCount;
+
+		return response;
 	}
 
 	/// <inheritdoc />
