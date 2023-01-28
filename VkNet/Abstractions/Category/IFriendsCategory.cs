@@ -17,9 +17,6 @@ public interface IFriendsCategory : IFriendsCategoryAsync
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetAsync(FriendsGetParams, bool, bool)" />
 	VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false);
 
-	/// <inheritdoc cref="IFriendsCategoryAsync.GetAsync(FriendsGetParams2, bool" />
-	List<long> Get(FriendsGetParams2 @params, bool skipAuthorization = false);
-
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetAppUsersAsync" />
 	ReadOnlyCollection<long> GetAppUsers();
 

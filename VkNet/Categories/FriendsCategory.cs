@@ -56,40 +56,21 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		if (!parameters.ContainsKey("fields"))
+		var response = _vk.Call("friends.get", parameters, skipAuthorization);
+
+		if (parameters.ContainsKey("fields"))
 		{
-			throw new VkApiException(message:
-				"Используйте параметр fields или перегрузку метода!");
+			return _vk.Call<VkCollection<User>>("friends.get", parameters, skipAuthorization);
 		}
 
-		return _vk.Call<VkCollection<User>>("friends.get", parameters, skipAuthorization);
+		var list = response.ToListOf(r => r)
+			.Select(user => new User
+			{
+				Id = user
+			}).ToList();
+
+		return new(Convert.ToUInt64(list.Count), list);
 	}
-
-	/// <inheritdoc />
-	public List<long> Get(FriendsGetParams2 @params, bool skipAuthorization = false) => _vk.Call<List<long>>("friends.get", new()
-	{
-		{
-			"user_id", @params.UserId
-		},
-		{
-			"order", @params.Order
-		},
-		{
-			"list_id", @params.ListId
-		},
-		{
-			"count", @params.Count
-		},
-		{
-			"offset", @params.Offset
-		},
-		{
-			"name_case", @params.NameCase
-		},
-		{
-			"ref", @params.Reference
-		}
-	}, skipAuthorization);
 
 	/// <inheritdoc />
 	[Pure]

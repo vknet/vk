@@ -199,7 +199,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	{
 		var cat = new FriendsCategory(new VkApi());
 
-		FluentActions.Invoking(() => cat.Get(new FriendsGetParams2
+		FluentActions.Invoking(() => cat.Get(new()
 			{
 				UserId = 1
 			}))
@@ -278,7 +278,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 		Url = "https://api.vk.com/method/friends.get";
 		ReadCategoryJsonPath(nameof(Get_FriendsForDurov_ListOfFriends));
 
-		var users = Api.Friends.Get(new FriendsGetParams2
+		var users = Api.Friends.Get(new FriendsGetParams
 		{
 			UserId = 1
 		});
@@ -287,15 +287,15 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.HaveCount(5);
 
 		users.Should()
-			.SatisfyRespectively(x => x.Should()
+			.SatisfyRespectively(x => x.Id.Should()
 					.Be(2),
-				x => x.Should()
+				x => x.Id.Should()
 					.Be(5),
-				x => x.Should()
+				x => x.Id.Should()
 					.Be(6),
-				x => x.Should()
+				x => x.Id.Should()
 					.Be(7),
-				x => x.Should()
+				x => x.Id.Should()
 					.Be(12));
 	}
 

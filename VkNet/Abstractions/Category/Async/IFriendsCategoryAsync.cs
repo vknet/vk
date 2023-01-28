@@ -37,23 +37,6 @@ public interface IFriendsCategoryAsync
 	Task<VkCollection<User>> GetAsync(FriendsGetParams @params, bool extendedNeeded = true, bool skipAuthorization = false);
 
 	/// <summary>
-	/// Возвращает список идентификаторов друзей пользователя
-	/// </summary>
-	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <returns>
-	/// После успешного выполнения возвращает список идентификаторов (id) друзей
-	/// пользователя, если параметр fields не
-	/// использовался.
-	/// При использовании параметра fields  возвращает список объектов пользователей,
-	/// но не более 5000.
-	/// </returns>
-	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.get
-	/// </remarks>
-	Task<List<long>> GetAsync(FriendsGetParams2 @params, bool skipAuthorization = false);
-
-	/// <summary>
 	/// Возвращает список идентификаторов друзей текущего пользователя, которые
 	/// установили данное приложение.
 	/// </summary>

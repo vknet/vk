@@ -20,11 +20,6 @@ public partial class FriendsCategory
 			Get(@params, skipAuthorization));
 
 	/// <inheritdoc />
-	public Task<List<long>> GetAsync(FriendsGetParams2 @params, bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(
-		() =>
-			Get(@params, skipAuthorization));
-
-	/// <inheritdoc />
 	public Task<ReadOnlyCollection<long>> GetAppUsersAsync() => TypeHelper.TryInvokeMethodAsync(GetAppUsers);
 
 	/// <inheritdoc />
