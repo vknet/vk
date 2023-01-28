@@ -172,7 +172,7 @@ public class GroupUpdate
 	/// (<c>MarketCommentNew</c>, <c>MarketCommentEdit</c>, <c>MarketCommentRestore</c>)
 	/// </summary>
 	[Obsolete("Используйте свойство Instance")]
-	public VkNet.Model.GroupUpdate.MarketComment MarketComment { get; set; }
+	public MarketComment MarketComment { get; set; }
 
 	/// <summary>
 	/// Удаление комментария к товару (<c>MarketCommentDelete</c>)
