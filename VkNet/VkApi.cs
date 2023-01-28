@@ -336,6 +336,45 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
+	public T CallLongPoll<T>(string server, VkParameters parameters, params JsonConverter[] jsonConverters)
+	{
+		var answer = InvokeLongPollExtended(server, parameters);
+		var rawResponse = answer.Root.ToString();
+
+		var response = new VkResponse(rawResponse)
+		{
+			RawJson = answer.ToString()
+		};
+
+		var settings = new JsonSerializerSettings
+		{
+			Converters = new List<JsonConverter>(),
+			ContractResolver = new DefaultContractResolver
+			{
+				NamingStrategy = new SnakeCaseNamingStrategy()
+			},
+			MaxDepth = null,
+			ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+		};
+
+		if (jsonConverters.Any())
+		{
+			foreach (var jsonConverter in jsonConverters)
+			{
+				settings.Converters.Add(jsonConverter);
+			}
+		}
+
+		settings.Converters.Add(new VkCollectionJsonConverter());
+		settings.Converters.Add(new VkDefaultJsonConverter());
+		settings.Converters.Add(new UnixDateTimeConverter());
+		settings.Converters.Add(new AttachmentJsonConverter());
+		settings.Converters.Add(new StringEnumConverter());
+
+		return JsonConvert.DeserializeObject<T>(response, settings);
+	}
+
+	/// <inheritdoc />
 	public Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters) =>
 		TypeHelper.TryInvokeMethodAsync(() => CallLongPoll(server, parameters));
 
