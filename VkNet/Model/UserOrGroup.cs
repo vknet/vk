@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -8,6 +9,7 @@ namespace VkNet.Model;
 /// Расширенная информация о пользователях или сообществах.
 /// </summary>
 [Serializable]
+[JsonConverter(typeof(UserOrGroupJsonConverter))]
 public class UserOrGroup
 {
 	/// <summary>
