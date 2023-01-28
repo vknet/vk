@@ -200,57 +200,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		var response = _vk.Call("messages.searchDialogs", parameters);
-
-		var result = new SearchDialogsResponse
-		{
-			Users = new List<User>(),
-			Chats = new List<Chat>(),
-			Groups = new List<Group>()
-		};
-
-		VkResponseArray responseArray = response;
-
-		foreach (var record in responseArray)
-		{
-			string type = record[key: "type"];
-
-			switch (type)
-			{
-				case "profile":
-
-				{
-					result.Users.Add(JsonConvert.DeserializeObject<User>(record.ToString()));
-
-					break;
-				}
-
-				case "chat":
-
-				{
-					result.Chats.Add(JsonConvert.DeserializeObject<Chat>(record.ToString()));
-
-					break;
-				}
-
-				case "email":
-
-				{
-					// TODO: Add email support.
-					continue;
-				}
-
-				case "group":
-
-				{
-					result.Groups.Add(JsonConvert.DeserializeObject<Group>(record.ToString()));
-
-					break;
-				}
-			}
-		}
-
-		return result;
+		return _vk.Call<SearchDialogsResponse>("messages.searchDialogs", parameters);
 	}
 
 	/// <inheritdoc />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -8,6 +9,7 @@ namespace VkNet.Model;
 /// Ответ при поиске диалогов по строке поиска.
 /// См. описание http://vk.com/dev/messages.searchDialogs
 /// </summary>
+[JsonConverter(typeof(SearchDialogsResponseJsonConverter))]
 [Serializable]
 public class SearchDialogsResponse
 {
