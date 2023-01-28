@@ -192,8 +192,8 @@ public partial class GroupsCategory : IGroupsCategory
 	{
 		VkErrors.ThrowIfNumberIsNegative(() => @params.UserId);
 
-		var response = _vk.Call("groups.get",
-			new()
+		var parameters =
+			new VkParameters()
 			{
 				{
 					"user_id", @params.UserId
@@ -213,19 +213,20 @@ public partial class GroupsCategory : IGroupsCategory
 				{
 					"count", @params.Count
 				}
-			},
-			skipAuthorization);
+			};
 
 		// в первой записи количество членов группы для (response["items"])
 		if (@params.Extended == null || !@params.Extended.Value)
 		{
+			var response = _vk.Call("groups.get", parameters,
+				skipAuthorization);
 			return response.ToVkCollectionOf(id => new Group
 			{
 				Id = id
 			});
 		}
-
-		return response.ToVkCollectionOf(r => JsonConvert.DeserializeObject<Group>(r.ToString()));
+		return _vk.Call<VkCollection<Group>>("groups.get", parameters,
+			skipAuthorization);
 	}
 
 	/// <inheritdoc />
@@ -1186,22 +1187,22 @@ public partial class GroupsCategory : IGroupsCategory
 	/// <inheritdoc />
 	public BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params)
 	{
-		var response = _vk.CallLongPoll(@params.Server,
-			new()
+		var parameters = new VkParameters
+		{
 			{
-				{
-					"ts", @params.Ts
-				},
-				{
-					"key", @params.Key
-				},
-				{
-					"wait", @params.Wait
-				},
-				{
-					"act", "a_check"
-				}
-			});
+				"ts", @params.Ts
+			},
+			{
+				"key", @params.Key
+			},
+			{
+				"wait", @params.Wait
+			},
+			{
+				"act", "a_check"
+			}
+		};
+		var response = _vk.CallLongPoll(@params.Server, parameters);
 
 		if (response.ContainsKey("failed"))
 		{
@@ -1222,7 +1223,8 @@ public partial class GroupsCategory : IGroupsCategory
 				throw new LongPollInfoLostException();
 			}
 		}
-		return JsonConvert.DeserializeObject<BotsLongPollHistoryResponse>(response.RawJson);
+
+		return _vk.CallLongPoll<BotsLongPollHistoryResponse>(@params.Server, parameters);
 	}
 
 	/// <inheritdoc />
