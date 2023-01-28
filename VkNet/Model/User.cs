@@ -683,6 +683,11 @@ public class User
 	[JsonProperty("change_name_request")]
 	public ChangeNameRequest ChangeNameRequest { get; set; }
 
+	/// <summary>
+	/// Информация о заявке на смену имени.
+	/// </summary>
+	public OwnerState OwnerState { get; set; }
+
 	#endregion
 
 	#region Поля для Groups.GetMembers
