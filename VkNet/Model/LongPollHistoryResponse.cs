@@ -29,6 +29,11 @@ public class LongPollHistoryResponse
 	public List<ReadOnlyCollection<long>> History { get; set; }
 
 	/// <summary>
+	/// Количество непрочитанных сообщений
+	/// </summary>
+	public ulong UnreadMessages { get; set; }
+
+	/// <summary>
 	/// Колекция сообщений.
 	/// </summary>
 	[JsonProperty("messages")]

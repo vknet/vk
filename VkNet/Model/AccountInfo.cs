@@ -32,8 +32,15 @@ public class AccountInfo
 	/// <summary>
 	/// Числовой идентификатор текущего языка пользователя.
 	/// </summary>
-	[JsonProperty("lang")]
+	[JsonProperty("language")]
 	public int? Language { get; set; }
+
+	[JsonProperty("lang")]
+	private int? Lang
+	{
+		get => Language;
+		set => Language = value;
+	}
 
 	/// <summary>
 	/// 1 - на стене пользователя по-умолчанию должны отображаться только собственные
