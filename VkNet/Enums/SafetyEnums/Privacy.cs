@@ -1,11 +1,14 @@
 ﻿using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Уровень доступа к комментированию альбома
 /// </summary>
+[JsonConverter(typeof(SafetyEnumJsonConverter))]
 public sealed class Privacy : SafetyEnum<Privacy>
 {
 	/// <summary>
