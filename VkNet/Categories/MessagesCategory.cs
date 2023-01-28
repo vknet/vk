@@ -1079,9 +1079,14 @@ public partial class MessagesCategory : IMessagesCategory
 		{
 			var chatResponse = response[chatId.ToString()];
 
-			var users = chatResponse;
+			var users = chatResponse.ToReadOnlyCollectionOf(x => fields == null
+				? new()
+				{
+					Id = (long) x
+				}
+				: JsonConvert.DeserializeObject<User>(x.ToString()));
 
-			foreach (var user in JsonConvert.DeserializeObject<ReadOnlyCollection<User>>(users.ToString()))
+			foreach (var user in users)
 			{
 				var exist = list.Exists(first => first.Id == user.Id);
 
@@ -1093,75 +1098,6 @@ public partial class MessagesCategory : IMessagesCategory
 		}
 
 		return list.ToReadOnlyCollection();
-	}
-
-	/// <inheritdoc />
-	public List<long> GetChatUsers(long chatId, NameCase nameCase)
-	{
-		var parameters = new VkParameters
-		{
-			{
-				"chat_id", chatId
-			},
-			{
-				"name_case", nameCase
-			}
-		};
-
-		return _vk.Call<List<long>>("messages.getChatUsers", parameters);
-	}
-
-	/// <inheritdoc />
-	public List<long> GetChatUsers(IEnumerable<long> chatIds, NameCase nameCase)
-	{
-		var collection = chatIds.ToList();
-
-		var parameters = new VkParameters
-		{
-			{
-				"chat_ids", collection
-			},
-			{
-				"name_case", nameCase
-			}
-		};
-
-		var response = _vk.Call("messages.getChatUsers", parameters);
-
-		var list = new List<long>();
-
-		foreach (var chatId in collection)
-		{
-			var chatResponse = response[chatId.ToString()];
-
-			var users = chatResponse;
-
-			foreach (var user in JsonConvert.DeserializeObject<ReadOnlyCollection<long>>(users.ToString()))
-			{
-				list.Add(user);
-			}
-		}
-
-		return list;
-	}
-
-	/// <inheritdoc />
-	public ReadOnlyCollection<User> GetChatUsers(long chatId, UsersFields fields, NameCase nameCase)
-	{
-		var parameters = new VkParameters
-		{
-			{
-				"chat_id", chatId
-			},
-			{
-				"fields", fields
-			},
-			{
-				"name_case", nameCase
-			}
-		};
-
-		return _vk.Call<ReadOnlyCollection<User>>("messages.getChatUsers", parameters);
 	}
 
 	/// <inheritdoc />

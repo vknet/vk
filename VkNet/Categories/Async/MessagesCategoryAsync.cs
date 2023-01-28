@@ -166,21 +166,6 @@ public partial class MessagesCategory
 			GetChatUsers(chatIds, fields, nameCase));
 
 	/// <inheritdoc />
-	public Task<List<long>> GetChatUsersAsync(long chatId, NameCase nameCase) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			GetChatUsers(chatId, nameCase));
-
-	/// <inheritdoc />
-	public Task<List<long>> GetChatUsersAsync(IEnumerable<long> chatIds, NameCase nameCase) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			GetChatUsers(chatIds, nameCase));
-
-	/// <inheritdoc />
-	public Task<ReadOnlyCollection<User>> GetChatUsersAsync(long chatId, UsersFields fields, NameCase nameCase) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			GetChatUsers(chatId, fields, nameCase));
-
-	/// <inheritdoc />
 	public Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params) =>
 		TypeHelper.TryInvokeMethodAsync(() => GetDialogs(@params));
 

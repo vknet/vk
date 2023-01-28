@@ -427,53 +427,13 @@ public class MessagesCategoryTest : MessagesBaseTests
 				{
 					2
 				},
-				null);
-
-
-		users.Should()
-			.HaveCount(3);
-	}
-
-	[Fact]
-	public void GetChatUsers_ChatId_WithoutFields()
-	{
-		Url = "https://api.vk.com/method/messages.getChatUsers";
-
-		ReadCategoryJsonPath(nameof(GetChatUsers_ChatId_WithoutFields));
-
-		var users = Api.Messages.GetChatUsers(2, null);
-
+				null,
+				null)
+			.ToList();
 
 		users.Should()
 			.HaveCount(3);
-
-		users.FirstOrDefault()
-			.Should()
-			.Be(48265913);
 	}
-
-	[Fact]
-	public void GetChatUsers_ChatId_Fields()
-	{
-		Url = "https://api.vk.com/method/messages.getChatUsers";
-
-		ReadCategoryJsonPath(nameof(GetChatUsers_ChatId_Fields));
-
-		var users = Api.Messages.GetChatUsers(2, UsersFields.Education, null);
-
-
-		users.Should()
-			.HaveCount(1);
-
-		users.First().UniversityId
-			.Should()
-			.Be(0);
-
-		users.First().Id
-			.Should()
-			.Be(111);
-	}
-
 
 	[Fact]
 	public void GetChatUsers_ChatIdWithFields_Users()
