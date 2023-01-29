@@ -15,7 +15,7 @@ namespace VkNet.Categories;
 public partial class FriendsCategory
 {
 	/// <inheritdoc />
-	public Task<VkCollection<User>> GetAsync(FriendsGetParams @params, bool extendedNeeded = true, bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(
+	public Task<VkCollection<User>> GetAsync(FriendsGetParams @params, bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(
 		() =>
 			Get(@params, skipAuthorization));
 

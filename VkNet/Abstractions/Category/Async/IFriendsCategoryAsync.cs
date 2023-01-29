@@ -22,7 +22,6 @@ public interface IFriendsCategoryAsync
 	/// (при использовании параметра fields в params и extendedNeeded).
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="extendedNeeded">Параметр-маркер для возврата расширенной информации</param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 	/// <returns>
 	/// После успешного выполнения возвращает список идентификаторов (id) друзей
@@ -34,7 +33,7 @@ public interface IFriendsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.get
 	/// </remarks>
-	Task<VkCollection<User>> GetAsync(FriendsGetParams @params, bool extendedNeeded = true, bool skipAuthorization = false);
+	Task<VkCollection<User>> GetAsync(FriendsGetParams @params, bool skipAuthorization = false);
 
 	/// <summary>
 	/// Возвращает список идентификаторов друзей текущего пользователя, которые

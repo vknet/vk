@@ -14,7 +14,7 @@ namespace VkNet.Abstractions;
 /// <inheritdoc cref="IFriendsCategoryAsync" />
 public interface IFriendsCategory : IFriendsCategoryAsync
 {
-	/// <inheritdoc cref="IFriendsCategoryAsync.GetAsync(FriendsGetParams, bool, bool)" />
+	/// <inheritdoc cref="IFriendsCategoryAsync.GetAsync" />
 	VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetAppUsersAsync" />
