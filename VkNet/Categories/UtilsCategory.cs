@@ -51,57 +51,7 @@ public partial class UtilsCategory : IUtilsCategory
 			}
 		};
 
-		var response = _vk.Call("utils.resolveScreenName", parameters);
-
-		var obj = new VkObject
-		{
-			Id = Utilities.GetNullableLongId(response: response[key: "object_id"])
-		};
-
-		string type = response[key: "type"];
-
-		switch (type)
-		{
-			case "group":
-
-			{
-				obj.Type = VkObjectType.Group;
-
-				break;
-			}
-
-			case "user":
-
-			{
-				obj.Type = VkObjectType.User;
-
-				break;
-			}
-
-			case "application":
-
-			{
-				obj.Type = VkObjectType.Application;
-
-				break;
-			}
-
-			case "page":
-
-			{
-				obj.Type = VkObjectType.Page;
-
-				break;
-			}
-
-			default:
-
-			{
-				return obj;
-			}
-		}
-
-		return obj;
+		return _vk.Call<VkObject>("utils.resolveScreenName", parameters);
 	}
 
 	/// <inheritdoc />

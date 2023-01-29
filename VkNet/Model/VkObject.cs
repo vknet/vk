@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -11,6 +12,7 @@ namespace VkNet.Model;
 /// </summary>
 [DebuggerDisplay(value: "Id = {Id}, Type = {Type}")]
 [Serializable]
+[JsonConverter(typeof(VkObjectJsonConverter))]
 public class VkObject
 {
 	/// <summary>
