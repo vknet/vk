@@ -18,8 +18,9 @@ namespace VkNet.Abstractions;
 public interface IFriendsCategoryAsync
 {
 	/// <summary>
-	/// Возвращает расширенную информацию о друзьях пользователя
-	/// (при использовании параметра fields в params и extendedNeeded).
+	/// Возвращает список идентификаторов друзей пользователя или расширенную
+	/// информацию о друзьях пользователя (при
+	/// использовании параметра fields).
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
