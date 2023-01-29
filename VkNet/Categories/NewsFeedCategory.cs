@@ -365,50 +365,6 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			parameters.Add("count", count);
 		}
 
-		var response = _vk.Call("newsfeed.getSuggestedSources", parameters);
-
-		var newsSuggestions = new NewsSuggestions
-		{
-			Users = new(),
-			Groups = new()
-		};
-
-		VkResponseArray result = response;
-
-		foreach (var item in result)
-		{
-			switch (item[key: "type"]
-						.ToString())
-			{
-				case "page":
-				case "group":
-
-				{
-					var group = JsonConvert.DeserializeObject<Group>(item);
-					newsSuggestions.Groups.Add(item: group);
-				}
-
-					break;
-
-				case "profile":
-
-				{
-					var user = JsonConvert.DeserializeObject<User>(item);
-					newsSuggestions.Users.Add(item: user);
-				}
-
-					break;
-
-				default:
-
-				{
-					throw new VkApiException(message: string.Format(
-						"Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues"
-						, item[key: "type"]));
-				}
-			}
-		}
-
-		return newsSuggestions;
+		return _vk.Call<NewsSuggestions>("newsfeed.getSuggestedSources", parameters);
 	}
 }

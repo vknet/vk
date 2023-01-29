@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -8,6 +9,7 @@ namespace VkNet.Model;
 /// Предложения новостей.
 /// </summary>
 [Serializable]
+[JsonConverter(typeof(NewsSuggestionJsonConverter))]
 public class NewsSuggestions
 {
 	/// <summary>
