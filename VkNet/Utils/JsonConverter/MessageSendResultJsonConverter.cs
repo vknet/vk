@@ -6,7 +6,7 @@ using VkNet.Model;
 namespace VkNet.Utils.JsonConverter;
 
 /// <inheritdoc />
-public class MessageSendResultJsonConverter : Newtonsoft.Json.JsonConverter
+public class MessagesSendResultJsonConverter : Newtonsoft.Json.JsonConverter
 {
 	/// <inheritdoc />
 	public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) => throw new NotImplementedException();

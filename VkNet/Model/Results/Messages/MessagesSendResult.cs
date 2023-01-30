@@ -8,7 +8,7 @@ namespace VkNet.Model;
 /// результат выполнения запроса messages.send
 /// </summary>
 [Serializable]
-[JsonConverter(typeof(MessageSendResultJsonConverter))]
+[JsonConverter(typeof(MessagesSendResultJsonConverter))]
 public partial class MessagesSendResult
 {
 	/// <summary>
