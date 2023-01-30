@@ -7,6 +7,7 @@ using VkNet.Model;
 
 namespace VkNet.Utils.JsonConverter;
 
+/// <inheritdoc />
 public class NewsSuggestionJsonConverter : Newtonsoft.Json.JsonConverter
 {
 	/// <inheritdoc />
