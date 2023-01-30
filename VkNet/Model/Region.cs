@@ -16,6 +16,17 @@ public class Region
 	public int Id { get; set; }
 
 	/// <summary>
+	/// Идентификатор региона
+	/// </summary>
+	[JsonProperty("region_id")]
+	public int RegionId
+	{
+		get => Id;
+		set => Id = value;
+	}
+
+
+	/// <summary>
 	/// Название региона
 	/// </summary>
 	[JsonProperty("title")]
