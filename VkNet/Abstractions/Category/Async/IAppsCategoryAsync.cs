@@ -96,7 +96,32 @@ public interface IAppsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/apps.getFriendsList
 	/// </remarks>
 	Task<VkCollection<User>> GetFriendsListAsync(AppRequestType type
-												, bool? extended = null
+												, bool? extended = true
+												, long? count = null
+												, long? offset = null
+												, UsersFields fields = null);
+
+	/// <summary>
+	/// Создает список друзей, который будет использоваться при отправке пользователем
+	/// приглашений в приложение.
+	/// </summary>
+	/// <param name="type"> Tип создаваемого списка друзей. </param>
+	/// <param name="count"> Количество пользователей в создаваемом списке. </param>
+	/// <param name="offset">
+	/// Смещение относительно первого пользователя для выборки определенного
+	/// подмножества.
+	/// </param>
+	/// <param name="fields">
+	/// Список дополнительных полей профилей, которые необходимо вернуть. См. подробное
+	/// описание.
+	/// </param>
+	/// <returns>
+	/// После успешного выполнения возвращает список пользователей.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/apps.getFriendsList
+	/// </remarks>
+	Task<VkCollection<long>> GetFriendsListAsync(AppRequestType type
 												, long? count = null
 												, long? offset = null
 												, UsersFields fields = null);

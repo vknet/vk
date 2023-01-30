@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using VkNet.Enums.Filters;
+﻿using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -22,9 +21,15 @@ public interface IAppsCategory : IAppsCategoryAsync
 	/// <inheritdoc cref="IAppsCategoryAsync.DeleteAppRequestsAsync"/>
 	bool DeleteAppRequests();
 
-	/// <inheritdoc cref="IAppsCategoryAsync.GetFriendsListAsync"/>
+	/// <inheritdoc cref="IAppsCategoryAsync.GetFriendsListAsync(AppRequestType, bool?, long?, long?, UsersFields)"/>
 	VkCollection<User> GetFriendsList(AppRequestType type
-									, bool? extended = null
+									, bool? extended = true
+									, long? count = null
+									, long? offset = null
+									, UsersFields fields = null);
+
+	/// <inheritdoc cref="IAppsCategoryAsync.GetFriendsListAsync(AppRequestType, long?, long?, UsersFields)"/>
+	VkCollection<long> GetFriendsList(AppRequestType type
 									, long? count = null
 									, long? offset = null
 									, UsersFields fields = null);

@@ -1,6 +1,4 @@
-using System;
 using System.Threading.Tasks;
-using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -30,11 +28,18 @@ public partial class AppsCategory
 
 	/// <inheritdoc />
 	public Task<VkCollection<User>> GetFriendsListAsync(AppRequestType type
-														, bool? extended = null
+														, bool? extended = true
 														, long? count = null
 														, long? offset = null
 														, UsersFields fields = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
 		GetFriendsList(type, extended, count, offset));
+
+	/// <inheritdoc />
+	public Task<VkCollection<long>> GetFriendsListAsync(AppRequestType type
+														, long? count = null
+														, long? offset = null
+														, UsersFields fields = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
+		GetFriendsList(type, count, offset));
 
 	/// <inheritdoc />
 	public Task<LeaderboardResult> GetLeaderboardAsync(AppRatingType type, bool? global = null, bool? extended = null) =>

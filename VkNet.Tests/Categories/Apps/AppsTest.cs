@@ -3,7 +3,6 @@ using System.Linq;
 using FluentAssertions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -99,7 +98,7 @@ public class AppsTest : CategoryBaseTest
 		Url = "https://api.vk.com/method/apps.getFriendsList";
 		ReadCategoryJsonPath(nameof(GetFriendsList_NormalCase));
 
-		var app = Api.Apps.GetFriendsList(AppRequestType.Invite);
+		var app = Api.Apps.GetFriendsList(AppRequestType.Invite, null, null, null);
 
 		app.TotalCount.Should()
 			.BePositive();
