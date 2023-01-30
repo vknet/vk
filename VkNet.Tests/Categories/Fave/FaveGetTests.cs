@@ -28,5 +28,8 @@ public class FaveGetTests : CategoryBaseTest
 
 		fave.Should()
 			.NotBeNull();
+
+		fave.Link.LinkId.Should()
+			.Be("1234_434_4324");
 	}
 }

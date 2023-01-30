@@ -16,10 +16,25 @@ public class Link : MediaAttachment
 	/// <inheritdoc />
 	protected override string Alias => "link";
 
+	private long? _id;
+	/// <summary>
+	/// Возвращает идентификатор Link в числовом значении
+	/// </summary>
+	public new long? Id
+	{
+		get {
+			if (long.TryParse(LinkId, out var temporaryId))
+			{
+				_id = temporaryId;
+			}
+			return _id;
+		}
+		set => _id = value;
+	}
+
 	/// <summary>
 	/// Идентификатор ссылки
 	/// </summary>
-	[JsonConverter(typeof(StringIdJsonConverter))]
 	[JsonProperty("id")]
 	public string LinkId { get; set; }
 
