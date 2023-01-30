@@ -286,6 +286,9 @@ public class FriendsCategoryTest : CategoryBaseTest
 		users.Should()
 			.HaveCount(5);
 
+		users.TotalCount.Should()
+			.Be(5);
+
 		users.Should()
 			.SatisfyRespectively(x => x.Id.Should()
 					.Be(2),

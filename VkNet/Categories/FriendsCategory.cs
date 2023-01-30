@@ -63,13 +63,10 @@ public partial class FriendsCategory : IFriendsCategory
 			return _vk.Call<VkCollection<User>>("friends.get", parameters, skipAuthorization);
 		}
 
-		var list = response.ToVkCollectionOf(r => r)
-			.Select(user => new User
-			{
-				Id = user
-			}).ToList();
-
-		return new(Convert.ToUInt64(list.Count), list);
+		return response.ToVkCollectionOf<User>(r => new()
+		{
+			Id = r
+		});
 	}
 
 	/// <inheritdoc />
