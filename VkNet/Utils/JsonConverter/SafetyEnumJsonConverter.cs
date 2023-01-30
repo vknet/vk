@@ -84,6 +84,7 @@ public class SafetyEnumJsonConverter : Newtonsoft.Json.JsonConverter
 		return result;
 	}
 
+	//TODO: написать проверку типов
 	/// <inheritdoc />
-	public override bool CanConvert(Type objectType) => throw new NotImplementedException();
+	public override bool CanConvert(Type objectType) => true;
 }

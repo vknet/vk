@@ -7,6 +7,7 @@ using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Categories;
 
@@ -413,7 +414,7 @@ public partial class AccountCategory : IAccountCategory
 
 		if (response.ContainsKey("name_request"))
 		{
-			changeNameRequest = response["name_request"];
+			changeNameRequest = JsonConvert.DeserializeObject<ChangeNameRequest>(response["name_request"].ToString());
 		}
 
 		return response["changed"];
