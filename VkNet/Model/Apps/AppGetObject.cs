@@ -1,5 +1,6 @@
 ﻿using System;
-using VkNet.Utils;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace VkNet.Model;
 
@@ -12,47 +13,18 @@ public class AppGetObject
 	/// <summary>
 	/// Общее количество записей на стене.
 	/// </summary>
+	[JsonProperty("count")]
 	public ulong TotalCount { get; set; }
 
 	/// <summary>
 	/// Приложения.
 	/// </summary>
-	public VkCollection<App> Apps { get; set; }
+	[JsonProperty("items")]
+	public IEnumerable<App> Apps { get; set; }
 
 	/// <summary>
 	/// Друзья.
 	/// </summary>
-	public VkCollection<User> Friends { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static AppGetObject FromJson(VkResponse response)
-	{
-		AppGetObject appGetObject;
-
-		if (response.ContainsKey(key: "items"))
-		{
-			appGetObject = new()
-			{
-				TotalCount = response[key: "count"],
-				Apps = response[key: "items"]
-					.ToVkCollectionOf<App>(selector: r => r),
-				Friends = response[key: "profiles"]
-					.ToVkCollectionOf<User>(selector: r => r)
-			};
-		} else
-		{
-			appGetObject = new()
-			{
-				TotalCount = response[key: "count"],
-				Apps = response[key: "items"]
-					.ToVkCollectionOf<App>(selector: r => r)
-			};
-		}
-
-		return appGetObject;
-	}
+	[JsonProperty("profiles")]
+	public IEnumerable<User> Friends { get; set; }
 }

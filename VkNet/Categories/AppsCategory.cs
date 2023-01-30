@@ -22,7 +22,8 @@ public partial class AppsCategory : IAppsCategory
 	public AppsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
-	public VkCollection<App> GetCatalog(AppGetCatalogParams @params, bool skipAuthorization = false) => _vk.Call("apps.getCatalog", new()
+	public VkCollection<App> GetCatalog(AppGetCatalogParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<App>>(
+		"apps.getCatalog", new()
 		{
 			{
 				"sort", @params.Sort
@@ -57,31 +58,33 @@ public partial class AppsCategory : IAppsCategory
 			{
 				"filter", @params.Filter
 			}
-		}, skipAuthorization)
-		.ToVkCollectionOf<App>(selector: x => x);
+		}, skipAuthorization);
 
 	/// <inheritdoc />
-	public AppGetObject Get(AppGetParams @params, bool skipAuthorization = false) => _vk.Call("apps.get", new()
+	public AppGetObject Get(AppGetParams @params, bool skipAuthorization = false)
 	{
+		return _vk.Call<AppGetObject>("apps.get", new()
 		{
-			"app_ids", @params.AppIds
-		},
-		{
-			"platform", @params.Platform
-		},
-		{
-			"extended", @params.Extended
-		},
-		{
-			"return_friends", @params.ReturnFriends
-		},
-		{
-			"fields", @params.Fields
-		},
-		{
-			"name_case", @params.NameCase
-		}
-	}, skipAuthorization);
+			{
+				"app_ids", @params.AppIds
+			},
+			{
+				"platform", @params.Platform
+			},
+			{
+				"extended", @params.Extended
+			},
+			{
+				"return_friends", @params.ReturnFriends
+			},
+			{
+				"fields", @params.Fields
+			},
+			{
+				"name_case", @params.NameCase
+			}
+		}, skipAuthorization);
+	}
 
 	/// <inheritdoc />
 	public long SendRequest(AppSendRequestParams @params) => _vk.Call("apps.sendRequest", new()
@@ -111,7 +114,7 @@ public partial class AppsCategory : IAppsCategory
 
 	/// <inheritdoc />
 	public VkCollection<User> GetFriendsList(AppRequestType type
-											, bool? extended = null
+											, bool? extended = true
 											, long? count = null
 											, long? offset = null
 											, UsersFields fields = null)
@@ -119,7 +122,7 @@ public partial class AppsCategory : IAppsCategory
 		var parameters = new VkParameters
 		{
 			{
-				"extended", extended
+				"extended", true
 			},
 			{
 				"offset", offset
@@ -137,8 +140,34 @@ public partial class AppsCategory : IAppsCategory
 			parameters.Add("count", count);
 		}
 
-		return _vk.Call("apps.getFriendsList", parameters)
-			.ToVkCollectionOf<User>(selector: x => x);
+		return _vk.Call<VkCollection<User>>("apps.getFriendsList", parameters);
+	}
+
+	/// <inheritdoc />
+	public VkCollection<long> GetFriendsList(AppRequestType type
+											, long? count = null
+											, long? offset = null
+											, UsersFields fields = null)
+	{
+		var parameters = new VkParameters
+		{
+			{
+				"offset", offset
+			},
+			{
+				"type", type
+			},
+			{
+				"fields", fields
+			}
+		};
+
+		if (count <= 5000)
+		{
+			parameters.Add("count", count);
+		}
+
+		return _vk.Call<VkCollection<long>>("apps.getFriendsList", parameters);
 	}
 
 	/// <inheritdoc />
