@@ -30,7 +30,7 @@ public class VkObjectJsonConverter : Newtonsoft.Json.JsonConverter
 
 		var obj = new VkObject
 		{
-			Id = Utilities.GetNullableLongId(response: response[key: "object_id"])
+			Id = response[key: "object_id"]
 		};
 
 		string type = response[key: "type"];

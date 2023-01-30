@@ -48,16 +48,6 @@ public static class Utilities
 	}
 
 	/// <summary>
-	/// Получение идентификатора.
-	/// Применять когда id может быть задано как строкой так и числом в json'e.
-	/// </summary>
-	/// <param name="response"> Ответ от сервера vk.com </param>
-	/// <returns> Число типа long или null </returns>
-	public static long? GetNullableLongId(VkResponse response) => string.IsNullOrWhiteSpace(response?.ToString())
-		? (long?) null
-		: System.Convert.ToInt64(response?.ToString());
-
-	/// <summary>
 	/// Объединить не пустую коллекцию.
 	/// </summary>
 	/// <typeparam name="T"> Тип коллекции. </typeparam>
