@@ -292,6 +292,8 @@ public class VkApi : IVkApi
 		settings.Converters.Add(new AttachmentJsonConverter());
 		settings.Converters.Add(new StringEnumConverter());
 		settings.Converters.Add(new FriendOnlineJsonConverter());
+		settings.Converters.Add(new NewsSuggestionJsonConverter());
+		settings.Converters.Add(new MessageSendResultJsonConverter());
 
 		return JsonConvert.DeserializeObject<T>(answer, settings);
 	}

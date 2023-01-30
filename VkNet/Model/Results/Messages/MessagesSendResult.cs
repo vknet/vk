@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -7,6 +8,7 @@ namespace VkNet.Model;
 /// результат выполнения запроса messages.send
 /// </summary>
 [Serializable]
+[JsonConverter(typeof(MessageSendResultJsonConverter))]
 public partial class MessagesSendResult
 {
 	/// <summary>
