@@ -414,7 +414,7 @@ public partial class AccountCategory : IAccountCategory
 
 		if (response.ContainsKey("name_request"))
 		{
-			changeNameRequest = JsonConvert.DeserializeObject<ChangeNameRequest>(response["name_request"].ToString(), new SafetyEnumJsonConverter());
+			changeNameRequest = JsonConvert.DeserializeObject<ChangeNameRequest>(response["name_request"].ToString());
 		}
 
 		return response["changed"];

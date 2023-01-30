@@ -90,7 +90,7 @@ public class User
 			BirthdayVisibility = response["bdate_visibility"],
 			HomeTown = response["home_town"],
 			ChangeNameRequest = !response.ContainsKey("name_request") ? null : JsonConvert.DeserializeObject<ChangeNameRequest>(response["name_request"]
-				.ToString(), new SafetyEnumJsonConverter()),
+				.ToString()),
 			Contacts = response["contacts"],
 			Hidden = response["hidden"],
 			PhotoId = response["photo_id"],
