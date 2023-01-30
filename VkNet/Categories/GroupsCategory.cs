@@ -220,7 +220,7 @@ public partial class GroupsCategory : IGroupsCategory
 		{
 			var response = _vk.Call("groups.get", parameters,
 				skipAuthorization);
-			return response.ToVkCollectionOf(id => new Group
+			return response.ToVkCollectionOf<Group>(id => new()
 			{
 				Id = id
 			});
