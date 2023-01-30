@@ -89,11 +89,11 @@ public partial class AccountCategory
 	public Task<AccountSaveProfileInfoParams> GetProfileInfoAsync() => TypeHelper.TryInvokeMethodAsync(() => GetProfileInfo());
 
 	/// <inheritdoc />
-	public Task<bool> SaveProfileInfoAsync(int cancelRequestId) => TypeHelper.TryInvokeMethodAsync(() => SaveProfileInfo(cancelRequestId));
+	public Task<ChangeNameRequest> SaveProfileInfoAsync(int cancelRequestId) => TypeHelper.TryInvokeMethodAsync(() => SaveProfileInfo(cancelRequestId));
 
 	/// <inheritdoc />
-	public Task<bool> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params) => TypeHelper.TryInvokeMethodAsync(() =>
-		SaveProfileInfo(out var _, @params));
+	public Task<ChangeNameRequest> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params) => TypeHelper.TryInvokeMethodAsync(() =>
+		SaveProfileInfo(@params));
 
 	/// <inheritdoc />
 	public Task<PrivacySettings> GetPrivacySettingsAsync(CancellationToken token) => TypeHelper.TryInvokeMethodAsync(GetPrivacySettings);

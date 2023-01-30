@@ -379,7 +379,7 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.saveProfileInfo
 	/// </remarks>
-	Task<bool> SaveProfileInfoAsync(int cancelRequestId);
+	Task<ChangeNameRequest> SaveProfileInfoAsync(int cancelRequestId);
 
 	/// <summary>
 	/// Редактирует информацию текущего профиля.
@@ -391,7 +391,7 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.saveProfileInfo
 	/// </remarks>
-	Task<bool> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params);
+	Task<ChangeNameRequest> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params);
 
 	/// <summary>
 	/// Получить список приватных настроек

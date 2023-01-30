@@ -333,21 +333,21 @@ public partial class AccountCategory : IAccountCategory
 	}
 
 	/// <inheritdoc />
-	public bool SaveProfileInfo(int cancelRequestId)
+	public ChangeNameRequest SaveProfileInfo(int cancelRequestId)
 	{
 		VkErrors.ThrowIfNumberIsNegative(() => cancelRequestId);
 
-		return _vk.Call("account.saveProfileInfo",
+		return _vk.Call<ChangeNameRequest>("account.saveProfileInfo",
 			new()
 			{
 				{
 					"cancel_request_id", cancelRequestId
 				}
-			})["changed"];
+			});
 	}
 
 	/// <inheritdoc />
-	public bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveProfileInfoParams @params)
+	public ChangeNameRequest SaveProfileInfo(AccountSaveProfileInfoParams @params)
 	{
 		if (@params.RelationPartner != null)
 		{
@@ -364,7 +364,7 @@ public partial class AccountCategory : IAccountCategory
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.City.Id);
 		}
 
-		var response = _vk.Call("account.saveProfileInfo", new()
+		return _vk.Call<ChangeNameRequest>("account.saveProfileInfo", new()
 		{
 			{
 				"first_name", @params.FirstName
@@ -409,15 +409,6 @@ public partial class AccountCategory : IAccountCategory
 				"phone", @params.Phone
 			}
 		});
-
-		changeNameRequest = null;
-
-		if (response.ContainsKey("name_request"))
-		{
-			changeNameRequest = JsonConvert.DeserializeObject<ChangeNameRequest>(response["name_request"].ToString());
-		}
-
-		return response["changed"];
 	}
 
 	/// <inheritdoc />

@@ -12,34 +12,14 @@ namespace VkNet.Model;
 public class ChangeNameRequest
 {
 	/// <summary>
-	/// Идентификатор заявки, необходимый для её отмены (только если
-	/// ChangeNameRequest.Status
+	/// Результат изменений
 	/// </summary>
-	[JsonProperty("id")]
-	public int? Id { get; set; }
+	[JsonProperty("changed")]
+	public bool Changed { get; set; }
 
 	/// <summary>
-	/// Статус заявки
+	/// Информация о заявке на смену имени
 	/// </summary>
-	[JsonProperty("status")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public ChangeNameStatus Status { get; set; }
-
-	/// <summary>
-	/// Дата, после которой возможна повторная подача заявки.
-	/// </summary>
-	[JsonProperty("repeat_date")]
-	public string RepeatDate { get; set; }
-
-	/// <summary>
-	/// Имя пользователя, указанное в заявке
-	/// </summary>
-	[JsonProperty("first_name")]
-	public string FirstName { get; set; }
-
-	/// <summary>
-	/// Фамилия пользователя, указанная в заявке.
-	/// </summary>
-	[JsonProperty("last_name")]
-	public string LastName { get; set; }
+	[JsonProperty("name_request")]
+	public NameRequest NameRequest { get; set; }
 }

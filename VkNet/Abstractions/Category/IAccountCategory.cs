@@ -77,10 +77,10 @@ public interface IAccountCategory : IAccountCategoryAsync
 	AccountSaveProfileInfoParams GetProfileInfo();
 
 	/// <inheritdoc cref="IAccountCategoryAsync.SaveProfileInfoAsync(int)"/>
-	bool SaveProfileInfo(int cancelRequestId);
+	ChangeNameRequest SaveProfileInfo(int cancelRequestId);
 
 	/// <inheritdoc cref="IAccountCategoryAsync.SaveProfileInfoAsync(AccountSaveProfileInfoParams)"/>
-	bool SaveProfileInfo(out ChangeNameRequest changeNameRequest, AccountSaveProfileInfoParams @params);
+	ChangeNameRequest SaveProfileInfo(AccountSaveProfileInfoParams @params);
 
 	/// <inheritdoc cref="IAccountCategoryAsync.GetPrivacySettingsAsync" />
 	PrivacySettings GetPrivacySettings();
