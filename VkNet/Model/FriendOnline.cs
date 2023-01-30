@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -8,6 +9,7 @@ namespace VkNet.Model;
 /// Результат запроса Friends.FriendOnline
 /// </summary>
 [Serializable]
+[JsonConverter(typeof(FriendOnlineJsonConverter))]
 public class FriendOnline
 {
 	/// <summary>

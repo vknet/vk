@@ -84,7 +84,7 @@ public partial class FriendsCategory : IFriendsCategory
 	/// <inheritdoc />
 	public FriendOnline GetOnline(FriendsGetOnlineParams @params)
 	{
-		var response = _vk.Call("friends.getOnline", new()
+		return _vk.Call<FriendOnline>("friends.getOnline", new()
 		{
 			{
 				"user_id", @params.UserId
@@ -105,22 +105,6 @@ public partial class FriendsCategory : IFriendsCategory
 				"offset", @params.Offset
 			}
 		});
-
-		if (response.ContainsKey(key: "online"))
-		{
-			return new()
-			{
-				MobileOnline = response[key: "online_mobile"]
-					.ToReadOnlyCollectionOf<long>(selector: x => x),
-				Online = response[key: "online"]
-					.ToReadOnlyCollectionOf<long>(selector: x => x)
-			};
-		}
-
-		return new()
-		{
-			Online = response.ToReadOnlyCollectionOf<long>(selector: x => x)
-		};
 	}
 
 	/// <inheritdoc />
