@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -15,14 +14,4 @@ public class CreateLookALikeRequestResult
 	/// </summary>
 	[JsonProperty("request_id")]
 	public long RequestId { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CreateLookALikeRequestResult FromJson(VkResponse response) => new()
-	{
-		RequestId = response["request_id"]
-	};
 }

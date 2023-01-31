@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -51,20 +50,4 @@ public class AdsTargetingResult
 	/// </summary>
 	[JsonProperty("statuses")]
 	public string Statuses { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static AdsTargetingResult FromJson(VkResponse response) => new()
-	{
-		CampaignId = response["campaign_id"],
-		Id = response["id"],
-		Country = response["country"],
-		Cities = response["cities"],
-		CitiesNot = response["cities_not"],
-		Count = response["count"],
-		Statuses = response["statuses"]
-	};
 }

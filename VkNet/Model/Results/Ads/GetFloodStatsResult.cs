@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -24,15 +23,4 @@ public class GetFloodStatsResult
 	/// </summary>
 	[JsonProperty("refresh")]
 	public long Refresh { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GetFloodStatsResult FromJson(VkResponse response) => new()
-	{
-		Left = response["left"],
-		Refresh = response["refresh"]
-	};
 }

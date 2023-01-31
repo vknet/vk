@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -22,16 +21,4 @@ public class GetRejectionReasonResult
 	/// </summary>
 	[JsonProperty("rules")]
 	public ReadOnlyCollection<RejectionRules> Rules { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GetRejectionReasonResult FromJson(VkResponse response) => new()
-	{
-		Comment = response["comment"],
-		Rules = response["rules"]
-			.ToReadOnlyCollectionOf<RejectionRules>()
-	};
 }
