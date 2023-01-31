@@ -268,7 +268,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.delete", parameters);
+		return _vk.Call<FriendsDeleteResult>("friends.delete", parameters);
 	}
 
 	/// <inheritdoc />
