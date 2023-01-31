@@ -1,5 +1,5 @@
 using System;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model;
 
@@ -10,38 +10,18 @@ namespace VkNet.Model;
 [Serializable]
 public class GroupMember
 {
-	#region Методы
-
-	/// <summary>
-	/// Десериализовать из Json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GroupMember FromJson(VkResponse response)
-	{
-		var group = new GroupMember
-		{
-			UserId = response[key: "user_id"],
-			Member = response[key: "member"],
-			Request = response[key: "request"],
-			Invitation = response[key: "invitation"]
-		};
-
-		return group;
-	}
-
-	#endregion
-
 	#region Стандартные поля
 
 	/// <summary>
 	/// Идентификатор пользователя ВК.
 	/// </summary>
+	[JsonProperty("user_id")]
 	public ulong? UserId { get; set; }
 
 	/// <summary>
 	/// Является ли пользователь участником сообщества;
 	/// </summary>
+	[JsonProperty("member")]
 	public bool Member { get; set; }
 
 	/// <summary>
@@ -49,11 +29,13 @@ public class GroupMember
 	/// можно отозвать методом
 	/// groups.leave).
 	/// </summary>
+	[JsonProperty("request")]
 	public bool? Request { get; set; }
 
 	/// <summary>
 	/// Приглашён ли пользователь в группу или встречу.
 	/// </summary>
+	[JsonProperty("invitation")]
 	public bool? Invitation { get; set; }
 
 	#endregion

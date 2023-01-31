@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Groups;
@@ -309,37 +310,9 @@ public partial class GroupsCategory : IGroupsCategory
 	}
 
 	/// <inheritdoc />
-	public ReadOnlyCollection<GroupMember> IsMember(string groupId, long? userId, IEnumerable<long> userIds, bool? extended,
+	public ReadOnlyCollection<GroupMember> IsMember(string groupId, IEnumerable<long> userIds, bool? extended,
 													bool skipAuthorization = false)
 	{
-		if (userId.HasValue)
-		{
-			if (userIds != null)
-			{
-				var enumerable = userIds as long[] ?? userIds.ToArray();
-
-				if (enumerable.Any(id => id < 1))
-				{
-					throw new ArgumentException("Идентификатор пользователя должен быть больше 0");
-				}
-
-				var tempList = enumerable.ToList();
-				tempList.Add(userId.Value);
-				userIds = tempList;
-			} else
-			{
-				if (userId.Value < 1)
-				{
-					throw new ArgumentException("Идентификатор пользователя должен быть больше 0");
-				}
-
-				userIds = new List<long>
-				{
-					userId.Value
-				};
-			}
-		}
-
 		var parameters = new VkParameters
 		{
 			{
@@ -353,9 +326,48 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		var result = _vk.Call("groups.isMember", parameters, skipAuthorization);
+		return _vk.Call<ReadOnlyCollection<GroupMember>>("groups.isMember", parameters, skipAuthorization);
+	}
 
-		return result.ToReadOnlyCollectionOf<GroupMember>(x => x);
+	/// <inheritdoc />
+	public GroupMember IsMember(string groupId, long userId, bool? extended = true,
+								bool skipAuthorization = false)
+	{
+		if (extended is false or null)
+		{
+			throw new VkApiException("Параметр extended должен либо быть true, либо отсутствовать");
+		}
+
+		var parameters = new VkParameters
+		{
+			{
+				"group_id", groupId
+			},
+			{
+				"user_id", userId
+			},
+			{
+				"extended", extended
+			}
+		};
+
+		return _vk.Call<GroupMember>("groups.isMember", parameters, skipAuthorization);
+	}
+
+	/// <inheritdoc />
+	public bool IsMember(string groupId, long userId, bool skipAuthorization = false)
+	{
+		var parameters = new VkParameters
+		{
+			{
+				"group_id", groupId
+			},
+			{
+				"user_id", userId
+			}
+		};
+
+		return _vk.Call<bool>("groups.isMember", parameters, skipAuthorization);
 	}
 
 	/// <inheritdoc />
