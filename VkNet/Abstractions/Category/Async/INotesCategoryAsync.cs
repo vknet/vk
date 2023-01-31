@@ -1,8 +1,8 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams.Notes;
+using VkNet.Utils;
 
 namespace VkNet.Abstractions.Async;
 
@@ -83,7 +83,7 @@ public interface INotesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.get
 	/// </remarks>
-	Task<IEnumerable<Note>> GetAsync(NotesGetParams notesGetParams);
+	Task<VkCollection<Note>> GetAsync(NotesGetParams notesGetParams);
 
 	/// <summary>
 	/// Возвращает заметку по её id.
@@ -103,7 +103,7 @@ public interface INotesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.getComments
 	/// </remarks>
-	Task<IEnumerable<CommentNote>> GetCommentsAsync(NotesGetCommentParams getCommentParams);
+	Task<VkCollection<CommentNote>> GetCommentsAsync(NotesGetCommentParams getCommentParams);
 
 	/// <summary>
 	/// Восстанавливает удалённый комментарий.
