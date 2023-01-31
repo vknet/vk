@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -117,7 +116,7 @@ public partial class NotesCategory : INotesCategory
 		});
 
 	/// <inheritdoc />
-	public IEnumerable<Note> Get(NotesGetParams notesGetParams) => _vk.Call("notes.get",
+	public VkCollection<Note> Get(NotesGetParams notesGetParams) => _vk.Call<VkCollection<Note>>("notes.get",
 			new()
 			{
 				{
@@ -135,11 +134,10 @@ public partial class NotesCategory : INotesCategory
 				{
 					"sort", notesGetParams.Sort
 				}
-			})
-		.ToReadOnlyCollectionOf<Note>(selector: x => x);
+			});
 
 	/// <inheritdoc />
-	public Note GetById(NotesGetByIdParams getByIdParams) => _vk.Call("notes.getById",
+	public Note GetById(NotesGetByIdParams getByIdParams) => _vk.Call<Note>("notes.getById",
 		new()
 		{
 			{
@@ -154,7 +152,7 @@ public partial class NotesCategory : INotesCategory
 		});
 
 	/// <inheritdoc />
-	public IEnumerable<CommentNote> GetComments(NotesGetCommentParams getCommentParams) => _vk.Call("notes.getComments",
+	public VkCollection<CommentNote> GetComments(NotesGetCommentParams getCommentParams) => _vk.Call<VkCollection<CommentNote>>("notes.getComments",
 			new()
 			{
 				{
@@ -172,8 +170,7 @@ public partial class NotesCategory : INotesCategory
 				{
 					"count", getCommentParams.Count
 				}
-			})
-		.ToReadOnlyCollectionOf<CommentNote>(selector: x => x);
+			});
 
 	/// <inheritdoc />
 	public bool RestoreComment(NotesRestoreCommentParams restoreCommentParams) => _vk.Call("notes.restoreComment",
