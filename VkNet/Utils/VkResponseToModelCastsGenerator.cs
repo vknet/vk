@@ -37,17 +37,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator MessagesSendResult(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: MessagesSendResult.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator PageVersion(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: PageVersion.FromJson(response);
