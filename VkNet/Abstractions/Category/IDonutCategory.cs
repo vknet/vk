@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Utils;
