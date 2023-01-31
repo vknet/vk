@@ -1,6 +1,5 @@
 using System;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 

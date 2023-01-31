@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
-using VkNet.Utils;
 
 namespace VkNet.Categories;
 

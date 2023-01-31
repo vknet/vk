@@ -1,7 +1,5 @@
-using System;
 using FluentAssertions;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.RequestParams.Ads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

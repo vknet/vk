@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;

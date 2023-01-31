@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using VkNet.Model.RequestParams.Leads;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

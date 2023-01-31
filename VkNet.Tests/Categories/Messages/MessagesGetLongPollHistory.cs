@@ -1,6 +1,5 @@
 ﻿using System;
 using FluentAssertions;
-using VkNet.Model.RequestParams;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;

@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using VkNet.Enums.Filters;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

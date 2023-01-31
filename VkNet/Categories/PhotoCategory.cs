@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
 using VkNet.Model;

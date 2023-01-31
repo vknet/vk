@@ -6,7 +6,6 @@ using VkNet.Categories;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Keyboard;
-using VkNet.Model.RequestParams;
 using VkNet.Model.Template;
 using VkNet.Model.Template.Carousel;
 using Xunit;
