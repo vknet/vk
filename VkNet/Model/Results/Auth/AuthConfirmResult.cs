@@ -1,5 +1,5 @@
 ﻿using System;
-using VkNet.Utils;
+using Newtonsoft.Json;
 
 namespace VkNet.Model;
 
@@ -12,21 +12,12 @@ public class AuthConfirmResult
 	/// <summary>
 	/// Успешно.
 	/// </summary>
+	[JsonProperty("success")]
 	public bool Success { get; set; }
 
 	/// <summary>
 	/// Идентификатор пользователя.
 	/// </summary>
+	[JsonProperty("uid")]
 	public long UserId { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static AuthConfirmResult FromJson(VkResponse response) => new()
-	{
-		Success = response[key: "success"],
-		UserId = response[key: "uid"]
-	};
 }
