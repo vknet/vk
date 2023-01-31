@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Keyboard;
@@ -106,47 +105,4 @@ public class MessageKeyboardButtonAction
 	/// </summary>
 	[JsonProperty("subscribe_id", NullValueHandling = NullValueHandling.Ignore)]
 	public byte? SubscribeId { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static MessageKeyboardButtonAction FromJson(VkResponse response)
-	{
-		var action = new MessageKeyboardButtonAction
-		{
-			Type = response["type"],
-			Payload = response["payload"],
-			Label = response["label"],
-			Link = response["link"],
-			AppId = response["app_id"],
-			OwnerId = response["owner_id"],
-			Hash = response["hash"],
-			PeerId = response["peer_id"],
-			SubscribeId = response["subscribe_id"],
-			Intent = response["intent"]
-		};
-
-		return action;
-	}
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator MessageKeyboardButtonAction(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

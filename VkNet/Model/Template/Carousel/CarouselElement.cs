@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Model.Keyboard;
@@ -61,8 +62,7 @@ public class CarouselElement
 		Description = response[key: "description"],
 		Action = response[key: "action"],
 		PhotoId = response[key: "photo_id"],
-		Buttons = response[key: "buttons"]
-			.ToReadOnlyCollectionOf<MessageKeyboardButton>(selector: x => x)
+		Buttons = !response.ContainsKey("buttons")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<MessageKeyboardButton>>(response[key: "buttons"].ToString())
 	};
 
 	/// <summary>
