@@ -478,8 +478,8 @@ public class AccountCategoryTest : CategoryBaseTest
 
 		ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 
-		var result = Api.Account.SaveProfileInfo(out var _,
-			new()
+		var result = Api.Account.SaveProfileInfo(
+			new AccountSaveProfileInfoParams()
 			{
 				FirstName = "fn",
 				LastName = "ln",
@@ -509,7 +509,7 @@ public class AccountCategoryTest : CategoryBaseTest
 				}
 			});
 
-		result.Should()
+		result.Changed.Should()
 			.BeTrue();
 	}
 
@@ -533,7 +533,7 @@ public class AccountCategoryTest : CategoryBaseTest
 		ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 
 		Api.Account.SaveProfileInfo(42)
-			.Should()
+			.Changed.Should()
 			.BeTrue();
 	}
 
@@ -543,8 +543,8 @@ public class AccountCategoryTest : CategoryBaseTest
 		Url = "https://api.vk.com/method/account.saveProfileInfo";
 		ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 
-		var result1 = Api.Account.SaveProfileInfo(out var _,
-			new()
+		var result1 = Api.Account.SaveProfileInfo(
+			new AccountSaveProfileInfoParams
 			{
 				BirthDate = new DateTime(1984,
 						11,
@@ -556,13 +556,13 @@ public class AccountCategoryTest : CategoryBaseTest
 					.ToShortDateString()
 			});
 
-		result1.Should()
+		result1.Changed.Should()
 			.BeTrue();
 
 		Url = "https://api.vk.com/method/account.saveProfileInfo";
 
-		var result = Api.Account.SaveProfileInfo(out var _,
-			new()
+		var result = Api.Account.SaveProfileInfo(
+			new AccountSaveProfileInfoParams
 			{
 				BirthDate = new DateTime(2014,
 						9,
@@ -574,7 +574,7 @@ public class AccountCategoryTest : CategoryBaseTest
 					.ToShortDateString()
 			});
 
-		result.Should()
+		result.Changed.Should()
 			.BeTrue();
 	}
 
@@ -584,25 +584,29 @@ public class AccountCategoryTest : CategoryBaseTest
 		Url = "https://api.vk.com/method/account.saveProfileInfo";
 		ReadCategoryJsonPath($"{nameof(Api.Account.SaveProfileInfo)}_False");
 
-		Api.Account.SaveProfileInfo(out var request, new())
+		var result = Api.Account.SaveProfileInfo(new AccountSaveProfileInfoParams());
+
+		result.Changed
 			.Should()
 			.BeFalse(); // Second overload
 
-		request.Should()
+		result.NameRequest.Should()
 			.BeNull();
 
 		Url = "https://api.vk.com/method/account.saveProfileInfo";
 
 		ReadCategoryJsonPath($"{nameof(Api.Account.SaveProfileInfo)}_Success");
 
-		Api.Account.SaveProfileInfo(out request, new())
+		var result1 = Api.Account.SaveProfileInfo(new AccountSaveProfileInfoParams());
+
+		result1.Changed
 			.Should()
 			.BeTrue(); // Second overload
 
-		request.Should()
+		result1.NameRequest.Status.Should()
 			.NotBeNull();
 
-		request.Status.Should()
+		result1.NameRequest.Status.Should()
 			.Be(ChangeNameStatus.Success);
 	}
 
