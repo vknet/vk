@@ -93,7 +93,7 @@ public class Group : IVkModel
 			Trending = response["trending"],
 			CanMessage = response["can_message"],
 			Cover = response["cover"],
-			Market = response["market"],
+			Market = !response.ContainsKey("market") ? null : JsonConvert.DeserializeObject<GroupMarket>(response["market"].ToString()),
 			AgeLimits = response["age_limits"],
 			MemberStatus = response["member_status"],
 			PublicDateLabel = response["public_date_label"],

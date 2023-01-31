@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -58,38 +57,4 @@ public class GroupMarket
 	/// </summary>
 	[JsonProperty("type")]
 	public string Type { get; set; }
-
-	/// <summary>
-	/// Десериализовать из Json.
-	/// </summary>
-	/// <param name="response"> Ответ от vk. </param>
-	/// <returns> </returns>
-	public static GroupMarket FromJson(VkResponse response) => new()
-	{
-		Enabled = response["enabled"],
-		PriceMin = response["price_min"],
-		PriceMax = response["price_max"],
-		MainAlbumId = response["main_album_id"],
-		ContactId = response["contact_id"],
-		Currency = response["currency"],
-		CurrencyText = response["currency_text"],
-		Type = response["type"]
-	};
-
-	/// <summary>
-	/// Неявное преобразование к объекту <see cref="GroupMarket"/> из <see cref="VkResponse"/>
-	/// </summary>
-	/// <param name="response">Ответ от vk.</param>
-	/// <returns></returns>
-	public static implicit operator GroupMarket(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }
