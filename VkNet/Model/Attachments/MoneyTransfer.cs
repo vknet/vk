@@ -61,7 +61,7 @@ public class MoneyTransfer : MediaAttachment
 		Id = response["id"],
 		FromId = response["from_id"],
 		Date = response["date"],
-		Amount = response["amount"],
+		Amount = JsonConvert.DeserializeObject<AmountObject>(response["amount"].ToString()),
 		Status = response["status"]
 	};
 
