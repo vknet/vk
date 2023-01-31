@@ -84,7 +84,7 @@ public class User
 			About = response["about"],
 			Quotes = response["quotes"],
 			InvitedBy = response["invited_by"],
-			BanInfo = response["ban_info"],
+			BanInfo = !response.ContainsKey("ban_info") ? null : JsonConvert.DeserializeObject<BanInfo>(response["ban_info"].ToString()),
 			Deactivated = response["deactivated"],
 			MaidenName = response["maiden_name"],
 			BirthdayVisibility = response["bdate_visibility"],
