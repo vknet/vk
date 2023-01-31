@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -27,13 +26,4 @@ public class SavePhotoResult
 	/// </summary>
 	[JsonProperty("images")]
 	public Image[] Images { get; set; }
-
-	public static SavePhotoResult FromJson(VkResponse response) => new()
-	{
-		Color = response["color"],
-		Id = response["id"],
-		Images = response["images"]
-			.ToListOf<Image>(x => x)
-			.ToArray()
-	};
 }
