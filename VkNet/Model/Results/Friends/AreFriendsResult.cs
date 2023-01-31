@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -41,21 +40,4 @@ public class AreFriendsResult
 	/// </summary>
 	[JsonProperty(propertyName: "read_state")]
 	public bool? ReadState { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static AreFriendsResult FromJson(VkResponse response) => new()
-	{
-		UserId = response[key: "user_id"],
-		FriendStatus = response[key: "friend_status"],
-		RequestMessage = response[key: "request_message"],
-		ReadState = response[key: "read_state"]
-	};
-
-	#endregion
 }

@@ -148,8 +148,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.areFriends", parameters)
-			.ToReadOnlyCollectionOf<AreFriendsResult>(x => x);
+		return _vk.Call<ReadOnlyCollection<AreFriendsResult>>("friends.areFriends", parameters);
 	}
 
 	/// <inheritdoc />
