@@ -4,7 +4,6 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -20,125 +19,149 @@ public class GroupInfo
 	/// <summary>
 	/// Название сообщества.
 	/// </summary>
+	[JsonProperty("title")]
 	public string Title { get; set; }
 
 	/// <summary>
 	/// Описание сообщества.
 	/// </summary>
+	[JsonProperty("description")]
 	public string Description { get; set; }
 
 	/// <summary>
 	/// Gets or sets the address.
 	/// </summary>
+	[JsonProperty("address")]
 	public string Address { get; set; }
 
 	/// <summary>
 	/// Место, указанное в информации о сообществе.
 	/// </summary>
+	[JsonProperty("place")]
 	public Place Place { get; set; }
 
 	/// <summary>
 	/// Стена.
 	/// </summary>
+	[JsonProperty("wall")]
 	public ContentAccess? Wall { get; set; }
 
 	/// <summary>
 	/// Фотографии.
 	/// </summary>
+	[JsonProperty("photos")]
 	public ContentAccess? Photos { get; set; }
 
 	/// <summary>
 	/// Видеозаписи.
 	/// </summary>
+	[JsonProperty("video")]
 	public ContentAccess? Video { get; set; }
 
 	/// <summary>
 	/// Аудиозаписи.
 	/// </summary>
+	[JsonProperty("audio")]
 	public ContentAccess? Audio { get; set; }
 
 	/// <summary>
 	/// Документы.
 	/// </summary>
+	[JsonProperty("docs")]
 	public ContentAccess? Docs { get; set; }
 
 	/// <summary>
 	/// Обсуждения.
 	/// </summary>
+	[JsonProperty("topics")]
 	public ContentAccess? Topics { get; set; }
 
 	/// <summary>
 	/// Материалы.
 	/// </summary>
+	[JsonProperty("wiki")]
 	public ContentAccess? Wiki { get; set; }
 
 	/// <summary>
 	/// Тип группы.
 	/// </summary>
+	[JsonProperty("access")]
 	public GroupPublicity? Access { get; set; }
 
 	/// <summary>
 	/// Тематика сообщества.
 	/// </summary>
+	[JsonProperty("subject")]
 	public GroupSubjects? Subject { get; set; }
 
 	/// <summary>
 	/// Адрес сайта, который будет указан в информации о группе
 	/// </summary>
+	[JsonProperty("website")]
 	public string Website { get; set; }
 
 	/// <summary>
 	/// Контакты: (доступно только для публичных страниц).
 	/// </summary>
+	[JsonProperty("contacts")]
 	public bool? Contacts { get; set; }
 
 	/// <summary>
 	/// Места: (доступно только для публичных страниц)
 	/// </summary>
+	[JsonProperty("places")]
 	public bool? Places { get; set; }
 
 	/// <summary>
 	/// События: (доступно только для публичных страниц).
 	/// </summary>
+	[JsonProperty("events")]
 	public bool? Events { get; set; }
 
 	/// <summary>
 	/// Ссылки: (доступно только для публичных страниц).
 	/// </summary>
+	[JsonProperty("links")]
 	public bool? Links { get; set; }
 
 	/// <summary>
 	/// Дата основания компании, организации,
 	/// которой посвящена публичная страница в виде строки формата <c>"dd.mm.YYYY"</c>.
 	/// </summary>
+	[JsonProperty("public_date")]
 	[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 	public DateTime? PublicDate { get; set; }
 
 	/// <summary>
 	/// Подкатегория публичной станицы.
 	/// </summary>
+	[JsonProperty("public_subcategory")]
 	public ulong? PublicSubcategory { get; set; }
 
 	/// <summary>
 	/// Категория публичной страницы.
 	/// </summary>
+	[JsonProperty("public_category")]
 	public ulong? PublicCategory { get; set; }
 
 	/// <summary>
 	/// Идентификатор группы, которая является организатором события (только для
 	/// событий).
 	/// </summary>
+	[JsonProperty("event_group_id")]
 	public ulong? EventGroupId { get; set; }
 
 	/// <summary>
 	/// Дата окончания события.
 	/// </summary>
+	[JsonProperty("event_finish_date")]
 	[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 	public DateTime? EventFinishDate { get; set; }
 
 	/// <summary>
 	/// Дата начала события.
 	/// </summary>
+	[JsonProperty("event_start_date")]
 	[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 	public DateTime? EventStartDate { get; set; }
 
@@ -147,26 +170,28 @@ public class GroupInfo
 	/// (доступен только группам, получившим соответствуюшее разрешение,
 	/// обратитесь в http://vk.com/support для получения разрешения).
 	/// </summary>
+	[JsonProperty("rss")]
 	public string Rss { get; set; }
 
 	/// <summary>
 	/// Номер телефона сообщества.
 	/// </summary>
+	[JsonProperty("phone")]
 	public string Phone { get; set; }
 
 	/// <summary>
 	/// Электронный адрес сообщества.
 	/// </summary>
+	[JsonProperty("email")]
 	public string Email { get; set; }
 
 	/// <summary>
 	/// Короткое имя сообщества.
 	/// </summary>
+	[JsonProperty("screen_name")]
 	public string ScreenName { get; set; }
 
 	#endregion
-
-	#region Методы
 
 	/// <summary>
 	/// Список тематик
@@ -301,48 +326,4 @@ public class GroupInfo
 			42, "Дизайн и графика"
 		}
 	};
-
-	/// <summary>
-	/// Разобрать из JSON.
-	/// </summary>
-	/// <param name="response"> Ответ от vk. </param>
-	/// <returns> </returns>
-	public static GroupInfo FromJson(VkResponse response)
-	{
-		var group = new GroupInfo
-		{
-			Title = response[key: "title"],
-			Description = response[key: "description"],
-			Address = response[key: "address"],
-			Place = response[key: "place"],
-			Wall = response[key: "wall"],
-			Photos = response[key: "photos"],
-			Video = response[key: "video"],
-			Audio = response[key: "audio"],
-			Docs = response[key: "docs"],
-			Topics = response[key: "topics"],
-			Wiki = response[key: "wiki"],
-			Access = response[key: "access"],
-			Subject = response[key: "subject"],
-			Website = response[key: "website"],
-			Contacts = response[key: "contacts"],
-			Places = response[key: "places"],
-			Events = response[key: "events"],
-			Links = response[key: "links"],
-			PublicDate = response[key: "public_date"],
-			PublicSubcategory = response[key: "public_subcategory"],
-			PublicCategory = response[key: "public_category"],
-			EventGroupId = response[key: "event_group_id"],
-			EventFinishDate = response[key: "event_finish_date"],
-			EventStartDate = response[key: "event_start_date"],
-			Rss = response[key: "rss"],
-			Phone = response[key: "phone"],
-			Email = response[key: "email"],
-			ScreenName = response[key: "screen_name"]
-		};
-
-		return group;
-	}
-
-	#endregion
 }
