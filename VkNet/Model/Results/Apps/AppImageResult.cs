@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -31,8 +32,7 @@ public class AppImageResult
 	public static AppImageResult FromJson(VkResponse response) => new()
 	{
 		Count = response[key: "count"],
-		Items = response[key: "items"]
-			.ToReadOnlyCollectionOf<AppImage>(x => x)
+		Items = JsonConvert.DeserializeObject<ReadOnlyCollection<AppImage>>(response[key: "items"])
 	};
 
 	/// <summary>
