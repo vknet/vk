@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -22,17 +21,4 @@ public class GetCategoriesResult
 	/// </summary>
 	[JsonProperty("v2")]
 	public ReadOnlyCollection<AdsCategories> V2 { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GetCategoriesResult FromJson(VkResponse response) => new()
-	{
-		V1 = response["v1"]
-			.ToReadOnlyCollectionOf<AdsCategories>(x => x),
-		V2 = response["v2"]
-			.ToReadOnlyCollectionOf<AdsCategories>(x => x)
-	};
 }

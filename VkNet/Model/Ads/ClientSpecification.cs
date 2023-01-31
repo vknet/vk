@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -27,16 +26,4 @@ public class ClientSpecification
 	/// </summary>
 	[JsonProperty(propertyName: "name")]
 	public string Name { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static ClientSpecification FromJson(VkResponse response) => new()
-	{
-		AllLimit = response["all_limit"],
-		DayLimit = response["day_limit"],
-		Name = response["name"]
-	};
 }

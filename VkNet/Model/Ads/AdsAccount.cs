@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -47,32 +46,4 @@ public class AdsAccount
 	[JsonProperty(propertyName: "access_role")]
 	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public AccessRole AccessRole { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Информация о рекламном аккаунте
-	/// </summary>
-	/// <param name="response"> </param>
-	/// <returns> </returns>
-	public static AdsAccount FromJson(VkResponse response)
-	{
-		if (response[key: "account_id"] == null)
-		{
-			return null;
-		}
-
-		var adsAccount = new AdsAccount
-		{
-			AccountId = response[key: "account_id"],
-			AccountType = response[key: "account_type"],
-			AccountStatus = response[key: "account_status"],
-			AccountName = response[key: "account_name"],
-			AccessRole = response[key: "access_role"]
-		};
-
-		return adsAccount;
-	}
-
-	#endregion
 }
