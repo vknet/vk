@@ -53,17 +53,6 @@ public partial class VkResponse
 		: PageVersion.FromJson(response);
 
 	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator AppImageResult(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: AppImageResult.FromJson(response);
-
-	/// <summary>
 	/// Разобрать из json.
 	/// </summary>
 	/// <param name="response"> Ответ сервера. </param>
