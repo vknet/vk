@@ -167,6 +167,7 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
+
 	public static implicit operator ShortLink(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: ShortLink.FromJson(response);
@@ -1547,6 +1548,7 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
+
 	public static implicit operator CommentDonut(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: CommentDonut.FromJson(response);
