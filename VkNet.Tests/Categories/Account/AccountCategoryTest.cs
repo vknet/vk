@@ -236,18 +236,6 @@ public class AccountCategoryTest : CategoryBaseTest
 	}
 
 	[Fact]
-	public void GetInfo_WhenServerReturnsEmptyResponse()
-	{
-		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
-		Url = "https://api.vk.com/method/account.getInfo";
-		ReadJsonFile(JsonPaths.EmptyObject);
-
-		Api.Account.GetInfo()
-			.Should()
-			.BeNull();
-	}
-
-	[Fact]
 	public void GetPrivacySettings()
 	{
 		// Arrange
