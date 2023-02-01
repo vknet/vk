@@ -17,7 +17,7 @@ public partial class BoardCategory : IBoardCategory
 	public BoardCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
-	public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = false) => _vk.Call("board.getTopics", new()
+	public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<Topic>>("board.getTopics", new()
 		{
 			{
 				"group_id", @params.GroupId
@@ -43,13 +43,12 @@ public partial class BoardCategory : IBoardCategory
 			{
 				"preview_length", @params.PreviewLength
 			}
-		}, skipAuthorization)
-		.ToVkCollectionOf<Topic>(selector: x => x);
+		}, skipAuthorization);
 
 	/// <inheritdoc />
 	public TopicsFeed GetComments(BoardGetCommentsParams @params, bool skipAuthorization = false)
 	{
-		var response = _vk.Call("board.getComments", new()
+		return _vk.Call<TopicsFeed>("board.getComments", new()
 		{
 			{
 				"group_id", @params.GroupId
@@ -79,19 +78,6 @@ public partial class BoardCategory : IBoardCategory
 				"extended", @params.Extended
 			}
 		}, skipAuthorization);
-
-		var result = new TopicsFeed
-		{
-			Count = response[key: "count"],
-			Items = response[key: "items"]
-				.ToReadOnlyCollectionOf<CommentBoard>(selector: x => x),
-			Profiles = response[key: "profiles"]
-				.ToReadOnlyCollectionOf<User>(selector: x => x),
-			Groups = response[key: "groups"]
-				.ToReadOnlyCollectionOf<Group>(selector: x => x)
-		};
-
-		return result;
 	}
 
 	/// <inheritdoc />
