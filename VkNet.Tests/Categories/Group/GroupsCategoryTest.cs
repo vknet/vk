@@ -1433,7 +1433,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	{
 		var groups = new GroupsCategory(new VkApi());
 
-		FluentActions.Invoking(() => groups.IsMember("2", 1, null, null))
+		FluentActions.Invoking(() => groups.IsMember("2", 1, false))
 			.Should()
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
@@ -1446,7 +1446,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 		ReadErrorsJsonFile(5);
 
 		FluentActions.Invoking(() =>
-				Api.Groups.IsMember("637247", 4793858, null, null))
+				Api.Groups.IsMember("637247", 4793858, true))
 			.Should()
 			.ThrowExactly<UserAuthorizationFailException>()
 			.And.Message.Should()
@@ -1460,7 +1460,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 
 		ReadCategoryJsonPath(nameof(IsMember_UserIsAMember_ReturnTrue));
 
-		var result = Api.Groups.IsMember("637247", 4793858, null, null);
+		var result = Api.Groups.IsMember("637247", new long[]{4793858}, true);
 
 		result.Should()
 			.NotBeEmpty();
@@ -1477,7 +1477,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 
 		ReadCategoryJsonPath(nameof(IsMember_UserNotAMember_ReturnFalse));
 
-		var result = Api.Groups.IsMember("17683660", 4793858, null, null);
+		var result = Api.Groups.IsMember("17683660", new long[]{4793858}, null);
 
 		result.Should()
 			.NotBeEmpty();
@@ -1495,7 +1495,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 		ReadErrorsJsonFile(125);
 
 		FluentActions.Invoking(() =>
-				Api.Groups.IsMember("0", 4793858, null, null))
+				Api.Groups.IsMember("0", 4793858, true))
 			.Should()
 			.ThrowExactly<InvalidGroupIdException>()
 			.And.Message.Should()
@@ -1508,11 +1508,9 @@ public class GroupsCategoryTest : CategoryBaseTest
 		Url = "https://api.vk.com/method/groups.isMember";
 		ReadJsonFile(JsonPaths.False);
 
-		var result = Api.Groups.IsMember("637247", 1000000000000, null, null);
+		var result = Api.Groups.IsMember("637247", 1000000000000, false);
 
-		(result.Count > 0
-		&& result[0]
-			.Member).Should()
+		result.Should()
 			.BeFalse();
 	}
 

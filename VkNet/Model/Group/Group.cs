@@ -84,7 +84,7 @@ public class Group : IVkModel
 			Site = response["site"],
 			InvitedBy = response["invited_by"],
 			IsFavorite = response["is_favorite"],
-			BanInfo = !response.ContainsKey("baninfo") ? null : JsonConvert.DeserializeObject<BanInfo>(response["ban_info"].ToString()),
+			BanInfo = !response.ContainsKey("ban_info") ? null : JsonConvert.DeserializeObject<BanInfo>(response["ban_info"].ToString()),
 			CanUploadVideo = response["can_upload_video"],
 			MainAlbumId = response["main_album_id"],
 			IsHiddenFromFeed = response["is_hidden_from_feed"],
@@ -110,6 +110,7 @@ public class Group : IVkModel
 	/// <summary>
 	/// Идентификатор сообщества.
 	/// </summary>
+	[JsonProperty("id")]
 	public long Id { get; set; }
 
 	/// <summary>
@@ -134,7 +135,7 @@ public class Group : IVkModel
 	/// <summary>
 	/// Возвращается в случае, если сообщество удалено или заблокировано
 	/// </summary>
-	[JsonProperty("deactivated")]
+	[JsonProperty("deactivated", DefaultValueHandling = DefaultValueHandling.Populate)]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public Deactivated Deactivated { get; set; }
 
