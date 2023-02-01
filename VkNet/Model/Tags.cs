@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model;
@@ -12,6 +13,7 @@ public class Tags
 	/// <summary>
 	/// Количество.
 	/// </summary>
+	[JsonProperty("count")]
 	public int Count { get; set; }
 
 	#region public methods

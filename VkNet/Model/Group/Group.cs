@@ -17,19 +17,33 @@ namespace VkNet.Model;
 /// </summary>
 [DebuggerDisplay("[{Id}] {Name}")]
 [Serializable]
-public class Group : IVkModel
+public class Group
 {
 	/// <summary>
 	/// Конструктор
 	/// </summary>
 	public Group() => Type = new();
 
-	/// <summary>
-	/// Преобразовать из JSON
-	/// </summary>
-	/// <param name="response"> Ответ от сервера. </param>
-	/// <returns> </returns>
-	IVkModel IVkModel.FromJson(VkResponse response) => FromJson(response);
+	[JsonProperty("finish_date")]
+	private DateTime? FinishDate
+	{
+		get => EndDate;
+		set => EndDate = value;
+	}
+
+	[JsonProperty("gid")]
+	private long Gid
+	{
+		get => Id;
+		set => Id = value;
+	}
+
+	[JsonProperty("group_id")]
+	private long GroupId
+	{
+		get => Id;
+		set => Id = value;
+	}
 
 	#region Методы
 
@@ -171,6 +185,20 @@ public class Group : IVkModel
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public GroupType Type { get; set; }
 
+	[JsonProperty("photo")]
+	private Uri Photo
+	{
+		get => Photo50;
+		set => Photo50 = value;
+	}
+
+	[JsonProperty("photo_medium")]
+	private Uri PhotoMedium
+	{
+		get => Photo100;
+		set => Photo100 = value;
+	}
+
 	/// <summary>
 	/// <c>Uri</c> фотографии сообщества с размером 50x50px
 	/// </summary>
@@ -188,6 +216,12 @@ public class Group : IVkModel
 	/// </summary>
 	[JsonProperty("photo_200")]
 	public Uri Photo200 { get; set; }
+
+	/// <summary>
+	/// <c>Uri</c> фотографии сообщества с наибольшим размером
+	/// </summary>
+	[JsonProperty("photo_big")]
+	public Uri PhotoBig { get; set; }
 
 	#endregion
 

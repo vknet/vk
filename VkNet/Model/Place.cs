@@ -48,12 +48,14 @@ public class Place
 	/// Идентификатор страны, название которой можно получить с помощью метода
 	/// DatabaseCategory.GetCountriesById
 	/// </summary>
+	[JsonProperty("country_id")]
 	public long? CountryId { get; set; }
 
 	/// <summary>
 	/// Идентификатор города, название которого можно получить с помощью метода
 	/// DatabaseCategory.GetCitiesById
 	/// </summary>
+	[JsonProperty("city_id")]
 	public long? CityId { get; set; }
 
 	/// <summary>
@@ -65,6 +67,7 @@ public class Place
 	/// <summary>
 	/// Данный параметр указывается, если местоположение является прикреплённой картой.
 	/// </summary>
+	[JsonProperty("shop_map")]
 	public bool? ShowMap { get; set; }
 
 	/// <summary>
@@ -128,6 +131,13 @@ public class Place
 	/// </summary>
 	[JsonProperty("group_photo")]
 	public Uri GroupPhoto { get; set; }
+
+	[JsonProperty("place_id")]
+	private long? PlaceId
+	{
+		get => Id;
+		set => Id = value;
+	}
 
 	#region Методы
 

@@ -31,7 +31,7 @@ public class ExternalLink
 	/// <summary>
 	/// Описание.
 	/// </summary>
-	[JsonProperty(propertyName: "desc")]
+	[JsonProperty(propertyName: "description")]
 	public string Description { get; set; }
 
 	/// <summary>
@@ -57,6 +57,20 @@ public class ExternalLink
 	/// </summary>
 	[JsonProperty(propertyName: "image_processing")]
 	public bool? ImageProcessing { get; set; }
+
+	[JsonProperty("desc")]
+	private string Desc
+	{
+		get => Description;
+		set => Description = value;
+	}
+
+	[JsonProperty("title")]
+	private string Title
+	{
+		get => Name;
+		set => Name = value;
+	}
 
 	#region Методы
 

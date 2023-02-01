@@ -16,6 +16,7 @@ public class GroupJoin : IGroupUpdate
 	/// <summary>
 	/// Идентификатор пользователя
 	/// </summary>
+	[JsonProperty("user_id")]
 	public long? UserId { get; set; }
 
 	/// <summary>

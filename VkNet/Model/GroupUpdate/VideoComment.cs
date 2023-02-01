@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -15,11 +16,13 @@ public class VideoComment : Comment, IGroupUpdate
 	/// <summary>
 	/// Идентификатор видеозаписи
 	/// </summary>
+	[JsonProperty("video_id")]
 	public long? VideoId { get; set; }
 
 	/// <summary>
 	/// Идентификатор владельца видеозаписи
 	/// </summary>
+	[JsonProperty("video_owner_id")]
 	public long? VideoOwnerId { get; set; }
 
 	/// <summary>

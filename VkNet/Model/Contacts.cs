@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model;
@@ -12,11 +13,13 @@ public class Contacts
 	/// <summary>
 	/// Номер мобильного телефона пользователя (только для Standalone-приложений).
 	/// </summary>
+	[JsonProperty("mobile_phone")]
 	public string MobilePhone { get; set; }
 
 	/// <summary>
 	/// Дополнительный номер телефона пользователя.
 	/// </summary>
+	[JsonProperty("home_phone")]
 	public string HomePhone { get; set; }
 
 	/// <summary>

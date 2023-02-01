@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -15,11 +16,13 @@ public class MarketComment : Comment, IGroupUpdate
 	/// <summary>
 	/// Идентификатор товара
 	/// </summary>
+	[JsonProperty("item_id")]
 	public ulong? ItemId { get; set; }
 
 	/// <summary>
 	/// Идентификатор владельца товара
 	/// </summary>
+	[JsonProperty("market_owner_id")]
 	public long? MarketOwnerId { get; set; }
 
 	/// <summary>

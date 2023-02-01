@@ -28,6 +28,7 @@ public class UserBlock : IGroupUpdate
 	/// <summary>
 	/// Дата разблокировки
 	/// </summary>
+	[JsonProperty("unblock_date")]
 	[JsonConverter(typeof(UnixDateTimeConverter))]
 	public DateTime? UnblockDate { get; set; }
 

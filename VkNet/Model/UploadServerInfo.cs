@@ -28,6 +28,27 @@ public class UploadServerInfo
 	[JsonProperty("user_id")]
 	public long? UserId { get; set; }
 
+	[JsonProperty("aid")]
+	private long? Aid
+	{
+		get => AlbumId;
+		set => AlbumId = value;
+	}
+
+	[JsonProperty("message_id")]
+	private long? MessageId
+	{
+		get => UserId;
+		set => UserId = value;
+	}
+
+	[JsonProperty("mid")]
+	private long? Mid
+	{
+		get => UserId;
+		set => UserId = value;
+	}
+
 	#region Methods
 
 	/// <summary>

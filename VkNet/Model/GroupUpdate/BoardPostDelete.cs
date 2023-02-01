@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate;
@@ -12,16 +13,19 @@ public class BoardPostDelete : IGroupUpdate
 	/// <summary>
 	/// Идентификатор комментария
 	/// </summary>
+	[JsonProperty("id")]
 	public ulong? Id { get; set; }
 
 	/// <summary>
 	/// Идентификатор обсуждения
 	/// </summary>
+	[JsonProperty("topic_id")]
 	public ulong? TopicId { get; set; }
 
 	/// <summary>
 	/// Идентификатор владельца обсуждения
 	/// </summary>
+	[JsonProperty("topic_owner_id")]
 	public long? TopicOwnerId { get; set; }
 
 	/// <summary>

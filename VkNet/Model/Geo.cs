@@ -18,17 +18,20 @@ public class Geo
 	/// означает,
 	/// что запись привязана к определенному географическому месту в базе мест.)
 	/// </summary>
+	[JsonProperty("type")]
 	public string Type { get; set; }
 
 	/// <summary>
 	/// Координаты места, в котором была сделана запись.
 	/// </summary>
+	[JsonProperty("coordinates")]
 	[JsonConverter(typeof(CoordinatesJsonConverter))]
 	public Coordinates Coordinates { get; set; }
 
 	/// <summary>
 	/// Информация о месте, в котором была сделана запись.
 	/// </summary>
+	[JsonProperty("place")]
 	public Place Place { get; set; }
 
 	#region Методы

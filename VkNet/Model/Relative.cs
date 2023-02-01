@@ -16,18 +16,35 @@ public class Relative
 	/// <summary>
 	/// Идентификатор родственника.
 	/// </summary>
+	[JsonProperty("id")]
 	public long Id { get; set; }
 
 	/// <summary>
 	/// Тип родственника (sibling и т.п.)
 	/// </summary>
+	[JsonProperty("type")]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public RelativeType Type { get; set; }
 
 	/// <summary>
 	/// Имя родственника, если он не является пользователем ВКонтакте.
 	/// </summary>
+	[JsonProperty("name")]
 	public string Name { get; set; }
+
+	[JsonProperty("user_id")]
+	private long UserId
+	{
+		get => Id;
+		set => Id = value;
+	}
+
+	[JsonProperty("uid")]
+	private long Uid
+	{
+		get => Id;
+		set => Id = value;
+	}
 
 	#region Методы
 

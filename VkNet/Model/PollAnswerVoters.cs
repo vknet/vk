@@ -1,5 +1,7 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -13,11 +15,13 @@ public class PollAnswerVoters
 	/// <summary>
 	/// Идентификатор варианта ответа
 	/// </summary>
+	[JsonProperty("answer_id")]
 	public long? AnswerId { get; set; }
 
 	/// <summary>
 	/// Коллекция пользователей, только если Fields != null
 	/// </summary>
+	[JsonProperty("users")]
 	public VkCollection<User> Users { get; set; }
 
 	/// <summary>

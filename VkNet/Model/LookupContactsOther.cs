@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model;
@@ -12,11 +13,13 @@ public class LookupContactsOther
 	/// <summary>
 	/// Контакт.
 	/// </summary>
+	[JsonProperty("contact")]
 	public string Contact { get; set; }
 
 	/// <summary>
 	/// Количество.
 	/// </summary>
+	[JsonProperty("common_count")]
 	public long CommonCount { get; set; }
 
 	/// <summary>

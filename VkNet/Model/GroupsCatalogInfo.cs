@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model;
@@ -13,11 +14,13 @@ public class GroupsCatalogInfo
 	/// <summary>
 	/// Список категорий.
 	/// </summary>
+	[JsonProperty("categories")]
 	public IEnumerable<CategoryGroup> Categories { get; set; }
 
 	/// <summary>
 	/// Признак доступности каталога для пользователя.
 	/// </summary>
+	[JsonProperty("enabled")]
 	public bool Enabled { get; set; }
 
 	/// <summary>

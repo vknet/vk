@@ -124,6 +124,69 @@ public class Photo : MediaAttachment, IGroupUpdate
 	[JsonProperty("url")]
 	public Uri Url { get; set; }
 
+	[JsonProperty("pid")]
+	private long? Pid
+	{
+		get => Id;
+		set => Id = value;
+	}
+
+	[JsonProperty("photo_id")]
+	private long? PhotoId
+	{
+		get => Id;
+		set => Id = value;
+	}
+
+	[JsonProperty("aid")]
+	private long? Aid
+	{
+		get => AlbumId;
+		set => AlbumId = value;
+	}
+
+	[JsonProperty("src")]
+	private Uri Src
+	{
+		get => Photo130;
+		set => Photo130 = value;
+	}
+
+	[JsonProperty("src_big")]
+	private Uri SrcBig
+	{
+		get => Photo604;
+		set => Photo604 = value;
+	}
+
+	[JsonProperty("src_xbig")]
+	private Uri SrcXbig
+	{
+		get => Photo807;
+		set => Photo807 = value;
+	}
+
+	[JsonProperty("src_xxbig")]
+	private Uri SrcXXbig
+	{
+		get => Photo1280;
+		set => Photo1280 = value;
+	}
+
+	[JsonProperty("src_xxxbig")]
+	private Uri SrcXXXbig
+	{
+		get => Photo2560;
+		set => Photo2560 = value;
+	}
+
+	[JsonProperty("created")]
+	private DateTime? Created
+	{
+		get => CreateTime;
+		set => CreateTime = value;
+	}
+
 	#region Методы
 
 	/// <summary>

@@ -11,25 +11,39 @@ namespace VkNet.Model.GroupUpdate;
 [Serializable]
 public class DonutWithdraw : IGroupUpdate
 {
+	private string _reason;
+
 	/// <summary>
 	/// Произошла ли ошибка
 	/// </summary>
+	[JsonProperty("error")]
 	public bool Error { get; set; }
 
-	/// <summary>
+		/// <summary>
 	/// Cумма  в рублях
 	/// </summary>
+	[JsonProperty("amount")]
 	public float? Amount { get; set; }
 
 	/// <summary>
 	/// Cумма  без комиссии (в рублях)
 	/// </summary>
+	[JsonProperty("amount_without_fee")]
 	public float? AmountWithoutFee { get; set; }
 
 	/// <summary>
 	/// Причина ошибки
 	/// </summary>
-	public string Reason { get; set; }
+	[JsonProperty("reason")]
+	public string Reason
+	{
+		get => _reason;
+
+		set {
+			_reason = value;
+			Error = !string.IsNullOrEmpty(_reason);
+		}
+	}
 
 	/// <summary>
 	/// Разобрать из json.

@@ -216,6 +216,13 @@ public class User
 	[JsonProperty("first_name")]
 	public string FirstName { get; set; }
 
+	[JsonProperty("name")]
+	private string Name
+	{
+		get => FirstName;
+		set => FirstName = value;
+	}
+
 	/// <summary>
 	/// Фамилия пользователя.
 	/// </summary>
@@ -256,6 +263,7 @@ public class User
 	/// <summary>
 	/// Причина блокирования аккаунта
 	/// </summary>
+	[JsonProperty("deactivated", DefaultValueHandling = DefaultValueHandling.Populate)]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public Deactivated Deactivated { get; set; }
 
@@ -264,6 +272,12 @@ public class User
 	/// </summary>
 	[JsonProperty("about")]
 	public string About { get; set; }
+
+	/// <summary>
+	/// Информация пользователя о себе.
+	/// </summary>
+	[JsonProperty("twitter")]
+	public string Twitter { get; set; }
 
 	/// <summary>
 	/// Чем занимается пользователь.
@@ -778,31 +792,37 @@ public class User
 	/// <summary>
 	/// Информация о ссылках на предпросмотр фотографий пользователя.
 	/// </summary>
+	[JsonProperty("photo_previews")]
 	public Previews PhotoPreviews { get; set; }
 
 	/// <summary>
 	/// Номер мобильного телефона (если нет записи или скрыт, то null).
 	/// </summary>
+	[JsonProperty("mobile_phone")]
 	public string MobilePhone { get; set; }
 
 	/// <summary>
 	/// Номер домашнего телефона (если нет записи или скрыт, то null).
 	/// </summary>
+	[JsonProperty("home_phone")]
 	public string HomePhone { get; set; }
 
 	/// <summary>
 	/// Информация о блокировке пользователя
 	/// </summary>
+	[JsonProperty("ban_info")]
 	public BanInfo BanInfo { get; set; }
 
 	/// <summary>
 	/// Является ли пользователь заблокированным
 	/// </summary>
+	[JsonProperty("is_deactivated")]
 	public bool IsDeactivated { get; set; }
 
 	/// <summary>
 	/// Идентификатор языка, установленный в настройках.
 	/// </summary>
+	[JsonProperty("language")]
 	public long? Language { get; set; }
 
 	/// <summary>
@@ -815,27 +835,32 @@ public class User
 	/// <summary>
 	/// Если пользователь зашёл через приложение, то Id приложения иначе null.
 	/// </summary>
+	[JsonProperty("online_app")]
 	public long? OnlineApp { get; set; }
 
 	/// <summary>
 	/// Партнер в семейных отношениях.
 	/// </summary>
+	[JsonProperty("relation_partner")]
 	public User RelationPartner { get; set; }
 
 	/// <summary>
 	/// Идентификатор пользователя, пригласившего пользователя в беседу (для
 	/// GetChatUsers).
 	/// </summary>
+	[JsonProperty("invited_by")]
 	public long? InvitedBy { get; set; }
 
 	/// <summary>
 	/// Видимость даты рождения.
 	/// </summary>
+	[JsonProperty("bdate_visibility")]
 	public BirthdayVisibility? BirthdayVisibility { get; set; }
 
 	/// <summary>
 	/// Информация о заявке на смену имени.
 	/// </summary>
+	[JsonProperty("change_name_request")]
 	public ChangeNameRequest ChangeNameRequest { get; set; }
 
 	/// <summary>
@@ -851,6 +876,7 @@ public class User
 	/// Полномочия руководителя (для Groups.GetMembers)
 	/// </summary>
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
+	[JsonProperty("role")]
 	public ManagerRole Role { get; set; }
 
 	#endregion
@@ -889,4 +915,74 @@ public class User
 	}
 
 	#endregion
+
+	/// <summary>
+	/// Идентификатор университета.
+	/// </summary>
+	[JsonProperty("university")]
+	public long? UniversityId { get; set; }
+
+	/// <summary>
+	/// Название ВУЗа.
+	/// </summary>
+	[JsonProperty("university_name")]
+	public string UniversityName { get; set; }
+
+	/// <summary>
+	/// Идентификатор факультета.
+	/// </summary>
+	[JsonProperty("faculty")]
+	public long? FacultyId { get; set; }
+
+	/// <summary>
+	/// Название факультета.
+	/// </summary>
+	[JsonProperty("faculty_name")]
+	public string FacultyName { get; set; }
+
+	/// <summary>
+	/// Год окончания.
+	/// </summary>
+	[JsonProperty("graduation")]
+	public int? Graduation { get; set; }
+
+	#region Поля, установленные экспериментально
+
+	/// <summary>
+	/// Форма обучения.
+	/// </summary>
+	[JsonProperty("education_form")]
+	public string EducationForm { get; set; }
+
+	/// <summary>
+	/// Текущий статус пользователя в высшем учебном заведении.
+	/// </summary>
+	[JsonProperty("education_status")]
+	public string EducationStatus { get; set; }
+
+	#endregion
+
+	/// <summary>
+	/// Логин в Skype.
+	/// </summary>
+	[JsonProperty("disabled_until")]
+	public string Skype { get; set; }
+
+	/// <summary>
+	/// Идентификатор акаунта в Facebook.
+	/// </summary>
+	[JsonProperty("facebook")]
+	public string Facebook { get; set; }
+
+	/// <summary>
+	/// Имя и фамилия в facebook.
+	/// </summary>
+	[JsonProperty("facebook_name")]
+	public string FacebookName { get; set; }
+
+	/// <summary>
+	/// Акаунт в Instagram.
+	/// </summary>
+	[JsonProperty("instagram")]
+	public string Instagram { get; set; }
 }
