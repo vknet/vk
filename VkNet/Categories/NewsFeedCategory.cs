@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -138,8 +140,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			parameters.Add("count", count);
 		}
 
-		return _vk.Call("newsfeed.getMentions", parameters)
-			.ToVkCollectionOf<Mention>(selector: x => x);
+		return _vk.Call<VkCollection<Mention>>("newsfeed.getMentions", parameters);
 	}
 
 	/// <inheritdoc />

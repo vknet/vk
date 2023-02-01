@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -117,32 +116,4 @@ public class Mention
 	/// </remarks>
 	[JsonProperty("reposts")]
 	public Reposts Reposts { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Mention FromJson(VkResponse response)
-	{
-		var mention = new Mention
-		{
-			Id = response[key: "id"],
-			FromId = response[key: "from_id"],
-			Date = response[key: "date"],
-			Text = response[key: "text"],
-			Likes = response[key: "likes"],
-			Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
-			Attachment = response[key: "attachment"],
-			Geo = response[key: "geo"],
-			CopyOwnerId = response[key: "copy_owner_id"],
-			CopyPostId = response[key: "copy_post_id"],
-			ToId = response[key: "to_id"],
-			PostId = response[key: "post_id"],
-			PostType = response[key: "post_type"],
-			Reposts = response[key: "reposts"]
-		};
-
-		return mention;
-	}
 }
