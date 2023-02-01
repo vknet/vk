@@ -167,21 +167,9 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-
 	public static implicit operator ShortLink(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: ShortLink.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator Application(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Application.FromJson(response);
 
 	/// <summary>
 	/// Преобразовать из VkResponse
@@ -520,7 +508,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-
 	public static implicit operator GroupsCatalogInfo(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: GroupsCatalogInfo.FromJson(response);

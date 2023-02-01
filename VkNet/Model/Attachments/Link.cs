@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
@@ -126,7 +127,7 @@ public class Link : MediaAttachment
 			IsExternal = response["is_external"],
 			Product = response["product"],
 			Rating = response["rating"],
-			Application = response["application"],
+			Application = !response.ContainsKey("application") ? null : JsonConvert.DeserializeObject<Application>(response["application"].ToString()),
 			Button = response["button"],
 			PreviewUrl = response["preview_url"]
 		};
