@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -48,19 +47,4 @@ public class CallbackServerItem
 	[JsonProperty(propertyName: "status")]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public CallbackServerStatus Status { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CallbackServerItem FromJson(VkResponse response) => new()
-	{
-		Id = response[key: "id"],
-		Title = response[key: "title"],
-		CreatorId = response[key: "creator_id"],
-		Url = response[key: "url"],
-		SecretKey = response[key: "secret_key"],
-		Status = response[key: "status"]
-	};
 }
