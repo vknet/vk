@@ -123,17 +123,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator CategoryGroup(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: CategoryGroup.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator Chat(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: Chat.FromJson(response);

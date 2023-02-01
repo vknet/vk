@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using VkNet.Utils;
 using Newtonsoft.Json;
 
 namespace VkNet.Model;
@@ -40,20 +39,4 @@ public class CategoryGroup
 	/// </summary>
 	[JsonProperty("id")]
 	public long Id { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CategoryGroup FromJson(VkResponse response) => new()
-	{
-		Id = response[key: "id"],
-		Name = response[key: "name"],
-		Subcategories = response[key: "subcategories"]
-			.ToReadOnlyCollectionOf<CategoryGroup>(selector: o => o),
-		PageCount = response[key: "page_count"],
-		PagePreviews = response[key: "page_previews"]
-			.ToReadOnlyCollectionOf<Group>(selector: o => o)
-	};
 }
