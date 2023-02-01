@@ -84,7 +84,7 @@ public class Group : IVkModel
 			Site = response["site"],
 			InvitedBy = response["invited_by"],
 			IsFavorite = response["is_favorite"],
-			BanInfo = response["ban_info"],
+			BanInfo = !response.ContainsKey("baninfo") ? null : JsonConvert.DeserializeObject<BanInfo>(response["ban_info"].ToString()),
 			CanUploadVideo = response["can_upload_video"],
 			MainAlbumId = response["main_album_id"],
 			IsHiddenFromFeed = response["is_hidden_from_feed"],
