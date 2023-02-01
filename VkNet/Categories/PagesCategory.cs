@@ -119,9 +119,7 @@ public partial class PagesCategory : IPagesCategory
 			}
 		};
 
-		VkResponseArray result = _vk.Call("pages.getHistory", parameters);
-
-		return result.ToReadOnlyCollectionOf<PageVersion>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<PageVersion>>("pages.getHistory", parameters);
 	}
 
 	/// <inheritdoc />
