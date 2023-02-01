@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -227,46 +226,4 @@ public class AdSpecification
 	/// </summary>
 	[JsonProperty(propertyName: "disclaimer_supplements")]
 	public long DisclaimerSupplements { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static AdSpecification FromJson(VkResponse response) => new()
-	{
-		CampaignId = response["campaign_id"],
-		AdFormat = response["ad_format"],
-		AutoBidding = response["autobidding"],
-		CostType = response["cost_type"],
-		Cpc = response["cpc"],
-		Cpm = response["cpm"],
-		OCpm = response["ocpm"],
-		GoalType = response["goal_type"],
-		ImpressionsLimit = response["impressions_limit"],
-		ImpressionsLimited = response["impressions_limited"],
-		AdPlatform = response["ad_platform"],
-		AdPlatformNoAdNetwork = response["ad_platform_no_ad_network"],
-		AllLimit = response["all_limit"],
-		DayLimit = response["day_limit"],
-		AgeRestriction = response["age_restriction"],
-		CreateTime = response["create_time"],
-		UpdateTime = response["update_time"],
-		Category1Id = response["category1_id"],
-		Category2Id = response["category2_id"],
-		Status = response["status"],
-		Name = response["name"],
-		Title = response["title"],
-		Description = response["description"],
-		LinkButton = response["link_button"],
-		LinkDomain = response["link_domain"],
-		LinkTitle = response["link_title"],
-		LinkUrl = response["link_url"],
-		Photo = response["photo"],
-		Video = response["video"],
-		RepeatVideo = response["repeat_video"],
-		DisclaimerMedical = response["disclaimer_medical"],
-		DisclaimerSpecialist = response["disclaimer_specialist"],
-		DisclaimerSupplements = response["disclaimer_supplements"]
-	};
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -27,15 +26,4 @@ public class OfficeUsersAccesses
 	[JsonProperty("role")]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AccessRole Role { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static OfficeUsersAccesses FromJson(VkResponse response) => new()
-	{
-		ClientId = response["client_id"],
-		Role = response["role"]
-	};
 }

@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -82,35 +81,4 @@ public class AdsCampaign
 	[JsonProperty(propertyName: "update_time")]
 	[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 	public DateTime? UpdateTime { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Информация о рекламном аккаунте
-	/// </summary>
-	/// <param name="response"> </param>
-	/// <returns> </returns>
-	public static AdsCampaign FromJson(VkResponse response)
-	{
-		if (response[key: "id"] == null)
-		{
-			return null;
-		}
-
-		var campaign = new AdsCampaign
-		{
-			Id = response[key: "id"],
-			Type = response[key: "type"],
-			Name = response[key: "name"],
-			Status = response[key: "status"],
-			DayLimit = response[key: "day_limit"],
-			AllLimit = response[key: "all_limit"],
-			StartTime = response[key: "start_time"],
-			StopTime = response[key: "stop_time"]
-		};
-
-		return campaign;
-	}
-
-	#endregion
 }

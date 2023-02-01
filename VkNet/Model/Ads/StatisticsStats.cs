@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -161,38 +160,4 @@ public class StatisticsStats
 	/// </summary>
 	[JsonProperty("conversion_cr")]
 	public string ConversionCr { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static StatisticsStats FromJson(VkResponse response) => new()
-	{
-		Day = response["day"],
-		Month = response["month"],
-		OverAll = response["overall"],
-		Spent = response["spent"],
-		Impressions = response["impressions"],
-		Clicks = response["clicks"],
-		Reach = response["reach"],
-		JoinRate = response["join_rate"],
-		UniqViewsCount = response["uniq_views_count"],
-		Ctr = response["ctr"],
-		EffectiveCostPerClick = response["effective_cost_per_click"],
-		EffectiveCostPerMille = response["effective_cost_per_mille"],
-		EffectiveCpf = response["effective_cpf"],
-		EffectiveCostPerMessage = response["effective_cost_per_message"],
-		MessageSendsByAnyUser = response["message_sends_by_any_user"],
-		VideoPlaysUniqueStarted = response["video_plays_unique_started"],
-		VideoPlaysUnique3Seconds = response["video_plays_unique_3_seconds"],
-		VideoPlaysUnique25Percents = response["video_plays_unique_25_percents"],
-		VideoPlaysUnique50Percents = response["video_plays_unique_50_percents"],
-		VideoPlaysUnique75Percents = response["video_plays_unique_75_percents"],
-		VideoPlaysUnique100Percents = response["video_plays_unique_100_percents"],
-		ConversionCount = response["conversion_count"],
-		ConversionSum = response["conversion_sum"],
-		ConversionRoas = response["conversion_roas"],
-		ConversionCr = response["conversion_cr"]
-	};
 }
