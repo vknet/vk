@@ -805,53 +805,9 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator Status(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Status.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator Store(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Store.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator Street(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: Street.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator Tag(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Tag.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator Tags(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Tags.FromJson(response);
 
 	/// <summary>
 	/// Преобразовать из VkResponse

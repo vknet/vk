@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -15,23 +14,4 @@ public class Tags
 	/// </summary>
 	[JsonProperty("count")]
 	public int Count { get; set; }
-
-	#region public methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Tags FromJson(VkResponse response)
-	{
-		var tags = new Tags
-		{
-			Count = response[key: "count"]
-		};
-
-		return tags;
-	}
-
-	#endregion
 }
