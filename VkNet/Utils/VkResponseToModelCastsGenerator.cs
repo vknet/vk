@@ -574,28 +574,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator NewsBannedExList(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: NewsBannedExList.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator NewsBannedList(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: NewsBannedList.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator NewsSuggestions(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: NewsSuggestions.FromJson(response);
