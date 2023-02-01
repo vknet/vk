@@ -30,6 +30,17 @@ public partial class VkResponse
 		: OnlineStatusType.FromJson(response: response);
 
 	/// <summary>
+	/// Преобразовать из VkResponse
+	/// </summary>
+	/// <param name="response"> Ответ. </param>
+	/// <returns>
+	/// Результат преобразования.
+	/// </returns>
+	public static implicit operator PostSourceData(VkResponse response) => response == null
+		? null
+		: PostSourceData.FromJson(response: response);
+
+	/// <summary>
 	/// Разобрать из json.
 	/// </summary>
 	/// <param name="response"> Ответ сервера. </param>
