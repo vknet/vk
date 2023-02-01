@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -34,31 +33,4 @@ public class NewsUserListItem
 	/// </summary>
 	[JsonProperty("source_ids")]
 	public IEnumerable<long> SourceIds { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static NewsUserListItem FromJson(VkResponse response)
-	{
-		var newsUserListItem = new NewsUserListItem
-		{
-			Id = response[key: "id"],
-			Title = response[key: "title"],
-			NoReposts = response[key: "no_reposts"]
-		};
-
-		VkResponseArray sourceIds = response[key: "source_ids"];
-
-		if (sourceIds.Count == 0)
-		{
-			newsUserListItem.SourceIds = new List<long>();
-		} else
-		{
-			newsUserListItem.SourceIds = sourceIds.ToReadOnlyCollectionOf<long>(selector: x => x);
-		}
-
-		return newsUserListItem;
-	}
 }
