@@ -1516,7 +1516,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-
 	public static implicit operator CommentDonut(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: CommentDonut.FromJson(response);
