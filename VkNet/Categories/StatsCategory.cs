@@ -70,6 +70,6 @@ public partial class StatsCategory : IStatsCategory
 			}
 		};
 
-		return _vk.Call("stats.getPostReach", parameters);
+		return _vk.Call<PostReach>("stats.getPostReach", parameters);
 	}
 }

@@ -206,8 +206,10 @@ public class UtilsCategoryTest : CategoryBaseTest
 
 		var obj = Api.Utils.ResolveScreenName("3f625aef-b285-4006-a87f-0367a04f1138");
 
-		obj.Should()
+		obj.Id.Should()
 			.BeNull();
+
+		obj.Type.Should().Be(0);
 	}
 
 	[Fact]

@@ -1,6 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 using VkNet.Abstractions;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -50,7 +51,7 @@ public partial class UtilsCategory : IUtilsCategory
 			}
 		};
 
-		return _vk.Call("utils.resolveScreenName", parameters);
+		return _vk.Call<VkObject>("utils.resolveScreenName", parameters);
 	}
 
 	/// <inheritdoc />
