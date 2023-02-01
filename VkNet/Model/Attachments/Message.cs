@@ -83,7 +83,7 @@ public class Message : MediaAttachment, IGroupUpdate
 			OutRead = response["out_read"],
 			Out = response["out"],
 			UpdateTime = response["update_time"],
-			Keyboard = response["keyboard"],
+			Keyboard = !response.ContainsKey("keyboard")?null:JsonConvert.DeserializeObject<MessageKeyboard>(response[key: "keyboard"].ToString()),
 			ConversationMessageId = response["conversation_message_id"],
 			Ref = response["ref"],
 			RefSource = response["ref_source"],
