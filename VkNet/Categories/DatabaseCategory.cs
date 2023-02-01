@@ -269,8 +269,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getChairs", parameters, true)
-			.ToVkCollectionOf<Chair>(x => x);
+		return _vk.Call<VkCollection<Chair>>("database.getChairs", parameters, true);
 	}
 
 	/// <inheritdoc />
