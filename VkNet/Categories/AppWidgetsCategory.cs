@@ -23,7 +23,7 @@ public partial class AppWidgetsCategory : IAppWidgetsCategory
 	public AppWidgetsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc/>
-	public UploadServerInfo GetAppImageUploadServer(AppWidgetImageType imageType) => _vk.Call("appWidgets.getAppImageUploadServer", new()
+	public UploadServerInfo GetAppImageUploadServer(AppWidgetImageType imageType) => _vk.Call<UploadServerInfo>("appWidgets.getAppImageUploadServer", new()
 	{
 		{
 			"image_type", imageType
@@ -71,7 +71,6 @@ public partial class AppWidgetsCategory : IAppWidgetsCategory
 			}
 		});
 
-	/// <param name="images"></param>
 	/// <inheritdoc/>
 	public ReadOnlyCollection<AppImage> GetImagesById(string images)
 	{
