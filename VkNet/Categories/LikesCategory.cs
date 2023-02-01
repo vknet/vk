@@ -1,6 +1,8 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -125,7 +127,8 @@ public partial class LikesCategory : ILikesCategory
 			}
 		}
 
-		return _vk.Call("likes.getList", parameters, true);
+		return _vk.Call<UserOrGroup>("likes.getList", parameters, true);
+
 	}
 
 	/// <inheritdoc />
