@@ -53,7 +53,7 @@ public class MoneyRequest : MediaAttachment
 		Id = response["id"],
 		FromId = response["from_id"],
 		ToId = response["to_id"],
-		Amount = response["amount"],
+		Amount = JsonConvert.DeserializeObject<AmountObject>(response["amount"].ToString()),
 		Processed = response["processed"],
 		InitUrl = response["init_url"]
 	};
