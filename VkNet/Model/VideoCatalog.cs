@@ -74,8 +74,7 @@ public class VideoCatalog
 			CanHide = response[key: "can_hide"],
 			Type = response[key: "type"],
 			Next = response[key: "next"],
-			Items = response[key: "items"]
-				.ToReadOnlyCollectionOf<VideoCatalogItem>(selector: x => x),
+			Items = JsonConvert.DeserializeObject<ReadOnlyCollection<VideoCatalogItem>>(response[key: "items"].ToString()),
 			View = response[key: "view"]
 		};
 
