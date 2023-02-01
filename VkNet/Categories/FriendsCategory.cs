@@ -7,6 +7,7 @@ using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -71,7 +72,7 @@ public partial class FriendsCategory : IFriendsCategory
 	/// <inheritdoc />
 	public FriendOnline GetOnline(FriendsGetOnlineParams @params)
 	{
-		var result = _vk.Call("friends.getOnline", new()
+		return _vk.Call<FriendOnline>("friends.getOnline", new()
 		{
 			{
 				"user_id", @params.UserId
@@ -92,8 +93,6 @@ public partial class FriendsCategory : IFriendsCategory
 				"offset", @params.Offset
 			}
 		});
-
-		return FriendOnline.FromJson(result);
 	}
 
 	/// <inheritdoc />
