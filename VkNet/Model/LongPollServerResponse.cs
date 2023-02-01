@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -36,26 +35,4 @@ public class LongPollServerResponse
 	/// </summary>
 	[JsonProperty("pts")]
 	public ulong? Pts { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static LongPollServerResponse FromJson(VkResponse response)
-	{
-		var longPollServerResponse = new LongPollServerResponse
-		{
-			Key = response["key"],
-			Server = response["server"],
-			Ts = response["ts"],
-			Pts = response["pts"]
-		};
-
-		return longPollServerResponse;
-	}
-
-	#endregion
 }
