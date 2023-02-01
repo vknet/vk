@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Infrastructure;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -79,16 +77,4 @@ public class TimelineThumbs
 	/// </summary>
 	[JsonProperty("frequency")]
 	public int? Frequency { get; set; }
-
-	#region public Methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static TimelineThumbs FromJson(VkResponse response) =>
-		JsonConvert.DeserializeObject<TimelineThumbs>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-
-	#endregion
 }
