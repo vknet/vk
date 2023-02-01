@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -22,12 +23,22 @@ public partial class WallCategory
 
 	/// <inheritdoc />
 	public Task<WallGetObject> GetByIdAsync(IEnumerable<string> posts
-											, bool? extended = null
+											, bool extended
 											, long? copyHistoryDepth = null
 											, ProfileFields fields = null
 											, bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(func: () =>
 		GetById(posts,
 			extended,
+			copyHistoryDepth,
+			fields,
+			skipAuthorization));
+
+	/// <inheritdoc />
+	public Task<ReadOnlyCollection<Post>> GetByIdAsync(IEnumerable<string> posts
+														, long? copyHistoryDepth = null
+														, ProfileFields fields = null
+														, bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(func: () =>
+		GetById(posts,
 			copyHistoryDepth,
 			fields,
 			skipAuthorization));

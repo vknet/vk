@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -110,10 +111,64 @@ public interface IWallCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/wall.getById
 	/// </remarks>
 	Task<WallGetObject> GetByIdAsync(IEnumerable<string> posts
-									, bool? extended = null
+									, bool extended
 									, long? copyHistoryDepth = null
 									, ProfileFields fields = null
 									, bool skipAuthorization = false);
+
+	/// <summary>
+	/// Возвращает список записей со стен пользователей или сообществ по их
+	/// идентификаторам.
+	/// </summary>
+	/// <param name="posts">
+	/// Перечисленные через запятую идентификаторы, которые представляют собой идущие
+	/// через знак подчеркивания id
+	/// владельцев стен и id самих записей на стене.
+	/// Пример значения posts:
+	/// 93388_21539,93388_20904,-1_340364 список строк, разделенных через запятую,
+	/// обязательный параметр (Список строк,
+	/// разделенных через запятую, обязательный параметр).
+	/// </param>
+	/// <param name="copyHistoryDepth">
+	/// Определяет размер массива copy_history, возвращаемого в ответе, если запись
+	/// является репостом записи с другой
+	/// стены.
+	/// Например, copy_history_depth=1 — copy_history будет содержать один элемент с
+	/// информацией о записи, прямым репостом
+	/// которой является текущая.
+	/// copy_history_depth=2 — copy_history будет содержать два элемента, добавляется
+	/// информация о записи, репостом которой
+	/// является первый элемент, и так далее (при условии, что иерархия репостов
+	/// требуемой глубины для текущей записи
+	/// существует). целое число, по умолчанию 2 (Целое число, по умолчанию 2).
+	/// </param>
+	/// <param name="fields">
+	/// Список дополнительных полей для профилей и  групп, которые необходимо вернуть.
+	/// См. описание полей объекта user и
+	/// описание полей объекта group.
+	/// Обратите внимание, этот параметр учитывается только при extended=1. список
+	/// строк, разделенных через запятую (Список
+	/// строк, разделенных через запятую).
+	/// </param>
+	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <returns>
+	/// После успешного выполнения возвращает список объектов записей со стены.
+	/// Если был задан параметр extended=1, ответ содержит три отдельных списка:
+	/// items — содержит объекты записей со стены;
+	/// profiles — содержит объекты пользователей с дополнительными полями sex, photo,
+	/// photo_medium_rec и online;
+	/// groups — содержит объекты сообществ.
+	/// Если запись является репостом записи с другой стены, в ответе дополнительно
+	/// возвращается массив copy_history
+	/// записей со стены, репостом которых является текущая.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/wall.getById
+	/// </remarks>
+	Task<ReadOnlyCollection<Post>> GetByIdAsync(IEnumerable<string> posts
+												, long? copyHistoryDepth = null
+												, ProfileFields fields = null
+												, bool skipAuthorization = false);
 
 	/// <summary>
 	/// Публикует новую запись на своей или чужой стене.
