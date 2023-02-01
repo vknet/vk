@@ -871,17 +871,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator SearchDialogsResponse(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: SearchDialogsResponse.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator StandInLife(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: StandInLife.FromJson(response);

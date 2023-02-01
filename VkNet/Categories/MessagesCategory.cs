@@ -201,7 +201,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.searchDialogs", parameters);
+		return _vk.Call<SearchDialogsResponse>("messages.searchDialogs", parameters);
 	}
 
 	/// <inheritdoc />
