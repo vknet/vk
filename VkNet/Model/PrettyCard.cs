@@ -75,7 +75,7 @@ public class PrettyCard
 		LinkUrlTarget = response["link_url_target"],
 		LinkUrl = response["link_url"],
 		Title = response["title"],
-		Button = response["button"],
+		Button = !response.ContainsKey("button") ? null : JsonConvert.DeserializeObject<Button>(response["button"].ToString()),
 		Images = response["images"]
 			.ToReadOnlyCollectionOf<Photo>(x => x),
 		ButtonText = response["button_text"],
