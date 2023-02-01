@@ -1,5 +1,4 @@
 using FluentAssertions;
-using VkNet.Enums.Filters;
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -26,11 +25,14 @@ public class DonutTests : CategoryBaseTest
 	public void GetFriends()
 	{
 		Url = "https://api.vk.com/method/donut.getFriends";
-		ReadJsonFile(JsonPaths.EmptyArray);
+		ReadCategoryJsonPath(nameof(GetFriends));
 		var result = Api.Donut.GetFriends(-173151748, 0, 3, new());
 
 		result.Should()
 			.NotBeNull();
+
+		result.TotalCount.Should()
+			.Be(10);
 	}
 
 	[Fact]

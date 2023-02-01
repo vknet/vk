@@ -1799,28 +1799,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator Subscription(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Subscription.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator SubscriptionsInfo(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: SubscriptionsInfo.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator CommentDonut(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: CommentDonut.FromJson(response);

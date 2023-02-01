@@ -33,22 +33,4 @@ public class Subscription
 	/// </summary>
 	[JsonProperty("status")]
 	public string Status { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Subscription FromJson(VkResponse response)
-	{
-		var subscription = new Subscription
-		{
-			OwnerId = response[key: "owner_id"],
-			NextPaymentDate = response[key: "next_payment_date"],
-			Amount = response[key: "amount"],
-			Status = response[key: "status"]
-		};
-
-		return subscription;
-	}
 }
