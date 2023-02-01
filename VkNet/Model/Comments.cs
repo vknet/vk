@@ -1,7 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -15,16 +14,19 @@ public class Comments
 	/// <summary>
 	/// Количество комментариев к записи.
 	/// </summary>
+	[JsonProperty("count")]
 	public int Count { get; set; }
 
 	/// <summary>
 	/// Признак может ли текущий пользователь добавить комментарий к записи.
 	/// </summary>
+	[JsonProperty("can_post")]
 	public bool CanPost { get; set; }
 
 	/// <summary>
 	/// Информация о том, могут ли сообщества комментировать запись..
 	/// </summary>
+	[JsonProperty("groups_can_post")]
 	public bool GroupsCanPost { get; set; }
 
 	/// <summary>
@@ -44,24 +46,4 @@ public class Comments
 	/// </summary>
 	[JsonProperty("list")]
 	public ReadOnlyCollection<Comment> List { get; set; }
-
-	/// <summary>
-	/// Разобрать из JSON.
-	/// </summary>
-	/// <param name="response"> Ответ от vk. </param>
-	/// <returns> </returns>
-	public static Comments FromJson(VkResponse response) => new()
-	{
-		Count = response["count"],
-		CanPost = response["can_post"],
-		GroupsCanPost = response["groups_can_post"],
-		CanOpen = response["can_open"],
-		CanClose = response["can_close"],
-		List = response["list"]
-			.ToReadOnlyCollectionOf<Comment>(x => x)
-	};
-
-	#region Методы
-
-	#endregion
 }

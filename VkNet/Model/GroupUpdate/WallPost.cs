@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -30,7 +31,7 @@ public class WallPost : Post, IGroupUpdate
 		ReplyOwnerId = response[key: "reply_owner_id"],
 		ReplyPostId = response[key: "reply_post_id"],
 		FriendsOnly = response[key: "friends_only"],
-		Comments = response[key: "comments"],
+		Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
 		Likes = response[key: "likes"],
 		Reposts = response[key: "reposts"],
 		PostType = response[key: "post_type"],

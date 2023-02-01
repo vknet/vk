@@ -159,7 +159,7 @@ public class Photo : MediaAttachment, IGroupUpdate
 			TagCreated = response["tag_created"],
 			TagId = response["tag_id"],
 			Likes = response["likes"],
-			Comments = response["comments"],
+			Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
 			CanComment = response["can_comment"],
 			Reposts = response["reposts"],
 			Tags = response["tags"],

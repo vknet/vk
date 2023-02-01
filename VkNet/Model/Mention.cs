@@ -118,7 +118,7 @@ public class Mention
 			Date = response[key: "date"],
 			Text = response[key: "text"],
 			Likes = response[key: "likes"],
-			Comments = response[key: "comments"],
+			Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
 			Attachment = response[key: "attachment"],
 			Geo = response[key: "geo"],
 			CopyOwnerId = response[key: "copy_owner_id"],
