@@ -13,7 +13,7 @@ public enum GoalType
 	/// <summary>
 	/// Переходы.
 	/// </summary>
-	Cpm = 1,
+	Cpm = 2,
 
 	/// <summary>
 	/// Отправка заявок
