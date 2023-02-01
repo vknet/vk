@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using VkNet.Model.RequestParams.Stories;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

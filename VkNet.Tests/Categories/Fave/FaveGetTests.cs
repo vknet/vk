@@ -1,6 +1,5 @@
 using System.Linq;
 using FluentAssertions;
-using VkNet.Model.RequestParams.Fave;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

@@ -7,7 +7,6 @@ using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Categories;
 

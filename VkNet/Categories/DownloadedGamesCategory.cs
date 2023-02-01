@@ -1,6 +1,5 @@
 ﻿using VkNet.Abstractions;
 using VkNet.Model.Results.DownloadedGames;
-using VkNet.Utils;
 
 namespace VkNet.Categories;
 

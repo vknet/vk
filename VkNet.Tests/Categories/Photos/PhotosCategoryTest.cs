@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;

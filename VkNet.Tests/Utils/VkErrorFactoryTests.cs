@@ -1,6 +1,5 @@
 using FluentAssertions;
 using VkNet.Exception;
-using VkNet.Model;
 using Xunit;
 
 namespace VkNet.Tests.Utils;

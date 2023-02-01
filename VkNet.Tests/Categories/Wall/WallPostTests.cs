@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using VkNet.Exception;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
 using Xunit;

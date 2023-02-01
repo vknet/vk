@@ -3,7 +3,6 @@ using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
 using Xunit;

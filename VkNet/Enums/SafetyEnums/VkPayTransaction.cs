@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Utils;
-using VkNet.Enums.SafetyEnums;
 using Newtonsoft.Json.Converters;
 
 namespace VkNet.Model.GroupUpdate;
