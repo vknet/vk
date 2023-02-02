@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -40,23 +39,4 @@ public class ChatPreviewField
 	/// </summary>
 	[JsonProperty(propertyName: "local_id")]
 	public int LocalId { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static ChatPreviewField FromJson(VkResponse response) => new()
-	{
-		AdminId = response[key: "admin_id"],
-		Members = response[key: "members"]
-			.ToReadOnlyCollectionOf<long>(selector: x => x),
-		Title = response[key: "title"],
-		Photo = JsonConvert.DeserializeObject<ChatPhoto>(response[key: "photo"].ToString()),
-		LocalId = response[key: "local_id"]
-	};
-
-	#endregion
 }

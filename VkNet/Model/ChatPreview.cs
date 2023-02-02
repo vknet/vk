@@ -44,7 +44,7 @@ public class ChatPreview
 	/// <returns> </returns>
 	public static ChatPreview FromJson(VkResponse response) => new()
 	{
-		Preview = response[key: "preview"],
+		Preview = JsonConvert.DeserializeObject<ChatPreviewField>(response[key: "preview"].ToString()),
 		Profiles = response[key: "profiles"]
 			.ToReadOnlyCollectionOf<User>(selector: x => x),
 		Groups = response[key: "groups"]
