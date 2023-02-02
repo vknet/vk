@@ -102,7 +102,7 @@ public class Chat
 			Photo50 = response[key: "photo_50"],
 			Photo100 = response[key: "photo_100"],
 			Photo200 = response[key: "photo_200"],
-			PushSettings = response[key: "push_settings"]
+			PushSettings = !response.ContainsKey("push_settings")?null:JsonConvert.DeserializeObject<ChatPushSettings>(response[key: "push_settings"].ToString())
 		};
 
 		return chat;
