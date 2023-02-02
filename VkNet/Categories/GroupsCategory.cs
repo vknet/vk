@@ -830,7 +830,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.addLink", parameters);
+		return _vk.Call<ExternalLink>("groups.addLink", parameters);
 	}
 
 	/// <inheritdoc />

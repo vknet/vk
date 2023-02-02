@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -71,30 +70,4 @@ public class ExternalLink
 		get => Name;
 		set => Name = value;
 	}
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static ExternalLink FromJson(VkResponse response)
-	{
-		var contact = new ExternalLink
-		{
-			Id = response[key: "id"],
-			Uri = response[key: "url"],
-			Name = response[key: "name"] ?? response[key: "title"],
-			Description = response[key: "desc"] ?? response[key: "description"],
-			Photo50 = response[key: "photo_50"],
-			Photo100 = response[key: "photo_100"],
-			EditTitle = response[key: "edit_title"],
-			ImageProcessing = response[key: "image_processing"]
-		};
-
-		return contact;
-	}
-
-	#endregion
 }

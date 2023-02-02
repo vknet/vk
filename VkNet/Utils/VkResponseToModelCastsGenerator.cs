@@ -255,17 +255,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator ExternalLink(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: ExternalLink.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator Faculty(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: Faculty.FromJson(response);
