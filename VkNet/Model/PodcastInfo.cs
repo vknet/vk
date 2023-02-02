@@ -47,7 +47,7 @@ public class PodcastInfo
 	/// <returns> </returns>
 	public static PodcastInfo FromJson(VkResponse response) => new()
 	{
-		Cover = response["cover"],
+		Cover = JsonConvert.DeserializeObject<Cover>(response["cover"].ToString()),
 		Plays = response["plays"],
 		IsFavorite = response["is_favorite"],
 		Description = response["description"],
