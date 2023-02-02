@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -34,24 +33,4 @@ public class ChatPreview
 	/// </summary>
 	[JsonProperty(propertyName: "emails")]
 	public IEnumerable<Email> Emails { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static ChatPreview FromJson(VkResponse response) => new()
-	{
-		Preview = JsonConvert.DeserializeObject<ChatPreviewField>(response[key: "preview"].ToString()),
-		Profiles = response[key: "profiles"]
-			.ToReadOnlyCollectionOf<User>(selector: x => x),
-		Groups = response[key: "groups"]
-			.ToReadOnlyCollectionOf<Group>(selector: x => x),
-		Emails = response[key: "emails"]
-			.ToReadOnlyCollectionOf<Email>(selector: x => x)
-	};
-
-	#endregion
 }
