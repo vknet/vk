@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -35,25 +34,4 @@ public class FaveVideoEx
 	/// </summary>
 	[JsonProperty(propertyName: "groups")]
 	public ReadOnlyCollection<Group> Groups { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static FaveVideoEx FromJson(VkResponse response)
-	{
-		var wallGetObject = new FaveVideoEx
-		{
-			Count = response[key: "count"],
-			Videos = response[key: "items"]
-				.ToReadOnlyCollectionOf<Video>(selector: r => r),
-			Profiles = response[key: "profiles"]
-				.ToReadOnlyCollectionOf<User>(selector: r => r),
-			Groups = response[key: "groups"]
-				.ToReadOnlyCollectionOf<Group>(selector: r => r)
-		};
-
-		return wallGetObject;
-	}
 }
