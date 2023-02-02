@@ -54,7 +54,7 @@ public class ChatPreviewField
 		Members = response[key: "members"]
 			.ToReadOnlyCollectionOf<long>(selector: x => x),
 		Title = response[key: "title"],
-		Photo = response[key: "photo"],
+		Photo = JsonConvert.DeserializeObject<ChatPhoto>(response[key: "photo"].ToString()),
 		LocalId = response[key: "local_id"]
 	};
 
