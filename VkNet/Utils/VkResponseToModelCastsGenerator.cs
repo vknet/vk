@@ -79,17 +79,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator Connections(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Connections.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator Contact(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: Contact.FromJson(response);
@@ -654,7 +643,7 @@ public partial class VkResponse
 	public static implicit operator SchoolClass(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: SchoolClass.FromJson(response);
-	
+
 	/// <summary>
 	/// Преобразовать из VkResponse
 	/// </summary>

@@ -47,7 +47,9 @@ public class User
 			HasMobile = response["has_mobile"],
 			MobilePhone = response["mobile_phone"] ?? response["phone"],
 			HomePhone = response["home_phone"],
-			Connections = response,
+			Twitter = response["twitter"],
+			Facebook = response["facebook"],
+			Skype = response["skype"],
 			Site = response["site"],
 			Education = response,
 			Universities = response["universities"]
