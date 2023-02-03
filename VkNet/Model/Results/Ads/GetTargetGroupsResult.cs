@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -83,25 +82,4 @@ public class GetTargetGroupsResult
 	/// </summary>
 	[JsonProperty("lookalike_source")]
 	public long LookalikeSource { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GetTargetGroupsResult FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		Name = response["name"],
-		LastUpdated = response["last_updated"],
-		Domain = response["domain"],
-		Pixel = response["pixel"],
-		IsAudience = response["is_audience"],
-		IsShared = response["is_shared"],
-		ApiSource = response["api_source"],
-		Lifetime = response["lifetime"],
-		AudienceCount = response["audience_count"],
-		LookalikeSource = response["lookalike_source"],
-		FileSource = response["file_source"]
-	};
 }

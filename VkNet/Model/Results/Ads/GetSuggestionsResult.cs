@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -39,18 +38,4 @@ public class GetSuggestionsResult
 	/// </summary>
 	[JsonProperty("parent")]
 	public string Parent { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GetSuggestionsResult FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		Name = response["name"],
-		Desc = response["desc"],
-		Type = response["type"],
-		Parent = response["parent"]
-	};
 }

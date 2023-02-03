@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -21,15 +20,4 @@ public class VideoUploadUrlResult
 	/// </summary>
 	[JsonProperty("errcode")]
 	public int ErrCode { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static VideoUploadUrlResult FromJson(VkResponse response) => new()
-	{
-		Video = response["video"],
-		ErrCode = response["errcode"]
-	};
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -47,19 +46,4 @@ public class GetTargetPixelsResult
 	/// </summary>
 	[JsonProperty("pixel")]
 	public string Pixel { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GetTargetPixelsResult FromJson(VkResponse response) => new()
-	{
-		TargetPixelId = response["target_pixel_id"],
-		Name = response["name"],
-		LastUpdated = response["last_updated"],
-		Domain = response["domain"],
-		CategoryId = response["category_id"],
-		Pixel = response["pixel"]
-	};
 }

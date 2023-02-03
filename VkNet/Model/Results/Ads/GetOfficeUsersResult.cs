@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -25,16 +24,4 @@ public class GetOfficeUsersResult
 	/// </summary>
 	[JsonProperty("accesses")]
 	public ReadOnlyCollection<OfficeUsersAccesses> Accesses { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GetOfficeUsersResult FromJson(VkResponse response) => new()
-	{
-		UserId = response["user_id"],
-		Accesses = response["accesses"]
-			.ToReadOnlyCollectionOf<OfficeUsersAccesses>()
-	};
 }
