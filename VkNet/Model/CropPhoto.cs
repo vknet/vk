@@ -43,8 +43,8 @@ public class CropPhoto
 		var cropPhoto = new CropPhoto
 		{
 			Photo = response[key: "photo"],
-			Crop = response[key: "crop"],
-			Rect = response[key: "rect"]
+			Crop = JsonConvert.DeserializeObject<Rect>(response[key: "crop"].ToString()),
+			Rect = JsonConvert.DeserializeObject<Rect>(response[key: "rect"].ToString())
 		};
 
 		return cropPhoto;
