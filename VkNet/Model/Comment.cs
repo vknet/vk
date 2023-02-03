@@ -129,7 +129,7 @@ public class Comment
 		FromId = response["from_id"],
 		Date = response["date"],
 		Text = response["text"],
-		Donut = response["donut"],
+		Donut = !response.ContainsKey("donut")?null:JsonConvert.DeserializeObject<CommentDonut>(response["donut"].ToString()),
 		ReplyToUser = response["reply_to_user"],
 		ReplyToComment = response["reply_to_comment"],
 		Attachments = response["attachments"]
