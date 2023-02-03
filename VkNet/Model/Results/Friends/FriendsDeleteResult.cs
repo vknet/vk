@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -39,22 +38,4 @@ public class FriendsDeleteResult
 	/// </summary>
 	[JsonProperty(propertyName: "suggestion_deleted")]
 	public bool? SuggestionDeleted { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static FriendsDeleteResult FromJson(VkResponse response) => new()
-	{
-		Success = response[key: "success"],
-		FriendDeleted = response[key: "friend_deleted"],
-		OutRequestDeleted = response[key: "out_request_deleted"],
-		InRequestDeleted = response[key: "in_request_deleted"],
-		SuggestionDeleted = response[key: "suggestion_deleted"]
-	};
-
-	#endregion
 }
