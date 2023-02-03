@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Model.Attachments;
 using VkNet.Model.RequestParams;
@@ -215,7 +217,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.repost", parameters);
+		return _vk.Call<RepostResult>("wall.repost", parameters);
 	}
 
 	/// <inheritdoc />
@@ -247,7 +249,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.repost", parameters);
+		return _vk.Call<RepostResult>("wall.repost", parameters);
 	}
 
 	/// <inheritdoc />

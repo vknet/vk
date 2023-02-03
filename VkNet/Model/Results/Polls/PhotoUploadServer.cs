@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -15,14 +14,4 @@ public class PhotoUploadServer
 	/// </summary>
 	[JsonProperty("upload_url")]
 	public string UploadUrl { get; set; }
-
-	/// <summary>
-	/// Разобрать из Json
-	/// </summary>
-	/// <param name="response"></param>
-	/// <returns></returns>
-	public static PhotoUploadServer FromJson(VkResponse response) => new()
-	{
-		UploadUrl = response["upload_url"]
-	};
 }
