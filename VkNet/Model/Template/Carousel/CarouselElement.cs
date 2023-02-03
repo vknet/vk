@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Model.Keyboard;
-using VkNet.Utils;
 
 namespace VkNet.Model.Template.Carousel;
 
@@ -50,37 +49,4 @@ public class CarouselElement
 	[JsonProperty("action")]
 	[CanBeNull]
 	public CarouselElementAction Action { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CarouselElement FromJson(VkResponse response) => new()
-	{
-		Title = response[key: "title"],
-		Description = response[key: "description"],
-		Action = response[key: "action"],
-		PhotoId = response[key: "photo_id"],
-		Buttons = !response.ContainsKey("buttons")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<MessageKeyboardButton>>(response[key: "buttons"].ToString())
-	};
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator CarouselElement(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }
