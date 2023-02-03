@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -79,34 +78,4 @@ public class Chat
 	/// </summary>
 	[JsonProperty("kicked")]
 	public bool Kicked { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Chat FromJson(VkResponse response)
-	{
-		var chat = new Chat
-		{
-			Id = response[key: "id"],
-			Type = response[key: "type"],
-			Title = response[key: "title"],
-			AdminId = Utilities.GetNullableLongId(response: response[key: "admin_id"]),
-			Users = response[key: "users"]
-				.ToReadOnlyCollectionOf<long>(selector: x => x),
-			Left = response.ContainsKey(key: "left") && response[key: "left"],
-			Kicked = response[key: "kicked"],
-			Photo50 = response[key: "photo_50"],
-			Photo100 = response[key: "photo_100"],
-			Photo200 = response[key: "photo_200"],
-			PushSettings = !response.ContainsKey("push_settings")?null:JsonConvert.DeserializeObject<ChatPushSettings>(response[key: "push_settings"].ToString())
-		};
-
-		return chat;
-	}
-
-	#endregion
 }

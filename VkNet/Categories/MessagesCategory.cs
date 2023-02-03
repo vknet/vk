@@ -907,13 +907,19 @@ public partial class MessagesCategory : IMessagesCategory
 	}
 
 	/// <inheritdoc />
-	public Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null) => GetChat(new[]
+	public Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null) => _vk.Call<Chat>("messages.getChat",
+		new()
+		{
 			{
-				chatId
+				"chat_id", chatId
 			},
-			fields,
-			nameCase)
-		.FirstOrDefault();
+			{
+				"fields", fields
+			},
+			{
+				"name_case", nameCase
+			}
+		});
 
 	/// <inheritdoc />
 	public ChatPreview GetChatPreview(string link, ProfileFields fields) => _vk.Call<ChatPreview>("messages.getChatPreview",
@@ -955,14 +961,7 @@ public partial class MessagesCategory : IMessagesCategory
 			parameters.Add("chat_id", chatIds.ElementAt(0));
 		}
 
-		var response = _vk.Call("messages.getChat", parameters);
-
-		return chatIds.Count() > 1
-			? response.ToReadOnlyCollectionOf<Chat>(c => c)
-			: new(new List<Chat>
-			{
-				response
-			});
+		return _vk.Call<ReadOnlyCollection<Chat>>("messages.getChat", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1138,7 +1137,7 @@ public partial class MessagesCategory : IMessagesCategory
 	}
 
 	/// <inheritdoc />
-	public Chat DeleteChatPhoto(out ulong messageId, ulong chatId, ulong? groupId = null)
+	public DeleteChatPhotoResult DeleteChatPhoto(ulong chatId, ulong? groupId = null)
 	{
 		var parameters = new VkParameters
 		{
@@ -1150,10 +1149,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		var result = _vk.Call("messages.deleteChatPhoto", parameters);
-		messageId = result["message_id"];
-
-		return result["chat"];
+		return _vk.Call<DeleteChatPhotoResult>("messages.deleteChatPhoto", parameters);
 	}
 
 	/// <inheritdoc />

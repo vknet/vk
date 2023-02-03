@@ -34,7 +34,7 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 									bool deleteForAll = false);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteChatPhotoAsync"/>
-	Chat DeleteChatPhoto(out ulong messageId, ulong chatId, ulong? groupId = null);
+	DeleteChatPhotoResult DeleteChatPhoto(ulong chatId, ulong? groupId = null);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.DenyMessagesFromGroupAsync"/>
 	bool DenyMessagesFromGroup(long groupId);

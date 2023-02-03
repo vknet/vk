@@ -155,7 +155,7 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteChatPhoto
 	/// </remarks>
-	Task<Chat> DeleteChatPhotoAsync(ulong chatId, ulong? groupId = null);
+	Task<DeleteChatPhotoResult> DeleteChatPhotoAsync(ulong chatId, ulong? groupId = null);
 
 	/// <summary>
 	/// Позволяет запретить отправку сообщений от сообщества текущему пользователю.
