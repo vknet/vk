@@ -1,5 +1,7 @@
 {
-  "response": [
+  "response":
+  { "count": 21,
+	"items":[
     {
       "cid": 1,
       "title": "Москва",
@@ -15,4 +17,4 @@
       "title": "Волгоград"
     }
   ]
-}
+}}

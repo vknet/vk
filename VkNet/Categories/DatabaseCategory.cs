@@ -113,7 +113,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 		VkErrors.ThrowIfNumberIsNegative(() => getCitiesParams.CountryId);
 		VkErrors.ThrowIfNumberIsNegative(() => getCitiesParams.RegionId);
 
-		return _vk.Call("database.getCities", new()
+		return _vk.Call<VkCollection<City>>("database.getCities", new()
 			{
 				{
 					"country_id", getCitiesParams.CountryId
@@ -133,8 +133,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 				{
 					"offset", getCitiesParams.Offset
 				}
-			}, true)
-			.ToVkCollectionOf<City>(x => x);
+			}, true);
 	}
 
 	/// <inheritdoc />
@@ -148,8 +147,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getCitiesById", parameters, true)
-			.ToReadOnlyCollectionOf<City>(x => x);
+		return _vk.Call<ReadOnlyCollection<City>>("database.getCitiesById", parameters, true);
 	}
 
 	/// <inheritdoc />

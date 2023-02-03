@@ -73,7 +73,7 @@ public class Group
 			Photo200 = response["photo_200"],
 
 			// опциональные поля
-			City = response["city"],
+			City = !response.ContainsKey("city")?null:JsonConvert.DeserializeObject<City>(response["city"].ToString()),
 			Country = response["country"],
 			Place = response["place"],
 			Description = response["description"],
