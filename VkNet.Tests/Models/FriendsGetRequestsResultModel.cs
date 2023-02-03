@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -14,10 +13,11 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 	{
 		ReadCategoryJsonPath(nameof(ShouldHaveField_Message));
 
-		var response = GetResponse();
-		var result = FriendsGetRequestsResult.FromJson(response);
+		Url = "https://api.vk.com/method/friends.getRequests";
 
-		result.Message.Should()
+		var result = Api.Friends.GetRequestsExtended(new());
+
+		result[0].Message.Should()
 			.Be("text");
 	}
 
@@ -26,10 +26,11 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 	{
 		ReadCategoryJsonPath(nameof(ShouldHaveField_Mutual));
 
-		var response = GetResponse();
-		var result = FriendsGetRequestsResult.FromJson(response);
+		Url = "https://api.vk.com/method/friends.getRequests";
 
-		result.Mutual.Should()
+		var result = Api.Friends.GetRequestsExtended(new());
+
+		result[0].Mutual.Should()
 			.NotBeEmpty();
 	}
 
@@ -38,10 +39,11 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 	{
 		ReadCategoryJsonPath(nameof(ShouldHaveField_UserId));
 
-		var response = GetResponse();
-		var result = FriendsGetRequestsResult.FromJson(response);
+		Url = "https://api.vk.com/method/friends.getRequests";
 
-		result.UserId.Should()
+		var result = Api.Friends.GetRequestsExtended(new());
+
+		result[0].UserId.Should()
 			.Be(221634238L);
 	}
 }

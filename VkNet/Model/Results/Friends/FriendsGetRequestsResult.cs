@@ -28,39 +28,6 @@ public class FriendsGetRequestsResult
 	/// <summary>
 	/// Текст сообщения
 	/// </summary>
-
-	//[JsonProperty("message")]
+	[JsonProperty("message")]
 	public string Message { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static FriendsGetRequestsResult FromJson(VkResponse response) => new()
-	{
-		UserId = response[key: "user_id"],
-		Mutual = response[key: "mutual"]
-			.ToVkCollectionOf<long>(x => x, "users"),
-		Message = response[key: "message"]
-	};
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator FriendsGetRequestsResult(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response: response)
-			: null;
-	}
 }

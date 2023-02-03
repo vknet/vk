@@ -1,3 +1,10 @@
 {
-  "user_id": 221634238
+  "response": {
+	"count": 1,
+	"items": [
+	  {
+		"user_id": 221634238
+	  }
+	]
+  }
 }
