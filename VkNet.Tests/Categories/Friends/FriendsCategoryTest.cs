@@ -5,7 +5,6 @@ using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Exception;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
