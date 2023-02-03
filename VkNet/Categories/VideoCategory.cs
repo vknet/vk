@@ -333,7 +333,7 @@ public partial class VideoCategory : IVideoCategory
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
-		return _vk.Call("video.getComments", new()
+		return _vk.Call<VkCollection<Comment>>("video.getComments", new()
 			{
 				{
 					"owner_id", @params.OwnerId
@@ -362,8 +362,7 @@ public partial class VideoCategory : IVideoCategory
 				{
 					"fields", @params.Fields
 				}
-			})
-			.ToVkCollectionOf<Comment>(selector: x => x);
+			});
 	}
 
 	/// <inheritdoc />

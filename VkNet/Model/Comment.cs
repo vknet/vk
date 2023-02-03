@@ -5,7 +5,6 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -113,53 +112,6 @@ public class Comment
 	/// </summary>
 	[JsonProperty("likes")]
 	public Likes Likes { get; set; }
-
-	#endregion
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Comment FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		FromId = response["from_id"],
-		Date = response["date"],
-		Text = response["text"],
-		Donut = !response.ContainsKey("donut")?null:JsonConvert.DeserializeObject<CommentDonut>(response["donut"].ToString()),
-		ReplyToUser = response["reply_to_user"],
-		ReplyToComment = response["reply_to_comment"],
-		Attachments = response["attachments"]
-			.ToReadOnlyCollectionOf<Attachment>(x => x),
-		Likes = response["likes"],
-		PostId = response["post_id"],
-		PhotoId = response["pid"],
-		OwnerId = response["owner_id"],
-		ParentsStack = response["parents_stack"]
-			.ToReadOnlyCollectionOf<long>(x => x),
-		Thread = !response.ContainsKey("thread")?null:JsonConvert.DeserializeObject<CommentThread>(response["thread"].ToString()),
-
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="Comment" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Comment" /></returns>
-	public static implicit operator Comment(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 
 	#endregion
 }
