@@ -191,11 +191,25 @@ public class AccountCategoryTest : CategoryBaseTest
 	public void GetCounters_WhenServerReturnsEmptyResponse()
 	{
 		Url = "https://api.vk.com/method/account.getCounters";
-		ReadJsonFile(JsonPaths.EmptyArray);
+		ReadJsonFile(JsonPaths.EmptyObject);
 
 		var counters = Api.Account.GetCounters(CountersFilter.All);
 
-		counters.Should()
+		counters.Events.Should()
+			.BeNull();
+		counters.Albums.Should()
+			.BeNull();
+		counters.Groups.Should()
+			.BeNull();
+		counters.Gifts.Should()
+			.BeNull();
+		counters.Audios.Should()
+			.BeNull();
+		counters.Followers.Should()
+			.BeNull();
+		counters.UserPhotos.Should()
+			.BeNull();
+		counters.UserVideos.Should()
 			.BeNull();
 	}
 
@@ -314,7 +328,7 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be("Кривянская");
 
 		info.Status.Should()
-			.Be("♠ Во мне нет ничего первоначального. Я — совместное усилие всех тех, кого я когда-то знал.");
+			.Be("&#9824; Во мне нет ничего первоначального. Я — совместное усилие всех тех, кого я когда-то знал.");
 
 		info.Phone.Should()
 			.Be("+7 *** *** ** 74");

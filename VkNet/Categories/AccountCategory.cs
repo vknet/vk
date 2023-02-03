@@ -25,7 +25,7 @@ public partial class AccountCategory : IAccountCategory
 	public AccountCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
-	public Counters GetCounters(CountersFilter filter) => _vk.Call("account.getCounters",
+	public Counters GetCounters(CountersFilter filter) => _vk.Call<Counters>("account.getCounters",
 		new()
 		{
 			{
@@ -48,7 +48,7 @@ public partial class AccountCategory : IAccountCategory
 			}
 		};
 
-		return _vk.Call("account.setNameInMenu", parameters);
+		return _vk.Call<bool>("account.setNameInMenu", parameters);
 	}
 
 	/// <inheritdoc />
@@ -61,7 +61,7 @@ public partial class AccountCategory : IAccountCategory
 			}
 		};
 
-		return _vk.Call("account.setOnline", parameters);
+		return _vk.Call<bool>("account.setOnline", parameters);
 	}
 
 	/// <inheritdoc />
@@ -202,7 +202,7 @@ public partial class AccountCategory : IAccountCategory
 			}
 		};
 
-		return _vk.Call("account.getActiveOffers", parameters);
+		return _vk.Call<InformationAboutOffers>("account.getActiveOffers", parameters);
 	}
 
 	/// <inheritdoc />
@@ -310,7 +310,7 @@ public partial class AccountCategory : IAccountCategory
 	[Pure]
 	public AccountSaveProfileInfoParams GetProfileInfo()
 	{
-		User user = _vk.Call("account.getProfileInfo", VkParameters.Empty);
+		var user = _vk.Call<AccountSaveProfileInfoParams>("account.getProfileInfo", VkParameters.Empty);
 
 		return new()
 		{
@@ -327,7 +327,7 @@ public partial class AccountCategory : IAccountCategory
 			RelationPartner = user.RelationPartner,
 			ScreenName = user.ScreenName,
 			Status = user.Status,
-			Phone = user.MobilePhone
+			Phone = user.Phone
 		};
 	}
 
