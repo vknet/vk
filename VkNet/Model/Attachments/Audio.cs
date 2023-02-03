@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
@@ -163,10 +164,8 @@ public class Audio : MediaAttachment, IGroupUpdate
 		IsExplicit = response["is_explicit"],
 		Genre = response["genre_id"] ?? response["genre"],
 		Date = response["date"],
-		MainArtists = response["main_artists"]
-			.ToReadOnlyCollectionOf<AudioArtist>(x => x),
-		FeaturedArtists = response["featured_artists"]
-			.ToReadOnlyCollectionOf<AudioArtist>(x => x),
+		MainArtists = !response.ContainsKey("main_artists") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<AudioArtist>>(response["main_artists"].ToString()),
+		FeaturedArtists = !response.ContainsKey("featured_artists") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<AudioArtist>>(response["featured_artists"].ToString()),
 		Subtitle = response["subtitle"]
 	};
 

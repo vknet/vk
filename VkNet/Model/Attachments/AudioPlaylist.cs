@@ -170,8 +170,7 @@ public class AudioPlaylist : MediaAttachment
 			Type = response["type"],
 			Title = response["title"],
 			Description = response["description"],
-			Genres = response["genres"]
-				.ToReadOnlyCollectionOf<AudioPlaylistGenre>(x => x),
+			Genres = !response.ContainsKey("genres") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<AudioPlaylistGenre>>(response["genres"].ToString()),
 			Count = response["count"],
 			IsFollowing = response["is_following"],
 			Followers = response["followers"],
@@ -179,20 +178,16 @@ public class AudioPlaylist : MediaAttachment
 			CreateTime = response["create_time"],
 			UpdateTime = response["update_time"],
 			Year = response["year"],
-			Original = response["original"],
-			Follower = response["followed"],
-			Photo = response["photo"],
-			Thumbs = response["thumbs"]
-				.ToReadOnlyCollectionOf<AudioCover>(x => x),
+			Original = !response.ContainsKey("original") ? null : JsonConvert.DeserializeObject<AudioPlaylistOriginal>(response["original"].ToString()),
+			Follower = !response.ContainsKey("followed") ? null : JsonConvert.DeserializeObject<AudioPlaylistFollower>(response["followed"].ToString()),
+			Photo = !response.ContainsKey("photo") ? null : JsonConvert.DeserializeObject<AudioCover>(response["photo"].ToString()),
+			Thumbs = !response.ContainsKey("thumbs") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<AudioCover>>(response["thumbs"].ToString()),
 			OwnerIds = response["display_owner_ids"]
 				.ToReadOnlyCollectionOf<long>(x => x),
 			MainArtist = response["main_artist"],
-			Artists = response["artists"]
-				.ToReadOnlyCollectionOf<AudioArtist>(x => x),
-			MainArtists = response["main_artists"]
-				.ToReadOnlyCollectionOf<AudioArtist>(x => x),
-			FeaturedArtists = response["featured_artists"]
-				.ToReadOnlyCollectionOf<AudioArtist>(x => x),
+			Artists = !response.ContainsKey("artists") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<AudioArtist>>(response["artists"].ToString()),
+			MainArtists = !response.ContainsKey("main_artists") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<AudioArtist>>(response["main_artists"].ToString()),
+			FeaturedArtists = !response.ContainsKey("featured_artists") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<AudioArtist>>(response["featured_artists"].ToString()),
 			AccessKey = response["access_key"],
 			IsExplicit = response["is_explicit"]
 		};
