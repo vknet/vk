@@ -155,7 +155,7 @@ public class Audio : MediaAttachment, IGroupUpdate
 		Duration = response["duration"],
 		Url = response["url"],
 		LyricsId = response["lyrics_id"],
-		Album = response["album"],
+		Album = !response.ContainsKey("album") ? null : JsonConvert.DeserializeObject<AudioAlbum>(response["album"].ToString()),
 		AccessKey = response["access_key"],
 		IsHq = response["is_hq"],
 		IsLicensed = response["is_licensed"],
