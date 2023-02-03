@@ -193,7 +193,7 @@ public class Post : MediaAttachment
 			AccessKey = response["access_key"]
 		};
 
-		res.Comments = response["comments"];
+		res.Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString());
 		res.Likes = response["likes"];
 		res.Reposts = response["reposts"];
 		res.PostType = response["post_type"];

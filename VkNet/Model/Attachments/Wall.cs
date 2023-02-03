@@ -167,7 +167,7 @@ public class Wall : MediaAttachment
 			ReplyOwnerId = response["reply_owner_id"],
 			ReplyPostId = response["reply_post_id"],
 			FriendsOnly = response["friends_only"],
-			Comments = response["comments"],
+			Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
 			Likes = response["likes"],
 			Reposts = response["reposts"],
 			PostType = response["post_type"],
