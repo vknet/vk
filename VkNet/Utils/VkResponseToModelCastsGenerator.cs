@@ -1091,17 +1091,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator UserOrGroup(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: UserOrGroup.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator VideoCatalog(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: VideoCatalog.FromJson(response);
