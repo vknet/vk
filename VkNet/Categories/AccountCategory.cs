@@ -152,7 +152,6 @@ public partial class AccountCategory : IAccountCategory
 		};
 
 		return _vk.Call<AccountPushSettings>("account.getPushSettings", parameters);
-
 	}
 
 	/// <inheritdoc />
