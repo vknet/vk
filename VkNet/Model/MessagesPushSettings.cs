@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -21,20 +20,4 @@ public class MessagesPushSettings
 	/// </summary>
 	[JsonProperty("no_text")]
 	public bool NoText { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static MessagesPushSettings FromJson(VkResponse response)
-	{
-		var result = new MessagesPushSettings
-		{
-			NoSound = response[key: "no_sound"],
-			NoText = response[key: "no_text"]
-		};
-
-		return result;
-	}
 }
