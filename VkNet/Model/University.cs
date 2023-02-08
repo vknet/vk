@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -71,32 +70,6 @@ public class University
 		get => Name;
 		set => Name = value;
 	}
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static University FromJson(VkResponse response) => new()
-	{
-		Id = response[key: "id"],
-		Country = response[key: "country"],
-		City = response[key: "city"],
-		Name = response[key: "name"] ?? response[key: "title"],
-		Faculty = response[key: "faculty"],
-		FacultyName = response[key: "faculty_name"],
-		Chair = response[key: "chair"],
-		ChairName = response[key: "chair_name"],
-		Graduation = response[key: "graduation"],
-
-		// установлено экcпериментальным путем
-		EducationForm = response[key: "education_form"],
-		EducationStatus = response[key: "education_status"]
-	};
-
-	#endregion
 
 	#region Поля, установленные экспериментально
 

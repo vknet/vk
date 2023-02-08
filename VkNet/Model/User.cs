@@ -52,10 +52,8 @@ public class User
 			Skype = response["skype"],
 			Site = response["site"],
 			Education = response,
-			Universities = response["universities"]
-				.ToReadOnlyCollectionOf<University>(x => x),
+			Universities = !response.ContainsKey("universities")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<University>>(response["universities"].ToString()),
 			Schools =  !response.ContainsKey("schools")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<School>>(response["schools"].ToString()),
-
 			CanPost = response["can_post"],
 			CanSeeAllPosts = response["can_see_all_posts"],
 			CanSeeAudio = response["can_see_audio"],
