@@ -196,7 +196,7 @@ public class Wall : MediaAttachment
 			PostSource = response["post_source"],
 			Attachments = response["attachments"]
 				.ToReadOnlyCollectionOf<Attachment>(x => x),
-			Geo = response["geo"],
+			Geo = !response.ContainsKey("geo") ? null : JsonConvert.DeserializeObject<Geo>(response[key: "geo"].ToString()),
 			SignerId = response["signer_id"],
 			CopyPostDate = response["copy_post_date"],
 			CopyPostType = response["copy_post_type"],

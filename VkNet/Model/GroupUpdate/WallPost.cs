@@ -39,7 +39,7 @@ public class WallPost : Post, IGroupUpdate
 		PostSource = response[key: "post_source"],
 		Attachments = response[key: "attachments"]
 			.ToReadOnlyCollectionOf<Attachment>(selector: x => x),
-		Geo = response[key: "geo"],
+		Geo = !response.ContainsKey("geo") ? null : JsonConvert.DeserializeObject<Geo>(response[key: "geo"].ToString()),
 		SignerId = response[key: "signer_id"],
 		CopyPostDate = response[key: "copy_post_date"],
 		CopyPostType = response[key: "copy_post_type"],
