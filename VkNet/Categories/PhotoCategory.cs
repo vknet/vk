@@ -447,7 +447,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.saveOwnerCoverPhoto", parameters);
+		return _vk.Call<GroupCover>("photos.saveOwnerCoverPhoto", parameters);
 	}
 
 	/// <inheritdoc />

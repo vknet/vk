@@ -178,28 +178,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator GroupCover(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: GroupCover.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator GroupCoverImage(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: GroupCoverImage.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator GroupsCatalogInfo(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: GroupsCatalogInfo.FromJson(response);
