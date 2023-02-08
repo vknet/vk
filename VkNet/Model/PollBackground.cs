@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -62,40 +61,4 @@ public class PollBackground
 	/// </summary>
 	[JsonProperty("points")]
 	public ReadOnlyCollection<PollBackgroundPoint> Points { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static PollBackground FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		Type = response["type"],
-		Angle = response["angle"],
-		Color = response["color"],
-		Width = response["width"],
-		Height = response["height"],
-		Images = response["images"]
-			.ToReadOnlyCollectionOf<Photo>(),
-		Points = response["points"]
-			.ToReadOnlyCollectionOf<PollBackgroundPoint>()
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="PollBackground" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="PollBackground" /></returns>
-	public static implicit operator PollBackground(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

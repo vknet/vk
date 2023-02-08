@@ -92,28 +92,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator PollAnswer(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: PollAnswer.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator PollAnswerVoters(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: PollAnswerVoters.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator PostReach(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: PostReach.FromJson(response);

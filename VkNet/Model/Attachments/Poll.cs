@@ -156,8 +156,8 @@ public class Poll : MediaAttachment
 		Votes = response["votes"],
 		AnswerId = response["answer_id"],
 		Anonymous = response["anonymous"],
-		Answers = response["answers"]
-			.ToReadOnlyCollectionOf<PollAnswer>(x => x),
+		Answers = !response.ContainsKey("answers")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<PollAnswer>>(response["answers"].ToString()),
+
 		IsBoard = response["is_board"],
 		EndDate = response["end_date"],
 		CanVote = response["can_vote"],
@@ -168,7 +168,7 @@ public class Poll : MediaAttachment
 		Multiple = response["multiple"],
 		Closed = response["closed"],
 		Photo = response["photo"],
-		Background = response["background"],
+		Background = !response.ContainsKey("background")?null:JsonConvert.DeserializeObject<PollBackground>(response["background"].ToString()),
 		Friends = response["friends"]
 			.ToReadOnlyCollectionOf<User>(x => x),
 		AnswerIds = response["answer_ids"]
