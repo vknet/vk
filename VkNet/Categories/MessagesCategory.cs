@@ -1214,9 +1214,9 @@ public partial class MessagesCategory : IMessagesCategory
 		});
 
 	/// <inheritdoc />
-	public ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom)
+	public ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params)
 	{
-		var result = _vk.Call("messages.getHistoryAttachments",
+		return _vk.Call<ReadOnlyCollection<HistoryAttachment>>("messages.getHistoryAttachments",
 			new()
 			{
 				{
@@ -1241,10 +1241,6 @@ public partial class MessagesCategory : IMessagesCategory
 					"group_id", @params.GroupId
 				}
 			});
-
-		nextFrom = result["next_from"];
-
-		return result.ToReadOnlyCollectionOf<HistoryAttachment>(o => o);
 	}
 
 	/// <inheritdoc />

@@ -201,7 +201,7 @@ public partial class MessagesCategory
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetHistoryAttachments(@params, out var _));
+			GetHistoryAttachments(@params));
 
 	/// <inheritdoc />
 	public Task<string> GetInviteLinkAsync(ulong peerId, bool reset) => TypeHelper.TryInvokeMethodAsync(() => GetInviteLink(peerId, reset));

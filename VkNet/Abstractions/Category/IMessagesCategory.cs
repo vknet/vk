@@ -101,7 +101,7 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	long SendSticker(MessagesSendStickerParams @params);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetHistoryAttachmentsAsync"/>
-	ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom);
+	ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetInviteLinkAsync"/>
 	string GetInviteLink(ulong peerId, bool reset);
