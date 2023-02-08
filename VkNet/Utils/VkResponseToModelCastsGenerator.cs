@@ -20,17 +20,6 @@ public partial class VkResponse
 		: SubjectListItem.FromJson(response);
 
 	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator GroupMarketSettings(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: GroupMarketSettings.FromJson(response);
-
-	/// <summary>
 	/// Разобрать из json.
 	/// </summary>
 	/// <param name="response"> Ответ сервера. </param>
