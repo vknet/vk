@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -22,19 +21,4 @@ public class Lyrics
 	/// </summary>
 	[JsonProperty("text")]
 	public string Text { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Lyrics FromJson(VkResponse response) => new()
-	{
-		Id = response[key: "lyrics_id"],
-		Text = response[key: "text"]
-	};
-
-	#endregion
 }
