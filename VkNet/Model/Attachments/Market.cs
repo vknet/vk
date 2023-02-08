@@ -128,7 +128,7 @@ public class Market : MediaAttachment
 		OwnerId = response["owner_id"],
 		Title = response["title"],
 		Description = response["description"],
-		Price = response["price"],
+		Price = !response.ContainsKey("price") ? null : JsonConvert.DeserializeObject<Price>(response[key: "price"].ToString()),
 		Category = !response.ContainsKey("category") ? null : JsonConvert.DeserializeObject<MarketCategory>(response[key: "category"].ToString()),
 		ThumbPhoto = response["thumb_photo"],
 		Date = response["date"],
