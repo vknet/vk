@@ -2,23 +2,11 @@
 
 using VkNet.Model;
 using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
 
 namespace VkNet.Utils;
 
 public partial class VkResponse
 {
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator ShortLink(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: ShortLink.FromJson(response);
-
 	/// <summary>
 	/// Преобразовать из VkResponse
 	/// </summary>

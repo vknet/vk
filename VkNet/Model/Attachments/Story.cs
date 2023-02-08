@@ -140,7 +140,7 @@ public class Story : MediaAttachment
 		Type = response["type"],
 		Photo = response["photo"],
 		Video = response["video"],
-		Link = response["link"],
+		Link = !response.ContainsKey("link") ? null : JsonConvert.DeserializeObject<StoryLink>(response[key: "link"].ToString()),
 		ParentStoryOwnerId = response["parent_story_owner_id"],
 		ParentStoryId = response["parent_story_id"],
 		ParentStory = response["parent_story"],
