@@ -213,8 +213,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.getTypes", parameters)
-			.ToVkCollectionOf<DocumentType>(selector: x => x);
+		return _vk.Call<VkCollection<DocumentType>>("docs.getTypes", parameters);
 	}
 
 	/// <inheritdoc />
