@@ -551,7 +551,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		GroupsEditParams result = _vk.Call("groups.getSettings", parameters);
+		var result = _vk.Call<GroupsEditParams>("groups.getSettings", parameters);
 		result.GroupId = groupId; // Требует метод edit но getSettings не возвращает
 
 		return result;
