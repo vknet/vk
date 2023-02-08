@@ -79,7 +79,7 @@ public class Group
 			Description = response["description"],
 			WikiPage = response["wiki_page"],
 			MembersCount = response["members_count"],
-			Counters = response["counters"],
+			Counters = !response.ContainsKey("counters")?null:JsonConvert.DeserializeObject<Counters>(response["counters"].ToString()),
 			StartDate = response["start_date"],
 			EndDate = response["finish_date"] ?? response["end_date"],
 			CanPost = response["can_post"],

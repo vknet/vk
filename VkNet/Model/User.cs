@@ -67,7 +67,7 @@ public class User
 			Relation = response["relation"],
 			Relatives = response["relatives"]
 				.ToReadOnlyCollectionOf<Relative>(x => x),
-			Counters = response["counters"],
+			Counters = !response.ContainsKey("counters")?null:JsonConvert.DeserializeObject<Counters>(response["counters"].ToString()),
 			ScreenName = response["screen_name"],
 			Nickname = response["nickname"],
 			Timezone = response["timezone"],
