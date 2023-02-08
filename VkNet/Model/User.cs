@@ -113,7 +113,7 @@ public class User
 			CanSendFriendRequest = response["can_send_friend_request"],
 			IsFavorite = response["is_favorite"],
 			IsHiddenFromFeed = response["is_hidden_from_feed"],
-			CropPhoto = response["crop_photo"],
+			CropPhoto = !response.ContainsKey("crop_photo")?null:JsonConvert.DeserializeObject<CropPhoto>(response["crop_photo"].ToString()),
 			IsFriend = response["is_friend"] == "1",
 			FriendStatus = response["friend_status"],
 			Career = !response.ContainsKey("career")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<Career>>(response["career"].ToString()),

@@ -68,17 +68,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator CropPhoto(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: CropPhoto.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator Education(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: Education.FromJson(response);
