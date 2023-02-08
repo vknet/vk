@@ -6,6 +6,7 @@ using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Database;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Categories;
 
@@ -203,8 +204,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getSchools", parameters, true)
-			.ToVkCollectionOf<School>(x => x);
+		return _vk.Call<VkCollection<School>>("database.getSchools", parameters, true);
 	}
 
 	/// <inheritdoc />
@@ -242,8 +242,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getSchoolClasses", parameters, true)
-			.ToReadOnlyCollectionOf<SchoolClass>(x => x);
+		return _vk.Call<ReadOnlyCollection<SchoolClass>>("database.getSchoolClasses", parameters, true);
 	}
 
 	/// <inheritdoc />
