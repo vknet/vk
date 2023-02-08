@@ -1,6 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -9,6 +9,7 @@ namespace VkNet.Model;
 /// См. описание http://vk.com/dev/fields
 /// </summary>
 [Serializable]
+[JsonConverter(typeof(EducationJsonConverter))]
 public class Education
 {
 	/// <summary>
@@ -40,55 +41,6 @@ public class Education
 	/// </summary>
 	[JsonProperty("graduation")]
 	public int? Graduation { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Education FromJson(VkResponse response)
-	{
-		if (response[key: "university"] == null
-			|| response[key: "university"]
-				.ToString()
-			== "0")
-		{
-			return null;
-		}
-
-		var education = new Education
-		{
-			UniversityId = Utilities.GetNullableLongId(response: response[key: "university"]),
-			UniversityName = response[key: "university_name"],
-			FacultyId = Utilities.GetNullableLongId(response: response[key: "faculty"]),
-			FacultyName = response[key: "faculty_name"],
-			Graduation = (int?) Utilities.GetNullableLongId(response: response[key: "graduation"])
-		};
-
-		if (education.UniversityId.HasValue && education.UniversityId == 0)
-		{
-			education.UniversityId = null;
-		}
-
-		if (education.FacultyId.HasValue && education.FacultyId == 0)
-		{
-			education.FacultyId = null;
-		}
-
-		if (education.Graduation.HasValue && education.Graduation == 0)
-		{
-			education.Graduation = null;
-		}
-
-		education.EducationForm = response[key: "education_form"]; // установлено экcпериментальным путем
-		education.EducationStatus = response[key: "education_status"]; // установлено экcпериментальным путем
-
-		return education;
-	}
-
-	#endregion
 
 	#region Поля, установленные экспериментально
 
