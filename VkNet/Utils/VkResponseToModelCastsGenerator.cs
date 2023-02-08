@@ -70,17 +70,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator Likes(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Likes.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator LinkButton(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: LinkButton.FromJson(response);

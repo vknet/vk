@@ -137,7 +137,7 @@ public class Market : MediaAttachment
 			.ToReadOnlyCollectionOf<Photo>(x => x),
 		CanComment = response["can_comment"],
 		CanRepost = response["can_repost"],
-		Likes = response["likes"],
+		Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
 		Url = response["url"],
 		ButtonTitle = response["button_title"]
 	};

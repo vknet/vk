@@ -221,7 +221,7 @@ public class Photo : MediaAttachment, IGroupUpdate
 			PlacerId = Utilities.GetNullableLongId(response["placer_id"]),
 			TagCreated = response["tag_created"],
 			TagId = response["tag_id"],
-			Likes = response["likes"],
+			Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
 			Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
 			CanComment = response["can_comment"],
 			Reposts = response["reposts"],
