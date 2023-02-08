@@ -240,7 +240,7 @@ public class Post : MediaAttachment
 		res.CopyHistory = response["copy_history"]
 			.ToReadOnlyCollectionOf<Post>(x => x);
 
-		res.Views = response["views"];
+		res.Views = !response.ContainsKey("views") ? null : JsonConvert.DeserializeObject<PostView>(response[key: "views"].ToString());
 
 		res.Donut = !response.ContainsKey("donut")
 			? null
