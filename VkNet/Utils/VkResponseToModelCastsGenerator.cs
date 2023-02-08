@@ -103,17 +103,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator Relative(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Relative.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator Reposts(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: Reposts.FromJson(response);

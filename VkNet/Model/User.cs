@@ -65,8 +65,7 @@ public class User
 			LastSeen = !response.ContainsKey("last_seen")?null:JsonConvert.DeserializeObject<LastSeen>(response["last_seen"].ToString()),
 			CommonCount = response["common_count"],
 			Relation = response["relation"],
-			Relatives = response["relatives"]
-				.ToReadOnlyCollectionOf<Relative>(x => x),
+			Relatives = !response.ContainsKey("relatives")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<Relative>>(response["relatives"].ToString()),
 			Counters = !response.ContainsKey("counters")?null:JsonConvert.DeserializeObject<Counters>(response["counters"].ToString()),
 			ScreenName = response["screen_name"],
 			Nickname = response["nickname"],

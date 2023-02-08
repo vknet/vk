@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -45,25 +44,4 @@ public class Relative
 		get => Id;
 		set => Id = value;
 	}
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Relative FromJson(VkResponse response)
-	{
-		var relative = new Relative
-		{
-			Id = response[key: "user_id"] ?? response[key: "uid"] ?? response[key: "id"],
-			Type = response[key: "type"],
-			Name = response[key: "name"]
-		};
-
-		return relative;
-	}
-
-	#endregion
 }
