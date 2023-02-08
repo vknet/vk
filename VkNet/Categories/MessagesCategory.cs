@@ -898,12 +898,11 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		var response = _vk.Call("messages.getLastActivity", parameters);
+		var response = _vk.Call<LastActivity>("messages.getLastActivity", parameters);
 
-		LastActivity activity = response;
-		activity.UserId = userId;
+		response.UserId = userId;
 
-		return activity;
+		return response;
 	}
 
 	/// <inheritdoc />
