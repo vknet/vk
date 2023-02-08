@@ -81,39 +81,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator MarketCategory(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: MarketCategory.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator MarketCategorySection(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: MarketCategorySection.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator MarketComment(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: MarketComment.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator MessagesGetObject(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: MessagesGetObject.FromJson(response);

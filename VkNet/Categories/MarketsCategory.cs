@@ -173,38 +173,37 @@ public partial class MarketsCategory : IMarketsCategory
 		});
 
 	/// <inheritdoc />
-	public VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params) => _vk.Call("market.getComments",
-			new()
+	public VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params) => _vk.Call<VkCollection<MarketComment>>("market.getComments",
+		new()
+		{
 			{
-				{
-					"owner_id", @params.OwnerId
-				},
-				{
-					"item_id", @params.ItemId
-				},
-				{
-					"need_likes", @params.NeedLikes
-				},
-				{
-					"start_comment_id", @params.StartCommentId
-				},
-				{
-					"offset", @params.Offset
-				},
-				{
-					"count", @params.Count
-				},
-				{
-					"sort", @params.Sort
-				},
-				{
-					"extended", @params.Extended
-				},
-				{
-					"fields", @params.Fields
-				}
-			})
-		.ToVkCollectionOf<MarketComment>(selector: x => x);
+				"owner_id", @params.OwnerId
+			},
+			{
+				"item_id", @params.ItemId
+			},
+			{
+				"need_likes", @params.NeedLikes
+			},
+			{
+				"start_comment_id", @params.StartCommentId
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"count", @params.Count
+			},
+			{
+				"sort", @params.Sort
+			},
+			{
+				"extended", @params.Extended
+			},
+			{
+				"fields", @params.Fields
+			}
+		});
 
 	/// <inheritdoc />
 	public bool DeleteComment(long ownerId, long commentId)
@@ -599,7 +598,6 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.getCategories", parameters)
-			.ToVkCollectionOf<MarketCategory>(selector: x => x);
+		return _vk.Call<VkCollection<MarketCategory>>("market.getCategories", parameters);
 	}
 }
