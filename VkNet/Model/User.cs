@@ -117,7 +117,7 @@ public class User
 			IsFriend = response["is_friend"] == "1",
 			FriendStatus = response["friend_status"],
 			Career = !response.ContainsKey("career")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<Career>>(response["career"].ToString()),
-			Military = response["military"],
+			Military = !response.ContainsKey("military")?null:JsonConvert.DeserializeObject<Military>(response["military"].ToString()),
 			Blacklisted = response["blacklisted"],
 			BlacklistedByMe = response["blacklisted_by_me"],
 			Trending = response["trending"],
