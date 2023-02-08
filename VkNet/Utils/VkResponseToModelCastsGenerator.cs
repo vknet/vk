@@ -113,17 +113,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator UploadServerInfo(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: UploadServerInfo.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator User(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: User.FromJson(response);
