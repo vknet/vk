@@ -1099,7 +1099,7 @@ public partial class MessagesCategory : IMessagesCategory
 		VkErrors.ThrowIfNumberIsNegative(() => @params.MsgsLimit);
 		VkErrors.ThrowIfNumberIsNegative(() => @params.MaxMsgId);
 
-		return _vk.Call("messages.getLongPollHistory",
+		return _vk.Call<LongPollHistoryResponse>("messages.getLongPollHistory",
 			new()
 			{
 				{
