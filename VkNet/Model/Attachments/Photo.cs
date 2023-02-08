@@ -224,7 +224,7 @@ public class Photo : MediaAttachment, IGroupUpdate
 			Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
 			Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
 			CanComment = response["can_comment"],
-			Reposts = response["reposts"],
+			Reposts = !response.ContainsKey("reposts") ? null : JsonConvert.DeserializeObject<Reposts>(response[key: "reposts"].ToString()),
 			Tags = !response.ContainsKey("tags") ? null : JsonConvert.DeserializeObject<Tags>(response[key: "tags"].ToString()),
 			PhotoSrc = response["photo_src"],
 			PhotoHash = response["photo_hash"],

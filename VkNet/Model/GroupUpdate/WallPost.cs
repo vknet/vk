@@ -34,7 +34,7 @@ public class WallPost : Post, IGroupUpdate
 		FriendsOnly = response[key: "friends_only"],
 		Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
 		Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
-		Reposts = response[key: "reposts"],
+		Reposts = !response.ContainsKey("reposts") ? null : JsonConvert.DeserializeObject<Reposts>(response[key: "reposts"].ToString()),
 		PostType = response[key: "post_type"],
 		PostSource = !response.ContainsKey("post_source") ? null : JsonConvert.DeserializeObject<PostSource>(response[key: "post_source"].ToString()),
 		Attachments = response[key: "attachments"]

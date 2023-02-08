@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -22,24 +21,4 @@ public class Reposts
 	/// </summary>
 	[JsonProperty("user_reposted")]
 	public bool UserReposted { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Reposts FromJson(VkResponse response)
-	{
-		var reposts = new Reposts
-		{
-			Count = response[key: "count"],
-			UserReposted = response[key: "user_reposted"]
-		};
-
-		return reposts;
-	}
-
-	#endregion
 }
