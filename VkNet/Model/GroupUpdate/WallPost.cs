@@ -59,7 +59,7 @@ public class WallPost : Post, IGroupUpdate
 		MarkedAsAds = response[key: "marked_as_ads"],
 		AccessKey = response[key: "access_key"],
 		PostponedId = response["postponed_id"],
-		Donut = response["donut"]
+		Donut = !response.ContainsKey("donut") ? null : JsonConvert.DeserializeObject<PostDonut>(response[key: "donut"].ToString()),
 	};
 
 	/// <summary>
