@@ -57,7 +57,7 @@ public class Message : MediaAttachment, IGroupUpdate
 			ForwardedMessages = response["fwd_messages"]
 				.ToReadOnlyCollectionOf<Message>(x => x),
 			ReadState = response["read_state"],
-			Action = response["action"],
+			Action = !response.ContainsKey("action") ? null : JsonConvert.DeserializeObject<MessageActionObject>(response[key: "action"].ToString()),
 			Type = response["out"],
 			Title = response["title"],
 			Body = response["body"],
