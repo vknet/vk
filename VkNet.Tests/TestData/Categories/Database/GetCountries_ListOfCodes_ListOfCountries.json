@@ -1,5 +1,8 @@
 {
-  "response": [
+  "response": {
+	"count" : 2,
+	"items":
+  [
     {
       "cid": 1,
       "title": "Россия"
@@ -9,4 +12,4 @@
       "title": "Германия"
     }
   ]
-}
+}}
