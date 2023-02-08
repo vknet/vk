@@ -92,17 +92,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator Place(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Place.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator PollAnswer(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: PollAnswer.FromJson(response);
