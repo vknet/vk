@@ -47,7 +47,7 @@ public class Geo
 		var geo = new Geo
 		{
 			Place = response[key: "place"],
-			Coordinates = response[key: "coordinates"],
+			Coordinates = JsonConvert.DeserializeObject<Coordinates>(response["coordinates"].ToString()),
 			Type = response[key: "type"]
 		};
 
