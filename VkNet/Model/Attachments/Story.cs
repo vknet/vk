@@ -144,7 +144,7 @@ public class Story : MediaAttachment
 		ParentStoryOwnerId = response["parent_story_owner_id"],
 		ParentStoryId = response["parent_story_id"],
 		ParentStory = response["parent_story"],
-		Replies = response["replies"],
+		Replies = !response.ContainsKey("replies") ? null : JsonConvert.DeserializeObject<StoryReplies>(response[key: "replies"].ToString()),
 		CanReply = response["can_reply"],
 		CanShare = response["can_share"],
 		CanComment = response["can_comment"],
