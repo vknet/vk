@@ -93,7 +93,8 @@ public class User
 			HomeTown = response["home_town"],
 			ChangeNameRequest = !response.ContainsKey("name_request") ? null : JsonConvert.DeserializeObject<ChangeNameRequest>(response["name_request"]
 				.ToString()),
-			Contacts = response["contacts"],
+			Contacts = !response.ContainsKey("contacts") ? null : JsonConvert.DeserializeObject<Contacts>(response["contacts"]
+				.ToString()),
 			Hidden = response["hidden"],
 			PhotoId = response["photo_id"],
 			Verified = response["verified"],
