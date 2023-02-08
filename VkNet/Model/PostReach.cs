@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -57,26 +56,4 @@ public class PostReach
 	/// </summary>
 	[JsonProperty("unsubscribe")]
 	public long Unsubscribe { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static PostReach FromJson(VkResponse response)
-	{
-		var postReach = new PostReach
-		{
-			ReachSubscribers = response[key: "reach_subscribers"],
-			ReachTotal = response[key: "reach_total"],
-			Links = response[key: "links"],
-			ToGroup = response[key: "to_group"],
-			JoinGroup = response[key: "join_group"],
-			Report = response[key: "report"],
-			Hide = response[key: "hide"],
-			Unsubscribe = response[key: "unsubscribe"]
-		};
-
-		return postReach;
-	}
 }

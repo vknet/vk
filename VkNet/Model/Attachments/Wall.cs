@@ -193,7 +193,7 @@ public class Wall : MediaAttachment
 			Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
 			Reposts = response["reposts"],
 			PostType = response["post_type"],
-			PostSource = response["post_source"],
+			PostSource = !response.ContainsKey("post_source") ? null : JsonConvert.DeserializeObject<PostSource>(response[key: "post_source"].ToString()),
 			Attachments = response["attachments"]
 				.ToReadOnlyCollectionOf<Attachment>(x => x),
 			Geo = !response.ContainsKey("geo") ? null : JsonConvert.DeserializeObject<Geo>(response[key: "geo"].ToString()),
