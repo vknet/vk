@@ -106,7 +106,7 @@ public class Document : MediaAttachment
 			Photo130 = response["photo_130"],
 			AccessKey = response["access_key"],
 			Date = response["date"],
-			Preview = response["preview"],
+			Preview = !response.ContainsKey("preview")?null:JsonConvert.DeserializeObject<DocumentPreview>(response["preview"].ToString()),
 			Type = response["type"]
 		};
 
