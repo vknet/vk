@@ -68,6 +68,6 @@ public class GroupMarketSettings
 		CityIds = response["city_ids"]
 			.ToReadOnlyCollectionOf<long>(x => x),
 		ContactId = response["contact_id"],
-		Currency = response["currency"]
+		Currency = !response.ContainsKey("currency")?null: JsonConvert.DeserializeObject<Currency>(response["currency"].ToString()),
 	};
 }
