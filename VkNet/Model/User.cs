@@ -62,7 +62,7 @@ public class User
 			CanWritePrivateMessage = response["can_write_private_message"],
 			Status = response["status"],
 			StatusAudio = response["status_audio"],
-			LastSeen = response["last_seen"],
+			LastSeen = !response.ContainsKey("last_seen")?null:JsonConvert.DeserializeObject<LastSeen>(response["last_seen"].ToString()),
 			CommonCount = response["common_count"],
 			Relation = response["relation"],
 			Relatives = response["relatives"]
