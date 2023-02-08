@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Utils;
 
@@ -48,10 +49,8 @@ public class Sticker : MediaAttachment
 	{
 		Id = response["id"] ?? response["sticker_id"],
 		ProductId = response["product_id"],
-		Images = response["images"]
-			.ToReadOnlyCollectionOf<Image>(x => x),
-		ImagesWithBackground = response["images_with_background"]
-			.ToReadOnlyCollectionOf<Image>(x => x)
+		Images = !response.ContainsKey("images")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<Image>>(response["images"].ToString()),
+		ImagesWithBackground = !response.ContainsKey("images_with_background")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<Image>>(response["images_with_background"].ToString())
 	};
 
 	/// <summary>
