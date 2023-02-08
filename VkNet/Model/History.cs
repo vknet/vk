@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -42,27 +41,4 @@ public class History
 	/// </summary>
 	[JsonProperty("editor_name")]
 	public string EditorName { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static History FromJson(VkResponse response)
-	{
-		var reposts = new History
-		{
-			Id = response[key: "id"],
-			Length = response[key: "length"],
-			Date = response[key: "date"],
-			EditorId = response[key: "editor_id"],
-			EditorName = response[key: "editor_name"]
-		};
-
-		return reposts;
-	}
-
-	#endregion
 }
