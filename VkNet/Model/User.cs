@@ -113,8 +113,7 @@ public class User
 			CropPhoto = response["crop_photo"],
 			IsFriend = response["is_friend"] == "1",
 			FriendStatus = response["friend_status"],
-			Career = response["career"]
-				.ToReadOnlyCollectionOf<Career>(x => x),
+			Career = !response.ContainsKey("career")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<Career>>(response["career"].ToString()),
 			Military = response["military"],
 			Blacklisted = response["blacklisted"],
 			BlacklistedByMe = response["blacklisted_by_me"],

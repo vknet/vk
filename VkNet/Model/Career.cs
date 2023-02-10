@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -57,26 +56,4 @@ public class Career
 	/// </summary>
 	[JsonProperty("position")]
 	public string Position { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Career FromJson(VkResponse response)
-	{
-		var career = new Career
-		{
-			GroupId = response[key: "group_id"],
-			Company = response[key: "company"],
-			CountryId = response[key: "country_id"],
-			CityId = response[key: "city_id"],
-			CityName = response[key: "city_name"],
-			From = response[key: "from"],
-			Until = response[key: "until"],
-			Position = response[key: "position"]
-		};
-
-		return career;
-	}
 }
