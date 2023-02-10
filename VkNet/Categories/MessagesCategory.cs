@@ -1090,7 +1090,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.getLongPollServer", parameters);
+		return _vk.Call<LongPollServerResponse>("messages.getLongPollServer", parameters);
 	}
 
 	/// <inheritdoc />

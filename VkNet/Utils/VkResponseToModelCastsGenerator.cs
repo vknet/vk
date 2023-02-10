@@ -497,17 +497,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator LongPollServerResponse(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: LongPollServerResponse.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator LookupContactsOther(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: LookupContactsOther.FromJson(response);
