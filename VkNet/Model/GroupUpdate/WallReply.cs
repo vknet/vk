@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -15,11 +16,13 @@ public class WallReply : Comment, IGroupUpdate
 	/// <summary>
 	/// Идентификатор записи
 	/// </summary>
+	[JsonProperty("post_id")]
 	public long? PostId { get; set; }
 
 	/// <summary>
 	/// Идентификатор владельца записи
 	/// </summary>
+	[JsonProperty("post_owner_id")]
 	public long? PostOwnerId { get; set; }
 
 	/// <summary>

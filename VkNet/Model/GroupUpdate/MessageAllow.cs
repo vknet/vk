@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate;
@@ -12,11 +13,13 @@ public class MessageAllow : IGroupUpdate
 	/// <summary>
 	/// Идентификатор пользователя
 	/// </summary>
+	[JsonProperty("user_id")]
 	public long? UserId { get; set; }
 
 	/// <summary>
 	/// Параметр, переданный в методе <c>messages.allowMessagesFromGroup</c>
 	/// </summary>
+	[JsonProperty("key")]
 	public string Key { get; set; }
 
 	/// <summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -23,7 +24,7 @@ public class LongPollHistoryResponse
 	/// <summary>
 	/// История.
 	/// </summary>
-
+	[JsonProperty("history")]
 	// ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
 	public List<ReadOnlyCollection<long>> History { get; set; }
 
@@ -35,16 +36,19 @@ public class LongPollHistoryResponse
 	/// <summary>
 	/// Колекция сообщений.
 	/// </summary>
+	[JsonProperty("messages")]
 	public ReadOnlyCollection<Message> Messages { get; set; }
 
 	/// <summary>
 	/// Колекция профилей.
 	/// </summary>
+	[JsonProperty("profiles")]
 	public ReadOnlyCollection<User> Profiles { get; set; }
 
 	/// <summary>
 	/// Колекция профилей.
 	/// </summary>
+	[JsonProperty("groups")]
 	public ReadOnlyCollection<Group> Groups { get; set; }
 
 	/// <summary>
@@ -52,12 +56,14 @@ public class LongPollHistoryResponse
 	/// используется для получения действий, которые
 	/// хранятся всегда.
 	/// </summary>
+	[JsonProperty("new_pts")]
 	public ulong NewPts { get; set; }
 
 	/// <summary>
 	/// Если true — это означает, что нужно запросить оставшиеся данные с помощью
 	/// запроса с параметром max_msg_id
 	/// </summary>
+	[JsonProperty("more")]
 	public bool More { get; set; }
 
 	/// <summary>

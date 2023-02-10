@@ -140,6 +140,13 @@ public class Audio : MediaAttachment, IGroupUpdate
 	[JsonProperty("track_code")]
 	public string TrackCode { get; set; }
 
+	[JsonProperty("genre")]
+	private AudioGenre? Genr
+	{
+		get => Genre;
+		set => Genre = value;
+	}
+
 	#region Методы
 
 	/// <summary>

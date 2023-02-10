@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model;
@@ -12,11 +13,13 @@ public class SchoolClass
 	/// <summary>
 	/// ����� �������������, ������� ����������� ������.
 	/// </summary>
+	[JsonProperty("class")]
 	public long Class { get; set; }
 
 	/// <summary>
 	/// ������� ����������� �� ������ �������� ������������.
 	/// </summary>
+	[JsonProperty("text")]
 	public string Text { get; set; }
 
 	#region ������

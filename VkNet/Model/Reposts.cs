@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model;
@@ -13,11 +14,13 @@ public class Reposts
 	/// <summary>
 	/// Число пользователей, скопировавших запись.
 	/// </summary>
+	[JsonProperty("count")]
 	public int Count { get; set; }
 
 	/// <summary>
 	/// Наличие репоста от текущего пользователя .
 	/// </summary>
+	[JsonProperty("user_reposted")]
 	public bool UserReposted { get; set; }
 
 	#region Методы

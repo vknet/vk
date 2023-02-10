@@ -242,10 +242,23 @@ public class GroupUpdate
 
 	/// <summary>
 	/// Вывод денег
-	/// (<c>DonutMoneyWithdraw</c>, <c>DonutMoneyWithdrawError</c>)
+	/// (<c>DonutMoneyWithdraw</c>)
 	/// </summary>
+	[JsonProperty("donut_money_withdraw")]
 	[Obsolete("Используйте свойство Instance")]
 	public DonutWithdraw DonutMoneyWithdraw { get; set; }
+
+	/// <summary>
+	/// Вывод денег
+	/// (<c>DonutMoneyWithdrawError</c>)
+	/// </summary>
+	[JsonProperty("donut_money_withdraw_error")]
+	[Obsolete("Используйте свойство Instance")]
+	private DonutWithdraw DonutMoneyWithdrawError
+	{
+		get => DonutMoneyWithdraw;
+		set => DonutMoneyWithdraw = value;
+	}
 
 	/// <summary>
 	/// ID группы

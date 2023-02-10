@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model;
@@ -12,16 +13,19 @@ public class GroupCoverImage
 	/// <summary>
 	/// URL копии;
 	/// </summary>
+	[JsonProperty("url")]
 	public Uri Url { get; set; }
 
 	/// <summary>
 	/// Ширина копии;
 	/// </summary>
+	[JsonProperty("width")]
 	public int Width { get; set; }
 
 	/// <summary>
 	/// Высота копии.
 	/// </summary>
+	[JsonProperty("height")]
 	public int Height { get; set; }
 
 	/// <summary>

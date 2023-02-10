@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Exception;
 using VkNet.Utils;
 
@@ -16,11 +17,13 @@ public class Coordinates
 	/// <summary>
 	/// Географическая широта.
 	/// </summary>
+	[JsonProperty("latitude")]
 	public double Latitude { get; set; }
 
 	/// <summary>
 	/// Географическая долгота.
 	/// </summary>
+	[JsonProperty("longitude")]
 	public double Longitude { get; set; }
 
 	#region Методы
@@ -41,7 +44,7 @@ public class Coordinates
 		{
 			latitude = response["latitude"];
 			longitude = response["longitude"];
-		} else //geo со стены 
+		} else //geo со стены
 		{
 			var latitudeWithLongitude = ((string) response).Split(' ');
 

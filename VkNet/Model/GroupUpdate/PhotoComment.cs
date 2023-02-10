@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -15,11 +16,13 @@ public class PhotoComment : Comment, IGroupUpdate
 	/// <summary>
 	/// Идентификатор фотографии
 	/// </summary>
+	[JsonProperty("photo_id")]
 	public long? PhotoId { get; set; }
 
 	/// <summary>
 	/// Идентификатор владельца фотографии
 	/// </summary>
+	[JsonProperty("photo_owner_id")]
 	public long? PhotoOwnerId { get; set; }
 
 	/// <summary>

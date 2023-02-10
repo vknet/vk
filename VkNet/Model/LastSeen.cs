@@ -14,6 +14,7 @@ public class LastSeen
 	/// <summary>
 	/// Время последнего посещения в формате unixtime. .
 	/// </summary>
+	[JsonProperty("time")]
 	[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 	public DateTime? Time { get; set; }
 
@@ -22,6 +23,7 @@ public class LastSeen
 	/// на странице Подключение к LongPoll
 	/// серверу. .
 	/// </summary>
+	[JsonProperty("platform")]
 	public string Platform { get; set; }
 
 	/// <summary>

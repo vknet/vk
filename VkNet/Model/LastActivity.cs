@@ -15,16 +15,19 @@ public class LastActivity
 	/// <summary>
 	/// Идентификатор пользователя.
 	/// </summary>
+	[JsonProperty("user_id")]
 	public long UserId { get; set; }
 
 	/// <summary>
 	/// Текущий статус пользователя (true - в сети, false - не в сети).
 	/// </summary>
+	[JsonProperty("online")]
 	public bool? IsOnline { get; set; }
 
 	/// <summary>
 	/// Дата последней активности пользователя.
 	/// </summary>
+	[JsonProperty("time")]
 	[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 	public DateTime? Time { get; set; }
 

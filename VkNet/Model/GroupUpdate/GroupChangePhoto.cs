@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -13,11 +14,13 @@ public class GroupChangePhoto : IGroupUpdate
 	/// <summary>
 	/// Идентификатор пользователя, который внес изменения
 	/// </summary>
+	[JsonProperty("user_id")]
 	public long? UserId { get; set; }
 
 	/// <summary>
 	/// Фотография
 	/// </summary>
+	[JsonProperty("photo")]
 	public Photo Photo { get; set; }
 
 	/// <summary>

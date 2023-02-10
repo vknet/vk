@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams;
@@ -12,11 +13,13 @@ public class SubjectListItem
 	/// <summary>
 	/// идентификатор тематики;
 	/// </summary>
+	[JsonProperty("id")]
 	public int Id { get; set; }
 
 	/// <summary>
 	/// название тематики.
 	/// </summary>
+	[JsonProperty("name")]
 	public string Name { get; set; }
 
 	/// <summary>

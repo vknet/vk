@@ -81,7 +81,6 @@ public class Message : MediaAttachment, IGroupUpdate
 			InRead = response["in_read"],
 			IsCropped = response["is_cropped"],
 			OutRead = response["out_read"],
-			Out = response["out"],
 			UpdateTime = response["update_time"],
 			Keyboard = !response.ContainsKey("keyboard")?null:JsonConvert.DeserializeObject<MessageKeyboard>(response[key: "keyboard"].ToString()),
 			ConversationMessageId = response["conversation_message_id"],
@@ -166,13 +165,6 @@ public class Message : MediaAttachment, IGroupUpdate
 	[JsonProperty("read_state")]
 	[Obsolete(ObsoleteText.Obsolete)]
 	public MessageReadState? ReadState { get; set; }
-
-	/// <summary>
-	/// Тип сообщения (0 — полученное, 1 — отправленное, не возвращается для
-	/// пересланных сообщений).
-	/// </summary>
-	[JsonProperty("out")]
-	public bool? Out { get; set; }
 
 	/// <summary>
 	/// Заголовок сообщения или беседы.
@@ -365,7 +357,7 @@ public class Message : MediaAttachment, IGroupUpdate
 	/// <summary>
 	/// Тип сообщения (не возвращается для пересланных сообщений).
 	/// </summary>
-	[JsonProperty("type")]
+	[JsonProperty("out")]
 	public MessageType? Type { get; set; }
 
 	/// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
@@ -15,6 +16,7 @@ public class StringLink : MediaAttachment
 	/// <summary>
 	/// Ссылка
 	/// </summary>
+	[JsonProperty("link")]
 	public string Link { get; set; }
 
 	/// <inheritdoc />

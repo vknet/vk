@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
@@ -19,16 +20,19 @@ public class ApplicationContent : MediaAttachment
 	/// <summary>
 	/// Название приложения.
 	/// </summary>
+	[JsonProperty("name")]
 	public string Name { get; set; }
 
 	/// <summary>
 	/// URL изображения для предпросмотра.
 	/// </summary>
+	[JsonProperty("photo_130")]
 	public string Photo130 { get; set; }
 
 	/// <summary>
 	/// URL полноразмерного изображения.
 	/// </summary>
+	[JsonProperty("photo_604")]
 	public string Photo604 { get; set; }
 
 	#region Методы
