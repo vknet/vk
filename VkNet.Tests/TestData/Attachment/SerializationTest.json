@@ -1,34 +1,29 @@
 {
-  "date": 1538561982,
-  "from_id": 1234567890,
-  "id": 28648,
-  "out": 1,
-  "peer_id": 2000000003,
-  "text": "",
-  "conversation_message_id": 1824,
-  "fwd_messages": [],
-  "important": false,
-  "random_id": 1058133329,
-  "attachments": [
-    {
-      "type": "photo",
-      "photo": {
-        "id": 456239677,
-        "album_id": -3,
-        "owner_id": 1234567890,
-        "sizes": [
-          {
-            "type": "m",
-            "url": "https://pp.userap/6f0/eur0G6JEtHA.jpg",
-            "width": 130,
-            "height": 129
-          }
-        ],
-        "text": "",
-        "date": 1538561982,
-        "access_key": "0a96d1dceb18b6fa7b"
-      }
-    }
-  ],
-  "is_hidden": false
+  "response": {
+	"items": [
+	  {
+		"attachments": [
+		  {
+			"type": "photo",
+			"photo": {
+			  "id": 456239677,
+			  "album_id": -3,
+			  "owner_id": 1234567890,
+			  "sizes": [
+				{
+				  "type": "m",
+				  "url": "https://pp.userap/6f0/eur0G6JEtHA.jpg",
+				  "width": 130,
+				  "height": 129
+				}
+			  ],
+			  "text": "",
+			  "date": 1538561982,
+			  "access_key": "0a96d1dceb18b6fa7b"
+			}
+		  }
+		]
+	  }
+	]
+  }
 }

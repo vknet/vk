@@ -70,7 +70,7 @@ public class Message : MediaAttachment, IGroupUpdate
 				.ToReadOnlyCollectionOf<long>(x => x),
 			UsersCount = response["users_count"],
 			AdminId = response["admin_id"],
-			PhotoPreviews = response,
+			PhotoPreviews = JsonConvert.DeserializeObject<Previews>(response.ToString()),
 			PushSettings = !response.ContainsKey("push_settings")?null:JsonConvert.DeserializeObject<ChatPushSettings>(response[key: "push_settings"].ToString()),
 			ActionMid = response["action_mid"],
 			ActionEmail = response["action_email"],

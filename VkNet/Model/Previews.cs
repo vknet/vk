@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -10,16 +10,21 @@ namespace VkNet.Model;
 /// ������������ � User
 /// </summary>
 [Serializable]
+[JsonConverter(typeof(PhotoJsonConverter))]
 public class Previews
 {
 	/// <summary>
-	/// Uri ���������� ����������, ������� ������ 50 ��������.
+	/// url квадратной фотографии пользователя, имеющей ширину 50 пикселей. В случае
+	/// отсутствия у пользователя фотографии
+	/// возвращается http://vk.com/images/camera_c.gif
 	/// </summary>
 	[JsonProperty("photo_50")]
 	public Uri Photo50 { get; set; }
 
 	/// <summary>
-	/// Uri ���������� ����������, ������� ������ 100 ��������.
+	/// url квадратной фотографии пользователя, имеющей ширину 100 пикселей. В случае
+	/// отсутствия у пользователя фотографии
+	/// возвращается http://vk.com/images/camera_b.gif.
 	/// </summary>
 	[JsonProperty("photo_100")]
 	public Uri Photo100 { get; set; }
@@ -31,19 +36,27 @@ public class Previews
 	public Uri Photo130 { get; set; }
 
 	/// <summary>
-	/// Uri ���������� ����������, ������� ������ 200 ��������.
+	/// url квадратной фотографии пользователя, имеющей ширину 200 пикселей. Если
+	/// фотография была загружена давно,
+	/// изображения с такими размерами может не быть, в этом случае ответ не будет
+	/// содержать этого поля.
 	/// </summary>
 	[JsonProperty("photo_200")]
 	public Uri Photo200 { get; set; }
 
 	/// <summary>
-	/// Uri ���������� ����������, ������� ������ 400 ��������.
+	/// url фотографии пользователя, имеющей ширину 400 пикселей.
+	/// Если у пользователя отсутствует фотография такого размера, ответ не будет
+	/// содержать этого поля.
 	/// </summary>
 	[JsonProperty("photo_400_orig")]
 	public Uri Photo400 { get; set; }
 
 	/// <summary>
-	/// Uri ���������� ����������, ������� ������������ ������.
+	/// url квадратной фотографии пользователя с максимальной шириной.
+	/// Может быть возвращена фотография, имеющая ширину как 200, так и 100 пикселей.
+	/// В случае отсутствия у пользователя фотографии возвращается
+	/// http://vk.com/images/camera_b.gif.
 	/// </summary>
 	[JsonProperty("photo_max")]
 	public Uri PhotoMax { get; set; }
@@ -68,44 +81,4 @@ public class Previews
 		get => Photo200;
 		set => Photo200 = value;
 	}
-
-	#region ������
-
-	/// <summary>
-	/// ��������� �� json.
-	/// </summary>
-	/// <param name="response"> ����� �������. </param>
-	/// <returns> </returns>
-	public static Previews FromJson(VkResponse response)
-	{
-		var previews = new Previews
-		{
-			Photo50 = response[key: "photo_50"],
-			Photo100 = response[key: "photo_100"] ?? response[key: "photo_medium"],
-			Photo130 = response[key: "photo_130"],
-			Photo200 = response[key: "photo_200"] ?? response[key: "photo_200_orig"],
-			Photo400 = response[key: "photo_400_orig"]
-		};
-
-		if (response.ContainsKey(key: "photo"))
-		{
-			if (Uri.IsWellFormedUriString(response[key: "photo"]
-					.ToString(), UriKind.Absolute))
-			{
-				previews.Photo50 = response[key: "photo"];
-			} else
-			{
-				previews.Photo = response[key: "photo"];
-			}
-		}
-
-		previews.PhotoMax = response[key: "photo_max"]
-							?? response[key: "photo_max_orig"]
-							?? response[key: "photo_big"]
-							?? previews.Photo400 ?? previews.Photo200 ?? previews.Photo100 ?? previews.Photo50;
-
-		return previews;
-	}
-
-	#endregion
 }

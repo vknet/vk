@@ -65,7 +65,7 @@ public class Group
 			IsMember = response["is_member"],
 			IsAdvertiser = response["is_advertiser"],
 			Type = response["type"],
-			PhotoPreviews = response,
+			PhotoPreviews = JsonConvert.DeserializeObject<Previews>(response.ToString()),
 			Deactivated = response["deactivated"] ?? Deactivated.Activated,
 			HasPhoto = response["has_photo"],
 			Photo50 = response["photo_50"],

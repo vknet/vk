@@ -39,7 +39,7 @@ public class User
 			BirthDate = response["bdate"],
 			City = !response.ContainsKey("city")?null:JsonConvert.DeserializeObject<City>(response["city"].ToString()),
 			Country = !response.ContainsKey("country")?null:JsonConvert.DeserializeObject<Country>(response["country"].ToString()),
-			PhotoPreviews = response,
+			PhotoPreviews = JsonConvert.DeserializeObject<Previews>(response.ToString()),
 			Online = response["online"],
 			FriendLists = response["lists"]
 				.ToReadOnlyCollectionOf<long>(x => x),
@@ -791,7 +791,6 @@ public class User
 	/// <summary>
 	/// Информация о ссылках на предпросмотр фотографий пользователя.
 	/// </summary>
-	[JsonConverter(typeof(PhotoJsonConverter))]
 	[JsonProperty("photo_previews")]
 	public Previews PhotoPreviews { get; set; }
 
