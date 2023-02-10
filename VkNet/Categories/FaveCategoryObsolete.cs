@@ -96,7 +96,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.getVideos", parameters);
+		return _vk.Call<FaveVideoEx>("fave.getVideos", parameters);
 	}
 
 	/// <inheritdoc />

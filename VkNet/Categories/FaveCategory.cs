@@ -143,30 +143,33 @@ public partial class FaveCategory : IFaveCategory
 	});
 
 	/// <inheritdoc/>
-	public VkCollection<FaveGetObject> Get(FaveGetParams @params) => _vk.Call<VkCollection<FaveGetObject>>("fave.get", new()
+	public VkCollection<FaveGetObject> Get(FaveGetParams @params)
 	{
+		return _vk.Call<VkCollection<FaveGetObject>>("fave.get", new()
 		{
-			"item_type", @params.ItemType
-		},
-		{
-			"fields", @params.Fields
-		},
-		{
-			"extended", @params.Extended
-		},
-		{
-			"tag_id", @params.TagId
-		},
-		{
-			"offset", @params.Offset
-		},
-		{
-			"count", @params.Count
-		},
-		{
-			"is_from_snackbar", @params.IsFromSnackbar
-		}
-	});
+			{
+				"item_type", @params.ItemType
+			},
+			{
+				"fields", @params.Fields
+			},
+			{
+				"extended", @params.Extended
+			},
+			{
+				"tag_id", @params.TagId
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"count", @params.Count
+			},
+			{
+				"is_from_snackbar", @params.IsFromSnackbar
+			}
+		});
+	}
 
 	/// <inheritdoc/>
 	public VkCollection<FaveGetPagesObject> GetPages(FavePageType type = null,
