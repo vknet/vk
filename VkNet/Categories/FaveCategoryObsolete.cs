@@ -116,8 +116,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.getLinks", parameters)
-			.ToVkCollectionOf<ExternalLink>(x => x);
+		return _vk.Call<VkCollection<ExternalLink>>("fave.getLinks", parameters);
 	}
 
 	/// <inheritdoc />
