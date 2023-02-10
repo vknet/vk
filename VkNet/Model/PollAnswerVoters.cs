@@ -10,7 +10,6 @@ namespace VkNet.Model;
 /// ответа в опросе.
 /// </summary>
 [Serializable]
-//[JsonConverter(typeof(PollAnswerVotersJsonConverter))]
 public class PollAnswerVoters
 {
 	/// <summary>
