@@ -2,7 +2,6 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -136,38 +135,4 @@ public class VideoCatalogItem
 	[JsonProperty("updated_time")]
 	[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 	public DateTime? UpdatedTime { get; set; }
-
-	/// <summary>
-	/// ��������� �� json.
-	/// </summary>
-	/// <param name="response"> ����� �������. </param>
-	/// <returns> </returns>
-	public static VideoCatalogItem FromJson(VkResponse response)
-	{
-		var item = new VideoCatalogItem
-		{
-			Id = response[key: "id"],
-			OwnerId = response[key: "owner_id"],
-			Title = response[key: "title"],
-			Type = response[key: "type"],
-			Duration = response[key: "duration"],
-			Description = response[key: "description"],
-			Date = response[key: "date"],
-			Views = response[key: "views"],
-			Comments = response[key: "comments"],
-			Photo130 = response[key: "photo_130"],
-			Photo320 = response[key: "photo_320"],
-			Photo640 = response[key: "photo_640"],
-			CanAdd = response[key: "can_add"],
-			CanEdit = response[key: "can_edit"],
-			Count = response[key: "count"],
-			Photo160 = response[key: "photo_160"],
-			UpdatedTime = response[key: "updated_time"],
-			IsPrivate = response[key: "is_private"],
-			AddingDate = response[key: "adding_date"],
-			Photo800 = response[key: "photo_800"]
-		};
-
-		return item;
-	}
 }

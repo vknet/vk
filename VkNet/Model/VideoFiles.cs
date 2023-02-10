@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -130,32 +129,4 @@ public class VideoFiles
 	/// </summary>
 	[JsonProperty("failover_host")]
 	public string FailOverHost { get; set; }
-
-	#region public Methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static VideoFiles FromJson(VkResponse response) => new()
-	{
-		Mp4_240 = response["mp4_240"],
-		Mp4_360 = response["mp4_360"],
-		Mp4_480 = response["mp4_480"],
-		Mp4_720 = response["mp4_720"],
-		Mp4_1080 = response["mp4_1080"],
-		External = response["external"],
-		Hls = response["hls"],
-		DashUni = response["dash_uni"],
-		DashSep = response["dash_sep"],
-		DashWebm = response["dash_webm"],
-		DashOnDemand = response["dash_ondemand"],
-		HlsOnDemand = response["hls_ondemand"],
-		HlsLivePlayback = response["hls_live_playback"],
-		DashLivePlayback = response["dash_live_playback"],
-		FailOverHost = response["failover_host"]
-	};
-
-	#endregion
 }
