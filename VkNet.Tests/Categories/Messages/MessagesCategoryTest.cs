@@ -967,8 +967,12 @@ public class MessagesCategoryTest : MessagesBaseTests
 
 		var response = Api.Messages.SearchDialogs("привет");
 
-		response.Should()
-			.BeNull();
+		response.Chats.Should()
+			.BeEmpty();
+		response.Groups.Should()
+			.BeEmpty();
+		response.Users.Should()
+			.BeEmpty();
 	}
 
 	[Fact]
