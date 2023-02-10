@@ -77,7 +77,7 @@ public class Audio : MediaAttachment, IGroupUpdate
 	/// <summary>
 	/// Жанр аудиозаписи.
 	/// </summary>
-	[JsonProperty("genre_id")]
+	[JsonProperty("genre")]
 	public AudioGenre? Genre { get; set; }
 
 	/// <summary>
@@ -140,8 +140,8 @@ public class Audio : MediaAttachment, IGroupUpdate
 	[JsonProperty("track_code")]
 	public string TrackCode { get; set; }
 
-	[JsonProperty("genre")]
-	private AudioGenre? Genr
+	[JsonProperty("genre_id")]
+	private AudioGenre? GenreId
 	{
 		get => Genre;
 		set => Genre = value;
