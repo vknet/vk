@@ -1104,8 +1104,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getCallbackServers", parameters)
-			.ToVkCollectionOf<CallbackServerItem>(x => x);
+		return _vk.Call<VkCollection<CallbackServerItem>>("groups.getCallbackServers", parameters);
 	}
 
 	/// <inheritdoc />
