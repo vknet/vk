@@ -1,6 +1,7 @@
 using System;
+using VkNet.Enums.SafetyEnums;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Model;
 
 /// <summary>
 /// Является опциональным и содержит следующие данные в зависимости от значения
