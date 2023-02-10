@@ -365,6 +365,6 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			parameters.Add("count", count);
 		}
 
-		return _vk.Call("newsfeed.getSuggestedSources", parameters);
+		return _vk.Call<NewsSuggestions>("newsfeed.getSuggestedSources", parameters);
 	}
 }

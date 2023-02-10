@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Exception;
-using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -10,6 +9,7 @@ namespace VkNet.Model;
 /// Предложения новостей.
 /// </summary>
 [Serializable]
+[JsonConverter(typeof(NewsSuggestionJsonConverter))]
 public class NewsSuggestions
 {
 	/// <summary>
@@ -23,56 +23,4 @@ public class NewsSuggestions
 	/// </summary>
 	[JsonProperty("group")]
 	public List<Group> Groups { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static NewsSuggestions FromJson(VkResponse response)
-	{
-		var newsSuggestions = new NewsSuggestions
-		{
-			Users = new(),
-			Groups = new()
-		};
-
-		VkResponseArray result = response;
-
-		foreach (var item in result)
-		{
-			switch (item[key: "type"]
-						.ToString())
-			{
-				case "page":
-				case "group":
-
-				{
-					Group group = item;
-					newsSuggestions.Groups.Add(item: group);
-				}
-
-					break;
-
-				case "profile":
-
-				{
-					User user = item;
-					newsSuggestions.Users.Add(item: user);
-				}
-
-					break;
-
-				default:
-
-				{
-					throw new VkApiException(message: string.Format(
-						"Типа '{0}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues"
-						, item[key: "type"]));
-				}
-			}
-		}
-
-		return newsSuggestions;
-	}
 }
