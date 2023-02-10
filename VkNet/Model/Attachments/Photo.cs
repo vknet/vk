@@ -225,7 +225,7 @@ public class Photo : MediaAttachment, IGroupUpdate
 			Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
 			CanComment = response["can_comment"],
 			Reposts = response["reposts"],
-			Tags = response["tags"],
+			Tags = !response.ContainsKey("tags") ? null : JsonConvert.DeserializeObject<Tags>(response[key: "tags"].ToString()),
 			PhotoSrc = response["photo_src"],
 			PhotoHash = response["photo_hash"],
 			SmallPhotoSrc = response["src_small"],

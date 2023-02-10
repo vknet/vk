@@ -991,9 +991,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		VkResponseArray response = _vk.Call("photos.getTags", parameters);
-
-		return response.ToReadOnlyCollectionOf<Tag>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<Tag>>("photos.getTags", parameters);
 	}
 
 	/// <inheritdoc />

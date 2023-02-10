@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -91,32 +90,4 @@ public class Tag
 		get => Date;
 		set => Date = value;
 	}
-
-	#region ������
-
-	/// <summary>
-	/// ��������� �� json.
-	/// </summary>
-	/// <param name="response"> ����� �������. </param>
-	/// <returns> </returns>
-	public static Tag FromJson(VkResponse response)
-	{
-		var result = new Tag
-		{
-			Id = response[key: "tag_id"],
-			TaggedName = response[key: "tagged_name"],
-			UserId = response[key: "user_id"] ?? response[key: "uid"],
-			PlacerId = response[key: "placer_id"],
-			Date = response[key: "tag_created"] ?? response[key: "date"],
-			IsViewed = response[key: "viewed"],
-			X = response[key: "x"],
-			Y = response[key: "y"],
-			X2 = response[key: "x2"],
-			Y2 = response[key: "y2"]
-		};
-
-		return result;
-	}
-
-	#endregion
 }
