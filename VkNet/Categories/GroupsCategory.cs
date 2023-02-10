@@ -1120,7 +1120,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getCallbackSettings", parameters);
+		return _vk.Call<CallbackSettings>("groups.getCallbackSettings", parameters);
 	}
 
 	/// <inheritdoc />
