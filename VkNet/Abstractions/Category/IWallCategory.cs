@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -17,12 +18,18 @@ public interface IWallCategory : IWallCategoryAsync
 	/// <inheritdoc cref="IWallCategoryAsync.GetCommentsAsync"/>
 	WallGetCommentsResult GetComments(WallGetCommentsParams @params, bool skipAuthorization = false);
 
-	/// <inheritdoc cref="IWallCategoryAsync.GetByIdAsync"/>
+	/// <inheritdoc cref="IWallCategoryAsync.GetByIdAsync(System.Collections, bool, long?, ProfileFields, bool)"/>
 	WallGetObject GetById(IEnumerable<string> posts
-						, bool? extended = null
+						, bool extended
 						, long? copyHistoryDepth = null
 						, ProfileFields fields = null
 						, bool skipAuthorization = false);
+
+	/// <inheritdoc cref="IWallCategoryAsync.GetByIdAsync(System.Collections, long?, ProfileFields, bool)"/>
+	ReadOnlyCollection<Post> GetById(IEnumerable<string> posts
+									, long? copyHistoryDepth = null
+									, ProfileFields fields = null
+									, bool skipAuthorization = false);
 
 	/// <inheritdoc cref="IWallCategoryAsync.PostAsync"/>
 	long Post(WallPostParams @params);

@@ -791,6 +791,7 @@ public class User
 	/// <summary>
 	/// Информация о ссылках на предпросмотр фотографий пользователя.
 	/// </summary>
+	[JsonConverter(typeof(PhotoJsonConverter))]
 	[JsonProperty("photo_previews")]
 	public Previews PhotoPreviews { get; set; }
 

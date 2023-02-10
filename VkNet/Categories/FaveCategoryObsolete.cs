@@ -73,7 +73,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.getPosts", parameters);
+		return _vk.Call<WallGetObject>("fave.getPosts", parameters);
 	}
 
 	/// <inheritdoc />

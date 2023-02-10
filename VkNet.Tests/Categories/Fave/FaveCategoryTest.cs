@@ -397,10 +397,10 @@ public class FaveCategoryTest : CategoryBaseTest
 		profile.ScreenName.Should()
 			.Be("deadlymanul");
 
-		profile.PhotoPreviews.Photo50.Should()
+		profile.Photo50.Should()
 			.Be(new Uri("https://pp.vk.me/c621918/v621918316/3e98c/-t0a2WEOZDU.jpg"));
 
-		profile.PhotoPreviews.Photo100.Should()
+		profile.Photo100.Should()
 			.Be(new Uri("https://pp.vk.me/c621918/v621918316/3e98b/tqlsDgLIgzE.jpg"));
 
 		profile.Online.Should()
@@ -432,13 +432,13 @@ public class FaveCategoryTest : CategoryBaseTest
 		group.IsMember.Should()
 			.BeTrue();
 
-		group.PhotoPreviews.Photo50.Should()
+		group.Photo50.Should()
 			.Be(new Uri("https://pp.vk.me/c625628/v625628973/43c4a/MUFXdlLGg-I.jpg"));
 
-		group.PhotoPreviews.Photo100.Should()
+		group.Photo100.Should()
 			.Be(new Uri("https://pp.vk.me/c625628/v625628973/43c49/qO1HJcRXnaQ.jpg"));
 
-		group.PhotoPreviews.Photo200.Should()
+		group.Photo200.Should()
 			.Be(new Uri("https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg"));
 	}
 

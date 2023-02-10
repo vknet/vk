@@ -33,7 +33,7 @@ public partial class WallCategory : IWallCategory
 				nameof(@params));
 		}
 
-		return _vk.Call("wall.get",
+		return _vk.Call<WallGetObject>("wall.get",
 			new()
 			{
 				{
@@ -105,7 +105,7 @@ public partial class WallCategory : IWallCategory
 
 	/// <inheritdoc />
 	public WallGetObject GetById(IEnumerable<string> posts
-								, bool? extended = null
+								, bool extended = true
 								, long? copyHistoryDepth = null
 								, ProfileFields fields = null
 								, bool skipAuthorization = false)
@@ -118,6 +118,11 @@ public partial class WallCategory : IWallCategory
 		if (!posts.Any())
 		{
 			throw new ArgumentException("Posts collection was empty.", nameof(posts));
+		}
+
+		if (!extended)
+		{
+			throw new VkApiException("Dont use this parameter or extenended must be true");
 		}
 
 		var parameters = new VkParameters
@@ -136,7 +141,39 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.getById", parameters, skipAuthorization);
+		return _vk.Call<WallGetObject>("wall.getById", parameters, skipAuthorization);
+	}
+
+	/// <inheritdoc />
+	public ReadOnlyCollection<Post> GetById(IEnumerable<string> posts
+											, long? copyHistoryDepth = null
+											, ProfileFields fields = null
+											, bool skipAuthorization = false)
+	{
+		if (posts == null)
+		{
+			throw new ArgumentNullException(paramName: nameof(posts));
+		}
+
+		if (!posts.Any())
+		{
+			throw new ArgumentException("Posts collection was empty.", nameof(posts));
+		}
+
+		var parameters = new VkParameters
+		{
+			{
+				"posts", posts
+			},
+			{
+				"copy_history_depth", copyHistoryDepth
+			},
+			{
+				"fields", fields
+			}
+		};
+
+		return _vk.Call<ReadOnlyCollection<Post>>("wall.getById", parameters, skipAuthorization);
 	}
 
 	/// <inheritdoc />
@@ -404,7 +441,7 @@ public partial class WallCategory : IWallCategory
 	}
 
 	/// <inheritdoc />
-	public WallGetObject Search(WallSearchParams @params, bool skipAuthorization = false) => _vk.Call("wall.search", new()
+	public WallGetObject Search(WallSearchParams @params, bool skipAuthorization = false) => _vk.Call<WallGetObject>("wall.search", new()
 	{
 		{
 			"owner_id", @params.OwnerId
@@ -451,7 +488,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.getReposts", parameters, skipAuthorization);
+		return _vk.Call<WallGetObject>("wall.getReposts", parameters, skipAuthorization);
 	}
 
 	/// <inheritdoc />
