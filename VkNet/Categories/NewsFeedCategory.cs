@@ -287,8 +287,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			}
 		};
 
-		return _vk.Call("newsfeed.getLists", parameters)
-			.ToVkCollectionOf<NewsUserListItem>(selector: x => x);
+		return _vk.Call<VkCollection<NewsUserListItem>>("newsfeed.getLists", parameters);
 	}
 
 	/// <inheritdoc />
