@@ -33,9 +33,8 @@ public class GroupsCatalogInfo
 		var result = new GroupsCatalogInfo
 		{
 			Enabled = response[key: "enabled"],
-			Categories = response[key: "categories"]
-				.ToReadOnlyCollectionOf<CategoryGroup>(selector: o => o)
-		};
+			Categories =  !response.ContainsKey("categories")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<CategoryGroup>>(response["categories"].ToString()),
+			};
 
 		return result;
 	}
