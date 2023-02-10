@@ -144,7 +144,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 	}
 
 	/// <inheritdoc />
-	public NewsBannedList GetBanned() => _vk.Call("newsfeed.getBanned", VkParameters.Empty);
+	public NewsBannedList GetBanned() => _vk.Call<NewsBannedList>("newsfeed.getBanned", VkParameters.Empty);
 
 	/// <inheritdoc />
 	public NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase nameCase = null)
@@ -162,7 +162,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			}
 		};
 
-		return _vk.Call("newsfeed.getBanned", parameters);
+		return _vk.Call<NewsBannedExList>("newsfeed.getBanned", parameters);
 	}
 
 	/// <inheritdoc />

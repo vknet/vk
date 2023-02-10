@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -24,23 +23,4 @@ public class NewsBannedExList
 	/// </summary>
 	[JsonProperty("profiles")]
 	public ReadOnlyCollection<User> Profiles { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static NewsBannedExList FromJson(VkResponse response)
-	{
-		VkResponseArray names = response[key: "groups"];
-		VkResponseArray profiles = response[key: "profiles"];
-
-		var bannedList = new NewsBannedExList
-		{
-			Groups = names.ToReadOnlyCollectionOf<Group>(selector: x => x),
-			Profiles = profiles.ToReadOnlyCollectionOf<User>(selector: x => x)
-		};
-
-		return bannedList;
-	}
 }
