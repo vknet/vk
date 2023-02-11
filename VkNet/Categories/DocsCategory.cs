@@ -139,7 +139,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		var response = _vk.Call<ReadOnlyCollection<Attachment>>("docs.save", parameters);
+		var response = _vk.Call("docs.save", parameters);
 
 		var responseArray = (VkResponseArray) response;
 
