@@ -8,6 +8,7 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Messages;
 using VkNet.Model.Results.Messages;
+using VkNet.Model.Results.Users;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -189,7 +190,11 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync"/>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
-	ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+	GetChatUsers GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync"/>
+	[Obsolete(ObsoleteText.MessageGetChatUsers)]
+	ReadOnlyCollection<long> GetChatUsers(IEnumerable<long> chatIds);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetDialogsAsync"/>
 	[Obsolete(ObsoleteText.MessageGet)]

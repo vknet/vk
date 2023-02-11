@@ -34,6 +34,41 @@
         "graduation": 2011,
         "invited_by": 4793858
       }
-    ]
+    ],
+	"5": [
+	  {
+		"uid": 4793858,
+		"first_name": "Антон",
+		"last_name": "Жидков",
+		"university": 0,
+		"university_name": "",
+		"faculty": 0,
+		"faculty_name": "",
+		"graduation": 0,
+		"invited_by": 4793858
+	  },
+	  {
+		"uid": 5041431,
+		"first_name": "Тайфур",
+		"last_name": "Касеев",
+		"university": 431,
+		"university_name": "ВолгГТУ",
+		"faculty": 3162,
+		"faculty_name": "Электроники и вычислительной техники",
+		"graduation": 2012,
+		"invited_by": 4793858
+	  },
+	  {
+		"uid": 10657891,
+		"first_name": "Максим",
+		"last_name": "Денисов",
+		"university": 431,
+		"university_name": "ВолгГТУ",
+		"faculty": 3162,
+		"faculty_name": "Электроники и вычислительной техники",
+		"graduation": 2011,
+		"invited_by": 4793858
+	  }
+	]
   }
 }

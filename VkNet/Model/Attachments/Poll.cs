@@ -169,8 +169,7 @@ public class Poll : MediaAttachment
 		Closed = response["closed"],
 		Photo = response["photo"],
 		Background = !response.ContainsKey("background")?null:JsonConvert.DeserializeObject<PollBackground>(response["background"].ToString()),
-		Friends = response["friends"]
-			.ToReadOnlyCollectionOf<User>(x => x),
+		Friends = !response.ContainsKey("friends")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<User>>(response["friends"].ToString()),
 		AnswerIds = response["answer_ids"]
 			.ToReadOnlyCollectionOf<long>(x => x)
 	};
