@@ -1,18 +1,19 @@
 using System;
 using Newtonsoft.Json;
+using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Model.GroupUpdate;
 
 /// <summary>
 /// Изменение настроек сообщества
 /// </summary>
 [Serializable]
+[JsonConverter(typeof(ChangeJsonConverter))]
 public class Change
 {
 	/// <summary>
 	/// Название секции или раздела, который был изменён
 	/// </summary>
-	[JsonProperty("{FIELD}")]
 	public string Field { get; set; }
 
 	/// <summary>

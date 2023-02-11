@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Utils;
 
@@ -18,6 +19,15 @@ public interface IVkLongPollInvoke
 	/// <param name="parameters"> Параметры. </param>
 	/// <returns> </returns>
 	VkResponse CallLongPoll(string server, VkParameters parameters);
+
+	/// <summary>
+	/// Вызвать ожидание событий LongPoll API.
+	/// </summary>
+	/// <param name="server"> Сервер. </param>
+	/// <param name="parameters"> Параметры. </param>
+	/// /// <param name="jsonConverters"> JsonConverters </param>
+	/// <returns> </returns>
+	T CallLongPoll<T>(string server, VkParameters parameters, params JsonConverter[] jsonConverters);
 
 	/// <summary>
 	/// Вызвать ожидание событий LongPoll API.

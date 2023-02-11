@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Newtonsoft.Json;
 using VkNet.Model.GroupUpdate;
+using VkNet.Utils;
 using Xunit;
 
 namespace VkNet.Tests.Models;
@@ -12,9 +13,8 @@ public class GroupChangeSettingsTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(GroupChangeSettings));
 
-		var response = GetResponse();
-
-		var result = GroupChangeSettings.FromJson(response);
+		Url = "https://api.vk.com/method/friends.getRequests";
+		var result = Api.Call<GroupChangeSettings>("friends.getRequests", VkParameters.Empty);
 
 		result.Should()
 			.NotBeNull();
