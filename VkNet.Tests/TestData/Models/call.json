@@ -1,9 +1,19 @@
 {
-  "type": "call",
-  "call": {
-    "initiator_id": 422558381,
-    "receiver_id": 59409360,
-    "state": "canceled_by_initiator",
-    "time": 1544651642
+  "response": {
+	"items": [
+	  {
+		"attachments": [
+		  {
+			"type": "call",
+			"call": {
+			  "initiator_id": 422558381,
+			  "receiver_id": 59409360,
+			  "state": "canceled_by_initiator",
+			  "time": 1544651642
+			}
+		  }
+		]
+	  }
+	]
   }
 }

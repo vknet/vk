@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Infrastructure;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -59,30 +57,4 @@ public class Event : MediaAttachment
 	/// </summary>
 	[JsonProperty("friends")]
 	public IEnumerable<ulong> Friends { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Event FromJson(VkResponse response) => response != null
-		? JsonConvert.DeserializeObject<Event>(response.ToString(), JsonConfigure.JsonSerializerSettings)
-		: null;
-
-	/// <summary>
-	/// Преобразование класса <see cref="Event" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Event" /></returns>
-	public static implicit operator Event(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

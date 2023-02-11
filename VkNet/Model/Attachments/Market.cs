@@ -5,7 +5,6 @@ using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -116,29 +115,4 @@ public class Market : MediaAttachment
 	[JsonProperty("button_title")]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public MarketItemButtonTitle ButtonTitle { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Market FromJson(VkResponse response) => new()
-	{
-		Id = response["id"] ?? -1,
-		OwnerId = response["owner_id"],
-		Title = response["title"],
-		Description = response["description"],
-		Price = !response.ContainsKey("price") ? null : JsonConvert.DeserializeObject<Price>(response[key: "price"].ToString()),
-		Category = !response.ContainsKey("category") ? null : JsonConvert.DeserializeObject<MarketCategory>(response[key: "category"].ToString()),
-		ThumbPhoto = response["thumb_photo"],
-		Date = response["date"],
-		Availability = response["availability"],
-		Photos = response["photos"]
-			.ToReadOnlyCollectionOf<Photo>(x => x),
-		CanComment = response["can_comment"],
-		CanRepost = response["can_repost"],
-		Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
-		Url = response["url"],
-		ButtonTitle = response["button_title"]
-	};
 }

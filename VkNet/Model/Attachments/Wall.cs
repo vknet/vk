@@ -4,7 +4,6 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Attachments;
@@ -165,62 +164,6 @@ public class Wall : MediaAttachment
 	[JsonProperty("marked_as_ads")]
 	public bool MarkedAsAds { get; set; }
 
-	#region Методы
-
-	/// <summary>
-	/// Парсинг из JSON
-	/// </summary>
-	/// <param name="response"> </param>
-	/// <returns> </returns>
-	public static Wall FromJson(VkResponse response)
-	{
-		if (response["id"] == null)
-		{
-			return null;
-		}
-
-		var post = new Wall
-		{
-			Id = response["id"],
-			OwnerId = response["to_id"],
-			FromId = response["from_id"],
-			Date = response["date"],
-			Text = response["text"],
-			ReplyOwnerId = response["reply_owner_id"],
-			ReplyPostId = response["reply_post_id"],
-			FriendsOnly = response["friends_only"],
-			Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
-			Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
-			Reposts = !response.ContainsKey("reposts") ? null : JsonConvert.DeserializeObject<Reposts>(response[key: "reposts"].ToString()),
-			PostType = response["post_type"],
-			PostSource = !response.ContainsKey("post_source") ? null : JsonConvert.DeserializeObject<PostSource>(response[key: "post_source"].ToString()),
-			Attachments = response["attachments"]
-				.ToReadOnlyCollectionOf<Attachment>(x => x),
-			Geo = !response.ContainsKey("geo") ? null : JsonConvert.DeserializeObject<Geo>(response[key: "geo"].ToString()),
-			SignerId = response["signer_id"],
-			CopyPostDate = response["copy_post_date"],
-			CopyPostType = response["copy_post_type"],
-			CopyOwnerId = response["copy_owner_id"],
-			CopyPostId = response["copy_post_id"],
-			CopyText = response["copy_text"],
-			CopyHistory = response["copy_history"]
-				.ToReadOnlyCollectionOf<Post>(x => x),
-			IsPinned = response["is_pinned"],
-			CreatedBy = response["created_by"],
-			CopyCommenterId = response["copy_commenter_id"],
-			CopyCommentId = response["copy_comment_id"],
-			CanDelete = response["can_delete"],
-			CanEdit = response["can_edit"],
-			CanPin = response["can_pin"],
-			Views = !response.ContainsKey("views") ? null : JsonConvert.DeserializeObject<PostView>(response[key: "views"].ToString()),
-			MarkedAsAds = response["marked_as_ads"]
-		};
-
-		return post;
-	}
-
-	#endregion
-
 	/// <summary>
 	/// Приведение к <c> Wall </c> из <c> Post </c>
 	/// </summary>
@@ -259,23 +202,6 @@ public class Wall : MediaAttachment
 		Views = post.Views,
 		MarkedAsAds = post.MarkedAsAds
 	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="Wall" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Wall" /></returns>
-	public static implicit operator Wall(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 
 	#region Поля, установленные экспериментально
 

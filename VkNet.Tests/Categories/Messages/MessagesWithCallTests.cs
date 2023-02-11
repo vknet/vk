@@ -3,6 +3,7 @@ using FluentAssertions;
 using FluentAssertions.Extensions;
 using VkNet.Model;
 using VkNet.Model.Attachments;
+using VkNet.Utils;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
@@ -14,10 +15,9 @@ public class MessagesWithCallTests : MessagesBaseTests
 	{
 		ReadJsonFile("Models", "message_with_call");
 
-		var message = Message.FromJson(GetResponse());
+		Url = "https://api.vk.com/method/friends.getRequests";
+		var message = Api.Call<Message>("friends.getRequests", VkParameters.Empty);
 
-		message.Attachments.Should()
-			.NotBeEmpty();
 
 		var call = message.Attachments[0]
 			.Instance as Call;

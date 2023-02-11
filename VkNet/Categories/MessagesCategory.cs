@@ -131,7 +131,7 @@ public partial class MessagesCategory : IMessagesCategory
 	/// <inheritdoc />
 	[Pure]
 	public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null,
-										bool? extended = null, ulong? groupId = null) => _vk.Call("messages.getById",
+										bool? extended = null, ulong? groupId = null) => _vk.Call<VkCollection<Message>>("messages.getById",
 			new()
 			{
 				{
@@ -149,8 +149,7 @@ public partial class MessagesCategory : IMessagesCategory
 				{
 					"group_id", groupId
 				}
-			})
-		.ToVkCollectionOf<Message>(r => r);
+			});
 
 	/// <inheritdoc />
 	[Pure]

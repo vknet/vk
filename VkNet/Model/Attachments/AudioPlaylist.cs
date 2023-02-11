@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Attachments;
@@ -153,65 +152,4 @@ public class AudioPlaylist : MediaAttachment
 	/// </summary>
 	[JsonProperty("is_explicit")]
 	public bool IsExplicit { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static AudioPlaylist FromJson(VkResponse response)
-	{
-		var playlist = new AudioPlaylist
-		{
-			Id = response["id"],
-			OwnerId = response["owner_id"],
-			Type = response["type"],
-			Title = response["title"],
-			Description = response["description"],
-			Genres = !response.ContainsKey("genres") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<AudioPlaylistGenre>>(response["genres"].ToString()),
-			Count = response["count"],
-			IsFollowing = response["is_following"],
-			Followers = response["followers"],
-			Plays = response["plays"],
-			CreateTime = response["create_time"],
-			UpdateTime = response["update_time"],
-			Year = response["year"],
-			Original = !response.ContainsKey("original") ? null : JsonConvert.DeserializeObject<AudioPlaylistOriginal>(response["original"].ToString()),
-			Follower = !response.ContainsKey("followed") ? null : JsonConvert.DeserializeObject<AudioPlaylistFollower>(response["followed"].ToString()),
-			Photo = !response.ContainsKey("photo") ? null : JsonConvert.DeserializeObject<AudioCover>(response["photo"].ToString()),
-			Thumbs = !response.ContainsKey("thumbs") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<AudioCover>>(response["thumbs"].ToString()),
-			OwnerIds = response["display_owner_ids"]
-				.ToReadOnlyCollectionOf<long>(x => x),
-			MainArtist = response["main_artist"],
-			Artists = !response.ContainsKey("artists") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<AudioArtist>>(response["artists"].ToString()),
-			MainArtists = !response.ContainsKey("main_artists") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<AudioArtist>>(response["main_artists"].ToString()),
-			FeaturedArtists = !response.ContainsKey("featured_artists") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<AudioArtist>>(response["featured_artists"].ToString()),
-			AccessKey = response["access_key"],
-			IsExplicit = response["is_explicit"]
-		};
-
-		return playlist;
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="AudioPlaylist" /> в
-	/// <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Результат преобразования в <see cref="AudioPlaylist" /> </returns>
-	public static implicit operator AudioPlaylist(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

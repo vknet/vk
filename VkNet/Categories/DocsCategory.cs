@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using JetBrains.Annotations;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -50,8 +52,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.get", parameters)
-			.ToVkCollectionOf<Document>(selector: r => r);
+		return _vk.Call<VkCollection<Document>>("docs.get", parameters);
 	}
 
 	/// <inheritdoc />
@@ -71,9 +72,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		var response = _vk.Call("docs.getById", parameters);
-
-		return response.ToReadOnlyCollectionOf<Document>(selector: r => r);
+		return _vk.Call<ReadOnlyCollection<Document>>("docs.getById", parameters);
 	}
 
 	/// <inheritdoc />
@@ -140,7 +139,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		var response = _vk.Call("docs.save", parameters);
+		var response = _vk.Call<ReadOnlyCollection<Attachment>>("docs.save", parameters);
 
 		var responseArray = (VkResponseArray) response;
 
@@ -235,8 +234,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.search", parameters)
-			.ToVkCollectionOf<Document>(selector: x => x);
+		return _vk.Call<VkCollection<Document>>("docs.search", parameters);
 	}
 
 	/// <inheritdoc />

@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Attachments;
@@ -52,40 +51,4 @@ public class AudioMessage : MediaAttachment
 	[JsonProperty("transcript_state")]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public TranscriptStates TranscriptState { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static AudioMessage FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		OwnerId = response["owner_id"],
-		Duration = response["duration"],
-		Waveform = response["waveform"]
-			.ToReadOnlyCollectionOf<int>(x => x),
-		LinkOgg = response["link_ogg"],
-		LinkMp3 = response["link_mp3"],
-		AccessKey = response["access_key"],
-		Transcript = response["transcript"],
-		TranscriptState = response["transcript_state"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="AudioMessage" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="AudioMessage" /></returns>
-	public static implicit operator AudioMessage(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

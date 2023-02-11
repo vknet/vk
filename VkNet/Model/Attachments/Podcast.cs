@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -86,44 +85,4 @@ public class Podcast : MediaAttachment
 	/// </summary>
 	[JsonProperty("track_code")]
 	public string TrackCode { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Podcast FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		OwnerId = response["owner_id"],
-		Artist = response["artist"],
-		Title = response["title"],
-		Duration = response["duration"],
-		Date = response["date"],
-		Url = response["url"],
-		LyricsId = response["lyrics_id"],
-		NoSearch = response["no_search"],
-		IsHq = response["is_hq"],
-		IsExplicit = response["is_explicit"],
-		PodcastInfo = !response.ContainsKey("podcast_info")?null:JsonConvert.DeserializeObject<PodcastInfo>(response["podcast_info"].ToString()),
-		PodcastTitle = response["podcast_title"],
-		TrackCode = response["track_code"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="Podcast" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Podcast" /></returns>
-	public static implicit operator Podcast(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }
