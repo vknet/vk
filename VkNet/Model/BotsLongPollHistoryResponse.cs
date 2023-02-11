@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Exception;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -21,9 +22,9 @@ public class BotsLongPollHistoryResponse
 	/// <summary>
 	/// Обновления группы
 	/// </summary>
-
+	[JsonConverter(typeof(GroupUpdateJsonConverter))]
 	[JsonProperty("updates")]
-	public IEnumerable<GroupUpdate.GroupUpdate> Updates { get; set; }
+	public List<GroupUpdate.GroupUpdate> Updates { get; set; }
 
 	/// <summary>
 	/// Разобрать из json.
@@ -62,7 +63,7 @@ public class BotsLongPollHistoryResponse
 
 		foreach (var update in updates)
 		{
-			updateList.Add(GroupUpdate.GroupUpdate.FromJson(update));
+			updateList.Add(JsonConvert.DeserializeObject<GroupUpdate.GroupUpdate>(update.ToString()));
 		}
 
 		fromJson.Updates = updateList;

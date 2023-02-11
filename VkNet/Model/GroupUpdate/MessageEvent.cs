@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate;
 
@@ -39,39 +38,4 @@ public class MessageEvent : IGroupUpdate
 	/// </summary>
 	[JsonProperty("conversation_message_id")]
 	public long? ConversationMessageId { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// </summary>
-	/// <param name="response"> </param>
-	/// <returns> </returns>
-	public static MessageEvent FromJson(VkResponse response) => new()
-	{
-		UserId = response["user_id"],
-		PeerId = response["peer_id"],
-		EventId = response["event_id"],
-		Payload = response["payload"]
-			.ToString(),
-		ConversationMessageId = response["conversation_message_id"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="MessageEvent" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="MessageEvent" /></returns>
-	public static implicit operator MessageEvent(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

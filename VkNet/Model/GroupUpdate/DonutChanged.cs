@@ -1,7 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Infrastructure;
-using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate;
 
@@ -40,37 +38,4 @@ public class DonutChanged : IGroupUpdate
 	/// </summary>
 	[JsonProperty("amount_diff_without_fee")]
 	public float? AmountDiffWithoutFee { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	public static DonutChanged FromJson(VkResponse response)
-	{
-		var groupJoin = JsonConvert.DeserializeObject<DonutChanged>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-		groupJoin.UserId = response["user_id"];
-		groupJoin.AmountOld = response["amount_old"];
-		groupJoin.AmountNew = response["amount_new"];
-		groupJoin.AmountDiff = response["amount_diff"];
-		groupJoin.AmountDiffWithoutFee = response["amount_diff_without_fee"];
-
-		return groupJoin;
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="DonutChanged" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Результат преобразования в <see cref="DonutChanged" /> </returns>
-	public static implicit operator DonutChanged(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

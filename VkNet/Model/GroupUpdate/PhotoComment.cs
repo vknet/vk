@@ -1,7 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate;
 
@@ -24,40 +22,4 @@ public class PhotoComment : Comment, IGroupUpdate
 	/// </summary>
 	[JsonProperty("photo_owner_id")]
 	public long? PhotoOwnerId { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	public new static PhotoComment FromJson(VkResponse response) => new()
-	{
-		Id = response[key: "id"],
-		FromId = response[key: "from_id"],
-		Date = response[key: "date"],
-		Text = response[key: "text"],
-		ReplyToUser = response[key: "reply_to_user"],
-		ReplyToComment = response[key: "reply_to_comment"],
-		Attachments = response[key: "attachments"]
-			.ToReadOnlyCollectionOf<Attachment>(selector: x => x),
-		Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
-		PhotoId = response["photo_id"],
-		PhotoOwnerId = response["photo_owner_id"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="PhotoComment" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Результат преобразования в <see cref="PhotoComment" /> </returns>
-	public static implicit operator PhotoComment(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }
