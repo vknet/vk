@@ -192,8 +192,8 @@ public partial class GroupsCategory : IGroupsCategory
 	{
 		VkErrors.ThrowIfNumberIsNegative(() => @params.UserId);
 
-		var response = _vk.Call("groups.get",
-			new()
+		var parameters =
+			new VkParameters()
 			{
 				{
 					"user_id", @params.UserId
@@ -213,19 +213,20 @@ public partial class GroupsCategory : IGroupsCategory
 				{
 					"count", @params.Count
 				}
-			},
-			skipAuthorization);
+			};
 
 		// в первой записи количество членов группы для (response["items"])
 		if (@params.Extended == null || !@params.Extended.Value)
 		{
-			return response.ToVkCollectionOf(id => new Group
+			var response = _vk.Call("groups.get", parameters,
+				skipAuthorization);
+			return response.ToVkCollectionOf<Group>(id => new()
 			{
 				Id = id
 			});
 		}
-
-		return response.ToVkCollectionOf<Group>(r => r);
+		return _vk.Call<VkCollection<Group>>("groups.get", parameters,
+			skipAuthorization);
 	}
 
 	/// <inheritdoc />
@@ -245,8 +246,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getById", parameters, skipAuthorization)
-			.ToReadOnlyCollectionOf<Group>(x => x);
+		return _vk.Call<ReadOnlyCollection<Group>>("groups.getById", parameters, skipAuthorization);
 	}
 
 	/// <inheritdoc />
@@ -254,7 +254,7 @@ public partial class GroupsCategory : IGroupsCategory
 	{
 		if (@params.Fields != null || @params.Filter != null)
 		{
-			return _vk.Call("groups.getMembers",
+			return _vk.Call<VkCollection<User>>("groups.getMembers",
 					new()
 					{
 						{
@@ -276,8 +276,7 @@ public partial class GroupsCategory : IGroupsCategory
 							"filter", @params.Filter
 						}
 					},
-					skipAuthorization)
-				.ToVkCollectionOf<User>(x => x);
+					skipAuthorization);
 		}
 
 		return _vk.Call("groups.getMembers",
@@ -331,7 +330,7 @@ public partial class GroupsCategory : IGroupsCategory
 
 	/// <inheritdoc />
 	public GroupMember IsMember(string groupId, long userId, bool? extended = true,
-								bool skipAuthorization = false)
+													bool skipAuthorization = false)
 	{
 		if (extended is false or null)
 		{
@@ -371,7 +370,7 @@ public partial class GroupsCategory : IGroupsCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false) => _vk.Call("groups.search",
+	public VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<Group>>("groups.search",
 			new()
 			{
 				{
@@ -402,8 +401,7 @@ public partial class GroupsCategory : IGroupsCategory
 					"count", @params.Count
 				}
 			},
-			skipAuthorization)
-		.ToVkCollectionOf<Group>(r => r);
+			skipAuthorization);
 
 	/// <inheritdoc />
 	public VkCollection<Group> GetInvites(long? count, long? offset, bool? extended = null)
@@ -421,8 +419,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getInvites", parameters)
-			.ToVkCollectionOf<Group>(x => x);
+		return _vk.Call<VkCollection<Group>>("groups.getInvites", parameters);
 	}
 
 	/// <inheritdoc />
@@ -785,8 +782,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getInvitedUsers", parameters)
-			.ToVkCollectionOf<User>(x => x);
+		return _vk.Call<VkCollection<User>>("groups.getInvitedUsers", parameters);
 	}
 
 	/// <inheritdoc />
@@ -949,7 +945,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.create", parameters);
+		return _vk.Call<Group>("groups.create", parameters);
 	}
 
 	/// <inheritdoc />
@@ -973,12 +969,15 @@ public partial class GroupsCategory : IGroupsCategory
 
 		var response = _vk.Call("groups.getRequests", parameters);
 
-		return fields == null
-			? response.ToVkCollectionOf<User>(x => new()
-			{
-				Id = (long) x
-			})
-			: response.ToVkCollectionOf<User>(x => x);
+		if (fields != null)
+		{
+			return _vk.Call<VkCollection<User>>("groups.getRequests", parameters);
+		}
+
+		return response.ToVkCollectionOf<User>(r => new()
+		{
+			Id = r
+		});
 	}
 
 	/// <inheritdoc />
@@ -994,8 +993,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getCatalog", parameters, true)
-			.ToVkCollectionOf<Group>(x => x);
+		return _vk.Call<VkCollection<Group>>("groups.getCatalog", parameters, true);
 	}
 
 	/// <inheritdoc />

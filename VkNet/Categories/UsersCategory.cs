@@ -27,7 +27,7 @@ public partial class UsersCategory : IUsersCategory
 
 	/// <inheritdoc />
 	[Pure]
-	public VkCollection<User> Search(UserSearchParams @params) => _vk.Call("users.search", new()
+	public VkCollection<User> Search(UserSearchParams @params) => _vk.Call<VkCollection<User>>("users.search", new()
 		{
 			{
 				"q", WebUtility.HtmlEncode(value: @params.Query)
@@ -128,8 +128,7 @@ public partial class UsersCategory : IUsersCategory
 			{
 				"from_list", @params.FromList
 			}
-		})
-		.ToVkCollectionOf<User>(selector: r => r);
+		});
 
 	/// <inheritdoc />
 	[Pure]
@@ -169,9 +168,7 @@ public partial class UsersCategory : IUsersCategory
 			}
 		};
 
-		VkResponseArray response = _vk.Call("users.get", parameters);
-
-		return response.ToReadOnlyCollectionOf<User>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<User>>("users.get", parameters);
 	}
 
 	/// <inheritdoc />
@@ -200,9 +197,7 @@ public partial class UsersCategory : IUsersCategory
 			}
 		};
 
-		VkResponseArray response = _vk.Call("users.get", parameters);
-
-		return response.ToReadOnlyCollectionOf<User>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<User>>("users.get", parameters);
 	}
 
 	/// <inheritdoc />
@@ -235,8 +230,7 @@ public partial class UsersCategory : IUsersCategory
 			}
 		};
 
-		return _vk.Call("users.getSubscriptions", parameters)
-			.ToVkCollectionOf<Group>(selector: x => x);
+		return _vk.Call<VkCollection<Group>>("users.getSubscriptions", parameters);
 	}
 
 	/// <inheritdoc />
@@ -270,12 +264,18 @@ public partial class UsersCategory : IUsersCategory
 			}
 		};
 
+		var response = _vk.Call("users.getFollowers", parameters);
+
+		if (response["items"][0]
+			.ContainsKey("id"))
+		{
+			return _vk.Call<VkCollection<User>>("users.getFollowers", parameters);
+		}
+
 		return _vk.Call("users.getFollowers", parameters)
-			.ToVkCollectionOf(selector: x => x.ContainsKey(key: "id")
-				? x
-				: new User
+			.ToVkCollectionOf(selector: x => new User
 				{
-					Id = x
+					Id = (long) x
 				});
 	}
 
@@ -301,7 +301,7 @@ public partial class UsersCategory : IUsersCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<User> GetNearby(UsersGetNearbyParams @params) => _vk.Call("users.getNearby", new()
+	public VkCollection<User> GetNearby(UsersGetNearbyParams @params) => _vk.Call<VkCollection<User>>("users.getNearby", new()
 		{
 			{
 				"latitude", @params.Latitude.ToString(provider: CultureInfo.InvariantCulture)
@@ -327,8 +327,7 @@ public partial class UsersCategory : IUsersCategory
 			{
 				"need_description", @params.NeedDescription
 			}
-		})
-		.ToVkCollectionOf<User>(selector: x => x);
+		});
 
 	/// <inheritdoc cref="User" />
 	[Pure]
