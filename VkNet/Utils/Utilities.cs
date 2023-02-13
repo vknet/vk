@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Exception;
 using VkNet.Infrastructure;
@@ -28,6 +31,30 @@ public static class Utilities
 		}
 
 		return (T) (object) value;
+	}
+
+	/// <summary>
+	/// Преобразовать в EnumValue из строки.
+	/// </summary>
+	/// <param name="value"> Числовое значение. </param>
+	/// <returns> Перечисление указанного типа. </returns>
+	/// <exception cref="System.ArgumentException"> value </exception>
+	[CanBeNull]
+	public static string StringToEnumValue(string value)
+	{
+		if (value
+			.Contains("_"))
+		{
+			value = Regex.Replace(value, "_", " ");
+			var textInfo = new CultureInfo("en-US", false).TextInfo;
+			value = textInfo.ToTitleCase(value);
+			value = Regex.Replace(value, " ", "");
+
+			return value;
+		}
+
+		value = char.ToUpperInvariant(value[0]) + value.Substring(1);
+		return value;
 	}
 
 	/// <summary>

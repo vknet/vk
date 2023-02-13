@@ -166,17 +166,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator AppWidgetType(VkResponse response) => response == null
-		? null
-		: AppWidgetType.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator ChangeNameStatus(VkResponse response) => response == null
 		? null
 		: ChangeNameStatus.FromJson(response: response);

@@ -8,6 +8,47 @@ namespace VkNet.Tests.Enum;
 
 public class EnumsTest
 {
+
+	[Fact]
+	public void AppWidgetTypeTest()
+	{
+		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("donation"))
+			.Should()
+			.Be(AppWidgetType.Donation);
+
+		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("list"))
+			.Should()
+			.Be(AppWidgetType.List);
+
+		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("match"))
+			.Should()
+			.Be(AppWidgetType.Match);
+
+		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("matches"))
+			.Should()
+			.Be(AppWidgetType.Matches);
+
+		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("table"))
+			.Should()
+			.Be(AppWidgetType.Table);
+
+		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("text"))
+			.Should()
+			.Be(AppWidgetType.Text);
+
+		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("tiles"))
+			.Should()
+			.Be(AppWidgetType.Tiles);
+
+		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("compact_list"))
+			.Should()
+			.Be(AppWidgetType.CompactList);
+
+		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("cover_list"))
+			.Should()
+			.Be(AppWidgetType.CoverList);
+	}
+
 	[Fact]
 	public void AccessPagesTest()
 	{

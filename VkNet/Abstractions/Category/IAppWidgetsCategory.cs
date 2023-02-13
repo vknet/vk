@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 
