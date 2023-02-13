@@ -8,43 +8,44 @@ namespace VkNet.Tests.Enum;
 
 public class EnumsTest
 {
+	private static string Value(string name) => Utilities.StringToEnumValue(name);
 
 	[Fact]
 	public void AppWidgetTypeTest()
 	{
-		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("donation"))
+		System.Enum.Parse<AppWidgetType>(Value("donation"))
 			.Should()
 			.Be(AppWidgetType.Donation);
 
-		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("list"))
+		System.Enum.Parse<AppWidgetType>(Value("list"))
 			.Should()
 			.Be(AppWidgetType.List);
 
-		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("match"))
+		System.Enum.Parse<AppWidgetType>(Value("match"))
 			.Should()
 			.Be(AppWidgetType.Match);
 
-		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("matches"))
+		System.Enum.Parse<AppWidgetType>(Value("matches"))
 			.Should()
 			.Be(AppWidgetType.Matches);
 
-		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("table"))
+		System.Enum.Parse<AppWidgetType>(Value("table"))
 			.Should()
 			.Be(AppWidgetType.Table);
 
-		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("text"))
+		System.Enum.Parse<AppWidgetType>(Value("text"))
 			.Should()
 			.Be(AppWidgetType.Text);
 
-		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("tiles"))
+		System.Enum.Parse<AppWidgetType>(Value("tiles"))
 			.Should()
 			.Be(AppWidgetType.Tiles);
 
-		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("compact_list"))
+		System.Enum.Parse<AppWidgetType>(Value("compact_list"))
 			.Should()
 			.Be(AppWidgetType.CompactList);
 
-		System.Enum.Parse<AppWidgetType>(Utilities.StringToEnumValue("cover_list"))
+		System.Enum.Parse<AppWidgetType>(Value("cover_list"))
 			.Should()
 			.Be(AppWidgetType.CoverList);
 	}
