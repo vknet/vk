@@ -21,7 +21,7 @@ public class Story : MediaAttachment
 	/// </summary>
 	[JsonProperty("date")]
 	[JsonConverter(typeof(UnixDateTimeConverter))]
-	public DateTime Date { get; set; }
+	public DateTime? Date { get; set; }
 
 	/// <summary>
 	/// <c>true</c>, если срок хранения истории истёк.
