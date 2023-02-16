@@ -11,6 +11,30 @@ public class EnumsTest
 	private static string Value(string name) => Utilities.StringToEnumValue(name);
 
 	[Fact]
+	public void AdsLinkTypeTest()
+	{
+		System.Enum.Parse<AdsLinkType>(Value("application"))
+			.Should()
+			.Be(AdsLinkType.Application);
+
+		System.Enum.Parse<AdsLinkType>(Value("community"))
+			.Should()
+			.Be(AdsLinkType.Community);
+
+		System.Enum.Parse<AdsLinkType>(Value("post"))
+			.Should()
+			.Be(AdsLinkType.Post);
+
+		System.Enum.Parse<AdsLinkType>(Value("video"))
+			.Should()
+			.Be(AdsLinkType.Video);
+
+		System.Enum.Parse<AdsLinkType>(Value("site"))
+			.Should()
+			.Be(AdsLinkType.Site);
+	}
+
+	[Fact]
 	public void AdPlatformTest()
 	{
 		System.Enum.Parse<AdPlatform>(Value("0"))
