@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using FluentAssertions;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

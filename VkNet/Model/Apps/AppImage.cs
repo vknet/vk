@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums;
 
 namespace VkNet.Model;
 
@@ -21,7 +20,6 @@ public class AppImage
 	/// <summary>
 	/// Тип изображения.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	[JsonProperty("type")]
 	public AppWidgetImageType Type { get; set; }
 

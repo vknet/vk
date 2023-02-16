@@ -1,38 +1,39 @@
-using System;
-using Newtonsoft.Json;
-using VkNet.Utils.JsonConverter;
+using System.Runtime.Serialization;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums;
 
 /// <summary>
 /// Тип изображения для виджета приложения
 /// </summary>
-[Serializable]
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
-public class AppWidgetImageType : SafetyEnum<AppWidgetImageType>
+public enum AppWidgetImageType
 {
 	/// <summary>
 	/// 24x24
 	/// </summary>
-	public static readonly AppWidgetImageType TwentyFourOnTwentyFour = RegisterPossibleValue("24x24");
+	[EnumMember(Value = "24x24")]
+	TwentyFourOnTwentyFour,
 
 	/// <summary>
 	/// 50x50
 	/// </summary>
-	public static readonly AppWidgetImageType FiftyOnFifty = RegisterPossibleValue("50x50");
+	[EnumMember(Value = "50x50")]
+	FiftyOnFifty,
 
 	/// <summary>
 	/// 160x160
 	/// </summary>
-	public static readonly AppWidgetImageType OneHundredAndSixtyOnOneHundredAndSixty = RegisterPossibleValue("160x160");
+	[EnumMember(Value = "160x160")]
+	OneHundredAndSixtyOnOneHundredAndSixty,
 
 	/// <summary>
 	/// 160x240
 	/// </summary>
-	public static readonly AppWidgetImageType OneHundredAndSixtyOnTwoHundredAndForty = RegisterPossibleValue("160x240");
+	[EnumMember(Value = "160x240")]
+	OneHundredAndSixtyOnTwoHundredAndForty,
 
 	/// <summary>
 	/// 510x128
 	/// </summary>
-	public static readonly AppWidgetImageType FiveHundredAndTenOnOneHundredAndTwentyEight = RegisterPossibleValue("510x128");
+	[EnumMember(Value = "510x128")]
+	FiveHundredAndTenOnOneHundredAndTwentyEight
 }
