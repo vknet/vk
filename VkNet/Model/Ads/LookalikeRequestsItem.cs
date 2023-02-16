@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils.JsonConverter;
 
@@ -44,7 +45,6 @@ public class LookalikeRequestItem
 	/// Cтатус объявления.
 	/// </summary>
 	[JsonProperty(propertyName: "status")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AdRequestStatus Status { get; set; }
 
 	/// <summary>

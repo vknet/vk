@@ -562,28 +562,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator AccountType(VkResponse response) => response == null
-		? null
-		: AccountType.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator AccessRole(VkResponse response) => response == null
-		? null
-		: AccessRole.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator CampaignType(VkResponse response) => response == null
 		? null
 		: CampaignType.FromJson(response: response);
@@ -639,31 +617,9 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator AdPlatform(VkResponse response) => response == null
-		? null
-		: AdPlatform.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator SourceType(VkResponse response) => response == null
 		? null
 		: SourceType.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator AdRequestStatus(VkResponse response) => response == null
-		? null
-		: AdRequestStatus.FromJson(response: response);
 
 	/// <summary>
 	/// Преобразовать из VkResponse

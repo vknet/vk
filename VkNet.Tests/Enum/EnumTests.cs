@@ -11,6 +11,86 @@ public class EnumsTest
 	private static string Value(string name) => Utilities.StringToEnumValue(name);
 
 	[Fact]
+	public void AdPlatformTest()
+	{
+		System.Enum.Parse<AdPlatform>(Value("0"))
+			.Should()
+			.Be(AdPlatform.VkAndPartners);
+
+		System.Enum.Parse<AdPlatform>(Value("1"))
+			.Should()
+			.Be(AdPlatform.VkOnly);
+
+		System.Enum.Parse<AdPlatform>(Value("all"))
+			.Should()
+			.Be(AdPlatform.All);
+
+		System.Enum.Parse<AdPlatform>(Value("desktop"))
+			.Should()
+			.Be(AdPlatform.Desktop);
+
+		System.Enum.Parse<AdPlatform>(Value("mobile"))
+			.Should()
+			.Be(AdPlatform.Mobile);
+	}
+
+	[Fact]
+	public void AccountTypeTest()
+	{
+		System.Enum.Parse<AccountType>(Value("agency"))
+			.Should()
+			.Be(AccountType.Agency);
+
+		System.Enum.Parse<AccountType>(Value("general"))
+			.Should()
+			.Be(AccountType.General);
+	}
+
+	[Fact]
+	public void AdRequestStatusTest()
+	{
+		System.Enum.Parse<AdRequestStatus>(Value("search_done"))
+			.Should()
+			.Be(AdRequestStatus.SearchDone);
+
+		System.Enum.Parse<AdRequestStatus>(Value("search_in_progress"))
+			.Should()
+			.Be(AdRequestStatus.SearchInProgress);
+
+		System.Enum.Parse<AdRequestStatus>(Value("search_failed"))
+			.Should()
+			.Be(AdRequestStatus.SearchFailed);
+
+		System.Enum.Parse<AdRequestStatus>(Value("save_done"))
+			.Should()
+			.Be(AdRequestStatus.SaveDone);
+
+		System.Enum.Parse<AdRequestStatus>(Value("save_in_progress"))
+			.Should()
+			.Be(AdRequestStatus.SaveInProgress);
+
+		System.Enum.Parse<AdRequestStatus>(Value("save_failed"))
+			.Should()
+			.Be(AdRequestStatus.SaveFailed);
+	}
+
+	[Fact]
+	public void AccessRoleTest()
+	{
+		System.Enum.Parse<AccessRole>(Value("admin"))
+			.Should()
+			.Be(AccessRole.Admin);
+
+		System.Enum.Parse<AccessRole>(Value("manager"))
+			.Should()
+			.Be(AccessRole.Manager);
+
+		System.Enum.Parse<AccessRole>(Value("reports"))
+			.Should()
+			.Be(AccessRole.Reports);
+	}
+
+	[Fact]
 	public void AppWidgetTypeTest()
 	{
 		System.Enum.Parse<AppWidgetType>(Value("donation"))

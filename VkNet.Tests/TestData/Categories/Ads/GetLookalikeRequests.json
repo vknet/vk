@@ -12,16 +12,20 @@
       "source_retargeting_group_id": 29859236,
       "source_name": "tdu",
       "audience_count": 10000,
-      "save_audience_levels": [{
+      "save_audience_levels": [
+		{
         "level": 1,
         "audience_count": 86000
-      }, {
+      },
+		{
         "level": 2,
         "audience_count": 173000
-      }, {
+      },
+		{
         "level": 3,
         "audience_count": 260000
-      }, {
+      },
+		{
         "level": 4,
         "audience_count": 347000
       }, {

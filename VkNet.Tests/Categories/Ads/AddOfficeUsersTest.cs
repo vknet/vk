@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;

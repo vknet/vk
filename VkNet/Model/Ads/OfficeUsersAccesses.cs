@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils.JsonConverter;
 
@@ -24,6 +25,5 @@ public class OfficeUsersAccesses
 	/// Время до следующего обновления в секундах.
 	/// </summary>
 	[JsonProperty("role")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AccessRole Role { get; set; }
 }
