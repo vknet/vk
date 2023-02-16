@@ -1,12 +1,10 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace VkNet.Enums;
 
 /// <summary>
 /// Текущий статус запроса
 /// </summary>
-[Serializable]
 public enum AdRequestStatus
 {
 	/// <summary>

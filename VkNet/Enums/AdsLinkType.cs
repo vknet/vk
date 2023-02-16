@@ -3,7 +3,9 @@ using JetBrains.Annotations;
 
 namespace VkNet.Enums;
 
-/// <inheritdoc />
+/// <summary>
+/// AdsLinkType
+/// </summary>
 [UsedImplicitly]
 public enum AdsLinkType
 {
