@@ -8,149 +8,140 @@ namespace VkNet.Tests.Enum;
 
 public class EnumsTest
 {
-	private static string Value(string name) => Utilities.StringToEnumValue(name);
+	[Fact]
+	public void AppWidgetImageTypeTest()
+	{
+		Utilities.Deserialize<AppWidgetImageType>("24x24")
+			.Should()
+			.Be(AppWidgetImageType.TwentyFourOnTwentyFour);
+
+		Utilities.Deserialize<AppWidgetImageType>("24x24").Should()
+			.Be(AppWidgetImageType.TwentyFourOnTwentyFour);
+
+		Utilities.Deserialize<AppWidgetImageType>("50x50").Should()
+			.Be(AppWidgetImageType.FiftyOnFifty);
+
+		Utilities.Deserialize<AppWidgetImageType>("160x160").Should()
+			.Be(AppWidgetImageType.OneHundredAndSixtyOnOneHundredAndSixty);
+
+		Utilities.Deserialize<AppWidgetImageType>("160x240").Should()
+			.Be(AppWidgetImageType.OneHundredAndSixtyOnTwoHundredAndForty);
+
+		Utilities.Deserialize<AppWidgetImageType>("510x128").Should()
+			.Be(AppWidgetImageType.FiveHundredAndTenOnOneHundredAndTwentyEight);
+	}
 
 	[Fact]
 	public void AdsLinkTypeTest()
 	{
-		System.Enum.Parse<AdsLinkType>(Value("application"))
-			.Should()
+		Utilities.Deserialize<AdsLinkType>("application").Should()
 			.Be(AdsLinkType.Application);
 
-		System.Enum.Parse<AdsLinkType>(Value("community"))
-			.Should()
+		Utilities.Deserialize<AdsLinkType>("community").Should()
 			.Be(AdsLinkType.Community);
 
-		System.Enum.Parse<AdsLinkType>(Value("post"))
-			.Should()
+		Utilities.Deserialize<AdsLinkType>("post").Should()
 			.Be(AdsLinkType.Post);
 
-		System.Enum.Parse<AdsLinkType>(Value("video"))
-			.Should()
+		Utilities.Deserialize<AdsLinkType>("video").Should()
 			.Be(AdsLinkType.Video);
 
-		System.Enum.Parse<AdsLinkType>(Value("site"))
-			.Should()
+		Utilities.Deserialize<AdsLinkType>("site").Should()
 			.Be(AdsLinkType.Site);
 	}
 
 	[Fact]
 	public void AdPlatformTest()
 	{
-		System.Enum.Parse<AdPlatform>(Value("0"))
-			.Should()
+		Utilities.Deserialize<AdPlatform>("0").Should()
 			.Be(AdPlatform.VkAndPartners);
 
-		System.Enum.Parse<AdPlatform>(Value("1"))
-			.Should()
+		Utilities.Deserialize<AdPlatform>("1").Should()
 			.Be(AdPlatform.VkOnly);
 
-		System.Enum.Parse<AdPlatform>(Value("all"))
-			.Should()
+		Utilities.Deserialize<AdPlatform>("all").Should()
 			.Be(AdPlatform.All);
 
-		System.Enum.Parse<AdPlatform>(Value("desktop"))
-			.Should()
+		Utilities.Deserialize<AdPlatform>("desktop").Should()
 			.Be(AdPlatform.Desktop);
 
-		System.Enum.Parse<AdPlatform>(Value("mobile"))
-			.Should()
+		Utilities.Deserialize<AdPlatform>("mobile").Should()
 			.Be(AdPlatform.Mobile);
 	}
 
 	[Fact]
 	public void AccountTypeTest()
 	{
-		System.Enum.Parse<AccountType>(Value("agency"))
-			.Should()
+		Utilities.Deserialize<AccountType>("agency").Should()
 			.Be(AccountType.Agency);
 
-		System.Enum.Parse<AccountType>(Value("general"))
-			.Should()
+		Utilities.Deserialize<AccountType>("general").Should()
 			.Be(AccountType.General);
 	}
 
 	[Fact]
 	public void AdRequestStatusTest()
 	{
-		System.Enum.Parse<AdRequestStatus>(Value("search_done"))
-			.Should()
+		Utilities.Deserialize<AdRequestStatus>("search_done").Should()
 			.Be(AdRequestStatus.SearchDone);
 
-		System.Enum.Parse<AdRequestStatus>(Value("search_in_progress"))
-			.Should()
+		Utilities.Deserialize<AdRequestStatus>("search_in_progress").Should()
 			.Be(AdRequestStatus.SearchInProgress);
 
-		System.Enum.Parse<AdRequestStatus>(Value("search_failed"))
-			.Should()
+		Utilities.Deserialize<AdRequestStatus>("search_failed").Should()
 			.Be(AdRequestStatus.SearchFailed);
 
-		System.Enum.Parse<AdRequestStatus>(Value("save_done"))
-			.Should()
+		Utilities.Deserialize<AdRequestStatus>("save_done").Should()
 			.Be(AdRequestStatus.SaveDone);
 
-		System.Enum.Parse<AdRequestStatus>(Value("save_in_progress"))
-			.Should()
+		Utilities.Deserialize<AdRequestStatus>("save_in_progress").Should()
 			.Be(AdRequestStatus.SaveInProgress);
 
-		System.Enum.Parse<AdRequestStatus>(Value("save_failed"))
-			.Should()
+		Utilities.Deserialize<AdRequestStatus>("save_failed").Should()
 			.Be(AdRequestStatus.SaveFailed);
 	}
 
 	[Fact]
 	public void AccessRoleTest()
 	{
-		System.Enum.Parse<AccessRole>(Value("admin"))
-			.Should()
+		Utilities.Deserialize<AccessRole>("admin").Should()
 			.Be(AccessRole.Admin);
 
-		System.Enum.Parse<AccessRole>(Value("manager"))
-			.Should()
+		Utilities.Deserialize<AccessRole>("manager").Should()
 			.Be(AccessRole.Manager);
 
-		System.Enum.Parse<AccessRole>(Value("reports"))
-			.Should()
+		Utilities.Deserialize<AccessRole>("reports").Should()
 			.Be(AccessRole.Reports);
 	}
 
 	[Fact]
 	public void AppWidgetTypeTest()
 	{
-		System.Enum.Parse<AppWidgetType>(Value("donation"))
-			.Should()
+		Utilities.Deserialize<AppWidgetType>("donation").Should()
 			.Be(AppWidgetType.Donation);
 
-		System.Enum.Parse<AppWidgetType>(Value("list"))
-			.Should()
+		Utilities.Deserialize<AppWidgetType>("list").Should()
 			.Be(AppWidgetType.List);
 
-		System.Enum.Parse<AppWidgetType>(Value("match"))
-			.Should()
+		Utilities.Deserialize<AppWidgetType>("match").Should()
 			.Be(AppWidgetType.Match);
 
-		System.Enum.Parse<AppWidgetType>(Value("matches"))
-			.Should()
+		Utilities.Deserialize<AppWidgetType>("matches").Should()
 			.Be(AppWidgetType.Matches);
 
-		System.Enum.Parse<AppWidgetType>(Value("table"))
-			.Should()
+		Utilities.Deserialize<AppWidgetType>("table").Should()
 			.Be(AppWidgetType.Table);
 
-		System.Enum.Parse<AppWidgetType>(Value("text"))
-			.Should()
+		Utilities.Deserialize<AppWidgetType>("text").Should()
 			.Be(AppWidgetType.Text);
 
-		System.Enum.Parse<AppWidgetType>(Value("tiles"))
-			.Should()
+		Utilities.Deserialize<AppWidgetType>("tiles").Should()
 			.Be(AppWidgetType.Tiles);
 
-		System.Enum.Parse<AppWidgetType>(Value("compact_list"))
-			.Should()
+		Utilities.Deserialize<AppWidgetType>("compact_list").Should()
 			.Be(AppWidgetType.CompactList);
 
-		System.Enum.Parse<AppWidgetType>(Value("cover_list"))
-			.Should()
+		Utilities.Deserialize<AppWidgetType>("cover_list").Should()
 			.Be(AppWidgetType.CoverList);
 	}
 

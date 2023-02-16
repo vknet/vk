@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
-using JetBrains.Annotations;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using VkNet.Exception;
 using VkNet.Infrastructure;
@@ -34,27 +32,44 @@ public static class Utilities
 	}
 
 	/// <summary>
-	/// Преобразовать в EnumValue из строки.
+	/// Serialize Enum Value
 	/// </summary>
-	/// <param name="value"> Числовое значение. </param>
-	/// <returns> Перечисление указанного типа. </returns>
-	/// <exception cref="System.ArgumentException"> value </exception>
-	[CanBeNull]
-	public static string StringToEnumValue(string value)
+	/// <param name="value"></param>
+	/// <typeparam name="TEnum"></typeparam>
+	/// <returns></returns>
+	public static string Serialize<TEnum>(TEnum value)
 	{
-		if (value
-			.Contains("_"))
-		{
-			value = Regex.Replace(value, "_", " ");
-			var textInfo = new CultureInfo("en-US", false).TextInfo;
-			value = textInfo.ToTitleCase(value);
-			value = Regex.Replace(value, " ", "");
+		var fallback = Enum.GetName(typeof(TEnum), value);
+		var member = typeof(TEnum).GetMember(value.ToString()).FirstOrDefault();
+		if (member == null)
+			return fallback;
+		var enumMemberAttributes = member.GetCustomAttributes(typeof(EnumMemberAttribute), false).Cast<EnumMemberAttribute>().FirstOrDefault();
+		if (enumMemberAttributes == null)
+			return fallback;
+		return enumMemberAttributes.Value;
+	}
+	/// <summary>
+	/// Deserialize Enum Value
+	/// </summary>
+	/// <param name="value"></param>
+	/// <typeparam name="TEnum"></typeparam>
+	/// <returns></returns>
+	public static TEnum Deserialize<TEnum>(string value) where TEnum : struct
+	{
+		TEnum parsed;
+		if (Enum.TryParse<TEnum>(value, out parsed))
+			return parsed;
 
-			return value;
-		}
-
-		value = char.ToUpperInvariant(value[0]) + value.Substring(1);
-		return value;
+		var found = typeof(TEnum).GetMembers()
+			.Select(x => new
+			{
+				Member = x,
+				Attribute = x.GetCustomAttributes(typeof(EnumMemberAttribute), false).OfType<EnumMemberAttribute>().FirstOrDefault()
+			})
+			.FirstOrDefault(x => x.Attribute?.Value == value);
+		if (found != null)
+			return (TEnum)Enum.Parse(typeof(TEnum), found.Member.Name);
+		return default(TEnum);
 	}
 
 	/// <summary>
