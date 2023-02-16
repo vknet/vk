@@ -1517,52 +1517,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void WallFilterTest()
-	{
-		// get test
-		WallFilter.Owner.ToString()
-			.Should()
-			.Be("owner");
-
-		WallFilter.Others.ToString()
-			.Should()
-			.Be("others");
-
-		WallFilter.All.ToString()
-			.Should()
-			.Be("all");
-
-		WallFilter.Suggests.ToString()
-			.Should()
-			.Be("suggests");
-
-		WallFilter.Postponed.ToString()
-			.Should()
-			.Be("postponed");
-
-		// parse test
-		WallFilter.FromJsonString("owner")
-			.Should()
-			.Be(WallFilter.Owner);
-
-		WallFilter.FromJsonString("others")
-			.Should()
-			.Be(WallFilter.Others);
-
-		WallFilter.FromJsonString("all")
-			.Should()
-			.Be(WallFilter.All);
-
-		WallFilter.FromJsonString("suggests")
-			.Should()
-			.Be(WallFilter.Suggests);
-
-		WallFilter.FromJsonString("postponed")
-			.Should()
-			.Be(WallFilter.Postponed);
-	}
-
-	[Fact]
 	public void KeyboardButtonColorTest()
 	{
 		// get test

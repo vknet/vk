@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 using Xunit;
 
@@ -8,6 +9,30 @@ namespace VkNet.Tests.Enum;
 
 public class EnumsTest
 {
+	[Fact]
+	public void WallFilterTest()
+	{
+		Utilities.Deserialize<WallFilter>("owner")
+			.Should()
+			.Be(WallFilter.Owner);
+
+		Utilities.Deserialize<WallFilter>("others")
+			.Should()
+			.Be(WallFilter.Others);
+
+		Utilities.Deserialize<WallFilter>("all")
+			.Should()
+			.Be(WallFilter.All);
+
+		Utilities.Deserialize<WallFilter>("suggests")
+			.Should()
+			.Be(WallFilter.Suggests);
+
+		Utilities.Deserialize<WallFilter>("postponed")
+			.Should()
+			.Be(WallFilter.Postponed);
+	}
+
 	[Fact]
 	public void AppWidgetImageTypeTest()
 	{
