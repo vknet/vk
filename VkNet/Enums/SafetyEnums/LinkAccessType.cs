@@ -1,4 +1,5 @@
-﻿using VkNet.Utils;
+﻿using System.Runtime.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
 
@@ -11,17 +12,20 @@ public sealed class LinkAccessType : SafetyEnum<LinkAccessType>
 	/// <summary>
 	/// Cсылка не заблокирована
 	/// </summary>
+	[EnumMember(Value = "not_banned")]
 	public static readonly LinkAccessType NotBanned = RegisterPossibleValue(value: "not_banned");
 
 	/// <summary>
 	/// Cсылка заблокирована
 	/// </summary>
+	[EnumMember(Value = "banned")]
 	public static readonly LinkAccessType Banned = RegisterPossibleValue(value: "banned");
 
 	/// <summary>
 	/// Cсылка проверяется; необходимо выполнить повторный запрос через несколько
 	/// секунд
 	/// </summary>
+	[EnumMember(Value = "processing")]
 	public static readonly LinkAccessType Processing = RegisterPossibleValue(value: "processing");
 
 	/// <summary>

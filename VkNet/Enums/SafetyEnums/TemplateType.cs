@@ -1,4 +1,5 @@
-﻿using VkNet.Utils;
+﻿using System.Runtime.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
 
@@ -10,6 +11,7 @@ public class TemplateType : SafetyEnum<TemplateType>
 	/// <summary>
 	/// Карусель
 	/// </summary>
+	[EnumMember(Value = "carousel")]
 	public static readonly TemplateType Carousel = RegisterPossibleValue("carousel");
 
 	/// <summary>

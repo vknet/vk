@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using VkNet.Utils.JsonConverter;
 
@@ -14,15 +15,18 @@ public class MessageEventType : SafetyEnum<MessageEventType>
 	/// <summary>
 	/// показать исчезающее сообщение.
 	/// </summary>
+	[EnumMember(Value = "show_snackbar")]
 	public static readonly MessageEventType SnowSnackbar = RegisterPossibleValue("show_snackbar");
 
 	/// <summary>
 	/// открыть ссылку. Осуществляется переход по указанному адресу.
 	/// </summary>
+	[EnumMember(Value = "open_link")]
 	public static readonly MessageEventType OpenLink = RegisterPossibleValue("open_link");
 
 	/// <summary>
 	/// открыть VK Mini App. Происходит переход в мини-приложение.
 	/// </summary>
+	[EnumMember(Value = "open_app")]
 	public static readonly MessageEventType OpenApp = RegisterPossibleValue("open_app");
 }

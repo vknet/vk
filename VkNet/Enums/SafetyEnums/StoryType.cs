@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -8,11 +9,13 @@ public class StoryType : SafetyEnum<StoryType>
 	/// <summary>
 	/// Фотография
 	/// </summary>
+	[EnumMember(Value = "photo")]
 	public static readonly StoryType Photo = RegisterPossibleValue("photo");
 
 	/// <summary>
 	/// Видеозапись
 	/// </summary>
+	[EnumMember(Value = "video")]
 	public static readonly StoryType Video = RegisterPossibleValue("video");
 
 	/// <summary>

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -18,6 +19,7 @@ public class VideoAdsSection : SafetyEnum<VideoAdsSection>
 	/// This is probably in the start of the video
 	/// </remarks>
 	/// </summary>
+	[EnumMember(Value = "preroll")]
 	public static readonly VideoAdsSection Preroll = RegisterPossibleValue(value: "preroll");
 
 	/// <summary>
@@ -26,6 +28,7 @@ public class VideoAdsSection : SafetyEnum<VideoAdsSection>
 	/// This is probably in the middle of the video
 	/// </remarks>
 	/// </summary>
+	[EnumMember(Value = "midroll")]
 	public static readonly VideoAdsSection Midroll = RegisterPossibleValue(value: "midroll");
 
 	/// <summary>
@@ -34,5 +37,6 @@ public class VideoAdsSection : SafetyEnum<VideoAdsSection>
 	/// This is probably in the end of the video
 	/// </remarks>
 	/// </summary>
+	[EnumMember(Value = "postroll")]
 	public static readonly VideoAdsSection Postroll = RegisterPossibleValue(value: "postroll");
 }

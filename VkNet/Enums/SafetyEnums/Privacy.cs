@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
@@ -15,31 +16,37 @@ public sealed class Privacy : SafetyEnum<Privacy>
 	/// Доступно всем пользователям.
 	/// </summary>
 	[DefaultValue]
+	[EnumMember(Value = "all")]
 	public static readonly Privacy All = RegisterPossibleValue(value: "all");
 
 	/// <summary>
 	/// Доступно друзьям текущего пользователя.
 	/// </summary>
+	[EnumMember(Value = "friends")]
 	public static readonly Privacy Friends = RegisterPossibleValue(value: "friends");
 
 	/// <summary>
 	/// Доступно друзьям и друзьям друзей.
 	/// </summary>
+	[EnumMember(Value = "friends_of_friends")]
 	public static readonly Privacy FriendsOfFriends = RegisterPossibleValue(value: "friends_of_friends");
 
 	/// <summary>
 	/// Доступно друзьям друзей текущего пользователя.
 	/// </summary>
+	[EnumMember(Value = "friends_of_friends_only")]
 	public static readonly Privacy FriendsOfFriendsOnly = RegisterPossibleValue(value: "friends_of_friends_only");
 
 	/// <summary>
 	/// Недоступно никому.
 	/// </summary>
+	[EnumMember(Value = "nobody")]
 	public static readonly Privacy Nobody = RegisterPossibleValue(value: "nobody");
 
 	/// <summary>
 	/// Доступно только мне.
 	/// </summary>
+	[EnumMember(Value = "only_me")]
 	public static readonly Privacy OnlyMe = RegisterPossibleValue(value: "only_me");
 
 	/// <summary>

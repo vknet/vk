@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using VkNet.Utils.JsonConverter;
 
@@ -14,16 +15,19 @@ public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
 	/// <summary>
 	/// Пропорциональная копия изображения с максимальной шириной 75px.
 	/// </summary>
+	[EnumMember(Value = "s")]
 	public static readonly PhotoSizeType S = RegisterPossibleValue(value: "s");
 
 	/// <summary>
 	/// Пропорциональная копия изображения с максимальной шириной 130px.
 	/// </summary>
+	[EnumMember(Value = "m")]
 	public static readonly PhotoSizeType M = RegisterPossibleValue(value: "m");
 
 	/// <summary>
 	/// Пропорциональная копия изображения с максимальной шириной 604px.
 	/// </summary>
+	[EnumMember(Value = "x")]
 	public static readonly PhotoSizeType X = RegisterPossibleValue(value: "x");
 
 	/// <summary>
@@ -33,6 +37,7 @@ public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
 	/// копия обрезанного слева изображения с
 	/// максимальной шириной 130px и соотношением сторон 3:2.
 	/// </summary>
+	[EnumMember(Value = "o")]
 	public static readonly PhotoSizeType O = RegisterPossibleValue(value: "o");
 
 	/// <summary>
@@ -42,6 +47,7 @@ public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
 	/// копия обрезанного слева и справа
 	/// изображения с максимальной шириной 200px и соотношением сторон 3:2.
 	/// </summary>
+	[EnumMember(Value = "p")]
 	public static readonly PhotoSizeType P = RegisterPossibleValue(value: "p");
 
 	/// <summary>
@@ -51,6 +57,7 @@ public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
 	/// копия обрезанного слева и справа
 	/// изображения с максимальной шириной 320px и соотношением сторон 3:2.
 	/// </summary>
+	[EnumMember(Value = "q")]
 	public static readonly PhotoSizeType Q = RegisterPossibleValue(value: "q");
 
 	/// <summary>
@@ -60,20 +67,24 @@ public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
 	/// копия обрезанного слева и справа
 	/// изображения с максимальной шириной 510px и соотношением сторон 3:2.
 	/// </summary>
+	[EnumMember(Value = "r")]
 	public static readonly PhotoSizeType R = RegisterPossibleValue(value: "r");
 
 	/// <summary>
 	/// Пропорциональная копия изображения с максимальной стороной 807px.
 	/// </summary>
+	[EnumMember(Value = "y")]
 	public static readonly PhotoSizeType Y = RegisterPossibleValue(value: "y");
 
 	/// <summary>
 	/// Пропорциональная копия изображения с максимальным размером 1280x1024.
 	/// </summary>
+	[EnumMember(Value = "z")]
 	public static readonly PhotoSizeType Z = RegisterPossibleValue(value: "z");
 
 	/// <summary>
 	/// Пропорциональная копия изображения с максимальным размером 2560x2048px.
 	/// </summary>
+	[EnumMember(Value = "w")]
 	public static readonly PhotoSizeType W = RegisterPossibleValue(value: "w");
 }
