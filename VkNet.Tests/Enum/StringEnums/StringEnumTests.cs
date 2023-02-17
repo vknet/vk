@@ -32,6 +32,30 @@ public class StringEnumTests
 	}
 
 	[Fact]
+	public void VideoCatalogFiltersTest()
+	{
+		Utilities.Deserialize<VideoCatalogFilters>("ugc")
+			.Should()
+			.Be(VideoCatalogFilters.Ugc);
+
+		Utilities.Deserialize<VideoCatalogFilters>("top")
+			.Should()
+			.Be(VideoCatalogFilters.Top);
+
+		Utilities.Deserialize<VideoCatalogFilters>("feed")
+			.Should()
+			.Be(VideoCatalogFilters.Feed);
+
+		Utilities.Deserialize<VideoCatalogFilters>("series")
+			.Should()
+			.Be(VideoCatalogFilters.Series);
+
+		Utilities.Deserialize<VideoCatalogFilters>("other")
+			.Should()
+			.Be(VideoCatalogFilters.Other);
+	}
+
+	[Fact]
 	public void VideoViewTest()
 	{
 		Utilities.Deserialize<VideoView>("horizontal")

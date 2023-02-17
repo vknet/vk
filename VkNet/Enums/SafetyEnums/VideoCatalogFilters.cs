@@ -1,39 +1,39 @@
 ﻿using System.Runtime.Serialization;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums;
 
 /// <summary>
 /// Фильтры для видео каталога
 /// </summary>
-public class VideoCatalogFilters : SafetyEnum<VideoCatalogFilters>
+public enum VideoCatalogFilters
 {
 	/// <summary>
 	/// Видео из ленты новостей пользователя
 	/// </summary>
 	[EnumMember(Value = "feed")]
-	public static readonly VideoCatalogFilters Feed = RegisterPossibleValue(value: "feed");
+	Feed,
 
 	/// <summary>
 	/// популярное
 	/// </summary>
 	[EnumMember(Value = "ugc")]
-	public static readonly VideoCatalogFilters Ugc = RegisterPossibleValue(value: "ugc");
+	Ugc,
 
 	/// <summary>
 	/// выбор редакции
 	/// </summary>
 	[EnumMember(Value = "top")]
-	public static readonly VideoCatalogFilters Top = RegisterPossibleValue(value: "top");
+	Top,
 
 	/// <summary>
 	/// сериалы и телешоу
 	/// </summary>
 	[EnumMember(Value = "series")]
-	public static readonly VideoCatalogFilters Series = RegisterPossibleValue(value: "series");
+	Series,
 
 	/// <summary>
 	/// прочие блоки
 	/// </summary>
 	[EnumMember(Value = "other")]
-	public static readonly VideoCatalogFilters Other = RegisterPossibleValue(value: "other");
+	Other
 }

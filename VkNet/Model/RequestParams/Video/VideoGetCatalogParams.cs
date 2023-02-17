@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils.JsonConverter;
 
@@ -44,6 +45,5 @@ public class VideoGetCatalogParams
 	/// id блоков, которые необходимо вернуть в ответе.
 	/// </summary>
 	[JsonProperty(propertyName: "filters")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public VideoCatalogFilters Filters { get; set; }
 }
