@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils.JsonConverter;
 
@@ -43,7 +44,6 @@ public class VideoCatalog
 	/// предпочтительный способ отображения контента
 	/// </summary>
 	[JsonProperty(propertyName: "view")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public VideoView View { get; set; }
 
 	/// <summary>
