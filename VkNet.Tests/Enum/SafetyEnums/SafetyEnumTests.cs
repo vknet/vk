@@ -1495,28 +1495,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void VideoCatalogTypeTest()
-	{
-		// get test
-		VideoCatalogType.Channel.ToString()
-			.Should()
-			.Be("channel");
-
-		VideoCatalogType.Category.ToString()
-			.Should()
-			.Be("category");
-
-		// parse test
-		VideoCatalogType.FromJsonString("channel")
-			.Should()
-			.Be(VideoCatalogType.Channel);
-
-		VideoCatalogType.FromJsonString("category")
-			.Should()
-			.Be(VideoCatalogType.Category);
-	}
-
-	[Fact]
 	public void KeyboardButtonColorTest()
 	{
 		// get test
