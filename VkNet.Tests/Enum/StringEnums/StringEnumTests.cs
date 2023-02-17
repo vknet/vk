@@ -8,6 +8,18 @@ namespace VkNet.Tests.Enum.StringEnums;
 public class StringEnumTests
 {
 	[Fact]
+	public void VideoCatalogItemTypeTest()
+	{
+		Utilities.Deserialize<VideoCatalogItemType>("video")
+			.Should()
+			.Be(VideoCatalogItemType.Video);
+
+		Utilities.Deserialize<VideoCatalogItemType>("album")
+			.Should()
+			.Be(VideoCatalogItemType.Album);
+	}
+
+	[Fact]
 	public void VideoCatalogTypeTest()
 	{
 		Utilities.Deserialize<VideoCatalogType>("channel")
