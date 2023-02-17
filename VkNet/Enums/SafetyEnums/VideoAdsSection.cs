@@ -1,8 +1,6 @@
 ﻿using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums;
 
 /// <summary>
 /// TODO: Undocumented enum, which is a part of sections field in VideoAds
@@ -10,8 +8,7 @@ namespace VkNet.Enums.SafetyEnums;
 /// This enum must be pointing to the positions at which ads can be played
 /// </remarks>
 /// </summary>
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
-public class VideoAdsSection : SafetyEnum<VideoAdsSection>
+public enum VideoAdsSection
 {
 	/// <summary>
 	/// TODO: Undocumented
@@ -20,7 +17,7 @@ public class VideoAdsSection : SafetyEnum<VideoAdsSection>
 	/// </remarks>
 	/// </summary>
 	[EnumMember(Value = "preroll")]
-	public static readonly VideoAdsSection Preroll = RegisterPossibleValue(value: "preroll");
+	Preroll,
 
 	/// <summary>
 	/// TODO: Undocumented
@@ -29,7 +26,7 @@ public class VideoAdsSection : SafetyEnum<VideoAdsSection>
 	/// </remarks>
 	/// </summary>
 	[EnumMember(Value = "midroll")]
-	public static readonly VideoAdsSection Midroll = RegisterPossibleValue(value: "midroll");
+	Midroll,
 
 	/// <summary>
 	/// TODO: Undocumented
@@ -38,5 +35,5 @@ public class VideoAdsSection : SafetyEnum<VideoAdsSection>
 	/// </remarks>
 	/// </summary>
 	[EnumMember(Value = "postroll")]
-	public static readonly VideoAdsSection Postroll = RegisterPossibleValue(value: "postroll");
+	Postroll
 }

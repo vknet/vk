@@ -1,5 +1,6 @@
 using System;
 using FluentAssertions;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Utils;

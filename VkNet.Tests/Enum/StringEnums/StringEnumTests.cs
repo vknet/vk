@@ -56,6 +56,22 @@ public class StringEnumTests
 	}
 
 	[Fact]
+	public void VideoAdsSectionTest()
+	{
+		Utilities.Deserialize<VideoAdsSection>("preroll")
+			.Should()
+			.Be(VideoAdsSection.Preroll);
+
+		Utilities.Deserialize<VideoAdsSection>("midroll")
+			.Should()
+			.Be(VideoAdsSection.Midroll);
+
+		Utilities.Deserialize<VideoAdsSection>("postroll")
+			.Should()
+			.Be(VideoAdsSection.Postroll);
+	}
+
+	[Fact]
 	public void VideoViewTest()
 	{
 		Utilities.Deserialize<VideoView>("horizontal")
