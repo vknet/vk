@@ -20,6 +20,18 @@ public class StringEnumTests
 	}
 
 	[Fact]
+	public void UserSectionTest()
+	{
+		Utilities.Deserialize<UserSection>("friends")
+			.Should()
+			.Be(UserSection.Friends);
+
+		Utilities.Deserialize<UserSection>("subscriptions")
+			.Should()
+			.Be(UserSection.Subscriptions);
+	}
+
+	[Fact]
 	public void AppPlatformsTest()
 	{
 		Utilities.Deserialize<AppPlatforms>("ios")

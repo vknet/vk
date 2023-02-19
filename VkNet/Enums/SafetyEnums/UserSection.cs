@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums;
 
 /// <summary>
 /// Разделы среди которых нужно осуществить поиск, перечисленные через запятую:
@@ -8,18 +8,18 @@ namespace VkNet.Enums.SafetyEnums;
 /// subscriptions – искать среди друзей и подписок пользователя список строк,
 /// разделенных через запятую.
 /// </summary>
-public sealed class UserSection : SafetyEnum<UserSection>
+public enum UserSection
 {
 	/// <summary>
 	/// Искать среди друзей.
 	/// </summary>
 	[EnumMember(Value = "friends")]
-	public static readonly UserSection Friends = RegisterPossibleValue(value: "friends");
+	Friends,
 
 	/// <summary>
 	/// Искать среди друзей и подписок пользователя список строк, разделенных через
 	/// запятую.
 	/// </summary>
 	[EnumMember(Value = "subscriptions")]
-	public static readonly UserSection Subscriptions = RegisterPossibleValue(value: "subscriptions");
+	Subscriptions
 }

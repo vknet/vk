@@ -476,17 +476,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator UserSection(VkResponse response) => response == null
-		? null
-		: UserSection.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator CampaignType(VkResponse response) => response == null
 		? null
 		: CampaignType.FromJson(response: response);
