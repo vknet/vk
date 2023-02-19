@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using VkNet.Categories;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Keyboard;

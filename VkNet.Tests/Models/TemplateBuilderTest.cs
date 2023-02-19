@@ -1,5 +1,6 @@
 using System.Linq;
 using FluentAssertions;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Template;

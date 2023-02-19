@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Template.Carousel;
@@ -15,7 +16,6 @@ public interface ITemplateBuilder
 	/// <summary>
 	/// Тип шаблона, по умолчанию карусель
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	TemplateType Type { get; }
 
 	/// <summary>

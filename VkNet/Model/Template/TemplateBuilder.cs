@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Template.Carousel;
@@ -12,11 +13,9 @@ namespace VkNet.Model.Template;
 /// <inheritdoc />
 [Serializable]
 [UsedImplicitly]
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
 public class TemplateBuilder : ITemplateBuilder
 {
 	/// <inheritdoc />
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public TemplateType Type { get; private set; } = TemplateType.Carousel;
 
 	/// <inheritdoc />
