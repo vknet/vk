@@ -20,6 +20,26 @@ public class StringEnumTests
 	}
 
 	[Fact]
+	public void AppPlatformsTest()
+	{
+		Utilities.Deserialize<AppPlatforms>("ios")
+			.Should()
+			.Be(AppPlatforms.Ios);
+
+		Utilities.Deserialize<AppPlatforms>("android")
+			.Should()
+			.Be(AppPlatforms.Android);
+
+		Utilities.Deserialize<AppPlatforms>("winphone")
+			.Should()
+			.Be(AppPlatforms.WinPhone);
+
+		Utilities.Deserialize<AppPlatforms>("web")
+			.Should()
+			.Be(AppPlatforms.Web);
+	}
+
+	[Fact]
 	public void VideoCatalogTypeTest()
 	{
 		Utilities.Deserialize<VideoCatalogType>("channel")

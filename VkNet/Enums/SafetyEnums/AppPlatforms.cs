@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums;
 
 /// <summary>
 /// Платформа для которой необходимо вернуть приложения.
@@ -8,29 +8,29 @@ namespace VkNet.Enums.SafetyEnums;
 /// <remarks>
 /// По умолчанию используется web.
 /// </remarks>
-public sealed class AppPlatforms : SafetyEnum<AppPlatforms>
+public enum AppPlatforms
 {
 	/// <summary>
 	/// Популярные за день (по умолчанию);
 	/// </summary>
 	[EnumMember(Value = "ios")]
-	public static readonly AppPlatforms Ios = RegisterPossibleValue(value: "ios");
+	Ios,
 
 	/// <summary>
 	/// По посещаемости
 	/// </summary>
 	[EnumMember(Value = "android")]
-	public static readonly AppPlatforms Android = RegisterPossibleValue(value: "android");
+	Android,
 
 	/// <summary>
 	/// По дате создания приложения
 	/// </summary>
 	[EnumMember(Value = "winphone")]
-	public static readonly AppPlatforms WinPhone = RegisterPossibleValue(value: "winphone");
+	WinPhone,
 
 	/// <summary>
 	/// По скорости роста
 	/// </summary>
 	[EnumMember(Value = "web")]
-	public static readonly AppPlatforms Web = RegisterPossibleValue(value: "web");
+	Web
 }
