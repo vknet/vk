@@ -32,6 +32,18 @@ public class StringEnumTests
 	}
 
 	[Fact]
+	public void TranscriptStatesTest()
+	{
+		Utilities.Deserialize<TranscriptStates>("done")
+			.Should()
+			.Be(TranscriptStates.Done);
+
+		Utilities.Deserialize<TranscriptStates>("in_progress")
+			.Should()
+			.Be(TranscriptStates.InProgress);
+	}
+
+	[Fact]
 	public void UserOrGroupTypeTest()
 	{
 		Utilities.Deserialize<UserOrGroupType>("user")

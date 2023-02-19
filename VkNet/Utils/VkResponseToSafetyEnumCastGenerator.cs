@@ -553,17 +553,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator TranscriptStates(VkResponse response) => response == null
-		? null
-		: TranscriptStates.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator MessageEventType(VkResponse response) => response == null
 		? null
 		: MessageEventType.FromJson(response: response);
