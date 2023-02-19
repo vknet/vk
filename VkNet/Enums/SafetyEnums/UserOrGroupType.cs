@@ -1,21 +1,21 @@
 using System.Runtime.Serialization;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums;
 
 /// <summary>
 /// Пользователь или сообщество.
 /// </summary>
-public class UserOrGroupType : SafetyEnum<UserOrGroupType>
+public enum UserOrGroupType
 {
 	/// <summary>
 	/// Пользователь.
 	/// </summary>
 	[EnumMember(Value = "user")]
-	public static readonly UserOrGroupType User = RegisterPossibleValue("user");
+	User,
 
 	/// <summary>
 	/// Сообщество.
 	/// </summary>
 	[EnumMember(Value = "group")]
-	public static readonly UserOrGroupType Group = RegisterPossibleValue("group");
+	Group
 }

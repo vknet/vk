@@ -32,6 +32,18 @@ public class StringEnumTests
 	}
 
 	[Fact]
+	public void UserOrGroupTypeTest()
+	{
+		Utilities.Deserialize<UserOrGroupType>("user")
+			.Should()
+			.Be(UserOrGroupType.User);
+
+		Utilities.Deserialize<UserOrGroupType>("group")
+			.Should()
+			.Be(UserOrGroupType.Group);
+	}
+
+	[Fact]
 	public void AppPlatformsTest()
 	{
 		Utilities.Deserialize<AppPlatforms>("ios")
