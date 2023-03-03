@@ -231,8 +231,7 @@ public class Photo : MediaAttachment, IGroupUpdate
 			SmallPhotoSrc = response["src_small"],
 			Latitude = response["lat"],
 			Longitude = response["long"],
-			Sizes = response["sizes"]
-				.ToReadOnlyCollectionOf<PhotoSize>(x => x)
+			Sizes = !response.ContainsKey("sizes") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<PhotoSize>>(response[key: "sizes"].ToString())
 		};
 
 		return photo;
