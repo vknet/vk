@@ -356,7 +356,7 @@ public class GroupsEditParams
 			Rss = response["rss"],
 			Website = response["website"],
 			AgeLimits = response["age_limits"],
-			Market = response["market"],
+			Market = !response.ContainsKey("market")?null:JsonConvert.DeserializeObject<GroupMarketSettings>(response["market"].ToString()),
 
 			GroupId = response["group_id"] ?? 0UL,
 			ScreenName = response["screen_name"],
