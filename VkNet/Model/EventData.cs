@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -51,18 +50,4 @@ public class EventData
 	/// </remarks>
 	[JsonProperty("owner_id", NullValueHandling = NullValueHandling.Ignore)]
 	public long? OwnerId { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static EventData FromJson(VkResponse response) => new()
-	{
-		Type = response["type"],
-		Link = response["link"],
-		AppId = response["app_id"],
-		OwnerId = response["owner_id"],
-		Hash = response["hash"]
-	};
 }

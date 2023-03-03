@@ -31,7 +31,7 @@ public class MessageNew : IGroupUpdate
 	public static MessageNew FromJson(VkResponse response) => new()
 	{
 		Message = response["message"],
-		ClientInfo = response["client_info"]
+		ClientInfo = !response.ContainsKey("client_info")?null:JsonConvert.DeserializeObject<ClientInfo>(response["client_info"].ToString())
 	};
 
 	/// <summary>

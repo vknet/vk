@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -33,22 +32,4 @@ public class Exports
 	/// </summary>
 	[JsonProperty("instagram")]
 	public bool Instagram { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Exports FromJson(VkResponse response)
-	{
-		var exports = new Exports
-		{
-			Twitter = response[key: "twitter"],
-			Facebook = response[key: "facebook"],
-			Livejournal = response[key: "livejournal"],
-			Instagram = response[key: "instagram"]
-		};
-
-		return exports;
-	}
 }
