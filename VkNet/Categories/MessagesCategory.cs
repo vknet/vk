@@ -916,7 +916,7 @@ public partial class MessagesCategory : IMessagesCategory
 		.FirstOrDefault();
 
 	/// <inheritdoc />
-	public ChatPreview GetChatPreview(string link, ProfileFields fields) => _vk.Call("messages.getChatPreview",
+	public ChatPreview GetChatPreview(string link, ProfileFields fields) => _vk.Call<ChatPreview>("messages.getChatPreview",
 		new()
 		{
 			{
