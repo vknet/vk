@@ -353,23 +353,23 @@ public class FriendsCategoryTest : CategoryBaseTest
 		var list = Api.Friends.GetLists();
 
 		list.Should()
-			.HaveCount(2);
+			.HaveCount(5);
 
 		list[0]
 			.Id.Should()
-			.Be(1);
+			.Be(28);
 
 		list[0]
 			.Name.Should()
-			.Be("тестовая метка");
+			.Be("Лучшие друзья");
 
 		list[1]
 			.Id.Should()
-			.Be(2);
+			.Be(29);
 
 		list[1]
 			.Name.Should()
-			.Be("лист 3");
+			.Be("Родственники");
 	}
 
 	[Fact]

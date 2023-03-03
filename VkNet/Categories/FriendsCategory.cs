@@ -196,8 +196,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.getLists", parameters)
-			.ToVkCollectionOf<FriendList>(x => x);
+		return _vk.Call<VkCollection<FriendList>>("friends.getLists", parameters);
 	}
 
 	/// <inheritdoc />
