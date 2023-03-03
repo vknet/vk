@@ -654,7 +654,7 @@ public partial class VkResponse
 	public static implicit operator SchoolClass(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: SchoolClass.FromJson(response);
-	
+  
 	/// <summary>
 	/// Преобразовать из VkResponse
 	/// </summary>
