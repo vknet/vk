@@ -106,7 +106,7 @@ public partial class FriendsCategory : IFriendsCategory
 			};
 		}
 
-		VkResponseArray response = _vk.Call("friends.getMutual", new()
+		return _vk.Call<ReadOnlyCollection<MutualFriend>>("friends.getMutual", new()
 		{
 			{
 				"source_uid", @params.SourceUid
@@ -124,8 +124,6 @@ public partial class FriendsCategory : IFriendsCategory
 				"offset", @params.Offset
 			}
 		});
-
-		return response.ToReadOnlyCollectionOf<MutualFriend>(x => x);
 	}
 
 	/// <inheritdoc />
