@@ -249,15 +249,4 @@ public partial class VkResponse
 	public static implicit operator VideoCatalog(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: VideoCatalog.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator PostDonut(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: PostDonut.FromJson(response);
 }

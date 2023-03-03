@@ -237,7 +237,11 @@ public class Post : MediaAttachment
 			.ToReadOnlyCollectionOf<Post>(x => x);
 
 		res.Views = response["views"];
-		res.Donut = response["donut"];
+
+		res.Donut = !response.ContainsKey("donut")
+			? null
+			: JsonConvert.DeserializeObject<PostDonut>(response[key: "donut"]
+				.ToString());
 
 		return res;
 	}
