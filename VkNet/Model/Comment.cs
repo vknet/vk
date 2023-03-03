@@ -140,7 +140,8 @@ public class Comment
 		OwnerId = response["owner_id"],
 		ParentsStack = response["parents_stack"]
 			.ToReadOnlyCollectionOf<long>(x => x),
-		Thread = response["thread"]
+		Thread = !response.ContainsKey("thread")?null:JsonConvert.DeserializeObject<CommentThread>(response["thread"].ToString()),
+
 	};
 
 	/// <summary>
