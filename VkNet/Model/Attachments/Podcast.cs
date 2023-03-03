@@ -105,7 +105,7 @@ public class Podcast : MediaAttachment
 		NoSearch = response["no_search"],
 		IsHq = response["is_hq"],
 		IsExplicit = response["is_explicit"],
-		PodcastInfo = response["podcast_info"],
+		PodcastInfo = !response.ContainsKey("podcast_info")?null:JsonConvert.DeserializeObject<PodcastInfo>(response["podcast_info"].ToString()),
 		PodcastTitle = response["podcast_title"],
 		TrackCode = response["track_code"]
 	};
