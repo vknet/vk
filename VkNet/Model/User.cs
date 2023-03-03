@@ -107,7 +107,7 @@ public class User
 			PhotoMax = response["photo_max"],
 			PhotoMaxOrig = response["photo_max_orig"],
 			FollowersCount = response["followers_count"],
-			Occupation = response["occupation"],
+			Occupation = !response.ContainsKey("occupation")?null:JsonConvert.DeserializeObject<Occupation>(response["occupation"].ToString()),
 			Exports = !response.ContainsKey("exports")?null:JsonConvert.DeserializeObject<Exports>(response["exports"].ToString()),
 			WallComments = response["wall_comments"],
 			CanSendFriendRequest = response["can_send_friend_request"],
