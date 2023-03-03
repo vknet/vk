@@ -362,7 +362,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.CanWritePrivateMessage.Should()
 			.BeFalse();
 
-		user.Connections.Twitter.Should()
+		user.Twitter.Should()
 			.Be("durov");
 
 		user.Site.Should()
@@ -670,7 +670,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.CanWritePrivateMessage.Should()
 			.BeFalse();
 
-		user.Connections.Twitter.Should()
+		user.Twitter.Should()
 			.Be("durov");
 
 		user.Site.Should()
@@ -1169,7 +1169,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user1.HomePhone.Should()
 			.Be("*****");
 
-		user1.Connections.Skype.Should()
+		user1.Skype.Should()
 			.Be("немає");
 
 		user1.Site.Should()
