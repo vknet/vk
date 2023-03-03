@@ -28,16 +28,4 @@ public class Currency
 	/// </summary>
 	[JsonProperty("name")]
 	public string Name { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Currency FromJson(VkResponse response) => new()
-	{
-		Id = response[key: "id"],
-		Сurrency = response[key: "currency"],
-		Name = response[key: "name"]
-	};
 }

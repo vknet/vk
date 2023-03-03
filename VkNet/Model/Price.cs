@@ -50,7 +50,7 @@ public class Price
 		var price = new Price
 		{
 			Amount = response["amount"],
-			Currency = response["currency"],
+			Currency = !response.ContainsKey("currency")?null: JsonConvert.DeserializeObject<Currency>(response["currency"].ToString()),
 			OldAmount = response["old_amount"],
 			Text = response["text"]
 		};
