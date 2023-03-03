@@ -86,8 +86,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getStreetsById", parameters, true)
-			.ToReadOnlyCollectionOf<Street>(x => x);
+		return _vk.Call<ReadOnlyCollection<Street>>("database.getStreetsById", parameters, true);
 	}
 
 	/// <inheritdoc />

@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -22,7 +21,6 @@ public class Street
 	[JsonProperty("title")]
 	public string Title { get; set; }
 
-
 	[JsonProperty("name")]
 	private string Name
 	{
@@ -36,24 +34,4 @@ public class Street
 		get => Id;
 		set => Id = value;
 	}
-
-	#region public Methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Street FromJson(VkResponse response)
-	{
-		var street = new Street
-		{
-			Id = response[key: "sid"] ?? response[key: "id"],
-			Title = response[key: "name"]
-		};
-
-		return street;
-	}
-
-	#endregion
 }
