@@ -66,7 +66,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.createAlbum", parameters);
+		return _vk.Call<PhotoAlbum>("photos.createAlbum", parameters);
 	}
 
 	/// <inheritdoc />
@@ -114,7 +114,7 @@ public partial class PhotoCategory : IPhotoCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false) => _vk.Call("photos.getAlbums",
+	public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<PhotoAlbum>>("photos.getAlbums",
 			new()
 			{
 				{
@@ -138,8 +138,7 @@ public partial class PhotoCategory : IPhotoCategory
 				{
 					"photo_sizes", @params.PhotoSizes
 				}
-			}, skipAuthorization)
-		.ToVkCollectionOf<PhotoAlbum>(selector: x => x);
+			}, skipAuthorization);
 
 	/// <inheritdoc />
 	public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = false) => _vk.Call("photos.get", new()
