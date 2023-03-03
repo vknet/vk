@@ -640,17 +640,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator Rect(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Rect.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator Region(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: Region.FromJson(response);
