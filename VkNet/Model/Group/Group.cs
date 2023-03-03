@@ -105,7 +105,7 @@ public class Group
 			IsMessagesAllowed = response["is_messages_allowed"],
 			Trending = response["trending"],
 			CanMessage = response["can_message"],
-			Cover = response["cover"],
+			Cover = !response.ContainsKey("cover") ? null : JsonConvert.DeserializeObject<GroupCover>(response["cover"].ToString()),
 			Market = !response.ContainsKey("market") ? null : JsonConvert.DeserializeObject<GroupMarket>(response["market"].ToString()),
 			AgeLimits = response["age_limits"],
 			MemberStatus = response["member_status"],
