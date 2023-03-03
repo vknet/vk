@@ -20,15 +20,6 @@ public partial class VkResponse
 		: SubjectListItem.FromJson(response);
 
 	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static implicit operator Image(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Image.FromJson(response);
-
-	/// <summary>
 	/// Преобразовать из VkResponse
 	/// </summary>
 	/// <param name="response"> Ответ. </param>
