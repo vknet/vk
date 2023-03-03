@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -39,23 +38,4 @@ public class Military
 	/// </summary>
 	[JsonProperty("until")]
 	public int? Until { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Military FromJson(VkResponse response)
-	{
-		var military = new Military
-		{
-			Unit = response[key: "unit"],
-			UnitId = response[key: "unit_id"],
-			CountryId = response[key: "country_id"],
-			From = response[key: "from"],
-			Until = response[key: "until"]
-		};
-
-		return military;
-	}
 }
