@@ -92,17 +92,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator MessagesPushSettings(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: MessagesPushSettings.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator Military(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: Military.FromJson(response);
