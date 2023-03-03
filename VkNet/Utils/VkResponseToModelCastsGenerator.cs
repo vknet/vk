@@ -70,17 +70,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator LastActivity(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: LastActivity.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator LastSeen(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: LastSeen.FromJson(response);
