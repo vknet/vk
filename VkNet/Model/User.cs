@@ -54,8 +54,8 @@ public class User
 			Education = response,
 			Universities = response["universities"]
 				.ToReadOnlyCollectionOf<University>(x => x),
-			Schools = response["schools"]
-				.ToReadOnlyCollectionOf<School>(x => x),
+			Schools =  !response.ContainsKey("schools")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<School>>(response["schools"].ToString()),
+
 			CanPost = response["can_post"],
 			CanSeeAllPosts = response["can_see_all_posts"],
 			CanSeeAudio = response["can_see_audio"],
