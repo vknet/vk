@@ -1011,7 +1011,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.getCatalogInfo", parameters, true);
+		return _vk.Call<GroupsCatalogInfo>("groups.getCatalogInfo", parameters, true);
 	}
 
 	/// <inheritdoc />
