@@ -79,17 +79,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator HistoryAttachment(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: HistoryAttachment.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator InformationAboutOffers(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: InformationAboutOffers.FromJson(response);

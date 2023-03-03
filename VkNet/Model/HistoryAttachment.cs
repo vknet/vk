@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -24,13 +23,8 @@ public class HistoryAttachment
 	public Attachment Attachment { get; set; }
 
 	/// <summary>
-	/// Разобрать из json.
+	///
 	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static HistoryAttachment FromJson(VkResponse response) => new()
-	{
-		MessageId = response[key: "message_id"],
-		Attachment = response[key: "attachment"]
-	};
+	[JsonProperty("next_from")]
+	public string NextFrom { get; set; }
 }
