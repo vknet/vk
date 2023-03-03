@@ -48,8 +48,8 @@ public partial class MessagesCategory
 		() => Delete(conversationMessageIds, peerId, spam, groupId, deleteForAll));
 
 	/// <inheritdoc />
-	public Task<Chat> DeleteChatPhotoAsync(ulong chatId, ulong? groupId = null) =>
-		TypeHelper.TryInvokeMethodAsync(() => DeleteChatPhoto(out var _, chatId, groupId));
+	public Task<DeleteChatPhotoResult> DeleteChatPhotoAsync(ulong chatId, ulong? groupId = null) =>
+		TypeHelper.TryInvokeMethodAsync(() => DeleteChatPhoto(chatId, groupId));
 
 	/// <inheritdoc />
 	public Task<ulong> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null) =>
