@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -27,21 +26,4 @@ public class DocumentType
 	/// </summary>
 	[JsonProperty("count")]
 	public long Count { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Тип документа. </returns>
-	public static DocumentType FromJson(VkResponse response)
-	{
-		var result = new DocumentType
-		{
-			Id = response[key: "id"],
-			Name = response[key: "name"],
-			Count = response[key: "count"]
-		};
-
-		return result;
-	}
 }
