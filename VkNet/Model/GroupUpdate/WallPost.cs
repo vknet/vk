@@ -33,7 +33,7 @@ public class WallPost : Post, IGroupUpdate
 		ReplyPostId = response[key: "reply_post_id"],
 		FriendsOnly = response[key: "friends_only"],
 		Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
-		Likes = response[key: "likes"],
+		Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
 		Reposts = response[key: "reposts"],
 		PostType = response[key: "post_type"],
 		PostSource = response[key: "post_source"],

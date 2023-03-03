@@ -39,7 +39,7 @@ public class WallReply : Comment, IGroupUpdate
 		ReplyToComment = response[key: "reply_to_comment"],
 		Attachments = response[key: "attachments"]
 			.ToReadOnlyCollectionOf<Attachment>(selector: x => x),
-		Likes = response[key: "likes"],
+		Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
 		PostId = response["post_id"],
 		PostOwnerId = response["post_owner_id"]
 	};

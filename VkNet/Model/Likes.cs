@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -35,26 +34,4 @@ public class Likes
 	/// </summary>
 	[JsonProperty("can_publish")]
 	public bool? CanPublish { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Likes FromJson(VkResponse response)
-	{
-		var likes = new Likes
-		{
-			Count = response[key: "count"],
-			UserLikes = response[key: "user_likes"],
-			CanLike = response[key: "can_like"],
-			CanPublish = response[key: "can_publish"]
-		};
-
-		return likes;
-	}
-
-	#endregion
 }

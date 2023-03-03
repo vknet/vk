@@ -92,7 +92,7 @@ public class WallReply : MediaAttachment
 			FromId = response["from_id"] ?? response["user_id"] ?? response["uid"],
 			Date = response["date"],
 			Text = response["text"],
-			Likes = response["likes"],
+			Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
 			ReplyToUId = response["reply_to_uid"],
 			ReplyToCId = response["reply_to_cid"]
 		};

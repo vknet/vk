@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 using VkNet.Model.Attachments;
 using VkNet.Utils;
 
@@ -31,7 +32,7 @@ public class BoardPost : CommentBoard, IGroupUpdate
 		FromId = response[key: "from_id"],
 		Date = response[key: "date"],
 		Text = response[key: "text"],
-		Likes = response[key: "likes"],
+		Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
 		Attachments = response[key: "attachments"]
 			.ToReadOnlyCollectionOf<Attachment>(selector: x => x),
 		TopicId = response["topic_id"],

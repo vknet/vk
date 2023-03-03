@@ -190,7 +190,7 @@ public class Wall : MediaAttachment
 			ReplyPostId = response["reply_post_id"],
 			FriendsOnly = response["friends_only"],
 			Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
-			Likes = response["likes"],
+			Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
 			Reposts = response["reposts"],
 			PostType = response["post_type"],
 			PostSource = response["post_source"],

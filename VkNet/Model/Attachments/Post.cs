@@ -216,7 +216,11 @@ public class Post : MediaAttachment
 		};
 
 		res.Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString());
-		res.Likes = response["likes"];
+
+		res.Likes = !response.ContainsKey("likes")
+			? null
+			: JsonConvert.DeserializeObject<Likes>(response[key: "likes"]
+				.ToString());
 		res.Reposts = response["reposts"];
 		res.PostType = response["post_type"];
 		res.PostSource = response["post_source"];

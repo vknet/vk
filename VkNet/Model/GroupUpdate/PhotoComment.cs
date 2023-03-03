@@ -39,7 +39,7 @@ public class PhotoComment : Comment, IGroupUpdate
 		ReplyToComment = response[key: "reply_to_comment"],
 		Attachments = response[key: "attachments"]
 			.ToReadOnlyCollectionOf<Attachment>(selector: x => x),
-		Likes = response[key: "likes"],
+		Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
 		PhotoId = response["photo_id"],
 		PhotoOwnerId = response["photo_owner_id"]
 	};

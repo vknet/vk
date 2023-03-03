@@ -39,7 +39,7 @@ public class MarketComment : Comment, IGroupUpdate
 		ReplyToComment = response[key: "reply_to_comment"],
 		Attachments = response[key: "attachments"]
 			.ToReadOnlyCollectionOf<Attachment>(selector: x => x),
-		Likes = response[key: "likes"],
+		Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
 		ItemId = response["item_id"],
 		MarketOwnerId = response["market_owner_id"]
 	};
