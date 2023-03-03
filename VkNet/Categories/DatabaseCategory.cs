@@ -229,8 +229,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getFaculties", parameters, true)
-			.ToVkCollectionOf<Faculty>(x => x);
+		return _vk.Call<VkCollection<Faculty>>("database.getFaculties", parameters, true);
 	}
 
 	/// <inheritdoc />
