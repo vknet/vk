@@ -70,28 +70,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator LinkButton(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: LinkButton.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator LinkButtonAction(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: LinkButtonAction.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator LongPollHistoryResponse(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: LongPollHistoryResponse.FromJson(response);

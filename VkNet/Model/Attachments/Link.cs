@@ -165,7 +165,7 @@ public class Link : MediaAttachment
 			Product = response["product"],
 			Rating = response["rating"],
 			Application = !response.ContainsKey("application") ? null : JsonConvert.DeserializeObject<Application>(response["application"].ToString()),
-			Button = response["button"],
+			Button = !response.ContainsKey("button") ? null : JsonConvert.DeserializeObject<LinkButton>(response["button"].ToString()),
 			PreviewUrl = response["preview_url"]
 		};
 	}
