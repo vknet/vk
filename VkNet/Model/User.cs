@@ -38,7 +38,7 @@ public class User
 			Sex = response["sex"],
 			BirthDate = response["bdate"],
 			City = !response.ContainsKey("city")?null:JsonConvert.DeserializeObject<City>(response["city"].ToString()),
-			Country = response["country"],
+			Country = !response.ContainsKey("country")?null:JsonConvert.DeserializeObject<Country>(response["country"].ToString()),
 			PhotoPreviews = response,
 			Online = response["online"],
 			FriendLists = response["lists"]

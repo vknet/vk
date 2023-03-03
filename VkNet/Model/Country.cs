@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -42,24 +41,4 @@ public class Country
 		get => Title;
 		set => Title = value;
 	}
-
-	#region public Methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Country FromJson(VkResponse response)
-	{
-		var country = new Country
-		{
-			Id = response[key: "comment_id"] ?? response[key: "cid"] ?? response[key: "id"],
-			Title = response[key: "title"] ?? response[key: "name"]
-		};
-
-		return country;
-	}
-
-	#endregion
 }

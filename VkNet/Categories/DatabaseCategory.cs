@@ -44,8 +44,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getCountries", parameters, true)
-			.ToVkCollectionOf<Country>(x => x);
+		return _vk.Call<VkCollection<Country>>("database.getCountries", parameters, true);
 	}
 
 	/// <inheritdoc />
@@ -102,8 +101,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getCountriesById", parameters, true)
-			.ToReadOnlyCollectionOf<Country>(c => c);
+		return _vk.Call<ReadOnlyCollection<Country>>("database.getCountriesById", parameters, true);
 	}
 
 	/// <inheritdoc />
