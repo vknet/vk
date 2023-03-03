@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams;
 
@@ -321,101 +320,4 @@ public class GroupsEditParams
 	/// </summary>
 	[JsonProperty("addresses")]
 	public bool? Addresses { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static GroupsEditParams FromJson(VkResponse response)
-	{
-		var res = new GroupsEditParams
-		{
-			Title = response["title"],
-			Description = response["description"],
-			Address = response["address"],
-			Wall = response["wall"],
-			Photos = response["photos"],
-			Video = response["video"],
-			Audio = response["audio"],
-			Docs = response["docs"],
-			Topics = response["topics"],
-			Wiki = response["wiki"],
-			Messages = response["messages"],
-			ObsceneFilter = response["obscene_filter"],
-			ObsceneStopwords = response["obscene_stopwords"],
-			ObsceneWords = response["obscene_words"]
-				.ToReadOnlyCollectionOf<string>(o => o),
-			PublicCategory = response["public_category"],
-			PublicCategoryList = response["public_category_list"]
-				.ToReadOnlyCollectionOf<long>(x => x),
-			Access = response["access"],
-			Subject = response["subject"],
-			SubjectList = response["subject_list"]
-				.ToReadOnlyCollectionOf<SubjectListItem>(x => x),
-			Rss = response["rss"],
-			Website = response["website"],
-			AgeLimits = response["age_limits"],
-			Market = !response.ContainsKey("market")?null:JsonConvert.DeserializeObject<GroupMarketSettings>(response["market"].ToString()),
-
-			GroupId = response["group_id"] ?? 0UL,
-			ScreenName = response["screen_name"],
-			Email = response["email"],
-			Phone = response["phone"],
-			EventStartDate = response["event_start_date"],
-			EventFinishDate = response["event_finish_date"],
-			EventGroupId = response["event_group_id"],
-			PublicDate = response["public_date"],
-			Links = response["links"],
-			Events = response["events"],
-			Places = response["places"],
-			Contacts = response["contacts"],
-			MainSection = response["main_section"],
-			SecondarySection = response["secondary_section"],
-			Articles = response["articles"],
-			Addresses = response["addresses"],
-			Country = response["country"],
-			City = response["city"]
-		};
-
-		#region Market
-
-		var market = response["market"];
-
-		if (market?["enabled"] != null)
-		{
-			res.MarketEnabled = market["enabled"];
-			res.MarketCommentsEnabled = market["comments_enabled"];
-
-			res.MarketCountry = market["country_ids"]
-				.ToReadOnlyCollectionOf<ulong>(o => o);
-
-			res.MarketCity = market["city_ids"]
-				.ToReadOnlyCollectionOf<ulong>(o => o);
-
-			res.MarketContact = market["contact_id"];
-			res.MarketCurrency = market["currency"];
-		} else
-		{
-			// Older version
-			res.MarketEnabled = response["market"];
-			res.MarketCommentsEnabled = response["market_comments"];
-
-			res.MarketCountry = response["market_country"]
-				.ToReadOnlyCollectionOf<ulong>(o => o);
-
-			res.MarketCity = response["market_city"]
-				.ToReadOnlyCollectionOf<ulong>(o => o);
-
-			res.MarketCurrency = response["market_currency"];
-			res.MarketContact = response["market_contact"];
-			#pragma warning disable CS0618 // Тип или член устарел
-			res.MarketWiki = response["market_wiki"];
-			#pragma warning restore CS0618 // Тип или член устарел
-		}
-
-		#endregion
-
-		return res;
-	}
 }
