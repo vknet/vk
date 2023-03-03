@@ -71,7 +71,7 @@ public class Message : MediaAttachment, IGroupUpdate
 			UsersCount = response["users_count"],
 			AdminId = response["admin_id"],
 			PhotoPreviews = response,
-			PushSettings = response["push_settings"],
+			PushSettings = !response.ContainsKey("push_settings")?null:JsonConvert.DeserializeObject<ChatPushSettings>(response[key: "push_settings"].ToString()),
 			ActionMid = response["action_mid"],
 			ActionEmail = response["action_email"],
 			ActionText = response["action_text"],
