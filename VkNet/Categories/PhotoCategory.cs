@@ -823,7 +823,7 @@ public partial class PhotoCategory : IPhotoCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<Comment> GetComments(PhotoGetCommentsParams @params) => _vk.Call("photos.getComments", new()
+	public VkCollection<Comment> GetComments(PhotoGetCommentsParams @params) => _vk.Call<VkCollection<Comment>>("photos.getComments", new()
 		{
 			{
 				"owner_id", @params.OwnerId
@@ -855,11 +855,10 @@ public partial class PhotoCategory : IPhotoCategory
 			{
 				"fields", @params.Fields
 			}
-		})
-		.ToVkCollectionOf<Comment>(selector: x => x);
+		});
 
 	/// <inheritdoc />
-	public VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params) => _vk.Call("photos.getAllComments", new()
+	public VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params) => _vk.Call<VkCollection<Comment>>("photos.getAllComments", new()
 		{
 			{
 				"owner_id", @params.OwnerId
@@ -876,8 +875,7 @@ public partial class PhotoCategory : IPhotoCategory
 			{
 				"count", @params.Count
 			}
-		})
-		.ToVkCollectionOf<Comment>(selector: x => x);
+		});
 
 	/// <inheritdoc />
 	public long CreateComment(PhotoCreateCommentParams @params)

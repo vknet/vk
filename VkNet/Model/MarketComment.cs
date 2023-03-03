@@ -44,8 +44,7 @@ public class MarketComment
 	{
 		var item = new MarketComment
 		{
-			Comments = response["items"]
-				.ToReadOnlyCollectionOf<Comment>(x => x),
+			Comments = JsonConvert.DeserializeObject<ReadOnlyCollection<Comment>>(response["items"].ToString()),
 			Count = response["count"],
 			Profiles = response["profiles"]
 				.ToReadOnlyCollectionOf<User>(x => x),
