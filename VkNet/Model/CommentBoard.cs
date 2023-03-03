@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -52,35 +51,4 @@ public class CommentBoard
 	/// </summary>
 	[JsonProperty(propertyName: "likes")]
 	public Likes Likes { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CommentBoard FromJson(VkResponse response) => new()
-	{
-		Id = response[key: "id"],
-		FromId = response[key: "from_id"],
-		Date = response[key: "date"],
-		Text = response[key: "text"],
-		Likes = response[key: "likes"],
-		Attachments = response[key: "attachments"]
-			.ToReadOnlyCollectionOf<Attachment>(selector: x => x)
-	};
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator CommentBoard(VkResponse response) => !response.HasToken()
-		? null
-		: FromJson(response: response);
-
-	#endregion
 }
