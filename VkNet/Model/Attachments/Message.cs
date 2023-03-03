@@ -52,7 +52,7 @@ public class Message : MediaAttachment, IGroupUpdate
 			Attachments = response["attachments"]
 				.ToReadOnlyCollectionOf<Attachment>(x => x),
 			Important = response["important"],
-			Geo = response["geo"],
+			Geo = !response.ContainsKey("geo") ? null : JsonConvert.DeserializeObject<Geo>(response[key: "geo"].ToString()),
 			Payload = response["payload"],
 			ForwardedMessages = response["fwd_messages"]
 				.ToReadOnlyCollectionOf<Message>(x => x),

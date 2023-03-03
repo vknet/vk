@@ -220,7 +220,11 @@ public class Post : MediaAttachment
 		res.Reposts = response["reposts"];
 		res.PostType = response["post_type"];
 		res.PostSource = response["post_source"];
-		res.Geo = response["geo"];
+
+		res.Geo = !response.ContainsKey("geo")
+			? null
+			: JsonConvert.DeserializeObject<Geo>(response[key: "geo"]
+				.ToString());
 
 		res.Attachments = response["attachments"]
 			.ToReadOnlyCollectionOf<Attachment>(x => x);

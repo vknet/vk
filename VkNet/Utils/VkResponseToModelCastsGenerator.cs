@@ -167,17 +167,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator Geo(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Geo.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator GiftItem(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: GiftItem.FromJson(response);
