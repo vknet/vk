@@ -73,7 +73,7 @@ public class User
 			OnlineMobile = response["online_mobile"],
 			OnlineApp = response["online_app"],
 			RelationPartner = response["relation_partner"],
-			StandInLife = response["personal"],
+			StandInLife = !response.ContainsKey("personal")?null:JsonConvert.DeserializeObject<StandInLife>(response["personal"].ToString()),
 			Interests = response["interests"],
 			Music = response["music"],
 			Activities = response["activities"],

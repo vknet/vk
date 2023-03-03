@@ -654,18 +654,7 @@ public partial class VkResponse
 	public static implicit operator SchoolClass(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: SchoolClass.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator StandInLife(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: StandInLife.FromJson(response);
-
+  
 	/// <summary>
 	/// Преобразовать из VkResponse
 	/// </summary>

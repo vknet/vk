@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -61,31 +60,4 @@ public class StandInLife
 	/// </summary>
 	[JsonProperty("alcohol")]
 	public Attitude Alcohol { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static StandInLife FromJson(VkResponse response)
-	{
-		var standInLife = new StandInLife
-		{
-			Political = response[key: "political"],
-			Languages = response[key: "langs"]
-				.ToReadOnlyCollectionOf<string>(selector: x => x),
-			Religion = response[key: "religion"],
-			InspiredBy = response[key: "inspired_by"],
-			PeopleMain = response[key: "people_main"],
-			LifeMain = response[key: "life_main"],
-			Smoking = response[key: "smoking"],
-			Alcohol = response[key: "alcohol"]
-		};
-
-		return standInLife;
-	}
-
-	#endregion
 }
