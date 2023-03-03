@@ -68,17 +68,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator Contact(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: Contact.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator Contacts(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: Contacts.FromJson(response);

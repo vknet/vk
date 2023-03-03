@@ -89,8 +89,7 @@ public class Group
 			Activity = response["activity"],
 			Status = response["status"],
 			StatusAudio = response["status_audio"],
-			Contacts = response["contacts"]
-				.ToReadOnlyCollectionOf<Contact>(x => x),
+			Contacts = !response.ContainsKey("contacts") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<Contact>>(response["contacts"].ToString()),
 			Links = !response.ContainsKey("links") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<ExternalLink>>(response["links"].ToString()),
 			FixedPost = response["fixed_post"],
 			Verified = response["verified"],
