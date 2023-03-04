@@ -212,7 +212,7 @@ public class Wall : MediaAttachment
 			CanDelete = response["can_delete"],
 			CanEdit = response["can_edit"],
 			CanPin = response["can_pin"],
-			Views = response["views"],
+			Views = !response.ContainsKey("views") ? null : JsonConvert.DeserializeObject<PostView>(response[key: "views"].ToString()),
 			MarkedAsAds = response["marked_as_ads"]
 		};
 

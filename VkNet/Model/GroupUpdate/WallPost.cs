@@ -55,7 +55,7 @@ public class WallPost : Post, IGroupUpdate
 		CanDelete = response[key: "can_delete"],
 		CanEdit = response[key: "can_edit"],
 		CanPin = response[key: "can_pin"],
-		Views = response[key: "views"],
+		Views = !response.ContainsKey("views") ? null : JsonConvert.DeserializeObject<PostView>(response[key: "views"].ToString()),
 		MarkedAsAds = response[key: "marked_as_ads"],
 		AccessKey = response[key: "access_key"],
 		PostponedId = response["postponed_id"],
