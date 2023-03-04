@@ -72,8 +72,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getRegions", parameters, true)
-			.ToVkCollectionOf<Region>(r => r);
+		return _vk.Call<VkCollection<Region>>("database.getRegions", parameters, true);
 	}
 
 	/// <inheritdoc />
