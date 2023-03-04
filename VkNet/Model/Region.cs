@@ -23,6 +23,7 @@ public class Region
 	{
 		get => Id;
 		set => Id = value;
+	}
 
 	/// <summary>
 	/// Название региона
