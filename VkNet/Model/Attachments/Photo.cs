@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Model.GroupUpdate;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -186,75 +185,6 @@ public class Photo : MediaAttachment, IGroupUpdate
 		get => CreateTime;
 		set => CreateTime = value;
 	}
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Photo FromJson(VkResponse response)
-	{
-		var photo = new Photo
-		{
-			Id = response["photo_id"] ?? response["pid"] ?? response["id"],
-			AlbumId = response["album_id"] ?? response["aid"],
-			OwnerId = response["owner_id"],
-			Photo50 = response["photo_50"],
-			Photo75 = response["photo_75"] ?? response["src_small"],
-			Photo100 = response["photo_100"],
-			Photo130 = response["photo_130"] ?? response["src"],
-			Photo200 = response["photo_200"],
-			Photo604 = response["photo_604"] ?? response["src_big"],
-			Photo807 = response["photo_807"] ?? response["src_xbig"],
-			Photo1280 = response["photo_1280"] ?? response["src_xxbig"],
-			Photo2560 = response["photo_2560"] ?? response["src_xxxbig"],
-			Url = response["url"],
-			Width = response["width"],
-			Height = response["height"],
-			Text = response["text"],
-			CreateTime = response["date"] ?? response["created"],
-			UserId = Utilities.GetNullableLongId(response["user_id"]),
-			PostId = Utilities.GetNullableLongId(response["post_id"]),
-			AccessKey = response["access_key"],
-			PlacerId = Utilities.GetNullableLongId(response["placer_id"]),
-			TagCreated = response["tag_created"],
-			TagId = response["tag_id"],
-			Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
-			Comments = !response.ContainsKey("comments") ? null : JsonConvert.DeserializeObject<Comments>(response[key: "comments"].ToString()),
-			CanComment = response["can_comment"],
-			Reposts = !response.ContainsKey("reposts") ? null : JsonConvert.DeserializeObject<Reposts>(response[key: "reposts"].ToString()),
-			Tags = !response.ContainsKey("tags") ? null : JsonConvert.DeserializeObject<Tags>(response[key: "tags"].ToString()),
-			PhotoSrc = response["photo_src"],
-			PhotoHash = response["photo_hash"],
-			SmallPhotoSrc = response["src_small"],
-			Latitude = response["lat"],
-			Longitude = response["long"],
-			Sizes = !response.ContainsKey("sizes") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<PhotoSize>>(response[key: "sizes"].ToString())
-		};
-
-		return photo;
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="Photo" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Photo" /></returns>
-	public static implicit operator Photo(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 
 	#region опциональные поля
 

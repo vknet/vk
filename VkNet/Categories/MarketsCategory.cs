@@ -44,8 +44,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.get", parameters)
-			.ToVkCollectionOf<Market>(selector: x => x);
+		return _vk.Call<VkCollection<Market>>("market.get", parameters);
 	}
 
 	/// <inheritdoc />
@@ -61,12 +60,11 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.getById", parameters)
-			.ToVkCollectionOf<Market>(selector: x => x);
+		return _vk.Call<VkCollection<Market>>("market.getById", parameters);
 	}
 
 	/// <inheritdoc />
-	public VkCollection<Market> Search(MarketSearchParams @params) => _vk.Call("market.search",
+	public VkCollection<Market> Search(MarketSearchParams @params) => _vk.Call<VkCollection<Market>>("market.search",
 			new()
 			{
 				{
@@ -102,8 +100,7 @@ public partial class MarketsCategory : IMarketsCategory
 				{
 					"extended", @params.Extended
 				}
-			})
-		.ToVkCollectionOf<Market>(selector: x => x);
+			});
 
 	/// <inheritdoc />
 	public VkCollection<MarketAlbum> GetAlbums(long ownerId, int? offset = null, int? count = null)
@@ -121,8 +118,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.getAlbums", parameters)
-			.ToVkCollectionOf<MarketAlbum>(selector: x => x);
+		return _vk.Call<VkCollection<MarketAlbum>>("market.getAlbums", parameters);
 	}
 
 	/// <inheritdoc />
@@ -138,8 +134,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.getAlbumById", parameters)
-			.ToVkCollectionOf<MarketAlbum>(selector: x => x);
+		return _vk.Call<VkCollection<MarketAlbum>>("market.getAlbumById", parameters);
 	}
 
 	/// <inheritdoc />
@@ -174,36 +169,36 @@ public partial class MarketsCategory : IMarketsCategory
 
 	/// <inheritdoc />
 	public VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params) => _vk.Call<VkCollection<MarketComment>>("market.getComments",
-		new()
-		{
+			new()
 			{
-				"owner_id", @params.OwnerId
-			},
-			{
-				"item_id", @params.ItemId
-			},
-			{
-				"need_likes", @params.NeedLikes
-			},
-			{
-				"start_comment_id", @params.StartCommentId
-			},
-			{
-				"offset", @params.Offset
-			},
-			{
-				"count", @params.Count
-			},
-			{
-				"sort", @params.Sort
-			},
-			{
-				"extended", @params.Extended
-			},
-			{
-				"fields", @params.Fields
-			}
-		});
+				{
+					"owner_id", @params.OwnerId
+				},
+				{
+					"item_id", @params.ItemId
+				},
+				{
+					"need_likes", @params.NeedLikes
+				},
+				{
+					"start_comment_id", @params.StartCommentId
+				},
+				{
+					"offset", @params.Offset
+				},
+				{
+					"count", @params.Count
+				},
+				{
+					"sort", @params.Sort
+				},
+				{
+					"extended", @params.Extended
+				},
+				{
+					"fields", @params.Fields
+				}
+			});
 
 	/// <inheritdoc />
 	public bool DeleteComment(long ownerId, long commentId)

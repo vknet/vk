@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
+using VkNet.Model.Attachments;
 
 namespace VkNet.Utils.JsonConverter;
 
@@ -70,7 +71,7 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 			CanSeeAudio = response["can_see_audio"],
 			CanWritePrivateMessage = response["can_write_private_message"],
 			Status = response["status"],
-			StatusAudio = response["status_audio"],
+			StatusAudio = !response.ContainsKey("status_audio") ? null : JsonConvert.DeserializeObject<Audio>(response["status_audio"].ToString()),
 			LastSeen = !response.ContainsKey("last_seen")?null:JsonConvert.DeserializeObject<LastSeen>(response["last_seen"].ToString()),
 			CommonCount = response["common_count"],
 			Relation = response["relation"],

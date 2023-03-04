@@ -29,9 +29,9 @@ public class AudioMessageModel : BaseTest
 	{
 		ReadJsonFile("Models", "audio_message_with_transcription");
 
-		var response = GetResponse();
+		Url = "https://api.vk.com/method/wall.get";
 
-		var attachment = Attachment.FromJson(response);
+		var attachment = Api.Wall.Get(new()).WallPosts[0].Attachments[0];
 
 		attachment.Instance.Should()
 			.BeOfType<AudioMessage>();
@@ -59,9 +59,11 @@ public class AudioMessageModel : BaseTest
 	{
 		ReadJsonFile("Models", "audio_message_without_transcription");
 
-		var response = GetResponse();
+		Url = "https://api.vk.com/method/wall.get";
 
-		var attachment = Attachment.FromJson(response);
+		var result = Api.Wall.Get(new());
+
+		var attachment = result.WallPosts[0].Attachments[0];
 
 		attachment.Instance.Should()
 			.BeOfType<AudioMessage>();

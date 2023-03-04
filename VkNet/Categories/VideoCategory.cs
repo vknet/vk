@@ -28,31 +28,30 @@ public partial class VideoCategory : IVideoCategory
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
-		return _vk.Call("video.get", new()
+		return _vk.Call<VkCollection<Video>>("video.get", new()
+		{
 			{
-				{
-					"owner_id", @params.OwnerId
-				},
-				{
-					"videos", @params.Videos?.Select(selector: o => $"{o.OwnerId}_{o.Id}"
-																	+ (!string.IsNullOrEmpty(o.AccessKey)
-																		? $"_{o.AccessKey}"
-																		: ""))
-				},
-				{
-					"album_id", @params.AlbumId
-				},
-				{
-					"count", @params.Count
-				},
-				{
-					"offset", @params.Offset
-				},
-				{
-					"extended", @params.Extended
-				}
-			})
-			.ToVkCollectionOf<Video>(selector: x => x);
+				"owner_id", @params.OwnerId
+			},
+			{
+				"videos", @params.Videos?.Select(selector: o => $"{o.OwnerId}_{o.Id}"
+																+ (!string.IsNullOrEmpty(o.AccessKey)
+																	? $"_{o.AccessKey}"
+																	: ""))
+			},
+			{
+				"album_id", @params.AlbumId
+			},
+			{
+				"count", @params.Count
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"extended", @params.Extended
+			}
+		});
 	}
 
 	/// <inheritdoc />
@@ -111,7 +110,7 @@ public partial class VideoCategory : IVideoCategory
 	}
 
 	/// <inheritdoc />
-	public Video Save(VideoSaveParams @params) => _vk.Call("video.save", new()
+	public Video Save(VideoSaveParams @params) => _vk.Call<Video>("video.save", new()
 	{
 		{
 			"name", @params.Name
@@ -192,7 +191,7 @@ public partial class VideoCategory : IVideoCategory
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Count);
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
-		return _vk.Call("video.search", new()
+		return _vk.Call<VkCollection<Video>>("video.search", new()
 			{
 				{
 					"q", @params.Query
@@ -227,8 +226,7 @@ public partial class VideoCategory : IVideoCategory
 				{
 					"extended", @params.Extended
 				}
-			})
-			.ToVkCollectionOf<Video>(selector: x => x);
+			});
 	}
 
 	/// <inheritdoc />

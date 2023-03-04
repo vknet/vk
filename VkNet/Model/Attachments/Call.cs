@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -63,44 +62,4 @@ public class Call : MediaAttachment
 	/// </summary>
 	[JsonProperty("video")]
 	public bool? Video { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// </summary>
-	/// <param name="response"> </param>
-	/// <returns> </returns>
-	public static Call FromJson(VkResponse response)
-	{
-		var call = new Call
-		{
-			InitiatorId = response["initiator_id"],
-			ReceiverId = response["receiver_id"],
-			State = response["state"],
-			Time = response["time"],
-			Duration = response["duration"],
-			Video = response["video"]
-		};
-
-		return call;
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="Call" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Call" /></returns>
-	public static implicit operator Call(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

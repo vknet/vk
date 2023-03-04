@@ -1,7 +1,6 @@
 using System;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -49,41 +48,4 @@ public class Graffiti : MediaAttachment
 	/// </summary>
 	[JsonProperty("height")]
 	public int? Height { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Graffiti FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		OwnerId = response["owner_id"],
-		Photo200 = response["photo_200"],
-		Photo586 = response["photo_586"],
-		Url = response["url"],
-		Width = response["width"],
-		Height = response["height"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="Graffiti" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Graffiti" /></returns>
-	public static implicit operator Graffiti(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

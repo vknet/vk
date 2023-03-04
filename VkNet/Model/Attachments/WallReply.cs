@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -77,43 +76,5 @@ public class WallReply : MediaAttachment
 	{
 		get => FromId;
 		set => FromId = value;
-	}
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static WallReply FromJson(VkResponse response)
-	{
-		var wallReply = new WallReply
-		{
-			Id = response["comment_id"] ?? response["cid"] ?? response["id"],
-			FromId = response["from_id"] ?? response["user_id"] ?? response["uid"],
-			Date = response["date"],
-			Text = response["text"],
-			Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
-			ReplyToUId = response["reply_to_uid"],
-			ReplyToCId = response["reply_to_cid"]
-		};
-
-		return wallReply;
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="WallReply" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="WallReply" /></returns>
-	public static implicit operator WallReply(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
 	}
 }

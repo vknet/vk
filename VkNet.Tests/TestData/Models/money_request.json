@@ -1,18 +1,28 @@
 {
-  "type": "money_request",
-  "money_request": {
-    "id": 139,
-    "from_id": 123,
-    "to_id": 62103461,
-    "processed": 0,
-    "amount": {
-      "amount": "10000",
-      "currency": {
-        "id": 643,
-        "name": "RUB"
-      },
-      "text": "100 руб."
-    },
-    "init_url": "https://m.vk.com/payments?act=init_money_transfer&to_id=123&request_id=139&amount=100&currency=RUB&hash=HASH&hash_2=HASH2&user_id=62103461&from=api"
+  "response": {
+	"items": [
+	  {
+		"attachments": [
+		  {
+			"type": "money_request",
+			"money_request": {
+			  "id": 139,
+			  "from_id": 123,
+			  "to_id": 62103461,
+			  "processed": 0,
+			  "amount": {
+				"amount": "10000",
+				"currency": {
+				  "id": 643,
+				  "name": "RUB"
+				},
+				"text": "100 руб."
+			  },
+			  "init_url": "https://m.vk.com/payments?act=init_money_transfer&to_id=123&request_id=139&amount=100&currency=RUB&hash=HASH&hash_2=HASH2&user_id=62103461&from=api"
+			}
+		  }
+		]
+	  }
+	]
   }
 }

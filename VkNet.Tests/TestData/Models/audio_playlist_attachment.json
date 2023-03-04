@@ -1,68 +1,78 @@
 {
-  "type": "audio_playlist",
-  "audio_playlist": {
-    "id": 85412375,
-    "owner_id": -28905875,
-    "type": 0,
-    "title": "Вечеринка в разгаре",
-    "description": "Без рэп-музыки не обходится ни одна вечеринка. Раньше царствовало EDM, но сейчас на коне жирный трэп и прямая бочка — с этим плейлистом вы поймете что к чему, а гости вашей вписки будут вам благодарны.",
-    "genres": [],
-    "count": 15,
-    "is_following": false,
-    "followers": 46168,
-    "plays": 1519827,
-    "create_time": 1528218042,
-    "update_time": 1545063651,
-    "audios": [
-      {
-        "id": 456259871,
-        "owner_id": -28905875,
-        "artist": "Bonapart",
-        "title": "Алмата - Семей",
-        "duration": 160,
-        "date": 1545063621,
-        "url": "https://cs1-65v4.vkuseraudio.net/p8/e5905b95172fb9.mp3?extra=GYgZ2APdlMozdLFpcU2fQpodRedq_9V8EBF9WdSioKnoZGHj56qgGpXNYGbd4nPbbikXhYstCgMxQMHYlkvGHEkrY9epfFeKVetdtR7iBB83xa0p5K0TinqZkua-qtrXbqIa1pDKwpIQwRZDI1q55X_eeg",
-        "genre_id": 3,
-        "album": {
-          "id": 4022380,
-          "owner_id": -2000022380,
-          "title": "Алмата-Семей",
-          "access_key": "52b78f5b8f6d9547fb",
-          "thumb": {
-            "photo_34": "https://sun1-9.userapi.com/c850628/v850628273/5c646/rrDB8GkttTk.jpg",
-            "photo_68": "https://sun1-4.userapi.com/c850628/v850628273/5c644/M9w6vHCg-m4.jpg",
-            "photo_135": "https://sun1-2.userapi.com/c850628/v850628273/5c642/Dn71SU18uk8.jpg",
-            "photo_270": "https://sun1-7.userapi.com/c850628/v850628273/5c63f/_5vQ9swGePw.jpg",
-            "photo_300": "https://sun1-15.userapi.com/c850628/v850628273/5c63d/ZMwISFjPANg.jpg",
-            "photo_600": "https://sun1-2.userapi.com/c850628/v850628273/5c63a/AhHhzAjvjK0.jpg",
-            "width": 300,
-            "height": 300
-          }
-        },
-        "is_licensed": true,
-        "is_hq": true,
-        "ads": {
-          "duration": 160,
-          "content_id": "-28905875_456259871",
-          "puid22": 11,
-          "puid1": 554
-        },
-        "access_key": "ebec94164b4fa0e2b4",
-        "track_code": "b796649aJFPo77181knyj1erY0ilLhK8CmKC67ZmNWYqaBT3",
-        "is_explicit": false
-      }
-    ],
-    "photo": {
-      "photo_34": "https://sun1-9.userapi.com/c849132/v849132992/debd5/JzVCzjT9B-8.jpg",
-      "photo_68": "https://sun1-17.userapi.com/c849132/v849132992/debd3/RHcRtg2bGLc.jpg",
-      "photo_135": "https://sun1-15.userapi.com/c849132/v849132992/debd1/-4ZGv5s4GBI.jpg",
-      "photo_270": "https://sun1-18.userapi.com/c849132/v849132992/debce/4nDjpLh_ilM.jpg",
-      "photo_300": "https://sun1-11.userapi.com/c849132/v849132992/debcc/NTR25KL7rx8.jpg",
-      "photo_600": "https://sun1-20.userapi.com/c849132/v849132992/debc9/NSBeiyMLHrg.jpg",
-      "width": 300,
-      "height": 300
-    },
-    "access_key": "5e0f55237d68cae71e",
-    "album_type": "playlist"
+  "response": {
+	"items": [
+	  {
+		"attachments": [
+		  {
+			"type": "audio_playlist",
+			"audio_playlist": {
+			  "id": 85412375,
+			  "owner_id": -28905875,
+			  "type": 0,
+			  "title": "Вечеринка в разгаре",
+			  "description": "Без рэп-музыки не обходится ни одна вечеринка. Раньше царствовало EDM, но сейчас на коне жирный трэп и прямая бочка — с этим плейлистом вы поймете что к чему, а гости вашей вписки будут вам благодарны.",
+			  "genres": [],
+			  "count": 15,
+			  "is_following": false,
+			  "followers": 46168,
+			  "plays": 1519827,
+			  "create_time": 1528218042,
+			  "update_time": 1545063651,
+			  "audios": [
+				{
+				  "id": 456259871,
+				  "owner_id": -28905875,
+				  "artist": "Bonapart",
+				  "title": "Алмата - Семей",
+				  "duration": 160,
+				  "date": 1545063621,
+				  "url": "https://cs1-65v4.vkuseraudio.net/p8/e5905b95172fb9.mp3?extra=GYgZ2APdlMozdLFpcU2fQpodRedq_9V8EBF9WdSioKnoZGHj56qgGpXNYGbd4nPbbikXhYstCgMxQMHYlkvGHEkrY9epfFeKVetdtR7iBB83xa0p5K0TinqZkua-qtrXbqIa1pDKwpIQwRZDI1q55X_eeg",
+				  "genre_id": 3,
+				  "album": {
+					"id": 4022380,
+					"owner_id": -2000022380,
+					"title": "Алмата-Семей",
+					"access_key": "52b78f5b8f6d9547fb",
+					"thumb": {
+					  "photo_34": "https://sun1-9.userapi.com/c850628/v850628273/5c646/rrDB8GkttTk.jpg",
+					  "photo_68": "https://sun1-4.userapi.com/c850628/v850628273/5c644/M9w6vHCg-m4.jpg",
+					  "photo_135": "https://sun1-2.userapi.com/c850628/v850628273/5c642/Dn71SU18uk8.jpg",
+					  "photo_270": "https://sun1-7.userapi.com/c850628/v850628273/5c63f/_5vQ9swGePw.jpg",
+					  "photo_300": "https://sun1-15.userapi.com/c850628/v850628273/5c63d/ZMwISFjPANg.jpg",
+					  "photo_600": "https://sun1-2.userapi.com/c850628/v850628273/5c63a/AhHhzAjvjK0.jpg",
+					  "width": 300,
+					  "height": 300
+					}
+				  },
+				  "is_licensed": true,
+				  "is_hq": true,
+				  "ads": {
+					"duration": 160,
+					"content_id": "-28905875_456259871",
+					"puid22": 11,
+					"puid1": 554
+				  },
+				  "access_key": "ebec94164b4fa0e2b4",
+				  "track_code": "b796649aJFPo77181knyj1erY0ilLhK8CmKC67ZmNWYqaBT3",
+				  "is_explicit": false
+				}
+			  ],
+			  "photo": {
+				"photo_34": "https://sun1-9.userapi.com/c849132/v849132992/debd5/JzVCzjT9B-8.jpg",
+				"photo_68": "https://sun1-17.userapi.com/c849132/v849132992/debd3/RHcRtg2bGLc.jpg",
+				"photo_135": "https://sun1-15.userapi.com/c849132/v849132992/debd1/-4ZGv5s4GBI.jpg",
+				"photo_270": "https://sun1-18.userapi.com/c849132/v849132992/debce/4nDjpLh_ilM.jpg",
+				"photo_300": "https://sun1-11.userapi.com/c849132/v849132992/debcc/NTR25KL7rx8.jpg",
+				"photo_600": "https://sun1-20.userapi.com/c849132/v849132992/debc9/NSBeiyMLHrg.jpg",
+				"width": 300,
+				"height": 300
+			  },
+			  "access_key": "5e0f55237d68cae71e",
+			  "album_type": "playlist"
+			}
+		  }
+		]
+	  }
+	]
   }
 }

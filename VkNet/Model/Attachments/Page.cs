@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -142,56 +141,8 @@ public class Page : MediaAttachment
 		set => GroupId = value;
 	}
 
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из JSON
-	/// </summary>
-	/// <param name="response"> Ответ сервера </param>
-	/// <returns> </returns>
-	public static Page FromJson(VkResponse response) => new()
-	{
-		Id = response["page_id"] ?? response["pid"] ?? response["id"],
-		GroupId = response["group_id"] ?? response["gid"],
-		CreatorId = response["creator_id"],
-		Title = response["title"],
-		Source = response["source"],
-		CurrentUserCanEdit = response["current_user_can_edit"],
-		CurrentUserCanEditAccess = response["current_user_can_edit_access"],
-		WhoCanView = response["who_can_view"],
-		WhoCanEdit = response["who_can_edit"],
-		EditorId = response["editor_id"],
-		Edited = response["edited"],
-		Created = response["created"],
-		Parent = response["parent"],
-		Parent2 = response["parent2"],
-		Html = response["html"],
-		ViewUrl = response["view_url"],
-		VersionCreated = response["version_created"],
-		Views = response["views"]
-	};
-
 	/// <inheritdoc />
 	public override string ToString() => string.Format("page-{0}_{1}",
 		GroupId,
 		Id);
-
-	/// <summary>
-	/// Преобразование класса <see cref="Page" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Page" /></returns>
-	public static implicit operator Page(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

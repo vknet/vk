@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
+using VkNet.Model.Attachments;
 
 namespace VkNet.Utils.JsonConverter;
 
@@ -60,7 +61,7 @@ public class GroupJsonConverter : Newtonsoft.Json.JsonConverter
 			CanCreateTopic = response["can_create_topic"],
 			Activity = response["activity"],
 			Status = response["status"],
-			StatusAudio = response["status_audio"],
+			StatusAudio = !response.ContainsKey("status_audio") ? null : JsonConvert.DeserializeObject<Audio>(response["status_audio"].ToString()),
 			Contacts = !response.ContainsKey("contacts") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<Contact>>(response["contacts"].ToString()),
 			Links = !response.ContainsKey("links") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<ExternalLink>>(response["links"].ToString()),
 			FixedPost = response["fixed_post"],
