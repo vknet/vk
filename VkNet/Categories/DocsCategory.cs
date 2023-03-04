@@ -89,7 +89,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.getUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("docs.getUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -105,7 +105,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.getWallUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("docs.getWallUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -274,6 +274,6 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.getMessagesUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("docs.getMessagesUploadServer", parameters);
 	}
 }

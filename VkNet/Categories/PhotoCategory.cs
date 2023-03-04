@@ -229,7 +229,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -242,7 +242,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getOwnerPhotoUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getOwnerPhotoUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -264,7 +264,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getChatUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getChatUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -352,11 +352,11 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getWallUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getWallUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
-	public UploadServerInfo GetMessagesUploadServer(long? groupId) => _vk.Call("photos.getMessagesUploadServer",
+	public UploadServerInfo GetMessagesUploadServer(long? groupId) => _vk.Call<UploadServerInfo>("photos.getMessagesUploadServer",
 		new()
 		{
 			{
@@ -422,7 +422,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getOwnerCoverPhotoUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getOwnerCoverPhotoUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1079,7 +1079,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getMarketUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getMarketUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1092,7 +1092,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getMarketAlbumUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getMarketAlbumUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
