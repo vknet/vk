@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -47,19 +46,4 @@ public class ShortLink
 	/// </summary>
 	[JsonProperty(propertyName: "views")]
 	public int Views { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static ShortLink FromJson(VkResponse response) => new()
-	{
-		Timestamp = response[key: "timestamp"],
-		ShortUrl = response[key: "short_url"],
-		Url = response[key: "url"],
-		Key = response[key: "key"],
-		AccessKey = response[key: "access_key"],
-		Views = response[key: "views"]
-	};
 }
