@@ -677,8 +677,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.getCatalog", parameters)
-			.ToReadOnlyCollectionOf<VideoCatalog>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<VideoCatalog>>("video.getCatalog", parameters);
 	}
 
 	/// <inheritdoc />

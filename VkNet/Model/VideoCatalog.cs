@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -59,25 +58,4 @@ public class VideoCatalog
 	[JsonProperty("type")]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public VideoCatalogType Type { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static VideoCatalog FromJson(VkResponse response)
-	{
-		var item = new VideoCatalog
-		{
-			Id = response[key: "id"],
-			Name = response[key: "name"],
-			CanHide = response[key: "can_hide"],
-			Type = response[key: "type"],
-			Next = response[key: "next"],
-			Items = JsonConvert.DeserializeObject<ReadOnlyCollection<VideoCatalogItem>>(response[key: "items"].ToString()),
-			View = response[key: "view"]
-		};
-
-		return item;
-	}
 }
