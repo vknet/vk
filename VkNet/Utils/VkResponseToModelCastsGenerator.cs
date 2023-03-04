@@ -15,17 +15,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator SubjectListItem(VkResponse response) => response?._token == null || !response._token.HasValues
-		? null
-		: SubjectListItem.FromJson(response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator ShortLink(VkResponse response) => response?._token == null || !response._token.HasValues
 		? null
 		: ShortLink.FromJson(response);
