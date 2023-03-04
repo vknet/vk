@@ -92,29 +92,4 @@ public class Topic
 	/// </summary>
 	[JsonProperty("last_comment")]
 	public string LastComment { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Topic FromJson(VkResponse response)
-	{
-		var topicItem = new Topic
-		{
-			Id = response[key: "id"],
-			Title = response[key: "title"],
-			Created = response[key: "created"],
-			CreatedBy = response[key: "created_by"],
-			Updated = response[key: "updated"],
-			UpdatedBy = response[key: "updated_by"],
-			IsClosed = response[key: "is_closed"],
-			IsFixed = response[key: "is_fixed"],
-			Comments = response[key: "comments"],
-			FirstComment = response[key: "first_comment"],
-			LastComment = response[key: "last_comment"]
-		};
-
-		return topicItem;
-	}
 }
