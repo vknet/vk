@@ -10,6 +10,7 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Messages;
 using VkNet.Model.Results.Messages;
+using VkNet.Model.Results.Users;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -1197,7 +1198,24 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
 	/// </remarks>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
-	Task<ReadOnlyCollection<User>> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+	Task<GetChatUsers> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+
+	/// <summary>
+	/// Позволяет получить список пользователей мультидиалога по его id.
+	/// </summary>
+	/// <param name="chatIds">
+	/// Идентификаторы бесед. список целых чисел, разделенных запятыми (Список целых
+	/// чисел, разделенных
+	/// запятыми).
+	/// </param>
+	/// <returns>
+	/// После успешного выполнения возвращает список идентификаторов участников беседы.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
+	/// </remarks>
+	[Obsolete(ObsoleteText.MessageGetChatUsers)]
+	Task<ReadOnlyCollection<long>> GetChatUsersAsync(IEnumerable<long> chatIds);
 
 	/// <summary>
 	/// Возвращает список диалогов аккаунта

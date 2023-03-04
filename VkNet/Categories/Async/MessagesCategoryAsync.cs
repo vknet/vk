@@ -8,6 +8,7 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Messages;
 using VkNet.Model.Results.Messages;
+using VkNet.Model.Results.Users;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -161,9 +162,14 @@ public partial class MessagesCategory
 		TypeHelper.TryInvokeMethodAsync(() => GetChatPreview(link, fields));
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<User>> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase) =>
+	public Task<GetChatUsers> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetChatUsers(chatIds, fields, nameCase));
+
+	/// <inheritdoc />
+	public Task<ReadOnlyCollection<long>> GetChatUsersAsync(IEnumerable<long> chatIds) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetChatUsers(chatIds));
 
 	/// <inheritdoc />
 	public Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params) =>

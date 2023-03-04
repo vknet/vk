@@ -426,9 +426,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 		var users = Api.Messages.GetChatUsers(new List<long>
 				{
 					2
-				},
-				null,
-				null)
+				})
 			.ToList();
 
 		users.Should()
@@ -442,81 +440,81 @@ public class MessagesCategoryTest : MessagesBaseTests
 
 		ReadCategoryJsonPath(nameof(GetChatUsers_ChatIdWithFields_Users));
 
-		var users = Api.Messages.GetChatUsers(new List<long>
+		var chat = Api.Messages.GetChatUsers(new List<long>
 			{
-				2
+				2, 5
 			},
 			UsersFields.Education,
 			null);
 
-		users.Should()
+		chat.Users.Should()
 			.HaveCount(3);
 
-		users[0]
+		chat.Users[0]
 			.Id.Should()
 			.Be(4793858);
 
-		users[0]
+		chat.Users[0]
 			.FirstName.Should()
 			.Be("Антон");
 
-		users[0]
+		chat.Users[0]
 			.LastName.Should()
 			.Be("Жидков");
 
-		users[0]
+		chat.Users[0]
 			.Education.Should()
 			.BeNull();
 
-		users[0]
+		chat.Users[0]
 			.InvitedBy.Should()
 			.Be(4793858);
 
-		users[1]
+		chat.Users[1]
 			.Id.Should()
 			.Be(5041431);
 
-		users[1]
+		chat.Users[1]
 			.FirstName.Should()
 			.Be("Тайфур");
 
-		users[1]
+		chat.Users[1]
 			.LastName.Should()
 			.Be("Касеев");
 
-		users[1]
+		chat.Users[1]
 			.Education.UniversityId.Should()
 			.Be(431);
 
-		users[1]
+		chat.Users[1]
 			.InvitedBy.Should()
 			.Be(4793858);
 
-		users[2]
+		chat.Users[2]
 			.Id.Should()
 			.Be(10657891);
 
-		users[2]
+		chat.Users[2]
 			.FirstName.Should()
 			.Be("Максим");
 
-		users[2]
+		chat.Users[2]
 			.LastName.Should()
 			.Be("Денисов");
 
-		users[2]
+		chat.Users[2]
 			.Education.UniversityId.Should()
 			.Be(431);
 
-		users[2]
+		chat.Users[2]
 			.Education.FacultyId.Should()
 			.Be(3162);
 
-		users[2]
+		chat.Users[2]
 			.Education.Graduation.Should()
 			.Be(2011);
 
-		users[2]
+		chat.Users[2]
 			.InvitedBy.Should()
 			.Be(4793858);
 	}

@@ -14,6 +14,7 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Messages;
 using VkNet.Model.Results.Messages;
+using VkNet.Model.Results.Users;
 using VkNet.Utils;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -1006,8 +1007,13 @@ public partial class MessagesCategory : IMessagesCategory
 	}
 
 	/// <inheritdoc />
-	public ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
+	public GetChatUsers GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
 	{
+		if (fields == null)
+		{
+			throw new VkApiException("Задайте параметр fields, либо неиспользуйте его");
+		}
+
 		var collection = chatIds.ToList();
 
 		var parameters = new VkParameters
@@ -1022,25 +1028,33 @@ public partial class MessagesCategory : IMessagesCategory
 				"name_case", nameCase
 			}
 		};
+		return _vk.Call<GetChatUsers>("messages.getChatUsers", parameters);
+	}
+
+	/// <inheritdoc />
+	public ReadOnlyCollection<long> GetChatUsers(IEnumerable<long> chatIds)
+	{
+		var collection = chatIds.ToList();
+
+		var parameters = new VkParameters
+		{
+			{
+				"chat_ids", collection
+			}
+		};
 
 		var response = _vk.Call("messages.getChatUsers", parameters);
 
-		var list = new List<User>();
+		var list = new List<long>();
 
 		foreach (var chatId in collection)
 		{
 			var chatResponse = response[chatId.ToString()];
-
-			var users = chatResponse.ToReadOnlyCollectionOf(x => fields != null
-				? x
-				: new User
-				{
-					Id = (long) x
-				});
+			var users = chatResponse.ToReadOnlyCollectionOf<long>(x=>x);
 
 			foreach (var user in users)
 			{
-				var exist = list.Exists(first => first.Id == user.Id);
+				var exist = list.Exists(first => first == user);
 
 				if (!exist)
 				{

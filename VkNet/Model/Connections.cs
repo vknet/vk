@@ -16,7 +16,7 @@ public class Connections
 	/// <summary>
 	/// Логин в Skype.
 	/// </summary>
-	[JsonProperty("disabled_until")]
+	[JsonProperty("skype")]
 	public string Skype { get; set; }
 
 	/// <summary>
