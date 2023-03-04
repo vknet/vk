@@ -226,6 +226,7 @@ public class Post : MediaAttachment
 			? null
 			: JsonConvert.DeserializeObject<Reposts>(response[key: "reposts"]
 				.ToString());
+
 		res.PostType = response["post_type"];
 
 		res.PostSource = !response.ContainsKey("post_source")
