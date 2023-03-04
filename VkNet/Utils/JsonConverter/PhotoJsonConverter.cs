@@ -17,7 +17,7 @@ public class PhotoJsonConverter : Newtonsoft.Json.JsonConverter
 	/// <exception cref="T:System.TypeAccessException"> </exception>
 	public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 	{
-		if (!objectType.IsGenericType)
+		if (objectType.IsGenericType)
 		{
 			throw new TypeAccessException();
 		}
@@ -56,5 +56,5 @@ public class PhotoJsonConverter : Newtonsoft.Json.JsonConverter
 	}
 
 	/// <inheritdoc />
-	public override bool CanConvert(Type objectType) => typeof(ReadOnlyCollection<>).IsAssignableFrom(c: objectType);
+	public override bool CanConvert(Type objectType) => throw new NotImplementedException();
 }

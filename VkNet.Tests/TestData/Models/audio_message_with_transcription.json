@@ -1,16 +1,26 @@
 {
-    "type": "audio_message",
-    "audio_message": {
-        "id": 123456789,
-        "owner_id": 987655443,
-        "duration": 25,
-        "waveform": [
-            0, 0, 1, 31, 26, 8, 2, 4, 5, 1, 2, 2, 2, 3, 1, 6, 10
-        ],
-        "link_ogg": "https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.ogg",
-        "link_mp3": "https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.mp3",
-        "access_key": "d11e675f1ef73c0375",
-        "transcript": "demo message",
-        "transcript_state": "done"
-    }
+  "response": {
+	"items": [
+	  {
+		"attachments": [
+		  {
+			"type": "audio_message",
+			"audio_message": {
+			  "id": 123456789,
+			  "owner_id": 987655443,
+			  "duration": 25,
+			  "waveform": [
+				0, 0, 1, 31, 26, 8, 2, 4, 5, 1, 2, 2, 2, 3, 1, 6, 10
+			  ],
+			  "link_ogg": "https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.ogg",
+			  "link_mp3": "https://psv4.userapi.com/c205420//u111874665/audiomsg/d12/794c8440a8.mp3",
+			  "access_key": "d11e675f1ef73c0375",
+			  "transcript": "demo message",
+			  "transcript_state": "done"
+			}
+		  }
+		]
+	  }
+	]
+  }
 }

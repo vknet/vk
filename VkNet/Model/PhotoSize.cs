@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -42,23 +41,4 @@ public class PhotoSize
 	[JsonProperty("type")]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public PhotoSizeType Type { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static PhotoSize FromJson(VkResponse response)
-	{
-		var photoSize = new PhotoSize
-		{
-			Src = response["src"],
-			Url = response["url"],
-			Width = response[key: "width"],
-			Height = response[key: "height"],
-			Type = response[key: "type"]
-		};
-
-		return photoSize;
-	}
 }

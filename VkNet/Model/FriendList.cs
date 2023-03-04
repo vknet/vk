@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -35,24 +34,4 @@ public class FriendList
 		get => Id;
 		set => Id = value;
 	}
-
-	#region public Methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static FriendList FromJson(VkResponse response)
-	{
-		var list = new FriendList
-		{
-			Id = response[key: "list_id"] ?? response[key: "lid"] ?? response[key: "id"],
-			Name = response[key: "name"]
-		};
-
-		return list;
-	}
-
-	#endregion
 }

@@ -324,19 +324,19 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(3);
 
 		user.PhotoPreviews.Photo50.Should()
-			.Be(new Uri("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
+			.Be(new Uri("https://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
 
 		user.PhotoPreviews.Photo100.Should()
-			.Be(new Uri("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg"));
+			.Be(new Uri("https://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
 
 		user.PhotoPreviews.Photo200.Should()
-			.Be(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
+			.Be(new Uri("https://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
 
 		user.PhotoPreviews.Photo400.Should()
-			.Be(new Uri("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg"));
+			.Be(new Uri("https://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
 
 		user.PhotoPreviews.PhotoMax.Should()
-			.Be(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
+			.Be(new Uri("https://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
 
 		user.HasMobile.HasValue.Should()
 			.BeTrue();
@@ -362,7 +362,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.CanWritePrivateMessage.Should()
 			.BeFalse();
 
-		user.Connections.Twitter.Should()
+		user.Twitter.Should()
 			.Be("durov");
 
 		user.Site.Should()
@@ -632,19 +632,19 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(3);
 
 		user.PhotoPreviews.Photo50.Should()
-			.Be(new Uri("http://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
+			.Be(new Uri("https://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
 
 		user.PhotoPreviews.Photo100.Should()
-			.Be(new Uri("http://cs7004.vk.me/c7003/v7003563/359e/Hei0g6eeaAc.jpg"));
+			.Be(new Uri("https://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
 
 		user.PhotoPreviews.Photo200.Should()
-			.Be(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
+			.Be(new Uri("https://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
 
 		user.PhotoPreviews.Photo400.Should()
-			.Be(new Uri("http://cs7004.vk.me/c7003/v7003397/3824/JjPJbkvJxpM.jpg"));
+			.Be(new Uri("https://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
 
 		user.PhotoPreviews.PhotoMax.Should()
-			.Be(new Uri("http://cs7004.vk.me/c7003/v7003237/369a/x4RqtBxY4kc.jpg"));
+			.Be(new Uri("https://cs7004.vk.me/c7003/v7003079/374b/53lwetwOxD8.jpg"));
 
 		user.HasMobile.Should()
 			.HaveValue();
@@ -670,7 +670,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.CanWritePrivateMessage.Should()
 			.BeFalse();
 
-		user.Connections.Twitter.Should()
+		user.Twitter.Should()
 			.Be("durov");
 
 		user.Site.Should()
@@ -1169,7 +1169,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user1.HomePhone.Should()
 			.Be("*****");
 
-		user1.Connections.Skype.Should()
+		user1.Skype.Should()
 			.Be("немає");
 
 		user1.Site.Should()

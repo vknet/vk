@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -110,46 +109,6 @@ public class Counters
 	/// </summary>
 	[JsonProperty("pages")]
 	public int? Pages { get; set; }
-
-	#endregion
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Counters FromJson(VkResponse response)
-	{
-		var counters = new Counters
-		{
-			Albums = response[key: "albums"],
-			Videos = response[key: "videos"],
-			Audios = response[key: "audios"],
-			Photos = response[key: "photos"],
-			Notes = response[key: "notes"],
-			Friends = response[key: "friends"],
-			Groups = response[key: "groups"],
-			OnlineFriends = response[key: "online_friends"],
-			MutualFriends = response[key: "mutual_friends"],
-			UserVideos = response[key: "user_videos"],
-			Followers = response[key: "followers"],
-			UserPhotos = response[key: "user_photos"],
-			Subscriptions = response[key: "subscriptions"],
-			TopicsCount = response[key: "topics"],
-			DocumentsCount = response[key: "docs"],
-			Pages = response[key: "pages"],
-			Messages = response[key: "messages"],
-			Gifts = response[key: "gifts"],
-			Events = response[key: "events"],
-			Notifications = response[key: "notifications"],
-			Sdk = response[key: "sdk"],
-			AppRequests = response[key: "app_requests"]
-		};
-
-		return counters;
-	}
 
 	#endregion
 

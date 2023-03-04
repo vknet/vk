@@ -27,7 +27,6 @@
           "read_state": 1,
           "title": "18+++++++++++",
           "body": "",
-          "action": "chat_kick_user",
           "action_mid": 475347023,
           "owner_ids": [],
           "chat_id": 52,
@@ -440,7 +439,6 @@
           "title": "VkNet",
           "body": "",
           "random_id": 0,
-          "action": "chat_invite_user_by_link",
           "owner_ids": [],
           "chat_id": 53,
           "chat_active": [

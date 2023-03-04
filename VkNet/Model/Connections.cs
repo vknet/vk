@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -17,7 +16,7 @@ public class Connections
 	/// <summary>
 	/// Логин в Skype.
 	/// </summary>
-	[JsonProperty("disabled_until")]
+	[JsonProperty("skype")]
 	public string Skype { get; set; }
 
 	/// <summary>
@@ -43,27 +42,4 @@ public class Connections
 	/// </summary>
 	[JsonProperty("instagram")]
 	public string Instagram { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Connections FromJson(VkResponse response)
-	{
-		var connections = new Connections
-		{
-			Skype = response["skype"],
-			Facebook = response["facebook"],
-			FacebookName = response["facebook_name"],
-			Twitter = response["twitter"],
-			Instagram = response["instagram"]
-		};
-
-		return connections;
-	}
-
-	#endregion
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 using Newtonsoft.Json;
-using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Attachments;
 
@@ -132,60 +132,4 @@ public class Link : MediaAttachment
 	/// Адрес ссылки.
 	/// </returns>
 	public override string ToString() => Uri.ToString();
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Link FromJson(VkResponse response)
-	{
-		var id = default(long?);
-		var linkId = (string) response["id"];
-
-		if (long.TryParse(linkId, out var temporaryId))
-		{
-			id = temporaryId;
-		}
-
-		return new()
-		{
-			Id = id,
-			LinkId = linkId,
-			Uri = response["url"],
-			Title = response["title"],
-			Description = response["description"] ?? response["desc"],
-			Image = response["image_src"],
-			PreviewPage = response["preview_page"],
-			Caption = response["caption"],
-			Photo = response["photo"],
-			IsExternal = response["is_external"],
-			Product = response["product"],
-			Rating = response["rating"],
-			Application = !response.ContainsKey("application") ? null : JsonConvert.DeserializeObject<Application>(response["application"].ToString()),
-			Button = response["button"],
-			PreviewUrl = response["preview_url"]
-		};
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="Link" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Link" /></returns>
-	public static implicit operator Link(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

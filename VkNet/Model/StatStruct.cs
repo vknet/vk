@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -34,22 +33,4 @@ public class StatsStruct
 	/// </summary>
 	[JsonProperty("name")]
 	public string Name { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static StatsStruct FromJson(VkResponse response)
-	{
-		var statsStruct = new StatsStruct
-		{
-			Visitors = response[key: "visitors"],
-			Value = response[key: "value"],
-			Code = response[key: "code"],
-			Name = response[key: "name"]
-		};
-
-		return statsStruct;
-	}
 }

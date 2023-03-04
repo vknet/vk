@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -27,21 +26,4 @@ public class ChatPushSettings
 	/// </summary>
 	[JsonProperty("disabled_until")]
 	public int? DisabledUntil { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static ChatPushSettings FromJson(VkResponse response)
-	{
-		var result = new ChatPushSettings
-		{
-			PeerId = response[key: "peer_id"],
-			Sound = response[key: "sound"],
-			DisabledUntil = response[key: "disabled_until"]
-		};
-
-		return result;
-	}
 }

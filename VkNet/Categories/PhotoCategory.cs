@@ -66,7 +66,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.createAlbum", parameters);
+		return _vk.Call<PhotoAlbum>("photos.createAlbum", parameters);
 	}
 
 	/// <inheritdoc />
@@ -114,7 +114,7 @@ public partial class PhotoCategory : IPhotoCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false) => _vk.Call("photos.getAlbums",
+	public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<PhotoAlbum>>("photos.getAlbums",
 			new()
 			{
 				{
@@ -138,11 +138,10 @@ public partial class PhotoCategory : IPhotoCategory
 				{
 					"photo_sizes", @params.PhotoSizes
 				}
-			}, skipAuthorization)
-		.ToVkCollectionOf<PhotoAlbum>(selector: x => x);
+			}, skipAuthorization);
 
 	/// <inheritdoc />
-	public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = false) => _vk.Call("photos.get", new()
+	public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<Photo>>("photos.get", new()
 		{
 			{
 				"owner_id", @params.OwnerId
@@ -174,8 +173,7 @@ public partial class PhotoCategory : IPhotoCategory
 			{
 				"count", @params.Count
 			}
-		}, skipAuthorization)
-		.ToVkCollectionOf<Photo>(selector: x => x);
+		}, skipAuthorization);
 
 	/// <inheritdoc />
 	public int GetAlbumsCount(long? userId = null, long? groupId = null)
@@ -212,9 +210,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		VkResponseArray response = _vk.Call("photos.getById", parameters, skipAuthorization);
-
-		return response.ToReadOnlyCollectionOf<Photo>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<Photo>>("photos.getById", parameters, skipAuthorization);
 	}
 
 	/// <inheritdoc />
@@ -230,7 +226,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -243,7 +239,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getOwnerPhotoUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getOwnerPhotoUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -265,7 +261,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getChatUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getChatUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -295,7 +291,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.saveOwnerPhoto", parameters);
+		return _vk.Call<Photo>("photos.saveOwnerPhoto", parameters);
 	}
 
 	/// <inheritdoc />
@@ -338,9 +334,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		VkResponseArray responseVk = _vk.Call("photos.saveWallPhoto", parameters);
-
-		return responseVk.ToReadOnlyCollectionOf<Photo>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<Photo>>("photos.saveWallPhoto", parameters);
 	}
 
 	/// <inheritdoc />
@@ -353,11 +347,11 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getWallUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getWallUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
-	public UploadServerInfo GetMessagesUploadServer(long? groupId) => _vk.Call("photos.getMessagesUploadServer",
+	public UploadServerInfo GetMessagesUploadServer(long? groupId) => _vk.Call<UploadServerInfo>("photos.getMessagesUploadServer",
 		new()
 		{
 			{
@@ -392,9 +386,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		VkResponseArray result = _vk.Call("photos.saveMessagesPhoto", parameters);
-
-		return result.ToReadOnlyCollectionOf<Photo>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<Photo>>("photos.saveMessagesPhoto", parameters);
 	}
 
 	/// <inheritdoc />
@@ -423,7 +415,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getOwnerCoverPhotoUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getOwnerCoverPhotoUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -447,7 +439,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.saveOwnerCoverPhoto", parameters);
+		return _vk.Call<GroupCover>("photos.saveOwnerCoverPhoto", parameters);
 	}
 
 	/// <inheritdoc />
@@ -489,7 +481,8 @@ public partial class PhotoCategory : IPhotoCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = false) => _vk.Call("photos.search", new()
+	public VkCollection<Photo> Search(PhotoSearchParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<Photo>>(
+		"photos.search", new()
 		{
 			{
 				"q", @params.Query
@@ -518,8 +511,7 @@ public partial class PhotoCategory : IPhotoCategory
 			{
 				"radius", @params.Radius
 			}
-		}, skipAuthorization)
-		.ToVkCollectionOf<Photo>(selector: x => x);
+		}, skipAuthorization);
 
 	/// <inheritdoc />
 	public ReadOnlyCollection<Photo> Save(PhotoSaveParams @params)
@@ -563,9 +555,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		VkResponseArray response = _vk.Call("photos.save", parameters);
-
-		return response.ToReadOnlyCollectionOf<Photo>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<Photo>>("photos.save", parameters);
 	}
 
 	/// <inheritdoc />
@@ -705,7 +695,7 @@ public partial class PhotoCategory : IPhotoCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<Photo> GetAll(PhotoGetAllParams @params) => _vk.Call("photos.getAll", new()
+	public VkCollection<Photo> GetAll(PhotoGetAllParams @params) => _vk.Call<VkCollection<Photo>>("photos.getAll", new()
 		{
 			{
 				"owner_id", @params.OwnerId
@@ -731,11 +721,10 @@ public partial class PhotoCategory : IPhotoCategory
 			{
 				"skip_hidden", @params.SkipHidden
 			}
-		})
-		.ToVkCollectionOf<Photo>(selector: x => x);
+		});
 
 	/// <inheritdoc />
-	public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params) => _vk.Call("photos.getUserPhotos", new()
+	public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params) => _vk.Call<VkCollection<Photo>>("photos.getUserPhotos", new()
 		{
 			{
 				"user_id", @params.UserId
@@ -752,8 +741,7 @@ public partial class PhotoCategory : IPhotoCategory
 			{
 				"sort", @params.Sort
 			}
-		})
-		.ToVkCollectionOf<Photo>(selector: x => x);
+		});
 
 	/// <inheritdoc />
 	public bool DeleteAlbum(long albumId, long? groupId = null)
@@ -823,7 +811,7 @@ public partial class PhotoCategory : IPhotoCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<Comment> GetComments(PhotoGetCommentsParams @params) => _vk.Call("photos.getComments", new()
+	public VkCollection<Comment> GetComments(PhotoGetCommentsParams @params) => _vk.Call<VkCollection<Comment>>("photos.getComments", new()
 		{
 			{
 				"owner_id", @params.OwnerId
@@ -855,11 +843,10 @@ public partial class PhotoCategory : IPhotoCategory
 			{
 				"fields", @params.Fields
 			}
-		})
-		.ToVkCollectionOf<Comment>(selector: x => x);
+		});
 
 	/// <inheritdoc />
-	public VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params) => _vk.Call("photos.getAllComments", new()
+	public VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params) => _vk.Call<VkCollection<Comment>>("photos.getAllComments", new()
 		{
 			{
 				"owner_id", @params.OwnerId
@@ -876,8 +863,7 @@ public partial class PhotoCategory : IPhotoCategory
 			{
 				"count", @params.Count
 			}
-		})
-		.ToVkCollectionOf<Comment>(selector: x => x);
+		});
 
 	/// <inheritdoc />
 	public long CreateComment(PhotoCreateCommentParams @params)
@@ -1052,8 +1038,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getNewTags", parameters)
-			.ToVkCollectionOf<Photo>(selector: x => x);
+		return _vk.Call<VkCollection<Photo>>("photos.getNewTags", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1082,7 +1067,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getMarketUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getMarketUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1095,7 +1080,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getMarketAlbumUploadServer", parameters);
+		return _vk.Call<UploadServerInfo>("photos.getMarketAlbumUploadServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1140,8 +1125,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.saveMarketPhoto", parameters)
-			.ToReadOnlyCollectionOf<Photo>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<Photo>>("photos.saveMarketPhoto", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1174,7 +1158,6 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.saveMarketAlbumPhoto", parameters)
-			.ToReadOnlyCollectionOf<Photo>(selector: x => x);
+		return _vk.Call<ReadOnlyCollection<Photo>>("photos.saveMarketAlbumPhoto", parameters);
 	}
 }

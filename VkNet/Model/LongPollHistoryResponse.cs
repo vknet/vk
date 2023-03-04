@@ -37,7 +37,7 @@ public class LongPollHistoryResponse
 	/// Колекция сообщений.
 	/// </summary>
 	[JsonProperty("messages")]
-	public ReadOnlyCollection<Message> Messages { get; set; }
+	public VkCollection<Message> Messages { get; set; }
 
 	/// <summary>
 	/// Колекция профилей.
@@ -65,35 +65,4 @@ public class LongPollHistoryResponse
 	/// </summary>
 	[JsonProperty("more")]
 	public bool More { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static LongPollHistoryResponse FromJson(VkResponse response)
-	{
-		var fromJson = new LongPollHistoryResponse
-		{
-			UnreadMessages = response[key: "messages"][key: "count"],
-			Messages = response[key: "messages"][key: "items"]
-				.ToReadOnlyCollectionOf<Message>(selector: x => x),
-			Profiles = response[key: "profiles"]
-				.ToReadOnlyCollectionOf<User>(selector: x => x),
-			Groups = response[key: "groups"]
-				.ToReadOnlyCollectionOf<Group>(selector: x => x),
-			NewPts = response[key: "new_pts"],
-			More = response[key: "more"]
-		};
-
-		VkResponseArray histories = response[key: "history"];
-
-		foreach (var history in histories)
-		{
-			VkResponseArray item = history;
-			fromJson.History.Add(item: new(list: item.ToReadOnlyCollectionOf<long>(selector: x => x)));
-		}
-
-		return fromJson;
-	}
 }

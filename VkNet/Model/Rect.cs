@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -33,22 +32,4 @@ public class Rect
 	/// </summary>
 	[JsonProperty("y2")]
 	public uint Y2 { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Rect FromJson(VkResponse response)
-	{
-		var crop = new Rect
-		{
-			X = response[key: "x"],
-			X2 = response[key: "x2"],
-			Y = response[key: "y"],
-			Y2 = response[key: "y2"]
-		};
-
-		return crop;
-	}
 }

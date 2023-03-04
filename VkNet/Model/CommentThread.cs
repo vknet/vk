@@ -1,7 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -43,36 +42,4 @@ public class CommentThread
 	/// </summary>
 	[JsonProperty("groups_can_post")]
 	public bool? GroupsCanPost { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CommentThread FromJson(VkResponse response) => new()
-	{
-		Count = response["count"],
-		Items = response["items"]
-			.ToReadOnlyCollectionOf<Comment>(x => x),
-		CanPost = response["can_post"],
-		ShowReplyButton = response["show_reply_button"],
-		GroupsCanPost = response["groups_can_post"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="CommentThread" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="CommentThread" /></returns>
-	public static implicit operator CommentThread(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

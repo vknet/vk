@@ -17,6 +17,7 @@ namespace VkNet.Model;
 /// </summary>
 [DebuggerDisplay("[{Id}] {Name}")]
 [Serializable]
+[JsonConverter(typeof(GroupJsonConverter))]
 public class Group
 {
 	/// <summary>
@@ -44,79 +45,6 @@ public class Group
 		get => Id;
 		set => Id = value;
 	}
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Group FromJson(VkResponse response)
-	{
-		var group = new Group
-		{
-			Id = response["group_id"] ?? response["gid"] ?? response["id"],
-			Name = response["name"],
-			ScreenName = response["screen_name"],
-			IsClosed = response["is_closed"],
-			IsAdmin = response["is_admin"],
-			AdminLevel = response["admin_level"],
-			IsMember = response["is_member"],
-			IsAdvertiser = response["is_advertiser"],
-			Type = response["type"],
-			PhotoPreviews = response,
-			Deactivated = response["deactivated"] ?? Deactivated.Activated,
-			HasPhoto = response["has_photo"],
-			Photo50 = response["photo_50"],
-			Photo100 = response["photo_100"],
-			Photo200 = response["photo_200"],
-
-			// опциональные поля
-			City = response["city"],
-			Country = response["country"],
-			Place = response["place"],
-			Description = response["description"],
-			WikiPage = response["wiki_page"],
-			MembersCount = response["members_count"],
-			Counters = response["counters"],
-			StartDate = response["start_date"],
-			EndDate = response["finish_date"] ?? response["end_date"],
-			CanPost = response["can_post"],
-			CanSeeAllPosts = response["can_see_all_posts"],
-			CanUploadDocuments = response["can_upload_doc"],
-			CanCreateTopic = response["can_create_topic"],
-			Activity = response["activity"],
-			Status = response["status"],
-			StatusAudio = response["status_audio"],
-			Contacts = response["contacts"]
-				.ToReadOnlyCollectionOf<Contact>(x => x),
-			Links = !response.ContainsKey("links") ? null : JsonConvert.DeserializeObject<ReadOnlyCollection<ExternalLink>>(response["links"].ToString()),
-			FixedPost = response["fixed_post"],
-			Verified = response["verified"],
-			Site = response["site"],
-			InvitedBy = response["invited_by"],
-			IsFavorite = response["is_favorite"],
-			BanInfo = !response.ContainsKey("ban_info") ? null : JsonConvert.DeserializeObject<BanInfo>(response["ban_info"].ToString()),
-			CanUploadVideo = response["can_upload_video"],
-			MainAlbumId = response["main_album_id"],
-			IsHiddenFromFeed = response["is_hidden_from_feed"],
-			MainSection = response["main_section"],
-			IsMessagesAllowed = response["is_messages_allowed"],
-			Trending = response["trending"],
-			CanMessage = response["can_message"],
-			Cover = response["cover"],
-			Market = !response.ContainsKey("market") ? null : JsonConvert.DeserializeObject<GroupMarket>(response["market"].ToString()),
-			AgeLimits = response["age_limits"],
-			MemberStatus = response["member_status"],
-			PublicDateLabel = response["public_date_label"],
-			Wall = response["wall"]
-		};
-
-		return group;
-	}
-
-	#endregion
 
 	#region Стандартные поля
 

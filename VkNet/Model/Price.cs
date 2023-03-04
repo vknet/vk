@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -39,22 +38,4 @@ public class Price
 	/// </summary>
 	[JsonProperty("text")]
 	public string Text { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Price FromJson(VkResponse response)
-	{
-		var price = new Price
-		{
-			Amount = response["amount"],
-			Currency = response["currency"],
-			OldAmount = response["old_amount"],
-			Text = response["text"]
-		};
-
-		return price;
-	}
 }

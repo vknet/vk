@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -129,40 +129,4 @@ public class PhotoAlbum
 		get => Id;
 		set => Id = value;
 	}
-
-	#region Methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static PhotoAlbum FromJson(VkResponse response)
-	{
-		VkResponseArray privacy = response[key: "privacy_view"];
-		VkResponseArray privacyComment = response[key: "privacy_comment"];
-
-		return new()
-		{
-			Id = response[key: "album_id"] ?? response[key: "aid"] ?? response[key: "id"],
-			ThumbId = Utilities.GetNullableLongId(response: response[key: "thumb_id"]),
-			OwnerId = Utilities.GetNullableLongId(response: response[key: "owner_id"]),
-			Title = response[key: "title"],
-			Description = response[key: "description"],
-			Created = response[key: "created"],
-			Updated = response[key: "updated"],
-			Size = response[key: "size"],
-			PrivacyView = privacy.ToReadOnlyCollectionOf<Privacy>(selector: x => x),
-			PrivacyComment = privacyComment.ToReadOnlyCollectionOf<Privacy>(selector: x => x),
-			CanUpload = response[key: "can_upload"],
-			ThumbSrc = response[key: "thumb_src"],
-			Sizes = response[key: "sizes"]
-				.ToReadOnlyCollectionOf<PhotoSize>(selector: x => x),
-			CommentsDisabled = response[key: "comments_disabled"],
-			UploadByAdminsOnly = response[key: "upload_by_admins_only"],
-			ThumbIsLast = response[key: "thumb_is_last"]
-		};
-	}
-
-	#endregion
 }

@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate;
 
@@ -15,30 +14,4 @@ public class MessageDeny : IGroupUpdate
 	/// </summary>
 	[JsonProperty("user_id")]
 	public long? UserId { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	public static MessageDeny FromJson(VkResponse response) => new()
-	{
-		UserId = response["user_id"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="MessageDeny" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Результат преобразования в <see cref="MessageDeny" /> </returns>
-	public static implicit operator MessageDeny(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

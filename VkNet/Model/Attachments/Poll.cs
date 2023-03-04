@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -139,58 +138,4 @@ public class Poll : MediaAttachment
 		get => Id;
 		set => Id = value;
 	}
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Poll FromJson(VkResponse response) => new()
-	{
-		Id = response["id"] ?? response["poll_id"],
-		OwnerId = response["owner_id"],
-		Question = response["question"],
-		Created = response["created"],
-		Votes = response["votes"],
-		AnswerId = response["answer_id"],
-		Anonymous = response["anonymous"],
-		Answers = response["answers"]
-			.ToReadOnlyCollectionOf<PollAnswer>(x => x),
-		IsBoard = response["is_board"],
-		EndDate = response["end_date"],
-		CanVote = response["can_vote"],
-		CanShare = response["can_share"],
-		CanReport = response["can_report"],
-		CanEdit = response["can_edit"],
-		AuthorId = response["author_id"],
-		Multiple = response["multiple"],
-		Closed = response["closed"],
-		Photo = response["photo"],
-		Background = response["background"],
-		Friends = response["friends"]
-			.ToReadOnlyCollectionOf<User>(x => x),
-		AnswerIds = response["answer_ids"]
-			.ToReadOnlyCollectionOf<long>(x => x)
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="Poll" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Poll" /></returns>
-	public static implicit operator Poll(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

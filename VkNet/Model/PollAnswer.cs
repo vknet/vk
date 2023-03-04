@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -33,22 +32,4 @@ public class PollAnswer
 	/// </summary>
 	[JsonProperty("rate")]
 	public double? Rate { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static PollAnswer FromJson(VkResponse response)
-	{
-		var answer = new PollAnswer
-		{
-			Id = response[key: "id"],
-			Text = response[key: "text"],
-			Votes = response[key: "votes"],
-			Rate = response[key: "rate"]
-		};
-
-		return answer;
-	}
 }

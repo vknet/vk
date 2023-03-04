@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -43,21 +42,4 @@ public class PostDonut
 	/// </summary>
 	[JsonProperty("edit_mode")]
 	public string EditMode { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static PostDonut FromJson(VkResponse response)
-	{
-		var res = new PostDonut();
-		res.IsDonut = response[key: "is_donut"];
-		res.PaidDuration = response[key: "paid_duration"];
-		res.Placeholder = response[key: "placeholder"];
-		res.CanPublishFreeCopy = response[key: "can_publish_free_copy"];
-		res.EditMode = response[key: "edit_mode"];
-
-		return res;
-	}
 }

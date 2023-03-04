@@ -8,6 +8,7 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Messages;
 using VkNet.Model.Results.Messages;
+using VkNet.Model.Results.Users;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -48,8 +49,8 @@ public partial class MessagesCategory
 		() => Delete(conversationMessageIds, peerId, spam, groupId, deleteForAll));
 
 	/// <inheritdoc />
-	public Task<Chat> DeleteChatPhotoAsync(ulong chatId, ulong? groupId = null) =>
-		TypeHelper.TryInvokeMethodAsync(() => DeleteChatPhoto(out var _, chatId, groupId));
+	public Task<DeleteChatPhotoResult> DeleteChatPhotoAsync(ulong chatId, ulong? groupId = null) =>
+		TypeHelper.TryInvokeMethodAsync(() => DeleteChatPhoto(chatId, groupId));
 
 	/// <inheritdoc />
 	public Task<ulong> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null) =>
@@ -161,9 +162,14 @@ public partial class MessagesCategory
 		TypeHelper.TryInvokeMethodAsync(() => GetChatPreview(link, fields));
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<User>> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase) =>
+	public Task<GetChatUsers> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetChatUsers(chatIds, fields, nameCase));
+
+	/// <inheritdoc />
+	public Task<ReadOnlyCollection<long>> GetChatUsersAsync(IEnumerable<long> chatIds) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetChatUsers(chatIds));
 
 	/// <inheritdoc />
 	public Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params) =>
@@ -201,7 +207,7 @@ public partial class MessagesCategory
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetHistoryAttachments(@params, out var _));
+			GetHistoryAttachments(@params));
 
 	/// <inheritdoc />
 	public Task<string> GetInviteLinkAsync(ulong peerId, bool reset) => TypeHelper.TryInvokeMethodAsync(() => GetInviteLink(peerId, reset));

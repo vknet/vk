@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using VkNet.Model;
+using VkNet.Utils;
 using Xunit;
 
 namespace VkNet.Tests.Models;
@@ -20,10 +21,11 @@ public class GroupModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse));
 
-		var response = GetResponse();
-		var group = Group.FromJson(response);
+		Url = "https://api.vk.com/method/friends.getRequests";
+		var result = Api.Call<Group>("friends.getRequests", VkParameters.Empty);
 
-		group.Trending.Should()
+
+		result.Trending.Should()
 			.BeFalse();
 	}
 
@@ -32,10 +34,11 @@ public class GroupModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse2));
 
-		var response = GetResponse();
-		var group = Group.FromJson(response);
+		Url = "https://api.vk.com/method/friends.getRequests";
+		var result = Api.Call<Group>("friends.getRequests", VkParameters.Empty);
 
-		group.Trending.Should()
+
+		result.Trending.Should()
 			.BeFalse();
 	}
 
@@ -44,10 +47,11 @@ public class GroupModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeTrue));
 
-		var response = GetResponse();
-		var group = Group.FromJson(response);
+		Url = "https://api.vk.com/method/friends.getRequests";
+		var result = Api.Call<Group>("friends.getRequests", VkParameters.Empty);
 
-		group.Trending.Should()
+
+		result.Trending.Should()
 			.BeTrue();
 	}
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -63,27 +62,4 @@ public class City
 		get => Title;
 		set => Title = value;
 	}
-
-	#region Inernal Methods
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static City FromJson(VkResponse response)
-	{
-		string id = response[key: "comment_id"] ?? response[key: "cid"] ?? response[key: "id"];
-
-		return new()
-		{
-			Id = Convert.ToInt64(value: id),
-			Title = response[key: "title"] ?? response[key: "name"],
-			Area = response[key: "area"],
-			Region = response[key: "region"],
-			Important = response[key: "important"] ?? false
-		};
-	}
-
-	#endregion
 }

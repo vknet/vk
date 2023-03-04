@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -32,21 +31,4 @@ public class CropPhoto
 	/// </summary>
 	[JsonProperty("rect")]
 	public Rect Rect { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static CropPhoto FromJson(VkResponse response)
-	{
-		var cropPhoto = new CropPhoto
-		{
-			Photo = response[key: "photo"],
-			Crop = response[key: "crop"],
-			Rect = response[key: "rect"]
-		};
-
-		return cropPhoto;
-	}
 }

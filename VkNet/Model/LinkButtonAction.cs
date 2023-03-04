@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -31,17 +30,4 @@ public class LinkButtonAction
 	/// </summary>
 	[JsonProperty(propertyName: "group_id")]
 	public long? GroupId { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static LinkButtonAction FromJson(VkResponse response) => new()
-	{
-		Type = response[key: "type"],
-		Uri = response[key: "url"],
-		Target = response[key: "target"],
-		GroupId = response[key: "group_id"]
-	};
 }

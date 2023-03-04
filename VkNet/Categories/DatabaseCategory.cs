@@ -6,6 +6,7 @@ using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Database;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Categories;
 
@@ -44,8 +45,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getCountries", parameters, true)
-			.ToVkCollectionOf<Country>(x => x);
+		return _vk.Call<VkCollection<Country>>("database.getCountries", parameters, true);
 	}
 
 	/// <inheritdoc />
@@ -72,8 +72,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getRegions", parameters, true)
-			.ToVkCollectionOf<Region>(r => r);
+		return _vk.Call<VkCollection<Region>>("database.getRegions", parameters, true);
 	}
 
 	/// <inheritdoc />
@@ -87,8 +86,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getStreetsById", parameters, true)
-			.ToReadOnlyCollectionOf<Street>(x => x);
+		return _vk.Call<ReadOnlyCollection<Street>>("database.getStreetsById", parameters, true);
 	}
 
 	/// <inheritdoc />
@@ -102,8 +100,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getCountriesById", parameters, true)
-			.ToReadOnlyCollectionOf<Country>(c => c);
+		return _vk.Call<ReadOnlyCollection<Country>>("database.getCountriesById", parameters, true);
 	}
 
 	/// <inheritdoc />
@@ -113,7 +110,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 		VkErrors.ThrowIfNumberIsNegative(() => getCitiesParams.CountryId);
 		VkErrors.ThrowIfNumberIsNegative(() => getCitiesParams.RegionId);
 
-		return _vk.Call("database.getCities", new()
+		return _vk.Call<VkCollection<City>>("database.getCities", new()
 			{
 				{
 					"country_id", getCitiesParams.CountryId
@@ -133,8 +130,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 				{
 					"offset", getCitiesParams.Offset
 				}
-			}, true)
-			.ToVkCollectionOf<City>(x => x);
+			}, true);
 	}
 
 	/// <inheritdoc />
@@ -148,8 +144,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getCitiesById", parameters, true)
-			.ToReadOnlyCollectionOf<City>(x => x);
+		return _vk.Call<ReadOnlyCollection<City>>("database.getCitiesById", parameters, true);
 	}
 
 	/// <inheritdoc />
@@ -180,8 +175,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getUniversities", parameters, true)
-			.ToVkCollectionOf<University>(x => x);
+		return _vk.Call<VkCollection<University>>("database.getUniversities", parameters, true);
 	}
 
 	/// <inheritdoc />
@@ -208,8 +202,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getSchools", parameters, true)
-			.ToVkCollectionOf<School>(x => x);
+		return _vk.Call<VkCollection<School>>("database.getSchools", parameters, true);
 	}
 
 	/// <inheritdoc />
@@ -233,8 +226,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getFaculties", parameters, true)
-			.ToVkCollectionOf<Faculty>(x => x);
+		return _vk.Call<VkCollection<Faculty>>("database.getFaculties", parameters, true);
 	}
 
 	/// <inheritdoc />
@@ -248,8 +240,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getSchoolClasses", parameters, true)
-			.ToReadOnlyCollectionOf<SchoolClass>(x => x);
+		return _vk.Call<ReadOnlyCollection<SchoolClass>>("database.getSchoolClasses", parameters, true);
 	}
 
 	/// <inheritdoc />

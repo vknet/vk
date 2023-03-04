@@ -11,9 +11,9 @@ public class MoneyTransferTests : BaseTest
 	{
 		ReadJsonFile("Models", "money_transfer");
 
-		var response = GetResponse();
+		Url = "https://api.vk.com/method/wall.get";
 
-		var attachment = Attachment.FromJson(response);
+		var attachment = Api.Wall.Get(new()).WallPosts[0].Attachments[0];
 
 		attachment.Instance.Should()
 			.BeOfType<MoneyTransfer>();

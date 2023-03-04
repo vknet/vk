@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -39,35 +38,4 @@ public class PodcastInfo
 	/// </summary>
 	[JsonProperty("description")]
 	public string Description { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static PodcastInfo FromJson(VkResponse response) => new()
-	{
-		Cover = JsonConvert.DeserializeObject<Cover>(response["cover"].ToString()),
-		Plays = response["plays"],
-		IsFavorite = response["is_favorite"],
-		Description = response["description"],
-		Position = response["position"]
-	};
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static implicit operator PodcastInfo(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

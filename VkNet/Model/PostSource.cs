@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -45,26 +44,4 @@ public class PostSource
 	/// </summary>
 	[JsonProperty("source_url")]
 	public Uri Uri { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static PostSource FromJson(VkResponse response)
-	{
-		var postSource = new PostSource
-		{
-			Type = response["type"],
-			Data = response["data"],
-			Platform = response["source_platform"],
-			Uri = response["source_url"]
-		};
-
-		return postSource;
-	}
-
-	#endregion
 }

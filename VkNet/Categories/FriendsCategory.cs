@@ -26,7 +26,9 @@ public partial class FriendsCategory : IFriendsCategory
 	public FriendsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
-	public VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false) => _vk.Call("friends.get", new()
+	public VkCollection<User> Get(FriendsGetParams @params, bool skipAuthorization = false)
+	{
+		var parameters = new VkParameters
 		{
 			{
 				"user_id", @params.UserId
@@ -52,13 +54,20 @@ public partial class FriendsCategory : IFriendsCategory
 			{
 				"ref", @params.Reference
 			}
-		}, skipAuthorization)
-		.ToVkCollectionOf(x => @params.Fields != null
-			? x
-			: new User
-			{
-				Id = x
-			});
+		};
+
+		var response = _vk.Call("friends.get", parameters, skipAuthorization);
+//check todo;
+		if (@params.Fields != null)
+		{
+			return _vk.Call<VkCollection<User>>("friends.get", parameters, skipAuthorization);
+		}
+
+		return response.ToVkCollectionOf<User>(r => new()
+		{
+			Id = r
+		});
+	}
 
 	/// <inheritdoc />
 	[Pure]
@@ -106,7 +115,7 @@ public partial class FriendsCategory : IFriendsCategory
 			};
 		}
 
-		VkResponseArray response = _vk.Call("friends.getMutual", new()
+		return _vk.Call<ReadOnlyCollection<MutualFriend>>("friends.getMutual", new()
 		{
 			{
 				"source_uid", @params.SourceUid
@@ -124,8 +133,6 @@ public partial class FriendsCategory : IFriendsCategory
 				"offset", @params.Offset
 			}
 		});
-
-		return response.ToReadOnlyCollectionOf<MutualFriend>(x => x);
 	}
 
 	/// <inheritdoc />
@@ -196,8 +203,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.getLists", parameters)
-			.ToVkCollectionOf<FriendList>(x => x);
+		return _vk.Call<VkCollection<FriendList>>("friends.getLists", parameters);
 	}
 
 	/// <inheritdoc />
@@ -391,8 +397,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.getSuggestions", parameters)
-			.ToVkCollectionOf<User>(x => x);
+		return _vk.Call<VkCollection<User>>("friends.getSuggestions", parameters);
 	}
 
 	/// <inheritdoc />
@@ -408,12 +413,11 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.getByPhones", parameters)
-			.ToReadOnlyCollectionOf<User>(x => x);
+		return _vk.Call<ReadOnlyCollection<User>>("friends.getByPhones", parameters);
 	}
 
 	/// <inheritdoc />
-	public VkCollection<User> Search(FriendsSearchParams @params) => _vk.Call("friends.search", new()
+	public VkCollection<User> Search(FriendsSearchParams @params) => _vk.Call<VkCollection<User>>("friends.search", new()
 		{
 			{
 				"user_id", @params.UserId
@@ -433,8 +437,7 @@ public partial class FriendsCategory : IFriendsCategory
 			{
 				"count", @params.Count
 			}
-		})
-		.ToVkCollectionOf<User>(x => x);
+		});
 
 	/// <summary>
 	/// Создает новый список друзей у текущего пользователя.
@@ -496,12 +499,18 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.getAvailableForCall", parameters)
-			.ToVkCollectionOf(x => fields != null
-				? new User
-				{
-					Id = x
-				}
-				: x);
+		var response = _vk.Call("friends.getAvailableForCall", parameters);
+
+
+
+		if (fields != null)
+		{
+			return _vk.Call<VkCollection<User>>("friends.getAvailableForCall", parameters);
+		}
+
+		return response.ToVkCollectionOf<User>(r => new()
+		{
+			Id = r
+		});
 	}
 }

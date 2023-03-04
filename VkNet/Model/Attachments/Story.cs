@@ -2,7 +2,6 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Attachments;
@@ -120,54 +119,4 @@ public class Story : MediaAttachment
 	/// </summary>
 	[JsonProperty("views")]
 	public int? Views { get; set; }
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Story FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		OwnerId = response["owner_id"],
-		Date = response["date"],
-		IsExpired = response["is_expired"],
-		IsDeleted = response["is_deleted"],
-		CanSee = response["can_see"],
-		Seen = response["seen"],
-		Type = response["type"],
-		Photo = response["photo"],
-		Video = response["video"],
-		Link = response["link"],
-		ParentStoryOwnerId = response["parent_story_owner_id"],
-		ParentStoryId = response["parent_story_id"],
-		ParentStory = response["parent_story"],
-		Replies = response["replies"],
-		CanReply = response["can_reply"],
-		CanShare = response["can_share"],
-		CanComment = response["can_comment"],
-		Views = response["views"],
-		AccessKey = response["access_key"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="Story" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Story" /></returns>
-	public static implicit operator Story(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

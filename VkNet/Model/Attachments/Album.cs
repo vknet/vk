@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -66,42 +65,4 @@ public class Album : MediaAttachment
 		get => Id;
 		set => Id = value;
 	}
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из JSON
-	/// </summary>
-	/// <param name="response"> Ответ сервера </param>
-	/// <returns> </returns>
-	public static Album FromJson(VkResponse response) => new()
-	{
-		Id = response["album_id"] ?? response["aid"] ?? response["id"],
-		Thumb = response["thumb"],
-		OwnerId = response["owner_id"],
-		Title = response["title"],
-		Description = response["description"],
-		CreateTime = response["created"],
-		UpdateTime = response["updated"],
-		Size = response["size"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="Album" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Album" /></returns>
-	public static implicit operator Album(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

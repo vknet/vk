@@ -1,9 +1,24 @@
 {
-    "type": "graffiti",
-    "graffiti": {
-        "id": 337826277,
-        "owner_id": 37481316,
-        "photo_200": "https://sun9-50.userapi.com/c411230/u37481316/s_e04c5e8b.png",
-        "photo_586": "https://sun9-50.userapi.com/c411230/u37481316/l_57286c26.png"
-      }
+  "response": {
+	"count": 1,
+	"items": [
+	  {
+		"id": 111,
+		"from_id": -222,
+		"attachments": [
+		  {
+			"type": "graffiti",
+			"graffiti": {
+			  "id": 337826277,
+			  "owner_id": 37481316,
+			  "photo_200": "https://sun9-50.userapi.com/c411230/u37481316/s_e04c5e8b.png",
+			  "photo_586": "https://sun9-50.userapi.com/c411230/u37481316/l_57286c26.png"
+			}
+		  }
+		]
+	  }
+	],
+	"profiles": [],
+	"groups": []
   }
+}

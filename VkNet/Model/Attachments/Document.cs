@@ -2,7 +2,6 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -84,51 +83,4 @@ public class Document : MediaAttachment
 		get => Id;
 		set => Id = value;
 	}
-
-	#region Методы
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Document FromJson(VkResponse response)
-	{
-		var document = new Document
-		{
-			Id = response["doc_id"] ?? response["did"] ?? response["id"],
-			OwnerId = response["owner_id"],
-			Title = response["title"],
-			Size = response["size"],
-			Ext = response["ext"],
-			Uri = response["url"],
-			Photo100 = response["photo_100"],
-			Photo130 = response["photo_130"],
-			AccessKey = response["access_key"],
-			Date = response["date"],
-			Preview = response["preview"],
-			Type = response["type"]
-		};
-
-		return document;
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="Document" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Document" /></returns>
-	public static implicit operator Document(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
-
-	#endregion
 }

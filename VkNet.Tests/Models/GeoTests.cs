@@ -12,11 +12,10 @@ public class GeoTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Geo));
 
-		var response = GetResponse();
+		Url = "https://api.vk.com/method/friends.getRequests";
+		var result = Api.Call<Geo>("friends.getRequests", VkParameters.Empty);
 
-		var geo = Geo.FromJson(response);
-
-		geo.Should()
+		result.Should()
 			.NotBeNull();
 	}
 

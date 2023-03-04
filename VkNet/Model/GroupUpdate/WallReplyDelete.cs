@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate;
 
@@ -39,34 +38,4 @@ public class WallReplyDelete : IGroupUpdate
 	/// </summary>
 	[JsonProperty("deleter_id")]
 	public long? DeleterId { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	public static WallReplyDelete FromJson(VkResponse response) => new()
-	{
-		Id = response["id"],
-		PostId = response["post_id"],
-		OwnerId = response["owner_id"],
-		UserId = response["user_id"],
-		DeleterId = response["deleter_id"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="WallReplyDelete" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Результат преобразования в <see cref="WallReplyDelete" /> </returns>
-	public static implicit operator WallReplyDelete(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

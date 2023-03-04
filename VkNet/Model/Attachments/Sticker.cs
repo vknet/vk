@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
@@ -37,37 +36,5 @@ public class Sticker : MediaAttachment
 	{
 		get => Id;
 		set => Id = value;
-	}
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static Sticker FromJson(VkResponse response) => new()
-	{
-		Id = response["id"] ?? response["sticker_id"],
-		ProductId = response["product_id"],
-		Images = response["images"]
-			.ToReadOnlyCollectionOf<Image>(x => x),
-		ImagesWithBackground = response["images_with_background"]
-			.ToReadOnlyCollectionOf<Image>(x => x)
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="Sticker" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="Sticker" /></returns>
-	public static implicit operator Sticker(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
 	}
 }

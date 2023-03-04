@@ -194,8 +194,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		update.UserBlock.Reason.Should()
 			.Be(reason);
 
-		update.UserBlock.UnblockDate.Should()
-			.BeNull();
+		update.UserBlock.UnblockDate.Should().Be(DateTime.Parse("1970-01-01"));
 	}
 
 	[Fact]

@@ -8,6 +8,7 @@ using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Model.RequestParams.Messages;
 using VkNet.Model.Results.Messages;
+using VkNet.Model.Results.Users;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -34,7 +35,7 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 									bool deleteForAll = false);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteChatPhotoAsync"/>
-	Chat DeleteChatPhoto(out ulong messageId, ulong chatId, ulong? groupId = null);
+	DeleteChatPhotoResult DeleteChatPhoto(ulong chatId, ulong? groupId = null);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.DenyMessagesFromGroupAsync"/>
 	bool DenyMessagesFromGroup(long groupId);
@@ -101,7 +102,7 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	long SendSticker(MessagesSendStickerParams @params);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetHistoryAttachmentsAsync"/>
-	ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params, out string nextFrom);
+	ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetInviteLinkAsync"/>
 	string GetInviteLink(ulong peerId, bool reset);
@@ -189,7 +190,11 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync"/>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
-	ReadOnlyCollection<User> GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+	GetChatUsers GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync"/>
+	[Obsolete(ObsoleteText.MessageGetChatUsers)]
+	ReadOnlyCollection<long> GetChatUsers(IEnumerable<long> chatIds);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetDialogsAsync"/>
 	[Obsolete(ObsoleteText.MessageGet)]
