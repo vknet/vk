@@ -20,7 +20,7 @@ public class Street
 	/// </summary>
 	[JsonProperty("title")]
 	public string Title { get; set; }
-  
+
 	[JsonProperty("name")]
 	private string Name
 	{
