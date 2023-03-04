@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate;
 
@@ -27,32 +26,4 @@ public class MessageTypingState : IGroupUpdate
 	/// </summary>
 	[JsonProperty("state")]
 	public string State { get; set; }
-
-	/// <summary>
-	/// </summary>
-	/// <param name="response"> </param>
-	/// <returns> </returns>
-	public static MessageTypingState FromJson(VkResponse response) => new()
-	{
-		FromId = response["from_id"],
-		ToId = response["to_id"],
-		State = response["state"]
-	};
-
-	/// <summary>
-	/// Преобразование класса <see cref="MessageTypingState" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>Результат преобразования в <see cref="MessageTypingState" /></returns>
-	public static implicit operator MessageTypingState(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

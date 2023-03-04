@@ -1190,8 +1190,9 @@ public partial class GroupsCategory : IGroupsCategory
 		});
 
 	/// <inheritdoc />
-	public BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params) => _vk.CallLongPoll(@params.Server,
-		new()
+	public BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params)
+	{
+		var parameters = new VkParameters
 		{
 			{
 				"ts", @params.Ts
@@ -1205,7 +1206,31 @@ public partial class GroupsCategory : IGroupsCategory
 			{
 				"act", "a_check"
 			}
-		});
+		};
+		var response = _vk.CallLongPoll(@params.Server, parameters);
+
+		if (response.ContainsKey("failed"))
+		{
+			int code = response["failed"];
+
+			if (code == LongPollException.OutdateException)
+			{
+				throw new LongPollOutdateException(response["ts"]);
+			}
+
+			if (code == LongPollException.KeyExpiredException)
+			{
+				throw new LongPollKeyExpiredException();
+			}
+
+			if (code == LongPollException.InfoLostException)
+			{
+				throw new LongPollInfoLostException();
+			}
+		}
+
+		return _vk.CallLongPoll<BotsLongPollHistoryResponse>(@params.Server, parameters);
+	}
 
 	/// <inheritdoc />
 	public OnlineStatus GetOnlineStatus(ulong groupId) => _vk.Call<OnlineStatus>("groups.getOnlineStatus",

@@ -1,7 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Infrastructure;
-using VkNet.Utils;
 
 namespace VkNet.Model.GroupUpdate;
 
@@ -43,39 +41,5 @@ public class DonutWithdraw : IGroupUpdate
 			_reason = value;
 			Error = !string.IsNullOrEmpty(_reason);
 		}
-	}
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	public static DonutWithdraw FromJson(VkResponse response)
-	{
-		var groupJoin = JsonConvert.DeserializeObject<DonutWithdraw>(response.ToString(), JsonConfigure.JsonSerializerSettings);
-
-		groupJoin.Amount = response["amount"];
-		groupJoin.AmountWithoutFee = response["amount_without_fee"];
-
-		groupJoin.Reason = response["reason"];
-		groupJoin.Error = !string.IsNullOrEmpty(groupJoin.Reason);
-
-		return groupJoin;
-	}
-
-	/// <summary>
-	/// Преобразование класса <see cref="DonutWithdraw" /> в <see cref="VkParameters" />
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> Результат преобразования в <see cref="DonutWithdraw" /> </returns>
-	public static implicit operator DonutWithdraw(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
 	}
 }
