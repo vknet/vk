@@ -51,7 +51,7 @@ public class User
 			Facebook = response["facebook"],
 			Skype = response["skype"],
 			Site = response["site"],
-			Education = response,
+			Education = !response.ContainsKey("university")?null:JsonConvert.DeserializeObject<Education>(response.ToString()),
 			Universities = !response.ContainsKey("universities")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<University>>(response["universities"].ToString()),
 			Schools =  !response.ContainsKey("schools")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<School>>(response["schools"].ToString()),
 			CanPost = response["can_post"],
