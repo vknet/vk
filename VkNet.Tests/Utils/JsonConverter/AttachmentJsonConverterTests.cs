@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Collections.Generic;
+using FluentAssertions;
 using Newtonsoft.Json;
 using VkNet.Model;
 using VkNet.Utils;
@@ -34,17 +35,18 @@ public class AttachmentJsonConverterTests : BaseTest
 	{
 		ReadJsonFile("Attachment", nameof(SerializationTest));
 
-		var response = GetResponse();
-		var message = Message.FromJson(response);
+		Url = "https://api.vk.com/method/wall.get";
 
-		var json = JsonConvert.SerializeObject(message,
+		var wall = Api.Wall.Get(new());
+
+		var json = JsonConvert.SerializeObject(wall,
 			new JsonSerializerSettings
 			{
 				NullValueHandling = NullValueHandling.Ignore,
 				DefaultValueHandling = DefaultValueHandling.Ignore
 			});
 
-		var result = JsonConvert.DeserializeObject<Message>(json,
+		var result = JsonConvert.DeserializeObject<WallGetObject>(json,
 			new JsonSerializerSettings
 			{
 				MaxDepth = null,
@@ -54,7 +56,7 @@ public class AttachmentJsonConverterTests : BaseTest
 		result.Should()
 			.NotBeNull();
 
-		result.Attachments.Should()
-			.NotBeEmpty();
+		result.WallPosts[0].Attachments[0].Instance.Id.Should()
+			.Be(456239677);
 	}
 }
