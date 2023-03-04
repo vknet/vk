@@ -36,7 +36,7 @@ public class WallPost : Post, IGroupUpdate
 		Likes = !response.ContainsKey("likes") ? null : JsonConvert.DeserializeObject<Likes>(response[key: "likes"].ToString()),
 		Reposts = response[key: "reposts"],
 		PostType = response[key: "post_type"],
-		PostSource = response[key: "post_source"],
+		PostSource = !response.ContainsKey("post_source") ? null : JsonConvert.DeserializeObject<PostSource>(response[key: "post_source"].ToString()),
 		Attachments = response[key: "attachments"]
 			.ToReadOnlyCollectionOf<Attachment>(selector: x => x),
 		Geo = !response.ContainsKey("geo") ? null : JsonConvert.DeserializeObject<Geo>(response[key: "geo"].ToString()),

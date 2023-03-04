@@ -223,7 +223,11 @@ public class Post : MediaAttachment
 				.ToString());
 		res.Reposts = response["reposts"];
 		res.PostType = response["post_type"];
-		res.PostSource = response["post_source"];
+
+		res.PostSource = !response.ContainsKey("post_source")
+			? null
+			: JsonConvert.DeserializeObject<PostSource>(response[key: "post_source"]
+				.ToString());
 
 		res.Geo = !response.ContainsKey("geo")
 			? null
