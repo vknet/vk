@@ -2,7 +2,6 @@ using System;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -57,44 +56,4 @@ public class MessageActionObject
 	/// </summary>
 	[JsonProperty("photo")]
 	public Photo Photo { get; set; }
-
-	/// <summary>
-	/// Преобразование из <see cref="VkResponse"/> в <see cref="MessageActionObject"/>
-	/// </summary>
-	/// <param name="response">Ответ вк</param>
-	/// <returns></returns>
-	public static MessageActionObject FromJson(VkResponse response)
-	{
-		var action = new MessageActionObject
-		{
-			Type = response["type"],
-			MemberId = response["member_id"],
-			Text = response["text"],
-			ConversationMessageId = response["conversation_message_id"],
-			Message = response["message"],
-			Email = response["email"],
-			Photo = response["photo"]
-		};
-
-		return action;
-	}
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator MessageActionObject(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
 }

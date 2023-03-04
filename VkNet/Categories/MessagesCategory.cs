@@ -70,7 +70,7 @@ public partial class MessagesCategory : IMessagesCategory
 
 	/// <inheritdoc />
 	[Pure]
-	public MessagesGetObject Get(MessagesGetParams @params) => _vk.Call("messages.get",
+	public MessagesGetObject Get(MessagesGetParams @params) => _vk.Call<MessagesGetObject>("messages.get",
 		new()
 		{
 			{
@@ -157,7 +157,7 @@ public partial class MessagesCategory : IMessagesCategory
 	{
 		VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
 
-		return _vk.Call("messages.getDialogs",
+		return _vk.Call<MessagesGetObject>("messages.getDialogs",
 			new()
 			{
 				{

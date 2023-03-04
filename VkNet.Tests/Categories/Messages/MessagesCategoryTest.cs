@@ -540,11 +540,11 @@ public class MessagesCategoryTest : MessagesBaseTests
 		msgs.Messages.Should()
 			.HaveCount(20);
 
-		msgs.Messages[0]
+		msgs.Messages[0].Message
 			.Id.Should()
 			.Be(266284);
 
-		msgs.Messages[0]
+		msgs.Messages[0].Message
 			.Date.Should()
 			.Be(new(2020,
 				2,
@@ -554,21 +554,21 @@ public class MessagesCategoryTest : MessagesBaseTests
 				50,
 				DateTimeKind.Utc));
 
-		msgs.Messages[0]
+		msgs.Messages[0].Message
 			.Type.Should()
 			.Be(MessageType.Sended);
 
-		msgs.Messages[0]
+		msgs.Messages[0].Message
 			.UserId.Should()
 			.Be(71469725);
 
-		msgs.Messages[0]
+		msgs.Messages[0].Message
 			.ReadState.Should()
 			.Be(MessageReadState.Readed);
 
-		msgs.Messages[0]
+		msgs.Messages[0].Message
 			.Body.Should()
-			.Be("😂");
+			.Be("&#128514;");
 	}
 
 	[Fact]
