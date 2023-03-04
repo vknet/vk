@@ -175,8 +175,7 @@ public partial class DatabaseCategory : IDatabaseCategory
 			}
 		};
 
-		return _vk.Call("database.getUniversities", parameters, true)
-			.ToVkCollectionOf<University>(x => x);
+		return _vk.Call<VkCollection<University>>("database.getUniversities", parameters, true);
 	}
 
 	/// <inheritdoc />

@@ -257,8 +257,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.getAlbums", parameters)
-			.ToVkCollectionOf<VideoAlbum>(selector: x => x);
+		return _vk.Call<VkCollection<VideoAlbum>>("video.getAlbums", parameters);
 	}
 
 	/// <inheritdoc />
@@ -522,7 +521,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.getAlbumById", parameters);
+		return _vk.Call<VideoAlbum>("video.getAlbumById", parameters);
 	}
 
 	/// <inheritdoc />
@@ -651,8 +650,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.getAlbumsByVideo", parameters)
-			.ToVkCollectionOf<VideoAlbum>(selector: x => x);
+		return _vk.Call<VkCollection<VideoAlbum>>("video.getAlbumsByVideo", parameters);
 	}
 
 	/// <inheritdoc />

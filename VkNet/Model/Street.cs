@@ -21,6 +21,7 @@ public class Street
 	[JsonProperty("title")]
 	public string Title { get; set; }
 
+
 	[JsonProperty("name")]
 	private string Name
 	{

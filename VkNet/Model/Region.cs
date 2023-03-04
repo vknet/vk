@@ -25,6 +25,7 @@ public class Region
 		set => Id = value;
 	}
 
+
 	/// <summary>
 	/// Название региона
 	/// </summary>

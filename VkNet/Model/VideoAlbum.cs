@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Infrastructure;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -66,24 +64,4 @@ public class VideoAlbum
 	[JsonProperty("updated_time")]
 	[JsonConverter(typeof(UnixDateTimeConverter))]
 	public DateTime? UpdatedTime { get; set; }
-
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
-	public static VideoAlbum FromJson(VkResponse response) => response != null
-		? JsonConvert.DeserializeObject<VideoAlbum>(response.ToString(), JsonConfigure.JsonSerializerSettings)
-		: null;
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator VideoAlbum(VkResponse response) => response.HasToken()
-		? FromJson(response)
-		: null;
 }
