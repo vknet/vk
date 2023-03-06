@@ -278,20 +278,11 @@ public class VkApi : IVkApi
 			ReferenceLoopHandling = ReferenceLoopHandling.Ignore
 		};
 
-		if (jsonConverters.Any())
-		{
-			foreach (var jsonConverter in jsonConverters)
-			{
-				settings.Converters.Add(jsonConverter);
-			}
-		}
+		var converters = GetJsonConverters<T>(jsonConverters);
 
-		settings.Converters.Add(new VkCollectionJsonConverter());
-		settings.Converters.Add(new VkDefaultJsonConverter());
-		settings.Converters.Add(new UnixDateTimeConverter());
-		settings.Converters.Add(new AttachmentJsonConverter());
-		settings.Converters.Add(new StringEnumConverter());
-
+		foreach (var jsonConverter in converters)
+			settings.Converters.Add(jsonConverter);
+						 
 		return JsonConvert.DeserializeObject<T>(answer, settings);
 	}
 
@@ -444,6 +435,25 @@ public class VkApi : IVkApi
 
 		AccessToken = authorization.AccessToken;
 		UserId = authorization.UserId;
+	}
+
+	/// <summary>
+	/// Получить список JsonConverter для обработки ответа vk api
+	/// </summary>
+	/// <param name="customConverters"></param>
+	/// <returns></returns>
+	protected virtual List<JsonConverter> GetJsonConverters<T>(IReadOnlyList<JsonConverter> customConverters)
+	{
+		var converters = new List<JsonConverter>();
+
+		converters.AddRange(customConverters);
+
+		converters.Add(new VkCollectionJsonConverter());
+		converters.Add(new VkDefaultJsonConverter());
+		converters.Add(new UnixDateTimeConverter());
+		converters.Add(new AttachmentJsonConverter());
+		converters.Add(new StringEnumConverter());
+		return converters;
 	}
 
 	private void OnTokenExpired(VkApi sender)
