@@ -1,20 +1,19 @@
 ﻿using System;
-using Newtonsoft.Json;
-using VkNet.Utils.JsonConverter;
+using System.Runtime.Serialization;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums;
 
 /// <summary>
 /// Тип виджета приложения
 /// </summary>
 [Serializable]
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
-public class AppWidgetType : SafetyEnum<AppWidgetType>
+public enum AppWidgetType
 {
 	/// <summary>
 	/// Text - Выводит текст.
 	/// </summary>
-	public static readonly AppWidgetType Text = RegisterPossibleValue("text");
+	[EnumMember(Value = "text")]
+	Text,
 
 	/// <summary>
 	/// List - Выводит список объектов с описанием и
@@ -23,7 +22,8 @@ public class AppWidgetType : SafetyEnum<AppWidgetType>
 	/// если не указан сопроводительный текст (поле text),
 	/// и до 3 объектов, если текст указан.
 	/// </summary>
-	public static readonly AppWidgetType List = RegisterPossibleValue("list");
+	[EnumMember(Value = "list")]
+	List,
 
 	/// <summary>
 	/// Table - Выводит таблицу с данными.
@@ -32,40 +32,47 @@ public class AppWidgetType : SafetyEnum<AppWidgetType>
 	/// Таблица может содержать от 1 до 6 столбцов
 	/// и от 1 до 11 строк (включая строку с названиями колонок).
 	/// </summary>
-	public static readonly AppWidgetType Table = RegisterPossibleValue("table");
+	[EnumMember(Value = "table")]
+	Table,
 
 	/// <summary>
 	/// Tiles - Выводит плитки с изображением и кратким описанием.
 	/// Количество плиток — от 3 до 10 для мобильных приложений,
 	/// 3 для десктопной версии.
 	/// </summary>
-	public static readonly AppWidgetType Tiles = RegisterPossibleValue("tiles");
+	[EnumMember(Value = "tiles")]
+	Tiles,
 
 	/// <summary>
 	/// Compact List - Выводит список элементов в компактном виде.
 	/// Аналогичен виджету List, за исключением того,
 	/// что кнопка располагается справа.
 	/// </summary>
-	public static readonly AppWidgetType CompactList = RegisterPossibleValue("compact_list");
+	[EnumMember(Value = "compact_list")]
+	CompactList,
 
 	/// <summary>
 	/// Cover List - Выводит список изображений (от 1 до 3)
 	/// с кнопкой для действия, заголовком и описанием.
 	/// </summary>
-	public static readonly AppWidgetType CoverList = RegisterPossibleValue("cover_list");
+	[EnumMember(Value = "cover_list")]
+	CoverList,
 
 	/// <summary>
 	/// Match - Выводит текущий результат спортивного матча.
 	/// </summary>
-	public static readonly AppWidgetType Match = RegisterPossibleValue("match");
+	[EnumMember(Value = "match")]
+	Match,
 
 	/// <summary>
 	/// Matches - Выводит список спортивных матчей.
 	/// </summary>
-	public static readonly AppWidgetType Matches = RegisterPossibleValue("matches");
+	[EnumMember(Value = "matches")]
+	Matches,
 
 	/// <summary>
 	/// Donation - Выводит прогресс пожертвований.
 	/// </summary>
-	public static readonly AppWidgetType Donation = RegisterPossibleValue("donation");
+	[EnumMember(Value = "donation")]
+	Donation
 }

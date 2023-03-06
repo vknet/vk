@@ -1517,52 +1517,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void WallFilterTest()
-	{
-		// get test
-		WallFilter.Owner.ToString()
-			.Should()
-			.Be("owner");
-
-		WallFilter.Others.ToString()
-			.Should()
-			.Be("others");
-
-		WallFilter.All.ToString()
-			.Should()
-			.Be("all");
-
-		WallFilter.Suggests.ToString()
-			.Should()
-			.Be("suggests");
-
-		WallFilter.Postponed.ToString()
-			.Should()
-			.Be("postponed");
-
-		// parse test
-		WallFilter.FromJsonString("owner")
-			.Should()
-			.Be(WallFilter.Owner);
-
-		WallFilter.FromJsonString("others")
-			.Should()
-			.Be(WallFilter.Others);
-
-		WallFilter.FromJsonString("all")
-			.Should()
-			.Be(WallFilter.All);
-
-		WallFilter.FromJsonString("suggests")
-			.Should()
-			.Be(WallFilter.Suggests);
-
-		WallFilter.FromJsonString("postponed")
-			.Should()
-			.Be(WallFilter.Postponed);
-	}
-
-	[Fact]
 	public void KeyboardButtonColorTest()
 	{
 		// get test
@@ -1862,84 +1816,6 @@ public class SafetyEnumsTest
 		MarketItemButtonTitle.FromJsonString("Перейти в магазин")
 			.Should()
 			.Be(MarketItemButtonTitle.GoToTheStore);
-	}
-
-	[Fact]
-	public void AppWidgetTypeTest()
-	{
-		// get test
-		AppWidgetType.Donation.ToString()
-			.Should()
-			.Be("donation");
-
-		AppWidgetType.List.ToString()
-			.Should()
-			.Be("list");
-
-		AppWidgetType.Match.ToString()
-			.Should()
-			.Be("match");
-
-		AppWidgetType.Matches.ToString()
-			.Should()
-			.Be("matches");
-
-		AppWidgetType.Table.ToString()
-			.Should()
-			.Be("table");
-
-		AppWidgetType.Text.ToString()
-			.Should()
-			.Be("text");
-
-		AppWidgetType.Tiles.ToString()
-			.Should()
-			.Be("tiles");
-
-		AppWidgetType.CompactList.ToString()
-			.Should()
-			.Be("compact_list");
-
-		AppWidgetType.CoverList.ToString()
-			.Should()
-			.Be("cover_list");
-
-		// parse test
-		AppWidgetType.FromJsonString("donation")
-			.Should()
-			.Be(AppWidgetType.Donation);
-
-		AppWidgetType.FromJsonString("list")
-			.Should()
-			.Be(AppWidgetType.List);
-
-		AppWidgetType.FromJsonString("match")
-			.Should()
-			.Be(AppWidgetType.Match);
-
-		AppWidgetType.FromJsonString("matches")
-			.Should()
-			.Be(AppWidgetType.Matches);
-
-		AppWidgetType.FromJsonString("table")
-			.Should()
-			.Be(AppWidgetType.Table);
-
-		AppWidgetType.FromJsonString("text")
-			.Should()
-			.Be(AppWidgetType.Text);
-
-		AppWidgetType.FromJsonString("tiles")
-			.Should()
-			.Be(AppWidgetType.Tiles);
-
-		AppWidgetType.FromJsonString("compact_list")
-			.Should()
-			.Be(AppWidgetType.CompactList);
-
-		AppWidgetType.FromJsonString("cover_list")
-			.Should()
-			.Be(AppWidgetType.CoverList);
 	}
 
 	[Fact]

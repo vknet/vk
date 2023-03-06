@@ -78,7 +78,6 @@ public class Ad
 	/// Рекламные площадки, на которых будет показываться объявление. (если значение применимо к данному формату объявления)
 	/// </summary>
 	[JsonProperty("ad_platform")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AdPlatform AdPlatform { get; set; }
 
 	/// <summary>

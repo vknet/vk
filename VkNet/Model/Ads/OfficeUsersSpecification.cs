@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils.JsonConverter;
 
@@ -21,7 +22,6 @@ public class OfficeUsersSpecification
 	/// Тип полномочий.
 	/// </summary>
 	[JsonProperty("role")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AccessRole Role { get; set; }
 
 	/// <summary>

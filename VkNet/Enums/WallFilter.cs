@@ -1,35 +1,41 @@
+using System.Runtime.Serialization;
 using VkNet.Utils;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums;
 
 /// <summary>
 /// Фильтр для задания типов сообщений, которые необходимо получить со стены.
 /// </summary>
-public sealed class WallFilter : SafetyEnum<WallFilter>
+public enum WallFilter
 {
 	/// <summary>
 	/// Необходимо получить сообщения на стене только от ее владельца.
 	/// </summary>
-	public static readonly WallFilter Owner = RegisterPossibleValue(value: "owner");
+	[EnumMember(Value = "owner")]
+	Owner,
 
 	/// <summary>
 	/// Необходимо получить сообщения на стене не от владельца стены.
 	/// </summary>
-	public static readonly WallFilter Others = RegisterPossibleValue(value: "others");
+	[EnumMember(Value = "others")]
+	Others,
 
 	/// <summary>
 	/// Необходимо получить все сообщения на стене (Owner + Others).
 	/// </summary>
+	[EnumMember(Value = "all")]
 	[DefaultValue]
-	public static readonly WallFilter All = RegisterPossibleValue(value: "all");
+	All,
 
 	/// <summary>
 	/// Предложенные записи на стене сообщества
 	/// </summary>
-	public static readonly WallFilter Suggests = RegisterPossibleValue(value: "suggests");
+	[EnumMember(Value = "suggests")]
+	Suggests,
 
 	/// <summary>
 	/// Отложенные записи
 	/// </summary>
-	public static readonly WallFilter Postponed = RegisterPossibleValue(value: "postponed");
+	[EnumMember(Value = "postponed")]
+	Postponed
 }
