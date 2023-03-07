@@ -1,27 +1,33 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Порядок сортировки членов группы.
 /// </summary>
-public sealed class GroupsSort : SafetyEnum<GroupsSort>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum GroupsSort
 {
 	/// <summary>
 	/// По возрастанию численных значений идентификаторов.
 	/// </summary>
-	public static readonly GroupsSort IdAsc = RegisterPossibleValue(value: "id_asc");
+	IdAsc,
 
 	/// <summary>
 	/// По убыванию численных значений идентификаторов.
 	/// </summary>
-	public static readonly GroupsSort IdDesc = RegisterPossibleValue(value: "id_desc");
+	IdDesc,
 
 	/// <summary>
 	/// По возрастанию времени присоединения к группе.
 	/// </summary>
-	public static readonly GroupsSort TimeAsc = RegisterPossibleValue(value: "time_asc");
+	TimeAsc,
 
 	/// <summary>
 	/// По убыванию времени присоединения к группе.
 	/// </summary>
-	public static readonly GroupsSort TimeDesc = RegisterPossibleValue(value: "time_desc");
+	TimeDesc
 }

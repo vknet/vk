@@ -28,7 +28,6 @@ public class GroupsGetMembersParams
 	/// сообщества. строка, по умолчанию
 	/// id_asc.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public GroupsSort Sort { get; set; }
 
 	/// <summary>
