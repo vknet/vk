@@ -22,6 +22,14 @@ public class AudioGetCatalogTest : CategoryBaseTest
 		result.Should()
 			.NotBeNull();
 
+		result.Items[0]
+			.Type.Should()
+			.Be(AudioCatalogType.AudiosSpecial);
+
+		result.Items[1]
+			.Type.Should()
+			.Be(AudioCatalogType.Playlists);
+
 		AudioCatalogType.AudiosSpecial.Should()
 			.Be(result.Items[0]
 				.Type);
