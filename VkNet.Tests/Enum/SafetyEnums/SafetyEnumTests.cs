@@ -81,20 +81,20 @@ public class SafetyEnumsTest
 	public void AppRatingTypeTest()
 	{
 		// get test
-		AppRatingType.Level.ToString()
+		AppRatingType.Level.ToString().ToSnakeCase()
 			.Should()
 			.Be("level");
 
-		AppRatingType.Points.ToString()
+		AppRatingType.Points.ToString().ToSnakeCase()
 			.Should()
 			.Be("points");
 
 		// parse test
-		AppRatingType.FromJsonString("level")
+		Utilities.Deserialize<AppRatingType>("level")
 			.Should()
 			.Be(AppRatingType.Level);
 
-		AppRatingType.FromJsonString("points")
+		Utilities.Deserialize<AppRatingType>("points")
 			.Should()
 			.Be(AppRatingType.Points);
 	}
