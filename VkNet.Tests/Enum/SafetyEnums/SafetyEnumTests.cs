@@ -427,36 +427,36 @@ public class SafetyEnumsTest
 	public void GroupsSortTest()
 	{
 		// get test
-		GroupsSort.IdAsc.ToString()
+		GroupsSort.IdAsc.ToString().ToSnakeCase()
 			.Should()
 			.Be("id_asc");
 
-		GroupsSort.IdDesc.ToString()
+		GroupsSort.IdDesc.ToString().ToSnakeCase()
 			.Should()
 			.Be("id_desc");
 
-		GroupsSort.TimeAsc.ToString()
+		GroupsSort.TimeAsc.ToString().ToSnakeCase()
 			.Should()
 			.Be("time_asc");
 
-		GroupsSort.TimeDesc.ToString()
+		GroupsSort.TimeDesc.ToString().ToSnakeCase()
 			.Should()
 			.Be("time_desc");
 
 		// parse test
-		GroupsSort.FromJsonString("id_asc")
+		Utilities.Deserialize<GroupsSort>("id_asc")
 			.Should()
 			.Be(GroupsSort.IdAsc);
 
-		GroupsSort.FromJsonString("id_desc")
+		Utilities.Deserialize<GroupsSort>("id_desc")
 			.Should()
 			.Be(GroupsSort.IdDesc);
 
-		GroupsSort.FromJsonString("time_asc")
+		Utilities.Deserialize<GroupsSort>("time_asc")
 			.Should()
 			.Be(GroupsSort.TimeAsc);
 
-		GroupsSort.FromJsonString("time_desc")
+		Utilities.Deserialize<GroupsSort>("time_desc")
 			.Should()
 			.Be(GroupsSort.TimeDesc);
 	}
