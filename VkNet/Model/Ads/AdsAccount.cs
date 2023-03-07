@@ -44,6 +44,5 @@ public class AdsAccount
 	/// Права пользователя в рекламном кабинете.
 	/// </summary>
 	[JsonProperty(propertyName: "access_role")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public AccessRole AccessRole { get; set; }
 }
