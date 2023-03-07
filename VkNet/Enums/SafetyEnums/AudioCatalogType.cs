@@ -1,38 +1,38 @@
-﻿using System;
-using Newtonsoft.Json;
-using VkNet.Utils.JsonConverter;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип каталога
 /// </summary>
-[Serializable]
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
-public class AudioCatalogType : SafetyEnum<AudioCatalogType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum AudioCatalogType
 {
 	/// <summary>
 	/// AudiosSpecial - Специальные аудиозаписи.
 	/// </summary>
-	public static readonly AudioCatalogType AudiosSpecial = RegisterPossibleValue("audios_special");
+	AudiosSpecial,
 
 	/// <summary>
 	/// Audios - Аудиозаписи.
 	/// </summary>
-	public static readonly AudioCatalogType Audios = RegisterPossibleValue("audios");
+	Audios,
 
 	/// <summary>
 	/// Playlists - Плейлисты.
 	/// </summary>
-	public static readonly AudioCatalogType Playlists = RegisterPossibleValue("playlists");
+	Playlists,
 
 	/// <summary>
 	/// TopAudios - Чарт Вконтакте.
 	/// </summary>
-	public static readonly AudioCatalogType TopAudios = RegisterPossibleValue("top_audios");
+	TopAudios,
 
 	/// <summary>
 	/// CustomImageBig - Большое изображение сообщества.
 	/// </summary>
-	public static readonly AudioCatalogType CustomImageBig = RegisterPossibleValue("custom_image_big");
+	CustomImageBig
 }
