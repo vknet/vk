@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
 
@@ -159,5 +162,93 @@ public static class Utilities
 
 			return false;
 		}
+	}
+
+	/// <summary>
+	/// Преобразование из PascalCase в snake_case
+	/// </summary>
+	/// <param name="str"></param>
+	/// <returns></returns>
+	public static string ToSnakeCase(this string str)
+	{
+		var words = str.Split(new[] { "_", " " }, StringSplitOptions.RemoveEmptyEntries);
+		var leadWord = Regex.Replace(words[0], @"([A-Z])([A-Z]+|[a-z0-9]+)($|[A-Z]\w*)",
+			m =>
+			{
+				return m.Groups[1].Value.ToLower() + m.Groups[2].Value.ToLower() + m.Groups[3].Value;
+			});
+		var tailWords = words.Skip(1)
+			.Select(word => char.ToUpper(word[0]) + word.Substring(1))
+			.ToArray();
+		return $"{leadWord}{string.Join(string.Empty, tailWords)}";
+	}
+
+	private static string ToCamelCase(this string str)
+	{
+		return str.Split(new [] {"_"}, StringSplitOptions.RemoveEmptyEntries)
+			.Select(s =>
+				char.ToUpperInvariant(s[0]) + s.Substring(1, s.Length - 1))
+				.Aggregate(string.Empty, (s1, s2) => s1 + s2);
+	}
+
+	/// <summary>
+	/// Проверка на StringEnum
+	/// </summary>
+	/// <param name="t"></param>
+	/// <returns></returns>
+	public static bool IsStringEnum(Type t)
+	{
+		// Get instance of the attribute.
+		var myAttribute = (StringEnumAttribute) Attribute.GetCustomAttribute(t, typeof (StringEnumAttribute));
+
+		if (myAttribute == null)
+		{
+			Console.WriteLine("The attribute was not found.");
+
+			return false;
+		}
+
+		return true;
+	}
+
+	/// <summary>
+	/// Serialize Enum Value
+	/// </summary>
+	/// <param name="value"></param>
+	/// <typeparam name="TEnum"></typeparam>
+	/// <returns></returns>
+	public static string Serialize<TEnum>(TEnum value)
+	{
+		var fallback = Enum.GetName(typeof(TEnum), value);
+		var member = typeof(TEnum).GetMember(value.ToString()).FirstOrDefault();
+		if (member == null)
+			return fallback;
+		var enumMemberAttributes = member.GetCustomAttributes(typeof(EnumMemberAttribute), false).Cast<EnumMemberAttribute>().FirstOrDefault();
+		if (enumMemberAttributes == null)
+			return fallback;
+		return enumMemberAttributes.Value;
+	}
+
+	/// <summary>
+	/// Deserialize Enum Value
+	/// </summary>
+	/// <param name="value"></param>
+	/// <typeparam name="TEnum"></typeparam>
+	/// <returns></returns>
+	public static TEnum Deserialize<TEnum>(string value) where TEnum : struct
+	{
+		if (Enum.TryParse(value.ToCamelCase(), out TEnum parsed))
+			return parsed;
+
+		var found = typeof(TEnum).GetMembers()
+			.Select(x => new
+			{
+				Member = x,
+				Attribute = x.GetCustomAttributes(typeof(EnumMemberAttribute), false).OfType<EnumMemberAttribute>().FirstOrDefault()
+			})
+			.FirstOrDefault(x => x.Attribute?.Value == value);
+		if (found != null)
+			return (TEnum)Enum.Parse(typeof(TEnum), found.Member.Name);
+		return default;
 	}
 }

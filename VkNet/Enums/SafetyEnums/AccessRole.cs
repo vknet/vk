@@ -3,20 +3,21 @@
 /// <summary>
 /// Права пользователя в рекламном кабинете.
 /// </summary>
-public sealed class AccessRole : SafetyEnum<AccessRole>
+[StringEnum]
+public enum AccessRole
 {
 	/// <summary>
 	/// Главный администратор
 	/// </summary>
-	public static readonly AccessRole Admin = RegisterPossibleValue(value: "admin");
+	Admin,
 
 	/// <summary>
 	/// Администратор
 	/// </summary>
-	public static readonly AccessRole Manager = RegisterPossibleValue(value: "manager");
+	Manager,
 
 	/// <summary>
 	/// Наблюдатель
 	/// </summary>
-	public static readonly AccessRole Reports = RegisterPossibleValue(value: "reports");
+	Reports
 }

@@ -122,17 +122,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator AppRatingType(VkResponse response) => response == null
-		? null
-		: AppRatingType.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator AppRequestType(VkResponse response) => response == null
 		? null
 		: AppRequestType.FromJson(response: response);
@@ -576,17 +565,6 @@ public partial class VkResponse
 	public static implicit operator AccountType(VkResponse response) => response == null
 		? null
 		: AccountType.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator AccessRole(VkResponse response) => response == null
-		? null
-		: AccessRole.FromJson(response: response);
 
 	/// <summary>
 	/// Преобразовать из VkResponse

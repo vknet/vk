@@ -21,7 +21,6 @@ public class UserSpecification
 	/// Флаг, описывающий тип полномочий
 	/// </summary>
 	[JsonProperty(propertyName: "role")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AccessRole Role { get; set; }
 
 	/// <summary>
