@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
+using System.Text;
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Exception;
@@ -167,20 +167,28 @@ public static class Utilities
 	/// <summary>
 	/// Преобразование из PascalCase в snake_case
 	/// </summary>
-	/// <param name="str"></param>
+	/// <param name="text"></param>
 	/// <returns></returns>
-	public static string ToSnakeCase(this string str)
+	public static string ToSnakeCase(this string text)
 	{
-		var words = str.Split(new[] { "_", " " }, StringSplitOptions.RemoveEmptyEntries);
-		var leadWord = Regex.Replace(words[0], @"([A-Z])([A-Z]+|[a-z0-9]+)($|[A-Z]\w*)",
-			m =>
-			{
-				return m.Groups[1].Value.ToLower() + m.Groups[2].Value.ToLower() + m.Groups[3].Value;
-			});
-		var tailWords = words.Skip(1)
-			.Select(word => char.ToUpper(word[0]) + word.Substring(1))
-			.ToArray();
-		return $"{leadWord}{string.Join(string.Empty, tailWords)}";
+		if(text == null) {
+			throw new ArgumentNullException(nameof(text));
+		}
+		if(text.Length < 2) {
+			return text;
+		}
+		var sb = new StringBuilder();
+		sb.Append(char.ToLowerInvariant(text[0]));
+		for(int i = 1; i < text.Length; ++i) {
+			char c = text[i];
+			if(char.IsUpper(c)) {
+				sb.Append('_');
+				sb.Append(char.ToLowerInvariant(c));
+			} else {
+				sb.Append(c);
+			}
+		}
+		return sb.ToString();
 	}
 
 	private static string ToCamelCase(this string str)
