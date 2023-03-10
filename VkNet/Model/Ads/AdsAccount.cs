@@ -25,7 +25,6 @@ public class AdsAccount
 	/// Тип рекламного кабинета.
 	/// </summary>
 	[JsonProperty(propertyName: "account_type")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public AccountType AccountType { get; set; }
 
 	/// <summary>

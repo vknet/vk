@@ -80,16 +80,6 @@ public class SafetyEnumsTest
 	[Fact]
 	public void AppRatingTypeTest()
 	{
-		// get test
-		AppRatingType.Level.ToString().ToSnakeCase()
-			.Should()
-			.Be("level");
-
-		AppRatingType.Points.ToString().ToSnakeCase()
-			.Should()
-			.Be("points");
-
-		// parse test
 		Utilities.Deserialize<AppRatingType>("level")
 			.Should()
 			.Be(AppRatingType.Level);

@@ -1,17 +1,23 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип рекламного кабинета.
 /// </summary>
-public sealed class AccountType : SafetyEnum<AccountType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum AccountType
 {
 	/// <summary>
 	/// Обычный
 	/// </summary>
-	public static readonly AccountType General = RegisterPossibleValue(value: "general");
+	General,
 
 	/// <summary>
 	/// Обычный
 	/// </summary>
-	public static readonly AccountType Agency = RegisterPossibleValue(value: "agency");
+	Agency
 }

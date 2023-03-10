@@ -551,17 +551,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator AccountType(VkResponse response) => response == null
-		? null
-		: AccountType.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator CampaignType(VkResponse response) => response == null
 		? null
 		: CampaignType.FromJson(response: response);
