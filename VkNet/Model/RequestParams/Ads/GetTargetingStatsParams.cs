@@ -36,7 +36,6 @@ public class GetTargetingStatsParams
 	/// строка
 	/// </summary>
 	[JsonProperty("ad_platform")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AdPlatform AdPlatform { get; set; }
 
 	/// <summary>

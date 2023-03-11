@@ -1,32 +1,38 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Рекламные площадки, на которых будет показываться объявление. (если значение применимо к данному формату объявления)
 /// </summary>
-public sealed class AdPlatform : SafetyEnum<AdPlatform>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum AdPlatform
 {
 	/// <summary>
 	/// (если ad_format равен 1) ВКонтакте и сайты-партнёры.
 	/// </summary>
-	public static readonly AdPlatform VkAndPartners = RegisterPossibleValue("0");
+	VkAndPartners,
 
 	/// <summary>
 	/// (если ad_format равен 1) Только ВКонтакте.
 	/// </summary>
-	public static readonly AdPlatform VkOnly = RegisterPossibleValue("1");
+	VkOnly,
 
 	/// <summary>
 	/// (если ad_format равен 9) Все площадки.
 	/// </summary>
-	public static readonly AdPlatform All = RegisterPossibleValue("all");
+	All,
 
 	/// <summary>
 	/// (если ad_format равен 9) Полная версия сайта.
 	/// </summary>
-	public static readonly AdPlatform Desktop = RegisterPossibleValue("desktop");
+	Desktop,
 
 	/// <summary>
 	/// (если ad_format равен 9) Мобильный сайт и приложения.
 	/// </summary>
-	public static readonly AdPlatform Mobile = RegisterPossibleValue("mobile");
+	Mobile
 }
