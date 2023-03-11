@@ -43,7 +43,6 @@ public class VideoCatalog
 	/// предпочтительный способ отображения контента
 	/// </summary>
 	[JsonProperty(propertyName: "view")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public VideoView View { get; set; }
 
 	/// <summary>

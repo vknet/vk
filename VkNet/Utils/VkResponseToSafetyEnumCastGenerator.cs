@@ -67,17 +67,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator VideoView(VkResponse response) => response == null
-		? null
-		: VideoView.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator DocMessageType(VkResponse response) => response == null
 		? null
 		: DocMessageType.FromJson(response: response);
