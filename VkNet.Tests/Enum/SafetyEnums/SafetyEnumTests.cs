@@ -1674,28 +1674,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void TranscriptStatesTest()
-	{
-		// get test
-		TranscriptStates.Done.ToString()
-			.Should()
-			.Be("done");
-
-		TranscriptStates.InProgress.ToString()
-			.Should()
-			.Be("in_progress");
-
-		// parse test
-		TranscriptStates.FromJsonString("done")
-			.Should()
-			.Be(TranscriptStates.Done);
-
-		TranscriptStates.FromJsonString("in_progress")
-			.Should()
-			.Be(TranscriptStates.InProgress);
-	}
-
-	[Fact]
 	public void MessageEventTypeTest()
 	{
 		// get test

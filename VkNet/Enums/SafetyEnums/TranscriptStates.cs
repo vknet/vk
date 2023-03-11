@@ -1,17 +1,23 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Статус транскрипции голосового сообщения
 /// </summary>
-public sealed class TranscriptStates : SafetyEnum<TranscriptStates>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum TranscriptStates
 {
 	/// <summary>
 	/// Транскрипция в обработке
 	/// </summary>
-	public static readonly TranscriptStates InProgress = RegisterPossibleValue(value: "in_progress");
+	InProgress,
 
 	/// <summary>
 	/// Транскрипция завершена
 	/// </summary>
-	public static readonly TranscriptStates Done = RegisterPossibleValue(value: "done");
+	Done
 }

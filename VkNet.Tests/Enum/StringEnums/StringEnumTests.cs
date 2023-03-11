@@ -192,4 +192,26 @@ public class StringEnumTests
 			.Should()
 			.Be(UserSection.Subscriptions);
 	}
+
+	[Fact]
+	public void TranscriptStatesTest()
+	{
+		// get test
+		TranscriptStates.Done.ToString().ToSnakeCase()
+			.Should()
+			.Be("done");
+
+		TranscriptStates.InProgress.ToString().ToSnakeCase()
+			.Should()
+			.Be("in_progress");
+
+		// parse test
+		Utilities.Deserialize<TranscriptStates>("done")
+			.Should()
+			.Be(TranscriptStates.Done);
+
+		Utilities.Deserialize<TranscriptStates>("in_progress")
+			.Should()
+			.Be(TranscriptStates.InProgress);
+	}
 }
