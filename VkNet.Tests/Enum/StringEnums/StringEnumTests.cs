@@ -170,4 +170,26 @@ public class StringEnumTests
 			.Should()
 			.Be(Deactivated.Activated);
 	}
+
+	[Fact]
+	public void UserSectionTest()
+	{
+		// get test
+		UserSection.Friends.ToString().ToSnakeCase()
+			.Should()
+			.Be("friends");
+
+		UserSection.Subscriptions.ToString().ToSnakeCase()
+			.Should()
+			.Be("subscriptions");
+
+		// parse test
+		Utilities.Deserialize<UserSection>("friends")
+			.Should()
+			.Be(UserSection.Friends);
+
+		Utilities.Deserialize<UserSection>("subscriptions")
+			.Should()
+			.Be(UserSection.Subscriptions);
+	}
 }

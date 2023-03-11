@@ -1,4 +1,8 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Разделы среди которых нужно осуществить поиск, перечисленные через запятую:
@@ -6,16 +10,18 @@
 /// subscriptions – искать среди друзей и подписок пользователя список строк,
 /// разделенных через запятую.
 /// </summary>
-public sealed class UserSection : SafetyEnum<UserSection>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum UserSection
 {
 	/// <summary>
 	/// Искать среди друзей.
 	/// </summary>
-	public static readonly UserSection Friends = RegisterPossibleValue(value: "friends");
+	Friends,
 
 	/// <summary>
 	/// Искать среди друзей и подписок пользователя список строк, разделенных через
 	/// запятую.
 	/// </summary>
-	public static readonly UserSection Subscriptions = RegisterPossibleValue(value: "subscriptions");
+	Subscriptions
 }

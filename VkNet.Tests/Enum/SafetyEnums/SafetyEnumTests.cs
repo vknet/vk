@@ -1294,28 +1294,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void UserSectionTest()
-	{
-		// get test
-		UserSection.Friends.ToString()
-			.Should()
-			.Be("friends");
-
-		UserSection.Subscriptions.ToString()
-			.Should()
-			.Be("subscriptions");
-
-		// parse test
-		UserSection.FromJsonString("friends")
-			.Should()
-			.Be(UserSection.Friends);
-
-		UserSection.FromJsonString("subscriptions")
-			.Should()
-			.Be(UserSection.Subscriptions);
-	}
-
-	[Fact]
 	public void KeyboardButtonColorTest()
 	{
 		// get test
