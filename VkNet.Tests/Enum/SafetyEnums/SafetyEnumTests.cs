@@ -1510,45 +1510,23 @@ public class SafetyEnumsTest
 	[Fact]
 	public void WallFilterTest()
 	{
-		// get test
-		WallFilter.Owner.ToString()
-			.Should()
-			.Be("owner");
-
-		WallFilter.Others.ToString()
-			.Should()
-			.Be("others");
-
-		WallFilter.All.ToString()
-			.Should()
-			.Be("all");
-
-		WallFilter.Suggests.ToString()
-			.Should()
-			.Be("suggests");
-
-		WallFilter.Postponed.ToString()
-			.Should()
-			.Be("postponed");
-
-		// parse test
-		WallFilter.FromJsonString("owner")
+		Utilities.Deserialize<WallFilter>("owner")
 			.Should()
 			.Be(WallFilter.Owner);
 
-		WallFilter.FromJsonString("others")
+		Utilities.Deserialize<WallFilter>("others")
 			.Should()
 			.Be(WallFilter.Others);
 
-		WallFilter.FromJsonString("all")
+		Utilities.Deserialize<WallFilter>("all")
 			.Should()
 			.Be(WallFilter.All);
 
-		WallFilter.FromJsonString("suggests")
+		Utilities.Deserialize<WallFilter>("suggests")
 			.Should()
 			.Be(WallFilter.Suggests);
 
-		WallFilter.FromJsonString("postponed")
+		Utilities.Deserialize<WallFilter>("postponed")
 			.Should()
 			.Be(WallFilter.Postponed);
 	}
