@@ -18,7 +18,6 @@ public class MessageTemplate
 	/// Тип шаблона.
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public TemplateType Type { get; set; }
 
 	/// <summary>

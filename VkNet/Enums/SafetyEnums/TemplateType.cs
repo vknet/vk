@@ -1,25 +1,19 @@
-﻿using VkNet.Utils;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип шаблона.
 /// </summary>
-public class TemplateType : SafetyEnum<TemplateType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum TemplateType
 {
 	/// <summary>
 	/// Карусель
 	/// </summary>
-	public static readonly TemplateType Carousel = RegisterPossibleValue("carousel");
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator TemplateType(VkResponse response) => response != null && response.HasToken()
-		? FromJson(response)
-		: null;
+	Carousel
 }

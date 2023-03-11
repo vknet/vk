@@ -15,7 +15,6 @@ public interface ITemplateBuilder
 	/// <summary>
 	/// Тип шаблона, по умолчанию карусель
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	TemplateType Type { get; }
 
 	/// <summary>

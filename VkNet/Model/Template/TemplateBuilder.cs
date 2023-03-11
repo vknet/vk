@@ -12,11 +12,9 @@ namespace VkNet.Model.Template;
 /// <inheritdoc />
 [Serializable]
 [UsedImplicitly]
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
 public class TemplateBuilder : ITemplateBuilder
 {
 	/// <inheritdoc />
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public TemplateType Type { get; private set; } = TemplateType.Carousel;
 
 	/// <inheritdoc />
