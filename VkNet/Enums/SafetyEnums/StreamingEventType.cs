@@ -1,5 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -7,22 +9,22 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Тип событий
 /// </summary>
-[Serializable]
-[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
-public class StreamingEventType : SafetyEnum<StreamingEventType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum StreamingEventType
 {
 	/// <summary>
 	/// Записи на стене;
 	/// </summary>
-	public static readonly StreamingEventType Post = RegisterPossibleValue(value: "post");
+	Post,
 
 	/// <summary>
 	/// Комментарии;
 	/// </summary>
-	public static readonly StreamingEventType Comment = RegisterPossibleValue(value: "comment");
+	Comment,
 
 	/// <summary>
 	/// Репосты;
 	/// </summary>
-	public static readonly StreamingEventType Share = RegisterPossibleValue(value: "share");
+	Share
 }
