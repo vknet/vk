@@ -16,7 +16,6 @@ public class StreamingStats
 	/// Тип событий
 	/// </summary>
 	[JsonProperty(propertyName: "event_type")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public StreamingEventType EventType { get; set; }
 
 	/// <summary>
