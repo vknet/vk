@@ -563,36 +563,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void LinkAccessTypeTest()
-	{
-		// get test
-		LinkAccessType.NotBanned.ToString()
-			.Should()
-			.Be("not_banned");
-
-		LinkAccessType.Banned.ToString()
-			.Should()
-			.Be("banned");
-
-		LinkAccessType.Processing.ToString()
-			.Should()
-			.Be("processing");
-
-		// parse test
-		LinkAccessType.FromJsonString("not_banned")
-			.Should()
-			.Be(LinkAccessType.NotBanned);
-
-		LinkAccessType.FromJsonString("banned")
-			.Should()
-			.Be(LinkAccessType.Banned);
-
-		LinkAccessType.FromJsonString("processing")
-			.Should()
-			.Be(LinkAccessType.Processing);
-	}
-
-	[Fact]
 	public void MediaTypeTest()
 	{
 		// get test

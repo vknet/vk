@@ -76,6 +76,22 @@ public class StringEnumTests
 	}
 
 	[Fact]
+	public void LinkAccessTypeTest()
+	{
+		Utilities.Deserialize<LinkAccessType>("not_banned")
+			.Should()
+			.Be(LinkAccessType.NotBanned);
+
+		Utilities.Deserialize<LinkAccessType>("banned")
+			.Should()
+			.Be(LinkAccessType.Banned);
+
+		Utilities.Deserialize<LinkAccessType>("processing")
+			.Should()
+			.Be(LinkAccessType.Processing);
+	}
+
+	[Fact]
 	public void VideoCatalogItemTypeTest()
 	{
 		Utilities.Deserialize<VideoCatalogItemType>("video")

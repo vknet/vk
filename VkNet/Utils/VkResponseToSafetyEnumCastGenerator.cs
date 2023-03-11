@@ -276,17 +276,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator LinkAccessType(VkResponse response) => response == null
-		? null
-		: LinkAccessType.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator ManagerRole(VkResponse response) => response == null
 		? null
 		: ManagerRole.FromJson(response: response);
@@ -477,17 +466,6 @@ public partial class VkResponse
 	public static implicit operator Services(VkResponse response) => response == null
 		? null
 		: Services.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator UserSection(VkResponse response) => response == null
-		? null
-		: UserSection.FromJson(response: response);
 
 	/// <summary>
 	/// Преобразовать из VkResponse
