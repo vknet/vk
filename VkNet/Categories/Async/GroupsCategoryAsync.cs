@@ -119,7 +119,7 @@ public partial class GroupsCategory
 		TypeHelper.TryInvokeMethodAsync(() => ApproveRequest(groupId, userId));
 
 	/// <inheritdoc />
-	public Task<Group> CreateAsync(string title, string description = null, GroupType type = null, GroupSubType? subtype = null,
+	public Task<Group> CreateAsync(string title, string description = null, GroupType? type = null, GroupSubType? subtype = null,
 									uint? publicCategory = null) => TypeHelper.TryInvokeMethodAsync(() =>
 		Create(title, description, type, subtype, publicCategory));
 

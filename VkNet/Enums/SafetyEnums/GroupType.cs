@@ -1,30 +1,36 @@
-﻿using System;
+﻿using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип сообщества
 /// </summary>
-[Serializable]
-public sealed class GroupType : SafetyEnum<GroupType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum GroupType
 {
 	/// <summary>
 	/// Публичная страница.
 	/// </summary>
-	public static readonly GroupType Page = RegisterPossibleValue(value: "page");
+	Page,
 
 	/// <summary>
 	/// Группа.
 	/// </summary>
-	public static readonly GroupType Group = RegisterPossibleValue(value: "group");
+	Group,
 
 	/// <summary>
 	/// Мероприятие.
 	/// </summary>
-	public static readonly GroupType Event = RegisterPossibleValue(value: "event");
+	Event,
 
 	/// <summary>
 	/// Не определено.
 	/// </summary>
-	public static readonly GroupType Undefined = RegisterPossibleValue(value: "undefined");
+	[DefaultValue]
+	Undefined
 }

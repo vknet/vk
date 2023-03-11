@@ -1,6 +1,7 @@
 using FluentAssertions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Utils;
 using Xunit;
 
 namespace VkNet.Tests.Enum.SafetyEnums;
@@ -398,44 +399,6 @@ public class SafetyEnumsTest
 		FriendsOrder.FromJsonString("random")
 			.Should()
 			.Be(FriendsOrder.Random);
-	}
-
-	[Fact]
-	public void GroupTypeTest()
-	{
-		// get test
-		GroupType.Page.ToString()
-			.Should()
-			.Be("page");
-
-		GroupType.Group.ToString()
-			.Should()
-			.Be("group");
-
-		GroupType.Event.ToString()
-			.Should()
-			.Be("event");
-
-		GroupType.Undefined.ToString()
-			.Should()
-			.Be("undefined");
-
-		// parse test
-		GroupType.FromJsonString("page")
-			.Should()
-			.Be(GroupType.Page);
-
-		GroupType.FromJsonString("group")
-			.Should()
-			.Be(GroupType.Group);
-
-		GroupType.FromJsonString("event")
-			.Should()
-			.Be(GroupType.Event);
-
-		GroupType.FromJsonString("undefined")
-			.Should()
-			.Be(GroupType.Undefined);
 	}
 
 	[Fact]

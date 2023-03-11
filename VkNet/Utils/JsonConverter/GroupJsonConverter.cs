@@ -37,7 +37,7 @@ public class GroupJsonConverter : Newtonsoft.Json.JsonConverter
 			AdminLevel = response["admin_level"],
 			IsMember = response["is_member"],
 			IsAdvertiser = response["is_advertiser"],
-			Type = response["type"],
+			Type = !response.ContainsKey("type")?GroupType.Undefined:Utilities.Deserialize<GroupType>(response["type"]),
 			PhotoPreviews = JsonConvert.DeserializeObject<Previews>(response.ToString()),
 			Deactivated = response["deactivated"] ?? Deactivated.Activated,
 			HasPhoto = response["has_photo"],

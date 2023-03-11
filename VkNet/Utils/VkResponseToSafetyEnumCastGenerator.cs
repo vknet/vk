@@ -243,17 +243,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator GroupType(VkResponse response) => response == null
-		? null
-		: GroupType.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator LikeObjectType(VkResponse response) => response == null
 		? null
 		: LikeObjectType.FromJson(response: response);

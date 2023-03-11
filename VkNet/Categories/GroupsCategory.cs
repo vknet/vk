@@ -926,7 +926,7 @@ public partial class GroupsCategory : IGroupsCategory
 	}
 
 	/// <inheritdoc />
-	public Group Create(string title, string description = null, GroupType type = null, GroupSubType? subtype = null,
+	public Group Create(string title, string description = null, GroupType? type = null, GroupSubType? subtype = null,
 						uint? publicCategory = null)
 	{
 		var parameters = new VkParameters

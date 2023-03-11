@@ -102,4 +102,42 @@ public class StringEnumTests
 			.Should()
 			.Be(VideoCatalogItemType.Album);
 	}
+
+	[Fact]
+	public void GroupTypeTest()
+	{
+		// get test
+		GroupType.Page.ToString().ToSnakeCase()
+			.Should()
+			.Be("page");
+
+		GroupType.Group.ToString().ToSnakeCase()
+			.Should()
+			.Be("group");
+
+		GroupType.Event.ToString().ToSnakeCase()
+			.Should()
+			.Be("event");
+
+		GroupType.Undefined.ToString().ToSnakeCase()
+			.Should()
+			.Be("undefined");
+
+		// parse test
+		Utilities.Deserialize<GroupType>("page")
+			.Should()
+			.Be(GroupType.Page);
+
+		Utilities.Deserialize<GroupType>("group")
+			.Should()
+			.Be(GroupType.Group);
+
+		Utilities.Deserialize<GroupType>("event")
+			.Should()
+			.Be(GroupType.Event);
+
+		Utilities.Deserialize<GroupType>("undefined")
+			.Should()
+			.Be(GroupType.Undefined);
+	}
 }

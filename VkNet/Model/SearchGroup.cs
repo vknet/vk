@@ -55,7 +55,6 @@ public class SearchGroup
 	/// тип сообщества
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public GroupType Type { get; set; }
 
 	/// <summary>
