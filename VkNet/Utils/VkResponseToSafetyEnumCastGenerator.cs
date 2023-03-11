@@ -78,17 +78,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator VideoCatalogFilters(VkResponse response) => response == null
-		? null
-		: VideoCatalogFilters.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator CallbackServerStatus(VkResponse response) => response == null
 		? null
 		: CallbackServerStatus.FromJson(response: response);

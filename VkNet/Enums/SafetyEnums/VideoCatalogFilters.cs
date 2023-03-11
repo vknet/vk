@@ -1,32 +1,38 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Фильтры для видео каталога
 /// </summary>
-public class VideoCatalogFilters : SafetyEnum<VideoCatalogFilters>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum VideoCatalogFilters
 {
 	/// <summary>
 	/// Видео из ленты новостей пользователя
 	/// </summary>
-	public static readonly VideoCatalogFilters Feed = RegisterPossibleValue(value: "feed");
+	Feed,
 
 	/// <summary>
 	/// популярное
 	/// </summary>
-	public static readonly VideoCatalogFilters Ugc = RegisterPossibleValue(value: "ugc");
+	Ugc,
 
 	/// <summary>
 	/// выбор редакции
 	/// </summary>
-	public static readonly VideoCatalogFilters Top = RegisterPossibleValue(value: "top");
+	Top,
 
 	/// <summary>
 	/// сериалы и телешоу
 	/// </summary>
-	public static readonly VideoCatalogFilters Series = RegisterPossibleValue(value: "series");
+	Series,
 
 	/// <summary>
 	/// прочие блоки
 	/// </summary>
-	public static readonly VideoCatalogFilters Other = RegisterPossibleValue(value: "other");
+	Other
 }

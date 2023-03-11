@@ -1,7 +1,6 @@
 using FluentAssertions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 using Xunit;
 
 namespace VkNet.Tests.Enum.SafetyEnums;
