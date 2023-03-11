@@ -39,7 +39,7 @@ public class GroupJsonConverter : Newtonsoft.Json.JsonConverter
 			IsAdvertiser = response["is_advertiser"],
 			Type = !response.ContainsKey("type")?GroupType.Undefined:Utilities.Deserialize<GroupType>(response["type"]),
 			PhotoPreviews = JsonConvert.DeserializeObject<Previews>(response.ToString()),
-			Deactivated = response["deactivated"] ?? Deactivated.Activated,
+			Deactivated = !response.ContainsKey("deactivated")?Deactivated.Activated:Utilities.Deserialize<Deactivated>(response["deactivated"]),
 			HasPhoto = response["has_photo"],
 			Photo50 = response["photo_50"],
 			Photo100 = response["photo_100"],

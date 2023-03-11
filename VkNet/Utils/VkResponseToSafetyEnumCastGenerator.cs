@@ -177,17 +177,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator Deactivated(VkResponse response) => response == null
-		? null
-		: Deactivated.FromJson(response: response);
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator Display(VkResponse response) => response == null
 		? null
 		: Display.FromJson(response: response);

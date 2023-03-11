@@ -140,4 +140,34 @@ public class StringEnumTests
 			.Should()
 			.Be(GroupType.Undefined);
 	}
+
+	[Fact]
+	public void DeactivatedTest()
+	{
+		// get test
+		Deactivated.Deleted.ToString().ToSnakeCase()
+			.Should()
+			.Be("deleted");
+
+		Deactivated.Banned.ToString().ToSnakeCase()
+			.Should()
+			.Be("banned");
+
+		Deactivated.Activated.ToString().ToSnakeCase()
+			.Should()
+			.Be("activated");
+
+		// parse test
+		Utilities.Deserialize<Deactivated>("deleted")
+			.Should()
+			.Be(Deactivated.Deleted);
+
+		Utilities.Deserialize<Deactivated>("banned")
+			.Should()
+			.Be(Deactivated.Banned);
+
+		Utilities.Deserialize<Deactivated>("activated")
+			.Should()
+			.Be(Deactivated.Activated);
+	}
 }

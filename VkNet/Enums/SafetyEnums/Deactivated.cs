@@ -1,4 +1,7 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -6,22 +9,23 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Возможные значения параметра Deactivated.
 /// </summary>
-[Serializable]
-public sealed class Deactivated : SafetyEnum<Deactivated>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum Deactivated
 {
 	/// <summary>
 	/// Удалено.
 	/// </summary>
-	public static readonly Deactivated Deleted = RegisterPossibleValue(value: "deleted");
+	Deleted,
 
 	/// <summary>
 	/// Заблокировано.
 	/// </summary>
-	public static readonly Deactivated Banned = RegisterPossibleValue(value: "banned");
+	Banned,
 
 	/// <summary>
 	/// Активно.
 	/// </summary>
 	[DefaultValue]
-	public static readonly Deactivated Activated = RegisterPossibleValue(value: "activated");
+	Activated
 }

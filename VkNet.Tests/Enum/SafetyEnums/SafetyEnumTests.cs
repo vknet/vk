@@ -260,36 +260,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void DeactivatedTest()
-	{
-		// get test
-		Deactivated.Deleted.ToString()
-			.Should()
-			.Be("deleted");
-
-		Deactivated.Banned.ToString()
-			.Should()
-			.Be("banned");
-
-		Deactivated.Activated.ToString()
-			.Should()
-			.Be("activated");
-
-		// parse test
-		Deactivated.FromJsonString("deleted")
-			.Should()
-			.Be(Deactivated.Deleted);
-
-		Deactivated.FromJsonString("banned")
-			.Should()
-			.Be(Deactivated.Banned);
-
-		Deactivated.FromJsonString("activated")
-			.Should()
-			.Be(Deactivated.Activated);
-	}
-
-	[Fact]
 	public void DisplayTest()
 	{
 		// get test
