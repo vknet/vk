@@ -78,18 +78,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void AppRatingTypeTest()
-	{
-		Utilities.Deserialize<AppRatingType>("level")
-			.Should()
-			.Be(AppRatingType.Level);
-
-		Utilities.Deserialize<AppRatingType>("points")
-			.Should()
-			.Be(AppRatingType.Points);
-	}
-
-	[Fact]
 	public void AppRequestTypeTest()
 	{
 		// get test
@@ -411,44 +399,6 @@ public class SafetyEnumsTest
 		FriendsOrder.FromJsonString("random")
 			.Should()
 			.Be(FriendsOrder.Random);
-	}
-
-	[Fact]
-	public void GroupsSortTest()
-	{
-		// get test
-		GroupsSort.IdAsc.ToString().ToSnakeCase()
-			.Should()
-			.Be("id_asc");
-
-		GroupsSort.IdDesc.ToString().ToSnakeCase()
-			.Should()
-			.Be("id_desc");
-
-		GroupsSort.TimeAsc.ToString().ToSnakeCase()
-			.Should()
-			.Be("time_asc");
-
-		GroupsSort.TimeDesc.ToString().ToSnakeCase()
-			.Should()
-			.Be("time_desc");
-
-		// parse test
-		Utilities.Deserialize<GroupsSort>("id_asc")
-			.Should()
-			.Be(GroupsSort.IdAsc);
-
-		Utilities.Deserialize<GroupsSort>("id_desc")
-			.Should()
-			.Be(GroupsSort.IdDesc);
-
-		Utilities.Deserialize<GroupsSort>("time_asc")
-			.Should()
-			.Be(GroupsSort.TimeAsc);
-
-		Utilities.Deserialize<GroupsSort>("time_desc")
-			.Should()
-			.Be(GroupsSort.TimeDesc);
 	}
 
 	[Fact]
@@ -1483,52 +1433,6 @@ public class SafetyEnumsTest
 		VideoCatalogItemType.FromJsonString("album")
 			.Should()
 			.Be(VideoCatalogItemType.Album);
-	}
-
-	[Fact]
-	public void VideoCatalogTypeTest()
-	{
-		// get test
-		VideoCatalogType.Channel.ToString()
-			.Should()
-			.Be("channel");
-
-		VideoCatalogType.Category.ToString()
-			.Should()
-			.Be("category");
-
-		// parse test
-		VideoCatalogType.FromJsonString("channel")
-			.Should()
-			.Be(VideoCatalogType.Channel);
-
-		VideoCatalogType.FromJsonString("category")
-			.Should()
-			.Be(VideoCatalogType.Category);
-	}
-
-	[Fact]
-	public void WallFilterTest()
-	{
-		Utilities.Deserialize<WallFilter>("owner")
-			.Should()
-			.Be(WallFilter.Owner);
-
-		Utilities.Deserialize<WallFilter>("others")
-			.Should()
-			.Be(WallFilter.Others);
-
-		Utilities.Deserialize<WallFilter>("all")
-			.Should()
-			.Be(WallFilter.All);
-
-		Utilities.Deserialize<WallFilter>("suggests")
-			.Should()
-			.Be(WallFilter.Suggests);
-
-		Utilities.Deserialize<WallFilter>("postponed")
-			.Should()
-			.Be(WallFilter.Postponed);
 	}
 
 	[Fact]

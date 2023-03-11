@@ -55,6 +55,5 @@ public class VideoCatalog
 	/// Тип блока.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public VideoCatalogType Type { get; set; }
 }

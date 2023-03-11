@@ -1,4 +1,7 @@
-﻿using VkNet.Utils;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
 
@@ -6,16 +9,18 @@ namespace VkNet.Enums.SafetyEnums;
 /// Возможные значения параметра VideoCatalogType, задающего внешний вид окна
 /// авторизации.
 /// </summary>
-public sealed class VideoCatalogType : SafetyEnum<VideoCatalogType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum VideoCatalogType
 {
 	/// <summary>
 	/// Видеозаписи сообщества.
 	/// </summary>
 	[DefaultValue]
-	public static readonly VideoCatalogType Channel = RegisterPossibleValue(value: "channel");
+	Channel,
 
 	/// <summary>
 	/// Подборки видеозаписей.
 	/// </summary>
-	public static readonly VideoCatalogType Category = RegisterPossibleValue(value: "category");
+	Category
 }
