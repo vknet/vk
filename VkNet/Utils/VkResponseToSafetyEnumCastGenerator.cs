@@ -507,18 +507,6 @@ public partial class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator VideoCatalogItemType(VkResponse response) => response == null
-		? null
-		: VideoCatalogItemType.FromJson(response: response);
-
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
 	public static implicit operator CampaignType(VkResponse response) => response == null
 		? null
 		: CampaignType.FromJson(response: response);

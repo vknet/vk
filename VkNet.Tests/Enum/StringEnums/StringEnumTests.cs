@@ -74,4 +74,16 @@ public class StringEnumTests
 			.Should()
 			.Be(GroupsSort.TimeDesc);
 	}
+
+	[Fact]
+	public void VideoCatalogItemTypeTest()
+	{
+		Utilities.Deserialize<VideoCatalogItemType>("video")
+			.Should()
+			.Be(VideoCatalogItemType.Video);
+
+		Utilities.Deserialize<VideoCatalogItemType>("album")
+			.Should()
+			.Be(VideoCatalogItemType.Album);
+	}
 }

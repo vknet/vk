@@ -1,17 +1,23 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип элемента каталога.
 /// </summary>
-public sealed class VideoCatalogItemType : SafetyEnum<VideoCatalogItemType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum VideoCatalogItemType
 {
 	/// <summary>
 	/// Видеоролик.
 	/// </summary>
-	public static readonly VideoCatalogItemType Video = RegisterPossibleValue(value: "video");
+	Video,
 
 	/// <summary>
 	/// Альбом.
 	/// </summary>
-	public static readonly VideoCatalogItemType Album = RegisterPossibleValue(value: "album");
+	Album
 }
