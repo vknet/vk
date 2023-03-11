@@ -23,7 +23,6 @@ public class FaveGetPagesObject
 	/// Тип страницы.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public UserOrGroupType Type { get; set; }
 
 	/// <summary>

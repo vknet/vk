@@ -1,17 +1,23 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Пользователь или сообщество.
 /// </summary>
-public class UserOrGroupType : SafetyEnum<UserOrGroupType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum UserOrGroupType
 {
 	/// <summary>
 	/// Пользователь.
 	/// </summary>
-	public static readonly UserOrGroupType User = RegisterPossibleValue("user");
+	User,
 
 	/// <summary>
 	/// Сообщество.
 	/// </summary>
-	public static readonly UserOrGroupType Group = RegisterPossibleValue("group");
+	Group
 }

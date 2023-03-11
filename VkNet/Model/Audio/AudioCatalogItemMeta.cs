@@ -21,6 +21,5 @@ public class AudioCatalogItemMeta
 	/// Идентификатор владельца аудиозаписи.
 	/// </summary>
 	[JsonProperty("content_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public UserOrGroupType ContentType { get; set; }
 }
