@@ -1,25 +1,29 @@
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Доступность значения.
 /// </summary>
-[Serializable]
-public sealed class StoryObjectState : SafetyEnum<StoryObjectState>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum StoryObjectState
 {
 	/// <summary>
 	/// Доступно.
 	/// </summary>
-	public static readonly StoryObjectState On = RegisterPossibleValue("on");
+	On,
 
 	/// <summary>
 	/// Недоступно.
 	/// </summary>
-	public static readonly StoryObjectState Off = RegisterPossibleValue("off");
+	Off,
 
 	/// <summary>
 	/// Недоступно.
 	/// </summary>
-	public static readonly StoryObjectState Hidden = RegisterPossibleValue("hidden");
+	Hidden
 }

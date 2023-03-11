@@ -214,4 +214,34 @@ public class StringEnumTests
 			.Should()
 			.Be(TranscriptStates.InProgress);
 	}
+
+	[Fact]
+	public void StoryObjectStateTest()
+	{
+		// get test
+		StoryObjectState.Hidden.ToString().ToSnakeCase()
+			.Should()
+			.Be("hidden");
+
+		StoryObjectState.On.ToString().ToSnakeCase()
+			.Should()
+			.Be("on");
+
+		StoryObjectState.Off.ToString().ToSnakeCase()
+			.Should()
+			.Be("off");
+
+		// parse test
+		Utilities.Deserialize<StoryObjectState>("hidden")
+			.Should()
+			.Be(StoryObjectState.Hidden);
+
+		Utilities.Deserialize<StoryObjectState>("on")
+			.Should()
+			.Be(StoryObjectState.On);
+
+		Utilities.Deserialize<StoryObjectState>("off")
+			.Should()
+			.Be(StoryObjectState.Off);
+	}
 }

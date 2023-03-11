@@ -1386,36 +1386,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void StoryObjectStateTest()
-	{
-		// get test
-		StoryObjectState.Hidden.ToString()
-			.Should()
-			.Be("hidden");
-
-		StoryObjectState.On.ToString()
-			.Should()
-			.Be("on");
-
-		StoryObjectState.Off.ToString()
-			.Should()
-			.Be("off");
-
-		// parse test
-		StoryObjectState.FromJsonString("hidden")
-			.Should()
-			.Be(StoryObjectState.Hidden);
-
-		StoryObjectState.FromJsonString("on")
-			.Should()
-			.Be(StoryObjectState.On);
-
-		StoryObjectState.FromJsonString("off")
-			.Should()
-			.Be(StoryObjectState.Off);
-	}
-
-	[Fact]
 	public void StoryLinkTextTest()
 	{
 		// get test
