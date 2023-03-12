@@ -804,4 +804,44 @@ public class StringEnumTests
 			.Should()
 			.Be(MessageEventType.SnowSnackbar);
 	}
+
+	[Fact]
+	public void MediaTypeTest()
+	{
+		Utilities.Deserialize<MediaType>("photo")
+			.Should()
+			.Be(MediaType.Photo);
+
+		Utilities.Deserialize<MediaType>("video")
+			.Should()
+			.Be(MediaType.Video);
+
+		Utilities.Deserialize<MediaType>("audio")
+			.Should()
+			.Be(MediaType.Audio);
+
+		Utilities.Deserialize<MediaType>("doc")
+			.Should()
+			.Be(MediaType.Doc);
+
+		Utilities.Deserialize<MediaType>("link")
+			.Should()
+			.Be(MediaType.Link);
+
+		Utilities.Deserialize<MediaType>("market")
+			.Should()
+			.Be(MediaType.Market);
+
+		Utilities.Deserialize<MediaType>("wall")
+			.Should()
+			.Be(MediaType.Wall);
+
+		Utilities.Deserialize<MediaType>("share")
+			.Should()
+			.Be(MediaType.Share);
+
+		Utilities.Deserialize<MediaType>("graffiti")
+			.Should()
+			.Be(MediaType.Graffiti);
+	}
 }

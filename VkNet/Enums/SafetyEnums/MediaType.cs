@@ -1,57 +1,63 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип медиавложения.
 /// </summary>
-public sealed class MediaType : SafetyEnum<MediaType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum MediaType
 {
 	/// <summary>
 	/// Фотографии.
 	/// </summary>
-	public static readonly MediaType Photo = RegisterPossibleValue("photo");
+	Photo,
 
 	/// <summary>
 	/// Видеозаписи.
 	/// </summary>
-	public static readonly MediaType Video = RegisterPossibleValue("video");
+	Video,
 
 	/// <summary>
 	/// Аудиозаписи.
 	/// </summary>
-	public static readonly MediaType Audio = RegisterPossibleValue("audio");
+	Audio,
 
 	/// <summary>
 	/// Аудио сообщение
 	/// </summary>
-	public static readonly MediaType AudioMessage = RegisterPossibleValue("audio_message");
+	AudioMessage,
 
 	/// <summary>
 	/// Документы.
 	/// </summary>
-	public static readonly MediaType Doc = RegisterPossibleValue("doc");
+	Doc,
 
 	/// <summary>
 	/// Ссылки.
 	/// </summary>
-	public static readonly MediaType Link = RegisterPossibleValue("link");
+	Link,
 
 	/// <summary>
 	/// Товары.
 	/// </summary>
-	public static readonly MediaType Market = RegisterPossibleValue("market");
+	Market,
 
 	/// <summary>
 	/// Записи.
 	/// </summary>
-	public static readonly MediaType Wall = RegisterPossibleValue("wall");
+	Wall,
 
 	/// <summary>
 	/// Ссылки, товары и записи.
 	/// </summary>
-	public static readonly MediaType Share = RegisterPossibleValue("share");
+	Share,
 
 	/// <summary>
 	/// Граффити.
 	/// </summary>
-	public static readonly MediaType Graffiti = RegisterPossibleValue("graffiti");
+	Graffiti
 }
