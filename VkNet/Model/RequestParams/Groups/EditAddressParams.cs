@@ -70,7 +70,6 @@ public class EditAddressParams
 	/// Тип расписания.
 	/// </summary>
 	[JsonProperty("work_info_status")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public ScheduleWorkInfoStatus WorkInfoStatus { get; set; }
 
 	/// <summary>
