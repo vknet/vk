@@ -16,7 +16,7 @@ public class MessageKeyboardButtonAction
 	/// Содержит <c>'text'</c>
 	/// </summary>
 	[JsonProperty("type")]
-	public string Type { get; set; }
+	public KeyboardButtonActionType? Type { get; set; }
 
 	/// <summary>
 	/// Дополнительная информация.

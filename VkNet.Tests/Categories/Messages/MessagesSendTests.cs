@@ -311,10 +311,10 @@ public class MessagesSendTests : MessagesBaseTests
 
 		var button = new MessageKeyboardButton
 		{
-			Color = KeyboardButtonColor.Primary.ToString().ToSnakeCase(),
+			Color = KeyboardButtonColor.Primary,
 			Action = new()
 			{
-				Type = KeyboardButtonActionType.Text.ToString().ToSnakeCase(),
+				Type = KeyboardButtonActionType.Text,
 				Label = "Label"
 			}
 		};

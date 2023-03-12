@@ -77,8 +77,7 @@ public class Group
 	/// Возвращается в случае, если сообщество удалено или заблокировано
 	/// </summary>
 	[JsonProperty("deactivated", DefaultValueHandling = DefaultValueHandling.Populate)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public Deactivated Deactivated { get; set; }
+	public Deactivated? Deactivated { get; set; }
 
 	/// <summary>
 	/// Информация о том, является ли текущий пользователь руководителем сообщества.
@@ -109,7 +108,7 @@ public class Group
 	/// Тип сообщества.
 	/// </summary>
 	[JsonProperty("type")]
-	public GroupType Type { get; set; }
+	public GroupType? Type { get; set; }
 
 	[JsonProperty("photo")]
 	private Uri Photo

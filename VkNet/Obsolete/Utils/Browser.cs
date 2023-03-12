@@ -75,7 +75,7 @@ public partial class Browser : IBrowser
 	public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 	{
 		_authParams.ApplicationId = clientId;
-		_authParams.Display = display.ToString().ToSnakeCase();
+		_authParams.Display = display;
 		_authParams.State = state;
 
 		return CreateAuthorizeUrl();

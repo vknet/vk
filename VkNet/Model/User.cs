@@ -85,8 +85,7 @@ public class User
 	/// Причина блокирования аккаунта
 	/// </summary>
 	[JsonProperty("deactivated", DefaultValueHandling = DefaultValueHandling.Populate)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public Deactivated Deactivated { get; set; }
+	public Deactivated? Deactivated { get; set; }
 
 	/// <summary>
 	/// Информация пользователя о себе.
