@@ -66,6 +66,5 @@ public class GroupsGetMembersParams
 	/// администратора сообщества).
 	/// строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public GroupsMemberFilters Filter { get; set; }
+	public GroupsMemberFilters? Filter { get; set; }
 }
