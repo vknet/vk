@@ -20,7 +20,6 @@ public class GroupsSearchParams
 	/// <summary>
 	/// Тип сообщества. Возможные значения: group, page, event. строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public GroupType Type { get; set; }
 
 	/// <summary>

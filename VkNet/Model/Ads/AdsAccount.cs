@@ -25,7 +25,6 @@ public class AdsAccount
 	/// Тип рекламного кабинета.
 	/// </summary>
 	[JsonProperty(propertyName: "account_type")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public AccountType AccountType { get; set; }
 
 	/// <summary>
@@ -44,6 +43,5 @@ public class AdsAccount
 	/// Права пользователя в рекламном кабинете.
 	/// </summary>
 	[JsonProperty(propertyName: "access_role")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public AccessRole AccessRole { get; set; }
 }

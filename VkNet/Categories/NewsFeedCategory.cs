@@ -147,7 +147,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 	public NewsBannedList GetBanned() => _vk.Call<NewsBannedList>("newsfeed.getBanned", VkParameters.Empty);
 
 	/// <inheritdoc />
-	public NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase nameCase = null)
+	public NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase? nameCase = null)
 	{
 		var parameters = new VkParameters
 		{

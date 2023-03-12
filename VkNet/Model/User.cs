@@ -696,7 +696,6 @@ public class User
 	/// <summary>
 	/// Полномочия руководителя (для Groups.GetMembers)
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	[JsonProperty("role")]
 	public ManagerRole Role { get; set; }
 

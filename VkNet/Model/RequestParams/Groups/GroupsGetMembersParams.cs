@@ -28,7 +28,6 @@ public class GroupsGetMembersParams
 	/// сообщества. строка, по умолчанию
 	/// id_asc.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public GroupsSort Sort { get; set; }
 
 	/// <summary>
@@ -67,6 +66,5 @@ public class GroupsGetMembersParams
 	/// администратора сообщества).
 	/// строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public GroupsMemberFilters Filter { get; set; }
+	public GroupsMemberFilters? Filter { get; set; }
 }

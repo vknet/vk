@@ -16,7 +16,6 @@ public class MessageActionObject
 	/// Информация о сервисном действии с чатом.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public MessageAction Type { get; set; }
 
 	/// <summary>

@@ -21,7 +21,6 @@ public class Peer
 	/// Тип.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public ConversationPeerType Type { get; set; }
 
 	/// <summary>

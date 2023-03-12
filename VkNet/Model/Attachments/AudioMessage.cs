@@ -49,6 +49,5 @@ public class AudioMessage : MediaAttachment
 	/// Статус транскрипции
 	/// </summary>
 	[JsonProperty("transcript_state")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public TranscriptStates TranscriptState { get; set; }
 }

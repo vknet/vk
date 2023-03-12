@@ -97,7 +97,6 @@ public class Wall : MediaAttachment
 	/// чужой стены.
 	/// </summary>
 	[JsonProperty("post_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public PostType PostType { get; set; }
 
 	/// <summary>

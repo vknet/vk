@@ -34,7 +34,6 @@ public class VideoCatalogItem
 	/// тип элемента.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public VideoCatalogItemType Type { get; set; }
 
 	/// <summary>

@@ -248,5 +248,5 @@ public interface IDocsCategoryAsync
 	/// audio_message — голосовое сообщение.
 	/// </param>
 	/// <returns> </returns>
-	Task<UploadServerInfo> GetMessagesUploadServerAsync(long? peerId = null, DocMessageType type = null);
+	Task<UploadServerInfo> GetMessagesUploadServerAsync(long? peerId = null, DocMessageType? type = null);
 }

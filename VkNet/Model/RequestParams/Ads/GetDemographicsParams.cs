@@ -24,7 +24,6 @@ public class GetDemographicsParams
 	/// обязательный параметр, строка
 	/// </summary>
 	[JsonProperty("ids_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public IdsType IdsType { get; set; }
 
 	/// <summary>

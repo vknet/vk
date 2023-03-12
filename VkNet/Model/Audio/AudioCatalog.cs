@@ -29,7 +29,6 @@ public class AudioCatalog
 	/// Тип каталога.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AudioCatalogType Type { get; set; }
 
 	/// <summary>

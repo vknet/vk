@@ -428,8 +428,8 @@ public interface IFriendsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.getSuggestions
 	/// </remarks>
-	Task<VkCollection<User>> GetSuggestionsAsync(FriendsFilter filter = null, long? count = null, long? offset = null,
-												UsersFields fields = null, NameCase nameCase = null);
+	Task<VkCollection<User>> GetSuggestionsAsync(FriendsFilter? filter = null, long? count = null, long? offset = null,
+												UsersFields fields = null, NameCase? nameCase = null);
 
 	/// <summary>
 	/// Возвращает список друзей пользователя, у которых завалидированные или указанные

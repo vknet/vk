@@ -48,7 +48,7 @@ public interface ICarouselElementBuilder
 	/// <returns>Конструктор элемента карусели</returns>
 	ICarouselElementBuilder AddButton(string label,
 									string extra,
-									KeyboardButtonColor color = default,
+									KeyboardButtonColor? color = default,
 									string type = null);
 
 	/// <summary>

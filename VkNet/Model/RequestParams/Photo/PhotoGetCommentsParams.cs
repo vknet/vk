@@ -49,7 +49,6 @@ public class PhotoGetCommentsParams
 	/// Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к
 	/// старым) строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public CommentsSort Sort { get; set; }
 
 	/// <summary>

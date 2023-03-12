@@ -21,7 +21,6 @@ public class GroupUpdate
 	/// <summary>
 	/// Тип обновления
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	[Obsolete("Используйте свойство Instance")]
 	public GroupUpdateType Type { get; set; }
 

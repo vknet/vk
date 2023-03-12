@@ -375,8 +375,8 @@ public partial class FriendsCategory : IFriendsCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<User> GetSuggestions(FriendsFilter filter = null, long? count = null, long? offset = null,
-											UsersFields fields = null, NameCase nameCase = null)
+	public VkCollection<User> GetSuggestions(FriendsFilter? filter = null, long? count = null, long? offset = null,
+											UsersFields fields = null, NameCase? nameCase = null)
 	{
 		var parameters = new VkParameters
 		{

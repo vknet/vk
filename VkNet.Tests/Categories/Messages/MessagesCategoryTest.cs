@@ -442,10 +442,10 @@ public class MessagesCategoryTest : MessagesBaseTests
 
 		var chat = Api.Messages.GetChatUsers(new List<long>
 			{
-				2, 5
+				2,
+				5
 			},
-			UsersFields.Education,
-			null);
+			UsersFields.Education, null);
 
 		chat.Users.Should()
 			.HaveCount(3);

@@ -96,7 +96,7 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 			Quotes = response["quotes"],
 			InvitedBy = response["invited_by"],
 			BanInfo = !response.ContainsKey("ban_info") ? null : JsonConvert.DeserializeObject<BanInfo>(response["ban_info"].ToString()),
-			Deactivated = response["deactivated"],
+			Deactivated = !response.ContainsKey("deactivated")?Deactivated.Activated:Utilities.Deserialize<Deactivated>(response["deactivated"]),
 			MaidenName = response["maiden_name"],
 			BirthdayVisibility = response["bdate_visibility"],
 			HomeTown = response["home_town"],
@@ -184,11 +184,6 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 
 			case "moderator":
 				user.Role = ManagerRole.Moderator;
-
-				break;
-
-			default:
-				user.Role = null;
 
 				break;
 		}

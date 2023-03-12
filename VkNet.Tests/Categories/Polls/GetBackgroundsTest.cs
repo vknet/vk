@@ -19,8 +19,7 @@ public class GetBackgroundsTest : CategoryBaseTest
 		var result = Api.PollsCategory.GetBackgrounds();
 
 		result[0]
-			.Type.Should()
-			.BeOfType<PollBackgroundType>();
+			.Type.Should().Be(PollBackgroundType.Gradient);
 
 		result[0]
 			.Angle.Should()
@@ -36,9 +35,8 @@ public class GetBackgroundsTest : CategoryBaseTest
 			.Position.Should()
 			.Be(0);
 
-		result[0]
-			.Type.Should()
-			.BeOfType<PollBackgroundType>();
+		result[1]
+			.Type.Should().Be(PollBackgroundType.Gradient);
 
 		result[1]
 			.Angle.Should()

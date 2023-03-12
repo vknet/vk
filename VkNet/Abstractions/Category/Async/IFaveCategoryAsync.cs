@@ -214,7 +214,7 @@ public partial interface IFaveCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.getPages
 	/// </remarks>
-	Task<VkCollection<FaveGetPagesObject>> GetPagesAsync(FavePageType type = null,
+	Task<VkCollection<FaveGetPagesObject>> GetPagesAsync(FavePageType? type = null,
 														IEnumerable<string> fields = null,
 														ulong? offset = null,
 														ulong? count = null,

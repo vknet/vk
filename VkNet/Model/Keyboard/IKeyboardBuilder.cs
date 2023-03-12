@@ -23,7 +23,7 @@ public interface IKeyboardBuilder
 	/// <returns>Конструктор клавиатур</returns>
 	IKeyboardBuilder AddButton(string label,
 								string extra,
-								KeyboardButtonColor color = default,
+								KeyboardButtonColor? color = default,
 								string type = null);
 
 	/// <summary>

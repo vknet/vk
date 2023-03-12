@@ -114,8 +114,7 @@ public interface IApiAuthParams
 	/// <summary>
 	/// Указывает тип отображения страницы авторизации.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	Display Display { get; set; }
+	string Display { get; set; }
 
 	/// <summary>
 	/// Адрес, на который будет переадресован пользователь после прохождения
@@ -136,13 +135,11 @@ public interface IApiAuthParams
 	/// <summary>
 	/// Тип авторизации.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	GrantType GrantType { get; set; }
 
 	/// <summary>
 	/// Тип ответа, который Вы хотите получить.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	ResponseType ResponseType { get; set; }
 
 	/// <summary>

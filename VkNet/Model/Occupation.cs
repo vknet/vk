@@ -27,6 +27,5 @@ public class Occupation
 	/// Информация о текущем роде занятия пользователя.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public OccupationType Type { get; set; }
 }

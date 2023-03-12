@@ -35,7 +35,7 @@ public partial class NewsFeedCategory
 	public Task<NewsBannedList> GetBannedAsync() => TypeHelper.TryInvokeMethodAsync(func: () => GetBanned());
 
 	/// <inheritdoc />
-	public Task<NewsBannedExList> GetBannedExAsync(UsersFields fields = null, NameCase nameCase = null) =>
+	public Task<NewsBannedExList> GetBannedExAsync(UsersFields fields = null, NameCase? nameCase = null) =>
 		TypeHelper.TryInvokeMethodAsync(func: () => GetBannedEx(fields, nameCase));
 
 	/// <inheritdoc />

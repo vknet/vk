@@ -30,7 +30,6 @@ public class LikesAddParams
 	/// market_comment — комментарий к товару; строка, обязательный параметр (Строка,
 	/// обязательный параметр).
 	/// </remarks>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public LikeObjectType Type { get; set; }
 
 	/// <summary>

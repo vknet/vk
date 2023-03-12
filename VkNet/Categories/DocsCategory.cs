@@ -296,7 +296,7 @@ public partial class DocsCategory : IDocsCategory
 	}
 
 	/// <inheritdoc />
-	public UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType type = null)
+	public UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType? type = null)
 	{
 		var parameters = new VkParameters
 		{

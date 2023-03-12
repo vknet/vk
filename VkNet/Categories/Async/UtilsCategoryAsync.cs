@@ -11,10 +11,10 @@ namespace VkNet.Categories;
 public partial class UtilsCategory
 {
 	/// <inheritdoc />
-	public Task<LinkAccessType> CheckLinkAsync(string url) => TypeHelper.TryInvokeMethodAsync(func: () => CheckLink(url: url));
+	public Task<CheckLinkResult> CheckLinkAsync(string url) => TypeHelper.TryInvokeMethodAsync(func: () => CheckLink(url: url));
 
 	/// <inheritdoc />
-	public Task<LinkAccessType> CheckLinkAsync(Uri url) => TypeHelper.TryInvokeMethodAsync(func: () => CheckLink(url: url));
+	public Task<CheckLinkResult> CheckLinkAsync(Uri url) => TypeHelper.TryInvokeMethodAsync(func: () => CheckLink(url: url));
 
 	/// <inheritdoc />
 	public Task<VkObject> ResolveScreenNameAsync(string screenName) =>

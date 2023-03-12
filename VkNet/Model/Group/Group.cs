@@ -109,7 +109,6 @@ public class Group
 	/// Тип сообщества.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public GroupType Type { get; set; }
 
 	[JsonProperty("photo")]

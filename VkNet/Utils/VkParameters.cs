@@ -52,6 +52,12 @@ public class VkParameters : Dictionary<string, string>
 
 		if (typeof(T).IsEnum)
 		{
+			if (Utilities.IsStringEnum(value.GetType()))
+			{
+				Add(name, value.ToString().ToSnakeCase());
+				return;
+			}
+
 			Add(name, (int) (object) value);
 
 			return;

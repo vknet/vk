@@ -21,7 +21,6 @@ public class OfficeUsersSpecification
 	/// Тип полномочий.
 	/// </summary>
 	[JsonProperty("role")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AccessRole Role { get; set; }
 
 	/// <summary>

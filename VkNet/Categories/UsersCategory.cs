@@ -148,7 +148,7 @@ public partial class UsersCategory : IUsersCategory
 	[Pure]
 	public ReadOnlyCollection<User> Get(IEnumerable<long> userIds
 										, ProfileFields fields = null
-										, NameCase nameCase = null)
+										, NameCase? nameCase = null)
 	{
 		if (userIds == null)
 		{
@@ -177,7 +177,7 @@ public partial class UsersCategory : IUsersCategory
 	[ContractAnnotation(contract: "screenNames:null => halt")]
 	public ReadOnlyCollection<User> Get(IEnumerable<string> screenNames
 										, ProfileFields fields = null
-										, NameCase nameCase = null)
+										, NameCase? nameCase = null)
 	{
 		if (screenNames == null)
 		{
@@ -239,7 +239,7 @@ public partial class UsersCategory : IUsersCategory
 											, int? count = null
 											, int? offset = null
 											, ProfileFields fields = null
-											, NameCase nameCase = null)
+											, NameCase? nameCase = null)
 	{
 		VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
 		VkErrors.ThrowIfNumberIsNegative(expr: () => count);
@@ -331,7 +331,7 @@ public partial class UsersCategory : IUsersCategory
 
 	/// <inheritdoc cref="User" />
 	[Pure]
-	public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null)
+	public User Get(long userId, ProfileFields fields = null, NameCase? nameCase = null)
 	{
 		VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
 
@@ -346,7 +346,7 @@ public partial class UsersCategory : IUsersCategory
 	/// <inheritdoc cref="User" />
 	public User Get([NotNull] string screenName
 					, ProfileFields fields = null
-					, NameCase nameCase = null)
+					, NameCase? nameCase = null)
 	{
 		VkErrors.ThrowIfNullOrEmpty(expr: () => screenName);
 

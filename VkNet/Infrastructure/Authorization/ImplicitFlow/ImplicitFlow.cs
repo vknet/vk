@@ -73,7 +73,7 @@ public class ImplicitFlow : IImplicitFlow
 	public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 	{
 		_authorizationParameters.ApplicationId = clientId;
-		_authorizationParameters.Display = display;
+		_authorizationParameters.Display = display.ToString().ToSnakeCase();
 		_authorizationParameters.State = state;
 
 		return CreateAuthorizeUrl();

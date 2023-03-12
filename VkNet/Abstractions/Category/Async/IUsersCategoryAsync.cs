@@ -63,7 +63,7 @@ public interface IUsersCategoryAsync
 	/// </remarks>
 	Task<ReadOnlyCollection<User>> GetAsync([NotNull] IEnumerable<long> userIds
 											, ProfileFields fields = null
-											, NameCase nameCase = null);
+											, NameCase? nameCase = null);
 
 	/// <summary>
 	/// Возвращает расширенную информацию о пользователях.
@@ -80,7 +80,7 @@ public interface IUsersCategoryAsync
 	/// </remarks>
 	Task<ReadOnlyCollection<User>> GetAsync([NotNull] IEnumerable<string> screenNames
 											, ProfileFields fields = null
-											, NameCase nameCase = null);
+											, NameCase? nameCase = null);
 
 	/// <summary>
 	/// Возвращает список идентификаторов пользователей и групп, которые входят в
@@ -133,7 +133,7 @@ public interface IUsersCategoryAsync
 												, int? count = null
 												, int? offset = null
 												, ProfileFields fields = null
-												, NameCase nameCase = null);
+												, NameCase? nameCase = null);
 
 	/// <summary>
 	/// Позволяет пожаловаться на пользователя.

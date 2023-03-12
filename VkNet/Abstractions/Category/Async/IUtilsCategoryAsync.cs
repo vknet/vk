@@ -22,7 +22,7 @@ public interface IUtilsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
 	/// </remarks>
-	Task<LinkAccessType> CheckLinkAsync([NotNull] string url);
+	Task<CheckLinkResult> CheckLinkAsync([NotNull] string url);
 
 	/// <summary>
 	/// Возвращает информацию о том, является ли внешняя ссылка заблокированной на
@@ -33,7 +33,7 @@ public interface IUtilsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
 	/// </remarks>
-	Task<LinkAccessType> CheckLinkAsync([NotNull] Uri url);
+	Task<CheckLinkResult> CheckLinkAsync([NotNull] Uri url);
 
 	/// <summary>
 	/// Определяет тип объекта (пользователь, сообщество, приложение) и его

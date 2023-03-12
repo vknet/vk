@@ -485,7 +485,7 @@ public interface IGroupsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getInvitedUsers
 	/// </remarks>
 	Task<VkCollection<User>> GetInvitedUsersAsync(long groupId, long? offset = null, long? count = null, UsersFields fields = null,
-												NameCase nameCase = null);
+												NameCase? nameCase = null);
 
 	/// <summary>
 	/// Позволяет приглашать друзей в группу.
@@ -680,7 +680,7 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.create
 	/// </remarks>
-	Task<Group> CreateAsync(string title, string description = null, GroupType type = null, GroupSubType? subtype = null,
+	Task<Group> CreateAsync(string title, string description = null, GroupType? type = null, GroupSubType? subtype = null,
 							uint? publicCategory = null);
 
 	/// <summary>

@@ -71,7 +71,6 @@ public class AppGetCatalogParams
 	/// Падеж для склонения имени и фамилии пользователей.
 	/// </summary>
 	[JsonProperty(propertyName: "name_case")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public NameCase NameCase { get; set; }
 
 	/// <summary>

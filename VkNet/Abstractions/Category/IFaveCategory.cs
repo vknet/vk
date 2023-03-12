@@ -38,7 +38,7 @@ public partial interface IFaveCategory : IFaveCategoryAsync
 	VkCollection<FaveGetObject> Get(FaveGetParams @params);
 
 	/// <inheritdoc cref = "IFaveCategoryAsync.GetPagesAsync"/>
-	VkCollection<FaveGetPagesObject> GetPages(FavePageType type = null,
+	VkCollection<FaveGetPagesObject> GetPages(FavePageType? type = null,
 											IEnumerable<string> fields = null,
 											ulong? offset = null,
 											ulong? count = null,

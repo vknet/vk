@@ -87,7 +87,7 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetInvitedUsersAsync" />
 	VkCollection<User> GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null,
-										NameCase nameCase = null);
+										NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long)" />
 	bool Invite(long groupId, long userId);
@@ -115,7 +115,7 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 	bool ApproveRequest(long groupId, long userId);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.CreateAsync" />
-	Group Create(string title, string description = null, GroupType type = null, GroupSubType? subtype = null,
+	Group Create(string title, string description = null, GroupType? type = null, GroupSubType? subtype = null,
 				uint? publicCategory = null);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetRequestsAsync" />

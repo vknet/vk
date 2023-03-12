@@ -72,10 +72,10 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	LastActivity GetLastActivity(long userId);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(long, ProfileFields,NameCase)"/>
-	Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null);
+	Chat GetChat(long chatId, ProfileFields fields = null, NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(long, ProfileFields, NameCase)"/>
-	ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null);
+	ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatPreviewAsync"/>
 	ChatPreview GetChatPreview(string link, ProfileFields fields);
@@ -190,7 +190,7 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync"/>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
-	GetChatUsers GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+	GetChatUsers GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase? nameCase);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync"/>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]

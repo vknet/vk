@@ -21,12 +21,12 @@ public class UtilsCategoryTest : CategoryBaseTest
 
 		var type = Api.Utils.CheckLink("http://www.kreml.ru/‎");
 
-		type.Should()
+		type.Status.Should()
 			.Be(LinkAccessType.Banned);
 
 		type = Api.Utils.CheckLink(new Uri("http://www.kreml.ru/‎"));
 
-		type.Should()
+		type.Status.Should()
 			.Be(LinkAccessType.Banned);
 	}
 
@@ -38,12 +38,12 @@ public class UtilsCategoryTest : CategoryBaseTest
 
 		var type = Api.Utils.CheckLink("https://www.google.ru/");
 
-		type.Should()
+		type.Status.Should()
 			.Be(LinkAccessType.NotBanned);
 
 		type = Api.Utils.CheckLink(new Uri("https://www.google.ru/"));
 
-		type.Should()
+		type.Status.Should()
 			.Be(LinkAccessType.NotBanned);
 	}
 

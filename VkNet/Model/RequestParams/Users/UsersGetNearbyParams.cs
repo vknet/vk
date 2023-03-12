@@ -83,7 +83,6 @@ public class UsersGetNearbyParams
 	/// умолчанию nom. строка.
 	/// </summary>
 	[JsonProperty(propertyName: "name_case")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public NameCase NameCase { get; set; }
 
 	/// <summary>

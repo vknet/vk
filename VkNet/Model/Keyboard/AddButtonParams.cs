@@ -34,7 +34,6 @@ public class AddButtonParams
 	/// <summary>
 	/// Цвет кнопки
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public KeyboardButtonColor Color { get; set; } = default;
 
 	/// <summary>
@@ -45,13 +44,11 @@ public class AddButtonParams
 	/// <summary>
 	/// Тип клавиши
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public KeyboardButtonActionType ActionType { get; set; }
+	public KeyboardButtonActionType? ActionType { get; set; }
 
 	/// <summary>
 	/// Любой из интентов, требующий подписки.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public Intent Intent { get; set; }
 
 	/// <summary>

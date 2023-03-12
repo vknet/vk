@@ -39,7 +39,6 @@ public class WallGetParams
 	/// значения параметра: Если параметр
 	/// не задан, то считается, что он равен all.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public WallFilter Filter { get; set; }
 
 	/// <summary>

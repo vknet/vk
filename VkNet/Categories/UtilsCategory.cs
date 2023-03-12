@@ -22,11 +22,11 @@ public partial class UtilsCategory : IUtilsCategory
 
 	/// <inheritdoc />
 	[Pure]
-	public LinkAccessType CheckLink(string url) => CheckLink(new Uri(uriString: url));
+	public CheckLinkResult CheckLink(string url) => CheckLink(new Uri(uriString: url));
 
 	/// <inheritdoc />
 	[Pure]
-	public LinkAccessType CheckLink(Uri url)
+	public CheckLinkResult CheckLink(Uri url)
 	{
 		var parameters = new VkParameters
 		{
@@ -35,7 +35,7 @@ public partial class UtilsCategory : IUtilsCategory
 			}
 		};
 
-		return _vk.Call("utils.checkLink", parameters);
+		return _vk.Call<CheckLinkResult>("utils.checkLink", parameters);
 	}
 
 	/// <inheritdoc />

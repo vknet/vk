@@ -91,7 +91,6 @@ public class NewsSearchItem
 	/// Тип записи
 	/// </summary>
 	[JsonProperty("post_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public PostType PostType { get; set; }
 
 	/// <summary>

@@ -15,7 +15,6 @@ public class StoryStatsObject
 	/// Доступность значения.
 	/// </summary>
 	[JsonProperty("state")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public StoryObjectState State { get; set; }
 
 	/// <summary>

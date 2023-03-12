@@ -1,5 +1,7 @@
 ﻿using System;
 using FluentAssertions;
+using VkNet.Enums;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 using Xunit;
 
@@ -87,5 +89,49 @@ public class VkParametersTests
 		@params["date_time"]
 			.Should()
 			.Be("1572481292");
+	}
+
+	[Fact]
+	public void AddStringEnum()
+	{
+		var isStringEnum = Utilities.IsStringEnum(AppRatingType.Points.GetType());
+
+		var @params = new VkParameters
+		{
+			{
+				"type", AppRatingType.Points
+			}
+		};
+
+		@params.Should()
+			.ContainKey("type");
+
+		@params["type"]
+			.Should()
+			.Be(isStringEnum
+				? "points"
+				: "1");
+	}
+
+	[Fact]
+	public void AddEnum()
+	{
+		var isStringEnum = Utilities.IsStringEnum(AccessPages.All.GetType());
+
+		var @params = new VkParameters
+		{
+			{
+				"type", AccessPages.All
+			}
+		};
+
+		@params.Should()
+			.ContainKey("type");
+
+		@params["type"]
+			.Should()
+			.Be(isStringEnum
+				? "all"
+				: "2");
 	}
 }

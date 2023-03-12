@@ -20,7 +20,6 @@ public class LikeAdd : IGroupUpdate
 	/// <summary>
 	/// Тип материала.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	[JsonProperty("object_type")]
 	public LikeObjectType ObjectType { get; set; }
 

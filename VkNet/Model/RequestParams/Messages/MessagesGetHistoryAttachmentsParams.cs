@@ -41,7 +41,6 @@ public class MessagesGetHistoryAttachmentsParams
 	/// 20.05.13, market,wall — 01.02.2016.
 	/// строка, по умолчанию photo.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	[JsonProperty("media_type")]
 	public MediaType MediaType { get; set; }
 

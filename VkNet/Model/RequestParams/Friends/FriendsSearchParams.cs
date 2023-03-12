@@ -43,7 +43,6 @@ public class FriendsSearchParams
 	/// умолчанию nom. строка, по умолчанию
 	/// Nom.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public NameCase NameCase { get; set; }
 
 	/// <summary>

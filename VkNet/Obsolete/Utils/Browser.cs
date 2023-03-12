@@ -75,7 +75,7 @@ public partial class Browser : IBrowser
 	public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 	{
 		_authParams.ApplicationId = clientId;
-		_authParams.Display = display;
+		_authParams.Display = display.ToString().ToSnakeCase();
 		_authParams.State = state;
 
 		return CreateAuthorizeUrl();
@@ -89,9 +89,9 @@ public partial class Browser : IBrowser
 
 		builder.Append($"client_id={_authParams.ApplicationId}&");
 		builder.Append($"redirect_uri={Constants.DefaultRedirectUri}&");
-		builder.Append($"display={Display.Mobile}&");
+		builder.Append($"display={Display.Mobile.ToString().ToSnakeCase()}&");
 		builder.Append($"scope={_authParams.Settings}&");
-		builder.Append($"response_type={ResponseType.Token}&");
+		builder.Append($"response_type={ResponseType.Token.ToString().ToSnakeCase()}&");
 		builder.Append($"v={_versionManager.Version}&");
 		builder.Append("state=123456&");
 		builder.Append("revoke=1");

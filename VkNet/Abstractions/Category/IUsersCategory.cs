@@ -21,12 +21,12 @@ public interface IUsersCategory : IUsersCategoryAsync
 	/// <inheritdoc cref="IUsersCategoryAsync.GetAsync(long,ProfileFields,NameCase)"/>
 	ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds
 								, ProfileFields fields = null
-								, NameCase nameCase = null);
+								, NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IUsersCategoryAsync.GetAsync(string,ProfileFields,NameCase)"/>
 	ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames
 								, ProfileFields fields = null
-								, NameCase nameCase = null);
+								, NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IUsersCategoryAsync.GetSubscriptionsAsync"/>
 	VkCollection<Group> GetSubscriptions(long? userId = null
@@ -39,7 +39,7 @@ public interface IUsersCategory : IUsersCategoryAsync
 									, int? count = null
 									, int? offset = null
 									, ProfileFields fields = null
-									, NameCase nameCase = null);
+									, NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IUsersCategoryAsync.ReportAsync"/>
 	bool Report(long userId, ReportType type, string comment = "");

@@ -112,7 +112,7 @@ public class GroupUpdateJsonConverter : Newtonsoft.Json.JsonConverter
 				_ => JsonConvert.DeserializeObject<GroupUpdate>(item.ToString(), JsonConfigure.JsonSerializerSettings)
 			};
 
-			fromJson!.Type = GroupUpdateType.FromJsonString(type);
+			fromJson!.Type = Utilities.Deserialize<GroupUpdateType>(type);
 			fromJson.Raw = JsonConvert.DeserializeObject<VkResponse>(item.ToString());
 			fromJson.GroupId = Convert.ToUInt64(item["group_id"]);
 

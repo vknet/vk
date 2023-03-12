@@ -22,6 +22,5 @@ public class MessageKeyboardButton
 	/// Цвет кнопки
 	/// </summary>
 	[JsonProperty("color", NullValueHandling = NullValueHandling.Ignore)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public KeyboardButtonColor? Color { get; set; }
+	public string Color { get; set; }
 }

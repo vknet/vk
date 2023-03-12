@@ -52,5 +52,5 @@ public interface IDocsCategory : IDocsCategoryAsync
 	bool Edit(long ownerId, long docId, string title, IEnumerable<string> tags);
 
 	/// <inheritdoc cref="IDocsCategoryAsync.GetMessagesUploadServerAsync"/>
-	UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType type = null);
+	UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType? type = null);
 }

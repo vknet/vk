@@ -27,7 +27,6 @@ public class CreateLookALikeRequestParams
 	/// Тип источника исходной аудитории.
 	/// </summary>
 	[JsonProperty("source_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public SourceType SourceType { get; set; }
 
 	/// <summary>

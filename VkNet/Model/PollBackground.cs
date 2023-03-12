@@ -23,7 +23,6 @@ public class PollBackground
 	/// Тип фона.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public PollBackgroundType Type { get; set; }
 
 	/// <summary>

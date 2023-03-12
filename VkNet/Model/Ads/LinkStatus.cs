@@ -21,7 +21,6 @@ public class LinkStatus
 	/// Link status
 	/// </summary>
 	[JsonProperty("status")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public LinkStatusType Status { get; set; }
 
 	/// <summary>

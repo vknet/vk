@@ -39,7 +39,6 @@ public class FriendsGetMutualParams
 	/// random - возвращает друзей в случайном
 	/// порядке. строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public FriendsOrder Order { get; set; }
 
 	/// <summary>

@@ -61,7 +61,6 @@ public class BoardGetCommentsParams
 	/// старым) строка.
 	/// </summary>
 	[JsonProperty(propertyName: "sort")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public CommentsSort Sort { get; set; }
 
 	/// <summary>
