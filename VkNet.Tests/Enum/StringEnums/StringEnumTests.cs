@@ -244,4 +244,154 @@ public class StringEnumTests
 			.Should()
 			.Be(StoryObjectState.Off);
 	}
+
+	[Fact]
+	public void StoryLinkTextTest()
+	{
+		// get test
+		StoryLinkText.Book.ToString().ToSnakeCase()
+			.Should()
+			.Be("book");
+
+		StoryLinkText.Buy.ToString().ToSnakeCase()
+			.Should()
+			.Be("buy");
+
+		StoryLinkText.Contact.ToString().ToSnakeCase()
+			.Should()
+			.Be("contact");
+
+		StoryLinkText.Enroll.ToString().ToSnakeCase()
+			.Should()
+			.Be("enroll");
+
+		StoryLinkText.Fill.ToString().ToSnakeCase()
+			.Should()
+			.Be("fill");
+
+		StoryLinkText.GoTo.ToString().ToSnakeCase()
+			.Should()
+			.Be("go_to");
+
+		StoryLinkText.Install.ToString().ToSnakeCase()
+			.Should()
+			.Be("install");
+
+		StoryLinkText.LearnMore.ToString().ToSnakeCase()
+			.Should()
+			.Be("learn_more");
+
+		StoryLinkText.More.ToString().ToSnakeCase()
+			.Should()
+			.Be("more");
+
+		StoryLinkText.Open.ToString().ToSnakeCase()
+			.Should()
+			.Be("open");
+
+		StoryLinkText.Order.ToString().ToSnakeCase()
+			.Should()
+			.Be("order");
+
+		StoryLinkText.Play.ToString().ToSnakeCase()
+			.Should()
+			.Be("play");
+
+		StoryLinkText.Read.ToString().ToSnakeCase()
+			.Should()
+			.Be("read");
+
+		StoryLinkText.Signup.ToString().ToSnakeCase()
+			.Should()
+			.Be("signup");
+
+		StoryLinkText.View.ToString().ToSnakeCase()
+			.Should()
+			.Be("view");
+
+		StoryLinkText.Vote.ToString().ToSnakeCase()
+			.Should()
+			.Be("vote");
+
+		StoryLinkText.Watch.ToString().ToSnakeCase()
+			.Should()
+			.Be("watch");
+
+		StoryLinkText.Write.ToString().ToSnakeCase()
+			.Should()
+			.Be("write");
+
+		// parse test
+		Utilities.Deserialize<StoryLinkText>("book")
+			.Should()
+			.Be(StoryLinkText.Book);
+
+		Utilities.Deserialize<StoryLinkText>("buy")
+			.Should()
+			.Be(StoryLinkText.Buy);
+
+		Utilities.Deserialize<StoryLinkText>("contact")
+			.Should()
+			.Be(StoryLinkText.Contact);
+
+		Utilities.Deserialize<StoryLinkText>("enroll")
+			.Should()
+			.Be(StoryLinkText.Enroll);
+
+		Utilities.Deserialize<StoryLinkText>("fill")
+			.Should()
+			.Be(StoryLinkText.Fill);
+
+		Utilities.Deserialize<StoryLinkText>("go_to")
+			.Should()
+			.Be(StoryLinkText.GoTo);
+
+		Utilities.Deserialize<StoryLinkText>("install")
+			.Should()
+			.Be(StoryLinkText.Install);
+
+		Utilities.Deserialize<StoryLinkText>("learn_more")
+			.Should()
+			.Be(StoryLinkText.LearnMore);
+
+		Utilities.Deserialize<StoryLinkText>("more")
+			.Should()
+			.Be(StoryLinkText.More);
+
+		Utilities.Deserialize<StoryLinkText>("open")
+			.Should()
+			.Be(StoryLinkText.Open);
+
+		Utilities.Deserialize<StoryLinkText>("order")
+			.Should()
+			.Be(StoryLinkText.Order);
+
+		Utilities.Deserialize<StoryLinkText>("play")
+			.Should()
+			.Be(StoryLinkText.Play);
+
+		Utilities.Deserialize<StoryLinkText>("read")
+			.Should()
+			.Be(StoryLinkText.Read);
+
+		Utilities.Deserialize<StoryLinkText>("signup")
+			.Should()
+			.Be(StoryLinkText.Signup);
+
+		Utilities.Deserialize<StoryLinkText>("view")
+			.Should()
+			.Be(StoryLinkText.View);
+
+		Utilities.Deserialize<StoryLinkText>("vote")
+			.Should()
+			.Be(StoryLinkText.Vote);
+
+		Utilities.Deserialize<StoryLinkText>("watch")
+			.Should()
+			.Be(StoryLinkText.Watch);
+
+		Utilities.Deserialize<StoryLinkText>("write")
+			.Should()
+			.Be(StoryLinkText.Write);
+	}
 }

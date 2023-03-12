@@ -43,7 +43,6 @@ public class GetPhotoUploadServerParams
 	/// строка
 	/// </summary>
 	[JsonProperty("link_text")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public StoryLinkText LinkText { get; set; }
 
 	/// <summary>

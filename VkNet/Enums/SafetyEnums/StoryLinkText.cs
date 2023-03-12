@@ -4,109 +4,108 @@ using VkNet.Utils;
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
-/// Текст ссылки для перехода из истории (только для историй сообществ). 
-/// </summary>
-[Serializable]
-public sealed class StoryLinkText : SafetyEnum<StoryLinkText>
+/// Текст ссылки для перехода из истории (только для историй сообществ).
+/// </summary>.ToSnakeCase()
+public enum StoryLinkText
 {
 	/// <summary>
 	/// В магазин
 	/// </summary>
-	public static readonly StoryLinkText ToStore = RegisterPossibleValue(value: "to_store");
+	ToStore,
 
 	/// <summary>
 	/// Голосовать
 	/// </summary>
-	public static readonly StoryLinkText Vote = RegisterPossibleValue(value: "vote");
+	Vote,
 
 	/// <summary>
 	/// Ещё
 	/// </summary>
-	public static readonly StoryLinkText More = RegisterPossibleValue(value: "more");
+	More,
 
 	/// <summary>
 	/// Забронировать
 	/// </summary>
-	public static readonly StoryLinkText Book = RegisterPossibleValue(value: "book");
+	Book,
 
 	/// <summary>
 	/// Заказать
 	/// </summary>
-	public static readonly StoryLinkText Order = RegisterPossibleValue(value: "order");
+	Order,
 
 	/// <summary>
 	/// Записаться
 	/// </summary>
-	public static readonly StoryLinkText Enroll = RegisterPossibleValue(value: "enroll");
+	Enroll,
 
 	/// <summary>
 	/// Заполнить
 	/// </summary>
-	public static readonly StoryLinkText Fill = RegisterPossibleValue(value: "fill");
+	Fill,
 
 	/// <summary>
 	/// Зарегистрироваться
 	/// </summary>
-	public static readonly StoryLinkText Signup = RegisterPossibleValue(value: "signup");
+	Signup,
 
 	/// <summary>
 	/// Купить
 	/// </summary>
-	public static readonly StoryLinkText Buy = RegisterPossibleValue(value: "buy");
+	Buy,
 
 	/// <summary>
 	/// Купить билет
 	/// </summary>
-	public static readonly StoryLinkText Ticket = RegisterPossibleValue(value: "ticket");
+	Ticket,
 
 	/// <summary>
 	/// Написать
 	/// </summary>
-	public static readonly StoryLinkText Write = RegisterPossibleValue(value: "write");
+	Write,
 
 	/// <summary>
 	/// Открыть
 	/// </summary>
-	public static readonly StoryLinkText Open = RegisterPossibleValue(value: "open");
+	Open,
 
 	/// <summary>
 	/// Подробнее
 	/// </summary>
 	[DefaultValue]
-	public static readonly StoryLinkText LearnMore = RegisterPossibleValue(value: "learn_more");
+	LearnMore,
 
 	/// <summary>
 	/// Посмотреть
 	/// </summary>
-	public static readonly StoryLinkText View = RegisterPossibleValue(value: "view");
+	View,
 
 	/// <summary>
 	/// Перейти
 	/// </summary>
-	public static readonly StoryLinkText GoTo = RegisterPossibleValue(value: "go_to");
+	GoTo,
 
 	/// <summary>
 	/// Связаться
 	/// </summary>
-	public static readonly StoryLinkText Contact = RegisterPossibleValue(value: "contact");
+	Contact,
 
 	/// <summary>
 	/// Смотреть
 	/// </summary>
-	public static readonly StoryLinkText Watch = RegisterPossibleValue(value: "watch");
+	Watch,
 
 	/// <summary>
 	/// Слушать
 	/// </summary>
-	public static readonly StoryLinkText Play = RegisterPossibleValue(value: "play");
+	Play,
 
 	/// <summary>
 	/// Установить
 	/// </summary>
-	public static readonly StoryLinkText Install = RegisterPossibleValue(value: "install");
+	Install,
 
 	/// <summary>
 	/// Читать
 	/// </summary>
-	public static readonly StoryLinkText Read = RegisterPossibleValue(value: "read");
+	Read
 }
