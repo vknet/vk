@@ -605,7 +605,7 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue(); // Second overload
 
 		result1.NameRequest.Status.Should()
-			.NotBeNull();
+			.NotBe(null);
 
 		result1.NameRequest.Status.Should()
 			.Be(ChangeNameStatus.Success);

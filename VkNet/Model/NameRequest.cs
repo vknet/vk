@@ -22,7 +22,6 @@ public class NameRequest
 	/// Статус заявки
 	/// </summary>
 	[JsonProperty("status")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public ChangeNameStatus Status { get; set; }
 
 	/// <summary>

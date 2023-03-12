@@ -1096,4 +1096,29 @@ public class StringEnumTests
 			.Should()
 			.Be(CommentObjectType.Note);
 	}
+
+	[Fact]
+	public void ChangeNameStatusTest()
+	{
+		Utilities.Deserialize<ChangeNameStatus>("processing")
+			.Should()
+			.Be(ChangeNameStatus.Processing);
+
+		Utilities.Deserialize<ChangeNameStatus>("declined")
+			.Should()
+			.Be(ChangeNameStatus.Declined);
+
+		Utilities.Deserialize<ChangeNameStatus>("success")
+			.Should()
+			.Be(ChangeNameStatus.Success);
+
+		Utilities.Deserialize<ChangeNameStatus>("was_accepted")
+			.Should()
+			.Be(ChangeNameStatus.WasAccepted);
+
+		Utilities.Deserialize<ChangeNameStatus>("was_declined")
+			.Should()
+			.Be(ChangeNameStatus.WasDeclined);
+	}
+
 }
