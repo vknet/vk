@@ -31,7 +31,6 @@ public class GroupsEditManagerParams
 	/// Если параметр не задан, с пользователя user_id снимаются полномочия
 	/// руководителя. строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public ManagerRole Role { get; set; }
 
 	/// <summary>

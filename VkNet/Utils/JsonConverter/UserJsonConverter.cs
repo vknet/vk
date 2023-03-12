@@ -186,11 +186,6 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 				user.Role = ManagerRole.Moderator;
 
 				break;
-
-			default:
-				user.Role = null;
-
-				break;
 		}
 
 		if (response["bdate_visibility"] == null)

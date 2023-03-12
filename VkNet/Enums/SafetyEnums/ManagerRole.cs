@@ -1,3 +1,7 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
@@ -5,25 +9,27 @@ namespace VkNet.Enums.SafetyEnums;
 /// полномочий пользователя в методе
 /// EditManager).
 /// </summary>
-public class ManagerRole : SafetyEnum<ManagerRole>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum ManagerRole
 {
 	/// <summary>
 	/// Создатель сообщества
 	/// </summary>
-	public static readonly ManagerRole Creator = RegisterPossibleValue(value: "creator");
+	Creator,
 
 	/// <summary>
 	/// Пользователь является администратором сообщества.
 	/// </summary>
-	public static readonly ManagerRole Administrator = RegisterPossibleValue(value: "administrator");
+	Administrator,
 
 	/// <summary>
 	/// Пользователь является модератором собщества.
 	/// </summary>
-	public static readonly ManagerRole Moderator = RegisterPossibleValue(value: "moderator");
+	Moderator,
 
 	/// <summary>
 	/// Пользователь является редактором сообщества.
 	/// </summary>
-	public static readonly ManagerRole Editor = RegisterPossibleValue(value: "editor");
+	Editor
 }
