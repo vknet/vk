@@ -1,30 +1,34 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип пира беседы
 /// </summary>
-[Serializable]
-public class ConversationPeerType : SafetyEnum<ConversationPeerType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum ConversationPeerType
 {
 	/// <summary>
 	/// Пользователь.
 	/// </summary>
-	public static readonly ConversationPeerType User = RegisterPossibleValue("user");
+	User,
 
 	/// <summary>
 	/// Чат.
 	/// </summary>
-	public static readonly ConversationPeerType Chat = RegisterPossibleValue("chat");
+	Chat,
 
 	/// <summary>
 	/// Группа.
 	/// </summary>
-	public static readonly ConversationPeerType Group = RegisterPossibleValue("group");
+	Group,
 
 	/// <summary>
 	/// E-mail.
 	/// </summary>
-	public static readonly ConversationPeerType Email = RegisterPossibleValue("email");
+	Email
 }
