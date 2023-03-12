@@ -81,12 +81,12 @@ public class CarouselElementBuilder : ICarouselElementBuilder
 
 		Buttons.Add(new()
 		{
-			Color = color.ToString().ToSnakeCase(),
+			Color = color,
 			Action = new()
 			{
 				Label = label,
 				Payload = payload,
-				Type = KeyboardButtonActionType.Text.ToString().ToSnakeCase()
+				Type = KeyboardButtonActionType.Text
 			}
 		});
 

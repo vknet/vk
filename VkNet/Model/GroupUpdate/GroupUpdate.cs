@@ -22,7 +22,7 @@ public class GroupUpdate
 	/// Тип обновления
 	/// </summary>
 	[Obsolete("Используйте свойство Instance")]
-	public GroupUpdateType Type { get; set; }
+	public GroupUpdateType? Type { get; set; }
 
 	/// <summary>
 	/// Сообщение для типов событий с сообщением в ответе.

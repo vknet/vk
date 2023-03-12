@@ -114,7 +114,7 @@ public interface IApiAuthParams
 	/// <summary>
 	/// Указывает тип отображения страницы авторизации.
 	/// </summary>
-	string Display { get; set; }
+	Display Display { get; set; }
 
 	/// <summary>
 	/// Адрес, на который будет переадресован пользователь после прохождения

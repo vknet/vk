@@ -243,7 +243,7 @@ public static class Utilities
 	/// <param name="value"></param>
 	/// <typeparam name="TEnum"></typeparam>
 	/// <returns></returns>
-	public static TEnum Deserialize<TEnum>(string value) where TEnum : struct
+	public static TEnum? Deserialize<TEnum>(string value) where TEnum : struct
 	{
 		if (Enum.TryParse(value.ToCamelCase(), out TEnum parsed))
 			return parsed;
@@ -257,6 +257,6 @@ public static class Utilities
 			.FirstOrDefault(x => x.Attribute?.Value == value);
 		if (found != null)
 			return (TEnum)Enum.Parse(typeof(TEnum), found.Member.Name);
-		return default;
+		return null;
 	}
 }

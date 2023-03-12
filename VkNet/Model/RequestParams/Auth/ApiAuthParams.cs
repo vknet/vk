@@ -66,7 +66,7 @@ public class ApiAuthParams : IApiAuthParams
 	public bool? ForceSms { get; set; }
 
 	/// <inheritdoc />
-	public string Display { get; set; }
+	public Display Display { get; set; }
 
 	/// <inheritdoc />
 	public Uri RedirectUri { get; set; }
