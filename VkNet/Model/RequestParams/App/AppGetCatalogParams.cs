@@ -37,7 +37,6 @@ public class AppGetCatalogParams
 	/// используется web.
 	/// </summary>
 	[JsonProperty(propertyName: "platform")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AppPlatforms Platform { get; set; }
 
 	/// <summary>

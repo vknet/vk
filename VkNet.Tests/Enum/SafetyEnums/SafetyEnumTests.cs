@@ -31,44 +31,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void AppPlatformsTest()
-	{
-		// get test
-		AppPlatforms.Ios.ToString()
-			.Should()
-			.Be("ios");
-
-		AppPlatforms.Android.ToString()
-			.Should()
-			.Be("android");
-
-		AppPlatforms.WinPhone.ToString()
-			.Should()
-			.Be("winphone");
-
-		AppPlatforms.Web.ToString()
-			.Should()
-			.Be("web");
-
-		// parse test
-		AppPlatforms.FromJsonString("ios")
-			.Should()
-			.Be(AppPlatforms.Ios);
-
-		AppPlatforms.FromJsonString("android")
-			.Should()
-			.Be(AppPlatforms.Android);
-
-		AppPlatforms.FromJsonString("winphone")
-			.Should()
-			.Be(AppPlatforms.WinPhone);
-
-		AppPlatforms.FromJsonString("web")
-			.Should()
-			.Be(AppPlatforms.Web);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test

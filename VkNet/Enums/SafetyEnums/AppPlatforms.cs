@@ -1,4 +1,8 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Платформа для которой необходимо вернуть приложения.
@@ -6,25 +10,27 @@
 /// <remarks>
 /// По умолчанию используется web.
 /// </remarks>
-public sealed class AppPlatforms : SafetyEnum<AppPlatforms>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum AppPlatforms
 {
 	/// <summary>
 	/// Популярные за день (по умолчанию);
 	/// </summary>
-	public static readonly AppPlatforms Ios = RegisterPossibleValue(value: "ios");
+	Ios,
 
 	/// <summary>
 	/// По посещаемости
 	/// </summary>
-	public static readonly AppPlatforms Android = RegisterPossibleValue(value: "android");
+	Android,
 
 	/// <summary>
 	/// По дате создания приложения
 	/// </summary>
-	public static readonly AppPlatforms WinPhone = RegisterPossibleValue(value: "winphone");
+	Winphone,
 
 	/// <summary>
 	/// По скорости роста
 	/// </summary>
-	public static readonly AppPlatforms Web = RegisterPossibleValue(value: "web");
+	Web
 }
