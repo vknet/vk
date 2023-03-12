@@ -146,52 +146,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void ChangeNameStatusTest()
-	{
-		// get test
-		ChangeNameStatus.Processing.ToString()
-			.Should()
-			.Be("processing");
-
-		ChangeNameStatus.Declined.ToString()
-			.Should()
-			.Be("declined");
-
-		ChangeNameStatus.Success.ToString()
-			.Should()
-			.Be("success");
-
-		ChangeNameStatus.WasAccepted.ToString()
-			.Should()
-			.Be("was_accepted");
-
-		ChangeNameStatus.WasDeclined.ToString()
-			.Should()
-			.Be("was_declined");
-
-		// parse test
-		ChangeNameStatus.FromJsonString("processing")
-			.Should()
-			.Be(ChangeNameStatus.Processing);
-
-		ChangeNameStatus.FromJsonString("declined")
-			.Should()
-			.Be(ChangeNameStatus.Declined);
-
-		ChangeNameStatus.FromJsonString("success")
-			.Should()
-			.Be(ChangeNameStatus.Success);
-
-		ChangeNameStatus.FromJsonString("was_accepted")
-			.Should()
-			.Be(ChangeNameStatus.WasAccepted);
-
-		ChangeNameStatus.FromJsonString("was_declined")
-			.Should()
-			.Be(ChangeNameStatus.WasDeclined);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test
