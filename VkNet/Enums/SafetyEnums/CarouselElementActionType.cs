@@ -1,15 +1,24 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
-/// <inheritdoc />
-public class CarouselElementActionType : SafetyEnum<CarouselElementActionType>
+namespace VkNet.Enums.SafetyEnums;
+
+
+/// <summary>
+///
+/// </summary>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum CarouselElementActionType
 {
 	/// <summary>
 	/// Открывает указанную ссылку.
 	/// </summary>
-	public static readonly CarouselElementActionType OpenLink = RegisterPossibleValue("open_link");
+	OpenLink,
 
 	/// <summary>
 	/// Открывает фото текущего элемента карусели.
 	/// </summary>
-	public static readonly CarouselElementActionType OpenPhoto = RegisterPossibleValue("open_photo");
+	OpenPhoto
 }
