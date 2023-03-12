@@ -79,7 +79,6 @@ public class ApiAuthParams : IApiAuthParams
 	public bool? TwoFactorSupported { get; set; }
 
 	/// <inheritdoc />
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public GrantType GrantType { get; set; }
 
 	/// <inheritdoc />

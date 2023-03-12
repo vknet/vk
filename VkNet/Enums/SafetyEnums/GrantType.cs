@@ -1,17 +1,23 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип авторизации.
 /// </summary>
-public sealed class GrantType : SafetyEnum<GrantType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum GrantType
 {
 	/// <summary>
 	/// Client Credentials Flow.
 	/// </summary>
-	public static readonly GrantType ClientCredentials = RegisterPossibleValue("client_credentials");
+	ClientCredentials,
 
 	/// <summary>
 	/// Direct Auth Flow.
 	/// </summary>
-	public static readonly GrantType Password = RegisterPossibleValue("password");
+	Password
 }

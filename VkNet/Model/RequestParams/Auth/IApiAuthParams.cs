@@ -136,7 +136,6 @@ public interface IApiAuthParams
 	/// <summary>
 	/// Тип авторизации.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	GrantType GrantType { get; set; }
 
 	/// <summary>
