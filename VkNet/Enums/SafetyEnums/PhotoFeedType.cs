@@ -1,17 +1,23 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип канала новостей.
 /// </summary>
-public sealed class PhotoFeedType : SafetyEnum<PhotoFeedType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum PhotoFeedType
 {
 	/// <summary>
 	/// Фото.
 	/// </summary>
-	public static readonly PhotoFeedType Photo = RegisterPossibleValue(value: "photo");
+	Photo,
 
 	/// <summary>
 	/// Тег фото.
 	/// </summary>
-	public static readonly PhotoFeedType PhotoTag = RegisterPossibleValue(value: "photo_tag");
+	PhotoTag
 }

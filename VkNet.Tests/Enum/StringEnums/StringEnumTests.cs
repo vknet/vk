@@ -652,4 +652,16 @@ public class StringEnumTests
 			.Should()
 			.Be(PhotoSizeType.W);
 	}
+
+	[Fact]
+	public void PhotoFeedTypeTest()
+	{
+		Utilities.Deserialize<PhotoFeedType>("photo")
+			.Should()
+			.Be(PhotoFeedType.Photo);
+
+		Utilities.Deserialize<PhotoFeedType>("photo_tag")
+			.Should()
+			.Be(PhotoFeedType.PhotoTag);
+	}
 }

@@ -796,28 +796,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void PhotoFeedTypeTest()
-	{
-		// get test
-		PhotoFeedType.Photo.ToString()
-			.Should()
-			.Be("photo");
-
-		PhotoFeedType.PhotoTag.ToString()
-			.Should()
-			.Be("photo_tag");
-
-		// parse test
-		PhotoFeedType.FromJsonString("photo")
-			.Should()
-			.Be(PhotoFeedType.Photo);
-
-		PhotoFeedType.FromJsonString("photo_tag")
-			.Should()
-			.Be(PhotoFeedType.PhotoTag);
-	}
-
-	[Fact]
 	public void PrivacyTest()
 	{
 		// get test
