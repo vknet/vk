@@ -1,42 +1,48 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип приложения.
 /// </summary>
-public class AppType : SafetyEnum<AppType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum AppType
 {
 	/// <summary>
 	/// Социальное приложение;
 	/// </summary>
-	public static readonly AppType App = RegisterPossibleValue("app");
+	App,
 
 	/// <summary>
 	/// Игра;
 	/// </summary>
-	public static readonly AppType Game = RegisterPossibleValue("game");
+	Game,
 
 	/// <summary>
 	/// Подключаемый сайт;
 	/// </summary>
-	public static readonly AppType Site = RegisterPossibleValue("site");
+	Site,
 
 	/// <summary>
 	/// Отдельное приложение (для мобильного устройства).
 	/// </summary>
-	public static readonly AppType Standalone = RegisterPossibleValue("standalone");
+	Standalone,
 
 	/// <summary>
 	/// VK App приложение
 	/// </summary>
-	public static readonly AppType VkApp = RegisterPossibleValue("vk_app");
+	VkApp,
 
 	/// <summary>
 	/// VK App приложение
 	/// </summary>
-	public static readonly AppType CommunityApp = RegisterPossibleValue("community_app");
+	CommunityApp,
 
 	/// <summary>
 	/// HTML5 игра
 	/// </summary>
-	public static readonly AppType Html5Game = RegisterPossibleValue("html5_game");
+	Html5Game
 }
