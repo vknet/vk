@@ -41,7 +41,6 @@ public class AudioCatalog
 	/// Источник каталога.
 	/// </summary>
 	[JsonProperty("source")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AudioCatalogSourceType Source { get; set; }
 
 	/// <summary>
