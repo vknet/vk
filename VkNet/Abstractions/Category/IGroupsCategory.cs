@@ -87,7 +87,7 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetInvitedUsersAsync" />
 	VkCollection<User> GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null,
-										NameCase nameCase = null);
+										NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long)" />
 	bool Invite(long groupId, long userId);

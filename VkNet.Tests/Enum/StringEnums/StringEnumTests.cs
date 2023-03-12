@@ -734,4 +734,58 @@ public class StringEnumTests
 			.Should()
 			.Be(NewsObjectTypes.Audio);
 	}
+
+	[Fact]
+	public void NameCaseTest()
+	{
+		// get test
+		NameCase.Nom.ToString().ToSnakeCase()
+			.Should()
+			.Be("nom");
+
+		NameCase.Gen.ToString().ToSnakeCase()
+			.Should()
+			.Be("gen");
+
+		NameCase.Dat.ToString().ToSnakeCase()
+			.Should()
+			.Be("dat");
+
+		NameCase.Acc.ToString().ToSnakeCase()
+			.Should()
+			.Be("acc");
+
+		NameCase.Ins.ToString().ToSnakeCase()
+			.Should()
+			.Be("ins");
+
+		NameCase.Abl.ToString().ToSnakeCase()
+			.Should()
+			.Be("abl");
+
+		// parse test
+		Utilities.Deserialize<NameCase>("nom")
+			.Should()
+			.Be(NameCase.Nom);
+
+		Utilities.Deserialize<NameCase>("gen")
+			.Should()
+			.Be(NameCase.Gen);
+
+		Utilities.Deserialize<NameCase>("dat")
+			.Should()
+			.Be(NameCase.Dat);
+
+		Utilities.Deserialize<NameCase>("acc")
+			.Should()
+			.Be(NameCase.Acc);
+
+		Utilities.Deserialize<NameCase>("ins")
+			.Should()
+			.Be(NameCase.Ins);
+
+		Utilities.Deserialize<NameCase>("abl")
+			.Should()
+			.Be(NameCase.Abl);
+	}
 }

@@ -759,7 +759,7 @@ public partial class GroupsCategory : IGroupsCategory
 
 	/// <inheritdoc />
 	public VkCollection<User> GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null,
-											NameCase nameCase = null)
+											NameCase? nameCase = null)
 	{
 		VkErrors.ThrowIfNumberIsNegative(() => groupId);
 

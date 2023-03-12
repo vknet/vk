@@ -31,7 +31,7 @@ public interface INewsFeedCategory : INewsFeedCategoryAsync
 	NewsBannedList GetBanned();
 
 	/// <inheritdoc cref="INewsFeedCategoryAsync.GetBannedExAsync"/>
-	NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase nameCase = null);
+	NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase? nameCase = null);
 
 	/// <inheritdoc cref="INewsFeedCategoryAsync.AddBanAsync"/>
 	bool AddBan(IEnumerable<long> userIds, IEnumerable<long> groupIds);

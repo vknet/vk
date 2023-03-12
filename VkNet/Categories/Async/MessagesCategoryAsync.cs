@@ -147,14 +147,14 @@ public partial class MessagesCategory
 	public Task<LastActivity> GetLastActivityAsync(long userId) => TypeHelper.TryInvokeMethodAsync(() => GetLastActivity(userId));
 
 	/// <inheritdoc />
-	public Task<Chat> GetChatAsync(long chatId, ProfileFields fields = null, NameCase nameCase = null) => TypeHelper.TryInvokeMethodAsync(
+	public Task<Chat> GetChatAsync(long chatId, ProfileFields fields = null, NameCase? nameCase = null) => TypeHelper.TryInvokeMethodAsync(
 		() =>
 			GetChat(chatId, fields, nameCase));
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<Chat>> GetChatAsync(IEnumerable<long> chatIds
 														, ProfileFields fields = null
-														, NameCase nameCase = null) => TypeHelper.TryInvokeMethodAsync(() =>
+														, NameCase? nameCase = null) => TypeHelper.TryInvokeMethodAsync(() =>
 		GetChat(chatIds, fields, nameCase));
 
 	/// <inheritdoc />
@@ -162,7 +162,7 @@ public partial class MessagesCategory
 		TypeHelper.TryInvokeMethodAsync(() => GetChatPreview(link, fields));
 
 	/// <inheritdoc />
-	public Task<GetChatUsers> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase) =>
+	public Task<GetChatUsers> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase? nameCase) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetChatUsers(chatIds, fields, nameCase));
 

@@ -69,7 +69,7 @@ public interface IFriendsCategory : IFriendsCategoryAsync
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetSuggestionsAsync" />
 	VkCollection<User> GetSuggestions(FriendsFilter filter = null, long? count = null, long? offset = null, UsersFields fields = null,
-									NameCase nameCase = null);
+									NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetByPhonesAsync" />
 	ReadOnlyCollection<User> GetByPhones(IEnumerable<string> phones, ProfileFields fields);

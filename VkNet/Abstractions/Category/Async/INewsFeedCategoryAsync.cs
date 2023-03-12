@@ -114,7 +114,7 @@ public interface INewsFeedCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getBanned
 	/// </remarks>
-	Task<NewsBannedExList> GetBannedExAsync(UsersFields fields = null, NameCase nameCase = null);
+	Task<NewsBannedExList> GetBannedExAsync(UsersFields fields = null, NameCase? nameCase = null);
 
 	/// <summary>
 	/// Запрещает показывать новости от заданных пользователей и групп в ленте новостей

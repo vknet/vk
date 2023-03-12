@@ -22,13 +22,13 @@ public partial class UsersCategory
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<User>> GetAsync(IEnumerable<long> userIds
 													, ProfileFields fields = null
-													, NameCase nameCase = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
+													, NameCase? nameCase = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
 		Get(userIds, fields, nameCase));
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<User>> GetAsync(IEnumerable<string> screenNames
 													, ProfileFields fields = null
-													, NameCase nameCase = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
+													, NameCase? nameCase = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
 		Get(screenNames, fields, nameCase));
 
 	/// <inheritdoc />
@@ -46,7 +46,7 @@ public partial class UsersCategory
 													, int? count = null
 													, int? offset = null
 													, ProfileFields fields = null
-													, NameCase nameCase = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
+													, NameCase? nameCase = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
 		GetFollowers(userId
 			, count
 			, offset

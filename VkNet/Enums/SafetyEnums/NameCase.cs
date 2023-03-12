@@ -1,37 +1,43 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Падеж.
 /// </summary>
-public sealed class NameCase : SafetyEnum<NameCase>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum NameCase
 {
 	/// <summary>
 	/// Именительный.
 	/// </summary>
-	public static readonly NameCase Nom = RegisterPossibleValue(value: "nom");
+	Nom,
 
 	/// <summary>
 	/// Родительный.
 	/// </summary>
-	public static readonly NameCase Gen = RegisterPossibleValue(value: "gen");
+	Gen,
 
 	/// <summary>
 	/// Дательный.
 	/// </summary>
-	public static readonly NameCase Dat = RegisterPossibleValue(value: "dat");
+	Dat,
 
 	/// <summary>
 	/// Винительный.
 	/// </summary>
-	public static readonly NameCase Acc = RegisterPossibleValue(value: "acc");
+	Acc,
 
 	/// <summary>
 	/// Творительный.
 	/// </summary>
-	public static readonly NameCase Ins = RegisterPossibleValue(value: "ins");
+	Ins,
 
 	/// <summary>
 	/// Предложный.
 	/// </summary>
-	public static readonly NameCase Abl = RegisterPossibleValue(value: "abl");
+	Abl
 }

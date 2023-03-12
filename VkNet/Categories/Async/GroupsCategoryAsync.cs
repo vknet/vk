@@ -85,7 +85,7 @@ public partial class GroupsCategory
 
 	/// <inheritdoc />
 	public Task<VkCollection<User>> GetInvitedUsersAsync(long groupId, long? offset = null, long? count = null,
-														UsersFields fields = null, NameCase nameCase = null) =>
+														UsersFields fields = null, NameCase? nameCase = null) =>
 		TypeHelper.TryInvokeMethodAsync(() => GetInvitedUsers(groupId, offset, count, fields, nameCase));
 
 	/// <inheritdoc />

@@ -388,7 +388,7 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/messages.getChat
 	/// </remarks>
-	Task<Chat> GetChatAsync(long chatId, ProfileFields fields = null, NameCase nameCase = null);
+	Task<Chat> GetChatAsync(long chatId, ProfileFields fields = null, NameCase? nameCase = null);
 
 	/// <summary>
 	/// Возвращает информацию о беседе.
@@ -429,7 +429,7 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getChat
 	/// </remarks>
-	Task<ReadOnlyCollection<Chat>> GetChatAsync(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null);
+	Task<ReadOnlyCollection<Chat>> GetChatAsync(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase? nameCase = null);
 
 	/// <summary>
 	/// Получает данные для превью чата с приглашением по ссылке.
@@ -1198,7 +1198,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
 	/// </remarks>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
-	Task<GetChatUsers> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+	Task<GetChatUsers> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase? nameCase);
 
 	/// <summary>
 	/// Позволяет получить список пользователей мультидиалога по его id.

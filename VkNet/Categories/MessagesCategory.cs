@@ -906,7 +906,7 @@ public partial class MessagesCategory : IMessagesCategory
 	}
 
 	/// <inheritdoc />
-	public Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null) => _vk.Call<Chat>("messages.getChat",
+	public Chat GetChat(long chatId, ProfileFields fields = null, NameCase? nameCase = null) => _vk.Call<Chat>("messages.getChat",
 		new()
 		{
 			{
@@ -933,7 +933,7 @@ public partial class MessagesCategory : IMessagesCategory
 		});
 
 	/// <inheritdoc />
-	public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null)
+	public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase? nameCase = null)
 	{
 		var isNoEmpty = chatIds == null || !chatIds.Any();
 
@@ -1006,7 +1006,7 @@ public partial class MessagesCategory : IMessagesCategory
 	}
 
 	/// <inheritdoc />
-	public GetChatUsers GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase)
+	public GetChatUsers GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase? nameCase)
 	{
 		if (fields == null)
 		{

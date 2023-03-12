@@ -574,60 +574,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void NameCaseTest()
-	{
-		// get test
-		NameCase.Nom.ToString()
-			.Should()
-			.Be("nom");
-
-		NameCase.Gen.ToString()
-			.Should()
-			.Be("gen");
-
-		NameCase.Dat.ToString()
-			.Should()
-			.Be("dat");
-
-		NameCase.Acc.ToString()
-			.Should()
-			.Be("acc");
-
-		NameCase.Ins.ToString()
-			.Should()
-			.Be("ins");
-
-		NameCase.Abl.ToString()
-			.Should()
-			.Be("abl");
-
-		// parse test
-		NameCase.FromJsonString("nom")
-			.Should()
-			.Be(NameCase.Nom);
-
-		NameCase.FromJsonString("gen")
-			.Should()
-			.Be(NameCase.Gen);
-
-		NameCase.FromJsonString("dat")
-			.Should()
-			.Be(NameCase.Dat);
-
-		NameCase.FromJsonString("acc")
-			.Should()
-			.Be(NameCase.Acc);
-
-		NameCase.FromJsonString("ins")
-			.Should()
-			.Be(NameCase.Ins);
-
-		NameCase.FromJsonString("abl")
-			.Should()
-			.Be(NameCase.Abl);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test
