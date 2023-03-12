@@ -1,4 +1,7 @@
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Enums.SafetyEnums;
 
@@ -6,260 +9,262 @@ namespace VkNet.Enums.SafetyEnums;
 /// Тип обновления
 /// </summary>
 [Obsolete("Типы обновлений теперь проверяются в GroupUpdate")]
-public sealed class GroupUpdateType : SafetyEnum<GroupUpdateType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum GroupUpdateType
 {
 	/// <summary>
 	/// Новое сообщение
 	/// </summary>
-	public static readonly GroupUpdateType MessageNew = RegisterPossibleValue("message_new");
+	MessageNew,
 
 	/// <summary>
 	/// Нажатие на callback кнопку
 	/// </summary>
-	public static readonly GroupUpdateType MessageEvent = RegisterPossibleValue("message_event");
+	MessageEvent,
 
 	/// <summary>
 	/// Собеседник печатает
 	/// </summary>
-	public static readonly GroupUpdateType MessageTypingState = RegisterPossibleValue("message_typing_state");
+	MessageTypingState,
 
 	/// <summary>
 	/// Событие о новой отметке "Мне нравится"
 	/// </summary>
-	public static readonly GroupUpdateType LikeAdd = RegisterPossibleValue("like_add");
+	LikeAdd,
 
 	/// <summary>
 	/// Событие о удалении отметки "Мне нравится"
 	/// </summary>
-	public static readonly GroupUpdateType LikeRemove = RegisterPossibleValue("like_remove");
+	LikeRemove,
 
 	/// <summary>
 	/// Платёж через VK Pay
 	/// </summary>
-	public static readonly GroupUpdateType VkPayTransaction = RegisterPossibleValue("vkpay_transaction");
+	VkpayTransaction,
 
 	/// <summary>
 	/// Событие о изменении настроек сообщества
 	/// </summary>
-	public static readonly GroupUpdateType GroupChangeSettings = RegisterPossibleValue("group_change_settings");
+	GroupChangeSettings,
 
 	/// <summary>
 	/// Новое исходящее сообщение
 	/// </summary>
-	public static readonly GroupUpdateType MessageReply = RegisterPossibleValue("message_reply");
+	MessageReply,
 
 	/// <summary>
 	/// Редактирование сообщения
 	/// </summary>
-	public static readonly GroupUpdateType MessageEdit = RegisterPossibleValue("message_edit");
+	MessageEdit,
 
 	/// <summary>
 	/// Подписка на сообщения от сообщества
 	/// </summary>
-	public static readonly GroupUpdateType MessageAllow = RegisterPossibleValue("message_allow");
+	MessageAllow,
 
 	/// <summary>
 	/// Новый запрет сообщений от сообщества
 	/// </summary>
-	public static readonly GroupUpdateType MessageDeny = RegisterPossibleValue("message_deny");
+	MessageDeny,
 
 	/// <summary>
 	/// Добавление фотографии
 	/// </summary>
-	public static readonly GroupUpdateType PhotoNew = RegisterPossibleValue("photo_new");
+	PhotoNew,
 
 	/// <summary>
 	/// Добавление комментария к фотографии
 	/// </summary>
-	public static readonly GroupUpdateType PhotoCommentNew = RegisterPossibleValue("photo_comment_new");
+	PhotoCommentNew,
 
 	/// <summary>
 	/// Редактирование комментария к фотографии
 	/// </summary>
-	public static readonly GroupUpdateType PhotoCommentEdit = RegisterPossibleValue("photo_comment_edit");
+	PhotoCommentEdit,
 
 	/// <summary>
 	/// Восстановление комментария к фотографии
 	/// </summary>
-	public static readonly GroupUpdateType PhotoCommentRestore = RegisterPossibleValue("photo_comment_restore");
+	PhotoCommentRestore,
 
 	/// <summary>
 	/// Удаление комментария к фотографии
 	/// </summary>
-	public static readonly GroupUpdateType PhotoCommentDelete = RegisterPossibleValue("photo_comment_delete");
+	PhotoCommentDelete,
 
 	/// <summary>
 	/// Добавление аудио
 	/// </summary>
-	public static readonly GroupUpdateType AudioNew = RegisterPossibleValue("audio_new");
+	AudioNew,
 
 	/// <summary>
 	/// Добавление видео
 	/// </summary>
-	public static readonly GroupUpdateType VideoNew = RegisterPossibleValue("video_new");
+	VideoNew,
 
 	/// <summary>
 	/// Добавление комментария к видео
 	/// </summary>
-	public static readonly GroupUpdateType VideoCommentNew = RegisterPossibleValue("video_comment_new");
+	VideoCommentNew,
 
 	/// <summary>
 	/// Редактирование комментария к видео
 	/// </summary>
-	public static readonly GroupUpdateType VideoCommentEdit = RegisterPossibleValue("video_comment_edit");
+	VideoCommentEdit,
 
 	/// <summary>
 	/// Восстановление комментария к видео
 	/// </summary>
-	public static readonly GroupUpdateType VideoCommentRestore = RegisterPossibleValue("video_comment_restore");
+	VideoCommentRestore,
 
 	/// <summary>
 	/// Удаление комментария к видео
 	/// </summary>
-	public static readonly GroupUpdateType VideoCommentDelete = RegisterPossibleValue("video_comment_delete");
+	VideoCommentDelete,
 
 	/// <summary>
 	/// Добавление записи на стене
 	/// </summary>
-	public static readonly GroupUpdateType WallPostNew = RegisterPossibleValue("wall_post_new");
+	WallPostNew,
 
 	/// <summary>
 	/// Репост записи на стене
 	/// </summary>
-	public static readonly GroupUpdateType WallRepost = RegisterPossibleValue("wall_repost");
+	WallRepost,
 
 	/// <summary>
 	/// Добавление комментария на стене
 	/// </summary>
-	public static readonly GroupUpdateType WallReplyNew = RegisterPossibleValue("wall_reply_new");
+	WallReplyNew,
 
 	/// <summary>
 	/// Редактирование комментария на стене
 	/// </summary>
-	public static readonly GroupUpdateType WallReplyEdit = RegisterPossibleValue("wall_reply_edit");
+	WallReplyEdit,
 
 	/// <summary>
 	/// Восстановление комментария на стене
 	/// </summary>
-	public static readonly GroupUpdateType WallReplyRestore = RegisterPossibleValue("wall_reply_restore");
+	WallReplyRestore,
 
 	/// <summary>
 	/// Удаление комментария на стене
 	/// </summary>
-	public static readonly GroupUpdateType WallReplyDelete = RegisterPossibleValue("wall_reply_delete");
+	WallReplyDelete,
 
 	/// <summary>
 	/// Добавление комментария в обсуждении
 	/// </summary>
-	public static readonly GroupUpdateType BoardPostNew = RegisterPossibleValue("board_post_new");
+	BoardPostNew,
 
 	/// <summary>
 	/// Редактирование комментария в обсуждении
 	/// </summary>
-	public static readonly GroupUpdateType BoardPostEdit = RegisterPossibleValue("board_post_edit");
+	BoardPostEdit,
 
 	/// <summary>
 	/// Восстановление комментария в обсуждении
 	/// </summary>
-	public static readonly GroupUpdateType BoardPostRestore = RegisterPossibleValue("board_post_restore");
+	BoardPostRestore,
 
 	/// <summary>
 	/// Удаление комментария в обсуждении
 	/// </summary>
-	public static readonly GroupUpdateType BoardPostDelete = RegisterPossibleValue("board_post_delete");
+	BoardPostDelete,
 
 	/// <summary>
 	/// Добавление комментария к товару
 	/// </summary>
-	public static readonly GroupUpdateType MarketCommentNew = RegisterPossibleValue("market_comment_new");
+	MarketCommentNew,
 
 	/// <summary>
 	/// Редактирование комментария к товару
 	/// </summary>
-	public static readonly GroupUpdateType MarketCommentEdit = RegisterPossibleValue("market_comment_edit");
+	MarketCommentEdit,
 
 	/// <summary>
 	/// Восстановление комментария к товару
 	/// </summary>
-	public static readonly GroupUpdateType MarketCommentRestore = RegisterPossibleValue("market_comment_restore");
+	MarketCommentRestore,
 
 	/// <summary>
 	/// Удаление комментария к товару
 	/// </summary>
-	public static readonly GroupUpdateType MarketCommentDelete = RegisterPossibleValue("market_comment_delete");
+	MarketCommentDelete,
 
 	/// <summary>
 	/// Удаление участника из группы
 	/// </summary>
-	public static readonly GroupUpdateType GroupLeave = RegisterPossibleValue("group_leave");
+	GroupLeave,
 
 	/// <summary>
 	/// Добавление участника или заявки на вступление в сообщество
 	/// </summary>
-	public static readonly GroupUpdateType GroupJoin = RegisterPossibleValue("group_join");
+	GroupJoin,
 
 	/// <summary>
 	/// Добавление пользователя в черный список
 	/// </summary>
-	public static readonly GroupUpdateType UserBlock = RegisterPossibleValue("user_block");
+	UserBlock,
 
 	/// <summary>
 	/// Удаление пользователя из черного списка
 	/// </summary>
-	public static readonly GroupUpdateType UserUnblock = RegisterPossibleValue("user_unblock");
+	UserUnblock,
 
 	/// <summary>
 	/// Добавление голоса в публичном опросе
 	/// </summary>
-	public static readonly GroupUpdateType PollVoteNew = RegisterPossibleValue("poll_vote_new");
+	PollVoteNew,
 
 	/// <summary>
 	/// Редактирование списка руководителей
 	/// </summary>
-	public static readonly GroupUpdateType GroupOfficersEdit = RegisterPossibleValue("group_officers_edit");
+	GroupOfficersEdit,
 
 	/// <summary>
 	/// Изменение главного фото
 	/// </summary>
-	public static readonly GroupUpdateType GroupChangePhoto = RegisterPossibleValue("group_change_photo");
+	GroupChangePhoto,
 
 	/// <summary>
 	/// Подтверждение адреса сервера
 	/// </summary>
-	public static readonly GroupUpdateType Confirmation = RegisterPossibleValue("confirmation");
+	Confirmation,
 
 	/// <summary>
 	/// Cоздание подписки
 	/// </summary>
-	public static readonly GroupUpdateType DonutSubscriptionCreate = RegisterPossibleValue("donut_subscription_create");
+	DonutSubscriptionCreate,
 
 	/// <summary>
 	/// Продление подписки
 	/// </summary>
-	public static readonly GroupUpdateType DonutSubscriptionProlonged = RegisterPossibleValue("donut_subscription_prolonged");
+	DonutSubscriptionProlonged,
 
 	/// <summary>
 	/// Подписка истекла
 	/// </summary>
-	public static readonly GroupUpdateType DonutSubscriptionExpired = RegisterPossibleValue("donut_subscription_expired");
+	DonutSubscriptionExpired,
 
 	/// <summary>
 	/// Отмена подписки
 	/// </summary>
-	public static readonly GroupUpdateType DonutSubscriptionCanceled = RegisterPossibleValue("donut_subscription_cancelled");
+	DonutSubscriptionCanceled,
 
 	/// <summary>
 	/// Изменение стоимости подписки
 	/// </summary>
-	public static readonly GroupUpdateType DonutSubscriptionPriceChanged = RegisterPossibleValue("donut_subscription_price_changed");
+	DonutSubscriptionPriceChanged,
 
 	/// <summary>
 	/// Вывод денег
 	/// </summary>
-	public static readonly GroupUpdateType DonutMoneyWithdraw = RegisterPossibleValue("donut_money_withdraw");
+	DonutMoneyWithdraw,
 
 	/// <summary>
 	/// Ошибка вывода денег
 	/// </summary>
-	public static readonly GroupUpdateType DonutMoneyWithdrawError = RegisterPossibleValue("donut_money_withdraw_error");
+	DonutMoneyWithdrawError
 }
