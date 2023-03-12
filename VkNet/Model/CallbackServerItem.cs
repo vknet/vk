@@ -45,6 +45,5 @@ public class CallbackServerItem
 	/// Статус сервера
 	/// </summary>
 	[JsonProperty(propertyName: "status")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public CallbackServerStatus Status { get; set; }
 }
