@@ -8,6 +8,15 @@ namespace VkNet.Tests.Enum.StringEnums;
 public class StringEnumTests
 {
 	[Fact]
+	public void NullTest()
+	{
+		var result = Utilities.Deserialize<AppRatingType>("");
+
+		result.Should()
+			.Be(null);
+	}
+
+	[Fact]
 	public void VideoCatalogTypeTest()
 	{
 		Utilities.Deserialize<VideoCatalogType>("channel")
@@ -802,7 +811,7 @@ public class StringEnumTests
 
 		Utilities.Deserialize<MessageEventType>("show_snackbar")
 			.Should()
-			.Be(MessageEventType.SnowSnackbar);
+			.Be(MessageEventType.ShowSnackbar);
 	}
 
 	[Fact]
@@ -1119,6 +1128,46 @@ public class StringEnumTests
 		Utilities.Deserialize<ChangeNameStatus>("was_declined")
 			.Should()
 			.Be(ChangeNameStatus.WasDeclined);
+	}
+
+	[Fact]
+	public void AppWidgetTypeTest()
+	{
+		Utilities.Deserialize<AppWidgetType>("donation")
+			.Should()
+			.Be(AppWidgetType.Donation);
+
+		Utilities.Deserialize<AppWidgetType>("list")
+			.Should()
+			.Be(AppWidgetType.List);
+
+		Utilities.Deserialize<AppWidgetType>("match")
+			.Should()
+			.Be(AppWidgetType.Match);
+
+		Utilities.Deserialize<AppWidgetType>("matches")
+			.Should()
+			.Be(AppWidgetType.Matches);
+
+		Utilities.Deserialize<AppWidgetType>("table")
+			.Should()
+			.Be(AppWidgetType.Table);
+
+		Utilities.Deserialize<AppWidgetType>("text")
+			.Should()
+			.Be(AppWidgetType.Text);
+
+		Utilities.Deserialize<AppWidgetType>("tiles")
+			.Should()
+			.Be(AppWidgetType.Tiles);
+
+		Utilities.Deserialize<AppWidgetType>("compact_list")
+			.Should()
+			.Be(AppWidgetType.CompactList);
+
+		Utilities.Deserialize<AppWidgetType>("cover_list")
+			.Should()
+			.Be(AppWidgetType.CoverList);
 	}
 
 }
