@@ -27,7 +27,6 @@ public class PostSource
 	/// Название платформы, если оно доступно: android, iphone, wphone.
 	/// </summary>
 	[JsonProperty("platform", NullValueHandling = NullValueHandling.Ignore)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public Platform Platform { get; set; }
 
 	/// <summary>

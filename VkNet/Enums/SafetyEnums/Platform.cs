@@ -1,26 +1,30 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// </summary>
-[Serializable]
-public class Platform : SafetyEnum<Platform>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum Platform
 {
 	/// <summary>
 	/// Android.
 	/// </summary>
-	public static readonly Platform Android = RegisterPossibleValue(value: "android");
+	Android,
 
 	/// <summary>
 	/// iPhone.
 	/// </summary>
 
 	// ReSharper disable once InconsistentNaming
-	public static readonly Platform IPhone = RegisterPossibleValue(value: "iphone");
+	Iphone,
 
 	/// <summary>
-	/// wphone.
+	/// Windows Phone
 	/// </summary>
-	public static readonly Platform WindowsPhone = RegisterPossibleValue(value: "wphone");
+	Wphone
 }

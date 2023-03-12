@@ -579,4 +579,33 @@ public class StringEnumTests
 			.Be(PostSourceType.Sms);
 	}
 
+	[Fact]
+	public void PlatformTest()
+	{
+		// get test
+		Platform.Android.ToString().ToSnakeCase()
+			.Should()
+			.Be("android");
+
+		Platform.Iphone.ToString().ToSnakeCase()
+			.Should()
+			.Be("iphone");
+
+		Platform.Wphone.ToString().ToSnakeCase()
+			.Should()
+			.Be("wphone");
+
+		// parse test
+		Utilities.Deserialize<Platform>("android")
+			.Should()
+			.Be(Platform.Android);
+
+		Utilities.Deserialize<Platform>("iphone")
+			.Should()
+			.Be(Platform.Iphone);
+
+		Utilities.Deserialize<Platform>("wphone")
+			.Should()
+			.Be(Platform.Wphone);
+	}
 }

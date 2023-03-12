@@ -950,36 +950,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void PlatformTest()
-	{
-		// get test
-		Platform.Android.ToString()
-			.Should()
-			.Be("android");
-
-		Platform.IPhone.ToString()
-			.Should()
-			.Be("iphone");
-
-		Platform.WindowsPhone.ToString()
-			.Should()
-			.Be("wphone");
-
-		// parse test
-		Platform.FromJsonString("android")
-			.Should()
-			.Be(Platform.Android);
-
-		Platform.FromJsonString("iphone")
-			.Should()
-			.Be(Platform.IPhone);
-
-		Platform.FromJsonString("wphone")
-			.Should()
-			.Be(Platform.WindowsPhone);
-	}
-
-	[Fact]
 	public void PrivacyTest()
 	{
 		// get test
