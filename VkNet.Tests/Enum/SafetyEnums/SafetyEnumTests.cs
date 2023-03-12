@@ -736,36 +736,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void OccupationTypeTest()
-	{
-		// get test
-		OccupationType.Work.ToString()
-			.Should()
-			.Be("work");
-
-		OccupationType.School.ToString()
-			.Should()
-			.Be("school");
-
-		OccupationType.University.ToString()
-			.Should()
-			.Be("university");
-
-		// parse test
-		OccupationType.FromJsonString("work")
-			.Should()
-			.Be(OccupationType.Work);
-
-		OccupationType.FromJsonString("school")
-			.Should()
-			.Be(OccupationType.School);
-
-		OccupationType.FromJsonString("university")
-			.Should()
-			.Be(OccupationType.University);
-	}
-
-	[Fact]
 	public void PhotoAlbumTypeTest()
 	{
 		// get test

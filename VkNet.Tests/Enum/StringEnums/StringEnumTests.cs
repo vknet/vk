@@ -664,4 +664,20 @@ public class StringEnumTests
 			.Should()
 			.Be(PhotoFeedType.PhotoTag);
 	}
+
+	[Fact]
+	public void OccupationTypeTest()
+	{
+		Utilities.Deserialize<OccupationType>("work")
+			.Should()
+			.Be(OccupationType.Work);
+
+		Utilities.Deserialize<OccupationType>("school")
+			.Should()
+			.Be(OccupationType.School);
+
+		Utilities.Deserialize<OccupationType>("university")
+			.Should()
+			.Be(OccupationType.University);
+	}
 }
