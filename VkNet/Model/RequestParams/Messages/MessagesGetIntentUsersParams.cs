@@ -27,7 +27,6 @@ public class MessagesGetIntentUsersParams
 	/// Падеж для склонения имени и фамилии пользователя. Возможные значения: именительный – nom, родительный – gen, дательный – dat, винительный – acc, творительный – ins, предложный – abl. По умолчанию nom. список слов, разделенных через запятую
 	/// </summary>
 	[JsonProperty("name_case")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public NameCase NameCase { get; set; }
 
 	/// <summary>

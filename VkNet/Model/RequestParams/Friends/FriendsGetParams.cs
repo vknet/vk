@@ -82,7 +82,6 @@ public class FriendsGetParams
 	/// умолчанию nom. строка.
 	/// </summary>
 	[JsonProperty("name_case")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public NameCase NameCase { get; set; }
 
 	/// <summary>

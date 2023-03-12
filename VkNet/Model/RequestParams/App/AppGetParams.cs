@@ -59,6 +59,5 @@ public class AppGetParams
 	/// умолчанию nom.
 	/// </summary>
 	[JsonProperty(propertyName: "name_case")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public NameCase NameCase { get; set; }
 }
