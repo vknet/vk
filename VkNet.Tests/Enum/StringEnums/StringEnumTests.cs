@@ -680,4 +680,58 @@ public class StringEnumTests
 			.Should()
 			.Be(OccupationType.University);
 	}
+
+	[Fact]
+	public void NewsObjectTypesTest()
+	{
+		// get test
+		NewsObjectTypes.Wall.ToString().ToSnakeCase()
+			.Should()
+			.Be("wall");
+
+		NewsObjectTypes.Tag.ToString().ToSnakeCase()
+			.Should()
+			.Be("tag");
+
+		NewsObjectTypes.Profilephoto.ToString().ToSnakeCase()
+			.Should()
+			.Be("profilephoto");
+
+		NewsObjectTypes.Video.ToString().ToSnakeCase()
+			.Should()
+			.Be("video");
+
+		NewsObjectTypes.Photo.ToString().ToSnakeCase()
+			.Should()
+			.Be("photo");
+
+		NewsObjectTypes.Audio.ToString().ToSnakeCase()
+			.Should()
+			.Be("audio");
+
+		// parse test
+		Utilities.Deserialize<NewsObjectTypes>("wall")
+			.Should()
+			.Be(NewsObjectTypes.Wall);
+
+		Utilities.Deserialize<NewsObjectTypes>("tag")
+			.Should()
+			.Be(NewsObjectTypes.Tag);
+
+		Utilities.Deserialize<NewsObjectTypes>("profilephoto")
+			.Should()
+			.Be(NewsObjectTypes.Profilephoto);
+
+		Utilities.Deserialize<NewsObjectTypes>("video")
+			.Should()
+			.Be(NewsObjectTypes.Video);
+
+		Utilities.Deserialize<NewsObjectTypes>("photo")
+			.Should()
+			.Be(NewsObjectTypes.Photo);
+
+		Utilities.Deserialize<NewsObjectTypes>("audio")
+			.Should()
+			.Be(NewsObjectTypes.Audio);
+	}
 }

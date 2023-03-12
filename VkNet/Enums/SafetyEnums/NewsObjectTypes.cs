@@ -1,37 +1,43 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Названия списков новостей, которые необходимо получить.
 /// </summary>
-public sealed class NewsObjectTypes : SafetyEnum<NewsObjectTypes>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum NewsObjectTypes
 {
 	/// <summary>
 	/// Запись на стене.
 	/// </summary>
-	public static readonly NewsObjectTypes Wall = RegisterPossibleValue(value: "wall");
+	Wall,
 
 	/// <summary>
 	/// Отметка на фотографии.
 	/// </summary>
-	public static readonly NewsObjectTypes Tag = RegisterPossibleValue(value: "tag");
+	Tag,
 
 	/// <summary>
 	/// Фотография профиля.
 	/// </summary>
-	public static readonly NewsObjectTypes ProfilePhoto = RegisterPossibleValue(value: "profilephoto");
+	Profilephoto,
 
 	/// <summary>
 	/// Видеозапись.
 	/// </summary>
-	public static readonly NewsObjectTypes Video = RegisterPossibleValue(value: "video");
+	Video,
 
 	/// <summary>
 	/// Фотография.
 	/// </summary>
-	public static readonly NewsObjectTypes Photo = RegisterPossibleValue(value: "photo");
+	Photo,
 
 	/// <summary>
 	/// Аудиозапись.
 	/// </summary>
-	public static readonly NewsObjectTypes Audio = RegisterPossibleValue(value: "audio");
+	Audio
 }

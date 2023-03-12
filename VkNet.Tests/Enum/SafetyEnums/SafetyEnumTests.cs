@@ -628,60 +628,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void NewsObjectTypesTest()
-	{
-		// get test
-		NewsObjectTypes.Wall.ToString()
-			.Should()
-			.Be("wall");
-
-		NewsObjectTypes.Tag.ToString()
-			.Should()
-			.Be("tag");
-
-		NewsObjectTypes.ProfilePhoto.ToString()
-			.Should()
-			.Be("profilephoto");
-
-		NewsObjectTypes.Video.ToString()
-			.Should()
-			.Be("video");
-
-		NewsObjectTypes.Photo.ToString()
-			.Should()
-			.Be("photo");
-
-		NewsObjectTypes.Audio.ToString()
-			.Should()
-			.Be("audio");
-
-		// parse test
-		NewsObjectTypes.FromJsonString("wall")
-			.Should()
-			.Be(NewsObjectTypes.Wall);
-
-		NewsObjectTypes.FromJsonString("tag")
-			.Should()
-			.Be(NewsObjectTypes.Tag);
-
-		NewsObjectTypes.FromJsonString("profilephoto")
-			.Should()
-			.Be(NewsObjectTypes.ProfilePhoto);
-
-		NewsObjectTypes.FromJsonString("video")
-			.Should()
-			.Be(NewsObjectTypes.Video);
-
-		NewsObjectTypes.FromJsonString("photo")
-			.Should()
-			.Be(NewsObjectTypes.Photo);
-
-		NewsObjectTypes.FromJsonString("audio")
-			.Should()
-			.Be(NewsObjectTypes.Audio);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test
