@@ -510,44 +510,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void KeyboardButtonColorTest()
-	{
-		// get test
-		KeyboardButtonColor.Default.ToString()
-			.Should()
-			.Be("default");
-
-		KeyboardButtonColor.Negative.ToString()
-			.Should()
-			.Be("negative");
-
-		KeyboardButtonColor.Positive.ToString()
-			.Should()
-			.Be("positive");
-
-		KeyboardButtonColor.Primary.ToString()
-			.Should()
-			.Be("primary");
-
-		// parse test
-		KeyboardButtonColor.FromJsonString("default")
-			.Should()
-			.Be(KeyboardButtonColor.Default);
-
-		KeyboardButtonColor.FromJsonString("negative")
-			.Should()
-			.Be(KeyboardButtonColor.Negative);
-
-		KeyboardButtonColor.FromJsonString("positive")
-			.Should()
-			.Be(KeyboardButtonColor.Positive);
-
-		KeyboardButtonColor.FromJsonString("primary")
-			.Should()
-			.Be(KeyboardButtonColor.Primary);
-	}
-
-	[Fact]
 	public void KeyboardButtonActionTypeTest()
 	{
 		// get test

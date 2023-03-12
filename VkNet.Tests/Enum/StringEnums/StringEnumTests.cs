@@ -908,4 +908,42 @@ public class StringEnumTests
 			.Should()
 			.Be(LikeObjectType.MarketComment);
 	}
+
+	[Fact]
+	public void KeyboardButtonColorTest()
+	{
+		// get test
+		KeyboardButtonColor.Default.ToString().ToSnakeCase()
+			.Should()
+			.Be("default");
+
+		KeyboardButtonColor.Negative.ToString().ToSnakeCase()
+			.Should()
+			.Be("negative");
+
+		KeyboardButtonColor.Positive.ToString().ToSnakeCase()
+			.Should()
+			.Be("positive");
+
+		KeyboardButtonColor.Primary.ToString().ToSnakeCase()
+			.Should()
+			.Be("primary");
+
+		// parse test
+		Utilities.Deserialize<KeyboardButtonColor>("default")
+			.Should()
+			.Be(KeyboardButtonColor.Default);
+
+		Utilities.Deserialize<KeyboardButtonColor>("negative")
+			.Should()
+			.Be(KeyboardButtonColor.Negative);
+
+		Utilities.Deserialize<KeyboardButtonColor>("positive")
+			.Should()
+			.Be(KeyboardButtonColor.Positive);
+
+		Utilities.Deserialize<KeyboardButtonColor>("primary")
+			.Should()
+			.Be(KeyboardButtonColor.Primary);
+	}
 }

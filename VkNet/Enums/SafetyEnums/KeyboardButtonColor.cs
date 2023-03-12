@@ -1,3 +1,6 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -5,26 +8,28 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Цвет кнопки клавиатуры отправляемой ботом.
 /// </summary>
-public sealed class KeyboardButtonColor : SafetyEnum<KeyboardButtonColor>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum KeyboardButtonColor
 {
 	/// <summary>
 	/// обычная белая кнопка. #FFFFFF
 	/// </summary>
 	[DefaultValue]
-	public static readonly KeyboardButtonColor Default = RegisterPossibleValue(value: "default");
+	Default,
 
 	/// <summary>
 	/// синяя кнопка, обозначает основное действие. #5181B8
 	/// </summary>
-	public static readonly KeyboardButtonColor Primary = RegisterPossibleValue(value: "primary");
+	Primary,
 
 	/// <summary>
 	/// опасное действие, или отрицательное действие (отклонить, удалить и тд). #E64646
 	/// </summary>
-	public static readonly KeyboardButtonColor Negative = RegisterPossibleValue(value: "negative");
+	Negative,
 
 	/// <summary>
 	/// согласиться, подтвердить. #4BB34B
 	/// </summary>
-	public static readonly KeyboardButtonColor Positive = RegisterPossibleValue(value: "positive");
+	Positive
 }

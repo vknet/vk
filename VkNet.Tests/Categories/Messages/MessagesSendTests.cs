@@ -8,6 +8,7 @@ using VkNet.Exception;
 using VkNet.Model.Keyboard;
 using VkNet.Model.Template;
 using VkNet.Model.Template.Carousel;
+using VkNet.Utils;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
@@ -310,7 +311,7 @@ public class MessagesSendTests : MessagesBaseTests
 
 		var button = new MessageKeyboardButton
 		{
-			Color = KeyboardButtonColor.Primary,
+			Color = KeyboardButtonColor.Primary.ToString().ToSnakeCase(),
 			Action = new()
 			{
 				Type = KeyboardButtonActionType.Text,

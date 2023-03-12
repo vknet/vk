@@ -97,7 +97,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 
 		_currentLine.Add(new()
 		{
-			Color = color,
+			Color = color.ToString().ToSnakeCase(),
 			Action = buttonAction
 		});
 
@@ -105,7 +105,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 	}
 
 	/// <inheritdoc />
-	public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor color = default,
+	public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor? color = default,
 									string type = null)
 	{
 		color ??= KeyboardButtonColor.Default;
@@ -117,7 +117,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 
 		_currentLine.Add(new()
 		{
-			Color = color,
+			Color = color.ToString().ToSnakeCase(),
 			Action = new()
 			{
 				Label = label,
@@ -145,7 +145,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 
 		_currentLine.Add(new()
 		{
-			Color = addButtonParams.Color,
+			Color = addButtonParams.Color.ToString().ToSnakeCase(),
 			Action = new()
 			{
 				Label = addButtonParams.Label,

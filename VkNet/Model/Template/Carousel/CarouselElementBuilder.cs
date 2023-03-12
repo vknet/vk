@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Keyboard;
+using VkNet.Utils;
 
 namespace VkNet.Model.Template.Carousel;
 
@@ -56,7 +57,7 @@ public class CarouselElementBuilder : ICarouselElementBuilder
 	public CarouselElementBuilder(string type) => _type = type;
 
 	/// <inheritdoc />
-	public ICarouselElementBuilder AddButton(string label, string extra, KeyboardButtonColor color = default, string type = null)
+	public ICarouselElementBuilder AddButton(string label, string extra, KeyboardButtonColor? color = default, string type = null)
 	{
 		color ??= KeyboardButtonColor.Default;
 		type ??= _type ?? Button;
@@ -80,7 +81,7 @@ public class CarouselElementBuilder : ICarouselElementBuilder
 
 		Buttons.Add(new()
 		{
-			Color = color,
+			Color = color.ToString().ToSnakeCase(),
 			Action = new()
 			{
 				Label = label,

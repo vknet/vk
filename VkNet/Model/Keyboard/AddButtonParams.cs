@@ -34,7 +34,6 @@ public class AddButtonParams
 	/// <summary>
 	/// Цвет кнопки
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public KeyboardButtonColor Color { get; set; } = default;
 
 	/// <summary>
