@@ -19,8 +19,6 @@ public class FaveSetTagsParams
 	/// Для работы с объектами пользователя или сообщества используйте метод fave.setPageTags
 	/// </remarks>
 	[JsonProperty("item_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-
 	public FaveType ItemType { get; set; }
 
 	/// <summary>

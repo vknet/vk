@@ -1,39 +1,43 @@
-using VkNet.Enums.SafetyEnums;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Enums.Filters;
 
 /// <summary>
 /// Тип объекта, добавленного в закладки.
 /// </summary>
-public sealed class FaveType : SafetyEnum<FaveType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum FaveType
 {
 	/// <summary>
 	/// Запись на стене.
 	/// </summary>
-	public static readonly FaveType Post = RegisterPossibleValue("post");
+	Post,
 
 	/// <summary>
 	/// Видеозапись.
 	/// </summary>
-	public static readonly FaveType Video = RegisterPossibleValue("video");
+	Video,
 
 	/// <summary>
 	/// Товар.
 	/// </summary>
-	public static readonly FaveType Product = RegisterPossibleValue("product");
+	Product,
 
 	/// <summary>
 	/// Статья.
 	/// </summary>
-	public static readonly FaveType Article = RegisterPossibleValue("article");
+	Article,
 
 	/// <summary>
 	/// Ссылки.
 	/// </summary>
-	public static readonly FaveType Link = RegisterPossibleValue("link");
+	Link,
 
 	/// <summary>
 	/// Подкаст.
 	/// </summary>
-	public static readonly FaveType Podcast = RegisterPossibleValue("podcast");
+	Podcast
 }
