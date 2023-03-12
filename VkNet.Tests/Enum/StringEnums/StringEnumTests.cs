@@ -1206,4 +1206,23 @@ public class StringEnumTests
 			.Be(AppRequestType.Request);
 	}
 
+	[Fact]
+	public void AppPlatformsTest()
+	{
+		Utilities.Deserialize<AppPlatforms>("ios")
+			.Should()
+			.Be(AppPlatforms.Ios);
+
+		Utilities.Deserialize<AppPlatforms>("android")
+			.Should()
+			.Be(AppPlatforms.Android);
+
+		Utilities.Deserialize<AppPlatforms>("winphone")
+			.Should()
+			.Be(AppPlatforms.Winphone);
+
+		Utilities.Deserialize<AppPlatforms>("web")
+			.Should()
+			.Be(AppPlatforms.Web);
+	}
 }
