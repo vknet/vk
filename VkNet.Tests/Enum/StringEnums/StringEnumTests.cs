@@ -555,4 +555,28 @@ public class StringEnumTests
 			.Be(PostType.Suggest);
 	}
 
+	[Fact]
+	public void PostSourceTypeTest()
+	{
+		Utilities.Deserialize<PostSourceType>("vk")
+			.Should()
+			.Be(PostSourceType.Vk);
+
+		Utilities.Deserialize<PostSourceType>("widget")
+			.Should()
+			.Be(PostSourceType.Widget);
+
+		Utilities.Deserialize<PostSourceType>("api")
+			.Should()
+			.Be(PostSourceType.Api);
+
+		Utilities.Deserialize<PostSourceType>("rss")
+			.Should()
+			.Be(PostSourceType.Rss);
+
+		Utilities.Deserialize<PostSourceType>("sms")
+			.Should()
+			.Be(PostSourceType.Sms);
+	}
+
 }

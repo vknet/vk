@@ -1,4 +1,7 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Enums.SafetyEnums;
 
@@ -7,31 +10,32 @@ namespace VkNet.Enums.SafetyEnums;
 /// значение которых указываются в поле
 /// type:
 /// </summary>
-[Serializable]
-public class PostSourceType : SafetyEnum<PostSourceType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum PostSourceType
 {
 	/// <summary>
 	/// Запись создана через основной интерфейс сайта (http://vk.com/).
 	/// </summary>
-	public static readonly PostSourceType Vk = RegisterPossibleValue(value: "vk");
+	Vk,
 
 	/// <summary>
 	/// Запись создана через виджет на стороннем сайте.
 	/// </summary>
-	public static readonly PostSourceType Widget = RegisterPossibleValue(value: "widget");
+	Widget,
 
 	/// <summary>
 	/// Запись создана приложением через API.
 	/// </summary>
-	public static readonly PostSourceType Api = RegisterPossibleValue(value: "api");
+	Api,
 
 	/// <summary>
 	/// Запись создана посредством импорта RSS-ленты со стороннего сайта.
 	/// </summary>
-	public static readonly PostSourceType Rss = RegisterPossibleValue(value: "rss");
+	Rss,
 
 	/// <summary>
 	/// Запись создана посредством отправки SMS-сообщения на специальный номер.
 	/// </summary>
-	public static readonly PostSourceType Sms = RegisterPossibleValue(value: "sms");
+	Sms
 }

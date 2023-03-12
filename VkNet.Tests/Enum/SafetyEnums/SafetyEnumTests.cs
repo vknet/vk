@@ -980,52 +980,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void PostSourceTypeTest()
-	{
-		// get test
-		PostSourceType.Vk.ToString()
-			.Should()
-			.Be("vk");
-
-		PostSourceType.Widget.ToString()
-			.Should()
-			.Be("widget");
-
-		PostSourceType.Api.ToString()
-			.Should()
-			.Be("api");
-
-		PostSourceType.Rss.ToString()
-			.Should()
-			.Be("rss");
-
-		PostSourceType.Sms.ToString()
-			.Should()
-			.Be("sms");
-
-		// parse test
-		PostSourceType.FromJsonString("vk")
-			.Should()
-			.Be(PostSourceType.Vk);
-
-		PostSourceType.FromJsonString("widget")
-			.Should()
-			.Be(PostSourceType.Widget);
-
-		PostSourceType.FromJsonString("api")
-			.Should()
-			.Be(PostSourceType.Api);
-
-		PostSourceType.FromJsonString("rss")
-			.Should()
-			.Be(PostSourceType.Rss);
-
-		PostSourceType.FromJsonString("sms")
-			.Should()
-			.Be(PostSourceType.Sms);
-	}
-
-	[Fact]
 	public void PrivacyTest()
 	{
 		// get test

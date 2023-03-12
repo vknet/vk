@@ -21,7 +21,6 @@ public class PostSource
 	/// На данный момент поддерживаются следующие типы источников записи на стене.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public PostSourceType Type { get; set; }
 
 	/// <summary>
