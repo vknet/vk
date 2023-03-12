@@ -15,7 +15,6 @@ public class SearchHintsItem
 	/// тип объекта
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public SearchResultType Type { get; set; }
 
 	/// <summary>

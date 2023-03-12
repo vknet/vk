@@ -1,20 +1,24 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип объекта поиска
 /// </summary>
-[Serializable]
-public class SearchResultType : SafetyEnum<SearchResultType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum SearchResultType
 {
 	/// <summary>
 	/// Сообщество
 	/// </summary>
-	public static readonly SearchResultType Group = RegisterPossibleValue(value: "group");
+	Group,
 
 	/// <summary>
 	/// Профиль
 	/// </summary>
-	public static readonly SearchResultType Profile = RegisterPossibleValue(value: "profile");
+	Profile
 }
