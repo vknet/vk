@@ -43,7 +43,6 @@ public class LookalikeRequestItem
 	/// Cтатус объявления.
 	/// </summary>
 	[JsonProperty(propertyName: "status")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AdRequestStatus Status { get; set; }
 
 	/// <summary>

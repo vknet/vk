@@ -1,37 +1,43 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Текущий статус запроса
 /// </summary>
-public sealed class AdRequestStatus : SafetyEnum<AdRequestStatus>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum AdRequestStatus
 {
 	/// <summary>
 	/// Поиск выполняется.
 	/// </summary>
-	public static readonly AdRequestStatus SearchInProgress = RegisterPossibleValue("search_in_progress");
+	SearchInProgress,
 
 	/// <summary>
 	/// Поиск завершён.
 	/// </summary>
-	public static readonly AdRequestStatus SearchDone = RegisterPossibleValue("search_done");
+	SearchDone,
 
 	/// <summary>
 	/// Ошибка поиска.
 	/// </summary>
-	public static readonly AdRequestStatus SearchFailed = RegisterPossibleValue("search_failed");
+	SearchFailed,
 
 	/// <summary>
 	/// Сохранение выполняется.
 	/// </summary>
-	public static readonly AdRequestStatus SaveInProgress = RegisterPossibleValue("save_in_progress");
+	SaveInProgress,
 
 	/// <summary>
 	/// Сохранение завершено.
 	/// </summary>
-	public static readonly AdRequestStatus SaveDone = RegisterPossibleValue("save_done");
+	SaveDone,
 
 	/// <summary>
 	/// Ошибка сохранения.
 	/// </summary>
-	public static readonly AdRequestStatus SaveFailed = RegisterPossibleValue("save_failed");
+	SaveFailed
 }
