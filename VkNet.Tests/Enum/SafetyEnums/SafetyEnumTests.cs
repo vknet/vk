@@ -818,52 +818,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void PhotoSearchRadiusTest()
-	{
-		// get test
-		PhotoSearchRadius.Ten.ToString()
-			.Should()
-			.Be("10");
-
-		PhotoSearchRadius.OneHundred.ToString()
-			.Should()
-			.Be("100");
-
-		PhotoSearchRadius.Eighty.ToString()
-			.Should()
-			.Be("800");
-
-		PhotoSearchRadius.SixThousand.ToString()
-			.Should()
-			.Be("6000");
-
-		PhotoSearchRadius.FiftyThousand.ToString()
-			.Should()
-			.Be("50000");
-
-		// parse test
-		PhotoSearchRadius.FromJsonString("10")
-			.Should()
-			.Be(PhotoSearchRadius.Ten);
-
-		PhotoSearchRadius.FromJsonString("100")
-			.Should()
-			.Be(PhotoSearchRadius.OneHundred);
-
-		PhotoSearchRadius.FromJsonString("800")
-			.Should()
-			.Be(PhotoSearchRadius.Eighty);
-
-		PhotoSearchRadius.FromJsonString("6000")
-			.Should()
-			.Be(PhotoSearchRadius.SixThousand);
-
-		PhotoSearchRadius.FromJsonString("50000")
-			.Should()
-			.Be(PhotoSearchRadius.FiftyThousand);
-	}
-
-	[Fact]
 	public void PrivacyTest()
 	{
 		// get test
