@@ -1,5 +1,7 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -7,29 +9,29 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Типы нестандартных вопросов
 /// </summary>
-[Serializable]
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
-public class NonStandardQuestion : SafetyEnum<NonStandardQuestion>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum NonStandardQuestion
 {
 	/// <summary>
 	/// Простое текстовое поле (строка)
 	/// </summary>
-	public static readonly NonStandardQuestion Input = RegisterPossibleValue("input");
+	Input,
 
 	/// <summary>
 	/// Большое текстовое поле (абзац)
 	/// </summary>
-	public static readonly NonStandardQuestion Textarea = RegisterPossibleValue("textarea");
+	Textarea,
 
 	/// <summary>
 	/// Выбор одного из нескольких вариантов
 	/// </summary>
-	public static readonly NonStandardQuestion Radio = RegisterPossibleValue("radio");
+	Radio,
 
 	/// <summary>
 	/// Выбор нескольких вариантов
 	/// </summary>
-	public static readonly NonStandardQuestion Checkbox = RegisterPossibleValue("checkbox");
+	Checkbox,
 
 	/// <summary>
 	/// Выбор одного варианта из выпадающего списка
@@ -37,15 +39,15 @@ public class NonStandardQuestion : SafetyEnum<NonStandardQuestion>
 	/// <remarks>
 	/// options должен быть массивом структур, описывающих варианты ответа
 	/// </remarks>
-	public static readonly NonStandardQuestion Select = RegisterPossibleValue("select");
+	Select,
 
 	/// <summary>
 	/// Текст ответа
 	/// </summary>
-	public static readonly NonStandardQuestion Label = RegisterPossibleValue("label");
+	Label,
 
 	/// <summary>
 	/// Ключ ответа (необязательно)
 	/// </summary>
-	public static readonly NonStandardQuestion Key = RegisterPossibleValue("key");
+	Key
 }

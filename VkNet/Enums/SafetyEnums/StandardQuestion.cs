@@ -1,5 +1,7 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -8,47 +10,47 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Типы стандартных вопросов
 /// </summary>
-[Serializable]
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
-public class StandardQuestion : SafetyEnum<StandardQuestion>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum StandardQuestion
 {
 	/// <summary>
 	/// Имя
 	/// </summary>
-	public static readonly StandardQuestion FirstName = RegisterPossibleValue("first_name");
+	FirstName,
 
 	/// <summary>
 	/// Отчество
 	/// </summary>
-	public static readonly StandardQuestion PatronymicName = RegisterPossibleValue("patronymic_name");
+	PatronymicName,
 
 	/// <summary>
 	/// Фамилия
 	/// </summary>
-	public static readonly StandardQuestion LastName = RegisterPossibleValue("last_name");
+	LastName,
 
 	/// <summary>
 	/// Адрес электронной почты
 	/// </summary>
-	public static readonly StandardQuestion Email = RegisterPossibleValue("email");
+	Email,
 
 	/// <summary>
 	/// Номер телефона
 	/// </summary>
-	public static readonly StandardQuestion PhoneNumber = RegisterPossibleValue("phone_number");
+	PhoneNumber,
 
 	/// <summary>
 	/// Возраст
 	/// </summary>
-	public static readonly StandardQuestion Age = RegisterPossibleValue("age");
+	Age,
 
 	/// <summary>
 	/// День рождения
 	/// </summary>
-	public static readonly StandardQuestion Birthday = RegisterPossibleValue("birthday");
+	Birthday,
 
 	/// <summary>
 	/// Город и страна
 	/// </summary>
-	public static readonly StandardQuestion Location = RegisterPossibleValue("location");
+	Location
 }
