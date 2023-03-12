@@ -1,65 +1,59 @@
-﻿using VkNet.Utils;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Действия для сообщений
 /// </summary>
-public class MessageAction : SafetyEnum<MessageAction>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum MessageAction
 {
 	/// <summary>
 	/// обновлена фотография беседы;
 	/// </summary>
-	public static readonly MessageAction ChatPhotoUpdate = RegisterPossibleValue(value: "chat_photo_update");
+	ChatPhotoUpdate,
 
 	/// <summary>
 	/// удалена фотография беседы;
 	/// </summary>
-	public static readonly MessageAction ChatPhotoRemove = RegisterPossibleValue(value: "chat_photo_remove");
+	ChatPhotoRemove,
 
 	/// <summary>
 	/// создана беседа;
 	/// </summary>
-	public static readonly MessageAction ChatCreate = RegisterPossibleValue(value: "chat_create");
+	ChatCreate,
 
 	/// <summary>
 	/// обновлено название беседы;
 	/// </summary>
-	public static readonly MessageAction ChatTitleUpdate = RegisterPossibleValue(value: "chat_title_update");
+	ChatTitleUpdate,
 
 	/// <summary>
 	/// приглашен пользователь;
 	/// </summary>
-	public static readonly MessageAction ChatInviteUser = RegisterPossibleValue(value: "chat_invite_user");
+	ChatInviteUser,
 
 	/// <summary>
 	/// исключен пользователь.
 	/// </summary>
-	public static readonly MessageAction ChatKickUser = RegisterPossibleValue(value: "chat_kick_user");
+	ChatKickUser,
 
 	/// <summary>
 	/// закреплено сообщение;
 	/// </summary>
-	public static readonly MessageAction ChatPinMessage = RegisterPossibleValue(value: "chat_pin_message");
+	ChatPinMessage,
 
 	/// <summary>
 	/// откреплено сообщение.
 	/// </summary>
-	public static readonly MessageAction ChatUnpinMessage = RegisterPossibleValue(value: "chat_unpin_message");
+	ChatUnpinMessage,
 
 	/// <summary>
 	/// пользователь присоединился к беседе по ссылке.
 	/// </summary>
-	public static readonly MessageAction ChatInviteUserByLink = RegisterPossibleValue(value: "chat_invite_user_by_link");
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator MessageAction(VkResponse response) => response?.HasToken() != null
-		? FromJson(response: response)
-		: null;
+	ChatInviteUserByLink
 }
