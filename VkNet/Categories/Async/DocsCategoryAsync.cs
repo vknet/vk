@@ -76,6 +76,6 @@ public partial class DocsCategory
 			Edit(ownerId, docId, title, tags));
 
 	/// <inheritdoc />
-	public Task<UploadServerInfo> GetMessagesUploadServerAsync(long? peerId = null, DocMessageType type = null) =>
+	public Task<UploadServerInfo> GetMessagesUploadServerAsync(long? peerId = null, DocMessageType? type = null) =>
 		TypeHelper.TryInvokeMethodAsync(func: () => GetMessagesUploadServer(peerId, type));
 }

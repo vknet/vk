@@ -1,22 +1,28 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// тип документа
 /// </summary>
-public class DocMessageType : SafetyEnum<DocMessageType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum DocMessageType
 {
 	/// <summary>
 	/// DocMessageType
 	/// </summary>
-	public static readonly DocMessageType Doc = RegisterPossibleValue(value: "doc");
+	Doc,
 
 	/// <summary>
 	/// голосовое сообщение
 	/// </summary>
-	public static readonly DocMessageType AudioMessage = RegisterPossibleValue(value: "audio_message");
+	AudioMessage,
 
 	/// <summary>
 	/// Граффити
 	/// </summary>
-	public static readonly DocMessageType Graffiti = RegisterPossibleValue(value: "graffiti");
+	Graffiti
 }
