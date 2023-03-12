@@ -1225,4 +1225,20 @@ public class StringEnumTests
 			.Should()
 			.Be(AppPlatforms.Web);
 	}
+
+	[Fact]
+	public void MonthlyLimitTest()
+	{
+		Utilities.Deserialize<MonthlyLimit>("tier_2")
+			.Should()
+			.Be(MonthlyLimit.Tier2);
+
+		Utilities.Deserialize<MonthlyLimit>("tier_6")
+			.Should()
+			.Be(MonthlyLimit.Tier6);
+
+		Utilities.Deserialize<MonthlyLimit>("unlimited")
+			.Should()
+			.Be(MonthlyLimit.Unlimited);
+	}
 }
