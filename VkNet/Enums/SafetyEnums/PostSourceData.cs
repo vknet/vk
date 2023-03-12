@@ -1,4 +1,7 @@
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Enums.SafetyEnums;
 
@@ -6,31 +9,32 @@ namespace VkNet.Enums.SafetyEnums;
 /// Является опциональным и содержит следующие данные в зависимости от значения
 /// поля type:
 /// </summary>
-[Serializable]
-public class PostSourceData : SafetyEnum<PostSourceData>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum PostSourceData
 {
 	/// <summary>
 	/// Изменение статуса под именем пользователя.
 	/// </summary>
-	public static readonly PostSourceData ProfileActivity = RegisterPossibleValue(value: "profile_activity");
+	ProfileActivity,
 
 	/// <summary>
 	/// Изменение профильной фотографии пользователя.
 	/// </summary>
-	public static readonly PostSourceData ProfilePhoto = RegisterPossibleValue(value: "profile_photo");
+	ProfilePhoto,
 
 	/// <summary>
 	/// Виджет комментариев.
 	/// </summary>
-	public static readonly PostSourceData Comments = RegisterPossibleValue(value: "comments");
+	Comments,
 
 	/// <summary>
 	/// Виджет «Мне нравится».
 	/// </summary>
-	public static readonly PostSourceData Like = RegisterPossibleValue(value: "like");
+	Like,
 
 	/// <summary>
 	/// Виджет опросов.
 	/// </summary>
-	public static readonly PostSourceData Poll = RegisterPossibleValue(value: "poll");
+	Poll
 }

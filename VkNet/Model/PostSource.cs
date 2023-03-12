@@ -35,7 +35,6 @@ public class PostSource
 	/// значения поля type:
 	/// </summary>
 	[JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public PostSourceData Data { get; set; }
 
 	/// <summary>
