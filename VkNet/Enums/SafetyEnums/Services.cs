@@ -1,42 +1,48 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Сервисы
 /// </summary>
-public sealed class Services : SafetyEnum<Services>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum Services
 {
 	/// <summary>
 	/// The email
 	/// </summary>
-	public static readonly Services Email = RegisterPossibleValue(value: "email");
+	Email,
 
 	/// <summary>
 	/// The phone
 	/// </summary>
-	public static readonly Services Phone = RegisterPossibleValue(value: "phone");
+	Phone,
 
 	/// <summary>
 	/// The twitter
 	/// </summary>
-	public static readonly Services Twitter = RegisterPossibleValue(value: "twitter");
+	Twitter,
 
 	/// <summary>
 	/// The facebook
 	/// </summary>
-	public static readonly Services Facebook = RegisterPossibleValue(value: "facebook");
+	Facebook,
 
 	/// <summary>
 	/// The odnoklassniki
 	/// </summary>
-	public static readonly Services Odnoklassniki = RegisterPossibleValue(value: "odnoklassniki");
+	Odnoklassniki,
 
 	/// <summary>
 	/// The instagram
 	/// </summary>
-	public static readonly Services Instagram = RegisterPossibleValue(value: "instagram");
+	Instagram,
 
 	/// <summary>
 	/// The google
 	/// </summary>
-	public static readonly Services Google = RegisterPossibleValue(value: "google");
+	Google
 }

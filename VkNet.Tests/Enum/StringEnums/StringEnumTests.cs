@@ -394,4 +394,66 @@ public class StringEnumTests
 			.Should()
 			.Be(StoryLinkText.Write);
 	}
+
+	[Fact]
+	public void ServicesTest()
+	{
+		// get test
+		Services.Email.ToString().ToSnakeCase()
+			.Should()
+			.Be("email");
+
+		Services.Phone.ToString().ToSnakeCase()
+			.Should()
+			.Be("phone");
+
+		Services.Twitter.ToString().ToSnakeCase()
+			.Should()
+			.Be("twitter");
+
+		Services.Facebook.ToString().ToSnakeCase()
+			.Should()
+			.Be("facebook");
+
+		Services.Odnoklassniki.ToString().ToSnakeCase()
+			.Should()
+			.Be("odnoklassniki");
+
+		Services.Instagram.ToString().ToSnakeCase()
+			.Should()
+			.Be("instagram");
+
+		Services.Google.ToString().ToSnakeCase()
+			.Should()
+			.Be("google");
+
+		// parse test
+		Utilities.Deserialize<Services>("email")
+			.Should()
+			.Be(Services.Email);
+
+		Utilities.Deserialize<Services>("phone")
+			.Should()
+			.Be(Services.Phone);
+
+		Utilities.Deserialize<Services>("twitter")
+			.Should()
+			.Be(Services.Twitter);
+
+		Utilities.Deserialize<Services>("facebook")
+			.Should()
+			.Be(Services.Facebook);
+
+		Utilities.Deserialize<Services>("odnoklassniki")
+			.Should()
+			.Be(Services.Odnoklassniki);
+
+		Utilities.Deserialize<Services>("instagram")
+			.Should()
+			.Be(Services.Instagram);
+
+		Utilities.Deserialize<Services>("google")
+			.Should()
+			.Be(Services.Google);
+	}
 }

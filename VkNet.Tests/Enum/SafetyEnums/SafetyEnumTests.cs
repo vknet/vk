@@ -1232,68 +1232,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void ServicesTest()
-	{
-		// get test
-		Services.Email.ToString()
-			.Should()
-			.Be("email");
-
-		Services.Phone.ToString()
-			.Should()
-			.Be("phone");
-
-		Services.Twitter.ToString()
-			.Should()
-			.Be("twitter");
-
-		Services.Facebook.ToString()
-			.Should()
-			.Be("facebook");
-
-		Services.Odnoklassniki.ToString()
-			.Should()
-			.Be("odnoklassniki");
-
-		Services.Instagram.ToString()
-			.Should()
-			.Be("instagram");
-
-		Services.Google.ToString()
-			.Should()
-			.Be("google");
-
-		// parse test
-		Services.FromJsonString("email")
-			.Should()
-			.Be(Services.Email);
-
-		Services.FromJsonString("phone")
-			.Should()
-			.Be(Services.Phone);
-
-		Services.FromJsonString("twitter")
-			.Should()
-			.Be(Services.Twitter);
-
-		Services.FromJsonString("facebook")
-			.Should()
-			.Be(Services.Facebook);
-
-		Services.FromJsonString("odnoklassniki")
-			.Should()
-			.Be(Services.Odnoklassniki);
-
-		Services.FromJsonString("instagram")
-			.Should()
-			.Be(Services.Instagram);
-
-		Services.FromJsonString("google")
-			.Should()
-			.Be(Services.Google);
-	}
-
-	[Fact]
 	public void KeyboardButtonColorTest()
 	{
 		// get test
