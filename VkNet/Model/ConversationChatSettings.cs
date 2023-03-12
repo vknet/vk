@@ -35,7 +35,6 @@ public class ConversationChatSettings
 	/// Статус текущего пользователя.
 	/// </summary>
 	[JsonProperty("state")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public ConversationChatSettingsState State { get; set; }
 
 	/// <summary>
