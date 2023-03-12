@@ -67,7 +67,6 @@ public class App
 	/// Тип приложения:.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AppType Type { get; set; }
 
 	/// <summary>
