@@ -172,7 +172,7 @@ public partial class FaveCategory : IFaveCategory
 	}
 
 	/// <inheritdoc/>
-	public VkCollection<FaveGetPagesObject> GetPages(FavePageType type = null,
+	public VkCollection<FaveGetPagesObject> GetPages(FavePageType? type = null,
 													IEnumerable<string> fields = null,
 													ulong? offset = null,
 													ulong? count = null,

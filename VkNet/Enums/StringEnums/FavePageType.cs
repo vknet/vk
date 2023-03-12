@@ -1,22 +1,28 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип страницы.
 /// </summary>
-public class FavePageType : SafetyEnum<FavePageType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum FavePageType
 {
 	/// <summary>
 	/// Пользователи.
 	/// </summary>
-	public static readonly FavePageType Users = RegisterPossibleValue("users");
+	Users,
 
 	/// <summary>
 	/// Сообщества.
 	/// </summary>
-	public static readonly FavePageType Videos = RegisterPossibleValue("groups");
+	Groups,
 
 	/// <summary>
 	/// Топ сообществ и пользователей.
 	/// </summary>
-	public static readonly FavePageType Hints = RegisterPossibleValue("hints");
+	Hints
 }

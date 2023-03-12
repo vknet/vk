@@ -43,7 +43,7 @@ public partial class FaveCategory
 	public Task<VkCollection<FaveGetObject>> GetAsync(FaveGetParams @params) => TypeHelper.TryInvokeMethodAsync(() => Get(@params));
 
 	/// <inheritdoc/>
-	public Task<VkCollection<FaveGetPagesObject>> GetPagesAsync(FavePageType type = null,
+	public Task<VkCollection<FaveGetPagesObject>> GetPagesAsync(FavePageType? type = null,
 																IEnumerable<string> fields = null,
 																ulong? offset = null,
 																ulong? count = null,
