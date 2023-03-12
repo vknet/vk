@@ -15,7 +15,6 @@ public class OnlineStatus
 	/// Статус
 	/// </summary>
 	[JsonProperty("status")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public OnlineStatusType Status { get; set; }
 
 	/// <summary>

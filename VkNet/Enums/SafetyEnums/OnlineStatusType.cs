@@ -1,4 +1,7 @@
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -6,22 +9,23 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Информация о текущем роде занятия пользователя.
 /// </summary>
-[Serializable]
-public class OnlineStatusType : SafetyEnum<OnlineStatusType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum OnlineStatusType
 {
 	/// <summary>
 	/// Сообщество не онлайн
 	/// </summary>
 	[DefaultValue]
-	public static readonly OnlineStatusType None = RegisterPossibleValue("none");
+	None,
 
 	/// <summary>
 	/// Сообщество онлайн (отвечает мгновенно)
 	/// </summary>
-	public static readonly OnlineStatusType Online = RegisterPossibleValue("online");
+	Online,
 
 	/// <summary>
 	/// Сообщество отвечает быстро.
 	/// </summary>
-	public static readonly OnlineStatusType AnswerMark = RegisterPossibleValue("answer_mark");
+	AnswerMark
 }
