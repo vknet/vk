@@ -22,7 +22,6 @@ public class Relative
 	/// Тип родственника (sibling и т.п.)
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public RelativeType Type { get; set; }
 
 	/// <summary>

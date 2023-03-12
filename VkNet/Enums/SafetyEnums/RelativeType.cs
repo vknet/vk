@@ -1,35 +1,39 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип родственных связей.
 /// </summary>
-[Serializable]
-public sealed class RelativeType : SafetyEnum<RelativeType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum RelativeType
 {
 	/// <summary>
 	/// Брат/Сестра.
 	/// </summary>
-	public static readonly RelativeType Sibling = RegisterPossibleValue(value: "sibling");
+	Sibling,
 
 	/// <summary>
 	/// Родитель.
 	/// </summary>
-	public static readonly RelativeType Parent = RegisterPossibleValue(value: "parent");
+	Parent,
 
 	/// <summary>
 	/// Ребенок.
 	/// </summary>
-	public static readonly RelativeType Child = RegisterPossibleValue(value: "child");
+	Child,
 
 	/// <summary>
 	/// Дедушка/Бабушка.
 	/// </summary>
-	public static readonly RelativeType Grandparent = RegisterPossibleValue(value: "grandparent");
+	Grandparent,
 
 	/// <summary>
 	/// Внук.
 	/// </summary>
-	public static readonly RelativeType Grandchild = RegisterPossibleValue(value: "grandchild");
+	Grandchild
 }

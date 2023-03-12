@@ -1148,52 +1148,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void RelativeTypeTest()
-	{
-		// get test
-		RelativeType.Sibling.ToString()
-			.Should()
-			.Be("sibling");
-
-		RelativeType.Parent.ToString()
-			.Should()
-			.Be("parent");
-
-		RelativeType.Child.ToString()
-			.Should()
-			.Be("child");
-
-		RelativeType.Grandparent.ToString()
-			.Should()
-			.Be("grandparent");
-
-		RelativeType.Grandchild.ToString()
-			.Should()
-			.Be("grandchild");
-
-		// parse test
-		RelativeType.FromJsonString("sibling")
-			.Should()
-			.Be(RelativeType.Sibling);
-
-		RelativeType.FromJsonString("parent")
-			.Should()
-			.Be(RelativeType.Parent);
-
-		RelativeType.FromJsonString("child")
-			.Should()
-			.Be(RelativeType.Child);
-
-		RelativeType.FromJsonString("grandparent")
-			.Should()
-			.Be(RelativeType.Grandparent);
-
-		RelativeType.FromJsonString("grandchild")
-			.Should()
-			.Be(RelativeType.Grandchild);
-	}
-
-	[Fact]
 	public void KeyboardButtonColorTest()
 	{
 		// get test

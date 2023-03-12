@@ -494,4 +494,28 @@ public class StringEnumTests
 			.Should()
 			.Be(ReportType.Advertisment);
 	}
+
+	[Fact]
+	public void RelativeTypeTest()
+	{
+		Utilities.Deserialize<RelativeType>("sibling")
+			.Should()
+			.Be(RelativeType.Sibling);
+
+		Utilities.Deserialize<RelativeType>("parent")
+			.Should()
+			.Be(RelativeType.Parent);
+
+		Utilities.Deserialize<RelativeType>("child")
+			.Should()
+			.Be(RelativeType.Child);
+
+		Utilities.Deserialize<RelativeType>("grandparent")
+			.Should()
+			.Be(RelativeType.Grandparent);
+
+		Utilities.Deserialize<RelativeType>("grandchild")
+			.Should()
+			.Be(RelativeType.Grandchild);
+	}
 }
