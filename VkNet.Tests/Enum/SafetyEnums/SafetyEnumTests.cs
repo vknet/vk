@@ -192,52 +192,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void CommentObjectTypeTest()
-	{
-		// get test
-		CommentObjectType.Post.ToString()
-			.Should()
-			.Be("post");
-
-		CommentObjectType.Photo.ToString()
-			.Should()
-			.Be("photo");
-
-		CommentObjectType.Video.ToString()
-			.Should()
-			.Be("video");
-
-		CommentObjectType.Topic.ToString()
-			.Should()
-			.Be("topic");
-
-		CommentObjectType.Note.ToString()
-			.Should()
-			.Be("note");
-
-		// parse test
-		CommentObjectType.FromJsonString("post")
-			.Should()
-			.Be(CommentObjectType.Post);
-
-		CommentObjectType.FromJsonString("photo")
-			.Should()
-			.Be(CommentObjectType.Photo);
-
-		CommentObjectType.FromJsonString("video")
-			.Should()
-			.Be(CommentObjectType.Video);
-
-		CommentObjectType.FromJsonString("topic")
-			.Should()
-			.Be(CommentObjectType.Topic);
-
-		CommentObjectType.FromJsonString("note")
-			.Should()
-			.Be(CommentObjectType.Note);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test

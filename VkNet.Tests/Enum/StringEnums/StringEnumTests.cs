@@ -1072,4 +1072,28 @@ public class StringEnumTests
 			.Should()
 			.Be(CommentsSort.Desc);
 	}
+
+	[Fact]
+	public void CommentObjectTypeTest()
+	{
+		Utilities.Deserialize<CommentObjectType>("post")
+			.Should()
+			.Be(CommentObjectType.Post);
+
+		Utilities.Deserialize<CommentObjectType>("photo")
+			.Should()
+			.Be(CommentObjectType.Photo);
+
+		Utilities.Deserialize<CommentObjectType>("video")
+			.Should()
+			.Be(CommentObjectType.Video);
+
+		Utilities.Deserialize<CommentObjectType>("topic")
+			.Should()
+			.Be(CommentObjectType.Topic);
+
+		Utilities.Deserialize<CommentObjectType>("note")
+			.Should()
+			.Be(CommentObjectType.Note);
+	}
 }
