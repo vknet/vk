@@ -1,33 +1,40 @@
 using JetBrains.Annotations;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Enums.SafetyEnums;
 
-/// <inheritdoc />
-[UsedImplicitly]
-public class AdsLinkType : SafetyEnum<AdsLinkType>
+
+/// <summary>
+///
+/// </summary>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum AdsLinkType
 {
 	/// <summary>
 	/// Сообщество
 	/// </summary>
-	public static readonly AdsLinkType Community = RegisterPossibleValue(value: "community");
+	Community,
 
 	/// <summary>
 	/// Запись в сообществе;
 	/// </summary>
-	public static readonly AdsLinkType Post = RegisterPossibleValue(value: "post");
+	Post,
 
 	/// <summary>
 	/// Приложение ВКонтакте;
 	/// </summary>
-	public static readonly AdsLinkType Application = RegisterPossibleValue(value: "application");
+	Application,
 
 	/// <summary>
 	/// Видеозапись;
 	/// </summary>
-	public static readonly AdsLinkType Video = RegisterPossibleValue(value: "video");
+	Video,
 
 	/// <summary>
 	/// Внешний сайт.
 	/// </summary>
-	public static readonly AdsLinkType Site = RegisterPossibleValue(value: "site");
+	Site
 }

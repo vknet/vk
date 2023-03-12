@@ -21,7 +21,6 @@ public class CheckLinkParams
 	///
 	/// </summary>
 	[JsonProperty(propertyName: "link_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AdsLinkType LinkType { get; set; }
 
 	/// <summary>
