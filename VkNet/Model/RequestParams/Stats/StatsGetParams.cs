@@ -69,7 +69,6 @@ public class StatsGetParams
 	/// Фильтр для получения данных по конкретному блоку статистики сообщества.
 	/// </summary>
 	[JsonProperty("stats_groups")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public StatsGroups StatsGroups { get; set; }
 
 	/// <summary>

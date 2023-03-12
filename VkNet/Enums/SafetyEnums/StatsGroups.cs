@@ -1,5 +1,7 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -7,22 +9,22 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Группы статистики
 /// </summary>
-[Serializable]
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
-public class StatsGroups : SafetyEnum<StatsGroups>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum StatsGroups
 {
 	/// <summary>
 	/// Посетители
 	/// </summary>
-	public static readonly StatsGroups Visitors = RegisterPossibleValue("visitors");
+	Visitors,
 
 	/// <summary>
 	/// Посетители
 	/// </summary>
-	public static readonly StatsGroups Reach = RegisterPossibleValue("reach");
+	Reach,
 
 	/// <summary>
 	/// Посетители
 	/// </summary>
-	public static readonly StatsGroups Activity = RegisterPossibleValue("activity");
+	Activity
 }
