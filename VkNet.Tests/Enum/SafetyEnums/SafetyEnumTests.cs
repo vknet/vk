@@ -474,28 +474,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void LikesFilterTest()
-	{
-		// get test
-		LikesFilter.Likes.ToString()
-			.Should()
-			.Be("likes");
-
-		LikesFilter.Copies.ToString()
-			.Should()
-			.Be("copies");
-
-		// parse test
-		LikesFilter.FromJsonString("likes")
-			.Should()
-			.Be(LikesFilter.Likes);
-
-		LikesFilter.FromJsonString("copies")
-			.Should()
-			.Be(LikesFilter.Copies);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test

@@ -844,4 +844,16 @@ public class StringEnumTests
 			.Should()
 			.Be(MediaType.Graffiti);
 	}
+
+	[Fact]
+	public void LikesFilterTest()
+	{
+		Utilities.Deserialize<LikesFilter>("likes")
+			.Should()
+			.Be(LikesFilter.Likes);
+
+		Utilities.Deserialize<LikesFilter>("copies")
+			.Should()
+			.Be(LikesFilter.Copies);
+	}
 }

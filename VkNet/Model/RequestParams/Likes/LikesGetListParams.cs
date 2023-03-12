@@ -47,7 +47,6 @@ public struct LikesGetListParams
 	/// "Мне нравится" или только тех, которые
 	/// рассказали о нем друзьям. Параметр может принимать следующие значения:строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public LikesFilter Filter { get; set; }
 
 	/// <summary>

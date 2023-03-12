@@ -1,19 +1,25 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Указывает, следует ли вернуть всех пользователей, добавивших объект в список
 /// "Мне нравится" или только тех, которые
 /// рассказали о нем друзьям
 /// </summary>
-public sealed class LikesFilter : SafetyEnum<LikesFilter>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum LikesFilter
 {
 	/// <summary>
 	/// Возвращать информацию обо всех пользователях
 	/// </summary>
-	public static readonly LikesFilter Likes = RegisterPossibleValue(value: "likes");
+	Likes,
 
 	/// <summary>
 	/// Возвращать информацию только о пользователях, рассказавших об объекте друзьям.
 	/// </summary>
-	public static readonly LikesFilter Copies = RegisterPossibleValue(value: "copies");
+	Copies
 }
