@@ -122,7 +122,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 			{
 				Label = label,
 				Payload = payload,
-				Type = KeyboardButtonActionType.Text
+				Type = KeyboardButtonActionType.Text.ToString().ToSnakeCase()
 			}
 		});
 
@@ -154,7 +154,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 					? new Uri(addButtonParams.Link)
 					: null,
 				Hash = addButtonParams.Hash,
-				Type = addButtonParams.ActionType,
+				Type = addButtonParams.ActionType.ToString().ToSnakeCase(),
 				Intent = addButtonParams.Intent,
 				SubscribeId = addButtonParams.SubscribeId,
 				PeerId = addButtonParams.PeerId

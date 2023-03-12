@@ -314,7 +314,7 @@ public class MessagesSendTests : MessagesBaseTests
 			Color = KeyboardButtonColor.Primary.ToString().ToSnakeCase(),
 			Action = new()
 			{
-				Type = KeyboardButtonActionType.Text,
+				Type = KeyboardButtonActionType.Text.ToString().ToSnakeCase(),
 				Label = "Label"
 			}
 		};

@@ -946,4 +946,58 @@ public class StringEnumTests
 			.Should()
 			.Be(KeyboardButtonColor.Primary);
 	}
+
+	[Fact]
+	public void KeyboardButtonActionTypeTest()
+	{
+		// get test
+		KeyboardButtonActionType.Text.ToString().ToSnakeCase()
+			.Should()
+			.Be("text");
+
+		KeyboardButtonActionType.Location.ToString().ToSnakeCase()
+			.Should()
+			.Be("location");
+
+		KeyboardButtonActionType.OpenLink.ToString().ToSnakeCase()
+			.Should()
+			.Be("open_link");
+
+		KeyboardButtonActionType.OpenApp.ToString().ToSnakeCase()
+			.Should()
+			.Be("open_app");
+
+		KeyboardButtonActionType.Vkpay.ToString().ToSnakeCase()
+			.Should()
+			.Be("vkpay");
+
+		KeyboardButtonActionType.Callback.ToString().ToSnakeCase()
+			.Should()
+			.Be("callback");
+
+		// parse test
+		Utilities.Deserialize<KeyboardButtonActionType>("text")
+			.Should()
+			.Be(KeyboardButtonActionType.Text);
+
+		Utilities.Deserialize<KeyboardButtonActionType>("location")
+			.Should()
+			.Be(KeyboardButtonActionType.Location);
+
+		Utilities.Deserialize<KeyboardButtonActionType>("open_link")
+			.Should()
+			.Be(KeyboardButtonActionType.OpenLink);
+
+		Utilities.Deserialize<KeyboardButtonActionType>("open_app")
+			.Should()
+			.Be(KeyboardButtonActionType.OpenApp);
+
+		Utilities.Deserialize<KeyboardButtonActionType>("vkpay")
+			.Should()
+			.Be(KeyboardButtonActionType.Vkpay);
+
+		Utilities.Deserialize<KeyboardButtonActionType>("callback")
+			.Should()
+			.Be(KeyboardButtonActionType.Callback);
+	}
 }

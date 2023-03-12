@@ -86,7 +86,7 @@ public class CarouselElementBuilder : ICarouselElementBuilder
 			{
 				Label = label,
 				Payload = payload,
-				Type = KeyboardButtonActionType.Text
+				Type = KeyboardButtonActionType.Text.ToString().ToSnakeCase()
 			}
 		});
 

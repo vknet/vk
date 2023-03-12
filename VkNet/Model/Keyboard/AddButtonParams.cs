@@ -44,8 +44,7 @@ public class AddButtonParams
 	/// <summary>
 	/// Тип клавиши
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public KeyboardButtonActionType ActionType { get; set; }
+	public KeyboardButtonActionType? ActionType { get; set; }
 
 	/// <summary>
 	/// Любой из интентов, требующий подписки.

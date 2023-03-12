@@ -510,60 +510,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void KeyboardButtonActionTypeTest()
-	{
-		// get test
-		KeyboardButtonActionType.Text.ToString()
-			.Should()
-			.Be("text");
-
-		KeyboardButtonActionType.Location.ToString()
-			.Should()
-			.Be("location");
-
-		KeyboardButtonActionType.OpenLink.ToString()
-			.Should()
-			.Be("open_link");
-
-		KeyboardButtonActionType.VkApp.ToString()
-			.Should()
-			.Be("open_app");
-
-		KeyboardButtonActionType.VkPay.ToString()
-			.Should()
-			.Be("vkpay");
-
-		KeyboardButtonActionType.Callback.ToString()
-			.Should()
-			.Be("callback");
-
-		// parse test
-		KeyboardButtonActionType.FromJsonString("text")
-			.Should()
-			.Be(KeyboardButtonActionType.Text);
-
-		KeyboardButtonActionType.FromJsonString("location")
-			.Should()
-			.Be(KeyboardButtonActionType.Location);
-
-		KeyboardButtonActionType.FromJsonString("open_link")
-			.Should()
-			.Be(KeyboardButtonActionType.OpenLink);
-
-		KeyboardButtonActionType.FromJsonString("open_app")
-			.Should()
-			.Be(KeyboardButtonActionType.VkApp);
-
-		KeyboardButtonActionType.FromJsonString("vkpay")
-			.Should()
-			.Be(KeyboardButtonActionType.VkPay);
-
-		KeyboardButtonActionType.FromJsonString("callback")
-			.Should()
-			.Be(KeyboardButtonActionType.Callback);
-	}
-
-	[Fact]
 	public void MarketItemButtonTitleTest()
 	{
 		// get test

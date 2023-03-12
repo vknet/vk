@@ -1,50 +1,55 @@
-﻿using VkNet.Utils;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип кнопки сообщений.
 /// </summary>
-public class KeyboardButtonActionType : SafetyEnum<KeyboardButtonActionType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum KeyboardButtonActionType
 {
 	/// <summary>
 	/// Text
 	/// </summary>
 	[DefaultValue]
-	public static readonly KeyboardButtonActionType Text = RegisterPossibleValue("text");
+	Text,
 
 	/// <summary>
 	/// Location
 	/// </summary>
-	public static readonly KeyboardButtonActionType Location = RegisterPossibleValue("location");
+	Location,
 
 	/// <summary>
 	/// VkPay
 	/// </summary>
-	public static readonly KeyboardButtonActionType VkPay = RegisterPossibleValue("vkpay");
+	Vkpay,
 
 	/// <summary>
 	/// Vk Apps
 	/// </summary>
-	public static readonly KeyboardButtonActionType VkApp = RegisterPossibleValue("open_app");
+	OpenApp,
 
 	/// <summary>
 	/// Open Link
 	/// </summary>
-	public static readonly KeyboardButtonActionType OpenLink = RegisterPossibleValue("open_link");
+	OpenLink,
 
 	/// <summary>
 	/// Callback
 	/// </summary>
-	public static readonly KeyboardButtonActionType Callback = RegisterPossibleValue("callback");
+	Callback,
 
 	/// <summary>
 	/// Отписаться
 	/// </summary>
-	public static readonly KeyboardButtonActionType IntentUnsubscribe = RegisterPossibleValue("intent_unsubscribe");
+	IntentUnsubscribe,
 
 	/// <summary>
 	/// Подписаться
 	/// </summary>
-	public static readonly KeyboardButtonActionType IntentSubscribe = RegisterPossibleValue("intent_subscribe");
+	IntentSubscribe
 }

@@ -16,7 +16,7 @@ public class ClientInfo
 	/// <summary>
 	/// Массив кнопок, которые поддерживает клиент.
 	/// </summary>
-	[JsonProperty("button_actions", ItemConverterType = typeof(SafetyEnumJsonConverter))]
+	[JsonProperty("button_actions")]
 	public IEnumerable<KeyboardButtonActionType> ButtonActions { get; set; }
 
 	/// <summary>
