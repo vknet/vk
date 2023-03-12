@@ -1194,4 +1194,16 @@ public class StringEnumTests
 			.Be(AppSort.PopularWeek);
 	}
 
+	[Fact]
+	public void AppRequestTypeTest()
+	{
+		Utilities.Deserialize<AppRequestType>("invite")
+			.Should()
+			.Be(AppRequestType.Invite);
+
+		Utilities.Deserialize<AppRequestType>("request")
+			.Should()
+			.Be(AppRequestType.Request);
+	}
+
 }

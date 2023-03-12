@@ -1,17 +1,23 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип запроса для приложений
 /// </summary>
-public sealed class AppRequestType : SafetyEnum<AppRequestType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum AppRequestType
 {
 	/// <summary>
 	/// В случае если запрос отправляется пользователю, не установившему приложение
 	/// </summary>
-	public static readonly AppRequestType Invite = RegisterPossibleValue(value: "invite");
+	Invite,
 
 	/// <summary>
 	/// В случае если пользователь уже установил приложение
 	/// </summary>
-	public static readonly AppRequestType Request = RegisterPossibleValue(value: "request");
+	Request
 }

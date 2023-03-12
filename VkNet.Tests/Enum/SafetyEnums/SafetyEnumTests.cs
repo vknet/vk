@@ -69,28 +69,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void AppRequestTypeTest()
-	{
-		// get test
-		AppRequestType.Invite.ToString()
-			.Should()
-			.Be("invite");
-
-		AppRequestType.Request.ToString()
-			.Should()
-			.Be("request");
-
-		// parse test
-		AppRequestType.FromJsonString("invite")
-			.Should()
-			.Be(AppRequestType.Invite);
-
-		AppRequestType.FromJsonString("request")
-			.Should()
-			.Be(AppRequestType.Request);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test
