@@ -456,4 +456,42 @@ public class StringEnumTests
 			.Should()
 			.Be(Services.Google);
 	}
+
+	[Fact]
+	public void ReportTypeTest()
+	{
+		// get test
+		ReportType.Porn.ToString().ToSnakeCase()
+			.Should()
+			.Be("porn");
+
+		ReportType.Spam.ToString().ToSnakeCase()
+			.Should()
+			.Be("spam");
+
+		ReportType.Insult.ToString().ToSnakeCase()
+			.Should()
+			.Be("insult");
+
+		ReportType.Advertisment.ToString().ToSnakeCase()
+			.Should()
+			.Be("advertisment");
+
+		// parse test
+		Utilities.Deserialize<ReportType>("porn")
+			.Should()
+			.Be(ReportType.Porn);
+
+		Utilities.Deserialize<ReportType>("spam")
+			.Should()
+			.Be(ReportType.Spam);
+
+		Utilities.Deserialize<ReportType>("insult")
+			.Should()
+			.Be(ReportType.Insult);
+
+		Utilities.Deserialize<ReportType>("advertisment")
+			.Should()
+			.Be(ReportType.Advertisment);
+	}
 }

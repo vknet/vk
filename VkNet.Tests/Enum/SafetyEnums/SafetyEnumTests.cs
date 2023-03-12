@@ -1194,44 +1194,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void ReportTypeTest()
-	{
-		// get test
-		ReportType.Porn.ToString()
-			.Should()
-			.Be("porn");
-
-		ReportType.Spam.ToString()
-			.Should()
-			.Be("spam");
-
-		ReportType.Insult.ToString()
-			.Should()
-			.Be("insult");
-
-		ReportType.Advertisment.ToString()
-			.Should()
-			.Be("advertisment");
-
-		// parse test
-		ReportType.FromJsonString("porn")
-			.Should()
-			.Be(ReportType.Porn);
-
-		ReportType.FromJsonString("spam")
-			.Should()
-			.Be(ReportType.Spam);
-
-		ReportType.FromJsonString("insult")
-			.Should()
-			.Be(ReportType.Insult);
-
-		ReportType.FromJsonString("advertisment")
-			.Should()
-			.Be(ReportType.Advertisment);
-	}
-
-	[Fact]
 	public void KeyboardButtonColorTest()
 	{
 		// get test

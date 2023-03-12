@@ -1,27 +1,33 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип жалобы.
 /// </summary>
-public sealed class ReportType : SafetyEnum<ReportType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum ReportType
 {
 	/// <summary>
 	/// Порнография.
 	/// </summary>
-	public static readonly ReportType Porn = RegisterPossibleValue(value: "porn");
+	Porn,
 
 	/// <summary>
 	/// Рассылка спама.
 	/// </summary>
-	public static readonly ReportType Spam = RegisterPossibleValue(value: "spam");
+	Spam,
 
 	/// <summary>
 	/// Оскорбительное поведение.
 	/// </summary>
-	public static readonly ReportType Insult = RegisterPossibleValue(value: "insult");
+	Insult,
 
 	/// <summary>
 	/// Рекламная страница, засоряющая поиск.
 	/// </summary>
-	public static readonly ReportType Advertisment = RegisterPossibleValue(value: "advertisment");
+	Advertisment
 }
