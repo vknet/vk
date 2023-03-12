@@ -1,5 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -7,22 +9,22 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Тип интента, который требует подписку
 /// </summary>
-[Serializable]
-[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
-public class MessageIntent : SafetyEnum<MessageIntent>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum MessageIntent
 {
 	/// <summary>
 	/// Промо новость
 	/// </summary>
-	public static readonly MessageIntent PromoNewsletter = RegisterPossibleValue("promo_newsletter");
+	PromoNewsletter,
 
 	/// <summary>
 	/// Не промо новость.
 	/// </summary>
-	public static readonly MessageIntent NonPromoNewsletter = RegisterPossibleValue("non_promo_newsletter");
+	NonPromoNewsletter,
 
 	/// <summary>
 	/// Подтвержденное уведомление
 	/// </summary>
-	public static readonly MessageIntent ConfirmedNotification = RegisterPossibleValue("confirmed_notification");
+	ConfirmedNotification
 }

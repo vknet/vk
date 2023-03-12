@@ -20,7 +20,6 @@ public class MessagesGetIntentUsersParams
 	/// строка, обязательный параметр
 	/// </summary>
 	[JsonProperty("intent")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public MessageIntent Intent { get; set; }
 
 	/// <summary>
