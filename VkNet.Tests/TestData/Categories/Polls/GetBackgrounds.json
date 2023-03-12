@@ -1,5 +1,6 @@
 {
-  "response": [{
+  "response": [
+	{
     "angle": 225,
     "color": "6248cb",
     "id": 1,
@@ -12,7 +13,8 @@
       "position": 1
     }],
     "type": "gradient"
-  }, {
+  },
+	{
     "angle": 180,
     "color": "4b8642",
     "id": 2,

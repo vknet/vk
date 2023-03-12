@@ -1,20 +1,24 @@
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип фона опроса.
 /// </summary>
-[Serializable]
-public class PollBackgroundType : SafetyEnum<PollBackgroundType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum PollBackgroundType
 {
 	/// <summary>
 	/// Gradient.
 	/// </summary>
-	public static readonly PollBackgroundType Gradient = RegisterPossibleValue("gradient");
+	Gradient,
 
 	/// <summary>
 	/// tile.
 	/// </summary>
-	public static readonly PollBackgroundType Tile = RegisterPossibleValue("tile");
+	Tile
 }
