@@ -1033,4 +1033,16 @@ public class StringEnumTests
 			.Be(FriendsFilter.MutualContacts);
 	}
 
+	[Fact]
+	public void FeedTypeTest()
+	{
+		Utilities.Deserialize<FeedType>("photo")
+			.Should()
+			.Be(FeedType.Photo);
+
+		Utilities.Deserialize<FeedType>("photo_tag")
+			.Should()
+			.Be(FeedType.PhotoTag);
+	}
+
 }

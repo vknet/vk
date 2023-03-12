@@ -49,7 +49,6 @@ public class PhotoGetParams
 	/// либо только фотографий, на которых он был отмечен. Может принимать значения
 	/// photo, photo_tag.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public FeedType FeedType { get; set; }
 
 	/// <summary>

@@ -1,17 +1,23 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Порядок сортировки членов группы.
 /// </summary>
-public sealed class FeedType : SafetyEnum<FeedType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum FeedType
 {
 	/// <summary>
 	/// По возрастанию численных значений идентификаторов.
 	/// </summary>
-	public static readonly FeedType Photo = RegisterPossibleValue(value: "photo");
+	Photo,
 
 	/// <summary>
 	/// По убыванию численных значений идентификаторов.
 	/// </summary>
-	public static readonly FeedType PhotoTag = RegisterPossibleValue(value: "photo_tag");
+	PhotoTag
 }

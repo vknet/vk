@@ -290,28 +290,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void FeedTypeTest()
-	{
-		// get test
-		FeedType.Photo.ToString()
-			.Should()
-			.Be("photo");
-
-		FeedType.PhotoTag.ToString()
-			.Should()
-			.Be("photo_tag");
-
-		// parse test
-		FeedType.FromJsonString("photo")
-			.Should()
-			.Be(FeedType.Photo);
-
-		FeedType.FromJsonString("photo_tag")
-			.Should()
-			.Be(FeedType.PhotoTag);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test
