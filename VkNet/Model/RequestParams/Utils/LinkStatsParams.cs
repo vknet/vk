@@ -27,7 +27,6 @@ public class LinkStatsParams
 	/// Единица времени для подсчета статистики.
 	/// </summary>
 	[JsonProperty(propertyName: "interval")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public LinkStatInterval Interval { get; set; }
 
 	/// <summary>

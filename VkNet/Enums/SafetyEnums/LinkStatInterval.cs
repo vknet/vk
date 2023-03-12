@@ -1,35 +1,40 @@
-﻿using VkNet.Utils;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Единица времени для подсчета статистики.
 /// </summary>
-public class LinkStatInterval : SafetyEnum<LinkStatInterval>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum LinkStatInterval
 {
 	/// <summary>
 	/// Час
 	/// </summary>
-	public static readonly LinkStatInterval Hour = RegisterPossibleValue(value: "hour");
+	Hour,
 
 	/// <summary>
 	/// День
 	/// </summary>
 	[DefaultValue]
-	public static readonly LinkStatInterval Day = RegisterPossibleValue(value: "day");
+	Day,
 
 	/// <summary>
 	/// Неделя
 	/// </summary>
-	public static readonly LinkStatInterval Week = RegisterPossibleValue(value: "week");
+	Week,
 
 	/// <summary>
 	/// Месяц
 	/// </summary>
-	public static readonly LinkStatInterval Month = RegisterPossibleValue(value: "month");
+	Month,
 
 	/// <summary>
 	/// Все время с момента создания ссылки
 	/// </summary>
-	public static readonly LinkStatInterval Forever = RegisterPossibleValue(value: "forever");
+	Forever
 }
