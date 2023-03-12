@@ -1,49 +1,49 @@
-﻿using System;
+﻿using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
 
-/// <inheritdoc />
 /// <summary>
 /// Месячные ограничения
 /// </summary>
-[Serializable]
-[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
-public class MonthlyLimit : SafetyEnum<MonthlyLimit>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(LowerCaseWithDigitNamingStrategy))]
+public enum MonthlyLimit
 {
 	/// <summary>
 	/// 1 месяц.
 	/// </summary>
-	public static readonly MonthlyLimit Tier1 = RegisterPossibleValue(value: "tier_1");
+	Tier1,
 
 	/// <summary>
 	/// 2 месяца.
 	/// </summary>
-	public static readonly MonthlyLimit Tier2 = RegisterPossibleValue(value: "tier_2");
+	Tier2,
 
 	/// <summary>
 	/// 3 месяца.
 	/// </summary>
-	public static readonly MonthlyLimit Tier3 = RegisterPossibleValue(value: "tier_3");
+	Tier3,
 
 	/// <summary>
 	/// 4 месяца.
 	/// </summary>
-	public static readonly MonthlyLimit Tier4 = RegisterPossibleValue(value: "tier_4");
+	Tier4,
 
 	/// <summary>
 	/// 5 месяцев.
 	/// </summary>
-	public static readonly MonthlyLimit Tier5 = RegisterPossibleValue(value: "tier_5");
+	Tier5,
 
 	/// <summary>
 	/// 6 месяцев.
 	/// </summary>
-	public static readonly MonthlyLimit Tier6 = RegisterPossibleValue(value: "tier_6");
+	Tier6,
 
 	/// <summary>
 	/// Безлимитный доступ.
 	/// </summary>
-	public static readonly MonthlyLimit Unlimited = RegisterPossibleValue(value: "unlimited");
+	Unlimited
 }

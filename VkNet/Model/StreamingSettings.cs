@@ -15,6 +15,5 @@ public class StreamingSettings
 	/// Месячные ограничения
 	/// </summary>
 	[JsonProperty(propertyName: "monthly_limit")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public MonthlyLimit MonthlyLimit { get; set; }
 }

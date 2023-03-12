@@ -11,10 +11,10 @@ namespace VkNet.Categories;
 public partial class StreamingCategory
 {
 	/// <inheritdoc />
-	public Task<StreamingServerUrl> GetServerUrlAsync() => TypeHelper.TryInvokeMethodAsync(func: () => GetServerUrl());
+	public Task<StreamingServerUrl> GetServerUrlAsync() => TypeHelper.TryInvokeMethodAsync(func: GetServerUrl);
 
 	/// <inheritdoc />
-	public Task<StreamingSettings> GetSettingsAsync() => TypeHelper.TryInvokeMethodAsync(func: () => GetSettings());
+	public Task<StreamingSettings> GetSettingsAsync() => TypeHelper.TryInvokeMethodAsync(func: GetSettings);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<StreamingStats>> GetStatsAsync(string type
