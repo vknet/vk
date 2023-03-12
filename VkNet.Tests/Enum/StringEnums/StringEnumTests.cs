@@ -530,4 +530,29 @@ public class StringEnumTests
 			.Should()
 			.Be(PostTypeOrder.Copy);
 	}
+
+	[Fact]
+	public void PostTypeTest()
+	{
+		Utilities.Deserialize<PostType>("post")
+			.Should()
+			.Be(PostType.Post);
+
+		Utilities.Deserialize<PostType>("copy")
+			.Should()
+			.Be(PostType.Copy);
+
+		Utilities.Deserialize<PostType>("reply")
+			.Should()
+			.Be(PostType.Reply);
+
+		Utilities.Deserialize<PostType>("postpone")
+			.Should()
+			.Be(PostType.Postpone);
+
+		Utilities.Deserialize<PostType>("suggest")
+			.Should()
+			.Be(PostType.Suggest);
+	}
+
 }

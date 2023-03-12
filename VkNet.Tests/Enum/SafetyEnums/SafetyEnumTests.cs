@@ -1026,52 +1026,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void PostTypeTest()
-	{
-		// get test
-		PostType.Post.ToString()
-			.Should()
-			.Be("post");
-
-		PostType.Copy.ToString()
-			.Should()
-			.Be("copy");
-
-		PostType.Reply.ToString()
-			.Should()
-			.Be("reply");
-
-		PostType.Postpone.ToString()
-			.Should()
-			.Be("postpone");
-
-		PostType.Suggest.ToString()
-			.Should()
-			.Be("suggest");
-
-		// parse test
-		PostType.FromJsonString("post")
-			.Should()
-			.Be(PostType.Post);
-
-		PostType.FromJsonString("copy")
-			.Should()
-			.Be(PostType.Copy);
-
-		PostType.FromJsonString("reply")
-			.Should()
-			.Be(PostType.Reply);
-
-		PostType.FromJsonString("postpone")
-			.Should()
-			.Be(PostType.Postpone);
-
-		PostType.FromJsonString("suggest")
-			.Should()
-			.Be(PostType.Suggest);
-	}
-
-	[Fact]
 	public void PrivacyTest()
 	{
 		// get test
