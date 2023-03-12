@@ -910,34 +910,4 @@ public class SafetyEnumsTest
 			.Should()
 			.Be(AppWidgetType.CoverList);
 	}
-
-	[Fact]
-	public void MessageEventTypeTest()
-	{
-		// get test
-		MessageEventType.OpenApp.ToString()
-			.Should()
-			.Be("open_app");
-
-		MessageEventType.OpenLink.ToString()
-			.Should()
-			.Be("open_link");
-
-		MessageEventType.SnowSnackbar.ToString()
-			.Should()
-			.Be("show_snackbar");
-
-		// parse test
-		MessageEventType.FromJsonString("open_app")
-			.Should()
-			.Be(MessageEventType.OpenApp);
-
-		MessageEventType.FromJsonString("open_link")
-			.Should()
-			.Be(MessageEventType.OpenLink);
-
-		MessageEventType.FromJsonString("show_snackbar")
-			.Should()
-			.Be(MessageEventType.SnowSnackbar);
-	}
 }

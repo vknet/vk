@@ -1,5 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -7,22 +9,22 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Типы действий, которые должны произойти после нажатия на кнопку
 /// </summary>
-[Serializable]
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
-public class MessageEventType : SafetyEnum<MessageEventType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum MessageEventType
 {
 	/// <summary>
 	/// показать исчезающее сообщение.
 	/// </summary>
-	public static readonly MessageEventType SnowSnackbar = RegisterPossibleValue("show_snackbar");
+	SnowSnackbar,
 
 	/// <summary>
 	/// открыть ссылку. Осуществляется переход по указанному адресу.
 	/// </summary>
-	public static readonly MessageEventType OpenLink = RegisterPossibleValue("open_link");
+	OpenLink,
 
 	/// <summary>
 	/// открыть VK Mini App. Происходит переход в мини-приложение.
 	/// </summary>
-	public static readonly MessageEventType OpenApp = RegisterPossibleValue("open_app");
+	OpenApp
 }

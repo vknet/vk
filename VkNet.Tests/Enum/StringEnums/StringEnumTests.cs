@@ -788,4 +788,20 @@ public class StringEnumTests
 			.Should()
 			.Be(NameCase.Abl);
 	}
+
+	[Fact]
+	public void MessageEventTypeTest()
+	{
+		Utilities.Deserialize<MessageEventType>("open_app")
+			.Should()
+			.Be(MessageEventType.OpenApp);
+
+		Utilities.Deserialize<MessageEventType>("open_link")
+			.Should()
+			.Be(MessageEventType.OpenLink);
+
+		Utilities.Deserialize<MessageEventType>("show_snackbar")
+			.Should()
+			.Be(MessageEventType.SnowSnackbar);
+	}
 }
