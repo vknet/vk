@@ -1,11 +1,16 @@
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Текст ссылки для перехода из истории (только для историй сообществ).
-/// </summary>.ToSnakeCase()
+/// </summary>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
 public enum StoryLinkText
 {
 	/// <summary>
