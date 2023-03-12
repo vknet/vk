@@ -1,5 +1,7 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -7,27 +9,27 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Тип актиновсти в диалоге.
 /// </summary>
-[Serializable]
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
-public class MessageActivityType : SafetyEnum<MessageActivityType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum MessageActivityType
 {
 	/// <summary>
 	/// Пользователь начал набирать текст.
 	/// </summary>
-	public static readonly MessageActivityType Typing = RegisterPossibleValue("typing");
+	Typing,
 
 	/// <summary>
 	/// Пользователь записывает голосовое сообщение.
 	/// </summary>
-	public static readonly MessageActivityType AudioMessage = RegisterPossibleValue("audiomessage");
+	Audiomessage,
 
 	/// <summary>
 	/// Пользователь отправляет фото.
 	/// </summary>
-	public static readonly MessageActivityType Photo = RegisterPossibleValue("photo");
+	Photo,
 
 	/// <summary>
 	/// Пользователь отправляет видео.
 	/// </summary>
-	public static readonly MessageActivityType Video = RegisterPossibleValue("video");
+	Video
 }
