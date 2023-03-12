@@ -28,6 +28,5 @@ public class GetStatisticsResult
 	/// обязательный параметр, строка
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public IdsType Type { get; set; }
 }

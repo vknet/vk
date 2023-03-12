@@ -1,17 +1,23 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Права пользователя в рекламном кабинете.
 /// </summary>
-public sealed class IdsType : SafetyEnum<IdsType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum IdsType
 {
 	/// <summary>
 	/// Объявление.
 	/// </summary>
-	public static readonly IdsType Ad = RegisterPossibleValue(value: "ad");
+	Ad,
 
 	/// <summary>
 	/// Кампания.
 	/// </summary>
-	public static readonly IdsType Campaign = RegisterPossibleValue(value: "campaign");
+	Campaign
 }
