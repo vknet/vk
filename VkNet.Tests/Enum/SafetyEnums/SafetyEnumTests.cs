@@ -260,36 +260,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void DisplayTest()
-	{
-		// get test
-		Display.Page.ToString()
-			.Should()
-			.Be("page");
-
-		Display.Popup.ToString()
-			.Should()
-			.Be("popup");
-
-		Display.Mobile.ToString()
-			.Should()
-			.Be("mobile");
-
-		// parse test
-		Display.FromJsonString("page")
-			.Should()
-			.Be(Display.Page);
-
-		Display.FromJsonString("popup")
-			.Should()
-			.Be(Display.Popup);
-
-		Display.FromJsonString("mobile")
-			.Should()
-			.Be(Display.Mobile);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test

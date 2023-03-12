@@ -66,8 +66,7 @@ public class ApiAuthParams : IApiAuthParams
 	public bool? ForceSms { get; set; }
 
 	/// <inheritdoc />
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public Display Display { get; set; }
+	public string Display { get; set; }
 
 	/// <inheritdoc />
 	public Uri RedirectUri { get; set; }

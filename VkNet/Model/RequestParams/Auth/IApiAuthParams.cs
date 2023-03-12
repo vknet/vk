@@ -114,8 +114,7 @@ public interface IApiAuthParams
 	/// <summary>
 	/// Указывает тип отображения страницы авторизации.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	Display Display { get; set; }
+	string Display { get; set; }
 
 	/// <summary>
 	/// Адрес, на который будет переадресован пользователь после прохождения

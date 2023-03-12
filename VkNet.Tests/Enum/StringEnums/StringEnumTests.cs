@@ -1045,4 +1045,19 @@ public class StringEnumTests
 			.Be(FeedType.PhotoTag);
 	}
 
+	[Fact]
+	public void DisplayTest()
+	{
+		Utilities.Deserialize<Display>("page")
+			.Should()
+			.Be(Display.Page);
+
+		Utilities.Deserialize<Display>("popup")
+			.Should()
+			.Be(Display.Popup);
+
+		Utilities.Deserialize<Display>("mobile")
+			.Should()
+			.Be(Display.Mobile);
+	}
 }

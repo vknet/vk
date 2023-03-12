@@ -1,22 +1,28 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Возможные значения параметра display, задающего внешний вид окна авторизации.
 /// </summary>
-public sealed class Display : SafetyEnum<Display>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum Display
 {
 	/// <summary>
 	/// Форма авторизации в отдельном окне;
 	/// </summary>
-	public static readonly Display Page = RegisterPossibleValue(value: "page");
+	Page,
 
 	/// <summary>
 	/// Всплывающее окно.
 	/// </summary>
-	public static readonly Display Popup = RegisterPossibleValue(value: "popup");
+	Popup,
 
 	/// <summary>
 	/// Для мобильных устройств.
 	/// </summary>
-	public static readonly Display Mobile = RegisterPossibleValue(value: "mobile");
+	Mobile
 }
