@@ -83,7 +83,6 @@ public class ApiAuthParams : IApiAuthParams
 	public GrantType GrantType { get; set; }
 
 	/// <inheritdoc />
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public ResponseType ResponseType { get; set; }
 
 	/// <inheritdoc />

@@ -32,7 +32,7 @@ public class ImplicitFlowTests
 		builder.Append($"redirect_uri={Constants.DefaultRedirectUri}&");
 		builder.Append($"display={display}&");
 		builder.Append($"scope={scope.ToUInt64()}&");
-		builder.Append($"response_type={ResponseType.Token}&");
+		builder.Append($"response_type={ResponseType.Token.ToString().ToSnakeCase()}&");
 		builder.Append("v=5.92&");
 		builder.Append($"state={state}&");
 		builder.Append("revoke=1");

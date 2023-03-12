@@ -91,7 +91,7 @@ public partial class Browser : IBrowser
 		builder.Append($"redirect_uri={Constants.DefaultRedirectUri}&");
 		builder.Append($"display={Display.Mobile}&");
 		builder.Append($"scope={_authParams.Settings}&");
-		builder.Append($"response_type={ResponseType.Token}&");
+		builder.Append($"response_type={ResponseType.Token.ToString().ToSnakeCase()}&");
 		builder.Append($"v={_versionManager.Version}&");
 		builder.Append("state=123456&");
 		builder.Append("revoke=1");

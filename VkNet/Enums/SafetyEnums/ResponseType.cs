@@ -1,17 +1,23 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип ответа, который необходимо получить.
 /// </summary>
-public class ResponseType : SafetyEnum<ResponseType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum ResponseType
 {
 	/// <summary>
 	/// Токен.
 	/// </summary>
-	public static readonly ResponseType Token = RegisterPossibleValue("token");
+	Token,
 
 	/// <summary>
 	/// Код.
 	/// </summary>
-	public static readonly ResponseType Сode = RegisterPossibleValue("code");
+	Сode
 }

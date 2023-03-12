@@ -142,7 +142,6 @@ public interface IApiAuthParams
 	/// <summary>
 	/// Тип ответа, который Вы хотите получить.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	ResponseType ResponseType { get; set; }
 
 	/// <summary>
