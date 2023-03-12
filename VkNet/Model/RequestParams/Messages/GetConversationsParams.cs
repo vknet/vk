@@ -16,7 +16,6 @@ public class GetConversationsParams
 	/// Фильтр
 	/// </summary>
 	[JsonProperty("filter")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public GetConversationFilter Filter { get; set; }
 
 	/// <summary>

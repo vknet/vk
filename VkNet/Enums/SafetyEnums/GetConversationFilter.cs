@@ -1,4 +1,7 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -6,27 +9,28 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Фильтр беседы
 /// </summary>
-[Serializable]
-public class GetConversationFilter : SafetyEnum<GetConversationFilter>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum GetConversationFilter
 {
 	/// <summary>
 	/// Все беседы.
 	/// </summary>
 	[DefaultValue]
-	public static readonly GetConversationFilter All = RegisterPossibleValue(value: "all");
+	All,
 
 	/// <summary>
 	/// Беседы с непрочитанными сообщениями;
 	/// </summary>
-	public static readonly GetConversationFilter Unread = RegisterPossibleValue(value: "unread");
+	Unread,
 
 	/// <summary>
 	/// Беседы, помеченные как важные (только для сообщений сообществ);
 	/// </summary>
-	public static readonly GetConversationFilter Important = RegisterPossibleValue(value: "important");
+	Important,
 
 	/// <summary>
 	/// Беседы, помеченные как неотвеченные (только для сообщений сообществ).
 	/// </summary>
-	public static readonly GetConversationFilter Unanswered = RegisterPossibleValue(value: "unanswered");
+	Unanswered
 }
