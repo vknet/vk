@@ -1,5 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -7,27 +9,27 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Тип источника альбома каталога
 /// </summary>
-[Serializable]
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
-public class AudioAlbumType : SafetyEnum<AudioAlbumType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum AudioAlbumType
 {
 	/// <summary>
 	/// Collection.
 	/// </summary>
-	public static readonly AudioAlbumType Collection = RegisterPossibleValue("collection");
+	Collection,
 
 	/// <summary>
 	/// MainOnly.
 	/// </summary>
-	public static readonly AudioAlbumType MainOnly = RegisterPossibleValue("main_only");
+	MainOnly,
 
 	/// <summary>
 	/// MainFeat.
 	/// </summary>
-	public static readonly AudioAlbumType MainFeat = RegisterPossibleValue("main_feat");
+	MainFeat,
 
 	/// <summary>
 	/// Playlist.
 	/// </summary>
-	public static readonly AudioAlbumType Playlist = RegisterPossibleValue("playlist");
+	Playlist
 }
