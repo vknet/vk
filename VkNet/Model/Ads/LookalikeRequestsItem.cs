@@ -23,7 +23,6 @@ public class LookalikeRequestItem
 	/// Тип источника исходной аудитории для поиска похожей аудитории.
 	/// </summary>
 	[JsonProperty("source_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public SourceType SourceType { get; set; }
 
 	/// <summary>

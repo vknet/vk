@@ -1,12 +1,18 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип источника исходной аудитории.
 /// </summary>
-public sealed class SourceType : SafetyEnum<SourceType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum SourceType
 {
 	/// <summary>
 	/// Аудитория ретаргетинга
 	/// </summary>
-	public static readonly SourceType RetargetingGroup = RegisterPossibleValue(value: "retargeting_group");
+	RetargetingGroup
 }
