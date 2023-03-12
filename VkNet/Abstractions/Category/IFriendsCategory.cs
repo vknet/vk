@@ -68,7 +68,7 @@ public interface IFriendsCategory : IFriendsCategoryAsync
 	VkCollection<FriendsGetRequestsResult> GetRequestsExtended(FriendsGetRequestsParams @params);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetSuggestionsAsync" />
-	VkCollection<User> GetSuggestions(FriendsFilter filter = null, long? count = null, long? offset = null, UsersFields fields = null,
+	VkCollection<User> GetSuggestions(FriendsFilter? filter = null, long? count = null, long? offset = null, UsersFields fields = null,
 									NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetByPhonesAsync" />

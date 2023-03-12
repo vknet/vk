@@ -1,24 +1,30 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Типы предлагаемых друзей, которые нужно вернуть, перечисленные через запятую.
 /// </summary>
-public sealed class FriendsFilter : SafetyEnum<FriendsFilter>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum FriendsFilter
 {
 	/// <summary>
 	/// Пользователи, с которыми много общих друзей;
 	/// </summary>
-	public static readonly FriendsFilter Mutual = RegisterPossibleValue(value: "mutual");
+	Mutual,
 
 	/// <summary>
 	/// Пользователи, найденные с помощью метода account.importContacts;
 	/// </summary>
-	public static readonly FriendsFilter Contacts = RegisterPossibleValue(value: "contacts");
+	Contacts,
 
 	/// <summary>
 	/// Пользователи, которые импортировали те же контакты, что и текущий пользователь,
 	/// используя метод
 	/// account.importContacts;
 	/// </summary>
-	public static readonly FriendsFilter MutualContacts = RegisterPossibleValue(value: "mutual_contacts");
+	MutualContacts
 }

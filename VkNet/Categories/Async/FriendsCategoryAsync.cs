@@ -80,7 +80,7 @@ public partial class FriendsCategory
 		TypeHelper.TryInvokeMethodAsync(() => GetRequestsExtended(@params));
 
 	/// <inheritdoc />
-	public Task<VkCollection<User>> GetSuggestionsAsync(FriendsFilter filter = null, long? count = null, long? offset = null,
+	public Task<VkCollection<User>> GetSuggestionsAsync(FriendsFilter? filter = null, long? count = null, long? offset = null,
 														UsersFields fields = null, NameCase? nameCase = null) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetSuggestions(filter, count, offset, fields, nameCase));

@@ -1017,4 +1017,20 @@ public class StringEnumTests
 			.Be(FriendsOrder.Random);
 	}
 
+	[Fact]
+	public void FriendsFilterTest()
+	{
+		Utilities.Deserialize<FriendsFilter>("mutual")
+			.Should()
+			.Be(FriendsFilter.Mutual);
+
+		Utilities.Deserialize<FriendsFilter>("contacts")
+			.Should()
+			.Be(FriendsFilter.Contacts);
+
+		Utilities.Deserialize<FriendsFilter>("mutual_contacts")
+			.Should()
+			.Be(FriendsFilter.MutualContacts);
+	}
+
 }

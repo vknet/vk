@@ -312,36 +312,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void FriendsFilterTest()
-	{
-		// get test
-		FriendsFilter.Mutual.ToString()
-			.Should()
-			.Be("mutual");
-
-		FriendsFilter.Contacts.ToString()
-			.Should()
-			.Be("contacts");
-
-		FriendsFilter.MutualContacts.ToString()
-			.Should()
-			.Be("mutual_contacts");
-
-		// parse test
-		FriendsFilter.FromJsonString("mutual")
-			.Should()
-			.Be(FriendsFilter.Mutual);
-
-		FriendsFilter.FromJsonString("contacts")
-			.Should()
-			.Be(FriendsFilter.Contacts);
-
-		FriendsFilter.FromJsonString("mutual_contacts")
-			.Should()
-			.Be(FriendsFilter.MutualContacts);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test
