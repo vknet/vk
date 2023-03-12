@@ -16,7 +16,6 @@ public class MessageContentSource
 	/// Источник.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public MessageContentSourceType Type { get; set; }
 
 	/// <summary>
