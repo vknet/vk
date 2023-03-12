@@ -96,7 +96,6 @@ public class MessageKeyboardButtonAction
 	/// Любой из интентов, требующий подписки.
 	/// </summary>
 	[JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public Intent? Intent { get; set; }
 
 	/// <summary>

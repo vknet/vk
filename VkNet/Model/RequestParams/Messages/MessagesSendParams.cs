@@ -181,8 +181,6 @@ public class MessagesSendParams
 	/// Метка, которая обозначает приблизительное содержание сообщения от сообщества
 	/// </summary>
 	[JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	[CanBeNull]
 	public Intent Intent { get; set; }
 
 	/// <summary>

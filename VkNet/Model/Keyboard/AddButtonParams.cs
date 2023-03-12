@@ -49,7 +49,6 @@ public class AddButtonParams
 	/// <summary>
 	/// Любой из интентов, требующий подписки.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public Intent Intent { get; set; }
 
 	/// <summary>

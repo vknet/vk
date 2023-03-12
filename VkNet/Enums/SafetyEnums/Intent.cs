@@ -1,4 +1,7 @@
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -6,75 +9,57 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Метка, которая обозначает приблизительное содержание сообщения от сообщества
 /// </summary>
-[Serializable]
-public sealed class Intent : SafetyEnum<Intent>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum Intent
 {
 	/// <summary>
 	/// Для рекламной рассылки от ботов.
 	/// </summary>
-	public static readonly Intent PromoNewsletter = RegisterPossibleValue(value: "promo_newsletter");
+	PromoNewsletter,
 
 	/// <summary>
 	/// Рекламный API / монетизация.
 	/// </summary>
-	public static readonly Intent BotAdInvite = RegisterPossibleValue(value: "bot_ad_invite");
+	BotAdInvite,
 
 	/// <summary>
 	/// Рекламный API / монетизация.
 	/// </summary>
-	public static readonly Intent BotAdPromo = RegisterPossibleValue(value: "bot_ad_promo");
+	BotAdPromo,
 
 	/// <summary>
 	/// Информационные рассылки.
 	/// </summary>
-	public static readonly Intent NonPromoNewsLetter = RegisterPossibleValue(value: "non_promo_newsletter");
+	NonPromoNewsLetter,
 
 	/// <summary>
 	/// Любые уведомления о событиях или действиях, на которые пользователь дал согласие.
 	/// </summary>
-	public static readonly Intent ConfirmedNotification = RegisterPossibleValue(value: "confirmed_notification");
+	ConfirmedNotification,
 
 	/// <summary>
 	/// Обновления/уведомления о покупке, сделанной пользователем.
 	/// </summary>
-	public static readonly Intent PurchaseUpdate = RegisterPossibleValue(value: "purchase_update");
+	PurchaseUpdate,
 
 	/// <summary>
 	/// Нерегулярные обновления /уведомления, связанные с аккаунтом или приложением.
 	/// </summary>
-	public static readonly Intent AccountUpdate = RegisterPossibleValue(value: "account_update");
+	AccountUpdate,
 
 	/// <summary>
 	/// Уведомления от игр; ретеншен-сообщения; уведомления, связанные с дейтингом, и т. д.
 	/// </summary>
-	public static readonly Intent GameNotification = RegisterPossibleValue(value: "game_notification");
+	GameNotification,
 
 	/// <summary>
 	/// Ответы сотрудников поддержки сервиса на запросы пользователя.
 	/// </summary>
-	public static readonly Intent CustomerSupport = RegisterPossibleValue(value: "customer_support");
+	CustomerSupport,
 
 	/// <summary>
 	/// Стандартный интент, подставляется автоматически если не указан другой.
 	/// </summary>
-	public static readonly Intent Default = RegisterPossibleValue(value: "default");
-
-	/// <summary>
-	/// Преобразовать из VkResponse
-	/// </summary>
-	/// <param name="response"> Ответ. </param>
-	/// <returns>
-	/// Результат преобразования.
-	/// </returns>
-	public static implicit operator Intent(VkResponse response)
-	{
-		if (response == null)
-		{
-			return null;
-		}
-
-		return response.HasToken()
-			? FromJson(response)
-			: null;
-	}
+	Default
 }
