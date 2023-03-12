@@ -50,7 +50,6 @@ public class StatsGetParams
 	/// Временные интервалы.
 	/// </summary>
 	[JsonProperty("interval")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public StateInterval Interval { get; set; }
 
 	/// <summary>
