@@ -1,5 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -7,87 +9,87 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Тип источника каталога
 /// </summary>
-[Serializable]
-[JsonConverter(typeof(SafetyEnumJsonConverter))]
-public class AudioCatalogSourceType : SafetyEnum<AudioCatalogSourceType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum AudioCatalogSourceType
 {
 	/// <summary>
 	/// RecomsRecoms - Выводит рекомандации специально для Вас.
 	/// </summary>
-	public static readonly AudioCatalogSourceType RecomsRecoms = RegisterPossibleValue("recoms_recoms");
+	RecomsRecoms,
 
 	/// <summary>
 	/// RecomsNewAudios - Выводит новинки.
 	/// </summary>
-	public static readonly AudioCatalogSourceType RecomsNewAudios = RegisterPossibleValue("recoms_new_audios");
+	RecomsNewAudios,
 
 	/// <summary>
 	/// RecomsNewAlbums - Выводит новые альбомы.
 	/// </summary>
-	public static readonly AudioCatalogSourceType RecomsNewAlbums = RegisterPossibleValue("recoms_new_albums");
+	RecomsNewAlbums,
 
 	/// <summary>
 	/// RecomsTopAudiosGlobal - Выводит чарт ВКонтакте.
 	/// </summary>
-	public static readonly AudioCatalogSourceType RecomsTopAudiosGlobal = RegisterPossibleValue("recoms_top_audios_global");
+	RecomsTopAudiosGlobal,
 
 	/// <summary>
 	/// GenreRap - Выводит жанры Рэп &amp; Хип-Хоп.
 	/// </summary>
-	public static readonly AudioCatalogSourceType GenreRap = RegisterPossibleValue("genre_rap");
+	GenreRap,
 
 	/// <summary>
 	/// GenrePop - Выводит жанр Поп
 	/// </summary>
-	public static readonly AudioCatalogSourceType GenrePop = RegisterPossibleValue("genre_pop");
+	GenrePop,
 
 	/// <summary>
 	/// GenreRock - Выводит жанр Рок.
 	/// </summary>
-	public static readonly AudioCatalogSourceType GenreRock = RegisterPossibleValue("genre_rock");
+	GenreRock,
 
 	/// <summary>
 	/// RecomsRecentAudios - Выводит недавно прослушанные.
 	/// </summary>
-	public static readonly AudioCatalogSourceType RecomsRecentAudios = RegisterPossibleValue("recoms_recent_audios");
+	RecomsRecentAudios,
 
 	/// <summary>
 	/// RecomsMoodPlaylists - Выводит музыку под настроение.
 	/// </summary>
-	public static readonly AudioCatalogSourceType RecomsMoodPlaylists = RegisterPossibleValue("recoms_mood_playlists");
+	RecomsMoodPlaylists,
 
 	/// <summary>
 	/// EditorsPlaylists - Выводит выбор редакции.
 	/// </summary>
-	public static readonly AudioCatalogSourceType EditorsPlaylists = RegisterPossibleValue("editors_playlists");
+	EditorsPlaylists,
 
 	/// <summary>
 	/// Collections - Выводит музыкальные подборки.
 	/// </summary>
-	public static readonly AudioCatalogSourceType Collections = RegisterPossibleValue("collections");
+	Collections,
 
 	/// <summary>
 	/// AnyCasePlaylists - Выводит плейлисты на любой случай.
 	/// </summary>
-	public static readonly AudioCatalogSourceType AnyCasePlaylists = RegisterPossibleValue("any_case_playlists");
+	AnyCasePlaylists,
 
 	/// <summary>
 	/// RecomsNewArtists - Выводит новые имена.
 	/// </summary>
-	public static readonly AudioCatalogSourceType RecomsNewArtists = RegisterPossibleValue("recoms_new_artists");
+	RecomsNewArtists,
 
 	/// <summary>
 	/// RecomsRecentRecommendation - Выводит похожее на прослушанное.
 	/// </summary>
-	public static readonly AudioCatalogSourceType RecomsRecentRecommendation = RegisterPossibleValue("recoms_recent_recommendation");
+	RecomsRecentRecommendation,
 
 	/// <summary>
 	/// RecomsCommunities - Выводит рекомендации сообществ.
 	/// </summary>
-	public static readonly AudioCatalogSourceType RecomsCommunities = RegisterPossibleValue("recoms_communities");
+	RecomsCommunities,
 
 	/// <summary>
 	/// RecomsFriends - Выводит музыку друзей.
 	/// </summary>
-	public static readonly AudioCatalogSourceType RecomsFriends = RegisterPossibleValue("recoms_friends");
+	RecomsFriends
 }
