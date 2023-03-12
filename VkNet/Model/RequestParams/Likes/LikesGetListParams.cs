@@ -14,7 +14,6 @@ public struct LikesGetListParams
 	/// <summary>
 	/// Тип объекта.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public LikeObjectType Type { get; set; }
 
 	/// <summary>

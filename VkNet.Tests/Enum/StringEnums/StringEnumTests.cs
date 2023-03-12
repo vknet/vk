@@ -856,4 +856,56 @@ public class StringEnumTests
 			.Should()
 			.Be(LikesFilter.Copies);
 	}
+
+	[Fact]
+	public void LikeObjectTypeTest()
+	{
+		Utilities.Deserialize<LikeObjectType>("post")
+			.Should()
+			.Be(LikeObjectType.Post);
+
+		Utilities.Deserialize<LikeObjectType>("comment")
+			.Should()
+			.Be(LikeObjectType.Comment);
+
+		Utilities.Deserialize<LikeObjectType>("photo")
+			.Should()
+			.Be(LikeObjectType.Photo);
+
+		Utilities.Deserialize<LikeObjectType>("audio")
+			.Should()
+			.Be(LikeObjectType.Audio);
+
+		Utilities.Deserialize<LikeObjectType>("video")
+			.Should()
+			.Be(LikeObjectType.Video);
+
+		Utilities.Deserialize<LikeObjectType>("note")
+			.Should()
+			.Be(LikeObjectType.Note);
+
+		Utilities.Deserialize<LikeObjectType>("photo_comment")
+			.Should()
+			.Be(LikeObjectType.PhotoComment);
+
+		Utilities.Deserialize<LikeObjectType>("video_comment")
+			.Should()
+			.Be(LikeObjectType.VideoComment);
+
+		Utilities.Deserialize<LikeObjectType>("topic_comment")
+			.Should()
+			.Be(LikeObjectType.TopicComment);
+
+		Utilities.Deserialize<LikeObjectType>("sitepage")
+			.Should()
+			.Be(LikeObjectType.Sitepage);
+
+		Utilities.Deserialize<LikeObjectType>("market")
+			.Should()
+			.Be(LikeObjectType.Market);
+
+		Utilities.Deserialize<LikeObjectType>("market_comment")
+			.Should()
+			.Be(LikeObjectType.MarketComment);
+	}
 }

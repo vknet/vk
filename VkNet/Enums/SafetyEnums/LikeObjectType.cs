@@ -1,67 +1,73 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Тип объекта (исп. в категории Likes)
 /// </summary>
-public class LikeObjectType : SafetyEnum<LikeObjectType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum LikeObjectType
 {
 	/// <summary>
 	/// Запись на стене пользователя или группы
 	/// </summary>
-	public static readonly LikeObjectType Post = RegisterPossibleValue(value: "post");
+	Post,
 
 	/// <summary>
 	/// Комментарий к записи на стене
 	/// </summary>
-	public static readonly LikeObjectType Comment = RegisterPossibleValue(value: "comment");
+	Comment,
 
 	/// <summary>
 	/// Фотография
 	/// </summary>
-	public static readonly LikeObjectType Photo = RegisterPossibleValue(value: "photo");
+	Photo,
 
 	/// <summary>
 	/// Аудиозапись
 	/// </summary>
-	public static readonly LikeObjectType Audio = RegisterPossibleValue(value: "audio");
+	Audio,
 
 	/// <summary>
 	/// Видеозапись
 	/// </summary>
-	public static readonly LikeObjectType Video = RegisterPossibleValue(value: "video");
+	Video,
 
 	/// <summary>
 	/// Заметка
 	/// </summary>
-	public static readonly LikeObjectType Note = RegisterPossibleValue(value: "note");
+	Note,
 
 	/// <summary>
 	/// Комментарий к фотографии
 	/// </summary>
-	public static readonly LikeObjectType PhotoComment = RegisterPossibleValue(value: "photo_comment");
+	PhotoComment,
 
 	/// <summary>
 	/// Комментарий к видеозаписи
 	/// </summary>
-	public static readonly LikeObjectType VideoComment = RegisterPossibleValue(value: "video_comment");
+	VideoComment,
 
 	/// <summary>
 	/// Комментарий в обсуждении
 	/// </summary>
-	public static readonly LikeObjectType TopicComment = RegisterPossibleValue(value: "topic_comment");
+	TopicComment,
 
 	/// <summary>
 	/// Страница сайта, на котором установлен виджет «Мне нравится»
 	/// </summary>
-	public static readonly LikeObjectType SitePage = RegisterPossibleValue(value: "sitepage");
+	Sitepage,
 
 	/// <summary>
 	/// Товар
 	/// </summary>
-	public static readonly LikeObjectType Market = RegisterPossibleValue(value: "market");
+	Market,
 
 	/// <summary>
 	/// Комментарий к товару.
 	/// </summary>
-	public static readonly LikeObjectType MarketComment = RegisterPossibleValue(value: "market_comment");
+	MarketComment
 }
