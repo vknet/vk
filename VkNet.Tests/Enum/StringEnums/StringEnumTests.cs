@@ -1170,4 +1170,28 @@ public class StringEnumTests
 			.Be(AppWidgetType.CoverList);
 	}
 
+	[Fact]
+	public void AppSortTest()
+	{
+		Utilities.Deserialize<AppSort>("popular_today")
+			.Should()
+			.Be(AppSort.PopularToday);
+
+		Utilities.Deserialize<AppSort>("visitors")
+			.Should()
+			.Be(AppSort.Visitors);
+
+		Utilities.Deserialize<AppSort>("create_date")
+			.Should()
+			.Be(AppSort.CreateDate);
+
+		Utilities.Deserialize<AppSort>("growth_rate")
+			.Should()
+			.Be(AppSort.GrowthRate);
+
+		Utilities.Deserialize<AppSort>("popular_week")
+			.Should()
+			.Be(AppSort.PopularWeek);
+	}
+
 }

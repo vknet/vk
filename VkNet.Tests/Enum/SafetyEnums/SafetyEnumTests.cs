@@ -91,52 +91,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void AppSortTest()
-	{
-		// get test
-		AppSort.PopularToday.ToString()
-			.Should()
-			.Be("popular_today");
-
-		AppSort.Visitors.ToString()
-			.Should()
-			.Be("visitors");
-
-		AppSort.CreateDate.ToString()
-			.Should()
-			.Be("create_date");
-
-		AppSort.GrowthRate.ToString()
-			.Should()
-			.Be("growth_rate");
-
-		AppSort.PopularWeek.ToString()
-			.Should()
-			.Be("popular_week");
-
-		// parse test
-		AppSort.FromJsonString("popular_today")
-			.Should()
-			.Be(AppSort.PopularToday);
-
-		AppSort.FromJsonString("visitors")
-			.Should()
-			.Be(AppSort.Visitors);
-
-		AppSort.FromJsonString("create_date")
-			.Should()
-			.Be(AppSort.CreateDate);
-
-		AppSort.FromJsonString("growth_rate")
-			.Should()
-			.Be(AppSort.GrowthRate);
-
-		AppSort.FromJsonString("popular_week")
-			.Should()
-			.Be(AppSort.PopularWeek);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test
