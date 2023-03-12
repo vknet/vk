@@ -518,4 +518,16 @@ public class StringEnumTests
 			.Should()
 			.Be(RelativeType.Grandchild);
 	}
+
+	[Fact]
+	public void PostTypeOrderTest()
+	{
+		Utilities.Deserialize<PostTypeOrder>("post")
+			.Should()
+			.Be(PostTypeOrder.Post);
+
+		Utilities.Deserialize<PostTypeOrder>("copy")
+			.Should()
+			.Be(PostTypeOrder.Copy);
+	}
 }

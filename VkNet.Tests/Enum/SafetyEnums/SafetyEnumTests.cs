@@ -1026,28 +1026,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void PostTypeOrderTest()
-	{
-		// get test
-		PostTypeOrder.Post.ToString()
-			.Should()
-			.Be("post");
-
-		PostTypeOrder.Copy.ToString()
-			.Should()
-			.Be("copy");
-
-		// parse test
-		PostTypeOrder.FromJsonString("post")
-			.Should()
-			.Be(PostTypeOrder.Post);
-
-		PostTypeOrder.FromJsonString("copy")
-			.Should()
-			.Be(PostTypeOrder.Copy);
-	}
-
-	[Fact]
 	public void PostTypeTest()
 	{
 		// get test
