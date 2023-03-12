@@ -608,4 +608,48 @@ public class StringEnumTests
 			.Should()
 			.Be(Platform.Wphone);
 	}
+
+	[Fact]
+	public void PhotoSizeTypeTest()
+	{
+		Utilities.Deserialize<PhotoSizeType>("s")
+			.Should()
+			.Be(PhotoSizeType.S);
+
+		Utilities.Deserialize<PhotoSizeType>("m")
+			.Should()
+			.Be(PhotoSizeType.M);
+
+		Utilities.Deserialize<PhotoSizeType>("x")
+			.Should()
+			.Be(PhotoSizeType.X);
+
+		Utilities.Deserialize<PhotoSizeType>("o")
+			.Should()
+			.Be(PhotoSizeType.O);
+
+		Utilities.Deserialize<PhotoSizeType>("p")
+			.Should()
+			.Be(PhotoSizeType.P);
+
+		Utilities.Deserialize<PhotoSizeType>("q")
+			.Should()
+			.Be(PhotoSizeType.Q);
+
+		Utilities.Deserialize<PhotoSizeType>("r")
+			.Should()
+			.Be(PhotoSizeType.R);
+
+		Utilities.Deserialize<PhotoSizeType>("y")
+			.Should()
+			.Be(PhotoSizeType.Y);
+
+		Utilities.Deserialize<PhotoSizeType>("z")
+			.Should()
+			.Be(PhotoSizeType.Z);
+
+		Utilities.Deserialize<PhotoSizeType>("w")
+			.Should()
+			.Be(PhotoSizeType.W);
+	}
 }

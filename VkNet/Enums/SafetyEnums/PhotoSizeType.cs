@@ -1,5 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.SafetyEnums;
@@ -7,24 +9,24 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Порядок сортировки членов группы.
 /// </summary>
-[Serializable]
-[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
-public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum PhotoSizeType
 {
 	/// <summary>
 	/// Пропорциональная копия изображения с максимальной шириной 75px.
 	/// </summary>
-	public static readonly PhotoSizeType S = RegisterPossibleValue(value: "s");
+	S,
 
 	/// <summary>
 	/// Пропорциональная копия изображения с максимальной шириной 130px.
 	/// </summary>
-	public static readonly PhotoSizeType M = RegisterPossibleValue(value: "m");
+	M,
 
 	/// <summary>
 	/// Пропорциональная копия изображения с максимальной шириной 604px.
 	/// </summary>
-	public static readonly PhotoSizeType X = RegisterPossibleValue(value: "x");
+	X,
 
 	/// <summary>
 	/// Если соотношение "ширина/высота" исходного изображения меньше или равно 3:2, то
@@ -33,7 +35,7 @@ public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
 	/// копия обрезанного слева изображения с
 	/// максимальной шириной 130px и соотношением сторон 3:2.
 	/// </summary>
-	public static readonly PhotoSizeType O = RegisterPossibleValue(value: "o");
+	O,
 
 	/// <summary>
 	/// Если соотношение "ширина/высота" исходного изображения меньше или равно 3:2, то
@@ -42,7 +44,7 @@ public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
 	/// копия обрезанного слева и справа
 	/// изображения с максимальной шириной 200px и соотношением сторон 3:2.
 	/// </summary>
-	public static readonly PhotoSizeType P = RegisterPossibleValue(value: "p");
+	P,
 
 	/// <summary>
 	/// Если соотношение "ширина/высота" исходного изображения меньше или равно 3:2, то
@@ -51,7 +53,7 @@ public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
 	/// копия обрезанного слева и справа
 	/// изображения с максимальной шириной 320px и соотношением сторон 3:2.
 	/// </summary>
-	public static readonly PhotoSizeType Q = RegisterPossibleValue(value: "q");
+	Q,
 
 	/// <summary>
 	/// Если соотношение "ширина/высота" исходного изображения меньше или равно 3:2, то
@@ -60,20 +62,40 @@ public sealed class PhotoSizeType : SafetyEnum<PhotoSizeType>
 	/// копия обрезанного слева и справа
 	/// изображения с максимальной шириной 510px и соотношением сторон 3:2.
 	/// </summary>
-	public static readonly PhotoSizeType R = RegisterPossibleValue(value: "r");
+	R,
 
 	/// <summary>
 	/// Пропорциональная копия изображения с максимальной стороной 807px.
 	/// </summary>
-	public static readonly PhotoSizeType Y = RegisterPossibleValue(value: "y");
+	Y,
 
 	/// <summary>
 	/// Пропорциональная копия изображения с максимальным размером 1280x1024.
 	/// </summary>
-	public static readonly PhotoSizeType Z = RegisterPossibleValue(value: "z");
+	Z,
 
 	/// <summary>
 	/// Пропорциональная копия изображения с максимальным размером 2560x2048px.
 	/// </summary>
-	public static readonly PhotoSizeType W = RegisterPossibleValue(value: "w");
+	W,
+
+	/// <summary>
+	///
+	/// </summary>
+	K,
+
+	/// <summary>
+	///
+	/// </summary>
+	Temp,
+
+	/// <summary>
+	///
+	/// </summary>
+	I,
+
+	/// <summary>
+	///
+	/// </summary>
+	L
 }
