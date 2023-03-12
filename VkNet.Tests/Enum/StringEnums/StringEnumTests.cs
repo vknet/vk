@@ -1060,4 +1060,16 @@ public class StringEnumTests
 			.Should()
 			.Be(Display.Mobile);
 	}
+
+	[Fact]
+	public void CommentsSortTest()
+	{
+		Utilities.Deserialize<CommentsSort>("asc")
+			.Should()
+			.Be(CommentsSort.Asc);
+
+		Utilities.Deserialize<CommentsSort>("desc")
+			.Should()
+			.Be(CommentsSort.Desc);
+	}
 }

@@ -1,17 +1,23 @@
-﻿namespace VkNet.Enums.SafetyEnums;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+
+namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Порядок сортировки комментариев к записи.
 /// </summary>
-public sealed class CommentsSort : SafetyEnum<CommentsSort>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum CommentsSort
 {
 	/// <summary>
 	/// В хронологическом порядке (от старых к новым).
 	/// </summary>
-	public static readonly CommentsSort Asc = RegisterPossibleValue(value: "asc");
+	Asc,
 
 	/// <summary>
 	/// В порядке, обратном хронологическому (от новых к старым).
 	/// </summary>
-	public static readonly CommentsSort Desc = RegisterPossibleValue(value: "desc");
+	Desc
 }

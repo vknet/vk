@@ -238,28 +238,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void CommentsSortTest()
-	{
-		// get test
-		CommentsSort.Asc.ToString()
-			.Should()
-			.Be("asc");
-
-		CommentsSort.Desc.ToString()
-			.Should()
-			.Be("desc");
-
-		// parse test
-		CommentsSort.FromJsonString("asc")
-			.Should()
-			.Be(CommentsSort.Asc);
-
-		CommentsSort.FromJsonString("desc")
-			.Should()
-			.Be(CommentsSort.Desc);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test
