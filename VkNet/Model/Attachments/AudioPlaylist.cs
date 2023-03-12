@@ -20,7 +20,6 @@ public class AudioPlaylist : MediaAttachment
 	/// Тип плейлиста.
 	/// </summary>
 	[JsonProperty("album_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AudioAlbumType AlbumType { get; set; }
 
 	/// <summary>
