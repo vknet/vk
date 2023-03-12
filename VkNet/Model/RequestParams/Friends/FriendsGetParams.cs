@@ -37,7 +37,6 @@ public class FriendsGetParams
 	/// строка.
 	/// </summary>
 	[JsonProperty("order")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public FriendsOrder Order { get; set; }
 
 	/// <summary>

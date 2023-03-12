@@ -1000,4 +1000,21 @@ public class StringEnumTests
 			.Should()
 			.Be(KeyboardButtonActionType.Callback);
 	}
+
+	[Fact]
+	public void FriendsOrderTest()
+	{
+		Utilities.Deserialize<FriendsOrder>("name")
+			.Should()
+			.Be(FriendsOrder.Name);
+
+		Utilities.Deserialize<FriendsOrder>("hints")
+			.Should()
+			.Be(FriendsOrder.Hints);
+
+		Utilities.Deserialize<FriendsOrder>("random")
+			.Should()
+			.Be(FriendsOrder.Random);
+	}
+
 }

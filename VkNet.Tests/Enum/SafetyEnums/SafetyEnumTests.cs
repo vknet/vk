@@ -342,36 +342,6 @@ public class SafetyEnumsTest
 	}
 
 	[Fact]
-	public void FriendsOrderTest()
-	{
-		// get test
-		FriendsOrder.Name.ToString()
-			.Should()
-			.Be("name");
-
-		FriendsOrder.Hints.ToString()
-			.Should()
-			.Be("hints");
-
-		FriendsOrder.Random.ToString()
-			.Should()
-			.Be("random");
-
-		// parse test
-		FriendsOrder.FromJsonString("name")
-			.Should()
-			.Be(FriendsOrder.Name);
-
-		FriendsOrder.FromJsonString("hints")
-			.Should()
-			.Be(FriendsOrder.Hints);
-
-		FriendsOrder.FromJsonString("random")
-			.Should()
-			.Be(FriendsOrder.Random);
-	}
-
-	[Fact]
 	public void NewsTypesTest()
 	{
 		// get test
