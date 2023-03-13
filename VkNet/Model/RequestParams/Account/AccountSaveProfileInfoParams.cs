@@ -133,4 +133,11 @@ public class AccountSaveProfileInfoParams
 	/// </summary>
 	[JsonProperty("name_request")]
 	public NameRequest NameRequest { get; set; }
+
+	/// <summary>
+	/// Идентификатор заявки на смену имени, которую необходимо отменить.
+	/// Если передан этот параметр, все остальные параметры игнорируются.
+	/// </summary>
+	[JsonProperty("cancel_request_id")]
+	public ulong CancelRequestId { get; set; }
 }
