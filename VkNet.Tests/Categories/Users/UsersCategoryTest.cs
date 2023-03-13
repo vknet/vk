@@ -812,6 +812,12 @@ public class UsersCategoryTest : CategoryBaseTest
 
 		user.Relatives.Should()
 			.BeEmpty();
+
+		user.OwnerState.State.Should()
+			.Be(1);
+
+		user.OwnerState.Photos.Photo50.Should()
+			.Be("https://vk.com/images/deactivated_50.png");
 	}
 
 	[Fact]
