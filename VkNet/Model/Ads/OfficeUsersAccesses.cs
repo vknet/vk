@@ -24,6 +24,5 @@ public class OfficeUsersAccesses
 	/// Время до следующего обновления в секундах.
 	/// </summary>
 	[JsonProperty("role")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AccessRole Role { get; set; }
 }

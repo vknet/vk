@@ -21,7 +21,6 @@ public class UserSearchParams
 	/// <summary>
 	/// Сортировка результатов.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public UserSort Sort { get; set; }
 
 	/// <summary>
@@ -180,6 +179,5 @@ public class UserSearchParams
 	/// <summary>
 	/// Разделы среди которых нужно осуществить поиск.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public UserSection FromList { get; set; }
 }
