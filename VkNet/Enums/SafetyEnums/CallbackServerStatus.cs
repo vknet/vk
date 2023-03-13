@@ -1,30 +1,35 @@
-﻿using VkNet.Utils;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using VkNet.Utils;
 
 namespace VkNet.Enums.SafetyEnums;
 
 /// <summary>
 /// Статус сервера
 /// </summary>
-public class CallbackServerStatus : SafetyEnum<CallbackServerStatus>
+[StringEnum]
+[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+public enum CallbackServerStatus
 {
 	/// <summary>
 	/// Адрес не задан;
 	/// </summary>
 	[DefaultValue]
-	public static readonly CallbackServerStatus Unconfigured = RegisterPossibleValue(value: "unconfigured");
+	Unconfigured,
 
 	/// <summary>
 	/// Подтвердить адрес не удалось
 	/// </summary>
-	public static readonly CallbackServerStatus Fail = RegisterPossibleValue(value: "fail");
+	Fail,
 
 	/// <summary>
 	/// Адрес ожидает подтверждения
 	/// </summary>
-	public static readonly CallbackServerStatus Wait = RegisterPossibleValue(value: "wait");
+	Wait,
 
 	/// <summary>
 	/// Сервер подключен
 	/// </summary>
-	public static readonly CallbackServerStatus Ok = RegisterPossibleValue(value: "ok");
+	Ok
 }
