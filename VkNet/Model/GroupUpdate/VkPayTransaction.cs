@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -25,8 +26,9 @@ public class VkPayTransaction : IGroupUpdate
 	/// <summary>
 	/// Комментарий к переводу.
 	/// </summary>
+	[CanBeNull]
 	[JsonProperty("description")]
-	public string? Description { get; set; }
+	public string Description { get; set; }
 
 	/// <summary>
 	/// Время отправки перевода в Unixtime.
