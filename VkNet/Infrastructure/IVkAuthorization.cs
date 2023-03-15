@@ -6,7 +6,7 @@ namespace VkNet.Utils;
 /// <summary>
 /// Информация об авторизации приложения на действия.
 /// </summary>
-public interface IVkAuthorization<TPageType>
+public interface IVkAuthorization<out TPageType>
 {
 	/// <summary>
 	/// Получить результат авторизации
