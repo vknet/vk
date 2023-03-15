@@ -164,7 +164,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 		return this;
 	}
 
-	private void CheckKeyboardSize(string? payload)
+	private void CheckKeyboardSize([CanBeNull] string payload)
 	{
 		if ((payload?.Length ?? 0) > MaxButtonPayload)
 		{
