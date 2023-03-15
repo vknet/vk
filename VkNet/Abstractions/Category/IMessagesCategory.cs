@@ -192,7 +192,7 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
 	GetChatUsers GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase? nameCase);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync(IEnumerable{long}"/>
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync(IEnumerable{long})"/>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
 	ReadOnlyCollection<long> GetChatUsers(IEnumerable<long> chatIds);
 

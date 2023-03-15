@@ -4,6 +4,9 @@ using Newtonsoft.Json;
 
 namespace VkNet.Model.RequestParams.Stories;
 
+/// <summary>
+/// Параметры метод Stories.Search
+/// </summary>
 [Serializable]
 public class StoriesSearchParams
 {

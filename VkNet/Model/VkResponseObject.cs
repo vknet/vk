@@ -10,6 +10,9 @@ namespace VkNet.Model;
 [Serializable]
 public class VkResponseObject<TModel>
 {
+	/// <summary>
+	/// Response
+	/// </summary>
 	[JsonProperty("response")]
 	public TModel Response { get; set; }
 }
