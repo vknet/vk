@@ -178,8 +178,8 @@ public partial class StoriesCategory : IStoriesCategory
 		});
 
 	/// <inheritdoc/>
-	public VkCollection<long> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null) =>
-		_vk.Call<VkCollection<long>>("stories.getViewers",
+	public VkCollection<StoryViewers> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null) =>
+		_vk.Call<VkCollection<StoryViewers>>("stories.getViewers",
 			new()
 			{
 				{

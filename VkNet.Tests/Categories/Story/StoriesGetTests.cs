@@ -92,8 +92,8 @@ public class StoriesGetTests : CategoryBaseTest
 		users.Should()
 			.NotContainNulls();
 
-		users.Should()
-			.Contain(x => x == 123456789);
+		users[0].UserId.Should().Be(100);
+		users[0].IsLiked.Should().Be(false);
 	}
 
 	[Fact]

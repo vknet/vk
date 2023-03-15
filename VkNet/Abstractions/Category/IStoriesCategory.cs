@@ -39,7 +39,7 @@ public interface IStoriesCategory : IStoriesCategoryAsync
 	StoryServerUrl GetVideoUploadServer(GetVideoUploadServerParams getVideoUploadServerParams);
 
 	/// <inheritdoc cref="IStoriesCategoryAsync.GetViewersAsync"/>
-	VkCollection<long> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null);
+	VkCollection<StoryViewers> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null);
 
 	/// <inheritdoc cref="IStoriesCategoryAsync.GetViewersExtendedAsync"/>
 	VkCollection<User> GetViewersExtended(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null);

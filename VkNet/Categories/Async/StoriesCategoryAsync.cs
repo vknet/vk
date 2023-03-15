@@ -47,7 +47,7 @@ public partial class StoriesCategory
 		TypeHelper.TryInvokeMethodAsync(() => GetVideoUploadServer(@params));
 
 	/// <inheritdoc/>
-	public Task<VkCollection<long>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null) =>
+	public Task<VkCollection<StoryViewers>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null) =>
 		TypeHelper.TryInvokeMethodAsync(() => GetViewers(ownerId, storyId, count, offset));
 
 	/// <inheritdoc />
