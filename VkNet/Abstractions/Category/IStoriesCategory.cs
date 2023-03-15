@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using VkNet.Abstractions.Category;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -54,6 +56,10 @@ public interface IStoriesCategory : IStoriesCategoryAsync
 	bool UnbanOwner(IEnumerable<long> ownersIds);
 
 	/// <inheritdoc cref="IStoriesCategoryAsync.SaveAsync"/>
+	VkCollection<Story> Save(StoryServerUrl uploadResults);
+
+	/// <inheritdoc cref="IStoriesCategoryAsync.SaveAsync"/>
+	[Obsolete("Начиная с версии 5.118 используется только параметр uploadResults")]
 	VkCollection<Story> Save(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields);
 
 	/// <inheritdoc cref = "IStoriesCategoryAsync.SearchAsync"/>
