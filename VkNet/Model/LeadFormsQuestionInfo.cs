@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace VkNet.Model;
 
+/// <summary>
+/// Информация о вопросах формы.
+/// </summary>
 [Serializable]
 public class LeadFormsQuestionInfo
 {

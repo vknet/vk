@@ -40,7 +40,7 @@ public class LeadFormCreateResult
 	/// Вопросы.
 	/// </summary>
 	[JsonProperty("questions")]
-	public LeadFormQuestion[] Questions { get; set; }
+	public LeadFormsQuestionInfo[] Questions { get; set; }
 
 	[JsonProperty("active")]
 	public long Active { get; set; }
