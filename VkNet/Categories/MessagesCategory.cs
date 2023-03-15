@@ -743,10 +743,10 @@ public partial class MessagesCategory : IMessagesCategory
 	public ulong DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null) =>
 		DeleteConversation(userId, peerId, null);
 
-	private IDictionary<ulong, bool> ImplementationDelete(IEnumerable<ulong>? messageIds = null,
-            IEnumerable<ulong>? conversationMessageIds = null,
-            ulong? peerId = null, bool? spam = null, ulong? groupId = null,
-            bool deleteForAll = false)
+	private IDictionary<ulong, bool> ImplementationDelete([CanBeNull] IEnumerable<ulong> messageIds = null,
+														[CanBeNull] IEnumerable<ulong> conversationMessageIds = null,
+														ulong? peerId = null, bool? spam = null, ulong? groupId = null,
+														bool deleteForAll = false)
         {
             if (messageIds == null && conversationMessageIds == null)
             {
