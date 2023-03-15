@@ -113,7 +113,7 @@ public class CoordinatesJsonConverter : Newtonsoft.Json.JsonConverter
 				break;
 
 			default:
-				throw new ArgumentOutOfRangeException();
+				throw new ArgumentOutOfRangeException("Ошибка в получении координат, заведите Issue на github", new VkApiException());
 		}
 
 		var coordinates = new Coordinates
