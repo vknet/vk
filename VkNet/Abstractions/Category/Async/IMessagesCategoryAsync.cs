@@ -358,6 +358,24 @@ public interface IMessagesCategoryAsync
 	Task<bool> SetActivityAsync(string userId, MessageActivityType type, long? peerId = null, ulong? groupId = null);
 
 	/// <summary>
+	/// Изменяет статус набора текста пользователем в диалоге.
+	/// </summary>
+	/// <param name="memberId"> Идентификатор пользователя </param>
+	/// <param name="peerId">
+	/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для
+	/// сообщества: -id
+	/// сообщества.
+	/// </param>
+	/// <param name="role"> На данный момент только одна: admin </param>
+	/// <returns>
+	/// После успешного выполнения возвращает true, false
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/messages.setMemberRole
+	/// </remarks>
+	Task<bool> SetMemberRoleAsync(string role, long peerId, ulong memberId);
+
+	/// <summary>
 	/// Возвращает текущий статус и дату последней активности указанного пользователя.
 	/// </summary>
 	/// <param name="userId">

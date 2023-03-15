@@ -1114,4 +1114,17 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be(33333);
 
 	}
+
+	[Fact]
+	public void SetMemberRole()
+	{
+		Url = "https://api.vk.com/method/messages.setMemberRole";
+		ReadJsonFile(JsonPaths.True);
+
+		var response = Api.Messages.SetMemberRole("admin", 2000000043, 1002);
+
+		response.Should()
+			.BeTrue();
+
+	}
 }

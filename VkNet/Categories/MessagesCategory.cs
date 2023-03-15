@@ -132,24 +132,24 @@ public partial class MessagesCategory : IMessagesCategory
 	[Pure]
 	public VkCollection<Message> GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null,
 										bool? extended = null, ulong? groupId = null) => _vk.Call<VkCollection<Message>>("messages.getById",
-			new()
+		new()
+		{
 			{
-				{
-					"message_ids", messageIds
-				},
-				{
-					"fields", fields
-				},
-				{
-					"preview_length", previewLength
-				},
-				{
-					"extended", extended
-				},
-				{
-					"group_id", groupId
-				}
-			});
+				"message_ids", messageIds
+			},
+			{
+				"fields", fields
+			},
+			{
+				"preview_length", previewLength
+			},
+			{
+				"extended", extended
+			},
+			{
+				"group_id", groupId
+			}
+		});
 
 	/// <inheritdoc />
 	[Pure]
@@ -343,7 +343,8 @@ public partial class MessagesCategory : IMessagesCategory
 	}
 
 	/// <inheritdoc />
-	public ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params) {
+	public ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params)
+	{
 		if (@params.PeerIds != null && @params.PeerIds.Any())
 		{
 			throw new ArgumentException($"This method not intended to use with many target peers. Use {nameof(SendToPeerIds)} instead.");
@@ -747,76 +748,84 @@ public partial class MessagesCategory : IMessagesCategory
 														[CanBeNull] IEnumerable<ulong> conversationMessageIds = null,
 														ulong? peerId = null, bool? spam = null, ulong? groupId = null,
 														bool deleteForAll = false)
-        {
-            if (messageIds == null && conversationMessageIds == null)
-            {
-                throw new ArgumentNullException(nameof(conversationMessageIds), "Parameter conversationMessageIds or messageIds can not be null.");
-            }
+	{
+		if (messageIds == null && conversationMessageIds == null)
+		{
+			throw new ArgumentNullException(nameof(conversationMessageIds),
+				"Parameter conversationMessageIds or messageIds can not be null.");
+		}
 
-            var ids = messageIds != null
-                ? messageIds.ToList()
-                : conversationMessageIds!.ToList();
+		var ids = messageIds != null
+			? messageIds.ToList()
+			: conversationMessageIds!.ToList();
 
-            if (ids.Count == 0)
-            {
-                throw new ArgumentException("Parameter Ids has no elements.", nameof(ids));
-            }
+		if (ids.Count == 0)
+		{
+			throw new ArgumentException("Parameter Ids has no elements.", nameof(ids));
+		}
 
-            var parameters = new VkParameters
-            {
-                {"delete_for_all", deleteForAll}
-            };
+		var parameters = new VkParameters
+		{
+			{
+				"delete_for_all", deleteForAll
+			}
+		};
 
-            //Наличие spam неприемлимо, в случаях, когда авторизация ApiVk произошла с ключом сообщества, а не ключом пользователя.
-            if (spam != null)
-            {
-                parameters.Add("spam", spam);
-            }
+		//Наличие spam неприемлимо, в случаях, когда авторизация ApiVk произошла с ключом сообщества, а не ключом пользователя.
+		if (spam != null)
+		{
+			parameters.Add("spam", spam);
+		}
 
-            //Наличие peerId в запросе без cmids не имеет значения и может вызвать неожиданные ошибки.
-            if (peerId != null)
-            {
-                parameters.Add("peer_id",peerId);
-            }
+		//Наличие peerId в запросе без cmids не имеет значения и может вызвать неожиданные ошибки.
+		if (peerId != null)
+		{
+			parameters.Add("peer_id", peerId);
+		}
 
-            //Использование предполагает пройденную авторизацию с ключом пользователя для удаления со стороны сообщества,
-            //при использовании в одном наборе параметров, могут возникнут непредвиденные исключения.
-            //Если используется в личке между двумя пользователями, а также если нужно удалить с пользовательским ключом(являсь администратором беседы) -
-            //необходимость в использовании отпадает.
-            //Если авторизация пройдена со стороны сообщества, то необходимости в использовании тоже нет.
-            if (groupId != null)
-            {
-                parameters.Add("group_id", groupId);
-            }
+		//Использование предполагает пройденную авторизацию с ключом пользователя для удаления со стороны сообщества,
+		//при использовании в одном наборе параметров, могут возникнут непредвиденные исключения.
+		//Если используется в личке между двумя пользователями, а также если нужно удалить с пользовательским ключом(являсь администратором беседы) -
+		//необходимость в использовании отпадает.
+		//Если авторизация пройдена со стороны сообщества, то необходимости в использовании тоже нет.
+		if (groupId != null)
+		{
+			parameters.Add("group_id", groupId);
+		}
 
-            //При использовании cmids нежелательно использовать ещё и message_ids в одном наборе параметров,
-            //так как возникают неуправляемые исключения со стороны ApiVk, такие как oldMessage.
-            //Хотя сообщение по id лежит менее 24 часов.
-            parameters.Add(messageIds != null ? "message_ids" : "cmids", ids);
+		//При использовании cmids нежелательно использовать ещё и message_ids в одном наборе параметров,
+		//так как возникают неуправляемые исключения со стороны ApiVk, такие как oldMessage.
+		//Хотя сообщение по id лежит менее 24 часов.
+		parameters.Add(messageIds != null
+			? "message_ids"
+			: "cmids", ids);
 
-            //Если вы авторизованы с ключом доступа сообщества, то вы не можете удалять сообщения администратора беседы(также, как и не будете иметь данной возможности,
-            //удаляя сообщения администратора, будучи обычным пользователем в беседе)
-            //(На момент вызова возникнет ошибка запроса).
-            var response = _vk.Call("messages.delete", parameters);
+		//Если вы авторизованы с ключом доступа сообщества, то вы не можете удалять сообщения администратора беседы(также, как и не будете иметь данной возможности,
+		//удаляя сообщения администратора, будучи обычным пользователем в беседе)
+		//(На момент вызова возникнет ошибка запроса).
+		var response = _vk.Call("messages.delete", parameters);
 
-            var result = new Dictionary<ulong, bool>();
+		var result = new Dictionary<ulong, bool>();
 
-            foreach (var id in ids)
-            {
-                bool isDeleted = response[id.ToString(CultureInfo.InvariantCulture)];
-                result.Add(id, isDeleted);
-            }
+		foreach (var id in ids)
+		{
+			bool isDeleted = response[id.ToString(CultureInfo.InvariantCulture)];
+			result.Add(id, isDeleted);
+		}
 
-            return result;
-        }
+		return result;
+	}
 
 	/// <inheritdoc />
 	public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
-            bool deleteForAll = false) => ImplementationDelete(messageIds:messageIds,spam:spam,groupId:groupId,deleteForAll:deleteForAll);
+											bool deleteForAll = false) => ImplementationDelete(messageIds: messageIds, spam: spam,
+		groupId: groupId, deleteForAll: deleteForAll);
 
 	/// <inheritdoc />
-	public IDictionary<ulong, bool> Delete(IEnumerable<ulong> conversationMessageIds, ulong peerId, bool? spam = null, ulong? groupId = null,
-            bool deleteForAll = false) => ImplementationDelete(conversationMessageIds:conversationMessageIds,peerId:peerId, groupId:groupId, spam:spam, deleteForAll:deleteForAll);
+	public IDictionary<ulong, bool> Delete(IEnumerable<ulong> conversationMessageIds, ulong peerId, bool? spam = null,
+											ulong? groupId = null,
+											bool deleteForAll = false) => ImplementationDelete(
+		conversationMessageIds: conversationMessageIds, peerId: peerId, groupId: groupId, spam: spam, deleteForAll: deleteForAll);
 
 	/// <inheritdoc />
 	public bool Restore(ulong messageId, ulong? groupId = null)
@@ -1027,6 +1036,7 @@ public partial class MessagesCategory : IMessagesCategory
 				"name_case", nameCase
 			}
 		};
+
 		return _vk.Call<GetChatUsers>("messages.getChatUsers", parameters);
 	}
 
@@ -1049,7 +1059,7 @@ public partial class MessagesCategory : IMessagesCategory
 		foreach (var chatId in collection)
 		{
 			var chatResponse = response[chatId.ToString()];
-			var users = chatResponse.ToReadOnlyCollectionOf<long>(x=>x);
+			var users = chatResponse.ToReadOnlyCollectionOf<long>(x => x);
 
 			foreach (var user in users)
 			{
@@ -1436,6 +1446,21 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		});
 
+	/// <inheritdoc />
+	public bool SetMemberRole(string role, long peerId, ulong memberId) => _vk.Call<bool>("messages.setMemberRole",
+		new()
+		{
+			{
+				"role", role
+			},
+			{
+				"peer_id", peerId
+			},
+			{
+				"member_id", memberId
+			}
+		});
+
 	/// <summary>
 	/// Ворзвращает указанное сообщение по его идентификатору.
 	/// </summary>
@@ -1472,4 +1497,6 @@ public partial class MessagesCategory : IMessagesCategory
 
 		throw new VkApiException("Сообщения с таким ID не существует.");
 	}
+
+
 }
