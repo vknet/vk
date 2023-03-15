@@ -404,6 +404,6 @@ public interface IAccountCategoryAsync
 	/// </summary>
 	/// <param name="key"> Ключ </param>
 	/// <param name="value"> Значение </param>
-	/// <returns> Значение параметра <see cref="value"/> </returns>
+	/// <returns> Значение параметра <a>value</a></returns>
 	Task<PrivacySettingsValue> SetPrivacyAsync(string key, string value);
 }

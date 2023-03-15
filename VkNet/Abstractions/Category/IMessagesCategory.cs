@@ -25,11 +25,11 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	/// <inheritdoc cref="IMessagesCategoryAsync.CreateChatAsync"/>
 	long CreateChat(IEnumerable<ulong> userIds, [NotNull] string title);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync"/>
+	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync(IEnumerable{ulong}, bool?, ulong?, bool)"/>
 	IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
 									bool deleteForAll = false);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync"/>
+	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync(IEnumerable{ulong}, ulong, bool?, ulong?, bool)"/>
 	IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> conversationMessageIds, ulong peerId,
 									bool? spam = null, ulong? groupId = null,
 									bool deleteForAll = false);
@@ -71,10 +71,10 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetLastActivityAsync"/>
 	LastActivity GetLastActivity(long userId);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(long, ProfileFields,NameCase)"/>
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(long, ProfileFields, NameCase?)"/>
 	Chat GetChat(long chatId, ProfileFields fields = null, NameCase? nameCase = null);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(long, ProfileFields, NameCase)"/>
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(IEnumerable{long}, ProfileFields, NameCase?)"/>
 	ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatPreviewAsync"/>
@@ -188,11 +188,11 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	[Obsolete(ObsoleteText.MessageGet)]
 	MessagesGetObject Get(MessagesGetParams @params);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync"/>
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync(IEnumerable{long}, UsersFields, NameCase?)"/>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
 	GetChatUsers GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase? nameCase);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync"/>
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync(IEnumerable{long}"/>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
 	ReadOnlyCollection<long> GetChatUsers(IEnumerable<long> chatIds);
 

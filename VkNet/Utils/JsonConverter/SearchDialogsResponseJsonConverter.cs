@@ -7,6 +7,9 @@ using VkNet.Model;
 
 namespace VkNet.Utils.JsonConverter;
 
+/// <summary>
+/// Converter SearchDialogsResponse
+/// </summary>
 public class SearchDialogsResponseJsonConverter : Newtonsoft.Json.JsonConverter
 {
 	/// <inheritdoc />

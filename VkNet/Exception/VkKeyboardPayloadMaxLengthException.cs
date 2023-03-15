@@ -5,6 +5,7 @@ namespace VkNet.Exception;
 /// </summary>
 public class VkKeyboardPayloadMaxLengthException : VkApiException
 {
+	/// <inheritdoc />
 	public VkKeyboardPayloadMaxLengthException(string message) : base(message)
 	{
 	}
