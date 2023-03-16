@@ -1,25 +1,45 @@
 {
   "response": {
-    "count": 1,
-    "items": [
-      {
-        "id": 110637109,
-        "thumb_id": 326631163,
-        "owner_id": 32190123,
-        "title": "Я",
-        "description": "",
-        "created": 1307628778,
-        "updated": 1398625473,
-        "size": 6,
-        "thumb_is_last": 1,
-        "privacy_view": [
-          "list28"
-        ],
-        "privacy_comment": [
-          "list28",
-          "-list1"
-        ]
-      }
-    ]
+	"count": 4,
+	"items": [
+	  {
+		"id": 1111,
+		"owner_id": 5555,
+		"size": 0,
+		"title": "test",
+		"feed_disabled": 0,
+		"feed_has_pinned": 0,
+		"created": 1674728891,
+		"description": "",
+		"can_delete": true,
+		"privacy_comment": {
+		  "lists": {
+			"allowed": [],
+			"excluded": []
+		  },
+		  "owners": {
+			"allowed": [
+			  111
+			],
+			"excluded": []
+		  }
+		},
+		"privacy_view": {
+		  "lists": {
+			"allowed": [],
+			"excluded": []
+		  },
+		  "owners": {
+			"allowed": [
+			  121
+			],
+			"excluded": []
+		  }
+		},
+		"thumb_id": 0,
+		"thumb_is_last": 1,
+		"updated": 1674728891
+	  }
+	]
   }
 }

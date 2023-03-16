@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -415,7 +416,7 @@ public partial class AccountCategory : IAccountCategory
 	public PrivacySettings GetPrivacySettings() => _vk.Call<PrivacySettings>("account.getPrivacySettings", VkParameters.Empty);
 
 	/// <inheritdoc />
-	public PrivacySettingsValue SetPrivacy(string key, string value) => _vk.Call<PrivacySettingsValue>("account.setPrivacy",
+	public PrivacySettingsValue SetPrivacy(PrivacyKey key, string value) => _vk.Call<PrivacySettingsValue>("account.setPrivacy",
 		new()
 		{
 			{
