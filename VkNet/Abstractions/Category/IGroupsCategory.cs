@@ -171,4 +171,16 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetLongPollSettingsAsync" />
 	GetLongPollSettingsResult GetLongPollSettings(ulong groupId);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.GetTagListAsync" />
+	VkCollection<GroupTag> GetTagList(ulong groupId);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.SetSettingsAsync" />
+	bool SetSettings(GroupsSetSettingsParams @params);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.SetUserNoteAsync" />
+	bool SetUserNote(GroupsSetUserNoteParams @params);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.TagAddAsync" />
+	bool TagAdd(GroupsTagAddParams @params);
 }

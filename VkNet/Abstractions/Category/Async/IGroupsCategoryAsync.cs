@@ -1117,4 +1117,42 @@ public interface IGroupsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getLongPollSettings
 	/// </remarks>
 	Task<GetLongPollSettingsResult> GetLongPollSettingsAsync(ulong groupId);
+
+	/// <summary>
+	/// Возвращает список тегов сообщества
+	/// </summary>
+	/// <param name="groupId">
+	/// Идентификатор сообщества. положительное число,
+	/// обязательный параметр
+	/// </param>
+	/// <returns> Массив объектов тэгов </returns>
+	Task<VkCollection<GroupTag>> GetTagListAsync(ulong groupId);
+
+	/// <summary>
+	/// Устанавливает настройки сообщества
+	/// </summary>
+	/// <param name="params">
+	/// Параметры изменения настроек сообщества
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> SetSettingsAsync(GroupsSetSettingsParams @params);
+
+	/// <summary>
+	/// Позволяет создать или отредактировать заметку о пользователе в рамках переписки
+	/// пользователя с сообществом
+	/// </summary>
+	/// <param name="params">
+	/// Параметры редактирования заметки о пользователе
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> SetUserNoteAsync(GroupsSetUserNoteParams @params);
+
+	/// <summary>
+	/// Позволяет добавить новый тег в сообщество.
+	/// </summary>
+	/// <param name="params">
+	/// Параметры редактирования заметки о пользователе
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> TagAddAsync(GroupsTagAddParams @params);
 }

@@ -204,4 +204,26 @@ public partial class GroupsCategory
 	/// <inheritdoc />
 	public Task<GetLongPollSettingsResult> GetLongPollSettingsAsync(ulong groupId) =>
 		TypeHelper.TryInvokeMethodAsync(() => GetLongPollSettings(groupId));
+
+	/// <inheritdoc />
+	public Task<VkCollection<GroupTag>> GetTagListAsync(ulong groupId)
+	{
+		return TypeHelper.TryInvokeMethodAsync(() => GetTagList(groupId));
+	}
+
+	/// <inheritdoc />
+	public Task<bool> SetSettingsAsync(GroupsSetSettingsParams @params)
+	{
+		return TypeHelper.TryInvokeMethodAsync(() => SetSettings(@params));
+	}
+
+	public Task<bool> SetUserNoteAsync(GroupsSetUserNoteParams @params)
+	{
+		return TypeHelper.TryInvokeMethodAsync(() => SetUserNote(@params));
+	}
+
+	public Task<bool> TagAddAsync(GroupsTagAddParams @params)
+	{
+		return TypeHelper.TryInvokeMethodAsync(() => TagAdd(@params));
+	}
 }
