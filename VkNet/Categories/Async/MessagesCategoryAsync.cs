@@ -245,4 +245,7 @@ public partial class MessagesCategory
 
 	/// <inheritdoc />
 	public Task<bool> MarkAsUnreadConversationAsync(long peerId) => TypeHelper.TryInvokeMethodAsync(() => MarkAsUnreadConversation(peerId));
+
+	/// <inheritdoc />
+	public Task<bool> SetMemberRoleAsync(string role, long peerId, ulong memberId) => TypeHelper.TryInvokeMethodAsync(() => SetMemberRole(role, peerId, memberId));
 }

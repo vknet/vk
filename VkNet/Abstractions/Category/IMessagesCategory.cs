@@ -166,6 +166,10 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetIntentUsersAsync"/>
 	GetIntentUsersResult GetIntentUsers(MessagesGetIntentUsersParams getIntentUsersParams);
 
+
+	/// <inheritdoc cref="IMessagesCategoryAsync.SetMemberRoleAsync"/>
+	bool SetMemberRole(string role, long peerId, ulong memberId);
+
 	#region Obsoleted
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteDialogAsync"/>
