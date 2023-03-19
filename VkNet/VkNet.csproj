@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+		<TargetFrameworks>net7.0;net6.0;netstandard2.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
 		<VersionPrefix>1.72.0</VersionPrefix>
 		<VersionSufix>
@@ -51,8 +51,8 @@
 	<ItemGroup>
 		<PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="all" />
 		<PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.48.0.56517" PrivateAssets="all" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="8.54.0.64047" PrivateAssets="all" />
 		<PackageReference Include="JetBrains.Annotations" Version="2022.3.1" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
