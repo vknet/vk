@@ -151,6 +151,43 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		});
 
+	/// <summary>
+	/// Ворзвращает указанное сообщение по его идентификатору.
+	/// </summary>
+	/// <param name="messageId"> Идентификатор запрошенного сообщения. </param>
+	/// <param name="previewLength">
+	/// Количество символов, по которому нужно обрезать сообщение.
+	/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не
+	/// обрезаются).
+	/// </param>
+	/// <returns>
+	/// Запрошенное сообщение, null если сообщение с заданным идентификатором не
+	/// найдено.
+	/// </returns>
+	/// <remarks>
+	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+	/// содержащей Settings.Messages
+	/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
+	/// </remarks>
+	[Pure]
+	[Obsolete(ObsoleteText.MessageGetById, true)]
+	public Message GetById(ulong messageId, uint? previewLength = null)
+	{
+		var result = GetById(new[]
+			{
+				messageId
+			},
+			null,
+			previewLength);
+
+		if (result.Count > 0)
+		{
+			return result.First();
+		}
+
+		throw new VkApiException("Сообщения с таким ID не существует.");
+	}
+
 	/// <inheritdoc />
 	[Pure]
 	public MessagesGetObject GetDialogs(MessagesDialogsGetParams @params)
@@ -930,18 +967,6 @@ public partial class MessagesCategory : IMessagesCategory
 		});
 
 	/// <inheritdoc />
-	public ChatPreview GetChatPreview(string link, ProfileFields fields) => _vk.Call<ChatPreview>("messages.getChatPreview",
-		new()
-		{
-			{
-				"link", link
-			},
-			{
-				"fields", fields
-			}
-		});
-
-	/// <inheritdoc />
 	public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase? nameCase = null)
 	{
 		var isNoEmpty = chatIds == null || !chatIds.Any();
@@ -971,6 +996,18 @@ public partial class MessagesCategory : IMessagesCategory
 
 		return _vk.Call<ReadOnlyCollection<Chat>>("messages.getChat", parameters);
 	}
+
+	/// <inheritdoc />
+	public ChatPreview GetChatPreview(string link, ProfileFields fields) => _vk.Call<ChatPreview>("messages.getChatPreview",
+		new()
+		{
+			{
+				"link", link
+			},
+			{
+				"fields", fields
+			}
+		});
 
 	/// <inheritdoc />
 	public long CreateChat(IEnumerable<ulong> userIds, string title)
@@ -1460,43 +1497,4 @@ public partial class MessagesCategory : IMessagesCategory
 				"member_id", memberId
 			}
 		});
-
-	/// <summary>
-	/// Ворзвращает указанное сообщение по его идентификатору.
-	/// </summary>
-	/// <param name="messageId"> Идентификатор запрошенного сообщения. </param>
-	/// <param name="previewLength">
-	/// Количество символов, по которому нужно обрезать сообщение.
-	/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не
-	/// обрезаются).
-	/// </param>
-	/// <returns>
-	/// Запрошенное сообщение, null если сообщение с заданным идентификатором не
-	/// найдено.
-	/// </returns>
-	/// <remarks>
-	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-	/// содержащей Settings.Messages
-	/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
-	/// </remarks>
-	[Pure]
-	[Obsolete(ObsoleteText.MessageGetById, true)]
-	public Message GetById(ulong messageId, uint? previewLength = null)
-	{
-		var result = GetById(new[]
-			{
-				messageId
-			},
-			null,
-			previewLength);
-
-		if (result.Count > 0)
-		{
-			return result.First();
-		}
-
-		throw new VkApiException("Сообщения с таким ID не существует.");
-	}
-
-
 }
