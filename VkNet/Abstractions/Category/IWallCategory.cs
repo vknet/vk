@@ -18,14 +18,14 @@ public interface IWallCategory : IWallCategoryAsync
 	/// <inheritdoc cref="IWallCategoryAsync.GetCommentsAsync"/>
 	WallGetCommentsResult GetComments(WallGetCommentsParams @params, bool skipAuthorization = false);
 
-	/// <inheritdoc cref="IWallCategoryAsync.GetByIdAsync(System.Collections, bool, long?, ProfileFields, bool)"/>
+	/// <inheritdoc cref="IWallCategoryAsync.GetByIdAsync(IEnumerable{string}, bool, long?, ProfileFields, bool)"/>
 	WallGetObject GetById(IEnumerable<string> posts
 						, bool extended
 						, long? copyHistoryDepth = null
 						, ProfileFields fields = null
 						, bool skipAuthorization = false);
 
-	/// <inheritdoc cref="IWallCategoryAsync.GetByIdAsync(System.Collections, long?, ProfileFields, bool)"/>
+	/// <inheritdoc cref="IWallCategoryAsync.GetByIdAsync(IEnumerable{string}, long?, ProfileFields, bool)"/>
 	ReadOnlyCollection<Post> GetById(IEnumerable<string> posts
 									, long? copyHistoryDepth = null
 									, ProfileFields fields = null

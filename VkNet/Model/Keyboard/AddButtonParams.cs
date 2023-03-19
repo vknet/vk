@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils.JsonConverter;
@@ -39,7 +40,8 @@ public class AddButtonParams
 	/// <summary>
 	/// Основная информация о кнопке
 	/// </summary>
-	public string? Type { get; set; } = null;
+	[CanBeNull]
+	public string Type { get; set; } = null;
 
 	/// <summary>
 	/// Тип клавиши

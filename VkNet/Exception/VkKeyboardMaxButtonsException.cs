@@ -5,6 +5,7 @@ namespace VkNet.Exception;
 /// </summary>
 public class VkKeyboardMaxButtonsException : VkApiException
 {
+	/// <inheritdoc />
 	public VkKeyboardMaxButtonsException(string message) : base(message)
 	{
 	}

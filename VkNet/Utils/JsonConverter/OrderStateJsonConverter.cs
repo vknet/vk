@@ -9,10 +9,11 @@ using VkNet.Model;
 namespace VkNet.Utils.JsonConverter;
 
 /// <summary>
-///
+/// Converter OrderState Enum
 /// </summary>
 public class OrderStateJsonConverter : StringEnumConverter
 {
+	/// <inheritdoc />
 	public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 	{
 		var obj = JObject.Load(reader);
