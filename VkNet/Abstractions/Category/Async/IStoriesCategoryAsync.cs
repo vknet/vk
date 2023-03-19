@@ -223,7 +223,7 @@ public interface IStoriesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/stories.getViewers
 	/// </remarks>
-	Task<VkCollection<long>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null);
+	Task<VkCollection<StoryViewers>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null);
 
 	/// <summary>
 	/// Возвращает расширенный список пользователей, просмотревших историю.

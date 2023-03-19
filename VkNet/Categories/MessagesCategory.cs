@@ -816,7 +816,6 @@ public partial class MessagesCategory : IMessagesCategory
 		return result;
 	}
 
-
 	/// <inheritdoc />
 	public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
 											bool deleteForAll = false) => ImplementationDelete(messageIds: messageIds, spam: spam,
