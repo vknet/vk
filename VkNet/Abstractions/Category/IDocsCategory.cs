@@ -27,7 +27,7 @@ public interface IDocsCategory : IDocsCategoryAsync
 	/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string)"/>
 	ReadOnlyCollection<Attachment> Save(string file, string title = null, string tags = null);
 
-	/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string,long?,string)"/>
+	/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,long?,string,string,string)"/>
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 	ReadOnlyCollection<Attachment> Save(string file, long? captchaSid = null, string title = null ,string tags = null,
 										string captchaKey = null);
