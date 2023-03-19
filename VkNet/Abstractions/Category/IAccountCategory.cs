@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 
@@ -86,5 +87,5 @@ public interface IAccountCategory : IAccountCategoryAsync
 	PrivacySettings GetPrivacySettings();
 
 	/// <inheritdoc cref="IAccountCategoryAsync.SetPrivacyAsync" />
-	PrivacySettingsValue SetPrivacy(string key, string value);
+	PrivacySettingsValue SetPrivacy(PrivacyKey key, string value);
 }

@@ -32,33 +32,39 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.NotBeNull();
 
 		album.Id.Should()
-			.Be(197266686);
+			.Be(11111);
 
 		album.ThumbId.Should()
-			.Be(-1);
+			.Be(0);
 
 		album.OwnerId.Should()
-			.Be(234698);
+			.Be(22222);
 
 		album.Title.Should()
-			.Be("hello world");
+			.Be("test");
 
 		album.Description.Should()
-			.Be("description for album");
+			.Be("");
 
 		album.Created.Should()
-			.Be(DateHelper.TimeStampToDateTime(1403185184));
+			.Be(DateHelper.TimeStampToDateTime(1679008006));
 
 		album.Updated.Should()
-			.Be(DateHelper.TimeStampToDateTime(1403185184));
+			.Be(DateHelper.TimeStampToDateTime(1679008006));
 
-		album.PrivacyView[0]
+		album.PrivacyView.Category
 			.Should()
 			.Be(Privacy.All);
 
-		album.PrivacyComment[0]
+		album.PrivacyView.Owners.Allowed
+			.Should().BeEmpty();
+
+		album.PrivacyComment.Category
 			.Should()
 			.Be(Privacy.All);
+
+		album.PrivacyComment.Owners.Allowed
+			.Should().BeEmpty();
 
 		album.Size.Should()
 			.Be(0);
@@ -169,58 +175,33 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.NotBeNull();
 
 		album.Id.Should()
-			.Be(110637109);
+			.Be(1111);
 
 		album.ThumbId.Should()
-			.Be(326631163);
+			.Be(0);
 
 		album.OwnerId.Should()
-			.Be(32190123);
+			.Be(5555);
 
 		album.Title.Should()
-			.Be("Я");
+			.Be("test");
 
 		album.Description.Should()
 			.BeEmpty();
 
-		album.Created.Should()
-			.Be(new(2011,
-				6,
-				9,
-				14,
-				12,
-				58,
-				DateTimeKind.Utc));
-
-		album.Updated.Should()
-			.Be(new(2014,
-				4,
-				27,
-				19,
-				4,
-				33,
-				DateTimeKind.Utc));
-
 		album.Size.Should()
-			.Be(6);
+			.Be(0);
 
 		album.ThumbIsLast.Should()
 			.BeTrue();
 
-		album.PrivacyView[0]
-			.ToString()
+		album.PrivacyView.Owners.Allowed.FirstOrDefault()
 			.Should()
-			.Be("list28");
+			.Be(121);
 
-		album.PrivacyComment[0]
-			.ToString()
+		album.PrivacyComment.Owners.Allowed.FirstOrDefault()
 			.Should()
-			.Be("list28");
-
-		album.PrivacyComment[1]
-			.ToString()
-			.Should()
-			.Be("-list1");
+			.Be(111);
 	}
 
 	[Fact]

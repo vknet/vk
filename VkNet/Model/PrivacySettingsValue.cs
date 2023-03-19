@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
+using VkNet.Enums.SafetyEnums;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -13,5 +16,18 @@ public class PrivacySettingsValue
 	/// Категория
 	/// </summary>
 	[JsonProperty("category")]
-	public string Category { get; set; }
+	[JsonConverter(typeof(SafetyEnumJsonConverter))]
+	public Privacy Category { get; set; }
+
+	/// <summary>
+	/// Категория
+	/// </summary>
+	[JsonProperty("lists")]
+	public PrivacyViewListOwners Lists { get; set; }
+
+	/// <summary>
+	/// Категория
+	/// </summary>
+	[JsonProperty("owners")]
+	public PrivacyViewListOwners Owners { get; set; }
 }

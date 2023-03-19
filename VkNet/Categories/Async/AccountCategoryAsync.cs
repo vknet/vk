@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -99,6 +100,6 @@ public partial class AccountCategory
 	public Task<PrivacySettings> GetPrivacySettingsAsync(CancellationToken token) => TypeHelper.TryInvokeMethodAsync(GetPrivacySettings);
 
 	/// <inheritdoc />
-	public Task<PrivacySettingsValue> SetPrivacyAsync(string key, string value) =>
+	public Task<PrivacySettingsValue> SetPrivacyAsync(PrivacyKey key, string value) =>
 		TypeHelper.TryInvokeMethodAsync(() => SetPrivacy(key, value));
 }
