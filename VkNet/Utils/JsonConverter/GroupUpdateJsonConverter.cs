@@ -109,6 +109,10 @@ public class GroupUpdateJsonConverter : Newtonsoft.Json.JsonConverter
 					JsonConvert.DeserializeObject<DonutChanged>(resObj)),
 				"donut_money_withdraw" or "donut_money_withdraw_error" => CreateTyped(u => u.DonutMoneyWithdraw,
 					JsonConvert.DeserializeObject<DonutWithdraw>(resObj)),
+				"market_order_new" => CreateTyped(u => u.MarketOrderNew, JsonConvert.DeserializeObject<MarketOrder>(resObj)),
+				"market_order_edit" => CreateTyped(u => u.MarketOrderEdit, JsonConvert.DeserializeObject<MarketOrder>(resObj)),
+				"app_payload" => CreateTyped(u => u.AppPayload, JsonConvert.DeserializeObject<AppPayload>(resObj)),
+
 				_ => JsonConvert.DeserializeObject<GroupUpdate>(item.ToString(), JsonConfigure.JsonSerializerSettings)
 			};
 

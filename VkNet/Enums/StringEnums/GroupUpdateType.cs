@@ -266,5 +266,20 @@ public enum GroupUpdateType
 	/// <summary>
 	/// Ошибка вывода денег
 	/// </summary>
-	DonutMoneyWithdrawError
+	DonutMoneyWithdrawError,
+
+	/// <summary>
+	/// Новый заказ
+	/// </summary>
+	MarketOrderNew,
+
+	/// <summary>
+	/// Редактирование заказа
+	/// </summary>
+	MarketOrderEdit,
+
+	/// <summary>
+	/// Редактирование заказа
+	/// </summary>
+	AppPayload
 }

@@ -271,6 +271,27 @@ public class GroupUpdate
 	public string Secret { get; set; }
 
 	/// <summary>
+	/// <c>MarketOrderNew</c> для Callback
+	/// </summary>
+	[JsonProperty("market_order_new")]
+	[Obsolete("Используйте свойство Instance")]
+	public MarketOrder MarketOrderNew { get; set; }
+
+	/// <summary>
+	/// <c>MarketOrderEdit</c> для Callback
+	/// </summary>
+	[JsonProperty("market_order_edit")]
+	[Obsolete("Используйте свойство Instance")]
+	public MarketOrder MarketOrderEdit { get; set; }
+
+	/// <summary>
+	/// <c>AppPayload</c> для Callback
+	/// </summary>
+	[JsonProperty("app_payload")]
+	[Obsolete("Используйте свойство Instance")]
+	public AppPayload AppPayload { get; set; }
+
+	/// <summary>
 	/// Необработанные данные
 	/// </summary>
 	public VkResponse Raw { get; set; }
