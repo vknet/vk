@@ -89,7 +89,18 @@
           "type_str": "Гимназия"
         }
       ],
-      "relatives": []
-    }
+      "relatives": [],
+	  "owner_state": {
+		"state": 1,
+		"photos": {
+		  "photo_1440_960": "https://vk.com/images/deactivated_1440_960.png",
+		  "photo_400": "https://vk.com/images/deactivated_400.png",
+		  "photo_200": "https://vk.com/images/deactivated_200.png",
+		  "photo_100": "https://vk.com/images/deactivated_100.png",
+		  "photo_50": "https://vk.com/images/deactivated_50.png"
+		},
+		"description": "К сожалению, нам пришлось заблокировать страницу Дани за нарушение правил сайта."
+	  }
+	}
   ]
 }

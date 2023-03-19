@@ -144,7 +144,8 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 			LastNameAbl = response["last_name_abl"],
 			IsClosed = response["is_closed"],
 			CanAccessClosed = response["can_access_closed"],
-			Count = response["count"]
+			Count = response["count"],
+			OwnerState = !response.ContainsKey("owner_state")?null:JsonConvert.DeserializeObject<OwnerState>(response["owner_state"].ToString()),
 		};
 
 		user.IsDeactivated = user.Deactivated != null;
