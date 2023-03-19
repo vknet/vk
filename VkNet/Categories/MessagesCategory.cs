@@ -1226,9 +1226,9 @@ public partial class MessagesCategory : IMessagesCategory
 		});
 
 	/// <inheritdoc />
-	public ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params)
+	public GetHistoryAttachmentsResult GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params)
 	{
-		return _vk.Call<ReadOnlyCollection<HistoryAttachment>>("messages.getHistoryAttachments",
+		return _vk.Call<GetHistoryAttachmentsResult>("messages.getHistoryAttachments",
 			new()
 			{
 				{
