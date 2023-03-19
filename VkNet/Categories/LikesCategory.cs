@@ -26,7 +26,8 @@ public partial class LikesCategory : ILikesCategory
 	/// <inheritdoc />
 	public VkCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = false)
 	{
-		@params.Extended = false;
+		if (@params.Extended == true)
+			throw new VkApiException("Если параметр Extended = true то используйте метод GetListEx()");
 
 		var parameters = new VkParameters
 		{
@@ -80,7 +81,8 @@ public partial class LikesCategory : ILikesCategory
 	/// <inheritdoc />
 	public UserOrGroup GetListEx(LikesGetListParams @params)
 	{
-		@params.Extended = true;
+		if (@params.Extended == false)
+			throw new VkApiException("Если параметр Extended = false то используйте метод GetList()");
 
 		var parameters = new VkParameters
 		{
