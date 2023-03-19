@@ -49,6 +49,7 @@ public class MarketOrder : IGroupUpdate
 
 	/// <summary>
 	/// Количество товаров в заказе.
+	/// Возвращаются только администратору группы, которой принадлежит товар
 	/// </summary>
 	[JsonProperty("items_count")]
 	public long? ItemsCount { get; set; }
@@ -86,6 +87,7 @@ public class MarketOrder : IGroupUpdate
 
 	/// <summary>
 	/// Дата создания заказа в формате Unixtime.
+	/// Возвращаются только администратору группы, которой принадлежит товар
 	/// </summary>
 	[JsonProperty("date")]
 	[JsonConverter(typeof(UnixDateTimeConverter))]
