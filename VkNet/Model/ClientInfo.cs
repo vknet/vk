@@ -26,6 +26,12 @@ public class ClientInfo
 	public bool Keyboard { get; set; }
 
 	/// <summary>
+	/// Поддерживается ли carousel клиентом.
+	/// </summary>
+	[JsonProperty("carousel")]
+	public bool Carousel { get; set; }
+
+	/// <summary>
 	/// Поддерживается ли inline-клавиатура ботов клиентом.
 	/// </summary>
 	[JsonProperty("inline_keyboard")]
