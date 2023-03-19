@@ -16,7 +16,6 @@ public class AppGetCatalogParams
 	/// Способ сортировки приложений
 	/// </summary>
 	[JsonProperty(propertyName: "sort")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AppSort Sort { get; set; }
 
 	/// <summary>
@@ -37,7 +36,6 @@ public class AppGetCatalogParams
 	/// используется web.
 	/// </summary>
 	[JsonProperty(propertyName: "platform")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AppPlatforms Platform { get; set; }
 
 	/// <summary>

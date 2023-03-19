@@ -205,7 +205,7 @@ public partial class MessagesCategory
 		TypeHelper.TryInvokeMethodAsync(() => SendSticker(parameters));
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params) =>
+	public Task<GetHistoryAttachmentsResult> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetHistoryAttachments(@params));
 

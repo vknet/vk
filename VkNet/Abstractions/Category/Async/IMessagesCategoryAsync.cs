@@ -606,7 +606,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте
 	/// http://vk.com/dev/messages.getHistoryAttachments
 	/// </remarks>
-	Task<ReadOnlyCollection<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params);
+	Task<GetHistoryAttachmentsResult> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params);
 
 	/// <summary>
 	/// Получает ссылку для приглашения пользователя в беседу.

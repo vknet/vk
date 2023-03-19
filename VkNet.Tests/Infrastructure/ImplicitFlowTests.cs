@@ -49,7 +49,7 @@ public class ImplicitFlowTests
 		{
 			ApplicationId = clientId,
 			Settings = scope,
-			Display = display.ToString().ToSnakeCase(),
+			Display = display,
 			State = state,
 			RedirectUri = new(Constants.DefaultRedirectUri),
 			Revoke = true

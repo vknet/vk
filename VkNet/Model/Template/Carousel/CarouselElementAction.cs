@@ -18,7 +18,6 @@ public class CarouselElementAction
 	/// Тип клавиши.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public CarouselElementActionType Type { get; set; }
 
 	/// <summary>

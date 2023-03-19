@@ -26,7 +26,6 @@ public class AdsCampaign
 	/// Тип кампании
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public CampaignType Type { get; set; }
 
 	/// <summary>
