@@ -33,17 +33,15 @@ public partial class DocsCategory
 		TypeHelper.TryInvokeMethodAsync(func: () => GetWallUploadServer(groupId: groupId));
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title, string tags = null) =>
+	public Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title = null, string tags = null) =>
 		TypeHelper.TryInvokeMethodAsync(func: () => Save(file, title, tags));
 
 	/// <inheritdoc />
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public Task<ReadOnlyCollection<Attachment>> SaveAsync(string file
-														, string title
-														, string tags = null
-														, long? captchaSid = null
-														, string captchaKey = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
-		Save(file, title, tags, captchaSid, captchaKey));
+	public Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, long? captchaSid = null, string title = null ,string tags = null,
+														string captchaKey = null) =>
+		TypeHelper.TryInvokeMethodAsync(func: () =>
+		Save(file, captchaSid, title, tags, captchaKey));
 
 	/// <inheritdoc />
 	public Task<bool> DeleteAsync(long ownerId, long docId) => TypeHelper.TryInvokeMethodAsync(func: () => Delete(ownerId, docId));
