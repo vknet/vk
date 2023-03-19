@@ -28,8 +28,9 @@ public interface IVkApiInvoke
 	/// <param name="methodName"> Название метода. </param>
 	/// <param name="parameters"> Параметры. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
+	/// /// <param name="jsonConverters"> JsonConverters </param>
 	/// <returns> </returns>
-	VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false);
+	VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters);
 
 	/// <summary>
 	/// Вызвать метод.

@@ -225,7 +225,7 @@ public class VkApi : IVkApi
 
 	/// <inheritdoc />
 	[MethodImpl(MethodImplOptions.NoInlining)]
-	public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
+	public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters)
 	{
 		var answer = CallBase(methodName, parameters, skipAuthorization);
 
@@ -282,7 +282,7 @@ public class VkApi : IVkApi
 
 		foreach (var jsonConverter in converters)
 			settings.Converters.Add(jsonConverter);
-						 
+
 		return JsonConvert.DeserializeObject<T>(answer, settings);
 	}
 
