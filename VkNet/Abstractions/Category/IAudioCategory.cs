@@ -62,7 +62,7 @@ public interface IAudioCategory : IAudioCategoryAsync
 											uint? offset = null, bool? shuffle = null);
 
 	/// <inheritdoc cref="IAudioCategoryAsync.GetUploadServerAsync"/>
-	Uri GetUploadServer();
+	UploadServer GetUploadServer();
 
 	/// <inheritdoc cref="IAudioCategoryAsync.AddToPlaylistAsync"/>
 	IEnumerable<long> AddToPlaylist(long ownerId, long playlistId, IEnumerable<string> audioIds);

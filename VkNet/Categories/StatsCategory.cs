@@ -53,7 +53,7 @@ public partial class StatsCategory : IStatsCategory
 		});
 
 	/// <inheritdoc />
-	public bool TrackVisitor() => _vk.Call("stats.trackVisitor", VkParameters.Empty);
+	public bool TrackVisitor() => _vk.Call<bool>("stats.trackVisitor", VkParameters.Empty);
 
 	/// <inheritdoc />
 	public PostReach GetPostReach(long ownerId, long postId)

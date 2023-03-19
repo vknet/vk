@@ -207,7 +207,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.delete", parameters);
+		return _vk.Call<bool>("docs.delete", parameters);
 	}
 
 	/// <inheritdoc />
@@ -235,7 +235,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.add", parameters);
+		return _vk.Call<long>("docs.add", parameters);
 	}
 
 	/// <inheritdoc />
@@ -292,7 +292,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.edit", parameters);
+		return _vk.Call<bool>("docs.edit", parameters);
 	}
 
 	/// <inheritdoc />

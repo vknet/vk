@@ -178,7 +178,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			}
 		};
 
-		return _vk.Call("newsfeed.addBan", parameters);
+		return _vk.Call<bool>("newsfeed.addBan", parameters);
 	}
 
 	/// <inheritdoc />
@@ -194,7 +194,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			}
 		};
 
-		return _vk.Call("newsfeed.deleteBan", parameters);
+		return _vk.Call<bool>("newsfeed.deleteBan", parameters);
 	}
 
 	/// <inheritdoc />
@@ -213,7 +213,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			}
 		};
 
-		return _vk.Call("newsfeed.ignoreItem", parameters);
+		return _vk.Call<bool>("newsfeed.ignoreItem", parameters);
 	}
 
 	/// <inheritdoc />
@@ -232,7 +232,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			}
 		};
 
-		return _vk.Call("newsfeed.unignoreItem", parameters);
+		return _vk.Call<bool>("newsfeed.unignoreItem", parameters);
 	}
 
 	/// <inheritdoc />
@@ -309,7 +309,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			}
 		};
 
-		return _vk.Call("newsfeed.saveList", parameters);
+		return _vk.Call<long>("newsfeed.saveList", parameters);
 	}
 
 	/// <inheritdoc />
@@ -322,7 +322,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			}
 		};
 
-		return _vk.Call("newsfeed.deleteList", parameters);
+		return _vk.Call<bool>("newsfeed.deleteList", parameters);
 	}
 
 	/// <inheritdoc />
@@ -341,7 +341,7 @@ public partial class NewsFeedCategory : INewsFeedCategory
 			}
 		};
 
-		return _vk.Call("newsfeed.unsubscribe", parameters);
+		return _vk.Call<bool>("newsfeed.unsubscribe", parameters);
 	}
 
 	/// <inheritdoc />

@@ -46,6 +46,6 @@ public partial class StatusCategory : IStatusCategory
 			}
 		};
 
-		return _vk.Call("status.set", parameters);
+		return _vk.Call<bool>("status.set", parameters);
 	}
 }

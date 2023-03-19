@@ -109,7 +109,7 @@ public interface IPollsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev.php?method=polls.getPhotoUploadServer
 	/// </remarks>
-	Task<PhotoUploadServer> GetPhotoUploadServerAsync(long ownerId);
+	Task<UploadServer> GetPhotoUploadServerAsync(long ownerId);
 
 	/// <summary>
 	/// Сохраняет фотографию, загруженную в опрос.

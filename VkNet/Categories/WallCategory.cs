@@ -360,7 +360,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.delete", parameters);
+		return _vk.Call<bool>("wall.delete", parameters);
 	}
 
 	/// <inheritdoc />
@@ -376,7 +376,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.restore", parameters);
+		return _vk.Call<bool>("wall.restore", parameters);
 	}
 
 	/// <inheritdoc />
@@ -421,7 +421,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.deleteComment", parameters);
+		return _vk.Call<bool>("wall.deleteComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -437,7 +437,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.restoreComment", parameters);
+		return _vk.Call<bool>("wall.restoreComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -504,7 +504,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.pin", parameters);
+		return _vk.Call<bool>("wall.pin", parameters);
 	}
 
 	/// <inheritdoc />
@@ -520,7 +520,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.unpin", parameters);
+		return _vk.Call<bool>("wall.unpin", parameters);
 	}
 
 	/// <inheritdoc />
@@ -542,7 +542,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.editComment", parameters);
+		return _vk.Call<bool>("wall.editComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -561,7 +561,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.reportPost", parameters);
+		return _vk.Call<bool>("wall.reportPost", parameters);
 	}
 
 	/// <inheritdoc />
@@ -580,11 +580,11 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.reportComment", parameters);
+		return _vk.Call<bool>("wall.reportComment", parameters);
 	}
 
 	/// <inheritdoc />
-	public bool EditAdsStealth(EditAdsStealthParams @params) => _vk.Call("wall.editAdsStealth", new()
+	public bool EditAdsStealth(EditAdsStealthParams @params) => _vk.Call<bool>("wall.editAdsStealth", new()
 	{
 		{
 			"owner_id", @params.OwnerId
@@ -619,7 +619,7 @@ public partial class WallCategory : IWallCategory
 	});
 
 	/// <inheritdoc />
-	public long PostAdsStealth(PostAdsStealthParams @params) => _vk.Call("wall.postAdsStealth", new()
+	public long PostAdsStealth(PostAdsStealthParams @params) => _vk.Call<long>("wall.postAdsStealth", new()
 	{
 		{
 			"owner_id", @params.OwnerId
@@ -669,7 +669,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.openComments", parameters);
+		return _vk.Call<bool>("wall.openComments", parameters);
 	}
 
 	/// <inheritdoc />
@@ -685,7 +685,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.closeComments", parameters);
+		return _vk.Call<bool>("wall.closeComments", parameters);
 	}
 
 	/// <inheritdoc />
@@ -698,7 +698,7 @@ public partial class WallCategory : IWallCategory
 			}
 		};
 
-		return _vk.Call("wall.checkCopyrightLink", parameters);
+		return _vk.Call<bool>("wall.checkCopyrightLink", parameters);
 	}
 
 	/// <inheritdoc />

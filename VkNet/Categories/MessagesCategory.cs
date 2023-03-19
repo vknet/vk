@@ -45,11 +45,11 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.addChatUser", parameters);
+		return _vk.Call<bool>("messages.addChatUser", parameters);
 	}
 
 	/// <inheritdoc />
-	public bool AllowMessagesFromGroup(long groupId, string key) => _vk.Call("messages.allowMessagesFromGroup",
+	public bool AllowMessagesFromGroup(long groupId, string key) => _vk.Call<bool>("messages.allowMessagesFromGroup",
 		new()
 		{
 			{
@@ -61,7 +61,7 @@ public partial class MessagesCategory : IMessagesCategory
 		});
 
 	/// <inheritdoc />
-	public bool DenyMessagesFromGroup(long groupId) => _vk.Call("messages.denyMessagesFromGroup",
+	public bool DenyMessagesFromGroup(long groupId) => _vk.Call<bool>("messages.denyMessagesFromGroup",
 		new()
 		{
 			{
@@ -256,7 +256,7 @@ public partial class MessagesCategory : IMessagesCategory
 			throw new ArgumentException($"{nameof(@params.RandomId)} обязательное значение.");
 		}
 
-		return _vk.Call("messages.send",
+		return _vk.Call<long>("messages.send",
 			new()
 			{
 				{
@@ -840,7 +840,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.restore", parameters);
+		return _vk.Call<bool>("messages.restore", parameters);
 	}
 
 	/// <inheritdoc />
@@ -862,7 +862,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.markAsRead", parameters);
+		return _vk.Call<bool>("messages.markAsRead", parameters);
 	}
 
 	/// <inheritdoc />
@@ -894,7 +894,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.setActivity", parameters);
+		return _vk.Call<bool>("messages.setActivity", parameters);
 	}
 
 	/// <inheritdoc />
@@ -990,7 +990,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.createChat", parameters);
+		return _vk.Call<long>("messages.createChat", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1011,7 +1011,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.editChat", parameters);
+		return _vk.Call<bool>("messages.editChat", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1212,7 +1212,7 @@ public partial class MessagesCategory : IMessagesCategory
 	}
 
 	/// <inheritdoc />
-	public long SendSticker(MessagesSendStickerParams @params) => _vk.Call("messages.sendSticker",
+	public long SendSticker(MessagesSendStickerParams @params) => _vk.Call<long>("messages.sendSticker",
 		new()
 		{
 			{
@@ -1299,7 +1299,7 @@ public partial class MessagesCategory : IMessagesCategory
 		})["chat_id"];
 
 	/// <inheritdoc />
-	public bool MarkAsAnsweredConversation(long peerId, bool? answered = null, ulong? groupId = null) => _vk.Call(
+	public bool MarkAsAnsweredConversation(long peerId, bool? answered = null, ulong? groupId = null) => _vk.Call<bool>(
 		"messages.markAsAnsweredConversation",
 		new()
 		{
@@ -1318,7 +1318,7 @@ public partial class MessagesCategory : IMessagesCategory
 	public bool MarkAsAnsweredDialog(long peerId, bool answered = true) => MarkAsAnsweredConversation(peerId, answered);
 
 	/// <inheritdoc />
-	public bool MarkAsImportantConversation(long peerId, bool? important = null, ulong? groupId = null) => _vk.Call(
+	public bool MarkAsImportantConversation(long peerId, bool? important = null, ulong? groupId = null) => _vk.Call<bool>(
 		"messages.markAsImportantConversation",
 		new()
 		{
@@ -1337,7 +1337,7 @@ public partial class MessagesCategory : IMessagesCategory
 	public bool MarkAsImportantDialog(long peerId, bool important = true) => MarkAsImportantConversation(peerId, important);
 
 	/// <inheritdoc />
-	public bool Edit(MessageEditParams @params) => _vk.Call("messages.edit",
+	public bool Edit(MessageEditParams @params) => _vk.Call<bool>("messages.edit",
 		new()
 		{
 			{

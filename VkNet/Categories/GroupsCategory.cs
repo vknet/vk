@@ -171,7 +171,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.join", parameters);
+		return _vk.Call<bool>("groups.join", parameters);
 	}
 
 	/// <inheritdoc />
@@ -184,7 +184,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.leave", parameters);
+		return _vk.Call<bool>("groups.leave", parameters);
 	}
 
 	/// <inheritdoc />
@@ -423,7 +423,7 @@ public partial class GroupsCategory : IGroupsCategory
 	}
 
 	/// <inheritdoc />
-	public bool BanUser(GroupsBanUserParams @params) => _vk.Call("groups.banUser",
+	public bool BanUser(GroupsBanUserParams @params) => _vk.Call<bool>("groups.banUser",
 		new()
 		{
 			{
@@ -492,7 +492,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.unbanUser", parameters);
+		return _vk.Call<bool>("groups.unbanUser", parameters);
 	}
 
 	/// <inheritdoc />
@@ -508,11 +508,11 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.unban", parameters);
+		return _vk.Call<bool>("groups.unban", parameters);
 	}
 
 	/// <inheritdoc />
-	public bool EditManager(GroupsEditManagerParams @params) => _vk.Call("groups.editManager",
+	public bool EditManager(GroupsEditManagerParams @params) => _vk.Call<bool>("groups.editManager",
 		new()
 		{
 			{
@@ -713,7 +713,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.edit", parameters);
+		return _vk.Call<bool>("groups.edit", parameters);
 	}
 
 	/// <inheritdoc />
@@ -805,7 +805,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.invite", parameters);
+		return _vk.Call<bool>("groups.invite", parameters);
 	}
 
 	/// <inheritdoc />
@@ -844,7 +844,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.deleteLink", parameters);
+		return _vk.Call<bool>("groups.deleteLink", parameters);
 	}
 
 	/// <inheritdoc />
@@ -865,7 +865,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.editLink", parameters);
+		return _vk.Call<bool>("groups.editLink", parameters);
 	}
 
 	/// <inheritdoc />
@@ -884,7 +884,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.reorderLink", parameters);
+		return _vk.Call<bool>("groups.reorderLink", parameters);
 	}
 
 	/// <inheritdoc />
@@ -903,7 +903,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.removeUser", parameters);
+		return _vk.Call<bool>("groups.removeUser", parameters);
 	}
 
 	/// <inheritdoc />
@@ -922,7 +922,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.approveRequest", parameters);
+		return _vk.Call<bool>("groups.approveRequest", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1047,7 +1047,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.deleteCallbackServer", parameters);
+		return _vk.Call<bool>("groups.deleteCallbackServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1072,7 +1072,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		return _vk.Call("groups.editCallbackServer", parameters);
+		return _vk.Call<bool>("groups.editCallbackServer", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1159,7 +1159,7 @@ public partial class GroupsCategory : IGroupsCategory
 			res["api_version"] = @params.ApiVersion.Version;
 		}
 
-		return _vk.Call("groups.setCallbackSettings", res);
+		return _vk.Call<bool>("groups.setCallbackSettings", res);
 	}
 
 	/// <inheritdoc />

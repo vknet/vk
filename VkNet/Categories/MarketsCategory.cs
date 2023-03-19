@@ -138,7 +138,7 @@ public partial class MarketsCategory : IMarketsCategory
 	}
 
 	/// <inheritdoc />
-	public long CreateComment(MarketCreateCommentParams @params) => _vk.Call("market.createComment",
+	public long CreateComment(MarketCreateCommentParams @params) => _vk.Call<long>("market.createComment",
 		new()
 		{
 			{
@@ -213,7 +213,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.deleteComment", parameters);
+		return _vk.Call<bool>("market.deleteComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -229,7 +229,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.restoreComment", parameters);
+		return _vk.Call<bool>("market.restoreComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -251,7 +251,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.editComment", parameters);
+		return _vk.Call<bool>("market.editComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -270,7 +270,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.reportComment", parameters);
+		return _vk.Call<bool>("market.reportComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -289,7 +289,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.report", parameters);
+		return _vk.Call<bool>("market.report", parameters);
 	}
 
 	/// <inheritdoc />
@@ -413,7 +413,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.delete", parameters);
+		return _vk.Call<bool>("market.delete", parameters);
 	}
 
 	/// <inheritdoc />
@@ -429,7 +429,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.restore", parameters);
+		return _vk.Call<bool>("market.restore", parameters);
 	}
 
 	/// <inheritdoc />
@@ -454,7 +454,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.reorderItems", parameters);
+		return _vk.Call<bool>("market.reorderItems", parameters);
 	}
 
 	/// <inheritdoc />
@@ -476,7 +476,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.reorderAlbums", parameters);
+		return _vk.Call<bool>("market.reorderAlbums", parameters);
 	}
 
 	/// <inheritdoc />
@@ -523,7 +523,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.editAlbum", parameters);
+		return _vk.Call<bool>("market.editAlbum", parameters);
 	}
 
 	/// <inheritdoc />
@@ -539,7 +539,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.deleteAlbum", parameters);
+		return _vk.Call<bool>("market.deleteAlbum", parameters);
 	}
 
 	/// <inheritdoc />
@@ -558,7 +558,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.removeFromAlbum", parameters);
+		return _vk.Call<bool>("market.removeFromAlbum", parameters);
 	}
 
 	/// <inheritdoc />
@@ -577,7 +577,7 @@ public partial class MarketsCategory : IMarketsCategory
 			}
 		};
 
-		return _vk.Call("market.addToAlbum", parameters);
+		return _vk.Call<bool>("market.addToAlbum", parameters);
 	}
 
 	/// <inheritdoc />

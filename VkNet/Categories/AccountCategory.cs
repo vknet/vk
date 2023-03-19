@@ -66,14 +66,14 @@ public partial class AccountCategory : IAccountCategory
 	}
 
 	/// <inheritdoc />
-	public bool SetOffline() => _vk.Call("account.setOffline", VkParameters.Empty);
+	public bool SetOffline() => _vk.Call<bool>("account.setOffline", VkParameters.Empty);
 
 	/// <inheritdoc />
 	public bool RegisterDevice(AccountRegisterDeviceParams @params)
 	{
 		VkErrors.ThrowIfNullOrEmpty(() => @params.Token);
 
-		return _vk.Call("account.registerDevice",
+		return _vk.Call<bool>("account.registerDevice",
 			new()
 			{
 				{
@@ -115,7 +115,7 @@ public partial class AccountCategory : IAccountCategory
 			}
 		};
 
-		return _vk.Call("account.unregisterDevice", parameters);
+		return _vk.Call<bool>("account.unregisterDevice", parameters);
 	}
 
 	/// <inheritdoc />
@@ -139,7 +139,7 @@ public partial class AccountCategory : IAccountCategory
 			}
 		};
 
-		return _vk.Call("account.setSilenceMode", parameters);
+		return _vk.Call<bool>("account.setSilenceMode", parameters);
 	}
 
 	/// <inheritdoc />
@@ -175,7 +175,7 @@ public partial class AccountCategory : IAccountCategory
 			}
 		};
 
-		return _vk.Call("account.setPushSettings", parameters);
+		return _vk.Call<bool>("account.setPushSettings", parameters);
 	}
 
 	/// <inheritdoc />
@@ -188,7 +188,7 @@ public partial class AccountCategory : IAccountCategory
 			}
 		};
 
-		return _vk.Call("account.getAppPermissions", parameters);
+		return _vk.Call<long>("account.getAppPermissions", parameters);
 	}
 
 	/// <inheritdoc />
@@ -221,7 +221,7 @@ public partial class AccountCategory : IAccountCategory
 			}
 		};
 
-		return _vk.Call("account.ban", parameters);
+		return _vk.Call<bool>("account.ban", parameters);
 	}
 
 	/// <inheritdoc />
@@ -238,7 +238,7 @@ public partial class AccountCategory : IAccountCategory
 			}
 		};
 
-		return _vk.Call("account.unban", parameters);
+		return _vk.Call<bool>("account.unban", parameters);
 	}
 
 	/// <inheritdoc />
@@ -282,7 +282,7 @@ public partial class AccountCategory : IAccountCategory
 			}
 		};
 
-		return _vk.Call("account.setInfo", parameters);
+		return _vk.Call<bool>("account.setInfo", parameters);
 	}
 
 	/// <inheritdoc />

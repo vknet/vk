@@ -76,7 +76,7 @@ public partial class AudioCategory
 		TypeHelper.TryInvokeMethodAsync(() => GetRecommendations(targetAudio, userId, count, offset, shuffle));
 
 	/// <inheritdoc />
-	public Task<Uri> GetUploadServerAsync() => TypeHelper.TryInvokeMethodAsync(GetUploadServer);
+	public Task<UploadServer> GetUploadServerAsync() => TypeHelper.TryInvokeMethodAsync(GetUploadServer);
 
 	/// <inheritdoc />
 	public Task<IEnumerable<long>> AddToPlaylistAsync(long ownerId, long playlistId, IEnumerable<string> audioIds) =>
