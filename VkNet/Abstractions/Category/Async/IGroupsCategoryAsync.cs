@@ -1155,4 +1155,60 @@ public interface IGroupsCategoryAsync
 	/// </param>
 	/// <returns> 1 в случае успеха </returns>
 	Task<bool> TagAddAsync(GroupsTagAddParams @params);
+
+	/// <summary>
+	/// Позволяет «привязывать» и «отвязывать» теги сообщества к беседам.
+	/// </summary>
+	/// /// <param name="groupId">
+	/// Идентификатор группы
+	/// </param>
+	/// /// <param name="tagId">
+	/// Идентификатор тега.
+	/// </param>
+	/// /// <param name="userId">
+	/// Идентификатор User
+	/// </param>
+	/// /// <param name="act">
+	/// Действие с тегом:
+	/// "bind" —  привязать.
+	/// "unbind" — отвязать.
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> TagBindAsync(ulong groupId, ulong tagId, ulong userId, GroupTagAct act);
+
+	/// <summary>
+	/// Позволяет удалить тег сообщества.
+	/// </summary>
+	/// /// <param name="groupId">
+	/// Идентификатор группы
+	/// </param>
+	/// /// <param name="tagId">
+	/// Идентификатор тега.
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> TagDeleteAsync(ulong groupId, ulong tagId);
+
+	/// <summary>
+	/// Позволяет переименовать существующий тег.
+	/// </summary>
+	/// /// <param name="groupId">
+	/// Идентификатор группы
+	/// </param>
+	/// /// <param name="tagId">
+	/// Идентификатор тега.
+	/// </param>
+	/// /// <param name="tagName">
+	/// Имя тега.
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> TagUpdateAsync(ulong groupId, ulong tagId, string tagName);
+
+	/// <summary>
+	/// Позволяет добавить новый тег в сообщество.
+	/// </summary>
+	/// <param name="params">
+	/// Параметры редактирования заметки о пользователе
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> ToggleMarketAsync(GroupToggleMarketParams @params);
 }

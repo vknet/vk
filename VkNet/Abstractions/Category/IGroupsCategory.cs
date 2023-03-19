@@ -183,4 +183,16 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.TagAddAsync" />
 	bool TagAdd(GroupsTagAddParams @params);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.TagBindAsync" />
+	bool TagBind(ulong groupId, ulong tagId, ulong userId, GroupTagAct act);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.TagDeleteAsync" />
+	bool TagDelete(ulong groupId, ulong tagId);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.TagUpdateAsync" />
+	bool TagUpdate(ulong groupId, ulong tagId, string tagName);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.ToggleMarketAsync" />
+	bool ToggleMarket(GroupToggleMarketParams @params);
 }
