@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -300,12 +301,25 @@ public interface IStoriesCategoryAsync
 	/// Сохраняет историю.
 	/// </summary>
 	/// <param name="uploadResults">Список строк, которые возвращает stories.getPhotoUploadServer или stories.getVideoUploadServer.</param>
+	/// <param name="token">Токен отмены запроса</param>
+	/// <returns>
+	/// После успешного выполнения возвращает объект, содержащий число историй в поле count и массив историй в поле items.
+	/// </returns>
+	Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults,
+										CancellationToken token);
+
+
+	/// <summary>
+	/// Сохраняет историю.
+	/// </summary>
+	/// <param name="uploadResults">Список строк, которые возвращает stories.getPhotoUploadServer или stories.getVideoUploadServer.</param>
 	/// <param name="extended">Флаг, может принимать значения 1 или 0</param>
 	/// <param name="fields">Список слов, разделенных через запятую</param>
 	/// <param name="token">Токен отмены запроса</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число историй в поле count и массив историй в поле items.
 	/// </returns>
+	[Obsolete("Начиная с версии 5.118 используется только параметр uploadResults")]
 	Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields,
 										CancellationToken token);
 
