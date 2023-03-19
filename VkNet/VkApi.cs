@@ -315,7 +315,7 @@ public class VkApi : IVkApi
 			Invoke(methodName, parameters, skipAuthorization));
 
 	/// <inheritdoc />
-	public VkResponse CallLongPoll(string server, VkParameters parameters)
+	public VkResponse CallLongPoll(string server, VkParameters parameters, params JsonConverter[] jsonConverters)
 	{
 		var json = InvokeLongPollExtended(server, parameters);
 		var rawResponse = json.Root;
