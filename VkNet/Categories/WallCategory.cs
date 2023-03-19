@@ -105,7 +105,7 @@ public partial class WallCategory : IWallCategory
 
 	/// <inheritdoc />
 	public WallGetObject GetById(IEnumerable<string> posts
-								, bool extended = true
+								, bool extended
 								, long? copyHistoryDepth = null
 								, ProfileFields fields = null
 								, bool skipAuthorization = false)
@@ -131,7 +131,7 @@ public partial class WallCategory : IWallCategory
 				"posts", posts
 			},
 			{
-				"extended", extended
+				"extended", true
 			},
 			{
 				"copy_history_depth", copyHistoryDepth
