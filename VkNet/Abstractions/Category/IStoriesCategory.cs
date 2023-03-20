@@ -60,6 +60,7 @@ public interface IStoriesCategory : IStoriesCategoryAsync
 	VkCollection<Story> Save(StoryServerUrl uploadResults);
 
 	/// <inheritdoc cref="IStoriesCategoryAsync.SaveAsync(StoryServerUrl, bool, IEnumerable{string}, CancellationToken)"/>
+
 	[Obsolete("Начиная с версии 5.118 используется только параметр uploadResults")]
 	VkCollection<Story> Save(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields);
 
