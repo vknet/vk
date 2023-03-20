@@ -1385,4 +1385,152 @@ public partial class GroupsCategory : IGroupsCategory
 				"group_id", groupId
 			}
 		});
+
+	/// <inheritdoc />
+	public VkCollection<GroupTag> GetTagList(ulong groupId)
+	{
+		return _vk.Call("groups.getTagList",
+				new VkParameters
+				{
+					{ "group_id", groupId }
+				})
+			.ToVkCollectionOf<GroupTag>(x => x);
+	}
+
+	/// <inheritdoc />
+	public bool SetSettings(GroupsSetSettingsParams @params)
+	{
+		return _vk.Call<bool>("groups.setSettings",
+			new()
+			{
+				{ "group_id", @params.GroupId },
+				{ "messages", @params.Messages },
+				{ "bots_capabilities", @params.BotsCapabilities },
+				{ "bots_start_button", @params.BotsStartButton },
+				{ "bots_add_to_chat", @params.BotsAddToChats }
+			});
+	}
+
+	/// <inheritdoc />
+	public bool SetUserNote(GroupsSetUserNoteParams @params)
+	{
+		if (@params.Note is
+		{
+			Length: > 96
+		})
+		{
+			throw new VkApiException("Поле Note не может быть длиннее 96 символов");
+
+		}
+
+		return _vk.Call<bool>("groups.setUserNote",
+			new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "user_id", @params.UserId },
+				{ "note", @params.Note }
+			});
+		}
+
+	private static readonly string[] ValidTagColors =
+	{
+		"4bb34b",
+		"5c9ce6",
+		"e64646",
+		"792ec0",
+		"63b9ba",
+		"ffa000",
+		"ffc107",
+		"76787a",
+		"9e8d6b",
+		"45678f",
+		"539b9c",
+		"454647",
+		"7a6c4f",
+		"6bc76b",
+		"5181b8",
+		"ff5c5c",
+		"a162de",
+		"7ececf",
+		"aaaeb3",
+		"bbaa84"
+	};
+
+	/// <inheritdoc />
+	public bool TagAdd(GroupsTagAddParams @params)
+	{
+		if (@params.TagName is { Length: > 20 })
+		{
+			throw new VkApiException("Поле TagName не может быть длиннее 20 символов");
+		}
+
+		string lowerTagColor = @params.TagColor?.ToLower() ?? throw new VkApiException("Параметр TagColor обязательный.");
+
+		if (!ValidTagColors.Contains(lowerTagColor))
+		{
+			throw new VkApiException($"Параметр TagColor должен быть одним из следующих: {string.Join(",", ValidTagColors)}. Передан: {lowerTagColor}");
+		}
+
+		return _vk.Call<bool>("groups.tagAdd",
+			new VkParameters
+			{
+				{ "group_id", @params.GroupId },
+				{ "tag_name", @params.TagName },
+				{ "tag_color", lowerTagColor }
+			});
+	}
+
+	/// <inheritdoc />
+	public bool TagBind(ulong groupId, ulong tagId, ulong userId, GroupTagAct act)
+	{
+		return _vk.Call<bool>("groups.tagBind",
+			new()
+			{
+				{ "group_id", groupId },
+				{ "tag_id", tagId },
+				{ "user_id", userId },
+				{ "act", act }
+			});
+	}
+
+	/// <inheritdoc />
+	public bool TagDelete(ulong groupId, ulong tagId)
+	{
+		return _vk.Call<bool>("groups.tagDelete",
+			new()
+			{
+				{ "group_id", groupId },
+				{ "tag_id", tagId }
+			});
+	}
+
+	/// <inheritdoc />
+	public bool TagUpdate(ulong groupId, ulong tagId, string tagName)
+	{
+		return _vk.Call<bool>("groups.tagUpdate",
+			new()
+			{
+				{ "group_id", groupId },
+				{ "tag_id", tagId },
+				{ "tag_name", tagName }
+			});
+	}
+
+	/// <inheritdoc />
+	public bool ToggleMarket(GroupToggleMarketParams @params)
+	{
+		return _vk.Call<bool>("groups.toggleMarket",
+			new()
+			{
+				{ "group_id", @params.GroupId },
+				{ "state", @params.State },
+				{ "ref", @params.Ref },
+				{ "utm_source", @params.UtmSource },
+				{ "utm_medium", @params.UtmMedium },
+				{ "utm_campaign", @params.UtmCampaign },
+				{ "utm_content", @params.UtmContent },
+				{ "utm_term", @params.UtmTerm },
+				{ "promocode", @params.Promocode }
+			});
+	}
 }

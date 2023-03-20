@@ -204,4 +204,44 @@ public partial class GroupsCategory
 	/// <inheritdoc />
 	public Task<GetLongPollSettingsResult> GetLongPollSettingsAsync(ulong groupId) =>
 		TypeHelper.TryInvokeMethodAsync(() => GetLongPollSettings(groupId));
+
+	/// <inheritdoc />
+	public Task<VkCollection<GroupTag>> GetTagListAsync(ulong groupId)
+	{
+		return TypeHelper.TryInvokeMethodAsync(() => GetTagList(groupId));
+	}
+
+	/// <inheritdoc />
+	public Task<bool> SetSettingsAsync(GroupsSetSettingsParams @params)
+	{
+		return TypeHelper.TryInvokeMethodAsync(() => SetSettings(@params));
+	}
+
+	/// <inheritdoc />
+	public Task<bool> SetUserNoteAsync(GroupsSetUserNoteParams @params)
+	{
+		return TypeHelper.TryInvokeMethodAsync(() => SetUserNote(@params));
+	}
+
+	/// <inheritdoc />
+	public Task<bool> TagAddAsync(GroupsTagAddParams @params)
+	{
+		return TypeHelper.TryInvokeMethodAsync(() => TagAdd(@params));
+	}
+
+	/// <inheritdoc />
+	public Task<bool> TagBindAsync(ulong groupId, ulong tagId, ulong userId, GroupTagAct act) =>
+		TypeHelper.TryInvokeMethodAsync(() => TagBind(groupId, tagId, userId, act));
+
+	/// <inheritdoc />
+	public Task<bool> TagDeleteAsync(ulong groupId, ulong tagId) =>
+		TypeHelper.TryInvokeMethodAsync(() => TagDelete(groupId, tagId));
+
+	/// <inheritdoc />
+	public Task<bool> TagUpdateAsync(ulong groupId, ulong tagId, string tagName) =>
+		TypeHelper.TryInvokeMethodAsync(() => TagUpdate(groupId, tagId, tagName));
+
+	/// <inheritdoc />
+	public Task<bool> ToggleMarketAsync(GroupToggleMarketParams @params) =>
+		TypeHelper.TryInvokeMethodAsync(() => ToggleMarket(@params));
 }

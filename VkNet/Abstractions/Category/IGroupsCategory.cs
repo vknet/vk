@@ -171,4 +171,28 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetLongPollSettingsAsync" />
 	GetLongPollSettingsResult GetLongPollSettings(ulong groupId);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.GetTagListAsync" />
+	VkCollection<GroupTag> GetTagList(ulong groupId);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.SetSettingsAsync" />
+	bool SetSettings(GroupsSetSettingsParams @params);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.SetUserNoteAsync" />
+	bool SetUserNote(GroupsSetUserNoteParams @params);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.TagAddAsync" />
+	bool TagAdd(GroupsTagAddParams @params);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.TagBindAsync" />
+	bool TagBind(ulong groupId, ulong tagId, ulong userId, GroupTagAct act);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.TagDeleteAsync" />
+	bool TagDelete(ulong groupId, ulong tagId);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.TagUpdateAsync" />
+	bool TagUpdate(ulong groupId, ulong tagId, string tagName);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.ToggleMarketAsync" />
+	bool ToggleMarket(GroupToggleMarketParams @params);
 }
