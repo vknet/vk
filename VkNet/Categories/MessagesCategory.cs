@@ -45,11 +45,11 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.addChatUser", parameters);
+		return _vk.Call<bool>("messages.addChatUser", parameters);
 	}
 
 	/// <inheritdoc />
-	public bool AllowMessagesFromGroup(long groupId, string key) => _vk.Call("messages.allowMessagesFromGroup",
+	public bool AllowMessagesFromGroup(long groupId, string key) => _vk.Call<bool>("messages.allowMessagesFromGroup",
 		new()
 		{
 			{
@@ -61,7 +61,7 @@ public partial class MessagesCategory : IMessagesCategory
 		});
 
 	/// <inheritdoc />
-	public bool DenyMessagesFromGroup(long groupId) => _vk.Call("messages.denyMessagesFromGroup",
+	public bool DenyMessagesFromGroup(long groupId) => _vk.Call<bool>("messages.denyMessagesFromGroup",
 		new()
 		{
 			{
@@ -150,6 +150,43 @@ public partial class MessagesCategory : IMessagesCategory
 				"group_id", groupId
 			}
 		});
+
+	/// <summary>
+	/// Ворзвращает указанное сообщение по его идентификатору.
+	/// </summary>
+	/// <param name="messageId"> Идентификатор запрошенного сообщения. </param>
+	/// <param name="previewLength">
+	/// Количество символов, по которому нужно обрезать сообщение.
+	/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не
+	/// обрезаются).
+	/// </param>
+	/// <returns>
+	/// Запрошенное сообщение, null если сообщение с заданным идентификатором не
+	/// найдено.
+	/// </returns>
+	/// <remarks>
+	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
+	/// содержащей Settings.Messages
+	/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
+	/// </remarks>
+	[Pure]
+	[Obsolete(ObsoleteText.MessageGetById, true)]
+	public Message GetById(ulong messageId, uint? previewLength = null)
+	{
+		var result = GetById(new[]
+			{
+				messageId
+			},
+			null,
+			previewLength);
+
+		if (result.Count > 0)
+		{
+			return result.First();
+		}
+
+		throw new VkApiException("Сообщения с таким ID не существует.");
+	}
 
 	/// <inheritdoc />
 	[Pure]
@@ -256,7 +293,7 @@ public partial class MessagesCategory : IMessagesCategory
 			throw new ArgumentException($"{nameof(@params.RandomId)} обязательное значение.");
 		}
 
-		return _vk.Call("messages.send",
+		return _vk.Call<long>("messages.send",
 			new()
 			{
 				{
@@ -840,7 +877,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.restore", parameters);
+		return _vk.Call<bool>("messages.restore", parameters);
 	}
 
 	/// <inheritdoc />
@@ -862,7 +899,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.markAsRead", parameters);
+		return _vk.Call<bool>("messages.markAsRead", parameters);
 	}
 
 	/// <inheritdoc />
@@ -894,7 +931,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.setActivity", parameters);
+		return _vk.Call<bool>("messages.setActivity", parameters);
 	}
 
 	/// <inheritdoc />
@@ -930,18 +967,6 @@ public partial class MessagesCategory : IMessagesCategory
 		});
 
 	/// <inheritdoc />
-	public ChatPreview GetChatPreview(string link, ProfileFields fields) => _vk.Call<ChatPreview>("messages.getChatPreview",
-		new()
-		{
-			{
-				"link", link
-			},
-			{
-				"fields", fields
-			}
-		});
-
-	/// <inheritdoc />
 	public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase? nameCase = null)
 	{
 		var isNoEmpty = chatIds == null || !chatIds.Any();
@@ -973,6 +998,18 @@ public partial class MessagesCategory : IMessagesCategory
 	}
 
 	/// <inheritdoc />
+	public ChatPreview GetChatPreview(string link, ProfileFields fields) => _vk.Call<ChatPreview>("messages.getChatPreview",
+		new()
+		{
+			{
+				"link", link
+			},
+			{
+				"fields", fields
+			}
+		});
+
+	/// <inheritdoc />
 	public long CreateChat(IEnumerable<ulong> userIds, string title)
 	{
 		if (string.IsNullOrEmpty(title))
@@ -990,7 +1027,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.createChat", parameters);
+		return _vk.Call<long>("messages.createChat", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1011,7 +1048,7 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		};
 
-		return _vk.Call("messages.editChat", parameters);
+		return _vk.Call<bool>("messages.editChat", parameters);
 	}
 
 	/// <inheritdoc />
@@ -1212,7 +1249,7 @@ public partial class MessagesCategory : IMessagesCategory
 	}
 
 	/// <inheritdoc />
-	public long SendSticker(MessagesSendStickerParams @params) => _vk.Call("messages.sendSticker",
+	public long SendSticker(MessagesSendStickerParams @params) => _vk.Call<long>("messages.sendSticker",
 		new()
 		{
 			{
@@ -1299,7 +1336,7 @@ public partial class MessagesCategory : IMessagesCategory
 		})["chat_id"];
 
 	/// <inheritdoc />
-	public bool MarkAsAnsweredConversation(long peerId, bool? answered = null, ulong? groupId = null) => _vk.Call(
+	public bool MarkAsAnsweredConversation(long peerId, bool? answered = null, ulong? groupId = null) => _vk.Call<bool>(
 		"messages.markAsAnsweredConversation",
 		new()
 		{
@@ -1318,7 +1355,7 @@ public partial class MessagesCategory : IMessagesCategory
 	public bool MarkAsAnsweredDialog(long peerId, bool answered = true) => MarkAsAnsweredConversation(peerId, answered);
 
 	/// <inheritdoc />
-	public bool MarkAsImportantConversation(long peerId, bool? important = null, ulong? groupId = null) => _vk.Call(
+	public bool MarkAsImportantConversation(long peerId, bool? important = null, ulong? groupId = null) => _vk.Call<bool>(
 		"messages.markAsImportantConversation",
 		new()
 		{
@@ -1337,7 +1374,7 @@ public partial class MessagesCategory : IMessagesCategory
 	public bool MarkAsImportantDialog(long peerId, bool important = true) => MarkAsImportantConversation(peerId, important);
 
 	/// <inheritdoc />
-	public bool Edit(MessageEditParams @params) => _vk.Call("messages.edit",
+	public bool Edit(MessageEditParams @params) => _vk.Call<bool>("messages.edit",
 		new()
 		{
 			{
@@ -1460,43 +1497,5 @@ public partial class MessagesCategory : IMessagesCategory
 				"member_id", memberId
 			}
 		});
-
-	/// <summary>
-	/// Ворзвращает указанное сообщение по его идентификатору.
-	/// </summary>
-	/// <param name="messageId"> Идентификатор запрошенного сообщения. </param>
-	/// <param name="previewLength">
-	/// Количество символов, по которому нужно обрезать сообщение.
-	/// Укажите 0, если Вы не хотите обрезать сообщение. (по умолчанию сообщения не
-	/// обрезаются).
-	/// </param>
-	/// <returns>
-	/// Запрошенное сообщение, null если сообщение с заданным идентификатором не
-	/// найдено.
-	/// </returns>
-	/// <remarks>
-	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-	/// содержащей Settings.Messages
-	/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
-	/// </remarks>
-	[Pure]
-	[Obsolete(ObsoleteText.MessageGetById, true)]
-	public Message GetById(ulong messageId, uint? previewLength = null)
-	{
-		var result = GetById(new[]
-			{
-				messageId
-			},
-			null,
-			previewLength);
-
-		if (result.Count > 0)
-		{
-			return result.First();
-		}
-
-		throw new VkApiException("Сообщения с таким ID не существует.");
-	}
-
 
 }

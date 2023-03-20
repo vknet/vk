@@ -57,7 +57,7 @@ public partial class FriendsCategory : IFriendsCategory
 		};
 
 		var response = _vk.Call("friends.get", parameters, skipAuthorization);
-//check todo;
+		//TODO:
 		if (@params.Fields != null)
 		{
 			return _vk.Call<VkCollection<User>>("friends.get", parameters, skipAuthorization);
@@ -187,7 +187,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.deleteList", parameters);
+		return _vk.Call<bool>("friends.deleteList", parameters);
 	}
 
 	/// <inheritdoc />
@@ -231,7 +231,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.editList", parameters);
+		return _vk.Call<bool>("friends.editList", parameters);
 	}
 
 	/// <inheritdoc />
@@ -258,7 +258,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.add", parameters);
+		return _vk.Call<AddFriendStatus>("friends.add", parameters);
 	}
 
 	/// <inheritdoc />
@@ -291,7 +291,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.edit", parameters);
+		return _vk.Call<bool>("friends.edit", parameters);
 	}
 
 	/// <inheritdoc />

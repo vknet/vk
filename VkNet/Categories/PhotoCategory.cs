@@ -110,7 +110,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.editAlbum", parameters);
+		return _vk.Call<bool>("photos.editAlbum", parameters);
 	}
 
 	/// <inheritdoc />
@@ -188,7 +188,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.getAlbumsCount", parameters);
+		return _vk.Call<int>("photos.getAlbumsCount", parameters);
 	}
 
 	/// <inheritdoc />
@@ -458,7 +458,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.report", parameters);
+		return _vk.Call<bool>("photos.report", parameters);
 	}
 
 	/// <inheritdoc />
@@ -477,7 +477,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.reportComment", parameters);
+		return _vk.Call<bool>("photos.reportComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -574,11 +574,11 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.copy", parameters);
+		return _vk.Call<long>("photos.copy", parameters);
 	}
 
 	/// <inheritdoc />
-	public bool Edit(PhotoEditParams @params) => _vk.Call("photos.edit", new()
+	public bool Edit(PhotoEditParams @params) => _vk.Call<bool>("photos.edit", new()
 	{
 		{
 			"owner_id", @params.OwnerId
@@ -628,7 +628,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.move", parameters);
+		return _vk.Call<bool>("photos.move", parameters);
 	}
 
 	/// <inheritdoc />
@@ -647,7 +647,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.makeCover", parameters);
+		return _vk.Call<bool>("photos.makeCover", parameters);
 	}
 
 	/// <inheritdoc />
@@ -669,7 +669,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.reorderAlbums", parameters);
+		return _vk.Call<bool>("photos.reorderAlbums", parameters);
 	}
 
 	/// <inheritdoc />
@@ -691,7 +691,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.reorderPhotos", parameters);
+		return _vk.Call<bool>("photos.reorderPhotos", parameters);
 	}
 
 	/// <inheritdoc />
@@ -756,7 +756,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.deleteAlbum", parameters);
+		return _vk.Call<bool>("photos.deleteAlbum", parameters);
 	}
 
 	/// <inheritdoc />
@@ -772,7 +772,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.delete", parameters);
+		return _vk.Call<bool>("photos.delete", parameters);
 	}
 
 	/// <inheritdoc />
@@ -788,7 +788,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.restore", parameters);
+		return _vk.Call<bool>("photos.restore", parameters);
 	}
 
 	/// <inheritdoc />
@@ -807,7 +807,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.confirmTag", parameters);
+		return _vk.Call<bool>("photos.confirmTag", parameters);
 	}
 
 	/// <inheritdoc />
@@ -904,7 +904,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.createComment", parameters);
+		return _vk.Call<long>("photos.createComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -920,7 +920,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.deleteComment", parameters);
+		return _vk.Call<bool>("photos.deleteComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -936,7 +936,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.restoreComment", parameters);
+		return _vk.Call<long>("photos.restoreComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -958,7 +958,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.editComment", parameters);
+		return _vk.Call<bool>("photos.editComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -981,7 +981,7 @@ public partial class PhotoCategory : IPhotoCategory
 	}
 
 	/// <inheritdoc />
-	public ulong PutTag(PhotoPutTagParams @params) => _vk.Call("photos.putTag", new()
+	public ulong PutTag(PhotoPutTagParams @params) => _vk.Call<ulong>("photos.putTag", new()
 	{
 		{
 			"owner_id", @params.OwnerId
@@ -1022,7 +1022,7 @@ public partial class PhotoCategory : IPhotoCategory
 			}
 		};
 
-		return _vk.Call("photos.removeTag", parameters);
+		return _vk.Call<bool>("photos.removeTag", parameters);
 	}
 
 	/// <inheritdoc />

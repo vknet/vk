@@ -91,22 +91,22 @@ public static class ObsoleteText
 	public const string FriendsAddList = Deprecated + "long AddList(string name, IEnumerable<long> userIds);";
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategory.Ban"/>
+	/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategoryAsync.BanAsync"/>
 	/// </summary>
 	public const string BanUser = Deprecated + "bool Ban(long ownerId);";
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategory.Unban"/>
+	/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategoryAsync.UnbanAsync"/>
 	/// </summary>
 	public const string UnbanUser = Deprecated + "bool Unban(long groupId, long userId)";
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategory.BanAsync"/>
+	/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategoryAsync.BanAsync"/>
 	/// </summary>
 	public const string BanUserAsync = Deprecated + "bool BanAsync(long ownerId);";
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategory.UnbanAsync"/>
+	/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategoryAsync.UnbanAsync"/>
 	/// </summary>
 	public const string UnbanUserAsync = Deprecated + "Task<bool> UnbanUserAsync(long groupId, long userId)";
 
