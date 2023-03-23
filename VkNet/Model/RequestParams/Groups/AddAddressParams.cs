@@ -2,12 +2,11 @@ using System;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams.Groups;
 
 /// <summary>
-/// Параметры метода <see cref="IGroupsCategory"/>.<see cref="IGroupsCategory.AddAddressAsync"/>
+/// Параметры метода <see cref="IGroupsCategory"/>.<see cref="IGroupsCategoryAsync.AddAddressAsync"/>
 /// </summary>
 [Serializable]
 public class AddAddressParams
@@ -46,7 +45,7 @@ public class AddAddressParams
 	/// Идентификатор  страны.
 	/// </summary>
 	/// <remarks>
-	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategory.GetCountriesAsync"/> положительное число,
+	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategoryAsync.GetCountriesAsync"/> положительное число,
 	/// обязательный параметр, минимальное значение 1
 	/// </remarks>
 	[JsonProperty("country_id")]
@@ -56,7 +55,7 @@ public class AddAddressParams
 	/// Идентификатор города.
 	/// </summary>
 	/// <remarks>
-	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategory.GetCitiesAsync"/> положительное число,
+	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategoryAsync.GetCitiesAsync"/> положительное число,
 	/// обязательный параметр, минимальное значение 1
 	/// </remarks>
 	[JsonProperty("city_id")]
@@ -96,7 +95,7 @@ public class AddAddressParams
 	/// Идентификатор станции метро.
 	/// </summary>
 	/// <remarks>
-	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategory.GetMetroStationsAsync"/>
+	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategoryAsync.GetMetroStationsAsync"/>
 	/// положительное число, минимальное значение 0
 	/// </remarks>
 	[JsonProperty("metro_id")]

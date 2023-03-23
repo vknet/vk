@@ -2,7 +2,10 @@
   "response": {
     "count": 1,
     "items": [
-      123456789
+	  {
+		"is_liked": 0,
+		"user_id": 100
+	  }
     ]
   }
 }

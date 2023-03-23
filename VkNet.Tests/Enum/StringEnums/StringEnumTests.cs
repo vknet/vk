@@ -8,6 +8,15 @@ namespace VkNet.Tests.Enum.StringEnums;
 public class StringEnumTests
 {
 	[Fact]
+	public void NullTest()
+	{
+		var result = Utilities.Deserialize<AppRatingType>("");
+
+		result.Should()
+			.Be(null);
+	}
+
+	[Fact]
 	public void VideoCatalogTypeTest()
 	{
 		Utilities.Deserialize<VideoCatalogType>("channel")
@@ -802,7 +811,7 @@ public class StringEnumTests
 
 		Utilities.Deserialize<MessageEventType>("show_snackbar")
 			.Should()
-			.Be(MessageEventType.SnowSnackbar);
+			.Be(MessageEventType.ShowSnackbar);
 	}
 
 	[Fact]
@@ -1095,5 +1104,141 @@ public class StringEnumTests
 		Utilities.Deserialize<CommentObjectType>("note")
 			.Should()
 			.Be(CommentObjectType.Note);
+	}
+
+	[Fact]
+	public void ChangeNameStatusTest()
+	{
+		Utilities.Deserialize<ChangeNameStatus>("processing")
+			.Should()
+			.Be(ChangeNameStatus.Processing);
+
+		Utilities.Deserialize<ChangeNameStatus>("declined")
+			.Should()
+			.Be(ChangeNameStatus.Declined);
+
+		Utilities.Deserialize<ChangeNameStatus>("success")
+			.Should()
+			.Be(ChangeNameStatus.Success);
+
+		Utilities.Deserialize<ChangeNameStatus>("was_accepted")
+			.Should()
+			.Be(ChangeNameStatus.WasAccepted);
+
+		Utilities.Deserialize<ChangeNameStatus>("was_declined")
+			.Should()
+			.Be(ChangeNameStatus.WasDeclined);
+	}
+
+	[Fact]
+	public void AppWidgetTypeTest()
+	{
+		Utilities.Deserialize<AppWidgetType>("donation")
+			.Should()
+			.Be(AppWidgetType.Donation);
+
+		Utilities.Deserialize<AppWidgetType>("list")
+			.Should()
+			.Be(AppWidgetType.List);
+
+		Utilities.Deserialize<AppWidgetType>("match")
+			.Should()
+			.Be(AppWidgetType.Match);
+
+		Utilities.Deserialize<AppWidgetType>("matches")
+			.Should()
+			.Be(AppWidgetType.Matches);
+
+		Utilities.Deserialize<AppWidgetType>("table")
+			.Should()
+			.Be(AppWidgetType.Table);
+
+		Utilities.Deserialize<AppWidgetType>("text")
+			.Should()
+			.Be(AppWidgetType.Text);
+
+		Utilities.Deserialize<AppWidgetType>("tiles")
+			.Should()
+			.Be(AppWidgetType.Tiles);
+
+		Utilities.Deserialize<AppWidgetType>("compact_list")
+			.Should()
+			.Be(AppWidgetType.CompactList);
+
+		Utilities.Deserialize<AppWidgetType>("cover_list")
+			.Should()
+			.Be(AppWidgetType.CoverList);
+	}
+
+	[Fact]
+	public void AppSortTest()
+	{
+		Utilities.Deserialize<AppSort>("popular_today")
+			.Should()
+			.Be(AppSort.PopularToday);
+
+		Utilities.Deserialize<AppSort>("visitors")
+			.Should()
+			.Be(AppSort.Visitors);
+
+		Utilities.Deserialize<AppSort>("create_date")
+			.Should()
+			.Be(AppSort.CreateDate);
+
+		Utilities.Deserialize<AppSort>("growth_rate")
+			.Should()
+			.Be(AppSort.GrowthRate);
+
+		Utilities.Deserialize<AppSort>("popular_week")
+			.Should()
+			.Be(AppSort.PopularWeek);
+	}
+
+	[Fact]
+	public void AppRequestTypeTest()
+	{
+		Utilities.Deserialize<AppRequestType>("invite")
+			.Should()
+			.Be(AppRequestType.Invite);
+
+		Utilities.Deserialize<AppRequestType>("request")
+			.Should()
+			.Be(AppRequestType.Request);
+	}
+
+	[Fact]
+	public void AppPlatformsTest()
+	{
+		Utilities.Deserialize<AppPlatforms>("ios")
+			.Should()
+			.Be(AppPlatforms.Ios);
+
+		Utilities.Deserialize<AppPlatforms>("android")
+			.Should()
+			.Be(AppPlatforms.Android);
+
+		Utilities.Deserialize<AppPlatforms>("winphone")
+			.Should()
+			.Be(AppPlatforms.Winphone);
+
+		Utilities.Deserialize<AppPlatforms>("web")
+			.Should()
+			.Be(AppPlatforms.Web);
+	}
+
+	[Fact]
+	public void MonthlyLimitTest()
+	{
+		Utilities.Deserialize<MonthlyLimit>("tier_2")
+			.Should()
+			.Be(MonthlyLimit.Tier2);
+
+		Utilities.Deserialize<MonthlyLimit>("tier_6")
+			.Should()
+			.Be(MonthlyLimit.Tier6);
+
+		Utilities.Deserialize<MonthlyLimit>("unlimited")
+			.Should()
+			.Be(MonthlyLimit.Unlimited);
 	}
 }

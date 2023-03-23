@@ -24,7 +24,6 @@ public class AppGetParams
 	/// android, winphone, web.
 	/// </summary>
 	[JsonProperty(propertyName: "platform")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AppPlatforms Platform { get; set; }
 
 	/// <summary>

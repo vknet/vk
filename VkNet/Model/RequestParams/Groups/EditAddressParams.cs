@@ -76,7 +76,7 @@ public class EditAddressParams
 	/// Идентификатор  страны.
 	/// </summary>
 	/// <remarks>
-	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategory.GetCountriesAsync"/> положительное число, минимальное значение 0
+	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategoryAsync.GetCountriesAsync"/> положительное число, минимальное значение 0
 	/// </remarks>
 	[JsonProperty("country_id")]
 	public ulong CountryId { get; set; }
@@ -85,7 +85,7 @@ public class EditAddressParams
 	/// Идентификатор города.
 	/// </summary>
 	/// <remarks>
-	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategory.GetCitiesAsync"/> положительное число, минимальное значение 0
+	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategoryAsync.GetCitiesAsync"/> положительное число, минимальное значение 0
 	/// </remarks>
 	[JsonProperty("city_id")]
 	public ulong CityId { get; set; }
@@ -94,7 +94,7 @@ public class EditAddressParams
 	/// Идентификатор станции метро.
 	/// </summary>
 	/// <remarks>
-	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategory.GetMetroStationsAsync"/> положительное число, минимальное значение 0
+	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategoryAsync.GetMetroStationsAsync"/> положительное число, минимальное значение 0
 	/// </remarks>
 	[JsonProperty("metro_id")]
 	public ulong MetroId { get; set; }

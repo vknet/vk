@@ -27,7 +27,6 @@ public class AppSendRequestParams
 	/// Тип запроса, может принимать значения:.
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AppRequestType Type { get; set; }
 
 	/// <summary>

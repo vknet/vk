@@ -205,7 +205,7 @@ public partial class MessagesCategory
 		TypeHelper.TryInvokeMethodAsync(() => SendSticker(parameters));
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params) =>
+	public Task<GetHistoryAttachmentsResult> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetHistoryAttachments(@params));
 
@@ -245,4 +245,7 @@ public partial class MessagesCategory
 
 	/// <inheritdoc />
 	public Task<bool> MarkAsUnreadConversationAsync(long peerId) => TypeHelper.TryInvokeMethodAsync(() => MarkAsUnreadConversation(peerId));
+
+	/// <inheritdoc />
+	public Task<bool> SetMemberRoleAsync(string role, long peerId, ulong memberId) => TypeHelper.TryInvokeMethodAsync(() => SetMemberRole(role, peerId, memberId));
 }

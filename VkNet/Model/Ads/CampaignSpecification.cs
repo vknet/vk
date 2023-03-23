@@ -23,7 +23,6 @@ public class CampaignSpecification
 	/// Формат объявления
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public CampaignType Type { get; set; }
 
 	/// <summary>

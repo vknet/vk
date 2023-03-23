@@ -7,7 +7,7 @@ namespace VkNet.Model;
 /// Результат метода GetPhotoUploadServer
 /// </summary>
 [Serializable]
-public class PhotoUploadServer
+public class UploadServer
 {
 	/// <summary>
 	/// Идентификатор владельца опроса.

@@ -32,7 +32,7 @@ public interface IPollsCategory : IPollsCategoryAsync
 	ReadOnlyCollection<GetBackgroundsResult> GetBackgrounds();
 
 	/// <inheritdoc cref="IPollsCategoryAsync.GetPhotoUploadServerAsync"/>
-	PhotoUploadServer GetPhotoUploadServer(long ownerId);
+	UploadServer GetPhotoUploadServer(long ownerId);
 
 	/// <inheritdoc cref="IPollsCategoryAsync.SavePhotoAsync"/>
 	SavePhotoResult SavePhoto(SavePhotoParams @params);

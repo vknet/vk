@@ -36,7 +36,7 @@ public partial class PollsCategory
 		TypeHelper.TryInvokeMethodAsync(func: () => GetBackgrounds());
 
 	/// <inheritdoc />
-	public Task<PhotoUploadServer> GetPhotoUploadServerAsync(long ownerId) =>
+	public Task<UploadServer> GetPhotoUploadServerAsync(long ownerId) =>
 		TypeHelper.TryInvokeMethodAsync(func: () => GetPhotoUploadServer(ownerId));
 
 	/// <inheritdoc />

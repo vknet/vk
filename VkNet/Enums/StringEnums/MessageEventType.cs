@@ -16,7 +16,7 @@ public enum MessageEventType
 	/// <summary>
 	/// показать исчезающее сообщение.
 	/// </summary>
-	SnowSnackbar,
+	ShowSnackbar,
 
 	/// <summary>
 	/// открыть ссылку. Осуществляется переход по указанному адресу.

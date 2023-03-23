@@ -71,7 +71,7 @@ public partial class PagesCategory : IPagesCategory
 			}
 		};
 
-		return _vk.Call("pages.save", parameters);
+		return _vk.Call<long>("pages.save", parameters);
 	}
 
 	/// <inheritdoc />
@@ -100,7 +100,7 @@ public partial class PagesCategory : IPagesCategory
 			}
 		};
 
-		return _vk.Call("pages.saveAccess", parameters);
+		return _vk.Call<long>("pages.saveAccess", parameters);
 	}
 
 	/// <inheritdoc />
@@ -170,7 +170,7 @@ public partial class PagesCategory : IPagesCategory
 			}
 		};
 
-		return _vk.Call("pages.parseWiki", parameters);
+		return _vk.Call<string>("pages.parseWiki", parameters);
 	}
 
 	/// <inheritdoc />
@@ -183,6 +183,6 @@ public partial class PagesCategory : IPagesCategory
 			}
 		};
 
-		return _vk.Call("pages.clearCache", parameters);
+		return _vk.Call<bool>("pages.clearCache", parameters);
 	}
 }

@@ -22,7 +22,7 @@ public class GroupUpdate
 	/// Тип обновления
 	/// </summary>
 	[Obsolete("Используйте свойство Instance")]
-	public GroupUpdateType Type { get; set; }
+	public GroupUpdateType? Type { get; set; }
 
 	/// <summary>
 	/// Сообщение для типов событий с сообщением в ответе.
@@ -269,6 +269,27 @@ public class GroupUpdate
 	[JsonProperty("secret")]
 	[Obsolete("Используйте свойство Instance")]
 	public string Secret { get; set; }
+
+	/// <summary>
+	/// <c>MarketOrderNew</c> для Callback
+	/// </summary>
+	[JsonProperty("market_order_new")]
+	[Obsolete("Используйте свойство Instance")]
+	public MarketOrder MarketOrderNew { get; set; }
+
+	/// <summary>
+	/// <c>MarketOrderEdit</c> для Callback
+	/// </summary>
+	[JsonProperty("market_order_edit")]
+	[Obsolete("Используйте свойство Instance")]
+	public MarketOrder MarketOrderEdit { get; set; }
+
+	/// <summary>
+	/// <c>AppPayload</c> для Callback
+	/// </summary>
+	[JsonProperty("app_payload")]
+	[Obsolete("Используйте свойство Instance")]
+	public AppPayload AppPayload { get; set; }
 
 	/// <summary>
 	/// Необработанные данные

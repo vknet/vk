@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Utils.JsonConverter;
@@ -16,14 +17,15 @@ public class MessageKeyboardButtonAction
 	/// Содержит <c>'text'</c>
 	/// </summary>
 	[JsonProperty("type")]
-	public string Type { get; set; }
+	public KeyboardButtonActionType? Type { get; set; }
 
 	/// <summary>
 	/// Дополнительная информация.
 	/// </summary>
 	/// <remarks>JSON строка с <c>payload</c>, до 255 символов</remarks>
+	[CanBeNull]
 	[JsonProperty("payload", NullValueHandling = NullValueHandling.Ignore)]
-	public string? Payload { get; set; }
+	public string Payload { get; set; }
 
 	/// <summary>
 	/// Текст на кнопке, до 40 символов

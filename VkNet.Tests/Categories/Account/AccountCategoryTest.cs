@@ -605,7 +605,7 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue(); // Second overload
 
 		result1.NameRequest.Status.Should()
-			.NotBeNull();
+			.NotBe(null);
 
 		result1.NameRequest.Status.Should()
 			.Be(ChangeNameStatus.Success);
@@ -782,14 +782,14 @@ public class AccountCategoryTest : CategoryBaseTest
 		ReadCategoryJsonPath(nameof(SetPrivacy));
 
 		// Act
-		var result = Api.Account.SetPrivacy("key", "only_me");
+		var result = Api.Account.SetPrivacy(PrivacyKey.Audios, "only_me");
 
 		// Assert
 		result.Should()
 			.NotBeNull();
 
 		result.Category.Should()
-			.Be("only_me");
+			.Be(Privacy.OnlyMe);
 	}
 
 	[Fact]

@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
+using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 
@@ -404,6 +405,6 @@ public interface IAccountCategoryAsync
 	/// </summary>
 	/// <param name="key"> Ключ </param>
 	/// <param name="value"> Значение </param>
-	/// <returns> Значение параметра <see cref="value"/> </returns>
-	Task<PrivacySettingsValue> SetPrivacyAsync(string key, string value);
+	/// <returns> Значение параметра <a>value</a></returns>
+	Task<PrivacySettingsValue> SetPrivacyAsync(PrivacyKey key, string value);
 }

@@ -361,7 +361,7 @@ public interface IAudioCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/audio.getUploadServer
 	/// </remarks>
-	Task<Uri> GetUploadServerAsync();
+	Task<UploadServer> GetUploadServerAsync();
 
 	/// <summary>
 	/// Перемещает аудиозаписи в плейлист.

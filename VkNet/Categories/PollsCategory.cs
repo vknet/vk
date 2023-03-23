@@ -39,7 +39,7 @@ public partial class PollsCategory : IPollsCategory
 	});
 
 	/// <inheritdoc />
-	public bool Edit(PollsEditParams @params) => _vk.Call("polls.edit", new()
+	public bool Edit(PollsEditParams @params) => _vk.Call<bool>("polls.edit", new()
 	{
 		{
 			"owner_id", @params.OwnerId
@@ -62,7 +62,7 @@ public partial class PollsCategory : IPollsCategory
 	});
 
 	/// <inheritdoc />
-	public bool AddVote(PollsAddVoteParams @params) => _vk.Call("polls.addVote", new()
+	public bool AddVote(PollsAddVoteParams @params) => _vk.Call<bool>("polls.addVote", new()
 	{
 		{
 			"owner_id", @params.OwnerId
@@ -79,7 +79,7 @@ public partial class PollsCategory : IPollsCategory
 	});
 
 	/// <inheritdoc />
-	public bool DeleteVote(PollsDeleteVoteParams @params) => _vk.Call("polls.deleteVote", new()
+	public bool DeleteVote(PollsDeleteVoteParams @params) => _vk.Call<bool>("polls.deleteVote", new()
 	{
 		{
 			"owner_id", @params.OwnerId
@@ -187,7 +187,7 @@ public partial class PollsCategory : IPollsCategory
 		new());
 
 	/// <inheritdoc />
-	public PhotoUploadServer GetPhotoUploadServer(long ownerId) => _vk.Call<PhotoUploadServer>("polls.getPhotoUploadServer",
+	public UploadServer GetPhotoUploadServer(long ownerId) => _vk.Call<UploadServer>("polls.getPhotoUploadServer",
 		new()
 		{
 			{

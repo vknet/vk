@@ -213,11 +213,6 @@ public interface IGroupsCategoryAsync
 	/// Идентификатор пользователя. положительное число
 	/// (Положительное число).
 	/// </param>
-	/// <param name="extended">
-	/// 1  — вернуть ответ в расширенной форме. По умолчанию — 0. флаг, может принимать
-	/// значения 1 или 0
-	/// (Флаг, может принимать значения 1 или 0).
-	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
 	/// <returns>
 	/// возвращает <c> true </c> в случае, если пользователь с идентификатором user_id
@@ -1122,4 +1117,98 @@ public interface IGroupsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getLongPollSettings
 	/// </remarks>
 	Task<GetLongPollSettingsResult> GetLongPollSettingsAsync(ulong groupId);
+
+	/// <summary>
+	/// Возвращает список тегов сообщества
+	/// </summary>
+	/// <param name="groupId">
+	/// Идентификатор сообщества. положительное число,
+	/// обязательный параметр
+	/// </param>
+	/// <returns> Массив объектов тэгов </returns>
+	Task<VkCollection<GroupTag>> GetTagListAsync(ulong groupId);
+
+	/// <summary>
+	/// Устанавливает настройки сообщества
+	/// </summary>
+	/// <param name="params">
+	/// Параметры изменения настроек сообщества
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> SetSettingsAsync(GroupsSetSettingsParams @params);
+
+	/// <summary>
+	/// Позволяет создать или отредактировать заметку о пользователе в рамках переписки
+	/// пользователя с сообществом
+	/// </summary>
+	/// <param name="params">
+	/// Параметры редактирования заметки о пользователе
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> SetUserNoteAsync(GroupsSetUserNoteParams @params);
+
+	/// <summary>
+	/// Позволяет добавить новый тег в сообщество.
+	/// </summary>
+	/// <param name="params">
+	/// Параметры редактирования заметки о пользователе
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> TagAddAsync(GroupsTagAddParams @params);
+
+	/// <summary>
+	/// Позволяет «привязывать» и «отвязывать» теги сообщества к беседам.
+	/// </summary>
+	/// /// <param name="groupId">
+	/// Идентификатор группы
+	/// </param>
+	/// /// <param name="tagId">
+	/// Идентификатор тега.
+	/// </param>
+	/// /// <param name="userId">
+	/// Идентификатор User
+	/// </param>
+	/// /// <param name="act">
+	/// Действие с тегом:
+	/// "bind" —  привязать.
+	/// "unbind" — отвязать.
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> TagBindAsync(ulong groupId, ulong tagId, ulong userId, GroupTagAct act);
+
+	/// <summary>
+	/// Позволяет удалить тег сообщества.
+	/// </summary>
+	/// /// <param name="groupId">
+	/// Идентификатор группы
+	/// </param>
+	/// /// <param name="tagId">
+	/// Идентификатор тега.
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> TagDeleteAsync(ulong groupId, ulong tagId);
+
+	/// <summary>
+	/// Позволяет переименовать существующий тег.
+	/// </summary>
+	/// /// <param name="groupId">
+	/// Идентификатор группы
+	/// </param>
+	/// /// <param name="tagId">
+	/// Идентификатор тега.
+	/// </param>
+	/// /// <param name="tagName">
+	/// Имя тега.
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> TagUpdateAsync(ulong groupId, ulong tagId, string tagName);
+
+	/// <summary>
+	/// Позволяет добавить новый тег в сообщество.
+	/// </summary>
+	/// <param name="params">
+	/// Параметры редактирования заметки о пользователе
+	/// </param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> ToggleMarketAsync(GroupToggleMarketParams @params);
 }

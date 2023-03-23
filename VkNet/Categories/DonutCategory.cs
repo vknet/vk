@@ -29,7 +29,7 @@ public partial class DonutCategory : IDonutCategory
 			}
 		};
 
-		return _vk.Call("donut.isDon", parameters);
+		return _vk.Call<bool>("donut.isDon", parameters);
 	}
 
 	/// <inheritdoc/>

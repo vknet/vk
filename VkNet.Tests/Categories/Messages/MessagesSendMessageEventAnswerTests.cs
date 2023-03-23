@@ -16,7 +16,7 @@ public class MessagesSendMessageEventAnswerTests : MessagesBaseTests
 
 		var data = new EventData
 		{
-			Type = MessageEventType.SnowSnackbar,
+			Type = MessageEventType.ShowSnackbar,
 			Text = "text"
 		};
 

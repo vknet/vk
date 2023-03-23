@@ -97,7 +97,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 
 		_currentLine.Add(new()
 		{
-			Color = color.ToString().ToSnakeCase(),
+			Color = color,
 			Action = buttonAction
 		});
 
@@ -117,12 +117,12 @@ public class KeyboardBuilder : IKeyboardBuilder
 
 		_currentLine.Add(new()
 		{
-			Color = color.ToString().ToSnakeCase(),
+			Color = color,
 			Action = new()
 			{
 				Label = label,
 				Payload = payload,
-				Type = KeyboardButtonActionType.Text.ToString().ToSnakeCase()
+				Type = KeyboardButtonActionType.Text
 			}
 		});
 
@@ -145,7 +145,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 
 		_currentLine.Add(new()
 		{
-			Color = addButtonParams.Color.ToString().ToSnakeCase(),
+			Color = addButtonParams.Color,
 			Action = new()
 			{
 				Label = addButtonParams.Label,
@@ -154,7 +154,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 					? new Uri(addButtonParams.Link)
 					: null,
 				Hash = addButtonParams.Hash,
-				Type = addButtonParams.ActionType.ToString().ToSnakeCase(),
+				Type = addButtonParams.ActionType,
 				Intent = addButtonParams.Intent,
 				SubscribeId = addButtonParams.SubscribeId,
 				PeerId = addButtonParams.PeerId
@@ -164,7 +164,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 		return this;
 	}
 
-	private void CheckKeyboardSize(string? payload)
+	private void CheckKeyboardSize([CanBeNull] string payload)
 	{
 		if ((payload?.Length ?? 0) > MaxButtonPayload)
 		{

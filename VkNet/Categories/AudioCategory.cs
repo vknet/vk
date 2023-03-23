@@ -337,11 +337,9 @@ public partial class AudioCategory : IAudioCategory
 	}
 
 	/// <inheritdoc />
-	public Uri GetUploadServer()
+	public UploadServer GetUploadServer()
 	{
-		var response = _vk.Call("audio.getUploadServer", VkParameters.Empty);
-
-		return response["upload_url"];
+		return _vk.Call<UploadServer>("audio.getUploadServer", VkParameters.Empty);
 	}
 
 	/// <inheritdoc />

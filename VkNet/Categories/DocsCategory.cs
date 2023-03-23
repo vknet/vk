@@ -110,11 +110,11 @@ public partial class DocsCategory : IDocsCategory
 	/// <inheritdoc />
 	[Pure]
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
+	public ReadOnlyCollection<Attachment> Save(string file, long? captchaSid = null, string title = null ,string tags = null,
 												string captchaKey = null) => Save(file, title, tags);
 
 	/// <inheritdoc />
-	public ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null)
+	public ReadOnlyCollection<Attachment> Save(string file, string title = null, string tags = null)
 	{
 		VkErrors.ThrowIfNullOrEmpty(() => title);
 
@@ -207,7 +207,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.delete", parameters);
+		return _vk.Call<bool>("docs.delete", parameters);
 	}
 
 	/// <inheritdoc />
@@ -235,7 +235,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.add", parameters);
+		return _vk.Call<long>("docs.add", parameters);
 	}
 
 	/// <inheritdoc />
@@ -292,7 +292,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.edit", parameters);
+		return _vk.Call<bool>("docs.edit", parameters);
 	}
 
 	/// <inheritdoc />

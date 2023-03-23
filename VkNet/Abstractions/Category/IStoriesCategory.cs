@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Threading;
+using JetBrains.Annotations;
 using VkNet.Abstractions.Category;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -39,7 +42,7 @@ public interface IStoriesCategory : IStoriesCategoryAsync
 	StoryServerUrl GetVideoUploadServer(GetVideoUploadServerParams getVideoUploadServerParams);
 
 	/// <inheritdoc cref="IStoriesCategoryAsync.GetViewersAsync"/>
-	VkCollection<long> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null);
+	VkCollection<StoryViewers> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null);
 
 	/// <inheritdoc cref="IStoriesCategoryAsync.GetViewersExtendedAsync"/>
 	VkCollection<User> GetViewersExtended(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null);
@@ -53,7 +56,12 @@ public interface IStoriesCategory : IStoriesCategoryAsync
 	/// <inheritdoc cref="IStoriesCategoryAsync.UnbanOwnerAsync"/>
 	bool UnbanOwner(IEnumerable<long> ownersIds);
 
-	/// <inheritdoc cref="IStoriesCategoryAsync.SaveAsync"/>
+	/// <inheritdoc cref="IStoriesCategoryAsync.SaveAsync(StoryServerUrl, CancellationToken)"/>
+	VkCollection<Story> Save(StoryServerUrl uploadResults);
+
+	/// <inheritdoc cref="IStoriesCategoryAsync.SaveAsync(StoryServerUrl, bool, IEnumerable{string}, CancellationToken)"/>
+
+	[Obsolete("Начиная с версии 5.118 используется только параметр uploadResults")]
 	VkCollection<Story> Save(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields);
 
 	/// <inheritdoc cref = "IStoriesCategoryAsync.SearchAsync"/>

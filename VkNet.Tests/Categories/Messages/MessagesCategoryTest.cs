@@ -8,6 +8,7 @@ using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Attachments;
+using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -1064,5 +1065,66 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Users.ElementAt(2)
 			.Should()
 			.Be(1708231);
+	}
+
+	[Fact]
+	public void GetHistoryAttachments()
+	{
+		Url = "https://api.vk.com/method/messages.getHistoryAttachments";
+		ReadCategoryJsonPath(nameof(GetHistoryAttachments));
+
+		var response = Api.Messages.GetHistoryAttachments(new()
+		{
+			PeerId = 1,
+			MediaType = MediaType.Doc,
+		});
+
+		response.Profiles[0]
+			.Id.Should()
+			.Be(1);
+
+		response.Profiles[1]
+			.Id.Should()
+			.Be(2);
+
+		response.NextFrom
+			.Should()
+			.Be("64665/7");
+
+		response.Items[0]
+			.ForwardLevel.Should()
+			.Be(1);
+
+		var photo = response.Items[0]
+			.Attachment.Instance as Photo;
+
+		photo.Should()
+			.NotBeNull();
+
+		photo.Id.Should()
+			.Be(22222);
+
+		var photo2 = response.Items[1]
+			.Attachment.Instance as Photo;
+
+		photo2.Should()
+			.NotBeNull();
+
+		photo2.Id.Should()
+			.Be(33333);
+
+	}
+
+	[Fact]
+	public void SetMemberRole()
+	{
+		Url = "https://api.vk.com/method/messages.setMemberRole";
+		ReadJsonFile(JsonPaths.True);
+
+		var response = Api.Messages.SetMemberRole("admin", 2000000043, 1002);
+
+		response.Should()
+			.BeTrue();
+
 	}
 }

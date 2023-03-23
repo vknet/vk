@@ -18,12 +18,12 @@ public interface IUsersCategory : IUsersCategoryAsync
 	/// <inheritdoc cref="IUsersCategoryAsync.IsAppUserAsync"/>
 	bool IsAppUser(long? userId);
 
-	/// <inheritdoc cref="IUsersCategoryAsync.GetAsync(long,ProfileFields,NameCase)"/>
+	/// <inheritdoc cref="IUsersCategoryAsync.GetAsync(IEnumerable{long},ProfileFields,NameCase?)"/>
 	ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds
 								, ProfileFields fields = null
 								, NameCase? nameCase = null);
 
-	/// <inheritdoc cref="IUsersCategoryAsync.GetAsync(string,ProfileFields,NameCase)"/>
+	/// <inheritdoc cref="IUsersCategoryAsync.GetAsync(IEnumerable{string},ProfileFields,NameCase?)"/>
 	ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames
 								, ProfileFields fields = null
 								, NameCase? nameCase = null);

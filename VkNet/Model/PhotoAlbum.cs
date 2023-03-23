@@ -69,13 +69,13 @@ public class PhotoAlbum
 	/// для системных альбомов)
 	/// </summary>
 	[JsonProperty("privacy_view")]
-	public ReadOnlyCollection<Privacy> PrivacyView { get; set; }
+	public PrivacySettingsValue PrivacyView { get; set; }
 
 	/// <summary>
 	/// Настройки приватности для комментирования альбома
 	/// </summary>
 	[JsonProperty("privacy_comment")]
-	public ReadOnlyCollection<Privacy> PrivacyComment { get; set; }
+	public PrivacySettingsValue PrivacyComment { get; set; }
 
 	/// <summary>
 	/// Может ли текущий пользователь добавлять фотографии в альбом

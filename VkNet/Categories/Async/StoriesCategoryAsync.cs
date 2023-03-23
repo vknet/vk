@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ public partial class StoriesCategory
 		TypeHelper.TryInvokeMethodAsync(() => GetVideoUploadServer(@params));
 
 	/// <inheritdoc/>
-	public Task<VkCollection<long>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null) =>
+	public Task<VkCollection<StoryViewers>> GetViewersAsync(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null) =>
 		TypeHelper.TryInvokeMethodAsync(() => GetViewers(ownerId, storyId, count, offset));
 
 	/// <inheritdoc />
@@ -65,6 +66,12 @@ public partial class StoriesCategory
 	public Task<bool> UnbanOwnerAsync(IEnumerable<long> ownersIds) => TypeHelper.TryInvokeMethodAsync(() => UnbanOwner(ownersIds));
 
 	/// <inheritdoc />
+	public Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults,
+												CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() => Save(uploadResults));
+
+	/// <inheritdoc />
+	[Obsolete("Начиная с версии 5.118 используется только параметр uploadResults")]
 	public Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields,
 												CancellationToken token) =>
 		TypeHelper.TryInvokeMethodAsync(() => Save(uploadResults, extended, fields));

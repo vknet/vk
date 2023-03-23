@@ -67,7 +67,6 @@ public class App
 	/// Тип приложения:.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AppType Type { get; set; }
 
 	/// <summary>
@@ -174,6 +173,18 @@ public class App
 	/// </summary>
 	[JsonProperty("screen_orientation")]
 	public ScreenOrientation? ScreenOrientation { get; set; }
+
+	/// <summary>
+	/// Описывает, как отображаются элементы управления для игр в вебвью в нативных клиентах
+	/// </summary>
+	[JsonProperty("mobile_controls_type")]
+	public MobileControlsType MobileControlsType { get; set; }
+
+	/// <summary>
+	/// Описывает, как отображаются элементы управления для игр в вебвью в нативных клиентах
+	/// </summary>
+	[JsonProperty("mobile_view_support_type")]
+	public MobileViewSupportType MobileViewSupportType { get; set; }
 
 	#region Опциональные поля
 

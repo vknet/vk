@@ -1,18 +1,36 @@
 {
   "response": {
-    "id": 197266686,
-    "thumb_id": -1,
-    "owner_id": 234698,
-    "title": "hello world",
-    "description": "description for album",
-    "created": 1403185184,
-    "updated": 1403185184,
-    "privacy_view": [
-      "all"
-    ],
-    "privacy_comment": [
-      "all"
-    ],
-    "size": 0
+	"id": 11111,
+	"owner_id": 22222,
+	"size": 0,
+	"title": "test",
+	"feed_disabled": 0,
+	"feed_has_pinned": 0,
+	"created": 1679008006,
+	"description": "",
+	"privacy_comment": {
+	  "category": "all",
+	  "lists": {
+		"allowed": [],
+		"excluded": []
+	  },
+	  "owners": {
+		"allowed": [],
+		"excluded": []
+	  }
+	},
+	"privacy_view": {
+	  "category": "all",
+	  "lists": {
+		"allowed": [],
+		"excluded": []
+	  },
+	  "owners": {
+		"allowed": [],
+		"excluded": []
+	  }
+	},
+	"thumb_id": 0,
+	"updated": 1679008006
   }
 }

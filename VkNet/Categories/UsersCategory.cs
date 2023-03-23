@@ -141,7 +141,7 @@ public partial class UsersCategory : IUsersCategory
 			}
 		};
 
-		return _vk.Call("users.isAppUser", parameters);
+		return _vk.Call<bool>("users.isAppUser", parameters);
 	}
 
 	/// <inheritdoc />
@@ -297,7 +297,7 @@ public partial class UsersCategory : IUsersCategory
 			}
 		};
 
-		return _vk.Call("users.report", parameters);
+		return _vk.Call<bool>("users.report", parameters);
 	}
 
 	/// <inheritdoc />

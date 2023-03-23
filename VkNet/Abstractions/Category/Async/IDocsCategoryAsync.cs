@@ -99,11 +99,11 @@ public interface IDocsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.save
 	/// </remarks>
-	Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title, string tags = null);
+	Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title = null, string tags = null);
 
 	/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string)" />
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title, string tags = null, long? captchaSid = null,
+	Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, long? captchaSid = null, string title = null ,string tags = null,
 													string captchaKey = null);
 
 	/// <summary>

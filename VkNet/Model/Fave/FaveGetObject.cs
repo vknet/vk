@@ -31,7 +31,6 @@ public class FaveGetObject
 	/// Тип объекта, добавленного в закладки.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public FaveType Type { get; set; }
 
 	/// <summary>
