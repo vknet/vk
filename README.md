@@ -2,8 +2,8 @@
 ||Badge|
 |------|:------:|
 |**Build Status**|[![Build Status](https://dev.azure.com/VkDotNet/VkNet/_apis/build/status/vknet.vk)](https://dev.azure.com/VkDotNet/VkNet/_build/latest?definitionId=1)
-|**Target Frameworks**|[![Targets](https://img.shields.io/badge/.NET%20Standard-2.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/standard/net-standard) [![Targets](https://img.shields.io/badge/.NET%20-6-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/core/introduction)|
-|**Nuget**|[![](http://img.shields.io/nuget/v/VkNet.svg)](http://www.nuget.org/packages/VkNet) [![Targets](https://img.shields.io/badge/.NET%20-7-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/core/introduction)|
+|**Target Frameworks**|[![Targets](https://img.shields.io/badge/.NET%20Standard-2.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/standard/net-standard) [![Targets](https://img.shields.io/badge/.NET%20-6-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/core/introduction)| [![Targets](https://img.shields.io/badge/.NET%20-7-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/core/introduction)|
+|**Nuget**|[![](http://img.shields.io/nuget/v/VkNet.svg)](http://www.nuget.org/packages/VkNet) 
 |**MyGet**|[![](https://img.shields.io/myget/vknet/vpre/vknet.svg)](https://www.myget.org/F/vknet)
 |**Downloads**|[![](https://img.shields.io/nuget/dt/VkNet.svg)](https://www.nuget.org/packages/VkNet/)
 |**Issues**|[![](https://img.shields.io/github/issues/VkNet/Vk.svg)](https://github.com/vknet/vk/issues)
