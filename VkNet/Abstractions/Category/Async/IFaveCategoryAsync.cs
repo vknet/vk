@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -23,13 +24,18 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "ref"/>
 	/// <param name = "trackCode"/>
 	/// <param name = "source"/>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.addArticle
 	/// </remarks>
-	Task<bool> AddArticleAsync(Uri url, string @ref = null, string trackCode = null, string source = null);
+	Task<bool> AddArticleAsync(Uri url,
+								string @ref = null,
+								string trackCode = null,
+								string source = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет ссылку в закладки.
@@ -38,13 +44,15 @@ public partial interface IFaveCategoryAsync
 	/// Адрес добавляемой ссылки.
 	/// Поддерживаются только внутренние ссылки на vk.com.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.addLink
 	/// </remarks>
-	Task<bool> AddLinkAsync(Uri link);
+	Task<bool> AddLinkAsync(Uri link,
+							CancellationToken token);
 
 	/// <summary>
 	/// Добавляет сообщество или пользователя в закладки.
@@ -55,13 +63,16 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "groupId">
 	/// Идентификатор сообщества, которое нужно добавить в закладки.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.addPage
 	/// </remarks>
-	Task<bool> AddPageAsync(ulong? userId = null, ulong? groupId = null);
+	Task<bool> AddPageAsync(ulong? userId = null,
+							ulong? groupId = null,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет запись со стены пользователя или сообщества в закладки.
@@ -69,13 +80,15 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "params">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.addPost
 	/// </remarks>
-	Task<bool> AddPostAsync(FaveAddPostParams @params);
+	Task<bool> AddPostAsync(FaveAddPostParams @params,
+							CancellationToken token);
 
 	/// <summary>
 	/// Добавляет товар в закладки.
@@ -93,13 +106,19 @@ public partial interface IFaveCategoryAsync
 	/// </param>
 	/// <param name="ref"/>
 	/// <param name = "source"/>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.addProduct
 	/// </remarks>
-	Task<bool> AddProductAsync(long ownerId, long id, string accessKey = null, string @ref = null, string source = null);
+	Task<bool> AddProductAsync(long ownerId,
+								long id,
+								string accessKey = null,
+								string @ref = null,
+								string source = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Создает метку закладок.
@@ -111,13 +130,16 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "position">
 	/// Строка, по умолчанию back
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает объект метки с полями name - названием метки и id - идентификатором созданной метки.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.addTag
 	/// </remarks>
-	Task<FaveTag> AddTagAsync(string name, string position);
+	Task<FaveTag> AddTagAsync(string name,
+							string position,
+							CancellationToken token);
 
 	/// <summary>
 	/// Добавляет видеозапись в закладки.
@@ -133,6 +155,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "accessKey">
 	/// Специальный код доступа для приватных видеозаписей.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <param name = "ref"/>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
@@ -140,7 +163,11 @@ public partial interface IFaveCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.addVideo
 	/// </remarks>
-	Task<bool> AddVideoAsync(long ownerId, long id, string accessKey = null, string @ref = null);
+	Task<bool> AddVideoAsync(long ownerId,
+							long id,
+							string accessKey = null,
+							string @ref = null,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует метку.
@@ -152,13 +179,16 @@ public partial interface IFaveCategoryAsync
 	/// Новое название метки.
 	/// Обязательный параметр, максимальная длина 50.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.editTag
 	/// </remarks>
-	Task<bool> EditTagAsync(long id, string name);
+	Task<bool> EditTagAsync(long id,
+							string name,
+							CancellationToken token);
 
 	/// <summary>
 	/// Возвращает объекты, добавленные в закладки пользователя.
@@ -166,6 +196,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "params">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и массив объектов, добавленных в закладки, в поле items.
 	/// Каждый из объектов содержит следующие поля:
@@ -185,7 +216,8 @@ public partial interface IFaveCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.get
 	/// </remarks>
-	Task<VkCollection<FaveGetObject>> GetAsync(FaveGetParams @params);
+	Task<VkCollection<FaveGetObject>> GetAsync(FaveGetParams @params,
+												CancellationToken token);
 
 	/// <summary>
 	/// Возвращает страницы пользователей и сообществ, добавленных в закладки.
@@ -209,6 +241,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "tagId">
 	/// Идентификатор метки, закладки отмеченные которой требуется вернуть.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// </returns>
 	/// <remarks>
@@ -218,11 +251,13 @@ public partial interface IFaveCategoryAsync
 														IEnumerable<string> fields = null,
 														ulong? offset = null,
 														ulong? count = null,
-														long? tagId = null);
+														long? tagId = null,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список меток в закладках.
 	/// </summary>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и массив объектов меток в поле items.
 	/// Поля, описывающие объект метки: id - идентификатор метки и name - название.
@@ -230,18 +265,19 @@ public partial interface IFaveCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.getTags
 	/// </remarks>
-	Task<VkCollection<FaveTag>> GetTagsAsync();
+	Task<VkCollection<FaveTag>> GetTagsAsync(CancellationToken token);
 
 	/// <summary>
 	/// Отмечает закладки как просмотренные.
 	/// </summary>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.markSeen
 	/// </remarks>
-	Task<bool> MarkSeenAsync();
+	Task<bool> MarkSeenAsync(CancellationToken token);
 
 	/// <summary>
 	/// Удаляет статью из закладок.
@@ -253,13 +289,17 @@ public partial interface IFaveCategoryAsync
 	/// Идентификатор статьи.
 	/// </param>
 	/// <param name = "ref"/>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeArticle
 	/// </remarks>
-	Task<bool> RemoveArticleAsync(long ownerId, ulong articleId, string @ref = null);
+	Task<bool> RemoveArticleAsync(long ownerId,
+								ulong articleId,
+								string @ref = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет ссылку из списка закладок пользователя.
@@ -267,13 +307,15 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "linkId">
 	/// Идентификатор ссылки.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeLink
 	/// </remarks>
-	Task<bool> RemoveLinkAsync(string linkId);
+	Task<bool> RemoveLinkAsync(string linkId,
+								CancellationToken token);
 
 	/// <summary>
 	/// Удаляет из закладок сообщество или страницу пользователя.
@@ -284,13 +326,16 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "groupId">
 	/// Идентификатор сообщества, которое следует удалить из закладок.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.removePage
 	/// </remarks>
-	Task<bool> RemovePageAsync(long? userId = null, long? groupId = null);
+	Task<bool> RemovePageAsync(long? userId = null,
+								long? groupId = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет из закладок запись на стене пользователя или сообщества.
@@ -303,13 +348,16 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "id">
 	/// Идентификатор записи на стене.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.removePost
 	/// </remarks>
-	Task<bool> RemovePostAsync(long ownerId, long id);
+	Task<bool> RemovePostAsync(long ownerId,
+								long id,
+								CancellationToken token);
 
 	/// <summary>
 	/// Удаляет товар из закладок.
@@ -322,13 +370,16 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "id">
 	/// Идентификатор товара.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeProduct
 	/// </remarks>
-	Task<bool> RemoveProductAsync(long ownerId, long id);
+	Task<bool> RemoveProductAsync(long ownerId,
+								long id,
+								CancellationToken token);
 
 	/// <summary>
 	/// Удаляет метку закладок.
@@ -336,13 +387,15 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "id">
 	/// Идентификатор метки.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeTag
 	/// </remarks>
-	Task<bool> RemoveTagAsync(long id);
+	Task<bool> RemoveTagAsync(long id,
+							CancellationToken token);
 
 	/// <summary>
 	/// Удаляет видеозапись из списка закладок.
@@ -355,13 +408,16 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "id">
 	/// Идентификатор видеозаписи.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeVideo
 	/// </remarks>
-	Task<bool> RemoveVideoAsync(long ownerId, long id);
+	Task<bool> RemoveVideoAsync(long ownerId,
+								long id,
+								CancellationToken token);
 
 	/// <summary>
 	/// Меняет порядок меток закладок в списке.
@@ -369,13 +425,15 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "ids">
 	/// Перечисленные через запятую все идентификаторы меток пользователя в том порядке, в котором их требуется отображать.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.reorderTags
 	/// </remarks>
-	Task<bool> ReorderTagsAsync(IEnumerable<long> ids);
+	Task<bool> ReorderTagsAsync(IEnumerable<long> ids,
+								CancellationToken token);
 
 	/// <summary>
 	/// Устанавливает метку странице пользователя или сообщества.
@@ -391,13 +449,17 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "tagIds">
 	/// Перечисленные через запятую идентификаторы тегов, которые требуется присвоить странице.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.setPageTags
 	/// </remarks>
-	Task<bool> SetPageTagsAsync(ulong? userId = null, ulong? groupId = null, IEnumerable<long> tagIds = null);
+	Task<bool> SetPageTagsAsync(ulong? userId = null,
+								ulong? groupId = null,
+								IEnumerable<long> tagIds = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Устанавливает метку выбранному объекту в списке закладок.
@@ -405,13 +467,15 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "params">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.setTags
 	/// </remarks>
-	Task<bool> SetTagsAsync(FaveSetTagsParams @params);
+	Task<bool> SetTagsAsync(FaveSetTagsParams @params,
+							CancellationToken token);
 
 	/// <summary>
 	/// Устанавливает страницу пользователя или сообщества в топ закладок.
@@ -424,11 +488,14 @@ public partial interface IFaveCategoryAsync
 	/// Идентификатор сообщества, которому требуется проставить метку в закладках.
 	/// Обязательный параметр, если не задан параметр user_id.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.trackPageInteraction
 	/// </remarks>
-	Task<bool> TrackPageInteractionAsync(ulong? userId = null, ulong? groupId = null);
+	Task<bool> TrackPageInteractionAsync(ulong? userId = null,
+										ulong? groupId = null,
+										CancellationToken token = default);
 }
