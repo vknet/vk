@@ -341,7 +341,7 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.setInfo
 	/// </remarks>
-	Task<bool> SetInfoAsync([NotNull] string name, [NotNull] string value, CancellationToken token = default);
+	Task<bool> SetInfoAsync([NotNull] string name, [NotNull] string value, CancellationToken token);
 
 	/// <summary>
 	/// Позволяет сменить пароль пользователя после успешного восстановления доступа к
