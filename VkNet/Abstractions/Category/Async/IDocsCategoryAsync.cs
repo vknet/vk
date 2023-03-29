@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
@@ -33,13 +34,18 @@ public interface IDocsCategoryAsync
 	/// умолчанию идентификатор текущего пользователя.
 	/// </param>
 	/// <param name="type"> Фильтр по типу документа. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов документов.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.get
 	/// </remarks>
-	Task<VkCollection<Document>> GetAsync(int? count = null, int? offset = null, long? ownerId = null, DocFilter? type = null);
+	Task<VkCollection<Document>> GetAsync(int? count = null,
+										int? offset = null,
+										long? ownerId = null,
+										DocFilter? type = null,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о документах по их идентификаторам.
@@ -48,11 +54,13 @@ public interface IDocsCategoryAsync
 	/// Идентификаторы документов, информацию о которых нужно
 	/// вернуть.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> После успешного выполнения возвращает список объектов документов. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.getById
 	/// </remarks>
-	Task<ReadOnlyCollection<Document>> GetByIdAsync(IEnumerable<Document> docs);
+	Task<ReadOnlyCollection<Document>> GetByIdAsync(IEnumerable<Document> docs,
+													CancellationToken token);
 
 	/// <summary>
 	/// Возвращает адрес сервера для загрузки документов.
@@ -64,11 +72,13 @@ public interface IDocsCategoryAsync
 	/// дополнительных параметров. Положительное
 	/// число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> После успешного выполнения возвращает объект UploadServerInfo </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.getUploadServer
 	/// </remarks>
-	Task<UploadServerInfo> GetUploadServerAsync(long? groupId = null);
+	Task<UploadServerInfo> GetUploadServerAsync(long? groupId = null,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает адрес сервера для загрузки документов в папку Отправленные, для
@@ -79,11 +89,13 @@ public interface IDocsCategoryAsync
 	/// Идентификатор сообщества, в которое нужно загрузить документ. Положительное
 	/// число.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> После успешного выполнения возвращает объект UploadServerInfo </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.getWallUploadServer
 	/// </remarks>
-	Task<UploadServerInfo> GetWallUploadServerAsync(long? groupId = null);
+	Task<UploadServerInfo> GetWallUploadServerAsync(long? groupId = null,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Сохраняет документ после его успешной загрузки на сервер.
@@ -95,16 +107,24 @@ public interface IDocsCategoryAsync
 	/// </param>
 	/// <param name="title"> Название документа. </param>
 	/// <param name="tags"> Метки для поиска. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> Возвращает массив с загруженными объектами. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.save
 	/// </remarks>
-	Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, string title = null, string tags = null);
+	Task<ReadOnlyCollection<Attachment>> SaveAsync(string file,
+													string title = null,
+													string tags = null,
+													CancellationToken token = default);
 
-	/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string)" />
+	/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string, CancellationToken)" />
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Task<ReadOnlyCollection<Attachment>> SaveAsync(string file, long? captchaSid = null, string title = null ,string tags = null,
-													string captchaKey = null);
+	Task<ReadOnlyCollection<Attachment>> SaveAsync(string file,
+													long? captchaSid = null,
+													string title = null ,
+													string tags = null,
+													string captchaKey = null,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет документ пользователя или группы.
@@ -118,11 +138,14 @@ public interface IDocsCategoryAsync
 	/// Идентификатор документа. Положительное число, обязательный
 	/// параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> После успешного выполнения возвращает 1. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.delete
 	/// </remarks>
-	Task<bool> DeleteAsync(long ownerId, long docId);
+	Task<bool> DeleteAsync(long ownerId,
+							long docId,
+							CancellationToken token);
 
 	/// <summary>
 	/// Копирует документ в документы текущего пользователя.
@@ -141,6 +164,7 @@ public interface IDocsCategoryAsync
 	/// остальными данными о
 	/// документе было возвращено поле access_key.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданного
 	/// документа (did).
@@ -148,11 +172,19 @@ public interface IDocsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.add
 	/// </remarks>
-	Task<long> AddAsync(long ownerId, long docId, string accessKey = null);
+	Task<long> AddAsync(long ownerId,
+						long docId, string
+							accessKey = null,
+						CancellationToken token = default);
 
-	/// <inheritdoc cref="IDocsCategoryAsync.AddAsync(long,long,string)" />
+	/// <inheritdoc cref="IDocsCategoryAsync.AddAsync(long,long,string, CancellationToken)" />
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Task<long> AddAsync(long ownerId, long docId, string accessKey = null, long? captchaSid = null, string captchaKey = null);
+	Task<long> AddAsync(long ownerId,
+						long docId,
+						string accessKey = null,
+						long? captchaSid = null,
+						string captchaKey = null,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает доступные типы документы для пользователя.
@@ -164,6 +196,7 @@ public interface IDocsCategoryAsync
 	/// число, по умолчанию идентификатор
 	/// текущего пользователя, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов type.
 	/// Объект type — тип документов.
@@ -175,7 +208,8 @@ public interface IDocsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.getTypes
 	/// </remarks>
-	Task<VkCollection<DocumentType>> GetTypesAsync(long ownerId);
+	Task<VkCollection<DocumentType>> GetTypesAsync(long ownerId,
+													CancellationToken token);
 
 	/// <summary>
 	/// Возвращает результаты поиска по документам.
@@ -196,13 +230,18 @@ public interface IDocsCategoryAsync
 	/// положительное число
 	/// (Положительное число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов документов.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.search
 	/// </remarks>
-	Task<VkCollection<Document>> SearchAsync(string query, bool searchOwn, long? count = null, long? offset = null);
+	Task<VkCollection<Document>> SearchAsync(string query,
+											bool searchOwn,
+											long? count = null,
+											long? offset = null,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует документ пользователя или группы.
@@ -230,13 +269,18 @@ public interface IDocsCategoryAsync
 	/// Метки для поиска. список слов, разделенных через запятую (Список слов,
 	/// разделенных через запятую).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.edit
 	/// </remarks>
-	Task<bool> EditAsync(long ownerId, long docId, string title, IEnumerable<string> tags);
+	Task<bool> EditAsync(long ownerId,
+						long docId,
+						string title,
+						IEnumerable<string> tags,
+						CancellationToken token);
 
 	/// <summary>
 	/// Получает адрес сервера для загрузки документа в личное сообщение.
@@ -247,6 +291,9 @@ public interface IDocsCategoryAsync
 	/// doc — обычный документ;
 	/// audio_message — голосовое сообщение.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> </returns>
-	Task<UploadServerInfo> GetMessagesUploadServerAsync(long? peerId = null, DocMessageType? type = null);
+	Task<UploadServerInfo> GetMessagesUploadServerAsync(long? peerId = null,
+														DocMessageType? type = null,
+														CancellationToken token = default);
 }
