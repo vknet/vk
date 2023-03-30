@@ -7,23 +7,23 @@ variables:
   BuildConfiguration: 'Release'
 
 steps:
-- task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 6.0.302'
-  inputs:
-    version: 6.0.302
+  - task: DotNetCoreInstaller@0
+    displayName: 'Use .NET Core sdk 7.0.x'
+    inputs:
+      version: 7.0.x
 
-- task: DotNetCoreCLI@2
-  displayName: Test
-  inputs:
-    command: test
-    projects: '*[Tt]ests/*.csproj'
-    arguments: '-c $(BuildConfiguration) -f net6.0'
-- task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
-  displayName: 'Send Telegram Notification'
-  inputs:
-    botToken: '$(Parameters.botToken)'
-    chats: '$(Parameters.chats)'
-    message: '<code>Reason: $(Build.Reason)
+  - task: DotNetCoreCLI@2
+    displayName: Test
+    inputs:
+      command: test
+      projects: '*[Tt]ests/*.csproj'
+      arguments: '-c $(BuildConfiguration) -f net7.0'
+  - task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
+    displayName: 'Send Telegram Notification'
+    inputs:
+      botToken: '$(Parameters.botToken)'
+      chats: '$(Parameters.chats)'
+      message: '<code>Reason: $(Build.Reason)
     Build №: $(Build.BuildNumber)
     Pull Request для VkNet был успешно собран!</code>'
-    buildQueuedBy: true
+      buildQueuedBy: true
