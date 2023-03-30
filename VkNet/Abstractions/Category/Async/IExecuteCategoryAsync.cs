@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -22,6 +23,7 @@ public interface IExecuteCategoryAsync
 	/// разделены точкой с запятой.
 	/// </param>
 	/// <param name="vkParameters"></param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает данные, запрошенные алгоритмом.
 	/// При работе с методом execute структура ответа в XML ближе к JSON и может
@@ -31,7 +33,9 @@ public interface IExecuteCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/execute
 	/// </remarks>
-	Task<VkResponse> ExecuteAsync(string code, VkParameters vkParameters = default);
+	Task<VkResponse> ExecuteAsync(string code,
+								VkParameters vkParameters = default,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Универсальный метод, который позволяет запускать последовательность других
@@ -46,6 +50,7 @@ public interface IExecuteCategoryAsync
 	/// разделены точкой с запятой.
 	/// </param>
 	/// <param name="vkParameters"></param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает данные, запрошенные алгоритмом.
 	/// При работе с методом execute структура ответа в XML ближе к JSON и может
@@ -55,13 +60,16 @@ public interface IExecuteCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/execute
 	/// </remarks>
-	Task<T> ExecuteAsync<T>(string code, VkParameters vkParameters = default);
+	Task<T> ExecuteAsync<T>(string code,
+							VkParameters vkParameters = default,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Универсальный метод, который позволяет запускать хранимые процедуры.
 	/// </summary>
 	/// <param name="procedureName"> Имя хранимой процедуры </param>
 	/// <param name="vkParameters"> Параметры хранимой процедуры </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает данные, запрошенные алгоритмом.
 	/// При работе с методом execute структура ответа в XML ближе к JSON и может
@@ -71,5 +79,7 @@ public interface IExecuteCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/execute
 	/// </remarks>
-	Task<T> StoredProcedureAsync<T>(string procedureName, VkParameters vkParameters);
+	Task<T> StoredProcedureAsync<T>(string procedureName,
+									VkParameters vkParameters,
+									CancellationToken token = default);
 }
