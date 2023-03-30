@@ -31,7 +31,7 @@ public partial class AccountCategory
 
 	/// <inheritdoc />
 	public Task<bool> SetOfflineAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(SetOffline);
+		TypeHelper.TryInvokeMethodAsync(() => SetOffline());
 
 	/// <inheritdoc />
 	public Task<bool> RegisterDeviceAsync(AccountRegisterDeviceParams @params,
@@ -127,7 +127,7 @@ public partial class AccountCategory
 
 	/// <inheritdoc />
 	public Task<AccountSaveProfileInfoParams> GetProfileInfoAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(GetProfileInfo);
+		TypeHelper.TryInvokeMethodAsync(() => GetProfileInfo());
 
 	/// <inheritdoc />
 	public Task<ChangeNameRequest> SaveProfileInfoAsync(int cancelRequestId,

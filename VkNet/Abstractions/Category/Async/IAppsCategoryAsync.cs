@@ -63,7 +63,7 @@ public interface IAppsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/apps.sendRequest
 	/// </remarks>
 	Task<long> SendRequestAsync(AppSendRequestParams @params,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет все уведомления о запросах, отправленных из текущего приложения.
