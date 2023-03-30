@@ -8,7 +8,6 @@ using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;

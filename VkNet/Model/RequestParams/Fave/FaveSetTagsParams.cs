@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams.Fave;
 

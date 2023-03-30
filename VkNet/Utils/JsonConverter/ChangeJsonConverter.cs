@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Model.GroupUpdate;
 
 namespace VkNet.Utils.JsonConverter;

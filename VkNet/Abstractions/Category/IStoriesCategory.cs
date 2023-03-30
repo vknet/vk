@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using JetBrains.Annotations;
 using VkNet.Abstractions.Category;
 using VkNet.Model;
 using VkNet.Model.Attachments;

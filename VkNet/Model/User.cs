@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
