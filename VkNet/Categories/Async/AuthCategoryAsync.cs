@@ -35,5 +35,5 @@ public partial class AuthCategory
 									string lastName,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Restore(phone, lastName));
+			Restore(phone, lastName), token);
 }

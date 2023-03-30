@@ -48,5 +48,5 @@ public partial class LeadsCategory
 	public Task<Start> StartAsync(StartParams startParams,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Start(startParams));
+			Start(startParams), token);
 }

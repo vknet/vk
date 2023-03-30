@@ -150,5 +150,5 @@ public partial class FriendsCategory
 	public Task<VkCollection<User>> SearchAsync(FriendsSearchParams @params,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Search(@params));
+			Search(@params), token);
 }

@@ -14,7 +14,7 @@ public partial class AppWidgetsCategory
 	public Task<UploadServerInfo> GetAppImageUploadServerAsync(AppWidgetImageType imageType,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetAppImageUploadServer(imageType));
+			GetAppImageUploadServer(imageType), token);
 
 	/// <inheritdoc/>
 	public Task<AppImageResult> GetAppImagesAsync(int offset,
@@ -22,13 +22,13 @@ public partial class AppWidgetsCategory
 												AppWidgetImageType imageType,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetAppImages(offset, count, imageType));
+			GetAppImages(offset, count, imageType), token);
 
 	/// <inheritdoc/>
 	public Task<UploadServerInfo> GetGroupImageUploadServerAsync(AppWidgetImageType imageType,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetGroupImageUploadServer(imageType));
+			GetGroupImageUploadServer(imageType), token);
 
 	/// <inheritdoc/>
 	public Task<AppImageResult> GetGroupImagesAsync(int offset,
@@ -36,32 +36,32 @@ public partial class AppWidgetsCategory
 													AppWidgetImageType imageType,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetGroupImages(offset, count, imageType));
+			GetGroupImages(offset, count, imageType), token);
 
 	/// <inheritdoc/>
 	public Task<ReadOnlyCollection<AppImage>> GetImagesByIdAsync(string images,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetImagesById(images));
+			GetImagesById(images), token);
 
 	/// <inheritdoc/>
 	public Task<AppImage> SaveAppImageAsync(string hash,
 											string image,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SaveAppImage(hash, image));
+			SaveAppImage(hash, image), token);
 
 	/// <inheritdoc/>
 	public Task<AppImage> SaveGroupImageAsync(string hash,
 											string image,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SaveGroupImage(hash, image));
+			SaveGroupImage(hash, image), token);
 
 	/// <inheritdoc/>
 	public Task<bool> UpdateAsync(string code,
 								AppWidgetType type,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Update(code, type));
+			Update(code, type), token);
 }

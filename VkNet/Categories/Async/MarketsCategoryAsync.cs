@@ -192,5 +192,5 @@ public partial class MarketsCategory
 																long? offset,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetCategories(count, offset));
+			GetCategories(count, offset), token);
 }

@@ -351,5 +351,5 @@ public partial class PhotoCategory
 																	string response,
 																	CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SaveMarketAlbumPhoto(groupId, response));
+			SaveMarketAlbumPhoto(groupId, response), token);
 }

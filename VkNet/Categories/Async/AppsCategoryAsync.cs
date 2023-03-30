@@ -90,6 +90,6 @@ public partial class AppsCategory
 	public Task<bool> PromoUseGiftAsync(ulong promoId, ulong? userId = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			PromoUseGift(promoId, userId));
+			PromoUseGift(promoId, userId), token);
 
 }

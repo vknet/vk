@@ -68,5 +68,5 @@ public partial class NotesCategory
 	public Task<bool> RestoreCommentAsync(NotesRestoreCommentParams restoreCommentParams,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RestoreComment(restoreCommentParams));
+			RestoreComment(restoreCommentParams), token);
 }

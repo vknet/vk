@@ -182,5 +182,5 @@ public partial class AudioCategory
 													IEnumerable<long> targetIds = null,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetBroadcast(audio, targetIds));
+			SetBroadcast(audio, targetIds), token);
 }

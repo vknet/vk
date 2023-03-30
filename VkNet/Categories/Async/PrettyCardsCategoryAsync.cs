@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -43,5 +43,5 @@ public partial class PrettyCardsCategory
 
 	/// <inheritdoc />
 	public Task<Uri> GetUploadUrlAsync(CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(GetUploadUrl);
+		TypeHelper.TryInvokeMethodAsync(GetUploadUrl, token);
 }

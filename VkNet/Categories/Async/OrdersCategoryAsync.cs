@@ -16,7 +16,7 @@ public partial class OrdersCategory
 											bool? pendingCancel = null,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			CancelSubscription(userId, subscriptionId, pendingCancel));
+			CancelSubscription(userId, subscriptionId, pendingCancel), token);
 
 	/// <inheritdoc/>
 	public Task<OrderState> ChangeStateAsync(ulong orderId,
@@ -25,7 +25,7 @@ public partial class OrdersCategory
 											bool? testMode = null,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			ChangeState(orderId, action, appOrderId, testMode));
+			ChangeState(orderId, action, appOrderId, testMode), token);
 
 	/// <inheritdoc/>
 	public Task<IEnumerable<Order>> GetAsync(ulong? offset = null,
@@ -33,34 +33,34 @@ public partial class OrdersCategory
 											bool? testMode = null,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(offset, count, testMode));
+			Get(offset, count, testMode), token);
 
 	/// <inheritdoc/>
 	public Task<IEnumerable<VotesAmount>> GetAmountAsync(ulong userId,
 														IEnumerable<string> votes,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetAmount(userId, votes));
+			GetAmount(userId, votes), token);
 
 	/// <inheritdoc/>
 	public Task<IEnumerable<Order>> GetByIdAsync(IEnumerable<ulong> orderIds = null,
 												bool? testMode = null,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetById(orderIds, testMode));
+			GetById(orderIds, testMode), token);
 
 	/// <inheritdoc/>
 	public Task<SubscriptionItem> GetUserSubscriptionByIdAsync(ulong userId,
 																ulong subscriptionId,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetUserSubscriptionById(userId, subscriptionId));
+			GetUserSubscriptionById(userId, subscriptionId), token);
 
 	/// <inheritdoc/>
 	public Task<IEnumerable<SubscriptionItem>> GetUserSubscriptionsAsync(ulong userId,
 																		CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetUserSubscriptions(userId));
+			GetUserSubscriptions(userId), token);
 
 	/// <inheritdoc/>
 	public Task<bool> UpdateSubscriptionAsync(ulong userId,
@@ -68,5 +68,5 @@ public partial class OrdersCategory
 											ulong price,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			UpdateSubscription(userId, subscriptionId, price));
+			UpdateSubscription(userId, subscriptionId, price), token);
 }

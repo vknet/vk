@@ -125,5 +125,5 @@ public partial class NewsFeedCategory
 														UsersFields fields = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetSuggestedSources(offset, count, shuffle, fields));
+			GetSuggestedSources(offset, count, shuffle, fields), token);
 }

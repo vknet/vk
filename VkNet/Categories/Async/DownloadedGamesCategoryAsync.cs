@@ -11,5 +11,5 @@ public partial class DownloadedGamesCategory
 	public Task<GetPaidStatusResult> GetPaidStatusAsync(ulong? userId = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetPaidStatus(userId));
+			GetPaidStatus(userId), token);
 }

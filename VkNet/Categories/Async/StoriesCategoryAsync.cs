@@ -16,28 +16,28 @@ public partial class StoriesCategory
 	public Task<bool> BanOwnerAsync(IEnumerable<long> ownersIds,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			BanOwner(ownersIds));
+			BanOwner(ownersIds), token);
 
 	/// <inheritdoc/>
 	public Task<bool> DeleteAsync(long ownerId,
 								ulong storyId,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Delete(ownerId, storyId));
+			Delete(ownerId, storyId), token);
 
 	/// <inheritdoc/>
 	public Task<StoryResult<IEnumerable<Story>>> GetAsync(long? ownerId = null,
 														bool? extended = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(ownerId, extended));
+			Get(ownerId, extended), token);
 
 	/// <inheritdoc/>
 	public Task<StoryResult<long>> GetBannedAsync(IEnumerable<string> fields = null,
 												bool? extended = null,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetBanned(extended, fields));
+			GetBanned(extended, fields), token);
 
 	/// <inheritdoc/>
 	public Task<StoryResult<Story>> GetByIdAsync(IEnumerable<string> stories,
@@ -45,13 +45,13 @@ public partial class StoriesCategory
 												IEnumerable<string> fields = null,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetById(stories, extended, fields));
+			GetById(stories, extended, fields), token);
 
 	/// <inheritdoc/>
 	public Task<StoryServerUrl> GetPhotoUploadServerAsync(GetPhotoUploadServerParams @params,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetPhotoUploadServer(@params));
+			GetPhotoUploadServer(@params), token);
 
 	/// <inheritdoc/>
 	public Task<StoryResult<IEnumerable<Story>>> GetRepliesAsync(long ownerId,
@@ -61,20 +61,20 @@ public partial class StoriesCategory
 																IEnumerable<string> fields = null,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetReplies(ownerId, storyId, accessKey, extended, fields));
+			GetReplies(ownerId, storyId, accessKey, extended, fields), token);
 
 	/// <inheritdoc/>
 	public Task<StoryStatsResult> GetStatsAsync(long ownerId,
 												ulong storyId,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetStats(ownerId, storyId));
+			GetStats(ownerId, storyId), token);
 
 	/// <inheritdoc/>
 	public Task<StoryServerUrl> GetVideoUploadServerAsync(GetVideoUploadServerParams @params,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetVideoUploadServer(@params));
+			GetVideoUploadServer(@params), token);
 
 	/// <inheritdoc/>
 	public Task<VkCollection<StoryViewers>> GetViewersAsync(long ownerId,
@@ -92,13 +92,13 @@ public partial class StoriesCategory
 															ulong? offset = null,
 															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetViewersExtended(ownerId, storyId, count, offset));
+			GetViewersExtended(ownerId, storyId, count, offset), token);
 
 	/// <inheritdoc/>
 	public Task<bool> HideAllRepliesAsync(long ownerId,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			HideAllReplies(ownerId));
+			HideAllReplies(ownerId), token);
 
 	/// <inheritdoc/>
 	public Task<bool> HideReplyAsync(long ownerId,
@@ -106,7 +106,7 @@ public partial class StoriesCategory
 									string accessKey = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			HideReply(ownerId, storyId, accessKey));
+			HideReply(ownerId, storyId, accessKey), token);
 
 	/// <inheritdoc/>
 	public Task<bool> UnbanOwnerAsync(IEnumerable<long> ownersIds,
@@ -143,5 +143,5 @@ public partial class StoriesCategory
 											bool? unseenMarker = null,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SendInteraction(accessKey, message, isBroadcast, isAnonymous, unseenMarker));
+			SendInteraction(accessKey, message, isBroadcast, isAnonymous, unseenMarker), token);
 }
