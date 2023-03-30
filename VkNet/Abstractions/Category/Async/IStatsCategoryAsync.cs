@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
 
@@ -15,24 +16,27 @@ public interface IStatsCategoryAsync
 	/// <param name = "getParams">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект с данными статистики.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/stats.get
 	/// </remarks>
-	Task<ReadOnlyCollection<StatsPeriod>> GetAsync(StatsGetParams getParams);
+	Task<ReadOnlyCollection<StatsPeriod>> GetAsync(StatsGetParams getParams,
+													CancellationToken token);
 
 	/// <summary>
 	/// Добавляет данные о текущем сеансе в статистику посещаемости приложения..
 	/// </summary>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешной обработки данных метод вернет <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/stats.trackVisitor
 	/// </remarks>
-	Task<bool> TrackVisitorAsync();
+	Task<bool> TrackVisitorAsync(CancellationToken token);
 
 	/// <summary>
 	/// Возвращает статистику для записи на стене.
@@ -46,6 +50,7 @@ public interface IStatsCategoryAsync
 	/// для 300
 	/// последних(самых свежих) записей на стене сообщества.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -53,5 +58,7 @@ public interface IStatsCategoryAsync
 	/// Необходимо входить в число руководителей этого сообщества.
 	/// Страница документации ВКонтакте https://vk.com/dev/stats.getPostReach
 	/// </remarks>
-	Task<PostReach> GetPostReachAsync(long ownerId, long postId);
+	Task<PostReach> GetPostReachAsync(long ownerId,
+									long postId,
+									CancellationToken token);
 }
