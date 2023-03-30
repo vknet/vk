@@ -164,5 +164,5 @@ public partial class AccountCategory
 													string value,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetPrivacy(key, value));
+			SetPrivacy(key, value), token);
 }

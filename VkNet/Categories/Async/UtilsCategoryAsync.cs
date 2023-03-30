@@ -56,5 +56,5 @@ public partial class UtilsCategory
 	public Task<LinkStatsResult> GetLinkStatsAsync(LinkStatsParams @params,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetLinkStats(@params));
+			GetLinkStats(@params), token);
 }

@@ -115,5 +115,5 @@ public partial class DocsCategory
 																DocMessageType? type = null,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetMessagesUploadServer(peerId, type));
+			GetMessagesUploadServer(peerId, type), token);
 }

@@ -62,5 +62,5 @@ public partial class PollsCategory
 	public Task<SavePhotoResult> SavePhotoAsync(SavePhotoParams @params,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SavePhoto(@params));
+			SavePhoto(@params), token);
 }

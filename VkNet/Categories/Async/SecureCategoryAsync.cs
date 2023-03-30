@@ -76,5 +76,5 @@ public partial class SecureCategory
 									bool? increment = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetCounter(counters, userId, counter, increment));
+			SetCounter(counters, userId, counter, increment), token);
 }

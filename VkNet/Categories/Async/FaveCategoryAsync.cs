@@ -19,26 +19,26 @@ public partial class FaveCategory
 									string source = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddArticle(url, @ref, trackCode, source));
+			AddArticle(url, @ref, trackCode, source), token);
 
 	/// <inheritdoc/>
 	public Task<bool> AddLinkAsync(Uri link,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddLink(link));
+			AddLink(link), token);
 
 	/// <inheritdoc/>
 	public Task<bool> AddPageAsync(ulong? userId = null,
 									ulong? groupId = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddPage(userId, groupId));
+			AddPage(userId, groupId), token);
 
 	/// <inheritdoc/>
 	public Task<bool> AddPostAsync(FaveAddPostParams @params,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddPost(@params));
+			AddPost(@params), token);
 
 	/// <inheritdoc/>
 	public Task<bool> AddProductAsync(long ownerId,
@@ -48,14 +48,14 @@ public partial class FaveCategory
 									string source = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddProduct(ownerId, id, accessKey, @ref, source));
+			AddProduct(ownerId, id, accessKey, @ref, source), token);
 
 	/// <inheritdoc/>
 	public Task<FaveTag> AddTagAsync(string name,
 									string position,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddTag(name, position));
+			AddTag(name, position), token);
 
 	/// <inheritdoc/>
 	public Task<bool> AddVideoAsync(long ownerId,
@@ -64,20 +64,20 @@ public partial class FaveCategory
 									string @ref = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddVideo(ownerId, id, accessKey, @ref));
+			AddVideo(ownerId, id, accessKey, @ref), token);
 
 	/// <inheritdoc/>
 	public Task<bool> EditTagAsync(long id,
 									string name,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			EditTag(id, name));
+			EditTag(id, name), token);
 
 	/// <inheritdoc/>
 	public Task<VkCollection<FaveGetObject>> GetAsync(FaveGetParams @params,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(@params));
+			Get(@params), token);
 
 	/// <inheritdoc/>
 	public Task<VkCollection<FaveGetPagesObject>> GetPagesAsync(FavePageType? type = null,
@@ -87,15 +87,15 @@ public partial class FaveCategory
 																long? tagId = null,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetPages(type, fields, offset, count, tagId));
+			GetPages(type, fields, offset, count, tagId), token);
 
 	/// <inheritdoc/>
 	public Task<VkCollection<FaveTag>> GetTagsAsync(CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(GetTags);
+		TypeHelper.TryInvokeMethodAsync(GetTags, token);
 
 	/// <inheritdoc/>
 	public Task<bool> MarkSeenAsync(CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(MarkSeen);
+		TypeHelper.TryInvokeMethodAsync(MarkSeen, token);
 
 	/// <inheritdoc/>
 	public Task<bool> RemoveArticleAsync(long ownerId,
@@ -103,53 +103,53 @@ public partial class FaveCategory
 										string @ref = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RemoveArticle(ownerId, articleId, @ref));
+			RemoveArticle(ownerId, articleId, @ref), token);
 
 	/// <inheritdoc/>
 	public Task<bool> RemoveLinkAsync(string linkId,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RemoveLink(linkId));
+			RemoveLink(linkId), token);
 
 	/// <inheritdoc/>
 	public Task<bool> RemovePageAsync(long? userId = null,
 									long? groupId = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RemovePage(userId, groupId));
+			RemovePage(userId, groupId), token);
 
 	/// <inheritdoc/>
 	public Task<bool> RemovePostAsync(long ownerId,
 									long id,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RemovePost(ownerId, id));
+			RemovePost(ownerId, id), token);
 
 	/// <inheritdoc/>
 	public Task<bool> RemoveProductAsync(long ownerId,
 										long id,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RemoveProduct(ownerId, id));
+			RemoveProduct(ownerId, id), token);
 
 	/// <inheritdoc/>
 	public Task<bool> RemoveTagAsync(long id,
 									CancellationToken token = default) =>
 	TypeHelper.TryInvokeMethodAsync(() =>
-		RemoveTag(id));
+		RemoveTag(id), token);
 
 	/// <inheritdoc/>
 	public Task<bool> RemoveVideoAsync(long ownerId,
 										long id,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RemoveVideo(ownerId, id));
+			RemoveVideo(ownerId, id), token);
 
 	/// <inheritdoc/>
 	public Task<bool> ReorderTagsAsync(IEnumerable<long> ids,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			ReorderTags(ids));
+			ReorderTags(ids), token);
 
 	/// <inheritdoc/>
 	public Task<bool> SetPageTagsAsync(ulong? userId = null,
@@ -157,18 +157,18 @@ public partial class FaveCategory
 										IEnumerable<long> tagIds = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetPageTags(userId, groupId, tagIds));
+			SetPageTags(userId, groupId, tagIds), token);
 
 	/// <inheritdoc/>
 	public Task<bool> SetTagsAsync(FaveSetTagsParams @params,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetTags(@params));
+			SetTags(@params), token);
 
 	/// <inheritdoc/>
 	public Task<bool> TrackPageInteractionAsync(ulong? userId = null,
 												ulong? groupId = null,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			TrackPageInteraction(userId, groupId));
+			TrackPageInteraction(userId, groupId), token);
 }

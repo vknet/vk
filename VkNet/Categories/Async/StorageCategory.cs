@@ -34,5 +34,5 @@ public partial class StorageCategory
 								bool? global = null,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Set(key, value, userId, global));
+			Set(key, value, userId, global), token);
 }

@@ -72,5 +72,5 @@ public partial class UsersCategory
 	public Task<VkCollection<User>> GetNearbyAsync(UsersGetNearbyParams @params,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetNearby(@params));
+			GetNearby(@params), token);
 }

@@ -43,5 +43,5 @@ public partial class PlacesCategory
 	public Task<VkCollection<Place>> SearchAsync(PlacesSearchParams placesSearchParams,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Search(placesSearchParams));
+			Search(placesSearchParams), token);
 }

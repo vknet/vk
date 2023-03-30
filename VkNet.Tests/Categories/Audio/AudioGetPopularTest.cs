@@ -5,7 +5,7 @@ using Xunit;
 
 namespace VkNet.Tests.Categories.Audio;
 
-public class AudiogGetPopularTest : CategoryBaseTest
+public class AudioGetPopularTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 

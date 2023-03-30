@@ -14,5 +14,5 @@ public partial class GiftsCategory
 												int? offset = null,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(userId, count, offset));
+			Get(userId, count, offset), token);
 }

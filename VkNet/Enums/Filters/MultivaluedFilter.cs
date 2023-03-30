@@ -98,12 +98,12 @@ public class MultivaluedFilter<TFilter> : IEqualityComparer<MultivaluedFilter<TF
 	/// <returns> </returns>
 	public static TFilter FromJsonString(string val)
 	{
-		var vals = val.Split(',')
+		var values = val.Split(',')
 			.Select(selector: x => x.Trim());
 
 		var result = new TFilter();
 
-		result.Selected.AddRange(collection: vals.OrderBy(keySelector: x => x));
+		result.Selected.AddRange(collection: values.OrderBy(keySelector: x => x));
 
 		return result;
 	}

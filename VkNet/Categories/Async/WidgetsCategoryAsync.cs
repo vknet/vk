@@ -23,5 +23,5 @@ public partial class WidgetsCategory
 														ulong? count = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetPages(widgetApiId, order, period, offset, count));
+			GetPages(widgetApiId, order, period, offset, count), token);
 }

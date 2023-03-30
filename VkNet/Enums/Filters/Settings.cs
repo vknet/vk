@@ -273,12 +273,12 @@ public sealed class Settings
 	/// <returns> </returns>
 	public static Settings FromJsonString(string val)
 	{
-		var vals = val.Split(',')
+		var values = val.Split(',')
 			.Select(selector: x => x.Trim());
 
 		var res = new Settings();
 
-		foreach (var v in vals)
+		foreach (var v in values)
 		{
 			if (MaskMap.ContainsKey(key: v.ToLower()))
 			{

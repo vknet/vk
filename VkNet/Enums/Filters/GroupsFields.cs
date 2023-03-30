@@ -60,7 +60,7 @@ public sealed class GroupsFields : MultivaluedFilter<GroupsFields>
 	/// <summary>
 	/// Для получения дополнительного поля Group.CanSeelAllPosts
 	/// </summary>
-	public static readonly GroupsFields CanSeelAllPosts = RegisterPossibleValue(1 << 10, "can_see_all_posts");
+	public static readonly GroupsFields CanSeeAllPosts = RegisterPossibleValue(1 << 10, "can_see_all_posts");
 
 	/// <summary>
 	/// Для получения дополнительного поля Group.CanUploadDocuments
@@ -125,7 +125,7 @@ public sealed class GroupsFields : MultivaluedFilter<GroupsFields>
 											|StartDate
 											|EndDate
 											|CanPost
-											|CanSeelAllPosts
+											|CanSeeAllPosts
 											|CanCreateTopic
 											|Activity
 											|Status

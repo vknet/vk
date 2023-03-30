@@ -429,5 +429,5 @@ public partial class GroupsCategory
 	public Task<bool> ToggleMarketAsync(GroupToggleMarketParams @params,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			ToggleMarket(@params));
+			ToggleMarket(@params), token);
 }

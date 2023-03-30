@@ -96,5 +96,5 @@ public partial class FaveCategory
 														bool? extended = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetMarketItems(count, offset, extended));
+			GetMarketItems(count, offset, extended), token);
 }

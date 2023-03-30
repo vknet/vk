@@ -23,11 +23,11 @@ public partial class NotificationsCategory
 
 	/// <inheritdoc />
 	public Task<bool> MarkAsViewedAsync(CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(MarkAsViewed);
+		TypeHelper.TryInvokeMethodAsync(MarkAsViewed, token);
 
 	/// <inheritdoc/>
 	public Task<IEnumerable<NotificationsSendMessageResult>> SendMessageAsync(NotificationsSendMessageParams sendMessageParams,
 																			CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SendMessage(sendMessageParams));
+			SendMessage(sendMessageParams), token);
 }

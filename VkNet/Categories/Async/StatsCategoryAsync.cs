@@ -24,5 +24,5 @@ public partial class StatsCategory
 											long postId,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetPostReach(ownerId, postId));
+			GetPostReach(ownerId, postId), token);
 }

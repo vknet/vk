@@ -14,7 +14,7 @@ public partial class DonutCategory : IDonutCategoryAsync
 	public Task<bool> IsDonAsync(long ownerId,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			IsDon(ownerId));
+			IsDon(ownerId), token);
 
 	/// <inheritdoc/>
 	public Task<VkCollection<User>> GetFriendsAsync(long ownerId,
@@ -23,13 +23,13 @@ public partial class DonutCategory : IDonutCategoryAsync
 													UsersFields fields,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetFriends(ownerId, offset, count, fields));
+			GetFriends(ownerId, offset, count, fields), token);
 
 	/// <inheritdoc/>
 	public Task<Subscription> GetSubscriptionAsync(long ownerId,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetSubscription(ownerId));
+			GetSubscription(ownerId), token);
 
 	/// <inheritdoc/>
 	public Task<SubscriptionsInfo> GetSubscriptionsAsync(UsersFields fields,
@@ -37,5 +37,5 @@ public partial class DonutCategory : IDonutCategoryAsync
 														byte count,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetSubscriptions(fields, offset, count));
+			GetSubscriptions(fields, offset, count), token);
 }
