@@ -1,6 +1,5 @@
 ﻿using System;
 using JetBrains.Annotations;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;

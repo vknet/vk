@@ -1,5 +1,3 @@
-using VkNet.Utils;
-
 namespace VkNet.Enums.SafetyEnums;
 
 /// <inheritdoc />

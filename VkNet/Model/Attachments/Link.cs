@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics;
 using Newtonsoft.Json;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Attachments;
 

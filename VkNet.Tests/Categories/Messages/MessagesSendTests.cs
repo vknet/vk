@@ -8,7 +8,6 @@ using VkNet.Exception;
 using VkNet.Model.Keyboard;
 using VkNet.Model.Template;
 using VkNet.Model.Template.Carousel;
-using VkNet.Utils;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;

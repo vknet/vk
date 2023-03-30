@@ -1,8 +1,6 @@
 using System;
-using Newtonsoft.Json;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams;
 

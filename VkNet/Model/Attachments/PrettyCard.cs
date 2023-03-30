@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 

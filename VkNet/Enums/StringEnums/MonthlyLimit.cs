@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Utils.JsonConverter;
 

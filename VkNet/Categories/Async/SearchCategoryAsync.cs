@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -9,6 +10,8 @@ namespace VkNet.Categories;
 public partial class SearchCategory
 {
 	/// <inheritdoc />
-	public Task<VkCollection<SearchHintsItem>> GetHintsAsync(SearchGetHintsParams @params) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => GetHints(@params: @params));
+	public Task<VkCollection<SearchHintsItem>> GetHintsAsync(SearchGetHintsParams @params,
+															CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetHints(@params));
 }

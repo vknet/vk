@@ -21,5 +21,6 @@ public interface IDownloadedGamesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/downloadedGames.getPaidStatus
 	/// </remarks>
-	Task<GetPaidStatusResult> GetPaidStatusAsync(ulong? userId = null, CancellationToken token = default);
+	Task<GetPaidStatusResult> GetPaidStatusAsync(ulong? userId = null,
+												CancellationToken token = default);
 }

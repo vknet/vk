@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Abstractions;
 using VkNet.Utils;
@@ -19,14 +20,23 @@ public partial class ExecuteCategory
 	public ExecuteCategory(IVkApi vk) => _vk = vk;
 
 	/// <inheritdoc />
-	public Task<VkResponse> ExecuteAsync(string code, VkParameters vkParameters = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => Execute(code, vkParameters));
+	public Task<VkResponse> ExecuteAsync(string code,
+										VkParameters vkParameters = default,
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Execute(code, vkParameters));
 
 	/// <inheritdoc />
-	public Task<T> ExecuteAsync<T>(string code, VkParameters vkParameters = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => Execute<T>(code, vkParameters));
+	public Task<T> ExecuteAsync<T>(string code,
+									VkParameters vkParameters = default,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Execute<T>(code, vkParameters));
 
 	/// <inheritdoc />
-	public Task<T> StoredProcedureAsync<T>(string procedureName, VkParameters vkParameters) => TypeHelper.TryInvokeMethodAsync(() =>
-		StoredProcedure<T>(procedureName, vkParameters));
+	public Task<T> StoredProcedureAsync<T>(string procedureName,
+											VkParameters vkParameters,
+											CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			StoredProcedure<T>(procedureName, vkParameters));
 }
