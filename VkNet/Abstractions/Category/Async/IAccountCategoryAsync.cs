@@ -23,6 +23,7 @@ public interface IAccountCategoryAsync
 	/// videos, notes, gifts, events, groups, notifications, sdk, app_requests).
 	/// список слов, разделенных через запятую
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, который может содержать поля friends, messages, photos,
 	/// videos, notes, gifts, events, groups, notifications, sdk, app_requests.
@@ -30,7 +31,8 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.getCounters
 	/// </remarks>
-	Task<Counters> GetCountersAsync(CountersFilter filter);
+	Task<Counters> GetCountersAsync(CountersFilter filter,
+									CancellationToken token);
 
 	/// <summary>
 	/// Устанавливает короткое название приложения (до 17 символов), которое
@@ -41,6 +43,7 @@ public interface IAccountCategoryAsync
 	/// текущего пользователя, обязательный параметр
 	/// </param>
 	/// <param name="name"> Короткое название приложения. строка </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает 1 в случае успешной установки короткого названия.
 	/// Если пользователь не установил приложение в левое меню, метод вернет ошибку 148
@@ -50,7 +53,9 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.setNameInMenu
 	/// </remarks>
-	Task<bool> SetNameInMenuAsync([NotNull] string name, long userId);
+	Task<bool> SetNameInMenuAsync([NotNull] string name,
+								long userId,
+								CancellationToken token);
 
 	/// <summary>
 	/// Помечает текущего пользователя как online на 15 минут.
@@ -59,30 +64,34 @@ public interface IAccountCategoryAsync
 	/// Возможны ли видеозвонки для данного устройства флаг,
 	/// может принимать значения 1 или 0
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения метода будет возвращён код 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.setOnline
 	/// </remarks>
-	Task<bool> SetOnlineAsync(bool? voip = null);
+	Task<bool> SetOnlineAsync(bool? voip = null,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Помечает текущего пользователя как offline.
 	/// </summary>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.setOffline
 	/// </remarks>
-	Task<bool> SetOfflineAsync();
+	Task<bool> SetOfflineAsync(CancellationToken token);
 
 	/// <summary>
 	/// Подписывает устройство на базе iOS, Android или Windows Phone на получение
 	/// Push-уведомлений.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает 1 в случае успешного выполнения метода.
 	/// На iOS и Windows Phone push-уведомления будут отображены без какой либо
@@ -92,7 +101,8 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.registerDevice
 	/// </remarks>
-	Task<bool> RegisterDeviceAsync(AccountRegisterDeviceParams @params);
+	Task<bool> RegisterDeviceAsync(AccountRegisterDeviceParams @params,
+									CancellationToken token);
 
 	/// <summary>
 	/// Отписывает устройство от Push уведомлений.
@@ -106,13 +116,16 @@ public interface IAccountCategoryAsync
 	/// отправки push-уведомлений, 0 — отписать устройство, не использующее sandbox
 	/// сервер флаг, может принимать значения 1 или 0, по умолчанию 0
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает <c> true </c> в случае успешного выполнения метода.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.unregisterDevice
 	/// </remarks>
-	Task<bool> UnregisterDeviceAsync(string deviceId, bool? sandbox = null);
+	Task<bool> UnregisterDeviceAsync(string deviceId,
+									bool? sandbox = null,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Отключает push-уведомления на заданный промежуток времени.
@@ -128,13 +141,18 @@ public interface IAccountCategoryAsync
 	/// 1 - включить звук в данном диалоге, 0 - отключить звук (параметр работает
 	/// только если указан в peer_id передан идентификатор групповой беседы или пользователя)
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.setSilenceMode
 	/// </remarks>
-	Task<bool> SetSilenceModeAsync([NotNull] string deviceId, int? time = null, int? peerId = null, bool? sound = null);
+	Task<bool> SetSilenceModeAsync([NotNull] string deviceId,
+									int? time = null,
+									int? peerId = null,
+									bool? sound = null,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получать настройки Push уведомлений.
@@ -142,6 +160,7 @@ public interface IAccountCategoryAsync
 	/// <param name="deviceId">
 	/// Уникальный идентификатор устройства. строка, доступен начиная с версии 5.31
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, содержащий поля:
 	/// disabled — отключены ли уведомления.
@@ -154,7 +173,8 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.getPushSettings
 	/// </remarks>
-	Task<AccountPushSettings> GetPushSettingsAsync(string deviceId);
+	Task<AccountPushSettings> GetPushSettingsAsync(string deviceId,
+													CancellationToken token);
 
 	/// <summary>
 	/// Изменяет настройку Push-уведомлений.
@@ -171,13 +191,18 @@ public interface IAccountCategoryAsync
 	/// Новое значение уведомления в специальном формате.
 	/// список слов, разделенных через запятую
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает 1 в случае успешного выполнения метода.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.setPushSettings
 	/// </remarks>
-	Task<bool> SetPushSettingsAsync(string deviceId, PushSettings settings, string key, List<string> value);
+	Task<bool> SetPushSettingsAsync(string deviceId,
+									PushSettings settings,
+									string key,
+									List<string> value,
+									CancellationToken token);
 
 	/// <summary>
 	/// Получает настройки текущего пользователя в данном приложении.
@@ -187,6 +212,7 @@ public interface IAccountCategoryAsync
 	/// получить. По умолчанию — текущий пользователь.
 	/// положительное число, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает битовую маску настроек текущего
 	/// пользователя в данном приложении.
@@ -194,13 +220,14 @@ public interface IAccountCategoryAsync
 	/// пользователя, то Ваша битовая маска будет равна: 2 + 1024 = 1026.
 	/// Если, имея битовую маску 1026, Вы хотите проверить, имеет ли она доступ к
 	/// друзьям — Вы можете сделать 1026 &amp; 2.
-	/// Например alert(1026 &amp; 2);
+	/// Например alert(1026 &amp; 2, CancellationToken token);
 	/// см. Список возможных настроек прав доступа.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.getAppPermissions
 	/// </remarks>
-	Task<long> GetAppPermissionsAsync(long userId);
+	Task<long> GetAppPermissionsAsync(long userId,
+									CancellationToken token);
 
 	/// <summary>
 	/// Возвращает список активных рекламных предложений (офферов), выполнив
@@ -215,6 +242,7 @@ public interface IAccountCategoryAsync
 	/// Количество офферов, которое необходимо получить положительное число, по
 	/// умолчанию 100, максимальное значение 100
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает массив, состоящий из общего количества старгетированных на текущего
 	/// пользователя специальных предложений (первый элемент), и списка объектов
@@ -224,10 +252,13 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.getActiveOffers
 	/// </remarks>
-	Task<InformationAboutOffers> GetActiveOffersAsync(ulong? offset = null, ulong? count = null);
+	Task<InformationAboutOffers> GetActiveOffersAsync(ulong? offset = null,
+													ulong? count = null,
+													CancellationToken token = default);
 
 	/// <inheritdoc cref="BanAsync"/>
-	Task<bool> BanUserAsync(long ownerId);
+	Task<bool> BanUserAsync(long ownerId,
+							CancellationToken token);
 
 	/// <summary>
 	/// Добавляет пользователя в черный список.
@@ -236,16 +267,19 @@ public interface IAccountCategoryAsync
 	/// Идентификатор пользователя или сообщества, которое будет добавлено в черный список.
 	/// положительное число, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успеха метод вернет <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.banUser
 	/// </remarks>
-	Task<bool> BanAsync(long ownerId);
+	Task<bool> BanAsync(long ownerId,
+						CancellationToken token);
 
 	/// <inheritdoc cref="UnbanAsync"/>
-	Task<bool> UnbanUserAsync(long ownerId);
+	Task<bool> UnbanUserAsync(long ownerId,
+							CancellationToken token);
 
 	/// <summary>
 	/// Убирает пользователя из черного списка.
@@ -254,13 +288,15 @@ public interface IAccountCategoryAsync
 	/// Идентификатор пользователя или группы, которого нужно удалить из черного списка.
 	/// положительное число, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успеха метод вернет <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.unbanUser
 	/// </remarks>
-	Task<bool> UnbanAsync(long ownerId);
+	Task<bool> UnbanAsync(long ownerId,
+						CancellationToken token);
 
 	/// <summary>
 	/// Возвращает список пользователей, находящихся в черном списке.
@@ -273,13 +309,16 @@ public interface IAccountCategoryAsync
 	/// Количество записей, которое необходимо вернуть. положительное число, по
 	/// умолчанию 20, максимальное значение 200
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает набор объектов пользователей, находящихся в черном списке.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.getBanned
 	/// </remarks>
-	Task<AccountGetBannedResult> GetBannedAsync(int? offset = null, int? count = null);
+	Task<AccountGetBannedResult> GetBannedAsync(int? offset = null,
+												int? count = null,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о текущем аккаунте.
@@ -290,6 +329,7 @@ public interface IAccountCategoryAsync
 	/// own_posts_default, no_wall_replies, intro, lang
 	/// По умолчанию будут возвращены все поля. список слов, разделенных через запятую
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Метод возвращает объект, содержащий следующие поля:
 	/// country – строковой код страны, определенный по IP адресу, с которого сделан
@@ -312,20 +352,24 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.getInfo
 	/// </remarks>
-	Task<AccountInfo> GetInfoAsync(AccountFields fields = null);
+	Task<AccountInfo> GetInfoAsync(AccountFields fields = null,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет редактировать информацию о текущем аккаунте.
 	/// </summary>
 	/// <param name="name"> Имя настройки. </param>
 	/// <param name="value"> Значение настройки. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В результате успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.setInfo
 	/// </remarks>
-	Task<bool> SetInfoAsync([NotNull] string name, [NotNull] string value);
+	Task<bool> SetInfoAsync([NotNull] string name,
+							[NotNull] string value,
+							CancellationToken token);
 
 	/// <summary>
 	/// Позволяет сменить пароль пользователя после успешного восстановления доступа к
@@ -346,6 +390,7 @@ public interface IAccountCategoryAsync
 	/// Новый пароль, который будет установлен в качестве текущего.
 	/// строка, минимальная длина 6, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В результате выполнения этого метода будет возвращен объект с полем token,
 	/// содержащим новый токен, и полем secret в случае, если токен был nohttps.
@@ -353,17 +398,21 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.changePassword
 	/// </remarks>
-	Task<AccountChangePasswordResult> ChangePasswordAsync(string oldPassword, string newPassword, string restoreSid = null,
-														string changePasswordHash = null);
+	Task<AccountChangePasswordResult> ChangePasswordAsync(string oldPassword,
+														string newPassword,
+														string restoreSid = null,
+														string changePasswordHash = null,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о текущем профиле.
 	/// </summary>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> Информация о текущем профиле в виде Model.User </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.getProfileInfo
 	/// </remarks>
-	Task<AccountSaveProfileInfoParams> GetProfileInfoAsync();
+	Task<AccountSaveProfileInfoParams> GetProfileInfoAsync(CancellationToken token);
 
 	/// <summary>
 	/// Редактирует информацию текущего профиля.
@@ -371,6 +420,7 @@ public interface IAccountCategoryAsync
 	/// <param name="cancelRequestId">
 	/// Идентификатор заявки на смену имени, которую необходимо отменить.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> Результат отмены заявки. </returns>
 	/// <remarks>
 	/// Метод вынесен как отдельный, потому что если в запросе передан параметр
@@ -380,23 +430,27 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.saveProfileInfo
 	/// </remarks>
-	Task<ChangeNameRequest> SaveProfileInfoAsync(int cancelRequestId);
+	Task<ChangeNameRequest> SaveProfileInfoAsync(int cancelRequestId,
+												CancellationToken token);
 
 	/// <summary>
 	/// Редактирует информацию текущего профиля.
 	/// </summary>
 	/// <param name="params"> The parameters. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Результат отмены заявки.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.saveProfileInfo
 	/// </remarks>
-	Task<ChangeNameRequest> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params);
+	Task<ChangeNameRequest> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params,
+												CancellationToken token);
 
 	/// <summary>
 	/// Получить список приватных настроек
 	/// </summary>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> Список приватных настроек </returns>
 	Task<PrivacySettings> GetPrivacySettingsAsync(CancellationToken token);
 
@@ -405,6 +459,9 @@ public interface IAccountCategoryAsync
 	/// </summary>
 	/// <param name="key"> Ключ </param>
 	/// <param name="value"> Значение </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> Значение параметра <a>value</a></returns>
-	Task<PrivacySettingsValue> SetPrivacyAsync(PrivacyKey key, string value);
+	Task<PrivacySettingsValue> SetPrivacyAsync(PrivacyKey key,
+												string value,
+												CancellationToken token);
 }

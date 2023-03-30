@@ -2,7 +2,6 @@ using System;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.RequestParams.Groups;
 

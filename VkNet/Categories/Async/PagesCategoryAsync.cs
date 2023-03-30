@@ -1,5 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
@@ -13,38 +14,64 @@ namespace VkNet.Categories;
 public partial class PagesCategory
 {
 	/// <inheritdoc />
-	public Task<Page> GetAsync(PagesGetParams @params) => TypeHelper.TryInvokeMethodAsync(func: () => Get(@params: @params));
+	public Task<Page> GetAsync(PagesGetParams @params,
+								CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Get(@params));
 
 	/// <inheritdoc />
-	public Task<long> SaveAsync(string text, long groupId, long userId, string title, long? pageId) => TypeHelper.TryInvokeMethodAsync(
-		func: () =>
+	public Task<long> SaveAsync(string text,
+								long groupId,
+								long userId,
+								string title,
+								long? pageId,
+								CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
 			Save(text, groupId, userId, title, pageId));
 
 	/// <inheritdoc />
-	public Task<long> SaveAccessAsync(long pageId
-									, long groupId
-									, long? userId = null
-									, AccessPages view = AccessPages.All
-									, AccessPages edit = AccessPages.Leaders) => TypeHelper.TryInvokeMethodAsync(func: () =>
-		SaveAccess(pageId, groupId, userId, view));
+	public Task<long> SaveAccessAsync(long pageId,
+									long groupId,
+									long? userId = null,
+									AccessPages view = AccessPages.All,
+									AccessPages edit = AccessPages.Leaders,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			SaveAccess(pageId, groupId, userId, view , edit));
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<PageVersion>> GetHistoryAsync(long pageId, long groupId, long? userId = null) =>
-		TypeHelper.TryInvokeMethodAsync(func: () =>
+	public Task<ReadOnlyCollection<PageVersion>> GetHistoryAsync(long pageId,
+																long groupId,
+																long? userId = null,
+																CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
 			GetHistory(pageId, groupId, userId));
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<Page>> GetTitlesAsync(long groupId) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => GetTitles(groupId: groupId));
+	public Task<ReadOnlyCollection<Page>> GetTitlesAsync(long groupId,
+														CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetTitles(groupId));
 
 	/// <inheritdoc />
-	public Task<Page> GetVersionAsync(long versionId, long groupId, bool needHtml = false, long? userId = null) =>
-		TypeHelper.TryInvokeMethodAsync(func: () =>
+	public Task<Page> GetVersionAsync(long versionId,
+									long groupId,
+									bool needHtml = false,
+									long? userId = null,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
 			GetVersion(versionId, groupId, needHtml, userId));
 
 	/// <inheritdoc />
-	public Task<string> ParseWikiAsync(string text, ulong groupId) => TypeHelper.TryInvokeMethodAsync(func: () => ParseWiki(text, groupId));
+	public Task<string> ParseWikiAsync(string text,
+										ulong groupId,
+										CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			ParseWiki(text, groupId));
 
 	/// <inheritdoc />
-	public Task<bool> ClearCacheAsync(Uri url) => TypeHelper.TryInvokeMethodAsync(func: () => ClearCache(url: url));
+	public Task<bool> ClearCacheAsync(Uri url,
+									CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			ClearCache(url));
 }

@@ -4,7 +4,6 @@ using JetBrains.Annotations;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Keyboard;
-using VkNet.Utils;
 
 namespace VkNet.Model.Template.Carousel;
 

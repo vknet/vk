@@ -2,7 +2,6 @@ using System;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Keyboard;
 

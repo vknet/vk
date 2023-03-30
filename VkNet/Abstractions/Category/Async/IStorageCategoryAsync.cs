@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
 
@@ -29,6 +30,7 @@ public interface IStorageCategoryAsync
 	/// переменными пользователя. флаг, может
 	/// принимать значения 1 или 0, по умолчанию 0
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает значение одной или нескольких переменных. Если переменная на сервере
 	/// отсутствует, то будет возвращена
@@ -37,7 +39,10 @@ public interface IStorageCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/storage.get
 	/// </remarks>
-	Task<ReadOnlyCollection<StorageObject>> GetAsync(IEnumerable<string> keys = null, ulong? userId = null, bool? global = null);
+	Task<ReadOnlyCollection<StorageObject>> GetAsync(IEnumerable<string> keys = null,
+													ulong? userId = null,
+													bool? global = null,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает названия всех переменных.
@@ -62,13 +67,18 @@ public interface IStorageCategoryAsync
 	/// положительное число, максимальное
 	/// значение 1000, по умолчанию 100
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает массив названий переменных.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/storage.getKeys
 	/// </remarks>
-	Task<ReadOnlyCollection<string>> GetKeysAsync(ulong? userId = null, bool? global = null, ulong? offset = null, ulong? count = null);
+	Task<ReadOnlyCollection<string>> GetKeysAsync(ulong? userId = null,
+												bool? global = null,
+												ulong? offset = null,
+												ulong? count = null,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Сохраняет значение переменной, название которой передано в параметре key.
@@ -91,6 +101,7 @@ public interface IStorageCategoryAsync
 	/// переменными пользователя. флаг, может
 	/// принимать значения 1 или 0, по умолчанию 0
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает 1 в случае удачного сохранения переменной.
 	/// Для удаления переменной необходимо передать пустое значение в параметре value.
@@ -98,5 +109,9 @@ public interface IStorageCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/storage.set
 	/// </remarks>
-	Task<bool> SetAsync(string key, string value = null, ulong? userId = null, bool? global = null);
+	Task<bool> SetAsync(string key,
+						string value = null,
+						ulong? userId = null,
+						bool? global = null,
+						CancellationToken token = default);
 }

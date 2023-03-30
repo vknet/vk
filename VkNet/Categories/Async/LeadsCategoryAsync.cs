@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams.Leads;
@@ -10,25 +11,42 @@ namespace VkNet.Categories;
 public partial class LeadsCategory
 {
 	/// <inheritdoc />
-	public Task<Checked> CheckUserAsync(CheckUserParams checkUserParams) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => CheckUser(checkUserParams: checkUserParams));
+	public Task<Checked> CheckUserAsync(CheckUserParams checkUserParams,
+										CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() => CheckUser(checkUserParams));
 
 	/// <inheritdoc />
-	public Task<LeadsComplete> CompleteAsync(string vkSid, string secret, string comment) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => Complete(vkSid, secret, comment));
+	public Task<LeadsComplete> CompleteAsync(string vkSid,
+											string secret,
+											string comment,
+											CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Complete(vkSid, secret, comment));
 
 	/// <inheritdoc />
-	public Task<Lead> GetStatsAsync(ulong leadId, string secret, string dateStart, string dateEnd) => TypeHelper.TryInvokeMethodAsync(
-		func: () =>
+	public Task<Lead> GetStatsAsync(ulong leadId,
+									string secret,
+									string dateStart,
+									string dateEnd,
+									CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
 			GetStats(leadId, secret, dateStart, dateEnd));
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<Entry>> GetUsersAsync(GetUsersParams getUsersParams) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => GetUsers(getUsersParams: getUsersParams));
+	public Task<ReadOnlyCollection<Entry>> GetUsersAsync(GetUsersParams getUsersParams,
+														CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetUsers(getUsersParams));
 
 	/// <inheritdoc />
-	public Task<MetricHitResponse> MetricHitAsync(string data) => TypeHelper.TryInvokeMethodAsync(func: () => MetricHit(data: data));
+	public Task<MetricHitResponse> MetricHitAsync(string data,
+												CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			MetricHit(data));
 
 	/// <inheritdoc />
-	public Task<Start> StartAsync(StartParams startParams) => TypeHelper.TryInvokeMethodAsync(func: () => Start(startParams: startParams));
+	public Task<Start> StartAsync(StartParams startParams,
+								CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Start(startParams));
 }

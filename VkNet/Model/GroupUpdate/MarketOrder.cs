@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
 
 namespace VkNet.Model.GroupUpdate;
 

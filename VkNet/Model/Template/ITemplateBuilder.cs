@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model.Template.Carousel;
-using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model.Template;
 
