@@ -20,13 +20,13 @@ public partial class MessagesCategory
 								ulong? groupId = null,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Unpin(peerId, groupId));
+			Unpin(peerId, groupId), token);
 
 	/// <inheritdoc />
 	public Task<GetImportantMessagesResult> GetImportantMessagesAsync(GetImportantMessagesParams getImportantMessagesParams,
-																	CancellationToken token) =>
+																	CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetImportantMessages(getImportantMessagesParams));
+			GetImportantMessages(getImportantMessagesParams), token);
 
 	/// <inheritdoc />
 	public Task<GetRecentCallsResult> GetRecentCallsAsync(IEnumerable<string> fields,
@@ -35,28 +35,28 @@ public partial class MessagesCategory
 														bool? extended = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetRecentCalls(fields, count, startMessageId, extended));
+			GetRecentCalls(fields, count, startMessageId, extended), token);
 
 	/// <inheritdoc />
 	public Task<bool> AddChatUserAsync(long chatId,
 										long userId,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddChatUser(chatId, userId));
+			AddChatUser(chatId, userId), token);
 
 	/// <inheritdoc />
 	public Task<bool> AllowMessagesFromGroupAsync(long groupId,
 												string key,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AllowMessagesFromGroup(groupId, key));
+			AllowMessagesFromGroup(groupId, key), token);
 
 	/// <inheritdoc />
 	public Task<long> CreateChatAsync(IEnumerable<ulong> userIds,
 									string title,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			CreateChat(userIds, title));
+			CreateChat(userIds, title), token);
 
 	/// <inheritdoc />
 	public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> messageIds,
@@ -65,7 +65,7 @@ public partial class MessagesCategory
 													bool deleteForAll = false,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Delete(messageIds, spam, groupId, deleteForAll));
+			Delete(messageIds, spam, groupId, deleteForAll), token);
 
 	/// <inheritdoc />
 	public Task<IDictionary<ulong, bool>> DeleteAsync(IEnumerable<ulong> conversationMessageIds,
@@ -75,14 +75,14 @@ public partial class MessagesCategory
 													bool deleteForAll = false,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Delete(conversationMessageIds, peerId, spam, groupId, deleteForAll));
+			Delete(conversationMessageIds, peerId, spam, groupId, deleteForAll), token);
 
 	/// <inheritdoc />
 	public Task<DeleteChatPhotoResult> DeleteChatPhotoAsync(ulong chatId,
 															ulong? groupId = null,
 															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteChatPhoto(chatId, groupId));
+			DeleteChatPhoto(chatId, groupId), token);
 
 	/// <inheritdoc />
 	public Task<ulong> DeleteConversationAsync(long? userId,
@@ -90,7 +90,7 @@ public partial class MessagesCategory
 												ulong? groupId = null,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteConversation(userId, peerId, groupId));
+			DeleteConversation(userId, peerId, groupId), token);
 
 	/// <inheritdoc />
 	public Task<ConversationResult> GetConversationsByIdAsync(IEnumerable<long> peerIds,
@@ -99,13 +99,13 @@ public partial class MessagesCategory
 															ulong? groupId = null,
 															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetConversationsById(peerIds, fields, extended, groupId));
+			GetConversationsById(peerIds, fields, extended, groupId), token);
 
 	/// <inheritdoc />
 	public Task<GetConversationsResult> GetConversationsAsync(GetConversationsParams getConversationsParams,
-															CancellationToken token) =>
+															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetConversations(getConversationsParams));
+			GetConversations(getConversationsParams), token);
 
 	/// <inheritdoc />
 	public Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId,
@@ -113,7 +113,7 @@ public partial class MessagesCategory
 																		ulong? groupId = null,
 																		CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetConversationMembers(peerId, fields, groupId));
+			GetConversationMembers(peerId, fields, groupId), token);
 
 	/// <inheritdoc />
 	public Task<GetByConversationMessageIdResult> GetByConversationMessageIdAsync(long peerId,
@@ -123,7 +123,7 @@ public partial class MessagesCategory
 																				ulong? groupId = null,
 																				CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetByConversationMessageId(peerId, conversationMessageIds, fields, extended, groupId));
+			GetByConversationMessageId(peerId, conversationMessageIds, fields, extended, groupId), token);
 
 	/// <inheritdoc />
 	public Task<SearchConversationsResult> SearchConversationsAsync(string q,
@@ -133,7 +133,7 @@ public partial class MessagesCategory
 																	ulong? groupId = null,
 																	CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SearchConversations(q, fields, count, extended, groupId));
+			SearchConversations(q, fields, count, extended, groupId), token);
 
 	/// <inheritdoc />
 	public Task<PinnedMessage> PinAsync(long peerId,
@@ -141,7 +141,7 @@ public partial class MessagesCategory
 										ulong? conversationMessageId = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Pin(peerId, messageId, conversationMessageId));
+			Pin(peerId, messageId, conversationMessageId), token);
 
 	/// <inheritdoc />
 	public Task<ulong> DeleteDialogAsync(long? userId,
@@ -150,26 +150,26 @@ public partial class MessagesCategory
 										uint? count = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteDialog(userId, peerId, offset, count));
+			DeleteDialog(userId, peerId, offset, count), token);
 
 	/// <inheritdoc />
 	public Task<bool> DenyMessagesFromGroupAsync(long groupId,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DenyMessagesFromGroup(groupId));
+			DenyMessagesFromGroup(groupId), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditChatAsync(long chatId,
 									string title,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			EditChat(chatId, title));
+			EditChat(chatId, title), token);
 
 	/// <inheritdoc />
 	public Task<MessagesGetObject> GetAsync(MessagesGetParams @params,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(@params));
+			Get(@params), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Message>> GetByIdAsync(IEnumerable<ulong> messageIds,
@@ -179,13 +179,13 @@ public partial class MessagesCategory
 													ulong? groupId = null,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetById(messageIds, fields, previewLength, extended, groupId));
+			GetById(messageIds, fields, previewLength, extended, groupId), token);
 
 	/// <inheritdoc />
 	public Task<GetIntentUsersResult> GetIntentUsersAsync(MessagesGetIntentUsersParams getIntentUsersParams,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetIntentUsers(getIntentUsersParams));
+			GetIntentUsers(getIntentUsersParams), token);
 
 	/// <inheritdoc />
 	public Task<SearchDialogsResponse> SearchDialogsAsync(string query,
@@ -193,38 +193,38 @@ public partial class MessagesCategory
 														uint? limit = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SearchDialogs(query, fields, limit));
+			SearchDialogs(query, fields, limit), token);
 
 	/// <inheritdoc />
 	public Task<MessageSearchResult> SearchAsync(MessagesSearchParams @params,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Search(@params));
+			Search(@params), token);
 
 	/// <inheritdoc />
 	public Task<long> SendAsync(MessagesSendParams @params,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Send(@params));
+			Send(@params), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<MessagesSendResult>> SendToUserIdsAsync(MessagesSendParams @params,
-																			CancellationToken token) =>
+																			CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SendToUserIds(@params));
+			SendToUserIds(@params), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<MessagesSendResult>> SendToPeerIdsAsync(MessagesSendParams @params,
-																			CancellationToken token) =>
+																			CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SendToPeerIds(@params));
+			SendToPeerIds(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> RestoreAsync(ulong messageId,
 									ulong? groupId = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Restore(messageId, groupId));
+			Restore(messageId, groupId), token);
 
 	/// <inheritdoc />
 	public Task<bool> MarkAsReadAsync(string peerId,
@@ -233,7 +233,7 @@ public partial class MessagesCategory
 									bool? markConversationAsRead = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			MarkAsRead(peerId, startMessageId, groupId, markConversationAsRead));
+			MarkAsRead(peerId, startMessageId, groupId, markConversationAsRead), token);
 
 	/// <inheritdoc />
 	public Task<bool> SetActivityAsync(string userId,
@@ -242,13 +242,13 @@ public partial class MessagesCategory
 										ulong? groupId = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetActivity(userId, type, peerId, groupId));
+			SetActivity(userId, type, peerId, groupId), token);
 
 	/// <inheritdoc />
 	public Task<LastActivity> GetLastActivityAsync(long userId,
-													CancellationToken token) =>
+													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetLastActivity(userId));
+			GetLastActivity(userId), token);
 
 	/// <inheritdoc />
 	public Task<Chat> GetChatAsync(long chatId,
@@ -256,7 +256,7 @@ public partial class MessagesCategory
 									NameCase? nameCase = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetChat(chatId, fields, nameCase));
+			GetChat(chatId, fields, nameCase), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<Chat>> GetChatAsync(IEnumerable<long> chatIds,
@@ -264,38 +264,38 @@ public partial class MessagesCategory
 														NameCase? nameCase = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetChat(chatIds, fields, nameCase));
+			GetChat(chatIds, fields, nameCase), token);
 
 	/// <inheritdoc />
 	public Task<ChatPreview> GetChatPreviewAsync(string link,
 												ProfileFields fields,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetChatPreview(link, fields));
+			GetChatPreview(link, fields), token);
 
 	/// <inheritdoc />
 	public Task<GetChatUsers> GetChatUsersAsync(IEnumerable<long> chatIds,
 												UsersFields fields,
 												NameCase? nameCase,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetChatUsers(chatIds, fields, nameCase));
+			GetChatUsers(chatIds, fields, nameCase), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<long>> GetChatUsersAsync(IEnumerable<long> chatIds,
-															CancellationToken token) =>
+															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetChatUsers(chatIds));
+			GetChatUsers(chatIds), token);
 
 	/// <inheritdoc />
 	public Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params,
-													CancellationToken token) =>
+													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetDialogs(@params));
+			GetDialogs(@params), token);
 
 	/// <inheritdoc />
 	public Task<MessageGetHistoryObject> GetHistoryAsync(MessagesGetHistoryParams @params,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetHistory(@params));
 
@@ -305,7 +305,7 @@ public partial class MessagesCategory
 										long? memberId = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RemoveChatUser(chatId, userId, memberId));
+			RemoveChatUser(chatId, userId, memberId), token);
 
 	/// <inheritdoc />
 	public Task<LongPollServerResponse> GetLongPollServerAsync(bool needPts = false,
@@ -313,58 +313,58 @@ public partial class MessagesCategory
 																ulong? groupId = null,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetLongPollServer(needPts, lpVersion, groupId));
+			GetLongPollServer(needPts, lpVersion, groupId), token);
 
 	/// <inheritdoc />
 	public Task<LongPollHistoryResponse> GetLongPollHistoryAsync(MessagesGetLongPollHistoryParams @params,
-																CancellationToken token) =>
+																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetLongPollHistory(@params));
+			GetLongPollHistory(@params), token);
 
 	/// <inheritdoc />
 	public Task<long> SetChatPhotoAsync(string file,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetChatPhoto(out var _, file));
+			SetChatPhoto(out var _, file), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<long>> MarkAsImportantAsync(IEnumerable<long> messageIds,
 																bool important = true,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			MarkAsImportant(messageIds, important));
+			MarkAsImportant(messageIds, important), token);
 
 	/// <inheritdoc />
 	public Task<long> SendStickerAsync(MessagesSendStickerParams parameters,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SendSticker(parameters));
+			SendSticker(parameters), token);
 
 	/// <inheritdoc />
 	public Task<GetHistoryAttachmentsResult> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params,
-																		CancellationToken token) =>
+																		CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetHistoryAttachments(@params));
+			GetHistoryAttachments(@params), token);
 
 	/// <inheritdoc />
 	public Task<string> GetInviteLinkAsync(ulong peerId,
 											bool reset,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetInviteLink(peerId, reset));
+			GetInviteLink(peerId, reset), token);
 
 	/// <inheritdoc />
 	public Task<bool> IsMessagesFromGroupAllowedAsync(ulong groupId,
 													ulong userId,
-													CancellationToken token) =>
+													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			IsMessagesFromGroupAllowed(groupId, userId));
+			IsMessagesFromGroupAllowed(groupId, userId), token);
 
 	/// <inheritdoc />
 	public Task<long> JoinChatByInviteLinkAsync(string link,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			JoinChatByInviteLink(link));
+			JoinChatByInviteLink(link), token);
 
 	/// <inheritdoc />
 	public Task<bool> MarkAsAnsweredConversationAsync(long peerId,
@@ -372,14 +372,14 @@ public partial class MessagesCategory
 													ulong? groupId = null,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			MarkAsAnsweredConversation(peerId, answered, groupId));
+			MarkAsAnsweredConversation(peerId, answered, groupId), token);
 
 	/// <inheritdoc />
 	public Task<bool> MarkAsAnsweredDialogAsync(long peerId,
 												bool answered = true,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			MarkAsAnsweredDialog(peerId, answered));
+			MarkAsAnsweredDialog(peerId, answered), token);
 
 	/// <inheritdoc />
 	public Task<bool> MarkAsImportantConversationAsync(long peerId,
@@ -387,20 +387,20 @@ public partial class MessagesCategory
 														ulong? groupId = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			MarkAsImportantConversation(peerId, important, groupId));
+			MarkAsImportantConversation(peerId, important, groupId), token);
 
 	/// <inheritdoc />
 	public Task<bool> MarkAsImportantDialogAsync(long peerId,
 												bool important = true,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			MarkAsImportantDialog(peerId, important));
+			MarkAsImportantDialog(peerId, important), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditAsync(MessageEditParams @params,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Edit(@params));
+			Edit(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> SendMessageEventAnswerAsync(string eventId,
@@ -409,19 +409,19 @@ public partial class MessagesCategory
 												EventData eventData = null,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SendMessageEventAnswer(eventId, userId, peerId, eventData));
+			SendMessageEventAnswer(eventId, userId, peerId, eventData), token);
 
 	/// <inheritdoc />
 	public Task<bool> MarkAsUnreadConversationAsync(long peerId,
-													CancellationToken token) =>
+													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			MarkAsUnreadConversation(peerId));
+			MarkAsUnreadConversation(peerId), token);
 
 	/// <inheritdoc />
 	public Task<bool> SetMemberRoleAsync(string role,
 										long peerId,
 										ulong memberId,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			SetMemberRole(role, peerId, memberId));
 }

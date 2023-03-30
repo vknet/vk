@@ -31,10 +31,10 @@ public interface IVideoCategoryAsync
 	/// privacy_comment — настройки приватности в формате настроек приватности;
 	/// (приходит только для текущего пользователя)
 	/// can_comment — может ли текущий пользователь оставлять комментарии к ролику (1 —
-	/// может, 0 — не может, CancellationToken token);
+	/// может, 0 — не может, CancellationToken token = default);
 	/// can_repost — может ли текущий пользователь скопировать ролик с помощью функции
 	/// «Рассказать друзьям» (1 — может, 0 —
-	/// не может, CancellationToken token);
+	/// не может, CancellationToken token = default);
 	/// likes — информация об отметках «Мне нравится»:
 	/// user_likes — есть ли отметка «Мне нравится» от текущего пользователя;
 	/// count — число отметок «Мне нравится»;
@@ -50,7 +50,7 @@ public interface IVideoCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/video.get
 	/// </remarks>
 	Task<VkCollection<Video>> GetAsync(VideoGetParams @params,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует данные видеозаписи.
@@ -64,7 +64,7 @@ public interface IVideoCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/video.edit
 	/// </remarks>
 	Task<bool> EditAsync(VideoEditParams @params,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет видеозапись в список пользователя.
@@ -116,7 +116,7 @@ public interface IVideoCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/video.save
 	/// </remarks>
 	Task<Video> SaveAsync(VideoSaveParams @params,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет видеозапись со страницы пользователя.
@@ -200,7 +200,7 @@ public interface IVideoCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/video.search
 	/// </remarks>
 	Task<VkCollection<Video>> SearchAsync(VideoSearchParams @params,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список альбомов видеозаписей пользователя или сообщества.
@@ -372,7 +372,7 @@ public interface IVideoCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/video.getComments
 	/// </remarks>
 	Task<VkCollection<Comment>> GetCommentsAsync(VideoGetCommentsParams @params,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Cоздает новый комментарий к видеозаписи.
@@ -386,7 +386,7 @@ public interface IVideoCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/video.createComment
 	/// </remarks>
 	Task<long> CreateCommentAsync(VideoCreateCommentParams @params,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет комментарий к видеозаписи.
@@ -411,7 +411,7 @@ public interface IVideoCategoryAsync
 	/// </remarks>
 	Task<bool> DeleteCommentAsync(long commentId,
 								long? ownerId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает удаленный комментарий к видеозаписи.
@@ -441,7 +441,7 @@ public interface IVideoCategoryAsync
 	/// </remarks>
 	Task<bool> RestoreCommentAsync(long commentId,
 									long? ownerId,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет текст комментария к видеозаписи.
@@ -572,7 +572,7 @@ public interface IVideoCategoryAsync
 	Task<bool> ReportCommentAsync(long commentId,
 								long ownerId,
 								ReportReason reason,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить информацию об альбоме с видео.
@@ -643,7 +643,7 @@ public interface IVideoCategoryAsync
 								long? ownerId,
 								long? before,
 								long? after,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет переместить видеозапись в альбоме.
@@ -657,7 +657,7 @@ public interface IVideoCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/video.reorderVideos
 	/// </remarks>
 	Task<bool> ReorderVideosAsync(VideoReorderVideosParams @params,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет добавить видеозапись в альбом.
@@ -802,7 +802,7 @@ public interface IVideoCategoryAsync
 														long ownerId,
 														long videoId,
 														bool? extended,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить представление каталога видео.
@@ -871,7 +871,7 @@ public interface IVideoCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/video.getCatalog
 	/// </remarks>
 	Task<ReadOnlyCollection<VideoCatalog>> GetCatalogAsync(VideoGetCatalogParams @params,
-															CancellationToken token);
+															CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить отдельный блок видеокаталога.
@@ -961,5 +961,5 @@ public interface IVideoCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/video.hideCatalogSection
 	/// </remarks>
 	Task<bool> HideCatalogSectionAsync(long sectionId,
-										CancellationToken token);
+										CancellationToken token = default);
 }

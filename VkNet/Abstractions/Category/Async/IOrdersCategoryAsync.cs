@@ -123,7 +123,7 @@ public interface IOrdersCategoryAsync
 	/// </remarks>
 	Task<IEnumerable<VotesAmount>> GetAmountAsync(ulong userId,
 												IEnumerable<string> votes,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию об отдельном заказе.
@@ -189,7 +189,7 @@ public interface IOrdersCategoryAsync
 	/// </remarks>
 	Task<SubscriptionItem> GetUserSubscriptionByIdAsync(ulong userId,
 														ulong subscriptionId,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Получает список активных подписок пользователя.
@@ -223,7 +223,7 @@ public interface IOrdersCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/orders.getUserSubscriptions
 	/// </remarks>
 	Task<IEnumerable<SubscriptionItem>> GetUserSubscriptionsAsync(ulong userId,
-																CancellationToken token);
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Обновляет цену подписки для пользователя.
@@ -247,5 +247,5 @@ public interface IOrdersCategoryAsync
 	Task<bool> UpdateSubscriptionAsync(ulong userId,
 										ulong subscriptionId,
 										ulong price,
-										CancellationToken token);
+										CancellationToken token = default);
 }

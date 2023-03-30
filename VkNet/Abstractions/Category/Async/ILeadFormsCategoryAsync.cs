@@ -29,7 +29,7 @@ public interface ILeadFormsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/leadForms.create
 	/// </remarks>
 	Task<LeadFormCreateResult> CreateAsync(LeadFormsCreateParams createParams,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет форму сбора заявок.
@@ -49,7 +49,7 @@ public interface ILeadFormsCategoryAsync
 	/// </remarks>
 	Task<LeadFormCreateResult> DeleteAsync(long groupId,
 											long formId,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о форме сбора заявок.
@@ -73,7 +73,7 @@ public interface ILeadFormsCategoryAsync
 	/// </remarks>
 	Task<LeadFormCreateResult> GetAsync(long groupId,
 										long formId,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает заявки формы.
@@ -122,7 +122,7 @@ public interface ILeadFormsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leadForms.getUploadURl
 	/// </remarks>
-	Task<Uri> GetUploadURLAsync(CancellationToken token);
+	Task<Uri> GetUploadURLAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список форм сообщества.
@@ -138,7 +138,7 @@ public interface ILeadFormsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/leadForms.list
 	/// </remarks>
 	Task<ReadOnlyCollection<LeadFormCreateResult>> ListAsync(long groupId,
-															CancellationToken token);
+															CancellationToken token = default);
 
 	/// <summary>
 	/// Обновляет форму сбора заявок.
@@ -156,5 +156,5 @@ public interface ILeadFormsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/leadForms.update
 	/// </remarks>
 	Task<LeadFormCreateResult> UpdateAsync(LeadFormsUpdateParams updateParams,
-											CancellationToken token);
+											CancellationToken token = default);
 }

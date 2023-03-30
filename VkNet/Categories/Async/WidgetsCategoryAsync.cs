@@ -11,9 +11,9 @@ public partial class WidgetsCategory
 {
 	/// <inheritdoc />
 	public Task<VkCollection<Comment>> GetCommentsAsync(GetCommentsParams getCommentsParams,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetComments(getCommentsParams));
+			GetComments(getCommentsParams), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<WidgetPage>> GetPagesAsync(long? widgetApiId = null,

@@ -16,19 +16,19 @@ public partial class LikesCategory
 												bool skipAuthorization = false,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetList(@params, skipAuthorization));
+			GetList(@params, skipAuthorization), token);
 
 	/// <inheritdoc />
 	public Task<UserOrGroup> GetListExAsync(LikesGetListParams @params,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetListEx(@params));
+			GetListEx(@params), token);
 
 	/// <inheritdoc />
 	public Task<long> AddAsync(LikesAddParams @params,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Add(@params));
+			Add(@params), token);
 
 	/// <inheritdoc />
 	public Task<long> DeleteAsync(LikeObjectType type,
@@ -36,7 +36,7 @@ public partial class LikesCategory
 								long? ownerId = null,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Delete(type, itemId, ownerId));
+			Delete(type, itemId, ownerId), token);
 
 	/// <inheritdoc />
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
@@ -47,7 +47,7 @@ public partial class LikesCategory
 								string captchaKey = null,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Delete(type, itemId, ownerId, captchaSid, captchaKey));
+			Delete(type, itemId, ownerId, captchaSid, captchaKey), token);
 
 	/// <inheritdoc />
 	public Task<bool> IsLikedAsync(LikeObjectType type,

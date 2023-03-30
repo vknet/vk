@@ -47,7 +47,7 @@ public interface IWallCategoryAsync
 	/// дополнительное поле likes:
 	/// count — число пользователей, которым понравился комментарий;
 	/// user_likes — наличие отметки «Мне нравится» от текущего пользователя
-	/// (1 — есть, 0 — нет, CancellationToken token);
+	/// (1 — есть, 0 — нет, CancellationToken token = default);
 	/// can_like — информация о том, может ли текущий пользователь поставить отметку
 	/// «Мне нравится»
 	/// (1 — может, 0 — не может).
@@ -193,7 +193,7 @@ public interface IWallCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/wall.post
 	/// </remarks>
 	Task<long> PostAsync(WallPostParams @params,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Копирует объект на стену пользователя или сообщества.
@@ -230,7 +230,7 @@ public interface IWallCategoryAsync
 									string message,
 									long? groupId,
 									bool markAsAds,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует запись на стене.
@@ -244,7 +244,7 @@ public interface IWallCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/wall.edit
 	/// </remarks>
 	Task<long> EditAsync(WallEditParams @params,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет запись со стены.
@@ -314,7 +314,7 @@ public interface IWallCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/wall.createComment
 	/// </remarks>
 	Task<long> CreateCommentAsync(WallCreateCommentParams @params,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет комментарий текущего пользователя к записи на своей или чужой стене.
@@ -342,7 +342,7 @@ public interface IWallCategoryAsync
 	/// </remarks>
 	Task<bool> DeleteCommentAsync(long? ownerId,
 								long commentId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает комментарий текущего пользователя к записи на своей или чужой
@@ -372,7 +372,7 @@ public interface IWallCategoryAsync
 	/// </remarks>
 	Task<bool> RestoreCommentAsync(long commentId,
 									long? ownerId,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Метод, позволяющий осуществлять поиск по стенам пользователей.
@@ -597,7 +597,7 @@ public interface IWallCategoryAsync
 	Task<bool> ReportCommentAsync(long ownerId,
 								long commentId,
 								ReportReason? reason,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет отредактировать скрытую запись.
@@ -611,7 +611,7 @@ public interface IWallCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/wall.editAdsStealth
 	/// </remarks>
 	Task<bool> EditAdsStealthAsync(EditAdsStealthParams @params,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет создать скрытую запись,
@@ -627,7 +627,7 @@ public interface IWallCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/wall.postAdsStealth
 	/// </remarks>
 	Task<long> PostAdsStealthAsync(PostAdsStealthParams @params,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Включает комментирование записи
@@ -655,7 +655,7 @@ public interface IWallCategoryAsync
 	/// </remarks>
 	Task<bool> OpenCommentsAsync(long ownerId,
 								long postId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Выключает комментирование записи
@@ -681,7 +681,7 @@ public interface IWallCategoryAsync
 	/// </remarks>
 	Task<bool> CloseCommentsAsync(long ownerId,
 								long postId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Проверяет ссылку для указания источника.
@@ -697,7 +697,7 @@ public interface IWallCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/wall.checkCopyrightLink
 	/// </remarks>
 	Task<bool> CheckCopyrightLinkAsync(string link,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Получает информацию о комментарии на стене.

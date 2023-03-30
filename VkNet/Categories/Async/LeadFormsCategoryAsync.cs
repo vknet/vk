@@ -13,21 +13,21 @@ public partial class LeadFormsCategory
 {
 	/// <inheritdoc/>
 	public Task<LeadFormCreateResult> CreateAsync(LeadFormsCreateParams createParams,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Create(createParams));
 
 	/// <inheritdoc/>
 	public Task<LeadFormCreateResult> DeleteAsync(long groupId,
 												long formId,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Delete(groupId, formId));
 
 	/// <inheritdoc/>
 	public Task<LeadFormCreateResult> GetAsync(long groupId,
 												long formId,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Get(groupId, formId));
 
@@ -42,18 +42,18 @@ public partial class LeadFormsCategory
 			GetLeads(groupId, formId, nextPageToken, limit));
 
 	/// <inheritdoc/>
-	public Task<Uri> GetUploadURLAsync(CancellationToken token) =>
+	public Task<Uri> GetUploadURLAsync(CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(GetUploadURL);
 
 	/// <inheritdoc/>
 	public Task<ReadOnlyCollection<LeadFormCreateResult>> ListAsync(long groupId,
-																	CancellationToken token) =>
+																	CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			List(groupId));
 
 	/// <inheritdoc/>
 	public Task<LeadFormCreateResult> UpdateAsync(LeadFormsUpdateParams updateParams,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Update(updateParams));
 }

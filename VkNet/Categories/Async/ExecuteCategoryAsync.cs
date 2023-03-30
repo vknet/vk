@@ -24,14 +24,14 @@ public partial class ExecuteCategory
 										VkParameters vkParameters = default,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Execute(code, vkParameters));
+			Execute(code, vkParameters), token);
 
 	/// <inheritdoc />
 	public Task<T> ExecuteAsync<T>(string code,
 									VkParameters vkParameters = default,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Execute<T>(code, vkParameters));
+			Execute<T>(code, vkParameters), token);
 
 	/// <inheritdoc />
 	public Task<T> StoredProcedureAsync<T>(string procedureName,

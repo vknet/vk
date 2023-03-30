@@ -19,7 +19,7 @@ public partial class DatabaseCategory
 														int? offset = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetCountries(needAll, codes, count, offset));
+			GetCountries(needAll, codes, count, offset), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Region>> GetRegionsAsync(int countryId,
@@ -28,31 +28,31 @@ public partial class DatabaseCategory
 													int? offset = null,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetRegions(countryId, query, count, offset));
+			GetRegions(countryId, query, count, offset), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<Street>> GetStreetsByIdAsync(CancellationToken token = default,
 																params int[] streetIds) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetStreetsById(streetIds));
+			GetStreetsById(streetIds), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<Country>> GetCountriesByIdAsync(CancellationToken token = default,
 																	params int[] countryIds) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetCountriesById(countryIds));
+			GetCountriesById(countryIds), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams getCitiesParams,
-													CancellationToken token) =>
+													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetCities(getCitiesParams));
+			GetCities(getCitiesParams), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<City>> GetCitiesByIdAsync(CancellationToken token = default,
 															params int[] cityIds) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetCitiesById(cityIds));
+			GetCitiesById(cityIds), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<University>> GetUniversitiesAsync(int countryId,
@@ -62,7 +62,7 @@ public partial class DatabaseCategory
 																int? offset = null,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetUniversities(countryId, cityId, query, count, offset));
+			GetUniversities(countryId, cityId, query, count, offset), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<School>> GetSchoolsAsync(int cityId,
@@ -71,7 +71,7 @@ public partial class DatabaseCategory
 													int? count = null,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetSchools(cityId, query, offset, count));
+			GetSchools(cityId, query, offset, count), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Faculty>> GetFacultiesAsync(long universityId,
@@ -79,13 +79,13 @@ public partial class DatabaseCategory
 														int? offset = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetFaculties(universityId, count, offset));
+			GetFaculties(universityId, count, offset), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<SchoolClass>> GetSchoolClassesAsync(long countryId,
-																		CancellationToken token) =>
+																		CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetSchoolClasses(countryId));
+			GetSchoolClasses(countryId), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Chair>> GetChairsAsync(long facultyId,
@@ -93,13 +93,13 @@ public partial class DatabaseCategory
 													int? offset = null,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetChairs(facultyId, count, offset));
+			GetChairs(facultyId, count, offset), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<MetroStation>> GetMetroStationsByIdAsync(IEnumerable<ulong> stationIds,
-																			CancellationToken token) =>
+																			CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetMetroStationsById(stationIds));
+			GetMetroStationsById(stationIds), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<MetroStation>> GetMetroStationsAsync(ulong cityId,

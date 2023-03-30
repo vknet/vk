@@ -12,61 +12,61 @@ public partial class NotesCategory
 {
 	/// <inheritdoc />
 	public Task<long> AddAsync(NotesAddParams notesAddParams,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Add(notesAddParams));
+			Add(notesAddParams), token);
 
 	/// <inheritdoc />
 	public Task<long> CreateCommentAsync(NotesCreateCommentParams createCommentParams,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			CreateComment(createCommentParams));
+			CreateComment(createCommentParams), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteCommentAsync(NotesDeleteCommentParams deleteCommentParams,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteComment(deleteCommentParams));
+			DeleteComment(deleteCommentParams), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteAsync(long noteId,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Delete(noteId));
+			Delete(noteId), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditCommentAsync(NotesEditCommentParams editCommentParams,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			EditComment(editCommentParams));
+			EditComment(editCommentParams), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditAsync(NotesEditParams editParams,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Edit(editParams));
+			Edit(editParams), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<CommentNote>> GetCommentsAsync(NotesGetCommentParams getCommentParams,
-															CancellationToken token) =>
+															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetComments(getCommentParams));
+			GetComments(getCommentParams), token);
 
 	/// <inheritdoc />
 	public Task<Note> GetByIdAsync(NotesGetByIdParams getByIdParams,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetById( getByIdParams));
+			GetById( getByIdParams), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Note>> GetAsync(NotesGetParams notesGetParams,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(notesGetParams));
+			Get(notesGetParams), token);
 
 	/// <inheritdoc />
 	public Task<bool> RestoreCommentAsync(NotesRestoreCommentParams restoreCommentParams,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			RestoreComment(restoreCommentParams));
 }

@@ -26,7 +26,7 @@ public interface IDonutCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/donut.isDon
 	/// </remarks>
 	public Task<bool> IsDonAsync(long ownerId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список донов, которые подписаны на определенные сообщества, из числа друзей пользователя.
@@ -56,7 +56,7 @@ public interface IDonutCategoryAsync
 													ulong offset,
 													byte count,
 													UsersFields fields,
-													CancellationToken token);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о подписке VK Donut.
@@ -73,7 +73,7 @@ public interface IDonutCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/donut.getSubscription
 	/// </remarks>
 	public Task<Subscription> GetSubscriptionAsync(long ownerId,
-													CancellationToken token);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о подписке VK Donut.
@@ -98,5 +98,5 @@ public interface IDonutCategoryAsync
 	public Task<SubscriptionsInfo> GetSubscriptionsAsync(UsersFields fields,
 														ulong offset,
 														byte count,
-														CancellationToken token);
+														CancellationToken token = default);
 }

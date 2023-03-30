@@ -15,15 +15,15 @@ public partial class UsersCategory
 {
 	/// <inheritdoc />
 	public Task<VkCollection<User>> SearchAsync(UserSearchParams @params,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Search(@params));
+			Search(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> IsAppUserAsync(long? userId,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			IsAppUser(userId));
+			IsAppUser(userId), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<User>> GetAsync(IEnumerable<long> userIds,
@@ -31,7 +31,7 @@ public partial class UsersCategory
 													NameCase? nameCase = null,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(userIds, fields, nameCase));
+			Get(userIds, fields, nameCase), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<User>> GetAsync(IEnumerable<string> screenNames,
@@ -39,7 +39,7 @@ public partial class UsersCategory
 													NameCase? nameCase = null,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(screenNames, fields, nameCase));
+			Get(screenNames, fields, nameCase), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Group>> GetSubscriptionsAsync(long? userId = null,
@@ -48,7 +48,7 @@ public partial class UsersCategory
 															GroupsFields fields = null,
 															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetSubscriptions(userId, count, offset, fields));
+			GetSubscriptions(userId, count, offset, fields), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<User>> GetFollowersAsync(long? userId = null,
@@ -58,7 +58,7 @@ public partial class UsersCategory
 													NameCase? nameCase = null,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetFollowers(userId, count, offset, fields, nameCase));
+			GetFollowers(userId, count, offset, fields, nameCase), token);
 
 	/// <inheritdoc />
 	public Task<bool> ReportAsync(long userId,
@@ -66,11 +66,11 @@ public partial class UsersCategory
 								string comment = "",
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Report(userId, type, comment));
+			Report(userId, type, comment), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<User>> GetNearbyAsync(UsersGetNearbyParams @params,
-													CancellationToken token) =>
+													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetNearby(@params));
 }

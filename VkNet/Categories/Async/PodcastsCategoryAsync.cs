@@ -11,20 +11,20 @@ namespace VkNet.Categories;
 public partial class PodcastsCategory
 {
 	/// <inheritdoc />
-	public Task<bool> ClearRecentSearchesAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(ClearRecentSearches);
+	public Task<bool> ClearRecentSearchesAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(ClearRecentSearches, token);
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<PodcastsGetPopularResult>> GetPopularAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(GetPopular);
+	public Task<ReadOnlyCollection<PodcastsGetPopularResult>> GetPopularAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(GetPopular, token);
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<string>> GetRecentSearchRequestsAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(GetRecentSearchRequests);
+	public Task<ReadOnlyCollection<string>> GetRecentSearchRequestsAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(GetRecentSearchRequests, token);
 
 	/// <inheritdoc />
 	public Task<PodcastsSearchResult> SearchAsync(PodcastsSearchParams @params,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Search(@params));
 }

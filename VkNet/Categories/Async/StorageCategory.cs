@@ -16,7 +16,7 @@ public partial class StorageCategory
 															bool? global = null,
 															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(keys, userId, global));
+			Get(keys, userId, global), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<string>> GetKeysAsync(ulong? userId = null,
@@ -25,7 +25,7 @@ public partial class StorageCategory
 														ulong? count = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetKeys(userId, global, offset, count));
+			GetKeys(userId, global, offset, count), token);
 
 	/// <inheritdoc />
 	public Task<bool> SetAsync(string key,

@@ -13,35 +13,35 @@ public partial class PlacesCategory
 {
 	/// <inheritdoc />
 	public Task<long> AddAsync(PlacesAddParams placesAddParams,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Add(placesAddParams));
+			Add(placesAddParams), token);
 
 	/// <inheritdoc />
 	public Task<long> CheckinAsync(PlacesCheckinParams placesCheckinParams,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Checkin(placesCheckinParams));
+			Checkin(placesCheckinParams), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<Place>> GetByIdAsync(IEnumerable<ulong> places,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetById(places));
+			GetById(places), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Checkin>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetCheckins(placesGetCheckinsParams));
+			GetCheckins(placesGetCheckinsParams), token);
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<PlaceType>> GetTypesAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(GetTypes);
+	public Task<ReadOnlyCollection<PlaceType>> GetTypesAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(GetTypes, token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Place>> SearchAsync(PlacesSearchParams placesSearchParams,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Search(placesSearchParams));
 }

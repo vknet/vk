@@ -15,21 +15,21 @@ public partial class NewsFeedCategory
 {
 	/// <inheritdoc />
 	public Task<NewsFeed> GetAsync(NewsFeedGetParams @params,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(@params));
+			Get(@params), token);
 
 	/// <inheritdoc />
 	public Task<NewsFeed> GetRecommendedAsync(NewsFeedGetRecommendedParams @params,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetRecommended(@params));
+			GetRecommended(@params), token);
 
 	/// <inheritdoc />
 	public Task<NewsFeed> GetCommentsAsync(NewsFeedGetCommentsParams @params,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetComments(@params));
+			GetComments(@params), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Mention>> GetMentionsAsync(long? ownerId = null,
@@ -39,61 +39,61 @@ public partial class NewsFeedCategory
 														long? count = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetMentions(ownerId, startTime, endTime, offset));
+			GetMentions(ownerId, startTime, endTime, offset), token);
 
 	/// <inheritdoc />
-	public Task<NewsBannedList> GetBannedAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(GetBanned);
+	public Task<NewsBannedList> GetBannedAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(GetBanned, token);
 
 	/// <inheritdoc />
 	public Task<NewsBannedExList> GetBannedExAsync(UsersFields fields = null,
 													NameCase? nameCase = null,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetBannedEx(fields, nameCase));
+			GetBannedEx(fields, nameCase), token);
 
 	/// <inheritdoc />
 	public Task<bool> AddBanAsync(IEnumerable<long> userIds,
 								IEnumerable<long> groupIds,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddBan(userIds, groupIds));
+			AddBan(userIds, groupIds), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteBanAsync(IEnumerable<long> userIds,
 									IEnumerable<long> groupIds,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteBan(userIds, groupIds));
+			DeleteBan(userIds, groupIds), token);
 
 	/// <inheritdoc />
 	public Task<bool> IgnoreItemAsync(NewsObjectTypes type,
 									long ownerId,
 									long itemId,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			IgnoreItem(type, ownerId, itemId));
+			IgnoreItem(type, ownerId, itemId), token);
 
 	/// <inheritdoc />
 	public Task<bool> UnignoreItemAsync(NewsObjectTypes type,
 										long ownerId,
 										long itemId,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			UnignoreItem(type, ownerId, itemId));
+			UnignoreItem(type, ownerId, itemId), token);
 
 	/// <inheritdoc />
 	public Task<NewsSearchResult> SearchAsync(NewsFeedSearchParams @params,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Search(@params));
+			Search(@params), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<NewsUserListItem>> GetListsAsync(IEnumerable<long> listIds,
 															bool? extended = null,
 															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetLists(listIds, extended));
+			GetLists(listIds, extended), token);
 
 	/// <inheritdoc />
 	public Task<long> SaveListAsync(string title,
@@ -102,13 +102,13 @@ public partial class NewsFeedCategory
 									bool? noReposts = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SaveList(title, sourceIds, listId, noReposts));
+			SaveList(title, sourceIds, listId, noReposts), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteListAsync(long listId,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteList(listId));
+			DeleteList(listId), token);
 
 	/// <inheritdoc />
 	public Task<bool> UnsubscribeAsync(CommentObjectType type,
@@ -116,7 +116,7 @@ public partial class NewsFeedCategory
 										long? ownerId = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Unsubscribe(type, itemId, ownerId));
+			Unsubscribe(type, itemId, ownerId), token);
 
 	/// <inheritdoc />
 	public Task<NewsSuggestions> GetSuggestedSourcesAsync(long? offset = null,

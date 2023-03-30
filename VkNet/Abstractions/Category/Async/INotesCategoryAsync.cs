@@ -24,7 +24,7 @@ public interface INotesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.get
 	/// </remarks>
 	Task<long> AddAsync(NotesAddParams notesAddParams,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет новый комментарий к заметке.
@@ -38,7 +38,7 @@ public interface INotesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.createComment
 	/// </remarks>
 	Task<long> CreateCommentAsync(NotesCreateCommentParams createCommentParams,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет заметку текущего пользователя.
@@ -50,7 +50,7 @@ public interface INotesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.delete
 	/// </remarks>
 	Task<bool> DeleteAsync(long noteId,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет комментарий к заметке.
@@ -62,7 +62,7 @@ public interface INotesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.deleteComment
 	/// </remarks>
 	Task<bool> DeleteCommentAsync(NotesDeleteCommentParams deleteCommentParams,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует заметку текущего пользователя.
@@ -74,7 +74,7 @@ public interface INotesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.edit
 	/// </remarks>
 	Task<bool> EditAsync(NotesEditParams editParams,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует указанный комментарий у заметки.
@@ -86,7 +86,7 @@ public interface INotesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.editComment
 	/// </remarks>
 	Task<bool> EditCommentAsync(NotesEditCommentParams editCommentParams,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список заметок, созданных пользователем.
@@ -98,7 +98,7 @@ public interface INotesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.get
 	/// </remarks>
 	Task<VkCollection<Note>> GetAsync(NotesGetParams notesGetParams,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает заметку по её id.
@@ -110,7 +110,7 @@ public interface INotesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.getById
 	/// </remarks>
 	Task<Note> GetByIdAsync(NotesGetByIdParams getByIdParams,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список комментариев к заметке.
@@ -122,7 +122,7 @@ public interface INotesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.getComments
 	/// </remarks>
 	Task<VkCollection<CommentNote>> GetCommentsAsync(NotesGetCommentParams getCommentParams,
-													CancellationToken token);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает удалённый комментарий.
@@ -134,5 +134,5 @@ public interface INotesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.restoreComment
 	/// </remarks>
 	Task<bool> RestoreCommentAsync(NotesRestoreCommentParams restoreCommentParams,
-									CancellationToken token);
+									CancellationToken token = default);
 }

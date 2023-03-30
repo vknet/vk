@@ -12,41 +12,41 @@ public partial class LeadsCategory
 {
 	/// <inheritdoc />
 	public Task<Checked> CheckUserAsync(CheckUserParams checkUserParams,
-										CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(() => CheckUser(checkUserParams));
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() => CheckUser(checkUserParams), token);
 
 	/// <inheritdoc />
 	public Task<LeadsComplete> CompleteAsync(string vkSid,
 											string secret,
 											string comment,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Complete(vkSid, secret, comment));
+			Complete(vkSid, secret, comment), token);
 
 	/// <inheritdoc />
 	public Task<Lead> GetStatsAsync(ulong leadId,
 									string secret,
 									string dateStart,
 									string dateEnd,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetStats(leadId, secret, dateStart, dateEnd));
+			GetStats(leadId, secret, dateStart, dateEnd), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<Entry>> GetUsersAsync(GetUsersParams getUsersParams,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetUsers(getUsersParams));
+			GetUsers(getUsersParams), token);
 
 	/// <inheritdoc />
 	public Task<MetricHitResponse> MetricHitAsync(string data,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			MetricHit(data));
+			MetricHit(data), token);
 
 	/// <inheritdoc />
 	public Task<Start> StartAsync(StartParams startParams,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Start(startParams));
 }
