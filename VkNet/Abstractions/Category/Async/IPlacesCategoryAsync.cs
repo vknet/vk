@@ -27,7 +27,7 @@ public interface IPlacesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/places.add
 	/// </remarks>
 	Task<long> AddAsync(PlacesAddParams placesAddParams,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Отмечает пользователя в указанном месте.
@@ -43,7 +43,7 @@ public interface IPlacesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/places.checkin
 	/// </remarks>
 	Task<long> CheckinAsync(PlacesCheckinParams placesCheckinParams,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о местах по их идентификаторам.
@@ -70,7 +70,7 @@ public interface IPlacesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/places.getById
 	/// </remarks>
 	Task<ReadOnlyCollection<Place>> GetByIdAsync(IEnumerable<ulong> places,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список отметок пользователей в местах согласно заданным параметрам.
@@ -122,7 +122,7 @@ public interface IPlacesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/places.getCheckins
 	/// </remarks>
 	Task<VkCollection<Checkin>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список всех возможных типов мест.
@@ -135,7 +135,7 @@ public interface IPlacesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/places.getTypes
 	/// </remarks>
-	Task<ReadOnlyCollection<PlaceType>> GetTypesAsync(CancellationToken token);
+	Task<ReadOnlyCollection<PlaceType>> GetTypesAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список мест, найденных по заданным условиям поиска.
@@ -170,5 +170,5 @@ public interface IPlacesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/places.search
 	/// </remarks>
 	Task<VkCollection<Place>> SearchAsync(PlacesSearchParams placesSearchParams,
-										CancellationToken token);
+										CancellationToken token = default);
 }

@@ -12,7 +12,7 @@ public partial class DonutCategory : IDonutCategoryAsync
 {
 	/// <inheritdoc/>
 	public Task<bool> IsDonAsync(long ownerId,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			IsDon(ownerId));
 
@@ -21,13 +21,13 @@ public partial class DonutCategory : IDonutCategoryAsync
 													ulong offset,
 													byte count,
 													UsersFields fields,
-													CancellationToken token) =>
+													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetFriends(ownerId, offset, count, fields));
 
 	/// <inheritdoc/>
 	public Task<Subscription> GetSubscriptionAsync(long ownerId,
-													CancellationToken token) =>
+													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetSubscription(ownerId));
 
@@ -35,7 +35,7 @@ public partial class DonutCategory : IDonutCategoryAsync
 	public Task<SubscriptionsInfo> GetSubscriptionsAsync(UsersFields fields,
 														ulong offset,
 														byte count,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetSubscriptions(fields, offset, count));
 }

@@ -52,7 +52,7 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.addLink
 	/// </remarks>
 	Task<bool> AddLinkAsync(Uri link,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет сообщество или пользователя в закладки.
@@ -88,7 +88,7 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.addPost
 	/// </remarks>
 	Task<bool> AddPostAsync(FaveAddPostParams @params,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет товар в закладки.
@@ -139,7 +139,7 @@ public partial interface IFaveCategoryAsync
 	/// </remarks>
 	Task<FaveTag> AddTagAsync(string name,
 							string position,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет видеозапись в закладки.
@@ -188,7 +188,7 @@ public partial interface IFaveCategoryAsync
 	/// </remarks>
 	Task<bool> EditTagAsync(long id,
 							string name,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает объекты, добавленные в закладки пользователя.
@@ -217,7 +217,7 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.get
 	/// </remarks>
 	Task<VkCollection<FaveGetObject>> GetAsync(FaveGetParams @params,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает страницы пользователей и сообществ, добавленных в закладки.
@@ -265,7 +265,7 @@ public partial interface IFaveCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.getTags
 	/// </remarks>
-	Task<VkCollection<FaveTag>> GetTagsAsync(CancellationToken token);
+	Task<VkCollection<FaveTag>> GetTagsAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Отмечает закладки как просмотренные.
@@ -277,7 +277,7 @@ public partial interface IFaveCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.markSeen
 	/// </remarks>
-	Task<bool> MarkSeenAsync(CancellationToken token);
+	Task<bool> MarkSeenAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет статью из закладок.
@@ -315,7 +315,7 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeLink
 	/// </remarks>
 	Task<bool> RemoveLinkAsync(string linkId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет из закладок сообщество или страницу пользователя.
@@ -357,7 +357,7 @@ public partial interface IFaveCategoryAsync
 	/// </remarks>
 	Task<bool> RemovePostAsync(long ownerId,
 								long id,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет товар из закладок.
@@ -379,7 +379,7 @@ public partial interface IFaveCategoryAsync
 	/// </remarks>
 	Task<bool> RemoveProductAsync(long ownerId,
 								long id,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет метку закладок.
@@ -395,7 +395,7 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeTag
 	/// </remarks>
 	Task<bool> RemoveTagAsync(long id,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет видеозапись из списка закладок.
@@ -417,7 +417,7 @@ public partial interface IFaveCategoryAsync
 	/// </remarks>
 	Task<bool> RemoveVideoAsync(long ownerId,
 								long id,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Меняет порядок меток закладок в списке.
@@ -433,7 +433,7 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.reorderTags
 	/// </remarks>
 	Task<bool> ReorderTagsAsync(IEnumerable<long> ids,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Устанавливает метку странице пользователя или сообщества.
@@ -475,7 +475,7 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.setTags
 	/// </remarks>
 	Task<bool> SetTagsAsync(FaveSetTagsParams @params,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Устанавливает страницу пользователя или сообщества в топ закладок.

@@ -43,7 +43,7 @@ public interface IMessagesCategoryAsync
 	/// </remarks>
 	Task<bool> AddChatUserAsync(long chatId,
 								long userId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет разрешить отправку сообщений от сообщества текущему пользователю.
@@ -64,7 +64,7 @@ public interface IMessagesCategoryAsync
 	/// </remarks>
 	Task<bool> AllowMessagesFromGroupAsync(long groupId,
 											string key,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Создаёт беседу с несколькими участниками.
@@ -86,7 +86,7 @@ public interface IMessagesCategoryAsync
 	/// </remarks>
 	Task<long> CreateChatAsync(IEnumerable<ulong> userIds,
 								[NotNull] string title,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет сообщение.
@@ -190,7 +190,7 @@ public interface IMessagesCategoryAsync
 	/// https://vk.com/dev/messages.denyMessagesFromGroup
 	/// </remarks>
 	Task<bool> DenyMessagesFromGroupAsync(long groupId,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет название беседы.
@@ -212,7 +212,7 @@ public interface IMessagesCategoryAsync
 	/// </remarks>
 	Task<bool> EditChatAsync(long chatId,
 							[NotNull] string title,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает сообщения по их идентификаторам.
@@ -270,7 +270,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.search
 	/// </remarks>
 	Task<MessageSearchResult> SearchAsync(MessagesSearchParams @params,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Посылает личное сообщение.
@@ -287,7 +287,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.send
 	/// </remarks>
 	Task<long> SendAsync(MessagesSendParams @params,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Посылает личное сообщение.
@@ -304,7 +304,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.send
 	/// </remarks>
 	Task<ReadOnlyCollection<MessagesSendResult>> SendToUserIdsAsync(MessagesSendParams @params,
-																	CancellationToken token);
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Посылает личное сообщение сразу нескольким адресатам (до 100 за 1 запрос).
@@ -321,7 +321,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.send
 	/// </remarks>
 	Task<ReadOnlyCollection<MessagesSendResult>> SendToPeerIdsAsync(MessagesSendParams @params,
-																	CancellationToken token);
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает удаленное сообщение.
@@ -425,7 +425,7 @@ public interface IMessagesCategoryAsync
 	Task<bool> SetMemberRoleAsync(string role,
 								long peerId,
 								ulong memberId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает текущий статус и дату последней активности указанного пользователя.
@@ -445,7 +445,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getLastActivity
 	/// </remarks>
 	Task<LastActivity> GetLastActivityAsync(long userId,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Gets the chat.
@@ -523,7 +523,7 @@ public interface IMessagesCategoryAsync
 	/// </remarks>
 	Task<ChatPreview> GetChatPreviewAsync(string link,
 										ProfileFields fields,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает историю сообщений текущего пользователя с указанным пользователя или
@@ -541,7 +541,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getHistory
 	/// </remarks>
 	Task<MessageGetHistoryObject> GetHistoryAsync(MessagesGetHistoryParams @params,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Исключает из мультидиалога пользователя, если текущий пользователь был
@@ -624,7 +624,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollHistory
 	/// </remarks>
 	Task<LongPollHistoryResponse> GetLongPollHistoryAsync(MessagesGetLongPollHistoryParams @params,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет установить фотографию мультидиалога, загруженную с помощью метода
@@ -647,7 +647,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.setChatPhoto
 	/// </remarks>
 	Task<long> SetChatPhotoAsync(string file,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Помечает сообщения как важные либо снимает отметку.
@@ -686,7 +686,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.sendSticker
 	/// </remarks>
 	Task<long> SendStickerAsync(MessagesSendStickerParams parameters,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает материалы диалога или беседы..
@@ -710,7 +710,7 @@ public interface IMessagesCategoryAsync
 	/// http://vk.com/dev/messages.getHistoryAttachments
 	/// </remarks>
 	Task<GetHistoryAttachmentsResult> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params,
-																CancellationToken token);
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Получает ссылку для приглашения пользователя в беседу.
@@ -730,7 +730,7 @@ public interface IMessagesCategoryAsync
 	/// </remarks>
 	Task<string> GetInviteLinkAsync(ulong peerId,
 									bool reset,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о том, разрешена ли отправка сообщений от сообщества
@@ -750,7 +750,7 @@ public interface IMessagesCategoryAsync
 	/// </remarks>
 	Task<bool> IsMessagesFromGroupAllowedAsync(ulong groupId,
 												ulong userId,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет присоединиться к чату по ссылке-приглашению.
@@ -764,7 +764,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.joinChatByInviteLink
 	/// </remarks>
 	Task<long> JoinChatByInviteLinkAsync(string link,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Помечает беседу как отвеченную либо снимает отметку.
@@ -834,7 +834,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.edit
 	/// </remarks>
 	Task<bool> EditAsync(MessageEditParams @params,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет беседу.
@@ -926,7 +926,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversations
 	/// </remarks>
 	Task<GetConversationsResult> GetConversationsAsync(GetConversationsParams getConversationsParams,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить список участников беседы.
@@ -1121,7 +1121,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getImportantMessages
 	/// </remarks>
 	Task<GetImportantMessagesResult> GetImportantMessagesAsync(GetImportantMessagesParams getImportantMessagesParams,
-																CancellationToken token);
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о недавних звонках.
@@ -1207,7 +1207,7 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getIntentUsers
 	/// </remarks>
 	Task<GetIntentUsersResult> GetIntentUsersAsync(MessagesGetIntentUsersParams getIntentUsersParams,
-													CancellationToken token);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Помечает диалог пользователя непрочитанным.
@@ -1221,7 +1221,7 @@ public interface IMessagesCategoryAsync
 	/// После успешного выполнения возвращает true.
 	/// </returns>
 	Task<bool> MarkAsUnreadConversationAsync(long peerId,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	#region Obsoleted
 
@@ -1344,7 +1344,7 @@ public interface IMessagesCategoryAsync
 	/// </remarks>
 	[Obsolete(ObsoleteText.MessageGet)]
 	Task<MessagesGetObject> GetAsync(MessagesGetParams @params,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить список пользователей мультидиалога по его id.
@@ -1385,7 +1385,7 @@ public interface IMessagesCategoryAsync
 	Task<GetChatUsers> GetChatUsersAsync(IEnumerable<long> chatIds,
 										UsersFields fields,
 										NameCase? nameCase,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить список пользователей мультидиалога по его id.
@@ -1404,7 +1404,7 @@ public interface IMessagesCategoryAsync
 	/// </remarks>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
 	Task<ReadOnlyCollection<long>> GetChatUsersAsync(IEnumerable<long> chatIds,
-													CancellationToken token);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список диалогов аккаунта
@@ -1414,7 +1414,7 @@ public interface IMessagesCategoryAsync
 	/// <returns> В случае успеха возвращает список диалогов пользователя </returns>
 	[Obsolete(ObsoleteText.MessageGet)]
 	Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	#endregion
 }

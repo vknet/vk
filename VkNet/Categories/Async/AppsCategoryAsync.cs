@@ -16,24 +16,24 @@ public partial class AppsCategory
 													bool skipAuthorization = false,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetCatalog(@params, skipAuthorization));
+			GetCatalog(@params, skipAuthorization), token);
 
 	/// <inheritdoc />
 	public Task<AppGetObject> GetAsync(AppGetParams @params,
 										bool skipAuthorization = false,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(@params, skipAuthorization));
+			Get(@params, skipAuthorization), token);
 
 	/// <inheritdoc />
 	public Task<long> SendRequestAsync(AppSendRequestParams @params,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SendRequest(@params: @params));
+			SendRequest(@params: @params), token);
 
 	/// <inheritdoc />
-	public Task<bool> DeleteAppRequestsAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(DeleteAppRequests);
+	public Task<bool> DeleteAppRequestsAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(DeleteAppRequests, token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<User>> GetFriendsListAsync(AppRequestType type,
@@ -43,7 +43,7 @@ public partial class AppsCategory
 														UsersFields fields = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetFriendsList(type, extended, count, offset));
+			GetFriendsList(type, extended, count, offset), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<long>> GetFriendsListAsync(AppRequestType type,
@@ -52,7 +52,7 @@ public partial class AppsCategory
 														UsersFields fields = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetFriendsList(type, count, offset));
+			GetFriendsList(type, count, offset), token);
 
 	/// <inheritdoc />
 	public Task<LeaderboardResult> GetLeaderboardAsync(AppRatingType type,
@@ -60,31 +60,31 @@ public partial class AppsCategory
 														bool? extended = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetLeaderboard(type, global, extended));
+			GetLeaderboard(type, global, extended), token);
 
 	/// <inheritdoc />
 	public Task<long> GetScoreAsync(long userId,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetScore(userId));
+			GetScore(userId), token);
 
 	/// <inheritdoc />
 	public Task<MiniAppPolicies> GetMiniAppPoliciesAsync(ulong appId,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetMiniAppPolicies(appId));
+			GetMiniAppPolicies(appId), token);
 
 	/// <inheritdoc />
 	public Task<AppGetScopesResult> GetScopesAsync(string type = "user",
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetScopes(type));
+			GetScopes(type), token);
 
 	/// <inheritdoc />
 	public Task<bool> PromoHasActiveGiftAsync(ulong promoId, ulong? userId = null,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			PromoHasActiveGift(promoId, userId));
+			PromoHasActiveGift(promoId, userId), token);
 
 	/// <inheritdoc />
 	public Task<bool> PromoUseGiftAsync(ulong promoId, ulong? userId = null,

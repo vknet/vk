@@ -28,7 +28,7 @@ public interface INewsFeedCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.get
 	/// </remarks>
 	Task<NewsFeed> GetAsync(NewsFeedGetParams @params,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Получает список новостей, рекомендованных пользователю.
@@ -42,7 +42,7 @@ public interface INewsFeedCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getRecommended
 	/// </remarks>
 	Task<NewsFeed> GetRecommendedAsync(NewsFeedGetRecommendedParams @params,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает данные, необходимые для показа раздела комментариев в новостях
@@ -57,7 +57,7 @@ public interface INewsFeedCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getComments
 	/// </remarks>
 	Task<NewsFeed> GetCommentsAsync(NewsFeedGetCommentsParams @params,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список записей пользователей на своих стенах, в которых упоминается
@@ -107,7 +107,7 @@ public interface INewsFeedCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getBanned
 	/// </remarks>
-	Task<NewsBannedList> GetBannedAsync(CancellationToken token);
+	Task<NewsBannedList> GetBannedAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список пользователей и групп, которые текущий пользователь скрыл из
@@ -152,7 +152,7 @@ public interface INewsFeedCategoryAsync
 	/// </remarks>
 	Task<bool> AddBanAsync(IEnumerable<long> userIds,
 							IEnumerable<long> groupIds,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Разрешает показывать новости от заданных пользователей и групп в ленте новостей
@@ -175,7 +175,7 @@ public interface INewsFeedCategoryAsync
 	/// </remarks>
 	Task<bool> DeleteBanAsync(IEnumerable<long> userIds,
 							IEnumerable<long> groupIds,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет скрыть объект из ленты новостей.
@@ -196,7 +196,7 @@ public interface INewsFeedCategoryAsync
 	Task<bool> IgnoreItemAsync(NewsObjectTypes type,
 								long ownerId,
 								long itemId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет вернуть ранее скрытый объект в ленту новостей.
@@ -215,7 +215,7 @@ public interface INewsFeedCategoryAsync
 	Task<bool> UnignoreItemAsync(NewsObjectTypes type,
 								long ownerId,
 								long itemId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает результаты поиска по статусам. Новости возвращаются в порядке от
@@ -230,7 +230,7 @@ public interface INewsFeedCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.search
 	/// </remarks>
 	Task<NewsSearchResult> SearchAsync(NewsFeedSearchParams @params,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает пользовательские списки новостей.
@@ -294,7 +294,7 @@ public interface INewsFeedCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.deleteList
 	/// </remarks>
 	Task<bool> DeleteListAsync(long listId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Отписывает текущего пользователя от комментариев к заданному объекту.

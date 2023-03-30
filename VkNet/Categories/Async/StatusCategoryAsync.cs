@@ -13,7 +13,7 @@ public partial class StatusCategory
 								long? groupId = null,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(userId, groupId));
+			Get(userId, groupId), token);
 
 	/// <inheritdoc />
 	public Task<bool> SetAsync(string text,

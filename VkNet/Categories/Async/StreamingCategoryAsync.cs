@@ -12,12 +12,12 @@ namespace VkNet.Categories;
 public partial class StreamingCategory
 {
 	/// <inheritdoc />
-	public Task<StreamingServerUrl> GetServerUrlAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(GetServerUrl);
+	public Task<StreamingServerUrl> GetServerUrlAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(GetServerUrl, token);
 
 	/// <inheritdoc />
-	public Task<StreamingSettings> GetSettingsAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(GetSettings);
+	public Task<StreamingSettings> GetSettingsAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(GetSettings, token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<StreamingStats>> GetStatsAsync(string type,
@@ -26,17 +26,17 @@ public partial class StreamingCategory
 																DateTime? endTime = null,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetStats(type, interval, startTime, endTime));
+			GetStats(type, interval, startTime, endTime), token);
 
 	/// <inheritdoc />
 	public Task<bool> SetSettingsAsync(MonthlyLimit monthlyTier,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetSettings(monthlyTier));
+			SetSettings(monthlyTier), token);
 
 	/// <inheritdoc />
 	public Task<string> GetStemAsync(string word,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetStem(word));
 }

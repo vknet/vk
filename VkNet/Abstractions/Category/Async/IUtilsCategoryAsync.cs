@@ -24,7 +24,7 @@ public interface IUtilsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
 	/// </remarks>
 	Task<CheckLinkResult> CheckLinkAsync([NotNull] string url,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о том, является ли внешняя ссылка заблокированной на
@@ -37,7 +37,7 @@ public interface IUtilsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
 	/// </remarks>
 	Task<CheckLinkResult> CheckLinkAsync([NotNull] Uri url,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Определяет тип объекта (пользователь, сообщество, приложение) и его
@@ -50,7 +50,7 @@ public interface IUtilsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/utils.resolveScreenName
 	/// </remarks>
 	Task<VkObject> ResolveScreenNameAsync([NotNull] string screenName,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает текущее время на сервере ВКонтакте в unixtime.
@@ -60,7 +60,7 @@ public interface IUtilsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/utils.getServerTime
 	/// </remarks>
-	Task<DateTime> GetServerTimeAsync(CancellationToken token);
+	Task<DateTime> GetServerTimeAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить URL, сокращенный с помощью vk.cc.
@@ -71,7 +71,7 @@ public interface IUtilsCategoryAsync
 	/// <returns> URL, сокращенный с помощью vk.cc </returns>
 	Task<ShortLink> GetShortLinkAsync(Uri url,
 									bool isPrivate,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет сокращенную ссылку из списка пользователя.
@@ -85,7 +85,7 @@ public interface IUtilsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/utils.deleteFromLastShortened
 	/// </remarks>
 	Task<bool> DeleteFromLastShortenedAsync(string key,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Получает список сокращенных ссылок для текущего пользователя.
@@ -111,5 +111,5 @@ public interface IUtilsCategoryAsync
 	/// <param name="token">Токен отмены</param>
 	/// <returns> </returns>
 	Task<LinkStatsResult> GetLinkStatsAsync(LinkStatsParams @params,
-											CancellationToken token);
+											CancellationToken token = default);
 }

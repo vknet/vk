@@ -35,7 +35,7 @@ public interface ILeadsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/leads.checkUser
 	/// </remarks>
 	Task<Checked> CheckUserAsync(CheckUserParams checkUserParams,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Завершает начатую пользователем рекламную акцию, используя сессию и секретный
@@ -68,7 +68,7 @@ public interface ILeadsCategoryAsync
 	Task<LeadsComplete> CompleteAsync(string vkSid,
 									string secret,
 									string comment,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает статистику по рекламной акции.
@@ -116,7 +116,7 @@ public interface ILeadsCategoryAsync
 							string secret,
 							string dateStart,
 							string dateEnd,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список последних действий пользователей по рекламной акции.
@@ -142,7 +142,7 @@ public interface ILeadsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/leads.getUsers
 	/// </remarks>
 	Task<ReadOnlyCollection<Entry>> GetUsersAsync(GetUsersParams getUsersParams,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Засчитывает событие метрики.
@@ -162,7 +162,7 @@ public interface ILeadsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/leads.metricHit
 	/// </remarks>
 	Task<MetricHitResponse> MetricHitAsync(string data,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Создаёт новую сессию для прохождения рекламной акции для пользователя.
@@ -181,5 +181,5 @@ public interface ILeadsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/leads.start
 	/// </remarks>
 	Task<Start> StartAsync(StartParams startParams,
-							CancellationToken token);
+							CancellationToken token = default);
 }

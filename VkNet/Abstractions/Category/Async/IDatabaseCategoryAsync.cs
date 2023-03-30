@@ -78,7 +78,7 @@ public interface IDatabaseCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getStreetsById
 	/// </remarks>
-	Task<ReadOnlyCollection<Street>> GetStreetsByIdAsync(CancellationToken token,
+	Task<ReadOnlyCollection<Street>> GetStreetsByIdAsync(CancellationToken token = default,
 														params int[] streetIds);
 
 	/// <summary>
@@ -90,7 +90,7 @@ public interface IDatabaseCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getCountriesById
 	/// </remarks>
-	Task<ReadOnlyCollection<Country>> GetCountriesByIdAsync(CancellationToken token,
+	Task<ReadOnlyCollection<Country>> GetCountriesByIdAsync(CancellationToken token = default,
 															params int[] countryIds);
 
 	/// <summary>
@@ -113,7 +113,7 @@ public interface IDatabaseCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getCities
 	/// </remarks>
 	Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams getCitiesParams,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о городах по их идентификаторам.
@@ -126,7 +126,7 @@ public interface IDatabaseCategoryAsync
 	/// places.getById, places.search, places.getCheckins.
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getCitiesById
 	/// </remarks>
-	Task<ReadOnlyCollection<City>> GetCitiesByIdAsync(CancellationToken token,
+	Task<ReadOnlyCollection<City>> GetCitiesByIdAsync(CancellationToken token = default,
 													params int[] cityIds);
 
 	/// <summary>
@@ -218,7 +218,7 @@ public interface IDatabaseCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getSchoolClasses
 	/// </remarks>
 	Task<ReadOnlyCollection<SchoolClass>> GetSchoolClassesAsync(long countryId,
-																CancellationToken token);
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список кафедр университета по указанному факультету.
@@ -263,7 +263,7 @@ public interface IDatabaseCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getMetroStationsById
 	/// </remarks>
 	Task<ReadOnlyCollection<MetroStation>> GetMetroStationsByIdAsync(IEnumerable<ulong> stationIds,
-																	CancellationToken token);
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список станций метро

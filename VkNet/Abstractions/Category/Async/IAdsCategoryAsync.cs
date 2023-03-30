@@ -28,7 +28,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.addOfficeUsers
 	/// </remarks>
 	Task<ReadOnlyCollection<bool>> AddOfficeUsersAsync(AdsDataSpecificationParams<UserSpecification> adsDataSpecification,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Проверяет ссылку на рекламируемый объект.
@@ -48,7 +48,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.checkLink
 	/// </remarks>
 	Task<LinkStatus> CheckLinkAsync(CheckLinkParams checkLinkParams,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Создает рекламные объявления.
@@ -62,7 +62,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.createAds
 	/// </remarks>
 	Task<ReadOnlyCollection<CreateAdsResult>> CreateAdsAsync(AdsDataSpecificationParams<AdSpecification> adsDataSpecification,
-															CancellationToken token);
+															CancellationToken token = default);
 
 	/// <summary>
 	/// Создает рекламные кампании.
@@ -77,7 +77,7 @@ public interface IAdsCategoryAsync
 	/// </remarks>
 	Task<ReadOnlyCollection<CreateCampaignResult>> CreateCampaignsAsync(
 		AdsDataSpecificationParams<CampaignSpecification> campaignsDataSpecification,
-		CancellationToken token);
+		CancellationToken token = default);
 
 	/// <summary>
 	/// Создаёт клиентов рекламного агентства.
@@ -92,7 +92,7 @@ public interface IAdsCategoryAsync
 	/// </remarks>
 	Task<ReadOnlyCollection<CreateClientResult>>
 		CreateClientsAsync(AdsDataSpecificationParams<ClientSpecification> clientDataSpecification,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Создаёт запрос на поиск похожей аудитории.
@@ -106,7 +106,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.createLookalikeRequest
 	/// </remarks>
 	Task<CreateLookALikeRequestResult> CreateLookalikeRequestAsync(CreateLookALikeRequestParams createLookALikeRequestParams,
-																	CancellationToken token);
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Создает аудиторию для ретаргетинга рекламных объявлений на пользователей, которые посетили сайт рекламодателя (просмотрели информации о товаре, зарегистрировались и т.д.).
@@ -123,7 +123,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.createTargetGroup
 	/// </remarks>
 	Task<CreateTargetGroupResult> CreateTargetGroupAsync(CreateTargetGroupParams createTargetGroupParams,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Создаёт пиксель ретаргетинга.
@@ -139,7 +139,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.createTargetPixel
 	/// </remarks>
 	Task<CreateTargetPixelResult> CreateTargetPixelAsync(CreateTargetPixelParams createTargetPixelParams,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Архивирует рекламные объявления.
@@ -153,7 +153,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteAds
 	/// </remarks>
 	Task<ReadOnlyCollection<bool>> DeleteAdsAsync(DeleteAdsParams deleteAdsParams,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Архивирует рекламные кампании.
@@ -167,7 +167,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteCampaigns
 	/// </remarks>
 	Task<ReadOnlyCollection<bool>> DeleteCampaignsAsync(DeleteCampaignsParams deleteCampaignsParams,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Архивирует клиентов рекламного агентства.
@@ -181,7 +181,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteClients
 	/// </remarks>
 	Task<ReadOnlyCollection<bool>> DeleteClientsAsync(DeleteClientsParams deleteClientsParams,
-													CancellationToken token);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет аудиторию ретаргетинга.
@@ -195,7 +195,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteTargetGroup
 	/// </remarks>
 	Task<bool> DeleteTargetGroupAsync(DeleteTargetGroupParams deleteTargetGroupParams,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет пиксель ретаргетинга.
@@ -209,7 +209,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.deleteTargetPixel
 	/// </remarks>
 	Task<bool> DeleteTargetPixelAsync(DeleteTargetPixelParams deleteTargetPixelParams,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список рекламных кабинетов.
@@ -233,7 +233,7 @@ public interface IAdsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getAccounts
 	/// </remarks>
-	Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync(CancellationToken token);
+	Task<ReadOnlyCollection<AdsAccount>> GetAccountsAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список рекламных объявлений.
@@ -310,7 +310,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getAds
 	/// </remarks>
 	Task<ReadOnlyCollection<Ad>> GetAdsAsync(GetAdsParams getAdsParams,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает описания внешнего вида рекламных объявлений.
@@ -351,7 +351,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getAdsLayout
 	/// </remarks>
 	Task<ReadOnlyCollection<Layout>> GetAdsLayoutAsync(GetAdsLayoutParams getAdsLayoutParams,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает параметры таргетинга рекламных объявлений
@@ -369,7 +369,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getAdsTargeting
 	/// </remarks>
 	Task<ReadOnlyCollection<AdsTargetingResult>> GetAdsTargetingAsync(GetAdsTargetingParams getAdsTargetingParams,
-																	CancellationToken token);
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает текущий бюджет рекламного кабинета.
@@ -385,7 +385,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getBudget
 	/// </remarks>
 	Task<double> GetBudgetAsync(long accountId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список кампаний рекламного кабинета.
@@ -418,7 +418,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getCampaigns
 	/// </remarks>
 	Task<ReadOnlyCollection<AdsCampaign>> GetCampaignsAsync(AdsGetCampaignsParams adsGetCampaignsParams,
-															CancellationToken token);
+															CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить возможные тематики рекламных объявлений.
@@ -440,7 +440,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getCategories
 	/// </remarks>
 	Task<GetCategoriesResult> GetCategoriesAsync(Language lang,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список клиентов рекламного агентства.
@@ -460,7 +460,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getClients
 	/// </remarks>
 	Task<ReadOnlyCollection<GetClientsResult>> GetClientsAsync(long accountId,
-																CancellationToken token);
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает демографическую статистику по рекламным объявлениям или кампаниям.
@@ -496,7 +496,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getDemographics
 	/// </remarks>
 	Task<ReadOnlyCollection<GetDemographicsResult>> GetDemographicsAsync(GetDemographicsParams getDemographicsParams,
-																		CancellationToken token);
+																		CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о текущем состоянии счетчика — количество оставшихся запусков методов и время до следующего обнуления счетчика в секундах.
@@ -514,7 +514,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getFloodStats
 	/// </remarks>
 	Task<GetFloodStatsResult> GetFloodStatsAsync(long accountId,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список запросов на поиск похожей аудитории.
@@ -547,7 +547,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getLookalikeRequests
 	/// </remarks>
 	Task<GetLookalikeRequestsResult> GetLookalikeRequestsAsync(GetLookalikeRequestsParams getLookalikeRequestsParams,
-																CancellationToken token);
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список администраторов и наблюдателей рекламного кабинета.
@@ -563,7 +563,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getOfficeUsers
 	/// </remarks>
 	Task<ReadOnlyCollection<GetOfficeUsersResult>> GetOfficeUsersAsync(long accountId,
-																		CancellationToken token);
+																		CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает подробную статистику по охвату рекламных записей из объявлений и кампаний для продвижения записей сообщества.
@@ -607,7 +607,7 @@ public interface IAdsCategoryAsync
 	Task<ReadOnlyCollection<GetPostsReachResult>> GetPostsReachAsync(long accountId,
 																	IdsType idsType,
 																	string ids,
-																	CancellationToken token);
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает причину, по которой указанному объявлению было отказано в прохождении премодерации.
@@ -627,7 +627,7 @@ public interface IAdsCategoryAsync
 	/// </remarks>
 	Task<GetRejectionReasonResult> GetRejectionReasonAsync(long accountId,
 															long adId,
-															CancellationToken token);
+															CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает статистику показателей эффективности по рекламным объявлениям, кампаниям, клиентам или всему кабинету.
@@ -659,7 +659,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getStatistics
 	/// </remarks>
 	Task<ReadOnlyCollection<GetStatisticsResult>> GetStatisticsAsync(GetStatisticsParams getStatisticsParams,
-																	CancellationToken token);
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает набор подсказок для различных параметров таргетинга.
@@ -697,7 +697,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getSuggestions
 	/// </remarks>
 	Task<ReadOnlyCollection<GetSuggestionsResult>> GetSuggestionsAsync(GetSuggestionsParams getSuggestionsParams,
-																		CancellationToken token);
+																		CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список аудиторий ретаргетинга.
@@ -782,7 +782,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getTargetingStats
 	/// </remarks>
 	Task<GetTargetingStatsResult> GetTargetingStatsAsync(GetTargetingStatsParams getTargetingStatsParams,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает URL-адрес для загрузки фотографии рекламного объявления.
@@ -796,7 +796,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getUploadURl
 	/// </remarks>
 	Task<Uri> GetUploadUrlAsync(GetUploadUrlParams getUploadUrlParams,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает URL-адрес для загрузки видеозаписи рекламного объявления.
@@ -808,7 +808,7 @@ public interface IAdsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getVideoUploadURl
 	/// </remarks>
-	Task<Uri> GetVideoUploadUrlAsync(CancellationToken token);
+	Task<Uri> GetVideoUploadUrlAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Импортирует список контактов рекламодателя для учета зарегистрированных во ВКонтакте пользователей в аудитории ретаргетинга.
@@ -822,7 +822,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.importTargetContacts
 	/// </remarks>
 	Task<long> ImportTargetContactsAsync(ImportTargetContactsParams importTargetContactsParams,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет администраторов и/или наблюдателей из рекламного кабинета.
@@ -836,7 +836,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.removeOfficeUsers
 	/// </remarks>
 	Task<ReadOnlyCollection<bool>> RemoveOfficeUsersAsync(RemoveOfficeUsersParams removeOfficeUsersParams,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Принимает запрос на исключение контактов рекламодателя из аудитории ретаргетинга.
@@ -850,7 +850,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.removeTargetContacts
 	/// </remarks>
 	Task<RemoveTargetContactsResult> RemoveTargetContactsAsync(RemoveTargetContactsParams removeTargetContactsParams,
-																CancellationToken token);
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Сохраняет результат поиска похожей аудитории.
@@ -868,7 +868,7 @@ public interface IAdsCategoryAsync
 	/// </remarks>
 	Task<SaveLookALikeRequestResultResult> SaveLookalikeRequestResultAsync(
 		SaveLookalikeRequestResultParams saveLookalikeRequestResultParams,
-		CancellationToken token);
+		CancellationToken token = default);
 
 	/// <summary>
 	/// Предоставляет доступ к аудитории ретаргетинга другому рекламному кабинету. В результате выполнения метода возвращается идентификатор аудитории для указанного кабинета.
@@ -883,7 +883,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.shareTargetGroup
 	/// </remarks>
 	Task<ShareTargetGroupResult> ShareTargetGroupAsync(ShareTargetGroupParams shareTargetGroupParams,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует рекламные объявления.
@@ -898,7 +898,7 @@ public interface IAdsCategoryAsync
 	/// </remarks>
 	Task<ReadOnlyCollection<UpdateAdsResult>> UpdateAdsAsync(
 		AdsDataSpecificationParams<AdEditSpecification> adEditDataSpecification,
-		CancellationToken token);
+		CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует рекламные кампании.
@@ -913,7 +913,7 @@ public interface IAdsCategoryAsync
 	/// </remarks>
 	Task<ReadOnlyCollection<UpdateCampaignsResult>> UpdateCampaignsAsync(
 		AdsDataSpecificationParams<CampaignModSpecification> campaignModDataSpecification,
-		CancellationToken token);
+		CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует клиентов рекламного агентства.
@@ -928,7 +928,7 @@ public interface IAdsCategoryAsync
 	/// </remarks>
 	Task<ReadOnlyCollection<UpdateClientsResult>> UpdateClientsAsync(
 		AdsDataSpecificationParams<ClientModSpecification> clientModDataSpecification,
-		CancellationToken token);
+		CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует аудиторию ретаргетинга.
@@ -944,7 +944,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.updateTargetGroup
 	/// </remarks>
 	Task<bool> UpdateTargetGroupAsync(UpdateTargetGroupParams updateTargetGroupParams,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует пиксель ретаргетинга.
@@ -960,7 +960,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.updateTargetPixel
 	/// </remarks>
 	Task<bool> UpdateTargetPixelAsync(UpdateTargetPixelParams updateTargetPixelParams,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о музыкантах (по имени музыканта), на слушателей которых доступно таргетирование.
@@ -972,7 +972,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getMusicians
 	/// </remarks>
 	Task<ReadOnlyCollection<GetMusiciansResult>> GetMusiciansAsync(string artistName,
-																	CancellationToken token);
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о музыкантах (по id музыкантов) на слушателей, для которых доступно таргетирование.
@@ -984,7 +984,7 @@ public interface IAdsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getMusiciansByIds
 	/// </remarks>
 	Task<ReadOnlyCollection<GetMusiciansByIdsResult>> GetMusiciansByIdsAsync(string ids,
-																			CancellationToken token);
+																			CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет/редактирует администраторов и/или наблюдателей в рекламный кабинет.
@@ -999,5 +999,5 @@ public interface IAdsCategoryAsync
 	/// </remarks>
 	Task<ReadOnlyCollection<UpdateOfficeUsersResult>> UpdateOfficeUsersAsync(
 		AdsDataSpecificationParams<OfficeUsersSpecification> officeUsersSpecification,
-		CancellationToken token);
+		CancellationToken token = default);
 }

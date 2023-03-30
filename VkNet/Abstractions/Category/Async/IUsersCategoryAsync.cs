@@ -32,7 +32,7 @@ public interface IUsersCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/users.search
 	/// </remarks>
 	Task<VkCollection<User>> SearchAsync(UserSearchParams @params,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о том, установил ли пользователь приложение.
@@ -51,7 +51,7 @@ public interface IUsersCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/users.isAppUser
 	/// </remarks>
 	Task<bool> IsAppUserAsync(long? userId,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает расширенную информацию о пользователях. Метод не требует авторизацию
@@ -180,5 +180,5 @@ public interface IUsersCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/users.getNearby
 	/// </remarks>
 	Task<VkCollection<User>> GetNearbyAsync(UsersGetNearbyParams @params,
-											CancellationToken token);
+											CancellationToken token = default);
 }

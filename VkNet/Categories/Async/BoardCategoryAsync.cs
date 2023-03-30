@@ -14,78 +14,78 @@ public partial class BoardCategory
 													bool skipAuthorization = false,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetTopics(@params, skipAuthorization));
+			GetTopics(@params, skipAuthorization), token);
 
 	/// <inheritdoc />
 	public Task<TopicsFeed> GetCommentsAsync(BoardGetCommentsParams @params,
 											bool skipAuthorization = false,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetComments(@params, skipAuthorization));
+			GetComments(@params, skipAuthorization), token);
 
 	/// <inheritdoc />
 	public Task<long> AddTopicAsync(BoardAddTopicParams @params,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddTopic(@params));
+			AddTopic(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteTopicAsync(BoardTopicParams @params,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteTopic(@params));
+			DeleteTopic(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> CloseTopicAsync(BoardTopicParams @params,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			CloseTopic(@params));
+			CloseTopic(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> OpenTopicAsync(BoardTopicParams @params,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			OpenTopic(@params));
+			OpenTopic(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> FixTopicAsync(BoardTopicParams @params,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			FixTopic(@params));
+			FixTopic(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> UnFixTopicAsync(BoardTopicParams @params,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			UnFixTopic(@params));
+			UnFixTopic(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditTopicAsync(BoardEditTopicParams @params,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			EditTopic(@params));
+			EditTopic(@params), token);
 
 	/// <inheritdoc />
 	public Task<long> CreateCommentAsync(BoardCreateCommentParams @params,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			CreateComment(@params));
+			CreateComment(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteCommentAsync(BoardCommentParams @params,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteComment(@params));
+			DeleteComment(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditCommentAsync(BoardEditCommentParams @params,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			EditComment(@params));
+			EditComment(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> RestoreCommentAsync(BoardCommentParams @params,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			RestoreComment(@params));
 }

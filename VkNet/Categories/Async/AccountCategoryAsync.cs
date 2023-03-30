@@ -15,39 +15,39 @@ public partial class AccountCategory
 {
 	/// <inheritdoc />
 	public Task<Counters> GetCountersAsync(CountersFilter filter,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetCounters(filter));
+			GetCounters(filter), token);
 
 	/// <inheritdoc />
 	public Task<bool> SetNameInMenuAsync(string name,
 										long userId,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetNameInMenu(name, userId));
+			SetNameInMenu(name, userId), token);
 
 	/// <inheritdoc />
 	public Task<bool> SetOnlineAsync(bool? voip = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetOnline(voip));
+			SetOnline(voip), token);
 
 	/// <inheritdoc />
-	public Task<bool> SetOfflineAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(SetOffline);
+	public Task<bool> SetOfflineAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(SetOffline, token);
 
 	/// <inheritdoc />
 	public Task<bool> RegisterDeviceAsync(AccountRegisterDeviceParams @params,
-										 CancellationToken token) =>
+										 CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RegisterDevice(@params));
+			RegisterDevice(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> UnregisterDeviceAsync(string deviceId,
 											bool? sandbox = null,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			UnregisterDevice(deviceId, sandbox));
+			UnregisterDevice(deviceId, sandbox), token);
 
 	/// <inheritdoc />
 	public Task<bool> SetSilenceModeAsync(string deviceId,
@@ -56,79 +56,79 @@ public partial class AccountCategory
 										 bool? sound = null,
 										 CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetSilenceMode(deviceId, time, peerId, sound));
+			SetSilenceMode(deviceId, time, peerId, sound), token);
 
 	/// <inheritdoc />
 	public Task<AccountPushSettings> GetPushSettingsAsync(string deviceId,
-														 CancellationToken token) =>
+														 CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetPushSettings(deviceId));
+			GetPushSettings(deviceId), token);
 
 	/// <inheritdoc />
 	public Task<bool> SetPushSettingsAsync(string deviceId,
 										  PushSettings settings,
 										  string key,
 										  List<string> value,
-										  CancellationToken token) =>
+										  CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetPushSettings(deviceId, settings, key, value));
+			SetPushSettings(deviceId, settings, key, value), token);
 
 	/// <inheritdoc />
 	public Task<long> GetAppPermissionsAsync(long userId,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetAppPermissions(userId));
+			GetAppPermissions(userId), token);
 
 	/// <inheritdoc />
 	public Task<InformationAboutOffers> GetActiveOffersAsync(ulong? offset = null,
 															ulong? count = null,
 															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetActiveOffers(offset, count));
+			GetActiveOffers(offset, count), token);
 
 	/// <inheritdoc />
 	[Obsolete(ObsoleteText.BanUserAsync)]
 	public Task<bool> BanUserAsync(long ownerId,
-								  CancellationToken token) =>
+								  CancellationToken token = default) =>
 		BanAsync(ownerId, token);
 
 	/// <inheritdoc />
 	public Task<bool> BanAsync(long ownerId,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Ban(ownerId));
+			Ban(ownerId), token);
 
 	/// <inheritdoc />
 	[Obsolete(ObsoleteText.UnbanUserAsync)]
 	public Task<bool> UnbanUserAsync(long ownerId,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		UnbanAsync(ownerId, token);
 
 	/// <inheritdoc />
 	public Task<bool> UnbanAsync(long ownerId,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Unban(ownerId));
+			Unban(ownerId), token);
 
 	/// <inheritdoc />
 	public Task<AccountGetBannedResult> GetBannedAsync(int? offset = null,
 														int? count = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetBanned(offset, count));
+			GetBanned(offset, count), token);
 
 	/// <inheritdoc />
 	public Task<AccountInfo> GetInfoAsync(AccountFields fields = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetInfo(fields));
+			GetInfo(fields), token);
 
 	/// <inheritdoc />
 	public Task<bool> SetInfoAsync(string name,
 									string value,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetInfo(name, value));
+			SetInfo(name, value), token);
 
 	/// <inheritdoc />
 	public Task<AccountChangePasswordResult> ChangePasswordAsync(string oldPassword,
@@ -137,32 +137,32 @@ public partial class AccountCategory
 																string changePasswordHash = null,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			ChangePassword(oldPassword, newPassword, restoreSid, changePasswordHash));
+			ChangePassword(oldPassword, newPassword, restoreSid, changePasswordHash), token);
 
 	/// <inheritdoc />
-	public Task<AccountSaveProfileInfoParams> GetProfileInfoAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(GetProfileInfo);
+	public Task<AccountSaveProfileInfoParams> GetProfileInfoAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(GetProfileInfo, token);
 
 	/// <inheritdoc />
 	public Task<ChangeNameRequest> SaveProfileInfoAsync(int cancelRequestId,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SaveProfileInfo(cancelRequestId));
+			SaveProfileInfo(cancelRequestId), token);
 
 	/// <inheritdoc />
 	public Task<ChangeNameRequest> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SaveProfileInfo(@params));
+			SaveProfileInfo(@params), token);
 
 	/// <inheritdoc />
-	public Task<PrivacySettings> GetPrivacySettingsAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(GetPrivacySettings);
+	public Task<PrivacySettings> GetPrivacySettingsAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(GetPrivacySettings, token);
 
 	/// <inheritdoc />
 	public Task<PrivacySettingsValue> SetPrivacyAsync(PrivacyKey key,
 													string value,
-													CancellationToken token) =>
+													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			SetPrivacy(key, value));
 }

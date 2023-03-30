@@ -16,24 +16,24 @@ public partial class AuthCategory
 									bool? authByPhone = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			CheckPhone(phone, clientSecret, clientId, authByPhone));
+			CheckPhone(phone, clientSecret, clientId, authByPhone), token);
 
 	/// <inheritdoc />
 	public Task<string> SignupAsync(AuthSignupParams @params,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Signup(@params));
+			Signup(@params), token);
 
 	/// <inheritdoc />
 	public Task<AuthConfirmResult> ConfirmAsync(AuthConfirmParams @params,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Confirm(@params));
+			Confirm(@params), token);
 
 	/// <inheritdoc />
 	public Task<string> RestoreAsync(string phone,
 									string lastName,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Restore(phone, lastName));
 }

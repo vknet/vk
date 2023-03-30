@@ -24,7 +24,7 @@ public interface IStatsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/stats.get
 	/// </remarks>
 	Task<ReadOnlyCollection<StatsPeriod>> GetAsync(StatsGetParams getParams,
-													CancellationToken token);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет данные о текущем сеансе в статистику посещаемости приложения..
@@ -36,7 +36,7 @@ public interface IStatsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/stats.trackVisitor
 	/// </remarks>
-	Task<bool> TrackVisitorAsync(CancellationToken token);
+	Task<bool> TrackVisitorAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает статистику для записи на стене.
@@ -60,5 +60,5 @@ public interface IStatsCategoryAsync
 	/// </remarks>
 	Task<PostReach> GetPostReachAsync(long ownerId,
 									long postId,
-									CancellationToken token);
+									CancellationToken token = default);
 }

@@ -30,7 +30,7 @@ public interface IPrettyCardsCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.create
 	/// </remarks>
 	Task<PrettyCardsCreateResult> CreateAsync(PrettyCardsCreateParams @params,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Метод удаляет карточку карусели.
@@ -43,7 +43,7 @@ public interface IPrettyCardsCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.delete
 	/// </remarks>
 	Task<PrettyCardsDeleteResult> DeleteAsync(PrettyCardsDeleteParams @params,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Метод редактирует карточку карусели.
@@ -56,7 +56,7 @@ public interface IPrettyCardsCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.edit
 	/// </remarks>
 	Task<PrettyCardsEditResult> EditAsync(PrettyCardsEditParams @params,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Метод возвращает неиспользованные карточки владельца.
@@ -69,7 +69,7 @@ public interface IPrettyCardsCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.get
 	/// </remarks>
 	Task<VkCollection<PrettyCardsGetByIdResult>> GetAsync(PrettyCardsGetParams @params,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Метод возвращает информацию о карточке.
@@ -82,7 +82,7 @@ public interface IPrettyCardsCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getById
 	/// </remarks>
 	Task<ReadOnlyCollection<PrettyCardsGetByIdResult>> GetByIdAsync(PrettyCardsGetByIdParams @params,
-																	CancellationToken token);
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Метод возвращает URL для загрузки фотографии для карточки.
@@ -100,5 +100,5 @@ public interface IPrettyCardsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getUploadURL
 	/// </remarks>
-	Task<Uri> GetUploadUrlAsync(CancellationToken token);
+	Task<Uri> GetUploadUrlAsync(CancellationToken token = default);
 }

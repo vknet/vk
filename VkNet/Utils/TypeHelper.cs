@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -45,16 +46,18 @@ public static class TypeHelper
 	/// Попытаться асинхронно выполнить метод.
 	/// </summary>
 	/// <param name="func"> Синхронный метод. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <typeparam name="T"> Тип ответа </typeparam>
 	/// <returns> Результат выполнения функции. </returns>
-	public static Task<T> TryInvokeMethodAsync<T>(Func<T> func) => Task.Run(func);
+	public static Task<T> TryInvokeMethodAsync<T>(Func<T> func, CancellationToken token = default) => Task.Run(func, token);
 
 	/// <summary>
 	/// Попытаться асинхронно выполнить метод.
 	/// </summary>
 	/// <param name="func"> Синхронный метод. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> Результат выполнения функции. </returns>
-	public static Task TryInvokeMethodAsync(Action func) => Task.Run(func);
+	public static Task TryInvokeMethodAsync(Action func, CancellationToken token = default) => Task.Run(func, token);
 
 	private static void RegisterImplicitFlowAuthorization(this IServiceCollection services)
 	{
