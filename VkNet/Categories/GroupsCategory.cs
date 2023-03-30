@@ -1389,12 +1389,11 @@ public partial class GroupsCategory : IGroupsCategory
 	/// <inheritdoc />
 	public VkCollection<GroupTag> GetTagList(ulong groupId)
 	{
-		return _vk.Call("groups.getTagList",
+		return _vk.Call<VkCollection<GroupTag>>("groups.getTagList",
 				new VkParameters
 				{
 					{ "group_id", groupId }
-				})
-			.ToVkCollectionOf<GroupTag>(x => x);
+				});
 	}
 
 	/// <inheritdoc />
