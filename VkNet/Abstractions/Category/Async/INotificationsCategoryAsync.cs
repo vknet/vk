@@ -253,8 +253,12 @@ public interface INotificationsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.get
 	/// </remarks>
-	Task<NotificationGetResult> GetAsync(ulong? count = null, string startFrom = null, IEnumerable<string> filters = null,
-										long? startTime = null, long? endTime = null, CancellationToken token = default);
+	Task<NotificationGetResult> GetAsync(ulong? count = null,
+										string startFrom = null,
+										IEnumerable<string> filters = null,
+										long? startTime = null,
+										long? endTime = null,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Сбрасывает счетчик непросмотренных оповещений об ответах других пользователей
