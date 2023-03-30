@@ -273,7 +273,7 @@ public interface INotificationsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.markAsViewed
 	/// </remarks>
-	Task<bool> MarkAsViewedAsync(CancellationToken token);
+	Task<bool> MarkAsViewedAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Отправляет уведомление пользователю приложения VK Apps.
@@ -297,5 +297,5 @@ public interface INotificationsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.sendMessage
 	/// </remarks>
 	Task<IEnumerable<NotificationsSendMessageResult>> SendMessageAsync(NotificationsSendMessageParams sendMessageParams,
-																		CancellationToken token);
+																		CancellationToken token = default);
 }

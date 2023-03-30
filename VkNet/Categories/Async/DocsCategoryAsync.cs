@@ -21,25 +21,25 @@ public partial class DocsCategory
 												DocFilter? type = null,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(count, offset, ownerId, type));
+			Get(count, offset, ownerId, type), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<Document>> GetByIdAsync(IEnumerable<Document> docs,
-															CancellationToken token) =>
+															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetById(docs));
+			GetById(docs), token);
 
 	/// <inheritdoc />
 	public Task<UploadServerInfo> GetUploadServerAsync(long? groupId = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetUploadServer(groupId));
+			GetUploadServer(groupId), token);
 
 	/// <inheritdoc />
 	public Task<UploadServerInfo> GetWallUploadServerAsync(long? groupId = null,
 															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetWallUploadServer(groupId));
+			GetWallUploadServer(groupId), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<Attachment>> SaveAsync(string file,
@@ -47,7 +47,7 @@ public partial class DocsCategory
 														string tags = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Save(file, title, tags));
+			Save(file, title, tags), token);
 
 	/// <inheritdoc />
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
@@ -58,14 +58,14 @@ public partial class DocsCategory
 														string captchaKey = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Save(file, captchaSid, title, tags, captchaKey));
+			Save(file, captchaSid, title, tags, captchaKey), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteAsync(long ownerId,
 								long docId,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Delete(ownerId, docId));
+			Delete(ownerId, docId), token);
 
 	/// <inheritdoc />
 	public Task<long> AddAsync(long ownerId,
@@ -73,7 +73,7 @@ public partial class DocsCategory
 								string accessKey = null,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Add(ownerId, docId, accessKey));
+			Add(ownerId, docId, accessKey), token);
 
 	/// <inheritdoc />
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
@@ -84,13 +84,13 @@ public partial class DocsCategory
 								string captchaKey = null,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Add(ownerId, docId, accessKey, captchaSid, captchaKey));
+			Add(ownerId, docId, accessKey, captchaSid, captchaKey), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<DocumentType>> GetTypesAsync(long ownerId,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetTypes(ownerId: ownerId));
+			GetTypes(ownerId: ownerId), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Document>> SearchAsync(string query,
@@ -99,16 +99,16 @@ public partial class DocsCategory
 													long? offset = null,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Search(query, searchOwn, count, offset));
+			Search(query, searchOwn, count, offset), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditAsync(long ownerId,
 								long docId,
 								string title,
 								IEnumerable<string> tags,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Edit(ownerId, docId, title, tags));
+			Edit(ownerId, docId, title, tags), token);
 
 	/// <inheritdoc />
 	public Task<UploadServerInfo> GetMessagesUploadServerAsync(long? peerId = null,

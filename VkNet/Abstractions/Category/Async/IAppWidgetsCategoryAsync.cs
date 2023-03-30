@@ -32,7 +32,7 @@ public interface IAppWidgetsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getAppImageUploadServer
 	/// </remarks>
 	Task<UploadServerInfo> GetAppImageUploadServerAsync(AppWidgetImageType imageType,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
@@ -62,7 +62,7 @@ public interface IAppWidgetsCategoryAsync
 	Task<AppImageResult> GetAppImagesAsync(int offset,
 											int count,
 											AppWidgetImageType imageType,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить адрес для загрузки фотографии в коллекцию сообщества для виджетов приложений сообществ.
@@ -77,7 +77,7 @@ public interface IAppWidgetsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getGroupImageUploadServer
 	/// </remarks>
 	Task<UploadServerInfo> GetGroupImageUploadServerAsync(AppWidgetImageType imageType,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить коллекцию изображений, загруженных для приложения, в виджетах приложений сообществ.
@@ -107,7 +107,7 @@ public interface IAppWidgetsCategoryAsync
 	Task<AppImageResult> GetGroupImagesAsync(int offset,
 											int count,
 											AppWidgetImageType imageType,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить изображение для виджетов приложений сообществ по его идентификатору.
@@ -132,7 +132,7 @@ public interface IAppWidgetsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/appWidgets.getImagesById
 	/// </remarks>
 	Task<ReadOnlyCollection<AppImage>> GetImagesByIdAsync(string images,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет сохранить изображение в коллекцию приложения для виджетов приложений сообществ после загрузки на сервер.
@@ -163,7 +163,7 @@ public interface IAppWidgetsCategoryAsync
 	/// </remarks>
 	Task<AppImage> SaveAppImageAsync(string hash,
 									string image,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет сохранить изображение в коллекцию сообщества для виджетов приложений сообществ. после загрузки на сервер.
@@ -190,7 +190,7 @@ public interface IAppWidgetsCategoryAsync
 	/// </remarks>
 	Task<AppImage> SaveGroupImageAsync(string hash,
 										string image,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет обновить виджет приложения сообщества.
@@ -210,5 +210,5 @@ public interface IAppWidgetsCategoryAsync
 	/// </remarks>
 	Task<bool> UpdateAsync(string code,
 							AppWidgetType type,
-							CancellationToken token);
+							CancellationToken token = default);
 }

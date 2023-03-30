@@ -14,14 +14,14 @@ public partial class StoriesCategory
 {
 	/// <inheritdoc/>
 	public Task<bool> BanOwnerAsync(IEnumerable<long> ownersIds,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			BanOwner(ownersIds));
 
 	/// <inheritdoc/>
 	public Task<bool> DeleteAsync(long ownerId,
 								ulong storyId,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Delete(ownerId, storyId));
 
@@ -49,7 +49,7 @@ public partial class StoriesCategory
 
 	/// <inheritdoc/>
 	public Task<StoryServerUrl> GetPhotoUploadServerAsync(GetPhotoUploadServerParams @params,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetPhotoUploadServer(@params));
 
@@ -66,13 +66,13 @@ public partial class StoriesCategory
 	/// <inheritdoc/>
 	public Task<StoryStatsResult> GetStatsAsync(long ownerId,
 												ulong storyId,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetStats(ownerId, storyId));
 
 	/// <inheritdoc/>
 	public Task<StoryServerUrl> GetVideoUploadServerAsync(GetVideoUploadServerParams @params,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetVideoUploadServer(@params));
 
@@ -83,7 +83,7 @@ public partial class StoriesCategory
 															ulong? offset = null,
 															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetViewers(ownerId, storyId, count, offset));
+			GetViewers(ownerId, storyId, count, offset), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<User>> GetViewersExtendedAsync(long ownerId,
@@ -96,7 +96,7 @@ public partial class StoriesCategory
 
 	/// <inheritdoc/>
 	public Task<bool> HideAllRepliesAsync(long ownerId,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			HideAllReplies(ownerId));
 
@@ -110,30 +110,30 @@ public partial class StoriesCategory
 
 	/// <inheritdoc/>
 	public Task<bool> UnbanOwnerAsync(IEnumerable<long> ownersIds,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			UnbanOwner(ownersIds));
+			UnbanOwner(ownersIds), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Save(uploadResults));
+			Save(uploadResults), token);
 
 	/// <inheritdoc />
 	[Obsolete("Начиная с версии 5.118 используется только параметр uploadResults")]
 	public Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults,
 												bool extended,
 												IEnumerable<string> fields,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Save(uploadResults, extended, fields));
+			Save(uploadResults, extended, fields), token);
 
 	/// <inheritdoc />
 	public Task<StoryResult<Story>> SearchAsync(StoriesSearchParams searchParams,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Search(searchParams));
+			Search(searchParams), token);
 
 	/// <inheritdoc />
 	public Task<bool> SendInteractionAsync(string accessKey,

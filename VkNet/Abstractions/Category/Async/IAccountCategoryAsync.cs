@@ -32,7 +32,7 @@ public interface IAccountCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/account.getCounters
 	/// </remarks>
 	Task<Counters> GetCountersAsync(CountersFilter filter,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Устанавливает короткое название приложения (до 17 символов), которое
@@ -55,7 +55,7 @@ public interface IAccountCategoryAsync
 	/// </remarks>
 	Task<bool> SetNameInMenuAsync([NotNull] string name,
 								long userId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Помечает текущего пользователя как online на 15 минут.
@@ -84,7 +84,7 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.setOffline
 	/// </remarks>
-	Task<bool> SetOfflineAsync(CancellationToken token);
+	Task<bool> SetOfflineAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Подписывает устройство на базе iOS, Android или Windows Phone на получение
@@ -102,7 +102,7 @@ public interface IAccountCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/account.registerDevice
 	/// </remarks>
 	Task<bool> RegisterDeviceAsync(AccountRegisterDeviceParams @params,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Отписывает устройство от Push уведомлений.
@@ -174,7 +174,7 @@ public interface IAccountCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/account.getPushSettings
 	/// </remarks>
 	Task<AccountPushSettings> GetPushSettingsAsync(string deviceId,
-													CancellationToken token);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет настройку Push-уведомлений.
@@ -202,7 +202,7 @@ public interface IAccountCategoryAsync
 									PushSettings settings,
 									string key,
 									List<string> value,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Получает настройки текущего пользователя в данном приложении.
@@ -220,14 +220,14 @@ public interface IAccountCategoryAsync
 	/// пользователя, то Ваша битовая маска будет равна: 2 + 1024 = 1026.
 	/// Если, имея битовую маску 1026, Вы хотите проверить, имеет ли она доступ к
 	/// друзьям — Вы можете сделать 1026 &amp; 2.
-	/// Например alert(1026 &amp; 2, CancellationToken token);
+	/// Например alert(1026 &amp; 2, CancellationToken token = default);
 	/// см. Список возможных настроек прав доступа.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.getAppPermissions
 	/// </remarks>
 	Task<long> GetAppPermissionsAsync(long userId,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список активных рекламных предложений (офферов), выполнив
@@ -258,7 +258,7 @@ public interface IAccountCategoryAsync
 
 	/// <inheritdoc cref="BanAsync"/>
 	Task<bool> BanUserAsync(long ownerId,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет пользователя в черный список.
@@ -275,11 +275,11 @@ public interface IAccountCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/account.banUser
 	/// </remarks>
 	Task<bool> BanAsync(long ownerId,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <inheritdoc cref="UnbanAsync"/>
 	Task<bool> UnbanUserAsync(long ownerId,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Убирает пользователя из черного списка.
@@ -296,7 +296,7 @@ public interface IAccountCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/account.unbanUser
 	/// </remarks>
 	Task<bool> UnbanAsync(long ownerId,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список пользователей, находящихся в черном списке.
@@ -369,7 +369,7 @@ public interface IAccountCategoryAsync
 	/// </remarks>
 	Task<bool> SetInfoAsync([NotNull] string name,
 							[NotNull] string value,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет сменить пароль пользователя после успешного восстановления доступа к
@@ -412,7 +412,7 @@ public interface IAccountCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.getProfileInfo
 	/// </remarks>
-	Task<AccountSaveProfileInfoParams> GetProfileInfoAsync(CancellationToken token);
+	Task<AccountSaveProfileInfoParams> GetProfileInfoAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует информацию текущего профиля.
@@ -431,7 +431,7 @@ public interface IAccountCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/account.saveProfileInfo
 	/// </remarks>
 	Task<ChangeNameRequest> SaveProfileInfoAsync(int cancelRequestId,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует информацию текущего профиля.
@@ -445,14 +445,14 @@ public interface IAccountCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/account.saveProfileInfo
 	/// </remarks>
 	Task<ChangeNameRequest> SaveProfileInfoAsync(AccountSaveProfileInfoParams @params,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Получить список приватных настроек
 	/// </summary>
 	/// <param name="token">Токен отмены</param>
 	/// <returns> Список приватных настроек </returns>
-	Task<PrivacySettings> GetPrivacySettingsAsync(CancellationToken token);
+	Task<PrivacySettings> GetPrivacySettingsAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Установить приватные настройки
@@ -463,5 +463,5 @@ public interface IAccountCategoryAsync
 	/// <returns> Значение параметра <a>value</a></returns>
 	Task<PrivacySettingsValue> SetPrivacyAsync(PrivacyKey key,
 												string value,
-												CancellationToken token);
+												CancellationToken token = default);
 }

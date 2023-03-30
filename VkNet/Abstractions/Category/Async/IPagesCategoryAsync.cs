@@ -30,7 +30,7 @@ public interface IPagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/pages.get
 	/// </remarks>
 	Task<Page> GetAsync(PagesGetParams @params,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Сохраняет текст вики-страницы.
@@ -55,7 +55,7 @@ public interface IPagesCategoryAsync
 						long userId,
 						string title,
 						long? pageId,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Сохраняет новые настройки доступа на чтение и редактирование вики-страницы.
@@ -123,7 +123,7 @@ public interface IPagesCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/pages.getTitles
 	/// </remarks>
 	Task<ReadOnlyCollection<Page>> GetTitlesAsync(long groupId,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает текст одной из старых версий страницы.
@@ -168,7 +168,7 @@ public interface IPagesCategoryAsync
 	/// </remarks>
 	Task<string> ParseWikiAsync(string text,
 								ulong groupId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет очистить кеш отдельных внешних страниц, которые могут быть
@@ -187,5 +187,5 @@ public interface IPagesCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/pages.clearCache
 	/// </remarks>
 	Task<bool> ClearCacheAsync(Uri url,
-								CancellationToken token);
+								CancellationToken token = default);
 }

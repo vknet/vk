@@ -20,7 +20,7 @@ public interface IPodcastsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/podcasts.clearRecentSearches
 	/// </remarks>
-	Task<bool> ClearRecentSearchesAsync(CancellationToken token);
+	Task<bool> ClearRecentSearchesAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Метод удаляет карточку карусели.
@@ -31,7 +31,7 @@ public interface IPodcastsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/podcasts.getPopular
 	/// </remarks>
-	Task<ReadOnlyCollection<PodcastsGetPopularResult>> GetPopularAsync(CancellationToken token);
+	Task<ReadOnlyCollection<PodcastsGetPopularResult>> GetPopularAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Метод редактирует карточку карусели.
@@ -42,7 +42,7 @@ public interface IPodcastsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/podcasts.getRecentSearchRequests
 	/// </remarks>
-	Task<ReadOnlyCollection<string>> GetRecentSearchRequestsAsync(CancellationToken token);
+	Task<ReadOnlyCollection<string>> GetRecentSearchRequestsAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Метод возвращает неиспользованные карточки владельца.
@@ -55,5 +55,5 @@ public interface IPodcastsCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/podcasts.search
 	/// </remarks>
 	Task<PodcastsSearchResult> SearchAsync(PodcastsSearchParams @params,
-											CancellationToken token);
+											CancellationToken token = default);
 }

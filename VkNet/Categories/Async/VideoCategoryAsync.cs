@@ -16,15 +16,15 @@ public partial class VideoCategory
 {
 	/// <inheritdoc />
 	public Task<VkCollection<Video>> GetAsync(VideoGetParams @params,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(@params));
+			Get(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditAsync(VideoEditParams @params,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Edit(@params));
+			Edit(@params), token);
 
 	/// <inheritdoc />
 	public Task<long> AddAsync(long videoId,
@@ -32,13 +32,13 @@ public partial class VideoCategory
 								long? targetId = null,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Add(videoId, ownerId, targetId));
+			Add(videoId, ownerId, targetId), token);
 
 	/// <inheritdoc />
 	public Task<Video> SaveAsync(VideoSaveParams @params,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Save(@params));
+			Save(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteAsync(long videoId,
@@ -46,20 +46,20 @@ public partial class VideoCategory
 								long? targetId = null,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Delete(videoId, ownerId, targetId));
+			Delete(videoId, ownerId, targetId), token);
 
 	/// <inheritdoc />
 	public Task<bool> RestoreAsync(long videoId,
 									long? ownerId = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Restore(videoId, ownerId));
+			Restore(videoId, ownerId), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Video>> SearchAsync(VideoSearchParams @params,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Search(@params));
+			Search(@params), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<VideoAlbum>> GetAlbumsAsync(long? ownerId = null,
@@ -69,7 +69,7 @@ public partial class VideoCategory
 														bool? needSystem = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetAlbums(ownerId, offset, count, extended, needSystem));
+			GetAlbums(ownerId, offset, count, extended, needSystem), token);
 
 	/// <inheritdoc />
 	public Task<long> AddAlbumAsync(string title,
@@ -77,7 +77,7 @@ public partial class VideoCategory
 									IEnumerable<Privacy> privacy = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddAlbum(title, groupId, privacy));
+			AddAlbum(title, groupId, privacy), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditAlbumAsync(long albumId,
@@ -86,40 +86,40 @@ public partial class VideoCategory
 									Privacy privacy = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			EditAlbum(albumId, title, groupId, privacy));
+			EditAlbum(albumId, title, groupId, privacy), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteAlbumAsync(long albumId,
 										long? groupId = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteAlbum(albumId, groupId));
+			DeleteAlbum(albumId, groupId), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Comment>> GetCommentsAsync(VideoGetCommentsParams @params,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetComments(@params));
+			GetComments(@params), token);
 
 	/// <inheritdoc />
 	public Task<long> CreateCommentAsync(VideoCreateCommentParams @params,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			CreateComment(@params));
+			CreateComment(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteCommentAsync(long commentId,
 										long? ownerId,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteComment(commentId, ownerId));
+			DeleteComment(commentId, ownerId), token);
 
 	/// <inheritdoc />
 	public Task<bool> RestoreCommentAsync(long commentId,
 										long? ownerId,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RestoreComment(commentId, ownerId));
+			RestoreComment(commentId, ownerId), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditCommentAsync(long commentId,
@@ -128,7 +128,7 @@ public partial class VideoCategory
 										IEnumerable<MediaAttachment> attachments = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			EditComment(commentId, message, ownerId, attachments));
+			EditComment(commentId, message, ownerId, attachments), token);
 
 	/// <inheritdoc />
 	public Task<bool> ReportAsync(long videoId,
@@ -138,37 +138,37 @@ public partial class VideoCategory
 								string searchQuery = null,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Report(videoId, reason, ownerId, comment, searchQuery));
+			Report(videoId, reason, ownerId, comment, searchQuery), token);
 
 	/// <inheritdoc />
 	public Task<bool> ReportCommentAsync(long commentId,
 										long ownerId,
 										ReportReason reason,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			ReportComment(commentId, ownerId, reason));
+			ReportComment(commentId, ownerId, reason), token);
 
 	/// <inheritdoc />
 	public Task<VideoAlbum> GetAlbumByIdAsync(long albumId,
 											long? ownerId = null,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetAlbumById(albumId, ownerId));
+			GetAlbumById(albumId, ownerId), token);
 
 	/// <inheritdoc />
 	public Task<bool> ReorderAlbumsAsync(long albumId,
 										long? ownerId,
 										long? before,
 										long? after,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			ReorderAlbums(albumId, ownerId, before, after));
+			ReorderAlbums(albumId, ownerId, before, after), token);
 
 	/// <inheritdoc />
 	public Task<bool> ReorderVideosAsync(VideoReorderVideosParams @params,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			ReorderVideos(@params));
+			ReorderVideos(@params), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<ulong>> AddToAlbumAsync(long ownerId,
@@ -178,7 +178,7 @@ public partial class VideoCategory
 													long? albumId = null,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddToAlbum(ownerId, videoId, albumIds, targetId, albumId));
+			AddToAlbum(ownerId, videoId, albumIds, targetId, albumId), token);
 
 	/// <inheritdoc />
 	public Task<bool> RemoveFromAlbumAsync(long ownerId,
@@ -188,22 +188,22 @@ public partial class VideoCategory
 											long? albumId = null,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RemoveFromAlbum(ownerId, videoId, albumIds, targetId, albumId));
+			RemoveFromAlbum(ownerId, videoId, albumIds, targetId, albumId), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<VideoAlbum>> GetAlbumsByVideoAsync(long? targetId,
 																long ownerId,
 																long videoId,
 																bool? extended,
-																CancellationToken token) =>
+																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetAlbumsByVideo(targetId, ownerId, videoId, extended));
+			GetAlbumsByVideo(targetId, ownerId, videoId, extended), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<VideoCatalog>> GetCatalogAsync(VideoGetCatalogParams @params,
-																CancellationToken token) =>
+																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetCatalog(@params));
+			GetCatalog(@params), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<VideoCatalogItem>> GetCatalogSectionAsync(string sectionId,
@@ -212,11 +212,11 @@ public partial class VideoCategory
 																			bool? extended = null,
 																			CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetCatalogSection(sectionId, from, count, extended));
+			GetCatalogSection(sectionId, from, count, extended), token);
 
 	/// <inheritdoc />
 	public Task<bool> HideCatalogSectionAsync(long sectionId,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			HideCatalogSection(sectionId));
 }

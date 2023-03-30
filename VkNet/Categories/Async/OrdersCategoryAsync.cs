@@ -38,7 +38,7 @@ public partial class OrdersCategory
 	/// <inheritdoc/>
 	public Task<IEnumerable<VotesAmount>> GetAmountAsync(ulong userId,
 														IEnumerable<string> votes,
-														CancellationToken token) =>
+														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetAmount(userId, votes));
 
@@ -52,13 +52,13 @@ public partial class OrdersCategory
 	/// <inheritdoc/>
 	public Task<SubscriptionItem> GetUserSubscriptionByIdAsync(ulong userId,
 																ulong subscriptionId,
-																CancellationToken token) =>
+																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetUserSubscriptionById(userId, subscriptionId));
 
 	/// <inheritdoc/>
 	public Task<IEnumerable<SubscriptionItem>> GetUserSubscriptionsAsync(ulong userId,
-																		CancellationToken token) =>
+																		CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetUserSubscriptions(userId));
 
@@ -66,7 +66,7 @@ public partial class OrdersCategory
 	public Task<bool> UpdateSubscriptionAsync(ulong userId,
 											ulong subscriptionId,
 											ulong price,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			UpdateSubscription(userId, subscriptionId, price));
 }

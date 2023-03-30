@@ -57,7 +57,7 @@ public interface IAuthCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/auth.signup
 	/// </remarks>
 	Task<string> SignupAsync(AuthSignupParams @params,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Завершает регистрацию нового пользователя, начатую методом auth.signup, по
@@ -72,7 +72,7 @@ public interface IAuthCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/auth.confirm
 	/// </remarks>
 	Task<AuthConfirmResult> ConfirmAsync(AuthConfirmParams @params,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет восстановить доступ к аккаунту, используя код, полученный через SMS.
@@ -88,5 +88,5 @@ public interface IAuthCategoryAsync
 	/// </remarks>
 	Task<string> RestoreAsync(string phone,
 							string lastName,
-							CancellationToken token);
+							CancellationToken token = default);
 }

@@ -63,7 +63,7 @@ public interface IAppsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/apps.sendRequest
 	/// </remarks>
 	Task<long> SendRequestAsync(AppSendRequestParams @params,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет все уведомления о запросах, отправленных из текущего приложения.
@@ -75,7 +75,7 @@ public interface IAppsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/apps.deleteAppRequests
 	/// </remarks>
-	Task<bool> DeleteAppRequestsAsync(CancellationToken token);
+	Task<bool> DeleteAppRequestsAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Создает список друзей, который будет использоваться при отправке пользователем
@@ -193,7 +193,7 @@ public interface IAppsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/apps.getScore
 	/// </remarks>
 	Task<long> GetScoreAsync(long userId,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает данные о политике конфиденциальности запрошенного приложения
@@ -207,7 +207,7 @@ public interface IAppsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/apps.getMiniAppPolicies
 	/// </remarks>
 	Task<MiniAppPolicies> GetMiniAppPoliciesAsync(ulong appId,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает данные о правах пользователя

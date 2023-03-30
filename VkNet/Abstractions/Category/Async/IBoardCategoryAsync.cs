@@ -54,7 +54,7 @@ public interface IBoardCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/board.addTopic
 	/// </remarks>
 	Task<long> AddTopicAsync(BoardAddTopicParams @params,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет тему в обсуждениях группы.
@@ -67,7 +67,7 @@ public interface IBoardCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/board.deleteTopic
 	/// </remarks>
 	Task<bool> DeleteTopicAsync(BoardTopicParams @params,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Закрывает тему в списке обсуждений группы (в такой теме невозможно оставлять
@@ -81,7 +81,7 @@ public interface IBoardCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/board.closeTopic
 	/// </remarks>
 	Task<bool> CloseTopicAsync(BoardTopicParams @params,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Открывает ранее закрытую тему (в ней станет возможно оставлять новые
@@ -95,7 +95,7 @@ public interface IBoardCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/board.openTopic
 	/// </remarks>
 	Task<bool> OpenTopicAsync(BoardTopicParams @params,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Закрепляет тему в списке обсуждений группы (такая тема при любой сортировке
@@ -109,7 +109,7 @@ public interface IBoardCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/board.fixTopic
 	/// </remarks>
 	Task<bool> FixTopicAsync(BoardTopicParams @params,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Отменяет прикрепление темы в списке обсуждений группы (тема будет выводиться
@@ -123,7 +123,7 @@ public interface IBoardCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/board.unfixTopic
 	/// </remarks>
 	Task<bool> UnFixTopicAsync(BoardTopicParams @params,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет заголовок темы в списке обсуждений группы.
@@ -136,7 +136,7 @@ public interface IBoardCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/board.editTopic
 	/// </remarks>
 	Task<bool> EditTopicAsync(BoardEditTopicParams @params,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет новый комментарий в обсуждении.
@@ -150,7 +150,7 @@ public interface IBoardCategoryAsync
 	/// <see href="https://new.vk.com/dev/board.createComment" />.
 	/// </remarks>
 	Task<long> CreateCommentAsync(BoardCreateCommentParams @params,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет сообщение в обсуждениях сообщества.
@@ -164,7 +164,7 @@ public interface IBoardCategoryAsync
 	/// <see href="https://new.vk.com/dev/board.deleteComment" />.
 	/// </remarks>
 	Task<bool> DeleteCommentAsync(BoardCommentParams @params,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует одно из сообщений в обсуждении сообщества..
@@ -177,7 +177,7 @@ public interface IBoardCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/board.editComment
 	/// </remarks>
 	Task<bool> EditCommentAsync(BoardEditCommentParams @params,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает удаленное сообщение темы в обсуждениях группы.
@@ -190,5 +190,5 @@ public interface IBoardCategoryAsync
 	/// Страница документации ВКонтакте https://vk.com/dev/board.restoreComment
 	/// </remarks>
 	Task<bool> RestoreCommentAsync(BoardCommentParams @params,
-									CancellationToken token);
+									CancellationToken token = default);
 }

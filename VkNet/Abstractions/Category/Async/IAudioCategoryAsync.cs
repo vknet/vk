@@ -95,7 +95,7 @@ public interface IAudioCategoryAsync
 	/// </remarks>
 	Task<bool> DeleteAsync(long audioId,
 							long ownerId,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет альбом аудиозаписей.
@@ -115,7 +115,7 @@ public interface IAudioCategoryAsync
 	/// </remarks>
 	Task<bool> DeletePlaylistAsync(long ownerId,
 									long playlistId,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует данные аудиозаписи на странице пользователя или сообщества.
@@ -130,7 +130,7 @@ public interface IAudioCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/audio.edit
 	/// </remarks>
 	Task<long> EditAsync(AudioEditParams @params,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует плейлист.
@@ -180,7 +180,7 @@ public interface IAudioCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/audio.get
 	/// </remarks>
 	Task<VkCollection<Audio>> GetAsync(AudioGetParams @params,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список плейлистов пользователя или группы.
@@ -225,7 +225,7 @@ public interface IAudioCategoryAsync
 	/// </remarks>
 	Task<AudioPlaylist> GetPlaylistByIdAsync(long ownerId,
 											long playlistId,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список друзей и сообществ пользователя, которые транслируют музыку в
@@ -268,7 +268,7 @@ public interface IAudioCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/audio.getById
 	/// </remarks>
 	Task<IEnumerable<Audio>> GetByIdAsync(IEnumerable<string> audios,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает каталог пользователя.
@@ -315,7 +315,7 @@ public interface IAudioCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/audio.getCount
 	/// </remarks>
 	Task<long> GetCountAsync(long ownerId,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает текст аудиозаписи.
@@ -331,7 +331,7 @@ public interface IAudioCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/audio.getLyrics
 	/// </remarks>
 	Task<Lyrics> GetLyricsAsync(long lyricsId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список аудиозаписей из раздела "Популярное".
@@ -418,7 +418,7 @@ public interface IAudioCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/audio.getUploadServer
 	/// </remarks>
-	Task<UploadServer> GetUploadServerAsync(CancellationToken token);
+	Task<UploadServer> GetUploadServerAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Перемещает аудиозаписи в плейлист.
@@ -443,7 +443,7 @@ public interface IAudioCategoryAsync
 	Task<IEnumerable<long>> AddToPlaylistAsync(long ownerId,
 												long playlistId,
 												IEnumerable<string> audioIds,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет порядок аудиозаписи, перенося ее между аудиозаписями, идентификаторы
@@ -473,7 +473,7 @@ public interface IAudioCategoryAsync
 							long? ownerId,
 							long? before,
 							long? after,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает аудиозапись после удаления.
@@ -531,7 +531,7 @@ public interface IAudioCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/audio.search
 	/// </remarks>
 	Task<VkCollection<Audio>> SearchAsync(AudioSearchParams @params,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Транслирует аудиозапись в статус пользователю или сообществу.

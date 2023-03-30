@@ -39,7 +39,7 @@ public interface IWidgetsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/widgets.getComments
 	/// </remarks>
 	Task<VkCollection<Comment>> GetCommentsAsync(GetCommentsParams getCommentsParams,
-												CancellationToken token);
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Получает список страниц приложения/сайта, на которых установлен Виджет

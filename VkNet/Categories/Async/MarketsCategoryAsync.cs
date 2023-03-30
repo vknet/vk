@@ -19,20 +19,20 @@ public partial class MarketsCategory
 												bool extended = false,
 												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(ownerId, albumId, count, offset, extended));
+			Get(ownerId, albumId, count, offset, extended), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Market>> GetByIdAsync(IEnumerable<string> itemIds,
 													bool extended = false,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetById(itemIds, extended));
+			GetById(itemIds, extended), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Market>> SearchAsync(MarketSearchParams @params,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Search(@params));
+			Search(@params), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<MarketAlbum>> GetAlbumsAsync(long ownerId,
@@ -40,40 +40,40 @@ public partial class MarketsCategory
 														int? count = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetAlbums(ownerId, offset, count));
+			GetAlbums(ownerId, offset, count), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<MarketAlbum>> GetAlbumByIdAsync(long ownerId,
 															IEnumerable<long> albumIds,
-															CancellationToken token) =>
+															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetAlbumById(ownerId, albumIds));
+			GetAlbumById(ownerId, albumIds), token);
 
 	/// <inheritdoc />
 	public Task<long> CreateCommentAsync(MarketCreateCommentParams @params,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			CreateComment(@params));
+			CreateComment(@params), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<MarketComment>> GetCommentsAsync(MarketGetCommentsParams @params,
-															CancellationToken token) =>
+															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetComments(@params));
+			GetComments(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteCommentAsync(long ownerId,
 										long commentId,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteComment(ownerId, commentId));
+			DeleteComment(ownerId, commentId), token);
 
 	/// <inheritdoc />
 	public Task<bool> RestoreCommentAsync(long ownerId,
 										long commentId,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RestoreComment(ownerId, commentId));
+			RestoreComment(ownerId, commentId), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditCommentAsync(long ownerId,
@@ -82,49 +82,49 @@ public partial class MarketsCategory
 										IEnumerable<MediaAttachment> attachments = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			EditComment(ownerId, commentId, message, attachments));
+			EditComment(ownerId, commentId, message, attachments), token);
 
 	/// <inheritdoc />
 	public Task<bool> ReportCommentAsync(long ownerId,
 										long commentId,
 										ReportReason reason,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			ReportComment(ownerId, commentId, reason));
+			ReportComment(ownerId, commentId, reason), token);
 
 	/// <inheritdoc />
 	public Task<bool> ReportAsync(long ownerId,
 								long itemId,
 								ReportReason reason,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Report(ownerId, itemId, reason));
+			Report(ownerId, itemId, reason), token);
 
 	/// <inheritdoc />
 	public Task<long> AddAsync(MarketProductParams @params,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Add(@params));
+			Add(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditAsync(MarketProductParams @params,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Edit(@params));
+			Edit(@params), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteAsync(long ownerId,
 								long itemId,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Delete(ownerId, itemId));
+			Delete(ownerId, itemId), token);
 
 	/// <inheritdoc />
 	public Task<bool> RestoreAsync(long ownerId,
 									long itemId,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Restore(ownerId, itemId));
+			Restore(ownerId, itemId), token);
 
 	/// <inheritdoc />
 	public Task<bool> ReorderItemsAsync(long ownerId,
@@ -132,9 +132,9 @@ public partial class MarketsCategory
 										long itemId,
 										long? before,
 										long? after,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			ReorderItems(ownerId, albumId, itemId, before, after));
+			ReorderItems(ownerId, albumId, itemId, before, after), token);
 
 	/// <inheritdoc />
 	public Task<bool> ReorderAlbumsAsync(long ownerId,
@@ -143,7 +143,7 @@ public partial class MarketsCategory
 										long? after = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			ReorderAlbums(ownerId, albumId, before, after));
+			ReorderAlbums(ownerId, albumId, before, after), token);
 
 	/// <inheritdoc />
 	public Task<long> AddAlbumAsync(long ownerId,
@@ -152,7 +152,7 @@ public partial class MarketsCategory
 									bool mainAlbum = false,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddAlbum(ownerId, title, photoId, mainAlbum));
+			AddAlbum(ownerId, title, photoId, mainAlbum), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditAlbumAsync(long ownerId,
@@ -162,35 +162,35 @@ public partial class MarketsCategory
 									bool mainAlbum = false,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			EditAlbum(ownerId, albumId, title, photoId, mainAlbum));
+			EditAlbum(ownerId, albumId, title, photoId, mainAlbum), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteAlbumAsync(long ownerId,
 										long albumId,
-										CancellationToken token) =>
+										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteAlbum(ownerId, albumId));
+			DeleteAlbum(ownerId, albumId), token);
 
 	/// <inheritdoc />
 	public Task<bool> RemoveFromAlbumAsync(long ownerId,
 											long itemId,
 											IEnumerable<long> albumIds,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RemoveFromAlbum(ownerId, itemId, albumIds));
+			RemoveFromAlbum(ownerId, itemId, albumIds), token);
 
 	/// <inheritdoc />
 	public Task<bool> AddToAlbumAsync(long ownerId,
 									long itemId,
 									IEnumerable<long> albumIds,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddToAlbum(ownerId, itemId, albumIds));
+			AddToAlbum(ownerId, itemId, albumIds), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<MarketCategory>> GetCategoriesAsync(long? count,
 																long? offset,
-																CancellationToken token) =>
+																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetCategories(count, offset));
 }

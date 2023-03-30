@@ -48,7 +48,7 @@ public interface ILikesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/likes.getList
 	/// </remarks>
 	Task<UserOrGroup> GetListExAsync(LikesGetListParams @params,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет указанный объект в список Мне нравится текущего пользователя.
@@ -64,7 +64,7 @@ public interface ILikesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/likes.add
 	/// </remarks>
 	Task<long> AddAsync(LikesAddParams @params,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет указанный объект из списка Мне нравится текущего пользователя

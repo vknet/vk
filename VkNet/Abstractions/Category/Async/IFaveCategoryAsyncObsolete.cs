@@ -31,7 +31,7 @@ public partial interface IFaveCategoryAsync
 	[Obsolete(ObsoleteText.Obsolete + "Используйте вместо него Task<bool> AddLinkAsync(Uri link)")]
 	Task<bool> AddLinkAsync(Uri link,
 							string text,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список пользователей, добавленных текущим пользователем в закладки.
@@ -197,7 +197,7 @@ public partial interface IFaveCategoryAsync
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
 	Task<bool> AddUserAsync(long userId,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет пользователя из закладок.
@@ -216,7 +216,7 @@ public partial interface IFaveCategoryAsync
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
 	Task<bool> RemoveUserAsync(long userId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет сообщество в закладки.
@@ -235,7 +235,7 @@ public partial interface IFaveCategoryAsync
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
 	Task<bool> AddGroupAsync(long groupId,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет сообщество из закладок.
@@ -254,7 +254,7 @@ public partial interface IFaveCategoryAsync
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
 	Task<bool> RemoveGroupAsync(long groupId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает товары, добавленные в закладки текущим пользователем.

@@ -20,50 +20,50 @@ public partial class FriendsCategory
 											bool skipAuthorization = false,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(@params, skipAuthorization));
+			Get(@params, skipAuthorization), token);
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<long>> GetAppUsersAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(GetAppUsers);
+	public Task<ReadOnlyCollection<long>> GetAppUsersAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(GetAppUsers, token);
 
 	/// <inheritdoc />
 	public Task<FriendOnline> GetOnlineAsync(FriendsGetOnlineParams @params,
-											CancellationToken token) =>
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetOnline(@params));
+			GetOnline(@params), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<MutualFriend>> GetMutualAsync(FriendsGetMutualParams @params,
-																CancellationToken token) =>
+																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetMutual(@params));
+			GetMutual(@params), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync(IEnumerable<long> userIds,
 																	bool? needSign = null,
 																	CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AreFriends(userIds, needSign));
+			AreFriends(userIds, needSign), token);
 
 	/// <inheritdoc />
 	public Task<long> AddListAsync(string name,
 									IEnumerable<long> userIds,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddList(name, userIds));
+			AddList(name, userIds), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteListAsync(long listId,
-									CancellationToken token) =>
+									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteList(listId));
+			DeleteList(listId), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<FriendList>> GetListsAsync(long? userId = null,
 														bool? returnSystem = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetLists(userId, returnSystem));
+			GetLists(userId, returnSystem), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditListAsync(long listId,
@@ -73,11 +73,11 @@ public partial class FriendsCategory
 									IEnumerable<long> deleteUserIds = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			EditList(listId, name, userIds, addUserIds));
+			EditList(listId, name, userIds, addUserIds), token);
 
 	/// <inheritdoc />
-	public Task<bool> DeleteAllRequestsAsync(CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(DeleteAllRequests);
+	public Task<bool> DeleteAllRequestsAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(DeleteAllRequests, token);
 
 	/// <inheritdoc />
 	public Task<AddFriendStatus> AddAsync(long userId,
@@ -85,7 +85,7 @@ public partial class FriendsCategory
 										bool? follow = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Add(userId, text, follow));
+			Add(userId, text, follow), token);
 
 	/// <inheritdoc />
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
@@ -96,38 +96,38 @@ public partial class FriendsCategory
 										string captchaKey = null,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Add(userId, text, follow, captchaSid, captchaKey));
+			Add(userId, text, follow, captchaSid, captchaKey), token);
 
 	/// <inheritdoc />
 	public Task<FriendsDeleteResult> DeleteAsync(long userId,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Delete(userId));
+			Delete(userId), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditAsync(long userId,
 								IEnumerable<long> listIds,
-								CancellationToken token) =>
+								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Edit(userId, listIds));
+			Edit(userId, listIds), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<long>> GetRecentAsync(long? count = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetRecent(count));
+			GetRecent(count), token);
 
 	/// <inheritdoc />
 	public Task<GetRequestsResult> GetRequestsAsync(FriendsGetRequestsParams @params,
-													CancellationToken token) =>
+													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetRequests(@params));
+			GetRequests(@params), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<FriendsGetRequestsResult>> GetRequestsExtendedAsync(FriendsGetRequestsParams @params,
-																				CancellationToken token) =>
+																				CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetRequestsExtended(@params));
+			GetRequestsExtended(@params), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<User>> GetSuggestionsAsync(FriendsFilter? filter = null,
@@ -137,18 +137,18 @@ public partial class FriendsCategory
 														NameCase? nameCase = null,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetSuggestions(filter, count, offset, fields, nameCase));
+			GetSuggestions(filter, count, offset, fields, nameCase), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<User>> GetByPhonesAsync(IEnumerable<string> phones,
 															ProfileFields fields,
-															CancellationToken token) =>
+															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetByPhones(phones, fields));
+			GetByPhones(phones, fields), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<User>> SearchAsync(FriendsSearchParams @params,
-												CancellationToken token) =>
+												CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Search(@params));
 }

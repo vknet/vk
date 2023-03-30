@@ -25,7 +25,7 @@ public interface IStreamingCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/streaming.getServerUrl
 	/// </remarks>
-	Task<StreamingServerUrl> GetServerUrlAsync(CancellationToken token);
+	Task<StreamingServerUrl> GetServerUrlAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить значение порога для Streaming API.
@@ -39,7 +39,7 @@ public interface IStreamingCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/streaming.getSettings
 	/// </remarks>
-	Task<StreamingSettings> GetSettingsAsync(CancellationToken token);
+	Task<StreamingSettings> GetSettingsAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить статистику для подготовленных и доставленных событий
@@ -101,7 +101,7 @@ public interface IStreamingCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/streaming.setSettings
 	/// </remarks>
 	Task<bool> SetSettingsAsync(MonthlyLimit monthlyTier,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить основу слова.
@@ -110,5 +110,5 @@ public interface IStreamingCategoryAsync
 	/// <param name="token">Токен отмены</param>
 	/// <returns>Основа слова</returns>
 	Task<string> GetStemAsync(string word,
-							CancellationToken token);
+							CancellationToken token = default);
 }

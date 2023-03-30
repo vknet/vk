@@ -95,7 +95,7 @@ public interface ISecureCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/secure.getAppBalance
 	/// </remarks>
-	Task<ulong> GetAppBalanceAsync(CancellationToken token);
+	Task<ulong> GetAppBalanceAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Выводит список SMS-уведомлений, отосланных приложением с помощью метода
@@ -142,7 +142,7 @@ public interface ISecureCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/secure.getTransactionsHistory
 	/// </remarks>
-	Task<ReadOnlyCollection<Transaction>> GetTransactionsHistoryAsync(CancellationToken token);
+	Task<ReadOnlyCollection<Transaction>> GetTransactionsHistoryAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает ранее выставленный игровой уровень одного или нескольких
@@ -160,7 +160,7 @@ public interface ISecureCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/secure.getUserLevel
 	/// </remarks>
 	Task<ReadOnlyCollection<SecureLevel>> GetUserLevelAsync(IEnumerable<long> userIds,
-															CancellationToken token);
+															CancellationToken token = default);
 
 	/// <summary>
 	/// Выдает пользователю стикер и открывает игровое достижение.
@@ -190,7 +190,7 @@ public interface ISecureCategoryAsync
 	/// </remarks>
 	Task<ReadOnlyCollection<EventSticker>> GiveEventStickerAsync(IEnumerable<ulong> userIds,
 																ulong achievementId,
-																CancellationToken token);
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Отправляет уведомление пользователю.
@@ -248,7 +248,7 @@ public interface ISecureCategoryAsync
 	/// </remarks>
 	Task<bool> SendSmsNotificationAsync(ulong userId,
 										string message,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Устанавливает счетчик, который выводится пользователю жирным шрифтом в левом

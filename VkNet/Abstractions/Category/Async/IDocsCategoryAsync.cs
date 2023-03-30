@@ -60,7 +60,7 @@ public interface IDocsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.getById
 	/// </remarks>
 	Task<ReadOnlyCollection<Document>> GetByIdAsync(IEnumerable<Document> docs,
-													CancellationToken token);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает адрес сервера для загрузки документов.
@@ -145,7 +145,7 @@ public interface IDocsCategoryAsync
 	/// </remarks>
 	Task<bool> DeleteAsync(long ownerId,
 							long docId,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Копирует документ в документы текущего пользователя.
@@ -209,7 +209,7 @@ public interface IDocsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.getTypes
 	/// </remarks>
 	Task<VkCollection<DocumentType>> GetTypesAsync(long ownerId,
-													CancellationToken token);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает результаты поиска по документам.
@@ -280,7 +280,7 @@ public interface IDocsCategoryAsync
 						long docId,
 						string title,
 						IEnumerable<string> tags,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Получает адрес сервера для загрузки документа в личное сообщение.

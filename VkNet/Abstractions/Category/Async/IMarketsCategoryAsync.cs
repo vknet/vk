@@ -109,7 +109,7 @@ public interface IMarketsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/market.search
 	/// </remarks>
 	Task<VkCollection<Market>> SearchAsync(MarketSearchParams @params,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список подборок с товарами.
@@ -171,7 +171,7 @@ public interface IMarketsCategoryAsync
 	/// </remarks>
 	Task<VkCollection<MarketAlbum>> GetAlbumByIdAsync(long ownerId,
 													IEnumerable<long> albumIds,
-													CancellationToken token);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Создает новый комментарий к товару.
@@ -185,7 +185,7 @@ public interface IMarketsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/market.createComment
 	/// </remarks>
 	Task<long> CreateCommentAsync(MarketCreateCommentParams @params,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список комментариев к товару.
@@ -199,7 +199,7 @@ public interface IMarketsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/market.getComments
 	/// </remarks>
 	Task<VkCollection<MarketComment>> GetCommentsAsync(MarketGetCommentsParams @params,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет комментарий к товару.
@@ -226,7 +226,7 @@ public interface IMarketsCategoryAsync
 	/// </remarks>
 	Task<bool> DeleteCommentAsync(long ownerId,
 								long commentId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает удаленный комментарий к товару.
@@ -254,7 +254,7 @@ public interface IMarketsCategoryAsync
 	/// </remarks>
 	Task<bool> RestoreCommentAsync(long ownerId,
 									long commentId,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет текст комментария к товару.
@@ -325,7 +325,7 @@ public interface IMarketsCategoryAsync
 	Task<bool> ReportCommentAsync(long ownerId,
 								long commentId,
 								ReportReason reason,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет отправить жалобу на товар.
@@ -357,7 +357,7 @@ public interface IMarketsCategoryAsync
 	Task<bool> ReportAsync(long ownerId,
 							long itemId,
 							ReportReason reason,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет новый товар.
@@ -371,7 +371,7 @@ public interface IMarketsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/market.add
 	/// </remarks>
 	Task<long> AddAsync(MarketProductParams @params,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует товар.
@@ -385,7 +385,7 @@ public interface IMarketsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/market.edit
 	/// </remarks>
 	Task<bool> EditAsync(MarketProductParams @params,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет товар.
@@ -412,7 +412,7 @@ public interface IMarketsCategoryAsync
 	/// </remarks>
 	Task<bool> DeleteAsync(long ownerId,
 							long itemId,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает удаленный товар.
@@ -440,7 +440,7 @@ public interface IMarketsCategoryAsync
 	/// </remarks>
 	Task<bool> RestoreAsync(long ownerId,
 							long itemId,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет положение товара в подборке.
@@ -485,7 +485,7 @@ public interface IMarketsCategoryAsync
 								long itemId,
 								long? before,
 								long? after,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет положение подборки с товарами в списке.
@@ -628,7 +628,7 @@ public interface IMarketsCategoryAsync
 	/// </remarks>
 	Task<bool> DeleteAlbumAsync(long ownerId,
 								long albumId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет товар из одной или нескольких выбранных подборок.
@@ -662,7 +662,7 @@ public interface IMarketsCategoryAsync
 	Task<bool> RemoveFromAlbumAsync(long ownerId,
 									long itemId,
 									IEnumerable<long> albumIds,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет товар в одну или несколько выбранных подборок.
@@ -696,7 +696,7 @@ public interface IMarketsCategoryAsync
 	Task<bool> AddToAlbumAsync(long ownerId,
 								long itemId,
 								IEnumerable<long> albumIds,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список категорий для товаров..
@@ -721,5 +721,5 @@ public interface IMarketsCategoryAsync
 	/// </remarks>
 	Task<VkCollection<MarketCategory>> GetCategoriesAsync(long? count,
 														long? offset,
-														CancellationToken token);
+														CancellationToken token = default);
 }

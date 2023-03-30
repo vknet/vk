@@ -53,7 +53,7 @@ public interface IFriendsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.getAppUsers
 	/// </remarks>
-	Task<ReadOnlyCollection<long>> GetAppUsersAsync(CancellationToken token);
+	Task<ReadOnlyCollection<long>> GetAppUsersAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список идентификаторов друзей пользователя, находящихся на сайте.
@@ -72,7 +72,7 @@ public interface IFriendsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.getOnline
 	/// </remarks>
 	Task<FriendOnline> GetOnlineAsync(FriendsGetOnlineParams @params,
-									CancellationToken token);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список идентификаторов общих друзей между парой пользователей.
@@ -88,7 +88,7 @@ public interface IFriendsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.getMutual
 	/// </remarks>
 	Task<ReadOnlyCollection<MutualFriend>> GetMutualAsync(FriendsGetMutualParams @params,
-														CancellationToken token);
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о том, добавлен ли текущий пользователь в друзья у
@@ -155,7 +155,7 @@ public interface IFriendsCategoryAsync
 	/// </remarks>
 	Task<long> AddListAsync(string name,
 							IEnumerable<long> userIds,
-							CancellationToken token);
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет существующий список друзей текущего пользователя.
@@ -173,7 +173,7 @@ public interface IFriendsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.deleteList
 	/// </remarks>
 	Task<bool> DeleteListAsync(long listId,
-								CancellationToken token);
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список меток друзей текущего пользователя.
@@ -253,7 +253,7 @@ public interface IFriendsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.deleteAllRequests
 	/// </remarks>
-	Task<bool> DeleteAllRequestsAsync(CancellationToken token);
+	Task<bool> DeleteAllRequestsAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Одобряет или создает заявку на добавление в друзья.
@@ -324,7 +324,7 @@ public interface IFriendsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.delete
 	/// </remarks>
 	Task<FriendsDeleteResult> DeleteAsync(long userId,
-										CancellationToken token);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует списки друзей для выбранного друга.
@@ -349,7 +349,7 @@ public interface IFriendsCategoryAsync
 	/// </remarks>
 	Task<bool> EditAsync(long userId,
 						IEnumerable<long> listIds,
-						CancellationToken token);
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список идентификаторов недавно добавленных друзей текущего
@@ -398,7 +398,7 @@ public interface IFriendsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.getRequests
 	/// </remarks>
 	Task<GetRequestsResult> GetRequestsAsync(FriendsGetRequestsParams @params,
-											CancellationToken token);
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о полученных или отправленных заявках на добавление в
@@ -424,7 +424,7 @@ public interface IFriendsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.getRequests
 	/// </remarks>
 	Task<VkCollection<FriendsGetRequestsResult>> GetRequestsExtendedAsync(FriendsGetRequestsParams @params,
-																		CancellationToken token);
+																		CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список профилей пользователей, которые могут быть друзьями текущего
@@ -513,7 +513,7 @@ public interface IFriendsCategoryAsync
 	/// </remarks>
 	Task<ReadOnlyCollection<User>> GetByPhonesAsync(IEnumerable<string> phones,
 													ProfileFields fields,
-													CancellationToken token);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет искать по списку друзей пользователей.
@@ -527,5 +527,5 @@ public interface IFriendsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/friends.search
 	/// </remarks>
 	Task<VkCollection<User>> SearchAsync(FriendsSearchParams @params,
-										CancellationToken token);
+										CancellationToken token = default);
 }
