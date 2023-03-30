@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
@@ -9,18 +10,26 @@ namespace VkNet.Categories;
 public partial class AuthCategory
 {
 	/// <inheritdoc />
-	public Task<bool> CheckPhoneAsync(string phone, string clientSecret, long? clientId = null, bool? authByPhone = null) =>
-		TypeHelper.TryInvokeMethodAsync(func: () =>
-			CheckPhone(phone, clientSecret, clientId, authByPhone));
+	public Task<bool> CheckPhoneAsync(string phone,
+									string clientSecret,
+									long? clientId = null,
+									bool? authByPhone = null,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(func: () => CheckPhone(phone, clientSecret, clientId, authByPhone));
 
 	/// <inheritdoc />
-	public Task<string> SignupAsync(AuthSignupParams @params) => TypeHelper.TryInvokeMethodAsync(func: () => Signup(@params: @params));
+	public Task<string> SignupAsync(AuthSignupParams @params,
+									CancellationToken token) =>
+		TypeHelper.TryInvokeMethodAsync(func: () => Signup(@params: @params));
 
 	/// <inheritdoc />
-	public Task<AuthConfirmResult> ConfirmAsync(AuthConfirmParams @params) =>
+	public Task<AuthConfirmResult> ConfirmAsync(AuthConfirmParams @params,
+												CancellationToken token) =>
 		TypeHelper.TryInvokeMethodAsync(func: () => Confirm(@params: @params));
 
 	/// <inheritdoc />
-	public Task<string> RestoreAsync(string phone, string lastName) =>
+	public Task<string> RestoreAsync(string phone,
+									string lastName,
+									CancellationToken token) =>
 		TypeHelper.TryInvokeMethodAsync(func: () => Restore(phone, lastName));
 }
