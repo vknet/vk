@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
@@ -19,51 +20,61 @@ public interface IPhotoCategoryAsync
 	/// Создает пустой альбом для фотографий.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект PhotoAlbum
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.createAlbum
 	/// </remarks>
-	Task<PhotoAlbum> CreateAlbumAsync(PhotoCreateAlbumParams @params);
+	Task<PhotoAlbum> CreateAlbumAsync(PhotoCreateAlbumParams @params,
+									CancellationToken token);
 
 	/// <summary>
 	/// Редактирует данные альбома для фотографий пользователя.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.editAlbum
 	/// </remarks>
-	Task<bool> EditAlbumAsync(PhotoEditAlbumParams @params);
+	Task<bool> EditAlbumAsync(PhotoEditAlbumParams @params,
+							CancellationToken token);
 
 	/// <summary>
 	/// Возвращает список альбомов пользователя или сообщества.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает список объектов PhotoAlbum
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getAlbums
 	/// </remarks>
-	Task<VkCollection<PhotoAlbum>> GetAlbumsAsync(PhotoGetAlbumsParams @params, bool skipAuthorization = false);
+	Task<VkCollection<PhotoAlbum>> GetAlbumsAsync(PhotoGetAlbumsParams @params,
+												bool skipAuthorization = false,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список фотографий в альбоме.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов Photo
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.get
 	/// </remarks>
-	Task<VkCollection<Photo>> GetAsync(PhotoGetParams @params, bool skipAuthorization = false);
+	Task<VkCollection<Photo>> GetAsync(PhotoGetParams @params,
+										bool skipAuthorization = false,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает количество доступных альбомов пользователя или сообщества.
@@ -79,6 +90,7 @@ public interface IPhotoCategoryAsync
 	/// целое число (Целое
 	/// число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает количество альбомов с учетом настроек
 	/// приватности.
@@ -86,7 +98,9 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getAlbumsCount
 	/// </remarks>
-	Task<int> GetAlbumsCountAsync(long? userId = null, long? groupId = null);
+	Task<int> GetAlbumsCountAsync(long? userId = null,
+								long? groupId = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о фотографиях по их идентификаторам.
@@ -126,6 +140,7 @@ public interface IPhotoCategoryAsync
 	/// значения 1 или 0 (Флаг, может принимать значения 1 или 0).
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов photo.
 	/// Если к фотографии прикреплено местоположение, также возвращаются поля lat и
@@ -147,10 +162,11 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getById
 	/// </remarks>
-	Task<ReadOnlyCollection<Photo>> GetByIdAsync(IEnumerable<string> photos
-												, bool? extended = null
-												, bool? photoSizes = null
-												, bool skipAuthorization = false);
+	Task<ReadOnlyCollection<Photo>> GetByIdAsync(IEnumerable<string> photos,
+												bool? extended = null,
+												bool? photoSizes = null,
+												bool skipAuthorization = false,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает адрес сервера для загрузки фотографий.
@@ -161,11 +177,14 @@ public interface IPhotoCategoryAsync
 	/// загрузить фотографию в
 	/// альбом сообщества). целое число (Целое число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> После успешного выполнения возвращает объект UploadServerInfo </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getUploadServer
 	/// </remarks>
-	Task<UploadServerInfo> GetUploadServerAsync(long albumId, long? groupId = null);
+	Task<UploadServerInfo> GetUploadServerAsync(long albumId,
+												long? groupId = null,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает адрес сервера для загрузки главной фотографии на страницу
@@ -180,6 +199,7 @@ public interface IPhotoCategoryAsync
 	/// текущего пользователя (Целое число, по
 	/// умолчанию идентификатор текущего пользователя).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект с единственным полем upload_url.
 	/// </returns>
@@ -187,7 +207,8 @@ public interface IPhotoCategoryAsync
 	/// Страница документации ВКонтакте
 	/// http://vk.com/dev/photos.getOwnerPhotoUploadServer
 	/// </remarks>
-	Task<UploadServerInfo> GetOwnerPhotoUploadServerAsync(long? ownerId = null);
+	Task<UploadServerInfo> GetOwnerPhotoUploadServerAsync(long? ownerId = null,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить адрес для загрузки фотографий мультидиалогов.
@@ -210,13 +231,18 @@ public interface IPhotoCategoryAsync
 	/// 200
 	/// (Положительное число, минимальное значение 200).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект с единственным полем upload_url.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getChatUploadServer
 	/// </remarks>
-	Task<UploadServerInfo> GetChatUploadServerAsync(ulong chatId, ulong? cropX = null, ulong? cropY = null, ulong? cropWidth = null);
+	Task<UploadServerInfo> GetChatUploadServerAsync(ulong chatId,
+													ulong? cropX = null,
+													ulong? cropY = null,
+													ulong? cropWidth = null,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет сохранить главную фотографию пользователя или сообщества.
@@ -225,6 +251,7 @@ public interface IPhotoCategoryAsync
 	/// Параметр, возвращаемый в результате загрузки фотографии
 	/// на сервер.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий поля photo_hash и
 	/// photo_src (при работе через VK.api метод
@@ -237,11 +264,15 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerPhoto
 	/// </remarks>
-	Task<Photo> SaveOwnerPhotoAsync(string response);
+	Task<Photo> SaveOwnerPhotoAsync(string response,
+															CancellationToken token);
 
-	/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string)" />
+	/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string, CancellationToken)" />
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Task<Photo> SaveOwnerPhotoAsync(string response, long? captchaSid, string captchaKey);
+	Task<Photo> SaveOwnerPhotoAsync(string response,
+									long? captchaSid,
+									string captchaKey,
+									CancellationToken token);
 
 	/// <summary>
 	/// Сохраняет фотографии после успешной загрузки на URI, полученный методом
@@ -260,6 +291,7 @@ public interface IPhotoCategoryAsync
 	/// на сервер
 	/// </param>
 	/// <param name="caption"> Описание загружаемой фотографии </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив, содержащий объект с загруженной
 	/// фотографией.
@@ -267,7 +299,11 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.saveWallPhoto
 	/// </remarks>
-	Task<ReadOnlyCollection<Photo>> SaveWallPhotoAsync(string response, ulong? userId, ulong? groupId = null, string caption = null);
+	Task<ReadOnlyCollection<Photo>> SaveWallPhotoAsync(string response,
+														ulong? userId,
+														ulong? groupId = null,
+														string caption = null,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает адрес сервера для загрузки фотографии на стену пользователя или
@@ -278,6 +314,7 @@ public interface IPhotoCategoryAsync
 	/// «минус»). целое число
 	/// (Целое число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект с полями upload_url, album_id,
 	/// user_id.
@@ -285,7 +322,8 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getWallUploadServer
 	/// </remarks>
-	Task<UploadServerInfo> GetWallUploadServerAsync(long? groupId = null);
+	Task<UploadServerInfo> GetWallUploadServerAsync(long? groupId = null,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает адрес сервера для загрузки фотографии в личное сообщение
@@ -295,12 +333,14 @@ public interface IPhotoCategoryAsync
 	/// Идентификатор назначения (для загрузки фотографии в
 	/// сообщениях сообществ).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> После успешного выполнения возвращает объект UploadServerInfo </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте
 	/// http://vk.com/dev/photos.getMessagesUploadServer
 	/// </remarks>
-	Task<UploadServerInfo> GetMessagesUploadServerAsync(long? groupId);
+	Task<UploadServerInfo> GetMessagesUploadServerAsync(long? groupId,
+														CancellationToken token);
 
 	/// <summary>
 	/// Сохраняет фотографию после успешной загрузки на URI, полученный методом
@@ -310,6 +350,7 @@ public interface IPhotoCategoryAsync
 	/// Параметр, возвращаемый в результате загрузки фотографии
 	/// на сервер
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив с загруженной фотографией,
 	/// возвращённый объект имеет поля id,
@@ -320,7 +361,8 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.saveMessagesPhoto
 	/// </remarks>
-	Task<ReadOnlyCollection<Photo>> SaveMessagesPhotoAsync(string response);
+	Task<ReadOnlyCollection<Photo>> SaveMessagesPhotoAsync(string response,
+															CancellationToken token);
 
 	/// <summary>
 	/// Возвращает адрес сервера для загрузки обложки сообщества.
@@ -350,16 +392,18 @@ public interface IPhotoCategoryAsync
 	/// (Положительное
 	/// число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> После успешного выполнения возвращает объект UploadServerInfo </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте
 	/// http://vk.com/dev/photos.getOwnerCoverPhotoUploadServer
 	/// </remarks>
-	Task<UploadServerInfo> GetOwnerCoverPhotoUploadServerAsync(long groupId
-																, long? cropX = null
-																, long? cropY = null
-																, long? cropX2 = 795L
-																, long? cropY2 = 200L);
+	Task<UploadServerInfo> GetOwnerCoverPhotoUploadServerAsync(long groupId,
+																long? cropX = null,
+																long? cropY = null,
+																long? cropX2 = 795L,
+																long? cropY2 = 200L,
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Сохраняет фотографию после успешной загрузки на URI, полученный методом
@@ -369,6 +413,7 @@ public interface IPhotoCategoryAsync
 	/// Параметр, возвращаемый в результате загрузки фотографии
 	/// на сервер
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив, содержащий объект с загруженной
 	/// фотографией.
@@ -376,7 +421,8 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.saveOwnerCoverPhoto
 	/// </remarks>
-	Task<GroupCover> SaveOwnerCoverPhotoAsync(string response);
+	Task<GroupCover> SaveOwnerCoverPhotoAsync(string response,
+											CancellationToken token);
 
 	/// <summary>
 	/// Позволяет пожаловаться на фотографию.
@@ -402,13 +448,17 @@ public interface IPhotoCategoryAsync
 	/// 6 — оскорбление.
 	/// положительное число (Положительное число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.report
 	/// </remarks>
-	Task<bool> ReportAsync(long ownerId, ulong photoId, ReportReason reason);
+	Task<bool> ReportAsync(long ownerId,
+							ulong photoId,
+							ReportReason reason,
+							CancellationToken token);
 
 	/// <summary>
 	/// Позволяет пожаловаться на комментарий к фотографии.
@@ -434,38 +484,47 @@ public interface IPhotoCategoryAsync
 	/// 6 — оскорбление.
 	/// положительное число (Положительное число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.reportComment
 	/// </remarks>
-	Task<bool> ReportCommentAsync(long ownerId, ulong commentId, ReportReason reason);
+	Task<bool> ReportCommentAsync(long ownerId,
+								ulong commentId,
+								ReportReason reason,
+								CancellationToken token);
 
 	/// <summary>
 	/// Осуществляет поиск изображений по местоположению или описанию.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов фотографий.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.search
 	/// </remarks>
-	Task<VkCollection<Photo>> SearchAsync(PhotoSearchParams @params, bool skipAuthorization = false);
+	Task<VkCollection<Photo>> SearchAsync(PhotoSearchParams @params,
+										bool skipAuthorization = false,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Сохраняет фотографии после успешной загрузки.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов Photo
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.save
 	/// </remarks>
-	Task<ReadOnlyCollection<Photo>> SaveAsync(PhotoSaveParams @params);
+	Task<ReadOnlyCollection<Photo>> SaveAsync(PhotoSaveParams @params,
+											CancellationToken token);
 
 	/// <summary>
 	/// Позволяет скопировать фотографию в альбом "Сохраненные фотографии".
@@ -484,25 +543,31 @@ public interface IPhotoCategoryAsync
 	/// Специальный код доступа для приватных фотографий
 	/// строка (Строка).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает идентификатор созданной фотографии.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.copy
 	/// </remarks>
-	Task<long> CopyAsync(long ownerId, ulong photoId, string accessKey = null);
+	Task<long> CopyAsync(long ownerId,
+						ulong photoId,
+						string accessKey = null,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет описание у выбранной фотографии.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.edit
 	/// </remarks>
-	Task<bool> EditAsync(PhotoEditParams @params);
+	Task<bool> EditAsync(PhotoEditParams @params,
+						CancellationToken token);
 
 	/// <summary>
 	/// Переносит фотографию из одного альбома в другой.
@@ -526,13 +591,17 @@ public interface IPhotoCategoryAsync
 	/// параметр (Целое
 	/// число, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.move
 	/// </remarks>
-	Task<bool> MoveAsync(long targetAlbumId, ulong photoId, long? ownerId = null);
+	Task<bool> MoveAsync(long targetAlbumId,
+						ulong photoId,
+						long? ownerId = null,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Делает фотографию обложкой альбома.
@@ -552,13 +621,17 @@ public interface IPhotoCategoryAsync
 	/// обязательный параметр (Целое число, обязательный параметр).
 	/// </param>
 	/// <param name="albumId"> Идентификатор альбома. целое число (Целое число). </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.makeCover
 	/// </remarks>
-	Task<bool> MakeCoverAsync(ulong photoId, long? ownerId = null, long? albumId = null);
+	Task<bool> MakeCoverAsync(ulong photoId,
+							long? ownerId = null,
+							long? albumId = null,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Меняет порядок альбома в списке альбомов пользователя.
@@ -584,13 +657,18 @@ public interface IPhotoCategoryAsync
 	/// Идентификатор альбома, после которого следует поместить альбом. целое число
 	/// (Целое число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.reorderAlbums
 	/// </remarks>
-	Task<bool> ReorderAlbumsAsync(long albumId, long? ownerId = null, long? before = null, long? after = null);
+	Task<bool> ReorderAlbumsAsync(long albumId,
+								long? ownerId = null,
+								long? before = null,
+								long? after = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Меняет порядок фотографии в списке фотографий альбома пользователя.
@@ -619,19 +697,25 @@ public interface IPhotoCategoryAsync
 	/// параметр не указан,
 	/// фотография будет помещена первой. целое число (Целое число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.reorderPhotos
 	/// </remarks>
-	Task<bool> ReorderPhotosAsync(ulong photoId, long? ownerId = null, long? before = null, long? after = null);
+	Task<bool> ReorderPhotosAsync(ulong photoId,
+								long? ownerId = null,
+								long? before = null,
+								long? after = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает все фотографии пользователя или сообщества в антихронологическом
 	/// порядке.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов Photo
 	/// <remarks>
@@ -647,19 +731,22 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getAll
 	/// </remarks>
-	Task<VkCollection<Photo>> GetAllAsync(PhotoGetAllParams @params);
+	Task<VkCollection<Photo>> GetAllAsync(PhotoGetAllParams @params,
+										CancellationToken token);
 
 	/// <summary>
 	/// Возвращает список фотографий, на которых отмечен пользователь.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов photo.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getUserPhotos
 	/// </remarks>
-	Task<VkCollection<Photo>> GetUserPhotosAsync(PhotoGetUserPhotosParams @params);
+	Task<VkCollection<Photo>> GetUserPhotosAsync(PhotoGetUserPhotosParams @params,
+												CancellationToken token);
 
 	/// <summary>
 	/// Удаляет указанный альбом для фотографий у текущего пользователя.
@@ -674,13 +761,16 @@ public interface IPhotoCategoryAsync
 	/// число (Целое
 	/// число, положительное число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.deleteAlbum
 	/// </remarks>
-	Task<bool> DeleteAlbumAsync(long albumId, long? groupId = null);
+	Task<bool> DeleteAlbumAsync(long albumId,
+								long? groupId = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаление фотографии на сайте.
@@ -699,13 +789,16 @@ public interface IPhotoCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.delete
 	/// </remarks>
-	Task<bool> DeleteAsync(ulong photoId, long? ownerId = null);
+	Task<bool> DeleteAsync(ulong photoId,
+							long? ownerId = null,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает удаленную фотографию.
@@ -724,13 +817,16 @@ public interface IPhotoCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.restore
 	/// </remarks>
-	Task<bool> RestoreAsync(ulong photoId, long? ownerId = null);
+	Task<bool> RestoreAsync(ulong photoId,
+							long? ownerId = null,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Подтверждает отметку на фотографии.
@@ -753,25 +849,31 @@ public interface IPhotoCategoryAsync
 	/// число, обязательный
 	/// параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.confirmTag
 	/// </remarks>
-	Task<bool> ConfirmTagAsync(ulong photoId, ulong tagId, long? ownerId = null);
+	Task<bool> ConfirmTagAsync(ulong photoId,
+								ulong tagId,
+								long? ownerId = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список комментариев к фотографии.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов Comment
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getComments
 	/// </remarks>
-	Task<VkCollection<Comment>> GetCommentsAsync(PhotoGetCommentsParams @params);
+	Task<VkCollection<Comment>> GetCommentsAsync(PhotoGetCommentsParams @params,
+												CancellationToken token);
 
 	/// <summary>
 	/// Возвращает отсортированный в антихронологическом порядке список всех
@@ -779,25 +881,29 @@ public interface IPhotoCategoryAsync
 	/// альбомам пользователя.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов Comment
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getAllComments
 	/// </remarks>
-	Task<VkCollection<Comment>> GetAllCommentsAsync(PhotoGetAllCommentsParams @params);
+	Task<VkCollection<Comment>> GetAllCommentsAsync(PhotoGetAllCommentsParams @params,
+													CancellationToken token);
 
 	/// <summary>
 	/// Создает новый комментарий к фотографии.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданного комментария.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.createComment
 	/// </remarks>
-	Task<long> CreateCommentAsync(PhotoCreateCommentParams @params);
+	Task<long> CreateCommentAsync(PhotoCreateCommentParams @params,
+								CancellationToken token);
 
 	/// <summary>
 	/// Удаляет комментарий к фотографии.
@@ -816,6 +922,7 @@ public interface IPhotoCategoryAsync
 	/// обязательный
 	/// параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c> (0, если комментарий не
 	/// найден).
@@ -823,7 +930,9 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.deleteComment
 	/// </remarks>
-	Task<bool> DeleteCommentAsync(ulong commentId, long? ownerId = null);
+	Task<bool> DeleteCommentAsync(ulong commentId,
+								long? ownerId = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает удаленный комментарий к фотографии.
@@ -842,6 +951,7 @@ public interface IPhotoCategoryAsync
 	/// число,
 	/// обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c> (0, если комментарий с
 	/// таким идентификатором не является
@@ -850,7 +960,9 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.restoreComment
 	/// </remarks>
-	Task<long> RestoreCommentAsync(ulong commentId, long? ownerId = null);
+	Task<long> RestoreCommentAsync(ulong commentId,
+									long? ownerId = null,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет текст комментария к фотографии.
@@ -886,11 +998,16 @@ public interface IPhotoCategoryAsync
 	/// Параметр является обязательным, если не задан параметр message. список строк,
 	/// разделенных через запятую
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> После успешного выполнения возвращает true. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.editComment
 	/// </remarks>
-	Task<bool> EditCommentAsync(ulong commentId, string message, long? ownerId = null, IEnumerable<MediaAttachment> attachments = null);
+	Task<bool> EditCommentAsync(ulong commentId,
+								string message,
+								long? ownerId = null,
+								IEnumerable<MediaAttachment> attachments = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список отметок на фотографии.
@@ -914,6 +1031,7 @@ public interface IPhotoCategoryAsync
 	/// фотографии. строка
 	/// (Строка).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов tag, каждый из которых
 	/// содержит следующие поля:
@@ -930,19 +1048,24 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getTags
 	/// </remarks>
-	Task<ReadOnlyCollection<Tag>> GetTagsAsync(ulong photoId, long? ownerId = null, string accessKey = null);
+	Task<ReadOnlyCollection<Tag>> GetTagsAsync(ulong photoId,
+												long? ownerId = null,
+												string accessKey = null,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет отметку на фотографию.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданной отметки (tag id).
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.putTag
 	/// </remarks>
-	Task<ulong> PutTagAsync(PhotoPutTagParams @params);
+	Task<ulong> PutTagAsync(PhotoPutTagParams @params,
+							CancellationToken token);
 
 	/// <summary>
 	/// Удаляет отметку с фотографии.
@@ -965,13 +1088,17 @@ public interface IPhotoCategoryAsync
 	/// Идентификатор отметки. целое число, обязательный параметр (Целое число,
 	/// обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.removeTag
 	/// </remarks>
-	Task<bool> RemoveTagAsync(ulong tagId, ulong photoId, long? ownerId = null);
+	Task<bool> RemoveTagAsync(ulong tagId,
+							ulong photoId,
+							long? ownerId = null,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список фотографий, на которых есть непросмотренные отметки.
@@ -987,13 +1114,16 @@ public interface IPhotoCategoryAsync
 	/// по умолчанию 20 (Положительное число, максимальное значение 100, по умолчанию
 	/// 20).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов Photo
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getNewTags
 	/// </remarks>
-	Task<VkCollection<Photo>> GetNewTagsAsync(uint? offset = null, uint? count = null);
+	Task<VkCollection<Photo>> GetNewTagsAsync(uint? offset = null,
+											uint? count = null,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает адрес сервера для загрузки фотографии товаров сообщества.
@@ -1022,17 +1152,19 @@ public interface IPhotoCategoryAsync
 	/// 200
 	/// (Положительное число, минимальное значение 200).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект с единственным полем upload_url.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getMarketUploadServer
 	/// </remarks>
-	Task<UploadServerInfo> GetMarketUploadServerAsync(long groupId
-													, bool? mainPhoto = null
-													, long? cropX = null
-													, long? cropY = null
-													, long? cropWidth = null);
+	Task<UploadServerInfo> GetMarketUploadServerAsync(long groupId,
+													bool? mainPhoto = null,
+													long? cropX = null,
+													long? cropY = null,
+													long? cropWidth = null,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает адрес сервера для загрузки фотографии подборки товаров в сообществе.
@@ -1042,6 +1174,7 @@ public interface IPhotoCategoryAsync
 	/// товаров. целое
 	/// число (Целое число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// .
 	/// </returns>
@@ -1049,7 +1182,8 @@ public interface IPhotoCategoryAsync
 	/// Страница документации ВКонтакте
 	/// http://vk.com/dev/photos.getMarketAlbumUploadServer
 	/// </remarks>
-	Task<UploadServerInfo> GetMarketAlbumUploadServerAsync(long groupId);
+	Task<UploadServerInfo> GetMarketAlbumUploadServerAsync(long groupId,
+															CancellationToken token);
 
 	/// <summary>
 	/// Сохраняет фотографии после успешной загрузки на URI, полученный методом
@@ -1065,6 +1199,7 @@ public interface IPhotoCategoryAsync
 	/// обязательный параметр
 	/// (строка, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив, содержащий объект с загруженной
 	/// фотографией.
@@ -1072,7 +1207,9 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.saveMarketPhoto
 	/// </remarks>
-	Task<ReadOnlyCollection<Photo>> SaveMarketPhotoAsync(long groupId, string response);
+	Task<ReadOnlyCollection<Photo>> SaveMarketPhotoAsync(long groupId,
+														string response,
+														CancellationToken token);
 
 	/// <summary>
 	/// Сохраняет фотографии после успешной загрузки на URI, полученный методом
@@ -1088,6 +1225,7 @@ public interface IPhotoCategoryAsync
 	/// обязательный параметр
 	/// (строка, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив, содержащий объект с загруженной
 	/// фотографией.
@@ -1095,5 +1233,7 @@ public interface IPhotoCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.saveMarketAlbumPhoto
 	/// </remarks>
-	Task<ReadOnlyCollection<Photo>> SaveMarketAlbumPhotoAsync(long groupId, string response);
+	Task<ReadOnlyCollection<Photo>> SaveMarketAlbumPhotoAsync(long groupId,
+															string response,
+															CancellationToken token);
 }
