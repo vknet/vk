@@ -192,7 +192,8 @@ public interface IAppsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/apps.getScore
 	/// </remarks>
-	Task<long> GetScoreAsync(long userId, CancellationToken token);
+	Task<long> GetScoreAsync(long userId,
+							CancellationToken token);
 
 	/// <summary>
 	/// Возвращает данные о политике конфиденциальности запрошенного приложения
