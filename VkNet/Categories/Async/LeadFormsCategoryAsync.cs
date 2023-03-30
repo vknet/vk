@@ -45,6 +45,7 @@ public partial class LeadFormsCategory
 	public Task<Uri> GetUploadURLAsync(CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(GetUploadURL, token);
 
+
 	/// <inheritdoc/>
 	public Task<ReadOnlyCollection<LeadFormCreateResult>> ListAsync(long groupId,
 																	CancellationToken token = default) =>
