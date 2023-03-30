@@ -3,8 +3,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Exception;
-using VkNet.Model;
 
 namespace VkNet.Utils.JsonConverter;
 

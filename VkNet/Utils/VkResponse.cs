@@ -3,7 +3,6 @@ using System.Net;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
 using VkNet.Enums;
-using VkNet.Model;
 
 namespace VkNet.Utils;
 

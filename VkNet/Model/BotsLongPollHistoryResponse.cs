@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Exception;
-using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;

@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 using VkNet.Model.GroupUpdate;
-using VkNet.Utils;
 
 namespace VkNet.Model.Attachments;
 
