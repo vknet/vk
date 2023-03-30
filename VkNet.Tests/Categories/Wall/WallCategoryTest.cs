@@ -612,10 +612,10 @@ public class WallCategoryTest : CategoryBaseTest
 
 		ReadCategoryJsonPath(nameof(GetComment_ReturnCorrectResults));
 
-		var wallCommentresult = Api.Wall.GetComment(66559, 73674, true);
-		var comment = wallCommentresult.Comment.FirstOrDefault();
-		var profiles = wallCommentresult.Profiles;
-		var groups = wallCommentresult.Groups;
+		var wallCommentResult = Api.Wall.GetComment(66559, 73674, true);
+		var comment = wallCommentResult.Comment.FirstOrDefault();
+		var profiles = wallCommentResult.Profiles;
+		var groups = wallCommentResult.Groups;
 
 		comment.Date.Should()
 			.Be(new DateTime(1970,

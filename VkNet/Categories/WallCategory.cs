@@ -122,7 +122,7 @@ public partial class WallCategory : IWallCategory
 
 		if (!extended)
 		{
-			throw new VkApiException("Dont use this parameter or extenended must be true");
+			throw new VkApiException("Dont use this parameter or extended must be true");
 		}
 
 		var parameters = new VkParameters
