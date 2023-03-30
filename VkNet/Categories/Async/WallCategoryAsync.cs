@@ -197,5 +197,5 @@ public partial class WallCategory
 													bool skipAuthorization = false,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetComment(ownerId, commentId, extended, fields, skipAuthorization));
+			GetComment(ownerId, commentId, extended, fields, skipAuthorization), token);
 }

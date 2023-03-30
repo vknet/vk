@@ -218,5 +218,5 @@ public partial class VideoCategory
 	public Task<bool> HideCatalogSectionAsync(long sectionId,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			HideCatalogSection(sectionId));
+			HideCatalogSection(sectionId), token);
 }

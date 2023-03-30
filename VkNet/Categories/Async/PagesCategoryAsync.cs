@@ -73,5 +73,5 @@ public partial class PagesCategory
 	public Task<bool> ClearCacheAsync(Uri url,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			ClearCache(url));
+			ClearCache(url), token);
 }

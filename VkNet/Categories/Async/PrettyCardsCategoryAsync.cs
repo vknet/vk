@@ -43,5 +43,5 @@ public partial class PrettyCardsCategory
 
 	/// <inheritdoc />
 	public Task<Uri> GetUploadUrlAsync(CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(GetUploadUrl);
+		TypeHelper.TryInvokeMethodAsync(GetUploadUrl, token);
 }

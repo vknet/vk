@@ -56,5 +56,5 @@ public partial class LikesCategory
 									long? ownerId = null,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			IsLiked(out var _, type, itemId, userId, ownerId));
+			IsLiked(out var _, type, itemId, userId, ownerId), token);
 }

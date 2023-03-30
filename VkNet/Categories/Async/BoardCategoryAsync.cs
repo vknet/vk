@@ -87,5 +87,5 @@ public partial class BoardCategory
 	public Task<bool> RestoreCommentAsync(BoardCommentParams @params,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			RestoreComment(@params));
+			RestoreComment(@params), token);
 }

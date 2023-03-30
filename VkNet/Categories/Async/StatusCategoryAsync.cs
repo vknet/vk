@@ -20,5 +20,5 @@ public partial class StatusCategory
 								long? groupId = null,
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Set(text, groupId));
+			Set(text, groupId), token);
 }

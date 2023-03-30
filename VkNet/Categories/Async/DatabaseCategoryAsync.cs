@@ -108,5 +108,5 @@ public partial class DatabaseCategory
 																bool extended = false,
 																CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetMetroStations(cityId, offset, count, extended));
+			GetMetroStations(cityId, offset, count, extended), token);
 }

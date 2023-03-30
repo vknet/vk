@@ -38,5 +38,5 @@ public partial class StreamingCategory
 	public Task<string> GetStemAsync(string word,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetStem(word));
+			GetStem(word), token);
 }

@@ -38,5 +38,5 @@ public partial class ExecuteCategory
 											VkParameters vkParameters,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			StoredProcedure<T>(procedureName, vkParameters));
+			StoredProcedure<T>(procedureName, vkParameters), token);
 }

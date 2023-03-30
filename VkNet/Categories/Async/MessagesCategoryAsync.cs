@@ -297,7 +297,7 @@ public partial class MessagesCategory
 	public Task<MessageGetHistoryObject> GetHistoryAsync(MessagesGetHistoryParams @params,
 														CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetHistory(@params));
+			GetHistory(@params), token);
 
 	/// <inheritdoc/>
 	public Task<bool> RemoveChatUserAsync(ulong chatId,
@@ -423,5 +423,5 @@ public partial class MessagesCategory
 										ulong memberId,
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			SetMemberRole(role, peerId, memberId));
+			SetMemberRole(role, peerId, memberId), token);
 }

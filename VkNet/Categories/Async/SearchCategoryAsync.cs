@@ -13,5 +13,5 @@ public partial class SearchCategory
 	public Task<VkCollection<SearchHintsItem>> GetHintsAsync(SearchGetHintsParams @params,
 															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			GetHints(@params));
+			GetHints(@params), token);
 }
