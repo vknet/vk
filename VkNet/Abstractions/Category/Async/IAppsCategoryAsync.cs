@@ -205,7 +205,8 @@ public interface IAppsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/apps.getMiniAppPolicies
 	/// </remarks>
-	Task<MiniAppPolicies> GetMiniAppPoliciesAsync(ulong appId, CancellationToken token);
+	Task<MiniAppPolicies> GetMiniAppPoliciesAsync(ulong appId,
+												CancellationToken token);
 
 	/// <summary>
 	/// Возвращает данные о правах пользователя

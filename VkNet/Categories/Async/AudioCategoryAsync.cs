@@ -20,7 +20,8 @@ public partial class AudioCategory
 								long? groupId = null,
 								long? albumId = null,
 								CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => Add(audioId, ownerId, accessKey, groupId, albumId));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Add(audioId, ownerId, accessKey, groupId, albumId));
 
 	/// <inheritdoc />
 	public Task<AudioPlaylist> CreatePlaylistAsync(long ownerId,
@@ -28,24 +29,28 @@ public partial class AudioCategory
 													string description = null,
 													IEnumerable<string> audioIds = null,
 													CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => CreatePlaylist(ownerId, title, description, audioIds));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			CreatePlaylist(ownerId, title, description, audioIds));
 
 	/// <inheritdoc />
 	public Task<bool> DeleteAsync(long audioId,
 								long ownerId,
 								CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(() => Delete(audioId, ownerId));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Delete(audioId, ownerId));
 
 	/// <inheritdoc />
 	public Task<bool> DeletePlaylistAsync(long ownerId,
 										long playlistId,
 										CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(() => DeletePlaylist(ownerId, playlistId));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			DeletePlaylist(ownerId, playlistId));
 
 	/// <inheritdoc />
 	public Task<long> EditAsync(AudioEditParams @params,
 								CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(() => Edit(@params));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Edit(@params));
 
 	/// <inheritdoc />
 	public Task<bool> EditPlaylistAsync(long ownerId,
@@ -54,53 +59,62 @@ public partial class AudioCategory
 										string description = null,
 										IEnumerable<string> audioIds = null,
 										CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => EditPlaylist(ownerId, playlistId, title, description, audioIds));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			EditPlaylist(ownerId, playlistId, title, description, audioIds));
 
 	/// <inheritdoc />
 	public Task<VkCollection<Audio>> GetAsync(AudioGetParams @params,
 											CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(() => Get(@params));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Get(@params));
 
 	/// <inheritdoc />
 	public Task<VkCollection<AudioPlaylist>> GetPlaylistsAsync(long ownerId,
 																uint? count = null,
 																uint? offset = null,
 																CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetPlaylists(ownerId, count, offset));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetPlaylists(ownerId, count, offset));
 
 	/// <inheritdoc />
 	public Task<AudioPlaylist> GetPlaylistByIdAsync(long ownerId,
 													long playlistId,
 													CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetPlaylistById(ownerId, playlistId));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetPlaylistById(ownerId, playlistId));
 
 	/// <inheritdoc />
 	public Task<IEnumerable<object>> GetBroadcastListAsync(AudioBroadcastFilter filter = null,
 															bool? active = null,
 															CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetBroadcastList(filter, active));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetBroadcastList(filter, active));
 
 	/// <inheritdoc />
 	public Task<IEnumerable<Audio>> GetByIdAsync(IEnumerable<string> audios,
 												CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetById(audios));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetById(audios));
 
 	/// <inheritdoc />
 	public Task<AudioGetCatalogResult> GetCatalogAsync(uint? count,
 														bool? extended,
 														UsersFields fields = null,
 														CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetCatalog(count, extended, fields));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetCatalog(count, extended, fields));
 
 	/// <inheritdoc />
 	public Task<long> GetCountAsync(long ownerId,
 									CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetCount(ownerId));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetCount(ownerId));
 
 	/// <inheritdoc />
 	public Task<Lyrics> GetLyricsAsync(long lyricsId,
 										CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetLyrics(lyricsId));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetLyrics(lyricsId));
 
 	/// <inheritdoc />
 	public Task<IEnumerable<Audio>> GetPopularAsync(bool onlyEng = false,
@@ -108,7 +122,8 @@ public partial class AudioCategory
 													uint? count = null,
 													uint? offset = null,
 													CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetPopular(onlyEng, genre, count, offset));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetPopular(onlyEng, genre, count, offset));
 
 	/// <inheritdoc />
 	public Task<VkCollection<Audio>> GetRecommendationsAsync(string targetAudio = null,
@@ -117,7 +132,8 @@ public partial class AudioCategory
 															uint? offset = null,
 															bool? shuffle = null,
 															CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetRecommendations(targetAudio, userId, count, offset, shuffle));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetRecommendations(targetAudio, userId, count, offset, shuffle));
 
 	/// <inheritdoc />
 	public Task<UploadServer> GetUploadServerAsync(CancellationToken token) =>
@@ -128,7 +144,8 @@ public partial class AudioCategory
 													long playlistId,
 													IEnumerable<string> audioIds,
 													CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(() => AddToPlaylist(ownerId, playlistId, audioIds));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			AddToPlaylist(ownerId, playlistId, audioIds));
 
 	/// <inheritdoc />
 	public Task<bool> ReorderAsync(long audioId,
@@ -136,29 +153,34 @@ public partial class AudioCategory
 									long? before,
 									long? after,
 									CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(() => Reorder(audioId, ownerId, before, after));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Reorder(audioId, ownerId, before, after));
 
 	/// <inheritdoc />
 	public Task<Audio> RestoreAsync(long audioId,
 									long? ownerId = null,
 									CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => Restore(audioId, ownerId));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Restore(audioId, ownerId));
 
 	/// <inheritdoc />
 	public Task<Audio> SaveAsync(string response,
 								string artist = null,
 								string title = null,
 								CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => Save(response, artist, title));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Save(response, artist, title));
 
 	/// <inheritdoc />
 	public Task<VkCollection<Audio>> SearchAsync(AudioSearchParams @params,
 												CancellationToken token) =>
-		TypeHelper.TryInvokeMethodAsync(() => Search(@params));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Search(@params));
 
 	/// <inheritdoc />
 	public Task<IEnumerable<long>> SetBroadcastAsync(string audio = null,
 													IEnumerable<long> targetIds = null,
 													CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => SetBroadcast(audio, targetIds));
+		TypeHelper.TryInvokeMethodAsync(() =>
+			SetBroadcast(audio, targetIds));
 }
