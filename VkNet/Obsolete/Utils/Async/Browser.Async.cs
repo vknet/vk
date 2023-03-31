@@ -154,7 +154,6 @@ public partial class Browser
 		};
 	}
 
-
 	private async Task<VkAuthorization2> ValidateInternalAsync(string validateUrl, string phoneNumber, CancellationToken token)
 	{
 		var validateUrlResult = await _restClient.GetAsync(new(validateUrl), Enumerable.Empty<KeyValuePair<string, string>>(),
