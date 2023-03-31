@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,7 +16,8 @@ namespace VkNet.Utils;
 
 /// <inheritdoc />
 [UsedImplicitly]
-public class RestClient : IRestClient
+[Serializable]
+public sealed class RestClient : IRestClient
 {
 	private readonly ILogger<RestClient> _logger;
 
@@ -25,6 +26,15 @@ public class RestClient : IRestClient
 	{
 		HttpClient = httpClient;
 		_logger = logger;
+	}
+
+	/// <summary>
+	/// </summary>
+	/// <param name="serializationInfo"></param>
+	/// <param name="streamingContext"></param>
+	private RestClient(SerializationInfo serializationInfo, StreamingContext streamingContext) : base()
+	{
+
 	}
 
 	/// <summary>
