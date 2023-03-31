@@ -1192,7 +1192,6 @@ public interface IMessagesCategoryAsync
 	/// Входные параметры запроса.
 	/// </param>
 	/// <param name="token">Токен отмены запроса</param>
-	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в поле count (integer) и массив идентификаторов пользователей в поле items ([integer]).
 	/// Если указан параметр extended:

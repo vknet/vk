@@ -44,7 +44,7 @@ public partial interface IFaveCategory
 	[Obsolete(ObsoleteText.Obsolete)]
 	bool RemoveGroup(long groupId);
 
-	/// <inheritdoc cref="IFaveCategoryAsync.AddLinkAsync(Uri,string)" />
+	/// <inheritdoc cref="IFaveCategoryAsync.AddLinkAsync(Uri,string, System.Threading.CancellationToken)" />
 	[Obsolete(ObsoleteText.Obsolete + "Используйте вместо него bool AddLink(Uri link)")]
 	bool AddLink(Uri link, string text);
 

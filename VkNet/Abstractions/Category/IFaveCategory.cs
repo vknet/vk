@@ -13,7 +13,7 @@ public partial interface IFaveCategory : IFaveCategoryAsync
 	/// <inheritdoc cref = "IFaveCategoryAsync.AddArticleAsync"/>
 	bool AddArticle(Uri url, string @ref = null, string trackCode = null, string source = null);
 
-	/// <inheritdoc cref = "IFaveCategoryAsync.AddLinkAsync(Uri)"/>
+	/// <inheritdoc cref = "IFaveCategoryAsync.AddLinkAsync(Uri, System.Threading.CancellationToken)"/>
 	bool AddLink(Uri link);
 
 	/// <inheritdoc cref = "IFaveCategoryAsync.AddPageAsync"/>
