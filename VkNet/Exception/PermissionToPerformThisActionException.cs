@@ -19,4 +19,10 @@ public sealed class PermissionToPerformThisActionException : VkApiMethodInvokeEx
 	public PermissionToPerformThisActionException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private PermissionToPerformThisActionException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

@@ -17,4 +17,10 @@ public sealed class PublicServerErrorException : VkApiMethodInvokeException
 	public PublicServerErrorException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private PublicServerErrorException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

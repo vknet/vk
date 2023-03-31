@@ -6,11 +6,17 @@ namespace VkNet.Exception;
 /// Информация утрачена, нужно запросить новые key и ts методом groups.getLongPollServer.
 /// </summary>
 [Serializable]
-public class LongPollInfoLostException : LongPollException
+public sealed class LongPollInfoLostException : LongPollException
 {
 	/// <inheritdoc />
 	public LongPollInfoLostException() : base(InfoLostException,
 		"Информация утрачена, нужно запросить новые key и ts")
 	{
+	}
+
+	/// <inheritdoc />
+	private LongPollInfoLostException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base()
+	{
+
 	}
 }

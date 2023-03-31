@@ -16,4 +16,10 @@ public sealed class PostLinksDeniedException : VkApiMethodInvokeException
 	public PostLinksDeniedException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private PostLinksDeniedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

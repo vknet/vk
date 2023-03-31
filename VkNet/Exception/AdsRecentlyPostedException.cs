@@ -17,4 +17,10 @@ public sealed class AdsRecentlyPostedException : VkApiMethodInvokeException
 	public AdsRecentlyPostedException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private AdsRecentlyPostedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

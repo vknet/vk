@@ -28,6 +28,14 @@ public class MultivaluedFilter<TFilter> : IEqualityComparer<MultivaluedFilter<TF
 	private List<string> Selected { get; set; } = new();
 
 	/// <inheritdoc />
+	public int GetHashCode(MultivaluedFilter<TFilter> obj) => Selected != null
+		? Selected.GetHashCode()
+		: 0;
+
+	/// <inheritdoc />
+	public override int GetHashCode() => GetHashCode(obj: this);
+
+	/// <inheritdoc />
 	public bool Equals(MultivaluedFilter<TFilter> x, MultivaluedFilter<TFilter> y)
 	{
 		if (x is null)
@@ -49,12 +57,10 @@ public class MultivaluedFilter<TFilter> : IEqualityComparer<MultivaluedFilter<TF
 	}
 
 	/// <inheritdoc />
-	public int GetHashCode(MultivaluedFilter<TFilter> obj) => Selected != null
-		? Selected.GetHashCode()
-		: 0;
+	public bool Equals(MultivaluedFilter<TFilter> other) => Equals(this, other);
 
 	/// <inheritdoc />
-	public bool Equals(MultivaluedFilter<TFilter> other) => Equals(this, other);
+	public override bool Equals(object obj) => obj?.GetType() == GetType() && Equals(this, (MultivaluedFilter<TFilter>) obj);
 
 	/// <summary>
 	/// Регистрирует возможное значение.
@@ -125,10 +131,4 @@ public class MultivaluedFilter<TFilter> : IEqualityComparer<MultivaluedFilter<TF
 			.OrderBy(keySelector: x => x)
 			.ToList()
 	};
-
-	/// <inheritdoc />
-	public override bool Equals(object obj) => obj?.GetType() == GetType() && Equals(this, (MultivaluedFilter<TFilter>) obj);
-
-	/// <inheritdoc />
-	public override int GetHashCode() => GetHashCode(obj: this);
 }

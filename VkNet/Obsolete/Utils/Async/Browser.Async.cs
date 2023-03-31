@@ -28,21 +28,6 @@ public partial class Browser
 			.ConfigureAwait(false);
 	}
 
-	/// <inheritdoc />
-	public async Task<AuthorizationResult> ValidateAsync(string validateUrl, CancellationToken token = default)
-	{
-		var result = await OldValidateAsync(validateUrl, _authParams.Phone, token)
-			.ConfigureAwait(false);
-
-		return new()
-		{
-			AccessToken = result.AccessToken,
-			ExpiresIn = result.ExpiresIn,
-			UserId = result.ExpiresIn,
-			State = result.State
-		};
-	}
-
 	/// <summary>
 	/// Асинхронное получение json по url-адресу
 	/// </summary>
@@ -153,6 +138,22 @@ public partial class Browser
 
 		return ValidateInternalAsync(validateUrl, phoneNumber, token);
 	}
+
+	/// <inheritdoc />
+	public async Task<AuthorizationResult> ValidateAsync(string validateUrl, CancellationToken token = default)
+	{
+		var result = await OldValidateAsync(validateUrl, _authParams.Phone, token)
+			.ConfigureAwait(false);
+
+		return new()
+		{
+			AccessToken = result.AccessToken,
+			ExpiresIn = result.ExpiresIn,
+			UserId = result.ExpiresIn,
+			State = result.State
+		};
+	}
+
 
 	private async Task<VkAuthorization2> ValidateInternalAsync(string validateUrl, string phoneNumber, CancellationToken token)
 	{

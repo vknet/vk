@@ -16,4 +16,10 @@ public sealed class MessageIsTooLongException : VkApiMethodInvokeException
 	public MessageIsTooLongException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private MessageIsTooLongException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

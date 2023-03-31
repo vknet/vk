@@ -18,4 +18,10 @@ public sealed class OffAppOrLoginException : VkApiMethodInvokeException
 	public OffAppOrLoginException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private OffAppOrLoginException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

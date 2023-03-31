@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -18,5 +19,11 @@ public sealed class GroupAccessDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	public GroupAccessDeniedException(VkError response) : base(response)
 	{
+	}
+
+	/// <inheritdoc />
+	private GroupAccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
+	{
+
 	}
 }

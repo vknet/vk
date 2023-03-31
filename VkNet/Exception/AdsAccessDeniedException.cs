@@ -17,4 +17,10 @@ public sealed class AdsAccessDeniedException : VkApiMethodInvokeException
 	public AdsAccessDeniedException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private AdsAccessDeniedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

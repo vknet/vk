@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -12,10 +13,15 @@ namespace VkNet.Exception;
 /// </remarks>
 [Serializable]
 [VkError(VkErrorCode.YouAreNotAdminOfThisChat)]
-public class YouAreNotAdminOfThisChatException : VkApiMethodInvokeException
+public sealed class YouAreNotAdminOfThisChatException : VkApiMethodInvokeException
 {
 	/// <inheritdoc />
 	public YouAreNotAdminOfThisChatException(VkError error) : base(error)
 	{
+	}
+
+	private YouAreNotAdminOfThisChatException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
+	{
+
 	}
 }

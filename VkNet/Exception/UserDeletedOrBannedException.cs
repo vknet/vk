@@ -17,4 +17,10 @@ public sealed class UserDeletedOrBannedException : VkApiMethodInvokeException
 	public UserDeletedOrBannedException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private UserDeletedOrBannedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

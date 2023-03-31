@@ -17,4 +17,10 @@ public sealed class UserAuthorizationFailException : VkApiMethodInvokeException
 	public UserAuthorizationFailException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private UserAuthorizationFailException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

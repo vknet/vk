@@ -18,4 +18,10 @@ public sealed class UserNotFoundInChatException : VkApiMethodInvokeException
 	public UserNotFoundInChatException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private UserNotFoundInChatException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

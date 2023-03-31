@@ -17,4 +17,10 @@ public sealed class ExecuteException : AggregateException
 
 	/// <inheritdoc />
 	public ExecuteException(IEnumerable<System.Exception> innerExceptions, JRaw response) : base(innerExceptions) => Response = response;
+
+	/// <inheritdoc />
+	private ExecuteException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base()
+	{
+
+	}
 }

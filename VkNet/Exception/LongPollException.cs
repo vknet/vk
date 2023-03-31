@@ -6,7 +6,7 @@ namespace VkNet.Exception;
 /// Ошибка при получении истории обновлений
 /// </summary>
 [Serializable]
-public class LongPollException : System.Exception
+public sealed class LongPollException : System.Exception
 {
 	/// <summary>
 	/// История событий устарела или была частично утеряна, приложение может получать события далее, используя новое значение ts из ответа.
@@ -35,4 +35,10 @@ public class LongPollException : System.Exception
 
 	/// <inheritdoc />
 	public LongPollException(int code, string message) : base(message) => Code = code;
+
+	/// <inheritdoc />
+	private LongPollException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base()
+	{
+
+	}
 }

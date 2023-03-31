@@ -19,4 +19,10 @@ public sealed class ParameterMissingOrInvalidException : VkApiMethodInvokeExcept
 	public ParameterMissingOrInvalidException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private ParameterMissingOrInvalidException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

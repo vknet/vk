@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -16,6 +18,12 @@ public class VkApiException : System.Exception
 	/// </summary>
 	public VkApiException()
 	{
+	}
+
+	/// <inheritdoc />
+	protected VkApiException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base()
+	{
+
 	}
 
 	/// <summary>
@@ -48,6 +56,13 @@ public class VkApiException : System.Exception
 	/// <param name="innerException"> Внутреннее исключение. </param>
 	public VkApiException(string message, System.Exception innerException) : base(message, innerException)
 	{
+	}
+
+	/// <inheritdoc />
+	[UsedImplicitly]
+	public override void GetObjectData(SerializationInfo info, StreamingContext context)
+	{
+		base.GetObjectData(info, context);
 	}
 
 	/// <summary>

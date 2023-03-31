@@ -16,4 +16,10 @@ public sealed class VideoAlreadyAddedException : VkApiMethodInvokeException
 	public VideoAlreadyAddedException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private VideoAlreadyAddedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

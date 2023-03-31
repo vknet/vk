@@ -22,4 +22,10 @@ public sealed class NeedHttpsException : VkApiMethodInvokeException
 	public NeedHttpsException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private NeedHttpsException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

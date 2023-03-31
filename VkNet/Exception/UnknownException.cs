@@ -17,4 +17,10 @@ public sealed class UnknownException : VkApiMethodInvokeException
 	public UnknownException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private UnknownException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

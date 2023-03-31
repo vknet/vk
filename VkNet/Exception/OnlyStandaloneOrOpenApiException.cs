@@ -17,4 +17,10 @@ public sealed class OnlyStandaloneOrOpenApiException : VkApiMethodInvokeExceptio
 	public OnlyStandaloneOrOpenApiException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private OnlyStandaloneOrOpenApiException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }
