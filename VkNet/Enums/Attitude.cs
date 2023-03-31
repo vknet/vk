@@ -10,7 +10,7 @@ public enum Attitude
 	/// <summary>
 	/// Не указано.
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	Unknown = 0,
 
 	/// <summary>

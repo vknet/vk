@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.ComponentModel;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using VkNet.Utils;
@@ -15,7 +16,7 @@ public enum AppSort
 	/// <summary>
 	/// Популярные за день (по умолчанию);
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	PopularToday,
 
 	/// <summary>

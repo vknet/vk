@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -15,7 +16,7 @@ public enum OnlineStatusType
 	/// <summary>
 	/// Сообщество не онлайн
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	None,
 
 	/// <summary>

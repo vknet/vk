@@ -10,7 +10,7 @@ public enum ReportReason
 	/// <summary>
 	/// Это спам.
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	Spam = 0,
 
 	/// <summary>

@@ -194,7 +194,7 @@ public class VkApi : IVkApi
 	public void Authorize(ApiAuthParams @params) => Authorize((IApiAuthParams) @params);
 
 	/// <inheritdoc />
-	public Task AuthorizeAsync(IApiAuthParams @params) => TypeHelper.TryInvokeMethodAsync(() => Authorize(@params));
+	public Task AuthorizeAsync(IApiAuthParams @params, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() => Authorize(@params), CancellationToken.None);
 
 	/// <inheritdoc />
 	public void RefreshToken(Func<string> code = null)
@@ -218,10 +218,10 @@ public class VkApi : IVkApi
 	public void LogOut() => AccessToken = string.Empty;
 
 	/// <inheritdoc />
-	public Task RefreshTokenAsync(Func<string> code = null) => TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code));
+	public Task RefreshTokenAsync(Func<string> code = null, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code), token);
 
 	/// <inheritdoc />
-	public Task LogOutAsync() => TypeHelper.TryInvokeMethodAsync(LogOut);
+	public Task LogOutAsync(CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(LogOut, token);
 
 	/// <inheritdoc />
 	[MethodImpl(MethodImplOptions.NoInlining)]
@@ -240,10 +240,10 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
-	public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
+	public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default)
 	{
 		var task = TypeHelper.TryInvokeMethodAsync(() =>
-			Call(methodName, parameters, skipAuthorization));
+			Call(methodName, parameters, skipAuthorization), token);
 
 		task.ConfigureAwait(false);
 
@@ -251,10 +251,10 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
-	public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
+	public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default)
 	{
 		var task = TypeHelper.TryInvokeMethodAsync(() =>
-			Call<T>(methodName, parameters, skipAuthorization));
+			Call<T>(methodName, parameters, skipAuthorization), token);
 
 		task.ConfigureAwait(false);
 
@@ -310,9 +310,9 @@ public class VkApi : IVkApi
 
 	/// <inheritdoc />
 	[CanBeNull]
-	public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false) =>
+	public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false, CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Invoke(methodName, parameters, skipAuthorization));
+			Invoke(methodName, parameters, skipAuthorization), token);
 
 	/// <inheritdoc />
 	public VkResponse CallLongPoll(string server, VkParameters parameters, params JsonConverter[] jsonConverters)
@@ -366,8 +366,8 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
-	public Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters) =>
-		TypeHelper.TryInvokeMethodAsync(() => CallLongPoll(server, parameters));
+	public Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() => CallLongPoll(server, parameters), token);
 
 	/// <inheritdoc />
 	public string InvokeLongPoll(string server, Dictionary<string, string> parameters) => InvokeLongPollExtended(server, parameters)
@@ -397,14 +397,14 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
-	public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters) => TypeHelper.TryInvokeMethodAsync(() =>
+	public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
 		InvokeLongPollExtended(server, parameters)
-			.ToString());
+			.ToString(), token);
 
 	/// <inheritdoc />
-	public Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters) =>
+	public Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			InvokeLongPollExtended(server, parameters));
+			InvokeLongPollExtended(server, parameters), token);
 
 	/// <inheritdoc cref="IDisposable" />
 	public void Dispose()

@@ -1390,7 +1390,7 @@ public partial class GroupsCategory : IGroupsCategory
 	public VkCollection<GroupTag> GetTagList(ulong groupId)
 	{
 		return _vk.Call<VkCollection<GroupTag>>("groups.getTagList",
-				new VkParameters
+				new()
 				{
 					{ "group_id", groupId }
 				});
@@ -1423,7 +1423,7 @@ public partial class GroupsCategory : IGroupsCategory
 		}
 
 		return _vk.Call<bool>("groups.setUserNote",
-			new VkParameters
+			new()
 			{
 				{ "group_id", @params.GroupId },
 				{ "user_id", @params.UserId },
@@ -1471,7 +1471,7 @@ public partial class GroupsCategory : IGroupsCategory
 		}
 
 		return _vk.Call<bool>("groups.tagAdd",
-			new VkParameters
+			new()
 			{
 				{ "group_id", @params.GroupId },
 				{ "tag_name", @params.TagName },

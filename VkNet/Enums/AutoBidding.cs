@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums;
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums;
 
 /// <summary>
 /// Автоматическое управление ценой.
@@ -8,6 +10,7 @@ public enum AutoBidding
 	/// <summary>
 	/// Выключено.
 	/// </summary>
+	[VkNetDefaultValue]
 	Off = 0,
 
 	/// <summary>

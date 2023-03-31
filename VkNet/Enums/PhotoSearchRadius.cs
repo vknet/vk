@@ -1,4 +1,5 @@
-﻿using VkNet.Utils;
+﻿using System.ComponentModel;
+using VkNet.Utils;
 
 namespace VkNet.Enums;
 
@@ -30,6 +31,6 @@ public enum PhotoSearchRadius
 	/// <summary>
 	/// 50000.
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	FiftyThousand = 50000
 }

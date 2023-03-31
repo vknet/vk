@@ -1,3 +1,5 @@
+using VkNet.Utils;
+
 namespace VkNet.Enums;
 
 /// <summary>
@@ -13,6 +15,7 @@ public enum AdAgeRestriction
 	/// <summary>
 	/// 0+
 	/// </summary>
+	[VkNetDefaultValue]
 	ZeroPlus = 1,
 
 	/// <summary>

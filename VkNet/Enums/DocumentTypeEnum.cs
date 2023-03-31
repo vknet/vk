@@ -1,3 +1,5 @@
+using VkNet.Utils;
+
 namespace VkNet.Enums;
 
 /// <summary>
@@ -43,5 +45,6 @@ public enum DocumentTypeEnum
 	/// <summary>
 	/// Неизвестно
 	/// </summary>
+	[VkNetDefaultValue]
 	Unknown
 }

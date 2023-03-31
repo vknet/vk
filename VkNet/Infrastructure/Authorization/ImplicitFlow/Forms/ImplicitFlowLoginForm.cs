@@ -30,7 +30,7 @@ public sealed class ImplicitFlowLoginForm : AbstractAuthorizationForm
 			form.Fields[AuthorizationFormFields.Password] = authParams.Password;
 		}
 
-		form.Headers = new System.Collections.Generic.Dictionary<string, string>
+		form.Headers = new()
 		{
 			{ "content-type", "application/x-www-form-urlencoded" },
 			{ "origin", "https://oauth.vk.com" },

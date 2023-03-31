@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -25,7 +26,7 @@ public enum WallFilter
 	/// <summary>
 	/// Необходимо получить все сообщения на стене (Owner + Others).
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	All,
 
 	/// <summary>

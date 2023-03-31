@@ -17,7 +17,7 @@ public enum Sex
 	/// <summary>
 	/// Не указан
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	Unknown = 0,
 
 	/// <summary>

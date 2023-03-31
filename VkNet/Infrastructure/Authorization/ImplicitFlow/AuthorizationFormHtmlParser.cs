@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using JetBrains.Annotations;
@@ -25,9 +26,9 @@ public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 	public AuthorizationFormHtmlParser(IRestClient restClient) => _restClient = restClient;
 
 	/// <inheritdoc />
-	public async Task<VkHtmlFormResult> GetFormAsync(Uri url)
+	public async Task<VkHtmlFormResult> GetFormAsync(Uri url, CancellationToken token = default)
 	{
-		var response = await _restClient.PostAsync(url, Enumerable.Empty<KeyValuePair<string, string>>(), Encoding.GetEncoding(1251))
+		var response = await _restClient.PostAsync(url, Enumerable.Empty<KeyValuePair<string, string>>(), Encoding.GetEncoding(1251), token: token)
 			.ConfigureAwait(false);
 
 		if (!response.IsSuccess)

@@ -309,6 +309,9 @@ public partial class AccountCategory : IAccountCategory
 	}
 
 	/// <inheritdoc />
+	/// <remarks>
+	/// TODO: Помазать тестами и убрать приведение к User
+	/// </remarks>
 	[Pure]
 	public AccountSaveProfileInfoParams GetProfileInfo()
 	{

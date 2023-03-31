@@ -1,3 +1,5 @@
+using VkNet.Utils;
+
 namespace VkNet.Enums;
 
 /// <summary>
@@ -8,6 +10,7 @@ public enum WallType
 	/// <summary>
 	/// Выключена
 	/// </summary>
+	[VkNetDefaultValue]
 	Off = 0,
 
 	/// <summary>

@@ -12,7 +12,7 @@ public enum RelationType
 	/// <summary>
 	/// Не указано.
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	Unknown = 0,
 
 	/// <summary>
