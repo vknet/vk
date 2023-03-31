@@ -33,12 +33,7 @@
 		<Compile Remove="..\VkNet\bin\**\*.*" />
 		<Compile Remove="..\VkNet\VkNet.csproj" />
 		<Compile Remove="..\VkNet\VkNet.ruleset" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="..\VkNet\">
-			<Link>VkNet</Link>
-		</Folder>
+		<Compile Remove="..\VkNet\**" />
 	</ItemGroup>
 
 
@@ -65,10 +60,6 @@
 
 		<!--Должен быть именно Package так как могут возникать конфликты-->
 		<Reference Include="System.Net.Http" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\VkNet.Generators\VkNet.Generators.csproj" />
 	</ItemGroup>
 
 

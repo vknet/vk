@@ -63,7 +63,4 @@
 		<None Include="..\tools\vknet-icon.PNG" Pack="true" PackagePath="\" />
 		<None Include="..\LICENCE" Pack="true" PackagePath="\" />
 	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\VkNet.Generators\VkNet.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-	</ItemGroup>
 </Project>
