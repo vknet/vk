@@ -1,4 +1,5 @@
-﻿using VkNet.Utils;
+﻿using System.ComponentModel;
+using VkNet.Utils;
 
 namespace VkNet.Enums;
 
@@ -25,6 +26,6 @@ public enum NotificationsSendMessageCode
 	/// <summary>
 	/// Приложение не установлено.
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	ApplicationNotInstalled = 3
 }

@@ -10,7 +10,7 @@ public enum ProductSort
 	/// <summary>
 	/// 0 — пользовательская расстановка
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	UserSort = 0,
 
 	/// <summary>

@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -75,7 +76,7 @@ public enum StoryLinkText
 	/// <summary>
 	/// Подробнее
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	LearnMore,
 
 	/// <summary>

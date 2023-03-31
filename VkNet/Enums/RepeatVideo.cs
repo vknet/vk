@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums;
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums;
 
 /// <summary>
 /// Зацикливание видео.
@@ -8,6 +10,7 @@ public enum RepeatVideo
 	/// <summary>
 	/// Не зацикливать.
 	/// </summary>
+	[VkNetDefaultValue]
 	NotRepeat = 0,
 
 	/// <summary>

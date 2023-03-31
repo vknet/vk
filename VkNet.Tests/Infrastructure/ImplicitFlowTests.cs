@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
@@ -70,7 +71,7 @@ public class ImplicitFlowTests
 			.Returns("5.92");
 
 		mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x =>
-				x.ExecuteAsync(It.IsAny<Uri>(), It.IsAny<IApiAuthParams>()))
+				x.ExecuteAsync(It.IsAny<Uri>(), It.IsAny<IApiAuthParams>(), CancellationToken.None))
 			.ReturnsAsync(new AuthorizationFormResult
 			{
 				ResponseUrl = new("https://m.vk.com/login?act=authcheck&m=442"),

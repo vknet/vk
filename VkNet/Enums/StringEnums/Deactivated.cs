@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.ComponentModel;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using VkNet.Utils;
@@ -25,6 +26,6 @@ public enum Deactivated
 	/// <summary>
 	/// Активно.
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	Activated
 }

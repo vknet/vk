@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -35,8 +36,9 @@ public interface IVkLongPollInvoke
 	/// </summary>
 	/// <param name="server"> Сервер. </param>
 	/// <param name="parameters"> Параметры. </param>
+	/// <param name="token"></param>
 	/// <returns> </returns>
-	Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters);
+	Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters, CancellationToken token = default);
 
 	/// <summary>
 	/// Прямой вызов LongPoll API
@@ -61,16 +63,18 @@ public interface IVkLongPollInvoke
 	/// </summary>
 	/// <param name="server"> Сервер </param>
 	/// <param name="parameters"> Вход. параметры LongPoll. </param>
+	/// <param name="token"></param>
 	/// <exception cref="ArgumentException"> </exception>
 	/// <returns> Ответ сервера в формате JSON. </returns>
-	Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters);
+	Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default);
 
 	/// <summary>
 	/// Прямой вызов LongPoll API в асинхронном режиме
 	/// </summary>
 	/// <param name="server"> Сервер </param>
 	/// <param name="parameters"> Вход. параметры LongPoll. </param>
+	/// <param name="token"></param>
 	/// <exception cref="ArgumentException"> </exception>
 	/// <returns> Ответ сервера в формате JSON. </returns>
-	Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters);
+	Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default);
 }

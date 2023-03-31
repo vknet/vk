@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using System.Threading;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Core;
@@ -190,7 +191,7 @@ public partial class Browser : IBrowser
 		return null;
 	}
 
-	private VkAuthorization2 OldValidate(string validateUrl, string phoneNumber) => OldValidateAsync(validateUrl, phoneNumber)
+	private VkAuthorization2 OldValidate(string validateUrl, string phoneNumber) => OldValidateAsync(validateUrl, phoneNumber, CancellationToken.None)
 		.ConfigureAwait(false)
 		.GetAwaiter()
 		.GetResult();

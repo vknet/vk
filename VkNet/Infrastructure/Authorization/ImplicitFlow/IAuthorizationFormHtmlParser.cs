@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow;
@@ -12,6 +13,7 @@ public interface IAuthorizationFormHtmlParser
 	/// Get form data
 	/// </summary>
 	/// <param name="url">URL</param>
+	/// <param name="token"></param>
 	/// <returns>Результат с данными формы</returns>
-	Task<VkHtmlFormResult> GetFormAsync(Uri url);
+	Task<VkHtmlFormResult> GetFormAsync(Uri url, CancellationToken token = default);
 }

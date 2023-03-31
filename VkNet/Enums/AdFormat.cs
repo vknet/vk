@@ -1,3 +1,5 @@
+using VkNet.Utils;
+
 namespace VkNet.Enums;
 
 /// <summary>
@@ -43,5 +45,6 @@ public enum AdFormat
 	/// <summary>
 	/// запись в сообществе.
 	/// </summary>
+	[VkNetDefaultValue]
 	Public = 9
 }

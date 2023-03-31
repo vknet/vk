@@ -22,6 +22,6 @@ public enum ProductAvailability
 	/// <summary>
 	/// Товар недоступен
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	Unavailable
 }

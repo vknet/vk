@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums;
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums;
 
 /// <summary>
 /// Получить URL для загрузки логотипа, а не основного изображения
@@ -13,5 +15,6 @@ public enum AdIcon
 	/// <summary>
 	/// Не получать URL для загрузки логотипа, а не основного изображения
 	/// </summary>
+	[VkNetDefaultValue]
 	AdIconNo = 0
 }

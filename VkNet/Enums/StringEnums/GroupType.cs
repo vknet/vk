@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.ComponentModel;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using VkNet.Utils;
@@ -30,6 +31,6 @@ public enum GroupType
 	/// <summary>
 	/// Не определено.
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	Undefined
 }

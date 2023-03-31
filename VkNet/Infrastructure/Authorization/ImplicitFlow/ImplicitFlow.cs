@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
@@ -47,9 +48,9 @@ public class ImplicitFlow : IImplicitFlow
 	}
 
 	/// <inheritdoc />
-	public async Task<AuthorizationResult> AuthorizeAsync()
+	public async Task<AuthorizationResult> AuthorizeAsync(CancellationToken token = default)
 	{
-		_logger?.LogDebug("Валидация данных");
+		_logger?.LogDebug("Валидация данных.");
 		ValidateAuthorizationParameters();
 
 		_logger?.LogDebug("Шаг 1. Открытие диалога авторизации");
@@ -57,7 +58,7 @@ public class ImplicitFlow : IImplicitFlow
 		var authorizeUrlResult = CreateAuthorizeUrl();
 
 		var loginFormResult = await _authorizationFormsFactory.Create(ImplicitFlowPageType.LoginPassword)
-			.ExecuteAsync(authorizeUrlResult, _authorizationParameters)
+			.ExecuteAsync(authorizeUrlResult, _authorizationParameters, token)
 			.ConfigureAwait(false);
 
 		return await NextStepAsync(loginFormResult)

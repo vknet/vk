@@ -10,7 +10,7 @@ public enum BirthdayVisibility
 	/// <summary>
 	/// Не показывать дату рождения.
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	Invisible = 0,
 
 	/// <summary>

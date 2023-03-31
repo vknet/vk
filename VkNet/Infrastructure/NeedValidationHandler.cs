@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Abstractions.Core;
 using VkNet.Model;
@@ -18,7 +19,7 @@ public class NeedValidationHandler : INeedValidationHandler
 		.GetResult();
 
 	/// <inheritdoc />
-	public Task<AuthorizationResult> ValidateAsync(string validateUrl) => throw
+	public Task<AuthorizationResult> ValidateAsync(string validateUrl, CancellationToken token = default) => throw
 		/*if (string.IsNullOrWhiteSpace(validateUrl))
 		{
 			throw new ArgumentException("Не задан адрес валидации!");
