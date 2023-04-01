@@ -1463,7 +1463,7 @@ public partial class GroupsCategory : IGroupsCategory
 			throw new VkApiException("Поле TagName не может быть длиннее 20 символов");
 		}
 
-		string lowerTagColor = @params.TagColor?.ToLower() ?? throw new VkApiException("Параметр TagColor обязательный.");
+		var lowerTagColor = @params.TagColor?.ToLower() ?? throw new VkApiException("Параметр TagColor обязательный.");
 
 		if (!ValidTagColors.Contains(lowerTagColor))
 		{

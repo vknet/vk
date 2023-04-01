@@ -21,43 +21,45 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(123456789));
+						break;
 
-		var messageNew = update.MessageNew;
+					case MessageNew:
+					{
+						var a = x.Instance is MessageNew b
+							? b
+							: null;
 
-		var message = messageNew?.Message;
+						a.ClientInfo.ButtonActions.Should()
+							.NotBeEmpty();
 
-		var clientInfo = messageNew?.ClientInfo;
+						a.ClientInfo.Keyboard.Should()
+							.BeTrue();
 
-		messageNew.Should()
-			.NotBeNull();
+						a.ClientInfo.InlineKeyboard.Should()
+							.BeFalse();
 
-		message.Should()
-			.NotBeNull();
+						a.ClientInfo.LangId.Should()
+							.Be(Language.Ru);
 
-		clientInfo.Should()
-			.NotBeNull();
+						a.Message.FromId.Should()
+							.Be(123456789);
 
-		clientInfo.ButtonActions.Should()
-			.NotBeEmpty();
 
-		clientInfo.Keyboard.Should()
-			.BeTrue();
+						a.Message.Text.Should()
+							.Be("f");
 
-		clientInfo.InlineKeyboard.Should()
-			.BeFalse();
-
-		clientInfo.LangId.Should()
-			.Be(Language.Ru);
-
-		message.FromId.Should()
-			.Be(123456789);
-
-		update.GroupId.Should()
-			.Be(new GroupId(123456789));
-
-		message.Text.Should()
-			.Be("f");
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -77,16 +79,32 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.Message.FromId.Should()
-			.Be(userId);
+					case MessageNew:
+					{
+						var a = x.Instance is MessageNew b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.Message.FromId.Should()
+							.Be(userId);
 
-		update.Message.Text.Should()
-			.Be(text);
+						a.Message.Text.Should()
+							.Be(text);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -106,16 +124,32 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.Message.FromId.Should()
-			.Be(userId);
+					case MessageNew:
+					{
+						var a = x.Instance is MessageNew b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.Message.FromId.Should()
+							.Be(userId);
 
-		update.Message.Text.Should()
-			.Be(text);
+						a.Message.Text.Should()
+							.Be(text);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -135,16 +169,32 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.MessageAllow.UserId.Should()
-			.Be(userId);
+					case MessageAllow:
+					{
+						var a = x.Instance is MessageAllow b
+							? b
+							: null;
 
-		update.MessageAllow.Key.Should()
-			.Be(key);
+						a.UserId.Should()
+							.Be(userId);
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.Key.Should()
+							.Be(key);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -163,13 +213,29 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.MessageDeny.UserId.Should()
-			.Be(userId);
+					case MessageDeny:
+					{
+						var a = x.Instance is MessageDeny b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.UserId.Should()
+							.Be(userId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -185,29 +251,40 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(1234));
+						break;
 
-		var messageEvent = update.MessageEvent;
+					case MessageEvent:
+					{
+						var a = x.Instance is MessageEvent b
+							? b
+							: null;
 
-		messageEvent.Should()
-			.NotBeNull();
+						a.EventId.Should()
+							.Be("feleyinek");
 
-		messageEvent.EventId.Should()
-			.Be("feleyinek");
+						a.UserId.Should()
+							.Be(123456789);
 
-		messageEvent.UserId.Should()
-			.Be(123456789);
+						a.PeerId.Should()
+							.Be(123456789);
 
-		messageEvent.PeerId.Should()
-			.Be(123456789);
+						a.ConversationMessageId.Should()
+							.Be(1234);
 
-		messageEvent.ConversationMessageId.Should()
-			.Be(1234);
+						a.Payload.Should()
+							.Be("{}");
 
-		messageEvent.Payload.Should()
-			.Be("{}");
-
-		update.GroupId.Should()
-			.Be(new GroupId(1234));
+						break;
+					}
+				}
+			});
 	}
 }

@@ -20,21 +20,35 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(1234));
+						break;
 
-		var donutNew = update.DonutSubscriptionNew;
+					case DonutNew:
+					{
+						var a = x.Instance is DonutNew b
+							? b
+							: null;
 
-		donutNew.Amount.Should()
-			.Be(50);
+						a.Amount.Should()
+							.Be(50);
 
-		donutNew.AmountWithoutFee.Should()
-			.Be(49.8M);
+						a.AmountWithoutFee.Should()
+							.Be(49.8M);
 
-		donutNew.UserId.Should()
-			.Be(1234);
+						a.UserId.Should()
+							.Be(1234);
 
-		update.GroupId.Should()
-			.Be(new GroupId(1234));
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -50,21 +64,35 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(1234));
+						break;
 
-		var donutNew = update.DonutSubscriptionNew;
+					case DonutNew:
+					{
+						var a = x.Instance is DonutNew b
+							? b
+							: null;
 
-		donutNew.Amount.Should()
-			.Be(50);
+						a.Amount.Should()
+							.Be(50);
 
-		donutNew.AmountWithoutFee.Should()
-			.Be(49.8M);
+						a.AmountWithoutFee.Should()
+							.Be(49.8M);
 
-		donutNew.UserId.Should()
-			.Be(1234);
+						a.UserId.Should()
+							.Be(1234);
 
-		update.GroupId.Should()
-			.Be(new GroupId(1234));
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -80,15 +108,29 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(1234));
+						break;
 
-		var donutNew = update.DonutSubscriptionEnd;
+					case DonutEnd:
+					{
+						var a = x.Instance is DonutEnd b
+							? b
+							: null;
 
-		donutNew.UserId.Should()
-			.Be(1234);
+						a.UserId.Should()
+							.Be(1234);
 
-		update.GroupId.Should()
-			.Be(new GroupId(1234));
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -104,15 +146,29 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(1234));
+						break;
 
-		var donutNew = update.DonutSubscriptionEnd;
+					case DonutEnd:
+					{
+						var a = x.Instance is DonutEnd b
+							? b
+							: null;
 
-		donutNew.UserId.Should()
-			.Be(1234);
+						a.UserId.Should()
+							.Be(1234);
 
-		update.GroupId.Should()
-			.Be(new GroupId(1234));
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -128,27 +184,41 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(1234));
+						break;
 
-		var donutNew = update.DonutSubscriptionPriceChanged;
+					case DonutChanged:
+					{
+						var a = x.Instance is DonutChanged b
+							? b
+							: null;
 
-		donutNew.AmountOld.Should()
-			.Be(50);
+						a.AmountOld.Should()
+							.Be(50);
 
-		donutNew.AmountNew.Should()
-			.Be(100);
+						a.AmountNew.Should()
+							.Be(100);
 
-		donutNew.AmountDiff.Should()
-			.Be(50.0f);
+						a.AmountDiff.Should()
+							.Be(50.0f);
 
-		donutNew.AmountDiffWithoutFee.Should()
-			.Be(49.8f);
+						a.AmountDiffWithoutFee.Should()
+							.Be(49.8f);
 
-		donutNew.UserId.Should()
-			.Be(1234);
+						a.UserId.Should()
+							.Be(1234);
 
-		update.GroupId.Should()
-			.Be(new GroupId(1234));
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -164,21 +234,35 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(1234));
+						break;
 
-		var donutNew = update.DonutMoneyWithdraw;
+					case DonutWithdraw:
+					{
+						var a = x.Instance is DonutWithdraw b
+							? b
+							: null;
 
-		donutNew.Amount.Should()
-			.Be(50);
+						a.Amount.Should()
+							.Be(50);
 
-		donutNew.AmountWithoutFee.Should()
-			.Be(49.8f);
+						a.AmountWithoutFee.Should()
+							.Be(49.8f);
 
-		donutNew.Error.Should()
-			.BeFalse();
+						a.Error.Should()
+							.BeFalse();
 
-		update.GroupId.Should()
-			.Be(new GroupId(1234));
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -194,23 +278,37 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(1234));
+						break;
 
-		var donutNew = update.DonutMoneyWithdraw;
+					case DonutWithdraw:
+					{
+						var a = x.Instance is DonutWithdraw b
+							? b
+							: null;
 
-		donutNew.Amount.Should()
-			.BeNull();
+						a.Amount.Should()
+							.BeNull();
 
-		donutNew.AmountWithoutFee.Should()
-			.BeNull();
+						a.AmountWithoutFee.Should()
+							.BeNull();
 
-		donutNew.Error.Should()
-			.BeTrue();
+						a.Error.Should()
+							.BeTrue();
 
-		donutNew.Reason.Should()
-			.Be("test");
+						a.Reason.Should()
+							.Be("test");
 
-		update.GroupId.Should()
-			.Be(new GroupId(1234));
+						break;
+					}
+				}
+			});
 	}
 }

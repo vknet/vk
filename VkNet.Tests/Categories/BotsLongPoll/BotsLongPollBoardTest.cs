@@ -11,7 +11,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNew));
 
-		GroupId expectedGroupId = new GroupId(1234);
+		var expectedGroupId = new GroupId(1234);
 		const int expectedUserId = 123;
 		const string expectedText = "test";
 
@@ -26,14 +26,26 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 		botsLongPollHistory.Updates.Should()
 			.SatisfyRespectively(x =>
 			{
-				x.GroupId.Should()
-					.Be(expectedGroupId);
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(expectedGroupId);
+						break;
 
-				x.BoardPost.FromId.Should()
-					.Be(expectedUserId);
+					case BoardPost:
+					{
+						var a = x.Instance is BoardPost b
+							? b
+							: null;
+						a.FromId.Should()
+							.Be(expectedUserId);
 
-				x.BoardPost.Text.Should()
-					.Be(expectedText);
+						a.Text.Should()
+							.Be(expectedText);
+						break;
+					}
+				}
 			});
 	}
 
@@ -42,7 +54,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNewFirst));
 
-		GroupId expectedGroupId = new GroupId(1234);
+		var expectedGroupId = new GroupId(1234);
 		const int unExpectedGroupId = -1234;
 		const string expectedText = "test";
 		const int expectedTopicId = 6;
@@ -58,20 +70,32 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 		botsLongPollHistory.Updates.Should()
 			.SatisfyRespectively(x =>
 			{
-				x.BoardPost.FromId.Should()
-					.Be(unExpectedGroupId);
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(expectedGroupId);
+						break;
 
-				x.GroupId.Should()
-					.Be(expectedGroupId);
+					case BoardPost:
+					{
+						var a = x.Instance is BoardPost b
+							? b
+							: null;
+						a.FromId.Should()
+							.Be(unExpectedGroupId);
 
-				x.BoardPost.Text.Should()
-					.Be(expectedText);
+						a.Text.Should()
+							.Be(expectedText);
 
-				x.BoardPost.TopicOwnerId.Should()
-					.Be(unExpectedGroupId);
+						a.TopicOwnerId.Should()
+							.Be(unExpectedGroupId);
 
-				x.BoardPost.TopicId.Should()
-					.Be(expectedTopicId);
+						a.TopicId.Should()
+							.Be(expectedTopicId);
+						break;
+					}
+				}
 			});
 	}
 
@@ -80,7 +104,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostEditTest));
 
-		GroupId expectedGroupId = new GroupId(1234);
+		var expectedGroupId = new GroupId(1234);
 		const int unExpectedGroupId = -1234;
 		const string expectedText = "test1";
 
@@ -95,17 +119,30 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 		botsLongPollHistory.Updates.Should()
 			.SatisfyRespectively(x =>
 			{
-				x.BoardPost.FromId.Should()
-					.Be(unExpectedGroupId);
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(expectedGroupId);
+						break;
 
-				x.GroupId.Should()
-					.Be(expectedGroupId);
+					case BoardPost:
+					{
+						var a = x.Instance is BoardPost b
+							? b
+							: null;
+						a.FromId.Should()
+							.Be(unExpectedGroupId);
 
-				x.BoardPost.Text.Should()
-					.Be(expectedText);
+						a.Text.Should()
+							.Be(expectedText);
 
-				x.BoardPost.TopicOwnerId.Should()
-					.Be(unExpectedGroupId);
+						a.TopicOwnerId.Should()
+							.Be(unExpectedGroupId);
+
+						break;
+					}
+				}
 			});
 	}
 
@@ -114,7 +151,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostRestoreTest));
 
-		GroupId expectedGroupId = new GroupId(1234);
+		var expectedGroupId = new GroupId(1234);
 		const int unExpectedGroupId = -1234;
 		const int expectedUserId = 123;
 		const string expectedText = "test";
@@ -130,17 +167,28 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 		botsLongPollHistory.Updates.Should()
 			.SatisfyRespectively(x =>
 			{
-				x.BoardPost.FromId.Should()
-					.Be(expectedUserId);
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(expectedGroupId);
+						break;
 
-				x.GroupId.Should()
-					.Be(expectedGroupId);
+					case BoardPost:
+					{
+						var a = x.Instance is BoardPost b
+							? b
+							: null;
 
-				x.BoardPost.Text.Should()
-					.Be(expectedText);
+						a.Text.Should()
+							.Be(expectedText);
 
-				x.BoardPost.TopicOwnerId.Should()
-					.Be(unExpectedGroupId);
+						a.TopicOwnerId.Should()
+							.Be(unExpectedGroupId);
+
+						break;
+					}
+				}
 			});
 	}
 
@@ -149,7 +197,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostDeleteTest));
 
-		GroupId expectedGroupId = new GroupId(1234);
+		var expectedGroupId = new GroupId(1234);
 		const int unExpectedGroupId = -1234;
 		const int expectedTopicId = 6;
 		const int expectedId = 3;
@@ -165,17 +213,31 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 		botsLongPollHistory.Updates.Should()
 			.SatisfyRespectively(x =>
 			{
-				x.GroupId.Should()
-					.Be(expectedGroupId);
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(expectedGroupId);
+						break;
 
-				x.BoardPostDelete.TopicOwnerId.Should()
-					.Be(unExpectedGroupId);
+					case BoardPostDelete:
+					{
+						var a = x.Instance is BoardPostDelete b
+							? b
+							: null;
 
-				x.BoardPostDelete.TopicId.Should()
-					.Be(expectedTopicId);
+						a.TopicId.Should()
+							.Be(expectedTopicId);
 
-				x.BoardPostDelete.Id.Should()
-					.Be(expectedId);
+						a.TopicOwnerId.Should()
+							.Be(unExpectedGroupId);
+
+						a.Id.Should()
+							.Be(expectedId);
+
+						break;
+					}
+				}
 			});
 	}
 }

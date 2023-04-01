@@ -1,5 +1,6 @@
 using System.Linq;
 using FluentAssertions;
+using VkNet.Model.Attachments;
 using VkNet.Model.GroupUpdate;
 using Xunit;
 
@@ -24,16 +25,32 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.Photo.OwnerId.Should()
-			.Be(unGroupId);
+					case Photo:
+					{
+						var a = x.Instance is Photo b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.OwnerId.Should()
+							.Be(unGroupId);
 
-		update.Photo.Id.Should()
-			.Be(photoId);
+						a.Id.Should()
+							.Be(photoId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -55,22 +72,38 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.PhotoComment.FromId.Should()
-			.Be(userId);
+					case PhotoComment:
+					{
+						var a = x.Instance is PhotoComment b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.PhotoComment.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.PhotoComment.PhotoOwnerId.Should()
-			.Be(unGroupId);
+						a.PhotoOwnerId.Should()
+							.Be(unGroupId);
 
-		update.PhotoComment.PhotoId.Should()
-			.Be(photoId);
+						a.PhotoId.Should()
+							.Be(photoId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -91,19 +124,35 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.PhotoComment.FromId.Should()
-			.Be(userId);
+					case PhotoComment:
+					{
+						var a = x.Instance is PhotoComment b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.PhotoComment.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.PhotoComment.PhotoOwnerId.Should()
-			.Be(unGroupId);
+						a.PhotoOwnerId.Should()
+							.Be(unGroupId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -124,19 +173,35 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.PhotoComment.FromId.Should()
-			.Be(userId);
+					case PhotoComment:
+					{
+						var a = x.Instance is PhotoComment b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.PhotoComment.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.PhotoComment.PhotoOwnerId.Should()
-			.Be(unGroupId);
+						a.PhotoOwnerId.Should()
+							.Be(unGroupId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -159,24 +224,40 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.PhotoCommentDelete.DeleterId.Should()
-			.Be(deleterId);
+					case PhotoCommentDelete:
+					{
+						var a = x.Instance is PhotoCommentDelete b
+							? b
+							: null;
 
-		update.PhotoCommentDelete.UserId.Should()
-			.Be(userId);
+						a.DeleterId.Should()
+							.Be(deleterId);
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.UserId.Should()
+							.Be(userId);
 
-		update.PhotoCommentDelete.OwnerId.Should()
-			.Be(unGroupId);
+						a.OwnerId.Should()
+							.Be(unGroupId);
 
-		update.PhotoCommentDelete.PhotoId.Should()
-			.Be(photoId);
+						a.PhotoId.Should()
+							.Be(photoId);
 
-		update.PhotoCommentDelete.Id.Should()
-			.Be(id);
+						a.Id.Should()
+							.Be(id);
+
+						break;
+					}
+				}
+			});
 	}
 }

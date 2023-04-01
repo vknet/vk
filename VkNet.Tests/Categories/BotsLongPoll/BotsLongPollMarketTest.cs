@@ -25,19 +25,33 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case MarketComment:
+					{
+						var a = x.Instance is MarketComment b
+							? b
+							: null;
+						a.FromId.Should()
+							.Be(userId);
 
-		update.MarketComment.FromId.Should()
-			.Be(userId);
+						a.Text.Should()
+							.Be(text);
 
-		update.MarketComment.Text.Should()
-			.Be(text);
-
-		update.MarketComment.MarketOwnerId.Should()
-			.Be(unGroupId);
+						a.MarketOwnerId.Should()
+							.Be(unGroupId);
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -58,19 +72,33 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case MarketComment:
+					{
+						var a = x.Instance is MarketComment b
+							? b
+							: null;
+						a.FromId.Should()
+							.Be(userId);
 
-		update.MarketComment.FromId.Should()
-			.Be(userId);
+						a.Text.Should()
+							.Be(text);
 
-		update.MarketComment.Text.Should()
-			.Be(text);
-
-		update.MarketComment.MarketOwnerId.Should()
-			.Be(unGroupId);
+						a.MarketOwnerId.Should()
+							.Be(unGroupId);
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -91,19 +119,33 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case MarketComment:
+					{
+						var a = x.Instance is MarketComment b
+							? b
+							: null;
+						a.FromId.Should()
+							.Be(userId);
 
-		update.MarketComment.FromId.Should()
-			.Be(userId);
+						a.Text.Should()
+							.Be(text);
 
-		update.MarketComment.Text.Should()
-			.Be(text);
-
-		update.MarketComment.MarketOwnerId.Should()
-			.Be(unGroupId);
+						a.MarketOwnerId.Should()
+							.Be(unGroupId);
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -125,21 +167,36 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case MarketCommentDelete:
+					{
+						var a = x.Instance is MarketCommentDelete b
+							? b
+							: null;
+						a.OwnerId.Should()
+							.Be(unGroupId);
 
-		update.MarketCommentDelete.OwnerId.Should()
-			.Be(unGroupId);
+						a.DeleterId.Should()
+							.Be(deleterId);
 
-		update.MarketCommentDelete.DeleterId.Should()
-			.Be(deleterId);
+						a.ItemId.Should()
+							.Be(itemId);
 
-		update.MarketCommentDelete.ItemId.Should()
-			.Be(itemId);
+						a.Id.Should()
+							.Be(id);
+						break;
+					}
+				}
+			});
 
-		update.MarketCommentDelete.Id.Should()
-			.Be(id);
 	}
 }

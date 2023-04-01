@@ -24,16 +24,32 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case Model.Attachments.Video:
+					{
+						var a = x.Instance is Model.Attachments.Video b
+							? b
+							: null;
 
-		update.Video.OwnerId.Should()
-			.Be(unGroupId);
+						a.OwnerId.Should()
+							.Be(unGroupId);
 
-		update.Video.Id.Should()
-			.Be(id);
+						a.Id.Should()
+							.Be(id);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -55,22 +71,38 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.VideoComment.FromId.Should()
-			.Be(userId);
+					case VideoComment:
+					{
+						var a = x.Instance is VideoComment b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.VideoComment.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.VideoComment.VideoOwnerId.Should()
-			.Be(unGroupId);
+						a.VideoOwnerId.Should()
+							.Be(unGroupId);
 
-		update.VideoComment.VideoId.Should()
-			.Be(videoId);
+						a.VideoId.Should()
+							.Be(videoId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -91,19 +123,35 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.VideoComment.FromId.Should()
-			.Be(userId);
+					case VideoComment:
+					{
+						var a = x.Instance is VideoComment b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.VideoComment.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.VideoComment.VideoOwnerId.Should()
-			.Be(unGroupId);
+						a.VideoOwnerId.Should()
+							.Be(unGroupId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -124,19 +172,35 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.VideoComment.FromId.Should()
-			.Be(userId);
+					case VideoComment:
+					{
+						var a = x.Instance is VideoComment b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.VideoComment.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.VideoComment.VideoOwnerId.Should()
-			.Be(unGroupId);
+						a.VideoOwnerId.Should()
+							.Be(unGroupId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -158,21 +222,37 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.VideoCommentDelete.DeleterId.Should()
-			.Be(deleterId);
+					case VideoCommentDelete:
+					{
+						var a = x.Instance is VideoCommentDelete b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.DeleterId.Should()
+							.Be(deleterId);
 
-		update.VideoCommentDelete.OwnerId.Should()
-			.Be(unGroupId);
+						a.OwnerId.Should()
+							.Be(unGroupId);
 
-		update.VideoCommentDelete.VideoId.Should()
-			.Be(videoId);
+						a.VideoId.Should()
+							.Be(videoId);
 
-		update.VideoCommentDelete.Id.Should()
-			.Be(id);
+						a.Id.Should()
+							.Be(id);
+
+						break;
+					}
+				}
+			});
 	}
 }

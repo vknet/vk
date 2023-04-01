@@ -179,8 +179,8 @@ public static class Utilities
 		}
 		var sb = new StringBuilder();
 		sb.Append(char.ToLowerInvariant(text[0]));
-		for(int i = 1; i < text.Length; ++i) {
-			char c = text[i];
+		for(var i = 1; i < text.Length; ++i) {
+			var c = text[i];
 			if(char.IsUpper(c)) {
 				sb.Append('_');
 				sb.Append(char.ToLowerInvariant(c));

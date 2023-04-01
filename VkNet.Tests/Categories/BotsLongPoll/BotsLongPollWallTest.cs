@@ -24,16 +24,32 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case WallPost:
+					{
+						var a = x.Instance is WallPost b
+							? b
+							: null;
 
-		update.WallPost.FromId.Should()
-			.Be(userId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.WallPost.OwnerId.Should()
-			.Be(unGroupId);
+						a.OwnerId.Should()
+							.Be(unGroupId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -55,22 +71,38 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.WallReply.FromId.Should()
-			.Be(userId);
+					case WallReply:
+					{
+						var a = x.Instance is WallReply b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.WallReply.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.WallReply.PostOwnerId.Should()
-			.Be(unGroupId);
+						a.PostOwnerId.Should()
+							.Be(unGroupId);
 
-		update.WallReply.PostId.Should()
-			.Be(postId);
+						a.PostId.Should()
+							.Be(postId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -91,19 +123,35 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.WallReply.FromId.Should()
-			.Be(userId);
+					case WallReply:
+					{
+						var a = x.Instance is WallReply b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.WallReply.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.WallReply.PostOwnerId.Should()
-			.Be(unGroupId);
+						a.PostOwnerId.Should()
+							.Be(unGroupId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -124,19 +172,35 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.WallReply.FromId.Should()
-			.Be(userId);
+					case WallReply:
+					{
+						var a = x.Instance is WallReply b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.WallReply.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.WallReply.PostOwnerId.Should()
-			.Be(unGroupId);
+						a.PostOwnerId.Should()
+							.Be(unGroupId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -158,21 +222,37 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.WallReplyDelete.DeleterId.Should()
-			.Be(deleterId);
+					case WallReplyDelete:
+					{
+						var a = x.Instance is WallReplyDelete b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.DeleterId.Should()
+							.Be(deleterId);
 
-		update.WallReplyDelete.OwnerId.Should()
-			.Be(unGroupId);
+						a.OwnerId.Should()
+							.Be(unGroupId);
 
-		update.WallReplyDelete.PostId.Should()
-			.Be(postId);
+						a.PostId.Should()
+							.Be(postId);
 
-		update.WallReplyDelete.Id.Should()
-			.Be(id);
+						a.Id.Should()
+							.Be(id);
+
+						break;
+					}
+				}
+			});
 	}
 }
