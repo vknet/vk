@@ -1,6 +1,7 @@
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
+using VkNet.Model.GroupUpdate;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -53,7 +54,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			.Be(123456789);
 
 		update.GroupId.Should()
-			.Be(123456789);
+			.Be(new GroupId(123456789));
 
 		message.Text.Should()
 			.Be("f");
@@ -65,7 +66,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageEditTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test1";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -94,7 +95,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageReplyTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -123,7 +124,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageAllowTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string key = "123456";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -152,7 +153,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageDenyTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -207,6 +208,6 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			.Be("{}");
 
 		update.GroupId.Should()
-			.Be(1234);
+			.Be(new GroupId(1234));
 	}
 }

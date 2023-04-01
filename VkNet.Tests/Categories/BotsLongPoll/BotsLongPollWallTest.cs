@@ -1,5 +1,6 @@
 using System.Linq;
 using FluentAssertions;
+using VkNet.Model.GroupUpdate;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -12,7 +13,8 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallPostNewTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -31,7 +33,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			.Be(userId);
 
 		update.WallPost.OwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 	}
 
 	[Fact]
@@ -40,9 +42,10 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyNewTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test";
 		const int postId = 6;
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -64,7 +67,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			.Be(text);
 
 		update.WallReply.PostOwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 
 		update.WallReply.PostId.Should()
 			.Be(postId);
@@ -76,8 +79,9 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyEditTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test1";
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -99,7 +103,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			.Be(text);
 
 		update.WallReply.PostOwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 	}
 
 	[Fact]
@@ -108,7 +112,8 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyRestoreTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
+		const int unGroupId = -1234;
 		const string text = "test1";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -131,7 +136,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			.Be(text);
 
 		update.WallReply.PostOwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 	}
 
 	[Fact]
@@ -139,10 +144,11 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyDeleteTest));
 
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int deleterId = 12345;
 		const int postId = 6;
 		const int id = 9;
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -161,7 +167,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			.Be(groupId);
 
 		update.WallReplyDelete.OwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 
 		update.WallReplyDelete.PostId.Should()
 			.Be(postId);

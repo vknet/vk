@@ -1,5 +1,6 @@
 using System.Linq;
 using FluentAssertions;
+using VkNet.Model.GroupUpdate;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -11,8 +12,9 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoNewTest));
 
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int photoId = 123456;
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -25,7 +27,7 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 		var update = botsLongPollHistory.Updates.First();
 
 		update.Photo.OwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 
 		update.GroupId.Should()
 			.Be(groupId);
@@ -40,9 +42,10 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentNewTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test";
 		const int photoId = 123456;
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -64,7 +67,7 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			.Be(text);
 
 		update.PhotoComment.PhotoOwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 
 		update.PhotoComment.PhotoId.Should()
 			.Be(photoId);
@@ -76,8 +79,9 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentEditTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test1";
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -99,7 +103,7 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			.Be(text);
 
 		update.PhotoComment.PhotoOwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 	}
 
 	[Fact]
@@ -108,8 +112,9 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentRestoreTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test1";
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -131,7 +136,7 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			.Be(text);
 
 		update.PhotoComment.PhotoOwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 	}
 
 	[Fact]
@@ -141,9 +146,10 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 
 		const int userId = 123;
 		const int deleterId = 12345;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int photoId = 123456;
 		const int id = 4;
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -165,7 +171,7 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			.Be(groupId);
 
 		update.PhotoCommentDelete.OwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 
 		update.PhotoCommentDelete.PhotoId.Should()
 			.Be(photoId);

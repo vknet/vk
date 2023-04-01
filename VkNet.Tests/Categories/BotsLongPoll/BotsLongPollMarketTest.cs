@@ -1,5 +1,6 @@
 using System.Linq;
 using FluentAssertions;
+using VkNet.Model.GroupUpdate;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -12,8 +13,9 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentNewTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test";
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -35,7 +37,7 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			.Be(text);
 
 		update.MarketComment.MarketOwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 	}
 
 	[Fact]
@@ -44,8 +46,9 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentEditTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test1";
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -67,7 +70,7 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			.Be(text);
 
 		update.MarketComment.MarketOwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 	}
 
 	[Fact]
@@ -76,8 +79,9 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentRestoreTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test1";
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -99,7 +103,7 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			.Be(text);
 
 		update.MarketComment.MarketOwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 	}
 
 	[Fact]
@@ -108,8 +112,9 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentDeleteTest));
 
 		const int deleterId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int itemId = 4444;
+		const int unGroupId = -1234;
 		const int id = 1;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -126,7 +131,7 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			.Be(groupId);
 
 		update.MarketCommentDelete.OwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 
 		update.MarketCommentDelete.DeleterId.Should()
 			.Be(deleterId);

@@ -1,5 +1,6 @@
 using System.Linq;
 using FluentAssertions;
+using VkNet.Model.GroupUpdate;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -33,7 +34,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			.Be(1234);
 
 		update.GroupId.Should()
-			.Be(1234);
+			.Be(new GroupId(1234));
 	}
 
 	[Fact]
@@ -63,7 +64,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			.Be(1234);
 
 		update.GroupId.Should()
-			.Be(1234);
+			.Be(new GroupId(1234));
 	}
 
 	[Fact]
@@ -87,7 +88,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			.Be(1234);
 
 		update.GroupId.Should()
-			.Be(1234);
+			.Be(new GroupId(1234));
 	}
 
 	[Fact]
@@ -111,7 +112,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			.Be(1234);
 
 		update.GroupId.Should()
-			.Be(1234);
+			.Be(new GroupId(1234));
 	}
 
 	[Fact]
@@ -147,7 +148,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			.Be(1234);
 
 		update.GroupId.Should()
-			.Be(1234);
+			.Be(new GroupId(1234));
 	}
 
 	[Fact]
@@ -177,7 +178,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			.BeFalse();
 
 		update.GroupId.Should()
-			.Be(1234);
+			.Be(new GroupId(1234));
 	}
 
 	[Fact]
@@ -210,6 +211,6 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			.Be("test");
 
 		update.GroupId.Should()
-			.Be(1234);
+			.Be(new GroupId(1234));
 	}
 }

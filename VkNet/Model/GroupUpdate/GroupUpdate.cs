@@ -260,14 +260,14 @@ public class GroupUpdate
 	/// </summary>
 	[JsonProperty("group_id")]
 	[Obsolete("Используйте свойство Instance")]
-	public ulong? GroupId { get; set; }
+	public GroupId GroupId { get; set; }
 
 	/// <summary>
 	/// <c>Secret Key</c> для Callback
 	/// </summary>
 	[JsonProperty("secret")]
 	[Obsolete("Используйте свойство Instance")]
-	public string Secret { get; set; }
+	public Secret Secret { get; set; }
 
 	/// <summary>
 	/// <c>MarketOrderNew</c> для Callback

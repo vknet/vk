@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
+using VkNet.Model.GroupUpdate;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -14,7 +15,8 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupChangePhotoTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
+		var unGroupId = -1234;
 		const int id = 4444;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -34,7 +36,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			.Be(userId);
 
 		update.GroupChangePhoto.Photo.OwnerId.Should()
-			.Be(-groupId);
+			.Be(unGroupId);
 
 		update.GroupChangePhoto.Photo.Id.Should()
 			.Be(id);
@@ -46,7 +48,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupJoinTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const GroupJoinType joinType = GroupJoinType.Request;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -75,7 +77,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupLeaveTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -103,7 +105,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupLeaveSelfTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -131,7 +133,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupOfficersEditTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const GroupOfficerLevel oldLevel = GroupOfficerLevel.Admin;
 		const GroupOfficerLevel newLevel = GroupOfficerLevel.Editor;
 
@@ -164,7 +166,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserBlockTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int adminId = 123;
 		const string comment = "test";
 		const BanReason reason = BanReason.Other;
@@ -203,7 +205,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserBlockTemporaryTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int adminId = 123;
 		const string comment = "test";
 		const BanReason reason = BanReason.IrrelevantMessages;
@@ -250,7 +252,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserUnblockTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int adminId = 123;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -282,7 +284,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserUnblockByEndDateTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int adminId = 123;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -314,7 +316,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PollVoteNewTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int optionId = 3333;
 		const int pollId = 4444;
 
