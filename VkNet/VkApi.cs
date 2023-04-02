@@ -197,7 +197,7 @@ public class VkApi : IVkApi
 	public Task AuthorizeAsync(IApiAuthParams @params, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() => Authorize(@params), CancellationToken.None);
 
 	/// <inheritdoc />
-	public void RefreshToken(Func<string> code = null, Func<Task<string>> codeAsync = null)
+	public void RefreshToken(Func<string> code = null, Task<string> codeAsync = null)
 	{
 		if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
 		{
@@ -219,7 +219,7 @@ public class VkApi : IVkApi
 	public void LogOut() => AccessToken = string.Empty;
 
 	/// <inheritdoc />
-	public Task RefreshTokenAsync(Func<string> code = null, Func<Task<string>> codeAsync = null, CancellationToken token = default) =>
+	public Task RefreshTokenAsync(Func<string> code = null, Task<string> codeAsync = null, CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code, codeAsync), token);
 
 	/// <inheritdoc />

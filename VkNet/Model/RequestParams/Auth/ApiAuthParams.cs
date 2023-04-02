@@ -25,7 +25,7 @@ public class ApiAuthParams : IApiAuthParams
 	public Func<string> TwoFactorAuthorization { get; set; }
 
 	/// <inheritdoc />
-	public Func<Task<string>> TwoFactorAuthorizationAsync { get; set; }
+	public Task<string> TwoFactorAuthorizationAsync { get; set; }
 
 	/// <inheritdoc />
 	public string AccessToken { get; set; }

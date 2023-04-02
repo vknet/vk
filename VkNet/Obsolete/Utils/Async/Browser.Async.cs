@@ -50,13 +50,13 @@ public partial class Browser
 	/// <param name="loginFormPostResult"> Ответ сервера vk </param>
 	/// <param name="token"></param>
 	/// <returns> Ответ сервера vk </returns>
-	private Task<HttpResponse<string>> FilledTwoFactorFormAsync(Func<string> code, Func<Task<string>> codeAsync, HttpResponse<string> loginFormPostResult, CancellationToken token)
+	private Task<HttpResponse<string>> FilledTwoFactorFormAsync(Func<string> code, Task<string> codeAsync, HttpResponse<string> loginFormPostResult, CancellationToken token)
 	{
 		if (string.IsNullOrEmpty(code.Invoke()))
 		{
 			var codeFormAsync = WebForm.From(loginFormPostResult)
 				.WithField("code")
-				.FilledWith(codeAsync.Invoke().GetAwaiter().GetResult());
+				.FilledWith(codeAsync.GetAwaiter().GetResult());
 
 			return _restClient.PostAsync(new(codeFormAsync.ActionUrl), codeFormAsync.GetFormFields(), Encoding.GetEncoding(1251), token: token);
 

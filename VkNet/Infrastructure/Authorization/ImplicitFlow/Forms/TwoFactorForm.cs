@@ -34,7 +34,7 @@ public sealed class TwoFactorForm : AbstractAuthorizationForm
 
 		if (authParams.TwoFactorAuthorizationAsync != null && form.Fields.ContainsKey(AuthorizationFormFields.Code))
 		{
-			form.Fields[AuthorizationFormFields.Code] = await authParams.TwoFactorAuthorizationAsync.Invoke();
+			form.Fields[AuthorizationFormFields.Code] = await authParams.TwoFactorAuthorizationAsync;
 		}
 	}
 

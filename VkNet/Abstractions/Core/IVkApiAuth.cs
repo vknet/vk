@@ -38,7 +38,7 @@ public interface IVkApiAuth
 	/// Невозможно обновить токен доступа т.к. последняя авторизация происходила не при
 	/// помощи логина и пароля
 	/// </exception>
-	void RefreshToken(Func<string> code = null, Func<Task<string>> codeAsync = null);
+	void RefreshToken(Func<string> code = null, Task<string> codeAsync = null);
 
 	/// <summary>
 	/// Выйти из системы

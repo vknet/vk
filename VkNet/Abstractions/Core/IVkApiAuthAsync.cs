@@ -12,7 +12,7 @@ public interface IVkApiAuthAsync : IVkApiAuth
 	Task AuthorizeAsync(IApiAuthParams @params, CancellationToken token = default);
 
 	/// <inheritdoc cref="IVkApiAuth.RefreshToken"/>
-	Task RefreshTokenAsync(Func<string> code = null, Func<Task<string>> codeAsync = null, CancellationToken token = default);
+	Task RefreshTokenAsync(Func<string> code = null, Task<string> codeAsync = null, CancellationToken token = default);
 
 	/// <inheritdoc cref="IVkApiAuth.LogOut"/>
 	Task LogOutAsync(CancellationToken token = default);

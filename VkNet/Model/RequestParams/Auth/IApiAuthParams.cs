@@ -43,7 +43,7 @@ public interface IApiAuthParams
 	/// <summary>
 	/// Функция асинхронной двух факторной авторизации
 	/// </summary>
-	Func<Task<string>> TwoFactorAuthorizationAsync { get; set; }
+	Task<string> TwoFactorAuthorizationAsync { get; set; }
 
 	/// <summary>
 	/// Токен доступа, полученный извне
