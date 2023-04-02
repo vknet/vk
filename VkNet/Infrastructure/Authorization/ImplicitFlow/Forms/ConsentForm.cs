@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Abstractions.Utils;
 using VkNet.Model;
@@ -18,7 +19,8 @@ public sealed class ConsentForm : AbstractAuthorizationForm
 	public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.Consent;
 
 	/// <inheritdoc />
-	protected override void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams)
+	protected override Task FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams)
 	{
+		return Task.CompletedTask;
 	}
 }

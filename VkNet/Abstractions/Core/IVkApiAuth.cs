@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using VkNet.Model;
 
 namespace VkNet.Abstractions;
@@ -37,7 +38,7 @@ public interface IVkApiAuth
 	/// Невозможно обновить токен доступа т.к. последняя авторизация происходила не при
 	/// помощи логина и пароля
 	/// </exception>
-	void RefreshToken(Func<string> code = null);
+	void RefreshToken(Func<string> code = null, Func<Task<string>> codeAsync = null);
 
 	/// <summary>
 	/// Выйти из системы

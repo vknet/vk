@@ -53,5 +53,5 @@ public abstract class AbstractAuthorizationForm : IAuthorizationForm
 	/// </summary>
 	/// <param name="form"> Форма </param>
 	/// <param name="authParams">Параметры авторизации.</param>
-	protected abstract void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams);
+	protected abstract Task FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams);
 }

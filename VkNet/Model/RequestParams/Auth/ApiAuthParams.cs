@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 
@@ -22,6 +23,9 @@ public class ApiAuthParams : IApiAuthParams
 
 	/// <inheritdoc />
 	public Func<string> TwoFactorAuthorization { get; set; }
+
+	/// <inheritdoc />
+	public Func<Task<string>> TwoFactorAuthorizationAsync { get; set; }
 
 	/// <inheritdoc />
 	public string AccessToken { get; set; }
@@ -102,7 +106,7 @@ public class ApiAuthParams : IApiAuthParams
 
 			if (!string.IsNullOrEmpty(Login)
 				&& !string.IsNullOrEmpty(Password)
-				&& TwoFactorAuthorization is not null
+				&& (TwoFactorAuthorization is not null || TwoFactorAuthorizationAsync is not null)
 				&& ApplicationId != 0
 				&& Settings is not null
 				&& Settings.ToUInt64() != 0

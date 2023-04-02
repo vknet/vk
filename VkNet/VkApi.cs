@@ -197,11 +197,12 @@ public class VkApi : IVkApi
 	public Task AuthorizeAsync(IApiAuthParams @params, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() => Authorize(@params), CancellationToken.None);
 
 	/// <inheritdoc />
-	public void RefreshToken(Func<string> code = null)
+	public void RefreshToken(Func<string> code = null, Func<Task<string>> codeAsync = null)
 	{
 		if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
 		{
 			_ap.TwoFactorAuthorization ??= code;
+			_ap.TwoFactorAuthorizationAsync ??= codeAsync;
 			AuthorizeWithAntiCaptcha(_ap);
 		} else
 		{
@@ -218,7 +219,8 @@ public class VkApi : IVkApi
 	public void LogOut() => AccessToken = string.Empty;
 
 	/// <inheritdoc />
-	public Task RefreshTokenAsync(Func<string> code = null, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code), token);
+	public Task RefreshTokenAsync(Func<string> code = null, Func<Task<string>> codeAsync = null, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code, codeAsync), token);
 
 	/// <inheritdoc />
 	public Task LogOutAsync(CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(LogOut, token);
@@ -466,7 +468,7 @@ public class VkApi : IVkApi
 
 	private void OnTokenExpired(VkApi sender)
 	{
-		RefreshTokenAsync(_ap.TwoFactorAuthorization)
+		RefreshTokenAsync(_ap.TwoFactorAuthorization, _ap.TwoFactorAuthorizationAsync)
 			.GetAwaiter()
 			.GetResult();
 

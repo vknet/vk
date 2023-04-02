@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Abstractions.Utils;
 using VkNet.Exception;
@@ -20,7 +21,7 @@ public sealed class ImplicitFlowCaptchaLoginForm : AbstractAuthorizationForm
 	public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.Captcha;
 
 	/// <inheritdoc />
-	protected override void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams)
+	protected override Task FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams)
 	{
 		if (_captchaSolver == null)
 		{
@@ -43,5 +44,7 @@ public sealed class ImplicitFlowCaptchaLoginForm : AbstractAuthorizationForm
 		{
 			form.Fields[AuthorizationFormFields.CaptchaKey] = captchaKey;
 		}
+
+		return Task.CompletedTask;
 	}
 }

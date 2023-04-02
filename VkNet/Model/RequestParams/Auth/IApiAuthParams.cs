@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
 
@@ -38,6 +39,11 @@ public interface IApiAuthParams
 	/// Функция двух факторной авторизации
 	/// </summary>
 	Func<string> TwoFactorAuthorization { get; set; }
+
+	/// <summary>
+	/// Функция асинхронной двух факторной авторизации
+	/// </summary>
+	Func<Task<string>> TwoFactorAuthorizationAsync { get; set; }
 
 	/// <summary>
 	/// Токен доступа, полученный извне
