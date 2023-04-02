@@ -1,5 +1,6 @@
 using System.Linq;
 using FluentAssertions;
+using VkNet.Model.GroupUpdate;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -12,7 +13,8 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallPostNewTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -22,16 +24,32 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case WallPost:
+					{
+						var a = x.Instance is WallPost b
+							? b
+							: null;
 
-		update.WallPost.FromId.Should()
-			.Be(userId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.WallPost.OwnerId.Should()
-			.Be(-groupId);
+						a.OwnerId.Should()
+							.Be(unGroupId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -40,9 +58,10 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyNewTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test";
 		const int postId = 6;
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -52,22 +71,38 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.WallReply.FromId.Should()
-			.Be(userId);
+					case WallReply:
+					{
+						var a = x.Instance is WallReply b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.WallReply.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.WallReply.PostOwnerId.Should()
-			.Be(-groupId);
+						a.PostOwnerId.Should()
+							.Be(unGroupId);
 
-		update.WallReply.PostId.Should()
-			.Be(postId);
+						a.PostId.Should()
+							.Be(postId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -76,8 +111,9 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyEditTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test1";
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -87,19 +123,35 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.WallReply.FromId.Should()
-			.Be(userId);
+					case WallReply:
+					{
+						var a = x.Instance is WallReply b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.WallReply.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.WallReply.PostOwnerId.Should()
-			.Be(-groupId);
+						a.PostOwnerId.Should()
+							.Be(unGroupId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -108,7 +160,8 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyRestoreTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
+		const int unGroupId = -1234;
 		const string text = "test1";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -119,19 +172,35 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.WallReply.FromId.Should()
-			.Be(userId);
+					case WallReply:
+					{
+						var a = x.Instance is WallReply b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.WallReply.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.WallReply.PostOwnerId.Should()
-			.Be(-groupId);
+						a.PostOwnerId.Should()
+							.Be(unGroupId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -139,10 +208,11 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyDeleteTest));
 
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int deleterId = 12345;
 		const int postId = 6;
 		const int id = 9;
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -152,21 +222,37 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.WallReplyDelete.DeleterId.Should()
-			.Be(deleterId);
+					case WallReplyDelete:
+					{
+						var a = x.Instance is WallReplyDelete b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.DeleterId.Should()
+							.Be(deleterId);
 
-		update.WallReplyDelete.OwnerId.Should()
-			.Be(-groupId);
+						a.OwnerId.Should()
+							.Be(unGroupId);
 
-		update.WallReplyDelete.PostId.Should()
-			.Be(postId);
+						a.PostId.Should()
+							.Be(postId);
 
-		update.WallReplyDelete.Id.Should()
-			.Be(id);
+						a.Id.Should()
+							.Be(id);
+
+						break;
+					}
+				}
+			});
 	}
 }

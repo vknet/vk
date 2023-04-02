@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq.Expressions;
-using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Enums.SafetyEnums;
@@ -59,68 +57,64 @@ public class GroupUpdateJsonConverter : Newtonsoft.Json.JsonConverter
 			var type = item["type"]
 				.ToString();
 
-			var fromJson = type switch
+			var groupUpdate = type switch
 			{
 				"message_new" or "message_edit" or "message_reply" => resObj1
-					? CreateTyped(u => u.MessageNew, JsonConvert.DeserializeObject<MessageNew>(resObj))
-					: CreateTyped(u => u.Message, JsonConvert.DeserializeObject<Message>(resObj)),
-				"message_allow" => CreateTyped(u => u.MessageAllow, JsonConvert.DeserializeObject<MessageAllow>(resObj)),
-				"message_typing_state" => CreateTyped(u => u.MessageTypingState,
-					JsonConvert.DeserializeObject<MessageTypingState>(resObj)),
-				"vkpay_transaction" => CreateTyped(u => u.VkPayTransaction, JsonConvert.DeserializeObject<VkPayTransaction>(resObj)),
-				"like_add" => CreateTyped(u => u.LikeAdd, JsonConvert.DeserializeObject<LikeAdd>(resObj)),
-				"like_remove" => CreateTyped(u => u.LikeRemove, JsonConvert.DeserializeObject<LikeRemove>(resObj)),
-				"group_change_settings" => CreateTyped(u => u.GroupChangeSettings,
-					JsonConvert.DeserializeObject<GroupChangeSettings>(resObj)),
-				"message_deny" => CreateTyped(u => u.MessageDeny, JsonConvert.DeserializeObject<MessageDeny>(resObj)),
-				"photo_new" => CreateTyped(u => u.Photo, JsonConvert.DeserializeObject<Photo>(resObj)),
-				"photo_comment_new" or "photo_comment_edit" or "photo_comment_restore" => CreateTyped(u => u.PhotoComment,
-					JsonConvert.DeserializeObject<PhotoComment>(resObj)),
-				"photo_comment_delete" => CreateTyped(u => u.PhotoCommentDelete,
-					JsonConvert.DeserializeObject<PhotoCommentDelete>(resObj)),
-				"audio_new" => CreateTyped(u => u.Audio, JsonConvert.DeserializeObject<Audio>(resObj)),
-				"video_new" => CreateTyped(u => u.Video, JsonConvert.DeserializeObject<Video>(resObj)),
-				"video_comment_new" or "video_comment_edit" or "video_comment_restore" => CreateTyped(u => u.VideoComment,
-					JsonConvert.DeserializeObject<VideoComment>(resObj)),
-				"video_comment_delete" => CreateTyped(u => u.VideoCommentDelete,
-					JsonConvert.DeserializeObject<VideoCommentDelete>(resObj)),
-				"wall_post_new" or "wall_repost" => CreateTyped(u => u.WallPost, JsonConvert.DeserializeObject<WallPost>(resObj)),
+					? CreateTyped(JsonConvert.DeserializeObject<MessageNew>(resObj))
+					: CreateTyped(JsonConvert.DeserializeObject<Message>(resObj)),
+				"message_allow" => CreateTyped(JsonConvert.DeserializeObject<MessageAllow>(resObj)),
+				"message_typing_state" => CreateTyped(JsonConvert.DeserializeObject<MessageTypingState>(resObj)),
+				"vkpay_transaction" => CreateTyped(JsonConvert.DeserializeObject<VkPayTransaction>(resObj)),
+				"like_add" => CreateTyped(JsonConvert.DeserializeObject<LikeAdd>(resObj)),
+				"like_remove" => CreateTyped(JsonConvert.DeserializeObject<LikeRemove>(resObj)),
+				"group_change_settings" => CreateTyped(JsonConvert.DeserializeObject<GroupChangeSettings>(resObj)),
+				"message_deny" => CreateTyped(JsonConvert.DeserializeObject<MessageDeny>(resObj)),
+				"photo_new" => CreateTyped(JsonConvert.DeserializeObject<Photo>(resObj)),
+				"photo_comment_new" or "photo_comment_edit" or "photo_comment_restore" => CreateTyped(JsonConvert.DeserializeObject<PhotoComment>(resObj)),
+				"photo_comment_delete" => CreateTyped(JsonConvert.DeserializeObject<PhotoCommentDelete>(resObj)),
+				"audio_new" => CreateTyped(JsonConvert.DeserializeObject<Audio>(resObj)),
+				"video_new" => CreateTyped(JsonConvert.DeserializeObject<Video>(resObj)),
+				"video_comment_new" or "video_comment_edit" or "video_comment_restore" => CreateTyped(JsonConvert.DeserializeObject<VideoComment>(resObj)),
+				"video_comment_delete" => CreateTyped(JsonConvert.DeserializeObject<VideoCommentDelete>(resObj)),
+				"wall_post_new" or "wall_repost" => CreateTyped(JsonConvert.DeserializeObject<WallPost>(resObj)),
 				"market_comment_new" or "market_comment_edit" or "market_comment_restore" =>
-					CreateTyped(u => u.MarketComment, JsonConvert.DeserializeObject<VkNet.Model.GroupUpdate.MarketComment>(resObj)),
+					CreateTyped(JsonConvert.DeserializeObject<VkNet.Model.GroupUpdate.MarketComment>(resObj)),
 				"wall_reply_new" or "wall_reply_edit" or "wall_reply_restore" =>
-					CreateTyped(u => u.WallReply, JsonConvert.DeserializeObject<VkNet.Model.GroupUpdate.WallReply>(resObj)),
-				"wall_reply_delete" => CreateTyped(u => u.WallReplyDelete, JsonConvert.DeserializeObject<WallReplyDelete>(resObj)),
-				"board_post_new" or "board_post_edit" or "board_post_restore" => CreateTyped(u => u.BoardPost,
-					JsonConvert.DeserializeObject<BoardPost>(resObj)),
-				"board_post_delete" => CreateTyped(u => u.BoardPostDelete, JsonConvert.DeserializeObject<BoardPostDelete>(resObj)),
-				"market_comment_delete" => CreateTyped(u => u.MarketCommentDelete, JsonConvert.DeserializeObject<MarketCommentDelete>(resObj)),
-				"group_leave" => CreateTyped(u => u.GroupLeave, JsonConvert.DeserializeObject<GroupLeave>(resObj)),
-				"group_join" => CreateTyped(u => u.GroupJoin, JsonConvert.DeserializeObject<GroupJoin>(resObj)),
-				"user_block" => CreateTyped(u => u.UserBlock, JsonConvert.DeserializeObject<UserBlock>(resObj)),
-				"user_unblock" => CreateTyped(u => u.UserUnblock, JsonConvert.DeserializeObject<UserUnblock>(resObj)),
-				"poll_vote_new" => CreateTyped(u => u.PollVoteNew, JsonConvert.DeserializeObject<PollVoteNew>(resObj)),
-				"group_change_photo" => CreateTyped(u => u.GroupChangePhoto, JsonConvert.DeserializeObject<GroupChangePhoto>(resObj)),
-				"group_officers_edit" => CreateTyped(u => u.GroupOfficersEdit, JsonConvert.DeserializeObject<GroupOfficersEdit>(resObj)),
-				"message_event" => CreateTyped(u => u.MessageEvent, JsonConvert.DeserializeObject<MessageEvent>(resObj)),
-				"donut_subscription_create" or "donut_subscription_prolonged" => CreateTyped(u => u.DonutSubscriptionNew, JsonConvert.DeserializeObject<DonutNew>(resObj)),
-				"donut_subscription_cancelled" or "donut_subscription_expired" => CreateTyped(u => u.DonutSubscriptionEnd,
-					JsonConvert.DeserializeObject<DonutEnd>(resObj)),
-				"donut_subscription_price_changed" => CreateTyped(u => u.DonutSubscriptionPriceChanged,
-					JsonConvert.DeserializeObject<DonutChanged>(resObj)),
-				"donut_money_withdraw" or "donut_money_withdraw_error" => CreateTyped(u => u.DonutMoneyWithdraw,
-					JsonConvert.DeserializeObject<DonutWithdraw>(resObj)),
-				"market_order_new" => CreateTyped(u => u.MarketOrderNew, JsonConvert.DeserializeObject<MarketOrder>(resObj)),
-				"market_order_edit" => CreateTyped(u => u.MarketOrderEdit, JsonConvert.DeserializeObject<MarketOrder>(resObj)),
-				"app_payload" => CreateTyped(u => u.AppPayload, JsonConvert.DeserializeObject<AppPayload>(resObj)),
+					CreateTyped(JsonConvert.DeserializeObject<VkNet.Model.GroupUpdate.WallReply>(resObj)),
+				"wall_reply_delete" => CreateTyped(JsonConvert.DeserializeObject<WallReplyDelete>(resObj)),
+				"board_post_new" or "board_post_edit" or "board_post_restore" => CreateTyped(JsonConvert.DeserializeObject<BoardPost>(resObj)),
+				"board_post_delete" => CreateTyped(JsonConvert.DeserializeObject<BoardPostDelete>(resObj)),
+				"market_comment_delete" => CreateTyped(JsonConvert.DeserializeObject<MarketCommentDelete>(resObj)),
+				"group_leave" => CreateTyped(JsonConvert.DeserializeObject<GroupLeave>(resObj)),
+				"group_join" => CreateTyped(JsonConvert.DeserializeObject<GroupJoin>(resObj)),
+				"user_block" => CreateTyped(JsonConvert.DeserializeObject<UserBlock>(resObj)),
+				"user_unblock" => CreateTyped(JsonConvert.DeserializeObject<UserUnblock>(resObj)),
+				"poll_vote_new" => CreateTyped(JsonConvert.DeserializeObject<PollVoteNew>(resObj)),
+				"group_change_photo" => CreateTyped(JsonConvert.DeserializeObject<GroupChangePhoto>(resObj)),
+				"group_officers_edit" => CreateTyped(JsonConvert.DeserializeObject<GroupOfficersEdit>(resObj)),
+				"message_event" => CreateTyped(JsonConvert.DeserializeObject<MessageEvent>(resObj)),
+				"donut_subscription_create" or "donut_subscription_prolonged" => CreateTyped(JsonConvert.DeserializeObject<DonutNew>(resObj)),
+				"donut_subscription_cancelled" or "donut_subscription_expired" => CreateTyped(JsonConvert.DeserializeObject<DonutEnd>(resObj)),
+				"donut_subscription_price_changed" => CreateTyped(JsonConvert.DeserializeObject<DonutChanged>(resObj)),
+				"donut_money_withdraw" or "donut_money_withdraw_error" => CreateTyped(JsonConvert.DeserializeObject<DonutWithdraw>(resObj)),
+				"market_order_new" => CreateTyped(JsonConvert.DeserializeObject<MarketOrder>(resObj)),
+				"market_order_edit" => CreateTyped(JsonConvert.DeserializeObject<MarketOrder>(resObj)),
+				"app_payload" => CreateTyped(JsonConvert.DeserializeObject<AppPayload>(resObj)),
 
 				_ => JsonConvert.DeserializeObject<GroupUpdate>(item.ToString(), JsonConfigure.JsonSerializerSettings)
 			};
 
-			fromJson!.Type = Utilities.Deserialize<GroupUpdateType>(type);
-			fromJson.Raw = JsonConvert.DeserializeObject<VkResponse>(item.ToString());
-			fromJson.GroupId = Convert.ToUInt64(item["group_id"]);
+			groupUpdate.Raw = JsonConvert.DeserializeObject<VkResponse>(item.ToString());
+			groupUpdate.Type = new(Utilities.Deserialize<GroupUpdateType>(groupUpdate.Instance.ToString()).GetValueOrDefault());
+			groupUpdate.GroupId =  new(Convert.ToUInt64(item["group_id"]));
 
-			list.Add(fromJson);
+			if (item["secret"] is not null)
+			{
+				groupUpdate.Secret = new(item["secret"]
+					.ToString());
+			}
+
+			list.Add(groupUpdate);
 		}
 
 		return list;
@@ -128,23 +122,13 @@ public class GroupUpdateJsonConverter : Newtonsoft.Json.JsonConverter
 
 	#region Приватные методы
 
-	private static GroupUpdate CreateTyped<TGroupUpdate>(Expression<Func<GroupUpdate, TGroupUpdate>> propertySelector,
-														TGroupUpdate instance)
+	private static GroupUpdate CreateTyped<TGroupUpdate>(TGroupUpdate instance)
 		where TGroupUpdate : IGroupUpdate
 	{
 		var update = new GroupUpdate
 		{
 			Instance = instance
 		};
-
-		// для сохранения обратной совместимости с публичными свойствами.
-		if (propertySelector.Body is MemberExpression
-			{
-				Member: PropertyInfo propertyInfo
-			})
-		{
-			propertyInfo.SetValue(update, instance);
-		}
 
 		return update;
 	}

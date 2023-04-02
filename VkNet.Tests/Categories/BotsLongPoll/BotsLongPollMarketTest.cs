@@ -1,5 +1,6 @@
 using System.Linq;
 using FluentAssertions;
+using VkNet.Model.GroupUpdate;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -12,8 +13,9 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentNewTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test";
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -23,19 +25,33 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case MarketComment:
+					{
+						var a = x.Instance is MarketComment b
+							? b
+							: null;
+						a.FromId.Should()
+							.Be(userId);
 
-		update.MarketComment.FromId.Should()
-			.Be(userId);
+						a.Text.Should()
+							.Be(text);
 
-		update.MarketComment.Text.Should()
-			.Be(text);
-
-		update.MarketComment.MarketOwnerId.Should()
-			.Be(-groupId);
+						a.MarketOwnerId.Should()
+							.Be(unGroupId);
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -44,8 +60,9 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentEditTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test1";
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -55,19 +72,33 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case MarketComment:
+					{
+						var a = x.Instance is MarketComment b
+							? b
+							: null;
+						a.FromId.Should()
+							.Be(userId);
 
-		update.MarketComment.FromId.Should()
-			.Be(userId);
+						a.Text.Should()
+							.Be(text);
 
-		update.MarketComment.Text.Should()
-			.Be(text);
-
-		update.MarketComment.MarketOwnerId.Should()
-			.Be(-groupId);
+						a.MarketOwnerId.Should()
+							.Be(unGroupId);
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -76,8 +107,9 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentRestoreTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test1";
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -87,19 +119,33 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case MarketComment:
+					{
+						var a = x.Instance is MarketComment b
+							? b
+							: null;
+						a.FromId.Should()
+							.Be(userId);
 
-		update.MarketComment.FromId.Should()
-			.Be(userId);
+						a.Text.Should()
+							.Be(text);
 
-		update.MarketComment.Text.Should()
-			.Be(text);
-
-		update.MarketComment.MarketOwnerId.Should()
-			.Be(-groupId);
+						a.MarketOwnerId.Should()
+							.Be(unGroupId);
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -108,8 +154,9 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentDeleteTest));
 
 		const int deleterId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int itemId = 4444;
+		const int unGroupId = -1234;
 		const int id = 1;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -120,21 +167,36 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case MarketCommentDelete:
+					{
+						var a = x.Instance is MarketCommentDelete b
+							? b
+							: null;
+						a.OwnerId.Should()
+							.Be(unGroupId);
 
-		update.MarketCommentDelete.OwnerId.Should()
-			.Be(-groupId);
+						a.DeleterId.Should()
+							.Be(deleterId);
 
-		update.MarketCommentDelete.DeleterId.Should()
-			.Be(deleterId);
+						a.ItemId.Should()
+							.Be(itemId);
 
-		update.MarketCommentDelete.ItemId.Should()
-			.Be(itemId);
+						a.Id.Should()
+							.Be(id);
+						break;
+					}
+				}
+			});
 
-		update.MarketCommentDelete.Id.Should()
-			.Be(id);
 	}
 }

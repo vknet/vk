@@ -8,7 +8,6 @@ namespace VkNet.Enums.SafetyEnums;
 /// <summary>
 /// Тип обновления
 /// </summary>
-[Obsolete("Типы обновлений теперь проверяются в GroupUpdate")]
 [StringEnum]
 [JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
 public enum GroupUpdateType

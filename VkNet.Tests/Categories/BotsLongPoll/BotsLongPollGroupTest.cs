@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
+using VkNet.Model.GroupUpdate;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -14,7 +15,8 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupChangePhotoTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
+		var unGroupId = -1234;
 		const int id = 4444;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -25,19 +27,35 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case GroupChangePhoto:
+					{
+						var a = x.Instance is GroupChangePhoto b
+							? b
+							: null;
 
-		update.GroupChangePhoto.UserId.Should()
-			.Be(userId);
+						a.UserId.Should()
+							.Be(userId);
 
-		update.GroupChangePhoto.Photo.OwnerId.Should()
-			.Be(-groupId);
+						a.Photo.OwnerId.Should()
+							.Be(unGroupId);
 
-		update.GroupChangePhoto.Photo.Id.Should()
-			.Be(id);
+						a.Photo.Id.Should()
+							.Be(id);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -46,7 +64,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupJoinTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const GroupJoinType joinType = GroupJoinType.Request;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -57,16 +75,32 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case GroupJoin:
+					{
+						var a = x.Instance is GroupJoin b
+							? b
+							: null;
 
-		update.GroupJoin.UserId.Should()
-			.Be(userId);
+						a.UserId.Should()
+							.Be(userId);
 
-		update.GroupJoin.JoinType.Should()
-			.Be(joinType);
+						a.JoinType.Should()
+							.Be(joinType);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -75,7 +109,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupLeaveTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -85,16 +119,32 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case GroupLeave:
+					{
+						var a = x.Instance is GroupLeave b
+							? b
+							: null;
 
-		update.GroupLeave.UserId.Should()
-			.Be(userId);
+						a.UserId.Should()
+							.Be(userId);
 
-		update.GroupLeave.IsSelf.Should()
-			.BeFalse();
+						a.IsSelf.Should()
+							.BeFalse();
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -103,7 +153,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupLeaveSelfTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -113,16 +163,32 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case GroupLeave:
+					{
+						var a = x.Instance is GroupLeave b
+							? b
+							: null;
 
-		update.GroupLeave.UserId.Should()
-			.Be(userId);
+						a.UserId.Should()
+							.Be(userId);
 
-		update.GroupLeave.IsSelf.Should()
-			.BeTrue();
+						a.IsSelf.Should()
+							.BeTrue();
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -131,7 +197,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupOfficersEditTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const GroupOfficerLevel oldLevel = GroupOfficerLevel.Admin;
 		const GroupOfficerLevel newLevel = GroupOfficerLevel.Editor;
 
@@ -143,19 +209,35 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case GroupOfficersEdit:
+					{
+						var a = x.Instance is GroupOfficersEdit b
+							? b
+							: null;
 
-		update.GroupOfficersEdit.UserId.Should()
-			.Be(userId);
+						a.UserId.Should()
+							.Be(userId);
 
-		update.GroupOfficersEdit.LevelOld.Should()
-			.Be(oldLevel);
+						a.LevelOld.Should()
+							.Be(oldLevel);
 
-		update.GroupOfficersEdit.LevelNew.Should()
-			.Be(newLevel);
+						a.LevelNew.Should()
+							.Be(newLevel);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -164,7 +246,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserBlockTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int adminId = 123;
 		const string comment = "test";
 		const BanReason reason = BanReason.Other;
@@ -177,24 +259,40 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case UserBlock:
+					{
+						var a = x.Instance is UserBlock b
+							? b
+							: null;
 
-		update.UserBlock.UserId.Should()
-			.Be(userId);
+						a.UserId.Should()
+							.Be(userId);
 
-		update.UserBlock.AdminId.Should()
-			.Be(adminId);
+						a.AdminId.Should()
+							.Be(adminId);
 
-		update.UserBlock.Comment.Should()
-			.Be(comment);
+						a.Comment.Should()
+							.Be(comment);
 
-		update.UserBlock.Reason.Should()
-			.Be(reason);
+						a.Reason.Should()
+							.Be(reason);
 
-		update.UserBlock.UnblockDate.Should().Be(DateTime.Parse("1970-01-01"));
+						a.UnblockDate.Should().Be(DateTime.Parse("1970-01-01"));
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -203,7 +301,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserBlockTemporaryTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int adminId = 123;
 		const string comment = "test";
 		const BanReason reason = BanReason.IrrelevantMessages;
@@ -223,25 +321,41 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case UserBlock:
+					{
+						var a = x.Instance is UserBlock b
+							? b
+							: null;
 
-		update.UserBlock.UserId.Should()
-			.Be(userId);
+						a.UserId.Should()
+							.Be(userId);
 
-		update.UserBlock.AdminId.Should()
-			.Be(adminId);
+						a.AdminId.Should()
+							.Be(adminId);
 
-		update.UserBlock.Comment.Should()
-			.Be(comment);
+						a.Comment.Should()
+							.Be(comment);
 
-		update.UserBlock.Reason.Should()
-			.Be(reason);
+						a.Reason.Should()
+							.Be(reason);
 
-		update.UserBlock.UnblockDate.Should()
-			.Be(unblockDate);
+						a.UnblockDate.Should()
+							.Be(unblockDate);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -250,7 +364,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserUnblockTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int adminId = 123;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -261,19 +375,35 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case UserUnblock:
+					{
+						var a = x.Instance is UserUnblock b
+							? b
+							: null;
 
-		update.UserUnblock.UserId.Should()
-			.Be(userId);
+						a.UserId.Should()
+							.Be(userId);
 
-		update.UserUnblock.AdminId.Should()
-			.Be(adminId);
+						a.AdminId.Should()
+							.Be(adminId);
 
-		update.UserUnblock.ByEndDate.Should()
-			.BeFalse();
+						a.ByEndDate.Should()
+							.BeFalse();
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -282,7 +412,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserUnblockByEndDateTest));
 
 		const int userId = 321;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int adminId = 123;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -293,19 +423,35 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case UserUnblock:
+					{
+						var a = x.Instance is UserUnblock b
+							? b
+							: null;
 
-		update.UserUnblock.UserId.Should()
-			.Be(userId);
+						a.UserId.Should()
+							.Be(userId);
 
-		update.UserUnblock.AdminId.Should()
-			.Be(adminId);
+						a.AdminId.Should()
+							.Be(adminId);
 
-		update.UserUnblock.ByEndDate.Should()
-			.BeTrue();
+						a.ByEndDate.Should()
+							.BeTrue();
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -314,7 +460,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PollVoteNewTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int optionId = 3333;
 		const int pollId = 4444;
 
@@ -326,18 +472,34 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case PollVoteNew:
+					{
+						var a = x.Instance is PollVoteNew b
+							? b
+							: null;
 
-		update.PollVoteNew.UserId.Should()
-			.Be(userId);
+						a.UserId.Should()
+							.Be(userId);
 
-		update.PollVoteNew.OptionId.Should()
-			.Be(optionId);
+						a.OptionId.Should()
+							.Be(optionId);
 
-		update.PollVoteNew.PollId.Should()
-			.Be(pollId);
+						a.PollId.Should()
+							.Be(pollId);
+
+						break;
+					}
+				}
+			});
 	}
 }
