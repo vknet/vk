@@ -16,4 +16,10 @@ public sealed class AccessToMenuDeniedException : VkApiMethodInvokeException
 	public AccessToMenuDeniedException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private AccessToMenuDeniedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

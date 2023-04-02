@@ -21,4 +21,10 @@ public sealed class AlbumAccessDeniedException : VkApiMethodInvokeException
 	public AlbumAccessDeniedException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private AlbumAccessDeniedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

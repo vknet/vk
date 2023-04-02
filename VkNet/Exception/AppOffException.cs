@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -19,5 +20,10 @@ public sealed class AppOffException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	public AppOffException(VkError response) : base(response)
 	{
+	}
+
+	private AppOffException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
+	{
+
 	}
 }

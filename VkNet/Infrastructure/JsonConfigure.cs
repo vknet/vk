@@ -8,7 +8,7 @@ namespace VkNet.Infrastructure;
 internal static class JsonConfigure
 {
 	/// <returns></returns>
-	internal static JsonSerializerSettings JsonSerializerSettings = new()
+	internal static readonly JsonSerializerSettings JsonSerializerSettings = new()
 	{
 		MaxDepth = null,
 		ReferenceLoopHandling = ReferenceLoopHandling.Ignore

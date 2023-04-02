@@ -17,4 +17,10 @@ public sealed class UserDisabledTrackNameBroadcastException : VkApiMethodInvokeE
 	public UserDisabledTrackNameBroadcastException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private UserDisabledTrackNameBroadcastException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

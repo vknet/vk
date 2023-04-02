@@ -16,4 +16,10 @@ public sealed class VideoAccessDeniedException : VkApiMethodInvokeException
 	public VideoAccessDeniedException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private VideoAccessDeniedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

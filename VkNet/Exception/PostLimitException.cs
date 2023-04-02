@@ -17,4 +17,10 @@ public sealed class PostLimitException : VkApiMethodInvokeException
 	public PostLimitException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private PostLimitException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

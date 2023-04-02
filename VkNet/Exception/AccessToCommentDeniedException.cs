@@ -17,4 +17,10 @@ public sealed class AccessToCommentDeniedException : VkApiMethodInvokeException
 	public AccessToCommentDeniedException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private AccessToCommentDeniedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

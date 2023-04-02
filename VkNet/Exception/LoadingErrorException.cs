@@ -10,10 +10,16 @@ namespace VkNet.Exception;
 /// </summary>
 [Serializable]
 [VkError(VkErrorCode.LoadingError)]
-public class LoadingErrorException : VkApiMethodInvokeException
+public sealed class LoadingErrorException : VkApiMethodInvokeException
 {
 	/// <inheritdoc />
 	public LoadingErrorException(VkError response) : base(response)
 	{
+	}
+
+	/// <inheritdoc />
+	private LoadingErrorException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
 	}
 }

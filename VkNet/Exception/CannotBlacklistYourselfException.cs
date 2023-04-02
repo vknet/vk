@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -19,5 +20,11 @@ public sealed class CannotBlacklistYourselfException : VkApiMethodInvokeExceptio
 	/// <inheritdoc />
 	public CannotBlacklistYourselfException(VkError response) : base(response)
 	{
+	}
+
+	/// <inheritdoc />
+	private CannotBlacklistYourselfException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
+	{
+
 	}
 }

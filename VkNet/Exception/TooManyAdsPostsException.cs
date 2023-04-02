@@ -16,4 +16,10 @@ public sealed class TooManyAdsPostsException : VkApiMethodInvokeException
 	public TooManyAdsPostsException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private TooManyAdsPostsException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

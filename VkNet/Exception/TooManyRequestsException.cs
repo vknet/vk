@@ -23,4 +23,10 @@ public sealed class TooManyRequestsException : VkApiMethodInvokeException
 	public TooManyRequestsException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private TooManyRequestsException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

@@ -16,4 +16,10 @@ public sealed class StatusAccessDeniedException : VkApiMethodInvokeException
 	public StatusAccessDeniedException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private StatusAccessDeniedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

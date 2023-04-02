@@ -18,10 +18,10 @@ public interface ILikesCategory : ILikesCategoryAsync
 	/// <inheritdoc cref="ILikesCategoryAsync.AddAsync" />
 	long Add(LikesAddParams @params);
 
-	/// <inheritdoc cref="ILikesCategoryAsync.DeleteAsync(LikeObjectType, long, long?)" />
+	/// <inheritdoc cref="ILikesCategoryAsync.DeleteAsync(LikeObjectType, long, long?, System.Threading.CancellationToken)" />
 	long Delete(LikeObjectType type, long itemId, long? ownerId = null);
 
-	/// <inheritdoc cref="ILikesCategoryAsync.DeleteAsync(LikeObjectType, long, long?,long?,string)" />
+	/// <inheritdoc cref="ILikesCategoryAsync.DeleteAsync(LikeObjectType, long, long?,long?,string, System.Threading.CancellationToken)" />
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 	long Delete(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null);
 

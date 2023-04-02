@@ -41,15 +41,15 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetMembersAsync" />
 	VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = false);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, IEnumerable{long}, bool?, bool)" />
+	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, IEnumerable{long}, bool?, bool, System.Threading.CancellationToken)" />
 	ReadOnlyCollection<GroupMember> IsMember(string groupId, IEnumerable<long> userIds, bool? extended,
 											bool skipAuthorization = false);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, long, bool?, bool)" />
+	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, long, bool?, bool, System.Threading.CancellationToken)" />
 	GroupMember IsMember(string groupId, long userId, bool? extended = true,
 											bool skipAuthorization = false);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, long, bool)" />
+	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, long, bool, System.Threading.CancellationToken)" />
 	bool IsMember(string groupId, long userId, bool skipAuthorization = false);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.SearchAsync" />
@@ -89,10 +89,10 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 	VkCollection<User> GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null,
 										NameCase? nameCase = null);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long)" />
+	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long, System.Threading.CancellationToken)" />
 	bool Invite(long groupId, long userId);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long,long?,string)" />
+	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long,long?,string, System.Threading.CancellationToken)" />
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 	bool Invite(long groupId, long userId, long? captchaSid = null, string captchaKey = null);
 

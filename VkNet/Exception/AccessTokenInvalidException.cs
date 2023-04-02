@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using VkNet.Utils;
 
 namespace VkNet.Exception;
@@ -8,13 +10,19 @@ namespace VkNet.Exception;
 /// доступа является недействительным.
 /// </summary>
 [Serializable]
-public class AccessTokenInvalidException : VkApiException
+public sealed class AccessTokenInvalidException : VkApiException
 {
 	/// <summary>
 	/// Инициализирует новый экземпляр класса AccessTokenInvalidException
 	/// </summary>
 	public AccessTokenInvalidException()
 	{
+	}
+
+	/// <inheritdoc />
+	private AccessTokenInvalidException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base()
+	{
+
 	}
 
 	/// <summary>
@@ -41,4 +49,11 @@ public class AccessTokenInvalidException : VkApiException
 	/// <param name="response"> Ответ от сервера vk </param>
 	public AccessTokenInvalidException(VkResponse response) : base(response: response[key: "error_msg"]) =>
 		ErrorCode = response[key: "error_code"];
+
+	/// <inheritdoc />
+	[UsedImplicitly]
+	public override void GetObjectData(SerializationInfo info, StreamingContext context)
+	{
+		base.GetObjectData(info, context);
+	}
 }

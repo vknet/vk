@@ -17,4 +17,10 @@ public sealed class UserAccessDeniedException : VkApiMethodInvokeException
 	public UserAccessDeniedException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private UserAccessDeniedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

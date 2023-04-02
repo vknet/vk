@@ -284,7 +284,7 @@ public class User
 	/// Состояние дружбы с пользователями.
 	/// </summary>
 	[JsonProperty("friend_status")]
-	public FriendStatus FriendStatus { get; set; }
+	public FriendStatus? FriendStatus { get; set; }
 
 	/// <summary>
 	/// Любимые игры пользователя.
@@ -528,7 +528,7 @@ public class User
 	/// Семейное положение.
 	/// </summary>
 	[JsonProperty("relation")]
-	public RelationType Relation { get; set; }
+	public RelationType? Relation { get; set; }
 
 	/// <summary>
 	/// Школы, в которых учился пользователь.
@@ -546,7 +546,7 @@ public class User
 	/// Пол пользователя.
 	/// </summary>
 	[JsonProperty("sex")]
-	public Sex Sex { get; set; }
+	public Sex? Sex { get; set; }
 
 	/// <summary>
 	/// Возвращает указанный в профиле сайт пользователя.

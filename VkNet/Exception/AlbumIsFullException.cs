@@ -18,4 +18,10 @@ public sealed class AlbumIsFullException : VkApiMethodInvokeException
 	public AlbumIsFullException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private AlbumIsFullException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }

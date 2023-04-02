@@ -10,7 +10,7 @@ namespace VkNet.Utils;
 /// Ответ vk.com
 /// </summary>
 [CanBeNull]
-public sealed partial class VkResponse
+public sealed class VkResponse
 {
 	/// <summary>
 	/// JSON токен

@@ -163,7 +163,7 @@ public class Group
 	/// Возрастное ограничение
 	/// </summary>
 	[JsonProperty("age_limits")]
-	public AgeLimit AgeLimits { get; set; }
+	public AgeLimit? AgeLimits { get; set; }
 
 	/// <summary>
 	/// Информация о забанненом (добавленном в черный список) пользователе сообщества.
@@ -322,7 +322,7 @@ public class Group
 	/// Статус участника текущего пользователя.
 	/// </summary>
 	[JsonProperty("member_status")]
-	public MemberStatus MemberStatus { get; set; }
+	public MemberStatus? MemberStatus { get; set; }
 
 	/// <summary>
 	/// Количество участников сообщества.
@@ -404,7 +404,7 @@ public class Group
 	/// Стена
 	/// </summary>
 	[JsonProperty("wall")]
-	public WallType Wall { get; set; }
+	public WallType? Wall { get; set; }
 
 	#endregion
 }

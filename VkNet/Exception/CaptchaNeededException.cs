@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -22,6 +24,19 @@ public sealed class CaptchaNeededException : VkApiMethodInvokeException
 
 		Sid = response.CaptchaSid;
 		Img = response.CaptchaImg;
+	}
+
+	/// <inheritdoc />
+	private CaptchaNeededException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
+	{
+
+	}
+
+	/// <inheritdoc />
+	[UsedImplicitly]
+	public override void GetObjectData(SerializationInfo info, StreamingContext context)
+	{
+		base.GetObjectData(info, context);
 	}
 
 	/// <summary>

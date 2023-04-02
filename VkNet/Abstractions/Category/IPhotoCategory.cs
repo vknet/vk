@@ -42,10 +42,10 @@ public interface IPhotoCategory : IPhotoCategoryAsync
 	/// <inheritdoc cref="IPhotoCategoryAsync.GetChatUploadServerAsync"/>
 	UploadServerInfo GetChatUploadServer(ulong chatId, ulong? cropX = null, ulong? cropY = null, ulong? cropWidth = null);
 
-	/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string)"/>
+	/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string, System.Threading.CancellationToken)"/>
 	Photo SaveOwnerPhoto(string response);
 
-	/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string,long?,string)"/>
+	/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string,long?,string, System.Threading.CancellationToken)"/>
 	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
 	Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey);
 

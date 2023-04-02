@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.Serialization;
+using JetBrains.Annotations;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -29,6 +31,19 @@ public sealed class NeedValidationException : VkApiMethodInvokeException
 		}
 
 		RedirectUri = response.RedirectUri;
+	}
+
+	/// <inheritdoc />
+	private NeedValidationException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
+
+	/// <inheritdoc />
+	[UsedImplicitly]
+	public override void GetObjectData(SerializationInfo info, StreamingContext context)
+	{
+		base.GetObjectData(info, context);
 	}
 
 	/// <summary>

@@ -18,4 +18,10 @@ public sealed class GroupsListAccessDeniedException : VkApiMethodInvokeException
 	public GroupsListAccessDeniedException(VkError response) : base(response)
 	{
 	}
+
+	/// <inheritdoc />
+	private GroupsListAccessDeniedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	{
+
+	}
 }
