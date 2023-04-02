@@ -200,6 +200,37 @@ public partial class UsersCategory : IUsersCategory
 		return _vk.Call<ReadOnlyCollection<User>>("users.get", parameters);
 	}
 
+	/// <inheritdoc cref="User" />
+	[Pure]
+	public User Get(long userId, ProfileFields fields = null, NameCase? nameCase = null)
+	{
+		VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
+
+		var users = Get(new[]
+		{
+			userId
+		}, fields, nameCase);
+
+		return users.FirstOrDefault();
+	}
+
+	/// <inheritdoc cref="User" />
+	public User Get([NotNull] string screenName
+					, ProfileFields fields = null
+					, NameCase? nameCase = null)
+	{
+		VkErrors.ThrowIfNullOrEmpty(expr: () => screenName);
+
+		var users = Get(new[]
+		{
+			screenName
+		}, fields, nameCase);
+
+		return users.Count > 0
+			? users[index: 0]
+			: null;
+	}
+
 	/// <inheritdoc />
 	[Pure]
 	public VkCollection<Group> GetSubscriptions(long? userId = null
@@ -328,35 +359,4 @@ public partial class UsersCategory : IUsersCategory
 				"need_description", @params.NeedDescription
 			}
 		});
-
-	/// <inheritdoc cref="User" />
-	[Pure]
-	public User Get(long userId, ProfileFields fields = null, NameCase? nameCase = null)
-	{
-		VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
-
-		var users = Get(new[]
-		{
-			userId
-		}, fields, nameCase);
-
-		return users.FirstOrDefault();
-	}
-
-	/// <inheritdoc cref="User" />
-	public User Get([NotNull] string screenName
-					, ProfileFields fields = null
-					, NameCase? nameCase = null)
-	{
-		VkErrors.ThrowIfNullOrEmpty(expr: () => screenName);
-
-		var users = Get(new[]
-		{
-			screenName
-		}, fields, nameCase);
-
-		return users.Count > 0
-			? users[index: 0]
-			: null;
-	}
 }

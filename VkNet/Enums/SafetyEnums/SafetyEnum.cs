@@ -24,10 +24,10 @@ public abstract class SafetyEnum<TFilter>
 	public bool Equals(SafetyEnum<TFilter> x, SafetyEnum<TFilter> y) => x == y;
 
 	/// <inheritdoc />
-	public int GetHashCode(SafetyEnum<TFilter> obj) => obj._value.GetHashCode();
+	public bool Equals(SafetyEnum<TFilter> other) => Equals(this, other);
 
 	/// <inheritdoc />
-	public bool Equals(SafetyEnum<TFilter> other) => Equals(this, other);
+	public override bool Equals(object obj) => this == (SafetyEnum<TFilter>) obj;
 
 	/// <summary>
 	/// Регистрирует возможное значение.
@@ -116,7 +116,7 @@ public abstract class SafetyEnum<TFilter>
 	}
 
 	/// <inheritdoc />
-	public override bool Equals(object obj) => this == (SafetyEnum<TFilter>) obj;
+	public int GetHashCode(SafetyEnum<TFilter> obj) => obj._value.GetHashCode();
 
 	/// <inheritdoc />
 	public override int GetHashCode() => GetHashCode(obj: this);

@@ -157,26 +157,6 @@ public partial class FriendsCategory : IFriendsCategory
 	}
 
 	/// <inheritdoc />
-	public long AddList(string name, IEnumerable<long> userIds)
-	{
-		VkErrors.ThrowIfNullOrEmpty(() => name);
-
-		var parameters = new VkParameters
-		{
-			{
-				"name", name
-			},
-			{
-				"user_ids", userIds
-			}
-		};
-
-		var response = _vk.Call("friends.addList", parameters);
-
-		return response["list_id"];
-	}
-
-	/// <inheritdoc />
 	public bool DeleteList(long listId)
 	{
 		var parameters = new VkParameters
@@ -437,6 +417,26 @@ public partial class FriendsCategory : IFriendsCategory
 				"count", @params.Count
 			}
 		});
+
+	/// <inheritdoc />
+	public long AddList(string name, IEnumerable<long> userIds)
+	{
+		VkErrors.ThrowIfNullOrEmpty(() => name);
+
+		var parameters = new VkParameters
+		{
+			{
+				"name", name
+			},
+			{
+				"user_ids", userIds
+			}
+		};
+
+		var response = _vk.Call("friends.addList", parameters);
+
+		return response["list_id"];
+	}
 
 	/// <summary>
 	/// Создает новый список друзей у текущего пользователя.

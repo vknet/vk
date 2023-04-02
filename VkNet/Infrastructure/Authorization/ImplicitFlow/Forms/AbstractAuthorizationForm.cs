@@ -26,7 +26,7 @@ public abstract class AbstractAuthorizationForm : IAuthorizationForm
 	public abstract ImplicitFlowPageType GetPageType();
 
 	/// <inheritdoc />
-	public async Task<AuthorizationFormResult> ExecuteAsync(Uri url, IApiAuthParams authParams, CancellationToken token)
+	public async Task<AuthorizationFormResult> ExecuteAsync(Uri url, IApiAuthParams authParams, CancellationToken token = default)
 	{
 		var form = await _htmlParser.GetFormAsync(url, token)
 			.ConfigureAwait(false);

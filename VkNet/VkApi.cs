@@ -240,28 +240,6 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
-	public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default)
-	{
-		var task = TypeHelper.TryInvokeMethodAsync(() =>
-			Call(methodName, parameters, skipAuthorization), token);
-
-		task.ConfigureAwait(false);
-
-		return task;
-	}
-
-	/// <inheritdoc />
-	public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default)
-	{
-		var task = TypeHelper.TryInvokeMethodAsync(() =>
-			Call<T>(methodName, parameters, skipAuthorization), token);
-
-		task.ConfigureAwait(false);
-
-		return task;
-	}
-
-	/// <inheritdoc />
 	[MethodImpl(MethodImplOptions.NoInlining)]
 	public T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters)
 	{
@@ -284,6 +262,28 @@ public class VkApi : IVkApi
 			settings.Converters.Add(jsonConverter);
 
 		return JsonConvert.DeserializeObject<T>(answer, settings);
+	}
+
+	/// <inheritdoc />
+	public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default)
+	{
+		var task = TypeHelper.TryInvokeMethodAsync(() =>
+			Call(methodName, parameters, skipAuthorization), token);
+
+		task.ConfigureAwait(false);
+
+		return task;
+	}
+
+	/// <inheritdoc />
+	public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default)
+	{
+		var task = TypeHelper.TryInvokeMethodAsync(() =>
+			Call<T>(methodName, parameters, skipAuthorization), token);
+
+		task.ConfigureAwait(false);
+
+		return task;
 	}
 
 	/// <inheritdoc />
@@ -437,6 +437,14 @@ public class VkApi : IVkApi
 		UserId = authorization.UserId;
 	}
 
+	/// <inheritdoc cref="IVkApi.Validate" />
+	[Obsolete(ObsoleteText.Validate)]
+	public void Validate(string validateUrl, string phoneNumber)
+	{
+		_ap.Phone = phoneNumber;
+		Validate(validateUrl);
+	}
+
 	/// <summary>
 	/// Получить список JsonConverter для обработки ответа vk api
 	/// </summary>
@@ -463,14 +471,6 @@ public class VkApi : IVkApi
 			.GetResult();
 
 		OnTokenUpdatedAutomatically?.Invoke(sender);
-	}
-
-	/// <inheritdoc cref="IVkApi.Validate" />
-	[Obsolete(ObsoleteText.Validate)]
-	public void Validate(string validateUrl, string phoneNumber)
-	{
-		_ap.Phone = phoneNumber;
-		Validate(validateUrl);
 	}
 
 	/// <summary>

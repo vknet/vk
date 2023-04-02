@@ -1,4 +1,4 @@
-namespace VkNet.Abstractions.Core;
+﻿namespace VkNet.Infrastructure;
 
 /// <summary>
 /// Менеджер управления токеном приложения
