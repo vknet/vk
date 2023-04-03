@@ -197,12 +197,29 @@ public class VkApi : IVkApi
 	public Task AuthorizeAsync(IApiAuthParams @params, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() => Authorize(@params), CancellationToken.None);
 
 	/// <inheritdoc />
-	public void RefreshToken(Func<string> code = null, Task<string> codeAsync = null)
+	public void RefreshToken(Func<string> code = null)
 	{
 		if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
 		{
 			_ap.TwoFactorAuthorization ??= code;
-			_ap.TwoFactorAuthorizationAsync ??= codeAsync;
+			AuthorizeWithAntiCaptcha(_ap);
+		} else
+		{
+			const string message =
+				"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
+
+			_logger?.LogError(message);
+
+			throw new AggregateException(message);
+		}
+	}
+
+	/// <inheritdoc />
+	public void RefreshToken(Task<string> code = null)
+	{
+		if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
+		{
+			_ap.TwoFactorAuthorizationAsync ??= code;
 			AuthorizeWithAntiCaptcha(_ap);
 		} else
 		{
@@ -219,8 +236,12 @@ public class VkApi : IVkApi
 	public void LogOut() => AccessToken = string.Empty;
 
 	/// <inheritdoc />
-	public Task RefreshTokenAsync(Func<string> code = null, Task<string> codeAsync = null, CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code, codeAsync), token);
+	public Task RefreshTokenAsync(Func<string> code = null, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code), token);
+
+	/// <inheritdoc />
+	public Task RefreshTokenAsync(Task<string> code = null, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code), token);
 
 	/// <inheritdoc />
 	public Task LogOutAsync(CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(LogOut, token);
@@ -468,9 +489,19 @@ public class VkApi : IVkApi
 
 	private void OnTokenExpired(VkApi sender)
 	{
-		RefreshTokenAsync(_ap.TwoFactorAuthorization, _ap.TwoFactorAuthorizationAsync)
-			.GetAwaiter()
-			.GetResult();
+		var isAsync = _ap.TwoFactorAuthorization is null;
+
+		if (isAsync)
+		{
+			RefreshTokenAsync(_ap.TwoFactorAuthorizationAsync)
+				.GetAwaiter()
+				.GetResult();
+		} else
+		{
+			RefreshTokenAsync(_ap.TwoFactorAuthorization)
+				.GetAwaiter()
+				.GetResult();
+		}
 
 		OnTokenUpdatedAutomatically?.Invoke(sender);
 	}
