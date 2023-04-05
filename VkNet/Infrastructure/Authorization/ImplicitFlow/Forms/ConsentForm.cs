@@ -20,7 +20,7 @@ public sealed class ConsentForm : AbstractAuthorizationForm
 	public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.Consent;
 
 	/// <inheritdoc />
-	protected override Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token)
+	protected override Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token = default)
 	{
 		return Task.CompletedTask;
 	}
