@@ -474,4 +474,9 @@ public static class VkErrorCode
 	/// Чат был отключен
 	/// </summary>
 	public const int ChatWasDisabled = 945;
+
+	/// <summary>
+	/// Неверный файл
+	/// </summary>
+	public const int InvalidFile = 4611;
 }

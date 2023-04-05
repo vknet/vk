@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
+using VkNet.Exception;
 using VkNet.Infrastructure;
 using VkNet.Model;
 using VkNet.Model.Attachments;
@@ -404,6 +405,16 @@ public partial class AudioCategory : IAudioCategory
 	{
 		VkErrors.ThrowIfNullOrEmpty(() => response);
 		var responseJson = response.ToJObject();
+
+		if (responseJson["error_code"] is not null)
+		{
+			var error = responseJson["error_code"]
+				.ToString();
+			var errorMsg = responseJson["error_msg"]
+				.ToString();
+
+			throw new VkApiException(error + ": " + errorMsg);
+		}
 
 		var server = responseJson["server"]
 			.ToString();
