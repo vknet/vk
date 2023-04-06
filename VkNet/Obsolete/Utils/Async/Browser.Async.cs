@@ -50,8 +50,17 @@ public partial class Browser
 	/// <param name="loginFormPostResult"> Ответ сервера vk </param>
 	/// <param name="token"></param>
 	/// <returns> Ответ сервера vk </returns>
-	private Task<HttpResponse<string>> FilledTwoFactorFormAsync(Func<string> code, HttpResponse<string> loginFormPostResult, CancellationToken token)
+	private Task<HttpResponse<string>> FilledTwoFactorFormAsync(Func<string> code, Task<string> codeAsync, HttpResponse<string> loginFormPostResult, CancellationToken token)
 	{
+		if (string.IsNullOrEmpty(code.Invoke()))
+		{
+			var codeFormAsync = WebForm.From(loginFormPostResult)
+				.WithField("code")
+				.FilledWith(codeAsync.GetAwaiter().GetResult());
+
+			return _restClient.PostAsync(new(codeFormAsync.ActionUrl), codeFormAsync.GetFormFields(), Encoding.GetEncoding(1251), token: token);
+
+		}
 		var codeForm = WebForm.From(loginFormPostResult)
 			.WithField("code")
 			.FilledWith(code.Invoke());
@@ -304,7 +313,7 @@ public partial class Browser
 			{
 				_logger?.LogDebug("Двухфакторная авторизация.");
 
-				resultForm = await FilledTwoFactorFormAsync(_authParams.TwoFactorAuthorization, formResult, token)
+				resultForm = await FilledTwoFactorFormAsync(_authParams.TwoFactorAuthorization, _authParams.TwoFactorAuthorizationAsync, formResult, token)
 					.ConfigureAwait(false);
 
 				break;

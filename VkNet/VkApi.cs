@@ -215,10 +215,33 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
+	public void RefreshToken(Task<string> code = null)
+	{
+		if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
+		{
+			_ap.TwoFactorAuthorizationAsync ??= code;
+			AuthorizeWithAntiCaptcha(_ap);
+		} else
+		{
+			const string message =
+				"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
+
+			_logger?.LogError(message);
+
+			throw new AggregateException(message);
+		}
+	}
+
+	/// <inheritdoc />
 	public void LogOut() => AccessToken = string.Empty;
 
 	/// <inheritdoc />
-	public Task RefreshTokenAsync(Func<string> code = null, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code), token);
+	public Task RefreshTokenAsync(Func<string> code = null, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code), token);
+
+	/// <inheritdoc />
+	public Task RefreshTokenAsync(Task<string> code = null, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code), token);
 
 	/// <inheritdoc />
 	public Task LogOutAsync(CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(LogOut, token);
@@ -466,9 +489,19 @@ public class VkApi : IVkApi
 
 	private void OnTokenExpired(VkApi sender)
 	{
-		RefreshTokenAsync(_ap.TwoFactorAuthorization)
-			.GetAwaiter()
-			.GetResult();
+		var isAsync = _ap.TwoFactorAuthorization is null;
+
+		if (isAsync)
+		{
+			RefreshTokenAsync(_ap.TwoFactorAuthorizationAsync)
+				.GetAwaiter()
+				.GetResult();
+		} else
+		{
+			RefreshTokenAsync(_ap.TwoFactorAuthorization)
+				.GetAwaiter()
+				.GetResult();
+		}
 
 		OnTokenUpdatedAutomatically?.Invoke(sender);
 	}

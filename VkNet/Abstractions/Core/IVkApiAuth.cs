@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using VkNet.Model;
 
 namespace VkNet.Abstractions;
@@ -38,6 +40,20 @@ public interface IVkApiAuth
 	/// помощи логина и пароля
 	/// </exception>
 	void RefreshToken(Func<string> code = null);
+
+	/// <summary>
+	/// Получает новый AccessToken используя логин, пароль, приложение и настройки
+	/// указанные при последней авторизации.
+	/// </summary>
+	/// <param name="code">
+	/// Делегат двух факторной авторизации. Если не указан - будет взят из параметров
+	/// (если есть)
+	/// </param>
+	/// <exception cref="AggregateException">
+	/// Невозможно обновить токен доступа т.к. последняя авторизация происходила не при
+	/// помощи логина и пароля
+	/// </exception>
+	void RefreshToken(Task<string> code = null);
 
 	/// <summary>
 	/// Выйти из системы
