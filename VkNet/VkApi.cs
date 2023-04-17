@@ -732,6 +732,9 @@ public class VkApi : IVkApi
 	/// <inheritdoc />
 	public IDownloadedGamesCategory DownloadedGames { get; set; }
 
+	/// <inheritdoc />
+	public IAsrCategory Asr { get; set; }
+
 	#endregion
 
 	#region private
@@ -998,6 +1001,8 @@ public class VkApi : IVkApi
 		Podcasts = new PodcastsCategory(this);
 		Donut = new DonutCategory(this);
 		DownloadedGames = new DownloadedGamesCategory(this);
+		Asr = new AsrCategory(this);
+
 
 		RequestsPerSecond = 3;
 
