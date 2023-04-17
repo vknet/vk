@@ -1,4 +1,5 @@
 ﻿using VkNet.Abstractions;
+using VkNet.Enums.StringEnums;
 using VkNet.Model.Results.Asr;
 using VkNet.Utils;
 
@@ -30,4 +31,16 @@ public partial class AsrCategory : IAsrCategory
 	/// <inheritdoc />
 	public UploadUrlResult GetUploadUrl() => _vk.Call<UploadUrlResult>("asr.getUploadUrl",
 		VkParameters.Empty);
+
+	/// <inheritdoc />
+	public TaskIdResult Process(string audio, AsrProcessModel model) => _vk.Call<TaskIdResult>("asr.process",
+		new()
+		{
+			{
+				"audio", audio
+			},
+			{
+				"model", model
+			}
+		});
 }

@@ -1,4 +1,5 @@
-﻿using VkNet.Model.Results.Asr;
+﻿using VkNet.Enums.StringEnums;
+using VkNet.Model.Results.Asr;
 
 namespace VkNet.Abstractions;
 
@@ -10,4 +11,7 @@ public interface IAsrCategory : IAsrCategoryAsync
 
 	/// <inheritdoc cref = "IAsrCategoryAsync.GetUploadUrlAsync"/>
 	UploadUrlResult GetUploadUrl();
+
+	/// <inheritdoc cref = "IAsrCategoryAsync.ProcessAsync"/>
+	TaskIdResult Process(string audio, AsrProcessModel model);
 }
