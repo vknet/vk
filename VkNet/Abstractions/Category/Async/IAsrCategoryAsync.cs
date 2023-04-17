@@ -24,4 +24,17 @@ public interface IAsrCategoryAsync
 	/// </remarks>
 	public Task<AudioRecordingTask> CheckStatusAsync(string taskId,
 								CancellationToken token = default);
+
+	/// <summary>
+	/// Метод возвращает ссылку на адрес сервера для загрузки аудиозаписи.
+	/// Обратите внимание! Ссылка доступна в течение 24 часов.
+	/// </summary>
+	/// <param name="token">Токен отмены</param>
+	/// <returns>
+	/// Возвращает параметр — ссылку на адрес сервера для загрузки аудиозаписи
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте https://dev.vk.com/method/asr.getUploadUrl
+	/// </remarks>
+	public Task<UploadUrlResult> GetUploadUrlAsync(CancellationToken token = default);
 }

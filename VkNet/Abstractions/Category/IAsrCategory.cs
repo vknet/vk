@@ -7,4 +7,7 @@ public interface IAsrCategory : IAsrCategoryAsync
 {
 	/// <inheritdoc cref = "IAsrCategoryAsync.CheckStatusAsync"/>
 	AudioRecordingTask CheckStatus(string taskId);
+
+	/// <inheritdoc cref = "IAsrCategoryAsync.GetUploadUrlAsync"/>
+	UploadUrlResult GetUploadUrl();
 }

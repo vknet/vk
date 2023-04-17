@@ -1,5 +1,6 @@
 ﻿using VkNet.Abstractions;
 using VkNet.Model.Results.Asr;
+using VkNet.Utils;
 
 namespace VkNet.Categories;
 
@@ -25,4 +26,8 @@ public partial class AsrCategory : IAsrCategory
 				"task_id", taskId
 			}
 		});
+
+	/// <inheritdoc />
+	public UploadUrlResult GetUploadUrl() => _vk.Call<UploadUrlResult>("asr.getUploadUrl",
+		VkParameters.Empty);
 }

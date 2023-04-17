@@ -13,4 +13,7 @@ public partial class AsrCategory
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			CheckStatus(taskId), token);
+
+	public Task<UploadUrlResult> GetUploadUrlAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(GetUploadUrl, token);
 }
