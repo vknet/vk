@@ -179,7 +179,7 @@ public class MessagesSendParams
 	/// Метка, которая обозначает приблизительное содержание сообщения от сообщества
 	/// </summary>
 	[JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-	public Intent Intent { get; set; }
+	public Intent? Intent { get; set; }
 
 	/// <summary>
 	/// Положительное число, максимальное значение 100
