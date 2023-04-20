@@ -223,4 +223,9 @@ public interface IVkApiCategories
 	/// Donut
 	/// </summary>
 	IDownloadedGamesCategory DownloadedGames { get; }
+
+	/// <summary>
+	/// Asr
+	/// </summary>
+	IAsrCategory Asr { get; }
 }
