@@ -35,5 +35,10 @@ public enum PostType
 	/// <summary>
 	/// Предложенная запись
 	/// </summary>
-	Suggest
+	Suggest,
+
+	/// <summary>
+	/// Видеозапись
+	/// </summary>
+	Video
 }
