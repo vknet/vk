@@ -14,13 +14,11 @@ public class BotsLongPollHistoryResponse
 	/// <summary>
 	/// Номер последнего события, начиная с которого нужно получать данные;
 	/// </summary>
-	[JsonProperty("ts")]
 	public string Ts { get; set; }
 
 	/// <summary>
 	/// Обновления группы
 	/// </summary>
-	[JsonConverter(typeof(GroupUpdateJsonConverter))]
-	[JsonProperty("updates")]
+	[JsonProperty(ItemConverterType = typeof(GroupUpdateJsonConverter))]
 	public List<GroupUpdate.GroupUpdate> Updates { get; set; }
 }
