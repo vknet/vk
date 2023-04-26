@@ -2,24 +2,23 @@ using Newtonsoft.Json;
 using System;
 using VkNet.Model.GroupUpdate;
 
-namespace VkNet.Utils.JsonConverter
+namespace VkNet.Utils.JsonConverter;
+
+/// <inheritdoc />
+public class SecretConverter : JsonConverter<Secret>
 {
 	/// <inheritdoc />
-	public class SecretConverter : JsonConverter<Secret>
+	public override Secret ReadJson(JsonReader reader, Type objectType, Secret existingValue, bool hasExistingValue, JsonSerializer serializer)
 	{
-		/// <inheritdoc />
-		public override Secret ReadJson(JsonReader reader, Type objectType, Secret existingValue, bool hasExistingValue, JsonSerializer serializer)
-		{
-			if (reader.Value == null)
-				return null;
+		if (reader.Value == null)
+			return null;
 
-			return new Secret(reader.Value.ToString());
-		}
+		return new Secret(reader.Value.ToString());
+	}
 
-		/// <inheritdoc />
-		public override void WriteJson(JsonWriter writer, Secret value, JsonSerializer serializer)
-		{
-			writer.WriteValue(value?.Value);
-		}
+	/// <inheritdoc />
+	public override void WriteJson(JsonWriter writer, Secret value, JsonSerializer serializer)
+	{
+		writer.WriteValue(value?.Value);
 	}
 }
