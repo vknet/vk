@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Model;
@@ -39,6 +39,11 @@ public class MessagesSendResultJsonConverter : Newtonsoft.Json.JsonConverter
 		if (response.ContainsKey("message_id"))
 		{
 			res.MessageId = response[key: "message_id"];
+		}
+
+		if (response.ContainsKey("conversation_message_id"))
+		{
+			res.ConversationMessageId = response[key: "conversation_message_id"];
 		}
 
 		if (response.ContainsKey("error"))

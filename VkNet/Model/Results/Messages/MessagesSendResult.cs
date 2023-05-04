@@ -24,6 +24,12 @@ public partial class MessagesSendResult
 	public long? MessageId { get; set; }
 
 	/// <summary>
+	/// Идентификатор сообщения в диалоге
+	/// </summary>
+	[JsonProperty("conversation_message_id")]
+	public long? ConversationMessageId { get; set; }
+
+	/// <summary>
 	/// Код ошибки если есть (в наличии в версии 5.101)
 	/// </summary>
 	[JsonProperty("error_code")]
