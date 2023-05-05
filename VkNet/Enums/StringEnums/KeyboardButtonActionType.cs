@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -38,6 +38,11 @@ public enum KeyboardButtonActionType
 	/// Open Link
 	/// </summary>
 	OpenLink,
+
+	/// <summary>
+	/// Open Link
+	/// </summary>
+	OpenPhoto,
 
 	/// <summary>
 	/// Callback
