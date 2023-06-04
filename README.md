@@ -3,7 +3,7 @@
 |------|:------:|
 |**Build Status**|[![Build Status](https://dev.azure.com/VkDotNet/VkNet/_apis/build/status/vknet.vk)](https://dev.azure.com/VkDotNet/VkNet/_build/latest?definitionId=1)
 |**Target Frameworks**|[![Targets](https://img.shields.io/badge/.NET%20Standard-2.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/standard/net-standard) [![Targets](https://img.shields.io/badge/.NET%20-6-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/core/introduction) [![Targets](https://img.shields.io/badge/.NET%20-7-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/core/introduction)|
-|**Nuget**|[![](http://img.shields.io/nuget/v/VkNet.svg)](http://www.nuget.org/packages/VkNet) 
+|**Nuget**|[![](http://img.shields.io/nuget/v/VkNet.svg)](http://www.nuget.org/packages/VkNet)
 |**MyGet**|[![](https://img.shields.io/myget/vknet/vpre/vknet.svg)](https://www.myget.org/F/vknet)
 |**Downloads**|[![](https://img.shields.io/nuget/dt/VkNet.svg)](https://www.nuget.org/packages/VkNet/)
 |**Issues**|[![](https://img.shields.io/github/issues/VkNet/Vk.svg)](https://github.com/vknet/vk/issues)
@@ -32,7 +32,7 @@ PM> Install-Package VkNet
 
 # План развития проекта
 
-- Обновить некоторые методы в соответствии с [changelog vk](https://vk.com/dev/versions) до актуальной версии 5.131.
+- Обновить некоторые методы в соответствии с [changelog vk](https://dev.vk.com/reference/versions) до актуальной версии 5.131.
 - Обновить документацию проекта
 
 # Credits
@@ -43,7 +43,7 @@ PM> Install-Package VkNet
 - [HtmlAgilityPack](http://html-agility-pack.net/)
 - [NUnit](http://www.nunit.org/) - NUnit is a unit-testing framework for all .Net languages.
 - [Moq](https://github.com/moq/moq4) - The most popular and friendly mocking framework for .NET
-- [SonarAnalyzer.CSharp](https://www.sonarlint.org/visualstudio/) - Analyzers which spot bugs and code smells in your code. 
+- [SonarAnalyzer.CSharp](https://www.sonarlint.org/visualstudio/) - Analyzers which spot bugs and code smells in your code.
 
 # Помощь проекту
 - [![На счет в банке](https://bpurl.biz/Jb)](https://money.alfabank.ru/p2p/web/transfer/minyutin)
