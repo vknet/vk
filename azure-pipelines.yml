@@ -21,17 +21,6 @@ steps:
       command: test
       projects: '*[Tt]ests/*.csproj'
       arguments: '-c $(BuildConfiguration) -f net7.0'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet build'
-    inputs:
-      projects: VkNet/VkNet.csproj
-      arguments: '-o $(Build.ArtifactStagingDirectory) -c $(BuildConfiguration) --version-suffix $(Build.BuildId)'
-
-  - script: 'dotnet nuget push *.nupkg -k $(Parameters.MyGetKey) -s $(Parameters.MyGetFeed)'
-    workingDirectory: '$(Build.ArtifactStagingDirectory)'
-    displayName: 'Command Line Script'
-
   - task: EvgenyChernyi.telegram-notification-extension.sample-telegram-task.SendTelegramNotification@0
     displayName: 'Send Telegram Notification'
     inputs:
@@ -39,5 +28,5 @@ steps:
       chats: '$(Parameters.chats)'
       message: '<code>Reason: $(Build.Reason)
     Build №: $(Build.BuildNumber)
-    VkNet был успешно собран!</code>'
+    Pull Request для VkNet был успешно собран!</code>'
       buildQueuedBy: true
