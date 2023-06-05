@@ -1,6 +1,5 @@
 ﻿using System;
 using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams;
 
@@ -53,15 +52,4 @@ public class LikesAddParams
 	/// </summary>
 	public string Reference { get; set; }
 
-	/// <summary>
-	/// Идентификатор капчи
-	/// </summary>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long? CaptchaSid { get; set; }
-
-	/// <summary>
-	/// текст, который ввел пользователь
-	/// </summary>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public string CaptchaKey { get; set; }
 }

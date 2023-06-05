@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions;
@@ -294,9 +293,6 @@ public partial class PhotoCategory : IPhotoCategory
 		return _vk.Call<Photo>("photos.saveOwnerPhoto", parameters);
 	}
 
-	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey) => SaveOwnerPhoto(response);
 
 	/// <inheritdoc />
 	public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId, ulong? groupId = null, string caption = null)

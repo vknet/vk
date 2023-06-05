@@ -5,7 +5,6 @@ using VkNet.Enums.SafetyEnums;
 using VkNet.Model.Attachments;
 using VkNet.Model.Keyboard;
 using VkNet.Model.Template;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams;
 
@@ -154,19 +153,6 @@ public class MessagesSendParams
 	[JsonProperty("dont_parse_links", NullValueHandling = NullValueHandling.Ignore)]
 	public bool? DontParseLinks { get; set; }
 
-	/// <summary>
-	/// Идентификатор капчи
-	/// </summary>
-	[JsonProperty("captcha_sid")]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long? CaptchaSid { get; set; }
-
-	/// <summary>
-	/// текст, который ввел пользователь
-	/// </summary>
-	[JsonProperty("captcha_key")]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public string CaptchaKey { get; set; }
 
 	/// <summary>
 	/// 1 - отключить уведомление об упоминании в сообщении, может принимать значения 1

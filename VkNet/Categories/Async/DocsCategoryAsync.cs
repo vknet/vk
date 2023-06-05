@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -49,16 +48,6 @@ public partial class DocsCategory
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Save(file, title, tags), token);
 
-	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public Task<ReadOnlyCollection<Attachment>> SaveAsync(string file,
-														long? captchaSid = null,
-														string title = null ,
-														string tags = null,
-														string captchaKey = null,
-														CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Save(file, captchaSid, title, tags, captchaKey), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteAsync(long ownerId,
@@ -74,17 +63,6 @@ public partial class DocsCategory
 								CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Add(ownerId, docId, accessKey), token);
-
-	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public Task<long> AddAsync(long ownerId,
-								long docId,
-								string accessKey = null,
-								long? captchaSid = null,
-								string captchaKey = null,
-								CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Add(ownerId, docId, accessKey, captchaSid, captchaKey), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<DocumentType>> GetTypesAsync(long ownerId,

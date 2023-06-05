@@ -404,24 +404,6 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.unbanUser
 	/// </remarks>
-	[Obsolete(ObsoleteText.UnbanUserAsync, true)]
-	Task<bool> UnbanUserAsync(long groupId,
-							long userId,
-							CancellationToken token = default);
-
-	/// <summary>
-	/// Убирает пользователя из черного списка сообщества.
-	/// </summary>
-	/// <param name="groupId"> Идентификатор сообщества </param>
-	/// <param name="userId">
-	/// Идентификатор пользователя, которого нужно убрать из
-	/// черного списка
-	/// </param>
-	/// <param name="token">Токен отмены</param>
-	/// <returns> После успешного выполнения возвращает <c> true </c>. </returns>
-	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/groups.unbanUser
-	/// </remarks>
 	Task<bool> UnbanAsync(long groupId,
 						long userId,
 						CancellationToken token = default);
@@ -568,13 +550,6 @@ public interface IGroupsCategoryAsync
 							long userId,
 							CancellationToken token = default);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long, CancellationToken)" />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Task<bool> InviteAsync(long groupId,
-							long userId,
-							long? captchaSid,
-							string captchaKey,
-							CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет добавлять ссылки в сообщество.

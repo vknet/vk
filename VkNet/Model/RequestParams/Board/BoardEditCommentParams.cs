@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams;
 
@@ -60,17 +59,4 @@ public class BoardEditCommentParams
 	[JsonProperty(propertyName: "attachments")]
 	public IEnumerable<MediaAttachment> Attachments { get; set; }
 
-	/// <summary>
-	/// Идентификатор капчи
-	/// </summary>
-	[JsonProperty(propertyName: "captcha_sid")]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long? CaptchaSid { get; set; }
-
-	/// <summary>
-	/// Текст, который ввел пользователь
-	/// </summary>
-	[JsonProperty(propertyName: "captcha_key")]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public string CaptchaKey { get; set; }
 }

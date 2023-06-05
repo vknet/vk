@@ -109,14 +109,6 @@ public partial class GroupsCategory
 			GetBanned(groupId, offset, count, fields, ownerId), token);
 
 	/// <inheritdoc />
-	[Obsolete(ObsoleteText.UnbanUserAsync, true)]
-	public Task<bool> UnbanUserAsync(long groupId,
-									long userId,
-									CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			UnbanUser(groupId, userId), token);
-
-	/// <inheritdoc />
 	public Task<bool> UnbanAsync(long groupId,
 								long userId,
 								CancellationToken token = default) =>
@@ -166,15 +158,6 @@ public partial class GroupsCategory
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Invite(groupId, userId), token);
 
-	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public Task<bool> InviteAsync(long groupId,
-								long userId,
-								long? captchaSid,
-								string captchaKey,
-								CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Invite(groupId, userId, captchaSid, captchaKey), token);
 
 	/// <inheritdoc />
 	public Task<ExternalLink> AddLinkAsync(long groupId,

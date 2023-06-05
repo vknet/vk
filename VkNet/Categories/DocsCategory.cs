@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -107,11 +106,6 @@ public partial class DocsCategory : IDocsCategory
 		return _vk.Call<UploadServerInfo>("docs.getWallUploadServer", parameters);
 	}
 
-	/// <inheritdoc />
-	[Pure]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public ReadOnlyCollection<Attachment> Save(string file, long? captchaSid = null, string title = null ,string tags = null,
-												string captchaKey = null) => Save(file, title, tags);
 
 	/// <inheritdoc />
 	public ReadOnlyCollection<Attachment> Save(string file, string title = null, string tags = null)
@@ -210,11 +204,7 @@ public partial class DocsCategory : IDocsCategory
 		return _vk.Call<bool>("docs.delete", parameters);
 	}
 
-	/// <inheritdoc />
-	[Pure]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long Add(long ownerId, long docId, string accessKey = null, long? captchaSid = null, string captchaKey = null) =>
-		Add(ownerId, docId, accessKey);
+
 
 	/// <inheritdoc />
 	public long Add(long ownerId, long docId, string accessKey = null)

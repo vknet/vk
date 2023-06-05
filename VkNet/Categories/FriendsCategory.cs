@@ -217,11 +217,6 @@ public partial class FriendsCategory : IFriendsCategory
 	public bool DeleteAllRequests() => _vk.Call("friends.deleteAllRequests", VkParameters.Empty);
 
 	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public AddFriendStatus Add(long userId, string text = "", bool? follow = null, long? captchaSid = null, string captchaKey = null) =>
-		Add(userId, text, follow);
-
-	/// <inheritdoc />
 	public AddFriendStatus Add(long userId, string text = "", bool? follow = null)
 	{
 		var parameters = new VkParameters

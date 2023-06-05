@@ -36,12 +36,6 @@ public class Place
 	[JsonProperty("longitude")]
 	public double? Longitude { get; set; }
 
-	/// <summary>
-	/// Идентификатор типа места, информацию о котором можно получить с помощью метода
-	/// DatabaseCategory.GetPlaceTypes
-	/// </summary>
-	[Obsolete("Используйте поле Type", true)]
-	public long? TypeId { get; set; }
 
 	/// <summary>
 	/// Идентификатор страны, название которой можно получить с помощью метода

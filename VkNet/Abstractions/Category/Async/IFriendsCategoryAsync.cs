@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -288,14 +287,6 @@ public interface IFriendsCategoryAsync
 									bool? follow = null,
 									CancellationToken token = default);
 
-	/// <inheritdoc cref="IFriendsCategoryAsync.AddAsync(long,string,bool?, CancellationToken)" />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Task<AddFriendStatus> AddAsync(long userId,
-									string text = "",
-									bool? follow = null,
-									long? captchaSid = null,
-									string captchaKey = null,
-									CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет пользователя из списка друзей или отклоняет заявку в друзья.

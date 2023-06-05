@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -84,14 +83,6 @@ public partial class PhotoCategory
 		TypeHelper.TryInvokeMethodAsync(() =>
 			SaveOwnerPhoto(response), token);
 
-	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public Task<Photo> SaveOwnerPhotoAsync(string response,
-											long? captchaSid,
-											string captchaKey,
-											CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			SaveOwnerPhoto(response, captchaSid, captchaKey), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<Photo>> SaveWallPhotoAsync(string response,

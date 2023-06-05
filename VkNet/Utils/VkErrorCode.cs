@@ -1,5 +1,3 @@
-using System;
-
 namespace VkNet.Utils;
 
 /// <summary>
@@ -148,12 +146,6 @@ public static class VkErrorCode
 	/// http://vk.com/dev/auth_mobile.
 	/// </summary>
 	public const int NonStandaloneApplications = 20;
-
-	/// <summary>
-	/// Данное действие разрешено только для Standalone и Open API приложений.
-	/// </summary>
-	[Obsolete("Используйте константу OnlyStandaloneOrOpenApi", true)]
-	public const int OnlySandaloneOrOpenApi = 21;
 
 	/// <summary>
 	/// Данное действие разрешено только для Standalone и Open API приложений.
@@ -370,12 +362,6 @@ public static class VkErrorCode
 	/// Превышен лимит комментариев на стене
 	/// </summary>
 	public const int CommentsLimitReached = 223;
-
-	/// <summary>
-	/// Превышен лимит комментариев на стене
-	/// </summary>
-	[Obsolete("Используйте константу TooManyAdsPosts")]
-	public const int ToomanyAdsPosts = 224;
 
 	/// <summary>
 	/// Превышен лимит комментариев на стене

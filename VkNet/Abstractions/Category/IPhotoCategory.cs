@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums;
@@ -45,9 +44,6 @@ public interface IPhotoCategory : IPhotoCategoryAsync
 	/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string, System.Threading.CancellationToken)"/>
 	Photo SaveOwnerPhoto(string response);
 
-	/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string,long?,string, System.Threading.CancellationToken)"/>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey);
 
 	/// <inheritdoc cref="IPhotoCategoryAsync.SaveWallPhotoAsync"/>
 	ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId, ulong? groupId = null, string caption = null);

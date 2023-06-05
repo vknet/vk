@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams;
 
@@ -64,15 +63,4 @@ public class PhotoCreateCommentParams
 	/// </summary>
 	public ulong? Guid { get; set; }
 
-	/// <summary>
-	/// Идентификатор капчи
-	/// </summary>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long? CaptchaSid { get; set; }
-
-	/// <summary>
-	/// текст, который ввел пользователь
-	/// </summary>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public string CaptchaKey { get; set; }
 }

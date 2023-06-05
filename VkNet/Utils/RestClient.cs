@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Text;
@@ -42,14 +41,7 @@ public sealed class RestClient : IRestClient
 	/// </summary>
 	public HttpClient HttpClient { get; }
 
-	/// <inheritdoc />
-	[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
-	public IWebProxy Proxy { get; set; }
 
-	/// <inheritdoc />
-	[Obsolete("Use HttpClient to configure timeout. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration",
-		true)]
-	public TimeSpan Timeout { get; set; }
 
 	/// <inheritdoc />
 	public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding, CancellationToken token = default)

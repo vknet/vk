@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -10,13 +9,6 @@ namespace VkNet.Model;
 [Serializable]
 public class AudioCatalogAudioAds
 {
-	/// <summary>
-	/// Идентификатор контента.
-	/// </summary>
-	[Obsolete(ObsoleteText.ObsoleteCyrillicProperty, true)]
-	[JsonIgnore]
-	public string СontentId { get; set; }
-
 	/// <summary>
 	/// Идентификатор контента.
 	/// </summary>

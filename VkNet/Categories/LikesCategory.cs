@@ -1,5 +1,4 @@
-﻿using System;
-using VkNet.Abstractions;
+﻿using VkNet.Abstractions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Exception;
 using VkNet.Model;
@@ -157,10 +156,7 @@ public partial class LikesCategory : ILikesCategory
 		return response[key: "likes"];
 	}
 
-	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long Delete(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null) =>
-		Delete(type, itemId, ownerId);
+
 
 	/// <inheritdoc />
 	public long Delete(LikeObjectType type, long itemId, long? ownerId = null)

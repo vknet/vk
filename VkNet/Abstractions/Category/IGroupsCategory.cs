@@ -65,10 +65,6 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 	VkCollection<GetBannedResult> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null,
 											long? ownerId = null);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.UnbanUserAsync" />
-	[Obsolete(ObsoleteText.UnbanUser, true)]
-	bool UnbanUser(long groupId, long userId);
-
 	/// <inheritdoc cref="IGroupsCategoryAsync.UnbanAsync" />
 	bool Unban(long groupId, long userId);
 
@@ -92,9 +88,6 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long, System.Threading.CancellationToken)" />
 	bool Invite(long groupId, long userId);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long,long?,string, System.Threading.CancellationToken)" />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	bool Invite(long groupId, long userId, long? captchaSid = null, string captchaKey = null);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.AddLinkAsync" />
 	ExternalLink AddLink(long groupId, Uri link, string text);

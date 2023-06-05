@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using VkNet.Enums;
@@ -47,10 +46,6 @@ public interface IFriendsCategory : IFriendsCategoryAsync
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.AddAsync(long, string, bool?, System.Threading.CancellationToken)" />
 	AddFriendStatus Add(long userId, string text = "", bool? follow = null);
-
-	/// <inheritdoc cref="IFriendsCategoryAsync.AddAsync(long, string, bool?,long?,string, System.Threading.CancellationToken)" />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	AddFriendStatus Add(long userId, string text = "", bool? follow = null, long? captchaSid = null, string captchaKey = null);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.DeleteAsync" />
 	FriendsDeleteResult Delete(long userId);

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using VkNet.Model.Attachments;
-using VkNet.Utils;
 
 namespace VkNet.Model.RequestParams;
 
@@ -79,16 +78,4 @@ public class WallCreateCommentParams
 	[CanBeNull]
 	public string Guid { get; set; }
 
-	/// <summary>
-	/// Идентификатор капчи
-	/// </summary>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long? CaptchaSid { get; set; }
-
-	/// <summary>
-	/// текст, который ввел пользователь
-	/// </summary>
-	[CanBeNull]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public string CaptchaKey { get; set; }
 }

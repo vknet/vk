@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -267,12 +266,6 @@ public interface IPhotoCategoryAsync
 	Task<Photo> SaveOwnerPhotoAsync(string response,
 															CancellationToken token = default);
 
-	/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string, CancellationToken)" />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Task<Photo> SaveOwnerPhotoAsync(string response,
-									long? captchaSid,
-									string captchaKey,
-									CancellationToken token = default);
 
 	/// <summary>
 	/// Сохраняет фотографии после успешной загрузки на URI, полученный методом

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -86,17 +85,6 @@ public partial class FriendsCategory
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Add(userId, text, follow), token);
-
-	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public Task<AddFriendStatus> AddAsync(long userId,
-										string text = "",
-										bool? follow = null,
-										long? captchaSid = null,
-										string captchaKey = null,
-										CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Add(userId, text, follow, captchaSid, captchaKey), token);
 
 	/// <inheritdoc />
 	public Task<FriendsDeleteResult> DeleteAsync(long userId,

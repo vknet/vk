@@ -476,26 +476,6 @@ public partial class GroupsCategory : IGroupsCategory
 	}
 
 	/// <inheritdoc />
-	[Obsolete(ObsoleteText.UnbanUser, true)]
-	public bool UnbanUser(long groupId, long userId)
-	{
-		VkErrors.ThrowIfNumberIsNegative(() => groupId);
-		VkErrors.ThrowIfNumberIsNegative(() => userId);
-
-		var parameters = new VkParameters
-		{
-			{
-				"group_id", groupId
-			},
-			{
-				"user_id", userId
-			}
-		};
-
-		return _vk.Call<bool>("groups.unbanUser", parameters);
-	}
-
-	/// <inheritdoc />
 	public bool Unban(long groupId, long userId)
 	{
 		var parameters = new VkParameters
@@ -784,10 +764,6 @@ public partial class GroupsCategory : IGroupsCategory
 
 		return _vk.Call<VkCollection<User>>("groups.getInvitedUsers", parameters);
 	}
-
-	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public bool Invite(long groupId, long userId, long? captchaSid = null, string captchaKey = null) => Invite(groupId, userId);
 
 	/// <inheritdoc />
 	public bool Invite(long groupId, long userId)

@@ -143,14 +143,6 @@ public partial class MessagesCategory
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Pin(peerId, messageId, conversationMessageId), token);
 
-	/// <inheritdoc />
-	public Task<ulong> DeleteDialogAsync(long? userId,
-										long? peerId = null,
-										uint? offset = null,
-										uint? count = null,
-										CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			DeleteDialog(userId, peerId, offset, count), token);
 
 	/// <inheritdoc />
 	public Task<bool> DenyMessagesFromGroupAsync(long groupId,
@@ -374,12 +366,7 @@ public partial class MessagesCategory
 		TypeHelper.TryInvokeMethodAsync(() =>
 			MarkAsAnsweredConversation(peerId, answered, groupId), token);
 
-	/// <inheritdoc />
-	public Task<bool> MarkAsAnsweredDialogAsync(long peerId,
-												bool answered = true,
-												CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			MarkAsAnsweredDialog(peerId, answered), token);
+
 
 	/// <inheritdoc />
 	public Task<bool> MarkAsImportantConversationAsync(long peerId,
@@ -389,12 +376,7 @@ public partial class MessagesCategory
 		TypeHelper.TryInvokeMethodAsync(() =>
 			MarkAsImportantConversation(peerId, important, groupId), token);
 
-	/// <inheritdoc />
-	public Task<bool> MarkAsImportantDialogAsync(long peerId,
-												bool important = true,
-												CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			MarkAsImportantDialog(peerId, important), token);
+
 
 	/// <inheritdoc />
 	public Task<bool> EditAsync(MessageEditParams @params,

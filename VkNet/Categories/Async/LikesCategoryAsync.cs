@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
@@ -38,16 +37,6 @@ public partial class LikesCategory
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Delete(type, itemId, ownerId), token);
 
-	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public Task<long> DeleteAsync(LikeObjectType type,
-								long itemId,
-								long? ownerId = null,
-								long? captchaSid = null,
-								string captchaKey = null,
-								CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Delete(type, itemId, ownerId, captchaSid, captchaKey), token);
 
 	/// <inheritdoc />
 	public Task<bool> IsLikedAsync(LikeObjectType type,

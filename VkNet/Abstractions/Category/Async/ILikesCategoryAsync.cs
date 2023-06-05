@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
@@ -92,14 +91,6 @@ public interface ILikesCategoryAsync
 							long? ownerId = null,
 							CancellationToken token = default);
 
-	/// <inheritdoc cref="ILikesCategoryAsync.DeleteAsync(LikeObjectType,long,long?, CancellationToken)" />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Task<long> DeleteAsync(LikeObjectType type,
-							long itemId,
-							long? ownerId = null,
-							long? captchaSid = null,
-							string captchaKey = null,
-							CancellationToken token = default);
 
 	/// <summary>
 	/// Проверяет, находится ли объект в списке Мне нравится заданного пользователя.

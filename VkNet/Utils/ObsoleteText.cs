@@ -1,8 +1,6 @@
 using VkNet.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
-using VkNet.Model.Attachments;
-using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils;
 
@@ -12,19 +10,6 @@ namespace VkNet.Utils;
 public static class ObsoleteText
 {
 	/// <summary>
-	/// Использование параметров капчи устаревший метод взаимодействия с <b>Captcha</b>.
-	/// Необходимо реализовать интерфейс <see cref="ICaptchaSolver"/> и внедрить через конструктор.
-	/// <para>
-	/// Данный параметр будет удален в версии <b>2.0.0</b>
-	/// </para>
-	/// </summary>
-	public const string CaptchaNeeded = "Использование параметров капчи устаревший метод взаимодействия с Captcha."
-										+ " Необходимо реализовать интерфейс "
-										+ nameof(ICaptchaSolver)
-										+ " и внедрить через конструктор."
-										+ " Данный параметр будет удален в версии 2.0.0";
-
-	/// <summary>
 	/// Устаревший параметр, доступен только для версий меньше <b>5.86</b>
 	/// </summary>
 	public const string StatsGet = "Устаревший параметр, доступен только для версий меньше 5.86";
@@ -33,16 +18,6 @@ public static class ObsoleteText
 	/// "Интерфейс был разделен на <see cref="IImplicitFlow"/> и <see cref="INeedValidationHandler"/>
 	/// </summary>
 	public const string Browser = "Интерфейс был разделен на " + nameof(IImplicitFlow) + " и " + nameof(INeedValidationHandler);
-
-	/// <summary>
-	/// Настройки должны внедряться через DI
-	/// </summary>
-	public const string SettingsDependencyInjection = "Настройки должны внедряться через DI";
-
-	/// <summary>
-	/// Данный тип данных устарел, используйте вместо него <see cref="MediaAttachment"/>
-	/// </summary>
-	public const string Attachment = "Данный тип данных устарел, используйте вместо него " + nameof(MediaAttachment);
 
 	/// <summary>
 	/// Данный метод устарел, используйте перегрузку класса <see cref="INeedValidationHandler"/>.<see cref="INeedValidationHandler.Validate(string)"/>
@@ -78,12 +53,6 @@ public static class ObsoleteText
 	/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.GetConversationMembers"/>
 	/// </summary>
 	public const string MessageGetChatUsers = Deprecated + nameof(IMessagesCategory.GetConversationMembers);
-
-	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.GetById"/>
-	/// </summary>
-	public const string MessageGetById = Deprecated
-										+ "GetById(IEnumerable<ulong> messageIds, IEnumerable<string> fields, ulong? previewLength = null, bool? extended = null, ulong? groupId = null)";
 
 	/// <summary>
 	/// <inheritdoc cref="Deprecated"/> <see cref="IFriendsCategory.AddList"/>

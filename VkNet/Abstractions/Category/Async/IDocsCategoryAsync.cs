@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -117,14 +116,6 @@ public interface IDocsCategoryAsync
 													string tags = null,
 													CancellationToken token = default);
 
-	/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string, CancellationToken)" />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Task<ReadOnlyCollection<Attachment>> SaveAsync(string file,
-													long? captchaSid = null,
-													string title = null ,
-													string tags = null,
-													string captchaKey = null,
-													CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет документ пользователя или группы.
@@ -175,15 +166,6 @@ public interface IDocsCategoryAsync
 	Task<long> AddAsync(long ownerId,
 						long docId, string
 							accessKey = null,
-						CancellationToken token = default);
-
-	/// <inheritdoc cref="IDocsCategoryAsync.AddAsync(long,long,string, CancellationToken)" />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Task<long> AddAsync(long ownerId,
-						long docId,
-						string accessKey = null,
-						long? captchaSid = null,
-						string captchaKey = null,
 						CancellationToken token = default);
 
 	/// <summary>
