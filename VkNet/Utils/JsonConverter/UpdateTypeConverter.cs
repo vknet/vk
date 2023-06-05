@@ -20,7 +20,7 @@ public class UpdateTypeConverter : JsonConverter<UpdateType>
 		var groupUpdateTypeStr = reader.Value.ToString().ToLower().Replace("_", " ");
 		groupUpdateTypeStr = info.ToTitleCase(groupUpdateTypeStr).Replace(" ", string.Empty);
 
-		return new UpdateType(Utilities.Deserialize<GroupUpdateType>(groupUpdateTypeStr).Value);
+		return new UpdateType(Utilities.Deserialize<GroupUpdateType>(groupUpdateTypeStr).GetValueOrDefault());
 	}
 
 	/// <inheritdoc />
