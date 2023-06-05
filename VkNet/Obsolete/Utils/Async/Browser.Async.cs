@@ -274,7 +274,7 @@ public partial class Browser
 			case ImplicitFlowPageType.Error:
 
 			{
-				_logger?.LogError("При авторизации произошла ошибка.");
+				_logger?.LogError("При авторизации произошла ошибка");
 
 				throw new VkAuthorizationException("При авторизации произошла ошибка.");
 			}
@@ -289,7 +289,7 @@ public partial class Browser
 					throw new VkAuthorizationException("Неверный логин или пароль.");
 				}
 
-				_logger?.LogDebug("Ввод логина и пароля.");
+				_logger?.LogDebug("Ввод логина и пароля");
 
 				resultForm = await FilledLoginFormAsync(_authParams.Login, _authParams.Password, formResult, token)
 					.ConfigureAwait(false);
@@ -300,7 +300,7 @@ public partial class Browser
 			case ImplicitFlowPageType.Captcha:
 
 			{
-				_logger?.LogDebug("Капча.");
+				_logger?.LogDebug("Капча");
 
 				resultForm = await FilledCaptchaLoginFormAsync(_authParams.Login, _authParams.Password, formResult, token)
 					.ConfigureAwait(false);
@@ -311,7 +311,7 @@ public partial class Browser
 			case ImplicitFlowPageType.TwoFactor:
 
 			{
-				_logger?.LogDebug("Двухфакторная авторизация.");
+				_logger?.LogDebug("Двухфакторная авторизация");
 
 				resultForm = await FilledTwoFactorFormAsync(_authParams.TwoFactorAuthorization, _authParams.TwoFactorAuthorizationAsync, formResult, token)
 					.ConfigureAwait(false);
@@ -322,7 +322,7 @@ public partial class Browser
 			case ImplicitFlowPageType.Consent:
 
 			{
-				_logger?.LogDebug("Страница подтверждения доступа к скоупам.");
+				_logger?.LogDebug("Страница подтверждения доступа к скоупам");
 
 				resultForm = await FilledConsentAsync(formResult, token)
 					.ConfigureAwait(false);

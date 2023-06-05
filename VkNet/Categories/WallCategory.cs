@@ -27,7 +27,7 @@ public partial class WallCategory : IWallCategory
 	/// <inheritdoc />
 	public WallGetObject Get(WallGetParams @params, bool skipAuthorization = false)
 	{
-		if (@params.Filter != null && @params.Filter == WallFilter.Suggests && @params.OwnerId >= 0)
+		if (@params.Filter is WallFilter.Suggests && @params.OwnerId >= 0)
 		{
 			throw new ArgumentException("OwnerID must be negative in case filter equal to Suggests",
 				nameof(@params));

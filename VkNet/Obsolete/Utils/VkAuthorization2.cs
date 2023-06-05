@@ -99,22 +99,22 @@ public class VkAuthorization2
 	/// <returns> Список наименования полей. </returns>
 	private static Dictionary<string, string> Decode(string urlFragment)
 	{
-		var uri = new Uri(uriString: urlFragment);
+		var uri = new Uri(urlFragment);
 
-		if (string.IsNullOrWhiteSpace(value: uri.Query) && string.IsNullOrWhiteSpace(value: uri.Fragment))
+		if (string.IsNullOrWhiteSpace(uri.Query) && string.IsNullOrWhiteSpace(uri.Fragment))
 		{
 			return new();
 		}
 
-		var query = string.IsNullOrWhiteSpace(value: uri.Query)
-			? uri.Fragment.Substring(startIndex: 1)
-			: uri.Query.Substring(startIndex: 1);
+		var query = string.IsNullOrWhiteSpace(uri.Query)
+			? uri.Fragment.Substring(1)
+			: uri.Query.Substring(1);
 
 		return query.Split(new[]
 			{
 				'&'
 			}, StringSplitOptions.RemoveEmptyEntries)
-			.Select(selector: s => s.Split('='))
+			.Select(s => s.Split('='))
 			.ToDictionary(s => s[0], s => s[1]);
 	}
 
