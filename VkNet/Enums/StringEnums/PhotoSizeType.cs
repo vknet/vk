@@ -80,6 +80,36 @@ public enum PhotoSizeType
 	/// <summary>
 	///
 	/// </summary>
+	Max,
+
+	/// <summary>
+	///
+	/// </summary>
+	A,
+
+	/// <summary>
+	///
+	/// </summary>
+	B,
+
+	/// <summary>
+	///
+	/// </summary>
+	C,
+
+	/// <summary>
+	///
+	/// </summary>
+	D,
+
+	/// <summary>
+	///
+	/// </summary>
+	E,
+
+	/// <summary>
+	///
+	/// </summary>
 	K,
 
 	/// <summary>
