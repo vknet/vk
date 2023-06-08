@@ -41,3 +41,7 @@ steps:
     Build №: $(Build.BuildNumber)
     VkNet был успешно собран!</code>'
       buildQueuedBy: true
+
+  - task: QodanaScan@2023
+    env:
+      QODANA_TOKEN: $(QODANA_TOKEN)
