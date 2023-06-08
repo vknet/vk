@@ -1,5 +1,5 @@
 # Vk Api for .NET
-||Badge|
+||Badge|vnvbnvn
 |------|:------:|
 |**Build Status**|[![Build Status](https://dev.azure.com/VkDotNet/VkNet/_apis/build/status/vknet.vk)](https://dev.azure.com/VkDotNet/VkNet/_build/latest?definitionId=1)
 |**Target Frameworks**|[![Targets](https://img.shields.io/badge/.NET%20Standard-2.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/standard/net-standard) [![Targets](https://img.shields.io/badge/.NET%20-6-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/core/introduction) [![Targets](https://img.shields.io/badge/.NET%20-7-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/core/introduction)|
