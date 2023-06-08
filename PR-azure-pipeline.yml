@@ -8,9 +8,12 @@ variables:
 
 steps:
   - task: UseDotNet@2
+    displayName: 'Use .NET Core sdk 7.0.x'
     inputs:
       packageType: 'sdk'
-      version: '7.0.105'
+      version: 7.0.x
+      performMultiLevelLookup: true
+      includePreviewVersions: true
 
   - task: DotNetCoreCLI@2
     displayName: Test
