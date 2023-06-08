@@ -660,6 +660,30 @@ public class StringEnumTests
 		Utilities.Deserialize<PhotoSizeType>("w")
 			.Should()
 			.Be(PhotoSizeType.W);
+
+		Utilities.Deserialize<PhotoSizeType>("max")
+			.Should()
+			.Be(PhotoSizeType.Max);
+
+		Utilities.Deserialize<PhotoSizeType>("a")
+			.Should()
+			.Be(PhotoSizeType.A);
+
+		Utilities.Deserialize<PhotoSizeType>("b")
+			.Should()
+			.Be(PhotoSizeType.B);
+
+		Utilities.Deserialize<PhotoSizeType>("c")
+			.Should()
+			.Be(PhotoSizeType.C);
+
+		Utilities.Deserialize<PhotoSizeType>("d")
+			.Should()
+			.Be(PhotoSizeType.D);
+
+		Utilities.Deserialize<PhotoSizeType>("e")
+			.Should()
+			.Be(PhotoSizeType.E);
 	}
 
 	[Fact]
