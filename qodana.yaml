@@ -1,2 +1,5 @@
 script:
   name: default
+
+dotnet:
+  project: VkNet.csproj
