@@ -53,4 +53,4 @@ steps:
     env:
       QODANA_TOKEN: $(QODANA_TOKEN)
       inputs:
-      args: --property, qodana.net.solution=VkNet.sln
+      args: --property qodana.net.solution=VkNet.sln
