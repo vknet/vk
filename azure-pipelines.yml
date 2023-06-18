@@ -52,5 +52,5 @@ steps:
   - task: QodanaScan@2023
     env:
       QODANA_TOKEN: $(QODANA_TOKEN)
-      inputs:
-      args: --property qodana.net.solution=VkNet.sln
+    inputs:
+      args: '--property,qodana.net.solution=VkNet.sln'
