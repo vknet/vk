@@ -22,7 +22,7 @@ public sealed class ImplicitFlowCaptchaLoginForm : AbstractAuthorizationForm
 	public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.Captcha;
 
 	/// <inheritdoc />
-	protected override Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token = default)
+	protected override Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams)
 	{
 		if (_captchaSolver == null)
 		{

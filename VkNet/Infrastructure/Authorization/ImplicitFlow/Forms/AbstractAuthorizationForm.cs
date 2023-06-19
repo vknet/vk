@@ -31,7 +31,7 @@ public abstract class AbstractAuthorizationForm : IAuthorizationForm
 		var form = await _htmlParser.GetFormAsync(url, token)
 			.ConfigureAwait(false);
 
-		await FillFormFieldsAsync(form, authParams, token);
+		await FillFormFieldsAsync(form, authParams);
 
 		var response = await _restClient.PostAsync(new(form.Action), form.Fields, Encoding.UTF8, form.Headers, token)
 			.ConfigureAwait(false);
@@ -53,5 +53,5 @@ public abstract class AbstractAuthorizationForm : IAuthorizationForm
 	/// </summary>
 	/// <param name="form"> Форма </param>
 	/// <param name="authParams">Параметры авторизации.</param>
-	protected abstract Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token = default);
+	protected abstract Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams);
 }

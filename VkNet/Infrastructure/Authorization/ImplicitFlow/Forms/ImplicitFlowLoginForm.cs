@@ -20,7 +20,7 @@ public sealed class ImplicitFlowLoginForm : AbstractAuthorizationForm
 	public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.LoginPassword;
 
 	/// <inheritdoc />
-	protected override Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token = default)
+	protected override Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams)
 	{
 		if (form.Fields.ContainsKey(AuthorizationFormFields.Email))
 		{
