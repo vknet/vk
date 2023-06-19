@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -339,7 +339,7 @@ public class FaveCategoryTest : CategoryBaseTest
 
 		var video = posts.WallPosts[0]
 			.Attachments[0]
-			.Instance as Model.Attachments.Video;
+			.Instance as Model.Video;
 
 		video.Should()
 			.NotBeNull();
@@ -506,7 +506,7 @@ public class FaveCategoryTest : CategoryBaseTest
 
 		var video = posts.WallPosts[0]
 			.Attachments[0]
-			.Instance as Model.Attachments.Video;
+			.Instance as Model.Video;
 
 		video.Should()
 			.NotBeNull();

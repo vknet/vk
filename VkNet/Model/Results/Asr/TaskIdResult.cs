@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.Results.Asr;
+namespace VkNet.Model;
 
 /// <summary>
 /// Объект TaskId

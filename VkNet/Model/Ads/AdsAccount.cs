@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 

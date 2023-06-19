@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using VkNet.Model.GroupUpdate;
+using VkNet.Model;
 
 namespace VkNet.Utils.JsonConverter;
 

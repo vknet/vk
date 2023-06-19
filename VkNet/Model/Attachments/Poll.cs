@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace VkNet.Model.Attachments;
+namespace VkNet.Model;
 
 /// <inheritdoc />
 /// <summary>

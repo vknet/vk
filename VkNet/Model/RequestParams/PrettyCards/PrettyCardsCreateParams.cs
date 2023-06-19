@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода prettyCards.create
@@ -58,5 +58,5 @@ public class PrettyCardsCreateParams
 	/// Не передавайте этот параметр, чтобы не использовать кнопку.
 	/// </summary>
 	[JsonProperty("button")]
-	public Enums.SafetyEnums.Button Button { get; set; }
+	public Enums.StringEnums.Button Button { get; set; }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
-using VkNet.Model.Attachments;
 
-namespace VkNet.UWP.Model.Attachments;
+namespace VkNet.Model;
 
 /// <inheritdoc />
 /// <summary>

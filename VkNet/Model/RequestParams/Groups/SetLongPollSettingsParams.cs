@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
 
-namespace VkNet.Model.RequestParams.Groups;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода <see cref="IGroupsCategory"/>.<see cref="IGroupsCategoryAsync.SetLongPollSettingsAsync"/>

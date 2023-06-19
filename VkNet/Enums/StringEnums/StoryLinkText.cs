@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using VkNet.Utils;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums.StringEnums;
 
 /// <summary>
 /// Текст ссылки для перехода из истории (только для историй сообществ).

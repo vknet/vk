@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

@@ -1,6 +1,6 @@
 using System;
 
-namespace VkNet.Model.Attachments;
+namespace VkNet.Model;
 
 /// <summary>
 /// Неизвестное вложение

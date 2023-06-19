@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using VkNet.Enums;
 
-namespace VkNet.Model.Results.Notifications;
+namespace VkNet.Model;
 
 /// <summary>
 /// Ошибка отправки уведомления

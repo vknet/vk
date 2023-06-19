@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
 
 namespace VkNet.Abstractions;

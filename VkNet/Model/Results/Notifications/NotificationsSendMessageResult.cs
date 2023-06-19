@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.Results.Notifications;
+namespace VkNet.Model;
 
 /// <summary>
 /// Результат метода Notifications.SendMessage

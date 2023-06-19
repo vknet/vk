@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
 
-namespace VkNet.Model.GroupUpdate;
+namespace VkNet.Model;
 
 /// <summary>
 /// Редактирование списка руководителей

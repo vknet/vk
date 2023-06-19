@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using VkNet.Model.Results.DownloadedGames;
+using VkNet.Model;
 
 namespace VkNet.Abstractions;
 

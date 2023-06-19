@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums.StringEnums;
 
 /// <summary>
 /// Названия списков новостей, которые необходимо получить.

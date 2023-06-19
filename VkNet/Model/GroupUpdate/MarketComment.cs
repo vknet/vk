@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.GroupUpdate;
+namespace VkNet.Model;
 
 /// <summary>
 /// Добавление/редактирование/восстановление комментария к товару
@@ -9,7 +9,7 @@ namespace VkNet.Model.GroupUpdate;
 /// (<c>Comment</c> с дополнительными полями)
 /// </summary>
 [Serializable]
-public class MarketComment : Comment, IGroupUpdate
+public class MarketCommentGroupUpdate : Comment, IGroupUpdate
 {
 	/// <summary>
 	/// Идентификатор товара

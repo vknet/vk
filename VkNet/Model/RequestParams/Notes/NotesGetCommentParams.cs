@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
 
-namespace VkNet.Model.RequestParams.Notes;
+namespace VkNet.Model;
 
 /// <summary>
 /// Notes Get Comments Params

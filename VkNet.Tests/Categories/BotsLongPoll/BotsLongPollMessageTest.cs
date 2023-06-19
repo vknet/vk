@@ -1,6 +1,6 @@
 using FluentAssertions;
 using VkNet.Enums;
-using VkNet.Model.GroupUpdate;
+using VkNet.Model;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;

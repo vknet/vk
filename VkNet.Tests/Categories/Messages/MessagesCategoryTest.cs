@@ -5,9 +5,9 @@ using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
-using VkNet.Model.Attachments;
+using VkNet.Model;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -587,7 +587,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.HaveCount(1);
 
 		var wall = msg.Attachments[0]
-			.Instance as Model.Attachments.Wall;
+			.Instance as Model.Wall;
 
 		wall.Should()
 			.NotBeNull();

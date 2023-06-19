@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model.Results.Users;
+namespace VkNet.Model;
 
 /// <summary>
 /// Response Message.GetChatUsers

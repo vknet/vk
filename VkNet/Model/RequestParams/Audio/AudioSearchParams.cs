@@ -1,7 +1,7 @@
 ﻿using System;
 using VkNet.Enums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Критерии поиска аудиозаписей.

@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using VkNet.Model.Keyboard;
 
-namespace VkNet.Model.Template.Carousel;
+namespace VkNet.Model;
 
 /// <summary>
 /// Объект элементов карусели.

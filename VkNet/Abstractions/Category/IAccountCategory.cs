@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 
 namespace VkNet.Abstractions;
 

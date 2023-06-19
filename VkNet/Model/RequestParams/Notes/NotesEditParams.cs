@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 
-namespace VkNet.Model.RequestParams.Notes;
+namespace VkNet.Model;
 
 /// <summary>
 /// Notes Edit Params

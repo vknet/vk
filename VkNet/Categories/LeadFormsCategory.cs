@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Abstractions.Category;
 using VkNet.Model;
-using VkNet.Model.LeadForms;
 using VkNet.Utils;
 
 namespace VkNet.Categories;

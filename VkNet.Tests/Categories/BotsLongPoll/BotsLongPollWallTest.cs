@@ -1,5 +1,5 @@
 using FluentAssertions;
-using VkNet.Model.GroupUpdate;
+using VkNet.Model;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -80,9 +80,9 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 							.Be(groupId);
 						break;
 
-					case WallReply:
+					case WallReplyGroupUpdate:
 					{
-						var a = x.Instance is WallReply b
+						var a = x.Instance is WallReplyGroupUpdate b
 							? b
 							: null;
 
@@ -132,9 +132,9 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 							.Be(groupId);
 						break;
 
-					case WallReply:
+					case WallReplyGroupUpdate:
 					{
-						var a = x.Instance is WallReply b
+						var a = x.Instance is WallReplyGroupUpdate b
 							? b
 							: null;
 
@@ -181,9 +181,9 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 							.Be(groupId);
 						break;
 
-					case WallReply:
+					case WallReplyGroupUpdate:
 					{
-						var a = x.Instance is WallReply b
+						var a = x.Instance is WallReplyGroupUpdate b
 							? b
 							: null;
 

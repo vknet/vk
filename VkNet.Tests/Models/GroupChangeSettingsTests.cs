@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using Newtonsoft.Json;
-using VkNet.Model.GroupUpdate;
+using VkNet.Model;
 using VkNet.Utils;
 using Xunit;
 

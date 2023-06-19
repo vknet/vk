@@ -2,7 +2,7 @@ using System;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.Attachments;
+namespace VkNet.Model;
 
 /// <summary>
 /// Граффити.

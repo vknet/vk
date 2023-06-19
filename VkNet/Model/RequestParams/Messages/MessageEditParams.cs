@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Model.Attachments;
-using VkNet.Model.Keyboard;
-using VkNet.Model.Template;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса Messages.Edit

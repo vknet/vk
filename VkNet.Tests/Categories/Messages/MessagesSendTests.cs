@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using VkNet.Categories;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
-using VkNet.Model.Keyboard;
-using VkNet.Model.Template;
-using VkNet.Model.Template.Carousel;
+using VkNet.Model;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;

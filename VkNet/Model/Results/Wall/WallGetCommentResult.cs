@@ -1,7 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Model.GroupUpdate;
 
 namespace VkNet.Model;
 
@@ -15,7 +14,7 @@ public class WallGetCommentResult
 	/// Объект комментария
 	/// </summary>
 	[JsonProperty("items")]
-	public ReadOnlyCollection<WallReply> Comment { get; set; }
+	public ReadOnlyCollection<WallReplyGroupUpdate> Comment { get; set; }
 
 	/// <summary>
 	/// Массив пользователей

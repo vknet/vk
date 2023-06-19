@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Utils;
 
-namespace VkNet.Model.Keyboard;
+namespace VkNet.Model;
 
 /// <inheritdoc />
 [Serializable]

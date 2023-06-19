@@ -1,9 +1,9 @@
 using System;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Keyboard;
+namespace VkNet.Model;
 
 /// <summary>
 /// Информация о кнопке клавиатуры.

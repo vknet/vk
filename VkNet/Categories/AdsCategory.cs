@@ -3,9 +3,8 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams.Ads;
 using VkNet.Utils;
 
 namespace VkNet.Categories;

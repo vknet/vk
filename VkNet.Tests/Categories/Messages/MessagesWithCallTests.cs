@@ -2,7 +2,6 @@
 using FluentAssertions;
 using FluentAssertions.Extensions;
 using VkNet.Model;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
 using Xunit;
 

@@ -1,8 +1,8 @@
 using System;
 using System.Globalization;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.GroupUpdate;
+using VkNet.Enums.StringEnums;
+using VkNet.Model;
 
 namespace VkNet.Utils.JsonConverter;
 

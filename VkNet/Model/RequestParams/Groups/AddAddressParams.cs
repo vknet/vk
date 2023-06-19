@@ -1,9 +1,9 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams.Groups;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода <see cref="IGroupsCategory"/>.<see cref="IGroupsCategoryAsync.AddAddressAsync"/>

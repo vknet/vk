@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
-namespace VkNet.Enums.Filters;
+namespace VkNet.Enums.StringEnums;
 
 /// <summary>
 /// Тип объекта, добавленного в закладки.

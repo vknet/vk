@@ -6,10 +6,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Infrastructure;
 using VkNet.Model;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Categories;

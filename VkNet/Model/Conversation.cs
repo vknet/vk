@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Model.Keyboard;
 
 namespace VkNet.Model;
 

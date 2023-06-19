@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Results.Asr;
+namespace VkNet.Model;
 
 /// <summary>
 /// Объект задачи на обработку аудиозаписи

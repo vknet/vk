@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
-using VkNet.Model.RequestParams.Notifications;
-using VkNet.Model.Results.Notifications;
 using VkNet.Utils;
 
 namespace VkNet.Categories;

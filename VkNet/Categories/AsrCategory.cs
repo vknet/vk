@@ -1,6 +1,6 @@
 ﻿using VkNet.Abstractions;
 using VkNet.Enums.StringEnums;
-using VkNet.Model.Results.Asr;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -29,7 +29,7 @@ public partial class AsrCategory : IAsrCategory
 		});
 
 	/// <inheritdoc />
-	public UploadUrlResult GetUploadUrl() => _vk.Call<UploadUrlResult>("asr.getUploadUrl",
+	public AsrUploadUrlResult GetUploadUrl() => _vk.Call<AsrUploadUrlResult>("asr.getUploadUrl",
 		VkParameters.Empty);
 
 	/// <inheritdoc />

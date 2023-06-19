@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.Results.Messages;
+namespace VkNet.Model;
 
 /// <summary>
 /// Результат метода messages.getIntentUsers

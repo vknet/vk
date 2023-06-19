@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Converters;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums.StringEnums;
 
 /// <summary>
 /// Месячные ограничения

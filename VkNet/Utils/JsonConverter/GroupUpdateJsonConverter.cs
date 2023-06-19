@@ -3,10 +3,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Infrastructure;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.GroupUpdate;
-using MarketComment = VkNet.Model.GroupUpdate.MarketComment;
-using WallReply = VkNet.Model.GroupUpdate.WallReply;
 
 namespace VkNet.Utils.JsonConverter;
 
@@ -58,9 +54,9 @@ public class GroupUpdateJsonConverter : Newtonsoft.Json.JsonConverter
 			"video_comment_delete" => JsonConvert.DeserializeObject<VideoCommentDelete>(resObj),
 			"wall_post_new" or "wall_repost" => JsonConvert.DeserializeObject<WallPost>(resObj),
 			"market_comment_new" or "market_comment_edit" or "market_comment_restore" =>
-				JsonConvert.DeserializeObject<MarketComment>(resObj),
+				JsonConvert.DeserializeObject<MarketCommentGroupUpdate>(resObj),
 			"wall_reply_new" or "wall_reply_edit" or "wall_reply_restore" =>
-				JsonConvert.DeserializeObject<WallReply>(resObj),
+				JsonConvert.DeserializeObject<WallReplyGroupUpdate>(resObj),
 			"wall_reply_delete" => JsonConvert.DeserializeObject<WallReplyDelete>(resObj),
 			"board_post_new" or "board_post_edit" or "board_post_restore" => JsonConvert.DeserializeObject<BoardPost>(resObj),
 			"board_post_delete" => JsonConvert.DeserializeObject<BoardPostDelete>(resObj),

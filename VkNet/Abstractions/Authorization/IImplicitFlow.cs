@@ -1,6 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Abstractions.Authorization;
 
