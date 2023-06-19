@@ -21,7 +21,7 @@ public class VkApiException : System.Exception
 	}
 
 	/// <inheritdoc />
-	protected VkApiException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base()
+	protected VkApiException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

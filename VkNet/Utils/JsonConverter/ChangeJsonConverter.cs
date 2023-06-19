@@ -79,15 +79,14 @@ public class ChangeJsonConverter : Newtonsoft.Json.JsonConverter
 				NewValue = response[field]["new_value"],
 				OldValue = response[field]["old_value"]
 			};
-		} else
-		{
-			return new Change
-			{
-				Field = field,
-				NewValue = null,
-				OldValue = null
-			};
 		}
+
+		return new Change
+		{
+			Field = field,
+			NewValue = null,
+			OldValue = null
+		};
 	}
 
 	/// <inheritdoc />

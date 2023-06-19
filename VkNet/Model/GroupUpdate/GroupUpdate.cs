@@ -1,6 +1,5 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 

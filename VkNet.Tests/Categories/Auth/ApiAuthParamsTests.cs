@@ -19,7 +19,7 @@ public class ApiAuthParamsTests
 	[Fact]
 	public void ApiAuthParams_AccessTokenOnly_IsValid_ReturnsTrue()
 	{
-		var apiAuthParams = new ApiAuthParams()
+		var apiAuthParams = new ApiAuthParams
 		{
 			AccessToken = "some_token"
 		};
@@ -31,7 +31,7 @@ public class ApiAuthParamsTests
 	[Fact]
 	public void ApiAuthParams_LoginAndPassword_AllCorrect_IsValid_ReturnsTrue()
 	{
-		var apiAuthParams = new ApiAuthParams()
+		var apiAuthParams = new ApiAuthParams
 		{
 			ApplicationId = 111,
 			Login = "some_login",
@@ -47,7 +47,7 @@ public class ApiAuthParamsTests
 	[Fact]
 	public void ApiAuthParams_LoginAndPasswordWithoutTwoFactor_IsValid_ReturnsFalse()
 	{
-		var apiAuthParams = new ApiAuthParams()
+		var apiAuthParams = new ApiAuthParams
 		{
 			ApplicationId = 111,
 			Login = "some_login",
@@ -62,7 +62,7 @@ public class ApiAuthParamsTests
 	[Fact]
 	public void ApiAuthParams_LoginAndPasswordWithoutSettings_IsValid_ReturnsFalse()
 	{
-		var apiAuthParams = new ApiAuthParams()
+		var apiAuthParams = new ApiAuthParams
 		{
 			ApplicationId = 111,
 			Login = "some_login",
@@ -77,7 +77,7 @@ public class ApiAuthParamsTests
 	[Fact]
 	public void ApiAuthParams_LoginAndPasswordWithEmptySettings_IsValid_ReturnsFalse()
 	{
-		var apiAuthParams = new ApiAuthParams()
+		var apiAuthParams = new ApiAuthParams
 		{
 			ApplicationId = 111,
 			Login = "some_login",

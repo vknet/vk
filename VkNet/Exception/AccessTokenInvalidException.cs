@@ -20,7 +20,7 @@ public sealed class AccessTokenInvalidException : VkApiException
 	}
 
 	/// <inheritdoc />
-	private AccessTokenInvalidException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base()
+	private AccessTokenInvalidException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Exception;
 
@@ -14,7 +15,7 @@ public sealed class TooMuchButtonsException : VkApiException
 	}
 
 	/// <inheritdoc />
-	private TooMuchButtonsException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base()
+	private TooMuchButtonsException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

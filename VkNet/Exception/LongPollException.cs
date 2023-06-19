@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Exception;
 
@@ -37,7 +38,7 @@ public class LongPollException : System.Exception
 	public LongPollException(int code, string message) : base(message) => Code = code;
 
 	/// <inheritdoc />
-	protected LongPollException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base()
+	protected LongPollException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

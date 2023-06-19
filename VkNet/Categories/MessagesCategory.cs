@@ -742,7 +742,7 @@ public partial class MessagesCategory : IMessagesCategory
 
 	/// <inheritdoc />
 	public ulong DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null) =>
-		DeleteConversation(userId, peerId, null);
+		DeleteConversation(userId, peerId);
 
 	private IDictionary<ulong, bool> ImplementationDelete([CanBeNull] IEnumerable<ulong> messageIds = null,
 														[CanBeNull] IEnumerable<ulong> conversationMessageIds = null,

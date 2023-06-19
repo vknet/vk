@@ -14,7 +14,7 @@ public sealed class VkKeyboardMaxButtonsException : VkApiException
 	{
 	}
 
-	private VkKeyboardMaxButtonsException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base()
+	private VkKeyboardMaxButtonsException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

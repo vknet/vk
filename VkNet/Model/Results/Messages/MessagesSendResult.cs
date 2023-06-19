@@ -9,7 +9,7 @@ namespace VkNet.Model;
 /// </summary>
 [Serializable]
 [JsonConverter(typeof(MessagesSendResultJsonConverter))]
-public partial class MessagesSendResult
+public class MessagesSendResult
 {
 	/// <summary>
 	/// Идентификатор назначения;

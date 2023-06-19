@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Exception;
 
@@ -15,7 +16,7 @@ public sealed class LongPollInfoLostException : LongPollException
 	}
 
 	/// <inheritdoc />
-	private LongPollInfoLostException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base()
+	private LongPollInfoLostException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

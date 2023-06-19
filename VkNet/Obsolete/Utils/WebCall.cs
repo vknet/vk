@@ -2,14 +2,14 @@
 
 using System;
 using System.Collections.Generic;
-#if DEBUG_HTTP
-using System.IO;
-#endif
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using VkNet.Exception;
+#if DEBUG_HTTP
+using System.IO;
+#endif
 
 // ReSharper disable once CheckNamespace
 namespace VkNet.Utils;

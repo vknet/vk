@@ -34,7 +34,7 @@ public class LikesCategoryTest : CategoryBaseTest
 		Url = "https://api.vk.com/method/likes.delete";
 		ReadCategoryJsonPath(nameof(Delete_NormalCase));
 
-		var like = Api.Likes.Delete(LikeObjectType.Post, 701, null);
+		var like = Api.Likes.Delete(LikeObjectType.Post, 701);
 
 		like.Should()
 			.Be(4);

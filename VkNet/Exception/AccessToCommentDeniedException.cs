@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -19,7 +20,7 @@ public sealed class AccessToCommentDeniedException : VkApiMethodInvokeException
 	}
 
 	/// <inheritdoc />
-	private AccessToCommentDeniedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	private AccessToCommentDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
 
 	}

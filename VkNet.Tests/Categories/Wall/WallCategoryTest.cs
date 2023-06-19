@@ -282,7 +282,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetById_IncorrectParameters_ThrowException()
 	{
-		FluentActions.Invoking(() => new WallCategory(Api).GetById(null, null))
+		FluentActions.Invoking(() => new WallCategory(Api).GetById(null))
 			.Should()
 			.ThrowExactly<ArgumentNullException>();
 

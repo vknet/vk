@@ -1,4 +1,3 @@
-using System.Linq;
 using FluentAssertions;
 using VkNet.Model.GroupUpdate;
 using Xunit;

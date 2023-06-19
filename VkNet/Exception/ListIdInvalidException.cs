@@ -19,7 +19,7 @@ public sealed class ListIdInvalidException : VkApiMethodInvokeException
 	}
 
 	/// <inheritdoc />
-	private ListIdInvalidException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	private ListIdInvalidException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
 
 	}

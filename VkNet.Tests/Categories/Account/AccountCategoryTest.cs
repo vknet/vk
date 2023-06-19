@@ -480,7 +480,7 @@ public class AccountCategoryTest : CategoryBaseTest
 		ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 
 		var result = Api.Account.SaveProfileInfo(
-			new AccountSaveProfileInfoParams()
+			new AccountSaveProfileInfoParams
 			{
 				FirstName = "fn",
 				LastName = "ln",

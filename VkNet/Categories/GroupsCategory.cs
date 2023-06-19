@@ -193,7 +193,7 @@ public partial class GroupsCategory : IGroupsCategory
 		VkErrors.ThrowIfNumberIsNegative(() => @params.UserId);
 
 		var parameters =
-			new VkParameters()
+			new VkParameters
 			{
 				{
 					"user_id", @params.UserId
@@ -537,7 +537,7 @@ public partial class GroupsCategory : IGroupsCategory
 	/// <inheritdoc />
 	public bool Edit(GroupsEditParams @params)
 	{
-		var market = new Dictionary<string, object>()
+		var market = new Dictionary<string, object>
 		{
 			{
 				"enabled", @params.MarketEnabled

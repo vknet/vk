@@ -197,8 +197,8 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 				var birthdayParts = user.BirthDate.Split('.');
 
 				user.BirthdayVisibility = birthdayParts.Length > 2
-					? Enums.BirthdayVisibility.Full
-					: Enums.BirthdayVisibility.OnlyDayAndMonth;
+					? BirthdayVisibility.Full
+					: BirthdayVisibility.OnlyDayAndMonth;
 			}
 		} else
 		{

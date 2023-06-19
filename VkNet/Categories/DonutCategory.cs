@@ -1,7 +1,7 @@
 using VkNet.Abstractions;
+using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Utils;
-using VkNet.Enums.Filters;
 
 namespace VkNet.Categories;
 

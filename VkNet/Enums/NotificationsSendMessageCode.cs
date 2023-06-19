@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using VkNet.Utils;
+﻿using VkNet.Utils;
 
 namespace VkNet.Enums;
 

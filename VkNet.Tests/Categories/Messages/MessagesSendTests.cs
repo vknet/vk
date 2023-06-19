@@ -323,7 +323,7 @@ public class MessagesSendTests : MessagesBaseTests
 			button
 		};
 
-		var carouselAction = new CarouselElementAction()
+		var carouselAction = new CarouselElementAction
 		{
 			Link = new("https://vk.com/"),
 			Type = CarouselElementActionType.OpenLink
