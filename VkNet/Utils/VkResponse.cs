@@ -53,10 +53,7 @@ public sealed class VkResponse
 	/// HasToken
 	/// </summary>
 	/// <returns> </returns>
-	public bool HasToken() => _token is
-	{
-		HasValues: true
-	};
+	public bool HasToken() => _token != null && _token.HasValues;
 
 	/// <summary>
 	/// Определяет, содержит ли JSON указанный ключ.
@@ -65,7 +62,7 @@ public sealed class VkResponse
 	/// <returns> Признак наличия ключа в JSON </returns>
 	public bool ContainsKey(string key)
 	{
-		if (_token is not JObject)
+		if (!(_token is JObject))
 		{
 			return false;
 		}
@@ -93,7 +90,7 @@ public sealed class VkResponse
 			? response[key: "items"]
 			: response;
 
-		return resp._token is not JArray array
+		return !(resp._token is JArray array)
 			? null
 			: new VkResponseArray(array: array);
 	}
@@ -115,7 +112,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator bool(VkResponse response) => response == 1;
+	public static implicit operator bool(VkResponse response) => response != null && response == 1;
 
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse

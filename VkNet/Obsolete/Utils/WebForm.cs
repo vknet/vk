@@ -160,7 +160,13 @@ internal sealed class WebForm
 
 		var encodedValue = value;
 
-		_inputs[_lastName] = encodedValue;
+		if (_inputs.ContainsKey(_lastName))
+		{
+			_inputs[_lastName] = encodedValue;
+		} else
+		{
+			_inputs.Add(_lastName, encodedValue);
+		}
 
 		return this;
 	}
@@ -176,7 +182,7 @@ internal sealed class WebForm
 	/// Получить запрос.
 	/// </summary>
 	/// <returns> Массив байт </returns>
-	private IEnumerable<string> GetRequestAsStringArray() => _inputs.Select(x => $"{x.Key}={x.Value}");
+	public IEnumerable<string> GetRequestAsStringArray() => _inputs.Select(x => $"{x.Key}={x.Value}");
 
 	/// <summary>
 	/// Получить значения полей.

@@ -19,13 +19,14 @@ internal sealed partial class WebCall
 	/// <returns> Результат </returns>
 	public static async Task<WebCallResult> MakeCallAsync(string url, IWebProxy webProxy = null)
 	{
-		using var call = new WebCall(url, new(), webProxy);
+		using (var call = new WebCall(url, new(), webProxy))
+		{
+			var response = await call._request.GetAsync(url)
+				.ConfigureAwait(false);
 
-		var response = await call._request.GetAsync(url)
-			.ConfigureAwait(false);
-
-		return await call.MakeRequestAsync(response, new(url), webProxy)
-			.ConfigureAwait(false);
+			return await call.MakeRequestAsync(response, new(url), webProxy)
+				.ConfigureAwait(false);
+		}
 	}
 
 	/// <summary>
@@ -78,17 +79,18 @@ internal sealed partial class WebCall
 	/// <returns> Результат </returns>
 	private async Task<WebCallResult> RedirectToAsync(string url, IWebProxy webProxy = null)
 	{
-		using var call = new WebCall(url, _result.Cookies, webProxy);
+		using (var call = new WebCall(url, _result.Cookies, webProxy))
+		{
+			var headers = call._request.DefaultRequestHeaders;
+			headers.Add("Method", "GET");
+			headers.Add("ContentType", "text/html");
 
-		var headers = call._request.DefaultRequestHeaders;
-		headers.Add("Method", "GET");
-		headers.Add("ContentType", "text/html");
+			var response = await call._request.GetAsync(url)
+				.ConfigureAwait(false);
 
-		var response = await call._request.GetAsync(url)
-			.ConfigureAwait(false);
-
-		return await call.MakeRequestAsync(response, new(url), webProxy)
-			.ConfigureAwait(false);
+			return await call.MakeRequestAsync(response, new(url), webProxy)
+				.ConfigureAwait(false);
+		}
 	}
 
 	/// <summary>

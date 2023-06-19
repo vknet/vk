@@ -585,17 +585,17 @@ public class VkApi : IVkApi
 		get => CaptchaHandler.MaxCaptchaRecognitionCount;
 
 		set {
-			switch (value)
+			if (value < 0)
 			{
-				case < 0:
-					throw new ArgumentException(@"Value must be positive", nameof(value));
-				case 0:
-					return;
-				default:
-					CaptchaHandler.MaxCaptchaRecognitionCount = value;
-
-					break;
+				throw new ArgumentException(@"Value must be positive", nameof(value));
 			}
+
+			if (value == 0)
+			{
+				return;
+			}
+
+			CaptchaHandler.MaxCaptchaRecognitionCount = value;
 		}
 	}
 

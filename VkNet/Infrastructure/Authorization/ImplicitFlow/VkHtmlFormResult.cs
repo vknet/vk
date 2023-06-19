@@ -15,12 +15,12 @@ public class VkHtmlFormResult
 	/// <summary>
 	/// URL для отправки формы
 	/// </summary>
-	public string Action { get; init; }
+	public string Action { get; set; }
 
 	/// <summary>
 	/// URL для получения капчи, если это необходимо
 	/// </summary>
-	public string UrlToCaptcha { get; init; }
+	public string UrlToCaptcha { get; set; }
 
 	/// <summary>
 	/// Поля формы
