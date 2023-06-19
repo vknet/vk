@@ -248,26 +248,25 @@ internal sealed partial class WebCall : IDisposable
 	/// <exception cref="VkApiException"> Response is null. </exception>
 	private WebCallResult MakeRequest(HttpResponseMessage response, Uri uri, IWebProxy webProxy)
 	{
-		using (var stream = response.Content.ReadAsStreamAsync()
-					.GetAwaiter()
-					.GetResult())
+		using var stream = response.Content.ReadAsStreamAsync()
+			.GetAwaiter()
+			.GetResult();
+
+		if (stream == null)
 		{
-			if (stream == null)
-			{
-				throw new VkApiException("Response is null.");
-			}
-
-			var encoding = Encoding.UTF8;
-			_result.SaveResponse(response.RequestMessage.RequestUri, stream, encoding);
-
-			var cookies = _result.Cookies.Container;
-
-			_result.SaveCookies(cookies.GetCookies(uri));
-
-			return response.StatusCode == HttpStatusCode.Redirect
-				? RedirectTo(response.Headers.Location.AbsoluteUri, webProxy)
-				: _result;
+			throw new VkApiException("Response is null.");
 		}
+
+		var encoding = Encoding.UTF8;
+		_result.SaveResponse(response.RequestMessage.RequestUri, stream, encoding);
+
+		var cookies = _result.Cookies.Container;
+
+		_result.SaveCookies(cookies.GetCookies(uri));
+
+		return response.StatusCode == HttpStatusCode.Redirect
+			? RedirectTo(response.Headers.Location.AbsoluteUri, webProxy)
+			: _result;
 	}
 
 	private static void SpecifyHeadersForFormRequest(WebForm form, WebCall call)

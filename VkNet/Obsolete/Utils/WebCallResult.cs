@@ -36,7 +36,7 @@ public sealed class WebCallResult
 	/// <summary>
 	/// Получить URL ответа.
 	/// </summary>
-	public Uri ResponseUrl { get; private set; }
+	private Uri ResponseUrl { get; set; }
 
 	/// <summary>
 	/// Ответ.
@@ -59,9 +59,8 @@ public sealed class WebCallResult
 	{
 		ResponseUrl = responseUrl;
 
-		using (var reader = new StreamReader(stream, encoding))
-		{
-			Response = reader.ReadToEnd();
-		}
+		using var reader = new StreamReader(stream, encoding);
+
+		Response = reader.ReadToEnd();
 	}
 }
