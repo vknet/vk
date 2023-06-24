@@ -224,6 +224,12 @@ public class Message : MediaAttachment, IGroupUpdate
 	[JsonProperty("photo_200")]
 	public string Photo200 { get; set; }
 
+	/// <summary>
+	/// <c> Uri </c> копии фотографии беседы шириной 200px.
+	/// </summary>
+	[JsonProperty("template")]
+	public MessageTemplate Template { get; set; }
+
 	#endregion
 
 	#region Дополнительные поля в сообщениях сообществ
