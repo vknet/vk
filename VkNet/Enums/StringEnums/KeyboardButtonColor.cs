@@ -32,5 +32,10 @@ public enum KeyboardButtonColor
 	/// <summary>
 	/// согласиться, подтвердить. #4BB34B
 	/// </summary>
-	Positive
+	Positive,
+
+	/// <summary>
+	/// Вторичный
+	/// </summary>
+	Secondary,
 }

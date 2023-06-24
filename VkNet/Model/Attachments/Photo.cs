@@ -244,6 +244,12 @@ public class Photo : MediaAttachment, IGroupUpdate
 	public Tags Tags { get; set; }
 
 	/// <summary>
+	/// Существование тегов
+	/// </summary>
+	[JsonProperty("has_tags")]
+	public bool HasTags { get; set; }
+
+	/// <summary>
 	/// Источник изображения.
 	/// </summary>
 	[JsonProperty("photo_src")]

@@ -1,0 +1,241 @@
+﻿{
+	"type": "message_new",
+	"object": {
+		"message": {
+			"date": 1572809816,
+			"from_id": 123456789,
+			"id": 985,
+			"out": 0,
+			"attachments": [],
+			"template": {
+				"type": "carousel",
+				"elements": [
+					{
+						"title": "????Деревня 1dndn [2857оч.] (id346)",
+						"action": {
+							"type": "open_photo"
+						},
+						"description": "??Инфо: [0км] (-12;5) (id346)\n?0  ??2  ??2\n??34%  ??46%  ??18%  ??50%",
+						"photo": {
+							"album_id": -64,
+							"date": 1671842826,
+							"id": 457255990,
+							"owner_id": 105083531,
+							"sizes": [
+								{
+									"height": 80,
+									"type": "m",
+									"width": 130,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=130x80&quality=96&sign=afffc1f2a6c9f40ae69dc6095344f379&c_uniq_tag=-y7eozcMopvXFohJ0nKC5uhAv8ATHcQ8yZEASczQFTA&type=album"
+								},
+								{
+									"height": 87,
+									"type": "o",
+									"width": 130,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=130x87&quality=96&crop=52,0,1195,800&sign=317fb9aa4639268e5eb91673a5b377fc&c_uniq_tag=K0qSOqYmH9wy_clC7LoFOV7w5B7iTNhU6_uZ8czFQZA&type=album"
+								},
+								{
+									"height": 133,
+									"type": "p",
+									"width": 200,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=200x133&quality=96&crop=48,0,1203,800&sign=7fb21bf3d578b120e8bffced53263179&c_uniq_tag=qngBsdkIf2zhtl8JbVd__xOQoieTzhaVtt_ZN00vTb0&type=album"
+								},
+								{
+									"height": 213,
+									"type": "q",
+									"width": 320,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=320x213&quality=96&crop=49,0,1202,800&sign=2e73a251f52edeb4a8d925f99c0d9d23&c_uniq_tag=RFAFUf3VhE5v9-pHKFWUMi7ndGeoQnFiJTXxcogPO1Y&type=album"
+								},
+								{
+									"height": 340,
+									"type": "r",
+									"width": 510,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=510x340&quality=96&crop=50,0,1200,800&sign=5da4d7d9136e96a09bb9a2063614a866&c_uniq_tag=6I3i8rfLM_9A0OaCQwFuIn3X23dWdCe8G4BBQsq-cEY&type=album"
+								},
+								{
+									"height": 46,
+									"type": "s",
+									"width": 75,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=75x46&quality=96&sign=44964019b21f2b7435bc4af23c2008c2&c_uniq_tag=I7fEYjk2gWD-QU6uYBYf48qMRLgMbNsiI32utI2ftkA&type=album"
+								},
+								{
+									"height": 800,
+									"type": "w",
+									"width": 1300,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=1300x800&quality=96&sign=c3de6460d8c61ae60bc639cb4c40a802&c_uniq_tag=CjRYi92iJb6pZMrtW9G2BtyjBn3Kg4BllDXewWY8YMg&type=album"
+								},
+								{
+									"height": 372,
+									"type": "x",
+									"width": 604,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=604x372&quality=96&sign=099aa9f0f05dd6b4d8790cbaa94e15bc&c_uniq_tag=6GBGHQN-nFnrZULAVMIai3UkbwOrjXEz2BcgbDymBSg&type=album"
+								},
+								{
+									"height": 497,
+									"type": "y",
+									"width": 807,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=807x497&quality=96&sign=a783289a538397787a7c05ab45749eaa&c_uniq_tag=3-25846cnoVcfdzViysSKndAdqaQZD-rAEkyD9v47qU&type=album"
+								},
+								{
+									"height": 788,
+									"type": "z",
+									"width": 1280,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=1280x788&quality=96&sign=55ca77c263b8bb8885dc6406de60703f&c_uniq_tag=OXVoTR53lgHzqdbWSYxynJBt09yeeTTtyr29BA2Eq40&type=album"
+								}
+							],
+							"text": "",
+							"has_tags": false
+						},
+						"buttons": [
+							{
+								"action": {
+									"label": "Текущая деревня",
+									"type": "text",
+									"payload": "{\"name\":\"sendMainScreenVillage\",\"v_id\":\"346\"}"
+								},
+								"color": "secondary"
+							},
+							{
+								"action": {
+									"label": "??Передать ресурсы",
+									"type": "text",
+									"payload": "{\"name\":\"Передать_ресурсы_инфо\",\"v_id\":\"346\"}"
+								},
+								"color": "primary"
+							},
+							{
+								"action": {
+									"label": "??Подкрепление",
+									"type": "text",
+									"payload": "{\"name\":\"Как_отправить_подкрепление\",\"village_id\":\"346\"}"
+								},
+								"color": "primary"
+							}
+						]
+					},
+					{
+						"title": "??номыло [70оч.] (id533)",
+						"action": {
+							"type": "open_photo"
+						},
+						"description": "??Инфо: [3.61км] (-14;8) (id533)\n?0  ??0  ??0\n??66%  ??18%  ??89%  ??8%",
+						"photo": {
+							"album_id": -64,
+							"date": 1671842826,
+							"id": 457255990,
+							"owner_id": 105083531,
+							"sizes": [
+								{
+									"height": 80,
+									"type": "m",
+									"width": 130,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=130x80&quality=96&sign=afffc1f2a6c9f40ae69dc6095344f379&c_uniq_tag=-y7eozcMopvXFohJ0nKC5uhAv8ATHcQ8yZEASczQFTA&type=album"
+								},
+								{
+									"height": 87,
+									"type": "o",
+									"width": 130,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=130x87&quality=96&crop=52,0,1195,800&sign=317fb9aa4639268e5eb91673a5b377fc&c_uniq_tag=K0qSOqYmH9wy_clC7LoFOV7w5B7iTNhU6_uZ8czFQZA&type=album"
+								},
+								{
+									"height": 133,
+									"type": "p",
+									"width": 200,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=200x133&quality=96&crop=48,0,1203,800&sign=7fb21bf3d578b120e8bffced53263179&c_uniq_tag=qngBsdkIf2zhtl8JbVd__xOQoieTzhaVtt_ZN00vTb0&type=album"
+								},
+								{
+									"height": 213,
+									"type": "q",
+									"width": 320,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=320x213&quality=96&crop=49,0,1202,800&sign=2e73a251f52edeb4a8d925f99c0d9d23&c_uniq_tag=RFAFUf3VhE5v9-pHKFWUMi7ndGeoQnFiJTXxcogPO1Y&type=album"
+								},
+								{
+									"height": 340,
+									"type": "r",
+									"width": 510,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=510x340&quality=96&crop=50,0,1200,800&sign=5da4d7d9136e96a09bb9a2063614a866&c_uniq_tag=6I3i8rfLM_9A0OaCQwFuIn3X23dWdCe8G4BBQsq-cEY&type=album"
+								},
+								{
+									"height": 46,
+									"type": "s",
+									"width": 75,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=75x46&quality=96&sign=44964019b21f2b7435bc4af23c2008c2&c_uniq_tag=I7fEYjk2gWD-QU6uYBYf48qMRLgMbNsiI32utI2ftkA&type=album"
+								},
+								{
+									"height": 800,
+									"type": "w",
+									"width": 1300,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=1300x800&quality=96&sign=c3de6460d8c61ae60bc639cb4c40a802&c_uniq_tag=CjRYi92iJb6pZMrtW9G2BtyjBn3Kg4BllDXewWY8YMg&type=album"
+								},
+								{
+									"height": 372,
+									"type": "x",
+									"width": 604,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=604x372&quality=96&sign=099aa9f0f05dd6b4d8790cbaa94e15bc&c_uniq_tag=6GBGHQN-nFnrZULAVMIai3UkbwOrjXEz2BcgbDymBSg&type=album"
+								},
+								{
+									"height": 497,
+									"type": "y",
+									"width": 807,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=807x497&quality=96&sign=a783289a538397787a7c05ab45749eaa&c_uniq_tag=3-25846cnoVcfdzViysSKndAdqaQZD-rAEkyD9v47qU&type=album"
+								},
+								{
+									"height": 788,
+									"type": "z",
+									"width": 1280,
+									"url": "https://sun1-30.userapi.com/impg/lGlUw1CXo9i2gac4TUHykSaLcWkyIqJgjJ69IA/7jmNuYarlX8.jpg?size=1280x788&quality=96&sign=55ca77c263b8bb8885dc6406de60703f&c_uniq_tag=OXVoTR53lgHzqdbWSYxynJBt09yeeTTtyr29BA2Eq40&type=album"
+								}
+							],
+							"text": "",
+							"has_tags": false
+						},
+						"buttons": [
+							{
+								"action": {
+									"label": "?Перейти",
+									"type": "text",
+									"payload": "{\"name\":\"Переключить_деревню\",\"v_id\":\"533\"}"
+								},
+								"color": "primary"
+							},
+							{
+								"action": {
+									"label": "??Передать ресурсы",
+									"type": "text",
+									"payload": "{\"name\":\"Передать_ресурсы_инфо\",\"v_id\":\"533\"}"
+								},
+								"color": "primary"
+							},
+							{
+								"action": {
+									"label": "??Подкрепление",
+									"type": "text",
+									"payload": "{\"name\":\"Как_отправить_подкрепление\",\"village_id\":\"533\"}"
+								},
+								"color": "primary"
+							}
+						]
+					}
+				]
+			},
+			"conversation_message_id": 614,
+			"fwd_messages": [],
+			"important": false,
+			"is_hidden": false,
+			"peer_id": 123456789,
+			"random_id": 0,
+			"text": "f"
+		},
+		"client_info": {
+			"button_actions": [
+				"text",
+				"vkpay",
+				"open_app",
+				"location"
+			],
+			"keyboard": true,
+			"lang_id": 0
+		}
+	},
+	"group_id": 123456789
+}

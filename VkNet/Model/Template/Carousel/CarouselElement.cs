@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
+using VkNet.Model.Attachments;
 using VkNet.Model.Keyboard;
 
 namespace VkNet.Model.Template.Carousel;
@@ -35,6 +37,12 @@ public class CarouselElement
 	[JsonProperty("photo_id")]
 	[CanBeNull]
 	public string PhotoId { get; set; }
+
+	/// <summary>
+	/// Фото
+	/// </summary>
+	[JsonProperty("photo")]
+	public Photo Photo { get; set; }
 
 	/// <summary>
 	/// Массив с кнопками.
