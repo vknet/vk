@@ -7,6 +7,7 @@ using VkNet.Enums;
 using VkNet.Model.Attachments;
 using VkNet.Model.GroupUpdate;
 using VkNet.Model.Keyboard;
+using VkNet.Model.Template;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
@@ -226,6 +227,12 @@ public class Message : MediaAttachment, IGroupUpdate
 	/// </summary>
 	[JsonProperty("photo_200")]
 	public string Photo200 { get; set; }
+
+	/// <summary>
+	/// Шаблон сообщения
+	/// </summary>
+	[JsonProperty("template")]
+	public MessageTemplate Template { get; set; }
 
 	#endregion
 
