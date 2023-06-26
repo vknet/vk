@@ -36,6 +36,12 @@ public class CarouselElement
 	public string PhotoId { get; set; }
 
 	/// <summary>
+	/// Фото
+	/// </summary>
+	[JsonProperty("photo")]
+	public Photo Photo { get; set; }
+
+	/// <summary>
 	/// Массив с кнопками.
 	/// </summary>
 	[JsonProperty("buttons")]
