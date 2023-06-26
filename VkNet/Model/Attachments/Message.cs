@@ -228,7 +228,7 @@ public class Message : MediaAttachment, IGroupUpdate
 	/// <c> Uri </c> копии фотографии беседы шириной 200px.
 	/// </summary>
 	[JsonProperty("template")]
-	public Template.MessageTemplate Template { get; set; }
+	public MessageTemplate Template { get; set; }
 
 	#endregion
 

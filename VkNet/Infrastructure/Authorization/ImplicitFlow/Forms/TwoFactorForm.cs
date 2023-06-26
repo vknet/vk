@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Abstractions.Utils;
@@ -20,7 +21,7 @@ public sealed class TwoFactorForm : AbstractAuthorizationForm
 	public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.TwoFactor;
 
 	/// <inheritdoc />
-	protected override async Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams)
+	protected override async Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token = default)
 	{
 		if (authParams.TwoFactorAuthorization == null && authParams.TwoFactorAuthorizationAsync == null)
 		{

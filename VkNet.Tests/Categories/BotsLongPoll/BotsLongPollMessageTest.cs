@@ -1,6 +1,7 @@
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using Xunit;
 
