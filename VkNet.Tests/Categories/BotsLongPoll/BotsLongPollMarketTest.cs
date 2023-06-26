@@ -1,6 +1,5 @@
-using System.Linq;
 using FluentAssertions;
-using VkNet.Model.GroupUpdate;
+using VkNet.Model;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -35,9 +34,9 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 							.Be(groupId);
 						break;
 
-					case MarketComment:
+					case MarketCommentGroupUpdate:
 					{
-						var a = x.Instance is MarketComment b
+						var a = x.Instance is MarketCommentGroupUpdate b
 							? b
 							: null;
 						a.FromId.Should()
@@ -82,9 +81,9 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 							.Be(groupId);
 						break;
 
-					case MarketComment:
+					case MarketCommentGroupUpdate:
 					{
-						var a = x.Instance is MarketComment b
+						var a = x.Instance is MarketCommentGroupUpdate b
 							? b
 							: null;
 						a.FromId.Should()
@@ -129,9 +128,9 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 							.Be(groupId);
 						break;
 
-					case MarketComment:
+					case MarketCommentGroupUpdate:
 					{
-						var a = x.Instance is MarketComment b
+						var a = x.Instance is MarketCommentGroupUpdate b
 							? b
 							: null;
 						a.FromId.Should()

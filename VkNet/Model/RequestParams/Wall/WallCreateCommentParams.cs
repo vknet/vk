@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using VkNet.Model.Attachments;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода wall.addComment

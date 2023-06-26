@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
-using VkNet.Model.LeadForms;
 
 namespace VkNet.Abstractions.Category.Async;
 

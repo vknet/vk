@@ -4,8 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;

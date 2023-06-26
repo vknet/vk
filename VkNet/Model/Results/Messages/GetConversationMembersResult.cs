@@ -8,7 +8,7 @@ namespace VkNet.Model;
 /// Результат метода messages.GetConversationMembersResult
 /// </summary>
 [Serializable]
-public partial class GetConversationMembersResult
+public class GetConversationMembersResult
 {
 	/// <summary>
 	/// Число участников беседы.

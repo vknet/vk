@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VkNet.Model.GroupUpdate;
+namespace VkNet.Model;
 
 /// <summary>
 /// ID группы

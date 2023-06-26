@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums.StringEnums;
 
 /// <summary>
 /// Уровень полномочий пользователя в сообществе (Используется для задания

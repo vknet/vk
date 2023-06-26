@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
 
 namespace VkNet.Categories;

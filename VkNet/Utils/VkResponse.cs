@@ -122,7 +122,7 @@ public sealed class VkResponse
 	/// Результат преобразования.
 	/// </returns>
 	public static implicit operator bool?(VkResponse response) => response == null
-		? (bool?) null
+		? null
 		: response == 1;
 
 	/// <summary>

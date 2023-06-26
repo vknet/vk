@@ -1,8 +1,8 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.GroupUpdate;
+namespace VkNet.Model;
 
 /// <summary>
 /// Событие о новой отметке "Мне нравится"

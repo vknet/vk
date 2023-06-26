@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using VkNet.Enums.SafetyEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода photos.createAlbum

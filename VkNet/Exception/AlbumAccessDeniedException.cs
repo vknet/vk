@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -23,7 +24,7 @@ public sealed class AlbumAccessDeniedException : VkApiMethodInvokeException
 	}
 
 	/// <inheritdoc />
-	private AlbumAccessDeniedException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	private AlbumAccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
 
 	}

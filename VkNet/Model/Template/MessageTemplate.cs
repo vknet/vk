@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Template.Carousel;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Template;
+namespace VkNet.Model;
 
 /// <summary>
 /// Объект шаблона, отправляемый ботом.

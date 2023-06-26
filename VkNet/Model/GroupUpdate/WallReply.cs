@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.GroupUpdate;
+namespace VkNet.Model;
 
 /// <summary>
 /// Добавление/редактирование/восстановление комментария на стене
@@ -9,7 +9,7 @@ namespace VkNet.Model.GroupUpdate;
 /// (<c>Comment</c> с дополнительными полями)
 /// </summary>
 [Serializable]
-public class WallReply : Comment, IGroupUpdate
+public class WallReplyGroupUpdate : Comment, IGroupUpdate
 {
 	/// <summary>
 	/// Идентификатор записи

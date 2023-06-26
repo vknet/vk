@@ -5,7 +5,6 @@ using FluentAssertions;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
-using VkNet.Model.Attachments;
 using Xunit;
 
 namespace VkNet.Tests.Models;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.RequestParams.Notifications;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода Notifications.SendMessage

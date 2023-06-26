@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры для метода SavePhoto

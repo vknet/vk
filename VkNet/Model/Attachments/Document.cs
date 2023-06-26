@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 
-namespace VkNet.Model.Attachments;
+namespace VkNet.Model;
 
 /// <summary>
 /// Информация о документе.

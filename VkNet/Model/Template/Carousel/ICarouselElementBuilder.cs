@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
-using VkNet.Model.Keyboard;
 
-namespace VkNet.Model.Template.Carousel;
+namespace VkNet.Model;
 
 /// <summary>
 /// Конструктор элемента карусели

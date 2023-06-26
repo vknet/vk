@@ -19,14 +19,13 @@ internal sealed partial class WebCall
 	/// <returns> Результат </returns>
 	public static async Task<WebCallResult> MakeCallAsync(string url, IWebProxy webProxy = null)
 	{
-		using (var call = new WebCall(url, new(), webProxy))
-		{
-			var response = await call._request.GetAsync(url)
-				.ConfigureAwait(false);
+		using var call = new WebCall(url, new(), webProxy);
 
-			return await call.MakeRequestAsync(response, new(url), webProxy)
-				.ConfigureAwait(false);
-		}
+		var response = await call._request.GetAsync(url)
+			.ConfigureAwait(false);
+
+		return await call.MakeRequestAsync(response, new(url), webProxy)
+			.ConfigureAwait(false);
 	}
 
 	/// <summary>

@@ -3,9 +3,8 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.Attachments;
 
 namespace VkNet.Utils.JsonConverter;
 

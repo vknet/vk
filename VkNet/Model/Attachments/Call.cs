@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace VkNet.Model.Attachments;
+namespace VkNet.Model;
 
 /// <summary>
 /// Вложение "Звонок".

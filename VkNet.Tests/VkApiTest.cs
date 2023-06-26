@@ -43,7 +43,7 @@ public class VkApiTest : BaseTest
 
 		var waiter = new AutoResetEvent(initialState: false);
 
-		Api.OnTokenUpdatedAutomatically += (_) =>
+		Api.OnTokenUpdatedAutomatically += _ =>
 		{
 			waiter.Set();
 		};

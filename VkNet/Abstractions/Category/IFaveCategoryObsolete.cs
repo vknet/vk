@@ -1,6 +1,5 @@
 using System;
 using VkNet.Model;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;

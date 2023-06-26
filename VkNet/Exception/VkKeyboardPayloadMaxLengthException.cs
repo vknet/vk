@@ -16,7 +16,7 @@ public sealed class VkKeyboardPayloadMaxLengthException : VkApiException
 	}
 
 	/// <inheritdoc/>
-	private VkKeyboardPayloadMaxLengthException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base()
+	private VkKeyboardPayloadMaxLengthException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

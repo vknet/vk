@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Enums.Filters;
-using VkNet.Model.Attachments;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -38,11 +37,11 @@ public class FaveGetObject
 	[JsonProperty("tags")]
 	public IEnumerable<FaveTag> Tags { get; set; }
 
-	/// <inheritdoc cref="Attachments.Post" />
+	/// <inheritdoc cref="Model.Post" />
 	[JsonProperty("post")]
 	public Post Post { get; set; }
 
-	/// <inheritdoc cref="Attachments.Video" />
+	/// <inheritdoc cref="Model.Video" />
 	[JsonProperty("video")]
 	public Video Video { get; set; }
 
@@ -50,15 +49,15 @@ public class FaveGetObject
 	[JsonProperty("product")]
 	public Market Product { get; set; }
 
-	/// <inheritdoc cref="Attachments.Article" />
+	/// <inheritdoc cref="Model.Article" />
 	[JsonProperty("Article")]
 	public Article Article { get; set; }
 
-	/// <inheritdoc cref="Attachments.Podcast" />
+	/// <inheritdoc cref="Model.Podcast" />
 	[JsonProperty("podcast")]
 	public Podcast Podcast { get; set; }
 
-	/// <inheritdoc cref="Attachments.Link" />
+	/// <inheritdoc cref="Model.Link" />
 	[JsonProperty("link")]
 	public Link Link { get; set; }
 }

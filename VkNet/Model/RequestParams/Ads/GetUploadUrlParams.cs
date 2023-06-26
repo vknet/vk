@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using VkNet.Enums;
 
-namespace VkNet.Model.RequestParams.Ads;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса ads.addOfficeUsers

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Enums.Filters;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams.Fave;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса метода fave.setTags

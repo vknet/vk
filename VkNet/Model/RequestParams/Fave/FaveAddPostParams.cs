@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.RequestParams.Fave;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса метода fave.addPost

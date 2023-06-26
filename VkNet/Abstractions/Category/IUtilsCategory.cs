@@ -1,7 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;

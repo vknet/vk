@@ -1,9 +1,9 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams.Messages;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода messages.getIntentUsers

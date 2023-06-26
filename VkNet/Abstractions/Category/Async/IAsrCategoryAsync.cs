@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.StringEnums;
-using VkNet.Model.Results.Asr;
+using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
@@ -37,7 +37,7 @@ public interface IAsrCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте https://dev.vk.com/method/asr.getUploadUrl
 	/// </remarks>
-	public Task<UploadUrlResult> GetUploadUrlAsync(CancellationToken token = default);
+	public Task<AsrUploadUrlResult> GetUploadUrlAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Метод выполняет распознавание речи из загруженного файла аудиозаписи.

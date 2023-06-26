@@ -8,7 +8,7 @@ namespace VkNet.Model;
 /// Результат запроса о получении беседы
 /// </summary>
 [Serializable]
-public partial class ConversationResult
+public class ConversationResult
 {
 	/// <summary>
 	/// Общее число результатов

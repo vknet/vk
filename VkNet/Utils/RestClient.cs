@@ -31,7 +31,7 @@ public sealed class RestClient : IRestClient
 	/// </summary>
 	/// <param name="serializationInfo"></param>
 	/// <param name="streamingContext"></param>
-	private RestClient(SerializationInfo serializationInfo, StreamingContext streamingContext) : base()
+	private RestClient(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

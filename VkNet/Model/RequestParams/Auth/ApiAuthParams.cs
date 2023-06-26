@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 

@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
-using VkNet.Model.Template.Carousel;
 
-namespace VkNet.Model.Template;
+namespace VkNet.Model;
 
 /// <inheritdoc />
 [Serializable]

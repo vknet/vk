@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -21,7 +22,7 @@ public sealed class ParameterMissingOrInvalidException : VkApiMethodInvokeExcept
 	}
 
 	/// <inheritdoc />
-	private ParameterMissingOrInvalidException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	private ParameterMissingOrInvalidException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
 
 	}

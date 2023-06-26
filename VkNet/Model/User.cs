@@ -3,8 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
+using VkNet.Enums.StringEnums;
 using VkNet.Utils.JsonConverter;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global

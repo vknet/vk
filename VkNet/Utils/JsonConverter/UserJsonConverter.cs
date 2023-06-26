@@ -3,9 +3,8 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.Attachments;
 
 namespace VkNet.Utils.JsonConverter;
 
@@ -197,8 +196,8 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 				var birthdayParts = user.BirthDate.Split('.');
 
 				user.BirthdayVisibility = birthdayParts.Length > 2
-					? Enums.BirthdayVisibility.Full
-					: Enums.BirthdayVisibility.OnlyDayAndMonth;
+					? BirthdayVisibility.Full
+					: BirthdayVisibility.OnlyDayAndMonth;
 			}
 		} else
 		{

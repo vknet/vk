@@ -1,8 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Template.Carousel;
+namespace VkNet.Model;
 
 /// <summary>
 /// Объект, описывающий действие, которое необходимо выполнить при нажатии на элемент карусели.

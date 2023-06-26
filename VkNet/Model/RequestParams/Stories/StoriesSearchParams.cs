@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.RequestParams.Stories;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метод Stories.Search

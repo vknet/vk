@@ -21,7 +21,7 @@ public sealed class LongPollOutdateException : LongPollException
 		Ts = ts;
 
 	/// <inheritdoc/>
-	private LongPollOutdateException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base()
+	private LongPollOutdateException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

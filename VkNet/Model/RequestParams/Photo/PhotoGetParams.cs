@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода photos.get

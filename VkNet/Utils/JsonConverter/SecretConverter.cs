@@ -1,6 +1,6 @@
-using Newtonsoft.Json;
 using System;
-using VkNet.Model.GroupUpdate;
+using Newtonsoft.Json;
+using VkNet.Model;
 
 namespace VkNet.Utils.JsonConverter;
 

@@ -2,7 +2,7 @@
 using FluentAssertions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

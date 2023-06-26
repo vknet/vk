@@ -1,8 +1,8 @@
 ﻿using System;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода photos.getComments

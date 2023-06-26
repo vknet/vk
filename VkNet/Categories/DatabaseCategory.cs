@@ -4,7 +4,6 @@ using JetBrains.Annotations;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Model;
-using VkNet.Model.RequestParams.Database;
 using VkNet.Utils;
 
 namespace VkNet.Categories;

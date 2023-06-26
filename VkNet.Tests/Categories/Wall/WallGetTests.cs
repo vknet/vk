@@ -1,6 +1,6 @@
 using System.Linq;
 using FluentAssertions;
-using VkNet.Model.Attachments;
+using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

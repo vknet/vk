@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Model.Attachments;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;

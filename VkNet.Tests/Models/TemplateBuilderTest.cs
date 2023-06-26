@@ -1,9 +1,8 @@
 using System.Linq;
 using FluentAssertions;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
-using VkNet.Model.Template;
-using VkNet.Model.Template.Carousel;
+using VkNet.Model;
 using Xunit;
 
 namespace VkNet.Tests.Models;

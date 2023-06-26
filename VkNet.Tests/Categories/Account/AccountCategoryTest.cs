@@ -5,8 +5,9 @@ using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
-using VkNet.Model.RequestParams;
+using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -480,7 +481,7 @@ public class AccountCategoryTest : CategoryBaseTest
 		ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 
 		var result = Api.Account.SaveProfileInfo(
-			new AccountSaveProfileInfoParams()
+			new AccountSaveProfileInfoParams
 			{
 				FirstName = "fn",
 				LastName = "ln",

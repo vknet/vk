@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
 
-namespace VkNet.Model.GroupUpdate;
+namespace VkNet.Model;
 
 /// <summary>
 /// Добавление участника или заявки на вступление в сообщество

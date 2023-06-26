@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using VkNet.Abstractions.Category;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams.Stories;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;

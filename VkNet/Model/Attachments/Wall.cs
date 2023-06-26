@@ -3,10 +3,10 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model.Attachments;
+namespace VkNet.Model;
 
 /// <summary>
 /// Запись со стены пользователя или сообщества. Используется для отправки

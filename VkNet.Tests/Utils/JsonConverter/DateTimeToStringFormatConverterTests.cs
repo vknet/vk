@@ -3,7 +3,7 @@ using System.Globalization;
 using FluentAssertions;
 using FluentAssertions.Extensions;
 using Newtonsoft.Json;
-using VkNet.Model.RequestParams;
+using VkNet.Model;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 using Xunit;

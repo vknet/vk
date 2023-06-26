@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace VkNet.Exception;
 
@@ -17,7 +18,7 @@ public sealed class VkAuthorizationException : System.Exception
 	}
 
 	/// <inheritdoc />
-	private VkAuthorizationException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base()
+	private VkAuthorizationException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

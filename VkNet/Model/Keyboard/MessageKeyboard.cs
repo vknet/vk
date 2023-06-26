@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.Keyboard;
+namespace VkNet.Model;
 
 /// <summary>
 /// Объект клавиатуры, отправляемой ботом.

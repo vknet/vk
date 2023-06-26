@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams.Fave;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;

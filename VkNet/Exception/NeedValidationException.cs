@@ -34,7 +34,7 @@ public sealed class NeedValidationException : VkApiMethodInvokeException
 	}
 
 	/// <inheritdoc />
-	private NeedValidationException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	private NeedValidationException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
 
 	}

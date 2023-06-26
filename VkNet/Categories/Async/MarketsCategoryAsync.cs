@@ -3,8 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams.Market;
 using VkNet.Utils;
 
 namespace VkNet.Categories;

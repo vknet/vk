@@ -1,8 +1,8 @@
 ﻿using System;
 using JetBrains.Annotations;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Keyboard;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры для создания кнопки в билдере

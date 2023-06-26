@@ -18,7 +18,7 @@ public class VkApiMethodInvokeException : VkApiException
 	public VkApiMethodInvokeException(VkError error) : base(error.ErrorMessage) => _error = error;
 
 	/// <inheritdoc />
-	protected VkApiMethodInvokeException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base()
+	protected VkApiMethodInvokeException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

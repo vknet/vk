@@ -4,9 +4,9 @@ using System.Linq;
 using FluentAssertions;
 using VkNet.Categories;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
-using VkNet.Model.Attachments;
+using VkNet.Model;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -282,7 +282,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetById_IncorrectParameters_ThrowException()
 	{
-		FluentActions.Invoking(() => new WallCategory(Api).GetById(null, null))
+		FluentActions.Invoking(() => new WallCategory(Api).GetById(null))
 			.Should()
 			.ThrowExactly<ArgumentNullException>();
 

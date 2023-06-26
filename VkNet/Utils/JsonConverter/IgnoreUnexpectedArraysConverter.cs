@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json.Serialization;
-using System;
+﻿using System;
 using JetBrains.Annotations;
+using Newtonsoft.Json.Serialization;
 
 namespace VkNet.Utils.JsonConverter;
 

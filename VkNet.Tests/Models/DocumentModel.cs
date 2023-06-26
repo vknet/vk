@@ -1,6 +1,6 @@
 using FluentAssertions;
-using VkNet.Model.Attachments;
 using Xunit;
+using VkNet.Model;
 
 namespace VkNet.Tests.Models;
 

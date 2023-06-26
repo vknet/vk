@@ -1,6 +1,5 @@
-using System.Linq;
 using FluentAssertions;
-using VkNet.Model.GroupUpdate;
+using VkNet.Model;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -34,9 +33,9 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 							.Be(groupId);
 						break;
 
-					case Model.Attachments.Video:
+					case Model.Video:
 					{
-						var a = x.Instance is Model.Attachments.Video b
+						var a = x.Instance is Model.Video b
 							? b
 							: null;
 

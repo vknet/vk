@@ -4,8 +4,7 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
+using VkNet.Enums.StringEnums;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;

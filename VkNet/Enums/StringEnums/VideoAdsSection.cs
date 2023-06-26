@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
-namespace VkNet.Enums.SafetyEnums;
+namespace VkNet.Enums.StringEnums;
 
 /// <summary>
 /// TODO: Undocumented enum, which is a part of sections field in VideoAds

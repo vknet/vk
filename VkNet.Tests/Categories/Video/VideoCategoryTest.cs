@@ -3,7 +3,7 @@ using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;

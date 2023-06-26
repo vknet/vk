@@ -2,7 +2,6 @@
 using JetBrains.Annotations;
 using VkNet.Abstractions;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories;

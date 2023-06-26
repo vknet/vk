@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -18,7 +19,7 @@ public sealed class TooManyAdsPostsException : VkApiMethodInvokeException
 	}
 
 	/// <inheritdoc />
-	private TooManyAdsPostsException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	private TooManyAdsPostsException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
 
 	}

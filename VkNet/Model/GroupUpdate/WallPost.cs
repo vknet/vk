@@ -1,8 +1,7 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Model.Attachments;
 
-namespace VkNet.Model.GroupUpdate;
+namespace VkNet.Model;
 
 /// <summary>
 /// Новая запись на стене (<c>WallPost</c>, <c>WallRepost</c>)

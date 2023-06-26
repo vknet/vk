@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using VkNet.Model.Attachments;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода photos.createComment

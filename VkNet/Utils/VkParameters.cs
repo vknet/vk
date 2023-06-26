@@ -24,7 +24,7 @@ public class VkParameters : Dictionary<string, string>
 	/// </summary>
 	/// <param name="serializationInfo"></param>
 	/// <param name="streamingContext"></param>
-	protected VkParameters(SerializationInfo serializationInfo, StreamingContext streamingContext) : base()
+	protected VkParameters(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

@@ -1,7 +1,5 @@
 using VkNet.Abstractions;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams.Notes;
 using VkNet.Utils;
 
 namespace VkNet.Categories;

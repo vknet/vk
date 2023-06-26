@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams.Stories;
+namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода stories.getPhotoUploadServer

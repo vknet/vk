@@ -1,10 +1,7 @@
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Threading;
+using System.Threading.Tasks;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
-using VkNet.Model.RequestParams.Polls;
 using VkNet.Utils;
 
 namespace VkNet.Categories;

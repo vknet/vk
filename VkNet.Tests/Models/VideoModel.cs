@@ -1,7 +1,7 @@
 using System;
 using FluentAssertions;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
+using VkNet.Enums.StringEnums;
+using VkNet.Model;
 using VkNet.Utils;
 using Xunit;
 

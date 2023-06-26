@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.RequestParams.Ads;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса ads.deleteClients

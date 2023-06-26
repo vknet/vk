@@ -16,7 +16,7 @@ public class TooMuchElementsInTemplateException : VkApiException
 	}
 
 	/// <inheritdoc />
-	protected TooMuchElementsInTemplateException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base()
+	protected TooMuchElementsInTemplateException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
 	}

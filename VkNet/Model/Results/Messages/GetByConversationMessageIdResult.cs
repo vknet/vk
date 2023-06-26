@@ -8,7 +8,7 @@ namespace VkNet.Model;
 /// Результат метода messages.getByConversationMessageId
 /// </summary>
 [Serializable]
-public partial class GetByConversationMessageIdResult
+public class GetByConversationMessageIdResult
 {
 	/// <summary>
 	/// Число результатов

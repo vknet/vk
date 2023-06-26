@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;

@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.StringEnums;
-using VkNet.Model.Results.Asr;
+using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -16,7 +16,7 @@ public partial class AsrCategory
 			CheckStatus(taskId), token);
 
 	/// <inheritdoc />
-	public Task<UploadUrlResult> GetUploadUrlAsync(CancellationToken token = default) =>
+	public Task<AsrUploadUrlResult> GetUploadUrlAsync(CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(GetUploadUrl, token);
 
 	/// <inheritdoc />

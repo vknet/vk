@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.GroupUpdate;
+namespace VkNet.Model;
 
 /// <summary>
 /// Удаление комментария к товару (<c>MarketCommentDelete</c>)

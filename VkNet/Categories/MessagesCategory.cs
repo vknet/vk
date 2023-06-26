@@ -7,14 +7,10 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
-using VkNet.Model.RequestParams.Messages;
-using VkNet.Model.Results.Messages;
-using VkNet.Model.Results.Users;
 using VkNet.Utils;
 
 // ReSharper disable MemberCanBePrivate.Global
@@ -742,7 +738,7 @@ public partial class MessagesCategory : IMessagesCategory
 
 	/// <inheritdoc />
 	public ulong DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null) =>
-		DeleteConversation(userId, peerId, null);
+		DeleteConversation(userId, peerId);
 
 	private IDictionary<ulong, bool> ImplementationDelete([CanBeNull] IEnumerable<ulong> messageIds = null,
 														[CanBeNull] IEnumerable<ulong> conversationMessageIds = null,

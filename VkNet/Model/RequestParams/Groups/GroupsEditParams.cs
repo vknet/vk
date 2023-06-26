@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using VkNet.Enums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода groups.edit

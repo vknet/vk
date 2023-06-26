@@ -57,7 +57,7 @@ public static class Utilities
 	/// <param name="response"> Ответ от сервера vk.com </param>
 	/// <returns> Число типа long или null </returns>
 	public static long? GetNullableLongId(VkResponse response) => string.IsNullOrWhiteSpace(response?.ToString())
-		? (long?) null
+		? null
 		: System.Convert.ToInt64(response?.ToString());
 
 	/// <summary>

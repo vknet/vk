@@ -4,10 +4,6 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Model.Attachments;
-using VkNet.Model.GroupUpdate;
-using VkNet.Model.Keyboard;
-using VkNet.Model.Template;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 

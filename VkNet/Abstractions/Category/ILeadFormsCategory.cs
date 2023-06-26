@@ -2,7 +2,6 @@ using System;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions.Category.Async;
 using VkNet.Model;
-using VkNet.Model.LeadForms;
 
 namespace VkNet.Abstractions.Category;
 

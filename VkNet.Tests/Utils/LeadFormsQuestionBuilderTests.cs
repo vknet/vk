@@ -1,7 +1,7 @@
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions.Utils;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Utils;
 using Xunit;

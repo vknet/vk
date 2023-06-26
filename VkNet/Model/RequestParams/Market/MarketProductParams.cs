@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
 
-namespace VkNet.Model.RequestParams.Market;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметр для добавления / редактирования товара

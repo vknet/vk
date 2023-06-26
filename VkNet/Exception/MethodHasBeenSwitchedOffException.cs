@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -20,7 +21,7 @@ public sealed class MethodHasBeenSwitchedOffException : VkApiMethodInvokeExcepti
 	}
 
 	/// <inheritdoc />
-	private MethodHasBeenSwitchedOffException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext) : base(new())
+	private MethodHasBeenSwitchedOffException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
 
 	}

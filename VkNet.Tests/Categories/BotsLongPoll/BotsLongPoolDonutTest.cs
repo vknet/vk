@@ -1,6 +1,5 @@
-using System.Linq;
 using FluentAssertions;
-using VkNet.Model.GroupUpdate;
+using VkNet.Model;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;

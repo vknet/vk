@@ -5,11 +5,9 @@ using System.Linq;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
-using VkNet.Model.RequestParams.Groups;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -193,7 +191,7 @@ public partial class GroupsCategory : IGroupsCategory
 		VkErrors.ThrowIfNumberIsNegative(() => @params.UserId);
 
 		var parameters =
-			new VkParameters()
+			new VkParameters
 			{
 				{
 					"user_id", @params.UserId
@@ -537,7 +535,7 @@ public partial class GroupsCategory : IGroupsCategory
 	/// <inheritdoc />
 	public bool Edit(GroupsEditParams @params)
 	{
-		var market = new Dictionary<string, object>()
+		var market = new Dictionary<string, object>
 		{
 			{
 				"enabled", @params.MarketEnabled
