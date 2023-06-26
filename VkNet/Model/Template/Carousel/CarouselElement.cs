@@ -53,4 +53,9 @@ public class CarouselElement
 	[JsonProperty("action")]
 	[CanBeNull]
 	public CarouselElementAction Action { get; set; }
+	/// <summary>
+	/// Фото
+	/// </summary>
+	[JsonProperty("photo")]
+	public Photo Photo { get; set; }
 }

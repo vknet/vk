@@ -10,9 +10,9 @@ namespace VkNet.Tests.Categories.BotsLongPoll;
 public class BotsLongPollMessageTest : BotsLongPollBaseTest
 {
 	[Fact]
-	public void GetBotsLongPollHistory_MessageNewTest()
+	public void GetBotsLongPollHistory_MessageNewTemplateTest()
 	{
-		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageNewTest));
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageNewTemplateTest));
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -30,6 +30,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(new GroupId(123456789));
+
 						break;
 
 					case MessageNew:
@@ -53,6 +54,67 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 						a.Message.FromId.Should()
 							.Be(123456789);
 
+						a.Message.Text.Should()
+							.Be("f");
+
+						a.Message.Template.Type.Should()
+							.Be(TemplateType.Carousel);
+
+						a.Message.Template.Elements.FirstOrDefault()
+							.Photo
+							.HasTags.Should()
+							.BeFalse();
+
+						break;
+					}
+				}
+			});
+	}
+
+	[Fact]
+	public void GetBotsLongPollHistory_MessageNewTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageNewTest));
+
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
+		{
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
+
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(123456789));
+
+						break;
+
+					case MessageNew:
+					{
+						var a = x.Instance is MessageNew b
+							? b
+							: null;
+
+						a.ClientInfo.ButtonActions.Should()
+							.NotBeEmpty();
+
+						a.ClientInfo.Keyboard.Should()
+							.BeTrue();
+
+						a.ClientInfo.InlineKeyboard.Should()
+							.BeFalse();
+
+						a.ClientInfo.LangId.Should()
+							.Be(Language.Ru);
+
+						a.Message.FromId.Should()
+							.Be(123456789);
 
 						a.Message.Text.Should()
 							.Be("f");
@@ -149,6 +211,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case MessageNew:
@@ -194,6 +257,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case MessageNew:
@@ -239,6 +303,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case MessageAllow:
@@ -283,6 +348,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case MessageDeny:
@@ -321,6 +387,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(new GroupId(1234));
+
 						break;
 
 					case MessageEvent:
