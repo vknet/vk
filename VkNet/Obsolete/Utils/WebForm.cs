@@ -158,9 +158,7 @@ internal sealed class WebForm
 			throw new InvalidOperationException("Field name not set!");
 		}
 
-		var encodedValue = value;
-
-		_inputs[_lastName] = encodedValue;
+		_inputs[_lastName] = value;
 
 		return this;
 	}
