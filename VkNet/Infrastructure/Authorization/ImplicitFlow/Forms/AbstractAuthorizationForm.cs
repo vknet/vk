@@ -43,8 +43,7 @@ public abstract class AbstractAuthorizationForm : IAuthorizationForm
 
 		return new()
 		{
-			RequestUrl = response.RequestUri,
-			ResponseUrl = response.ResponseUri
+			RequestUrl = response.RequestUri
 		};
 	}
 

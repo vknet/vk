@@ -124,14 +124,14 @@ public class ImplicitFlow : IImplicitFlow
 
 	private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult)
 	{
-		var responseUrl = formResult.ResponseUrl;
+		var requestUrl = formResult.RequestUrl;
 
-		if (responseUrl.OriginalString.StartsWith("https://oauth.vk.com/auth_redirect"))
+		if (requestUrl.OriginalString.StartsWith("https://oauth.vk.com/auth_redirect"))
 		{
-			responseUrl = GetRedirectUrl(responseUrl);
+			requestUrl = GetRedirectUrl(requestUrl);
 		}
 
-		var pageType = _vkAuthorization.GetPageType(responseUrl);
+		var pageType = _vkAuthorization.GetPageType(requestUrl);
 
 		switch (pageType)
 		{
@@ -178,12 +178,12 @@ public class ImplicitFlow : IImplicitFlow
 			case ImplicitFlowPageType.Result:
 
 			{
-				return _vkAuthorization.GetAuthorizationResult(responseUrl);
+				return _vkAuthorization.GetAuthorizationResult(requestUrl);
 			}
 		}
 
 		var resultForm = await _authorizationFormsFactory.Create(pageType)
-			.ExecuteAsync(responseUrl, _authorizationParameters)
+			.ExecuteAsync(requestUrl, _authorizationParameters)
 			.ConfigureAwait(false);
 
 		return await NextStepAsync(resultForm)

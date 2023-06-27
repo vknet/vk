@@ -51,29 +51,18 @@ public class HttpResponse<TResponse>
 	public Uri RequestUri { get; private set; }
 
 	/// <summary>
-	/// Gets the request URI.
-	/// </summary>
-	/// <value>
-	/// The request URI.
-	/// </value>
-	public Uri ResponseUri { get; private set; }
-
-	/// <summary>
 	/// Creates the success response.
 	/// </summary>
 	/// <param name="httpStatusCode"> The HTTP status code. </param>
 	/// <param name="value"> The value. </param>
 	/// <param name="requestUri"> The request URI. </param>
-	/// <param name="responseUri"> The response URI. </param>
 	/// <returns> The HTTP response. </returns>
-	public static HttpResponse<TResponse> Success(HttpStatusCode httpStatusCode, TResponse value, Uri requestUri = null,
-												Uri responseUri = null) => new()
+	public static HttpResponse<TResponse> Success(HttpStatusCode httpStatusCode, TResponse value, Uri requestUri = null) => new()
 	{
 		Value = value,
 		IsSuccess = true,
 		StatusCode = httpStatusCode,
-		RequestUri = requestUri,
-		ResponseUri = requestUri
+		RequestUri = requestUri
 	};
 
 	/// <summary>
@@ -82,16 +71,14 @@ public class HttpResponse<TResponse>
 	/// <param name="httpStatusCode"> The HTTP status code. </param>
 	/// <param name="message"> The message. </param>
 	/// <param name="requestUri"> The request URI. </param>
-	/// <param name="responseUri"> The response URI. </param>
 	/// <returns>
 	/// The HTTP response.
 	/// </returns>
 	public static HttpResponse<TResponse>
-		Fail(HttpStatusCode httpStatusCode, string message, Uri requestUri = null, Uri responseUri = null) => new()
+		Fail(HttpStatusCode httpStatusCode, string message, Uri requestUri = null) => new()
 	{
 		Message = message,
 		StatusCode = httpStatusCode,
-		RequestUri = requestUri,
-		ResponseUri = responseUri
+		RequestUri = requestUri
 	};
 }

@@ -74,7 +74,6 @@ public class ImplicitFlowTests
 				x.ExecuteAsync(It.IsAny<Uri>(), It.IsAny<IApiAuthParams>(), CancellationToken.None))
 			.ReturnsAsync(new AuthorizationFormResult
 			{
-				ResponseUrl = new("https://m.vk.com/login?act=authcheck&m=442"),
 				RequestUrl = new("https://m.vk.com/login?act=authcheck&m=442")
 			});
 
