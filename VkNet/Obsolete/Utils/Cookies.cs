@@ -43,12 +43,10 @@ public sealed class Cookies
 	/// </summary>
 	private void BugFixCookieDomain()
 	{
-		var table = Container.GetType()
-			.GetRuntimeFields()
-			.FirstOrDefault(x => x.Name is "m_domainTable" or "_domainTable")
-			?.GetValue(Container) as IDictionary;
-
-		if (table == null)
+		if (Container.GetType()
+				.GetRuntimeFields()
+				.FirstOrDefault(x => x.Name is "m_domainTable" or "_domainTable")
+				?.GetValue(Container) is not IDictionary table)
 		{
 			return;
 		}
