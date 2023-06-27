@@ -67,7 +67,7 @@ public class MessagesGetLongPollHistoryParams
 		get => _eventsLimit;
 
 		set =>
-			_eventsLimit = !value.HasValue || value <= EVENTS_LIMIT_MIN
+			_eventsLimit = value is null or <= EVENTS_LIMIT_MIN
 				? value
 				: EVENTS_LIMIT_MIN;
 	}

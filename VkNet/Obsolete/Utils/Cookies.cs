@@ -45,7 +45,7 @@ public sealed class Cookies
 	{
 		var table = Container.GetType()
 			.GetRuntimeFields()
-			.FirstOrDefault(x => x.Name == "m_domainTable" || x.Name == "_domainTable")
+			.FirstOrDefault(x => x.Name is "m_domainTable" or "_domainTable")
 			?.GetValue(Container) as IDictionary;
 
 		if (table == null)
