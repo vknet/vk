@@ -94,10 +94,9 @@ public sealed class RestClient : IRestClient
 		var content = encoding.GetString(bytes, 0, bytes.Length);
 		_logger?.LogDebug("Response:{NewLine}{PrettyJson}", Environment.NewLine, Utilities.PrettyPrintJson(content));
 		var requestUri = response.RequestMessage?.RequestUri;
-		var responseUri = response.Headers.Location;
 
 		return response.IsSuccessStatusCode
-			? HttpResponse<string>.Success(response.StatusCode, content, requestUri, responseUri)
-			: HttpResponse<string>.Fail(response.StatusCode, content, requestUri, responseUri);
+			? HttpResponse<string>.Success(response.StatusCode, content, requestUri)
+			: HttpResponse<string>.Fail(response.StatusCode, content, requestUri);
 	}
 }
