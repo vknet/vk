@@ -62,7 +62,7 @@ jobs:
       - name: Set the statuses of Job 1 as output parameters
         id: set_outputs
         run: |
-          echo "::set-output name=status_job1::$(<pass_status_job1/status_job1.txt)"
+          echo "{status_job1}={$(<pass_status_job1/status_job1.txt)}" >> $GITHUB_OUTPUT
       
       - id: string
         uses: Panuchi/VkNetJobStatusChangeAction@2.0.0
