@@ -47,7 +47,7 @@ jobs:
           format: 'html'
           disable_web_page_preview: true
           message: |
-            <b> ${{ github.action_status }}</b>
+            <b> ${{ job.status }}</b>
             <code>Reason: ${{ github.event_name }}
             Build №: ${{ github.run_number }}
             Pull Request для VkNet был успешно собран!</code>
