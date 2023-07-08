@@ -38,8 +38,8 @@ jobs:
       - name: Send Telegram notification
         uses: appleboy/telegram-action@master
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
+          to: '402295722'
+          token: '6347791580:AAHifoaYKSI3vDyRaF0deCeTcFFcEiTrz3s'
           message: |
             <code>Reason: ${{ github.run_number }}
             Build №: ${{ github.run_number }}
