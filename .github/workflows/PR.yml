@@ -35,13 +35,10 @@ jobs:
       - name: Test
         run: dotnet test VkNet.Tests/VkNet.Tests.csproj -c Release -f net7.0
 
-      - id: string
-        uses: ASzc/change-string-case-action@v5
-        with:
-          string: ${{ job.status }}
-      - id: step2
-        run: echo ${{ steps.string.outputs.lowercase }}
-
+  postjob: 
+    runs-on: ubuntu-latest
+    
+    steps:
       - name: Send Telegram notification
         uses: appleboy/telegram-action@master
         with:
@@ -56,4 +53,4 @@ jobs:
             Pull Request для VkNet был успешно собран!</code>
             
             <b>Build queued by: ${{ github.triggering_actor }}
-            See changes:</b> https://github.com/${{ github.repository }}/commit/${{github.sha}}      
+            See changes:</b> https://github.com/${{ github.repository }}/commit/${{github.sha}} 
