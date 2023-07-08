@@ -13,12 +13,6 @@ namespace VkNet.Model;
 public class City
 {
 	/// <summary>
-	/// Идентификатор города.
-	/// </summary>
-	[JsonProperty("id")]
-	public long? Id { get; set; }
-
-	/// <summary>
 	/// Название города.
 	/// </summary>
 	[JsonProperty("title")]
