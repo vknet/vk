@@ -1,4 +1,4 @@
-name: Package Create & Publish
+name: PR Check
 
 on:
   pull_request: 
@@ -22,7 +22,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -31,12 +31,26 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 7.0.x
-
-      - name: Install dependencies
-        run: dotnet restore VkNet.sln 
         
       - name: Test
         run: dotnet test VkNet.Tests/VkNet.Tests.csproj -c Release -f net7.0
 
-      - name: Build
-        run: dotnet build VkNet/VkNet.csproj --configuration Release --no-restore
+      - name: Send Telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            <code>Reason: ${{ github.run_number }}
+            Build №: ${{ github.run_number }}
+            Pull Request для VkNet был успешно собран!</code>'
+            
+            Build queued by: ${{ github.actor }} 
+            
+            
+            Commit message: ${{ github.event.commits[0].message }}
+            
+            Repository: ${{ github.repository }}
+            
+            
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}          
