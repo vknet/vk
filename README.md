@@ -38,7 +38,7 @@ PM> Install-Package VkNet
 # Credits
 
 Большое спасибо следующим организациям и проектам, работа которых имеет важное значение для развития проекта:
-- [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper)/[Rider](https://www.jetbrains.com/rider/) лицензия для разработки VkNet
+- [JetBrains](http://www.jetbrains.com/) - [ReSharper](http://www.jetbrains.com/resharper)/[Rider](https://www.jetbrains.com/rider/) лицензия для разработки VkNet.
 - [Json.Net](http://www.newtonsoft.com/json) - Popular high-performance JSON framework for .NET
 - [HtmlAgilityPack](http://html-agility-pack.net/)
 - [NUnit](http://www.nunit.org/) - NUnit is a unit-testing framework for all .Net languages.
