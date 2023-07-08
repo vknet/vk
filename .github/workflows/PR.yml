@@ -22,8 +22,9 @@ permissions:
 
 jobs:
   build:
+    continue-on-error: true
     runs-on: ubuntu-latest
-
+    
     steps:
       - uses: actions/checkout@v3
 
@@ -34,11 +35,40 @@ jobs:
         
       - name: Test
         run: dotnet test VkNet.Tests/VkNet.Tests.csproj -c Release -f net7.0
+        
+      - name: Create file status_job1.txt and write the job status into it
+        if: always()
+        run: |
+          echo ${{ job.status }} > status_job1.txt
+        
+      - name: Upload file status_job1.txt as an artifact
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: pass_status_job1
+          path: status_job1.txt
 
   postjob: 
+    if: ${{ always() }}
     runs-on: ubuntu-latest
+    needs: build
     
     steps:
+      - name: Download artifact pass_status_job1
+        uses: actions/download-artifact@v1
+        with:
+          name: pass_status_job1
+
+      - name: Set the statuses of Job 1 as output parameters
+        id: set_outputs
+        run: |
+          echo "::set-output name=status_job1::$(<pass_status_job1/status_job1.txt)"
+      
+      - id: string
+        uses: Panuchi/VkNetJobStatusChangeAction@2.0.0
+        with:
+          string: ${{ steps.set_outputs.outputs.status_job1 }}
+      
       - name: Send Telegram notification
         uses: appleboy/telegram-action@master
         with:
@@ -47,10 +77,11 @@ jobs:
           format: 'html'
           disable_web_page_preview: true
           message: |
-            <b> ${{ github.action_status }}</b>
+            <b>${{ steps.string.outputs.result }}</b>
             <code>Reason: ${{ github.event_name }}
             Build №: ${{ github.run_number }}
             Pull Request для VkNet был успешно собран!</code>
             
-            <b>Build queued by: ${{ github.triggering_actor }}
-            See changes:</b> https://github.com/${{ github.repository }}/commit/${{github.sha}} 
+            <b>Build queued by: ${{ github.triggering_actor }}</b> 
+            
+            https://github.com/${{ github.repository }}/commit/${{github.sha}} 
