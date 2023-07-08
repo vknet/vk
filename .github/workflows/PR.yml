@@ -82,5 +82,6 @@ jobs:
             Build №: ${{ github.run_number }}
             Pull Request для VkNet был успешно собран!</code>
             
-            <b>Build queued by: ${{ github.triggering_actor }}
-            See changes:</b> https://github.com/${{ github.repository }}/commit/${{github.sha}} 
+            <b>Build queued by: ${{ github.triggering_actor }}</b> 
+            
+            https://github.com/${{ github.repository }}/commit/${{github.sha}} 
