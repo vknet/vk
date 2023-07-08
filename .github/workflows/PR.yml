@@ -40,12 +40,12 @@ jobs:
         with:
           to: '402295722'
           token: '6347791580:AAHifoaYKSI3vDyRaF0deCeTcFFcEiTrz3s'
-          format: 'markdown'
+          format: 'html'
           message: |
-            <b> ${{ github.action_status }}</b>
-            <code>Reason: ${{ github.run_number }}
+            <b> ${{ job.status }}</b>
+            <code>Reason: ${{ github.event_name }}
             Build №: ${{ github.run_number }}
             Pull Request для VkNet был успешно собран!</code>'
             
-            <b>Build queued by: ${{ github.actor }}
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}</b>       
+            <b>Build queued by: ${{ github.triggering_actor }}
+            See changes:</b> https://github.com/${{ github.repository }}/commit/${{github.sha}}      
