@@ -38,6 +38,7 @@ jobs:
   postjob: 
     runs-on: ubuntu-latest
     needs: build
+   
     steps:
       - name: Send Telegram notification
         uses: appleboy/telegram-action@master
