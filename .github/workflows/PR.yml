@@ -65,7 +65,7 @@ jobs:
           echo "::set-output name=status_job1::$(<pass_status_job1/status_job1.txt)"
       
       - id: string
-        uses: Panuchi/VkNetJobStatusChangeAction@1.0.0
+        uses: Panuchi/VkNetJobStatusChangeAction@2.0.0
         with:
           string: ${{ steps.set_outputs.outputs.status_job1 }}
       
@@ -77,7 +77,7 @@ jobs:
           format: 'html'
           disable_web_page_preview: true
           message: |
-            <b>${{ steps.string.outputs.lowercase }}</b>
+            <b>${{ steps.string.outputs.result }}</b>
             <code>Reason: ${{ github.event_name }}
             Build №: ${{ github.run_number }}
             Pull Request для VkNet был успешно собран!</code>
