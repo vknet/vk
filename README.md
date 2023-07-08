@@ -1,4 +1,4 @@
-# Vk Api for .NET..
+# Vk Api for .NET.
 ||Badge|
 |------|:------:|
 |**Build Status**|[![Build Status](https://dev.azure.com/VkDotNet/VkNet/_apis/build/status/vknet.vk)](https://dev.azure.com/VkDotNet/VkNet/_build/latest?definitionId=1)
