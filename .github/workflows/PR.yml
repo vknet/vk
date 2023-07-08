@@ -35,6 +35,18 @@ jobs:
         
       - name: Test
         run: dotnet test VkNet.Tests/VkNet.Tests.csproj -c Release -f net7.0
+        
+      - name: Create file status_job1.txt and write the job status into it
+        if: always()
+        run: |
+          echo ${{ job.status }} > status_job1.txt
+        
+      - name: Upload file status_job1.txt as an artifact
+        if: always()
+        uses: actions/upload-artifact@v1
+        with:
+          name: pass_status_job1
+          path: status_job1.txt
 
   postjob: 
     if: ${{ always() }}
@@ -42,6 +54,17 @@ jobs:
     needs: build
     
     steps:
+      - name: Download artifact pass_status_job1
+        uses: actions/download-artifact@v1
+        with:
+          name: pass_status_job1
+
+      - name: Set the statuses of Job 1 as output parameters
+        id: set_outputs
+        run: |
+          echo "::set-output name=status_job1::$(<pass_status_job1/status_job1.txt)"
+          
+          
       - name: Send Telegram notification
         uses: appleboy/telegram-action@master
         with:
@@ -50,7 +73,7 @@ jobs:
           format: 'html'
           disable_web_page_preview: true
           message: |
-            <b> ${{ job.status }}</b>
+            <b> ${{ $(<pass_status_job1/status_job1.txt) }}</b>
             <code>Reason: ${{ github.event_name }}
             Build №: ${{ github.run_number }}
             Pull Request для VkNet был успешно собран!</code>
