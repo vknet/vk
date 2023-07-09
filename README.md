@@ -1,7 +1,7 @@
 # Vk Api for .NET
 ||Badge|
 |------|:------:|
-|**Build Status**|[![Build Status](https://dev.azure.com/VkDotNet/VkNet/_apis/build/status/vknet.vk)](https://dev.azure.com/VkDotNet/VkNet/_build/latest?definitionId=1)
+|**Build Status**|[![GitHub Actions](https://github.com/vknet/vk/actions/workflows/push.yml/badge.svg?branch=develop)](https://github.com/vknet/vk/actions/workflows/push.yml)
 |**Target Frameworks**|[![Targets](https://img.shields.io/badge/.NET%20Standard-2.0-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/standard/net-standard) [![Targets](https://img.shields.io/badge/.NET%20-6-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/core/introduction) [![Targets](https://img.shields.io/badge/.NET%20-7-green.svg)](https://docs.microsoft.com/ru-ru/dotnet/core/introduction)|
 |**Nuget**|[![](http://img.shields.io/nuget/v/VkNet.svg)](http://www.nuget.org/packages/VkNet)
 |**MyGet**|[![](https://img.shields.io/myget/vknet/vpre/vknet.svg)](https://www.myget.org/F/vknet)
