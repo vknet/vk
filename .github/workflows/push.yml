@@ -64,11 +64,21 @@ jobs:
         with:
           project: 'VkNet/VkNet.csproj'    
       
-      - name: Build
+      - name: Build Alpha
+        if:   contains(steps.get_version.outputs.version, 'alpha')
         run: dotnet build VkNet/VkNet.csproj --configuration Release /p:Version=${{ format('{0}.{1}', steps.get_version.outputs.version, github.run_number) }}
-    
-      - name: Build the NuGet package
+      
+      - name: Build Release
+        if:   success() && !contains(steps.get_version.outputs.version, 'alpha')
+        run: dotnet build VkNet/VkNet.csproj --configuration Release
+      
+      - name: Build the NuGet package Alpha
+        if:   contains(steps.get_version.outputs.version, 'alpha')
         run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}\Package /p:Version=${{ format('{0}.{1}', steps.get_version.outputs.version, github.run_number) }}
+   
+      - name: Build the NuGet package Release
+        if:   success() && !contains(steps.get_version.outputs.version, 'alpha')
+        run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}\Package
 
       - name: Publish NuGet Package
         run: dotnet nuget push ${{env.DOTNET_ROOT}}\Package\*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate  
