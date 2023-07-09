@@ -1,6 +1,0 @@
-script:
-  name: default
-
-dotnet:
-  solution: VkNet.sln
-  project: VkNet.csproj
