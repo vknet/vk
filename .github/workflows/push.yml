@@ -53,6 +53,13 @@ jobs:
     needs: build
     if: needs.build.result == 'success'
     steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 7.0.x
+          
       - name: Build
         run: dotnet build VkNet/VkNet.csproj --configuration Release
     
