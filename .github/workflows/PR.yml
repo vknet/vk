@@ -22,7 +22,6 @@ permissions:
 
 jobs:
   build:
-    environment: github-pages
     continue-on-error: true
     runs-on: ubuntu-latest
     
@@ -48,5 +47,5 @@ jobs:
             <b>✅ Task Succeeded</b>
             <code>Reason: PullRequest Build №: ${{ github.run_number }} VkNet был успешно собран!</code>
             <b>Build queued by: ${{ github.triggering_actor }}</b> 
-            
+
             https://github.com/${{ github.repository }}/commit/${{github.sha}}
