@@ -65,10 +65,10 @@ jobs:
           project: 'VkNet/VkNet.csproj'    
       
       - name: Build
-        run: dotnet build VkNet/VkNet.csproj --configuration Release /p:Version=${{ format('{0}.{1}', steps.get_version.outputs.version, github.run_id) }}
+        run: dotnet build VkNet/VkNet.csproj --configuration Release /p:Version=${{ format('{0}.{1}', steps.get_version.outputs.version, github.run_number) }}
     
       - name: Build the NuGet package
-        run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}\Package /p:Version=${{ format('{0}.{1}', steps.get_version.outputs.version, github.run_id) }}
+        run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}\Package /p:Version=${{ format('{0}.{1}', steps.get_version.outputs.version, github.run_number) }}
 
       - name: Publish NuGet Package
         run: dotnet nuget push ${{env.DOTNET_ROOT}}\Package\*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate  
