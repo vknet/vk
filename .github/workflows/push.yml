@@ -44,7 +44,7 @@ jobs:
       
       - name: Build Alpha
         if:   contains(steps.get_version.outputs.version, 'alpha')
-        run: dotnet build VkNet/VkNet.csproj --configuration Release /p:Version=${{ format('{0}.{1}', steps.get_version.outputs.version, github.run_number) }}
+        run: dotnet build VkNet/VkNet.csproj --configuration Release /p:Version=${{ format('{0}-{1}', steps.get_version.outputs.version, github.run_number) }}
       
       - name: Build Release
         if:   success() && !contains(steps.get_version.outputs.version, 'alpha')
@@ -52,7 +52,7 @@ jobs:
       
       - name: Build the NuGet package Alpha
         if:   contains(steps.get_version.outputs.version, 'alpha')
-        run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}/Package /p:Version=${{ format('{0}.{1}', steps.get_version.outputs.version, github.run_number) }}
+        run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}/Package /p:Version=${{ format('{0}-{1}', steps.get_version.outputs.version, github.run_number) }}
    
       - name: Build the NuGet package Release
         if:   success() && !contains(steps.get_version.outputs.version, 'alpha')
@@ -64,7 +64,7 @@ jobs:
       - name: Send Telegram notification
         uses: appleboy/telegram-action@master
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
+          to: '-1001295910285'
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: 'html'
           disable_web_page_preview: true
