@@ -47,11 +47,25 @@ jobs:
         with:
           name: pass_status_job1
           path: status_job1.txt
-
-  postjob: 
-    if: ${{ always() }}
+          
+  nuget:
     runs-on: ubuntu-latest
     needs: build
+    if: needs.build.result == 'success'
+    steps:
+      - name: Build
+        run: dotnet build VkNet/VkNet.csproj --configuration Release
+    
+      - name: Build the NuGet package
+        run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}\Package
+
+      - name: Publish NuGet Package
+        run: dotnet nuget push ${{env.DOTNET_ROOT}}\Package\*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate  
+    
+  telegram: 
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    needs: [build, nuget]
     
     steps:
       - name: Download artifact pass_status_job1
@@ -83,21 +97,6 @@ jobs:
             
             <b>Build queued by: ${{ github.triggering_actor }}</b> 
             
-            https://github.com/${{ github.repository }}/commit/${{github.sha}} 
-    
-  nuget:
-    runs-on: ubuntu-latest
-    needs: build
-    if: needs.build.result == 'success'
-    steps:
-      - name: Build
-        run: dotnet build VkNet/VkNet.csproj --configuration Release --no-restore
-    
-      - name: Build the NuGet package
-        run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}\Package
-      
-      - name: Publish NuGet Package
-        run: dotnet nuget push ${{env.DOTNET_ROOT}}\Package\*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate  
-    
+            https://github.com/${{ github.repository }}/commit/${{github.sha}}
           
     
