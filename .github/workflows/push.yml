@@ -93,8 +93,8 @@ jobs:
       - name: Send Telegram notification
         uses: appleboy/telegram-action@master
         with:
-          to: '402295722'
-          token: '6347791580:AAHifoaYKSI3vDyRaF0deCeTcFFcEiTrz3s'
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
           format: 'html'
           disable_web_page_preview: true
           message: |
@@ -105,5 +105,3 @@ jobs:
             <b>Build queued by: ${{ github.triggering_actor }}</b> 
             
             https://github.com/${{ github.repository }}/commit/${{github.sha}}
-          
-    
