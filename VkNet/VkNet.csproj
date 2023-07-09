@@ -23,7 +23,7 @@
 			Обсуждение в Telegram: https://t.me/VkDotNet
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: https://github.com/vknet/vk/milestone/49?closed=1
+			Список изменений: https://github.com/vknet/vk/milestone/52?closed=1
 		</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
