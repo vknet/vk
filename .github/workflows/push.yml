@@ -36,9 +36,6 @@ jobs:
       - name: Test
         run: dotnet test VkNet.Tests/VkNet.Tests.csproj -c Release -f net7.0
         
-      - name: Build
-        run: dotnet build VkNet/VkNet.csproj --configuration Release --no-restore
-        
       - name: Create file status_job1.txt and write the job status into it
         if: always()
         run: |
@@ -93,6 +90,9 @@ jobs:
     needs: build
     if: needs.build.result == 'success'
     steps:
+      - name: Build
+        run: dotnet build VkNet/VkNet.csproj --configuration Release --no-restore
+    
       - name: Build the NuGet package
         run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}\Package
       
