@@ -1580,7 +1580,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 
 		FluentActions.Invoking(() => Api.Groups.Join(0, true))
 			.Should()
-			.ThrowExactly<CannotBlacklistYourselfException>()
+			.ThrowExactly<AccessDeniedException>()
 			.And.Message.Should()
 			.Be("Access denied: you can not join this private community");
 	}

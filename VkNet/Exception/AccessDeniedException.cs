@@ -6,12 +6,15 @@ using VkNet.Utils;
 namespace VkNet.Exception;
 
 /// <summary>
-/// Исключение, которое выбрасывается при отказе в доступе на выполнение операции
-/// сервером ВКонтакте.
-/// Код ошибки - 500
+/// Исключение, которое выбрасывается при попытке добавить себя в черный список и
+/// других типичных запросах.
+/// Убедитесь, что Вы используете верные идентификаторы, и доступ к контенту для
+/// текущего пользователя есть в полной
+/// версии сайта.
+/// Код ошибки - 15
 /// </summary>
 [Serializable]
-[VkError(VkErrorCode.PermissionDenied)]
+[VkError(VkErrorCode.AccessDenied)]
 public sealed class AccessDeniedException : VkApiMethodInvokeException
 {
 	/// <inheritdoc />
@@ -19,6 +22,7 @@ public sealed class AccessDeniedException : VkApiMethodInvokeException
 	{
 	}
 
+	/// <inheritdoc />
 	private AccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
 
