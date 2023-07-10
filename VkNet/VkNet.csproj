@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net7.0;net6.0;netstandard2.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
-		<VersionPrefix>1.75.0-alpha</VersionPrefix>
+		<VersionPrefix>1.75.0</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
