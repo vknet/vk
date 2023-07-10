@@ -109,7 +109,7 @@ public static class VkErrorCode
 	/// текущего пользователя есть в полной
 	/// версии сайта.
 	/// </summary>
-	public const int CannotBlacklistYourself = 15;
+	public const int AccessDenied = 15;
 
 	/// <summary>
 	/// Требуется выполнение запросов по протоколу HTTPS, т.к. пользователь включил
