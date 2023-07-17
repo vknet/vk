@@ -8,4 +8,4 @@ namespace VkNet.Model;
 /// </summary>
 /// <param name="Value"></param>
 [Serializable]
-public record UpdateType(GroupUpdateType Value) : IGroupUpdate;
+public record UpdateType(GroupUpdateType? Value) : IGroupUpdate;
