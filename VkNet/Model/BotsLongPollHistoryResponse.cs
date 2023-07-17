@@ -19,6 +19,5 @@ public class BotsLongPollHistoryResponse
 	/// <summary>
 	/// Обновления группы
 	/// </summary>
-	[JsonProperty(ItemConverterType = typeof(GroupUpdateJsonConverter))]
 	public List<GroupUpdate> Updates { get; set; }
 }
