@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
 
@@ -31,6 +32,7 @@ public class MessageEvent : IGroupUpdate
 	/// Идентификатор чата.
 	/// </summary>
 	[JsonProperty("payload")]
+	[JsonConverter(typeof(MessageEventPayloadJsonConverter))]
 	public string Payload { get; set; }
 
 	/// <summary>
