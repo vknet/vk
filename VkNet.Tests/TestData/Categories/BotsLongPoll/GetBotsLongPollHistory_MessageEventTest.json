@@ -5,7 +5,11 @@
     "user_id": 123456789,
     "peer_id": 123456789,
     "event_id": "feleyinek",
-    "payload": "{}" 
+    "payload": {
+		"button": "add_shop_key",
+		"action": "add_shop_key",
+		"asd": "add_shop_key"
+	}
   },
   "group_id": 1234
 }
