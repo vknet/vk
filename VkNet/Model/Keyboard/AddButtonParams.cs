@@ -1,5 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
@@ -49,7 +50,8 @@ public class AddButtonParams
 	/// <summary>
 	/// Любой из интентов, требующий подписки.
 	/// </summary>
-	public Intent Intent { get; set; }
+	[JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
+	public Intent? Intent { get; set; }
 
 	/// <summary>
 	/// Дополнительное поле для confirmed_notification.
