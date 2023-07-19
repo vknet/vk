@@ -23,6 +23,8 @@ public class KeyboardBuilder : IKeyboardBuilder
 
 	private readonly string _type;
 
+	private string _label;
+
 	private const string Button = "button";
 
 	private int _totalPayloadLength;
@@ -49,6 +51,12 @@ public class KeyboardBuilder : IKeyboardBuilder
 	/// Шаблон сообщения для исключения максимального количества строк
 	/// </summary>
 	public static readonly string MaxButtonLinesExceptionTemplate = "Количество линий кнопок не должно превышать " + MaxButtonLines;
+
+	/// <summary>
+	/// Шаблон сообщения для исключения максимального количества строк
+	/// </summary>
+	public static readonly string MinLabelLengthExceptionTemplate = "Количество символов в 'label' не должно быть меньше 1 ";
+
 
 	private const int MaxButtonPayload = 255;
 
@@ -110,6 +118,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 	{
 		color ??= KeyboardButtonColor.Default;
 		type ??= _type ?? Button;
+		_label = label;
 		var payload = $"{{\"{type}\":\"{extra}\"}}";
 		_totalPayloadLength += payload.Length;
 
@@ -179,6 +188,11 @@ public class KeyboardBuilder : IKeyboardBuilder
 		if (_currentLine.Count + 1 > MaxButtonsPerLine)
 		{
 			throw new VkKeyboardMaxButtonsException(MaxButtonsPerLineExceptionTemplate);
+		}
+
+		if (_label.Length < 1)
+		{
+			throw new VkKeyboardLabelMinLengthException(MinLabelLengthExceptionTemplate);
 		}
 	}
 

@@ -13,6 +13,21 @@ public class KeyboardBuilderTests
 	private static readonly string Payload200 = string.Join("", Enumerable.Repeat(Filler, 200));
 
 	[Fact]
+	public void LabelMinLength255_VkKeyboardLabelMinLengthException()
+	{
+		// Arrange
+		var builder = new KeyboardBuilder();
+		const string label = "";
+
+		// Assert
+		FluentActions.Invoking(() => builder.AddButton("", Payload200))
+			.Should()
+			.ThrowExactly<VkKeyboardLabelMinLengthException>()
+			.And.Message.Should()
+			.Be(string.Format(KeyboardBuilder.MinLabelLengthExceptionTemplate, label));
+	}
+
+	[Fact]
 	public void AddButton_PayloadMaxLength255_VkKeyboardPayloadMaxLengthException()
 	{
 		// Arrange
