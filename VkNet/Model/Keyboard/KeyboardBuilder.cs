@@ -21,9 +21,11 @@ public class KeyboardBuilder : IKeyboardBuilder
 
 	private List<MessageKeyboardButton> _currentLine = new();
 
-	private readonly string _type;
+	private readonly string _payloadType;
 
-	private const string Button = "button";
+	private bool _isMinLengthCheckNeeded;
+
+	private const string Button = "b";
 
 	private int _totalPayloadLength;
 
@@ -49,6 +51,12 @@ public class KeyboardBuilder : IKeyboardBuilder
 	/// Шаблон сообщения для исключения максимального количества строк
 	/// </summary>
 	public static readonly string MaxButtonLinesExceptionTemplate = "Количество линий кнопок не должно превышать " + MaxButtonLines;
+
+	/// <summary>
+	/// Шаблон сообщения для исключения максимального количества строк
+	/// </summary>
+	public static readonly string MinLabelLengthExceptionTemplate = "Количество символов в 'label' не должно быть меньше 1 ";
+
 
 	private const int MaxButtonPayload = 255;
 
@@ -77,12 +85,12 @@ public class KeyboardBuilder : IKeyboardBuilder
 	/// <summary>
 	/// Конструктор клавиатур
 	/// </summary>
-	/// <param name="type">Тип</param>
+	/// <param name="payloadType">Тип</param>
 	/// <param name="isOneTime">Одноразовая</param>
-	public KeyboardBuilder(string type, bool isOneTime = false)
+	public KeyboardBuilder(string payloadType, bool isOneTime = false)
 	{
 		IsOneTime = isOneTime;
-		_type = type;
+		_payloadType = payloadType;
 	}
 
 	/// <inheritdoc />
@@ -106,11 +114,16 @@ public class KeyboardBuilder : IKeyboardBuilder
 
 	/// <inheritdoc />
 	public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor? color = default,
-									string type = null)
+									string payloadType = null)
 	{
+		if (label.Length < 1)
+		{
+			_isMinLengthCheckNeeded = true;
+		}
+
 		color ??= KeyboardButtonColor.Default;
-		type ??= _type ?? Button;
-		var payload = $"{{\"{type}\":\"{extra}\"}}";
+		payloadType ??= _payloadType ?? Button;
+		var payload = $"{{\"{payloadType}\":\"{extra}\"}}";
 		_totalPayloadLength += payload.Length;
 
 		CheckKeyboardSize(payload);
@@ -132,11 +145,16 @@ public class KeyboardBuilder : IKeyboardBuilder
 	/// <inheritdoc />
 	public IKeyboardBuilder AddButton(AddButtonParams addButtonParams)
 	{
-		addButtonParams.Type ??= _type ?? Button;
+		if (addButtonParams.ActionType == KeyboardButtonActionType.Text && addButtonParams.Label.Length < 1)
+		{
+			_isMinLengthCheckNeeded = true;
+		}
+
+		addButtonParams.PayloadType ??= _payloadType ?? Button;
 		addButtonParams.ActionType ??= KeyboardButtonActionType.Text;
 
 		var payload = addButtonParams.Extra != null
-			? $"{{\"{addButtonParams.Type}\":\"{addButtonParams.Extra}\"}}"
+			? $"{{\"{addButtonParams.PayloadType}\":\"{addButtonParams.Extra}\"}}"
 			: null;
 
 		_totalPayloadLength += payload?.Length ?? 0;
@@ -179,6 +197,11 @@ public class KeyboardBuilder : IKeyboardBuilder
 		if (_currentLine.Count + 1 > MaxButtonsPerLine)
 		{
 			throw new VkKeyboardMaxButtonsException(MaxButtonsPerLineExceptionTemplate);
+		}
+
+		if (_isMinLengthCheckNeeded)
+		{
+			throw new VkKeyboardLabelMinLengthException(MinLabelLengthExceptionTemplate);
 		}
 	}
 
