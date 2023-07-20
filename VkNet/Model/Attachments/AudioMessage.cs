@@ -1,10 +1,9 @@
 using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Attachments;
+namespace VkNet.Model;
 
 /// <summary>
 /// Аудио сообщение
@@ -49,6 +48,5 @@ public class AudioMessage : MediaAttachment
 	/// Статус транскрипции
 	/// </summary>
 	[JsonProperty("transcript_state")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public TranscriptStates TranscriptState { get; set; }
 }

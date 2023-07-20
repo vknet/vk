@@ -24,7 +24,7 @@ public class FriendOnlineJsonConverter : Newtonsoft.Json.JsonConverter
 
 		if (response.ContainsKey(key: "online"))
 		{
-			return new FriendOnline()
+			return new FriendOnline
 			{
 				MobileOnline = response[key: "online_mobile"]
 					.ToReadOnlyCollectionOf<long>(selector: x => x),
@@ -33,7 +33,7 @@ public class FriendOnlineJsonConverter : Newtonsoft.Json.JsonConverter
 			};
 		}
 
-		return new FriendOnline()
+		return new FriendOnline
 		{
 			Online = response.ToReadOnlyCollectionOf<long>(selector: x => x)
 		};

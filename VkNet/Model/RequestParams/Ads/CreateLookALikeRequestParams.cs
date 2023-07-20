@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -27,7 +26,6 @@ public class CreateLookALikeRequestParams
 	/// Тип источника исходной аудитории.
 	/// </summary>
 	[JsonProperty("source_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public SourceType SourceType { get; set; }
 
 	/// <summary>

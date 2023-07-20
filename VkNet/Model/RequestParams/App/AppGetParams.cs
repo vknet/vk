@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода Get для приложений
@@ -24,7 +23,6 @@ public class AppGetParams
 	/// android, winphone, web.
 	/// </summary>
 	[JsonProperty(propertyName: "platform")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AppPlatforms Platform { get; set; }
 
 	/// <summary>
@@ -59,6 +57,5 @@ public class AppGetParams
 	/// умолчанию nom.
 	/// </summary>
 	[JsonProperty(propertyName: "name_case")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public NameCase NameCase { get; set; }
 }

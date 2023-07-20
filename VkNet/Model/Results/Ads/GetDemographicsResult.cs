@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -28,6 +27,5 @@ public class GetDemographicsResult
 	/// обязательный параметр, строка
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public IdsType Type { get; set; }
 }

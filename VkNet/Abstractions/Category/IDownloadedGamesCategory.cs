@@ -1,4 +1,4 @@
-﻿using VkNet.Model.Results.DownloadedGames;
+﻿using VkNet.Model;
 
 namespace VkNet.Abstractions;
 

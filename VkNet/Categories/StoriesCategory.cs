@@ -1,8 +1,7 @@
+using System;
 using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams.Stories;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -178,8 +177,8 @@ public partial class StoriesCategory : IStoriesCategory
 		});
 
 	/// <inheritdoc/>
-	public VkCollection<long> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null) =>
-		_vk.Call<VkCollection<long>>("stories.getViewers",
+	public VkCollection<StoryViewers> GetViewers(long ownerId, ulong storyId, ulong? count = null, ulong? offset = null) =>
+		_vk.Call<VkCollection<StoryViewers>>("stories.getViewers",
 			new()
 			{
 				{
@@ -252,6 +251,20 @@ public partial class StoriesCategory : IStoriesCategory
 		});
 
 	/// <inheritdoc />
+	public VkCollection<Story> Save(StoryServerUrl uploadResults) =>
+		_vk.Call<VkCollection<Story>>("stories.save",
+			new()
+			{
+				{
+					"upload_results", new VkResponseObject<StoryServerUrl>
+					{
+						Response = uploadResults
+					}
+				}
+			});
+
+	/// <inheritdoc />
+	[Obsolete("Начиная с версии 5.118 используется только параметр uploadResults")]
 	public VkCollection<Story> Save(StoryServerUrl uploadResults, bool extended, IEnumerable<string> fields) =>
 		_vk.Call<VkCollection<Story>>("stories.save",
 			new()

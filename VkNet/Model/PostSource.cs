@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -21,14 +20,12 @@ public class PostSource
 	/// На данный момент поддерживаются следующие типы источников записи на стене.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public PostSourceType Type { get; set; }
 
 	/// <summary>
 	/// Название платформы, если оно доступно: android, iphone, wphone.
 	/// </summary>
 	[JsonProperty("platform", NullValueHandling = NullValueHandling.Ignore)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public Platform Platform { get; set; }
 
 	/// <summary>
@@ -36,7 +33,6 @@ public class PostSource
 	/// значения поля type:
 	/// </summary>
 	[JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public PostSourceData Data { get; set; }
 
 	/// <summary>

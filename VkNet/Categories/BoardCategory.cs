@@ -1,6 +1,5 @@
 ﻿using VkNet.Abstractions;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -81,7 +80,7 @@ public partial class BoardCategory : IBoardCategory
 	}
 
 	/// <inheritdoc />
-	public long AddTopic(BoardAddTopicParams @params) => _vk.Call("board.addTopic", new()
+	public long AddTopic(BoardAddTopicParams @params) => _vk.Call<long>("board.addTopic", new()
 	{
 		{
 			"group_id", @params.GroupId
@@ -101,7 +100,7 @@ public partial class BoardCategory : IBoardCategory
 	});
 
 	/// <inheritdoc />
-	public bool DeleteTopic(BoardTopicParams @params) => _vk.Call("board.deleteTopic", new()
+	public bool DeleteTopic(BoardTopicParams @params) => _vk.Call<bool>("board.deleteTopic", new()
 	{
 		{
 			"group_id", @params.GroupId
@@ -112,7 +111,7 @@ public partial class BoardCategory : IBoardCategory
 	});
 
 	/// <inheritdoc />
-	public bool CloseTopic(BoardTopicParams @params) => _vk.Call("board.closeTopic", new()
+	public bool CloseTopic(BoardTopicParams @params) => _vk.Call<bool>("board.closeTopic", new()
 	{
 		{
 			"group_id", @params.GroupId
@@ -123,7 +122,7 @@ public partial class BoardCategory : IBoardCategory
 	});
 
 	/// <inheritdoc />
-	public bool OpenTopic(BoardTopicParams @params) => _vk.Call("board.openTopic", new()
+	public bool OpenTopic(BoardTopicParams @params) => _vk.Call<bool>("board.openTopic", new()
 	{
 		{
 			"group_id", @params.GroupId
@@ -134,7 +133,7 @@ public partial class BoardCategory : IBoardCategory
 	});
 
 	/// <inheritdoc />
-	public bool FixTopic(BoardTopicParams @params) => _vk.Call("board.fixTopic", new()
+	public bool FixTopic(BoardTopicParams @params) => _vk.Call<bool>("board.fixTopic", new()
 	{
 		{
 			"group_id", @params.GroupId
@@ -145,7 +144,7 @@ public partial class BoardCategory : IBoardCategory
 	});
 
 	/// <inheritdoc />
-	public bool UnFixTopic(BoardTopicParams @params) => _vk.Call("board.unfixTopic", new()
+	public bool UnFixTopic(BoardTopicParams @params) => _vk.Call<bool>("board.unfixTopic", new()
 	{
 		{
 			"group_id", @params.GroupId
@@ -156,7 +155,7 @@ public partial class BoardCategory : IBoardCategory
 	});
 
 	/// <inheritdoc />
-	public bool EditTopic(BoardEditTopicParams @params) => _vk.Call("board.editTopic", new()
+	public bool EditTopic(BoardEditTopicParams @params) => _vk.Call<bool>("board.editTopic", new()
 	{
 		{
 			"group_id", @params.GroupId
@@ -170,7 +169,7 @@ public partial class BoardCategory : IBoardCategory
 	});
 
 	/// <inheritdoc />
-	public long CreateComment(BoardCreateCommentParams @params) => _vk.Call("board.createComment", new()
+	public long CreateComment(BoardCreateCommentParams @params) => _vk.Call<long>("board.createComment", new()
 	{
 		{
 			"group_id", @params.GroupId
@@ -196,7 +195,7 @@ public partial class BoardCategory : IBoardCategory
 	});
 
 	/// <inheritdoc />
-	public bool DeleteComment(BoardCommentParams @params) => _vk.Call("board.deleteComment", new()
+	public bool DeleteComment(BoardCommentParams @params) => _vk.Call<bool>("board.deleteComment", new()
 	{
 		{
 			"group_id", @params.GroupId
@@ -210,7 +209,7 @@ public partial class BoardCategory : IBoardCategory
 	});
 
 	/// <inheritdoc />
-	public bool EditComment(BoardEditCommentParams @params) => _vk.Call("board.editComment", new()
+	public bool EditComment(BoardEditCommentParams @params) => _vk.Call<bool>("board.editComment", new()
 	{
 		{
 			"group_id", @params.GroupId

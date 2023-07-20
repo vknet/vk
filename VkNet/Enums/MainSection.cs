@@ -10,7 +10,7 @@ public enum MainSection
 	/// <summary>
 	/// Главная секция отсутствует
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	NoSection = 0,
 
 	/// <summary>

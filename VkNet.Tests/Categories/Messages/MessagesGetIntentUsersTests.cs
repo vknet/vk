@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;

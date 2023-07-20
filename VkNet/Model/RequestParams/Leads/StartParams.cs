@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.RequestParams.Leads;
+namespace VkNet.Model;
 
 /// <summary>
 /// Создаёт новую сессию для прохождения рекламной акции для пользователя.

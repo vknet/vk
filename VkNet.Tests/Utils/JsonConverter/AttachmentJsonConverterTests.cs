@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Newtonsoft.Json;
 using VkNet.Model;
 using VkNet.Utils;
@@ -15,7 +14,7 @@ public class AttachmentJsonConverterTests : BaseTest
 		ReadJsonFile("Attachment", nameof(CallAndConvertToType));
 		Url = "https://api.vk.com/method/friends.getRequests";
 
-		CommentBoard result = Api.Call<CommentBoard>("friends.getRequests", VkParameters.Empty);
+		var result = Api.Call<CommentBoard>("friends.getRequests", VkParameters.Empty);
 
 		result.Should()
 			.NotBeNull();

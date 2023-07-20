@@ -1,4 +1,4 @@
-﻿namespace VkNet.Model.GroupUpdate;
+﻿namespace VkNet.Model;
 
 /// <summary>
 /// Интерфейс-маркер для обновлений группы

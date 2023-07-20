@@ -1,6 +1,6 @@
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Keyboard;
+namespace VkNet.Model;
 
 /// <summary>
 /// Конструктор клавиатур
@@ -23,7 +23,7 @@ public interface IKeyboardBuilder
 	/// <returns>Конструктор клавиатур</returns>
 	IKeyboardBuilder AddButton(string label,
 								string extra,
-								KeyboardButtonColor color = default,
+								KeyboardButtonColor? color = default,
 								string type = null);
 
 	/// <summary>

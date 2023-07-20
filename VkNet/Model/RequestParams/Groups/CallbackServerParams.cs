@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using VkNet.Infrastructure;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры настройки уведомлений о событиях в Callback API.

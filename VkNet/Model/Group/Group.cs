@@ -4,9 +4,7 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
-using VkNet.Utils;
+using VkNet.Enums.StringEnums;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -77,8 +75,7 @@ public class Group
 	/// Возвращается в случае, если сообщество удалено или заблокировано
 	/// </summary>
 	[JsonProperty("deactivated", DefaultValueHandling = DefaultValueHandling.Populate)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public Deactivated Deactivated { get; set; }
+	public Deactivated? Deactivated { get; set; }
 
 	/// <summary>
 	/// Информация о том, является ли текущий пользователь руководителем сообщества.
@@ -109,8 +106,7 @@ public class Group
 	/// Тип сообщества.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public GroupType Type { get; set; }
+	public GroupType? Type { get; set; }
 
 	[JsonProperty("photo")]
 	private Uri Photo
@@ -166,7 +162,7 @@ public class Group
 	/// Возрастное ограничение
 	/// </summary>
 	[JsonProperty("age_limits")]
-	public AgeLimit AgeLimits { get; set; }
+	public AgeLimit? AgeLimits { get; set; }
 
 	/// <summary>
 	/// Информация о забанненом (добавленном в черный список) пользователе сообщества.
@@ -325,7 +321,7 @@ public class Group
 	/// Статус участника текущего пользователя.
 	/// </summary>
 	[JsonProperty("member_status")]
-	public MemberStatus MemberStatus { get; set; }
+	public MemberStatus? MemberStatus { get; set; }
 
 	/// <summary>
 	/// Количество участников сообщества.
@@ -407,7 +403,7 @@ public class Group
 	/// Стена
 	/// </summary>
 	[JsonProperty("wall")]
-	public WallType Wall { get; set; }
+	public WallType? Wall { get; set; }
 
 	#endregion
 }

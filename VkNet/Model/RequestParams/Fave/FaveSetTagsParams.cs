@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Enums.Filters;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams.Fave;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса метода fave.setTags
@@ -19,8 +18,6 @@ public class FaveSetTagsParams
 	/// Для работы с объектами пользователя или сообщества используйте метод fave.setPageTags
 	/// </remarks>
 	[JsonProperty("item_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-
 	public FaveType ItemType { get; set; }
 
 	/// <summary>

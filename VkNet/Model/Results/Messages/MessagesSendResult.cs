@@ -9,7 +9,7 @@ namespace VkNet.Model;
 /// </summary>
 [Serializable]
 [JsonConverter(typeof(MessagesSendResultJsonConverter))]
-public partial class MessagesSendResult
+public class MessagesSendResult
 {
 	/// <summary>
 	/// Идентификатор назначения;
@@ -22,6 +22,12 @@ public partial class MessagesSendResult
 	/// </summary>
 	[JsonProperty("message_id")]
 	public long? MessageId { get; set; }
+
+	/// <summary>
+	/// Идентификатор сообщения в диалоге
+	/// </summary>
+	[JsonProperty("conversation_message_id")]
+	public long? ConversationMessageId { get; set; }
 
 	/// <summary>
 	/// Код ошибки если есть (в наличии в версии 5.101)

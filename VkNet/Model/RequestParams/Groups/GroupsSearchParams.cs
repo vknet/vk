@@ -1,10 +1,9 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода groups.search
@@ -20,7 +19,6 @@ public class GroupsSearchParams
 	/// <summary>
 	/// Тип сообщества. Возможные значения: group, page, event. строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public GroupType Type { get; set; }
 
 	/// <summary>

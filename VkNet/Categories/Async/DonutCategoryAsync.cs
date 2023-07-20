@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
@@ -10,16 +11,31 @@ namespace VkNet.Categories;
 public partial class DonutCategory : IDonutCategoryAsync
 {
 	/// <inheritdoc/>
-	public Task<bool> IsDonAsync(long ownerId) => TypeHelper.TryInvokeMethodAsync(() => IsDon(ownerId));
+	public Task<bool> IsDonAsync(long ownerId,
+								CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			IsDon(ownerId), token);
 
 	/// <inheritdoc/>
-	public Task<VkCollection<User>> GetFriendsAsync(long ownerId, ulong offset, byte count, UsersFields fields) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetFriends(ownerId, offset, count, fields));
+	public Task<VkCollection<User>> GetFriendsAsync(long ownerId,
+													ulong offset,
+													byte count,
+													UsersFields fields,
+													CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetFriends(ownerId, offset, count, fields), token);
 
 	/// <inheritdoc/>
-	public Task<Subscription> GetSubscriptionAsync(long ownerId) => TypeHelper.TryInvokeMethodAsync(() => GetSubscription(ownerId));
+	public Task<Subscription> GetSubscriptionAsync(long ownerId,
+													CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetSubscription(ownerId), token);
 
 	/// <inheritdoc/>
-	public Task<SubscriptionsInfo> GetSubscriptionsAsync(UsersFields fields, ulong offset, byte count) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetSubscriptions(fields, offset, count));
+	public Task<SubscriptionsInfo> GetSubscriptionsAsync(UsersFields fields,
+														ulong offset,
+														byte count,
+														CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetSubscriptions(fields, offset, count), token);
 }

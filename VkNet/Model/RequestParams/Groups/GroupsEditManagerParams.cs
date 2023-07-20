@@ -1,9 +1,7 @@
 ﻿using System;
-using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода groups.editManager
@@ -31,7 +29,6 @@ public class GroupsEditManagerParams
 	/// Если параметр не задан, с пользователя user_id снимаются полномочия
 	/// руководителя. строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public ManagerRole Role { get; set; }
 
 	/// <summary>

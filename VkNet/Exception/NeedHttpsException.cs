@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -21,5 +22,11 @@ public sealed class NeedHttpsException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	public NeedHttpsException(VkError response) : base(response)
 	{
+	}
+
+	/// <inheritdoc />
+	private NeedHttpsException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
+	{
+
 	}
 }

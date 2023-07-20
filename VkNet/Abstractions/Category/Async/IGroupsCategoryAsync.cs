@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
-using VkNet.Model.RequestParams.Groups;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -29,13 +28,16 @@ public interface IGroupsCategoryAsync
 	/// Возможно пойду. 0 —
 	/// Точно пойду. По умолчанию 0. строка (Строка).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного вступления метод вернёт 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.join
 	/// </remarks>
-	Task<bool> JoinAsync(long? groupId, bool? notSure = null);
+	Task<bool> JoinAsync(long? groupId,
+						bool? notSure = null,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет покинуть сообщество.
@@ -45,19 +47,22 @@ public interface IGroupsCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.leave
 	/// </remarks>
-	Task<bool> LeaveAsync(long groupId);
+	Task<bool> LeaveAsync(long groupId,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список сообществ указанного пользователя.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список идентификаторов сообществ id, в
 	/// которых состоит пользователь user_id.
@@ -66,7 +71,9 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.get
 	/// </remarks>
-	Task<VkCollection<Group>> GetAsync(GroupsGetParams @params, bool skipAuthorization = false);
+	Task<VkCollection<Group>> GetAsync(GroupsGetParams @params,
+										bool skipAuthorization = false,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о заданном сообществе или о нескольких сообществах.
@@ -92,20 +99,25 @@ public interface IGroupsCategoryAsync
 	/// разделенных через запятую).
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов group.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getById
 	/// </remarks>
-	Task<ReadOnlyCollection<Group>> GetByIdAsync(IEnumerable<string> groupIds, string groupId, GroupsFields fields,
-												bool skipAuthorization = false);
+	Task<ReadOnlyCollection<Group>> GetByIdAsync(IEnumerable<string> groupIds,
+												string groupId,
+												GroupsFields fields,
+												bool skipAuthorization = false,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список участников сообщества.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает общее количество участников сообщества count и список
 	/// идентификаторов пользователей items.
@@ -120,7 +132,9 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getMembers
 	/// </remarks>
-	Task<VkCollection<User>> GetMembersAsync(GroupsGetMembersParams @params, bool skipAuthorization = false);
+	Task<VkCollection<User>> GetMembersAsync(GroupsGetMembersParams @params,
+											bool skipAuthorization = false,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о том, является ли пользователь участником сообщества.
@@ -141,6 +155,7 @@ public interface IGroupsCategoryAsync
 	/// (Флаг, может принимать значения 1 или 0).
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// возвращает <c> true </c> в случае, если пользователь с идентификатором user_id
 	/// является участником сообщества с
@@ -159,8 +174,11 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.isMember
 	/// </remarks>
-	Task<ReadOnlyCollection<GroupMember>> IsMemberAsync(string groupId, IEnumerable<long> userIds, bool? extended,
-														bool skipAuthorization = false);
+	Task<ReadOnlyCollection<GroupMember>> IsMemberAsync(string groupId,
+														IEnumerable<long> userIds,
+														bool? extended,
+														bool skipAuthorization = false,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о том, является ли пользователь участником сообщества.
@@ -180,6 +198,7 @@ public interface IGroupsCategoryAsync
 	/// (Флаг, может принимать значения 1 или 0).
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// возвращает <c> true </c> в случае, если пользователь с идентификатором user_id
 	/// является участником сообщества с
@@ -198,8 +217,11 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.isMember
 	/// </remarks>
-	Task<GroupMember> IsMemberAsync(string groupId, long userId, bool? extended = true,
-														bool skipAuthorization = false);
+	Task<GroupMember> IsMemberAsync(string groupId,
+									long userId,
+									bool? extended = true,
+									bool skipAuthorization = false,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о том, является ли пользователь участником сообщества.
@@ -213,12 +235,8 @@ public interface IGroupsCategoryAsync
 	/// Идентификатор пользователя. положительное число
 	/// (Положительное число).
 	/// </param>
-	/// <param name="extended">
-	/// 1  — вернуть ответ в расширенной форме. По умолчанию — 0. флаг, может принимать
-	/// значения 1 или 0
-	/// (Флаг, может принимать значения 1 или 0).
-	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// возвращает <c> true </c> в случае, если пользователь с идентификатором user_id
 	/// является участником сообщества с
@@ -237,20 +255,26 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.isMember
 	/// </remarks>
-	Task<bool> IsMemberAsync(string groupId, long userId, bool skipAuthorization = false);
+	Task<bool> IsMemberAsync(string groupId,
+							long userId,
+							bool skipAuthorization = false,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Осуществляет поиск сообществ по заданной подстроке.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов group.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.search
 	/// </remarks>
-	Task<VkCollection<Group>> SearchAsync(GroupsSearchParams @params, bool skipAuthorization = false);
+	Task<VkCollection<Group>> SearchAsync(GroupsSearchParams @params,
+										bool skipAuthorization = false,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Данный метод возвращает список приглашений в сообщества и встречи текущего
@@ -272,6 +296,7 @@ public interface IGroupsCategoryAsync
 	/// 0. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или
 	/// 0).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов сообществ с
 	/// дополнительным полем invited_by, содержащим
@@ -283,19 +308,24 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getInvites
 	/// </remarks>
-	Task<VkCollection<Group>> GetInvitesAsync(long? count, long? offset, bool? extended = null);
+	Task<VkCollection<Group>> GetInvitesAsync(long? count,
+											long? offset,
+											bool? extended = null,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет пользователя в черный список сообщества.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.banUser
 	/// </remarks>
-	Task<bool> BanUserAsync(GroupsBanUserParams @params);
+	Task<bool> BanUserAsync(GroupsBanUserParams @params,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список забаненных пользователей в сообществе.
@@ -329,6 +359,7 @@ public interface IGroupsCategoryAsync
 	/// разделенных через запятую).
 	/// </param>
 	/// <param name="ownerId"> целое число </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов user с дополнительным
 	/// полем ban_info.
@@ -351,8 +382,12 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getBanned
 	/// </remarks>
-	Task<VkCollection<GetBannedResult>> GetBannedAsync(long groupId, long? offset = null, long? count = null,
-														GroupsFields fields = null, long? ownerId = null);
+	Task<VkCollection<GetBannedResult>> GetBannedAsync(long groupId,
+														long? offset = null,
+														long? count = null,
+														GroupsFields fields = null,
+														long? ownerId = null,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Убирает пользователя из черного списка сообщества.
@@ -362,39 +397,29 @@ public interface IGroupsCategoryAsync
 	/// Идентификатор пользователя, которого нужно убрать из
 	/// черного списка
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> После успешного выполнения возвращает <c> true </c>. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.unbanUser
 	/// </remarks>
-	[Obsolete(ObsoleteText.UnbanUserAsync, true)]
-	Task<bool> UnbanUserAsync(long groupId, long userId);
-
-	/// <summary>
-	/// Убирает пользователя из черного списка сообщества.
-	/// </summary>
-	/// <param name="groupId"> Идентификатор сообщества </param>
-	/// <param name="userId">
-	/// Идентификатор пользователя, которого нужно убрать из
-	/// черного списка
-	/// </param>
-	/// <returns> После успешного выполнения возвращает <c> true </c>. </returns>
-	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/groups.unbanUser
-	/// </remarks>
-	Task<bool> UnbanAsync(long groupId, long userId);
+	Task<bool> UnbanAsync(long groupId,
+						long userId,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет назначить/разжаловать руководителя в сообществе или изменить уровень
 	/// его полномочий.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.editManager
 	/// </remarks>
-	Task<bool> EditManagerAsync(GroupsEditManagerParams @params);
+	Task<bool> EditManagerAsync(GroupsEditManagerParams @params,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получать данные, необходимые для отображения страницы редактирования
@@ -405,6 +430,7 @@ public interface IGroupsCategoryAsync
 	/// число, обязательный
 	/// параметр (Положительное число, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения метод вернет объект, содержащий данные
 	/// сообщества, которые позволят отобразить форму
@@ -413,19 +439,22 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getSettings
 	/// </remarks>
-	Task<GroupsEditParams> GetSettingsAsync(ulong groupId);
+	Task<GroupsEditParams> GetSettingsAsync(ulong groupId,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует сообщество.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успеха возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.edit
 	/// </remarks>
-	Task<bool> EditAsync(GroupsEditParams @params);
+	Task<bool> EditAsync(GroupsEditParams @params,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет редактировать информацию о месте группы.
@@ -438,13 +467,16 @@ public interface IGroupsCategoryAsync
 	/// отредактировать.
 	/// </param>
 	/// <param name="place"> Местоположение. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <remarks>
 	/// Для того, чтобы воспользоваться этим методом Вы должны быть администратором
 	/// группы.
 	/// Страница документации ВКонтакте https://vk.com/dev/groups.editPlace
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
-	Task<bool> EditPlaceAsync(long groupId, Place place = null);
+	Task<bool> EditPlaceAsync(long groupId,
+							Place place = null,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список пользователей, которые были приглашены в группу.
@@ -480,12 +512,17 @@ public interface IGroupsCategoryAsync
 	/// предложный – abl. По умолчанию nom.
 	/// строка (Строка).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getInvitedUsers
 	/// </remarks>
-	Task<VkCollection<User>> GetInvitedUsersAsync(long groupId, long? offset = null, long? count = null, UsersFields fields = null,
-												NameCase nameCase = null);
+	Task<VkCollection<User>> GetInvitedUsersAsync(long groupId,
+												long? offset = null,
+												long? count = null,
+												UsersFields fields = null,
+												NameCase? nameCase = null,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет приглашать друзей в группу.
@@ -500,17 +537,17 @@ public interface IGroupsCategoryAsync
 	/// положительное число,
 	/// обязательный параметр (Положительное число, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.invite
 	/// </remarks>
-	Task<bool> InviteAsync(long groupId, long userId);
+	Task<bool> InviteAsync(long groupId,
+							long userId,
+							CancellationToken token = default);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long)" />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Task<bool> InviteAsync(long groupId, long userId, long? captchaSid, string captchaKey);
 
 	/// <summary>
 	/// Позволяет добавлять ссылки в сообщество.
@@ -525,6 +562,7 @@ public interface IGroupsCategoryAsync
 	/// обязательный параметр).
 	/// </param>
 	/// <param name="text"> Текст ссылки строка (Строка). </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает объект со следующими полями:
 	/// id — идентификатор ссылки;
@@ -538,7 +576,10 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.addLink
 	/// </remarks>
-	Task<ExternalLink> AddLinkAsync(long groupId, Uri link, string text);
+	Task<ExternalLink> AddLinkAsync(long groupId,
+									Uri link,
+									string text,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет удалить ссылки из сообщества.
@@ -553,13 +594,16 @@ public interface IGroupsCategoryAsync
 	/// обязательный параметр
 	/// (Положительное число, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения метод возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.deleteLink
 	/// </remarks>
-	Task<bool> DeleteLinkAsync(long groupId, ulong linkId);
+	Task<bool> DeleteLinkAsync(long groupId,
+								ulong linkId,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет редактировать ссылки в сообществе.
@@ -575,13 +619,17 @@ public interface IGroupsCategoryAsync
 	/// число, обязательный параметр).
 	/// </param>
 	/// <param name="text"> Новое описание ссылки строка (Строка). </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного редактирования ссылки метод возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.editLink
 	/// </remarks>
-	Task<bool> EditLinkAsync(long groupId, ulong linkId, string text);
+	Task<bool> EditLinkAsync(long groupId,
+							ulong linkId,
+							string text,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет менять местоположение ссылки в списке.
@@ -601,13 +649,17 @@ public interface IGroupsCategoryAsync
 	/// – если ссылку нужно
 	/// разместить в начале списка. положительное число (Положительное число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнение метод возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.reorderLink
 	/// </remarks>
-	Task<bool> ReorderLinkAsync(long groupId, long linkId, long? after);
+	Task<bool> ReorderLinkAsync(long groupId,
+								long linkId,
+								long? after,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет исключить пользователя из группы или отклонить заявку на вступление.
@@ -617,13 +669,16 @@ public interface IGroupsCategoryAsync
 	/// пользователя.
 	/// </param>
 	/// <param name="userId"> Идентификатор пользователя, которого нужно исключить. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/groups.removeUser
 	/// </remarks>
-	Task<bool> RemoveUserAsync(long groupId, long userId);
+	Task<bool> RemoveUserAsync(long groupId,
+								long userId,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет одобрить заявку в группу от пользователя.
@@ -636,13 +691,16 @@ public interface IGroupsCategoryAsync
 	/// Идентификатор пользователя, заявку которого необходимо
 	/// одобрить.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/groups.approveRequest
 	/// </remarks>
-	Task<bool> ApproveRequestAsync(long groupId, long userId);
+	Task<bool> ApproveRequestAsync(long groupId,
+									long userId,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Создает новое сообщество.
@@ -674,14 +732,19 @@ public interface IGroupsCategoryAsync
 	/// Категория публичной страницы (только для type =
 	/// public).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает идентификатор созданного сообщества.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.create
 	/// </remarks>
-	Task<Group> CreateAsync(string title, string description = null, GroupType type = null, GroupSubType? subtype = null,
-							uint? publicCategory = null);
+	Task<Group> CreateAsync(string title,
+							string description = null,
+							GroupType? type = null,
+							GroupSubType? subtype = null,
+							uint? publicCategory = null,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список заявок на вступление в сообщество.
@@ -716,6 +779,7 @@ public interface IGroupsCategoryAsync
 	/// запятую (Список строк, разделенных
 	/// через запятую).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает список идентификаторов пользователей, отправивших заявки на
 	/// вступление в сообщество.
@@ -725,7 +789,11 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getRequests
 	/// </remarks>
-	Task<VkCollection<User>> GetRequestsAsync(long groupId, long? offset = null, long? count = null, UsersFields fields = null);
+	Task<VkCollection<User>> GetRequestsAsync(long groupId,
+											long? offset = null,
+											long? count = null,
+											UsersFields fields = null,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список сообществ выбранной категории каталога.
@@ -740,6 +808,7 @@ public interface IGroupsCategoryAsync
 	/// положительное число,
 	/// максимальное значение 99 (Положительное число, максимальное значение 99).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает список объектов сообществ в соответствии с выбранной категорией
 	/// каталога.
@@ -747,7 +816,9 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getCatalog
 	/// </remarks>
-	Task<VkCollection<Group>> GetCatalogAsync(ulong? categoryId = null, ulong? subcategoryId = null);
+	Task<VkCollection<Group>> GetCatalogAsync(ulong? categoryId = null,
+											ulong? subcategoryId = null,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список категорий для каталога сообществ.
@@ -765,6 +836,7 @@ public interface IGroupsCategoryAsync
 	/// доступен начиная с версии 5.37 (Флаг, может
 	/// принимать значения 1 или 0, по умолчанию 0, доступен начиная с версии 5.37).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает поле enabled (0 — каталог недоступен для
 	/// пользователя, 1 — каталог доступен),
@@ -783,7 +855,9 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getCatalogInfo
 	/// </remarks>
-	Task<GroupsCatalogInfo> GetCatalogInfoAsync(bool? extended = null, bool? subcategories = null);
+	Task<GroupsCatalogInfo> GetCatalogInfoAsync(bool? extended = null,
+												bool? subcategories = null,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет сервер для Callback API в сообщество.
@@ -792,6 +866,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="url"> URL сервера. </param>
 	/// <param name="title"> Название сервера. </param>
 	/// <param name="secretKey"> Секретный ключ. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор добавленного сервера в поле
 	/// server_id (integer).
@@ -799,20 +874,27 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.addCallbackServer
 	/// </remarks>
-	Task<long> AddCallbackServerAsync(ulong groupId, string url, string title, string secretKey = null);
+	Task<long> AddCallbackServerAsync(ulong groupId,
+									string url,
+									string title,
+									string secretKey = null,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет сервер для Callback API из сообщества.
 	/// </summary>
 	/// <param name="groupId"> Идентификатор сообщества. </param>
 	/// <param name="serverId"> идентификатор сервера, который нужно удалить. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.deleteCallbackServer
 	/// </remarks>
-	Task<bool> DeleteCallbackServerAsync(ulong groupId, ulong serverId);
+	Task<bool> DeleteCallbackServerAsync(ulong groupId,
+										ulong serverId,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует данные сервера для Callback API в сообществе.
@@ -825,19 +907,26 @@ public interface IGroupsCategoryAsync
 	/// <param name="url"> URL сервера. </param>
 	/// <param name="title"> Название сервера. </param>
 	/// <param name="secretKey"> Секретный ключ. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.editCallbackServer
 	/// </remarks>
-	Task<bool> EditCallbackServerAsync(ulong groupId, ulong serverId, string url, string title, string secretKey);
+	Task<bool> EditCallbackServerAsync(ulong groupId,
+										ulong serverId,
+										string url,
+										string title,
+										string secretKey,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить строку, необходимую для подтверждения адреса сервера в
 	/// Callback API.
 	/// </summary>
 	/// <param name="groupId"> Идентификатор сообщества. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает строку, которую необходимо использовать в качестве ответа на
 	/// уведомление с типом "confirmation"
@@ -849,7 +938,8 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.editCallbackServer
 	/// </remarks>
-	Task<string> GetCallbackConfirmationCodeAsync(ulong groupId);
+	Task<string> GetCallbackConfirmationCodeAsync(ulong groupId,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Получает информацию о серверах для Callback API в сообществе.
@@ -859,6 +949,7 @@ public interface IGroupsCategoryAsync
 	/// Идентификаторы серверов, данные о которых нужно получить.
 	/// По умолчанию возвращаются все серверы.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает число серверов в поле count (integer) и массив объектов items с
 	/// данными о серверах.
@@ -866,18 +957,23 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getCallbackServers
 	/// </remarks>
-	Task<VkCollection<CallbackServerItem>> GetCallbackServersAsync(ulong groupId, IEnumerable<ulong> serverIds = null);
+	Task<VkCollection<CallbackServerItem>> GetCallbackServersAsync(ulong groupId,
+																	IEnumerable<ulong> serverIds = null,
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить настройки уведомлений Callback API для сообщества.
 	/// </summary>
 	/// <param name="groupId"> Идентификатор сообщества. </param>
 	/// <param name="serverId"> Идентификатор сервера. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getCallbackSettings
 	/// </remarks>
-	Task<CallbackSettings> GetCallbackSettingsAsync(ulong groupId, ulong serverId);
+	Task<CallbackSettings> GetCallbackSettingsAsync(ulong groupId,
+													ulong serverId,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет задать настройки уведомлений о событиях в Callback API.
@@ -886,13 +982,15 @@ public interface IGroupsCategoryAsync
 	/// Параметры настройки уведомлений о событиях в Callback
 	/// API.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.setCallbackSettings
 	/// </remarks>
-	Task<bool> SetCallbackSettingsAsync(CallbackServerParams @params);
+	Task<bool> SetCallbackSettingsAsync(CallbackServerParams @params,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает данные для подключения к Bots Longpoll API.
@@ -900,6 +998,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="groupId">
 	/// Идентификатор сообщества. положительное число, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// key (string) — ключ;
@@ -909,7 +1008,8 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getLongPollServer
 	/// </remarks>
-	Task<LongPollServerResponse> GetLongPollServerAsync(ulong groupId);
+	Task<LongPollServerResponse> GetLongPollServerAsync(ulong groupId,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Выключает статус «онлайн» в сообществе.
@@ -917,13 +1017,15 @@ public interface IGroupsCategoryAsync
 	/// <param name="groupId">
 	/// Идентификатор сообщества. положительное число, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.disableOnline
 	/// </remarks>
-	Task<bool> DisableOnlineAsync(ulong groupId);
+	Task<bool> DisableOnlineAsync(ulong groupId,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Включает статус «онлайн» в сообществе.
@@ -931,25 +1033,29 @@ public interface IGroupsCategoryAsync
 	/// <param name="groupId">
 	/// Идентификатор сообщества. положительное число, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.enableOnline
 	/// </remarks>
-	Task<bool> EnableOnlineAsync(ulong groupId);
+	Task<bool> EnableOnlineAsync(ulong groupId,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращаем обновления событий группы
 	/// </summary>
 	/// <param name="params"> Параметры запроса к BotsLongPoll API </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Новые события в группе
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/bots_longpoll
 	/// </remarks>
-	Task<BotsLongPollHistoryResponse> GetBotsLongPollHistoryAsync(BotsLongPollHistoryParams @params);
+	Task<BotsLongPollHistoryResponse> GetBotsLongPollHistoryAsync(BotsLongPollHistoryParams @params,
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет добавить адрес в сообщество.
@@ -960,13 +1066,15 @@ public interface IGroupsCategoryAsync
 	/// <param name="params">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Данные о добавленном адресе сообщества
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.addAddress
 	/// </remarks>
-	Task<AddressResult> AddAddressAsync(AddAddressParams @params);
+	Task<AddressResult> AddAddressAsync(AddAddressParams @params,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет отредактировать адрес в сообществе.
@@ -977,13 +1085,15 @@ public interface IGroupsCategoryAsync
 	/// <param name="params">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Данные об адресе отредактированного сообщества
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.editAddress
 	/// </remarks>
-	Task<AddressResult> EditAddressAsync(EditAddressParams @params);
+	Task<AddressResult> EditAddressAsync(EditAddressParams @params,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет удалить адрес в сообществе.
@@ -994,13 +1104,16 @@ public interface IGroupsCategoryAsync
 	/// <param name="addressId">
 	/// Id адреса положительное число, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.deleteAddress
 	/// </remarks>
-	Task<bool> DeleteAddressAsync(ulong groupId, ulong addressId);
+	Task<bool> DeleteAddressAsync(ulong groupId,
+								ulong addressId,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Получить данные об адресах.
@@ -1008,13 +1121,15 @@ public interface IGroupsCategoryAsync
 	/// <param name="params">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Коллекция адресов сообщества
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getAddresses
 	/// </remarks>
-	Task<VkCollection<AddressResult>> GetAddressesAsync(GetAddressesParams @params);
+	Task<VkCollection<AddressResult>> GetAddressesAsync(GetAddressesParams @params,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Получает информацию о статусе «онлайн» в сообществе.
@@ -1022,6 +1137,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="groupId">
 	/// Идентификатор сообщества. положительное число, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, который содержит поля:
 	/// status — статус сообщества. Возможные значения:
@@ -1033,11 +1149,13 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getOnlineStatus
 	/// </remarks>
-	Task<OnlineStatus> GetOnlineStatusAsync(ulong groupId);
+	Task<OnlineStatus> GetOnlineStatusAsync(ulong groupId,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает настройки прав для ключа доступа сообщества.
 	/// </summary>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, который содержит поля:
 	/// mask (integer) — битовая маска ключа доступа;
@@ -1049,7 +1167,7 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getTokenPermissions
 	/// </remarks>
-	Task<TokenPermissionsResult> GetTokenPermissionsAsync();
+	Task<TokenPermissionsResult> GetTokenPermissionsAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Задаёт настройки для Bots Long Poll API в сообществе.
@@ -1057,13 +1175,15 @@ public interface IGroupsCategoryAsync
 	/// <param name="params">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.setLongPollSettings
 	/// </remarks>
-	Task<bool> SetLongPollSettingsAsync(SetLongPollSettingsParams @params);
+	Task<bool> SetLongPollSettingsAsync(SetLongPollSettingsParams @params,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Получает настройки Bots Longpoll API для сообщества.
@@ -1071,6 +1191,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="groupId">
 	/// Идентификатор сообщества. положительное число, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// is_enabled (boolean) — true, если Bots Longpoll включен в сообществе.
@@ -1121,5 +1242,122 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getLongPollSettings
 	/// </remarks>
-	Task<GetLongPollSettingsResult> GetLongPollSettingsAsync(ulong groupId);
+	Task<GetLongPollSettingsResult> GetLongPollSettingsAsync(ulong groupId,
+															CancellationToken token = default);
+
+	/// <summary>
+	/// Возвращает список тегов сообщества
+	/// </summary>
+	/// <param name="groupId">
+	/// Идентификатор сообщества. положительное число,
+	/// обязательный параметр
+	/// </param>
+	/// <param name="token">Токен отмены</param>
+	/// <returns> Массив объектов тэгов </returns>
+	Task<VkCollection<GroupTag>> GetTagListAsync(ulong groupId,
+												CancellationToken token = default);
+
+	/// <summary>
+	/// Устанавливает настройки сообщества
+	/// </summary>
+	/// <param name="params">
+	/// Параметры изменения настроек сообщества
+	/// </param>
+	/// <param name="token">Токен отмены</param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> SetSettingsAsync(GroupsSetSettingsParams @params,
+								CancellationToken token = default);
+
+	/// <summary>
+	/// Позволяет создать или отредактировать заметку о пользователе в рамках переписки
+	/// пользователя с сообществом
+	/// </summary>
+	/// <param name="params">
+	/// Параметры редактирования заметки о пользователе
+	/// </param>
+	/// <param name="token">Токен отмены</param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> SetUserNoteAsync(GroupsSetUserNoteParams @params,
+								CancellationToken token = default);
+
+	/// <summary>
+	/// Позволяет добавить новый тег в сообщество.
+	/// </summary>
+	/// <param name="params">
+	/// Параметры редактирования заметки о пользователе
+	/// </param>
+	/// <param name="token">Токен отмены</param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> TagAddAsync(GroupsTagAddParams @params,
+							CancellationToken token = default);
+
+	/// <summary>
+	/// Позволяет «привязывать» и «отвязывать» теги сообщества к беседам.
+	/// </summary>
+	/// /// <param name="groupId">
+	/// Идентификатор группы
+	/// </param>
+	/// /// <param name="tagId">
+	/// Идентификатор тега.
+	/// </param>
+	/// /// <param name="userId">
+	/// Идентификатор User
+	/// </param>
+	/// /// <param name="act">
+	/// Действие с тегом:
+	/// "bind" —  привязать.
+	/// "unbind" — отвязать.
+	/// </param>
+	/// <param name="token">Токен отмены</param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> TagBindAsync(ulong groupId,
+							ulong tagId,
+							ulong userId,
+							GroupTagAct act,
+							CancellationToken token = default);
+
+	/// <summary>
+	/// Позволяет удалить тег сообщества.
+	/// </summary>
+	/// /// <param name="groupId">
+	/// Идентификатор группы
+	/// </param>
+	/// /// <param name="tagId">
+	/// Идентификатор тега.
+	/// </param>
+	/// <param name="token">Токен отмены</param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> TagDeleteAsync(ulong groupId,
+							ulong tagId,
+							CancellationToken token = default);
+
+	/// <summary>
+	/// Позволяет переименовать существующий тег.
+	/// </summary>
+	/// /// <param name="groupId">
+	/// Идентификатор группы
+	/// </param>
+	/// /// <param name="tagId">
+	/// Идентификатор тега.
+	/// </param>
+	/// /// <param name="tagName">
+	/// Имя тега.
+	/// </param>
+	/// <param name="token">Токен отмены</param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> TagUpdateAsync(ulong groupId,
+							ulong tagId,
+							string tagName,
+							CancellationToken token = default);
+
+	/// <summary>
+	/// Позволяет добавить новый тег в сообщество.
+	/// </summary>
+	/// <param name="params">
+	/// Параметры редактирования заметки о пользователе
+	/// </param>
+	/// <param name="token">Токен отмены</param>
+	/// <returns> 1 в случае успеха </returns>
+	Task<bool> ToggleMarketAsync(GroupToggleMarketParams @params,
+								CancellationToken token = default);
 }

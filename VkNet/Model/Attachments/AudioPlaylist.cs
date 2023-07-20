@@ -2,10 +2,9 @@ using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Attachments;
+namespace VkNet.Model;
 
 /// <summary>
 /// Плейлист.
@@ -20,7 +19,6 @@ public class AudioPlaylist : MediaAttachment
 	/// Тип плейлиста.
 	/// </summary>
 	[JsonProperty("album_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AudioAlbumType AlbumType { get; set; }
 
 	/// <summary>

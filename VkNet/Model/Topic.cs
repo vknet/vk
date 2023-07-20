@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -23,12 +22,6 @@ public class Topic
 	[JsonProperty("title")]
 	public string Title { get; set; }
 
-	/// <summary>
-	/// Дата создания (в формате unixtime).
-	/// </summary>
-	[Obsolete(ObsoleteText.ObsoleteCyrillicProperty, true)]
-	[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
-	public DateTime? Сreated { get; set; }
 
 	/// <summary>
 	/// Дата создания (в формате unixtime).
@@ -36,12 +29,6 @@ public class Topic
 	[JsonProperty("created")]
 	[JsonConverter(converterType: typeof(UnixDateTimeConverter))]
 	public DateTime? Created { get; set; }
-
-	/// <summary>
-	/// Идентификатор пользователя, создавшего тему.
-	/// </summary>
-	[Obsolete(ObsoleteText.ObsoleteCyrillicProperty, true)]
-	public long СreatedBy { get; set; }
 
 	/// <summary>
 	/// Идентификатор пользователя, создавшего тему.

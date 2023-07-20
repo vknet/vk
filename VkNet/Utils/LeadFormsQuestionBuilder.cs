@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Abstractions.Utils;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
 
 namespace VkNet.Utils;
@@ -18,7 +18,7 @@ public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
 		_list.Add(new()
 		{
-			Type = question.ToString()
+			Type = question.ToString().ToSnakeCase()
 		});
 
 		return this;
@@ -29,7 +29,7 @@ public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
 		_list.Add(new()
 		{
-			Type = NonStandardQuestion.Input.ToString(),
+			Type = NonStandardQuestion.Input.ToString().ToSnakeCase(),
 			Label = label
 		});
 
@@ -41,7 +41,7 @@ public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
 		_list.Add(new()
 		{
-			Type = NonStandardQuestion.Select.ToString(),
+			Type = NonStandardQuestion.Select.ToString().ToSnakeCase(),
 			Key = key,
 			Label = label,
 			Options = options
@@ -55,7 +55,7 @@ public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
 		_list.Add(new()
 		{
-			Type = NonStandardQuestion.Radio.ToString(),
+			Type = NonStandardQuestion.Radio.ToString().ToSnakeCase(),
 			Label = label,
 			Options = options
 		});
@@ -68,7 +68,7 @@ public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
 		_list.Add(new()
 		{
-			Type = NonStandardQuestion.Checkbox.ToString(),
+			Type = NonStandardQuestion.Checkbox.ToString().ToSnakeCase(),
 			Key = key,
 			Label = label,
 			Options = options
@@ -82,7 +82,7 @@ public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
 		_list.Add(new()
 		{
-			Type = NonStandardQuestion.Textarea.ToString(),
+			Type = NonStandardQuestion.Textarea.ToString().ToSnakeCase(),
 			Label = label
 		});
 

@@ -1,9 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса LinkStats
@@ -27,7 +26,6 @@ public class LinkStatsParams
 	/// Единица времени для подсчета статистики.
 	/// </summary>
 	[JsonProperty(propertyName: "interval")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public LinkStatInterval Interval { get; set; }
 
 	/// <summary>

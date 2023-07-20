@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Model;
-using VkNet.Model.Results.Users;
 
 namespace VkNet.Utils.JsonConverter;
 

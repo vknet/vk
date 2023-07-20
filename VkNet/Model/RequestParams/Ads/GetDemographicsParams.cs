@@ -1,9 +1,8 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams.Ads;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса ads.getDemographics
@@ -24,7 +23,6 @@ public class GetDemographicsParams
 	/// обязательный параметр, строка
 	/// </summary>
 	[JsonProperty("ids_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public IdsType IdsType { get; set; }
 
 	/// <summary>

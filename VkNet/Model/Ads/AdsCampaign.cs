@@ -2,8 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -26,7 +25,6 @@ public class AdsCampaign
 	/// Тип кампании
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public CampaignType Type { get; set; }
 
 	/// <summary>

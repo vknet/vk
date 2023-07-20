@@ -1,0 +1,52 @@
+name: PR Check
+
+on:
+  pull_request_target: 
+    branches: [ develop ]
+
+
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log level"
+        required: true
+        default: "warning"
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    environment: VkNet
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 7.0.x
+        
+      - name: Test
+        run: dotnet test VkNet.Tests/VkNet.Tests.csproj -c Release -f net7.0
+      
+      - name: Send Telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: 'html'
+          disable_web_page_preview: true
+          message: |
+            <b>✅ Task Succeeded</b>
+            <code>Reason: PullRequest Build №: ${{ github.run_number }} Pull Request для VkNet был успешно собран!</code>
+            <b>Build queued by: ${{ github.triggering_actor }}</b> 
+            
+            https://github.com/${{ github.repository }}/commit/${{github.sha}}

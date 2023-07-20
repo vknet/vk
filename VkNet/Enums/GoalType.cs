@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums;
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums;
 
 /// <summary>
 /// Тип цели.
@@ -8,6 +10,7 @@ public enum GoalType
 	/// <summary>
 	/// Показы.
 	/// </summary>
+	[VkNetDefaultValue]
 	Cpc = 1,
 
 	/// <summary>

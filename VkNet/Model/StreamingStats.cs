@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -16,7 +15,6 @@ public class StreamingStats
 	/// Тип событий
 	/// </summary>
 	[JsonProperty(propertyName: "event_type")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public StreamingEventType EventType { get; set; }
 
 	/// <summary>

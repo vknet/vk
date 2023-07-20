@@ -15,7 +15,7 @@ public static class PerformanceActivator
 {
 	private delegate T ObjectActivator<out T>(params object[] args);
 
-	/// <inheritdoc cref="CreateInstance{TResult}(Func{ConstructorInfo, bool},object[])"/>
+	/// <inheritdoc cref="CreateInstance{TResult}(System.Func{System.Reflection.ConstructorInfo,bool}(System.Reflection.ConstructorInfo),object[])"/>
 	internal static TResult CreateInstance<TResult>(params object[] args)
 		where TResult : class => CreateInstance<TResult>(_ => true, args);
 

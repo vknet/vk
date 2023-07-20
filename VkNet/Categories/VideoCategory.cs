@@ -5,8 +5,6 @@ using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -59,7 +57,7 @@ public partial class VideoCategory : IVideoCategory
 	{
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.VideoId);
 
-		return _vk.Call("video.edit", new()
+		return _vk.Call<bool>("video.edit", new()
 		{
 			{
 				"owner_id", @params.OwnerId
@@ -106,7 +104,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.add", parameters);
+		return _vk.Call<long>("video.add", parameters);
 	}
 
 	/// <inheritdoc />
@@ -163,7 +161,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.delete", parameters);
+		return _vk.Call<bool>("video.delete", parameters);
 	}
 
 	/// <inheritdoc />
@@ -181,7 +179,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.restore", parameters);
+		return _vk.Call<bool>("video.restore", parameters);
 	}
 
 	/// <inheritdoc />
@@ -304,7 +302,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.editAlbum", parameters);
+		return _vk.Call<bool>("video.editAlbum", parameters);
 	}
 
 	/// <inheritdoc />
@@ -320,7 +318,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.deleteAlbum", parameters);
+		return _vk.Call<bool>("video.deleteAlbum", parameters);
 	}
 
 	/// <inheritdoc />
@@ -368,7 +366,7 @@ public partial class VideoCategory : IVideoCategory
 		VkErrors.ThrowIfNullOrEmpty(expr: () => @params.Message);
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.VideoId);
 
-		return _vk.Call("video.createComment", new()
+		return _vk.Call<long>("video.createComment", new()
 		{
 			{
 				"owner_id", @params.OwnerId
@@ -412,7 +410,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.deleteComment", parameters);
+		return _vk.Call<bool>("video.deleteComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -430,7 +428,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.restoreComment", parameters);
+		return _vk.Call<bool>("video.restoreComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -455,7 +453,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.editComment", parameters);
+		return _vk.Call<bool>("video.editComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -482,7 +480,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.report", parameters);
+		return _vk.Call<bool>("video.report", parameters);
 	}
 
 	/// <inheritdoc />
@@ -503,7 +501,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.reportComment", parameters);
+		return _vk.Call<bool>("video.reportComment", parameters);
 	}
 
 	/// <inheritdoc />
@@ -541,11 +539,11 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.reorderAlbums", parameters);
+		return _vk.Call<bool>("video.reorderAlbums", parameters);
 	}
 
 	/// <inheritdoc />
-	public bool ReorderVideos(VideoReorderVideosParams @params) => _vk.Call("video.reorderVideos", new()
+	public bool ReorderVideos(VideoReorderVideosParams @params) => _vk.Call<bool>("video.reorderVideos", new()
 	{
 		{
 			"target_id", @params.TargetId
@@ -626,7 +624,7 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.removeFromAlbum", parameters);
+		return _vk.Call<bool>("video.removeFromAlbum", parameters);
 	}
 
 	/// <inheritdoc />
@@ -709,6 +707,6 @@ public partial class VideoCategory : IVideoCategory
 			}
 		};
 
-		return _vk.Call("video.hideCatalogSection", parameters);
+		return _vk.Call<bool>("video.hideCatalogSection", parameters);
 	}
 }

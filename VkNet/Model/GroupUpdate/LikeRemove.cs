@@ -1,9 +1,8 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Utils.JsonConverter;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.GroupUpdate;
+namespace VkNet.Model;
 
 /// <summary>
 /// Событие о снятии отметке "Мне нравится"
@@ -20,7 +19,6 @@ public class LikeRemove : IGroupUpdate
 	/// <summary>
 	/// Тип материала.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	[JsonProperty("object_type")]
 	public LikeObjectType ObjectType { get; set; }
 

@@ -1,5 +1,5 @@
 using FluentAssertions;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

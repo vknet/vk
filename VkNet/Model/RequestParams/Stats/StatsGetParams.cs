@@ -2,7 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
@@ -50,7 +50,6 @@ public class StatsGetParams
 	/// Временные интервалы.
 	/// </summary>
 	[JsonProperty("interval")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public StateInterval Interval { get; set; }
 
 	/// <summary>
@@ -69,7 +68,6 @@ public class StatsGetParams
 	/// Фильтр для получения данных по конкретному блоку статистики сообщества.
 	/// </summary>
 	[JsonProperty("stats_groups")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public StatsGroups StatsGroups { get; set; }
 
 	/// <summary>

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Model;
-using VkNet.Model.Attachments;
 
 namespace VkNet.Utils.JsonConverter;
 

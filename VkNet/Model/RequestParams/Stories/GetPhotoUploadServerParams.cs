@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams.Stories;
+namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода stories.getPhotoUploadServer
@@ -43,7 +42,6 @@ public class GetPhotoUploadServerParams
 	/// строка
 	/// </summary>
 	[JsonProperty("link_text")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public StoryLinkText LinkText { get; set; }
 
 	/// <summary>

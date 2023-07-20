@@ -1,8 +1,7 @@
 ﻿using VkNet.Abstractions;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -87,7 +86,7 @@ public partial class AppsCategory : IAppsCategory
 	}
 
 	/// <inheritdoc />
-	public long SendRequest(AppSendRequestParams @params) => _vk.Call("apps.sendRequest", new()
+	public long SendRequest(AppSendRequestParams @params) => _vk.Call<long>("apps.sendRequest", new()
 	{
 		{
 			"user_id", @params.UserId
@@ -110,7 +109,7 @@ public partial class AppsCategory : IAppsCategory
 	});
 
 	/// <inheritdoc />
-	public bool DeleteAppRequests() => _vk.Call("apps.deleteAppRequests", VkParameters.Empty);
+	public bool DeleteAppRequests() => _vk.Call<bool>("apps.deleteAppRequests", VkParameters.Empty);
 
 	/// <inheritdoc />
 	public VkCollection<User> GetFriendsList(AppRequestType type
@@ -201,7 +200,7 @@ public partial class AppsCategory : IAppsCategory
 			}
 		};
 
-		return _vk.Call("apps.getScore", parameters);
+		return _vk.Call<long>("apps.getScore", parameters);
 	}
 
 	/// <inheritdoc />
@@ -223,7 +222,7 @@ public partial class AppsCategory : IAppsCategory
 		});
 
 	/// <inheritdoc />
-	public bool PromoHasActiveGift(ulong promoId, ulong? userId = null) => _vk.Call("apps.promoHasActiveGift",
+	public bool PromoHasActiveGift(ulong promoId, ulong? userId = null) => _vk.Call<bool>("apps.promoHasActiveGift",
 		new()
 		{
 			{
@@ -235,7 +234,7 @@ public partial class AppsCategory : IAppsCategory
 		});
 
 	/// <inheritdoc />
-	public bool PromoUseGift(ulong promoId, ulong? userId = null) => _vk.Call("apps.promoUseGift",
+	public bool PromoUseGift(ulong promoId, ulong? userId = null) => _vk.Call<bool>("apps.promoUseGift",
 		new()
 		{
 			{

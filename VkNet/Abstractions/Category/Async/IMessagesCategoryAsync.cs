@@ -5,12 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
-using VkNet.Model.RequestParams.Messages;
-using VkNet.Model.Results.Messages;
-using VkNet.Model.Results.Users;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -34,13 +30,16 @@ public interface IMessagesCategoryAsync
 	/// положительное число,
 	/// обязательный параметр (Положительное число, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.addChatUser
 	/// </remarks>
-	Task<bool> AddChatUserAsync(long chatId, long userId);
+	Task<bool> AddChatUserAsync(long chatId,
+								long userId,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет разрешить отправку сообщений от сообщества текущему пользователю.
@@ -51,6 +50,7 @@ public interface IMessagesCategoryAsync
 	/// Этот параметр можно использовать для идентификации пользователя.
 	/// Его значение будет возвращено в событии message_allow Callback API.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -58,7 +58,9 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте
 	/// http://vk.com/dev/messages.allowMessagesFromGroup
 	/// </remarks>
-	Task<bool> AllowMessagesFromGroupAsync(long groupId, string key);
+	Task<bool> AllowMessagesFromGroupAsync(long groupId,
+											string key,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Создаёт беседу с несколькими участниками.
@@ -71,13 +73,16 @@ public interface IMessagesCategoryAsync
 	/// параметр).
 	/// </param>
 	/// <param name="title"> Название беседы. строка (Строка). </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает  идентификатор созданного чата (chat_id).
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.createChat
 	/// </remarks>
-	Task<long> CreateChatAsync(IEnumerable<ulong> userIds, [NotNull] string title);
+	Task<long> CreateChatAsync(IEnumerable<ulong> userIds,
+								[NotNull] string title,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет сообщение.
@@ -97,14 +102,18 @@ public interface IMessagesCategoryAsync
 	/// сообщения прошло не более 24 часов ). флаг, может принимать значения 1 или 0,
 	/// по умолчанию
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1 для каждого удаленного сообщения.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.delete
 	/// </remarks>
-	Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
-												bool deleteForAll = false);
+	Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> messageIds,
+												bool? spam = null,
+												ulong? groupId = null,
+												bool deleteForAll = false,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет сообщение в беседе.
@@ -127,15 +136,18 @@ public interface IMessagesCategoryAsync
 	/// сообщения прошло не более 24 часов ). флаг, может принимать значения 1 или 0,
 	/// по умолчанию
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1 для каждого удаленного сообщения.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.delete
 	/// </remarks>
-	Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> conversationMessageIds, ulong peerId, bool? spam = null,
+	Task<IDictionary<ulong, bool>> DeleteAsync([NotNull] IEnumerable<ulong> conversationMessageIds,
+												ulong peerId, bool? spam = null,
 												ulong? groupId = null,
-												bool deleteForAll = false);
+												bool deleteForAll = false,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет удалить фотографию мультидиалога.
@@ -148,6 +160,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий следующие поля:
 	/// message_id — идентификатор отправленного системного сообщения;
@@ -156,12 +169,15 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteChatPhoto
 	/// </remarks>
-	Task<DeleteChatPhotoResult> DeleteChatPhotoAsync(ulong chatId, ulong? groupId = null);
+	Task<DeleteChatPhotoResult> DeleteChatPhotoAsync(ulong chatId,
+													ulong? groupId = null,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет запретить отправку сообщений от сообщества текущему пользователю.
 	/// </summary>
 	/// <param name="groupId"> Идентификатор сообщества. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -169,7 +185,8 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте
 	/// https://vk.com/dev/messages.denyMessagesFromGroup
 	/// </remarks>
-	Task<bool> DenyMessagesFromGroupAsync(long groupId);
+	Task<bool> DenyMessagesFromGroupAsync(long groupId,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет название беседы.
@@ -182,14 +199,16 @@ public interface IMessagesCategoryAsync
 	/// Новое название для беседы. строка, обязательный параметр (Строка, обязательный
 	/// параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.editChat
 	/// </remarks>
-	Task<bool> EditChatAsync(long chatId
-							, [NotNull] string title);
+	Task<bool> EditChatAsync(long chatId,
+							[NotNull] string title,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает сообщения по их идентификаторам.
@@ -214,6 +233,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в
 	/// поле count и массив объектов, описывающих  сообщения, в поле items.
@@ -221,15 +241,19 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getById
 	/// </remarks>
-	Task<VkCollection<Message>> GetByIdAsync([NotNull] IEnumerable<ulong> messageIds, IEnumerable<string> fields,
-											ulong? previewLength = null, bool? extended = null,
-											ulong? groupId = null);
+	Task<VkCollection<Message>> GetByIdAsync([NotNull] IEnumerable<ulong> messageIds,
+											IEnumerable<string> fields,
+											ulong? previewLength = null,
+											bool? extended = null,
+											ulong? groupId = null,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список найденных личных сообщений текущего пользователя по введенной
 	/// строке поиска.
 	/// </summary>
 	/// <param name="params"> Параметры запроса messages.search </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает  объектов , найденных в соответствии с
 	/// поисковым запросом '''q'''.
@@ -241,12 +265,14 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.search
 	/// </remarks>
-	Task<MessageSearchResult> SearchAsync(MessagesSearchParams @params);
+	Task<MessageSearchResult> SearchAsync(MessagesSearchParams @params,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Посылает личное сообщение.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращается идентификатор отправленного сообщения.
 	/// </returns>
@@ -256,12 +282,14 @@ public interface IMessagesCategoryAsync
 	/// содержащей Settings.Messages
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.send
 	/// </remarks>
-	Task<long> SendAsync(MessagesSendParams @params);
+	Task<long> SendAsync(MessagesSendParams @params,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Посылает личное сообщение.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращается идентификатор отправленного сообщения.
 	/// </returns>
@@ -271,12 +299,14 @@ public interface IMessagesCategoryAsync
 	/// содержащей Settings.Messages
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.send
 	/// </remarks>
-	Task<ReadOnlyCollection<MessagesSendResult>> SendToUserIdsAsync(MessagesSendParams @params);
+	Task<ReadOnlyCollection<MessagesSendResult>> SendToUserIdsAsync(MessagesSendParams @params,
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Посылает личное сообщение сразу нескольким адресатам (до 100 за 1 запрос).
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращается идентификатор отправленного сообщения.
 	/// </returns>
@@ -286,7 +316,8 @@ public interface IMessagesCategoryAsync
 	/// содержащей Settings.Messages
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.send
 	/// </remarks>
-	Task<ReadOnlyCollection<MessagesSendResult>> SendToPeerIdsAsync(MessagesSendParams @params);
+	Task<ReadOnlyCollection<MessagesSendResult>> SendToPeerIdsAsync(MessagesSendParams @params,
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает удаленное сообщение.
@@ -298,12 +329,15 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <remarks>
 	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
 	/// содержащей Settings.Messages
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.restore
 	/// </remarks>
-	Task<bool> RestoreAsync(ulong messageId, ulong? groupId = null);
+	Task<bool> RestoreAsync(ulong messageId,
+							ulong? groupId = null,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Помечает сообщения как прочитанные.
@@ -322,13 +356,18 @@ public interface IMessagesCategoryAsync
 	/// пользователя).
 	/// </param>
 	/// <param name="markConversationAsRead">Пометить обсуждение как прочитанное</param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsRead
 	/// </remarks>
-	Task<bool> MarkAsReadAsync(string peerId, long? startMessageId = null, long? groupId = null, bool? markConversationAsRead = null);
+	Task<bool> MarkAsReadAsync(string peerId,
+								long? startMessageId = null,
+								long? groupId = null,
+								bool? markConversationAsRead = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет статус набора текста пользователем в диалоге.
@@ -344,6 +383,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает true, false в противном случае.
 	/// Текст «N набирает сообщение...» отображается в течение 10 секунд после вызова
@@ -355,7 +395,33 @@ public interface IMessagesCategoryAsync
 	/// содержащей Settings.Messages
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.setActivity
 	/// </remarks>
-	Task<bool> SetActivityAsync(string userId, MessageActivityType type, long? peerId = null, ulong? groupId = null);
+	Task<bool> SetActivityAsync(string userId,
+								MessageActivityType type,
+								long? peerId = null,
+								ulong? groupId = null,
+								CancellationToken token = default);
+
+	/// <summary>
+	/// Изменяет статус набора текста пользователем в диалоге.
+	/// </summary>
+	/// <param name="memberId"> Идентификатор пользователя </param>
+	/// <param name="peerId">
+	/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для
+	/// сообщества: -id
+	/// сообщества.
+	/// </param>
+	/// <param name="role"> На данный момент только одна: admin </param>
+	/// <param name="token">Токен отмены</param>
+	/// <returns>
+	/// После успешного выполнения возвращает true, false
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/messages.setMemberRole
+	/// </remarks>
+	Task<bool> SetMemberRoleAsync(string role,
+								long peerId,
+								ulong memberId,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает текущий статус и дату последней активности указанного пользователя.
@@ -365,6 +431,7 @@ public interface IMessagesCategoryAsync
 	/// требуется получить. целое
 	/// число, обязательный параметр (Целое число, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, содержащий следующие поля:
 	/// online — текущий статус пользователя (1 — в сети, 0 — не в сети);
@@ -373,7 +440,8 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getLastActivity
 	/// </remarks>
-	Task<LastActivity> GetLastActivityAsync(long userId);
+	Task<LastActivity> GetLastActivityAsync(long userId,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Gets the chat.
@@ -381,6 +449,7 @@ public interface IMessagesCategoryAsync
 	/// <param name="chatId"> The chat identifier. </param>
 	/// <param name="fields"> The fields. </param>
 	/// <param name="nameCase"> The name case. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект (или список объектов)
 	/// мультидиалога.
@@ -388,7 +457,10 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/messages.getChat
 	/// </remarks>
-	Task<Chat> GetChatAsync(long chatId, ProfileFields fields = null, NameCase nameCase = null);
+	Task<Chat> GetChatAsync(long chatId,
+							ProfileFields fields = null,
+							NameCase? nameCase = null,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о беседе.
@@ -415,6 +487,7 @@ public interface IMessagesCategoryAsync
 	/// предложный – abl. По умолчанию nom.
 	/// строка (Строка).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект (или список объектов)
 	/// мультидиалога.
@@ -429,24 +502,31 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getChat
 	/// </remarks>
-	Task<ReadOnlyCollection<Chat>> GetChatAsync(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null);
+	Task<ReadOnlyCollection<Chat>> GetChatAsync(IEnumerable<long> chatIds,
+												ProfileFields fields = null,
+												NameCase? nameCase = null,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Получает данные для превью чата с приглашением по ссылке.
 	/// </summary>
 	/// <param name="link"> Ссылка-приглашение. </param>
 	/// <param name="fields"> Список полей профилей, данные о которых нужно получить. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> Возвращает объект представляющий описание чата </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/messages.getChatPreview
 	/// </remarks>
-	Task<ChatPreview> GetChatPreviewAsync(string link, ProfileFields fields);
+	Task<ChatPreview> GetChatPreviewAsync(string link,
+										ProfileFields fields,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает историю сообщений текущего пользователя с указанным пользователя или
 	/// групповой беседы.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает историю сообщений с указанным пользователем или из
 	/// указанной беседы
@@ -456,7 +536,8 @@ public interface IMessagesCategoryAsync
 	/// содержащей Settings.Messages
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getHistory
 	/// </remarks>
-	Task<MessageGetHistoryObject> GetHistoryAsync(MessagesGetHistoryParams @params);
+	Task<MessageGetHistoryObject> GetHistoryAsync(MessagesGetHistoryParams @params,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Исключает из мультидиалога пользователя, если текущий пользователь был
@@ -475,13 +556,17 @@ public interface IMessagesCategoryAsync
 	/// — идентификатор сообщества со знаком «минус». целое число, доступен начиная с
 	/// версии 5.81
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.removeChatUser
 	/// </remarks>
-	Task<bool> RemoveChatUserAsync(ulong chatId, long? userId = null, long? memberId = null);
+	Task<bool> RemoveChatUserAsync(ulong chatId,
+									long? userId = null,
+									long? memberId = null,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает данные, необходимые для подключения к Long Poll серверу.
@@ -499,6 +584,7 @@ public interface IMessagesCategoryAsync
 	/// <param name="groupId">
 	/// Айди группы, от которой получать данные
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, с помощью которого можно подключиться к серверу быстрых
 	/// сообщений для мгновенного
@@ -509,7 +595,10 @@ public interface IMessagesCategoryAsync
 	/// содержащей Settings.Messages
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollServer
 	/// </remarks>
-	Task<LongPollServerResponse> GetLongPollServerAsync(bool needPts = false, uint lpVersion = 2, ulong? groupId = null);
+	Task<LongPollServerResponse> GetLongPollServerAsync(bool needPts = false,
+														uint lpVersion = 2,
+														ulong? groupId = null,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает обновления в личных сообщениях пользователя.
@@ -524,12 +613,14 @@ public interface IMessagesCategoryAsync
 	/// Параметры запроса к LongPool серверу
 	/// MessagesGetLongPollHistoryParams
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <remarks>
 	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
 	/// содержащей Settings.Messages
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollHistory
 	/// </remarks>
-	Task<LongPollHistoryResponse> GetLongPollHistoryAsync(MessagesGetLongPollHistoryParams @params);
+	Task<LongPollHistoryResponse> GetLongPollHistoryAsync(MessagesGetLongPollHistoryParams @params,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет установить фотографию мультидиалога, загруженную с помощью метода
@@ -542,6 +633,7 @@ public interface IMessagesCategoryAsync
 	/// обязательный параметр (Строка,
 	/// обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий следующие поля:
 	/// message_id — идентификатор отправленного системного сообщения;
@@ -550,7 +642,8 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.setChatPhoto
 	/// </remarks>
-	Task<long> SetChatPhotoAsync(string file);
+	Task<long> SetChatPhotoAsync(string file,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Помечает сообщения как важные либо снимает отметку.
@@ -565,18 +658,22 @@ public interface IMessagesCategoryAsync
 	/// &#39;0&#39;&#39;,
 	/// если необходимо снять пометку.положительное число (Положительное число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает список идентификаторов успешно помеченных сообщений.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsImportant
 	/// </remarks>
-	Task<ReadOnlyCollection<long>> MarkAsImportantAsync([NotNull] IEnumerable<long> messageIds, bool important = true);
+	Task<ReadOnlyCollection<long>> MarkAsImportantAsync([NotNull] IEnumerable<long> messageIds,
+														bool important = true,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Отправляет стикер.
 	/// </summary>
 	/// <param name="parameters"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор отправленного сообщения
 	/// (mid).
@@ -584,12 +681,14 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.sendSticker
 	/// </remarks>
-	Task<long> SendStickerAsync(MessagesSendStickerParams parameters);
+	Task<long> SendStickerAsync(MessagesSendStickerParams parameters,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает материалы диалога или беседы..
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов photo, video, audio или
 	/// doc, в зависимости от значения
@@ -606,7 +705,8 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте
 	/// http://vk.com/dev/messages.getHistoryAttachments
 	/// </remarks>
-	Task<ReadOnlyCollection<HistoryAttachment>> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params);
+	Task<GetHistoryAttachmentsResult> GetHistoryAttachmentsAsync(MessagesGetHistoryAttachmentsParams @params,
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Получает ссылку для приглашения пользователя в беседу.
@@ -616,6 +716,7 @@ public interface IMessagesCategoryAsync
 	/// 1 — сгенерировать новую ссылку, сбросив предыдущую.
 	/// 0 — получить предыдущую ссылку.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект с единственным полем link (string), которое содержит ссылку
 	/// для приглашения в беседу.
@@ -623,7 +724,9 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getInviteLink
 	/// </remarks>
-	Task<string> GetInviteLinkAsync(ulong peerId, bool reset);
+	Task<string> GetInviteLinkAsync(ulong peerId,
+									bool reset,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о том, разрешена ли отправка сообщений от сообщества
@@ -631,6 +734,7 @@ public interface IMessagesCategoryAsync
 	/// </summary>
 	/// <param name="groupId"> Идентификатор сообщества. </param>
 	/// <param name="userId"> Идентификатор пользователя. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект с единственным полем is_allowed (integer, [0,1]). Если
 	/// отправка сообщений разрешена, поле
@@ -640,19 +744,23 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте
 	/// http://vk.com/dev/messages.isMessagesFromGroupAllowed
 	/// </remarks>
-	Task<bool> IsMessagesFromGroupAllowedAsync(ulong groupId, ulong userId);
+	Task<bool> IsMessagesFromGroupAllowedAsync(ulong groupId,
+												ulong userId,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет присоединиться к чату по ссылке-приглашению.
 	/// </summary>
 	/// <param name="link"> Ссылка-приглашение. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает идентификатор чата в поле chat_id.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.joinChatByInviteLink
 	/// </remarks>
-	Task<long> JoinChatByInviteLinkAsync(string link);
+	Task<long> JoinChatByInviteLinkAsync(string link,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Помечает беседу как отвеченную либо снимает отметку.
@@ -669,6 +777,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -676,7 +785,10 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте
 	/// http://vk.com/dev/messages.markAsAnsweredConversation
 	/// </remarks>
-	Task<bool> MarkAsAnsweredConversationAsync(long peerId, bool? answered = null, ulong? groupId = null);
+	Task<bool> MarkAsAnsweredConversationAsync(long peerId,
+												bool? answered = null,
+												ulong? groupId = null,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Помечает беседу как важную либо снимает отметку.
@@ -691,6 +803,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -698,7 +811,10 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте
 	/// http://vk.com/dev/messages.markAsImportantConversation
 	/// </remarks>
-	Task<bool> MarkAsImportantConversationAsync(long peerId, bool? important = null, ulong? groupId = null);
+	Task<bool> MarkAsImportantConversationAsync(long peerId,
+												bool? important = null,
+												ulong? groupId = null,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует сообщение.
@@ -706,13 +822,15 @@ public interface IMessagesCategoryAsync
 	/// <param name="params">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.edit
 	/// </remarks>
-	Task<bool> EditAsync(MessageEditParams @params);
+	Task<bool> EditAsync(MessageEditParams @params,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет беседу.
@@ -731,13 +849,17 @@ public interface IMessagesCategoryAsync
 	/// <param name = "groupId">
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает поле last_deleted_id, содержащее идентификатор последнего удалённого сообщения в переписке.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteConversation
 	/// </remarks>
-	Task<ulong> DeleteConversationAsync(long? userId, long? peerId = null, ulong? groupId = null);
+	Task<ulong> DeleteConversationAsync(long? userId,
+										long? peerId = null,
+										ulong? groupId = null,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить беседу по её идентификатору.
@@ -763,6 +885,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает общее число результатов в поле count (integer) и массив объектов
 	/// бесед в поле items.
@@ -770,8 +893,11 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversationsById
 	/// </remarks>
-	Task<ConversationResult> GetConversationsByIdAsync(IEnumerable<long> peerIds, IEnumerable<string> fields = null,
-														bool? extended = null, ulong? groupId = null);
+	Task<ConversationResult> GetConversationsByIdAsync(IEnumerable<long> peerIds,
+														IEnumerable<string> fields = null,
+														bool? extended = null,
+														ulong? groupId = null,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список бесед пользователя.
@@ -779,6 +905,7 @@ public interface IMessagesCategoryAsync
 	/// <param name="getConversationsParams">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// count
@@ -794,7 +921,8 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getConversations
 	/// </remarks>
-	Task<GetConversationsResult> GetConversationsAsync(GetConversationsParams getConversationsParams);
+	Task<GetConversationsResult> GetConversationsAsync(GetConversationsParams getConversationsParams,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить список участников беседы.
@@ -817,6 +945,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объет, который содержит следующие поля:
 	/// count
@@ -833,8 +962,10 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте
 	/// http://vk.com/dev/messages.getConversationMembers
 	/// </remarks>
-	Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId, IEnumerable<string> fields = null,
-																	ulong? groupId = null);
+	Task<GetConversationMembersResult> GetConversationMembersAsync(long peerId,
+																	IEnumerable<string> fields = null,
+																	ulong? groupId = null,
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает сообщения по их идентификаторам в рамках беседы.
@@ -864,6 +995,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в
 	/// поле count и массив объектов, описывающих  сообщения, в поле items.
@@ -872,9 +1004,12 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте
 	/// http://vk.com/dev/messages.getByConversationMessageId
 	/// </remarks>
-	Task<GetByConversationMessageIdResult> GetByConversationMessageIdAsync(long peerId, [NotNull] IEnumerable<ulong> conversationMessageIds,
-																			IEnumerable<string> fields, bool? extended = null,
-																			ulong? groupId = null);
+	Task<GetByConversationMessageIdResult> GetByConversationMessageIdAsync(long peerId,
+																			[NotNull] IEnumerable<ulong> conversationMessageIds,
+																			IEnumerable<string> fields,
+																			bool? extended = null,
+																			ulong? groupId = null,
+																			CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет искать диалоги.
@@ -897,6 +1032,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает общее число результатов в поле count (integer) и массив объектов
 	/// диалогов в поле items.
@@ -904,8 +1040,12 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.searchConversations
 	/// </remarks>
-	Task<SearchConversationsResult> SearchConversationsAsync(string q, IEnumerable<string> fields, ulong? count = null,
-															bool? extended = null, ulong? groupId = null);
+	Task<SearchConversationsResult> SearchConversationsAsync(string q,
+															IEnumerable<string> fields,
+															ulong? count = null,
+															bool? extended = null,
+															ulong? groupId = null,
+															CancellationToken token = default);
 
 	/// <summary>
 	/// Закрепляет сообщение.
@@ -924,13 +1064,17 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщения, которое нужно закрепить. положительное число
 	/// </param>
 	/// <param name="conversationMessageId"></param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект закрепленного сообщения.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.pin
 	/// </remarks>
-	Task<PinnedMessage> PinAsync(long peerId, ulong? messageId = null, ulong? conversationMessageId = null);
+	Task<PinnedMessage> PinAsync(long peerId,
+								ulong? messageId = null,
+								ulong? conversationMessageId = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Открепляет сообщение.
@@ -949,13 +1093,16 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.unpin
 	/// </remarks>
-	Task<bool> UnpinAsync(long peerId, ulong? groupId = null);
+	Task<bool> UnpinAsync(long peerId,
+						ulong? groupId = null,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список важных сообщений пользователя.
@@ -963,12 +1110,14 @@ public interface IMessagesCategoryAsync
 	/// <param name="getImportantMessagesParams">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getImportantMessages
 	/// </remarks>
-	Task<GetImportantMessagesResult> GetImportantMessagesAsync(GetImportantMessagesParams getImportantMessagesParams);
+	Task<GetImportantMessagesResult> GetImportantMessagesAsync(GetImportantMessagesParams getImportantMessagesParams,
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о недавних звонках.
@@ -989,6 +1138,7 @@ public interface IMessagesCategoryAsync
 	/// 1 — возвращать дополнительные поля для пользователей и сообществ. флаг, может
 	/// принимать значения 1 или 0
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// count
@@ -1009,8 +1159,11 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getRecentCalls
 	/// </remarks>
-	Task<GetRecentCallsResult> GetRecentCallsAsync(IEnumerable<string> fields, ulong? count = null, ulong? startMessageId = null,
-													bool? extended = null);
+	Task<GetRecentCallsResult> GetRecentCallsAsync(IEnumerable<string> fields,
+													ulong? count = null,
+													ulong? startMessageId = null,
+													bool? extended = null,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Отправляет событие с действием, которое произойдет при нажатии на callback-кнопку.
@@ -1019,8 +1172,13 @@ public interface IMessagesCategoryAsync
 	/// <param name="userId">идентификатор пользователя</param>
 	/// <param name="peerId">идентификатор диалога со стороны сообщества</param>
 	/// <param name="eventData">объект действия, которое должно произойти после нажатия на кнопку</param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns></returns>
-	Task<bool> SendMessageEventAnswerAsync(string eventId, long userId, long peerId, EventData eventData = null);
+	Task<bool> SendMessageEventAnswerAsync(string eventId,
+											long userId,
+											long peerId,
+											EventData eventData = null,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Метод отдает пользователей, которые подписались на определенные интенты.
@@ -1043,7 +1201,8 @@ public interface IMessagesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getIntentUsers
 	/// </remarks>
-	Task<GetIntentUsersResult> GetIntentUsersAsync(MessagesGetIntentUsersParams getIntentUsersParams, CancellationToken token);
+	Task<GetIntentUsersResult> GetIntentUsersAsync(MessagesGetIntentUsersParams getIntentUsersParams,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Помечает диалог пользователя непрочитанным.
@@ -1052,10 +1211,12 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для
 	/// сообщества: -id сообщества.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает true.
 	/// </returns>
-	Task<bool> MarkAsUnreadConversationAsync(long peerId);
+	Task<bool> MarkAsUnreadConversationAsync(long peerId,
+											CancellationToken token = default);
 
 	#region Obsoleted
 
@@ -1066,6 +1227,7 @@ public interface IMessagesCategoryAsync
 	/// <param name="query"> Подстрока, по которой будет производиться поиск. </param>
 	/// <param name="limit"> Количество пользователей которое нужно вернуть. </param>
 	/// <param name="fields"> Поля профилей собеседников, которые необходимо вернуть. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В результате выполнения данного метода будет возвращён массив объектов
 	/// профилей, бесед и email.
@@ -1080,80 +1242,18 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.searchDialogs
 	/// </remarks>
 	[Obsolete(ObsoleteText.MessageSearchDialogs)]
-	Task<SearchDialogsResponse> SearchDialogsAsync(string query, ProfileFields fields = null, uint? limit = null);
+	Task<SearchDialogsResponse> SearchDialogsAsync(string query,
+													ProfileFields fields = null,
+													uint? limit = null,
+													CancellationToken token = default);
 
-	/// <summary>
-	/// Удаляет все личные сообщения в диалоге.
-	/// </summary>
-	/// <param name="userId">
-	/// Идентификатор пользователя.
-	/// Если требуется очистить историю беседы, используйте peer_id.
-	/// </param>
-	/// <param name="peerId">
-	/// Идентификатор назначения.
-	/// Для групповой беседы: 2000000000 + id беседы.
-	/// Для сообщества: -id сообщества.
-	/// </param>
-	/// <param name="offset">
-	/// Смещение, начиная с которого нужно удалить переписку (по умолчанию удаляются
-	/// все сообщения,
-	/// начиная с первого).
-	/// </param>
-	/// <param name="count">
-	/// Как много сообщений нужно удалить. Обратите внимание что на метод наложено
-	/// ограничение, за один вызов
-	/// нельзя удалить больше 10000 сообщений, поэтому если сообщений в переписке
-	/// больше - метод нужно вызывать несколько
-	/// раз.
-	/// </param>
-	/// <returns> Признак удалось ли удалить сообщения. </returns>
-	/// <remarks>
-	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
-	/// содержащей Settings.Messages
-	/// Страница документации ВКонтакте http://vk.com/dev/messages.deleteDialog
-	/// </remarks>
-	[Obsolete(ObsoleteText.MessageDeleteDialog, true)]
-	Task<ulong> DeleteDialogAsync(long? userId, long? peerId = null, uint? offset = null, uint? count = null);
-
-	/// <summary>
-	/// Помечает диалог как отвеченный либо снимает отметку.
-	/// </summary>
-	/// <param name="peerId"> Идентификатор диалога </param>
-	/// <param name="answered"> флаг, может принимать значения 1 или 0, по умолчанию 1 </param>
-	/// <returns>
-	/// После успешного выполнения возвращает 1.
-	/// </returns>
-	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/messages.markAsAnsweredDialog
-	/// </remarks>
-	[Obsolete(ObsoleteText.MessageMarkAsAnsweredDialog, true)]
-	Task<bool> MarkAsAnsweredDialogAsync(long peerId, bool answered = true);
-
-	/// <summary>
-	/// Помечает диалог как важный либо снимает отметку.
-	/// </summary>
-	/// <param name="peerId"> Идентификатор диалога </param>
-	/// <param name="important">
-	/// <c> true </c>, если сообщения необходимо пометить, как важные;
-	/// <c> false </c>, если необходимо снять пометку.положительное число
-	/// (Положительное
-	/// число).
-	/// </param>
-	/// <returns>
-	/// После успешного выполнения возвращает <c> true </c>.
-	/// </returns>
-	/// <remarks>
-	/// Страница документации ВКонтакте
-	/// http://vk.com/dev/messages.markAsImportantDialog
-	/// </remarks>
-	[Obsolete(ObsoleteText.MessageMarkAsImportantDialog, true)]
-	Task<bool> MarkAsImportantDialogAsync(long peerId, bool important = true);
 
 	/// <summary>
 	/// Возвращает список входящих либо исходящих личных сообщений текущего
 	/// пользователя.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> Список сообщений, удовлетворяющий условиям фильтрации. </returns>
 	/// <remarks>
 	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
@@ -1161,7 +1261,8 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.get
 	/// </remarks>
 	[Obsolete(ObsoleteText.MessageGet)]
-	Task<MessagesGetObject> GetAsync(MessagesGetParams @params);
+	Task<MessagesGetObject> GetAsync(MessagesGetParams @params,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить список пользователей мультидиалога по его id.
@@ -1188,6 +1289,7 @@ public interface IMessagesCategoryAsync
 	/// предложный – abl. По умолчанию nom.
 	/// строка (Строка).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список идентификаторов участников беседы.
 	/// Если был задан параметр fields, возвращает список объектов пользователей с
@@ -1198,7 +1300,10 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
 	/// </remarks>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
-	Task<GetChatUsers> GetChatUsersAsync(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+	Task<GetChatUsers> GetChatUsersAsync(IEnumerable<long> chatIds,
+										UsersFields fields,
+										NameCase? nameCase,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет получить список пользователей мультидиалога по его id.
@@ -1208,6 +1313,7 @@ public interface IMessagesCategoryAsync
 	/// чисел, разделенных
 	/// запятыми).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список идентификаторов участников беседы.
 	/// </returns>
@@ -1215,15 +1321,18 @@ public interface IMessagesCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getChatUsers
 	/// </remarks>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
-	Task<ReadOnlyCollection<long>> GetChatUsersAsync(IEnumerable<long> chatIds);
+	Task<ReadOnlyCollection<long>> GetChatUsersAsync(IEnumerable<long> chatIds,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список диалогов аккаунта
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns> В случае успеха возвращает список диалогов пользователя </returns>
 	[Obsolete(ObsoleteText.MessageGet)]
-	Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params);
+	Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params,
+											CancellationToken token = default);
 
 	#endregion
 }

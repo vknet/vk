@@ -1,3 +1,5 @@
+using System.Threading;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Abstractions.Utils;
 using VkNet.Model;
@@ -18,7 +20,7 @@ public sealed class ImplicitFlowLoginForm : AbstractAuthorizationForm
 	public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.LoginPassword;
 
 	/// <inheritdoc />
-	protected override void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams)
+	protected override Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token = default)
 	{
 		if (form.Fields.ContainsKey(AuthorizationFormFields.Email))
 		{
@@ -30,11 +32,13 @@ public sealed class ImplicitFlowLoginForm : AbstractAuthorizationForm
 			form.Fields[AuthorizationFormFields.Password] = authParams.Password;
 		}
 
-		form.Headers = new System.Collections.Generic.Dictionary<string, string>
+		form.Headers = new()
 		{
 			{ "content-type", "application/x-www-form-urlencoded" },
 			{ "origin", "https://oauth.vk.com" },
 			{ "referer", "https://oauth.vk.com/" }
 		};
+
+		return Task.CompletedTask;
 	}
 }

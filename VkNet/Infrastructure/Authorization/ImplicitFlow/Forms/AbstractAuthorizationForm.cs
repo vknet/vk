@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Abstractions.Utils;
 using VkNet.Exception;
@@ -25,14 +26,14 @@ public abstract class AbstractAuthorizationForm : IAuthorizationForm
 	public abstract ImplicitFlowPageType GetPageType();
 
 	/// <inheritdoc />
-	public async Task<AuthorizationFormResult> ExecuteAsync(Uri url, IApiAuthParams authParams)
+	public async Task<AuthorizationFormResult> ExecuteAsync(Uri url, IApiAuthParams authParams, CancellationToken token = default)
 	{
-		var form = await _htmlParser.GetFormAsync(url)
+		var form = await _htmlParser.GetFormAsync(url, token)
 			.ConfigureAwait(false);
 
-		FillFormFields(form, authParams);
-
-		var response = await _restClient.PostAsync(new(form.Action), form.Fields, Encoding.UTF8, form.Headers)
+		await FillFormFieldsAsync(form, authParams, token);
+		token.ThrowIfCancellationRequested();
+		var response = await _restClient.PostAsync(new(form.Action), form.Fields, Encoding.UTF8, form.Headers, token)
 			.ConfigureAwait(false);
 
 		if (!response.IsSuccess)
@@ -42,8 +43,7 @@ public abstract class AbstractAuthorizationForm : IAuthorizationForm
 
 		return new()
 		{
-			RequestUrl = response.RequestUri,
-			ResponseUrl = response.ResponseUri
+			RequestUrl = response.RequestUri
 		};
 	}
 
@@ -52,5 +52,6 @@ public abstract class AbstractAuthorizationForm : IAuthorizationForm
 	/// </summary>
 	/// <param name="form"> Форма </param>
 	/// <param name="authParams">Параметры авторизации.</param>
-	protected abstract void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams);
+	/// <param name="token">Токен отмены</param>
+	protected abstract Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token = default);
 }

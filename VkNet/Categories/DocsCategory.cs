@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,10 +6,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Infrastructure;
 using VkNet.Model;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -107,14 +105,9 @@ public partial class DocsCategory : IDocsCategory
 		return _vk.Call<UploadServerInfo>("docs.getWallUploadServer", parameters);
 	}
 
-	/// <inheritdoc />
-	[Pure]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
-												string captchaKey = null) => Save(file, title, tags);
 
 	/// <inheritdoc />
-	public ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null)
+	public ReadOnlyCollection<Attachment> Save(string file, string title = null, string tags = null)
 	{
 		VkErrors.ThrowIfNullOrEmpty(() => title);
 
@@ -207,14 +200,10 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.delete", parameters);
+		return _vk.Call<bool>("docs.delete", parameters);
 	}
 
-	/// <inheritdoc />
-	[Pure]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long Add(long ownerId, long docId, string accessKey = null, long? captchaSid = null, string captchaKey = null) =>
-		Add(ownerId, docId, accessKey);
+
 
 	/// <inheritdoc />
 	public long Add(long ownerId, long docId, string accessKey = null)
@@ -235,7 +224,7 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.add", parameters);
+		return _vk.Call<long>("docs.add", parameters);
 	}
 
 	/// <inheritdoc />
@@ -292,11 +281,11 @@ public partial class DocsCategory : IDocsCategory
 			}
 		};
 
-		return _vk.Call("docs.edit", parameters);
+		return _vk.Call<bool>("docs.edit", parameters);
 	}
 
 	/// <inheritdoc />
-	public UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType type = null)
+	public UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType? type = null)
 	{
 		var parameters = new VkParameters
 		{

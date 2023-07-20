@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.RequestParams.Notes;
+namespace VkNet.Model;
 
 /// <summary>
 /// Notes Restore Comment Params

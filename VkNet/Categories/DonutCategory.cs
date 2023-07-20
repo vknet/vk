@@ -1,7 +1,7 @@
 using VkNet.Abstractions;
+using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Utils;
-using VkNet.Enums.Filters;
 
 namespace VkNet.Categories;
 
@@ -29,7 +29,7 @@ public partial class DonutCategory : IDonutCategory
 			}
 		};
 
-		return _vk.Call("donut.isDon", parameters);
+		return _vk.Call<bool>("donut.isDon", parameters);
 	}
 
 	/// <inheritdoc/>

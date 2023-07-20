@@ -3,8 +3,6 @@ using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -71,7 +69,7 @@ public partial class PagesCategory : IPagesCategory
 			}
 		};
 
-		return _vk.Call("pages.save", parameters);
+		return _vk.Call<long>("pages.save", parameters);
 	}
 
 	/// <inheritdoc />
@@ -100,7 +98,7 @@ public partial class PagesCategory : IPagesCategory
 			}
 		};
 
-		return _vk.Call("pages.saveAccess", parameters);
+		return _vk.Call<long>("pages.saveAccess", parameters);
 	}
 
 	/// <inheritdoc />
@@ -170,7 +168,7 @@ public partial class PagesCategory : IPagesCategory
 			}
 		};
 
-		return _vk.Call("pages.parseWiki", parameters);
+		return _vk.Call<string>("pages.parseWiki", parameters);
 	}
 
 	/// <inheritdoc />
@@ -183,6 +181,6 @@ public partial class PagesCategory : IPagesCategory
 			}
 		};
 
-		return _vk.Call("pages.clearCache", parameters);
+		return _vk.Call<bool>("pages.clearCache", parameters);
 	}
 }

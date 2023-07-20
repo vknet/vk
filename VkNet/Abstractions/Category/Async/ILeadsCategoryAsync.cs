@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
-using VkNet.Model.RequestParams.Leads;
 
 namespace VkNet.Abstractions;
 
@@ -18,6 +18,7 @@ public interface ILeadsCategoryAsync
 	/// <param name="checkUserParams">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, содержащий поля:
 	/// result — признак того, может ли пользователь начать акцию (true/false), а
@@ -32,7 +33,8 @@ public interface ILeadsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leads.checkUser
 	/// </remarks>
-	Task<Checked> CheckUserAsync(CheckUserParams checkUserParams);
+	Task<Checked> CheckUserAsync(CheckUserParams checkUserParams,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Завершает начатую пользователем рекламную акцию, используя сессию и секретный
@@ -49,6 +51,7 @@ public interface ILeadsCategoryAsync
 	/// <param name="comment">
 	/// Комментарий строка
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// При успешном завершении оффера будет возвращен объект, содержащий следующие
 	/// поля:
@@ -61,7 +64,10 @@ public interface ILeadsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leads.complete
 	/// </remarks>
-	Task<LeadsComplete> CompleteAsync(string vkSid, string secret, string comment);
+	Task<LeadsComplete> CompleteAsync(string vkSid,
+									string secret,
+									string comment,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает статистику по рекламной акции.
@@ -84,6 +90,7 @@ public interface ILeadsCategoryAsync
 	/// (8-и значное число). Например,
 	/// 2011-09-19. строка
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// При успешном завершении оффера будет возвращен объект, содержащий следующие
 	/// поля:
@@ -104,7 +111,11 @@ public interface ILeadsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leads.getStats
 	/// </remarks>
-	Task<Lead> GetStatsAsync(ulong leadId, string secret, string dateStart, string dateEnd);
+	Task<Lead> GetStatsAsync(ulong leadId,
+							string secret,
+							string dateStart,
+							string dateEnd,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список последних действий пользователей по рекламной акции.
@@ -112,6 +123,7 @@ public interface ILeadsCategoryAsync
 	/// <param name="getUsersParams">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов entry, каждый из которых
 	/// содержит поля:
@@ -128,7 +140,8 @@ public interface ILeadsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leads.getUsers
 	/// </remarks>
-	Task<ReadOnlyCollection<Entry>> GetUsersAsync(GetUsersParams getUsersParams);
+	Task<ReadOnlyCollection<Entry>> GetUsersAsync(GetUsersParams getUsersParams,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Засчитывает событие метрики.
@@ -137,6 +150,7 @@ public interface ILeadsCategoryAsync
 	/// Данные метрики, полученные в личном кабинете рекламной акции. обязательный
 	/// параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, содержащий поля:
 	/// result - равен true в случае успеха, и false в обратном случае,
@@ -146,7 +160,8 @@ public interface ILeadsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leads.metricHit
 	/// </remarks>
-	Task<MetricHitResponse> MetricHitAsync(string data);
+	Task<MetricHitResponse> MetricHitAsync(string data,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Создаёт новую сессию для прохождения рекламной акции для пользователя.
@@ -154,6 +169,7 @@ public interface ILeadsCategoryAsync
 	/// <param name="startParams">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// При успешном старте рекламной акции будет возвращен объект содержащий следующие
 	/// поля:
@@ -163,5 +179,6 @@ public interface ILeadsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leads.start
 	/// </remarks>
-	Task<Start> StartAsync(StartParams startParams);
+	Task<Start> StartAsync(StartParams startParams,
+							CancellationToken token = default);
 }

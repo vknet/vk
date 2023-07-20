@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -24,23 +22,16 @@ public interface IDocsCategory : IDocsCategoryAsync
 	/// <inheritdoc cref="IDocsCategoryAsync.GetWallUploadServerAsync"/>
 	UploadServerInfo GetWallUploadServer(long? groupId = null);
 
-	/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string)"/>
-	ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null);
-
-	/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string,long?,string)"/>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	ReadOnlyCollection<Attachment> Save(string file, string title, string tags = null, long? captchaSid = null,
-										string captchaKey = null);
+	/// <inheritdoc cref="IDocsCategoryAsync.SaveAsync(string,string,string, System.Threading.CancellationToken)"/>
+	ReadOnlyCollection<Attachment> Save(string file, string title = null, string tags = null);
 
 	/// <inheritdoc cref="IDocsCategoryAsync.DeleteAsync"/>
 	bool Delete(long ownerId, long docId);
 
-	/// <inheritdoc cref="IDocsCategoryAsync.AddAsync(long,long,string)"/>
+	/// <inheritdoc cref="IDocsCategoryAsync.AddAsync(long,long,string, System.Threading.CancellationToken)"/>
 	long Add(long ownerId, long docId, string accessKey = null);
 
-	/// <inheritdoc cref="IDocsCategoryAsync.AddAsync(long,long,string,long?,string)"/>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	long Add(long ownerId, long docId, string accessKey = null, long? captchaSid = null, string captchaKey = null);
+
 
 	/// <inheritdoc cref="IDocsCategoryAsync.GetTypesAsync"/>
 	VkCollection<DocumentType> GetTypes(long ownerId);
@@ -52,5 +43,5 @@ public interface IDocsCategory : IDocsCategoryAsync
 	bool Edit(long ownerId, long docId, string title, IEnumerable<string> tags);
 
 	/// <inheritdoc cref="IDocsCategoryAsync.GetMessagesUploadServerAsync"/>
-	UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType type = null);
+	UploadServerInfo GetMessagesUploadServer(long? peerId = null, DocMessageType? type = null);
 }

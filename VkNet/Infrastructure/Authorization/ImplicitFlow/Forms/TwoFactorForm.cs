@@ -1,3 +1,5 @@
+using System.Threading;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using VkNet.Abstractions.Utils;
 using VkNet.Exception;
@@ -19,16 +21,22 @@ public sealed class TwoFactorForm : AbstractAuthorizationForm
 	public override ImplicitFlowPageType GetPageType() => ImplicitFlowPageType.TwoFactor;
 
 	/// <inheritdoc />
-	protected override void FillFormFields(VkHtmlFormResult form, IApiAuthParams authParams)
+	protected override async Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token = default)
 	{
-		if (authParams.TwoFactorAuthorization == null)
+		if (authParams.TwoFactorAuthorization == null && authParams.TwoFactorAuthorizationAsync == null)
 		{
 			throw new VkAuthorizationException("Двухфакторная авторизация должна быть установлена в " + nameof(IApiAuthParams));
 		}
 
-		if (form.Fields.ContainsKey(AuthorizationFormFields.Code))
+		if (authParams.TwoFactorAuthorization != null && form.Fields.ContainsKey(AuthorizationFormFields.Code))
 		{
 			form.Fields[AuthorizationFormFields.Code] = authParams.TwoFactorAuthorization.Invoke();
 		}
+
+		if (authParams.TwoFactorAuthorizationAsync != null && form.Fields.ContainsKey(AuthorizationFormFields.Code))
+		{
+			form.Fields[AuthorizationFormFields.Code] = await authParams.TwoFactorAuthorizationAsync;
+		}
 	}
+
 }

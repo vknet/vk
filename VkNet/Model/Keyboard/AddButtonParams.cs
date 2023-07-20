@@ -1,9 +1,9 @@
 ﻿using System;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Keyboard;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры для создания кнопки в билдере
@@ -34,25 +34,24 @@ public class AddButtonParams
 	/// <summary>
 	/// Цвет кнопки
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public KeyboardButtonColor Color { get; set; } = default;
 
 	/// <summary>
 	/// Основная информация о кнопке
 	/// </summary>
-	public string? Type { get; set; } = null;
+	[CanBeNull]
+	public string Type { get; set; } = null;
 
 	/// <summary>
 	/// Тип клавиши
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public KeyboardButtonActionType ActionType { get; set; }
+	public KeyboardButtonActionType? ActionType { get; set; }
 
 	/// <summary>
 	/// Любой из интентов, требующий подписки.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public Intent Intent { get; set; }
+	[JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
+	public Intent? Intent { get; set; }
 
 	/// <summary>
 	/// Дополнительное поле для confirmed_notification.

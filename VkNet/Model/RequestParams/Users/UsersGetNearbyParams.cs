@@ -2,10 +2,9 @@
 using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода users.getNearby
@@ -83,7 +82,6 @@ public class UsersGetNearbyParams
 	/// умолчанию nom. строка.
 	/// </summary>
 	[JsonProperty(propertyName: "name_case")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public NameCase NameCase { get; set; }
 
 	/// <summary>

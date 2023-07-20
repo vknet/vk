@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Model.Attachments;
-using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода wall.addComment
@@ -66,20 +64,6 @@ public class BoardCreateCommentParams
 	/// </summary>
 	[JsonProperty(propertyName: "sticker_id")]
 	public long? StickerId { get; set; }
-
-	/// <summary>
-	/// Идентификатор капчи
-	/// </summary>
-	[JsonProperty(propertyName: "captcha_sid")]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long? CaptchaSid { get; set; }
-
-	/// <summary>
-	/// Текст, который ввел пользователь
-	/// </summary>
-	[JsonProperty(propertyName: "captcha_key")]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public string CaptchaKey { get; set; }
 
 	/// <summary>
 	/// уникальный идентификатор, предназначенный для предотвращения повторной отправки

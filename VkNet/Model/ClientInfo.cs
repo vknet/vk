@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -16,7 +15,7 @@ public class ClientInfo
 	/// <summary>
 	/// Массив кнопок, которые поддерживает клиент.
 	/// </summary>
-	[JsonProperty("button_actions", ItemConverterType = typeof(SafetyEnumJsonConverter))]
+	[JsonProperty("button_actions")]
 	public IEnumerable<KeyboardButtonActionType> ButtonActions { get; set; }
 
 	/// <summary>
@@ -24,6 +23,12 @@ public class ClientInfo
 	/// </summary>
 	[JsonProperty("keyboard")]
 	public bool Keyboard { get; set; }
+
+	/// <summary>
+	/// Поддерживается ли carousel клиентом.
+	/// </summary>
+	[JsonProperty("carousel")]
+	public bool Carousel { get; set; }
 
 	/// <summary>
 	/// Поддерживается ли inline-клавиатура ботов клиентом.

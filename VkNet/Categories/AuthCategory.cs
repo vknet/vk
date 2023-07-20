@@ -1,6 +1,5 @@
 ﻿using VkNet.Abstractions;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -38,11 +37,11 @@ public partial class AuthCategory : IAuthCategory
 			}
 		};
 
-		return _vk.Call("auth.checkPhone", parameters);
+		return _vk.Call<bool>("auth.checkPhone", parameters);
 	}
 
 	/// <inheritdoc />
-	public string Signup(AuthSignupParams @params) => _vk.Call("auth.signup", new()
+	public string Signup(AuthSignupParams @params) => _vk.Call<string>("auth.signup", new()
 	{
 		{
 			"first_name", @params.FirstName

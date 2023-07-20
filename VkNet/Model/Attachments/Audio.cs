@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Model.GroupUpdate;
-using VkNet.Utils;
 
-namespace VkNet.Model.Attachments;
+namespace VkNet.Model;
 
 /// <summary>
 /// Аудиозапись пользователя или группы.
@@ -139,6 +136,12 @@ public class Audio : MediaAttachment, IGroupUpdate
 	/// </summary>
 	[JsonProperty("track_code")]
 	public string TrackCode { get; set; }
+
+	/// <summary>
+	/// Неизвестно (получено экспериментально).
+	/// </summary>
+	[JsonProperty("content_restricted")]
+	public long ContentRestricted { get; set; }
 
 	[JsonProperty("genre_id")]
 	private AudioGenre? GenreId

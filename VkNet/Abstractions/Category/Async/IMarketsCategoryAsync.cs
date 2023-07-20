@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams.Market;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -46,6 +45,7 @@ public interface IMarketsCategoryAsync
 	/// (флаг, может принимать значения 1 или
 	/// 0).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов item с дополнительным
 	/// полем comments, содержащим число
@@ -54,8 +54,12 @@ public interface IMarketsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.get
 	/// </remarks>
-	Task<VkCollection<Market>> GetAsync(long ownerId, long? albumId = null, int? count = null, int? offset = null,
-										bool extended = false);
+	Task<VkCollection<Market>> GetAsync(long ownerId,
+										long? albumId = null,
+										int? count = null,
+										int? offset = null,
+										bool extended = false,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о товарах по идентификаторам.
@@ -78,6 +82,7 @@ public interface IMarketsCategoryAsync
 	/// эти поля не возвращается. флаг, может принимать значения 1 или 0 (флаг, может
 	/// принимать значения 1 или 0).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов item с дополнительным
 	/// полем comments, содержащим число
@@ -86,19 +91,23 @@ public interface IMarketsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.getById
 	/// </remarks>
-	Task<VkCollection<Market>> GetByIdAsync(IEnumerable<string> itemIds, bool extended = false);
+	Task<VkCollection<Market>> GetByIdAsync(IEnumerable<string> itemIds,
+											bool extended = false,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Поиск товаров в каталоге сообщества.
 	/// </summary>
 	/// <param name="params"> Входные параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает список объектов item.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.search
 	/// </remarks>
-	Task<VkCollection<Market>> SearchAsync(MarketSearchParams @params);
+	Task<VkCollection<Market>> SearchAsync(MarketSearchParams @params,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список подборок с товарами.
@@ -121,13 +130,17 @@ public interface IMarketsCategoryAsync
 	/// максимальное значение 100
 	/// (положительное число, по умолчанию 50, максимальное значение 100).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов album.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.getAlbums
 	/// </remarks>
-	Task<VkCollection<MarketAlbum>> GetAlbumsAsync(long ownerId, int? offset = null, int? count = null);
+	Task<VkCollection<MarketAlbum>> GetAlbumsAsync(long ownerId,
+													int? offset = null,
+													int? count = null,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Метод возвращает данные подборки с товарами.
@@ -147,37 +160,44 @@ public interface IMarketsCategoryAsync
 	/// разделенных запятыми, обязательный
 	/// параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает список объектов album.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.getAlbumById
 	/// </remarks>
-	Task<VkCollection<MarketAlbum>> GetAlbumByIdAsync(long ownerId, IEnumerable<long> albumIds);
+	Task<VkCollection<MarketAlbum>> GetAlbumByIdAsync(long ownerId,
+													IEnumerable<long> albumIds,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Создает новый комментарий к товару.
 	/// </summary>
 	/// <param name="params"> Входные параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданного комментария.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.createComment
 	/// </remarks>
-	Task<long> CreateCommentAsync(MarketCreateCommentParams @params);
+	Task<long> CreateCommentAsync(MarketCreateCommentParams @params,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список комментариев к товару.
 	/// </summary>
 	/// <param name="params"> Входные параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает список объектов комментариев.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.getComments
 	/// </remarks>
-	Task<VkCollection<MarketComment>> GetCommentsAsync(MarketGetCommentsParams @params);
+	Task<VkCollection<MarketComment>> GetCommentsAsync(MarketGetCommentsParams @params,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет комментарий к товару.
@@ -195,13 +215,16 @@ public interface IMarketsCategoryAsync
 	/// (положительное число,
 	/// обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1 (0, если комментарий не найден).
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.deleteComment
 	/// </remarks>
-	Task<bool> DeleteCommentAsync(long ownerId, long commentId);
+	Task<bool> DeleteCommentAsync(long ownerId,
+								long commentId,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает удаленный комментарий к товару.
@@ -219,6 +242,7 @@ public interface IMarketsCategoryAsync
 	/// параметр (положительное
 	/// число, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1 (0, если комментарий с таким
 	/// идентификатором не является удаленным).
@@ -226,7 +250,9 @@ public interface IMarketsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.restoreComment
 	/// </remarks>
-	Task<bool> RestoreCommentAsync(long ownerId, long commentId);
+	Task<bool> RestoreCommentAsync(long ownerId,
+									long commentId,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет текст комментария к товару.
@@ -254,13 +280,18 @@ public interface IMarketsCategoryAsync
 	/// (список строк,
 	/// разделенных через запятую).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.editComment
 	/// </remarks>
-	Task<bool> EditCommentAsync(long ownerId, long commentId, string message, IEnumerable<MediaAttachment> attachments = null);
+	Task<bool> EditCommentAsync(long ownerId,
+								long commentId,
+								string message,
+								IEnumerable<MediaAttachment> attachments = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет оставить жалобу на комментарий к товару.
@@ -282,13 +313,17 @@ public interface IMarketsCategoryAsync
 	/// Причина жалобы (положительное число, обязательный
 	/// параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.reportComment
 	/// </remarks>
-	Task<bool> ReportCommentAsync(long ownerId, long commentId, ReportReason reason);
+	Task<bool> ReportCommentAsync(long ownerId,
+								long commentId,
+								ReportReason reason,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет отправить жалобу на товар.
@@ -310,37 +345,45 @@ public interface IMarketsCategoryAsync
 	/// Причина жалобы (положительное число, обязательный
 	/// параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.report
 	/// </remarks>
-	Task<bool> ReportAsync(long ownerId, long itemId, ReportReason reason);
+	Task<bool> ReportAsync(long ownerId,
+							long itemId,
+							ReportReason reason,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет новый товар.
 	/// </summary>
 	/// <param name="params"> Входные параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор добавленного товара.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.add
 	/// </remarks>
-	Task<long> AddAsync(MarketProductParams @params);
+	Task<long> AddAsync(MarketProductParams @params,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует товар.
 	/// </summary>
 	/// <param name="params"> Входные параметры запроса. </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.edit
 	/// </remarks>
-	Task<bool> EditAsync(MarketProductParams @params);
+	Task<bool> EditAsync(MarketProductParams @params,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет товар.
@@ -358,13 +401,16 @@ public interface IMarketsCategoryAsync
 	/// число,
 	/// обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.delete
 	/// </remarks>
-	Task<bool> DeleteAsync(long ownerId, long itemId);
+	Task<bool> DeleteAsync(long ownerId,
+							long itemId,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Восстанавливает удаленный товар.
@@ -382,6 +428,7 @@ public interface IMarketsCategoryAsync
 	/// число,
 	/// обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1 (0, если товар не найден среди
 	/// удаленных).
@@ -389,7 +436,9 @@ public interface IMarketsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.restore
 	/// </remarks>
-	Task<bool> RestoreAsync(long ownerId, long itemId);
+	Task<bool> RestoreAsync(long ownerId,
+							long itemId,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет положение товара в подборке.
@@ -422,13 +471,19 @@ public interface IMarketsCategoryAsync
 	/// число (положительное
 	/// число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.reorderItems
 	/// </remarks>
-	Task<bool> ReorderItemsAsync(long ownerId, long albumId, long itemId, long? before, long? after);
+	Task<bool> ReorderItemsAsync(long ownerId,
+								long albumId,
+								long itemId,
+								long? before,
+								long? after,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет положение подборки с товарами в списке.
@@ -455,13 +510,18 @@ public interface IMarketsCategoryAsync
 	/// число (положительное
 	/// число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.reorderAlbums
 	/// </remarks>
-	Task<bool> ReorderAlbumsAsync(long ownerId, long albumId, long? before = null, long? after = null);
+	Task<bool> ReorderAlbumsAsync(long ownerId,
+								long albumId,
+								long? before = null,
+								long? after = null,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет новую подборку с товарами.
@@ -488,13 +548,18 @@ public interface IMarketsCategoryAsync
 	/// значения 1 или 0
 	/// (флаг, может принимать значения 1 или 0).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданной подборки.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.addAlbum
 	/// </remarks>
-	Task<long> AddAlbumAsync(long ownerId, string title, long? photoId = null, bool mainAlbum = false);
+	Task<long> AddAlbumAsync(long ownerId,
+							string title,
+							long? photoId = null,
+							bool mainAlbum = false,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует подборку с товарами.
@@ -521,6 +586,7 @@ public interface IMarketsCategoryAsync
 	/// Идентификатор фотографии-обложки подборки. положительное число (положительное
 	/// число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <param name="mainAlbum"> Назначить подборку основной (1 — назначить, 0 — нет). </param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
@@ -528,7 +594,12 @@ public interface IMarketsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.editAlbum
 	/// </remarks>
-	Task<bool> EditAlbumAsync(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false);
+	Task<bool> EditAlbumAsync(long ownerId,
+							long albumId,
+							string title,
+							long? photoId = null,
+							bool mainAlbum = false,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет подборку с товарами.
@@ -546,13 +617,16 @@ public interface IMarketsCategoryAsync
 	/// (положительное число,
 	/// обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.deleteAlbum
 	/// </remarks>
-	Task<bool> DeleteAlbumAsync(long ownerId, long albumId);
+	Task<bool> DeleteAlbumAsync(long ownerId,
+								long albumId,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет товар из одной или нескольких выбранных подборок.
@@ -576,13 +650,17 @@ public interface IMarketsCategoryAsync
 	/// запятыми, обязательный параметр (список положительных чисел, разделенных
 	/// запятыми, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.removeFromAlbum
 	/// </remarks>
-	Task<bool> RemoveFromAlbumAsync(long ownerId, long itemId, IEnumerable<long> albumIds);
+	Task<bool> RemoveFromAlbumAsync(long ownerId,
+									long itemId,
+									IEnumerable<long> albumIds,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет товар в одну или несколько выбранных подборок.
@@ -606,13 +684,17 @@ public interface IMarketsCategoryAsync
 	/// запятыми, обязательный параметр (список положительных чисел, разделенных
 	/// запятыми, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.addToAlbum
 	/// </remarks>
-	Task<bool> AddToAlbumAsync(long ownerId, long itemId, IEnumerable<long> albumIds);
+	Task<bool> AddToAlbumAsync(long ownerId,
+								long itemId,
+								IEnumerable<long> albumIds,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список категорий для товаров..
@@ -628,11 +710,14 @@ public interface IMarketsCategoryAsync
 	/// положительное число
 	/// (Положительное число).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов category.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.getCategories
 	/// </remarks>
-	Task<VkCollection<MarketCategory>> GetCategoriesAsync(long? count, long? offset);
+	Task<VkCollection<MarketCategory>> GetCategoriesAsync(long? count,
+														long? offset,
+														CancellationToken token = default);
 }

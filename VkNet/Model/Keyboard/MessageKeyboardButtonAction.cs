@@ -1,9 +1,9 @@
 using System;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Keyboard;
+namespace VkNet.Model;
 
 /// <summary>
 /// Информация о кнопке клавиатуры.
@@ -16,15 +16,15 @@ public class MessageKeyboardButtonAction
 	/// Содержит <c>'text'</c>
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public KeyboardButtonActionType Type { get; set; }
+	public KeyboardButtonActionType? Type { get; set; }
 
 	/// <summary>
 	/// Дополнительная информация.
 	/// </summary>
 	/// <remarks>JSON строка с <c>payload</c>, до 255 символов</remarks>
+	[CanBeNull]
 	[JsonProperty("payload", NullValueHandling = NullValueHandling.Ignore)]
-	public string? Payload { get; set; }
+	public string Payload { get; set; }
 
 	/// <summary>
 	/// Текст на кнопке, до 40 символов
@@ -45,11 +45,11 @@ public class MessageKeyboardButtonAction
 	/// <description>description</description>
 	/// </listheader>
 	/// <item>
-	/// <term><see cref="KeyboardButtonActionType.VkApp"/></term>
+	/// <term><see cref="KeyboardButtonActionType.OpenApp"/></term>
 	/// <description>хэш для навигации в приложении, будет передан в строке параметров запуска после символа #</description>
 	/// </item>
 	/// <item>
-	/// <term><see cref="KeyboardButtonActionType.VkPay"/></term>
+	/// <term><see cref="KeyboardButtonActionType.Vkpay"/></term>
 	/// <description>строка, содержащая параметры платежа VK Pay и идентификатор приложения в параметре <c>aid</c>, разделенные &amp;.</description>
 	/// </item>
 	/// <item>
@@ -69,7 +69,7 @@ public class MessageKeyboardButtonAction
 	public string Hash { get; set; }
 
 	/// <summary>
-	/// Идентификатор вызываемого приложения с типом <see cref="KeyboardButtonActionType.VkApp"/>.
+	/// Идентификатор вызываемого приложения с типом <see cref="KeyboardButtonActionType.OpenApp"/>.
 	/// </summary>
 	/// <remarks>
 	/// Пока может использоваться только приложение, которому мы выдали под это доступ.
@@ -82,7 +82,7 @@ public class MessageKeyboardButtonAction
 	/// Идентификатор сообщества, в котором установлено приложение, если требуется открыть в контексте сообщества.
 	/// </summary>
 	/// <remarks>
-	/// Для <see cref="Type"/> со значением <see cref="KeyboardButtonActionType.VkApp"/>
+	/// Для <see cref="Type"/> со значением <see cref="KeyboardButtonActionType.OpenApp"/>
 	/// </remarks>
 	[JsonProperty("owner_id", NullValueHandling = NullValueHandling.Ignore)]
 	public long? OwnerId { get; set; }
@@ -97,7 +97,6 @@ public class MessageKeyboardButtonAction
 	/// Любой из интентов, требующий подписки.
 	/// </summary>
 	[JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public Intent? Intent { get; set; }
 
 	/// <summary>

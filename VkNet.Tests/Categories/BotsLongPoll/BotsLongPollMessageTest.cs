@@ -1,6 +1,8 @@
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
+using VkNet.Enums.StringEnums;
+using VkNet.Model;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -20,43 +22,106 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(123456789));
 
-		var messageNew = update.MessageNew;
+						break;
 
-		var message = messageNew?.Message;
+					case MessageNew:
+					{
+						var a = x.Instance is MessageNew b
+							? b
+							: null;
 
-		var clientInfo = messageNew?.ClientInfo;
+						a.ClientInfo.ButtonActions.Should()
+							.NotBeEmpty();
 
-		messageNew.Should()
-			.NotBeNull();
+						a.ClientInfo.Keyboard.Should()
+							.BeTrue();
 
-		message.Should()
-			.NotBeNull();
+						a.ClientInfo.InlineKeyboard.Should()
+							.BeFalse();
 
-		clientInfo.Should()
-			.NotBeNull();
+						a.ClientInfo.LangId.Should()
+							.Be(Language.Ru);
 
-		clientInfo.ButtonActions.Should()
-			.NotBeEmpty();
+						a.Message.FromId.Should()
+							.Be(123456789);
 
-		clientInfo.Keyboard.Should()
-			.BeTrue();
+						a.Message.Text.Should()
+							.Be("f");
 
-		clientInfo.InlineKeyboard.Should()
-			.BeFalse();
+						break;
+					}
+				}
+			});
+	}
 
-		clientInfo.LangId.Should()
-			.Be(Language.Ru);
+	[Fact]
+	public void GetBotsLongPollHistory_MessageNewTemplateTest()
+	{
+		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageNewTemplateTest));
 
-		message.FromId.Should()
-			.Be(123456789);
+		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
+		{
+			Key = "test",
+			Server = "https://vk.com",
+			Ts = "0",
+			Wait = 10
+		});
 
-		update.GroupId.Should()
-			.Be(123456789);
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(123456789));
+						break;
 
-		message.Text.Should()
-			.Be("f");
+					case MessageNew:
+					{
+						var a = x.Instance is MessageNew b
+							? b
+							: null;
+
+						a.ClientInfo.ButtonActions.Should()
+							.NotBeEmpty();
+
+						a.ClientInfo.Keyboard.Should()
+							.BeTrue();
+
+						a.ClientInfo.InlineKeyboard.Should()
+							.BeFalse();
+
+						a.ClientInfo.LangId.Should()
+							.Be(Language.Ru);
+
+						a.Message.FromId.Should()
+							.Be(123456789);
+
+
+						a.Message.Text.Should()
+							.Be("f");
+
+						a.Message.Template.Type.Should()
+							.Be(TemplateType.Carousel);
+
+						a.Message.Template.Elements.FirstOrDefault()
+							.Photo
+							.HasTags.Should()
+							.BeFalse();
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -65,7 +130,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageEditTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test1";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -76,16 +141,33 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
 
-		update.Message.FromId.Should()
-			.Be(userId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case MessageNew:
+					{
+						var a = x.Instance is MessageNew b
+							? b
+							: null;
 
-		update.Message.Text.Should()
-			.Be(text);
+						a.Message.FromId.Should()
+							.Be(userId);
+
+						a.Message.Text.Should()
+							.Be(text);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -94,7 +176,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageReplyTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -105,16 +187,33 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
 
-		update.Message.FromId.Should()
-			.Be(userId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case MessageNew:
+					{
+						var a = x.Instance is MessageNew b
+							? b
+							: null;
 
-		update.Message.Text.Should()
-			.Be(text);
+						a.Message.FromId.Should()
+							.Be(userId);
+
+						a.Message.Text.Should()
+							.Be(text);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -123,7 +222,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageAllowTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string key = "123456";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -134,16 +233,33 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
 
-		update.MessageAllow.UserId.Should()
-			.Be(userId);
+						break;
 
-		update.MessageAllow.Key.Should()
-			.Be(key);
+					case MessageAllow:
+					{
+						var a = x.Instance is MessageAllow b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.UserId.Should()
+							.Be(userId);
+
+						a.Key.Should()
+							.Be(key);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -152,7 +268,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageDenyTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -162,13 +278,30 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
 
-		update.MessageDeny.UserId.Should()
-			.Be(userId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case MessageDeny:
+					{
+						var a = x.Instance is MessageDeny b
+							? b
+							: null;
+
+						a.UserId.Should()
+							.Be(userId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -184,29 +317,41 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(new GroupId(1234));
 
-		var messageEvent = update.MessageEvent;
+						break;
 
-		messageEvent.Should()
-			.NotBeNull();
+					case MessageEvent:
+					{
+						var a = x.Instance is MessageEvent b
+							? b
+							: null;
 
-		messageEvent.EventId.Should()
-			.Be("feleyinek");
+						a.EventId.Should()
+							.Be("feleyinek");
 
-		messageEvent.UserId.Should()
-			.Be(123456789);
+						a.UserId.Should()
+							.Be(123456789);
 
-		messageEvent.PeerId.Should()
-			.Be(123456789);
+						a.PeerId.Should()
+							.Be(123456789);
 
-		messageEvent.ConversationMessageId.Should()
-			.Be(1234);
+						a.ConversationMessageId.Should()
+							.Be(1234);
 
-		messageEvent.Payload.Should()
-			.Be("{}");
+						a.Payload.Should()
+							.Be("{\"button\":\"add_shop_key\",\"action\":\"add_shop_key\",\"asd\":\"add_shop_key\"}");
 
-		update.GroupId.Should()
-			.Be(1234);
+						break;
+					}
+				}
+			});
 	}
 }

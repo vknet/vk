@@ -1,9 +1,8 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Keyboard;
+namespace VkNet.Model;
 
 /// <summary>
 /// Кнопка клавиатуры, отправляемая ботом.
@@ -22,6 +21,5 @@ public class MessageKeyboardButton
 	/// Цвет кнопки
 	/// </summary>
 	[JsonProperty("color", NullValueHandling = NullValueHandling.Ignore)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public KeyboardButtonColor? Color { get; set; }
 }

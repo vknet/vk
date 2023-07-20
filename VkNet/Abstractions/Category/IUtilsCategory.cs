@@ -1,8 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
-using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -10,11 +8,11 @@ namespace VkNet.Abstractions;
 /// <inheritdoc cref="IUtilsCategoryAsync"/>
 public interface IUtilsCategory : IUtilsCategoryAsync
 {
-	/// <inheritdoc cref="IUtilsCategoryAsync.CheckLinkAsync(string)"/>
-	LinkAccessType CheckLink([NotNull] string url);
+	/// <inheritdoc cref="IUtilsCategoryAsync.CheckLinkAsync(string, System.Threading.CancellationToken)"/>
+	CheckLinkResult CheckLink([NotNull] string url);
 
-	/// <inheritdoc cref="IUtilsCategoryAsync.CheckLinkAsync(Uri)"/>
-	LinkAccessType CheckLink([NotNull] Uri url);
+	/// <inheritdoc cref="IUtilsCategoryAsync.CheckLinkAsync(Uri, System.Threading.CancellationToken)"/>
+	CheckLinkResult CheckLink([NotNull] Uri url);
 
 	/// <inheritdoc cref="IUtilsCategoryAsync.ResolveScreenNameAsync"/>
 	VkObject ResolveScreenName([NotNull] string screenName);

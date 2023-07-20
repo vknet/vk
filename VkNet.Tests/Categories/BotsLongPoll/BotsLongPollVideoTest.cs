@@ -1,5 +1,5 @@
-using System.Linq;
 using FluentAssertions;
+using VkNet.Model;
 using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
@@ -11,8 +11,9 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoNewTest));
 
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int id = 4444;
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -22,16 +23,32 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.GroupId.Should()
-			.Be(groupId);
+					case Model.Video:
+					{
+						var a = x.Instance is Model.Video b
+							? b
+							: null;
 
-		update.Video.OwnerId.Should()
-			.Be(-groupId);
+						a.OwnerId.Should()
+							.Be(unGroupId);
 
-		update.Video.Id.Should()
-			.Be(id);
+						a.Id.Should()
+							.Be(id);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -40,8 +57,9 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentNewTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int videoId = 4444;
+		const int unGroupId = -1234;
 		const string text = "test";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
@@ -52,22 +70,38 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.VideoComment.FromId.Should()
-			.Be(userId);
+					case VideoComment:
+					{
+						var a = x.Instance is VideoComment b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.VideoComment.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.VideoComment.VideoOwnerId.Should()
-			.Be(-groupId);
+						a.VideoOwnerId.Should()
+							.Be(unGroupId);
 
-		update.VideoComment.VideoId.Should()
-			.Be(videoId);
+						a.VideoId.Should()
+							.Be(videoId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -76,8 +110,9 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentEditTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test1";
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -87,19 +122,35 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.VideoComment.FromId.Should()
-			.Be(userId);
+					case VideoComment:
+					{
+						var a = x.Instance is VideoComment b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.VideoComment.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.VideoComment.VideoOwnerId.Should()
-			.Be(-groupId);
+						a.VideoOwnerId.Should()
+							.Be(unGroupId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -108,8 +159,9 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentRestoreTest));
 
 		const int userId = 123;
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const string text = "test1";
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -119,19 +171,35 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.VideoComment.FromId.Should()
-			.Be(userId);
+					case VideoComment:
+					{
+						var a = x.Instance is VideoComment b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.FromId.Should()
+							.Be(userId);
 
-		update.VideoComment.Text.Should()
-			.Be(text);
+						a.Text.Should()
+							.Be(text);
 
-		update.VideoComment.VideoOwnerId.Should()
-			.Be(-groupId);
+						a.VideoOwnerId.Should()
+							.Be(unGroupId);
+
+						break;
+					}
+				}
+			});
 	}
 
 	[Fact]
@@ -139,10 +207,11 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentDeleteTest));
 
-		const int groupId = 1234;
+		var groupId = new GroupId(1234);
 		const int deleterId = 12345;
 		const int videoId = 123456;
 		const int id = 4;
+		const int unGroupId = -1234;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
@@ -152,21 +221,37 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			Wait = 10
 		});
 
-		var update = botsLongPollHistory.Updates.First();
+		botsLongPollHistory.Updates.Should()
+			.SatisfyRespectively(x =>
+			{
+				switch (x.Instance)
+				{
+					case GroupId:
+						x.Instance.Should()
+							.Be(groupId);
+						break;
 
-		update.VideoCommentDelete.DeleterId.Should()
-			.Be(deleterId);
+					case VideoCommentDelete:
+					{
+						var a = x.Instance is VideoCommentDelete b
+							? b
+							: null;
 
-		update.GroupId.Should()
-			.Be(groupId);
+						a.DeleterId.Should()
+							.Be(deleterId);
 
-		update.VideoCommentDelete.OwnerId.Should()
-			.Be(-groupId);
+						a.OwnerId.Should()
+							.Be(unGroupId);
 
-		update.VideoCommentDelete.VideoId.Should()
-			.Be(videoId);
+						a.VideoId.Should()
+							.Be(videoId);
 
-		update.VideoCommentDelete.Id.Should()
-			.Be(id);
+						a.Id.Should()
+							.Be(id);
+
+						break;
+					}
+				}
+			});
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Moq;
 using Moq.AutoMock;
@@ -56,7 +57,7 @@ public abstract class BaseTest : IDisposable
 			Phone = "89510000000"
 		});
 
-		Mocker.Setup<IAuthorizationFlow, Task<AuthorizationResult>>(o => o.AuthorizeAsync())
+		Mocker.Setup<IAuthorizationFlow, Task<AuthorizationResult>>(o => o.AuthorizeAsync(CancellationToken.None))
 			.ReturnsAsync(new AuthorizationResult
 			{
 				AccessToken = "token",
@@ -89,7 +90,7 @@ public abstract class BaseTest : IDisposable
 		Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x =>
 				x.PostAsync(It.Is<Uri>(s => s == new Uri(Url)),
 					It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),
-					It.IsAny<Encoding>(), null))
+					It.IsAny<Encoding>(), null, CancellationToken.None))
 			.Callback(Callback)
 			.Returns(() =>
 			{
@@ -103,7 +104,7 @@ public abstract class BaseTest : IDisposable
 
 		Mocker.Setup<IRestClient, Task<HttpResponse<string>>>(x => x.PostAsync(It.Is<Uri>(s => string.IsNullOrWhiteSpace(Url)),
 				It.IsAny<IEnumerable<KeyValuePair<string, string>>>(),
-				It.IsAny<Encoding>(), null))
+				It.IsAny<Encoding>(), null, CancellationToken.None))
 			.Throws<ArgumentException>();
 
 		Api = Mocker.CreateInstance<VkApi>();

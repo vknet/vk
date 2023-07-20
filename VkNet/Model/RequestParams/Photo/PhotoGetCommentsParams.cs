@@ -1,10 +1,8 @@
 ﻿using System;
-using Newtonsoft.Json;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода photos.getComments
@@ -49,7 +47,6 @@ public class PhotoGetCommentsParams
 	/// Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к
 	/// старым) строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public CommentsSort Sort { get; set; }
 
 	/// <summary>

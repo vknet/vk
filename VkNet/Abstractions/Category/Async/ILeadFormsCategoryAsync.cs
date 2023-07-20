@@ -1,8 +1,8 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
-using VkNet.Model.LeadForms;
 
 namespace VkNet.Abstractions.Category.Async;
 
@@ -18,6 +18,7 @@ public interface ILeadFormsCategoryAsync
 	/// <param name = "createParams">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращается структура с информацией о созданной форме:
 	/// form_id — идентификатор формы;
@@ -26,7 +27,8 @@ public interface ILeadFormsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leadForms.create
 	/// </remarks>
-	Task<LeadFormCreateResult> CreateAsync(LeadFormsCreateParams createParams);
+	Task<LeadFormCreateResult> CreateAsync(LeadFormsCreateParams createParams,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет форму сбора заявок.
@@ -37,13 +39,16 @@ public interface ILeadFormsCategoryAsync
 	/// <param name = "formId">
 	/// Идентификатор удаляемой формы. обязательный параметр, целое число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает идентификатор удалённой формы
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leadForms.delete
 	/// </remarks>
-	Task<LeadFormCreateResult> DeleteAsync(long groupId, long formId);
+	Task<LeadFormCreateResult> DeleteAsync(long groupId,
+											long formId,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о форме сбора заявок.
@@ -54,6 +59,7 @@ public interface ILeadFormsCategoryAsync
 	/// <param name = "formId">
 	/// Идентификатор формы. обязательный параметр, целое число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает структуру с информацией о форме. Значения полей см. в методе leadForms.create.
 	/// Дополнительно возвращает следующие поля:
@@ -64,7 +70,9 @@ public interface ILeadFormsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leadForms.get
 	/// </remarks>
-	Task<LeadFormCreateResult> GetAsync(long groupId, long formId);
+	Task<LeadFormCreateResult> GetAsync(long groupId,
+										long formId,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает заявки формы.
@@ -81,6 +89,7 @@ public interface ILeadFormsCategoryAsync
 	/// <param name = "limit">
 	/// Количество возвращаемых заявок за один запрос. положительное число, по умолчанию 10, максимальное значение 1000, минимальное значение 1
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает массив структур со следующими полями:
 	/// lead_id — идентификатор заявки;
@@ -96,18 +105,23 @@ public interface ILeadFormsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leadForms.getLeads
 	/// </remarks>
-	Task<ReadOnlyCollection<LeadFormsGetLeadResult>> GetLeadsAsync(long groupId, long formId, string nextPageToken, ulong? limit = null);
+	Task<ReadOnlyCollection<LeadFormsGetLeadResult>> GetLeadsAsync(long groupId,
+																	long formId,
+																	string nextPageToken,
+																	ulong? limit = null,
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает URL для загрузки обложки для формы.
 	/// </summary>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает URL для загрузки обложки для формы.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leadForms.getUploadURl
 	/// </remarks>
-	Task<Uri> GetUploadURLAsync();
+	Task<Uri> GetUploadURLAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список форм сообщества.
@@ -115,13 +129,15 @@ public interface ILeadFormsCategoryAsync
 	/// <param name = "groupId">
 	/// Идентификатор сообщества. обязательный параметр, целое число
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает массив структур с описанием форм. Подробнее о структуре описания формы см. метод leadForms.get.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leadForms.list
 	/// </remarks>
-	Task<ReadOnlyCollection<LeadFormCreateResult>> ListAsync(long groupId);
+	Task<ReadOnlyCollection<LeadFormCreateResult>> ListAsync(long groupId,
+															CancellationToken token = default);
 
 	/// <summary>
 	/// Обновляет форму сбора заявок.
@@ -129,6 +145,7 @@ public interface ILeadFormsCategoryAsync
 	/// <param name = "updateParams">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращается структура с информацией об обновлённой форме:
 	/// form_id — идентификатор формы;
@@ -137,5 +154,6 @@ public interface ILeadFormsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/leadForms.update
 	/// </remarks>
-	Task<LeadFormCreateResult> UpdateAsync(LeadFormsUpdateParams updateParams);
+	Task<LeadFormCreateResult> UpdateAsync(LeadFormsUpdateParams updateParams,
+											CancellationToken token = default);
 }

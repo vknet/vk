@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -13,72 +13,116 @@ namespace VkNet.Categories;
 public partial class NewsFeedCategory
 {
 	/// <inheritdoc />
-	public Task<NewsFeed> GetAsync(NewsFeedGetParams @params) => TypeHelper.TryInvokeMethodAsync(func: () => Get(@params: @params));
+	public Task<NewsFeed> GetAsync(NewsFeedGetParams @params,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Get(@params), token);
 
 	/// <inheritdoc />
-	public Task<NewsFeed> GetRecommendedAsync(NewsFeedGetRecommendedParams @params) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => GetRecommended(@params: @params));
+	public Task<NewsFeed> GetRecommendedAsync(NewsFeedGetRecommendedParams @params,
+											CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetRecommended(@params), token);
 
 	/// <inheritdoc />
-	public Task<NewsFeed> GetCommentsAsync(NewsFeedGetCommentsParams @params) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => GetComments(@params: @params));
+	public Task<NewsFeed> GetCommentsAsync(NewsFeedGetCommentsParams @params,
+											CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetComments(@params), token);
 
 	/// <inheritdoc />
-	public Task<VkCollection<Mention>> GetMentionsAsync(long? ownerId = null
-														, DateTime? startTime = null
-														, DateTime? endTime = null
-														, long? offset = null
-														, long? count = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
-		GetMentions(ownerId, startTime, endTime, offset));
+	public Task<VkCollection<Mention>> GetMentionsAsync(long? ownerId = null,
+														DateTime? startTime = null,
+														DateTime? endTime = null,
+														long? offset = null,
+														long? count = null,
+														CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetMentions(ownerId, startTime, endTime, offset), token);
 
 	/// <inheritdoc />
-	public Task<NewsBannedList> GetBannedAsync() => TypeHelper.TryInvokeMethodAsync(func: () => GetBanned());
+	public Task<NewsBannedList> GetBannedAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(GetBanned, token);
 
 	/// <inheritdoc />
-	public Task<NewsBannedExList> GetBannedExAsync(UsersFields fields = null, NameCase nameCase = null) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => GetBannedEx(fields, nameCase));
+	public Task<NewsBannedExList> GetBannedExAsync(UsersFields fields = null,
+													NameCase? nameCase = null,
+													CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetBannedEx(fields, nameCase), token);
 
 	/// <inheritdoc />
-	public Task<bool> AddBanAsync(IEnumerable<long> userIds, IEnumerable<long> groupIds) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => AddBan(userIds, groupIds));
+	public Task<bool> AddBanAsync(IEnumerable<long> userIds,
+								IEnumerable<long> groupIds,
+								CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			AddBan(userIds, groupIds), token);
 
 	/// <inheritdoc />
-	public Task<bool> DeleteBanAsync(IEnumerable<long> userIds, IEnumerable<long> groupIds) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => DeleteBan(userIds, groupIds));
+	public Task<bool> DeleteBanAsync(IEnumerable<long> userIds,
+									IEnumerable<long> groupIds,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			DeleteBan(userIds, groupIds), token);
 
 	/// <inheritdoc />
-	public Task<bool> IgnoreItemAsync(NewsObjectTypes type, long ownerId, long itemId) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => IgnoreItem(type, ownerId, itemId));
+	public Task<bool> IgnoreItemAsync(NewsObjectTypes type,
+									long ownerId,
+									long itemId,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			IgnoreItem(type, ownerId, itemId), token);
 
 	/// <inheritdoc />
-	public Task<bool> UnignoreItemAsync(NewsObjectTypes type, long ownerId, long itemId) => TypeHelper.TryInvokeMethodAsync(func: () =>
-		UnignoreItem(type, ownerId, itemId));
+	public Task<bool> UnignoreItemAsync(NewsObjectTypes type,
+										long ownerId,
+										long itemId,
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			UnignoreItem(type, ownerId, itemId), token);
 
 	/// <inheritdoc />
-	public Task<NewsSearchResult> SearchAsync(NewsFeedSearchParams @params) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => Search(@params: @params));
+	public Task<NewsSearchResult> SearchAsync(NewsFeedSearchParams @params,
+											CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Search(@params), token);
 
 	/// <inheritdoc />
-	public Task<VkCollection<NewsUserListItem>> GetListsAsync(IEnumerable<long> listIds, bool? extended = null) =>
-		TypeHelper.TryInvokeMethodAsync(func: () => GetLists(listIds, extended));
+	public Task<VkCollection<NewsUserListItem>> GetListsAsync(IEnumerable<long> listIds,
+															bool? extended = null,
+															CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetLists(listIds, extended), token);
 
 	/// <inheritdoc />
-	public Task<long> SaveListAsync(string title, IEnumerable<long> sourceIds, long? listId = null, bool? noReposts = null) =>
-		TypeHelper.TryInvokeMethodAsync(func: () =>
-			SaveList(title, sourceIds, listId, noReposts));
+	public Task<long> SaveListAsync(string title,
+									IEnumerable<long> sourceIds,
+									long? listId = null,
+									bool? noReposts = null,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			SaveList(title, sourceIds, listId, noReposts), token);
 
 	/// <inheritdoc />
-	public Task<bool> DeleteListAsync(long listId) => TypeHelper.TryInvokeMethodAsync(func: () => DeleteList(listId: listId));
+	public Task<bool> DeleteListAsync(long listId,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			DeleteList(listId), token);
 
 	/// <inheritdoc />
-	public Task<bool> UnsubscribeAsync(CommentObjectType type, long itemId, long? ownerId = null) => TypeHelper.TryInvokeMethodAsync(
-		func: () =>
-			Unsubscribe(type, itemId, ownerId));
+	public Task<bool> UnsubscribeAsync(CommentObjectType type,
+										long itemId,
+										long? ownerId = null,
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Unsubscribe(type, itemId, ownerId), token);
 
 	/// <inheritdoc />
-	public Task<NewsSuggestions> GetSuggestedSourcesAsync(long? offset = null
-														, long? count = null
-														, bool? shuffle = null
-														, UsersFields fields = null) => TypeHelper.TryInvokeMethodAsync(func: () =>
-		GetSuggestedSources(offset, count, shuffle, fields));
+	public Task<NewsSuggestions> GetSuggestedSourcesAsync(long? offset = null,
+														long? count = null,
+														bool? shuffle = null,
+														UsersFields fields = null,
+														CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetSuggestedSources(offset, count, shuffle, fields), token);
 }

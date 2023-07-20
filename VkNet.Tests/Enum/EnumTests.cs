@@ -9,6 +9,30 @@ namespace VkNet.Tests.Enum;
 public class EnumsTest
 {
 	[Fact]
+	public void PhotoSearchRadiusTest()
+	{
+		Utilities.EnumFrom<PhotoSearchRadius>(10)
+			.Should()
+			.Be(PhotoSearchRadius.Ten);
+
+		Utilities.EnumFrom<PhotoSearchRadius>(100)
+			.Should()
+			.Be(PhotoSearchRadius.OneHundred);
+
+		Utilities.EnumFrom<PhotoSearchRadius>(800)
+			.Should()
+			.Be(PhotoSearchRadius.EightHundred);
+
+		Utilities.EnumFrom<PhotoSearchRadius>(6000)
+			.Should()
+			.Be(PhotoSearchRadius.SixThousand);
+
+		Utilities.EnumFrom<PhotoSearchRadius>(50000)
+			.Should()
+			.Be(PhotoSearchRadius.FiftyThousand);
+	}
+
+	[Fact]
 	public void AccessPagesTest()
 	{
 		Utilities.EnumFrom<AccessPages>(0)

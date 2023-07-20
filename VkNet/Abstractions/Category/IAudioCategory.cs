@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -62,7 +59,7 @@ public interface IAudioCategory : IAudioCategoryAsync
 											uint? offset = null, bool? shuffle = null);
 
 	/// <inheritdoc cref="IAudioCategoryAsync.GetUploadServerAsync"/>
-	Uri GetUploadServer();
+	UploadServer GetUploadServer();
 
 	/// <inheritdoc cref="IAudioCategoryAsync.AddToPlaylistAsync"/>
 	IEnumerable<long> AddToPlaylist(long ownerId, long playlistId, IEnumerable<string> audioIds);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.Serialization;
 
 namespace VkNet.Utils;
 
@@ -8,6 +9,7 @@ namespace VkNet.Utils;
 /// <summary>
 /// Параметры запроса к ВКонтакте.
 /// </summary>
+[Serializable]
 public class VkParameters : Dictionary<string, string>
 {
 	/// <inheritdoc />
@@ -16,6 +18,15 @@ public class VkParameters : Dictionary<string, string>
 	/// </summary>
 	public VkParameters()
 	{
+	}
+
+	/// <summary>
+	/// </summary>
+	/// <param name="serializationInfo"></param>
+	/// <param name="streamingContext"></param>
+	protected VkParameters(SerializationInfo serializationInfo, StreamingContext streamingContext)
+	{
+
 	}
 
 	/// <inheritdoc />
@@ -52,6 +63,12 @@ public class VkParameters : Dictionary<string, string>
 
 		if (typeof(T).IsEnum)
 		{
+			if (Utilities.IsStringEnum(value.GetType()))
+			{
+				Add(name, value.ToString().ToSnakeCase());
+				return;
+			}
+
 			Add(name, (int) (object) value);
 
 			return;

@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
-using VkNet.Model.RequestParams.Groups;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -15,193 +14,401 @@ namespace VkNet.Categories;
 public partial class GroupsCategory
 {
 	/// <inheritdoc />
-	public Task<bool> JoinAsync(long? groupId, bool? notSure = null) => TypeHelper.TryInvokeMethodAsync(() => Join(groupId, notSure));
+	public Task<bool> JoinAsync(long? groupId,
+								bool? notSure = null,
+								CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Join(groupId, notSure), token);
 
 	/// <inheritdoc />
-	public Task<bool> LeaveAsync(long groupId) => TypeHelper.TryInvokeMethodAsync(() => Leave(groupId));
+	public Task<bool> LeaveAsync(long groupId,
+								CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Leave(groupId), token);
 
 	/// <inheritdoc />
-	public Task<VkCollection<Group>> GetAsync(GroupsGetParams @params, bool skipAuthorization = false) =>
-		TypeHelper.TryInvokeMethodAsync(() => Get(@params, skipAuthorization));
+	public Task<VkCollection<Group>> GetAsync(GroupsGetParams @params,
+											bool skipAuthorization = false,
+											CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Get(@params, skipAuthorization), token);
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<Group>> GetByIdAsync(IEnumerable<string> groupIds, string groupId, GroupsFields fields,
-														bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(() =>
-		GetById(groupIds, groupId, fields, skipAuthorization));
+	public Task<ReadOnlyCollection<Group>> GetByIdAsync(IEnumerable<string> groupIds,
+														string groupId,
+														GroupsFields fields,
+														bool skipAuthorization = false,
+														CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetById(groupIds, groupId, fields, skipAuthorization), token);
 
 	/// <inheritdoc />
-	public Task<VkCollection<User>> GetMembersAsync(GroupsGetMembersParams @params, bool skipAuthorization = false) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetMembers(@params, skipAuthorization));
+	public Task<VkCollection<User>> GetMembersAsync(GroupsGetMembersParams @params,
+													bool skipAuthorization = false,
+													CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetMembers(@params, skipAuthorization), token);
 
 	/// <inheritdoc />
-	public Task<ReadOnlyCollection<GroupMember>> IsMemberAsync(string groupId, IEnumerable<long> userIds, bool? extended,
-																bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(() =>
-		IsMember(groupId, userIds, extended, skipAuthorization));
+	public Task<ReadOnlyCollection<GroupMember>> IsMemberAsync(string groupId,
+																IEnumerable<long> userIds,
+																bool? extended,
+																bool skipAuthorization = false,
+																CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			IsMember(groupId, userIds, extended, skipAuthorization), token);
 
 	/// <inheritdoc />
-	public Task<GroupMember> IsMemberAsync(string groupId, long userId, bool? extended = true,
-																bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(() =>
-		IsMember(groupId, userId, extended, skipAuthorization));
+	public Task<GroupMember> IsMemberAsync(string groupId,
+											long userId,
+											bool? extended = true,
+											bool skipAuthorization = false,
+											CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			IsMember(groupId, userId, extended, skipAuthorization), token);
 
 	/// <inheritdoc />
-	public Task<bool> IsMemberAsync(string groupId, long userId, bool skipAuthorization = false) => TypeHelper.TryInvokeMethodAsync(() =>
-		IsMember(groupId, userId, skipAuthorization));
+	public Task<bool> IsMemberAsync(string groupId,
+									long userId,
+									bool skipAuthorization = false,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			IsMember(groupId, userId, skipAuthorization), token);
 
 	/// <inheritdoc />
-	public Task<VkCollection<Group>> SearchAsync(GroupsSearchParams @params, bool skipAuthorization = false) =>
-		TypeHelper.TryInvokeMethodAsync(() => Search(@params, skipAuthorization));
+	public Task<VkCollection<Group>> SearchAsync(GroupsSearchParams @params,
+												bool skipAuthorization = false,
+												CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Search(@params, skipAuthorization), token);
 
 	/// <inheritdoc />
-	public Task<VkCollection<Group>> GetInvitesAsync(long? count, long? offset, bool? extended = null) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetInvites(count, offset, extended));
+	public Task<VkCollection<Group>> GetInvitesAsync(long? count,
+													long? offset,
+													bool? extended = null,
+													CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetInvites(count, offset, extended), token);
 
 	/// <inheritdoc />
-	public Task<bool> BanUserAsync(GroupsBanUserParams @params) => TypeHelper.TryInvokeMethodAsync(() => BanUser(@params));
+	public Task<bool> BanUserAsync(GroupsBanUserParams @params,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			BanUser(@params), token);
 
 	/// <inheritdoc />
-	public Task<VkCollection<GetBannedResult>> GetBannedAsync(long groupId, long? offset = null, long? count = null,
-															GroupsFields fields = null, long? ownerId = null) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetBanned(groupId, offset, count, fields, ownerId));
+	public Task<VkCollection<GetBannedResult>> GetBannedAsync(long groupId,
+															long? offset = null,
+															long? count = null,
+															GroupsFields fields = null,
+															long? ownerId = null,
+															CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetBanned(groupId, offset, count, fields, ownerId), token);
 
 	/// <inheritdoc />
-	[Obsolete(ObsoleteText.UnbanUserAsync, true)]
-	public Task<bool> UnbanUserAsync(long groupId, long userId) => TypeHelper.TryInvokeMethodAsync(() => UnbanUser(groupId, userId));
+	public Task<bool> UnbanAsync(long groupId,
+								long userId,
+								CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Unban(groupId, userId), token);
 
 	/// <inheritdoc />
-	public Task<bool> UnbanAsync(long groupId, long userId) => TypeHelper.TryInvokeMethodAsync(() => Unban(groupId, userId));
+	public Task<bool> EditManagerAsync(GroupsEditManagerParams @params,
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			EditManager(@params), token);
 
 	/// <inheritdoc />
-	public Task<bool> EditManagerAsync(GroupsEditManagerParams @params) => TypeHelper.TryInvokeMethodAsync(() => EditManager(@params));
+	public Task<GroupsEditParams> GetSettingsAsync(ulong groupId,
+													CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetSettings(groupId), token);
 
 	/// <inheritdoc />
-	public Task<GroupsEditParams> GetSettingsAsync(ulong groupId) => TypeHelper.TryInvokeMethodAsync(() => GetSettings(groupId: groupId));
-
-	/// <inheritdoc />
-	public Task<bool> EditAsync(GroupsEditParams @params) => TypeHelper.TryInvokeMethodAsync(() => Edit(@params));
+	public Task<bool> EditAsync(GroupsEditParams @params,
+								CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Edit(@params), token);
 
 	/// <inheritdoc />
 	[Obsolete(ObsoleteText.Obsolete)]
-	public Task<bool> EditPlaceAsync(long groupId, Place place = null) => TypeHelper.TryInvokeMethodAsync(() => EditPlace(groupId, place));
+	public Task<bool> EditPlaceAsync(long groupId,
+									Place place = null,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			EditPlace(groupId, place), token);
 
 	/// <inheritdoc />
-	public Task<VkCollection<User>> GetInvitedUsersAsync(long groupId, long? offset = null, long? count = null,
-														UsersFields fields = null, NameCase nameCase = null) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetInvitedUsers(groupId, offset, count, fields, nameCase));
+	public Task<VkCollection<User>> GetInvitedUsersAsync(long groupId,
+														long? offset = null,
+														long? count = null,
+														UsersFields fields = null,
+														NameCase? nameCase = null,
+														CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetInvitedUsers(groupId, offset, count, fields, nameCase), token);
 
 	/// <inheritdoc />
-	public Task<bool> InviteAsync(long groupId, long userId) => TypeHelper.TryInvokeMethodAsync(() => Invite(groupId, userId));
+	public Task<bool> InviteAsync(long groupId,
+								long userId,
+								CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Invite(groupId, userId), token);
+
 
 	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public Task<bool> InviteAsync(long groupId, long userId, long? captchaSid, string captchaKey) =>
-		TypeHelper.TryInvokeMethodAsync(() => Invite(groupId, userId, captchaSid, captchaKey));
+	public Task<ExternalLink> AddLinkAsync(long groupId,
+											Uri link,
+											string text,
+											CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			AddLink(groupId, link, text), token);
 
 	/// <inheritdoc />
-	public Task<ExternalLink> AddLinkAsync(long groupId, Uri link, string text) =>
-		TypeHelper.TryInvokeMethodAsync(() => AddLink(groupId, link, text));
+	public Task<bool> DeleteLinkAsync(long groupId,
+									ulong linkId,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			DeleteLink(groupId, linkId), token);
 
 	/// <inheritdoc />
-	public Task<bool> DeleteLinkAsync(long groupId, ulong linkId) => TypeHelper.TryInvokeMethodAsync(() => DeleteLink(groupId, linkId));
+	public Task<bool> EditLinkAsync(long groupId,
+									ulong linkId,
+									string text,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			EditLink(groupId, linkId, text), token);
 
 	/// <inheritdoc />
-	public Task<bool> EditLinkAsync(long groupId, ulong linkId, string text) =>
-		TypeHelper.TryInvokeMethodAsync(() => EditLink(groupId, linkId, text));
+	public Task<bool> ReorderLinkAsync(long groupId,
+										long linkId,
+										long? after,
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			ReorderLink(groupId, linkId, after), token);
 
 	/// <inheritdoc />
-	public Task<bool> ReorderLinkAsync(long groupId, long linkId, long? after) =>
-		TypeHelper.TryInvokeMethodAsync(() => ReorderLink(groupId, linkId, after));
+	public Task<bool> RemoveUserAsync(long groupId,
+									long userId,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			RemoveUser(groupId, userId), token);
 
 	/// <inheritdoc />
-	public Task<bool> RemoveUserAsync(long groupId, long userId) => TypeHelper.TryInvokeMethodAsync(() => RemoveUser(groupId, userId));
+	public Task<bool> ApproveRequestAsync(long groupId,
+										long userId,
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			ApproveRequest(groupId, userId), token);
 
 	/// <inheritdoc />
-	public Task<bool> ApproveRequestAsync(long groupId, long userId) =>
-		TypeHelper.TryInvokeMethodAsync(() => ApproveRequest(groupId, userId));
+	public Task<Group> CreateAsync(string title,
+									string description = null,
+									GroupType? type = null,
+									GroupSubType? subtype = null,
+									uint? publicCategory = null,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Create(title, description, type, subtype, publicCategory), token);
 
 	/// <inheritdoc />
-	public Task<Group> CreateAsync(string title, string description = null, GroupType type = null, GroupSubType? subtype = null,
-									uint? publicCategory = null) => TypeHelper.TryInvokeMethodAsync(() =>
-		Create(title, description, type, subtype, publicCategory));
+	public Task<VkCollection<User>> GetRequestsAsync(long groupId,
+													long? offset = null,
+													long? count = null,
+													UsersFields fields = null,
+													CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetRequests(groupId, offset, count, fields), token);
 
 	/// <inheritdoc />
-	public Task<VkCollection<User>> GetRequestsAsync(long groupId, long? offset = null, long? count = null, UsersFields fields = null) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetRequests(groupId, offset, count, fields));
+	public Task<VkCollection<Group>> GetCatalogAsync(ulong? categoryId = null,
+													ulong? subcategoryId = null,
+													CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetCatalog(categoryId, subcategoryId), token);
 
 	/// <inheritdoc />
-	public Task<VkCollection<Group>> GetCatalogAsync(ulong? categoryId = null, ulong? subcategoryId = null) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetCatalog(categoryId, subcategoryId));
+	public Task<GroupsCatalogInfo> GetCatalogInfoAsync(bool? extended = null,
+														bool? subcategories = null,
+														CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetCatalogInfo(extended, subcategories), token);
 
 	/// <inheritdoc />
-	public Task<GroupsCatalogInfo> GetCatalogInfoAsync(bool? extended = null, bool? subcategories = null) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetCatalogInfo(extended, subcategories));
+	public Task<long> AddCallbackServerAsync(ulong groupId,
+											string url,
+											string title,
+											string secretKey = null,
+											CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			AddCallbackServer(groupId, url, title, secretKey), token);
 
 	/// <inheritdoc />
-	public Task<long> AddCallbackServerAsync(ulong groupId, string url, string title, string secretKey = null) =>
-		TypeHelper.TryInvokeMethodAsync(() => AddCallbackServer(groupId, url, title, secretKey));
+	public Task<bool> DeleteCallbackServerAsync(ulong groupId,
+												ulong serverId,
+												CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			DeleteCallbackServer(groupId, serverId), token);
 
 	/// <inheritdoc />
-	public Task<bool> DeleteCallbackServerAsync(ulong groupId, ulong serverId) =>
-		TypeHelper.TryInvokeMethodAsync(() => DeleteCallbackServer(groupId, serverId));
+	public Task<bool> EditCallbackServerAsync(ulong groupId,
+											ulong serverId,
+											string url,
+											string title,
+											string secretKey,
+											CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			EditCallbackServer(groupId, serverId, url, title, secretKey), token);
 
 	/// <inheritdoc />
-	public Task<bool> EditCallbackServerAsync(ulong groupId, ulong serverId, string url, string title, string secretKey) =>
-		TypeHelper.TryInvokeMethodAsync(() => EditCallbackServer(groupId, serverId, url, title, secretKey));
+	public Task<string> GetCallbackConfirmationCodeAsync(ulong groupId,
+														CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetCallbackConfirmationCode(groupId), token);
 
 	/// <inheritdoc />
-	public Task<string> GetCallbackConfirmationCodeAsync(ulong groupId) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetCallbackConfirmationCode(groupId: groupId));
+	public Task<VkCollection<CallbackServerItem>> GetCallbackServersAsync(ulong groupId,
+																		IEnumerable<ulong> serverIds = null,
+																		CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetCallbackServers(groupId, serverIds), token);
 
 	/// <inheritdoc />
-	public Task<VkCollection<CallbackServerItem>> GetCallbackServersAsync(ulong groupId, IEnumerable<ulong> serverIds = null) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetCallbackServers(groupId, serverIds));
+	public Task<CallbackSettings> GetCallbackSettingsAsync(ulong groupId,
+															ulong serverId,
+															CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetCallbackSettings(groupId, serverId), token);
 
 	/// <inheritdoc />
-	public Task<CallbackSettings> GetCallbackSettingsAsync(ulong groupId, ulong serverId) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetCallbackSettings(groupId, serverId));
+	public Task<bool> SetCallbackSettingsAsync(CallbackServerParams @params,
+												CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			SetCallbackSettings(@params), token);
 
 	/// <inheritdoc />
-	public Task<bool> SetCallbackSettingsAsync(CallbackServerParams @params) =>
-		TypeHelper.TryInvokeMethodAsync(() => SetCallbackSettings(@params));
+	public Task<LongPollServerResponse> GetLongPollServerAsync(ulong groupId,
+																CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetLongPollServer(groupId), token);
 
 	/// <inheritdoc />
-	public Task<LongPollServerResponse> GetLongPollServerAsync(ulong groupId) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetLongPollServer(groupId));
+	public Task<bool> DisableOnlineAsync(ulong groupId,
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			DisableOnline(groupId), token);
 
 	/// <inheritdoc />
-	public Task<bool> DisableOnlineAsync(ulong groupId) => TypeHelper.TryInvokeMethodAsync(() => DisableOnline(groupId));
+	public Task<bool> EnableOnlineAsync(ulong groupId,
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			EnableOnline(groupId), token);
 
 	/// <inheritdoc />
-	public Task<bool> EnableOnlineAsync(ulong groupId) => TypeHelper.TryInvokeMethodAsync(() => EnableOnline(groupId));
+	public Task<BotsLongPollHistoryResponse> GetBotsLongPollHistoryAsync(BotsLongPollHistoryParams @params,
+																		CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetBotsLongPollHistory(@params), token);
 
 	/// <inheritdoc />
-	public Task<BotsLongPollHistoryResponse> GetBotsLongPollHistoryAsync(BotsLongPollHistoryParams @params) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetBotsLongPollHistory(@params));
+	public Task<AddressResult> AddAddressAsync(AddAddressParams @params,
+												CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			AddAddress(@params), token);
 
 	/// <inheritdoc />
-	public Task<AddressResult> AddAddressAsync(AddAddressParams @params) => TypeHelper.TryInvokeMethodAsync(() => AddAddress(@params));
+	public Task<AddressResult> EditAddressAsync(EditAddressParams @params,
+												CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			EditAddress(@params), token);
 
 	/// <inheritdoc />
-	public Task<AddressResult> EditAddressAsync(EditAddressParams @params) => TypeHelper.TryInvokeMethodAsync(() => EditAddress(@params));
+	public Task<bool> DeleteAddressAsync(ulong groupId,
+										ulong addressId,
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			DeleteAddress(groupId, addressId), token);
 
 	/// <inheritdoc />
-	public Task<bool> DeleteAddressAsync(ulong groupId, ulong addressId) =>
-		TypeHelper.TryInvokeMethodAsync(() => DeleteAddress(groupId, addressId));
+	public Task<VkCollection<AddressResult>> GetAddressesAsync(GetAddressesParams @params,
+																CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetAddresses(@params), token);
 
 	/// <inheritdoc />
-	public Task<VkCollection<AddressResult>> GetAddressesAsync(GetAddressesParams @params) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetAddresses(@params));
+	public Task<OnlineStatus> GetOnlineStatusAsync(ulong groupId,
+													CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetOnlineStatus(groupId), token);
 
 	/// <inheritdoc />
-	public Task<OnlineStatus> GetOnlineStatusAsync(ulong groupId) => TypeHelper.TryInvokeMethodAsync(() => GetOnlineStatus(groupId));
+	public Task<TokenPermissionsResult> GetTokenPermissionsAsync(CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(GetTokenPermissions, token);
 
 	/// <inheritdoc />
-	public Task<TokenPermissionsResult> GetTokenPermissionsAsync() => TypeHelper.TryInvokeMethodAsync(GetTokenPermissions);
+	public Task<bool> SetLongPollSettingsAsync(SetLongPollSettingsParams @params,
+												CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			SetLongPollSettings(@params), token);
 
 	/// <inheritdoc />
-	public Task<bool> SetLongPollSettingsAsync(SetLongPollSettingsParams @params) =>
-		TypeHelper.TryInvokeMethodAsync(() => SetLongPollSettings(@params));
+	public Task<GetLongPollSettingsResult> GetLongPollSettingsAsync(ulong groupId,
+																	CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetLongPollSettings(groupId), token);
 
 	/// <inheritdoc />
-	public Task<GetLongPollSettingsResult> GetLongPollSettingsAsync(ulong groupId) =>
-		TypeHelper.TryInvokeMethodAsync(() => GetLongPollSettings(groupId));
+	public Task<VkCollection<GroupTag>> GetTagListAsync(ulong groupId,
+														CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			GetTagList(groupId), token);
+
+	/// <inheritdoc />
+	public Task<bool> SetSettingsAsync(GroupsSetSettingsParams @params,
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			SetSettings(@params), token);
+
+	/// <inheritdoc />
+	public Task<bool> SetUserNoteAsync(GroupsSetUserNoteParams @params,
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			SetUserNote(@params), token);
+
+	/// <inheritdoc />
+	public Task<bool> TagAddAsync(GroupsTagAddParams @params,
+								CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			TagAdd(@params), token);
+
+	/// <inheritdoc />
+	public Task<bool> TagBindAsync(ulong groupId,
+									ulong tagId,
+									ulong userId,
+									GroupTagAct act,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			TagBind(groupId, tagId, userId, act), token);
+
+	/// <inheritdoc />
+	public Task<bool> TagDeleteAsync(ulong groupId,
+									ulong tagId,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			TagDelete(groupId, tagId), token);
+
+	/// <inheritdoc />
+	public Task<bool> TagUpdateAsync(ulong groupId,
+									ulong tagId,
+									string tagName,
+									CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			TagUpdate(groupId, tagId, tagName), token);
+
+	/// <inheritdoc />
+	public Task<bool> ToggleMarketAsync(GroupToggleMarketParams @params,
+										CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			ToggleMarket(@params), token);
 }

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 
 namespace VkNet.Abstractions;
 
@@ -76,15 +76,15 @@ public interface IAccountCategory : IAccountCategoryAsync
 	/// <inheritdoc cref="IAccountCategoryAsync.GetProfileInfoAsync"/>
 	AccountSaveProfileInfoParams GetProfileInfo();
 
-	/// <inheritdoc cref="IAccountCategoryAsync.SaveProfileInfoAsync(int)"/>
+	/// <inheritdoc cref="IAccountCategoryAsync.SaveProfileInfoAsync(int, System.Threading.CancellationToken)"/>
 	ChangeNameRequest SaveProfileInfo(int cancelRequestId);
 
-	/// <inheritdoc cref="IAccountCategoryAsync.SaveProfileInfoAsync(AccountSaveProfileInfoParams)"/>
+	/// <inheritdoc cref="IAccountCategoryAsync.SaveProfileInfoAsync(AccountSaveProfileInfoParams, System.Threading.CancellationToken)"/>
 	ChangeNameRequest SaveProfileInfo(AccountSaveProfileInfoParams @params);
 
 	/// <inheritdoc cref="IAccountCategoryAsync.GetPrivacySettingsAsync" />
 	PrivacySettings GetPrivacySettings();
 
 	/// <inheritdoc cref="IAccountCategoryAsync.SetPrivacyAsync" />
-	PrivacySettingsValue SetPrivacy(string key, string value);
+	PrivacySettingsValue SetPrivacy(PrivacyKey key, string value);
 }

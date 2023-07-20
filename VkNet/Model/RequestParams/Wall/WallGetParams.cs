@@ -1,10 +1,7 @@
 ﻿using System;
-using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода Wall.Get
@@ -39,7 +36,6 @@ public class WallGetParams
 	/// значения параметра: Если параметр
 	/// не задан, то считается, что он равен all.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public WallFilter Filter { get; set; }
 
 	/// <summary>
@@ -57,15 +53,4 @@ public class WallGetParams
 	/// </summary>
 	public object Fields { get; set; }
 
-	/// <summary>
-	/// Идентификатор капчи
-	/// </summary>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long? CaptchaSid { get; set; }
-
-	/// <summary>
-	/// Текст капчи, который ввел пользователь
-	/// </summary>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public string CaptchaKey { get; set; }
 }

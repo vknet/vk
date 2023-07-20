@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Template.Carousel;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Template;
+namespace VkNet.Model;
 
 /// <summary>
 /// Объект шаблона, отправляемый ботом.
@@ -18,7 +16,6 @@ public class MessageTemplate
 	/// Тип шаблона.
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public TemplateType Type { get; set; }
 
 	/// <summary>

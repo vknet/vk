@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
+using VkNet.Enums.StringEnums;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
 
@@ -47,7 +46,6 @@ public class NewsItem
 	/// Находится в записях со стен, содержит тип новости (post или copy).
 	/// </summary>
 	[JsonProperty("post_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public PostTypeOrder PostType { get; set; }
 
 	/// <summary>

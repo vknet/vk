@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.Results.DownloadedGames;
+namespace VkNet.Model;
 
 /// <summary>
 /// Результат метода downloadedGames.getPaidStatus

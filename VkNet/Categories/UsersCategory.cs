@@ -7,9 +7,8 @@ using System.Net;
 using JetBrains.Annotations;
 using VkNet.Abstractions;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -141,14 +140,14 @@ public partial class UsersCategory : IUsersCategory
 			}
 		};
 
-		return _vk.Call("users.isAppUser", parameters);
+		return _vk.Call<bool>("users.isAppUser", parameters);
 	}
 
 	/// <inheritdoc />
 	[Pure]
 	public ReadOnlyCollection<User> Get(IEnumerable<long> userIds
 										, ProfileFields fields = null
-										, NameCase nameCase = null)
+										, NameCase? nameCase = null)
 	{
 		if (userIds == null)
 		{
@@ -177,7 +176,7 @@ public partial class UsersCategory : IUsersCategory
 	[ContractAnnotation(contract: "screenNames:null => halt")]
 	public ReadOnlyCollection<User> Get(IEnumerable<string> screenNames
 										, ProfileFields fields = null
-										, NameCase nameCase = null)
+										, NameCase? nameCase = null)
 	{
 		if (screenNames == null)
 		{
@@ -198,6 +197,37 @@ public partial class UsersCategory : IUsersCategory
 		};
 
 		return _vk.Call<ReadOnlyCollection<User>>("users.get", parameters);
+	}
+
+	/// <inheritdoc cref="User" />
+	[Pure]
+	public User Get(long userId, ProfileFields fields = null, NameCase? nameCase = null)
+	{
+		VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
+
+		var users = Get(new[]
+		{
+			userId
+		}, fields, nameCase);
+
+		return users.FirstOrDefault();
+	}
+
+	/// <inheritdoc cref="User" />
+	public User Get([NotNull] string screenName
+					, ProfileFields fields = null
+					, NameCase? nameCase = null)
+	{
+		VkErrors.ThrowIfNullOrEmpty(expr: () => screenName);
+
+		var users = Get(new[]
+		{
+			screenName
+		}, fields, nameCase);
+
+		return users.Count > 0
+			? users[index: 0]
+			: null;
 	}
 
 	/// <inheritdoc />
@@ -239,7 +269,7 @@ public partial class UsersCategory : IUsersCategory
 											, int? count = null
 											, int? offset = null
 											, ProfileFields fields = null
-											, NameCase nameCase = null)
+											, NameCase? nameCase = null)
 	{
 		VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
 		VkErrors.ThrowIfNumberIsNegative(expr: () => count);
@@ -297,7 +327,7 @@ public partial class UsersCategory : IUsersCategory
 			}
 		};
 
-		return _vk.Call("users.report", parameters);
+		return _vk.Call<bool>("users.report", parameters);
 	}
 
 	/// <inheritdoc />
@@ -328,35 +358,4 @@ public partial class UsersCategory : IUsersCategory
 				"need_description", @params.NeedDescription
 			}
 		});
-
-	/// <inheritdoc cref="User" />
-	[Pure]
-	public User Get(long userId, ProfileFields fields = null, NameCase nameCase = null)
-	{
-		VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
-
-		var users = Get(new[]
-		{
-			userId
-		}, fields, nameCase);
-
-		return users.FirstOrDefault();
-	}
-
-	/// <inheritdoc cref="User" />
-	public User Get([NotNull] string screenName
-					, ProfileFields fields = null
-					, NameCase nameCase = null)
-	{
-		VkErrors.ThrowIfNullOrEmpty(expr: () => screenName);
-
-		var users = Get(new[]
-		{
-			screenName
-		}, fields, nameCase);
-
-		return users.Count > 0
-			? users[index: 0]
-			: null;
-	}
 }

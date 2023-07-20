@@ -1,3 +1,5 @@
+using VkNet.Utils;
+
 namespace VkNet.Enums;
 
 /// <summary>
@@ -8,6 +10,7 @@ public enum CostType
 	/// <summary>
 	/// Оплата за переходы
 	/// </summary>
+	[VkNetDefaultValue]
 	Cpc = 0,
 
 	/// <summary>

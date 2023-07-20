@@ -5,9 +5,9 @@ using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
-using VkNet.Model.Attachments;
+using VkNet.Model;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -58,8 +58,6 @@ public class MessagesCategoryTest : MessagesBaseTests
 			{
 				4446
 			},
-			false,
-			null,
 			false);
 
 		result[4446]
@@ -78,8 +76,6 @@ public class MessagesCategoryTest : MessagesBaseTests
 				{
 					999999
 				},
-				false,
-				null,
 				false))
 			.Should()
 			.ThrowExactly<UnknownException>();
@@ -97,8 +93,6 @@ public class MessagesCategoryTest : MessagesBaseTests
 				4457,
 				4464
 			},
-			false,
-			null,
 			false);
 
 		dict.Should()
@@ -442,10 +436,10 @@ public class MessagesCategoryTest : MessagesBaseTests
 
 		var chat = Api.Messages.GetChatUsers(new List<long>
 			{
-				2, 5
+				2,
+				5
 			},
-			UsersFields.Education,
-			null);
+			UsersFields.Education, null);
 
 		chat.Users.Should()
 			.HaveCount(3);
@@ -593,7 +587,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.HaveCount(1);
 
 		var wall = msg.Attachments[0]
-			.Instance as Model.Attachments.Wall;
+			.Instance as Model.Wall;
 
 		wall.Should()
 			.NotBeNull();
@@ -1064,5 +1058,66 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Users.ElementAt(2)
 			.Should()
 			.Be(1708231);
+	}
+
+	[Fact]
+	public void GetHistoryAttachments()
+	{
+		Url = "https://api.vk.com/method/messages.getHistoryAttachments";
+		ReadCategoryJsonPath(nameof(GetHistoryAttachments));
+
+		var response = Api.Messages.GetHistoryAttachments(new()
+		{
+			PeerId = 1,
+			MediaType = MediaType.Doc,
+		});
+
+		response.Profiles[0]
+			.Id.Should()
+			.Be(1);
+
+		response.Profiles[1]
+			.Id.Should()
+			.Be(2);
+
+		response.NextFrom
+			.Should()
+			.Be("64665/7");
+
+		response.Items[0]
+			.ForwardLevel.Should()
+			.Be(1);
+
+		var photo = response.Items[0]
+			.Attachment.Instance as Photo;
+
+		photo.Should()
+			.NotBeNull();
+
+		photo.Id.Should()
+			.Be(22222);
+
+		var photo2 = response.Items[1]
+			.Attachment.Instance as Photo;
+
+		photo2.Should()
+			.NotBeNull();
+
+		photo2.Id.Should()
+			.Be(33333);
+
+	}
+
+	[Fact]
+	public void SetMemberRole()
+	{
+		Url = "https://api.vk.com/method/messages.setMemberRole";
+		ReadJsonFile(JsonPaths.True);
+
+		var response = Api.Messages.SetMemberRole("admin", 2000000043, 1002);
+
+		response.Should()
+			.BeTrue();
+
 	}
 }

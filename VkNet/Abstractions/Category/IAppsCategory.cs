@@ -1,7 +1,6 @@
 ﻿using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -21,14 +20,14 @@ public interface IAppsCategory : IAppsCategoryAsync
 	/// <inheritdoc cref="IAppsCategoryAsync.DeleteAppRequestsAsync"/>
 	bool DeleteAppRequests();
 
-	/// <inheritdoc cref="IAppsCategoryAsync.GetFriendsListAsync(AppRequestType, bool?, long?, long?, UsersFields)"/>
+	/// <inheritdoc cref="IAppsCategoryAsync.GetFriendsListAsync(AppRequestType, bool?, long?, long?, UsersFields, System.Threading.CancellationToken)"/>
 	VkCollection<User> GetFriendsList(AppRequestType type
 									, bool? extended = true
 									, long? count = null
 									, long? offset = null
 									, UsersFields fields = null);
 
-	/// <inheritdoc cref="IAppsCategoryAsync.GetFriendsListAsync(AppRequestType, long?, long?, UsersFields)"/>
+	/// <inheritdoc cref="IAppsCategoryAsync.GetFriendsListAsync(AppRequestType, long?, long?, UsersFields, System.Threading.CancellationToken)"/>
 	VkCollection<long> GetFriendsList(AppRequestType type
 									, long? count = null
 									, long? offset = null

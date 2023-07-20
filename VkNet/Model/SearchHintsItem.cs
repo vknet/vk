@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -15,7 +15,6 @@ public class SearchHintsItem
 	/// тип объекта
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public SearchResultType Type { get; set; }
 
 	/// <summary>

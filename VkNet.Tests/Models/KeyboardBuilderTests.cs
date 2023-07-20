@@ -1,7 +1,7 @@
 using System.Linq;
 using FluentAssertions;
 using VkNet.Exception;
-using VkNet.Model.Keyboard;
+using VkNet.Model;
 using Xunit;
 
 namespace VkNet.Tests.Models;

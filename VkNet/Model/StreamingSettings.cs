@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -15,6 +14,5 @@ public class StreamingSettings
 	/// Месячные ограничения
 	/// </summary>
 	[JsonProperty(propertyName: "monthly_limit")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public MonthlyLimit MonthlyLimit { get; set; }
 }

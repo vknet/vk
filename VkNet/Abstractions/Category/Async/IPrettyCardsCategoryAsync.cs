@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -22,56 +22,66 @@ public interface IPrettyCardsCategoryAsync
 	/// Метод создаёт карточку карусели.
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.create
 	/// </remarks>
-	Task<PrettyCardsCreateResult> CreateAsync(PrettyCardsCreateParams @params);
+	Task<PrettyCardsCreateResult> CreateAsync(PrettyCardsCreateParams @params,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Метод удаляет карточку карусели.
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.delete
 	/// </remarks>
-	Task<PrettyCardsDeleteResult> DeleteAsync(PrettyCardsDeleteParams @params);
+	Task<PrettyCardsDeleteResult> DeleteAsync(PrettyCardsDeleteParams @params,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Метод редактирует карточку карусели.
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.edit
 	/// </remarks>
-	Task<PrettyCardsEditResult> EditAsync(PrettyCardsEditParams @params);
+	Task<PrettyCardsEditResult> EditAsync(PrettyCardsEditParams @params,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Метод возвращает неиспользованные карточки владельца.
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.get
 	/// </remarks>
-	Task<VkCollection<PrettyCardsGetByIdResult>> GetAsync(PrettyCardsGetParams @params);
+	Task<VkCollection<PrettyCardsGetByIdResult>> GetAsync(PrettyCardsGetParams @params,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Метод возвращает информацию о карточке.
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getById
 	/// </remarks>
-	Task<ReadOnlyCollection<PrettyCardsGetByIdResult>> GetByIdAsync(PrettyCardsGetByIdParams @params);
+	Task<ReadOnlyCollection<PrettyCardsGetByIdResult>> GetByIdAsync(PrettyCardsGetByIdParams @params,
+																	CancellationToken token = default);
 
 	/// <summary>
 	/// Метод возвращает URL для загрузки фотографии для карточки.
@@ -85,8 +95,9 @@ public interface IPrettyCardsCategoryAsync
 	/// Максимальный объем файла: 5 Мб.
 	/// Результат загрузки изображения возвращается приложению в формате JSON.
 	/// </summary>
+	/// <param name="token">Токен отмены</param>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getUploadURL
 	/// </remarks>
-	Task<Uri> GetUploadUrlAsync();
+	Task<Uri> GetUploadUrlAsync(CancellationToken token = default);
 }

@@ -2,8 +2,7 @@
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -23,7 +22,6 @@ public class LookalikeRequestItem
 	/// Тип источника исходной аудитории для поиска похожей аудитории.
 	/// </summary>
 	[JsonProperty("source_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public SourceType SourceType { get; set; }
 
 	/// <summary>
@@ -44,7 +42,6 @@ public class LookalikeRequestItem
 	/// Cтатус объявления.
 	/// </summary>
 	[JsonProperty(propertyName: "status")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AdRequestStatus Status { get; set; }
 
 	/// <summary>

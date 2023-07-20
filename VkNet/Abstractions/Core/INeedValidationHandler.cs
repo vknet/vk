@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
 using VkNet.Utils;
@@ -33,6 +34,7 @@ public interface INeedValidationHandler
 	/// Выполняет обход ошибки валидации: https://vk.com/dev/need_validation
 	/// </summary>
 	/// <param name="validateUrl"> Адрес страницы валидации </param>
+	/// <param name="token"></param>
 	/// <returns> Информация об авторизации приложения. </returns>
-	Task<AuthorizationResult> ValidateAsync(string validateUrl);
+	Task<AuthorizationResult> ValidateAsync(string validateUrl, CancellationToken token = default);
 }

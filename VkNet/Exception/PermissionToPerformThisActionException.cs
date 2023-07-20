@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -18,5 +19,11 @@ public sealed class PermissionToPerformThisActionException : VkApiMethodInvokeEx
 	/// <inheritdoc />
 	public PermissionToPerformThisActionException(VkError response) : base(response)
 	{
+	}
+
+	/// <inheritdoc />
+	private PermissionToPerformThisActionException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
+	{
+
 	}
 }

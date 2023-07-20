@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса messages.GetConversations
@@ -16,7 +15,6 @@ public class GetConversationsParams
 	/// Фильтр
 	/// </summary>
 	[JsonProperty("filter")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public GetConversationFilter Filter { get; set; }
 
 	/// <summary>

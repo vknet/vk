@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -42,12 +39,9 @@ public interface IPhotoCategory : IPhotoCategoryAsync
 	/// <inheritdoc cref="IPhotoCategoryAsync.GetChatUploadServerAsync"/>
 	UploadServerInfo GetChatUploadServer(ulong chatId, ulong? cropX = null, ulong? cropY = null, ulong? cropWidth = null);
 
-	/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string)"/>
+	/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string, System.Threading.CancellationToken)"/>
 	Photo SaveOwnerPhoto(string response);
 
-	/// <inheritdoc cref="IPhotoCategoryAsync.SaveOwnerPhotoAsync(string,long?,string)"/>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	Photo SaveOwnerPhoto(string response, long? captchaSid, string captchaKey);
 
 	/// <inheritdoc cref="IPhotoCategoryAsync.SaveWallPhotoAsync"/>
 	ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId, ulong? groupId = null, string caption = null);

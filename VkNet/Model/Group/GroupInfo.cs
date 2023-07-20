@@ -197,7 +197,7 @@ public class GroupInfo
 	/// Список тематик
 	/// </summary>
 	[UsedImplicitly]
-	public readonly Dictionary<int, string> Subjects = new()
+	public Dictionary<int, string> Subjects { get; } = new()
 	{
 		{
 			1, "Авто/мото"

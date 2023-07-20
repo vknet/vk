@@ -1,9 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода board.getTopics
@@ -61,7 +60,6 @@ public class BoardGetCommentsParams
 	/// старым) строка.
 	/// </summary>
 	[JsonProperty(propertyName: "sort")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public CommentsSort Sort { get; set; }
 
 	/// <summary>

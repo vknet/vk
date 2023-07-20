@@ -1,8 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Utils;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода wall.addComment
@@ -30,17 +29,4 @@ public class BoardEditTopicParams
 	[JsonProperty(propertyName: "title")]
 	public string Title { get; set; }
 
-	/// <summary>
-	/// Идентификатор капчи
-	/// </summary>
-	[JsonProperty(propertyName: "captcha_sid")]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long? CaptchaSid { get; set; }
-
-	/// <summary>
-	/// Текст, который ввел пользователь
-	/// </summary>
-	[JsonProperty(propertyName: "captcha_key")]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public string CaptchaKey { get; set; }
 }

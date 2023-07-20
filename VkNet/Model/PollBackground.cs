@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -23,7 +21,6 @@ public class PollBackground
 	/// Тип фона.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public PollBackgroundType Type { get; set; }
 
 	/// <summary>

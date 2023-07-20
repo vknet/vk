@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -21,6 +21,14 @@ public class AudioGetCatalogTest : CategoryBaseTest
 
 		result.Should()
 			.NotBeNull();
+
+		result.Items[0]
+			.Type.Should()
+			.Be(AudioCatalogType.AudiosSpecial);
+
+		result.Items[1]
+			.Type.Should()
+			.Be(AudioCatalogType.Playlists);
 
 		AudioCatalogType.AudiosSpecial.Should()
 			.Be(result.Items[0]

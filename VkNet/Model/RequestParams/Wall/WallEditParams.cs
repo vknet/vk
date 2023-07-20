@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
-using VkNet.Utils;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода wall.edit
@@ -115,17 +113,6 @@ public class WallEditParams
 	/// </summary>
 	public long? PlaceId { get; set; }
 
-	/// <summary>
-	/// Идентификатор капчи
-	/// </summary>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long? CaptchaSid { get; set; }
-
-	/// <summary>
-	/// текст, который ввел пользователь
-	/// </summary>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public string CaptchaKey { get; set; }
 
 	/// <summary>
 	/// 1 — у записи, размещенной от имени сообщества, будет добавлена метка "это

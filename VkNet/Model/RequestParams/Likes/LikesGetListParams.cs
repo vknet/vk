@@ -1,9 +1,7 @@
 ﻿using System;
-using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса likes.getList
@@ -14,7 +12,6 @@ public struct LikesGetListParams
 	/// <summary>
 	/// Тип объекта.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public LikeObjectType Type { get; set; }
 
 	/// <summary>
@@ -47,7 +44,6 @@ public struct LikesGetListParams
 	/// "Мне нравится" или только тех, которые
 	/// рассказали о нем друзьям. Параметр может принимать следующие значения:строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public LikesFilter Filter { get; set; }
 
 	/// <summary>

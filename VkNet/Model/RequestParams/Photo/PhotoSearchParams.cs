@@ -1,10 +1,9 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода photos.search
@@ -66,6 +65,5 @@ public class PhotoSearchParams
 	/// заданного). Может принимать значения: 10, 100, 800, 6000, 50000 положительное
 	/// число, по умолчанию 5000.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public PhotoSearchRadius Radius { get; set; }
 }

@@ -1,10 +1,7 @@
-﻿using System;
-using Newtonsoft.Json;
-using VkNet.Abstractions;
-using VkNet.Enums.SafetyEnums;
+﻿using VkNet.Abstractions;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -26,7 +23,8 @@ public partial class LikesCategory : ILikesCategory
 	/// <inheritdoc />
 	public VkCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = false)
 	{
-		@params.Extended = false;
+		if (@params.Extended == true)
+			throw new VkApiException("Если параметр Extended = true то используйте метод GetListEx()");
 
 		var parameters = new VkParameters
 		{
@@ -80,7 +78,8 @@ public partial class LikesCategory : ILikesCategory
 	/// <inheritdoc />
 	public UserOrGroup GetListEx(LikesGetListParams @params)
 	{
-		@params.Extended = true;
+		if (@params.Extended == false)
+			throw new VkApiException("Если параметр Extended = false то используйте метод GetList()");
 
 		var parameters = new VkParameters
 		{
@@ -156,10 +155,7 @@ public partial class LikesCategory : ILikesCategory
 		return response[key: "likes"];
 	}
 
-	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long Delete(LikeObjectType type, long itemId, long? ownerId = null, long? captchaSid = null, string captchaKey = null) =>
-		Delete(type, itemId, ownerId);
+
 
 	/// <inheritdoc />
 	public long Delete(LikeObjectType type, long itemId, long? ownerId = null)

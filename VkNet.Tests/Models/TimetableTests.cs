@@ -12,7 +12,7 @@ public class TimetableTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(TimetableToJson));
 
-		var timetable = new Timetable()
+		var timetable = new Timetable
 		{
 			Monday = new()
 			{

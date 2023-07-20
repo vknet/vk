@@ -1,10 +1,9 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода friends.get
@@ -37,7 +36,6 @@ public class FriendsGetParams
 	/// строка.
 	/// </summary>
 	[JsonProperty("order")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public FriendsOrder Order { get; set; }
 
 	/// <summary>
@@ -82,7 +80,6 @@ public class FriendsGetParams
 	/// умолчанию nom. строка.
 	/// </summary>
 	[JsonProperty("name_case")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public NameCase NameCase { get; set; }
 
 	/// <summary>

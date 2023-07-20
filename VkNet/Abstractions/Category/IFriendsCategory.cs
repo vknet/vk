@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -45,12 +43,8 @@ public interface IFriendsCategory : IFriendsCategoryAsync
 	/// <inheritdoc cref="IFriendsCategoryAsync.DeleteAllRequestsAsync" />
 	bool DeleteAllRequests();
 
-	/// <inheritdoc cref="IFriendsCategoryAsync.AddAsync(long, string, bool?)" />
+	/// <inheritdoc cref="IFriendsCategoryAsync.AddAsync(long, string, bool?, System.Threading.CancellationToken)" />
 	AddFriendStatus Add(long userId, string text = "", bool? follow = null);
-
-	/// <inheritdoc cref="IFriendsCategoryAsync.AddAsync(long, string, bool?,long?,string)" />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	AddFriendStatus Add(long userId, string text = "", bool? follow = null, long? captchaSid = null, string captchaKey = null);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.DeleteAsync" />
 	FriendsDeleteResult Delete(long userId);
@@ -68,8 +62,8 @@ public interface IFriendsCategory : IFriendsCategoryAsync
 	VkCollection<FriendsGetRequestsResult> GetRequestsExtended(FriendsGetRequestsParams @params);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetSuggestionsAsync" />
-	VkCollection<User> GetSuggestions(FriendsFilter filter = null, long? count = null, long? offset = null, UsersFields fields = null,
-									NameCase nameCase = null);
+	VkCollection<User> GetSuggestions(FriendsFilter? filter = null, long? count = null, long? offset = null, UsersFields fields = null,
+									NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetByPhonesAsync" />
 	ReadOnlyCollection<User> GetByPhones(IEnumerable<string> phones, ProfileFields fields);

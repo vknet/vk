@@ -1,10 +1,7 @@
 ﻿using System;
-using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода likes.add
@@ -30,7 +27,6 @@ public class LikesAddParams
 	/// market_comment — комментарий к товару; строка, обязательный параметр (Строка,
 	/// обязательный параметр).
 	/// </remarks>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public LikeObjectType Type { get; set; }
 
 	/// <summary>
@@ -56,15 +52,4 @@ public class LikesAddParams
 	/// </summary>
 	public string Reference { get; set; }
 
-	/// <summary>
-	/// Идентификатор капчи
-	/// </summary>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long? CaptchaSid { get; set; }
-
-	/// <summary>
-	/// текст, который ввел пользователь
-	/// </summary>
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public string CaptchaKey { get; set; }
 }

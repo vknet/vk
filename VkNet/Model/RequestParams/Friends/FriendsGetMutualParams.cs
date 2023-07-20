@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода friends.getMutual
@@ -39,7 +37,6 @@ public class FriendsGetMutualParams
 	/// random - возвращает друзей в случайном
 	/// порядке. строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public FriendsOrder Order { get; set; }
 
 	/// <summary>

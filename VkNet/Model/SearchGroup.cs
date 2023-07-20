@@ -1,8 +1,7 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -55,7 +54,6 @@ public class SearchGroup
 	/// тип сообщества
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	[JsonConverter(converterType: typeof(SafetyEnumJsonConverter))]
 	public GroupType Type { get; set; }
 
 	/// <summary>

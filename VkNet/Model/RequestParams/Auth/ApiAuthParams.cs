@@ -1,8 +1,7 @@
 using System;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -26,6 +25,9 @@ public class ApiAuthParams : IApiAuthParams
 	public Func<string> TwoFactorAuthorization { get; set; }
 
 	/// <inheritdoc />
+	public Task<string> TwoFactorAuthorizationAsync { get; set; }
+
+	/// <inheritdoc />
 	public string AccessToken { get; set; }
 
 	/// <inheritdoc />
@@ -41,22 +43,6 @@ public class ApiAuthParams : IApiAuthParams
 	public string CaptchaKey { get; set; }
 
 	/// <inheritdoc />
-	[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
-	public string Host { get; set; }
-
-	/// <inheritdoc />
-	[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
-	public int? Port { get; set; }
-
-	/// <inheritdoc />
-	[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
-	public string ProxyLogin { get; set; }
-
-	/// <inheritdoc />
-	[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
-	public string ProxyPassword { get; set; }
-
-	/// <inheritdoc />
 	public string Phone { get; set; }
 
 	/// <inheritdoc />
@@ -66,7 +52,6 @@ public class ApiAuthParams : IApiAuthParams
 	public bool? ForceSms { get; set; }
 
 	/// <inheritdoc />
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public Display Display { get; set; }
 
 	/// <inheritdoc />
@@ -79,11 +64,9 @@ public class ApiAuthParams : IApiAuthParams
 	public bool? TwoFactorSupported { get; set; }
 
 	/// <inheritdoc />
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public GrantType GrantType { get; set; }
 
 	/// <inheritdoc />
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public ResponseType ResponseType { get; set; }
 
 	/// <inheritdoc />
@@ -107,7 +90,7 @@ public class ApiAuthParams : IApiAuthParams
 
 			if (!string.IsNullOrEmpty(Login)
 				&& !string.IsNullOrEmpty(Password)
-				&& TwoFactorAuthorization is not null
+				&& (TwoFactorAuthorization is not null || TwoFactorAuthorizationAsync is not null)
 				&& ApplicationId != 0
 				&& Settings is not null
 				&& Settings.ToUInt64() != 0

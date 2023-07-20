@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
-using VkNet.Model.RequestParams.Notifications;
-using VkNet.Model.Results.Notifications;
 
 namespace VkNet.Abstractions;
 
@@ -253,8 +251,12 @@ public interface INotificationsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.get
 	/// </remarks>
-	Task<NotificationGetResult> GetAsync(ulong? count = null, string startFrom = null, IEnumerable<string> filters = null,
-										long? startTime = null, long? endTime = null, CancellationToken token = default);
+	Task<NotificationGetResult> GetAsync(ulong? count = null,
+										string startFrom = null,
+										IEnumerable<string> filters = null,
+										long? startTime = null,
+										long? endTime = null,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Сбрасывает счетчик непросмотренных оповещений об ответах других пользователей
@@ -269,7 +271,7 @@ public interface INotificationsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.markAsViewed
 	/// </remarks>
-	Task<bool> MarkAsViewedAsync(CancellationToken token);
+	Task<bool> MarkAsViewedAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Отправляет уведомление пользователю приложения VK Apps.
@@ -293,5 +295,5 @@ public interface INotificationsCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/notifications.sendMessage
 	/// </remarks>
 	Task<IEnumerable<NotificationsSendMessageResult>> SendMessageAsync(NotificationsSendMessageParams sendMessageParams,
-																		CancellationToken token);
+																		CancellationToken token = default);
 }

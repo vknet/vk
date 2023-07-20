@@ -1,11 +1,9 @@
 ﻿using System;
-using Newtonsoft.Json;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода users.search
@@ -21,7 +19,6 @@ public class UserSearchParams
 	/// <summary>
 	/// Сортировка результатов.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public UserSort Sort { get; set; }
 
 	/// <summary>
@@ -180,6 +177,5 @@ public class UserSearchParams
 	/// <summary>
 	/// Разделы среди которых нужно осуществить поиск.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public UserSection FromList { get; set; }
 }

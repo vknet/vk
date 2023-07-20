@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Model.Attachments;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// параметры запроса wall.editAdsStealth
@@ -87,7 +86,7 @@ public class EditAdsStealthParams
 	public string LinkButton { get; set; }
 
 	/// <summary>
-	/// Идентификатор видео в формате <owner_id>_<media_id>.
+	/// Идентификатор видео в формате &lt;owner_id>_&lt;media_id>.
 	/// Одновременно может быть указан либо параметр link_image, либо параметр link_video.
 	/// Кроме того, параметр link_video может быть указан только вместе с параметрами link_button, link_title..
 	/// </summary>

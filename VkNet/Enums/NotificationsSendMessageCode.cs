@@ -25,6 +25,6 @@ public enum NotificationsSendMessageCode
 	/// <summary>
 	/// Приложение не установлено.
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	ApplicationNotInstalled = 3
 }

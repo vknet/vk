@@ -183,7 +183,7 @@ public class MultivaluedFilterTest
 			.Should()
 			.Be("can_post");
 
-		GroupsFields.CanSeelAllPosts.ToString()
+		GroupsFields.CanSeeAllPosts.ToString()
 			.Should()
 			.Be("can_see_all_posts");
 
@@ -280,7 +280,7 @@ public class MultivaluedFilterTest
 
 		GroupsFields.FromJsonString("can_see_all_posts")
 			.Should()
-			.Be(GroupsFields.CanSeelAllPosts);
+			.Be(GroupsFields.CanSeeAllPosts);
 
 		GroupsFields.FromJsonString("can_upload_doc")
 			.Should()

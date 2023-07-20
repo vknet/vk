@@ -62,12 +62,11 @@ public class SearchTests : CategoryBaseTest
 
 		var first = result.Items.First();
 
-		first.PostSource.Data.Should()
-			.NotBeNull();
+		first.PostSource.Data.Should().NotBe(null);
 
 		var second = result.Items.Last();
 
 		second.PostSource.Data.Should()
-			.BeNull();
+			.NotBe(null);
 	}
 }

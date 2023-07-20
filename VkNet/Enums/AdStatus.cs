@@ -1,3 +1,5 @@
+using VkNet.Utils;
+
 namespace VkNet.Enums;
 
 /// <summary>
@@ -8,6 +10,7 @@ public enum AdStatus
 	/// <summary>
 	/// Объявление остановлено
 	/// </summary>
+	[VkNetDefaultValue]
 	Stopped = 0,
 
 	/// <summary>

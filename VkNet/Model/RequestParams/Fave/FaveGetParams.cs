@@ -1,9 +1,8 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Enums.Filters;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams.Fave;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса метода fave.get
@@ -15,7 +14,6 @@ public class FaveGetParams
 	/// Типы объектов, которые необходимо вернуть.
 	/// </summary>
 	[JsonProperty("item_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public FaveType ItemType { get; set; }
 
 	/// <summary>
@@ -46,7 +44,7 @@ public class FaveGetParams
 	public ulong? Offset { get; set; }
 
 	/// <summary>
-	/// Количество возвращаемых закладок. 
+	/// Количество возвращаемых закладок.
 	/// </summary>
 	/// <remarks>
 	/// По умолчанию 50, минимальное значение 1, максимальное значение 100.

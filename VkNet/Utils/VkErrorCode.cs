@@ -1,5 +1,3 @@
-using System;
-
 namespace VkNet.Utils;
 
 /// <summary>
@@ -111,7 +109,7 @@ public static class VkErrorCode
 	/// текущего пользователя есть в полной
 	/// версии сайта.
 	/// </summary>
-	public const int CannotBlacklistYourself = 15;
+	public const int AccessDenied = 15;
 
 	/// <summary>
 	/// Требуется выполнение запросов по протоколу HTTPS, т.к. пользователь включил
@@ -148,12 +146,6 @@ public static class VkErrorCode
 	/// http://vk.com/dev/auth_mobile.
 	/// </summary>
 	public const int NonStandaloneApplications = 20;
-
-	/// <summary>
-	/// Данное действие разрешено только для Standalone и Open API приложений.
-	/// </summary>
-	[Obsolete("Используйте константу OnlyStandaloneOrOpenApi", true)]
-	public const int OnlySandaloneOrOpenApi = 21;
 
 	/// <summary>
 	/// Данное действие разрешено только для Standalone и Open API приложений.
@@ -374,12 +366,6 @@ public static class VkErrorCode
 	/// <summary>
 	/// Превышен лимит комментариев на стене
 	/// </summary>
-	[Obsolete("Используйте константу TooManyAdsPosts")]
-	public const int ToomanyAdsPosts = 224;
-
-	/// <summary>
-	/// Превышен лимит комментариев на стене
-	/// </summary>
 	public const int TooManyAdsPosts = 224;
 
 	/// <summary>
@@ -474,4 +460,9 @@ public static class VkErrorCode
 	/// Чат был отключен
 	/// </summary>
 	public const int ChatWasDisabled = 945;
+
+	/// <summary>
+	/// Неверный файл
+	/// </summary>
+	public const int InvalidFile = 4611;
 }

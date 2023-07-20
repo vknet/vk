@@ -2,9 +2,8 @@ using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Model.GroupUpdate;
 
-namespace VkNet.Model.Attachments;
+namespace VkNet.Model;
 
 /// <summary>
 /// Фотография.
@@ -242,6 +241,12 @@ public class Photo : MediaAttachment, IGroupUpdate
 	/// </summary>
 	[JsonProperty("tags")]
 	public Tags Tags { get; set; }
+
+	/// <summary>
+	/// Существование тегов
+	/// </summary>
+	[JsonProperty("has_tags")]
+	public bool HasTags { get; set; }
 
 	/// <summary>
 	/// Источник изображения.

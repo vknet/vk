@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -16,5 +17,11 @@ public sealed class OnlyStandaloneOrOpenApiException : VkApiMethodInvokeExceptio
 	/// <inheritdoc />
 	public OnlyStandaloneOrOpenApiException(VkError response) : base(response)
 	{
+	}
+
+	/// <inheritdoc />
+	private OnlyStandaloneOrOpenApiException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
+	{
+
 	}
 }

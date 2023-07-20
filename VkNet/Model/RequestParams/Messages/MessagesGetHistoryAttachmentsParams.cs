@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода messages.getHistoryAttachments
@@ -41,7 +40,6 @@ public class MessagesGetHistoryAttachmentsParams
 	/// 20.05.13, market,wall — 01.02.2016.
 	/// строка, по умолчанию photo.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	[JsonProperty("media_type")]
 	public MediaType MediaType { get; set; }
 

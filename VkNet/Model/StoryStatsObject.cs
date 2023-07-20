@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -15,7 +14,6 @@ public class StoryStatsObject
 	/// Доступность значения.
 	/// </summary>
 	[JsonProperty("state")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public StoryObjectState State { get; set; }
 
 	/// <summary>

@@ -194,7 +194,7 @@ public class VkApi : IVkApi
 	public void Authorize(ApiAuthParams @params) => Authorize((IApiAuthParams) @params);
 
 	/// <inheritdoc />
-	public Task AuthorizeAsync(IApiAuthParams @params) => TypeHelper.TryInvokeMethodAsync(() => Authorize(@params));
+	public Task AuthorizeAsync(IApiAuthParams @params, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() => Authorize(@params), CancellationToken.None);
 
 	/// <inheritdoc />
 	public void RefreshToken(Func<string> code = null)
@@ -215,17 +215,40 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
+	public void RefreshToken(Task<string> code = null)
+	{
+		if (!string.IsNullOrWhiteSpace(_ap.Login) && !string.IsNullOrWhiteSpace(_ap.Password))
+		{
+			_ap.TwoFactorAuthorizationAsync ??= code;
+			AuthorizeWithAntiCaptcha(_ap);
+		} else
+		{
+			const string message =
+				"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
+
+			_logger?.LogError(message);
+
+			throw new AggregateException(message);
+		}
+	}
+
+	/// <inheritdoc />
 	public void LogOut() => AccessToken = string.Empty;
 
 	/// <inheritdoc />
-	public Task RefreshTokenAsync(Func<string> code = null) => TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code));
+	public Task RefreshTokenAsync(Func<string> code = null, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code), token);
 
 	/// <inheritdoc />
-	public Task LogOutAsync() => TypeHelper.TryInvokeMethodAsync(LogOut);
+	public Task RefreshTokenAsync(Task<string> code = null, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() => RefreshToken(code), token);
+
+	/// <inheritdoc />
+	public Task LogOutAsync(CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(LogOut, token);
 
 	/// <inheritdoc />
 	[MethodImpl(MethodImplOptions.NoInlining)]
-	public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false)
+	public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters)
 	{
 		var answer = CallBase(methodName, parameters, skipAuthorization);
 
@@ -237,28 +260,6 @@ public class VkApi : IVkApi
 		{
 			RawJson = answer
 		};
-	}
-
-	/// <inheritdoc />
-	public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false)
-	{
-		var task = TypeHelper.TryInvokeMethodAsync(() =>
-			Call(methodName, parameters, skipAuthorization));
-
-		task.ConfigureAwait(false);
-
-		return task;
-	}
-
-	/// <inheritdoc />
-	public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false)
-	{
-		var task = TypeHelper.TryInvokeMethodAsync(() =>
-			Call<T>(methodName, parameters, skipAuthorization));
-
-		task.ConfigureAwait(false);
-
-		return task;
 	}
 
 	/// <inheritdoc />
@@ -282,8 +283,30 @@ public class VkApi : IVkApi
 
 		foreach (var jsonConverter in converters)
 			settings.Converters.Add(jsonConverter);
-						 
+
 		return JsonConvert.DeserializeObject<T>(answer, settings);
+	}
+
+	/// <inheritdoc />
+	public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default)
+	{
+		var task = TypeHelper.TryInvokeMethodAsync(() =>
+			Call(methodName, parameters, skipAuthorization), token);
+
+		task.ConfigureAwait(false);
+
+		return task;
+	}
+
+	/// <inheritdoc />
+	public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default)
+	{
+		var task = TypeHelper.TryInvokeMethodAsync(() =>
+			Call<T>(methodName, parameters, skipAuthorization), token);
+
+		task.ConfigureAwait(false);
+
+		return task;
 	}
 
 	/// <inheritdoc />
@@ -310,12 +333,12 @@ public class VkApi : IVkApi
 
 	/// <inheritdoc />
 	[CanBeNull]
-	public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false) =>
+	public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false, CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Invoke(methodName, parameters, skipAuthorization));
+			Invoke(methodName, parameters, skipAuthorization), token);
 
 	/// <inheritdoc />
-	public VkResponse CallLongPoll(string server, VkParameters parameters)
+	public VkResponse CallLongPoll(string server, VkParameters parameters, params JsonConverter[] jsonConverters)
 	{
 		var json = InvokeLongPollExtended(server, parameters);
 		var rawResponse = json.Root;
@@ -366,8 +389,8 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
-	public Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters) =>
-		TypeHelper.TryInvokeMethodAsync(() => CallLongPoll(server, parameters));
+	public Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() => CallLongPoll(server, parameters), token);
 
 	/// <inheritdoc />
 	public string InvokeLongPoll(string server, Dictionary<string, string> parameters) => InvokeLongPollExtended(server, parameters)
@@ -397,14 +420,14 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
-	public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters) => TypeHelper.TryInvokeMethodAsync(() =>
+	public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
 		InvokeLongPollExtended(server, parameters)
-			.ToString());
+			.ToString(), token);
 
 	/// <inheritdoc />
-	public Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters) =>
+	public Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			InvokeLongPollExtended(server, parameters));
+			InvokeLongPollExtended(server, parameters), token);
 
 	/// <inheritdoc cref="IDisposable" />
 	public void Dispose()
@@ -437,6 +460,14 @@ public class VkApi : IVkApi
 		UserId = authorization.UserId;
 	}
 
+	/// <inheritdoc cref="IVkApi.Validate" />
+	[Obsolete(ObsoleteText.Validate)]
+	public void Validate(string validateUrl, string phoneNumber)
+	{
+		_ap.Phone = phoneNumber;
+		Validate(validateUrl);
+	}
+
 	/// <summary>
 	/// Получить список JsonConverter для обработки ответа vk api
 	/// </summary>
@@ -458,19 +489,21 @@ public class VkApi : IVkApi
 
 	private void OnTokenExpired(VkApi sender)
 	{
-		RefreshTokenAsync(_ap.TwoFactorAuthorization)
-			.GetAwaiter()
-			.GetResult();
+		var isAsync = _ap.TwoFactorAuthorization is null;
+
+		if (isAsync)
+		{
+			RefreshTokenAsync(_ap.TwoFactorAuthorizationAsync)
+				.GetAwaiter()
+				.GetResult();
+		} else
+		{
+			RefreshTokenAsync(_ap.TwoFactorAuthorization)
+				.GetAwaiter()
+				.GetResult();
+		}
 
 		OnTokenUpdatedAutomatically?.Invoke(sender);
-	}
-
-	/// <inheritdoc cref="IVkApi.Validate" />
-	[Obsolete(ObsoleteText.Validate)]
-	public void Validate(string validateUrl, string phoneNumber)
-	{
-		_ap.Phone = phoneNumber;
-		Validate(validateUrl);
 	}
 
 	/// <summary>
@@ -698,6 +731,9 @@ public class VkApi : IVkApi
 
 	/// <inheritdoc />
 	public IDownloadedGamesCategory DownloadedGames { get; set; }
+
+	/// <inheritdoc />
+	public IAsrCategory Asr { get; set; }
 
 	#endregion
 
@@ -965,6 +1001,8 @@ public class VkApi : IVkApi
 		Podcasts = new PodcastsCategory(this);
 		Donut = new DonutCategory(this);
 		DownloadedGames = new DownloadedGamesCategory(this);
+		Asr = new AsrCategory(this);
+
 
 		RequestsPerSecond = 3;
 

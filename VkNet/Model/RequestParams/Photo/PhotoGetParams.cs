@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода photos.get
@@ -49,7 +50,6 @@ public class PhotoGetParams
 	/// либо только фотографий, на которых он был отмечен. Может принимать значения
 	/// photo, photo_tag.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public FeedType FeedType { get; set; }
 
 	/// <summary>

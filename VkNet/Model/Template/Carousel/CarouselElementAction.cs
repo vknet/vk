@@ -1,9 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.Template.Carousel;
+namespace VkNet.Model;
 
 /// <summary>
 /// Объект, описывающий действие, которое необходимо выполнить при нажатии на элемент карусели.
@@ -18,7 +17,6 @@ public class CarouselElementAction
 	/// Тип клавиши.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public CarouselElementActionType Type { get; set; }
 
 	/// <summary>

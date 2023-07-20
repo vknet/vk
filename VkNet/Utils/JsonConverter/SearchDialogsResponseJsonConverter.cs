@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using VkNet.Exception;
 using VkNet.Model;
 
 namespace VkNet.Utils.JsonConverter;
 
+/// <summary>
+/// Converter SearchDialogsResponse
+/// </summary>
 public class SearchDialogsResponseJsonConverter : Newtonsoft.Json.JsonConverter
 {
 	/// <inheritdoc />

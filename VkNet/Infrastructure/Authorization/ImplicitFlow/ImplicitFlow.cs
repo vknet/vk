@@ -1,12 +1,13 @@
 using System;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Logging;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Utils;
@@ -47,9 +48,9 @@ public class ImplicitFlow : IImplicitFlow
 	}
 
 	/// <inheritdoc />
-	public async Task<AuthorizationResult> AuthorizeAsync()
+	public async Task<AuthorizationResult> AuthorizeAsync(CancellationToken token = default)
 	{
-		_logger?.LogDebug("Валидация данных");
+		_logger?.LogDebug("Валидация данных.");
 		ValidateAuthorizationParameters();
 
 		_logger?.LogDebug("Шаг 1. Открытие диалога авторизации");
@@ -57,7 +58,7 @@ public class ImplicitFlow : IImplicitFlow
 		var authorizeUrlResult = CreateAuthorizeUrl();
 
 		var loginFormResult = await _authorizationFormsFactory.Create(ImplicitFlowPageType.LoginPassword)
-			.ExecuteAsync(authorizeUrlResult, _authorizationParameters)
+			.ExecuteAsync(authorizeUrlResult, _authorizationParameters, token)
 			.ConfigureAwait(false);
 
 		return await NextStepAsync(loginFormResult)
@@ -123,14 +124,14 @@ public class ImplicitFlow : IImplicitFlow
 
 	private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult)
 	{
-		var responseUrl = formResult.ResponseUrl;
+		var requestUrl = formResult.RequestUrl;
 
-		if (responseUrl.OriginalString.StartsWith("https://oauth.vk.com/auth_redirect"))
+		if (requestUrl.OriginalString.StartsWith("https://oauth.vk.com/auth_redirect"))
 		{
-			responseUrl = GetRedirectUrl(responseUrl);
+			requestUrl = GetRedirectUrl(requestUrl);
 		}
 
-		var pageType = _vkAuthorization.GetPageType(responseUrl);
+		var pageType = _vkAuthorization.GetPageType(requestUrl);
 
 		switch (pageType)
 		{
@@ -177,12 +178,12 @@ public class ImplicitFlow : IImplicitFlow
 			case ImplicitFlowPageType.Result:
 
 			{
-				return _vkAuthorization.GetAuthorizationResult(responseUrl);
+				return _vkAuthorization.GetAuthorizationResult(requestUrl);
 			}
 		}
 
 		var resultForm = await _authorizationFormsFactory.Create(pageType)
-			.ExecuteAsync(responseUrl, _authorizationParameters)
+			.ExecuteAsync(requestUrl, _authorizationParameters)
 			.ConfigureAwait(false);
 
 		return await NextStepAsync(resultForm)

@@ -1,5 +1,6 @@
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
+using VkNet.Utils;
 
 namespace VkNet.Model;
 
@@ -18,6 +19,7 @@ public class AccountChangePasswordResult
 	/// <summary>
 	/// secret в случае, если токен был nohttps.
 	/// </summary>
+	[Obsolete(ObsoleteText.Obsolete)]
 	[JsonProperty("secret")]
 	public string Secret { get; set; }
 }

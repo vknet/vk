@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -18,13 +18,15 @@ public interface IPlacesCategoryAsync
 	/// <param name="placesAddParams">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданного места (pid).
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/places.add
 	/// </remarks>
-	Task<long> AddAsync(PlacesAddParams placesAddParams);
+	Task<long> AddAsync(PlacesAddParams placesAddParams,
+						CancellationToken token = default);
 
 	/// <summary>
 	/// Отмечает пользователя в указанном месте.
@@ -32,13 +34,15 @@ public interface IPlacesCategoryAsync
 	/// <param name="placesCheckinParams">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданной отметки.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/places.checkin
 	/// </remarks>
-	Task<long> CheckinAsync(PlacesCheckinParams placesCheckinParams);
+	Task<long> CheckinAsync(PlacesCheckinParams placesCheckinParams,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию о местах по их идентификаторам.
@@ -48,6 +52,7 @@ public interface IPlacesCategoryAsync
 	/// разделенных запятыми, обязательный
 	/// параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов place, каждый из которых
 	/// имеет следующие поля:
@@ -63,7 +68,8 @@ public interface IPlacesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/places.getById
 	/// </remarks>
-	Task<ReadOnlyCollection<Place>> GetByIdAsync(IEnumerable<ulong> places);
+	Task<ReadOnlyCollection<Place>> GetByIdAsync(IEnumerable<ulong> places,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список отметок пользователей в местах согласно заданным параметрам.
@@ -71,6 +77,7 @@ public interface IPlacesCategoryAsync
 	/// <param name="placesGetCheckinsParams">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает количество отметок и массив объектов
 	/// chekin, каждый из которых имеет
@@ -113,11 +120,13 @@ public interface IPlacesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/places.getCheckins
 	/// </remarks>
-	Task<VkCollection<Checkin>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams);
+	Task<VkCollection<Checkin>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список всех возможных типов мест.
 	/// </summary>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает массив всех возможных типов мест, каждый из объектов которого
 	/// содержит поля tid, title и icon.
@@ -125,7 +134,7 @@ public interface IPlacesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/places.getTypes
 	/// </remarks>
-	Task<ReadOnlyCollection<PlaceType>> GetTypesAsync();
+	Task<ReadOnlyCollection<PlaceType>> GetTypesAsync(CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список мест, найденных по заданным условиям поиска.
@@ -133,6 +142,7 @@ public interface IPlacesCategoryAsync
 	/// <param name="placesSearchParams">
 	/// Входные параметры запроса.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает общее количество найденных мест и массив
 	/// объектов place, каждый из которых
@@ -158,5 +168,6 @@ public interface IPlacesCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/places.search
 	/// </remarks>
-	Task<VkCollection<Place>> SearchAsync(PlacesSearchParams placesSearchParams);
+	Task<VkCollection<Place>> SearchAsync(PlacesSearchParams placesSearchParams,
+										CancellationToken token = default);
 }

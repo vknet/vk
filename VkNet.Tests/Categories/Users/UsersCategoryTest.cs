@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using FluentAssertions;
 using Moq;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
@@ -559,7 +560,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	{
 		Mock.Get(Api.RestClient)
 			.Setup(f =>
-				f.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>(), Encoding.UTF8, null))
+				f.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>(), Encoding.UTF8, null, CancellationToken.None))
 			.Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
 
 		FluentActions.Invoking(() => Api.Users.Get(new long[]
@@ -812,6 +813,12 @@ public class UsersCategoryTest : CategoryBaseTest
 
 		user.Relatives.Should()
 			.BeEmpty();
+
+		user.OwnerState.State.Should()
+			.Be(1);
+
+		user.OwnerState.Photos.Photo50.Should()
+			.Be("https://vk.com/images/deactivated_50.png");
 	}
 
 	[Fact]

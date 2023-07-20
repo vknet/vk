@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -22,7 +21,6 @@ public class NameRequest
 	/// Статус заявки
 	/// </summary>
 	[JsonProperty("status")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public ChangeNameStatus Status { get; set; }
 
 	/// <summary>

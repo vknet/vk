@@ -1,10 +1,8 @@
 using System;
-using Newtonsoft.Json;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода groups.getMembers
@@ -28,7 +26,6 @@ public class GroupsGetMembersParams
 	/// сообщества. строка, по умолчанию
 	/// id_asc.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public GroupsSort Sort { get; set; }
 
 	/// <summary>
@@ -67,6 +64,5 @@ public class GroupsGetMembersParams
 	/// администратора сообщества).
 	/// строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public GroupsMemberFilters Filter { get; set; }
+	public GroupsMemberFilters? Filter { get; set; }
 }

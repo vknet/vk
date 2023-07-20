@@ -3,7 +3,6 @@ using System.Net;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
 using VkNet.Enums;
-using VkNet.Model;
 
 namespace VkNet.Utils;
 
@@ -11,7 +10,7 @@ namespace VkNet.Utils;
 /// Ответ vk.com
 /// </summary>
 [CanBeNull]
-public sealed partial class VkResponse
+public sealed class VkResponse
 {
 	/// <summary>
 	/// JSON токен
@@ -123,7 +122,7 @@ public sealed partial class VkResponse
 	/// Результат преобразования.
 	/// </returns>
 	public static implicit operator bool?(VkResponse response) => response == null
-		? (bool?) null
+		? null
 		: response == 1;
 
 	/// <summary>

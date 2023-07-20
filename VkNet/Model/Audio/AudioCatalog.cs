@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -29,7 +27,6 @@ public class AudioCatalog
 	/// Тип каталога.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AudioCatalogType Type { get; set; }
 
 	/// <summary>
@@ -42,7 +39,6 @@ public class AudioCatalog
 	/// Источник каталога.
 	/// </summary>
 	[JsonProperty("source")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AudioCatalogSourceType Source { get; set; }
 
 	/// <summary>

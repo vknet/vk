@@ -1,4 +1,6 @@
-﻿namespace VkNet.Enums;
+﻿using VkNet.Utils;
+
+namespace VkNet.Enums;
 
 /// <summary>
 /// Статус кампании.
@@ -8,6 +10,7 @@ public enum CampaignStatus
 	/// <summary>
 	/// Кампания остановлена
 	/// </summary>
+	[VkNetDefaultValue]
 	Stopped = 0,
 
 	/// <summary>

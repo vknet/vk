@@ -5,10 +5,9 @@ using FluentAssertions;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -1581,7 +1580,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 
 		FluentActions.Invoking(() => Api.Groups.Join(0, true))
 			.Should()
-			.ThrowExactly<CannotBlacklistYourselfException>()
+			.ThrowExactly<AccessDeniedException>()
 			.And.Message.Should()
 			.Be("Access denied: you can not join this private community");
 	}

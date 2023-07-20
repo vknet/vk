@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса messages.search

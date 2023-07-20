@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -35,7 +33,6 @@ public class ConversationChatSettings
 	/// Статус текущего пользователя.
 	/// </summary>
 	[JsonProperty("state")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public ConversationChatSettingsState State { get; set; }
 
 	/// <summary>

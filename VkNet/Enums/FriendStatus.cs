@@ -12,7 +12,7 @@ public enum FriendStatus
 	/// <summary>
 	/// Пользователь не является другом.
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	NotFriend = 0,
 
 	/// <summary>

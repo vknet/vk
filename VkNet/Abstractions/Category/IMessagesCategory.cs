@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
-using VkNet.Model.RequestParams.Messages;
-using VkNet.Model.Results.Messages;
-using VkNet.Model.Results.Users;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -25,11 +21,11 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	/// <inheritdoc cref="IMessagesCategoryAsync.CreateChatAsync"/>
 	long CreateChat(IEnumerable<ulong> userIds, [NotNull] string title);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync"/>
+	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync(IEnumerable{ulong}, bool?, ulong?, bool, System.Threading.CancellationToken)"/>
 	IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
 									bool deleteForAll = false);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync"/>
+	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteAsync(IEnumerable{ulong}, ulong, bool?, ulong?, bool, System.Threading.CancellationToken)"/>
 	IDictionary<ulong, bool> Delete([NotNull] IEnumerable<ulong> conversationMessageIds, ulong peerId,
 									bool? spam = null, ulong? groupId = null,
 									bool deleteForAll = false);
@@ -71,11 +67,11 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetLastActivityAsync"/>
 	LastActivity GetLastActivity(long userId);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(long, ProfileFields,NameCase)"/>
-	Chat GetChat(long chatId, ProfileFields fields = null, NameCase nameCase = null);
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(long, ProfileFields, NameCase?, System.Threading.CancellationToken)"/>
+	Chat GetChat(long chatId, ProfileFields fields = null, NameCase? nameCase = null);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(long, ProfileFields, NameCase)"/>
-	ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase nameCase = null);
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatAsync(IEnumerable{long}, ProfileFields, NameCase?, System.Threading.CancellationToken)"/>
+	ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatPreviewAsync"/>
 	ChatPreview GetChatPreview(string link, ProfileFields fields);
@@ -102,7 +98,7 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	long SendSticker(MessagesSendStickerParams @params);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetHistoryAttachmentsAsync"/>
-	ReadOnlyCollection<HistoryAttachment> GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params);
+	GetHistoryAttachmentsResult GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetInviteLinkAsync"/>
 	string GetInviteLink(ulong peerId, bool reset);
@@ -166,6 +162,10 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetIntentUsersAsync"/>
 	GetIntentUsersResult GetIntentUsers(MessagesGetIntentUsersParams getIntentUsersParams);
 
+
+	/// <inheritdoc cref="IMessagesCategoryAsync.SetMemberRoleAsync"/>
+	bool SetMemberRole(string role, long peerId, ulong memberId);
+
 	#region Obsoleted
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteDialogAsync"/>
@@ -188,11 +188,11 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	[Obsolete(ObsoleteText.MessageGet)]
 	MessagesGetObject Get(MessagesGetParams @params);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync"/>
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync(IEnumerable{long}, UsersFields, NameCase?, System.Threading.CancellationToken)"/>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
-	GetChatUsers GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase nameCase);
+	GetChatUsers GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase? nameCase);
 
-	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync"/>
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetChatUsersAsync(IEnumerable{long}, System.Threading.CancellationToken)"/>
 	[Obsolete(ObsoleteText.MessageGetChatUsers)]
 	ReadOnlyCollection<long> GetChatUsers(IEnumerable<long> chatIds);
 

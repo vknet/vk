@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -21,7 +20,6 @@ public class UserSpecification
 	/// Флаг, описывающий тип полномочий
 	/// </summary>
 	[JsonProperty(propertyName: "role")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AccessRole Role { get; set; }
 
 	/// <summary>

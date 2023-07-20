@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
+using VkNet.Utils;
 using Xunit;
 
 namespace VkNet.Tests.Models;
@@ -12,7 +13,7 @@ public class MessageActionModel : BaseTest
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatCreate));
 
 		var response = GetResponse();
-		var action = MessageAction.FromJsonString(response["action"]);
+		var action = Utilities.Deserialize<MessageAction>(response["action"]);
 
 		action.Should()
 			.Be(MessageAction.ChatCreate);
@@ -24,7 +25,7 @@ public class MessageActionModel : BaseTest
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUser));
 
 		var response = GetResponse();
-		var action = MessageAction.FromJsonString(response["action"]);
+		var action = Utilities.Deserialize<MessageAction>(response["action"]);
 
 		action.Should()
 			.Be(MessageAction.ChatInviteUser);
@@ -36,7 +37,7 @@ public class MessageActionModel : BaseTest
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUserByLink));
 
 		var response = GetResponse();
-		var action = MessageAction.FromJsonString(response["action"]);
+		var action = Utilities.Deserialize<MessageAction>(response["action"]);
 
 		action.Should()
 			.Be(MessageAction.ChatInviteUserByLink);
@@ -48,7 +49,7 @@ public class MessageActionModel : BaseTest
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatKickUser));
 
 		var response = GetResponse();
-		var action = MessageAction.FromJsonString(response["action"]);
+		var action = Utilities.Deserialize<MessageAction>(response["action"]);
 
 		action.Should()
 			.Be(MessageAction.ChatKickUser);
@@ -60,7 +61,7 @@ public class MessageActionModel : BaseTest
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoRemove));
 
 		var response = GetResponse();
-		var action = MessageAction.FromJsonString(response["action"]);
+		var action = Utilities.Deserialize<MessageAction>(response["action"]);
 
 		action.Should()
 			.Be(MessageAction.ChatPhotoRemove);
@@ -72,7 +73,7 @@ public class MessageActionModel : BaseTest
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoUpdate));
 
 		var response = GetResponse();
-		var action = MessageAction.FromJsonString(response["action"]);
+		var action = Utilities.Deserialize<MessageAction>(response["action"]);
 
 		action.Should()
 			.Be(MessageAction.ChatPhotoUpdate);
@@ -84,7 +85,7 @@ public class MessageActionModel : BaseTest
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatPinMessage));
 
 		var response = GetResponse();
-		var action = MessageAction.FromJsonString(response["action"]);
+		var action = Utilities.Deserialize<MessageAction>(response["action"]);
 
 		action.Should()
 			.Be(MessageAction.ChatPinMessage);
@@ -96,7 +97,7 @@ public class MessageActionModel : BaseTest
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatTitleUpdate));
 
 		var response = GetResponse();
-		var action = MessageAction.FromJsonString(response["action"]);
+		var action = Utilities.Deserialize<MessageAction>(response["action"]);
 
 		action.Should()
 			.Be(MessageAction.ChatTitleUpdate);
@@ -108,7 +109,7 @@ public class MessageActionModel : BaseTest
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatUnpinMessage));
 
 		var response = GetResponse();
-		var action = MessageAction.FromJsonString(response["action"]);
+		var action = Utilities.Deserialize<MessageAction>(response["action"]);
 
 		action.Should()
 			.Be(MessageAction.ChatUnpinMessage);

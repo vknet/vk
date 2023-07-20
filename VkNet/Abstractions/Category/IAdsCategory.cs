@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams.Ads;
 
 namespace VkNet.Abstractions;
 

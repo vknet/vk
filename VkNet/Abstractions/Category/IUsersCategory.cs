@@ -2,9 +2,8 @@
 using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -18,15 +17,15 @@ public interface IUsersCategory : IUsersCategoryAsync
 	/// <inheritdoc cref="IUsersCategoryAsync.IsAppUserAsync"/>
 	bool IsAppUser(long? userId);
 
-	/// <inheritdoc cref="IUsersCategoryAsync.GetAsync(long,ProfileFields,NameCase)"/>
+	/// <inheritdoc cref="IUsersCategoryAsync.GetAsync(IEnumerable{long},ProfileFields,NameCase?, System.Threading.CancellationToken)"/>
 	ReadOnlyCollection<User> Get([NotNull] IEnumerable<long> userIds
 								, ProfileFields fields = null
-								, NameCase nameCase = null);
+								, NameCase? nameCase = null);
 
-	/// <inheritdoc cref="IUsersCategoryAsync.GetAsync(string,ProfileFields,NameCase)"/>
+	/// <inheritdoc cref="IUsersCategoryAsync.GetAsync(IEnumerable{string},ProfileFields,NameCase?, System.Threading.CancellationToken)"/>
 	ReadOnlyCollection<User> Get([NotNull] IEnumerable<string> screenNames
 								, ProfileFields fields = null
-								, NameCase nameCase = null);
+								, NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IUsersCategoryAsync.GetSubscriptionsAsync"/>
 	VkCollection<Group> GetSubscriptions(long? userId = null
@@ -39,7 +38,7 @@ public interface IUsersCategory : IUsersCategoryAsync
 									, int? count = null
 									, int? offset = null
 									, ProfileFields fields = null
-									, NameCase nameCase = null);
+									, NameCase? nameCase = null);
 
 	/// <inheritdoc cref="IUsersCategoryAsync.ReportAsync"/>
 	bool Report(long userId, ReportType type, string comment = "");

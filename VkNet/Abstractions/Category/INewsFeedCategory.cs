@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -31,7 +30,7 @@ public interface INewsFeedCategory : INewsFeedCategoryAsync
 	NewsBannedList GetBanned();
 
 	/// <inheritdoc cref="INewsFeedCategoryAsync.GetBannedExAsync"/>
-	NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase nameCase = null);
+	NewsBannedExList GetBannedEx(UsersFields fields = null, NameCase? nameCase = null);
 
 	/// <inheritdoc cref="INewsFeedCategoryAsync.AddBanAsync"/>
 	bool AddBan(IEnumerable<long> userIds, IEnumerable<long> groupIds);

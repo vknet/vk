@@ -2,8 +2,6 @@
 using System.Collections.ObjectModel;
 using VkNet.Enums;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
 
 namespace VkNet.Abstractions;
 

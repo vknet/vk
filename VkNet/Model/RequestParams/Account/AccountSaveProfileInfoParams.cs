@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Enums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода account.saveProfileInfo
@@ -114,4 +115,29 @@ public class AccountSaveProfileInfoParams
 	/// </remarks>
 	[JsonProperty("phone")]
 	public string Phone { get; set; }
+
+	/// <summary>
+	/// Передается 1, если пользователь, указанный в RelationPartner, не подтвердил отношения.
+	/// </summary>
+	[JsonProperty("relation_pending")]
+	public int RelationPending { get; set; }
+
+	/// <summary>
+	/// Список объектов пользователей, которые указали, что состоят в отношениях с данным пользователем (если есть).
+	/// </summary>
+	[JsonProperty("relation_requests")]
+	public List<User> RelationRequests { get; set; }
+
+	/// <summary>
+	/// Информация о заявке на смену имени, если она была подана
+	/// </summary>
+	[JsonProperty("name_request")]
+	public NameRequest NameRequest { get; set; }
+
+	/// <summary>
+	/// Идентификатор заявки на смену имени, которую необходимо отменить.
+	/// Если передан этот параметр, все остальные параметры игнорируются.
+	/// </summary>
+	[JsonProperty("cancel_request_id")]
+	public ulong CancelRequestId { get; set; }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -16,5 +17,11 @@ public sealed class AccessToCommentDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	public AccessToCommentDeniedException(VkError response) : base(response)
 	{
+	}
+
+	/// <inheritdoc />
+	private AccessToCommentDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
+	{
+
 	}
 }

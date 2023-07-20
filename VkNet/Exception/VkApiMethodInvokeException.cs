@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using VkNet.Model;
 
 namespace VkNet.Exception;
@@ -15,6 +16,12 @@ public class VkApiMethodInvokeException : VkApiException
 
 	/// <inheritdoc />
 	public VkApiMethodInvokeException(VkError error) : base(error.ErrorMessage) => _error = error;
+
+	/// <inheritdoc />
+	protected VkApiMethodInvokeException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+	{
+
+	}
 
 	/// <summary>
 	/// Код ошибки

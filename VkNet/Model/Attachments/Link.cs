@@ -1,9 +1,8 @@
 using System;
 using System.Diagnostics;
 using Newtonsoft.Json;
-using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model.Attachments;
+namespace VkNet.Model;
 
 /// <summary>
 /// Ссылка на Web-страницу.

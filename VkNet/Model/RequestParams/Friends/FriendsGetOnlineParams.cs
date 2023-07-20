@@ -1,9 +1,7 @@
 ﻿using System;
-using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода friends.getOnline
@@ -40,7 +38,6 @@ public class FriendsGetOnlineParams
 	/// как друзья сортируются в разделе Мои
 	/// друзья (данный параметр доступен только для Desktop-приложений). строка.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public FriendsOrder Order { get; set; }
 
 	/// <summary>

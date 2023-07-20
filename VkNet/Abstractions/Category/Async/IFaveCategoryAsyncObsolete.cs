@@ -1,7 +1,7 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -20,6 +20,7 @@ public partial interface IFaveCategoryAsync
 	/// обязательный параметр (Строка, обязательный параметр).
 	/// </param>
 	/// <param name="text"> Текст ссылки. строка (Строка). </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -27,7 +28,9 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.addLink
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete + "Используйте вместо него Task<bool> AddLinkAsync(Uri link)")]
-	Task<bool> AddLinkAsync(Uri link, string text);
+	Task<bool> AddLinkAsync(Uri link,
+							string text,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список пользователей, добавленных текущим пользователем в закладки.
@@ -42,6 +45,7 @@ public partial interface IFaveCategoryAsync
 	/// положительное число, по
 	/// умолчанию 50 (Положительное число, по умолчанию 50).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов пользователей.
 	/// </returns>
@@ -49,7 +53,9 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.getUsers
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
-	Task<VkCollection<User>> GetUsersAsync(int? count = null, int? offset = null);
+	Task<VkCollection<User>> GetUsersAsync(int? count = null,
+											int? offset = null,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает фотографии, на которых текущий пользователь поставил отметку "Мне
@@ -70,6 +76,7 @@ public partial interface IFaveCategoryAsync
 	/// формате. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения
 	/// 1 или 0).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов фотографий.
 	/// </returns>
@@ -77,7 +84,10 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.getPhotos
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
-	Task<VkCollection<Photo>> GetPhotosAsync(int? count = null, int? offset = null, bool? photoSizes = null);
+	Task<VkCollection<Photo>> GetPhotosAsync(int? count = null,
+											int? offset = null,
+											bool? photoSizes = null,
+											CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает записи, на которых текущий пользователь поставил отметку "Мне
@@ -98,6 +108,7 @@ public partial interface IFaveCategoryAsync
 	/// сообществах.
 	/// По умолчанию: 0.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов записей на стене.
 	/// </returns>
@@ -105,7 +116,10 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.getPosts
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
-	Task<WallGetObject> GetPostsAsync(int? count = null, int? offset = null, bool extended = false);
+	Task<WallGetObject> GetPostsAsync(int? count = null,
+									int? offset = null,
+									bool extended = false,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список видеозаписей, на которых текущий пользователь поставил
@@ -125,6 +139,7 @@ public partial interface IFaveCategoryAsync
 	/// сообществах.
 	/// По умолчанию: 0.
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов видеозаписей.
 	/// </returns>
@@ -132,7 +147,10 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.getVideos
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
-	Task<FaveVideoEx> GetVideosAsync(int? count = null, int? offset = null, bool extended = false);
+	Task<FaveVideoEx> GetVideosAsync(int? count = null,
+									int? offset = null,
+									bool extended = false,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает ссылки, добавленные в закладки текущим пользователем.
@@ -147,6 +165,7 @@ public partial interface IFaveCategoryAsync
 	/// число, по умолчанию 50
 	/// (Положительное число, по умолчанию 50).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает общее количество ссылок и массив объектов
 	/// link, каждый из которых содержит
@@ -156,7 +175,9 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.getLinks
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
-	Task<VkCollection<ExternalLink>> GetLinksAsync(int? count = null, int? offset = null);
+	Task<VkCollection<ExternalLink>> GetLinksAsync(int? count = null,
+													int? offset = null,
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет пользователя в закладки.
@@ -166,6 +187,7 @@ public partial interface IFaveCategoryAsync
 	/// число, обязательный
 	/// параметр (Положительное число, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -173,7 +195,8 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.addUser
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
-	Task<bool> AddUserAsync(long userId);
+	Task<bool> AddUserAsync(long userId,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет пользователя из закладок.
@@ -183,6 +206,7 @@ public partial interface IFaveCategoryAsync
 	/// число, обязательный
 	/// параметр (Положительное число, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -190,7 +214,8 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeUser
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
-	Task<bool> RemoveUserAsync(long userId);
+	Task<bool> RemoveUserAsync(long userId,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет сообщество в закладки.
@@ -200,6 +225,7 @@ public partial interface IFaveCategoryAsync
 	/// число, обязательный
 	/// параметр (Положительное число, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -207,7 +233,8 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.addGroup
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
-	Task<bool> AddGroupAsync(long groupId);
+	Task<bool> AddGroupAsync(long groupId,
+							CancellationToken token = default);
 
 	/// <summary>
 	/// Удаляет сообщество из закладок.
@@ -217,6 +244,7 @@ public partial interface IFaveCategoryAsync
 	/// число, обязательный
 	/// параметр (Положительное число, обязательный параметр).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -224,7 +252,8 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeGroup
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
-	Task<bool> RemoveGroupAsync(long groupId);
+	Task<bool> RemoveGroupAsync(long groupId,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает товары, добавленные в закладки текущим пользователем.
@@ -245,6 +274,7 @@ public partial interface IFaveCategoryAsync
 	/// данные поля не возвращается. флаг, может принимать значения 1 или 0 (Флаг,
 	/// может принимать значения 1 или 0).
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов товаров.
 	/// </returns>
@@ -252,5 +282,8 @@ public partial interface IFaveCategoryAsync
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.getMarketItems
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
-	Task<VkCollection<Market>> GetMarketItemsAsync(ulong? count = null, ulong? offset = null, bool? extended = null);
+	Task<VkCollection<Market>> GetMarketItemsAsync(ulong? count = null,
+													ulong? offset = null,
+													bool? extended = null,
+													CancellationToken token = default);
 }

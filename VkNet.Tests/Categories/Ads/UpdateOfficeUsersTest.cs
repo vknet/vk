@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -21,7 +21,7 @@ public class UpdateOfficeUsersTest : CategoryBaseTest
 		{
 			UserId = 12423,
 			Role = AccessRole.Reports,
-			ClientsIds = new int[]
+			ClientsIds = new[]
 			{
 				1245,
 				566,
@@ -35,7 +35,7 @@ public class UpdateOfficeUsersTest : CategoryBaseTest
 		{
 			UserId = 4324432,
 			Role = AccessRole.Manager,
-			ClientsIds = new int[]
+			ClientsIds = new[]
 			{
 				567357,
 				566566,

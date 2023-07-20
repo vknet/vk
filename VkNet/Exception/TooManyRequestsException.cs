@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -22,5 +23,11 @@ public sealed class TooManyRequestsException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	public TooManyRequestsException(VkError response) : base(response)
 	{
+	}
+
+	/// <inheritdoc />
+	private TooManyRequestsException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
+	{
+
 	}
 }

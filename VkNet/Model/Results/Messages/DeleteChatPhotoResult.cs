@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace VkNet.Model.Results.Messages;
+namespace VkNet.Model;
 
 /// <summary>
 /// Messages.DeleteChatPhoto

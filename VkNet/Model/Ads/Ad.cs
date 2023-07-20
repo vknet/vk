@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Model;
@@ -78,7 +78,6 @@ public class Ad
 	/// Рекламные площадки, на которых будет показываться объявление. (если значение применимо к данному формату объявления)
 	/// </summary>
 	[JsonProperty("ad_platform")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AdPlatform AdPlatform { get; set; }
 
 	/// <summary>

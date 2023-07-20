@@ -1,10 +1,9 @@
 ﻿using System;
 using Newtonsoft.Json;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams.Messages;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода messages.getIntentUsers
@@ -20,14 +19,12 @@ public class MessagesGetIntentUsersParams
 	/// строка, обязательный параметр
 	/// </summary>
 	[JsonProperty("intent")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public MessageIntent Intent { get; set; }
 
 	/// <summary>
 	/// Падеж для склонения имени и фамилии пользователя. Возможные значения: именительный – nom, родительный – gen, дательный – dat, винительный – acc, творительный – ins, предложный – abl. По умолчанию nom. список слов, разделенных через запятую
 	/// </summary>
 	[JsonProperty("name_case")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public NameCase NameCase { get; set; }
 
 	/// <summary>

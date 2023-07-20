@@ -1,7 +1,7 @@
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
-using VkNet.Model.Attachments;
+using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -19,7 +19,7 @@ public class DocsSaveTests : CategoryBaseTest
 
 		var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-		var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
+		var result = Api.Docs.Save(docUploadResult, "IMG_907");
 
 		result.Should()
 			.NotBeEmpty();
@@ -33,7 +33,7 @@ public class DocsSaveTests : CategoryBaseTest
 
 		var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-		var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
+		var result = Api.Docs.Save(docUploadResult, "IMG_907");
 
 		result.Should()
 			.NotBeEmpty();
@@ -47,7 +47,7 @@ public class DocsSaveTests : CategoryBaseTest
 
 		var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-		var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
+		var result = Api.Docs.Save(docUploadResult, "IMG_907");
 
 		result.Should()
 			.NotBeEmpty();
@@ -61,7 +61,7 @@ public class DocsSaveTests : CategoryBaseTest
 
 		var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
 
-		var result = Api.Docs.Save(docUploadResult, "IMG_907", null);
+		var result = Api.Docs.Save(docUploadResult, "IMG_907");
 
 		result.Should()
 			.NotBeEmpty();

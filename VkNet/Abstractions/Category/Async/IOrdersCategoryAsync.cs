@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
 
 namespace VkNet.Abstractions.Category;
@@ -23,13 +24,17 @@ public interface IOrdersCategoryAsync
 	/// 1 — отключить подписку по истечении текущего оплаченного периода;
 	/// 0 — отключить подписку сразу. флаг, может принимать значения 1 или 0, по умолчанию 0
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1. При отмене подписки на адрес обратного вызова будет отправлено платёжное уведомление с типом subscription_status_change.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/orders.cancelSubscription
 	/// </remarks>
-	Task<bool> CancelSubscriptionAsync(ulong userId, ulong subscriptionId, bool? pendingCancel = null);
+	Task<bool> CancelSubscriptionAsync(ulong userId,
+										ulong subscriptionId,
+										bool? pendingCancel = null,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Изменяет состояние заказа.
@@ -51,6 +56,7 @@ public interface IOrdersCategoryAsync
 	/// <param name = "testMode">
 	/// Если этот параметр равен 1, изменяется состояние заказа тестового режима. По умолчанию 0. флаг, может принимать значения 1 или 0
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает новый статус заказа.
 	/// Статусы заказа
@@ -63,7 +69,11 @@ public interface IOrdersCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/orders.changeState
 	/// </remarks>
-	Task<OrderState> ChangeStateAsync(ulong orderId, OrderStateAction action, ulong? appOrderId = null, bool? testMode = null);
+	Task<OrderState> ChangeStateAsync(ulong orderId,
+									OrderStateAction action,
+									ulong? appOrderId = null,
+									bool? testMode = null,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список заказов.
@@ -77,6 +87,7 @@ public interface IOrdersCategoryAsync
 	/// <param name = "testMode">
 	/// Если этот параметр равен 1, возвращается список заказов тестового режима. По умолчанию 0. флаг, может принимать значения 1 или 0
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив найденных заказов, отсортированный по дате в обратном порядке (самый новый в начале).
 	/// Статусы заказа
@@ -89,7 +100,10 @@ public interface IOrdersCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/orders.get
 	/// </remarks>
-	Task<IEnumerable<Order>> GetAsync(ulong? offset = null, ulong? count = null, bool? testMode = null);
+	Task<IEnumerable<Order>> GetAsync(ulong? offset = null,
+									ulong? count = null,
+									bool? testMode = null,
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает стоимость голосов в валюте пользователя.
@@ -100,13 +114,16 @@ public interface IOrdersCategoryAsync
 	/// <param name = "votes">
 	/// Список голосов. Например: 1,7,77 список слов, разделенных через запятую, обязательный параметр, количество элементов должно составлять не более 100
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает валюту пользователя и массив результатов для каждого значения из votes.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/orders.getAmount
 	/// </remarks>
-	Task<IEnumerable<VotesAmount>> GetAmountAsync(ulong userId, IEnumerable<string> votes);
+	Task<IEnumerable<VotesAmount>> GetAmountAsync(ulong userId,
+												IEnumerable<string> votes,
+												CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает информацию об отдельном заказе.
@@ -117,6 +134,7 @@ public interface IOrdersCategoryAsync
 	/// <param name = "testMode">
 	/// Если этот параметр равен 1, возвращаются заказы тестового режима. По умолчанию 0. флаг, может принимать значения 1 или 0
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращается массив найденных заказов, отсортированный по дате в обратном порядке (самый новый в начале).
 	/// Статусы заказа
@@ -129,7 +147,9 @@ public interface IOrdersCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/orders.getById
 	/// </remarks>
-	Task<IEnumerable<Order>> GetByIdAsync(IEnumerable<ulong> orderIds = null, bool? testMode = null);
+	Task<IEnumerable<Order>> GetByIdAsync(IEnumerable<ulong> orderIds = null,
+										bool? testMode = null,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Получает информацию о подписке по её идентификатору.
@@ -140,6 +160,7 @@ public interface IOrdersCategoryAsync
 	/// <param name = "subscriptionId">
 	/// Идентификатор подписки. положительное число, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// Возвращает объект, описывающий подписку. Содержит следующие поля:
 	/// id (integer) — идентификатор подписки.
@@ -166,7 +187,9 @@ public interface IOrdersCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/orders.getUserSubscriptionById
 	/// </remarks>
-	Task<SubscriptionItem> GetUserSubscriptionByIdAsync(ulong userId, ulong subscriptionId);
+	Task<SubscriptionItem> GetUserSubscriptionByIdAsync(ulong userId,
+														ulong subscriptionId,
+														CancellationToken token = default);
 
 	/// <summary>
 	/// Получает список активных подписок пользователя.
@@ -174,6 +197,7 @@ public interface IOrdersCategoryAsync
 	/// <param name = "userId">
 	/// Идентификатор пользователя, подписки которого необходимо получить. положительное число, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и массив объектов, описывающих подписку, в поле items. Каждый объект массива items содержит следующие поля:
 	/// id (integer) — идентификатор подписки.
@@ -198,7 +222,8 @@ public interface IOrdersCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/orders.getUserSubscriptions
 	/// </remarks>
-	Task<IEnumerable<SubscriptionItem>> GetUserSubscriptionsAsync(ulong userId);
+	Task<IEnumerable<SubscriptionItem>> GetUserSubscriptionsAsync(ulong userId,
+																CancellationToken token = default);
 
 	/// <summary>
 	/// Обновляет цену подписки для пользователя.
@@ -212,11 +237,15 @@ public interface IOrdersCategoryAsync
 	/// <param name = "price">
 	/// Новая стоимость подписки (должна быть ниже, чем текущая). положительное число, обязательный параметр
 	/// </param>
+	/// <param name="token">Токен отмены</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/orders.updateSubscription
 	/// </remarks>
-	Task<bool> UpdateSubscriptionAsync(ulong userId, ulong subscriptionId, ulong price);
+	Task<bool> UpdateSubscriptionAsync(ulong userId,
+										ulong subscriptionId,
+										ulong price,
+										CancellationToken token = default);
 }

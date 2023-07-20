@@ -1,8 +1,7 @@
 using System;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -42,6 +41,11 @@ public interface IApiAuthParams
 	Func<string> TwoFactorAuthorization { get; set; }
 
 	/// <summary>
+	/// Функция асинхронной двух факторной авторизации
+	/// </summary>
+	Task<string> TwoFactorAuthorizationAsync { get; set; }
+
+	/// <summary>
 	/// Токен доступа, полученный извне
 	/// </summary>
 	string AccessToken { get; set; }
@@ -70,30 +74,6 @@ public interface IApiAuthParams
 	string CaptchaKey { get; set; }
 
 	/// <summary>
-	/// Имя узла прокси-сервера.
-	/// </summary>
-	[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
-	string Host { get; set; }
-
-	/// <summary>
-	/// Номер порта используемого Host.
-	/// </summary>
-	[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
-	int? Port { get; set; }
-
-	/// <summary>
-	/// Логин для прокси с авторизацией. Если прокси без авторизации - оставить пустым
-	/// </summary>
-	[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
-	string ProxyLogin { get; set; }
-
-	/// <summary>
-	/// Пароль для прокси с авторищацией. Если прокси без авторизации - оставить пустым
-	/// </summary>
-	[Obsolete("Use HttpClient to configure proxy. Documentation reference https://github.com/vknet/vk/wiki/Proxy-Configuration", true)]
-	string ProxyPassword { get; set; }
-
-	/// <summary>
 	/// Номер телефона
 	/// </summary>
 	string Phone { get; set; }
@@ -114,7 +94,6 @@ public interface IApiAuthParams
 	/// <summary>
 	/// Указывает тип отображения страницы авторизации.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	Display Display { get; set; }
 
 	/// <summary>
@@ -136,13 +115,11 @@ public interface IApiAuthParams
 	/// <summary>
 	/// Тип авторизации.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	GrantType GrantType { get; set; }
 
 	/// <summary>
 	/// Тип ответа, который Вы хотите получить.
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	ResponseType ResponseType { get; set; }
 
 	/// <summary>

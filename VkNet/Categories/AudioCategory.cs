@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
+using VkNet.Exception;
 using VkNet.Infrastructure;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -337,11 +335,9 @@ public partial class AudioCategory : IAudioCategory
 	}
 
 	/// <inheritdoc />
-	public Uri GetUploadServer()
+	public UploadServer GetUploadServer()
 	{
-		var response = _vk.Call("audio.getUploadServer", VkParameters.Empty);
-
-		return response["upload_url"];
+		return _vk.Call<UploadServer>("audio.getUploadServer", VkParameters.Empty);
 	}
 
 	/// <inheritdoc />
@@ -407,6 +403,16 @@ public partial class AudioCategory : IAudioCategory
 	{
 		VkErrors.ThrowIfNullOrEmpty(() => response);
 		var responseJson = response.ToJObject();
+
+		if (responseJson["error_code"] is not null)
+		{
+			var error = responseJson["error_code"]
+				.ToString();
+			var errorMsg = responseJson["error_msg"]
+				.ToString();
+
+			throw new VkApiException(error + ": " + errorMsg);
+		}
 
 		var server = responseJson["server"]
 			.ToString();

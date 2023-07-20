@@ -1,10 +1,9 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams.Ads;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса ads.getTargetingStats
@@ -36,7 +35,6 @@ public class GetTargetingStatsParams
 	/// строка
 	/// </summary>
 	[JsonProperty("ad_platform")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AdPlatform AdPlatform { get; set; }
 
 	/// <summary>

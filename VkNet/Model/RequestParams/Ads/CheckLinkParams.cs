@@ -1,9 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams.Ads;
+namespace VkNet.Model;
 
 /// <summary>
 ///
@@ -21,7 +20,6 @@ public class CheckLinkParams
 	///
 	/// </summary>
 	[JsonProperty(propertyName: "link_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AdsLinkType LinkType { get; set; }
 
 	/// <summary>

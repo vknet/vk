@@ -3,9 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using VkNet.Enums;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
-using VkNet.Utils;
+using VkNet.Enums.StringEnums;
 using VkNet.Utils.JsonConverter;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -85,8 +83,7 @@ public class User
 	/// Причина блокирования аккаунта
 	/// </summary>
 	[JsonProperty("deactivated", DefaultValueHandling = DefaultValueHandling.Populate)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	public Deactivated Deactivated { get; set; }
+	public Deactivated? Deactivated { get; set; }
 
 	/// <summary>
 	/// Информация пользователя о себе.
@@ -286,7 +283,7 @@ public class User
 	/// Состояние дружбы с пользователями.
 	/// </summary>
 	[JsonProperty("friend_status")]
-	public FriendStatus FriendStatus { get; set; }
+	public FriendStatus? FriendStatus { get; set; }
 
 	/// <summary>
 	/// Любимые игры пользователя.
@@ -530,7 +527,7 @@ public class User
 	/// Семейное положение.
 	/// </summary>
 	[JsonProperty("relation")]
-	public RelationType Relation { get; set; }
+	public RelationType? Relation { get; set; }
 
 	/// <summary>
 	/// Школы, в которых учился пользователь.
@@ -548,7 +545,7 @@ public class User
 	/// Пол пользователя.
 	/// </summary>
 	[JsonProperty("sex")]
-	public Sex Sex { get; set; }
+	public Sex? Sex { get; set; }
 
 	/// <summary>
 	/// Возвращает указанный в профиле сайт пользователя.
@@ -696,7 +693,6 @@ public class User
 	/// <summary>
 	/// Полномочия руководителя (для Groups.GetMembers)
 	/// </summary>
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	[JsonProperty("role")]
 	public ManagerRole Role { get; set; }
 

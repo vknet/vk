@@ -10,7 +10,7 @@ public enum BanReason
 	/// <summary>
 	/// Другое.
 	/// </summary>
-	[DefaultValue]
+	[VkNetDefaultValue]
 	Other = 0,
 
 	/// <summary>

@@ -1,8 +1,6 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -16,7 +14,6 @@ public class MessageActionObject
 	/// Информация о сервисном действии с чатом.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public MessageAction Type { get; set; }
 
 	/// <summary>

@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -16,7 +15,6 @@ public class MessageContentSource
 	/// Источник.
 	/// </summary>
 	[JsonProperty("type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public MessageContentSourceType Type { get; set; }
 
 	/// <summary>

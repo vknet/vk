@@ -1,0 +1,77 @@
+name: Push 
+
+on:
+  push: 
+    branches: [ develop ]
+
+
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log level"
+        required: true
+        default: "warning"
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    environment: VkNet
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 7.0.x
+        
+      - name: Test
+        run: dotnet test VkNet.Tests/VkNet.Tests.csproj -c Release -f net7.0
+        
+      - uses: bbonkr/get-version-action@v1
+        id: get_version
+        with:
+          project: 'VkNet/VkNet.csproj'    
+      
+      - name: Build Alpha
+        if:   contains(steps.get_version.outputs.version, 'alpha')
+        run: dotnet build VkNet/VkNet.csproj --configuration Release /p:Version=${{ format('{0}-{1}', steps.get_version.outputs.version, github.run_number) }}
+      
+      - name: Build Release
+        if:   success() && !contains(steps.get_version.outputs.version, 'alpha')
+        run: dotnet build VkNet/VkNet.csproj --configuration Release
+      
+      - name: Build the NuGet package Alpha
+        if:   contains(steps.get_version.outputs.version, 'alpha')
+        run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}/Package /p:Version=${{ format('{0}-{1}', steps.get_version.outputs.version, github.run_number) }}
+   
+      - name: Build the NuGet package Release
+        if:   success() && !contains(steps.get_version.outputs.version, 'alpha')
+        run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}/Package
+
+      - name: Publish NuGet Package
+        run: dotnet nuget push ${{env.DOTNET_ROOT}}/Package/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate  
+        
+      - name: Send Telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: 'html'
+          disable_web_page_preview: true
+          message: |
+            <b>✅ Task Succeeded</b>
+            <code>Reason: Push Build №: ${{ github.run_number }} VkNet был успешно собран!</code>
+            <b>Build queued by: ${{ github.triggering_actor }}</b> 
+            
+            https://github.com/${{ github.repository }}/commit/${{github.sha}}
+      

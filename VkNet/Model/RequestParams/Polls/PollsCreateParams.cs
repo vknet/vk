@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace VkNet.Model.RequestParams.Polls;
+namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода polls.create

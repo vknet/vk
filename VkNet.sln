@@ -9,14 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkNet", "VkNet\VkNet.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkNet.Tests", "VkNet.Tests\VkNet.Tests.csproj", "{CDEF6518-F137-400B-96F4-895818896EA9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkNet.Core.Abstractions", "VkNet.Core.Abstractions\VkNet.Core.Abstractions.csproj", "{48475C73-3F26-4FB8-A345-2E00028EB8CE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C768206C-73C8-46F7-BD48-0119C60EAC63}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkNet.Generators", "VkNet.Generators\VkNet.Generators.csproj", "{987BFF46-CC35-4943-AC1D-E7C8E7F576E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,14 +28,6 @@ Global
 		{CDEF6518-F137-400B-96F4-895818896EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDEF6518-F137-400B-96F4-895818896EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDEF6518-F137-400B-96F4-895818896EA9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48475C73-3F26-4FB8-A345-2E00028EB8CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48475C73-3F26-4FB8-A345-2E00028EB8CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48475C73-3F26-4FB8-A345-2E00028EB8CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48475C73-3F26-4FB8-A345-2E00028EB8CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{987BFF46-CC35-4943-AC1D-E7C8E7F576E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{987BFF46-CC35-4943-AC1D-E7C8E7F576E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{987BFF46-CC35-4943-AC1D-E7C8E7F576E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{987BFF46-CC35-4943-AC1D-E7C8E7F576E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

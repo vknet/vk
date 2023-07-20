@@ -1,9 +1,8 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры запроса SendRequest для приложений.
@@ -27,7 +26,6 @@ public class AppSendRequestParams
 	/// Тип запроса, может принимать значения:.
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public AppRequestType Type { get; set; }
 
 	/// <summary>

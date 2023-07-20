@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using VkNet.Model;
 using VkNet.Utils;
 
@@ -16,5 +17,11 @@ public sealed class AdsAccessDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	public AdsAccessDeniedException(VkError response) : base(response)
 	{
+	}
+
+	/// <inheritdoc />
+	private AdsAccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
+	{
+
 	}
 }

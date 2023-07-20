@@ -1,7 +1,6 @@
 using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -21,7 +20,6 @@ public class LinkStatus
 	/// Link status
 	/// </summary>
 	[JsonProperty("status")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public LinkStatusType Status { get; set; }
 
 	/// <summary>

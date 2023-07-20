@@ -1,10 +1,9 @@
 using System;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams.Groups;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода <see cref="IGroupsCategory"/>.<see cref="IGroupsCategoryAsync.EditAddressAsync"/>
@@ -70,14 +69,13 @@ public class EditAddressParams
 	/// Тип расписания.
 	/// </summary>
 	[JsonProperty("work_info_status")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public ScheduleWorkInfoStatus WorkInfoStatus { get; set; }
 
 	/// <summary>
 	/// Идентификатор  страны.
 	/// </summary>
 	/// <remarks>
-	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategory.GetCountriesAsync"/> положительное число, минимальное значение 0
+	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategoryAsync.GetCountriesAsync"/> положительное число, минимальное значение 0
 	/// </remarks>
 	[JsonProperty("country_id")]
 	public ulong CountryId { get; set; }
@@ -86,7 +84,7 @@ public class EditAddressParams
 	/// Идентификатор города.
 	/// </summary>
 	/// <remarks>
-	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategory.GetCitiesAsync"/> положительное число, минимальное значение 0
+	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategoryAsync.GetCitiesAsync"/> положительное число, минимальное значение 0
 	/// </remarks>
 	[JsonProperty("city_id")]
 	public ulong CityId { get; set; }
@@ -95,7 +93,7 @@ public class EditAddressParams
 	/// Идентификатор станции метро.
 	/// </summary>
 	/// <remarks>
-	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategory.GetMetroStationsAsync"/> положительное число, минимальное значение 0
+	/// Для получения можно использовать <see cref="IDatabaseCategory"/>.<see cref="IDatabaseCategoryAsync.GetMetroStationsAsync"/> положительное число, минимальное значение 0
 	/// </remarks>
 	[JsonProperty("metro_id")]
 	public ulong MetroId { get; set; }

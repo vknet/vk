@@ -1,12 +1,13 @@
 using System;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
 using Moq.AutoMock;
 using VkNet.Abstractions.Core;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Infrastructure;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
@@ -30,9 +31,9 @@ public class ImplicitFlowTests
 		var builder = new StringBuilder("https://oauth.vk.com/authorize?");
 		builder.Append($"client_id={clientId}&");
 		builder.Append($"redirect_uri={Constants.DefaultRedirectUri}&");
-		builder.Append($"display={display}&");
+		builder.Append($"display={display.ToString().ToSnakeCase()}&");
 		builder.Append($"scope={scope.ToUInt64()}&");
-		builder.Append($"response_type={ResponseType.Token}&");
+		builder.Append($"response_type={ResponseType.Token.ToString().ToSnakeCase()}&");
 		builder.Append("v=5.92&");
 		builder.Append($"state={state}&");
 		builder.Append("revoke=1");
@@ -70,10 +71,9 @@ public class ImplicitFlowTests
 			.Returns("5.92");
 
 		mocker.Setup<IAuthorizationForm, Task<AuthorizationFormResult>>(x =>
-				x.ExecuteAsync(It.IsAny<Uri>(), It.IsAny<IApiAuthParams>()))
+				x.ExecuteAsync(It.IsAny<Uri>(), It.IsAny<IApiAuthParams>(), CancellationToken.None))
 			.ReturnsAsync(new AuthorizationFormResult
 			{
-				ResponseUrl = new("https://m.vk.com/login?act=authcheck&m=442"),
 				RequestUrl = new("https://m.vk.com/login?act=authcheck&m=442")
 			});
 

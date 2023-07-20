@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using VkNet.Enums;
 
-namespace VkNet.Model.RequestParams.Leads;
+namespace VkNet.Model;
 
 /// <summary>
 /// Доступна ли рекламная акция пользователю.

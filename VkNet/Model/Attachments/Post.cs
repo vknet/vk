@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Utils.JsonConverter;
 
-namespace VkNet.Model.Attachments;
+namespace VkNet.Model;
 
 /// <summary>
 /// Запись со стены пользователя или сообщества.
@@ -90,7 +90,6 @@ public class Post : MediaAttachment
 	/// чужой стены.
 	/// </summary>
 	[JsonProperty("post_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public PostType PostType { get; set; }
 
 	/// <summary>

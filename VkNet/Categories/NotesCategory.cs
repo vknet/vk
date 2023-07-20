@@ -1,7 +1,5 @@
 using VkNet.Abstractions;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams.Notes;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -23,7 +21,7 @@ public partial class NotesCategory : INotesCategory
 	public NotesCategory(VkApi vk) => _vk = vk;
 
 	/// <inheritdoc />
-	public long Add(NotesAddParams notesAddParams) => _vk.Call("notes.add",
+	public long Add(NotesAddParams notesAddParams) => _vk.Call<long>("notes.add",
 		new()
 		{
 			{
@@ -41,7 +39,7 @@ public partial class NotesCategory : INotesCategory
 		});
 
 	/// <inheritdoc />
-	public long CreateComment(NotesCreateCommentParams createCommentParams) => _vk.Call("notes.createComment ",
+	public long CreateComment(NotesCreateCommentParams createCommentParams) => _vk.Call<long>("notes.createComment ",
 		new()
 		{
 			{
@@ -59,7 +57,7 @@ public partial class NotesCategory : INotesCategory
 		});
 
 	/// <inheritdoc />
-	public bool Delete(long noteId) => _vk.Call("notes.delete",
+	public bool Delete(long noteId) => _vk.Call<bool>("notes.delete",
 		new()
 		{
 			{
@@ -68,7 +66,7 @@ public partial class NotesCategory : INotesCategory
 		});
 
 	/// <inheritdoc />
-	public bool DeleteComment(NotesDeleteCommentParams deleteCommentParams) => _vk.Call("notes.deleteComment",
+	public bool DeleteComment(NotesDeleteCommentParams deleteCommentParams) => _vk.Call<bool>("notes.deleteComment",
 		new()
 		{
 			{
@@ -80,7 +78,7 @@ public partial class NotesCategory : INotesCategory
 		});
 
 	/// <inheritdoc />
-	public bool Edit(NotesEditParams editParams) => _vk.Call("notes.edit",
+	public bool Edit(NotesEditParams editParams) => _vk.Call<bool>("notes.edit",
 		new()
 		{
 			{
@@ -101,7 +99,7 @@ public partial class NotesCategory : INotesCategory
 		});
 
 	/// <inheritdoc />
-	public bool EditComment(NotesEditCommentParams editCommentParams) => _vk.Call("notes.editComment",
+	public bool EditComment(NotesEditCommentParams editCommentParams) => _vk.Call<bool>("notes.editComment",
 		new()
 		{
 			{
@@ -173,7 +171,7 @@ public partial class NotesCategory : INotesCategory
 			});
 
 	/// <inheritdoc />
-	public bool RestoreComment(NotesRestoreCommentParams restoreCommentParams) => _vk.Call("notes.restoreComment",
+	public bool RestoreComment(NotesRestoreCommentParams restoreCommentParams) => _vk.Call<bool>("notes.restoreComment",
 		new()
 		{
 			{

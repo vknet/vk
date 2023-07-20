@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -16,7 +16,7 @@ public class MessagesSendMessageEventAnswerTests : MessagesBaseTests
 
 		var data = new EventData
 		{
-			Type = MessageEventType.SnowSnackbar,
+			Type = MessageEventType.ShowSnackbar,
 			Text = "text"
 		};
 

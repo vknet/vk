@@ -1,6 +1,5 @@
 using System;
 using VkNet.Model;
-using VkNet.Model.Attachments;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -128,7 +127,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.addUser", parameters);
+		return _vk.Call<bool>("fave.addUser", parameters);
 	}
 
 	/// <inheritdoc />
@@ -142,7 +141,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.removeUser", parameters);
+		return _vk.Call<bool>("fave.removeUser", parameters);
 	}
 
 	/// <inheritdoc />
@@ -156,7 +155,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.addGroup", parameters);
+		return _vk.Call<bool>("fave.addGroup", parameters);
 	}
 
 	/// <inheritdoc />
@@ -170,7 +169,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.removeGroup", parameters);
+		return _vk.Call<bool>("fave.removeGroup", parameters);
 	}
 
 	/// <inheritdoc />
@@ -187,7 +186,7 @@ public partial class FaveCategory
 			}
 		};
 
-		return _vk.Call("fave.addLink", parameters);
+		return _vk.Call<bool>("fave.addLink", parameters);
 	}
 
 	/// <inheritdoc />

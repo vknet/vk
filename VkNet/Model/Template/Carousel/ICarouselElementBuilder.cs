@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
-using VkNet.Model.Keyboard;
 
-namespace VkNet.Model.Template.Carousel;
+namespace VkNet.Model;
 
 /// <summary>
 /// Конструктор элемента карусели
@@ -48,7 +47,7 @@ public interface ICarouselElementBuilder
 	/// <returns>Конструктор элемента карусели</returns>
 	ICarouselElementBuilder AddButton(string label,
 									string extra,
-									KeyboardButtonColor color = default,
+									KeyboardButtonColor? color = default,
 									string type = null);
 
 	/// <summary>

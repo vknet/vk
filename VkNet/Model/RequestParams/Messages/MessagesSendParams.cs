@@ -1,15 +1,9 @@
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.Attachments;
-using VkNet.Model.Keyboard;
-using VkNet.Model.Template;
-using VkNet.Utils;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
-namespace VkNet.Model.RequestParams;
+namespace VkNet.Model;
 
 /// <summary>
 /// Параметры метода messages.send
@@ -156,19 +150,6 @@ public class MessagesSendParams
 	[JsonProperty("dont_parse_links", NullValueHandling = NullValueHandling.Ignore)]
 	public bool? DontParseLinks { get; set; }
 
-	/// <summary>
-	/// Идентификатор капчи
-	/// </summary>
-	[JsonProperty("captcha_sid")]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public long? CaptchaSid { get; set; }
-
-	/// <summary>
-	/// текст, который ввел пользователь
-	/// </summary>
-	[JsonProperty("captcha_key")]
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public string CaptchaKey { get; set; }
 
 	/// <summary>
 	/// 1 - отключить уведомление об упоминании в сообщении, может принимать значения 1
@@ -181,9 +162,7 @@ public class MessagesSendParams
 	/// Метка, которая обозначает приблизительное содержание сообщения от сообщества
 	/// </summary>
 	[JsonProperty("intent", NullValueHandling = NullValueHandling.Ignore)]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
-	[CanBeNull]
-	public Intent Intent { get; set; }
+	public Intent? Intent { get; set; }
 
 	/// <summary>
 	/// Положительное число, максимальное значение 100

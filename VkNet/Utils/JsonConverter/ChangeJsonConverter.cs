@@ -1,8 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Model.GroupUpdate;
+using VkNet.Model;
 
 namespace VkNet.Utils.JsonConverter;
 
@@ -80,15 +79,14 @@ public class ChangeJsonConverter : Newtonsoft.Json.JsonConverter
 				NewValue = response[field]["new_value"],
 				OldValue = response[field]["old_value"]
 			};
-		} else
-		{
-			return new Change
-			{
-				Field = field,
-				NewValue = null,
-				OldValue = null
-			};
 		}
+
+		return new Change
+		{
+			Field = field,
+			NewValue = null,
+			OldValue = null
+		};
 	}
 
 	/// <inheritdoc />

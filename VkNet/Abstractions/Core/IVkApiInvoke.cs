@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using VkNet.Exception;
@@ -28,8 +29,9 @@ public interface IVkApiInvoke
 	/// <param name="methodName"> Название метода. </param>
 	/// <param name="parameters"> Параметры. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
+	/// /// <param name="jsonConverters"> JsonConverters </param>
 	/// <returns> </returns>
-	VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false);
+	VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters);
 
 	/// <summary>
 	/// Вызвать метод.
@@ -47,8 +49,10 @@ public interface IVkApiInvoke
 	/// <param name="methodName"> Название метода. </param>
 	/// <param name="parameters"> Параметры. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
+	/// <param name="token"></param>
 	/// <returns> </returns>
-	Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false);
+	Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false,
+								CancellationToken token = default);
 
 	/// <summary>
 	/// Вызвать метод.
@@ -56,8 +60,10 @@ public interface IVkApiInvoke
 	/// <param name="methodName"> Название метода. </param>
 	/// <param name="parameters"> Параметры. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
+	/// <param name="token"></param>
 	/// <returns> </returns>
-	Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false);
+	Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default);
+
 
 	/// <summary>
 	/// Прямой вызов API-метода
@@ -81,6 +87,7 @@ public interface IVkApiInvoke
 	/// Флаг, что метод можно вызывать без
 	/// авторизации.
 	/// </param>
+	/// <param name="token"></param>
 	/// <returns> Ответ сервера в формате JSON. </returns>
-	Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false);
+	Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false, CancellationToken token = default);
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Utils.JsonConverter;
+using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
@@ -21,6 +20,5 @@ public class AudioCatalogItemMeta
 	/// Идентификатор владельца аудиозаписи.
 	/// </summary>
 	[JsonProperty("content_type")]
-	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public UserOrGroupType ContentType { get; set; }
 }

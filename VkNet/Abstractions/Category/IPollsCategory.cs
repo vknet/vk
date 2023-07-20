@@ -1,8 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using VkNet.Model;
-using VkNet.Model.Attachments;
-using VkNet.Model.RequestParams;
-using VkNet.Model.RequestParams.Polls;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -32,7 +29,7 @@ public interface IPollsCategory : IPollsCategoryAsync
 	ReadOnlyCollection<GetBackgroundsResult> GetBackgrounds();
 
 	/// <inheritdoc cref="IPollsCategoryAsync.GetPhotoUploadServerAsync"/>
-	PhotoUploadServer GetPhotoUploadServer(long ownerId);
+	UploadServer GetPhotoUploadServer(long ownerId);
 
 	/// <inheritdoc cref="IPollsCategoryAsync.SavePhotoAsync"/>
 	SavePhotoResult SavePhoto(SavePhotoParams @params);

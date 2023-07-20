@@ -1,5 +1,4 @@
 using System;
-using VkNet.Abstractions.Core;
 
 namespace VkNet.Infrastructure;
 

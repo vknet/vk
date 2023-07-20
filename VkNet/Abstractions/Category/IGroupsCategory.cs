@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
-using VkNet.Model.RequestParams.Groups;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
@@ -41,15 +39,15 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetMembersAsync" />
 	VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = false);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, System.Collections, bool?, bool)" />
+	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, IEnumerable{long}, bool?, bool, System.Threading.CancellationToken)" />
 	ReadOnlyCollection<GroupMember> IsMember(string groupId, IEnumerable<long> userIds, bool? extended,
 											bool skipAuthorization = false);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, long, bool?, bool)" />
+	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, long, bool?, bool, System.Threading.CancellationToken)" />
 	GroupMember IsMember(string groupId, long userId, bool? extended = true,
 											bool skipAuthorization = false);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, long, bool)" />
+	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, long, bool, System.Threading.CancellationToken)" />
 	bool IsMember(string groupId, long userId, bool skipAuthorization = false);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.SearchAsync" />
@@ -64,10 +62,6 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetBannedAsync" />
 	VkCollection<GetBannedResult> GetBanned(long groupId, long? offset = null, long? count = null, GroupsFields fields = null,
 											long? ownerId = null);
-
-	/// <inheritdoc cref="IGroupsCategoryAsync.UnbanUserAsync" />
-	[Obsolete(ObsoleteText.UnbanUser, true)]
-	bool UnbanUser(long groupId, long userId);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.UnbanAsync" />
 	bool Unban(long groupId, long userId);
@@ -87,14 +81,11 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetInvitedUsersAsync" />
 	VkCollection<User> GetInvitedUsers(long groupId, long? offset = null, long? count = null, UsersFields fields = null,
-										NameCase nameCase = null);
+										NameCase? nameCase = null);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long)" />
+	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long, System.Threading.CancellationToken)" />
 	bool Invite(long groupId, long userId);
 
-	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long,long?,string)" />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	bool Invite(long groupId, long userId, long? captchaSid = null, string captchaKey = null);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.AddLinkAsync" />
 	ExternalLink AddLink(long groupId, Uri link, string text);
@@ -115,7 +106,7 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 	bool ApproveRequest(long groupId, long userId);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.CreateAsync" />
-	Group Create(string title, string description = null, GroupType type = null, GroupSubType? subtype = null,
+	Group Create(string title, string description = null, GroupType? type = null, GroupSubType? subtype = null,
 				uint? publicCategory = null);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetRequestsAsync" />
@@ -171,4 +162,28 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetLongPollSettingsAsync" />
 	GetLongPollSettingsResult GetLongPollSettings(ulong groupId);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.GetTagListAsync" />
+	VkCollection<GroupTag> GetTagList(ulong groupId);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.SetSettingsAsync" />
+	bool SetSettings(GroupsSetSettingsParams @params);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.SetUserNoteAsync" />
+	bool SetUserNote(GroupsSetUserNoteParams @params);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.TagAddAsync" />
+	bool TagAdd(GroupsTagAddParams @params);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.TagBindAsync" />
+	bool TagBind(ulong groupId, ulong tagId, ulong userId, GroupTagAct act);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.TagDeleteAsync" />
+	bool TagDelete(ulong groupId, ulong tagId);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.TagUpdateAsync" />
+	bool TagUpdate(ulong groupId, ulong tagId, string tagName);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.ToggleMarketAsync" />
+	bool ToggleMarket(GroupToggleMarketParams @params);
 }

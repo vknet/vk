@@ -6,10 +6,8 @@ using JetBrains.Annotations;
 using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
-using VkNet.Enums.SafetyEnums;
-using VkNet.Exception;
+using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using VkNet.Model.RequestParams;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
@@ -57,7 +55,7 @@ public partial class FriendsCategory : IFriendsCategory
 		};
 
 		var response = _vk.Call("friends.get", parameters, skipAuthorization);
-//check todo;
+		//TODO:
 		if (@params.Fields != null)
 		{
 			return _vk.Call<VkCollection<User>>("friends.get", parameters, skipAuthorization);
@@ -158,26 +156,6 @@ public partial class FriendsCategory : IFriendsCategory
 	}
 
 	/// <inheritdoc />
-	public long AddList(string name, IEnumerable<long> userIds)
-	{
-		VkErrors.ThrowIfNullOrEmpty(() => name);
-
-		var parameters = new VkParameters
-		{
-			{
-				"name", name
-			},
-			{
-				"user_ids", userIds
-			}
-		};
-
-		var response = _vk.Call("friends.addList", parameters);
-
-		return response["list_id"];
-	}
-
-	/// <inheritdoc />
 	public bool DeleteList(long listId)
 	{
 		var parameters = new VkParameters
@@ -187,7 +165,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.deleteList", parameters);
+		return _vk.Call<bool>("friends.deleteList", parameters);
 	}
 
 	/// <inheritdoc />
@@ -231,16 +209,11 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.editList", parameters);
+		return _vk.Call<bool>("friends.editList", parameters);
 	}
 
 	/// <inheritdoc />
 	public bool DeleteAllRequests() => _vk.Call("friends.deleteAllRequests", VkParameters.Empty);
-
-	/// <inheritdoc />
-	[Obsolete(ObsoleteText.CaptchaNeeded, true)]
-	public AddFriendStatus Add(long userId, string text = "", bool? follow = null, long? captchaSid = null, string captchaKey = null) =>
-		Add(userId, text, follow);
 
 	/// <inheritdoc />
 	public AddFriendStatus Add(long userId, string text = "", bool? follow = null)
@@ -258,7 +231,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.add", parameters);
+		return _vk.Call<AddFriendStatus>("friends.add", parameters);
 	}
 
 	/// <inheritdoc />
@@ -291,7 +264,7 @@ public partial class FriendsCategory : IFriendsCategory
 			}
 		};
 
-		return _vk.Call("friends.edit", parameters);
+		return _vk.Call<bool>("friends.edit", parameters);
 	}
 
 	/// <inheritdoc />
@@ -375,8 +348,8 @@ public partial class FriendsCategory : IFriendsCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<User> GetSuggestions(FriendsFilter filter = null, long? count = null, long? offset = null,
-											UsersFields fields = null, NameCase nameCase = null)
+	public VkCollection<User> GetSuggestions(FriendsFilter? filter = null, long? count = null, long? offset = null,
+											UsersFields fields = null, NameCase? nameCase = null)
 	{
 		var parameters = new VkParameters
 		{
@@ -438,6 +411,26 @@ public partial class FriendsCategory : IFriendsCategory
 				"count", @params.Count
 			}
 		});
+
+	/// <inheritdoc />
+	public long AddList(string name, IEnumerable<long> userIds)
+	{
+		VkErrors.ThrowIfNullOrEmpty(() => name);
+
+		var parameters = new VkParameters
+		{
+			{
+				"name", name
+			},
+			{
+				"user_ids", userIds
+			}
+		};
+
+		var response = _vk.Call("friends.addList", parameters);
+
+		return response["list_id"];
+	}
 
 	/// <summary>
 	/// Создает новый список друзей у текущего пользователя.

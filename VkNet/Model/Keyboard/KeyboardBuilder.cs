@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using VkNet.Enums.SafetyEnums;
+using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Utils;
 
-namespace VkNet.Model.Keyboard;
+namespace VkNet.Model;
 
 /// <inheritdoc />
 [Serializable]
@@ -105,7 +105,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 	}
 
 	/// <inheritdoc />
-	public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor color = default,
+	public IKeyboardBuilder AddButton(string label, string extra, KeyboardButtonColor? color = default,
 									string type = null)
 	{
 		color ??= KeyboardButtonColor.Default;
@@ -164,7 +164,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 		return this;
 	}
 
-	private void CheckKeyboardSize(string? payload)
+	private void CheckKeyboardSize([CanBeNull] string payload)
 	{
 		if ((payload?.Length ?? 0) > MaxButtonPayload)
 		{
