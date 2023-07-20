@@ -32,7 +32,7 @@ public class KeyboardBuilderTests
 	{
 		// Arrange
 		var builder = new KeyboardBuilder();
-		var currentPayload = $"{{\"button\":\"{Payload200 + Payload200}\"}}";
+		var currentPayload = $"{{\"b\":\"{Payload200 + Payload200}\"}}";
 
 		// Assert
 		FluentActions.Invoking(() => builder.AddButton("Button", Payload200 + Payload200))

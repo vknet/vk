@@ -18,13 +18,13 @@ public interface IKeyboardBuilder
 	/// </summary>
 	/// <param name="label">Надписть на кнопке</param>
 	/// <param name="extra">Дополнительная информация о кнопке</param>
-	/// <param name="type">Основная информация о кнопке</param>
+	/// <param name="payloadType">Основная информация о типе кнопки в Payload</param>
 	/// <param name="color">Цвет кнопки</param>
 	/// <returns>Конструктор клавиатур</returns>
 	IKeyboardBuilder AddButton(string label,
 								string extra,
 								KeyboardButtonColor? color = default,
-								string type = null);
+								string payloadType = null);
 
 	/// <summary>
 	/// Добавить кнопку

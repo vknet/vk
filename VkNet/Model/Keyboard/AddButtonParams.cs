@@ -37,13 +37,13 @@ public class AddButtonParams
 	public KeyboardButtonColor Color { get; set; } = default;
 
 	/// <summary>
-	/// Основная информация о кнопке
+	/// Основная информация о типе кнопки в Payload
 	/// </summary>
 	[CanBeNull]
-	public string Type { get; set; } = null;
+	public string PayloadType { get; set; }
 
 	/// <summary>
-	/// Тип клавиши
+	/// Тип кнопки
 	/// </summary>
 	public KeyboardButtonActionType? ActionType { get; set; }
 
