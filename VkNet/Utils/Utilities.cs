@@ -211,8 +211,6 @@ public static class Utilities
 
 		if (myAttribute == null)
 		{
-			Console.WriteLine("The attribute was not found.");
-
 			return false;
 		}
 
