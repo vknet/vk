@@ -25,5 +25,15 @@ public enum Platform
 	/// <summary>
 	/// Windows Phone
 	/// </summary>
-	Wphone
+	Wphone,
+
+	/// <summary>
+	/// AdminApp
+	/// </summary>
+	AdminApp,
+
+	/// <summary>
+	/// Instagram
+	/// </summary>
+	Instagram
 }
