@@ -54,5 +54,10 @@ public enum MessageAction
 	/// <summary>
 	/// пользователь присоединился к беседе по ссылке.
 	/// </summary>
-	ChatInviteUserByLink
+	ChatInviteUserByLink,
+
+	/// <summary>
+	/// Обновление оформления беседы
+	/// </summary>
+	ConversationStyleUpdate
 }
