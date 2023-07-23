@@ -622,6 +622,10 @@ public interface IMessagesCategoryAsync
 	Task<LongPollHistoryResponse> GetLongPollHistoryAsync(MessagesGetLongPollHistoryParams @params,
 														CancellationToken token = default);
 
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetLongPollHistoryAsync"/>
+	Task<T> GetLongPollHistoryAsync<T>(MessagesGetLongPollHistoryParams @params,
+										CancellationToken token = default);
+
 	/// <summary>
 	/// Позволяет установить фотографию мультидиалога, загруженную с помощью метода
 	/// photos.getChatUploadServer.
@@ -1246,7 +1250,6 @@ public interface IMessagesCategoryAsync
 													ProfileFields fields = null,
 													uint? limit = null,
 													CancellationToken token = default);
-
 
 	/// <summary>
 	/// Возвращает список входящих либо исходящих личных сообщений текущего

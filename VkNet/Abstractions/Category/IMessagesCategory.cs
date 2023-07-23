@@ -88,6 +88,9 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetLongPollHistoryAsync"/>
 	LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params);
 
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetLongPollHistoryAsync"/>
+	T GetLongPollHistory<T>(MessagesGetLongPollHistoryParams @params);
+
 	/// <inheritdoc cref="IMessagesCategoryAsync.SetChatPhotoAsync"/>
 	long SetChatPhoto(out long messageId, string file);
 

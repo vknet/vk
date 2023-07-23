@@ -1109,16 +1109,21 @@ public partial class MessagesCategory : IMessagesCategory
 
 		return _vk.Call<LongPollServerResponse>("messages.getLongPollServer", parameters);
 	}
-
 	/// <inheritdoc />
 	public LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params)
+	{
+		return GetLongPollHistory<LongPollHistoryResponse>(@params);
+	}
+
+	/// <inheritdoc />
+	public T GetLongPollHistory<T>(MessagesGetLongPollHistoryParams @params)
 	{
 		VkErrors.ThrowIfNumberIsNegative(() => @params.PreviewLength);
 		VkErrors.ThrowIfNumberIsNegative(() => @params.EventsLimit);
 		VkErrors.ThrowIfNumberIsNegative(() => @params.MsgsLimit);
 		VkErrors.ThrowIfNumberIsNegative(() => @params.MaxMsgId);
 
-		return _vk.Call<LongPollHistoryResponse>("messages.getLongPollHistory",
+		return _vk.Call<T>("messages.getLongPollHistory",
 			new()
 			{
 				{

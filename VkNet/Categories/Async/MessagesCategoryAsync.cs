@@ -306,8 +306,12 @@ public partial class MessagesCategory
 	/// <inheritdoc />
 	public Task<LongPollHistoryResponse> GetLongPollHistoryAsync(MessagesGetLongPollHistoryParams @params,
 																CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			GetLongPollHistory(@params), token);
+		GetLongPollHistoryAsync<LongPollHistoryResponse>(@params, token);
+
+	/// <inheritdoc />
+	public Task<T> GetLongPollHistoryAsync<T>(MessagesGetLongPollHistoryParams @params,
+											CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		GetLongPollHistory<T>(@params), token);
 
 	/// <inheritdoc />
 	public Task<long> SetChatPhotoAsync(string file,
