@@ -23,7 +23,6 @@ permissions:
 jobs:
   build:
     environment: VkNet
-    continue-on-error: true
     runs-on: ubuntu-latest
     
     steps:
