@@ -40,5 +40,15 @@ public enum PostType
 	/// <summary>
 	/// Видеозапись
 	/// </summary>
-	Video
+	Video,
+
+	/// <summary>
+	/// Фото
+	/// </summary>
+	Photo,
+
+	/// <summary>
+	/// Реклама в записи
+	/// </summary>
+	PostAds
 }
