@@ -45,5 +45,10 @@ public enum PostType
 	/// <summary>
 	/// Фото
 	/// </summary>
-	Photo
+	Photo,
+
+	/// <summary>
+	/// Реклама в записи
+	/// </summary>
+	PostAds
 }
