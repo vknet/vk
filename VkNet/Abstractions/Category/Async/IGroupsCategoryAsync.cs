@@ -1057,6 +1057,10 @@ public interface IGroupsCategoryAsync
 	Task<BotsLongPollHistoryResponse> GetBotsLongPollHistoryAsync(BotsLongPollHistoryParams @params,
 																CancellationToken token = default);
 
+	/// <inheritdoc cref="IGroupsCategoryAsync.GetBotsLongPollHistoryAsync"/>
+	Task<T> GetBotsLongPollHistoryAsync<T>(BotsLongPollHistoryParams @params,
+											CancellationToken token = default);
+
 	/// <summary>
 	/// Позволяет добавить адрес в сообщество.
 	/// Список адресов может быть получен методом groups.getAddresses.

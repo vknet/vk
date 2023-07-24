@@ -308,8 +308,12 @@ public partial class GroupsCategory
 	/// <inheritdoc />
 	public Task<BotsLongPollHistoryResponse> GetBotsLongPollHistoryAsync(BotsLongPollHistoryParams @params,
 																		CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			GetBotsLongPollHistory(@params), token);
+		GetBotsLongPollHistoryAsync<BotsLongPollHistoryResponse>(@params, token);
+
+	/// <inheritdoc />
+	public Task<T> GetBotsLongPollHistoryAsync<T>(BotsLongPollHistoryParams @params,
+												CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		GetBotsLongPollHistory<T>(@params), token);
 
 	/// <inheritdoc />
 	public Task<AddressResult> AddAddressAsync(AddAddressParams @params,
