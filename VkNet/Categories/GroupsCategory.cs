@@ -1209,7 +1209,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		}
 
-		return _vk.CallLongPoll<BotsLongPollHistoryResponse>(@params.Server, parameters);
+		return _vk.CallLongPoll<T>(@params.Server, parameters);
 	}
 
 	/// <inheritdoc />
