@@ -151,6 +151,9 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetBotsLongPollHistoryAsync" />
 	BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params);
 
+	/// <inheritdoc cref="IGroupsCategoryAsync.GetBotsLongPollHistoryAsync" />
+	T GetBotsLongPollHistory<T>(BotsLongPollHistoryParams @params);
+
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetOnlineStatusAsync" />
 	OnlineStatus GetOnlineStatus(ulong groupId);
 

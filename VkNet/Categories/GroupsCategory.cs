@@ -1166,6 +1166,12 @@ public partial class GroupsCategory : IGroupsCategory
 	/// <inheritdoc />
 	public BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params)
 	{
+		return GetBotsLongPollHistory<BotsLongPollHistoryResponse>(@params);
+	}
+
+	/// <inheritdoc />
+	public T GetBotsLongPollHistory<T>(BotsLongPollHistoryParams @params)
+	{
 		var parameters = new VkParameters
 		{
 			{
