@@ -31,7 +31,7 @@ public partial class ShortVideoCategory : IShortVideoCategory
 				"description", description
 			},
 			{
-				"wall_post", wallPost
+				"wallpost", wallPost
 			},
 			{
 				"file_size", fileSize
