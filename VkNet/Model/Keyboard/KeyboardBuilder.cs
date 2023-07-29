@@ -8,7 +8,7 @@ using VkNet.Utils;
 
 namespace VkNet.Model;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IKeyboardBuilder" />
 [Serializable]
 [UsedImplicitly]
 public class KeyboardBuilder : IKeyboardBuilder
@@ -57,7 +57,6 @@ public class KeyboardBuilder : IKeyboardBuilder
 	/// </summary>
 	public static readonly string MinLabelLengthExceptionTemplate = "Количество символов в 'label' не должно быть меньше 1 ";
 
-
 	private const int MaxButtonPayload = 255;
 
 	private const int MaxPayloadOfAllButtons = 1000;
@@ -96,7 +95,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 	/// <inheritdoc />
 	public IKeyboardBuilder AddButton(MessageKeyboardButtonAction buttonAction, KeyboardButtonColor color = default)
 	{
-		if (buttonAction.Payload != null)
+		if (buttonAction.Payload is not null)
 		{
 			_totalPayloadLength += buttonAction.Payload.Length;
 
@@ -153,7 +152,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 		addButtonParams.PayloadType ??= _payloadType ?? Button;
 		addButtonParams.ActionType ??= KeyboardButtonActionType.Text;
 
-		var payload = addButtonParams.Extra != null
+		var payload = addButtonParams.Extra is not null
 			? $"{{\"{addButtonParams.PayloadType}\":\"{addButtonParams.Extra}\"}}"
 			: null;
 
@@ -168,7 +167,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 			{
 				Label = addButtonParams.Label,
 				Payload = payload,
-				Link = addButtonParams.Link != null
+				Link = addButtonParams.Link is not null
 					? new Uri(addButtonParams.Link)
 					: null,
 				Hash = addButtonParams.Hash,

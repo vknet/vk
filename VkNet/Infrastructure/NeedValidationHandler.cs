@@ -3,16 +3,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Abstractions.Core;
 using VkNet.Model;
+using VkNet.Utils;
 
 namespace VkNet.Infrastructure;
 
-/// <inheritdoc />
+/// <inheritdoc cref="INeedValidationHandler" />
 public class NeedValidationHandler : INeedValidationHandler
 {
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.Validate)]
 	public AuthorizationResult Validate(string validateUrl, string phoneNumber) => throw new NotImplementedException();
 
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.Validate)]
 	public AuthorizationResult Validate(string validateUrl) => ValidateAsync(validateUrl)
 		.ConfigureAwait(false)
 		.GetAwaiter()

@@ -28,7 +28,7 @@ public interface IGroupsCategoryAsync
 	/// Возможно пойду. 0 —
 	/// Точно пойду. По умолчанию 0. строка (Строка).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного вступления метод вернёт 1.
 	/// </returns>
@@ -47,7 +47,7 @@ public interface IGroupsCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -62,7 +62,7 @@ public interface IGroupsCategoryAsync
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список идентификаторов сообществ id, в
 	/// которых состоит пользователь user_id.
@@ -99,7 +99,7 @@ public interface IGroupsCategoryAsync
 	/// разделенных через запятую).
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов group.
 	/// </returns>
@@ -117,7 +117,7 @@ public interface IGroupsCategoryAsync
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает общее количество участников сообщества count и список
 	/// идентификаторов пользователей items.
@@ -155,7 +155,7 @@ public interface IGroupsCategoryAsync
 	/// (Флаг, может принимать значения 1 или 0).
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// возвращает <c> true </c> в случае, если пользователь с идентификатором user_id
 	/// является участником сообщества с
@@ -198,7 +198,7 @@ public interface IGroupsCategoryAsync
 	/// (Флаг, может принимать значения 1 или 0).
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// возвращает <c> true </c> в случае, если пользователь с идентификатором user_id
 	/// является участником сообщества с
@@ -236,7 +236,7 @@ public interface IGroupsCategoryAsync
 	/// (Положительное число).
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// возвращает <c> true </c> в случае, если пользователь с идентификатором user_id
 	/// является участником сообщества с
@@ -265,7 +265,7 @@ public interface IGroupsCategoryAsync
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов group.
 	/// </returns>
@@ -296,7 +296,7 @@ public interface IGroupsCategoryAsync
 	/// 0. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения 1 или
 	/// 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов сообществ с
 	/// дополнительным полем invited_by, содержащим
@@ -317,7 +317,7 @@ public interface IGroupsCategoryAsync
 	/// Добавляет пользователя в черный список сообщества.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -359,7 +359,7 @@ public interface IGroupsCategoryAsync
 	/// разделенных через запятую).
 	/// </param>
 	/// <param name="ownerId"> целое число </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов user с дополнительным
 	/// полем ban_info.
@@ -397,7 +397,7 @@ public interface IGroupsCategoryAsync
 	/// Идентификатор пользователя, которого нужно убрать из
 	/// черного списка
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает <c> true </c>. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.unbanUser
@@ -411,7 +411,7 @@ public interface IGroupsCategoryAsync
 	/// его полномочий.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -430,7 +430,7 @@ public interface IGroupsCategoryAsync
 	/// число, обязательный
 	/// параметр (Положительное число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения метод вернет объект, содержащий данные
 	/// сообщества, которые позволят отобразить форму
@@ -446,7 +446,7 @@ public interface IGroupsCategoryAsync
 	/// Редактирует сообщество.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха возвращает <c> true </c>.
 	/// </returns>
@@ -467,7 +467,7 @@ public interface IGroupsCategoryAsync
 	/// отредактировать.
 	/// </param>
 	/// <param name="place"> Местоположение. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <remarks>
 	/// Для того, чтобы воспользоваться этим методом Вы должны быть администратором
 	/// группы.
@@ -512,8 +512,10 @@ public interface IGroupsCategoryAsync
 	/// предложный – abl. По умолчанию nom.
 	/// строка (Строка).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
-	/// <returns> </returns>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Список пользователей, которые были приглашены в группу.
+	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getInvitedUsers
 	/// </remarks>
@@ -537,7 +539,7 @@ public interface IGroupsCategoryAsync
 	/// положительное число,
 	/// обязательный параметр (Положительное число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -562,7 +564,7 @@ public interface IGroupsCategoryAsync
 	/// обязательный параметр).
 	/// </param>
 	/// <param name="text"> Текст ссылки строка (Строка). </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает объект со следующими полями:
 	/// id — идентификатор ссылки;
@@ -594,7 +596,7 @@ public interface IGroupsCategoryAsync
 	/// обязательный параметр
 	/// (Положительное число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения метод возвращает <c> true </c>.
 	/// </returns>
@@ -619,7 +621,7 @@ public interface IGroupsCategoryAsync
 	/// число, обязательный параметр).
 	/// </param>
 	/// <param name="text"> Новое описание ссылки строка (Строка). </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного редактирования ссылки метод возвращает <c> true </c>.
 	/// </returns>
@@ -649,7 +651,7 @@ public interface IGroupsCategoryAsync
 	/// – если ссылку нужно
 	/// разместить в начале списка. положительное число (Положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнение метод возвращает 1.
 	/// </returns>
@@ -669,7 +671,7 @@ public interface IGroupsCategoryAsync
 	/// пользователя.
 	/// </param>
 	/// <param name="userId"> Идентификатор пользователя, которого нужно исключить. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -691,7 +693,7 @@ public interface IGroupsCategoryAsync
 	/// Идентификатор пользователя, заявку которого необходимо
 	/// одобрить.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -732,7 +734,7 @@ public interface IGroupsCategoryAsync
 	/// Категория публичной страницы (только для type =
 	/// public).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает идентификатор созданного сообщества.
 	/// </returns>
@@ -779,7 +781,7 @@ public interface IGroupsCategoryAsync
 	/// запятую (Список строк, разделенных
 	/// через запятую).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает список идентификаторов пользователей, отправивших заявки на
 	/// вступление в сообщество.
@@ -808,7 +810,7 @@ public interface IGroupsCategoryAsync
 	/// положительное число,
 	/// максимальное значение 99 (Положительное число, максимальное значение 99).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает список объектов сообществ в соответствии с выбранной категорией
 	/// каталога.
@@ -836,7 +838,7 @@ public interface IGroupsCategoryAsync
 	/// доступен начиная с версии 5.37 (Флаг, может
 	/// принимать значения 1 или 0, по умолчанию 0, доступен начиная с версии 5.37).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает поле enabled (0 — каталог недоступен для
 	/// пользователя, 1 — каталог доступен),
@@ -866,7 +868,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="url"> URL сервера. </param>
 	/// <param name="title"> Название сервера. </param>
 	/// <param name="secretKey"> Секретный ключ. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор добавленного сервера в поле
 	/// server_id (integer).
@@ -885,7 +887,7 @@ public interface IGroupsCategoryAsync
 	/// </summary>
 	/// <param name="groupId"> Идентификатор сообщества. </param>
 	/// <param name="serverId"> идентификатор сервера, который нужно удалить. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>
 	/// </returns>
@@ -907,7 +909,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="url"> URL сервера. </param>
 	/// <param name="title"> Название сервера. </param>
 	/// <param name="secretKey"> Секретный ключ. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>
 	/// </returns>
@@ -926,7 +928,7 @@ public interface IGroupsCategoryAsync
 	/// Callback API.
 	/// </summary>
 	/// <param name="groupId"> Идентификатор сообщества. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает строку, которую необходимо использовать в качестве ответа на
 	/// уведомление с типом "confirmation"
@@ -949,7 +951,7 @@ public interface IGroupsCategoryAsync
 	/// Идентификаторы серверов, данные о которых нужно получить.
 	/// По умолчанию возвращаются все серверы.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает число серверов в поле count (integer) и массив объектов items с
 	/// данными о серверах.
@@ -966,8 +968,10 @@ public interface IGroupsCategoryAsync
 	/// </summary>
 	/// <param name="groupId"> Идентификатор сообщества. </param>
 	/// <param name="serverId"> Идентификатор сервера. </param>
-	/// <param name="token">Токен отмены</param>
-	/// <returns> </returns>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Возвращает настройки уведомлений Callback API для сообщества
+	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/groups.getCallbackSettings
 	/// </remarks>
@@ -982,7 +986,7 @@ public interface IGroupsCategoryAsync
 	/// Параметры настройки уведомлений о событиях в Callback
 	/// API.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>
 	/// </returns>
@@ -998,7 +1002,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="groupId">
 	/// Идентификатор сообщества. положительное число, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// key (string) — ключ;
@@ -1017,7 +1021,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="groupId">
 	/// Идентификатор сообщества. положительное число, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -1033,7 +1037,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="groupId">
 	/// Идентификатор сообщества. положительное число, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -1047,7 +1051,7 @@ public interface IGroupsCategoryAsync
 	/// Возвращаем обновления событий группы
 	/// </summary>
 	/// <param name="params"> Параметры запроса к BotsLongPoll API </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Новые события в группе
 	/// </returns>
@@ -1070,7 +1074,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="params">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Данные о добавленном адресе сообщества
 	/// </returns>
@@ -1089,7 +1093,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="params">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Данные об адресе отредактированного сообщества
 	/// </returns>
@@ -1108,7 +1112,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="addressId">
 	/// Id адреса положительное число, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -1125,7 +1129,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="params">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Коллекция адресов сообщества
 	/// </returns>
@@ -1141,7 +1145,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="groupId">
 	/// Идентификатор сообщества. положительное число, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который содержит поля:
 	/// status — статус сообщества. Возможные значения:
@@ -1159,7 +1163,7 @@ public interface IGroupsCategoryAsync
 	/// <summary>
 	/// Возвращает настройки прав для ключа доступа сообщества.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который содержит поля:
 	/// mask (integer) — битовая маска ключа доступа;
@@ -1179,7 +1183,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="params">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -1195,7 +1199,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="groupId">
 	/// Идентификатор сообщества. положительное число, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// is_enabled (boolean) — true, если Bots Longpoll включен в сообществе.
@@ -1256,7 +1260,7 @@ public interface IGroupsCategoryAsync
 	/// Идентификатор сообщества. положительное число,
 	/// обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Массив объектов тэгов </returns>
 	Task<VkCollection<GroupTag>> GetTagListAsync(ulong groupId,
 												CancellationToken token = default);
@@ -1267,7 +1271,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="params">
 	/// Параметры изменения настроек сообщества
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> 1 в случае успеха </returns>
 	Task<bool> SetSettingsAsync(GroupsSetSettingsParams @params,
 								CancellationToken token = default);
@@ -1279,7 +1283,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="params">
 	/// Параметры редактирования заметки о пользователе
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> 1 в случае успеха </returns>
 	Task<bool> SetUserNoteAsync(GroupsSetUserNoteParams @params,
 								CancellationToken token = default);
@@ -1290,7 +1294,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="params">
 	/// Параметры редактирования заметки о пользователе
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> 1 в случае успеха </returns>
 	Task<bool> TagAddAsync(GroupsTagAddParams @params,
 							CancellationToken token = default);
@@ -1312,7 +1316,7 @@ public interface IGroupsCategoryAsync
 	/// "bind" —  привязать.
 	/// "unbind" — отвязать.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> 1 в случае успеха </returns>
 	Task<bool> TagBindAsync(ulong groupId,
 							ulong tagId,
@@ -1329,7 +1333,7 @@ public interface IGroupsCategoryAsync
 	/// /// <param name="tagId">
 	/// Идентификатор тега.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> 1 в случае успеха </returns>
 	Task<bool> TagDeleteAsync(ulong groupId,
 							ulong tagId,
@@ -1347,7 +1351,7 @@ public interface IGroupsCategoryAsync
 	/// /// <param name="tagName">
 	/// Имя тега.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> 1 в случае успеха </returns>
 	Task<bool> TagUpdateAsync(ulong groupId,
 							ulong tagId,
@@ -1360,7 +1364,7 @@ public interface IGroupsCategoryAsync
 	/// <param name="params">
 	/// Параметры редактирования заметки о пользователе
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> 1 в случае успеха </returns>
 	Task<bool> ToggleMarketAsync(GroupToggleMarketParams @params,
 								CancellationToken token = default);

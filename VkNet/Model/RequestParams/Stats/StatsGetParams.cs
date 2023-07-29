@@ -59,7 +59,7 @@ public class StatsGetParams
 	public ulong IntervalsCount { get; set; }
 
 	/// <summary>
-	///
+	/// Список фильтров
 	/// </summary>
 	[JsonProperty("filters")]
 	public ReadOnlyCollection<string> Filters { get; set; }

@@ -5,6 +5,6 @@ namespace VkNet.Model;
 /// <summary>
 /// <c>Secret Key</c> для Callback
 /// </summary>
-/// <param name="Value"></param>
+/// <param name="Value">Значение</param>
 [Serializable]
 public record Secret(string Value) : IGroupUpdate;

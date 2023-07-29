@@ -5,7 +5,7 @@ using Newtonsoft.Json.Converters;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Результат получения целевых пикселей
 /// </summary>
 [Serializable]
 public class GetTargetPixelsResult

@@ -44,7 +44,7 @@ namespace VkNet;
 /// </param>
 public delegate void VkApiDelegate(VkApi sender);
 
-/// <inheritdoc />
+/// <inheritdoc cref="IVkApi" />
 /// <summary>
 /// API для работы с ВКонтакте.
 /// Выступает в качестве фабрики для различных категорий API (например, для работы
@@ -86,17 +86,17 @@ public class VkApi : IVkApi
 	{
 		var container = new ServiceCollection();
 
-		if (logger != null)
+		if (logger is not null)
 		{
 			container.TryAddSingleton(logger);
 		}
 
-		if (captchaSolver != null)
+		if (captchaSolver is not null)
 		{
 			container.TryAddSingleton(captchaSolver);
 		}
 
-		if (authorizationFlow != null)
+		if (authorizationFlow is not null)
 		{
 			container.TryAddSingleton(authorizationFlow);
 		}
@@ -135,7 +135,7 @@ public class VkApi : IVkApi
 	public event VkApiDelegate OnTokenUpdatedAutomatically;
 
 	/// <inheritdoc />
-	[Obsolete("Нужно использовать AuthorizationFlow", false)]
+	[Obsolete("Нужно использовать AuthorizationFlow", true)]
 	public IBrowser Browser { get; set; }
 
 	/// <inheritdoc />
@@ -166,7 +166,7 @@ public class VkApi : IVkApi
 	public void Authorize(IApiAuthParams @params)
 	{
 		// если токен не задан - обычная авторизация
-		if (@params.AccessToken == null)
+		if (@params.AccessToken is null)
 		{
 			AuthorizeWithAntiCaptcha(@params);
 
@@ -194,7 +194,8 @@ public class VkApi : IVkApi
 	public void Authorize(ApiAuthParams @params) => Authorize((IApiAuthParams) @params);
 
 	/// <inheritdoc />
-	public Task AuthorizeAsync(IApiAuthParams @params, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() => Authorize(@params), CancellationToken.None);
+	public Task AuthorizeAsync(IApiAuthParams @params, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() => Authorize(@params), CancellationToken.None);
 
 	/// <inheritdoc />
 	public void RefreshToken(Func<string> code = null)
@@ -248,7 +249,8 @@ public class VkApi : IVkApi
 
 	/// <inheritdoc />
 	[MethodImpl(MethodImplOptions.NoInlining)]
-	public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters)
+	public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false,
+							params JsonConverter[] jsonConverters)
 	{
 		var answer = CallBase(methodName, parameters, skipAuthorization);
 
@@ -282,13 +284,16 @@ public class VkApi : IVkApi
 		var converters = GetJsonConverters<T>(jsonConverters);
 
 		foreach (var jsonConverter in converters)
+		{
 			settings.Converters.Add(jsonConverter);
+		}
 
 		return JsonConvert.DeserializeObject<T>(answer, settings);
 	}
 
 	/// <inheritdoc />
-	public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default)
+	public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false,
+									CancellationToken token = default)
 	{
 		var task = TypeHelper.TryInvokeMethodAsync(() =>
 			Call(methodName, parameters, skipAuthorization), token);
@@ -299,7 +304,8 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
-	public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default)
+	public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false,
+								CancellationToken token = default)
 	{
 		var task = TypeHelper.TryInvokeMethodAsync(() =>
 			Call<T>(methodName, parameters, skipAuthorization), token);
@@ -333,9 +339,9 @@ public class VkApi : IVkApi
 
 	/// <inheritdoc />
 	[CanBeNull]
-	public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false, CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Invoke(methodName, parameters, skipAuthorization), token);
+	public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false,
+									CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		Invoke(methodName, parameters, skipAuthorization), token);
 
 	/// <inheritdoc />
 	public VkResponse CallLongPoll(string server, VkParameters parameters, params JsonConverter[] jsonConverters)
@@ -420,14 +426,15 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
-	public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
-		InvokeLongPollExtended(server, parameters)
-			.ToString(), token);
+	public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			InvokeLongPollExtended(server, parameters)
+				.ToString(), token);
 
 	/// <inheritdoc />
-	public Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			InvokeLongPollExtended(server, parameters), token);
+	public Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters,
+													CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		InvokeLongPollExtended(server, parameters), token);
 
 	/// <inheritdoc cref="IDisposable" />
 	public void Dispose()
@@ -471,8 +478,10 @@ public class VkApi : IVkApi
 	/// <summary>
 	/// Получить список JsonConverter для обработки ответа vk api
 	/// </summary>
-	/// <param name="customConverters"></param>
-	/// <returns></returns>
+	/// <param name="customConverters">Список конвертеров</param>
+	/// <returns>
+	/// Полный список конвертеров
+	/// </returns>
 	protected virtual List<JsonConverter> GetJsonConverters<T>(IReadOnlyList<JsonConverter> customConverters)
 	{
 		var converters = new List<JsonConverter>();
@@ -484,6 +493,7 @@ public class VkApi : IVkApi
 		converters.Add(new UnixDateTimeConverter());
 		converters.Add(new AttachmentJsonConverter());
 		converters.Add(new StringEnumConverter());
+
 		return converters;
 	}
 
@@ -555,7 +565,7 @@ public class VkApi : IVkApi
 		set {
 			if (value < 0)
 			{
-				throw new ArgumentException(@"Value must be positive", nameof(value));
+				throw new ArgumentException("Value must be positive", nameof(value));
 			}
 
 			_requestsPerSecond = value;
@@ -585,17 +595,19 @@ public class VkApi : IVkApi
 		get => CaptchaHandler.MaxCaptchaRecognitionCount;
 
 		set {
-			if (value < 0)
+			switch (value)
 			{
-				throw new ArgumentException(@"Value must be positive", nameof(value));
-			}
+				case < 0:
+					throw new ArgumentException(@"Value must be positive", nameof(value));
 
-			if (value == 0)
-			{
-				return;
-			}
+				case 0:
+					return;
 
-			CaptchaHandler.MaxCaptchaRecognitionCount = value;
+				default:
+					CaptchaHandler.MaxCaptchaRecognitionCount = value;
+
+					break;
+			}
 		}
 	}
 
@@ -776,7 +788,7 @@ public class VkApi : IVkApi
 
 		string answer;
 
-		if (CaptchaSolver == null)
+		if (CaptchaSolver is null)
 		{
 			answer = Invoke(methodName, parameters, skipAuthorization);
 		} else
@@ -797,6 +809,19 @@ public class VkApi : IVkApi
 	{
 		var answer = string.Empty;
 
+		if (_expireTimer is null)
+		{
+			SetTimer(0);
+		}
+
+		// Защита от превышения количества запросов в секунду
+		_rateLimiter.Perform(SendRequest, CancellationToken.None)
+			.ConfigureAwait(false)
+			.GetAwaiter()
+			.GetResult();
+
+		return answer;
+
 		void SendRequest()
 		{
 			LastInvokeTime = DateTimeOffset.Now;
@@ -808,19 +833,6 @@ public class VkApi : IVkApi
 
 			answer = response.Message ?? response.Value;
 		}
-
-		if (_expireTimer == null)
-		{
-			SetTimer(0);
-		}
-
-		// Защита от превышения количества запросов в секунду
-		_rateLimiter.Perform(SendRequest)
-			.ConfigureAwait(false)
-			.GetAwaiter()
-			.GetResult();
-
-		return answer;
 	}
 
 	/// <summary>
@@ -831,7 +843,7 @@ public class VkApi : IVkApi
 	{
 		_logger?.LogDebug("Старт авторизации");
 
-		if (CaptchaSolver == null)
+		if (CaptchaSolver is null)
 		{
 			BaseAuthorize(authParams);
 		} else
@@ -1006,7 +1018,6 @@ public class VkApi : IVkApi
 		DownloadedGames = new DownloadedGamesCategory(this);
 		Asr = new AsrCategory(this);
 		ShortVideo = new ShortVideoCategory(this);
-
 
 		RequestsPerSecond = 3;
 

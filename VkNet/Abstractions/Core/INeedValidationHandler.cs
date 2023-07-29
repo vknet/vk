@@ -34,7 +34,7 @@ public interface INeedValidationHandler
 	/// Выполняет обход ошибки валидации: https://vk.com/dev/need_validation
 	/// </summary>
 	/// <param name="validateUrl"> Адрес страницы валидации </param>
-	/// <param name="token"></param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Информация об авторизации приложения. </returns>
 	Task<AuthorizationResult> ValidateAsync(string validateUrl, CancellationToken token = default);
 }

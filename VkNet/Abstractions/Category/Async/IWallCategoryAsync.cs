@@ -18,7 +18,7 @@ public interface IWallCategoryAsync
 	/// </summary>
 	/// <param name="params"> Входные параметры. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха возвращается запрошенный список записей со стены.
 	/// </returns>
@@ -38,7 +38,7 @@ public interface IWallCategoryAsync
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов комментариев.
 	/// Если был задан параметр need_likes=1, у объектов комментариев возвращается
@@ -101,7 +101,7 @@ public interface IWallCategoryAsync
 	/// строк, разделенных через запятую).
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов записей со стены.
 	/// Если был задан параметр extended=1, ответ содержит три отдельных списка:
@@ -158,7 +158,7 @@ public interface IWallCategoryAsync
 	/// строк, разделенных через запятую).
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов записей со стены.
 	/// Если был задан параметр extended=1, ответ содержит три отдельных списка:
@@ -183,7 +183,7 @@ public interface IWallCategoryAsync
 	/// Публикует новую запись на своей или чужой стене.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданной записи (post_id).
 	/// </returns>
@@ -213,7 +213,7 @@ public interface IWallCategoryAsync
 	/// (Положительное число).
 	/// </param>
 	/// <param name="markAsAds"> Строка (Строка). </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект со следующими полями:
 	/// success
@@ -234,7 +234,7 @@ public interface IWallCategoryAsync
 	/// Редактирует запись на стене.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает post_id — идентификатор отредактированного поста.
 	/// </returns>
@@ -260,7 +260,7 @@ public interface IWallCategoryAsync
 	/// Идентификатор записи на стене. положительное число
 	/// (Положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -288,7 +288,7 @@ public interface IWallCategoryAsync
 	/// Идентификатор записи на стене. положительное число
 	/// (Положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -303,7 +303,7 @@ public interface IWallCategoryAsync
 	/// Добавляет комментарий к записи на стене.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор добавленного комментария
 	/// (comment_id).
@@ -331,7 +331,7 @@ public interface IWallCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -361,7 +361,7 @@ public interface IWallCategoryAsync
 	/// число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -377,7 +377,7 @@ public interface IWallCategoryAsync
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов записей на стене.
 	/// </returns>
@@ -418,7 +418,7 @@ public interface IWallCategoryAsync
 	/// 1000).
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий поля:
 	/// items — содержит массив записей-репостов;
@@ -454,7 +454,7 @@ public interface IWallCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -482,7 +482,7 @@ public interface IWallCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -512,7 +512,7 @@ public interface IWallCategoryAsync
 	/// строк,
 	/// разделенных через запятую).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -549,7 +549,7 @@ public interface IWallCategoryAsync
 	/// 6 — оскорбление.
 	/// положительное число (Положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -585,7 +585,7 @@ public interface IWallCategoryAsync
 	/// 6 — оскорбление.
 	/// положительное число (Положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -601,7 +601,7 @@ public interface IWallCategoryAsync
 	/// Позволяет отредактировать скрытую запись.
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -617,7 +617,7 @@ public interface IWallCategoryAsync
 	/// для создания рекламного объявления типа "Запись в сообществе".
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Идентификатор созданной записи
 	/// </returns>
@@ -644,7 +644,7 @@ public interface IWallCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -670,7 +670,7 @@ public interface IWallCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -687,7 +687,7 @@ public interface IWallCategoryAsync
 	/// <param name="link">
 	/// Ссылка на источник. Поддерживаются внешние и внутренние ссылки.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -715,7 +715,7 @@ public interface IWallCategoryAsync
 	/// Обратите внимание, этот параметр учитывается только при extended = <c>true</c>.
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>

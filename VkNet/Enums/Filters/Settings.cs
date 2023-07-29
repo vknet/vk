@@ -258,7 +258,9 @@ public sealed class Settings
 	/// Получить из json
 	/// </summary>
 	/// <param name="response"> Ответ Vk </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Настройки
+	/// </returns>
 	public static Settings FromJson(VkResponse response)
 	{
 		var value = response.ToString();
@@ -270,7 +272,9 @@ public sealed class Settings
 	/// Получить из json
 	/// </summary>
 	/// <param name="val"> Json строка </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Настройки
+	/// </returns>
 	public static Settings FromJsonString(string val)
 	{
 		var values = val.Split(',')
@@ -295,20 +299,26 @@ public sealed class Settings
 	/// <summary>
 	/// Преобразовать в строку
 	/// </summary>
-	/// <returns> </returns>
+	/// <returns>
+	/// Строкое представление
+	/// </returns>
 	public override string ToString() => string.Join(",", Selected.ToArray());
 
 	/// <summary>
 	/// Преобразовать в числовую маску выбранные права доступа
 	/// </summary>
-	/// <returns> </returns>
+	/// <returns>
+	/// Числовая маска
+	/// </returns>
 	public ulong ToUInt64() => Mask;
 
 	/// <summary>
 	/// Сравнение с другим набором прав
 	/// </summary>
-	/// <param name="obj"> </param>
-	/// <returns> </returns>
+	/// <param name="obj">Исходный набор</param>
+	/// <returns>
+	/// Признак успешного сравнения
+	/// </returns>
 	public override bool Equals(object obj)
 	{
 		var other = obj as Settings;
@@ -319,7 +329,9 @@ public sealed class Settings
 	/// <summary>
 	/// Get Hash
 	/// </summary>
-	/// <returns> </returns>
+	/// <returns>
+	/// Хеш
+	/// </returns>
 	public override int GetHashCode() => Selected?.GetHashCode() ?? 0;
 
 	/// <summary>

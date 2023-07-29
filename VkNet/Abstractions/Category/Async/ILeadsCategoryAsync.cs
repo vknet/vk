@@ -18,7 +18,7 @@ public interface ILeadsCategoryAsync
 	/// <param name="checkUserParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, содержащий поля:
 	/// result — признак того, может ли пользователь начать акцию (true/false), а
@@ -51,7 +51,7 @@ public interface ILeadsCategoryAsync
 	/// <param name="comment">
 	/// Комментарий строка
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// При успешном завершении оффера будет возвращен объект, содержащий следующие
 	/// поля:
@@ -90,7 +90,7 @@ public interface ILeadsCategoryAsync
 	/// (8-и значное число). Например,
 	/// 2011-09-19. строка
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// При успешном завершении оффера будет возвращен объект, содержащий следующие
 	/// поля:
@@ -123,7 +123,7 @@ public interface ILeadsCategoryAsync
 	/// <param name="getUsersParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов entry, каждый из которых
 	/// содержит поля:
@@ -150,7 +150,7 @@ public interface ILeadsCategoryAsync
 	/// Данные метрики, полученные в личном кабинете рекламной акции. обязательный
 	/// параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, содержащий поля:
 	/// result - равен true в случае успеха, и false в обратном случае,
@@ -169,7 +169,7 @@ public interface ILeadsCategoryAsync
 	/// <param name="startParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// При успешном старте рекламной акции будет возвращен объект содержащий следующие
 	/// поля:

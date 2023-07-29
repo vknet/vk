@@ -10,10 +10,14 @@ namespace VkNet.Utils;
 /// </summary>
 public static class GroupLongPoolHelpers
 {
+
 	/// <summary>
 	/// Метод для получения обновлений группы из массива JObject, который не бросает исключений, но вместе с обновлениями возвращает ошибки при десериализации, если таковые имеются.
 	/// </summary>
 	/// <param name="jObjectUpdates">Этот массив получается из метода api.Groups.GetBotsLongPollHistory&lt;BotsLongPollHistoryResponse&lt;JObject&gt;&gt;().Updates</param>
+	/// <returns>
+	/// Возвращает список обновлений группы
+	/// </returns>
 	public static List<(GroupUpdate? Update, System.Exception? Exception)> GetGroupUpdatesAndErrors(List<JObject> jObjectUpdates)
 	{
 		var updates = new List<(GroupUpdate? Update, System.Exception? Exception)>();

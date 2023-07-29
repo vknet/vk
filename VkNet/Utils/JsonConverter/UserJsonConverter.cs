@@ -19,10 +19,10 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 		var jObj = new JObject
 		{
 			{
-				"first_name" , JToken.FromObject(user.FirstName)
+				"first_name", JToken.FromObject(user.FirstName)
 			},
 			{
-				"last_name" , JToken.FromObject(user.LastName)
+				"last_name", JToken.FromObject(user.LastName)
 			}
 		};
 
@@ -47,10 +47,19 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 			Id = response["user_id"] ?? response["uid"] ?? response["id"] ?? 0,
 			FirstName = response["first_name"],
 			LastName = response["last_name"],
-			Sex = !response.ContainsKey("sex") ? Sex.Unknown : Utilities.Deserialize<Sex>(response["sex"].ToString()),
+			Sex = !response.ContainsKey("sex")
+				? Sex.Unknown
+				: Utilities.Deserialize<Sex>(response["sex"]
+					.ToString()),
 			BirthDate = response["bdate"],
-			City = !response.ContainsKey("city")?null:JsonConvert.DeserializeObject<City>(response["city"].ToString()),
-			Country = !response.ContainsKey("country")?null:JsonConvert.DeserializeObject<Country>(response["country"].ToString()),
+			City = !response.ContainsKey("city")
+				? null
+				: JsonConvert.DeserializeObject<City>(response["city"]
+					.ToString()),
+			Country = !response.ContainsKey("country")
+				? null
+				: JsonConvert.DeserializeObject<Country>(response["country"]
+					.ToString()),
 			PhotoPreviews = JsonConvert.DeserializeObject<Previews>(response.ToString()),
 			Online = response["online"],
 			FriendLists = response["lists"]
@@ -63,28 +72,57 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 			Facebook = response["facebook"],
 			Skype = response["skype"],
 			Site = response["site"],
-			Education = !response.ContainsKey("university")?null:JsonConvert.DeserializeObject<Education>(response.ToString()),
-			Universities = !response.ContainsKey("universities")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<University>>(response["universities"].ToString()),
-			Schools =  !response.ContainsKey("schools")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<School>>(response["schools"].ToString()),
+			Education = !response.ContainsKey("university")
+				? null
+				: JsonConvert.DeserializeObject<Education>(response.ToString()),
+			Universities = !response.ContainsKey("universities")
+				? null
+				: JsonConvert.DeserializeObject<ReadOnlyCollection<University>>(response["universities"]
+					.ToString()),
+			Schools = !response.ContainsKey("schools")
+				? null
+				: JsonConvert.DeserializeObject<ReadOnlyCollection<School>>(response["schools"]
+					.ToString()),
 			CanPost = response["can_post"],
 			CanSeeAllPosts = response["can_see_all_posts"],
 			CanSeeAudio = response["can_see_audio"],
 			CanWritePrivateMessage = response["can_write_private_message"],
 			Status = response["status"],
-			StatusAudio = !response.ContainsKey("status_audio") ? null : JsonConvert.DeserializeObject<Audio>(response["status_audio"].ToString()),
-			LastSeen = !response.ContainsKey("last_seen")?null:JsonConvert.DeserializeObject<LastSeen>(response["last_seen"].ToString()),
+			StatusAudio = !response.ContainsKey("status_audio")
+				? null
+				: JsonConvert.DeserializeObject<Audio>(response["status_audio"]
+					.ToString()),
+			LastSeen = !response.ContainsKey("last_seen")
+				? null
+				: JsonConvert.DeserializeObject<LastSeen>(response["last_seen"]
+					.ToString()),
 			CommonCount = response["common_count"],
-			Relation = !response.ContainsKey("relation") ? RelationType.Unknown : Utilities.Deserialize<RelationType>(response["relation"].ToString()),
-			Relatives = !response.ContainsKey("relatives")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<Relative>>(response["relatives"].ToString()),
-			Counters = !response.ContainsKey("counters")?null:JsonConvert.DeserializeObject<Counters>(response["counters"].ToString()),
+			Relation = !response.ContainsKey("relation")
+				? RelationType.Unknown
+				: Utilities.Deserialize<RelationType>(response["relation"]
+					.ToString()),
+			Relatives = !response.ContainsKey("relatives")
+				? null
+				: JsonConvert.DeserializeObject<ReadOnlyCollection<Relative>>(response["relatives"]
+					.ToString()),
+			Counters = !response.ContainsKey("counters")
+				? null
+				: JsonConvert.DeserializeObject<Counters>(response["counters"]
+					.ToString()),
 			ScreenName = response["screen_name"],
 			Nickname = response["nickname"],
 			Timezone = response["timezone"],
 			Language = response["language"],
 			OnlineMobile = response["online_mobile"],
 			OnlineApp = response["online_app"],
-			RelationPartner = !response.ContainsKey("relation_partner")?null:JsonConvert.DeserializeObject<User>(response["relation_partner"].ToString()),
-			StandInLife = !response.ContainsKey("personal")?null:JsonConvert.DeserializeObject<StandInLife>(response["personal"].ToString()),
+			RelationPartner = !response.ContainsKey("relation_partner")
+				? null
+				: JsonConvert.DeserializeObject<User>(response["relation_partner"]
+					.ToString()),
+			StandInLife = !response.ContainsKey("personal")
+				? null
+				: JsonConvert.DeserializeObject<StandInLife>(response["personal"]
+					.ToString()),
 			Interests = response["interests"],
 			Music = response["music"],
 			Activities = response["activities"],
@@ -95,15 +133,27 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 			About = response["about"],
 			Quotes = response["quotes"],
 			InvitedBy = response["invited_by"],
-			BanInfo = !response.ContainsKey("ban_info") ? null : JsonConvert.DeserializeObject<BanInfo>(response["ban_info"].ToString()),
-			Deactivated = !response.ContainsKey("deactivated")?Deactivated.Activated:Utilities.Deserialize<Deactivated>(response["deactivated"]),
+			BanInfo = !response.ContainsKey("ban_info")
+				? null
+				: JsonConvert.DeserializeObject<BanInfo>(response["ban_info"]
+					.ToString()),
+			Deactivated = !response.ContainsKey("deactivated")
+				? Deactivated.Activated
+				: Utilities.Deserialize<Deactivated>(response["deactivated"]),
 			MaidenName = response["maiden_name"],
-			BirthdayVisibility = !response.ContainsKey("bdate_visibility") ? BirthdayVisibility.Invisible : Utilities.Deserialize<BirthdayVisibility>(response["bdate_visibility"].ToString()),
+			BirthdayVisibility = !response.ContainsKey("bdate_visibility")
+				? BirthdayVisibility.Invisible
+				: Utilities.Deserialize<BirthdayVisibility>(response["bdate_visibility"]
+					.ToString()),
 			HomeTown = response["home_town"],
-			ChangeNameRequest = !response.ContainsKey("name_request") ? null : JsonConvert.DeserializeObject<ChangeNameRequest>(response["name_request"]
-				.ToString()),
-			Contacts = !response.ContainsKey("contacts") ? null : JsonConvert.DeserializeObject<Contacts>(response["contacts"]
-				.ToString()),
+			ChangeNameRequest = !response.ContainsKey("name_request")
+				? null
+				: JsonConvert.DeserializeObject<ChangeNameRequest>(response["name_request"]
+					.ToString()),
+			Contacts = !response.ContainsKey("contacts")
+				? null
+				: JsonConvert.DeserializeObject<Contacts>(response["contacts"]
+					.ToString()),
 			Hidden = response["hidden"],
 			PhotoId = response["photo_id"],
 			Verified = response["verified"],
@@ -116,17 +166,35 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 			PhotoMax = response["photo_max"],
 			PhotoMaxOrig = response["photo_max_orig"],
 			FollowersCount = response["followers_count"],
-			Occupation = !response.ContainsKey("occupation")?null:JsonConvert.DeserializeObject<Occupation>(response["occupation"].ToString()),
-			Exports = !response.ContainsKey("exports")?null:JsonConvert.DeserializeObject<Exports>(response["exports"].ToString()),
+			Occupation = !response.ContainsKey("occupation")
+				? null
+				: JsonConvert.DeserializeObject<Occupation>(response["occupation"]
+					.ToString()),
+			Exports = !response.ContainsKey("exports")
+				? null
+				: JsonConvert.DeserializeObject<Exports>(response["exports"]
+					.ToString()),
 			WallComments = response["wall_comments"],
 			CanSendFriendRequest = response["can_send_friend_request"],
 			IsFavorite = response["is_favorite"],
 			IsHiddenFromFeed = response["is_hidden_from_feed"],
-			CropPhoto = !response.ContainsKey("crop_photo")?null:JsonConvert.DeserializeObject<CropPhoto>(response["crop_photo"].ToString()),
+			CropPhoto = !response.ContainsKey("crop_photo")
+				? null
+				: JsonConvert.DeserializeObject<CropPhoto>(response["crop_photo"]
+					.ToString()),
 			IsFriend = response["is_friend"] == "1",
-			FriendStatus = !response.ContainsKey("friend_status") ? FriendStatus.NotFriend : Utilities.Deserialize<FriendStatus>(response["friend_status"].ToString()),
-			Career = !response.ContainsKey("career")?null:JsonConvert.DeserializeObject<ReadOnlyCollection<Career>>(response["career"].ToString()),
-			Military = !response.ContainsKey("military")?null:JsonConvert.DeserializeObject<Military>(response["military"].ToString()),
+			FriendStatus = !response.ContainsKey("friend_status")
+				? FriendStatus.NotFriend
+				: Utilities.Deserialize<FriendStatus>(response["friend_status"]
+					.ToString()),
+			Career = !response.ContainsKey("career")
+				? null
+				: JsonConvert.DeserializeObject<ReadOnlyCollection<Career>>(response["career"]
+					.ToString()),
+			Military = !response.ContainsKey("military")
+				? null
+				: JsonConvert.DeserializeObject<Military>(response["military"]
+					.ToString()),
 			Blacklisted = response["blacklisted"],
 			BlacklistedByMe = response["blacklisted_by_me"],
 			Trending = response["trending"],
@@ -145,12 +213,15 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 			IsClosed = response["is_closed"],
 			CanAccessClosed = response["can_access_closed"],
 			Count = response["count"],
-			OwnerState = !response.ContainsKey("owner_state")?null:JsonConvert.DeserializeObject<OwnerState>(response["owner_state"].ToString()),
+			OwnerState = !response.ContainsKey("owner_state")
+				? null
+				: JsonConvert.DeserializeObject<OwnerState>(response["owner_state"]
+					.ToString())
 		};
 
-		user.IsDeactivated = user.Deactivated != null;
+		user.IsDeactivated = user.Deactivated is not null;
 
-		if (response["name"] != null)
+		if (response["name"] is not null)
 		{
 			// Разделить имя и фамилию
 			var parts = ((string) response["name"]).Split(' ');
@@ -189,16 +260,18 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 				break;
 		}
 
-		if (response["bdate_visibility"] == null)
+		if (response["bdate_visibility"] is null)
 		{
-			if (!string.IsNullOrEmpty(user.BirthDate))
+			if (string.IsNullOrEmpty(user.BirthDate))
 			{
-				var birthdayParts = user.BirthDate.Split('.');
-
-				user.BirthdayVisibility = birthdayParts.Length > 2
-					? BirthdayVisibility.Full
-					: BirthdayVisibility.OnlyDayAndMonth;
+				return user;
 			}
+
+			var birthdayParts = user.BirthDate.Split('.');
+
+			user.BirthdayVisibility = birthdayParts.Length > 2
+				? BirthdayVisibility.Full
+				: BirthdayVisibility.OnlyDayAndMonth;
 		} else
 		{
 			user.BirthdayVisibility = !response.ContainsKey("bdate_visibility")

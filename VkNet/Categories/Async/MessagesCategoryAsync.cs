@@ -6,6 +6,7 @@ using VkNet.Enums.Filters;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Utils;
+using System;
 
 namespace VkNet.Categories;
 
@@ -154,6 +155,7 @@ public partial class MessagesCategory
 			EditChat(chatId, title), token);
 
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.MessageGet)]
 	public Task<MessagesGetObject> GetAsync(MessagesGetParams @params,
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
@@ -176,6 +178,7 @@ public partial class MessagesCategory
 			GetIntentUsers(getIntentUsersParams), token);
 
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.MessageSearchDialogs)]
 	public Task<SearchDialogsResponse> SearchDialogsAsync(string query,
 														ProfileFields fields = null,
 														uint? limit = null,
@@ -262,6 +265,7 @@ public partial class MessagesCategory
 			GetChatPreview(link, fields), token);
 
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.MessageGetChatUsers)]
 	public Task<GetChatUsers> GetChatUsersAsync(IEnumerable<long> chatIds,
 												UsersFields fields,
 												NameCase? nameCase,
@@ -270,12 +274,14 @@ public partial class MessagesCategory
 			GetChatUsers(chatIds, fields, nameCase), token);
 
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.MessageGetChatUsers)]
 	public Task<ReadOnlyCollection<long>> GetChatUsersAsync(IEnumerable<long> chatIds,
 															CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			GetChatUsers(chatIds), token);
 
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.MessageGet)]
 	public Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params,
 													CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>

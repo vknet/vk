@@ -3,7 +3,7 @@ using VkNet.Model;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IDownloadedGamesCategory" />
 public partial class DownloadedGamesCategory : IDownloadedGamesCategory
 {
 	/// <summary>

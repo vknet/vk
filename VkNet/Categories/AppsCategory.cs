@@ -6,7 +6,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IAppsCategory" />
 public partial class AppsCategory : IAppsCategory
 {
 	/// <summary>

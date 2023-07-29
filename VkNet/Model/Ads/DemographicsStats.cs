@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Статистика демографии
 /// </summary>
 [Serializable]
 public class DemographicsStats

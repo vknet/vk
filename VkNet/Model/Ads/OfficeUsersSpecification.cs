@@ -5,7 +5,7 @@ using VkNet.Enums.StringEnums;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Спецификация офисного пользователя
 /// </summary>
 [Serializable]
 public class OfficeUsersSpecification

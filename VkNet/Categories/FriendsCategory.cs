@@ -12,15 +12,14 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IFriendsCategory" />
 public partial class FriendsCategory : IFriendsCategory
 {
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// Инициализирует новый экземпляр класса <see cref="FriendsCategory" />
 	/// </summary>
-	/// <param name="vk"> </param>
 	public FriendsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
@@ -56,7 +55,7 @@ public partial class FriendsCategory : IFriendsCategory
 
 		var response = _vk.Call("friends.get", parameters, skipAuthorization);
 		//TODO:
-		if (@params.Fields != null)
+		if (@params.Fields is not null)
 		{
 			return _vk.Call<VkCollection<User>>("friends.get", parameters, skipAuthorization);
 		}
@@ -137,7 +136,7 @@ public partial class FriendsCategory : IFriendsCategory
 	[Pure]
 	public ReadOnlyCollection<AreFriendsResult> AreFriends(IEnumerable<long> userIds, bool? needSign = null)
 	{
-		if (userIds == null)
+		if (userIds is null)
 		{
 			throw new ArgumentNullException(nameof(userIds));
 		}

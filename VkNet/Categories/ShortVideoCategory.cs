@@ -3,7 +3,7 @@ using VkNet.Model;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IShortVideoCategory" />
 public partial class ShortVideoCategory : IShortVideoCategory
 {
 	/// <summary>

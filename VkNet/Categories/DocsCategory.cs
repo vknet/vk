@@ -13,7 +13,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IDocsCategory" />
 public partial class DocsCategory : IDocsCategory
 {
 	/// <summary>
@@ -136,7 +136,7 @@ public partial class DocsCategory : IDocsCategory
 
 		var responseArray = (VkResponseArray) response;
 
-		if (responseArray == null)
+		if (responseArray is null)
 		{
 
 			if (response.ContainsKey("audio_message"))

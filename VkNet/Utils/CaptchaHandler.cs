@@ -7,7 +7,7 @@ using VkNet.Utils.AntiCaptcha;
 
 namespace VkNet.Utils;
 
-/// <inheritdoc />
+/// <inheritdoc cref="ICaptchaHandler" />
 [UsedImplicitly]
 public class CaptchaHandler : ICaptchaHandler
 {

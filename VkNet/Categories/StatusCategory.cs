@@ -5,15 +5,14 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IStatusCategory" />
 public partial class StatusCategory : IStatusCategory
 {
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// Инициализирует новый экземпляр класса <see cref="StatusCategory" />
 	/// </summary>
-	/// <param name="vk"> </param>
 	public StatusCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />

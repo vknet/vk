@@ -5,7 +5,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="INotificationsCategory" />
 public partial class NotificationsCategory : INotificationsCategory
 {
 	/// <summary>

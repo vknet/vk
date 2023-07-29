@@ -10,7 +10,7 @@ namespace VkNet.Model;
 public class SavePhotoResult
 {
 	/// <summary>
-	///
+	/// Цвет фотографии
 	/// </summary>
 	[JsonProperty("color")]
 	public string Color { get; set; }

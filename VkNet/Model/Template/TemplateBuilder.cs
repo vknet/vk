@@ -6,7 +6,7 @@ using VkNet.Exception;
 
 namespace VkNet.Model;
 
-/// <inheritdoc />
+/// <inheritdoc cref="ITemplateBuilder" />
 [Serializable]
 [UsedImplicitly]
 public class TemplateBuilder : ITemplateBuilder

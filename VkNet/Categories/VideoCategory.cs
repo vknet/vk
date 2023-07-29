@@ -9,15 +9,14 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IVideoCategory" />
 public partial class VideoCategory : IVideoCategory
 {
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// Api Vk.com
+	/// Инициализирует новый экземпляр класса <see cref="VideoCategory" />
 	/// </summary>
-	/// <param name="vk"> </param>
 	public VideoCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
@@ -575,7 +574,7 @@ public partial class VideoCategory : IVideoCategory
 	public VkCollection<ulong> AddToAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null,
 										long? albumId = null)
 	{
-		if (albumIds == null && albumId.HasValue)
+		if (albumIds is null && albumId.HasValue)
 		{
 			albumIds = new[]
 			{

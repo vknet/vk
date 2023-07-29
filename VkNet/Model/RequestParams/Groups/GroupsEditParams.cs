@@ -292,31 +292,37 @@ public class GroupsEditParams
 	public ulong? MarketWiki { get; set; }
 
 	/// <summary>
+	/// Основной раздел
 	/// </summary>
 	[JsonProperty("main_section")]
 	public uint? MainSection { get; set; }
 
 	/// <summary>
+	/// Второстепенный раздел
 	/// </summary>
 	[JsonProperty("secondary_section")]
 	public uint? SecondarySection { get; set; }
 
 	/// <summary>
+	/// Идентификатор страны
 	/// </summary>
 	[JsonProperty("country")]
 	public uint? Country { get; set; }
 
 	/// <summary>
+	/// Идентификатор города
 	/// </summary>
 	[JsonProperty("city")]
 	public uint? City { get; set; }
 
 	/// <summary>
+	/// Признак наличия статей
 	/// </summary>
 	[JsonProperty("articles")]
 	public bool? Articles { get; set; }
 
 	/// <summary>
+	/// Признак наличия адресов
 	/// </summary>
 	[JsonProperty("addresses")]
 	public bool? Addresses { get; set; }

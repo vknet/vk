@@ -30,7 +30,7 @@ public interface IAuthCategoryAsync
 	/// Флаг, может принимать значения 1 или 0 (Флаг, может
 	/// принимать значения 1 или 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае, если номер пользователя является правильным, будет возвращён
 	/// <c> true </c>.
@@ -48,7 +48,7 @@ public interface IAuthCategoryAsync
 	/// Регистрирует нового пользователя по номеру телефона.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -63,7 +63,7 @@ public interface IAuthCategoryAsync
 	/// коду, полученному через SMS.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -78,7 +78,7 @@ public interface IAuthCategoryAsync
 	/// </summary>
 	/// <param name="phone"> Номер телефона пользователя. </param>
 	/// <param name="lastName"> Фамилия пользователя. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>

@@ -1,0 +1,43 @@
+﻿<Project>
+	<PropertyGroup>
+		<LangVersion>latest</LangVersion>
+		<EfCore>6.0.10</EfCore>
+		<AuditNet>18.1.6</AuditNet>
+		<CoreVersion>6.0.31101</CoreVersion>
+		<MsTestTool>17.4.0</MsTestTool>
+		<WarningsAsErrors>CS1591;REO00038;REO00039;REO00040;REO00042;REO00043;REO00044;REO00051;REO00059;REO00060;REO00065</WarningsAsErrors>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Update="AsyncFixer" Version="1.6.0" PrivateAssets="all"/>
+		<PackageReference Update="HtmlAgilityPack" Version="1.11.50"/>
+		<PackageReference Update="Newtonsoft.Json" Version="13.0.3"/>
+		<PackageReference Update="SonarAnalyzer.CSharp" Version="9.6.0.74858" PrivateAssets="all"/>
+		<PackageReference Update="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
+		<PackageReference Update="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1"/>
+		<PackageReference Update="System.Text.Encoding.CodePages" Version="7.0.0"/>
+
+		<PackageReference Update="FluentAssertions" Version="6.11.0"/>
+		<PackageReference Update="FluentAssertions.Analyzers" Version="0.21.0"/>
+		<PackageReference Update="Meziantou.FluentAssertionsAnalyzers" Version="1.0.10"/>
+		<PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.6.3"/>
+		<PackageReference Update="Moq" Version="4.18.4"/>
+		<PackageReference Update="Moq.AutoMock" Version="3.5.0"/>
+		<PackageReference Update="xunit" Version="2.5.0"/>
+		<PackageReference Update="xunit.runner.visualstudio" Version="2.5.0"/>
+		<PackageReference Update="coverlet.collector" Version="6.0.0"/>
+		<PackageReference Update="coverlet.msbuild" Version="6.0.0"/>
+
+		<!--Анализаторы-->
+		<PackageReference Include="Reo.Core.Analyzers" Version="$(CoreVersion)">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="TestableIO.System.IO.Abstractions.Analyzers" Version="2022.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+
+		<!--our stuff -->
+		<PackageReference Include="JetBrains.Annotations" Version="2023.2.0" PrivateAssets="all"/>
+	</ItemGroup>
+</Project>

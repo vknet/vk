@@ -16,9 +16,12 @@ public static class Url
 	/// URL-encodes illegal characters but not reserved characters.
 	/// </summary>
 	/// <param name="parts">URL parts to combine.</param>
+	/// <returns>
+	/// The combined URL.
+	/// </returns>
 	public static string Combine(params string[] parts)
 	{
-		if (parts == null)
+		if (parts is null)
 		{
 			throw new ArgumentNullException(nameof(parts));
 		}
@@ -104,7 +107,7 @@ public static class Url
 		// no % characters, so avoid the regex overhead
 		if (!s.Contains('%'))
 		{
-			return Uri.EscapeUriString(s);
+			return Uri.EscapeDataString(s);
 		}
 
 		// pick out all %-hex-hex matches and avoid double-encoding
@@ -118,7 +121,7 @@ public static class Url
 				var b = c.Groups[2]
 					.Value; // group 2 is a valid 3-character %-encoded sequence - leave it alone!
 
-				return Uri.EscapeUriString(a) + b;
+				return Uri.EscapeDataString(a) + b;
 			});
 	}
 
@@ -129,7 +132,7 @@ public static class Url
 	/// <returns>The query string.</returns>
 	public static string QueryFrom(params KeyValuePair<string, string>[] pairs)
 	{
-		if (pairs == null)
+		if (pairs is null)
 		{
 			throw new ArgumentNullException(nameof(pairs));
 		}

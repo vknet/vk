@@ -18,6 +18,7 @@ public class Market : MediaAttachment
 	protected override string Alias => "market";
 
 	private long? _id;
+
 	/// <summary>
 	/// Id
 	/// </summary>
@@ -26,7 +27,12 @@ public class Market : MediaAttachment
 	{
 		get => _id;
 
-		set { if(value == null) _id ??= -1; }
+		set {
+			if (value is null)
+			{
+				_id ??= -1;
+			}
+		}
 	}
 
 	/// <summary>

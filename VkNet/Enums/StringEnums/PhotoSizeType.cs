@@ -5,7 +5,7 @@ using Newtonsoft.Json.Serialization;
 namespace VkNet.Enums.StringEnums;
 
 /// <summary>
-/// Порядок сортировки членов группы.
+/// Тип размера изображения
 /// </summary>
 [StringEnum]
 [JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
@@ -78,52 +78,79 @@ public enum PhotoSizeType
 	W,
 
 	/// <summary>
-	///
+	/// Максимальная ширина изображения
 	/// </summary>
 	Max,
 
 	/// <summary>
-	///
+	/// В документации отсутствует описание
 	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
 	A,
 
 	/// <summary>
-	///
+	/// В документации отсутствует описание
 	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
 	B,
 
 	/// <summary>
-	///
+	/// В документации отсутствует описание
 	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
 	C,
 
 	/// <summary>
-	///
+	/// В документации отсутствует описание
 	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
 	D,
 
 	/// <summary>
-	///
+	/// В документации отсутствует описание
 	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
 	E,
 
 	/// <summary>
-	///
+	/// В документации отсутствует описание
 	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
 	K,
 
 	/// <summary>
-	///
+	/// В документации отсутствует описание
 	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
 	Temp,
 
 	/// <summary>
-	///
+	/// В документации отсутствует описание
 	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
 	I,
 
 	/// <summary>
-	///
+	/// В документации отсутствует описание
 	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
 	L
 }

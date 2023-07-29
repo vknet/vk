@@ -9,29 +9,22 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IPhotoCategory" />
 public partial class PhotoCategory : IPhotoCategory
 {
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	///  api vk.com
+	/// Инициализирует новый экземпляр класса <see cref="PhotoCategory" />
 	/// </summary>
-	/// <param name="vk"> </param>
 	public PhotoCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
 	public PhotoAlbum CreateAlbum(PhotoCreateAlbumParams @params)
 	{
-		if (@params.PrivacyView == null)
-		{
-			@params.PrivacyView = new();
-		}
+		@params.PrivacyView ??= new();
 
-		if (@params.PrivacyComment == null)
-		{
-			@params.PrivacyComment = new();
-		}
+		@params.PrivacyComment ??= new();
 
 		if (@params.Title.Length < 2)
 		{
@@ -69,15 +62,9 @@ public partial class PhotoCategory : IPhotoCategory
 	/// <inheritdoc />
 	public bool EditAlbum(PhotoEditAlbumParams @params)
 	{
-		if (@params.PrivacyView == null)
-		{
-			@params.PrivacyView = new();
-		}
+		@params.PrivacyView ??= new();
 
-		if (@params.PrivacyComment == null)
-		{
-			@params.PrivacyComment = new();
-		}
+		@params.PrivacyComment ??= new();
 
 		var parameters = new VkParameters
 		{
@@ -111,7 +98,8 @@ public partial class PhotoCategory : IPhotoCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<PhotoAlbum>>("photos.getAlbums",
+	public VkCollection<PhotoAlbum> GetAlbums(PhotoGetAlbumsParams @params, bool skipAuthorization = false) =>
+		_vk.Call<VkCollection<PhotoAlbum>>("photos.getAlbums",
 			new()
 			{
 				{
@@ -138,7 +126,8 @@ public partial class PhotoCategory : IPhotoCategory
 			}, skipAuthorization);
 
 	/// <inheritdoc />
-	public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<Photo>>("photos.get", new()
+	public VkCollection<Photo> Get(PhotoGetParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<Photo>>("photos.get",
+		new()
 		{
 			{
 				"owner_id", @params.OwnerId
@@ -290,7 +279,6 @@ public partial class PhotoCategory : IPhotoCategory
 
 		return _vk.Call<Photo>("photos.saveOwnerPhoto", parameters);
 	}
-
 
 	/// <inheritdoc />
 	public ReadOnlyCollection<Photo> SaveWallPhoto(string response, ulong? userId, ulong? groupId = null, string caption = null)
@@ -690,35 +678,36 @@ public partial class PhotoCategory : IPhotoCategory
 
 	/// <inheritdoc />
 	public VkCollection<Photo> GetAll(PhotoGetAllParams @params) => _vk.Call<VkCollection<Photo>>("photos.getAll", new()
+	{
 		{
-			{
-				"owner_id", @params.OwnerId
-			},
-			{
-				"extended", @params.Extended
-			},
-			{
-				"offset", @params.Offset
-			},
-			{
-				"count", @params.Count
-			},
-			{
-				"photo_sizes", @params.PhotoSizes
-			},
-			{
-				"no_service_albums", @params.NoServiceAlbums
-			},
-			{
-				"need_hidden", @params.NeedHidden
-			},
-			{
-				"skip_hidden", @params.SkipHidden
-			}
-		});
+			"owner_id", @params.OwnerId
+		},
+		{
+			"extended", @params.Extended
+		},
+		{
+			"offset", @params.Offset
+		},
+		{
+			"count", @params.Count
+		},
+		{
+			"photo_sizes", @params.PhotoSizes
+		},
+		{
+			"no_service_albums", @params.NoServiceAlbums
+		},
+		{
+			"need_hidden", @params.NeedHidden
+		},
+		{
+			"skip_hidden", @params.SkipHidden
+		}
+	});
 
 	/// <inheritdoc />
-	public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params) => _vk.Call<VkCollection<Photo>>("photos.getUserPhotos", new()
+	public VkCollection<Photo> GetUserPhotos(PhotoGetUserPhotosParams @params) => _vk.Call<VkCollection<Photo>>("photos.getUserPhotos",
+		new()
 		{
 			{
 				"user_id", @params.UserId
@@ -806,41 +795,42 @@ public partial class PhotoCategory : IPhotoCategory
 
 	/// <inheritdoc />
 	public VkCollection<Comment> GetComments(PhotoGetCommentsParams @params) => _vk.Call<VkCollection<Comment>>("photos.getComments", new()
+	{
 		{
-			{
-				"owner_id", @params.OwnerId
-			},
-			{
-				"photo_id", @params.PhotoId
-			},
-			{
-				"need_likes", @params.NeedLikes
-			},
-			{
-				"start_comment_id", @params.StartCommentId
-			},
-			{
-				"offset", @params.Offset
-			},
-			{
-				"count", @params.Count
-			},
-			{
-				"sort", @params.Sort
-			},
-			{
-				"access_key", @params.AccessKey
-			},
-			{
-				"extended", @params.Extended
-			},
-			{
-				"fields", @params.Fields
-			}
-		});
+			"owner_id", @params.OwnerId
+		},
+		{
+			"photo_id", @params.PhotoId
+		},
+		{
+			"need_likes", @params.NeedLikes
+		},
+		{
+			"start_comment_id", @params.StartCommentId
+		},
+		{
+			"offset", @params.Offset
+		},
+		{
+			"count", @params.Count
+		},
+		{
+			"sort", @params.Sort
+		},
+		{
+			"access_key", @params.AccessKey
+		},
+		{
+			"extended", @params.Extended
+		},
+		{
+			"fields", @params.Fields
+		}
+	});
 
 	/// <inheritdoc />
-	public VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params) => _vk.Call<VkCollection<Comment>>("photos.getAllComments", new()
+	public VkCollection<Comment> GetAllComments(PhotoGetAllCommentsParams @params) => _vk.Call<VkCollection<Comment>>(
+		"photos.getAllComments", new()
 		{
 			{
 				"owner_id", @params.OwnerId

@@ -12,15 +12,14 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IGroupsCategory" />
 public partial class GroupsCategory : IGroupsCategory
 {
 	private readonly IVkInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// Инициализирует новый экземпляр класса <see cref="GroupsCategory" />
 	/// </summary>
-	/// <param name="vk"> </param>
 	public GroupsCategory(IVkInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
@@ -214,17 +213,19 @@ public partial class GroupsCategory : IGroupsCategory
 			};
 
 		// в первой записи количество членов группы для (response["items"])
-		if (@params.Extended == null || !@params.Extended.Value)
+		if (@params.Extended is not null && @params.Extended.Value)
 		{
-			var response = _vk.Call("groups.get", parameters,
+			return _vk.Call<VkCollection<Group>>("groups.get", parameters,
 				skipAuthorization);
-			return response.ToVkCollectionOf<Group>(id => new()
-			{
-				Id = id
-			});
 		}
-		return _vk.Call<VkCollection<Group>>("groups.get", parameters,
+
+		var response = _vk.Call("groups.get", parameters,
 			skipAuthorization);
+
+		return response.ToVkCollectionOf<Group>(id => new()
+		{
+			Id = id
+		});
 	}
 
 	/// <inheritdoc />
@@ -250,31 +251,31 @@ public partial class GroupsCategory : IGroupsCategory
 	/// <inheritdoc />
 	public VkCollection<User> GetMembers(GroupsGetMembersParams @params, bool skipAuthorization = false)
 	{
-		if (@params.Fields != null || @params.Filter != null)
+		if (@params.Fields is not null || @params.Filter is not null)
 		{
 			return _vk.Call<VkCollection<User>>("groups.getMembers",
-					new()
+				new()
+				{
 					{
-						{
-							"group_id", @params.GroupId
-						},
-						{
-							"sort", @params.Sort
-						},
-						{
-							"offset", @params.Offset
-						},
-						{
-							"count", @params.Count
-						},
-						{
-							"fields", @params.Fields
-						},
-						{
-							"filter", @params.Filter
-						}
+						"group_id", @params.GroupId
 					},
-					skipAuthorization);
+					{
+						"sort", @params.Sort
+					},
+					{
+						"offset", @params.Offset
+					},
+					{
+						"count", @params.Count
+					},
+					{
+						"fields", @params.Fields
+					},
+					{
+						"filter", @params.Filter
+					}
+				},
+				skipAuthorization);
 		}
 
 		return _vk.Call("groups.getMembers",
@@ -328,7 +329,7 @@ public partial class GroupsCategory : IGroupsCategory
 
 	/// <inheritdoc />
 	public GroupMember IsMember(string groupId, long userId, bool? extended = true,
-													bool skipAuthorization = false)
+								bool skipAuthorization = false)
 	{
 		if (extended is false or null)
 		{
@@ -368,38 +369,39 @@ public partial class GroupsCategory : IGroupsCategory
 	}
 
 	/// <inheritdoc />
-	public VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<Group>>("groups.search",
-			new()
+	public VkCollection<Group> Search(GroupsSearchParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<Group>>(
+		"groups.search",
+		new()
+		{
 			{
-				{
-					"q", @params.Query
-				},
-				{
-					"type", @params.Type
-				},
-				{
-					"country_id", @params.CountryId
-				},
-				{
-					"city_id", @params.CityId
-				},
-				{
-					"future", @params.Future
-				},
-				{
-					"market", @params.Market
-				},
-				{
-					"sort", @params.Sort
-				},
-				{
-					"offset", @params.Offset
-				},
-				{
-					"count", @params.Count
-				}
+				"q", @params.Query
 			},
-			skipAuthorization);
+			{
+				"type", @params.Type
+			},
+			{
+				"country_id", @params.CountryId
+			},
+			{
+				"city_id", @params.CityId
+			},
+			{
+				"future", @params.Future
+			},
+			{
+				"market", @params.Market
+			},
+			{
+				"sort", @params.Sort
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"count", @params.Count
+			}
+		},
+		skipAuthorization);
 
 	/// <inheritdoc />
 	public VkCollection<Group> GetInvites(long? count, long? offset, bool? extended = null)
@@ -547,12 +549,12 @@ public partial class GroupsCategory : IGroupsCategory
 			market.Add("comments_enabled", @params.MarketCommentsEnabled);
 		}
 
-		if (@params.MarketCountry != null)
+		if (@params.MarketCountry is not null)
 		{
 			market.Add("country_ids", @params.MarketCountry);
 		}
 
-		if (@params.MarketCity != null)
+		if (@params.MarketCity is not null)
 		{
 			market.Add("city_ids", @params.MarketCity);
 		}
@@ -943,7 +945,7 @@ public partial class GroupsCategory : IGroupsCategory
 
 		var response = _vk.Call("groups.getRequests", parameters);
 
-		if (fields != null)
+		if (fields is not null)
 		{
 			return _vk.Call<VkCollection<User>>("groups.getRequests", parameters);
 		}
@@ -1108,7 +1110,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		};
 
-		if (@params.CallbackSettings != null)
+		if (@params.CallbackSettings is not null)
 		{
 			var props = @params.CallbackSettings.GetType()
 				.GetProperties();
@@ -1128,7 +1130,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		}
 
-		if (@params.ApiVersion != null)
+		if (@params.ApiVersion is not null)
 		{
 			res["api_version"] = @params.ApiVersion.Version;
 		}
@@ -1164,10 +1166,8 @@ public partial class GroupsCategory : IGroupsCategory
 		});
 
 	/// <inheritdoc />
-	public BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params)
-	{
-		return GetBotsLongPollHistory<BotsLongPollHistoryResponse>(@params);
-	}
+	public BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params) =>
+		GetBotsLongPollHistory<BotsLongPollHistoryResponse>(@params);
 
 	/// <inheritdoc />
 	public T GetBotsLongPollHistory<T>(BotsLongPollHistoryParams @params)
@@ -1187,6 +1187,7 @@ public partial class GroupsCategory : IGroupsCategory
 				"act", "a_check"
 			}
 		};
+
 		var response = _vk.CallLongPoll(@params.Server, parameters);
 
 		if (response.ContainsKey("failed"))
@@ -1367,49 +1368,60 @@ public partial class GroupsCategory : IGroupsCategory
 		});
 
 	/// <inheritdoc />
-	public VkCollection<GroupTag> GetTagList(ulong groupId)
-	{
-		return _vk.Call<VkCollection<GroupTag>>("groups.getTagList",
-				new()
-				{
-					{ "group_id", groupId }
-				});
-	}
+	public VkCollection<GroupTag> GetTagList(ulong groupId) => _vk.Call<VkCollection<GroupTag>>("groups.getTagList",
+		new()
+		{
+			{
+				"group_id", groupId
+			}
+		});
 
 	/// <inheritdoc />
-	public bool SetSettings(GroupsSetSettingsParams @params)
-	{
-		return _vk.Call<bool>("groups.setSettings",
-			new()
+	public bool SetSettings(GroupsSetSettingsParams @params) => _vk.Call<bool>("groups.setSettings",
+		new()
+		{
 			{
-				{ "group_id", @params.GroupId },
-				{ "messages", @params.Messages },
-				{ "bots_capabilities", @params.BotsCapabilities },
-				{ "bots_start_button", @params.BotsStartButton },
-				{ "bots_add_to_chat", @params.BotsAddToChats }
-			});
-	}
+				"group_id", @params.GroupId
+			},
+			{
+				"messages", @params.Messages
+			},
+			{
+				"bots_capabilities", @params.BotsCapabilities
+			},
+			{
+				"bots_start_button", @params.BotsStartButton
+			},
+			{
+				"bots_add_to_chat", @params.BotsAddToChats
+			}
+		});
 
 	/// <inheritdoc />
 	public bool SetUserNote(GroupsSetUserNoteParams @params)
 	{
 		if (@params.Note is
-		{
-			Length: > 96
-		})
+			{
+				Length: > 96
+			})
 		{
 			throw new VkApiException("Поле Note не может быть длиннее 96 символов");
-
 		}
 
 		return _vk.Call<bool>("groups.setUserNote",
 			new()
 			{
-				{ "group_id", @params.GroupId },
-				{ "user_id", @params.UserId },
-				{ "note", @params.Note }
+				{
+					"group_id", @params.GroupId
+				},
+				{
+					"user_id", @params.UserId
+				},
+				{
+					"note", @params.Note
+				}
 			});
-		}
+	}
 
 	private static readonly string[] ValidTagColors =
 	{
@@ -1438,7 +1450,10 @@ public partial class GroupsCategory : IGroupsCategory
 	/// <inheritdoc />
 	public bool TagAdd(GroupsTagAddParams @params)
 	{
-		if (@params.TagName is { Length: > 20 })
+		if (@params.TagName is
+			{
+				Length: > 20
+			})
 		{
 			throw new VkApiException("Поле TagName не может быть длиннее 20 символов");
 		}
@@ -1447,69 +1462,100 @@ public partial class GroupsCategory : IGroupsCategory
 
 		if (!ValidTagColors.Contains(lowerTagColor))
 		{
-			throw new VkApiException($"Параметр TagColor должен быть одним из следующих: {string.Join(",", ValidTagColors)}. Передан: {lowerTagColor}");
+			throw new VkApiException(
+				$"Параметр TagColor должен быть одним из следующих: {string.Join(",", ValidTagColors)}. Передан: {lowerTagColor}");
 		}
 
 		return _vk.Call<bool>("groups.tagAdd",
 			new()
 			{
-				{ "group_id", @params.GroupId },
-				{ "tag_name", @params.TagName },
-				{ "tag_color", lowerTagColor }
+				{
+					"group_id", @params.GroupId
+				},
+				{
+					"tag_name", @params.TagName
+				},
+				{
+					"tag_color", lowerTagColor
+				}
 			});
 	}
 
 	/// <inheritdoc />
-	public bool TagBind(ulong groupId, ulong tagId, ulong userId, GroupTagAct act)
-	{
-		return _vk.Call<bool>("groups.tagBind",
-			new()
+	public bool TagBind(ulong groupId, ulong tagId, ulong userId, GroupTagAct act) => _vk.Call<bool>("groups.tagBind",
+		new()
+		{
 			{
-				{ "group_id", groupId },
-				{ "tag_id", tagId },
-				{ "user_id", userId },
-				{ "act", act }
-			});
-	}
+				"group_id", groupId
+			},
+			{
+				"tag_id", tagId
+			},
+			{
+				"user_id", userId
+			},
+			{
+				"act", act
+			}
+		});
 
 	/// <inheritdoc />
-	public bool TagDelete(ulong groupId, ulong tagId)
-	{
-		return _vk.Call<bool>("groups.tagDelete",
-			new()
+	public bool TagDelete(ulong groupId, ulong tagId) => _vk.Call<bool>("groups.tagDelete",
+		new()
+		{
 			{
-				{ "group_id", groupId },
-				{ "tag_id", tagId }
-			});
-	}
+				"group_id", groupId
+			},
+			{
+				"tag_id", tagId
+			}
+		});
 
 	/// <inheritdoc />
-	public bool TagUpdate(ulong groupId, ulong tagId, string tagName)
-	{
-		return _vk.Call<bool>("groups.tagUpdate",
-			new()
+	public bool TagUpdate(ulong groupId, ulong tagId, string tagName) => _vk.Call<bool>("groups.tagUpdate",
+		new()
+		{
 			{
-				{ "group_id", groupId },
-				{ "tag_id", tagId },
-				{ "tag_name", tagName }
-			});
-	}
+				"group_id", groupId
+			},
+			{
+				"tag_id", tagId
+			},
+			{
+				"tag_name", tagName
+			}
+		});
 
 	/// <inheritdoc />
-	public bool ToggleMarket(GroupToggleMarketParams @params)
-	{
-		return _vk.Call<bool>("groups.toggleMarket",
-			new()
+	public bool ToggleMarket(GroupToggleMarketParams @params) => _vk.Call<bool>("groups.toggleMarket",
+		new()
+		{
 			{
-				{ "group_id", @params.GroupId },
-				{ "state", @params.State },
-				{ "ref", @params.Ref },
-				{ "utm_source", @params.UtmSource },
-				{ "utm_medium", @params.UtmMedium },
-				{ "utm_campaign", @params.UtmCampaign },
-				{ "utm_content", @params.UtmContent },
-				{ "utm_term", @params.UtmTerm },
-				{ "promocode", @params.Promocode }
-			});
-	}
+				"group_id", @params.GroupId
+			},
+			{
+				"state", @params.State
+			},
+			{
+				"ref", @params.Ref
+			},
+			{
+				"utm_source", @params.UtmSource
+			},
+			{
+				"utm_medium", @params.UtmMedium
+			},
+			{
+				"utm_campaign", @params.UtmCampaign
+			},
+			{
+				"utm_content", @params.UtmContent
+			},
+			{
+				"utm_term", @params.UtmTerm
+			},
+			{
+				"promocode", @params.Promocode
+			}
+		});
 }

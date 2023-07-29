@@ -8,7 +8,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IPhotoCategory" />
 public partial class PhotoCategory
 {
 	/// <inheritdoc />

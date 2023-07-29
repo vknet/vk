@@ -5,7 +5,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IWidgetsCategory" />
 public partial class WidgetsCategory
 {
 	/// <inheritdoc />

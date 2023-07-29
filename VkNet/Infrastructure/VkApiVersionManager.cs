@@ -4,7 +4,7 @@ using VkNet.Exception;
 
 namespace VkNet.Infrastructure;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IVkApiVersionManager" />
 [UsedImplicitly]
 public class VkApiVersionManager : IVkApiVersionManager
 {

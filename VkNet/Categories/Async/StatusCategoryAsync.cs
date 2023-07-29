@@ -5,7 +5,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IStatusCategory" />
 public partial class StatusCategory
 {
 	/// <inheritdoc />

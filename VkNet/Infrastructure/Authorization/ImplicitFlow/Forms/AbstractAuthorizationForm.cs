@@ -8,7 +8,7 @@ using VkNet.Model;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IAuthorizationForm" />
 public abstract class AbstractAuthorizationForm : IAuthorizationForm
 {
 	private readonly IRestClient _restClient;
@@ -52,6 +52,6 @@ public abstract class AbstractAuthorizationForm : IAuthorizationForm
 	/// </summary>
 	/// <param name="form"> Форма </param>
 	/// <param name="authParams">Параметры авторизации.</param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	protected abstract Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token = default);
 }

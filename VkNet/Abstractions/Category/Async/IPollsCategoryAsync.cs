@@ -15,8 +15,10 @@ public interface IPollsCategoryAsync
 	/// Возвращает детальную информацию об опросе по его идентификатору.
 	/// </summary>
 	/// <param name="params"> Параметры </param>
-	/// <param name="token">Токен отмены</param>
-	/// <returns> </returns>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Опрос
+	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/polls.GetById
 	/// </remarks>
@@ -27,8 +29,10 @@ public interface IPollsCategoryAsync
 	/// Позволяет редактировать созданные опросы.
 	/// </summary>
 	/// <param name="params"> Параметры </param>
-	/// <param name="token">Токен отмены</param>
-	/// <returns> </returns>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Признак успешного редактирования
+	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/polls.Edit
 	/// </remarks>
@@ -40,7 +44,7 @@ public interface IPollsCategoryAsync
 	/// опросе.
 	/// </summary>
 	/// <param name="params"> Параметры </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// 1 — если голос текущего пользователя был отдан за выбранный вариант ответа;
 	/// 0 — если текущий пользователь уже голосовал в указанном опросе
@@ -56,7 +60,7 @@ public interface IPollsCategoryAsync
 	/// опросе.
 	/// </summary>
 	/// <param name="params"> Параметры </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// 1 — если голос текущего пользователя был снят с выбранного варианта ответа
 	/// 0 — если текущий пользователь еще не голосовал в указанном опросе или указан не
@@ -73,8 +77,10 @@ public interface IPollsCategoryAsync
 	/// варианты ответа в опросе.
 	/// </summary>
 	/// <param name="params"> Параметры </param>
-	/// <param name="token">Токен отмены</param>
-	/// <returns> </returns>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Список ответов
+	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/polls.GetVoters
 	/// </remarks>
@@ -87,7 +93,7 @@ public interface IPollsCategoryAsync
 	/// сообщества.
 	/// </summary>
 	/// <param name="params"> Параметры </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного создания опроса в качестве результата возвращается объект
 	/// опроса.
@@ -101,7 +107,7 @@ public interface IPollsCategoryAsync
 	/// <summary>
 	/// Получает варианты фонового изображения для опросов.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов, описывающих фоновое изображение опроса.
 	/// </returns>
@@ -113,8 +119,8 @@ public interface IPollsCategoryAsync
 	/// <summary>
 	/// Получает адрес сервера для загрузки фоновой фотографии в опрос.
 	/// </summary>
-	/// <param name="ownerId"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="ownerId">Идеентификатор пользователя или сообщества</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект с полем содержащим URL для загрузки фотографии
 	/// </returns>
@@ -127,8 +133,8 @@ public interface IPollsCategoryAsync
 	/// <summary>
 	/// Сохраняет фотографию, загруженную в опрос.
 	/// </summary>
-	/// <param name="params"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="params">Параметры</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	///	В случае успешного сохранения возвращает объект описывающий фотографию
 	/// </returns>

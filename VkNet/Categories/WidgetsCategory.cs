@@ -5,7 +5,7 @@ using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IWidgetsCategory" />
 public partial class WidgetsCategory : IWidgetsCategory
 {
 	/// <summary>

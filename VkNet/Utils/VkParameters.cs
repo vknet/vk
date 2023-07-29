@@ -21,9 +21,8 @@ public class VkParameters : Dictionary<string, string>
 	}
 
 	/// <summary>
+	/// Инициализирует новый экземпляр класса <see cref="VkParameters" />
 	/// </summary>
-	/// <param name="serializationInfo"></param>
-	/// <param name="streamingContext"></param>
 	protected VkParameters(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
 
@@ -56,7 +55,7 @@ public class VkParameters : Dictionary<string, string>
 		Remove(key: name);
 
 		// TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'value' for null will always return false when generic type is instantiated with a value type.
-		if (value == null)
+		if (value is null)
 		{
 			return;
 		}
@@ -98,7 +97,7 @@ public class VkParameters : Dictionary<string, string>
 	{
 		Remove(key: name);
 
-		if (collection == null)
+		if (collection is null)
 		{
 			return;
 		}
@@ -131,7 +130,7 @@ public class VkParameters : Dictionary<string, string>
 	{
 		Remove(key: name);
 
-		if (nullableValue == null)
+		if (nullableValue is null)
 		{
 			return;
 		}
@@ -156,7 +155,7 @@ public class VkParameters : Dictionary<string, string>
 	{
 		Remove(key: name);
 
-		if (nullableDateTime == null)
+		if (nullableDateTime is null)
 		{
 			return;
 		}
@@ -234,7 +233,7 @@ public class VkParameters : Dictionary<string, string>
 	{
 		Remove(key: name);
 
-		if (value == null)
+		if (value is null)
 		{
 			return;
 		}
@@ -265,7 +264,7 @@ public class VkParameters : Dictionary<string, string>
 	{
 		Remove(key: name);
 
-		if (value == null)
+		if (value is null)
 		{
 			return;
 		}
@@ -296,7 +295,7 @@ public class VkParameters : Dictionary<string, string>
 	{
 		Remove(key: name);
 
-		if (value == null)
+		if (value is null)
 		{
 			return;
 		}

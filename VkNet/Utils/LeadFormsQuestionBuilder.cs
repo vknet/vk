@@ -7,7 +7,7 @@ using VkNet.Model;
 
 namespace VkNet.Utils;
 
-/// <inheritdoc />
+/// <inheritdoc cref="ILeadFormsQuestionBuilder" />
 [UsedImplicitly]
 public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 {

@@ -24,7 +24,7 @@ public interface IAppWidgetsCategoryAsync
 	/// 510x128.
 	/// обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект с единственным полем upload_url, содержащим URL для загрузки изображения.
 	/// Для загрузки изображения сгенерируйте POST-запрос с файлом в поле image на полученный адрес, а затем вызовите метод appWidgets.saveAppImage.
@@ -41,7 +41,7 @@ public interface IAppWidgetsCategoryAsync
 	/// <param name="offset">Смещение для получения определённого подмножества результатов.</param>
 	/// <param name="count">Максимальное число результатов для получения.</param>
 	/// <param name="imageType">Тип изображения.</param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает общее число результатов в поле count (integer) и массив объектов, описывающих изображения, в поле items (array).
 	/// Каждый объект массива  items содержит следующие поля:
@@ -69,7 +69,7 @@ public interface IAppWidgetsCategoryAsync
 	/// Позволяет получить адрес для загрузки фотографии в коллекцию сообщества для виджетов приложений сообществ.
 	/// </summary>
 	/// <param name="imageType">Тип изображения.</param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект с единственным полем upload_url, содержащим URL для загрузки изображения.
 	/// Для загрузки изображения сгенерируйте POST-запрос с файлом в поле image на полученный адрес, а затем вызовите метод appWidgets.saveGroupImage.
@@ -86,7 +86,7 @@ public interface IAppWidgetsCategoryAsync
 	/// <param name="offset">Смещение для получения определённого подмножества результатов.</param>
 	/// <param name="count">Максимальное число результатов для получения.</param>
 	/// <param name="imageType">Тип изображения.</param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает общее число результатов в поле count (integer) и массив объектов, описывающих изображения, в поле items (array).
 	/// Каждый объект массива  items содержит следующие поля:
@@ -114,7 +114,7 @@ public interface IAppWidgetsCategoryAsync
 	/// Позволяет получить изображение для виджетов приложений сообществ по его идентификатору.
 	/// </summary>
 	/// <param name="images">список идентификаторов изображений для получения.</param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// id (string) — идентификатор изображения. Обратите внимание, идентификаторы изображений для виджетов отличаются от обычных фотографий, и НЕ представляют собой сочетание owner_id+"_"+photo_id. Полученный идентификатор нужно использовать в коде виджета «как есть».
@@ -144,7 +144,7 @@ public interface IAppWidgetsCategoryAsync
 	/// <param name = "image">
 	/// Параметр image, полученный после загрузки на сервер. строка, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// id (string) — идентификатор изображения.
@@ -171,7 +171,7 @@ public interface IAppWidgetsCategoryAsync
 	/// </summary>
 	/// <param name="image"> параметр image, полученный после загрузки на сервер.</param>
 	/// <param name="hash"> параметр hash, полученный после загрузки на сервер.</param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// id (string) — идентификатор изображения.
@@ -202,7 +202,7 @@ public interface IAppWidgetsCategoryAsync
 	/// <param name = "type">
 	/// Тип виджета. Список всех доступных типов см. на https://vk.com/dev/objects/appWidget.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>

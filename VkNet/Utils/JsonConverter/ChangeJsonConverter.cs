@@ -19,7 +19,7 @@ public class ChangeJsonConverter : Newtonsoft.Json.JsonConverter
 			throw new TypeAccessException();
 		}
 
-		if (reader.TokenType == JsonToken.Null)
+		if (reader.TokenType is JsonToken.Null)
 		{
 			return null;
 		}
@@ -30,43 +30,43 @@ public class ChangeJsonConverter : Newtonsoft.Json.JsonConverter
 
 		var field = "";
 
-		if (response["title"] != null)
+		if (response["title"] is not null)
 		{
 			field = "title";
-		} else if (response["description"] != null)
+		} else if (response["description"] is not null)
 		{
 			field = "description";
-		} else if (response["access"] != null)
+		} else if (response["access"] is not null)
 		{
 			field = "access";
-		} else if (response["screen_name"] != null)
+		} else if (response["screen_name"] is not null)
 		{
 			field = "screen_name";
-		} else if (response["public_category"] != null)
+		} else if (response["public_category"] is not null)
 		{
 			field = "public_category";
-		} else if (response["age_limits"] != null)
+		} else if (response["age_limits"] is not null)
 		{
 			field = "age_limits";
-		} else if (response["website"] != null)
+		} else if (response["website"] is not null)
 		{
 			field = "website";
-		} else if (response["public_subcategory"] != null)
+		} else if (response["public_subcategory"] is not null)
 		{
 			field = "public_subcategory";
-		} else if (response["enable_status_default"] != null)
+		} else if (response["enable_status_default"] is not null)
 		{
 			field = "enable_status_default";
-		} else if (response["enable_audio"] != null)
+		} else if (response["enable_audio"] is not null)
 		{
 			field = "enable_audio";
-		} else if (response["enable_photo"] != null)
+		} else if (response["enable_photo"] is not null)
 		{
 			field = "enable_photo";
-		} else if (response["enable_video"] != null)
+		} else if (response["enable_video"] is not null)
 		{
 			field = "enable_video";
-		} else if (response["enable_market"] != null)
+		} else if (response["enable_market"] is not null)
 		{
 			field = "enable_market";
 		}

@@ -22,7 +22,7 @@ public class EducationJsonConverter : Newtonsoft.Json.JsonConverter
 		var responseJToken = obj["response"] ?? obj;
 		var response = new VkResponse(responseJToken);
 
-		if (response[key: "university"] == null
+		if (response[key: "university"] is null
 			|| response[key: "university"]
 				.ToString()
 			== "0")

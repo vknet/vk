@@ -99,6 +99,7 @@ public class NewsSearchItem
 	public int? PostId { get; set; } //Будет иметь значение null, кроме случаев при "post_type": "reply"
 
 	/// <summary>
+	/// Идентификатор на следующую пачку записей
 	/// </summary>
 	[JsonProperty("next_from")]
 	public string NextFrom { get; set; }

@@ -5,7 +5,7 @@ using VkNet.Enums;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Слой
 /// </summary>
 [Serializable]
 public class Layout

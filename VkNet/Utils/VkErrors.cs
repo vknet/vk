@@ -105,7 +105,7 @@ public static class VkErrors
 	/// </exception>
 	private static Tuple<string, T> ThrowIfNumberIsNegative<T>(Expression<T> expr)
 	{
-		if (expr == null)
+		if (expr is null)
 		{
 			throw new ArgumentNullException(nameof(expr), "Выражение не может быть равно null");
 		}
@@ -135,13 +135,16 @@ public static class VkErrors
 	/// <exception cref="VkApiException">
 	/// Неправильные данные JSON.
 	/// </exception>
+	/// <returns>
+	/// Возвращаемый результат.
+	/// </returns>
 	public static JObject IfErrorThrowException(string json)
 	{
 		var obj = json.ToJObject();
 
 		var exceptions = ExecuteErrorsHandler.GetExecuteExceptions(json);
 
-		if (exceptions != null)
+		if (exceptions is not null)
 		{
 			throw exceptions;
 		}
@@ -153,7 +156,7 @@ public static class VkErrors
 
 		var vkError = JsonConvert.DeserializeObject<VkError>(error.ToString(), JsonConfigure.JsonSerializerSettings);
 
-		if (vkError == null || vkError.ErrorCode == 0)
+		if (vkError is null || vkError.ErrorCode == 0)
 		{
 			return obj;
 		}

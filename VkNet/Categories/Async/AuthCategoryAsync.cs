@@ -5,7 +5,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IAuthCategory" />
 public partial class AuthCategory
 {
 	/// <inheritdoc />

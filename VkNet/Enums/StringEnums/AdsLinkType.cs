@@ -6,7 +6,7 @@ namespace VkNet.Enums.StringEnums;
 
 
 /// <summary>
-///
+/// Тип ссылки рекламы
 /// </summary>
 [StringEnum]
 [JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]

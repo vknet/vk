@@ -5,6 +5,6 @@ namespace VkNet.Model;
 /// <summary>
 /// ID группы
 /// </summary>
-/// <param name="Value"></param>
+/// <param name="Value">Значение</param>
 [Serializable]
 public record GroupId(ulong? Value) : IGroupUpdate;

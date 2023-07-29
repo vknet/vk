@@ -22,8 +22,9 @@ public interface IPrettyCardsCategoryAsync
 	/// Метод создаёт карточку карусели.
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Красивые карты создание
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.create
@@ -35,8 +36,9 @@ public interface IPrettyCardsCategoryAsync
 	/// Метод удаляет карточку карусели.
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Красивые карты удаление
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.delete
@@ -48,8 +50,9 @@ public interface IPrettyCardsCategoryAsync
 	/// Метод редактирует карточку карусели.
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	///  Красивые карты редактирование
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.edit
@@ -61,21 +64,22 @@ public interface IPrettyCardsCategoryAsync
 	/// Метод возвращает неиспользованные карточки владельца.
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Список красивых карт
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.get
 	/// </remarks>
 	Task<VkCollection<PrettyCardsGetByIdResult>> GetAsync(PrettyCardsGetParams @params,
 														CancellationToken token = default);
-
 	/// <summary>
 	/// Метод возвращает информацию о карточке.
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Список красивых карт
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getById
@@ -95,9 +99,12 @@ public interface IPrettyCardsCategoryAsync
 	/// Максимальный объем файла: 5 Мб.
 	/// Результат загрузки изображения возвращается приложению в формате JSON.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getUploadURL
 	/// </remarks>
+	/// <returns>
+	/// URL для загрузки
+	/// </returns>
 	Task<Uri> GetUploadUrlAsync(CancellationToken token = default);
 }

@@ -12,6 +12,10 @@ public interface IAwaitableConstraint
 	/// <summary>
 	/// Starts a <see cref="Task"/> that will complete after readiness.
 	/// </summary>
+	/// <param name="cancellationToken">Токен отмены операции</param>
+	/// <returns>
+	/// Сервис очистки ресурсов
+	/// </returns>
 	Task<IDisposable> WaitForReadinessAsync(CancellationToken cancellationToken);
 
 	/// <summary>

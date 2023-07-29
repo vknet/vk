@@ -16,7 +16,7 @@ public interface IStatsCategoryAsync
 	/// <param name = "getParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект с данными статистики.
 	/// </returns>
@@ -29,7 +29,7 @@ public interface IStatsCategoryAsync
 	/// <summary>
 	/// Добавляет данные о текущем сеансе в статистику посещаемости приложения..
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешной обработки данных метод вернет <c> true </c>.
 	/// </returns>
@@ -50,7 +50,7 @@ public interface IStatsCategoryAsync
 	/// для 300
 	/// последних(самых свежих) записей на стене сообщества.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>

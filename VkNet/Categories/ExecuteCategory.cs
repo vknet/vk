@@ -3,7 +3,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IExecuteCategory" />
 public partial class ExecuteCategory : IExecuteCategory
 {
 	/// <inheritdoc />

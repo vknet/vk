@@ -30,7 +30,7 @@ public interface IMessagesCategoryAsync
 	/// положительное число,
 	/// обязательный параметр (Положительное число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -50,7 +50,7 @@ public interface IMessagesCategoryAsync
 	/// Этот параметр можно использовать для идентификации пользователя.
 	/// Его значение будет возвращено в событии message_allow Callback API.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -73,7 +73,7 @@ public interface IMessagesCategoryAsync
 	/// параметр).
 	/// </param>
 	/// <param name="title"> Название беседы. строка (Строка). </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает  идентификатор созданного чата (chat_id).
 	/// </returns>
@@ -102,7 +102,7 @@ public interface IMessagesCategoryAsync
 	/// сообщения прошло не более 24 часов ). флаг, может принимать значения 1 или 0,
 	/// по умолчанию
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1 для каждого удаленного сообщения.
 	/// </returns>
@@ -136,7 +136,7 @@ public interface IMessagesCategoryAsync
 	/// сообщения прошло не более 24 часов ). флаг, может принимать значения 1 или 0,
 	/// по умолчанию
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1 для каждого удаленного сообщения.
 	/// </returns>
@@ -160,7 +160,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий следующие поля:
 	/// message_id — идентификатор отправленного системного сообщения;
@@ -177,7 +177,7 @@ public interface IMessagesCategoryAsync
 	/// Позволяет запретить отправку сообщений от сообщества текущему пользователю.
 	/// </summary>
 	/// <param name="groupId"> Идентификатор сообщества. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -199,7 +199,7 @@ public interface IMessagesCategoryAsync
 	/// Новое название для беседы. строка, обязательный параметр (Строка, обязательный
 	/// параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -233,7 +233,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в
 	/// поле count и массив объектов, описывающих  сообщения, в поле items.
@@ -253,7 +253,7 @@ public interface IMessagesCategoryAsync
 	/// строке поиска.
 	/// </summary>
 	/// <param name="params"> Параметры запроса messages.search </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает  объектов , найденных в соответствии с
 	/// поисковым запросом '''q'''.
@@ -272,7 +272,7 @@ public interface IMessagesCategoryAsync
 	/// Посылает личное сообщение.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращается идентификатор отправленного сообщения.
 	/// </returns>
@@ -289,7 +289,7 @@ public interface IMessagesCategoryAsync
 	/// Посылает личное сообщение.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращается идентификатор отправленного сообщения.
 	/// </returns>
@@ -306,7 +306,7 @@ public interface IMessagesCategoryAsync
 	/// Посылает личное сообщение сразу нескольким адресатам (до 100 за 1 запрос).
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращается идентификатор отправленного сообщения.
 	/// </returns>
@@ -329,12 +329,15 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <remarks>
 	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
 	/// содержащей Settings.Messages
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.restore
 	/// </remarks>
+	/// <returns>
+	/// Признак восстановления сообщения.
+	/// </returns>
 	Task<bool> RestoreAsync(ulong messageId,
 							ulong? groupId = null,
 							CancellationToken token = default);
@@ -356,7 +359,7 @@ public interface IMessagesCategoryAsync
 	/// пользователя).
 	/// </param>
 	/// <param name="markConversationAsRead">Пометить обсуждение как прочитанное</param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -383,7 +386,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает true, false в противном случае.
 	/// Текст «N набирает сообщение...» отображается в течение 10 секунд после вызова
@@ -411,7 +414,7 @@ public interface IMessagesCategoryAsync
 	/// сообщества.
 	/// </param>
 	/// <param name="role"> На данный момент только одна: admin </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает true, false
 	/// </returns>
@@ -431,7 +434,7 @@ public interface IMessagesCategoryAsync
 	/// требуется получить. целое
 	/// число, обязательный параметр (Целое число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, содержащий следующие поля:
 	/// online — текущий статус пользователя (1 — в сети, 0 — не в сети);
@@ -449,7 +452,7 @@ public interface IMessagesCategoryAsync
 	/// <param name="chatId"> The chat identifier. </param>
 	/// <param name="fields"> The fields. </param>
 	/// <param name="nameCase"> The name case. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект (или список объектов)
 	/// мультидиалога.
@@ -487,7 +490,7 @@ public interface IMessagesCategoryAsync
 	/// предложный – abl. По умолчанию nom.
 	/// строка (Строка).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект (или список объектов)
 	/// мультидиалога.
@@ -512,7 +515,7 @@ public interface IMessagesCategoryAsync
 	/// </summary>
 	/// <param name="link"> Ссылка-приглашение. </param>
 	/// <param name="fields"> Список полей профилей, данные о которых нужно получить. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Возвращает объект представляющий описание чата </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/messages.getChatPreview
@@ -526,7 +529,7 @@ public interface IMessagesCategoryAsync
 	/// групповой беседы.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает историю сообщений с указанным пользователем или из
 	/// указанной беседы
@@ -556,7 +559,7 @@ public interface IMessagesCategoryAsync
 	/// — идентификатор сообщества со знаком «минус». целое число, доступен начиная с
 	/// версии 5.81
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -584,7 +587,7 @@ public interface IMessagesCategoryAsync
 	/// <param name="groupId">
 	/// Айди группы, от которой получать данные
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, с помощью которого можно подключиться к серверу быстрых
 	/// сообщений для мгновенного
@@ -613,12 +616,15 @@ public interface IMessagesCategoryAsync
 	/// Параметры запроса к LongPool серверу
 	/// MessagesGetLongPollHistoryParams
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <remarks>
 	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
 	/// содержащей Settings.Messages
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getLongPollHistory
 	/// </remarks>
+	/// <returns>
+	/// Ответ сервера
+	/// </returns>
 	Task<LongPollHistoryResponse> GetLongPollHistoryAsync(MessagesGetLongPollHistoryParams @params,
 														CancellationToken token = default);
 
@@ -637,7 +643,7 @@ public interface IMessagesCategoryAsync
 	/// обязательный параметр (Строка,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий следующие поля:
 	/// message_id — идентификатор отправленного системного сообщения;
@@ -662,7 +668,7 @@ public interface IMessagesCategoryAsync
 	/// &#39;0&#39;&#39;,
 	/// если необходимо снять пометку.положительное число (Положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает список идентификаторов успешно помеченных сообщений.
 	/// </returns>
@@ -677,7 +683,7 @@ public interface IMessagesCategoryAsync
 	/// Отправляет стикер.
 	/// </summary>
 	/// <param name="parameters"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор отправленного сообщения
 	/// (mid).
@@ -692,7 +698,7 @@ public interface IMessagesCategoryAsync
 	/// Возвращает материалы диалога или беседы..
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов photo, video, audio или
 	/// doc, в зависимости от значения
@@ -720,7 +726,7 @@ public interface IMessagesCategoryAsync
 	/// 1 — сгенерировать новую ссылку, сбросив предыдущую.
 	/// 0 — получить предыдущую ссылку.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект с единственным полем link (string), которое содержит ссылку
 	/// для приглашения в беседу.
@@ -738,7 +744,7 @@ public interface IMessagesCategoryAsync
 	/// </summary>
 	/// <param name="groupId"> Идентификатор сообщества. </param>
 	/// <param name="userId"> Идентификатор пользователя. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект с единственным полем is_allowed (integer, [0,1]). Если
 	/// отправка сообщений разрешена, поле
@@ -756,7 +762,7 @@ public interface IMessagesCategoryAsync
 	/// Позволяет присоединиться к чату по ссылке-приглашению.
 	/// </summary>
 	/// <param name="link"> Ссылка-приглашение. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает идентификатор чата в поле chat_id.
 	/// </returns>
@@ -781,7 +787,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -807,7 +813,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -826,7 +832,7 @@ public interface IMessagesCategoryAsync
 	/// <param name="params">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -853,7 +859,7 @@ public interface IMessagesCategoryAsync
 	/// <param name = "groupId">
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа пользователя). положительное число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает поле last_deleted_id, содержащее идентификатор последнего удалённого сообщения в переписке.
 	/// </returns>
@@ -889,7 +895,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает общее число результатов в поле count (integer) и массив объектов
 	/// бесед в поле items.
@@ -909,7 +915,7 @@ public interface IMessagesCategoryAsync
 	/// <param name="getConversationsParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// count
@@ -949,7 +955,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объет, который содержит следующие поля:
 	/// count
@@ -999,7 +1005,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в
 	/// поле count и массив объектов, описывающих  сообщения, в поле items.
@@ -1036,7 +1042,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает общее число результатов в поле count (integer) и массив объектов
 	/// диалогов в поле items.
@@ -1067,8 +1073,8 @@ public interface IMessagesCategoryAsync
 	/// <param name="messageId">
 	/// Идентификатор сообщения, которое нужно закрепить. положительное число
 	/// </param>
-	/// <param name="conversationMessageId"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="conversationMessageId">Идентификатор сообщения, которое нужно закрепить. положительное число</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект закрепленного сообщения.
 	/// </returns>
@@ -1097,7 +1103,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор сообщества (для сообщений сообщества с ключом доступа
 	/// пользователя). положительное число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -1114,8 +1120,9 @@ public interface IMessagesCategoryAsync
 	/// <param name="getImportantMessagesParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Результат запроса
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/messages.getImportantMessages
@@ -1142,7 +1149,7 @@ public interface IMessagesCategoryAsync
 	/// 1 — возвращать дополнительные поля для пользователей и сообществ. флаг, может
 	/// принимать значения 1 или 0
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// count
@@ -1176,8 +1183,10 @@ public interface IMessagesCategoryAsync
 	/// <param name="userId">идентификатор пользователя</param>
 	/// <param name="peerId">идентификатор диалога со стороны сообщества</param>
 	/// <param name="eventData">объект действия, которое должно произойти после нажатия на кнопку</param>
-	/// <param name="token">Токен отмены</param>
-	/// <returns></returns>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Признак успешного выполнения
+	/// </returns>
 	Task<bool> SendMessageEventAnswerAsync(string eventId,
 											long userId,
 											long peerId,
@@ -1215,7 +1224,7 @@ public interface IMessagesCategoryAsync
 	/// Идентификатор назначения. Для групповой беседы: 2000000000 + id беседы. Для
 	/// сообщества: -id сообщества.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает true.
 	/// </returns>
@@ -1231,7 +1240,7 @@ public interface IMessagesCategoryAsync
 	/// <param name="query"> Подстрока, по которой будет производиться поиск. </param>
 	/// <param name="limit"> Количество пользователей которое нужно вернуть. </param>
 	/// <param name="fields"> Поля профилей собеседников, которые необходимо вернуть. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В результате выполнения данного метода будет возвращён массив объектов
 	/// профилей, бесед и email.
@@ -1256,7 +1265,7 @@ public interface IMessagesCategoryAsync
 	/// пользователя.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Список сообщений, удовлетворяющий условиям фильтрации. </returns>
 	/// <remarks>
 	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
@@ -1292,7 +1301,7 @@ public interface IMessagesCategoryAsync
 	/// предложный – abl. По умолчанию nom.
 	/// строка (Строка).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список идентификаторов участников беседы.
 	/// Если был задан параметр fields, возвращает список объектов пользователей с
@@ -1316,7 +1325,7 @@ public interface IMessagesCategoryAsync
 	/// чисел, разделенных
 	/// запятыми).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список идентификаторов участников беседы.
 	/// </returns>
@@ -1331,7 +1340,7 @@ public interface IMessagesCategoryAsync
 	/// Возвращает список диалогов аккаунта
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> В случае успеха возвращает список диалогов пользователя </returns>
 	[Obsolete(ObsoleteText.MessageGet)]
 	Task<MessagesGetObject> GetDialogsAsync(MessagesDialogsGetParams @params,

@@ -10,6 +10,7 @@ public interface IKeyboardBuilder
 	/// <summary>
 	/// Добавить кнопку
 	/// </summary>
+	/// <param name="addButtonParams">Параметры кнопки</param>
 	/// <returns>Конструктор клавиатур</returns>
 	IKeyboardBuilder AddButton(AddButtonParams addButtonParams);
 
@@ -45,10 +46,10 @@ public interface IKeyboardBuilder
 	/// </summary>
 	/// <returns>Конструктор клавиатур</returns>
 	IKeyboardBuilder SetOneTime();
-
 	/// <summary>
 	/// Сделать отображение клавиатуры внутри сообщения
 	/// </summary>
+	/// <param name="inline">Признак отображения</param>
 	/// <returns>Конструктор клавиатур</returns>
 	IKeyboardBuilder SetInline(bool inline = true);
 

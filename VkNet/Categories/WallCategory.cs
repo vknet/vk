@@ -12,14 +12,14 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IWallCategory" />
 public partial class WallCategory : IWallCategory
 {
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
+	/// Инициализирует новый экземпляр класса <see cref="WallCategory" />
 	/// </summary>
-	/// <param name="vk"> </param>
 	public WallCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
@@ -108,7 +108,7 @@ public partial class WallCategory : IWallCategory
 								, ProfileFields fields = null
 								, bool skipAuthorization = false)
 	{
-		if (posts == null)
+		if (posts is null)
 		{
 			throw new ArgumentNullException(paramName: nameof(posts));
 		}
@@ -148,7 +148,7 @@ public partial class WallCategory : IWallCategory
 											, ProfileFields fields = null
 											, bool skipAuthorization = false)
 	{
-		if (posts == null)
+		if (posts is null)
 		{
 			throw new ArgumentNullException(paramName: nameof(posts));
 		}
@@ -231,6 +231,7 @@ public partial class WallCategory : IWallCategory
 	})[key: "post_id"];
 
 	/// <inheritdoc />
+	[Obsolete("Use ICaptchaSolver to handle captcha. This method is obsolete and will be removed in future.")]
 	public RepostResult Repost(string @object, string message, long? groupId, bool markAsAds)
 	{
 		VkErrors.ThrowIfNullOrEmpty(expr: () => @object);
@@ -256,6 +257,7 @@ public partial class WallCategory : IWallCategory
 	}
 
 	/// <inheritdoc />
+	[Obsolete("Use ICaptchaSolver to handle captcha. This method is obsolete and will be removed in future.")]
 	public RepostResult Repost(string @object, string message, long? groupId, bool markAsAds, long captchaSid,
 								string captchaKey)
 	{

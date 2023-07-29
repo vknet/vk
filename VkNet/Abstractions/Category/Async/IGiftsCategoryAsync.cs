@@ -22,7 +22,7 @@ public interface IGiftsCategoryAsync
 	/// Смещение, необходимое для выборки определенного
 	/// подмножества подарков.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного вступления в группу метод вернёт <c> true </c>, иначе
 	/// <c> false </c>.

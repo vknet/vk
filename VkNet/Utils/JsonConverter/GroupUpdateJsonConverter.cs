@@ -20,7 +20,7 @@ public class GroupUpdateJsonConverter : Newtonsoft.Json.JsonConverter
 	/// <exception cref="T:System.TypeAccessException"> </exception>
 	public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 	{
-		if (reader.TokenType == JsonToken.Null)
+		if (reader.TokenType is JsonToken.Null)
 		{
 			return null;
 		}
@@ -82,7 +82,7 @@ public class GroupUpdateJsonConverter : Newtonsoft.Json.JsonConverter
 				"market_order_new" => JsonConvert.DeserializeObject<MarketOrder>(resObj),
 				"market_order_edit" => JsonConvert.DeserializeObject<MarketOrder>(resObj),
 				"app_payload" => JsonConvert.DeserializeObject<AppPayload>(resObj),
-				_ => null
+				var _ => null
 			},
 			Raw = JsonConvert.DeserializeObject<VkResponse>(obj.ToString())
 		};

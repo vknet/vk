@@ -11,7 +11,7 @@ namespace VkNet.Model;
 public class CheckTokenResult
 {
 	/// <summary>
-	///
+	/// Признак успешности проверки
 	/// </summary>
 	[JsonProperty("success")]
 	public bool Success { get; set; }

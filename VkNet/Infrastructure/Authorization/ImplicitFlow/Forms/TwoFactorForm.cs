@@ -23,20 +23,19 @@ public sealed class TwoFactorForm : AbstractAuthorizationForm
 	/// <inheritdoc />
 	protected override async Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token = default)
 	{
-		if (authParams.TwoFactorAuthorization == null && authParams.TwoFactorAuthorizationAsync == null)
+		if (authParams.TwoFactorAuthorization is null && authParams.TwoFactorAuthorizationAsync is null)
 		{
 			throw new VkAuthorizationException("Двухфакторная авторизация должна быть установлена в " + nameof(IApiAuthParams));
 		}
 
-		if (authParams.TwoFactorAuthorization != null && form.Fields.ContainsKey(AuthorizationFormFields.Code))
+		if (authParams.TwoFactorAuthorization is not null && form.Fields.ContainsKey(AuthorizationFormFields.Code))
 		{
 			form.Fields[AuthorizationFormFields.Code] = authParams.TwoFactorAuthorization.Invoke();
 		}
 
-		if (authParams.TwoFactorAuthorizationAsync != null && form.Fields.ContainsKey(AuthorizationFormFields.Code))
+		if (authParams.TwoFactorAuthorizationAsync is not null && form.Fields.ContainsKey(AuthorizationFormFields.Code))
 		{
 			form.Fields[AuthorizationFormFields.Code] = await authParams.TwoFactorAuthorizationAsync;
 		}
 	}
-
 }

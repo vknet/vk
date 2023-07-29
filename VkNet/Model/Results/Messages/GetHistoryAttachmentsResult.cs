@@ -11,7 +11,7 @@ namespace VkNet.Model;
 public class GetHistoryAttachmentsResult
 {
 	/// <summary>
-	///
+	/// Идентификатор следующей пачки результатов
 	/// </summary>
 	[JsonProperty("next_from")]
 	public string NextFrom { get; set; }

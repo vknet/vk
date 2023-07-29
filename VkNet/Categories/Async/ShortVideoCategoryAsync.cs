@@ -1,11 +1,12 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IShortVideoCategory" />
 public partial class ShortVideoCategory
 {
 	/// <inheritdoc/>
@@ -13,7 +14,6 @@ public partial class ShortVideoCategory
 													ulong fileSize = 16384,
 													long? groupId = null,
 													bool? wallPost = null,
-													CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Create(description, fileSize, groupId, wallPost), token);
+													CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		Create(description, fileSize, groupId, wallPost), token);
 }

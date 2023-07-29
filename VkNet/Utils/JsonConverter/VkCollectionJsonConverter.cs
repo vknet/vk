@@ -49,7 +49,7 @@ public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
 		var vkCollectionGenericArgument = vkCollectionType.GetGenericArguments()[0];
 		var toListMethod = typeof(Enumerable).GetMethod("ToList");
 
-		if (toListMethod == null)
+		if (toListMethod is null)
 		{
 			return;
 		}
@@ -77,8 +77,10 @@ public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
 	/// <param name="reader"> Json reader </param>
 	/// <param name="objectType"> Тип объекта </param>
 	/// <param name="existingValue"> Существующее значение </param>
-	/// <param name="serializer"> Seerilizer </param>
-	/// <returns> </returns>
+	/// <param name="serializer"> Serializer </param>
+	/// <returns>
+	/// Объект
+	/// </returns>
 	/// <exception cref="TypeAccessException"> </exception>
 	public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 	{
@@ -87,7 +89,7 @@ public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
 			throw new TypeAccessException();
 		}
 
-		if (reader.TokenType == JsonToken.Null)
+		if (reader.TokenType is JsonToken.Null)
 		{
 			return null;
 		}
@@ -112,7 +114,7 @@ public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
 
 		var collectionField = CollectionField;
 
-		if (converter != null)
+		if (converter is not null)
 		{
 			collectionField = converter.CollectionField;
 		}

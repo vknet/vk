@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Результат обновления пользователей оффиса
 /// </summary>
 [Serializable]
 public class UpdateOfficeUsersResult

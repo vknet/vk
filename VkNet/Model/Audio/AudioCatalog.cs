@@ -48,7 +48,7 @@ public class AudioCatalog
 	public string Id { get; set; }
 
 	/// <summary>
-	///
+	/// Идентификатор на следующуюю пачку.
 	/// </summary>
 	[JsonProperty("next_from")]
 	public string NextFrom { get; set; }

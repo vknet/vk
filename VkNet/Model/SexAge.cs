@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model;
 
 /// <summary>
+/// Пол/Возраст
 /// </summary>
 [Serializable]
 public class SexAge

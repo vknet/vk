@@ -5,6 +5,7 @@ using Newtonsoft.Json.Serialization;
 namespace VkNet.Enums.StringEnums;
 
 /// <summary>
+/// Тип платформы
 /// </summary>
 [StringEnum]
 [JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]

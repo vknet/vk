@@ -17,7 +17,7 @@ public interface IPhotoCategoryAsync
 	/// Создает пустой альбом для фотографий.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект PhotoAlbum
 	/// </returns>
@@ -31,7 +31,7 @@ public interface IPhotoCategoryAsync
 	/// Редактирует данные альбома для фотографий пользователя.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -46,7 +46,7 @@ public interface IPhotoCategoryAsync
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает список объектов PhotoAlbum
 	/// </returns>
@@ -62,7 +62,7 @@ public interface IPhotoCategoryAsync
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов Photo
 	/// </returns>
@@ -87,7 +87,7 @@ public interface IPhotoCategoryAsync
 	/// целое число (Целое
 	/// число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает количество альбомов с учетом настроек
 	/// приватности.
@@ -137,7 +137,7 @@ public interface IPhotoCategoryAsync
 	/// значения 1 или 0 (Флаг, может принимать значения 1 или 0).
 	/// </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов photo.
 	/// Если к фотографии прикреплено местоположение, также возвращаются поля lat и
@@ -174,7 +174,7 @@ public interface IPhotoCategoryAsync
 	/// загрузить фотографию в
 	/// альбом сообщества). целое число (Целое число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает объект UploadServerInfo </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.getUploadServer
@@ -196,7 +196,7 @@ public interface IPhotoCategoryAsync
 	/// текущего пользователя (Целое число, по
 	/// умолчанию идентификатор текущего пользователя).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект с единственным полем upload_url.
 	/// </returns>
@@ -228,7 +228,7 @@ public interface IPhotoCategoryAsync
 	/// 200
 	/// (Положительное число, минимальное значение 200).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект с единственным полем upload_url.
 	/// </returns>
@@ -248,7 +248,7 @@ public interface IPhotoCategoryAsync
 	/// Параметр, возвращаемый в результате загрузки фотографии
 	/// на сервер.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий поля photo_hash и
 	/// photo_src (при работе через VK.api метод
@@ -282,7 +282,7 @@ public interface IPhotoCategoryAsync
 	/// на сервер
 	/// </param>
 	/// <param name="caption"> Описание загружаемой фотографии </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив, содержащий объект с загруженной
 	/// фотографией.
@@ -305,7 +305,7 @@ public interface IPhotoCategoryAsync
 	/// «минус»). целое число
 	/// (Целое число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект с полями upload_url, album_id,
 	/// user_id.
@@ -324,7 +324,7 @@ public interface IPhotoCategoryAsync
 	/// Идентификатор назначения (для загрузки фотографии в
 	/// сообщениях сообществ).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает объект UploadServerInfo </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте
@@ -341,7 +341,7 @@ public interface IPhotoCategoryAsync
 	/// Параметр, возвращаемый в результате загрузки фотографии
 	/// на сервер
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив с загруженной фотографией,
 	/// возвращённый объект имеет поля id,
@@ -383,7 +383,7 @@ public interface IPhotoCategoryAsync
 	/// (Положительное
 	/// число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает объект UploadServerInfo </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте
@@ -404,7 +404,7 @@ public interface IPhotoCategoryAsync
 	/// Параметр, возвращаемый в результате загрузки фотографии
 	/// на сервер
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив, содержащий объект с загруженной
 	/// фотографией.
@@ -439,7 +439,7 @@ public interface IPhotoCategoryAsync
 	/// 6 — оскорбление.
 	/// положительное число (Положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -475,7 +475,7 @@ public interface IPhotoCategoryAsync
 	/// 6 — оскорбление.
 	/// положительное число (Положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -492,7 +492,7 @@ public interface IPhotoCategoryAsync
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов фотографий.
 	/// </returns>
@@ -507,7 +507,7 @@ public interface IPhotoCategoryAsync
 	/// Сохраняет фотографии после успешной загрузки.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов Photo
 	/// </returns>
@@ -534,7 +534,7 @@ public interface IPhotoCategoryAsync
 	/// Специальный код доступа для приватных фотографий
 	/// строка (Строка).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает идентификатор созданной фотографии.
 	/// </returns>
@@ -550,7 +550,7 @@ public interface IPhotoCategoryAsync
 	/// Изменяет описание у выбранной фотографии.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -582,7 +582,7 @@ public interface IPhotoCategoryAsync
 	/// параметр (Целое
 	/// число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -612,7 +612,7 @@ public interface IPhotoCategoryAsync
 	/// обязательный параметр (Целое число, обязательный параметр).
 	/// </param>
 	/// <param name="albumId"> Идентификатор альбома. целое число (Целое число). </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -648,7 +648,7 @@ public interface IPhotoCategoryAsync
 	/// Идентификатор альбома, после которого следует поместить альбом. целое число
 	/// (Целое число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -688,7 +688,7 @@ public interface IPhotoCategoryAsync
 	/// параметр не указан,
 	/// фотография будет помещена первой. целое число (Целое число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -706,7 +706,7 @@ public interface IPhotoCategoryAsync
 	/// порядке.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов Photo
 	/// <remarks>
@@ -729,7 +729,7 @@ public interface IPhotoCategoryAsync
 	/// Возвращает список фотографий, на которых отмечен пользователь.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов photo.
 	/// </returns>
@@ -752,7 +752,7 @@ public interface IPhotoCategoryAsync
 	/// число (Целое
 	/// число, положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -780,7 +780,7 @@ public interface IPhotoCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -808,7 +808,7 @@ public interface IPhotoCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -840,7 +840,7 @@ public interface IPhotoCategoryAsync
 	/// число, обязательный
 	/// параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -856,7 +856,7 @@ public interface IPhotoCategoryAsync
 	/// Возвращает список комментариев к фотографии.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов Comment
 	/// </returns>
@@ -872,7 +872,7 @@ public interface IPhotoCategoryAsync
 	/// альбомам пользователя.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов Comment
 	/// </returns>
@@ -886,7 +886,7 @@ public interface IPhotoCategoryAsync
 	/// Создает новый комментарий к фотографии.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданного комментария.
 	/// </returns>
@@ -913,7 +913,7 @@ public interface IPhotoCategoryAsync
 	/// обязательный
 	/// параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c> (0, если комментарий не
 	/// найден).
@@ -942,7 +942,7 @@ public interface IPhotoCategoryAsync
 	/// число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c> (0, если комментарий с
 	/// таким идентификатором не является
@@ -989,7 +989,7 @@ public interface IPhotoCategoryAsync
 	/// Параметр является обязательным, если не задан параметр message. список строк,
 	/// разделенных через запятую
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает true. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/photos.editComment
@@ -1022,7 +1022,7 @@ public interface IPhotoCategoryAsync
 	/// фотографии. строка
 	/// (Строка).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов tag, каждый из которых
 	/// содержит следующие поля:
@@ -1048,7 +1048,7 @@ public interface IPhotoCategoryAsync
 	/// Добавляет отметку на фотографию.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданной отметки (tag id).
 	/// </returns>
@@ -1079,7 +1079,7 @@ public interface IPhotoCategoryAsync
 	/// Идентификатор отметки. целое число, обязательный параметр (Целое число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -1105,7 +1105,7 @@ public interface IPhotoCategoryAsync
 	/// по умолчанию 20 (Положительное число, максимальное значение 100, по умолчанию
 	/// 20).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов Photo
 	/// </returns>
@@ -1143,7 +1143,7 @@ public interface IPhotoCategoryAsync
 	/// 200
 	/// (Положительное число, минимальное значение 200).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект с единственным полем upload_url.
 	/// </returns>
@@ -1165,7 +1165,7 @@ public interface IPhotoCategoryAsync
 	/// товаров. целое
 	/// число (Целое число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// .
 	/// </returns>
@@ -1190,7 +1190,7 @@ public interface IPhotoCategoryAsync
 	/// обязательный параметр
 	/// (строка, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив, содержащий объект с загруженной
 	/// фотографией.
@@ -1216,7 +1216,7 @@ public interface IPhotoCategoryAsync
 	/// обязательный параметр
 	/// (строка, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив, содержащий объект с загруженной
 	/// фотографией.

@@ -5,7 +5,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IDonutCategory" />
 public partial class DonutCategory : IDonutCategory
 {
 	/// <summary>

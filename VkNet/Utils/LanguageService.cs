@@ -3,7 +3,7 @@ using VkNet.Enums;
 
 namespace VkNet.Utils;
 
-/// <inheritdoc />
+/// <inheritdoc cref="ILanguageService" />
 public class LanguageService : ILanguageService
 {
 	/// <summary>

@@ -16,9 +16,9 @@ public static class VkErrorFactory
 	/// <summary>
 	/// Создать ошибку
 	/// </summary>
-	/// <param name="error"> Ошибка VK </param>
+	/// <param name="error">Ошибка VK</param>
 	/// <returns>
-	/// <see cref="VkApiMethodInvokeException" />
+	/// Исключение <see cref="VkApiMethodInvokeException" />
 	/// </returns>
 	public static VkApiMethodInvokeException Create(VkError error)
 	{
@@ -27,13 +27,12 @@ public static class VkErrorFactory
 			.FirstOrDefault(x => x.IsSubclassOf(typeof(VkApiMethodInvokeException))
 								&& HasErrorCode(x, error.ErrorCode));
 
-		if (vkApiMethodInvokeExceptions == null)
+		if (vkApiMethodInvokeExceptions is null)
 		{
 			return new(error);
 		}
 
-		var exception =
-			PerformanceActivator.CreateInstance<VkApiMethodInvokeException>(vkApiMethodInvokeExceptions, Predicate(), error);
+		var exception = PerformanceActivator.CreateInstance<VkApiMethodInvokeException>(vkApiMethodInvokeExceptions, Predicate(), error);
 
 		return exception ?? new VkApiMethodInvokeException(error);
 	}

@@ -33,7 +33,9 @@ public abstract class SafetyEnum<TFilter>
 	/// Регистрирует возможное значение.
 	/// </summary>
 	/// <param name="value"> Значение. </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Фильтр
+	/// </returns>
 	/// <exception cref="System.ArgumentException">
 	/// Mask must be a power of 2 (i.e.
 	/// only one bit must be equal to 1);mask
@@ -46,6 +48,9 @@ public abstract class SafetyEnum<TFilter>
 	/// <summary>
 	/// Преобразовать в строку.
 	/// </summary>
+	/// <returns>
+	/// Строковое представление
+	/// </returns>
 	public override string ToString() => _value;
 
 	/// <summary>

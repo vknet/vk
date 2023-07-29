@@ -17,7 +17,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IMessagesCategory" />
 public partial class MessagesCategory : IMessagesCategory
 {
 	private readonly IVkApi _vk;
@@ -67,6 +67,7 @@ public partial class MessagesCategory : IMessagesCategory
 
 	/// <inheritdoc />
 	[Pure]
+	[Obsolete(ObsoleteText.MessageGet)]
 	public MessagesGetObject Get(MessagesGetParams @params) => _vk.Call<MessagesGetObject>("messages.get",
 		new()
 		{
@@ -149,6 +150,7 @@ public partial class MessagesCategory : IMessagesCategory
 
 	/// <inheritdoc />
 	[Pure]
+	[Obsolete(ObsoleteText.MessageGet)]
 	public MessagesGetObject GetDialogs(MessagesDialogsGetParams @params)
 	{
 		VkErrors.ThrowIfNumberIsNegative(() => @params.Count);
@@ -182,6 +184,7 @@ public partial class MessagesCategory : IMessagesCategory
 
 	/// <inheritdoc />
 	[Pure]
+	[Obsolete(ObsoleteText.MessageSearchDialogs)]
 	public SearchDialogsResponse SearchDialogs(string query, ProfileFields fields = null, uint? limit = null)
 	{
 		var parameters = new VkParameters
@@ -237,17 +240,17 @@ public partial class MessagesCategory : IMessagesCategory
 	/// <inheritdoc />
 	public long Send(MessagesSendParams @params)
 	{
-		if (@params.UserIds != null && @params.UserIds.Any())
+		if (@params.UserIds is not null && @params.UserIds.Any())
 		{
 			throw new ArgumentException($"This method not intended to use with many target users. Use {nameof(SendToUserIds)} instead.");
 		}
 
-		if (@params.PeerIds != null && @params.PeerIds.Any())
+		if (@params.PeerIds is not null && @params.PeerIds.Any())
 		{
 			throw new ArgumentException($"This method not intended to use with many target peers. Use {nameof(SendToPeerIds)} instead.");
 		}
 
-		if (_vk.VkApiVersion.IsGreaterThanOrEqual(5, 90) && @params.RandomId == null)
+		if (_vk.VkApiVersion.IsGreaterThanOrEqual(5, 90) && @params.RandomId is null)
 		{
 			throw new ArgumentException($"{nameof(@params.RandomId)} обязательное значение.");
 		}
@@ -292,12 +295,12 @@ public partial class MessagesCategory : IMessagesCategory
 					"forward_messages", @params.ForwardMessages
 				},
 				{
-					"forward", @params.Forward != null
+					"forward", @params.Forward is not null
 						? JsonConvert.SerializeObject(@params.Forward)
 						: ""
 				},
 				{
-					"keyboard", @params.Keyboard != null
+					"keyboard", @params.Keyboard is not null
 						? JsonConvert.SerializeObject(@params.Keyboard)
 						: ""
 				},
@@ -311,7 +314,7 @@ public partial class MessagesCategory : IMessagesCategory
 					"payload", @params.Payload
 				},
 				{
-					"content_source", @params.ContentSource != null
+					"content_source", @params.ContentSource is not null
 						? JsonConvert.SerializeObject(@params.ContentSource)
 						: ""
 				},
@@ -331,7 +334,7 @@ public partial class MessagesCategory : IMessagesCategory
 					"subscribe_id", @params.SubscribeId
 				},
 				{
-					"template", @params.Template != null
+					"template", @params.Template is not null
 						? JsonConvert.SerializeObject(@params.Template)
 						: ""
 				}
@@ -341,7 +344,7 @@ public partial class MessagesCategory : IMessagesCategory
 	/// <inheritdoc />
 	public ReadOnlyCollection<MessagesSendResult> SendToUserIds(MessagesSendParams @params)
 	{
-		if (@params.PeerIds != null && @params.PeerIds.Any())
+		if (@params.PeerIds is not null && @params.PeerIds.Any())
 		{
 			throw new ArgumentException($"This method not intended to use with many target peers. Use {nameof(SendToPeerIds)} instead.");
 		}
@@ -386,12 +389,12 @@ public partial class MessagesCategory : IMessagesCategory
 					"forward_messages", @params.ForwardMessages
 				},
 				{
-					"forward", @params.Forward != null
+					"forward", @params.Forward is not null
 						? JsonConvert.SerializeObject(@params.Forward)
 						: ""
 				},
 				{
-					"keyboard", @params.Keyboard != null
+					"keyboard", @params.Keyboard is not null
 						? JsonConvert.SerializeObject(@params.Keyboard)
 						: ""
 				},
@@ -405,7 +408,7 @@ public partial class MessagesCategory : IMessagesCategory
 					"payload", @params.Payload
 				},
 				{
-					"content_source", @params.ContentSource != null
+					"content_source", @params.ContentSource is not null
 						? JsonConvert.SerializeObject(@params.ContentSource)
 						: ""
 				},
@@ -425,7 +428,7 @@ public partial class MessagesCategory : IMessagesCategory
 					"subscribe_id", @params.SubscribeId
 				},
 				{
-					"template", @params.Template != null
+					"template", @params.Template is not null
 						? JsonConvert.SerializeObject(@params.Template)
 						: ""
 				}
@@ -435,17 +438,17 @@ public partial class MessagesCategory : IMessagesCategory
 	/// <inheritdoc />
 	public ReadOnlyCollection<MessagesSendResult> SendToPeerIds(MessagesSendParams @params)
 	{
-		if (@params.PeerIds == null || !@params.PeerIds.Any())
+		if (@params.PeerIds is null || !@params.PeerIds.Any())
 		{
 			throw new ArgumentException("PeerIds cannot be null or empty");
 		}
 
-		if (@params.PeerId != null || @params.UserId != null)
+		if (@params.PeerId is not null || @params.UserId is not null)
 		{
 			throw new ArgumentException($"This method not intended to use with PeerId or UserId. Use {nameof(Send)} instead.");
 		}
 
-		if (@params.UserIds != null && @params.UserIds.Any())
+		if (@params.UserIds is not null && @params.UserIds.Any())
 		{
 			throw new ArgumentException($"This method not intended to use with many target users. Use {nameof(SendToUserIds)} instead.");
 		}
@@ -484,12 +487,12 @@ public partial class MessagesCategory : IMessagesCategory
 					"forward_messages", @params.ForwardMessages
 				},
 				{
-					"forward", @params.Forward != null
+					"forward", @params.Forward is not null
 						? JsonConvert.SerializeObject(@params.Forward)
 						: ""
 				},
 				{
-					"keyboard", @params.Keyboard != null
+					"keyboard", @params.Keyboard is not null
 						? JsonConvert.SerializeObject(@params.Keyboard)
 						: ""
 				},
@@ -506,7 +509,7 @@ public partial class MessagesCategory : IMessagesCategory
 					"payload", @params.Payload
 				},
 				{
-					"content_source", @params.ContentSource != null
+					"content_source", @params.ContentSource is not null
 						? JsonConvert.SerializeObject(@params.ContentSource)
 						: ""
 				},
@@ -526,7 +529,7 @@ public partial class MessagesCategory : IMessagesCategory
 					"subscribe_id", @params.SubscribeId
 				},
 				{
-					"template", @params.Template != null
+					"template", @params.Template is not null
 						? JsonConvert.SerializeObject(@params.Template)
 						: ""
 				}
@@ -737,6 +740,7 @@ public partial class MessagesCategory : IMessagesCategory
 		});
 
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.MessageDeleteDialog)]
 	public ulong DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null) =>
 		DeleteConversation(userId, peerId);
 
@@ -745,17 +749,17 @@ public partial class MessagesCategory : IMessagesCategory
 														ulong? peerId = null, bool? spam = null, ulong? groupId = null,
 														bool deleteForAll = false)
 	{
-		if (messageIds == null && conversationMessageIds == null)
+		if (messageIds is null && conversationMessageIds is null)
 		{
 			throw new ArgumentNullException(nameof(conversationMessageIds),
 				"Parameter conversationMessageIds or messageIds can not be null.");
 		}
 
-		var ids = messageIds != null
+		var ids = messageIds is not null
 			? messageIds.ToList()
 			: conversationMessageIds!.ToList();
 
-		if (ids.Count == 0)
+		if (!ids.Any())
 		{
 			throw new ArgumentException("Parameter Ids has no elements.", nameof(ids));
 		}
@@ -768,13 +772,13 @@ public partial class MessagesCategory : IMessagesCategory
 		};
 
 		//Наличие spam неприемлимо, в случаях, когда авторизация ApiVk произошла с ключом сообщества, а не ключом пользователя.
-		if (spam != null)
+		if (spam is not null)
 		{
 			parameters.Add("spam", spam);
 		}
 
 		//Наличие peerId в запросе без cmids не имеет значения и может вызвать неожиданные ошибки.
-		if (peerId != null)
+		if (peerId is not null)
 		{
 			parameters.Add("peer_id", peerId);
 		}
@@ -784,7 +788,7 @@ public partial class MessagesCategory : IMessagesCategory
 		//Если используется в личке между двумя пользователями, а также если нужно удалить с пользовательским ключом(являсь администратором беседы) -
 		//необходимость в использовании отпадает.
 		//Если авторизация пройдена со стороны сообщества, то необходимости в использовании тоже нет.
-		if (groupId != null)
+		if (groupId is not null)
 		{
 			parameters.Add("group_id", groupId);
 		}
@@ -792,7 +796,7 @@ public partial class MessagesCategory : IMessagesCategory
 		//При использовании cmids нежелательно использовать ещё и message_ids в одном наборе параметров,
 		//так как возникают неуправляемые исключения со стороны ApiVk, такие как oldMessage.
 		//Хотя сообщение по id лежит менее 24 часов.
-		parameters.Add(messageIds != null
+		parameters.Add(messageIds is not null
 			? "message_ids"
 			: "cmids", ids);
 
@@ -928,7 +932,7 @@ public partial class MessagesCategory : IMessagesCategory
 	/// <inheritdoc />
 	public ReadOnlyCollection<Chat> GetChat(IEnumerable<long> chatIds, ProfileFields fields = null, NameCase? nameCase = null)
 	{
-		var isNoEmpty = chatIds == null || !chatIds.Any();
+		var isNoEmpty = chatIds is null || !chatIds.Any();
 
 		if (isNoEmpty)
 		{
@@ -1011,9 +1015,10 @@ public partial class MessagesCategory : IMessagesCategory
 	}
 
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.MessageGetChatUsers)]
 	public GetChatUsers GetChatUsers(IEnumerable<long> chatIds, UsersFields fields, NameCase? nameCase)
 	{
-		if (fields == null)
+		if (fields is null)
 		{
 			throw new VkApiException("Задайте параметр fields, либо неиспользуйте его");
 		}
@@ -1037,6 +1042,7 @@ public partial class MessagesCategory : IMessagesCategory
 	}
 
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.MessageGetChatUsers)]
 	public ReadOnlyCollection<long> GetChatUsers(IEnumerable<long> chatIds)
 	{
 		var collection = chatIds.ToList();
@@ -1316,6 +1322,7 @@ public partial class MessagesCategory : IMessagesCategory
 		});
 
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.MessageMarkAsAnsweredDialog)]
 	public bool MarkAsAnsweredDialog(long peerId, bool answered = true) => MarkAsAnsweredConversation(peerId, answered);
 
 	/// <inheritdoc />
@@ -1335,6 +1342,7 @@ public partial class MessagesCategory : IMessagesCategory
 		});
 
 	/// <inheritdoc />
+	[Obsolete(ObsoleteText.MessageMarkAsImportantDialog)]
 	public bool MarkAsImportantDialog(long peerId, bool important = true) => MarkAsImportantConversation(peerId, important);
 
 	/// <inheritdoc />
@@ -1375,12 +1383,12 @@ public partial class MessagesCategory : IMessagesCategory
 				"conversation_message_id", @params.ConversationMessageId
 			},
 			{
-				"template", @params.Template != null
+				"template", @params.Template is not null
 					? JsonConvert.SerializeObject(@params.Template)
 					: ""
 			},
 			{
-				"keyboard", @params.Keyboard != null
+				"keyboard", @params.Keyboard is not null
 					? JsonConvert.SerializeObject(@params.Keyboard)
 					: ""
 			}
@@ -1432,7 +1440,7 @@ public partial class MessagesCategory : IMessagesCategory
 				"peer_id", peerId
 			},
 			{
-				"event_data", eventData != null
+				"event_data", eventData is not null
 					? JsonConvert.SerializeObject(eventData)
 					: string.Empty
 			}

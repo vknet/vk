@@ -52,12 +52,12 @@ public class AttachmentJsonConverter : Newtonsoft.Json.JsonConverter
 			throw new TypeAccessException();
 		}
 
-		if (reader.TokenType == JsonToken.Null)
+		if (reader.TokenType is JsonToken.Null)
 		{
 			return null;
 		}
 
-		if (reader.TokenType != JsonToken.StartArray)
+		if (reader.TokenType is not JsonToken.StartArray)
 		{
 			return null;
 		}

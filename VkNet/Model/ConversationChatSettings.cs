@@ -66,7 +66,7 @@ public class ConversationChatSettings
 	public bool IsGroupChannel { get; set; }
 
 	/// <summary>
-	///
+	/// Акк
 	/// </summary>
 	[JsonProperty("acl")]
 	public Acl Acl { get; set; }

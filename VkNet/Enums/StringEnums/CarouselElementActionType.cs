@@ -6,7 +6,7 @@ namespace VkNet.Enums.StringEnums;
 
 
 /// <summary>
-///
+/// Тип элемента карусели
 /// </summary>
 [StringEnum]
 [JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Результат таргетированной рекламы
 /// </summary>
 [Serializable]
 public class AdsTargetingResult

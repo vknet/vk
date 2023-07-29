@@ -13,22 +13,22 @@ using VkNet.Utils;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IAuthorizationFormHtmlParser" />
 [UsedImplicitly]
 public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 {
 	private readonly IRestClient _restClient;
 
 	/// <summary>
-	///
+	/// Инициализирует новый экземпляр класса <see cref="AuthorizationFormHtmlParser" />
 	/// </summary>
-	/// <param name="restClient"></param>
 	public AuthorizationFormHtmlParser(IRestClient restClient) => _restClient = restClient;
 
 	/// <inheritdoc />
 	public async Task<VkHtmlFormResult> GetFormAsync(Uri url, CancellationToken token = default)
 	{
-		var response = await _restClient.PostAsync(url, Enumerable.Empty<KeyValuePair<string, string>>(), Encoding.GetEncoding(1251), token: token)
+		var response = await _restClient
+			.PostAsync(url, Enumerable.Empty<KeyValuePair<string, string>>(), Encoding.GetEncoding(1251), token: token)
 			.ConfigureAwait(false);
 
 		if (!response.IsSuccess)
@@ -62,6 +62,7 @@ public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 	/// <summary>
 	/// Получить из HTML элемента.
 	/// </summary>
+	/// <param name="html">Исходный HTML элемент</param>
 	/// <returns> HTML элемент </returns>
 	/// <exception cref="VkApiException"> Элемент не найден на форме. </exception>
 	private static HtmlNode GetFormNode(HtmlDocument html)
@@ -69,7 +70,7 @@ public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 		HtmlNode.ElementsFlags.Remove("form");
 		var form = html.DocumentNode.SelectSingleNode("//form");
 
-		if (form == null)
+		if (form is null)
 		{
 			throw new VkApiException("Form element not found.");
 		}
@@ -80,6 +81,7 @@ public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 	/// <summary>
 	/// Разобрать поля ввода.
 	/// </summary>
+	/// <param name="formNode">HTML элемент</param>
 	/// <returns> Коллекция полей ввода </returns>
 	private static Dictionary<string, string> ParseInputs(HtmlNode formNode)
 	{
@@ -90,11 +92,11 @@ public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 			var nameAttribute = node.Attributes["name"];
 			var valueAttribute = node.Attributes["value"];
 
-			var name = nameAttribute != null
+			var name = nameAttribute is not null
 				? nameAttribute.Value
 				: string.Empty;
 
-			var value = valueAttribute != null
+			var value = valueAttribute is not null
 				? valueAttribute.Value
 				: string.Empty;
 
@@ -108,15 +110,16 @@ public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 
 		return inputs;
 	}
-
 	/// <summary>
 	/// URL действия.
 	/// </summary>
+	/// <param name="formNode">HTML элемент</param>
+	/// <param name="url">Url</param>
 	private static string GetActionUrl(HtmlNode formNode, Uri url)
 	{
 		var action = formNode.Attributes["action"];
 
-		if (action == null)
+		if (action is null)
 		{
 			return null;
 		}
@@ -132,10 +135,10 @@ public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 			? url.ToString()
 			: link; // абсолютный путь
 	}
-
 	/// <summary>
 	/// URL действия.
 	/// </summary>
+	/// <param name="formNode">Html элемент</param>
 	private static string GetMethod(HtmlNode formNode)
 	{
 		var method = formNode.Attributes["method"];
@@ -153,12 +156,7 @@ public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 	{
 		var element = document.GetElementbyId("captcha");
 
-		if (element is null)
-		{
-			return null;
-		}
-
-		var urlToCaptcha = element.Attributes["src"];
+		var urlToCaptcha = element?.Attributes["src"];
 
 		return urlToCaptcha?.Value;
 	}

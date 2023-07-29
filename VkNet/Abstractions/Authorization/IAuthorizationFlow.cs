@@ -12,7 +12,7 @@ public interface IAuthorizationFlow
 	/// <summary>
 	/// Авторизация
 	/// </summary>
-	/// <param name="token"></param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Access token. </returns>
 	Task<AuthorizationResult> AuthorizeAsync(CancellationToken token = default);
 

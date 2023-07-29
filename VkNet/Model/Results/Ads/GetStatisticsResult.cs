@@ -6,7 +6,7 @@ using VkNet.Enums.StringEnums;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Результат получения статистики
 /// </summary>
 [Serializable]
 public class GetStatisticsResult

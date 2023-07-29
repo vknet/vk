@@ -39,6 +39,7 @@ public class MessageKeyboardButtonAction
 	public Uri Link { get; set; }
 
 	/// <summary>
+	/// Хэш
 	/// <list type="KeyboardButtonActionType">
 	/// <listheader>
 	/// <term>Значение параметра <see cref="Type"/></term>

@@ -39,7 +39,7 @@ public class VkDefaultJsonConverter : Newtonsoft.Json.JsonConverter
 	/// <returns> The object value. </returns>
 	public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 	{
-		if (reader.TokenType == JsonToken.Null)
+		if (reader.TokenType is JsonToken.Null)
 		{
 			return null;
 		}
@@ -52,7 +52,7 @@ public class VkDefaultJsonConverter : Newtonsoft.Json.JsonConverter
 			: response.ToObject(objectType);
 	}
 
-	private static bool IsDateTime(Type objectType, JTokenType token) => objectType == typeof(DateTime) && token == JTokenType.Integer;
+	private static bool IsDateTime(Type objectType, JTokenType token) => objectType == typeof(DateTime) && token is JTokenType.Integer;
 
 	/// <summary>
 	/// Determines whether this instance can convert the specified object type.

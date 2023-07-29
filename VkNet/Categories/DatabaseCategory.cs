@@ -8,15 +8,14 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IDatabaseCategory" />
 public partial class DatabaseCategory : IDatabaseCategory
 {
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// Инициализирует новый экземпляр класса <see cref="DatabaseCategory" />
 	/// </summary>
-	/// <param name="vk"> </param>
 	public DatabaseCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />

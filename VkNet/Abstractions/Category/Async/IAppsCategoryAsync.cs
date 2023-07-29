@@ -18,7 +18,7 @@ public interface IAppsCategoryAsync
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает общее число найденных приложений и массив
 	/// объектов приложений.
@@ -36,7 +36,7 @@ public interface IAppsCategoryAsync
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект приложения.
 	/// </returns>
@@ -52,7 +52,7 @@ public interface IAppsCategoryAsync
 	/// авторизацию ВКонтакте.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае удачного выполнения метод возвращает идентификатор созданного запроса,
 	/// например:
@@ -67,7 +67,7 @@ public interface IAppsCategoryAsync
 	/// <summary>
 	/// Удаляет все уведомления о запросах, отправленных из текущего приложения.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -98,7 +98,7 @@ public interface IAppsCategoryAsync
 	/// Список дополнительных полей профилей, которые необходимо вернуть. См. подробное
 	/// описание.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список пользователей.
 	/// </returns>
@@ -122,7 +122,7 @@ public interface IAppsCategoryAsync
 	/// Смещение относительно первого пользователя для выборки определенного
 	/// подмножества.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <param name="fields">
 	/// Список дополнительных полей профилей, которые необходимо вернуть. См. подробное
 	/// описание.
@@ -160,7 +160,7 @@ public interface IAppsCategoryAsync
 	/// значения 1 или 0,
 	/// по умолчанию 0 Async(Флаг, может принимать значения 1 или 0, по умолчанию 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список друзей с текущим уровнем и
 	/// количеством очков в игре, отсортированный
@@ -184,7 +184,7 @@ public interface IAppsCategoryAsync
 	/// текущего пользователя, обязательный
 	/// параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает число очков для пользователя.
 	/// </returns>
@@ -198,7 +198,7 @@ public interface IAppsCategoryAsync
 	/// Возвращает данные о политике конфиденциальности запрошенного приложения
 	/// </summary>
 	/// <param name="appId"> Идентификатор приложения </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект политики конфиденциальности.
 	/// </returns>
@@ -212,7 +212,7 @@ public interface IAppsCategoryAsync
 	/// Возвращает данные о правах пользователя
 	/// </summary>
 	/// <param name="type"> Тип. По умолчанию user </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив scopes.
 	/// </returns>
@@ -227,7 +227,7 @@ public interface IAppsCategoryAsync
 	/// </summary>
 	/// <param name="promoId"> Идентификатор промо-акции </param>
 	/// <param name="userId"> Идентификатор пользователя. Используется только при запросе с сервисным токеном. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает
 	/// 1 - у пользователя есть активный подарок, нужно выдать подарок пользователю в игре и затем погасить его используя метод apps.promoUseGift.
@@ -245,7 +245,7 @@ public interface IAppsCategoryAsync
 	/// </summary>
 	/// <param name="promoId"> Идентификатор промо-акции </param>
 	/// <param name="userId"> Идентификатор пользователя. Используется только при запросе с сервисным токеном. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает
 	/// 1 - успех операции.

@@ -19,7 +19,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "adsDataSpecification">
 	/// Идентификатор рекламного кабинета. обязательный параметр, целое число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив значений - ответов на каждый запрос в массиве data. Соответствующее значение в выходном массиве равно true, если администратор успешно добавлен, и false в другом случае.
 	/// </returns>
@@ -32,8 +32,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Проверяет ссылку на рекламируемый объект.
 	/// </summary>
-	/// <param name="checkLinkParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="checkLinkParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращается структура со следующими полями:
 	/// status — статус ссылки:
@@ -52,8 +52,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Создает рекламные объявления.
 	/// </summary>
-	/// <param name="adsDataSpecification"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="adsDataSpecification">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов - ответов на каждый запрос в массиве data. Соответствующий объект в выходном массиве имеет свойство id, соответствующее id созданного объявления (или 0 в случае неудачи), а также, возможно, поля error_code и error_desc, описывающие ошибку, при ее возникновении. Наличие одновременно ненулевого id и error_code говорит о том, что объявление было создано, однако, возможно, не все параметры установлены (например, объявление не запущено).
 	/// </returns>
@@ -66,8 +66,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Создает рекламные кампании.
 	/// </summary>
-	/// <param name="campaignsDataSpecification"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="campaignsDataSpecification">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив ответов на запросы в массиве data. Соответствующий объект в выходном массиве содержит id созданной кампании (ноль в случае неудачи), и поля error_code и error_desc в случае возникновения ошибки. Ненулевой id и наличие error_code 602 говорит о том, что кампания создана, но, возможно, некоторые поля не были ей присвоены по причине их некорректности.
 	/// </returns>
@@ -81,8 +81,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Создаёт клиентов рекламного агентства.
 	/// </summary>
-	/// <param name="clientDataSpecification"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="clientDataSpecification">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив ответов на запросы в массиве data. Соответствующий объект в выходном массиве содержит id созданного клиента (ноль в случае неудачи), и поля error_code и error_desc в случае возникновения ошибки. Ненулевой id и наличие error_code 602 говорит о том, что клиент создан, но, возможно, некоторые поля не были ему присвоены по причине их некорректности.
 	/// </returns>
@@ -96,8 +96,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Создаёт запрос на поиск похожей аудитории.
 	/// </summary>
-	/// <param name="createLookALikeRequestParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="createLookALikeRequestParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Поле request_id, в котором указан идентификатор созданного запроса на поиск похожей аудитории.
 	/// </returns>
@@ -113,7 +113,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "createTargetGroupParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект со следующими полями:
 	/// id — идентификатор аудитории.
@@ -127,8 +127,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Создаёт пиксель ретаргетинга.
 	/// </summary>
-	/// <param name="createTargetPixelParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="createTargetPixelParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект со следующими полями:
 	/// id — идентификатор пикселя
@@ -143,8 +143,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Архивирует рекламные объявления.
 	/// </summary>
-	/// <param name="deleteAdsParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="deleteAdsParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив ответов на каждый запрос. Каждый ответ является либо 0, что означает успешное удаление, либо код ошибки.
 	/// </returns>
@@ -157,8 +157,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Архивирует рекламные кампании.
 	/// </summary>
-	/// <param name="deleteCampaignsParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="deleteCampaignsParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив ответов на каждый запрос. Каждый ответ является либо 0, что означает успешное удаление, либо код ошибки.
 	/// </returns>
@@ -171,8 +171,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Архивирует клиентов рекламного агентства.
 	/// </summary>
-	/// <param name="deleteClientsParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="deleteClientsParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив ответов на каждый запрос. Каждый ответ является либо 0, что означает успешное удаление, либо код ошибки.
 	/// </returns>
@@ -185,8 +185,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Удаляет аудиторию ретаргетинга.
 	/// </summary>
-	/// <param name="deleteTargetGroupParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="deleteTargetGroupParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха метод возвратит 1.
 	/// </returns>
@@ -199,8 +199,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Удаляет пиксель ретаргетинга.
 	/// </summary>
-	/// <param name="deleteTargetPixelParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="deleteTargetPixelParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха метод возвратит 1.
 	/// </returns>
@@ -213,7 +213,7 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Возвращает список рекламных кабинетов.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов, описывающих рекламные кабинеты. Каждый объект содержит следующие поля:
 	/// account_id
@@ -240,7 +240,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "getAdsParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов, описывающих объявления. Каждый объект содержит следующие поля:
 	/// id
@@ -317,7 +317,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "getAdsLayoutParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов, описывающих объявления. Каждый объект содержит следующие поля:
 	/// id
@@ -358,7 +358,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "getAdsTargetingParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов - описаний таргетинга объявлений.
 	/// Отрицательные id в поле cities означают id регионов, взятых с обратным знаком.
@@ -376,7 +376,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "accountId">
 	/// Идентификатор рекламного кабинета. обязательный параметр, целое число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает единственное число — оставшийся бюджет в указанном рекламном кабинете.
 	/// </returns>
@@ -389,8 +389,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Возвращает список кампаний рекламного кабинета.
 	/// </summary>
-	/// <param name="adsGetCampaignsParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="adsGetCampaignsParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов campaign, каждый из которых содержит следующие поля:
 	/// id — идентификатор кампании
@@ -425,7 +425,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "lang">
 	/// Язык, на котором нужно вернуть результаты. Список поддерживаемых языков Вы можете найти на странице Запросы к API. строка
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает два массива объектов — v1 и v2, каждый из которых содержит объекты, описывающие тематики в следующем формате:
 	/// id — идентификатор тематики;
@@ -447,7 +447,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "accountId">
 	/// Идентификатор рекламного кабинета. обязательный параметр, целое число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов client — клиентов агентства с номером account_id, каждый из которых содержит следующие поля:
 	/// id — идентификатор клиента;
@@ -467,7 +467,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "getDemographicsParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Каждый запрашиваемый объект имеет следующие поля:
 	/// id — id объекта из параметра ids
@@ -503,7 +503,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "accountId">
 	/// Идентификатор рекламного кабинета. обязательный параметр, целое число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, содержащий следующие поля:
 	/// left — количество оставшихся методов;
@@ -521,7 +521,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "getLookalikeRequestsParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Если limit не равен 0, то возвращается объект с двумя полями:
 	///
@@ -554,7 +554,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "accountId">
 	/// Идентификатор рекламного кабинета. обязательный параметр, целое число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов - описаний пользователей рекламного кабинета. Каждый объект содержит массив описаний прав доступа к конкретным клиентам. Описание содержит два поля: client_id — id клиента и role — строка admin, manager или reports. Для admin client_id не указывается.
 	/// </returns>
@@ -576,7 +576,7 @@ public interface IAdsCategoryAsync
 	/// campaign — кампании.
 	/// обязательный параметр, строка
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <param name = "ids">
 	/// Перечисленные через запятую id запрашиваемых объявлений или кампаний, в зависимости от того, что указано в параметре ids_type. Максимум 100 объектов. обязательный параметр, строка
 	/// </param>
@@ -617,7 +617,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "adId">
 	/// Идентификатор рекламного объявления. обязательный параметр, целое число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который может содержать поле comment, содержащее текстовый комментарий модератора, и/или массив rules, содержащий описание нарушенных объявлением правил. Ответ обязательно содержит хотя бы одно из полей comment или rules. Каждый элемент массива rules состоит из поля title (текстового пояснения) и массива paragraphs, каждый элемент которого содержит отдельный пункт правил. Элементы массива paragraphs могут содержать простую html-разметку.
 	/// </returns>
@@ -634,7 +634,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "getStatisticsParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Каждый запрашиваемый объект имеет следующие поля:
 	/// id — id объекта из параметра ids
@@ -666,7 +666,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "getSuggestionsParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает список объектов (подсказок), удовлетворяющих запросу.
 	/// Для разделов countries, positions, interest_categories, religions, user_devices, user_os, user_browsers ответ возвращается в виде массива объектов со следующими полями:
@@ -712,7 +712,7 @@ public interface IAdsCategoryAsync
 	/// Если 1, в результатах будет указан код для размещения на сайте.
 	/// Устаревший параметр. Используется только для старых групп ретаргетинга, которые пополнялись без помощи пикселя. Для новых аудиторий его следует опускать. флаг, может принимать значения 1 или 0
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов, описывающих группы ретаргетинга. Каждый объект содержит следующие поля:
 	/// id (integer) — идентификатор аудитории;
@@ -746,7 +746,7 @@ public interface IAdsCategoryAsync
 	/// Только для рекламных агентств.
 	/// id клиента, в рекламном кабинете которого находятся пиксели. целое число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов, каждый из которых содержит следующие поля:
 	/// target_pixel_id (integer) — идентификатор пикселя;
@@ -769,7 +769,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "getTargetingStatsParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, описывающий целевую аудиторию и содержащий следующие поля:
 	/// audience_count (integer) — размер целевой аудитории
@@ -786,8 +786,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Возвращает URL-адрес для загрузки фотографии рекламного объявления.
 	/// </summary>
-	/// <param name="getUploadUrlParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="getUploadUrlParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает url-адрес для загрузки изображения.
 	/// </returns>
@@ -800,7 +800,7 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Возвращает URL-адрес для загрузки видеозаписи рекламного объявления.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает url-адрес для загрузки видеоролика.
 	/// </returns>
@@ -812,8 +812,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Импортирует список контактов рекламодателя для учета зарегистрированных во ВКонтакте пользователей в аудитории ретаргетинга.
 	/// </summary>
-	/// <param name="importTargetContactsParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="importTargetContactsParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает количество обработанных контактов.
 	/// </returns>
@@ -826,8 +826,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Удаляет администраторов и/или наблюдателей из рекламного кабинета.
 	/// </summary>
-	/// <param name="removeOfficeUsersParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="removeOfficeUsersParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив значений - ответов на каждый запрос в массиве data. Соответствующее значение в выходном массиве равно true, если администратор успешно удален, и false в другом случае.
 	/// </returns>
@@ -840,8 +840,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Принимает запрос на исключение контактов рекламодателя из аудитории ретаргетинга.
 	/// </summary>
-	/// <param name="removeTargetContactsParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="removeTargetContactsParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает 1 в случае успешного принятия заявки на исключение аудитории.
 	/// </returns>
@@ -854,8 +854,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Сохраняет результат поиска похожей аудитории.
 	/// </summary>
-	/// <param name="saveLookalikeRequestResultParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="saveLookalikeRequestResultParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект с полями:
 	///
@@ -872,8 +872,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Предоставляет доступ к аудитории ретаргетинга другому рекламному кабинету. В результате выполнения метода возвращается идентификатор аудитории для указанного кабинета.
 	/// </summary>
-	/// <param name="shareTargetGroupParams"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="shareTargetGroupParams">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект со следующими полями:
 	/// id — идентификатор аудитории.
@@ -887,8 +887,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Редактирует рекламные объявления.
 	/// </summary>
-	/// <param name="adEditDataSpecification"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="adEditDataSpecification">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив ответов на каждый запрос в массиве data. Соответствующий объект в выходном массиве содержит идентификатор изменяемого объявления и, в случае возникновения ошибки, поля error_code и error_desc.
 	/// </returns>
@@ -902,8 +902,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Редактирует рекламные кампании.
 	/// </summary>
-	/// <param name="campaignModDataSpecification"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="campaignModDataSpecification">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив ответов на каждый запрос в массиве data. Соответствующий объект в выходном массиве содержит идентификатор изменяемого клиента и, в случае возникновения ошибки, поля error_code и error_desc.
 	/// </returns>
@@ -917,8 +917,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Редактирует клиентов рекламного агентства.
 	/// </summary>
-	/// <param name="clientModDataSpecification"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="clientModDataSpecification">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив ответов на каждый запрос в массиве data. Соответствующий объект в выходном массиве содержит id изменяемого клиента и, в случае возникновения ошибки, поля error_code и error_desc.
 	/// </returns>
@@ -935,7 +935,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "updateTargetGroupParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха метод возвратит 1.
 	/// </returns>
@@ -951,7 +951,7 @@ public interface IAdsCategoryAsync
 	/// <param name = "updateTargetPixelParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -964,8 +964,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Возвращает информацию о музыкантах (по имени музыканта), на слушателей которых доступно таргетирование.
 	/// </summary>
-	/// <param name="artistName"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="artistName">Имя артиста</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>Возвращает массив всех подходящих под запрос artistName музыкантов.</returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getMusicians
@@ -976,8 +976,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Возвращает информацию о музыкантах (по id музыкантов) на слушателей, для которых доступно таргетирование.
 	/// </summary>
-	/// <param name="ids"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="ids">Идентификаторы музыкантов</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>Возвращает массив музыкантов с соответствующими идентификаторами из запроса.</returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/ads.getMusiciansByIds
@@ -988,8 +988,8 @@ public interface IAdsCategoryAsync
 	/// <summary>
 	/// Добавляет/редактирует администраторов и/или наблюдателей в рекламный кабинет.
 	/// </summary>
-	/// <param name="officeUsersSpecification"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="officeUsersSpecification">Параметры запроса</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив значений - ответов на каждый запрос в массиве response
 	/// </returns>

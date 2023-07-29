@@ -6,6 +6,7 @@ using Newtonsoft.Json.Converters;
 namespace VkNet.Model;
 
 /// <summary>
+/// Ссылка на статистику
 /// </summary>
 [Serializable]
 public class LinkStat

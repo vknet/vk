@@ -71,6 +71,7 @@ public interface ILeadFormsQuestionBuilder
 	/// <summary>
 	/// Построить список вопросов.
 	/// </summary>
+	/// <param name="formatting">Тип форматирования</param>
 	/// <returns>
 	/// Сериализованный в массив список вопросов.
 	/// </returns>

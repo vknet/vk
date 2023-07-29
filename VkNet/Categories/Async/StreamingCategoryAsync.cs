@@ -8,7 +8,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IStreamingCategory" />
 public partial class StreamingCategory
 {
 	/// <inheritdoc />

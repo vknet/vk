@@ -13,7 +13,7 @@ using VkNet.Abstractions.Utils;
 
 namespace VkNet.Utils;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IRestClient" />
 [UsedImplicitly]
 [Serializable]
 public sealed class RestClient : IRestClient
@@ -33,7 +33,6 @@ public sealed class RestClient : IRestClient
 	/// <param name="streamingContext"></param>
 	private RestClient(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 
 	/// <summary>
@@ -41,49 +40,51 @@ public sealed class RestClient : IRestClient
 	/// </summary>
 	public HttpClient HttpClient { get; }
 
-
-
 	/// <inheritdoc />
-	public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding, CancellationToken token = default)
+	public Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding,
+												CancellationToken token = default)
 	{
 		var url = Url.Combine(uri.ToString(), Url.QueryFrom(parameters.ToArray()));
 
 		_logger?.LogDebug("GET request: {Url}", url);
 
-		return CallAsync(() => HttpClient.GetAsync(new Uri(url), token), encoding);
+		return CallAsync(() => HttpClient.GetAsync(new Uri(url), token), encoding, token);
 	}
 
 	/// <inheritdoc />
-	public Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding, IEnumerable<KeyValuePair<string, string>> headers = null, CancellationToken token = default)
+	public Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding,
+												IEnumerable<KeyValuePair<string, string>> headers = null, CancellationToken token = default)
 	{
-		if (_logger != null)
+		if (_logger is not null)
 		{
 			var json = JsonConvert.SerializeObject(parameters);
 			_logger.LogDebug("POST request: {Uri}{NewLine}{PrettyJson}", uri, Environment.NewLine, Utilities.PrettyPrintJson(json));
 		}
 
-		if (headers != null && headers.Any())
+		if (headers is not null && headers.Any())
 		{
-			headers.ToList().ForEach(header => {
-				if (header.Key.ToLower() == "content-type")
+			headers.ToList()
+				.ForEach(header =>
 				{
-					HttpClient.DefaultRequestHeaders.Accept.Add(new(header.Value));
-				} else
-				{
-					HttpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
-				}
-			});
+					if (header.Key.ToLower() == "content-type")
+					{
+						HttpClient.DefaultRequestHeaders.Accept.Add(new(header.Value));
+					} else
+					{
+						HttpClient.DefaultRequestHeaders.Add(header.Key, header.Value);
+					}
+				});
 		}
 
 		var content = new FormUrlEncodedContent(parameters);
 
-		return CallAsync(() => HttpClient.PostAsync(uri, content, token), encoding);
+		return CallAsync(() => HttpClient.PostAsync(uri, content, token), encoding, token);
 	}
 
 	/// <inheritdoc />
 	public void Dispose() => HttpClient?.Dispose();
 
-	private async Task<HttpResponse<string>> CallAsync(Func<Task<HttpResponseMessage>> method, Encoding encoding)
+	private async Task<HttpResponse<string>> CallAsync(Func<Task<HttpResponseMessage>> method, Encoding encoding, CancellationToken token)
 	{
 		var response = await method()
 			.ConfigureAwait(false);

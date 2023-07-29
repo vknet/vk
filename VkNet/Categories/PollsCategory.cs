@@ -7,7 +7,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IPollsCategory" />
 public partial class PollsCategory : IPollsCategory
 {
 	/// <summary>
@@ -97,7 +97,7 @@ public partial class PollsCategory : IPollsCategory
 	{
 		object FormatList(IList<long> answersIds)
 		{
-			if (answersIds == null)
+			if (answersIds is null)
 			{
 				return null;
 			}

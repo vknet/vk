@@ -18,29 +18,7 @@ public interface IRateLimiter
 	/// <param name="cancellationToken">
 	/// Propagates notification that operations should be canceled.
 	/// </param>
-	/// <returns></returns>
 	Task Perform(Func<Task> perform, CancellationToken cancellationToken);
-
-	/// <summary>
-	/// Runs a <see cref="Task"/> with a constraint.
-	/// </summary>
-	/// <param name="perform">
-	/// Func to perform.
-	/// </param>
-	/// <returns></returns>
-	Task Perform(Func<Task> perform);
-
-	/// <summary>
-	/// Runs a <see cref="Task"/> with a constraint.
-	/// </summary>
-	/// <param name="perform">
-	/// Func to perform.
-	/// </param>
-	/// <typeparam name="T">
-	/// The type of the <see cref="Task"/> item.
-	/// </typeparam>
-	/// <returns></returns>
-	Task<T> Perform<T>(Func<Task<T>> perform);
 
 	/// <summary>
 	/// Runs a <see cref="Task"/> with a constraint.
@@ -54,7 +32,9 @@ public interface IRateLimiter
 	/// <typeparam name="T">
 	/// The type of the <see cref="Task"/> item.
 	/// </typeparam>
-	/// <returns></returns>
+	/// <returns>
+	/// The <see cref="Task"/>
+	/// </returns>
 	Task<T> Perform<T>(Func<Task<T>> perform, CancellationToken cancellationToken);
 
 	/// <summary>
@@ -66,29 +46,7 @@ public interface IRateLimiter
 	/// <param name="cancellationToken">
 	/// Propagates notification that operations should be canceled.
 	/// </param>
-	/// <returns></returns>
 	Task Perform(Action perform, CancellationToken cancellationToken);
-
-	/// <summary>
-	/// Runs a <see cref="Task"/> with a constraint.
-	/// </summary>
-	/// <param name="perform">
-	/// Action to perform.
-	/// </param>
-	/// <returns></returns>
-	Task Perform(Action perform);
-
-	/// <summary>
-	/// Runs a <see cref="Task"/> with a constraint.
-	/// </summary>
-	/// <param name="perform">
-	/// Func to perform.
-	/// </param>
-	/// <typeparam name="T">
-	/// The type of the func item.
-	/// </typeparam>
-	/// <returns></returns>
-	Task<T> Perform<T>(Func<T> perform);
 
 	/// <summary>
 	/// Runs a <see cref="Task"/> with a constraint.
@@ -102,7 +60,9 @@ public interface IRateLimiter
 	/// <typeparam name="T">
 	/// The type of the func item.
 	/// </typeparam>
-	/// <returns></returns>
+	/// <returns>
+	/// The <see cref="Task"/>
+	/// </returns>
 	Task<T> Perform<T>(Func<T> perform, CancellationToken cancellationToken);
 
 	/// <summary>

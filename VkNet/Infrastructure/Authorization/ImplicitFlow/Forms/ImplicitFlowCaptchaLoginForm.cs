@@ -24,7 +24,7 @@ public sealed class ImplicitFlowCaptchaLoginForm : AbstractAuthorizationForm
 	/// <inheritdoc />
 	protected override Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token = default)
 	{
-		if (_captchaSolver == null)
+		if (_captchaSolver is null)
 		{
 			throw new VkAuthorizationException("Необходимо определить решатель капчи реализовав интерфейс " + nameof(ICaptchaSolver));
 		}

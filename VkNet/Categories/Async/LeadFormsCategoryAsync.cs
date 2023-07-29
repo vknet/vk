@@ -7,7 +7,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc/>
+/// <inheritdoc cref="ILeadFormsCategory" />
 public partial class LeadFormsCategory
 {
 	/// <inheritdoc/>

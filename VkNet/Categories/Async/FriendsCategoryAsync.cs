@@ -10,7 +10,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IFriendsCategory" />
 public partial class FriendsCategory
 {
 	/// <inheritdoc />

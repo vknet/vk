@@ -5,7 +5,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="ISearchCategory" />
 public partial class SearchCategory
 {
 	/// <inheritdoc />

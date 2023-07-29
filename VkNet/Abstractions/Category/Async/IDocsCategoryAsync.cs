@@ -32,7 +32,7 @@ public interface IDocsCategoryAsync
 	/// умолчанию идентификатор текущего пользователя.
 	/// </param>
 	/// <param name="type"> Фильтр по типу документа. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов документов.
 	/// </returns>
@@ -52,7 +52,7 @@ public interface IDocsCategoryAsync
 	/// Идентификаторы документов, информацию о которых нужно
 	/// вернуть.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает список объектов документов. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.getById
@@ -70,7 +70,7 @@ public interface IDocsCategoryAsync
 	/// дополнительных параметров. Положительное
 	/// число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает объект UploadServerInfo </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.getUploadServer
@@ -87,7 +87,7 @@ public interface IDocsCategoryAsync
 	/// Идентификатор сообщества, в которое нужно загрузить документ. Положительное
 	/// число.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает объект UploadServerInfo </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.getWallUploadServer
@@ -105,7 +105,7 @@ public interface IDocsCategoryAsync
 	/// </param>
 	/// <param name="title"> Название документа. </param>
 	/// <param name="tags"> Метки для поиска. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Возвращает массив с загруженными объектами. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.save
@@ -128,7 +128,7 @@ public interface IDocsCategoryAsync
 	/// Идентификатор документа. Положительное число, обязательный
 	/// параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает 1. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/docs.delete
@@ -154,7 +154,7 @@ public interface IDocsCategoryAsync
 	/// остальными данными о
 	/// документе было возвращено поле access_key.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданного
 	/// документа (did).
@@ -177,7 +177,7 @@ public interface IDocsCategoryAsync
 	/// число, по умолчанию идентификатор
 	/// текущего пользователя, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов type.
 	/// Объект type — тип документов.
@@ -211,7 +211,7 @@ public interface IDocsCategoryAsync
 	/// положительное число
 	/// (Положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов документов.
 	/// </returns>
@@ -250,7 +250,7 @@ public interface IDocsCategoryAsync
 	/// Метки для поиска. список слов, разделенных через запятую (Список слов,
 	/// разделенных через запятую).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -272,8 +272,10 @@ public interface IDocsCategoryAsync
 	/// doc — обычный документ;
 	/// audio_message — голосовое сообщение.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
-	/// <returns> </returns>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Адрес сервера для загрузки фотографий
+	/// </returns>
 	Task<UploadServerInfo> GetMessagesUploadServerAsync(long? peerId = null,
 														DocMessageType? type = null,
 														CancellationToken token = default);

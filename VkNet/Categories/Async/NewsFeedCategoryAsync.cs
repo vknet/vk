@@ -9,7 +9,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="INewsFeedCategory" />
 public partial class NewsFeedCategory
 {
 	/// <inheritdoc />

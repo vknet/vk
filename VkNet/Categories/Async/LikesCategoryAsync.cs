@@ -6,7 +6,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="ILikesCategory" />
 public partial class LikesCategory
 {
 	/// <inheritdoc />

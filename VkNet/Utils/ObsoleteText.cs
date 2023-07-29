@@ -25,57 +25,57 @@ public static class ObsoleteText
 	public const string Validate = "Данный метод устарел, используйте перегрузку void Validate(string validateUrl);";
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.GetConversations"/>
+	/// Ошибка: <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.GetConversations"/>
 	/// </summary>
 	public const string MessageGet = Deprecated + nameof(IMessagesCategory.GetConversations);
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.SearchConversations"/>
+	/// Ошибка: <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.SearchConversations"/>
 	/// </summary>
 	public const string MessageSearchDialogs = Deprecated + nameof(IMessagesCategory.SearchConversations);
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.MarkAsImportantConversation"/>
+	/// Ошибка: <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.MarkAsImportantConversation"/>
 	/// </summary>
 	public const string MessageMarkAsImportantDialog = Deprecated + nameof(IMessagesCategory.MarkAsImportantConversation);
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.MarkAsAnsweredConversation"/>
+	/// Ошибка: <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.MarkAsAnsweredConversation"/>
 	/// </summary>
 	public const string MessageMarkAsAnsweredDialog = Deprecated + nameof(IMessagesCategory.MarkAsAnsweredConversation);
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.DeleteConversation"/>
+	/// Ошибка: <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.DeleteConversation"/>
 	/// </summary>
 	public const string MessageDeleteDialog = Deprecated + nameof(IMessagesCategory.DeleteConversation);
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.GetConversationMembers"/>
+	/// Ошибка: <inheritdoc cref="Deprecated"/> <see cref="IMessagesCategory.GetConversationMembers"/>
 	/// </summary>
 	public const string MessageGetChatUsers = Deprecated + nameof(IMessagesCategory.GetConversationMembers);
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IFriendsCategory.AddList"/>
+	/// Ошибка: <inheritdoc cref="Deprecated"/> <see cref="IFriendsCategory.AddList"/>
 	/// </summary>
 	public const string FriendsAddList = Deprecated + "long AddList(string name, IEnumerable<long> userIds);";
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategoryAsync.BanAsync"/>
+	/// Ошибка: <inheritdoc cref="Deprecated"/> <see cref="IAccountCategoryAsync.BanAsync"/>
 	/// </summary>
 	public const string BanUser = Deprecated + "bool Ban(long ownerId);";
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategoryAsync.UnbanAsync"/>
+	/// Ошибка: <inheritdoc cref="Deprecated"/> <see cref="IAccountCategoryAsync.UnbanAsync"/>
 	/// </summary>
 	public const string UnbanUser = Deprecated + "bool Unban(long groupId, long userId)";
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategoryAsync.BanAsync"/>
+	/// Ошибка: <inheritdoc cref="Deprecated"/> <see cref="IAccountCategoryAsync.BanAsync"/>
 	/// </summary>
 	public const string BanUserAsync = Deprecated + "bool BanAsync(long ownerId);";
 
 	/// <summary>
-	/// <inheritdoc cref="Deprecated"/> <see cref="IAccountCategoryAsync.UnbanAsync"/>
+	/// Ошибка: <inheritdoc cref="Deprecated"/> <see cref="IAccountCategoryAsync.UnbanAsync"/>
 	/// </summary>
 	public const string UnbanUserAsync = Deprecated + "Task<bool> UnbanUserAsync(long groupId, long userId)";
 

@@ -16,7 +16,7 @@ public interface IWidgetsCategoryAsync
 	/// <param name="getCommentsParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха возвращает объект со следующими полями:
 	/// count — общее количество комментариев первого уровня к странице (без учета
@@ -65,7 +65,7 @@ public interface IWidgetsCategoryAsync
 	/// минимальное значение 10, максимальное
 	/// значение 200
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха возвращает объект со следующими полями:
 	/// count — общее количество страниц (без учета ограничений входного параметра

@@ -4,7 +4,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IGiftsCategory" />
 public partial class GiftsCategory : IGiftsCategory
 {
 	/// <summary>

@@ -74,7 +74,9 @@ public sealed class Privacy : SafetyEnum<Privacy>
 	/// Разобрать из json.
 	/// </summary>
 	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Уровень доступа к комментированию альбома
+	/// </returns>
 	public new static Privacy FromJson(VkResponse response)
 	{
 		switch (response.ToString())

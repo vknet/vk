@@ -9,7 +9,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IDocsCategory" />
 public partial class DocsCategory
 {
 	/// <inheritdoc />

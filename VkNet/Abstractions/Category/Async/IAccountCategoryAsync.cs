@@ -22,7 +22,7 @@ public interface IAccountCategoryAsync
 	/// videos, notes, gifts, events, groups, notifications, sdk, app_requests).
 	/// список слов, разделенных через запятую
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который может содержать поля friends, messages, photos,
 	/// videos, notes, gifts, events, groups, notifications, sdk, app_requests.
@@ -42,7 +42,7 @@ public interface IAccountCategoryAsync
 	/// текущего пользователя, обязательный параметр
 	/// </param>
 	/// <param name="name"> Короткое название приложения. строка </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает 1 в случае успешной установки короткого названия.
 	/// Если пользователь не установил приложение в левое меню, метод вернет ошибку 148
@@ -63,7 +63,7 @@ public interface IAccountCategoryAsync
 	/// Возможны ли видеозвонки для данного устройства флаг,
 	/// может принимать значения 1 или 0
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения метода будет возвращён код 1.
 	/// </returns>
@@ -76,7 +76,7 @@ public interface IAccountCategoryAsync
 	/// <summary>
 	/// Помечает текущего пользователя как offline.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -90,7 +90,7 @@ public interface IAccountCategoryAsync
 	/// Push-уведомлений.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает 1 в случае успешного выполнения метода.
 	/// На iOS и Windows Phone push-уведомления будут отображены без какой либо
@@ -115,7 +115,7 @@ public interface IAccountCategoryAsync
 	/// отправки push-уведомлений, 0 — отписать устройство, не использующее sandbox
 	/// сервер флаг, может принимать значения 1 или 0, по умолчанию 0
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает <c> true </c> в случае успешного выполнения метода.
 	/// </returns>
@@ -140,7 +140,7 @@ public interface IAccountCategoryAsync
 	/// 1 - включить звук в данном диалоге, 0 - отключить звук (параметр работает
 	/// только если указан в peer_id передан идентификатор групповой беседы или пользователя)
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -159,7 +159,7 @@ public interface IAccountCategoryAsync
 	/// <param name="deviceId">
 	/// Уникальный идентификатор устройства. строка, доступен начиная с версии 5.31
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, содержащий поля:
 	/// disabled — отключены ли уведомления.
@@ -190,7 +190,7 @@ public interface IAccountCategoryAsync
 	/// Новое значение уведомления в специальном формате.
 	/// список слов, разделенных через запятую
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает 1 в случае успешного выполнения метода.
 	/// </returns>
@@ -211,7 +211,7 @@ public interface IAccountCategoryAsync
 	/// получить. По умолчанию — текущий пользователь.
 	/// положительное число, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает битовую маску настроек текущего
 	/// пользователя в данном приложении.
@@ -241,7 +241,7 @@ public interface IAccountCategoryAsync
 	/// Количество офферов, которое необходимо получить положительное число, по
 	/// умолчанию 100, максимальное значение 100
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив, состоящий из общего количества старгетированных на текущего
 	/// пользователя специальных предложений (первый элемент), и списка объектов
@@ -266,7 +266,7 @@ public interface IAccountCategoryAsync
 	/// Идентификатор пользователя или сообщества, которое будет добавлено в черный список.
 	/// положительное число, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха метод вернет <c> true </c>.
 	/// </returns>
@@ -287,7 +287,7 @@ public interface IAccountCategoryAsync
 	/// Идентификатор пользователя или группы, которого нужно удалить из черного списка.
 	/// положительное число, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха метод вернет <c> true </c>.
 	/// </returns>
@@ -308,7 +308,7 @@ public interface IAccountCategoryAsync
 	/// Количество записей, которое необходимо вернуть. положительное число, по
 	/// умолчанию 20, максимальное значение 200
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает набор объектов пользователей, находящихся в черном списке.
 	/// </returns>
@@ -328,7 +328,7 @@ public interface IAccountCategoryAsync
 	/// own_posts_default, no_wall_replies, intro, lang
 	/// По умолчанию будут возвращены все поля. список слов, разделенных через запятую
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Метод возвращает объект, содержащий следующие поля:
 	/// country – строковой код страны, определенный по IP адресу, с которого сделан
@@ -359,7 +359,7 @@ public interface IAccountCategoryAsync
 	/// </summary>
 	/// <param name="name"> Имя настройки. </param>
 	/// <param name="value"> Значение настройки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В результате успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -389,7 +389,7 @@ public interface IAccountCategoryAsync
 	/// Новый пароль, который будет установлен в качестве текущего.
 	/// строка, минимальная длина 6, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В результате выполнения этого метода будет возвращен объект с полем token,
 	/// содержащим новый токен, и полем secret в случае, если токен был nohttps.
@@ -406,7 +406,7 @@ public interface IAccountCategoryAsync
 	/// <summary>
 	/// Возвращает информацию о текущем профиле.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Информация о текущем профиле в виде Model.User </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/account.getProfileInfo
@@ -419,7 +419,7 @@ public interface IAccountCategoryAsync
 	/// <param name="cancelRequestId">
 	/// Идентификатор заявки на смену имени, которую необходимо отменить.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Результат отмены заявки. </returns>
 	/// <remarks>
 	/// Метод вынесен как отдельный, потому что если в запросе передан параметр
@@ -436,7 +436,7 @@ public interface IAccountCategoryAsync
 	/// Редактирует информацию текущего профиля.
 	/// </summary>
 	/// <param name="params"> The parameters. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Результат отмены заявки.
 	/// </returns>
@@ -449,7 +449,7 @@ public interface IAccountCategoryAsync
 	/// <summary>
 	/// Получить список приватных настроек
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Список приватных настроек </returns>
 	Task<PrivacySettings> GetPrivacySettingsAsync(CancellationToken token = default);
 
@@ -458,7 +458,7 @@ public interface IAccountCategoryAsync
 	/// </summary>
 	/// <param name="key"> Ключ </param>
 	/// <param name="value"> Значение </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Значение параметра <a>value</a></returns>
 	Task<PrivacySettingsValue> SetPrivacyAsync(PrivacyKey key,
 												string value,

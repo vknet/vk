@@ -14,7 +14,7 @@ using VkNet.Utils;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IImplicitFlow" />
 public class ImplicitFlow : IImplicitFlow
 {
 	/// <summary>
@@ -50,7 +50,7 @@ public class ImplicitFlow : IImplicitFlow
 	/// <inheritdoc />
 	public async Task<AuthorizationResult> AuthorizeAsync(CancellationToken token = default)
 	{
-		_logger?.LogDebug("Валидация данных.");
+		_logger?.LogDebug("Валидация данных");
 		ValidateAuthorizationParameters();
 
 		_logger?.LogDebug("Шаг 1. Открытие диалога авторизации");
@@ -61,7 +61,7 @@ public class ImplicitFlow : IImplicitFlow
 			.ExecuteAsync(authorizeUrlResult, _authorizationParameters, token)
 			.ConfigureAwait(false);
 
-		return await NextStepAsync(loginFormResult)
+		return await NextStepAsync(loginFormResult, token)
 			.ConfigureAwait(false);
 	}
 
@@ -81,6 +81,8 @@ public class ImplicitFlow : IImplicitFlow
 	}
 
 	/// <inheritdoc />
+	[Obsolete(
+		"Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
 	public Uri CreateAuthorizeUrl()
 	{
 		_logger?.LogDebug("Построение url для авторизации");
@@ -122,7 +124,7 @@ public class ImplicitFlow : IImplicitFlow
 		return new(resultUrl);
 	}
 
-	private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult)
+	private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult, CancellationToken token)
 	{
 		var requestUrl = formResult.RequestUrl;
 
@@ -183,10 +185,10 @@ public class ImplicitFlow : IImplicitFlow
 		}
 
 		var resultForm = await _authorizationFormsFactory.Create(pageType)
-			.ExecuteAsync(requestUrl, _authorizationParameters)
+			.ExecuteAsync(requestUrl, _authorizationParameters, token)
 			.ConfigureAwait(false);
 
-		return await NextStepAsync(resultForm)
+		return await NextStepAsync(resultForm, token)
 			.ConfigureAwait(false);
 	}
 
@@ -214,7 +216,7 @@ public class ImplicitFlow : IImplicitFlow
 	{
 		var errorsBuilder = new StringBuilder();
 
-		if (_authorizationParameters == null)
+		if (_authorizationParameters is null)
 		{
 			errorsBuilder.AppendLine("Параметры авторизации не установленны");
 		} else

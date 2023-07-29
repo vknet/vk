@@ -7,7 +7,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IPlacesCategory" />
 public partial class PlacesCategory
 {
 	/// <inheritdoc />

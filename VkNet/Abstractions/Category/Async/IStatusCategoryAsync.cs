@@ -21,7 +21,7 @@ public interface IStatusCategoryAsync
 	/// число (Положительное
 	/// число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха возвращается статус пользователдя или сообщества.
 	/// </returns>
@@ -47,7 +47,7 @@ public interface IStatusCategoryAsync
 	/// статус устанавливается
 	/// текущему пользователю.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает true, если статус был успешно установлен, false в
 	/// противном случае.

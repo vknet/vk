@@ -4,7 +4,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IFaveCategory" />
 public partial class FaveCategory
 {
 	/// <inheritdoc />

@@ -32,7 +32,7 @@ public static class PerformanceActivator
 	/// <summary>
 	/// Создать экземпляр объекта
 	/// </summary>
-	/// <param name="obj"></param>
+	/// <param name="obj">Исходный объект</param>
 	/// <param name="constructorFilter">Фильтр конструктора объекта</param>
 	/// <param name="args">Параметры конструктора</param>
 	/// <typeparam name="TResult">Возвращаемый тип</typeparam>
@@ -43,7 +43,7 @@ public static class PerformanceActivator
 		var ctor = obj.GetConstructors()
 			.FirstOrDefault(constructorFilter);
 
-		if (ctor == null)
+		if (ctor is null)
 		{
 			return null;
 		}

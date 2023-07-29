@@ -25,23 +25,26 @@ public class SafetyEnumJsonConverter : Newtonsoft.Json.JsonConverter
 	/// <param name="objectType"> CLR тип десериализуемого объекта </param>
 	/// <param name="existingValue"> Значение </param>
 	/// <param name="serializer"> Сериализатор </param>
+	/// <returns>
+	/// SafetyEnum
+	/// </returns>
 	public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 	{
-		if (reader.TokenType == JsonToken.Null)
+		if (reader.TokenType is JsonToken.Null)
 		{
 			return null;
 		}
 
 		var value = reader.Value;
 
-		if (value == null)
+		if (value is null)
 		{
-			if (reader.TokenType == JsonToken.StartObject)
+			if (reader.TokenType is JsonToken.StartObject)
 			{
 				reader.Read();
 			}
 
-			if (reader.TokenType == JsonToken.PropertyName)
+			if (reader.TokenType is JsonToken.PropertyName)
 			{
 				reader.Read();
 			}
@@ -71,7 +74,7 @@ public class SafetyEnumJsonConverter : Newtonsoft.Json.JsonConverter
 		var fields = result?.GetType()
 			.GetFields();
 
-		if (fields == null)
+		if (fields is null)
 		{
 			return null;
 		}

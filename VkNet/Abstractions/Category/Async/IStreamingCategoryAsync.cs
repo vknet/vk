@@ -15,7 +15,7 @@ public interface IStreamingCategoryAsync
 	/// <summary>
 	/// Позволяет получить данные для подключения к Streaming API.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// endpoint (string) — хост для подключения к серверу;
@@ -30,7 +30,7 @@ public interface IStreamingCategoryAsync
 	/// <summary>
 	/// Позволяет получить значение порога для Streaming API.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект с единственным полем monthly_limit (string), которое содержит
 	/// значение tier_1-tier_6 или
@@ -66,7 +66,7 @@ public interface IStreamingCategoryAsync
 	/// Время окончания отсчёта в Unixtime. По умолчанию: текущее время. положительное
 	/// число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов, каждый из которых содержит поля:
 	/// event_type (string) — тип событий. Возможные значения:
@@ -93,7 +93,7 @@ public interface IStreamingCategoryAsync
 	/// <param name="monthlyTier">
 	/// Значение порога в месяц. Возможные значения:
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -107,7 +107,7 @@ public interface IStreamingCategoryAsync
 	/// Позволяет получить основу слова.
 	/// </summary>
 	/// <param name="word">слово, основу которого нужно получить</param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>Основа слова</returns>
 	Task<string> GetStemAsync(string word,
 							CancellationToken token = default);

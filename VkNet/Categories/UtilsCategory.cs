@@ -6,15 +6,14 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IUtilsCategory" />
 public partial class UtilsCategory : IUtilsCategory
 {
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// Api vk.com
+	/// Инициализирует новый экземпляр класса <see cref="UtilsCategory" />
 	/// </summary>
-	/// <param name="vk"> </param>
 	public UtilsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />

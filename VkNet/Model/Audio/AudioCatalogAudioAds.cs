@@ -22,19 +22,19 @@ public class AudioCatalogAudioAds
 	public string Duration { get; set; }
 
 	/// <summary>
-	///
+	/// Тип возрастной группы пользователей
 	/// </summary>
 	[JsonProperty("account_age_type")]
 	public string AccountAgeType { get; set; }
 
 	/// <summary>
-	///
+	/// Идентификатор
 	/// </summary>
 	[JsonProperty("puid1")]
 	public int Puid1 { get; set; }
 
 	/// <summary>
-	///
+	/// Идентификатор
 	/// </summary>
 	[JsonProperty("puid22")]
 	public long Puid22 { get; set; }

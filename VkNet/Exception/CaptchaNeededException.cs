@@ -17,7 +17,7 @@ public sealed class CaptchaNeededException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	public CaptchaNeededException(VkError response) : base(response)
 	{
-		if (response == null)
+		if (response is null)
 		{
 			return;
 		}

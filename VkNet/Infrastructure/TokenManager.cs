@@ -2,7 +2,7 @@ using System;
 
 namespace VkNet.Infrastructure;
 
-/// <inheritdoc />
+/// <inheritdoc cref="ITokenManager" />
 public class TokenManager : ITokenManager
 {
 	/// <inheritdoc />

@@ -22,12 +22,6 @@ public class RateLimiter : IRateLimiter
 	public RateLimiter(IAwaitableConstraint awaitableConstraint) => _awaitableConstraint = awaitableConstraint;
 
 	/// <inheritdoc />
-	public Task Perform(Func<Task> perform) => Perform(perform, CancellationToken.None);
-
-	/// <inheritdoc />
-	public Task<T> Perform<T>(Func<Task<T>> perform) => Perform(perform, CancellationToken.None);
-
-	/// <inheritdoc />
 	public async Task Perform(Func<Task> perform, CancellationToken cancellationToken)
 	{
 		cancellationToken.ThrowIfCancellationRequested();
@@ -59,22 +53,6 @@ public class RateLimiter : IRateLimiter
 		var transformed = Transform(perform);
 
 		return Perform(transformed, cancellationToken);
-	}
-
-	/// <inheritdoc />
-	public Task Perform(Action perform)
-	{
-		var transformed = Transform(perform);
-
-		return Perform(transformed);
-	}
-
-	/// <inheritdoc />
-	public Task<T> Perform<T>(Func<T> perform)
-	{
-		var transformed = Transform(perform);
-
-		return Perform(transformed);
 	}
 
 	/// <inheritdoc />

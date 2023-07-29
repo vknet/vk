@@ -5,9 +5,7 @@ using VkNet.Model;
 
 namespace VkNet.Utils.JsonConverter;
 
-/// <summary>
-///
-/// </summary>
+/// <inheritdoc cref="JsonConverter" />
 public class HistoryAttachmentJsonConverter : Newtonsoft.Json.JsonConverter
 {
 	/// <inheritdoc />
@@ -40,12 +38,12 @@ public class HistoryAttachmentJsonConverter : Newtonsoft.Json.JsonConverter
 			throw new TypeAccessException();
 		}
 
-		if (reader.TokenType == JsonToken.Null)
+		if (reader.TokenType is JsonToken.Null)
 		{
 			return null;
 		}
 
-		if (reader.TokenType != JsonToken.StartObject)
+		if (reader.TokenType is not JsonToken.StartObject)
 		{
 			return null;
 		}

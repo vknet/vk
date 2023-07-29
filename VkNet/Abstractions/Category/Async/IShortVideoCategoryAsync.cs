@@ -19,6 +19,7 @@ public interface IShortVideoCategoryAsync
 	/// <param name="groupId">ID группы, если нужно выкладывать от имени группы</param>
 	/// <param name="wallPost">Нужно ли выкладывать клип на стену</param>
 	/// <returns>
+	/// В случае успеха возвращает ссылку для загрузки
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/shortVideo.create

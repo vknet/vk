@@ -36,7 +36,6 @@ public class Place
 	[JsonProperty("longitude")]
 	public double? Longitude { get; set; }
 
-
 	/// <summary>
 	/// Идентификатор страны, название которой можно получить с помощью метода
 	/// DatabaseCategory.GetCountriesById
@@ -114,13 +113,13 @@ public class Place
 	public long? Distance { get; set; }
 
 	/// <summary>
-	///
+	/// Идентификатор группы
 	/// </summary>
 	[JsonProperty("group_id")]
 	public long? GroupId { get; set; }
 
 	/// <summary>
-	///
+	/// Ссылка на фото группы
 	/// </summary>
 	[JsonProperty("group_photo")]
 	public Uri GroupPhoto { get; set; }

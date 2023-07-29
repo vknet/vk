@@ -5,8 +5,8 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
-public partial class BoardCategory
+/// <inheritdoc cref="IBoardCategory" />
+internal partial class BoardCategory
 {
 	/// <inheritdoc />
 	public Task<VkCollection<Topic>> GetTopicsAsync(BoardGetTopicsParams @params,

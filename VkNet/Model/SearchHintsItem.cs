@@ -7,6 +7,7 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Model;
 
 /// <summary>
+/// Элемент подсказки поиска
 /// </summary>
 [Serializable]
 public class SearchHintsItem

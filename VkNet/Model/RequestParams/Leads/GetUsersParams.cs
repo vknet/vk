@@ -5,6 +5,7 @@ using VkNet.Enums;
 namespace VkNet.Model;
 
 /// <summary>
+/// Параметры запроса на получение списка пользователей
 /// </summary>
 [Serializable]
 public class GetUsersParams

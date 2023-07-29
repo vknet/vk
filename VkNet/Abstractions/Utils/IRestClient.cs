@@ -16,20 +16,22 @@ public interface IRestClient : IDisposable
 	/// Get request
 	/// </summary>
 	/// <param name="uri"> Uri </param>
-	/// <param name="parameters"> </param>
-	/// <param name="encoding"></param>
-	/// <param name="token"></param>
+	/// <param name="parameters">Параметры </param>
+	/// <param name="encoding">Кодировка</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> String result </returns>
-	Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding, CancellationToken token = default);
+	Task<HttpResponse<string>> GetAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding,
+										CancellationToken token = default);
 
 	/// <summary>
 	/// POST запрос
 	/// </summary>
 	/// <param name="uri"> Uri </param>
 	/// <param name="parameters"> Параметры </param>
-	/// <param name="encoding"></param>
+	/// <param name="encoding">Кодировка</param>
 	/// <param name="headers"> Заголовки </param>
-	/// <param name="token"></param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Строковый результат </returns>
-	Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding, IEnumerable<KeyValuePair<string, string>> headers = null, CancellationToken token = default);
+	Task<HttpResponse<string>> PostAsync(Uri uri, IEnumerable<KeyValuePair<string, string>> parameters, Encoding encoding,
+										IEnumerable<KeyValuePair<string, string>> headers = null, CancellationToken token = default);
 }
