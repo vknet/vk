@@ -121,7 +121,7 @@ public class ImplicitFlow : IImplicitFlow
 
 		var resultUrl = Url.Combine(url, Url.QueryFrom(vkAuthParams.ToArray()));
 
-		return new(resultUrl);
+		return new(Uri.UnescapeDataString(resultUrl));
 	}
 
 	private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult, CancellationToken token)
