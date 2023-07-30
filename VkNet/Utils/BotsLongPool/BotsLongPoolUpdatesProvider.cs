@@ -1,6 +1,5 @@
 #nullable enable
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -47,35 +46,6 @@ public class BotsLongPoolUpdatesProvider
 		}
 	}
 
-	/// <summary>
-	///  Метод для получения обновлений группы из массива JObject
-	/// </summary>
-	/// <param name="response">События</param>
-	/// <returns>
-	/// Возвращает перечисление с GroupUpdate
-	/// </returns>
-	private IEnumerable<GroupUpdate> GetGroupUpdates(BotsLongPollHistoryResponse<JObject> response)
-	{
-		var updatesAndErrors = BotsLongPoolHelpers.GetGroupUpdatesAndErrors(response.Updates);
-
-		for (var index = 0; index < updatesAndErrors.Count; index++)
-		{
-			var (update, exception) = updatesAndErrors[index];
-
-			if (update is not null)
-			{
-				yield return update;
-
-				continue;
-			}
-
-			if (exception is not null && _params.OnGetGroupUpdateException is not null)
-			{
-				_params.OnGetGroupUpdateException(response, index, exception);
-			}
-		}
-	}
-
 	private async Task NextLongPoolHistoryAsync(CancellationToken token = default)
 	{
 		try
@@ -105,7 +75,7 @@ public class BotsLongPoolUpdatesProvider
 				_lpResponse.Ts = response.Ts;
 			}
 
-			var updates = GetGroupUpdates(response)
+			var updates = BotsLongPoolHelpers.GetGroupUpdateEvents(response.Updates)
 				.ToList();
 
 			if (!updates.Any())

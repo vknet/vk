@@ -34,15 +34,9 @@ public class BotsLongPoolUpdatesProviderParams
 	public Action<System.Exception>? OnException = null;
 
 	/// <summary>
-	/// Ошибки при получении конкретного события из response.
-	/// Первый параметр - response, второй - индекс события, третий - ошибка.
-	/// </summary>
-	public Action<BotsLongPollHistoryResponse<JObject>, int, System.Exception>? OnGetGroupUpdateException = null;
-
-	/// <summary>
 	/// Функция, в которую будут отправлены полученные события. Первый параметр - response, Второй - updates.
 	/// </summary>
-	public Action<BotsLongPollHistoryResponse<JObject>, List<GroupUpdate>>? OnUpdates = null;
+	public Action<BotsLongPollHistoryResponse<JObject>, List<GroupUpdateEvent>>? OnUpdates = null;
 
 	/// <summary>
 	/// Функция, в которую будут отправлены незначительные или временные ошибки (например - SocketException или ошибки связанные с интернетом или с доступом к ВКонтакте)
@@ -50,7 +44,7 @@ public class BotsLongPoolUpdatesProviderParams
 	public Action<System.Exception>? OnWarn = null;
 
 	/// <summary>
-	/// / Функция, которая возвращает true, если работа лонгпула должна быть приостановлена
+	/// Функция, которая возвращает true, если работа лонгпула должна быть приостановлена
 	/// Понадобится, когда вы безопасно завершаете работу приложения или просто захотите временно остановить бота и не потерять последние события.
 	/// </summary>
 	public Func<bool>? GetPause = null;
