@@ -34,7 +34,7 @@ public class BotsLongPoolUpdatesProviderParams
 	public Action<System.Exception>? OnException = null;
 
 	/// <summary>
-	/// Функция, в которую будут отправлены полученные события. Первый параметр - response, Второй - updates.
+	/// Функция, в которую будут отправлены полученные события.
 	/// </summary>
 	public Action<BotsLongPoolOnUpdatesEvent>? OnUpdates = null;
 
