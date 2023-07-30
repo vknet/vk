@@ -145,7 +145,7 @@ public class BotsLongPoolUpdatesProvider
 				return;
 
 			default:
-				_params.OnWarn?.Invoke(ex);
+				_params.OnException?.Invoke(ex);
 
 				break;
 		}
