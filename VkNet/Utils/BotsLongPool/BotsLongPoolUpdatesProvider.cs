@@ -173,13 +173,7 @@ public class BotsLongPoolUpdatesProvider
 			default:
 				try
 				{
-					var ts = _lpResponse?.Ts;
-					_lpResponse = await _params.Api.Groups.GetLongPollServerAsync(_params.GroupId, token);
-
-					if (ts is not null)
-					{
-						_lpResponse.Ts = ts;
-					}
+					await UpdateLongPoolServerAsync(false, token);
 				}
 				catch (System.Exception ex)
 				{
@@ -200,7 +194,7 @@ public class BotsLongPoolUpdatesProvider
 		_lpResponse.Ts = $"{long.Parse(_lpResponse.Ts) + 1}";
 	}
 
-	private async Task UpdateLongPoolServerAsync(bool isInit = false, CancellationToken token = default)
+	private async Task UpdateLongPoolServerAsync(bool isInit, CancellationToken token = default)
 	{
 		try
 		{
