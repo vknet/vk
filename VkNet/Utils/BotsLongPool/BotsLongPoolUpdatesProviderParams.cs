@@ -45,12 +45,7 @@ public class BotsLongPoolUpdatesProviderParams
 	public Action<BotsLongPollHistoryResponse<JObject>, List<GroupUpdate>>? OnUpdates = null;
 
 	/// <summary>
-	/// Функция, в которую будут отправлены ошибки связанные с интернетом или с доступом к ВКонтакте
-	/// </summary>
-	public Action<System.Exception>? OnHttpOrServerError = null;
-
-	/// <summary>
-	/// Функция, в которую будут отправлены незначительные или временные ошибки (например - SocketException)
+	/// Функция, в которую будут отправлены незначительные или временные ошибки (например - SocketException или ошибки связанные с интернетом или с доступом к ВКонтакте)
 	/// </summary>
 	public Action<System.Exception>? OnWarn = null;
 

@@ -137,7 +137,7 @@ public class BotsLongPoolUpdatesProvider
 				return;
 
 			case HttpRequestException or PublicServerErrorException:
-				_params.OnHttpOrServerError?.Invoke(ex);
+				_params.OnWarn?.Invoke(ex);
 
 				return;
 
