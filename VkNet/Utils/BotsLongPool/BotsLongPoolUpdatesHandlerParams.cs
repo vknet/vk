@@ -1,51 +1,74 @@
 #nullable enable
 using System;
-using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
+using JetBrains.Annotations;
 using VkNet.Abstractions;
-using VkNet.Model;
 
 namespace VkNet.Utils.BotsLongPool;
 
 /// <summary>
 /// Параметры для конструктора BotsLongPoolUpdatesProvider
 /// </summary>
-public class BotsLongPoolUpdatesProviderParams
+[UsedImplicitly]
+public class BotsLongPoolUpdatesHandlerParams
 {
 	/// <summary>
 	/// ID вашего бота (группы)
 	/// </summary>
-	public ulong GroupId;
+	public ulong GroupId { get; set; }
 
 	/// <summary>
 	/// Номер, с которого начинать получать события.
 	/// Рекомендуется помещать сюда значение из response.Ts в функции OnUpdates.
 	/// </summary>
-	public string? Ts = null;
+	public ulong? Ts { get; set; } = null;
 
 	/// <summary>
 	/// Авторизованный экземпляр VKApi.
 	/// </summary>
-	public IVkApi Api;
+	public IVkApi Api { get; set; }
+
+	/// <summary>
+	/// Инициализирует новый экземпляр класса <see cref="BotsLongPoolUpdatesHandlerParams" />
+	/// </summary>
+	public BotsLongPoolUpdatesHandlerParams(IVkApi api, ulong groupId)
+	{
+		Api = api;
+		GroupId = groupId;
+	}
 
 	/// <summary>
 	/// Эта функция вызывается при критических ошибках в лонгпуле (например JsonSerializationException)
 	/// </summary>
-	public Action<System.Exception>? OnException = null;
+	public Action<System.Exception>? OnException { get; set; } = null;
 
 	/// <summary>
 	/// Функция, в которую будут отправлены полученные события.
 	/// </summary>
-	public Action<BotsLongPoolOnUpdatesEvent>? OnUpdates = null;
+	public Action<BotsLongPoolOnUpdatesEvent>? OnUpdates { get; set; } = null;
 
 	/// <summary>
 	/// Функция, в которую будут отправлены незначительные или временные ошибки (например - SocketException или ошибки связанные с интернетом или с доступом к ВКонтакте)
 	/// </summary>
-	public Action<System.Exception>? OnWarn = null;
+	public Action<System.Exception>? OnWarn { get; set; } = null;
 
 	/// <summary>
 	/// Функция, которая возвращает true, если работа лонгпула должна быть приостановлена
 	/// Понадобится, когда вы безопасно завершаете работу приложения или просто захотите временно остановить бота и не потерять последние события.
 	/// </summary>
-	public Func<bool>? GetPause = null;
+	public Func<bool>? GetPause { get; set; } = null;
+
+	/// <summary>
+	/// Ожидание между обработкой событий
+	/// </summary>
+	public TimeSpan DelayBetweenUpdates { get; set; } = TimeSpan.FromSeconds(1);
+
+	/// <summary>
+	/// Время ожидания последнего события
+	/// </summary>
+	public int WaitTimeout { get; set; } = 25;
+
+	/// <summary>
+	/// Максимальное разница между событиями
+	/// </summary>
+	public int MaxDifferenceTs { get; set; } = 500_000;
 }
