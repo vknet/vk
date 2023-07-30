@@ -34,8 +34,6 @@ public class BotsLongPoolUpdatesProvider
 	/// <param name="token">Токен отмены операции</param>
 	public async Task RunAsync(CancellationToken token = default)
 	{
-		await UpdateLongPoolServerAsync(true, token);
-
 		while (true)
 		{
 			while (_params.GetPause?.Invoke() is not true)
@@ -52,7 +50,12 @@ public class BotsLongPoolUpdatesProvider
 		{
 			if (_lpResponse is null)
 			{
-				throw new($"{nameof(_lpResponse)} is null");
+				await UpdateLongPoolServerAsync(true, token);
+
+				if (_lpResponse is null)
+				{
+					throw new($"{nameof(_lpResponse)} is null");
+				}
 			}
 
 			var response = await _params.Api.Groups.GetBotsLongPollHistoryAsync<BotsLongPollHistoryResponse<JObject>>(new()
