@@ -72,6 +72,7 @@ public class BotsLongPoolUpdatesProvider
 			// если ВК внезапно пришлёт старый номер события, то мы его проигнорим и прибавим 1 к ts
 			if (currentTs <= prevTs && Math.Abs(currentTs - prevTs) <= 500_000)
 			{
+				_params.OnWarn?.Invoke(new($"ВКонтакте прислал устаревший ts. Текущий ts: {currentTs}. Прошлый ts: {prevTs}."));
 				IncTs();
 			} else
 			{
