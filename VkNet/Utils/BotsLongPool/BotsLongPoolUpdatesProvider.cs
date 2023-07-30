@@ -86,7 +86,11 @@ public class BotsLongPoolUpdatesProvider
 				return;
 			}
 
-			_params.OnUpdates?.Invoke(response, updates);
+			_params.OnUpdates?.Invoke(new()
+			{
+				Response = response,
+				Updates = updates
+			});
 		}
 		catch (System.Exception ex)
 		{

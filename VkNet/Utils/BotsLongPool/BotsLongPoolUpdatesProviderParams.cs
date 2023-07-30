@@ -36,7 +36,7 @@ public class BotsLongPoolUpdatesProviderParams
 	/// <summary>
 	/// Функция, в которую будут отправлены полученные события. Первый параметр - response, Второй - updates.
 	/// </summary>
-	public Action<BotsLongPollHistoryResponse<JObject>, List<GroupUpdateEvent>>? OnUpdates = null;
+	public Action<BotsLongPoolOnUpdatesEvent>? OnUpdates = null;
 
 	/// <summary>
 	/// Функция, в которую будут отправлены незначительные или временные ошибки (например - SocketException или ошибки связанные с интернетом или с доступом к ВКонтакте)
