@@ -58,7 +58,7 @@ public class BotsLongPoolUpdatesHandlerParams
 	public Func<bool>? GetPause { get; set; } = null;
 
 	/// <summary>
-	/// Ожидание между обработкой событий
+	/// Ожидание между обработкой событий при простое
 	/// </summary>
 	public TimeSpan DelayBetweenUpdates { get; set; } = TimeSpan.FromSeconds(1);
 
@@ -68,7 +68,7 @@ public class BotsLongPoolUpdatesHandlerParams
 	public int WaitTimeout { get; set; } = 25;
 
 	/// <summary>
-	/// Максимальное разница между событиями
+	/// Максимальная разница между событиями
 	/// </summary>
 	public int MaxDifferenceTs { get; set; } = 500_000;
 }
