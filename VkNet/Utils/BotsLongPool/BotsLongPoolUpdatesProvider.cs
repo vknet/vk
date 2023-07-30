@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Exception;
@@ -16,6 +17,7 @@ namespace VkNet.Utils.BotsLongPool;
 /// <summary>
 /// Реализация лонгпула для бота в сообществе
 /// </summary>
+[UsedImplicitly]
 public class BotsLongPoolUpdatesProvider
 {
 	private readonly BotsLongPoolUpdatesProviderParams _params;
@@ -23,15 +25,13 @@ public class BotsLongPoolUpdatesProvider
 	private LongPollServerResponse? _lpResponse;
 
 	/// <param name="params">Параметры группового лонгпула</param>
-	public BotsLongPoolUpdatesProvider(BotsLongPoolUpdatesProviderParams @params)
-	{
-		_params = @params;
-	}
+	public BotsLongPoolUpdatesProvider(BotsLongPoolUpdatesProviderParams @params) => _params = @params;
 
 	/// <summary>
 	/// Запуск отслеживания событий
 	/// </summary>
 	/// <param name="token">Токен отмены операции</param>
+	[UsedImplicitly]
 	public async Task RunAsync(CancellationToken token = default)
 	{
 		while (true)
