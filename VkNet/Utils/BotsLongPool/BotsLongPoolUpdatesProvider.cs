@@ -157,16 +157,6 @@ public class BotsLongPoolUpdatesProvider
 		}
 	}
 
-	private void IncTs()
-	{
-		if (_lpResponse is null)
-		{
-			throw new($"{nameof(_lpResponse)} is null");
-		}
-
-		_lpResponse.Ts = $"{long.Parse(_lpResponse.Ts) + 1}";
-	}
-
 	private async Task UpdateLongPoolServerAsync(bool isInit, CancellationToken token = default)
 	{
 		try
@@ -186,5 +176,21 @@ public class BotsLongPoolUpdatesProvider
 		{
 			await HandleException(ex, token);
 		}
+	}
+
+	/// <summary>
+	/// Увеличить текущий номер события на 1. Это нужно в том случае, если ВК чудит, например - присылает старый номер TS.
+	/// А так же это пригодится, если вылезет ошибка JsonSerializationException.
+	/// В таком случае мы не сможем получить новый TS и только прибавив 1 мы сможем получить следующий массив обновлений без текущей ошибки.
+	/// </summary>
+	/// <exception cref="Exception">Этот метод может быть вызван только после вызова UpdateLongPoolServerAsync</exception>
+	private void IncTs()
+	{
+		if (_lpResponse is null)
+		{
+			throw new($"{nameof(_lpResponse)} is null");
+		}
+
+		_lpResponse.Ts = $"{long.Parse(_lpResponse.Ts) + 1}";
 	}
 }
