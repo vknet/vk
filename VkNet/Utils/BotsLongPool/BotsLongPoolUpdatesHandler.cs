@@ -78,6 +78,12 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 				Wait = _params.WaitTimeout
 			}, token);
 
+			// если обновлений нет и ts не изменился - игнорируем
+			if (!response.Updates.Any() && response.Ts == _currentTs)
+			{
+				return;
+			}
+
 			var previousTs = _currentTs;
 			var currentTs = response.Ts;
 
@@ -89,7 +95,7 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 				IncTs();
 			} else
 			{
-				_currentTs = currentTs;
+				SetTs(currentTs);
 			}
 
 			var updates = BotsLongPoolHelpers.GetGroupUpdateEvents(response.Updates);
@@ -156,7 +162,7 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 					throw new($"{nameof(_currentTs)} is null");
 				}
 
-				_currentTs = outdatedException.Ts;
+				SetTs(outdatedException.Ts);
 
 				break;
 
@@ -182,7 +188,7 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 
 			_currentSessionKey = response.Key;
 			_currentServer = response.Server;
-			_currentTs = _params.Ts ?? response.Ts;
+			SetTs(_params.Ts ?? response.Ts);
 		}
 		catch (System.Exception ex)
 		{
@@ -197,12 +203,22 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 			var response = await _params.Api.Groups.GetLongPollServerAsync(_params.GroupId, token);
 			_currentSessionKey = response.Key;
 			_currentServer = response.Server;
-			_currentTs ??= response.Ts;
+
+			if (_currentTs is null)
+			{
+				SetTs(response.Ts);
+			}
 		}
 		catch (System.Exception ex)
 		{
 			await HandleExceptionAsync(ex, token);
 		}
+	}
+
+	private void SetTs(ulong ts)
+	{
+		_currentTs = ts;
+		_params.OnTsChange?.Invoke(_currentTs.Value);
 	}
 
 	/// <summary>
@@ -218,6 +234,6 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 			throw new($"{nameof(_currentTs)} is null");
 		}
 
-		_currentTs++;
+		SetTs(_currentTs.Value + 1);
 	}
 }
