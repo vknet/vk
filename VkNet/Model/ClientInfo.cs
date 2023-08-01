@@ -16,7 +16,7 @@ public class ClientInfo
 	/// Массив кнопок, которые поддерживает клиент.
 	/// </summary>
 	[JsonProperty("button_actions")]
-	public IEnumerable<KeyboardButtonActionType> ButtonActions { get; set; }
+	public KeyboardButtonActionType[] ButtonActions { get; set; }
 
 	/// <summary>
 	/// Поддерживается ли клавиатура ботов клиентом.

@@ -74,6 +74,11 @@ public class VkApi : IVkApi
 	/// </summary>
 	private ILogger<VkApi> _logger;
 
+	/// <summary>
+	/// Обработчик ошибок десериализации
+	/// </summary>
+	public bool? DeserializationErrorHandler { get; set; }
+
 	#pragma warning disable S1104 // Fields should not have public accessibility
 	/// <summary>
 	/// Rest Client
@@ -270,13 +275,25 @@ public class VkApi : IVkApi
 	{
 		var answer = CallBase(methodName, parameters, skipAuthorization);
 
+		var replacementsConverters = new KeyValuePair<(Type type, string name), JsonConverter?> []
+		{
+			new((typeof(bool), nameof(DeserializationErrorHandler)),
+				new TolerantStringEnumConverter(DeserializationErrorHandler)),
+		};
+		var resolver = new ConverterReplacingContractResolver(replacementsConverters)
+		{
+			NamingStrategy = new SnakeCaseNamingStrategy()
+		};
+
+		JsonConvert.DefaultSettings = () => new()
+		{
+			ContractResolver = resolver
+		};
+
 		var settings = new JsonSerializerSettings
 		{
 			Converters = new List<JsonConverter>(),
-			ContractResolver = new DefaultContractResolver
-			{
-				NamingStrategy = new SnakeCaseNamingStrategy()
-			},
+			ContractResolver = resolver,
 			MaxDepth = null,
 			ReferenceLoopHandling = ReferenceLoopHandling.Ignore
 		};
