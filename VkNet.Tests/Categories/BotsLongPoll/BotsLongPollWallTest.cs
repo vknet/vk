@@ -19,7 +19,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -66,7 +66,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -118,7 +118,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -167,7 +167,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -217,7 +217,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 

@@ -16,7 +16,7 @@ public class BotsLongPollHistoryParams
 	/// <summary>
 	/// Последние полученое событие
 	/// </summary>
-	public string Ts { get; set; }
+	public ulong Ts { get; set; }
 
 	/// <summary>
 	/// Ключ сессии

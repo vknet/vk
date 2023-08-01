@@ -16,7 +16,7 @@ public class BotsLongPollFailed : BotsLongPollBaseTest
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = "0",
+				Ts = 0,
 				Wait = 10
 			}))
 			.Should()
@@ -29,13 +29,13 @@ public class BotsLongPollFailed : BotsLongPollBaseTest
 		Url = "https://vk.com";
 		ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed1Ts));
 
-		const string ts = "10";
+		const ulong ts = 10;
 
 		FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new()
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = "0",
+				Ts = 0,
 				Wait = 10
 			}))
 			.Should()
@@ -54,7 +54,7 @@ public class BotsLongPollFailed : BotsLongPollBaseTest
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = "0",
+				Ts = 0,
 				Wait = 10
 			}))
 			.Should()
@@ -71,7 +71,7 @@ public class BotsLongPollFailed : BotsLongPollBaseTest
 			{
 				Key = "test",
 				Server = "https://vk.com",
-				Ts = "0",
+				Ts = 0,
 				Wait = 10
 			}))
 			.Should()

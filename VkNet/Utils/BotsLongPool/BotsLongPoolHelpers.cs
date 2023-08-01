@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using VkNet.Model;
 
-namespace VkNet.Utils;
+namespace VkNet.Utils.BotsLongPool;
 
 /// <summary>
 /// Методы для обработки событий лонгпула у сообществ.
 /// </summary>
-public static class GroupLongPoolHelpers
+public static class BotsLongPoolHelpers
 {
-
 	/// <summary>
 	/// Метод для получения обновлений группы из массива JObject, который не бросает исключений, но вместе с обновлениями возвращает ошибки при десериализации, если таковые имеются.
 	/// </summary>
@@ -18,20 +17,29 @@ public static class GroupLongPoolHelpers
 	/// <returns>
 	/// Возвращает список обновлений группы
 	/// </returns>
-	public static List<(GroupUpdate? Update, System.Exception? Exception)> GetGroupUpdatesAndErrors(List<JObject> jObjectUpdates)
+	public static List<GroupUpdateEvent> GetGroupUpdateEvents(List<JObject> jObjectUpdates)
 	{
-		var updates = new List<(GroupUpdate? Update, System.Exception? Exception)>();
+		var updates = new List<GroupUpdateEvent>();
 
 		foreach (var jObjectUpdate in jObjectUpdates)
 		{
 			try
 			{
 				var update = jObjectUpdate.ToObject<GroupUpdate>();
-				updates.Add((Update: update, Exception: null));
+
+				updates.Add(new()
+				{
+					Update = update,
+					RawUpdate = jObjectUpdate
+				});
 			}
 			catch (System.Exception ex)
 			{
-				updates.Add((Update: null, Exception: ex));
+				updates.Add(new()
+				{
+					Exception = ex,
+					RawUpdate = jObjectUpdate
+				});
 			}
 		}
 

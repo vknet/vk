@@ -760,7 +760,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be("im46.vk.com/im1858");
 
 		response.Ts.Should()
-			.Be("1627957305");
+			.Be(1627957305);
 	}
 
 	[Fact]
