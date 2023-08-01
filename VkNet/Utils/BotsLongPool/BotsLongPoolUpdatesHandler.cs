@@ -78,33 +78,14 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 				Wait = _params.WaitTimeout
 			}, token);
 
-			// если обновлений нет и ts не изменился - игнорируем
-			if (!response.Updates.Any() && response.Ts == _currentTs)
+			// если обновлений нет - игнорируем
+			if (!response.Updates.Any())
 			{
 				return;
 			}
 
-			var previousTs = _currentTs;
-			var currentTs = response.Ts;
-
-			// если ВК внезапно пришлёт старый номер события, то мы его проигнорим и прибавим 1 к ts
-			if (currentTs <= previousTs && Math.Abs((long) (currentTs - previousTs.Value)) <= _params.MaxDifferenceTs)
-			{
-				_params.OnWarn?.Invoke(new($"ВКонтакте прислал устаревший ts. Текущий ts: {currentTs}. Прошлый ts: {previousTs}."));
-
-				IncTs();
-			} else
-			{
-				SetTs(currentTs);
-			}
-
+			SetTs(response.Ts);
 			var updates = BotsLongPoolHelpers.GetGroupUpdateEvents(response.Updates);
-
-			if (!updates.Any())
-			{
-				return;
-			}
-
 			_params.OnUpdates?.Invoke(new()
 			{
 				Response = response,

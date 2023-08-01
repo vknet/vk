@@ -47,11 +47,6 @@ public class BotsLongPoolUpdatesHandlerParams
 	public int WaitTimeout { get; set; } = 25;
 
 	/// <summary>
-	/// Максимальная разница между событиями
-	/// </summary>
-	public int MaxDifferenceTs { get; set; } = 500_000;
-
-	/// <summary>
 	/// Функция, которая возвращает true, если работа лонгпула должна быть приостановлена
 	/// Понадобится, когда вы безопасно завершаете работу приложения или просто захотите временно остановить бота и не потерять последние события.
 	/// </summary>
