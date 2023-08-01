@@ -11,12 +11,17 @@ public class EnumSkipErrorTest : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "SkipEnum";
 
-	[Fact(Skip = "Работает только с VkApi.DeserializationErrorHandler = true")]
+	[Fact]
 	public void CheckStatus()
 	{
 		Url = "https://api.vk.com/method/asr.checkStatus";
 
 		ReadCategoryJsonPath(nameof(CheckStatus));
+
+		if (Api.DeserializationErrorHandler is not true)
+		{
+			return;
+		}
 
 		var result = Api.Asr.CheckStatus("7ee0fa8e-64ac-4391-af7a-5c98a6330866");
 
@@ -30,12 +35,16 @@ public class EnumSkipErrorTest : CategoryBaseTest
 			.Be(null);
 	}
 
-	[Fact(Skip = "Работает только с VkApi.DeserializationErrorHandler = true")]
+	[Fact]
 	public void Get_CheckType()
 	{
 		Url = "https://api.vk.com/method/apps.get";
 		ReadCategoryJsonPath(nameof(Get_CheckType));
 
+		if (Api.DeserializationErrorHandler is not true)
+		{
+			return;
+		}
 
 		var app = Api.Apps.Get(new()
 		{
