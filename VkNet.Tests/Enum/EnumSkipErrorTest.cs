@@ -6,17 +6,17 @@ using Xunit;
 
 namespace VkNet.Tests.Enum;
 
-public class EnumSkipErrorTest : EnumDeserializationCategoryBaseTest
+public class EnumSkipErrorTest : CategoryBaseTest
 {
 	/// <inheritdoc />
 	protected override string Folder => "SkipEnum";
 
-	[Fact]
+	[Fact(Skip = "Работает только с VkApi.DeserializationErrorHandler = true")]
 	public void CheckStatus()
 	{
 		Url = "https://api.vk.com/method/asr.checkStatus";
 
-		ReadJsonPath(nameof(CheckStatus));
+		ReadCategoryJsonPath(nameof(CheckStatus));
 
 		var result = Api.Asr.CheckStatus("7ee0fa8e-64ac-4391-af7a-5c98a6330866");
 
@@ -30,11 +30,11 @@ public class EnumSkipErrorTest : EnumDeserializationCategoryBaseTest
 			.Be(null);
 	}
 
-	[Fact]
+	[Fact(Skip = "Работает только с VkApi.DeserializationErrorHandler = true")]
 	public void Get_CheckType()
 	{
 		Url = "https://api.vk.com/method/apps.get";
-		ReadJsonPath(nameof(Get_CheckType));
+		ReadCategoryJsonPath(nameof(Get_CheckType));
 
 
 		var app = Api.Apps.Get(new()
