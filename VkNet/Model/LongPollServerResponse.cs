@@ -25,10 +25,10 @@ public class LongPollServerResponse
 	public string Server { get; set; }
 
 	/// <summary>
-	/// Отметка времени.
+	/// Номер последнего события, начиная с которого нужно получать данные;
 	/// </summary>
 	[JsonProperty("ts")]
-	public string Ts { get; set; }
+	public ulong Ts { get; set; }
 
 	/// <summary>
 	/// Постоянное событие для работы с методом getLongPoolHistory

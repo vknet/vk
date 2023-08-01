@@ -1210,7 +1210,7 @@ public partial class GroupsCategory : IGroupsCategory
 			}
 		}
 
-		return _vk.CallLongPoll<T>(@params.Server, parameters);
+		return JsonConvert.DeserializeObject<T>(response.RawJson);
 	}
 
 	/// <inheritdoc />
