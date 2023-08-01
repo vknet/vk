@@ -111,6 +111,7 @@ public abstract class BaseTest : IDisposable
 		Api.RestClient = Mocker.Get<IRestClient>();
 		Api.NeedValidationHandler = Mocker.Get<INeedValidationHandler>();
 		Api.CaptchaSolver = Mocker.Get<ICaptchaSolver>();
+		Api.DeserializationErrorHandler = false;
 		SetupCaptchaHandler();
 
 		Api.Authorize(Mocker.Get<IApiAuthParams>());
