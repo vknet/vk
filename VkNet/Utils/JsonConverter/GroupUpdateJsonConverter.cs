@@ -82,6 +82,7 @@ public class GroupUpdateJsonConverter : Newtonsoft.Json.JsonConverter
 				"market_order_new" => JsonConvert.DeserializeObject<MarketOrder>(resObj),
 				"market_order_edit" => JsonConvert.DeserializeObject<MarketOrder>(resObj),
 				"app_payload" => JsonConvert.DeserializeObject<AppPayload>(resObj),
+				"message_reaction_event" => JsonConvert.DeserializeObject<MessageReactionEvent>(resObj),
 				var _ => null
 			},
 			Raw = JsonConvert.DeserializeObject<VkResponse>(obj.ToString())
