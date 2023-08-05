@@ -9,7 +9,7 @@ public class MessageReactionEvent : IGroupUpdate
 {
 	/// <summary>Идентификатор события реакции.</summary>
 	[JsonProperty("reacted_id")]
-	public ulong ReactedId { get; set; }
+	public long ReactedId { get; set; }
 
 	/// <summary>Идентификатор назначения.</summary>
 	[JsonProperty("peer_id")]
