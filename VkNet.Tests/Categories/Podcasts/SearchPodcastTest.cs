@@ -1,21 +1,21 @@
-﻿using FluentAssertions;
+using FluentAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Podcasts;
 
-public class SearchTest : CategoryBaseTest
+public class SearchPodcastTest : CategoryBaseTest
 {
 	protected override string Folder => "Podcasts";
 
 	[Fact]
-	public void Search()
+	public void SearchPodcast()
 	{
-		Url = "https://api.vk.com/method/podcasts.search";
+		Url = "https://api.vk.com/method/podcasts.searchPodcast";
 
-		ReadCategoryJsonPath(nameof(Api.Podcasts.Search));
+		ReadCategoryJsonPath(nameof(Api.Podcasts.SearchPodcast));
 
-		var result = Api.Podcasts.Search(new()
+		var result = Api.Podcasts.SearchPodcast(new()
 		{
 			SearchString = "дудь",
 			Offset = 0,

@@ -35,7 +35,7 @@ public partial class PodcastsCategory : IPodcastsCategory
 		_vk.Call<ReadOnlyCollection<string>>("podcasts.getRecentSearchRequests", VkParameters.Empty);
 
 	/// <inheritdoc />
-	public PodcastsSearchResult Search(PodcastsSearchParams @params) => _vk.Call<PodcastsSearchResult>("podcasts.search", new()
+	public PodcastsSearchResult SearchPodcast(PodcastsSearchParams @params) => _vk.Call<PodcastsSearchResult>("podcasts.searchPodcast", new()
 	{
 		{
 			"search_string", @params.SearchString

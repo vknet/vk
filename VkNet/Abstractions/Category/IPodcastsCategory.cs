@@ -20,5 +20,5 @@ public interface IPodcastsCategory : IPodcastsCategoryAsync
 	ReadOnlyCollection<string> GetRecentSearchRequests();
 
 	/// <inheritdoc cref="IPodcastsCategoryAsync.SearchPodcastAsync"/>
-	PodcastsSearchResult Search(PodcastsSearchParams @params);
+	PodcastsSearchResult SearchPodcast(PodcastsSearchParams @params);
 }
