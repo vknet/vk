@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+using System;
+using System.Collections.ObjectModel;
 using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Utils;
@@ -20,13 +21,16 @@ public partial class PodcastsCategory : IPodcastsCategory
 	public PodcastsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
+	[Obsolete("This method is deprecated. Use SearchPodcast method for work with podcast")]
 	public bool ClearRecentSearches() => _vk.Call<bool>("podcasts.clearRecentSearches", VkParameters.Empty);
 
 	/// <inheritdoc />
+	[Obsolete("This method is deprecated. Use SearchPodcast method for work with podcast")]
 	public ReadOnlyCollection<PodcastsGetPopularResult> GetPopular() =>
 		_vk.Call<ReadOnlyCollection<PodcastsGetPopularResult>>("podcasts.getPopular", VkParameters.Empty);
 
 	/// <inheritdoc />
+	[Obsolete("This method is deprecated. Use SearchPodcast method for work with podcast")]
 	public ReadOnlyCollection<string> GetRecentSearchRequests() =>
 		_vk.Call<ReadOnlyCollection<string>>("podcasts.getRecentSearchRequests", VkParameters.Empty);
 
