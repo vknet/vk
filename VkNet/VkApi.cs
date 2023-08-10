@@ -276,10 +276,12 @@ public class VkApi : IVkApi
 	{
 		var answer = CallBase(methodName, parameters, skipAuthorization);
 
+		var context = new StreamingContext(StreamingContextStates.All)
+			.AddTypeData(typeof(TolerantStringEnumConverter), DeserializationErrorHandler);
+
 		JsonConvert.DefaultSettings = () => new()
 		{
-			Context = new StreamingContext(StreamingContextStates.All)
-				.AddTypeData(typeof(TolerantStringEnumConverter), DeserializationErrorHandler)
+			Context = context
 		};
 
 		var settings = new JsonSerializerSettings
@@ -289,8 +291,7 @@ public class VkApi : IVkApi
 			{
 				NamingStrategy = new SnakeCaseNamingStrategy()
 			},
-			Context = new StreamingContext(StreamingContextStates.All)
-				.AddTypeData(typeof(TolerantStringEnumConverter), DeserializationErrorHandler),
+			Context = context,
 			MaxDepth = null,
 			ReferenceLoopHandling = ReferenceLoopHandling.Ignore
 		};

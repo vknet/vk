@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
+using JetBrains.Annotations;
 
 namespace VkNet.Infrastructure;
 
@@ -19,7 +19,7 @@ public static class StreamingContextExtensions
 	/// <returns>
 	/// Контекст
 	/// </returns>
-	public static StreamingContext AddTypeData(this StreamingContext context, Type type, object? data)
+	public static StreamingContext AddTypeData(this StreamingContext context, Type type, [CanBeNull] object data)
 	{
 		var dictionary = context.Context switch
 		{
@@ -41,11 +41,9 @@ public static class StreamingContextExtensions
 	/// <returns>
 	/// Успешность получения данных
 	/// </returns>
-	public static bool TryGetTypeData(this StreamingContext context, Type type, out object? data)
+	public static bool TryGetTypeData(this StreamingContext context, Type type, [CanBeNull] out object data)
 	{
-		IStreamingContextTypeDataDictionary? dictionary = context.Context as IStreamingContextTypeDataDictionary;
-
-		if (dictionary is not null)
+		if (context.Context is IStreamingContextTypeDataDictionary dictionary)
 		{
 			return dictionary.TryGetData(type, out data);
 		}
@@ -53,40 +51,4 @@ public static class StreamingContextExtensions
 		data = null;
 		return false;
 	}
-}
-
-/// <summary>
-/// Интерфейс словаря контекста
-/// </summary>
-public interface IStreamingContextTypeDataDictionary
-{
-
-	/// <summary>
-	/// Добавить данные
-	/// </summary>
-	/// <param name="type">Тип</param>
-	/// <param name="data">Данные</param>
-	public void AddData(Type type, object? data);
-
-	/// <summary>
-	/// Попытка получения данных
-	/// </summary>
-	/// <param name="type">Тип</param>
-	/// <param name="data">Данные</param>
-	/// <returns>
-	/// Успешность получения данных
-	/// </returns>
-	public bool TryGetData(Type type, out object? data);
-}
-
-/// <inheritdoc cref="IStreamingContextTypeDataDictionary" />
-class StreamingContextTypeDataDictionary : IStreamingContextTypeDataDictionary
-{
-	readonly Dictionary<Type, object> dictionary = new ();
-
-	/// <inheritdoc />
-	public void AddData(Type type, object? data) => dictionary.Add(type, data);
-
-	/// <inheritdoc />
-	public bool TryGetData(Type type, out object? data) => dictionary.TryGetValue(type, out data);
 }
