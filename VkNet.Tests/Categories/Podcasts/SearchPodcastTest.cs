@@ -17,24 +17,64 @@ public class SearchPodcastTest : CategoryBaseTest
 
 		var result = Api.Podcasts.SearchPodcast(new()
 		{
-			SearchString = "дудь",
+			SearchString = "наука",
 			Offset = 0,
 			Count = 100
 		});
 
-		result.Should()
-			.NotBeNull();
+		result.Should().
+			NotBeNull();
 
-		result.Podcasts[0]
-			.OwnerId.Should()
-			.Be(-189167851);
+		result.ResultsTotal.
+			Should().
+			Be(32);
 
-		result.Episodes[0]
-			.Id.Should()
-			.Be(456239643);
+		result.Podcasts[0].
+			OwnerUrl.
+			Should().
+			Be("https://vk.com/science_in_palm");
 
-		result.Groups[0]
-			.Id.Should()
-			.Be(189167851);
+		result.Podcasts[0].
+			Title.
+			Should().
+			Be("Наука в Ладошке");
+
+		result.Podcasts[0].
+			Covers.
+			Sizes[0].
+			Width.
+			Should().
+			Be(640);
+
+		result.Podcasts[0].
+			Covers.
+			Sizes[0].
+			Type.
+			Should().
+			Be("a");
+
+		result.Podcasts[5].
+			Title.
+			Should().
+			Be("Наука и рок-н-ролл");
+
+		result.Podcasts[5].
+			OwnerUrl.
+			Should()
+			.Be("https://vk.com/klausius");
+
+		result.Podcasts[5].
+			Covers.
+			Sizes[1].
+			Type.
+			Should()
+			.Be("c");
+
+		result.Podcasts[5].
+			Covers.
+			Sizes[2].
+			Height.
+			Should().
+			Be(160);
 	}
 }
