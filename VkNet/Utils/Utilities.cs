@@ -215,6 +215,67 @@ public static class Utilities
 			char.ToUpperInvariant(s[0]) + s.Substring(1, s.Length - 1))
 		.Aggregate(string.Empty, (s1, s2) => s1 + s2);
 
+	private static bool? IsNullableType(Type t)
+	{
+		if (t is null)
+		{
+			return null;
+		}
+		return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>);
+	}
+
+	/// <summary>
+	/// Проверка на StringEnum
+	/// </summary>
+	/// <param name="t">Исходный тип</param>
+	/// <returns>
+	/// Признак строкового перечисления
+	/// </returns>
+	public static bool IsNullableStringEnum(Type t)
+	{
+		var isNull = IsNullableType(t.GenericTypeArguments.FirstOrDefault());
+		StringEnumAttribute myAttribute = null;
+		if (isNull is null)
+		{
+			isNull = true;
+		}
+		if(isNull is false)
+		{
+			myAttribute = (StringEnumAttribute) Attribute.GetCustomAttribute(t.GenericTypeArguments.FirstOrDefault(),
+				typeof(StringEnumAttribute));
+		}
+
+		// Get instance of the attribute.
+
+		return myAttribute is not null;
+	}
+
+	/// <summary>
+	/// Проверка на StringEnum
+	/// </summary>
+	/// <param name="t">Исходный тип</param>
+	/// <returns>
+	/// Признак строкового перечисления
+	/// </returns>
+	public static bool IsTolerantEnum(Type t)
+	{
+		var isNull = IsNullableType(t.GenericTypeArguments.FirstOrDefault());
+		JsonConverterAttribute myAttribute = null;
+		if (isNull is null)
+		{
+			isNull = true;
+		}
+		if(isNull is false)
+		{
+			myAttribute = (JsonConverterAttribute) Attribute.GetCustomAttribute(t.GenericTypeArguments.FirstOrDefault(),
+				typeof(JsonConverterAttribute));
+		}
+
+		// Get instance of the attribute.
+
+		return myAttribute is not null;
+	}
+
 	/// <summary>
 	/// Проверка на StringEnum
 	/// </summary>

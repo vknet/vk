@@ -48,7 +48,7 @@ public class VideoAds
 	/// </remarks>
 	/// </summary>
 	[JsonProperty("sections")]
-	public ReadOnlyCollection<VideoAdsSection> Sections { get; set; }
+	public VideoAdsSection[] Sections { get; set; }
 
 	/// <summary>
 	/// TODO: Undocumented
