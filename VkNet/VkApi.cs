@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -73,6 +74,11 @@ public class VkApi : IVkApi
 	/// Логгер
 	/// </summary>
 	private ILogger<VkApi> _logger;
+
+	/// <summary>
+	/// Обработчик ошибок десериализации
+	/// </summary>
+	public bool? DeserializationErrorHandler { get; set; }
 
 	#pragma warning disable S1104 // Fields should not have public accessibility
 	/// <summary>
@@ -270,13 +276,22 @@ public class VkApi : IVkApi
 	{
 		var answer = CallBase(methodName, parameters, skipAuthorization);
 
+		var context = new StreamingContext(StreamingContextStates.All)
+			.AddTypeData(typeof(TolerantStringEnumConverter), DeserializationErrorHandler);
+
+		JsonConvert.DefaultSettings = () => new()
+		{
+			Context = context
+		};
+
 		var settings = new JsonSerializerSettings
 		{
 			Converters = new List<JsonConverter>(),
-			ContractResolver = new DefaultContractResolver
+			ContractResolver = new DefaultContractResolver()
 			{
 				NamingStrategy = new SnakeCaseNamingStrategy()
 			},
+			Context = context,
 			MaxDepth = null,
 			ReferenceLoopHandling = ReferenceLoopHandling.Ignore
 		};

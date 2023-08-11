@@ -65,7 +65,7 @@ public class App
 	/// Тип приложения:.
 	/// </summary>
 	[JsonProperty("type")]
-	public AppType Type { get; set; }
+	public AppType? Type { get; set; }
 
 	/// <summary>
 	/// Категория приложения.
