@@ -53,24 +53,24 @@ public class SearchPodcastTest : CategoryBaseTest
 			Should().
 			Be("a");
 
-		result.Podcasts[5].
+		result.Podcasts[4].
 			Title.
 			Should().
-			Be("Наука и рок-н-ролл");
+			Be("Noosphere Studio | Наука");
 
-		result.Podcasts[5].
+		result.Podcasts[4].
 			OwnerUrl.
 			Should()
-			.Be("https://vk.com/klausius");
+			.Be("https://vk.com/noosphere_studio");
 
-		result.Podcasts[5].
+		result.Podcasts[4].
 			Covers.
 			Sizes[1].
 			Type.
 			Should()
 			.Be("c");
 
-		result.Podcasts[5].
+		result.Podcasts[4].
 			Covers.
 			Sizes[2].
 			Height.
