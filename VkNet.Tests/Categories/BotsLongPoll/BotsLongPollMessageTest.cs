@@ -347,7 +347,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 							.Be(1234);
 
 						a.Payload.Should()
-							.Be("{\"button\":\"add_shop_key\",\"action\":\"add_shop_key\",\"asd\":\"add_shop_key\"}");
+							.Be("{\"button\":\"Maksim Maksim\",\"action\":\"add_shop_key\",\"asd\":\"add_shop_key\"}");
 
 						break;
 					}
