@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
@@ -11,26 +11,13 @@ namespace VkNet.Model;
 public class PodcastsSearchResult
 {
 	/// <summary>
-	/// Подкасты.
+	/// Количество найденных подкастов
+	/// </summary>
+	[JsonProperty("results_total")]
+	public ulong ResultsTotal { get; set; }
+	/// <summary>
+	/// Информация о подкасте, выданная поиском
 	/// </summary>
 	[JsonProperty("podcasts")]
-	public ReadOnlyCollection<Podcast> Podcasts { get; set; }
-
-	/// <summary>
-	/// Эпизоды.
-	/// </summary>
-	[JsonProperty("episodes")]
-	public ReadOnlyCollection<Podcast> Episodes { get; set; }
-
-	/// <summary>
-	/// Профили.
-	/// </summary>
-	[JsonProperty("profiles")]
-	public ReadOnlyCollection<User> Profiles { get; set; }
-
-	/// <summary>
-	/// Группы.
-	/// </summary>
-	[JsonProperty("groups")]
-	public ReadOnlyCollection<Group> Groups { get; set; }
+	public ReadOnlyCollection<PodcastSearchInfo> Podcasts { get; set; }
 }
