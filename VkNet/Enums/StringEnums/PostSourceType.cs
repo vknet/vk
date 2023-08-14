@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.StringEnums;
 
@@ -10,7 +9,7 @@ namespace VkNet.Enums.StringEnums;
 /// type:
 /// </summary>
 [StringEnum]
-[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+[JsonConverter(typeof(TolerantStringEnumConverter))]
 public enum PostSourceType
 {
 	/// <summary>
@@ -37,7 +36,7 @@ public enum PostSourceType
 	/// Запись создана посредством отправки SMS-сообщения на специальный номер.
 	/// </summary>
 	Sms,
-	
+
 	/// <summary>
 	/// Запись создана через интерфейс мобильного приложения. //TODO: Не документирован.
 	/// </summary>

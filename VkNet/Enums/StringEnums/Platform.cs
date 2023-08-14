@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.StringEnums;
 
@@ -8,7 +7,7 @@ namespace VkNet.Enums.StringEnums;
 /// Тип платформы
 /// </summary>
 [StringEnum]
-[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+[JsonConverter(typeof(TolerantStringEnumConverter))]
 public enum Platform
 {
 	/// <summary>
