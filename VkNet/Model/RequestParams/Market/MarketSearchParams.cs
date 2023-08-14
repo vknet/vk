@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using VkNet.Enums;
 
@@ -36,11 +36,6 @@ public class MarketSearchParams
 	public long? PriceTo { get; set; }
 
 	/// <summary>
-	/// Перечисленные через запятую идентификаторы меток.
-	/// </summary>
-	public IEnumerable<long> Tags { get; set; }
-
-	/// <summary>
 	/// Вид сортировки.
 	/// </summary>
 	public ProductSort? Sort { get; set; }
@@ -66,4 +61,14 @@ public class MarketSearchParams
 	/// ''photos'''.
 	/// </summary>
 	public bool? Extended { get; set; }
+
+	/// <summary>
+	/// Фильтр по активности товара. "0" - только активные, "2" - неактивные, "0,2" - активные и неактивные
+	/// </summary>
+	public string Status { get; set; }
+
+	/// <summary>
+	/// 0 - не нужно получать дополнительные варианты товара. 1 - нужно получать доп. варианты товара
+	/// </summary>
+	public bool? NeedVariants { get; set; }
 }
