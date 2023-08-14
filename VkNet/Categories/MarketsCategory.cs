@@ -81,9 +81,6 @@ public partial class MarketsCategory : IMarketsCategory
 					"price_to", @params.PriceTo
 				},
 				{
-					"tags", @params.Tags
-				},
-				{
 					"sort", @params.Sort
 				},
 				{
@@ -97,6 +94,12 @@ public partial class MarketsCategory : IMarketsCategory
 				},
 				{
 					"extended", @params.Extended
+				},
+				{
+					"status", @params.Status
+				},
+				{
+					"need_variants", @params.NeedVariants
 				}
 			});
 
