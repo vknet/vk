@@ -50,7 +50,7 @@ public class StatsGetParams
 	/// Временные интервалы.
 	/// </summary>
 	[JsonProperty("interval")]
-	public StateInterval Interval { get; set; }
+	public StateInterval? Interval { get; set; }
 
 	/// <summary>
 	/// Количество интервалов времени.
@@ -68,7 +68,7 @@ public class StatsGetParams
 	/// Фильтр для получения данных по конкретному блоку статистики сообщества.
 	/// </summary>
 	[JsonProperty("stats_groups")]
-	public StatsGroups StatsGroups { get; set; }
+	public StatsGroups? StatsGroups { get; set; }
 
 	/// <summary>
 	/// 1 — возвращать дополнительно агрегированные данные в результатах.

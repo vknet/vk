@@ -23,7 +23,7 @@ public class AppGetParams
 	/// android, winphone, web.
 	/// </summary>
 	[JsonProperty(propertyName: "platform")]
-	public AppPlatforms Platform { get; set; }
+	public AppPlatforms? Platform { get; set; }
 
 	/// <summary>
 	/// Позволяет получить дополнительные поля: screenshots. По умолчанию возвращает
@@ -57,5 +57,5 @@ public class AppGetParams
 	/// умолчанию nom.
 	/// </summary>
 	[JsonProperty(propertyName: "name_case")]
-	public NameCase NameCase { get; set; }
+	public NameCase? NameCase { get; set; }
 }

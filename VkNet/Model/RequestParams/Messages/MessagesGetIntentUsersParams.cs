@@ -19,13 +19,13 @@ public class MessagesGetIntentUsersParams
 	/// строка, обязательный параметр
 	/// </summary>
 	[JsonProperty("intent")]
-	public MessageIntent Intent { get; set; }
+	public MessageIntent? Intent { get; set; }
 
 	/// <summary>
 	/// Падеж для склонения имени и фамилии пользователя. Возможные значения: именительный – nom, родительный – gen, дательный – dat, винительный – acc, творительный – ins, предложный – abl. По умолчанию nom. список слов, разделенных через запятую
 	/// </summary>
 	[JsonProperty("name_case")]
-	public NameCase NameCase { get; set; }
+	public NameCase? NameCase { get; set; }
 
 	/// <summary>
 	/// Список дополнительных полей профилей, которые необходимо вернуть. См. подробное описание.

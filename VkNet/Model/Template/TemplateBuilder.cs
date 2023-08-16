@@ -12,7 +12,7 @@ namespace VkNet.Model;
 public class TemplateBuilder : ITemplateBuilder
 {
 	/// <inheritdoc />
-	public TemplateType Type { get; private set; } = TemplateType.Carousel;
+	public TemplateType? Type { get; private set; } = TemplateType.Carousel;
 
 	/// <inheritdoc />
 	public List<CarouselElement> Elements { get; private set; } = new();

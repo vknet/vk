@@ -26,7 +26,7 @@ public class AppSendRequestParams
 	/// Тип запроса, может принимать значения:.
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	public AppRequestType Type { get; set; }
+	public AppRequestType? Type { get; set; }
 
 	/// <summary>
 	/// Уникальное в рамках приложения имя для каждого вида отправляемого запроса.

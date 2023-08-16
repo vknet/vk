@@ -15,7 +15,7 @@ public class GetConversationsParams
 	/// Фильтр
 	/// </summary>
 	[JsonProperty("filter")]
-	public GetConversationFilter Filter { get; set; }
+	public GetConversationFilter? Filter { get; set; }
 
 	/// <summary>
 	/// Список дополнительных полей для пользователей и сообществ.

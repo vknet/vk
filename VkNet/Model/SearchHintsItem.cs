@@ -16,7 +16,7 @@ public class SearchHintsItem
 	/// тип объекта
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	public SearchResultType Type { get; set; }
+	public SearchResultType? Type { get; set; }
 
 	/// <summary>
 	/// данные о сообществе.

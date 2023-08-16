@@ -42,7 +42,7 @@ public class VideoCatalog
 	/// предпочтительный способ отображения контента
 	/// </summary>
 	[JsonProperty(propertyName: "view")]
-	public VideoView View { get; set; }
+	public VideoView? View { get; set; }
 
 	/// <summary>
 	/// Наличие возможности скрыть блок.
@@ -54,5 +54,5 @@ public class VideoCatalog
 	/// Тип блока.
 	/// </summary>
 	[JsonProperty("type")]
-	public VideoCatalogType Type { get; set; }
+	public VideoCatalogType? Type { get; set; }
 }

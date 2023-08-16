@@ -20,20 +20,20 @@ public class PostSource
 	/// На данный момент поддерживаются следующие типы источников записи на стене.
 	/// </summary>
 	[JsonProperty("type")]
-	public PostSourceType Type { get; set; }
+	public PostSourceType? Type { get; set; }
 
 	/// <summary>
 	/// Название платформы, если оно доступно: android, iphone, wphone.
 	/// </summary>
 	[JsonProperty("platform", NullValueHandling = NullValueHandling.Ignore)]
-	public Platform Platform { get; set; }
+	public Platform? Platform { get; set; }
 
 	/// <summary>
 	/// Поле data является опциональным и содержит следующие данные в зависимости от
 	/// значения поля type:
 	/// </summary>
 	[JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
-	public PostSourceData Data { get; set; }
+	public PostSourceData? Data { get; set; }
 
 	/// <summary>
 	/// Cодержит внешнюю ссылку на ресурс, с которого была опубликована запись.

@@ -20,5 +20,5 @@ public class AudioCatalogItemMeta
 	/// Идентификатор владельца аудиозаписи.
 	/// </summary>
 	[JsonProperty("content_type")]
-	public UserOrGroupType ContentType { get; set; }
+	public UserOrGroupType? ContentType { get; set; }
 }

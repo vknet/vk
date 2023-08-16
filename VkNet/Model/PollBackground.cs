@@ -21,7 +21,7 @@ public class PollBackground
 	/// Тип фона.
 	/// </summary>
 	[JsonProperty("type")]
-	public PollBackgroundType Type { get; set; }
+	public PollBackgroundType? Type { get; set; }
 
 	/// <summary>
 	/// (для type = gradient) угол градиента по оси X.

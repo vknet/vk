@@ -29,7 +29,7 @@ public class FaveGetObject
 	/// Тип объекта, добавленного в закладки.
 	/// </summary>
 	[JsonProperty("type")]
-	public FaveType Type { get; set; }
+	public FaveType? Type { get; set; }
 
 	/// <summary>
 	/// Массив меток объекта в списке закладок.

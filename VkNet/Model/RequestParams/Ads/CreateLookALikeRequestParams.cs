@@ -26,7 +26,7 @@ public class CreateLookALikeRequestParams
 	/// Тип источника исходной аудитории.
 	/// </summary>
 	[JsonProperty("source_type")]
-	public SourceType SourceType { get; set; }
+	public SourceType? SourceType { get; set; }
 
 	/// <summary>
 	/// Идентификатор аудитории ретаргетинга.

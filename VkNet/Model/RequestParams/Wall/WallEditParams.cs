@@ -75,7 +75,7 @@ public class WallEditParams
 	/// соответствующую опцию. Например, twitter, facebook.
 	/// Параметр учитывается только при редактировании отложенной записи. строка.
 	/// </summary>
-	public IEnumerable<Services> Services { get; set; }
+	public IEnumerable<Services?> Services { get; set; }
 
 	/// <summary>
 	/// 1 — у записи, размещенной от имени сообщества будет добавлена подпись (имя

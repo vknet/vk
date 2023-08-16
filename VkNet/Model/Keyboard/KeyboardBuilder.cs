@@ -93,7 +93,7 @@ public class KeyboardBuilder : IKeyboardBuilder
 	}
 
 	/// <inheritdoc />
-	public IKeyboardBuilder AddButton(MessageKeyboardButtonAction buttonAction, KeyboardButtonColor color = default)
+	public IKeyboardBuilder AddButton(MessageKeyboardButtonAction buttonAction, KeyboardButtonColor? color = default)
 	{
 		if (buttonAction.Payload is not null)
 		{

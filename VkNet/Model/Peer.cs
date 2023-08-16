@@ -20,7 +20,7 @@ public class Peer
 	/// Тип.
 	/// </summary>
 	[JsonProperty("type")]
-	public ConversationPeerType Type { get; set; }
+	public ConversationPeerType? Type { get; set; }
 
 	/// <summary>
 	/// Локальный идентификатор назначения.

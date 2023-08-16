@@ -23,5 +23,5 @@ public class OfficeUsersAccesses
 	/// Время до следующего обновления в секундах.
 	/// </summary>
 	[JsonProperty("role")]
-	public AccessRole Role { get; set; }
+	public AccessRole? Role { get; set; }
 }

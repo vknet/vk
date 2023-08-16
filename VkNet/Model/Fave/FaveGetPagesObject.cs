@@ -22,7 +22,7 @@ public class FaveGetPagesObject
 	/// Тип страницы.
 	/// </summary>
 	[JsonProperty("type")]
-	public UserOrGroupType Type { get; set; }
+	public UserOrGroupType? Type { get; set; }
 
 	/// <summary>
 	/// Метки страницы.

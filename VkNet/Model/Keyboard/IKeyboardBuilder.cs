@@ -33,7 +33,7 @@ public interface IKeyboardBuilder
 	/// <param name="buttonAction">Действие при нажатии на кнопку</param>
 	/// <param name="color">Цвет кнопки</param>
 	/// <returns>Конструктор клавиатур</returns>
-	IKeyboardBuilder AddButton(MessageKeyboardButtonAction buttonAction, KeyboardButtonColor color = default);
+	IKeyboardBuilder AddButton(MessageKeyboardButtonAction buttonAction, KeyboardButtonColor? color = default);
 
 	/// <summary>
 	/// Добавить строку в клавиатуру

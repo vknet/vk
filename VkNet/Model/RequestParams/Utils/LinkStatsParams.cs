@@ -26,7 +26,7 @@ public class LinkStatsParams
 	/// Единица времени для подсчета статистики.
 	/// </summary>
 	[JsonProperty(propertyName: "interval")]
-	public LinkStatInterval Interval { get; set; }
+	public LinkStatInterval? Interval { get; set; }
 
 	/// <summary>
 	/// Длительность периода для получения статистики в выбранных единицах (из

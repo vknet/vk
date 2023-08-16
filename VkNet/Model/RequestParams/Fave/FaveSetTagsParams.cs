@@ -18,7 +18,7 @@ public class FaveSetTagsParams
 	/// Для работы с объектами пользователя или сообщества используйте метод fave.setPageTags
 	/// </remarks>
 	[JsonProperty("item_type")]
-	public FaveType ItemType { get; set; }
+	public FaveType? ItemType { get; set; }
 
 	/// <summary>
 	/// Идентификатор ссылки, которой требуется присвоить метку.

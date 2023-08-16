@@ -20,7 +20,7 @@ public class LikeAdd : IGroupUpdate
 	/// Тип материала.
 	/// </summary>
 	[JsonProperty("object_type")]
-	public LikeObjectType ObjectType { get; set; }
+	public LikeObjectType? ObjectType { get; set; }
 
 	/// <summary>
 	/// Идентификатор владельца материала.

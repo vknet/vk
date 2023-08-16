@@ -14,7 +14,7 @@ public class StoryStatsObject
 	/// Доступность значения.
 	/// </summary>
 	[JsonProperty("state")]
-	public StoryObjectState State { get; set; }
+	public StoryObjectState? State { get; set; }
 
 	/// <summary>
 	/// Значение счётчика.

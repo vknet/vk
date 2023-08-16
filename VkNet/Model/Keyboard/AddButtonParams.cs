@@ -34,7 +34,7 @@ public class AddButtonParams
 	/// <summary>
 	/// Цвет кнопки
 	/// </summary>
-	public KeyboardButtonColor Color { get; set; } = default;
+	public KeyboardButtonColor? Color { get; set; } = default;
 
 	/// <summary>
 	/// Основная информация о типе кнопки в Payload

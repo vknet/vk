@@ -36,7 +36,7 @@ public class FriendsGetParams
 	/// строка.
 	/// </summary>
 	[JsonProperty("order")]
-	public FriendsOrder Order { get; set; }
+	public FriendsOrder? Order { get; set; }
 
 	/// <summary>
 	/// Идентификатор списка друзей, полученный методом friends.getLists, друзей из
@@ -80,7 +80,7 @@ public class FriendsGetParams
 	/// умолчанию nom. строка.
 	/// </summary>
 	[JsonProperty("name_case")]
-	public NameCase NameCase { get; set; }
+	public NameCase? NameCase { get; set; }
 
 	/// <summary>
 	/// Ссылка?

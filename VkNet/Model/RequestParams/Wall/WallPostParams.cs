@@ -80,7 +80,7 @@ public class WallPostParams
 	/// случае если пользователь настроил
 	/// соответствующую опцию. Например, twitter, facebook. строка.
 	/// </summary>
-	public IEnumerable<Services> Services { get; set; }
+	public IEnumerable<Services?> Services { get; set; }
 
 	/// <summary>
 	/// 1 — у записи, размещенной от имени сообщества, будет добавлена подпись (имя

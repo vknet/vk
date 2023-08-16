@@ -20,7 +20,7 @@ public class LinkStatus
 	/// Link status
 	/// </summary>
 	[JsonProperty("status")]
-	public LinkStatusType Status { get; set; }
+	public LinkStatusType? Status { get; set; }
 
 	/// <summary>
 	/// Reject reason
