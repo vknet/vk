@@ -67,6 +67,6 @@ public class SearchTests : CategoryBaseTest
 		var second = result.Items.Last();
 
 		second.PostSource.Data.Should()
-			.Be(null);
+			.BeNull();
 	}
 }
