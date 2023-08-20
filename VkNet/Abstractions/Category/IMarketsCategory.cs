@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Utils;
@@ -9,7 +9,7 @@ namespace VkNet.Abstractions;
 public interface IMarketsCategory : IMarketsCategoryAsync
 {
 	/// <inheritdoc cref="IMarketsCategoryAsync.GetAsync"/>
-	VkCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false);
+	VkCollection<Market> Get(MarketGetParams @params);
 
 	/// <inheritdoc cref="IMarketsCategoryAsync.GetByIdAsync"/>
 	VkCollection<Market> GetById(IEnumerable<string> itemIds, bool extended = false);

@@ -10,14 +10,10 @@ namespace VkNet.Categories;
 public partial class MarketsCategory
 {
 	/// <inheritdoc />
-	public Task<VkCollection<Market>> GetAsync(long ownerId,
-												long? albumId = null,
-												int? count = null,
-												int? offset = null,
-												bool extended = false,
-												CancellationToken token = default) =>
+	public Task<VkCollection<Market>> GetAsync(MarketGetParams @params,
+											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(ownerId, albumId, count, offset, extended), token);
+			Get(@params), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Market>> GetByIdAsync(IEnumerable<string> itemIds,

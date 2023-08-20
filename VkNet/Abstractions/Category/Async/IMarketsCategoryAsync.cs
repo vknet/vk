@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums;
@@ -15,36 +15,7 @@ public interface IMarketsCategoryAsync
 	/// <summary>
 	/// Метод возвращает список товаров в сообществе.
 	/// </summary>
-	/// <param name="ownerId">
-	/// Идентификатор владельца товаров. Обратите внимание, идентификатор сообщества в
-	/// параметре owner_id
-	/// необходимо указывать со знаком "-" — например, owner_id=-1 соответствует
-	/// идентификатору сообщества ВКонтакте API
-	/// (club1)  целое число, обязательный параметр (целое число, обязательный
-	/// параметр).
-	/// </param>
-	/// <param name="albumId">
-	/// Идентификатор подборки, товары из которой нужно вернуть. положительное число
-	/// (положительное
-	/// число).
-	/// </param>
-	/// <param name="count">
-	/// Количество возвращаемых товаров. положительное число, максимальное значение
-	/// 200, по умолчанию 100
-	/// (положительное число, максимальное значение 200, по умолчанию 100).
-	/// </param>
-	/// <param name="offset">
-	/// Смещение относительно первого найденного товара для выборки определенного
-	/// подмножества.
-	/// положительное число (положительное число).
-	/// </param>
-	/// <param name="extended">
-	/// 1 — будут возвращены дополнительные поля likes, can_comment, can_repost,
-	/// ''photos'''. По
-	/// умолчанию эти поля не возвращается. флаг, может принимать значения 1 или 0
-	/// (флаг, может принимать значения 1 или
-	/// 0).
-	/// </param>
+	/// <param name="params">Модель параметров запроса market.get</param>
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов item с дополнительным
@@ -54,11 +25,7 @@ public interface IMarketsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/market.get
 	/// </remarks>
-	Task<VkCollection<Market>> GetAsync(long ownerId,
-										long? albumId = null,
-										int? count = null,
-										int? offset = null,
-										bool extended = false,
+	Task<VkCollection<Market>> GetAsync(MarketGetParams @params,
 										CancellationToken token = default);
 
 	/// <summary>

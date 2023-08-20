@@ -21,29 +21,26 @@ public partial class MarketsCategory : IMarketsCategory
 	public MarketsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
-	public VkCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false)
-	{
-		var parameters = new VkParameters
+
+	public VkCollection<Market> Get(MarketGetParams @params) => _vk.Call<VkCollection<Market>>("market.get",
+		new()
 		{
 			{
-				"owner_id", ownerId
+				"owner_id", @params.OwnerId
 			},
 			{
-				"album_id", albumId
+				"album_id", @params.AlbumId
 			},
 			{
-				"count", count
+				"count", @params.Count
 			},
 			{
-				"offset", offset
+				"offset", @params.Offset
 			},
 			{
-				"extended", extended
+				"extended", @params.Extended
 			}
-		};
-
-		return _vk.Call<VkCollection<Market>>("market.get", parameters);
-	}
+		});
 
 	/// <inheritdoc />
 	public VkCollection<Market> GetById(IEnumerable<string> itemIds, bool extended = false)
