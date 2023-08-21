@@ -39,13 +39,15 @@ namespace VkNet.Model
 
 		/// <summary>
 		/// Параметр для сортировки выгрузки товаров, загруженных с определенной даты
+		/// DateFrom - строка вида dd.MM.yyyy или dd.MM(год текущий по умолчанию)
 		/// </summary>
-		public DateTime DateFrom { get; set; }
+		public string DateFrom { get; set; }
 
 		/// <summary>
 		/// Параметр для сортировки выгрузки товаров, загруженных до определенной даты
+		/// DateTo - строка вида dd.MM.yyyy или dd.MM(год текущий по умолчанию)
 		/// </summary>
-		public DateTime DateTo { get; set; }
+		public string DateTo { get; set; }
 
 		/// <summary>
 		/// Флаг для получения вариантов одного товара,если они существуют

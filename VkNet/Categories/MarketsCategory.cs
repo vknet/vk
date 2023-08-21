@@ -41,10 +41,10 @@ public partial class MarketsCategory : IMarketsCategory
 				"extended", @params.Extended
 			},
 			{
-				"date_from", @params.DateFrom.ToString("dd.MM.yyyy")
+				"date_from", @params.DateFrom
 			},
 			{
-				"date_to", @params.DateTo.ToString("dd.MM.yyyy")
+				"date_to", @params.DateTo
 			},
 			{
 				"need_variants", @params.NeedVariants
