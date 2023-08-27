@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Enums;
@@ -53,6 +54,33 @@ public partial class MarketsCategory : IMarketsCategory
 				"with_disabled", @params.WithDisabled
 			}
 		});
+
+
+	/// <inheritdoc />
+	[Obsolete("This method is deprecated. Use  Get(MarketGetParams @params) instead", false)]
+	public VkCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false)
+	{
+		var parameters = new VkParameters
+		{
+			{
+				"owner_id", ownerId
+			},
+			{
+				"album_id", albumId
+			},
+			{
+				"count", count
+			},
+			{
+				"offset", offset
+			},
+			{
+				"extended", extended
+			}
+		};
+
+		return _vk.Call<VkCollection<Market>>("market.get", parameters);
+	}
 
 	/// <inheritdoc />
 	public VkCollection<Market> GetById(IEnumerable<string> itemIds, bool extended = false)

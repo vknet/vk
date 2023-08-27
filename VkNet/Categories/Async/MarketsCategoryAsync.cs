@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,6 +15,16 @@ public partial class MarketsCategory
 											CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Get(@params), token);
+
+	/// <inheritdoc />
+	public Task<VkCollection<Market>> GetAsync(long ownerId,
+												long? albumId = null,
+												int? count = null,
+												int? offset = null,
+												bool extended = false,
+												CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Get(ownerId, albumId, count, offset, extended), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Market>> GetByIdAsync(IEnumerable<string> itemIds,
