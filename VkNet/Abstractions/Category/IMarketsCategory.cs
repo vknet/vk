@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Utils;
@@ -66,7 +66,7 @@ public interface IMarketsCategory : IMarketsCategoryAsync
 	long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false);
 
 	/// <inheritdoc cref="IMarketsCategoryAsync.EditAlbumAsync"/>
-	bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false);
+	bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false, bool isHidden = false);
 
 	/// <inheritdoc cref="IMarketsCategoryAsync.DeleteAlbumAsync"/>
 	bool DeleteAlbum(long ownerId, long albumId);
