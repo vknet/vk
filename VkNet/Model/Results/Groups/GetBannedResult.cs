@@ -14,7 +14,7 @@ public class GetBannedResult
 	/// Тип
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	public SearchResultType Type { get; set; }
+	public SearchResultType? Type { get; set; }
 
 	/// <summary>
 	/// Информация о сообществе (для type = group)

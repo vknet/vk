@@ -90,7 +90,7 @@ public class NewsSearchItem
 	/// Тип записи
 	/// </summary>
 	[JsonProperty("post_type")]
-	public PostType PostType { get; set; }
+	public PostType? PostType { get; set; }
 
 	/// <summary>
 	/// Идентификатор записи при PostType == reply

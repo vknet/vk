@@ -16,7 +16,7 @@ public class AppGetCatalogParams
 	/// Способ сортировки приложений
 	/// </summary>
 	[JsonProperty(propertyName: "sort")]
-	public AppSort Sort { get; set; }
+	public AppSort? Sort { get; set; }
 
 	/// <summary>
 	/// Смещение, необходимое для выборки определенного подмножества приложений.
@@ -36,7 +36,7 @@ public class AppGetCatalogParams
 	/// используется web.
 	/// </summary>
 	[JsonProperty(propertyName: "platform")]
-	public AppPlatforms Platform { get; set; }
+	public AppPlatforms? Platform { get; set; }
 
 	/// <summary>
 	/// Позволяет получить дополнительные поля: screenshots, MAU (количество уникальных
@@ -69,7 +69,7 @@ public class AppGetCatalogParams
 	/// Падеж для склонения имени и фамилии пользователей.
 	/// </summary>
 	[JsonProperty(propertyName: "name_case")]
-	public NameCase NameCase { get; set; }
+	public NameCase? NameCase { get; set; }
 
 	/// <summary>
 	/// Поисковая строка для поиска по каталогу приложений.

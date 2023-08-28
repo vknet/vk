@@ -694,7 +694,7 @@ public class User
 	/// Полномочия руководителя (для Groups.GetMembers)
 	/// </summary>
 	[JsonProperty("role")]
-	public ManagerRole Role { get; set; }
+	public ManagerRole? Role { get; set; }
 
 	#endregion
 

@@ -78,7 +78,7 @@ public class Ad
 	/// Рекламные площадки, на которых будет показываться объявление. (если значение применимо к данному формату объявления)
 	/// </summary>
 	[JsonProperty("ad_platform")]
-	public AdPlatform AdPlatform { get; set; }
+	public AdPlatform? AdPlatform { get; set; }
 
 	/// <summary>
 	/// 1 — для объявления задано ограничение «Не показывать на стенах сообществ».

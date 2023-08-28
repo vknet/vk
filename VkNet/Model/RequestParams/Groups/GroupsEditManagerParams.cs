@@ -29,7 +29,7 @@ public class GroupsEditManagerParams
 	/// Если параметр не задан, с пользователя user_id снимаются полномочия
 	/// руководителя. строка.
 	/// </summary>
-	public ManagerRole Role { get; set; }
+	public ManagerRole? Role { get; set; }
 
 	/// <summary>
 	/// Отображать ли пользователя в блоке контактов сообщества. флаг, может принимать

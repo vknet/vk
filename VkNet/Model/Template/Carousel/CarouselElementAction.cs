@@ -17,7 +17,7 @@ public class CarouselElementAction
 	/// Тип клавиши.
 	/// </summary>
 	[JsonProperty("type")]
-	public CarouselElementActionType Type { get; set; }
+	public CarouselElementActionType? Type { get; set; }
 
 	/// <summary>
 	/// ссылка, которую необходимо открыть по нажатию на кнопку.

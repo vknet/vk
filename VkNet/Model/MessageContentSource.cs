@@ -15,7 +15,7 @@ public class MessageContentSource
 	/// Источник.
 	/// </summary>
 	[JsonProperty("type")]
-	public MessageContentSourceType Type { get; set; }
+	public MessageContentSourceType? Type { get; set; }
 
 	/// <summary>
 	/// От чьего имени указан peer_id. т.е. вы можете использовать контент из сообщения другой группы.

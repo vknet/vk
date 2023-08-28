@@ -22,7 +22,7 @@ public class CampaignSpecification
 	/// Формат объявления
 	/// </summary>
 	[JsonProperty("type")]
-	public CampaignType Type { get; set; }
+	public CampaignType? Type { get; set; }
 
 	/// <summary>
 	/// Название рекламной кампании.

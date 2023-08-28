@@ -26,7 +26,7 @@ public class GroupsGetMembersParams
 	/// сообщества. строка, по умолчанию
 	/// id_asc.
 	/// </summary>
-	public GroupsSort Sort { get; set; }
+	public GroupsSort? Sort { get; set; }
 
 	/// <summary>
 	/// Смещение, необходимое для выборки определенного подмножества участников. По

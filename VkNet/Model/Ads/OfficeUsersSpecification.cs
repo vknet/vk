@@ -20,7 +20,7 @@ public class OfficeUsersSpecification
 	/// Тип полномочий.
 	/// </summary>
 	[JsonProperty("role")]
-	public AccessRole Role { get; set; }
+	public AccessRole? Role { get; set; }
 
 	/// <summary>
 	/// Массив идентификаторов клиента.

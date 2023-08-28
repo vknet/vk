@@ -52,7 +52,7 @@ public class ApiAuthParams : IApiAuthParams
 	public bool? ForceSms { get; set; }
 
 	/// <inheritdoc />
-	public Display Display { get; set; }
+	public Display? Display { get; set; }
 
 	/// <inheritdoc />
 	public Uri RedirectUri { get; set; }
@@ -64,10 +64,10 @@ public class ApiAuthParams : IApiAuthParams
 	public bool? TwoFactorSupported { get; set; }
 
 	/// <inheritdoc />
-	public GrantType GrantType { get; set; }
+	public GrantType? GrantType { get; set; }
 
 	/// <inheritdoc />
-	public ResponseType ResponseType { get; set; }
+	public ResponseType? ResponseType { get; set; }
 
 	/// <inheritdoc />
 	public bool? Revoke { get; set; }

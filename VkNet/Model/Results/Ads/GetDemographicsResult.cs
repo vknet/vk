@@ -27,5 +27,5 @@ public class GetDemographicsResult
 	/// обязательный параметр, строка
 	/// </summary>
 	[JsonProperty("type")]
-	public IdsType Type { get; set; }
+	public IdsType? Type { get; set; }
 }

@@ -20,7 +20,7 @@ public class CheckLinkParams
 	/// Тип ссылки рекламы
 	/// </summary>
 	[JsonProperty(propertyName: "link_type")]
-	public AdsLinkType LinkType { get; set; }
+	public AdsLinkType? LinkType { get; set; }
 
 	/// <summary>
 	/// Ссылка

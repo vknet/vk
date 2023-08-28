@@ -24,7 +24,7 @@ public class AdsAccount
 	/// Тип рекламного кабинета.
 	/// </summary>
 	[JsonProperty(propertyName: "account_type")]
-	public AccountType AccountType { get; set; }
+	public AccountType? AccountType { get; set; }
 
 	/// <summary>
 	/// Cтатус рекламного кабинета.

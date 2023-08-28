@@ -33,7 +33,7 @@ public class VideoCatalogItem
 	/// тип элемента.
 	/// </summary>
 	[JsonProperty("type")]
-	public VideoCatalogItemType Type { get; set; }
+	public VideoCatalogItemType? Type { get; set; }
 
 	/// <summary>
 	/// текст описания.

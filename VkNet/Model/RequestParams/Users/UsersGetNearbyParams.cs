@@ -82,7 +82,7 @@ public class UsersGetNearbyParams
 	/// умолчанию nom. строка.
 	/// </summary>
 	[JsonProperty(propertyName: "name_case")]
-	public NameCase NameCase { get; set; }
+	public NameCase? NameCase { get; set; }
 
 	/// <summary>
 	/// флаг, может принимать значения 1 или 0, по умолчанию

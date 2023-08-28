@@ -33,7 +33,7 @@ public class ConversationChatSettings
 	/// Статус текущего пользователя.
 	/// </summary>
 	[JsonProperty("state")]
-	public ConversationChatSettingsState State { get; set; }
+	public ConversationChatSettingsState? State { get; set; }
 
 	/// <summary>
 	/// Изображение-обложка чата.

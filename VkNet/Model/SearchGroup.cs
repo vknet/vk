@@ -54,7 +54,7 @@ public class SearchGroup
 	/// тип сообщества
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	public GroupType Type { get; set; }
+	public GroupType? Type { get; set; }
 
 	/// <summary>
 	/// URL квадратной фотографии сообщества с размером 50х50px

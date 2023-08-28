@@ -41,7 +41,7 @@ public class MessagesGetHistoryAttachmentsParams
 	/// строка, по умолчанию photo.
 	/// </summary>
 	[JsonProperty("media_type")]
-	public MediaType MediaType { get; set; }
+	public MediaType? MediaType { get; set; }
 
 	/// <summary>
 	/// Смещение, необходимое для выборки определенного подмножества объектов. строка.
