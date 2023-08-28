@@ -564,6 +564,9 @@ public interface IMarketsCategoryAsync
 	/// значения 1 или 0
 	/// (флаг, может принимать значения 1 или 0).
 	/// </param>
+	/// <param name="isHidden">
+	/// Информация о том, сделать ли подборку скрытой. 0 - не делать скрытой(по умолчанию). 1 - скрыть подборку
+	/// </param>
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданной подборки.
@@ -575,6 +578,7 @@ public interface IMarketsCategoryAsync
 							string title,
 							long? photoId = null,
 							bool mainAlbum = false,
+							bool isHidden = false,
 							CancellationToken token = default);
 
 	/// <summary>

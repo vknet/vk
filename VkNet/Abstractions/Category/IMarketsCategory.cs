@@ -66,7 +66,7 @@ public interface IMarketsCategory : IMarketsCategoryAsync
 	bool ReorderAlbums(long ownerId, long albumId, long? before = null, long? after = null);
 
 	/// <inheritdoc cref="IMarketsCategoryAsync.AddAlbumAsync"/>
-	long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false);
+	long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false, bool isHidden = false);
 
 	/// <inheritdoc cref="IMarketsCategoryAsync.EditAlbumAsync"/>
 	bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false, bool isHidden = false);

@@ -155,9 +155,10 @@ public partial class MarketsCategory
 									string title,
 									long? photoId = null,
 									bool mainAlbum = false,
+									bool isHidden = false,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AddAlbum(ownerId, title, photoId, mainAlbum), token);
+			AddAlbum(ownerId, title, photoId, mainAlbum, isHidden), token);
 
 	/// <inheritdoc />
 	public Task<bool> EditAlbumAsync(long ownerId,
