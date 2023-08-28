@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Enums;
@@ -21,6 +22,42 @@ public partial class MarketsCategory : IMarketsCategory
 	public MarketsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
+
+	public VkCollection<Market> Get(MarketGetParams @params) => _vk.Call<VkCollection<Market>>("market.get",
+		new()
+		{
+			{
+				"owner_id", @params.OwnerId
+			},
+			{
+				"album_id", @params.AlbumId
+			},
+			{
+				"count", @params.Count
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"extended", @params.Extended
+			},
+			{
+				"date_from", @params.DateFrom
+			},
+			{
+				"date_to", @params.DateTo
+			},
+			{
+				"need_variants", @params.NeedVariants
+			},
+			{
+				"with_disabled", @params.WithDisabled
+			}
+		});
+
+
+	/// <inheritdoc />
+	[Obsolete("This method is deprecated. Use  Get(MarketGetParams @params) instead", false)]
 	public VkCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false)
 	{
 		var parameters = new VkParameters

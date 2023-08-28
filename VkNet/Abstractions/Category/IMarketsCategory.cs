@@ -9,6 +9,9 @@ namespace VkNet.Abstractions;
 public interface IMarketsCategory : IMarketsCategoryAsync
 {
 	/// <inheritdoc cref="IMarketsCategoryAsync.GetAsync"/>
+	VkCollection<Market> Get(MarketGetParams @params);
+
+	/// <inheritdoc cref="IMarketsCategoryAsync.GetAsync"/>
 	VkCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false);
 
 	/// <inheritdoc cref="IMarketsCategoryAsync.GetByIdAsync"/>
