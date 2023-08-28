@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,6 +10,12 @@ namespace VkNet.Categories;
 
 public partial class MarketsCategory
 {
+	/// <inheritdoc />
+	public Task<VkCollection<Market>> GetAsync(MarketGetParams @params,
+											CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			Get(@params), token);
+
 	/// <inheritdoc />
 	public Task<VkCollection<Market>> GetAsync(long ownerId,
 												long? albumId = null,
@@ -158,9 +165,10 @@ public partial class MarketsCategory
 									string title,
 									long? photoId = null,
 									bool mainAlbum = false,
+									bool isHidden = false,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			EditAlbum(ownerId, albumId, title, photoId, mainAlbum), token);
+			EditAlbum(ownerId, albumId, title, photoId, mainAlbum, isHidden), token);
 
 	/// <inheritdoc />
 	public Task<bool> DeleteAlbumAsync(long ownerId,

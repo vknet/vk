@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums;
@@ -12,6 +12,22 @@ namespace VkNet.Abstractions;
 /// </summary>
 public interface IMarketsCategoryAsync
 {
+	/// <summary>
+	/// Метод возвращает список товаров в сообществе.
+	/// </summary>
+	/// <param name="params">Модель параметров запроса market.get</param>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// После успешного выполнения возвращает список объектов item с дополнительным
+	/// полем comments, содержащим число
+	/// комментариев у товара.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/market.get
+	/// </remarks>
+	Task<VkCollection<Market>> GetAsync(MarketGetParams @params,
+										CancellationToken token = default);
+
 	/// <summary>
 	/// Метод возвращает список товаров в сообществе.
 	/// </summary>
@@ -586,6 +602,9 @@ public interface IMarketsCategoryAsync
 	/// Идентификатор фотографии-обложки подборки. положительное число (положительное
 	/// число).
 	/// </param>
+	/// <param name="isHidden">
+	///  Информация о том, сделать ли подборку скрытой. 0 - не делать скрытой(по умолчанию). 1 - скрыть подборку
+	/// </param>
 	/// <param name="token">Токен отмены операции</param>
 	/// <param name="mainAlbum"> Назначить подборку основной (1 — назначить, 0 — нет). </param>
 	/// <returns>
@@ -599,6 +618,7 @@ public interface IMarketsCategoryAsync
 							string title,
 							long? photoId = null,
 							bool mainAlbum = false,
+							bool isHidden = false,
 							CancellationToken token = default);
 
 	/// <summary>
