@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
@@ -97,6 +97,14 @@ public class MarketProductParams
 	public IEnumerable<long> PhotoIds { get; set; }
 
 	/// <summary>
+	///  Идентификаторы видео товара.
+	///  Видео должно быть загружено в сообщество и быть доступным для просмотра, в UI отображается только один элемент.
+	///  <see xlink="https://dev.vk.com/ru/api/upload/photo-in-market#%D0%9E%D1%82%D0%B2%D0%B5%D1%82"/>
+	/// </summary>
+	[JsonProperty("video_ids")]
+	public IEnumerable<long> VideoIds { get; set; }
+
+	/// <summary>
 	/// Ссылка на сайт товара.
 	/// </summary>
 	/// <remarks>
@@ -104,6 +112,21 @@ public class MarketProductParams
 	/// </remarks>
 	[JsonProperty("url")]
 	public Uri Url { get; set; }
+
+	/// <summary>
+	/// Список id вариантов свойств товаров.
+	/// Не более 2 значений разных свойств.
+	/// Если товар уже в группе, порядок свойств всех товаров группы должен совпадать,
+	/// а набор свойств должен быть уникален для каждого товара.
+	/// </summary>
+	[JsonProperty("variant_ids")]
+	public IEnumerable<long> VariantIds { get; set}
+
+	/// <summary>
+	/// Признак, является ли товар главным в своей группе.
+	/// </summary>
+	[JsonProperty("is_main_variant")]
+	public bool IsMainVariant { get; set; }
 
 	/// <summary>
 	/// Ширина в миллиметрах.
