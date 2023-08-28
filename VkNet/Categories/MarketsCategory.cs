@@ -540,7 +540,7 @@ public partial class MarketsCategory : IMarketsCategory
 	}
 
 	/// <inheritdoc />
-	public bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false)
+	public bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false, bool isHidden = false)
 	{
 		var parameters = new VkParameters
 		{
@@ -558,6 +558,9 @@ public partial class MarketsCategory : IMarketsCategory
 			},
 			{
 				"main_album", mainAlbum
+			},
+			{
+				"is_hidden", isHidden
 			}
 		};
 

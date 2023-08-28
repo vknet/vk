@@ -602,6 +602,9 @@ public interface IMarketsCategoryAsync
 	/// Идентификатор фотографии-обложки подборки. положительное число (положительное
 	/// число).
 	/// </param>
+	/// <param name="isHidden">
+	///  Информация о том, сделать ли подборку скрытой. 0 - не делать скрытой(по умолчанию). 1 - скрыть подборку
+	/// </param>
 	/// <param name="token">Токен отмены операции</param>
 	/// <param name="mainAlbum"> Назначить подборку основной (1 — назначить, 0 — нет). </param>
 	/// <returns>
@@ -615,6 +618,7 @@ public interface IMarketsCategoryAsync
 							string title,
 							long? photoId = null,
 							bool mainAlbum = false,
+							bool isHidden = false,
 							CancellationToken token = default);
 
 	/// <summary>
