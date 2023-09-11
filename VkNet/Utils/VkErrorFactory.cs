@@ -37,8 +37,7 @@ public static class VkErrorFactory
 		return exception ?? new VkApiMethodInvokeException(error);
 	}
 
-	private static Func<ConstructorInfo, bool> Predicate() => x => x.GetParameters()
-		.Any(p => p.ParameterType == typeof(VkError));
+	private static Func<ConstructorInfo, bool> Predicate() => x => Array.Exists(x.GetParameters(), p => p.ParameterType == typeof(VkError));
 
 	private static bool HasErrorCode(MemberInfo x, int errorCode) =>
 		((VkErrorAttribute) Attribute.GetCustomAttribute(x, typeof(VkErrorAttribute))).ErrorCode == errorCode;

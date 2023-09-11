@@ -89,7 +89,7 @@ public sealed class RestClient : IRestClient
 		var response = await method()
 			.ConfigureAwait(false);
 
-		var bytes = await response.Content.ReadAsByteArrayAsync()
+		var bytes = await response.Content.ReadAsByteArrayAsync(token)
 			.ConfigureAwait(false);
 
 		var content = encoding.GetString(bytes, 0, bytes.Length);
