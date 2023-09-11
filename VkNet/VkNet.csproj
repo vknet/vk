@@ -65,5 +65,6 @@
 	<ItemGroup>
 		<None Include="..\tools\vknet-icon.PNG" Pack="true" PackagePath="\" />
 		<None Include="..\LICENCE" Pack="true" PackagePath="\" />
+		<None Include="..\README.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 </Project>
