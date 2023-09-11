@@ -17,7 +17,7 @@ public static class BotsLongPoolHelpers
 	/// <returns>
 	/// Возвращает список обновлений группы
 	/// </returns>
-	public static List<GroupUpdateEvent> GetGroupUpdateEvents(List<JObject> jObjectUpdates)
+	public static List<GroupUpdateEvent> GetGroupUpdateEvents(IEnumerable<JObject> jObjectUpdates)
 	{
 		var updates = new List<GroupUpdateEvent>();
 
