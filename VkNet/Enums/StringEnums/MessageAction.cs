@@ -58,5 +58,10 @@ public enum MessageAction
 	/// <summary>
 	/// Обновление оформления беседы
 	/// </summary>
-	ConversationStyleUpdate
+	ConversationStyleUpdate,
+
+	/// <summary>
+	/// Скриншот чата
+	/// </summary>
+	ChatScreenshot
 }
