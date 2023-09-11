@@ -14,7 +14,7 @@ namespace VkNet.Model;
 /// Обновления в личных сообщениях пользователя.
 /// </summary>
 [Serializable]
-public class LongPollHistoryResponse
+public class LongPollHistoryResponse<TMessage>
 {
 	/// <summary>
 	/// Обновления в личных сообщениях пользователя.
@@ -25,6 +25,7 @@ public class LongPollHistoryResponse
 	/// История.
 	/// </summary>
 	[JsonProperty("history")]
+
 	// ReSharper disable once AutoPropertyCanBeMadeGetOnly.Global
 	public List<ReadOnlyCollection<long>> History { get; set; }
 
@@ -37,7 +38,7 @@ public class LongPollHistoryResponse
 	/// Колекция сообщений.
 	/// </summary>
 	[JsonProperty("messages")]
-	public VkCollection<Message> Messages { get; set; }
+	public VkCollection<TMessage> Messages { get; set; }
 
 	/// <summary>
 	/// Колекция профилей.
@@ -65,4 +66,10 @@ public class LongPollHistoryResponse
 	/// </summary>
 	[JsonProperty("more")]
 	public bool More { get; set; }
+}
+
+/// <inheritdoc />
+[Serializable]
+public class LongPollHistoryResponse : LongPollHistoryResponse<Message>
+{
 }

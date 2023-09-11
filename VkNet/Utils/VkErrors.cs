@@ -38,6 +38,54 @@ public static class VkErrors
 	}
 
 	/// <summary>
+	/// Ошибка если число равно null.
+	/// </summary>
+	/// <param name="expr"> Выражение. </param>
+	/// <exception cref="System.ArgumentNullException">
+	/// Параметр не должен быть равен
+	/// null
+	/// </exception>
+	public static void ThrowIfLongIsNull(Expression<Func<long?>> expr)
+	{
+		if (expr.Body is not MemberExpression body)
+		{
+			return;
+		}
+
+		var paramName = body.Member.Name;
+		var value = expr.Compile()();
+
+		if (value is null)
+		{
+			throw new ArgumentNullException(paramName, "Параметр не должен быть равен null");
+		}
+	}
+
+	/// <summary>
+	/// Ошибка если число равно null.
+	/// </summary>
+	/// <param name="expr"> Выражение. </param>
+	/// <exception cref="System.ArgumentNullException">
+	/// Параметр не должен быть равен
+	/// null
+	/// </exception>
+	public static void ThrowIfUlongIsNull(Expression<Func<ulong?>> expr)
+	{
+		if (expr.Body is not MemberExpression body)
+		{
+			return;
+		}
+
+		var paramName = body.Member.Name;
+		var value = expr.Compile()();
+
+		if (value is null)
+		{
+			throw new ArgumentNullException(paramName, "Параметр не должен быть равен null");
+		}
+	}
+
+	/// <summary>
 	/// Ошибка если число не в диапазоне.
 	/// </summary>
 	/// <typeparam name="T"> Тип данных </typeparam>
