@@ -385,56 +385,59 @@ public partial class MarketsCategory : IMarketsCategory
 		})[key: "market_item_id"];
 
 	/// <inheritdoc />
-	public bool Edit(MarketProductParams editParams) => _vk.Call<bool>("market.edit",
+	public bool Edit(MarketProductParams @params) => _vk.Call<bool>("market.edit",
 		new()
 		{
 			{
-				"owner_id", editParams.OwnerId
+				"owner_id", @params.OwnerId
 			},
 			{
-				"item_id", editParams.ItemId
+				"item_id", @params.ItemId
 			},
 			{
-				"name", editParams.Name
+				"name", @params.Name
 			},
 			{
-				"description", editParams.Description
+				"description", @params.Description
 			},
 			{
-				"url", editParams.Url
+				"category_id", @params.CategoryId
 			},
 			{
-				"sku", editParams.Sku
+				"price", @params.Price
 			},
 			{
-				"category_id", editParams.CategoryId
+				"old_price", @params.OldPrice
 			},
 			{
-				"price", editParams.Price
+				"deleted", @params.Deleted
 			},
 			{
-				"old_price", editParams.OldPrice
+				"main_photo_id", @params.MainPhotoId
 			},
 			{
-				"deleted", editParams.Deleted
+				"photo_ids", @params.PhotoIds
 			},
 			{
-				"main_photo_id", editParams.MainPhotoId
+				"video_ids", @params.VideoIds
 			},
 			{
-				"photo_ids", editParams.PhotoIds
+				"url", @params.Url
 			},
 			{
-				"dimension_width", editParams.DimensionWidth
+				"sku", @params.Sku
 			},
 			{
-				"dimension_height", editParams.DimensionHeight
+				"dimension_width", @params.DimensionWidth
 			},
 			{
-				"dimension_length", editParams.DimensionLength
+				"dimension_height", @params.DimensionHeight
 			},
 			{
-				"weight", editParams.Weight
+				"dimension_length", @params.DimensionLength
+			},
+			{
+				"weight", @params.Weight
 			}
 		});
 
