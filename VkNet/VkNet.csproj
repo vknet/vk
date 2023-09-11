@@ -41,6 +41,15 @@
 		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+		<!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+
+		<!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -50,22 +59,23 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="all" />
-		<PackageReference Include="HtmlAgilityPack" Version="1.11.50" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="SonarAnalyzer.CSharp" Version="9.5.0.73987" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
-		<PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
+		<PackageReference Include="AsyncFixer" Version="1.6.0" PrivateAssets="all"/>
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.50"/>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+		<PackageReference Include="SonarAnalyzer.CSharp" Version="9.5.0.73987" PrivateAssets="all"/>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1"/>
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0"/>
 		<PackageReference Update="Reo.Core.Analyzers" Version="6.0.31201">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="..\tools\vknet-icon.PNG" Pack="true" PackagePath="\" />
-		<None Include="..\LICENCE" Pack="true" PackagePath="\" />
+		<None Include="..\tools\vknet-icon.PNG" Pack="true" PackagePath="\"/>
+		<None Include="..\LICENCE" Pack="true" PackagePath="\"/>
 		<None Include="..\README.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 </Project>
