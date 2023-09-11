@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using VkNet.Abstractions;
@@ -120,7 +120,7 @@ public class MarketProductParams
 	/// а набор свойств должен быть уникален для каждого товара.
 	/// </summary>
 	[JsonProperty("variant_ids")]
-	public IEnumerable<long> VariantIds { get; set}
+	public IEnumerable<long> VariantIds { get; set; }
 
 	/// <summary>
 	/// Признак, является ли товар главным в своей группе.
