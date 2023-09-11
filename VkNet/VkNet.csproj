@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net7.0;net6.0;netstandard2.0</TargetFrameworks>
 		<AssemblyName>VkNet</AssemblyName>
-		<VersionPrefix>1.76.0-alpha</VersionPrefix>
+		<VersionPrefix>1.77.0-alpha</VersionPrefix>
 		<VersionSufix>
 		</VersionSufix>
 		<NeutralLanguage>ru-RU</NeutralLanguage>
@@ -23,7 +23,7 @@
 			Обсуждение в Telegram: https://t.me/VkDotNet
 			Группа в Контакте: https://vk.com/vknetdotnet
 			_____________________________________________
-			Список изменений: https://github.com/vknet/vk/milestone/52?closed=1
+			Список изменений: https://github.com/vknet/vk/milestone/54?closed=1
 		</PackageReleaseNotes>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>

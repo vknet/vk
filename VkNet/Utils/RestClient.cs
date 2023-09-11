@@ -88,9 +88,15 @@ public sealed class RestClient : IRestClient
 	{
 		var response = await method()
 			.ConfigureAwait(false);
+		#if NETSTANDARD2_0
+		var bytes = await response.Content.ReadAsByteArrayAsync()
+			.ConfigureAwait(false);
 
+		#else
 		var bytes = await response.Content.ReadAsByteArrayAsync(token)
 			.ConfigureAwait(false);
+
+		#endif
 
 		var content = encoding.GetString(bytes, 0, bytes.Length);
 		_logger?.LogDebug("Response:{NewLine}{PrettyJson}", Environment.NewLine, Utilities.PrettyPrintJson(content));
