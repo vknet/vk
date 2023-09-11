@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
 using VkNet.Abstractions.Utils;
@@ -30,7 +29,7 @@ public static class TypeHelper
 	{
 		container.TryAddSingleton<INeedValidationHandler, NeedValidationHandler>();
 		container.TryAddSingleton<HttpClient>();
-		container.TryAddSingleton(typeof(ILogger<>), typeof(NullLogger<>));
+		container.TryAddSingleton<ILogger>(_ => NullLogger.Instance);
 		container.TryAddSingleton<IRestClient, RestClient>();
 		container.TryAddSingleton<IWebProxy>(_ => null);
 		container.TryAddSingleton<IVkApiVersionManager, VkApiVersionManager>();
@@ -50,6 +49,7 @@ public static class TypeHelper
 	/// <typeparam name="T"> Тип ответа </typeparam>
 	/// <returns> Результат выполнения функции. </returns>
 	public static Task<T> TryInvokeMethodAsync<T>(Func<T> func, CancellationToken token = default) => Task.Run(func, token);
+
 	/// <summary>
 	/// Попытаться асинхронно выполнить метод.
 	/// </summary>

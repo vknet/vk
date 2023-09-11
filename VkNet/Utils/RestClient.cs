@@ -18,10 +18,10 @@ namespace VkNet.Utils;
 [Serializable]
 public sealed class RestClient : IRestClient
 {
-	private readonly ILogger<RestClient> _logger;
+	private readonly ILogger _logger;
 
 	/// <inheritdoc cref="RestClient"/>
-	public RestClient(HttpClient httpClient, ILogger<RestClient> logger)
+	public RestClient(HttpClient httpClient, ILogger logger)
 	{
 		HttpClient = httpClient;
 		_logger = logger;
@@ -46,7 +46,10 @@ public sealed class RestClient : IRestClient
 	{
 		var url = Url.Combine(uri.ToString(), Url.QueryFrom(parameters.ToArray()));
 
-		_logger?.LogDebug("GET request: {Url}", url);
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("GET request: {Url}", url);
+		}
 
 		return CallAsync(() => HttpClient.GetAsync(new Uri(url), token), encoding, token);
 	}
@@ -103,7 +106,12 @@ public sealed class RestClient : IRestClient
 		#endif
 
 		var content = encoding.GetString(bytes, 0, bytes.Length);
-		_logger?.LogDebug("Response:{NewLine}{PrettyJson}", Environment.NewLine, Utilities.PrettyPrintJson(content));
+
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Response:{NewLine}{PrettyJson}", Environment.NewLine, Utilities.PrettyPrintJson(content));
+		}
+
 		var requestUri = response.RequestMessage?.RequestUri;
 
 		return response.IsSuccessStatusCode

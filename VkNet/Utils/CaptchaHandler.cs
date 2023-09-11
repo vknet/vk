@@ -13,10 +13,10 @@ public class CaptchaHandler : ICaptchaHandler
 {
 	private readonly ICaptchaSolver _captchaSolver;
 
-	private readonly ILogger<CaptchaHandler> _logger;
+	private readonly ILogger _logger;
 
 	/// <inheritdoc cref="CaptchaHandler"/>
-	public CaptchaHandler(ILogger<CaptchaHandler> logger, ICaptchaSolver captchaSolver)
+	public CaptchaHandler(ILogger logger, ICaptchaSolver captchaSolver)
 	{
 		_logger = logger;
 		_captchaSolver = captchaSolver;
@@ -58,7 +58,10 @@ public class CaptchaHandler : ICaptchaHandler
 			return result;
 		}
 
-		_logger?.LogError("Капча ни разу не была распознана верно");
+		if (_logger.IsEnabled(LogLevel.Error))
+		{
+			_logger.LogError("Капча ни разу не была распознана верно");
+		}
 
 		throw new CaptchaNeededException(new()
 		{
@@ -71,7 +74,10 @@ public class CaptchaHandler : ICaptchaHandler
 										ref ulong? captchaSidTemp,
 										ref string captchaKeyTemp)
 	{
-		_logger?.LogWarning("Повторная обработка капчи");
+		if (_logger.IsEnabled(LogLevel.Warning))
+		{
+			_logger.LogWarning("Повторная обработка капчи");
+		}
 
 		if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
 		{

@@ -73,28 +73,26 @@ public class VkApi : IVkApi
 	/// <summary>
 	/// Логгер
 	/// </summary>
-	private ILogger<VkApi> _logger;
+	private ILogger _logger;
 
 	/// <summary>
 	/// Обработчик ошибок десериализации
 	/// </summary>
 	public bool? DeserializationErrorHandler { get; set; }
 
-	#pragma warning disable S1104 // Fields should not have public accessibility
 	/// <summary>
 	/// Rest Client
 	/// </summary>
-	public IRestClient RestClient;
-	#pragma warning restore S1104 // Fields should not have public accessibility
+	public IRestClient RestClient { get; set; }
 
 	/// <inheritdoc cref="VkApi" />
-	public VkApi(ILogger<VkApi> logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
+	public VkApi(ILogger logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
 	{
 		var container = new ServiceCollection();
 
 		if (logger is not null)
 		{
-			container.TryAddSingleton(logger);
+			container.TryAddSingleton(_ => logger);
 		}
 
 		if (captchaSolver is not null)
@@ -139,10 +137,6 @@ public class VkApi : IVkApi
 
 	/// <inheritdoc />
 	public event VkApiDelegate OnTokenUpdatedAutomatically;
-
-	/// <inheritdoc />
-	[Obsolete("Нужно использовать AuthorizationFlow", true)]
-	public IBrowser Browser { get; set; }
 
 	/// <inheritdoc />
 	public IAuthorizationFlow AuthorizationFlow { get; set; }
@@ -193,7 +187,11 @@ public class VkApi : IVkApi
 		}
 
 		_ap = @params;
-		_logger?.LogDebug("Авторизация прошла успешно");
+
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Авторизация прошла успешно");
+		}
 	}
 
 	/// <inheritdoc />
@@ -215,7 +213,10 @@ public class VkApi : IVkApi
 			const string message =
 				"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
 
-			_logger?.LogError(message);
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError(message);
+			}
 
 			throw new AggregateException(message);
 		}
@@ -233,7 +234,10 @@ public class VkApi : IVkApi
 			const string message =
 				"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
 
-			_logger?.LogError(message);
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError(message);
+			}
 
 			throw new AggregateException(message);
 		}
@@ -336,7 +340,10 @@ public class VkApi : IVkApi
 	{
 		if (!skipAuthorization && !IsAuthorized)
 		{
-			_logger?.LogError("Метод '{MethodName}' нельзя вызывать без авторизации", methodName);
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError("Метод '{MethodName}' нельзя вызывать без авторизации", methodName);
+			}
 
 			throw new AccessTokenInvalidException($"Метод '{methodName}' нельзя вызывать без авторизации");
 		}
@@ -344,8 +351,11 @@ public class VkApi : IVkApi
 		var url = $"https://api.vk.com/method/{methodName}";
 		var answer = InvokeBase(url, parameters);
 
-		_logger?.LogTrace("Uri = \"{Url}\"", url);
-		_logger?.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
+		if (_logger.IsEnabled(LogLevel.Trace))
+		{
+			_logger.LogTrace("Uri = \"{Url}\"", url);
+			_logger.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
+		}
 
 		VkErrors.IfErrorThrowException(answer);
 
@@ -423,19 +433,31 @@ public class VkApi : IVkApi
 		if (string.IsNullOrEmpty(server))
 		{
 			const string message = "Server не должен быть пустым или null";
-			_logger?.LogError(message);
+
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError(message);
+			}
 
 			throw new ArgumentException(message);
 		}
 
-		_logger?.LogDebug("Вызов GetLongPollHistory с сервером {Server}, с параметрами {Parameters}",
-			server,
-			string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}")));
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Вызов GetLongPollHistory с сервером {Server}, с параметрами {Parameters}",
+				server,
+				string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}")));
+		}
 
 		var answer = InvokeBase(server, parameters);
 
-		_logger?.LogTrace("Uri = \"{Url}\"", server);
-		_logger?.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
+		if (!_logger.IsEnabled(LogLevel.Trace))
+		{
+			return VkErrors.IfErrorThrowException(answer);
+		}
+
+		_logger.LogTrace("Uri = \"{Url}\"", server);
+		_logger.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
 
 		return VkErrors.IfErrorThrowException(answer);
 	}
@@ -469,7 +491,11 @@ public class VkApi : IVkApi
 		if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 		{
 			const string message = "Не удалось автоматически пройти валидацию!";
-			_logger?.LogError(message);
+
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError(message);
+			}
 
 			throw new NeedValidationException(new()
 			{
@@ -796,10 +822,13 @@ public class VkApi : IVkApi
 			parameters.Add(Constants.Language, _language.GetLanguage());
 		}
 
-		_logger?.LogDebug("Вызов метода {MethodName}, с параметрами {Parameters}",
-			methodName,
-			string.Join(",", parameters.Where(x => x.Key != Constants.AccessToken)
-				.Select(x => $"{x.Key}={x.Value}")));
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Вызов метода {MethodName}, с параметрами {Parameters}",
+				methodName,
+				string.Join(",", parameters.Where(x => x.Key != Constants.AccessToken)
+					.Select(x => $"{x.Key}={x.Value}")));
+		}
 
 		string answer;
 
@@ -856,7 +885,10 @@ public class VkApi : IVkApi
 	/// <param name="authParams"> Параметры авторизации </param>
 	private void AuthorizeWithAntiCaptcha(IApiAuthParams authParams)
 	{
-		_logger?.LogDebug("Старт авторизации");
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Старт авторизации");
+		}
 
 		if (CaptchaSolver is null)
 		{
@@ -865,7 +897,11 @@ public class VkApi : IVkApi
 		{
 			CaptchaHandler.Perform((sid, key) =>
 			{
-				_logger?.LogDebug("Авторизация с использование капчи");
+				if (_logger.IsEnabled(LogLevel.Debug))
+				{
+					_logger.LogDebug("Авторизация с использование капчи");
+				}
+
 				authParams.CaptchaSid = sid;
 				authParams.CaptchaKey = key;
 				BaseAuthorize(authParams);
@@ -886,12 +922,19 @@ public class VkApi : IVkApi
 	{
 		if (string.IsNullOrWhiteSpace(accessToken))
 		{
-			_logger?.LogError("Авторизация через токен. Токен не задан");
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError("Авторизация через токен. Токен не задан");
+			}
 
 			throw new ArgumentNullException(accessToken);
 		}
 
-		_logger?.LogDebug("Авторизация через токен");
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Авторизация через токен");
+		}
+
 		StopTimer();
 
 		LastInvokeTime = DateTimeOffset.Now;
@@ -905,7 +948,11 @@ public class VkApi : IVkApi
 	/// <param name="authorization"> The authorization. </param>
 	private void SetTokenProperties(AuthorizationResult authorization)
 	{
-		_logger?.LogDebug("Установка свойств токена");
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Установка свойств токена");
+		}
+
 		var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
 		SetApiPropertiesAfterAuth(expireTime, authorization.AccessToken, authorization.UserId);
 	}
@@ -967,7 +1014,11 @@ public class VkApi : IVkApi
 		if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 		{
 			const string message = "Authorization fail: invalid access token.";
-			_logger?.LogError(message);
+
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError(message);
+			}
 
 			throw new VkAuthorizationException(message);
 		}
@@ -1038,11 +1089,18 @@ public class VkApi : IVkApi
 
 		MaxCaptchaRecognitionCount = 5;
 		#if NET45
-			_logger?.LogError("Могут быть проблемы при выполнении запросов с Кодировкой 1251. Если проблема воспроизводится рекомендуется обновиться на NETFramework 4.6.1 или выше");
+		if (_logger.IsEnabled(LogLevel.Error))
+		{
+			_logger.LogError("Могут быть проблемы при выполнении запросов с Кодировкой 1251. Если проблема воспроизводится рекомендуется обновиться на NETFramework 4.6.1 или выше");
+		}
 		#else
 		Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 		#endif
-		_logger?.LogDebug("VkApi Initialization successfully");
+
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("VkApi Initialization successfully");
+		}
 	}
 
 	#endregion

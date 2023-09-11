@@ -3,7 +3,6 @@ using JetBrains.Annotations;
 using VkNet.Abstractions.Authorization;
 using VkNet.Abstractions.Core;
 using VkNet.Enums;
-using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
@@ -18,11 +17,6 @@ public interface IVkApi : IDisposable, IVkApiAuthAsync, IVkApiCategories, IVkApi
 	/// Ограничение на кол-во запросов в секунду
 	/// </summary>
 	int RequestsPerSecond { get; set; }
-
-	/// <summary>
-	/// Браузер.
-	/// </summary>
-	IBrowser Browser { get; set; }
 
 	/// <summary>
 	/// Поток авторизации
