@@ -3,7 +3,7 @@
 		<LangVersion>latest</LangVersion>
 		<CoreVersion>6.0.31201</CoreVersion>
 		<MsTestTool>17.7.2</MsTestTool>
-		<WarningsAsErrors>CS1591;REO00038;REO00039;REO00040;REO00042;REO00043;REO00044;REO00051;REO00059;REO00060;REO00065</WarningsAsErrors>
+		<WarningsAsErrors>CS1591;REO03004;REO03005;REO04001;REO06005;REO10001;REO10002;REO12003;REO13003;REO13004;REO13005;REO13001;REO13002;REO13006;REO13008;REO13009;REO17001</WarningsAsErrors>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Update="AsyncFixer" Version="1.6.0" PrivateAssets="all"/>

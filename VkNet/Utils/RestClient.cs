@@ -58,7 +58,11 @@ public sealed class RestClient : IRestClient
 		if (_logger is not null)
 		{
 			var json = JsonConvert.SerializeObject(parameters);
-			_logger.LogDebug("POST request: {Uri}{NewLine}{PrettyJson}", uri, Environment.NewLine, Utilities.PrettyPrintJson(json));
+
+			if (_logger.IsEnabled(LogLevel.Debug))
+			{
+				_logger.LogDebug("POST request: {Uri}{NewLine}{PrettyJson}", uri, Environment.NewLine, Utilities.PrettyPrintJson(json));
+			}
 		}
 
 		if (headers is not null && headers.Any())
