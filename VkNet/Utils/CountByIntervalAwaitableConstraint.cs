@@ -68,10 +68,10 @@ public class CountByIntervalAwaitableConstraint : IAwaitableConstraint
 		await _semaphore.WaitAsync(cancellationToken)
 			.ConfigureAwait(false);
 
-		if (DateTime.Now - _dateTime >= _timeSpan)
+		if (DateTime.UtcNow - _dateTime >= _timeSpan)
 		{
 			_left = _count;
-			_dateTime = DateTime.Now;
+			_dateTime = DateTime.UtcNow;
 		}
 
 		if (_left > 0)
@@ -79,7 +79,7 @@ public class CountByIntervalAwaitableConstraint : IAwaitableConstraint
 			_left--;
 		} else
 		{
-			var timeToWait = (int) Math.Ceiling((_timeSpan - (DateTime.Now - _dateTime)).TotalMilliseconds + 15);
+			var timeToWait = (int) Math.Ceiling((_timeSpan - (DateTime.UtcNow - _dateTime)).TotalMilliseconds + 15);
 
 			try
 			{
@@ -88,6 +88,7 @@ public class CountByIntervalAwaitableConstraint : IAwaitableConstraint
 			}
 			catch
 			{
+				// ignored
 			}
 
 			_left = _count - 1;

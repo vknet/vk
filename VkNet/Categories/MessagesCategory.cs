@@ -740,7 +740,7 @@ public partial class MessagesCategory : IMessagesCategory
 		});
 
 	/// <inheritdoc />
-	[Obsolete(ObsoleteText.MessageDeleteDialog)]
+	[Obsolete(ObsoleteText.MessageDeleteDialog, true)]
 	public ulong DeleteDialog(long? userId, long? peerId = null, uint? offset = null, uint? count = null) =>
 		DeleteConversation(userId, peerId);
 
