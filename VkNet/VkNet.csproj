@@ -25,6 +25,7 @@
 			_____________________________________________
 			Список изменений: https://github.com/vknet/vk/milestone/54?closed=1
 		</PackageReleaseNotes>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
