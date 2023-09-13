@@ -10,11 +10,16 @@ namespace VkNet.Utils.JsonConverter;
 public class TolerantStringEnumConverter : StringEnumConverter
 {
 	/// <inheritdoc />
+	public TolerantStringEnumConverter()
+	{
+		NamingStrategy = new SnakeCaseNamingStrategy();
+	}
+
+	/// <inheritdoc />
 	public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 	{
 		try
 		{
-			NamingStrategy = new SnakeCaseNamingStrategy();
 			return base.ReadJson(reader, objectType, existingValue, serializer);
 		}
 		catch(System.Exception e)
