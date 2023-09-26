@@ -21,12 +21,10 @@ public class CountByIntervalAwaitableConstraintTests
 
 		for (var i = 0; i < count; i++)
 		{
-			await awaitableConstraint.WaitForReadinessAsync(token)
-				.ConfigureAwait(false);
+			await awaitableConstraint.WaitForReadinessAsync(token);
 		}
 
-		await awaitableConstraint.WaitForReadinessAsync(token)
-			.ConfigureAwait(false);
+		await awaitableConstraint.WaitForReadinessAsync(token);
 
 		var t2 = sw.Elapsed;
 

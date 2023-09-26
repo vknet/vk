@@ -1,22 +1,12 @@
 ﻿using System;
-using VkNet.Model.RequestParams;
 using VkNet.Shared;
 
-namespace VkNet.Examples
-{
-	internal class Program
-	{
-		public static void Main(string[] args)
-		{
-			var api = Api.GetInstance();
+var api = Api.GetInstance();
 
-			api.Auth();
-			Console.WriteLine(api.Token);
-			var res = api.Groups.Get(new GroupsGetParams());
+api.Auth();
+Console.WriteLine(api.Token);
+var res = api.Groups.Get(new());
 
-			Console.WriteLine(res.TotalCount);
+Console.WriteLine(res.TotalCount);
 
-			Console.ReadLine();
-		}
-	}
-}
+Console.ReadLine();
