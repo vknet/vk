@@ -1028,7 +1028,7 @@ public class VkApi : IVkApi
 
 	private void Initialization(IServiceProvider serviceProvider)
 	{
-		_logger = serviceProvider.GetService<ILogger<VkApi>>();
+		_logger = serviceProvider.GetService<ILogger>();
 		CaptchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
 		_language = serviceProvider.GetRequiredService<ILanguageService>();
 		_rateLimiter = serviceProvider.GetRequiredService<IRateLimiter>();
