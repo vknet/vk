@@ -1,7 +1,7 @@
 ﻿<Project>
 	<PropertyGroup>
 		<LangVersion>latest</LangVersion>
-		<CoreVersion>6.0.31201</CoreVersion>
+		<CoreVersion>6.0.31245</CoreVersion>
 		<MsTestTool>17.7.2</MsTestTool>
 		<WarningsAsErrors>CS1591;REO03004;REO03005;REO04001;REO06005;REO10001;REO10002;REO12003;REO13003;REO13004;REO13005;REO13001;REO13002;REO13006;REO13008;REO13009;REO17001</WarningsAsErrors>
 	</PropertyGroup>
@@ -9,7 +9,7 @@
 		<PackageReference Update="AsyncFixer" Version="1.6.0" PrivateAssets="all"/>
 		<PackageReference Update="HtmlAgilityPack" Version="1.11.53"/>
 		<PackageReference Update="Newtonsoft.Json" Version="13.0.3"/>
-		<PackageReference Update="SonarAnalyzer.CSharp" Version="9.9.0.77355" PrivateAssets="all"/>
+		<PackageReference Update="SonarAnalyzer.CSharp" Version="9.10.0.77988" PrivateAssets="all"/>
 		<PackageReference Update="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
 		<PackageReference Update="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1"/>
 		<PackageReference Update="System.Text.Encoding.CodePages" Version="7.0.0"/>
@@ -20,8 +20,8 @@
 		<PackageReference Update="Microsoft.NET.Test.Sdk" Version="$(MsTestTool)"/>
 		<PackageReference Update="Moq" Version="4.20.69"/>
 		<PackageReference Update="Moq.AutoMock" Version="3.5.0"/>
-		<PackageReference Update="xunit" Version="2.5.0"/>
-		<PackageReference Update="xunit.runner.visualstudio" Version="2.5.0"/>
+		<PackageReference Update="xunit" Version="2.5.1"/>
+		<PackageReference Update="xunit.runner.visualstudio" Version="2.5.1"/>
 		<PackageReference Update="coverlet.collector" Version="6.0.0"/>
 		<PackageReference Update="coverlet.msbuild" Version="6.0.0"/>
 
