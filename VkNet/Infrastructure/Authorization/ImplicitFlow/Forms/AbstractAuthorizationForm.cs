@@ -33,7 +33,9 @@ public abstract class AbstractAuthorizationForm : IAuthorizationForm
 
 		await FillFormFieldsAsync(form, authParams, token);
 		token.ThrowIfCancellationRequested();
-		var response = await _restClient.PostAsync(new(form.Action), form.Fields, Encoding.UTF8, form.Headers, token)
+
+		var response = await _restClient
+			.PostAsync(new(Uri.UnescapeDataString(form.Action)), form.Fields, Encoding.UTF8, form.Headers, token)
 			.ConfigureAwait(false);
 
 		if (!response.IsSuccess)
