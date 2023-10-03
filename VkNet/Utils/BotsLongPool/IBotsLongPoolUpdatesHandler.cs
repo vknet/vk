@@ -2,12 +2,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace VkNet.Utils.BotsLongPool;
+namespace VkNet.Utils.BotsLongPoll;
 
 /// <summary>
 /// Обработчик лонгпула групповых сообщений
 /// </summary>
-public interface IBotsLongPoolUpdatesHandler
+public interface IBotsLongPollUpdatesHandler
 {
 	/// <summary>
 	/// Запуск отслеживания событий

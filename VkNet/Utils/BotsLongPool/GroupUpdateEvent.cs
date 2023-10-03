@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using VkNet.Model;
 
-namespace VkNet.Utils.BotsLongPool;
+namespace VkNet.Utils.BotsLongPoll;
 
 /// <summary>
 /// Обёртка для GroupUpdate, в которой кроме самого обновления есть и ошибки при парсинге.

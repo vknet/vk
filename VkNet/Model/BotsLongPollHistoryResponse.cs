@@ -8,7 +8,7 @@ namespace VkNet.Model;
 /// <br/>
 /// В обобщении можно указать тип JObject для того, чтобы избежать ошибок при десериализации.
 /// <br/>
-/// После чего можно воспользоваться методом GroupLongPoolHelpers.GetGroupUpdatesAndErrors. Он вернёт ошибки, если таковые имеются, но не бросит исключений.
+/// После чего можно воспользоваться методом GroupLongPollHelpers.GetGroupUpdatesAndErrors. Он вернёт ошибки, если таковые имеются, но не бросит исключений.
 /// </summary>
 [Serializable]
 public class BotsLongPollHistoryResponse<TGroupUpdate>

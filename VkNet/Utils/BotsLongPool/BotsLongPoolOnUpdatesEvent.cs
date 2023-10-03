@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using VkNet.Model;
 
-namespace VkNet.Utils.BotsLongPool;
+namespace VkNet.Utils.BotsLongPoll;
 
 /// <summary>
-/// Обёртка для BotsLongPoolUpdatesProviderParams.OnUpdates, в которой содержится вся информация о текущем массиве событий лонгпула для бота в сообществе.
+/// Обёртка для BotsLongPollUpdatesProviderParams.OnUpdates, в которой содержится вся информация о текущем массиве событий лонгпула для бота в сообществе.
 /// </summary>
-public class BotsLongPoolOnUpdatesEvent
+public class BotsLongPollOnUpdatesEvent
 {
 	/// <summary>
 	/// Обновление в событиях группы.

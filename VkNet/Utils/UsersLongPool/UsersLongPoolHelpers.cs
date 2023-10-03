@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using VkNet.Model;
 
-namespace VkNet.Utils.UsersLongPool;
+namespace VkNet.Utils.UsersLongPoll;
 
 /// <summary>
 /// Методы для обработки событий лонгпула у сообществ.
 /// </summary>
-public static class UsersLongPoolHelpers
+public static class UsersLongPollHelpers
 {
 	/// <summary>
 	/// Метод для получения сообщений из массива JObject, который не бросает исключений, но вместе с сообщениями возвращает ошибки при десериализации, если таковые имеются.

@@ -3,13 +3,13 @@ using System;
 using JetBrains.Annotations;
 using VkNet.Abstractions;
 
-namespace VkNet.Utils.BotsLongPool;
+namespace VkNet.Utils.BotsLongPoll;
 
 /// <summary>
-/// Параметры для конструктора BotsLongPoolUpdatesHandler
+/// Параметры для конструктора BotsLongPollUpdatesHandler
 /// </summary>
 [UsedImplicitly]
-public class BotsLongPoolUpdatesHandlerParams
+public class BotsLongPollUpdatesHandlerParams
 {
 	/// <summary>
 	/// ID вашего бота (группы)
@@ -28,9 +28,9 @@ public class BotsLongPoolUpdatesHandlerParams
 	public IVkApi Api { get; set; }
 
 	/// <summary>
-	/// Инициализирует новый экземпляр класса <see cref="BotsLongPoolUpdatesHandlerParams" />
+	/// Инициализирует новый экземпляр класса <see cref="BotsLongPollUpdatesHandlerParams" />
 	/// </summary>
-	public BotsLongPoolUpdatesHandlerParams(IVkApi api, ulong groupId)
+	public BotsLongPollUpdatesHandlerParams(IVkApi api, ulong groupId)
 	{
 		Api = api;
 		GroupId = groupId;
@@ -55,7 +55,7 @@ public class BotsLongPoolUpdatesHandlerParams
 	/// <summary>
 	/// Функция, в которую будут отправлены полученные события.
 	/// </summary>
-	public Action<BotsLongPoolOnUpdatesEvent>? OnUpdates { get; set; } = null;
+	public Action<BotsLongPollOnUpdatesEvent>? OnUpdates { get; set; } = null;
 
 	/// <summary>
 	/// Функция, в которую будет отправляться TS при каждом его обновлении.

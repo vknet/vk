@@ -3,13 +3,13 @@ using System;
 using JetBrains.Annotations;
 using VkNet.Abstractions;
 
-namespace VkNet.Utils.UsersLongPool;
+namespace VkNet.Utils.UsersLongPoll;
 
 /// <summary>
-/// Параметры для конструктора UsersLongPoolUpdatesHandler
+/// Параметры для конструктора UsersLongPollUpdatesHandler
 /// </summary>
 [UsedImplicitly]
-public class UsersLongPoolUpdatesHandlerParams
+public class UsersLongPollUpdatesHandlerParams
 {
 	/// <summary>
 	/// Айди группы, от которой получать данные
@@ -28,9 +28,9 @@ public class UsersLongPoolUpdatesHandlerParams
 	public IVkApi Api { get; set; }
 
 	/// <summary>
-	/// Инициализирует новый экземпляр класса <see cref="UsersLongPoolUpdatesHandlerParams" />
+	/// Инициализирует новый экземпляр класса <see cref="UsersLongPollUpdatesHandlerParams" />
 	/// </summary>
-	public UsersLongPoolUpdatesHandlerParams(IVkApi api)
+	public UsersLongPollUpdatesHandlerParams(IVkApi api)
 	{
 		Api = api;
 	}
@@ -49,7 +49,7 @@ public class UsersLongPoolUpdatesHandlerParams
 	/// <summary>
 	/// Функция, в которую будут отправлены полученные события.
 	/// </summary>
-	public Action<UsersLongPoolOnUpdatesEvent>? OnUpdates { get; set; } = null;
+	public Action<UsersLongPollOnUpdatesEvent>? OnUpdates { get; set; } = null;
 
 	/// <summary>
 	/// Функция, в которую будет отправляться TS при каждом его обновлении.

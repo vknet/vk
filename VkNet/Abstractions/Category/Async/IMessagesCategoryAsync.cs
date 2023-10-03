@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -613,7 +613,7 @@ public interface IMessagesCategoryAsync
 	/// с актуальной версией.
 	/// </summary>
 	/// <param name="params">
-	/// Параметры запроса к LongPool серверу
+	/// Параметры запроса к LongPoll серверу
 	/// MessagesGetLongPollHistoryParams
 	/// </param>
 	/// <param name="token">Токен отмены операции</param>
