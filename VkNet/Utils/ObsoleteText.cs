@@ -101,4 +101,10 @@ public static class ObsoleteText
 	/// </summary>
 	public const string ObsoleteCyrillicProperty =
 		"Данное поле содержало кириллицу в названии. Обновите использование на поле с латинским названием.";
+
+	/// <summary>
+	/// В версии 1.76.0 была опечатка в слове LongPool. Исправьте его на правильное: LongPoll.
+	/// </summary>
+	public const string ObsoleteLongPool =
+		"В версии 1.76.0 была опечатка в слове LongPool. Исправьте его на правильное: LongPoll.";
 }

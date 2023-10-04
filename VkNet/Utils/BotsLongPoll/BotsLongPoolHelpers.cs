@@ -1,4 +1,5 @@
 #nullable enable
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using VkNet.Model;
@@ -46,3 +47,9 @@ public static class BotsLongPollHelpers
 		return updates;
 	}
 }
+
+/// <summary>
+/// Методы для обработки событий лонгпула у сообществ.
+/// </summary>
+[Obsolete(ObsoleteText.ObsoleteLongPool, true)]
+public static class BotsLongPoolHelpers {}

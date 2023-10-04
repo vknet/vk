@@ -218,3 +218,9 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 		SetTs(_currentTs.Value + 1);
 	}
 }
+
+/// <summary>
+/// Реализация лонгпула для бота в сообществе
+/// </summary>
+[Obsolete(ObsoleteText.ObsoleteLongPool, true)]
+public static class BotsLongPoolUpdatesHandler {}
