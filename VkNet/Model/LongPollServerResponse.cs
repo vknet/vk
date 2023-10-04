@@ -31,7 +31,7 @@ public class LongPollServerResponse
 	public ulong Ts { get; set; }
 
 	/// <summary>
-	/// Постоянное событие для работы с методом getLongPoolHistory
+	/// Постоянное событие для работы с методом getLongPollHistory
 	/// </summary>
 	[JsonProperty("pts")]
 	public ulong? Pts { get; set; }

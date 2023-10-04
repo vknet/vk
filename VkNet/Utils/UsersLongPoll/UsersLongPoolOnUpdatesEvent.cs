@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using VkNet.Model;
 
-namespace VkNet.Utils.UsersLongPool;
+namespace VkNet.Utils.UsersLongPoll;
 
 /// <summary>
-/// Обёртка для UsersLongPoolUpdatesHandlerParams.OnUpdates, в которой содержится вся информация о текущем массиве событий лонгпула для пользователя.
+/// Обёртка для UsersLongPollUpdatesHandlerParams.OnUpdates, в которой содержится вся информация о текущем массиве событий лонгпула для пользователя.
 /// </summary>
-public class UsersLongPoolOnUpdatesEvent
+public class UsersLongPollOnUpdatesEvent
 {
 	/// <summary>
 	/// Обновление в событиях пользователя.

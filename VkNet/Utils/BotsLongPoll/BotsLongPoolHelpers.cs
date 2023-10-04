@@ -1,14 +1,15 @@
 #nullable enable
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using VkNet.Model;
 
-namespace VkNet.Utils.BotsLongPool;
+namespace VkNet.Utils.BotsLongPoll;
 
 /// <summary>
 /// Методы для обработки событий лонгпула у сообществ.
 /// </summary>
-public static class BotsLongPoolHelpers
+public static class BotsLongPollHelpers
 {
 	/// <summary>
 	/// Метод для получения обновлений группы из массива JObject, который не бросает исключений, но вместе с обновлениями возвращает ошибки при десериализации, если таковые имеются.
@@ -46,3 +47,9 @@ public static class BotsLongPoolHelpers
 		return updates;
 	}
 }
+
+/// <summary>
+/// Методы для обработки событий лонгпула у сообществ.
+/// </summary>
+[Obsolete(ObsoleteText.ObsoleteLongPool, true)]
+public static class BotsLongPoolHelpers {}

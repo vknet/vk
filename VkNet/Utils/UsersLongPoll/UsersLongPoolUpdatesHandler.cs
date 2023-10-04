@@ -13,24 +13,24 @@ using Newtonsoft.Json.Linq;
 using VkNet.Exception;
 using VkNet.Model;
 
-namespace VkNet.Utils.UsersLongPool;
+namespace VkNet.Utils.UsersLongPoll;
 
 /// <summary>
 /// Реализация лонгпула для пользователя
 /// </summary>
 [UsedImplicitly]
-public class UsersLongPoolUpdatesHandler : IUsersLongPoolUpdatesHandler
+public class UsersLongPollUpdatesHandler : IUsersLongPollUpdatesHandler
 {
-	private readonly UsersLongPoolUpdatesHandlerParams _params;
+	private readonly UsersLongPollUpdatesHandlerParams _params;
 
 	private ulong? _currentTs;
 
 	private ulong? _currentPts;
 
 	/// <summary>
-	/// Инициализирует новый экземпляр класса <see cref="BotsLongPoolUpdatesHandler" />
+	/// Инициализирует новый экземпляр класса <see cref="BotsLongPollUpdatesHandler" />
 	/// </summary>
-	public UsersLongPoolUpdatesHandler(UsersLongPoolUpdatesHandlerParams @params) => _params = @params;
+	public UsersLongPollUpdatesHandler(UsersLongPollUpdatesHandlerParams @params) => _params = @params;
 
 	/// <summary>
 	/// Запуск отслеживания событий
@@ -44,14 +44,14 @@ public class UsersLongPoolUpdatesHandler : IUsersLongPoolUpdatesHandler
 			while (_params.GetPause?.Invoke() is not true)
 			{
 				token.ThrowIfCancellationRequested();
-				await NextLongPoolHistoryAsync(token: token);
+				await NextLongPollHistoryAsync(token: token);
 			}
 
 			await Task.Delay(_params.DelayBetweenUpdates, token);
 		}
 	}
 
-	private async Task NextLongPoolHistoryAsync(CancellationToken token = default)
+	private async Task NextLongPollHistoryAsync(CancellationToken token = default)
 	{
 		try
 		{
@@ -75,7 +75,7 @@ public class UsersLongPoolUpdatesHandler : IUsersLongPoolUpdatesHandler
 			}
 
 			SetPts(response.NewPts);
-			var userMessageEvents = UsersLongPoolHelpers.GetUserMessageEvents(response.Messages);
+			var userMessageEvents = UsersLongPollHelpers.GetUserMessageEvents(response.Messages);
 
 			_params.OnUpdates?.Invoke(new()
 			{
@@ -94,7 +94,7 @@ public class UsersLongPoolUpdatesHandler : IUsersLongPoolUpdatesHandler
 		switch (exception)
 		{
 			case LongPollException longPollException:
-				await HandleLongPoolExceptionAsync(longPollException, token);
+				await HandleLongPollExceptionAsync(longPollException, token);
 
 				return;
 
@@ -124,7 +124,7 @@ public class UsersLongPoolUpdatesHandler : IUsersLongPoolUpdatesHandler
 	/// </summary>
 	/// <param name="exception">Ошибка, связанная с лонгпулом</param>
 	/// <param name="token">Токен отмены операции</param>
-	private async Task HandleLongPoolExceptionAsync(LongPollException exception, CancellationToken token)
+	private async Task HandleLongPollExceptionAsync(LongPollException exception, CancellationToken token)
 	{
 		switch (exception)
 		{
@@ -141,7 +141,7 @@ public class UsersLongPoolUpdatesHandler : IUsersLongPoolUpdatesHandler
 			default:
 				try
 				{
-					await UpdateLongPoolServerAsync(token);
+					await UpdateLongPollServerAsync(token);
 				}
 				catch (System.Exception ex)
 				{
@@ -171,7 +171,7 @@ public class UsersLongPoolUpdatesHandler : IUsersLongPoolUpdatesHandler
 		}
 	}
 
-	private async Task UpdateLongPoolServerAsync(CancellationToken token)
+	private async Task UpdateLongPollServerAsync(CancellationToken token)
 	{
 		try
 		{

@@ -13,15 +13,15 @@ using Newtonsoft.Json.Linq;
 using VkNet.Exception;
 using VkNet.Model;
 
-namespace VkNet.Utils.BotsLongPool;
+namespace VkNet.Utils.BotsLongPoll;
 
 /// <summary>
 /// Реализация лонгпула для бота в сообществе
 /// </summary>
 [UsedImplicitly]
-public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
+public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 {
-	private readonly BotsLongPoolUpdatesHandlerParams _params;
+	private readonly BotsLongPollUpdatesHandlerParams _params;
 
 	private ulong? _currentTs;
 
@@ -30,9 +30,9 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 	private string? _currentServer;
 
 	/// <summary>
-	/// Инициализирует новый экземпляр класса <see cref="BotsLongPoolUpdatesHandler" />
+	/// Инициализирует новый экземпляр класса <see cref="BotsLongPollUpdatesHandler" />
 	/// </summary>
-	public BotsLongPoolUpdatesHandler(BotsLongPoolUpdatesHandlerParams @params) => _params = @params;
+	public BotsLongPollUpdatesHandler(BotsLongPollUpdatesHandlerParams @params) => _params = @params;
 
 	/// <summary>
 	/// Запуск отслеживания событий
@@ -46,14 +46,14 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 			while (_params.GetPause?.Invoke() is not true)
 			{
 				token.ThrowIfCancellationRequested();
-				await NextLongPoolHistoryAsync(token: token);
+				await NextLongPollHistoryAsync(token: token);
 			}
 
 			await Task.Delay(_params.DelayBetweenUpdates, token);
 		}
 	}
 
-	private async Task NextLongPoolHistoryAsync(CancellationToken token = default)
+	private async Task NextLongPollHistoryAsync(CancellationToken token = default)
 	{
 		try
 		{
@@ -85,7 +85,7 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 			}
 
 			SetTs(response.Ts);
-			var updates = BotsLongPoolHelpers.GetGroupUpdateEvents(response.Updates);
+			var updates = BotsLongPollHelpers.GetGroupUpdateEvents(response.Updates);
 			_params.OnUpdates?.Invoke(new()
 			{
 				Response = response,
@@ -103,7 +103,7 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 		switch (exception)
 		{
 			case LongPollException longPollException:
-				await HandleLongPoolExceptionAsync(longPollException, token);
+				await HandleLongPollExceptionAsync(longPollException, token);
 
 				return;
 
@@ -133,7 +133,7 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 	/// </summary>
 	/// <param name="exception">Ошибка, связанная с лонгпулом</param>
 	/// <param name="token">Токен отмены операции</param>
-	private async Task HandleLongPoolExceptionAsync(LongPollException exception, CancellationToken token)
+	private async Task HandleLongPollExceptionAsync(LongPollException exception, CancellationToken token)
 	{
 		switch (exception)
 		{
@@ -150,7 +150,7 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 			default:
 				try
 				{
-					await UpdateLongPoolServerAsync(token);
+					await UpdateLongPollServerAsync(token);
 				}
 				catch (System.Exception ex)
 				{
@@ -177,7 +177,7 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 		}
 	}
 
-	private async Task UpdateLongPoolServerAsync(CancellationToken token)
+	private async Task UpdateLongPollServerAsync(CancellationToken token)
 	{
 		try
 		{
@@ -218,3 +218,9 @@ public class BotsLongPoolUpdatesHandler : IBotsLongPoolUpdatesHandler
 		SetTs(_currentTs.Value + 1);
 	}
 }
+
+/// <summary>
+/// Реализация лонгпула для бота в сообществе
+/// </summary>
+[Obsolete(ObsoleteText.ObsoleteLongPool, true)]
+public static class BotsLongPoolUpdatesHandler {}

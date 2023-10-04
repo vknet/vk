@@ -3,24 +3,24 @@ using System;
 using JetBrains.Annotations;
 using VkNet.Abstractions;
 
-namespace VkNet.Utils.UsersLongPool;
+namespace VkNet.Utils.BotsLongPoll;
 
 /// <summary>
-/// Параметры для конструктора UsersLongPoolUpdatesHandler
+/// Параметры для конструктора BotsLongPollUpdatesHandler
 /// </summary>
 [UsedImplicitly]
-public class UsersLongPoolUpdatesHandlerParams
+public class BotsLongPollUpdatesHandlerParams
 {
 	/// <summary>
-	/// Айди группы, от которой получать данные
+	/// ID вашего бота (группы)
 	/// </summary>
-	public ulong? GroupId { get; set; }
+	public ulong GroupId { get; set; }
 
 	/// <summary>
 	/// Номер, с которого начинать получать события.
-	/// Рекомендуется помещать сюда значение из response.Pts в функции OnUpdates.
+	/// Рекомендуется помещать сюда значение из response.Ts в функции OnUpdates.
 	/// </summary>
-	public ulong? Pts { get; set; } = null;
+	public ulong? Ts { get; set; } = null;
 
 	/// <summary>
 	/// Авторизованный экземпляр VKApi.
@@ -28,17 +28,23 @@ public class UsersLongPoolUpdatesHandlerParams
 	public IVkApi Api { get; set; }
 
 	/// <summary>
-	/// Инициализирует новый экземпляр класса <see cref="UsersLongPoolUpdatesHandlerParams" />
+	/// Инициализирует новый экземпляр класса <see cref="BotsLongPollUpdatesHandlerParams" />
 	/// </summary>
-	public UsersLongPoolUpdatesHandlerParams(IVkApi api)
+	public BotsLongPollUpdatesHandlerParams(IVkApi api, ulong groupId)
 	{
 		Api = api;
+		GroupId = groupId;
 	}
 
 	/// <summary>
 	/// Ожидание между обработкой событий при простое
 	/// </summary>
 	public TimeSpan DelayBetweenUpdates { get; set; } = TimeSpan.FromSeconds(1);
+
+	/// <summary>
+	/// Время ожидания последнего события
+	/// </summary>
+	public int WaitTimeout { get; set; } = 25;
 
 	/// <summary>
 	/// Функция, которая возвращает true, если работа лонгпула должна быть приостановлена
@@ -49,17 +55,12 @@ public class UsersLongPoolUpdatesHandlerParams
 	/// <summary>
 	/// Функция, в которую будут отправлены полученные события.
 	/// </summary>
-	public Action<UsersLongPoolOnUpdatesEvent>? OnUpdates { get; set; } = null;
+	public Action<BotsLongPollOnUpdatesEvent>? OnUpdates { get; set; } = null;
 
 	/// <summary>
 	/// Функция, в которую будет отправляться TS при каждом его обновлении.
 	/// </summary>
 	public Action<ulong>? OnTsChange { get; set; } = null;
-
-	/// <summary>
-	/// Функция, в которую будет отправляться PTS при каждом его обновлении.
-	/// </summary>
-	public Action<ulong>? OnPtsChange { get; set; } = null;
 
 	/// <summary>
 	/// Эта функция вызывается при критических ошибках в лонгпуле (например JsonSerializationException)
@@ -71,3 +72,9 @@ public class UsersLongPoolUpdatesHandlerParams
 	/// </summary>
 	public Action<System.Exception>? OnWarn { get; set; } = null;
 }
+
+/// <summary>
+/// Параметры для конструктора BotsLongPollUpdatesHandler
+/// </summary>
+[Obsolete(ObsoleteText.ObsoleteLongPool, true)]
+public static class BotsLongPoolUpdatesHandlerParams {}

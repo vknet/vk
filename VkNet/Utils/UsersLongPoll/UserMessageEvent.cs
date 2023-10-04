@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using VkNet.Model;
 
-namespace VkNet.Utils.UsersLongPool;
+namespace VkNet.Utils.UsersLongPoll;
 
 /// <summary>
 /// Обёртка для Message, в которой кроме самого сообщения есть и ошибки при парсинге.
