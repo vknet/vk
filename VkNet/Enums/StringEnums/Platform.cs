@@ -35,5 +35,10 @@ public enum Platform
 	/// <summary>
 	/// Instagram
 	/// </summary>
-	Instagram
+	Instagram,
+
+	/// <summary>
+	/// ipad
+	/// </summary>
+	Ipad
 }
