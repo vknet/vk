@@ -574,18 +574,13 @@ public partial class VideoCategory : IVideoCategory
 	public VkCollection<ulong> AddToAlbum(long ownerId, long videoId, IEnumerable<string> albumIds, long? targetId = null,
 										long? albumId = null)
 	{
-		if (albumIds is null && albumId.HasValue)
-		{
-			albumIds = new[]
-			{
-				albumId.Value.ToString()
-			};
-		}
-
 		var parameters = new VkParameters
 		{
 			{
 				"target_id", targetId
+			},
+			{
+				"album_id", albumId
 			},
 			{
 				"album_ids", albumIds
