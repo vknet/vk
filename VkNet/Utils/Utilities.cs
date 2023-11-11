@@ -58,7 +58,7 @@ public static class Utilities
 	/// <returns> Число типа long или null </returns>
 	public static long? GetNullableLongId(VkResponse response) => string.IsNullOrWhiteSpace(response?.ToString())
 		? null
-		: System.Convert.ToInt64(response?.ToString());
+		: System.Convert.ToInt64(response.ToString());
 
 	/// <summary>
 	/// Объединить не пустую коллекцию.
