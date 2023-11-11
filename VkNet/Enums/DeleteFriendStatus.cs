@@ -5,7 +5,7 @@ namespace VkNet.Enums;
 /// <summary>
 /// Возвращаемый статус после удаления пользователя из списка друзей
 /// </summary>
-[VkNetIgnoreDefaultValueAttribute]
+[VkNetIgnoreDefaultValue]
 public enum DeleteFriendStatus
 {
 	/// <summary>
