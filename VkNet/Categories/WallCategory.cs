@@ -653,6 +653,9 @@ public partial class WallCategory : IWallCategory
 		},
 		{
 			"link_button", @params.LinkButton
+		},
+		{
+			"link_video", @params.LinkVideo
 		}
 	});
 
