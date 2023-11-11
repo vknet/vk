@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Model;
-using VkNet.Utils;
 
 namespace VkNet.Utils.JsonConverter;
 

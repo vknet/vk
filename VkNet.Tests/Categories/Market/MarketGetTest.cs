@@ -1,5 +1,4 @@
 using FluentAssertions;
-using System.Reflection;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
