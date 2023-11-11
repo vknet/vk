@@ -18,38 +18,33 @@ public abstract class IgnoreUnexpectedArraysConverterBase : Newtonsoft.Json.Json
 			throw new JsonSerializationException(string.Format("{0} is not a JSON object", objectType));
 		}
 
-		do
+		switch (reader.TokenType)
 		{
-			switch (reader.TokenType)
+			case JsonToken.Null:
+				return null;
+
+			case JsonToken.StartArray:
 			{
-				case JsonToken.Null:
-					return null;
+				var array = JArray.Load(reader);
 
-				case JsonToken.StartArray:
+				if (array.Count > 0)
 				{
-					var array = JArray.Load(reader);
-
-					if (array.Count > 0)
-					{
-						throw new JsonSerializationException("Array was not empty.");
-					}
-
-					return null;
+					throw new JsonSerializationException("Array was not empty.");
 				}
 
-				case JsonToken.StartObject:
-					// Prevent infinite recursion by using Populate()
-					existingValue ??= contract.DefaultCreator();
-					serializer.Populate(reader, existingValue);
-
-					return existingValue;
-
-				default:
-					throw new JsonSerializationException($"Unexpected token {reader.TokenType}");
+				return null;
 			}
-		} while (reader.Read());
 
-		throw new JsonSerializationException("Unexpected end of JSON.");
+			case JsonToken.StartObject:
+				// Prevent infinite recursion by using Populate()
+				existingValue ??= contract.DefaultCreator();
+				serializer.Populate(reader, existingValue);
+
+				return existingValue;
+
+			default:
+				throw new JsonSerializationException($"Unexpected token {reader.TokenType}");
+		}
 	}
 
 	/// <inheritdoc />
