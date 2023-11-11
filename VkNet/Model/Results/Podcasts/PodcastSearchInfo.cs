@@ -42,6 +42,6 @@ namespace VkNet.Model
 		/// Коллекция логотипов подкаста
 		/// </summary>
 		[JsonProperty("cover")]
-		public Cover Covers { get; set; }	
+		public Cover Covers { get; set; }
 	}
 }
