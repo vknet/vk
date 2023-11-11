@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Exception;
 using VkNet.Model;
+using VkNet.Utils.BotsLongPoll;
 
 namespace VkNet.Utils.UsersLongPoll;
 

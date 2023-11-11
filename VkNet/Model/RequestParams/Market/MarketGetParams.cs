@@ -1,4 +1,3 @@
-using HtmlAgilityPack;
 using System;
 
 namespace VkNet.Model

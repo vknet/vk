@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
+using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.StringEnums;
@@ -39,9 +40,10 @@ public partial class FriendsCategory
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync(IEnumerable<long> userIds,
 																	bool? needSign = null,
+																	bool? extended = null,
 																	CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AreFriends(userIds, needSign), token);
+			AreFriends(userIds, needSign, extended), token);
 
 	/// <inheritdoc />
 	public Task<long> AddListAsync(string name,

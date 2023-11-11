@@ -15,7 +15,7 @@ public class WallReplyGroupUpdate : Comment, IGroupUpdate
 	/// Идентификатор записи
 	/// </summary>
 	[JsonProperty("post_id")]
-	public long? PostId { get; set; }
+	public new long? PostId { get; set; }
 
 	/// <summary>
 	/// Идентификатор владельца записи

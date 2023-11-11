@@ -230,11 +230,11 @@ public sealed class Settings
 	{
 		var n = name.ToLower();
 
-		if (MaskMap.ContainsKey(key: n))
+		if (MaskMap.TryGetValue(n, out var value))
 		{
 			return new()
 			{
-				Mask = MaskMap[key: n],
+				Mask = value,
 				_settings = new()
 				{
 					n

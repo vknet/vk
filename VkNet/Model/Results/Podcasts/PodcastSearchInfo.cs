@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace VkNet.Model
@@ -42,6 +37,6 @@ namespace VkNet.Model
 		/// Коллекция логотипов подкаста
 		/// </summary>
 		[JsonProperty("cover")]
-		public Cover Covers { get; set; }	
+		public Cover Covers { get; set; }
 	}
 }

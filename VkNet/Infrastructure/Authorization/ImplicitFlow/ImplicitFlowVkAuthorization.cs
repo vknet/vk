@@ -137,5 +137,5 @@ public class ImplicitFlowVkAuthorization : IVkAuthorization<ImplicitFlowPageType
 			"&"
 		}, StringSplitOptions.RemoveEmptyEntries)
 		.Select(q => q.Split('='))
-		.ToDictionary(x => x.First(), x => x.Last());
+		.ToDictionary(x => x[0], x => x[x.Length - 1]);
 }

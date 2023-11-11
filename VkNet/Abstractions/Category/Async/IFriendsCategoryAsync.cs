@@ -107,6 +107,12 @@ public interface IFriendsCategoryAsync
 	/// 0 – поле sign возвращать не нужно. флаг, может принимать значения 1 или 0
 	/// (Флаг, может принимать значения 1 или 0).
 	/// </param>
+	/// <param name="extended">
+	///	Информация о том, вернуть ли в ответе поле is_request_unread.
+	/// 1 – необходимо вернуть поле is_request_unread,
+	/// если есть непросмотренная заявка в друзья.
+	/// 0 — поле is_request_unread возвращать не нужно.
+	/// </param>
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов status, каждый из которых
@@ -128,6 +134,7 @@ public interface IFriendsCategoryAsync
 	/// </remarks>
 	Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync([NotNull] IEnumerable<long> userIds,
 																bool? needSign = null,
+																bool? extended = null,
 																CancellationToken token = default);
 
 	/// <summary>

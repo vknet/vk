@@ -104,18 +104,13 @@ public partial class FriendsCategory : IFriendsCategory
 	/// <inheritdoc />
 	public ReadOnlyCollection<MutualFriend> GetMutual(FriendsGetMutualParams @params)
 	{
-		if (@params.TargetUid.HasValue)
-		{
-			@params.TargetUids = new[]
-			{
-				@params.TargetUid.Value
-			};
-		}
-
 		return _vk.Call<ReadOnlyCollection<MutualFriend>>("friends.getMutual", new()
 		{
 			{
 				"source_uid", @params.SourceUid
+			},
+			{
+				"target_uid", @params.TargetUid
 			},
 			{
 				"target_uids", @params.TargetUids
@@ -134,7 +129,7 @@ public partial class FriendsCategory : IFriendsCategory
 
 	/// <inheritdoc />
 	[Pure]
-	public ReadOnlyCollection<AreFriendsResult> AreFriends(IEnumerable<long> userIds, bool? needSign = null)
+	public ReadOnlyCollection<AreFriendsResult> AreFriends(IEnumerable<long> userIds, bool? needSign = null, bool? extended = null)
 	{
 		if (userIds is null)
 		{
@@ -148,6 +143,9 @@ public partial class FriendsCategory : IFriendsCategory
 			},
 			{
 				"need_sign", needSign
+			},
+			{
+				"extended", extended
 			}
 		};
 

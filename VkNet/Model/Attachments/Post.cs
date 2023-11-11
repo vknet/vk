@@ -224,7 +224,7 @@ public class Post : MediaAttachment
 	/// Ключ доступа
 	/// </summary>
 	[JsonProperty("access_key")]
-	public string AccessKey { get; set; }
+	public new string AccessKey { get; set; }
 
 	/// <summary>
 	/// Информация о записи VK Donut.

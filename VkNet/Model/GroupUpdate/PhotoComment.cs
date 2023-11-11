@@ -15,7 +15,7 @@ public class PhotoComment : Comment, IGroupUpdate
 	/// Идентификатор фотографии
 	/// </summary>
 	[JsonProperty("photo_id")]
-	public long? PhotoId { get; set; }
+	public new long? PhotoId { get; set; }
 
 	/// <summary>
 	/// Идентификатор владельца фотографии
