@@ -104,18 +104,13 @@ public partial class FriendsCategory : IFriendsCategory
 	/// <inheritdoc />
 	public ReadOnlyCollection<MutualFriend> GetMutual(FriendsGetMutualParams @params)
 	{
-		if (@params.TargetUid.HasValue)
-		{
-			@params.TargetUids = new[]
-			{
-				@params.TargetUid.Value
-			};
-		}
-
 		return _vk.Call<ReadOnlyCollection<MutualFriend>>("friends.getMutual", new()
 		{
 			{
 				"source_uid", @params.SourceUid
+			},
+			{
+				"target_uid", @params.TargetUid
 			},
 			{
 				"target_uids", @params.TargetUids
