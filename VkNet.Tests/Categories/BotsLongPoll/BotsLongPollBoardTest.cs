@@ -153,7 +153,6 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 
 		var expectedGroupId = new GroupId(1234);
 		const int unExpectedGroupId = -1234;
-		const int expectedUserId = 123;
 		const string expectedText = "test";
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
