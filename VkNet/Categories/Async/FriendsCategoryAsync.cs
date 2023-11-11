@@ -40,9 +40,10 @@ public partial class FriendsCategory
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync(IEnumerable<long> userIds,
 																	bool? needSign = null,
+																	bool? extended = null,
 																	CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
-			AreFriends(userIds, needSign), token);
+			AreFriends(userIds, needSign, extended), token);
 
 	/// <inheritdoc />
 	public Task<long> AddListAsync(string name,

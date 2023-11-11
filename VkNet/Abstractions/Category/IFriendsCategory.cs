@@ -25,7 +25,7 @@ public interface IFriendsCategory : IFriendsCategoryAsync
 	ReadOnlyCollection<MutualFriend> GetMutual(FriendsGetMutualParams @params);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.AreFriendsAsync" />
-	ReadOnlyCollection<AreFriendsResult> AreFriends([NotNull] IEnumerable<long> userIds, bool? needSign = null);
+	ReadOnlyCollection<AreFriendsResult> AreFriends([NotNull] IEnumerable<long> userIds, bool? needSign = null, bool? extended = null);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.AddListAsync" />
 	long AddList(string name, IEnumerable<long> userIds);

@@ -134,7 +134,7 @@ public partial class FriendsCategory : IFriendsCategory
 
 	/// <inheritdoc />
 	[Pure]
-	public ReadOnlyCollection<AreFriendsResult> AreFriends(IEnumerable<long> userIds, bool? needSign = null)
+	public ReadOnlyCollection<AreFriendsResult> AreFriends(IEnumerable<long> userIds, bool? needSign = null, bool? extended = null)
 	{
 		if (userIds is null)
 		{
@@ -148,6 +148,9 @@ public partial class FriendsCategory : IFriendsCategory
 			},
 			{
 				"need_sign", needSign
+			},
+			{
+				"extended", extended
 			}
 		};
 
