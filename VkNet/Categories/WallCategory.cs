@@ -611,10 +611,16 @@ public partial class WallCategory : IWallCategory
 			"place_id", @params.PlaceId
 		},
 		{
+			"link_button", @params.LinkButton
+		},
+		{
 			"link_title", @params.LinkTitle
 		},
 		{
 			"link_image", @params.LinkImage
+		},
+		{
+			"link_video", @params.LinkVideo
 		}
 	});
 

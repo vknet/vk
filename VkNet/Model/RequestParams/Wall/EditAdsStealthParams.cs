@@ -62,6 +62,13 @@ public class EditAdsStealthParams
 	public ulong PlaceId { get; set; }
 
 	/// <summary>
+	/// Идентификатор кнопки, которую необходимо добавить к сниппету для ссылки.
+	/// Подробнее см. документацию метода wall.postAdsStealth.
+	/// </summary>
+	[JsonProperty(propertyName: "link_button")]
+	public string LinkButton { get; set; }
+
+	/// <summary>
 	/// Заголовок, который должен быть использован для сниппета.
 	/// Если не указан, будет автоматически получен с целевой ссылки.
 	/// Обязательно указывать в случае, если ссылка является номером телефона.
@@ -79,16 +86,9 @@ public class EditAdsStealthParams
 	public string LinkImage { get; set; }
 
 	/// <summary>
-	/// Идентификатор кнопки, которую необходимо добавить к сниппету для ссылки.
-	/// Подробнее см. документацию метода wall.postAdsStealth.
-	/// </summary>
-	[JsonProperty(propertyName: "link_button")]
-	public string LinkButton { get; set; }
-
-	/// <summary>
 	/// Идентификатор видео в формате &lt;owner_id>_&lt;media_id>.
 	/// Одновременно может быть указан либо параметр link_image, либо параметр link_video.
-	/// Кроме того, параметр link_video может быть указан только вместе с параметрами link_button, link_title..
+	/// Кроме того, параметр link_video может быть указан только вместе с параметрами link_button, link_title.
 	/// </summary>
 	[JsonProperty(propertyName: "link_video")]
 	public string LinkVideo { get; set; }
