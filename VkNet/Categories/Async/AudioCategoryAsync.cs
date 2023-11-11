@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
