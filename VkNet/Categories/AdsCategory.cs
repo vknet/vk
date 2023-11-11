@@ -301,6 +301,9 @@ public partial class AdsCategory : IAdsCategory
 				"include_deleted", getAdsLayoutParams.IncludeDeleted
 			},
 			{
+				"only_deleted", getAdsLayoutParams.OnlyDeleted
+			},
+			{
 				"limit", getAdsLayoutParams.Limit
 			},
 			{

@@ -31,7 +31,7 @@ public class GetAdsParams
 	/// <summary>
 	/// Флаг, задающий вывод только архивных объявлений. 0 — выводить все объявления; 1 — выводить только архивные объявления.
 	/// </summary>
-	[JsonProperty("include_deleted")]
+	[JsonProperty("only_deleted")]
 	public bool? OnlyDeleted { get; set; }
 
 	/// <summary>
