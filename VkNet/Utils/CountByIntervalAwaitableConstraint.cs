@@ -92,7 +92,7 @@ public class CountByIntervalAwaitableConstraint : IAwaitableConstraint
 			}
 
 			_left = _count - 1;
-			_dateTime = DateTime.Now;
+			_dateTime = DateTime.UtcNow;
 		}
 
 		_semaphore.Release();
