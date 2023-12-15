@@ -27,12 +27,7 @@ public class Market : MediaAttachment
 	{
 		get => _id;
 
-		set {
-			if (value is null)
-			{
-				_id ??= -1;
-			}
-		}
+		set => _id = value ?? -1;
 	}
 
 	/// <summary>
