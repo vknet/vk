@@ -151,5 +151,13 @@ public enum PhotoSizeType
 	/// <remarks>
 	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
-	L
+	L,
+	
+	/// <summary>
+	/// В документации отсутствует описание
+	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
+	J
 }

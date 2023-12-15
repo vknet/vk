@@ -684,6 +684,10 @@ public class StringEnumTests
 		Utilities.Deserialize<PhotoSizeType>("e")
 			.Should()
 			.Be(PhotoSizeType.E);
+
+		Utilities.Deserialize<PhotoSizeType>("j")
+			.Should()
+			.Be(PhotoSizeType.J);
 	}
 
 	[Fact]
