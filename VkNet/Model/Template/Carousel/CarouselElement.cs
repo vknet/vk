@@ -38,7 +38,7 @@ public class CarouselElement
 	/// <summary>
 	/// Фото
 	/// </summary>
-	[JsonProperty("photo")]
+	[JsonProperty("photo", DefaultValueHandling = DefaultValueHandling.Ignore)]
 	public Photo Photo { get; set; }
 
 	/// <summary>
