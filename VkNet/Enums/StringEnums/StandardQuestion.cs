@@ -3,7 +3,6 @@ using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.StringEnums;
 
-/// <inheritdoc />
 /// <summary>
 /// Типы стандартных вопросов
 /// </summary>

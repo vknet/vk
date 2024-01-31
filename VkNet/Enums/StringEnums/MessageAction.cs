@@ -11,47 +11,47 @@ namespace VkNet.Enums.StringEnums;
 public enum MessageAction
 {
 	/// <summary>
-	/// обновлена фотография беседы;
+	/// Обновлена фотография беседы;
 	/// </summary>
 	ChatPhotoUpdate,
 
 	/// <summary>
-	/// удалена фотография беседы;
+	/// Удалена фотография беседы;
 	/// </summary>
 	ChatPhotoRemove,
 
 	/// <summary>
-	/// создана беседа;
+	/// Создана беседа;
 	/// </summary>
 	ChatCreate,
 
 	/// <summary>
-	/// обновлено название беседы;
+	/// Обновлено название беседы;
 	/// </summary>
 	ChatTitleUpdate,
 
 	/// <summary>
-	/// приглашен пользователь;
+	/// Приглашен пользователь;
 	/// </summary>
 	ChatInviteUser,
 
 	/// <summary>
-	/// исключен пользователь.
+	/// Исключен пользователь.
 	/// </summary>
 	ChatKickUser,
 
 	/// <summary>
-	/// закреплено сообщение;
+	/// Закреплено сообщение;
 	/// </summary>
 	ChatPinMessage,
 
 	/// <summary>
-	/// откреплено сообщение.
+	/// Откреплено сообщение.
 	/// </summary>
 	ChatUnpinMessage,
 
 	/// <summary>
-	/// пользователь присоединился к беседе по ссылке.
+	/// Пользователь присоединился к беседе по ссылке.
 	/// </summary>
 	ChatInviteUserByLink,
 
@@ -63,5 +63,10 @@ public enum MessageAction
 	/// <summary>
 	/// Скриншот чата
 	/// </summary>
-	ChatScreenshot
+	ChatScreenshot,
+
+	/// <summary>
+	/// Пригласить пользователя в чат по запросу сообщения
+	/// </summary>
+	ChatInviteUserByMessageRequest
 }
