@@ -18,5 +18,5 @@ public enum ResponseType
 	/// <summary>
 	/// Код.
 	/// </summary>
-	Сode
+	Code
 }

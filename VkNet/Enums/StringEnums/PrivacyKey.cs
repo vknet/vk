@@ -108,7 +108,7 @@ public enum PrivacyKey
 	/// <summary>
 	/// Поиск по номеру телефона
 	/// </summary>
-	Search_by_reg_phone,
+	SearchByRegPhone,
 
 	/// <summary>
 	/// Истории
@@ -141,7 +141,7 @@ public enum PrivacyKey
 	LivesReplies,
 
 	/// <summary>
-	/// Онлайн статус
+	/// Онлайн статус
 	/// </summary>
 	Online,
 
@@ -158,7 +158,7 @@ public enum PrivacyKey
 	/// <summary>
 	/// Шаги запуска ВК
 	/// </summary>
-	Vkrun_Steps,
+	VkRunSteps,
 
 	/// <summary>
 	/// Лента игр

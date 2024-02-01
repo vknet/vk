@@ -26,7 +26,7 @@ public interface IVkAuthorization<out TPageType>
 	/// Получить тип страницы авторизации
 	/// </summary>
 	/// <param name="url">
-	/// Текщий URL страницы авторизации
+	/// Текущий URL страницы авторизации
 	/// </param>
 	/// <returns>
 	/// Тип страницы для авторизации Implicit Flow
