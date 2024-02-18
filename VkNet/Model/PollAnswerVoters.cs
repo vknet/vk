@@ -5,11 +5,9 @@ using VkNet.Utils;
 namespace VkNet.Model;
 
 /// <summary>
-/// Объект для перечисления пользователей, которые выбрали определенные варианты
-/// ответа в опросе.
+/// Объект для перечисления пользователей, которые выбрали определенные варианты ответа в опросе.
 /// </summary>
 [Serializable]
-//[JsonConverter(typeof(PollAnswerVotersJsonConverter))]
 public class PollAnswerVoters
 {
 	/// <summary>
@@ -27,5 +25,6 @@ public class PollAnswerVoters
 	/// <summary>
 	/// Коллекция идентификаторов пользователей, только если Fields = null
 	/// </summary>
+	[JsonProperty("items")]
 	public VkCollection<long> UsersIds { get; set; }
 }

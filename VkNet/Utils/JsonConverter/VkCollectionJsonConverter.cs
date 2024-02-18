@@ -12,6 +12,8 @@ namespace VkNet.Utils.JsonConverter;
 /// </summary>
 public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
 {
+	private const string ResponsePropertyKey = "response";
+
 	/// <summary>
 	/// Инициализация
 	/// </summary>
@@ -28,20 +30,14 @@ public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
 	/// <summary>
 	/// Количество
 	/// </summary>
-	private static string CountField => "count";
+	private static string CountPropertyKey => "count";
 
 	/// <summary>
 	/// Поле с коллекцией данных
 	/// </summary>
 	private string CollectionField { get; }
 
-	/// <summary>
-	/// Сериализация объекта в Json
-	/// </summary>
-	/// <param name="writer"> Json writer </param>
-	/// <param name="value"> Значение </param>
-	/// <param name="serializer"> Сериализатор </param>
-	/// <exception cref="NotImplementedException"> </exception>
+	/// <inheritdoc />
 	public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 	{
 		var vkCollectionType = value.GetType();
@@ -71,17 +67,7 @@ public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
 		serializer.Serialize(writer, vkCollectionSurrogate);
 	}
 
-	/// <summary>
-	/// Преобразование JSON в VkCollection
-	/// </summary>
-	/// <param name="reader"> Json reader </param>
-	/// <param name="objectType"> Тип объекта </param>
-	/// <param name="existingValue"> Существующее значение </param>
-	/// <param name="serializer"> Serializer </param>
-	/// <returns>
-	/// Объект
-	/// </returns>
-	/// <exception cref="TypeAccessException"> </exception>
+	/// <inheritdoc />
 	public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 	{
 		if (!objectType.IsGenericType)
@@ -103,9 +89,9 @@ public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
 		var vkCollection = typeof(VkCollection<>).MakeGenericType(keyType);
 
 		var obj = JObject.Load(reader);
-		var response = obj["response"] ?? obj;
+		var response = obj[ResponsePropertyKey] ?? obj;
 
-		var totalCount = response[CountField]
+		var totalCount = response[CountPropertyKey]
 			.Value<ulong>();
 
 		var converter =

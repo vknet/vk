@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Model;
-using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
@@ -84,8 +83,8 @@ public interface IPollsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/polls.GetVoters
 	/// </remarks>
-	Task<VkCollection<PollAnswerVoters>> GetVotersAsync(PollsGetVotersParams @params,
-														CancellationToken token = default);
+	Task<ReadOnlyCollection<PollAnswerVoters>> GetVotersAsync(PollsGetVotersParams @params,
+															CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет создавать опросы, которые впоследствии можно прикреплять к записям на
@@ -119,7 +118,7 @@ public interface IPollsCategoryAsync
 	/// <summary>
 	/// Получает адрес сервера для загрузки фоновой фотографии в опрос.
 	/// </summary>
-	/// <param name="ownerId">Идеентификатор пользователя или сообщества</param>
+	/// <param name="ownerId">Идентификатор пользователя или сообщества</param>
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект с полем содержащим URL для загрузки фотографии

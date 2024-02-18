@@ -93,8 +93,39 @@ public partial class PollsCategory : IPollsCategory
 	});
 
 	/// <inheritdoc />
-	public VkCollection<PollAnswerVoters> GetVoters(PollsGetVotersParams @params)
+	public ReadOnlyCollection<PollAnswerVoters> GetVoters(PollsGetVotersParams @params)
 	{
+		return _vk.Call<ReadOnlyCollection<PollAnswerVoters>>("polls.getVoters", new()
+		{
+			{
+				"owner_id", @params.OwnerId
+			},
+			{
+				"is_board", @params.IsBoard
+			},
+			{
+				"poll_id", @params.PollId
+			},
+			{
+				"answer_ids", FormatList(answersIds: @params.AnswersIds)
+			},
+			{
+				"friends_only", @params.FriendsOnly
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"count", @params.Count
+			},
+			{
+				"fields", @params.Fields
+			},
+			{
+				"name_case", @params.NameCase
+			}
+		});
+
 		object FormatList(IList<long> answersIds)
 		{
 			if (answersIds is null)
@@ -116,37 +147,6 @@ public partial class PollsCategory : IPollsCategory
 
 			return stringBuilder.ToString();
 		}
-
-		return _vk.Call<VkCollection<PollAnswerVoters>>("polls.getVoters", new()
-			{
-				{
-					"owner_id", @params.OwnerId
-				},
-				{
-					"is_board", @params.IsBoard
-				},
-				{
-					"poll_id", @params.PollId
-				},
-				{
-					"answer_ids", FormatList(answersIds: @params.AnswersIds)
-				},
-				{
-					"friends_only", @params.FriendsOnly
-				},
-				{
-					"offset", @params.Offset
-				},
-				{
-					"count", @params.Count
-				},
-				{
-					"fields", @params.Fields
-				},
-				{
-					"name_case", @params.NameCase
-				}
-			});
 	}
 
 	/// <inheritdoc />

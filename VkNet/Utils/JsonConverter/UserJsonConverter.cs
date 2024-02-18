@@ -9,20 +9,18 @@ using VkNet.Model;
 namespace VkNet.Utils.JsonConverter;
 
 /// <inheritdoc />
-public class UserJsonConverter : Newtonsoft.Json.JsonConverter
+public class UserJsonConverter : JsonConverter<User>
 {
 	/// <inheritdoc />
-	public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+	public override void WriteJson(JsonWriter writer, User value, JsonSerializer serializer)
 	{
-		var user = (User) value;
-
 		var jObj = new JObject
 		{
 			{
-				"first_name", JToken.FromObject(user.FirstName)
+				"first_name", JToken.FromObject(value.FirstName)
 			},
 			{
-				"last_name", JToken.FromObject(user.LastName)
+				"last_name", JToken.FromObject(value.LastName)
 			}
 		};
 
@@ -31,11 +29,19 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 
 	/// <inheritdoc />
 	/// <exception cref="T:System.TypeAccessException"> </exception>
-	public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+	public override User ReadJson(JsonReader reader, Type objectType, User existingValue, bool hasExistingValue, JsonSerializer serializer)
 	{
 		if (objectType.IsGenericType)
 		{
 			throw new TypeAccessException();
+		}
+
+		if (reader.TokenType is JsonToken.Integer)
+		{
+			return new()
+			{
+				Id = (long) reader.Value
+			};
 		}
 
 		var obj = JObject.Load(reader);
@@ -282,7 +288,4 @@ public class UserJsonConverter : Newtonsoft.Json.JsonConverter
 
 		return user;
 	}
-
-	/// <inheritdoc />
-	public override bool CanConvert(Type objectType) => throw new NotImplementedException();
 }
