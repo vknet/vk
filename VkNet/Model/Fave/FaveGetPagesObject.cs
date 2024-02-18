@@ -37,11 +37,21 @@ public class FaveGetPagesObject
 	[JsonProperty("updated_date")]
 	public DateTime UpdatedDate { get; set; }
 
-	/// <inheritdoc cref="Model.User"/>
+	/// <summary>
+	/// Информация о пользователе.
+	/// </summary>
+	/// <remarks>
+	/// См. описание https://vk.com/dev/objects/user
+	/// </remarks>
 	[JsonProperty("user")]
 	public User User { get; set; }
 
-	/// <inheritdoc cref="Model.Group"/>
+	/// <summary>
+	/// Информация о сообществе (группе).
+	/// </summary>
+	/// <remarks>
+	/// См. описание http://vk.com/dev/fields_groups
+	/// </remarks>
 	[JsonProperty("group")]
 	public Group Group { get; set; }
 }

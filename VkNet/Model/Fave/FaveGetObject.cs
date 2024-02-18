@@ -37,27 +37,39 @@ public class FaveGetObject
 	[JsonProperty("tags")]
 	public IEnumerable<FaveTag> Tags { get; set; }
 
-	/// <inheritdoc cref="Model.Post" />
+	/// <summary>
+	/// Запись со стены пользователя или сообщества.
+	/// </summary>
 	[JsonProperty("post")]
 	public Post Post { get; set; }
 
-	/// <inheritdoc cref="Model.Video" />
+	/// <summary>
+	/// Видеозапись пользователя или группы.
+	/// </summary>
 	[JsonProperty("video")]
 	public Video Video { get; set; }
 
-	/// <inheritdoc cref="Market" />
+	/// <summary>
+	/// Информация о продукте.
+	/// </summary>
 	[JsonProperty("product")]
 	public Market Product { get; set; }
 
-	/// <inheritdoc cref="Model.Article" />
-	[JsonProperty("Article")]
+	/// <summary>
+	/// Статья
+	/// </summary>
+	[JsonProperty("article")]
 	public Article Article { get; set; }
 
-	/// <inheritdoc cref="Model.Podcast" />
+	/// <summary>
+	/// Подкаст
+	/// </summary>
 	[JsonProperty("podcast")]
 	public Podcast Podcast { get; set; }
 
-	/// <inheritdoc cref="Model.Link" />
+	/// <summary>
+	/// Ссылка на Web-страницу.	///  См. описание http://vk.com/dev/attachments_w
+	/// </summary>
 	[JsonProperty("link")]
 	public Link Link { get; set; }
 }

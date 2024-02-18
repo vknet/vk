@@ -5,7 +5,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IMarketsCategoryAsync"/>
+/// <summary>
+/// Методы для работы с товарами.
+/// </summary>
 public interface IMarketsCategory : IMarketsCategoryAsync
 {
 	/// <inheritdoc cref="IMarketsCategoryAsync.GetAsync"/>
@@ -69,7 +71,8 @@ public interface IMarketsCategory : IMarketsCategoryAsync
 	long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false, bool isHidden = false);
 
 	/// <inheritdoc cref="IMarketsCategoryAsync.EditAlbumAsync"/>
-	bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false, bool isHidden = false);
+	bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false,
+					bool isHidden = false);
 
 	/// <inheritdoc cref="IMarketsCategoryAsync.DeleteAlbumAsync"/>
 	bool DeleteAlbum(long ownerId, long albumId);

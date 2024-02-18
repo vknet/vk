@@ -13,7 +13,7 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Model;
 
 /// <summary>
-/// Информация о пользователя.
+/// Информация о пользователе.
 /// См. описание https://vk.com/dev/objects/user
 /// </summary>
 [DebuggerDisplay("[{Id}] {FirstName} {LastName}")]

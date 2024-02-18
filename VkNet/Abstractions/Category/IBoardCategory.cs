@@ -3,7 +3,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IBoardCategoryAsync" />
+/// <summary>
+/// Методы для работы со темами группы.
+/// </summary>
 public interface IBoardCategory : IBoardCategoryAsync
 {
 	/// <inheritdoc cref="IBoardCategoryAsync.GetTopicsAsync"/>

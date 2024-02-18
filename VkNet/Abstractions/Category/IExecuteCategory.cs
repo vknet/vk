@@ -2,7 +2,9 @@
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IExecuteCategoryAsync" />
+/// <summary>
+/// Методы этого класса позволяют производить действия с универсальным методом.
+/// </summary>
 public interface IExecuteCategory : IExecuteCategoryAsync
 {
 	/// <inheritdoc cref="IExecuteCategoryAsync.ExecuteAsync"/>

@@ -5,7 +5,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IPagesCategoryAsync"/>
+/// <summary>
+/// Методы для работы с wiki.
+/// </summary>
 public interface IPagesCategory : IPagesCategoryAsync
 {
 	/// <inheritdoc cref="IPagesCategoryAsync.GetAsync"/>

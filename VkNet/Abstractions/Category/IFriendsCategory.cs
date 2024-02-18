@@ -9,7 +9,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IFriendsCategoryAsync" />
+/// <summary>
+/// Методы для работы с друзьями.
+/// </summary>
 public interface IFriendsCategory : IFriendsCategoryAsync
 {
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetAsync" />

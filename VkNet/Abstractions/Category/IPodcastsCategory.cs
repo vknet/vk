@@ -4,7 +4,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IPodcastsCategoryAsync"/>
+/// <summary>
+/// Методы для работы с подкастами.
+/// </summary>
 public interface IPodcastsCategory : IPodcastsCategoryAsync
 {
 	/// <inheritdoc cref="IPodcastsCategoryAsync.ClearRecentSearchesAsync"/>

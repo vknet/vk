@@ -6,7 +6,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IAccountCategoryAsync"/>
+/// <summary>
+/// Методы этого класса позволяют производить действия с аккаунтом пользователя.
+/// </summary>
 public interface IAccountCategory : IAccountCategoryAsync
 {
 	/// <inheritdoc cref="IAccountCategoryAsync.GetCountersAsync"/>

@@ -5,7 +5,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IAppsCategoryAsync"/>
+/// <summary>
+/// Методы для работы с методами приложений.
+/// </summary>
 public interface IAppsCategory : IAppsCategoryAsync
 {
 	/// <inheritdoc cref="IAppsCategoryAsync.GetCatalogAsync"/>

@@ -3,7 +3,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="INotificationsCategoryAsync"/>
+/// <summary>
+/// Методы для работы с Уведомлениями
+/// </summary>
 public interface INotificationsCategory : INotificationsCategoryAsync
 {
 	/// <inheritdoc cref="INotificationsCategoryAsync.GetAsync"/>

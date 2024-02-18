@@ -3,7 +3,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="ILeadsCategoryAsync" />
+/// <summary>
+/// Leads При подключении к сервису рекламных акций партнёр получает доступ в специальный раздел для создания и управления рекламными акциями (офферами).
+/// </summary>
 public interface ILeadsCategory : ILeadsCategoryAsync
 {
 	/// <inheritdoc cref="ILeadsCategoryAsync.CheckUserAsync" />

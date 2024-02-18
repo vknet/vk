@@ -3,7 +3,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IGiftsCategoryAsync" />
+/// <summary>
+/// Методы для работы с подарками.
+/// </summary>
 public interface IGiftsCategory : IGiftsCategoryAsync
 {
 	/// <inheritdoc cref="IGiftsCategoryAsync.GetAsync" />

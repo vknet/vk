@@ -7,7 +7,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IVideoCategoryAsync"/>
+/// <summary>
+/// Методы для работы с видеофайлами.
+/// </summary>
 public interface IVideoCategory : IVideoCategoryAsync
 {
 	/// <inheritdoc cref="IVideoCategoryAsync.GetAsync"/>

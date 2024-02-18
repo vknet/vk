@@ -9,7 +9,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IMessagesCategoryAsync"/>
+/// <summary>
+/// Методы для работы с личными сообщениями. Для моментального получения входящих сообщений используйте LongPoll сервер.
+/// </summary>
 public interface IMessagesCategory : IMessagesCategoryAsync
 {
 	/// <inheritdoc cref="IMessagesCategoryAsync.AddChatUserAsync"/>
@@ -164,7 +166,6 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetIntentUsersAsync"/>
 	GetIntentUsersResult GetIntentUsers(MessagesGetIntentUsersParams getIntentUsersParams);
-
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.SetMemberRoleAsync"/>
 	bool SetMemberRole(string role, long peerId, ulong memberId);

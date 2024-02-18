@@ -2,7 +2,9 @@
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IAuthCategoryAsync" />
+/// <summary>
+/// Методы для работы с авторизацией.
+/// </summary>
 public interface IAuthCategory : IAuthCategoryAsync
 {
 	/// <inheritdoc cref="IAuthCategoryAsync.CheckPhoneAsync"/>

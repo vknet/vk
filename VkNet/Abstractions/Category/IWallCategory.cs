@@ -7,7 +7,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IWallCategoryAsync"/>
+/// <summary>
+/// Методы для работы со стеной пользователя.
+/// </summary>
 public interface IWallCategory : IWallCategoryAsync
 {
 	/// <inheritdoc cref="IWallCategoryAsync.GetAsync"/>

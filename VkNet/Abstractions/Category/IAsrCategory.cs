@@ -3,7 +3,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IAsrCategoryAsync"/>
+/// <summary>
+/// Методы для работы с ASR
+/// </summary>
 public interface IAsrCategory : IAsrCategoryAsync
 {
 	/// <inheritdoc cref = "IAsrCategoryAsync.CheckStatusAsync"/>

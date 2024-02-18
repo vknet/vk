@@ -5,7 +5,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IStreamingCategoryAsync"/>
+/// <summary>
+/// Список методов секции Streaming
+/// </summary>
 public interface IStreamingCategory : IStreamingCategoryAsync
 {
 	/// <inheritdoc cref="IStreamingCategoryAsync.GetServerUrlAsync"/>

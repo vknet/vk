@@ -4,7 +4,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IFaveCategoryAsync" />
+/// <summary>
+/// Методы для работы с закладками.
+/// </summary>
 public partial interface IFaveCategory
 {
 	/// <inheritdoc cref="IFaveCategoryAsync.GetUsersAsync" />

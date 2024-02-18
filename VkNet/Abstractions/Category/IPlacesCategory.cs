@@ -5,7 +5,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IPlacesCategoryAsync"/>
+/// <summary>
+/// Методы для работы с местами.
+/// </summary>
 public interface IPlacesCategory : IPlacesCategoryAsync
 {
 	/// <inheritdoc cref="IPlacesCategoryAsync.AddAsync"/>

@@ -5,7 +5,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IUtilsCategoryAsync"/>
+/// <summary>
+/// Служебные методы.
+/// </summary>
 public interface IUtilsCategory : IUtilsCategoryAsync
 {
 	/// <inheritdoc cref="IUtilsCategoryAsync.CheckLinkAsync(string, System.Threading.CancellationToken)"/>
@@ -23,7 +25,10 @@ public interface IUtilsCategory : IUtilsCategoryAsync
 	/// <inheritdoc cref="IUtilsCategoryAsync.GetShortLinkAsync"/>
 	ShortLink GetShortLink(Uri url, bool isPrivate);
 
-	/// <inheritdoc cref="IUtilsCategoryAsync.DeleteFromLastShortenedAsync"/>ии ВКонтакте http://vk.com/dev/utils.deleteFromLastShortened
+	/// <inheritdoc cref="IUtilsCategoryAsync.DeleteFromLastShortenedAsync"/>
+	/// <remarks>
+	/// ВКонтакте http://vk.com/dev/utils.deleteFromLastShortened
+	/// </remarks>
 	bool DeleteFromLastShortened(string key);
 
 	/// <inheritdoc cref="IUtilsCategoryAsync.GetLastShortenedLinksAsync"/>

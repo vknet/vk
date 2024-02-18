@@ -2,7 +2,9 @@
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IShortVideoCategoryAsync"/>
+/// <summary>
+/// ShortVideo В этой секции представлены методы, предназначенные для работы с Клипами
+/// </summary>
 public interface IShortVideoCategory : IShortVideoCategoryAsync
 {
 	/// <inheritdoc cref="IShortVideoCategoryAsync.CreateAsync"/>

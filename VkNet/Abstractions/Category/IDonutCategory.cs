@@ -4,8 +4,10 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IDonutCategoryAsync"/>
-public interface IDonutCategory
+/// <summary>
+/// Методы для работы с VK Donut.
+/// </summary>
+public interface IDonutCategory : IDonutCategoryAsync
 {
 	/// <inheritdoc cref="IDonutCategoryAsync.IsDonAsync"/>
 	bool IsDon(long ownerId);

@@ -5,7 +5,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IStorageCategoryAsync"/>
+/// <summary>
+/// Методы для работы с переменными в приложении.
+/// </summary>
 [UsedImplicitly]
 public interface IStorageCategory : IStorageCategoryAsync
 {

@@ -4,7 +4,6 @@ using VkNet.Enums.StringEnums;
 
 namespace VkNet.Abstractions.Authorization;
 
-/// <inheritdoc />
 /// <summary>
 /// Implicit flow — самый короткий и простой вариант.
 /// Ключ возвращается на устройство пользователя, где был открыт диалог авторизации

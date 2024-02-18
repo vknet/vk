@@ -7,7 +7,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IDocsCategoryAsync" />
+/// <summary>
+/// Методы для работы с документами (получение списка, загрузка, удаление и т.д.)
+/// </summary>
 public interface IDocsCategory : IDocsCategoryAsync
 {
 	/// <inheritdoc cref="IDocsCategoryAsync.GetAsync"/>
@@ -30,8 +32,6 @@ public interface IDocsCategory : IDocsCategoryAsync
 
 	/// <inheritdoc cref="IDocsCategoryAsync.AddAsync(long,long,string, System.Threading.CancellationToken)"/>
 	long Add(long ownerId, long docId, string accessKey = null);
-
-
 
 	/// <inheritdoc cref="IDocsCategoryAsync.GetTypesAsync"/>
 	VkCollection<DocumentType> GetTypes(long ownerId);
