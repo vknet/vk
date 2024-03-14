@@ -1120,4 +1120,26 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.BeTrue();
 
 	}
+
+	[Fact]
+	public void ChangeConversationMemberRestrictions()
+	{
+		Url = "https://api.vk.com/method/messages.changeConversationMemberRestrictions";
+		ReadCategoryJsonPath(nameof(ChangeConversationMemberRestrictions));
+
+		var response = Api.Messages.ChangeConversationMemberRestrictions(new()
+		{
+			PeerId = 1,
+			MemberIds = new List<long>
+			{
+				814412, 4245645
+			},
+			For = 60,
+			Action = ConversationMemberRestrictionsActionType.Ro
+		});
+
+		response.FailedMemberIds.Should()
+			.BeEquivalentTo(new List<long> { 814412 });
+
+	}
 }

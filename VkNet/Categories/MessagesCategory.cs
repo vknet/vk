@@ -1470,4 +1470,23 @@ public partial class MessagesCategory : IMessagesCategory
 			}
 		});
 
+	/// <inheritdoc />
+	public MessagesChangeConversationMemberRestrictionsObject
+		ChangeConversationMemberRestrictions(MessagesChangeConversationMemberRestrictionsParams @params) =>
+		_vk.Call<MessagesChangeConversationMemberRestrictionsObject>("messages.changeConversationMemberRestrictions",
+			new()
+			{
+				{
+					"peer_id", @params.PeerId
+				},
+				{
+					"member_ids", @params.MemberIds
+				},
+				{
+					"for", @params.For
+				},
+				{
+					"action", @params.Action
+				}
+			});
 }

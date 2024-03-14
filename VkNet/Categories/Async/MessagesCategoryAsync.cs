@@ -412,4 +412,10 @@ public partial class MessagesCategory
 										CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			SetMemberRole(role, peerId, memberId), token);
+
+	/// <inheritdoc />
+	public Task<MessagesChangeConversationMemberRestrictionsObject> ChangeConversationMemberRestrictionsAsync(
+		MessagesChangeConversationMemberRestrictionsParams @params,
+		CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		ChangeConversationMemberRestrictions(@params), token);
 }

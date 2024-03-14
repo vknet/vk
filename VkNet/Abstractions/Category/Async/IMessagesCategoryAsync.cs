@@ -1231,6 +1231,20 @@ public interface IMessagesCategoryAsync
 	Task<bool> MarkAsUnreadConversationAsync(long peerId,
 											CancellationToken token = default);
 
+	/// <summary>
+	/// Устанавливает ограничения участнику чата.
+	/// </summary>
+	/// <param name="params">
+	/// Входные параметры запроса
+	/// </param>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Возвращает список идентификаторов, к которым не удалось применить ограничения
+	/// </returns>
+	Task<MessagesChangeConversationMemberRestrictionsObject> ChangeConversationMemberRestrictionsAsync(
+		MessagesChangeConversationMemberRestrictionsParams @params,
+		CancellationToken token = default);
+
 	#region Obsoleted
 
 	/// <summary>

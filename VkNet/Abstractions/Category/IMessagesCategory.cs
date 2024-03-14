@@ -170,6 +170,10 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	/// <inheritdoc cref="IMessagesCategoryAsync.SetMemberRoleAsync"/>
 	bool SetMemberRole(string role, long peerId, ulong memberId);
 
+	/// <inheritdoc cref="IMessagesCategoryAsync.ChangeConversationMemberRestrictionsAsync"/>
+	MessagesChangeConversationMemberRestrictionsObject ChangeConversationMemberRestrictions(
+		MessagesChangeConversationMemberRestrictionsParams @params);
+
 	#region Obsoleted
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.DeleteDialogAsync"/>
