@@ -1122,10 +1122,10 @@ public class MessagesCategoryTest : MessagesBaseTests
 	}
 
 	[Fact]
-	public void ChangeConversationMemberRestrictions()
+	public void ChangeConversationMemberRestrictions_Mute()
 	{
 		Url = "https://api.vk.com/method/messages.changeConversationMemberRestrictions";
-		ReadCategoryJsonPath(nameof(ChangeConversationMemberRestrictions));
+		ReadCategoryJsonPath(nameof(ChangeConversationMemberRestrictions_Mute));
 
 		var response = Api.Messages.ChangeConversationMemberRestrictions(new()
 		{
@@ -1140,6 +1140,48 @@ public class MessagesCategoryTest : MessagesBaseTests
 
 		response.FailedMemberIds.Should()
 			.BeEquivalentTo(new List<long> { 814412 });
+
+	}
+
+	[Fact]
+	public void ChangeConversationMemberRestrictions_MuteForever()
+	{
+		Url = "https://api.vk.com/method/messages.changeConversationMemberRestrictions";
+		ReadCategoryJsonPath(nameof(ChangeConversationMemberRestrictions_MuteForever));
+
+		var response = Api.Messages.ChangeConversationMemberRestrictions(new()
+		{
+			PeerId = 1,
+			MemberIds = new List<long>
+			{
+				814412, 4245645
+			},
+			Action = ConversationMemberRestrictionsActionType.Ro
+		});
+
+		response.FailedMemberIds.Should()
+			.BeEquivalentTo(new List<long> { 814412 });
+
+	}
+
+	[Fact]
+	public void ChangeConversationMemberRestrictions_Unmute()
+	{
+		Url = "https://api.vk.com/method/messages.changeConversationMemberRestrictions";
+		ReadCategoryJsonPath(nameof(ChangeConversationMemberRestrictions_Unmute));
+
+		var response = Api.Messages.ChangeConversationMemberRestrictions(new()
+		{
+			PeerId = 1,
+			MemberIds = new List<long>
+			{
+				4245645
+			},
+			Action = ConversationMemberRestrictionsActionType.Rw
+		});
+
+		response.FailedMemberIds.Should()
+			.BeEmpty();
 
 	}
 }

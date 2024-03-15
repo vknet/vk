@@ -27,7 +27,7 @@ public class MessagesChangeConversationMemberRestrictionsParams
 	/// Время в секундах. Если нужно замутить навсегда, то указывать не нужно.
 	/// </summary>
 	[JsonProperty("for", NullValueHandling = NullValueHandling.Ignore)]
-	public long For { get; set; }
+	public long? For { get; set; }
 
 	/// <summary>
 	/// Разрешенные действия.
