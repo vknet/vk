@@ -53,4 +53,10 @@ public class MessageActionObject
 	/// </summary>
 	[JsonProperty("photo")]
 	public Photo Photo { get; set; }
+
+	/// <summary>
+	/// Наименование нового стиля чата
+	/// </summary>
+	[JsonProperty("style")]
+	public string? Style { get; set; }
 }

@@ -11,6 +11,11 @@ namespace VkNet.Enums.StringEnums;
 public enum MessageAction
 {
 	/// <summary>
+	/// Произвольное событие;
+	/// </summary>
+	Custom,
+
+	/// <summary>
 	/// Обновлена фотография беседы;
 	/// </summary>
 	ChatPhotoUpdate,
