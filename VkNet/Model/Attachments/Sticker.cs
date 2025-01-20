@@ -42,7 +42,7 @@ public class Sticker : MediaAttachment
 	/// URL анимации стикера (для анимированных стикеров)
 	/// </summary>
 	[JsonProperty("animation_url")]
-	public bool AnimationUrl { get; set; }
+	public string AnimationUrl { get; set; }
 
 	/// <summary>
 	/// Тип, который описывает вариант формата ответа.
