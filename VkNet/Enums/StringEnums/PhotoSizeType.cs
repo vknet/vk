@@ -77,6 +77,46 @@ public enum PhotoSizeType
 	W,
 
 	/// <summary>
+	/// В документации отсутствует описание
+	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
+	T,
+
+	/// <summary>
+	/// В документации отсутствует описание
+	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
+	H,
+
+	/// <summary>
+	/// В документации отсутствует описание
+	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
+	G,
+
+	/// <summary>
+	/// В документации отсутствует описание
+	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
+	N,
+
+	/// <summary>
+	/// В документации отсутствует описание
+	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
+	F,
+
+	/// <summary>
 	/// Максимальная ширина изображения
 	/// </summary>
 	Max,
@@ -143,6 +183,22 @@ public enum PhotoSizeType
 	/// <remarks>
 	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
+	Base,
+
+	/// <summary>
+	/// В документации отсутствует описание
+	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
+	Orig,
+
+	/// <summary>
+	/// В документации отсутствует описание
+	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
 	I,
 
 	/// <summary>
@@ -152,12 +208,28 @@ public enum PhotoSizeType
 	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	L,
-	
+
 	/// <summary>
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
 	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
-	J
+	J,
+
+	/// <summary>
+	/// В документации отсутствует описание
+	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
+	U,
+
+	/// <summary>
+	/// В документации отсутствует описание
+	/// </summary>
+	/// <remarks>
+	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// </remarks>
+	V,
 }

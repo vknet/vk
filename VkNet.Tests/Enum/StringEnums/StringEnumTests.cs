@@ -661,9 +661,42 @@ public class StringEnumTests
 			.Should()
 			.Be(PhotoSizeType.W);
 
+		Utilities.Deserialize<PhotoSizeType>("t")
+			.Should()
+			.Be(PhotoSizeType.T);
+
+		Utilities.Deserialize<PhotoSizeType>("h")
+			.Should()
+			.Be(PhotoSizeType.H);
+
+		Utilities.Deserialize<PhotoSizeType>("g")
+			.Should()
+			.Be(PhotoSizeType.G);
+
+		Utilities.Deserialize<PhotoSizeType>("n")
+			.Should()
+			.Be(PhotoSizeType.N);
+
+		Utilities.Deserialize<PhotoSizeType>("f")
+			.Should()
+			.Be(PhotoSizeType.F);
+
 		Utilities.Deserialize<PhotoSizeType>("max")
 			.Should()
 			.Be(PhotoSizeType.Max);
+
+		Utilities.Deserialize<PhotoSizeType>("base")
+			.Should()
+			.Be(PhotoSizeType.Base);
+
+		Utilities.Deserialize<PhotoSizeType>("temp")
+			.Should()
+			.Be(PhotoSizeType.Temp
+			);
+
+		Utilities.Deserialize<PhotoSizeType>("orig")
+			.Should()
+			.Be(PhotoSizeType.Orig);
 
 		Utilities.Deserialize<PhotoSizeType>("a")
 			.Should()
@@ -685,9 +718,21 @@ public class StringEnumTests
 			.Should()
 			.Be(PhotoSizeType.E);
 
+		Utilities.Deserialize<PhotoSizeType>("l")
+			.Should()
+			.Be(PhotoSizeType.L);
+
 		Utilities.Deserialize<PhotoSizeType>("j")
 			.Should()
 			.Be(PhotoSizeType.J);
+
+		Utilities.Deserialize<PhotoSizeType>("u")
+			.Should()
+			.Be(PhotoSizeType.U);
+
+		Utilities.Deserialize<PhotoSizeType>("v")
+			.Should()
+			.Be(PhotoSizeType.V);
 	}
 
 	[Fact]
