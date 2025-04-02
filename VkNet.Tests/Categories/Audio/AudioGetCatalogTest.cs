@@ -96,6 +96,11 @@ public class AudioGetCatalogTest : CategoryBaseTest
 			.AlbumType.Should()
 			.Be(AudioAlbumType.MainOnly);
 
+		result.Items[1]
+			.Playlists[1]
+			.AlbumType.Should()
+			.Be(null);
+
 		result.Items[2]
 			.Items[0]
 			.Meta.ContentType.Should()
