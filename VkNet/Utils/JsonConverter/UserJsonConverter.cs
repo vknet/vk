@@ -225,7 +225,8 @@ public class UserJsonConverter : JsonConverter<User>
 					.ToString())
 		};
 
-		user.IsDeactivated = user.Deactivated is not null;
+		user.IsDeactivated = user.Deactivated is not null
+			and not Deactivated.Activated;
 
 		if (response["name"] is not null)
 		{
