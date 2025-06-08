@@ -58,4 +58,30 @@ public class UserGetTests : CategoryBaseTest
 		user.Military.Should()
 			.NotBeNullOrEmpty();
 	}
+
+	[Fact]
+	public void Get_ActiveUser()
+	{
+		Url = "https://api.vk.com/method/users.get";
+		ReadCategoryJsonPath(nameof(Get_ActiveUser));
+
+		var users = Api.Users.Get(new List<long>
+		{
+			1
+		});
+
+		users.Should()
+			.NotBeNull();
+
+		var user = users.FirstOrDefault();
+
+		user.Should()
+			.NotBeNull();
+
+		user.Deactivated.Should()
+			.Be(Deactivated.Activated);
+
+		user.IsDeactivated.Should()
+			.BeFalse();
+	}
 }
