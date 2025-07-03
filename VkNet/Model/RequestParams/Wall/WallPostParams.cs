@@ -82,7 +82,7 @@ public class WallPostParams
 	/// При установке значения <i>grid</i> медиа файлы будут представлены в формате сетки,
 	/// где несколько медиа файлов показываются одновременно.
 	/// </summary>
-	public string PrimaryAttachmentMode { get; set; }
+	public string PrimaryAttachmentsMode { get; set; }
 
 	/// <summary>
 	/// Список сервисов или сайтов, на которые необходимо экспортировать запись, в

@@ -193,7 +193,7 @@ public partial class WallCategory : IWallCategory
 			"attachments", @params.Attachments
 		},
 		{
-			"primary_attachments_mode", @params.PrimaryAttachmentMode
+			"primary_attachments_mode", @params.PrimaryAttachmentsMode
 		},
 		{
 			"services", @params.Services
