@@ -165,11 +165,23 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 	{
 		try
 		{
-			var response = await _params.Api.Groups.GetLongPollServerAsync(_params.GroupId, token);
-
-			_currentSessionKey = response.Key;
-			_currentServer = response.Server;
-			SetTs(_params.Ts ?? response.Ts);
+	 		uint MAX_DELAY_MS = 900000;
+			uint DELAY_BASE_MS = 5000;
+			uint attempt_count = 0;
+   
+  			while (true)
+	 		{
+				var response = await _params.Api.Groups.GetLongPollServerAsync(_params.GroupId, token);
+				attempt_count += 1;
+				if (response)
+				{
+					_currentSessionKey = response.Key;
+					_currentServer = response.Server;
+					SetTs(_params.Ts ?? response.Ts);
+				}
+				ulong delay = Math.Min(DELAY_BASE_MS * ((ulong) Math.Pow(attempt_count, 2)), MAX_DELAY_MS);
+				Thread.Sleep((int) delay);
+	 		}
 		}
 		catch (System.Exception ex)
 		{
