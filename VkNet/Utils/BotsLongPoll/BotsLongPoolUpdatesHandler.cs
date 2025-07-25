@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Exception;
 using VkNet.Model;
+using VkNet.Infrastructure;
 
 namespace VkNet.Utils.BotsLongPoll;
 
@@ -28,6 +29,8 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 	private string? _currentSessionKey;
 
 	private string? _currentServer;
+
+ 	private ILogger _logger;
 
 	/// <summary>
 	/// Инициализирует новый экземпляр класса <see cref="BotsLongPollUpdatesHandler" />
@@ -167,7 +170,7 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 		uint DELAY_BASE_MS = 5000;
 		uint attempt_count = 0;
    
-  		while (true)
+  		while (!token.IsCancellationRequested)
 	 	{
 			try
 			{
@@ -185,7 +188,18 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 				attempt_count += 1;
 				ulong delay = Math.Min(DELAY_BASE_MS * ((ulong) Math.Pow(attempt_count, 2)), MAX_DELAY_MS);
 
-				if (delay >= MAX_DELAY_MS) await HandleExceptionAsync(ex, token);
+				const string message =
+				"Сервер не отвечает. Следующая попытка через: " + delay + "ms";
+
+				if (_logger.IsEnabled(LogLevel.Error))
+				{
+					_logger.LogError(message);
+				}
+
+				if (delay >= MAX_DELAY_MS)
+				{
+					await HandleExceptionAsync(ex, token);
+	 			}
   
 	  			await Thread.Sleep((int) delay);
 			}
