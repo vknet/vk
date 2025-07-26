@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Exception;
 using VkNet.Model;
+using VkNet.Infrastructure;
 
 namespace VkNet.Utils.BotsLongPoll;
 
@@ -28,6 +29,8 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 	private string? _currentSessionKey;
 
 	private string? _currentServer;
+
+ 	private ILogger _logger;
 
 	/// <summary>
 	/// Инициализирует новый экземпляр класса <see cref="BotsLongPollUpdatesHandler" />
@@ -163,18 +166,41 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 
 	private async Task InitCurrentTsAsync(CancellationToken token)
 	{
-		try
-		{
-			var response = await _params.Api.Groups.GetLongPollServerAsync(_params.GroupId, token);
+		uint attempt_count = 0;
+   
+  		while (!token.IsCancellationRequested)
+	 	{
+			try
+			{
+				var response = await _params.Api.Groups.GetLongPollServerAsync(_params.GroupId, token);
+	 
+	 			_currentSessionKey = response.Key;
+	  			_currentServer = response.Server;
+	   			SetTs(_params.Ts ?? response.Ts);
 
-			_currentSessionKey = response.Key;
-			_currentServer = response.Server;
-			SetTs(_params.Ts ?? response.Ts);
-		}
-		catch (System.Exception ex)
-		{
-			await HandleExceptionAsync(ex, token);
-		}
+  				attempt_count = 0;
+	   			break;
+			}
+			catch (System.Exception ex)
+			{
+				attempt_count += 1;
+				ulong delay = Math.Min(_params.BaseRetryDelayMs * ((ulong) Math.Pow(attempt_count, 2)), _params.MaxRetryDelayMs);
+
+				const string message = ex.ToString() + "\nСледующая попытка через: " + delay + "ms";
+
+				if (_logger.IsEnabled(LogLevel.Error))
+				{
+					_logger.LogError(message);
+				}
+
+				if (delay >= _params.MaxRetryDelayMs)
+				{
+					await HandleExceptionAsync(ex, token);
+	 			}
+  
+	  			await Thread.Sleep((int) delay);
+			}
+	 	}
 	}
 
 	private async Task UpdateLongPollServerAsync(CancellationToken token)

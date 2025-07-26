@@ -47,6 +47,16 @@ public class BotsLongPollUpdatesHandlerParams
 	public int WaitTimeout { get; set; } = 25;
 
 	/// <summary>
+	/// Время настройки exponential backoff при ошибках
+	/// </summary>
+	public int BaseRetryDelayMs { get; set; } = 5000;
+	
+	/// <summary>
+	/// Максимальное время попыток повторных соединений при ошибках
+	/// </summary>
+	public int MaxRetryDelayMs { get; set; } = 900000;
+
+	/// <summary>
 	/// Функция, которая возвращает true, если работа лонгпула должна быть приостановлена
 	/// Понадобится, когда вы безопасно завершаете работу приложения или просто захотите временно остановить бота и не потерять последние события.
 	/// </summary>
