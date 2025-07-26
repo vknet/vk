@@ -166,8 +166,6 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 
 	private async Task InitCurrentTsAsync(CancellationToken token)
 	{
-	 	uint MAX_DELAY_MS = 900000;
-		uint DELAY_BASE_MS = 5000;
 		uint attempt_count = 0;
    
   		while (!token.IsCancellationRequested)
@@ -186,17 +184,16 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 			catch (System.Exception ex)
 			{
 				attempt_count += 1;
-				ulong delay = Math.Min(DELAY_BASE_MS * ((ulong) Math.Pow(attempt_count, 2)), MAX_DELAY_MS);
+				ulong delay = Math.Min(_params.BaseRetryDelayMs * ((ulong) Math.Pow(attempt_count, 2)), _params.MaxRetryDelayMs);
 
-				const string message =
-				"Сервер не отвечает. Следующая попытка через: " + delay + "ms";
+				const string message = ex.ToString() + "\nСледующая попытка через: " + delay + "ms";
 
 				if (_logger.IsEnabled(LogLevel.Error))
 				{
 					_logger.LogError(message);
 				}
 
-				if (delay >= MAX_DELAY_MS)
+				if (delay >= _params.MaxRetryDelayMs)
 				{
 					await HandleExceptionAsync(ex, token);
 	 			}
