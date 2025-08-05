@@ -9,6 +9,7 @@ namespace VkNet.Model;
 /// Обновление группы
 /// </summary>
 [Serializable]
+[JsonConverter(typeof(GroupUpdateJsonConverter))]
 public class GroupUpdate
 {
 	/// <summary>
@@ -19,20 +20,17 @@ public class GroupUpdate
 	/// <summary>
 	/// Тип обновления
 	/// </summary>
-	[JsonConverter(typeof(UpdateTypeConverter))]
 	public UpdateType Type { get; set; }
 
 	/// <summary>
 	/// ID группы
 	/// </summary>
 	[JsonProperty("group_id")]
-	[JsonConverter(typeof(GroupIdConverter))]
 	public GroupId GroupId { get; set; }
 
 	/// <summary>
 	/// <c>Secret Key</c> для Callback
 	/// </summary>
-	[JsonConverter(typeof(SecretConverter))]
 	public Secret Secret { get; set; }
 
 	/// <summary>

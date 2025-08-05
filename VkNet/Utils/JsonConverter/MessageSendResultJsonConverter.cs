@@ -19,7 +19,7 @@ public class MessagesSendResultJsonConverter : Newtonsoft.Json.JsonConverter
 			throw new TypeAccessException();
 		}
 
-		if (reader.TokenType == JsonToken.Null)
+		if (reader.TokenType is JsonToken.Null)
 		{
 			return null;
 		}
@@ -46,27 +46,29 @@ public class MessagesSendResultJsonConverter : Newtonsoft.Json.JsonConverter
 			res.ConversationMessageId = response[key: "conversation_message_id"];
 		}
 
-		if (response.ContainsKey("error"))
+		if (!response.ContainsKey("error"))
 		{
-			var error = response[key: "error"];
+			return res;
+		}
 
-			if (error.ContainsKey("code"))
+		var error = response[key: "error"];
+
+		if (error.ContainsKey("code"))
+		{
+			res.ErrorCode = error[key: "code"];
+			res.Error = error[key: "description"];
+		} else
+		{
+			try
 			{
-				res.ErrorCode = error[key: "code"];
-				res.Error = error[key: "description"];
-			} else
-			{
-				try
-				{
-					res.Error = response[key: "error"];
-				}
-				#pragma warning disable S2486 // Generic exceptions should not be ignored
-				catch
-				{
-					// TODO: ensure no error or handle
-				}
-				#pragma warning restore S2486 // Generic exceptions should not be ignored
+				res.Error = response[key: "error"];
 			}
+			#pragma warning disable S2486 // Generic exceptions should not be ignored
+			catch
+			{
+				// TODO: ensure no error or handle
+			}
+			#pragma warning restore S2486 // Generic exceptions should not be ignored
 		}
 
 		return res;

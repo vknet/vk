@@ -1,15 +1,14 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.StringEnums;
 
 
 /// <summary>
-///
+/// Тип элемента карусели
 /// </summary>
 [StringEnum]
-[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+[JsonConverter(typeof(TolerantStringEnumConverter))]
 public enum CarouselElementActionType
 {
 	/// <summary>

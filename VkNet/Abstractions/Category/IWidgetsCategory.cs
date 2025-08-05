@@ -3,7 +3,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IWidgetsCategoryAsync"/>
+/// <summary>
+/// Методы для работы с виджетами на внешних сайтах.
+/// </summary>
 public interface IWidgetsCategory : IWidgetsCategoryAsync
 {
 	/// <inheritdoc cref="IWidgetsCategoryAsync.GetCommentsAsync"/>

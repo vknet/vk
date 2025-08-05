@@ -36,7 +36,7 @@ public class WallGetParams
 	/// значения параметра: Если параметр
 	/// не задан, то считается, что он равен all.
 	/// </summary>
-	public WallFilter Filter { get; set; }
+	public WallFilter? Filter { get; set; }
 
 	/// <summary>
 	/// <c> true </c> — будут возвращены три массива wall, profiles и groups. По

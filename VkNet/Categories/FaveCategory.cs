@@ -7,7 +7,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IFaveCategory" />
 public partial class FaveCategory : IFaveCategory
 {
 	/// <summary>
@@ -40,6 +40,7 @@ public partial class FaveCategory : IFaveCategory
 		});
 
 	/// <inheritdoc/>
+	[Obsolete(ObsoleteText.Obsolete + "Используйте вместо него bool AddLink(Uri link)")]
 	public bool AddLink(Uri link) => _vk.Call<bool>("fave.addLink", new()
 	{
 		{

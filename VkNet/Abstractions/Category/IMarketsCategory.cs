@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IMarketsCategoryAsync"/>
+/// <summary>
+/// Методы для работы с товарами.
+/// </summary>
 public interface IMarketsCategory : IMarketsCategoryAsync
 {
+	/// <inheritdoc cref="IMarketsCategoryAsync.GetAsync"/>
+	VkCollection<Market> Get(MarketGetParams @params);
+
 	/// <inheritdoc cref="IMarketsCategoryAsync.GetAsync"/>
 	VkCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false);
 
@@ -63,10 +68,11 @@ public interface IMarketsCategory : IMarketsCategoryAsync
 	bool ReorderAlbums(long ownerId, long albumId, long? before = null, long? after = null);
 
 	/// <inheritdoc cref="IMarketsCategoryAsync.AddAlbumAsync"/>
-	long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false);
+	long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false, bool isHidden = false);
 
 	/// <inheritdoc cref="IMarketsCategoryAsync.EditAlbumAsync"/>
-	bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false);
+	bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false,
+					bool isHidden = false);
 
 	/// <inheritdoc cref="IMarketsCategoryAsync.DeleteAlbumAsync"/>
 	bool DeleteAlbum(long ownerId, long albumId);

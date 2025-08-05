@@ -18,7 +18,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "ownersIds">
 	/// Список идентификаторов источников. список целых чисел, разделенных запятыми, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -37,7 +37,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "storyId">
 	/// Идентификатор истории. положительное число, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -57,7 +57,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "extended">
 	/// 1 — возвращать в ответе дополнительную информацию о профилях пользователей. флаг, может принимать значения 1 или 0, по умолчанию 0
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число подборок в поле count и массив подборок историй  в поле items. Каждая подборка — массив историй от одного владельца.
 	/// Если был задан параметр extended=1, дополнительно возвращает массив объектов пользователей в поле profiles (array) и сообществ в поле groups (array).
@@ -78,7 +78,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "extended">
 	/// 1 — возвращать расширенную информацию о пользователях и сообществах. флаг, может принимать значения 1 или 0
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает общее количество скрытых источников в поле count (integer) и их идентификаторы в массиве items. Если extended = 1, items содержит два поля:
 	/// profiles (array) — массив объектов, описывающих пользователей;
@@ -105,7 +105,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "extended">
 	/// 1 — возвращать в ответе дополнительную информацию о пользователях. флаг, может принимать значения 1 или 0, по умолчанию 0
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число историй в поле count и массив объектов историй  в поле items.
 	/// Если был задан параметр extended = 1, дополнительно возвращает массив объектов  пользователей в поле profiles и объектов сообществ в поле groups.
@@ -124,7 +124,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "params">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий следующие поля:
 	/// upload_url (string) — адрес сервера для загрузки файла;
@@ -154,7 +154,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "extended">
 	/// 1 — возвращать дополнительную информацию о профилях и сообществах. флаг, может принимать значения 1 или 0, по умолчанию
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число подборок в поле count и массив подборок историй  в поле items. Каждая подборка — массив историй от одного владельца.
 	/// Если был задан параметр extended=1, дополнительно возвращает массив объектов пользователей в поле profiles (array) и сообществ в поле groups (array).
@@ -178,7 +178,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "storyId">
 	/// Идентификатор истории. положительное число, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который содержит следующие поля:
 	/// views (object) — просмотры. Содержит поля:
@@ -216,7 +216,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "params">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий следующие поля:
 	/// upload_url (string) — адрес сервера для загрузки файла;
@@ -243,7 +243,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "offset">
 	/// Сдвиг для получения определённого подмножества результатов.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и идентификаторы пользователей в поле items (array).
 	/// </returns>
@@ -271,7 +271,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "offset">
 	/// Сдвиг для получения определённого подмножества результатов.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и обЪекты пользователей в поле items (array).
 	/// </returns>
@@ -290,7 +290,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "ownerId">
 	/// Идентификатор пользователя, ответы от которого нужно скрыть. целое число, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -312,7 +312,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "accessKey">
 	/// Ключ доступа к приватному объекту. строка
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -330,7 +330,7 @@ public interface IStoriesCategoryAsync
 	/// <param name = "ownersIds">
 	/// Список идентификаторов владельцев историй, разделённых запятой. список целых чисел, разделенных запятыми, обязательный параметр
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -411,6 +411,7 @@ public interface IStoriesCategoryAsync
 	/// </param>
 	/// <param name="token">Токен отмены запроса</param>
 	/// <returns>
+	/// Признак успешности отправки фидбека
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/stories.sendInteraction

@@ -6,13 +6,13 @@ using VkNet.Exception;
 
 namespace VkNet.Model;
 
-/// <inheritdoc />
+/// <inheritdoc cref="ITemplateBuilder" />
 [Serializable]
 [UsedImplicitly]
 public class TemplateBuilder : ITemplateBuilder
 {
 	/// <inheritdoc />
-	public TemplateType Type { get; private set; } = TemplateType.Carousel;
+	public TemplateType? Type { get; private set; } = TemplateType.Carousel;
 
 	/// <inheritdoc />
 	public List<CarouselElement> Elements { get; private set; } = new();

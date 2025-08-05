@@ -32,7 +32,7 @@ public interface IAudioCategoryAsync
 	/// <param name="albumId">
 	/// Идентификатор альбома, в который нужно переместить аудиозапись.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданной аудиозаписи.
 	/// </returns>
@@ -62,7 +62,7 @@ public interface IAudioCategoryAsync
 	/// Идентификаторы аудиозаписей, которые необходимо добавить в альбом, в виде
 	/// {owner_id}_{audio_id}.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <see cref="AudioPlaylist"/>.
 	/// </returns>
@@ -84,7 +84,7 @@ public interface IAudioCategoryAsync
 	/// <param name="ownerId">
 	/// Идентификатор владельца аудиозаписи (пользователь или сообщество).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -104,7 +104,7 @@ public interface IAudioCategoryAsync
 	/// <param name="playlistId">
 	/// Идентификатор плейлиста.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -119,7 +119,7 @@ public interface IAudioCategoryAsync
 	/// Редактирует данные аудиозаписи на странице пользователя или сообщества.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает id текста, введенного пользователем
 	/// (lyrics_id), если текст не был введен, вернет 0.
@@ -151,7 +151,7 @@ public interface IAudioCategoryAsync
 	/// идентификаторы всех имеющихся аудиозаписей в плейлисте + новые.
 	/// Не указывайте идентификаторы аудиозаписей, которые необходимо удалить.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -169,7 +169,7 @@ public interface IAudioCategoryAsync
 	/// Возвращает список аудиозаписей пользователя или сообщества.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов <see cref="Audio"/>.
 	/// Обратите внимание, что ссылки на mp3 привязаны к ip-адресу.
@@ -192,7 +192,7 @@ public interface IAudioCategoryAsync
 	/// <param name="count">
 	/// Количество плейлистов, которое необходимо вернуть. По умолчанию -неизвестно-, максимальное значение -неизвестно-.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает общее количество альбомов с аудиозаписями
 	/// и массив объектов <see cref="AudioPlaylist"/>.
@@ -214,7 +214,7 @@ public interface IAudioCategoryAsync
 	/// <param name="playlistId">
 	/// Идентификатор плейлиста.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <see cref="AudioPlaylist"/>.
 	/// </returns>
@@ -236,7 +236,7 @@ public interface IAudioCategoryAsync
 	/// true — будут возвращены только друзья и сообщества, которые транслируют музыку в
 	/// данный момент.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов <see cref="User"/> и <see cref="Group"/> с
 	/// дополнительным полем status_audio — объект аудиозаписи, установленной в статус
@@ -256,7 +256,7 @@ public interface IAudioCategoryAsync
 	/// Идентификаторы аудиозаписей, информацию о которых необходимо вернуть, в виде
 	/// {owner_id}_{audio_id}.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов <see cref="Audio"/>. Обратите внимание,
 	/// что ссылки на аудиозаписи привязаны
@@ -280,7 +280,7 @@ public interface IAudioCategoryAsync
 	/// <param name="fields">
 	/// Дополнительные поля
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект <see cref="AudioGetCatalogResult"/>. Обратите внимание,
 	/// что ссылки на аудиозаписи привязаны
@@ -304,7 +304,7 @@ public interface IAudioCategoryAsync
 	/// "-" — например, owner_id=-1
 	/// соответствует идентификатору сообщества ВКонтакте API (club1).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает число, равное количеству аудиозаписей на
 	/// странице пользователя или сообщества.
@@ -321,7 +321,7 @@ public interface IAudioCategoryAsync
 	/// <param name="lyricsId">
 	/// Идентификатор текста аудиозаписи, информацию о котором необходимо вернуть.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект <see cref="Lyrics"/>.
 	/// </returns>
@@ -347,7 +347,7 @@ public interface IAudioCategoryAsync
 	/// Количество возвращаемых аудиозаписей. Максимальное
 	/// значение 1000, по умолчанию 100.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов <see cref="Audio"/>. Обратите внимание,
 	/// что ссылки на аудиозаписи привязаны
@@ -391,7 +391,7 @@ public interface IAudioCategoryAsync
 	/// <param name="shuffle">
 	/// true — включен случайный порядок.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов <see cref="Audio"/>. Обратите внимание,
 	/// что ссылки на аудиозаписи привязаны к ip адресу.
@@ -409,7 +409,7 @@ public interface IAudioCategoryAsync
 	/// <summary>
 	/// Возвращает адрес сервера для загрузки аудиозаписей.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект с единственным полем upload_url.
 	/// </returns>
@@ -430,7 +430,7 @@ public interface IAudioCategoryAsync
 	/// <param name="audioIds">
 	/// Идентификаторы аудиозаписей, которые требуется переместить, в виде {owner_id}_{audio_id}.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения список идентификаторов аудиозаписей.
 	/// Обратите внимание, в одном альбоме не может быть более 1000 аудиозаписей.
@@ -460,7 +460,7 @@ public interface IAudioCategoryAsync
 	/// <param name="after">
 	/// Идентификатор аудиозаписи, после  которой нужно поместить композицию.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -483,7 +483,7 @@ public interface IAudioCategoryAsync
 	/// Идентификатор владельца аудиозаписи (пользователь или сообщество). По умолчанию
 	/// — идентификатор текущего пользователя.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного восстановления аудиозаписи возвращает объект <see cref="Audio"/>.
 	/// Если время хранения удаленной аудиозаписи истекло (обычно это 20 минут), сервер
@@ -505,7 +505,7 @@ public interface IAudioCategoryAsync
 	/// </param>
 	/// <param name="artist"> Автор композиции. По умолчанию берется из ID3 тегов. </param>
 	/// <param name="title"> Название композиции. По умолчанию берется из ID3 тегов. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Возвращает обьект загруженной аудиозаписи. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/audio.save
@@ -519,7 +519,7 @@ public interface IAudioCategoryAsync
 	/// Возвращает список аудиозаписей в соответствии с заданным критерием поиска.
 	/// </summary>
 	/// <param name="params"> Критерии поиска </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Список объектов <see cref="Audio"/>.
 	/// </returns>
@@ -547,7 +547,7 @@ public interface IAudioCategoryAsync
 	/// сообщества. Например, 1,-34384434. По умолчанию аудиозапись транслируется
 	/// текущему пользователю. (Количество элементов должно составлять не более 20).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает идентификаторы пользователя и сообществ для которых был установлен статус.
 	/// </returns>

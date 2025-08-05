@@ -20,7 +20,7 @@ public partial interface IFaveCategoryAsync
 	/// обязательный параметр (Строка, обязательный параметр).
 	/// </param>
 	/// <param name="text"> Текст ссылки. строка (Строка). </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -45,7 +45,7 @@ public partial interface IFaveCategoryAsync
 	/// положительное число, по
 	/// умолчанию 50 (Положительное число, по умолчанию 50).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов пользователей.
 	/// </returns>
@@ -76,7 +76,7 @@ public partial interface IFaveCategoryAsync
 	/// формате. флаг, может принимать значения 1 или 0 (Флаг, может принимать значения
 	/// 1 или 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов фотографий.
 	/// </returns>
@@ -108,7 +108,7 @@ public partial interface IFaveCategoryAsync
 	/// сообществах.
 	/// По умолчанию: 0.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов записей на стене.
 	/// </returns>
@@ -139,7 +139,7 @@ public partial interface IFaveCategoryAsync
 	/// сообществах.
 	/// По умолчанию: 0.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов видеозаписей.
 	/// </returns>
@@ -165,7 +165,7 @@ public partial interface IFaveCategoryAsync
 	/// число, по умолчанию 50
 	/// (Положительное число, по умолчанию 50).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает общее количество ссылок и массив объектов
 	/// link, каждый из которых содержит
@@ -187,7 +187,7 @@ public partial interface IFaveCategoryAsync
 	/// число, обязательный
 	/// параметр (Положительное число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -206,7 +206,7 @@ public partial interface IFaveCategoryAsync
 	/// число, обязательный
 	/// параметр (Положительное число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -225,7 +225,7 @@ public partial interface IFaveCategoryAsync
 	/// число, обязательный
 	/// параметр (Положительное число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -244,7 +244,7 @@ public partial interface IFaveCategoryAsync
 	/// число, обязательный
 	/// параметр (Положительное число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -274,7 +274,7 @@ public partial interface IFaveCategoryAsync
 	/// данные поля не возвращается. флаг, может принимать значения 1 или 0 (Флаг,
 	/// может принимать значения 1 или 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов товаров.
 	/// </returns>

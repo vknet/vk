@@ -18,7 +18,7 @@ public interface ILeadFormsCategoryAsync
 	/// <param name = "createParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращается структура с информацией о созданной форме:
 	/// form_id — идентификатор формы;
@@ -39,7 +39,7 @@ public interface ILeadFormsCategoryAsync
 	/// <param name = "formId">
 	/// Идентификатор удаляемой формы. обязательный параметр, целое число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает идентификатор удалённой формы
 	/// </returns>
@@ -59,7 +59,7 @@ public interface ILeadFormsCategoryAsync
 	/// <param name = "formId">
 	/// Идентификатор формы. обязательный параметр, целое число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает структуру с информацией о форме. Значения полей см. в методе leadForms.create.
 	/// Дополнительно возвращает следующие поля:
@@ -89,7 +89,7 @@ public interface ILeadFormsCategoryAsync
 	/// <param name = "limit">
 	/// Количество возвращаемых заявок за один запрос. положительное число, по умолчанию 10, максимальное значение 1000, минимальное значение 1
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив структур со следующими полями:
 	/// lead_id — идентификатор заявки;
@@ -114,7 +114,7 @@ public interface ILeadFormsCategoryAsync
 	/// <summary>
 	/// Возвращает URL для загрузки обложки для формы.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает URL для загрузки обложки для формы.
 	/// </returns>
@@ -129,7 +129,7 @@ public interface ILeadFormsCategoryAsync
 	/// <param name = "groupId">
 	/// Идентификатор сообщества. обязательный параметр, целое число
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив структур с описанием форм. Подробнее о структуре описания формы см. метод leadForms.get.
 	/// </returns>
@@ -145,7 +145,7 @@ public interface ILeadFormsCategoryAsync
 	/// <param name = "updateParams">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращается структура с информацией об обновлённой форме:
 	/// form_id — идентификатор формы;

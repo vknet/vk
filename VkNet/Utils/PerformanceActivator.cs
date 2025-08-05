@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -15,7 +14,7 @@ public static class PerformanceActivator
 {
 	private delegate T ObjectActivator<out T>(params object[] args);
 
-	/// <inheritdoc cref="CreateInstance{TResult}(System.Func{System.Reflection.ConstructorInfo,bool}(System.Reflection.ConstructorInfo),object[])"/>
+	/// <inheritdoc cref="CreateInstance{TResult}(System.Predicate{System.Reflection.ConstructorInfo},object[])"/>
 	internal static TResult CreateInstance<TResult>(params object[] args)
 		where TResult : class => CreateInstance<TResult>(_ => true, args);
 
@@ -26,24 +25,23 @@ public static class PerformanceActivator
 	/// <param name="args">Параметры конструктора</param>
 	/// <typeparam name="TResult">Возвращаемый тип</typeparam>
 	/// <returns>Экземпляр класса <typeparamref name="TResult"/></returns>
-	private static TResult CreateInstance<TResult>(Func<ConstructorInfo, bool> constructorFilter, params object[] args)
+	private static TResult CreateInstance<TResult>(Predicate<ConstructorInfo> constructorFilter, params object[] args)
 		where TResult : class => CreateInstance<TResult>(typeof(TResult), constructorFilter, args);
 
 	/// <summary>
 	/// Создать экземпляр объекта
 	/// </summary>
-	/// <param name="obj"></param>
+	/// <param name="obj">Исходный объект</param>
 	/// <param name="constructorFilter">Фильтр конструктора объекта</param>
 	/// <param name="args">Параметры конструктора</param>
 	/// <typeparam name="TResult">Возвращаемый тип</typeparam>
 	/// <returns>Экземпляр класса <typeparamref name="TResult"/></returns>
-	internal static TResult CreateInstance<TResult>(Type obj, Func<ConstructorInfo, bool> constructorFilter, params object[] args)
+	internal static TResult CreateInstance<TResult>(Type obj, Predicate<ConstructorInfo> constructorFilter, params object[] args)
 		where TResult : class
 	{
-		var ctor = obj.GetConstructors()
-			.FirstOrDefault(constructorFilter);
+		var ctor = Array.Find(obj.GetConstructors(), constructorFilter);
 
-		if (ctor == null)
+		if (ctor is null)
 		{
 			return null;
 		}

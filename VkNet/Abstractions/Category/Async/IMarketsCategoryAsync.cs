@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using VkNet.Enums;
@@ -12,6 +12,22 @@ namespace VkNet.Abstractions;
 /// </summary>
 public interface IMarketsCategoryAsync
 {
+	/// <summary>
+	/// Метод возвращает список товаров в сообществе.
+	/// </summary>
+	/// <param name="params">Модель параметров запроса market.get</param>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// После успешного выполнения возвращает список объектов item с дополнительным
+	/// полем comments, содержащим число
+	/// комментариев у товара.
+	/// </returns>
+	/// <remarks>
+	/// Страница документации ВКонтакте http://vk.com/dev/market.get
+	/// </remarks>
+	Task<VkCollection<Market>> GetAsync(MarketGetParams @params,
+										CancellationToken token = default);
+
 	/// <summary>
 	/// Метод возвращает список товаров в сообществе.
 	/// </summary>
@@ -45,7 +61,7 @@ public interface IMarketsCategoryAsync
 	/// (флаг, может принимать значения 1 или
 	/// 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов item с дополнительным
 	/// полем comments, содержащим число
@@ -82,7 +98,7 @@ public interface IMarketsCategoryAsync
 	/// эти поля не возвращается. флаг, может принимать значения 1 или 0 (флаг, может
 	/// принимать значения 1 или 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов item с дополнительным
 	/// полем comments, содержащим число
@@ -99,7 +115,7 @@ public interface IMarketsCategoryAsync
 	/// Поиск товаров в каталоге сообщества.
 	/// </summary>
 	/// <param name="params"> Входные параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает список объектов item.
 	/// </returns>
@@ -130,7 +146,7 @@ public interface IMarketsCategoryAsync
 	/// максимальное значение 100
 	/// (положительное число, по умолчанию 50, максимальное значение 100).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов album.
 	/// </returns>
@@ -160,7 +176,7 @@ public interface IMarketsCategoryAsync
 	/// разделенных запятыми, обязательный
 	/// параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает список объектов album.
 	/// </returns>
@@ -175,7 +191,7 @@ public interface IMarketsCategoryAsync
 	/// Создает новый комментарий к товару.
 	/// </summary>
 	/// <param name="params"> Входные параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданного комментария.
 	/// </returns>
@@ -189,7 +205,7 @@ public interface IMarketsCategoryAsync
 	/// Возвращает список комментариев к товару.
 	/// </summary>
 	/// <param name="params"> Входные параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает список объектов комментариев.
 	/// </returns>
@@ -215,7 +231,7 @@ public interface IMarketsCategoryAsync
 	/// (положительное число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1 (0, если комментарий не найден).
 	/// </returns>
@@ -242,7 +258,7 @@ public interface IMarketsCategoryAsync
 	/// параметр (положительное
 	/// число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1 (0, если комментарий с таким
 	/// идентификатором не является удаленным).
@@ -280,7 +296,7 @@ public interface IMarketsCategoryAsync
 	/// (список строк,
 	/// разделенных через запятую).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -313,7 +329,7 @@ public interface IMarketsCategoryAsync
 	/// Причина жалобы (положительное число, обязательный
 	/// параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -345,7 +361,7 @@ public interface IMarketsCategoryAsync
 	/// Причина жалобы (положительное число, обязательный
 	/// параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -361,7 +377,7 @@ public interface IMarketsCategoryAsync
 	/// Добавляет новый товар.
 	/// </summary>
 	/// <param name="params"> Входные параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор добавленного товара.
 	/// </returns>
@@ -375,7 +391,7 @@ public interface IMarketsCategoryAsync
 	/// Редактирует товар.
 	/// </summary>
 	/// <param name="params"> Входные параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -401,7 +417,7 @@ public interface IMarketsCategoryAsync
 	/// число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -428,7 +444,7 @@ public interface IMarketsCategoryAsync
 	/// число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1 (0, если товар не найден среди
 	/// удаленных).
@@ -471,7 +487,7 @@ public interface IMarketsCategoryAsync
 	/// число (положительное
 	/// число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -510,7 +526,7 @@ public interface IMarketsCategoryAsync
 	/// число (положительное
 	/// число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -548,7 +564,10 @@ public interface IMarketsCategoryAsync
 	/// значения 1 или 0
 	/// (флаг, может принимать значения 1 или 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="isHidden">
+	/// Информация о том, сделать ли подборку скрытой. 0 - не делать скрытой(по умолчанию). 1 - скрыть подборку
+	/// </param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданной подборки.
 	/// </returns>
@@ -559,6 +578,7 @@ public interface IMarketsCategoryAsync
 							string title,
 							long? photoId = null,
 							bool mainAlbum = false,
+							bool isHidden = false,
 							CancellationToken token = default);
 
 	/// <summary>
@@ -586,7 +606,10 @@ public interface IMarketsCategoryAsync
 	/// Идентификатор фотографии-обложки подборки. положительное число (положительное
 	/// число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="isHidden">
+	///  Информация о том, сделать ли подборку скрытой. 0 - не делать скрытой(по умолчанию). 1 - скрыть подборку
+	/// </param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <param name="mainAlbum"> Назначить подборку основной (1 — назначить, 0 — нет). </param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
@@ -599,6 +622,7 @@ public interface IMarketsCategoryAsync
 							string title,
 							long? photoId = null,
 							bool mainAlbum = false,
+							bool isHidden = false,
 							CancellationToken token = default);
 
 	/// <summary>
@@ -617,7 +641,7 @@ public interface IMarketsCategoryAsync
 	/// (положительное число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -650,7 +674,7 @@ public interface IMarketsCategoryAsync
 	/// запятыми, обязательный параметр (список положительных чисел, разделенных
 	/// запятыми, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -684,7 +708,7 @@ public interface IMarketsCategoryAsync
 	/// запятыми, обязательный параметр (список положительных чисел, разделенных
 	/// запятыми, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -710,7 +734,7 @@ public interface IMarketsCategoryAsync
 	/// положительное число
 	/// (Положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов category.
 	/// </returns>

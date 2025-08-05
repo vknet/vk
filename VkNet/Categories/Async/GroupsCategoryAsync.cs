@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
+using VkNet.Abstractions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
@@ -10,7 +11,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IGroupsCategory" />
 public partial class GroupsCategory
 {
 	/// <inheritdoc />
@@ -308,8 +309,12 @@ public partial class GroupsCategory
 	/// <inheritdoc />
 	public Task<BotsLongPollHistoryResponse> GetBotsLongPollHistoryAsync(BotsLongPollHistoryParams @params,
 																		CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			GetBotsLongPollHistory(@params), token);
+		GetBotsLongPollHistoryAsync<BotsLongPollHistoryResponse>(@params, token);
+
+	/// <inheritdoc />
+	public Task<T> GetBotsLongPollHistoryAsync<T>(BotsLongPollHistoryParams @params,
+												CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		GetBotsLongPollHistory<T>(@params), token);
 
 	/// <inheritdoc />
 	public Task<AddressResult> AddAddressAsync(AddAddressParams @params,

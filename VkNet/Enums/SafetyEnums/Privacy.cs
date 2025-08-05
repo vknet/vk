@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using VkNet.Utils;
 using VkNet.Utils.JsonConverter;
@@ -9,7 +10,7 @@ namespace VkNet.Enums.SafetyEnums;
 /// Уровень доступа к комментированию альбома
 /// </summary>
 [JsonConverter(typeof(SafetyEnumJsonConverter))]
-public sealed class Privacy : SafetyEnum<Privacy>
+public sealed partial class Privacy : SafetyEnum<Privacy>
 {
 	/// <summary>
 	/// Доступно всем пользователям.
@@ -74,7 +75,11 @@ public sealed class Privacy : SafetyEnum<Privacy>
 	/// Разобрать из json.
 	/// </summary>
 	/// <param name="response"> Ответ сервера. </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Уровень доступа к комментированию альбома
+	/// </returns>
+	[SuppressMessage("Performance", "CA1866:Использовать перегрузку символов", Justification = "Не поддерживается в netstandard2.0")]
+	[SuppressMessage("Performance", "SYSLIB1045:Преобразовать в \"GeneratedRegexAttribute\".", Justification = "Не поддерживается в netstandard2.0")]
 	public new static Privacy FromJson(VkResponse response)
 	{
 		switch (response.ToString())
@@ -120,11 +125,10 @@ public sealed class Privacy : SafetyEnum<Privacy>
 			{
 				var input = response.ToString();
 				var idPattern = new Regex(pattern: @"([\d]+)");
-				long id;
 
 				long.TryParse(idPattern.Match(input: input)
 					.Groups[groupnum: 1]
-					.Value, out id);
+					.Value, out var id);
 
 				if (input.StartsWith(value: "list"))
 				{

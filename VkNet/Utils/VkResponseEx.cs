@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -29,22 +30,21 @@ public static class VkResponseEx
 	/// <returns> Коллекция данных. </returns>
 	public static Collection<T> ToCollectionOf<T>(this VkResponse response, Func<VkResponse, T> selector) //where T : class
 	{
-		if (response == null)
+		if (response is null)
 		{
-			return new(new List<T>());
+			return new([]);
 		}
 
 		var responseArray = (VkResponseArray) response;
 
-		if (responseArray == null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
+		if (responseArray is null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
 		{
-			return new(new List<T>());
+			return new([]);
 		}
 
-		return
-			responseArray.Select(selector)
-				.Where(i => i != null)
-				.ToCollection(); //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'i' for null will always return false when generic type is instantiated with a value type.
+		return responseArray.Select(selector)
+			.Where(i => i is not null)
+			.ToCollection(); //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'i' for null will always return false when generic type is instantiated with a value type.
 	}
 
 	// --------------------------------------------------------------------------------------------
@@ -66,20 +66,20 @@ public static class VkResponseEx
 	public static ReadOnlyCollection<T>
 		ToReadOnlyCollectionOf<T>(this VkResponse response, Func<VkResponse, T> selector) // where T : class
 	{
-		if (response == null)
+		if (response is null)
 		{
-			return new(new List<T>());
+			return new([]);
 		}
 
 		var responseArray = (VkResponseArray) response;
 
-		if (responseArray == null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
+		if (responseArray is null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
 		{
-			return new(new List<T>());
+			return new([]);
 		}
 
 		return responseArray.Select(selector)
-			.Where(i => i != null)
+			.Where(i => i is not null)
 			.ToReadOnlyCollection();
 	}
 
@@ -93,20 +93,20 @@ public static class VkResponseEx
 		ToReadOnlyCollectionOf<T>(this VkResponse response)
 		where T : class
 	{
-		if (response == null)
+		if (response is null)
 		{
-			return new(new List<T>());
+			return new([]);
 		}
 
 		var responseArray = (VkResponseArray) response;
 
-		if (responseArray == null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
+		if (responseArray is null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
 		{
-			return new(new List<T>());
+			return new([]);
 		}
 
 		return responseArray.Select(x => x as T)
-			.Where(i => i != null)
+			.Where(i => i is not null)
 			.ToReadOnlyCollection();
 	}
 
@@ -118,8 +118,8 @@ public static class VkResponseEx
 	/// <param name="selector"> Функция выборки. </param>
 	/// <returns> Коллекция данных только для чтения. </returns>
 	public static ReadOnlyCollection<T> ToReadOnlyCollectionOf<T>(this IEnumerable<VkResponse> responses, Func<VkResponse, T> selector) =>
-		responses == null
-			? new(new List<T>())
+		responses is null
+			? new([])
 			: responses.Select(selector)
 				.ToReadOnlyCollection();
 
@@ -135,22 +135,21 @@ public static class VkResponseEx
 	/// </returns>
 	public static List<T> ToListOf<T>(this VkResponse response, Func<VkResponse, T> selector)
 	{
-		if (response == null)
+		if (response is null)
 		{
-			return new();
+			return [];
 		}
 
 		var responseArray = (VkResponseArray) response;
 
-		if (responseArray == null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
+		if (responseArray is null) //TODO: V3022 http://www.viva64.com/en/w/V3022 Expression 'responseArray == null' is always false.
 		{
-			return new();
+			return [];
 		}
 
-		return
-			responseArray.Select(selector)
-				.Where(i => i != null)
-				.ToList(); //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'i' for null will always return false when generic type is instantiated with a value type.
+		return responseArray.Select(selector)
+			.Where(i => i is not null)
+			.ToList(); //TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'i' for null will always return false when generic type is instantiated with a value type.
 	}
 
 	/// <summary>
@@ -162,7 +161,7 @@ public static class VkResponseEx
 	/// <returns>
 	/// Список данных.
 	/// </returns>
-	public static List<T> ToListOf<T>(this IEnumerable<VkResponse> responses, Func<VkResponse, T> selector) => responses == null
+	public static List<T> ToListOf<T>(this IEnumerable<VkResponse> responses, Func<VkResponse, T> selector) => responses is null
 		? new()
 		: responses.Select(selector)
 			.ToList();
@@ -181,9 +180,9 @@ public static class VkResponseEx
 													, Func<VkResponse, T> selector
 													, string arrayName = "items")
 	{
-		if (response == null)
+		if (response is null)
 		{
-			return new(0, Enumerable.Empty<T>());
+			return new(0, []);
 		}
 
 		VkResponseArray data = response.ContainsKey(arrayName)
@@ -204,17 +203,22 @@ public static class VkResponseEx
 	/// </summary>
 	/// <param name="response"> Ответ vk.com. </param>
 	/// <typeparam name="T"> Тип перечисления </typeparam>
-	/// <returns> </returns>
+	/// <returns>
+	/// Перечисление
+	/// </returns>
 	public static T ToEnum<T>(this VkResponse response)
-		where T : IConvertible => response == null
+		where T : IConvertible => response is null
 		? default
 		: Utilities.EnumFrom<T>(response);
 
 	/// <summary>
 	/// Проверка что строка является JSON
 	/// </summary>
-	/// <param name="input"> </param>
-	/// <returns> </returns>
+	/// <param name="input">Входная строка</param>
+	/// <returns>
+	/// Признак валидности json
+	/// </returns>
+	[SuppressMessage("Performance", "CA1866:Использовать перегрузку символов", Justification = "Не поддерживается в netstandard2.0")]
 	public static bool IsValidJson(string input)
 	{
 		input = input.Trim();

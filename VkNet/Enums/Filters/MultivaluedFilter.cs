@@ -28,7 +28,7 @@ public class MultivaluedFilter<TFilter> : IEqualityComparer<MultivaluedFilter<TF
 	private List<string> Selected { get; set; } = new();
 
 	/// <inheritdoc />
-	public int GetHashCode(MultivaluedFilter<TFilter> obj) => Selected != null
+	public int GetHashCode(MultivaluedFilter<TFilter> obj) => Selected is not null
 		? Selected.GetHashCode()
 		: 0;
 
@@ -48,12 +48,7 @@ public class MultivaluedFilter<TFilter> : IEqualityComparer<MultivaluedFilter<TF
 			return false;
 		}
 
-		if (ReferenceEquals(y, x))
-		{
-			return true;
-		}
-
-		return x.Selected.SequenceEqual(second: y.Selected);
+		return ReferenceEquals(y, x) || x.Selected.SequenceEqual(second: y.Selected);
 	}
 
 	/// <inheritdoc />
@@ -67,7 +62,9 @@ public class MultivaluedFilter<TFilter> : IEqualityComparer<MultivaluedFilter<TF
 	/// </summary>
 	/// <param name="mask"> Маска. </param>
 	/// <param name="value"> Значение. </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Фильтр
+	/// </returns>
 	/// <exception cref="System.ArgumentException">
 	/// Mask must be left power of 2 (i.e.
 	/// only one bit must be equal to 1);mask
@@ -78,7 +75,9 @@ public class MultivaluedFilter<TFilter> : IEqualityComparer<MultivaluedFilter<TF
 	/// Регистрирует возможное значение.
 	/// </summary>
 	/// <param name="value"> Значение. </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Фильтр
+	/// </returns>
 	/// <exception cref="System.ArgumentException">
 	/// Mask must be left power of 2 (i.e.
 	/// only one bit must be equal to 1);mask
@@ -101,7 +100,9 @@ public class MultivaluedFilter<TFilter> : IEqualityComparer<MultivaluedFilter<TF
 	/// Разобрать из json.
 	/// </summary>
 	/// <param name="val"> Ответ сервера. </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Фильтр
+	/// </returns>
 	public static TFilter FromJsonString(string val)
 	{
 		var values = val.Split(',')
@@ -117,6 +118,9 @@ public class MultivaluedFilter<TFilter> : IEqualityComparer<MultivaluedFilter<TF
 	/// <summary>
 	/// Преобразовать в строку.
 	/// </summary>
+	/// <returns>
+	/// Строковое представление
+	/// </returns>
 	public override string ToString() => string.Join(",", Selected.ToArray());
 
 	/// <summary>

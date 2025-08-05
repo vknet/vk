@@ -6,7 +6,7 @@ using VkNet.Model;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc/>
+/// <inheritdoc cref="IOrdersCategory" />
 public partial class OrdersCategory : IOrdersCategory
 {
 	/// <summary>

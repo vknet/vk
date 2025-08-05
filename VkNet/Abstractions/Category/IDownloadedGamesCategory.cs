@@ -2,7 +2,9 @@
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IDownloadedGamesCategoryAsync"/>
+/// <summary>
+/// Список методов секции downloadedGames
+/// </summary>
 public interface IDownloadedGamesCategory : IDownloadedGamesCategoryAsync
 {
 	/// <inheritdoc cref = "IDownloadedGamesCategoryAsync.GetPaidStatusAsync"/>

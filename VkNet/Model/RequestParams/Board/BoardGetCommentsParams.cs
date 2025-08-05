@@ -60,7 +60,7 @@ public class BoardGetCommentsParams
 	/// старым) строка.
 	/// </summary>
 	[JsonProperty(propertyName: "sort")]
-	public CommentsSort Sort { get; set; }
+	public CommentsSort? Sort { get; set; }
 
 	/// <summary>
 	/// Количество символов, по которому нужно обрезать текст комментария. Укажите 0,

@@ -30,13 +30,13 @@ public class Comments
 	public bool GroupsCanPost { get; set; }
 
 	/// <summary>
-	///
+	/// Признак возможности закрыть запись
 	/// </summary>
 	[JsonProperty("can_close")]
 	public bool CanClose { get; set; }
 
 	/// <summary>
-	///
+	/// Признак возможности открыть запись
 	/// </summary>
 	[JsonProperty("can_open")]
 	public bool CanOpen { get; set; }

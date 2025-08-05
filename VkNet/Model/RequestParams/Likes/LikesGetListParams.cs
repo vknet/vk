@@ -12,7 +12,7 @@ public struct LikesGetListParams
 	/// <summary>
 	/// Тип объекта.
 	/// </summary>
-	public LikeObjectType Type { get; set; }
+	public LikeObjectType? Type { get; set; }
 
 	/// <summary>
 	/// Идентификатор владельца Like-объекта: id пользователя, id сообщества (со знаком
@@ -44,7 +44,7 @@ public struct LikesGetListParams
 	/// "Мне нравится" или только тех, которые
 	/// рассказали о нем друзьям. Параметр может принимать следующие значения:строка.
 	/// </summary>
-	public LikesFilter Filter { get; set; }
+	public LikesFilter? Filter { get; set; }
 
 	/// <summary>
 	/// Указывает, необходимо ли возвращать только пользователей, которые являются

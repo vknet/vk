@@ -8,7 +8,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IUsersCategoryAsync"/>
+/// <summary>
+/// Методы для работы с информацией о пользователях.
+/// </summary>
 public interface IUsersCategory : IUsersCategoryAsync
 {
 	/// <inheritdoc cref="IUsersCategoryAsync.SearchAsync"/>

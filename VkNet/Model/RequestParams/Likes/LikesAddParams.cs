@@ -27,7 +27,7 @@ public class LikesAddParams
 	/// market_comment — комментарий к товару; строка, обязательный параметр (Строка,
 	/// обязательный параметр).
 	/// </remarks>
-	public LikeObjectType Type { get; set; }
+	public LikeObjectType? Type { get; set; }
 
 	/// <summary>
 	/// Идентификатор объекта. положительное число, обязательный параметр

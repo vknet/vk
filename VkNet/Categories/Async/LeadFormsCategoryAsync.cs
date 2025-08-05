@@ -2,12 +2,13 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
+using VkNet.Abstractions.Category;
 using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc/>
+/// <inheritdoc cref="ILeadFormsCategory" />
 public partial class LeadFormsCategory
 {
 	/// <inheritdoc/>

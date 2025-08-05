@@ -8,7 +8,7 @@ using VkNet.Utils;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IVkAuthorization{ImplicitFlowPageType}" />
 [UsedImplicitly]
 public class ImplicitFlowVkAuthorization : IVkAuthorization<ImplicitFlowPageType>
 {
@@ -26,7 +26,7 @@ public class ImplicitFlowVkAuthorization : IVkAuthorization<ImplicitFlowPageType
 	{
 		var pageType = GetPageType(url);
 
-		if (pageType != ImplicitFlowPageType.Result)
+		if (pageType is not ImplicitFlowPageType.Result)
 		{
 			throw new VkAuthorizationException($"{ImplicitFlowPageType.Result} page expected, but was {pageType}.");
 		}
@@ -137,5 +137,5 @@ public class ImplicitFlowVkAuthorization : IVkAuthorization<ImplicitFlowPageType
 			"&"
 		}, StringSplitOptions.RemoveEmptyEntries)
 		.Select(q => q.Split('='))
-		.ToDictionary(x => x.First(), x => x.Last());
+		.ToDictionary(x => x[0], x => x[x.Length - 1]);
 }

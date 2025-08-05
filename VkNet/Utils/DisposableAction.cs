@@ -35,18 +35,20 @@ public class DisposableAction : IDisposable
 	/// </param>
 	protected virtual void Dispose(bool disposing)
 	{
-		if (disposing)
+		if (!disposing)
 		{
-			try
-			{
-				_dispose?.Invoke();
-			}
-			catch (System.Exception ex)
-			{
-				// ToDo: Log error?
-			}
-
-			_dispose = null;
+			return;
 		}
+
+		try
+		{
+			_dispose?.Invoke();
+		}
+		catch (System.Exception ex)
+		{
+			// ToDo: Log error?
+		}
+
+		_dispose = null;
 	}
 }

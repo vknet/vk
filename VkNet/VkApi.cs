@@ -1,9 +1,9 @@
 // ReSharper disable once RedundantUsingDirective
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -44,7 +44,7 @@ namespace VkNet;
 /// </param>
 public delegate void VkApiDelegate(VkApi sender);
 
-/// <inheritdoc />
+/// <inheritdoc cref="IVkApi" />
 /// <summary>
 /// API для работы с ВКонтакте.
 /// Выступает в качестве фабрики для различных категорий API (например, для работы
@@ -72,31 +72,34 @@ public class VkApi : IVkApi
 	/// <summary>
 	/// Логгер
 	/// </summary>
-	private ILogger<VkApi> _logger;
+	private ILogger _logger;
 
-	#pragma warning disable S1104 // Fields should not have public accessibility
+	/// <summary>
+	/// Обработчик ошибок десериализации
+	/// </summary>
+	public bool? DeserializationErrorHandler { get; set; }
+
 	/// <summary>
 	/// Rest Client
 	/// </summary>
-	public IRestClient RestClient;
-	#pragma warning restore S1104 // Fields should not have public accessibility
+	public IRestClient RestClient { get; set; }
 
 	/// <inheritdoc cref="VkApi" />
-	public VkApi(ILogger<VkApi> logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
+	public VkApi(ILogger logger, ICaptchaSolver captchaSolver = null, IAuthorizationFlow authorizationFlow = null)
 	{
 		var container = new ServiceCollection();
 
-		if (logger != null)
+		if (logger is not null)
 		{
-			container.TryAddSingleton(logger);
+			container.TryAddSingleton(_ => logger);
 		}
 
-		if (captchaSolver != null)
+		if (captchaSolver is not null)
 		{
 			container.TryAddSingleton(captchaSolver);
 		}
 
-		if (authorizationFlow != null)
+		if (authorizationFlow is not null)
 		{
 			container.TryAddSingleton(authorizationFlow);
 		}
@@ -135,10 +138,6 @@ public class VkApi : IVkApi
 	public event VkApiDelegate OnTokenUpdatedAutomatically;
 
 	/// <inheritdoc />
-	[Obsolete("Нужно использовать AuthorizationFlow", false)]
-	public IBrowser Browser { get; set; }
-
-	/// <inheritdoc />
 	public IAuthorizationFlow AuthorizationFlow { get; set; }
 
 	/// <inheritdoc />
@@ -166,7 +165,7 @@ public class VkApi : IVkApi
 	public void Authorize(IApiAuthParams @params)
 	{
 		// если токен не задан - обычная авторизация
-		if (@params.AccessToken == null)
+		if (@params.AccessToken is null)
 		{
 			AuthorizeWithAntiCaptcha(@params);
 
@@ -187,14 +186,19 @@ public class VkApi : IVkApi
 		}
 
 		_ap = @params;
-		_logger?.LogDebug("Авторизация прошла успешно");
+
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Авторизация прошла успешно");
+		}
 	}
 
 	/// <inheritdoc />
 	public void Authorize(ApiAuthParams @params) => Authorize((IApiAuthParams) @params);
 
 	/// <inheritdoc />
-	public Task AuthorizeAsync(IApiAuthParams @params, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() => Authorize(@params), CancellationToken.None);
+	public Task AuthorizeAsync(IApiAuthParams @params, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() => Authorize(@params), CancellationToken.None);
 
 	/// <inheritdoc />
 	public void RefreshToken(Func<string> code = null)
@@ -208,7 +212,10 @@ public class VkApi : IVkApi
 			const string message =
 				"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
 
-			_logger?.LogError(message);
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError(message);
+			}
 
 			throw new AggregateException(message);
 		}
@@ -226,7 +233,10 @@ public class VkApi : IVkApi
 			const string message =
 				"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
 
-			_logger?.LogError(message);
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError(message);
+			}
 
 			throw new AggregateException(message);
 		}
@@ -248,7 +258,8 @@ public class VkApi : IVkApi
 
 	/// <inheritdoc />
 	[MethodImpl(MethodImplOptions.NoInlining)]
-	public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters)
+	public VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false,
+							params JsonConverter[] jsonConverters)
 	{
 		var answer = CallBase(methodName, parameters, skipAuthorization);
 
@@ -268,13 +279,22 @@ public class VkApi : IVkApi
 	{
 		var answer = CallBase(methodName, parameters, skipAuthorization);
 
+		var context = new StreamingContext(StreamingContextStates.All)
+			.AddTypeData(typeof(TolerantStringEnumConverter), DeserializationErrorHandler);
+
+		JsonConvert.DefaultSettings = () => new()
+		{
+			Context = context
+		};
+
 		var settings = new JsonSerializerSettings
 		{
-			Converters = new List<JsonConverter>(),
-			ContractResolver = new DefaultContractResolver
+			Converters = [],
+			ContractResolver = new DefaultContractResolver()
 			{
 				NamingStrategy = new SnakeCaseNamingStrategy()
 			},
+			Context = context,
 			MaxDepth = null,
 			ReferenceLoopHandling = ReferenceLoopHandling.Ignore
 		};
@@ -282,13 +302,16 @@ public class VkApi : IVkApi
 		var converters = GetJsonConverters<T>(jsonConverters);
 
 		foreach (var jsonConverter in converters)
+		{
 			settings.Converters.Add(jsonConverter);
+		}
 
 		return JsonConvert.DeserializeObject<T>(answer, settings);
 	}
 
 	/// <inheritdoc />
-	public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default)
+	public Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false,
+									CancellationToken token = default)
 	{
 		var task = TypeHelper.TryInvokeMethodAsync(() =>
 			Call(methodName, parameters, skipAuthorization), token);
@@ -299,7 +322,8 @@ public class VkApi : IVkApi
 	}
 
 	/// <inheritdoc />
-	public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default)
+	public Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false,
+								CancellationToken token = default)
 	{
 		var task = TypeHelper.TryInvokeMethodAsync(() =>
 			Call<T>(methodName, parameters, skipAuthorization), token);
@@ -315,7 +339,10 @@ public class VkApi : IVkApi
 	{
 		if (!skipAuthorization && !IsAuthorized)
 		{
-			_logger?.LogError("Метод '{MethodName}' нельзя вызывать без авторизации", methodName);
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError("Метод '{MethodName}' нельзя вызывать без авторизации", methodName);
+			}
 
 			throw new AccessTokenInvalidException($"Метод '{methodName}' нельзя вызывать без авторизации");
 		}
@@ -323,8 +350,11 @@ public class VkApi : IVkApi
 		var url = $"https://api.vk.com/method/{methodName}";
 		var answer = InvokeBase(url, parameters);
 
-		_logger?.LogTrace("Uri = \"{Url}\"", url);
-		_logger?.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
+		if (_logger.IsEnabled(LogLevel.Trace))
+		{
+			_logger.LogTrace("Uri = \"{Url}\"", url);
+			_logger.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
+		}
 
 		VkErrors.IfErrorThrowException(answer);
 
@@ -333,9 +363,9 @@ public class VkApi : IVkApi
 
 	/// <inheritdoc />
 	[CanBeNull]
-	public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false, CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Invoke(methodName, parameters, skipAuthorization), token);
+	public Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false,
+									CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		Invoke(methodName, parameters, skipAuthorization), token);
 
 	/// <inheritdoc />
 	public VkResponse CallLongPoll(string server, VkParameters parameters, params JsonConverter[] jsonConverters)
@@ -402,32 +432,45 @@ public class VkApi : IVkApi
 		if (string.IsNullOrEmpty(server))
 		{
 			const string message = "Server не должен быть пустым или null";
-			_logger?.LogError(message);
+
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError(message);
+			}
 
 			throw new ArgumentException(message);
 		}
 
-		_logger?.LogDebug("Вызов GetLongPollHistory с сервером {Server}, с параметрами {Parameters}",
-			server,
-			string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}")));
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Вызов GetLongPollHistory с сервером {Server}, с параметрами {Parameters}",
+				server,
+				string.Join(",", parameters.Select(x => $"{x.Key}={x.Value}")));
+		}
 
 		var answer = InvokeBase(server, parameters);
 
-		_logger?.LogTrace("Uri = \"{Url}\"", server);
-		_logger?.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
+		if (!_logger.IsEnabled(LogLevel.Trace))
+		{
+			return VkErrors.IfErrorThrowException(answer);
+		}
+
+		_logger.LogTrace("Uri = \"{Url}\"", server);
+		_logger.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
 
 		return VkErrors.IfErrorThrowException(answer);
 	}
 
 	/// <inheritdoc />
-	public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
-		InvokeLongPollExtended(server, parameters)
-			.ToString(), token);
+	public Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default) =>
+		TypeHelper.TryInvokeMethodAsync(() =>
+			InvokeLongPollExtended(server, parameters)
+				.ToString(), token);
 
 	/// <inheritdoc />
-	public Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			InvokeLongPollExtended(server, parameters), token);
+	public Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters,
+													CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		InvokeLongPollExtended(server, parameters), token);
 
 	/// <inheritdoc cref="IDisposable" />
 	public void Dispose()
@@ -447,7 +490,11 @@ public class VkApi : IVkApi
 		if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 		{
 			const string message = "Не удалось автоматически пройти валидацию!";
-			_logger?.LogError(message);
+
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError(message);
+			}
 
 			throw new NeedValidationException(new()
 			{
@@ -471,8 +518,10 @@ public class VkApi : IVkApi
 	/// <summary>
 	/// Получить список JsonConverter для обработки ответа vk api
 	/// </summary>
-	/// <param name="customConverters"></param>
-	/// <returns></returns>
+	/// <param name="customConverters">Список конвертеров</param>
+	/// <returns>
+	/// Полный список конвертеров
+	/// </returns>
 	protected virtual List<JsonConverter> GetJsonConverters<T>(IReadOnlyList<JsonConverter> customConverters)
 	{
 		var converters = new List<JsonConverter>();
@@ -484,6 +533,7 @@ public class VkApi : IVkApi
 		converters.Add(new UnixDateTimeConverter());
 		converters.Add(new AttachmentJsonConverter());
 		converters.Add(new StringEnumConverter());
+
 		return converters;
 	}
 
@@ -555,7 +605,7 @@ public class VkApi : IVkApi
 		set {
 			if (value < 0)
 			{
-				throw new ArgumentException(@"Value must be positive", nameof(value));
+				throw new ArgumentException("Value must be positive", nameof(value));
 			}
 
 			_requestsPerSecond = value;
@@ -585,17 +635,19 @@ public class VkApi : IVkApi
 		get => CaptchaHandler.MaxCaptchaRecognitionCount;
 
 		set {
-			if (value < 0)
+			switch (value)
 			{
-				throw new ArgumentException(@"Value must be positive", nameof(value));
-			}
+				case < 0:
+					throw new ArgumentException(@"Value must be positive", nameof(value));
 
-			if (value == 0)
-			{
-				return;
-			}
+				case 0:
+					return;
 
-			CaptchaHandler.MaxCaptchaRecognitionCount = value;
+				default:
+					CaptchaHandler.MaxCaptchaRecognitionCount = value;
+
+					break;
+			}
 		}
 	}
 
@@ -735,6 +787,15 @@ public class VkApi : IVkApi
 	/// <inheritdoc />
 	public IAsrCategory Asr { get; set; }
 
+	/// <inheritdoc />
+	public IShortVideoCategory ShortVideo { get; set; }
+
+	/// <inheritdoc />
+	public IStoreCategory Store { get; set; }
+
+	/// <inheritdoc />
+	public ICallsCategory Calls { get; set; }
+
 	#endregion
 
 	#region private
@@ -766,14 +827,17 @@ public class VkApi : IVkApi
 			parameters.Add(Constants.Language, _language.GetLanguage());
 		}
 
-		_logger?.LogDebug("Вызов метода {MethodName}, с параметрами {Parameters}",
-			methodName,
-			string.Join(",", parameters.Where(x => x.Key != Constants.AccessToken)
-				.Select(x => $"{x.Key}={x.Value}")));
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Вызов метода {MethodName}, с параметрами {Parameters}",
+				methodName,
+				string.Join(",", parameters.Where(x => x.Key != Constants.AccessToken)
+					.Select(x => $"{x.Key}={x.Value}")));
+		}
 
 		string answer;
 
-		if (CaptchaSolver == null)
+		if (CaptchaSolver is null)
 		{
 			answer = Invoke(methodName, parameters, skipAuthorization);
 		} else
@@ -794,6 +858,19 @@ public class VkApi : IVkApi
 	{
 		var answer = string.Empty;
 
+		if (_expireTimer is null)
+		{
+			SetTimer(0);
+		}
+
+		// Защита от превышения количества запросов в секунду
+		_rateLimiter.Perform(SendRequest, CancellationToken.None)
+			.ConfigureAwait(false)
+			.GetAwaiter()
+			.GetResult();
+
+		return answer;
+
 		void SendRequest()
 		{
 			LastInvokeTime = DateTimeOffset.Now;
@@ -805,19 +882,6 @@ public class VkApi : IVkApi
 
 			answer = response.Message ?? response.Value;
 		}
-
-		if (_expireTimer == null)
-		{
-			SetTimer(0);
-		}
-
-		// Защита от превышения количества запросов в секунду
-		_rateLimiter.Perform(SendRequest)
-			.ConfigureAwait(false)
-			.GetAwaiter()
-			.GetResult();
-
-		return answer;
 	}
 
 	/// <summary>
@@ -826,16 +890,23 @@ public class VkApi : IVkApi
 	/// <param name="authParams"> Параметры авторизации </param>
 	private void AuthorizeWithAntiCaptcha(IApiAuthParams authParams)
 	{
-		_logger?.LogDebug("Старт авторизации");
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Старт авторизации");
+		}
 
-		if (CaptchaSolver == null)
+		if (CaptchaSolver is null)
 		{
 			BaseAuthorize(authParams);
 		} else
 		{
 			CaptchaHandler.Perform((sid, key) =>
 			{
-				_logger?.LogDebug("Авторизация с использование капчи");
+				if (_logger.IsEnabled(LogLevel.Debug))
+				{
+					_logger.LogDebug("Авторизация с использование капчи");
+				}
+
 				authParams.CaptchaSid = sid;
 				authParams.CaptchaKey = key;
 				BaseAuthorize(authParams);
@@ -856,12 +927,19 @@ public class VkApi : IVkApi
 	{
 		if (string.IsNullOrWhiteSpace(accessToken))
 		{
-			_logger?.LogError("Авторизация через токен. Токен не задан");
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError("Авторизация через токен. Токен не задан");
+			}
 
 			throw new ArgumentNullException(accessToken);
 		}
 
-		_logger?.LogDebug("Авторизация через токен");
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Авторизация через токен");
+		}
+
 		StopTimer();
 
 		LastInvokeTime = DateTimeOffset.Now;
@@ -875,7 +953,11 @@ public class VkApi : IVkApi
 	/// <param name="authorization"> The authorization. </param>
 	private void SetTokenProperties(AuthorizationResult authorization)
 	{
-		_logger?.LogDebug("Установка свойств токена");
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Установка свойств токена");
+		}
+
 		var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
 		SetApiPropertiesAfterAuth(expireTime, authorization.AccessToken, authorization.UserId);
 	}
@@ -937,7 +1019,11 @@ public class VkApi : IVkApi
 		if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 		{
 			const string message = "Authorization fail: invalid access token.";
-			_logger?.LogError(message);
+
+			if (_logger.IsEnabled(LogLevel.Error))
+			{
+				_logger.LogError(message);
+			}
 
 			throw new VkAuthorizationException(message);
 		}
@@ -947,7 +1033,7 @@ public class VkApi : IVkApi
 
 	private void Initialization(IServiceProvider serviceProvider)
 	{
-		_logger = serviceProvider.GetService<ILogger<VkApi>>();
+		_logger = serviceProvider.GetService<ILogger>();
 		CaptchaHandler = serviceProvider.GetRequiredService<ICaptchaHandler>();
 		_language = serviceProvider.GetRequiredService<ILanguageService>();
 		_rateLimiter = serviceProvider.GetRequiredService<IRateLimiter>();
@@ -1002,17 +1088,26 @@ public class VkApi : IVkApi
 		Donut = new DonutCategory(this);
 		DownloadedGames = new DownloadedGamesCategory(this);
 		Asr = new AsrCategory(this);
-
+		ShortVideo = new ShortVideoCategory(this);
+		Store = new StoreCategory(this);
+		Calls = new CallsCategory(this);
 
 		RequestsPerSecond = 3;
 
 		MaxCaptchaRecognitionCount = 5;
 		#if NET45
-			_logger?.LogError("Могут быть проблемы при выполнении запросов с Кодировкой 1251. Если проблема воспроизводится рекомендуется обновиться на NETFramework 4.6.1 или выше");
+		if (_logger.IsEnabled(LogLevel.Error))
+		{
+			_logger.LogError("Могут быть проблемы при выполнении запросов с Кодировкой 1251. Если проблема воспроизводится рекомендуется обновиться на NETFramework 4.6.1 или выше");
+		}
 		#else
 		Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 		#endif
-		_logger?.LogDebug("VkApi Initialization successfully");
+
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("VkApi Initialization successfully");
+		}
 	}
 
 	#endregion

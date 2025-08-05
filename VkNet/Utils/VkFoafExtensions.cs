@@ -1,9 +1,11 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using VkNet.Model;
+using System.Threading;
 
 namespace VkNet.Utils;
 
@@ -15,26 +17,29 @@ public static class VkFoafExtensions
 	/// <summary>
 	/// return self registration date
 	/// </summary>
-	/// <param name="user"></param>
-	/// <returns></returns>
-	public static async Task<DateTime> GetRegistrationDateAsync(this User user)
+	/// <param name="user">Пользователь</param>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Дата регистрации
+	/// </returns>
+	[SuppressMessage("ReSharper", "MethodSupportsCancellation")]
+	public static async Task<DateTime> GetRegistrationDateAsync(this User user, CancellationToken token = default)
 	{
-		using (var httpClient = new HttpClient())
-		{
-			var str = await httpClient.GetStringAsync($"https://vk.com/foaf.php?id={user.Id}")
-				.ConfigureAwait(false);
+		using var httpClient = new HttpClient();
 
-			var doc = new HtmlDocument();
-			doc.LoadHtml(str);
+		var str = await httpClient.GetStringAsync($"https://vk.com/foaf.php?id={user.Id}")
+			.ConfigureAwait(false);
 
-			var created = doc.DocumentNode.Descendants("ya:created")
-				.FirstOrDefault();
+		var doc = new HtmlDocument();
+		doc.LoadHtml(str);
 
-			var dataStr = created?.Attributes["dc:date"]
-							?.Value
-						?? throw new InvalidOperationException("can't parse meta files");
+		var created = doc.DocumentNode.Descendants("ya:created")
+			.FirstOrDefault();
 
-			return Convert.ToDateTime(dataStr);
-		}
+		var dataStr = created?.Attributes["dc:date"]
+						?.Value
+					?? throw new InvalidOperationException("can't parse meta files");
+
+		return Convert.ToDateTime(dataStr);
 	}
 }

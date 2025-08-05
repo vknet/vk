@@ -3,6 +3,7 @@
 namespace VkNet.Enums;
 
 /// <summary>
+/// Статус участия
 /// </summary>
 public enum MemberStatus
 {

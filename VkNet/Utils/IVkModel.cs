@@ -14,6 +14,8 @@ public interface IVkModel
 	/// Преобразовать из JSON
 	/// </summary>
 	/// <param name="response"> Ответ от сервера. </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Модель данных vk.com
+	/// </returns>
 	IVkModel FromJson(VkResponse response);
 }

@@ -6,7 +6,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IDatabaseCategoryAsync" />
+/// <summary>
+/// Методы для получения справочной информации (страны, города, школы, учебные заведения и т.п.).
+/// </summary>
 public interface IDatabaseCategory : IDatabaseCategoryAsync
 {
 	/// <inheritdoc cref="IDatabaseCategoryAsync.GetCountriesAsync"/>

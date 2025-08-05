@@ -18,7 +18,7 @@ public interface IDonutCategoryAsync
 	/// Идентификатор сообщества — владельца записи. Указывается
 	/// со знаком «минус».
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Если пользователь является доном, возвращается 1. Если нет, возвращается 0.
 	/// </returns>
@@ -45,7 +45,7 @@ public interface IDonutCategoryAsync
 	/// Список дополнительных полей профилей, которые необходимо вернуть (через запятую).
 	/// См. https://vk.com/dev/objects/user.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число друзей в поле count и массив объектов пользователей в поле items.
 	/// </returns>
@@ -65,7 +65,7 @@ public interface IDonutCategoryAsync
 	/// Идентификатор сообщества — владельца записи. Указывается
 	/// со знаком «минус».
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -88,7 +88,7 @@ public interface IDonutCategoryAsync
 	/// <param name="count">
 	/// Соличество подписок, информацию о которых необходимо вернуть.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>

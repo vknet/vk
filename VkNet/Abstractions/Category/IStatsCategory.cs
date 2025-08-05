@@ -3,7 +3,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IStatsCategoryAsync"/>
+/// <summary>
+/// Методы для работы со статистикой.
+/// </summary>
 public interface IStatsCategory : IStatsCategoryAsync
 {
 	/// <inheritdoc cref="IStatsCategoryAsync.GetAsync"/>

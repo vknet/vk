@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Статистика по полу возрасту и городу
 /// </summary>
 [Serializable]
 public class StatsSexAgeCities

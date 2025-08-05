@@ -1,0 +1,74 @@
+{
+    "response": {
+        "count": 60,
+        "view_type": 1,
+        "items": [
+            {
+                "availability": 0,
+                "category": {
+                    "id": 40834,
+                    "name": "Доски для сноубординга",
+                    "section": {
+                        "id": 10005,
+                        "name": "Спорт и отдых"
+                    }
+                },
+                "description": "Ростовка: 140,145,150,155\nЖесткость: 5/10 \nГеометрия: full twintip\nПрогиб: camber-rocker-camber\nФорма загибов: radius2flat\n\nПромеры (для модели 145см)\n\nNose/Waist/Tail: 279/240/279мм\nRadius: multy 6.8 - 7.5m\nStance: 530mm\nSetback: 0mm",
+                "id": 1139824,
+                "owner_id": -85689507,
+                "price": {
+                    "amount": "5000000",
+                    "currency": {
+                        "id": 643,
+                        "name": "RUB",
+                        "title": "₽"
+                    },
+                    "text": "50000 ₽"
+                },
+                "title": "Bastet Snowboard",
+                "is_owner": false,
+                "is_adult": false,
+                "thumb_photo": "https://sun6-22.userapi.com/impf/c824604/v824604807/a1fb5/3Oj1mwWVXFo.jpg?size=400x0&crop=0,0.22,1,0.604&quality=95&sign=b8a1e62d66739826a7b1a0e176d9f6c3&c_uniq_tag=TmaNzf066Mdev_XG1xHcpcv8h2mFbAUBa-Arb2ygLEg",
+                "cart_quantity": 0,
+                "item_rating": {
+                    "rating": 0,
+                    "reviews_count": 0,
+                    "reviews_count_text": "Нет отзывов"
+                }
+            },
+            {
+                "availability": 0,
+                "category": {
+                    "id": 30417,
+                    "name": "Скейтборды и лонгборды",
+                    "section": {
+                        "id": 10005,
+                        "name": "Спорт и отдых"
+                    }
+                },
+                "description": "Длина: 46\nШирина: 9.5\nКонкейв: U-образный\nФлекс: мягкий, средний, жесткий\nТейлы: 15, 16, 17м\nПолиуретановая защита по всему периметру\nДизайн: Катя Войнова",
+                "id": 6996709,
+                "owner_id": -85689507,
+                "price": {
+                    "amount": "2290000",
+                    "currency": {
+                        "id": 643,
+                        "name": "RUB",
+                        "title": "₽"
+                    },
+                    "text": "22900 ₽"
+                },
+                "title": "Katana NIKIFILINI",
+                "is_owner": false,
+                "is_adult": false,
+                "thumb_photo": "https://sun6-20.userapi.com/impg/GRnTmi_N0zOsy5X0KV3j3LQt7ovJId9uvcSdmQ/ETUzAN1xI6w.jpg?crop=0,0.219,1,0.563&size=400x0&quality=95&sign=22a0dd58b06c1a394b061a572a616a39&c_uniq_tag=BmN1PRZ9K_wUa1YgIFafbImOBWRxf76fGe8rdPohUHA",
+                "cart_quantity": 0,
+                "item_rating": {
+                    "rating": 0,
+                    "reviews_count": 0,
+                    "reviews_count_text": "Нет отзывов"
+                }
+            }
+        ]
+    }
+}

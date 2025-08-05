@@ -4,15 +4,14 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
-public partial class BoardCategory : IBoardCategory
+/// <inheritdoc cref="IBoardCategory" />
+internal partial class BoardCategory : IBoardCategory
 {
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// Api vk.com
+	/// Инициализирует новый экземпляр класса <see cref="BoardCategory" />
 	/// </summary>
-	/// <param name="vk"> </param>
 	public BoardCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />

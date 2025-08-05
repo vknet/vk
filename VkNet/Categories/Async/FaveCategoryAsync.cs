@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using VkNet.Abstractions;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IFaveCategory" />
 public partial class FaveCategory
 {
 	/// <inheritdoc/>
@@ -21,6 +22,7 @@ public partial class FaveCategory
 			AddArticle(url, @ref, trackCode, source), token);
 
 	/// <inheritdoc/>
+	[Obsolete(ObsoleteText.Obsolete + "Используйте вместо него Task<bool> AddLinkAsync(Uri link)")]
 	public Task<bool> AddLinkAsync(Uri link,
 									CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>

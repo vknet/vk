@@ -8,7 +8,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IGroupsCategoryAsync" />
+/// <summary>
+/// Асинхронные методы для работы с сообществами (группами).
+/// </summary>
 public interface IGroupsCategory : IGroupsCategoryAsync
 {
 	/// <inheritdoc cref="IGroupsCategoryAsync.AddAddressAsync" />
@@ -45,7 +47,7 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, long, bool?, bool, System.Threading.CancellationToken)" />
 	GroupMember IsMember(string groupId, long userId, bool? extended = true,
-											bool skipAuthorization = false);
+						bool skipAuthorization = false);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.IsMemberAsync(string, long, bool, System.Threading.CancellationToken)" />
 	bool IsMember(string groupId, long userId, bool skipAuthorization = false);
@@ -85,7 +87,6 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.InviteAsync(long,long, System.Threading.CancellationToken)" />
 	bool Invite(long groupId, long userId);
-
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.AddLinkAsync" />
 	ExternalLink AddLink(long groupId, Uri link, string text);
@@ -150,6 +151,9 @@ public interface IGroupsCategory : IGroupsCategoryAsync
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetBotsLongPollHistoryAsync" />
 	BotsLongPollHistoryResponse GetBotsLongPollHistory(BotsLongPollHistoryParams @params);
+
+	/// <inheritdoc cref="IGroupsCategoryAsync.GetBotsLongPollHistoryAsync" />
+	T GetBotsLongPollHistory<T>(BotsLongPollHistoryParams @params);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetOnlineStatusAsync" />
 	OnlineStatus GetOnlineStatus(ulong groupId);

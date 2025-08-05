@@ -4,7 +4,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="INotesCategoryAsync"/>
+/// <summary>
+/// Методы для работы с заметками.
+/// </summary>
 public interface INotesCategory : INotesCategoryAsync
 {
 	/// <inheritdoc cref="INotesCategoryAsync.AddAsync"/>

@@ -45,6 +45,12 @@ public class GetAdsLayoutParams
 	public bool? IncludeDeleted { get; set; }
 
 	/// <summary>
+	/// Флаг, задающий вывод только архивных объявлений. 0 — выводить все объявления; 1 — выводить только архивные объявления.
+	/// </summary>
+	[JsonProperty("only_deleted")]
+	public bool? OnlyDeleted { get; set; }
+
+	/// <summary>
 	/// Ограничение на количество возвращаемых объявлений. Используется, только если параметр ad_ids равен null, а параметр campaign_ids содержит id только одной кампании. целое число
 	/// </summary>
 	[JsonProperty("limit")]

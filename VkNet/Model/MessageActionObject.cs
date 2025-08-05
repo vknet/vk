@@ -14,7 +14,7 @@ public class MessageActionObject
 	/// Информация о сервисном действии с чатом.
 	/// </summary>
 	[JsonProperty("type")]
-	public MessageAction Type { get; set; }
+	public MessageAction? Type { get; set; }
 
 	/// <summary>
 	/// Идентификатор пользователя, которого пригласили или исключили
@@ -53,4 +53,10 @@ public class MessageActionObject
 	/// </summary>
 	[JsonProperty("photo")]
 	public Photo Photo { get; set; }
+
+	/// <summary>
+	/// Наименование нового стиля чата
+	/// </summary>
+	[JsonProperty("style")]
+	public string? Style { get; set; }
 }

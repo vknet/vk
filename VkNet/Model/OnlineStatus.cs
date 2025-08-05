@@ -14,7 +14,7 @@ public class OnlineStatus
 	/// Статус
 	/// </summary>
 	[JsonProperty("status")]
-	public OnlineStatusType Status { get; set; }
+	public OnlineStatusType? Status { get; set; }
 
 	/// <summary>
 	/// Оценка времени ответа в минутах

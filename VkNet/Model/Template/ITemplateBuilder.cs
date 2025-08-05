@@ -12,7 +12,7 @@ public interface ITemplateBuilder
 	/// <summary>
 	/// Тип шаблона, по умолчанию карусель
 	/// </summary>
-	TemplateType Type { get; }
+	TemplateType? Type { get; }
 
 	/// <summary>
 	/// Список элементов шаблона

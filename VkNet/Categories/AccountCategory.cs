@@ -10,7 +10,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IAccountCategory" />
 public partial class AccountCategory : IAccountCategory
 {
 	/// <summary>
@@ -152,7 +152,6 @@ public partial class AccountCategory : IAccountCategory
 		};
 
 		return _vk.Call<AccountPushSettings>("account.getPushSettings", parameters);
-
 	}
 
 	/// <inheritdoc />
@@ -352,17 +351,17 @@ public partial class AccountCategory : IAccountCategory
 	/// <inheritdoc />
 	public ChangeNameRequest SaveProfileInfo(AccountSaveProfileInfoParams @params)
 	{
-		if (@params.RelationPartner != null)
+		if (@params.RelationPartner is not null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.RelationPartner.Id);
 		}
 
-		if (@params.Country != null)
+		if (@params.Country is not null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Country.Id);
 		}
 
-		if (@params.City != null)
+		if (@params.City is not null)
 		{
 			VkErrors.ThrowIfNumberIsNegative(expr: () => @params.City.Id);
 		}

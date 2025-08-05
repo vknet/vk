@@ -1,0 +1,19 @@
+{
+  "response": [
+	{
+	  "id": 43136387,
+	  "military": [
+		{
+		  "unit": "145 отдельный инженерно-саперный батальон 31 Висленской танковой",
+		  "unit_id": 3363063,
+		  "from": 1986,
+		  "until": 1988
+		}
+	  ],
+	  "first_name": "Влад",
+	  "last_name": "Невідомий",
+	  "can_access_closed": true,
+	  "is_closed": false
+	}
+  ]
+}

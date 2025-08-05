@@ -33,7 +33,7 @@ public class AdsGetAdsTests : CategoryBaseTest
 		ads.Should()
 			.NotBeEmpty();
 
-		var ad = ads.FirstOrDefault();
+		var ad = ads.First();
 
 		ads.Should()
 			.ContainSingle();

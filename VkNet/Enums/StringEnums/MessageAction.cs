@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.StringEnums;
 
@@ -8,51 +7,71 @@ namespace VkNet.Enums.StringEnums;
 /// Действия для сообщений
 /// </summary>
 [StringEnum]
-[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+[JsonConverter(typeof(TolerantStringEnumConverter))]
 public enum MessageAction
 {
 	/// <summary>
-	/// обновлена фотография беседы;
+	/// Произвольное событие;
+	/// </summary>
+	Custom,
+
+	/// <summary>
+	/// Обновлена фотография беседы;
 	/// </summary>
 	ChatPhotoUpdate,
 
 	/// <summary>
-	/// удалена фотография беседы;
+	/// Удалена фотография беседы;
 	/// </summary>
 	ChatPhotoRemove,
 
 	/// <summary>
-	/// создана беседа;
+	/// Создана беседа;
 	/// </summary>
 	ChatCreate,
 
 	/// <summary>
-	/// обновлено название беседы;
+	/// Обновлено название беседы;
 	/// </summary>
 	ChatTitleUpdate,
 
 	/// <summary>
-	/// приглашен пользователь;
+	/// Приглашен пользователь;
 	/// </summary>
 	ChatInviteUser,
 
 	/// <summary>
-	/// исключен пользователь.
+	/// Исключен пользователь.
 	/// </summary>
 	ChatKickUser,
 
 	/// <summary>
-	/// закреплено сообщение;
+	/// Закреплено сообщение;
 	/// </summary>
 	ChatPinMessage,
 
 	/// <summary>
-	/// откреплено сообщение.
+	/// Откреплено сообщение.
 	/// </summary>
 	ChatUnpinMessage,
 
 	/// <summary>
-	/// пользователь присоединился к беседе по ссылке.
+	/// Пользователь присоединился к беседе по ссылке.
 	/// </summary>
-	ChatInviteUserByLink
+	ChatInviteUserByLink,
+
+	/// <summary>
+	/// Обновление оформления беседы
+	/// </summary>
+	ConversationStyleUpdate,
+
+	/// <summary>
+	/// Скриншот чата
+	/// </summary>
+	ChatScreenshot,
+
+	/// <summary>
+	/// Пригласить пользователя в чат по запросу сообщения
+	/// </summary>
+	ChatInviteUserByMessageRequest
 }

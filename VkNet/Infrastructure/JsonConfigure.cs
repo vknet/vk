@@ -5,6 +5,9 @@ using VkNet.Exception;
 
 namespace VkNet.Infrastructure;
 
+/// <summary>
+/// Конфигурация JSON
+/// </summary>
 internal static class JsonConfigure
 {
 	/// <returns></returns>
@@ -14,17 +17,18 @@ internal static class JsonConfigure
 		ReferenceLoopHandling = ReferenceLoopHandling.Ignore
 	};
 
-	/// <returns></returns>
+	/// <returns>
+	/// Преобразование в JSON
+	/// </returns>
 	internal static JObject ToJObject(this string answer)
 	{
 		try
 		{
 			using var stringReader = new StringReader(answer);
 
-			using JsonReader jsonReader = new JsonTextReader(stringReader)
-			{
-				MaxDepth = null
-			};
+			using JsonReader jsonReader = new JsonTextReader(stringReader);
+
+			jsonReader.MaxDepth = null;
 
 			return JObject.Load(jsonReader);
 		}

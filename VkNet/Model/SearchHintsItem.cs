@@ -7,6 +7,7 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Model;
 
 /// <summary>
+/// Элемент подсказки поиска
 /// </summary>
 [Serializable]
 public class SearchHintsItem
@@ -15,7 +16,7 @@ public class SearchHintsItem
 	/// тип объекта
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	public SearchResultType Type { get; set; }
+	public SearchResultType? Type { get; set; }
 
 	/// <summary>
 	/// данные о сообществе.

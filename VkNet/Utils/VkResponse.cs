@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
@@ -43,7 +44,7 @@ public sealed class VkResponse
 
 			var token = _token[key: key];
 
-			return token != null && token.Type != JTokenType.Null
+			return token is not null && token.Type is not JTokenType.Null
 				? new VkResponse(token)
 				: null;
 		}
@@ -52,8 +53,13 @@ public sealed class VkResponse
 	/// <summary>
 	/// HasToken
 	/// </summary>
-	/// <returns> </returns>
-	public bool HasToken() => _token != null && _token.HasValues;
+	/// <returns>
+	/// Признак наличия токена
+	/// </returns>
+	public bool HasToken() => _token is
+	{
+		HasValues: true
+	};
 
 	/// <summary>
 	/// Определяет, содержит ли JSON указанный ключ.
@@ -62,14 +68,14 @@ public sealed class VkResponse
 	/// <returns> Признак наличия ключа в JSON </returns>
 	public bool ContainsKey(string key)
 	{
-		if (!(_token is JObject))
+		if (_token is not JObject)
 		{
 			return false;
 		}
 
 		var token = _token[key: key];
 
-		return token != null;
+		return token is not null;
 	}
 
 	/// <summary>
@@ -81,7 +87,7 @@ public sealed class VkResponse
 	/// </returns>
 	public static implicit operator VkResponseArray(VkResponse response)
 	{
-		if (response == null)
+		if (response is null)
 		{
 			return null;
 		}
@@ -90,7 +96,7 @@ public sealed class VkResponse
 			? response[key: "items"]
 			: response;
 
-		return !(resp._token is JArray array)
+		return resp._token is not JArray array
 			? null
 			: new VkResponseArray(array: array);
 	}
@@ -112,7 +118,8 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator bool(VkResponse response) => response != null && response == 1;
+	// ReSharper disable once MergeSequentialChecks
+	public static implicit operator bool(VkResponse response) => response is not null && response == 1;
 
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
@@ -121,7 +128,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator bool?(VkResponse response) => response == null
+	public static implicit operator bool?(VkResponse response) => response is null
 		? null
 		: response == 1;
 
@@ -141,7 +148,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator long?(VkResponse response) => response != null
+	public static implicit operator long?(VkResponse response) => response is not null
 		? (long?) response._token
 		: null;
 
@@ -152,7 +159,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator byte?(VkResponse response) => response != null
+	public static implicit operator byte?(VkResponse response) => response is not null
 		? (byte?) response._token
 		: null;
 
@@ -181,7 +188,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator ulong?(VkResponse response) => response != null
+	public static implicit operator ulong?(VkResponse response) => response is not null
 		? (ulong?) response._token
 		: null;
 
@@ -201,7 +208,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator float?(VkResponse response) => response != null
+	public static implicit operator float?(VkResponse response) => response is not null
 		? (float?) response._token
 		: null;
 
@@ -221,7 +228,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator decimal?(VkResponse response) => response != null
+	public static implicit operator decimal?(VkResponse response) => response is not null
 		? (decimal?) response._token
 		: null;
 
@@ -241,7 +248,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator uint?(VkResponse response) => response != null
+	public static implicit operator uint?(VkResponse response) => response is not null
 		? (uint?) response._token
 		: null;
 
@@ -261,7 +268,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator int?(VkResponse response) => response != null
+	public static implicit operator int?(VkResponse response) => response is not null
 		? (int?) response._token
 		: null;
 
@@ -272,7 +279,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator string(VkResponse response) => response == null
+	public static implicit operator string(VkResponse response) => response is null
 		? null
 		: WebUtility.HtmlDecode(value: (string) response._token);
 
@@ -306,7 +313,7 @@ public sealed class VkResponse
 	/// </returns>
 	public static implicit operator DateTime(VkResponse response)
 	{
-		if (response == null)
+		if (response is null)
 		{
 			throw new ArgumentNullException(paramName: nameof(response));
 		}
@@ -330,7 +337,10 @@ public sealed class VkResponse
 	/// Timestamps to date time.
 	/// </summary>
 	/// <param name="unixTimeStamp"> The unix time stamp. </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Дата и время
+	/// </returns>
+	[SuppressMessage("Minor Code Smell", "S6588", Justification = "Не поддерживается в netstandard2.0")]
 	public static DateTime TimestampToDateTime(long unixTimeStamp)
 	{
 		var dt = new DateTime(1970, 1, 1, 0, 0,
@@ -361,7 +371,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator PageAccessKind?(VkResponse response) => response == null
+	public static implicit operator PageAccessKind?(VkResponse response) => response is null
 		? null
 		: Utilities.NullableEnumFrom<PageAccessKind>(value: response);
 
@@ -372,7 +382,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator GroupPublicity?(VkResponse response) => response == null
+	public static implicit operator GroupPublicity?(VkResponse response) => response is null
 		? null
 		: Utilities.NullableEnumFrom<GroupPublicity>(value: response);
 
@@ -383,7 +393,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator ContentAccess?(VkResponse response) => response == null
+	public static implicit operator ContentAccess?(VkResponse response) => response is null
 		? null
 		: Utilities.NullableEnumFrom<ContentAccess>(value: response);
 
@@ -394,7 +404,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator GroupSubjects?(VkResponse response) => response == null
+	public static implicit operator GroupSubjects?(VkResponse response) => response is null
 		? null
 		: Utilities.NullableEnumFrom<GroupSubjects>(value: response);
 
@@ -405,7 +415,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator AdminLevel?(VkResponse response) => response == null
+	public static implicit operator AdminLevel?(VkResponse response) => response is null
 		? null
 		: Utilities.NullableEnumFrom<AdminLevel>(value: response);
 
@@ -416,7 +426,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator AudioGenre?(VkResponse response) => response == null
+	public static implicit operator AudioGenre?(VkResponse response) => response is null
 		? null
 		: Utilities.NullableEnumFrom<AudioGenre>(value: response);
 
@@ -427,7 +437,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator MessageType?(VkResponse response) => response == null
+	public static implicit operator MessageType?(VkResponse response) => response is null
 		? null
 		: Utilities.NullableEnumFrom<MessageType>(value: response);
 
@@ -438,7 +448,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
-	public static implicit operator MessageReadState?(VkResponse response) => response == null
+	public static implicit operator MessageReadState?(VkResponse response) => response is null
 		? null
 		: Utilities.NullableEnumFrom<MessageReadState>(value: response);
 

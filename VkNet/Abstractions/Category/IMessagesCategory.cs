@@ -9,7 +9,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IMessagesCategoryAsync"/>
+/// <summary>
+/// Методы для работы с личными сообщениями. Для моментального получения входящих сообщений используйте LongPoll сервер.
+/// </summary>
 public interface IMessagesCategory : IMessagesCategoryAsync
 {
 	/// <inheritdoc cref="IMessagesCategoryAsync.AddChatUserAsync"/>
@@ -88,6 +90,9 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetLongPollHistoryAsync"/>
 	LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params);
 
+	/// <inheritdoc cref="IMessagesCategoryAsync.GetLongPollHistoryAsync"/>
+	T GetLongPollHistory<T>(MessagesGetLongPollHistoryParams @params);
+
 	/// <inheritdoc cref="IMessagesCategoryAsync.SetChatPhotoAsync"/>
 	long SetChatPhoto(out long messageId, string file);
 
@@ -162,9 +167,12 @@ public interface IMessagesCategory : IMessagesCategoryAsync
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetIntentUsersAsync"/>
 	GetIntentUsersResult GetIntentUsers(MessagesGetIntentUsersParams getIntentUsersParams);
 
-
 	/// <inheritdoc cref="IMessagesCategoryAsync.SetMemberRoleAsync"/>
 	bool SetMemberRole(string role, long peerId, ulong memberId);
+
+	/// <inheritdoc cref="IMessagesCategoryAsync.ChangeConversationMemberRestrictionsAsync"/>
+	MessagesChangeConversationMemberRestrictionsObject ChangeConversationMemberRestrictions(
+		MessagesChangeConversationMemberRestrictionsParams @params);
 
 	#region Obsoleted
 

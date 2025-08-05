@@ -21,7 +21,7 @@ public class GroupToggleMarketParams
 	/// Значение переключателя
 	/// </summary>
 	[JsonProperty("state")]
-	public ToggleMarketState State { get; set; }
+	public ToggleMarketState? State { get; set; }
 
 	/// <summary>
 	/// Эксперементально

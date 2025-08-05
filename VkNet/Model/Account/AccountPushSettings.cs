@@ -6,6 +6,7 @@ using Newtonsoft.Json.Converters;
 namespace VkNet.Model;
 
 /// <summary>
+/// Настройки отправки аккаунта
 /// </summary>
 [Serializable]
 public class AccountPushSettings

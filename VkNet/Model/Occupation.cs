@@ -26,5 +26,5 @@ public class Occupation
 	/// Информация о текущем роде занятия пользователя.
 	/// </summary>
 	[JsonProperty("type")]
-	public OccupationType Type { get; set; }
+	public OccupationType? Type { get; set; }
 }

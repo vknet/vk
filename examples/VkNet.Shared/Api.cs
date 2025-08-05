@@ -1,39 +1,38 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace VkNet.Shared
+namespace VkNet.Shared;
+
+/// <summary>
+/// Экземпляр API
+/// </summary>
+public class Api
 {
-	/// <summary>
-	///
-	/// </summary>
-	public class Api
+	private static VkApi _instance;
+
+	private Api()
 	{
-		/// <summary>
-		/// The instance
-		/// </summary>
-		private static VkApi _instance;
+	}
 
-		/// <summary>
-		/// Prevents a default instance of the <see cref="Api"/> class from being created.
-		/// </summary>
-		private Api()
-		{}
+	/// <summary>
+	/// Gets the instance.
+	/// </summary>
+	/// <param name="collection">Коллекция сервисов для регистрации в DI</param>
+	/// <returns>
+	/// Экземпляр API
+	/// </returns>
+	public static VkApi GetInstance(IServiceCollection collection)
+	{
+		return _instance ??= new VkApi(collection);
+	}
 
-		/// <summary>
-		/// Gets the instance.
-		/// </summary>
-		/// <returns></returns>
-		public static VkApi GetInstance(IServiceCollection collection)
-		{
-			return _instance ??= new VkApi(collection);
-		}
-
-		/// <summary>
-		/// Gets the instance.
-		/// </summary>
-		/// <returns></returns>
-		public static VkApi GetInstance()
-		{
-			return _instance ??= new VkApi();
-		}
+	/// <summary>
+	/// Gets the instance.
+	/// </summary>
+	/// <returns>
+	/// Экземпляр API
+	/// </returns>
+	public static VkApi GetInstance()
+	{
+		return _instance ??= new VkApi();
 	}
 }

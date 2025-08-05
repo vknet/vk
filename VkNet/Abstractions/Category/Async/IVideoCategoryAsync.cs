@@ -18,7 +18,7 @@ public interface IVideoCategoryAsync
 	/// Возвращает информацию о видеозаписях.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов видеозаписей с
 	/// дополнительным полем comments, содержащим
@@ -54,7 +54,7 @@ public interface IVideoCategoryAsync
 	/// Редактирует данные видеозаписи.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -88,7 +88,7 @@ public interface IVideoCategoryAsync
 	/// обязательный параметр (Целое число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -104,7 +104,7 @@ public interface IVideoCategoryAsync
 	/// Возвращает адрес сервера (необходимый для загрузки) и данные видеозаписи.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект, который имеет поля upload_url, video_id, title, description,
 	/// owner_id.
@@ -141,7 +141,7 @@ public interface IVideoCategoryAsync
 	/// target_id=-1 соответствует идентификатору сообщества ВКонтакте API (club1)
 	/// целое число (Целое число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -170,7 +170,7 @@ public interface IVideoCategoryAsync
 	/// умолчанию идентификатор текущего
 	/// пользователя (Целое число, по умолчанию идентификатор текущего пользователя).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -185,7 +185,7 @@ public interface IVideoCategoryAsync
 	/// Возвращает список видеозаписей в соответствии с заданным критерием поиска.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов видеозаписей.
 	/// Если в Вашем приложении используется  прямая авторизация, возвращается
@@ -234,7 +234,7 @@ public interface IVideoCategoryAsync
 	/// умолчанию 0
 	/// (Флаг, может принимать значения 1 или 0, по умолчанию 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает общее количество альбомов с
 	/// видеозаписями, и массив объектов album, каждый из
@@ -268,7 +268,7 @@ public interface IVideoCategoryAsync
 	/// разделенных через запятую (Список
 	/// строк, разделенных через запятую).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает  идентификатор созданного альбома
 	/// (album_id).
@@ -303,7 +303,7 @@ public interface IVideoCategoryAsync
 	/// Приватность доступна для альбомов с видео в профиле пользователя. целое число
 	/// (Целое число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -328,7 +328,7 @@ public interface IVideoCategoryAsync
 	/// Идентификатор альбома. положительное число
 	/// (Положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -343,7 +343,7 @@ public interface IVideoCategoryAsync
 	/// Возвращает список комментариев к видеозаписи.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает общее количество комментариев и массив
 	/// объектов comment, каждый из которых
@@ -376,7 +376,7 @@ public interface IVideoCategoryAsync
 	/// Cоздает новый комментарий к видеозаписи.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор созданного комментария.
 	/// </returns>
@@ -400,7 +400,7 @@ public interface IVideoCategoryAsync
 	/// обязательный
 	/// параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -428,7 +428,7 @@ public interface IVideoCategoryAsync
 	/// число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c> (0, если комментарий с
 	/// таким идентификатором не является
@@ -482,7 +482,7 @@ public interface IVideoCategoryAsync
 	/// разделенных через запятую (Список
 	/// строк, разделенных через запятую).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -523,7 +523,7 @@ public interface IVideoCategoryAsync
 	/// Поисковой запрос, если видеозапись была найдена
 	/// через поиск. строка (Строка).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -560,7 +560,7 @@ public interface IVideoCategoryAsync
 	/// 5 – материал для взрослых
 	/// 6 – оскорбление положительное число (Положительное число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -585,7 +585,7 @@ public interface IVideoCategoryAsync
 	/// Идентификатор альбома. целое число, обязательный параметр (Целое число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, который содержит следующие поля:
 	/// id — идентификатор альбома;
@@ -630,7 +630,7 @@ public interface IVideoCategoryAsync
 	/// число (Положительное
 	/// число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -647,7 +647,7 @@ public interface IVideoCategoryAsync
 	/// Позволяет переместить видеозапись в альбоме.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -692,7 +692,7 @@ public interface IVideoCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -740,7 +740,7 @@ public interface IVideoCategoryAsync
 	/// (Положительное число,
 	/// обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -785,7 +785,7 @@ public interface IVideoCategoryAsync
 	/// значения 1 или 0, по
 	/// умолчанию 0 (Флаг, может принимать значения 1 или 0, по умолчанию 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает список идентификаторов альбомов, в которых видеозапись находится у
 	/// пользователя или сообщества с
@@ -806,7 +806,7 @@ public interface IVideoCategoryAsync
 	/// Позволяет получить представление каталога видео.
 	/// </summary>
 	/// <param name="params">Параметры запроса.</param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов — блоков видеокаталога.
 	/// Каждый из объектов содержит массив
@@ -896,7 +896,7 @@ public interface IVideoCategoryAsync
 	/// принимать значения 1 или 0, по
 	/// умолчанию 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив элементов блока видеокаталога и
 	/// поле next для текущего блока.
@@ -951,7 +951,7 @@ public interface IVideoCategoryAsync
 	/// video.getCatalog
 	/// обязательный параметр, целое число (Обязательный параметр, целое число).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>

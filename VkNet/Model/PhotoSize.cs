@@ -38,5 +38,5 @@ public class PhotoSize
 	/// Обозначение размера и пропорций копии.
 	/// </summary>
 	[JsonProperty("type")]
-	public PhotoSizeType Type { get; set; }
+	public PhotoSizeType? Type { get; set; }
 }

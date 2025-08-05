@@ -17,7 +17,7 @@ public interface IUtilsCategoryAsync
 	/// сайте ВКонтакте.
 	/// </summary>
 	/// <param name="url"> Внешняя ссылка, которую необходимо проверить. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Статус ссылки </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
@@ -30,7 +30,7 @@ public interface IUtilsCategoryAsync
 	/// сайте ВКонтакте.
 	/// </summary>
 	/// <param name="url"> Внешняя ссылка, которую необходимо проверить. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Статус ссылки </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/utils.checkLink
@@ -43,7 +43,7 @@ public interface IUtilsCategoryAsync
 	/// идентификатор по короткому имени ScreenName.
 	/// </summary>
 	/// <param name="screenName"> Короткое имя </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Тип объекта </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/utils.resolveScreenName
@@ -54,7 +54,7 @@ public interface IUtilsCategoryAsync
 	/// <summary>
 	/// Возвращает текущее время на сервере ВКонтакте в unixtime.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Время на сервере ВКонтакте в unixtime </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/utils.getServerTime
@@ -65,7 +65,7 @@ public interface IUtilsCategoryAsync
 	/// Позволяет получить URL, сокращенный с помощью vk.cc.
 	/// </summary>
 	/// <param name="isPrivate">Является ли статистика ссылки приватной</param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <param name="url">Ссылка на страницу</param>
 	/// <returns> URL, сокращенный с помощью vk.cc </returns>
 	Task<ShortLink> GetShortLinkAsync(Uri url,
@@ -76,7 +76,7 @@ public interface IUtilsCategoryAsync
 	/// Удаляет сокращенную ссылку из списка пользователя.
 	/// </summary>
 	/// <param name="key"> сокращенная ссылка (часть URL после "vk.cc/"). </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -91,7 +91,7 @@ public interface IUtilsCategoryAsync
 	/// </summary>
 	/// <param name="count"> количество ссылок, которые необходимо получить. </param>
 	/// <param name="offset"> сдвиг для получения определенного подмножества ссылок. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает количество ссылок в поле count (integer) и массив объектов items,
 	/// описывающих ссылки.
@@ -107,8 +107,10 @@ public interface IUtilsCategoryAsync
 	/// Возвращает статистику переходов по сокращенной ссылке.
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
-	/// <param name="token">Токен отмены</param>
-	/// <returns> </returns>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Данные о статистике.
+	/// </returns>
 	Task<LinkStatsResult> GetLinkStatsAsync(LinkStatsParams @params,
 											CancellationToken token = default);
 }

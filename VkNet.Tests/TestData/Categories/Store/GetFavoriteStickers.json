@@ -1,0 +1,17 @@
+﻿{
+	"response": {
+		"count": 2,
+		"items": [
+			{
+				"inner_type": "base_sticker_new",
+				"sticker_id": 126,
+				"is_allowed": true
+			},
+			{
+				"inner_type": "base_sticker_new",
+				"sticker_id": 70,
+				"is_allowed": false
+			}
+		]
+	}
+}

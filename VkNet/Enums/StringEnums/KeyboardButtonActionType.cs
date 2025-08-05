@@ -1,7 +1,6 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
 using VkNet.Utils;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.StringEnums;
 
@@ -9,7 +8,7 @@ namespace VkNet.Enums.StringEnums;
 /// Тип кнопки сообщений.
 /// </summary>
 [StringEnum]
-[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+[JsonConverter(typeof(TolerantStringEnumConverter))]
 public enum KeyboardButtonActionType
 {
 	/// <summary>
@@ -56,5 +55,10 @@ public enum KeyboardButtonActionType
 	/// <summary>
 	/// Подписаться
 	/// </summary>
-	IntentSubscribe
+	IntentSubscribe,
+
+ 	/// <summary>
+	/// Открыть модальный вид
+	/// </summary>
+	OpenModalView,
 }

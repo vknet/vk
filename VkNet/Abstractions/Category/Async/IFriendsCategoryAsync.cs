@@ -23,7 +23,7 @@ public interface IFriendsCategoryAsync
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c>, то пропустить авторизацию </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список идентификаторов (id) друзей
 	/// пользователя, если параметр fields не
@@ -42,7 +42,7 @@ public interface IFriendsCategoryAsync
 	/// Возвращает список идентификаторов друзей текущего пользователя, которые
 	/// установили данное приложение.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список идентификаторов (id) друзей
 	/// текущего пользователя, установивших
@@ -57,7 +57,7 @@ public interface IFriendsCategoryAsync
 	/// Возвращает список идентификаторов друзей пользователя, находящихся на сайте.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список идентификаторов (id) друзей,
 	/// находящихся сейчас на сайте, у
@@ -76,7 +76,7 @@ public interface IFriendsCategoryAsync
 	/// Возвращает список идентификаторов общих друзей между парой пользователей.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список идентификаторов (id) общих друзей
 	/// между пользователями с
@@ -107,7 +107,13 @@ public interface IFriendsCategoryAsync
 	/// 0 – поле sign возвращать не нужно. флаг, может принимать значения 1 или 0
 	/// (Флаг, может принимать значения 1 или 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="extended">
+	///	Информация о том, вернуть ли в ответе поле is_request_unread.
+	/// 1 – необходимо вернуть поле is_request_unread,
+	/// если есть непросмотренная заявка в друзья.
+	/// 0 — поле is_request_unread возвращать не нужно.
+	/// </param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов status, каждый из которых
 	/// содержит следующие поля:
@@ -128,6 +134,7 @@ public interface IFriendsCategoryAsync
 	/// </remarks>
 	Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync([NotNull] IEnumerable<long> userIds,
 																bool? needSign = null,
+																bool? extended = null,
 																CancellationToken token = default);
 
 	/// <summary>
@@ -143,7 +150,7 @@ public interface IFriendsCategoryAsync
 	/// положительных чисел, разделенных запятыми (Список положительных чисел,
 	/// разделенных запятыми).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает идентификатор (list_id) созданного списка
 	/// друзей.
@@ -163,7 +170,7 @@ public interface IFriendsCategoryAsync
 	/// обязательный
 	/// параметр (Положительное число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -186,7 +193,7 @@ public interface IFriendsCategoryAsync
 	/// принимать
 	/// значения 1 или 0 (Флаг, может принимать значения 1 или 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов, каждый из которых
 	/// содержит следующие поля:
@@ -227,7 +234,7 @@ public interface IFriendsCategoryAsync
 	/// положительных чисел, разделенных
 	/// запятыми).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -244,7 +251,7 @@ public interface IFriendsCategoryAsync
 	/// <summary>
 	/// Отмечает все входящие заявки на добавление в друзья как просмотренные.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -271,7 +278,7 @@ public interface IFriendsCategoryAsync
 	/// Флаг, может принимать значения 1 или 0 (Флаг, может
 	/// принимать значения 1 или 0).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает одно из следующих значений:
 	/// 1 — заявка на добавление данного пользователя в друзья отправлена;
@@ -296,7 +303,7 @@ public interface IFriendsCategoryAsync
 	/// необходимо отклонить. положительное число, обязательный параметр (Положительное
 	/// число, обязательный параметр).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения начиная с версии 5.28 возвращается объект с полями:
 	/// success — удалось успешно удалить друга
@@ -330,7 +337,7 @@ public interface IFriendsCategoryAsync
 	/// положительных чисел,
 	/// разделенных запятыми (Список положительных чисел, разделенных запятыми).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
@@ -352,7 +359,7 @@ public interface IFriendsCategoryAsync
 	/// умолчанию 100, максимальное значение
 	/// 1000).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает отсортированный в антихронологическом
 	/// порядке список идентификаторов (id)
@@ -369,7 +376,7 @@ public interface IFriendsCategoryAsync
 	/// друзья для текущего пользователя.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Если не установлен параметр need_mutual, то в случае успеха возвращает
 	/// отсортированный в антихронологическом
@@ -395,7 +402,7 @@ public interface IFriendsCategoryAsync
 	/// друзья для текущего пользователя.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Если не установлен параметр need_mutual, то в случае успеха возвращает
 	/// отсортированный в антихронологическом
@@ -452,7 +459,7 @@ public interface IFriendsCategoryAsync
 	/// предложный – abl. По умолчанию nom.
 	/// строка (строка).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов пользователей с
 	/// дополнительным полем found_with для
@@ -492,7 +499,7 @@ public interface IFriendsCategoryAsync
 	/// строк, разделенных через запятую
 	/// (Список строк, разделенных через запятую).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов пользователей с
 	/// дополнительным полем phone, в котором
@@ -509,7 +516,7 @@ public interface IFriendsCategoryAsync
 	/// Позволяет искать по списку друзей пользователей.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения метод  возвращает список объектов пользователей.
 	/// </returns>

@@ -1,0 +1,169 @@
+﻿{
+	"response": {
+		"count": 1,
+		"items": [
+			{
+				"id": 148,
+				"type": "stickers",
+				"is_new": false,
+				"copyright": "ООО «ВКонтакте» 2017",
+				"purchased": 1,
+				"active": 1,
+				"purchase_date": 1704891143,
+				"title": "#ПушкинНашеВсё",
+				"stickers": [
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4639,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4640,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4641,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4642,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4643,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4644,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4645,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4646,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4647,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4648,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4649,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4650,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4651,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4652,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4653,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4654,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4655,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4656,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4657,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4658,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4659,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4660,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4661,
+						"is_allowed": true
+					},
+					{
+						"inner_type": "base_sticker_new",
+						"sticker_id": 4662,
+						"is_allowed": true
+					}
+				],
+				"icon": {
+					"base_url": "https://vk.com/sticker/packs/148/icon"
+				},
+				"previews": [
+					{
+						"url": "https://vk.com/sticker/2-148-thumb-22-",
+						"width": 22,
+						"height": 22
+					},
+					{
+						"url": "https://vk.com/sticker/2-148-thumb-34-",
+						"width": 34,
+						"height": 34
+					},
+					{
+						"url": "https://vk.com/sticker/2-148-thumb-44-",
+						"width": 44,
+						"height": 44
+					},
+					{
+						"url": "https://vk.com/sticker/2-148-thumb-68-",
+						"width": 68,
+						"height": 68
+					},
+					{
+						"url": "https://vk.com/sticker/2-148-thumb-102-",
+						"width": 102,
+						"height": 102
+					}
+				]
+			}
+		]
+	}
+}

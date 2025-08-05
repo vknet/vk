@@ -5,7 +5,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IAppWidgetsCategoryAsync"/>
+/// <summary>
+/// Список методов секции appWidgets
+/// </summary>
 public interface IAppWidgetsCategory : IAppWidgetsCategoryAsync
 {
 	/// <inheritdoc cref="IAppWidgetsCategoryAsync.GetAppImageUploadServerAsync"/>
@@ -29,7 +31,6 @@ public interface IAppWidgetsCategory : IAppWidgetsCategoryAsync
 	/// <inheritdoc cref="IAppWidgetsCategoryAsync.SaveGroupImageAsync"/>
 	AppImage SaveGroupImage(string hash, string image);
 
-	//TODO: TEST IT!!
 	/// <inheritdoc cref="IAppWidgetsCategoryAsync.UpdateAsync"/>
 	bool Update(string code, AppWidgetType type);
 }

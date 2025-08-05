@@ -14,7 +14,7 @@ public class EventData
 	/// Тип действия, которые должно произойти после нажатия на кнопку
 	/// </summary>
 	[JsonProperty("type")]
-	public MessageEventType Type { get; set; }
+	public MessageEventType? Type { get; set; }
 
 	/// <summary>
 	/// текст, который нужно вывести (максимум 90 символов).

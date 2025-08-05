@@ -15,8 +15,9 @@ public interface IBoardCategoryAsync
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Список тем
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте
@@ -31,8 +32,9 @@ public interface IBoardCategoryAsync
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Лента новостей
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте
@@ -46,8 +48,9 @@ public interface IBoardCategoryAsync
 	/// Создает новую тему в списке обсуждений группы.
 	/// </summary>
 	/// <param name="params"> Входные параметры. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Идентификатор созданной темы
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/board.addTopic
@@ -59,8 +62,9 @@ public interface IBoardCategoryAsync
 	/// Удаляет тему в обсуждениях группы.
 	/// </summary>
 	/// <param name="params"> Входные параметры. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Признак успешного удаления
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/board.deleteTopic
@@ -73,8 +77,9 @@ public interface IBoardCategoryAsync
 	/// новые сообщения).
 	/// </summary>
 	/// <param name="params"> Входные параметры. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Признак успешного закрытия
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/board.closeTopic
@@ -87,8 +92,9 @@ public interface IBoardCategoryAsync
 	/// сообщения).
 	/// </summary>
 	/// <param name="params"> Входные параметры. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Признак успешного открытия
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/board.openTopic
@@ -101,8 +107,9 @@ public interface IBoardCategoryAsync
 	/// выводится выше остальных).
 	/// </summary>
 	/// <param name="params"> Входные параметры. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Признак успешного закрепления
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/board.fixTopic
@@ -115,8 +122,9 @@ public interface IBoardCategoryAsync
 	/// согласно выбранной сортировке).
 	/// </summary>
 	/// <param name="params"> Входные параметры. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Признак успешной отмены фиксации
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/board.unfixTopic
@@ -128,8 +136,9 @@ public interface IBoardCategoryAsync
 	/// Изменяет заголовок темы в списке обсуждений группы.
 	/// </summary>
 	/// <param name="params"> Входные параметры. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Признак успешного изменения
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/board.editTopic
@@ -141,8 +150,9 @@ public interface IBoardCategoryAsync
 	/// Добавляет новый комментарий в обсуждении.
 	/// </summary>
 	/// <param name="params"> Входные параметры. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Идентификатор нового комментария
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте
@@ -155,8 +165,9 @@ public interface IBoardCategoryAsync
 	/// Удаляет сообщение в обсуждениях сообщества.
 	/// </summary>
 	/// <param name="params"> Входные параметры. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Признак успешного удаления комментария
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте
@@ -169,8 +180,9 @@ public interface IBoardCategoryAsync
 	/// Редактирует одно из сообщений в обсуждении сообщества..
 	/// </summary>
 	/// <param name="params"> Входные параметры. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Признак успешного редактирования комментария
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/board.editComment
@@ -182,8 +194,9 @@ public interface IBoardCategoryAsync
 	/// Восстанавливает удаленное сообщение темы в обсуждениях группы.
 	/// </summary>
 	/// <param name="params"> Входные параметры. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Признак успешного восстановления комментария
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/board.restoreComment

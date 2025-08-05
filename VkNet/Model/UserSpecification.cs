@@ -20,7 +20,7 @@ public class UserSpecification
 	/// Флаг, описывающий тип полномочий
 	/// </summary>
 	[JsonProperty(propertyName: "role")]
-	public AccessRole Role { get; set; }
+	public AccessRole? Role { get; set; }
 
 	/// <summary>
 	/// Идентификатор клиента

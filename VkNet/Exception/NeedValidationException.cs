@@ -25,7 +25,7 @@ public sealed class NeedValidationException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	public NeedValidationException(VkError response) : base(response)
 	{
-		if (response == null)
+		if (response is null)
 		{
 			return;
 		}

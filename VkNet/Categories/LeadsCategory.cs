@@ -5,7 +5,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="ILeadsCategory" />
 public partial class LeadsCategory : ILeadsCategory
 {
 	/// <summary>

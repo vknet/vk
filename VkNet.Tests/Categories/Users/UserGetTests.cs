@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using VkNet.Enums;
@@ -34,5 +34,54 @@ public class UserGetTests : CategoryBaseTest
 
 		user.Sex.Should()
 			.Be(Sex.Deactivated);
+	}
+
+	[Fact]
+	public void Get_Male_SingleUser()
+	{
+		Url = "https://api.vk.com/method/users.get";
+		ReadCategoryJsonPath(nameof(Get_Male_SingleUser));
+
+		var users = Api.Users.Get(new List<long>
+		{
+			43136387
+		}, ProfileFields.Military);
+
+		users.Should()
+			.NotBeNull();
+
+		var user = users.FirstOrDefault();
+
+		user.Should()
+			.NotBeNull();
+
+		user.Military.Should()
+			.NotBeNullOrEmpty();
+	}
+
+	[Fact]
+	public void Get_ActiveUser()
+	{
+		Url = "https://api.vk.com/method/users.get";
+		ReadCategoryJsonPath(nameof(Get_ActiveUser));
+
+		var users = Api.Users.Get(new List<long>
+		{
+			1
+		});
+
+		users.Should()
+			.NotBeNull();
+
+		var user = users.FirstOrDefault();
+
+		user.Should()
+			.NotBeNull();
+
+		user.Deactivated.Should()
+			.Be(Deactivated.Activated);
+
+		user.IsDeactivated.Should()
+			.BeFalse();
 	}
 }

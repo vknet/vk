@@ -5,7 +5,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IVkApiAuth"/>
+/// <summary>
+/// VkApi Authorization
+/// </summary>
 public interface IVkApiAuthAsync : IVkApiAuth
 {
 	/// <inheritdoc cref="IVkApiAuth.Authorize(VkNet.Model.IApiAuthParams)"/>

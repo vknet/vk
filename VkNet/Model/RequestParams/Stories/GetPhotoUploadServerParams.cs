@@ -42,7 +42,7 @@ public class GetPhotoUploadServerParams
 	/// строка
 	/// </summary>
 	[JsonProperty("link_text")]
-	public StoryLinkText LinkText { get; set; }
+	public StoryLinkText? LinkText { get; set; }
 
 	/// <summary>
 	/// Адрес ссылки для перехода из истории. Допустимы только внутренние ссылки https://vk.com. строка, максимальная длина 2048

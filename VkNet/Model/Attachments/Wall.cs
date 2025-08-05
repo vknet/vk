@@ -97,7 +97,7 @@ public class Wall : MediaAttachment
 	/// чужой стены.
 	/// </summary>
 	[JsonProperty("post_type")]
-	public PostType PostType { get; set; }
+	public PostType? PostType { get; set; }
 
 	/// <summary>
 	/// Информация о способе размещения записи.

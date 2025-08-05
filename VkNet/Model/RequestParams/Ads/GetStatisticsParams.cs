@@ -25,7 +25,7 @@ public class GetStatisticsParams
 	/// обязательный параметр, строка
 	/// </summary>
 	[JsonProperty("ids_type")]
-	public IdsType IdsType { get; set; }
+	public IdsType? IdsType { get; set; }
 
 	/// <summary>
 	/// Перечисленные через запятую id запрашиваемых объявлений, кампаний, клиентов или кабинета, в зависимости от того, что указано в параметре ids_type. Максимум 2000 объектов. обязательный параметр, строка

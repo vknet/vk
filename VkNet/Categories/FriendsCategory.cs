@@ -12,15 +12,14 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IFriendsCategory" />
 public partial class FriendsCategory : IFriendsCategory
 {
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// Инициализирует новый экземпляр класса <see cref="FriendsCategory" />
 	/// </summary>
-	/// <param name="vk"> </param>
 	public FriendsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
@@ -56,7 +55,7 @@ public partial class FriendsCategory : IFriendsCategory
 
 		var response = _vk.Call("friends.get", parameters, skipAuthorization);
 		//TODO:
-		if (@params.Fields != null)
+		if (@params.Fields is not null)
 		{
 			return _vk.Call<VkCollection<User>>("friends.get", parameters, skipAuthorization);
 		}
@@ -105,18 +104,13 @@ public partial class FriendsCategory : IFriendsCategory
 	/// <inheritdoc />
 	public ReadOnlyCollection<MutualFriend> GetMutual(FriendsGetMutualParams @params)
 	{
-		if (@params.TargetUid.HasValue)
-		{
-			@params.TargetUids = new[]
-			{
-				@params.TargetUid.Value
-			};
-		}
-
 		return _vk.Call<ReadOnlyCollection<MutualFriend>>("friends.getMutual", new()
 		{
 			{
 				"source_uid", @params.SourceUid
+			},
+			{
+				"target_uid", @params.TargetUid
 			},
 			{
 				"target_uids", @params.TargetUids
@@ -135,9 +129,9 @@ public partial class FriendsCategory : IFriendsCategory
 
 	/// <inheritdoc />
 	[Pure]
-	public ReadOnlyCollection<AreFriendsResult> AreFriends(IEnumerable<long> userIds, bool? needSign = null)
+	public ReadOnlyCollection<AreFriendsResult> AreFriends(IEnumerable<long> userIds, bool? needSign = null, bool? extended = null)
 	{
-		if (userIds == null)
+		if (userIds is null)
 		{
 			throw new ArgumentNullException(nameof(userIds));
 		}
@@ -149,6 +143,9 @@ public partial class FriendsCategory : IFriendsCategory
 			},
 			{
 				"need_sign", needSign
+			},
+			{
+				"extended", extended
 			}
 		};
 

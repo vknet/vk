@@ -9,7 +9,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IAdsCategory" />
 public partial class AdsCategory : IAdsCategory
 {
 	/// <summary>
@@ -254,12 +254,12 @@ public partial class AdsCategory : IAdsCategory
 				"account_id", getAdsParams.AccountId
 			},
 			{
-				"campaign_ids", getAdsParams.CampaignIds != null
+				"campaign_ids", getAdsParams.CampaignIds is not null
 					? "[" + string.Join(",", getAdsParams.CampaignIds) + "]"
 					: null
 			},
 			{
-				"ad_ids", getAdsParams.AdIds != null
+				"ad_ids", getAdsParams.AdIds is not null
 					? "[" + string.Join(",", getAdsParams.AdIds) + "]"
 					: null
 			},
@@ -268,6 +268,9 @@ public partial class AdsCategory : IAdsCategory
 			},
 			{
 				"include_deleted", getAdsParams.IncludeDeleted
+			},
+			{
+				"only_deleted", getAdsParams.OnlyDeleted
 			},
 			{
 				"limit", getAdsParams.Limit
@@ -296,6 +299,9 @@ public partial class AdsCategory : IAdsCategory
 			},
 			{
 				"include_deleted", getAdsLayoutParams.IncludeDeleted
+			},
+			{
+				"only_deleted", getAdsLayoutParams.OnlyDeleted
 			},
 			{
 				"limit", getAdsLayoutParams.Limit
@@ -356,7 +362,7 @@ public partial class AdsCategory : IAdsCategory
 					"include_deleted", adsGetCampaignsParams.IncludeDeleted
 				},
 				{
-					"campaign_ids", adsGetCampaignsParams.CampaignIds != null
+					"campaign_ids", adsGetCampaignsParams.CampaignIds is not null
 						? "[" + string.Join(",", adsGetCampaignsParams.CampaignIds) + "]"
 						: null
 				}

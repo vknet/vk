@@ -13,7 +13,7 @@ public class SerializableTests
 		var models = typeof(VkApi).Assembly
 			.GetTypes()
 			.Where(x =>
-				x.Namespace != null
+				x.Namespace is not null
 				&& x.Namespace.StartsWith("VkNet.Model")
 				&& !x.Attributes.HasFlag(TypeAttributes.Serializable)
 				&& !x.IsInterface)

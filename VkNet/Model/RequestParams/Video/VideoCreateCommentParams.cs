@@ -70,6 +70,7 @@ public class VideoCreateCommentParams
 	public long? StickerId { get; set; }
 
 	/// <summary>
+	/// Идентификатор пользователя или сообщества, которому принадлежит видеозапись.
 	/// </summary>
 	[JsonProperty(propertyName: "guid")]
 	public string Guid { get; set; }

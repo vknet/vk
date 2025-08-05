@@ -6,7 +6,7 @@ using VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IAuthorizationFormFactory" />
 [UsedImplicitly]
 public sealed class AuthorizationFormFactory : IAuthorizationFormFactory
 {

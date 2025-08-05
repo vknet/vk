@@ -22,8 +22,8 @@ public interface IExecuteCategoryAsync
 	/// Алгоритм должен завершаться командой return %выражение%. Операторы должны быть
 	/// разделены точкой с запятой.
 	/// </param>
-	/// <param name="vkParameters"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="vkParameters">Параметры</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает данные, запрошенные алгоритмом.
 	/// При работе с методом execute структура ответа в XML ближе к JSON и может
@@ -49,8 +49,8 @@ public interface IExecuteCategoryAsync
 	/// Алгоритм должен завершаться командой return %выражение%. Операторы должны быть
 	/// разделены точкой с запятой.
 	/// </param>
-	/// <param name="vkParameters"></param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="vkParameters">Параметры</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает данные, запрошенные алгоритмом.
 	/// При работе с методом execute структура ответа в XML ближе к JSON и может
@@ -69,7 +69,7 @@ public interface IExecuteCategoryAsync
 	/// </summary>
 	/// <param name="procedureName"> Имя хранимой процедуры </param>
 	/// <param name="vkParameters"> Параметры хранимой процедуры </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает данные, запрошенные алгоритмом.
 	/// При работе с методом execute структура ответа в XML ближе к JSON и может

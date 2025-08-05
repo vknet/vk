@@ -1,12 +1,13 @@
 using System.Threading;
 using System.Threading.Tasks;
+using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
-public partial class BoardCategory
+/// <inheritdoc cref="IBoardCategory" />
+internal partial class BoardCategory
 {
 	/// <inheritdoc />
 	public Task<VkCollection<Topic>> GetTopicsAsync(BoardGetTopicsParams @params,

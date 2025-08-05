@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.Serialization;
 
@@ -21,12 +22,10 @@ public class VkParameters : Dictionary<string, string>
 	}
 
 	/// <summary>
+	/// Инициализирует новый экземпляр класса <see cref="VkParameters" />
 	/// </summary>
-	/// <param name="serializationInfo"></param>
-	/// <param name="streamingContext"></param>
 	protected VkParameters(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 
 	/// <inheritdoc />
@@ -56,7 +55,7 @@ public class VkParameters : Dictionary<string, string>
 		Remove(key: name);
 
 		// TODO: V3111 http://www.viva64.com/en/w/V3111 Checking value of 'value' for null will always return false when generic type is instantiated with a value type.
-		if (value == null)
+		if (value is null)
 		{
 			return;
 		}
@@ -65,7 +64,9 @@ public class VkParameters : Dictionary<string, string>
 		{
 			if (Utilities.IsStringEnum(value.GetType()))
 			{
-				Add(name, value.ToString().ToSnakeCase());
+				Add(name, value.ToString()
+					.ToSnakeCase());
+
 				return;
 			}
 
@@ -98,7 +99,7 @@ public class VkParameters : Dictionary<string, string>
 	{
 		Remove(key: name);
 
-		if (collection == null)
+		if (collection is null)
 		{
 			return;
 		}
@@ -131,7 +132,7 @@ public class VkParameters : Dictionary<string, string>
 	{
 		Remove(key: name);
 
-		if (nullableValue == null)
+		if (nullableValue is null)
 		{
 			return;
 		}
@@ -152,11 +153,12 @@ public class VkParameters : Dictionary<string, string>
 	/// </summary>
 	/// <param name="name"> Имя параметра запроса. </param>
 	/// <param name="nullableDateTime"> Значение параметра. </param>
+	[SuppressMessage("Minor Code Smell", "S6588", Justification = "Не поддерживается в netstandard2.0")]
 	public void Add(string name, DateTime? nullableDateTime)
 	{
 		Remove(key: name);
 
-		if (nullableDateTime == null)
+		if (nullableDateTime is null)
 		{
 			return;
 		}
@@ -234,7 +236,7 @@ public class VkParameters : Dictionary<string, string>
 	{
 		Remove(key: name);
 
-		if (value == null)
+		if (value is null)
 		{
 			return;
 		}
@@ -265,7 +267,7 @@ public class VkParameters : Dictionary<string, string>
 	{
 		Remove(key: name);
 
-		if (value == null)
+		if (value is null)
 		{
 			return;
 		}
@@ -296,7 +298,7 @@ public class VkParameters : Dictionary<string, string>
 	{
 		Remove(key: name);
 
-		if (value == null)
+		if (value is null)
 		{
 			return;
 		}

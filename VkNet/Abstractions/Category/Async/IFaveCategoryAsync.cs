@@ -20,10 +20,10 @@ public partial interface IFaveCategoryAsync
 	/// Ссылка на добавляемую статью.
 	/// Обязательный параметр.
 	/// </param>
-	/// <param name = "ref"/>
-	/// <param name = "trackCode"/>
-	/// <param name = "source"/>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="ref">Ссылка на статью</param>
+	/// <param name="trackCode">Номер отслеживания</param>
+	/// <param name="source">Исходный</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -43,7 +43,7 @@ public partial interface IFaveCategoryAsync
 	/// Адрес добавляемой ссылки.
 	/// Поддерживаются только внутренние ссылки на vk.com.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -62,7 +62,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "groupId">
 	/// Идентификатор сообщества, которое нужно добавить в закладки.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -79,7 +79,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "params">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -103,9 +103,9 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "accessKey">
 	/// Специальный код доступа для приватных товаров.
 	/// </param>
-	/// <param name="ref"/>
-	/// <param name = "source"/>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="ref">Ссылка</param>
+	/// <param name="source">Исходный</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -129,7 +129,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "position">
 	/// Строка, по умолчанию back
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает объект метки с полями name - названием метки и id - идентификатором созданной метки.
 	/// </returns>
@@ -154,8 +154,8 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "accessKey">
 	/// Специальный код доступа для приватных видеозаписей.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
-	/// <param name = "ref"/>
+	/// <param name="ref">Ссылка</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -178,7 +178,7 @@ public partial interface IFaveCategoryAsync
 	/// Новое название метки.
 	/// Обязательный параметр, максимальная длина 50.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -195,7 +195,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "params">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и массив объектов, добавленных в закладки, в поле items.
 	/// Каждый из объектов содержит следующие поля:
@@ -240,8 +240,9 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "tagId">
 	/// Идентификатор метки, закладки отмеченные которой требуется вернуть.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Список объектов, добавленных в закладки.
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/fave.getPages
@@ -256,7 +257,7 @@ public partial interface IFaveCategoryAsync
 	/// <summary>
 	/// Возвращает список меток в закладках.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и массив объектов меток в поле items.
 	/// Поля, описывающие объект метки: id - идентификатор метки и name - название.
@@ -269,7 +270,7 @@ public partial interface IFaveCategoryAsync
 	/// <summary>
 	/// Отмечает закладки как просмотренные.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -287,8 +288,8 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "articleId">
 	/// Идентификатор статьи.
 	/// </param>
-	/// <param name = "ref"/>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="ref">Ссылка</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -306,7 +307,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "linkId">
 	/// Идентификатор ссылки.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -325,7 +326,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "groupId">
 	/// Идентификатор сообщества, которое следует удалить из закладок.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -347,7 +348,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "id">
 	/// Идентификатор записи на стене.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -369,7 +370,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "id">
 	/// Идентификатор товара.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -386,7 +387,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "id">
 	/// Идентификатор метки.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -407,7 +408,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "id">
 	/// Идентификатор видеозаписи.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -424,7 +425,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "ids">
 	/// Перечисленные через запятую все идентификаторы меток пользователя в том порядке, в котором их требуется отображать.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -448,7 +449,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "tagIds">
 	/// Перечисленные через запятую идентификаторы тегов, которые требуется присвоить странице.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -466,7 +467,7 @@ public partial interface IFaveCategoryAsync
 	/// <param name = "params">
 	/// Входные параметры запроса.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
@@ -487,7 +488,7 @@ public partial interface IFaveCategoryAsync
 	/// Идентификатор сообщества, которому требуется проставить метку в закладках.
 	/// Обязательный параметр, если не задан параметр user_id.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>

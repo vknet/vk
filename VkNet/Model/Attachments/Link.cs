@@ -15,20 +15,20 @@ public class Link : MediaAttachment
 	/// <inheritdoc />
 	protected override string Alias => "link";
 
-	private long? _id;
+	private long? _oldId;
 	/// <summary>
 	/// Возвращает идентификатор Link в числовом значении
 	/// </summary>
-	public new long? Id
+	public long? OldId
 	{
 		get {
 			if (long.TryParse(LinkId, out var temporaryId))
 			{
-				_id = temporaryId;
+				_oldId = temporaryId;
 			}
-			return _id;
+			return _oldId;
 		}
-		set => _id = value;
+		set => _oldId = value;
 	}
 
 	/// <summary>

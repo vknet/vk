@@ -2,12 +2,13 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
+using VkNet.Abstractions;
 using VkNet.Model;
 using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IPrettyCardsCategory" />
 public partial class PrettyCardsCategory
 {
 	/// <inheritdoc />

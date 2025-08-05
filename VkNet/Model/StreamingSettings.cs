@@ -14,5 +14,5 @@ public class StreamingSettings
 	/// Месячные ограничения
 	/// </summary>
 	[JsonProperty(propertyName: "monthly_limit")]
-	public MonthlyLimit MonthlyLimit { get; set; }
+	public MonthlyLimit? MonthlyLimit { get; set; }
 }

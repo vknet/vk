@@ -13,7 +13,7 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Model;
 
 /// <summary>
-/// Информация о пользователя.
+/// Информация о пользователе.
 /// См. описание https://vk.com/dev/objects/user
 /// </summary>
 [DebuggerDisplay("[{Id}] {FirstName} {LastName}")]
@@ -402,7 +402,7 @@ public class User
 	/// Информация о военной службе пользователя.
 	/// </summary>
 	[JsonProperty("military")]
-	public Military Military { get; set; }
+	public Military[] Military { get; set; }
 
 	/// <summary>
 	/// Любимые фильмы пользователя.
@@ -694,7 +694,7 @@ public class User
 	/// Полномочия руководителя (для Groups.GetMembers)
 	/// </summary>
 	[JsonProperty("role")]
-	public ManagerRole Role { get; set; }
+	public ManagerRole? Role { get; set; }
 
 	#endregion
 

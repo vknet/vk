@@ -4,7 +4,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="INotesCategory" />
 public partial class NotesCategory : INotesCategory
 {
 	/// <summary>

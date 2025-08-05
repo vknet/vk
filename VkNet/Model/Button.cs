@@ -22,6 +22,7 @@ public class Button
 	public Uri Uri { get; set; }
 
 	/// <summary>
+	/// Действие
 	/// </summary>
 	[JsonProperty("action")]
 	public LinkButtonAction Action { get; set; }

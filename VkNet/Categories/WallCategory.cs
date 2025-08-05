@@ -12,14 +12,14 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IWallCategory" />
 public partial class WallCategory : IWallCategory
 {
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
+	/// Инициализирует новый экземпляр класса <see cref="WallCategory" />
 	/// </summary>
-	/// <param name="vk"> </param>
 	public WallCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
@@ -108,7 +108,7 @@ public partial class WallCategory : IWallCategory
 								, ProfileFields fields = null
 								, bool skipAuthorization = false)
 	{
-		if (posts == null)
+		if (posts is null)
 		{
 			throw new ArgumentNullException(paramName: nameof(posts));
 		}
@@ -148,7 +148,7 @@ public partial class WallCategory : IWallCategory
 											, ProfileFields fields = null
 											, bool skipAuthorization = false)
 	{
-		if (posts == null)
+		if (posts is null)
 		{
 			throw new ArgumentNullException(paramName: nameof(posts));
 		}
@@ -193,6 +193,9 @@ public partial class WallCategory : IWallCategory
 			"attachments", @params.Attachments
 		},
 		{
+			"primary_attachments_mode", @params.PrimaryAttachmentsMode
+		},
+		{
 			"services", @params.Services
 		},
 		{
@@ -223,6 +226,9 @@ public partial class WallCategory : IWallCategory
 			"close_comments", @params.CloseComments
 		},
 		{
+			"donut_paid_duration", @params.DonutPaidDuration
+		},
+		{
 			"mute_notifications", @params.MuteNotifications
 		},
 		{
@@ -231,6 +237,7 @@ public partial class WallCategory : IWallCategory
 	})[key: "post_id"];
 
 	/// <inheritdoc />
+	[Obsolete("Use ICaptchaSolver to handle captcha. This method is obsolete and will be removed in future.")]
 	public RepostResult Repost(string @object, string message, long? groupId, bool markAsAds)
 	{
 		VkErrors.ThrowIfNullOrEmpty(expr: () => @object);
@@ -256,6 +263,7 @@ public partial class WallCategory : IWallCategory
 	}
 
 	/// <inheritdoc />
+	[Obsolete("Use ICaptchaSolver to handle captcha. This method is obsolete and will be removed in future.")]
 	public RepostResult Repost(string @object, string message, long? groupId, bool markAsAds, long captchaSid,
 								string captchaKey)
 	{
@@ -609,10 +617,16 @@ public partial class WallCategory : IWallCategory
 			"place_id", @params.PlaceId
 		},
 		{
+			"link_button", @params.LinkButton
+		},
+		{
 			"link_title", @params.LinkTitle
 		},
 		{
 			"link_image", @params.LinkImage
+		},
+		{
+			"link_video", @params.LinkVideo
 		}
 	});
 
@@ -651,6 +665,9 @@ public partial class WallCategory : IWallCategory
 		},
 		{
 			"link_button", @params.LinkButton
+		},
+		{
+			"link_video", @params.LinkVideo
 		}
 	});
 

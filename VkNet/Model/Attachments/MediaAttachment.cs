@@ -35,6 +35,9 @@ public abstract class MediaAttachment
 	/// <summary>
 	/// Преобразовать вложение в строку.
 	/// </summary>
+	/// <returns>
+	/// Строковое представление
+	/// </returns>
 	public override string ToString()
 	{
 		var result = $"{Alias}{OwnerId}_{Id}";

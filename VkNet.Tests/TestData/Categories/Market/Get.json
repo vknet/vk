@@ -1,0 +1,73 @@
+{
+  "response": {
+	"count": 18,
+	"items": [
+	  {
+		"availability": 0,
+		"category": {
+		  "id": 40105,
+		  "name": "Кошельки, ключницы и брелки",
+		  "section": {
+			"id": 10000,
+			"name": "Гардероб"
+		  }
+		},
+		"description": "Брендированный жетон в расцветке Bronze",
+		"id": 6148970,
+		"owner_id": -85689507,
+		"price": {
+		  "amount": "89000",
+		  "currency": {
+			"id": 643,
+			"name": "RUB",
+			"title": "₽"
+		  },
+		  "text": "890 ₽"
+		},
+		"title": "Жетон Bronze",
+		"is_owner": false,
+		"is_adult": false,
+		"thumb_photo": "https://sun6-23.userapi.com/impg/ylLImplvcmF0omQmzaenCERHGvW4DKGPb26kEw/45ids_vcpKY.jpg?crop=0,0.125,1,0.75&size=400x0&quality=95&sign=63cdf689f65863d29bd1b59d22a28d8a&c_uniq_tag=2b7ctR3uLfKgLuyMMK2DLEpDeUzLLnavkx6vHEvV3BM",
+		"cart_quantity": 0,
+		"item_rating": {
+		  "rating": 0,
+		  "reviews_count": 0,
+		  "reviews_count_text": "Нет отзывов"
+		}
+	  },
+	  {
+		"availability": 0,
+		"category": {
+		  "id": 40105,
+		  "name": "Кошельки, ключницы и брелки",
+		  "section": {
+			"id": 10000,
+			"name": "Гардероб"
+		  }
+		},
+		"description": "Брендированный жетон в расцветке Black",
+		"id": 6148964,
+		"owner_id": -85689507,
+		"price": {
+		  "amount": "89000",
+		  "currency": {
+			"id": 643,
+			"name": "RUB",
+			"title": "₽"
+		  },
+		  "text": "890 ₽"
+		},
+		"title": "Жетон Black",
+		"is_owner": false,
+		"is_adult": false,
+		"thumb_photo": "https://sun6-22.userapi.com/impg/Io4mIHuLZ0C_fdUcDk8YKOBz0yXu2ZjwmldSoQ/qPnb13rLpr4.jpg?crop=0,0.125,1,0.75&size=400x0&quality=95&sign=2a92edc192a4cc5d36648741934d6656&c_uniq_tag=XDmXPyLGFJFhdhuEz1CqYHRRsJlHFVBxYaCxl8n9icU",
+		"cart_quantity": 0,
+		"item_rating": {
+		  "rating": 0,
+		  "reviews_count": 0,
+		  "reviews_count_text": "Нет отзывов"
+		}
+	  }
+	]
+  }
+}

@@ -6,7 +6,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="ISecureCategoryAsync"/>
+/// <summary>
+/// Secure В этой секции представлены административные методы, предназначенные для вызова от имени приложения с использованием стороннего сервера. Для использования этих методов необходимо применять специальную схему авторизации. Помимо стандартных параметров, указанных в описании методов, к запросу необходимо добавлять параметр client_secret, содержащий значение из поля «Защищенный ключ» в настройках приложения. Обратите внимание, тестовый режим при работе с secure-методами не поддерживается!
+/// </summary>
 public interface ISecureCategory : ISecureCategoryAsync
 {
 	/// <inheritdoc cref="ISecureCategoryAsync.AddAppEventAsync" />

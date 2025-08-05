@@ -16,7 +16,7 @@ public interface IPagesCategoryAsync
 	/// Возвращает информацию о вики-странице..
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает информацию о вики-странице в виде объекта page.
 	/// Если был задан параметр need_source равный 1, дополнительно будет возвращено
@@ -41,7 +41,7 @@ public interface IPagesCategoryAsync
 	/// </param>
 	/// <param name="userId"> Идентификатор пользователя, создавшего вики-страницу. </param>
 	/// <param name="title"> Название вики-страницы. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха возвращает id созданной страницы.
 	/// </returns>
@@ -66,7 +66,7 @@ public interface IPagesCategoryAsync
 	/// <param name="userId"> Идентификатор пользователя, создавшего вики-страницу. </param>
 	/// <param name="view"> Значение настройки доступа на чтение. </param>
 	/// <param name="edit"> Значение настройки доступа на редактирование. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха возвращает id страницы, доступ к которой был отредактирован.
 	/// </returns>
@@ -89,7 +89,7 @@ public interface IPagesCategoryAsync
 	/// вики-страница.
 	/// </param>
 	/// <param name="userId"> Идентификатор пользователя, создавшего вики-страницу. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов page_version, имеющих следующую структуру.
 	/// id — идентификатор версии страницы;
@@ -113,7 +113,7 @@ public interface IPagesCategoryAsync
 	/// Идентификатор сообщества, которому принадлежит
 	/// вики-страница.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив объектов вики-страниц.
 	/// </returns>
@@ -136,7 +136,7 @@ public interface IPagesCategoryAsync
 	/// вики-страницы.
 	/// </param>
 	/// <param name="userId"> Идентификатор пользователя, который создал страницу. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает объект вики-страницы.
 	/// </returns>
@@ -157,7 +157,7 @@ public interface IPagesCategoryAsync
 	/// Идентификатор группы, в контексте которой
 	/// интерпретируется данная страница.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успеха возвращает экранированный html, соответствующий вики-разметке.
 	/// </returns>
@@ -177,7 +177,7 @@ public interface IPagesCategoryAsync
 	/// доступные по кнопке "Предпросмотр".
 	/// </summary>
 	/// <param name="url"> URL. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// При удачной очистке кеша – метод возвращает <c> true </c>.
 	/// </returns>

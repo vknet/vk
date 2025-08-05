@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Результат получения информации о причинах отказа
 /// </summary>
 [Serializable]
 public class GetRejectionReasonResult

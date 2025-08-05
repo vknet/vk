@@ -20,7 +20,7 @@ public interface IUsersCategoryAsync
 	/// Возвращает список пользователей в соответствии с заданным критерием поиска.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов пользователей, найденных
 	/// в соответствии с заданными
@@ -41,7 +41,7 @@ public interface IUsersCategoryAsync
 	/// пользователя (Целое
 	/// число, по умолчанию идентификатор текущего пользователя).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает 1 в случае, если пользователь установил у
 	/// себя данное приложение, иначе 0.
@@ -61,7 +61,7 @@ public interface IUsersCategoryAsync
 	/// </param>
 	/// <param name="fields"> Поля профилей, которые необходимо возвратить. </param>
 	/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Список объектов с запрошенной информацией о пользователях. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/users.get
@@ -80,7 +80,7 @@ public interface IUsersCategoryAsync
 	/// </param>
 	/// <param name="fields"> Поля профилей, которые необходимо возвратить. </param>
 	/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Список объектов с запрошенной информацией о пользователях. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/users.get
@@ -107,7 +107,7 @@ public interface IUsersCategoryAsync
 	/// Список дополнительных полей для объектов user и group, которые необходимо
 	/// вернуть.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Пока возвращается только список групп.
 	/// </returns>
@@ -135,7 +135,7 @@ public interface IUsersCategoryAsync
 	/// </param>
 	/// <param name="fields"> Список дополнительных полей, которые необходимо вернуть </param>
 	/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Список подписчиков </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/users.getFollowers
@@ -156,7 +156,7 @@ public interface IUsersCategoryAsync
 	/// </param>
 	/// <param name="type"> Тип жалобы </param>
 	/// <param name="comment"> Комментарий к жалобе на пользователя </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> В случае успешной жалобы метод вернет true. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/users.report
@@ -171,7 +171,7 @@ public interface IUsersCategoryAsync
 	/// пользователей, которые находятся вблизи.
 	/// </summary>
 	/// <param name="params"> Входные параметры выборки. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает список объектов user.
 	/// </returns>

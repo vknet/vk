@@ -5,7 +5,7 @@ using VkNet.Enums.StringEnums;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Спецификация офисного пользователя
 /// </summary>
 [Serializable]
 public class OfficeUsersSpecification
@@ -20,7 +20,7 @@ public class OfficeUsersSpecification
 	/// Тип полномочий.
 	/// </summary>
 	[JsonProperty("role")]
-	public AccessRole Role { get; set; }
+	public AccessRole? Role { get; set; }
 
 	/// <summary>
 	/// Массив идентификаторов клиента.

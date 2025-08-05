@@ -19,7 +19,7 @@ public class GroupsSearchParams
 	/// <summary>
 	/// Тип сообщества. Возможные значения: group, page, event. строка.
 	/// </summary>
-	public GroupType Type { get; set; }
+	public GroupType? Type { get; set; }
 
 	/// <summary>
 	/// Идентификатор страны. положительное число.

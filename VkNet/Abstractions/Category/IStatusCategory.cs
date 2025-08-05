@@ -2,7 +2,9 @@
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IStatusCategoryAsync"/>
+/// <summary>
+/// Методы для работы со статусом пользователя или сообщества.
+/// </summary>
 public interface IStatusCategory : IStatusCategoryAsync
 {
 	/// <inheritdoc cref="IStatusCategoryAsync.GetAsync"/>

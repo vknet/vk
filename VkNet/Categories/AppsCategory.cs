@@ -6,7 +6,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IAppsCategory" />
 public partial class AppsCategory : IAppsCategory
 {
 	/// <summary>
@@ -64,6 +64,9 @@ public partial class AppsCategory : IAppsCategory
 	{
 		return _vk.Call<AppGetObject>("apps.get", new()
 		{
+			{
+				"app_id", @params.AppId
+			},
 			{
 				"app_ids", @params.AppIds
 			},

@@ -47,7 +47,7 @@ public class PhotoGetCommentsParams
 	/// Порядок сортировки комментариев (asc — от старых к новым, desc - от новых к
 	/// старым) строка.
 	/// </summary>
-	public CommentsSort Sort { get; set; }
+	public CommentsSort? Sort { get; set; }
 
 	/// <summary>
 	/// Ключ доступа к фотографии.

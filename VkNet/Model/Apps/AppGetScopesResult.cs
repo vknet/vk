@@ -11,11 +11,13 @@ namespace VkNet.Model;
 public class AppGetScopesResult
 {
 	/// <summary>
+	/// Количество
 	/// </summary>
 	[JsonProperty(propertyName: "count")]
 	public long Count { get; set; }
 
 	/// <summary>
+	/// Элементы
 	/// </summary>
 	[JsonProperty(propertyName: "items")]
 	public ReadOnlyCollection<AppGetScopes> Items { get; set; }

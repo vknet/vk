@@ -58,5 +58,5 @@ public class PrettyCardsCreateParams
 	/// Не передавайте этот параметр, чтобы не использовать кнопку.
 	/// </summary>
 	[JsonProperty("button")]
-	public Enums.StringEnums.Button Button { get; set; }
+	public Enums.StringEnums.Button? Button { get; set; }
 }

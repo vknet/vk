@@ -27,7 +27,7 @@ public class AudioCatalog
 	/// Тип каталога.
 	/// </summary>
 	[JsonProperty("type")]
-	public AudioCatalogType Type { get; set; }
+	public AudioCatalogType? Type { get; set; }
 
 	/// <summary>
 	/// Количество каталогов.
@@ -39,7 +39,7 @@ public class AudioCatalog
 	/// Источник каталога.
 	/// </summary>
 	[JsonProperty("source")]
-	public AudioCatalogSourceType Source { get; set; }
+	public AudioCatalogSourceType? Source { get; set; }
 
 	/// <summary>
 	/// Идентификатор каталога.
@@ -48,7 +48,7 @@ public class AudioCatalog
 	public string Id { get; set; }
 
 	/// <summary>
-	///
+	/// Идентификатор на следующуюю пачку.
 	/// </summary>
 	[JsonProperty("next_from")]
 	public string NextFrom { get; set; }

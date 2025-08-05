@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.StringEnums;
 
 /// <summary>
+/// Тип платформы
 /// </summary>
 [StringEnum]
-[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+[JsonConverter(typeof(TolerantStringEnumConverter))]
 public enum Platform
 {
 	/// <summary>
@@ -25,5 +25,20 @@ public enum Platform
 	/// <summary>
 	/// Windows Phone
 	/// </summary>
-	Wphone
+	Wphone,
+
+	/// <summary>
+	/// AdminApp
+	/// </summary>
+	AdminApp,
+
+	/// <summary>
+	/// Instagram
+	/// </summary>
+	Instagram,
+
+	/// <summary>
+	/// ipad
+	/// </summary>
+	Ipad
 }

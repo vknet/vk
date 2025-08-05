@@ -58,7 +58,7 @@ public static class Utilities
 	/// <returns> Число типа long или null </returns>
 	public static long? GetNullableLongId(VkResponse response) => string.IsNullOrWhiteSpace(response?.ToString())
 		? null
-		: System.Convert.ToInt64(response?.ToString());
+		: System.Convert.ToInt64(response.ToString());
 
 	/// <summary>
 	/// Объединить не пустую коллекцию.
@@ -69,7 +69,7 @@ public static class Utilities
 	/// <returns> Строковое представление коллекции через разделитель. </returns>
 	public static string JoinNonEmpty<T>(this IEnumerable<T> collection, string separator = ",")
 	{
-		if (collection == null)
+		if (collection is null)
 		{
 			return string.Empty;
 		}
@@ -111,12 +111,9 @@ public static class Utilities
 		{
 			var jObject = json.ToJObject();
 
-			foreach (var key in keysToHide)
+			foreach (var key in keysToHide.Where(x => jObject.ContainsKey(x)))
 			{
-				if (jObject.ContainsKey(key))
-				{
-					jObject[key] = hidden;
-				}
+				jObject[key] = hidden;
 			}
 
 			return jObject.ToString(Formatting.Indented);
@@ -131,7 +128,9 @@ public static class Utilities
 	/// Сериализует объект в JSON
 	/// </summary>
 	/// <param name="object"> Объект </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Сериализованный JSON
+	/// </returns>
 	public static string SerializeToJson<T>(T @object)
 	{
 		var result = JsonConvert.SerializeObject(@object, Formatting.Indented);
@@ -147,7 +146,9 @@ public static class Utilities
 	/// <param name="json"> The JSON to deserialize. </param>
 	/// <param name="result"> Deserialized object. </param>
 	/// <typeparam name="T"> Type for deserialization. </typeparam>
-	/// <returns></returns>
+	/// <returns>
+	/// Признак успешной десериализации
+	/// </returns>
 	public static bool TryDeserializeObject<T>(string json, out T result)
 	{
 		try
@@ -167,96 +168,191 @@ public static class Utilities
 	/// <summary>
 	/// Преобразование из PascalCase в snake_case
 	/// </summary>
-	/// <param name="text"></param>
-	/// <returns></returns>
+	/// <param name="text">Исходная строка</param>
+	/// <returns>
+	/// Строкое представление в snake_case нотации
+	/// </returns>
 	public static string ToSnakeCase(this string text)
 	{
-		if(text == null) {
+		if (text is null)
+		{
 			throw new ArgumentNullException(nameof(text));
 		}
-		if(text.Length < 2) {
+
+		if (text.Length < 2)
+		{
 			return text;
 		}
+
 		var sb = new StringBuilder();
 		sb.Append(char.ToLowerInvariant(text[0]));
-		for(var i = 1; i < text.Length; ++i) {
+
+		for (var i = 1; i < text.Length; ++i)
+		{
 			var c = text[i];
-			if(char.IsUpper(c)) {
+
+			if (char.IsUpper(c))
+			{
 				sb.Append('_');
 				sb.Append(char.ToLowerInvariant(c));
-			} else {
+			} else
+			{
 				sb.Append(c);
 			}
 		}
+
 		return sb.ToString();
 	}
 
-	private static string ToCamelCase(this string str)
+	private static string ToCamelCase(this string str) => str.Split(new[]
+		{
+			"_"
+		}, StringSplitOptions.RemoveEmptyEntries)
+		.Select(s =>
+			char.ToUpperInvariant(s[0]) + s.Substring(1, s.Length - 1))
+		.Aggregate(string.Empty, (s1, s2) => s1 + s2);
+
+	private static bool? IsNullableType(Type t)
 	{
-		return str.Split(new [] {"_"}, StringSplitOptions.RemoveEmptyEntries)
-			.Select(s =>
-				char.ToUpperInvariant(s[0]) + s.Substring(1, s.Length - 1))
-				.Aggregate(string.Empty, (s1, s2) => s1 + s2);
+		if (t is null)
+		{
+			return null;
+		}
+
+		return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>);
 	}
 
 	/// <summary>
 	/// Проверка на StringEnum
 	/// </summary>
-	/// <param name="t"></param>
-	/// <returns></returns>
+	/// <param name="t">Исходный тип</param>
+	/// <returns>
+	/// Признак строкового перечисления
+	/// </returns>
+	public static bool IsNullableStringEnum(Type t)
+	{
+		var isNull = IsNullableType(t.GenericTypeArguments.FirstOrDefault());
+		StringEnumAttribute myAttribute = null;
+
+		if (isNull is null)
+		{
+			isNull = true;
+		}
+
+		if (isNull is false)
+		{
+			myAttribute = (StringEnumAttribute) Attribute.GetCustomAttribute(t.GenericTypeArguments.FirstOrDefault(),
+				typeof(StringEnumAttribute));
+		}
+
+		// Get instance of the attribute.
+
+		return myAttribute is not null;
+	}
+
+	/// <summary>
+	/// Проверка на StringEnum
+	/// </summary>
+	/// <param name="t">Исходный тип</param>
+	/// <returns>
+	/// Признак строкового перечисления
+	/// </returns>
+	public static bool IsTolerantEnum(Type t)
+	{
+		var isNull = IsNullableType(t.GenericTypeArguments.FirstOrDefault());
+		JsonConverterAttribute myAttribute = null;
+
+		if (isNull is null)
+		{
+			isNull = true;
+		}
+
+		if (isNull is false)
+		{
+			myAttribute = (JsonConverterAttribute) Attribute.GetCustomAttribute(t.GenericTypeArguments.FirstOrDefault(),
+				typeof(JsonConverterAttribute));
+		}
+
+		// Get instance of the attribute.
+
+		return myAttribute is not null;
+	}
+
+	/// <summary>
+	/// Проверка на StringEnum
+	/// </summary>
+	/// <param name="t">Исходный тип</param>
+	/// <returns>
+	/// Признак строкового перечисления
+	/// </returns>
 	public static bool IsStringEnum(Type t)
 	{
 		// Get instance of the attribute.
-		var myAttribute = (StringEnumAttribute) Attribute.GetCustomAttribute(t, typeof (StringEnumAttribute));
+		var myAttribute = (StringEnumAttribute) Attribute.GetCustomAttribute(t, typeof(StringEnumAttribute));
 
-		if (myAttribute == null)
-		{
-			Console.WriteLine("The attribute was not found.");
-
-			return false;
-		}
-
-		return true;
+		return myAttribute is not null;
 	}
 
 	/// <summary>
 	/// Serialize Enum Value
 	/// </summary>
-	/// <param name="value"></param>
-	/// <typeparam name="TEnum"></typeparam>
-	/// <returns></returns>
+	/// <param name="value">Значение перечисления</param>
+	/// <typeparam name="TEnum">Перечисление</typeparam>
+	/// <returns>
+	/// Строковое представление
+	/// </returns>
 	public static string Serialize<TEnum>(TEnum value)
 	{
 		var fallback = Enum.GetName(typeof(TEnum), value);
-		var member = typeof(TEnum).GetMember(value.ToString()).FirstOrDefault();
-		if (member == null)
+
+		var member = typeof(TEnum).GetMember(value.ToString())
+			.FirstOrDefault();
+
+		if (member is null)
+		{
 			return fallback;
-		var enumMemberAttributes = member.GetCustomAttributes(typeof(EnumMemberAttribute), false).Cast<EnumMemberAttribute>().FirstOrDefault();
-		if (enumMemberAttributes == null)
-			return fallback;
-		return enumMemberAttributes.Value;
+		}
+
+		var enumMemberAttributes = member.GetCustomAttributes(typeof(EnumMemberAttribute), false)
+			.Cast<EnumMemberAttribute>()
+			.FirstOrDefault();
+
+		return enumMemberAttributes is null
+			? fallback
+			: enumMemberAttributes.Value;
 	}
 
 	/// <summary>
 	/// Deserialize Enum Value
 	/// </summary>
-	/// <param name="value"></param>
-	/// <typeparam name="TEnum"></typeparam>
-	/// <returns></returns>
-	public static TEnum? Deserialize<TEnum>(string value) where TEnum : struct
+	/// <param name="value">Значение перечисления</param>
+	/// <typeparam name="TEnum">Тип перечисления</typeparam>
+	/// <returns>
+	/// Перечисление
+	/// </returns>
+	public static TEnum? Deserialize<TEnum>(string value)
+		where TEnum : struct
 	{
 		if (Enum.TryParse(value.ToCamelCase(), out TEnum parsed))
+		{
 			return parsed;
+		}
 
 		var found = typeof(TEnum).GetMembers()
 			.Select(x => new
 			{
 				Member = x,
-				Attribute = x.GetCustomAttributes(typeof(EnumMemberAttribute), false).OfType<EnumMemberAttribute>().FirstOrDefault()
+				Attribute = x.GetCustomAttributes(typeof(EnumMemberAttribute), false)
+					.OfType<EnumMemberAttribute>()
+					.FirstOrDefault()
 			})
 			.FirstOrDefault(x => x.Attribute?.Value == value);
-		if (found != null)
-			return (TEnum)Enum.Parse(typeof(TEnum), found.Member.Name);
+
+		if (found is not null)
+		{
+			return (TEnum) Enum.Parse(typeof(TEnum), found.Member.Name);
+		}
+
 		return null;
 	}
 }

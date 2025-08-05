@@ -18,6 +18,7 @@ public class Market : MediaAttachment
 	protected override string Alias => "market";
 
 	private long? _id;
+
 	/// <summary>
 	/// Id
 	/// </summary>
@@ -26,7 +27,7 @@ public class Market : MediaAttachment
 	{
 		get => _id;
 
-		set { if(value == null) _id ??= -1; }
+		set => _id = value ?? -1;
 	}
 
 	/// <summary>
@@ -114,4 +115,19 @@ public class Market : MediaAttachment
 	[JsonProperty("button_title")]
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public MarketItemButtonTitle ButtonTitle { get; set; }
+
+	/// <summary>
+	/// Преобразовать вложение в строку.
+	/// </summary>
+	/// <returns>
+	/// Строковое представление
+	/// </returns>
+	public override string ToString()
+	{
+		var result = $"{Alias}{OwnerId}_{Id}";
+
+		return string.IsNullOrWhiteSpace(AccessKey)
+			? result
+			: $"{result}_{AccessKey}";
+	}
 }

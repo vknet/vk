@@ -21,7 +21,7 @@ public class Relative
 	/// Тип родственника (sibling и т.п.)
 	/// </summary>
 	[JsonProperty("type")]
-	public RelativeType Type { get; set; }
+	public RelativeType? Type { get; set; }
 
 	/// <summary>
 	/// Имя родственника, если он не является пользователем ВКонтакте.

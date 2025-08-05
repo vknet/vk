@@ -13,121 +13,120 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IUsersCategory" />
 public partial class UsersCategory : IUsersCategory
 {
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// Api vk.com
+	/// Инициализирует новый экземпляр класса <see cref="UsersCategory" />
 	/// </summary>
-	/// <param name="vk"> </param>
 	public UsersCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
 	[Pure]
 	public VkCollection<User> Search(UserSearchParams @params) => _vk.Call<VkCollection<User>>("users.search", new()
+	{
 		{
-			{
-				"q", WebUtility.HtmlEncode(value: @params.Query)
-			},
-			{
-				"sort", @params.Sort
-			},
-			{
-				"offset", @params.Offset
-			},
-			{
-				"count", @params.Count
-			},
-			{
-				"fields", @params.Fields
-			},
-			{
-				"city", @params.City
-			},
-			{
-				"country", @params.Country
-			},
-			{
-				"hometown", WebUtility.HtmlEncode(value: @params.Hometown)
-			},
-			{
-				"university_country", @params.UniversityCountry
-			},
-			{
-				"university", @params.University
-			},
-			{
-				"university_year", @params.UniversityYear
-			},
-			{
-				"university_faculty", @params.UniversityFaculty
-			},
-			{
-				"university_chair", @params.UniversityChair
-			},
-			{
-				"sex", @params.Sex
-			},
-			{
-				"status", @params.Status
-			},
-			{
-				"age_from", @params.AgeFrom
-			},
-			{
-				"age_to", @params.AgeTo
-			},
-			{
-				"birth_day", @params.BirthDay
-			},
-			{
-				"birth_month", @params.BirthMonth
-			},
-			{
-				"birth_year", @params.BirthYear
-			},
-			{
-				"online", @params.Online
-			},
-			{
-				"has_photo", @params.HasPhoto
-			},
-			{
-				"school_country", @params.SchoolCountry
-			},
-			{
-				"school_city", @params.SchoolCity
-			},
-			{
-				"school_class", @params.SchoolClass
-			},
-			{
-				"school", @params.School
-			},
-			{
-				"school_year", @params.SchoolYear
-			},
-			{
-				"religion", WebUtility.HtmlEncode(value: @params.Religion)
-			},
-			{
-				"interests", WebUtility.HtmlEncode(value: @params.Interests)
-			},
-			{
-				"company", WebUtility.HtmlEncode(value: @params.Company)
-			},
-			{
-				"position", WebUtility.HtmlEncode(value: @params.Position)
-			},
-			{
-				"group_id", @params.GroupId
-			},
-			{
-				"from_list", @params.FromList
-			}
-		});
+			"q", WebUtility.HtmlEncode(value: @params.Query)
+		},
+		{
+			"sort", @params.Sort
+		},
+		{
+			"offset", @params.Offset
+		},
+		{
+			"count", @params.Count
+		},
+		{
+			"fields", @params.Fields
+		},
+		{
+			"city", @params.City
+		},
+		{
+			"country", @params.Country
+		},
+		{
+			"hometown", WebUtility.HtmlEncode(value: @params.Hometown)
+		},
+		{
+			"university_country", @params.UniversityCountry
+		},
+		{
+			"university", @params.University
+		},
+		{
+			"university_year", @params.UniversityYear
+		},
+		{
+			"university_faculty", @params.UniversityFaculty
+		},
+		{
+			"university_chair", @params.UniversityChair
+		},
+		{
+			"sex", @params.Sex
+		},
+		{
+			"status", @params.Status
+		},
+		{
+			"age_from", @params.AgeFrom
+		},
+		{
+			"age_to", @params.AgeTo
+		},
+		{
+			"birth_day", @params.BirthDay
+		},
+		{
+			"birth_month", @params.BirthMonth
+		},
+		{
+			"birth_year", @params.BirthYear
+		},
+		{
+			"online", @params.Online
+		},
+		{
+			"has_photo", @params.HasPhoto
+		},
+		{
+			"school_country", @params.SchoolCountry
+		},
+		{
+			"school_city", @params.SchoolCity
+		},
+		{
+			"school_class", @params.SchoolClass
+		},
+		{
+			"school", @params.School
+		},
+		{
+			"school_year", @params.SchoolYear
+		},
+		{
+			"religion", WebUtility.HtmlEncode(value: @params.Religion)
+		},
+		{
+			"interests", WebUtility.HtmlEncode(value: @params.Interests)
+		},
+		{
+			"company", WebUtility.HtmlEncode(value: @params.Company)
+		},
+		{
+			"position", WebUtility.HtmlEncode(value: @params.Position)
+		},
+		{
+			"group_id", @params.GroupId
+		},
+		{
+			"from_list", @params.FromList
+		}
+	});
 
 	/// <inheritdoc />
 	[Pure]
@@ -149,7 +148,7 @@ public partial class UsersCategory : IUsersCategory
 										, ProfileFields fields = null
 										, NameCase? nameCase = null)
 	{
-		if (userIds == null)
+		if (userIds is null)
 		{
 			throw new ArgumentNullException(paramName: nameof(userIds));
 		}
@@ -178,7 +177,7 @@ public partial class UsersCategory : IUsersCategory
 										, ProfileFields fields = null
 										, NameCase? nameCase = null)
 	{
-		if (screenNames == null)
+		if (screenNames is null)
 		{
 			throw new ArgumentNullException(paramName: nameof(screenNames));
 		}
@@ -225,7 +224,7 @@ public partial class UsersCategory : IUsersCategory
 			screenName
 		}, fields, nameCase);
 
-		return users.Count > 0
+		return users.Any()
 			? users[index: 0]
 			: null;
 	}
@@ -304,9 +303,9 @@ public partial class UsersCategory : IUsersCategory
 
 		return _vk.Call("users.getFollowers", parameters)
 			.ToVkCollectionOf(selector: x => new User
-				{
-					Id = (long) x
-				});
+			{
+				Id = (long) x
+			});
 	}
 
 	/// <inheritdoc />
@@ -332,30 +331,30 @@ public partial class UsersCategory : IUsersCategory
 
 	/// <inheritdoc />
 	public VkCollection<User> GetNearby(UsersGetNearbyParams @params) => _vk.Call<VkCollection<User>>("users.getNearby", new()
+	{
 		{
-			{
-				"latitude", @params.Latitude.ToString(provider: CultureInfo.InvariantCulture)
-			}, //Vk API не принимает дробные числа с запятой, нужна точка
-			{
-				"longitude", @params.Longitude.ToString(provider: CultureInfo.InvariantCulture)
-			},
-			{
-				"accuracy", @params.Accuracy
-			},
-			{
-				"timeout", @params.Timeout
-			},
-			{
-				"radius", @params.Radius
-			},
-			{
-				"fields", @params.Fields
-			},
-			{
-				"name_case", @params.NameCase
-			},
-			{
-				"need_description", @params.NeedDescription
-			}
-		});
+			"latitude", @params.Latitude.ToString(provider: CultureInfo.InvariantCulture)
+		}, //Vk API не принимает дробные числа с запятой, нужна точка
+		{
+			"longitude", @params.Longitude.ToString(provider: CultureInfo.InvariantCulture)
+		},
+		{
+			"accuracy", @params.Accuracy
+		},
+		{
+			"timeout", @params.Timeout
+		},
+		{
+			"radius", @params.Radius
+		},
+		{
+			"fields", @params.Fields
+		},
+		{
+			"name_case", @params.NameCase
+		},
+		{
+			"need_description", @params.NeedDescription
+		}
+	});
 }

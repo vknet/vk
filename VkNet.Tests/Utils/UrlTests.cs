@@ -38,7 +38,7 @@ public class UrlTests
 		var actualUrl = Url.Combine(testUrl, query);
 
 		actualUrl.Should()
-			.Be(expectedUrl);
+			.Be(Uri.EscapeDataString(expectedUrl));
 	}
 
 	[Fact]

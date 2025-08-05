@@ -14,14 +14,13 @@ using VkNet.Utils;
 
 namespace VkNet.Infrastructure.Authorization.ImplicitFlow;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IImplicitFlow" />
 public class ImplicitFlow : IImplicitFlow
 {
 	/// <summary>
 	/// Логгер
 	/// </summary>
-	[CanBeNull]
-	private readonly ILogger<ImplicitFlow> _logger;
+	private readonly ILogger _logger;
 
 	/// <summary>
 	/// Менеджер версий VkApi
@@ -36,7 +35,7 @@ public class ImplicitFlow : IImplicitFlow
 	private readonly IVkAuthorization<ImplicitFlowPageType> _vkAuthorization;
 
 	/// <inheritdoc cref="ImplicitFlow"/>
-	public ImplicitFlow([CanBeNull] ILogger<ImplicitFlow> logger,
+	public ImplicitFlow(ILogger logger,
 						IVkApiVersionManager versionManager,
 						IAuthorizationFormFactory authorizationFormsFactory,
 						IVkAuthorization<ImplicitFlowPageType> vkAuthorization)
@@ -50,10 +49,17 @@ public class ImplicitFlow : IImplicitFlow
 	/// <inheritdoc />
 	public async Task<AuthorizationResult> AuthorizeAsync(CancellationToken token = default)
 	{
-		_logger?.LogDebug("Валидация данных.");
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Валидация данных");
+		}
+
 		ValidateAuthorizationParameters();
 
-		_logger?.LogDebug("Шаг 1. Открытие диалога авторизации");
+		if (_logger.IsEnabled(LogLevel.Debug))
+		{
+			_logger.LogDebug("Шаг 1. Открытие диалога авторизации");
+		}
 
 		var authorizeUrlResult = CreateAuthorizeUrl();
 
@@ -61,7 +67,7 @@ public class ImplicitFlow : IImplicitFlow
 			.ExecuteAsync(authorizeUrlResult, _authorizationParameters, token)
 			.ConfigureAwait(false);
 
-		return await NextStepAsync(loginFormResult)
+		return await NextStepAsync(loginFormResult, token)
 			.ConfigureAwait(false);
 	}
 
@@ -81,9 +87,11 @@ public class ImplicitFlow : IImplicitFlow
 	}
 
 	/// <inheritdoc />
+	[Obsolete(
+		"Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
 	public Uri CreateAuthorizeUrl()
 	{
-		_logger?.LogDebug("Построение url для авторизации");
+		_logger.LogDebug("Построение url для авторизации");
 
 		const string url = "https://oauth.vk.com/authorize?";
 
@@ -119,10 +127,10 @@ public class ImplicitFlow : IImplicitFlow
 
 		var resultUrl = Url.Combine(url, Url.QueryFrom(vkAuthParams.ToArray()));
 
-		return new(resultUrl);
+		return new(Uri.UnescapeDataString(resultUrl));
 	}
 
-	private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult)
+	private async Task<AuthorizationResult> NextStepAsync(AuthorizationFormResult formResult, CancellationToken token)
 	{
 		var requestUrl = formResult.RequestUrl;
 
@@ -138,7 +146,10 @@ public class ImplicitFlow : IImplicitFlow
 			case ImplicitFlowPageType.Error:
 
 			{
-				_logger?.LogError("При авторизации произошла ошибка");
+				if (_logger.IsEnabled(LogLevel.Error))
+				{
+					_logger.LogError("При авторизации произошла ошибка");
+				}
 
 				throw new VkAuthorizationException("При авторизации произошла ошибка.");
 			}
@@ -146,7 +157,10 @@ public class ImplicitFlow : IImplicitFlow
 			case ImplicitFlowPageType.LoginPassword:
 
 			{
-				_logger?.LogDebug("Неверный логин или пароль");
+				if (_logger.IsEnabled(LogLevel.Debug))
+				{
+					_logger.LogDebug("Неверный логин или пароль");
+				}
 
 				throw new VkAuthorizationException("Неверный логин или пароль.");
 			}
@@ -154,7 +168,10 @@ public class ImplicitFlow : IImplicitFlow
 			case ImplicitFlowPageType.Captcha:
 
 			{
-				_logger?.LogDebug("Капча");
+				if (_logger.IsEnabled(LogLevel.Debug))
+				{
+					_logger.LogDebug("Капча");
+				}
 
 				break;
 			}
@@ -162,7 +179,10 @@ public class ImplicitFlow : IImplicitFlow
 			case ImplicitFlowPageType.TwoFactor:
 
 			{
-				_logger?.LogDebug("Двухфакторная авторизация");
+				if (_logger.IsEnabled(LogLevel.Debug))
+				{
+					_logger.LogDebug("Двухфакторная авторизация");
+				}
 
 				break;
 			}
@@ -170,7 +190,10 @@ public class ImplicitFlow : IImplicitFlow
 			case ImplicitFlowPageType.Consent:
 
 			{
-				_logger?.LogDebug("Страница подтверждения доступа к скоупам");
+				if (_logger.IsEnabled(LogLevel.Debug))
+				{
+					_logger.LogDebug("Страница подтверждения доступа к скоупам");
+				}
 
 				break;
 			}
@@ -183,10 +206,10 @@ public class ImplicitFlow : IImplicitFlow
 		}
 
 		var resultForm = await _authorizationFormsFactory.Create(pageType)
-			.ExecuteAsync(requestUrl, _authorizationParameters)
+			.ExecuteAsync(requestUrl, _authorizationParameters, token)
 			.ConfigureAwait(false);
 
-		return await NextStepAsync(resultForm)
+		return await NextStepAsync(resultForm, token)
 			.ConfigureAwait(false);
 	}
 
@@ -214,7 +237,7 @@ public class ImplicitFlow : IImplicitFlow
 	{
 		var errorsBuilder = new StringBuilder();
 
-		if (_authorizationParameters == null)
+		if (_authorizationParameters is null)
 		{
 			errorsBuilder.AppendLine("Параметры авторизации не установленны");
 		} else

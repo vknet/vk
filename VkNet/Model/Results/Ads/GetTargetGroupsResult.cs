@@ -5,7 +5,7 @@ using Newtonsoft.Json.Converters;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Результат получения информации о целевых группах
 /// </summary>
 [Serializable]
 public class GetTargetGroupsResult

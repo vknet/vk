@@ -5,7 +5,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IPrettyCardsCategoryAsync"/>
+/// <summary>
+/// Методы для работы с каруселями.
+/// </summary>
 public interface IPrettyCardsCategory : IPrettyCardsCategoryAsync
 {
 	/// <inheritdoc cref="IPrettyCardsCategoryAsync.CreateAsync"/>

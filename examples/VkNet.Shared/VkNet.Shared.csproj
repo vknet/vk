@@ -4,10 +4,11 @@
 		<TargetFramework>net5.0</TargetFramework>
 		<UserSecretsId>05AD03DC-EA2E-4581-89B3-1D9B745512BA</UserSecretsId>
 		<LangVersion>default</LangVersion>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\VkNet\VkNet.csproj" />
+		<ProjectReference Include="..\..\VkNet\VkNet.csproj"/>
 	</ItemGroup>
 
 

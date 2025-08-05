@@ -90,7 +90,7 @@ public class Post : MediaAttachment
 	/// чужой стены.
 	/// </summary>
 	[JsonProperty("post_type")]
-	public PostType PostType { get; set; }
+	public PostType? PostType { get; set; }
 
 	/// <summary>
 	/// Информация о способе размещения записи.
@@ -224,7 +224,7 @@ public class Post : MediaAttachment
 	/// Ключ доступа
 	/// </summary>
 	[JsonProperty("access_key")]
-	public string AccessKey { get; set; }
+	public new string AccessKey { get; set; }
 
 	/// <summary>
 	/// Информация о записи VK Donut.

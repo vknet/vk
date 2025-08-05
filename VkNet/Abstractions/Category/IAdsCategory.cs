@@ -6,7 +6,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IAdsCategoryAsync"/>
+/// <summary>
+/// Методы для работы с рекламным кабинетом пользователя.
+/// </summary>
 public interface IAdsCategory : IAdsCategoryAsync
 {
 	/// <inheritdoc cref="IAdsCategoryAsync.AddOfficeUsersAsync"/>

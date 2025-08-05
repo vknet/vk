@@ -3,6 +3,7 @@
 namespace VkNet.Enums.Filters;
 
 /// <summary>
+/// Фильтр поиска
 /// </summary>
 [Serializable]
 public class SearchFilter : MultivaluedFilter<SearchFilter>

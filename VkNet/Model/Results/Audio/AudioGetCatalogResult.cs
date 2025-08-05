@@ -17,7 +17,7 @@ public class AudioGetCatalogResult
 	public ReadOnlyCollection<AudioCatalog> Items { get; set; }
 
 	/// <summary>
-	///
+	/// Идентификатор на следующую пачку результатов
 	/// </summary>
 	[JsonProperty("next_from")]
 	public string NextFrom { get; set; }

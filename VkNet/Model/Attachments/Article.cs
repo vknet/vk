@@ -74,6 +74,7 @@ public class Article : MediaAttachment
 	public Uri Url { get; set; }
 
 	/// <summary>
+	/// Адрес превью статьи
 	/// </summary>
 	[JsonProperty("view_url")]
 	public Uri ViewUrl { get; set; }

@@ -21,7 +21,7 @@ public class NameRequest
 	/// Статус заявки
 	/// </summary>
 	[JsonProperty("status")]
-	public ChangeNameStatus Status { get; set; }
+	public ChangeNameStatus? Status { get; set; }
 
 	/// <summary>
 	/// Дата, после которой возможна повторная подача заявки.

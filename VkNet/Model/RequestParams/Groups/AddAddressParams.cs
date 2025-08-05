@@ -89,7 +89,7 @@ public class AddAddressParams
 	/// Тип расписания.
 	/// </summary>
 	[JsonProperty("work_info_status")]
-	public ScheduleWorkInfoStatus WorkInfoStatus { get; set; }
+	public ScheduleWorkInfoStatus? WorkInfoStatus { get; set; }
 
 	/// <summary>
 	/// Идентификатор станции метро.

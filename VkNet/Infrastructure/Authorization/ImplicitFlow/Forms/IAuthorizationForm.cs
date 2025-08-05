@@ -23,7 +23,7 @@ public interface IAuthorizationForm
 	/// </summary>
 	/// <param name="url">Url запроса</param>
 	/// <param name="authParams">Параметры авторизации.</param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>Содержимое ответа от vk</returns>
 	Task<AuthorizationFormResult> ExecuteAsync(Uri url, IApiAuthParams authParams, CancellationToken token = default);
 }

@@ -65,5 +65,5 @@ public class PollsGetVotersParams
 	/// дательный – dat, винительный – acc, творительный – ins, предложный – abl. По
 	/// умолчанию nom. строка.
 	/// </summary>
-	public NameCase NameCase { get; set; }
+	public NameCase? NameCase { get; set; }
 }

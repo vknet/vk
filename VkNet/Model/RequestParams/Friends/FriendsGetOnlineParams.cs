@@ -38,7 +38,7 @@ public class FriendsGetOnlineParams
 	/// как друзья сортируются в разделе Мои
 	/// друзья (данный параметр доступен только для Desktop-приложений). строка.
 	/// </summary>
-	public FriendsOrder Order { get; set; }
+	public FriendsOrder? Order { get; set; }
 
 	/// <summary>
 	/// Количество друзей онлайн, которое нужно вернуть. (по умолчанию – все друзья

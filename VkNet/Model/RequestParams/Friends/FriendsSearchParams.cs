@@ -43,7 +43,7 @@ public class FriendsSearchParams
 	/// умолчанию nom. строка, по умолчанию
 	/// Nom.
 	/// </summary>
-	public NameCase NameCase { get; set; }
+	public NameCase? NameCase { get; set; }
 
 	/// <summary>
 	/// Смещение, необходимое для выборки определенного подмножества друзей.

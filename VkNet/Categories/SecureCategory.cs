@@ -7,7 +7,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="ISecureCategory" />
 public partial class SecureCategory : ISecureCategory
 {
 	/// <summary>

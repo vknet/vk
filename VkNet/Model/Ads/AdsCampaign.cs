@@ -25,7 +25,7 @@ public class AdsCampaign
 	/// Тип кампании
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	public CampaignType Type { get; set; }
+	public CampaignType? Type { get; set; }
 
 	/// <summary>
 	/// Название кампании

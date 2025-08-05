@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
+using VkNet.Abstractions;
 using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
@@ -9,7 +10,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IAdsCategory" />
 public partial class AdsCategory
 {
 	/// <inheritdoc/>

@@ -24,7 +24,7 @@ public class AdsAccount
 	/// Тип рекламного кабинета.
 	/// </summary>
 	[JsonProperty(propertyName: "account_type")]
-	public AccountType AccountType { get; set; }
+	public AccountType? AccountType { get; set; }
 
 	/// <summary>
 	/// Cтатус рекламного кабинета.
@@ -42,5 +42,5 @@ public class AdsAccount
 	/// Права пользователя в рекламном кабинете.
 	/// </summary>
 	[JsonProperty(propertyName: "access_role")]
-	public AccessRole AccessRole { get; set; }
+	public AccessRole? AccessRole { get; set; }
 }

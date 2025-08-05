@@ -30,7 +30,9 @@ public interface IVkApiInvoke
 	/// <param name="parameters"> Параметры. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
 	/// /// <param name="jsonConverters"> JsonConverters </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Ответ
+	/// </returns>
 	VkResponse Call(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters);
 
 	/// <summary>
@@ -40,7 +42,9 @@ public interface IVkApiInvoke
 	/// <param name="parameters"> Параметры. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
 	/// <param name="jsonConverters"> JsonConverters </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Тип ответа
+	/// </returns>
 	T Call<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, params JsonConverter[] jsonConverters);
 
 	/// <summary>
@@ -49,8 +53,10 @@ public interface IVkApiInvoke
 	/// <param name="methodName"> Название метода. </param>
 	/// <param name="parameters"> Параметры. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
-	/// <param name="token"></param>
-	/// <returns> </returns>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Ответ ВК
+	/// </returns>
 	Task<VkResponse> CallAsync(string methodName, VkParameters parameters, bool skipAuthorization = false,
 								CancellationToken token = default);
 
@@ -60,10 +66,11 @@ public interface IVkApiInvoke
 	/// <param name="methodName"> Название метода. </param>
 	/// <param name="parameters"> Параметры. </param>
 	/// <param name="skipAuthorization"> Если <c> true </c> то пропустить авторизацию. </param>
-	/// <param name="token"></param>
-	/// <returns> </returns>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Тип ответа
+	/// </returns>
 	Task<T> CallAsync<T>(string methodName, VkParameters parameters, bool skipAuthorization = false, CancellationToken token = default);
-
 
 	/// <summary>
 	/// Прямой вызов API-метода
@@ -87,7 +94,8 @@ public interface IVkApiInvoke
 	/// Флаг, что метод можно вызывать без
 	/// авторизации.
 	/// </param>
-	/// <param name="token"></param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Ответ сервера в формате JSON. </returns>
-	Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false, CancellationToken token = default);
+	Task<string> InvokeAsync(string methodName, IDictionary<string, string> parameters, bool skipAuthorization = false,
+							CancellationToken token = default);
 }

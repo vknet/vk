@@ -19,7 +19,7 @@ public interface INewsFeedCategoryAsync
 	/// пользователя.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -33,7 +33,7 @@ public interface INewsFeedCategoryAsync
 	/// Получает список новостей, рекомендованных пользователю.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -48,7 +48,7 @@ public interface INewsFeedCategoryAsync
 	/// пользователя.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -83,7 +83,7 @@ public interface INewsFeedCategoryAsync
 	/// равен 20.
 	/// Максимальное значение параметра 50.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -101,7 +101,7 @@ public interface INewsFeedCategoryAsync
 	/// Возвращает список пользователей и групп, которые текущий пользователь скрыл из
 	/// ленты новостей.
 	/// </summary>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Возвращает результат выполнения метода. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.getBanned
@@ -117,7 +117,7 @@ public interface INewsFeedCategoryAsync
 	/// вернуть.
 	/// </param>
 	/// <param name="nameCase"> Падеж для склонения имени и фамилии пользователя. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -142,7 +142,7 @@ public interface INewsFeedCategoryAsync
 	/// которых необходимо
 	/// скрыть из ленты новостей текущего пользователя.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -165,7 +165,7 @@ public interface INewsFeedCategoryAsync
 	/// Идентификаторы сообществ, новости от которых необходимо
 	/// вернуть в ленту.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -185,7 +185,7 @@ public interface INewsFeedCategoryAsync
 	/// сообщество).
 	/// </param>
 	/// <param name="itemId"> Идентификатор объекта. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -207,7 +207,7 @@ public interface INewsFeedCategoryAsync
 	/// сообщество).
 	/// </param>
 	/// <param name="itemId"> Идентификатор объекта. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/newsfeed.unignoreItem
 	/// </remarks>
@@ -221,7 +221,7 @@ public interface INewsFeedCategoryAsync
 	/// более новых к более старым.
 	/// </summary>
 	/// <param name="params"> Параметры запроса. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает результат выполнения метода.
 	/// </returns>
@@ -239,7 +239,7 @@ public interface INewsFeedCategoryAsync
 	/// <c> true </c> — вернуть дополнительную информацию о списке (значения source_ids
 	/// и no_reposts).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Метод возвращает список объектов пользовательских списков.
 	/// </returns>
@@ -268,7 +268,7 @@ public interface INewsFeedCategoryAsync
 	/// Нужно ли отображать копии постов в списке (
 	/// <c> true </c> — не нужно).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает Идентификатор списка.
 	/// </returns>
@@ -285,7 +285,7 @@ public interface INewsFeedCategoryAsync
 	/// Метод позволяет удалить пользовательский список новостей
 	/// </summary>
 	/// <param name="listId"> Числовой идентификатор списка . </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -304,7 +304,7 @@ public interface INewsFeedCategoryAsync
 	/// </param>
 	/// <param name="ownerId"> Идентификатор владельца объекта. </param>
 	/// <param name="itemId"> Идентификатор объекта. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
@@ -342,7 +342,7 @@ public interface INewsFeedCategoryAsync
 	/// сообществ. список слов, разделенных через запятую (Список слов, разделенных
 	/// через запятую).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Список объектов пользователей и групп.
 	/// </returns>

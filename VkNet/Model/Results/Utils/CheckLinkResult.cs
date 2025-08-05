@@ -12,5 +12,5 @@ public class CheckLinkResult
 	/// <summary>
 	/// Status
 	/// </summary>
-	public LinkAccessType Status { get; set; }
+	public LinkAccessType? Status { get; set; }
 }

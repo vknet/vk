@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Список владельцев чата
 /// </summary>
 [Serializable]
 public class PrivacyViewListOwners

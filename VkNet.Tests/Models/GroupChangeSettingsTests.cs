@@ -42,7 +42,7 @@ public class GroupChangeSettingsTests : BaseTest
 		result.Should()
 			.NotBeNull();
 
-		if (result == null)
+		if (result is null)
 		{
 			return;
 		}

@@ -177,5 +177,5 @@ public class UserSearchParams
 	/// <summary>
 	/// Разделы среди которых нужно осуществить поиск.
 	/// </summary>
-	public UserSection FromList { get; set; }
+	public UserSection? FromList { get; set; }
 }

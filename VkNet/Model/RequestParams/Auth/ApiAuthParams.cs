@@ -5,7 +5,7 @@ using VkNet.Enums.StringEnums;
 
 namespace VkNet.Model;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IApiAuthParams" />
 [Serializable]
 public class ApiAuthParams : IApiAuthParams
 {
@@ -52,7 +52,7 @@ public class ApiAuthParams : IApiAuthParams
 	public bool? ForceSms { get; set; }
 
 	/// <inheritdoc />
-	public Display Display { get; set; }
+	public Display? Display { get; set; }
 
 	/// <inheritdoc />
 	public Uri RedirectUri { get; set; }
@@ -64,10 +64,10 @@ public class ApiAuthParams : IApiAuthParams
 	public bool? TwoFactorSupported { get; set; }
 
 	/// <inheritdoc />
-	public GrantType GrantType { get; set; }
+	public GrantType? GrantType { get; set; }
 
 	/// <inheritdoc />
-	public ResponseType ResponseType { get; set; }
+	public ResponseType? ResponseType { get; set; }
 
 	/// <inheritdoc />
 	public bool? Revoke { get; set; }
@@ -110,11 +110,11 @@ public class ApiAuthParams : IApiAuthParams
 	/// <summary>
 	/// Формирует параметры авторизации по минимальному набору необходимых полей
 	/// </summary>
-	/// <param name="appId"> </param>
-	/// <param name="login"> </param>
-	/// <param name="password"> </param>
-	/// <param name="settings"> </param>
-	/// <returns> </returns>
+	/// <param name="appId">Идентификатор приложения</param>
+	/// <param name="login">Логин</param>
+	/// <param name="password">Пароль</param>
+	/// <param name="settings">Настрики</param>
+	/// <returns>Параметры авторизации</returns>
 	public static ApiAuthParams Format(ulong appId, string login, string password, Settings settings) => new()
 	{
 		ApplicationId = appId,

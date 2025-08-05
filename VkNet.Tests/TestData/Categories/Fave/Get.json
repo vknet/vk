@@ -1,129 +1,263 @@
 {
-  "response": {
-    "count": 4,
-    "items": [
-      {
-        "added_date": 1562970573,
-        "seen": true,
-        "type": "post",
-        "post": {
-          "id": 207704,
-          "from_id": -55326998,
-          "owner_id": -55326998,
-          "date": 1562646443,
-          "post_type": "post",
-          "text": "",
-          "marked_as_ads": 0,
-          "attachments": [
-            {
-              "type": "video",
-              "video": {
-                "id": 456239930,
-                "owner_id": -55326998,
-                "title": "4M2kcGc.mp4",
-                "duration": 12,
-                "description": "",
-                "date": 1562646443,
-                "comments": 0,
-                "views": 39498,
-                "width": 480,
-                "height": 480,
-                "image": [
-                  {
-                    "height": 96,
-                    "url": "https://sun9-61.u.32c/yg2M_MRAZZY.jpg",
-                    "width": 130,
-                    "with_padding": 1
-                  },
-                  {
-                    "height": 120,
-                    "url": "https://sun9-4.us.32b/bfzla8S6g_4.jpg",
-                    "width": 160,
-                    "with_padding": 1
-                  },
-                  {
-                    "height": 240,
-                    "url": "https://sun9-63.u.32a/ky2nxyv82VI.jpg",
-                    "width": 320,
-                    "with_padding": 1
-                  },
-                  {
-                    "height": 450,
-                    "url": "https://sun9-43.u.324/LALGA7kf3qg.jpg",
-                    "width": 800,
-                    "with_padding": 1
-                  },
-                  {
-                    "height": 720,
-                    "url": "https://sun9-35.u.325/q368FFrz2kg.jpg",
-                    "width": 720
-                  },
-                  {
-                    "height": 320,
-                    "url": "https://sun9-70.u.326/BcntYKWo0bo.jpg",
-                    "width": 320
-                  },
-                  {
-                    "height": 720,
-                    "url": "https://sun9-21.u.327/1aRYqqoIN2o.jpg",
-                    "width": 720
-                  },
-                  {
-                    "height": 1024,
-                    "url": "https://sun9-62.u.328/gio4QnS0soo.jpg",
-                    "width": 1024
-                  },
-                  {
-                    "height": 4096,
-                    "url": "https://sun9-37.u.329/aMXqZRPxyyY.jpg",
-                    "width": 4096
-                  }
-                ],
-                "is_favorite": false,
-                "access_key": "927e08188414e646c6",
-                "files": {
-                  "mp4_240": "https://cs1-72v4/3gIq3Z0shgApNHWOc0A",
-                  "mp4_360": "https://cs564636/_hXn_uS4_R_PpRO3zCg",
-                  "mp4_480": "https://cs564404/_hXn_uS4_R_PpRO3zCg"
-                },
-                "player": "https://vk.com/vi/57e_GQ3DKNZUGI4TAMQ",
-                "can_add": 0,
-                "track_code": "video_457a7debi1ikCHslDsIugi5WOgz_YUYgbyNyBxoztWG97SDPRDTWebkKeSYI9Be7Fg",
-                "type": "video"
-              }
-            }
-          ],
-          "post_source": {
-            "type": "api",
-            "platform": "android"
-          },
-          "comments": {
-            "count": 0,
-            "can_post": 1,
-            "groups_can_post": true
-          },
-          "likes": {
-            "count": 421,
-            "user_likes": 0,
-            "can_like": 1,
-            "can_publish": 1
-          },
-          "reposts": {
-            "count": 10,
-            "user_reposted": 0
-          },
-          "views": {
-            "count": 71781
-          },
-          "is_favorite": true
-        },
-        "tags": [
-          {
-            "id": 39503027,
-            "name": "Важное"
-          }
-        ]
-      }
-    ]
-  }
+	"response": {
+		"count": 4,
+		"items": [
+			{
+				"added_date": 1562970573,
+				"seen": true,
+				"type": "post",
+				"post": {
+					"id": 207704,
+					"from_id": -55326998,
+					"owner_id": -55326998,
+					"date": 1562646443,
+					"post_type": "post",
+					"text": "",
+					"marked_as_ads": 0,
+					"attachments": [
+						{
+							"type": "video",
+							"video": {
+								"id": 456239930,
+								"owner_id": -55326998,
+								"title": "4M2kcGc.mp4",
+								"duration": 12,
+								"description": "",
+								"date": 1562646443,
+								"comments": 0,
+								"views": 39498,
+								"width": 480,
+								"height": 480,
+								"image": [
+									{
+										"height": 96,
+										"url": "https://sun9-61.u.32c/yg2M_MRAZZY.jpg",
+										"width": 130,
+										"with_padding": 1
+									},
+									{
+										"height": 120,
+										"url": "https://sun9-4.us.32b/bfzla8S6g_4.jpg",
+										"width": 160,
+										"with_padding": 1
+									},
+									{
+										"height": 240,
+										"url": "https://sun9-63.u.32a/ky2nxyv82VI.jpg",
+										"width": 320,
+										"with_padding": 1
+									},
+									{
+										"height": 450,
+										"url": "https://sun9-43.u.324/LALGA7kf3qg.jpg",
+										"width": 800,
+										"with_padding": 1
+									},
+									{
+										"height": 720,
+										"url": "https://sun9-35.u.325/q368FFrz2kg.jpg",
+										"width": 720
+									},
+									{
+										"height": 320,
+										"url": "https://sun9-70.u.326/BcntYKWo0bo.jpg",
+										"width": 320
+									},
+									{
+										"height": 720,
+										"url": "https://sun9-21.u.327/1aRYqqoIN2o.jpg",
+										"width": 720
+									},
+									{
+										"height": 1024,
+										"url": "https://sun9-62.u.328/gio4QnS0soo.jpg",
+										"width": 1024
+									},
+									{
+										"height": 4096,
+										"url": "https://sun9-37.u.329/aMXqZRPxyyY.jpg",
+										"width": 4096
+									}
+								],
+								"is_favorite": false,
+								"access_key": "927e08188414e646c6",
+								"files": {
+									"mp4_240": "https://cs1-72v4/3gIq3Z0shgApNHWOc0A",
+									"mp4_360": "https://cs564636/_hXn_uS4_R_PpRO3zCg",
+									"mp4_480": "https://cs564404/_hXn_uS4_R_PpRO3zCg"
+								},
+								"player": "https://vk.com/vi/57e_GQ3DKNZUGI4TAMQ",
+								"can_add": 0,
+								"track_code": "video_457a7debi1ikCHslDsIugi5WOgz_YUYgbyNyBxoztWG97SDPRDTWebkKeSYI9Be7Fg",
+								"type": "video"
+							}
+						}
+					],
+					"post_source": {
+						"type": "api",
+						"platform": "android"
+					},
+					"comments": {
+						"count": 0,
+						"can_post": 1,
+						"groups_can_post": true
+					},
+					"likes": {
+						"count": 421,
+						"user_likes": 0,
+						"can_like": 1,
+						"can_publish": 1
+					},
+					"reposts": {
+						"count": 10,
+						"user_reposted": 0
+					},
+					"views": {
+						"count": 71781
+					},
+					"is_favorite": true
+				},
+				"tags": [
+					{
+						"id": 39503027,
+						"name": "Важное"
+					}
+				]
+			},
+			{
+				"added_date": 1675098325,
+				"seen": true,
+				"type": "link",
+				"link": {
+					"url": "vk.com",
+					"title": "vk.com",
+					"caption": "vk.com",
+					"photo": {
+						"album_id": -28,
+						"date": 1689759891,
+						"id": 457463131,
+						"owner_id": 2000039507,
+						"sizes": [
+							{
+								"height": 75,
+								"type": "s",
+								"width": 75,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=75x75&quality=96&sign=4bcfde0f744972fcb69ac3674333468d&c_uniq_tag=dUVGDAYd7EeWGjGpJM2PtW4OjDt_cvB21RZVP4Ar6Bs&type=album"
+							},
+							{
+								"height": 130,
+								"type": "m",
+								"width": 130,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=130x130&quality=96&sign=b99997266b617a0b43a0cde8fe9f6847&c_uniq_tag=2cQReT2gEo6lzsT1w-IbDKH7yNNfgVvf6fWqbVIk7Sc&type=album"
+							},
+							{
+								"height": 256,
+								"type": "x",
+								"width": 256,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=256x256&quality=96&sign=9b0a451f1c5f548101d8aa2affa1048c&c_uniq_tag=vHMW4dexjzf1qHjkczDDZVU0inIxqInSPzvYvVY-W5Q&type=album"
+							},
+							{
+								"height": 130,
+								"type": "o",
+								"width": 130,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=130x130&quality=96&sign=b99997266b617a0b43a0cde8fe9f6847&c_uniq_tag=2cQReT2gEo6lzsT1w-IbDKH7yNNfgVvf6fWqbVIk7Sc&type=album"
+							},
+							{
+								"height": 200,
+								"type": "p",
+								"width": 200,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=200x200&quality=96&sign=46689ebd72a528f2c37399086c7f3c21&c_uniq_tag=dw6qXye8wIDW03xXE0n5UtN88HZhBAfXbvNqjr5Zetk&type=album"
+							},
+							{
+								"height": 256,
+								"type": "q",
+								"width": 256,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=256x256&quality=96&sign=9b0a451f1c5f548101d8aa2affa1048c&c_uniq_tag=vHMW4dexjzf1qHjkczDDZVU0inIxqInSPzvYvVY-W5Q&type=album"
+							},
+							{
+								"height": 256,
+								"type": "r",
+								"width": 256,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=256x256&quality=96&sign=9b0a451f1c5f548101d8aa2affa1048c&c_uniq_tag=vHMW4dexjzf1qHjkczDDZVU0inIxqInSPzvYvVY-W5Q&type=album"
+							}
+						],
+						"text": "",
+						"user_id": 100,
+						"has_tags": false
+					},
+					"target": "internal",
+					"is_favorite": true,
+					"id": "6_759823298_736260903"
+				},
+				"tags": []
+			},
+			{
+				"added_date": 1675098325,
+				"seen": true,
+				"type": "link",
+				"link": {
+					"url": "vk.com",
+					"title": "vk.com",
+					"caption": "vk.com",
+					"photo": {
+						"album_id": -28,
+						"date": 1689759891,
+						"id": 457463131,
+						"owner_id": 2000039507,
+						"sizes": [
+							{
+								"height": 75,
+								"type": "s",
+								"width": 75,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=75x75&quality=96&sign=4bcfde0f744972fcb69ac3674333468d&c_uniq_tag=dUVGDAYd7EeWGjGpJM2PtW4OjDt_cvB21RZVP4Ar6Bs&type=album"
+							},
+							{
+								"height": 130,
+								"type": "m",
+								"width": 130,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=130x130&quality=96&sign=b99997266b617a0b43a0cde8fe9f6847&c_uniq_tag=2cQReT2gEo6lzsT1w-IbDKH7yNNfgVvf6fWqbVIk7Sc&type=album"
+							},
+							{
+								"height": 256,
+								"type": "x",
+								"width": 256,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=256x256&quality=96&sign=9b0a451f1c5f548101d8aa2affa1048c&c_uniq_tag=vHMW4dexjzf1qHjkczDDZVU0inIxqInSPzvYvVY-W5Q&type=album"
+							},
+							{
+								"height": 130,
+								"type": "o",
+								"width": 130,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=130x130&quality=96&sign=b99997266b617a0b43a0cde8fe9f6847&c_uniq_tag=2cQReT2gEo6lzsT1w-IbDKH7yNNfgVvf6fWqbVIk7Sc&type=album"
+							},
+							{
+								"height": 200,
+								"type": "p",
+								"width": 200,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=200x200&quality=96&sign=46689ebd72a528f2c37399086c7f3c21&c_uniq_tag=dw6qXye8wIDW03xXE0n5UtN88HZhBAfXbvNqjr5Zetk&type=album"
+							},
+							{
+								"height": 256,
+								"type": "q",
+								"width": 256,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=256x256&quality=96&sign=9b0a451f1c5f548101d8aa2affa1048c&c_uniq_tag=vHMW4dexjzf1qHjkczDDZVU0inIxqInSPzvYvVY-W5Q&type=album"
+							},
+							{
+								"height": 256,
+								"type": "r",
+								"width": 256,
+								"url": "https://sun9-22.userapi.com/impg/6Tk01fuwML7y5flRKmH7OTUqQaqiFWaNwtNbhA/fICHMoUxBZY.jpg?size=256x256&quality=96&sign=9b0a451f1c5f548101d8aa2affa1048c&c_uniq_tag=vHMW4dexjzf1qHjkczDDZVU0inIxqInSPzvYvVY-W5Q&type=album"
+							}
+						],
+						"text": "",
+						"user_id": 100,
+						"has_tags": false
+					},
+					"target": "internal",
+					"is_favorite": true,
+					"id": "6736260903"
+				},
+				"tags": []
+			}
+		]
+	}
 }

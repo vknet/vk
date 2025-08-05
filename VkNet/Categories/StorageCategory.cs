@@ -5,7 +5,7 @@ using VkNet.Model;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IStorageCategory" />
 public partial class StorageCategory : IStorageCategory
 {
 	/// <summary>

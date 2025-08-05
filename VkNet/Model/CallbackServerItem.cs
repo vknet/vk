@@ -44,5 +44,5 @@ public class CallbackServerItem
 	/// Статус сервера
 	/// </summary>
 	[JsonProperty(propertyName: "status")]
-	public CallbackServerStatus Status { get; set; }
+	public CallbackServerStatus? Status { get; set; }
 }

@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model;
 
 /// <summary>
+/// Получение скоупов приложения
 /// </summary>
 [Serializable]
 public class AppGetScopes

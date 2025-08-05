@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Результат метода получения целевой статистики
 /// </summary>
 [Serializable]
 public class GetTargetingStatsResult

@@ -37,7 +37,7 @@ public class FriendsGetMutualParams
 	/// random - возвращает друзей в случайном
 	/// порядке. строка.
 	/// </summary>
-	public FriendsOrder Order { get; set; }
+	public FriendsOrder? Order { get; set; }
 
 	/// <summary>
 	/// Количество общих друзей, которое нужно вернуть. (по умолчанию – все общие

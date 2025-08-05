@@ -43,5 +43,5 @@ public class VideoGetCatalogParams
 	/// id блоков, которые необходимо вернуть в ответе.
 	/// </summary>
 	[JsonProperty(propertyName: "filters")]
-	public VideoCatalogFilters Filters { get; set; }
+	public VideoCatalogFilters? Filters { get; set; }
 }

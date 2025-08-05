@@ -6,7 +6,7 @@ using VkNet.Exception;
 
 namespace VkNet.Model;
 
-/// <inheritdoc />
+/// <inheritdoc cref="ICarouselElementBuilder" />
 [Serializable]
 [UsedImplicitly]
 public class CarouselElementBuilder : ICarouselElementBuilder
@@ -49,9 +49,8 @@ public class CarouselElementBuilder : ICarouselElementBuilder
 	}
 
 	/// <summary>
-	/// Тип.
+	/// Инициализирует новый экземпляр класса <see cref="CarouselElementBuilder" />
 	/// </summary>
-	/// <param name="type"></param>
 	public CarouselElementBuilder(string type) => _type = type;
 
 	/// <inheritdoc />

@@ -46,7 +46,7 @@ public class NewsItem
 	/// Находится в записях со стен, содержит тип новости (post или copy).
 	/// </summary>
 	[JsonProperty("post_type")]
-	public PostTypeOrder PostType { get; set; }
+	public PostTypeOrder? PostType { get; set; }
 
 	/// <summary>
 	/// Передается в случае, если этот пост сделан при удалении.

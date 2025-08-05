@@ -9,7 +9,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IFriendsCategoryAsync" />
+/// <summary>
+/// Методы для работы с друзьями.
+/// </summary>
 public interface IFriendsCategory : IFriendsCategoryAsync
 {
 	/// <inheritdoc cref="IFriendsCategoryAsync.GetAsync" />
@@ -25,7 +27,7 @@ public interface IFriendsCategory : IFriendsCategoryAsync
 	ReadOnlyCollection<MutualFriend> GetMutual(FriendsGetMutualParams @params);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.AreFriendsAsync" />
-	ReadOnlyCollection<AreFriendsResult> AreFriends([NotNull] IEnumerable<long> userIds, bool? needSign = null);
+	ReadOnlyCollection<AreFriendsResult> AreFriends([NotNull] IEnumerable<long> userIds, bool? needSign = null, bool? extended = null);
 
 	/// <inheritdoc cref="IFriendsCategoryAsync.AddListAsync" />
 	long AddList(string name, IEnumerable<long> userIds);

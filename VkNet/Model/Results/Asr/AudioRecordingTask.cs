@@ -20,7 +20,7 @@ public class AudioRecordingTask
 	/// Статус задачи на обработку аудиозаписи.
 	/// </summary>
 	[JsonProperty("status")]
-	public AsrStatus Status { get; set; }
+	public AsrStatus? Status { get; set; }
 
 	/// <summary>
 	/// Расшифровка текста. Имеет значение, если параметр status имеет значение finished.

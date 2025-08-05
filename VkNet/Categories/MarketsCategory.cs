@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using VkNet.Abstractions;
 using VkNet.Enums;
@@ -6,7 +7,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IMarketsCategory" />
 public partial class MarketsCategory : IMarketsCategory
 {
 	/// <summary>
@@ -21,6 +22,42 @@ public partial class MarketsCategory : IMarketsCategory
 	public MarketsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
+
+	public VkCollection<Market> Get(MarketGetParams @params) => _vk.Call<VkCollection<Market>>("market.get",
+		new()
+		{
+			{
+				"owner_id", @params.OwnerId
+			},
+			{
+				"album_id", @params.AlbumId
+			},
+			{
+				"count", @params.Count
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"extended", @params.Extended
+			},
+			{
+				"date_from", @params.DateFrom
+			},
+			{
+				"date_to", @params.DateTo
+			},
+			{
+				"need_variants", @params.NeedVariants
+			},
+			{
+				"with_disabled", @params.WithDisabled
+			}
+		});
+
+
+	/// <inheritdoc />
+	[Obsolete("This method is deprecated. Use  Get(MarketGetParams @params) instead", false)]
 	public VkCollection<Market> Get(long ownerId, long? albumId = null, int? count = null, int? offset = null, bool extended = false)
 	{
 		var parameters = new VkParameters
@@ -81,9 +118,6 @@ public partial class MarketsCategory : IMarketsCategory
 					"price_to", @params.PriceTo
 				},
 				{
-					"tags", @params.Tags
-				},
-				{
 					"sort", @params.Sort
 				},
 				{
@@ -97,6 +131,12 @@ public partial class MarketsCategory : IMarketsCategory
 				},
 				{
 					"extended", @params.Extended
+				},
+				{
+					"status", @params.Status
+				},
+				{
+					"need_variants", @params.NeedVariants
 				}
 			});
 
@@ -345,56 +385,59 @@ public partial class MarketsCategory : IMarketsCategory
 		})[key: "market_item_id"];
 
 	/// <inheritdoc />
-	public bool Edit(MarketProductParams editParams) => _vk.Call<bool>("market.edit",
+	public bool Edit(MarketProductParams @params) => _vk.Call<bool>("market.edit",
 		new()
 		{
 			{
-				"owner_id", editParams.OwnerId
+				"owner_id", @params.OwnerId
 			},
 			{
-				"item_id", editParams.ItemId
+				"item_id", @params.ItemId
 			},
 			{
-				"name", editParams.Name
+				"name", @params.Name
 			},
 			{
-				"description", editParams.Description
+				"description", @params.Description
 			},
 			{
-				"url", editParams.Url
+				"category_id", @params.CategoryId
 			},
 			{
-				"sku", editParams.Sku
+				"price", @params.Price
 			},
 			{
-				"category_id", editParams.CategoryId
+				"old_price", @params.OldPrice
 			},
 			{
-				"price", editParams.Price
+				"deleted", @params.Deleted
 			},
 			{
-				"old_price", editParams.OldPrice
+				"main_photo_id", @params.MainPhotoId
 			},
 			{
-				"deleted", editParams.Deleted
+				"photo_ids", @params.PhotoIds
 			},
 			{
-				"main_photo_id", editParams.MainPhotoId
+				"video_ids", @params.VideoIds
 			},
 			{
-				"photo_ids", editParams.PhotoIds
+				"url", @params.Url
 			},
 			{
-				"dimension_width", editParams.DimensionWidth
+				"sku", @params.Sku
 			},
 			{
-				"dimension_height", editParams.DimensionHeight
+				"dimension_width", @params.DimensionWidth
 			},
 			{
-				"dimension_length", editParams.DimensionLength
+				"dimension_height", @params.DimensionHeight
 			},
 			{
-				"weight", editParams.Weight
+				"dimension_length", @params.DimensionLength
+			},
+			{
+				"weight", @params.Weight
 			}
 		});
 
@@ -478,7 +521,7 @@ public partial class MarketsCategory : IMarketsCategory
 	}
 
 	/// <inheritdoc />
-	public long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false)
+	public long AddAlbum(long ownerId, string title, long? photoId = null, bool mainAlbum = false, bool isHidden = false)
 	{
 		var parameters = new VkParameters
 		{
@@ -493,6 +536,9 @@ public partial class MarketsCategory : IMarketsCategory
 			},
 			{
 				"main_album", mainAlbum
+			},
+			{
+				"is_hidden", isHidden
 			}
 		};
 
@@ -500,7 +546,7 @@ public partial class MarketsCategory : IMarketsCategory
 	}
 
 	/// <inheritdoc />
-	public bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false)
+	public bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false, bool isHidden = false)
 	{
 		var parameters = new VkParameters
 		{
@@ -518,6 +564,9 @@ public partial class MarketsCategory : IMarketsCategory
 			},
 			{
 				"main_album", mainAlbum
+			},
+			{
+				"is_hidden", isHidden
 			}
 		};
 

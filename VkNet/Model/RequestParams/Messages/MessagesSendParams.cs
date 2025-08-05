@@ -21,6 +21,7 @@ public class MessagesSendParams
 	/// Заголовок сообщения(выделется жирным)
 	/// </summary>
 	[JsonProperty("title")]
+	[Obsolete("Свойство официально не поддерживается и может не отображаться в чате.")]
 	public string Title { get; set; }
 
 	/// <summary>

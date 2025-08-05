@@ -228,4 +228,19 @@ public interface IVkApiCategories
 	/// Asr
 	/// </summary>
 	IAsrCategory Asr { get; }
+
+	/// <summary>
+	/// ShortVideo
+	/// </summary>
+	IShortVideoCategory ShortVideo { get; }
+
+	/// <summary>
+	/// Store
+	/// </summary>
+	IStoreCategory Store { get; }
+  
+  /// <summary>
+	/// Calls
+	/// </summary>
+	ICallsCategory Calls { get; }
 }

@@ -5,7 +5,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IAsrCategory" />
 public partial class AsrCategory : IAsrCategory
 {
 	/// <summary>

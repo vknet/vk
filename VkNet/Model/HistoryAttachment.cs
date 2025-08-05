@@ -31,13 +31,13 @@ public class HistoryAttachment
 	public int ForwardLevel { get; set; }
 
 	/// <summary>
-	///
+	/// Идентификатор вложения
 	/// </summary>
 	[JsonProperty("cmid")]
 	public long Cmid { get; set; }
 
 	/// <summary>
-	///
+	/// Идентификатор владельца
 	/// </summary>
 	[JsonProperty("from_id")]
 	public long FromId { get; set; }

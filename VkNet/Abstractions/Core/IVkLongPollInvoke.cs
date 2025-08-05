@@ -18,8 +18,10 @@ public interface IVkLongPollInvoke
 	/// </summary>
 	/// <param name="server"> Сервер. </param>
 	/// <param name="parameters"> Параметры. </param>
-	/// /// <param name="jsonConverters"> JsonConverters </param>
-	/// <returns> </returns>
+	/// <param name="jsonConverters"> JsonConverters </param>
+	/// <returns>
+	/// Ответ сервера в формате JSON
+	/// </returns>
 	VkResponse CallLongPoll(string server, VkParameters parameters, params JsonConverter[] jsonConverters);
 
 	/// <summary>
@@ -27,17 +29,20 @@ public interface IVkLongPollInvoke
 	/// </summary>
 	/// <param name="server"> Сервер. </param>
 	/// <param name="parameters"> Параметры. </param>
-	/// /// <param name="jsonConverters"> JsonConverters </param>
-	/// <returns> </returns>
+	/// <param name="jsonConverters"> JsonConverters </param>
+	/// <returns>
+	/// Десериализованный ответ сервера
+	/// </returns>
 	T CallLongPoll<T>(string server, VkParameters parameters, params JsonConverter[] jsonConverters);
-
 	/// <summary>
 	/// Вызвать ожидание событий LongPoll API.
 	/// </summary>
 	/// <param name="server"> Сервер. </param>
 	/// <param name="parameters"> Параметры. </param>
-	/// <param name="token"></param>
-	/// <returns> </returns>
+	/// <param name="token">Токен отмены операции</param>
+	/// <returns>
+	/// Ответ сервера в формате JSON
+	/// </returns>
 	Task<VkResponse> CallLongPollAsync(string server, VkParameters parameters, CancellationToken token = default);
 
 	/// <summary>
@@ -63,7 +68,7 @@ public interface IVkLongPollInvoke
 	/// </summary>
 	/// <param name="server"> Сервер </param>
 	/// <param name="parameters"> Вход. параметры LongPoll. </param>
-	/// <param name="token"></param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <exception cref="ArgumentException"> </exception>
 	/// <returns> Ответ сервера в формате JSON. </returns>
 	Task<string> InvokeLongPollAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default);
@@ -73,7 +78,7 @@ public interface IVkLongPollInvoke
 	/// </summary>
 	/// <param name="server"> Сервер </param>
 	/// <param name="parameters"> Вход. параметры LongPoll. </param>
-	/// <param name="token"></param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <exception cref="ArgumentException"> </exception>
 	/// <returns> Ответ сервера в формате JSON. </returns>
 	Task<JObject> InvokeLongPollExtendedAsync(string server, Dictionary<string, string> parameters, CancellationToken token = default);

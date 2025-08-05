@@ -16,7 +16,7 @@ public class MessageTemplate
 	/// Тип шаблона.
 	/// </summary>
 	[JsonProperty(propertyName: "type")]
-	public TemplateType Type { get; set; }
+	public TemplateType? Type { get; set; }
 
 	/// <summary>
 	/// Массив элементов шаблона.

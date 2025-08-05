@@ -14,7 +14,7 @@ public class FaveGetParams
 	/// Типы объектов, которые необходимо вернуть.
 	/// </summary>
 	[JsonProperty("item_type")]
-	public FaveType ItemType { get; set; }
+	public FaveType? ItemType { get; set; }
 
 	/// <summary>
 	/// Список дополнительных полей профилей, которые необходимо вернуть.

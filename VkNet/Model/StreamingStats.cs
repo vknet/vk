@@ -15,7 +15,7 @@ public class StreamingStats
 	/// Тип событий
 	/// </summary>
 	[JsonProperty(propertyName: "event_type")]
-	public StreamingEventType EventType { get; set; }
+	public StreamingEventType? EventType { get; set; }
 
 	/// <summary>
 	/// Значения статистики

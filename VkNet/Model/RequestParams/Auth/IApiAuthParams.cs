@@ -94,7 +94,7 @@ public interface IApiAuthParams
 	/// <summary>
 	/// Указывает тип отображения страницы авторизации.
 	/// </summary>
-	Display Display { get; set; }
+	Display? Display { get; set; }
 
 	/// <summary>
 	/// Адрес, на который будет переадресован пользователь после прохождения
@@ -115,12 +115,12 @@ public interface IApiAuthParams
 	/// <summary>
 	/// Тип авторизации.
 	/// </summary>
-	GrantType GrantType { get; set; }
+	GrantType? GrantType { get; set; }
 
 	/// <summary>
 	/// Тип ответа, который Вы хотите получить.
 	/// </summary>
-	ResponseType ResponseType { get; set; }
+	ResponseType? ResponseType { get; set; }
 
 	/// <summary>
 	/// Параметр, указывающий, что необходимо не пропускать этап подтверждения прав,

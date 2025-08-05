@@ -12,7 +12,7 @@ public class ToNullIfArrayConverter<T> : Newtonsoft.Json.JsonConverter
 	{
 		var token = JToken.Load(reader);
 
-		if (token.Type == JTokenType.Array)
+		if (token.Type is JTokenType.Array)
 		{
 			return null;
 		}

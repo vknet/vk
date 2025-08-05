@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Результат получения настроек Bots Longpoll
 /// </summary>
 [Serializable]
 public class GetLongPollSettingsResult

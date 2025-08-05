@@ -4,7 +4,7 @@ using Newtonsoft.Json.Serialization;
 namespace VkNet.Utils.JsonConverter;
 
 /// <summary>
-///
+/// Стратегия наменования сущностей в camelCase
 /// </summary>
 public class LowerCaseWithDigitNamingStrategy : NamingStrategy
 {

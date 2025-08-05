@@ -37,4 +37,23 @@ public class Sticker : MediaAttachment
 		get => Id;
 		set => Id = value;
 	}
+
+	/// <summary>
+	/// URL анимации стикера (для анимированных стикеров)
+	/// </summary>
+	[JsonProperty("animation_url")]
+	public string AnimationUrl { get; set; }
+
+	/// <summary>
+	/// Тип, который описывает вариант формата ответа.
+	/// </summary>
+	/// <remarks>По умолчанию: "base_sticker_new"</remarks>
+	[JsonProperty("inner_type")]
+	public string InnerType { get; set; }
+
+	/// <summary>
+	/// Информация о том, доступен ли стикер
+	/// </summary>
+	[JsonProperty("is_allowed")]
+	public bool IsAllowed { get; set; }
 }

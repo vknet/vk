@@ -6,7 +6,7 @@ using VkNet.Enums.StringEnums;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Результат получения статистики
 /// </summary>
 [Serializable]
 public class GetStatisticsResult
@@ -27,5 +27,5 @@ public class GetStatisticsResult
 	/// обязательный параметр, строка
 	/// </summary>
 	[JsonProperty("type")]
-	public IdsType Type { get; set; }
+	public IdsType? Type { get; set; }
 }

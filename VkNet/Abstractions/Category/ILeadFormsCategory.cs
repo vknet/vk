@@ -5,7 +5,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions.Category;
 
-/// <inheritdoc cref="ILeadFormsCategoryAsync" />
+/// <summary>
+/// Формы сбора заявок Подойдут для записи клиентов, предварительной регистрации, подписки на рассылки, запросов информации, подключения услуг, оформления заказов и многого другого. Вы создаете формы с заявками, а пользователи оставляют свою контактную информацию. Вам остается завершить оформление заявки, связавшись с ними удобным способом.
+/// </summary>
 public interface ILeadFormsCategory : ILeadFormsCategoryAsync
 {
 	/// <inheritdoc cref="ILeadFormsCategoryAsync.CreateAsync" />

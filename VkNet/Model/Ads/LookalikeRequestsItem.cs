@@ -22,7 +22,7 @@ public class LookalikeRequestItem
 	/// Тип источника исходной аудитории для поиска похожей аудитории.
 	/// </summary>
 	[JsonProperty("source_type")]
-	public SourceType SourceType { get; set; }
+	public SourceType? SourceType { get; set; }
 
 	/// <summary>
 	/// Время создания объявления
@@ -42,7 +42,7 @@ public class LookalikeRequestItem
 	/// Cтатус объявления.
 	/// </summary>
 	[JsonProperty(propertyName: "status")]
-	public AdRequestStatus Status { get; set; }
+	public AdRequestStatus? Status { get; set; }
 
 	/// <summary>
 	/// Дата запланированного удаления запроса.

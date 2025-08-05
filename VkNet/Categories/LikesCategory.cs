@@ -6,7 +6,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="ILikesCategory" />
 public partial class LikesCategory : ILikesCategory
 {
 	/// <summary>
@@ -23,8 +23,10 @@ public partial class LikesCategory : ILikesCategory
 	/// <inheritdoc />
 	public VkCollection<long> GetList(LikesGetListParams @params, bool skipAuthorization = false)
 	{
-		if (@params.Extended == true)
+		if (@params.Extended is true)
+		{
 			throw new VkApiException("Если параметр Extended = true то используйте метод GetListEx()");
+		}
 
 		var parameters = new VkParameters
 		{
@@ -78,8 +80,10 @@ public partial class LikesCategory : ILikesCategory
 	/// <inheritdoc />
 	public UserOrGroup GetListEx(LikesGetListParams @params)
 	{
-		if (@params.Extended == false)
+		if (@params.Extended is false)
+		{
 			throw new VkApiException("Если параметр Extended = false то используйте метод GetList()");
+		}
 
 		var parameters = new VkParameters
 		{

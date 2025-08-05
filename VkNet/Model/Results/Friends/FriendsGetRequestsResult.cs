@@ -8,7 +8,7 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Model;
 
 /// <summary>
-/// Friends Get Requests Result
+/// Результат получения запросов в друзья
 /// </summary>
 [Serializable]
 public class FriendsGetRequestsResult
@@ -20,6 +20,7 @@ public class FriendsGetRequestsResult
 	public long? UserId { get; set; }
 
 	/// <summary>
+	/// Общие
 	/// </summary>
 	[JsonProperty(propertyName: "mutual")]
 	[JsonConverter(typeof(VkCollectionJsonConverter), "users")]

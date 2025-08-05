@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Параметры запроса на сохранение похожих
 /// </summary>
 [Serializable]
 public class SaveLookalikeRequestResultParams

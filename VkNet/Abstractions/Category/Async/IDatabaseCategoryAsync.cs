@@ -14,6 +14,7 @@ namespace VkNet.Abstractions;
 /// </summary>
 public interface IDatabaseCategoryAsync
 {
+
 	/// <summary>
 	/// Возвращает список стран.
 	/// </summary>
@@ -31,7 +32,7 @@ public interface IDatabaseCategoryAsync
 	/// Количество стран, которое необходимо вернуть (по умолчанию 100, максимальное
 	/// значение 1000).
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <remarks>
 	/// Если не заданы параметры needAll и code, то возвращается краткий список стран,
 	/// расположенных наиболее близко к
@@ -41,6 +42,9 @@ public interface IDatabaseCategoryAsync
 	/// то будут возвращены только страны с перечисленными ISO 3166-1 alpha-2 кодами.
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getCountries
 	/// </remarks>
+	/// <returns>
+	/// Список стран
+	/// </returns>
 	Task<VkCollection<Country>> GetCountriesAsync(bool? needAll = null,
 												IEnumerable<Iso3166> codes = null,
 												int? count = null,
@@ -57,7 +61,7 @@ public interface IDatabaseCategoryAsync
 	/// Отступ, необходимый для выбора определенного подмножества
 	/// регионов.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Список регионов. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getRegions
@@ -72,7 +76,7 @@ public interface IDatabaseCategoryAsync
 	/// Возвращает информацию об улицах по их идентификаторам.
 	/// </summary>
 	/// <param name="streetIds"> Идентификаторы улиц. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Информация об улицах. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getStreetsById
@@ -84,7 +88,7 @@ public interface IDatabaseCategoryAsync
 	/// Возвращает информацию о странах по их идентификаторам.
 	/// </summary>
 	/// <param name="countryIds"> Идентификаторы стран. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Информация о странах. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getCountriesById
@@ -96,7 +100,7 @@ public interface IDatabaseCategoryAsync
 	/// Возвращает список городов.
 	/// </summary>
 	/// <param name="getCitiesParams"> Параметры запроса database.getCities </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Cписок городов </returns>
 	/// <remarks>
 	/// Возвращает коллекцию городов, каждый из которых содержит поля City.Id
@@ -118,7 +122,7 @@ public interface IDatabaseCategoryAsync
 	/// Возвращает информацию о городах по их идентификаторам.
 	/// </summary>
 	/// <param name="cityIds"> Идентификаторы городов. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Информация о городах. </returns>
 	/// <remarks>
 	/// Идентификаторы городов могут быть получены с помощью методов UsersCategory.Get,
@@ -145,7 +149,7 @@ public interface IDatabaseCategoryAsync
 	/// подмножества учебных заведений.
 	/// </param>
 	/// <param name="count"> Количество учебных заведений, которое необходимо вернуть. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Список высших учебных заведений, удовлетворяющих заданным условиям. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getUniversities
@@ -167,7 +171,7 @@ public interface IDatabaseCategoryAsync
 	/// подмножества школ.
 	/// </param>
 	/// <param name="count"> Количество школ, которое необходимо вернуть. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Cписок школ. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getSchools
@@ -190,7 +194,7 @@ public interface IDatabaseCategoryAsync
 	/// подмножества факультетов.
 	/// </param>
 	/// <param name="offset"> Количество факультетов которое необходимо получить. </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Cписок факультетов. </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.com/dev/database.getFaculties
@@ -207,7 +211,7 @@ public interface IDatabaseCategoryAsync
 	/// Идентификатор страны, доступные классы в которой
 	/// необходимо вернуть.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив, каждый элемент которого представляет собой пару:
 	/// идентификатор и строковое обозначение
@@ -231,7 +235,7 @@ public interface IDatabaseCategoryAsync
 	/// Отступ, необходимый для получения определенного
 	/// подмножества кафедр.
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// Возвращает массив, каждый элемент которого представляет собой пару:
 	/// идентификатор и строковое обозначение класса.
@@ -250,7 +254,7 @@ public interface IDatabaseCategoryAsync
 	/// <param name = "stationIds">
 	/// Список идентификаторов станций метро список положительных чисел, разделенных запятыми
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает массив объектов, описывающих станции метро.
 	/// Каждый объект содержит следующие поля:
@@ -279,7 +283,7 @@ public interface IDatabaseCategoryAsync
 	/// <param name = "extended">
 	/// Флаг, может принимать значения 1 или 0, по умолчанию
 	/// </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и массив объектов, описывающих станции метро, в поле items.
 	/// Каждый объект содержит следующие поля:

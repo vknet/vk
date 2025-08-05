@@ -3,7 +3,7 @@ using System.Net;
 
 namespace VkNet.Utils;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IWebProxy" />
 /// <summary>
 /// Реализация WebProxy
 /// </summary>
@@ -37,7 +37,7 @@ public class WebProxy : IWebProxy
 	/// <returns> Данные авторизации </returns>
 	private static ICredentials GetCredentials(string proxyLogin = null, string proxyPassword = null)
 	{
-		if (proxyLogin != null && proxyPassword != null)
+		if (proxyLogin is not null && proxyPassword is not null)
 		{
 			return new NetworkCredential(proxyLogin, proxyPassword);
 		}
@@ -56,7 +56,7 @@ public class WebProxy : IWebProxy
 	/// <returns> Прокси </returns>
 	public static IWebProxy GetProxy(string host = null, int? port = null, string proxyLogin = null, string proxyPassword = null)
 	{
-		if (host == null || port == null)
+		if (host is null || port is null)
 		{
 			return null;
 		}

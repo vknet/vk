@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace VkNet.Model;
 
 /// <summary>
-///
+/// Результат получения информации о музыкантах
 /// </summary>
 [Serializable]
 public class GetMusiciansResult

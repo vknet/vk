@@ -7,7 +7,9 @@ using VkNet.Utils;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="INewsFeedCategoryAsync"/>
+/// <summary>
+/// Методы для работы с новостной лентой пользователя.
+/// </summary>
 public interface INewsFeedCategory : INewsFeedCategoryAsync
 {
 	/// <inheritdoc cref="INewsFeedCategoryAsync.GetAsync"/>

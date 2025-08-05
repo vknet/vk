@@ -13,6 +13,14 @@ namespace VkNet.Model;
 public class AppGetParams
 {
 	/// <summary>
+	/// Идентификатор приложения, данные которого необходимо получить.
+	/// Если этот параметр и параметр app_ids не указаны, возвращается идентификатор
+	/// приложения, через которое выдан ключ доступа (access_token).
+	/// </summary>
+	[JsonProperty(propertyName: "app_id")]
+	public long AppId { get; set; }
+
+	/// <summary>
 	/// Список идентификаторов приложений, данные которых необходимо получить.
 	/// </summary>
 	[JsonProperty(propertyName: "app_ids")]
@@ -23,7 +31,7 @@ public class AppGetParams
 	/// android, winphone, web.
 	/// </summary>
 	[JsonProperty(propertyName: "platform")]
-	public AppPlatforms Platform { get; set; }
+	public AppPlatforms? Platform { get; set; }
 
 	/// <summary>
 	/// Позволяет получить дополнительные поля: screenshots. По умолчанию возвращает
@@ -57,5 +65,5 @@ public class AppGetParams
 	/// умолчанию nom.
 	/// </summary>
 	[JsonProperty(propertyName: "name_case")]
-	public NameCase NameCase { get; set; }
+	public NameCase? NameCase { get; set; }
 }

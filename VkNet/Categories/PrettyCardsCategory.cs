@@ -6,7 +6,7 @@ using VkNet.Utils;
 
 namespace VkNet.Categories;
 
-/// <inheritdoc />
+/// <inheritdoc cref="IPrettyCardsCategory" />
 public partial class PrettyCardsCategory : IPrettyCardsCategory
 {
 	/// <summary>

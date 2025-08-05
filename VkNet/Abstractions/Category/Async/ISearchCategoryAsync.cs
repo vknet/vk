@@ -14,8 +14,9 @@ public interface ISearchCategoryAsync
 	/// Метод позволяет получить результаты быстрого поиска по произвольной подстроке
 	/// </summary>
 	/// <param name="params"> Параметры запроса </param>
-	/// <param name="token">Токен отмены</param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
+	/// Список результатов
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте https://vk.com/dev/search.getHints

@@ -16,7 +16,9 @@ public static class ExecuteErrorsHandler
 	/// Получить <see cref="ExecuteException" /> со всеми ошибками запроса execute
 	/// </summary>
 	/// <param name="response"> Json ответ </param>
-	/// <returns> </returns>
+	/// <returns>
+	/// Ошибка исполнения
+	/// </returns>
 	/// <exception cref="ExecuteException"> Параметр response должен иметь значение. </exception>
 	public static ExecuteException GetExecuteExceptions(string response)
 	{
@@ -27,7 +29,7 @@ public static class ExecuteErrorsHandler
 
 		var executeErrorsResponse = JsonConvert.DeserializeObject<ExecuteErrorsResponse>(response, JsonConfigure.JsonSerializerSettings);
 
-		if (executeErrorsResponse?.ExecuteErrors == null)
+		if (executeErrorsResponse?.ExecuteErrors is null)
 		{
 			return null;
 		}

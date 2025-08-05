@@ -105,8 +105,7 @@ public class ImplicitFlowTests
 			RedirectUri = new(Constants.DefaultRedirectUri)
 		});
 
-		var result = await implicitFlow.AuthorizeAsync()
-			.ConfigureAwait(false);
+		var result = await implicitFlow.AuthorizeAsync();
 
 		result.Should()
 			.NotBeNull();

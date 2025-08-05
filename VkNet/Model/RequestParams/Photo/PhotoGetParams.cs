@@ -50,7 +50,7 @@ public class PhotoGetParams
 	/// либо только фотографий, на которых он был отмечен. Может принимать значения
 	/// photo, photo_tag.
 	/// </summary>
-	public FeedType FeedType { get; set; }
+	public FeedType? FeedType { get; set; }
 
 	/// <summary>
 	/// Unixtime, который может быть получен методом newsfeed.get в поле date, для

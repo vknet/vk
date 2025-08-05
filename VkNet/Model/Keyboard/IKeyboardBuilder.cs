@@ -10,6 +10,7 @@ public interface IKeyboardBuilder
 	/// <summary>
 	/// Добавить кнопку
 	/// </summary>
+	/// <param name="addButtonParams">Параметры кнопки</param>
 	/// <returns>Конструктор клавиатур</returns>
 	IKeyboardBuilder AddButton(AddButtonParams addButtonParams);
 
@@ -18,13 +19,13 @@ public interface IKeyboardBuilder
 	/// </summary>
 	/// <param name="label">Надписть на кнопке</param>
 	/// <param name="extra">Дополнительная информация о кнопке</param>
-	/// <param name="type">Основная информация о кнопке</param>
+	/// <param name="payloadType">Основная информация о типе кнопки в Payload</param>
 	/// <param name="color">Цвет кнопки</param>
 	/// <returns>Конструктор клавиатур</returns>
 	IKeyboardBuilder AddButton(string label,
 								string extra,
 								KeyboardButtonColor? color = default,
-								string type = null);
+								string payloadType = null);
 
 	/// <summary>
 	/// Добавить кнопку
@@ -32,7 +33,7 @@ public interface IKeyboardBuilder
 	/// <param name="buttonAction">Действие при нажатии на кнопку</param>
 	/// <param name="color">Цвет кнопки</param>
 	/// <returns>Конструктор клавиатур</returns>
-	IKeyboardBuilder AddButton(MessageKeyboardButtonAction buttonAction, KeyboardButtonColor color = default);
+	IKeyboardBuilder AddButton(MessageKeyboardButtonAction buttonAction, KeyboardButtonColor? color = default);
 
 	/// <summary>
 	/// Добавить строку в клавиатуру
@@ -45,10 +46,10 @@ public interface IKeyboardBuilder
 	/// </summary>
 	/// <returns>Конструктор клавиатур</returns>
 	IKeyboardBuilder SetOneTime();
-
 	/// <summary>
 	/// Сделать отображение клавиатуры внутри сообщения
 	/// </summary>
+	/// <param name="inline">Признак отображения</param>
 	/// <returns>Конструктор клавиатур</returns>
 	IKeyboardBuilder SetInline(bool inline = true);
 

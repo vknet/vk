@@ -15,14 +15,14 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 
 		const int userId = 123;
 		var groupId = new GroupId(1234);
-		var unGroupId = -1234;
+		const int unGroupId = -1234;
 		const int id = 4444;
 
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -70,7 +70,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -114,7 +114,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -158,7 +158,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -204,7 +204,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -254,7 +254,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -316,7 +316,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -370,7 +370,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -418,7 +418,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 
@@ -467,7 +467,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 		{
 			Key = "test",
 			Server = "https://vk.com",
-			Ts = "0",
+			Ts = 0,
 			Wait = 10
 		});
 

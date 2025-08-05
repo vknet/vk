@@ -109,7 +109,7 @@ public static class VkErrorCode
 	/// текущего пользователя есть в полной
 	/// версии сайта.
 	/// </summary>
-	public const int CannotBlacklistYourself = 15;
+	public const int AccessDenied = 15;
 
 	/// <summary>
 	/// Требуется выполнение запросов по протоколу HTTPS, т.к. пользователь включил
@@ -369,6 +369,11 @@ public static class VkErrorCode
 	public const int TooManyAdsPosts = 224;
 
 	/// <summary>
+	/// Превышен лимит друзей
+	/// </summary>
+	public const int TooManyFriends = 242;
+
+	/// <summary>
 	/// Доступ к списку групп запрещен из-за настроек конфиденциальности пользователя.
 	/// </summary>
 	public const int GroupsListAccessDenied = 260;
@@ -432,6 +437,16 @@ public static class VkErrorCode
 	public const int CannotSendDuePrivacy = 902;
 
 	/// <summary>
+	/// Формат клавиатуры недействителен.
+	/// </summary>
+	public const int KeyboardFormatIsInvalid = 911;
+	
+	/// <summary>
+	/// Это функция чат-бота, измените этот статус в настройках.
+	/// </summary>
+	public const int ThisIsAChatBotFeatureChangeThisStatusInSettings = 912;
+	
+	/// <summary>
 	/// Слишком много пересланных сообщений.
 	/// </summary>
 	public const int TooMuchSentMessages = 913;
@@ -445,6 +460,16 @@ public static class VkErrorCode
 	/// Нет доступа к беседе
 	/// </summary>
 	public const int ConversationAccessDenied = 917;
+	
+	/// <summary>
+	/// Нельзя переслать эти сообщения.
+	/// </summary>
+	public const int CannotForwardMessages = 921;
+	
+	/// <summary>
+	/// Вы покинули этот чат.
+	/// </summary>
+	public const int YouLeftThisChat = 922;
 
 	/// <summary>
 	/// Вы не администратор в данном чате
@@ -457,9 +482,104 @@ public static class VkErrorCode
 	public const int UserNotFoundInChat = 935;
 
 	/// <summary>
+	/// Контакт не найден
+	/// </summary>
+	public const int ContactNotFound = 936;
+
+	/// <summary>
+	/// Слишком много постов в сообщениях
+	/// </summary>
+	public const int TooManyPostsInMessages = 940;
+
+	/// <summary>
+	/// Не удается использовать этот intent
+	/// </summary>
+	public const int CannotUseThisIntent = 943;
+
+	/// <summary>
+	/// Превышение лимитов для этого intent
+	/// </summary>
+	public const int LimitsOverflowForThisIntent = 944;
+
+	/// <summary>
 	/// Чат был отключен
 	/// </summary>
 	public const int ChatWasDisabled = 945;
+
+	/// <summary>
+	/// Чат не поддерживается
+	/// </summary>
+	public const int ChatNotSupported = 946;
+	
+	/// <summary>
+	/// Не удается отправить сообщение, время ответа истекло
+	/// </summary>
+	public const int CannotSendMessageReplyTimedOut = 950;
+	
+	/// <summary>
+	/// Вы не можете получить доступ к донат чату без подписки
+	/// </summary>
+	public const int YouСanеAccessDonutChatWithoutSubscription = 962;
+
+	/// <summary>
+	/// Сообщение не может быть переслано
+	/// </summary>
+	public const int MessageCannotBeForwarded = 969;
+
+	/// <summary>
+	/// Действие приложения ограничено для бесед с сообществами
+	/// </summary>
+	public const int AppActionIsRestrictedForConversationsWithCommunities = 979;
+	
+	/// <summary>
+	/// Вам запрещено писать в чат
+	/// </summary>
+	public const int YouAreRestrictedToWriteToAChat = 983;
+	
+	/// <summary>
+	/// У вас есть ограничение на отправку из-за спама
+	/// </summary>
+	public const int YouHasSpamRestriction = 984;
+	
+	/// <summary>
+	/// Невозможно писать в группы только с уведомлениями
+	/// </summary>
+	public const int CannotWriteToNotificationsOnlyGroups = 985;
+	
+	/// <summary>
+	/// Требуется роль edu
+	/// </summary>
+	public const int NeedEduRole = 986;
+	
+	/// <summary>
+	/// Требуется запрос сообщения
+	/// </summary>
+	public const int NeedMessageRequest = 987;
+	
+	/// <summary>
+	/// Запрос сообщения ожидает подтверждения
+	/// </summary>
+	public const int PendingMessageRequest = 988;
+	
+	/// <summary>
+	/// Отложенные сообщения для этого peer не поддерживаются
+	/// </summary>
+	public const int DelayedMessagesForThisPeerNotSupported = 991;
+	
+	/// <summary>
+	/// Достигнут лимит отложенных сообщений для этого peerId
+	/// </summary>
+	public const int DelayedMessagesLimitForThisPeerIdReached = 992;
+	
+	/// <summary>
+	/// Написание сообщений в этом чате отключено
+	/// </summary>
+	public const int WritingIsDisabledForThisChat = 1012;
+	
+	/// <summary>
+	/// Неверный тип аккаунта — не должен быть edu
+	/// </summary>
+	public const int InvalidAccountTypeShouldNotBeEdu = 1016;
 
 	/// <summary>
 	/// Неверный файл

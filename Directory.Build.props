@@ -1,0 +1,8 @@
+<Project>
+	<PropertyGroup>
+		<NoWarn>CS8632;RS0016</NoWarn>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<DefineConstants>JETBRAINS_ANNOTATIONS</DefineConstants>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+</Project>

@@ -10,6 +10,7 @@ namespace VkNet.Abstractions;
 public interface IDownloadedGamesCategoryAsync
 {
 	/// <summary>
+	/// Получить статус оплаты
 	/// </summary>
 	/// <param name = "userId">
 	/// ID пользователя возможно купившего приложение положительное число

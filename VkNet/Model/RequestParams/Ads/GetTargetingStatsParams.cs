@@ -35,7 +35,7 @@ public class GetTargetingStatsParams
 	/// строка
 	/// </summary>
 	[JsonProperty("ad_platform")]
-	public AdPlatform AdPlatform { get; set; }
+	public AdPlatform? AdPlatform { get; set; }
 
 	/// <summary>
 	/// Для ad_format = 9.

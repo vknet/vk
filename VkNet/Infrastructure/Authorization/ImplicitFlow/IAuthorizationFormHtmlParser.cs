@@ -13,7 +13,7 @@ public interface IAuthorizationFormHtmlParser
 	/// Get form data
 	/// </summary>
 	/// <param name="url">URL</param>
-	/// <param name="token"></param>
+	/// <param name="token">Токен отмены операции</param>
 	/// <returns>Результат с данными формы</returns>
 	Task<VkHtmlFormResult> GetFormAsync(Uri url, CancellationToken token = default);
 }

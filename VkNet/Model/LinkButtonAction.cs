@@ -22,11 +22,13 @@ public class LinkButtonAction
 	public Uri Uri { get; set; }
 
 	/// <summary>
+	/// Назначание действия
 	/// </summary>
 	[JsonProperty(propertyName: "target")]
 	public string Target { get; set; }
 
 	/// <summary>
+	/// Идентификатор группы
 	/// </summary>
 	[JsonProperty(propertyName: "group_id")]
 	public long? GroupId { get; set; }

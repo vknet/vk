@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
+using VkNet.Utils.JsonConverter;
 
 namespace VkNet.Enums.StringEnums;
 
@@ -8,7 +7,7 @@ namespace VkNet.Enums.StringEnums;
 /// Тип записи post, copy, reply, postpone, suggest
 /// </summary>
 [StringEnum]
-[JsonConverter(typeof(StringEnumConverter), typeof(SnakeCaseNamingStrategy))]
+[JsonConverter(typeof(TolerantStringEnumConverter))]
 public enum PostType
 {
 	/// <summary>
@@ -40,5 +39,15 @@ public enum PostType
 	/// <summary>
 	/// Видеозапись
 	/// </summary>
-	Video
+	Video,
+
+	/// <summary>
+	/// Фото
+	/// </summary>
+	Photo,
+
+	/// <summary>
+	/// Реклама в записи
+	/// </summary>
+	PostAds
 }

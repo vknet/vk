@@ -5,7 +5,9 @@ using VkNet.Model;
 
 namespace VkNet.Abstractions;
 
-/// <inheritdoc cref="IOrdersCategoryAsync"/>
+/// <summary>
+/// Методы этой секции предоставляют дополнительную возможность управления состоянием заказов, которые были сделаны пользователями в приложениях.
+/// </summary>
 public interface IOrdersCategory : IOrdersCategoryAsync
 {
 	/// <inheritdoc cref="IOrdersCategoryAsync.CancelSubscriptionAsync"/>
