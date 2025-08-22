@@ -12,7 +12,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Exception;
 using VkNet.Model;
-using VkNet.Infrastructure;
 
 namespace VkNet.Utils.BotsLongPoll;
 
@@ -29,8 +28,6 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 	private string? _currentSessionKey;
 
 	private string? _currentServer;
-
- 	private ILogger _logger;
 
 	/// <summary>
 	/// Инициализирует новый экземпляр класса <see cref="BotsLongPollUpdatesHandler" />
@@ -186,18 +183,7 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 				attempt_count += 1;
 				ulong delay = Math.Min(_params.BaseRetryDelayMs * ((ulong) Math.Pow(attempt_count, 2)), _params.MaxRetryDelayMs);
 
-				const string message = ex.ToString() + "\nСледующая попытка через: " + delay + "ms";
-
-				if (_logger.IsEnabled(LogLevel.Error))
-				{
-					_logger.LogError(message);
-				}
-
-				if (delay >= _params.MaxRetryDelayMs)
-				{
-					await HandleExceptionAsync(ex, token);
-	 			}
-  
+				await HandleExceptionAsync(ex, token);
 	  			await Thread.Sleep((int) delay);
 			}
 	 	}
