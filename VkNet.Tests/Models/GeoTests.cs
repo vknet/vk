@@ -12,7 +12,7 @@ public class GeoTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Geo));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<Geo>("friends.getRequests", VkParameters.Empty);
 
 		result.Should()
@@ -26,7 +26,7 @@ public class GeoTests : BaseTest
 
 		ReadJsonFile("Models", nameof(Geo));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<Geo>("friends.getRequests", VkParameters.Empty);
 
 		result.Should()

@@ -11,7 +11,7 @@ public class CreateTest : CategoryBaseTest
 	[Fact]
 	public void Create()
 	{
-		Url = "https://api.vk.com/method/groups.create";
+		Url = "https://api.vk.ru/method/groups.create";
 
 		ReadCategoryJsonPath(nameof(Create));
 

@@ -68,7 +68,7 @@ public class FaveGetObject
 	public Podcast Podcast { get; set; }
 
 	/// <summary>
-	/// Ссылка на Web-страницу.	///  См. описание http://vk.com/dev/attachments_w
+	/// Ссылка на Web-страницу.	///  См. описание http://vk.ru/dev/attachments_w
 	/// </summary>
 	[JsonProperty("link")]
 	public Link Link { get; set; }

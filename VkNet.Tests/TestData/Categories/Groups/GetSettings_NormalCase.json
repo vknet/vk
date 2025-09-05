@@ -9,9 +9,9 @@
 			"latitude": 47.39719,
 			"longitude": 40.166811,
 			"created": 1443432436,
-			"icon": "http://vk.com/images/places/place.png",
+			"icon": "http://vk.ru/images/places/place.png",
 			"group_id": 103292418,
-			"group_photo": "https://vk.com/images/community_50.png",
+			"group_photo": "https://vk.ru/images/community_50.png",
 			"checkins": 0,
 			"type": 21,
 			"country": 1,
@@ -197,6 +197,6 @@
 				"name": "Юмор"
 			}
 		],
-		"website": "http://vk.com/club103292418"
+		"website": "http://vk.ru/club103292418"
 	}
 }

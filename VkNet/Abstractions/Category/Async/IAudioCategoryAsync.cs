@@ -37,7 +37,7 @@ public interface IAudioCategoryAsync
 	/// После успешного выполнения возвращает идентификатор созданной аудиозаписи.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.add
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.add
 	/// </remarks>
 	Task<long> AddAsync(long audioId,
 						long ownerId,
@@ -89,7 +89,7 @@ public interface IAudioCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.delete
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.delete
 	/// </remarks>
 	Task<bool> DeleteAsync(long audioId,
 							long ownerId,
@@ -125,7 +125,7 @@ public interface IAudioCategoryAsync
 	/// (lyrics_id), если текст не был введен, вернет 0.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.edit
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.edit
 	/// </remarks>
 	Task<long> EditAsync(AudioEditParams @params,
 						CancellationToken token = default);
@@ -175,7 +175,7 @@ public interface IAudioCategoryAsync
 	/// Обратите внимание, что ссылки на mp3 привязаны к ip-адресу.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.get
 	/// </remarks>
 	Task<VkCollection<Audio>> GetAsync(AudioGetParams @params,
 										CancellationToken token = default);
@@ -243,7 +243,7 @@ public interface IAudioCategoryAsync
 	/// (если аудиозапись транслируется в текущей момент).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.getBroadcastList
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.getBroadcastList
 	/// </remarks>
 	Task<IEnumerable<object>> GetBroadcastListAsync(AudioBroadcastFilter filter = null,
 													bool? active = null,
@@ -263,7 +263,7 @@ public interface IAudioCategoryAsync
 	/// к ip адресу.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.getById
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.getById
 	/// </remarks>
 	Task<IEnumerable<Audio>> GetByIdAsync(IEnumerable<string> audios,
 										CancellationToken token = default);
@@ -287,7 +287,7 @@ public interface IAudioCategoryAsync
 	/// к ip адресу.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.getById
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.getById
 	/// </remarks>
 	Task<AudioGetCatalogResult> GetCatalogAsync(uint? count,
 												bool? extended,
@@ -310,7 +310,7 @@ public interface IAudioCategoryAsync
 	/// странице пользователя или сообщества.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.getCount
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.getCount
 	/// </remarks>
 	Task<long> GetCountAsync(long ownerId,
 							CancellationToken token = default);
@@ -326,7 +326,7 @@ public interface IAudioCategoryAsync
 	/// После успешного выполнения возвращает объект <see cref="Lyrics"/>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.getLyrics
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.getLyrics
 	/// </remarks>
 	Task<Lyrics> GetLyricsAsync(long lyricsId,
 								CancellationToken token = default);
@@ -354,7 +354,7 @@ public interface IAudioCategoryAsync
 	/// к ip адресу.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.getPopular
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.getPopular
 	/// </remarks>
 	Task<IEnumerable<Audio>> GetPopularAsync(bool onlyEng = false,
 											AudioGenre? genre = null,
@@ -397,7 +397,7 @@ public interface IAudioCategoryAsync
 	/// что ссылки на аудиозаписи привязаны к ip адресу.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.getRecommendations
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.getRecommendations
 	/// </remarks>
 	Task<VkCollection<Audio>> GetRecommendationsAsync(string targetAudio = null,
 													long? userId = null,
@@ -414,7 +414,7 @@ public interface IAudioCategoryAsync
 	/// После успешного выполнения возвращает объект с единственным полем upload_url.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.getUploadServer
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.getUploadServer
 	/// </remarks>
 	Task<UploadServer> GetUploadServerAsync(CancellationToken token = default);
 
@@ -465,7 +465,7 @@ public interface IAudioCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.reorder
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.reorder
 	/// </remarks>
 	Task<bool> ReorderAsync(long audioId,
 							long? ownerId,
@@ -490,7 +490,7 @@ public interface IAudioCategoryAsync
 	/// вернет ошибку 202 (Cache expired).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.restore
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.restore
 	/// </remarks>
 	Task<Audio> RestoreAsync(long audioId,
 							long? ownerId = null,
@@ -508,7 +508,7 @@ public interface IAudioCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Возвращает обьект загруженной аудиозаписи. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.save
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.save
 	/// </remarks>
 	Task<Audio> SaveAsync(string response,
 						string artist = null,
@@ -526,7 +526,7 @@ public interface IAudioCategoryAsync
 	/// <remarks>
 	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
 	/// содержащей Settings.Audio
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.search
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.search
 	/// </remarks>
 	Task<VkCollection<Audio>> SearchAsync(AudioSearchParams @params,
 										CancellationToken token = default);
@@ -552,7 +552,7 @@ public interface IAudioCategoryAsync
 	/// Возвращает идентификаторы пользователя и сообществ для которых был установлен статус.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/audio.setBroadcast
+	/// Страница документации ВКонтакте http://vk.ru/dev/audio.setBroadcast
 	/// </remarks>
 	Task<IEnumerable<long>> SetBroadcastAsync(string audio = null,
 											IEnumerable<long> targetIds = null,

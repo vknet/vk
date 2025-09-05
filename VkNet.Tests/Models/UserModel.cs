@@ -13,7 +13,7 @@ public class UserModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(MultiPropertyId));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
 		result.Id.Should()
@@ -25,7 +25,7 @@ public class UserModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(MultiPropertyUid));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
 		result.Id.Should()
@@ -37,7 +37,7 @@ public class UserModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(MultiPropertyUserId));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
 		result.Id.Should()
@@ -49,7 +49,7 @@ public class UserModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Name_ShouldCanBeOneWord));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
 		result.FirstName.Should()
@@ -91,7 +91,7 @@ public class UserModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
 		result.Trending.Should()
@@ -103,7 +103,7 @@ public class UserModel : BaseTest
 	{
 		ReadJsonFile(JsonPaths.Object);
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
 		result.Trending.Should()
@@ -115,7 +115,7 @@ public class UserModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeTrue));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<User>("friends.getRequests", VkParameters.Empty);
 
 		result.Trending.Should()

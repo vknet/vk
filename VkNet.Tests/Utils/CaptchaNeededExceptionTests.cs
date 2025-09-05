@@ -29,7 +29,7 @@ public class CaptchaNeededExceptionTests : BaseTest
 	[Fact]
 	public void Call_ThrowsCaptchaNeededException()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadErrorsJsonFile(14);
 
 		var ex = Api.Call<VkCollection<Message>>("messages.send", VkParameters.Empty, true);

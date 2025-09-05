@@ -19,7 +19,7 @@ public interface INotesCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>После успешного выполнения возвращает идентификатор созданной заметки (nid).</returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/notifications.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/notifications.get
 	/// </remarks>
 	Task<long> AddAsync(NotesAddParams notesAddParams,
 						CancellationToken token = default);
@@ -33,7 +33,7 @@ public interface INotesCategoryAsync
 	/// После успешного выполнения возвращает идентификатор созданного комментария (cid).
 	///</returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/notifications.createComment
+	/// Страница документации ВКонтакте http://vk.ru/dev/notifications.createComment
 	/// </remarks>
 	Task<long> CreateCommentAsync(NotesCreateCommentParams createCommentParams,
 								CancellationToken token = default);
@@ -45,7 +45,7 @@ public interface INotesCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>После успешного выполнения возвращает true.</returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/notifications.delete
+	/// Страница документации ВКонтакте http://vk.ru/dev/notifications.delete
 	/// </remarks>
 	Task<bool> DeleteAsync(long noteId,
 							CancellationToken token = default);
@@ -57,7 +57,7 @@ public interface INotesCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>После успешного выполнения возвращает true. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/notifications.deleteComment
+	/// Страница документации ВКонтакте http://vk.ru/dev/notifications.deleteComment
 	/// </remarks>
 	Task<bool> DeleteCommentAsync(NotesDeleteCommentParams deleteCommentParams,
 								CancellationToken token = default);
@@ -69,7 +69,7 @@ public interface INotesCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>После успешного выполнения возвращает true.</returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/notifications.edit
+	/// Страница документации ВКонтакте http://vk.ru/dev/notifications.edit
 	/// </remarks>
 	Task<bool> EditAsync(NotesEditParams editParams,
 						CancellationToken token = default);
@@ -81,7 +81,7 @@ public interface INotesCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>После успешного выполнения возвращает true.</returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/notifications.editComment
+	/// Страница документации ВКонтакте http://vk.ru/dev/notifications.editComment
 	/// </remarks>
 	Task<bool> EditCommentAsync(NotesEditCommentParams editCommentParams,
 								CancellationToken token = default);
@@ -93,7 +93,7 @@ public interface INotesCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>возвращает список объектов заметок</returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/notifications.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/notifications.get
 	/// </remarks>
 	Task<VkCollection<Note>> GetAsync(NotesGetParams notesGetParams,
 									CancellationToken token = default);
@@ -105,7 +105,7 @@ public interface INotesCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>Возвращает заметку</returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/notifications.getById
+	/// Страница документации ВКонтакте http://vk.ru/dev/notifications.getById
 	/// </remarks>
 	Task<Note> GetByIdAsync(NotesGetByIdParams getByIdParams,
 							CancellationToken token = default);
@@ -117,7 +117,7 @@ public interface INotesCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>Возвращает массив объектов comment</returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/notifications.getComments
+	/// Страница документации ВКонтакте http://vk.ru/dev/notifications.getComments
 	/// </remarks>
 	Task<VkCollection<CommentNote>> GetCommentsAsync(NotesGetCommentParams getCommentParams,
 													CancellationToken token = default);
@@ -129,7 +129,7 @@ public interface INotesCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>После успешного выполнения возвращает true</returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/notifications.restoreComment
+	/// Страница документации ВКонтакте http://vk.ru/dev/notifications.restoreComment
 	/// </remarks>
 	Task<bool> RestoreCommentAsync(NotesRestoreCommentParams restoreCommentParams,
 									CancellationToken token = default);

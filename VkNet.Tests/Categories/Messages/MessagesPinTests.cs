@@ -8,7 +8,7 @@ public class MessagesPinTests : MessagesBaseTests
 	[Fact]
 	public void Pin()
 	{
-		Url = "https://api.vk.com/method/messages.pin";
+		Url = "https://api.vk.ru/method/messages.pin";
 		ReadCategoryJsonPath(nameof(Pin));
 
 		var result = Api.Messages.Pin(123, 345);

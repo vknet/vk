@@ -12,7 +12,7 @@ public class GetRequestsTests : CategoryBaseTest
 	[Fact]
 	public void GetRequests_With_Fields()
 	{
-		Url = "https://api.vk.com/method/groups.getRequests";
+		Url = "https://api.vk.ru/method/groups.getRequests";
 
 		ReadCategoryJsonPath(nameof(GetRequests_With_Fields));
 
@@ -32,7 +32,7 @@ public class GetRequestsTests : CategoryBaseTest
 	[Fact]
 	public void GetRequests_Without_Fields()
 	{
-		Url = "https://api.vk.com/method/groups.getRequests";
+		Url = "https://api.vk.ru/method/groups.getRequests";
 
 		ReadCategoryJsonPath(nameof(GetRequests_Without_Fields));
 

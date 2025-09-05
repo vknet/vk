@@ -8,7 +8,7 @@ namespace VkNet.Exception;
 /// <summary>
 /// Исключение, которое выбрасывается, если подпись неверна.
 /// Проверьте правильность формирования подписи запроса:
-/// https://vk.com/dev/api_nohttps
+/// https://vk.ru/dev/api_nohttps
 /// Код ошибки - 4
 /// </summary>
 [Serializable]

@@ -21,7 +21,7 @@ public interface IBoardCategoryAsync
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте
-	/// <see href="https://new.vk.com/dev/board.getTopics" />.
+	/// <see href="https://new.vk.ru/dev/board.getTopics" />.
 	/// </remarks>
 	Task<VkCollection<Topic>> GetTopicsAsync(BoardGetTopicsParams @params,
 											bool skipAuthorization = false,
@@ -38,7 +38,7 @@ public interface IBoardCategoryAsync
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте
-	/// <see href="https://new.vk.com/dev/board.getComments" />.
+	/// <see href="https://new.vk.ru/dev/board.getComments" />.
 	/// </remarks>
 	Task<TopicsFeed> GetCommentsAsync(BoardGetCommentsParams @params,
 									bool skipAuthorization = false,
@@ -53,7 +53,7 @@ public interface IBoardCategoryAsync
 	/// Идентификатор созданной темы
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/board.addTopic
+	/// Страница документации ВКонтакте https://vk.ru/dev/board.addTopic
 	/// </remarks>
 	Task<long> AddTopicAsync(BoardAddTopicParams @params,
 							CancellationToken token = default);
@@ -67,7 +67,7 @@ public interface IBoardCategoryAsync
 	/// Признак успешного удаления
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/board.deleteTopic
+	/// Страница документации ВКонтакте https://vk.ru/dev/board.deleteTopic
 	/// </remarks>
 	Task<bool> DeleteTopicAsync(BoardTopicParams @params,
 								CancellationToken token = default);
@@ -82,7 +82,7 @@ public interface IBoardCategoryAsync
 	/// Признак успешного закрытия
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/board.closeTopic
+	/// Страница документации ВКонтакте https://vk.ru/dev/board.closeTopic
 	/// </remarks>
 	Task<bool> CloseTopicAsync(BoardTopicParams @params,
 								CancellationToken token = default);
@@ -97,7 +97,7 @@ public interface IBoardCategoryAsync
 	/// Признак успешного открытия
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/board.openTopic
+	/// Страница документации ВКонтакте https://vk.ru/dev/board.openTopic
 	/// </remarks>
 	Task<bool> OpenTopicAsync(BoardTopicParams @params,
 							CancellationToken token = default);
@@ -112,7 +112,7 @@ public interface IBoardCategoryAsync
 	/// Признак успешного закрепления
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/board.fixTopic
+	/// Страница документации ВКонтакте https://vk.ru/dev/board.fixTopic
 	/// </remarks>
 	Task<bool> FixTopicAsync(BoardTopicParams @params,
 							CancellationToken token = default);
@@ -127,7 +127,7 @@ public interface IBoardCategoryAsync
 	/// Признак успешной отмены фиксации
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/board.unfixTopic
+	/// Страница документации ВКонтакте https://vk.ru/dev/board.unfixTopic
 	/// </remarks>
 	Task<bool> UnFixTopicAsync(BoardTopicParams @params,
 								CancellationToken token = default);
@@ -141,7 +141,7 @@ public interface IBoardCategoryAsync
 	/// Признак успешного изменения
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/board.editTopic
+	/// Страница документации ВКонтакте https://vk.ru/dev/board.editTopic
 	/// </remarks>
 	Task<bool> EditTopicAsync(BoardEditTopicParams @params,
 							CancellationToken token = default);
@@ -156,7 +156,7 @@ public interface IBoardCategoryAsync
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте
-	/// <see href="https://new.vk.com/dev/board.createComment" />.
+	/// <see href="https://new.vk.ru/dev/board.createComment" />.
 	/// </remarks>
 	Task<long> CreateCommentAsync(BoardCreateCommentParams @params,
 								CancellationToken token = default);
@@ -171,7 +171,7 @@ public interface IBoardCategoryAsync
 	/// </returns>
 	/// <remarks>
 	/// Страница документации ВКонтакте
-	/// <see href="https://new.vk.com/dev/board.deleteComment" />.
+	/// <see href="https://new.vk.ru/dev/board.deleteComment" />.
 	/// </remarks>
 	Task<bool> DeleteCommentAsync(BoardCommentParams @params,
 								CancellationToken token = default);
@@ -185,7 +185,7 @@ public interface IBoardCategoryAsync
 	/// Признак успешного редактирования комментария
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/board.editComment
+	/// Страница документации ВКонтакте https://vk.ru/dev/board.editComment
 	/// </remarks>
 	Task<bool> EditCommentAsync(BoardEditCommentParams @params,
 								CancellationToken token = default);
@@ -199,7 +199,7 @@ public interface IBoardCategoryAsync
 	/// Признак успешного восстановления комментария
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/board.restoreComment
+	/// Страница документации ВКонтакте https://vk.ru/dev/board.restoreComment
 	/// </remarks>
 	Task<bool> RestoreCommentAsync(BoardCommentParams @params,
 									CancellationToken token = default);

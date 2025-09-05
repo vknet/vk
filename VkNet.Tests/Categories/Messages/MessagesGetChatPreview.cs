@@ -9,10 +9,10 @@ public class MessagesGetChatPreview : MessagesBaseTests
 	[Fact]
 	public void DefaultParams()
 	{
-		Url = "https://api.vk.com/method/messages.getChatPreview";
+		Url = "https://api.vk.ru/method/messages.getChatPreview";
 		ReadCategoryJsonPath(nameof(DefaultParams));
 
-		var result = Api.Messages.GetChatPreview("http://vk.com", ProfileFields.About);
+		var result = Api.Messages.GetChatPreview("http://vk.ru", ProfileFields.About);
 
 		result.Should()
 			.NotBeNull();

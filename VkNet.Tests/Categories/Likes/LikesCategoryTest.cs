@@ -15,7 +15,7 @@ public class LikesCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Add_NormalCase()
 	{
-		Url = "https://api.vk.com/method/likes.add";
+		Url = "https://api.vk.ru/method/likes.add";
 		ReadCategoryJsonPath(nameof(Add_NormalCase));
 
 		var like = Api.Likes.Add(new()
@@ -31,7 +31,7 @@ public class LikesCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Delete_NormalCase()
 	{
-		Url = "https://api.vk.com/method/likes.delete";
+		Url = "https://api.vk.ru/method/likes.delete";
 		ReadCategoryJsonPath(nameof(Delete_NormalCase));
 
 		var like = Api.Likes.Delete(LikeObjectType.Post, 701);
@@ -43,7 +43,7 @@ public class LikesCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetList_NormalCase()
 	{
-		Url = "https://api.vk.com/method/likes.getList";
+		Url = "https://api.vk.ru/method/likes.getList";
 		ReadCategoryJsonPath(nameof(GetList_NormalCase));
 
 		var like = Api.Likes.GetList(new()
@@ -58,7 +58,7 @@ public class LikesCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetListEx_NormalCase()
 	{
-		Url = "https://api.vk.com/method/likes.getList";
+		Url = "https://api.vk.ru/method/likes.getList";
 		ReadCategoryJsonPath(nameof(GetListEx_NormalCase));
 
 		var like = Api.Likes.GetListEx(new()
@@ -88,7 +88,7 @@ public class LikesCategoryTest : CategoryBaseTest
 	[Fact]
 	public void IsLiked_NormalCase()
 	{
-		Url = "https://api.vk.com/method/likes.isLiked";
+		Url = "https://api.vk.ru/method/likes.isLiked";
 		ReadCategoryJsonPath(nameof(IsLiked_NormalCase));
 
 		var like = Api.Likes.IsLiked(out var copied, LikeObjectType.Post, 701);

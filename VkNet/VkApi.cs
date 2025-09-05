@@ -347,7 +347,7 @@ public class VkApi : IVkApi
 			throw new AccessTokenInvalidException($"Метод '{methodName}' нельзя вызывать без авторизации");
 		}
 
-		var url = $"https://api.vk.com/method/{methodName}";
+		var url = $"https://api.vk.ru/method/{methodName}";
 		var answer = InvokeBase(url, parameters);
 
 		if (_logger.IsEnabled(LogLevel.Trace))
@@ -801,12 +801,12 @@ public class VkApi : IVkApi
 	#region private
 
 	/// <summary>
-	/// Базовое обращение к vk.com
+	/// Базовое обращение к vk.ru
 	/// </summary>
 	/// <param name="methodName"> Наименование метода </param>
 	/// <param name="parameters"> Параметры запроса </param>
 	/// <param name="skipAuthorization"> Пропустить авторизацию </param>
-	/// <returns> Ответ от vk.com в формате json </returns>
+	/// <returns> Ответ от vk.ru в формате json </returns>
 	/// <exception cref="CaptchaNeededException"> Требуется ввести капчу </exception>
 	private string CallBase(string methodName, VkParameters parameters, bool skipAuthorization)
 	{

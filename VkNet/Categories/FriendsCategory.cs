@@ -440,7 +440,7 @@ public partial class FriendsCategory : IFriendsCategory
 	/// <remarks>
 	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
 	/// содержащей Settings.Friends
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.addList
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.addList
 	/// </remarks>
 	[Obsolete(ObsoleteText.FriendsAddList)]
 	public long AddList(string name) => AddList(name, Enumerable.Empty<long>());
@@ -474,7 +474,7 @@ public partial class FriendsCategory : IFriendsCategory
 	/// При использовании параметра fields  возвращает список объектов пользователей.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.getAvailableForCall
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.getAvailableForCall
 	/// </remarks>
 	[Obsolete(ObsoleteText.Obsolete)]
 	public VkCollection<User> GetAvailableForCall(ProfileFields fields, NameCase nameCase)

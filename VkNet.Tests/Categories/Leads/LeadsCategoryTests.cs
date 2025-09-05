@@ -11,7 +11,7 @@ public class LeadsCategoryTests : CategoryBaseTest
 	[Fact]
 	public void Complete()
 	{
-		Url = "https://api.vk.com/method/leads.complete";
+		Url = "https://api.vk.ru/method/leads.complete";
 		ReadCategoryJsonPath(nameof(Complete));
 
 		var result = Api.Leads.Complete("test8f4f23fb62c5c89fbb", "bb4f37150027a9cf51", string.Empty);
@@ -41,7 +41,7 @@ public class LeadsCategoryTests : CategoryBaseTest
 	[Fact]
 	public void Start()
 	{
-		Url = "https://api.vk.com/method/leads.start";
+		Url = "https://api.vk.ru/method/leads.start";
 		ReadCategoryJsonPath(nameof(Start));
 
 		var result = Api.Leads.Start(new());
@@ -59,7 +59,7 @@ public class LeadsCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetUsers()
 	{
-		Url = "https://api.vk.com/method/leads.getUsers";
+		Url = "https://api.vk.ru/method/leads.getUsers";
 		ReadCategoryJsonPath(nameof(GetUsers));
 
 		var result = Api.Leads.GetUsers(new());

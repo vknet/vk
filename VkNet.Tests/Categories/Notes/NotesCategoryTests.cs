@@ -11,7 +11,7 @@ public class NotesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void Add()
 	{
-		Url = "https://api.vk.com/method/notes.add";
+		Url = "https://api.vk.ru/method/notes.add";
 		ReadCategoryJsonPath(nameof(Add));
 
 		var result = Api.Notes.Add(new());
@@ -23,7 +23,7 @@ public class NotesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void CreateComment()
 	{
-		Url = "https://api.vk.com/method/notes.createComment";
+		Url = "https://api.vk.ru/method/notes.createComment";
 		ReadCategoryJsonPath(nameof(CreateComment));
 
 		var result = Api.Notes.CreateComment(new());
@@ -35,7 +35,7 @@ public class NotesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void Delete()
 	{
-		Url = "https://api.vk.com/method/notes.delete";
+		Url = "https://api.vk.ru/method/notes.delete";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Notes.Delete(11825220);
@@ -47,7 +47,7 @@ public class NotesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void DeleteComment()
 	{
-		Url = "https://api.vk.com/method/notes.deleteComment";
+		Url = "https://api.vk.ru/method/notes.deleteComment";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Notes.DeleteComment(new());
@@ -59,7 +59,7 @@ public class NotesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void Edit()
 	{
-		Url = "https://api.vk.com/method/notes.edit";
+		Url = "https://api.vk.ru/method/notes.edit";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Notes.Edit(new());
@@ -71,7 +71,7 @@ public class NotesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void EditComment()
 	{
-		Url = "https://api.vk.com/method/notes.editComment";
+		Url = "https://api.vk.ru/method/notes.editComment";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Notes.EditComment(new());
@@ -83,7 +83,7 @@ public class NotesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void Get()
 	{
-		Url = "https://api.vk.com/method/notes.get";
+		Url = "https://api.vk.ru/method/notes.get";
 		ReadCategoryJsonPath(nameof(Get));
 
 		var result = Api.Notes.Get(new());
@@ -95,7 +95,7 @@ public class NotesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetById()
 	{
-		Url = "https://api.vk.com/method/notes.getById";
+		Url = "https://api.vk.ru/method/notes.getById";
 		ReadCategoryJsonPath(nameof(GetById));
 
 		var result = Api.Notes.GetById(new());
@@ -107,7 +107,7 @@ public class NotesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetComments()
 	{
-		Url = "https://api.vk.com/method/notes.getComments";
+		Url = "https://api.vk.ru/method/notes.getComments";
 		ReadCategoryJsonPath(nameof(GetComments));
 
 		var result = Api.Notes.GetComments(new());
@@ -119,7 +119,7 @@ public class NotesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void RestoreComment()
 	{
-		Url = "https://api.vk.com/method/notes.restoreComment";
+		Url = "https://api.vk.ru/method/notes.restoreComment";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Notes.RestoreComment(new());

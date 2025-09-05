@@ -12,7 +12,7 @@ public class SaveAppImageTest : CategoryBaseTest
 	[Fact]
 	public void SaveAppImage()
 	{
-		Url = "https://api.vk.com/method/appWidgets.saveAppImage";
+		Url = "https://api.vk.ru/method/appWidgets.saveAppImage";
 
 		ReadCategoryJsonPath(nameof(SaveAppImage));
 

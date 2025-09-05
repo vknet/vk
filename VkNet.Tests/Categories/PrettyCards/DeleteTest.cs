@@ -11,7 +11,7 @@ public class DeleteTest : CategoryBaseTest
 	[Fact]
 	public void Delete()
 	{
-		Url = "https://api.vk.com/method/prettyCards.delete";
+		Url = "https://api.vk.ru/method/prettyCards.delete";
 
 		ReadCategoryJsonPath(nameof(Api.PrettyCards.Delete));
 

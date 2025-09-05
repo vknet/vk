@@ -21,7 +21,7 @@ public interface IAsrCategoryAsync
 	/// Возвращает объект задачи на обработку аудиозаписи.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://dev.vk.com/method/asr.checkStatus
+	/// Страница документации ВКонтакте https://dev.vk.ru/method/asr.checkStatus
 	/// </remarks>
 	public Task<AudioRecordingTask> CheckStatusAsync(string taskId,
 								CancellationToken token = default);
@@ -35,7 +35,7 @@ public interface IAsrCategoryAsync
 	/// Возвращает параметр — ссылку на адрес сервера для загрузки аудиозаписи
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://dev.vk.com/method/asr.getUploadUrl
+	/// Страница документации ВКонтакте https://dev.vk.ru/method/asr.getUploadUrl
 	/// </remarks>
 	public Task<AsrUploadUrlResult> GetUploadUrlAsync(CancellationToken token = default);
 
@@ -49,7 +49,7 @@ public interface IAsrCategoryAsync
 	/// Возвращает параметр — идентификатор созданной задачи на обработку аудиозаписи в формате UUID
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://dev.vk.com/method/asr.process
+	/// Страница документации ВКонтакте https://dev.vk.ru/method/asr.process
 	/// </remarks>
 	public Task<TaskIdResult> ProcessAsync(string audio,
 											AsrProcessModel model,

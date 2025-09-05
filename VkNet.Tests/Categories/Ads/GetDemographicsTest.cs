@@ -12,7 +12,7 @@ public class GetDemographicsTest : CategoryBaseTest
 	[Fact]
 	public void GetDemographics()
 	{
-		Url = "https://api.vk.com/method/ads.getDemographics";
+		Url = "https://api.vk.ru/method/ads.getDemographics";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetDemographics));
 

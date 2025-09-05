@@ -14,7 +14,7 @@ public partial class AsrCategory : IAsrCategory
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// api vk.ru
 	/// </summary>
 	/// <param name="vk"> API. </param>
 	public AsrCategory(IVkApiInvoke vk) => _vk = vk;

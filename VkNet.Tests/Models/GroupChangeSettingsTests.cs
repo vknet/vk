@@ -13,7 +13,7 @@ public class GroupChangeSettingsTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(GroupChangeSettings));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<GroupChangeSettings>("friends.getRequests", VkParameters.Empty);
 
 		result.Should()

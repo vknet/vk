@@ -13,7 +13,7 @@ namespace VkNet.Model;
 /// Запись со стены пользователя или сообщества.
 /// </summary>
 /// <remarks>
-/// См. описание http://vk.com/dev/post
+/// См. описание http://vk.ru/dev/post
 /// </remarks>
 [DebuggerDisplay("[{Id}] {Text}")]
 [Serializable]

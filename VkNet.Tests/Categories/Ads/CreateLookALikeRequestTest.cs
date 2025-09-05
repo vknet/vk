@@ -12,7 +12,7 @@ public class CreateLookALikeRequestTest : CategoryBaseTest
 	[Fact]
 	public void CreateLookalikeRequest()
 	{
-		Url = "https://api.vk.com/method/ads.createLookalikeRequest";
+		Url = "https://api.vk.ru/method/ads.createLookalikeRequest";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.CreateLookalikeRequest));
 

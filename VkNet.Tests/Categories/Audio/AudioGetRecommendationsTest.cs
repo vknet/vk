@@ -12,7 +12,7 @@ public class AudioGetRecommendationsTest : CategoryBaseTest
 	[Fact]
 	public void GetRecommendationsTest()
 	{
-		Url = "https://api.vk.com/method/audio.getRecommendations";
+		Url = "https://api.vk.ru/method/audio.getRecommendations";
 
 		ReadCategoryJsonPath(nameof(Api.Audio.GetRecommendations));
 

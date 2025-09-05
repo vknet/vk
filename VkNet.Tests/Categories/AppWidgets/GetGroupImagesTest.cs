@@ -13,7 +13,7 @@ public class GetGroupImagesTest : CategoryBaseTest
 	[Fact]
 	public void GetGroupImages()
 	{
-		Url = "https://api.vk.com/method/appWidgets.getGroupImages";
+		Url = "https://api.vk.ru/method/appWidgets.getGroupImages";
 
 		ReadCategoryJsonPath(nameof(GetGroupImages));
 

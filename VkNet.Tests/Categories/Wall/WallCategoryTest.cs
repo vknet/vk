@@ -21,7 +21,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void CloseComments_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/wall.closeComments";
+		Url = "https://api.vk.ru/method/wall.closeComments";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -40,7 +40,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_Document_NormalCase()
 	{
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 		ReadCategoryJsonPath(nameof(Get_Document_NormalCase));
 
 		var posts = Api.Wall.Get(new()
@@ -79,7 +79,7 @@ public class WallCategoryTest : CategoryBaseTest
 			.Be("gif");
 
 		doc.Uri.Should()
-			.Be("http://vk.com/doc26033241_237844408?hash=126f761781ce2ebfc5&dl=f2c681ec7740f9a3a0&api=1");
+			.Be("http://vk.ru/doc26033241_237844408?hash=126f761781ce2ebfc5&dl=f2c681ec7740f9a3a0&api=1");
 
 		doc.Photo100.Should()
 			.Be("http://cs537313.vk.me/u26033241/-3/s_48ba682f61.jpg");
@@ -94,7 +94,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
 	{
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 		ReadCategoryJsonPath(nameof(Get_ExtendedVersion_GenerateOutParametersCorrectly));
 
 		// 10, out posts, out profiles, out groups, 1, 1, WallFilter.Owner
@@ -134,7 +134,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_Geo_NormalCase()
 	{
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 		ReadCategoryJsonPath(nameof(Get_Geo_NormalCase));
 
 		var posts = Api.Wall.Get(new()
@@ -154,7 +154,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_With_PhotoListAttachment()
 	{
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 		ReadCategoryJsonPath(nameof(Get_With_PhotoListAttachment));
 
 		var posts = Api.Wall.Get(new()
@@ -196,7 +196,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_WithPoll_NormalCase()
 	{
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 		ReadCategoryJsonPath(nameof(Get_WithPoll_NormalCase));
 
 		var posts = Api.Wall.Get(new()
@@ -294,7 +294,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetById_ReturnWallRecords()
 	{
-		Url = "https://api.vk.com/method/wall.getById";
+		Url = "https://api.vk.ru/method/wall.getById";
 		ReadCategoryJsonPath(nameof(GetById_ReturnWallRecords));
 
 		var records = Api.Wall.GetById(new[]
@@ -370,7 +370,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetById_Donut()
 	{
-		Url = "https://api.vk.com/method/wall.getById";
+		Url = "https://api.vk.ru/method/wall.getById";
 		ReadCategoryJsonPath(nameof(GetById_Donut));
 
 		var records = Api.Wall.GetById(new[]
@@ -412,7 +412,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetComments_ReturnLikesAndAttachments()
 	{
-		Url = "https://api.vk.com/method/wall.getComments";
+		Url = "https://api.vk.ru/method/wall.getComments";
 		ReadCategoryJsonPath(nameof(GetComments_ReturnLikesAndAttachments));
 
 		var comments = Api.Wall.GetComments(new()
@@ -534,7 +534,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void OpenComments_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/wall.openComments";
+		Url = "https://api.vk.ru/method/wall.openComments";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -547,7 +547,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Repost_ReturnCorrectResults()
 	{
-		Url = "https://api.vk.com/method/wall.repost";
+		Url = "https://api.vk.ru/method/wall.repost";
 		ReadCategoryJsonPath(nameof(Repost_ReturnCorrectResults));
 
 		var result = Api.Wall.Repost("id", null, null, false);
@@ -571,7 +571,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Repost_UrlIsGeneratedCorrectly()
 	{
-		Url = "https://api.vk.com/method/wall.repost";
+		Url = "https://api.vk.ru/method/wall.repost";
 		ReadCategoryJsonPath(nameof(Repost_UrlIsGeneratedCorrectly));
 
 		var result = Api.Wall.Repost("id", "example", 50, false);
@@ -595,7 +595,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void CheckCopyrightLink_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/wall.checkCopyrightLink";
+		Url = "https://api.vk.ru/method/wall.checkCopyrightLink";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -608,7 +608,7 @@ public class WallCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetComment_ReturnCorrectResults()
 	{
-		Url = "https://api.vk.com/method/wall.getComment";
+		Url = "https://api.vk.ru/method/wall.getComment";
 
 		ReadCategoryJsonPath(nameof(GetComment_ReturnCorrectResults));
 

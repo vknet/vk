@@ -14,7 +14,7 @@ public class MessagesWithCallTests : MessagesBaseTests
 	{
 		ReadJsonFile("Models", "message_with_call");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var message = Api.Call<Message>("friends.getRequests", VkParameters.Empty);
 
 

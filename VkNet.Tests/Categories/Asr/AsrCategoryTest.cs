@@ -13,7 +13,7 @@ public class AsrCategoryTest : CategoryBaseTest
 	[Fact]
 	public void CheckStatus()
 	{
-		Url = "https://api.vk.com/method/asr.checkStatus";
+		Url = "https://api.vk.ru/method/asr.checkStatus";
 
 		ReadCategoryJsonPath(nameof(CheckStatus));
 
@@ -32,7 +32,7 @@ public class AsrCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetUploadUrl()
 	{
-		Url = "https://api.vk.com/method/asr.getUploadUrl";
+		Url = "https://api.vk.ru/method/asr.getUploadUrl";
 
 		ReadCategoryJsonPath(nameof(GetUploadUrl));
 
@@ -40,13 +40,13 @@ public class AsrCategoryTest : CategoryBaseTest
 
 		result.UploadUrl.Should()
 			.Be(new Uri(
-				"https://pu.vk.com/gu/speech/v2/upload?token=eyJ0e13iOiJKV1QiLCJhbGmdOiJIUzI1NiJ9.eyqlmAQiOjE2NjM1OTAzNDYsInZrX3VzZXJfaWQiOjgxNDI3MDksInZrX2FwcF9pZCI6ODE0MjcwOSwidmtfdXBsb2FkX3R5cGUiOiJzcGVlY2gifQ.9PStNUU8cf-rlFdPhM5hKQ2xSjhbxzxy7SRKYHvXC_M"));
+				"https://pu.vk.ru/gu/speech/v2/upload?token=eyJ0e13iOiJKV1QiLCJhbGmdOiJIUzI1NiJ9.eyqlmAQiOjE2NjM1OTAzNDYsInZrX3VzZXJfaWQiOjgxNDI3MDksInZrX2FwcF9pZCI6ODE0MjcwOSwidmtfdXBsb2FkX3R5cGUiOiJzcGVlY2gifQ.9PStNUU8cf-rlFdPhM5hKQ2xSjhbxzxy7SRKYHvXC_M"));
 	}
 
 	[Fact]
 	public void Process()
 	{
-		Url = "https://api.vk.com/method/asr.process";
+		Url = "https://api.vk.ru/method/asr.process";
 
 		ReadCategoryJsonPath(nameof(Process));
 

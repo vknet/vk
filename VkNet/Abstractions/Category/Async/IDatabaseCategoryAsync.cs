@@ -22,7 +22,7 @@ public interface IDatabaseCategoryAsync
 	/// <param name="codes">
 	/// Перечисленные через запятую двухбуквенные коды стран в стандарте ISO 3166-1
 	/// alpha-2
-	/// http://vk.com/dev/country_codes
+	/// http://vk.ru/dev/country_codes
 	/// </param>
 	/// <param name="offset">
 	/// Отступ, необходимый для выбора определенного подмножества
@@ -40,7 +40,7 @@ public interface IDatabaseCategoryAsync
 	/// текущего пользователя. Если задан параметр needAll, то будет возвращен список
 	/// всех стран. Если задан параметр code,
 	/// то будут возвращены только страны с перечисленными ISO 3166-1 alpha-2 кодами.
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getCountries
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getCountries
 	/// </remarks>
 	/// <returns>
 	/// Список стран
@@ -64,7 +64,7 @@ public interface IDatabaseCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Список регионов. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getRegions
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getRegions
 	/// </remarks>
 	Task<VkCollection<Region>> GetRegionsAsync(int countryId,
 												string query = "",
@@ -79,7 +79,7 @@ public interface IDatabaseCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Информация об улицах. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getStreetsById
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getStreetsById
 	/// </remarks>
 	Task<ReadOnlyCollection<Street>> GetStreetsByIdAsync(CancellationToken token = default,
 														params int[] streetIds);
@@ -91,7 +91,7 @@ public interface IDatabaseCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Информация о странах. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getCountriesById
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getCountriesById
 	/// </remarks>
 	Task<ReadOnlyCollection<Country>> GetCountriesByIdAsync(CancellationToken token = default,
 															params int[] countryIds);
@@ -113,7 +113,7 @@ public interface IDatabaseCategoryAsync
 	/// Если задан параметр <paramref name="getCitiesParams.query" />, то будет
 	/// возвращен список городов, которые
 	/// релевантны поисковому запросу.
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getCities
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getCities
 	/// </remarks>
 	Task<VkCollection<City>> GetCitiesAsync(GetCitiesParams getCitiesParams,
 											CancellationToken token = default);
@@ -127,7 +127,7 @@ public interface IDatabaseCategoryAsync
 	/// <remarks>
 	/// Идентификаторы городов могут быть получены с помощью методов UsersCategory.Get,
 	/// places.getById, places.search, places.getCheckins.
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getCitiesById
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getCitiesById
 	/// </remarks>
 	Task<ReadOnlyCollection<City>> GetCitiesByIdAsync(CancellationToken token = default,
 													params int[] cityIds);
@@ -152,7 +152,7 @@ public interface IDatabaseCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Список высших учебных заведений, удовлетворяющих заданным условиям. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getUniversities
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getUniversities
 	/// </remarks>
 	Task<VkCollection<University>> GetUniversitiesAsync(int countryId,
 														int cityId,
@@ -174,7 +174,7 @@ public interface IDatabaseCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Cписок школ. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getSchools
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getSchools
 	/// </remarks>
 	Task<VkCollection<School>> GetSchoolsAsync(int cityId,
 												string query = "",
@@ -197,7 +197,7 @@ public interface IDatabaseCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Cписок факультетов. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getFaculties
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getFaculties
 	/// </remarks>
 	Task<VkCollection<Faculty>> GetFacultiesAsync(long universityId,
 												int? count = null,
@@ -218,7 +218,7 @@ public interface IDatabaseCategoryAsync
 	/// класса.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getSchoolClasses
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getSchoolClasses
 	/// </remarks>
 	Task<ReadOnlyCollection<SchoolClass>> GetSchoolClassesAsync(long countryId,
 																CancellationToken token = default);
@@ -241,7 +241,7 @@ public interface IDatabaseCategoryAsync
 	/// идентификатор и строковое обозначение класса.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getChairs
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getChairs
 	/// </remarks>
 	Task<VkCollection<Chair>> GetChairsAsync(long facultyId,
 											int? count = null,
@@ -263,7 +263,7 @@ public interface IDatabaseCategoryAsync
 	/// color (string) — цвет линии.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getMetroStationsById
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getMetroStationsById
 	/// </remarks>
 	Task<ReadOnlyCollection<MetroStation>> GetMetroStationsByIdAsync(IEnumerable<ulong> stationIds,
 																	CancellationToken token = default);
@@ -292,7 +292,7 @@ public interface IDatabaseCategoryAsync
 	/// color (string) — цвет линии.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/database.getMetroStations
+	/// Страница документации ВКонтакте http://vk.ru/dev/database.getMetroStations
 	/// </remarks>
 	Task<VkCollection<MetroStation>> GetMetroStationsAsync(ulong cityId,
 															int? offset = null,

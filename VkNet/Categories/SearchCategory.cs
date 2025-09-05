@@ -13,7 +13,7 @@ public partial class SearchCategory : ISearchCategory
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// api vk.ru
 	/// </summary>
 	public SearchCategory(IVkApiInvoke vk) => _vk = vk;
 

@@ -30,7 +30,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void CoordsMessage()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(CoordsMessage));
 
 		var id = Api.Messages.Send(new()
@@ -49,7 +49,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void DefaultFields_MessageId()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(DefaultFields_MessageId));
 
 		var id = Api.Messages.Send(new()
@@ -75,7 +75,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void Exception_MessageIsTooLong()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadErrorsJsonFile(914);
 
 		FluentActions.Invoking(() => Api.Messages.Send(new()
@@ -93,7 +93,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void Exception_TooMuchSentMessages()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadErrorsJsonFile(913);
 
 		FluentActions.Invoking(() => Api.Messages.Send(new()
@@ -111,7 +111,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void MessagesSend_RandomIdNotRequiredInLessThan_5_90_ArgumentException()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(MessagesSend_RandomIdNotRequiredInLessThan_5_90_ArgumentException));
 
 		Api.VkApiVersion.SetVersion(5, 88);
@@ -129,7 +129,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void MessagesSend_RandomIdRequired_ArgumentException()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(MessagesSend_RandomIdRequired_ArgumentException));
 
 		FluentActions.Invoking(() => Api.Messages.Send(new()
@@ -149,7 +149,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void MessagesSend_SetUserIdsParam_ArgumentException()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(MessagesSend_SetUserIdsParam_ArgumentException));
 
 		FluentActions.Invoking(() => Api.Messages.Send(new()
@@ -169,7 +169,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult));
 
 		var result = Api.Messages.SendToUserIds(new()
@@ -201,7 +201,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void MessagesSendToPeerIds_NoSetPeerIdsParam_ArrayResult()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(MessagesSendToPeerIds_NoSetPeerIdsParam_ArrayResult));
 
 		FluentActions.Invoking(() => Api.Messages.Send(new()
@@ -217,7 +217,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void MessagesSendToPeerIds_SetUserIdsParam_ArrayResult()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(MessagesSendToPeerIds_SetUserIdsParam_ArrayResult));
 
 		FluentActions.Invoking(() => Api.Messages.Send(new()
@@ -237,7 +237,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void MessagesSendToPeerIds_SetPeerIdParam_ArrayResult()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(MessagesSendToPeerIds_SetPeerIdParam_ArrayResult));
 
 		FluentActions.Invoking(() => Api.Messages.Send(new()
@@ -254,7 +254,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void MessagesSendToPeerIds_Send_ArrayResult()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(MessagesSendToPeerIds_Send_ArrayResult));
 
 		var result = Api.Messages.SendToPeerIds(new()
@@ -286,7 +286,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void RussianText_MessageId()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(RussianText_MessageId));
 
 		var id = Api.Messages.Send(new()
@@ -303,7 +303,7 @@ public class MessagesSendTests : MessagesBaseTests
 	[Fact]
 	public void Template_Carousel()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(Template_Carousel));
 
 		var button = new MessageKeyboardButton
@@ -323,7 +323,7 @@ public class MessagesSendTests : MessagesBaseTests
 
 		var carouselAction = new CarouselElementAction
 		{
-			Link = new("https://vk.com/"),
+			Link = new("https://vk.ru/"),
 			Type = CarouselElementActionType.OpenLink
 		};
 

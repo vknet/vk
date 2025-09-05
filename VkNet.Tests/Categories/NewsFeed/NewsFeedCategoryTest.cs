@@ -14,7 +14,7 @@ public class NewsFeedCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get()
 	{
-		Url = "https://api.vk.com/method/newsfeed.get";
+		Url = "https://api.vk.ru/method/newsfeed.get";
 
 		ReadCategoryJsonPath(nameof(Get));
 
@@ -33,7 +33,7 @@ public class NewsFeedCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetRecommended()
 	{
-		Url = "https://api.vk.com/method/newsfeed.getRecommended";
+		Url = "https://api.vk.ru/method/newsfeed.getRecommended";
 
 		ReadCategoryJsonPath(nameof(GetRecommended));
 

@@ -6,7 +6,7 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Информация о последней активности пользователя.
-/// См. описание http://vk.com/dev/messages.getLastActivity
+/// См. описание http://vk.ru/dev/messages.getLastActivity
 /// </summary>
 [Serializable]
 public class LastActivity

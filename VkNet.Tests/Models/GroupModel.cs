@@ -21,7 +21,7 @@ public class GroupModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<Group>("friends.getRequests", VkParameters.Empty);
 
 
@@ -34,7 +34,7 @@ public class GroupModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse2));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<Group>("friends.getRequests", VkParameters.Empty);
 
 
@@ -47,7 +47,7 @@ public class GroupModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeTrue));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<Group>("friends.getRequests", VkParameters.Empty);
 
 

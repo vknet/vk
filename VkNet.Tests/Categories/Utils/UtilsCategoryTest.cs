@@ -16,7 +16,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void CheckLink_BannedLink()
 	{
-		Url = "https://api.vk.com/method/utils.checkLink";
+		Url = "https://api.vk.ru/method/utils.checkLink";
 		ReadCategoryJsonPath(nameof(CheckLink_BannedLink));
 
 		var type = Api.Utils.CheckLink("http://www.kreml.ru/‎");
@@ -33,7 +33,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void CheckLink_GoogleLink()
 	{
-		Url = "https://api.vk.com/method/utils.checkLink";
+		Url = "https://api.vk.ru/method/utils.checkLink";
 		ReadCategoryJsonPath(nameof(CheckLink_GoogleLink));
 
 		var type = Api.Utils.CheckLink("https://www.google.ru/");
@@ -50,7 +50,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void CheckLink_NotLink()
 	{
-		Url = "https://api.vk.com/method/utils.checkLink";
+		Url = "https://api.vk.ru/method/utils.checkLink";
 		ReadCategoryJsonPath(nameof(CheckLink_NotLink));
 
 		FluentActions.Invoking(() => Api.Utils.CheckLink("hsfasfsf"))
@@ -61,7 +61,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void DeleteFromLastShortened()
 	{
-		Url = "https://api.vk.com/method/utils.deleteFromLastShortened";
+		Url = "https://api.vk.ru/method/utils.deleteFromLastShortened";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Utils.DeleteFromLastShortened("qwe");
@@ -73,7 +73,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetLastShortenedLinks()
 	{
-		Url = "https://api.vk.com/method/utils.getLastShortenedLinks";
+		Url = "https://api.vk.ru/method/utils.getLastShortenedLinks";
 		ReadCategoryJsonPath(nameof(GetLastShortenedLinks));
 
 		var result = Api.Utils.GetLastShortenedLinks();
@@ -85,7 +85,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetLinksStats()
 	{
-		Url = "https://api.vk.com/method/utils.getLinkStats";
+		Url = "https://api.vk.ru/method/utils.getLinkStats";
 		ReadCategoryJsonPath(nameof(GetLinksStats));
 
 		var result = Api.Utils.GetLinkStats(new());
@@ -150,7 +150,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetServerTime()
 	{
-		Url = "https://api.vk.com/method/utils.getServerTime";
+		Url = "https://api.vk.ru/method/utils.getServerTime";
 		ReadCategoryJsonPath(nameof(GetServerTime));
 
 		var result = Api.Utils.GetServerTime();
@@ -162,7 +162,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetShortLink()
 	{
-		Url = "https://api.vk.com/method/utils.getShortLink";
+		Url = "https://api.vk.ru/method/utils.getShortLink";
 		ReadCategoryJsonPath(nameof(GetShortLink));
 
 		var result = Api.Utils.GetShortLink(new("http://google.ru"), false);
@@ -183,7 +183,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ResolveScreenName()
 	{
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		ReadCategoryJsonPath(nameof(ResolveScreenName));
 
 		var result = Api.Utils.ResolveScreenName("durov");
@@ -201,7 +201,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ResolveScreenName_BadScreenName()
 	{
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		ReadJsonFile(JsonPaths.EmptyObject);
 
 		var obj = Api.Utils.ResolveScreenName("3f625aef-b285-4006-a87f-0367a04f1138");
@@ -221,7 +221,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ResolveScreenName_Group()
 	{
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		ReadCategoryJsonPath(nameof(ResolveScreenName_Group));
 
 		var obj = Api.Utils.ResolveScreenName("mdk");
@@ -240,7 +240,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ResolveScreenName_ObjectIdIsVeryBig_User()
 	{
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		ReadCategoryJsonPath(nameof(ResolveScreenName_ObjectIdIsVeryBig_User));
 
 		var obj = Api.Utils.ResolveScreenName("azhidkov");
@@ -259,7 +259,7 @@ public class UtilsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ResolveScreenName_User()
 	{
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		ReadCategoryJsonPath(nameof(ResolveScreenName_User));
 
 		var obj = Api.Utils.ResolveScreenName("azhidkov");

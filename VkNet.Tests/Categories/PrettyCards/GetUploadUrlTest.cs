@@ -12,7 +12,7 @@ public class GetUploadUrlTest : CategoryBaseTest
 	[Fact]
 	public void GetUploadUrl()
 	{
-		Url = "https://api.vk.com/method/prettyCards.getUploadURL";
+		Url = "https://api.vk.ru/method/prettyCards.getUploadURL";
 
 		ReadCategoryJsonPath(nameof(Api.PrettyCards.GetUploadUrl));
 
@@ -20,6 +20,6 @@ public class GetUploadUrlTest : CategoryBaseTest
 
 		url.Should()
 			.Be(new Uri(
-				"https://pu.vk.com/c850608/upload.php?act=ads_add&mid=504736359&size=s&hash_time=1583351712&hash=318c03e7ca5d39a25926b70c37f1dadf&rhash=7914a36ca66600b440aca5991cba69e2&api=1"));
+				"https://pu.vk.ru/c850608/upload.php?act=ads_add&mid=504736359&size=s&hash_time=1583351712&hash=318c03e7ca5d39a25926b70c37f1dadf&rhash=7914a36ca66600b440aca5991cba69e2&api=1"));
 	}
 }

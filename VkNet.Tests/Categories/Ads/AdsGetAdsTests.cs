@@ -15,7 +15,7 @@ public class AdsGetAdsTests : CategoryBaseTest
 	[Fact]
 	public void GetAds_GenerateAdsCorrectly()
 	{
-		Url = "https://api.vk.com/method/ads.getAds";
+		Url = "https://api.vk.ru/method/ads.getAds";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetAds));
 

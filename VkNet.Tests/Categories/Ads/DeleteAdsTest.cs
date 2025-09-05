@@ -11,7 +11,7 @@ public class DeleteAdsTest : CategoryBaseTest
 	[Fact]
 	public void DeleteAds()
 	{
-		Url = "https://api.vk.com/method/ads.deleteAds";
+		Url = "https://api.vk.ru/method/ads.deleteAds";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.DeleteAds));
 

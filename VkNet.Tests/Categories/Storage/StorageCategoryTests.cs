@@ -11,7 +11,7 @@ public class StorageCategoryTests : CategoryBaseTest
 	[Fact]
 	public void Get()
 	{
-		Url = "https://api.vk.com/method/storage.get";
+		Url = "https://api.vk.ru/method/storage.get";
 		ReadCategoryJsonPath(nameof(Get));
 
 		var result = Api.Storage.Get(new[]
@@ -29,7 +29,7 @@ public class StorageCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetKeys()
 	{
-		Url = "https://api.vk.com/method/storage.getKeys";
+		Url = "https://api.vk.ru/method/storage.getKeys";
 		ReadCategoryJsonPath(nameof(GetKeys));
 
 		var result = Api.Storage.GetKeys();
@@ -44,7 +44,7 @@ public class StorageCategoryTests : CategoryBaseTest
 	[Fact]
 	public void Set()
 	{
-		Url = "https://api.vk.com/method/storage.set";
+		Url = "https://api.vk.ru/method/storage.set";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Storage.Set("qwe", "qwe");

@@ -14,7 +14,7 @@ public class UpdateAdsTest : CategoryBaseTest
 	[Fact]
 	public void UpdateAds()
 	{
-		Url = "https://api.vk.com/method/ads.updateAds";
+		Url = "https://api.vk.ru/method/ads.updateAds";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.UpdateAds));
 
@@ -25,7 +25,7 @@ public class UpdateAdsTest : CategoryBaseTest
 			Name = "123",
 			Cpc = 3156,
 			AdPlatform = AdPlatform.All,
-			LinkUrl = new("https://vk.com/nixus9?w=wall-126102803_64")
+			LinkUrl = new("https://vk.ru/nixus9?w=wall-126102803_64")
 		};
 
 		var adEditSpecification2 = new AdEditSpecification
@@ -35,7 +35,7 @@ public class UpdateAdsTest : CategoryBaseTest
 			Name = "123",
 			Cpc = 3156,
 			AdPlatform = AdPlatform.All,
-			LinkUrl = new("https://vk.com/nixus9?w=wall-126102803_64")
+			LinkUrl = new("https://vk.ru/nixus9?w=wall-126102803_64")
 		};
 
 		AdEditSpecification[] data =

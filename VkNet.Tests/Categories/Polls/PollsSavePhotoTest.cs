@@ -11,7 +11,7 @@ public class PollsSavePhotoTest : CategoryBaseTest
 	[Fact]
 	public void PollsSavePhoto()
 	{
-		Url = "https://api.vk.com/method/polls.savePhoto";
+		Url = "https://api.vk.ru/method/polls.savePhoto";
 
 		ReadCategoryJsonPath(nameof(Api.PollsCategory.SavePhoto));
 

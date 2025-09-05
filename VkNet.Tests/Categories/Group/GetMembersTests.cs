@@ -13,7 +13,7 @@ public class GetMembersTests : CategoryBaseTest
 	[Fact]
 	public void GetMembers()
 	{
-		Url = "https://api.vk.com/method/groups.getMembers";
+		Url = "https://api.vk.ru/method/groups.getMembers";
 
 		ReadCategoryJsonPath(nameof(GetMembers));
 

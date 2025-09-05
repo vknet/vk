@@ -11,7 +11,7 @@ public class AudioGetLyricsTest : CategoryBaseTest
 	[Fact]
 	public void GetLyricsTest()
 	{
-		Url = "https://api.vk.com/method/audio.getLyrics";
+		Url = "https://api.vk.ru/method/audio.getLyrics";
 
 		ReadCategoryJsonPath(nameof(Api.Audio.GetLyrics));
 

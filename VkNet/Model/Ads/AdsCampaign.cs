@@ -10,7 +10,7 @@ namespace VkNet.Model;
 /// Возвращает список кампаний рекламного кабинета.
 /// </summary>
 /// <remarks>
-/// См. описание https://vk.com/dev/ads.getCampaigns
+/// См. описание https://vk.ru/dev/ads.getCampaigns
 /// </remarks>
 [Serializable]
 public class AdsCampaign

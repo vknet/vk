@@ -16,7 +16,7 @@ public interface ICallsCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>После успешного выполнения возвращает <c> true </c>.</returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://dev.vk.com/ru/method/calls.forceFinish
+	/// Страница документации ВКонтакте https://dev.vk.ru/ru/method/calls.forceFinish
 	/// </remarks>
 	Task<bool> ForceFinishAsync(CallsForceFinishParams @params,
 								CancellationToken token = default);
@@ -28,7 +28,7 @@ public interface ICallsCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>После успешного выполнения возвращает объект CallStartResult</returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://dev.vk.com/ru/method/calls.start
+	/// Страница документации ВКонтакте https://dev.vk.ru/ru/method/calls.start
 	/// </remarks>
 	Task<CallStartResult> StartAsync(CallsStartParams @params,
 									CancellationToken token = default);

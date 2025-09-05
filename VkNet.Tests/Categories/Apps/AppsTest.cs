@@ -16,7 +16,7 @@ public class AppsTest : CategoryBaseTest
 	[Fact]
 	public void DeleteAppRequests_NormalCase()
 	{
-		Url = "https://api.vk.com/method/apps.deleteAppRequests";
+		Url = "https://api.vk.ru/method/apps.deleteAppRequests";
 		ReadJsonFile(JsonPaths.True);
 
 		var app = Api.Apps.DeleteAppRequests();
@@ -28,7 +28,7 @@ public class AppsTest : CategoryBaseTest
 	[Fact]
 	public void Get_NormalCase()
 	{
-		Url = "https://api.vk.com/method/apps.get";
+		Url = "https://api.vk.ru/method/apps.get";
 		ReadCategoryJsonPath(nameof(Get_NormalCase));
 
 		var app = Api.Apps.Get(new()
@@ -51,21 +51,21 @@ public class AppsTest : CategoryBaseTest
 	[Fact]
 	public void GetMiniAppPolicies()
 	{
-		Url = "https://api.vk.com/method/apps.getMiniAppPolicies";
+		Url = "https://api.vk.ru/method/apps.getMiniAppPolicies";
 		ReadCategoryJsonPath(nameof(GetMiniAppPolicies));
 
 		var app = Api.Apps.GetMiniAppPolicies(6909581);
 
 		app.PrivacyPolicy.Should()
-			.Be("https://vk.com/dev/uprivacy");
+			.Be("https://vk.ru/dev/uprivacy");
 		app.Terms.Should()
-			.Be("https://vk.com/dev/uterms");
+			.Be("https://vk.ru/dev/uterms");
 	}
 
 	[Fact]
 	public void GetScopes()
 	{
-		Url = "https://api.vk.com/method/apps.getScopes";
+		Url = "https://api.vk.ru/method/apps.getScopes";
 		ReadCategoryJsonPath(nameof(GetScopes));
 
 		var app = Api.Apps.GetScopes();
@@ -79,7 +79,7 @@ public class AppsTest : CategoryBaseTest
 	[Fact]
 	public void GetCatalog_NormalCase()
 	{
-		Url = "https://api.vk.com/method/apps.getCatalog";
+		Url = "https://api.vk.ru/method/apps.getCatalog";
 		ReadCategoryJsonPath(nameof(GetCatalog_NormalCase));
 
 		var app = Api.Apps.GetCatalog(new());
@@ -95,7 +95,7 @@ public class AppsTest : CategoryBaseTest
 	[Fact]
 	public void GetFriendsList_NormalCase()
 	{
-		Url = "https://api.vk.com/method/apps.getFriendsList";
+		Url = "https://api.vk.ru/method/apps.getFriendsList";
 		ReadCategoryJsonPath(nameof(GetFriendsList_NormalCase));
 
 		var app = Api.Apps.GetFriendsList(AppRequestType.Invite, null, null, null);
@@ -110,7 +110,7 @@ public class AppsTest : CategoryBaseTest
 	[Fact]
 	public void GetFriendsListEx_NormalCase()
 	{
-		Url = "https://api.vk.com/method/apps.getFriendsList";
+		Url = "https://api.vk.ru/method/apps.getFriendsList";
 		ReadCategoryJsonPath(nameof(GetFriendsListEx_NormalCase));
 
 		var app = Api.Apps.GetFriendsList(AppRequestType.Invite, true, 5, 1, UsersFields.Online);
@@ -125,7 +125,7 @@ public class AppsTest : CategoryBaseTest
 	[Fact]
 	public void GetLeaderboard_Extended()
 	{
-		Url = "https://api.vk.com/method/apps.getLeaderboard";
+		Url = "https://api.vk.ru/method/apps.getLeaderboard";
 		ReadCategoryJsonPath(nameof(GetLeaderboard_Extended));
 
 		var app = Api.Apps.GetLeaderboard(AppRatingType.Points, null, true);
@@ -158,7 +158,7 @@ public class AppsTest : CategoryBaseTest
 	[Fact]
 	public void GetLeaderboard_Level()
 	{
-		Url = "https://api.vk.com/method/apps.getLeaderboard";
+		Url = "https://api.vk.ru/method/apps.getLeaderboard";
 		ReadCategoryJsonPath(nameof(GetLeaderboard_Level));
 
 		var app = Api.Apps.GetLeaderboard(AppRatingType.Level);
@@ -188,7 +188,7 @@ public class AppsTest : CategoryBaseTest
 	[Fact]
 	public void GetLeaderboard_Points()
 	{
-		Url = "https://api.vk.com/method/apps.getLeaderboard";
+		Url = "https://api.vk.ru/method/apps.getLeaderboard";
 		ReadCategoryJsonPath(nameof(GetLeaderboard_Points));
 
 		var app = Api.Apps.GetLeaderboard(AppRatingType.Points);

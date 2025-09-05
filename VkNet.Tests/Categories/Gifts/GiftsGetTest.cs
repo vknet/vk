@@ -16,7 +16,7 @@ public class GiftsGetTest : CategoryBaseTest
 	[Fact]
 	public void Get_NormalCase()
 	{
-		Url = "https://api.vk.com/method/gifts.get";
+		Url = "https://api.vk.ru/method/gifts.get";
 		ReadCategoryJsonPath(nameof(Get_NormalCase));
 
 		var gifts = Api.Gifts.Get(32190123);
@@ -45,13 +45,13 @@ public class GiftsGetTest : CategoryBaseTest
 			.Be(658);
 
 		gift.Gift.Thumb256.Should()
-			.Be(new Uri("https://vk.com/images/gift/658/256.jpg"));
+			.Be(new Uri("https://vk.ru/images/gift/658/256.jpg"));
 
 		gift.Gift.Thumb96.Should()
-			.Be(new Uri("https://vk.com/images/gift/658/96.png"));
+			.Be(new Uri("https://vk.ru/images/gift/658/96.png"));
 
 		gift.Gift.Thumb48.Should()
-			.Be(new Uri("https://vk.com/images/gift/658/48.png"));
+			.Be(new Uri("https://vk.ru/images/gift/658/48.png"));
 
 		gift.Privacy.Should()
 			.Be(GiftPrivacy.All);

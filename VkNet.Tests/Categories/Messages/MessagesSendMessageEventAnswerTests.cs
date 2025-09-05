@@ -11,7 +11,7 @@ public class MessagesSendMessageEventAnswerTests : MessagesBaseTests
 	[Fact]
 	public void SendMessageEventAnswer()
 	{
-		Url = "https://api.vk.com/method/messages.sendMessageEventAnswer";
+		Url = "https://api.vk.ru/method/messages.sendMessageEventAnswer";
 		ReadJsonFile(JsonPaths.True);
 
 		var data = new EventData

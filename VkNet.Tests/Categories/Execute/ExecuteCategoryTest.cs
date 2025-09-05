@@ -17,7 +17,7 @@ public class ExecuteCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ExecuteTest()
 	{
-		Url = "https://api.vk.com/method/execute";
+		Url = "https://api.vk.ru/method/execute";
 
 		ReadCategoryJsonPath(nameof(ExecuteTest));
 
@@ -32,7 +32,7 @@ public class ExecuteCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ExecuteTopicsFeedTest()
 	{
-		Url = "https://api.vk.com/method/execute";
+		Url = "https://api.vk.ru/method/execute";
 
 		ReadCategoryJsonPath(nameof(ExecuteTopicsFeedTest));
 		var code = ReadScript(nameof(ExecuteTopicsFeedTest));
@@ -46,7 +46,7 @@ public class ExecuteCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ExecuteGetUniversitiesTest()
 	{
-		Url = "https://api.vk.com/method/execute";
+		Url = "https://api.vk.ru/method/execute";
 		ReadCategoryJsonPath(nameof(ExecuteGetUniversitiesTest));
 
 		var code = ReadScript(nameof(ExecuteGetUniversitiesTest));
@@ -66,7 +66,7 @@ public class ExecuteCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ExecuteErrorTest()
 	{
-		Url = "https://api.vk.com/method/execute";
+		Url = "https://api.vk.ru/method/execute";
 		ReadErrorsJsonFile(12);
 
 		var code = ReadScript(nameof(ExecuteErrorTest));
@@ -79,7 +79,7 @@ public class ExecuteCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ExecuteErrors()
 	{
-		Url = "https://api.vk.com/method/execute";
+		Url = "https://api.vk.ru/method/execute";
 		ReadCategoryJsonPath(nameof(ExecuteErrors));
 
 		var code = ReadScript(nameof(ExecuteErrorTest));

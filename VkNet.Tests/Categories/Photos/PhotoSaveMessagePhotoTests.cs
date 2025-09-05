@@ -13,7 +13,7 @@ public class PhotoSaveMessagePhotoTests : CategoryBaseTest
 	[Fact]
 	public void SaveMessagePhoto()
 	{
-		Url = "https://api.vk.com/method/photos.saveMessagesPhoto";
+		Url = "https://api.vk.ru/method/photos.saveMessagesPhoto";
 		ReadCategoryJsonPath(nameof(SaveMessagePhoto));
 
 		const string parameter = @"{

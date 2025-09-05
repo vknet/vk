@@ -12,7 +12,7 @@ public class AudioGetBroadcastListTest : CategoryBaseTest
 	[Fact]
 	public void GetBroadcastListTest()
 	{
-		Url = "https://api.vk.com/method/audio.getBroadcastList";
+		Url = "https://api.vk.ru/method/audio.getBroadcastList";
 
 		ReadCategoryJsonPath(nameof(Api.Audio.GetBroadcastList));
 

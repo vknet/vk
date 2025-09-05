@@ -20,7 +20,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void BanUser_NormalCase()
 	{
-		Url = "https://api.vk.com/method/groups.banUser";
+		Url = "https://api.vk.ru/method/groups.banUser";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -39,7 +39,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Edit_NormalCase()
 	{
-		Url = "https://api.vk.com/method/groups.edit";
+		Url = "https://api.vk.ru/method/groups.edit";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -58,7 +58,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void EditPlace_NormalCase()
 	{
-		Url = "https://api.vk.com/method/groups.editPlace";
+		Url = "https://api.vk.ru/method/groups.editPlace";
 
 		ReadCategoryJsonPath(nameof(Api.Groups.EditPlace));
 
@@ -81,7 +81,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_NormalCaseAllFields_ReturnFullGroupInfo()
 	{
-		Url = "https://api.vk.com/method/groups.get";
+		Url = "https://api.vk.ru/method/groups.get";
 
 		ReadCategoryJsonPath(nameof(Get_NormalCaseAllFields_ReturnFullGroupInfo));
 
@@ -226,7 +226,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_NormalCaseDefaultFields_ReturnOnlyGroupIds()
 	{
-		Url = "https://api.vk.com/method/groups.get";
+		Url = "https://api.vk.ru/method/groups.get";
 
 		ReadCategoryJsonPath(nameof(Get_NormalCaseDefaultFields_ReturnOnlyGroupIds));
 
@@ -265,7 +265,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetById_BanInfo()
 	{
-		Url = "https://api.vk.com/method/groups.getById";
+		Url = "https://api.vk.ru/method/groups.getById";
 		ReadCategoryJsonPath(nameof(GetById_BanInfo));
 
 		var group = Api.Groups.GetById(new List<string>(), "66464944", GroupsFields.BanInfo)
@@ -302,7 +302,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetById_InvalidGid_ThrowsInvalidParameterException()
 	{
-		Url = "https://api.vk.com/method/groups.getById";
+		Url = "https://api.vk.ru/method/groups.getById";
 
 		ReadJsonFile("Errors", "125");
 
@@ -324,7 +324,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetById_Multiple_InvalidGids_ThrowsInvalidParameterException()
 	{
-		Url = "https://api.vk.com/method/groups.getById";
+		Url = "https://api.vk.ru/method/groups.getById";
 
 		ReadJsonFile("Errors", "125");
 
@@ -342,7 +342,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	public void GetById_Multiple_NormalCaseAllFields_ReturnTwoItems()
 	{
 		Url =
-			"https://api.vk.com/method/groups.getById";
+			"https://api.vk.ru/method/groups.getById";
 
 		ReadCategoryJsonPath(nameof(GetById_Multiple_NormalCaseAllFields_ReturnTwoItems));
 
@@ -484,7 +484,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetById_Multiple_NormalCaseDefaultFields_ReturnTowItems()
 	{
-		Url = "https://api.vk.com/method/groups.getById";
+		Url = "https://api.vk.ru/method/groups.getById";
 
 		ReadCategoryJsonPath(nameof(GetById_Multiple_NormalCaseDefaultFields_ReturnTowItems));
 
@@ -584,7 +584,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetById_NormalCaseAllFields_ReturnTwoItems()
 	{
-		Url = "https://api.vk.com/method/groups.getById";
+		Url = "https://api.vk.ru/method/groups.getById";
 
 		ReadCategoryJsonPath(nameof(GetById_NormalCaseAllFields_ReturnTwoItems));
 
@@ -646,7 +646,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetById_NormalCaseDefaultFields_ReturnTwoItems()
 	{
-		Url = "https://api.vk.com/method/groups.getById";
+		Url = "https://api.vk.ru/method/groups.getById";
 
 		ReadCategoryJsonPath(nameof(GetById_NormalCaseDefaultFields_ReturnTwoItems));
 
@@ -690,7 +690,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCatalog_WithAllParams()
 	{
-		Url = "https://api.vk.com/method/groups.getCatalog";
+		Url = "https://api.vk.ru/method/groups.getCatalog";
 
 		ReadCategoryJsonPath(nameof(GetCatalog_WithAllParams));
 
@@ -780,7 +780,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCatalog_WithoutParams()
 	{
-		Url = "https://api.vk.com/method/groups.getCatalog";
+		Url = "https://api.vk.ru/method/groups.getCatalog";
 		ReadCategoryJsonPath(nameof(GetCatalog_WithoutParams));
 
 		var catalog = Api.Groups.GetCatalog();
@@ -869,7 +869,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCatalog_WithParamCategoryId()
 	{
-		Url = "https://api.vk.com/method/groups.getCatalog";
+		Url = "https://api.vk.ru/method/groups.getCatalog";
 
 		ReadCategoryJsonPath(nameof(GetCatalog_WithParamCategoryId));
 
@@ -959,7 +959,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCatalogInfo()
 	{
-		Url = "https://api.vk.com/method/groups.getCatalogInfo";
+		Url = "https://api.vk.ru/method/groups.getCatalogInfo";
 
 		ReadCategoryJsonPath(nameof(Api.Groups.GetCatalogInfo));
 
@@ -993,7 +993,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCatalogInfo_AllParams()
 	{
-		Url = "https://api.vk.com/method/groups.getCatalogInfo";
+		Url = "https://api.vk.ru/method/groups.getCatalogInfo";
 
 		ReadCategoryJsonPath(nameof(GetCatalogInfo_AllParams));
 
@@ -1091,7 +1091,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCatalogInfo_Extended()
 	{
-		Url = "https://api.vk.com/method/groups.getCatalogInfo";
+		Url = "https://api.vk.ru/method/groups.getCatalogInfo";
 
 		ReadCategoryJsonPath(nameof(GetCatalogInfo_Extended));
 
@@ -1151,7 +1151,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCatalogInfo_Subcategories()
 	{
-		Url = "https://api.vk.com/method/groups.getCatalogInfo";
+		Url = "https://api.vk.ru/method/groups.getCatalogInfo";
 
 		ReadCategoryJsonPath(nameof(GetCatalogInfo_Subcategories));
 
@@ -1223,7 +1223,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetInivites_NotInvites()
 	{
-		Url = "https://api.vk.com/method/groups.getInvites";
+		Url = "https://api.vk.ru/method/groups.getInvites";
 		ReadJsonFile(JsonPaths.EmptyVkCollection);
 
 		var groups = Api.Groups.GetInvites(3, 0);
@@ -1238,7 +1238,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetInvitedUsers_NormalCase()
 	{
-		Url = "https://api.vk.com/method/groups.getInvitedUsers";
+		Url = "https://api.vk.ru/method/groups.getInvitedUsers";
 
 		ReadCategoryJsonPath(nameof(GetInvitedUsers_NormalCase));
 		var users = Api.Groups.GetInvitedUsers(103292418, 0, 20, UsersFields.BirthDate, NameCase.Dat);
@@ -1267,7 +1267,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetInvites_NormalCase()
 	{
-		Url = "https://api.vk.com/method/groups.getInvites";
+		Url = "https://api.vk.ru/method/groups.getInvites";
 
 		ReadCategoryJsonPath(nameof(GetInvites_NormalCase));
 
@@ -1306,13 +1306,13 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeFalse();
 
 		group.PhotoPreviews.Photo50.Should()
-			.Be(new Uri("http://vk.com/images/community_50.gif"));
+			.Be(new Uri("http://vk.ru/images/community_50.gif"));
 
 		group.PhotoPreviews.Photo100.Should()
-			.Be(new Uri("http://vk.com/images/community_100.gif"));
+			.Be(new Uri("http://vk.ru/images/community_100.gif"));
 
 		group.PhotoPreviews.PhotoMax.Should()
-			.Be(new Uri("http://vk.com/images/question_a.gif"));
+			.Be(new Uri("http://vk.ru/images/question_a.gif"));
 
 		group.InvitedBy.Should()
 			.Be(242508789);
@@ -1321,7 +1321,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetMembers_InvalidGid_ThrowsInvalidParameterException()
 	{
-		Url = "https://api.vk.com/method/groups.getMembers";
+		Url = "https://api.vk.ru/method/groups.getMembers";
 
 		ReadJsonFile("Errors", "125");
 
@@ -1336,7 +1336,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetMembers_NormalCase_ListOfUsesIds()
 	{
-		Url = "https://api.vk.com/method/groups.getMembers";
+		Url = "https://api.vk.ru/method/groups.getMembers";
 
 		ReadCategoryJsonPath(nameof(GetMembers_NormalCase_ListOfUsesIds));
 
@@ -1373,7 +1373,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetMembers_NormalCaseAllInputParameters_ListOfUsesIds()
 	{
-		Url = "https://api.vk.com/method/groups.getMembers";
+		Url = "https://api.vk.ru/method/groups.getMembers";
 
 		ReadCategoryJsonPath(nameof(GetMembers_NormalCaseAllInputParameters_ListOfUsesIds));
 
@@ -1402,7 +1402,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetSettings_NormalCase()
 	{
-		Url = "https://api.vk.com/method/groups.getSettings";
+		Url = "https://api.vk.ru/method/groups.getSettings";
 
 		ReadCategoryJsonPath(nameof(GetSettings_NormalCase));
 		var groups = Api.Groups.GetSettings(103292418);
@@ -1417,7 +1417,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Invite_NormalCase()
 	{
-		Url = "https://api.vk.com/method/groups.invite";
+		Url = "https://api.vk.ru/method/groups.invite";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -1440,7 +1440,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void IsMember_UserAuthorizationFail_ThrowUserAuthorizationFailException()
 	{
-		Url = "https://api.vk.com/method/groups.isMember";
+		Url = "https://api.vk.ru/method/groups.isMember";
 
 		ReadErrorsJsonFile(5);
 
@@ -1455,7 +1455,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void IsMember_UserIsAMember_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/groups.isMember";
+		Url = "https://api.vk.ru/method/groups.isMember";
 
 		ReadCategoryJsonPath(nameof(IsMember_UserIsAMember_ReturnTrue));
 
@@ -1472,7 +1472,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void IsMember_UserNotAMember_ReturnFalse()
 	{
-		Url = "https://api.vk.com/method/groups.isMember";
+		Url = "https://api.vk.ru/method/groups.isMember";
 
 		ReadCategoryJsonPath(nameof(IsMember_UserNotAMember_ReturnFalse));
 
@@ -1489,7 +1489,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void IsMember_WrongGid_ThrowsInvalidParameterException()
 	{
-		Url = "https://api.vk.com/method/groups.isMember";
+		Url = "https://api.vk.ru/method/groups.isMember";
 
 		ReadErrorsJsonFile(125);
 
@@ -1504,7 +1504,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void IsMember_WrongUid_ReturnFalse()
 	{
-		Url = "https://api.vk.com/method/groups.isMember";
+		Url = "https://api.vk.ru/method/groups.isMember";
 		ReadJsonFile(JsonPaths.False);
 
 		var result = Api.Groups.IsMember("637247", 1000000000000, false);
@@ -1516,7 +1516,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Join_AccessDenied_ThrowAccessDeniedException()
 	{
-		Url = "https://api.vk.com/method/groups.join";
+		Url = "https://api.vk.ru/method/groups.join";
 
 		ReadErrorsJsonFile(7);
 
@@ -1538,7 +1538,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Join_NormalCase_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/groups.join";
+		Url = "https://api.vk.ru/method/groups.join";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -1551,7 +1551,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Join_NormalCaseNotSure_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/groups.join";
+		Url = "https://api.vk.ru/method/groups.join";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -1564,7 +1564,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Join_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
 	{
-		Url = "https://api.vk.com/method/groups.join";
+		Url = "https://api.vk.ru/method/groups.join";
 		ReadErrorsJsonFile(5);
 
 		FluentActions.Invoking(() => Api.Groups.Join(1))
@@ -1575,7 +1575,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Join_WrongGid_ThrowAccessDeniedException()
 	{
-		Url = "https://api.vk.com/method/groups.join";
+		Url = "https://api.vk.ru/method/groups.join";
 		ReadErrorsJsonFile(15);
 
 		FluentActions.Invoking(() => Api.Groups.Join(0, true))
@@ -1588,7 +1588,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Leave_AccessDenied_ThrowAccessDeniedException()
 	{
-		Url = "https://api.vk.com/method/groups.leave";
+		Url = "https://api.vk.ru/method/groups.leave";
 
 		ReadErrorsJsonFile(7);
 
@@ -1610,7 +1610,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Leave_NormalCase_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/groups.leave";
+		Url = "https://api.vk.ru/method/groups.leave";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -1623,7 +1623,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Leave_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
 	{
-		Url = "https://api.vk.com/method/groups.leave";
+		Url = "https://api.vk.ru/method/groups.leave";
 		ReadErrorsJsonFile(5);
 
 		FluentActions.Invoking(() => Api.Groups.Leave(1))
@@ -1634,7 +1634,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Leave_WrongGid_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/groups.leave";
+		Url = "https://api.vk.ru/method/groups.leave";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -1647,7 +1647,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Search_DefaultCase_ListOfGroups()
 	{
-		Url = "https://api.vk.com/method/groups.search";
+		Url = "https://api.vk.ru/method/groups.search";
 
 		ReadCategoryJsonPath(nameof(Search_DefaultCase_ListOfGroups));
 
@@ -1747,7 +1747,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Search_DefaultCaseAllParams_ListOfGroups()
 	{
-		Url = "https://api.vk.com/method/groups.search";
+		Url = "https://api.vk.ru/method/groups.search";
 
 		ReadCategoryJsonPath(nameof(Search_DefaultCaseAllParams_ListOfGroups));
 
@@ -1902,7 +1902,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Search_GroupsNotFounded_EmptyList()
 	{
-		Url = "https://api.vk.com/method/groups.search";
+		Url = "https://api.vk.ru/method/groups.search";
 		ReadJsonFile(JsonPaths.EmptyVkCollection);
 
 		var groups = Api.Groups.Search(new()
@@ -1923,7 +1923,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Unban_NormalCase()
 	{
-		Url = "https://api.vk.com/method/groups.unban";
+		Url = "https://api.vk.ru/method/groups.unban";
 
 		ReadJsonFile(JsonPaths.True);
 

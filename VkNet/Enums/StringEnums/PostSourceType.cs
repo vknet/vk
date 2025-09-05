@@ -13,7 +13,7 @@ namespace VkNet.Enums.StringEnums;
 public enum PostSourceType
 {
 	/// <summary>
-	/// Запись создана через основной интерфейс сайта (http://vk.com/).
+	/// Запись создана через основной интерфейс сайта (http://vk.ru/).
 	/// </summary>
 	Vk,
 

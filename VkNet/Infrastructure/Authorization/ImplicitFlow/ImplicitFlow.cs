@@ -93,7 +93,7 @@ public class ImplicitFlow : IImplicitFlow
 	{
 		_logger.LogDebug("Построение url для авторизации");
 
-		const string url = "https://oauth.vk.com/authorize?";
+		const string url = "https://oauth.vk.ru/authorize?";
 
 		var vkAuthParams = new VkParameters
 		{
@@ -134,7 +134,7 @@ public class ImplicitFlow : IImplicitFlow
 	{
 		var requestUrl = formResult.RequestUrl;
 
-		if (requestUrl.OriginalString.StartsWith("https://oauth.vk.com/auth_redirect"))
+		if (requestUrl.OriginalString.StartsWith("https://oauth.vk.ru/auth_redirect"))
 		{
 			requestUrl = GetRedirectUrl(requestUrl);
 		}

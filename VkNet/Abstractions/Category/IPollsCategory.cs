@@ -16,7 +16,7 @@ public interface IPollsCategory : IPollsCategoryAsync
 	/// Опрос
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.GetById
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.GetById
 	/// </remarks>
 	Poll GetById(PollsGetByIdParams @params);
 
@@ -28,7 +28,7 @@ public interface IPollsCategory : IPollsCategoryAsync
 	/// Признак успешного редактирования
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.Edit
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.Edit
 	/// </remarks>
 	bool Edit(PollsEditParams @params);
 
@@ -42,7 +42,7 @@ public interface IPollsCategory : IPollsCategoryAsync
 	/// 0 — если текущий пользователь уже голосовал в указанном опросе
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.addVote
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.addVote
 	/// </remarks>
 	bool AddVote(PollsAddVoteParams @params);
 
@@ -57,7 +57,7 @@ public interface IPollsCategory : IPollsCategoryAsync
 	/// выбранный им вариант ответа
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.DeleteVote
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.DeleteVote
 	/// </remarks>
 	bool DeleteVote(PollsDeleteVoteParams @params);
 
@@ -70,7 +70,7 @@ public interface IPollsCategory : IPollsCategoryAsync
 	/// Список ответов
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.GetVoters
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.GetVoters
 	/// </remarks>
 	ReadOnlyCollection<PollAnswerVoters> GetVoters(PollsGetVotersParams @params);
 
@@ -85,7 +85,7 @@ public interface IPollsCategory : IPollsCategoryAsync
 	/// опроса.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.create
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.create
 	/// </remarks>
 	Poll Create(PollsCreateParams @params);
 
@@ -96,7 +96,7 @@ public interface IPollsCategory : IPollsCategoryAsync
 	/// Возвращает массив объектов, описывающих фоновое изображение опроса.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.getBackgrounds
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.getBackgrounds
 	/// </remarks>
 	ReadOnlyCollection<GetBackgroundsResult> GetBackgrounds();
 
@@ -108,7 +108,7 @@ public interface IPollsCategory : IPollsCategoryAsync
 	/// Возвращает объект с полем содержащим URL для загрузки фотографии
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev.php?method=polls.getPhotoUploadServer
+	/// Страница документации ВКонтакте http://vk.ru/dev.php?method=polls.getPhotoUploadServer
 	/// </remarks>
 	UploadServer GetPhotoUploadServer(long ownerId);
 
@@ -120,7 +120,7 @@ public interface IPollsCategory : IPollsCategoryAsync
 	///	В случае успешного сохранения возвращает объект описывающий фотографию
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/polls.savePhoto
+	/// Страница документации ВКонтакте http://vk.ru/dev/polls.savePhoto
 	/// </remarks>
 	SavePhotoResult SavePhoto(SavePhotoParams @params);
 }

@@ -23,7 +23,7 @@ public interface IStoriesCategoryAsync
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.banOwner
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.banOwner
 	/// </remarks>
 	Task<bool> BanOwnerAsync(IEnumerable<long> ownersIds,
 							CancellationToken token = default);
@@ -42,7 +42,7 @@ public interface IStoriesCategoryAsync
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.delete
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.delete
 	/// </remarks>
 	Task<bool> DeleteAsync(long ownerId,
 							ulong storyId,
@@ -63,7 +63,7 @@ public interface IStoriesCategoryAsync
 	/// Если был задан параметр extended=1, дополнительно возвращает массив объектов пользователей в поле profiles (array) и сообществ в поле groups (array).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.get
 	/// </remarks>
 	Task<StoryResult<IEnumerable<Story>>> GetAsync(long? ownerId = null,
 													bool? extended = null,
@@ -85,7 +85,7 @@ public interface IStoriesCategoryAsync
 	/// groups (array) — массив объектов, описывающих сообщества.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.getBanned
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.getBanned
 	/// </remarks>
 	Task<StoryResult<long>> GetBannedAsync(IEnumerable<string> fields = null,
 											bool? extended = null,
@@ -111,7 +111,7 @@ public interface IStoriesCategoryAsync
 	/// Если был задан параметр extended = 1, дополнительно возвращает массив объектов  пользователей в поле profiles и объектов сообществ в поле groups.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.getById
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.getById
 	/// </remarks>
 	Task<StoryResult<Story>> GetByIdAsync(IEnumerable<string> stories,
 										bool? extended = null,
@@ -131,7 +131,7 @@ public interface IStoriesCategoryAsync
 	/// user_ids (array) — идентификаторы пользователей, которые могут видеть историю.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.getPhotoUploadServer
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.getPhotoUploadServer
 	/// </remarks>
 	Task<StoryServerUrl> GetPhotoUploadServerAsync(GetPhotoUploadServerParams @params,
 													CancellationToken token = default);
@@ -160,7 +160,7 @@ public interface IStoriesCategoryAsync
 	/// Если был задан параметр extended=1, дополнительно возвращает массив объектов пользователей в поле profiles (array) и сообществ в поле groups (array).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.getReplies
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.getReplies
 	/// </remarks>
 	Task<StoryResult<IEnumerable<Story>>> GetRepliesAsync(long ownerId,
 														ulong storyId,
@@ -204,7 +204,7 @@ public interface IStoriesCategoryAsync
 	/// count (integer) — значение счётчика.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.getStats
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.getStats
 	/// </remarks>
 	Task<StoryStatsResult> GetStatsAsync(long ownerId,
 										ulong storyId,
@@ -223,7 +223,7 @@ public interface IStoriesCategoryAsync
 	/// user_ids (array) — идентификаторы пользователей, которые могут видеть историю.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.getVideoUploadServer
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.getVideoUploadServer
 	/// </remarks>
 	Task<StoryServerUrl> GetVideoUploadServerAsync(GetVideoUploadServerParams @params,
 													CancellationToken token = default);
@@ -248,7 +248,7 @@ public interface IStoriesCategoryAsync
 	/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и идентификаторы пользователей в поле items (array).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.getViewers
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.getViewers
 	/// </remarks>
 	Task<VkCollection<StoryViewers>> GetViewersAsync(long ownerId,
 													ulong storyId,
@@ -276,7 +276,7 @@ public interface IStoriesCategoryAsync
 	/// После успешного выполнения возвращает объект, содержащий число результатов в поле count и обЪекты пользователей в поле items (array).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.getViewers
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.getViewers
 	/// </remarks>
 	Task<VkCollection<User>> GetViewersExtendedAsync(long ownerId,
 													ulong storyId,
@@ -295,7 +295,7 @@ public interface IStoriesCategoryAsync
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.hideAllReplies
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.hideAllReplies
 	/// </remarks>
 	Task<bool> HideAllRepliesAsync(long ownerId,
 									CancellationToken token = default);
@@ -317,7 +317,7 @@ public interface IStoriesCategoryAsync
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.hideReply
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.hideReply
 	/// </remarks>
 	Task<bool> HideReplyAsync(long ownerId,
 							ulong storyId,
@@ -335,7 +335,7 @@ public interface IStoriesCategoryAsync
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.unbanOwner
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.unbanOwner
 	/// </remarks>
 	Task<bool> UnbanOwnerAsync(IEnumerable<long> ownersIds,
 								CancellationToken token = default);
@@ -380,7 +380,7 @@ public interface IStoriesCategoryAsync
 	/// Если был задан параметр extended=1, возвращает объекты profiles  и groups, содержащие массивы объектов, описывающих пользователей и сообщества
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.search
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.search
 	/// </remarks>
 	Task<StoryResult<Story>> SearchAsync(StoriesSearchParams searchParams,
 										CancellationToken token = default);
@@ -414,7 +414,7 @@ public interface IStoriesCategoryAsync
 	/// Признак успешности отправки фидбека
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/stories.sendInteraction
+	/// Страница документации ВКонтакте http://vk.ru/dev/stories.sendInteraction
 	/// </remarks>
 	Task<bool> SendInteractionAsync(string accessKey,
 									string message, bool? isBroadcast = null,

@@ -121,7 +121,7 @@ public class VkApiVersionManagerTests
 			.ThrowExactly<VkApiException>()
 			.WithMessage("С 2 сентября 2021 года прекратилась поддержка версий ниже 5.81.")
 			.And.HelpLink.Should()
-			.Be("https://vk.com/dev/constant_version_updates");
+			.Be("https://vk.ru/dev/constant_version_updates");
 
 	[Fact]
 	public void MinimalMajorVersion_5_ShouldThrowException() =>
@@ -133,5 +133,5 @@ public class VkApiVersionManagerTests
 			.ThrowExactly<VkApiException>()
 			.WithMessage("С 27 мая 2019 года версии API ниже 5.0 больше не поддерживаются.")
 			.And.HelpLink.Should()
-			.Be("https://vk.com/dev/version_update_2.0");
+			.Be("https://vk.ru/dev/version_update_2.0");
 }

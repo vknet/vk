@@ -22,7 +22,7 @@ PM> Install-Package VkNet
 > dotnet add package VkNet
 ```
 ### Выполните следующие действия:
-1. [Создайте приложение](https://vk.com/editapp?act=create)
+1. [Создайте приложение](https://vk.ru/editapp?act=create)
 2. Авторизуйтесь как указано в [документации](https://vknet.github.io/vk/authorize/)
 3. Используйте необходимые методы. [Список методов по категориям](https://vknet.github.io/vk/)
 4. [Список часто задаваемых вопросов](https://github.com/vknet/vk/wiki/FAQ)
@@ -30,7 +30,7 @@ PM> Install-Package VkNet
 
 # План развития проекта
 
-- Обновить некоторые методы в соответствии с [changelog vk](https://dev.vk.com/reference/versions) до актуальной версии 5.131.
+- Обновить некоторые методы в соответствии с [changelog vk](https://dev.vk.ru/reference/versions) до актуальной версии 5.131.
 - Обновить документацию проекта
 
 # Credits
@@ -43,7 +43,7 @@ PM> Install-Package VkNet
 - [Moq](https://github.com/moq/moq4) - The most popular and friendly mocking framework for .NET
 - [SonarAnalyzer.CSharp](https://www.sonarlint.org/visualstudio/) - Analyzers which spot bugs and code smells in your code.
 
-# Помощь проекту 
+# Помощь проекту
 - [![На счет в банке](https://bpurl.biz/Jb)](https://money.alfabank.ru/p2p/web/transfer/minyutin)
 - [![PayPal](https://img.shields.io/badge/PayPal-donate-red.svg)](https://www.paypal.me/InyutinMaxim)
 - Также вы можете помочь проекту `Pull Request`'ом

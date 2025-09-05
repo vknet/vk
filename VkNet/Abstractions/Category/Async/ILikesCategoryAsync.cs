@@ -25,7 +25,7 @@ public interface ILikesCategoryAsync
 	/// нравится.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/likes.getList
+	/// Страница документации ВКонтакте http://vk.ru/dev/likes.getList
 	/// </remarks>
 	Task<VkCollection<long>> GetListAsync(LikesGetListParams @params,
 										bool skipAuthorization = false,
@@ -43,7 +43,7 @@ public interface ILikesCategoryAsync
 	/// свой список Мне нравится.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/likes.getList
+	/// Страница документации ВКонтакте http://vk.ru/dev/likes.getList
 	/// </remarks>
 	Task<UserOrGroup> GetListExAsync(LikesGetListParams @params,
 									CancellationToken token = default);
@@ -59,7 +59,7 @@ public interface ILikesCategoryAsync
 	/// добавили данный объект в свой список Мне нравится.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/likes.add
+	/// Страница документации ВКонтакте http://vk.ru/dev/likes.add
 	/// </remarks>
 	Task<long> AddAsync(LikesAddParams @params,
 						CancellationToken token = default);
@@ -83,7 +83,7 @@ public interface ILikesCategoryAsync
 	/// добавили данный объект в свой список Мне нравится.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/likes.delete
+	/// Страница документации ВКонтакте http://vk.ru/dev/likes.delete
 	/// </remarks>
 	Task<long> DeleteAsync(LikeObjectType type,
 							long itemId,
@@ -121,7 +121,7 @@ public interface ILikesCategoryAsync
 	/// идентификатором user_id.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/likes.isLiked
+	/// Страница документации ВКонтакте http://vk.ru/dev/likes.isLiked
 	/// </remarks>
 	Task<bool> IsLikedAsync(LikeObjectType type,
 							long itemId,

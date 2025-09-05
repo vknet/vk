@@ -12,7 +12,7 @@ public class GetBackgroundsTest : CategoryBaseTest
 	[Fact]
 	public void GetBackgrounds()
 	{
-		Url = "https://api.vk.com/method/polls.getBackgrounds";
+		Url = "https://api.vk.ru/method/polls.getBackgrounds";
 
 		ReadCategoryJsonPath(nameof(Api.PollsCategory.GetBackgrounds));
 

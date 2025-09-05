@@ -48,7 +48,7 @@ public interface ISecureCategoryAsync
 	/// Признак успешного добавления события
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/secure.addAppEvent
+	/// Страница документации ВКонтакте http://vk.ru/dev/secure.addAppEvent
 	/// </remarks>
 	Task<bool> AddAppEventAsync(ulong userId,
 								ulong activityId,
@@ -77,7 +77,7 @@ public interface ISecureCategoryAsync
 	/// expire = unixtime дата, когда access_token станет не валиден
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/secure.checkToken
+	/// Страница документации ВКонтакте http://vk.ru/dev/secure.checkToken
 	/// </remarks>
 	Task<CheckTokenResult> CheckTokenAsync(string token,
 											string ip = null,
@@ -94,7 +94,7 @@ public interface ISecureCategoryAsync
 	/// 50 голосов.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/secure.getAppBalance
+	/// Страница документации ВКонтакте http://vk.ru/dev/secure.getAppBalance
 	/// </remarks>
 	Task<ulong> GetAppBalanceAsync(CancellationToken token = default);
 
@@ -122,7 +122,7 @@ public interface ISecureCategoryAsync
 	/// limit.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/secure.getSMSHistory
+	/// Страница документации ВКонтакте http://vk.ru/dev/secure.getSMSHistory
 	/// </remarks>
 	Task<ReadOnlyCollection<SmsHistoryItem>> GetSmsHistoryAsync(ulong? userId = null,
 																DateTime? dateFrom = null,
@@ -141,7 +141,7 @@ public interface ISecureCategoryAsync
 	/// date_to, limit.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/secure.getTransactionsHistory
+	/// Страница документации ВКонтакте http://vk.ru/dev/secure.getTransactionsHistory
 	/// </remarks>
 	Task<ReadOnlyCollection<Transaction>> GetTransactionsHistoryAsync(CancellationToken token = default);
 
@@ -158,7 +158,7 @@ public interface ISecureCategoryAsync
 	/// Возвращает значения игровых уровней пользователей в приложении.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/secure.getUserLevel
+	/// Страница документации ВКонтакте http://vk.ru/dev/secure.getUserLevel
 	/// </remarks>
 	Task<ReadOnlyCollection<SecureLevel>> GetUserLevelAsync(IEnumerable<long> userIds,
 															CancellationToken token = default);
@@ -187,7 +187,7 @@ public interface ISecureCategoryAsync
 	/// ERROR_UNKNOWN_ERROR - непредвиденная ошибка
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/secure.giveEventSticker
+	/// Страница документации ВКонтакте http://vk.ru/dev/secure.giveEventSticker
 	/// </remarks>
 	Task<ReadOnlyCollection<EventSticker>> GiveEventStickerAsync(IEnumerable<ulong> userIds,
 																ulong achievementId,
@@ -214,7 +214,7 @@ public interface ISecureCategoryAsync
 	/// одинаковым текстом подряд.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/secure.sendNotification
+	/// Страница документации ВКонтакте http://vk.ru/dev/secure.sendNotification
 	/// </remarks>
 	Task<ReadOnlyCollection<ulong>> SendNotificationAsync(string message,
 														IEnumerable<ulong> userIds = null,
@@ -245,7 +245,7 @@ public interface ISecureCategoryAsync
 	/// телефона, не отвлекая от приложения.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/secure.sendSMSNotification
+	/// Страница документации ВКонтакте http://vk.ru/dev/secure.sendSMSNotification
 	/// </remarks>
 	Task<bool> SendSmsNotificationAsync(ulong userId,
 										string message,
@@ -289,7 +289,7 @@ public interface ISecureCategoryAsync
 	/// пользователя в приложение.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/secure.setCounter
+	/// Страница документации ВКонтакте http://vk.ru/dev/secure.setCounter
 	/// </remarks>
 	Task<bool> SetCounterAsync(IEnumerable<string> counters,
 								ulong? userId = null,

@@ -13,7 +13,7 @@ public class WallPostTests : CategoryBaseTest
 	[Fact]
 	public void Post_ReturnValidateNeeded()
 	{
-		Url = "https://api.vk.com/method/wall.post";
+		Url = "https://api.vk.ru/method/wall.post";
 		ReadErrorsJsonFile(17);
 
 		FluentActions.Invoking(() => VkErrors.IfErrorThrowException(Json))
@@ -24,7 +24,7 @@ public class WallPostTests : CategoryBaseTest
 	[Fact]
 	public void Post_AccessToAddingPostDenied()
 	{
-		Url = "https://api.vk.com/method/wall.post";
+		Url = "https://api.vk.ru/method/wall.post";
 		ReadErrorsJsonFile(214);
 
 		FluentActions.Invoking(() => Api.Wall.Post(new()))

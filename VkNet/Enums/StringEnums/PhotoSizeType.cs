@@ -80,7 +80,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	T,
 
@@ -88,7 +88,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	H,
 
@@ -96,7 +96,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	G,
 
@@ -104,7 +104,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	N,
 
@@ -112,7 +112,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	F,
 
@@ -125,7 +125,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	A,
 
@@ -133,7 +133,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	B,
 
@@ -141,7 +141,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	C,
 
@@ -149,7 +149,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	D,
 
@@ -157,7 +157,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	E,
 
@@ -165,7 +165,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	K,
 
@@ -173,7 +173,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	Temp,
 
@@ -181,7 +181,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	Base,
 
@@ -189,7 +189,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	Orig,
 
@@ -197,7 +197,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	I,
 
@@ -205,7 +205,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	L,
 
@@ -213,7 +213,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	J,
 
@@ -221,7 +221,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	U,
 
@@ -229,7 +229,7 @@ public enum PhotoSizeType
 	/// В документации отсутствует описание
 	/// </summary>
 	/// <remarks>
-	/// <see href="https://dev.vk.com/ru/reference/objects/photo-sizes">Документация</see>
+	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
 	V,
 }

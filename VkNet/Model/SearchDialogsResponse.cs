@@ -7,7 +7,7 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Ответ при поиске диалогов по строке поиска.
-/// См. описание http://vk.com/dev/messages.searchDialogs
+/// См. описание http://vk.ru/dev/messages.searchDialogs
 /// </summary>
 [JsonConverter(typeof(SearchDialogsResponseJsonConverter))]
 [Serializable]

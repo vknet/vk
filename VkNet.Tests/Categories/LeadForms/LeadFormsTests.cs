@@ -12,7 +12,7 @@ public class LeadFormsTests : CategoryBaseTest
 	[Fact]
 	public void Create()
 	{
-		Url = "https://api.vk.com/method/leadForms.create";
+		Url = "https://api.vk.ru/method/leadForms.create";
 		ReadCategoryJsonPath(nameof(Create));
 
 		var result = Api.LeadForms.Create(new()
@@ -32,13 +32,13 @@ public class LeadFormsTests : CategoryBaseTest
 			.Be(1);
 
 		result.Url.Should()
-			.Be(new Uri("https://vk.com/apform_id=1#form_id=1"));
+			.Be(new Uri("https://vk.ru/apform_id=1#form_id=1"));
 	}
 
 	[Fact]
 	public void Delete()
 	{
-		Url = "https://api.vk.com/method/leadForms.delete";
+		Url = "https://api.vk.ru/method/leadForms.delete";
 		ReadCategoryJsonPath(nameof(Delete));
 
 		var result = Api.LeadForms.Delete(103292418, 1);
@@ -53,7 +53,7 @@ public class LeadFormsTests : CategoryBaseTest
 	[Fact]
 	public void Get()
 	{
-		Url = "https://api.vk.com/method/leadForms.get";
+		Url = "https://api.vk.ru/method/leadForms.get";
 		ReadCategoryJsonPath(nameof(Get));
 
 		var result = Api.LeadForms.Get(103292418, 1);
@@ -68,7 +68,7 @@ public class LeadFormsTests : CategoryBaseTest
 	[Fact]
 	public void List()
 	{
-		Url = "https://api.vk.com/method/leadForms.list";
+		Url = "https://api.vk.ru/method/leadForms.list";
 		ReadCategoryJsonPath(nameof(List));
 
 		var result = Api.LeadForms.List(103292418);
@@ -83,7 +83,7 @@ public class LeadFormsTests : CategoryBaseTest
 	[Fact]
 	public void GetUploadUrl()
 	{
-		Url = "https://api.vk.com/method/leadForms.getUploadURL";
+		Url = "https://api.vk.ru/method/leadForms.getUploadURL";
 		ReadCategoryJsonPath(nameof(GetUploadUrl));
 
 		var result = Api.LeadForms.GetUploadURL();
@@ -92,13 +92,13 @@ public class LeadFormsTests : CategoryBaseTest
 			.NotBeNull();
 
 		result.Should()
-			.Be(new Uri("https://pu.vk.com1d95424ffe4e4983a6a"));
+			.Be(new Uri("https://pu.vk.ru1d95424ffe4e4983a6a"));
 	}
 
 	[Fact]
 	public void Update()
 	{
-		Url = "https://api.vk.com/method/leadForms.update";
+		Url = "https://api.vk.ru/method/leadForms.update";
 		ReadCategoryJsonPath(nameof(Update));
 
 		var result = Api.LeadForms.Update(new()
@@ -118,6 +118,6 @@ public class LeadFormsTests : CategoryBaseTest
 			.Be(2);
 
 		result.Url.Should()
-			.Be(new Uri("https://vk.com/apform_id=2#form_id=2"));
+			.Be(new Uri("https://vk.ru/apform_id=2#form_id=2"));
 	}
 }

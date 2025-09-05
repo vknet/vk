@@ -9,7 +9,7 @@ namespace VkNet.Model;
 /// Видеоальбом.
 /// </summary>
 /// <remarks>
-/// Страница документации ВКонтакте http://vk.com/dev/video.getAlbums
+/// Страница документации ВКонтакте http://vk.ru/dev/video.getAlbums
 /// </remarks>
 [Serializable]
 public class VideoAlbum

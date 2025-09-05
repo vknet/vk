@@ -10,8 +10,8 @@ namespace VkNet.Exception;
 /// приложений.
 /// Если ошибка возникает несмотря на то, что Ваше приложение имеет тип Standalone,
 /// убедитесь, что при авторизации Вы
-/// используете redirect_uri=https://oauth.vk.com/blank.html. Подробнее см.
-/// http://vk.com/dev/auth_mobile.
+/// используете redirect_uri=https://oauth.vk.ru/blank.html. Подробнее см.
+/// http://vk.ru/dev/auth_mobile.
 /// Код ошибки - 20
 /// </summary>
 [Serializable]

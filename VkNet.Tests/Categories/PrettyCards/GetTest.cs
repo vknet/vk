@@ -11,7 +11,7 @@ public class GetTest : CategoryBaseTest
 	[Fact]
 	public void Get()
 	{
-		Url = "https://api.vk.com/method/prettyCards.get";
+		Url = "https://api.vk.ru/method/prettyCards.get";
 
 		ReadCategoryJsonPath(nameof(Api.PrettyCards.Get));
 

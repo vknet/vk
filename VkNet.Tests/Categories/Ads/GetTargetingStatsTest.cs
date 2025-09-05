@@ -11,7 +11,7 @@ public class GetTargetingStatsTest : CategoryBaseTest
 	[Fact]
 	public void GetTargetingStats()
 	{
-		Url = "https://api.vk.com/method/ads.getTargetingStats";
+		Url = "https://api.vk.ru/method/ads.getTargetingStats";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetTargetingStats));
 

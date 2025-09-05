@@ -83,9 +83,9 @@
         "is_admin": 1,
         "admin_level": 3,
         "is_member": 1,
-        "photo_50": "https://vk.com/images/community_50.png",
-        "photo_100": "https://vk.com/images/community_100.png",
-        "photo_200": "https://vk.com/images/community_200.png"
+        "photo_50": "https://vk.ru/images/community_50.png",
+        "photo_100": "https://vk.ru/images/community_100.png",
+        "photo_200": "https://vk.ru/images/community_200.png"
       }
     ],
     "new_pts": 12

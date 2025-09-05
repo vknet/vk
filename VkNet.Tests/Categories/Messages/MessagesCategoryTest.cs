@@ -20,7 +20,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void AddChatUser_NormalCase_True()
 	{
-		Url = "https://api.vk.com/method/messages.addChatUser";
+		Url = "https://api.vk.ru/method/messages.addChatUser";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -33,7 +33,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void CreateChat_NormalCase_ChatId()
 	{
-		Url = "https://api.vk.com/method/messages.createChat";
+		Url = "https://api.vk.ru/method/messages.createChat";
 		ReadCategoryJsonPath(nameof(CreateChat_NormalCase_ChatId));
 
 		var chatId = Api.Messages.CreateChat(new ulong[]
@@ -50,7 +50,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void Delete_Id4446_True()
 	{
-		Url = "https://api.vk.com/method/messages.delete";
+		Url = "https://api.vk.ru/method/messages.delete";
 
 		ReadCategoryJsonPath(nameof(Delete_Id4446_True));
 
@@ -68,7 +68,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void Delete_Id999999_False()
 	{
-		Url = "https://api.vk.com/method/messages.delete";
+		Url = "https://api.vk.ru/method/messages.delete";
 
 		ReadErrorsJsonFile(1);
 
@@ -84,7 +84,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void Delete_Multiple_4457And4464_True()
 	{
-		Url = "https://api.vk.com/method/messages.delete";
+		Url = "https://api.vk.ru/method/messages.delete";
 
 		ReadCategoryJsonPath(nameof(Delete_Multiple_4457And4464_True));
 
@@ -110,7 +110,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void EditChat_NormalCase_True()
 	{
-		Url = "https://api.vk.com/method/messages.editChat";
+		Url = "https://api.vk.ru/method/messages.editChat";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -123,7 +123,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void Get_NormalCase_V521()
 	{
-		Url = "https://api.vk.com/method/messages.get";
+		Url = "https://api.vk.ru/method/messages.get";
 
 		ReadCategoryJsonPath(nameof(Get_NormalCase_V521));
 
@@ -195,7 +195,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void Get_WithLastMessageIdParam_NormalCase_V521()
 	{
-		Url = "https://api.vk.com/method/messages.get";
+		Url = "https://api.vk.ru/method/messages.get";
 
 		ReadCategoryJsonPath(nameof(Get_WithLastMessageIdParam_NormalCase_V521));
 
@@ -243,7 +243,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void GetById_Multiple_NormalCase_Messages()
 	{
-		Url = "https://api.vk.com/method/messages.getById";
+		Url = "https://api.vk.ru/method/messages.getById";
 
 		ReadCategoryJsonPath(nameof(GetById_Multiple_NormalCase_Messages));
 
@@ -337,7 +337,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void GetById_NormalCase_Message()
 	{
-		Url = "https://api.vk.com/method/messages.getById";
+		Url = "https://api.vk.ru/method/messages.getById";
 
 		ReadCategoryJsonPath(nameof(GetById_NormalCase_Message));
 
@@ -379,7 +379,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void GetChat_NormalCase_ChatObject()
 	{
-		Url = "https://api.vk.com/method/messages.getChat";
+		Url = "https://api.vk.ru/method/messages.getChat";
 
 		ReadCategoryJsonPath(nameof(GetChat_NormalCase_ChatObject));
 
@@ -413,7 +413,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void GetChatUsers_ChatId_UserIds()
 	{
-		Url = "https://api.vk.com/method/messages.getChatUsers";
+		Url = "https://api.vk.ru/method/messages.getChatUsers";
 
 		ReadCategoryJsonPath(nameof(GetChatUsers_ChatId_UserIds));
 
@@ -430,7 +430,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void GetChatUsers_ChatIdWithFields_Users()
 	{
-		Url = "https://api.vk.com/method/messages.getChatUsers";
+		Url = "https://api.vk.ru/method/messages.getChatUsers";
 
 		ReadCategoryJsonPath(nameof(GetChatUsers_ChatIdWithFields_Users));
 
@@ -516,7 +516,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void GetDialogs_NormalCase_Messages()
 	{
-		Url = "https://api.vk.com/method/messages.getDialogs";
+		Url = "https://api.vk.ru/method/messages.getDialogs";
 		ReadCategoryJsonPath(nameof(GetDialogs_NormalCase_Messages));
 
 		var msgs = Api.Messages.GetDialogs(new()
@@ -566,7 +566,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void GetHistory_ContainsRepost_Error46()
 	{
-		Url = "https://api.vk.com/method/messages.getHistory";
+		Url = "https://api.vk.ru/method/messages.getHistory";
 		ReadCategoryJsonPath(nameof(GetHistory_ContainsRepost_Error46));
 
 		var msgs = Api.Messages.GetHistory(new()
@@ -644,7 +644,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void GetHistory_ContainsSticker_Error47()
 	{
-		Url = "https://api.vk.com/method/messages.getHistory";
+		Url = "https://api.vk.ru/method/messages.getHistory";
 		ReadCategoryJsonPath(nameof(GetHistory_ContainsSticker_Error47));
 
 		var msgs = Api.Messages.GetHistory(new()
@@ -686,7 +686,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void GetHistory_NormalCaseAllFields_Messages()
 	{
-		Url = "https://api.vk.com/method/messages.getHistory";
+		Url = "https://api.vk.ru/method/messages.getHistory";
 		ReadCategoryJsonPath(nameof(GetHistory_NormalCaseAllFields_Messages));
 
 		var msgs = Api.Messages.GetHistory(new());
@@ -724,7 +724,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void GetLastActivity_NormalCast_LastActivityObject()
 	{
-		Url = "https://api.vk.com/method/messages.getLastActivity";
+		Url = "https://api.vk.ru/method/messages.getLastActivity";
 		ReadCategoryJsonPath(nameof(GetLastActivity_NormalCast_LastActivityObject));
 
 		var activity = Api.Messages.GetLastActivity(77128);
@@ -748,7 +748,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void GetLongPollServer_NormalCase_LongPollServerResponse()
 	{
-		Url = "https://api.vk.com/method/messages.getLongPollServer";
+		Url = "https://api.vk.ru/method/messages.getLongPollServer";
 		ReadCategoryJsonPath(nameof(GetLongPollServer_NormalCase_LongPollServerResponse));
 
 		var response = Api.Messages.GetLongPollServer();
@@ -757,7 +757,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be("6f4120988efaf3a7d398054b5bb5d019c5844bz3");
 
 		response.Server.Should()
-			.Be("im46.vk.com/im1858");
+			.Be("im46.vk.ru/im1858");
 
 		response.Ts.Should()
 			.Be(1627957305);
@@ -771,7 +771,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void MarkAsRead_Multiple_NormalCase_True()
 	{
-		Url = "https://api.vk.com/method/messages.markAsRead";
+		Url = "https://api.vk.ru/method/messages.markAsRead";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -784,7 +784,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void MarkAsRead_NormalCase_True()
 	{
-		Url = "https://api.vk.com/method/messages.markAsRead";
+		Url = "https://api.vk.ru/method/messages.markAsRead";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -797,7 +797,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void RemoveChatUser_NormalCase_True()
 	{
-		Url = "https://api.vk.com/method/messages.removeChatUser";
+		Url = "https://api.vk.ru/method/messages.removeChatUser";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -810,7 +810,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void Restore_NormalCase_True()
 	{
-		Url = "https://api.vk.com/method/messages.restore";
+		Url = "https://api.vk.ru/method/messages.restore";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -823,7 +823,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void Search_NormalCase_Messages()
 	{
-		Url = "https://api.vk.com/method/messages.search";
+		Url = "https://api.vk.ru/method/messages.search";
 		ReadCategoryJsonPath(nameof(Search_NormalCase_Messages));
 
 		var result = Api.Messages.Search(new()
@@ -937,7 +937,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void Search_NotExistedQuery_EmptyList()
 	{
-		Url = "https://api.vk.com/method/messages.search";
+		Url = "https://api.vk.ru/method/messages.search";
 
 		ReadJsonFile(JsonPaths.EmptyVkCollection);
 
@@ -954,7 +954,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void SearchDialogs_EmptyResponse_MessageResponseWithEmptyLists()
 	{
-		Url = "https://api.vk.com/method/messages.searchDialogs";
+		Url = "https://api.vk.ru/method/messages.searchDialogs";
 		ReadJsonFile(JsonPaths.EmptyArray);
 
 		var response = Api.Messages.SearchDialogs("привет");
@@ -970,7 +970,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void SearchDialogs_NastyaQuery_TwoProfiles()
 	{
-		Url = "https://api.vk.com/method/messages.searchDialogs";
+		Url = "https://api.vk.ru/method/messages.searchDialogs";
 		ReadCategoryJsonPath(nameof(SearchDialogs_NastyaQuery_TwoProfiles));
 
 		var response = Api.Messages.SearchDialogs("Настя");
@@ -1009,7 +1009,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void SearchDialogs_ProfileAndChat_Response()
 	{
-		Url = "https://api.vk.com/method/messages.searchDialogs";
+		Url = "https://api.vk.ru/method/messages.searchDialogs";
 		ReadCategoryJsonPath(nameof(SearchDialogs_ProfileAndChat_Response));
 
 		var response = Api.Messages.SearchDialogs("Маша");
@@ -1063,7 +1063,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void GetHistoryAttachments()
 	{
-		Url = "https://api.vk.com/method/messages.getHistoryAttachments";
+		Url = "https://api.vk.ru/method/messages.getHistoryAttachments";
 		ReadCategoryJsonPath(nameof(GetHistoryAttachments));
 
 		var response = Api.Messages.GetHistoryAttachments(new()
@@ -1111,7 +1111,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void SetMemberRole()
 	{
-		Url = "https://api.vk.com/method/messages.setMemberRole";
+		Url = "https://api.vk.ru/method/messages.setMemberRole";
 		ReadJsonFile(JsonPaths.True);
 
 		var response = Api.Messages.SetMemberRole("admin", 2000000043, 1002);
@@ -1124,7 +1124,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void ChangeConversationMemberRestrictions_Mute()
 	{
-		Url = "https://api.vk.com/method/messages.changeConversationMemberRestrictions";
+		Url = "https://api.vk.ru/method/messages.changeConversationMemberRestrictions";
 		ReadCategoryJsonPath(nameof(ChangeConversationMemberRestrictions_Mute));
 
 		var response = Api.Messages.ChangeConversationMemberRestrictions(new()
@@ -1146,7 +1146,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void ChangeConversationMemberRestrictions_MuteForever()
 	{
-		Url = "https://api.vk.com/method/messages.changeConversationMemberRestrictions";
+		Url = "https://api.vk.ru/method/messages.changeConversationMemberRestrictions";
 		ReadCategoryJsonPath(nameof(ChangeConversationMemberRestrictions_MuteForever));
 
 		var response = Api.Messages.ChangeConversationMemberRestrictions(new()
@@ -1167,7 +1167,7 @@ public class MessagesCategoryTest : MessagesBaseTests
 	[Fact]
 	public void ChangeConversationMemberRestrictions_Unmute()
 	{
-		Url = "https://api.vk.com/method/messages.changeConversationMemberRestrictions";
+		Url = "https://api.vk.ru/method/messages.changeConversationMemberRestrictions";
 		ReadCategoryJsonPath(nameof(ChangeConversationMemberRestrictions_Unmute));
 
 		var response = Api.Messages.ChangeConversationMemberRestrictions(new()

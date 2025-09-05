@@ -23,7 +23,7 @@ public interface IPlacesCategoryAsync
 	/// После успешного выполнения возвращает идентификатор созданного места (pid).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/places.add
+	/// Страница документации ВКонтакте http://vk.ru/dev/places.add
 	/// </remarks>
 	Task<long> AddAsync(PlacesAddParams placesAddParams,
 						CancellationToken token = default);
@@ -39,7 +39,7 @@ public interface IPlacesCategoryAsync
 	/// После успешного выполнения возвращает идентификатор созданной отметки.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/places.checkin
+	/// Страница документации ВКонтакте http://vk.ru/dev/places.checkin
 	/// </remarks>
 	Task<long> CheckinAsync(PlacesCheckinParams placesCheckinParams,
 							CancellationToken token = default);
@@ -66,7 +66,7 @@ public interface IPlacesCategoryAsync
 	/// city, address.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/places.getById
+	/// Страница документации ВКонтакте http://vk.ru/dev/places.getById
 	/// </remarks>
 	Task<ReadOnlyCollection<Place>> GetByIdAsync(IEnumerable<ulong> places,
 												CancellationToken token = default);
@@ -118,7 +118,7 @@ public interface IPlacesCategoryAsync
 	/// указанном в параметре uid.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/places.getCheckins
+	/// Страница документации ВКонтакте http://vk.ru/dev/places.getCheckins
 	/// </remarks>
 	Task<VkCollection<Checkin>> GetCheckinsAsync(PlacesGetCheckinsParams placesGetCheckinsParams,
 												CancellationToken token = default);
@@ -132,7 +132,7 @@ public interface IPlacesCategoryAsync
 	/// содержит поля tid, title и icon.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/places.getTypes
+	/// Страница документации ВКонтакте http://vk.ru/dev/places.getTypes
 	/// </remarks>
 	Task<ReadOnlyCollection<PlaceType>> GetTypesAsync(CancellationToken token = default);
 
@@ -166,7 +166,7 @@ public interface IPlacesCategoryAsync
 	/// Если не задан параметр radius, то по умолчанию он будет иметь значение 1.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/places.search
+	/// Страница документации ВКонтакте http://vk.ru/dev/places.search
 	/// </remarks>
 	Task<VkCollection<Place>> SearchAsync(PlacesSearchParams placesSearchParams,
 										CancellationToken token = default);

@@ -6,7 +6,7 @@ namespace VkNet.Model;
 /// <summary>
 /// Информация о социальных контактах пользователя.
 /// См. описание
-/// <see href="https://vk.com/dev/objects/user" />
+/// <see href="https://vk.ru/dev/objects/user" />
 /// Экспериментально установлено, что поля находятся непосредственно в полях
 /// объекта User.
 /// </summary>

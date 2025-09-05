@@ -11,7 +11,7 @@ public class ImportTargetContactsTest : CategoryBaseTest
 	[Fact]
 	public void ImportTargetContacts()
 	{
-		Url = "https://api.vk.com/method/ads.importTargetContacts";
+		Url = "https://api.vk.ru/method/ads.importTargetContacts";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.ImportTargetContacts));
 

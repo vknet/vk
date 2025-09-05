@@ -8,7 +8,7 @@ public class MessagesGetConversationsByIdTests : MessagesBaseTests
 	[Fact]
 	public void GetConversationsById()
 	{
-		Url = "https://api.vk.com/method/messages.getConversationsById";
+		Url = "https://api.vk.ru/method/messages.getConversationsById";
 		ReadCategoryJsonPath(nameof(GetConversationsById));
 
 		var result = Api.Messages.GetConversationsById(new long[]

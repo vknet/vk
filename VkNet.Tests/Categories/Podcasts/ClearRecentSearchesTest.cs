@@ -11,7 +11,7 @@ public class ClearRecentSearchesTest : CategoryBaseTest
 	[Fact]
 	public void ClearRecentSearches()
 	{
-		Url = "https://api.vk.com/method/podcasts.clearRecentSearches";
+		Url = "https://api.vk.ru/method/podcasts.clearRecentSearches";
 
 		ReadCategoryJsonPath(nameof(Api.Podcasts.ClearRecentSearches));
 

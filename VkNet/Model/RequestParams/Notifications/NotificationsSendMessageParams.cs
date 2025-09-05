@@ -23,7 +23,7 @@ public class NotificationsSendMessageParams
 	public string Message { get; set; }
 
 	/// <summary>
-	/// Содержимое хэша (часть URL в ссылке на приложение вида https://vk.com/app123456#fragment). строка, максимальная длина 2047
+	/// Содержимое хэша (часть URL в ссылке на приложение вида https://vk.ru/app123456#fragment). строка, максимальная длина 2047
 	/// </summary>
 	[JsonProperty("fragment")]
 	public string Fragment { get; set; }

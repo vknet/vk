@@ -16,10 +16,10 @@ public partial class StreamingCategory : IStreamingCategory
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// api vk.ru
 	/// </summary>
 	/// <param name="vk">
-	/// Api vk.com
+	/// Api vk.ru
 	/// </param>
 	public StreamingCategory(VkApi vk) => _vk = vk;
 

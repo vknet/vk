@@ -11,7 +11,7 @@ public class GetLookalikeRequestsTest : CategoryBaseTest
 	[Fact]
 	public void GetLookalikeRequests()
 	{
-		Url = "https://api.vk.com/method/ads.getLookalikeRequests";
+		Url = "https://api.vk.ru/method/ads.getLookalikeRequests";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetLookalikeRequests));
 

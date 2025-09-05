@@ -23,7 +23,7 @@ public interface IStreamingCategoryAsync
 	/// после получения нового ключа.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/streaming.getServerUrl
+	/// Страница документации ВКонтакте http://vk.ru/dev/streaming.getServerUrl
 	/// </remarks>
 	Task<StreamingServerUrl> GetServerUrlAsync(CancellationToken token = default);
 
@@ -37,7 +37,7 @@ public interface IStreamingCategoryAsync
 	/// unlimited и соответствует установленному порогу для приложения.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/streaming.getSettings
+	/// Страница документации ВКонтакте http://vk.ru/dev/streaming.getSettings
 	/// </remarks>
 	Task<StreamingSettings> GetSettingsAsync(CancellationToken token = default);
 
@@ -79,7 +79,7 @@ public interface IStreamingCategoryAsync
 	/// value (integer) — значение.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/streaming.getStats
+	/// Страница документации ВКонтакте http://vk.ru/dev/streaming.getStats
 	/// </remarks>
 	Task<ReadOnlyCollection<StreamingStats>> GetStatsAsync(string type,
 															string interval,
@@ -98,7 +98,7 @@ public interface IStreamingCategoryAsync
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/streaming.setSettings
+	/// Страница документации ВКонтакте http://vk.ru/dev/streaming.setSettings
 	/// </remarks>
 	Task<bool> SetSettingsAsync(MonthlyLimit monthlyTier,
 								CancellationToken token = default);

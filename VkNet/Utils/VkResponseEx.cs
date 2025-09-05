@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 namespace VkNet.Utils;
 
 /// <summary>
-/// Методы расширения для ответов vk.com
+/// Методы расширения для ответов vk.ru
 /// </summary>
 public static class VkResponseEx
 {
@@ -25,7 +25,7 @@ public static class VkResponseEx
 	/// В коллекцию.
 	/// </summary>
 	/// <typeparam name="T"> Тип данных коллекции. </typeparam>
-	/// <param name="response"> Ответ vk.com. </param>
+	/// <param name="response"> Ответ vk.ru. </param>
 	/// <param name="selector"> Функция выборки. </param>
 	/// <returns> Коллекция данных. </returns>
 	public static Collection<T> ToCollectionOf<T>(this VkResponse response, Func<VkResponse, T> selector) //where T : class
@@ -60,7 +60,7 @@ public static class VkResponseEx
 	/// В коллекцию только для чтения.
 	/// </summary>
 	/// <typeparam name="T"> Тип данных коллекции. </typeparam>
-	/// <param name="response"> Ответ vk.com. </param>
+	/// <param name="response"> Ответ vk.ru. </param>
 	/// <param name="selector"> Функция выборки. </param>
 	/// <returns> Коллекция данных только для чтения. </returns>
 	public static ReadOnlyCollection<T>
@@ -87,7 +87,7 @@ public static class VkResponseEx
 	/// В коллекцию только для чтения.
 	/// </summary>
 	/// <typeparam name="T"> Тип данных коллекции. </typeparam>
-	/// <param name="response"> Ответ vk.com. </param>
+	/// <param name="response"> Ответ vk.ru. </param>
 	/// <returns> Коллекция данных только для чтения. </returns>
 	public static ReadOnlyCollection<T>
 		ToReadOnlyCollectionOf<T>(this VkResponse response)
@@ -114,7 +114,7 @@ public static class VkResponseEx
 	/// В коллекцию только для чтения.
 	/// </summary>
 	/// <typeparam name="T"> Тип данных коллекции. </typeparam>
-	/// <param name="responses"> Коллекция ответов от vk.com. </param>
+	/// <param name="responses"> Коллекция ответов от vk.ru. </param>
 	/// <param name="selector"> Функция выборки. </param>
 	/// <returns> Коллекция данных только для чтения. </returns>
 	public static ReadOnlyCollection<T> ToReadOnlyCollectionOf<T>(this IEnumerable<VkResponse> responses, Func<VkResponse, T> selector) =>
@@ -128,7 +128,7 @@ public static class VkResponseEx
 	/// В список.
 	/// </summary>
 	/// <typeparam name="T"> Тип данных списка. </typeparam>
-	/// <param name="response"> Ответ vk.com. </param>
+	/// <param name="response"> Ответ vk.ru. </param>
 	/// <param name="selector"> Функция выборки. </param>
 	/// <returns>
 	/// Список данных.
@@ -156,7 +156,7 @@ public static class VkResponseEx
 	/// В список.
 	/// </summary>
 	/// <typeparam name="T"> Тип данных списка. </typeparam>
-	/// <param name="responses"> Ответ vk.com. </param>
+	/// <param name="responses"> Ответ vk.ru. </param>
 	/// <param name="selector"> Функция выборки. </param>
 	/// <returns>
 	/// Список данных.
@@ -172,7 +172,7 @@ public static class VkResponseEx
 	/// В специальную коллекцию данных vk с общим количеством.
 	/// </summary>
 	/// <typeparam name="T"> Тип данных </typeparam>
-	/// <param name="response"> Ответ vk.com. </param>
+	/// <param name="response"> Ответ vk.ru. </param>
 	/// <param name="selector"> Функция выборки. </param>
 	/// <param name="arrayName"> Наименование поля массива </param>
 	/// <returns> Специальная коллекция данных vk с общим количеством. </returns>
@@ -201,7 +201,7 @@ public static class VkResponseEx
 	/// <summary>
 	/// Преобразовать <see cref="VkResponse" /> к <see cref="IConvertible" />
 	/// </summary>
-	/// <param name="response"> Ответ vk.com. </param>
+	/// <param name="response"> Ответ vk.ru. </param>
 	/// <typeparam name="T"> Тип перечисления </typeparam>
 	/// <returns>
 	/// Перечисление

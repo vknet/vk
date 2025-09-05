@@ -8,7 +8,7 @@ namespace VkNet.Model;
 /// </summary>
 /// <remarks>
 /// Это устаревший тип вложений. Он может быть возвращен лишь для записей, созданных раньше 2013 года.
-/// <a href="http://vk.com/dev/attachments_w" > Документация </a>
+/// <a href="http://vk.ru/dev/attachments_w" > Документация </a>
 /// </remarks>
 [Serializable]
 public class ApplicationContent : MediaAttachment

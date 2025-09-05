@@ -13,7 +13,7 @@ public class FaveGetTests : CategoryBaseTest
 	[Fact]
 	public void Get()
 	{
-		Url = "https://api.vk.com/method/fave.get";
+		Url = "https://api.vk.ru/method/fave.get";
 		ReadCategoryJsonPath(nameof(Get));
 
 		var faves = Api.Fave.Get(new()

@@ -11,7 +11,7 @@ public class GetBudgetTest : CategoryBaseTest
 	[Fact]
 	public void GetBudget()
 	{
-		Url = "https://api.vk.com/method/ads.getBudget";
+		Url = "https://api.vk.ru/method/ads.getBudget";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetBudget));
 

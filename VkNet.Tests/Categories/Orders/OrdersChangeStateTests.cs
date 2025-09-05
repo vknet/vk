@@ -12,7 +12,7 @@ public class ChangeStateTests : CategoryBaseTest
 	[Fact]
 	public void ChangeState()
 	{
-		Url = "https://api.vk.com/method/orders.changeState";
+		Url = "https://api.vk.ru/method/orders.changeState";
 		ReadCategoryJsonPath(nameof(ChangeState));
 
 		var result = Api.Orders.ChangeState(123, OrderStateAction.Charge);

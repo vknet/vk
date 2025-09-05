@@ -10,7 +10,7 @@ namespace VkNet.Model;
 public abstract class MediaAttachment
 {
 	/// <summary>
-	/// Наименование типа которое приходит от vk.com
+	/// Наименование типа которое приходит от vk.ru
 	/// </summary>
 	protected abstract string Alias { get; }
 

@@ -14,7 +14,7 @@ public class EnumSkipErrorTest : CategoryBaseTest
 	[Fact]
 	public void CheckStatus()
 	{
-		Url = "https://api.vk.com/method/asr.checkStatus";
+		Url = "https://api.vk.ru/method/asr.checkStatus";
 
 		ReadCategoryJsonPath(nameof(CheckStatus));
 
@@ -38,7 +38,7 @@ public class EnumSkipErrorTest : CategoryBaseTest
 	[Fact]
 	public void Get_CheckType()
 	{
-		Url = "https://api.vk.com/method/apps.get";
+		Url = "https://api.vk.ru/method/apps.get";
 		ReadCategoryJsonPath(nameof(Get_CheckType));
 
 		if (Api.DeserializationErrorHandler is not true)

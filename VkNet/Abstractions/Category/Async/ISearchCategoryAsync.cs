@@ -19,7 +19,7 @@ public interface ISearchCategoryAsync
 	/// Список результатов
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/search.getHints
+	/// Страница документации ВКонтакте https://vk.ru/dev/search.getHints
 	/// </remarks>
 	Task<VkCollection<SearchHintsItem>> GetHintsAsync(SearchGetHintsParams @params,
 													CancellationToken token = default);

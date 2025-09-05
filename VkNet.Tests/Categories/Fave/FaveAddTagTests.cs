@@ -12,7 +12,7 @@ public class FaveAddTagTests : CategoryBaseTest
 	[Fact]
 	public void AddTag()
 	{
-		Url = "https://api.vk.com/method/fave.addTag";
+		Url = "https://api.vk.ru/method/fave.addTag";
 
 		ReadCategoryJsonPath(nameof(AddTag));
 

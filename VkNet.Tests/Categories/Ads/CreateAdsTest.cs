@@ -14,7 +14,7 @@ public class CreateAdsTest : CategoryBaseTest
 	[Fact]
 	public void AddOfficeUsers()
 	{
-		Url = "https://api.vk.com/method/ads.createAds";
+		Url = "https://api.vk.ru/method/ads.createAds";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.CreateAds));
 
@@ -28,7 +28,7 @@ public class CreateAdsTest : CategoryBaseTest
 			AdFormat = AdFormat.AdaptiveFormat,
 			Cpc = 3156,
 			AdPlatform = AdPlatform.All,
-			LinkUrl = new("https://vk.com/nixus9?w=wall-126102803_64")
+			LinkUrl = new("https://vk.ru/nixus9?w=wall-126102803_64")
 		};
 
 		var adSpecification2 = new AdSpecification
@@ -41,7 +41,7 @@ public class CreateAdsTest : CategoryBaseTest
 			AdFormat = AdFormat.AdaptiveFormat,
 			Cpc = 3156,
 			AdPlatform = AdPlatform.All,
-			LinkUrl = new("https://vk.com/nixus9?w=wall-126102803_64")
+			LinkUrl = new("https://vk.ru/nixus9?w=wall-126102803_64")
 		};
 
 		AdSpecification[] data =

@@ -16,7 +16,7 @@ public class DateTimeToStringFormatConverterTests : BaseTest
 	public void Deserialize()
 	{
 		ReadJsonFile(nameof(JsonConverter), nameof(DateTimeToStringFormatConverter), nameof(Deserialize));
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<MessagesSearchParams>("friends.getRequests", VkParameters.Empty);
 
 		result.Should()

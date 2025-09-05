@@ -28,7 +28,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.addArticle
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.addArticle
 	/// </remarks>
 	Task<bool> AddArticleAsync(Uri url,
 								string @ref = null,
@@ -41,14 +41,14 @@ public partial interface IFaveCategoryAsync
 	/// </summary>
 	/// <param name = "link">
 	/// Адрес добавляемой ссылки.
-	/// Поддерживаются только внутренние ссылки на vk.com.
+	/// Поддерживаются только внутренние ссылки на vk.ru.
 	/// </param>
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns>
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.addLink
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.addLink
 	/// </remarks>
 	Task<bool> AddLinkAsync(Uri link,
 							CancellationToken token = default);
@@ -67,7 +67,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.addPage
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.addPage
 	/// </remarks>
 	Task<bool> AddPageAsync(ulong? userId = null,
 							ulong? groupId = null,
@@ -84,7 +84,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.addPost
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.addPost
 	/// </remarks>
 	Task<bool> AddPostAsync(FaveAddPostParams @params,
 							CancellationToken token = default);
@@ -110,7 +110,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.addProduct
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.addProduct
 	/// </remarks>
 	Task<bool> AddProductAsync(long ownerId,
 								long id,
@@ -134,7 +134,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает объект метки с полями name - названием метки и id - идентификатором созданной метки.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.addTag
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.addTag
 	/// </remarks>
 	Task<FaveTag> AddTagAsync(string name,
 							string position,
@@ -160,7 +160,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.addVideo
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.addVideo
 	/// </remarks>
 	Task<bool> AddVideoAsync(long ownerId,
 							long id,
@@ -183,7 +183,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.editTag
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.editTag
 	/// </remarks>
 	Task<bool> EditTagAsync(long id,
 							string name,
@@ -213,7 +213,7 @@ public partial interface IFaveCategoryAsync
 	/// Если был задан параметр extended=1, возвращает число результатов в поле count, отдельно массив объектов пользователей в поле profiles и сообществ в поле groups.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.get
 	/// </remarks>
 	Task<VkCollection<FaveGetObject>> GetAsync(FaveGetParams @params,
 												CancellationToken token = default);
@@ -245,7 +245,7 @@ public partial interface IFaveCategoryAsync
 	/// Список объектов, добавленных в закладки.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.getPages
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.getPages
 	/// </remarks>
 	Task<VkCollection<FaveGetPagesObject>> GetPagesAsync(FavePageType? type = null,
 														IEnumerable<string> fields = null,
@@ -263,7 +263,7 @@ public partial interface IFaveCategoryAsync
 	/// Поля, описывающие объект метки: id - идентификатор метки и name - название.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.getTags
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.getTags
 	/// </remarks>
 	Task<VkCollection<FaveTag>> GetTagsAsync(CancellationToken token = default);
 
@@ -275,7 +275,7 @@ public partial interface IFaveCategoryAsync
 	/// После успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.markSeen
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.markSeen
 	/// </remarks>
 	Task<bool> MarkSeenAsync(CancellationToken token = default);
 
@@ -294,7 +294,7 @@ public partial interface IFaveCategoryAsync
 	/// После успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeArticle
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.removeArticle
 	/// </remarks>
 	Task<bool> RemoveArticleAsync(long ownerId,
 								ulong articleId,
@@ -312,7 +312,7 @@ public partial interface IFaveCategoryAsync
 	/// После успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeLink
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.removeLink
 	/// </remarks>
 	Task<bool> RemoveLinkAsync(string linkId,
 								CancellationToken token = default);
@@ -331,7 +331,7 @@ public partial interface IFaveCategoryAsync
 	/// После успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.removePage
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.removePage
 	/// </remarks>
 	Task<bool> RemovePageAsync(long? userId = null,
 								long? groupId = null,
@@ -353,7 +353,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.removePost
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.removePost
 	/// </remarks>
 	Task<bool> RemovePostAsync(long ownerId,
 								long id,
@@ -375,7 +375,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeProduct
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.removeProduct
 	/// </remarks>
 	Task<bool> RemoveProductAsync(long ownerId,
 								long id,
@@ -392,7 +392,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeTag
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.removeTag
 	/// </remarks>
 	Task<bool> RemoveTagAsync(long id,
 							CancellationToken token = default);
@@ -413,7 +413,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.removeVideo
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.removeVideo
 	/// </remarks>
 	Task<bool> RemoveVideoAsync(long ownerId,
 								long id,
@@ -430,7 +430,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.reorderTags
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.reorderTags
 	/// </remarks>
 	Task<bool> ReorderTagsAsync(IEnumerable<long> ids,
 								CancellationToken token = default);
@@ -454,7 +454,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.setPageTags
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.setPageTags
 	/// </remarks>
 	Task<bool> SetPageTagsAsync(ulong? userId = null,
 								ulong? groupId = null,
@@ -472,7 +472,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.setTags
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.setTags
 	/// </remarks>
 	Task<bool> SetTagsAsync(FaveSetTagsParams @params,
 							CancellationToken token = default);
@@ -493,7 +493,7 @@ public partial interface IFaveCategoryAsync
 	/// В случае успешного выполнения возвращает <c>true</c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/fave.trackPageInteraction
+	/// Страница документации ВКонтакте http://vk.ru/dev/fave.trackPageInteraction
 	/// </remarks>
 	Task<bool> TrackPageInteractionAsync(ulong? userId = null,
 										ulong? groupId = null,

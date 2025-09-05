@@ -1,7 +1,7 @@
 ﻿namespace VkNet.Utils;
 
 /// <summary>
-/// Модель данных vk.com
+/// Модель данных vk.ru
 /// </summary>
 public interface IVkModel
 {
@@ -15,7 +15,7 @@ public interface IVkModel
 	/// </summary>
 	/// <param name="response"> Ответ от сервера. </param>
 	/// <returns>
-	/// Модель данных vk.com
+	/// Модель данных vk.ru
 	/// </returns>
 	IVkModel FromJson(VkResponse response);
 }

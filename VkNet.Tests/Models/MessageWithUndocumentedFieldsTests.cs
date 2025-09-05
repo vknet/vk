@@ -13,7 +13,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 	{
 		ReadJsonFile("Models", "message_with_unpin_action");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var message = Api.Call<Message>("friends.getRequests", VkParameters.Empty);
 
 		message.Action.Should()
@@ -34,7 +34,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 	{
 		ReadJsonFile("Models", "message_with_unpin_action");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var message = Api.Call<Message>("friends.getRequests", VkParameters.Empty);
 
 		message.Action.Should()
@@ -55,7 +55,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 	{
 		ReadJsonFile("Models", "message_with_pin_action");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var message = Api.Call<Message>("friends.getRequests", VkParameters.Empty);
 
 		message.Action.Should()
@@ -76,7 +76,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 	{
 		ReadJsonFile("Models", "message_with_pin_action");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var message = Api.Call<Message>("friends.getRequests", VkParameters.Empty);
 
 		message.Action.Should()
@@ -97,7 +97,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 	{
 		ReadJsonFile("Models", "message_with_pin_action");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var message = Api.Call<Message>("friends.getRequests", VkParameters.Empty);
 
 		message.Action.Should()
@@ -115,7 +115,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 	{
 		ReadJsonFile("Models", "message_self_destruct_with_is_expired");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var message = Api.Call<Message>("friends.getRequests", VkParameters.Empty);
 
 		message.IsExpired.Should()
@@ -130,7 +130,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 	{
 		ReadJsonFile("Models", "message_self_destruct_with_expire_ttl");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var message = Api.Call<Message>("friends.getRequests", VkParameters.Empty);
 
 		message.ExpireTtl.Should()
@@ -142,7 +142,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 	{
 		ReadJsonFile("Models", "message_with_is_silent");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var message = Api.Call<Message>("friends.getRequests", VkParameters.Empty);
 
 		message.IsSilent.Should()
@@ -154,7 +154,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 	{
 		ReadJsonFile("Models", "message_with_was_listened");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var message = Api.Call<Message>("friends.getRequests", VkParameters.Empty);
 
 		message.Attachments.Should()

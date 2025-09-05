@@ -32,7 +32,7 @@ public interface IFriendsCategoryAsync
 	/// но не более 5000.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.get
 	/// </remarks>
 	Task<VkCollection<User>> GetAsync(FriendsGetParams @params,
 									bool skipAuthorization = false,
@@ -49,7 +49,7 @@ public interface IFriendsCategoryAsync
 	/// приложение.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.getAppUsers
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.getAppUsers
 	/// </remarks>
 	Task<ReadOnlyCollection<long>> GetAppUsersAsync(CancellationToken token = default);
 
@@ -67,7 +67,7 @@ public interface IFriendsCategoryAsync
 	/// друзей, находящихся на сайте с мобильного устройства.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.getOnline
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.getOnline
 	/// </remarks>
 	Task<FriendOnline> GetOnlineAsync(FriendsGetOnlineParams @params,
 									CancellationToken token = default);
@@ -83,7 +83,7 @@ public interface IFriendsCategoryAsync
 	/// идентификаторами source_uid и target_uid.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.getMutual
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.getMutual
 	/// </remarks>
 	Task<ReadOnlyCollection<MutualFriend>> GetMutualAsync(FriendsGetMutualParams @params,
 														CancellationToken token = default);
@@ -130,7 +130,7 @@ public interface IFriendsCategoryAsync
 	/// только если friend_status = 2;.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.areFriends
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.areFriends
 	/// </remarks>
 	Task<ReadOnlyCollection<AreFriendsResult>> AreFriendsAsync([NotNull] IEnumerable<long> userIds,
 																bool? needSign = null,
@@ -156,7 +156,7 @@ public interface IFriendsCategoryAsync
 	/// друзей.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.addList
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.addList
 	/// </remarks>
 	Task<long> AddListAsync(string name,
 							IEnumerable<long> userIds,
@@ -175,7 +175,7 @@ public interface IFriendsCategoryAsync
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.deleteList
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.deleteList
 	/// </remarks>
 	Task<bool> DeleteListAsync(long listId,
 								CancellationToken token = default);
@@ -201,7 +201,7 @@ public interface IFriendsCategoryAsync
 	/// id — идентификатор списка друзей.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.getLists
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.getLists
 	/// </remarks>
 	Task<VkCollection<FriendList>> GetListsAsync(long? userId = null,
 												bool? returnSystem = null,
@@ -239,7 +239,7 @@ public interface IFriendsCategoryAsync
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.editList
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.editList
 	/// </remarks>
 	Task<bool> EditListAsync(long listId,
 							string name = null,
@@ -256,7 +256,7 @@ public interface IFriendsCategoryAsync
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.deleteAllRequests
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.deleteAllRequests
 	/// </remarks>
 	Task<bool> DeleteAllRequestsAsync(CancellationToken token = default);
 
@@ -286,7 +286,7 @@ public interface IFriendsCategoryAsync
 	/// 4 — повторная отправка заявки.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.add
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.add
 	/// </remarks>
 	Task<AddFriendStatus> AddAsync(long userId,
 									string text = "",
@@ -318,7 +318,7 @@ public interface IFriendsCategoryAsync
 	/// 3 — рекомендация добавить в друзья данного пользователя удалена.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.delete
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.delete
 	/// </remarks>
 	Task<FriendsDeleteResult> DeleteAsync(long userId,
 										CancellationToken token = default);
@@ -342,7 +342,7 @@ public interface IFriendsCategoryAsync
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.edit
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.edit
 	/// </remarks>
 	Task<bool> EditAsync(long userId,
 						IEnumerable<long> listIds,
@@ -366,7 +366,7 @@ public interface IFriendsCategoryAsync
 	/// недавно добавленных друзей текущего пользователя.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.getRecent
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.getRecent
 	/// </remarks>
 	Task<ReadOnlyCollection<long>> GetRecentAsync(long? count = null,
 												CancellationToken token = default);
@@ -392,7 +392,7 @@ public interface IFriendsCategoryAsync
 	/// идентификаторов общих друзей.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.getRequests
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.getRequests
 	/// </remarks>
 	Task<GetRequestsResult> GetRequestsAsync(FriendsGetRequestsParams @params,
 											CancellationToken token = default);
@@ -418,7 +418,7 @@ public interface IFriendsCategoryAsync
 	/// идентификаторов общих друзей.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.getRequests
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.getRequests
 	/// </remarks>
 	Task<VkCollection<FriendsGetRequestsResult>> GetRequestsExtendedAsync(FriendsGetRequestsParams @params,
 																		CancellationToken token = default);
@@ -468,7 +468,7 @@ public interface IFriendsCategoryAsync
 	/// found_with может отсутствовать.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.getSuggestions
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.getSuggestions
 	/// </remarks>
 	Task<VkCollection<User>> GetSuggestionsAsync(FriendsFilter? filter = null,
 												long? count = null,
@@ -506,7 +506,7 @@ public interface IFriendsCategoryAsync
 	/// содержится номер из списка заданных для поиска номеров.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.getByPhones
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.getByPhones
 	/// </remarks>
 	Task<ReadOnlyCollection<User>> GetByPhonesAsync(IEnumerable<string> phones,
 													ProfileFields fields,
@@ -521,7 +521,7 @@ public interface IFriendsCategoryAsync
 	/// После успешного выполнения метод  возвращает список объектов пользователей.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/friends.search
+	/// Страница документации ВКонтакте http://vk.ru/dev/friends.search
 	/// </remarks>
 	Task<VkCollection<User>> SearchAsync(FriendsSearchParams @params,
 										CancellationToken token = default);

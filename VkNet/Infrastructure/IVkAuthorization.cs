@@ -18,7 +18,7 @@ public interface IVkAuthorization<out TPageType>
 	/// Результат авторизации <see cref="T:VkNet.Model.AuthorizationResult" />
 	/// </returns>
 	/// <exception cref="T:System.ArgumentException">
-	/// URL должен начинаться со строки 'https://oauth.vk.com/blank.html'
+	/// URL должен начинаться со строки 'https://oauth.vk.ru/blank.html'
 	/// </exception>
 	AuthorizationResult GetAuthorizationResult(Uri url);
 

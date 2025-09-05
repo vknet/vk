@@ -11,7 +11,7 @@ public class DisableOnlineTests : CategoryBaseTest
 	[Fact]
 	public void DisableOnline()
 	{
-		Url = "https://api.vk.com/method/groups.disableOnline";
+		Url = "https://api.vk.ru/method/groups.disableOnline";
 
 		ReadJsonFile(JsonPaths.True);
 

@@ -5,8 +5,8 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Количество различных объектов у пользователя.
-/// См. описание http://vk.com/dev/fields
-/// http://vk.com/dev/fields_groups
+/// См. описание http://vk.ru/dev/fields
+/// http://vk.ru/dev/fields_groups
 /// Раздел counters.
 /// </summary>
 [Serializable]
@@ -112,7 +112,7 @@ public class Counters
 
 	#endregion
 
-	#region Счетчики из метода https: //vk.com/dev/account.getCounters
+	#region Счетчики из метода https: //vk.ru/dev/account.getCounters
 
 	/// <summary>
 	/// Количество сообщений

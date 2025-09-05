@@ -11,7 +11,7 @@ public class WallGetCommentsTests : CategoryBaseTest
 	[Fact]
 	public void GetComments802()
 	{
-		Url = "https://api.vk.com/method/wall.getComments";
+		Url = "https://api.vk.ru/method/wall.getComments";
 		ReadCategoryJsonPath(nameof(GetComments802));
 
 		var result = Api.Wall.GetComments(new()

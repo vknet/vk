@@ -25,7 +25,7 @@ public class ExecuteErrorsTests : BaseTest
 	public void IfResponseContainsExecuteErrors_ThanReturnAggregateException()
 	{
 		// Arrange
-		Url = "https://api.vk.com/method/execute";
+		Url = "https://api.vk.ru/method/execute";
 		ReadJsonFile("Errors", nameof(ExecuteErrorsHandler));
 
 		// Act

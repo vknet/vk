@@ -11,7 +11,7 @@ public class GetLongPollSettingsTests : CategoryBaseTest
 	[Fact]
 	public void GetLongPollSettings()
 	{
-		Url = "https://api.vk.com/method/groups.getLongPollSettings";
+		Url = "https://api.vk.ru/method/groups.getLongPollSettings";
 
 		ReadCategoryJsonPath(nameof(GetLongPollSettings));
 

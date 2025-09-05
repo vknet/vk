@@ -14,7 +14,7 @@ public class UpdateCampaignsTest : CategoryBaseTest
 	[Fact]
 	public void UpdateCampaigns()
 	{
-		Url = "https://api.vk.com/method/ads.updateCampaigns";
+		Url = "https://api.vk.ru/method/ads.updateCampaigns";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.UpdateCampaigns));
 

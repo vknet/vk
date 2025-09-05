@@ -11,7 +11,7 @@ public class GetSuggestionsTest : CategoryBaseTest
 	[Fact]
 	public void GetSuggestions()
 	{
-		Url = "https://api.vk.com/method/ads.getSuggestions";
+		Url = "https://api.vk.ru/method/ads.getSuggestions";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetSuggestions));
 

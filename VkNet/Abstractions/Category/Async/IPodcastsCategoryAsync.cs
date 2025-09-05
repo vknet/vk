@@ -19,7 +19,7 @@ public interface IPodcastsCategoryAsync
 	/// Признак успешной очистки
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/podcasts.clearRecentSearches
+	/// Страница документации ВКонтакте https://vk.ru/dev/podcasts.clearRecentSearches
 	/// </remarks>
 	[Obsolete("This method is deprecated. Use SearchPodcast method for work with podcast")]
 	Task<bool> ClearRecentSearchesAsync(CancellationToken token = default);
@@ -32,7 +32,7 @@ public interface IPodcastsCategoryAsync
 	/// Список популярных подкастов
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/podcasts.getPopular
+	/// Страница документации ВКонтакте https://vk.ru/dev/podcasts.getPopular
 	/// </remarks>
 	[Obsolete("This method is deprecated. Use SearchPodcast method for work with podcast")]
 	Task<ReadOnlyCollection<PodcastsGetPopularResult>> GetPopularAsync(CancellationToken token = default);
@@ -45,7 +45,7 @@ public interface IPodcastsCategoryAsync
 	/// Список подкастов
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/podcasts.getRecentSearchRequests
+	/// Страница документации ВКонтакте https://vk.ru/dev/podcasts.getRecentSearchRequests
 	/// </remarks>
 	[Obsolete("This method is deprecated. Use SearchPodcast method for work with podcast")]
 	Task<ReadOnlyCollection<string>> GetRecentSearchRequestsAsync(CancellationToken token = default);
@@ -59,7 +59,7 @@ public interface IPodcastsCategoryAsync
 	/// Результат поиска
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/podcasts.searchPodcast
+	/// Страница документации ВКонтакте https://vk.ru/dev/podcasts.searchPodcast
 	/// </remarks>
 	Task<PodcastsSearchResult> SearchPodcastAsync(PodcastsSearchParams @params,
 											CancellationToken token = default);

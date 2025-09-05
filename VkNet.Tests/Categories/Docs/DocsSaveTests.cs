@@ -14,7 +14,7 @@ public class DocsSaveTests : CategoryBaseTest
 	[Fact]
 	public void Save()
 	{
-		Url = "https://api.vk.com/method/docs.save";
+		Url = "https://api.vk.ru/method/docs.save";
 		ReadCategoryJsonPath("Save");
 
 		var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
@@ -28,7 +28,7 @@ public class DocsSaveTests : CategoryBaseTest
 	[Fact]
 	public void Save2()
 	{
-		Url = "https://api.vk.com/method/docs.save";
+		Url = "https://api.vk.ru/method/docs.save";
 		ReadCategoryJsonPath("Save2");
 
 		var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
@@ -42,7 +42,7 @@ public class DocsSaveTests : CategoryBaseTest
 	[Fact]
 	public void Save3()
 	{
-		Url = "https://api.vk.com/method/docs.save";
+		Url = "https://api.vk.ru/method/docs.save";
 		ReadCategoryJsonPath("Save3");
 
 		var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");
@@ -56,7 +56,7 @@ public class DocsSaveTests : CategoryBaseTest
 	[Fact]
 	public void Save_Type()
 	{
-		Url = "https://api.vk.com/method/docs.save";
+		Url = "https://api.vk.ru/method/docs.save";
 		ReadCategoryJsonPath("Save3");
 
 		var docUploadResult = ReadJson("Categories", Folder, "DocUploadResult");

@@ -11,7 +11,7 @@ public class GetTargetPixelsTest : CategoryBaseTest
 	[Fact]
 	public void GetTargetPixels()
 	{
-		Url = "https://api.vk.com/method/ads.getTargetPixels";
+		Url = "https://api.vk.ru/method/ads.getTargetPixels";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetTargetPixels));
 

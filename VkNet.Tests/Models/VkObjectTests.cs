@@ -13,7 +13,7 @@ public class VkObjectTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(VkObjectPage));
 
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
 
 		result.Id.Should()
@@ -28,7 +28,7 @@ public class VkObjectTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(VkObjectApplication));
 
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
 
 		result.Id.Should()
@@ -43,7 +43,7 @@ public class VkObjectTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(VkObjectGroup));
 
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
 
 		result.Id.Should()
@@ -58,7 +58,7 @@ public class VkObjectTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(VkObjectUser));
 
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		var result = Api.Call<VkObject>("utils.resolveScreenName", VkParameters.Empty);
 
 		result.Id.Should()
@@ -73,7 +73,7 @@ public class VkObjectTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(VkObjectPage));
 
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		var result = Api.Utils.ResolveScreenName("page");
 
 		result.Id.Should()
@@ -88,7 +88,7 @@ public class VkObjectTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(VkObjectApplication));
 
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		var result = Api.Utils.ResolveScreenName("application");
 
 		result.Id.Should()
@@ -103,7 +103,7 @@ public class VkObjectTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(VkObjectGroup));
 
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		var result = Api.Utils.ResolveScreenName("group");
 
 		result.Id.Should()
@@ -118,7 +118,7 @@ public class VkObjectTests : BaseTest
 	{
 		ReadJsonFile("Models", nameof(VkObjectUser));
 
-		Url = "https://api.vk.com/method/utils.resolveScreenName";
+		Url = "https://api.vk.ru/method/utils.resolveScreenName";
 		var result = Api.Utils.ResolveScreenName("user");
 
 		result.Id.Should()

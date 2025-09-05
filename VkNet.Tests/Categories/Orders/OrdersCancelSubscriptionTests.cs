@@ -11,7 +11,7 @@ public class OrdersCancelSubscriptionTests : CategoryBaseTest
 	[Fact]
 	public void CancelSubscription()
 	{
-		Url = "https://api.vk.com/method/orders.cancelSubscription";
+		Url = "https://api.vk.ru/method/orders.cancelSubscription";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Orders.CancelSubscription(123, 23);

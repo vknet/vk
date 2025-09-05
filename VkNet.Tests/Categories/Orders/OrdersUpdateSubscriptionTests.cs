@@ -11,7 +11,7 @@ public class OrdersUpdateSubscriptionTests : CategoryBaseTest
 	[Fact]
 	public void UpdateSubscription()
 	{
-		Url = "https://api.vk.com/method/orders.updateSubscription";
+		Url = "https://api.vk.ru/method/orders.updateSubscription";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Orders.UpdateSubscription(123, 234, 500);

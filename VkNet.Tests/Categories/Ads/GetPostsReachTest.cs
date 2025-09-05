@@ -12,7 +12,7 @@ public class GetPostsReachTest : CategoryBaseTest
 	[Fact]
 	public void GetPostsReach()
 	{
-		Url = "https://api.vk.com/method/ads.getPostsReach";
+		Url = "https://api.vk.ru/method/ads.getPostsReach";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetPostsReach));
 

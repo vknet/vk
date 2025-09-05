@@ -9,7 +9,7 @@ public class MessagesMarkAsImportantConversation : MessagesBaseTests
 	[Fact]
 	public void MarkAsImportantConversation()
 	{
-		Url = "https://api.vk.com/method/messages.markAsImportantConversation";
+		Url = "https://api.vk.ru/method/messages.markAsImportantConversation";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Messages.MarkAsImportantConversation(123);

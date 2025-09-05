@@ -11,7 +11,7 @@ public class GetFloodStatsTest : CategoryBaseTest
 	[Fact]
 	public void GetFloodStats()
 	{
-		Url = "https://api.vk.com/method/ads.getFloodStats";
+		Url = "https://api.vk.ru/method/ads.getFloodStats";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetFloodStats));
 

@@ -28,7 +28,7 @@ public interface IStatusCategoryAsync
 	/// <remarks>
 	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
 	/// содержащей Settings.Status
-	/// Страница документации ВКонтакте http://vk.com/dev/status.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/status.get
 	/// </remarks>
 	Task<Status> GetAsync(long userId,
 						long? groupId = null,
@@ -55,7 +55,7 @@ public interface IStatusCategoryAsync
 	/// <remarks>
 	/// Для вызова этого метода Ваше приложение должно иметь права с битовой маской,
 	/// содержащей Settings.Status
-	/// Страница документации ВКонтакте http://vk.com/dev/status.set
+	/// Страница документации ВКонтакте http://vk.ru/dev/status.set
 	/// </remarks>
 	Task<bool> SetAsync(string text,
 						long? groupId = null,

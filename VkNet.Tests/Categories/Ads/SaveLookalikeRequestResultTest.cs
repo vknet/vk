@@ -11,7 +11,7 @@ public class SaveLookalikeRequestResultTest : CategoryBaseTest
 	[Fact]
 	public void SaveLookalikeRequestResult()
 	{
-		Url = "https://api.vk.com/method/ads.saveLookalikeRequestResult";
+		Url = "https://api.vk.ru/method/ads.saveLookalikeRequestResult";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.SaveLookalikeRequestResult));
 

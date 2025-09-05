@@ -14,7 +14,7 @@ public class StatsTest : CategoryBaseTest
 	[Fact]
 	public void GetByApp_NormalCase()
 	{
-		Url = "https://api.vk.com/method/stats.get";
+		Url = "https://api.vk.ru/method/stats.get";
 		ReadCategoryJsonPath(nameof(GetByApp_NormalCase));
 
 		var statsPeriods = Api.Stats.Get(new()
@@ -41,7 +41,7 @@ public class StatsTest : CategoryBaseTest
 	[Fact]
 	public void GetByGroup_EmptyActivityCase()
 	{
-		Url = "https://api.vk.com/method/stats.get";
+		Url = "https://api.vk.ru/method/stats.get";
 		ReadCategoryJsonPath(nameof(GetByGroup_EmptyActivityCase));
 
 		var statsPeriods = Api.Stats.Get(new()
@@ -72,7 +72,7 @@ public class StatsTest : CategoryBaseTest
 	[Fact]
 	public void GetByGroup_NormalCase()
 	{
-		Url = "https://api.vk.com/method/stats.get";
+		Url = "https://api.vk.ru/method/stats.get";
 		ReadCategoryJsonPath(nameof(GetByGroup_NormalCase));
 
 		var statsPeriods = Api.Stats.Get(new()
@@ -99,7 +99,7 @@ public class StatsTest : CategoryBaseTest
 	[Fact]
 	public void TrackVisitorTest()
 	{
-		Url = "https://api.vk.com/method/stats.trackVisitor";
+		Url = "https://api.vk.ru/method/stats.trackVisitor";
 		ReadJsonFile(JsonPaths.True);
 
 		var statsPeriods = Api.Stats.TrackVisitor();

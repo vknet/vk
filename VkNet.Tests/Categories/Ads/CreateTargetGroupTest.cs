@@ -11,7 +11,7 @@ public class CreateTargetGroupTest : CategoryBaseTest
 	[Fact]
 	public void CreateTargetGroup()
 	{
-		Url = "https://api.vk.com/method/ads.createTargetGroup";
+		Url = "https://api.vk.ru/method/ads.createTargetGroup";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.CreateTargetGroup));
 

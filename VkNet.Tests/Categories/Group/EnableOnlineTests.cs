@@ -11,7 +11,7 @@ public class EnableOnlineTests : CategoryBaseTest
 	[Fact]
 	public void EnableOnline()
 	{
-		Url = "https://api.vk.com/method/groups.enableOnline";
+		Url = "https://api.vk.ru/method/groups.enableOnline";
 
 		ReadJsonFile(JsonPaths.True);
 

@@ -18,7 +18,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void CreateAlbum_NormalCase()
 	{
-		Url = "https://api.vk.com/method/photos.createAlbum";
+		Url = "https://api.vk.ru/method/photos.createAlbum";
 		ReadCategoryJsonPath(nameof(CreateAlbum_NormalCase));
 
 		var album = Api.Photo
@@ -73,7 +73,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void DeleteAlbum_NormalCase()
 	{
-		Url = "https://api.vk.com/method/photos.deleteAlbum";
+		Url = "https://api.vk.ru/method/photos.deleteAlbum";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Photo.DeleteAlbum(197303);
@@ -85,7 +85,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void EditAlbum_NormalCase()
 	{
-		Url = "https://api.vk.com/method/photos.editAlbum";
+		Url = "https://api.vk.ru/method/photos.editAlbum";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Photo
@@ -103,7 +103,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetAlbums_NormalCase()
 	{
-		Url = "https://api.vk.com/method/photos.getAlbums";
+		Url = "https://api.vk.ru/method/photos.getAlbums";
 		ReadCategoryJsonPath(nameof(GetAlbums_NormalCase));
 
 		var albums = Api.Photo
@@ -151,7 +151,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetAlbums_PrivacyCase()
 	{
-		Url = "https://api.vk.com/method/photos.getAlbums";
+		Url = "https://api.vk.ru/method/photos.getAlbums";
 		ReadCategoryJsonPath(nameof(GetAlbums_PrivacyCase));
 
 		var albums = Api.Photo
@@ -207,7 +207,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetAlbumsCount_NormalCase()
 	{
-		Url = "https://api.vk.com/method/photos.getAlbumsCount";
+		Url = "https://api.vk.ru/method/photos.getAlbumsCount";
 		ReadJsonFile(JsonPaths.True);
 
 		var count = Api.Photo.GetAlbumsCount(1);
@@ -219,7 +219,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetAll_NormalCase()
 	{
-		Url = "https://api.vk.com/method/photos.getAll";
+		Url = "https://api.vk.ru/method/photos.getAll";
 		ReadCategoryJsonPath(nameof(GetAll_NormalCase));
 
 		var photos = Api.Photo
@@ -279,7 +279,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetMessagesUploadServer_NormalCase()
 	{
-		Url = "https://api.vk.com/method/photos.getMessagesUploadServer";
+		Url = "https://api.vk.ru/method/photos.getMessagesUploadServer";
 		ReadCategoryJsonPath(nameof(GetMessagesUploadServer_NormalCase));
 
 		var info = Api.Photo.GetMessagesUploadServer(123);
@@ -289,7 +289,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 
 		info.UploadUrl.Should()
 			.Be(
-				"http://cs618026.vk.com/upload.php?act=do_add&mid=234695118&aid=-3&gid=0&hash=de2523dd173af592a5dcea351a0ea9e7&rhash=71534021af2730c5b88c05d9ca7c9ed3&swfupload=1&api=1&mailphoto=1");
+				"http://cs618026.vk.ru/upload.php?act=do_add&mid=234695118&aid=-3&gid=0&hash=de2523dd173af592a5dcea351a0ea9e7&rhash=71534021af2730c5b88c05d9ca7c9ed3&swfupload=1&api=1&mailphoto=1");
 
 		info.AlbumId.Should()
 			.Be(-3);
@@ -301,7 +301,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetOwnerCoverPhotoUploadServer_NormalCase()
 	{
-		Url = "https://api.vk.com/method/photos.getOwnerCoverPhotoUploadServer";
+		Url = "https://api.vk.ru/method/photos.getOwnerCoverPhotoUploadServer";
 		ReadCategoryJsonPath(nameof(GetOwnerCoverPhotoUploadServer_NormalCase));
 
 		var info = Api.Photo.GetOwnerCoverPhotoUploadServer(1L);
@@ -311,13 +311,13 @@ public class PhotosCategoryTest : CategoryBaseTest
 
 		info.UploadUrl.Should()
 			.Be(
-				"http://pu.vk.com/c837421/upload.php?_query=eyJhY3QiOiJvd25lcl9jb3ZlciIsIm9pZCI6LTkzNjY5OTI0LCJhcGkiOnRydWUsImFwaV93cmFwIjp7Imhhc2giOiIxMDA4MmRjZWJlZGIzMjZkNDQiLCJwaG90byI6IntyZXN1bHR9In0sIm1pZCI6NzY2NDA4ODIsInNlcnZlciI6ODM3NDIxLCJfb3JpZ2luIjoiaHR0cHM6XC9cL2FwaS52ay5jb20iLCJfc2lnIjoiYzZjNWM4ZGVmYmE5YWQ3YWM1ZTYzYTUxMWJjMjgzZDcifQ&_crop=0,0,1590,400");
+				"http://pu.vk.ru/c837421/upload.php?_query=eyJhY3QiOiJvd25lcl9jb3ZlciIsIm9pZCI6LTkzNjY5OTI0LCJhcGkiOnRydWUsImFwaV93cmFwIjp7Imhhc2giOiIxMDA4MmRjZWJlZGIzMjZkNDQiLCJwaG90byI6IntyZXN1bHR9In0sIm1pZCI6NzY2NDA4ODIsInNlcnZlciI6ODM3NDIxLCJfb3JpZ2luIjoiaHR0cHM6XC9cL2FwaS52ay5jb20iLCJfc2lnIjoiYzZjNWM4ZGVmYmE5YWQ3YWM1ZTYzYTUxMWJjMjgzZDcifQ&_crop=0,0,1590,400");
 	}
 
 	[Fact]
 	public void GetProfileUploadServer_NormalCase()
 	{
-		Url = "https://api.vk.com/method/photos.getOwnerPhotoUploadServer";
+		Url = "https://api.vk.ru/method/photos.getOwnerPhotoUploadServer";
 		ReadCategoryJsonPath(nameof(GetProfileUploadServer_NormalCase));
 
 		var info = Api.Photo.GetOwnerPhotoUploadServer();
@@ -326,13 +326,13 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.NotBeNull();
 
 		info.UploadUrl.Should()
-			.Be("http://cs618026.vk.com/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh");
+			.Be("http://cs618026.vk.ru/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh");
 	}
 
 	[Fact]
 	public void SaveOwnerCoverPhoto_NormalCase()
 	{
-		Url = "https://api.vk.com/method/photos.saveOwnerCoverPhoto";
+		Url = "https://api.vk.ru/method/photos.saveOwnerCoverPhoto";
 		ReadCategoryJsonPath(nameof(SaveOwnerCoverPhoto_NormalCase));
 
 		const string response = @"{""photo"":""[]"",""hash"":""163abf8b9e4e4513577012d5275cafbb""}";
@@ -424,7 +424,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SaveWallPhoto_NormalCase()
 	{
-		Url = "https://api.vk.com/method/photos.saveWallPhoto";
+		Url = "https://api.vk.ru/method/photos.saveWallPhoto";
 		ReadCategoryJsonPath(nameof(SaveWallPhoto_NormalCase));
 
 		const string response = @"{""server"":631223,""photo"":""[]"",""hash"":""163abf8b9e4e4513577012d5275cafbb""}";
@@ -482,7 +482,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Search_Error26_Lat_and_Long_in_output_photo()
 	{
-		Url = "https://api.vk.com/method/photos.search";
+		Url = "https://api.vk.ru/method/photos.search";
 		ReadCategoryJsonPath(nameof(Search_Error26_Lat_and_Long_in_output_photo));
 
 		var photos = Api.Photo
@@ -527,7 +527,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Search_NormalCase()
 	{
-		Url = "https://api.vk.com/method/photos.search";
+		Url = "https://api.vk.ru/method/photos.search";
 		ReadCategoryJsonPath(nameof(Search_NormalCase));
 
 		var photos = Api.Photo
@@ -590,7 +590,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetAlbums_Photo_Sizes()
 	{
-		Url = "https://api.vk.com/method/photos.getAlbums";
+		Url = "https://api.vk.ru/method/photos.getAlbums";
 		ReadCategoryJsonPath(nameof(GetAlbums_Photo_Sizes));
 
 		long[] albumsids =

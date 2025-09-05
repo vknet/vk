@@ -17,7 +17,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Add_NormalCase()
 	{
-		Url = "https://api.vk.com/method/friends.add";
+		Url = "https://api.vk.ru/method/friends.add";
 		ReadJsonFile(JsonPaths.True);
 
 		var status = Api.Friends.Add(242508, "hello, user!", false);
@@ -34,7 +34,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void AddList_OnlyName_NormalCase()
 	{
-		Url = "https://api.vk.com/method/friends.addList";
+		Url = "https://api.vk.ru/method/friends.addList";
 		ReadCategoryJsonPath(nameof(AddList_OnlyName_NormalCase));
 
 		var id = Api.Friends.AddList("тестовая метка", null);
@@ -46,7 +46,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void AddList_WithUserIds_NormalCase()
 	{
-		Url = "https://api.vk.com/method/friends.addList";
+		Url = "https://api.vk.ru/method/friends.addList";
 		ReadCategoryJsonPath(nameof(AddList_WithUserIds_NormalCase));
 
 		var id = Api.Friends.AddList("тестовая метка",
@@ -77,7 +77,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void AreFriends_FourTypes_RightFriendStatuses()
 	{
-		Url = "https://api.vk.com/method/friends.areFriends";
+		Url = "https://api.vk.ru/method/friends.areFriends";
 		ReadCategoryJsonPath(nameof(AreFriends_FourTypes_RightFriendStatuses));
 
 		var dict = Api.Friends.AreFriends(new long[]
@@ -122,7 +122,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Delete_NormalCase()
 	{
-		Url = "https://api.vk.com/method/friends.delete";
+		Url = "https://api.vk.ru/method/friends.delete";
 		ReadCategoryJsonPath(nameof(Delete_NormalCase));
 
 		var status = Api.Friends.Delete(24250);
@@ -134,7 +134,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void DeleteAllRequests_NormalCase()
 	{
-		Url = "https://api.vk.com/method/friends.deleteAllRequests";
+		Url = "https://api.vk.ru/method/friends.deleteAllRequests";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Friends.DeleteAllRequests();
@@ -151,7 +151,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void DeleteList_NormalCase()
 	{
-		Url = "https://api.vk.com/method/friends.deleteList";
+		Url = "https://api.vk.ru/method/friends.deleteList";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Friends.DeleteList(2);
@@ -163,7 +163,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Edit_NormalCase()
 	{
-		Url = "https://api.vk.com/method/friends.edit";
+		Url = "https://api.vk.ru/method/friends.edit";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Friends.Edit(242508111,
@@ -179,7 +179,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void EditList_EditName_NormalCase()
 	{
-		Url = "https://api.vk.com/method/friends.editList";
+		Url = "https://api.vk.ru/method/friends.editList";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Friends.EditList(2, "new тестовая метка");
@@ -209,7 +209,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_FirstNameLastName_ListOfObjects()
 	{
-		Url = "https://api.vk.com/method/friends.get";
+		Url = "https://api.vk.ru/method/friends.get";
 		ReadCategoryJsonPath(nameof(Get_FirstNameLastName_ListOfObjects));
 
 		var lst = Api.Friends.Get(new()
@@ -274,7 +274,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_FriendsForDurov_ListOfFriends()
 	{
-		Url = "https://api.vk.com/method/friends.get";
+		Url = "https://api.vk.ru/method/friends.get";
 		ReadCategoryJsonPath(nameof(Get_FriendsForDurov_ListOfFriends));
 
 		var users = Api.Friends.Get(new()
@@ -312,7 +312,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetAppUsers_NoOne_EmptyList()
 	{
-		Url = "https://api.vk.com/method/friends.getAppUsers";
+		Url = "https://api.vk.ru/method/friends.getAppUsers";
 		ReadJsonFile(JsonPaths.EmptyArray);
 
 		var users = Api.Friends.GetAppUsers()
@@ -325,7 +325,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetAppUsers_ThreeUsers_ListOfObjects()
 	{
-		Url = "https://api.vk.com/method/friends.getAppUsers";
+		Url = "https://api.vk.ru/method/friends.getAppUsers";
 		ReadCategoryJsonPath(nameof(GetAppUsers_ThreeUsers_ListOfObjects));
 
 		var ids = Api.Friends.GetAppUsers()
@@ -347,7 +347,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetLists_NormalCase()
 	{
-		Url = "https://api.vk.com/method/friends.getLists";
+		Url = "https://api.vk.ru/method/friends.getLists";
 		ReadCategoryJsonPath(nameof(GetLists_NormalCase));
 
 		var list = Api.Friends.GetLists();
@@ -389,7 +389,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetMutual_NoOne_EmptyList()
 	{
-		Url = "https://api.vk.com/method/friends.getMutual";
+		Url = "https://api.vk.ru/method/friends.getMutual";
 		ReadJsonFile(JsonPaths.EmptyArray);
 
 		var users = Api.Friends.GetMutual(new()
@@ -406,7 +406,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetMutual_ThreeUsers_ListOfObjects()
 	{
-		Url = "https://api.vk.com/method/friends.getMutual";
+		Url = "https://api.vk.ru/method/friends.getMutual";
 		ReadCategoryJsonPath(nameof(GetMutual_ThreeUsers_ListOfObjects));
 
 		var ids = Api.Friends.GetMutual(new()
@@ -436,7 +436,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetOnline_Ex()
 	{
-		Url = "https://api.vk.com/method/friends.getOnline";
+		Url = "https://api.vk.ru/method/friends.getOnline";
 		ReadCategoryJsonPath(nameof(GetOnline_Ex));
 
 		var users = Api.Friends.GetOnline(new()
@@ -454,7 +454,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetOnline_FiveUsers_ListOfObjects()
 	{
-		Url = "https://api.vk.com/method/friends.getOnline";
+		Url = "https://api.vk.ru/method/friends.getOnline";
 		ReadCategoryJsonPath(nameof(GetOnline_FiveUsers_ListOfObjects));
 
 		var users = Api.Friends.GetOnline(new()
@@ -489,7 +489,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetOnline_NoOne_EmptyList()
 	{
-		Url = "https://api.vk.com/method/friends.getOnline";
+		Url = "https://api.vk.ru/method/friends.getOnline";
 		ReadJsonFile(JsonPaths.EmptyArray);
 
 		var users = Api.Friends.GetOnline(new()
@@ -504,7 +504,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetRecent_OneItem()
 	{
-		Url = "https://api.vk.com/method/friends.getRecent";
+		Url = "https://api.vk.ru/method/friends.getRecent";
 		ReadCategoryJsonPath(nameof(GetRecent_OneItem));
 
 		var ids = Api.Friends.GetRecent(3);
@@ -522,7 +522,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetRequest_count_unread()
 	{
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		ReadCategoryJsonPath(nameof(GetRequest_count_unread));
 
 		var ids = Api.Friends.GetRequests(new()
@@ -549,7 +549,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetRequest_EmptyCollection()
 	{
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		ReadCategoryJsonPath(nameof(GetRequest_EmptyCollection));
 
 		var ids = Api.Friends.GetRequestsExtended(new()
@@ -570,7 +570,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetRequests_Basic_NormalCase()
 	{
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		ReadCategoryJsonPath(nameof(GetRequests_Basic_NormalCase));
 
 		var ids = Api.Friends.GetRequests(new()
@@ -590,7 +590,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetRequests_Extended_NormalCase()
 	{
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		ReadCategoryJsonPath(nameof(GetRequests_Extended_NormalCase));
 
 		var ids = Api.Friends.GetRequestsExtended(new()

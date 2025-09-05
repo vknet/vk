@@ -11,7 +11,7 @@ public class GetRecentSearchRequestsTest : CategoryBaseTest
 	[Fact]
 	public void GetRecentSearchRequests()
 	{
-		Url = "https://api.vk.com/method/podcasts.getRecentSearchRequests";
+		Url = "https://api.vk.ru/method/podcasts.getRecentSearchRequests";
 
 		ReadCategoryJsonPath(nameof(Api.Podcasts.GetRecentSearchRequests));
 

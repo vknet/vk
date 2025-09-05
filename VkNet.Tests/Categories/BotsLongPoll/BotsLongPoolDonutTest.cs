@@ -14,7 +14,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});
@@ -58,7 +58,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});
@@ -102,7 +102,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});
@@ -140,7 +140,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});
@@ -178,7 +178,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});
@@ -228,7 +228,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});
@@ -272,7 +272,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});

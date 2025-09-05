@@ -10,7 +10,7 @@ namespace VkNet.Model;
 /// Видеозапись пользователя или группы.
 /// </summary>
 /// <remarks>
-/// См. описание http://vk.com/dev/video_object
+/// См. описание http://vk.ru/dev/video_object
 /// </remarks>
 [DebuggerDisplay("Id = {Id}, Title = {Title}")]
 [Serializable]

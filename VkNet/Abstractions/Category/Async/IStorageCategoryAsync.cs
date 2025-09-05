@@ -37,7 +37,7 @@ public interface IStorageCategoryAsync
 	/// пустая строка.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/storage.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/storage.get
 	/// </remarks>
 	Task<ReadOnlyCollection<StorageObject>> GetAsync(IEnumerable<string> keys = null,
 													ulong? userId = null,
@@ -72,7 +72,7 @@ public interface IStorageCategoryAsync
 	/// Возвращает массив названий переменных.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/storage.getKeys
+	/// Страница документации ВКонтакте http://vk.ru/dev/storage.getKeys
 	/// </remarks>
 	Task<ReadOnlyCollection<string>> GetKeysAsync(ulong? userId = null,
 												bool? global = null,
@@ -107,7 +107,7 @@ public interface IStorageCategoryAsync
 	/// Для удаления переменной необходимо передать пустое значение в параметре value.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/storage.set
+	/// Страница документации ВКонтакте http://vk.ru/dev/storage.set
 	/// </remarks>
 	Task<bool> SetAsync(string key,
 						string value = null,

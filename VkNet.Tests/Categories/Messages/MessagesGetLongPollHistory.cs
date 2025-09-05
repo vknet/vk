@@ -14,7 +14,7 @@ public class MessagesGetLongPollHistory : MessagesBaseTests
 	[Fact]
 	public void GroupsField()
 	{
-		Url = "https://api.vk.com/method/messages.getLongPollHistory";
+		Url = "https://api.vk.ru/method/messages.getLongPollHistory";
 
 		ReadCategoryJsonPath(nameof(Api.Messages.GetLongPollHistory));
 

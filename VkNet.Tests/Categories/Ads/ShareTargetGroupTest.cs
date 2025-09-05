@@ -11,7 +11,7 @@ public class ShareTargetGroupTest : CategoryBaseTest
 	[Fact]
 	public void ShareTargetGroup()
 	{
-		Url = "https://api.vk.com/method/ads.shareTargetGroup";
+		Url = "https://api.vk.ru/method/ads.shareTargetGroup";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.ShareTargetGroup));
 

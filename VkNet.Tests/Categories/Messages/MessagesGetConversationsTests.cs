@@ -9,7 +9,7 @@ public class MessagesGetConversationsTests : MessagesBaseTests
 	[Fact]
 	public void GetConversations()
 	{
-		Url = "https://api.vk.com/method/messages.getConversations";
+		Url = "https://api.vk.ru/method/messages.getConversations";
 		ReadCategoryJsonPath(nameof(GetConversations));
 
 		var result = Api.Messages.GetConversations(new());
@@ -21,7 +21,7 @@ public class MessagesGetConversationsTests : MessagesBaseTests
 	[Fact]
 	public void GetConversations_Attachment_wall()
 	{
-		Url = "https://api.vk.com/method/messages.getConversations";
+		Url = "https://api.vk.ru/method/messages.getConversations";
 		ReadCategoryJsonPath(nameof(GetConversations_Attachment_wall));
 
 		var result = Api.Messages.GetConversations(new());
@@ -33,7 +33,7 @@ public class MessagesGetConversationsTests : MessagesBaseTests
 	[Fact]
 	public void GetConversations_Group_PhotoField()
 	{
-		Url = "https://api.vk.com/method/messages.getConversations";
+		Url = "https://api.vk.ru/method/messages.getConversations";
 		ReadCategoryJsonPath(nameof(GetConversations_Group_PhotoField));
 
 		var result = Api.Messages.GetConversations(new()

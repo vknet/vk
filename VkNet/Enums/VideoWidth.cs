@@ -4,7 +4,7 @@
 /// Информация о ширине видео в пикселах.
 /// </summary>
 /// <remarks>
-/// Страница документации ВКонтакте http://vk.com/dev/video.get
+/// Страница документации ВКонтакте http://vk.ru/dev/video.get
 /// </remarks>
 public enum VideoWidth
 {

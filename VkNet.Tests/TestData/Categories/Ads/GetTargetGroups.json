@@ -2,7 +2,7 @@
   "response": [{
     "id": "1",
     "name": "Test1",
-    "domain": "vk.com",
+    "domain": "vk.ru",
     "last_updated": "1393574841",
     "audience_count": 666,
     "lifetime": "3",

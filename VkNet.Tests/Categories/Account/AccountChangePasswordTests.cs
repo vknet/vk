@@ -11,7 +11,7 @@ public class AccountChangePasswordTests : CategoryBaseTest
 	[Fact]
 	public void ChangePassword()
 	{
-		Url = "https://api.vk.com/method/account.changePassword";
+		Url = "https://api.vk.ru/method/account.changePassword";
 
 		ReadCategoryJsonPath(nameof(Api.Account.ChangePassword));
 

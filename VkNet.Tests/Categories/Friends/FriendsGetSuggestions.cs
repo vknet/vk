@@ -15,7 +15,7 @@ public class FriendsGetSuggestions : CategoryBaseTest
 	[Fact]
 	public void GetSuggestions_AllParameters()
 	{
-		Url = "https://api.vk.com/method/friends.getSuggestions";
+		Url = "https://api.vk.ru/method/friends.getSuggestions";
 
 		ReadCategoryJsonPath(nameof(Api.Friends.GetSuggestions));
 
@@ -39,7 +39,7 @@ public class FriendsGetSuggestions : CategoryBaseTest
 	[Fact]
 	public void GetSuggestions_WithoutParameters()
 	{
-		Url = "https://api.vk.com/method/friends.getSuggestions";
+		Url = "https://api.vk.ru/method/friends.getSuggestions";
 
 		ReadCategoryJsonPath(nameof(Api.Friends.GetSuggestions));
 

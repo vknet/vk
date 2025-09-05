@@ -9,7 +9,7 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Информация о сообществе (группе).
-/// См. описание http://vk.com/dev/fields_groups
+/// См. описание http://vk.ru/dev/fields_groups
 /// </summary>
 [Serializable]
 public class GroupInfo
@@ -168,7 +168,7 @@ public class GroupInfo
 	/// <summary>
 	/// Адрес rss для импорта новостей
 	/// (доступен только группам, получившим соответствуюшее разрешение,
-	/// обратитесь в http://vk.com/support для получения разрешения).
+	/// обратитесь в http://vk.ru/support для получения разрешения).
 	/// </summary>
 	[JsonProperty("rss")]
 	public string Rss { get; set; }

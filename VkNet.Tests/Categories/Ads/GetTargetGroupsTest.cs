@@ -11,7 +11,7 @@ public class GetTargetGroupsTest : CategoryBaseTest
 	[Fact]
 	public void GetTargetGroups()
 	{
-		Url = "https://api.vk.com/method/ads.getTargetGroups";
+		Url = "https://api.vk.ru/method/ads.getTargetGroups";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetTargetGroups));
 

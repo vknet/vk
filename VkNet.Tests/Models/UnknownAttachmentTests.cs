@@ -11,7 +11,7 @@ public class UnknownAttachmentTests : BaseTest
 	{
 		ReadJsonFile("Models", "UnknownAttachment");
 
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 
 		var attachment = Api.Wall.Get(new()).WallPosts[0].Attachments[0];
 

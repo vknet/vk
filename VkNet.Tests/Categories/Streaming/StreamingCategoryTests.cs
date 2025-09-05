@@ -14,7 +14,7 @@ public class StreamingCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetServerUrl()
 	{
-		Url = "https://api.vk.com/method/streaming.getServerUrl";
+		Url = "https://api.vk.ru/method/streaming.getServerUrl";
 		ReadCategoryJsonPath(nameof(GetServerUrl));
 
 		var result = Api.Streaming.GetServerUrl();
@@ -23,7 +23,7 @@ public class StreamingCategoryTests : CategoryBaseTest
 			.NotBeNull();
 
 		result.Endpoint.Should()
-			.Be("streaming.vk.com");
+			.Be("streaming.vk.ru");
 
 		result.Key.Should()
 			.Be("be8d29c05546e58cb52420aaf2b9f51f0a440f89");
@@ -32,7 +32,7 @@ public class StreamingCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetSettings()
 	{
-		Url = "https://api.vk.com/method/streaming.getSettings";
+		Url = "https://api.vk.ru/method/streaming.getSettings";
 		ReadCategoryJsonPath(nameof(GetSettings));
 
 		var result = Api.Streaming.GetSettings();
@@ -47,7 +47,7 @@ public class StreamingCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetStats()
 	{
-		Url = "https://api.vk.com/method/streaming.getStats";
+		Url = "https://api.vk.ru/method/streaming.getStats";
 		ReadCategoryJsonPath(nameof(GetStats));
 
 		var result = Api.Streaming.GetStats("prepared", "24h", new DateTime(2018, 5, 1), new DateTime(2018, 5, 20));
@@ -70,7 +70,7 @@ public class StreamingCategoryTests : CategoryBaseTest
 	[Fact]
 	public void SetSettings()
 	{
-		Url = "https://api.vk.com/method/streaming.setSettings";
+		Url = "https://api.vk.ru/method/streaming.setSettings";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Streaming.SetSettings(MonthlyLimit.Tier6);
@@ -82,7 +82,7 @@ public class StreamingCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetStem()
 	{
-		Url = "https://api.vk.com/method/streaming.getStem";
+		Url = "https://api.vk.ru/method/streaming.getStem";
 		ReadCategoryJsonPath(nameof(GetStem));
 
 		var result = Api.Streaming.GetStem("коты");

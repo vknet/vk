@@ -13,7 +13,7 @@ public class GetByIdTest : CategoryBaseTest
 	[Fact]
 	public void GetById()
 	{
-		Url = "https://api.vk.com/method/prettyCards.getById";
+		Url = "https://api.vk.ru/method/prettyCards.getById";
 
 		ReadCategoryJsonPath(nameof(Api.PrettyCards.GetById));
 
@@ -39,6 +39,6 @@ public class GetByIdTest : CategoryBaseTest
 		result[2]
 			.Images[0]
 			.Url.Should()
-			.Be(new Uri("https://vk.com/8Jseb63OJSE.jpg"));
+			.Be(new Uri("https://vk.ru/8Jseb63OJSE.jpg"));
 	}
 }

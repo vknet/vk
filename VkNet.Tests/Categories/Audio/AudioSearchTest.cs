@@ -11,7 +11,7 @@ public class AudioSearchTest : CategoryBaseTest
 	[Fact]
 	public void SearchTest()
 	{
-		Url = "https://api.vk.com/method/audio.search";
+		Url = "https://api.vk.ru/method/audio.search";
 
 		ReadCategoryJsonPath(nameof(Api.Audio.Search));
 

@@ -13,7 +13,7 @@ public class DonutTests : CategoryBaseTest
 	[Fact]
 	public void IsDon()
 	{
-		Url = "https://api.vk.com/method/donut.isDon";
+		Url = "https://api.vk.ru/method/donut.isDon";
 		ReadJsonFile(JsonPaths.False);
 
 		Api.Donut.IsDon(-173151748)
@@ -24,7 +24,7 @@ public class DonutTests : CategoryBaseTest
 	[Fact]
 	public void GetFriends()
 	{
-		Url = "https://api.vk.com/method/donut.getFriends";
+		Url = "https://api.vk.ru/method/donut.getFriends";
 		ReadCategoryJsonPath(nameof(GetFriends));
 		var result = Api.Donut.GetFriends(-173151748, 0, 3, new());
 
@@ -38,7 +38,7 @@ public class DonutTests : CategoryBaseTest
 	[Fact]
 	public void GetSubscription()
 	{
-		Url = "https://api.vk.com/method/donut.getSubscription";
+		Url = "https://api.vk.ru/method/donut.getSubscription";
 		ReadErrorsJsonFile(104);
 
 		FluentActions.Invoking(() => Api.Donut.GetSubscription(-173151748))
@@ -49,7 +49,7 @@ public class DonutTests : CategoryBaseTest
 	[Fact]
 	public void GetSubscriptions()
 	{
-		Url = "https://api.vk.com/method/donut.getSubscriptions";
+		Url = "https://api.vk.ru/method/donut.getSubscriptions";
 		ReadCategoryJsonPath(nameof(GetSubscriptions));
 
 		Api.Donut.GetSubscriptions(new(), 1, 1)

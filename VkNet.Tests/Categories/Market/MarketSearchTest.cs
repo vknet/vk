@@ -11,7 +11,7 @@ namespace VkNet.Tests.Categories.Market
 		[Fact]
 		public void MarketSearch()
 		{
-			Url = "https://api.vk.com/method/market.search";
+			Url = "https://api.vk.ru/method/market.search";
 
 			ReadCategoryJsonPath(nameof(Api.Markets.Search));
 

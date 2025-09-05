@@ -12,7 +12,7 @@ public class CreateTest : CategoryBaseTest
 	[Fact]
 	public void Create()
 	{
-		Url = "https://api.vk.com/method/prettyCards.create";
+		Url = "https://api.vk.ru/method/prettyCards.create";
 
 		ReadCategoryJsonPath(nameof(Api.PrettyCards.Create));
 

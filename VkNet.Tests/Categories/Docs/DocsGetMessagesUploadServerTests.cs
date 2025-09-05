@@ -12,7 +12,7 @@ public class DocsGetMessagesUploadServerTests : CategoryBaseTest
 	[Fact]
 	public void GetMessagesUploadServerTest()
 	{
-		Url = "https://api.vk.com/method/docs.getMessagesUploadServer";
+		Url = "https://api.vk.ru/method/docs.getMessagesUploadServer";
 		ReadCategoryJsonPath("DocGetMessagesUploadServerResult");
 
 		var serverInfo = Api.Docs.GetMessagesUploadServer(504736359, DocMessageType.Graffiti);

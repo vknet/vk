@@ -22,7 +22,7 @@ public interface IShortVideoCategoryAsync
 	/// В случае успеха возвращает ссылку для загрузки
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/shortVideo.create
+	/// Страница документации ВКонтакте http://vk.ru/dev/shortVideo.create
 	/// </remarks>
 	Task<ShortVideoUploadServer> CreateAsync(string description,
 											ulong fileSize = 16384,

@@ -12,7 +12,7 @@ public class CreateClientsTest : CategoryBaseTest
 	[Fact]
 	public void CreateClients()
 	{
-		Url = "https://api.vk.com/method/ads.createClients";
+		Url = "https://api.vk.ru/method/ads.createClients";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.CreateClients));
 

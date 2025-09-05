@@ -15,7 +15,7 @@ public class CreateCampaignsTest : CategoryBaseTest
 	[Fact]
 	public void CreateCampaigns()
 	{
-		Url = "https://api.vk.com/method/ads.createCampaigns";
+		Url = "https://api.vk.ru/method/ads.createCampaigns";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.CreateCampaigns));
 
