@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Exception;
@@ -167,13 +168,13 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 	private async Task InitCurrentTsAsync(CancellationToken token)
 	{
 		uint attempt_count = 0;
-   
+
   		while (!token.IsCancellationRequested)
 	 	{
 			try
 			{
 				var response = await _params.Api.Groups.GetLongPollServerAsync(_params.GroupId, token);
-	 
+
 	 			_currentSessionKey = response.Key;
 	  			_currentServer = response.Server;
 	   			SetTs(_params.Ts ?? response.Ts);
@@ -197,7 +198,7 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 				{
 					await HandleExceptionAsync(ex, token);
 	 			}
-  
+
 	  			await Thread.Sleep((int) delay);
 			}
 	 	}
