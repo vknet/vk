@@ -31,7 +31,7 @@ public interface ILeadsCategoryAsync
 	/// sid — в случае result=true и auto_start=1, идентификатор сессии начатой акции.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/leads.checkUser
+	/// Страница документации ВКонтакте http://vk.ru/dev/leads.checkUser
 	/// </remarks>
 	Task<Checked> CheckUserAsync(CheckUserParams checkUserParams,
 								CancellationToken token = default);
@@ -62,7 +62,7 @@ public interface ILeadsCategoryAsync
 	/// success — результат выполнения транзакции (всегда равно 1).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/leads.complete
+	/// Страница документации ВКонтакте http://vk.ru/dev/leads.complete
 	/// </remarks>
 	Task<LeadsComplete> CompleteAsync(string vkSid,
 									string secret,
@@ -109,7 +109,7 @@ public interface ILeadsCategoryAsync
 	/// spent — потрачено голосов.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/leads.getStats
+	/// Страница документации ВКонтакте http://vk.ru/dev/leads.getStats
 	/// </remarks>
 	Task<Lead> GetStatsAsync(ulong leadId,
 							string secret,
@@ -138,7 +138,7 @@ public interface ILeadsCategoryAsync
 	/// comment — текст комментария.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/leads.getUsers
+	/// Страница документации ВКонтакте http://vk.ru/dev/leads.getUsers
 	/// </remarks>
 	Task<ReadOnlyCollection<Entry>> GetUsersAsync(GetUsersParams getUsersParams,
 												CancellationToken token = default);
@@ -158,7 +158,7 @@ public interface ILeadsCategoryAsync
 	/// по указанной ссылке.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/leads.metricHit
+	/// Страница документации ВКонтакте http://vk.ru/dev/leads.metricHit
 	/// </remarks>
 	Task<MetricHitResponse> MetricHitAsync(string data,
 											CancellationToken token = default);
@@ -177,7 +177,7 @@ public interface ILeadsCategoryAsync
 	/// vk_sid — сессия рекламной акции.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/leads.start
+	/// Страница документации ВКонтакте http://vk.ru/dev/leads.start
 	/// </remarks>
 	Task<Start> StartAsync(StartParams startParams,
 							CancellationToken token = default);

@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using Newtonsoft.Json;
 using VkNet.Model;
 using VkNet.Utils;
@@ -12,7 +12,7 @@ public class AttachmentJsonConverterTests : BaseTest
 	public void CallAndConvertToType()
 	{
 		ReadJsonFile("Attachment", nameof(CallAndConvertToType));
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 
 		var result = Api.Call<CommentBoard>("friends.getRequests", VkParameters.Empty);
 
@@ -34,7 +34,7 @@ public class AttachmentJsonConverterTests : BaseTest
 	{
 		ReadJsonFile("Attachment", nameof(SerializationTest));
 
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 
 		var wall = Api.Wall.Get(new());
 

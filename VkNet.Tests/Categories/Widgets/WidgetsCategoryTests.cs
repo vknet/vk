@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class WidgetsCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetComments()
 	{
-		Url = "https://api.vk.com/method/widgets.getComments";
+		Url = "https://api.vk.ru/method/widgets.getComments";
 
 		ReadCategoryJsonPath(nameof(GetComments));
 
@@ -34,7 +34,7 @@ public class WidgetsCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetPages()
 	{
-		Url = "https://api.vk.com/method/widgets.getPages";
+		Url = "https://api.vk.ru/method/widgets.getPages";
 
 		ReadCategoryJsonPath(nameof(GetPages));
 

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -13,7 +13,7 @@ public class AudioAddToPlaylistTest : CategoryBaseTest
 	[Fact]
 	public void AddToPlaylistTest()
 	{
-		Url = "https://api.vk.com/method/audio.addToPlaylist";
+		Url = "https://api.vk.ru/method/audio.addToPlaylist";
 
 		ReadCategoryJsonPath(nameof(Api.Audio.AddToPlaylist));
 

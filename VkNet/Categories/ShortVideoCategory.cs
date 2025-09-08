@@ -12,7 +12,7 @@ public partial class ShortVideoCategory : IShortVideoCategory
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// api vk.ru
 	/// </summary>
 	/// <param name="vk"> API. </param>
 	public ShortVideoCategory(IVkApiInvoke vk) => _vk = vk;

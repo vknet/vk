@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -9,7 +9,7 @@ public class MessagesUnpinTests : MessagesBaseTests
 	[Fact]
 	public void Unpin()
 	{
-		Url = "https://api.vk.com/method/messages.unpin";
+		Url = "https://api.vk.ru/method/messages.unpin";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Messages.Unpin(123, 345);

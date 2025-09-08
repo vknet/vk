@@ -7,7 +7,7 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Информация о документе.
-/// См. описание http://vk.com/dev/doc
+/// См. описание http://vk.ru/dev/doc
 /// </summary>
 [Serializable]
 public class Document : MediaAttachment

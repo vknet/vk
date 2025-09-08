@@ -14,7 +14,7 @@ public partial class DonutCategory : IDonutCategory
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// api vk.ru
 	/// </summary>
 	/// <param name="vk"> API. </param>
 	public DonutCategory(IVkApiInvoke vk) => _vk = vk;

@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class SetLongPollSettingsTests : CategoryBaseTest
 	[Fact]
 	public void SetLongPollSettings()
 	{
-		Url = "https://api.vk.com/method/groups.setLongPollSettings";
+		Url = "https://api.vk.ru/method/groups.setLongPollSettings";
 
 		ReadJsonFile(JsonPaths.True);
 

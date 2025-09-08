@@ -19,7 +19,7 @@ public interface IPollsCategoryAsync
 	/// Опрос
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.GetById
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.GetById
 	/// </remarks>
 	Task<Poll> GetByIdAsync(PollsGetByIdParams @params,
 							CancellationToken token = default);
@@ -33,7 +33,7 @@ public interface IPollsCategoryAsync
 	/// Признак успешного редактирования
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.Edit
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.Edit
 	/// </remarks>
 	Task<bool> EditAsync(PollsEditParams @params,
 						CancellationToken token = default);
@@ -49,7 +49,7 @@ public interface IPollsCategoryAsync
 	/// 0 — если текущий пользователь уже голосовал в указанном опросе
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.addVote
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.addVote
 	/// </remarks>
 	Task<bool> AddVoteAsync(PollsAddVoteParams @params,
 							CancellationToken token = default);
@@ -66,7 +66,7 @@ public interface IPollsCategoryAsync
 	/// выбранный им вариант ответа
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.DeleteVote
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.DeleteVote
 	/// </remarks>
 	Task<bool> DeleteVoteAsync(PollsDeleteVoteParams @params,
 								CancellationToken token = default);
@@ -81,7 +81,7 @@ public interface IPollsCategoryAsync
 	/// Список ответов
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.GetVoters
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.GetVoters
 	/// </remarks>
 	Task<ReadOnlyCollection<PollAnswerVoters>> GetVotersAsync(PollsGetVotersParams @params,
 															CancellationToken token = default);
@@ -98,7 +98,7 @@ public interface IPollsCategoryAsync
 	/// опроса.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.create
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.create
 	/// </remarks>
 	Task<Poll> CreateAsync(PollsCreateParams @params,
 							CancellationToken token = default);
@@ -111,7 +111,7 @@ public interface IPollsCategoryAsync
 	/// Возвращает массив объектов, описывающих фоновое изображение опроса.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/polls.getBackgrounds
+	/// Страница документации ВКонтакте https://vk.ru/dev/polls.getBackgrounds
 	/// </remarks>
 	Task<ReadOnlyCollection<GetBackgroundsResult>> GetBackgroundsAsync(CancellationToken token = default);
 
@@ -124,7 +124,7 @@ public interface IPollsCategoryAsync
 	/// Возвращает объект с полем содержащим URL для загрузки фотографии
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev.php?method=polls.getPhotoUploadServer
+	/// Страница документации ВКонтакте http://vk.ru/dev.php?method=polls.getPhotoUploadServer
 	/// </remarks>
 	Task<UploadServer> GetPhotoUploadServerAsync(long ownerId,
 												CancellationToken token = default);
@@ -138,7 +138,7 @@ public interface IPollsCategoryAsync
 	///	В случае успешного сохранения возвращает объект описывающий фотографию
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/polls.savePhoto
+	/// Страница документации ВКонтакте http://vk.ru/dev/polls.savePhoto
 	/// </remarks>
 	public Task<SavePhotoResult> SavePhotoAsync(SavePhotoParams @params,
 												CancellationToken token = default);

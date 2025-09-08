@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class GetAdsTargetingTest : CategoryBaseTest
 	[Fact]
 	public void GetAdsTargeting()
 	{
-		Url = "https://api.vk.com/method/ads.getAdsTargeting";
+		Url = "https://api.vk.ru/method/ads.getAdsTargeting";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetAdsTargeting));
 

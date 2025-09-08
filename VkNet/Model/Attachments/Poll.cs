@@ -8,7 +8,7 @@ namespace VkNet.Model;
 /// <inheritdoc />
 /// <summary>
 /// Опрос.
-/// См. описание https://vk.com/dev/objects/poll
+/// См. описание https://vk.ru/dev/objects/poll
 /// </summary>
 [Serializable]
 public class Poll : MediaAttachment

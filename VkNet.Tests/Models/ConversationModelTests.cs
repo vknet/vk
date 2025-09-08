@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Utils;
@@ -12,7 +12,7 @@ public class ConversationModelTests : BaseTest
 	public void ConversationModel()
 	{
 		ReadJsonFile("Models", nameof(ConversationModel));
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var conversation = Api.Call<Conversation>("friends.getRequests", VkParameters.Empty);
 
 		conversation.Should()

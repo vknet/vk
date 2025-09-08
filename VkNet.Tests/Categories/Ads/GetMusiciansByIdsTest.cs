@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class GetMusiciansByIdsTest : CategoryBaseTest
 	[Fact]
 	public void GetMusiciansByIds()
 	{
-		Url = "https://api.vk.com/method/ads.getMusiciansByIds";
+		Url = "https://api.vk.ru/method/ads.getMusiciansByIds";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetMusiciansByIds));
 

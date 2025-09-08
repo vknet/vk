@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class SearchPodcastTest : CategoryBaseTest
 	[Fact]
 	public void SearchPodcast()
 	{
-		Url = "https://api.vk.com/method/podcasts.searchPodcast";
+		Url = "https://api.vk.ru/method/podcasts.searchPodcast";
 
 		ReadCategoryJsonPath(nameof(Api.Podcasts.SearchPodcast));
 
@@ -32,7 +32,7 @@ public class SearchPodcastTest : CategoryBaseTest
 		result.Podcasts[0].
 			OwnerUrl.
 			Should().
-			Be("https://vk.com/science_in_palm");
+			Be("https://vk.ru/science_in_palm");
 
 		result.Podcasts[0].
 			Title.
@@ -61,7 +61,7 @@ public class SearchPodcastTest : CategoryBaseTest
 		result.Podcasts[4].
 			OwnerUrl.
 			Should()
-			.Be("https://vk.com/noosphere_studio");
+			.Be("https://vk.ru/noosphere_studio");
 
 		result.Podcasts[4].
 			Covers.

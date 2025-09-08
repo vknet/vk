@@ -5,7 +5,7 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Школа, в которой учился пользователь.
-/// См. описание http://vk.com/dev/fields
+/// См. описание http://vk.ru/dev/fields
 /// </summary>
 [Serializable]
 public class School

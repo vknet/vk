@@ -1,6 +1,6 @@
-using FluentAssertions;
-using Xunit;
+using AwesomeAssertions;
 using VkNet.Model;
+using Xunit;
 
 namespace VkNet.Tests.Models;
 

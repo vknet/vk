@@ -3,7 +3,7 @@ namespace VkNet.Enums.Filters;
 /// <summary>
 /// Требуемые для получения поля профиля.
 /// См. описание
-/// <see href="http://vk.com/pages?oid=-1&amp;p=Описание_полей_параметра_fields" />
+/// <see href="http://vk.ru/pages?oid=-1&amp;p=Описание_полей_параметра_fields" />
 /// .
 /// </summary>
 public sealed class ProfileFields : MultivaluedFilter<ProfileFields>

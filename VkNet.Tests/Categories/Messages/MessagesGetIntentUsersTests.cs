@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using Xunit;
 
@@ -10,7 +10,7 @@ public class MessagesGetIntentUsersTests : MessagesBaseTests
 	public void GetIntentUsers()
 	{
 		// Arrange
-		Url = "https://api.vk.com/method/messages.getIntentUsers";
+		Url = "https://api.vk.ru/method/messages.getIntentUsers";
 		ReadCategoryJsonPath(nameof(GetIntentUsers));
 
 		// Act

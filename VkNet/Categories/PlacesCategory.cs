@@ -15,10 +15,10 @@ public partial class PlacesCategory : IPlacesCategory
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// api vk.ru
 	/// </summary>
 	/// <param name="vk">
-	/// Api vk.com
+	/// Api vk.ru
 	/// </param>
 	public PlacesCategory(VkApi vk) => _vk = vk;
 

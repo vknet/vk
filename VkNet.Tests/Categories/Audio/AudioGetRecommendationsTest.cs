@@ -1,5 +1,5 @@
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -12,7 +12,7 @@ public class AudioGetRecommendationsTest : CategoryBaseTest
 	[Fact]
 	public void GetRecommendationsTest()
 	{
-		Url = "https://api.vk.com/method/audio.getRecommendations";
+		Url = "https://api.vk.ru/method/audio.getRecommendations";
 
 		ReadCategoryJsonPath(nameof(Api.Audio.GetRecommendations));
 

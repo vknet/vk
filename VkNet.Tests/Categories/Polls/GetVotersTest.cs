@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -12,7 +12,7 @@ public class GetVotersTest : CategoryBaseTest
 	[Fact(DisplayName = "Баг 1609. Ошибка при получении голосований")]
 	public void GetVoters()
 	{
-		Url = "https://api.vk.com/method/polls.getVoters";
+		Url = "https://api.vk.ru/method/polls.getVoters";
 
 		ReadCategoryJsonPath(nameof(GetVoters));
 

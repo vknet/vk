@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Helper;
@@ -15,7 +15,7 @@ public class GroupGetBannedTests : CategoryBaseTest
 	[Fact]
 	public void GetBanned_Profile()
 	{
-		Url = "https://api.vk.com/method/groups.getBanned";
+		Url = "https://api.vk.ru/method/groups.getBanned";
 
 		ReadCategoryJsonPath(nameof(GetBanned_Profile));
 
@@ -63,7 +63,7 @@ public class GroupGetBannedTests : CategoryBaseTest
 	[Fact]
 	public void GetBanned_Group()
 	{
-		Url = "https://api.vk.com/method/groups.getBanned";
+		Url = "https://api.vk.ru/method/groups.getBanned";
 
 		ReadCategoryJsonPath(nameof(GetBanned_Group));
 

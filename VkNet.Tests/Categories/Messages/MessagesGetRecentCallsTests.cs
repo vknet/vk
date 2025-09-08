@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
@@ -8,7 +8,7 @@ public class MessagesGetRecentCallsTests : MessagesBaseTests
 	[Fact]
 	public void GetRecentCalls()
 	{
-		Url = "https://api.vk.com/method/messages.getRecentCalls";
+		Url = "https://api.vk.ru/method/messages.getRecentCalls";
 		ReadCategoryJsonPath(nameof(GetRecentCalls));
 
 		var result = Api.Messages.GetRecentCalls(new[]

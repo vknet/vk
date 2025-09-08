@@ -19,7 +19,7 @@ public partial class AccountCategory : IAccountCategory
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// api vk.ru
 	/// </summary>
 	/// <param name="vk"> API. </param>
 	public AccountCategory(IVkApiInvoke vk) => _vk = vk;

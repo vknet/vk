@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -12,7 +12,7 @@ public class UpdateClientsTest : CategoryBaseTest
 	[Fact]
 	public void UpdateClients()
 	{
-		Url = "https://api.vk.com/method/ads.updateClients";
+		Url = "https://api.vk.ru/method/ads.updateClients";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.UpdateClients));
 

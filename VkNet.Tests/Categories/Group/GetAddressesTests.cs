@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class GetAddressesTests : CategoryBaseTest
 	[Fact]
 	public void GetAddresses()
 	{
-		Url = "https://api.vk.com/method/groups.getAddresses";
+		Url = "https://api.vk.ru/method/groups.getAddresses";
 
 		ReadCategoryJsonPath(nameof(GetAddresses));
 

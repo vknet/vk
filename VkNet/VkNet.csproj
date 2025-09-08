@@ -21,7 +21,7 @@
 		<PackageTags>vk;vk api;vknet;vkontakte;api</PackageTags>
 		<PackageReleaseNotes>
 			Обсуждение в Telegram: https://t.me/VkDotNet
-			Группа в Контакте: https://vk.com/vknetdotnet
+			Группа в Контакте: https://vk.ru/vknetdotnet
 			_____________________________________________
 			Список изменений: https://github.com/vknet/vk/milestone/56?closed=1
 		</PackageReleaseNotes>
@@ -67,10 +67,6 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
 		<PackageReference Include="System.Text.Encoding.CodePages" />
-		<PackageReference Update="Reo.Core.Analyzers" >
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" />
 	</ItemGroup>
 

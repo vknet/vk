@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
@@ -9,7 +9,7 @@ public class MessagesGetByIdTests : MessagesBaseTests
 	[Fact]
 	public void AdminAuthorId()
 	{
-		Url = "https://api.vk.com/method/messages.getById";
+		Url = "https://api.vk.ru/method/messages.getById";
 		ReadCategoryJsonPath(nameof(AdminAuthorId));
 
 		var result = Api.Messages.GetById(new ulong[]

@@ -1,5 +1,5 @@
 using System;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using Xunit;
@@ -29,7 +29,7 @@ public class AudioMessageModel : BaseTest
 	{
 		ReadJsonFile("Models", "audio_message_with_transcription");
 
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 
 		var attachment = Api.Wall.Get(new()).WallPosts[0].Attachments[0];
 
@@ -59,7 +59,7 @@ public class AudioMessageModel : BaseTest
 	{
 		ReadJsonFile("Models", "audio_message_without_transcription");
 
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 
 		var result = Api.Wall.Get(new());
 

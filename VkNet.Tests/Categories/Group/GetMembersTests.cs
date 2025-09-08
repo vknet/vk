@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -13,7 +13,7 @@ public class GetMembersTests : CategoryBaseTest
 	[Fact]
 	public void GetMembers()
 	{
-		Url = "https://api.vk.com/method/groups.getMembers";
+		Url = "https://api.vk.ru/method/groups.getMembers";
 
 		ReadCategoryJsonPath(nameof(GetMembers));
 

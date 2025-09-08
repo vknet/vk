@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using FluentAssertions;
+using AwesomeAssertions;
 using Moq;
 using Moq.AutoMock;
 using VkNet.Abstractions.Core;
@@ -28,7 +28,7 @@ public class ImplicitFlowTests
 		const string state = "123";
 		var display = Display.Mobile;
 
-		var builder = new StringBuilder("https://oauth.vk.com/authorize?");
+		var builder = new StringBuilder("https://oauth.vk.ru/authorize?");
 		builder.Append($"client_id={clientId}&");
 		builder.Append($"redirect_uri={Constants.DefaultRedirectUri}&");
 		builder.Append($"display={display.ToString().ToSnakeCase()}&");
@@ -74,7 +74,7 @@ public class ImplicitFlowTests
 				x.ExecuteAsync(It.IsAny<Uri>(), It.IsAny<IApiAuthParams>(), CancellationToken.None))
 			.ReturnsAsync(new AuthorizationFormResult
 			{
-				RequestUrl = new("https://m.vk.com/login?act=authcheck&m=442")
+				RequestUrl = new("https://m.vk.ru/login?act=authcheck&m=442")
 			});
 
 		mocker.Setup<IAuthorizationFormFactory, IAuthorizationForm>(x => x.Create(It.IsAny<ImplicitFlowPageType>()))

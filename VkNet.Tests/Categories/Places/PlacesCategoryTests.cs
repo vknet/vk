@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class PlacesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void Add()
 	{
-		Url = "https://api.vk.com/method/places.add";
+		Url = "https://api.vk.ru/method/places.add";
 		ReadCategoryJsonPath(nameof(Add));
 
 		var result = Api.Places.Add(new());
@@ -23,7 +23,7 @@ public class PlacesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void Checkin()
 	{
-		Url = "https://api.vk.com/method/places.checkin";
+		Url = "https://api.vk.ru/method/places.checkin";
 		ReadCategoryJsonPath(nameof(Checkin));
 
 		var result = Api.Places.Checkin(new());
@@ -35,7 +35,7 @@ public class PlacesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetById()
 	{
-		Url = "https://api.vk.com/method/places.getById";
+		Url = "https://api.vk.ru/method/places.getById";
 		ReadCategoryJsonPath(nameof(GetById));
 
 		var result = Api.Places.GetById(new ulong[]
@@ -50,7 +50,7 @@ public class PlacesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetCheckins()
 	{
-		Url = "https://api.vk.com/method/places.getCheckins";
+		Url = "https://api.vk.ru/method/places.getCheckins";
 		ReadCategoryJsonPath(nameof(GetCheckins));
 
 		var result = Api.Places.GetCheckins(new());
@@ -62,7 +62,7 @@ public class PlacesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void GetTypes()
 	{
-		Url = "https://api.vk.com/method/places.getTypes";
+		Url = "https://api.vk.ru/method/places.getTypes";
 		ReadCategoryJsonPath(nameof(GetTypes));
 
 		var result = Api.Places.GetTypes();
@@ -74,7 +74,7 @@ public class PlacesCategoryTests : CategoryBaseTest
 	[Fact]
 	public void Search()
 	{
-		Url = "https://api.vk.com/method/places.search";
+		Url = "https://api.vk.ru/method/places.search";
 		ReadCategoryJsonPath(nameof(Search));
 
 		var result = Api.Places.Search(new());

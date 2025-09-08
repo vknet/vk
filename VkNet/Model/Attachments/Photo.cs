@@ -9,7 +9,7 @@ namespace VkNet.Model;
 /// Фотография.
 /// </summary>
 /// <remarks>
-/// См. описание http://vk.com/dev/photo
+/// См. описание http://vk.ru/dev/photo
 /// </remarks>
 [Serializable]
 public class Photo : MediaAttachment, IGroupUpdate

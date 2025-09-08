@@ -13,7 +13,7 @@ public static class VkErrorCode
 
 	/// <summary>
 	/// Приложение выключено.
-	/// Необходимо включить приложение в настройках https://vk.com/editapp?id={Ваш
+	/// Необходимо включить приложение в настройках https://vk.ru/editapp?id={Ваш
 	/// API_ID} или использовать тестовый режим
 	/// (test_mode=1)
 	/// </summary>
@@ -22,14 +22,14 @@ public static class VkErrorCode
 	/// <summary>
 	/// Передан неизвестный метод.
 	/// Проверьте, правильно ли указано название вызываемого метода:
-	/// http://vk.com/dev/methods.
+	/// http://vk.ru/dev/methods.
 	/// </summary>
 	public const int UnknownMethod = 3;
 
 	/// <summary>
 	/// Неверная подпись.
 	/// Проверьте правильность формирования подписи запроса:
-	/// https://vk.com/dev/api_nohttps
+	/// https://vk.ru/dev/api_nohttps
 	/// </summary>
 	public const int InvalidSignature = 4;
 
@@ -37,8 +37,8 @@ public static class VkErrorCode
 	/// Авторизация пользователя не удалась.
 	/// Убедитесь, что Вы используете верную схему авторизации. Для работы с методами
 	/// без префикса secure Вам нужно
-	/// авторизовать пользователя одним из этих способов: http://vk.com/dev/auth_sites,
-	/// http://vk.com/dev/auth_mobile.
+	/// авторизовать пользователя одним из этих способов: http://vk.ru/dev/auth_sites,
+	/// http://vk.ru/dev/auth_mobile.
 	/// </summary>
 	public const int AuthorizationFailed = 5;
 
@@ -46,7 +46,7 @@ public static class VkErrorCode
 	/// Слишком много запросов в секунду.
 	/// Задайте больший интервал между вызовами или используйте метод execute.
 	/// Подробнее об ограничениях на частоту вызовов
-	/// см. на странице http://vk.com/dev/api_requests.
+	/// см. на странице http://vk.ru/dev/api_requests.
 	/// </summary>
 	public const int TooManyRequestsPerSecond = 6;
 
@@ -81,7 +81,7 @@ public static class VkErrorCode
 	/// <summary>
 	/// В тестовом режиме приложение должно быть выключено или пользователь должен быть
 	/// залогинен.
-	/// Выключите приложение в настройках https://vk.com/editapp?id={Ваш API_ID}
+	/// Выключите приложение в настройках https://vk.ru/editapp?id={Ваш API_ID}
 	/// </summary>
 	public const int OffAppOrLogin = 11;
 
@@ -142,8 +142,8 @@ public static class VkErrorCode
 	/// Данное действие запрещено для не Standalone приложений.
 	/// Если ошибка возникает несмотря на то, что Ваше приложение имеет тип Standalone,
 	/// убедитесь, что при авторизации Вы
-	/// используете redirect_uri=https://oauth.vk.com/blank.html. Подробнее см.
-	/// http://vk.com/dev/auth_mobile.
+	/// используете redirect_uri=https://oauth.vk.ru/blank.html. Подробнее см.
+	/// http://vk.ru/dev/auth_mobile.
 	/// </summary>
 	public const int NonStandaloneApplications = 20;
 
@@ -160,7 +160,7 @@ public static class VkErrorCode
 	/// <summary>
 	/// Метод был выключен.
 	/// Все актуальные методы ВК API, которые доступны в настоящий момент, перечислены
-	/// здесь: http://vk.com/dev/methods.
+	/// здесь: http://vk.ru/dev/methods.
 	/// </summary>
 	public const int MethodHasBeenSwitchedOff = 23;
 
@@ -194,7 +194,7 @@ public static class VkErrorCode
 	/// <summary>
 	/// Неверный API ID приложения.
 	/// Найдите приложение в списке администрируемых на странице
-	/// http://vk.com/apps?act=settings и укажите в запросе верный
+	/// http://vk.ru/apps?act=settings и укажите в запросе верный
 	/// API_ID (идентификатор приложения).
 	/// </summary>
 	public const int InvalidAppId = 101;
@@ -395,7 +395,7 @@ public static class VkErrorCode
 	/// <summary>
 	/// Действие запрещено. Вы должны включить переводы голосов в настройках
 	/// приложения.
-	/// Проверьте настройки приложения: http://vk.com/editapp?id={Ваш API_ID}&amp;
+	/// Проверьте настройки приложения: http://vk.ru/editapp?id={Ваш API_ID}&amp;
 	/// section=payments
 	/// </summary>
 	public const int PermissionDenied = 500;
@@ -440,12 +440,12 @@ public static class VkErrorCode
 	/// Формат клавиатуры недействителен.
 	/// </summary>
 	public const int KeyboardFormatIsInvalid = 911;
-	
+
 	/// <summary>
 	/// Это функция чат-бота, измените этот статус в настройках.
 	/// </summary>
 	public const int ThisIsAChatBotFeatureChangeThisStatusInSettings = 912;
-	
+
 	/// <summary>
 	/// Слишком много пересланных сообщений.
 	/// </summary>
@@ -460,12 +460,12 @@ public static class VkErrorCode
 	/// Нет доступа к беседе
 	/// </summary>
 	public const int ConversationAccessDenied = 917;
-	
+
 	/// <summary>
 	/// Нельзя переслать эти сообщения.
 	/// </summary>
 	public const int CannotForwardMessages = 921;
-	
+
 	/// <summary>
 	/// Вы покинули этот чат.
 	/// </summary>
@@ -510,12 +510,12 @@ public static class VkErrorCode
 	/// Чат не поддерживается
 	/// </summary>
 	public const int ChatNotSupported = 946;
-	
+
 	/// <summary>
 	/// Не удается отправить сообщение, время ответа истекло
 	/// </summary>
 	public const int CannotSendMessageReplyTimedOut = 950;
-	
+
 	/// <summary>
 	/// Вы не можете получить доступ к донат чату без подписки
 	/// </summary>
@@ -530,52 +530,52 @@ public static class VkErrorCode
 	/// Действие приложения ограничено для бесед с сообществами
 	/// </summary>
 	public const int AppActionIsRestrictedForConversationsWithCommunities = 979;
-	
+
 	/// <summary>
 	/// Вам запрещено писать в чат
 	/// </summary>
 	public const int YouAreRestrictedToWriteToAChat = 983;
-	
+
 	/// <summary>
 	/// У вас есть ограничение на отправку из-за спама
 	/// </summary>
 	public const int YouHasSpamRestriction = 984;
-	
+
 	/// <summary>
 	/// Невозможно писать в группы только с уведомлениями
 	/// </summary>
 	public const int CannotWriteToNotificationsOnlyGroups = 985;
-	
+
 	/// <summary>
 	/// Требуется роль edu
 	/// </summary>
 	public const int NeedEduRole = 986;
-	
+
 	/// <summary>
 	/// Требуется запрос сообщения
 	/// </summary>
 	public const int NeedMessageRequest = 987;
-	
+
 	/// <summary>
 	/// Запрос сообщения ожидает подтверждения
 	/// </summary>
 	public const int PendingMessageRequest = 988;
-	
+
 	/// <summary>
 	/// Отложенные сообщения для этого peer не поддерживаются
 	/// </summary>
 	public const int DelayedMessagesForThisPeerNotSupported = 991;
-	
+
 	/// <summary>
 	/// Достигнут лимит отложенных сообщений для этого peerId
 	/// </summary>
 	public const int DelayedMessagesLimitForThisPeerIdReached = 992;
-	
+
 	/// <summary>
 	/// Написание сообщений в этом чате отключено
 	/// </summary>
 	public const int WritingIsDisabledForThisChat = 1012;
-	
+
 	/// <summary>
 	/// Неверный тип аккаунта — не должен быть edu
 	/// </summary>

@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class RemoveTargetContactsTest : CategoryBaseTest
 	[Fact]
 	public void RemoveTargetContacts()
 	{
-		Url = "https://api.vk.com/method/ads.removeTargetContacts";
+		Url = "https://api.vk.ru/method/ads.removeTargetContacts";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.RemoveTargetContacts));
 

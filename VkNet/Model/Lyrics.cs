@@ -5,7 +5,7 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Текст аудиозаписи.
-/// См. описание http://vk.com/dev/audio.getLyrics
+/// См. описание http://vk.ru/dev/audio.getLyrics
 /// </summary>
 [Serializable]
 public class Lyrics

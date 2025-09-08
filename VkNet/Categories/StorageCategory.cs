@@ -14,10 +14,10 @@ public partial class StorageCategory : IStorageCategory
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// api vk.ru
 	/// </summary>
 	/// <param name="vk">
-	/// Api vk.com
+	/// Api vk.ru
 	/// </param>
 	public StorageCategory(VkApi vk = null) => _vk = vk;
 

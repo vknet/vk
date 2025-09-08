@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class GetRejectionReasonTest : CategoryBaseTest
 	[Fact]
 	public void GetRejectionReason()
 	{
-		Url = "https://api.vk.com/method/ads.getRejectionReason";
+		Url = "https://api.vk.ru/method/ads.getRejectionReason";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetRejectionReason));
 

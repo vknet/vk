@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
@@ -8,7 +8,7 @@ public class MessagesGetHistoryTest : MessagesBaseTests
 	[Fact]
 	public void GetHistoryTest()
 	{
-		Url = "https://api.vk.com/method/messages.getHistory";
+		Url = "https://api.vk.ru/method/messages.getHistory";
 
 		ReadCategoryJsonPath(nameof(Api.Messages.GetHistory));
 

@@ -29,7 +29,7 @@ public interface IOrdersCategoryAsync
 	/// После успешного выполнения возвращает 1. При отмене подписки на адрес обратного вызова будет отправлено платёжное уведомление с типом subscription_status_change.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/orders.cancelSubscription
+	/// Страница документации ВКонтакте http://vk.ru/dev/orders.cancelSubscription
 	/// </remarks>
 	Task<bool> CancelSubscriptionAsync(ulong userId,
 										ulong subscriptionId,
@@ -67,7 +67,7 @@ public interface IOrdersCategoryAsync
 	/// refunded — отменённый после оплаты заказ, голоса возвращены пользователю.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/orders.changeState
+	/// Страница документации ВКонтакте http://vk.ru/dev/orders.changeState
 	/// </remarks>
 	Task<OrderState> ChangeStateAsync(ulong orderId,
 									OrderStateAction action,
@@ -98,7 +98,7 @@ public interface IOrdersCategoryAsync
 	/// refunded — отменённый после оплаты заказ, голоса возвращены пользователю.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/orders.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/orders.get
 	/// </remarks>
 	Task<IEnumerable<Order>> GetAsync(ulong? offset = null,
 									ulong? count = null,
@@ -119,7 +119,7 @@ public interface IOrdersCategoryAsync
 	/// Возвращает валюту пользователя и массив результатов для каждого значения из votes.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/orders.getAmount
+	/// Страница документации ВКонтакте http://vk.ru/dev/orders.getAmount
 	/// </remarks>
 	Task<IEnumerable<VotesAmount>> GetAmountAsync(ulong userId,
 												IEnumerable<string> votes,
@@ -145,7 +145,7 @@ public interface IOrdersCategoryAsync
 	/// refunded — отменённый после оплаты заказ, голоса возвращены пользователю.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/orders.getById
+	/// Страница документации ВКонтакте http://vk.ru/dev/orders.getById
 	/// </remarks>
 	Task<IEnumerable<Order>> GetByIdAsync(IEnumerable<ulong> orderIds = null,
 										bool? testMode = null,
@@ -185,7 +185,7 @@ public interface IOrdersCategoryAsync
 	/// test_mode (boolean, [true]) — true, если используется тестовый режим.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/orders.getUserSubscriptionById
+	/// Страница документации ВКонтакте http://vk.ru/dev/orders.getUserSubscriptionById
 	/// </remarks>
 	Task<SubscriptionItem> GetUserSubscriptionByIdAsync(ulong userId,
 														ulong subscriptionId,
@@ -220,7 +220,7 @@ public interface IOrdersCategoryAsync
 	/// test_mode (boolean, [true]) — true, если используется тестовый режим.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/orders.getUserSubscriptions
+	/// Страница документации ВКонтакте http://vk.ru/dev/orders.getUserSubscriptions
 	/// </remarks>
 	Task<IEnumerable<SubscriptionItem>> GetUserSubscriptionsAsync(ulong userId,
 																CancellationToken token = default);
@@ -242,7 +242,7 @@ public interface IOrdersCategoryAsync
 	/// После успешного выполнения возвращает 1.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/orders.updateSubscription
+	/// Страница документации ВКонтакте http://vk.ru/dev/orders.updateSubscription
 	/// </remarks>
 	Task<bool> UpdateSubscriptionAsync(ulong userId,
 										ulong subscriptionId,

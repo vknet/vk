@@ -7,7 +7,7 @@ namespace VkNet.Model;
 /// Объект, с помощью которого можно подключиться к серверу быстрых сообщений для
 /// мгновенного
 /// получения приходящих сообщений и других событий.
-/// См. описание http://vk.com/dev/messages.getLongPollServer
+/// См. описание http://vk.ru/dev/messages.getLongPollServer
 /// </summary>
 [Serializable]
 public class LongPollServerResponse

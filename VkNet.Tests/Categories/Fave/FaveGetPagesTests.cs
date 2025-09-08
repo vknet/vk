@@ -1,5 +1,5 @@
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -14,7 +14,7 @@ public class FaveGetPagesTests : CategoryBaseTest
 	[Fact]
 	public void GetPages()
 	{
-		Url = "https://api.vk.com/method/fave.getPages";
+		Url = "https://api.vk.ru/method/fave.getPages";
 		ReadCategoryJsonPath(nameof(GetPages));
 
 		var pages = Api.Fave.GetPages(FavePageType.Users);

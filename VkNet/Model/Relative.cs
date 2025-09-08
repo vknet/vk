@@ -6,7 +6,7 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Информация о родственнике.
-/// См. описание http://vk.com/dev/fields
+/// См. описание http://vk.ru/dev/fields
 /// </summary>
 [Serializable]
 public class Relative

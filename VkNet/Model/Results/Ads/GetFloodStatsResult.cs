@@ -7,7 +7,7 @@ namespace VkNet.Model;
 /// Описание рекламного аккаунта.
 /// </summary>
 /// <remarks>
-/// См. описание https://vk.com/dev/ads.getAccounts
+/// См. описание https://vk.ru/dev/ads.getAccounts
 /// </remarks>
 [Serializable]
 public class GetFloodStatsResult

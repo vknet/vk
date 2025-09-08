@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class GetPopularTest : CategoryBaseTest
 	[Fact]
 	public void GetPopular()
 	{
-		Url = "https://api.vk.com/method/podcasts.getPopular";
+		Url = "https://api.vk.ru/method/podcasts.getPopular";
 
 		ReadCategoryJsonPath(nameof(Api.Podcasts.GetPopular));
 

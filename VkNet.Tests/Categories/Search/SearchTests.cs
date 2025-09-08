@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class SearchTests : CategoryBaseTest
 	[Fact]
 	public void GetHints()
 	{
-		Url = "https://api.vk.com/method/search.getHints";
+		Url = "https://api.vk.ru/method/search.getHints";
 		ReadCategoryJsonPath(nameof(GetHints));
 
 		var result = Api.Search.GetHints(new());

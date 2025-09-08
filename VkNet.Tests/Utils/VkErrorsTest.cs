@@ -1,5 +1,5 @@
 ﻿using System;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Exception;
 using VkNet.Utils;
 using Xunit;
@@ -11,7 +11,7 @@ public class VkErrorsTest : BaseTest
 	[Fact]
 	public void Call_ThrowsImpossibleToCompileCode_12()
 	{
-		Url = "https://api.vk.com/method/execute";
+		Url = "https://api.vk.ru/method/execute";
 		ReadErrorsJsonFile(12);
 
 		FluentActions.Invoking(() =>
@@ -23,7 +23,7 @@ public class VkErrorsTest : BaseTest
 	[Fact]
 	public void Call_ThrowsPostLimitException()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadErrorsJsonFile(214);
 
 		FluentActions.Invoking(() =>
@@ -35,7 +35,7 @@ public class VkErrorsTest : BaseTest
 	[Fact]
 	public void Call_ThrowsPostLimitException_103()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadErrorsJsonFile(103);
 
 		FluentActions.Invoking(() =>
@@ -47,7 +47,7 @@ public class VkErrorsTest : BaseTest
 	[Fact]
 	public void IfErrorThrowException_GroupAccessDenied_ThrowAccessDeniedException()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadErrorsJsonFile(260);
 
 		FluentActions.Invoking(() => Api.Call("messages.send", VkParameters.Empty, true))
@@ -60,7 +60,7 @@ public class VkErrorsTest : BaseTest
 	[Fact]
 	public void IfErrorThrowException_NormalCase_NothingExceptions()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		var json = ReadJson("VkErrors", nameof(IfErrorThrowException_NormalCase_NothingExceptions));
 
 		VkErrors.IfErrorThrowException(json);
@@ -69,7 +69,7 @@ public class VkErrorsTest : BaseTest
 	[Fact]
 	public void IfErrorThrowException_UserAuthorizationFail_ThrowUserAuthorizationFailException()
 	{
-		Url = "https://api.vk.com/method/messages.send";
+		Url = "https://api.vk.ru/method/messages.send";
 		ReadErrorsJsonFile(5);
 
 		var ex = FluentActions.Invoking(() => Api.Call("messages.send", VkParameters.Empty, true))

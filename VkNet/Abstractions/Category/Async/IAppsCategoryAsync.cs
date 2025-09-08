@@ -25,7 +25,7 @@ public interface IAppsCategoryAsync
 	/// </returns>
 	/// <remarks>
 	/// К методу можно делать не более 60 запросов в минуту с одного IP или id.
-	/// Страница документации ВКонтакте http://vk.com/dev/apps.getCatalog
+	/// Страница документации ВКонтакте http://vk.ru/dev/apps.getCatalog
 	/// </remarks>
 	Task<VkCollection<App>> GetCatalogAsync(AppGetCatalogParams @params,
 											bool skipAuthorization = false,
@@ -41,7 +41,7 @@ public interface IAppsCategoryAsync
 	/// После успешного выполнения возвращает объект приложения.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/apps.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/apps.get
 	/// </remarks>
 	Task<AppGetObject> GetAsync(AppGetParams @params,
 								bool skipAuthorization = false,
@@ -59,7 +59,7 @@ public interface IAppsCategoryAsync
 	/// 10013.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/apps.sendRequest
+	/// Страница документации ВКонтакте http://vk.ru/dev/apps.sendRequest
 	/// </remarks>
 	Task<long> SendRequestAsync(AppSendRequestParams @params,
 								CancellationToken token = default);
@@ -72,7 +72,7 @@ public interface IAppsCategoryAsync
 	/// В случае успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/apps.deleteAppRequests
+	/// Страница документации ВКонтакте http://vk.ru/dev/apps.deleteAppRequests
 	/// </remarks>
 	Task<bool> DeleteAppRequestsAsync(CancellationToken token = default);
 
@@ -103,7 +103,7 @@ public interface IAppsCategoryAsync
 	/// После успешного выполнения возвращает список пользователей.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/apps.getFriendsList
+	/// Страница документации ВКонтакте http://vk.ru/dev/apps.getFriendsList
 	/// </remarks>
 	Task<VkCollection<User>> GetFriendsListAsync(AppRequestType type,
 												bool? extended = true,
@@ -131,7 +131,7 @@ public interface IAppsCategoryAsync
 	/// После успешного выполнения возвращает список пользователей.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/apps.getFriendsList
+	/// Страница документации ВКонтакте http://vk.ru/dev/apps.getFriendsList
 	/// </remarks>
 	Task<VkCollection<long>> GetFriendsListAsync(AppRequestType type,
 												long? count = null,
@@ -167,7 +167,7 @@ public interface IAppsCategoryAsync
 	/// по убыванию текущего уровня или количества очков.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/apps.getLeaderboard
+	/// Страница документации ВКонтакте http://vk.ru/dev/apps.getLeaderboard
 	/// </remarks>
 	Task<LeaderboardResult> GetLeaderboardAsync(AppRatingType type,
 												bool? global = null,
@@ -189,7 +189,7 @@ public interface IAppsCategoryAsync
 	/// После успешного выполнения возвращает число очков для пользователя.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/apps.getScore
+	/// Страница документации ВКонтакте http://vk.ru/dev/apps.getScore
 	/// </remarks>
 	Task<long> GetScoreAsync(long userId,
 							CancellationToken token = default);
@@ -203,7 +203,7 @@ public interface IAppsCategoryAsync
 	/// После успешного выполнения возвращает объект политики конфиденциальности.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/apps.getMiniAppPolicies
+	/// Страница документации ВКонтакте http://vk.ru/dev/apps.getMiniAppPolicies
 	/// </remarks>
 	Task<MiniAppPolicies> GetMiniAppPoliciesAsync(ulong appId,
 												CancellationToken token = default);
@@ -217,7 +217,7 @@ public interface IAppsCategoryAsync
 	/// После успешного выполнения возвращает массив scopes.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/apps.getScopes
+	/// Страница документации ВКонтакте http://vk.ru/dev/apps.getScopes
 	/// </remarks>
 	Task<AppGetScopesResult> GetScopesAsync(string type = "user",
 											CancellationToken token = default);
@@ -234,7 +234,7 @@ public interface IAppsCategoryAsync
 	/// 0 - у пользователя нет активного подарка в вашей игре.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/apps.promoHasActiveGift
+	/// Страница документации ВКонтакте http://vk.ru/dev/apps.promoHasActiveGift
 	/// </remarks>
 	Task<bool> PromoHasActiveGiftAsync(ulong promoId,
 										ulong? userId = null,
@@ -252,7 +252,7 @@ public interface IAppsCategoryAsync
 	/// 0 - неудача.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/apps.promoUseGift
+	/// Страница документации ВКонтакте http://vk.ru/dev/apps.promoUseGift
 	/// </remarks>
 	Task<bool> PromoUseGiftAsync(ulong promoId,
 								ulong? userId = null,

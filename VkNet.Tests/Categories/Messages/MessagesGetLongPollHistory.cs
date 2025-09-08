@@ -1,5 +1,5 @@
 ﻿using System;
-using FluentAssertions;
+using AwesomeAssertions;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
@@ -14,7 +14,7 @@ public class MessagesGetLongPollHistory : MessagesBaseTests
 	[Fact]
 	public void GroupsField()
 	{
-		Url = "https://api.vk.com/method/messages.getLongPollHistory";
+		Url = "https://api.vk.ru/method/messages.getLongPollHistory";
 
 		ReadCategoryJsonPath(nameof(Api.Messages.GetLongPollHistory));
 

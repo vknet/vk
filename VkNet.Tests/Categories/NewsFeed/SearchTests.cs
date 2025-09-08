@@ -1,5 +1,5 @@
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -12,7 +12,7 @@ public class SearchTests : CategoryBaseTest
 	[Fact]
 	public void Search_NextFrom_NotNull()
 	{
-		Url = "https://api.vk.com/method/newsfeed.search";
+		Url = "https://api.vk.ru/method/newsfeed.search";
 		ReadCategoryJsonPath(nameof(Search_NextFrom_NotNull));
 
 		var result = Api.NewsFeed.Search(new());
@@ -27,7 +27,7 @@ public class SearchTests : CategoryBaseTest
 	[Fact]
 	public void Search_Coordinates_Exception()
 	{
-		Url = "https://api.vk.com/method/newsfeed.search";
+		Url = "https://api.vk.ru/method/newsfeed.search";
 		ReadCategoryJsonPath(nameof(Search_Coordinates_Exception));
 
 		var result = Api.NewsFeed.Search(new()
@@ -47,7 +47,7 @@ public class SearchTests : CategoryBaseTest
 	[Fact]
 	public void Search_PostSourceData_Parsing()
 	{
-		Url = "https://api.vk.com/method/newsfeed.search";
+		Url = "https://api.vk.ru/method/newsfeed.search";
 		ReadCategoryJsonPath(nameof(Search_PostSourceData_Parsing));
 
 		var result = Api.NewsFeed.Search(new()

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
@@ -16,7 +16,7 @@ public class AdsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetAccounts_GenerateOutParametersCorrectly()
 	{
-		Url = "https://api.vk.com/method/ads.getAccounts";
+		Url = "https://api.vk.ru/method/ads.getAccounts";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetAccounts));
 
@@ -49,7 +49,7 @@ public class AdsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCampaigns_AgencyAccount_Arch_Filtered_OutParametersCorrect()
 	{
-		Url = "https://api.vk.com/method/ads.getCampaigns";
+		Url = "https://api.vk.ru/method/ads.getCampaigns";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetCampaigns));
 
@@ -79,7 +79,7 @@ public class AdsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCampaigns_GeneralAccount_OutParametersCorrect()
 	{
-		Url = "https://api.vk.com/method/ads.getCampaigns";
+		Url = "https://api.vk.ru/method/ads.getCampaigns";
 
 		ReadCategoryJsonPath(nameof(GetCampaigns_GeneralAccount_OutParametersCorrect));
 

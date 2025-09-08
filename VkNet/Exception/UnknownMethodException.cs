@@ -8,7 +8,7 @@ namespace VkNet.Exception;
 /// <summary>
 /// Исключение, которое выбрасывается при передаче неизвестного метода
 /// Проверьте, правильно ли указано название вызываемого метода:
-/// http://vk.com/dev/methods.
+/// http://vk.ru/dev/methods.
 /// Код ошибки - 3
 /// </summary>
 [Serializable]

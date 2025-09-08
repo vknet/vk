@@ -11,7 +11,7 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Личное сообщение пользователя.
-/// См. описание http://vk.com/dev/message
+/// См. описание http://vk.ru/dev/message
 /// </summary>
 [DebuggerDisplay("[{PeerId}-{Id}] {Text}")]
 [Serializable]

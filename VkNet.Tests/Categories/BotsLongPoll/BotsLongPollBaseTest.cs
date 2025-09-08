@@ -22,7 +22,7 @@ public abstract class BotsLongPollBaseTest : CategoryBaseTest
 		var json = ReadJson("Categories", Folder, path);
 		var format = ReadFile("Categories", Folder, "FullLongPollFormat");
 		Json = string.Format(format, json);
-		Url = "https://vk.com";
+		Url = "https://vk.ru";
 	}
 
 	private string ReadFile(params string[] jsonRelativePaths)

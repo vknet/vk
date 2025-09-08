@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -12,7 +12,7 @@ public class GetAppImageUploadServerTest : CategoryBaseTest
 	[Fact]
 	public void GetAppImageUploadServer()
 	{
-		Url = "https://api.vk.com/method/appWidgets.getAppImageUploadServer";
+		Url = "https://api.vk.ru/method/appWidgets.getAppImageUploadServer";
 
 		ReadCategoryJsonPath(nameof(GetAppImageUploadServer));
 

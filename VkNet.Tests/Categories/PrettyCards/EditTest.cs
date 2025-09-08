@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class EditTest : CategoryBaseTest
 	[Fact]
 	public void Edit()
 	{
-		Url = "https://api.vk.com/method/prettyCards.edit";
+		Url = "https://api.vk.ru/method/prettyCards.edit";
 
 		ReadCategoryJsonPath(nameof(Api.PrettyCards.Edit));
 

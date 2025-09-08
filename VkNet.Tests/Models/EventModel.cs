@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Model;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class EventModel : BaseTest
 	{
 		ReadJsonFile("Models", nameof(EventModel_ImplicitEvent));
 
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 
 		var attachment = Api.Wall.Get(new()).WallPosts[0].Attachments[0];
 

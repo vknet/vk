@@ -1,5 +1,5 @@
 using System;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Utils;
@@ -30,7 +30,7 @@ public class VideoModel : BaseTest
 	{
 		ReadJsonFile("Models", "video_with_ads_and_timeline");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var video = Api.Call<Video>("friends.getRequests", VkParameters.Empty);
 
 		video.CanComment.Should()
@@ -57,7 +57,7 @@ public class VideoModel : BaseTest
 	{
 		ReadJsonFile("Models", "video_with_ads_and_timeline");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var video = Api.Call<Video>("friends.getRequests", VkParameters.Empty);
 
 		video.OvId.Should()
@@ -69,7 +69,7 @@ public class VideoModel : BaseTest
 	{
 		ReadJsonFile("Models", "video_with_ads_and_timeline");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var video = Api.Call<Video>("friends.getRequests", VkParameters.Empty);
 
 		var files = video.Files;
@@ -127,7 +127,7 @@ public class VideoModel : BaseTest
 	{
 		ReadJsonFile("Models", "video_with_ads_and_timeline");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var video = Api.Call<Video>("friends.getRequests", VkParameters.Empty);
 
 		var timelineThumbs = video.TimelineThumbs;
@@ -162,7 +162,7 @@ public class VideoModel : BaseTest
 	{
 		ReadJsonFile("Models", "video_with_ads_and_timeline");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var video = Api.Call<Video>("friends.getRequests", VkParameters.Empty);
 
 		var ads = video.Ads;
@@ -213,7 +213,7 @@ public class VideoModel : BaseTest
 	{
 		ReadJsonFile("Models", "video_with_ads_and_timeline");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var video = Api.Call<Video>("friends.getRequests", VkParameters.Empty);
 
 		var ads = video.Ads;
@@ -306,7 +306,7 @@ public class VideoModel : BaseTest
 	{
 		ReadJsonFile("Models", "video_live");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var video = Api.Call<Video>("friends.getRequests", VkParameters.Empty);
 
 		video.Duration.Should()
@@ -330,7 +330,7 @@ public class VideoModel : BaseTest
 	{
 		ReadJsonFile("Models", "video_live");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var video = Api.Call<Video>("friends.getRequests", VkParameters.Empty);
 
 		var files = video.Files;
@@ -349,7 +349,7 @@ public class VideoModel : BaseTest
 	{
 		ReadJsonFile("Models", "video_live");
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		var video = Api.Call<Video>("friends.getRequests", VkParameters.Empty);
 
 		var liveSettings = video.LiveSettings;

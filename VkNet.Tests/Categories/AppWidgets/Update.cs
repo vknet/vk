@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -12,7 +12,7 @@ public class Update : CategoryBaseTest
 	[Fact]
 	public void EnableOnline()
 	{
-		Url = "https://api.vk.com/method/appWidgets.update";
+		Url = "https://api.vk.ru/method/appWidgets.update";
 
 		ReadJsonFile(JsonPaths.True);
 

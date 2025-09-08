@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class CallsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ForceFinish()
 	{
-		Url = "https://api.vk.com/method/calls.forceFinish";
+		Url = "https://api.vk.ru/method/calls.forceFinish";
 
 		ReadCategoryJsonPath(nameof(ForceFinish));
 
@@ -27,14 +27,14 @@ public class CallsCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Start()
 	{
-		Url = "https://api.vk.com/method/calls.start";
+		Url = "https://api.vk.ru/method/calls.start";
 
 		ReadCategoryJsonPath(nameof(Start));
 
 		var result = Api.Calls.Start(new());
 
 		result.JoinLink.Should()
-			.Be("https://vk.com/call/join/7BIRLBXzMD74J_JGR3G5wNZbZCkAT_ZtNFzJbHhIkMk");
+			.Be("https://vk.ru/call/join/7BIRLBXzMD74J_JGR3G5wNZbZCkAT_ZtNFzJbHhIkMk");
 
 		result.OkJoinLink.Should()
 			.Be("7BIRLBXzMD74J_JGR3G5wNZbZCkAT_ZtNFzJbHhIkMk");

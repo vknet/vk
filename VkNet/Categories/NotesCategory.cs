@@ -13,10 +13,10 @@ public partial class NotesCategory : INotesCategory
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// api vk.ru
 	/// </summary>
 	/// <param name="vk">
-	/// Api vk.com
+	/// Api vk.ru
 	/// </param>
 	public NotesCategory(VkApi vk) => _vk = vk;
 

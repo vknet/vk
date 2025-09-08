@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Enums.Filters;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -12,7 +12,7 @@ public class GetTest : CategoryBaseTest
 	[Fact]
 	public void Get()
 	{
-		Url = "https://api.vk.com/method/newsfeed.get";
+		Url = "https://api.vk.ru/method/newsfeed.get";
 		ReadCategoryJsonPath(nameof(Get));
 
 		var result = Api.NewsFeed.Get(new()
@@ -36,7 +36,7 @@ public class GetTest : CategoryBaseTest
 	[Fact]
 	public void Get2()
 	{
-		Url = "https://api.vk.com/method/newsfeed.get";
+		Url = "https://api.vk.ru/method/newsfeed.get";
 		ReadCategoryJsonPath(nameof(Get2));
 
 		var result = Api.NewsFeed.Get(new()

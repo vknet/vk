@@ -6,8 +6,8 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Информация о месте, в котором была сделана запись.
-/// См. описание <see href="http://vk.com/pages?oid=-1&amp;p=Описание_поля_geo" />
-/// и http://vk.com/dev/fields_groups
+/// См. описание <see href="http://vk.ru/pages?oid=-1&amp;p=Описание_поля_geo" />
+/// и http://vk.ru/dev/fields_groups
 /// </summary>
 [Serializable]
 public class Place

@@ -99,7 +99,7 @@ public class MarketProductParams
 	/// <summary>
 	///  Идентификаторы видео товара.
 	///  Видео должно быть загружено в сообщество и быть доступным для просмотра, в UI отображается только один элемент.
-	///  <see xlink="https://dev.vk.com/ru/api/upload/photo-in-market#%D0%9E%D1%82%D0%B2%D0%B5%D1%82"/>
+	///  <see xlink="https://dev.vk.ru/ru/api/upload/photo-in-market#%D0%9E%D1%82%D0%B2%D0%B5%D1%82"/>
 	/// </summary>
 	[JsonProperty("video_ids")]
 	public IEnumerable<long> VideoIds { get; set; }

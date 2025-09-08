@@ -14,10 +14,10 @@ public partial class LeadsCategory : ILeadsCategory
 	private readonly IVkApiInvoke _vk;
 
 	/// <summary>
-	/// api vk.com
+	/// api vk.ru
 	/// </summary>>
 	/// <param name="vk">
-	/// Api vk.com
+	/// Api vk.ru
 	/// </param>
 	public LeadsCategory(VkApi vk = null) => _vk = vk;
 

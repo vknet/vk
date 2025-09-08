@@ -8,7 +8,7 @@ using VkNet.Enums;
 namespace VkNet.Utils;
 
 /// <summary>
-/// Ответ vk.com
+/// Ответ vk.ru
 /// </summary>
 [CanBeNull]
 public sealed class VkResponse
@@ -19,7 +19,7 @@ public sealed class VkResponse
 	private readonly JToken _token;
 
 	/// <summary>
-	/// Ответ vk.com
+	/// Ответ vk.ru
 	/// </summary>
 	/// <param name="token"> JSON токен. </param>
 	public VkResponse(JToken token) => _token = token;
@@ -81,7 +81,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -114,7 +114,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -124,7 +124,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -135,7 +135,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -144,7 +144,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -155,7 +155,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -166,7 +166,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -175,7 +175,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -184,7 +184,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -195,7 +195,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -204,7 +204,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -215,7 +215,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -224,7 +224,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -235,7 +235,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -244,7 +244,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -255,7 +255,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -264,7 +264,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -275,7 +275,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -286,7 +286,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -307,7 +307,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -352,7 +352,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -367,7 +367,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -378,7 +378,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -389,7 +389,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -400,7 +400,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -411,7 +411,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -422,7 +422,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -433,7 +433,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
@@ -444,7 +444,7 @@ public sealed class VkResponse
 	/// <summary>
 	/// Выполняет неявное преобразование из VkResponse
 	/// </summary>
-	/// <param name="response"> Ответ vk.com </param>
+	/// <param name="response"> Ответ vk.ru </param>
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>

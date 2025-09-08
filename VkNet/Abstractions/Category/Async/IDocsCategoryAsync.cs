@@ -37,7 +37,7 @@ public interface IDocsCategoryAsync
 	/// После успешного выполнения возвращает список объектов документов.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/docs.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/docs.get
 	/// </remarks>
 	Task<VkCollection<Document>> GetAsync(int? count = null,
 										int? offset = null,
@@ -55,7 +55,7 @@ public interface IDocsCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает список объектов документов. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/docs.getById
+	/// Страница документации ВКонтакте http://vk.ru/dev/docs.getById
 	/// </remarks>
 	Task<ReadOnlyCollection<Document>> GetByIdAsync(IEnumerable<Document> docs,
 													CancellationToken token = default);
@@ -73,7 +73,7 @@ public interface IDocsCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает объект UploadServerInfo </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/docs.getUploadServer
+	/// Страница документации ВКонтакте http://vk.ru/dev/docs.getUploadServer
 	/// </remarks>
 	Task<UploadServerInfo> GetUploadServerAsync(long? groupId = null,
 												CancellationToken token = default);
@@ -90,7 +90,7 @@ public interface IDocsCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает объект UploadServerInfo </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/docs.getWallUploadServer
+	/// Страница документации ВКонтакте http://vk.ru/dev/docs.getWallUploadServer
 	/// </remarks>
 	Task<UploadServerInfo> GetWallUploadServerAsync(long? groupId = null,
 													CancellationToken token = default);
@@ -108,7 +108,7 @@ public interface IDocsCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Возвращает массив с загруженными объектами. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/docs.save
+	/// Страница документации ВКонтакте http://vk.ru/dev/docs.save
 	/// </remarks>
 	Task<ReadOnlyCollection<Attachment>> SaveAsync(string file,
 													string title = null,
@@ -131,7 +131,7 @@ public interface IDocsCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> После успешного выполнения возвращает 1. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/docs.delete
+	/// Страница документации ВКонтакте http://vk.ru/dev/docs.delete
 	/// </remarks>
 	Task<bool> DeleteAsync(long ownerId,
 							long docId,
@@ -160,7 +160,7 @@ public interface IDocsCategoryAsync
 	/// документа (did).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/docs.add
+	/// Страница документации ВКонтакте http://vk.ru/dev/docs.add
 	/// </remarks>
 	Task<long> AddAsync(long ownerId,
 						long docId, string
@@ -187,7 +187,7 @@ public interface IDocsCategoryAsync
 	/// int (числовое значение).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/docs.getTypes
+	/// Страница документации ВКонтакте http://vk.ru/dev/docs.getTypes
 	/// </remarks>
 	Task<VkCollection<DocumentType>> GetTypesAsync(long ownerId,
 													CancellationToken token = default);
@@ -216,7 +216,7 @@ public interface IDocsCategoryAsync
 	/// После успешного выполнения возвращает список объектов документов.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/docs.search
+	/// Страница документации ВКонтакте http://vk.ru/dev/docs.search
 	/// </remarks>
 	Task<VkCollection<Document>> SearchAsync(string query,
 											bool searchOwn,
@@ -255,7 +255,7 @@ public interface IDocsCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/docs.edit
+	/// Страница документации ВКонтакте http://vk.ru/dev/docs.edit
 	/// </remarks>
 	Task<bool> EditAsync(long ownerId,
 						long docId,

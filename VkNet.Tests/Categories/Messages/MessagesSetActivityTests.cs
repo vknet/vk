@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
@@ -23,7 +23,7 @@ public class MessagesSetActivityTests : MessagesBaseTests
 	[Fact]
 	public void Messages_SetActivity_With_PeerId_DoesntFail()
 	{
-		Url = "https://api.vk.com/method/messages.setActivity";
+		Url = "https://api.vk.ru/method/messages.setActivity";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -36,7 +36,7 @@ public class MessagesSetActivityTests : MessagesBaseTests
 	[Fact]
 	public void Messages_SetActivity_With_GroupId_DoesntFail()
 	{
-		Url = "https://api.vk.com/method/messages.setActivity";
+		Url = "https://api.vk.ru/method/messages.setActivity";
 
 		ReadJsonFile(JsonPaths.True);
 

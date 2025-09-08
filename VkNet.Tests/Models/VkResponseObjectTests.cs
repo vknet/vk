@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using Newtonsoft.Json;
 using VkNet.Model;
 using Xunit;
@@ -65,7 +65,7 @@ public class VkResponseObjectTests : BaseTest
 		{
 			Response = new()
 			{
-				UploadUrl = new("https://pu.vk.com/Tk0YjM0MjRmNzA5NSJ9"),
+				UploadUrl = new("https://pu.vk.ru/Tk0YjM0MjRmNzA5NSJ9"),
 				PeerIds = Enumerable.Empty<long>(),
 				UsersIds = Enumerable.Empty<long>()
 			}

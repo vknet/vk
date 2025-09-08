@@ -27,7 +27,7 @@ public interface IPrettyCardsCategoryAsync
 	/// Красивые карты создание
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.create
+	/// Страница документации ВКонтакте https://vk.ru/dev/prettyCards.create
 	/// </remarks>
 	Task<PrettyCardsCreateResult> CreateAsync(PrettyCardsCreateParams @params,
 											CancellationToken token = default);
@@ -41,7 +41,7 @@ public interface IPrettyCardsCategoryAsync
 	/// Красивые карты удаление
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.delete
+	/// Страница документации ВКонтакте https://vk.ru/dev/prettyCards.delete
 	/// </remarks>
 	Task<PrettyCardsDeleteResult> DeleteAsync(PrettyCardsDeleteParams @params,
 											CancellationToken token = default);
@@ -55,7 +55,7 @@ public interface IPrettyCardsCategoryAsync
 	///  Красивые карты редактирование
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.edit
+	/// Страница документации ВКонтакте https://vk.ru/dev/prettyCards.edit
 	/// </remarks>
 	Task<PrettyCardsEditResult> EditAsync(PrettyCardsEditParams @params,
 										CancellationToken token = default);
@@ -69,7 +69,7 @@ public interface IPrettyCardsCategoryAsync
 	/// Список красивых карт
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.get
+	/// Страница документации ВКонтакте https://vk.ru/dev/prettyCards.get
 	/// </remarks>
 	Task<VkCollection<PrettyCardsGetByIdResult>> GetAsync(PrettyCardsGetParams @params,
 														CancellationToken token = default);
@@ -82,7 +82,7 @@ public interface IPrettyCardsCategoryAsync
 	/// Список красивых карт
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getById
+	/// Страница документации ВКонтакте https://vk.ru/dev/prettyCards.getById
 	/// </remarks>
 	Task<ReadOnlyCollection<PrettyCardsGetByIdResult>> GetByIdAsync(PrettyCardsGetByIdParams @params,
 																	CancellationToken token = default);
@@ -101,7 +101,7 @@ public interface IPrettyCardsCategoryAsync
 	/// </summary>
 	/// <param name="token">Токен отмены операции</param>
 	/// <remarks>
-	/// Страница документации ВКонтакте https://vk.com/dev/prettyCards.getUploadURL
+	/// Страница документации ВКонтакте https://vk.ru/dev/prettyCards.getUploadURL
 	/// </remarks>
 	/// <returns>
 	/// URL для загрузки

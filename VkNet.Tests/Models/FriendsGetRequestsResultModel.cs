@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -13,7 +13,7 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 	{
 		ReadCategoryJsonPath(nameof(ShouldHaveField_Message));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 
 		var result = Api.Friends.GetRequestsExtended(new());
 
@@ -26,7 +26,7 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 	{
 		ReadCategoryJsonPath(nameof(ShouldHaveField_Mutual));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 
 		var result = Api.Friends.GetRequestsExtended(new());
 
@@ -39,7 +39,7 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 	{
 		ReadCategoryJsonPath(nameof(ShouldHaveField_UserId));
 
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 
 		var result = Api.Friends.GetRequestsExtended(new());
 

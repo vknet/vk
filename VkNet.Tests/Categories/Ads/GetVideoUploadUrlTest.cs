@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class GetVideoUploadUrlTest : CategoryBaseTest
 	[Fact]
 	public void GetVideoUploadUrl()
 	{
-		Url = "https://api.vk.com/method/ads.getVideoUploadUrl";
+		Url = "https://api.vk.ru/method/ads.getVideoUploadUrl";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetVideoUploadUrl));
 

@@ -45,7 +45,7 @@ public interface IVideoCategoryAsync
 	/// какого-либо видеохостинга).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.get
 	/// </remarks>
 	Task<VkCollection<Video>> GetAsync(VideoGetParams @params,
 										CancellationToken token = default);
@@ -59,7 +59,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.edit
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.edit
 	/// </remarks>
 	Task<bool> EditAsync(VideoEditParams @params,
 						CancellationToken token = default);
@@ -93,7 +93,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.add
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.add
 	/// </remarks>
 	Task<long> AddAsync(long videoId,
 						long ownerId,
@@ -111,7 +111,7 @@ public interface IVideoCategoryAsync
 	/// Метод может быть вызван не более 5000 раз в сутки для одного сервиса.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.save
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.save
 	/// </remarks>
 	Task<Video> SaveAsync(VideoSaveParams @params,
 						CancellationToken token = default);
@@ -146,7 +146,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.delete
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.delete
 	/// </remarks>
 	Task<bool> DeleteAsync(long videoId,
 							long? ownerId = null,
@@ -175,7 +175,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.restore
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.restore
 	/// </remarks>
 	Task<bool> RestoreAsync(long videoId,
 							long? ownerId = null,
@@ -195,7 +195,7 @@ public interface IVideoCategoryAsync
 	/// какого-либо видеохостинга).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.search
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.search
 	/// </remarks>
 	Task<VkCollection<Video>> SearchAsync(VideoSearchParams @params,
 										CancellationToken token = default);
@@ -244,7 +244,7 @@ public interface IVideoCategoryAsync
 	/// title — название альбома.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.getAlbums
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.getAlbums
 	/// </remarks>
 	Task<VkCollection<VideoAlbum>> GetAlbumsAsync(long? ownerId = null,
 												long? offset = null,
@@ -274,7 +274,7 @@ public interface IVideoCategoryAsync
 	/// (album_id).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.addAlbum
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.addAlbum
 	/// </remarks>
 	Task<long> AddAlbumAsync(string title,
 							long? groupId = null,
@@ -308,7 +308,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.editAlbum
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.editAlbum
 	/// </remarks>
 	Task<bool> EditAlbumAsync(long albumId,
 							string title,
@@ -333,7 +333,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.deleteAlbum
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.deleteAlbum
 	/// </remarks>
 	Task<bool> DeleteAlbumAsync(long albumId,
 								long? groupId = null,
@@ -367,7 +367,7 @@ public interface IVideoCategoryAsync
 	/// отрицательный offset).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.getComments
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.getComments
 	/// </remarks>
 	Task<VkCollection<Comment>> GetCommentsAsync(VideoGetCommentsParams @params,
 												CancellationToken token = default);
@@ -381,7 +381,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает идентификатор созданного комментария.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.createComment
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.createComment
 	/// </remarks>
 	Task<long> CreateCommentAsync(VideoCreateCommentParams @params,
 								CancellationToken token = default);
@@ -405,7 +405,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.deleteComment
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.deleteComment
 	/// </remarks>
 	Task<bool> DeleteCommentAsync(long commentId,
 								long? ownerId,
@@ -435,7 +435,7 @@ public interface IVideoCategoryAsync
 	/// удаленным).
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.restoreComment
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.restoreComment
 	/// </remarks>
 	Task<bool> RestoreCommentAsync(long commentId,
 									long? ownerId,
@@ -487,7 +487,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.editComment
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.editComment
 	/// </remarks>
 	Task<bool> EditCommentAsync(long commentId,
 								string message,
@@ -528,7 +528,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.report
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.report
 	/// </remarks>
 	Task<bool> ReportAsync(long videoId,
 							ReportReason reason,
@@ -565,7 +565,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.reportComment
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.reportComment
 	/// </remarks>
 	Task<bool> ReportCommentAsync(long commentId,
 								long ownerId,
@@ -597,7 +597,7 @@ public interface IVideoCategoryAsync
 	/// updated_time — время последнего обновления в формате unixtime.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.getAlbumById
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.getAlbumById
 	/// </remarks>
 	Task<VideoAlbum> GetAlbumByIdAsync(long albumId,
 										long? ownerId = null,
@@ -635,7 +635,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.reorderAlbums
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.reorderAlbums
 	/// </remarks>
 	Task<bool> ReorderAlbumsAsync(long albumId,
 								long? ownerId,
@@ -652,7 +652,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.reorderVideos
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.reorderVideos
 	/// </remarks>
 	Task<bool> ReorderVideosAsync(VideoReorderVideosParams @params,
 								CancellationToken token = default);
@@ -697,7 +697,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.addToAlbum
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.addToAlbum
 	/// </remarks>
 	Task<VkCollection<ulong>> AddToAlbumAsync(long ownerId,
 											long videoId,
@@ -745,7 +745,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.removeFromAlbum
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.removeFromAlbum
 	/// </remarks>
 	Task<bool> RemoveFromAlbumAsync(long ownerId,
 									long videoId,
@@ -794,7 +794,7 @@ public interface IVideoCategoryAsync
 	/// дополнительной информацией о каждом из них.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.getAlbumsByVideo
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.getAlbumsByVideo
 	/// </remarks>
 	Task<VkCollection<VideoAlbum>> GetAlbumsByVideoAsync(long? targetId,
 														long ownerId,
@@ -866,7 +866,7 @@ public interface IVideoCategoryAsync
 	/// о пользователях и сообществах.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.getCatalog
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.getCatalog
 	/// </remarks>
 	Task<ReadOnlyCollection<VideoCatalog>> GetCatalogAsync(VideoGetCatalogParams @params,
 															CancellationToken token = default);
@@ -935,7 +935,7 @@ public interface IVideoCategoryAsync
 	/// о пользователях и сообществах.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.getCatalogSection
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.getCatalogSection
 	/// </remarks>
 	Task<ReadOnlyCollection<VideoCatalogItem>> GetCatalogSectionAsync(string sectionId,
 																	string from,
@@ -956,7 +956,7 @@ public interface IVideoCategoryAsync
 	/// После успешного выполнения возвращает <c> true </c>.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/video.hideCatalogSection
+	/// Страница документации ВКонтакте http://vk.ru/dev/video.hideCatalogSection
 	/// </remarks>
 	Task<bool> HideCatalogSectionAsync(long sectionId,
 										CancellationToken token = default);

@@ -41,7 +41,7 @@ public class FaveGetPagesObject
 	/// Информация о пользователе.
 	/// </summary>
 	/// <remarks>
-	/// См. описание https://vk.com/dev/objects/user
+	/// См. описание https://vk.ru/dev/objects/user
 	/// </remarks>
 	[JsonProperty("user")]
 	public User User { get; set; }
@@ -50,7 +50,7 @@ public class FaveGetPagesObject
 	/// Информация о сообществе (группе).
 	/// </summary>
 	/// <remarks>
-	/// См. описание http://vk.com/dev/fields_groups
+	/// См. описание http://vk.ru/dev/fields_groups
 	/// </remarks>
 	[JsonProperty("group")]
 	public Group Group { get; set; }

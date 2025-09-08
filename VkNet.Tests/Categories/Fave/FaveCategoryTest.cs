@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Helper;
@@ -18,7 +18,7 @@ public class FaveCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetLinks_NormalCase()
 	{
-		Url = "https://api.vk.com/method/fave.getLinks";
+		Url = "https://api.vk.ru/method/fave.getLinks";
 		ReadCategoryJsonPath(nameof(GetLinks_NormalCase));
 
 		var links = Api.Fave.GetLinks(1, 1);
@@ -35,7 +35,7 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be("2_32190123_1");
 
 		link.Uri.Should()
-			.Be("https://vk.com/apiclub");
+			.Be("https://vk.ru/apiclub");
 
 		link.Name.Should()
 			.Be("ВКонтакте API");
@@ -53,7 +53,7 @@ public class FaveCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetMarketItems_AllParams()
 	{
-		Url = "https://api.vk.com/method/fave.getMarketItems";
+		Url = "https://api.vk.ru/method/fave.getMarketItems";
 		ReadCategoryJsonPath(nameof(GetMarketItems_AllParams));
 
 		var marketItems = Api.Fave.GetMarketItems(1, 0, true);
@@ -71,7 +71,7 @@ public class FaveCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetMarketItems_count()
 	{
-		Url = "https://api.vk.com/method/fave.getMarketItems";
+		Url = "https://api.vk.ru/method/fave.getMarketItems";
 		ReadCategoryJsonPath(nameof(GetMarketItems_count));
 
 		var marketItems = Api.Fave.GetMarketItems(1);
@@ -89,7 +89,7 @@ public class FaveCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetMarketItems_countAndOffset()
 	{
-		Url = "https://api.vk.com/method/fave.getMarketItems";
+		Url = "https://api.vk.ru/method/fave.getMarketItems";
 		ReadCategoryJsonPath(nameof(GetMarketItems_countAndOffset));
 
 		var marketItems = Api.Fave.GetMarketItems(1, 0);
@@ -107,7 +107,7 @@ public class FaveCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetMarketItems_WithoutParams()
 	{
-		Url = "https://api.vk.com/method/fave.getMarketItems";
+		Url = "https://api.vk.ru/method/fave.getMarketItems";
 		ReadCategoryJsonPath(nameof(GetMarketItems_WithoutParams));
 
 		var marketItems = Api.Fave.GetMarketItems();
@@ -125,7 +125,7 @@ public class FaveCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetPhotos_ExtendedCase()
 	{
-		Url = "https://api.vk.com/method/fave.getPhotos";
+		Url = "https://api.vk.ru/method/fave.getPhotos";
 		ReadCategoryJsonPath(nameof(GetPhotos_ExtendedCase));
 
 		var photos = Api.Fave.GetPhotos(3, 1, true);
@@ -186,7 +186,7 @@ public class FaveCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetPhotos_NormalCase()
 	{
-		Url = "https://api.vk.com/method/fave.getPhotos";
+		Url = "https://api.vk.ru/method/fave.getPhotos";
 		ReadCategoryJsonPath(nameof(GetPhotos_NormalCase));
 
 		var photos = Api.Fave.GetPhotos(3, 1);
@@ -275,7 +275,7 @@ public class FaveCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetPosts_Extended()
 	{
-		Url = "https://api.vk.com/method/fave.getPosts";
+		Url = "https://api.vk.ru/method/fave.getPosts";
 		ReadCategoryJsonPath(nameof(GetPosts_Extended));
 
 		var posts = Api.Fave.GetPosts(3, 1);
@@ -445,7 +445,7 @@ public class FaveCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetPosts_NotExtended()
 	{
-		Url = "https://api.vk.com/method/fave.getPosts";
+		Url = "https://api.vk.ru/method/fave.getPosts";
 		ReadCategoryJsonPath(nameof(GetPosts_NotExtended));
 
 		var posts = Api.Fave.GetPosts(3, 1);
@@ -548,7 +548,7 @@ public class FaveCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetUsers_OneItem()
 	{
-		Url = "https://api.vk.com/method/fave.getUsers";
+		Url = "https://api.vk.ru/method/fave.getUsers";
 		ReadCategoryJsonPath(nameof(GetUsers_OneItem));
 
 		var users = Api.Fave.GetUsers(3, 1);
@@ -577,7 +577,7 @@ public class FaveCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetVideos_NormalCase()
 	{
-		Url = "https://api.vk.com/method/fave.getVideos";
+		Url = "https://api.vk.ru/method/fave.getVideos";
 		ReadCategoryJsonPath(nameof(GetVideos_NormalCase));
 
 		var videos = Api.Fave.GetVideos(3, 1);

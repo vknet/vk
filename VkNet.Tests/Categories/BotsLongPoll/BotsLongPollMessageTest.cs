@@ -1,5 +1,5 @@
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
@@ -17,7 +17,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});
@@ -71,7 +71,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});
@@ -136,7 +136,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});
@@ -182,7 +182,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});
@@ -228,7 +228,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});
@@ -273,7 +273,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});
@@ -312,7 +312,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 		var botsLongPollHistory = Api.Groups.GetBotsLongPollHistory(new()
 		{
 			Key = "test",
-			Server = "https://vk.com",
+			Server = "https://vk.ru",
 			Ts = 0,
 			Wait = 10
 		});

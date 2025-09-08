@@ -6,7 +6,7 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Список параметров для метода Message.GetHistory
-/// http://vk.com/dev/messages.getHistory
+/// http://vk.ru/dev/messages.getHistory
 /// </summary>
 [Serializable]
 public class MessagesGetHistoryParams

@@ -1,5 +1,5 @@
 ﻿using System;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -13,7 +13,7 @@ public class StoreCategoryTest : CategoryBaseTest
 	[Fact]
 	public void AddStickersToFavorite()
 	{
-		Url = "https://api.vk.com/method/store.addStickersToFavorite";
+		Url = "https://api.vk.ru/method/store.addStickersToFavorite";
 
 		ReadCategoryJsonPath(nameof(AddStickersToFavorite));
 
@@ -29,7 +29,7 @@ public class StoreCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetFavoriteStickers()
 	{
-		Url = "https://api.vk.com/method/store.getFavoriteStickers";
+		Url = "https://api.vk.ru/method/store.getFavoriteStickers";
 
 		ReadCategoryJsonPath(nameof(GetFavoriteStickers));
 
@@ -64,7 +64,7 @@ public class StoreCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetProducts()
 	{
-		Url = "https://api.vk.com/method/store.getProducts";
+		Url = "https://api.vk.ru/method/store.getProducts";
 
 		ReadCategoryJsonPath(nameof(GetProducts));
 
@@ -109,7 +109,7 @@ public class StoreCategoryTest : CategoryBaseTest
 			.Be(24);
 
 		product.Icon.BaseUrl.Should()
-			.Be("https://vk.com/sticker/packs/148/icon");
+			.Be("https://vk.ru/sticker/packs/148/icon");
 
 		product.Previews.Count.Should()
 			.Be(5);
@@ -118,7 +118,7 @@ public class StoreCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetStickersKeywords()
 	{
-		Url = "https://api.vk.com/method/store.getStickersKeywords";
+		Url = "https://api.vk.ru/method/store.getStickersKeywords";
 
 		ReadCategoryJsonPath(nameof(GetStickersKeywords));
 
@@ -154,7 +154,7 @@ public class StoreCategoryTest : CategoryBaseTest
 	[Fact]
 	public void RemoveStickersFromFavorite()
 	{
-		Url = "https://api.vk.com/method/store.removeStickersFromFavorite";
+		Url = "https://api.vk.ru/method/store.removeStickersFromFavorite";
 
 		ReadCategoryJsonPath(nameof(RemoveStickersFromFavorite));
 

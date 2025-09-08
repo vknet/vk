@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -12,7 +12,7 @@ public class AddAddressTests : CategoryBaseTest
 	[Fact]
 	public void AddAddress_AlwaysOpened()
 	{
-		Url = "https://api.vk.com/method/groups.addAddress";
+		Url = "https://api.vk.ru/method/groups.addAddress";
 
 		ReadCategoryJsonPath(nameof(AddAddress_AlwaysOpened));
 
@@ -74,7 +74,7 @@ public class AddAddressTests : CategoryBaseTest
 	[Fact]
 	public void AddAddress_Timetable()
 	{
-		Url = "https://api.vk.com/method/groups.addAddress";
+		Url = "https://api.vk.ru/method/groups.addAddress";
 
 		ReadCategoryJsonPath(nameof(AddAddress_Timetable));
 

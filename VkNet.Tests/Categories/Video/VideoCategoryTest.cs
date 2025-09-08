@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.StringEnums;
@@ -19,7 +19,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Add_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.add";
+		Url = "https://api.vk.ru/method/video.add";
 
 		ReadCategoryJsonPath(nameof(Add_NormalCase));
 
@@ -32,7 +32,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void AddAlbum_ToCurrentUser()
 	{
-		Url = "https://api.vk.com/method/video.addAlbum";
+		Url = "https://api.vk.ru/method/video.addAlbum";
 
 		ReadCategoryJsonPath(nameof(AddAlbum_ToCurrentUser));
 
@@ -45,7 +45,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void CreateComment_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.createComment";
+		Url = "https://api.vk.ru/method/video.createComment";
 
 		ReadCategoryJsonPath(nameof(CreateComment_NormalCase));
 
@@ -63,7 +63,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Delete_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.delete";
+		Url = "https://api.vk.ru/method/video.delete";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -76,7 +76,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void DeleteAlbum_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.deleteAlbum";
+		Url = "https://api.vk.ru/method/video.deleteAlbum";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -89,7 +89,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void DeleteComment_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.deleteComment";
+		Url = "https://api.vk.ru/method/video.deleteComment";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -102,7 +102,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Edit_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.edit";
+		Url = "https://api.vk.ru/method/video.edit";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -121,7 +121,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void EditAlbum_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.editAlbum";
+		Url = "https://api.vk.ru/method/video.editAlbum";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -134,7 +134,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void EditComment_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.editComment";
+		Url = "https://api.vk.ru/method/video.editComment";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -147,7 +147,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_Extended()
 	{
-		Url = "https://api.vk.com/method/video.get";
+		Url = "https://api.vk.ru/method/video.get";
 
 		ReadCategoryJsonPath(nameof(Get_Extended));
 
@@ -215,7 +215,7 @@ public class VideoCategoryTest : CategoryBaseTest
 			.NotBeNull();
 
 		video.Player.Should()
-			.Be(new Uri("https://vk.com/vi/dec_GQ3DKNZUGI4TAMQ"));
+			.Be(new Uri("https://vk.ru/vi/dec_GQ3DKNZUGI4TAMQ"));
 
 		video.CanAdd.Should()
 			.BeTrue();
@@ -248,7 +248,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_NotExtended()
 	{
-		Url = "https://api.vk.com/method/video.get";
+		Url = "https://api.vk.ru/method/video.get";
 
 		ReadCategoryJsonPath(nameof(Get_NotExtended));
 
@@ -377,14 +377,14 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be(new Uri("http://cs12761.vk.me/u5705167/video/l_00c6be47.jpg"));
 
 		video2.Player.Should()
-			.Be(new Uri("http://vk.com/video_ext.php?oid=1&id=164841344&hash=c8de45fc73389353"));
+			.Be(new Uri("http://vk.ru/video_ext.php?oid=1&id=164841344&hash=c8de45fc73389353"));
 	}
 
 	// todo add not extended version
 	[Fact]
 	public void GetAlbums_NormalCase_Extended()
 	{
-		Url = "https://api.vk.com/method/video.getAlbums";
+		Url = "https://api.vk.ru/method/video.getAlbums";
 
 		ReadCategoryJsonPath(nameof(GetAlbums_NormalCase_Extended));
 
@@ -419,7 +419,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetComments_WithLikes()
 	{
-		Url = "https://api.vk.com/method/video.getComments";
+		Url = "https://api.vk.ru/method/video.getComments";
 
 		ReadCategoryJsonPath(nameof(GetComments_WithLikes));
 
@@ -496,7 +496,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetComments_WithoutLikes()
 	{
-		Url = "https://api.vk.com/method/video.getComments";
+		Url = "https://api.vk.ru/method/video.getComments";
 
 		ReadCategoryJsonPath(nameof(GetComments_WithoutLikes));
 
@@ -555,7 +555,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Report_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.report";
+		Url = "https://api.vk.ru/method/video.report";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -568,7 +568,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ReportComment_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.reportComment";
+		Url = "https://api.vk.ru/method/video.reportComment";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -581,7 +581,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Restore_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.restore";
+		Url = "https://api.vk.ru/method/video.restore";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -594,7 +594,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void RestoreComment_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.restoreComment";
+		Url = "https://api.vk.ru/method/video.restoreComment";
 
 		ReadJsonFile(JsonPaths.True);
 
@@ -607,7 +607,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Save_NormalCase()
 	{
-		Url = "https://api.vk.com/method/video.save";
+		Url = "https://api.vk.ru/method/video.save";
 
 		ReadCategoryJsonPath(nameof(Save_NormalCase));
 
@@ -639,7 +639,7 @@ public class VideoCategoryTest : CategoryBaseTest
 
 		video.UploadUrl.Should()
 			.Be(new Uri(
-				"http://cs6058.vk.com/upload.php?act=parse_share&hash=d5371f57b935d1b3b0c6cde1100ecb&rhash=5c623ee8b80db0d3af5078a5dfb2&mid=234695118&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlhQtzv5a408&api_callback=06ec8115dfc9a66eec&remotely=1&photo_server=607423&photo_server_hash=7874a144e80b8bb3c1a1eee5c9043"));
+				"http://cs6058.vk.ru/upload.php?act=parse_share&hash=d5371f57b935d1b3b0c6cde1100ecb&rhash=5c623ee8b80db0d3af5078a5dfb2&mid=234695118&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlhQtzv5a408&api_callback=06ec8115dfc9a66eec&remotely=1&photo_server=607423&photo_server_hash=7874a144e80b8bb3c1a1eee5c9043"));
 	}
 
 	[Fact]
@@ -655,7 +655,7 @@ public class VideoCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Search_NormalCase_ListOfVideos()
 	{
-		Url = "https://api.vk.com/method/video.search";
+		Url = "https://api.vk.ru/method/video.search";
 
 		ReadCategoryJsonPath(nameof(Search_NormalCase_ListOfVideos));
 
@@ -696,7 +696,7 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be(1934);
 
 		video.Description.Should()
-			.Be("beauty 18+\n\n\'Качественное и эксклюзивное порно  у нас\'\n\n>>>>>>> http://vk.com/mastofmastur<<<<<<");
+			.Be("beauty 18+\n\n\'Качественное и эксклюзивное порно  у нас\'\n\n>>>>>>> http://vk.ru/mastofmastur<<<<<<");
 
 		video.Date.Should()
 			.Be(DateHelper.TimeStampToDateTime(1384706962));
@@ -717,7 +717,7 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be(50100051);
 
 		video.Player.Should()
-			.Be(new Uri("http://vk.com/video_ext.php?oid=-59205334&id=166671614&hash=d609a7775bbb2e7d"));
+			.Be(new Uri("http://vk.ru/video_ext.php?oid=-59205334&id=166671614&hash=d609a7775bbb2e7d"));
 
 		var video1 = result.Skip(1)
 			.FirstOrDefault();
@@ -738,7 +738,7 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be(1139);
 
 		video1.Description.Should()
-			.Be("секс знакомства подписывайся,знакомься,общайся,тут русские шлюхи,проститутки подпишись у нас http://vk.com/tyt_sex");
+			.Be("секс знакомства подписывайся,знакомься,общайся,тут русские шлюхи,проститутки подпишись у нас http://vk.ru/tyt_sex");
 
 		video1.Date.Should()
 			.Be(DateHelper.TimeStampToDateTime(1371702618));
@@ -756,7 +756,7 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be(new Uri("http://cs527502.vk.me/u65226705/video/l_ba2e1aff.jpg"));
 
 		video1.Player.Should()
-			.Be(new Uri("http://vk.com/video_ext.php?oid=-49956637&id=165458571&hash=dc6995a7cc9aed92"));
+			.Be(new Uri("http://vk.ru/video_ext.php?oid=-49956637&id=165458571&hash=dc6995a7cc9aed92"));
 
 		var video2 = result.Skip(2)
 			.FirstOrDefault();
@@ -777,7 +777,7 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be(1289);
 
 		video2.Description.Should()
-			.Be("Взято со страницы Саша Грей | Sasha Grey | 18+: http://vk.com/sashagreyphotos\nЭротика: http://vk.com/gentleerotica");
+			.Be("Взято со страницы Саша Грей | Sasha Grey | 18+: http://vk.ru/sashagreyphotos\nЭротика: http://vk.ru/gentleerotica");
 
 		video2.Date.Should()
 			.Be(DateHelper.TimeStampToDateTime(1386961568));
@@ -795,13 +795,13 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be(new Uri("http://cs535107.vk.me/u146564541/video/l_cb794198.jpg"));
 
 		video2.Player.Should()
-			.Be(new Uri("http://vk.com/video_ext.php?oid=-54257090&id=166728490&hash=15a0552ca76bedac"));
+			.Be(new Uri("http://vk.ru/video_ext.php?oid=-54257090&id=166728490&hash=15a0552ca76bedac"));
 	}
 
 	[Fact]
 	public void AddToAlbum()
 	{
-		Url = "https://api.vk.com/method/video.addToAlbum";
+		Url = "https://api.vk.ru/method/video.addToAlbum";
 
 		ReadCategoryJsonPath(nameof(AddToAlbum));
 

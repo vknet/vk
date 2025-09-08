@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -13,7 +13,7 @@ public class AudioSetBroadCastTest : CategoryBaseTest
 	[Fact]
 	public void SetBroadCastTest()
 	{
-		Url = "https://api.vk.com/method/audio.setBroadcast";
+		Url = "https://api.vk.ru/method/audio.setBroadcast";
 
 		ReadCategoryJsonPath(nameof(Api.Audio.SetBroadcast));
 

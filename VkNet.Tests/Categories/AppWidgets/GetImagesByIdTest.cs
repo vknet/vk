@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -12,7 +12,7 @@ public class GetImagesByIdTest : CategoryBaseTest
 	[Fact]
 	public void GetImagesById()
 	{
-		Url = "https://api.vk.com/method/appWidgets.getImagesById";
+		Url = "https://api.vk.ru/method/appWidgets.getImagesById";
 
 		ReadCategoryJsonPath(nameof(GetImagesById));
 

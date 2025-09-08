@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class NotificationsCategoryTests : CategoryBaseTest
 	[Fact]
 	public void MarkAsViewed()
 	{
-		Url = "https://api.vk.com/method/notifications.markAsViewed";
+		Url = "https://api.vk.ru/method/notifications.markAsViewed";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Notifications.MarkAsViewed();

@@ -7,7 +7,7 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Информация о беседе (мультидиалоге, чате).
-/// См. описание http://vk.com/dev/chat_object
+/// См. описание http://vk.ru/dev/chat_object
 /// </summary>
 [Serializable]
 public class Chat

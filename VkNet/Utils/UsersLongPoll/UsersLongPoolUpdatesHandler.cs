@@ -33,10 +33,7 @@ public class UsersLongPollUpdatesHandler : IUsersLongPollUpdatesHandler
 	/// </summary>
 	public UsersLongPollUpdatesHandler(UsersLongPollUpdatesHandlerParams @params) => _params = @params;
 
-	/// <summary>
-	/// Запуск отслеживания событий
-	/// </summary>
-	/// <param name="token">Токен отмены операции</param>
+	/// <inheritdoc />
 	[UsedImplicitly]
 	public async Task RunAsync(CancellationToken token = default)
 	{
@@ -132,7 +129,7 @@ public class UsersLongPollUpdatesHandler : IUsersLongPollUpdatesHandler
 			case LongPollOutdateException outdatedException:
 				if (_currentTs is null)
 				{
-					throw new($"{nameof(_currentTs)} is null");
+					throw new VkApiException($"{nameof(_currentTs)} is null");
 				}
 
 				SetTs(outdatedException.Ts);
@@ -218,7 +215,7 @@ public class UsersLongPollUpdatesHandler : IUsersLongPollUpdatesHandler
 	{
 		if (_currentPts is null)
 		{
-			throw new($"{nameof(_currentPts)} is null");
+			throw new VkApiException($"{nameof(_currentPts)} is null");
 		}
 
 		SetPts(_currentPts.Value + 1);

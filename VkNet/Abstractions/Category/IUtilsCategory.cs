@@ -27,7 +27,7 @@ public interface IUtilsCategory : IUtilsCategoryAsync
 
 	/// <inheritdoc cref="IUtilsCategoryAsync.DeleteFromLastShortenedAsync"/>
 	/// <remarks>
-	/// ВКонтакте http://vk.com/dev/utils.deleteFromLastShortened
+	/// ВКонтакте http://vk.ru/dev/utils.deleteFromLastShortened
 	/// </remarks>
 	bool DeleteFromLastShortened(string key);
 

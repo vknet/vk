@@ -62,9 +62,9 @@
         "is_admin": 1,
         "admin_level": 3,
         "is_member": 1,
-        "photo_50": "https://vk.com/im/munity_50.png?ava=1",
-        "photo_100": "https://vk.com/im/unity_100.png?ava=1",
-        "photo_200": "https://vk.com/im/unity_200.png?ava=1"
+        "photo_50": "https://vk.ru/im/munity_50.png?ava=1",
+        "photo_100": "https://vk.ru/im/unity_100.png?ava=1",
+        "photo_200": "https://vk.ru/im/unity_200.png?ava=1"
       }
     ]
   }

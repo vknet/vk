@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class UpdateTargetPixelTest : CategoryBaseTest
 	[Fact]
 	public void UpdateTargetPixel()
 	{
-		Url = "https://api.vk.com/method/ads.updateTargetPixel";
+		Url = "https://api.vk.ru/method/ads.updateTargetPixel";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.UpdateTargetPixel));
 

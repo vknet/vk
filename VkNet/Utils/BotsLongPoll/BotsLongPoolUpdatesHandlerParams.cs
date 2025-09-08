@@ -49,12 +49,12 @@ public class BotsLongPollUpdatesHandlerParams
 	/// <summary>
 	/// Время настройки exponential backoff при ошибках
 	/// </summary>
-	public int BaseRetryDelayMs { get; set; } = 5000;
-	
+	public int BaseRetryDelayMs { get; set; } = 5_000;
+
 	/// <summary>
 	/// Максимальное время попыток повторных соединений при ошибках
 	/// </summary>
-	public int MaxRetryDelayMs { get; set; } = 900000;
+	public int MaxRetryDelayMs { get; set; } = 900_000;
 
 	/// <summary>
 	/// Функция, которая возвращает true, если работа лонгпула должна быть приостановлена
@@ -82,9 +82,3 @@ public class BotsLongPollUpdatesHandlerParams
 	/// </summary>
 	public Action<System.Exception>? OnWarn { get; set; } = null;
 }
-
-/// <summary>
-/// Параметры для конструктора BotsLongPollUpdatesHandler
-/// </summary>
-[Obsolete(ObsoleteText.ObsoleteLongPool, true)]
-public static class BotsLongPoolUpdatesHandlerParams {}

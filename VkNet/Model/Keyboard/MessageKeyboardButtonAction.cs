@@ -74,7 +74,7 @@ public class MessageKeyboardButtonAction
 	/// </summary>
 	/// <remarks>
 	/// Пока может использоваться только приложение, которому мы выдали под это доступ.
-	/// Получить доступ для Вашего приложения Вы можете <a href="https://vk.com/support?act=home_api">здесь </a>;
+	/// Получить доступ для Вашего приложения Вы можете <a href="https://vk.ru/support?act=home_api">здесь </a>;
 	/// </remarks>
 	[JsonProperty("app_id", NullValueHandling = NullValueHandling.Ignore)]
 	public ulong? AppId { get; set; }

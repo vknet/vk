@@ -5,7 +5,7 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Информация о репостах записи.
-/// См. описание http://vk.com/dev/post
+/// См. описание http://vk.ru/dev/post
 /// </summary>
 [Serializable]
 public class Reposts

@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -9,7 +9,7 @@ public class MessagesMarkAsAnsweredConversationTests : MessagesBaseTests
 	[Fact]
 	public void MarkAsAnsweredConversation()
 	{
-		Url = "https://api.vk.com/method/messages.markAsAnsweredConversation";
+		Url = "https://api.vk.ru/method/messages.markAsAnsweredConversation";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Messages.MarkAsAnsweredConversation(123);

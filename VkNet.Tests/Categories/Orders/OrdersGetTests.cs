@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class OrdersGetTests : CategoryBaseTest
 	[Fact]
 	public void Get()
 	{
-		Url = "https://api.vk.com/method/orders.get";
+		Url = "https://api.vk.ru/method/orders.get";
 		ReadCategoryJsonPath(nameof(Get));
 
 		var result = Api.Orders.Get();

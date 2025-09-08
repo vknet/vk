@@ -10,7 +10,7 @@ using System.Threading;
 namespace VkNet.Utils;
 
 /// <summary>
-/// Методы расширения для взаимодействия с https://vk.com/foaf.php
+/// Методы расширения для взаимодействия с https://vk.ru/foaf.php
 /// </summary>
 public static class VkFoafExtensions
 {
@@ -27,7 +27,7 @@ public static class VkFoafExtensions
 	{
 		using var httpClient = new HttpClient();
 
-		var str = await httpClient.GetStringAsync($"https://vk.com/foaf.php?id={user.Id}")
+		var str = await httpClient.GetStringAsync($"https://vk.ru/foaf.php?id={user.Id}")
 			.ConfigureAwait(false);
 
 		var doc = new HtmlDocument();

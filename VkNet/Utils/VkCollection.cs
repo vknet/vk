@@ -8,7 +8,7 @@ using VkNet.Utils.JsonConverter;
 namespace VkNet.Utils;
 
 /// <summary>
-/// Коллекция данных возвращенных от vk.com
+/// Коллекция данных возвращенных от vk.ru
 /// </summary>
 /// <typeparam name="T"> Тип данных. </typeparam>
 [Serializable]

@@ -35,7 +35,7 @@ public interface IWidgetsCategoryAsync
 	/// содержащее соответствующую информацию об авторе комментария.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/widgets.getComments
+	/// Страница документации ВКонтакте http://vk.ru/dev/widgets.getComments
 	/// </remarks>
 	Task<VkCollection<Comment>> GetCommentsAsync(GetCommentsParams getCommentsParams,
 												CancellationToken token = default);
@@ -95,7 +95,7 @@ public interface IWidgetsCategoryAsync
 	/// использовался параметр page_id);
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/widgets.getPages
+	/// Страница документации ВКонтакте http://vk.ru/dev/widgets.getPages
 	/// </remarks>
 	Task<VkCollection<WidgetPage>> GetPagesAsync(long? widgetApiId = null,
 												string order = null,

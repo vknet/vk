@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Exception;
 using Xunit;
 
@@ -9,13 +9,13 @@ public class BotsLongPollFailed : BotsLongPollBaseTest
 	[Fact]
 	public void GetBotsLongPollHistory_Failed1()
 	{
-		Url = "https://vk.com";
+		Url = "https://vk.ru";
 		ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed1));
 
 		FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new()
 			{
 				Key = "test",
-				Server = "https://vk.com",
+				Server = "https://vk.ru",
 				Ts = 0,
 				Wait = 10
 			}))
@@ -26,7 +26,7 @@ public class BotsLongPollFailed : BotsLongPollBaseTest
 	[Fact]
 	public void GetBotsLongPollHistory_Failed1Ts()
 	{
-		Url = "https://vk.com";
+		Url = "https://vk.ru";
 		ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed1Ts));
 
 		const ulong ts = 10;
@@ -34,7 +34,7 @@ public class BotsLongPollFailed : BotsLongPollBaseTest
 		FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new()
 			{
 				Key = "test",
-				Server = "https://vk.com",
+				Server = "https://vk.ru",
 				Ts = 0,
 				Wait = 10
 			}))
@@ -47,13 +47,13 @@ public class BotsLongPollFailed : BotsLongPollBaseTest
 	[Fact]
 	public void GetBotsLongPollHistory_Failed2()
 	{
-		Url = "https://vk.com";
+		Url = "https://vk.ru";
 		ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed2));
 
 		FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new()
 			{
 				Key = "test",
-				Server = "https://vk.com",
+				Server = "https://vk.ru",
 				Ts = 0,
 				Wait = 10
 			}))
@@ -64,13 +64,13 @@ public class BotsLongPollFailed : BotsLongPollBaseTest
 	[Fact]
 	public void GetBotsLongPollHistory_Failed3()
 	{
-		Url = "https://vk.com";
+		Url = "https://vk.ru";
 		ReadJsonFile("Categories", Folder, nameof(GetBotsLongPollHistory_Failed3));
 
 		FluentActions.Invoking(() => Api.Groups.GetBotsLongPollHistory(new()
 			{
 				Key = "test",
-				Server = "https://vk.com",
+				Server = "https://vk.ru",
 				Ts = 0,
 				Wait = 10
 			}))

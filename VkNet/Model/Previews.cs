@@ -15,7 +15,7 @@ public class Previews
 	/// <summary>
 	/// url квадратной фотографии пользователя, имеющей ширину 50 пикселей. В случае
 	/// отсутствия у пользователя фотографии
-	/// возвращается http://vk.com/images/camera_c.gif
+	/// возвращается http://vk.ru/images/camera_c.gif
 	/// </summary>
 	[JsonProperty("photo_50")]
 	public Uri Photo50 { get; set; }
@@ -23,7 +23,7 @@ public class Previews
 	/// <summary>
 	/// url квадратной фотографии пользователя, имеющей ширину 100 пикселей. В случае
 	/// отсутствия у пользователя фотографии
-	/// возвращается http://vk.com/images/camera_b.gif.
+	/// возвращается http://vk.ru/images/camera_b.gif.
 	/// </summary>
 	[JsonProperty("photo_100")]
 	public Uri Photo100 { get; set; }
@@ -55,7 +55,7 @@ public class Previews
 	/// url квадратной фотографии пользователя с максимальной шириной.
 	/// Может быть возвращена фотография, имеющая ширину как 200, так и 100 пикселей.
 	/// В случае отсутствия у пользователя фотографии возвращается
-	/// http://vk.com/images/camera_b.gif.
+	/// http://vk.ru/images/camera_b.gif.
 	/// </summary>
 	[JsonProperty("photo_max")]
 	public Uri PhotoMax { get; set; }

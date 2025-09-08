@@ -1,4 +1,5 @@
-using FluentAssertions;
+using AwesomeAssertions;
+using VkNet.Enums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +12,7 @@ namespace VkNet.Tests.Categories.Market
 		[Fact]
 		public void MarketSearch()
 		{
-			Url = "https://api.vk.com/method/market.search";
+			Url = "https://api.vk.ru/method/market.search";
 
 			ReadCategoryJsonPath(nameof(Api.Markets.Search));
 
@@ -19,7 +20,7 @@ namespace VkNet.Tests.Categories.Market
 			{
 				OwnerId = -85689507,
 				PriceFrom = 5000,
-				Sort = Enums.ProductSort.ByCost,
+				Sort = ProductSort.ByCost,
 				Offset = 0,
 				Count = 2,
 				Status = "0",

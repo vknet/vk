@@ -14,7 +14,7 @@ namespace VkNet.Abstractions.Authorization;
 /// приложения).
 /// </summary>
 /// <remarks>
-/// https://vk.com/dev/implicit_flow_user
+/// https://vk.ru/dev/implicit_flow_user
 /// </remarks>
 [UsedImplicitly]
 public interface IImplicitFlow : IAuthorizationFlow

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.StringEnums;
@@ -16,7 +16,7 @@ public class UserGetTests : CategoryBaseTest
 	[Fact]
 	public void Get_Olesya_SingleUser()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_Olesya_SingleUser));
 
 		var users = Api.Users.Get(new List<long>
@@ -39,7 +39,7 @@ public class UserGetTests : CategoryBaseTest
 	[Fact]
 	public void Get_Male_SingleUser()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_Male_SingleUser));
 
 		var users = Api.Users.Get(new List<long>
@@ -62,7 +62,7 @@ public class UserGetTests : CategoryBaseTest
 	[Fact]
 	public void Get_ActiveUser()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_ActiveUser));
 
 		var users = Api.Users.Get(new List<long>

@@ -6,7 +6,7 @@ namespace VkNet.Model;
 
 /// <summary>
 /// Информация о вики-странице сообщества.
-/// См. описание http://vk.com/dev/pages.get
+/// См. описание http://vk.ru/dev/pages.get
 /// </summary>
 [Serializable]
 public class Page : MediaAttachment

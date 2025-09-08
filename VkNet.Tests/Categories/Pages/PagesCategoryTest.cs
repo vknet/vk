@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -14,10 +14,10 @@ public class PagesCategoryTest : CategoryBaseTest
 	[Fact]
 	public void ClearCache()
 	{
-		Url = "https://api.vk.com/method/pages.clearCache";
+		Url = "https://api.vk.ru/method/pages.clearCache";
 		ReadJsonFile(JsonPaths.True);
 
-		var cache = Api.Pages.ClearCache(new("https://www.vk.com/dev/groups.addLink"));
+		var cache = Api.Pages.ClearCache(new("https://www.vk.ru/dev/groups.addLink"));
 
 		cache.Should()
 			.BeTrue();
@@ -26,7 +26,7 @@ public class PagesCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get1_NormalCase()
 	{
-		Url = "https://api.vk.com/method/pages.get";
+		Url = "https://api.vk.ru/method/pages.get";
 		ReadCategoryJsonPath(nameof(Get1_NormalCase));
 
 		var page = Api.Pages.Get(new()
@@ -69,13 +69,13 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be(32190123);
 
 		page.ViewUrl.Should()
-			.Be("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
+			.Be("http://m.vk.ru/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
 	}
 
 	[Fact]
 	public void Get2_NormalCase()
 	{
-		Url = "https://api.vk.com/method/pages.get";
+		Url = "https://api.vk.ru/method/pages.get";
 		ReadCategoryJsonPath(nameof(Get2_NormalCase));
 
 		var page = Api.Pages.Get(new()
@@ -118,13 +118,13 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be(32190123);
 
 		page.ViewUrl.Should()
-			.Be("http://m.vk.com/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
+			.Be("http://m.vk.ru/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
 	}
 
 	[Fact]
 	public void GetHistory_NormalCase()
 	{
-		Url = "https://api.vk.com/method/pages.getHistory";
+		Url = "https://api.vk.ru/method/pages.getHistory";
 		ReadCategoryJsonPath(nameof(GetHistory_NormalCase));
 
 		var histories = Api.Pages.GetHistory(50050492, 103292418);
@@ -136,7 +136,7 @@ public class PagesCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetTitles_NormalCase()
 	{
-		Url = "https://api.vk.com/method/pages.getTitles";
+		Url = "https://api.vk.ru/method/pages.getTitles";
 		ReadCategoryJsonPath(nameof(GetTitles_NormalCase));
 
 		var titles = Api.Pages.GetTitles(103292418);
@@ -148,7 +148,7 @@ public class PagesCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetVersion_NormalCase()
 	{
-		Url = "https://api.vk.com/method/pages.getVersion";
+		Url = "https://api.vk.ru/method/pages.getVersion";
 		ReadCategoryJsonPath(nameof(GetVersion_NormalCase));
 
 		var version = Api.Pages.GetVersion(184657135, 103292418);
@@ -187,7 +187,7 @@ public class PagesCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Save1_NormalCase()
 	{
-		Url = "https://api.vk.com/method/pages.save";
+		Url = "https://api.vk.ru/method/pages.save";
 		ReadCategoryJsonPath(nameof(Api.Pages.Save));
 
 		var page = Api.Pages.Save("123", 123, 32190123, "Свежие новости", 103292418);
@@ -199,7 +199,7 @@ public class PagesCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Save2_NormalCase()
 	{
-		Url = "https://api.vk.com/method/pages.save";
+		Url = "https://api.vk.ru/method/pages.save";
 		ReadCategoryJsonPath(nameof(Api.Pages.Save));
 
 		var page = Api.Pages.Save("123", 50050492, 32190123, "", 103292418);
@@ -211,7 +211,7 @@ public class PagesCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SaveAccess_NormalCase()
 	{
-		Url = "https://api.vk.com/method/pages.saveAccess";
+		Url = "https://api.vk.ru/method/pages.saveAccess";
 		ReadCategoryJsonPath(nameof(Api.Pages.Save));
 
 		var page = Api.Pages.SaveAccess(50050492, 103292418);

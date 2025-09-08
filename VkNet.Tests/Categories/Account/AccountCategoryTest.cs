@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -31,7 +31,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void BanUser_CorrectParameters_ReturnFalse()
 	{
-		Url = "https://api.vk.com/method/account.ban";
+		Url = "https://api.vk.ru/method/account.ban";
 		ReadJsonFile(JsonPaths.False);
 
 		Api.Account.BanUser(1)
@@ -42,7 +42,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void BanUser_CorrectParameters_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/account.ban";
+		Url = "https://api.vk.ru/method/account.ban";
 		ReadJsonFile(JsonPaths.True);
 
 		Api.Account.BanUser(4)
@@ -83,7 +83,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetBanned_WhenThereIsNoBannedUsers()
 	{
-		Url = "https://api.vk.com/method/account.getBanned";
+		Url = "https://api.vk.ru/method/account.getBanned";
 
 		ReadJsonFile(JsonPaths.EmptyVkCollection);
 
@@ -95,7 +95,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetBanned_WhenThereIsSomeBannedUsersButNotInTheOffsetRange()
 	{
-		Url = "https://api.vk.com/method/account.getBanned";
+		Url = "https://api.vk.ru/method/account.getBanned";
 
 		ReadCategoryJsonPath(nameof(GetBanned_WhenThereIsSomeBannedUsersButNotInTheOffsetRange));
 
@@ -108,7 +108,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetBanned_WithCorrectCountParameter()
 	{
-		Url = "https://api.vk.com/method/account.getBanned";
+		Url = "https://api.vk.ru/method/account.getBanned";
 
 		ReadCategoryJsonPath("GetBannedResult");
 
@@ -121,7 +121,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetBanned_WithCorrectOffsetParameter()
 	{
-		Url = "https://api.vk.com/method/account.getBanned";
+		Url = "https://api.vk.ru/method/account.getBanned";
 
 		ReadCategoryJsonPath("GetBannedResult");
 
@@ -134,7 +134,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetBanned_WithDefaultParameters()
 	{
-		Url = "https://api.vk.com/method/account.getBanned";
+		Url = "https://api.vk.ru/method/account.getBanned";
 
 		ReadCategoryJsonPath("GetBannedResult");
 
@@ -152,7 +152,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCounters_WhenServerReturnsAllFields()
 	{
-		Url = "https://api.vk.com/method/account.getCounters";
+		Url = "https://api.vk.ru/method/account.getCounters";
 		ReadCategoryJsonPath(nameof(GetCounters_WhenServerReturnsAllFields));
 
 		var counters = Api.Account.GetCounters(CountersFilter.All);
@@ -191,7 +191,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCounters_WhenServerReturnsEmptyResponse()
 	{
-		Url = "https://api.vk.com/method/account.getCounters";
+		Url = "https://api.vk.ru/method/account.getCounters";
 		ReadJsonFile(JsonPaths.EmptyObject);
 
 		var counters = Api.Account.GetCounters(CountersFilter.All);
@@ -228,7 +228,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetInfo_WhenServerReturnsAllFields()
 	{
-		Url = "https://api.vk.com/method/account.getInfo";
+		Url = "https://api.vk.ru/method/account.getInfo";
 		ReadCategoryJsonPath(nameof(GetInfo_WhenServerReturnsAllFields));
 
 		var info = Api.Account.GetInfo();
@@ -253,7 +253,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	public void GetPrivacySettings()
 	{
 		// Arrange
-		Url = "https://api.vk.com/method/account.getPrivacySettings";
+		Url = "https://api.vk.ru/method/account.getPrivacySettings";
 		ReadCategoryJsonPath(nameof(GetPrivacySettings));
 
 		// Act
@@ -287,7 +287,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetProfileInfo_WhenServerReturnAllFields()
 	{
-		Url = "https://api.vk.com/method/account.getProfileInfo";
+		Url = "https://api.vk.ru/method/account.getProfileInfo";
 		ReadCategoryJsonPath(nameof(GetProfileInfo_WhenServerReturnAllFields));
 
 		var info = Api.Account.GetProfileInfo();
@@ -338,7 +338,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetProfileInfo_WhenServerReturnSomeFields()
 	{
-		Url = "https://api.vk.com/method/account.getProfileInfo";
+		Url = "https://api.vk.ru/method/account.getProfileInfo";
 
 		ReadCategoryJsonPath(nameof(GetProfileInfo_WhenServerReturnSomeFields));
 
@@ -394,7 +394,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void RegisterDevice_CorrectParameters_ReturnFalse()
 	{
-		Url = "https://api.vk.com/method/account.registerDevice";
+		Url = "https://api.vk.ru/method/account.registerDevice";
 		ReadJsonFile(JsonPaths.False);
 
 		Api.Account.RegisterDevice(new()
@@ -410,7 +410,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void RegisterDevice_CorrectParameters_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/account.registerDevice";
+		Url = "https://api.vk.ru/method/account.registerDevice";
 		ReadJsonFile(JsonPaths.True);
 
 		Api.Account.RegisterDevice(new()
@@ -451,7 +451,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void RegisterDevice_ParametersAreEqualsToNullOrEmptyExceptToken_NotThrowsException()
 	{
-		Url = "https://api.vk.com/method/account.registerDevice";
+		Url = "https://api.vk.ru/method/account.registerDevice";
 		ReadJsonFile(JsonPaths.True);
 
 		FluentActions.Invoking(() => Api.Account.RegisterDevice(new()
@@ -476,7 +476,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SaveProfileInfo_AllParameters_UrlIsCreatedCorrectly()
 	{
-		Url = "https://api.vk.com/method/account.saveProfileInfo";
+		Url = "https://api.vk.ru/method/account.saveProfileInfo";
 
 		ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 
@@ -531,7 +531,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SaveProfileInfo_CancelChangeNameRequest_UrlIsGeneratedCorrectly()
 	{
-		Url = "https://api.vk.com/method/account.saveProfileInfo";
+		Url = "https://api.vk.ru/method/account.saveProfileInfo";
 		ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 
 		Api.Account.SaveProfileInfo(42)
@@ -542,7 +542,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SaveProfileInfo_DateIsParsedCorrectly()
 	{
-		Url = "https://api.vk.com/method/account.saveProfileInfo";
+		Url = "https://api.vk.ru/method/account.saveProfileInfo";
 		ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
 
 		var result1 = Api.Account.SaveProfileInfo(
@@ -561,7 +561,7 @@ public class AccountCategoryTest : CategoryBaseTest
 		result1.Changed.Should()
 			.BeTrue();
 
-		Url = "https://api.vk.com/method/account.saveProfileInfo";
+		Url = "https://api.vk.ru/method/account.saveProfileInfo";
 
 		var result = Api.Account.SaveProfileInfo(
 			new AccountSaveProfileInfoParams
@@ -583,7 +583,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SaveProfileInfo_ResultWasParsedCorrectly_AndEmptyParametersIsProcessedCorrectly()
 	{
-		Url = "https://api.vk.com/method/account.saveProfileInfo";
+		Url = "https://api.vk.ru/method/account.saveProfileInfo";
 		ReadCategoryJsonPath($"{nameof(Api.Account.SaveProfileInfo)}_False");
 
 		var result = Api.Account.SaveProfileInfo(new AccountSaveProfileInfoParams());
@@ -595,7 +595,7 @@ public class AccountCategoryTest : CategoryBaseTest
 		result.NameRequest.Should()
 			.BeNull();
 
-		Url = "https://api.vk.com/method/account.saveProfileInfo";
+		Url = "https://api.vk.ru/method/account.saveProfileInfo";
 
 		ReadCategoryJsonPath($"{nameof(Api.Account.SaveProfileInfo)}_Success");
 
@@ -627,7 +627,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	public void SetInfo_IncorrectUserID_ThrowInvalidParameterException()
 	{
 		var account = new AccountCategory(Api);
-		Url = "https://api.vk.com/method/account.setInfo";
+		Url = "https://api.vk.ru/method/account.setInfo";
 
 		ReadErrorsJsonFile(100);
 
@@ -639,7 +639,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SetInfo_ReturnFalse()
 	{
-		Url = "https://api.vk.com/method/account.setInfo";
+		Url = "https://api.vk.ru/method/account.setInfo";
 		ReadJsonFile(JsonPaths.False);
 
 		Api.Account.SetInfo("own_posts_default", "1")
@@ -650,7 +650,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SetInfo_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/account.setInfo";
+		Url = "https://api.vk.ru/method/account.setInfo";
 		ReadJsonFile(JsonPaths.True);
 
 		Api.Account.SetInfo("own_posts_default", "1")
@@ -661,7 +661,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SetInfo_WithIntroParameter_ReturnFalse()
 	{
-		Url = "https://api.vk.com/method/account.setInfo";
+		Url = "https://api.vk.ru/method/account.setInfo";
 		ReadJsonFile(JsonPaths.True);
 
 		Api.Account.SetInfo("intro", "10")
@@ -678,7 +678,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SetNameInMenu_NotSets_ReturnFalse()
 	{
-		Url = "https://api.vk.com/method/account.setNameInMenu";
+		Url = "https://api.vk.ru/method/account.setNameInMenu";
 		ReadJsonFile(JsonPaths.False);
 
 		Api.Account.SetNameInMenu("example", 1)
@@ -689,7 +689,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SetNameInMenu_SetsCorrectly_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/account.setNameInMenu";
+		Url = "https://api.vk.ru/method/account.setNameInMenu";
 		ReadJsonFile(JsonPaths.True);
 
 		Api.Account.SetNameInMenu("example", 1)
@@ -712,7 +712,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SetOffline_NotSets_ReturnFalse()
 	{
-		Url = "https://api.vk.com/method/account.setOffline";
+		Url = "https://api.vk.ru/method/account.setOffline";
 		ReadJsonFile(JsonPaths.False);
 
 		Api.Account.SetOffline()
@@ -723,7 +723,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SetOffline_SetsCorrectly_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/account.setOffline";
+		Url = "https://api.vk.ru/method/account.setOffline";
 		ReadJsonFile(JsonPaths.True);
 
 		Api.Account.SetOffline()
@@ -745,7 +745,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SetOnline_NotSets_ReturnFalse()
 	{
-		Url = "https://api.vk.com/method/account.setOnline";
+		Url = "https://api.vk.ru/method/account.setOnline";
 		ReadJsonFile(JsonPaths.False);
 
 		Api.Account.SetOnline()
@@ -756,7 +756,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SetOnline_SetsCorrectly_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/account.setOnline";
+		Url = "https://api.vk.ru/method/account.setOnline";
 		ReadJsonFile(JsonPaths.True);
 
 		Api.Account.SetOnline()
@@ -767,7 +767,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SetOnline_WithVoipParameter()
 	{
-		Url = "https://api.vk.com/method/account.setOnline";
+		Url = "https://api.vk.ru/method/account.setOnline";
 		ReadJsonFile(JsonPaths.True);
 		var result = Api.Account.SetOnline(true);
 
@@ -779,7 +779,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	public void SetPrivacy()
 	{
 		// Arrange
-		Url = "https://api.vk.com/method/account.setPrivacy";
+		Url = "https://api.vk.ru/method/account.setPrivacy";
 		ReadCategoryJsonPath(nameof(SetPrivacy));
 
 		// Act
@@ -808,7 +808,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	public void SetSilenceMode_AllParametersAddsToUrlCorrectly()
 	{
 		{
-			Url = "https://api.vk.com/method/account.setSilenceMode";
+			Url = "https://api.vk.ru/method/account.setSilenceMode";
 			ReadJsonFile(JsonPaths.False);
 			var result = Api.Account.SetSilenceMode("tokenVal", 10, 15, true);
 
@@ -817,7 +817,7 @@ public class AccountCategoryTest : CategoryBaseTest
 		}
 
 		{
-			Url = "https://api.vk.com/method/account.setSilenceMode";
+			Url = "https://api.vk.ru/method/account.setSilenceMode";
 			ReadJsonFile(JsonPaths.False);
 			var result = Api.Account.SetSilenceMode("tokenVal", -1, 10, false);
 
@@ -847,7 +847,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SetSilenceMode_SetsCorrectly_ReturnFalse()
 	{
-		Url = "https://api.vk.com/method/account.setSilenceMode";
+		Url = "https://api.vk.ru/method/account.setSilenceMode";
 		ReadJsonFile(JsonPaths.False);
 
 		Api.Account.SetSilenceMode("tokenVal")
@@ -858,7 +858,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void SetSilenceMode_SetsCorrectly_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/account.setSilenceMode";
+		Url = "https://api.vk.ru/method/account.setSilenceMode";
 		ReadJsonFile(JsonPaths.True);
 
 		Api.Account.SetSilenceMode("tokenVal")
@@ -880,7 +880,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void UnbanUser_CorrectParameters_ReturnFalse()
 	{
-		Url = "https://api.vk.com/method/account.unban";
+		Url = "https://api.vk.ru/method/account.unban";
 		ReadJsonFile(JsonPaths.False);
 
 		Api.Account.UnbanUser(1)
@@ -891,7 +891,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void UnbanUser_CorrectParameters_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/account.unban";
+		Url = "https://api.vk.ru/method/account.unban";
 		ReadJsonFile(JsonPaths.True);
 
 		Api.Account.UnbanUser(4)
@@ -913,7 +913,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void UnregisterDevice_CorrectParameters_ReturnFalse()
 	{
-		Url = "https://api.vk.com/method/account.unregisterDevice";
+		Url = "https://api.vk.ru/method/account.unregisterDevice";
 		ReadJsonFile(JsonPaths.False);
 
 		Api.Account.UnregisterDevice("tokenVal")
@@ -924,7 +924,7 @@ public class AccountCategoryTest : CategoryBaseTest
 	[Fact]
 	public void UnregisterDevice_CorrectParameters_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/account.unregisterDevice";
+		Url = "https://api.vk.ru/method/account.unregisterDevice";
 		ReadJsonFile(JsonPaths.True);
 
 		Api.Account.UnregisterDevice("tokenVal")

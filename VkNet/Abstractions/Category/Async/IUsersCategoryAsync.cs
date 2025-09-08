@@ -28,7 +28,7 @@ public interface IUsersCategoryAsync
 	/// </returns>
 	/// <exception cref="ArgumentException"> Query can not be <c> null </c> or empty. </exception>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/users.search
+	/// Страница документации ВКонтакте http://vk.ru/dev/users.search
 	/// </remarks>
 	Task<VkCollection<User>> SearchAsync(UserSearchParams @params,
 										CancellationToken token = default);
@@ -47,7 +47,7 @@ public interface IUsersCategoryAsync
 	/// себя данное приложение, иначе 0.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/users.isAppUser
+	/// Страница документации ВКонтакте http://vk.ru/dev/users.isAppUser
 	/// </remarks>
 	Task<bool> IsAppUserAsync(long? userId,
 							CancellationToken token = default);
@@ -64,7 +64,7 @@ public interface IUsersCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Список объектов с запрошенной информацией о пользователях. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/users.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/users.get
 	/// </remarks>
 	Task<ReadOnlyCollection<User>> GetAsync([NotNull] IEnumerable<long> userIds,
 											ProfileFields fields = null,
@@ -83,7 +83,7 @@ public interface IUsersCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Список объектов с запрошенной информацией о пользователях. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/users.get
+	/// Страница документации ВКонтакте http://vk.ru/dev/users.get
 	/// </remarks>
 	Task<ReadOnlyCollection<User>> GetAsync([NotNull] IEnumerable<string> screenNames,
 											ProfileFields fields = null,
@@ -112,7 +112,7 @@ public interface IUsersCategoryAsync
 	/// Пока возвращается только список групп.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/users.getSubscriptions
+	/// Страница документации ВКонтакте http://vk.ru/dev/users.getSubscriptions
 	/// </remarks>
 	Task<VkCollection<Group>> GetSubscriptionsAsync(long? userId = null,
 													int? count = null,
@@ -138,7 +138,7 @@ public interface IUsersCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> Список подписчиков </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/users.getFollowers
+	/// Страница документации ВКонтакте http://vk.ru/dev/users.getFollowers
 	/// </remarks>
 	Task<VkCollection<User>> GetFollowersAsync(long? userId = null,
 												int? count = null,
@@ -159,7 +159,7 @@ public interface IUsersCategoryAsync
 	/// <param name="token">Токен отмены операции</param>
 	/// <returns> В случае успешной жалобы метод вернет true. </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/users.report
+	/// Страница документации ВКонтакте http://vk.ru/dev/users.report
 	/// </remarks>
 	Task<bool> ReportAsync(long userId,
 							ReportType type,
@@ -176,7 +176,7 @@ public interface IUsersCategoryAsync
 	/// После успешного выполнения возвращает список объектов user.
 	/// </returns>
 	/// <remarks>
-	/// Страница документации ВКонтакте http://vk.com/dev/users.getNearby
+	/// Страница документации ВКонтакте http://vk.ru/dev/users.getNearby
 	/// </remarks>
 	Task<VkCollection<User>> GetNearbyAsync(UsersGetNearbyParams @params,
 											CancellationToken token = default);

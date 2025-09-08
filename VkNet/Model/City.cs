@@ -7,7 +7,7 @@ namespace VkNet.Model;
 /// Город.
 /// </summary>
 /// <remarks>
-/// Страница документации ВКонтакте http://vk.com/dev/database.getCities
+/// Страница документации ВКонтакте http://vk.ru/dev/database.getCities
 /// </remarks>
 [Serializable]
 public class City

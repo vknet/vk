@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -57,7 +57,7 @@ public class VkApiTest : BaseTest
 	[Fact(Skip = "Не работает")]
 	public async Task Call_NotMoreThen3CallsPerSecond()
 	{
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		ReadJsonFile(nameof(VkApi), nameof(Call_NotMoreThen3CallsPerSecond));
 		const int callsCount = 3;
 		Api.RequestsPerSecond = callsCount;
@@ -80,7 +80,7 @@ public class VkApiTest : BaseTest
 	[Fact]
 	public void CallAndConvertToType()
 	{
-		Url = "https://api.vk.com/method/friends.getRequests";
+		Url = "https://api.vk.ru/method/friends.getRequests";
 		ReadJsonFile(nameof(VkApi), nameof(CallAndConvertToType));
 
 		var result = Api.Call<FriendsGetRequestsResult>("friends.getRequests", VkParameters.Empty);
@@ -123,7 +123,7 @@ public class VkApiTest : BaseTest
 	[Fact]
 	public void Invoke_DictionaryParams()
 	{
-		Url = "https://api.vk.com/method/example.get";
+		Url = "https://api.vk.ru/method/example.get";
 		ReadJsonFile(JsonPaths.EmptyArray);
 
 		var parameters = new Dictionary<string, string>
@@ -142,7 +142,7 @@ public class VkApiTest : BaseTest
 	[Fact]
 	public void Invoke_VkParams()
 	{
-		Url = "https://api.vk.com/method/example.get";
+		Url = "https://api.vk.ru/method/example.get";
 		ReadJsonFile(JsonPaths.EmptyArray);
 
 		var parameters = new VkParameters
@@ -161,7 +161,7 @@ public class VkApiTest : BaseTest
 	[Fact]
 	public void Validate()
 	{
-		var uri = new Uri("https://m.vk.com/activation?act=validate&api_hash=f2fed5f22ebadc301e&hash=c8acf371111c938417");
+		var uri = new Uri("https://m.vk.ru/activation?act=validate&api_hash=f2fed5f22ebadc301e&hash=c8acf371111c938417");
 		Api.Validate(uri.ToString());
 	}
 

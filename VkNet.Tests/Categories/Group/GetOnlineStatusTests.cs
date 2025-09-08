@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -12,7 +12,7 @@ public class GetOnlineStatusTests : CategoryBaseTest
 	[Fact]
 	public void GetOnlineStatus()
 	{
-		Url = "https://api.vk.com/method/groups.getOnlineStatus";
+		Url = "https://api.vk.ru/method/groups.getOnlineStatus";
 
 		ReadCategoryJsonPath(nameof(GetOnlineStatus));
 

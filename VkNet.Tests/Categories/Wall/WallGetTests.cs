@@ -1,5 +1,5 @@
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -13,7 +13,7 @@ public class WallGetTests : CategoryBaseTest
 	[Fact]
 	public void ArticleAttachement()
 	{
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 		ReadCategoryJsonPath(nameof(ArticleAttachement));
 
 		var result = Api.Wall.Get(new());
@@ -41,7 +41,7 @@ public class WallGetTests : CategoryBaseTest
 	[Fact]
 	public void PodcastAttachment()
 	{
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 		ReadCategoryJsonPath(nameof(PodcastAttachment));
 
 		var result = Api.Wall.Get(new());

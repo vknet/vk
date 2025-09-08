@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class GetPhotoUploadServerTest : CategoryBaseTest
 	[Fact]
 	public void GetPhotoUploadServer()
 	{
-		Url = "https://api.vk.com/method/polls.getPhotoUploadServer";
+		Url = "https://api.vk.ru/method/polls.getPhotoUploadServer";
 
 		ReadCategoryJsonPath(nameof(Api.PollsCategory.GetPhotoUploadServer));
 

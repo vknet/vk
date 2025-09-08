@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
@@ -15,7 +15,7 @@ public class AdsGetAdsTests : CategoryBaseTest
 	[Fact]
 	public void GetAds_GenerateAdsCorrectly()
 	{
-		Url = "https://api.vk.com/method/ads.getAds";
+		Url = "https://api.vk.ru/method/ads.getAds";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetAds));
 

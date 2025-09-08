@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -12,7 +12,7 @@ public class GetStatisticsTest : CategoryBaseTest
 	[Fact]
 	public void GetStatistics()
 	{
-		Url = "https://api.vk.com/method/ads.getStatistics";
+		Url = "https://api.vk.ru/method/ads.getStatistics";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.GetStatistics));
 

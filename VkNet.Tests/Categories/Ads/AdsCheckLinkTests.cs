@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
@@ -12,7 +12,7 @@ public class AdsCheckLinkTests : CategoryBaseTest
 	[Fact]
 	public void CheckLink()
 	{
-		Url = "https://api.vk.com/method/ads.checkLink";
+		Url = "https://api.vk.ru/method/ads.checkLink";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.CheckLink));
 

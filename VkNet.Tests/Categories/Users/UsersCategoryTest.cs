@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using FluentAssertions;
+using AwesomeAssertions;
 using Moq;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
@@ -24,7 +24,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_CountersFields_CountersObject()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_CountersFields_CountersObject));
 
 		// act
@@ -88,7 +88,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_DefaultFields_UidFirstNameLastName()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_DefaultFields_UidFirstNameLastName));
 
 		// act
@@ -112,7 +112,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_DeletedUser()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_DeletedUser));
 
 		var user = Api.Users.Get(new[]
@@ -144,7 +144,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_Dimon_SingleUser()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_Dimon_SingleUser));
 
 		var fields = ProfileFields.FirstName|ProfileFields.LastName|ProfileFields.Sex|ProfileFields.City;
@@ -182,7 +182,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_DmAndDurov_ListOfUsers()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_DmAndDurov_ListOfUsers));
 
 		var screenNames = new[]
@@ -261,7 +261,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_ListOfUsers()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_ListOfUsers));
 
 		var result = Api.Users.Get(new long[]
@@ -510,7 +510,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_Mutliple_TwoUidsDefaultFields_TwoProfiles()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_Mutliple_TwoUidsDefaultFields_TwoProfiles));
 
 		var lst = Api.Users.Get(new long[]
@@ -561,7 +561,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		Mock.Get(Api.RestClient)
 			.Setup(f =>
 				f.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>(), Encoding.UTF8, null, CancellationToken.None))
-			.Throws(new VkApiException("The remote name could not be resolved: 'api.vk.com'"));
+			.Throws(new VkApiException("The remote name could not be resolved: 'api.vk.ru'"));
 
 		FluentActions.Invoking(() => Api.Users.Get(new long[]
 			{
@@ -570,13 +570,13 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Should()
 			.ThrowExactly<VkApiException>()
 			.And.Message.Should()
-			.Be("The remote name could not be resolved: 'api.vk.com'");
+			.Be("The remote name could not be resolved: 'api.vk.ru'");
 	}
 
 	[Fact]
 	public void Get_SingleUser()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_SingleUser));
 
 		var user = Api.Users.Get(new[]
@@ -818,13 +818,13 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(1);
 
 		user.OwnerState.Photos.Photo50.Should()
-			.Be("https://vk.com/images/deactivated_50.png");
+			.Be("https://vk.ru/images/deactivated_50.png");
 	}
 
 	[Fact]
 	public void Get_TwoUidsEducationField_TwoProfiles()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_TwoUidsEducationField_TwoProfiles));
 
 		var lst = Api.Users.Get(new long[]
@@ -921,7 +921,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_WithSomeFields_FirstNameLastNameEducation()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_WithSomeFields_FirstNameLastNameEducation));
 
 		// act
@@ -969,7 +969,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_WrongAccessToken_Throw_ThrowUserAuthorizationException()
 	{
-		Url = "https://api.vk.com/method/users.get";
+		Url = "https://api.vk.ru/method/users.get";
 		ReadErrorsJsonFile(5);
 
 		// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
@@ -983,7 +983,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetFollowers_WithAllFields()
 	{
-		Url = "https://api.vk.com/method/users.getFollowers";
+		Url = "https://api.vk.ru/method/users.getFollowers";
 		ReadCategoryJsonPath(nameof(GetFollowers_WithAllFields));
 
 		var users = Api.Users.GetFollowers(1, 2, 3, ProfileFields.All, NameCase.Gen);
@@ -1230,7 +1230,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetFollowers_WithoutFields()
 	{
-		Url = "https://api.vk.com/method/users.getFollowers";
+		Url = "https://api.vk.ru/method/users.getFollowers";
 		ReadCategoryJsonPath(nameof(GetFollowers_WithoutFields));
 
 		var result = Api.Users.GetFollowers(1, 2, 3);
@@ -1253,7 +1253,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetSubscriptions_Extended()
 	{
-		Url = "https://api.vk.com/method/users.getSubscriptions";
+		Url = "https://api.vk.ru/method/users.getSubscriptions";
 		ReadCategoryJsonPath(nameof(GetSubscriptions_Extended));
 
 		var result = Api.Users.GetSubscriptions(1, 2, 3);
@@ -1340,7 +1340,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void IsAppUser_5_5_version_of_api_return_false()
 	{
-		Url = "https://api.vk.com/method/users.isAppUser";
+		Url = "https://api.vk.ru/method/users.isAppUser";
 		ReadJsonFile(JsonPaths.False);
 
 		var result = Api.Users.IsAppUser(1);
@@ -1352,7 +1352,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void IsAppUser_5_5_version_of_api_return_true()
 	{
-		Url = "https://api.vk.com/method/users.isAppUser";
+		Url = "https://api.vk.ru/method/users.isAppUser";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Users.IsAppUser(123);
@@ -1364,7 +1364,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Report_NormalCase()
 	{
-		Url = "https://api.vk.com/method/users.report";
+		Url = "https://api.vk.ru/method/users.report";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Users.Report(243663122, ReportType.Insult, "комментарий");
@@ -1376,7 +1376,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Search_BadQuery_EmptyList()
 	{
-		Url = "https://api.vk.com/method/users.search";
+		Url = "https://api.vk.ru/method/users.search";
 		ReadJsonFile(JsonPaths.EmptyVkCollection);
 
 		var lst = Api.Users.Search(new()
@@ -1397,7 +1397,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Search_CarierCase()
 	{
-		Url = "https://api.vk.com/method/users.search";
+		Url = "https://api.vk.ru/method/users.search";
 		ReadCategoryJsonPath(nameof(Search_CarierCase));
 
 		var lst = Api.Users.Search(new()
@@ -1445,7 +1445,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Search_DefaultFields_ListOfProfileObjects()
 	{
-		Url = "https://api.vk.com/method/users.search";
+		Url = "https://api.vk.ru/method/users.search";
 		ReadCategoryJsonPath(nameof(Search_DefaultFields_ListOfProfileObjects));
 
 		var lst = Api.Users.Search(new()
@@ -1511,7 +1511,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Search_EducationField_ListofProfileObjects()
 	{
-		Url = "https://api.vk.com/method/users.search";
+		Url = "https://api.vk.ru/method/users.search";
 		ReadCategoryJsonPath(nameof(Search_EducationField_ListofProfileObjects));
 
 		var lst = Api.Users.Search(new()

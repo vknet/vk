@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ namespace VkNet.Tests.Categories.Market
 		[Fact]
 		public void MarketGet()
 		{
-			Url = "https://api.vk.com/method/market.get";
+			Url = "https://api.vk.ru/method/market.get";
 
 			ReadCategoryJsonPath(nameof(Api.Markets.Get));
 

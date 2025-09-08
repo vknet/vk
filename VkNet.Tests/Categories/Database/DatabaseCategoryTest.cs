@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
@@ -24,7 +24,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCities_GetBiggestCitiesOfRussia()
 	{
-		Url = "https://api.vk.com/method/database.getCities";
+		Url = "https://api.vk.ru/method/database.getCities";
 		ReadCategoryJsonPath(nameof(GetCities_GetBiggestCitiesOfRussia));
 
 		var cities = Api.Database.GetCities(new()
@@ -100,7 +100,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCities_NormalCase()
 	{
-		Url = "https://api.vk.com/method/database.getCities";
+		Url = "https://api.vk.ru/method/database.getCities";
 		ReadCategoryJsonPath(nameof(GetCities_NormalCase));
 
 		var cities = Api.Database.GetCities(new()
@@ -159,7 +159,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCitiesById_EmptyList()
 	{
-		Url = "https://api.vk.com/method/database.getCitiesById";
+		Url = "https://api.vk.ru/method/database.getCitiesById";
 		ReadJsonFile(JsonPaths.EmptyArray);
 
 		var cities = Api.Database.GetCitiesById();
@@ -171,7 +171,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCitiesById_MskSpbVlg()
 	{
-		Url = "https://api.vk.com/method/database.getCitiesById";
+		Url = "https://api.vk.ru/method/database.getCitiesById";
 		ReadCategoryJsonPath(nameof(GetCitiesById_MskSpbVlg));
 
 		var cities = Api.Database.GetCitiesById(1, 2, 10);
@@ -213,7 +213,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCountries_ListOfCodes_ListOfCountries()
 	{
-		Url = "https://api.vk.com/method/database.getCountries";
+		Url = "https://api.vk.ru/method/database.getCountries";
 		ReadCategoryJsonPath(nameof(GetCountries_ListOfCodes_ListOfCountries));
 
 		var countries = Api.Database.GetCountries(codes: new List<Iso3166>
@@ -245,7 +245,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCountries_NormalCase_ListOfCountries()
 	{
-		Url = "https://api.vk.com/method/database.getCountries";
+		Url = "https://api.vk.ru/method/database.getCountries";
 		ReadCategoryJsonPath(nameof(GetCountries_NormalCase_ListOfCountries));
 
 		var countries = Api.Database.GetCountries(true, null, 3, 5);
@@ -287,7 +287,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCountriesById_1And65_RussiaAndGermany()
 	{
-		Url = "https://api.vk.com/method/database.getCountriesById";
+		Url = "https://api.vk.ru/method/database.getCountriesById";
 		ReadCategoryJsonPath(nameof(GetCountriesById_1And65_RussiaAndGermany));
 
 		var countries = Api.Database.GetCountriesById(1, 65);
@@ -315,7 +315,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetCountriesById_EmptyList()
 	{
-		Url = "https://api.vk.com/method/database.getCountriesById";
+		Url = "https://api.vk.ru/method/database.getCountriesById";
 		ReadJsonFile(JsonPaths.EmptyArray);
 
 		var countries = Api.Database.GetCountriesById();
@@ -330,7 +330,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetFaculties_ListVstuFaculties()
 	{
-		Url = "https://api.vk.com/method/database.getFaculties";
+		Url = "https://api.vk.ru/method/database.getFaculties";
 		ReadCategoryJsonPath(nameof(GetFaculties_ListVstuFaculties));
 
 		var faculties = Api.Database.GetFaculties(431, 3, 2);
@@ -378,7 +378,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetRegions_NormalCase_ListOfRegions()
 	{
-		Url = "https://api.vk.com/method/database.getRegions";
+		Url = "https://api.vk.ru/method/database.getRegions";
 		ReadCategoryJsonPath(nameof(GetRegions_NormalCase_ListOfRegions));
 
 		var regions = Api.Database.GetRegions(1, count: 3, offset: 5);
@@ -420,7 +420,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetSchools_BadQuery_EmptyList()
 	{
-		Url = "https://api.vk.com/method/database.getSchools";
+		Url = "https://api.vk.ru/method/database.getSchools";
 		ReadJsonFile(JsonPaths.EmptyVkCollection);
 
 		var schools = Api.Database.GetSchools(10, "SchoolDoesNotExist");
@@ -432,7 +432,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetSchools_LiceumsInVolgograd_ListOfLiceums()
 	{
-		Url = "https://api.vk.com/method/database.getSchools";
+		Url = "https://api.vk.ru/method/database.getSchools";
 		ReadCategoryJsonPath(nameof(GetSchools_LiceumsInVolgograd_ListOfLiceums));
 
 		var schools = Api.Database.GetSchools(10, count: 3);
@@ -468,7 +468,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetStreetsById_1_89_437()
 	{
-		Url = "https://api.vk.com/method/database.getStreetsById";
+		Url = "https://api.vk.ru/method/database.getStreetsById";
 		ReadCategoryJsonPath(nameof(GetStreetsById_1_89_437));
 
 		var streets = Api.Database.GetStreetsById(1, 89, 437);
@@ -504,7 +504,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetStreetsById_EmptyList()
 	{
-		Url = "https://api.vk.com/method/database.getStreetsById";
+		Url = "https://api.vk.ru/method/database.getStreetsById";
 		ReadErrorsJsonFile(100);
 
 		FluentActions.Invoking(() =>
@@ -523,7 +523,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetUniversities_FindVstu()
 	{
-		Url = "https://api.vk.com/method/database.getUniversities";
+		Url = "https://api.vk.ru/method/database.getUniversities";
 		ReadCategoryJsonPath(nameof(GetUniversities_FindVstu));
 
 		var universities = Api.Database.GetUniversities(1, 10, "ВолгГТУ");
@@ -543,7 +543,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetUniversities_ListOfUniversities()
 	{
-		Url = "https://api.vk.com/method/database.getUniversities";
+		Url = "https://api.vk.ru/method/database.getUniversities";
 		ReadJsonFile(JsonPaths.EmptyVkCollection);
 
 		var universities = Api.Database.GetUniversities(1, 1, "ThisUniverDoesNotExist");
@@ -555,7 +555,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetMetroStations()
 	{
-		Url = "https://api.vk.com/method/database.getMetroStations";
+		Url = "https://api.vk.ru/method/database.getMetroStations";
 		ReadCategoryJsonPath(nameof(GetMetroStations));
 
 		var universities = Api.Database.GetMetroStations(2, 10, 10, true);
@@ -567,7 +567,7 @@ public class DatabaseCategoryTest : CategoryBaseTest
 	[Fact]
 	public void GetMetroStationsById()
 	{
-		Url = "https://api.vk.com/method/database.getMetroStationsById";
+		Url = "https://api.vk.ru/method/database.getMetroStationsById";
 		ReadCategoryJsonPath(nameof(GetMetroStationsById));
 
 		var universities = Api.Database.GetMetroStationsById(new ulong[]

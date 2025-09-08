@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Model;
 using Xunit;
 
@@ -10,7 +10,7 @@ public class GraffitiModel : BaseTest
 	public void ShouldDeserializeFromVkResponseToAttachment()
 	{
 		ReadJsonFile("Models", "graffiti_attachment");
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 
 		var result = Api.Wall.Get(new());
 
@@ -23,7 +23,7 @@ public class GraffitiModel : BaseTest
 	{
 		ReadJsonFile("Models", "graffiti_attachment_for_960");
 
-		Url = "https://api.vk.com/method/wall.get";
+		Url = "https://api.vk.ru/method/wall.get";
 
 		var result = Api.Wall.Get(new());
 

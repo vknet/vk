@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -12,7 +12,7 @@ public class StoriesGetTests : CategoryBaseTest
 	[Fact]
 	public void Get()
 	{
-		Url = "https://api.vk.com/method/stories.get";
+		Url = "https://api.vk.ru/method/stories.get";
 		ReadCategoryJsonPath(nameof(Get));
 
 		var result = Api.Stories.Get();
@@ -27,7 +27,7 @@ public class StoriesGetTests : CategoryBaseTest
 	[Fact]
 	public void GetBanned()
 	{
-		Url = "https://api.vk.com/method/stories.getBanned";
+		Url = "https://api.vk.ru/method/stories.getBanned";
 		ReadCategoryJsonPath(nameof(GetBanned));
 
 		var result = Api.Stories.GetBanned();
@@ -45,7 +45,7 @@ public class StoriesGetTests : CategoryBaseTest
 	[Fact]
 	public void GetPhotoUploadServer()
 	{
-		Url = "https://api.vk.com/method/stories.getPhotoUploadServer";
+		Url = "https://api.vk.ru/method/stories.getPhotoUploadServer";
 		ReadCategoryJsonPath(nameof(GetPhotoUploadServer));
 
 		var result = Api.Stories.GetPhotoUploadServer(new()
@@ -63,7 +63,7 @@ public class StoriesGetTests : CategoryBaseTest
 	[Fact]
 	public void GetReplies()
 	{
-		Url = "https://api.vk.com/method/stories.getReplies";
+		Url = "https://api.vk.ru/method/stories.getReplies";
 		ReadCategoryJsonPath(nameof(GetReplies));
 
 		var result = Api.Stories.GetReplies(12345679, 123456789, null, true, new List<string>());
@@ -78,7 +78,7 @@ public class StoriesGetTests : CategoryBaseTest
 	[Fact]
 	public void GetViewers()
 	{
-		Url = "https://api.vk.com/method/stories.getViewers";
+		Url = "https://api.vk.ru/method/stories.getViewers";
 		ReadCategoryJsonPath(nameof(GetViewers));
 
 		var users = Api.Stories.GetViewers(123456789, 123456789);
@@ -99,7 +99,7 @@ public class StoriesGetTests : CategoryBaseTest
 	[Fact]
 	public void GetViewersExtended()
 	{
-		Url = "https://api.vk.com/method/stories.getViewers";
+		Url = "https://api.vk.ru/method/stories.getViewers";
 		ReadCategoryJsonPath(nameof(GetViewersExtended));
 
 		var users = Api.Stories.GetViewersExtended(123456789, 123456789);
@@ -126,7 +126,7 @@ public class StoriesGetTests : CategoryBaseTest
 	[Fact]
 	public void GetStats()
 	{
-		Url = "https://api.vk.com/method/stories.getStats";
+		Url = "https://api.vk.ru/method/stories.getStats";
 		ReadCategoryJsonPath(nameof(GetStats));
 
 		var stats = Api.Stories.GetStats(123456789, 123456789);
@@ -156,7 +156,7 @@ public class StoriesGetTests : CategoryBaseTest
 	[Fact]
 	public void GetById()
 	{
-		Url = "https://api.vk.com/method/stories.getById";
+		Url = "https://api.vk.ru/method/stories.getById";
 		ReadCategoryJsonPath(nameof(GetById));
 
 		var stories = Api.Stories.GetById(new List<string>
@@ -179,7 +179,7 @@ public class StoriesGetTests : CategoryBaseTest
 	[Fact]
 	public void Search()
 	{
-		Url = "https://api.vk.com/method/stories.search";
+		Url = "https://api.vk.ru/method/stories.search";
 		ReadCategoryJsonPath(nameof(Search));
 
 		var result = Api.Stories.Search(new()
@@ -211,7 +211,7 @@ public class StoriesGetTests : CategoryBaseTest
 	[Fact]
 	public void SendInteraction()
 	{
-		Url = "https://api.vk.com/method/stories.sendInteraction";
+		Url = "https://api.vk.ru/method/stories.sendInteraction";
 		ReadCommonJsonFile(JsonTestFolderConstants.Common.True);
 
 		var result = Api.Stories.SendInteraction("key", "message");

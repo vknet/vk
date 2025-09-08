@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class DeleteTargetGroupTest : CategoryBaseTest
 	[Fact]
 	public void DeleteTargetGroup()
 	{
-		Url = "https://api.vk.com/method/ads.deleteTargetGroup";
+		Url = "https://api.vk.ru/method/ads.deleteTargetGroup";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.DeleteTargetGroup));
 

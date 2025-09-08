@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
@@ -13,7 +13,7 @@ public class AddOfficeUsersTest : CategoryBaseTest
 	[Fact]
 	public void AddOfficeUsers()
 	{
-		Url = "https://api.vk.com/method/ads.addOfficeUsers";
+		Url = "https://api.vk.ru/method/ads.addOfficeUsers";
 
 		ReadCategoryJsonPath(nameof(Api.Ads.AddOfficeUsers));
 

@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Categories;
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
@@ -13,7 +13,7 @@ public class StatusCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_AccessDenied_ThrowAccessDeniedException()
 	{
-		Url = "https://api.vk.com/method/status.get";
+		Url = "https://api.vk.ru/method/status.get";
 		ReadErrorsJsonFile(7);
 
 		// ReSharper disable once ReturnValueOfPureMethodIsNotUsed
@@ -37,7 +37,7 @@ public class StatusCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_Audio_ReturnStatus()
 	{
-		Url = "https://api.vk.com/method/status.get";
+		Url = "https://api.vk.ru/method/status.get";
 
 		ReadCategoryJsonPath(nameof(Get_Audio_ReturnStatus));
 
@@ -77,7 +77,7 @@ public class StatusCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Get_SimpleText_ReturnStatus()
 	{
-		Url = "https://api.vk.com/method/status.get";
+		Url = "https://api.vk.ru/method/status.get";
 		ReadCategoryJsonPath(nameof(Get_SimpleText_ReturnStatus));
 
 		var actual = Api.Status.Get(1);
@@ -95,7 +95,7 @@ public class StatusCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Set_AccessDenied_ThrowAccessDeniedException()
 	{
-		Url = "https://api.vk.com/method/status.set";
+		Url = "https://api.vk.ru/method/status.set";
 		ReadErrorsJsonFile(7);
 
 		FluentActions.Invoking(() => Api.Status.Set("test"))
@@ -116,7 +116,7 @@ public class StatusCategoryTest : CategoryBaseTest
 	[Fact]
 	public void Set_SimpleText_ReturnTrue()
 	{
-		Url = "https://api.vk.com/method/status.set";
+		Url = "https://api.vk.ru/method/status.set";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Status.Set("test test test");

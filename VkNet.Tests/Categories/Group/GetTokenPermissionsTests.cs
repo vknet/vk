@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -11,7 +11,7 @@ public class GetTokenPermissionsTests : CategoryBaseTest
 	[Fact]
 	public void GetTokenPermissions()
 	{
-		Url = "https://api.vk.com/method/groups.getTokenPermissions";
+		Url = "https://api.vk.ru/method/groups.getTokenPermissions";
 
 		ReadCategoryJsonPath(nameof(GetTokenPermissions));
 

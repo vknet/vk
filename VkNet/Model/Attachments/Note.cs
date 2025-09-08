@@ -8,7 +8,7 @@ namespace VkNet.Model;
 /// Заметка пользователя.
 /// </summary>
 /// <remarks>
-/// <a href="http://vk.com/dev/note">См. описание</a>
+/// <a href="http://vk.ru/dev/note">См. описание</a>
 /// </remarks>
 [Serializable]
 public class Note : MediaAttachment
