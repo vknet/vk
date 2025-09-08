@@ -24,6 +24,5 @@ public sealed class PermissionToPerformThisActionException : VkApiMethodInvokeEx
 	/// <inheritdoc />
 	private PermissionToPerformThisActionException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

@@ -22,6 +22,5 @@ public sealed class InvalidParameterException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private InvalidParameterException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

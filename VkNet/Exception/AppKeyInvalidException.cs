@@ -22,6 +22,5 @@ public class AppKeyInvalidException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	protected AppKeyInvalidException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

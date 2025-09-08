@@ -6,7 +6,7 @@ namespace VkNet.Tests.Models;
 
 public class GraffitiModel : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Should deserialize from vk response to attachment")]
 	public void ShouldDeserializeFromVkResponseToAttachment()
 	{
 		ReadJsonFile("Models", "graffiti_attachment");
@@ -14,11 +14,13 @@ public class GraffitiModel : BaseTest
 
 		var result = Api.Wall.Get(new());
 
-		result.WallPosts[0].Attachments[0].Instance.Should()
+		result.WallPosts[0]
+			.Attachments[0]
+			.Instance.Should()
 			.BeOfType<Graffiti>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should deserialize old api response to attachment")]
 	public void ShouldDeserializeOldApiResponseToAttachment()
 	{
 		ReadJsonFile("Models", "graffiti_attachment_for_960");
@@ -27,7 +29,9 @@ public class GraffitiModel : BaseTest
 
 		var result = Api.Wall.Get(new());
 
-		result.WallPosts[0].Attachments[0].Instance.Should()
+		result.WallPosts[0]
+			.Attachments[0]
+			.Instance.Should()
 			.BeOfType<Graffiti>();
 	}
 }

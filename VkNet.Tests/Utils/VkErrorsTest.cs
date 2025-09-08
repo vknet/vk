@@ -8,7 +8,7 @@ namespace VkNet.Tests.Utils;
 
 public class VkErrorsTest : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Call throws impossible to compile code 12")]
 	public void Call_ThrowsImpossibleToCompileCode_12()
 	{
 		Url = "https://api.vk.ru/method/execute";
@@ -20,7 +20,7 @@ public class VkErrorsTest : BaseTest
 			.ThrowExactly<ImpossibleToCompileCodeException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Call throws post limit exception")]
 	public void Call_ThrowsPostLimitException()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -32,7 +32,7 @@ public class VkErrorsTest : BaseTest
 			.ThrowExactly<PostLimitException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Call throws post limit exception 103")]
 	public void Call_ThrowsPostLimitException_103()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -44,7 +44,7 @@ public class VkErrorsTest : BaseTest
 			.ThrowExactly<OutOfLimitsException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "If error throw exception group access denied throw access denied exception")]
 	public void IfErrorThrowException_GroupAccessDenied_ThrowAccessDeniedException()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -57,7 +57,7 @@ public class VkErrorsTest : BaseTest
 			.BeEquivalentTo("Access to the groups list is denied due to the user privacy settings.");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "If error throw exception normal case nothing exceptions")]
 	public void IfErrorThrowException_NormalCase_NothingExceptions()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -66,7 +66,7 @@ public class VkErrorsTest : BaseTest
 		VkErrors.IfErrorThrowException(json);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "If error throw exception user authorization fail throw user authorization fail exception")]
 	public void IfErrorThrowException_UserAuthorizationFail_ThrowUserAuthorizationFailException()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -84,7 +84,7 @@ public class VkErrorsTest : BaseTest
 			.Be(5);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "If error throw exception wrong json throw vk api exception")]
 	public void IfErrorThrowException_WrongJson_ThrowVkApiException()
 	{
 		const string json = "ThisIsNotJson";
@@ -96,7 +96,7 @@ public class VkErrorsTest : BaseTest
 			.Be("Wrong json data.");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Throw if number is negative expression version long")]
 	public void ThrowIfNumberIsNegative_ExpressionVersion_Long()
 	{
 		const long paramName = -1;
@@ -108,7 +108,7 @@ public class VkErrorsTest : BaseTest
 			.StartWith("Отрицательное значение.");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Throw if number is negative expression version nullable long")]
 	public void ThrowIfNumberIsNegative_ExpressionVersion_NullableLong()
 	{
 		long? param = -1;
@@ -125,7 +125,7 @@ public class VkErrorsTest : BaseTest
 			.Contain("param");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Throw if number is negative inner test class throw exception")]
 	public void ThrowIfNumberIsNegative_InnerTestClass_ThrowException()
 	{
 		var cls = new TestClass();
@@ -135,19 +135,19 @@ public class VkErrorsTest : BaseTest
 			.ThrowExactly<ArgumentException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Throw if number not in range less then min throws exception")]
 	public void ThrowIfNumberNotInRange_LessThenMin_ThrowsException() => FluentActions
 		.Invoking(() => VkErrors.ThrowIfNumberNotInRange(2, 5, 10))
 		.Should()
 		.ThrowExactly<ArgumentOutOfRangeException>();
 
-	[Fact]
+	[Fact(DisplayName = "Throw if number not in range more than max throws exception")]
 	public void ThrowIfNumberNotInRange_MoreThanMax_ThrowsException() => FluentActions
 		.Invoking(() => VkErrors.ThrowIfNumberNotInRange(12, 5, 10))
 		.Should()
 		.ThrowExactly<ArgumentOutOfRangeException>();
 
-	[Fact]
+	[Fact(DisplayName = "Throw if number not in range value in range exception not throwed")]
 	public void ThrowIfNumberNotInRange_ValueInRange_ExceptionNotThrowed()
 	{
 		FluentActions.Invoking(() => VkErrors.ThrowIfNumberNotInRange(5, 2, 7))

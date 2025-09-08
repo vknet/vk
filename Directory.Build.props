@@ -1,11 +1,12 @@
 <Project>
 	<PropertyGroup>
-		<NoWarn>CS8632;RS0016</NoWarn>
+		<NoWarn>$(NoWarn);CS8632;RS0016;IDE0130;REO12004</NoWarn>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<DefineConstants>JETBRAINS_ANNOTATIONS</DefineConstants>
 		<LangVersion>preview</LangVersion>
 		<Features>InterceptorsPreview</Features>
 		<InterceptorsNamespaces>$(InterceptorsNamespaces);Microsoft.Extensions.Logging.AutoLoggerMessage</InterceptorsNamespaces>
+		<AutoLoggerMessageGenerator_GenerateSkipEnabledCheck>false</AutoLoggerMessageGenerator_GenerateSkipEnabledCheck>
 	</PropertyGroup>
 	<PropertyGroup Condition="!$(MSBuildProjectName.EndsWith('Tests'))">
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>

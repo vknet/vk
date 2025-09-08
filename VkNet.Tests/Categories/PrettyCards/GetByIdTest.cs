@@ -10,7 +10,7 @@ public class GetByIdTest : CategoryBaseTest
 {
 	protected override string Folder => "PrettyCards";
 
-	[Fact]
+	[Fact(DisplayName = "Get by id")]
 	public void GetById()
 	{
 		Url = "https://api.vk.ru/method/prettyCards.getById";

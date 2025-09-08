@@ -46,20 +46,10 @@ public sealed class VkResponseArray : IEnumerable<VkResponse>
 	/// </value>
 	public int Count => _array.Count;
 
-	/// <summary>
-	/// Возвращает перечислитель, выполняющий итерацию в коллекции.
-	/// </summary>
-	/// <returns>
-	/// Интерфейс T:System
-	/// </returns>
+	/// <inheritdoc />
 	public IEnumerator<VkResponse> GetEnumerator() => _array.Select(selector: i => new VkResponse(token: i))
 		.GetEnumerator();
 
-	/// <summary>
-	/// Возвращает перечислитель, который осуществляет перебор элементов коллекции.
-	/// </summary>
-	/// <returns>
-	/// Объект T:System
-	/// </returns>
+	/// <inheritdoc />
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

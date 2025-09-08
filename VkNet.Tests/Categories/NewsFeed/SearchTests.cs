@@ -9,7 +9,7 @@ public class SearchTests : CategoryBaseTest
 {
 	protected override string Folder => "NewsFeed";
 
-	[Fact]
+	[Fact(DisplayName = "Search next from not null")]
 	public void Search_NextFrom_NotNull()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.search";
@@ -24,7 +24,7 @@ public class SearchTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search coordinates exception")]
 	public void Search_Coordinates_Exception()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.search";
@@ -44,7 +44,7 @@ public class SearchTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search post source data parsing")]
 	public void Search_PostSourceData_Parsing()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.search";
@@ -62,7 +62,8 @@ public class SearchTests : CategoryBaseTest
 
 		var first = result.Items.First();
 
-		first.PostSource.Data.Should().NotBe(null);
+		first.PostSource.Data.Should()
+			.NotBe(null);
 
 		var second = result.Items.Last();
 

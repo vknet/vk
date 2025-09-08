@@ -23,6 +23,5 @@ public sealed class AlbumIsFullException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private AlbumIsFullException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

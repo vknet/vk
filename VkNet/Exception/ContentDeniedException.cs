@@ -21,6 +21,5 @@ public sealed class ContentDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private ContentDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

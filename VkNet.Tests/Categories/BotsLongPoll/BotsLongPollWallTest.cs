@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll;
 
 public class BotsLongPollWallTest : BotsLongPollBaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history wall post new test")]
 	public void GetBotsLongPollHistory_WallPostNewTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallPostNewTest));
@@ -31,6 +31,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case WallPost:
@@ -51,7 +52,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history wall reply new test")]
 	public void GetBotsLongPollHistory_WallReplyNewTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyNewTest));
@@ -78,6 +79,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case WallReplyGroupUpdate:
@@ -104,7 +106,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history wall reply edit test")]
 	public void GetBotsLongPollHistory_WallReplyEditTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyEditTest));
@@ -130,6 +132,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case WallReplyGroupUpdate:
@@ -153,7 +156,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history wall reply restore test")]
 	public void GetBotsLongPollHistory_WallReplyRestoreTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyRestoreTest));
@@ -179,6 +182,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case WallReplyGroupUpdate:
@@ -202,7 +206,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history wall reply delete test")]
 	public void GetBotsLongPollHistory_WallReplyDeleteTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_WallReplyDeleteTest));
@@ -229,6 +233,7 @@ public class BotsLongPollWallTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case WallReplyDelete:

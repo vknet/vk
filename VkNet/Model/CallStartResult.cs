@@ -25,5 +25,5 @@ public class CallStartResult
 	/// Идентификатор созданного звонка
 	/// </summary>
 	[JsonProperty("call_id")]
-	public string CallId  { get; set; }
+	public string CallId { get; set; }
 }

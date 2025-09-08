@@ -10,7 +10,7 @@ public class DonutTests : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "Donut";
 
-	[Fact]
+	[Fact(DisplayName = "Is don")]
 	public void IsDon()
 	{
 		Url = "https://api.vk.ru/method/donut.isDon";
@@ -21,7 +21,7 @@ public class DonutTests : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get friends")]
 	public void GetFriends()
 	{
 		Url = "https://api.vk.ru/method/donut.getFriends";
@@ -35,7 +35,7 @@ public class DonutTests : CategoryBaseTest
 			.Be(10);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get subscription")]
 	public void GetSubscription()
 	{
 		Url = "https://api.vk.ru/method/donut.getSubscription";
@@ -46,7 +46,7 @@ public class DonutTests : CategoryBaseTest
 			.ThrowExactly<VkApiMethodInvokeException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get subscriptions")]
 	public void GetSubscriptions()
 	{
 		Url = "https://api.vk.ru/method/donut.getSubscriptions";

@@ -9,14 +9,13 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesWithCallTests : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Message with call attachment all fields are present")]
 	public void Message_WithCallAttachment_AllFieldsArePresent()
 	{
 		ReadJsonFile("Models", "message_with_call");
 
 		Url = "https://api.vk.ru/method/friends.getRequests";
 		var message = Api.Call<Message>("friends.getRequests", VkParameters.Empty);
-
 
 		var call = message.Attachments[0]
 			.Instance as Call;

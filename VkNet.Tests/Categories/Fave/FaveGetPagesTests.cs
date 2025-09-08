@@ -11,7 +11,7 @@ public class FaveGetPagesTests : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "Fave";
 
-	[Fact]
+	[Fact(DisplayName = "Get pages")]
 	public void GetPages()
 	{
 		Url = "https://api.vk.ru/method/fave.getPages";

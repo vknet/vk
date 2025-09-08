@@ -8,7 +8,7 @@ public class EnableOnlineTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact]
+	[Fact(DisplayName = "Enable online")]
 	public void EnableOnline()
 	{
 		Url = "https://api.vk.ru/method/groups.enableOnline";

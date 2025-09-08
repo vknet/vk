@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using AwesomeAssertions;
+﻿using AwesomeAssertions;
 using Newtonsoft.Json;
 using VkNet.Model;
 using Xunit;
@@ -9,7 +7,7 @@ namespace VkNet.Tests.Models;
 
 public class VkResponseObjectTests : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Vk response object of empty object correct serialize")]
 	public void VkResponseObjectOfEmptyObjectCorrectSerialize()
 	{
 		// Arrange
@@ -32,7 +30,7 @@ public class VkResponseObjectTests : BaseTest
 			.BeEquivalentTo(Json.Replace("\t", "  "));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Vk response object of empty object array correct serialize")]
 	public void VkResponseObjectOfEmptyObjectArrayCorrectSerialize()
 	{
 		// Arrange
@@ -40,7 +38,7 @@ public class VkResponseObjectTests : BaseTest
 
 		var responseObject = new VkResponseObject<object[]>
 		{
-			Response = Array.Empty<object>()
+			Response = []
 		};
 
 		// Act
@@ -55,7 +53,7 @@ public class VkResponseObjectTests : BaseTest
 			.BeEquivalentTo(Json.Replace("\t", "  "));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Vk response object of story server url correct serialize")]
 	public void VkResponseObjectOfStoryServerUrlCorrectSerialize()
 	{
 		// Arrange
@@ -66,8 +64,8 @@ public class VkResponseObjectTests : BaseTest
 			Response = new()
 			{
 				UploadUrl = new("https://pu.vk.ru/Tk0YjM0MjRmNzA5NSJ9"),
-				PeerIds = Enumerable.Empty<long>(),
-				UsersIds = Enumerable.Empty<long>()
+				PeerIds = [],
+				UsersIds = []
 			}
 		};
 

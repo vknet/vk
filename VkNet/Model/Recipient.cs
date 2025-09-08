@@ -25,6 +25,5 @@ public class Recipient
 	///  строковое представление информации о покупателе.
 	/// </summary>
 	[JsonProperty("display_text")]
-	public string DisplayText  { get; set; }
-
+	public string DisplayText { get; set; }
 }

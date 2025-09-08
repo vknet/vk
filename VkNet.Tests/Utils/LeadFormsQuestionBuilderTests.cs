@@ -2,7 +2,6 @@ using AwesomeAssertions;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions.Utils;
 using VkNet.Enums.StringEnums;
-using VkNet.Model;
 using VkNet.Utils;
 using Xunit;
 
@@ -10,7 +9,7 @@ namespace VkNet.Tests.Utils;
 
 public class LeadFormsQuestionBuilderTests : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Add text area")]
 	public void AddTextArea()
 	{
 		var json = ReadJson("Utils", nameof(LeadFormsQuestionBuilder), nameof(AddTextArea));
@@ -28,7 +27,7 @@ public class LeadFormsQuestionBuilderTests : BaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Default")]
 	public void Default()
 	{
 		var json = ReadJson("Utils", nameof(LeadFormsQuestionBuilder), nameof(Default));
@@ -39,50 +38,47 @@ public class LeadFormsQuestionBuilderTests : BaseTest
 			.AddInput("Кличка кота")
 			.AddSelect("favorite_color",
 				"Любимый цвет",
-				new[]
-				{
-					new QuestionOption
+				[
+					new()
 					{
 						Key = "red",
 						Label = "Красный"
 					},
-					new QuestionOption
+					new()
 					{
 						Key = "green",
 						Label = "Зелёный"
 					}
-				})
+				])
 			.AddRadio("Я ношу часы...",
-				new[]
+			[
+				new()
 				{
-					new QuestionOption
-					{
-						Key = "left",
-						Label = "на левой руке"
-					},
-					new QuestionOption
-					{
-						Key = "right",
-						Label = "на правой руке"
-					}
-				})
+					Key = "left",
+					Label = "на левой руке"
+				},
+				new()
+				{
+					Key = "right",
+					Label = "на правой руке"
+				}
+			])
 			.AddCheckbox("visited_cities",
 				"Города, в которых я был",
-				new[]
-				{
-					new QuestionOption
+				[
+					new()
 					{
 						Label = "Екатеринбург"
 					},
-					new QuestionOption
+					new()
 					{
 						Label = "Волгоград"
 					},
-					new QuestionOption
+					new()
 					{
 						Label = "Санкт-Петербург"
 					}
-				})
+				])
 			.Build();
 
 		var expected = JToken.Parse(json);

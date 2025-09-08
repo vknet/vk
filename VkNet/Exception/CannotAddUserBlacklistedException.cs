@@ -22,6 +22,5 @@ public sealed class CannotAddUserBlacklistedException : VkApiMethodInvokeExcepti
 	/// <inheritdoc />
 	private CannotAddUserBlacklistedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

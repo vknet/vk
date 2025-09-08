@@ -8,7 +8,7 @@ public class FriendsGetRequests : CategoryBaseTest
 {
 	protected override string Folder => "Friends";
 
-	[Fact]
+	[Fact(DisplayName = "Default params")]
 	public void DefaultParams()
 	{
 		Url = "https://api.vk.ru/method/friends.getRequests";
@@ -24,7 +24,7 @@ public class FriendsGetRequests : CategoryBaseTest
 			.Be(1);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Extended")]
 	public void Extended()
 	{
 		Url = "https://api.vk.ru/method/friends.getRequests";

@@ -8,7 +8,7 @@ public class SearchTests : CategoryBaseTest
 {
 	protected override string Folder => "Search";
 
-	[Fact]
+	[Fact(DisplayName = "Get hints")]
 	public void GetHints()
 	{
 		Url = "https://api.vk.ru/method/search.getHints";

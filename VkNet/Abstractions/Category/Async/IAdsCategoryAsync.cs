@@ -895,9 +895,8 @@ public interface IAdsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.ru/dev/ads.updateAds
 	/// </remarks>
-	Task<ReadOnlyCollection<UpdateAdsResult>> UpdateAdsAsync(
-		AdsDataSpecificationParams<AdEditSpecification> adEditDataSpecification,
-		CancellationToken token = default);
+	Task<ReadOnlyCollection<UpdateAdsResult>> UpdateAdsAsync(AdsDataSpecificationParams<AdEditSpecification> adEditDataSpecification,
+															CancellationToken token = default);
 
 	/// <summary>
 	/// Редактирует рекламные кампании.

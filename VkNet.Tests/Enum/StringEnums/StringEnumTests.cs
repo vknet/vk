@@ -7,7 +7,7 @@ namespace VkNet.Tests.Enum.StringEnums;
 
 public class StringEnumTests
 {
-	[Fact]
+	[Fact(DisplayName = "Null test")]
 	public void NullTest()
 	{
 		var result = Utilities.Deserialize<AppRatingType>("");
@@ -16,7 +16,7 @@ public class StringEnumTests
 			.Be(null);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Video catalog type test")]
 	public void VideoCatalogTypeTest()
 	{
 		Utilities.Deserialize<VideoCatalogType>("channel")
@@ -28,7 +28,7 @@ public class StringEnumTests
 			.Be(VideoCatalogType.Category);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Wall filter test")]
 	public void WallFilterTest()
 	{
 		Utilities.Deserialize<WallFilter>("owner")
@@ -52,7 +52,7 @@ public class StringEnumTests
 			.Be(WallFilter.Postponed);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "App rating type test")]
 	public void AppRatingTypeTest()
 	{
 		Utilities.Deserialize<AppRatingType>("level")
@@ -64,7 +64,7 @@ public class StringEnumTests
 			.Be(AppRatingType.Points);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Groups sort test")]
 	public void GroupsSortTest()
 	{
 		Utilities.Deserialize<GroupsSort>("id_asc")
@@ -84,7 +84,7 @@ public class StringEnumTests
 			.Be(GroupsSort.TimeDesc);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Link access type test")]
 	public void LinkAccessTypeTest()
 	{
 		Utilities.Deserialize<LinkAccessType>("not_banned")
@@ -100,7 +100,7 @@ public class StringEnumTests
 			.Be(LinkAccessType.Processing);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Video catalog item type test")]
 	public void VideoCatalogItemTypeTest()
 	{
 		Utilities.Deserialize<VideoCatalogItemType>("video")
@@ -112,23 +112,27 @@ public class StringEnumTests
 			.Be(VideoCatalogItemType.Album);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Group type test")]
 	public void GroupTypeTest()
 	{
 		// get test
-		GroupType.Page.ToString().ToSnakeCase()
+		GroupType.Page.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("page");
 
-		GroupType.Group.ToString().ToSnakeCase()
+		GroupType.Group.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("group");
 
-		GroupType.Event.ToString().ToSnakeCase()
+		GroupType.Event.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("event");
 
-		GroupType.Undefined.ToString().ToSnakeCase()
+		GroupType.Undefined.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("undefined");
 
@@ -150,19 +154,22 @@ public class StringEnumTests
 			.Be(GroupType.Undefined);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Deactivated test")]
 	public void DeactivatedTest()
 	{
 		// get test
-		Deactivated.Deleted.ToString().ToSnakeCase()
+		Deactivated.Deleted.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("deleted");
 
-		Deactivated.Banned.ToString().ToSnakeCase()
+		Deactivated.Banned.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("banned");
 
-		Deactivated.Activated.ToString().ToSnakeCase()
+		Deactivated.Activated.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("activated");
 
@@ -180,15 +187,17 @@ public class StringEnumTests
 			.Be(Deactivated.Activated);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "User section test")]
 	public void UserSectionTest()
 	{
 		// get test
-		UserSection.Friends.ToString().ToSnakeCase()
+		UserSection.Friends.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("friends");
 
-		UserSection.Subscriptions.ToString().ToSnakeCase()
+		UserSection.Subscriptions.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("subscriptions");
 
@@ -202,15 +211,17 @@ public class StringEnumTests
 			.Be(UserSection.Subscriptions);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Transcript states test")]
 	public void TranscriptStatesTest()
 	{
 		// get test
-		TranscriptStates.Done.ToString().ToSnakeCase()
+		TranscriptStates.Done.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("done");
 
-		TranscriptStates.InProgress.ToString().ToSnakeCase()
+		TranscriptStates.InProgress.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("in_progress");
 
@@ -224,19 +235,22 @@ public class StringEnumTests
 			.Be(TranscriptStates.InProgress);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Story object state test")]
 	public void StoryObjectStateTest()
 	{
 		// get test
-		StoryObjectState.Hidden.ToString().ToSnakeCase()
+		StoryObjectState.Hidden.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("hidden");
 
-		StoryObjectState.On.ToString().ToSnakeCase()
+		StoryObjectState.On.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("on");
 
-		StoryObjectState.Off.ToString().ToSnakeCase()
+		StoryObjectState.Off.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("off");
 
@@ -254,79 +268,97 @@ public class StringEnumTests
 			.Be(StoryObjectState.Off);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Story link text test")]
 	public void StoryLinkTextTest()
 	{
 		// get test
-		StoryLinkText.Book.ToString().ToSnakeCase()
+		StoryLinkText.Book.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("book");
 
-		StoryLinkText.Buy.ToString().ToSnakeCase()
+		StoryLinkText.Buy.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("buy");
 
-		StoryLinkText.Contact.ToString().ToSnakeCase()
+		StoryLinkText.Contact.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("contact");
 
-		StoryLinkText.Enroll.ToString().ToSnakeCase()
+		StoryLinkText.Enroll.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("enroll");
 
-		StoryLinkText.Fill.ToString().ToSnakeCase()
+		StoryLinkText.Fill.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("fill");
 
-		StoryLinkText.GoTo.ToString().ToSnakeCase()
+		StoryLinkText.GoTo.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("go_to");
 
-		StoryLinkText.Install.ToString().ToSnakeCase()
+		StoryLinkText.Install.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("install");
 
-		StoryLinkText.LearnMore.ToString().ToSnakeCase()
+		StoryLinkText.LearnMore.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("learn_more");
 
-		StoryLinkText.More.ToString().ToSnakeCase()
+		StoryLinkText.More.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("more");
 
-		StoryLinkText.Open.ToString().ToSnakeCase()
+		StoryLinkText.Open.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("open");
 
-		StoryLinkText.Order.ToString().ToSnakeCase()
+		StoryLinkText.Order.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("order");
 
-		StoryLinkText.Play.ToString().ToSnakeCase()
+		StoryLinkText.Play.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("play");
 
-		StoryLinkText.Read.ToString().ToSnakeCase()
+		StoryLinkText.Read.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("read");
 
-		StoryLinkText.Signup.ToString().ToSnakeCase()
+		StoryLinkText.Signup.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("signup");
 
-		StoryLinkText.View.ToString().ToSnakeCase()
+		StoryLinkText.View.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("view");
 
-		StoryLinkText.Vote.ToString().ToSnakeCase()
+		StoryLinkText.Vote.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("vote");
 
-		StoryLinkText.Watch.ToString().ToSnakeCase()
+		StoryLinkText.Watch.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("watch");
 
-		StoryLinkText.Write.ToString().ToSnakeCase()
+		StoryLinkText.Write.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("write");
 
@@ -404,35 +436,42 @@ public class StringEnumTests
 			.Be(StoryLinkText.Write);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Services test")]
 	public void ServicesTest()
 	{
 		// get test
-		Services.Email.ToString().ToSnakeCase()
+		Services.Email.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("email");
 
-		Services.Phone.ToString().ToSnakeCase()
+		Services.Phone.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("phone");
 
-		Services.Twitter.ToString().ToSnakeCase()
+		Services.Twitter.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("twitter");
 
-		Services.Facebook.ToString().ToSnakeCase()
+		Services.Facebook.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("facebook");
 
-		Services.Odnoklassniki.ToString().ToSnakeCase()
+		Services.Odnoklassniki.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("odnoklassniki");
 
-		Services.Instagram.ToString().ToSnakeCase()
+		Services.Instagram.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("instagram");
 
-		Services.Google.ToString().ToSnakeCase()
+		Services.Google.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("google");
 
@@ -466,23 +505,27 @@ public class StringEnumTests
 			.Be(Services.Google);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Report type test")]
 	public void ReportTypeTest()
 	{
 		// get test
-		ReportType.Porn.ToString().ToSnakeCase()
+		ReportType.Porn.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("porn");
 
-		ReportType.Spam.ToString().ToSnakeCase()
+		ReportType.Spam.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("spam");
 
-		ReportType.Insult.ToString().ToSnakeCase()
+		ReportType.Insult.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("insult");
 
-		ReportType.Advertisment.ToString().ToSnakeCase()
+		ReportType.Advertisment.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("advertisment");
 
@@ -504,7 +547,7 @@ public class StringEnumTests
 			.Be(ReportType.Advertisment);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Relative type test")]
 	public void RelativeTypeTest()
 	{
 		Utilities.Deserialize<RelativeType>("sibling")
@@ -528,7 +571,7 @@ public class StringEnumTests
 			.Be(RelativeType.Grandchild);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Post type order test")]
 	public void PostTypeOrderTest()
 	{
 		Utilities.Deserialize<PostTypeOrder>("post")
@@ -540,7 +583,7 @@ public class StringEnumTests
 			.Be(PostTypeOrder.Copy);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Post type test")]
 	public void PostTypeTest()
 	{
 		Utilities.Deserialize<PostType>("post")
@@ -564,7 +607,7 @@ public class StringEnumTests
 			.Be(PostType.Suggest);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Post source type test")]
 	public void PostSourceTypeTest()
 	{
 		Utilities.Deserialize<PostSourceType>("vk")
@@ -588,19 +631,22 @@ public class StringEnumTests
 			.Be(PostSourceType.Sms);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Platform test")]
 	public void PlatformTest()
 	{
 		// get test
-		Platform.Android.ToString().ToSnakeCase()
+		Platform.Android.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("android");
 
-		Platform.Iphone.ToString().ToSnakeCase()
+		Platform.Iphone.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("iphone");
 
-		Platform.Wphone.ToString().ToSnakeCase()
+		Platform.Wphone.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("wphone");
 
@@ -618,7 +664,7 @@ public class StringEnumTests
 			.Be(Platform.Wphone);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Photo size type test")]
 	public void PhotoSizeTypeTest()
 	{
 		Utilities.Deserialize<PhotoSizeType>("s")
@@ -691,8 +737,7 @@ public class StringEnumTests
 
 		Utilities.Deserialize<PhotoSizeType>("temp")
 			.Should()
-			.Be(PhotoSizeType.Temp
-			);
+			.Be(PhotoSizeType.Temp);
 
 		Utilities.Deserialize<PhotoSizeType>("orig")
 			.Should()
@@ -735,7 +780,7 @@ public class StringEnumTests
 			.Be(PhotoSizeType.V);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Photo feed type test")]
 	public void PhotoFeedTypeTest()
 	{
 		Utilities.Deserialize<PhotoFeedType>("photo")
@@ -747,7 +792,7 @@ public class StringEnumTests
 			.Be(PhotoFeedType.PhotoTag);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Occupation type test")]
 	public void OccupationTypeTest()
 	{
 		Utilities.Deserialize<OccupationType>("work")
@@ -763,31 +808,37 @@ public class StringEnumTests
 			.Be(OccupationType.University);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "News object types test")]
 	public void NewsObjectTypesTest()
 	{
 		// get test
-		NewsObjectTypes.Wall.ToString().ToSnakeCase()
+		NewsObjectTypes.Wall.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("wall");
 
-		NewsObjectTypes.Tag.ToString().ToSnakeCase()
+		NewsObjectTypes.Tag.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("tag");
 
-		NewsObjectTypes.Profilephoto.ToString().ToSnakeCase()
+		NewsObjectTypes.Profilephoto.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("profilephoto");
 
-		NewsObjectTypes.Video.ToString().ToSnakeCase()
+		NewsObjectTypes.Video.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("video");
 
-		NewsObjectTypes.Photo.ToString().ToSnakeCase()
+		NewsObjectTypes.Photo.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("photo");
 
-		NewsObjectTypes.Audio.ToString().ToSnakeCase()
+		NewsObjectTypes.Audio.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("audio");
 
@@ -817,31 +868,37 @@ public class StringEnumTests
 			.Be(NewsObjectTypes.Audio);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Name case test")]
 	public void NameCaseTest()
 	{
 		// get test
-		NameCase.Nom.ToString().ToSnakeCase()
+		NameCase.Nom.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("nom");
 
-		NameCase.Gen.ToString().ToSnakeCase()
+		NameCase.Gen.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("gen");
 
-		NameCase.Dat.ToString().ToSnakeCase()
+		NameCase.Dat.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("dat");
 
-		NameCase.Acc.ToString().ToSnakeCase()
+		NameCase.Acc.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("acc");
 
-		NameCase.Ins.ToString().ToSnakeCase()
+		NameCase.Ins.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("ins");
 
-		NameCase.Abl.ToString().ToSnakeCase()
+		NameCase.Abl.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("abl");
 
@@ -871,7 +928,7 @@ public class StringEnumTests
 			.Be(NameCase.Abl);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Message event type test")]
 	public void MessageEventTypeTest()
 	{
 		Utilities.Deserialize<MessageEventType>("open_app")
@@ -887,7 +944,7 @@ public class StringEnumTests
 			.Be(MessageEventType.ShowSnackbar);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Media type test")]
 	public void MediaTypeTest()
 	{
 		Utilities.Deserialize<MediaType>("photo")
@@ -927,7 +984,7 @@ public class StringEnumTests
 			.Be(MediaType.Graffiti);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Likes filter test")]
 	public void LikesFilterTest()
 	{
 		Utilities.Deserialize<LikesFilter>("likes")
@@ -939,7 +996,7 @@ public class StringEnumTests
 			.Be(LikesFilter.Copies);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Like object type test")]
 	public void LikeObjectTypeTest()
 	{
 		Utilities.Deserialize<LikeObjectType>("post")
@@ -991,23 +1048,27 @@ public class StringEnumTests
 			.Be(LikeObjectType.MarketComment);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Keyboard button color test")]
 	public void KeyboardButtonColorTest()
 	{
 		// get test
-		KeyboardButtonColor.Default.ToString().ToSnakeCase()
+		KeyboardButtonColor.Default.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("default");
 
-		KeyboardButtonColor.Negative.ToString().ToSnakeCase()
+		KeyboardButtonColor.Negative.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("negative");
 
-		KeyboardButtonColor.Positive.ToString().ToSnakeCase()
+		KeyboardButtonColor.Positive.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("positive");
 
-		KeyboardButtonColor.Primary.ToString().ToSnakeCase()
+		KeyboardButtonColor.Primary.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("primary");
 
@@ -1029,31 +1090,37 @@ public class StringEnumTests
 			.Be(KeyboardButtonColor.Primary);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Keyboard button action type test")]
 	public void KeyboardButtonActionTypeTest()
 	{
 		// get test
-		KeyboardButtonActionType.Text.ToString().ToSnakeCase()
+		KeyboardButtonActionType.Text.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("text");
 
-		KeyboardButtonActionType.Location.ToString().ToSnakeCase()
+		KeyboardButtonActionType.Location.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("location");
 
-		KeyboardButtonActionType.OpenLink.ToString().ToSnakeCase()
+		KeyboardButtonActionType.OpenLink.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("open_link");
 
-		KeyboardButtonActionType.OpenApp.ToString().ToSnakeCase()
+		KeyboardButtonActionType.OpenApp.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("open_app");
 
-		KeyboardButtonActionType.Vkpay.ToString().ToSnakeCase()
+		KeyboardButtonActionType.Vkpay.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("vkpay");
 
-		KeyboardButtonActionType.Callback.ToString().ToSnakeCase()
+		KeyboardButtonActionType.Callback.ToString()
+			.ToSnakeCase()
 			.Should()
 			.Be("callback");
 
@@ -1083,7 +1150,7 @@ public class StringEnumTests
 			.Be(KeyboardButtonActionType.Callback);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Friends order test")]
 	public void FriendsOrderTest()
 	{
 		Utilities.Deserialize<FriendsOrder>("name")
@@ -1099,7 +1166,7 @@ public class StringEnumTests
 			.Be(FriendsOrder.Random);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Friends filter test")]
 	public void FriendsFilterTest()
 	{
 		Utilities.Deserialize<FriendsFilter>("mutual")
@@ -1115,7 +1182,7 @@ public class StringEnumTests
 			.Be(FriendsFilter.MutualContacts);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Feed type test")]
 	public void FeedTypeTest()
 	{
 		Utilities.Deserialize<FeedType>("photo")
@@ -1127,7 +1194,7 @@ public class StringEnumTests
 			.Be(FeedType.PhotoTag);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Display test")]
 	public void DisplayTest()
 	{
 		Utilities.Deserialize<Display>("page")
@@ -1143,7 +1210,7 @@ public class StringEnumTests
 			.Be(Display.Mobile);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Comments sort test")]
 	public void CommentsSortTest()
 	{
 		Utilities.Deserialize<CommentsSort>("asc")
@@ -1155,7 +1222,7 @@ public class StringEnumTests
 			.Be(CommentsSort.Desc);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Comment object type test")]
 	public void CommentObjectTypeTest()
 	{
 		Utilities.Deserialize<CommentObjectType>("post")
@@ -1179,7 +1246,7 @@ public class StringEnumTests
 			.Be(CommentObjectType.Note);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Change name status test")]
 	public void ChangeNameStatusTest()
 	{
 		Utilities.Deserialize<ChangeNameStatus>("processing")
@@ -1203,7 +1270,7 @@ public class StringEnumTests
 			.Be(ChangeNameStatus.WasDeclined);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "App widget type test")]
 	public void AppWidgetTypeTest()
 	{
 		Utilities.Deserialize<AppWidgetType>("donation")
@@ -1243,7 +1310,7 @@ public class StringEnumTests
 			.Be(AppWidgetType.CoverList);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "App sort test")]
 	public void AppSortTest()
 	{
 		Utilities.Deserialize<AppSort>("popular_today")
@@ -1267,7 +1334,7 @@ public class StringEnumTests
 			.Be(AppSort.PopularWeek);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "App request type test")]
 	public void AppRequestTypeTest()
 	{
 		Utilities.Deserialize<AppRequestType>("invite")
@@ -1279,7 +1346,7 @@ public class StringEnumTests
 			.Be(AppRequestType.Request);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "App platforms test")]
 	public void AppPlatformsTest()
 	{
 		Utilities.Deserialize<AppPlatforms>("ios")
@@ -1299,7 +1366,7 @@ public class StringEnumTests
 			.Be(AppPlatforms.Web);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Monthly limit test")]
 	public void MonthlyLimitTest()
 	{
 		Utilities.Deserialize<MonthlyLimit>("tier_2")

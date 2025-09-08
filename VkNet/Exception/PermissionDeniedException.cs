@@ -21,6 +21,5 @@ public sealed class PermissionDeniedException : VkApiMethodInvokeException
 
 	private PermissionDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

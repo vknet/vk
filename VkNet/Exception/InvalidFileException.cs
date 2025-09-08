@@ -22,6 +22,5 @@ public sealed class InvalidFileException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private InvalidFileException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

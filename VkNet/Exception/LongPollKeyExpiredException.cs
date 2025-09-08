@@ -18,6 +18,5 @@ public sealed class LongPollKeyExpiredException : LongPollException
 	/// <inheritdoc />
 	private LongPollKeyExpiredException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 }

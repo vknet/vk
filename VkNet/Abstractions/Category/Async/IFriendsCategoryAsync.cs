@@ -293,7 +293,6 @@ public interface IFriendsCategoryAsync
 									bool? follow = null,
 									CancellationToken token = default);
 
-
 	/// <summary>
 	/// Удаляет пользователя из списка друзей или отклоняет заявку в друзья.
 	/// </summary>

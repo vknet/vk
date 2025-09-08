@@ -15,6 +15,7 @@ public class PodcastsSearchResult
 	/// </summary>
 	[JsonProperty("results_total")]
 	public ulong ResultsTotal { get; set; }
+
 	/// <summary>
 	/// Информация о подкасте, выданная поиском
 	/// </summary>

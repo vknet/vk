@@ -23,6 +23,5 @@ public sealed class TooMuchOfTheSameTypeOfActionException : VkApiMethodInvokeExc
 	/// <inheritdoc />
 	private TooMuchOfTheSameTypeOfActionException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

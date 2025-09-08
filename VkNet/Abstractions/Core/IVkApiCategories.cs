@@ -238,8 +238,8 @@ public interface IVkApiCategories
 	/// Store
 	/// </summary>
 	IStoreCategory Store { get; }
-  
-  /// <summary>
+
+	/// <summary>
 	/// Calls
 	/// </summary>
 	ICallsCategory Calls { get; }

@@ -8,7 +8,7 @@ public class WallGetCommentsTests : CategoryBaseTest
 {
 	protected override string Folder => "Wall";
 
-	[Fact]
+	[Fact(DisplayName = "Get comments802")]
 	public void GetComments802()
 	{
 		Url = "https://api.vk.ru/method/wall.getComments";

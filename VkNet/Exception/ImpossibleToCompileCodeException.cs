@@ -21,6 +21,5 @@ public sealed class ImpossibleToCompileCodeException : VkApiMethodInvokeExceptio
 	/// <inheritdoc />
 	private ImpossibleToCompileCodeException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

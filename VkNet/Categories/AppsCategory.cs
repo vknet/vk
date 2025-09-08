@@ -60,33 +60,30 @@ public partial class AppsCategory : IAppsCategory
 		}, skipAuthorization);
 
 	/// <inheritdoc />
-	public AppGetObject Get(AppGetParams @params, bool skipAuthorization = false)
+	public AppGetObject Get(AppGetParams @params, bool skipAuthorization = false) => _vk.Call<AppGetObject>("apps.get", new()
 	{
-		return _vk.Call<AppGetObject>("apps.get", new()
 		{
-			{
-				"app_id", @params.AppId
-			},
-			{
-				"app_ids", @params.AppIds
-			},
-			{
-				"platform", @params.Platform
-			},
-			{
-				"extended", @params.Extended
-			},
-			{
-				"return_friends", @params.ReturnFriends
-			},
-			{
-				"fields", @params.Fields
-			},
-			{
-				"name_case", @params.NameCase
-			}
-		}, skipAuthorization);
-	}
+			"app_id", @params.AppId
+		},
+		{
+			"app_ids", @params.AppIds
+		},
+		{
+			"platform", @params.Platform
+		},
+		{
+			"extended", @params.Extended
+		},
+		{
+			"return_friends", @params.ReturnFriends
+		},
+		{
+			"fields", @params.Fields
+		},
+		{
+			"name_case", @params.NameCase
+		}
+	}, skipAuthorization);
 
 	/// <inheritdoc />
 	public long SendRequest(AppSendRequestParams @params) => _vk.Call<long>("apps.sendRequest", new()

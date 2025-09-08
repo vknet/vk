@@ -11,7 +11,7 @@ public class DocsSaveTests : CategoryBaseTest
 {
 	protected override string Folder => "Docs";
 
-	[Fact]
+	[Fact(DisplayName = "Save")]
 	public void Save()
 	{
 		Url = "https://api.vk.ru/method/docs.save";
@@ -25,7 +25,7 @@ public class DocsSaveTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Save2")]
 	public void Save2()
 	{
 		Url = "https://api.vk.ru/method/docs.save";
@@ -39,7 +39,7 @@ public class DocsSaveTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Save3")]
 	public void Save3()
 	{
 		Url = "https://api.vk.ru/method/docs.save";
@@ -53,7 +53,7 @@ public class DocsSaveTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Save type")]
 	public void Save_Type()
 	{
 		Url = "https://api.vk.ru/method/docs.save";

@@ -12,7 +12,7 @@ namespace VkNet.Tests.Utils.JsonConverter;
 
 public class DateTimeToStringFormatConverterTests : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Deserialize")]
 	public void Deserialize()
 	{
 		ReadJsonFile(nameof(JsonConverter), nameof(DateTimeToStringFormatConverter), nameof(Deserialize));
@@ -26,7 +26,7 @@ public class DateTimeToStringFormatConverterTests : BaseTest
 			.Be(5.November(2018));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Serialization")]
 	public void Serialization()
 	{
 		ReadJsonFile(nameof(JsonConverter), nameof(DateTimeToStringFormatConverter), nameof(Serialization));

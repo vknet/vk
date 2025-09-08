@@ -66,7 +66,6 @@ public class Previews
 	[JsonProperty("photo")]
 	public Photo Photo { get; set; }
 
-
 	[JsonProperty("photo_medium")]
 	private Uri PhotoMedium
 	{

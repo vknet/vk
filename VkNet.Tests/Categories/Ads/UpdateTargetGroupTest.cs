@@ -8,7 +8,7 @@ public class UpdateTargetGroupTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Update target group")]
 	public void UpdateTargetGroup()
 	{
 		Url = "https://api.vk.ru/method/ads.updateTargetGroup";

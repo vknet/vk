@@ -10,7 +10,7 @@ public class UpdateOfficeUsersTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Update office users")]
 	public void UpdateOfficeUsers()
 	{
 		Url = "https://api.vk.ru/method/ads.updateOfficeUsers";
@@ -21,12 +21,12 @@ public class UpdateOfficeUsersTest : CategoryBaseTest
 		{
 			UserId = 12423,
 			Role = AccessRole.Reports,
-			ClientsIds = new[]
-			{
+			ClientsIds =
+			[
 				1245,
 				566,
 				323
-			},
+			],
 			GrantAccessToAllClients = true,
 			ViewBudget = true
 		};
@@ -35,21 +35,21 @@ public class UpdateOfficeUsersTest : CategoryBaseTest
 		{
 			UserId = 4324432,
 			Role = AccessRole.Manager,
-			ClientsIds = new[]
-			{
+			ClientsIds =
+			[
 				567357,
 				566566,
 				3645623
-			},
+			],
 			GrantAccessToAllClients = false,
 			ViewBudget = false
 		};
 
 		OfficeUsersSpecification[] data =
-		{
+		[
 			officeUsersSpecification1,
 			officeUsersSpecification2
-		};
+		];
 
 		var result = Api.Ads.UpdateOfficeUsers(new()
 		{

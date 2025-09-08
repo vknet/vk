@@ -9,7 +9,6 @@ namespace VkNet.Infrastructure;
 /// </summary>
 public static class StreamingContextExtensions
 {
-
 	/// <summary>
 	/// Добавить данные в контекст
 	/// </summary>
@@ -25,10 +24,11 @@ public static class StreamingContextExtensions
 		{
 			null => new StreamingContextTypeDataDictionary(),
 			IStreamingContextTypeDataDictionary d => d,
-			_ => throw new InvalidOperationException($"context.Context is already populated with {context.Context}")
+			var _ => throw new InvalidOperationException($"context.Context is already populated with {context.Context}")
 		};
 
 		dictionary.AddData(type, data);
+
 		return new(context.State, dictionary);
 	}
 
@@ -49,6 +49,7 @@ public static class StreamingContextExtensions
 		}
 
 		data = null;
+
 		return false;
 	}
 }

@@ -10,7 +10,7 @@ public class AudioSetBroadCastTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact]
+	[Fact(DisplayName = "Set broad cast test")]
 	public void SetBroadCastTest()
 	{
 		Url = "https://api.vk.ru/method/audio.setBroadcast";

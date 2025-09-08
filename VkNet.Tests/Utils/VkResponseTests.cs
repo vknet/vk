@@ -7,7 +7,7 @@ namespace VkNet.Tests.Utils;
 
 public class VkResponseTests : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Should be null")]
 	public void ShouldBeNull()
 	{
 		var json = ReadJson("VkResponse", nameof(ShouldBeNull));

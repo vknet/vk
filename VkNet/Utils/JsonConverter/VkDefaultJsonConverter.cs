@@ -9,10 +9,7 @@ namespace VkNet.Utils.JsonConverter;
 /// </summary>
 public class VkDefaultJsonConverter : Newtonsoft.Json.JsonConverter
 {
-	/// <summary>
-	/// Gets a value indicating whether this
-	/// <see cref="T:Newtonsoft.Json.JsonConverter" /> can write JSON.
-	/// </summary>
+	/// <inheritdoc />
 	/// <value>
 	/// <c> true </c> if this <see cref="T:Newtonsoft.Json.JsonConverter" /> can write
 	/// JSON; otherwise, <c> false </c>.
@@ -54,14 +51,7 @@ public class VkDefaultJsonConverter : Newtonsoft.Json.JsonConverter
 
 	private static bool IsDateTime(Type objectType, JTokenType token) => objectType == typeof(DateTime) && token is JTokenType.Integer;
 
-	/// <summary>
-	/// Determines whether this instance can convert the specified object type.
-	/// </summary>
-	/// <param name="objectType"> Type of the object. </param>
-	/// <returns>
-	/// <c> true </c> if this instance can convert the specified object type;
-	/// otherwise, <c> false </c>.
-	/// </returns>
+	/// <inheritdoc />
 	public override bool CanConvert(Type objectType) => objectType is
 	{
 		IsArray: false,

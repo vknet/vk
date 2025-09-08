@@ -8,7 +8,7 @@ public class GetTargetGroupsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get target groups")]
 	public void GetTargetGroups()
 	{
 		Url = "https://api.vk.ru/method/ads.getTargetGroups";

@@ -26,7 +26,7 @@ public class CaptchaNeededExceptionTests : BaseTest
 		Api.CaptchaHandler = Mocker.Get<ICaptchaHandler>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Call throws captcha needed exception")]
 	public void Call_ThrowsCaptchaNeededException()
 	{
 		Url = "https://api.vk.ru/method/messages.send";

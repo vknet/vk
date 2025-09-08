@@ -6,7 +6,7 @@ namespace VkNet.Tests.Models;
 
 public class MessageTemplateTests : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Template carousel")]
 	public void Template_Carousel()
 	{
 		ReadJsonFile("Models", "Template_Carousel");

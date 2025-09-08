@@ -1424,7 +1424,7 @@ public partial class GroupsCategory : IGroupsCategory
 	}
 
 	private static readonly string[] ValidTagColors =
-	{
+	[
 		"4bb34b",
 		"5c9ce6",
 		"e64646",
@@ -1445,7 +1445,7 @@ public partial class GroupsCategory : IGroupsCategory
 		"7ececf",
 		"aaaeb3",
 		"bbaa84"
-	};
+	];
 
 	/// <inheritdoc />
 	public bool TagAdd(GroupsTagAddParams @params)

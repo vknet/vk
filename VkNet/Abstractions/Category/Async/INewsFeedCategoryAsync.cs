@@ -41,7 +41,7 @@ public interface INewsFeedCategoryAsync
 	/// Страница документации ВКонтакте http://vk.ru/dev/newsfeed.getRecommended
 	/// </remarks>
 	Task<NewsFeed> GetRecommendedAsync(NewsFeedGetRecommendedParams @params,
-							CancellationToken token = default);
+										CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает данные, необходимые для показа раздела комментариев в новостях
@@ -56,7 +56,7 @@ public interface INewsFeedCategoryAsync
 	/// Страница документации ВКонтакте http://vk.ru/dev/newsfeed.getComments
 	/// </remarks>
 	Task<NewsFeed> GetCommentsAsync(NewsFeedGetCommentsParams @params,
-							CancellationToken token = default);
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Возвращает список записей пользователей на своих стенах, в которых упоминается

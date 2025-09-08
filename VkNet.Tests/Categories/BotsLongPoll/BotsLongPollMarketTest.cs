@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll;
 
 public class BotsLongPollMarketTest : BotsLongPollBaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history market comment new test")]
 	public void GetBotsLongPollHistory_MarketCommentNewTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentNewTest));
@@ -32,6 +32,7 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case MarketCommentGroupUpdate:
@@ -39,6 +40,7 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 						var a = x.Instance is MarketCommentGroupUpdate b
 							? b
 							: null;
+
 						a.FromId.Should()
 							.Be(userId);
 
@@ -47,13 +49,14 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 
 						a.MarketOwnerId.Should()
 							.Be(unGroupId);
+
 						break;
 					}
 				}
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history market comment edit test")]
 	public void GetBotsLongPollHistory_MarketCommentEditTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentEditTest));
@@ -79,6 +82,7 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case MarketCommentGroupUpdate:
@@ -86,6 +90,7 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 						var a = x.Instance is MarketCommentGroupUpdate b
 							? b
 							: null;
+
 						a.FromId.Should()
 							.Be(userId);
 
@@ -94,13 +99,14 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 
 						a.MarketOwnerId.Should()
 							.Be(unGroupId);
+
 						break;
 					}
 				}
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history market comment restore test")]
 	public void GetBotsLongPollHistory_MarketCommentRestoreTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentRestoreTest));
@@ -126,6 +132,7 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case MarketCommentGroupUpdate:
@@ -133,6 +140,7 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 						var a = x.Instance is MarketCommentGroupUpdate b
 							? b
 							: null;
+
 						a.FromId.Should()
 							.Be(userId);
 
@@ -141,13 +149,14 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 
 						a.MarketOwnerId.Should()
 							.Be(unGroupId);
+
 						break;
 					}
 				}
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history market comment delete test")]
 	public void GetBotsLongPollHistory_MarketCommentDeleteTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentDeleteTest));
@@ -174,6 +183,7 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case MarketCommentDelete:
@@ -181,6 +191,7 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 						var a = x.Instance is MarketCommentDelete b
 							? b
 							: null;
+
 						a.OwnerId.Should()
 							.Be(unGroupId);
 
@@ -192,10 +203,10 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 
 						a.Id.Should()
 							.Be(id);
+
 						break;
 					}
 				}
 			});
-
 	}
 }

@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesMarkAsAnsweredConversationTests : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Mark as answered conversation")]
 	public void MarkAsAnsweredConversation()
 	{
 		Url = "https://api.vk.ru/method/messages.markAsAnsweredConversation";

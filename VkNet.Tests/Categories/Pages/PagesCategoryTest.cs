@@ -11,7 +11,7 @@ public class PagesCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Pages";
 
-	[Fact]
+	[Fact(DisplayName = "Clear cache")]
 	public void ClearCache()
 	{
 		Url = "https://api.vk.ru/method/pages.clearCache";
@@ -23,7 +23,7 @@ public class PagesCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get1 normal case")]
 	public void Get1_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.get";
@@ -72,7 +72,7 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be("http://m.vk.ru/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get2 normal case")]
 	public void Get2_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.get";
@@ -121,7 +121,7 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be("http://m.vk.ru/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get history normal case")]
 	public void GetHistory_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.getHistory";
@@ -133,7 +133,7 @@ public class PagesCategoryTest : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get titles normal case")]
 	public void GetTitles_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.getTitles";
@@ -145,7 +145,7 @@ public class PagesCategoryTest : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get version normal case")]
 	public void GetVersion_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.getVersion";
@@ -184,7 +184,7 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be("<!--4-->test ");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Save1 normal case")]
 	public void Save1_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.save";
@@ -196,7 +196,7 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be(50050492);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Save2 normal case")]
 	public void Save2_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.save";
@@ -208,7 +208,7 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be(50050492);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Save access normal case")]
 	public void SaveAccess_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.saveAccess";

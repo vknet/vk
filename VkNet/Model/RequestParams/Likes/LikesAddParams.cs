@@ -51,5 +51,4 @@ public class LikesAddParams
 	/// Ссылка.
 	/// </summary>
 	public string Reference { get; set; }
-
 }

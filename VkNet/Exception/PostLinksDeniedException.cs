@@ -21,6 +21,5 @@ public sealed class PostLinksDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private PostLinksDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

@@ -17,9 +17,7 @@ public class DisposableAction : IDisposable
 	/// </param>
 	public DisposableAction(Action dispose) => _dispose = dispose ?? throw new ArgumentNullException(nameof(dispose));
 
-	/// <summary>
-	/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-	/// </summary>
+	/// <inheritdoc />
 	/// <filterpriority>2</filterpriority>
 	public void Dispose()
 	{

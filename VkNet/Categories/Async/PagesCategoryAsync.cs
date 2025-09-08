@@ -14,9 +14,8 @@ public partial class PagesCategory
 {
 	/// <inheritdoc />
 	public Task<Page> GetAsync(PagesGetParams @params,
-								CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(@params), token);
+								CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		Get(@params), token);
 
 	/// <inheritdoc />
 	public Task<long> SaveAsync(string text,
@@ -24,9 +23,8 @@ public partial class PagesCategory
 								long userId,
 								string title,
 								long? pageId,
-								CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Save(text, groupId, userId, title, pageId), token);
+								CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		Save(text, groupId, userId, title, pageId), token);
 
 	/// <inheritdoc />
 	public Task<long> SaveAccessAsync(long pageId,
@@ -34,43 +32,37 @@ public partial class PagesCategory
 									long? userId = null,
 									AccessPages view = AccessPages.All,
 									AccessPages edit = AccessPages.Leaders,
-									CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			SaveAccess(pageId, groupId, userId, view , edit), token);
+									CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		SaveAccess(pageId, groupId, userId, view, edit), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<PageVersion>> GetHistoryAsync(long pageId,
 																long groupId,
 																long? userId = null,
-																CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			GetHistory(pageId, groupId, userId), token);
+																CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		GetHistory(pageId, groupId, userId), token);
 
 	/// <inheritdoc />
 	public Task<ReadOnlyCollection<Page>> GetTitlesAsync(long groupId,
-														CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			GetTitles(groupId), token);
+														CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		GetTitles(groupId), token);
 
 	/// <inheritdoc />
 	public Task<Page> GetVersionAsync(long versionId,
 									long groupId,
 									bool needHtml = false,
 									long? userId = null,
-									CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			GetVersion(versionId, groupId, needHtml, userId), token);
+									CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		GetVersion(versionId, groupId, needHtml, userId), token);
 
 	/// <inheritdoc />
 	public Task<string> ParseWikiAsync(string text,
 										ulong groupId,
-										CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			ParseWiki(text, groupId), token);
+										CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		ParseWiki(text, groupId), token);
 
 	/// <inheritdoc />
 	public Task<bool> ClearCacheAsync(Uri url,
-									CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			ClearCache(url), token);
+									CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		ClearCache(url), token);
 }

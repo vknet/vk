@@ -24,6 +24,5 @@ public sealed class GroupAccessDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private GroupAccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

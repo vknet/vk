@@ -9,7 +9,7 @@ public class GetOfficeUsersTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get office users")]
 	public void GetOfficeUsers()
 	{
 		Url = "https://api.vk.ru/method/ads.getOfficeUsers";

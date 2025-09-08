@@ -9,7 +9,7 @@ public class GetUploadUrlTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get upload url")]
 	public void GetUploadUrl()
 	{
 		Url = "https://api.vk.ru/method/ads.getUploadUrl";

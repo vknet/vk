@@ -9,7 +9,7 @@ public class AudioGetPopularTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact]
+	[Fact(DisplayName = "Get get popular test")]
 	public void GetGetPopularTest()
 	{
 		Url = "https://api.vk.ru/method/audio.getPopular";

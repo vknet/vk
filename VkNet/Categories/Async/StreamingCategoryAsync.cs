@@ -25,19 +25,16 @@ public partial class StreamingCategory
 																string interval,
 																DateTime? startTime = null,
 																DateTime? endTime = null,
-																CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			GetStats(type, interval, startTime, endTime), token);
+																CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		GetStats(type, interval, startTime, endTime), token);
 
 	/// <inheritdoc />
 	public Task<bool> SetSettingsAsync(MonthlyLimit monthlyTier,
-										CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			SetSettings(monthlyTier), token);
+										CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		SetSettings(monthlyTier), token);
 
 	/// <inheritdoc />
 	public Task<string> GetStemAsync(string word,
-									CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			GetStem(word), token);
+									CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		GetStem(word), token);
 }

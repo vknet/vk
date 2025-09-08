@@ -35,5 +35,5 @@ public enum KeyboardButtonColor
 	/// <summary>
 	/// Вторичный
 	/// </summary>
-	Secondary,
+	Secondary
 }

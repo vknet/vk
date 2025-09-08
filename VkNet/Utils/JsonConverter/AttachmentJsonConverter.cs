@@ -79,7 +79,6 @@ public class AttachmentJsonConverter : Newtonsoft.Json.JsonConverter
 		return Activator.CreateInstance(vkCollection, list);
 	}
 
-
 	/// <inheritdoc />
 	public override bool CanConvert(Type objectType) => typeof(ReadOnlyCollection<>).IsAssignableFrom(c: objectType);
 }

@@ -14,7 +14,7 @@ public class ExecuteCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Execute";
 
-	[Fact]
+	[Fact(DisplayName = "Execute test")]
 	public void ExecuteTest()
 	{
 		Url = "https://api.vk.ru/method/execute";
@@ -29,7 +29,7 @@ public class ExecuteCategoryTest : CategoryBaseTest
 			.Be(Json);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Execute topics feed test")]
 	public void ExecuteTopicsFeedTest()
 	{
 		Url = "https://api.vk.ru/method/execute";
@@ -43,7 +43,7 @@ public class ExecuteCategoryTest : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Execute get universities test")]
 	public void ExecuteGetUniversitiesTest()
 	{
 		Url = "https://api.vk.ru/method/execute";
@@ -63,7 +63,7 @@ public class ExecuteCategoryTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Execute error test")]
 	public void ExecuteErrorTest()
 	{
 		Url = "https://api.vk.ru/method/execute";
@@ -76,7 +76,7 @@ public class ExecuteCategoryTest : CategoryBaseTest
 			.ThrowExactly<ImpossibleToCompileCodeException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Execute errors")]
 	public void ExecuteErrors()
 	{
 		Url = "https://api.vk.ru/method/execute";
@@ -99,12 +99,11 @@ public class ExecuteCategoryTest : CategoryBaseTest
 			"TestData"
 		};
 
-		folders.AddRange(new[]
-		{
+		folders.AddRange([
 			"Categories",
 			Folder,
 			scriptPath
-		});
+		]);
 
 		var path = Path.Combine(folders.ToArray()) + ".vkscript";
 

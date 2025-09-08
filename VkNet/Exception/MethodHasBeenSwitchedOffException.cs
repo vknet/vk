@@ -23,6 +23,5 @@ public sealed class MethodHasBeenSwitchedOffException : VkApiMethodInvokeExcepti
 	/// <inheritdoc />
 	private MethodHasBeenSwitchedOffException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

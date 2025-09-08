@@ -10,7 +10,7 @@ public class WallPostTests : CategoryBaseTest
 {
 	protected override string Folder => "Wall";
 
-	[Fact]
+	[Fact(DisplayName = "Post return validate needed")]
 	public void Post_ReturnValidateNeeded()
 	{
 		Url = "https://api.vk.ru/method/wall.post";
@@ -21,7 +21,7 @@ public class WallPostTests : CategoryBaseTest
 			.ThrowExactly<NeedValidationException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Post access to adding post denied")]
 	public void Post_AccessToAddingPostDenied()
 	{
 		Url = "https://api.vk.ru/method/wall.post";

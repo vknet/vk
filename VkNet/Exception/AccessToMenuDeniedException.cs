@@ -21,6 +21,5 @@ public sealed class AccessToMenuDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private AccessToMenuDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

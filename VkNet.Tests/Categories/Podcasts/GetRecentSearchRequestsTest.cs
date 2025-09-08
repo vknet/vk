@@ -8,7 +8,7 @@ public class GetRecentSearchRequestsTest : CategoryBaseTest
 {
 	protected override string Folder => "Podcasts";
 
-	[Fact]
+	[Fact(DisplayName = "Get recent search requests")]
 	public void GetRecentSearchRequests()
 	{
 		Url = "https://api.vk.ru/method/podcasts.getRecentSearchRequests";

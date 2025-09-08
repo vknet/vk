@@ -22,6 +22,5 @@ public sealed class CannotSendDuePrivacyException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private CannotSendDuePrivacyException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

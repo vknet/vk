@@ -24,6 +24,5 @@ public sealed class InvalidUserIdException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private InvalidUserIdException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

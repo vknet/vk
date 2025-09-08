@@ -6,7 +6,7 @@ namespace VkNet.Tests.Models;
 
 public class PhotoModel
 {
-	[Fact]
+	[Fact(DisplayName = "To string photo should have access key")]
 	public void ToString_PhotoShouldHaveAccessKey()
 	{
 		var photo = new Photo

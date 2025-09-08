@@ -10,7 +10,7 @@ public class AudioAddToPlaylistTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact]
+	[Fact(DisplayName = "Add to playlist test")]
 	public void AddToPlaylistTest()
 	{
 		Url = "https://api.vk.ru/method/audio.addToPlaylist";

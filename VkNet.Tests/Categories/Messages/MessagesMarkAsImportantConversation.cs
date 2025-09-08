@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesMarkAsImportantConversation : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Mark as important conversation")]
 	public void MarkAsImportantConversation()
 	{
 		Url = "https://api.vk.ru/method/messages.markAsImportantConversation";

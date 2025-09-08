@@ -9,7 +9,7 @@ public class DocsGetMessagesUploadServerTests : CategoryBaseTest
 {
 	protected override string Folder => "Docs";
 
-	[Fact]
+	[Fact(DisplayName = "Get messages upload server test")]
 	public void GetMessagesUploadServerTest()
 	{
 		Url = "https://api.vk.ru/method/docs.getMessagesUploadServer";

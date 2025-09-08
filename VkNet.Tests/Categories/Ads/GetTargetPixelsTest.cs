@@ -8,7 +8,7 @@ public class GetTargetPixelsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get target pixels")]
 	public void GetTargetPixels()
 	{
 		Url = "https://api.vk.ru/method/ads.getTargetPixels";

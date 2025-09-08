@@ -37,5 +37,5 @@ public class Delivery
 	/// информация о пункте выдачи.
 	/// </summary>
 	[JsonProperty("delivery_point ")]
-	public string DeliveryPoint  { get; set; }
+	public string DeliveryPoint { get; set; }
 }

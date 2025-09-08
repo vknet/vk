@@ -23,7 +23,6 @@ public class VkApiException : System.Exception
 	/// <inheritdoc />
 	protected VkApiException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 
 	/// <summary>
@@ -60,10 +59,7 @@ public class VkApiException : System.Exception
 
 	/// <inheritdoc />
 	[UsedImplicitly]
-	public override void GetObjectData(SerializationInfo info, StreamingContext context)
-	{
-		base.GetObjectData(info, context);
-	}
+	public override void GetObjectData(SerializationInfo info, StreamingContext context) => base.GetObjectData(info, context);
 
 	/// <summary>
 	/// Код ошибки

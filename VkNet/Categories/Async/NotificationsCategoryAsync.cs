@@ -16,13 +16,11 @@ public partial class NotificationsCategory
 												IEnumerable<string> filters = null,
 												long? startTime = null,
 												long? endTime = null,
-												CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(count, startFrom, filters, startTime, endTime), token);
+												CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		Get(count, startFrom, filters, startTime, endTime), token);
 
 	/// <inheritdoc />
-	public Task<bool> MarkAsViewedAsync(CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(MarkAsViewed, token);
+	public Task<bool> MarkAsViewedAsync(CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(MarkAsViewed, token);
 
 	/// <inheritdoc/>
 	public Task<IEnumerable<NotificationsSendMessageResult>> SendMessageAsync(NotificationsSendMessageParams sendMessageParams,

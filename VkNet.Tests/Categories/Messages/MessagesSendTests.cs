@@ -12,7 +12,7 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesSendTests : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Access token invalid throw access token invalid exception")]
 	public void AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		var cat = new MessagesCategory(new VkApi());
@@ -27,7 +27,7 @@ public class MessagesSendTests : MessagesBaseTests
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Coords message")]
 	public void CoordsMessage()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -46,7 +46,7 @@ public class MessagesSendTests : MessagesBaseTests
 			.Be(4464);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Default fields message id")]
 	public void DefaultFields_MessageId()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -63,7 +63,7 @@ public class MessagesSendTests : MessagesBaseTests
 			.Be(4457);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Empty message throws invalid parameter exception")]
 	public void EmptyMessage_ThrowsInvalidParameterException() => FluentActions.Invoking(() => Api.Messages.Send(new()
 		{
 			UserId = 7550525,
@@ -72,7 +72,7 @@ public class MessagesSendTests : MessagesBaseTests
 		.Should()
 		.ThrowExactly<ArgumentException>();
 
-	[Fact]
+	[Fact(DisplayName = "Exception message is too long")]
 	public void Exception_MessageIsTooLong()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -90,7 +90,7 @@ public class MessagesSendTests : MessagesBaseTests
 			.ThrowExactly<MessageIsTooLongException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Exception too much sent messages")]
 	public void Exception_TooMuchSentMessages()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -108,7 +108,7 @@ public class MessagesSendTests : MessagesBaseTests
 			.ThrowExactly<TooMuchSentMessagesException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Messages send random id not required in less than 5 90 argument exception")]
 	public void MessagesSend_RandomIdNotRequiredInLessThan_5_90_ArgumentException()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -126,7 +126,7 @@ public class MessagesSendTests : MessagesBaseTests
 			.Be(4464);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Messages send random id required argument exception")]
 	public void MessagesSend_RandomIdRequired_ArgumentException()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -146,7 +146,7 @@ public class MessagesSendTests : MessagesBaseTests
 			.ThrowExactly<ArgumentException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Messages send set user ids param argument exception")]
 	public void MessagesSend_SetUserIdsParam_ArgumentException()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -166,7 +166,7 @@ public class MessagesSendTests : MessagesBaseTests
 			.ThrowExactly<ArgumentException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Messages send to user ids no set user ids param array result")]
 	public void MessagesSendToUserIds_NoSetUserIdsParam_ArrayResult()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -198,60 +198,60 @@ public class MessagesSendTests : MessagesBaseTests
 			.Be(210525);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Messages send to peer ids no set peer ids param array result")]
 	public void MessagesSendToPeerIds_NoSetPeerIdsParam_ArrayResult()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(MessagesSendToPeerIds_NoSetPeerIdsParam_ArrayResult));
 
 		FluentActions.Invoking(() => Api.Messages.Send(new()
-		{
-			Message = "г. Таганрог, ул. Фрунзе 66А",
-			Lat = 47.217451,
-			Longitude = 38.922743
-		}))
+			{
+				Message = "г. Таганрог, ул. Фрунзе 66А",
+				Lat = 47.217451,
+				Longitude = 38.922743
+			}))
 			.Should()
 			.ThrowExactly<ArgumentException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Messages send to peer ids set user ids param array result")]
 	public void MessagesSendToPeerIds_SetUserIdsParam_ArrayResult()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(MessagesSendToPeerIds_SetUserIdsParam_ArrayResult));
 
 		FluentActions.Invoking(() => Api.Messages.Send(new()
-		{
-			UserIds = new List<long>
 			{
-				7550525
-			},
-			Message = "г. Таганрог, ул. Фрунзе 66А",
-			Lat = 47.217451,
-			Longitude = 38.922743
-		}))
+				UserIds = new List<long>
+				{
+					7550525
+				},
+				Message = "г. Таганрог, ул. Фрунзе 66А",
+				Lat = 47.217451,
+				Longitude = 38.922743
+			}))
 			.Should()
 			.ThrowExactly<ArgumentException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Messages send to peer ids set peer id param array result")]
 	public void MessagesSendToPeerIds_SetPeerIdParam_ArrayResult()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
 		ReadCategoryJsonPath(nameof(MessagesSendToPeerIds_SetPeerIdParam_ArrayResult));
 
 		FluentActions.Invoking(() => Api.Messages.Send(new()
-		{
-			PeerId = 7550525,
-			Message = "г. Таганрог, ул. Фрунзе 66А",
-			Lat = 47.217451,
-			Longitude = 38.922743
-		}))
+			{
+				PeerId = 7550525,
+				Message = "г. Таганрог, ул. Фрунзе 66А",
+				Lat = 47.217451,
+				Longitude = 38.922743
+			}))
 			.Should()
 			.ThrowExactly<ArgumentException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Messages send to peer ids send array result")]
 	public void MessagesSendToPeerIds_Send_ArrayResult()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -283,7 +283,7 @@ public class MessagesSendTests : MessagesBaseTests
 			.Be(210525);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Russian text message id")]
 	public void RussianText_MessageId()
 	{
 		Url = "https://api.vk.ru/method/messages.send";
@@ -300,7 +300,7 @@ public class MessagesSendTests : MessagesBaseTests
 			.Be(4464);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Template carousel")]
 	public void Template_Carousel()
 	{
 		Url = "https://api.vk.ru/method/messages.send";

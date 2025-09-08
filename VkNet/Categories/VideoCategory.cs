@@ -189,41 +189,41 @@ public partial class VideoCategory : IVideoCategory
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
 		return _vk.Call<VkCollection<Video>>("video.search", new()
+		{
 			{
-				{
-					"q", @params.Query
-				},
-				{
-					"sort", @params.Sort
-				},
-				{
-					"hd", @params.Hd
-				},
-				{
-					"adult", @params.Adult
-				},
-				{
-					"filters", @params.Filters
-				},
-				{
-					"search_own", @params.SearchOwn
-				},
-				{
-					"offset", @params.Offset
-				},
-				{
-					"longer", @params.Longer
-				},
-				{
-					"shorter", @params.Shorter
-				},
-				{
-					"count", @params.Count
-				},
-				{
-					"extended", @params.Extended
-				}
-			});
+				"q", @params.Query
+			},
+			{
+				"sort", @params.Sort
+			},
+			{
+				"hd", @params.Hd
+			},
+			{
+				"adult", @params.Adult
+			},
+			{
+				"filters", @params.Filters
+			},
+			{
+				"search_own", @params.SearchOwn
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"longer", @params.Longer
+			},
+			{
+				"shorter", @params.Shorter
+			},
+			{
+				"count", @params.Count
+			},
+			{
+				"extended", @params.Extended
+			}
+		});
 	}
 
 	/// <inheritdoc />
@@ -328,35 +328,35 @@ public partial class VideoCategory : IVideoCategory
 		VkErrors.ThrowIfNumberIsNegative(expr: () => @params.Offset);
 
 		return _vk.Call<VkCollection<Comment>>("video.getComments", new()
+		{
 			{
-				{
-					"owner_id", @params.OwnerId
-				},
-				{
-					"video_id", @params.VideoId
-				},
-				{
-					"need_likes", @params.NeedLikes
-				},
-				{
-					"start_comment_id", @params.StartCommentId
-				},
-				{
-					"offset", @params.Offset
-				},
-				{
-					"count", @params.Count
-				},
-				{
-					"sort", @params.Sort
-				},
-				{
-					"extended", @params.Extended
-				},
-				{
-					"fields", @params.Fields
-				}
-			});
+				"owner_id", @params.OwnerId
+			},
+			{
+				"video_id", @params.VideoId
+			},
+			{
+				"need_likes", @params.NeedLikes
+			},
+			{
+				"start_comment_id", @params.StartCommentId
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"count", @params.Count
+			},
+			{
+				"sort", @params.Sort
+			},
+			{
+				"extended", @params.Extended
+			},
+			{
+				"fields", @params.Fields
+			}
+		});
 	}
 
 	/// <inheritdoc />

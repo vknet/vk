@@ -9,7 +9,7 @@ public class CreateClientsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Create clients")]
 	public void CreateClients()
 	{
 		Url = "https://api.vk.ru/method/ads.createClients";
@@ -31,10 +31,10 @@ public class CreateClientsTest : CategoryBaseTest
 		};
 
 		ClientSpecification[] data =
-		{
+		[
 			clientSpecification1,
 			clientSpecification2
-		};
+		];
 
 		var officeUsers = Api.Ads.CreateClients(new()
 		{

@@ -21,6 +21,5 @@ public sealed class StatusAccessDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private StatusAccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

@@ -9,7 +9,7 @@ public class FaveAddTagTests : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "Fave";
 
-	[Fact]
+	[Fact(DisplayName = "Add tag")]
 	public void AddTag()
 	{
 		Url = "https://api.vk.ru/method/fave.addTag";

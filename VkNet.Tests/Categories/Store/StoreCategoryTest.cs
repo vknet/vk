@@ -10,7 +10,7 @@ public class StoreCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Store";
 
-	[Fact]
+	[Fact(DisplayName = "Add stickers to favorite")]
 	public void AddStickersToFavorite()
 	{
 		Url = "https://api.vk.ru/method/store.addStickersToFavorite";
@@ -19,14 +19,18 @@ public class StoreCategoryTest : CategoryBaseTest
 
 		var result = Api.Store.AddStickersToFavorite(new()
 		{
-			StickerIds = ["126", "70"]
+			StickerIds =
+			[
+				"126",
+				"70"
+			]
 		});
 
 		result.Should()
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get favorite stickers")]
 	public void GetFavoriteStickers()
 	{
 		Url = "https://api.vk.ru/method/store.getFavoriteStickers";
@@ -61,7 +65,7 @@ public class StoreCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get products")]
 	public void GetProducts()
 	{
 		Url = "https://api.vk.ru/method/store.getProducts";
@@ -72,7 +76,11 @@ public class StoreCategoryTest : CategoryBaseTest
 		{
 			Type = ProductType.Stickers,
 			ProductIds = ["148"],
-			Filters = [ProductStatusFilter.Purchased, ProductStatusFilter.Active],
+			Filters =
+			[
+				ProductStatusFilter.Purchased,
+				ProductStatusFilter.Active
+			],
 			Extended = true
 		});
 
@@ -115,7 +123,7 @@ public class StoreCategoryTest : CategoryBaseTest
 			.Be(5);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get stickers keywords")]
 	public void GetStickersKeywords()
 	{
 		Url = "https://api.vk.ru/method/store.getStickersKeywords";
@@ -133,13 +141,16 @@ public class StoreCategoryTest : CategoryBaseTest
 		result.Dictionary.Count.Should()
 			.Be(1);
 
-		result.Dictionary[0].Words.Count.Should()
+		result.Dictionary[0]
+			.Words.Count.Should()
 			.Be(51);
 
-		result.Dictionary[0].UserStickers.Count.Should()
+		result.Dictionary[0]
+			.UserStickers.Count.Should()
 			.Be(1);
 
-		var sticker = result.Dictionary[0].UserStickers[0];
+		var sticker = result.Dictionary[0]
+			.UserStickers[0];
 
 		sticker.InnerType.Should()
 			.Be("base_sticker_new");
@@ -151,7 +162,7 @@ public class StoreCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Remove stickers from favorite")]
 	public void RemoveStickersFromFavorite()
 	{
 		Url = "https://api.vk.ru/method/store.removeStickersFromFavorite";
@@ -160,7 +171,11 @@ public class StoreCategoryTest : CategoryBaseTest
 
 		var result = Api.Store.RemoveStickersFromFavorite(new()
 		{
-			StickerIds = ["126", "70"]
+			StickerIds =
+			[
+				"126",
+				"70"
+			]
 		});
 
 		result.Should()

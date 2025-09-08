@@ -24,6 +24,5 @@ public sealed class AppOffException : VkApiMethodInvokeException
 
 	private AppOffException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

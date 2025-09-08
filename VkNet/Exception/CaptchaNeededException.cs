@@ -29,15 +29,11 @@ public sealed class CaptchaNeededException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private CaptchaNeededException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 
 	/// <inheritdoc />
 	[UsedImplicitly]
-	public override void GetObjectData(SerializationInfo info, StreamingContext context)
-	{
-		base.GetObjectData(info, context);
-	}
+	public override void GetObjectData(SerializationInfo info, StreamingContext context) => base.GetObjectData(info, context);
 
 	/// <summary>
 	/// Идентификатор капчи

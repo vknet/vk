@@ -22,6 +22,5 @@ public sealed class OnlyStandaloneOrOpenApiException : VkApiMethodInvokeExceptio
 	/// <inheritdoc />
 	private OnlyStandaloneOrOpenApiException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

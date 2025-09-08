@@ -8,7 +8,7 @@ public class GetFloodStatsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get flood stats")]
 	public void GetFloodStats()
 	{
 		Url = "https://api.vk.ru/method/ads.getFloodStats";

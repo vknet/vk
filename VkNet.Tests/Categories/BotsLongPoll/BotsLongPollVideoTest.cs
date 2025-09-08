@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll;
 
 public class BotsLongPollVideoTest : BotsLongPollBaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history video new test")]
 	public void GetBotsLongPollHistory_VideoNewTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoNewTest));
@@ -31,6 +31,7 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case Model.Video:
@@ -51,7 +52,7 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history video comment new test")]
 	public void GetBotsLongPollHistory_VideoCommentNewTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentNewTest));
@@ -78,6 +79,7 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case VideoComment:
@@ -104,7 +106,7 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history video comment edit test")]
 	public void GetBotsLongPollHistory_VideoCommentEditTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentEditTest));
@@ -130,6 +132,7 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case VideoComment:
@@ -153,7 +156,7 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history video comment restore test")]
 	public void GetBotsLongPollHistory_VideoCommentRestoreTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentRestoreTest));
@@ -179,6 +182,7 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case VideoComment:
@@ -202,7 +206,7 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history video comment delete test")]
 	public void GetBotsLongPollHistory_VideoCommentDeleteTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_VideoCommentDeleteTest));
@@ -229,6 +233,7 @@ public class BotsLongPollVideoTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case VideoCommentDelete:

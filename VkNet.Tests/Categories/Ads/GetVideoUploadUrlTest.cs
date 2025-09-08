@@ -8,7 +8,7 @@ public class GetVideoUploadUrlTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get video upload url")]
 	public void GetVideoUploadUrl()
 	{
 		Url = "https://api.vk.ru/method/ads.getVideoUploadUrl";

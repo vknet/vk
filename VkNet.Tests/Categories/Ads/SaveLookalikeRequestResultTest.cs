@@ -8,7 +8,7 @@ public class SaveLookalikeRequestResultTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Save lookalike request result")]
 	public void SaveLookalikeRequestResult()
 	{
 		Url = "https://api.vk.ru/method/ads.saveLookalikeRequestResult";

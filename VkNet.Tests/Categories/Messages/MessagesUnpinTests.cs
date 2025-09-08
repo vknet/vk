@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesUnpinTests : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Unpin")]
 	public void Unpin()
 	{
 		Url = "https://api.vk.ru/method/messages.unpin";

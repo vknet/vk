@@ -8,7 +8,7 @@ public class GetTokenPermissionsTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact]
+	[Fact(DisplayName = "Get token permissions")]
 	public void GetTokenPermissions()
 	{
 		Url = "https://api.vk.ru/method/groups.getTokenPermissions";

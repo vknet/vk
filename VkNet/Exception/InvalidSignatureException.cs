@@ -23,6 +23,5 @@ public sealed class InvalidSignatureException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private InvalidSignatureException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

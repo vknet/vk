@@ -22,6 +22,5 @@ public sealed class ExecuteException : AggregateException
 	/// <inheritdoc />
 	private ExecuteException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 }

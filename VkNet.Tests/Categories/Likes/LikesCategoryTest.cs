@@ -12,7 +12,7 @@ public class LikesCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Likes";
 
-	[Fact]
+	[Fact(DisplayName = "Add normal case")]
 	public void Add_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/likes.add";
@@ -28,7 +28,7 @@ public class LikesCategoryTest : CategoryBaseTest
 			.Be(5);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Delete normal case")]
 	public void Delete_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/likes.delete";
@@ -40,7 +40,7 @@ public class LikesCategoryTest : CategoryBaseTest
 			.Be(4);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get list normal case")]
 	public void GetList_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/likes.getList";
@@ -55,7 +55,7 @@ public class LikesCategoryTest : CategoryBaseTest
 			.HaveCount(5);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get list ex normal case")]
 	public void GetListEx_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/likes.getList";
@@ -85,7 +85,7 @@ public class LikesCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Is liked normal case")]
 	public void IsLiked_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/likes.isLiked";

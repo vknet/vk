@@ -7,7 +7,7 @@ namespace VkNet.Tests.Models;
 
 public class TimetableTests : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Timetable to json")]
 	public void TimetableToJson()
 	{
 		ReadJsonFile("Models", nameof(TimetableToJson));

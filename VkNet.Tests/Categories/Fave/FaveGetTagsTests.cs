@@ -10,7 +10,7 @@ public class FaveGetTagsTests : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "Fave";
 
-	[Fact]
+	[Fact(DisplayName = "Get tags")]
 	public void GetTags()
 	{
 		Url = "https://api.vk.ru/method/fave.getTags";

@@ -8,7 +8,7 @@ namespace VkNet.Tests.Models;
 
 public class ConversationModelTests : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Conversation model")]
 	public void ConversationModel()
 	{
 		ReadJsonFile("Models", nameof(ConversationModel));

@@ -22,6 +22,5 @@ public sealed class CommentsWallAccessDeniedException : VkApiMethodInvokeExcepti
 	/// <inheritdoc />
 	private CommentsWallAccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

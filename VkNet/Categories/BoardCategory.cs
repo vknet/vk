@@ -15,7 +15,8 @@ internal partial class BoardCategory : IBoardCategory
 	public BoardCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
-	public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<Topic>>("board.getTopics", new()
+	public VkCollection<Topic> GetTopics(BoardGetTopicsParams @params, bool skipAuthorization = false) => _vk.Call<VkCollection<Topic>>(
+		"board.getTopics", new()
 		{
 			{
 				"group_id", @params.GroupId
@@ -44,9 +45,8 @@ internal partial class BoardCategory : IBoardCategory
 		}, skipAuthorization);
 
 	/// <inheritdoc />
-	public TopicsFeed GetComments(BoardGetCommentsParams @params, bool skipAuthorization = false)
-	{
-		return _vk.Call<TopicsFeed>("board.getComments", new()
+	public TopicsFeed GetComments(BoardGetCommentsParams @params, bool skipAuthorization = false) => _vk.Call<TopicsFeed>(
+		"board.getComments", new()
 		{
 			{
 				"group_id", @params.GroupId
@@ -76,7 +76,6 @@ internal partial class BoardCategory : IBoardCategory
 				"extended", @params.Extended
 			}
 		}, skipAuthorization);
-	}
 
 	/// <inheritdoc />
 	public long AddTopic(BoardAddTopicParams @params) => _vk.Call<long>("board.addTopic", new()

@@ -335,10 +335,7 @@ public partial class AudioCategory : IAudioCategory
 	}
 
 	/// <inheritdoc />
-	public UploadServer GetUploadServer()
-	{
-		return _vk.Call<UploadServer>("audio.getUploadServer", VkParameters.Empty);
-	}
+	public UploadServer GetUploadServer() => _vk.Call<UploadServer>("audio.getUploadServer", VkParameters.Empty);
 
 	/// <inheritdoc />
 	public IEnumerable<long> AddToPlaylist(long ownerId, long playlistId, IEnumerable<string> audioIds)
@@ -408,6 +405,7 @@ public partial class AudioCategory : IAudioCategory
 		{
 			var error = responseJson["error_code"]
 				.ToString();
+
 			var errorMsg = responseJson["error_msg"]
 				.ToString();
 

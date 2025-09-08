@@ -12,9 +12,8 @@ public partial class AsrCategory
 {
 	/// <inheritdoc />
 	public Task<AudioRecordingTask> CheckStatusAsync(string taskId,
-								CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			CheckStatus(taskId), token);
+													CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		CheckStatus(taskId), token);
 
 	/// <inheritdoc />
 	public Task<AsrUploadUrlResult> GetUploadUrlAsync(CancellationToken token = default) =>
@@ -24,5 +23,4 @@ public partial class AsrCategory
 	public Task<TaskIdResult> ProcessAsync(string audio, AsrProcessModel model, CancellationToken token = default) =>
 		TypeHelper.TryInvokeMethodAsync(() =>
 			Process(audio, model), token);
-
 }

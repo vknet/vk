@@ -8,7 +8,7 @@ public class AudioSearchTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact]
+	[Fact(DisplayName = "Search test")]
 	public void SearchTest()
 	{
 		Url = "https://api.vk.ru/method/audio.search";

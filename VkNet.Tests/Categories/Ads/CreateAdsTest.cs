@@ -11,7 +11,7 @@ public class CreateAdsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Add office users")]
 	public void AddOfficeUsers()
 	{
 		Url = "https://api.vk.ru/method/ads.createAds";
@@ -45,10 +45,10 @@ public class CreateAdsTest : CategoryBaseTest
 		};
 
 		AdSpecification[] data =
-		{
+		[
 			adSpecification1,
 			adSpecification2
-		};
+		];
 
 		var officeUsers = Api.Ads.CreateAds(new()
 		{

@@ -21,6 +21,5 @@ public sealed class VideoAccessDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private VideoAccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

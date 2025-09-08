@@ -21,6 +21,5 @@ public sealed class MessageIsTooLongException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private MessageIsTooLongException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

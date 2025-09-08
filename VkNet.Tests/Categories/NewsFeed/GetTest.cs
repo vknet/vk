@@ -9,7 +9,7 @@ public class GetTest : CategoryBaseTest
 {
 	protected override string Folder => "NewsFeed";
 
-	[Fact]
+	[Fact(DisplayName = "Get")]
 	public void Get()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.get";
@@ -18,11 +18,11 @@ public class GetTest : CategoryBaseTest
 		var result = Api.NewsFeed.Get(new()
 		{
 			Filters = NewsTypes.Post|NewsTypes.Photo|NewsTypes.WallPhoto|NewsTypes.Friend,
-			SourceIds = new[]
-			{
+			SourceIds =
+			[
 				"-106879986",
 				"-30022666"
-			},
+			],
 			Count = 100
 		});
 
@@ -33,7 +33,7 @@ public class GetTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get2")]
 	public void Get2()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.get";
@@ -42,10 +42,7 @@ public class GetTest : CategoryBaseTest
 		var result = Api.NewsFeed.Get(new()
 		{
 			Filters = NewsTypes.Post|NewsTypes.Photo|NewsTypes.WallPhoto|NewsTypes.Friend,
-			SourceIds = new[]
-			{
-				"361347484"
-			},
+			SourceIds = ["361347484"],
 			Count = 100
 		});
 

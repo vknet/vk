@@ -8,7 +8,7 @@ public class OrdersUpdateSubscriptionTests : CategoryBaseTest
 {
 	protected override string Folder => "Orders";
 
-	[Fact]
+	[Fact(DisplayName = "Update subscription")]
 	public void UpdateSubscription()
 	{
 		Url = "https://api.vk.ru/method/orders.updateSubscription";

@@ -10,7 +10,7 @@ public class FaveGetTests : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "Fave";
 
-	[Fact]
+	[Fact(DisplayName = "Get")]
 	public void Get()
 	{
 		Url = "https://api.vk.ru/method/fave.get";

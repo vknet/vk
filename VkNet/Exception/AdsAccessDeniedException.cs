@@ -22,6 +22,5 @@ public sealed class AdsAccessDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private AdsAccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

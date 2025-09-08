@@ -8,7 +8,7 @@ public class DisableOnlineTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact]
+	[Fact(DisplayName = "Disable online")]
 	public void DisableOnline()
 	{
 		Url = "https://api.vk.ru/method/groups.disableOnline";

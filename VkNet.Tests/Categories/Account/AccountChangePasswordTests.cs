@@ -8,7 +8,7 @@ public class AccountChangePasswordTests : CategoryBaseTest
 {
 	protected override string Folder => "Account";
 
-	[Fact]
+	[Fact(DisplayName = "Change password")]
 	public void ChangePassword()
 	{
 		Url = "https://api.vk.ru/method/account.changePassword";

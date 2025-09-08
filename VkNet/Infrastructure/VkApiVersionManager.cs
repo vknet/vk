@@ -27,13 +27,13 @@ public class VkApiVersionManager : IVkApiVersionManager
 		switch (major)
 		{
 			case < CurrentMajorVersion:
-				throw new VkApiException("С 27 мая 2019 года версии API ниже 5.0 больше не поддерживаются.")
+				throw new VersionDeprecatedException("С 27 мая 2019 года версии API ниже 5.0 больше не поддерживаются.")
 				{
 					HelpLink = "https://vk.ru/dev/version_update_2.0"
 				};
 
 			case CurrentMajorVersion when minor < MinimalMinorVersion:
-				throw new VkApiException("С 2 сентября 2021 года прекратилась поддержка версий ниже 5.81.")
+				throw new VersionDeprecatedException("С 2 сентября 2021 года прекратилась поддержка версий ниже 5.81.")
 				{
 					HelpLink = "https://vk.ru/dev/constant_version_updates"
 				};

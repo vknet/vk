@@ -8,7 +8,7 @@ public class CreateTest : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact]
+	[Fact(DisplayName = "Create")]
 	public void Create()
 	{
 		Url = "https://api.vk.ru/method/groups.create";

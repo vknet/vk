@@ -22,6 +22,5 @@ public sealed class AdsRecentlyPostedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private AdsRecentlyPostedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

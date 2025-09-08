@@ -8,7 +8,7 @@ public class PlacesCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Places";
 
-	[Fact]
+	[Fact(DisplayName = "Add")]
 	public void Add()
 	{
 		Url = "https://api.vk.ru/method/places.add";
@@ -20,7 +20,7 @@ public class PlacesCategoryTests : CategoryBaseTest
 			.Be(6162171);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Checkin")]
 	public void Checkin()
 	{
 		Url = "https://api.vk.ru/method/places.checkin";
@@ -32,22 +32,19 @@ public class PlacesCategoryTests : CategoryBaseTest
 			.Be(6162171);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id")]
 	public void GetById()
 	{
 		Url = "https://api.vk.ru/method/places.getById";
 		ReadCategoryJsonPath(nameof(GetById));
 
-		var result = Api.Places.GetById(new ulong[]
-		{
-			123
-		});
+		var result = Api.Places.GetById([123]);
 
 		result.Should()
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get checkins")]
 	public void GetCheckins()
 	{
 		Url = "https://api.vk.ru/method/places.getCheckins";
@@ -59,7 +56,7 @@ public class PlacesCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get types")]
 	public void GetTypes()
 	{
 		Url = "https://api.vk.ru/method/places.getTypes";
@@ -71,7 +68,7 @@ public class PlacesCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search")]
 	public void Search()
 	{
 		Url = "https://api.vk.ru/method/places.search";

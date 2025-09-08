@@ -22,6 +22,5 @@ public sealed class UserDisabledTrackNameBroadcastException : VkApiMethodInvokeE
 	/// <inheritdoc />
 	private UserDisabledTrackNameBroadcastException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

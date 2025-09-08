@@ -7,7 +7,7 @@ namespace VkNet.Tests.Enum.SafetyEnums;
 
 public class SafetyEnumsTest
 {
-	[Fact]
+	[Fact(DisplayName = "App filter test")]
 	public void AppFilterTest()
 	{
 		// get test
@@ -29,7 +29,7 @@ public class SafetyEnumsTest
 			.Be(AppFilter.Featured);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "News types test")]
 	public void NewsTypesTest()
 	{
 		// get test
@@ -83,7 +83,7 @@ public class SafetyEnumsTest
 			.Be(NewsTypes.Note);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Photo album type test")]
 	public void PhotoAlbumTypeTest()
 	{
 		// get test
@@ -113,7 +113,7 @@ public class SafetyEnumsTest
 			.Be(PhotoAlbumType.Saved);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Privacy test")]
 	public void PrivacyTest()
 	{
 		// get test
@@ -167,7 +167,7 @@ public class SafetyEnumsTest
 			.Be(Privacy.OnlyMe);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Market item button title test")]
 	public void MarketItemButtonTitleTest()
 	{
 		// get test

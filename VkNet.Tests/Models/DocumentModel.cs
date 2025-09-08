@@ -6,7 +6,7 @@ namespace VkNet.Tests.Models;
 
 public class DocumentModel
 {
-	[Fact]
+	[Fact(DisplayName = "To string document should have access key")]
 	public void ToString_DocumentShouldHaveAccessKey()
 	{
 		var document = new Document

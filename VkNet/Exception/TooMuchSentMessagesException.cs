@@ -21,6 +21,5 @@ public sealed class TooMuchSentMessagesException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private TooMuchSentMessagesException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

@@ -46,6 +46,7 @@ public interface IKeyboardBuilder
 	/// </summary>
 	/// <returns>Конструктор клавиатур</returns>
 	IKeyboardBuilder SetOneTime();
+
 	/// <summary>
 	/// Сделать отображение клавиатуры внутри сообщения
 	/// </summary>

@@ -22,7 +22,6 @@ public partial class MarketsCategory : IMarketsCategory
 	public MarketsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc />
-
 	public VkCollection<Market> Get(MarketGetParams @params) => _vk.Call<VkCollection<Market>>("market.get",
 		new()
 		{
@@ -54,7 +53,6 @@ public partial class MarketsCategory : IMarketsCategory
 				"with_disabled", @params.WithDisabled
 			}
 		});
-
 
 	/// <inheritdoc />
 	[Obsolete("This method is deprecated. Use  Get(MarketGetParams @params) instead", false)]
@@ -100,45 +98,45 @@ public partial class MarketsCategory : IMarketsCategory
 
 	/// <inheritdoc />
 	public VkCollection<Market> Search(MarketSearchParams @params) => _vk.Call<VkCollection<Market>>("market.search",
-			new()
+		new()
+		{
 			{
-				{
-					"owner_id", @params.OwnerId
-				},
-				{
-					"album_id", @params.AlbumId
-				},
-				{
-					"q", @params.Query
-				},
-				{
-					"price_from", @params.PriceFrom
-				},
-				{
-					"price_to", @params.PriceTo
-				},
-				{
-					"sort", @params.Sort
-				},
-				{
-					"rev", @params.Rev
-				},
-				{
-					"offset", @params.Offset
-				},
-				{
-					"count", @params.Count
-				},
-				{
-					"extended", @params.Extended
-				},
-				{
-					"status", @params.Status
-				},
-				{
-					"need_variants", @params.NeedVariants
-				}
-			});
+				"owner_id", @params.OwnerId
+			},
+			{
+				"album_id", @params.AlbumId
+			},
+			{
+				"q", @params.Query
+			},
+			{
+				"price_from", @params.PriceFrom
+			},
+			{
+				"price_to", @params.PriceTo
+			},
+			{
+				"sort", @params.Sort
+			},
+			{
+				"rev", @params.Rev
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"count", @params.Count
+			},
+			{
+				"extended", @params.Extended
+			},
+			{
+				"status", @params.Status
+			},
+			{
+				"need_variants", @params.NeedVariants
+			}
+		});
 
 	/// <inheritdoc />
 	public VkCollection<MarketAlbum> GetAlbums(long ownerId, int? offset = null, int? count = null)
@@ -206,37 +204,38 @@ public partial class MarketsCategory : IMarketsCategory
 		});
 
 	/// <inheritdoc />
-	public VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params) => _vk.Call<VkCollection<MarketComment>>("market.getComments",
-			new()
+	public VkCollection<MarketComment> GetComments(MarketGetCommentsParams @params) => _vk.Call<VkCollection<MarketComment>>(
+		"market.getComments",
+		new()
+		{
 			{
-				{
-					"owner_id", @params.OwnerId
-				},
-				{
-					"item_id", @params.ItemId
-				},
-				{
-					"need_likes", @params.NeedLikes
-				},
-				{
-					"start_comment_id", @params.StartCommentId
-				},
-				{
-					"offset", @params.Offset
-				},
-				{
-					"count", @params.Count
-				},
-				{
-					"sort", @params.Sort
-				},
-				{
-					"extended", @params.Extended
-				},
-				{
-					"fields", @params.Fields
-				}
-			});
+				"owner_id", @params.OwnerId
+			},
+			{
+				"item_id", @params.ItemId
+			},
+			{
+				"need_likes", @params.NeedLikes
+			},
+			{
+				"start_comment_id", @params.StartCommentId
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"count", @params.Count
+			},
+			{
+				"sort", @params.Sort
+			},
+			{
+				"extended", @params.Extended
+			},
+			{
+				"fields", @params.Fields
+			}
+		});
 
 	/// <inheritdoc />
 	public bool DeleteComment(long ownerId, long commentId)
@@ -546,7 +545,8 @@ public partial class MarketsCategory : IMarketsCategory
 	}
 
 	/// <inheritdoc />
-	public bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false, bool isHidden = false)
+	public bool EditAlbum(long ownerId, long albumId, string title, long? photoId = null, bool mainAlbum = false,
+						bool isHidden = false)
 	{
 		var parameters = new VkParameters
 		{

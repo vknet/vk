@@ -24,6 +24,5 @@ public sealed class ParameterMissingOrInvalidException : VkApiMethodInvokeExcept
 	/// <inheritdoc />
 	private ParameterMissingOrInvalidException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

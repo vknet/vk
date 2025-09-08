@@ -22,6 +22,5 @@ public sealed class PublicServerErrorException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private PublicServerErrorException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

@@ -7,7 +7,7 @@ namespace VkNet.Tests.Models;
 
 public class GeoTests : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Geo from json")]
 	public void GeoFromJson()
 	{
 		ReadJsonFile("Models", nameof(Geo));
@@ -19,7 +19,7 @@ public class GeoTests : BaseTest
 			.NotBeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Geo json convert")]
 	public void GeoJsonConvert()
 	{
 		ReadJsonFile("Models", nameof(Geo));

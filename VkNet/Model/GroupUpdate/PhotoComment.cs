@@ -11,9 +11,7 @@ namespace VkNet.Model;
 [Serializable]
 public class PhotoComment : Comment, IGroupUpdate
 {
-	/// <summary>
-	/// Идентификатор фотографии
-	/// </summary>
+	/// <inheritdoc />
 	[JsonProperty("photo_id")]
 	public new long? PhotoId { get; set; }
 

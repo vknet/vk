@@ -18,13 +18,9 @@ public sealed class VkKeyboardPayloadMaxLengthException : VkApiException
 	/// <inheritdoc/>
 	private VkKeyboardPayloadMaxLengthException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 
 	/// <inheritdoc />
 	[UsedImplicitly]
-	public override void GetObjectData(SerializationInfo info, StreamingContext context)
-	{
-		base.GetObjectData(info, context);
-	}
+	public override void GetObjectData(SerializationInfo info, StreamingContext context) => base.GetObjectData(info, context);
 }

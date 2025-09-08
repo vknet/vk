@@ -7,7 +7,7 @@ namespace VkNet.Tests.Models;
 
 public class MessageActionModel : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Should have field chat create")]
 	public void ShouldHaveField_ChatCreate()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatCreate));
@@ -19,7 +19,7 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatCreate);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should have field chat invite user")]
 	public void ShouldHaveField_ChatInviteUser()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUser));
@@ -31,7 +31,7 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatInviteUser);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should have field chat invite user by link")]
 	public void ShouldHaveField_ChatInviteUserByLink()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUserByLink));
@@ -43,7 +43,7 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatInviteUserByLink);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should have field chat kick user")]
 	public void ShouldHaveField_ChatKickUser()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatKickUser));
@@ -55,7 +55,7 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatKickUser);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should have field chat photo remove")]
 	public void ShouldHaveField_ChatPhotoRemove()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoRemove));
@@ -67,7 +67,7 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatPhotoRemove);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should have field chat photo update")]
 	public void ShouldHaveField_ChatPhotoUpdate()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoUpdate));
@@ -79,7 +79,7 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatPhotoUpdate);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should have field chat pin message")]
 	public void ShouldHaveField_ChatPinMessage()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatPinMessage));
@@ -91,7 +91,7 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatPinMessage);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should have field chat title update")]
 	public void ShouldHaveField_ChatTitleUpdate()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatTitleUpdate));
@@ -103,7 +103,7 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatTitleUpdate);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should have field chat unpin message")]
 	public void ShouldHaveField_ChatUnpinMessage()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatUnpinMessage));

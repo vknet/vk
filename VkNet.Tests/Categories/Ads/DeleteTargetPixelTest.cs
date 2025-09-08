@@ -8,7 +8,7 @@ public class DeleteTargetPixelTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Delete target pixel")]
 	public void DeleteTargetPixel()
 	{
 		Url = "https://api.vk.ru/method/ads.deleteTargetPixel";

@@ -17,6 +17,5 @@ public sealed class TooMuchButtonsException : VkApiException
 	/// <inheritdoc />
 	private TooMuchButtonsException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 }

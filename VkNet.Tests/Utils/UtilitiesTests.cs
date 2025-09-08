@@ -10,7 +10,7 @@ namespace VkNet.Tests.Utils;
 
 public class UtilitiesTests
 {
-	[Fact]
+	[Fact(DisplayName = "Json convert")]
 	public void JsonConvert()
 	{
 		var result = Utilities.SerializeToJson(new User
@@ -28,7 +28,7 @@ public class UtilitiesTests
 			.BeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Json convert write")]
 	public void JsonConvertWrite()
 	{
 		var vkCollection = new VkCollection<User>(10,
@@ -59,7 +59,7 @@ public class UtilitiesTests
 			.BeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Pretty print json should not throw exception")]
 	public void PrettyPrintJsonShouldNotThrowException()
 	{
 		const string invalidJson = "ERROR";

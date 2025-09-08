@@ -26,8 +26,14 @@ public class PushSettingsJsonConverter : Newtonsoft.Json.JsonConverter
 
 		var result = new PushSettings
 		{
-			Msg = !response.ContainsKey("msg") ? null : JsonConvert.DeserializeObject<MessagesPushSettings>(response[key: "msg"].ToString()),
-			Chat = !response.ContainsKey("chat") ? null : JsonConvert.DeserializeObject<MessagesPushSettings>(response[key: "chat"].ToString()),
+			Msg = !response.ContainsKey("msg")
+				? null
+				: JsonConvert.DeserializeObject<MessagesPushSettings>(response[key: "msg"]
+					.ToString()),
+			Chat = !response.ContainsKey("chat")
+				? null
+				: JsonConvert.DeserializeObject<MessagesPushSettings>(response[key: "chat"]
+					.ToString()),
 			Friend = response.ContainsKey(key: "friend") && response[key: "mutual"],
 			FriendFound = response[key: "friend_found"],
 			FriendAccepted = response[key: "friend_accepted"],

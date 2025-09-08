@@ -9,7 +9,7 @@ namespace VkNet.Tests.Models;
 
 public class TemplateBuilderTest
 {
-	[Fact]
+	[Fact(DisplayName = "Create template")]
 	public void CreateTemplate()
 	{
 		var builder = new TemplateBuilder();
@@ -35,7 +35,7 @@ public class TemplateBuilderTest
 			.Be(template.Type);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Partial template")]
 	public void PartialTemplate()
 	{
 		var builder = new TemplateBuilder();
@@ -49,7 +49,7 @@ public class TemplateBuilderTest
 			.Be("title");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Clear elements")]
 	public void ClearElements()
 	{
 		var builder = new TemplateBuilder();
@@ -64,7 +64,7 @@ public class TemplateBuilderTest
 			.BeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "The number of elements is more than10")]
 	public void TheNumberOfElementsIsMoreThan10()
 	{
 		var builder = new TemplateBuilder();

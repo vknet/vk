@@ -17,7 +17,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact]
+	[Fact(DisplayName = "Ban user normal case")]
 	public void BanUser_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/groups.banUser";
@@ -36,7 +36,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Edit normal case")]
 	public void Edit_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/groups.edit";
@@ -55,7 +55,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Edit place normal case")]
 	public void EditPlace_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/groups.editPlace";
@@ -78,7 +78,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get normal case all fields return full group info")]
 	public void Get_NormalCaseAllFields_ReturnFullGroupInfo()
 	{
 		Url = "https://api.vk.ru/method/groups.get";
@@ -223,7 +223,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(new Uri("http://cs1122.userapi.com/g1153959/a_3c9f63ea.jpg"));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get normal case default fields return only group ids")]
 	public void Get_NormalCaseDefaultFields_ReturnOnlyGroupIds()
 	{
 		Url = "https://api.vk.ru/method/groups.get";
@@ -252,7 +252,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 					.Be(36346468));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id access token invalid throw access token invalid exception")]
 	public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		var groups = new GroupsCategory(new VkApi());
@@ -262,7 +262,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id ban info")]
 	public void GetById_BanInfo()
 	{
 		Url = "https://api.vk.ru/method/groups.getById";
@@ -299,7 +299,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be("Сам попросил :D");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id invalid gid throws invalid parameter exception")]
 	public void GetById_InvalidGid_ThrowsInvalidParameterException()
 	{
 		Url = "https://api.vk.ru/method/groups.getById";
@@ -311,7 +311,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.ThrowExactly<InvalidGroupIdException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id multiple access token invalid throw access token invalid exception")]
 	public void GetById_Multiple_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		var groups = new GroupsCategory(new VkApi());
@@ -321,24 +321,21 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id multiple invalid gids throws invalid parameter exception")]
 	public void GetById_Multiple_InvalidGids_ThrowsInvalidParameterException()
 	{
 		Url = "https://api.vk.ru/method/groups.getById";
 
 		ReadJsonFile("Errors", "125");
 
-		FluentActions.Invoking(() => Api.Groups.GetById(new[]
-				{
-					"0"
-				},
+		FluentActions.Invoking(() => Api.Groups.GetById(["0"],
 				null,
 				null))
 			.Should()
 			.ThrowExactly<InvalidGroupIdException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id multiple normal case all fields return two items")]
 	public void GetById_Multiple_NormalCaseAllFields_ReturnTwoItems()
 	{
 		Url =
@@ -346,11 +343,10 @@ public class GroupsCategoryTest : CategoryBaseTest
 
 		ReadCategoryJsonPath(nameof(GetById_Multiple_NormalCaseAllFields_ReturnTwoItems));
 
-		var groups = Api.Groups.GetById(new[]
-				{
+		var groups = Api.Groups.GetById([
 					"17683660",
 					"637247"
-				},
+				],
 				null,
 				GroupsFields.All)
 			.ToList();
@@ -481,18 +477,17 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id multiple normal case default fields return tow items")]
 	public void GetById_Multiple_NormalCaseDefaultFields_ReturnTowItems()
 	{
 		Url = "https://api.vk.ru/method/groups.getById";
 
 		ReadCategoryJsonPath(nameof(GetById_Multiple_NormalCaseDefaultFields_ReturnTowItems));
 
-		var groups = Api.Groups.GetById(new[]
-				{
+		var groups = Api.Groups.GetById([
 					"17683660",
 					"637247"
-				},
+				],
 				null,
 				null)
 			.ToList();
@@ -581,7 +576,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(new Uri("http://cs11418.userapi.com/g637247/a_6be98c68.jpg"));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id normal case all fields return two items")]
 	public void GetById_NormalCaseAllFields_ReturnTwoItems()
 	{
 		Url = "https://api.vk.ru/method/groups.getById";
@@ -643,7 +638,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 				DateTimeKind.Utc));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id normal case default fields return two items")]
 	public void GetById_NormalCaseDefaultFields_ReturnTwoItems()
 	{
 		Url = "https://api.vk.ru/method/groups.getById";
@@ -687,7 +682,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(new Uri("http://cs407631.userapi.com/g17683660/a_54e3c8fb.jpg"));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get catalog with all params")]
 	public void GetCatalog_WithAllParams()
 	{
 		Url = "https://api.vk.ru/method/groups.getCatalog";
@@ -777,7 +772,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(new Uri("https://pp.vk.me/c631129/v631129289/a7b0/1Xle1sPdGWU.jpg"));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get catalog without params")]
 	public void GetCatalog_WithoutParams()
 	{
 		Url = "https://api.vk.ru/method/groups.getCatalog";
@@ -866,7 +861,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(new Uri("https://pp.vk.me/c629511/v629511851/2dec4/VRFDlbtQGH4.jpg"));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get catalog with param category id")]
 	public void GetCatalog_WithParamCategoryId()
 	{
 		Url = "https://api.vk.ru/method/groups.getCatalog";
@@ -956,7 +951,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(new Uri("https://pp.vk.me/c629121/v629121767/1fb38/gz5b7w4k7u4.jpg"));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get catalog info")]
 	public void GetCatalogInfo()
 	{
 		Url = "https://api.vk.ru/method/groups.getCatalogInfo";
@@ -990,7 +985,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be("Рекомендации");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get catalog info all params")]
 	public void GetCatalogInfo_AllParams()
 	{
 		Url = "https://api.vk.ru/method/groups.getCatalogInfo";
@@ -1088,7 +1083,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get catalog info extended")]
 	public void GetCatalogInfo_Extended()
 	{
 		Url = "https://api.vk.ru/method/groups.getCatalogInfo";
@@ -1148,7 +1143,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(2);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get catalog info subcategories")]
 	public void GetCatalogInfo_Subcategories()
 	{
 		Url = "https://api.vk.ru/method/groups.getCatalogInfo";
@@ -1220,7 +1215,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be("Электроника");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get inivites not invites")]
 	public void GetInivites_NotInvites()
 	{
 		Url = "https://api.vk.ru/method/groups.getInvites";
@@ -1235,7 +1230,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get invited users normal case")]
 	public void GetInvitedUsers_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/groups.getInvitedUsers";
@@ -1264,7 +1259,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be("23.6.2000");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get invites normal case")]
 	public void GetInvites_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/groups.getInvites";
@@ -1318,7 +1313,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(242508789);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get members invalid gid throws invalid parameter exception")]
 	public void GetMembers_InvalidGid_ThrowsInvalidParameterException()
 	{
 		Url = "https://api.vk.ru/method/groups.getMembers";
@@ -1333,7 +1328,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.ThrowExactly<InvalidGroupIdException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get members normal case list of uses ids")]
 	public void GetMembers_NormalCase_ListOfUsesIds()
 	{
 		Url = "https://api.vk.ru/method/groups.getMembers";
@@ -1370,7 +1365,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 					.Be(38690458));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get members normal case all input parameters list of uses ids")]
 	public void GetMembers_NormalCaseAllInputParameters_ListOfUsesIds()
 	{
 		Url = "https://api.vk.ru/method/groups.getMembers";
@@ -1399,7 +1394,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 					.Be(6));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get settings normal case")]
 	public void GetSettings_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/groups.getSettings";
@@ -1414,7 +1409,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(103292418);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Invite normal case")]
 	public void Invite_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/groups.invite";
@@ -1427,7 +1422,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Is member access token invalid throw access token invalid exception")]
 	public void IsMember_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		var groups = new GroupsCategory(new VkApi());
@@ -1437,7 +1432,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Is member user authorization fail throw user authorization fail exception")]
 	public void IsMember_UserAuthorizationFail_ThrowUserAuthorizationFailException()
 	{
 		Url = "https://api.vk.ru/method/groups.isMember";
@@ -1452,14 +1447,14 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be("User authorization failed: access_token was given to another ip address.");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Is member user is a member return true")]
 	public void IsMember_UserIsAMember_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/groups.isMember";
 
 		ReadCategoryJsonPath(nameof(IsMember_UserIsAMember_ReturnTrue));
 
-		var result = Api.Groups.IsMember("637247", new long[]{4793858}, true);
+		var result = Api.Groups.IsMember("637247", [4793858], true);
 
 		result.Should()
 			.NotBeEmpty();
@@ -1469,14 +1464,14 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Is member user not a member return false")]
 	public void IsMember_UserNotAMember_ReturnFalse()
 	{
 		Url = "https://api.vk.ru/method/groups.isMember";
 
 		ReadCategoryJsonPath(nameof(IsMember_UserNotAMember_ReturnFalse));
 
-		var result = Api.Groups.IsMember("17683660", new long[]{4793858}, null);
+		var result = Api.Groups.IsMember("17683660", [4793858], null);
 
 		result.Should()
 			.NotBeEmpty();
@@ -1486,7 +1481,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Is member wrong gid throws invalid parameter exception")]
 	public void IsMember_WrongGid_ThrowsInvalidParameterException()
 	{
 		Url = "https://api.vk.ru/method/groups.isMember";
@@ -1501,7 +1496,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be("Invalid group id");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Is member wrong uid return false")]
 	public void IsMember_WrongUid_ReturnFalse()
 	{
 		Url = "https://api.vk.ru/method/groups.isMember";
@@ -1513,7 +1508,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Join access denied throw access denied exception")]
 	public void Join_AccessDenied_ThrowAccessDeniedException()
 	{
 		Url = "https://api.vk.ru/method/groups.join";
@@ -1525,7 +1520,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.ThrowExactly<PermissionToPerformThisActionException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Join access token invalid throw access token invalid exception")]
 	public void Join_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		var groups = new GroupsCategory(new VkApi());
@@ -1535,7 +1530,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Join normal case return true")]
 	public void Join_NormalCase_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/groups.join";
@@ -1548,7 +1543,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Join normal case not sure return true")]
 	public void Join_NormalCaseNotSure_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/groups.join";
@@ -1561,7 +1556,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Join user authorization failed throw user authorization fail exception")]
 	public void Join_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
 	{
 		Url = "https://api.vk.ru/method/groups.join";
@@ -1572,7 +1567,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.ThrowExactly<UserAuthorizationFailException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Join wrong gid throw access denied exception")]
 	public void Join_WrongGid_ThrowAccessDeniedException()
 	{
 		Url = "https://api.vk.ru/method/groups.join";
@@ -1585,7 +1580,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be("Access denied: you can not join this private community");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Leave access denied throw access denied exception")]
 	public void Leave_AccessDenied_ThrowAccessDeniedException()
 	{
 		Url = "https://api.vk.ru/method/groups.leave";
@@ -1597,7 +1592,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.ThrowExactly<PermissionToPerformThisActionException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Leave access token invalid throw access token invalid exception")]
 	public void Leave_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		var groups = new GroupsCategory(new VkApi());
@@ -1607,7 +1602,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Leave normal case return true")]
 	public void Leave_NormalCase_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/groups.leave";
@@ -1620,7 +1615,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Leave user authorization failed throw user authorization fail exception")]
 	public void Leave_UserAuthorizationFailed_ThrowUserAuthorizationFailException()
 	{
 		Url = "https://api.vk.ru/method/groups.leave";
@@ -1631,7 +1626,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.ThrowExactly<UserAuthorizationFailException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Leave wrong gid return true")]
 	public void Leave_WrongGid_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/groups.leave";
@@ -1644,7 +1639,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search default case list of groups")]
 	public void Search_DefaultCase_ListOfGroups()
 	{
 		Url = "https://api.vk.ru/method/groups.search";
@@ -1744,7 +1739,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(new Uri("http://cs9365.userapi.com/g339767/a_4653ba99.jpg"));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search default case all params list of groups")]
 	public void Search_DefaultCaseAllParams_ListOfGroups()
 	{
 		Url = "https://api.vk.ru/method/groups.search";
@@ -1886,7 +1881,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(new Uri("http://cs303205.userapi.com/g26442631/a_32dd770f.jpg"));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search empty query throws argument exception")]
 	public void Search_EmptyQuery_ThrowsArgumentException()
 	{
 		var groups = new GroupsCategory(Api);
@@ -1899,7 +1894,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.ThrowExactly<ArgumentException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search groups not founded empty list")]
 	public void Search_GroupsNotFounded_EmptyList()
 	{
 		Url = "https://api.vk.ru/method/groups.search";
@@ -1920,7 +1915,7 @@ public class GroupsCategoryTest : CategoryBaseTest
 			.Be(0);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Unban normal case")]
 	public void Unban_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/groups.unban";

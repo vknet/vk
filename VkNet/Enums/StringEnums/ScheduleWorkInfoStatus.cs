@@ -15,7 +15,7 @@ public enum ScheduleWorkInfoStatus
 	/// Нет информации о расписании
 	/// </summary>
 	[VkNetDefaultValue]
-	 NoInformation,
+	NoInformation,
 
 	/// <summary>
 	/// Открыто круглосуточно

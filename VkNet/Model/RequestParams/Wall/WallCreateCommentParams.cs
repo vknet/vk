@@ -76,5 +76,4 @@ public class WallCreateCommentParams
 	/// </summary>
 	[CanBeNull]
 	public string Guid { get; set; }
-
 }

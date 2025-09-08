@@ -8,7 +8,7 @@ public class WidgetsCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Widgets";
 
-	[Fact]
+	[Fact(DisplayName = "Get comments")]
 	public void GetComments()
 	{
 		Url = "https://api.vk.ru/method/widgets.getComments";
@@ -31,7 +31,7 @@ public class WidgetsCategoryTests : CategoryBaseTest
 			.Be(10);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get pages")]
 	public void GetPages()
 	{
 		Url = "https://api.vk.ru/method/widgets.getPages";

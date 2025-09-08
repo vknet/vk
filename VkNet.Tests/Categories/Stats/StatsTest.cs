@@ -11,7 +11,7 @@ public class StatsTest : CategoryBaseTest
 {
 	protected override string Folder => "Stats";
 
-	[Fact]
+	[Fact(DisplayName = "Get by app normal case")]
 	public void GetByApp_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/stats.get";
@@ -38,7 +38,7 @@ public class StatsTest : CategoryBaseTest
 			.Be(new(2013, 09, 08));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by group empty activity case")]
 	public void GetByGroup_EmptyActivityCase()
 	{
 		Url = "https://api.vk.ru/method/stats.get";
@@ -69,7 +69,7 @@ public class StatsTest : CategoryBaseTest
 			.Be(new(2013, 09, 08));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by group normal case")]
 	public void GetByGroup_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/stats.get";
@@ -96,7 +96,7 @@ public class StatsTest : CategoryBaseTest
 			.Be(new(2013, 09, 08));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Track visitor test")]
 	public void TrackVisitorTest()
 	{
 		Url = "https://api.vk.ru/method/stats.trackVisitor";

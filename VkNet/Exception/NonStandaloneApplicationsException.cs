@@ -26,6 +26,5 @@ public sealed class NonStandaloneApplicationsException : VkApiMethodInvokeExcept
 	/// <inheritdoc />
 	private NonStandaloneApplicationsException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

@@ -10,7 +10,7 @@ public class StatusCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Status";
 
-	[Fact]
+	[Fact(DisplayName = "Get access denied throw access denied exception")]
 	public void Get_AccessDenied_ThrowAccessDeniedException()
 	{
 		Url = "https://api.vk.ru/method/status.get";
@@ -24,7 +24,7 @@ public class StatusCategoryTest : CategoryBaseTest
 			.Be("Permission to perform this action is denied");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get access token invalid throw access token invalid exception")]
 	public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		var status = new StatusCategory(new VkApi());
@@ -34,7 +34,7 @@ public class StatusCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get audio return status")]
 	public void Get_Audio_ReturnStatus()
 	{
 		Url = "https://api.vk.ru/method/status.get";
@@ -74,7 +74,7 @@ public class StatusCategoryTest : CategoryBaseTest
 			.Be(7985406);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get simple text return status")]
 	public void Get_SimpleText_ReturnStatus()
 	{
 		Url = "https://api.vk.ru/method/status.get";
@@ -92,7 +92,7 @@ public class StatusCategoryTest : CategoryBaseTest
 			.BeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Set access denied throw access denied exception")]
 	public void Set_AccessDenied_ThrowAccessDeniedException()
 	{
 		Url = "https://api.vk.ru/method/status.set";
@@ -103,7 +103,7 @@ public class StatusCategoryTest : CategoryBaseTest
 			.ThrowExactly<PermissionToPerformThisActionException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Set access token invalid throw access token invalid exception")]
 	public void Set_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		var status = new StatusCategory(new VkApi());
@@ -113,7 +113,7 @@ public class StatusCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Set simple text return true")]
 	public void Set_SimpleText_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/status.set";

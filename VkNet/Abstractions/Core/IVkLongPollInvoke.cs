@@ -34,6 +34,7 @@ public interface IVkLongPollInvoke
 	/// Десериализованный ответ сервера
 	/// </returns>
 	T CallLongPoll<T>(string server, VkParameters parameters, params JsonConverter[] jsonConverters);
+
 	/// <summary>
 	/// Вызвать ожидание событий LongPoll API.
 	/// </summary>

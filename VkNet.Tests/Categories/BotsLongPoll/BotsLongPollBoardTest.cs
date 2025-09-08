@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll;
 
 public class BotsLongPollBoardTest : BotsLongPollBaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history board post new")]
 	public void GetBotsLongPollHistory_BoardPostNew()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNew));
@@ -31,6 +31,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(expectedGroupId);
+
 						break;
 
 					case BoardPost:
@@ -38,18 +39,20 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 						var a = x.Instance is BoardPost b
 							? b
 							: null;
+
 						a.FromId.Should()
 							.Be(expectedUserId);
 
 						a.Text.Should()
 							.Be(expectedText);
+
 						break;
 					}
 				}
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history board post new first")]
 	public void GetBotsLongPollHistory_BoardPostNewFirst()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNewFirst));
@@ -75,6 +78,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(expectedGroupId);
+
 						break;
 
 					case BoardPost:
@@ -82,6 +86,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 						var a = x.Instance is BoardPost b
 							? b
 							: null;
+
 						a.FromId.Should()
 							.Be(unExpectedGroupId);
 
@@ -93,13 +98,14 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 
 						a.TopicId.Should()
 							.Be(expectedTopicId);
+
 						break;
 					}
 				}
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history board post edit test")]
 	public void GetBotsLongPollHistory_BoardPostEditTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostEditTest));
@@ -124,6 +130,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(expectedGroupId);
+
 						break;
 
 					case BoardPost:
@@ -131,6 +138,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 						var a = x.Instance is BoardPost b
 							? b
 							: null;
+
 						a.FromId.Should()
 							.Be(unExpectedGroupId);
 
@@ -146,7 +154,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history board post restore test")]
 	public void GetBotsLongPollHistory_BoardPostRestoreTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostRestoreTest));
@@ -171,6 +179,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(expectedGroupId);
+
 						break;
 
 					case BoardPost:
@@ -191,7 +200,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history board post delete test")]
 	public void GetBotsLongPollHistory_BoardPostDeleteTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostDeleteTest));
@@ -217,6 +226,7 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(expectedGroupId);
+
 						break;
 
 					case BoardPostDelete:

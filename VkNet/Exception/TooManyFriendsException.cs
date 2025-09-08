@@ -21,6 +21,5 @@ public sealed class TooManyFriendsException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private TooManyFriendsException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

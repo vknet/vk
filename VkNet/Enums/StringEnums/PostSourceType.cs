@@ -43,5 +43,5 @@ public enum PostSourceType
 	/// <remarks>
 	/// Не документирован.
 	/// </remarks>
-	Mvk,
+	Mvk
 }

@@ -11,7 +11,7 @@ public class UpdateAdsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Update ads")]
 	public void UpdateAds()
 	{
 		Url = "https://api.vk.ru/method/ads.updateAds";
@@ -39,10 +39,10 @@ public class UpdateAdsTest : CategoryBaseTest
 		};
 
 		AdEditSpecification[] data =
-		{
+		[
 			adEditSpecification1,
 			adEditSpecification2
-		};
+		];
 
 		var officeUsers = Api.Ads.UpdateAds(new()
 		{

@@ -16,6 +16,5 @@ public class VkKeyboardLabelMinLengthException : VkApiException
 
 	private VkKeyboardLabelMinLengthException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 }

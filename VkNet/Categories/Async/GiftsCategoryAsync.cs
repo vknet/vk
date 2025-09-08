@@ -13,7 +13,6 @@ public partial class GiftsCategory
 	public Task<VkCollection<GiftItem>> GetAsync(long? userId = null,
 												int? count = null,
 												int? offset = null,
-												CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Get(userId, count, offset), token);
+												CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		Get(userId, count, offset), token);
 }

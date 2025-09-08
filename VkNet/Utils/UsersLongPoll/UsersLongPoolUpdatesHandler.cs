@@ -63,7 +63,7 @@ public class UsersLongPollUpdatesHandler : IUsersLongPollUpdatesHandler
 			var response = await _params.Api.Messages.GetLongPollHistoryAsync<LongPollHistoryResponse<JObject>>(new()
 			{
 				Pts = _currentPts,
-				Ts = _currentTs!.Value,
+				Ts = _currentTs!.Value
 			}, token);
 
 			// если сообщений нет - игнорируем

@@ -12,7 +12,7 @@ public class KeyboardBuilderTests
 
 	private static readonly string Payload200 = string.Join("", Enumerable.Repeat(Filler, 200));
 
-	[Fact]
+	[Fact(DisplayName = "Label min length255 vk keyboard label min length exception")]
 	public void LabelMinLength255_VkKeyboardLabelMinLengthException()
 	{
 		// Arrange
@@ -27,7 +27,7 @@ public class KeyboardBuilderTests
 			.Be(string.Format(KeyboardBuilder.MinLabelLengthExceptionTemplate, label));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Add button payload max length255 vk keyboard payload max length exception")]
 	public void AddButton_PayloadMaxLength255_VkKeyboardPayloadMaxLengthException()
 	{
 		// Arrange
@@ -42,7 +42,7 @@ public class KeyboardBuilderTests
 			.Be(string.Format(KeyboardBuilder.ButtonPayloadLengthExceptionTemplate, currentPayload));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Add button payload max length255 success")]
 	public void AddButton_PayloadMaxLength255_Success()
 	{
 		// Arrange
@@ -56,7 +56,7 @@ public class KeyboardBuilderTests
 			.NotThrow();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Add line max button lines vk keyboard max buttons exception")]
 	public void AddLine_MaxButtonLines_VkKeyboardMaxButtonsException()
 	{
 		// Arrange
@@ -76,7 +76,7 @@ public class KeyboardBuilderTests
 			.Be(KeyboardBuilder.MaxButtonLinesExceptionTemplate);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Add line max button lines success")]
 	public void AddLine_MaxButtonLines_Success()
 	{
 		// Arrange
@@ -94,7 +94,7 @@ public class KeyboardBuilderTests
 			.NotThrow();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Add button max buttons per line vk keyboard max buttons exception")]
 	public void AddButton_MaxButtonsPerLine_VkKeyboardMaxButtonsException()
 	{
 		// Arrange
@@ -114,7 +114,7 @@ public class KeyboardBuilderTests
 			.Be(KeyboardBuilder.MaxButtonsPerLineExceptionTemplate);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Add button max buttons per line success")]
 	public void AddButton_MaxButtonsPerLine_Success()
 	{
 		// Arrange
@@ -132,7 +132,7 @@ public class KeyboardBuilderTests
 			.NotThrow();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Build payload max length255 vk keyboard payload max length exception")]
 	public void Build_PayloadMaxLength255_VkKeyboardPayloadMaxLengthException()
 	{
 		// Arrange
@@ -153,7 +153,7 @@ public class KeyboardBuilderTests
 			.Be(KeyboardBuilder.SumPayloadLengthExceptionTemplate);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Build payload max length255 success")]
 	public void Build_PayloadMaxLength255_Success()
 	{
 		// Arrange
@@ -170,7 +170,7 @@ public class KeyboardBuilderTests
 			.NotThrow();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Build max button lines vk keyboard max buttons exception")]
 	public void Build_MaxButtonLines_VkKeyboardMaxButtonsException()
 	{
 		// Arrange
@@ -194,7 +194,7 @@ public class KeyboardBuilderTests
 			.Be(KeyboardBuilder.MaxButtonLinesExceptionTemplate);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Build max button lines success")]
 	public void Build_MaxButtonLines_Success()
 	{
 		// Arrange

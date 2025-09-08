@@ -9,7 +9,7 @@ public class StoriesGetTests : CategoryBaseTest
 {
 	protected override string Folder => JsonTestFolderConstants.Categories.Stories;
 
-	[Fact]
+	[Fact(DisplayName = "Get")]
 	public void Get()
 	{
 		Url = "https://api.vk.ru/method/stories.get";
@@ -24,7 +24,7 @@ public class StoriesGetTests : CategoryBaseTest
 			.Be(1);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get banned")]
 	public void GetBanned()
 	{
 		Url = "https://api.vk.ru/method/stories.getBanned";
@@ -42,7 +42,7 @@ public class StoriesGetTests : CategoryBaseTest
 			.NotContainNulls();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get photo upload server")]
 	public void GetPhotoUploadServer()
 	{
 		Url = "https://api.vk.ru/method/stories.getPhotoUploadServer";
@@ -60,7 +60,7 @@ public class StoriesGetTests : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get replies")]
 	public void GetReplies()
 	{
 		Url = "https://api.vk.ru/method/stories.getReplies";
@@ -75,7 +75,7 @@ public class StoriesGetTests : CategoryBaseTest
 			.Be(1);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get viewers")]
 	public void GetViewers()
 	{
 		Url = "https://api.vk.ru/method/stories.getViewers";
@@ -92,11 +92,16 @@ public class StoriesGetTests : CategoryBaseTest
 		users.Should()
 			.NotContainNulls();
 
-		users[0].UserId.Should().Be(100);
-		users[0].IsLiked.Should().Be(false);
+		users[0]
+			.UserId.Should()
+			.Be(100);
+
+		users[0]
+			.IsLiked.Should()
+			.Be(false);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get viewers extended")]
 	public void GetViewersExtended()
 	{
 		Url = "https://api.vk.ru/method/stories.getViewers";
@@ -123,7 +128,7 @@ public class StoriesGetTests : CategoryBaseTest
 			.Contain(x => x.LastName == "test1");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get stats")]
 	public void GetStats()
 	{
 		Url = "https://api.vk.ru/method/stories.getStats";
@@ -153,7 +158,7 @@ public class StoriesGetTests : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id")]
 	public void GetById()
 	{
 		Url = "https://api.vk.ru/method/stories.getById";
@@ -176,7 +181,7 @@ public class StoriesGetTests : CategoryBaseTest
 			.NotBeNullOrEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search")]
 	public void Search()
 	{
 		Url = "https://api.vk.ru/method/stories.search";
@@ -208,7 +213,7 @@ public class StoriesGetTests : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Send interaction")]
 	public void SendInteraction()
 	{
 		Url = "https://api.vk.ru/method/stories.sendInteraction";

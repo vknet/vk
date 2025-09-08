@@ -12,7 +12,7 @@ public class GroupGetBannedTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact]
+	[Fact(DisplayName = "Get banned profile")]
 	public void GetBanned_Profile()
 	{
 		Url = "https://api.vk.ru/method/groups.getBanned";
@@ -60,7 +60,7 @@ public class GroupGetBannedTests : CategoryBaseTest
 			.Be(DateHelper.TimeStampToDateTime(1517585141));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get banned group")]
 	public void GetBanned_Group()
 	{
 		Url = "https://api.vk.ru/method/groups.getBanned";

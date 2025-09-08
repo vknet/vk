@@ -6,7 +6,7 @@ namespace VkNet.Tests.Models;
 
 public class AudioModel
 {
-	[Fact]
+	[Fact(DisplayName = "To string audio should have access key")]
 	public void ToString_AudioShouldHaveAccessKey()
 	{
 		var audio = new Audio

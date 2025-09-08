@@ -8,7 +8,7 @@ public class GetBudgetTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get budget")]
 	public void GetBudget()
 	{
 		Url = "https://api.vk.ru/method/ads.getBudget";

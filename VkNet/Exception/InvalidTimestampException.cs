@@ -22,6 +22,5 @@ public sealed class InvalidTimestampException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private InvalidTimestampException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

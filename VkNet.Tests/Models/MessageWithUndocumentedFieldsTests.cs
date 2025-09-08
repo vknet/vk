@@ -8,7 +8,7 @@ namespace VkNet.Tests.Models;
 
 public class MessageWithUndocumentedFieldsTests : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Message with action chat unpin message member id is present and equals")]
 	public void Message_With_Action_ChatUnpinMessage_MemberId_IsPresentAndEquals()
 	{
 		ReadJsonFile("Models", "message_with_unpin_action");
@@ -29,7 +29,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 			.Be(12345678);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Message with action chat unpin message conversation message id is present and equals")]
 	public void Message_With_Action_ChatUnpinMessage_ConversationMessageId_IsPresentAndEquals()
 	{
 		ReadJsonFile("Models", "message_with_unpin_action");
@@ -50,7 +50,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 			.Be(3);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Message with action chat pin message member id is present and equals")]
 	public void Message_With_Action_ChatPinMessage_MemberId_IsPresentAndEquals()
 	{
 		ReadJsonFile("Models", "message_with_pin_action");
@@ -71,7 +71,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 			.Be(12345678);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Message with action chat pin message conversation message id is present and equals")]
 	public void Message_With_Action_ChatPinMessage_ConversationMessageId_IsPresentAndEquals()
 	{
 		ReadJsonFile("Models", "message_with_pin_action");
@@ -92,7 +92,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 			.Be(3);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Message with action chat pin message message is present and equals")]
 	public void Message_With_Action_ChatPinMessage_Message_IsPresentAndEquals()
 	{
 		ReadJsonFile("Models", "message_with_pin_action");
@@ -110,7 +110,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 			.Be("test");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Message with self destruct is expired is present and equals")]
 	public void Message_With_Self_Destruct_IsExpired_IsPresentAndEquals()
 	{
 		ReadJsonFile("Models", "message_self_destruct_with_is_expired");
@@ -125,7 +125,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Message with self destruct expire ttl is present and equals")]
 	public void Message_With_Self_Destruct_ExpireTtl_IsPresentAndEquals()
 	{
 		ReadJsonFile("Models", "message_self_destruct_with_expire_ttl");
@@ -137,7 +137,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 			.Be(60);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Message with is silent is present and equals")]
 	public void Message_With_IsSilent_IsPresentAndEquals()
 	{
 		ReadJsonFile("Models", "message_with_is_silent");
@@ -149,7 +149,7 @@ public class MessageWithUndocumentedFieldsTests : BaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Message with was listened is present and equals")]
 	public void Message_With_WasListened_IsPresentAndEquals()
 	{
 		ReadJsonFile("Models", "message_with_was_listened");

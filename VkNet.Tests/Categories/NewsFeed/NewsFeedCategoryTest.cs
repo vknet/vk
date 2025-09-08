@@ -11,7 +11,7 @@ public class NewsFeedCategoryTest : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "NewsFeed";
 
-	[Fact]
+	[Fact(DisplayName = "Get")]
 	public void Get()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.get";
@@ -20,17 +20,14 @@ public class NewsFeedCategoryTest : CategoryBaseTest
 
 		var result = Api.NewsFeed.Get(new()
 		{
-			SourceIds = new[]
-			{
-				"1234"
-			}
+			SourceIds = ["1234"]
 		});
 
 		result.Items.Should()
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get recommended")]
 	public void GetRecommended()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.getRecommended";

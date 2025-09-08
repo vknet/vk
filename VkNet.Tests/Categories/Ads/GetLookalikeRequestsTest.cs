@@ -8,7 +8,7 @@ public class GetLookalikeRequestsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get lookalike requests")]
 	public void GetLookalikeRequests()
 	{
 		Url = "https://api.vk.ru/method/ads.getLookalikeRequests";

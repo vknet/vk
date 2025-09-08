@@ -21,6 +21,5 @@ public sealed class TooManyAdsPostsException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private TooManyAdsPostsException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

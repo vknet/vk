@@ -8,16 +8,13 @@ public class StorageCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Storage";
 
-	[Fact]
+	[Fact(DisplayName = "Get")]
 	public void Get()
 	{
 		Url = "https://api.vk.ru/method/storage.get";
 		ReadCategoryJsonPath(nameof(Get));
 
-		var result = Api.Storage.Get(new[]
-		{
-			"qwe"
-		});
+		var result = Api.Storage.Get(["qwe"]);
 
 		result.Should()
 			.NotBeNull();
@@ -26,7 +23,7 @@ public class StorageCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get keys")]
 	public void GetKeys()
 	{
 		Url = "https://api.vk.ru/method/storage.getKeys";
@@ -41,7 +38,7 @@ public class StorageCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Set")]
 	public void Set()
 	{
 		Url = "https://api.vk.ru/method/storage.set";

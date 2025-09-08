@@ -8,7 +8,7 @@ public class NotificationsCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Notifications";
 
-	[Fact]
+	[Fact(DisplayName = "Mark as viewed")]
 	public void MarkAsViewed()
 	{
 		Url = "https://api.vk.ru/method/notifications.markAsViewed";

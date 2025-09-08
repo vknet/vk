@@ -21,6 +21,5 @@ public sealed class ConversationAccessDeniedException : VkApiMethodInvokeExcepti
 	/// <inheritdoc />
 	private ConversationAccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

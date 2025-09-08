@@ -40,6 +40,5 @@ public class LongPollException : System.Exception
 	/// <inheritdoc />
 	protected LongPollException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 }

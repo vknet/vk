@@ -62,5 +62,5 @@ public interface IPodcastsCategoryAsync
 	/// Страница документации ВКонтакте https://vk.ru/dev/podcasts.searchPodcast
 	/// </remarks>
 	Task<PodcastsSearchResult> SearchPodcastAsync(PodcastsSearchParams @params,
-											CancellationToken token = default);
+												CancellationToken token = default);
 }

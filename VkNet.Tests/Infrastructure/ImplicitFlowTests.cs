@@ -20,7 +20,7 @@ namespace VkNet.Tests.Infrastructure;
 
 public class ImplicitFlowTests
 {
-	[Fact]
+	[Fact(DisplayName = "Create authorize url")]
 	public void CreateAuthorizeUrl()
 	{
 		const int clientId = 4268118;
@@ -62,7 +62,7 @@ public class ImplicitFlowTests
 			.Be(new Uri(expected));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Authorize")]
 	public async Task Authorize()
 	{
 		var mocker = new AutoMocker();
@@ -111,7 +111,7 @@ public class ImplicitFlowTests
 			.NotBeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Authorize validate error")]
 	public void Authorize_ValidateError()
 	{
 		var mocker = new AutoMocker();

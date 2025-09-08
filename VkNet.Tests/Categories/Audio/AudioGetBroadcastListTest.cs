@@ -9,7 +9,7 @@ public class AudioGetBroadcastListTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact]
+	[Fact(DisplayName = "Get broadcast list test")]
 	public void GetBroadcastListTest()
 	{
 		Url = "https://api.vk.ru/method/audio.getBroadcastList";

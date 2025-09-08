@@ -8,16 +8,13 @@ public class OrdersGetAmountTests : CategoryBaseTest
 {
 	protected override string Folder => "Orders";
 
-	[Fact]
+	[Fact(DisplayName = "Get amount")]
 	public void GetAmount()
 	{
 		Url = "https://api.vk.ru/method/orders.getAmount";
 		ReadCategoryJsonPath(nameof(GetAmount));
 
-		var result = Api.Orders.GetAmount(123, new[]
-		{
-			"1"
-		});
+		var result = Api.Orders.GetAmount(123, ["1"]);
 
 		result.Should()
 			.NotBeEmpty();

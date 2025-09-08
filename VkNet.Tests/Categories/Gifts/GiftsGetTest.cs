@@ -13,7 +13,7 @@ public class GiftsGetTest : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "Gifts";
 
-	[Fact]
+	[Fact(DisplayName = "Get normal case")]
 	public void Get_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/gifts.get";

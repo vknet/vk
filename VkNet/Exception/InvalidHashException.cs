@@ -21,6 +21,5 @@ public sealed class InvalidHashException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private InvalidHashException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

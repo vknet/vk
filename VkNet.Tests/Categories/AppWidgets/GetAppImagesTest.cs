@@ -10,7 +10,7 @@ public class GetAppImagesTest : CategoryBaseTest
 {
 	protected override string Folder => "AppWidgets";
 
-	[Fact]
+	[Fact(DisplayName = "Get app images")]
 	public void GetAppImages()
 	{
 		Url = "https://api.vk.ru/method/appWidgets.getAppImages";

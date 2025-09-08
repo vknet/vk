@@ -52,10 +52,7 @@ public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
 
 		var constructedToListGenericMethod = toListMethod.MakeGenericMethod(vkCollectionGenericArgument);
 
-		var castToListObject = constructedToListGenericMethod.Invoke(null, new[]
-		{
-			value
-		});
+		var castToListObject = constructedToListGenericMethod.Invoke(null, [value]);
 
 		var vkCollectionSurrogate = new
 		{
@@ -113,10 +110,6 @@ public class VkCollectionJsonConverter : Newtonsoft.Json.JsonConverter
 		return Activator.CreateInstance(vkCollection, totalCount, list);
 	}
 
-	/// <summary>
-	/// Может преобразовать
-	/// </summary>
-	/// <param name="objectType"> Тип объекта </param>
-	/// <returns> <c> true </c> если можно преобразовать </returns>
+	/// <inheritdoc />
 	public override bool CanConvert(Type objectType) => typeof(VkCollection<>).IsAssignableFrom(objectType);
 }

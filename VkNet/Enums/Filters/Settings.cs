@@ -93,7 +93,7 @@ public sealed class Settings
 	/// <summary>
 	/// Список выбранных прав
 	/// </summary>
-	private IEnumerable<string> Selected => _settings ??= new();
+	private IEnumerable<string> Selected => _settings ??= [];
 
 	/// <summary>
 	/// Пользователь разрешил отправлять ему уведомления.
@@ -235,10 +235,7 @@ public sealed class Settings
 			return new()
 			{
 				Mask = value,
-				_settings = new()
-				{
-					n
-				}
+				_settings = [n]
 			};
 		}
 

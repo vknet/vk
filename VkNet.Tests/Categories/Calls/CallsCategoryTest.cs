@@ -8,7 +8,7 @@ public class CallsCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Calls";
 
-	[Fact]
+	[Fact(DisplayName = "Force finish")]
 	public void ForceFinish()
 	{
 		Url = "https://api.vk.ru/method/calls.forceFinish";
@@ -24,7 +24,7 @@ public class CallsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Start")]
 	public void Start()
 	{
 		Url = "https://api.vk.ru/method/calls.start";

@@ -8,7 +8,6 @@ namespace VkNet.Infrastructure;
 /// </summary>
 public interface IStreamingContextTypeDataDictionary
 {
-
 	/// <summary>
 	/// Добавить данные
 	/// </summary>

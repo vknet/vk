@@ -7,5 +7,4 @@ namespace VkNet.Enums;
 /// </summary>
 public class StringEnumAttribute : Attribute
 {
-
 }

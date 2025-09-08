@@ -10,7 +10,7 @@ public class GetGroupImagesTest : CategoryBaseTest
 {
 	protected override string Folder => "AppWidgets";
 
-	[Fact]
+	[Fact(DisplayName = "Get group images")]
 	public void GetGroupImages()
 	{
 		Url = "https://api.vk.ru/method/appWidgets.getGroupImages";

@@ -58,10 +58,7 @@ public class CaptchaHandler : ICaptchaHandler
 			return result;
 		}
 
-		if (_logger.IsEnabled(LogLevel.Error))
-		{
-			_logger.LogError("Капча ни разу не была распознана верно");
-		}
+		_logger.LogError("Капча ни разу не была распознана верно");
 
 		throw new CaptchaNeededException(new()
 		{
@@ -74,10 +71,7 @@ public class CaptchaHandler : ICaptchaHandler
 										ref ulong? captchaSidTemp,
 										ref string captchaKeyTemp)
 	{
-		if (_logger.IsEnabled(LogLevel.Warning))
-		{
-			_logger.LogWarning("Повторная обработка капчи");
-		}
+		_logger.LogWarning("Повторная обработка капчи");
 
 		if (numberOfRemainingAttemptsToSolveCaptcha < MaxCaptchaRecognitionCount)
 		{

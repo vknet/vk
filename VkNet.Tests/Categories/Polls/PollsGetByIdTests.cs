@@ -8,7 +8,7 @@ public class PollsGetByIdTests : CategoryBaseTest
 {
 	protected override string Folder => "Polls";
 
-	[Fact]
+	[Fact(DisplayName = "Get by id")]
 	public void GetById()
 	{
 		Url = "https://api.vk.ru/method/polls.getById";

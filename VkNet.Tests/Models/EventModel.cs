@@ -6,14 +6,16 @@ namespace VkNet.Tests.Models;
 
 public class EventModel : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Event model implicit event")]
 	public void EventModel_ImplicitEvent()
 	{
 		ReadJsonFile("Models", nameof(EventModel_ImplicitEvent));
 
 		Url = "https://api.vk.ru/method/wall.get";
 
-		var attachment = Api.Wall.Get(new()).WallPosts[0].Attachments[0];
+		var attachment = Api.Wall.Get(new())
+			.WallPosts[0]
+			.Attachments[0];
 
 		attachment.Instance.Should()
 			.BeOfType<Event>();

@@ -22,6 +22,5 @@ public sealed class CannotSendBlacklistedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private CannotSendBlacklistedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

@@ -15,7 +15,6 @@ public class GroupUpdateJsonConverter : Newtonsoft.Json.JsonConverter
 	/// <inheritdoc />
 	public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) => throw new NotImplementedException();
 
-
 	/// <inheritdoc />
 	/// <exception cref="T:System.TypeAccessException"> </exception>
 	public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -27,9 +26,13 @@ public class GroupUpdateJsonConverter : Newtonsoft.Json.JsonConverter
 
 		var obj = JObject.Load(reader: reader);
 
-		var resObj = obj["object"]?.ToString();
+		var resObj = obj["object"]
+			?.ToString();
+
 		var resObj1 = resObj?.Contains("client_info");
-		var type = obj["type"].ToString();
+
+		var type = obj["type"]
+			.ToString();
 
 		var groupUpdate = new GroupUpdate
 		{
@@ -52,11 +55,13 @@ public class GroupUpdateJsonConverter : Newtonsoft.Json.JsonConverter
 				"group_change_settings" => JsonConvert.DeserializeObject<GroupChangeSettings>(resObj),
 				"message_deny" => JsonConvert.DeserializeObject<MessageDeny>(resObj),
 				"photo_new" => JsonConvert.DeserializeObject<Photo>(resObj),
-				"photo_comment_new" or "photo_comment_edit" or "photo_comment_restore" => JsonConvert.DeserializeObject<PhotoComment>(resObj),
+				"photo_comment_new" or "photo_comment_edit" or "photo_comment_restore" =>
+					JsonConvert.DeserializeObject<PhotoComment>(resObj),
 				"photo_comment_delete" => JsonConvert.DeserializeObject<PhotoCommentDelete>(resObj),
 				"audio_new" => JsonConvert.DeserializeObject<Audio>(resObj),
 				"video_new" => JsonConvert.DeserializeObject<Video>(resObj),
-				"video_comment_new" or "video_comment_edit" or "video_comment_restore" => JsonConvert.DeserializeObject<VideoComment>(resObj),
+				"video_comment_new" or "video_comment_edit" or "video_comment_restore" =>
+					JsonConvert.DeserializeObject<VideoComment>(resObj),
 				"video_comment_delete" => JsonConvert.DeserializeObject<VideoCommentDelete>(resObj),
 				"wall_post_new" or "wall_repost" => JsonConvert.DeserializeObject<WallPost>(resObj),
 				"market_comment_new" or "market_comment_edit" or "market_comment_restore" =>

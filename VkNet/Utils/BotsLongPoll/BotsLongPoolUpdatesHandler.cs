@@ -190,11 +190,7 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 				var delay = Math.Min(_params.BaseRetryDelayMs * (int) Math.Pow(attempt_count, 2), _params.MaxRetryDelayMs);
 
 				var message = $"{ex.Message}{Environment.NewLine}Следующая попытка через: {delay}ms";
-
-				if (_logger.IsEnabled(LogLevel.Error))
-				{
-					_logger.LogError(ex, "{Message}", message);
-				}
+				_logger.LogError(ex, "{Message}", message);
 
 				if (delay >= _params.MaxRetryDelayMs)
 				{

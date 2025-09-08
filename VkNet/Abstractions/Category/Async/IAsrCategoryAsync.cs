@@ -24,7 +24,7 @@ public interface IAsrCategoryAsync
 	/// Страница документации ВКонтакте https://dev.vk.ru/method/asr.checkStatus
 	/// </remarks>
 	public Task<AudioRecordingTask> CheckStatusAsync(string taskId,
-								CancellationToken token = default);
+													CancellationToken token = default);
 
 	/// <summary>
 	/// Метод возвращает ссылку на адрес сервера для загрузки аудиозаписи.

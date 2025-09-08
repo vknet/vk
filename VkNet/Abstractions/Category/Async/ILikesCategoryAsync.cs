@@ -90,7 +90,6 @@ public interface ILikesCategoryAsync
 							long? ownerId = null,
 							CancellationToken token = default);
 
-
 	/// <summary>
 	/// Проверяет, находится ли объект в списке Мне нравится заданного пользователя.
 	/// </summary>

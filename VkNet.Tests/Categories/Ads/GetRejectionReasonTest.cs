@@ -8,7 +8,7 @@ public class GetRejectionReasonTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get rejection reason")]
 	public void GetRejectionReason()
 	{
 		Url = "https://api.vk.ru/method/ads.getRejectionReason";

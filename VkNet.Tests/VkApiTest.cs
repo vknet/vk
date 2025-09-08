@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AwesomeAssertions;
+using JetBrains.Annotations;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -13,6 +14,7 @@ using Xunit;
 
 namespace VkNet.Tests;
 
+[TestSubject(typeof(VkApi))]
 public class VkApiTest : BaseTest
 {
 	[Fact(DisplayName = "Авторизация по токену")]
@@ -54,7 +56,7 @@ public class VkApiTest : BaseTest
 			.BeTrue();
 	}
 
-	[Fact(Skip = "Не работает")]
+	[Fact(DisplayName = "Должно быть не более 3 вызовов в секунду", Skip = "Не работает")]
 	public async Task Call_NotMoreThen3CallsPerSecond()
 	{
 		Url = "https://api.vk.ru/method/friends.getRequests";
@@ -252,7 +254,7 @@ public class VkApiTest : BaseTest
 		callMethod.Should()
 			.NotBeNull();
 
-		callMethod.IsPublic.Should()
+		callMethod!.IsPublic.Should()
 			.BeTrue();
 	}
 

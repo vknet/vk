@@ -9,7 +9,7 @@ public class GetCategoriesTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get categories")]
 	public void GetCategories()
 	{
 		Url = "https://api.vk.ru/method/ads.getCategories";

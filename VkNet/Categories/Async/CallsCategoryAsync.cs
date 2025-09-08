@@ -15,7 +15,7 @@ public partial class CallsCategory
 			ForceFinish(@params), token);
 
 	/// <inheritdoc />
-	public Task<CallStartResult> StartAsync(CallsStartParams @params, CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
+	public Task<CallStartResult> StartAsync(CallsStartParams @params, CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(
+		() =>
 			Start(@params), token);
 }

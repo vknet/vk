@@ -5,7 +5,7 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesGetHistoryTest : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Get history test")]
 	public void GetHistoryTest()
 	{
 		Url = "https://api.vk.ru/method/messages.getHistory";

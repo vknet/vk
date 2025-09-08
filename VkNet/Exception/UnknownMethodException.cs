@@ -23,6 +23,5 @@ public sealed class UnknownMethodException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private UnknownMethodException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

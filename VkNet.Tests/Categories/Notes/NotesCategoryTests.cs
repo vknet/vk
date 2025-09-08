@@ -8,7 +8,7 @@ public class NotesCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Notes";
 
-	[Fact]
+	[Fact(DisplayName = "Add")]
 	public void Add()
 	{
 		Url = "https://api.vk.ru/method/notes.add";
@@ -20,7 +20,7 @@ public class NotesCategoryTests : CategoryBaseTest
 			.Be(11825220);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Create comment")]
 	public void CreateComment()
 	{
 		Url = "https://api.vk.ru/method/notes.createComment";
@@ -32,7 +32,7 @@ public class NotesCategoryTests : CategoryBaseTest
 			.Be(11825220);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Delete")]
 	public void Delete()
 	{
 		Url = "https://api.vk.ru/method/notes.delete";
@@ -44,7 +44,7 @@ public class NotesCategoryTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Delete comment")]
 	public void DeleteComment()
 	{
 		Url = "https://api.vk.ru/method/notes.deleteComment";
@@ -56,7 +56,7 @@ public class NotesCategoryTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Edit")]
 	public void Edit()
 	{
 		Url = "https://api.vk.ru/method/notes.edit";
@@ -68,7 +68,7 @@ public class NotesCategoryTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Edit comment")]
 	public void EditComment()
 	{
 		Url = "https://api.vk.ru/method/notes.editComment";
@@ -80,7 +80,7 @@ public class NotesCategoryTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get")]
 	public void Get()
 	{
 		Url = "https://api.vk.ru/method/notes.get";
@@ -92,7 +92,7 @@ public class NotesCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id")]
 	public void GetById()
 	{
 		Url = "https://api.vk.ru/method/notes.getById";
@@ -104,7 +104,7 @@ public class NotesCategoryTests : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get comments")]
 	public void GetComments()
 	{
 		Url = "https://api.vk.ru/method/notes.getComments";
@@ -116,7 +116,7 @@ public class NotesCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Restore comment")]
 	public void RestoreComment()
 	{
 		Url = "https://api.vk.ru/method/notes.restoreComment";

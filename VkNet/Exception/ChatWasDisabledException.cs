@@ -21,6 +21,5 @@ public sealed class ChatWasDisabledException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private ChatWasDisabledException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

@@ -22,6 +22,5 @@ public sealed class CannotAddUserNotFoundException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private CannotAddUserNotFoundException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

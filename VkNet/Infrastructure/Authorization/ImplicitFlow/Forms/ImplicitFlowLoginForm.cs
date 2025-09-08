@@ -34,9 +34,15 @@ public sealed class ImplicitFlowLoginForm : AbstractAuthorizationForm
 
 		form.Headers = new()
 		{
-			{ "content-type", "application/x-www-form-urlencoded" },
-			{ "origin", "https://oauth.vk.ru" },
-			{ "referer", "https://oauth.vk.ru/" }
+			{
+				"content-type", "application/x-www-form-urlencoded"
+			},
+			{
+				"origin", "https://oauth.vk.ru"
+			},
+			{
+				"referer", "https://oauth.vk.ru/"
+			}
 		};
 
 		return Task.CompletedTask;

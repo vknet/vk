@@ -9,7 +9,7 @@ public class AdsCheckLinkTests : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Check link")]
 	public void CheckLink()
 	{
 		Url = "https://api.vk.ru/method/ads.checkLink";

@@ -8,7 +8,7 @@ public class EditTest : CategoryBaseTest
 {
 	protected override string Folder => "PrettyCards";
 
-	[Fact]
+	[Fact(DisplayName = "Edit")]
 	public void Edit()
 	{
 		Url = "https://api.vk.ru/method/prettyCards.edit";

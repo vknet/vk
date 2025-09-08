@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using JetBrains.Annotations;
 using VkNet.Abstractions;
 using VkNet.Enums;
@@ -54,6 +53,7 @@ public partial class FriendsCategory : IFriendsCategory
 		};
 
 		var response = _vk.Call("friends.get", parameters, skipAuthorization);
+
 		//TODO:
 		if (@params.Fields is not null)
 		{
@@ -76,35 +76,31 @@ public partial class FriendsCategory : IFriendsCategory
 	}
 
 	/// <inheritdoc />
-	public FriendOnline GetOnline(FriendsGetOnlineParams @params)
+	public FriendOnline GetOnline(FriendsGetOnlineParams @params) => _vk.Call<FriendOnline>("friends.getOnline", new()
 	{
-		return _vk.Call<FriendOnline>("friends.getOnline", new()
 		{
-			{
-				"user_id", @params.UserId
-			},
-			{
-				"list_id", @params.ListId
-			},
-			{
-				"online_mobile", @params.OnlineMobile
-			},
-			{
-				"order", @params.Order
-			},
-			{
-				"count", @params.Count
-			},
-			{
-				"offset", @params.Offset
-			}
-		});
-	}
+			"user_id", @params.UserId
+		},
+		{
+			"list_id", @params.ListId
+		},
+		{
+			"online_mobile", @params.OnlineMobile
+		},
+		{
+			"order", @params.Order
+		},
+		{
+			"count", @params.Count
+		},
+		{
+			"offset", @params.Offset
+		}
+	});
 
 	/// <inheritdoc />
-	public ReadOnlyCollection<MutualFriend> GetMutual(FriendsGetMutualParams @params)
-	{
-		return _vk.Call<ReadOnlyCollection<MutualFriend>>("friends.getMutual", new()
+	public ReadOnlyCollection<MutualFriend> GetMutual(FriendsGetMutualParams @params) => _vk.Call<ReadOnlyCollection<MutualFriend>>(
+		"friends.getMutual", new()
 		{
 			{
 				"source_uid", @params.SourceUid
@@ -125,7 +121,6 @@ public partial class FriendsCategory : IFriendsCategory
 				"offset", @params.Offset
 			}
 		});
-	}
 
 	/// <inheritdoc />
 	[Pure]
@@ -388,26 +383,26 @@ public partial class FriendsCategory : IFriendsCategory
 
 	/// <inheritdoc />
 	public VkCollection<User> Search(FriendsSearchParams @params) => _vk.Call<VkCollection<User>>("friends.search", new()
+	{
 		{
-			{
-				"user_id", @params.UserId
-			},
-			{
-				"q", @params.Query
-			},
-			{
-				"fields", @params.Fields
-			},
-			{
-				"name_case", @params.NameCase
-			},
-			{
-				"offset", @params.Offset
-			},
-			{
-				"count", @params.Count
-			}
-		});
+			"user_id", @params.UserId
+		},
+		{
+			"q", @params.Query
+		},
+		{
+			"fields", @params.Fields
+		},
+		{
+			"name_case", @params.NameCase
+		},
+		{
+			"offset", @params.Offset
+		},
+		{
+			"count", @params.Count
+		}
+	});
 
 	/// <inheritdoc />
 	public long AddList(string name, IEnumerable<long> userIds)
@@ -443,7 +438,7 @@ public partial class FriendsCategory : IFriendsCategory
 	/// Страница документации ВКонтакте http://vk.ru/dev/friends.addList
 	/// </remarks>
 	[Obsolete(ObsoleteText.FriendsAddList)]
-	public long AddList(string name) => AddList(name, Enumerable.Empty<long>());
+	public long AddList(string name) => AddList(name, []);
 
 	/// <summary>
 	/// Позволяет получить список идентификаторов пользователей, доступных для вызова в
@@ -490,8 +485,6 @@ public partial class FriendsCategory : IFriendsCategory
 		};
 
 		var response = _vk.Call("friends.getAvailableForCall", parameters);
-
-
 
 		if (fields != null)
 		{

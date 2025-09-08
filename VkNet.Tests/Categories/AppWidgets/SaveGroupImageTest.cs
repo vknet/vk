@@ -9,7 +9,7 @@ public class SaveGroupImageTest : CategoryBaseTest
 {
 	protected override string Folder => "AppWidgets";
 
-	[Fact]
+	[Fact(DisplayName = "Save group image")]
 	public void SaveGroupImage()
 	{
 		Url = "https://api.vk.ru/method/appWidgets.saveGroupImage";

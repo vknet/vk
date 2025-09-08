@@ -8,7 +8,7 @@ public class GetTest : CategoryBaseTest
 {
 	protected override string Folder => "PrettyCards";
 
-	[Fact]
+	[Fact(DisplayName = "Get")]
 	public void Get()
 	{
 		Url = "https://api.vk.ru/method/prettyCards.get";

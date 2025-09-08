@@ -115,24 +115,24 @@ public partial class NotesCategory : INotesCategory
 
 	/// <inheritdoc />
 	public VkCollection<Note> Get(NotesGetParams notesGetParams) => _vk.Call<VkCollection<Note>>("notes.get",
-			new()
+		new()
+		{
 			{
-				{
-					"note_ids", notesGetParams.NoteIds
-				},
-				{
-					"user_id", notesGetParams.UserId
-				},
-				{
-					"offset", notesGetParams.Offset
-				},
-				{
-					"count", notesGetParams.Count
-				},
-				{
-					"sort", notesGetParams.Sort
-				}
-			});
+				"note_ids", notesGetParams.NoteIds
+			},
+			{
+				"user_id", notesGetParams.UserId
+			},
+			{
+				"offset", notesGetParams.Offset
+			},
+			{
+				"count", notesGetParams.Count
+			},
+			{
+				"sort", notesGetParams.Sort
+			}
+		});
 
 	/// <inheritdoc />
 	public Note GetById(NotesGetByIdParams getByIdParams) => _vk.Call<Note>("notes.getById",
@@ -150,25 +150,26 @@ public partial class NotesCategory : INotesCategory
 		});
 
 	/// <inheritdoc />
-	public VkCollection<CommentNote> GetComments(NotesGetCommentParams getCommentParams) => _vk.Call<VkCollection<CommentNote>>("notes.getComments",
-			new()
+	public VkCollection<CommentNote> GetComments(NotesGetCommentParams getCommentParams) => _vk.Call<VkCollection<CommentNote>>(
+		"notes.getComments",
+		new()
+		{
 			{
-				{
-					"note_id", getCommentParams.NoteId
-				},
-				{
-					"owner_id", getCommentParams.OwnerId
-				},
-				{
-					"sort", getCommentParams.Sort
-				},
-				{
-					"offset", getCommentParams.Offset
-				},
-				{
-					"count", getCommentParams.Count
-				}
-			});
+				"note_id", getCommentParams.NoteId
+			},
+			{
+				"owner_id", getCommentParams.OwnerId
+			},
+			{
+				"sort", getCommentParams.Sort
+			},
+			{
+				"offset", getCommentParams.Offset
+			},
+			{
+				"count", getCommentParams.Count
+			}
+		});
 
 	/// <inheritdoc />
 	public bool RestoreComment(NotesRestoreCommentParams restoreCommentParams) => _vk.Call<bool>("notes.restoreComment",

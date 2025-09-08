@@ -151,7 +151,6 @@ public class MessagesSendParams
 	[JsonProperty("dont_parse_links", NullValueHandling = NullValueHandling.Ignore)]
 	public bool? DontParseLinks { get; set; }
 
-
 	/// <summary>
 	/// 1 - отключить уведомление об упоминании в сообщении, может принимать значения 1
 	/// или 0, по умолчанию

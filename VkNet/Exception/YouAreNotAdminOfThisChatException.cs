@@ -22,6 +22,5 @@ public sealed class YouAreNotAdminOfThisChatException : VkApiMethodInvokeExcepti
 
 	private YouAreNotAdminOfThisChatException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

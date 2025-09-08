@@ -30,10 +30,7 @@ public class UsersLongPollUpdatesHandlerParams
 	/// <summary>
 	/// Инициализирует новый экземпляр класса <see cref="UsersLongPollUpdatesHandlerParams" />
 	/// </summary>
-	public UsersLongPollUpdatesHandlerParams(IVkApi api)
-	{
-		Api = api;
-	}
+	public UsersLongPollUpdatesHandlerParams(IVkApi api) => Api = api;
 
 	/// <summary>
 	/// Ожидание между обработкой событий при простое

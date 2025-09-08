@@ -23,6 +23,5 @@ public sealed class CannotAddYouBlacklistedException : VkApiMethodInvokeExceptio
 	/// <inheritdoc />
 	private CannotAddYouBlacklistedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

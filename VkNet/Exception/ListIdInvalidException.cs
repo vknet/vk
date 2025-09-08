@@ -21,6 +21,5 @@ public sealed class ListIdInvalidException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private ListIdInvalidException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

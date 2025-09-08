@@ -16,8 +16,6 @@ public class EducationJsonConverter : Newtonsoft.Json.JsonConverter
 	/// <exception cref="T:System.TypeAccessException"> </exception>
 	public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
 	{
-
-
 		var obj = JObject.Load(reader);
 		var responseJToken = obj["response"] ?? obj;
 		var response = new VkResponse(responseJToken);

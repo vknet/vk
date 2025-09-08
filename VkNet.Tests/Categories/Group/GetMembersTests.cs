@@ -10,7 +10,7 @@ public class GetMembersTests : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "Groups";
 
-	[Fact]
+	[Fact(DisplayName = "Get members")]
 	public void GetMembers()
 	{
 		Url = "https://api.vk.ru/method/groups.getMembers";

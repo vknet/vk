@@ -44,14 +44,17 @@ public class UserOrGroupJsonConverter : Newtonsoft.Json.JsonConverter
 
 		foreach (var item in result)
 		{
-			switch (item["type"].ToString())
+			switch (item["type"]
+						.ToString())
 			{
 				case "group":
 					userOrGroup.Groups.Add(JsonConvert.DeserializeObject<Group>(item.ToString()));
+
 					break;
 
 				case "profile":
 					userOrGroup.Users.Add(JsonConvert.DeserializeObject<User>(item.ToString()));
+
 					break;
 
 				default:
@@ -59,6 +62,7 @@ public class UserOrGroupJsonConverter : Newtonsoft.Json.JsonConverter
 						$"Типа '{item[key: "type"]}' не существует. Пожалуйста заведите задачу на сайте проекта: https://github.com/vknet/vk/issues");
 			}
 		}
+
 		return userOrGroup;
 	}
 

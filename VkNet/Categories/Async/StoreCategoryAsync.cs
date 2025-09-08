@@ -19,14 +19,12 @@ public partial class StoreCategory
 
 	/// <inheritdoc />
 	public Task<bool> AddStickersToFavoriteAsync(StoreAddStickerToFavoriteParams @params,
-												CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			AddStickersToFavorite(@params), token);
+												CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		AddStickersToFavorite(@params), token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Sticker>> GetFavoriteStickersAsync(CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(
-			GetFavoriteStickers, token);
+		TypeHelper.TryInvokeMethodAsync(GetFavoriteStickers, token);
 
 	/// <inheritdoc />
 	public Task<VkCollection<Product>> GetProductsAsync(StoreGetProductsParams @params, CancellationToken token = default) =>

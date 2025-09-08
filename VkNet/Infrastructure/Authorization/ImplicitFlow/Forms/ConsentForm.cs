@@ -23,6 +23,7 @@ public sealed class ConsentForm : AbstractAuthorizationForm
 	protected override Task FillFormFieldsAsync(VkHtmlFormResult form, IApiAuthParams authParams, CancellationToken token = default)
 	{
 		token.ThrowIfCancellationRequested();
+
 		return Task.CompletedTask;
 	}
 }

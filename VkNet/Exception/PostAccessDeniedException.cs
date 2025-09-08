@@ -21,6 +21,5 @@ public sealed class PostAccessDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private PostAccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

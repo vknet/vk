@@ -9,7 +9,7 @@ public class Update : CategoryBaseTest
 {
 	protected override string Folder => "AppWidgets";
 
-	[Fact]
+	[Fact(DisplayName = "Enable online")]
 	public void EnableOnline()
 	{
 		Url = "https://api.vk.ru/method/appWidgets.update";

@@ -21,6 +21,5 @@ public sealed class CommentsLimitReachedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private CommentsLimitReachedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

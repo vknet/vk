@@ -8,7 +8,7 @@ public class AudioGetLyricsTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact]
+	[Fact(DisplayName = "Get lyrics test")]
 	public void GetLyricsTest()
 	{
 		Url = "https://api.vk.ru/method/audio.getLyrics";

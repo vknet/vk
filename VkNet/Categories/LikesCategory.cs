@@ -131,7 +131,6 @@ public partial class LikesCategory : ILikesCategory
 		}
 
 		return _vk.Call<UserOrGroup>("likes.getList", parameters, true);
-
 	}
 
 	/// <inheritdoc />
@@ -158,8 +157,6 @@ public partial class LikesCategory : ILikesCategory
 
 		return response[key: "likes"];
 	}
-
-
 
 	/// <inheritdoc />
 	public long Delete(LikeObjectType type, long itemId, long? ownerId = null)

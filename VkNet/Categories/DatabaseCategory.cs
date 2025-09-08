@@ -108,26 +108,26 @@ public partial class DatabaseCategory : IDatabaseCategory
 		VkErrors.ThrowIfNumberIsNegative(() => getCitiesParams.RegionId);
 
 		return _vk.Call<VkCollection<City>>("database.getCities", new()
+		{
 			{
-				{
-					"country_id", getCitiesParams.CountryId
-				},
-				{
-					"region_id", getCitiesParams.RegionId
-				},
-				{
-					"q", getCitiesParams.Query
-				},
-				{
-					"need_all", getCitiesParams.NeedAll
-				},
-				{
-					"count", getCitiesParams.Count
-				},
-				{
-					"offset", getCitiesParams.Offset
-				}
-			}, true);
+				"country_id", getCitiesParams.CountryId
+			},
+			{
+				"region_id", getCitiesParams.RegionId
+			},
+			{
+				"q", getCitiesParams.Query
+			},
+			{
+				"need_all", getCitiesParams.NeedAll
+			},
+			{
+				"count", getCitiesParams.Count
+			},
+			{
+				"offset", getCitiesParams.Offset
+			}
+		}, true);
 	}
 
 	/// <inheritdoc />

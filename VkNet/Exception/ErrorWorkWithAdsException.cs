@@ -21,6 +21,5 @@ public sealed class ErrorWorkWithAdsException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private ErrorWorkWithAdsException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

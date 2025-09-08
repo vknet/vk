@@ -21,6 +21,5 @@ public sealed class RateLimitReachedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private RateLimitReachedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

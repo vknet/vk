@@ -8,7 +8,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll;
 
 public class BotsLongPollGroupTest : BotsLongPollBaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history group change photo test")]
 	public void GetBotsLongPollHistory_GroupChangePhotoTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupChangePhotoTest));
@@ -34,6 +34,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case GroupChangePhoto:
@@ -57,7 +58,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history group join test")]
 	public void GetBotsLongPollHistory_GroupJoinTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupJoinTest));
@@ -82,6 +83,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case GroupJoin:
@@ -102,7 +104,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history group leave test")]
 	public void GetBotsLongPollHistory_GroupLeaveTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupLeaveTest));
@@ -126,6 +128,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case GroupLeave:
@@ -146,7 +149,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history group leave self test")]
 	public void GetBotsLongPollHistory_GroupLeaveSelfTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupLeaveSelfTest));
@@ -170,6 +173,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case GroupLeave:
@@ -190,7 +194,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history group officers edit test")]
 	public void GetBotsLongPollHistory_GroupOfficersEditTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupOfficersEditTest));
@@ -216,6 +220,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case GroupOfficersEdit:
@@ -239,7 +244,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history user block test")]
 	public void GetBotsLongPollHistory_UserBlockTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserBlockTest));
@@ -266,6 +271,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case UserBlock:
@@ -286,7 +292,8 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 						a.Reason.Should()
 							.Be(reason);
 
-						a.UnblockDate.Should().Be(DateTime.Parse("1970-01-01"));
+						a.UnblockDate.Should()
+							.Be(DateTime.Parse("1970-01-01"));
 
 						break;
 					}
@@ -294,7 +301,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history user block temporary test")]
 	public void GetBotsLongPollHistory_UserBlockTemporaryTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserBlockTemporaryTest));
@@ -328,6 +335,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case UserBlock:
@@ -357,7 +365,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history user unblock test")]
 	public void GetBotsLongPollHistory_UserUnblockTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserUnblockTest));
@@ -382,6 +390,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case UserUnblock:
@@ -405,7 +414,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history user unblock by end date test")]
 	public void GetBotsLongPollHistory_UserUnblockByEndDateTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserUnblockByEndDateTest));
@@ -430,6 +439,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case UserUnblock:
@@ -453,7 +463,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history poll vote new test")]
 	public void GetBotsLongPollHistory_PollVoteNewTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PollVoteNewTest));
@@ -479,6 +489,7 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(groupId);
+
 						break;
 
 					case PollVoteNew:

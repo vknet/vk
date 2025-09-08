@@ -45,11 +45,7 @@ public sealed class RestClient : IRestClient
 												CancellationToken token = default)
 	{
 		var url = Url.Combine(uri.ToString(), Url.QueryFrom(parameters.ToArray()));
-
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("GET request: {Url}", url);
-		}
+		_logger.LogDebug("GET request: {Url}", url);
 
 		return CallAsync(() => HttpClient.GetAsync(new Uri(url), token), encoding, token);
 	}
@@ -61,11 +57,7 @@ public sealed class RestClient : IRestClient
 		if (_logger is not null)
 		{
 			var json = JsonConvert.SerializeObject(parameters);
-
-			if (_logger.IsEnabled(LogLevel.Debug))
-			{
-				_logger.LogDebug("POST request: {Uri}{NewLine}{PrettyJson}", uri, Environment.NewLine, Utilities.PrettyPrintJson(json));
-			}
+			_logger.LogDebug("POST request: {Uri}{NewLine}{PrettyJson}", uri, Environment.NewLine, Utilities.PrettyPrintJson(json));
 		}
 
 		if (headers is not null && headers.Any())
@@ -106,12 +98,7 @@ public sealed class RestClient : IRestClient
 		#endif
 
 		var content = encoding.GetString(bytes, 0, bytes.Length);
-
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("Response:{NewLine}{PrettyJson}", Environment.NewLine, Utilities.PrettyPrintJson(content));
-		}
-
+		_logger.LogDebug("Response:{NewLine}{PrettyJson}", Environment.NewLine, Utilities.PrettyPrintJson(content));
 		var requestUri = response.RequestMessage?.RequestUri;
 
 		return response.IsSuccessStatusCode

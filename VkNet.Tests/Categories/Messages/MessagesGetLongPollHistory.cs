@@ -6,12 +6,12 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesGetLongPollHistory : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Get long poll history throw argument exception")]
 	public void GetLongPollHistory_ThrowArgumentException() => FluentActions.Invoking(() => Api.Messages.GetLongPollHistory(new()))
 		.Should()
 		.ThrowExactly<ArgumentException>();
 
-	[Fact]
+	[Fact(DisplayName = "Groups field")]
 	public void GroupsField()
 	{
 		Url = "https://api.vk.ru/method/messages.getLongPollHistory";

@@ -8,7 +8,7 @@ public class GetAddressesTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact]
+	[Fact(DisplayName = "Get addresses")]
 	public void GetAddresses()
 	{
 		Url = "https://api.vk.ru/method/groups.getAddresses";
@@ -18,10 +18,7 @@ public class GetAddressesTests : CategoryBaseTest
 		var result = Api.Groups.GetAddresses(new()
 		{
 			GroupId = 165669449,
-			AddressIds = new ulong[]
-			{
-				58227
-			}
+			AddressIds = [58227]
 		});
 
 		result.TotalCount.Should()

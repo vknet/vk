@@ -11,9 +11,7 @@ namespace VkNet.Model;
 [Serializable]
 public class WallReplyGroupUpdate : Comment, IGroupUpdate
 {
-	/// <summary>
-	/// Идентификатор записи
-	/// </summary>
+	/// <inheritdoc />
 	[JsonProperty("post_id")]
 	public new long? PostId { get; set; }
 

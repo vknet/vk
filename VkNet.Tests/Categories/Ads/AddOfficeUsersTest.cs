@@ -10,7 +10,7 @@ public class AddOfficeUsersTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Add office users")]
 	public void AddOfficeUsers()
 	{
 		Url = "https://api.vk.ru/method/ads.addOfficeUsers";
@@ -32,10 +32,10 @@ public class AddOfficeUsersTest : CategoryBaseTest
 		};
 
 		UserSpecification[] data =
-		{
+		[
 			userSpecification1,
 			userSpecification2
-		};
+		];
 
 		var officeUsers = Api.Ads.AddOfficeUsers(new()
 		{

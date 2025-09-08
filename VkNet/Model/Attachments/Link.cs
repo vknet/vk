@@ -16,6 +16,7 @@ public class Link : MediaAttachment
 	protected override string Alias => "link";
 
 	private long? _oldId;
+
 	/// <summary>
 	/// Возвращает идентификатор Link в числовом значении
 	/// </summary>
@@ -26,8 +27,10 @@ public class Link : MediaAttachment
 			{
 				_oldId = temporaryId;
 			}
+
 			return _oldId;
 		}
+
 		set => _oldId = value;
 	}
 
@@ -124,11 +127,6 @@ public class Link : MediaAttachment
 	[JsonProperty("application")]
 	public Application Application { get; set; }
 
-	/// <summary>
-	/// Преобразовать к строке.
-	/// </summary>
-	/// <returns>
-	/// Адрес ссылки.
-	/// </returns>
+	/// <inheritdoc />
 	public override string ToString() => Uri.ToString();
 }

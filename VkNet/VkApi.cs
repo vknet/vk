@@ -1,5 +1,4 @@
-// ReSharper disable once RedundantUsingDirective
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -28,6 +27,9 @@ using VkNet.Model;
 using VkNet.Utils;
 using VkNet.Utils.AntiCaptcha;
 using VkNet.Utils.JsonConverter;
+
+// ReSharper disable once RedundantUsingDirective
+using System;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
@@ -186,11 +188,7 @@ public class VkApi : IVkApi
 		}
 
 		_ap = @params;
-
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("Авторизация прошла успешно");
-		}
+		_logger.LogDebug("Авторизация прошла успешно");
 	}
 
 	/// <inheritdoc />
@@ -212,10 +210,7 @@ public class VkApi : IVkApi
 			const string message =
 				"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
 
-			if (_logger.IsEnabled(LogLevel.Error))
-			{
-				_logger.LogError(message);
-			}
+			_logger.LogError(message);
 
 			throw new AggregateException(message);
 		}
@@ -233,10 +228,7 @@ public class VkApi : IVkApi
 			const string message =
 				"Невозможно обновить токен доступа т.к. последняя авторизация происходила не при помощи логина и пароля";
 
-			if (_logger.IsEnabled(LogLevel.Error))
-			{
-				_logger.LogError(message);
-			}
+			_logger.LogError(message);
 
 			throw new AggregateException(message);
 		}
@@ -290,7 +282,7 @@ public class VkApi : IVkApi
 		var settings = new JsonSerializerSettings
 		{
 			Converters = [],
-			ContractResolver = new DefaultContractResolver()
+			ContractResolver = new DefaultContractResolver
 			{
 				NamingStrategy = new SnakeCaseNamingStrategy()
 			},
@@ -339,23 +331,15 @@ public class VkApi : IVkApi
 	{
 		if (!skipAuthorization && !IsAuthorized)
 		{
-			if (_logger.IsEnabled(LogLevel.Error))
-			{
-				_logger.LogError("Метод '{MethodName}' нельзя вызывать без авторизации", methodName);
-			}
+			_logger.LogError("Метод '{MethodName}' нельзя вызывать без авторизации", methodName);
 
 			throw new AccessTokenInvalidException($"Метод '{methodName}' нельзя вызывать без авторизации");
 		}
 
 		var url = $"https://api.vk.ru/method/{methodName}";
 		var answer = InvokeBase(url, parameters);
-
-		if (_logger.IsEnabled(LogLevel.Trace))
-		{
-			_logger.LogTrace("Uri = \"{Url}\"", url);
-			_logger.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
-		}
-
+		_logger.LogTrace("Uri = \"{Url}\"", url);
+		_logger.LogTrace("Json ={NewLine}{Json}", Environment.NewLine, Utilities.PrettyPrintJson(answer));
 		VkErrors.IfErrorThrowException(answer);
 
 		return answer;
@@ -432,11 +416,7 @@ public class VkApi : IVkApi
 		if (string.IsNullOrEmpty(server))
 		{
 			const string message = "Server не должен быть пустым или null";
-
-			if (_logger.IsEnabled(LogLevel.Error))
-			{
-				_logger.LogError(message);
-			}
+			_logger.LogError(message);
 
 			throw new ArgumentException(message);
 		}
@@ -490,11 +470,7 @@ public class VkApi : IVkApi
 		if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 		{
 			const string message = "Не удалось автоматически пройти валидацию!";
-
-			if (_logger.IsEnabled(LogLevel.Error))
-			{
-				_logger.LogError(message);
-			}
+			_logger.LogError(message);
 
 			throw new NeedValidationException(new()
 			{
@@ -890,10 +866,7 @@ public class VkApi : IVkApi
 	/// <param name="authParams"> Параметры авторизации </param>
 	private void AuthorizeWithAntiCaptcha(IApiAuthParams authParams)
 	{
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("Старт авторизации");
-		}
+		_logger.LogDebug("Старт авторизации");
 
 		if (CaptchaSolver is null)
 		{
@@ -902,11 +875,7 @@ public class VkApi : IVkApi
 		{
 			CaptchaHandler.Perform((sid, key) =>
 			{
-				if (_logger.IsEnabled(LogLevel.Debug))
-				{
-					_logger.LogDebug("Авторизация с использование капчи");
-				}
-
+				_logger.LogDebug("Авторизация с использование капчи");
 				authParams.CaptchaSid = sid;
 				authParams.CaptchaKey = key;
 				BaseAuthorize(authParams);
@@ -927,19 +896,12 @@ public class VkApi : IVkApi
 	{
 		if (string.IsNullOrWhiteSpace(accessToken))
 		{
-			if (_logger.IsEnabled(LogLevel.Error))
-			{
-				_logger.LogError("Авторизация через токен. Токен не задан");
-			}
+			_logger.LogError("Авторизация через токен. Токен не задан");
 
 			throw new ArgumentNullException(accessToken);
 		}
 
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("Авторизация через токен");
-		}
-
+		_logger.LogDebug("Авторизация через токен");
 		StopTimer();
 
 		LastInvokeTime = DateTimeOffset.Now;
@@ -953,11 +915,7 @@ public class VkApi : IVkApi
 	/// <param name="authorization"> The authorization. </param>
 	private void SetTokenProperties(AuthorizationResult authorization)
 	{
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("Установка свойств токена");
-		}
-
+		_logger.LogDebug("Установка свойств токена");
 		var expireTime = (Convert.ToInt32(authorization.ExpiresIn) - 10) * 1000;
 		SetApiPropertiesAfterAuth(expireTime, authorization.AccessToken, authorization.UserId);
 	}
@@ -1019,11 +977,7 @@ public class VkApi : IVkApi
 		if (string.IsNullOrWhiteSpace(authorization.AccessToken))
 		{
 			const string message = "Authorization fail: invalid access token.";
-
-			if (_logger.IsEnabled(LogLevel.Error))
-			{
-				_logger.LogError(message);
-			}
+			_logger.LogError(message);
 
 			throw new VkAuthorizationException(message);
 		}
@@ -1102,12 +1056,9 @@ public class VkApi : IVkApi
 		}
 		#else
 		Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-		#endif
+		_logger.LogDebug("VkApi Initialization successfully");
 
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("VkApi Initialization successfully");
-		}
+		#endif
 	}
 
 	#endregion

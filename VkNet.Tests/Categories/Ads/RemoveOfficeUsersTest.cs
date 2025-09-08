@@ -8,7 +8,7 @@ public class RemoveOfficeUsersTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Remove office users")]
 	public void RemoveOfficeUsers()
 	{
 		Url = "https://api.vk.ru/method/ads.removeOfficeUsers";

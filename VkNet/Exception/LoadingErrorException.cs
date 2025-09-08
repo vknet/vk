@@ -21,6 +21,5 @@ public sealed class LoadingErrorException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private LoadingErrorException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

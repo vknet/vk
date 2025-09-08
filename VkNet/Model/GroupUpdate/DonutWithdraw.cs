@@ -17,7 +17,7 @@ public class DonutWithdraw : IGroupUpdate
 	[JsonProperty("error")]
 	public bool Error { get; set; }
 
-		/// <summary>
+	/// <summary>
 	/// Cумма  в рублях
 	/// </summary>
 	[JsonProperty("amount")]

@@ -32,6 +32,7 @@ public class GetChatUsersJsonConverter : Newtonsoft.Json.JsonConverter
 			foreach (var item in user.Value)
 			{
 				var exist = list.Exists(first => first.Id == item.Id);
+
 				if (!exist)
 				{
 					list.Add(item);

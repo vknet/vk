@@ -73,6 +73,7 @@ public interface IPrettyCardsCategoryAsync
 	/// </remarks>
 	Task<VkCollection<PrettyCardsGetByIdResult>> GetAsync(PrettyCardsGetParams @params,
 														CancellationToken token = default);
+
 	/// <summary>
 	/// Метод возвращает информацию о карточке.
 	/// </summary>

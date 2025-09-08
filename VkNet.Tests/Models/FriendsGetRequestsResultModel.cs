@@ -8,7 +8,7 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 {
 	protected override string Folder => "Friends";
 
-	[Fact]
+	[Fact(DisplayName = "Should have field message")]
 	public void ShouldHaveField_Message()
 	{
 		ReadCategoryJsonPath(nameof(ShouldHaveField_Message));
@@ -17,11 +17,12 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 
 		var result = Api.Friends.GetRequestsExtended(new());
 
-		result[0].Message.Should()
+		result[0]
+			.Message.Should()
 			.Be("text");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should have field mutual")]
 	public void ShouldHaveField_Mutual()
 	{
 		ReadCategoryJsonPath(nameof(ShouldHaveField_Mutual));
@@ -30,11 +31,12 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 
 		var result = Api.Friends.GetRequestsExtended(new());
 
-		result[0].Mutual.Should()
+		result[0]
+			.Mutual.Should()
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should have field user id")]
 	public void ShouldHaveField_UserId()
 	{
 		ReadCategoryJsonPath(nameof(ShouldHaveField_UserId));
@@ -43,7 +45,8 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 
 		var result = Api.Friends.GetRequestsExtended(new());
 
-		result[0].UserId.Should()
+		result[0]
+			.UserId.Should()
 			.Be(221634238L);
 	}
 }

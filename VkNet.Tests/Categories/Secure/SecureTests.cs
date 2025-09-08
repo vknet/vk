@@ -9,7 +9,7 @@ public class SecureTests : CategoryBaseTest
 {
 	protected override string Folder => "Secure";
 
-	[Fact]
+	[Fact(DisplayName = "Add app event")]
 	public void AddAppEvent()
 	{
 		Url = "https://api.vk.ru/method/secure.addAppEvent";
@@ -21,7 +21,7 @@ public class SecureTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Check token")]
 	public void CheckToken()
 	{
 		Url = "https://api.vk.ru/method/secure.checkToken";
@@ -33,7 +33,7 @@ public class SecureTests : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get app balance")]
 	public void GetAppBalance()
 	{
 		Url = "https://api.vk.ru/method/secure.getAppBalance";
@@ -45,7 +45,7 @@ public class SecureTests : CategoryBaseTest
 			.Be(5000);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get sms history")]
 	public void GetSmsHistory()
 	{
 		Url = "https://api.vk.ru/method/secure.getSMSHistory";
@@ -65,7 +65,7 @@ public class SecureTests : CategoryBaseTest
 			.Be(1238497);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get transactions history")]
 	public void GetTransactionsHistory()
 	{
 		Url = "https://api.vk.ru/method/secure.getTransactionsHistory";
@@ -77,56 +77,49 @@ public class SecureTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get user level")]
 	public void GetUserLevel()
 	{
 		Url = "https://api.vk.ru/method/secure.getUserLevel";
 		ReadCategoryJsonPath(nameof(GetUserLevel));
 
-		var app = Api.Secure.GetUserLevel(new long[]
-		{
-			123
-		});
+		var app = Api.Secure.GetUserLevel([123]);
 
 		app.Should()
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Give event sticker")]
 	public void GiveEventSticker()
 	{
 		Url = "https://api.vk.ru/method/secure.giveEventSticker";
 		ReadCategoryJsonPath(nameof(GiveEventSticker));
 
-		var app = Api.Secure.GiveEventSticker(new ulong[]
-			{
+		var app = Api.Secure.GiveEventSticker([
 				1,
 				2,
 				3
-			},
+			],
 			1);
 
 		app.Should()
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Send notification")]
 	public void SendNotification()
 	{
 		Url = "https://api.vk.ru/method/secure.sendNotification";
 		ReadCategoryJsonPath(nameof(SendNotification));
 
 		var app = Api.Secure.SendNotification("Notification",
-			new ulong[]
-			{
-				123
-			});
+			[123]);
 
 		app.Should()
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Send sms notification")]
 	public void SendSmsNotification()
 	{
 		Url = "https://api.vk.ru/method/secure.sendSMSNotification";
@@ -138,17 +131,16 @@ public class SecureTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Set counter")]
 	public void SetCounter()
 	{
 		Url = "https://api.vk.ru/method/secure.setCounter";
 		ReadJsonFile(JsonPaths.True);
 
-		var app = Api.Secure.SetCounter(new[]
-			{
+		var app = Api.Secure.SetCounter([
 				"66748:6:1",
 				"6492:2"
-			},
+			],
 			123,
 			2,
 			true);

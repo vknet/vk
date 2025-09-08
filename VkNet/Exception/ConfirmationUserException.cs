@@ -22,6 +22,5 @@ public sealed class ConfirmationUserException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private ConfirmationUserException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

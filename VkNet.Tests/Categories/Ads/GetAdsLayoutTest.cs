@@ -8,7 +8,7 @@ public class GetAdsLayoutTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get ads layout")]
 	public void GetAdsLayout()
 	{
 		Url = "https://api.vk.ru/method/ads.getAdsLayout";

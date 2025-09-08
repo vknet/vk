@@ -8,7 +8,7 @@ public class UpdateTargetPixelTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Update target pixel")]
 	public void UpdateTargetPixel()
 	{
 		Url = "https://api.vk.ru/method/ads.updateTargetPixel";

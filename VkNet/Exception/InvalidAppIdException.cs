@@ -25,6 +25,5 @@ public sealed class InvalidAppIdException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private InvalidAppIdException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

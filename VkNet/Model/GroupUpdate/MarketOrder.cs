@@ -92,7 +92,6 @@ public class MarketOrder : IGroupUpdate
 	[JsonConverter(typeof(UnixDateTimeConverter))]
 	public DateTime? Date { get; set; }
 
-
 	/// <summary>
 	/// Номер заказа, состоящий из идентификатора покупателя и идентификатора заказа.
 	/// </summary>

@@ -8,7 +8,7 @@ public class OrdersCancelSubscriptionTests : CategoryBaseTest
 {
 	protected override string Folder => "Orders";
 
-	[Fact]
+	[Fact(DisplayName = "Cancel subscription")]
 	public void CancelSubscription()
 	{
 		Url = "https://api.vk.ru/method/orders.cancelSubscription";

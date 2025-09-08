@@ -7,7 +7,7 @@ namespace VkNet.Tests.Models;
 
 public class GroupModel : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Should have field trending")]
 	public void ShouldHaveField_Trending()
 	{
 		var group = new Group();
@@ -16,7 +16,7 @@ public class GroupModel : BaseTest
 			.BeFalse();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Trending should be false")]
 	public void Trending_ShouldBeFalse()
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse));
@@ -24,12 +24,11 @@ public class GroupModel : BaseTest
 		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<Group>("friends.getRequests", VkParameters.Empty);
 
-
 		result.Trending.Should()
 			.BeFalse();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Trending should be false2")]
 	public void Trending_ShouldBeFalse2()
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse2));
@@ -37,19 +36,17 @@ public class GroupModel : BaseTest
 		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<Group>("friends.getRequests", VkParameters.Empty);
 
-
 		result.Trending.Should()
 			.BeFalse();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Trending should be true")]
 	public void Trending_ShouldBeTrue()
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeTrue));
 
 		Url = "https://api.vk.ru/method/friends.getRequests";
 		var result = Api.Call<Group>("friends.getRequests", VkParameters.Empty);
-
 
 		result.Trending.Should()
 			.BeTrue();

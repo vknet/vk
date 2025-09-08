@@ -9,7 +9,7 @@ public class GetStatisticsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get statistics")]
 	public void GetStatistics()
 	{
 		Url = "https://api.vk.ru/method/ads.getStatistics";

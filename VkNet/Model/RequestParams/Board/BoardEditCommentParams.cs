@@ -57,5 +57,4 @@ public class BoardEditCommentParams
 	/// </summary>
 	[JsonProperty(propertyName: "attachments")]
 	public IEnumerable<MediaAttachment> Attachments { get; set; }
-
 }

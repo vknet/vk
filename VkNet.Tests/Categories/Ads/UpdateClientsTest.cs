@@ -9,7 +9,7 @@ public class UpdateClientsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Update clients")]
 	public void UpdateClients()
 	{
 		Url = "https://api.vk.ru/method/ads.updateClients";
@@ -33,10 +33,10 @@ public class UpdateClientsTest : CategoryBaseTest
 		};
 
 		ClientModSpecification[] data =
-		{
+		[
 			clientModSpecification1,
 			clientModSpecification2
-		};
+		];
 
 		var officeUsers = Api.Ads.UpdateClients(new()
 		{

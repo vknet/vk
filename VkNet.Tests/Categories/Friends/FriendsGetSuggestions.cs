@@ -12,7 +12,7 @@ public class FriendsGetSuggestions : CategoryBaseTest
 {
 	protected override string Folder => "Friends";
 
-	[Fact]
+	[Fact(DisplayName = "Get suggestions all parameters")]
 	public void GetSuggestions_AllParameters()
 	{
 		Url = "https://api.vk.ru/method/friends.getSuggestions";
@@ -36,7 +36,7 @@ public class FriendsGetSuggestions : CategoryBaseTest
 			.Be(Sex.Male);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get suggestions without parameters")]
 	public void GetSuggestions_WithoutParameters()
 	{
 		Url = "https://api.vk.ru/method/friends.getSuggestions";

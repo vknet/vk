@@ -9,7 +9,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll;
 
 public class BotsLongPollMessageTest : BotsLongPollBaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history message new test")]
 	public void GetBotsLongPollHistory_MessageNewTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageNewTest));
@@ -63,7 +63,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history message new template test")]
 	public void GetBotsLongPollHistory_MessageNewTemplateTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageNewTemplateTest));
@@ -84,6 +84,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(new GroupId(123456789));
+
 						break;
 
 					case MessageNew:
@@ -107,7 +108,6 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 						a.Message.FromId.Should()
 							.Be(123456789);
 
-
 						a.Message.Text.Should()
 							.Be("f");
 
@@ -118,13 +118,14 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 							.Photo
 							.HasTags.Should()
 							.BeFalse();
+
 						break;
 					}
 				}
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history message edit test")]
 	public void GetBotsLongPollHistory_MessageEditTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageEditTest));
@@ -170,7 +171,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history message reply test")]
 	public void GetBotsLongPollHistory_MessageReplyTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageReplyTest));
@@ -216,7 +217,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history message allow test")]
 	public void GetBotsLongPollHistory_MessageAllowTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageAllowTest));
@@ -262,7 +263,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history message deny test")]
 	public void GetBotsLongPollHistory_MessageDenyTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageDenyTest));
@@ -304,7 +305,7 @@ public class BotsLongPollMessageTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history message event test")]
 	public void GetBotsLongPollHistory_MessageEventTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MessageEventTest));

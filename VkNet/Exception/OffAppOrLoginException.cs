@@ -23,6 +23,5 @@ public sealed class OffAppOrLoginException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private OffAppOrLoginException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

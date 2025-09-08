@@ -23,6 +23,5 @@ public sealed class UserNotFoundInChatException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private UserNotFoundInChatException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

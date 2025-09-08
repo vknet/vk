@@ -10,7 +10,7 @@ public class WallGetTests : CategoryBaseTest
 {
 	protected override string Folder => "Wall";
 
-	[Fact]
+	[Fact(DisplayName = "Article attachement")]
 	public void ArticleAttachement()
 	{
 		Url = "https://api.vk.ru/method/wall.get";
@@ -38,7 +38,7 @@ public class WallGetTests : CategoryBaseTest
 			.Be(10419);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Podcast attachment")]
 	public void PodcastAttachment()
 	{
 		Url = "https://api.vk.ru/method/wall.get";

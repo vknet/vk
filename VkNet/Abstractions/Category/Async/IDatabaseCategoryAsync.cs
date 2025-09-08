@@ -14,7 +14,6 @@ namespace VkNet.Abstractions;
 /// </summary>
 public interface IDatabaseCategoryAsync
 {
-
 	/// <summary>
 	/// Возвращает список стран.
 	/// </summary>

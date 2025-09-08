@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll;
 
 public class BotsLongPollDonutTest : BotsLongPollBaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history donut subscription create")]
 	public void GetBotsLongPollHistory_DonutSubscriptionCreate()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionCreate));
@@ -27,6 +27,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(new GroupId(1234));
+
 						break;
 
 					case DonutNew:
@@ -50,7 +51,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history donut subscription prolonged")]
 	public void GetBotsLongPollHistory_DonutSubscriptionProlonged()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionProlonged));
@@ -71,6 +72,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(new GroupId(1234));
+
 						break;
 
 					case DonutNew:
@@ -94,7 +96,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history donut subscription cancelled")]
 	public void GetBotsLongPollHistory_DonutSubscriptionCancelled()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionCancelled));
@@ -115,6 +117,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(new GroupId(1234));
+
 						break;
 
 					case DonutEnd:
@@ -132,7 +135,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history donut subscription expired")]
 	public void GetBotsLongPollHistory_DonutSubscriptionExpired()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionExpired));
@@ -153,6 +156,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(new GroupId(1234));
+
 						break;
 
 					case DonutEnd:
@@ -170,7 +174,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history donut subscription price changed")]
 	public void GetBotsLongPollHistory_DonutSubscriptionPriceChanged()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutSubscriptionPriceChanged));
@@ -191,6 +195,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(new GroupId(1234));
+
 						break;
 
 					case DonutChanged:
@@ -220,7 +225,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history donut withdraw")]
 	public void GetBotsLongPollHistory_DonutWithdraw()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutWithdraw));
@@ -241,6 +246,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(new GroupId(1234));
+
 						break;
 
 					case DonutWithdraw:
@@ -264,7 +270,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history donut withdraw error")]
 	public void GetBotsLongPollHistory_DonutWithdrawError()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_DonutWithdrawError));
@@ -285,6 +291,7 @@ public class BotsLongPollDonutTest : BotsLongPollBaseTest
 					case GroupId:
 						x.Instance.Should()
 							.Be(new GroupId(1234));
+
 						break;
 
 					case DonutWithdraw:

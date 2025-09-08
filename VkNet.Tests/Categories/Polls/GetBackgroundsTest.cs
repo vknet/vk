@@ -9,7 +9,7 @@ public class GetBackgroundsTest : CategoryBaseTest
 {
 	protected override string Folder => "Polls";
 
-	[Fact]
+	[Fact(DisplayName = "Get backgrounds")]
 	public void GetBackgrounds()
 	{
 		Url = "https://api.vk.ru/method/polls.getBackgrounds";
@@ -19,7 +19,8 @@ public class GetBackgroundsTest : CategoryBaseTest
 		var result = Api.PollsCategory.GetBackgrounds();
 
 		result[0]
-			.Type.Should().Be(PollBackgroundType.Gradient);
+			.Type.Should()
+			.Be(PollBackgroundType.Gradient);
 
 		result[0]
 			.Angle.Should()
@@ -36,7 +37,8 @@ public class GetBackgroundsTest : CategoryBaseTest
 			.Be(0);
 
 		result[1]
-			.Type.Should().Be(PollBackgroundType.Gradient);
+			.Type.Should()
+			.Be(PollBackgroundType.Gradient);
 
 		result[1]
 			.Angle.Should()

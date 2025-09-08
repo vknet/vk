@@ -18,6 +18,5 @@ public sealed class LongPollInfoLostException : LongPollException
 	/// <inheritdoc />
 	private LongPollInfoLostException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 }

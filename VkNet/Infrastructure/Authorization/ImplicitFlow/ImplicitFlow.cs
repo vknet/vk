@@ -49,18 +49,9 @@ public class ImplicitFlow : IImplicitFlow
 	/// <inheritdoc />
 	public async Task<AuthorizationResult> AuthorizeAsync(CancellationToken token = default)
 	{
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("Валидация данных");
-		}
-
+		_logger.LogDebug("Валидация данных");
 		ValidateAuthorizationParameters();
-
-		if (_logger.IsEnabled(LogLevel.Debug))
-		{
-			_logger.LogDebug("Шаг 1. Открытие диалога авторизации");
-		}
-
+		_logger.LogDebug("Шаг 1. Открытие диалога авторизации");
 		var authorizeUrlResult = CreateAuthorizeUrl();
 
 		var loginFormResult = await _authorizationFormsFactory.Create(ImplicitFlowPageType.LoginPassword)
@@ -146,10 +137,7 @@ public class ImplicitFlow : IImplicitFlow
 			case ImplicitFlowPageType.Error:
 
 			{
-				if (_logger.IsEnabled(LogLevel.Error))
-				{
-					_logger.LogError("При авторизации произошла ошибка");
-				}
+				_logger.LogError("При авторизации произошла ошибка");
 
 				throw new VkAuthorizationException("При авторизации произошла ошибка.");
 			}
@@ -157,10 +145,7 @@ public class ImplicitFlow : IImplicitFlow
 			case ImplicitFlowPageType.LoginPassword:
 
 			{
-				if (_logger.IsEnabled(LogLevel.Debug))
-				{
-					_logger.LogDebug("Неверный логин или пароль");
-				}
+				_logger.LogDebug("Неверный логин или пароль");
 
 				throw new VkAuthorizationException("Неверный логин или пароль.");
 			}
@@ -168,10 +153,7 @@ public class ImplicitFlow : IImplicitFlow
 			case ImplicitFlowPageType.Captcha:
 
 			{
-				if (_logger.IsEnabled(LogLevel.Debug))
-				{
-					_logger.LogDebug("Капча");
-				}
+				_logger.LogDebug("Капча");
 
 				break;
 			}
@@ -179,10 +161,7 @@ public class ImplicitFlow : IImplicitFlow
 			case ImplicitFlowPageType.TwoFactor:
 
 			{
-				if (_logger.IsEnabled(LogLevel.Debug))
-				{
-					_logger.LogDebug("Двухфакторная авторизация");
-				}
+				_logger.LogDebug("Двухфакторная авторизация");
 
 				break;
 			}
@@ -190,10 +169,7 @@ public class ImplicitFlow : IImplicitFlow
 			case ImplicitFlowPageType.Consent:
 
 			{
-				if (_logger.IsEnabled(LogLevel.Debug))
-				{
-					_logger.LogDebug("Страница подтверждения доступа к скоупам");
-				}
+				_logger.LogDebug("Страница подтверждения доступа к скоупам");
 
 				break;
 			}

@@ -19,7 +19,7 @@ public class MessageEventPayloadJsonConverter : Newtonsoft.Json.JsonConverter
 		var responseJToken = obj["payload"] ?? obj;
 		var response = new VkResponse(responseJToken);
 
-		var a = Regex.Replace(response.ToString(),  "(\"(?:[^\"\\\\]|\\\\.)*\")|\\s+", "$1");
+		var a = Regex.Replace(response.ToString(), "(\"(?:[^\"\\\\]|\\\\.)*\")|\\s+", "$1");
 
 		return a;
 	}

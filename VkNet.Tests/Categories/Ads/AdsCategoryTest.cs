@@ -13,7 +13,7 @@ public class AdsCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get accounts generate out parameters correctly")]
 	public void GetAccounts_GenerateOutParametersCorrectly()
 	{
 		Url = "https://api.vk.ru/method/ads.getAccounts";
@@ -46,7 +46,7 @@ public class AdsCategoryTest : CategoryBaseTest
 			.Be(AccessRole.Manager);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get campaigns agency account arch filtered out parameters correct")]
 	public void GetCampaigns_AgencyAccount_Arch_Filtered_OutParametersCorrect()
 	{
 		Url = "https://api.vk.ru/method/ads.getCampaigns";
@@ -76,7 +76,7 @@ public class AdsCategoryTest : CategoryBaseTest
 			.Be(1009316667);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get campaigns general account out parameters correct")]
 	public void GetCampaigns_GeneralAccount_OutParametersCorrect()
 	{
 		Url = "https://api.vk.ru/method/ads.getCampaigns";

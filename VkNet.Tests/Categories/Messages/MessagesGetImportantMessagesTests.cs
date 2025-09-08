@@ -5,7 +5,7 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesGetImportantMessagesTests : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Get important messages result")]
 	public void GetImportantMessagesResult()
 	{
 		Url = "https://api.vk.ru/method/messages.getImportantMessages";

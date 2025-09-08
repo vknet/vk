@@ -10,7 +10,7 @@ public class PhotoSaveMessagePhotoTests : CategoryBaseTest
 {
 	protected override string Folder => "Photos";
 
-	[Fact]
+	[Fact(DisplayName = "Save message photo")]
 	public void SaveMessagePhoto()
 	{
 		Url = "https://api.vk.ru/method/photos.saveMessagesPhoto";

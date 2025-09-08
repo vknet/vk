@@ -22,7 +22,6 @@ public class Topic
 	[JsonProperty("title")]
 	public string Title { get; set; }
 
-
 	/// <summary>
 	/// Дата создания (в формате unixtime).
 	/// </summary>

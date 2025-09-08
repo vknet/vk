@@ -22,6 +22,5 @@ public sealed class OutOfLimitsException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private OutOfLimitsException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

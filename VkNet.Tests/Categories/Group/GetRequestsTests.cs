@@ -9,7 +9,7 @@ public class GetRequestsTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact]
+	[Fact(DisplayName = "Get requests with fields")]
 	public void GetRequests_With_Fields()
 	{
 		Url = "https://api.vk.ru/method/groups.getRequests";
@@ -29,7 +29,7 @@ public class GetRequestsTests : CategoryBaseTest
 				.NotBeNull());
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get requests without fields")]
 	public void GetRequests_Without_Fields()
 	{
 		Url = "https://api.vk.ru/method/groups.getRequests";

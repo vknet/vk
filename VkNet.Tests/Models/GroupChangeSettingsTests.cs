@@ -8,7 +8,7 @@ namespace VkNet.Tests.Models;
 
 public class GroupChangeSettingsTests : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Group change settings should correct deserialize from vk response")]
 	public void GroupChangeSettings_should_correct_deserialize_from_VkResponse()
 	{
 		ReadJsonFile("Models", nameof(GroupChangeSettings));
@@ -32,7 +32,7 @@ public class GroupChangeSettingsTests : BaseTest
 			.ContainKey("description");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Group change settings should correct deserialize from json converter")]
 	public void GroupChangeSettings_should_correct_deserialize_from_JsonConverter()
 	{
 		ReadJsonFile("Models", nameof(GroupChangeSettings));

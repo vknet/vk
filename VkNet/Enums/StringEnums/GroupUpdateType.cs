@@ -279,9 +279,9 @@ public enum GroupUpdateType
 	/// Редактирование заказа
 	/// </summary>
 	AppPayload,
-    
-    /// <summary>
-    /// Реакция на сообщение
-    /// </summary>
-    MessageReactionEvent
+
+	/// <summary>
+	/// Реакция на сообщение
+	/// </summary>
+	MessageReactionEvent
 }

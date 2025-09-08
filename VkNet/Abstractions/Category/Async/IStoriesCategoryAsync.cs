@@ -351,7 +351,6 @@ public interface IStoriesCategoryAsync
 	Task<VkCollection<Story>> SaveAsync(StoryServerUrl uploadResults,
 										CancellationToken token = default);
 
-
 	/// <summary>
 	/// Сохраняет историю.
 	/// </summary>

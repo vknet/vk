@@ -132,10 +132,7 @@ public class ImplicitFlowVkAuthorization : IVkAuthorization<ImplicitFlowPageType
 		return GetParams(cleanFragment);
 	}
 
-	private static Dictionary<string, string> GetParams(string query) => query.Split(new[]
-		{
-			"&"
-		}, StringSplitOptions.RemoveEmptyEntries)
+	private static Dictionary<string, string> GetParams(string query) => query.Split(["&"], StringSplitOptions.RemoveEmptyEntries)
 		.Select(q => q.Split('='))
 		.ToDictionary(x => x[0], x => x[x.Length - 1]);
 }

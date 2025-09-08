@@ -21,17 +21,14 @@ public class UsersCategoryTest : CategoryBaseTest
 
 	protected override string Folder => "Users";
 
-	[Fact]
+	[Fact(DisplayName = "Get counters fields counters object")]
 	public void Get_CountersFields_CountersObject()
 	{
 		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_CountersFields_CountersObject));
 
 		// act
-		var user = Api.Users.Get(new[]
-				{
-					"1"
-				},
+		var user = Api.Users.Get(["1"],
 				ProfileFields.Counters)
 			.FirstOrDefault();
 
@@ -39,7 +36,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Should()
 			.NotBeNull();
 
-		user.Id.Should()
+		user!.Id.Should()
 			.Be(1);
 
 		user.FirstName.Should()
@@ -85,21 +82,18 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(51);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get default fields uid first name last name")]
 	public void Get_DefaultFields_UidFirstNameLastName()
 	{
 		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_DefaultFields_UidFirstNameLastName));
 
 		// act
-		var user = Api.Users.Get(new[]
-			{
-				"1"
-			})
+		var user = Api.Users.Get(["1"])
 			.FirstOrDefault();
 
 		// assert
-		user.Id.Should()
+		user!.Id.Should()
 			.Be(1);
 
 		user.FirstName.Should()
@@ -109,23 +103,20 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("Дуров");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get deleted user")]
 	public void Get_DeletedUser()
 	{
 		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_DeletedUser));
 
-		var user = Api.Users.Get(new[]
-				{
-					"4793858"
-				},
+		var user = Api.Users.Get(["4793858"],
 				ProfileFields.FirstName|ProfileFields.LastName|ProfileFields.Education)
 			.FirstOrDefault();
 
 		user.Should()
 			.NotBeNull();
 
-		user.Id.Should()
+		user!.Id.Should()
 			.Be(4793858);
 
 		user.FirstName.Should()
@@ -141,7 +132,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get dimon single user")]
 	public void Get_Dimon_SingleUser()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -149,10 +140,7 @@ public class UsersCategoryTest : CategoryBaseTest
 
 		var fields = ProfileFields.FirstName|ProfileFields.LastName|ProfileFields.Sex|ProfileFields.City;
 
-		var user = Api.Users.Get(new[]
-				{
-					"dm"
-				},
+		var user = Api.Users.Get(["dm"],
 				fields,
 				NameCase.Gen)
 			.FirstOrDefault();
@@ -160,7 +148,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Should()
 			.NotBeNull();
 
-		user.Id.Should()
+		user!.Id.Should()
 			.Be(53083705);
 
 		user.FirstName.Should()
@@ -179,7 +167,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("Москва");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get dm and durov list of users")]
 	public void Get_DmAndDurov_ListOfUsers()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -205,7 +193,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Should()
 			.NotBeNull();
 
-		user.Id.Should()
+		user!.Id.Should()
 			.Be(53083705);
 
 		user.FirstName.Should()
@@ -229,7 +217,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user1.Should()
 			.NotBeNull();
 
-		user1.Id.Should()
+		user1!.Id.Should()
 			.Be(1);
 
 		user1.FirstName.Should()
@@ -248,7 +236,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("Санкт-Петербург");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get empty list of uids throw argument null exception")]
 	public void Get_EmptyListOfUids_ThrowArgumentNullException()
 	{
 		IEnumerable<long> userIds = null;
@@ -258,16 +246,13 @@ public class UsersCategoryTest : CategoryBaseTest
 			.ThrowExactly<ArgumentNullException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get list of users")]
 	public void Get_ListOfUsers()
 	{
 		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_ListOfUsers));
 
-		var result = Api.Users.Get(new long[]
-			{
-				1
-			},
+		var result = Api.Users.Get([1],
 			ProfileFields.All,
 			NameCase.Gen);
 
@@ -282,7 +267,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Should()
 			.NotBeNull();
 
-		user.Id.Should()
+		user!.Id.Should()
 			.Be(1);
 
 		user.FirstName.Should()
@@ -342,13 +327,13 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.HasMobile.HasValue.Should()
 			.BeTrue();
 
-		user.HasMobile.Value.Should()
+		user.HasMobile!.Value.Should()
 			.BeTrue();
 
 		user.Online.HasValue.Should()
 			.BeTrue();
 
-		user.Online.Value.Should()
+		user.Online!.Value.Should()
 			.BeTrue();
 
 		user.CanPost.Should()
@@ -373,7 +358,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeEmpty();
 
 		// TODO: u.LastSeen
-		user.CommonCount.Value.Should()
+		user.CommonCount!.Value.Should()
 			.Be(0);
 
 		user.Counters.Albums.Should()
@@ -385,13 +370,13 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Counters.Audios.Should()
 			.Be(0);
 
-		user.Counters.Notes.Value.Should()
+		user.Counters.Notes!.Value.Should()
 			.Be(6);
 
-		user.Counters.Photos.Value.Should()
+		user.Counters.Photos!.Value.Should()
 			.Be(153);
 
-		user.Counters.Friends.Value.Should()
+		user.Counters.Friends!.Value.Should()
 			.Be(688);
 
 		user.Counters.OnlineFriends.Should()
@@ -507,17 +492,16 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get mutliple two uids default fields two profiles")]
 	public void Get_Mutliple_TwoUidsDefaultFields_TwoProfiles()
 	{
 		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_Mutliple_TwoUidsDefaultFields_TwoProfiles));
 
-		var lst = Api.Users.Get(new long[]
-		{
+		var lst = Api.Users.Get([
 			1,
 			672
-		});
+		]);
 
 		lst.Should()
 			.HaveCount(2);
@@ -555,34 +539,28 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("Смирнова");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get not access to internet throw vk api exception")]
 	public void Get_NotAccessToInternet_ThrowVkApiException()
 	{
 		Mock.Get(Api.RestClient)
 			.Setup(f =>
-				f.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>(), Encoding.UTF8, null, CancellationToken.None))
+				f.PostAsync(It.IsAny<Uri>(), It.IsAny<IEnumerable<KeyValuePair<string, string>>>(), Encoding.UTF8, null,
+					CancellationToken.None))
 			.Throws(new VkApiException("The remote name could not be resolved: 'api.vk.ru'"));
 
-		FluentActions.Invoking(() => Api.Users.Get(new long[]
-			{
-				1
-			}))
+		FluentActions.Invoking(() => Api.Users.Get([1]))
 			.Should()
 			.ThrowExactly<VkApiException>()
-			.And.Message.Should()
-			.Be("The remote name could not be resolved: 'api.vk.ru'");
+			.WithMessage("The remote name could not be resolved: 'api.vk.ru'");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get single user")]
 	public void Get_SingleUser()
 	{
 		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_SingleUser));
 
-		var user = Api.Users.Get(new[]
-				{
-					"1"
-				},
+		var user = Api.Users.Get(["1"],
 				ProfileFields.All,
 				NameCase.Gen)
 			.FirstOrDefault();
@@ -590,7 +568,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Should()
 			.NotBeNull();
 
-		user.Id.Should()
+		user!.Id.Should()
 			.Be(1);
 
 		user.FirstName.Should()
@@ -681,7 +659,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeEmpty();
 
 		// TODO: u.LastSeen
-		user.CommonCount.Value.Should()
+		user.CommonCount!.Value.Should()
 			.Be(0);
 
 		user.Counters.Albums.Should()
@@ -693,13 +671,13 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Counters.Audios.Should()
 			.Be(0);
 
-		user.Counters.Notes.Value.Should()
+		user.Counters.Notes!.Value.Should()
 			.Be(6);
 
-		user.Counters.Photos.Value.Should()
+		user.Counters.Photos!.Value.Should()
 			.Be(153);
 
-		user.Counters.Friends.Value.Should()
+		user.Counters.Friends!.Value.Should()
 			.Be(688);
 
 		user.Counters.OnlineFriends.Should()
@@ -718,7 +696,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(51);
 
 		user.Universities.Should()
-			.HaveCount(1);
+			.ContainSingle();
 
 		user.Universities[0]
 			.Id.Should()
@@ -821,17 +799,16 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("https://vk.ru/images/deactivated_50.png");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get two uids education field two profiles")]
 	public void Get_TwoUidsEducationField_TwoProfiles()
 	{
 		Url = "https://api.vk.ru/method/users.get";
 		ReadCategoryJsonPath(nameof(Get_TwoUidsEducationField_TwoProfiles));
 
-		var lst = Api.Users.Get(new long[]
-			{
+		var lst = Api.Users.Get([
 				1,
 				5041431
-			},
+			],
 			ProfileFields.Education);
 
 		lst.Should()
@@ -918,7 +895,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(2012);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get with some fields first name last name education")]
 	public void Get_WithSomeFields_FirstNameLastNameEducation()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -927,10 +904,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		// act
 		var fields = ProfileFields.FirstName|ProfileFields.LastName|ProfileFields.Education;
 
-		var user = Api.Users.Get(new[]
-				{
-					"1"
-				},
+		var user = Api.Users.Get(["1"],
 				fields)
 			.FirstOrDefault();
 
@@ -938,7 +912,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Should()
 			.NotBeNull();
 
-		user.Id.Should()
+		user!.Id.Should()
 			.Be(1);
 
 		user.FirstName.Should()
@@ -966,7 +940,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(2006);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get wrong access token throw throw user authorization exception")]
 	public void Get_WrongAccessToken_Throw_ThrowUserAuthorizationException()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -980,7 +954,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("User authorization failed: access_token was given to another ip address.");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get followers with all fields")]
 	public void GetFollowers_WithAllFields()
 	{
 		Url = "https://api.vk.ru/method/users.getFollowers";
@@ -999,7 +973,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user.Should()
 			.NotBeNull();
 
-		user.Id.Should()
+		user!.Id.Should()
 			.Be(243663122);
 
 		user.FirstName.Should()
@@ -1104,7 +1078,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		user1.Should()
 			.NotBeNull();
 
-		user1.Id.Should()
+		user1!.Id.Should()
 			.Be(239897398);
 
 		user1.FirstName.Should()
@@ -1227,7 +1201,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(RelativeType.Sibling);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get followers without fields")]
 	public void GetFollowers_WithoutFields()
 	{
 		Url = "https://api.vk.ru/method/users.getFollowers";
@@ -1250,7 +1224,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(179652233);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get subscriptions extended")]
 	public void GetSubscriptions_Extended()
 	{
 		Url = "https://api.vk.ru/method/users.getSubscriptions";
@@ -1269,7 +1243,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		group.Should()
 			.NotBeNull();
 
-		group.Id.Should()
+		group!.Id.Should()
 			.Be(32295218);
 
 		group.Name.Should()
@@ -1305,7 +1279,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		group1.Should()
 			.NotBeNull();
 
-		group1.Id.Should()
+		group1!.Id.Should()
 			.Be(43694972);
 
 		group1.Name.Should()
@@ -1337,7 +1311,7 @@ public class UsersCategoryTest : CategoryBaseTest
 	}
 
 	// ===================================================================
-	[Fact]
+	[Fact(DisplayName = "Is app user 5 5 version of api return false")]
 	public void IsAppUser_5_5_version_of_api_return_false()
 	{
 		Url = "https://api.vk.ru/method/users.isAppUser";
@@ -1349,7 +1323,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Is app user 5 5 version of api return true")]
 	public void IsAppUser_5_5_version_of_api_return_true()
 	{
 		Url = "https://api.vk.ru/method/users.isAppUser";
@@ -1361,7 +1335,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Report normal case")]
 	public void Report_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/users.report";
@@ -1373,7 +1347,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search bad query empty list")]
 	public void Search_BadQuery_EmptyList()
 	{
 		Url = "https://api.vk.ru/method/users.search";
@@ -1394,7 +1368,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search carier case")]
 	public void Search_CarierCase()
 	{
 		Url = "https://api.vk.ru/method/users.search";
@@ -1433,7 +1407,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeNull();
 
 		maria.Career.Should()
-			.HaveCount(1);
+			.ContainSingle();
 
 		maria.Career.Should()
 			.SatisfyRespectively(x => x.Until.Should()
@@ -1442,7 +1416,7 @@ public class UsersCategoryTest : CategoryBaseTest
 		// ReSharper restore PossibleNullReferenceException
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search default fields list of profile objects")]
 	public void Search_DefaultFields_ListOfProfileObjects()
 	{
 		Url = "https://api.vk.ru/method/users.search";
@@ -1508,7 +1482,7 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("Ivanova");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search education field listof profile objects")]
 	public void Search_EducationField_ListofProfileObjects()
 	{
 		Url = "https://api.vk.ru/method/users.search";

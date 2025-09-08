@@ -22,6 +22,5 @@ public sealed class CannotSendToUserFirstlyException : VkApiMethodInvokeExceptio
 	/// <inheritdoc />
 	private CannotSendToUserFirstlyException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

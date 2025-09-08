@@ -18,7 +18,7 @@ public class WallCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Wall";
 
-	[Fact]
+	[Fact(DisplayName = "Close comments return true")]
 	public void CloseComments_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/wall.closeComments";
@@ -31,13 +31,13 @@ public class WallCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Delete access token invalid throw access token invalid exception")]
 	public void Delete_AccessTokenInvalid_ThrowAccessTokenInvalidException() => FluentActions
 		.Invoking(() => new WallCategory(new VkApi()).Delete(1, 1))
 		.Should()
 		.ThrowExactly<AccessTokenInvalidException>();
 
-	[Fact]
+	[Fact(DisplayName = "Get document normal case")]
 	public void Get_Document_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/wall.get";
@@ -91,7 +91,7 @@ public class WallCategoryTest : CategoryBaseTest
 			.Be("5bf7103aa95aacb8ad");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get extended version generate out parameters correctly")]
 	public void Get_ExtendedVersion_GenerateOutParametersCorrectly()
 	{
 		Url = "https://api.vk.ru/method/wall.get";
@@ -131,7 +131,7 @@ public class WallCategoryTest : CategoryBaseTest
 			.Be(29246653);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get geo normal case")]
 	public void Get_Geo_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/wall.get";
@@ -151,7 +151,7 @@ public class WallCategoryTest : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get with photo list attachment")]
 	public void Get_With_PhotoListAttachment()
 	{
 		Url = "https://api.vk.ru/method/wall.get";
@@ -193,7 +193,7 @@ public class WallCategoryTest : CategoryBaseTest
 			.BeNull();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get with poll normal case")]
 	public void Get_WithPoll_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/wall.get";
@@ -268,41 +268,39 @@ public class WallCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id access token invalid throw access token invalid exception")]
 	public void GetById_AccessTokenInvalid_ThrowAccessTokenInvalidException() => FluentActions.Invoking(() =>
-			new WallCategory(new VkApi()).GetById(new[]
-			{
+			new WallCategory(new VkApi()).GetById([
 				"93388_21539",
 				"93388_20904",
 				"2943_4276"
-			}, true))
+			], true))
 		.Should()
 		.ThrowExactly<AccessTokenInvalidException>();
 
-	[Fact]
+	[Fact(DisplayName = "Get by id incorrect parameters throw exception")]
 	public void GetById_IncorrectParameters_ThrowException()
 	{
 		FluentActions.Invoking(() => new WallCategory(Api).GetById(null))
 			.Should()
 			.ThrowExactly<ArgumentNullException>();
 
-		FluentActions.Invoking(() => new WallCategory(Api).GetById(Enumerable.Empty<string>(), true))
+		FluentActions.Invoking(() => new WallCategory(Api).GetById([], true))
 			.Should()
 			.ThrowExactly<ArgumentException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id return wall records")]
 	public void GetById_ReturnWallRecords()
 	{
 		Url = "https://api.vk.ru/method/wall.getById";
 		ReadCategoryJsonPath(nameof(GetById_ReturnWallRecords));
 
-		var records = Api.Wall.GetById(new[]
-		{
+		var records = Api.Wall.GetById([
 			"1_619",
 			"1_617",
 			"1_616"
-		});
+		]);
 
 		records.Count.Should()
 			.Be(1);
@@ -367,16 +365,13 @@ public class WallCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get by id donut")]
 	public void GetById_Donut()
 	{
 		Url = "https://api.vk.ru/method/wall.getById";
 		ReadCategoryJsonPath(nameof(GetById_Donut));
 
-		var records = Api.Wall.GetById(new[]
-		{
-			"-322_123"
-		}, true);
+		var records = Api.Wall.GetById(["-322_123"], true);
 
 		records.Groups.Count.Should()
 			.Be(1);
@@ -409,7 +404,7 @@ public class WallCategoryTest : CategoryBaseTest
 			.Be("В этом посте нет доната");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get comments return likes and attachments")]
 	public void GetComments_ReturnLikesAndAttachments()
 	{
 		Url = "https://api.vk.ru/method/wall.getComments";
@@ -531,7 +526,7 @@ public class WallCategoryTest : CategoryBaseTest
 				DateTimeKind.Utc));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Open comments return true")]
 	public void OpenComments_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/wall.openComments";
@@ -544,7 +539,7 @@ public class WallCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Repost return correct results")]
 	public void Repost_ReturnCorrectResults()
 	{
 		Url = "https://api.vk.ru/method/wall.repost";
@@ -568,7 +563,7 @@ public class WallCategoryTest : CategoryBaseTest
 			.Be(105);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Repost url is generated correctly")]
 	public void Repost_UrlIsGeneratedCorrectly()
 	{
 		Url = "https://api.vk.ru/method/wall.repost";
@@ -592,7 +587,7 @@ public class WallCategoryTest : CategoryBaseTest
 			.Be(105);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Check copyright link return true")]
 	public void CheckCopyrightLink_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/wall.checkCopyrightLink";
@@ -605,7 +600,7 @@ public class WallCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get comment return correct results")]
 	public void GetComment_ReturnCorrectResults()
 	{
 		Url = "https://api.vk.ru/method/wall.getComment";

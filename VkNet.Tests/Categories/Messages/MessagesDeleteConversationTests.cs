@@ -5,7 +5,7 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesDeleteConversationTests : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Delete conversation")]
 	public void DeleteConversation()
 	{
 		Url = "https://api.vk.ru/method/messages.deleteConversation";

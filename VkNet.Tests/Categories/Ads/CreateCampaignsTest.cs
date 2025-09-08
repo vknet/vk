@@ -12,7 +12,7 @@ public class CreateCampaignsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Create campaigns")]
 	public void CreateCampaigns()
 	{
 		Url = "https://api.vk.ru/method/ads.createCampaigns";
@@ -44,10 +44,10 @@ public class CreateCampaignsTest : CategoryBaseTest
 		};
 
 		CampaignSpecification[] data =
-		{
+		[
 			campaignSpecification1,
 			campaignSpecification2
-		};
+		];
 
 		var officeUsers = Api.Ads.CreateCampaigns(new()
 		{

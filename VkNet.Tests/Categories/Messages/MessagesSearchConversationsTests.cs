@@ -5,17 +5,14 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesSearchConversationsTests : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Search conversations")]
 	public void SearchConversations()
 	{
 		Url = "https://api.vk.ru/method/messages.searchConversations";
 		ReadCategoryJsonPath(nameof(SearchConversations));
 
 		var result = Api.Messages.SearchConversations("query",
-			new[]
-			{
-				"fields"
-			});
+			["fields"]);
 
 		result.Count.Should()
 			.Be(20);

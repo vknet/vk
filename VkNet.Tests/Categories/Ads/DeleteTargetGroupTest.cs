@@ -8,7 +8,7 @@ public class DeleteTargetGroupTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Delete target group")]
 	public void DeleteTargetGroup()
 	{
 		Url = "https://api.vk.ru/method/ads.deleteTargetGroup";

@@ -23,6 +23,5 @@ public sealed class VideoAlbumIsFullException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private VideoAlbumIsFullException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

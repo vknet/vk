@@ -14,7 +14,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Friends";
 
-	[Fact]
+	[Fact(DisplayName = "Add normal case")]
 	public void Add_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/friends.add";
@@ -26,12 +26,12 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.Be(AddFriendStatus.Sended);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Add list name is empty throw exception")]
 	public void AddList_NameIsEmpty_ThrowException() => FluentActions.Invoking(() => Api.Friends.AddList("", null))
 		.Should()
 		.ThrowExactly<ArgumentNullException>();
 
-	[Fact]
+	[Fact(DisplayName = "Add list only name normal case")]
 	public void AddList_OnlyName_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/friends.addList";
@@ -43,50 +43,47 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.Be(1);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Add list with user ids normal case")]
 	public void AddList_WithUserIds_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/friends.addList";
 		ReadCategoryJsonPath(nameof(AddList_WithUserIds_NormalCase));
 
 		var id = Api.Friends.AddList("тестовая метка",
-			new long[]
-			{
-				1,
-				2
-			});
+		[
+			1,
+			2
+		]);
 
 		id.Should()
 			.Be(2);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Are friends empty access token throw access token invalid exception")]
 	public void AreFriends_EmptyAccessToken_ThrowAccessTokenInvalidException()
 	{
 		var cat = new FriendsCategory(new VkApi());
 
-		FluentActions.Invoking(() => cat.AreFriends(new long[]
-			{
+		FluentActions.Invoking(() => cat.AreFriends([
 				2,
 				3
-			}))
+			]))
 			.Should()
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Are friends four types right friend statuses")]
 	public void AreFriends_FourTypes_RightFriendStatuses()
 	{
 		Url = "https://api.vk.ru/method/friends.areFriends";
 		ReadCategoryJsonPath(nameof(AreFriends_FourTypes_RightFriendStatuses));
 
-		var dict = Api.Friends.AreFriends(new long[]
-		{
+		var dict = Api.Friends.AreFriends([
 			24181068,
 			22911407,
 			155810539,
 			3505305
-		});
+		]);
 
 		dict.Should()
 			.NotBeNull();
@@ -114,12 +111,12 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.Be(FriendStatus.OutputRequest);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Are friends null input throw argument null exception")]
 	public void AreFriends_NullInput_ThrowArgumentNullException() => FluentActions.Invoking(() => Api.Friends.AreFriends(null))
 		.Should()
 		.ThrowExactly<ArgumentNullException>();
 
-	[Fact]
+	[Fact(DisplayName = "Delete normal case")]
 	public void Delete_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/friends.delete";
@@ -131,7 +128,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Delete all requests normal case")]
 	public void DeleteAllRequests_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/friends.deleteAllRequests";
@@ -143,12 +140,12 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Delete list id is negative throw exception")]
 	public void DeleteList_IdIsNegative_ThrowException() => FluentActions.Invoking(() => Api.Friends.DeleteList(-1))
 		.Should()
 		.ThrowExactly<ArgumentException>();
 
-	[Fact]
+	[Fact(DisplayName = "Delete list normal case")]
 	public void DeleteList_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/friends.deleteList";
@@ -160,23 +157,20 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Edit normal case")]
 	public void Edit_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/friends.edit";
 		ReadJsonFile(JsonPaths.True);
 
 		var result = Api.Friends.Edit(242508111,
-			new long[]
-			{
-				2
-			});
+			[2]);
 
 		result.Should()
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Edit list edit name normal case")]
 	public void EditList_EditName_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/friends.editList";
@@ -188,12 +182,12 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Edit list list id is negative throw exception")]
 	public void EditList_ListIdIsNegative_ThrowException() => FluentActions.Invoking(() => Api.Friends.EditList(-1))
 		.Should()
 		.ThrowExactly<ArgumentException>();
 
-	[Fact]
+	[Fact(DisplayName = "Get empty access token throw access token invalid exception")]
 	public void Get_EmptyAccessToken_ThrowAccessTokenInvalidException()
 	{
 		var cat = new FriendsCategory(new VkApi());
@@ -206,7 +200,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get first name last name list of objects")]
 	public void Get_FirstNameLastName_ListOfObjects()
 	{
 		Url = "https://api.vk.ru/method/friends.get";
@@ -271,7 +265,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get friends for durov list of friends")]
 	public void Get_FriendsForDurov_ListOfFriends()
 	{
 		Url = "https://api.vk.ru/method/friends.get";
@@ -299,7 +293,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 					.Be(12));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get app users empty access token throw access token invalid exception")]
 	public void GetAppUsers_EmptyAccessToken_ThrowAccessTokenInvalidException()
 	{
 		var cat = new FriendsCategory(new VkApi());
@@ -309,7 +303,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get app users no one empty list")]
 	public void GetAppUsers_NoOne_EmptyList()
 	{
 		Url = "https://api.vk.ru/method/friends.getAppUsers";
@@ -322,7 +316,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get app users three users list of objects")]
 	public void GetAppUsers_ThreeUsers_ListOfObjects()
 	{
 		Url = "https://api.vk.ru/method/friends.getAppUsers";
@@ -344,7 +338,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.HaveElementAt(2, 19194);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get lists normal case")]
 	public void GetLists_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/friends.getLists";
@@ -372,7 +366,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.Be("Родственники");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get mutual empty access token throw access token invalid exception")]
 	public void GetMutual_EmptyAccessToken_ThrowAccessTokenInvalidException()
 	{
 		var category = new FriendsCategory(new VkApi());
@@ -386,7 +380,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get mutual no one empty list")]
 	public void GetMutual_NoOne_EmptyList()
 	{
 		Url = "https://api.vk.ru/method/friends.getMutual";
@@ -403,7 +397,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get mutual three users list of objects")]
 	public void GetMutual_ThreeUsers_ListOfObjects()
 	{
 		Url = "https://api.vk.ru/method/friends.getMutual";
@@ -420,7 +414,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.ContainSingle();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get online empty access token throw access token invalid exception")]
 	public void GetOnline_EmptyAccessToken_ThrowAccessTokenInvalidException()
 	{
 		var cat = new FriendsCategory(new VkApi());
@@ -433,7 +427,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get online ex")]
 	public void GetOnline_Ex()
 	{
 		Url = "https://api.vk.ru/method/friends.getOnline";
@@ -451,7 +445,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.HaveCount(5);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get online five users list of objects")]
 	public void GetOnline_FiveUsers_ListOfObjects()
 	{
 		Url = "https://api.vk.ru/method/friends.getOnline";
@@ -486,7 +480,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.Be(13033);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get online no one empty list")]
 	public void GetOnline_NoOne_EmptyList()
 	{
 		Url = "https://api.vk.ru/method/friends.getOnline";
@@ -501,7 +495,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get recent one item")]
 	public void GetRecent_OneItem()
 	{
 		Url = "https://api.vk.ru/method/friends.getRecent";
@@ -519,7 +513,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.HaveElementAt(0, 242508111);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get request count unread")]
 	public void GetRequest_count_unread()
 	{
 		Url = "https://api.vk.ru/method/friends.getRequests";
@@ -546,7 +540,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get request empty collection")]
 	public void GetRequest_EmptyCollection()
 	{
 		Url = "https://api.vk.ru/method/friends.getRequests";
@@ -567,7 +561,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get requests basic normal case")]
 	public void GetRequests_Basic_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/friends.getRequests";
@@ -587,7 +581,7 @@ public class FriendsCategoryTest : CategoryBaseTest
 			.Be(242508111);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get requests extended normal case")]
 	public void GetRequests_Extended_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/friends.getRequests";

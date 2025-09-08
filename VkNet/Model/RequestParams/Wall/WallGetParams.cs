@@ -52,5 +52,4 @@ public class WallGetParams
 	/// только при extended=1.
 	/// </summary>
 	public object Fields { get; set; }
-
 }

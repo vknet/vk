@@ -9,7 +9,7 @@ public class GetAppImageUploadServerTest : CategoryBaseTest
 {
 	protected override string Folder => "AppWidgets";
 
-	[Fact]
+	[Fact(DisplayName = "Get app image upload server")]
 	public void GetAppImageUploadServer()
 	{
 		Url = "https://api.vk.ru/method/appWidgets.getAppImageUploadServer";

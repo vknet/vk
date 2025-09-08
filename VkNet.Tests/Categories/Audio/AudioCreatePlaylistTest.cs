@@ -9,7 +9,7 @@ public class AudioCreatePlaylistTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact]
+	[Fact(DisplayName = "Create playlist test")]
 	public void CreatePlaylistTest()
 	{
 		Url = "https://api.vk.ru/method/audio.createPlaylist";

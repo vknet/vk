@@ -204,10 +204,7 @@ public static class Utilities
 		return sb.ToString();
 	}
 
-	private static string ToCamelCase(this string str) => str.Split(new[]
-		{
-			"_"
-		}, StringSplitOptions.RemoveEmptyEntries)
+	private static string ToCamelCase(this string str) => str.Split(["_"], StringSplitOptions.RemoveEmptyEntries)
 		.Select(s =>
 			char.ToUpperInvariant(s[0]) + s.Substring(1, s.Length - 1))
 		.Aggregate(string.Empty, (s1, s2) => s1 + s2);

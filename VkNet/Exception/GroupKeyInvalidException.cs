@@ -22,6 +22,5 @@ public sealed class GroupKeyInvalidException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private GroupKeyInvalidException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

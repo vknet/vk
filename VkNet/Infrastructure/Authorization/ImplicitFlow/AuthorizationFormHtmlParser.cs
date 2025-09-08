@@ -28,7 +28,7 @@ public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 	public async Task<VkHtmlFormResult> GetFormAsync(Uri url, CancellationToken token = default)
 	{
 		var response = await _restClient
-			.PostAsync(url, Enumerable.Empty<KeyValuePair<string, string>>(), Encoding.GetEncoding(1251), token: token)
+			.PostAsync(url, [], Encoding.GetEncoding(1251), token: token)
 			.ConfigureAwait(false);
 
 		if (!response.IsSuccess)
@@ -87,7 +87,8 @@ public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 	{
 		var inputs = new Dictionary<string, string>();
 
-		foreach (var nodeAttributes in formNode.SelectNodes("//input").Select(x => x.Attributes))
+		foreach (var nodeAttributes in formNode.SelectNodes("//input")
+					.Select(x => x.Attributes))
 		{
 			var nameAttribute = nodeAttributes["name"];
 			var valueAttribute = nodeAttributes["value"];
@@ -110,6 +111,7 @@ public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 
 		return inputs;
 	}
+
 	/// <summary>
 	/// URL действия.
 	/// </summary>
@@ -135,6 +137,7 @@ public sealed class AuthorizationFormHtmlParser : IAuthorizationFormHtmlParser
 			? url.ToString()
 			: link; // абсолютный путь
 	}
+
 	/// <summary>
 	/// URL действия.
 	/// </summary>

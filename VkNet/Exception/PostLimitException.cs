@@ -22,6 +22,5 @@ public sealed class PostLimitException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private PostLimitException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

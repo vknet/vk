@@ -8,7 +8,7 @@ public class ClearRecentSearchesTest : CategoryBaseTest
 {
 	protected override string Folder => "Podcasts";
 
-	[Fact]
+	[Fact(DisplayName = "Clear recent searches")]
 	public void ClearRecentSearches()
 	{
 		Url = "https://api.vk.ru/method/podcasts.clearRecentSearches";

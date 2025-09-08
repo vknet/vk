@@ -204,10 +204,7 @@ public partial class UsersCategory : IUsersCategory
 	{
 		VkErrors.ThrowIfNumberIsNegative(expr: () => userId);
 
-		var users = Get(new[]
-		{
-			userId
-		}, fields, nameCase);
+		var users = Get([userId], fields, nameCase);
 
 		return users.FirstOrDefault();
 	}
@@ -219,10 +216,7 @@ public partial class UsersCategory : IUsersCategory
 	{
 		VkErrors.ThrowIfNullOrEmpty(expr: () => screenName);
 
-		var users = Get(new[]
-		{
-			screenName
-		}, fields, nameCase);
+		var users = Get([screenName], fields, nameCase);
 
 		return users.Any()
 			? users[index: 0]

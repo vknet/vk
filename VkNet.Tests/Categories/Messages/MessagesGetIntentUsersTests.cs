@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesGetIntentUsersTests : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Get intent users")]
 	public void GetIntentUsers()
 	{
 		// Arrange

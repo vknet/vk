@@ -11,7 +11,7 @@ public class EnumSkipErrorTest : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "SkipEnum";
 
-	[Fact]
+	[Fact(DisplayName = "Check status")]
 	public void CheckStatus()
 	{
 		Url = "https://api.vk.ru/method/asr.checkStatus";
@@ -35,7 +35,7 @@ public class EnumSkipErrorTest : CategoryBaseTest
 			.Be(null);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get check type")]
 	public void Get_CheckType()
 	{
 		Url = "https://api.vk.ru/method/apps.get";
@@ -48,10 +48,7 @@ public class EnumSkipErrorTest : CategoryBaseTest
 
 		var app = Api.Apps.Get(new()
 		{
-			AppIds = new ulong[]
-			{
-				4268118
-			},
+			AppIds = [4268118],
 			Platform = AppPlatforms.Web
 		});
 

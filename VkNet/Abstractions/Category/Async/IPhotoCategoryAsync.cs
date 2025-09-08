@@ -262,8 +262,7 @@ public interface IPhotoCategoryAsync
 	/// Страница документации ВКонтакте http://vk.ru/dev/photos.saveOwnerPhoto
 	/// </remarks>
 	Task<Photo> SaveOwnerPhotoAsync(string response,
-															CancellationToken token = default);
-
+									CancellationToken token = default);
 
 	/// <summary>
 	/// Сохраняет фотографии после успешной загрузки на URI, полученный методом

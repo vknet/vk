@@ -220,9 +220,7 @@ public class Post : MediaAttachment
 	[JsonProperty("marked_as_ads")]
 	public bool MarkedAsAds { get; set; }
 
-	/// <summary>
-	/// Ключ доступа
-	/// </summary>
+	/// <inheritdoc />
 	[JsonProperty("access_key")]
 	public new string AccessKey { get; set; }
 

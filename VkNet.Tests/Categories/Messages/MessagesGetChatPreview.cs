@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesGetChatPreview : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Default params")]
 	public void DefaultParams()
 	{
 		Url = "https://api.vk.ru/method/messages.getChatPreview";

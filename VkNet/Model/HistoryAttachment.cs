@@ -48,5 +48,4 @@ public class HistoryAttachment
 	[JsonConverter(typeof(UnixDateTimeConverter))]
 	[JsonProperty("date")]
 	public DateTime Date { get; set; }
-
 }

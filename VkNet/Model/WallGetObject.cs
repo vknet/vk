@@ -16,7 +16,7 @@ public class WallGetObject
 	[JsonProperty("count")]
 	public ulong TotalCount { get; set; }
 
-		/// <summary>
+	/// <summary>
 	/// Посты.
 	/// </summary>
 	[JsonProperty("items")]

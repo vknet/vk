@@ -8,7 +8,7 @@ public class SetLongPollSettingsTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact]
+	[Fact(DisplayName = "Set long poll settings")]
 	public void SetLongPollSettings()
 	{
 		Url = "https://api.vk.ru/method/groups.setLongPollSettings";

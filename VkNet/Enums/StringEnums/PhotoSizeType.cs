@@ -231,5 +231,5 @@ public enum PhotoSizeType
 	/// <remarks>
 	/// <see href="https://dev.vk.ru/ru/reference/objects/photo-sizes">Документация</see>
 	/// </remarks>
-	V,
+	V
 }

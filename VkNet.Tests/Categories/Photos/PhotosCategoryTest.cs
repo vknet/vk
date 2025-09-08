@@ -15,7 +15,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Photos";
 
-	[Fact]
+	[Fact(DisplayName = "Create album normal case")]
 	public void CreateAlbum_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/photos.createAlbum";
@@ -57,20 +57,22 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.Be(Privacy.All);
 
 		album.PrivacyView.Owners.Allowed
-			.Should().BeEmpty();
+			.Should()
+			.BeEmpty();
 
 		album.PrivacyComment.Category
 			.Should()
 			.Be(Privacy.All);
 
 		album.PrivacyComment.Owners.Allowed
-			.Should().BeEmpty();
+			.Should()
+			.BeEmpty();
 
 		album.Size.Should()
 			.Be(0);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Delete album normal case")]
 	public void DeleteAlbum_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/photos.deleteAlbum";
@@ -82,7 +84,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Edit album normal case")]
 	public void EditAlbum_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/photos.editAlbum";
@@ -100,7 +102,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get albums normal case")]
 	public void GetAlbums_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/photos.getAlbums";
@@ -123,7 +125,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 		album.Should()
 			.NotBeNull();
 
-		album.Id.Should()
+		album!.Id.Should()
 			.Be(136592355);
 
 		album.ThumbId.Should()
@@ -148,7 +150,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.Be(8);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get albums privacy case")]
 	public void GetAlbums_PrivacyCase()
 	{
 		Url = "https://api.vk.ru/method/photos.getAlbums";
@@ -174,7 +176,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 		album.Should()
 			.NotBeNull();
 
-		album.Id.Should()
+		album!.Id.Should()
 			.Be(1111);
 
 		album.ThumbId.Should()
@@ -204,7 +206,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.Be(111);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get albums count normal case")]
 	public void GetAlbumsCount_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/photos.getAlbumsCount";
@@ -216,7 +218,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.Be(1);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get all normal case")]
 	public void GetAll_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/photos.getAll";
@@ -241,7 +243,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 		photo.Should()
 			.NotBeNull();
 
-		photo.Id.Should()
+		photo!.Id.Should()
 			.Be(328693256);
 
 		photo.AlbumId.Should()
@@ -276,7 +278,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.Be(DateHelper.TimeStampToDateTime(1398658327));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get messages upload server normal case")]
 	public void GetMessagesUploadServer_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/photos.getMessagesUploadServer";
@@ -298,7 +300,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.Be(234618);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get owner cover photo upload server normal case")]
 	public void GetOwnerCoverPhotoUploadServer_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/photos.getOwnerCoverPhotoUploadServer";
@@ -314,7 +316,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 				"http://pu.vk.ru/c837421/upload.php?_query=eyJhY3QiOiJvd25lcl9jb3ZlciIsIm9pZCI6LTkzNjY5OTI0LCJhcGkiOnRydWUsImFwaV93cmFwIjp7Imhhc2giOiIxMDA4MmRjZWJlZGIzMjZkNDQiLCJwaG90byI6IntyZXN1bHR9In0sIm1pZCI6NzY2NDA4ODIsInNlcnZlciI6ODM3NDIxLCJfb3JpZ2luIjoiaHR0cHM6XC9cL2FwaS52ay5jb20iLCJfc2lnIjoiYzZjNWM4ZGVmYmE5YWQ3YWM1ZTYzYTUxMWJjMjgzZDcifQ&_crop=0,0,1590,400");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get profile upload server normal case")]
 	public void GetProfileUploadServer_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/photos.getOwnerPhotoUploadServer";
@@ -329,7 +331,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.Be("http://cs618026.vk.ru/upload.php?_query=eyJhY3QiOiJvd25lcl9waG90byIsInNh");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Save owner cover photo normal case")]
 	public void SaveOwnerCoverPhoto_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/photos.saveOwnerCoverPhoto";
@@ -342,7 +344,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 		result.Should()
 			.NotBeNull();
 
-		var images = result.Images;
+		var images = result.Images.ToList();
 
 		images.Should()
 			.NotBeNull();
@@ -421,7 +423,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.Be(400);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Save wall photo normal case")]
 	public void SaveWallPhoto_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/photos.saveWallPhoto";
@@ -479,7 +481,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.Be(DateHelper.TimeStampToDateTime(1415629651));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search error26 lat and long in output photo")]
 	public void Search_Error26_Lat_and_Long_in_output_photo()
 	{
 		Url = "https://api.vk.ru/method/photos.search";
@@ -505,7 +507,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 		photo.Should()
 			.NotBeNull();
 
-		photo.Latitude.Should()
+		photo!.Latitude.Should()
 			.Be(29.999996);
 
 		photo.Longitude.Should()
@@ -517,14 +519,14 @@ public class PhotosCategoryTest : CategoryBaseTest
 		photo1.Should()
 			.NotBeNull();
 
-		photo1.Latitude.Should()
+		photo1!.Latitude.Should()
 			.Be(29.942251);
 
 		photo1.Longitude.Should()
 			.Be(29.882819);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Search normal case")]
 	public void Search_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/photos.search";
@@ -549,7 +551,7 @@ public class PhotosCategoryTest : CategoryBaseTest
 		photo.Should()
 			.NotBeNull();
 
-		photo.Id.Should()
+		photo!.Id.Should()
 			.Be(331520481);
 
 		photo.AlbumId.Should()
@@ -587,16 +589,13 @@ public class PhotosCategoryTest : CategoryBaseTest
 			.Be(DateHelper.TimeStampToDateTime(1403455788)); //  2014-06-22 20:49:48.000
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get albums photo sizes")]
 	public void GetAlbums_Photo_Sizes()
 	{
 		Url = "https://api.vk.ru/method/photos.getAlbums";
 		ReadCategoryJsonPath(nameof(GetAlbums_Photo_Sizes));
 
-		long[] albumsids =
-		{
-			270417281
-		};
+		long[] albumsids = [270417281];
 
 		var result = Api.Photo.GetAlbums(new()
 		{

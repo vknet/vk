@@ -9,7 +9,7 @@ public class GetPostsReachTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get posts reach")]
 	public void GetPostsReach()
 	{
 		Url = "https://api.vk.ru/method/ads.getPostsReach";

@@ -8,7 +8,7 @@ public class GetPhotoUploadServerTest : CategoryBaseTest
 {
 	protected override string Folder => "Polls";
 
-	[Fact]
+	[Fact(DisplayName = "Get photo upload server")]
 	public void GetPhotoUploadServer()
 	{
 		Url = "https://api.vk.ru/method/polls.getPhotoUploadServer";

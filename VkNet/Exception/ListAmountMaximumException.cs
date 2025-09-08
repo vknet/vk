@@ -21,6 +21,5 @@ public sealed class ListAmountMaximumException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private ListAmountMaximumException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

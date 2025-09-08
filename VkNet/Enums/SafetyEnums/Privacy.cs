@@ -10,7 +10,7 @@ namespace VkNet.Enums.SafetyEnums;
 /// Уровень доступа к комментированию альбома
 /// </summary>
 [JsonConverter(typeof(SafetyEnumJsonConverter))]
-public sealed partial class Privacy : SafetyEnum<Privacy>
+public sealed class Privacy : SafetyEnum<Privacy>
 {
 	/// <summary>
 	/// Доступно всем пользователям.
@@ -71,15 +71,10 @@ public sealed partial class Privacy : SafetyEnum<Privacy>
 	/// <returns> Номер списка. </returns>
 	public static Privacy UnAvailableForUser(long number) => RegisterPossibleValue(value: "-" + number);
 
-	/// <summary>
-	/// Разобрать из json.
-	/// </summary>
-	/// <param name="response"> Ответ сервера. </param>
-	/// <returns>
-	/// Уровень доступа к комментированию альбома
-	/// </returns>
+	/// <inheritdoc />
 	[SuppressMessage("Performance", "CA1866:Использовать перегрузку символов", Justification = "Не поддерживается в netstandard2.0")]
-	[SuppressMessage("Performance", "SYSLIB1045:Преобразовать в \"GeneratedRegexAttribute\".", Justification = "Не поддерживается в netstandard2.0")]
+	[SuppressMessage("Performance", "SYSLIB1045:Преобразовать в \"GeneratedRegexAttribute\".",
+		Justification = "Не поддерживается в netstandard2.0")]
 	public new static Privacy FromJson(VkResponse response)
 	{
 		switch (response.ToString())

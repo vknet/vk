@@ -18,7 +18,8 @@ public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
 		_list.Add(new()
 		{
-			Type = question.ToString().ToSnakeCase()
+			Type = question.ToString()
+				.ToSnakeCase()
 		});
 
 		return this;
@@ -29,7 +30,8 @@ public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
 		_list.Add(new()
 		{
-			Type = NonStandardQuestion.Input.ToString().ToSnakeCase(),
+			Type = NonStandardQuestion.Input.ToString()
+				.ToSnakeCase(),
 			Label = label
 		});
 
@@ -41,7 +43,8 @@ public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
 		_list.Add(new()
 		{
-			Type = NonStandardQuestion.Select.ToString().ToSnakeCase(),
+			Type = NonStandardQuestion.Select.ToString()
+				.ToSnakeCase(),
 			Key = key,
 			Label = label,
 			Options = options
@@ -55,7 +58,8 @@ public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
 		_list.Add(new()
 		{
-			Type = NonStandardQuestion.Radio.ToString().ToSnakeCase(),
+			Type = NonStandardQuestion.Radio.ToString()
+				.ToSnakeCase(),
 			Label = label,
 			Options = options
 		});
@@ -68,7 +72,8 @@ public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
 		_list.Add(new()
 		{
-			Type = NonStandardQuestion.Checkbox.ToString().ToSnakeCase(),
+			Type = NonStandardQuestion.Checkbox.ToString()
+				.ToSnakeCase(),
 			Key = key,
 			Label = label,
 			Options = options
@@ -82,7 +87,8 @@ public class LeadFormsQuestionBuilder : ILeadFormsQuestionBuilder
 	{
 		_list.Add(new()
 		{
-			Type = NonStandardQuestion.Textarea.ToString().ToSnakeCase(),
+			Type = NonStandardQuestion.Textarea.ToString()
+				.ToSnakeCase(),
 			Label = label
 		});
 

@@ -629,8 +629,7 @@ public interface IMessagesCategoryAsync
 														CancellationToken token = default);
 
 	/// <inheritdoc cref="IMessagesCategoryAsync.GetLongPollHistoryAsync"/>
-	Task<T> GetLongPollHistoryAsync<T>(MessagesGetLongPollHistoryParams @params,
-										CancellationToken token = default);
+	Task<T> GetLongPollHistoryAsync<T>(MessagesGetLongPollHistoryParams @params, CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет установить фотографию мультидиалога, загруженную с помощью метода

@@ -6,7 +6,7 @@ namespace VkNet.Tests.Models;
 
 public class MarketModel
 {
-	[Fact]
+	[Fact(DisplayName = "To string market should have id and access key")]
 	public void ToString_MarketShouldHaveIdAndAccessKey()
 	{
 		var market = new Market

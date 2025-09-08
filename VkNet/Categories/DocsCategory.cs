@@ -105,7 +105,6 @@ public partial class DocsCategory : IDocsCategory
 		return _vk.Call<UploadServerInfo>("docs.getWallUploadServer", parameters);
 	}
 
-
 	/// <inheritdoc />
 	public ReadOnlyCollection<Attachment> Save(string file, string title = null, string tags = null)
 	{
@@ -138,23 +137,26 @@ public partial class DocsCategory : IDocsCategory
 
 		if (responseArray is null)
 		{
-
 			if (response.ContainsKey("audio_message"))
 			{
 				return new(new List<Attachment>
 				{
-					CreateTyped(JsonConvert.DeserializeObject<AudioMessage>(response["audio_message"].ToString()))
+					CreateTyped(JsonConvert.DeserializeObject<AudioMessage>(response["audio_message"]
+						.ToString()))
 				});
 			}
+
 			return new(new List<Attachment>
 			{
-				CreateTyped(JsonConvert.DeserializeObject<Document>(response["doc"].ToString()))
+				CreateTyped(JsonConvert.DeserializeObject<Document>(response["doc"]
+					.ToString()))
 			});
 		}
 
 		if (response.ContainsKey("audio_message"))
 		{
-			return new ((from parsedObject in JArray.Parse(response.ToString()).Children<JObject>()
+			return new((from parsedObject in JArray.Parse(response.ToString())
+							.Children<JObject>()
 						from parsedProperty in parsedObject.Properties()
 						let propertyName = parsedProperty.Name
 						where propertyName.Equals("audio_message")
@@ -162,13 +164,14 @@ public partial class DocsCategory : IDocsCategory
 		}
 
 		var parsedArray = JArray.Parse(response.ToString());
+
 		var list = (from parsedObject in parsedArray.Children<JObject>()
 					from parsedProperty in parsedObject.Properties()
 					let propertyName = parsedProperty.Name
 					where propertyName.Equals("doc")
 					select CreateTyped(JsonConvert.DeserializeObject<Document>(parsedProperty.Value.ToString()))).ToList();
 
-		return new (list);
+		return new(list);
 	}
 
 	private static Attachment CreateTyped<TAttachment>(TAttachment instance)
@@ -202,8 +205,6 @@ public partial class DocsCategory : IDocsCategory
 
 		return _vk.Call<bool>("docs.delete", parameters);
 	}
-
-
 
 	/// <inheritdoc />
 	public long Add(long ownerId, long docId, string accessKey = null)

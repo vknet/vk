@@ -10,7 +10,7 @@ public class AsrCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Asr";
 
-	[Fact]
+	[Fact(DisplayName = "Check status")]
 	public void CheckStatus()
 	{
 		Url = "https://api.vk.ru/method/asr.checkStatus";
@@ -29,7 +29,7 @@ public class AsrCategoryTest : CategoryBaseTest
 			.Be(AsrStatus.Finished);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get upload url")]
 	public void GetUploadUrl()
 	{
 		Url = "https://api.vk.ru/method/asr.getUploadUrl";
@@ -43,7 +43,7 @@ public class AsrCategoryTest : CategoryBaseTest
 				"https://pu.vk.ru/gu/speech/v2/upload?token=eyJ0e13iOiJKV1QiLCJhbGmdOiJIUzI1NiJ9.eyqlmAQiOjE2NjM1OTAzNDYsInZrX3VzZXJfaWQiOjgxNDI3MDksInZrX2FwcF9pZCI6ODE0MjcwOSwidmtfdXBsb2FkX3R5cGUiOiJzcGVlY2gifQ.9PStNUU8cf-rlFdPhM5hKQ2xSjhbxzxy7SRKYHvXC_M"));
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Process")]
 	public void Process()
 	{
 		Url = "https://api.vk.ru/method/asr.process";

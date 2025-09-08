@@ -8,7 +8,7 @@ public class GetSuggestionsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get suggestions")]
 	public void GetSuggestions()
 	{
 		Url = "https://api.vk.ru/method/ads.getSuggestions";

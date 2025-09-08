@@ -8,7 +8,7 @@ public class GetPopularTest : CategoryBaseTest
 {
 	protected override string Folder => "Podcasts";
 
-	[Fact]
+	[Fact(DisplayName = "Get popular")]
 	public void GetPopular()
 	{
 		Url = "https://api.vk.ru/method/podcasts.getPopular";

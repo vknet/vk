@@ -536,7 +536,6 @@ public partial class MessagesCategory : IMessagesCategory
 			});
 	}
 
-
 	/// <inheritdoc />
 	public ulong DeleteConversation(long? userId, long? peerId = null, ulong? groupId = null)
 	{
@@ -818,7 +817,7 @@ public partial class MessagesCategory : IMessagesCategory
 
 	/// <inheritdoc />
 	public IDictionary<ulong, bool> Delete(IEnumerable<ulong> messageIds, bool? spam = null, ulong? groupId = null,
-											bool deleteForAll = false) => ImplementationDelete(messageIds: messageIds, spam: spam,
+											bool deleteForAll = false) => ImplementationDelete(messageIds, spam: spam,
 		groupId: groupId, deleteForAll: deleteForAll);
 
 	/// <inheritdoc />
@@ -1115,11 +1114,10 @@ public partial class MessagesCategory : IMessagesCategory
 
 		return _vk.Call<LongPollServerResponse>("messages.getLongPollServer", parameters);
 	}
+
 	/// <inheritdoc />
-	public LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params)
-	{
-		return GetLongPollHistory<LongPollHistoryResponse>(@params);
-	}
+	public LongPollHistoryResponse GetLongPollHistory(MessagesGetLongPollHistoryParams @params) =>
+		GetLongPollHistory<LongPollHistoryResponse>(@params);
 
 	/// <inheritdoc />
 	public T GetLongPollHistory<T>(MessagesGetLongPollHistoryParams @params)
@@ -1243,9 +1241,8 @@ public partial class MessagesCategory : IMessagesCategory
 		});
 
 	/// <inheritdoc />
-	public GetHistoryAttachmentsResult GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params)
-	{
-		return _vk.Call<GetHistoryAttachmentsResult>("messages.getHistoryAttachments",
+	public GetHistoryAttachmentsResult GetHistoryAttachments(MessagesGetHistoryAttachmentsParams @params) =>
+		_vk.Call<GetHistoryAttachmentsResult>("messages.getHistoryAttachments",
 			new()
 			{
 				{
@@ -1270,7 +1267,6 @@ public partial class MessagesCategory : IMessagesCategory
 					"group_id", @params.GroupId
 				}
 			});
-	}
 
 	/// <inheritdoc />
 	public string GetInviteLink(ulong peerId, bool reset) => _vk.Call("messages.getInviteLink",

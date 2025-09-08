@@ -22,6 +22,5 @@ public sealed class VideoCommentsClosedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private VideoCommentsClosedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

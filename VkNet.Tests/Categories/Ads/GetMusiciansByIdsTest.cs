@@ -8,7 +8,7 @@ public class GetMusiciansByIdsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get musicians by ids")]
 	public void GetMusiciansByIds()
 	{
 		Url = "https://api.vk.ru/method/ads.getMusiciansByIds";

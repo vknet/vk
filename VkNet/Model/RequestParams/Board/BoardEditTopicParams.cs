@@ -28,5 +28,4 @@ public class BoardEditTopicParams
 	/// </summary>
 	[JsonProperty(propertyName: "title")]
 	public string Title { get; set; }
-
 }

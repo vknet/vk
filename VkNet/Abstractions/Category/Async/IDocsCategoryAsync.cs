@@ -115,7 +115,6 @@ public interface IDocsCategoryAsync
 													string tags = null,
 													CancellationToken token = default);
 
-
 	/// <summary>
 	/// Удаляет документ пользователя или группы.
 	/// </summary>

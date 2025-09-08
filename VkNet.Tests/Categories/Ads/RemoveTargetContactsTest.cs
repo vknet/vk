@@ -8,7 +8,7 @@ public class RemoveTargetContactsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Remove target contacts")]
 	public void RemoveTargetContacts()
 	{
 		Url = "https://api.vk.ru/method/ads.removeTargetContacts";
@@ -18,11 +18,11 @@ public class RemoveTargetContactsTest : CategoryBaseTest
 		var result = Api.Ads.RemoveTargetContacts(new()
 		{
 			AccountId = 1605245430,
-			Contacts = new()
-			{
+			Contacts =
+			[
 				"79534998632",
 				"79534998633"
-			},
+			],
 			TargetGroupId = 29859003
 		});
 

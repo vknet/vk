@@ -21,6 +21,5 @@ public sealed class ErrorExecutingCodeException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private ErrorExecutingCodeException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

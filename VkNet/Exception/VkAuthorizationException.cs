@@ -20,6 +20,5 @@ public sealed class VkAuthorizationException : System.Exception
 	/// <inheritdoc />
 	private VkAuthorizationException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 }

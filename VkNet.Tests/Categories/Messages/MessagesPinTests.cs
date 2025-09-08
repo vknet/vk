@@ -5,7 +5,7 @@ namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesPinTests : MessagesBaseTests
 {
-	[Fact]
+	[Fact(DisplayName = "Pin")]
 	public void Pin()
 	{
 		Url = "https://api.vk.ru/method/messages.pin";

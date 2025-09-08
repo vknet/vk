@@ -26,6 +26,5 @@ public sealed class AlbumAccessDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private AlbumAccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

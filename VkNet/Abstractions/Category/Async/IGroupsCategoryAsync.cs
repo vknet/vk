@@ -550,7 +550,6 @@ public interface IGroupsCategoryAsync
 							long userId,
 							CancellationToken token = default);
 
-
 	/// <summary>
 	/// Позволяет добавлять ссылки в сообщество.
 	/// </summary>
@@ -940,8 +939,7 @@ public interface IGroupsCategoryAsync
 	/// <remarks>
 	/// Страница документации ВКонтакте http://vk.ru/dev/groups.editCallbackServer
 	/// </remarks>
-	Task<string> GetCallbackConfirmationCodeAsync(ulong groupId,
-												CancellationToken token = default);
+	Task<string> GetCallbackConfirmationCodeAsync(ulong groupId, CancellationToken token = default);
 
 	/// <summary>
 	/// Получает информацию о серверах для Callback API в сообществе.
@@ -1062,8 +1060,7 @@ public interface IGroupsCategoryAsync
 																CancellationToken token = default);
 
 	/// <inheritdoc cref="IGroupsCategoryAsync.GetBotsLongPollHistoryAsync"/>
-	Task<T> GetBotsLongPollHistoryAsync<T>(BotsLongPollHistoryParams @params,
-											CancellationToken token = default);
+	Task<T> GetBotsLongPollHistoryAsync<T>(BotsLongPollHistoryParams @params, CancellationToken token = default);
 
 	/// <summary>
 	/// Позволяет добавить адрес в сообщество.

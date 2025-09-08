@@ -36,11 +36,5 @@ public class VkCollection<T> : ReadOnlyCollection<T>, IEnumerable<T>
 	public new T this[int index] => Items[index: index];
 
 	/// <inheritdoc />
-	/// <summary>
-	/// Возвращает перечислитель, выполняющий итерацию в коллекции.
-	/// </summary>
-	/// <returns>
-	/// Интерфейс T:System
-	/// </returns>
 	public new IEnumerator<T> GetEnumerator() => Items.GetEnumerator();
 }

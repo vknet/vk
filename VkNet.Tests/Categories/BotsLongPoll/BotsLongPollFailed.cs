@@ -6,7 +6,7 @@ namespace VkNet.Tests.Categories.BotsLongPoll;
 
 public class BotsLongPollFailed : BotsLongPollBaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history failed1")]
 	public void GetBotsLongPollHistory_Failed1()
 	{
 		Url = "https://vk.ru";
@@ -23,7 +23,7 @@ public class BotsLongPollFailed : BotsLongPollBaseTest
 			.ThrowExactly<LongPollOutdateException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history failed1 ts")]
 	public void GetBotsLongPollHistory_Failed1Ts()
 	{
 		Url = "https://vk.ru";
@@ -44,7 +44,7 @@ public class BotsLongPollFailed : BotsLongPollBaseTest
 			.Be(ts);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history failed2")]
 	public void GetBotsLongPollHistory_Failed2()
 	{
 		Url = "https://vk.ru";
@@ -61,7 +61,7 @@ public class BotsLongPollFailed : BotsLongPollBaseTest
 			.ThrowExactly<LongPollKeyExpiredException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get bots long poll history failed3")]
 	public void GetBotsLongPollHistory_Failed3()
 	{
 		Url = "https://vk.ru";

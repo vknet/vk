@@ -35,16 +35,17 @@ public partial class PodcastsCategory : IPodcastsCategory
 		_vk.Call<ReadOnlyCollection<string>>("podcasts.getRecentSearchRequests", VkParameters.Empty);
 
 	/// <inheritdoc />
-	public PodcastsSearchResult SearchPodcast(PodcastsSearchParams @params) => _vk.Call<PodcastsSearchResult>("podcasts.searchPodcast", new()
-	{
+	public PodcastsSearchResult SearchPodcast(PodcastsSearchParams @params) => _vk.Call<PodcastsSearchResult>("podcasts.searchPodcast",
+		new()
 		{
-			"search_string", @params.SearchString
-		},
-		{
-			"offset", @params.Offset
-		},
-		{
-			"count", @params.Count
-		}
-	});
+			{
+				"search_string", @params.SearchString
+			},
+			{
+				"offset", @params.Offset
+			},
+			{
+				"count", @params.Count
+			}
+		});
 }

@@ -21,6 +21,5 @@ public sealed class VideoAlreadyAddedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private VideoAlreadyAddedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

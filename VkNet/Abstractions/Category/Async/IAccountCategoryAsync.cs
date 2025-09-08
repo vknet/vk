@@ -256,8 +256,7 @@ public interface IAccountCategoryAsync
 													CancellationToken token = default);
 
 	/// <inheritdoc cref="BanAsync"/>
-	Task<bool> BanUserAsync(long ownerId,
-							CancellationToken token = default);
+	Task<bool> BanUserAsync(long ownerId, CancellationToken token = default);
 
 	/// <summary>
 	/// Добавляет пользователя в черный список.
@@ -277,8 +276,7 @@ public interface IAccountCategoryAsync
 						CancellationToken token = default);
 
 	/// <inheritdoc cref="UnbanAsync"/>
-	Task<bool> UnbanUserAsync(long ownerId,
-							CancellationToken token = default);
+	Task<bool> UnbanUserAsync(long ownerId, CancellationToken token = default);
 
 	/// <summary>
 	/// Убирает пользователя из черного списка.

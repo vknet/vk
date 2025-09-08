@@ -9,7 +9,7 @@ public class ChangeStateTests : CategoryBaseTest
 {
 	protected override string Folder => "Orders";
 
-	[Fact]
+	[Fact(DisplayName = "Change state")]
 	public void ChangeState()
 	{
 		Url = "https://api.vk.ru/method/orders.changeState";

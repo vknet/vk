@@ -61,13 +61,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="AsyncFixer" PrivateAssets="all"/>
-		<PackageReference Include="HtmlAgilityPack" />
-		<PackageReference Include="Newtonsoft.Json" />
+		<PackageReference Include="HtmlAgilityPack"/>
+		<PackageReference Include="Newtonsoft.Json"/>
 		<PackageReference Include="SonarAnalyzer.CSharp" PrivateAssets="all"/>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
-		<PackageReference Include="System.Text.Encoding.CodePages" />
-		<PackageReference Include="Microsoft.SourceLink.GitHub" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection"/>
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions"/>
+		<PackageReference Include="System.Text.Encoding.CodePages"/>
+		<PackageReference Include="Microsoft.SourceLink.GitHub"/>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -77,9 +77,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageVersion Update="Microsoft.SourceLink.GitHub" Version="8.0.0">
-	    <PrivateAssets>all</PrivateAssets>
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-	  </PackageVersion>
+		<PackageVersion Update="Microsoft.SourceLink.GitHub" Version="8.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageVersion>
 	</ItemGroup>
 </Project>

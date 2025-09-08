@@ -28,7 +28,6 @@ public partial class PodcastsCategory
 
 	/// <inheritdoc />
 	public Task<PodcastsSearchResult> SearchPodcastAsync(PodcastsSearchParams @params,
-												CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			SearchPodcast(@params), token);
+														CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		SearchPodcast(@params), token);
 }

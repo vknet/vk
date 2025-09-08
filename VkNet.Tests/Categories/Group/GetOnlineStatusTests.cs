@@ -9,7 +9,7 @@ public class GetOnlineStatusTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact]
+	[Fact(DisplayName = "Get online status")]
 	public void GetOnlineStatus()
 	{
 		Url = "https://api.vk.ru/method/groups.getOnlineStatus";

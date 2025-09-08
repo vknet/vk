@@ -8,7 +8,7 @@ namespace VkNet.Tests.Utils.JsonConverter;
 
 public class AttachmentJsonConverterTests : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Call and convert to type")]
 	public void CallAndConvertToType()
 	{
 		ReadJsonFile("Attachment", nameof(CallAndConvertToType));
@@ -29,7 +29,7 @@ public class AttachmentJsonConverterTests : BaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Serialization test")]
 	public void SerializationTest()
 	{
 		ReadJsonFile("Attachment", nameof(SerializationTest));
@@ -55,7 +55,9 @@ public class AttachmentJsonConverterTests : BaseTest
 		result.Should()
 			.NotBeNull();
 
-		result.WallPosts[0].Attachments[0].Instance.Id.Should()
+		result.WallPosts[0]
+			.Attachments[0]
+			.Instance.Id.Should()
 			.Be(456239677);
 	}
 }

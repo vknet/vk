@@ -27,6 +27,5 @@ public sealed class NeedHttpsException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private NeedHttpsException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

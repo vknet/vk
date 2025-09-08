@@ -24,12 +24,13 @@ public partial class AppWidgetsCategory : IAppWidgetsCategory
 	public AppWidgetsCategory(IVkApiInvoke vk) => _vk = vk;
 
 	/// <inheritdoc/>
-	public UploadServerInfo GetAppImageUploadServer(AppWidgetImageType imageType) => _vk.Call<UploadServerInfo>("appWidgets.getAppImageUploadServer", new()
-	{
+	public UploadServerInfo GetAppImageUploadServer(AppWidgetImageType imageType) => _vk.Call<UploadServerInfo>(
+		"appWidgets.getAppImageUploadServer", new()
 		{
-			"image_type", imageType
-		}
-	});
+			{
+				"image_type", imageType
+			}
+		});
 
 	/// <inheritdoc/>
 	public AppImageResult GetAppImages(int offset, int count, AppWidgetImageType imageType) => _vk.Call<AppImageResult>(

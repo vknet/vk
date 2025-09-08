@@ -22,21 +22,18 @@ public partial class ExecuteCategory
 	/// <inheritdoc />
 	public Task<VkResponse> ExecuteAsync(string code,
 										VkParameters vkParameters = default,
-										CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Execute(code, vkParameters), token);
+										CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		Execute(code, vkParameters), token);
 
 	/// <inheritdoc />
 	public Task<T> ExecuteAsync<T>(string code,
 									VkParameters vkParameters = default,
-									CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			Execute<T>(code, vkParameters), token);
+									CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		Execute<T>(code, vkParameters), token);
 
 	/// <inheritdoc />
 	public Task<T> StoredProcedureAsync<T>(string procedureName,
 											VkParameters vkParameters,
-											CancellationToken token = default) =>
-		TypeHelper.TryInvokeMethodAsync(() =>
-			StoredProcedure<T>(procedureName, vkParameters), token);
+											CancellationToken token = default) => TypeHelper.TryInvokeMethodAsync(() =>
+		StoredProcedure<T>(procedureName, vkParameters), token);
 }

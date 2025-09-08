@@ -12,7 +12,7 @@ public class AdsGetAdsTests : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get ads generate ads correctly")]
 	public void GetAds_GenerateAdsCorrectly()
 	{
 		Url = "https://api.vk.ru/method/ads.getAds";

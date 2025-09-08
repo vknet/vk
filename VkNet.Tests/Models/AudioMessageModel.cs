@@ -8,7 +8,7 @@ namespace VkNet.Tests.Models;
 
 public class AudioMessageModel : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "To string audio message should have access key")]
 	public void ToString_AudioMessageShouldHaveAccessKey()
 	{
 		var audioMessage = new AudioMessage
@@ -24,14 +24,16 @@ public class AudioMessageModel : BaseTest
 			.Be("audio_message1234_1234_test");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should deserialize from vk response to audio message with transcript")]
 	public void ShouldDeserializeFromVkResponseToAudioMessageWithTranscript()
 	{
 		ReadJsonFile("Models", "audio_message_with_transcription");
 
 		Url = "https://api.vk.ru/method/wall.get";
 
-		var attachment = Api.Wall.Get(new()).WallPosts[0].Attachments[0];
+		var attachment = Api.Wall.Get(new())
+			.WallPosts[0]
+			.Attachments[0];
 
 		attachment.Instance.Should()
 			.BeOfType<AudioMessage>();
@@ -54,7 +56,7 @@ public class AudioMessageModel : BaseTest
 			.Be(TranscriptStates.Done);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Should deserialize from vk response to audio message")]
 	public void ShouldDeserializeFromVkResponseToAudioMessage()
 	{
 		ReadJsonFile("Models", "audio_message_without_transcription");
@@ -63,7 +65,8 @@ public class AudioMessageModel : BaseTest
 
 		var result = Api.Wall.Get(new());
 
-		var attachment = result.WallPosts[0].Attachments[0];
+		var attachment = result.WallPosts[0]
+			.Attachments[0];
 
 		attachment.Instance.Should()
 			.BeOfType<AudioMessage>();

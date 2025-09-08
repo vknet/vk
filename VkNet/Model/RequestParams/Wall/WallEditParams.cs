@@ -113,7 +113,6 @@ public class WallEditParams
 	/// </summary>
 	public long? PlaceId { get; set; }
 
-
 	/// <summary>
 	/// 1 — у записи, размещенной от имени сообщества, будет добавлена метка "это
 	/// реклама",

@@ -31,11 +31,10 @@ public partial class CallsCategory : ICallsCategory
 	}
 
 	/// <inheritdoc />
-	public CallStartResult Start(CallsStartParams @params) =>
-		_vk.Call<CallStartResult>("calls.start", new()
+	public CallStartResult Start(CallsStartParams @params) => _vk.Call<CallStartResult>("calls.start", new()
+	{
 		{
-			{
-				"group_id", @params.GroupId
-			}
-		});
+			"group_id", @params.GroupId
+		}
+	});
 }

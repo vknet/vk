@@ -22,6 +22,5 @@ public sealed class AccessToCommentDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private AccessToCommentDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

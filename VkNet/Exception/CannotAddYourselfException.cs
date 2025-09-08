@@ -21,6 +21,5 @@ public sealed class CannotAddYourselfException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private CannotAddYourselfException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

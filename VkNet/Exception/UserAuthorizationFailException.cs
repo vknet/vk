@@ -22,6 +22,5 @@ public sealed class UserAuthorizationFailException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private UserAuthorizationFailException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

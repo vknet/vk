@@ -8,7 +8,7 @@ public class GetTargetingStatsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Get targeting stats")]
 	public void GetTargetingStats()
 	{
 		Url = "https://api.vk.ru/method/ads.getTargetingStats";

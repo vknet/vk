@@ -61,5 +61,4 @@ public class PhotoCreateCommentParams
 	/// Положительное число.
 	/// </summary>
 	public ulong? Guid { get; set; }
-
 }

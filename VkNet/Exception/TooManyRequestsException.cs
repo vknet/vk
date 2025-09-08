@@ -28,6 +28,5 @@ public sealed class TooManyRequestsException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private TooManyRequestsException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

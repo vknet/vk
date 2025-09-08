@@ -25,6 +25,5 @@ public sealed class AudioAccessDeniedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private AudioAccessDeniedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

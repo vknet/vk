@@ -116,12 +116,7 @@ public class Market : MediaAttachment
 	[JsonConverter(typeof(SafetyEnumJsonConverter))]
 	public MarketItemButtonTitle ButtonTitle { get; set; }
 
-	/// <summary>
-	/// Преобразовать вложение в строку.
-	/// </summary>
-	/// <returns>
-	/// Строковое представление
-	/// </returns>
+	/// <inheritdoc />
 	public override string ToString()
 	{
 		var result = $"{Alias}{OwnerId}_{Id}";

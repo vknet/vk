@@ -9,7 +9,7 @@ public class AddAddressTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact]
+	[Fact(DisplayName = "Add address always opened")]
 	public void AddAddress_AlwaysOpened()
 	{
 		Url = "https://api.vk.ru/method/groups.addAddress";
@@ -71,7 +71,7 @@ public class AddAddressTests : CategoryBaseTest
 			.Be(58227);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Add address timetable")]
 	public void AddAddress_Timetable()
 	{
 		Url = "https://api.vk.ru/method/groups.addAddress";

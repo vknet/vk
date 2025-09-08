@@ -21,6 +21,5 @@ public sealed class InvalidGroupIdException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private InvalidGroupIdException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

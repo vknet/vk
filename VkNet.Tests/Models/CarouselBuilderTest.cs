@@ -12,7 +12,7 @@ public class CarouselBuilderTests
 	private const string Payload =
 		"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
 
-	[Fact]
+	[Fact(DisplayName = "Add button payload max length255 vk keyboard payload max length exception")]
 	public void AddButton_PayloadMaxLength255_VkKeyboardPayloadMaxLengthException()
 	{
 		var builder = new CarouselElementBuilder();
@@ -22,7 +22,7 @@ public class CarouselBuilderTests
 			.ThrowExactly<VkKeyboardPayloadMaxLengthException>();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Add button payload max length255 success")]
 	public void AddButton_PayloadMaxLength255_Success()
 	{
 		var builder = new CarouselElementBuilder();
@@ -32,7 +32,7 @@ public class CarouselBuilderTests
 			.NotThrow();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Create carousel")]
 	public void CreateCarousel()
 	{
 		var builder = new CarouselElementBuilder();
@@ -89,7 +89,7 @@ public class CarouselBuilderTests
 			.Be(carousel.PhotoId);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Clear buttons")]
 	public void ClearButtons()
 	{
 		var builder = new CarouselElementBuilder();

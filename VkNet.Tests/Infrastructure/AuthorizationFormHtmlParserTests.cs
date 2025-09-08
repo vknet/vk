@@ -11,7 +11,7 @@ namespace VkNet.Tests.Infrastructure;
 
 public class AuthorizationFormHtmlParserTests : BaseTest
 {
-	[Fact]
+	[Fact(DisplayName = "Login form")]
 	public async Task LoginForm()
 	{
 		Url = "https://m.vk.ru/login?act=authcheck&m=442";
@@ -33,7 +33,7 @@ public class AuthorizationFormHtmlParserTests : BaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Captcha form")]
 	public async Task CaptchaForm()
 	{
 		Url = "https://m.vk.ru/login?act=authcheck&m=442";
@@ -63,7 +63,7 @@ public class AuthorizationFormHtmlParserTests : BaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Two fa form")]
 	public async Task TwoFaForm()
 	{
 		Url = "https://m.vk.ru/login?act=authcheck&m=442";
@@ -85,7 +85,7 @@ public class AuthorizationFormHtmlParserTests : BaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Consent form")]
 	public async Task ConsentForm()
 	{
 		Url = "https://m.vk.ru/login?act=authcheck&m=442";

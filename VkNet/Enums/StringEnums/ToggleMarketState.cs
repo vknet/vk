@@ -18,7 +18,7 @@ public enum ToggleMarketState
 	/// <summary>
 	/// Базовые товары
 	/// </summary>
-	Basic ,
+	Basic,
 
 	/// <summary>
 	/// Расширенные товары

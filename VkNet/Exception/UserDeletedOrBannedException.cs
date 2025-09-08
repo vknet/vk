@@ -22,6 +22,5 @@ public sealed class UserDeletedOrBannedException : VkApiMethodInvokeException
 	/// <inheritdoc />
 	private UserDeletedOrBannedException(SerializationInfo serializationInfo, StreamingContext streamingContext) : base(new())
 	{
-
 	}
 }

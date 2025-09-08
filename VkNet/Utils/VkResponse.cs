@@ -118,6 +118,7 @@ public sealed class VkResponse
 	/// <returns>
 	/// Результат преобразования.
 	/// </returns>
+
 	// ReSharper disable once MergeSequentialChecks
 	public static implicit operator bool(VkResponse response) => response is not null && response == 1;
 

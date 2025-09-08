@@ -13,7 +13,7 @@ public class UserGetTests : CategoryBaseTest
 {
 	protected override string Folder => "Users";
 
-	[Fact]
+	[Fact(DisplayName = "Get olesya single user")]
 	public void Get_Olesya_SingleUser()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -36,7 +36,7 @@ public class UserGetTests : CategoryBaseTest
 			.Be(Sex.Deactivated);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get male single user")]
 	public void Get_Male_SingleUser()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -59,7 +59,7 @@ public class UserGetTests : CategoryBaseTest
 			.NotBeNullOrEmpty();
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get active user")]
 	public void Get_ActiveUser()
 	{
 		Url = "https://api.vk.ru/method/users.get";

@@ -20,7 +20,6 @@ public class VkApiMethodInvokeException : VkApiException
 	/// <inheritdoc />
 	protected VkApiMethodInvokeException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 
 	/// <summary>

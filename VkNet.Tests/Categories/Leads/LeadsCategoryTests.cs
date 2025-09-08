@@ -8,7 +8,7 @@ public class LeadsCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Leads";
 
-	[Fact]
+	[Fact(DisplayName = "Complete")]
 	public void Complete()
 	{
 		Url = "https://api.vk.ru/method/leads.complete";
@@ -38,7 +38,7 @@ public class LeadsCategoryTests : CategoryBaseTest
 			.Be(1);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Start")]
 	public void Start()
 	{
 		Url = "https://api.vk.ru/method/leads.start";
@@ -56,7 +56,7 @@ public class LeadsCategoryTests : CategoryBaseTest
 			.Be("vk_sid");
 	}
 
-	[Fact]
+	[Fact(DisplayName = "Get users")]
 	public void GetUsers()
 	{
 		Url = "https://api.vk.ru/method/leads.getUsers";

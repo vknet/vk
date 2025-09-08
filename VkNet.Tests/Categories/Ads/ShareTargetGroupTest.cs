@@ -8,7 +8,7 @@ public class ShareTargetGroupTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Share target group")]
 	public void ShareTargetGroup()
 	{
 		Url = "https://api.vk.ru/method/ads.shareTargetGroup";

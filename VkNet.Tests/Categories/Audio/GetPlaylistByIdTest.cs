@@ -8,7 +8,7 @@ public class GetPlaylistByIdTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact]
+	[Fact(DisplayName = "Get playlist by id test test")]
 	public void GetPlaylistByIdTestTest()
 	{
 		Url = "https://api.vk.ru/method/audio.getPlaylistById";

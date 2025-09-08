@@ -22,7 +22,6 @@ public sealed class AccessTokenInvalidException : VkApiException
 	/// <inheritdoc />
 	private AccessTokenInvalidException(SerializationInfo serializationInfo, StreamingContext streamingContext)
 	{
-
 	}
 
 	/// <summary>
@@ -52,8 +51,5 @@ public sealed class AccessTokenInvalidException : VkApiException
 
 	/// <inheritdoc />
 	[UsedImplicitly]
-	public override void GetObjectData(SerializationInfo info, StreamingContext context)
-	{
-		base.GetObjectData(info, context);
-	}
+	public override void GetObjectData(SerializationInfo info, StreamingContext context) => base.GetObjectData(info, context);
 }

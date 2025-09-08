@@ -252,17 +252,16 @@ public partial class StoriesCategory : IStoriesCategory
 
 	/// <inheritdoc />
 	[Obsolete("Начиная с версии 5.118 используется только параметр uploadResults")]
-	public VkCollection<Story> Save(StoryServerUrl uploadResults) =>
-		_vk.Call<VkCollection<Story>>("stories.save",
-			new()
+	public VkCollection<Story> Save(StoryServerUrl uploadResults) => _vk.Call<VkCollection<Story>>("stories.save",
+		new()
+		{
 			{
+				"upload_results", new VkResponseObject<StoryServerUrl>
 				{
-					"upload_results", new VkResponseObject<StoryServerUrl>
-					{
-						Response = uploadResults
-					}
+					Response = uploadResults
 				}
-			});
+			}
+		});
 
 	/// <inheritdoc />
 	[Obsolete("Начиная с версии 5.118 используется только параметр uploadResults")]

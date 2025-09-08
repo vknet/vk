@@ -9,7 +9,7 @@ public class AudioGetTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact]
+	[Fact(DisplayName = "Get test")]
 	public void GetTest()
 	{
 		Url = "https://api.vk.ru/method/audio.get";

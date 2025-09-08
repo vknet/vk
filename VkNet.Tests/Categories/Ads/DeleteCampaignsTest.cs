@@ -8,7 +8,7 @@ public class DeleteCampaignsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact]
+	[Fact(DisplayName = "Delete campaigns")]
 	public void DeleteCampaigns()
 	{
 		Url = "https://api.vk.ru/method/ads.deleteCampaigns";
