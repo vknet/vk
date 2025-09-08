@@ -88,6 +88,7 @@ public sealed class RestClient : IRestClient
 		var response = await method()
 			.ConfigureAwait(false);
 		#if NETSTANDARD2_0
+		token.ThrowIfCancellationRequested();
 		var bytes = await response.Content.ReadAsByteArrayAsync()
 			.ConfigureAwait(false);
 

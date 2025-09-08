@@ -3,6 +3,4 @@
 /// <summary>
 /// Внешняя инициализация
 /// </summary>
-public class IsExternalInit
-{
-}
+public class IsExternalInit;

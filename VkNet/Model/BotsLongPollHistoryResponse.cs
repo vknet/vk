@@ -26,6 +26,4 @@ public class BotsLongPollHistoryResponse<TGroupUpdate>
 
 /// <inheritdoc />
 [Serializable]
-public class BotsLongPollHistoryResponse : BotsLongPollHistoryResponse<GroupUpdate>
-{
-}
+public class BotsLongPollHistoryResponse : BotsLongPollHistoryResponse<GroupUpdate>;

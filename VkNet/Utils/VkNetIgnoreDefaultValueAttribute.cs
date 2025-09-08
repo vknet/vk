@@ -6,6 +6,4 @@ namespace VkNet.Utils;
 /// Игнорирование генерации неявного преобразования
 /// </summary>
 [AttributeUsage(AttributeTargets.Enum|AttributeTargets.Class)]
-public class VkNetIgnoreDefaultValueAttribute : Attribute
-{
-}
+public class VkNetIgnoreDefaultValueAttribute : Attribute;

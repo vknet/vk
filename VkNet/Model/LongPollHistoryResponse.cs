@@ -70,6 +70,4 @@ public class LongPollHistoryResponse<TMessage>
 
 /// <inheritdoc />
 [Serializable]
-public class LongPollHistoryResponse : LongPollHistoryResponse<Message>
-{
-}
+public class LongPollHistoryResponse : LongPollHistoryResponse<Message>;
