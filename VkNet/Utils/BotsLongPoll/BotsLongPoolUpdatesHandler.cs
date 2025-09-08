@@ -13,7 +13,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Exception;
 using VkNet.Model;
-using VkNet.Infrastructure;
 
 namespace VkNet.Utils.BotsLongPoll;
 
@@ -31,12 +30,16 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 
 	private string? _currentServer;
 
- 	private ILogger _logger;
+	private readonly ILogger _logger;
 
 	/// <summary>
 	/// Инициализирует новый экземпляр класса <see cref="BotsLongPollUpdatesHandler" />
 	/// </summary>
-	public BotsLongPollUpdatesHandler(BotsLongPollUpdatesHandlerParams @params) => _params = @params;
+	public BotsLongPollUpdatesHandler(BotsLongPollUpdatesHandlerParams @params, ILogger logger)
+	{
+		_params = @params;
+		_logger = logger;
+	}
 
 	/// <summary>
 	/// Запуск отслеживания событий
@@ -67,7 +70,7 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 
 				if (_currentTs is null)
 				{
-					throw new($"{nameof(_currentTs)} is null");
+					throw new VkApiException($"{nameof(_currentTs)} is null");
 				}
 
 				VkErrors.ThrowIfNullOrEmpty(() => _currentServer);
@@ -90,6 +93,7 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 
 			SetTs(response.Ts);
 			var updates = BotsLongPollHelpers.GetGroupUpdateEvents(response.Updates);
+
 			_params.OnUpdates?.Invoke(new()
 			{
 				Response = response,
@@ -144,7 +148,7 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 			case LongPollOutdateException outdatedException:
 				if (_currentTs is null)
 				{
-					throw new($"{nameof(_currentTs)} is null");
+					throw new VkApiException($"{nameof(_currentTs)} is null");
 				}
 
 				SetTs(outdatedException.Ts);
@@ -169,39 +173,40 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 	{
 		uint attempt_count = 0;
 
-  		while (!token.IsCancellationRequested)
-	 	{
+		while (!token.IsCancellationRequested)
+		{
 			try
 			{
 				var response = await _params.Api.Groups.GetLongPollServerAsync(_params.GroupId, token);
 
-	 			_currentSessionKey = response.Key;
-	  			_currentServer = response.Server;
-	   			SetTs(_params.Ts ?? response.Ts);
+				_currentSessionKey = response.Key;
+				_currentServer = response.Server;
+				SetTs(_params.Ts ?? response.Ts);
 
-  				attempt_count = 0;
-	   			break;
+				attempt_count = 0;
+
+				break;
 			}
 			catch (System.Exception ex)
 			{
 				attempt_count += 1;
-				ulong delay = Math.Min(_params.BaseRetryDelayMs * ((ulong) Math.Pow(attempt_count, 2)), _params.MaxRetryDelayMs);
+				var delay = Math.Min(_params.BaseRetryDelayMs * (int) Math.Pow(attempt_count, 2), _params.MaxRetryDelayMs);
 
-				const string message = ex.ToString() + "\nСледующая попытка через: " + delay + "ms";
+				var message = $"{ex.Message}{Environment.NewLine}Следующая попытка через: {delay}ms";
 
 				if (_logger.IsEnabled(LogLevel.Error))
 				{
-					_logger.LogError(message);
+					_logger.LogError(ex, "{Message}", message);
 				}
 
 				if (delay >= _params.MaxRetryDelayMs)
 				{
 					await HandleExceptionAsync(ex, token);
-	 			}
+				}
 
-	  			await Thread.Sleep((int) delay);
+				await Task.Delay(delay, token);
 			}
-	 	}
+		}
 	}
 
 	private async Task UpdateLongPollServerAsync(CancellationToken token)
@@ -239,15 +244,9 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 	{
 		if (_currentTs is null)
 		{
-			throw new($"{nameof(_currentTs)} is null");
+			throw new VkApiException($"{nameof(_currentTs)} is null");
 		}
 
 		SetTs(_currentTs.Value + 1);
 	}
 }
-
-/// <summary>
-/// Реализация лонгпула для бота в сообществе
-/// </summary>
-[Obsolete(ObsoleteText.ObsoleteLongPool, true)]
-public static class BotsLongPoolUpdatesHandler {}
