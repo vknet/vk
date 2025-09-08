@@ -4,6 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<NoWarn>CS0618</NoWarn>
+		<IsTestProject>true</IsTestProject>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="AwesomeAssertions"/>
