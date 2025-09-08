@@ -30,12 +30,12 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 
 	private string? _currentServer;
 
-	private readonly ILogger _logger;
+	private readonly ILogger<BotsLongPollUpdatesHandler> _logger;
 
 	/// <summary>
 	/// Инициализирует новый экземпляр класса <see cref="BotsLongPollUpdatesHandler" />
 	/// </summary>
-	public BotsLongPollUpdatesHandler(BotsLongPollUpdatesHandlerParams @params, ILogger logger)
+	public BotsLongPollUpdatesHandler(BotsLongPollUpdatesHandlerParams @params, ILogger<BotsLongPollUpdatesHandler> logger)
 	{
 		_params = @params;
 		_logger = logger;

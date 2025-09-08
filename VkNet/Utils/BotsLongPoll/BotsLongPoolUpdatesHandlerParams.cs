@@ -82,9 +82,3 @@ public class BotsLongPollUpdatesHandlerParams
 	/// </summary>
 	public Action<System.Exception>? OnWarn { get; set; } = null;
 }
-
-/// <summary>
-/// Параметры для конструктора BotsLongPollUpdatesHandler
-/// </summary>
-[Obsolete(ObsoleteText.ObsoleteLongPool, true)]
-public static class BotsLongPoolUpdatesHandlerParams {}
