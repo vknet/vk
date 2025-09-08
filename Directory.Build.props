@@ -4,5 +4,6 @@
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 		<DefineConstants>JETBRAINS_ANNOTATIONS</DefineConstants>
 		<LangVersion>latest</LangVersion>
+		<InterceptorsNamespaces>$(InterceptorsNamespaces);Microsoft.Extensions.Logging.AutoLoggerMessage</InterceptorsNamespaces>
 	</PropertyGroup>
 </Project>
