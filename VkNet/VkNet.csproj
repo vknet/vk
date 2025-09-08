@@ -67,10 +67,6 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
 		<PackageReference Include="System.Text.Encoding.CodePages" />
-		<PackageReference Update="Reo.Core.Analyzers" >
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" />
 	</ItemGroup>
 

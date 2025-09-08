@@ -41,10 +41,7 @@ public class BotsLongPollUpdatesHandler : IBotsLongPollUpdatesHandler
 		_logger = logger;
 	}
 
-	/// <summary>
-	/// Запуск отслеживания событий
-	/// </summary>
-	/// <param name="token">Токен отмены операции</param>
+	/// <inheritdoc />
 	[UsedImplicitly]
 	public async Task RunAsync(CancellationToken token = default)
 	{
