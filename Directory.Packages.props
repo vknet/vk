@@ -4,6 +4,9 @@
 		<CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
 	</PropertyGroup>
 	<ItemGroup>
+		<AdditionalFiles Include="../Reo.Analyzers.json"/>
+	</ItemGroup>
+	<ItemGroup>
 		<PackageVersion Include="AsyncFixer" Version="1.6.0" PrivateAssets="all"/>
 		<PackageVersion Include="HtmlAgilityPack" Version="1.12.2"/>
 		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3"/>
@@ -35,7 +38,7 @@
 	</ItemGroup>
 	<ItemGroup Label="Включено в каждый проект">
 		<PackageReference Include="JetBrains.Annotations"/>
-		<PackageReference Include="Reo.Core.Analyzers"/>
+		<PackageReference Include="Reo.Core.Analyzers" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"/>
 		<PackageVersion Include="Reo.Core.Analyzers" Version="8.0.532"/>
 		<PackageVersion Include="JetBrains.Annotations" Version="2025.2.2"/>
 		<PackageReference Include="TestableIO.System.IO.Abstractions.Analyzers">

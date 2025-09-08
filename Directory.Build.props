@@ -6,4 +6,11 @@
 		<LangVersion>latest</LangVersion>
 		<InterceptorsNamespaces>$(InterceptorsNamespaces);Microsoft.Extensions.Logging.AutoLoggerMessage</InterceptorsNamespaces>
 	</PropertyGroup>
+	<PropertyGroup Condition="!$(MSBuildProjectName.EndsWith('Tests'))">
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup Condition="$(MSBuildProjectName.EndsWith('Tests'))">
+		<AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage"/>
+	</ItemGroup>
 </Project>

@@ -1,0 +1,73 @@
+{
+	"Annotations": {
+		"CaseInsensitiveAllowedCategories": [
+			"resharper"
+		]
+	},
+	"XmlDoc": {
+		"Types": {
+			"CancellationToken": "Токен отмены операции"
+		},
+		"PropertiesOrParameters": {
+			"id": "Идентификатор"
+		},
+		"Methods": {},
+		"InheritdocIgnoreTypes": [
+			"IEnumerable",
+			"IDisposable",
+			"IAsyncDisposable",
+			"IEntityGuidId"
+		],
+		"InheritdocIgnoreNamespaces": [
+			"MassTransit",
+			"Mediator"
+		],
+		"ReturnsIgnoreTypes": []
+	},
+	"PerformanceLoopAnalyzerConfig": {
+		"Types": [
+			"HttpClient"
+		],
+		"Namespaces": [
+			"Microsoft.Extensions.Logging"
+		]
+	},
+	"DDD": {
+		"ModelTypes": [
+		],
+		"IgnoreTypes": [
+		],
+		"ValueObjectType": ""
+	},
+	"DateTime": {
+		"IgnoreBaseTypes": [
+			"AutoMapper.Profile"
+		]
+	},
+	"UsedImplicitly": {
+		"BaseTypes": [
+			"IAsyncMessageHandler"
+		]
+	},
+	"CancellationTokenParameter": {
+		"IgnoreTypes": [
+			"EnumerableExtensions"
+		]
+	},
+	"CodeStyle": {
+		"IgnoreBaseTypes": [
+			"AutoMapper.Profile"
+		]
+	},
+	"Controllers": {
+		"AuthorizationAnnotationsAndNamespaces": {
+			"Authorize": "Microsoft.AspNetCore.Authorization",
+			"AllowAnonymous": "Microsoft.AspNetCore.Authorization"
+		}
+	},
+	"Logging": {
+		"UsingAutoLoggerMessagePackage": true
+	},
+	"ObsoleteMigrator": {},
+	"Testing": {}
+}

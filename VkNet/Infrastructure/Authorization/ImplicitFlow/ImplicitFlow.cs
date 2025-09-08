@@ -75,8 +75,8 @@ public class ImplicitFlow : IImplicitFlow
 	public void SetAuthorizationParams(IApiAuthParams authorizationParams) => _authorizationParameters = authorizationParams;
 
 	/// <inheritdoc />
-	[Obsolete(
-		"Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
+	[Obsolete("Используйте перегрузку Url CreateAuthorizeUrl();\n"
+			+ "Параметры авторизации должны быть уставлены вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
 	public Uri CreateAuthorizeUrl(ulong clientId, ulong scope, Display display, string state)
 	{
 		_authorizationParameters.ApplicationId = clientId;
@@ -87,8 +87,8 @@ public class ImplicitFlow : IImplicitFlow
 	}
 
 	/// <inheritdoc />
-	[Obsolete(
-		"Используйте перегрузку Url CreateAuthorizeUrl();\nПараметры авторизации должны быть уставленны вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
+	[Obsolete("Используйте перегрузку Url CreateAuthorizeUrl();\n"
+			+ "Параметры авторизации должны быть уставлены вызовом void SetAuthorizationParams(IApiAuthParams authorizationParams);")]
 	public Uri CreateAuthorizeUrl()
 	{
 		_logger.LogDebug("Построение url для авторизации");
@@ -218,12 +218,11 @@ public class ImplicitFlow : IImplicitFlow
 		var originalString = originalUrl.OriginalString;
 		var query = Url.ParseQueryString(originalString);
 
-		if (!query.ContainsKey("authorize_url"))
+		if (!query.TryGetValue("authorize_url", out var escapedUrl))
 		{
 			return originalUrl;
 		}
 
-		var escapedUrl = query["authorize_url"];
 		var unEscapedUrl = Uri.UnescapeDataString(escapedUrl);
 
 		return new(unEscapedUrl);
