@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using Xunit;
 

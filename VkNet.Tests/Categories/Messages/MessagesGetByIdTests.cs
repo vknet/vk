@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;

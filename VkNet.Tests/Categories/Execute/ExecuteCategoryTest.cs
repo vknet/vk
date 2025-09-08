@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;

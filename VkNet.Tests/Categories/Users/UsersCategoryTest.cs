@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using FluentAssertions;
+using AwesomeAssertions;
 using Moq;
 using VkNet.Enums;
 using VkNet.Enums.Filters;

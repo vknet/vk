@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using Newtonsoft.Json.Linq;
 using VkNet.Abstractions.Utils;
 using VkNet.Enums.StringEnums;

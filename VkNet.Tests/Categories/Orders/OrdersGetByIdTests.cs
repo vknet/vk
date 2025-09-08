@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 

@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Tests.Infrastructure;
 using Xunit;

@@ -1,5 +1,5 @@
 using System;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Model;
 using Xunit;

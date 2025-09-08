@@ -1,5 +1,5 @@
 using System;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Utils;

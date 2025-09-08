@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;

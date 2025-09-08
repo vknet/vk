@@ -1,4 +1,5 @@
-using FluentAssertions;
+using AwesomeAssertions;
+using VkNet.Enums;
 using VkNet.Tests.Infrastructure;
 using Xunit;
 
@@ -19,7 +20,7 @@ namespace VkNet.Tests.Categories.Market
 			{
 				OwnerId = -85689507,
 				PriceFrom = 5000,
-				Sort = Enums.ProductSort.ByCost,
+				Sort = ProductSort.ByCost,
 				Offset = 0,
 				Count = 2,
 				Status = "0",

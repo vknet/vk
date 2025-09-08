@@ -1,5 +1,5 @@
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using Xunit;

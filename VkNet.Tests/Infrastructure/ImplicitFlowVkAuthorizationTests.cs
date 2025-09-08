@@ -1,5 +1,5 @@
 using System;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Exception;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using Xunit;

@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
-using FluentAssertions;
-using FluentAssertions.Extensions;
+using AwesomeAssertions;
+using AwesomeAssertions.Extensions;
 using Newtonsoft.Json;
 using VkNet.Model;
 using VkNet.Utils;

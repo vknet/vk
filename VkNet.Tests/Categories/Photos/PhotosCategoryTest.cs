@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;

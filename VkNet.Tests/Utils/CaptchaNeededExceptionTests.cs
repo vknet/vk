@@ -1,5 +1,5 @@
 ﻿using System;
-using FluentAssertions;
+using AwesomeAssertions;
 using Moq;
 using VkNet.Abstractions.Core;
 using VkNet.Model;

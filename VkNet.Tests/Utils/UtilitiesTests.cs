@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Model;
 using VkNet.Utils;
 using Xunit;

@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Abstractions.Core;
 using VkNet.Exception;
 using VkNet.Infrastructure;

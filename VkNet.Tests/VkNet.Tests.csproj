@@ -6,8 +6,8 @@
 		<NoWarn>CS0618</NoWarn>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="FluentAssertions"/>
-		<PackageReference Include="FluentAssertions.Analyzers">
+		<PackageReference Include="AwesomeAssertions"/>
+		<PackageReference Include="AwesomeAssertions.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

@@ -1,6 +1,6 @@
 ﻿using System;
-using FluentAssertions;
-using FluentAssertions.Extensions;
+using AwesomeAssertions;
+using AwesomeAssertions.Extensions;
 using VkNet.Model;
 using VkNet.Utils;
 using Xunit;

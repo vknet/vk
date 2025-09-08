@@ -1,4 +1,4 @@
-﻿using FluentAssertions;
+﻿using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Utils;

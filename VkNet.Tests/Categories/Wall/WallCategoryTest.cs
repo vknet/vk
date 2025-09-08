@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using FluentAssertions;
+using AwesomeAssertions;
 using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Enums.StringEnums;
