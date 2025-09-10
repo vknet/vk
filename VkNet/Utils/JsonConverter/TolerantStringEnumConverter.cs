@@ -19,9 +19,10 @@ public class TolerantStringEnumConverter : StringEnumConverter
 		{
 			return base.ReadJson(reader, objectType, existingValue, serializer);
 		}
-		catch (System.Exception e)
+		catch (System.Exception)
 		{
-			var parameter = serializer.Context.TryGetTypeData(typeof(TolerantStringEnumConverter), out var s)
+			return Activator.CreateInstance(objectType);
+			/*var parameter = serializer.Context.TryGetTypeData(typeof(TolerantStringEnumConverter), out var s)
 				? (bool?) s
 				: null;
 
@@ -31,7 +32,7 @@ public class TolerantStringEnumConverter : StringEnumConverter
 				return null;
 			}
 
-			throw;
+			throw;*/
 		}
 	}
 

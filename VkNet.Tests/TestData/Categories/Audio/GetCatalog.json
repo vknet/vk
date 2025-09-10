@@ -992,7 +992,7 @@
         "id": "PUlYRhcOWVZqSVhBFw5JBScfCBpaU0kb",
         "next_from": "PUlYVA8GWhs",
         "playlists": [
-          {
+			{
             "id": 84610279,
             "owner_id": -143914468,
             "type": 1,
@@ -1035,7 +1035,51 @@
               }
             ],
             "album_type": "main_only"
-          }
+          },
+			{
+				"id": 84610279,
+				"owner_id": -143914468,
+				"type": 1,
+				"title": "Думаешь, это конец?",
+				"description": "",
+				"count": 10,
+				"followers": 50156,
+				"plays": 608522,
+				"create_time": 1587136167,
+				"update_time": 1587136167,
+				"genres": [
+					{
+						"id": 1,
+						"name": "Поп"
+					}
+				],
+				"year": 2020,
+				"original": {
+					"playlist_id": 7239709,
+					"owner_id": -2000239709,
+					"access_key": "a0c3b57dd9b5fea77a"
+				},
+				"photo": {
+					"width": 300,
+					"height": 300,
+					"photo_34": "https://sun9-31.userapi.com/c206728/v206728821/ef520/3h4ipqKprXE.jpg",
+					"photo_68": "https://sun9-37.userapi.com/c206728/v206728821/ef51e/Gny_PEDG2GY.jpg",
+					"photo_135": "https://sun9-44.userapi.com/c206728/v206728821/ef51c/N0C81Q8GiHo.jpg",
+					"photo_270": "https://sun9-13.userapi.com/c206728/v206728821/ef519/Icr4P76-HtM.jpg",
+					"photo_300": "https://sun9-19.userapi.com/c206728/v206728821/ef517/KPdwHIF1EeE.jpg",
+					"photo_600": "https://sun9-8.userapi.com/c206728/v206728821/ef516/t3nS85lGt08.jpg",
+					"photo_1200": "https://sun9-37.userapi.com/c206728/v206728821/ef515/0x0ngiTKh7Y.jpg"
+				},
+				"access_key": "e6e8ed8122938b14e4",
+				"main_artists": [
+					{
+						"name": "Мальбэк х Сюзанна",
+						"domain": "2488610606427153840",
+						"id": "2488610606427153840"
+					}
+				],
+				"album_type": "adsdasd"
+			}
         ]
       },
       {
