@@ -519,7 +519,7 @@ public static class VkErrorCode
 	/// <summary>
 	/// Вы не можете получить доступ к донат чату без подписки
 	/// </summary>
-	public const int YouСanеAccessDonutChatWithoutSubscription = 962;
+	public const int YouCanеAccessDonutChatWithoutSubscription = 962;
 
 	/// <summary>
 	/// Сообщение не может быть переслано
