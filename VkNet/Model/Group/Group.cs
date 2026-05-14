@@ -171,6 +171,12 @@ public class Group
 	public BanInfo BanInfo { get; set; }
 
 	/// <summary>
+	/// Информация об адресах сообщества.
+	/// </summary>
+	[JsonProperty("addresses")]
+	public Addresses Addresses { get; set; }
+
+	/// <summary>
 	/// Информация о том, может ли текущий пользователь создать тему обсуждения в
 	/// группе.
 	/// (<c> true </c>, если пользователь может создать обсуждение, <c> false </c> –

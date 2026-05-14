@@ -92,7 +92,7 @@ public interface IGroupsCategoryAsync
 	/// city, country, place, description,
 	/// wiki_page, members_count, counters, start_date, finish_date, can_post,
 	/// can_see_all_posts, activity, status,
-	/// contacts, links, fixed_post, verified, site,ban_info.
+	/// contacts, links, fixed_post, verified, site, ban_info, addresses.
 	/// Обратите внимание, для получения некоторых полей требуется право доступа
 	/// groups. Подробнее см. описание полей
 	/// объекта group список строк, разделенных через запятую (Список строк,
