@@ -113,6 +113,11 @@ public sealed class GroupsFields : MultivaluedFilter<GroupsFields>
 	public static readonly GroupsFields BanInfo = RegisterPossibleValue(1 << 20, "ban_info");
 
 	/// <summary>
+	/// Для получения дополнительного поля Group.Addresses
+	/// </summary>
+	public static readonly GroupsFields Addresses = RegisterPossibleValue(1 << 21, "addresses");
+
+	/// <summary>
 	/// Для получения всех дополнительных полей.
 	/// </summary>
 	public static readonly GroupsFields All = CityId
@@ -134,7 +139,8 @@ public sealed class GroupsFields : MultivaluedFilter<GroupsFields>
 											|FixedPostId
 											|IsVerified
 											|Site
-											|BanInfo;
+											|BanInfo
+											|Addresses;
 
 	/// <summary>
 	/// Для получения всех дополнительных полей (оказалаось, что некоторые поля
