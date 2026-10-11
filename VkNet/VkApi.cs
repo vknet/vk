@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -271,22 +270,13 @@ public class VkApi : IVkApi
 	{
 		var answer = CallBase(methodName, parameters, skipAuthorization);
 
-		var context = new StreamingContext(StreamingContextStates.All)
-			.AddTypeData(typeof(TolerantStringEnumConverter), DeserializationErrorHandler);
-
-		JsonConvert.DefaultSettings = () => new()
-		{
-			Context = context
-		};
-
 		var settings = new JsonSerializerSettings
 		{
 			Converters = [],
-			ContractResolver = new DefaultContractResolver
+			ContractResolver = new TolerantStringEnumContractResolver(DeserializationErrorHandler)
 			{
 				NamingStrategy = new SnakeCaseNamingStrategy()
 			},
-			Context = context,
 			MaxDepth = null,
 			ReferenceLoopHandling = ReferenceLoopHandling.Ignore
 		};
