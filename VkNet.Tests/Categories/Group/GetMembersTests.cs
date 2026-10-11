@@ -25,5 +25,30 @@ public class GetMembersTests : CategoryBaseTest
 
 		result.Should()
 			.NotBeNull();
+		result.Should()
+			.ContainSingle()
+			.Which.Role.Should()
+			.Be(ManagerRole.Creator);
+	}
+
+	[Fact(DisplayName = "Get donut members returns user ids")]
+	public void GetMembers_Donut_ReturnsUserIds()
+	{
+		Url = "https://api.vk.ru/method/groups.getMembers";
+
+		ReadCategoryJsonPath(nameof(GetMembers_Donut_ReturnsUserIds));
+
+		var result = Api.Groups.GetMembers(new()
+		{
+			Filter = GroupsMemberFilters.Donut,
+			GroupId = "187905748"
+		});
+
+		result.TotalCount.Should()
+			.Be(1);
+		result.Should()
+			.ContainSingle()
+			.Which.Id.Should()
+			.Be(235052667);
 	}
 }
