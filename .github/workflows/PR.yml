@@ -42,10 +42,8 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           format: markdown
           message: |
-            **✅ Task Succeeded**
+            **✅ Сборка PR прошла успешно **
 
-            `Reason: PullRequest Build №: ${{ github.run_number }} Pull Request для VkNet был успешно собран!`
-
-            **Build queued by: ${{ github.triggering_actor }}**
+            **Автор работы: ${{ github.triggering_actor }}**
 
             https://github.com/${{ github.repository }}/commit/${{github.event.pull_request.head.sha}}

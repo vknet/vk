@@ -76,9 +76,11 @@ jobs:
           format: 'markdown'
           disable_web_page_preview: true
           message: |
-            **✅ Task Succeeded**
-            `Reason: VkNet ${{ format('{0}-{1}', steps.get_version.outputs.version, github.run_number) }} был успешно собран и опубликован!`
-            **Build queued by: ${{ github.triggering_actor }}**
+            **✅ Сборка прошла успешно**
+
+            `VkNet v${{ format('{0}-{1}', steps.get_version.outputs.version, github.run_number) }} был успешно собран и опубликован!`
+
+            **Автор коммита: ${{ github.triggering_actor }}**
 
             https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
