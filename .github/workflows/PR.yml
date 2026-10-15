@@ -4,7 +4,6 @@ on:
   pull_request_target: 
     branches: [ develop ]
 
-
   workflow_dispatch:
     inputs:
       logLevel:
@@ -37,12 +36,16 @@ jobs:
         run: dotnet test VkNet.Tests/VkNet.Tests.csproj -c Release -f net8.0
       
       - name: Send Telegram notification
-        uses: appleboy/telegram-action@master
+        uses: appleboy/telegram-action@v1.1.1
         with:
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           to: ${{ secrets.TELEGRAM_TO }}
+          format: markdown
           message: |
-            <b>✅ Task Succeeded</b>
-            <code>Reason: PullRequest Build №: ${{ github.run_number }} Pull Request для VkNet был успешно собран!</code>
-            <b>Build queued by: ${{ github.triggering_actor }}</b> 
+            **✅ Task Succeeded**
+            
+            `Reason: PullRequest Build №: ${{ github.run_number }} Pull Request для VkNet был успешно собран!`
+            
+            **Build queued by: ${{ github.triggering_actor }}** 
             
             https://github.com/${{ github.repository }}/commit/${{github.event.pull_request.head.sha}}
