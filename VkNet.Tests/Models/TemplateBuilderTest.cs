@@ -3,13 +3,13 @@ using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class TemplateBuilderTest
 {
-	[Fact(DisplayName = "Create template")]
+	[Test]
+	[DisplayName("Create template")]
 	public void CreateTemplate()
 	{
 		var builder = new TemplateBuilder();
@@ -35,7 +35,8 @@ public class TemplateBuilderTest
 			.Be(template.Type);
 	}
 
-	[Fact(DisplayName = "Partial template")]
+	[Test]
+	[DisplayName("Partial template")]
 	public void PartialTemplate()
 	{
 		var builder = new TemplateBuilder();
@@ -49,7 +50,8 @@ public class TemplateBuilderTest
 			.Be("title");
 	}
 
-	[Fact(DisplayName = "Clear elements")]
+	[Test]
+	[DisplayName("Clear elements")]
 	public void ClearElements()
 	{
 		var builder = new TemplateBuilder();
@@ -64,7 +66,8 @@ public class TemplateBuilderTest
 			.BeEmpty();
 	}
 
-	[Fact(DisplayName = "The number of elements is more than10")]
+	[Test]
+	[DisplayName("The number of elements is more than10")]
 	public void TheNumberOfElementsIsMoreThan10()
 	{
 		var builder = new TemplateBuilder();

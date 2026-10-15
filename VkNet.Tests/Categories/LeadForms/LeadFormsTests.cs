@@ -1,7 +1,6 @@
 using System;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.LeadForms;
 
@@ -9,7 +8,8 @@ public class LeadFormsTests : CategoryBaseTest
 {
 	protected override string Folder => "LeadForms";
 
-	[Fact(DisplayName = "Create")]
+	[Test]
+	[DisplayName("Create")]
 	public void Create()
 	{
 		Url = "https://api.vk.ru/method/leadForms.create";
@@ -35,7 +35,8 @@ public class LeadFormsTests : CategoryBaseTest
 			.Be(new Uri("https://vk.ru/apform_id=1#form_id=1"));
 	}
 
-	[Fact(DisplayName = "Delete")]
+	[Test]
+	[DisplayName("Delete")]
 	public void Delete()
 	{
 		Url = "https://api.vk.ru/method/leadForms.delete";
@@ -50,7 +51,8 @@ public class LeadFormsTests : CategoryBaseTest
 			.Be(1);
 	}
 
-	[Fact(DisplayName = "Get")]
+	[Test]
+	[DisplayName("Get")]
 	public void Get()
 	{
 		Url = "https://api.vk.ru/method/leadForms.get";
@@ -65,7 +67,8 @@ public class LeadFormsTests : CategoryBaseTest
 			.Be(2);
 	}
 
-	[Fact(DisplayName = "List")]
+	[Test]
+	[DisplayName("List")]
 	public void List()
 	{
 		Url = "https://api.vk.ru/method/leadForms.list";
@@ -80,7 +83,8 @@ public class LeadFormsTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get upload url")]
+	[Test]
+	[DisplayName("Get upload url")]
 	public void GetUploadUrl()
 	{
 		Url = "https://api.vk.ru/method/leadForms.getUploadURL";
@@ -95,7 +99,8 @@ public class LeadFormsTests : CategoryBaseTest
 			.Be(new Uri("https://pu.vk.ru1d95424ffe4e4983a6a"));
 	}
 
-	[Fact(DisplayName = "Update")]
+	[Test]
+	[DisplayName("Update")]
 	public void Update()
 	{
 		Url = "https://api.vk.ru/method/leadForms.update";

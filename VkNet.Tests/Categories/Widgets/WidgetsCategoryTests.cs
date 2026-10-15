@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Widgets;
 
@@ -8,7 +7,8 @@ public class WidgetsCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Widgets";
 
-	[Fact(DisplayName = "Get comments")]
+	[Test]
+	[DisplayName("Get comments")]
 	public void GetComments()
 	{
 		Url = "https://api.vk.ru/method/widgets.getComments";
@@ -31,7 +31,8 @@ public class WidgetsCategoryTests : CategoryBaseTest
 			.Be(10);
 	}
 
-	[Fact(DisplayName = "Get pages")]
+	[Test]
+	[DisplayName("Get pages")]
 	public void GetPages()
 	{
 		Url = "https://api.vk.ru/method/widgets.getPages";

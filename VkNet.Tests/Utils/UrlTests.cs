@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using AwesomeAssertions;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Utils;
 
 public class UrlTests
 {
-	[Fact(DisplayName = "Query from")]
+	[Test]
+	[DisplayName("Query from")]
 	public void Query_From()
 	{
 		var parameters = new Dictionary<string, string>
@@ -28,7 +28,8 @@ public class UrlTests
 			.Be("key1=value1&key2=value2");
 	}
 
-	[Fact(DisplayName = "Combine with query")]
+	[Test]
+	[DisplayName("Combine with query")]
 	public void Combine_With_Query()
 	{
 		const string testUrl = "https://www.google.com/search?q=dictionary&sourceid=chrome&ie=UTF-8";
@@ -41,7 +42,8 @@ public class UrlTests
 			.Be(Uri.EscapeDataString(expectedUrl));
 	}
 
-	[Fact(DisplayName = "Parse query string")]
+	[Test]
+	[DisplayName("Parse query string")]
 	public void ParseQueryString()
 	{
 		const string inputUrl = "https://www.google.com/search?q=dictionary&sourceid=chrome&ie=UTF-8&key1=value1&key2=value2";
@@ -73,7 +75,8 @@ public class UrlTests
 			.Be("value2");
 	}
 
-	[Fact(DisplayName = "Parse query string url should contain query parameters")]
+	[Test]
+	[DisplayName("Parse query string url should contain query parameters")]
 	public void ParseQueryString_UrlShouldContainQueryParameters()
 	{
 		const string inputUrl = "https://www.google.com/search";
@@ -83,7 +86,8 @@ public class UrlTests
 			.Throw<UriFormatException>();
 	}
 
-	[Fact(DisplayName = "Parse query string url should return expected value")]
+	[Test]
+	[DisplayName("Parse query string url should return expected value")]
 	public void ParseQueryString_UrlShouldReturnExpectedValue()
 	{
 		const string inputUrl =

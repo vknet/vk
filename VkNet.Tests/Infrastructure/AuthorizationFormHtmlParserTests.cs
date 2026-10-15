@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using AwesomeAssertions;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
-using Xunit;
 
 namespace VkNet.Tests.Infrastructure;
 
 public class AuthorizationFormHtmlParserTests : BaseTest
 {
-	[Fact(DisplayName = "Login form")]
+	[Test]
+	[DisplayName("Login form")]
 	public async Task LoginForm()
 	{
 		Url = "https://m.vk.ru/login?act=authcheck&m=442";
@@ -33,7 +33,8 @@ public class AuthorizationFormHtmlParserTests : BaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Captcha form")]
+	[Test]
+	[DisplayName("Captcha form")]
 	public async Task CaptchaForm()
 	{
 		Url = "https://m.vk.ru/login?act=authcheck&m=442";
@@ -63,7 +64,8 @@ public class AuthorizationFormHtmlParserTests : BaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Two fa form")]
+	[Test]
+	[DisplayName("Two fa form")]
 	public async Task TwoFaForm()
 	{
 		Url = "https://m.vk.ru/login?act=authcheck&m=442";
@@ -85,7 +87,8 @@ public class AuthorizationFormHtmlParserTests : BaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Consent form")]
+	[Test]
+	[DisplayName("Consent form")]
 	public async Task ConsentForm()
 	{
 		Url = "https://m.vk.ru/login?act=authcheck&m=442";

@@ -1,12 +1,12 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesMarkAsAnsweredConversationTests : MessagesBaseTests
 {
-	[Fact(DisplayName = "Mark as answered conversation")]
+	[Test]
+	[DisplayName("Mark as answered conversation")]
 	public void MarkAsAnsweredConversation()
 	{
 		Url = "https://api.vk.ru/method/messages.markAsAnsweredConversation";

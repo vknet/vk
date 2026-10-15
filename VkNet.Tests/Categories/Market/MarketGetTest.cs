@@ -1,6 +1,5 @@
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Market;
 
@@ -8,7 +7,8 @@ public class MarketGetTest : CategoryBaseTest
 {
 	protected override string Folder => "Market";
 
-	[Fact(DisplayName = "Market get")]
+	[Test]
+	[DisplayName("Market get")]
 	public void MarketGet()
 	{
 		Url = "https://api.vk.ru/method/market.get";

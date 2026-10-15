@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Friends;
 
@@ -8,7 +7,8 @@ public class FriendsGetRequests : CategoryBaseTest
 {
 	protected override string Folder => "Friends";
 
-	[Fact(DisplayName = "Default params")]
+	[Test]
+	[DisplayName("Default params")]
 	public void DefaultParams()
 	{
 		Url = "https://api.vk.ru/method/friends.getRequests";
@@ -24,7 +24,8 @@ public class FriendsGetRequests : CategoryBaseTest
 			.Be(1);
 	}
 
-	[Fact(DisplayName = "Extended")]
+	[Test]
+	[DisplayName("Extended")]
 	public void Extended()
 	{
 		Url = "https://api.vk.ru/method/friends.getRequests";

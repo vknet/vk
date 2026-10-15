@@ -5,7 +5,6 @@ using AwesomeAssertions;
 using Newtonsoft.Json;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
@@ -13,7 +12,8 @@ public class ModelsTests
 {
 	private const string VkNetModelBaseNamespace = "VkNet.Model";
 
-	[Fact(DisplayName = "Models with nullable date time fields should have json converter attribute")]
+	[Test]
+	[DisplayName("Models with nullable date time fields should have json converter attribute")]
 	public void ModelsWithNullableDateTimeFieldsShouldHaveJsonConverterAttribute()
 	{
 		var types = typeof(VkApi).Assembly.Types()
@@ -26,7 +26,8 @@ public class ModelsTests
 			.BeDecoratedWith<JsonConverterAttribute>();
 	}
 
-	[Fact(DisplayName = "Models with date time fields should have json converter attribute")]
+	[Test]
+	[DisplayName("Models with date time fields should have json converter attribute")]
 	public void ModelsWithDateTimeFieldsShouldHaveJsonConverterAttribute()
 	{
 		var types = typeof(VkApi).Assembly.Types()
@@ -39,7 +40,8 @@ public class ModelsTests
 			.BeDecoratedWith<JsonConverterAttribute>();
 	}
 
-	[Fact(DisplayName = "Models attachments fields should have json converter attribute")]
+	[Test]
+	[DisplayName("Models attachments fields should have json converter attribute")]
 	public void ModelsAttachmentsFieldsShouldHaveJsonConverterAttribute()
 	{
 		var types = typeof(VkApi).Assembly.Types()
@@ -52,7 +54,8 @@ public class ModelsTests
 			.BeDecoratedWith<JsonConverterAttribute>();
 	}
 
-	[Fact(DisplayName = "Models safety enum fields should have json converter attribute")]
+	[Test]
+	[DisplayName("Models safety enum fields should have json converter attribute")]
 	public void ModelsSafetyEnumFieldsShouldHaveJsonConverterAttribute()
 	{
 		var models = typeof(VkApi).Assembly.Types()
@@ -73,7 +76,8 @@ public class ModelsTests
 			.BeEmpty();
 	}
 
-	[Fact(DisplayName = "Models should have json converter attribute for coordinates type")]
+	[Test]
+	[DisplayName("Models should have json converter attribute for coordinates type")]
 	public void ModelsShouldHaveJsonConverterAttributeForCoordinatesType()
 	{
 		var types = typeof(VkApi).Assembly.Types()

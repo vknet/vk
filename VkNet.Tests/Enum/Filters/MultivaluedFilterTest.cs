@@ -1,12 +1,12 @@
 using AwesomeAssertions;
 using VkNet.Enums.Filters;
-using Xunit;
 
 namespace VkNet.Tests.Enum.Filters;
 
 public class MultivaluedFilterTest
 {
-	[Fact(DisplayName = "Account fields test")]
+	[Test]
+	[DisplayName("Account fields test")]
 	public void AccountFieldsTest()
 	{
 		// get test
@@ -60,7 +60,8 @@ public class MultivaluedFilterTest
 			.Be(AccountFields.Language);
 	}
 
-	[Fact(DisplayName = "Counters filter test")]
+	[Test]
+	[DisplayName("Counters filter test")]
 	public void CountersFilterTest()
 	{
 		// get test
@@ -139,7 +140,8 @@ public class MultivaluedFilterTest
 			.Be(CountersFilter.All);
 	}
 
-	[Fact(DisplayName = "Groups fields test")]
+	[Test]
+	[DisplayName("Groups fields test")]
 	public void GroupsFieldsTest()
 	{
 		// get test
@@ -333,7 +335,8 @@ public class MultivaluedFilterTest
 			.Be(GroupsFields.AllUndocumented);
 	}
 
-	[Fact(DisplayName = "Groups filters test")]
+	[Test]
+	[DisplayName("Groups filters test")]
 	public void GroupsFiltersTest()
 	{
 		// get test
@@ -395,7 +398,8 @@ public class MultivaluedFilterTest
 			.Be(GroupsFilters.All);
 	}
 
-	[Fact(DisplayName = "Subscribe filter test")]
+	[Test]
+	[DisplayName("Subscribe filter test")]
 	public void SubscribeFilterTest()
 	{
 		// get test
@@ -465,7 +469,8 @@ public class MultivaluedFilterTest
 			.Be(SubscribeFilter.All);
 	}
 
-	[Fact(DisplayName = "Users fields test")]
+	[Test]
+	[DisplayName("Users fields test")]
 	public void UsersFieldsTest()
 	{
 		// get test
@@ -865,7 +870,8 @@ public class MultivaluedFilterTest
 			.Be(UsersFields.All);
 	}
 
-	[Fact(DisplayName = "Video filters test")]
+	[Test]
+	[DisplayName("Video filters test")]
 	public void VideoFiltersTest()
 	{
 		// get test
@@ -919,7 +925,8 @@ public class MultivaluedFilterTest
 			.Be(VideoFilters.All);
 	}
 
-	[Fact(DisplayName = "Audio broadcast filter test")]
+	[Test]
+	[DisplayName("Audio broadcast filter test")]
 	public void AudioBroadcastFilterTest()
 	{
 		// get test

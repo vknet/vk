@@ -1,13 +1,13 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Enum.StringEnums;
 
 public class StringEnumTests
 {
-	[Fact(DisplayName = "Null test")]
+	[Test]
+	[DisplayName("Null test")]
 	public void NullTest()
 	{
 		var result = Utilities.Deserialize<AppRatingType>("");
@@ -16,7 +16,8 @@ public class StringEnumTests
 			.Be(null);
 	}
 
-	[Fact(DisplayName = "Video catalog type test")]
+	[Test]
+	[DisplayName("Video catalog type test")]
 	public void VideoCatalogTypeTest()
 	{
 		Utilities.Deserialize<VideoCatalogType>("channel")
@@ -28,7 +29,8 @@ public class StringEnumTests
 			.Be(VideoCatalogType.Category);
 	}
 
-	[Fact(DisplayName = "Wall filter test")]
+	[Test]
+	[DisplayName("Wall filter test")]
 	public void WallFilterTest()
 	{
 		Utilities.Deserialize<WallFilter>("owner")
@@ -52,7 +54,8 @@ public class StringEnumTests
 			.Be(WallFilter.Postponed);
 	}
 
-	[Fact(DisplayName = "App rating type test")]
+	[Test]
+	[DisplayName("App rating type test")]
 	public void AppRatingTypeTest()
 	{
 		Utilities.Deserialize<AppRatingType>("level")
@@ -64,7 +67,8 @@ public class StringEnumTests
 			.Be(AppRatingType.Points);
 	}
 
-	[Fact(DisplayName = "Groups sort test")]
+	[Test]
+	[DisplayName("Groups sort test")]
 	public void GroupsSortTest()
 	{
 		Utilities.Deserialize<GroupsSort>("id_asc")
@@ -84,7 +88,8 @@ public class StringEnumTests
 			.Be(GroupsSort.TimeDesc);
 	}
 
-	[Fact(DisplayName = "Link access type test")]
+	[Test]
+	[DisplayName("Link access type test")]
 	public void LinkAccessTypeTest()
 	{
 		Utilities.Deserialize<LinkAccessType>("not_banned")
@@ -100,7 +105,8 @@ public class StringEnumTests
 			.Be(LinkAccessType.Processing);
 	}
 
-	[Fact(DisplayName = "Video catalog item type test")]
+	[Test]
+	[DisplayName("Video catalog item type test")]
 	public void VideoCatalogItemTypeTest()
 	{
 		Utilities.Deserialize<VideoCatalogItemType>("video")
@@ -112,7 +118,8 @@ public class StringEnumTests
 			.Be(VideoCatalogItemType.Album);
 	}
 
-	[Fact(DisplayName = "Group type test")]
+	[Test]
+	[DisplayName("Group type test")]
 	public void GroupTypeTest()
 	{
 		// get test
@@ -154,7 +161,8 @@ public class StringEnumTests
 			.Be(GroupType.Undefined);
 	}
 
-	[Fact(DisplayName = "Deactivated test")]
+	[Test]
+	[DisplayName("Deactivated test")]
 	public void DeactivatedTest()
 	{
 		// get test
@@ -187,7 +195,8 @@ public class StringEnumTests
 			.Be(Deactivated.Activated);
 	}
 
-	[Fact(DisplayName = "User section test")]
+	[Test]
+	[DisplayName("User section test")]
 	public void UserSectionTest()
 	{
 		// get test
@@ -211,7 +220,8 @@ public class StringEnumTests
 			.Be(UserSection.Subscriptions);
 	}
 
-	[Fact(DisplayName = "Transcript states test")]
+	[Test]
+	[DisplayName("Transcript states test")]
 	public void TranscriptStatesTest()
 	{
 		// get test
@@ -235,7 +245,8 @@ public class StringEnumTests
 			.Be(TranscriptStates.InProgress);
 	}
 
-	[Fact(DisplayName = "Story object state test")]
+	[Test]
+	[DisplayName("Story object state test")]
 	public void StoryObjectStateTest()
 	{
 		// get test
@@ -268,7 +279,8 @@ public class StringEnumTests
 			.Be(StoryObjectState.Off);
 	}
 
-	[Fact(DisplayName = "Story link text test")]
+	[Test]
+	[DisplayName("Story link text test")]
 	public void StoryLinkTextTest()
 	{
 		// get test
@@ -436,7 +448,8 @@ public class StringEnumTests
 			.Be(StoryLinkText.Write);
 	}
 
-	[Fact(DisplayName = "Services test")]
+	[Test]
+	[DisplayName("Services test")]
 	public void ServicesTest()
 	{
 		// get test
@@ -505,7 +518,8 @@ public class StringEnumTests
 			.Be(Services.Google);
 	}
 
-	[Fact(DisplayName = "Report type test")]
+	[Test]
+	[DisplayName("Report type test")]
 	public void ReportTypeTest()
 	{
 		// get test
@@ -547,7 +561,8 @@ public class StringEnumTests
 			.Be(ReportType.Advertisment);
 	}
 
-	[Fact(DisplayName = "Relative type test")]
+	[Test]
+	[DisplayName("Relative type test")]
 	public void RelativeTypeTest()
 	{
 		Utilities.Deserialize<RelativeType>("sibling")
@@ -571,7 +586,8 @@ public class StringEnumTests
 			.Be(RelativeType.Grandchild);
 	}
 
-	[Fact(DisplayName = "Post type order test")]
+	[Test]
+	[DisplayName("Post type order test")]
 	public void PostTypeOrderTest()
 	{
 		Utilities.Deserialize<PostTypeOrder>("post")
@@ -583,7 +599,8 @@ public class StringEnumTests
 			.Be(PostTypeOrder.Copy);
 	}
 
-	[Fact(DisplayName = "Post type test")]
+	[Test]
+	[DisplayName("Post type test")]
 	public void PostTypeTest()
 	{
 		Utilities.Deserialize<PostType>("post")
@@ -607,7 +624,8 @@ public class StringEnumTests
 			.Be(PostType.Suggest);
 	}
 
-	[Fact(DisplayName = "Post source type test")]
+	[Test]
+	[DisplayName("Post source type test")]
 	public void PostSourceTypeTest()
 	{
 		Utilities.Deserialize<PostSourceType>("vk")
@@ -631,7 +649,8 @@ public class StringEnumTests
 			.Be(PostSourceType.Sms);
 	}
 
-	[Fact(DisplayName = "Platform test")]
+	[Test]
+	[DisplayName("Platform test")]
 	public void PlatformTest()
 	{
 		// get test
@@ -664,7 +683,8 @@ public class StringEnumTests
 			.Be(Platform.Wphone);
 	}
 
-	[Fact(DisplayName = "Photo size type test")]
+	[Test]
+	[DisplayName("Photo size type test")]
 	public void PhotoSizeTypeTest()
 	{
 		Utilities.Deserialize<PhotoSizeType>("s")
@@ -780,7 +800,8 @@ public class StringEnumTests
 			.Be(PhotoSizeType.V);
 	}
 
-	[Fact(DisplayName = "Photo feed type test")]
+	[Test]
+	[DisplayName("Photo feed type test")]
 	public void PhotoFeedTypeTest()
 	{
 		Utilities.Deserialize<PhotoFeedType>("photo")
@@ -792,7 +813,8 @@ public class StringEnumTests
 			.Be(PhotoFeedType.PhotoTag);
 	}
 
-	[Fact(DisplayName = "Occupation type test")]
+	[Test]
+	[DisplayName("Occupation type test")]
 	public void OccupationTypeTest()
 	{
 		Utilities.Deserialize<OccupationType>("work")
@@ -808,7 +830,8 @@ public class StringEnumTests
 			.Be(OccupationType.University);
 	}
 
-	[Fact(DisplayName = "News object types test")]
+	[Test]
+	[DisplayName("News object types test")]
 	public void NewsObjectTypesTest()
 	{
 		// get test
@@ -868,7 +891,8 @@ public class StringEnumTests
 			.Be(NewsObjectTypes.Audio);
 	}
 
-	[Fact(DisplayName = "Name case test")]
+	[Test]
+	[DisplayName("Name case test")]
 	public void NameCaseTest()
 	{
 		// get test
@@ -928,7 +952,8 @@ public class StringEnumTests
 			.Be(NameCase.Abl);
 	}
 
-	[Fact(DisplayName = "Message event type test")]
+	[Test]
+	[DisplayName("Message event type test")]
 	public void MessageEventTypeTest()
 	{
 		Utilities.Deserialize<MessageEventType>("open_app")
@@ -944,7 +969,8 @@ public class StringEnumTests
 			.Be(MessageEventType.ShowSnackbar);
 	}
 
-	[Fact(DisplayName = "Media type test")]
+	[Test]
+	[DisplayName("Media type test")]
 	public void MediaTypeTest()
 	{
 		Utilities.Deserialize<MediaType>("photo")
@@ -984,7 +1010,8 @@ public class StringEnumTests
 			.Be(MediaType.Graffiti);
 	}
 
-	[Fact(DisplayName = "Likes filter test")]
+	[Test]
+	[DisplayName("Likes filter test")]
 	public void LikesFilterTest()
 	{
 		Utilities.Deserialize<LikesFilter>("likes")
@@ -996,7 +1023,8 @@ public class StringEnumTests
 			.Be(LikesFilter.Copies);
 	}
 
-	[Fact(DisplayName = "Like object type test")]
+	[Test]
+	[DisplayName("Like object type test")]
 	public void LikeObjectTypeTest()
 	{
 		Utilities.Deserialize<LikeObjectType>("post")
@@ -1048,7 +1076,8 @@ public class StringEnumTests
 			.Be(LikeObjectType.MarketComment);
 	}
 
-	[Fact(DisplayName = "Keyboard button color test")]
+	[Test]
+	[DisplayName("Keyboard button color test")]
 	public void KeyboardButtonColorTest()
 	{
 		// get test
@@ -1090,7 +1119,8 @@ public class StringEnumTests
 			.Be(KeyboardButtonColor.Primary);
 	}
 
-	[Fact(DisplayName = "Keyboard button action type test")]
+	[Test]
+	[DisplayName("Keyboard button action type test")]
 	public void KeyboardButtonActionTypeTest()
 	{
 		// get test
@@ -1150,7 +1180,8 @@ public class StringEnumTests
 			.Be(KeyboardButtonActionType.Callback);
 	}
 
-	[Fact(DisplayName = "Friends order test")]
+	[Test]
+	[DisplayName("Friends order test")]
 	public void FriendsOrderTest()
 	{
 		Utilities.Deserialize<FriendsOrder>("name")
@@ -1166,7 +1197,8 @@ public class StringEnumTests
 			.Be(FriendsOrder.Random);
 	}
 
-	[Fact(DisplayName = "Friends filter test")]
+	[Test]
+	[DisplayName("Friends filter test")]
 	public void FriendsFilterTest()
 	{
 		Utilities.Deserialize<FriendsFilter>("mutual")
@@ -1182,7 +1214,8 @@ public class StringEnumTests
 			.Be(FriendsFilter.MutualContacts);
 	}
 
-	[Fact(DisplayName = "Feed type test")]
+	[Test]
+	[DisplayName("Feed type test")]
 	public void FeedTypeTest()
 	{
 		Utilities.Deserialize<FeedType>("photo")
@@ -1194,7 +1227,8 @@ public class StringEnumTests
 			.Be(FeedType.PhotoTag);
 	}
 
-	[Fact(DisplayName = "Display test")]
+	[Test]
+	[DisplayName("Display test")]
 	public void DisplayTest()
 	{
 		Utilities.Deserialize<Display>("page")
@@ -1210,7 +1244,8 @@ public class StringEnumTests
 			.Be(Display.Mobile);
 	}
 
-	[Fact(DisplayName = "Comments sort test")]
+	[Test]
+	[DisplayName("Comments sort test")]
 	public void CommentsSortTest()
 	{
 		Utilities.Deserialize<CommentsSort>("asc")
@@ -1222,7 +1257,8 @@ public class StringEnumTests
 			.Be(CommentsSort.Desc);
 	}
 
-	[Fact(DisplayName = "Comment object type test")]
+	[Test]
+	[DisplayName("Comment object type test")]
 	public void CommentObjectTypeTest()
 	{
 		Utilities.Deserialize<CommentObjectType>("post")
@@ -1246,7 +1282,8 @@ public class StringEnumTests
 			.Be(CommentObjectType.Note);
 	}
 
-	[Fact(DisplayName = "Change name status test")]
+	[Test]
+	[DisplayName("Change name status test")]
 	public void ChangeNameStatusTest()
 	{
 		Utilities.Deserialize<ChangeNameStatus>("processing")
@@ -1270,7 +1307,8 @@ public class StringEnumTests
 			.Be(ChangeNameStatus.WasDeclined);
 	}
 
-	[Fact(DisplayName = "App widget type test")]
+	[Test]
+	[DisplayName("App widget type test")]
 	public void AppWidgetTypeTest()
 	{
 		Utilities.Deserialize<AppWidgetType>("donation")
@@ -1310,7 +1348,8 @@ public class StringEnumTests
 			.Be(AppWidgetType.CoverList);
 	}
 
-	[Fact(DisplayName = "App sort test")]
+	[Test]
+	[DisplayName("App sort test")]
 	public void AppSortTest()
 	{
 		Utilities.Deserialize<AppSort>("popular_today")
@@ -1334,7 +1373,8 @@ public class StringEnumTests
 			.Be(AppSort.PopularWeek);
 	}
 
-	[Fact(DisplayName = "App request type test")]
+	[Test]
+	[DisplayName("App request type test")]
 	public void AppRequestTypeTest()
 	{
 		Utilities.Deserialize<AppRequestType>("invite")
@@ -1346,7 +1386,8 @@ public class StringEnumTests
 			.Be(AppRequestType.Request);
 	}
 
-	[Fact(DisplayName = "App platforms test")]
+	[Test]
+	[DisplayName("App platforms test")]
 	public void AppPlatformsTest()
 	{
 		Utilities.Deserialize<AppPlatforms>("ios")
@@ -1366,7 +1407,8 @@ public class StringEnumTests
 			.Be(AppPlatforms.Web);
 	}
 
-	[Fact(DisplayName = "Monthly limit test")]
+	[Test]
+	[DisplayName("Monthly limit test")]
 	public void MonthlyLimitTest()
 	{
 		Utilities.Deserialize<MonthlyLimit>("tier_2")

@@ -1,13 +1,13 @@
 using AwesomeAssertions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.SafetyEnums;
-using Xunit;
 
 namespace VkNet.Tests.Enum.SafetyEnums;
 
 public class SafetyEnumsTest
 {
-	[Fact(DisplayName = "App filter test")]
+	[Test]
+	[DisplayName("App filter test")]
 	public void AppFilterTest()
 	{
 		// get test
@@ -29,7 +29,8 @@ public class SafetyEnumsTest
 			.Be(AppFilter.Featured);
 	}
 
-	[Fact(DisplayName = "News types test")]
+	[Test]
+	[DisplayName("News types test")]
 	public void NewsTypesTest()
 	{
 		// get test
@@ -83,7 +84,8 @@ public class SafetyEnumsTest
 			.Be(NewsTypes.Note);
 	}
 
-	[Fact(DisplayName = "Photo album type test")]
+	[Test]
+	[DisplayName("Photo album type test")]
 	public void PhotoAlbumTypeTest()
 	{
 		// get test
@@ -113,7 +115,8 @@ public class SafetyEnumsTest
 			.Be(PhotoAlbumType.Saved);
 	}
 
-	[Fact(DisplayName = "Privacy test")]
+	[Test]
+	[DisplayName("Privacy test")]
 	public void PrivacyTest()
 	{
 		// get test
@@ -167,7 +170,8 @@ public class SafetyEnumsTest
 			.Be(Privacy.OnlyMe);
 	}
 
-	[Fact(DisplayName = "Market item button title test")]
+	[Test]
+	[DisplayName("Market item button title test")]
 	public void MarketItemButtonTitleTest()
 	{
 		// get test

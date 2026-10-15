@@ -5,7 +5,6 @@ using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Utils;
 
@@ -13,7 +12,8 @@ public class UtilsCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Utils";
 
-	[Fact(DisplayName = "Check link banned link")]
+	[Test]
+	[DisplayName("Check link banned link")]
 	public void CheckLink_BannedLink()
 	{
 		Url = "https://api.vk.ru/method/utils.checkLink";
@@ -30,7 +30,8 @@ public class UtilsCategoryTest : CategoryBaseTest
 			.Be(LinkAccessType.Banned);
 	}
 
-	[Fact(DisplayName = "Check link google link")]
+	[Test]
+	[DisplayName("Check link google link")]
 	public void CheckLink_GoogleLink()
 	{
 		Url = "https://api.vk.ru/method/utils.checkLink";
@@ -47,7 +48,8 @@ public class UtilsCategoryTest : CategoryBaseTest
 			.Be(LinkAccessType.NotBanned);
 	}
 
-	[Fact(DisplayName = "Check link not link")]
+	[Test]
+	[DisplayName("Check link not link")]
 	public void CheckLink_NotLink()
 	{
 		Url = "https://api.vk.ru/method/utils.checkLink";
@@ -58,7 +60,8 @@ public class UtilsCategoryTest : CategoryBaseTest
 			.ThrowExactly<UriFormatException>();
 	}
 
-	[Fact(DisplayName = "Delete from last shortened")]
+	[Test]
+	[DisplayName("Delete from last shortened")]
 	public void DeleteFromLastShortened()
 	{
 		Url = "https://api.vk.ru/method/utils.deleteFromLastShortened";
@@ -70,7 +73,8 @@ public class UtilsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Get last shortened links")]
+	[Test]
+	[DisplayName("Get last shortened links")]
 	public void GetLastShortenedLinks()
 	{
 		Url = "https://api.vk.ru/method/utils.getLastShortenedLinks";
@@ -82,7 +86,8 @@ public class UtilsCategoryTest : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact(DisplayName = "Get links stats")]
+	[Test]
+	[DisplayName("Get links stats")]
 	public void GetLinksStats()
 	{
 		Url = "https://api.vk.ru/method/utils.getLinkStats";
@@ -147,7 +152,8 @@ public class UtilsCategoryTest : CategoryBaseTest
 			.Be(1);
 	}
 
-	[Fact(DisplayName = "Get server time")]
+	[Test]
+	[DisplayName("Get server time")]
 	public void GetServerTime()
 	{
 		Url = "https://api.vk.ru/method/utils.getServerTime";
@@ -159,7 +165,8 @@ public class UtilsCategoryTest : CategoryBaseTest
 			.Be(VkResponse.TimestampToDateTime(1489309200));
 	}
 
-	[Fact(DisplayName = "Get short link")]
+	[Test]
+	[DisplayName("Get short link")]
 	public void GetShortLink()
 	{
 		Url = "https://api.vk.ru/method/utils.getShortLink";
@@ -180,7 +187,8 @@ public class UtilsCategoryTest : CategoryBaseTest
 			.Be("7dMDvY");
 	}
 
-	[Fact(DisplayName = "Resolve screen name")]
+	[Test]
+	[DisplayName("Resolve screen name")]
 	public void ResolveScreenName()
 	{
 		Url = "https://api.vk.ru/method/utils.resolveScreenName";
@@ -198,7 +206,8 @@ public class UtilsCategoryTest : CategoryBaseTest
 			.Be(1);
 	}
 
-	[Fact(DisplayName = "Resolve screen name bad screen name")]
+	[Test]
+	[DisplayName("Resolve screen name bad screen name")]
 	public void ResolveScreenName_BadScreenName()
 	{
 		Url = "https://api.vk.ru/method/utils.resolveScreenName";
@@ -213,13 +222,15 @@ public class UtilsCategoryTest : CategoryBaseTest
 			.Be(0);
 	}
 
-	[Fact(DisplayName = "Resolve screen name empty string name throw exception")]
+	[Test]
+	[DisplayName("Resolve screen name empty string name throw exception")]
 	public void ResolveScreenName_EmptyStringName_ThrowException() => FluentActions
 		.Invoking(() => Api.Utils.ResolveScreenName(string.Empty))
 		.Should()
 		.ThrowExactly<ArgumentNullException>();
 
-	[Fact(DisplayName = "Resolve screen name group")]
+	[Test]
+	[DisplayName("Resolve screen name group")]
 	public void ResolveScreenName_Group()
 	{
 		Url = "https://api.vk.ru/method/utils.resolveScreenName";
@@ -238,7 +249,8 @@ public class UtilsCategoryTest : CategoryBaseTest
 			.Be(10639516);
 	}
 
-	[Fact(DisplayName = "Resolve screen name object id is very big user")]
+	[Test]
+	[DisplayName("Resolve screen name object id is very big user")]
 	public void ResolveScreenName_ObjectIdIsVeryBig_User()
 	{
 		Url = "https://api.vk.ru/method/utils.resolveScreenName";
@@ -257,7 +269,8 @@ public class UtilsCategoryTest : CategoryBaseTest
 			.Be(VkObjectType.User);
 	}
 
-	[Fact(DisplayName = "Resolve screen name user")]
+	[Test]
+	[DisplayName("Resolve screen name user")]
 	public void ResolveScreenName_User()
 	{
 		Url = "https://api.vk.ru/method/utils.resolveScreenName";

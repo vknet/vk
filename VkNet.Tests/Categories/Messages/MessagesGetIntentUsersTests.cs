@@ -1,12 +1,12 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesGetIntentUsersTests : MessagesBaseTests
 {
-	[Fact(DisplayName = "Get intent users")]
+	[Test]
+	[DisplayName("Get intent users")]
 	public void GetIntentUsers()
 	{
 		// Arrange

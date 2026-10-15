@@ -1,12 +1,12 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesGetConversationsTests : MessagesBaseTests
 {
-	[Fact(DisplayName = "Get conversations")]
+	[Test]
+	[DisplayName("Get conversations")]
 	public void GetConversations()
 	{
 		Url = "https://api.vk.ru/method/messages.getConversations";
@@ -18,7 +18,8 @@ public class MessagesGetConversationsTests : MessagesBaseTests
 			.Be(1);
 	}
 
-	[Fact(DisplayName = "Get conversations attachment wall")]
+	[Test]
+	[DisplayName("Get conversations attachment wall")]
 	public void GetConversations_Attachment_wall()
 	{
 		Url = "https://api.vk.ru/method/messages.getConversations";
@@ -30,7 +31,8 @@ public class MessagesGetConversationsTests : MessagesBaseTests
 			.Be(253);
 	}
 
-	[Fact(DisplayName = "Get conversations group photo field")]
+	[Test]
+	[DisplayName("Get conversations group photo field")]
 	public void GetConversations_Group_PhotoField()
 	{
 		Url = "https://api.vk.ru/method/messages.getConversations";

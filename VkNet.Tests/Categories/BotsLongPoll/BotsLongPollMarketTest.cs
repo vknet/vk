@@ -1,12 +1,12 @@
 using AwesomeAssertions;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
 
 public class BotsLongPollMarketTest : BotsLongPollBaseTest
 {
-	[Fact(DisplayName = "Get bots long poll history market comment new test")]
+	[Test]
+	[DisplayName("Get bots long poll history market comment new test")]
 	public void GetBotsLongPollHistory_MarketCommentNewTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentNewTest));
@@ -56,7 +56,8 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history market comment edit test")]
+	[Test]
+	[DisplayName("Get bots long poll history market comment edit test")]
 	public void GetBotsLongPollHistory_MarketCommentEditTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentEditTest));
@@ -106,7 +107,8 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history market comment restore test")]
+	[Test]
+	[DisplayName("Get bots long poll history market comment restore test")]
 	public void GetBotsLongPollHistory_MarketCommentRestoreTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentRestoreTest));
@@ -156,7 +158,8 @@ public class BotsLongPollMarketTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history market comment delete test")]
+	[Test]
+	[DisplayName("Get bots long poll history market comment delete test")]
 	public void GetBotsLongPollHistory_MarketCommentDeleteTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_MarketCommentDeleteTest));

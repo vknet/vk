@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Notes;
 
@@ -8,7 +7,8 @@ public class NotesCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Notes";
 
-	[Fact(DisplayName = "Add")]
+	[Test]
+	[DisplayName("Add")]
 	public void Add()
 	{
 		Url = "https://api.vk.ru/method/notes.add";
@@ -20,7 +20,8 @@ public class NotesCategoryTests : CategoryBaseTest
 			.Be(11825220);
 	}
 
-	[Fact(DisplayName = "Create comment")]
+	[Test]
+	[DisplayName("Create comment")]
 	public void CreateComment()
 	{
 		Url = "https://api.vk.ru/method/notes.createComment";
@@ -32,7 +33,8 @@ public class NotesCategoryTests : CategoryBaseTest
 			.Be(11825220);
 	}
 
-	[Fact(DisplayName = "Delete")]
+	[Test]
+	[DisplayName("Delete")]
 	public void Delete()
 	{
 		Url = "https://api.vk.ru/method/notes.delete";
@@ -44,7 +46,8 @@ public class NotesCategoryTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Delete comment")]
+	[Test]
+	[DisplayName("Delete comment")]
 	public void DeleteComment()
 	{
 		Url = "https://api.vk.ru/method/notes.deleteComment";
@@ -56,7 +59,8 @@ public class NotesCategoryTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Edit")]
+	[Test]
+	[DisplayName("Edit")]
 	public void Edit()
 	{
 		Url = "https://api.vk.ru/method/notes.edit";
@@ -68,7 +72,8 @@ public class NotesCategoryTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Edit comment")]
+	[Test]
+	[DisplayName("Edit comment")]
 	public void EditComment()
 	{
 		Url = "https://api.vk.ru/method/notes.editComment";
@@ -80,7 +85,8 @@ public class NotesCategoryTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Get")]
+	[Test]
+	[DisplayName("Get")]
 	public void Get()
 	{
 		Url = "https://api.vk.ru/method/notes.get";
@@ -92,7 +98,8 @@ public class NotesCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get by id")]
+	[Test]
+	[DisplayName("Get by id")]
 	public void GetById()
 	{
 		Url = "https://api.vk.ru/method/notes.getById";
@@ -104,7 +111,8 @@ public class NotesCategoryTests : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact(DisplayName = "Get comments")]
+	[Test]
+	[DisplayName("Get comments")]
 	public void GetComments()
 	{
 		Url = "https://api.vk.ru/method/notes.getComments";
@@ -116,7 +124,8 @@ public class NotesCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Restore comment")]
+	[Test]
+	[DisplayName("Restore comment")]
 	public void RestoreComment()
 	{
 		Url = "https://api.vk.ru/method/notes.restoreComment";

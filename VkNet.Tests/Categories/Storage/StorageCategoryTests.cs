@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Storage;
 
@@ -8,7 +7,8 @@ public class StorageCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Storage";
 
-	[Fact(DisplayName = "Get")]
+	[Test]
+	[DisplayName("Get")]
 	public void Get()
 	{
 		Url = "https://api.vk.ru/method/storage.get";
@@ -23,7 +23,8 @@ public class StorageCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get keys")]
+	[Test]
+	[DisplayName("Get keys")]
 	public void GetKeys()
 	{
 		Url = "https://api.vk.ru/method/storage.getKeys";
@@ -38,7 +39,8 @@ public class StorageCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Set")]
+	[Test]
+	[DisplayName("Set")]
 	public void Set()
 	{
 		Url = "https://api.vk.ru/method/storage.set";

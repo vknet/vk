@@ -10,14 +10,14 @@ using VkNet.Enums.Filters;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests;
 
 [TestSubject(typeof(VkApi))]
 public class VkApiTest : BaseTest
 {
-	[Fact(DisplayName = "Авторизация по токену")]
+	[Test]
+	[DisplayName("Авторизация по токену")]
 	public void AuthorizeByToken()
 	{
 		Api.Authorize(new()
@@ -30,7 +30,8 @@ public class VkApiTest : BaseTest
 			.Be(1);
 	}
 
-	[Fact(DisplayName = "Авторизация и обновление токена автоматически")]
+	[Test]
+	[DisplayName("Авторизация и обновление токена автоматически")]
 	public void AuthorizeAndUpdateTokenAutomatically()
 	{
 		Api.Authorize(new()
@@ -56,7 +57,9 @@ public class VkApiTest : BaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Должно быть не более 3 вызовов в секунду", Skip = "Не работает")]
+	[Test]
+	[DisplayName("Должно быть не более 3 вызовов в секунду")]
+	[Skip("Не работает")]
 	public async Task Call_NotMoreThen3CallsPerSecond()
 	{
 		Url = "https://api.vk.ru/method/friends.getRequests";
@@ -79,7 +82,8 @@ public class VkApiTest : BaseTest
 			.BeLessThanOrEqualTo(callsCount);
 	}
 
-	[Fact(DisplayName = "Вызов метода Call и преобразование в тип")]
+	[Test]
+	[DisplayName("Вызов метода Call и преобразование в тип")]
 	public void CallAndConvertToType()
 	{
 		Url = "https://api.vk.ru/method/friends.getRequests";
@@ -100,7 +104,8 @@ public class VkApiTest : BaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Получение значения по умолчанию для языка")]
+	[Test]
+	[DisplayName("Получение значения по умолчанию для языка")]
 	public void DefaultLanguageValue()
 	{
 		var lang = Api.GetLanguage();
@@ -109,10 +114,12 @@ public class VkApiTest : BaseTest
 			.BeNull();
 	}
 
-	[Fact(DisplayName = "Выгрузка ресурсов из памяти")]
+	[Test]
+	[DisplayName("Выгрузка ресурсов из памяти")]
 	public void DisposeTest() => Api.Dispose();
 
-	[Fact(DisplayName = "Установка Английского языка")]
+	[Test]
+	[DisplayName("Установка Английского языка")]
 	public void EnglishLanguageValue()
 	{
 		Api.SetLanguage(Language.En);
@@ -122,7 +129,8 @@ public class VkApiTest : BaseTest
 			.Be(Language.En);
 	}
 
-	[Fact(DisplayName = "Вызов с параметрами словаря")]
+	[Test]
+	[DisplayName("Вызов с параметрами словаря")]
 	public void Invoke_DictionaryParams()
 	{
 		Url = "https://api.vk.ru/method/example.get";
@@ -141,7 +149,8 @@ public class VkApiTest : BaseTest
 			.BeEquivalentTo(json);
 	}
 
-	[Fact(DisplayName = "Вызов с использованием VkParameters")]
+	[Test]
+	[DisplayName("Вызов с использованием VkParameters")]
 	public void Invoke_VkParams()
 	{
 		Url = "https://api.vk.ru/method/example.get";
@@ -160,14 +169,16 @@ public class VkApiTest : BaseTest
 			.BeEquivalentTo(json);
 	}
 
-	[Fact(DisplayName = "Валидация")]
+	[Test]
+	[DisplayName("Валидация")]
 	public void Validate()
 	{
 		var uri = new Uri("https://m.vk.ru/activation?act=validate&api_hash=f2fed5f22ebadc301e&hash=c8acf371111c938417");
 		Api.Validate(uri.ToString());
 	}
 
-	[Fact(DisplayName = "Проверка методов API по умолчанию")]
+	[Test]
+	[DisplayName("Проверка методов API по умолчанию")]
 	public void VkApi_Constructor_SetDefaultMethodCategories()
 	{
 		Api.Users.Should()
@@ -240,7 +251,8 @@ public class VkApiTest : BaseTest
 			.NotBeNull();
 	}
 
-	[Fact(DisplayName = "Метод Call должен быть публичным")]
+	[Test]
+	[DisplayName("Метод Call должен быть публичным")]
 	public void VkCallShouldBePublic()
 	{
 		// arrange
@@ -258,7 +270,8 @@ public class VkApiTest : BaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Метод установки версии должен изменять саму версию")]
+	[Test]
+	[DisplayName("Метод установки версии должен изменять саму версию")]
 	public void VersionShouldBeenChanged()
 	{
 		Api.VkApiVersion.SetVersion(999, 0);
@@ -267,7 +280,8 @@ public class VkApiTest : BaseTest
 			.Be("999.0");
 	}
 
-	[Fact(DisplayName = "Выход из аккаунта")]
+	[Test]
+	[DisplayName("Выход из аккаунта")]
 	public void Logout()
 	{
 		Api.LogOut();

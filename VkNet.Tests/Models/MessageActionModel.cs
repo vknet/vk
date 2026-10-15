@@ -1,13 +1,13 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class MessageActionModel : BaseTest
 {
-	[Fact(DisplayName = "Should have field chat create")]
+	[Test]
+	[DisplayName("Should have field chat create")]
 	public void ShouldHaveField_ChatCreate()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatCreate));
@@ -19,7 +19,8 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatCreate);
 	}
 
-	[Fact(DisplayName = "Should have field chat invite user")]
+	[Test]
+	[DisplayName("Should have field chat invite user")]
 	public void ShouldHaveField_ChatInviteUser()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUser));
@@ -31,7 +32,8 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatInviteUser);
 	}
 
-	[Fact(DisplayName = "Should have field chat invite user by link")]
+	[Test]
+	[DisplayName("Should have field chat invite user by link")]
 	public void ShouldHaveField_ChatInviteUserByLink()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatInviteUserByLink));
@@ -43,7 +45,8 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatInviteUserByLink);
 	}
 
-	[Fact(DisplayName = "Should have field chat kick user")]
+	[Test]
+	[DisplayName("Should have field chat kick user")]
 	public void ShouldHaveField_ChatKickUser()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatKickUser));
@@ -55,7 +58,8 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatKickUser);
 	}
 
-	[Fact(DisplayName = "Should have field chat photo remove")]
+	[Test]
+	[DisplayName("Should have field chat photo remove")]
 	public void ShouldHaveField_ChatPhotoRemove()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoRemove));
@@ -67,7 +71,8 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatPhotoRemove);
 	}
 
-	[Fact(DisplayName = "Should have field chat photo update")]
+	[Test]
+	[DisplayName("Should have field chat photo update")]
 	public void ShouldHaveField_ChatPhotoUpdate()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatPhotoUpdate));
@@ -79,7 +84,8 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatPhotoUpdate);
 	}
 
-	[Fact(DisplayName = "Should have field chat pin message")]
+	[Test]
+	[DisplayName("Should have field chat pin message")]
 	public void ShouldHaveField_ChatPinMessage()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatPinMessage));
@@ -91,7 +97,8 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatPinMessage);
 	}
 
-	[Fact(DisplayName = "Should have field chat title update")]
+	[Test]
+	[DisplayName("Should have field chat title update")]
 	public void ShouldHaveField_ChatTitleUpdate()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatTitleUpdate));
@@ -103,7 +110,8 @@ public class MessageActionModel : BaseTest
 			.Be(MessageAction.ChatTitleUpdate);
 	}
 
-	[Fact(DisplayName = "Should have field chat unpin message")]
+	[Test]
+	[DisplayName("Should have field chat unpin message")]
 	public void ShouldHaveField_ChatUnpinMessage()
 	{
 		ReadJsonFile("Models", nameof(ShouldHaveField_ChatUnpinMessage));

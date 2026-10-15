@@ -2,7 +2,6 @@
 using JetBrains.Annotations;
 using VkNet.Exception;
 using VkNet.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests;
 
@@ -11,7 +10,8 @@ public class VkApiVersionManagerTests
 {
 	private VkApiVersionManager Manager { get; } = new();
 
-	[Fact(DisplayName = "Версия не должна быть пустой")]
+	[Test]
+	[DisplayName("Версия не должна быть пустой")]
 	public void VersionIsNotEmpty()
 	{
 		Manager.Should()
@@ -21,7 +21,8 @@ public class VkApiVersionManagerTests
 			.NotBeNullOrWhiteSpace();
 	}
 
-	[Fact(DisplayName = "Версия должна быть изменена")]
+	[Test]
+	[DisplayName("Версия должна быть изменена")]
 	public void VersionIsChanged()
 	{
 		Manager.SetVersion(999, 0);
@@ -30,7 +31,8 @@ public class VkApiVersionManagerTests
 			.Be("999.0");
 	}
 
-	[Fact(DisplayName = "Значение должно быть больше или равно 5.93")]
+	[Test]
+	[DisplayName("Значение должно быть больше или равно 5.93")]
 	public void IsGreaterThanOrEqual_GreaterValue()
 	{
 		Manager.SetVersion(5, 92);
@@ -40,7 +42,8 @@ public class VkApiVersionManagerTests
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "IsGreaterThanOrEqual. Сравнение текущей версии с самой версией")]
+	[Test]
+	[DisplayName("IsGreaterThanOrEqual. Сравнение текущей версии с самой версией")]
 	public void IsGreaterThanOrEqual_EqualValue()
 	{
 		Manager.SetVersion(5, 92);
@@ -50,7 +53,8 @@ public class VkApiVersionManagerTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "IsGreaterThanOrEqual. Сравнение минорных версий")]
+	[Test]
+	[DisplayName("IsGreaterThanOrEqual. Сравнение минорных версий")]
 	public void IsGreaterThanOrEqual_MinorLessValue()
 	{
 		Manager.SetVersion(5, 92);
@@ -60,7 +64,8 @@ public class VkApiVersionManagerTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "IsGreaterThanOrEqual. Сравнение мажорных версий")]
+	[Test]
+	[DisplayName("IsGreaterThanOrEqual. Сравнение мажорных версий")]
 	public void IsGreaterThanOrEqual_MajorLessValue()
 	{
 		Manager.SetVersion(5, 92);
@@ -70,7 +75,8 @@ public class VkApiVersionManagerTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "IsLessThanOrEqual. Сравнение с большей версией")]
+	[Test]
+	[DisplayName("IsLessThanOrEqual. Сравнение с большей версией")]
 	public void IsLessThanOrEqual_GreaterValue()
 	{
 		Manager.SetVersion(5, 92);
@@ -80,7 +86,8 @@ public class VkApiVersionManagerTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "IsLessThanOrEqual. Сравнение одинаковых версий")]
+	[Test]
+	[DisplayName("IsLessThanOrEqual. Сравнение одинаковых версий")]
 	public void IsLessThanOrEqual_EqualValue()
 	{
 		Manager.SetVersion(5, 92);
@@ -90,7 +97,8 @@ public class VkApiVersionManagerTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "IsLessThanOrEqual. Сравнение минорных версий")]
+	[Test]
+	[DisplayName("IsLessThanOrEqual. Сравнение минорных версий")]
 	public void IsLessThanOrEqual_MinorLessValue()
 	{
 		Manager.SetVersion(5, 92);
@@ -100,7 +108,8 @@ public class VkApiVersionManagerTests
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "IsLessThanOrEqual. Сравнение мажорных версий")]
+	[Test]
+	[DisplayName("IsLessThanOrEqual. Сравнение мажорных версий")]
 	public void IsLessThanOrEqual_MajorLessValue()
 	{
 		Manager.SetVersion(5, 92);
@@ -110,7 +119,8 @@ public class VkApiVersionManagerTests
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "С 2 сентября 2021 года прекратилась поддержка версий ниже 5.81.")]
+	[Test]
+	[DisplayName("С 2 сентября 2021 года прекратилась поддержка версий ниже 5.81.")]
 	public void MinimalVersion_5_81_ShouldThrowException() =>
 
 		// Arrange
@@ -122,7 +132,8 @@ public class VkApiVersionManagerTests
 			.And.HelpLink.Should()
 			.Be("https://vk.ru/dev/constant_version_updates");
 
-	[Fact(DisplayName = "С 27 мая 2019 года версии API ниже 5.0 больше не поддерживаются.")]
+	[Test]
+	[DisplayName("С 27 мая 2019 года версии API ниже 5.0 больше не поддерживаются.")]
 	public void MinimalMajorVersion_5_ShouldThrowException() =>
 
 		// Arrange

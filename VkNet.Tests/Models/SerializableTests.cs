@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Reflection;
 using AwesomeAssertions;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class SerializableTests
 {
-	[Fact(DisplayName = "Models should have serializable attribute")]
+	[Test]
+	[DisplayName("Models should have serializable attribute")]
 	public void ModelsShouldHaveSerializableAttribute()
 	{
 		var models = typeof(VkApi).Assembly

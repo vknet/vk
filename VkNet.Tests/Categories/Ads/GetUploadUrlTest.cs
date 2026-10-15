@@ -1,7 +1,6 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -9,7 +8,8 @@ public class GetUploadUrlTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Get upload url")]
+	[Test]
+	[DisplayName("Get upload url")]
 	public void GetUploadUrl()
 	{
 		Url = "https://api.vk.ru/method/ads.getUploadUrl";

@@ -2,13 +2,13 @@
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class ConversationModelTests : BaseTest
 {
-	[Fact(DisplayName = "Conversation model")]
+	[Test]
+	[DisplayName("Conversation model")]
 	public void ConversationModel()
 	{
 		ReadJsonFile("Models", nameof(ConversationModel));

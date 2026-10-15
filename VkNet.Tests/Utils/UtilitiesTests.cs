@@ -4,13 +4,13 @@ using System.Runtime.Serialization;
 using AwesomeAssertions;
 using VkNet.Model;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Utils;
 
 public class UtilitiesTests
 {
-	[Fact(DisplayName = "Json convert")]
+	[Test]
+	[DisplayName("Json convert")]
 	public void JsonConvert()
 	{
 		var result = Utilities.SerializeToJson(new User
@@ -28,7 +28,8 @@ public class UtilitiesTests
 			.BeNull();
 	}
 
-	[Fact(DisplayName = "Json convert write")]
+	[Test]
+	[DisplayName("Json convert write")]
 	public void JsonConvertWrite()
 	{
 		var vkCollection = new VkCollection<User>(10,
@@ -59,7 +60,8 @@ public class UtilitiesTests
 			.BeNull();
 	}
 
-	[Fact(DisplayName = "Pretty print json should not throw exception")]
+	[Test]
+	[DisplayName("Pretty print json should not throw exception")]
 	public void PrettyPrintJsonShouldNotThrowException()
 	{
 		const string invalidJson = "ERROR";

@@ -2,7 +2,6 @@
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -10,7 +9,8 @@ public class AddOfficeUsersTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Add office users")]
+	[Test]
+	[DisplayName("Add office users")]
 	public void AddOfficeUsers()
 	{
 		Url = "https://api.vk.ru/method/ads.addOfficeUsers";

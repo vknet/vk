@@ -5,7 +5,6 @@ using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Users;
 
@@ -13,7 +12,8 @@ public class UserGetTests : CategoryBaseTest
 {
 	protected override string Folder => "Users";
 
-	[Fact(DisplayName = "Get olesya single user")]
+	[Test]
+	[DisplayName("Get olesya single user")]
 	public void Get_Olesya_SingleUser()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -36,7 +36,8 @@ public class UserGetTests : CategoryBaseTest
 			.Be(Sex.Deactivated);
 	}
 
-	[Fact(DisplayName = "Get male single user")]
+	[Test]
+	[DisplayName("Get male single user")]
 	public void Get_Male_SingleUser()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -59,7 +60,8 @@ public class UserGetTests : CategoryBaseTest
 			.NotBeNullOrEmpty();
 	}
 
-	[Fact(DisplayName = "Get active user")]
+	[Test]
+	[DisplayName("Get active user")]
 	public void Get_ActiveUser()
 	{
 		Url = "https://api.vk.ru/method/users.get";

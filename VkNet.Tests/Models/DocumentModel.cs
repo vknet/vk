@@ -1,12 +1,12 @@
 using AwesomeAssertions;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class DocumentModel
 {
-	[Fact(DisplayName = "To string document should have access key")]
+	[Test]
+	[DisplayName("To string document should have access key")]
 	public void ToString_DocumentShouldHaveAccessKey()
 	{
 		var document = new Document

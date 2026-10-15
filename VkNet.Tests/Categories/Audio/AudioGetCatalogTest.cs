@@ -2,7 +2,6 @@
 using VkNet.Enums.Filters;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Audio;
 
@@ -10,7 +9,8 @@ public class AudioGetCatalogTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact(DisplayName = "Get catalog")]
+	[Test]
+	[DisplayName("Get catalog")]
 	public void GetCatalog()
 	{
 		Url = "https://api.vk.ru/method/audio.getCatalog";

@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -8,7 +7,8 @@ public class UpdateTargetGroupTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Update target group")]
+	[Test]
+	[DisplayName("Update target group")]
 	public void UpdateTargetGroup()
 	{
 		Url = "https://api.vk.ru/method/ads.updateTargetGroup";

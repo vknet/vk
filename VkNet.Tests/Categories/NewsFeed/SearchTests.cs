@@ -1,7 +1,6 @@
 using System.Linq;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.NewsFeed;
 
@@ -9,7 +8,8 @@ public class SearchTests : CategoryBaseTest
 {
 	protected override string Folder => "NewsFeed";
 
-	[Fact(DisplayName = "Search next from not null")]
+	[Test]
+	[DisplayName("Search next from not null")]
 	public void Search_NextFrom_NotNull()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.search";
@@ -24,7 +24,8 @@ public class SearchTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Search coordinates exception")]
+	[Test]
+	[DisplayName("Search coordinates exception")]
 	public void Search_Coordinates_Exception()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.search";
@@ -44,7 +45,8 @@ public class SearchTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Search post source data parsing")]
+	[Test]
+	[DisplayName("Search post source data parsing")]
 	public void Search_PostSourceData_Parsing()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.search";

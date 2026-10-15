@@ -2,7 +2,6 @@ using AwesomeAssertions;
 using VkNet.Categories;
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Status;
 
@@ -10,7 +9,8 @@ public class StatusCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Status";
 
-	[Fact(DisplayName = "Get access denied throw access denied exception")]
+	[Test]
+	[DisplayName("Get access denied throw access denied exception")]
 	public void Get_AccessDenied_ThrowAccessDeniedException()
 	{
 		Url = "https://api.vk.ru/method/status.get";
@@ -24,7 +24,8 @@ public class StatusCategoryTest : CategoryBaseTest
 			.Be("Permission to perform this action is denied");
 	}
 
-	[Fact(DisplayName = "Get access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Get access token invalid throw access token invalid exception")]
 	public void Get_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		var status = new StatusCategory(new VkApi());
@@ -34,7 +35,8 @@ public class StatusCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Get audio return status")]
+	[Test]
+	[DisplayName("Get audio return status")]
 	public void Get_Audio_ReturnStatus()
 	{
 		Url = "https://api.vk.ru/method/status.get";
@@ -74,7 +76,8 @@ public class StatusCategoryTest : CategoryBaseTest
 			.Be(7985406);
 	}
 
-	[Fact(DisplayName = "Get simple text return status")]
+	[Test]
+	[DisplayName("Get simple text return status")]
 	public void Get_SimpleText_ReturnStatus()
 	{
 		Url = "https://api.vk.ru/method/status.get";
@@ -92,7 +95,8 @@ public class StatusCategoryTest : CategoryBaseTest
 			.BeNull();
 	}
 
-	[Fact(DisplayName = "Set access denied throw access denied exception")]
+	[Test]
+	[DisplayName("Set access denied throw access denied exception")]
 	public void Set_AccessDenied_ThrowAccessDeniedException()
 	{
 		Url = "https://api.vk.ru/method/status.set";
@@ -103,7 +107,8 @@ public class StatusCategoryTest : CategoryBaseTest
 			.ThrowExactly<PermissionToPerformThisActionException>();
 	}
 
-	[Fact(DisplayName = "Set access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Set access token invalid throw access token invalid exception")]
 	public void Set_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		var status = new StatusCategory(new VkApi());
@@ -113,7 +118,8 @@ public class StatusCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Set simple text return true")]
+	[Test]
+	[DisplayName("Set simple text return true")]
 	public void Set_SimpleText_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/status.set";

@@ -2,13 +2,13 @@
 using VkNet.Enums;
 using VkNet.Enums.Filters;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Enum;
 
 public class EnumsTest
 {
-	[Fact(DisplayName = "Photo search radius test")]
+	[Test]
+	[DisplayName("Photo search radius test")]
 	public void PhotoSearchRadiusTest()
 	{
 		Utilities.EnumFrom<PhotoSearchRadius>(10)
@@ -32,7 +32,8 @@ public class EnumsTest
 			.Be(PhotoSearchRadius.FiftyThousand);
 	}
 
-	[Fact(DisplayName = "Access pages test")]
+	[Test]
+	[DisplayName("Access pages test")]
 	public void AccessPagesTest()
 	{
 		Utilities.EnumFrom<AccessPages>(0)
@@ -48,7 +49,8 @@ public class EnumsTest
 			.Be(AccessPages.All);
 	}
 
-	[Fact(DisplayName = "Add friend status test")]
+	[Test]
+	[DisplayName("Add friend status test")]
 	public void AddFriendStatusTest()
 	{
 		Utilities.EnumFrom<AddFriendStatus>(0)
@@ -68,7 +70,8 @@ public class EnumsTest
 			.Be(AddFriendStatus.Resubmit);
 	}
 
-	[Fact(DisplayName = "Admin level test")]
+	[Test]
+	[DisplayName("Admin level test")]
 	public void AdminLevelTest()
 	{
 		Utilities.EnumFrom<AdminLevel>(1)
@@ -84,7 +87,8 @@ public class EnumsTest
 			.Be(AdminLevel.Administrator);
 	}
 
-	[Fact(DisplayName = "Attitude test")]
+	[Test]
+	[DisplayName("Attitude test")]
 	public void AttitudeTest()
 	{
 		Utilities.EnumFrom<Attitude>(0)
@@ -112,7 +116,8 @@ public class EnumsTest
 			.Be(Attitude.Positive);
 	}
 
-	[Fact(DisplayName = "Audio genre test")]
+	[Test]
+	[DisplayName("Audio genre test")]
 	public void AudioGenreTest()
 	{
 		Utilities.EnumFrom<AudioGenre>(1)
@@ -200,7 +205,8 @@ public class EnumsTest
 			.Be(AudioGenre.Other);
 	}
 
-	[Fact(DisplayName = "Audio sort test")]
+	[Test]
+	[DisplayName("Audio sort test")]
 	public void AudioSortTest()
 	{
 		Utilities.EnumFrom<AudioSort>(0)
@@ -216,7 +222,8 @@ public class EnumsTest
 			.Be(AudioSort.Popularity);
 	}
 
-	[Fact(DisplayName = "Ban reason test")]
+	[Test]
+	[DisplayName("Ban reason test")]
 	public void BanReasonTest()
 	{
 		Utilities.EnumFrom<BanReason>(0)
@@ -240,7 +247,8 @@ public class EnumsTest
 			.Be(BanReason.IrrelevantMessages);
 	}
 
-	[Fact(DisplayName = "Birthday visibility test")]
+	[Test]
+	[DisplayName("Birthday visibility test")]
 	public void BirthdayVisibilityTest()
 	{
 		Utilities.EnumFrom<BirthdayVisibility>(0)
@@ -256,7 +264,8 @@ public class EnumsTest
 			.Be(BirthdayVisibility.OnlyDayAndMonth);
 	}
 
-	[Fact(DisplayName = "Content access test")]
+	[Test]
+	[DisplayName("Content access test")]
 	public void ContentAccessTest()
 	{
 		Utilities.EnumFrom<ContentAccess>(0)
@@ -272,7 +281,8 @@ public class EnumsTest
 			.Be(ContentAccess.Restricted);
 	}
 
-	[Fact(DisplayName = "Delete friend status test")]
+	[Test]
+	[DisplayName("Delete friend status test")]
 	public void DeleteFriendStatusTest()
 	{
 		Utilities.EnumFrom<DeleteFriendStatus>(0)
@@ -292,7 +302,8 @@ public class EnumsTest
 			.Be(DeleteFriendStatus.RecommendationDeleted);
 	}
 
-	[Fact(DisplayName = "Doc filter test")]
+	[Test]
+	[DisplayName("Doc filter test")]
 	public void DocFilterTest()
 	{
 		Utilities.EnumFrom<DocFilter>(1)
@@ -328,7 +339,8 @@ public class EnumsTest
 			.Be(DocFilter.Unknown);
 	}
 
-	[Fact(DisplayName = "Friend status test")]
+	[Test]
+	[DisplayName("Friend status test")]
 	public void FriendStatusTest()
 	{
 		Utilities.EnumFrom<FriendStatus>(0)
@@ -348,7 +360,8 @@ public class EnumsTest
 			.Be(FriendStatus.Friend);
 	}
 
-	[Fact(DisplayName = "Gift privacy test")]
+	[Test]
+	[DisplayName("Gift privacy test")]
 	public void GiftPrivacyTest()
 	{
 		Utilities.EnumFrom<GiftPrivacy>(0)
@@ -364,7 +377,8 @@ public class EnumsTest
 			.Be(GiftPrivacy.NameHideMessageUser);
 	}
 
-	[Fact(DisplayName = "Group access test")]
+	[Test]
+	[DisplayName("Group access test")]
 	public void GroupAccessTest()
 	{
 		Utilities.EnumFrom<GroupAccess>(0)
@@ -380,7 +394,8 @@ public class EnumsTest
 			.Be(GroupAccess.Private);
 	}
 
-	[Fact(DisplayName = "Group publicity test")]
+	[Test]
+	[DisplayName("Group publicity test")]
 	public void GroupPublicityTest()
 	{
 		Utilities.EnumFrom<GroupPublicity>(0)
@@ -396,7 +411,8 @@ public class EnumsTest
 			.Be(GroupPublicity.Private);
 	}
 
-	[Fact(DisplayName = "Group sort test")]
+	[Test]
+	[DisplayName("Group sort test")]
 	public void GroupSortTest()
 	{
 		Utilities.EnumFrom<GroupSort>(0)
@@ -424,7 +440,8 @@ public class EnumsTest
 			.Be(GroupSort.Records);
 	}
 
-	[Fact(DisplayName = "Group subjects test")]
+	[Test]
+	[DisplayName("Group subjects test")]
 	public void GroupSubjectsTest()
 	{
 		Utilities.EnumFrom<GroupSubjects>(1)
@@ -596,7 +613,8 @@ public class EnumsTest
 			.Be(GroupSubjects.DesignAndGraphics);
 	}
 
-	[Fact(DisplayName = "Group sub type test")]
+	[Test]
+	[DisplayName("Group sub type test")]
 	public void GroupSubTypeTest()
 	{
 		Utilities.EnumFrom<GroupSubType>(1)
@@ -616,7 +634,8 @@ public class EnumsTest
 			.Be(GroupSubType.ProductOrProducts);
 	}
 
-	[Fact(DisplayName = "Iso3166 test")]
+	[Test]
+	[DisplayName("Iso3166 test")]
 	public void Iso3166Test()
 	{
 		Utilities.EnumFrom<Iso3166>(0)
@@ -1596,7 +1615,8 @@ public class EnumsTest
 			.Be(Iso3166.WF);
 	}
 
-	[Fact(DisplayName = "Leaderboard types test")]
+	[Test]
+	[DisplayName("Leaderboard types test")]
 	public void LeaderboardTypesTest()
 	{
 		Utilities.EnumFrom<LeaderboardTypes>(0)
@@ -1612,7 +1632,8 @@ public class EnumsTest
 			.Be(LeaderboardTypes.ByPoints);
 	}
 
-	[Fact(DisplayName = "Life main test")]
+	[Test]
+	[DisplayName("Life main test")]
 	public void LifeMainTest()
 	{
 		Utilities.EnumFrom<LifeMain>(0)
@@ -1652,7 +1673,8 @@ public class EnumsTest
 			.Be(LifeMain.FameAndInfluence);
 	}
 
-	[Fact(DisplayName = "Main section test")]
+	[Test]
+	[DisplayName("Main section test")]
 	public void MainSectionTest()
 	{
 		Utilities.EnumFrom<MainSection>(0)
@@ -1680,7 +1702,8 @@ public class EnumsTest
 			.Be(MainSection.Goods);
 	}
 
-	[Fact(DisplayName = "Marital status test")]
+	[Test]
+	[DisplayName("Marital status test")]
 	public void MaritalStatusTest()
 	{
 		Utilities.EnumFrom<MaritalStatus>(1)
@@ -1712,7 +1735,8 @@ public class EnumsTest
 			.Be(MaritalStatus.InLove);
 	}
 
-	[Fact(DisplayName = "Market currency id test")]
+	[Test]
+	[DisplayName("Market currency id test")]
 	public void MarketCurrencyIdTest()
 	{
 		Utilities.EnumFrom<MarketCurrencyId>(643)
@@ -1736,7 +1760,8 @@ public class EnumsTest
 			.Be(MarketCurrencyId.Usd);
 	}
 
-	[Fact(DisplayName = "Message read state test")]
+	[Test]
+	[DisplayName("Message read state test")]
 	public void MessageReadStateTest()
 	{
 		Utilities.EnumFrom<MessageReadState>(0)
@@ -1748,7 +1773,8 @@ public class EnumsTest
 			.Be(MessageReadState.Readed);
 	}
 
-	[Fact(DisplayName = "Messages filter test")]
+	[Test]
+	[DisplayName("Messages filter test")]
 	public void MessagesFilterTest()
 	{
 		Utilities.EnumFrom<MessagesFilter>(0)
@@ -1760,7 +1786,8 @@ public class EnumsTest
 			.Be(MessagesFilter.Important);
 	}
 
-	[Fact(DisplayName = "Message type test")]
+	[Test]
+	[DisplayName("Message type test")]
 	public void MessageTypeTest()
 	{
 		Utilities.EnumFrom<MessageType>(0)
@@ -1772,7 +1799,8 @@ public class EnumsTest
 			.Be(MessageType.Sended);
 	}
 
-	[Fact(DisplayName = "Page access kind test")]
+	[Test]
+	[DisplayName("Page access kind test")]
 	public void PageAccessKindTest()
 	{
 		Utilities.EnumFrom<PageAccessKind>(0)
@@ -1788,7 +1816,8 @@ public class EnumsTest
 			.Be(PageAccessKind.Unrestricted);
 	}
 
-	[Fact(DisplayName = "People main test")]
+	[Test]
+	[DisplayName("People main test")]
 	public void PeopleMainTest()
 	{
 		Utilities.EnumFrom<PeopleMain>(0)
@@ -1820,7 +1849,8 @@ public class EnumsTest
 			.Be(PeopleMain.HumorAndLoveForLife);
 	}
 
-	[Fact(DisplayName = "Political preferences test")]
+	[Test]
+	[DisplayName("Political preferences test")]
 	public void PoliticalPreferencesTest()
 	{
 		Utilities.EnumFrom<PoliticalPreferences>(0)
@@ -1864,7 +1894,8 @@ public class EnumsTest
 			.Be(PoliticalPreferences.Libertarian);
 	}
 
-	[Fact(DisplayName = "Product availability test")]
+	[Test]
+	[DisplayName("Product availability test")]
 	public void ProductAvailabilityTest()
 	{
 		Utilities.EnumFrom<ProductAvailability>(0)
@@ -1880,7 +1911,8 @@ public class EnumsTest
 			.Be(ProductAvailability.Unavailable);
 	}
 
-	[Fact(DisplayName = "Product sort test")]
+	[Test]
+	[DisplayName("Product sort test")]
 	public void ProductSortTest()
 	{
 		Utilities.EnumFrom<ProductSort>(0)
@@ -1900,7 +1932,8 @@ public class EnumsTest
 			.Be(ProductSort.ByPopularity);
 	}
 
-	[Fact(DisplayName = "Relation type test")]
+	[Test]
+	[DisplayName("Relation type test")]
 	public void RelationTypeTest()
 	{
 		Utilities.EnumFrom<RelationType>(0)
@@ -1936,7 +1969,8 @@ public class EnumsTest
 			.Be(RelationType.Amorous);
 	}
 
-	[Fact(DisplayName = "Report reason test")]
+	[Test]
+	[DisplayName("Report reason test")]
 	public void ReportReasonTest()
 	{
 		Utilities.EnumFrom<ReportReason>(0)
@@ -1968,7 +2002,8 @@ public class EnumsTest
 			.Be(ReportReason.Abuse);
 	}
 
-	[Fact(DisplayName = "Sex test")]
+	[Test]
+	[DisplayName("Sex test")]
 	public void SexTest()
 	{
 		Utilities.EnumFrom<Sex>(0)
@@ -1984,7 +2019,8 @@ public class EnumsTest
 			.Be(Sex.Male);
 	}
 
-	[Fact(DisplayName = "Sort order by test")]
+	[Test]
+	[DisplayName("Sort order by test")]
 	public void SortOrderByTest()
 	{
 		Utilities.EnumFrom<SortOrderBy>(0)
@@ -1996,7 +2032,8 @@ public class EnumsTest
 			.Be(SortOrderBy.Asc);
 	}
 
-	[Fact(DisplayName = "User sort test")]
+	[Test]
+	[DisplayName("User sort test")]
 	public void UserSortTest()
 	{
 		Utilities.EnumFrom<UserSort>(0)
@@ -2008,7 +2045,8 @@ public class EnumsTest
 			.Be(UserSort.ByRegDate);
 	}
 
-	[Fact(DisplayName = "Video sort test")]
+	[Test]
+	[DisplayName("Video sort test")]
 	public void VideoSortTest()
 	{
 		Utilities.EnumFrom<VideoSort>(0)
@@ -2024,7 +2062,8 @@ public class EnumsTest
 			.Be(VideoSort.Relevance);
 	}
 
-	[Fact(DisplayName = "Video width test")]
+	[Test]
+	[DisplayName("Video width test")]
 	public void VideoWidthTest()
 	{
 		Utilities.EnumFrom<VideoWidth>(130)
@@ -2040,7 +2079,8 @@ public class EnumsTest
 			.Be(VideoWidth.Large320);
 	}
 
-	[Fact(DisplayName = "Vk object type test")]
+	[Test]
+	[DisplayName("Vk object type test")]
 	public void VkObjectTypeTest()
 	{
 		Utilities.EnumFrom<VkObjectType>(0)
@@ -2060,7 +2100,8 @@ public class EnumsTest
 			.Be(VkObjectType.Page);
 	}
 
-	[Fact(DisplayName = "Wall content access test")]
+	[Test]
+	[DisplayName("Wall content access test")]
 	public void WallContentAccessTest()
 	{
 		Utilities.EnumFrom<WallContentAccess>(0)

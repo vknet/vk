@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -8,7 +7,8 @@ public class GetLookalikeRequestsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Get lookalike requests")]
+	[Test]
+	[DisplayName("Get lookalike requests")]
 	public void GetLookalikeRequests()
 	{
 		Url = "https://api.vk.ru/method/ads.getLookalikeRequests";

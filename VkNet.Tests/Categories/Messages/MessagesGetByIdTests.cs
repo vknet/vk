@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using AwesomeAssertions;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesGetByIdTests : MessagesBaseTests
 {
-	[Fact(DisplayName = "Admin author id")]
+	[Test]
+	[DisplayName("Admin author id")]
 	public void AdminAuthorId()
 	{
 		Url = "https://api.vk.ru/method/messages.getById";

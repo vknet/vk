@@ -1,12 +1,12 @@
 using AwesomeAssertions;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class MoneyRequestTests : BaseTest
 {
-	[Fact(DisplayName = "Should deserialize from vk response to attachment")]
+	[Test]
+	[DisplayName("Should deserialize from vk response to attachment")]
 	public void ShouldDeserializeFromVkResponseToAttachment()
 	{
 		ReadJsonFile("Models", "money_request");

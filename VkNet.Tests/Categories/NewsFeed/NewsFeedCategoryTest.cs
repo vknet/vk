@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.NewsFeed;
 
@@ -11,7 +10,8 @@ public class NewsFeedCategoryTest : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "NewsFeed";
 
-	[Fact(DisplayName = "Get")]
+	[Test]
+	[DisplayName("Get")]
 	public void Get()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.get";
@@ -27,7 +27,8 @@ public class NewsFeedCategoryTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get recommended")]
+	[Test]
+	[DisplayName("Get recommended")]
 	public void GetRecommended()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.getRecommended";

@@ -1,13 +1,13 @@
 ﻿using AwesomeAssertions;
 using VkNet.Model;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class GeoTests : BaseTest
 {
-	[Fact(DisplayName = "Geo from json")]
+	[Test]
+	[DisplayName("Geo from json")]
 	public void GeoFromJson()
 	{
 		ReadJsonFile("Models", nameof(Geo));
@@ -19,7 +19,8 @@ public class GeoTests : BaseTest
 			.NotBeNull();
 	}
 
-	[Fact(DisplayName = "Geo json convert")]
+	[Test]
+	[DisplayName("Geo json convert")]
 	public void GeoJsonConvert()
 	{
 		ReadJsonFile("Models", nameof(Geo));

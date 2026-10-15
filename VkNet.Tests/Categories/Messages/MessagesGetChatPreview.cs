@@ -1,12 +1,12 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.Filters;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesGetChatPreview : MessagesBaseTests
 {
-	[Fact(DisplayName = "Default params")]
+	[Test]
+	[DisplayName("Default params")]
 	public void DefaultParams()
 	{
 		Url = "https://api.vk.ru/method/messages.getChatPreview";

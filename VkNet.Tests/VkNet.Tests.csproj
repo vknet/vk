@@ -1,40 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<IsPackable>false</IsPackable>
-		<TargetFramework>net8.0</TargetFramework>
-		<LangVersion>latest</LangVersion>
-		<NoWarn>$(NoWarn);CS0618</NoWarn>
-		<IsTestProject>true</IsTestProject>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="AwesomeAssertions"/>
-		<PackageReference Include="AwesomeAssertions.Analyzers">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.NET.Test.Sdk"/>
-		<PackageReference Include="Moq.AutoMock"/>
-		<PackageReference Include="xunit"/>
-		<PackageReference Include="xunit.runner.visualstudio">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="coverlet.collector">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="coverlet.msbuild">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\VkNet\VkNet.csproj"/>
-	</ItemGroup>
-	<ItemGroup>
-		<Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}"/>
-	</ItemGroup>
-	<ItemGroup>
-		<None Update="TestData\**\*.*" CopyToOutputDirectory="Always"/>
-	</ItemGroup>
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <NoWarn>$(NoWarn);CS0618</NoWarn>
+    <IsTestProject>true</IsTestProject>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AwesomeAssertions" />
+    <PackageReference Include="AwesomeAssertions.Analyzers">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Moq.AutoMock" />
+    <PackageReference Include="TUnit" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VkNet\VkNet.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="TestData\**\*.*" CopyToOutputDirectory="Always" />
+  </ItemGroup>
 </Project>

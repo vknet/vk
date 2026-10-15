@@ -2,7 +2,6 @@
 using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Store;
 
@@ -10,7 +9,8 @@ public class StoreCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Store";
 
-	[Fact(DisplayName = "Add stickers to favorite")]
+	[Test]
+	[DisplayName("Add stickers to favorite")]
 	public void AddStickersToFavorite()
 	{
 		Url = "https://api.vk.ru/method/store.addStickersToFavorite";
@@ -30,7 +30,8 @@ public class StoreCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Get favorite stickers")]
+	[Test]
+	[DisplayName("Get favorite stickers")]
 	public void GetFavoriteStickers()
 	{
 		Url = "https://api.vk.ru/method/store.getFavoriteStickers";
@@ -65,7 +66,8 @@ public class StoreCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Get products")]
+	[Test]
+	[DisplayName("Get products")]
 	public void GetProducts()
 	{
 		Url = "https://api.vk.ru/method/store.getProducts";
@@ -123,7 +125,8 @@ public class StoreCategoryTest : CategoryBaseTest
 			.Be(5);
 	}
 
-	[Fact(DisplayName = "Get stickers keywords")]
+	[Test]
+	[DisplayName("Get stickers keywords")]
 	public void GetStickersKeywords()
 	{
 		Url = "https://api.vk.ru/method/store.getStickersKeywords";
@@ -162,7 +165,8 @@ public class StoreCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Remove stickers from favorite")]
+	[Test]
+	[DisplayName("Remove stickers from favorite")]
 	public void RemoveStickersFromFavorite()
 	{
 		Url = "https://api.vk.ru/method/store.removeStickersFromFavorite";

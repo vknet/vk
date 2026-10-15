@@ -2,13 +2,13 @@
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class VkObjectTests : BaseTest
 {
-	[Fact(DisplayName = "Vk object page")]
+	[Test]
+	[DisplayName("Vk object page")]
 	public void VkObjectPage()
 	{
 		ReadJsonFile("Models", nameof(VkObjectPage));
@@ -23,7 +23,8 @@ public class VkObjectTests : BaseTest
 			.Be(VkObjectType.Page);
 	}
 
-	[Fact(DisplayName = "Vk object application")]
+	[Test]
+	[DisplayName("Vk object application")]
 	public void VkObjectApplication()
 	{
 		ReadJsonFile("Models", nameof(VkObjectApplication));
@@ -38,7 +39,8 @@ public class VkObjectTests : BaseTest
 			.Be(VkObjectType.Application);
 	}
 
-	[Fact(DisplayName = "Vk object group")]
+	[Test]
+	[DisplayName("Vk object group")]
 	public void VkObjectGroup()
 	{
 		ReadJsonFile("Models", nameof(VkObjectGroup));
@@ -53,7 +55,8 @@ public class VkObjectTests : BaseTest
 			.Be(VkObjectType.Group);
 	}
 
-	[Fact(DisplayName = "Vk object user")]
+	[Test]
+	[DisplayName("Vk object user")]
 	public void VkObjectUser()
 	{
 		ReadJsonFile("Models", nameof(VkObjectUser));
@@ -68,7 +71,8 @@ public class VkObjectTests : BaseTest
 			.Be(VkObjectType.User);
 	}
 
-	[Fact(DisplayName = "Vk object page resolve screen name")]
+	[Test]
+	[DisplayName("Vk object page resolve screen name")]
 	public void VkObjectPage_ResolveScreenName()
 	{
 		ReadJsonFile("Models", nameof(VkObjectPage));
@@ -83,7 +87,8 @@ public class VkObjectTests : BaseTest
 			.Be(VkObjectType.Page);
 	}
 
-	[Fact(DisplayName = "Vk object application resolve screen name")]
+	[Test]
+	[DisplayName("Vk object application resolve screen name")]
 	public void VkObjectApplication_ResolveScreenName()
 	{
 		ReadJsonFile("Models", nameof(VkObjectApplication));
@@ -98,7 +103,8 @@ public class VkObjectTests : BaseTest
 			.Be(VkObjectType.Application);
 	}
 
-	[Fact(DisplayName = "Vk object group resolve screen name")]
+	[Test]
+	[DisplayName("Vk object group resolve screen name")]
 	public void VkObjectGroup_ResolveScreenName()
 	{
 		ReadJsonFile("Models", nameof(VkObjectGroup));
@@ -113,7 +119,8 @@ public class VkObjectTests : BaseTest
 			.Be(VkObjectType.Group);
 	}
 
-	[Fact(DisplayName = "Vk object user resolve screen name")]
+	[Test]
+	[DisplayName("Vk object user resolve screen name")]
 	public void VkObjectUser_ResolveScreenName()
 	{
 		ReadJsonFile("Models", nameof(VkObjectUser));

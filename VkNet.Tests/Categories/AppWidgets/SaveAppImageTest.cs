@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.AppWidgets;
 
@@ -9,7 +8,8 @@ public class SaveAppImageTest : CategoryBaseTest
 {
 	protected override string Folder => "AppWidgets";
 
-	[Fact(DisplayName = "Save app image")]
+	[Test]
+	[DisplayName("Save app image")]
 	public void SaveAppImage()
 	{
 		Url = "https://api.vk.ru/method/appWidgets.saveAppImage";

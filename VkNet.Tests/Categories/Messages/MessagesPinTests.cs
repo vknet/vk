@@ -1,11 +1,11 @@
 using AwesomeAssertions;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesPinTests : MessagesBaseTests
 {
-	[Fact(DisplayName = "Pin")]
+	[Test]
+	[DisplayName("Pin")]
 	public void Pin()
 	{
 		Url = "https://api.vk.ru/method/messages.pin";

@@ -1,6 +1,5 @@
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Orders;
 
@@ -8,7 +7,8 @@ public class OrdersCancelSubscriptionTests : CategoryBaseTest
 {
 	protected override string Folder => "Orders";
 
-	[Fact(DisplayName = "Cancel subscription")]
+	[Test]
+	[DisplayName("Cancel subscription")]
 	public void CancelSubscription()
 	{
 		Url = "https://api.vk.ru/method/orders.cancelSubscription";

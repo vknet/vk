@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Stats;
 
@@ -11,7 +10,8 @@ public class StatsTest : CategoryBaseTest
 {
 	protected override string Folder => "Stats";
 
-	[Fact(DisplayName = "Get by app normal case")]
+	[Test]
+	[DisplayName("Get by app normal case")]
 	public void GetByApp_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/stats.get";
@@ -38,7 +38,8 @@ public class StatsTest : CategoryBaseTest
 			.Be(new(2013, 09, 08));
 	}
 
-	[Fact(DisplayName = "Get by group empty activity case")]
+	[Test]
+	[DisplayName("Get by group empty activity case")]
 	public void GetByGroup_EmptyActivityCase()
 	{
 		Url = "https://api.vk.ru/method/stats.get";
@@ -69,7 +70,8 @@ public class StatsTest : CategoryBaseTest
 			.Be(new(2013, 09, 08));
 	}
 
-	[Fact(DisplayName = "Get by group normal case")]
+	[Test]
+	[DisplayName("Get by group normal case")]
 	public void GetByGroup_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/stats.get";
@@ -96,7 +98,8 @@ public class StatsTest : CategoryBaseTest
 			.Be(new(2013, 09, 08));
 	}
 
-	[Fact(DisplayName = "Track visitor test")]
+	[Test]
+	[DisplayName("Track visitor test")]
 	public void TrackVisitorTest()
 	{
 		Url = "https://api.vk.ru/method/stats.trackVisitor";

@@ -1,13 +1,22 @@
-﻿using AwesomeAssertions;
+﻿using System.Text.Json;
+using AwesomeAssertions;
 using Newtonsoft.Json;
 using VkNet.Model;
-using Xunit;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace VkNet.Tests.Models;
 
 public class VkResponseObjectTests : BaseTest
 {
-	[Fact(DisplayName = "Vk response object of empty object correct serialize")]
+	private static readonly JsonSerializerOptions Options = new(JsonSerializerDefaults.Web)
+	{
+		WriteIndented = true,
+		IndentCharacter = '\t',
+		IndentSize = 1,
+		PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
+	};
+	[Test]
+	[DisplayName("Vk response object of empty object correct serialize")]
 	public void VkResponseObjectOfEmptyObjectCorrectSerialize()
 	{
 		// Arrange
@@ -19,18 +28,16 @@ public class VkResponseObjectTests : BaseTest
 		};
 
 		// Act
-		var result = JsonConvert.SerializeObject(responseObject,
-			new JsonSerializerSettings
-			{
-				Formatting = Formatting.Indented
-			});
+		var result = JsonSerializer.Serialize(responseObject, Options);
 
 		// Assert
 		result.Should()
-			.BeEquivalentTo(Json.Replace("\t", "  "));
+			.BeEquivalentTo(Json, x => x.IgnoringNewlineStyle()
+				.IgnoringTrailingWhitespace());
 	}
 
-	[Fact(DisplayName = "Vk response object of empty object array correct serialize")]
+	[Test]
+	[DisplayName("Vk response object of empty object array correct serialize")]
 	public void VkResponseObjectOfEmptyObjectArrayCorrectSerialize()
 	{
 		// Arrange
@@ -42,18 +49,16 @@ public class VkResponseObjectTests : BaseTest
 		};
 
 		// Act
-		var result = JsonConvert.SerializeObject(responseObject,
-			new JsonSerializerSettings
-			{
-				Formatting = Formatting.Indented
-			});
+		var result = JsonSerializer.Serialize(responseObject, Options);
 
 		// Assert
 		result.Should()
-			.BeEquivalentTo(Json.Replace("\t", "  "));
+			.BeEquivalentTo(Json, x => x.IgnoringNewlineStyle()
+				.IgnoringTrailingWhitespace());
 	}
 
-	[Fact(DisplayName = "Vk response object of story server url correct serialize")]
+	[Test]
+	[DisplayName("Vk response object of story server url correct serialize")]
 	public void VkResponseObjectOfStoryServerUrlCorrectSerialize()
 	{
 		// Arrange
@@ -70,14 +75,11 @@ public class VkResponseObjectTests : BaseTest
 		};
 
 		// Act
-		var result = JsonConvert.SerializeObject(responseObject,
-			new JsonSerializerSettings
-			{
-				Formatting = Formatting.Indented
-			});
+		var result = JsonSerializer.Serialize(responseObject, Options);
 
 		// Assert
 		result.Should()
-			.BeEquivalentTo(Json.Replace("\t", "  "));
+			.BeEquivalentTo(Json, x => x.IgnoringNewlineStyle()
+				.IgnoringTrailingWhitespace());
 	}
 }

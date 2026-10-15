@@ -1,7 +1,6 @@
 using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Group;
 
@@ -9,7 +8,8 @@ public class GetOnlineStatusTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact(DisplayName = "Get online status")]
+	[Test]
+	[DisplayName("Get online status")]
 	public void GetOnlineStatus()
 	{
 		Url = "https://api.vk.ru/method/groups.getOnlineStatus";

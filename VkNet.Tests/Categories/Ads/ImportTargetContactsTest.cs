@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -8,7 +7,8 @@ public class ImportTargetContactsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Import target contacts")]
+	[Test]
+	[DisplayName("Import target contacts")]
 	public void ImportTargetContacts()
 	{
 		Url = "https://api.vk.ru/method/ads.importTargetContacts";

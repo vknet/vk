@@ -1,6 +1,5 @@
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Audio;
 
@@ -8,7 +7,8 @@ public class AudioSearchTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact(DisplayName = "Search test")]
+	[Test]
+	[DisplayName("Search test")]
 	public void SearchTest()
 	{
 		Url = "https://api.vk.ru/method/audio.search";

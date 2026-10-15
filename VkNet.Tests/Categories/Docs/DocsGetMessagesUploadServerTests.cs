@@ -1,7 +1,6 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Docs;
 
@@ -9,7 +8,8 @@ public class DocsGetMessagesUploadServerTests : CategoryBaseTest
 {
 	protected override string Folder => "Docs";
 
-	[Fact(DisplayName = "Get messages upload server test")]
+	[Test]
+	[DisplayName("Get messages upload server test")]
 	public void GetMessagesUploadServerTest()
 	{
 		Url = "https://api.vk.ru/method/docs.getMessagesUploadServer";

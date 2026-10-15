@@ -2,7 +2,6 @@ using System.Linq;
 using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Fave;
 
@@ -11,7 +10,8 @@ public class FaveGetPagesTests : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "Fave";
 
-	[Fact(DisplayName = "Get pages")]
+	[Test]
+	[DisplayName("Get pages")]
 	public void GetPages()
 	{
 		Url = "https://api.vk.ru/method/fave.getPages";

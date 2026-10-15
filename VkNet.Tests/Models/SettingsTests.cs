@@ -1,12 +1,12 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.Filters;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class SettingsTests : BaseTest
 {
-	[Fact(DisplayName = "All")]
+	[Test]
+	[DisplayName("All")]
 	public void All()
 	{
 		var settings = Settings.All;
@@ -16,7 +16,8 @@ public class SettingsTests : BaseTest
 			.Be(140422623);
 	}
 
-	[Fact(DisplayName = "All offline")]
+	[Test]
+	[DisplayName("All offline")]
 	public void All_Offline()
 	{
 		var settings = Settings.All|Settings.Offline;
@@ -26,7 +27,8 @@ public class SettingsTests : BaseTest
 			.Be(140488159);
 	}
 
-	[Fact(DisplayName = "From json")]
+	[Test]
+	[DisplayName("From json")]
 	public void FromJson()
 	{
 		Json = "'notify'";
@@ -36,7 +38,8 @@ public class SettingsTests : BaseTest
 			.Be(Settings.FromJson(response));
 	}
 
-	[Fact(DisplayName = "Notify friends")]
+	[Test]
+	[DisplayName("Notify friends")]
 	public void Notify_Friends()
 	{
 		var settings = Settings.Notify|Settings.Friends;
@@ -46,7 +49,8 @@ public class SettingsTests : BaseTest
 			.Be(3);
 	}
 
-	[Fact(DisplayName = "Notify friends photos")]
+	[Test]
+	[DisplayName("Notify friends photos")]
 	public void Notify_Friends_Photos()
 	{
 		var settings = Settings.Notify|Settings.Friends|Settings.Photos;
@@ -56,7 +60,8 @@ public class SettingsTests : BaseTest
 			.Be(7);
 	}
 
-	[Fact(DisplayName = "Notify friends photos audio")]
+	[Test]
+	[DisplayName("Notify friends photos audio")]
 	public void Notify_Friends_Photos_Audio()
 	{
 		var settings = Settings.Notify|Settings.Friends|Settings.Photos|Settings.Audio;
@@ -66,7 +71,8 @@ public class SettingsTests : BaseTest
 			.Be(15);
 	}
 
-	[Fact(DisplayName = "Notify friends photos audio video")]
+	[Test]
+	[DisplayName("Notify friends photos audio video")]
 	public void Notify_Friends_Photos_Audio_Video()
 	{
 		var settings = Settings.Notify|Settings.Friends|Settings.Photos|Settings.Audio|Settings.Video;
@@ -76,7 +82,8 @@ public class SettingsTests : BaseTest
 			.Be(31);
 	}
 
-	[Fact(DisplayName = "Notify friends photos audio video pages")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages")]
 	public void Notify_Friends_Photos_Audio_Video_Pages()
 	{
 		var settings = Settings.Notify
@@ -91,7 +98,8 @@ public class SettingsTests : BaseTest
 			.Be(159);
 	}
 
-	[Fact(DisplayName = "Notify friends photos audio video pages add link to left menu")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu")]
 	public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu()
 	{
 		var settings = Settings.Notify
@@ -107,7 +115,8 @@ public class SettingsTests : BaseTest
 			.Be(415);
 	}
 
-	[Fact(DisplayName = "Notify friends photos audio video pages add link to left menu status")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu status")]
 	public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status()
 	{
 		var settings = Settings.Notify
@@ -124,7 +133,8 @@ public class SettingsTests : BaseTest
 			.Be(1439);
 	}
 
-	[Fact(DisplayName = "Notify friends photos audio video pages add link to left menu status notes")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu status notes")]
 	public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes()
 	{
 		var settings = Settings.Notify
@@ -142,7 +152,8 @@ public class SettingsTests : BaseTest
 			.Be(3487);
 	}
 
-	[Fact(DisplayName = "Notify friends photos audio video pages add link to left menu status notes messages")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu status notes messages")]
 	public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages()
 	{
 		var settings = Settings.Notify
@@ -161,7 +172,8 @@ public class SettingsTests : BaseTest
 			.Be(7583);
 	}
 
-	[Fact(DisplayName = "Notify friends photos audio video pages add link to left menu status notes messages wall")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu status notes messages wall")]
 	public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall()
 	{
 		var settings = Settings.Notify
@@ -181,7 +193,8 @@ public class SettingsTests : BaseTest
 			.Be(15775);
 	}
 
-	[Fact(DisplayName = "Notify friends photos audio video pages add link to left menu status notes messages wall ads")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu status notes messages wall ads")]
 	public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads()
 	{
 		var settings = Settings.Notify
@@ -202,7 +215,8 @@ public class SettingsTests : BaseTest
 			.Be(48543);
 	}
 
-	[Fact(DisplayName = "Notify friends photos audio video pages add link to left menu status notes messages wall ads documents")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu status notes messages wall ads documents")]
 	public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents()
 	{
 		var settings = Settings.Notify
@@ -224,7 +238,8 @@ public class SettingsTests : BaseTest
 			.Be(179615);
 	}
 
-	[Fact(DisplayName = "Notify friends photos audio video pages add link to left menu status notes messages wall ads documents groups")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu status notes messages wall ads documents groups")]
 	public void Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups()
 	{
 		var settings = Settings.Notify
@@ -247,8 +262,8 @@ public class SettingsTests : BaseTest
 			.Be(441759);
 	}
 
-	[Fact(DisplayName =
-		"Notify friends photos audio video pages add link to left menu status notes messages wall ads documents groups notifications")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu status notes messages wall ads documents groups notifications")]
 	public void
 		Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications()
 	{
@@ -273,8 +288,8 @@ public class SettingsTests : BaseTest
 			.Be(966047);
 	}
 
-	[Fact(DisplayName =
-		"Notify friends photos audio video pages add link to left menu status notes messages wall ads documents groups notifications stats")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu status notes messages wall ads documents groups notifications stats")]
 	public void
 		Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats()
 	{
@@ -300,8 +315,8 @@ public class SettingsTests : BaseTest
 			.Be(2014623);
 	}
 
-	[Fact(DisplayName =
-		"Notify friends photos audio video pages add link to left menu status notes messages wall ads documents groups notifications stats email")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu status notes messages wall ads documents groups notifications stats email")]
 	public void
 		Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats_Email()
 	{
@@ -328,8 +343,8 @@ public class SettingsTests : BaseTest
 			.Be(6208927);
 	}
 
-	[Fact(DisplayName =
-		"Notify friends photos audio video pages add link to left menu status notes messages wall ads documents groups notifications stats email market")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu status notes messages wall ads documents groups notifications stats email market")]
 	public void
 		Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats_Email_Market()
 	{
@@ -357,8 +372,8 @@ public class SettingsTests : BaseTest
 			.Be(140426655);
 	}
 
-	[Fact(DisplayName =
-		"Notify friends photos audio video pages add link to left menu status notes messages wall ads documents groups notifications stats email market app widget")]
+	[Test]
+	[DisplayName("Notify friends photos audio video pages add link to left menu status notes messages wall ads documents groups notifications stats email market app widget")]
 	public void
 		Notify_Friends_Photos_Audio_Video_Pages_AddLinkToLeftMenu_Status_Notes_Messages_Wall_Ads_Documents_Groups_Notifications_Stats_Email_Market_AppWidget()
 	{
@@ -387,7 +402,8 @@ public class SettingsTests : BaseTest
 			.Be(140426719);
 	}
 
-	[Fact(DisplayName = "Operator or duplicate settings")]
+	[Test]
+	[DisplayName("Operator or duplicate settings")]
 	public void OperatorOrDuplicateSettings()
 	{
 		#pragma warning disable S1764
@@ -399,7 +415,8 @@ public class SettingsTests : BaseTest
 		#pragma warning restore S1764
 	}
 
-	[Fact(DisplayName = "Settings test")]
+	[Test]
+	[DisplayName("Settings test")]
 	public void SettingsTest()
 	{
 		// get test

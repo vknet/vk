@@ -1,7 +1,6 @@
 using System.Linq;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Audio;
 
@@ -9,7 +8,8 @@ public class AudioGetPopularTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact(DisplayName = "Get get popular test")]
+	[Test]
+	[DisplayName("Get get popular test")]
 	public void GetGetPopularTest()
 	{
 		Url = "https://api.vk.ru/method/audio.getPopular";

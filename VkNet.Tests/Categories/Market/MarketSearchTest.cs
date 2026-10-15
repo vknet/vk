@@ -1,7 +1,6 @@
 using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Market;
 
@@ -9,7 +8,8 @@ public class MarketSearchTest : CategoryBaseTest
 {
 	protected override string Folder => "Market";
 
-	[Fact(DisplayName = "Market search")]
+	[Test]
+	[DisplayName("Market search")]
 	public void MarketSearch()
 	{
 		Url = "https://api.vk.ru/method/market.search";

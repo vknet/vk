@@ -1,7 +1,6 @@
 using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Group;
 
@@ -10,7 +9,8 @@ public class GetMembersTests : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "Groups";
 
-	[Fact(DisplayName = "Get members")]
+	[Test]
+	[DisplayName("Get members")]
 	public void GetMembers()
 	{
 		Url = "https://api.vk.ru/method/groups.getMembers";
@@ -31,7 +31,8 @@ public class GetMembersTests : CategoryBaseTest
 			.Be(ManagerRole.Creator);
 	}
 
-	[Fact(DisplayName = "Get donut members returns user ids")]
+	[Test]
+	[DisplayName("Get donut members returns user ids")]
 	public void GetMembers_Donut_ReturnsUserIds()
 	{
 		Url = "https://api.vk.ru/method/groups.getMembers";

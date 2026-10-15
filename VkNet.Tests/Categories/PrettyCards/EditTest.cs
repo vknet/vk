@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.PrettyCards;
 
@@ -8,7 +7,8 @@ public class EditTest : CategoryBaseTest
 {
 	protected override string Folder => "PrettyCards";
 
-	[Fact(DisplayName = "Edit")]
+	[Test]
+	[DisplayName("Edit")]
 	public void Edit()
 	{
 		Url = "https://api.vk.ru/method/prettyCards.edit";

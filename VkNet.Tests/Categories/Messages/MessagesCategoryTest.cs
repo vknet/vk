@@ -10,14 +10,14 @@ using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 [SuppressMessage("ReSharper", "PublicMembersMustHaveComments")]
 public class MessagesCategoryTest : MessagesBaseTests
 {
-	[Fact(DisplayName = "Add chat user normal case true")]
+	[Test]
+	[DisplayName("Add chat user normal case true")]
 	public void AddChatUser_NormalCase_True()
 	{
 		Url = "https://api.vk.ru/method/messages.addChatUser";
@@ -30,7 +30,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Create chat normal case chat id")]
+	[Test]
+	[DisplayName("Create chat normal case chat id")]
 	public void CreateChat_NormalCase_ChatId()
 	{
 		Url = "https://api.vk.ru/method/messages.createChat";
@@ -46,7 +47,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be(3);
 	}
 
-	[Fact(DisplayName = "Delete id4446 true")]
+	[Test]
+	[DisplayName("Delete id4446 true")]
 	public void Delete_Id4446_True()
 	{
 		Url = "https://api.vk.ru/method/messages.delete";
@@ -61,7 +63,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Delete id999999 false")]
+	[Test]
+	[DisplayName("Delete id999999 false")]
 	public void Delete_Id999999_False()
 	{
 		Url = "https://api.vk.ru/method/messages.delete";
@@ -74,7 +77,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.ThrowExactly<UnknownException>();
 	}
 
-	[Fact(DisplayName = "Delete multiple 4457 and4464 true")]
+	[Test]
+	[DisplayName("Delete multiple 4457 and4464 true")]
 	public void Delete_Multiple_4457And4464_True()
 	{
 		Url = "https://api.vk.ru/method/messages.delete";
@@ -99,7 +103,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Edit chat normal case true")]
+	[Test]
+	[DisplayName("Edit chat normal case true")]
 	public void EditChat_NormalCase_True()
 	{
 		Url = "https://api.vk.ru/method/messages.editChat";
@@ -112,7 +117,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Get normal case v521")]
+	[Test]
+	[DisplayName("Get normal case v521")]
 	public void Get_NormalCase_V521()
 	{
 		Url = "https://api.vk.ru/method/messages.get";
@@ -184,7 +190,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be(" ... ");
 	}
 
-	[Fact(DisplayName = "Get with last message id param normal case v521")]
+	[Test]
+	[DisplayName("Get with last message id param normal case v521")]
 	public void Get_WithLastMessageIdParam_NormalCase_V521()
 	{
 		Url = "https://api.vk.ru/method/messages.get";
@@ -232,7 +239,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be("may");
 	}
 
-	[Fact(DisplayName = "Get by id multiple normal case messages")]
+	[Test]
+	[DisplayName("Get by id multiple normal case messages")]
 	public void GetById_Multiple_NormalCase_Messages()
 	{
 		Url = "https://api.vk.ru/method/messages.getById";
@@ -325,7 +333,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be("Привеееет!!!!!!!!!!!");
 	}
 
-	[Fact(DisplayName = "Get by id normal case message")]
+	[Test]
+	[DisplayName("Get by id normal case message")]
 	public void GetById_NormalCase_Message()
 	{
 		Url = "https://api.vk.ru/method/messages.getById";
@@ -364,7 +373,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 		// ReSharper restore PossibleNullReferenceException
 	}
 
-	[Fact(DisplayName = "Get chat normal case chat object")]
+	[Test]
+	[DisplayName("Get chat normal case chat object")]
 	public void GetChat_NormalCase_ChatObject()
 	{
 		Url = "https://api.vk.ru/method/messages.getChat";
@@ -398,7 +408,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be(10657891);
 	}
 
-	[Fact(DisplayName = "Get chat users chat id user ids")]
+	[Test]
+	[DisplayName("Get chat users chat id user ids")]
 	public void GetChatUsers_ChatId_UserIds()
 	{
 		Url = "https://api.vk.ru/method/messages.getChatUsers";
@@ -415,7 +426,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.HaveCount(3);
 	}
 
-	[Fact(DisplayName = "Get chat users chat id with fields users")]
+	[Test]
+	[DisplayName("Get chat users chat id with fields users")]
 	public void GetChatUsers_ChatIdWithFields_Users()
 	{
 		Url = "https://api.vk.ru/method/messages.getChatUsers";
@@ -501,7 +513,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be(4793858);
 	}
 
-	[Fact(DisplayName = "Get dialogs normal case messages")]
+	[Test]
+	[DisplayName("Get dialogs normal case messages")]
 	public void GetDialogs_NormalCase_Messages()
 	{
 		Url = "https://api.vk.ru/method/messages.getDialogs";
@@ -557,7 +570,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be("&#128514;");
 	}
 
-	[Fact(DisplayName = "Get history contains repost error46")]
+	[Test]
+	[DisplayName("Get history contains repost error46")]
 	public void GetHistory_ContainsRepost_Error46()
 	{
 		Url = "https://api.vk.ru/method/messages.getHistory";
@@ -635,7 +649,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.NotBeNull();
 	}
 
-	[Fact(DisplayName = "Get history contains sticker error47")]
+	[Test]
+	[DisplayName("Get history contains sticker error47")]
 	public void GetHistory_ContainsSticker_Error47()
 	{
 		Url = "https://api.vk.ru/method/messages.getHistory";
@@ -677,7 +692,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be(54321);
 	}
 
-	[Fact(DisplayName = "Get history normal case all fields messages")]
+	[Test]
+	[DisplayName("Get history normal case all fields messages")]
 	public void GetHistory_NormalCaseAllFields_Messages()
 	{
 		Url = "https://api.vk.ru/method/messages.getHistory";
@@ -715,7 +731,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 				DateTimeKind.Utc));
 	}
 
-	[Fact(DisplayName = "Get last activity normal cast last activity object")]
+	[Test]
+	[DisplayName("Get last activity normal cast last activity object")]
 	public void GetLastActivity_NormalCast_LastActivityObject()
 	{
 		Url = "https://api.vk.ru/method/messages.getLastActivity";
@@ -739,7 +756,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 				DateTimeKind.Utc));
 	}
 
-	[Fact(DisplayName = "Get long poll server normal case long poll server response")]
+	[Test]
+	[DisplayName("Get long poll server normal case long poll server response")]
 	public void GetLongPollServer_NormalCase_LongPollServerResponse()
 	{
 		Url = "https://api.vk.ru/method/messages.getLongPollServer";
@@ -757,12 +775,14 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be(1627957305);
 	}
 
-	[Fact(DisplayName = "Get long poll server throw argument null exception")]
+	[Test]
+	[DisplayName("Get long poll server throw argument null exception")]
 	public void GetLongPollServer_ThrowArgumentNullException() => FluentActions.Invoking(() => Api.Messages.GetLongPollServer())
 		.Should()
 		.ThrowExactly<ArgumentException>();
 
-	[Fact(DisplayName = "Mark as read multiple normal case true")]
+	[Test]
+	[DisplayName("Mark as read multiple normal case true")]
 	public void MarkAsRead_Multiple_NormalCase_True()
 	{
 		Url = "https://api.vk.ru/method/messages.markAsRead";
@@ -775,7 +795,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Mark as read normal case true")]
+	[Test]
+	[DisplayName("Mark as read normal case true")]
 	public void MarkAsRead_NormalCase_True()
 	{
 		Url = "https://api.vk.ru/method/messages.markAsRead";
@@ -788,7 +809,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Remove chat user normal case true")]
+	[Test]
+	[DisplayName("Remove chat user normal case true")]
 	public void RemoveChatUser_NormalCase_True()
 	{
 		Url = "https://api.vk.ru/method/messages.removeChatUser";
@@ -801,7 +823,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Restore normal case true")]
+	[Test]
+	[DisplayName("Restore normal case true")]
 	public void Restore_NormalCase_True()
 	{
 		Url = "https://api.vk.ru/method/messages.restore";
@@ -814,7 +837,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Search normal case messages")]
+	[Test]
+	[DisplayName("Search normal case messages")]
 	public void Search_NormalCase_Messages()
 	{
 		Url = "https://api.vk.ru/method/messages.search";
@@ -928,7 +952,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be("Привет");
 	}
 
-	[Fact(DisplayName = "Search not existed query empty list")]
+	[Test]
+	[DisplayName("Search not existed query empty list")]
 	public void Search_NotExistedQuery_EmptyList()
 	{
 		Url = "https://api.vk.ru/method/messages.search";
@@ -945,7 +970,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be(0);
 	}
 
-	[Fact(DisplayName = "Search dialogs empty response message response with empty lists")]
+	[Test]
+	[DisplayName("Search dialogs empty response message response with empty lists")]
 	public void SearchDialogs_EmptyResponse_MessageResponseWithEmptyLists()
 	{
 		Url = "https://api.vk.ru/method/messages.searchDialogs";
@@ -963,7 +989,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.BeEmpty();
 	}
 
-	[Fact(DisplayName = "Search dialogs nastya query two profiles")]
+	[Test]
+	[DisplayName("Search dialogs nastya query two profiles")]
 	public void SearchDialogs_NastyaQuery_TwoProfiles()
 	{
 		Url = "https://api.vk.ru/method/messages.searchDialogs";
@@ -1002,7 +1029,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be("Петрова");
 	}
 
-	[Fact(DisplayName = "Search dialogs profile and chat response")]
+	[Test]
+	[DisplayName("Search dialogs profile and chat response")]
 	public void SearchDialogs_ProfileAndChat_Response()
 	{
 		Url = "https://api.vk.ru/method/messages.searchDialogs";
@@ -1056,7 +1084,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be(1708231);
 	}
 
-	[Fact(DisplayName = "Get history attachments")]
+	[Test]
+	[DisplayName("Get history attachments")]
 	public void GetHistoryAttachments()
 	{
 		Url = "https://api.vk.ru/method/messages.getHistoryAttachments";
@@ -1103,7 +1132,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.Be(33333);
 	}
 
-	[Fact(DisplayName = "Set member role")]
+	[Test]
+	[DisplayName("Set member role")]
 	public void SetMemberRole()
 	{
 		Url = "https://api.vk.ru/method/messages.setMemberRole";
@@ -1115,7 +1145,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Change conversation member restrictions mute")]
+	[Test]
+	[DisplayName("Change conversation member restrictions mute")]
 	public void ChangeConversationMemberRestrictions_Mute()
 	{
 		Url = "https://api.vk.ru/method/messages.changeConversationMemberRestrictions";
@@ -1140,7 +1171,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			});
 	}
 
-	[Fact(DisplayName = "Change conversation member restrictions mute forever")]
+	[Test]
+	[DisplayName("Change conversation member restrictions mute forever")]
 	public void ChangeConversationMemberRestrictions_MuteForever()
 	{
 		Url = "https://api.vk.ru/method/messages.changeConversationMemberRestrictions";
@@ -1164,7 +1196,8 @@ public class MessagesCategoryTest : MessagesBaseTests
 			});
 	}
 
-	[Fact(DisplayName = "Change conversation member restrictions unmute")]
+	[Test]
+	[DisplayName("Change conversation member restrictions unmute")]
 	public void ChangeConversationMemberRestrictions_Unmute()
 	{
 		Url = "https://api.vk.ru/method/messages.changeConversationMemberRestrictions";

@@ -1,7 +1,6 @@
 using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Group;
 
@@ -9,7 +8,8 @@ public class AddAddressTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact(DisplayName = "Add address always opened")]
+	[Test]
+	[DisplayName("Add address always opened")]
 	public void AddAddress_AlwaysOpened()
 	{
 		Url = "https://api.vk.ru/method/groups.addAddress";
@@ -71,7 +71,8 @@ public class AddAddressTests : CategoryBaseTest
 			.Be(58227);
 	}
 
-	[Fact(DisplayName = "Add address timetable")]
+	[Test]
+	[DisplayName("Add address timetable")]
 	public void AddAddress_Timetable()
 	{
 		Url = "https://api.vk.ru/method/groups.addAddress";

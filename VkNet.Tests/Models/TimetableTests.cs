@@ -1,13 +1,13 @@
 using AwesomeAssertions;
 using Newtonsoft.Json;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class TimetableTests : BaseTest
 {
-	[Fact(DisplayName = "Timetable to json")]
+	[Test]
+	[DisplayName("Timetable to json")]
 	public void TimetableToJson()
 	{
 		ReadJsonFile("Models", nameof(TimetableToJson));

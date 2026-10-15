@@ -1,12 +1,12 @@
 using AwesomeAssertions;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class GraffitiModel : BaseTest
 {
-	[Fact(DisplayName = "Should deserialize from vk response to attachment")]
+	[Test]
+	[DisplayName("Should deserialize from vk response to attachment")]
 	public void ShouldDeserializeFromVkResponseToAttachment()
 	{
 		ReadJsonFile("Models", "graffiti_attachment");
@@ -20,7 +20,8 @@ public class GraffitiModel : BaseTest
 			.BeOfType<Graffiti>();
 	}
 
-	[Fact(DisplayName = "Should deserialize old api response to attachment")]
+	[Test]
+	[DisplayName("Should deserialize old api response to attachment")]
 	public void ShouldDeserializeOldApiResponseToAttachment()
 	{
 		ReadJsonFile("Models", "graffiti_attachment_for_960");

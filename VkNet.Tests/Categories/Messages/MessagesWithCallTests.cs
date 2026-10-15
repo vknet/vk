@@ -3,13 +3,13 @@ using AwesomeAssertions;
 using AwesomeAssertions.Extensions;
 using VkNet.Model;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesWithCallTests : MessagesBaseTests
 {
-	[Fact(DisplayName = "Message with call attachment all fields are present")]
+	[Test]
+	[DisplayName("Message with call attachment all fields are present")]
 	public void Message_WithCallAttachment_AllFieldsArePresent()
 	{
 		ReadJsonFile("Models", "message_with_call");

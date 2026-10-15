@@ -8,7 +8,6 @@ using VkNet.Exception;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Video;
 
@@ -16,7 +15,8 @@ public class VideoCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Video";
 
-	[Fact(DisplayName = "Add normal case")]
+	[Test]
+	[DisplayName("Add normal case")]
 	public void Add_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.add";
@@ -29,7 +29,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be(167593944);
 	}
 
-	[Fact(DisplayName = "Add album to current user")]
+	[Test]
+	[DisplayName("Add album to current user")]
 	public void AddAlbum_ToCurrentUser()
 	{
 		Url = "https://api.vk.ru/method/video.addAlbum";
@@ -42,7 +43,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be(49273471);
 	}
 
-	[Fact(DisplayName = "Create comment normal case")]
+	[Test]
+	[DisplayName("Create comment normal case")]
 	public void CreateComment_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.createComment";
@@ -60,7 +62,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be(35634);
 	}
 
-	[Fact(DisplayName = "Delete normal case")]
+	[Test]
+	[DisplayName("Delete normal case")]
 	public void Delete_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.delete";
@@ -73,7 +76,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Delete album normal case")]
+	[Test]
+	[DisplayName("Delete album normal case")]
 	public void DeleteAlbum_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.deleteAlbum";
@@ -86,7 +90,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Delete comment normal case")]
+	[Test]
+	[DisplayName("Delete comment normal case")]
 	public void DeleteComment_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.deleteComment";
@@ -99,7 +104,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Edit normal case")]
+	[Test]
+	[DisplayName("Edit normal case")]
 	public void Edit_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.edit";
@@ -118,7 +124,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Edit album normal case")]
+	[Test]
+	[DisplayName("Edit album normal case")]
 	public void EditAlbum_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.editAlbum";
@@ -131,7 +138,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Edit comment normal case")]
+	[Test]
+	[DisplayName("Edit comment normal case")]
 	public void EditComment_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.editComment";
@@ -144,7 +152,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Get extended")]
+	[Test]
+	[DisplayName("Get extended")]
 	public void Get_Extended()
 	{
 		Url = "https://api.vk.ru/method/video.get";
@@ -245,7 +254,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be(1);
 	}
 
-	[Fact(DisplayName = "Get not extended")]
+	[Test]
+	[DisplayName("Get not extended")]
 	public void Get_NotExtended()
 	{
 		Url = "https://api.vk.ru/method/video.get";
@@ -381,7 +391,8 @@ public class VideoCategoryTest : CategoryBaseTest
 	}
 
 	// todo add not extended version
-	[Fact(DisplayName = "Get albums normal case extended")]
+	[Test]
+	[DisplayName("Get albums normal case extended")]
 	public void GetAlbums_NormalCase_Extended()
 	{
 		Url = "https://api.vk.ru/method/video.getAlbums";
@@ -416,7 +427,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get comments with likes")]
+	[Test]
+	[DisplayName("Get comments with likes")]
 	public void GetComments_WithLikes()
 	{
 		Url = "https://api.vk.ru/method/video.getComments";
@@ -493,7 +505,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Get comments without likes")]
+	[Test]
+	[DisplayName("Get comments without likes")]
 	public void GetComments_WithoutLikes()
 	{
 		Url = "https://api.vk.ru/method/video.getComments";
@@ -552,7 +565,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be("Я опять на странице Дурова, опять передаю привет Маме, Бабушке и своим друзьям! Дела у меня очень отлично!");
 	}
 
-	[Fact(DisplayName = "Report normal case")]
+	[Test]
+	[DisplayName("Report normal case")]
 	public void Report_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.report";
@@ -565,7 +579,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Report comment normal case")]
+	[Test]
+	[DisplayName("Report comment normal case")]
 	public void ReportComment_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.reportComment";
@@ -578,7 +593,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Restore normal case")]
+	[Test]
+	[DisplayName("Restore normal case")]
 	public void Restore_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.restore";
@@ -591,7 +607,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Restore comment normal case")]
+	[Test]
+	[DisplayName("Restore comment normal case")]
 	public void RestoreComment_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.restoreComment";
@@ -604,7 +621,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Save normal case")]
+	[Test]
+	[DisplayName("Save normal case")]
 	public void Save_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/video.save";
@@ -642,7 +660,8 @@ public class VideoCategoryTest : CategoryBaseTest
 				"http://cs6058.vk.ru/upload.php?act=parse_share&hash=d5371f57b935d1b3b0c6cde1100ecb&rhash=5c623ee8b80db0d3af5078a5dfb2&mid=234695118&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DlhQtzv5a408&api_callback=06ec8115dfc9a66eec&remotely=1&photo_server=607423&photo_server_hash=7874a144e80b8bb3c1a1eee5c9043"));
 	}
 
-	[Fact(DisplayName = "Save return error")]
+	[Test]
+	[DisplayName("Save return error")]
 	public void Save_ReturnError()
 	{
 		ReadErrorsJsonFile(204);
@@ -652,7 +671,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.ThrowExactly<VideoAccessDeniedException>();
 	}
 
-	[Fact(DisplayName = "Search normal case list of videos")]
+	[Test]
+	[DisplayName("Search normal case list of videos")]
 	public void Search_NormalCase_ListOfVideos()
 	{
 		Url = "https://api.vk.ru/method/video.search";
@@ -798,7 +818,8 @@ public class VideoCategoryTest : CategoryBaseTest
 			.Be(new Uri("http://vk.ru/video_ext.php?oid=-54257090&id=166728490&hash=15a0552ca76bedac"));
 	}
 
-	[Fact(DisplayName = "Add to album")]
+	[Test]
+	[DisplayName("Add to album")]
 	public void AddToAlbum()
 	{
 		Url = "https://api.vk.ru/method/video.addToAlbum";

@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Podcasts;
 
@@ -8,7 +7,8 @@ public class GetRecentSearchRequestsTest : CategoryBaseTest
 {
 	protected override string Folder => "Podcasts";
 
-	[Fact(DisplayName = "Get recent search requests")]
+	[Test]
+	[DisplayName("Get recent search requests")]
 	public void GetRecentSearchRequests()
 	{
 		Url = "https://api.vk.ru/method/podcasts.getRecentSearchRequests";

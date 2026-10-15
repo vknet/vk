@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.AppWidgets;
 
@@ -9,7 +8,8 @@ public class GetImagesByIdTest : CategoryBaseTest
 {
 	protected override string Folder => "AppWidgets";
 
-	[Fact(DisplayName = "Get images by id")]
+	[Test]
+	[DisplayName("Get images by id")]
 	public void GetImagesById()
 	{
 		Url = "https://api.vk.ru/method/appWidgets.getImagesById";

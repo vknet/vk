@@ -2,13 +2,13 @@ using System;
 using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class AudioMessageModel : BaseTest
 {
-	[Fact(DisplayName = "To string audio message should have access key")]
+	[Test]
+	[DisplayName("To string audio message should have access key")]
 	public void ToString_AudioMessageShouldHaveAccessKey()
 	{
 		var audioMessage = new AudioMessage
@@ -24,7 +24,8 @@ public class AudioMessageModel : BaseTest
 			.Be("audio_message1234_1234_test");
 	}
 
-	[Fact(DisplayName = "Should deserialize from vk response to audio message with transcript")]
+	[Test]
+	[DisplayName("Should deserialize from vk response to audio message with transcript")]
 	public void ShouldDeserializeFromVkResponseToAudioMessageWithTranscript()
 	{
 		ReadJsonFile("Models", "audio_message_with_transcription");
@@ -56,7 +57,8 @@ public class AudioMessageModel : BaseTest
 			.Be(TranscriptStates.Done);
 	}
 
-	[Fact(DisplayName = "Should deserialize from vk response to audio message")]
+	[Test]
+	[DisplayName("Should deserialize from vk response to audio message")]
 	public void ShouldDeserializeFromVkResponseToAudioMessage()
 	{
 		ReadJsonFile("Models", "audio_message_without_transcription");

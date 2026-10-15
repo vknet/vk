@@ -3,7 +3,6 @@ using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Docs;
 
@@ -11,7 +10,8 @@ public class DocsSaveTests : CategoryBaseTest
 {
 	protected override string Folder => "Docs";
 
-	[Fact(DisplayName = "Save")]
+	[Test]
+	[DisplayName("Save")]
 	public void Save()
 	{
 		Url = "https://api.vk.ru/method/docs.save";
@@ -25,7 +25,8 @@ public class DocsSaveTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Save2")]
+	[Test]
+	[DisplayName("Save2")]
 	public void Save2()
 	{
 		Url = "https://api.vk.ru/method/docs.save";
@@ -39,7 +40,8 @@ public class DocsSaveTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Save3")]
+	[Test]
+	[DisplayName("Save3")]
 	public void Save3()
 	{
 		Url = "https://api.vk.ru/method/docs.save";
@@ -53,7 +55,8 @@ public class DocsSaveTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Save type")]
+	[Test]
+	[DisplayName("Save type")]
 	public void Save_Type()
 	{
 		Url = "https://api.vk.ru/method/docs.save";

@@ -2,7 +2,6 @@
 using AwesomeAssertions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.AppWidgets;
 
@@ -10,7 +9,8 @@ public class GetAppImagesTest : CategoryBaseTest
 {
 	protected override string Folder => "AppWidgets";
 
-	[Fact(DisplayName = "Get app images")]
+	[Test]
+	[DisplayName("Get app images")]
 	public void GetAppImages()
 	{
 		Url = "https://api.vk.ru/method/appWidgets.getAppImages";

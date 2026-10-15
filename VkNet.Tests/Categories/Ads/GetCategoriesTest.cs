@@ -1,7 +1,6 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -9,7 +8,8 @@ public class GetCategoriesTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Get categories")]
+	[Test]
+	[DisplayName("Get categories")]
 	public void GetCategories()
 	{
 		Url = "https://api.vk.ru/method/ads.getCategories";

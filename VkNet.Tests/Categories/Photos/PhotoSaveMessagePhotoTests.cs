@@ -2,7 +2,6 @@
 using System.Linq;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Photos;
 
@@ -10,7 +9,8 @@ public class PhotoSaveMessagePhotoTests : CategoryBaseTest
 {
 	protected override string Folder => "Photos";
 
-	[Fact(DisplayName = "Save message photo")]
+	[Test]
+	[DisplayName("Save message photo")]
 	public void SaveMessagePhoto()
 	{
 		Url = "https://api.vk.ru/method/photos.saveMessagesPhoto";

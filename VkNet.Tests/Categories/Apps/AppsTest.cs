@@ -4,7 +4,6 @@ using AwesomeAssertions;
 using VkNet.Enums.Filters;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Apps;
 
@@ -13,7 +12,8 @@ public class AppsTest : CategoryBaseTest
 {
 	protected override string Folder => "Apps";
 
-	[Fact(DisplayName = "Delete app requests normal case")]
+	[Test]
+	[DisplayName("Delete app requests normal case")]
 	public void DeleteAppRequests_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/apps.deleteAppRequests";
@@ -25,7 +25,8 @@ public class AppsTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Get normal case")]
+	[Test]
+	[DisplayName("Get normal case")]
 	public void Get_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/apps.get";
@@ -45,7 +46,8 @@ public class AppsTest : CategoryBaseTest
 			.Be("raventestapp");
 	}
 
-	[Fact(DisplayName = "Get mini app policies")]
+	[Test]
+	[DisplayName("Get mini app policies")]
 	public void GetMiniAppPolicies()
 	{
 		Url = "https://api.vk.ru/method/apps.getMiniAppPolicies";
@@ -60,7 +62,8 @@ public class AppsTest : CategoryBaseTest
 			.Be("https://vk.ru/dev/uterms");
 	}
 
-	[Fact(DisplayName = "Get scopes")]
+	[Test]
+	[DisplayName("Get scopes")]
 	public void GetScopes()
 	{
 		Url = "https://api.vk.ru/method/apps.getScopes";
@@ -77,7 +80,8 @@ public class AppsTest : CategoryBaseTest
 			.Be("Friend list");
 	}
 
-	[Fact(DisplayName = "Get catalog normal case")]
+	[Test]
+	[DisplayName("Get catalog normal case")]
 	public void GetCatalog_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/apps.getCatalog";
@@ -93,7 +97,8 @@ public class AppsTest : CategoryBaseTest
 			.Be("Подземелья!");
 	}
 
-	[Fact(DisplayName = "Get friends list normal case")]
+	[Test]
+	[DisplayName("Get friends list normal case")]
 	public void GetFriendsList_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/apps.getFriendsList";
@@ -108,7 +113,8 @@ public class AppsTest : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact(DisplayName = "Get friends list ex normal case")]
+	[Test]
+	[DisplayName("Get friends list ex normal case")]
 	public void GetFriendsListEx_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/apps.getFriendsList";
@@ -123,7 +129,8 @@ public class AppsTest : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact(DisplayName = "Get leaderboard extended")]
+	[Test]
+	[DisplayName("Get leaderboard extended")]
 	public void GetLeaderboard_Extended()
 	{
 		Url = "https://api.vk.ru/method/apps.getLeaderboard";
@@ -156,7 +163,8 @@ public class AppsTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get leaderboard level")]
+	[Test]
+	[DisplayName("Get leaderboard level")]
 	public void GetLeaderboard_Level()
 	{
 		Url = "https://api.vk.ru/method/apps.getLeaderboard";
@@ -186,7 +194,8 @@ public class AppsTest : CategoryBaseTest
 			.Be(123);
 	}
 
-	[Fact(DisplayName = "Get leaderboard points")]
+	[Test]
+	[DisplayName("Get leaderboard points")]
 	public void GetLeaderboard_Points()
 	{
 		Url = "https://api.vk.ru/method/apps.getLeaderboard";

@@ -2,13 +2,13 @@ using System;
 using AwesomeAssertions;
 using VkNet.Exception;
 using VkNet.Infrastructure.Authorization.ImplicitFlow;
-using Xunit;
 
 namespace VkNet.Tests.Infrastructure;
 
 public class ImplicitFlowVkAuthorizationTests
 {
-	[Fact(DisplayName = "Get authorization result")]
+	[Test]
+	[DisplayName("Get authorization result")]
 	public void GetAuthorizationResult()
 	{
 		var url = new Uri("https://oauth.vk.ru/blank.html#access_token=access_token&expires_in=86400&user_id=32190123&state=123");
@@ -33,7 +33,8 @@ public class ImplicitFlowVkAuthorizationTests
 			.Be("access_token");
 	}
 
-	[Fact(DisplayName = "Get authorization result vk authorization exception")]
+	[Test]
+	[DisplayName("Get authorization result vk authorization exception")]
 	public void GetAuthorizationResult_VkAuthorizationException()
 	{
 		var url = new Uri("https://m.vk.ru/login?act=authcheck&m=442");
@@ -45,7 +46,8 @@ public class ImplicitFlowVkAuthorizationTests
 			.ThrowExactly<VkAuthorizationException>();
 	}
 
-	[Fact(DisplayName = "Get page type captcha")]
+	[Test]
+	[DisplayName("Get page type captcha")]
 	public void GetPageType_Captcha()
 	{
 		var url = new Uri(
@@ -58,7 +60,8 @@ public class ImplicitFlowVkAuthorizationTests
 			.Be(ImplicitFlowPageType.Captcha);
 	}
 
-	[Fact(DisplayName = "Get page type captcha after incorrect enter")]
+	[Test]
+	[DisplayName("Get page type captcha after incorrect enter")]
 	public void GetPageType_Captcha_AfterIncorrectEnter()
 	{
 		var url = new Uri(
@@ -71,7 +74,8 @@ public class ImplicitFlowVkAuthorizationTests
 			.Be(ImplicitFlowPageType.Captcha);
 	}
 
-	[Fact(DisplayName = "Get page type consent")]
+	[Test]
+	[DisplayName("Get page type consent")]
 	public void GetPageType_Consent()
 	{
 		var url = new Uri(
@@ -84,7 +88,8 @@ public class ImplicitFlowVkAuthorizationTests
 			.Be(ImplicitFlowPageType.Consent);
 	}
 
-	[Fact(DisplayName = "Get page type error")]
+	[Test]
+	[DisplayName("Get page type error")]
 	public void GetPageType_Error()
 	{
 		var url = new Uri(
@@ -97,7 +102,8 @@ public class ImplicitFlowVkAuthorizationTests
 			.Be(ImplicitFlowPageType.Error);
 	}
 
-	[Fact(DisplayName = "Get page type login password")]
+	[Test]
+	[DisplayName("Get page type login password")]
 	public void GetPageType_LoginPassword()
 	{
 		var url = new Uri(
@@ -110,7 +116,8 @@ public class ImplicitFlowVkAuthorizationTests
 			.Be(ImplicitFlowPageType.LoginPassword);
 	}
 
-	[Fact(DisplayName = "Get page type login password after incorrect enter")]
+	[Test]
+	[DisplayName("Get page type login password after incorrect enter")]
 	public void GetPageType_LoginPassword_AfterIncorrectEnter()
 	{
 		var url = new Uri(
@@ -123,7 +130,8 @@ public class ImplicitFlowVkAuthorizationTests
 			.Be(ImplicitFlowPageType.LoginPassword);
 	}
 
-	[Fact(DisplayName = "Get page type result")]
+	[Test]
+	[DisplayName("Get page type result")]
 	public void GetPageType_Result()
 	{
 		var url = new Uri(
@@ -136,9 +144,10 @@ public class ImplicitFlowVkAuthorizationTests
 			.Be(ImplicitFlowPageType.Result);
 	}
 
-	[Theory(DisplayName = "Get page type two factor")]
-	[InlineData("https://m.vk.ru/login?act=authcheck&api_hash=api_hash")]
-	[InlineData("https://m.vk.ru:443/login?act=authcheck&api_hash=api_hash")]
+	[Test]
+	[DisplayName("Get page type two factor")]
+	[Arguments("https://m.vk.ru/login?act=authcheck&api_hash=api_hash")]
+	[Arguments("https://m.vk.ru:443/login?act=authcheck&api_hash=api_hash")]
 	public void GetPageType_TwoFactor(string uriString)
 	{
 		var url = new Uri(uriString);
@@ -150,9 +159,10 @@ public class ImplicitFlowVkAuthorizationTests
 			.Be(ImplicitFlowPageType.TwoFactor);
 	}
 
-	[Theory(DisplayName = "Get page type two factor after incorrect enter")]
-	[InlineData("https://m.vk.ru/login?act=authcheck&m=442")]
-	[InlineData("https://m.vk.ru:443/login?act=authcheck&m=442")]
+	[Test]
+	[DisplayName("Get page type two factor after incorrect enter")]
+	[Arguments("https://m.vk.ru/login?act=authcheck&m=442")]
+	[Arguments("https://m.vk.ru:443/login?act=authcheck&m=442")]
 	public void GetPageType_TwoFactor_AfterIncorrectEnter(string uriString)
 	{
 		var url = new Uri(uriString);

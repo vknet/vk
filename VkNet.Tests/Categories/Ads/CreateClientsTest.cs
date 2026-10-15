@@ -1,7 +1,6 @@
 ﻿using AwesomeAssertions;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -9,7 +8,8 @@ public class CreateClientsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Create clients")]
+	[Test]
+	[DisplayName("Create clients")]
 	public void CreateClients()
 	{
 		Url = "https://api.vk.ru/method/ads.createClients";

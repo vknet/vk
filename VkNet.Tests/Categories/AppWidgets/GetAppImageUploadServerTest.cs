@@ -1,7 +1,6 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.SafetyEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.AppWidgets;
 
@@ -9,7 +8,8 @@ public class GetAppImageUploadServerTest : CategoryBaseTest
 {
 	protected override string Folder => "AppWidgets";
 
-	[Fact(DisplayName = "Get app image upload server")]
+	[Test]
+	[DisplayName("Get app image upload server")]
 	public void GetAppImageUploadServer()
 	{
 		Url = "https://api.vk.ru/method/appWidgets.getAppImageUploadServer";
