@@ -37,7 +37,10 @@
 		</PackageVersion>
 	</ItemGroup>
 	<ItemGroup Label="Включено в каждый проект">
-		<PackageReference Include="stbychkov.AutoLoggerMessage"/>
+		<PackageReference Include="stbychkov.AutoLoggerMessage">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageVersion Include="stbychkov.AutoLoggerMessage" Version="1.0.14"/>
 		<PackageReference Include="JetBrains.Annotations"/>
 		<PackageReference Include="Reo.Core.Analyzers" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive"/>
