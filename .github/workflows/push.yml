@@ -24,6 +24,8 @@ jobs:
   build:
     environment: VkNet
     runs-on: ubuntu-latest
+    permissions:
+        id-token: write
 
     steps:
       - uses: actions/checkout@v5
@@ -56,11 +58,13 @@ jobs:
       - name: Build the NuGet package Release
         if:   success() && !contains(steps.get_version.outputs.version, 'alpha')
         run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}/Package
+
       - name: NuGet login (OIDC → temp API key)
         uses: NuGet/login@v1
         id: login
         with:
             user: ${{ secrets.NUGET_USER }}
+
       - name: Publish NuGet Package
         run: dotnet nuget push ${{env.DOTNET_ROOT}}/Package/*.nupkg --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 

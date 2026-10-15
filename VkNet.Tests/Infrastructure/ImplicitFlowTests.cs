@@ -114,7 +114,7 @@ public class ImplicitFlowTests
 
 	[Test]
 	[DisplayName("Authorize validate error")]
-	public void Authorize_ValidateError()
+	public async Task Authorize_ValidateError()
 	{
 		var mocker = new AutoMocker();
 
@@ -128,7 +128,7 @@ public class ImplicitFlowTests
 			Login = "login"
 		});
 
-		FluentActions.Invoking(() => implicitFlow.AuthorizeAsync())
+		await FluentActions.Invoking(() => implicitFlow.AuthorizeAsync())
 			.Should()
 			.ThrowExactlyAsync<VkAuthorizationException>();
 	}
