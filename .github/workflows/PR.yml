@@ -1,7 +1,7 @@
 name: PR Check
 
 on:
-  pull_request_target: 
+  pull_request_target:
     branches: [ develop ]
 
   workflow_dispatch:
@@ -23,18 +23,18 @@ jobs:
   build:
     environment: VkNet
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v5
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: 8.x
-        
+          dotnet-version: 10.x
+
       - name: Test
-        run: dotnet test VkNet.Tests/VkNet.Tests.csproj -c Release -f net8.0
-      
+        run: dotnet test VkNet.Tests/VkNet.Tests.csproj -c Release -f net10.0
+
       - name: Send Telegram notification
         uses: appleboy/telegram-action@v1.1.1
         with:
@@ -43,9 +43,9 @@ jobs:
           format: markdown
           message: |
             **✅ Task Succeeded**
-            
+
             `Reason: PullRequest Build №: ${{ github.run_number }} Pull Request для VkNet был успешно собран!`
-            
-            **Build queued by: ${{ github.triggering_actor }}** 
-            
+
+            **Build queued by: ${{ github.triggering_actor }}**
+
             https://github.com/${{ github.repository }}/commit/${{github.event.pull_request.head.sha}}
