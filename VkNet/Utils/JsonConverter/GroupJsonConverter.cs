@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -97,6 +97,10 @@ public class GroupJsonConverter : Newtonsoft.Json.JsonConverter
 			BanInfo = !response.ContainsKey("ban_info")
 				? null
 				: JsonConvert.DeserializeObject<BanInfo>(response["ban_info"]
+					.ToString()),
+			Addresses = !response.ContainsKey("addresses")
+				? null
+				: JsonConvert.DeserializeObject<Addresses>(response["addresses"]
 					.ToString()),
 			CanUploadVideo = response["can_upload_video"],
 			MainAlbumId = response["main_album_id"],
