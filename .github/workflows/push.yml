@@ -34,7 +34,7 @@ jobs:
           dotnet-version: 10.x
 
       - name: Test
-        run: dotnet test VkNet.Tests/VkNet.Tests.csproj -c Release -f net10.0
+        run: dotnet test --project VkNet.Tests/VkNet.Tests.csproj -c Release -f net10.0 --coverage
 
       - uses: bbonkr/get-version-action@v1
         id: get_version
@@ -56,9 +56,13 @@ jobs:
       - name: Build the NuGet package Release
         if:   success() && !contains(steps.get_version.outputs.version, 'alpha')
         run: dotnet pack VkNet/VkNet.csproj --configuration Release --output ${{env.DOTNET_ROOT}}/Package
-
+      - name: NuGet login (OIDC → temp API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+            user: ${{ secrets.NUGET_USER }}
       - name: Publish NuGet Package
-        run: dotnet nuget push ${{env.DOTNET_ROOT}}/Package/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push ${{env.DOTNET_ROOT}}/Package/*.nupkg --api-key ${{ steps.login.outputs.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
 
       - name: Send Telegram notification
         uses: appleboy/telegram-action@master
