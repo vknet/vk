@@ -1,7 +1,6 @@
 using System.Linq;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Secure;
 
@@ -9,7 +8,8 @@ public class SecureTests : CategoryBaseTest
 {
 	protected override string Folder => "Secure";
 
-	[Fact(DisplayName = "Add app event")]
+	[Test]
+	[DisplayName("Add app event")]
 	public void AddAppEvent()
 	{
 		Url = "https://api.vk.ru/method/secure.addAppEvent";
@@ -21,7 +21,8 @@ public class SecureTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Check token")]
+	[Test]
+	[DisplayName("Check token")]
 	public void CheckToken()
 	{
 		Url = "https://api.vk.ru/method/secure.checkToken";
@@ -33,7 +34,8 @@ public class SecureTests : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact(DisplayName = "Get app balance")]
+	[Test]
+	[DisplayName("Get app balance")]
 	public void GetAppBalance()
 	{
 		Url = "https://api.vk.ru/method/secure.getAppBalance";
@@ -45,7 +47,8 @@ public class SecureTests : CategoryBaseTest
 			.Be(5000);
 	}
 
-	[Fact(DisplayName = "Get sms history")]
+	[Test]
+	[DisplayName("Get sms history")]
 	public void GetSmsHistory()
 	{
 		Url = "https://api.vk.ru/method/secure.getSMSHistory";
@@ -65,7 +68,8 @@ public class SecureTests : CategoryBaseTest
 			.Be(1238497);
 	}
 
-	[Fact(DisplayName = "Get transactions history")]
+	[Test]
+	[DisplayName("Get transactions history")]
 	public void GetTransactionsHistory()
 	{
 		Url = "https://api.vk.ru/method/secure.getTransactionsHistory";
@@ -77,7 +81,8 @@ public class SecureTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get user level")]
+	[Test]
+	[DisplayName("Get user level")]
 	public void GetUserLevel()
 	{
 		Url = "https://api.vk.ru/method/secure.getUserLevel";
@@ -89,7 +94,8 @@ public class SecureTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Give event sticker")]
+	[Test]
+	[DisplayName("Give event sticker")]
 	public void GiveEventSticker()
 	{
 		Url = "https://api.vk.ru/method/secure.giveEventSticker";
@@ -106,7 +112,8 @@ public class SecureTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Send notification")]
+	[Test]
+	[DisplayName("Send notification")]
 	public void SendNotification()
 	{
 		Url = "https://api.vk.ru/method/secure.sendNotification";
@@ -119,7 +126,8 @@ public class SecureTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Send sms notification")]
+	[Test]
+	[DisplayName("Send sms notification")]
 	public void SendSmsNotification()
 	{
 		Url = "https://api.vk.ru/method/secure.sendSMSNotification";
@@ -131,7 +139,8 @@ public class SecureTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Set counter")]
+	[Test]
+	[DisplayName("Set counter")]
 	public void SetCounter()
 	{
 		Url = "https://api.vk.ru/method/secure.setCounter";

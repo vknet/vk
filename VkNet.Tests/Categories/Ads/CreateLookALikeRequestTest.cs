@@ -1,7 +1,6 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -9,7 +8,8 @@ public class CreateLookALikeRequestTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Create lookalike request")]
+	[Test]
+	[DisplayName("Create lookalike request")]
 	public void CreateLookalikeRequest()
 	{
 		Url = "https://api.vk.ru/method/ads.createLookalikeRequest";

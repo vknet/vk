@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Podcasts;
 
@@ -8,7 +7,8 @@ public class ClearRecentSearchesTest : CategoryBaseTest
 {
 	protected override string Folder => "Podcasts";
 
-	[Fact(DisplayName = "Clear recent searches")]
+	[Test]
+	[DisplayName("Clear recent searches")]
 	public void ClearRecentSearches()
 	{
 		Url = "https://api.vk.ru/method/podcasts.clearRecentSearches";

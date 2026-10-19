@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Audio;
 
@@ -9,7 +8,8 @@ public class AudioCreatePlaylistTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact(DisplayName = "Create playlist test")]
+	[Test]
+	[DisplayName("Create playlist test")]
 	public void CreatePlaylistTest()
 	{
 		Url = "https://api.vk.ru/method/audio.createPlaylist";

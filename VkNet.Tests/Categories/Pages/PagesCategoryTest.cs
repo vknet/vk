@@ -2,7 +2,6 @@
 using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Pages;
 
@@ -11,7 +10,8 @@ public class PagesCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Pages";
 
-	[Fact(DisplayName = "Clear cache")]
+	[Test]
+	[DisplayName("Clear cache")]
 	public void ClearCache()
 	{
 		Url = "https://api.vk.ru/method/pages.clearCache";
@@ -23,7 +23,8 @@ public class PagesCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Get1 normal case")]
+	[Test]
+	[DisplayName("Get1 normal case")]
 	public void Get1_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.get";
@@ -72,7 +73,8 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be("http://m.vk.ru/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
 	}
 
-	[Fact(DisplayName = "Get2 normal case")]
+	[Test]
+	[DisplayName("Get2 normal case")]
 	public void Get2_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.get";
@@ -121,7 +123,8 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be("http://m.vk.ru/page-103292418_50050492?api_view=bdf796b3489e4adbc46be1cb81863e");
 	}
 
-	[Fact(DisplayName = "Get history normal case")]
+	[Test]
+	[DisplayName("Get history normal case")]
 	public void GetHistory_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.getHistory";
@@ -133,7 +136,8 @@ public class PagesCategoryTest : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact(DisplayName = "Get titles normal case")]
+	[Test]
+	[DisplayName("Get titles normal case")]
 	public void GetTitles_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.getTitles";
@@ -145,7 +149,8 @@ public class PagesCategoryTest : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact(DisplayName = "Get version normal case")]
+	[Test]
+	[DisplayName("Get version normal case")]
 	public void GetVersion_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.getVersion";
@@ -184,7 +189,8 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be("<!--4-->test ");
 	}
 
-	[Fact(DisplayName = "Save1 normal case")]
+	[Test]
+	[DisplayName("Save1 normal case")]
 	public void Save1_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.save";
@@ -196,7 +202,8 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be(50050492);
 	}
 
-	[Fact(DisplayName = "Save2 normal case")]
+	[Test]
+	[DisplayName("Save2 normal case")]
 	public void Save2_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.save";
@@ -208,7 +215,8 @@ public class PagesCategoryTest : CategoryBaseTest
 			.Be(50050492);
 	}
 
-	[Fact(DisplayName = "Save access normal case")]
+	[Test]
+	[DisplayName("Save access normal case")]
 	public void SaveAccess_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/pages.saveAccess";

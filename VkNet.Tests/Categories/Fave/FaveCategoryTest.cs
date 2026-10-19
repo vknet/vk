@@ -6,7 +6,6 @@ using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Fave;
 
@@ -15,7 +14,8 @@ public class FaveCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Fave";
 
-	[Fact(DisplayName = "Get links normal case")]
+	[Test]
+	[DisplayName("Get links normal case")]
 	public void GetLinks_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/fave.getLinks";
@@ -50,7 +50,8 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be("https://pp.vk.me/c400/g00001/e_5ba03323.jpg");
 	}
 
-	[Fact(DisplayName = "Get market items all params")]
+	[Test]
+	[DisplayName("Get market items all params")]
 	public void GetMarketItems_AllParams()
 	{
 		Url = "https://api.vk.ru/method/fave.getMarketItems";
@@ -68,7 +69,8 @@ public class FaveCategoryTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get market items count")]
+	[Test]
+	[DisplayName("Get market items count")]
 	public void GetMarketItems_count()
 	{
 		Url = "https://api.vk.ru/method/fave.getMarketItems";
@@ -86,7 +88,8 @@ public class FaveCategoryTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get market items count and offset")]
+	[Test]
+	[DisplayName("Get market items count and offset")]
 	public void GetMarketItems_countAndOffset()
 	{
 		Url = "https://api.vk.ru/method/fave.getMarketItems";
@@ -104,7 +107,8 @@ public class FaveCategoryTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get market items without params")]
+	[Test]
+	[DisplayName("Get market items without params")]
 	public void GetMarketItems_WithoutParams()
 	{
 		Url = "https://api.vk.ru/method/fave.getMarketItems";
@@ -122,7 +126,8 @@ public class FaveCategoryTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get photos extended case")]
+	[Test]
+	[DisplayName("Get photos extended case")]
 	public void GetPhotos_ExtendedCase()
 	{
 		Url = "https://api.vk.ru/method/fave.getPhotos";
@@ -183,7 +188,8 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be("1e2008462f1a012b95");
 	}
 
-	[Fact(DisplayName = "Get photos normal case")]
+	[Test]
+	[DisplayName("Get photos normal case")]
 	public void GetPhotos_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/fave.getPhotos";
@@ -272,7 +278,8 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be(DateHelper.TimeStampToDateTime(1390533904));
 	}
 
-	[Fact(DisplayName = "Get posts extended")]
+	[Test]
+	[DisplayName("Get posts extended")]
 	public void GetPosts_Extended()
 	{
 		Url = "https://api.vk.ru/method/fave.getPosts";
@@ -442,7 +449,8 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be(new Uri("https://pp.vk.me/c625628/v625628973/43c48/0ioH05XEjCc.jpg"));
 	}
 
-	[Fact(DisplayName = "Get posts not extended")]
+	[Test]
+	[DisplayName("Get posts not extended")]
 	public void GetPosts_NotExtended()
 	{
 		Url = "https://api.vk.ru/method/fave.getPosts";
@@ -545,7 +553,8 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be("733701ff4d7eb85ed7");
 	}
 
-	[Fact(DisplayName = "Get users one item")]
+	[Test]
+	[DisplayName("Get users one item")]
 	public void GetUsers_OneItem()
 	{
 		Url = "https://api.vk.ru/method/fave.getUsers";
@@ -574,7 +583,8 @@ public class FaveCategoryTest : CategoryBaseTest
 			.Be("Дуров");
 	}
 
-	[Fact(DisplayName = "Get videos normal case")]
+	[Test]
+	[DisplayName("Get videos normal case")]
 	public void GetVideos_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/fave.getVideos";

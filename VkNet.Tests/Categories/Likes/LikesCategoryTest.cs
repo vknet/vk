@@ -3,7 +3,6 @@ using System.Linq;
 using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Likes;
 
@@ -12,7 +11,8 @@ public class LikesCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Likes";
 
-	[Fact(DisplayName = "Add normal case")]
+	[Test]
+	[DisplayName("Add normal case")]
 	public void Add_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/likes.add";
@@ -28,7 +28,8 @@ public class LikesCategoryTest : CategoryBaseTest
 			.Be(5);
 	}
 
-	[Fact(DisplayName = "Delete normal case")]
+	[Test]
+	[DisplayName("Delete normal case")]
 	public void Delete_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/likes.delete";
@@ -40,7 +41,8 @@ public class LikesCategoryTest : CategoryBaseTest
 			.Be(4);
 	}
 
-	[Fact(DisplayName = "Get list normal case")]
+	[Test]
+	[DisplayName("Get list normal case")]
 	public void GetList_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/likes.getList";
@@ -55,7 +57,8 @@ public class LikesCategoryTest : CategoryBaseTest
 			.HaveCount(5);
 	}
 
-	[Fact(DisplayName = "Get list ex normal case")]
+	[Test]
+	[DisplayName("Get list ex normal case")]
 	public void GetListEx_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/likes.getList";
@@ -85,7 +88,8 @@ public class LikesCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact(DisplayName = "Is liked normal case")]
+	[Test]
+	[DisplayName("Is liked normal case")]
 	public void IsLiked_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/likes.isLiked";

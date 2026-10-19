@@ -1,7 +1,6 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.PrettyCards;
 
@@ -9,7 +8,8 @@ public class CreateTest : CategoryBaseTest
 {
 	protected override string Folder => "PrettyCards";
 
-	[Fact(DisplayName = "Create")]
+	[Test]
+	[DisplayName("Create")]
 	public void Create()
 	{
 		Url = "https://api.vk.ru/method/prettyCards.create";

@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Leads;
 
@@ -8,7 +7,8 @@ public class LeadsCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Leads";
 
-	[Fact(DisplayName = "Complete")]
+	[Test]
+	[DisplayName("Complete")]
 	public void Complete()
 	{
 		Url = "https://api.vk.ru/method/leads.complete";
@@ -38,7 +38,8 @@ public class LeadsCategoryTests : CategoryBaseTest
 			.Be(1);
 	}
 
-	[Fact(DisplayName = "Start")]
+	[Test]
+	[DisplayName("Start")]
 	public void Start()
 	{
 		Url = "https://api.vk.ru/method/leads.start";
@@ -56,7 +57,8 @@ public class LeadsCategoryTests : CategoryBaseTest
 			.Be("vk_sid");
 	}
 
-	[Fact(DisplayName = "Get users")]
+	[Test]
+	[DisplayName("Get users")]
 	public void GetUsers()
 	{
 		Url = "https://api.vk.ru/method/leads.getUsers";

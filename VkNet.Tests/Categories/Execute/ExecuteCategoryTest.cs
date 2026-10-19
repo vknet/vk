@@ -6,7 +6,6 @@ using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Execute;
 
@@ -14,7 +13,8 @@ public class ExecuteCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Execute";
 
-	[Fact(DisplayName = "Execute test")]
+	[Test]
+	[DisplayName("Execute test")]
 	public void ExecuteTest()
 	{
 		Url = "https://api.vk.ru/method/execute";
@@ -29,7 +29,8 @@ public class ExecuteCategoryTest : CategoryBaseTest
 			.Be(Json);
 	}
 
-	[Fact(DisplayName = "Execute topics feed test")]
+	[Test]
+	[DisplayName("Execute topics feed test")]
 	public void ExecuteTopicsFeedTest()
 	{
 		Url = "https://api.vk.ru/method/execute";
@@ -43,7 +44,8 @@ public class ExecuteCategoryTest : CategoryBaseTest
 			.NotBeNull();
 	}
 
-	[Fact(DisplayName = "Execute get universities test")]
+	[Test]
+	[DisplayName("Execute get universities test")]
 	public void ExecuteGetUniversitiesTest()
 	{
 		Url = "https://api.vk.ru/method/execute";
@@ -63,7 +65,8 @@ public class ExecuteCategoryTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Execute error test")]
+	[Test]
+	[DisplayName("Execute error test")]
 	public void ExecuteErrorTest()
 	{
 		Url = "https://api.vk.ru/method/execute";
@@ -76,7 +79,8 @@ public class ExecuteCategoryTest : CategoryBaseTest
 			.ThrowExactly<ImpossibleToCompileCodeException>();
 	}
 
-	[Fact(DisplayName = "Execute errors")]
+	[Test]
+	[DisplayName("Execute errors")]
 	public void ExecuteErrors()
 	{
 		Url = "https://api.vk.ru/method/execute";

@@ -1,12 +1,12 @@
 ﻿using AwesomeAssertions;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class MessageTemplateTests : BaseTest
 {
-	[Fact(DisplayName = "Template carousel")]
+	[Test]
+	[DisplayName("Template carousel")]
 	public void Template_Carousel()
 	{
 		ReadJsonFile("Models", "Template_Carousel");

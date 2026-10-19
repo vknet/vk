@@ -1,7 +1,6 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.Filters;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.NewsFeed;
 
@@ -9,7 +8,8 @@ public class GetTest : CategoryBaseTest
 {
 	protected override string Folder => "NewsFeed";
 
-	[Fact(DisplayName = "Get")]
+	[Test]
+	[DisplayName("Get")]
 	public void Get()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.get";
@@ -33,7 +33,8 @@ public class GetTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get2")]
+	[Test]
+	[DisplayName("Get2")]
 	public void Get2()
 	{
 		Url = "https://api.vk.ru/method/newsfeed.get";

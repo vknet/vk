@@ -1,12 +1,12 @@
 using AwesomeAssertions;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
 
 public class BotsLongPollBoardTest : BotsLongPollBaseTest
 {
-	[Fact(DisplayName = "Get bots long poll history board post new")]
+	[Test]
+	[DisplayName("Get bots long poll history board post new")]
 	public void GetBotsLongPollHistory_BoardPostNew()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNew));
@@ -52,7 +52,8 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history board post new first")]
+	[Test]
+	[DisplayName("Get bots long poll history board post new first")]
 	public void GetBotsLongPollHistory_BoardPostNewFirst()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostNewFirst));
@@ -105,7 +106,8 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history board post edit test")]
+	[Test]
+	[DisplayName("Get bots long poll history board post edit test")]
 	public void GetBotsLongPollHistory_BoardPostEditTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostEditTest));
@@ -154,7 +156,8 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history board post restore test")]
+	[Test]
+	[DisplayName("Get bots long poll history board post restore test")]
 	public void GetBotsLongPollHistory_BoardPostRestoreTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostRestoreTest));
@@ -200,7 +203,8 @@ public class BotsLongPollBoardTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history board post delete test")]
+	[Test]
+	[DisplayName("Get bots long poll history board post delete test")]
 	public void GetBotsLongPollHistory_BoardPostDeleteTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_BoardPostDeleteTest));

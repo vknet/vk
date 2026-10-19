@@ -3,13 +3,13 @@ using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Utils;
 
 public class VkParametersTests
 {
-	[Fact(DisplayName = "Add nullable boolean false value")]
+	[Test]
+	[DisplayName("Add nullable boolean false value")]
 	public void AddNullableBoolean_FalseValue()
 	{
 		var @params = new VkParameters
@@ -28,7 +28,8 @@ public class VkParametersTests
 			.Be("0");
 	}
 
-	[Fact(DisplayName = "Add nullable boolean null value")]
+	[Test]
+	[DisplayName("Add nullable boolean null value")]
 	public void AddNullableBoolean_NullValue()
 	{
 		var @params = new VkParameters
@@ -42,7 +43,8 @@ public class VkParametersTests
 			.NotContainKey("NullableBoolean");
 	}
 
-	[Fact(DisplayName = "Add nullable boolean true value")]
+	[Test]
+	[DisplayName("Add nullable boolean true value")]
 	public void AddNullableBoolean_TrueValue()
 	{
 		var @params = new VkParameters
@@ -61,7 +63,8 @@ public class VkParametersTests
 			.Be("1");
 	}
 
-	[Fact(DisplayName = "Add date time")]
+	[Test]
+	[DisplayName("Add date time")]
 	public void AddDateTime()
 	{
 		var dateTimeNow = new DateTime(2019,
@@ -91,7 +94,8 @@ public class VkParametersTests
 			.Be("1572481292");
 	}
 
-	[Fact(DisplayName = "Add string enum")]
+	[Test]
+	[DisplayName("Add string enum")]
 	public void AddStringEnum()
 	{
 		var isStringEnum = Utilities.IsStringEnum(AppRatingType.Points.GetType());
@@ -113,7 +117,8 @@ public class VkParametersTests
 				: "1");
 	}
 
-	[Fact(DisplayName = "Add enum")]
+	[Test]
+	[DisplayName("Add enum")]
 	public void AddEnum()
 	{
 		var isStringEnum = Utilities.IsStringEnum(AccessPages.All.GetType());

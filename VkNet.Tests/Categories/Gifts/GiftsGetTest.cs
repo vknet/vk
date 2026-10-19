@@ -4,7 +4,6 @@ using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Gifts;
 
@@ -13,7 +12,8 @@ public class GiftsGetTest : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "Gifts";
 
-	[Fact(DisplayName = "Get normal case")]
+	[Test]
+	[DisplayName("Get normal case")]
 	public void Get_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/gifts.get";

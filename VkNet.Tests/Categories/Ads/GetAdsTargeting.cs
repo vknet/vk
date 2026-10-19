@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -8,7 +7,8 @@ public class GetAdsTargetingTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Get ads targeting")]
+	[Test]
+	[DisplayName("Get ads targeting")]
 	public void GetAdsTargeting()
 	{
 		Url = "https://api.vk.ru/method/ads.getAdsTargeting";

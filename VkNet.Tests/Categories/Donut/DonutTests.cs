@@ -1,7 +1,6 @@
 using AwesomeAssertions;
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Donut;
 
@@ -10,7 +9,8 @@ public class DonutTests : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "Donut";
 
-	[Fact(DisplayName = "Is don")]
+	[Test]
+	[DisplayName("Is don")]
 	public void IsDon()
 	{
 		Url = "https://api.vk.ru/method/donut.isDon";
@@ -21,7 +21,8 @@ public class DonutTests : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Get friends")]
+	[Test]
+	[DisplayName("Get friends")]
 	public void GetFriends()
 	{
 		Url = "https://api.vk.ru/method/donut.getFriends";
@@ -35,7 +36,8 @@ public class DonutTests : CategoryBaseTest
 			.Be(10);
 	}
 
-	[Fact(DisplayName = "Get subscription")]
+	[Test]
+	[DisplayName("Get subscription")]
 	public void GetSubscription()
 	{
 		Url = "https://api.vk.ru/method/donut.getSubscription";
@@ -46,7 +48,8 @@ public class DonutTests : CategoryBaseTest
 			.ThrowExactly<VkApiMethodInvokeException>();
 	}
 
-	[Fact(DisplayName = "Get subscriptions")]
+	[Test]
+	[DisplayName("Get subscriptions")]
 	public void GetSubscriptions()
 	{
 		Url = "https://api.vk.ru/method/donut.getSubscriptions";

@@ -9,7 +9,6 @@ using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Account;
 
@@ -17,7 +16,8 @@ public class AccountCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Account";
 
-	[Fact(DisplayName = "Ban user access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Ban user access token invalid throw access token invalid exception")]
 	public void BanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -28,7 +28,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Ban user correct parameters return false")]
+	[Test]
+	[DisplayName("Ban user correct parameters return false")]
 	public void BanUser_CorrectParameters_ReturnFalse()
 	{
 		Url = "https://api.vk.ru/method/account.ban";
@@ -39,7 +40,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeFalse(); // Нельзя просто так взять и забанить Дурова
 	}
 
-	[Fact(DisplayName = "Ban user correct parameters return true")]
+	[Test]
+	[DisplayName("Ban user correct parameters return true")]
 	public void BanUser_CorrectParameters_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/account.ban";
@@ -50,7 +52,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Get banned access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Get banned access token invalid throw access token invalid exception")]
 	public void GetBanned_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		//
@@ -61,7 +64,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Get banned incorrect parameters throw argument exception")]
+	[Test]
+	[DisplayName("Get banned incorrect parameters throw argument exception")]
 	public void GetBanned_IncorrectParameters_ThrowArgumentException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -80,7 +84,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be("count");
 	}
 
-	[Fact(DisplayName = "Get banned when there is no banned users")]
+	[Test]
+	[DisplayName("Get banned when there is no banned users")]
 	public void GetBanned_WhenThereIsNoBannedUsers()
 	{
 		Url = "https://api.vk.ru/method/account.getBanned";
@@ -93,7 +98,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be(0);
 	}
 
-	[Fact(DisplayName = "Get banned when there is some banned users but not in the offset range")]
+	[Test]
+	[DisplayName("Get banned when there is some banned users but not in the offset range")]
 	public void GetBanned_WhenThereIsSomeBannedUsersButNotInTheOffsetRange()
 	{
 		Url = "https://api.vk.ru/method/account.getBanned";
@@ -106,7 +112,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be(5);
 	}
 
-	[Fact(DisplayName = "Get banned with correct count parameter")]
+	[Test]
+	[DisplayName("Get banned with correct count parameter")]
 	public void GetBanned_WithCorrectCountParameter()
 	{
 		Url = "https://api.vk.ru/method/account.getBanned";
@@ -119,7 +126,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be(2);
 	}
 
-	[Fact(DisplayName = "Get banned with correct offset parameter")]
+	[Test]
+	[DisplayName("Get banned with correct offset parameter")]
 	public void GetBanned_WithCorrectOffsetParameter()
 	{
 		Url = "https://api.vk.ru/method/account.getBanned";
@@ -132,7 +140,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be(2);
 	}
 
-	[Fact(DisplayName = "Get banned with default parameters")]
+	[Test]
+	[DisplayName("Get banned with default parameters")]
 	public void GetBanned_WithDefaultParameters()
 	{
 		Url = "https://api.vk.ru/method/account.getBanned";
@@ -150,7 +159,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be(256477844);
 	}
 
-	[Fact(DisplayName = "Get counters when server returns all fields")]
+	[Test]
+	[DisplayName("Get counters when server returns all fields")]
 	public void GetCounters_WhenServerReturnsAllFields()
 	{
 		Url = "https://api.vk.ru/method/account.getCounters";
@@ -189,7 +199,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be(9);
 	}
 
-	[Fact(DisplayName = "Get counters when server returns empty response")]
+	[Test]
+	[DisplayName("Get counters when server returns empty response")]
 	public void GetCounters_WhenServerReturnsEmptyResponse()
 	{
 		Url = "https://api.vk.ru/method/account.getCounters";
@@ -222,7 +233,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeNull();
 	}
 
-	[Fact(DisplayName = "Get info access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Get info access token invalid throw access token invalid exception")]
 	public void GetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -233,7 +245,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Get info when server returns all fields")]
+	[Test]
+	[DisplayName("Get info when server returns all fields")]
 	public void GetInfo_WhenServerReturnsAllFields()
 	{
 		Url = "https://api.vk.ru/method/account.getInfo";
@@ -257,7 +270,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be(0);
 	}
 
-	[Fact(DisplayName = "Get privacy settings")]
+	[Test]
+	[DisplayName("Get privacy settings")]
 	public void GetPrivacySettings()
 	{
 		// Arrange
@@ -281,7 +295,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get profile info access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Get profile info access token invalid throw access token invalid exception")]
 	public void GetProfileInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -292,7 +307,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Get profile info when server return all fields")]
+	[Test]
+	[DisplayName("Get profile info when server return all fields")]
 	public void GetProfileInfo_WhenServerReturnAllFields()
 	{
 		Url = "https://api.vk.ru/method/account.getProfileInfo";
@@ -343,7 +359,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be("+7 *** *** ** 74");
 	}
 
-	[Fact(DisplayName = "Get profile info when server return some fields")]
+	[Test]
+	[DisplayName("Get profile info when server return some fields")]
 	public void GetProfileInfo_WhenServerReturnSomeFields()
 	{
 		Url = "https://api.vk.ru/method/account.getProfileInfo";
@@ -383,7 +400,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be("Санкт-Петербург");
 	}
 
-	[Fact(DisplayName = "Register device access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Register device access token invalid throw access token invalid exception")]
 	public void RegisterDevice_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -399,7 +417,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Register device correct parameters return false")]
+	[Test]
+	[DisplayName("Register device correct parameters return false")]
 	public void RegisterDevice_CorrectParameters_ReturnFalse()
 	{
 		Url = "https://api.vk.ru/method/account.registerDevice";
@@ -415,7 +434,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Register device correct parameters return true")]
+	[Test]
+	[DisplayName("Register device correct parameters return true")]
 	public void RegisterDevice_CorrectParameters_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/account.registerDevice";
@@ -431,7 +451,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Register device null or empty token throw argument null exception")]
+	[Test]
+	[DisplayName("Register device null or empty token throw argument null exception")]
 	public void RegisterDevice_NullOrEmptyToken_ThrowArgumentNullException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -456,7 +477,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<ArgumentNullException>();
 	}
 
-	[Fact(DisplayName = "Register device parameters are equals to null or empty except token not throws exception")]
+	[Test]
+	[DisplayName("Register device parameters are equals to null or empty except token not throws exception")]
 	public void RegisterDevice_ParametersAreEqualsToNullOrEmptyExceptToken_NotThrowsException()
 	{
 		Url = "https://api.vk.ru/method/account.registerDevice";
@@ -481,7 +503,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.NotThrow();
 	}
 
-	[Fact(DisplayName = "Save profile info all parameters url is created correctly")]
+	[Test]
+	[DisplayName("Save profile info all parameters url is created correctly")]
 	public void SaveProfileInfo_AllParameters_UrlIsCreatedCorrectly()
 	{
 		Url = "https://api.vk.ru/method/account.saveProfileInfo";
@@ -522,7 +545,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Save profile info cancel change name request negative request id throw argument exception")]
+	[Test]
+	[DisplayName("Save profile info cancel change name request negative request id throw argument exception")]
 	public void SaveProfileInfo_CancelChangeNameRequest_NegativeRequestId_ThrowArgumentException()
 	{
 		ReadCategoryJsonPath(nameof(Api.Account.SaveProfileInfo));
@@ -535,7 +559,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be("cancelRequestId");
 	}
 
-	[Fact(DisplayName = "Save profile info cancel change name request url is generated correctly")]
+	[Test]
+	[DisplayName("Save profile info cancel change name request url is generated correctly")]
 	public void SaveProfileInfo_CancelChangeNameRequest_UrlIsGeneratedCorrectly()
 	{
 		Url = "https://api.vk.ru/method/account.saveProfileInfo";
@@ -546,7 +571,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Save profile info date is parsed correctly")]
+	[Test]
+	[DisplayName("Save profile info date is parsed correctly")]
 	public void SaveProfileInfo_DateIsParsedCorrectly()
 	{
 		Url = "https://api.vk.ru/method/account.saveProfileInfo";
@@ -585,7 +611,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Save profile info result was parsed correctly and empty parameters is processed correctly")]
+	[Test]
+	[DisplayName("Save profile info result was parsed correctly and empty parameters is processed correctly")]
 	public void SaveProfileInfo_ResultWasParsedCorrectly_AndEmptyParametersIsProcessedCorrectly()
 	{
 		Url = "https://api.vk.ru/method/account.saveProfileInfo";
@@ -617,7 +644,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be(ChangeNameStatus.Success);
 	}
 
-	[Fact(DisplayName = "Set info access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Set info access token invalid throw access token invalid exception")]
 	public void SetInfo_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -628,7 +656,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Set info incorrect user i d throw invalid parameter exception")]
+	[Test]
+	[DisplayName("Set info incorrect user i d throw invalid parameter exception")]
 	public void SetInfo_IncorrectUserID_ThrowInvalidParameterException()
 	{
 		var account = new AccountCategory(Api);
@@ -641,7 +670,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<ParameterMissingOrInvalidException>();
 	}
 
-	[Fact(DisplayName = "Set info return false")]
+	[Test]
+	[DisplayName("Set info return false")]
 	public void SetInfo_ReturnFalse()
 	{
 		Url = "https://api.vk.ru/method/account.setInfo";
@@ -652,7 +682,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Set info return true")]
+	[Test]
+	[DisplayName("Set info return true")]
 	public void SetInfo_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/account.setInfo";
@@ -663,7 +694,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Set info with intro parameter return false")]
+	[Test]
+	[DisplayName("Set info with intro parameter return false")]
 	public void SetInfo_WithIntroParameter_ReturnFalse()
 	{
 		Url = "https://api.vk.ru/method/account.setInfo";
@@ -674,13 +706,15 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Set name in menu empty name throw argument null exception")]
+	[Test]
+	[DisplayName("Set name in menu empty name throw argument null exception")]
 	public void SetNameInMenu_EmptyName_ThrowArgumentNullException() => FluentActions
 		.Invoking(() => Api.Account.SetNameInMenu(string.Empty, 1))
 		.Should()
 		.ThrowExactly<ArgumentNullException>();
 
-	[Fact(DisplayName = "Set name in menu not sets return false")]
+	[Test]
+	[DisplayName("Set name in menu not sets return false")]
 	public void SetNameInMenu_NotSets_ReturnFalse()
 	{
 		Url = "https://api.vk.ru/method/account.setNameInMenu";
@@ -691,7 +725,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Set name in menu sets correctly return true")]
+	[Test]
+	[DisplayName("Set name in menu sets correctly return true")]
 	public void SetNameInMenu_SetsCorrectly_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/account.setNameInMenu";
@@ -702,7 +737,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Set offline access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Set offline access token invalid throw access token invalid exception")]
 	public void SetOffline_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		var account =
@@ -714,7 +750,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Set offline not sets return false")]
+	[Test]
+	[DisplayName("Set offline not sets return false")]
 	public void SetOffline_NotSets_ReturnFalse()
 	{
 		Url = "https://api.vk.ru/method/account.setOffline";
@@ -725,7 +762,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Set offline sets correctly return true")]
+	[Test]
+	[DisplayName("Set offline sets correctly return true")]
 	public void SetOffline_SetsCorrectly_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/account.setOffline";
@@ -736,7 +774,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Set online access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Set online access token invalid throw access token invalid exception")]
 	public void SetOnline_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -747,7 +786,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Set online not sets return false")]
+	[Test]
+	[DisplayName("Set online not sets return false")]
 	public void SetOnline_NotSets_ReturnFalse()
 	{
 		Url = "https://api.vk.ru/method/account.setOnline";
@@ -758,7 +798,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Set online sets correctly return true")]
+	[Test]
+	[DisplayName("Set online sets correctly return true")]
 	public void SetOnline_SetsCorrectly_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/account.setOnline";
@@ -769,7 +810,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Set online with voip parameter")]
+	[Test]
+	[DisplayName("Set online with voip parameter")]
 	public void SetOnline_WithVoipParameter()
 	{
 		Url = "https://api.vk.ru/method/account.setOnline";
@@ -780,7 +822,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Set privacy")]
+	[Test]
+	[DisplayName("Set privacy")]
 	public void SetPrivacy()
 	{
 		// Arrange
@@ -798,7 +841,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.Be(Privacy.OnlyMe);
 	}
 
-	[Fact(DisplayName = "Set silence mode access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Set silence mode access token invalid throw access token invalid exception")]
 	public void SetSilenceMode_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -809,7 +853,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Set silence mode all parameters adds to url correctly")]
+	[Test]
+	[DisplayName("Set silence mode all parameters adds to url correctly")]
 	public void SetSilenceMode_AllParametersAddsToUrlCorrectly()
 	{
 		{
@@ -831,7 +876,8 @@ public class AccountCategoryTest : CategoryBaseTest
 		}
 	}
 
-	[Fact(DisplayName = "Set silence mode null or empty token throw argument null exception")]
+	[Test]
+	[DisplayName("Set silence mode null or empty token throw argument null exception")]
 	public void SetSilenceMode_NullOrEmptyToken_ThrowArgumentNullException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -849,7 +895,8 @@ public class AccountCategoryTest : CategoryBaseTest
 		// ReSharper restore AssignNullToNotNullAttribute
 	}
 
-	[Fact(DisplayName = "Set silence mode sets correctly return false")]
+	[Test]
+	[DisplayName("Set silence mode sets correctly return false")]
 	public void SetSilenceMode_SetsCorrectly_ReturnFalse()
 	{
 		Url = "https://api.vk.ru/method/account.setSilenceMode";
@@ -860,7 +907,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Set silence mode sets correctly return true")]
+	[Test]
+	[DisplayName("Set silence mode sets correctly return true")]
 	public void SetSilenceMode_SetsCorrectly_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/account.setSilenceMode";
@@ -871,7 +919,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Unban user access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Unban user access token invalid throw access token invalid exception")]
 	public void UnbanUser_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -882,7 +931,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Unban user correct parameters return false")]
+	[Test]
+	[DisplayName("Unban user correct parameters return false")]
 	public void UnbanUser_CorrectParameters_ReturnFalse()
 	{
 		Url = "https://api.vk.ru/method/account.unban";
@@ -893,7 +943,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Unban user correct parameters return true")]
+	[Test]
+	[DisplayName("Unban user correct parameters return true")]
 	public void UnbanUser_CorrectParameters_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/account.unban";
@@ -904,7 +955,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Unregister device access token invalid throw access token invalid exception")]
+	[Test]
+	[DisplayName("Unregister device access token invalid throw access token invalid exception")]
 	public void UnregisterDevice_AccessTokenInvalid_ThrowAccessTokenInvalidException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки
@@ -915,7 +967,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.ThrowExactly<AccessTokenInvalidException>();
 	}
 
-	[Fact(DisplayName = "Unregister device correct parameters return false")]
+	[Test]
+	[DisplayName("Unregister device correct parameters return false")]
 	public void UnregisterDevice_CorrectParameters_ReturnFalse()
 	{
 		Url = "https://api.vk.ru/method/account.unregisterDevice";
@@ -926,7 +979,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Unregister device correct parameters return true")]
+	[Test]
+	[DisplayName("Unregister device correct parameters return true")]
 	public void UnregisterDevice_CorrectParameters_ReturnTrue()
 	{
 		Url = "https://api.vk.ru/method/account.unregisterDevice";
@@ -937,7 +991,8 @@ public class AccountCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Unregister device null or empty token throw argument null exception")]
+	[Test]
+	[DisplayName("Unregister device null or empty token throw argument null exception")]
 	public void UnregisterDevice_NullOrEmptyToken_ThrowArgumentNullException()
 	{
 		// TODO как то я сомневаюсь в необходимости таких проверок, нужно закрыть инициализацию объектов только внутри библиотеки

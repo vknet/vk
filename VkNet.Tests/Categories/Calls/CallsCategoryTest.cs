@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Calls;
 
@@ -8,7 +7,8 @@ public class CallsCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Calls";
 
-	[Fact(DisplayName = "Force finish")]
+	[Test]
+	[DisplayName("Force finish")]
 	public void ForceFinish()
 	{
 		Url = "https://api.vk.ru/method/calls.forceFinish";
@@ -24,7 +24,8 @@ public class CallsCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Start")]
+	[Test]
+	[DisplayName("Start")]
 	public void Start()
 	{
 		Url = "https://api.vk.ru/method/calls.start";

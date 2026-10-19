@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Audio;
 
@@ -10,7 +9,8 @@ public class AudioSetBroadCastTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact(DisplayName = "Set broad cast test")]
+	[Test]
+	[DisplayName("Set broad cast test")]
 	public void SetBroadCastTest()
 	{
 		Url = "https://api.vk.ru/method/audio.setBroadcast";

@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -8,7 +7,8 @@ public class GetFloodStatsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Get flood stats")]
+	[Test]
+	[DisplayName("Get flood stats")]
 	public void GetFloodStats()
 	{
 		Url = "https://api.vk.ru/method/ads.getFloodStats";

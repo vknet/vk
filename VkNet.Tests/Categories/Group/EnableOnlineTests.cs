@@ -1,6 +1,5 @@
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Group;
 
@@ -8,7 +7,8 @@ public class EnableOnlineTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact(DisplayName = "Enable online")]
+	[Test]
+	[DisplayName("Enable online")]
 	public void EnableOnline()
 	{
 		Url = "https://api.vk.ru/method/groups.enableOnline";

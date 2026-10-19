@@ -1,6 +1,5 @@
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Group;
 
@@ -8,7 +7,8 @@ public class GetTokenPermissionsTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact(DisplayName = "Get token permissions")]
+	[Test]
+	[DisplayName("Get token permissions")]
 	public void GetTokenPermissions()
 	{
 		Url = "https://api.vk.ru/method/groups.getTokenPermissions";

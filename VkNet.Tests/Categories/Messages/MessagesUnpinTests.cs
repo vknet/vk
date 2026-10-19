@@ -1,12 +1,12 @@
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesUnpinTests : MessagesBaseTests
 {
-	[Fact(DisplayName = "Unpin")]
+	[Test]
+	[DisplayName("Unpin")]
 	public void Unpin()
 	{
 		Url = "https://api.vk.ru/method/messages.unpin";

@@ -2,13 +2,13 @@
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesSendMessageEventAnswerTests : MessagesBaseTests
 {
-	[Fact(DisplayName = "Send message event answer")]
+	[Test]
+	[DisplayName("Send message event answer")]
 	public void SendMessageEventAnswer()
 	{
 		Url = "https://api.vk.ru/method/messages.sendMessageEventAnswer";

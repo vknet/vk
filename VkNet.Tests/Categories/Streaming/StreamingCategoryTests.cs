@@ -3,7 +3,6 @@ using System.Linq;
 using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Streaming;
 
@@ -11,7 +10,8 @@ public class StreamingCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Streaming";
 
-	[Fact(DisplayName = "Get server url")]
+	[Test]
+	[DisplayName("Get server url")]
 	public void GetServerUrl()
 	{
 		Url = "https://api.vk.ru/method/streaming.getServerUrl";
@@ -29,7 +29,8 @@ public class StreamingCategoryTests : CategoryBaseTest
 			.Be("be8d29c05546e58cb52420aaf2b9f51f0a440f89");
 	}
 
-	[Fact(DisplayName = "Get settings")]
+	[Test]
+	[DisplayName("Get settings")]
 	public void GetSettings()
 	{
 		Url = "https://api.vk.ru/method/streaming.getSettings";
@@ -44,7 +45,8 @@ public class StreamingCategoryTests : CategoryBaseTest
 			.Be(MonthlyLimit.Tier6);
 	}
 
-	[Fact(DisplayName = "Get stats")]
+	[Test]
+	[DisplayName("Get stats")]
 	public void GetStats()
 	{
 		Url = "https://api.vk.ru/method/streaming.getStats";
@@ -67,7 +69,8 @@ public class StreamingCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Set settings")]
+	[Test]
+	[DisplayName("Set settings")]
 	public void SetSettings()
 	{
 		Url = "https://api.vk.ru/method/streaming.setSettings";
@@ -79,7 +82,8 @@ public class StreamingCategoryTests : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Get stem")]
+	[Test]
+	[DisplayName("Get stem")]
 	public void GetStem()
 	{
 		Url = "https://api.vk.ru/method/streaming.getStem";

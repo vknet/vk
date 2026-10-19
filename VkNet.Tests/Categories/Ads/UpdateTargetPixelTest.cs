@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -8,7 +7,8 @@ public class UpdateTargetPixelTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Update target pixel")]
+	[Test]
+	[DisplayName("Update target pixel")]
 	public void UpdateTargetPixel()
 	{
 		Url = "https://api.vk.ru/method/ads.updateTargetPixel";

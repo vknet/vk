@@ -1,11 +1,11 @@
 ﻿using AwesomeAssertions;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesSearchConversationsTests : MessagesBaseTests
 {
-	[Fact(DisplayName = "Search conversations")]
+	[Test]
+	[DisplayName("Search conversations")]
 	public void SearchConversations()
 	{
 		Url = "https://api.vk.ru/method/messages.searchConversations";

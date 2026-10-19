@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Polls;
 
@@ -8,7 +7,8 @@ public class GetPhotoUploadServerTest : CategoryBaseTest
 {
 	protected override string Folder => "Polls";
 
-	[Fact(DisplayName = "Get photo upload server")]
+	[Test]
+	[DisplayName("Get photo upload server")]
 	public void GetPhotoUploadServer()
 	{
 		Url = "https://api.vk.ru/method/polls.getPhotoUploadServer";

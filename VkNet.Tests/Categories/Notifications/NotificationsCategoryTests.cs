@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Notifications;
 
@@ -8,7 +7,8 @@ public class NotificationsCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Notifications";
 
-	[Fact(DisplayName = "Mark as viewed")]
+	[Test]
+	[DisplayName("Mark as viewed")]
 	public void MarkAsViewed()
 	{
 		Url = "https://api.vk.ru/method/notifications.markAsViewed";

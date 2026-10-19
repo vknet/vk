@@ -3,7 +3,6 @@ using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -11,7 +10,8 @@ public class UpdateAdsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Update ads")]
+	[Test]
+	[DisplayName("Update ads")]
 	public void UpdateAds()
 	{
 		Url = "https://api.vk.ru/method/ads.updateAds";

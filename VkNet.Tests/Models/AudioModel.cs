@@ -1,12 +1,12 @@
 using AwesomeAssertions;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class AudioModel
 {
-	[Fact(DisplayName = "To string audio should have access key")]
+	[Test]
+	[DisplayName("To string audio should have access key")]
 	public void ToString_AudioShouldHaveAccessKey()
 	{
 		var audio = new Audio

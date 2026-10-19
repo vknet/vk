@@ -1,6 +1,5 @@
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Group;
 
@@ -8,7 +7,8 @@ public class SetLongPollSettingsTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact(DisplayName = "Set long poll settings")]
+	[Test]
+	[DisplayName("Set long poll settings")]
 	public void SetLongPollSettings()
 	{
 		Url = "https://api.vk.ru/method/groups.setLongPollSettings";

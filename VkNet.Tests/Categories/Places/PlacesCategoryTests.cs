@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Places;
 
@@ -8,7 +7,8 @@ public class PlacesCategoryTests : CategoryBaseTest
 {
 	protected override string Folder => "Places";
 
-	[Fact(DisplayName = "Add")]
+	[Test]
+	[DisplayName("Add")]
 	public void Add()
 	{
 		Url = "https://api.vk.ru/method/places.add";
@@ -20,7 +20,8 @@ public class PlacesCategoryTests : CategoryBaseTest
 			.Be(6162171);
 	}
 
-	[Fact(DisplayName = "Checkin")]
+	[Test]
+	[DisplayName("Checkin")]
 	public void Checkin()
 	{
 		Url = "https://api.vk.ru/method/places.checkin";
@@ -32,7 +33,8 @@ public class PlacesCategoryTests : CategoryBaseTest
 			.Be(6162171);
 	}
 
-	[Fact(DisplayName = "Get by id")]
+	[Test]
+	[DisplayName("Get by id")]
 	public void GetById()
 	{
 		Url = "https://api.vk.ru/method/places.getById";
@@ -44,7 +46,8 @@ public class PlacesCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get checkins")]
+	[Test]
+	[DisplayName("Get checkins")]
 	public void GetCheckins()
 	{
 		Url = "https://api.vk.ru/method/places.getCheckins";
@@ -56,7 +59,8 @@ public class PlacesCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Get types")]
+	[Test]
+	[DisplayName("Get types")]
 	public void GetTypes()
 	{
 		Url = "https://api.vk.ru/method/places.getTypes";
@@ -68,7 +72,8 @@ public class PlacesCategoryTests : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Search")]
+	[Test]
+	[DisplayName("Search")]
 	public void Search()
 	{
 		Url = "https://api.vk.ru/method/places.search";

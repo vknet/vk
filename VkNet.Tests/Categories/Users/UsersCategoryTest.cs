@@ -11,7 +11,6 @@ using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Users;
 
@@ -21,7 +20,8 @@ public class UsersCategoryTest : CategoryBaseTest
 
 	protected override string Folder => "Users";
 
-	[Fact(DisplayName = "Get counters fields counters object")]
+	[Test]
+	[DisplayName("Get counters fields counters object")]
 	public void Get_CountersFields_CountersObject()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -82,7 +82,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(51);
 	}
 
-	[Fact(DisplayName = "Get default fields uid first name last name")]
+	[Test]
+	[DisplayName("Get default fields uid first name last name")]
 	public void Get_DefaultFields_UidFirstNameLastName()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -103,7 +104,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("Дуров");
 	}
 
-	[Fact(DisplayName = "Get deleted user")]
+	[Test]
+	[DisplayName("Get deleted user")]
 	public void Get_DeletedUser()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -132,7 +134,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Get dimon single user")]
+	[Test]
+	[DisplayName("Get dimon single user")]
 	public void Get_Dimon_SingleUser()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -167,7 +170,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("Москва");
 	}
 
-	[Fact(DisplayName = "Get dm and durov list of users")]
+	[Test]
+	[DisplayName("Get dm and durov list of users")]
 	public void Get_DmAndDurov_ListOfUsers()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -236,7 +240,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("Санкт-Петербург");
 	}
 
-	[Fact(DisplayName = "Get empty list of uids throw argument null exception")]
+	[Test]
+	[DisplayName("Get empty list of uids throw argument null exception")]
 	public void Get_EmptyListOfUids_ThrowArgumentNullException()
 	{
 		IEnumerable<long> userIds = null;
@@ -246,7 +251,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.ThrowExactly<ArgumentNullException>();
 	}
 
-	[Fact(DisplayName = "Get list of users")]
+	[Test]
+	[DisplayName("Get list of users")]
 	public void Get_ListOfUsers()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -492,7 +498,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact(DisplayName = "Get mutliple two uids default fields two profiles")]
+	[Test]
+	[DisplayName("Get mutliple two uids default fields two profiles")]
 	public void Get_Mutliple_TwoUidsDefaultFields_TwoProfiles()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -539,7 +546,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("Смирнова");
 	}
 
-	[Fact(DisplayName = "Get not access to internet throw vk api exception")]
+	[Test]
+	[DisplayName("Get not access to internet throw vk api exception")]
 	public void Get_NotAccessToInternet_ThrowVkApiException()
 	{
 		Mock.Get(Api.RestClient)
@@ -554,7 +562,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.WithMessage("The remote name could not be resolved: 'api.vk.ru'");
 	}
 
-	[Fact(DisplayName = "Get single user")]
+	[Test]
+	[DisplayName("Get single user")]
 	public void Get_SingleUser()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -799,7 +808,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("https://vk.ru/images/deactivated_50.png");
 	}
 
-	[Fact(DisplayName = "Get two uids education field two profiles")]
+	[Test]
+	[DisplayName("Get two uids education field two profiles")]
 	public void Get_TwoUidsEducationField_TwoProfiles()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -895,7 +905,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(2012);
 	}
 
-	[Fact(DisplayName = "Get with some fields first name last name education")]
+	[Test]
+	[DisplayName("Get with some fields first name last name education")]
 	public void Get_WithSomeFields_FirstNameLastNameEducation()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -940,7 +951,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(2006);
 	}
 
-	[Fact(DisplayName = "Get wrong access token throw throw user authorization exception")]
+	[Test]
+	[DisplayName("Get wrong access token throw throw user authorization exception")]
 	public void Get_WrongAccessToken_Throw_ThrowUserAuthorizationException()
 	{
 		Url = "https://api.vk.ru/method/users.get";
@@ -954,7 +966,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("User authorization failed: access_token was given to another ip address.");
 	}
 
-	[Fact(DisplayName = "Get followers with all fields")]
+	[Test]
+	[DisplayName("Get followers with all fields")]
 	public void GetFollowers_WithAllFields()
 	{
 		Url = "https://api.vk.ru/method/users.getFollowers";
@@ -1201,7 +1214,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(RelativeType.Sibling);
 	}
 
-	[Fact(DisplayName = "Get followers without fields")]
+	[Test]
+	[DisplayName("Get followers without fields")]
 	public void GetFollowers_WithoutFields()
 	{
 		Url = "https://api.vk.ru/method/users.getFollowers";
@@ -1224,7 +1238,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be(179652233);
 	}
 
-	[Fact(DisplayName = "Get subscriptions extended")]
+	[Test]
+	[DisplayName("Get subscriptions extended")]
 	public void GetSubscriptions_Extended()
 	{
 		Url = "https://api.vk.ru/method/users.getSubscriptions";
@@ -1311,7 +1326,8 @@ public class UsersCategoryTest : CategoryBaseTest
 	}
 
 	// ===================================================================
-	[Fact(DisplayName = "Is app user 5 5 version of api return false")]
+	[Test]
+	[DisplayName("Is app user 5 5 version of api return false")]
 	public void IsAppUser_5_5_version_of_api_return_false()
 	{
 		Url = "https://api.vk.ru/method/users.isAppUser";
@@ -1323,7 +1339,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Is app user 5 5 version of api return true")]
+	[Test]
+	[DisplayName("Is app user 5 5 version of api return true")]
 	public void IsAppUser_5_5_version_of_api_return_true()
 	{
 		Url = "https://api.vk.ru/method/users.isAppUser";
@@ -1335,7 +1352,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Report normal case")]
+	[Test]
+	[DisplayName("Report normal case")]
 	public void Report_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/users.report";
@@ -1347,7 +1365,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Search bad query empty list")]
+	[Test]
+	[DisplayName("Search bad query empty list")]
 	public void Search_BadQuery_EmptyList()
 	{
 		Url = "https://api.vk.ru/method/users.search";
@@ -1368,7 +1387,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact(DisplayName = "Search carier case")]
+	[Test]
+	[DisplayName("Search carier case")]
 	public void Search_CarierCase()
 	{
 		Url = "https://api.vk.ru/method/users.search";
@@ -1416,7 +1436,8 @@ public class UsersCategoryTest : CategoryBaseTest
 		// ReSharper restore PossibleNullReferenceException
 	}
 
-	[Fact(DisplayName = "Search default fields list of profile objects")]
+	[Test]
+	[DisplayName("Search default fields list of profile objects")]
 	public void Search_DefaultFields_ListOfProfileObjects()
 	{
 		Url = "https://api.vk.ru/method/users.search";
@@ -1482,7 +1503,8 @@ public class UsersCategoryTest : CategoryBaseTest
 			.Be("Ivanova");
 	}
 
-	[Fact(DisplayName = "Search education field listof profile objects")]
+	[Test]
+	[DisplayName("Search education field listof profile objects")]
 	public void Search_EducationField_ListofProfileObjects()
 	{
 		Url = "https://api.vk.ru/method/users.search";

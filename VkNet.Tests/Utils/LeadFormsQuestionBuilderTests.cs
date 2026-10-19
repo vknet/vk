@@ -3,13 +3,13 @@ using Newtonsoft.Json.Linq;
 using VkNet.Abstractions.Utils;
 using VkNet.Enums.StringEnums;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Utils;
 
 public class LeadFormsQuestionBuilderTests : BaseTest
 {
-	[Fact(DisplayName = "Add text area")]
+	[Test]
+	[DisplayName("Add text area")]
 	public void AddTextArea()
 	{
 		var json = ReadJson("Utils", nameof(LeadFormsQuestionBuilder), nameof(AddTextArea));
@@ -27,7 +27,8 @@ public class LeadFormsQuestionBuilderTests : BaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Default")]
+	[Test]
+	[DisplayName("Default")]
 	public void Default()
 	{
 		var json = ReadJson("Utils", nameof(LeadFormsQuestionBuilder), nameof(Default));

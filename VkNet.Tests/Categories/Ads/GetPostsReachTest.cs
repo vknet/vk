@@ -1,7 +1,6 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -9,7 +8,8 @@ public class GetPostsReachTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Get posts reach")]
+	[Test]
+	[DisplayName("Get posts reach")]
 	public void GetPostsReach()
 	{
 		Url = "https://api.vk.ru/method/ads.getPostsReach";

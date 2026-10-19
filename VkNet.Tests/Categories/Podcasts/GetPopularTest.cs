@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Podcasts;
 
@@ -8,7 +7,8 @@ public class GetPopularTest : CategoryBaseTest
 {
 	protected override string Folder => "Podcasts";
 
-	[Fact(DisplayName = "Get popular")]
+	[Test]
+	[DisplayName("Get popular")]
 	public void GetPopular()
 	{
 		Url = "https://api.vk.ru/method/podcasts.getPopular";

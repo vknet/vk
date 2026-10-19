@@ -4,7 +4,6 @@ using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -12,7 +11,8 @@ public class CreateCampaignsTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Create campaigns")]
+	[Test]
+	[DisplayName("Create campaigns")]
 	public void CreateCampaigns()
 	{
 		Url = "https://api.vk.ru/method/ads.createCampaigns";

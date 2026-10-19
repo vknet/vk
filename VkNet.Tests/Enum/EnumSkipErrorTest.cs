@@ -2,7 +2,6 @@
 using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Enum;
 
@@ -11,7 +10,8 @@ public class EnumSkipErrorTest : CategoryBaseTest
 	/// <inheritdoc />
 	protected override string Folder => "SkipEnum";
 
-	[Fact(DisplayName = "Check status")]
+	[Test]
+	[DisplayName("Check status")]
 	public void CheckStatus()
 	{
 		Url = "https://api.vk.ru/method/asr.checkStatus";
@@ -35,7 +35,8 @@ public class EnumSkipErrorTest : CategoryBaseTest
 			.Be(null);
 	}
 
-	[Fact(DisplayName = "Get check type")]
+	[Test]
+	[DisplayName("Get check type")]
 	public void Get_CheckType()
 	{
 		Url = "https://api.vk.ru/method/apps.get";

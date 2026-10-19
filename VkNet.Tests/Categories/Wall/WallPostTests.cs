@@ -2,7 +2,6 @@
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Wall;
 
@@ -10,7 +9,8 @@ public class WallPostTests : CategoryBaseTest
 {
 	protected override string Folder => "Wall";
 
-	[Fact(DisplayName = "Post return validate needed")]
+	[Test]
+	[DisplayName("Post return validate needed")]
 	public void Post_ReturnValidateNeeded()
 	{
 		Url = "https://api.vk.ru/method/wall.post";
@@ -21,7 +21,8 @@ public class WallPostTests : CategoryBaseTest
 			.ThrowExactly<NeedValidationException>();
 	}
 
-	[Fact(DisplayName = "Post access to adding post denied")]
+	[Test]
+	[DisplayName("Post access to adding post denied")]
 	public void Post_AccessToAddingPostDenied()
 	{
 		Url = "https://api.vk.ru/method/wall.post";

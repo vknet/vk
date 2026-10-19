@@ -2,13 +2,13 @@
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class UserModel : BaseTest
 {
-	[Fact(DisplayName = "Multi property id")]
+	[Test]
+	[DisplayName("Multi property id")]
 	public void MultiPropertyId()
 	{
 		ReadJsonFile("Models", nameof(MultiPropertyId));
@@ -20,7 +20,8 @@ public class UserModel : BaseTest
 			.Be(165614770);
 	}
 
-	[Fact(DisplayName = "Multi property uid")]
+	[Test]
+	[DisplayName("Multi property uid")]
 	public void MultiPropertyUid()
 	{
 		ReadJsonFile("Models", nameof(MultiPropertyUid));
@@ -32,7 +33,8 @@ public class UserModel : BaseTest
 			.Be(165614770);
 	}
 
-	[Fact(DisplayName = "Multi property user id")]
+	[Test]
+	[DisplayName("Multi property user id")]
 	public void MultiPropertyUserId()
 	{
 		ReadJsonFile("Models", nameof(MultiPropertyUserId));
@@ -44,7 +46,8 @@ public class UserModel : BaseTest
 			.Be(165614770);
 	}
 
-	[Fact(DisplayName = "Поле 'name' может иметь одно слово")]
+	[Test]
+	[DisplayName("Поле 'name' может иметь одно слово")]
 	public void Name_ShouldCanBeOneWord()
 	{
 		ReadJsonFile("Models", nameof(Name_ShouldCanBeOneWord));
@@ -59,7 +62,8 @@ public class UserModel : BaseTest
 			.BeNull();
 	}
 
-	[Fact(DisplayName = "Should have field can access closed")]
+	[Test]
+	[DisplayName("Should have field can access closed")]
 	public void ShouldHaveField_CanAccessClosed()
 	{
 		var user = new User();
@@ -68,7 +72,8 @@ public class UserModel : BaseTest
 			.BeNull();
 	}
 
-	[Fact(DisplayName = "Should have field is closed")]
+	[Test]
+	[DisplayName("Should have field is closed")]
 	public void ShouldHaveField_IsClosed()
 	{
 		var user = new User();
@@ -77,7 +82,8 @@ public class UserModel : BaseTest
 			.BeNull();
 	}
 
-	[Fact(DisplayName = "Should have field trending")]
+	[Test]
+	[DisplayName("Should have field trending")]
 	public void ShouldHaveField_Trending()
 	{
 		var user = new User();
@@ -86,7 +92,8 @@ public class UserModel : BaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Trending should be false")]
+	[Test]
+	[DisplayName("Trending should be false")]
 	public void Trending_ShouldBeFalse()
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse));
@@ -98,7 +105,8 @@ public class UserModel : BaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Trending should be false2")]
+	[Test]
+	[DisplayName("Trending should be false2")]
 	public void Trending_ShouldBeFalse2()
 	{
 		ReadJsonFile(JsonPaths.Object);
@@ -110,7 +118,8 @@ public class UserModel : BaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Trending should be true")]
+	[Test]
+	[DisplayName("Trending should be true")]
 	public void Trending_ShouldBeTrue()
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeTrue));

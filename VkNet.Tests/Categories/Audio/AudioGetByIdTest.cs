@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Audio;
 
@@ -10,7 +9,8 @@ public class AudioGetByIdTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact(DisplayName = "Get by id test")]
+	[Test]
+	[DisplayName("Get by id test")]
 	public void GetByIdTest()
 	{
 		Url = "https://api.vk.ru/method/audio.getById";

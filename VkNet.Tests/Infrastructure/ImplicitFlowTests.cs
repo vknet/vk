@@ -14,13 +14,13 @@ using VkNet.Infrastructure.Authorization.ImplicitFlow;
 using VkNet.Infrastructure.Authorization.ImplicitFlow.Forms;
 using VkNet.Model;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Infrastructure;
 
 public class ImplicitFlowTests
 {
-	[Fact(DisplayName = "Create authorize url")]
+	[Test]
+	[DisplayName("Create authorize url")]
 	public void CreateAuthorizeUrl()
 	{
 		const int clientId = 4268118;
@@ -62,7 +62,8 @@ public class ImplicitFlowTests
 			.Be(new Uri(expected));
 	}
 
-	[Fact(DisplayName = "Authorize")]
+	[Test]
+	[DisplayName("Authorize")]
 	public async Task Authorize()
 	{
 		var mocker = new AutoMocker();
@@ -111,8 +112,9 @@ public class ImplicitFlowTests
 			.NotBeNull();
 	}
 
-	[Fact(DisplayName = "Authorize validate error")]
-	public void Authorize_ValidateError()
+	[Test]
+	[DisplayName("Authorize validate error")]
+	public async Task Authorize_ValidateError()
 	{
 		var mocker = new AutoMocker();
 
@@ -126,7 +128,7 @@ public class ImplicitFlowTests
 			Login = "login"
 		});
 
-		FluentActions.Invoking(() => implicitFlow.AuthorizeAsync())
+		await FluentActions.Invoking(() => implicitFlow.AuthorizeAsync())
 			.Should()
 			.ThrowExactlyAsync<VkAuthorizationException>();
 	}

@@ -2,13 +2,13 @@
 using Newtonsoft.Json;
 using VkNet.Model;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class GroupChangeSettingsTests : BaseTest
 {
-	[Fact(DisplayName = "Group change settings should correct deserialize from vk response")]
+	[Test]
+	[DisplayName("Group change settings should correct deserialize from vk response")]
 	public void GroupChangeSettings_should_correct_deserialize_from_VkResponse()
 	{
 		ReadJsonFile("Models", nameof(GroupChangeSettings));
@@ -32,7 +32,8 @@ public class GroupChangeSettingsTests : BaseTest
 			.ContainKey("description");
 	}
 
-	[Fact(DisplayName = "Group change settings should correct deserialize from json converter")]
+	[Test]
+	[DisplayName("Group change settings should correct deserialize from json converter")]
 	public void GroupChangeSettings_should_correct_deserialize_from_JsonConverter()
 	{
 		ReadJsonFile("Models", nameof(GroupChangeSettings));

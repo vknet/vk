@@ -2,13 +2,13 @@
 using Newtonsoft.Json;
 using VkNet.Model;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Utils.JsonConverter;
 
 public class AttachmentJsonConverterTests : BaseTest
 {
-	[Fact(DisplayName = "Call and convert to type")]
+	[Test]
+	[DisplayName("Call and convert to type")]
 	public void CallAndConvertToType()
 	{
 		ReadJsonFile("Attachment", nameof(CallAndConvertToType));
@@ -29,7 +29,8 @@ public class AttachmentJsonConverterTests : BaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Serialization test")]
+	[Test]
+	[DisplayName("Serialization test")]
 	public void SerializationTest()
 	{
 		ReadJsonFile("Attachment", nameof(SerializationTest));

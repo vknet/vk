@@ -1,13 +1,13 @@
 using AwesomeAssertions;
 using Newtonsoft.Json.Linq;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Utils;
 
 public class VkResponseTests : BaseTest
 {
-	[Fact(DisplayName = "Should be null")]
+	[Test]
+	[DisplayName("Should be null")]
 	public void ShouldBeNull()
 	{
 		var json = ReadJson("VkResponse", nameof(ShouldBeNull));

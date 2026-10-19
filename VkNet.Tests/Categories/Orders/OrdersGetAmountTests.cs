@@ -1,6 +1,5 @@
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Orders;
 
@@ -8,7 +7,8 @@ public class OrdersGetAmountTests : CategoryBaseTest
 {
 	protected override string Folder => "Orders";
 
-	[Fact(DisplayName = "Get amount")]
+	[Test]
+	[DisplayName("Get amount")]
 	public void GetAmount()
 	{
 		Url = "https://api.vk.ru/method/orders.getAmount";

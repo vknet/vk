@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -8,7 +7,8 @@ public class ShareTargetGroupTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Share target group")]
+	[Test]
+	[DisplayName("Share target group")]
 	public void ShareTargetGroup()
 	{
 		Url = "https://api.vk.ru/method/ads.shareTargetGroup";

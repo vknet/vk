@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.PrettyCards;
 
@@ -10,7 +9,8 @@ public class GetByIdTest : CategoryBaseTest
 {
 	protected override string Folder => "PrettyCards";
 
-	[Fact(DisplayName = "Get by id")]
+	[Test]
+	[DisplayName("Get by id")]
 	public void GetById()
 	{
 		Url = "https://api.vk.ru/method/prettyCards.getById";

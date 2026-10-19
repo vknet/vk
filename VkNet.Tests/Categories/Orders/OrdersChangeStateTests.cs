@@ -1,7 +1,6 @@
 using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Orders;
 
@@ -9,7 +8,8 @@ public class ChangeStateTests : CategoryBaseTest
 {
 	protected override string Folder => "Orders";
 
-	[Fact(DisplayName = "Change state")]
+	[Test]
+	[DisplayName("Change state")]
 	public void ChangeState()
 	{
 		Url = "https://api.vk.ru/method/orders.changeState";

@@ -1,7 +1,6 @@
 using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -9,7 +8,8 @@ public class AdsCheckLinkTests : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Check link")]
+	[Test]
+	[DisplayName("Check link")]
 	public void CheckLink()
 	{
 		Url = "https://api.vk.ru/method/ads.checkLink";

@@ -2,7 +2,6 @@ using System.Linq;
 using AwesomeAssertions;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Wall;
 
@@ -10,7 +9,8 @@ public class WallGetTests : CategoryBaseTest
 {
 	protected override string Folder => "Wall";
 
-	[Fact(DisplayName = "Article attachement")]
+	[Test]
+	[DisplayName("Article attachement")]
 	public void ArticleAttachement()
 	{
 		Url = "https://api.vk.ru/method/wall.get";
@@ -38,7 +38,8 @@ public class WallGetTests : CategoryBaseTest
 			.Be(10419);
 	}
 
-	[Fact(DisplayName = "Podcast attachment")]
+	[Test]
+	[DisplayName("Podcast attachment")]
 	public void PodcastAttachment()
 	{
 		Url = "https://api.vk.ru/method/wall.get";

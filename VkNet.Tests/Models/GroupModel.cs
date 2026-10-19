@@ -1,13 +1,13 @@
 ﻿using AwesomeAssertions;
 using VkNet.Model;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class GroupModel : BaseTest
 {
-	[Fact(DisplayName = "Should have field trending")]
+	[Test]
+	[DisplayName("Should have field trending")]
 	public void ShouldHaveField_Trending()
 	{
 		var group = new Group();
@@ -16,7 +16,8 @@ public class GroupModel : BaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Trending should be false")]
+	[Test]
+	[DisplayName("Trending should be false")]
 	public void Trending_ShouldBeFalse()
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse));
@@ -28,7 +29,8 @@ public class GroupModel : BaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Trending should be false2")]
+	[Test]
+	[DisplayName("Trending should be false2")]
 	public void Trending_ShouldBeFalse2()
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeFalse2));
@@ -40,7 +42,8 @@ public class GroupModel : BaseTest
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Trending should be true")]
+	[Test]
+	[DisplayName("Trending should be true")]
 	public void Trending_ShouldBeTrue()
 	{
 		ReadJsonFile("Models", nameof(Trending_ShouldBeTrue));

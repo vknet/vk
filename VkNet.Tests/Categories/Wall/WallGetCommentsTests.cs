@@ -1,6 +1,5 @@
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Wall;
 
@@ -8,7 +7,8 @@ public class WallGetCommentsTests : CategoryBaseTest
 {
 	protected override string Folder => "Wall";
 
-	[Fact(DisplayName = "Get comments802")]
+	[Test]
+	[DisplayName("Get comments802")]
 	public void GetComments802()
 	{
 		Url = "https://api.vk.ru/method/wall.getComments";

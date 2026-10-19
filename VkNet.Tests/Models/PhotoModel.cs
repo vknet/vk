@@ -1,12 +1,12 @@
 using AwesomeAssertions;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class PhotoModel
 {
-	[Fact(DisplayName = "To string photo should have access key")]
+	[Test]
+	[DisplayName("To string photo should have access key")]
 	public void ToString_PhotoShouldHaveAccessKey()
 	{
 		var photo = new Photo

@@ -3,7 +3,6 @@ using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Exception;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
@@ -12,7 +11,8 @@ public class CarouselBuilderTests
 	private const string Payload =
 		"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
 
-	[Fact(DisplayName = "Add button payload max length255 vk keyboard payload max length exception")]
+	[Test]
+	[DisplayName("Add button payload max length255 vk keyboard payload max length exception")]
 	public void AddButton_PayloadMaxLength255_VkKeyboardPayloadMaxLengthException()
 	{
 		var builder = new CarouselElementBuilder();
@@ -22,7 +22,8 @@ public class CarouselBuilderTests
 			.ThrowExactly<VkKeyboardPayloadMaxLengthException>();
 	}
 
-	[Fact(DisplayName = "Add button payload max length255 success")]
+	[Test]
+	[DisplayName("Add button payload max length255 success")]
 	public void AddButton_PayloadMaxLength255_Success()
 	{
 		var builder = new CarouselElementBuilder();
@@ -32,7 +33,8 @@ public class CarouselBuilderTests
 			.NotThrow();
 	}
 
-	[Fact(DisplayName = "Create carousel")]
+	[Test]
+	[DisplayName("Create carousel")]
 	public void CreateCarousel()
 	{
 		var builder = new CarouselElementBuilder();
@@ -89,7 +91,8 @@ public class CarouselBuilderTests
 			.Be(carousel.PhotoId);
 	}
 
-	[Fact(DisplayName = "Clear buttons")]
+	[Test]
+	[DisplayName("Clear buttons")]
 	public void ClearButtons()
 	{
 		var builder = new CarouselElementBuilder();

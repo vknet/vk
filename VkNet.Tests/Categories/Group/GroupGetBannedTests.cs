@@ -4,7 +4,6 @@ using VkNet.Enums;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Helper;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Group;
 
@@ -12,7 +11,8 @@ public class GroupGetBannedTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact(DisplayName = "Get banned profile")]
+	[Test]
+	[DisplayName("Get banned profile")]
 	public void GetBanned_Profile()
 	{
 		Url = "https://api.vk.ru/method/groups.getBanned";
@@ -60,7 +60,8 @@ public class GroupGetBannedTests : CategoryBaseTest
 			.Be(DateHelper.TimeStampToDateTime(1517585141));
 	}
 
-	[Fact(DisplayName = "Get banned group")]
+	[Test]
+	[DisplayName("Get banned group")]
 	public void GetBanned_Group()
 	{
 		Url = "https://api.vk.ru/method/groups.getBanned";

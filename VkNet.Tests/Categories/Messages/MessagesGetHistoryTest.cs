@@ -1,11 +1,11 @@
 using AwesomeAssertions;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesGetHistoryTest : MessagesBaseTests
 {
-	[Fact(DisplayName = "Get history test")]
+	[Test]
+	[DisplayName("Get history test")]
 	public void GetHistoryTest()
 	{
 		Url = "https://api.vk.ru/method/messages.getHistory";

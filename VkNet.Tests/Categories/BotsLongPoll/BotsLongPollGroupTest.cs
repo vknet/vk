@@ -2,13 +2,13 @@ using System;
 using AwesomeAssertions;
 using VkNet.Enums;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
 
 public class BotsLongPollGroupTest : BotsLongPollBaseTest
 {
-	[Fact(DisplayName = "Get bots long poll history group change photo test")]
+	[Test]
+	[DisplayName("Get bots long poll history group change photo test")]
 	public void GetBotsLongPollHistory_GroupChangePhotoTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupChangePhotoTest));
@@ -58,7 +58,8 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history group join test")]
+	[Test]
+	[DisplayName("Get bots long poll history group join test")]
 	public void GetBotsLongPollHistory_GroupJoinTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupJoinTest));
@@ -104,7 +105,8 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history group leave test")]
+	[Test]
+	[DisplayName("Get bots long poll history group leave test")]
 	public void GetBotsLongPollHistory_GroupLeaveTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupLeaveTest));
@@ -149,7 +151,8 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history group leave self test")]
+	[Test]
+	[DisplayName("Get bots long poll history group leave self test")]
 	public void GetBotsLongPollHistory_GroupLeaveSelfTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupLeaveSelfTest));
@@ -194,7 +197,8 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history group officers edit test")]
+	[Test]
+	[DisplayName("Get bots long poll history group officers edit test")]
 	public void GetBotsLongPollHistory_GroupOfficersEditTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_GroupOfficersEditTest));
@@ -244,7 +248,8 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history user block test")]
+	[Test]
+	[DisplayName("Get bots long poll history user block test")]
 	public void GetBotsLongPollHistory_UserBlockTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserBlockTest));
@@ -301,7 +306,8 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history user block temporary test")]
+	[Test]
+	[DisplayName("Get bots long poll history user block temporary test")]
 	public void GetBotsLongPollHistory_UserBlockTemporaryTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserBlockTemporaryTest));
@@ -365,7 +371,8 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history user unblock test")]
+	[Test]
+	[DisplayName("Get bots long poll history user unblock test")]
 	public void GetBotsLongPollHistory_UserUnblockTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserUnblockTest));
@@ -414,7 +421,8 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history user unblock by end date test")]
+	[Test]
+	[DisplayName("Get bots long poll history user unblock by end date test")]
 	public void GetBotsLongPollHistory_UserUnblockByEndDateTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_UserUnblockByEndDateTest));
@@ -463,7 +471,8 @@ public class BotsLongPollGroupTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history poll vote new test")]
+	[Test]
+	[DisplayName("Get bots long poll history poll vote new test")]
 	public void GetBotsLongPollHistory_PollVoteNewTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PollVoteNewTest));

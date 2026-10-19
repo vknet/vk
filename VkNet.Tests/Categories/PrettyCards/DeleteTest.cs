@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.PrettyCards;
 
@@ -8,7 +7,8 @@ public class DeleteTest : CategoryBaseTest
 {
 	protected override string Folder => "PrettyCards";
 
-	[Fact(DisplayName = "Delete")]
+	[Test]
+	[DisplayName("Delete")]
 	public void Delete()
 	{
 		Url = "https://api.vk.ru/method/prettyCards.delete";

@@ -1,7 +1,6 @@
 using System.Linq;
 using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Audio;
 
@@ -9,7 +8,8 @@ public class AudioGetBroadcastListTest : CategoryBaseTest
 {
 	protected override string Folder => "Audio";
 
-	[Fact(DisplayName = "Get broadcast list test")]
+	[Test]
+	[DisplayName("Get broadcast list test")]
 	public void GetBroadcastListTest()
 	{
 		Url = "https://api.vk.ru/method/audio.getBroadcastList";

@@ -1,7 +1,6 @@
 using AwesomeAssertions;
 using VkNet.Enums.Filters;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Group;
 
@@ -9,7 +8,8 @@ public class GetRequestsTests : CategoryBaseTest
 {
 	protected override string Folder => "Groups";
 
-	[Fact(DisplayName = "Get requests with fields")]
+	[Test]
+	[DisplayName("Get requests with fields")]
 	public void GetRequests_With_Fields()
 	{
 		Url = "https://api.vk.ru/method/groups.getRequests";
@@ -29,7 +29,8 @@ public class GetRequestsTests : CategoryBaseTest
 				.NotBeNull());
 	}
 
-	[Fact(DisplayName = "Get requests without fields")]
+	[Test]
+	[DisplayName("Get requests without fields")]
 	public void GetRequests_Without_Fields()
 	{
 		Url = "https://api.vk.ru/method/groups.getRequests";

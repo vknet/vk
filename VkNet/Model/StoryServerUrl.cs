@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
 namespace VkNet.Model;
@@ -21,6 +22,7 @@ public class StoryServerUrl
 	/// </summary>
 	[Obsolete("Начиная с версии 5.118 используется только параметр uploadResults")]
 	[JsonProperty("user_ids")]
+	[JsonPropertyName("user_ids")]
 	public IEnumerable<long> UsersIds { get; set; }
 
 	/// <summary>

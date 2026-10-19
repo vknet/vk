@@ -1,12 +1,12 @@
 using AwesomeAssertions;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Categories.BotsLongPoll;
 
 public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 {
-	[Fact(DisplayName = "Get bots long poll history photo new test")]
+	[Test]
+	[DisplayName("Get bots long poll history photo new test")]
 	public void GetBotsLongPollHistory_PhotoNewTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoNewTest));
@@ -52,7 +52,8 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history photo comment new test")]
+	[Test]
+	[DisplayName("Get bots long poll history photo comment new test")]
 	public void GetBotsLongPollHistory_PhotoCommentNewTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentNewTest));
@@ -106,7 +107,8 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history photo comment edit test")]
+	[Test]
+	[DisplayName("Get bots long poll history photo comment edit test")]
 	public void GetBotsLongPollHistory_PhotoCommentEditTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentEditTest));
@@ -156,7 +158,8 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history photo comment restore test")]
+	[Test]
+	[DisplayName("Get bots long poll history photo comment restore test")]
 	public void GetBotsLongPollHistory_PhotoCommentRestoreTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentRestoreTest));
@@ -206,7 +209,8 @@ public class BotsLongPollPhotoTest : BotsLongPollBaseTest
 			});
 	}
 
-	[Fact(DisplayName = "Get bots long poll history photo comment delete test")]
+	[Test]
+	[DisplayName("Get bots long poll history photo comment delete test")]
 	public void GetBotsLongPollHistory_PhotoCommentDeleteTest()
 	{
 		ReadCategoryJsonPath(nameof(GetBotsLongPollHistory_PhotoCommentDeleteTest));

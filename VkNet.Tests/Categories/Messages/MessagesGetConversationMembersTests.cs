@@ -1,11 +1,11 @@
 ﻿using AwesomeAssertions;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesGetConversationMembersTests : MessagesBaseTests
 {
-	[Fact(DisplayName = "Get conversation members")]
+	[Test]
+	[DisplayName("Get conversation members")]
 	public void GetConversationMembers()
 	{
 		Url = "https://api.vk.ru/method/messages.getConversationMembers";

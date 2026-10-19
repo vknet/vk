@@ -1,12 +1,12 @@
 using AwesomeAssertions;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class EventModel : BaseTest
 {
-	[Fact(DisplayName = "Event model implicit event")]
+	[Test]
+	[DisplayName("Event model implicit event")]
 	public void EventModel_ImplicitEvent()
 	{
 		ReadJsonFile("Models", nameof(EventModel_ImplicitEvent));

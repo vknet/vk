@@ -1,13 +1,13 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.Filters;
 using VkNet.Model;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Auth;
 
 public class ApiAuthParamsTests
 {
-	[Fact(DisplayName = "Api auth params empty is valid returns false")]
+	[Test]
+	[DisplayName("Api auth params empty is valid returns false")]
 	public void ApiAuthParams_Empty_IsValid_ReturnsFalse()
 	{
 		var apiAuthParams = new ApiAuthParams();
@@ -16,7 +16,8 @@ public class ApiAuthParamsTests
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Api auth params access token only is valid returns true")]
+	[Test]
+	[DisplayName("Api auth params access token only is valid returns true")]
 	public void ApiAuthParams_AccessTokenOnly_IsValid_ReturnsTrue()
 	{
 		var apiAuthParams = new ApiAuthParams
@@ -28,7 +29,8 @@ public class ApiAuthParamsTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Api auth params login and password all correct is valid returns true")]
+	[Test]
+	[DisplayName("Api auth params login and password all correct is valid returns true")]
 	public void ApiAuthParams_LoginAndPassword_AllCorrect_IsValid_ReturnsTrue()
 	{
 		var apiAuthParams = new ApiAuthParams
@@ -44,7 +46,8 @@ public class ApiAuthParamsTests
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Api auth params login and password without two factor is valid returns false")]
+	[Test]
+	[DisplayName("Api auth params login and password without two factor is valid returns false")]
 	public void ApiAuthParams_LoginAndPasswordWithoutTwoFactor_IsValid_ReturnsFalse()
 	{
 		var apiAuthParams = new ApiAuthParams
@@ -59,7 +62,8 @@ public class ApiAuthParamsTests
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Api auth params login and password without settings is valid returns false")]
+	[Test]
+	[DisplayName("Api auth params login and password without settings is valid returns false")]
 	public void ApiAuthParams_LoginAndPasswordWithoutSettings_IsValid_ReturnsFalse()
 	{
 		var apiAuthParams = new ApiAuthParams
@@ -74,7 +78,8 @@ public class ApiAuthParamsTests
 			.BeFalse();
 	}
 
-	[Fact(DisplayName = "Api auth params login and password with empty settings is valid returns false")]
+	[Test]
+	[DisplayName("Api auth params login and password with empty settings is valid returns false")]
 	public void ApiAuthParams_LoginAndPasswordWithEmptySettings_IsValid_ReturnsFalse()
 	{
 		var apiAuthParams = new ApiAuthParams

@@ -21,9 +21,3 @@ public class BotsLongPollOnUpdatesEvent
 	/// </summary>
 	public List<GroupUpdateEvent> Updates;
 }
-
-/// <summary>
-/// Обёртка для BotsLongPollUpdatesProviderParams.OnUpdates, в которой содержится вся информация о текущем массиве событий лонгпула для бота в сообществе.
-/// </summary>
-[Obsolete(ObsoleteText.ObsoleteLongPool, true)]
-public static class BotsLongPoolOnUpdatesEvent;

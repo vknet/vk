@@ -1,11 +1,11 @@
 ﻿using AwesomeAssertions;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Messages;
 
 public class MessagesDeleteConversationTests : MessagesBaseTests
 {
-	[Fact(DisplayName = "Delete conversation")]
+	[Test]
+	[DisplayName("Delete conversation")]
 	public void DeleteConversation()
 	{
 		Url = "https://api.vk.ru/method/messages.deleteConversation";

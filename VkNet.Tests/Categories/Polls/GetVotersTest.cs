@@ -1,7 +1,6 @@
 ﻿using AwesomeAssertions;
 using VkNet.Model;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Polls;
 
@@ -9,7 +8,8 @@ public class GetVotersTest : CategoryBaseTest
 {
 	protected override string Folder => "Polls";
 
-	[Fact(DisplayName = "Баг 1609. Ошибка при получении голосований")]
+	[Test]
+	[DisplayName("Баг 1609. Ошибка при получении голосований")]
 	public void GetVoters()
 	{
 		Url = "https://api.vk.ru/method/polls.getVoters";

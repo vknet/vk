@@ -3,13 +3,13 @@ using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Model;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
 public class VideoModel : BaseTest
 {
-	[Fact(DisplayName = "To string video should have access key")]
+	[Test]
+	[DisplayName("To string video should have access key")]
 	public void ToString_VideoShouldHaveAccessKey()
 	{
 		var video = new Video
@@ -25,7 +25,8 @@ public class VideoModel : BaseTest
 			.Be("video1234_1234_test");
 	}
 
-	[Fact(DisplayName = "Cans are present")]
+	[Test]
+	[DisplayName("Cans are present")]
 	public void Cans_ArePresent()
 	{
 		ReadJsonFile("Models", "video_with_ads_and_timeline");
@@ -52,7 +53,8 @@ public class VideoModel : BaseTest
 			.BeTrue();
 	}
 
-	[Fact(DisplayName = "Ov id is present")]
+	[Test]
+	[DisplayName("Ov id is present")]
 	public void OvId_IsPresent()
 	{
 		ReadJsonFile("Models", "video_with_ads_and_timeline");
@@ -64,7 +66,8 @@ public class VideoModel : BaseTest
 			.Be("2930947729488");
 	}
 
-	[Fact(DisplayName = "Files all fields are present")]
+	[Test]
+	[DisplayName("Files all fields are present")]
 	public void Files_AllFields_ArePresent()
 	{
 		ReadJsonFile("Models", "video_with_ads_and_timeline");
@@ -122,7 +125,8 @@ public class VideoModel : BaseTest
 			.Be("vkvd185.mycdn.me");
 	}
 
-	[Fact(DisplayName = "Timeline thumbs all fields are present")]
+	[Test]
+	[DisplayName("Timeline thumbs all fields are present")]
 	public void TimelineThumbs_AllFields_ArePresent()
 	{
 		ReadJsonFile("Models", "video_with_ads_and_timeline");
@@ -157,7 +161,8 @@ public class VideoModel : BaseTest
 			.Be(5);
 	}
 
-	[Fact(DisplayName = "Ads all fields are present")]
+	[Test]
+	[DisplayName("Ads all fields are present")]
 	public void Ads_AllFields_ArePresent()
 	{
 		ReadJsonFile("Models", "video_with_ads_and_timeline");
@@ -208,7 +213,8 @@ public class VideoModel : BaseTest
 			.Be(1);
 	}
 
-	[Fact(DisplayName = "Ads params all fields are present")]
+	[Test]
+	[DisplayName("Ads params all fields are present")]
 	public void AdsParams_AllFields_ArePresent()
 	{
 		ReadJsonFile("Models", "video_with_ads_and_timeline");
@@ -301,7 +307,8 @@ public class VideoModel : BaseTest
 			.Be(29);
 	}
 
-	[Fact(DisplayName = "Video live all fields are present")]
+	[Test]
+	[DisplayName("Video live all fields are present")]
 	public void Video_Live_AllFields_ArePresent()
 	{
 		ReadJsonFile("Models", "video_live");
@@ -325,7 +332,8 @@ public class VideoModel : BaseTest
 			.Be(89);
 	}
 
-	[Fact(DisplayName = "Video live files contains live uris")]
+	[Test]
+	[DisplayName("Video live files contains live uris")]
 	public void Video_Live_Files_Contains_Live_Uris()
 	{
 		ReadJsonFile("Models", "video_live");
@@ -344,7 +352,8 @@ public class VideoModel : BaseTest
 				"https://vkvsd16.mycdn.me/dash/stream_1095312673357_offset_p/stream.manifest/sig/OWp_G67RlXg/srcIp/217.70.31.125/expires/1633252742236/clientType/13/srcAg/UNKNOWN/fromCache/1/mid/2669706881869/id/1095312673357/video"));
 	}
 
-	[Fact(DisplayName = "Video live live settings all fields are present")]
+	[Test]
+	[DisplayName("Video live live settings all fields are present")]
 	public void Video_Live_LiveSettings_AllFields_ArePresent()
 	{
 		ReadJsonFile("Models", "video_live");

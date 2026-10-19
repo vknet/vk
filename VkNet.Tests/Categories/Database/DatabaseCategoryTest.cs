@@ -5,7 +5,6 @@ using VkNet.Categories;
 using VkNet.Enums;
 using VkNet.Exception;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Database;
 
@@ -13,7 +12,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Database";
 
-	[Fact(DisplayName = "Get cities country id is negative throw exception")]
+	[Test]
+	[DisplayName("Get cities country id is negative throw exception")]
 	public void GetCities_CountryIdIsNegative_ThrowException() => FluentActions.Invoking(() => new DatabaseCategory(Api).GetCities(new()
 		{
 			CountryId = -1
@@ -21,7 +21,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 		.Should()
 		.ThrowExactly<ArgumentException>();
 
-	[Fact(DisplayName = "Get cities get biggest cities of russia")]
+	[Test]
+	[DisplayName("Get cities get biggest cities of russia")]
 	public void GetCities_GetBiggestCitiesOfRussia()
 	{
 		Url = "https://api.vk.ru/method/database.getCities";
@@ -97,7 +98,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.BeNull();
 	}
 
-	[Fact(DisplayName = "Get cities normal case")]
+	[Test]
+	[DisplayName("Get cities normal case")]
 	public void GetCities_NormalCase()
 	{
 		Url = "https://api.vk.ru/method/database.getCities";
@@ -147,7 +149,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.Be("Астраханская область");
 	}
 
-	[Fact(DisplayName = "Get cities region id is negative throw exception")]
+	[Test]
+	[DisplayName("Get cities region id is negative throw exception")]
 	public void GetCities_RegionIdIsNegative_ThrowException() => FluentActions.Invoking(() => new DatabaseCategory(Api).GetCities(new()
 		{
 			CountryId = 1,
@@ -156,7 +159,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 		.Should()
 		.ThrowExactly<ArgumentException>();
 
-	[Fact(DisplayName = "Get cities by id empty list")]
+	[Test]
+	[DisplayName("Get cities by id empty list")]
 	public void GetCitiesById_EmptyList()
 	{
 		Url = "https://api.vk.ru/method/database.getCitiesById";
@@ -168,7 +172,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact(DisplayName = "Get cities by id msk spb vlg")]
+	[Test]
+	[DisplayName("Get cities by id msk spb vlg")]
 	public void GetCitiesById_MskSpbVlg()
 	{
 		Url = "https://api.vk.ru/method/database.getCitiesById";
@@ -204,13 +209,15 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.Be("Волгоград");
 	}
 
-	[Fact(DisplayName = "Get countries count is negative throw argument exception")]
+	[Test]
+	[DisplayName("Get countries count is negative throw argument exception")]
 	public void GetCountries_CountIsNegative_ThrowArgumentException() => FluentActions
 		.Invoking(() => new DatabaseCategory(Api).GetCountries(count: -2))
 		.Should()
 		.ThrowExactly<ArgumentException>();
 
-	[Fact(DisplayName = "Get countries list of codes list of countries")]
+	[Test]
+	[DisplayName("Get countries list of codes list of countries")]
 	public void GetCountries_ListOfCodes_ListOfCountries()
 	{
 		Url = "https://api.vk.ru/method/database.getCountries";
@@ -242,7 +249,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.Be("Германия");
 	}
 
-	[Fact(DisplayName = "Get countries normal case list of countries")]
+	[Test]
+	[DisplayName("Get countries normal case list of countries")]
 	public void GetCountries_NormalCase_ListOfCountries()
 	{
 		Url = "https://api.vk.ru/method/database.getCountries";
@@ -278,13 +286,15 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.Be("Ангола");
 	}
 
-	[Fact(DisplayName = "Get countries offset is negative throw argument exception")]
+	[Test]
+	[DisplayName("Get countries offset is negative throw argument exception")]
 	public void GetCountries_OffsetIsNegative_ThrowArgumentException() => FluentActions
 		.Invoking(() => new DatabaseCategory(Api).GetCountries(offset: -2))
 		.Should()
 		.ThrowExactly<ArgumentException>();
 
-	[Fact(DisplayName = "Get countries by id 1 and65 russia and germany")]
+	[Test]
+	[DisplayName("Get countries by id 1 and65 russia and germany")]
 	public void GetCountriesById_1And65_RussiaAndGermany()
 	{
 		Url = "https://api.vk.ru/method/database.getCountriesById";
@@ -312,7 +322,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.Be("Германия");
 	}
 
-	[Fact(DisplayName = "Get countries by id empty list")]
+	[Test]
+	[DisplayName("Get countries by id empty list")]
 	public void GetCountriesById_EmptyList()
 	{
 		Url = "https://api.vk.ru/method/database.getCountriesById";
@@ -327,7 +338,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact(DisplayName = "Get faculties list vstu faculties")]
+	[Test]
+	[DisplayName("Get faculties list vstu faculties")]
 	public void GetFaculties_ListVstuFaculties()
 	{
 		Url = "https://api.vk.ru/method/database.getFaculties";
@@ -363,19 +375,22 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.Be("Электроники и вычислительной техники");
 	}
 
-	[Fact(DisplayName = "Get regions count is negative throw argument exception")]
+	[Test]
+	[DisplayName("Get regions count is negative throw argument exception")]
 	public void GetRegions_CountIsNegative_ThrowArgumentException() => FluentActions
 		.Invoking(() => new DatabaseCategory(Api).GetRegions(1, count: -2))
 		.Should()
 		.ThrowExactly<ArgumentException>();
 
-	[Fact(DisplayName = "Get regions country id is negative throw argument exception")]
+	[Test]
+	[DisplayName("Get regions country id is negative throw argument exception")]
 	public void GetRegions_CountryIdIsNegative_ThrowArgumentException() => FluentActions
 		.Invoking(() => new DatabaseCategory(Api).GetRegions(-1))
 		.Should()
 		.ThrowExactly<ArgumentException>();
 
-	[Fact(DisplayName = "Get regions normal case list of regions")]
+	[Test]
+	[DisplayName("Get regions normal case list of regions")]
 	public void GetRegions_NormalCase_ListOfRegions()
 	{
 		Url = "https://api.vk.ru/method/database.getRegions";
@@ -411,13 +426,15 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.Be("Белгородская область");
 	}
 
-	[Fact(DisplayName = "Get regions offset is negative throw argument exception")]
+	[Test]
+	[DisplayName("Get regions offset is negative throw argument exception")]
 	public void GetRegions_OffsetIsNegative_ThrowArgumentException() => FluentActions
 		.Invoking(() => new DatabaseCategory(Api).GetRegions(1, offset: -2))
 		.Should()
 		.ThrowExactly<ArgumentException>();
 
-	[Fact(DisplayName = "Get schools bad query empty list")]
+	[Test]
+	[DisplayName("Get schools bad query empty list")]
 	public void GetSchools_BadQuery_EmptyList()
 	{
 		Url = "https://api.vk.ru/method/database.getSchools";
@@ -429,7 +446,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact(DisplayName = "Get schools liceums in volgograd list of liceums")]
+	[Test]
+	[DisplayName("Get schools liceums in volgograd list of liceums")]
 	public void GetSchools_LiceumsInVolgograd_ListOfLiceums()
 	{
 		Url = "https://api.vk.ru/method/database.getSchools";
@@ -465,7 +483,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.Be("Библейский колледж «Новая жизнь»");
 	}
 
-	[Fact(DisplayName = "Get streets by id 1 89 437")]
+	[Test]
+	[DisplayName("Get streets by id 1 89 437")]
 	public void GetStreetsById_1_89_437()
 	{
 		Url = "https://api.vk.ru/method/database.getStreetsById";
@@ -501,7 +520,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.Be("Синяя ул.");
 	}
 
-	[Fact(DisplayName = "Get streets by id empty list")]
+	[Test]
+	[DisplayName("Get streets by id empty list")]
 	public void GetStreetsById_EmptyList()
 	{
 		Url = "https://api.vk.ru/method/database.getStreetsById";
@@ -520,7 +540,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.Be("One of the parameters specified was missing or invalid: value should be positive");
 	}
 
-	[Fact(DisplayName = "Get universities find vstu")]
+	[Test]
+	[DisplayName("Get universities find vstu")]
 	public void GetUniversities_FindVstu()
 	{
 		Url = "https://api.vk.ru/method/database.getUniversities";
@@ -540,7 +561,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.Be("ВолгГТУ");
 	}
 
-	[Fact(DisplayName = "Get universities list of universities")]
+	[Test]
+	[DisplayName("Get universities list of universities")]
 	public void GetUniversities_ListOfUniversities()
 	{
 		Url = "https://api.vk.ru/method/database.getUniversities";
@@ -552,7 +574,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.BeEmpty();
 	}
 
-	[Fact(DisplayName = "Get metro stations")]
+	[Test]
+	[DisplayName("Get metro stations")]
 	public void GetMetroStations()
 	{
 		Url = "https://api.vk.ru/method/database.getMetroStations";
@@ -564,7 +587,8 @@ public class DatabaseCategoryTest : CategoryBaseTest
 			.Be(69);
 	}
 
-	[Fact(DisplayName = "Get metro stations by id")]
+	[Test]
+	[DisplayName("Get metro stations by id")]
 	public void GetMetroStationsById()
 	{
 		Url = "https://api.vk.ru/method/database.getMetroStationsById";

@@ -2,7 +2,6 @@
 using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Asr;
 
@@ -10,7 +9,8 @@ public class AsrCategoryTest : CategoryBaseTest
 {
 	protected override string Folder => "Asr";
 
-	[Fact(DisplayName = "Check status")]
+	[Test]
+	[DisplayName("Check status")]
 	public void CheckStatus()
 	{
 		Url = "https://api.vk.ru/method/asr.checkStatus";
@@ -29,7 +29,8 @@ public class AsrCategoryTest : CategoryBaseTest
 			.Be(AsrStatus.Finished);
 	}
 
-	[Fact(DisplayName = "Get upload url")]
+	[Test]
+	[DisplayName("Get upload url")]
 	public void GetUploadUrl()
 	{
 		Url = "https://api.vk.ru/method/asr.getUploadUrl";
@@ -43,7 +44,8 @@ public class AsrCategoryTest : CategoryBaseTest
 				"https://pu.vk.ru/gu/speech/v2/upload?token=eyJ0e13iOiJKV1QiLCJhbGmdOiJIUzI1NiJ9.eyqlmAQiOjE2NjM1OTAzNDYsInZrX3VzZXJfaWQiOjgxNDI3MDksInZrX2FwcF9pZCI6ODE0MjcwOSwidmtfdXBsb2FkX3R5cGUiOiJzcGVlY2gifQ.9PStNUU8cf-rlFdPhM5hKQ2xSjhbxzxy7SRKYHvXC_M"));
 	}
 
-	[Fact(DisplayName = "Process")]
+	[Test]
+	[DisplayName("Process")]
 	public void Process()
 	{
 		Url = "https://api.vk.ru/method/asr.process";

@@ -4,7 +4,6 @@ using Moq;
 using VkNet.Abstractions.Core;
 using VkNet.Model;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Utils;
 
@@ -26,7 +25,8 @@ public class CaptchaNeededExceptionTests : BaseTest
 		Api.CaptchaHandler = Mocker.Get<ICaptchaHandler>();
 	}
 
-	[Fact(DisplayName = "Call throws captcha needed exception")]
+	[Test]
+	[DisplayName("Call throws captcha needed exception")]
 	public void Call_ThrowsCaptchaNeededException()
 	{
 		Url = "https://api.vk.ru/method/messages.send";

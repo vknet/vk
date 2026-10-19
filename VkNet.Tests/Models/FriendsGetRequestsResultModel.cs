@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Models;
 
@@ -8,7 +7,8 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 {
 	protected override string Folder => "Friends";
 
-	[Fact(DisplayName = "Should have field message")]
+	[Test]
+	[DisplayName("Should have field message")]
 	public void ShouldHaveField_Message()
 	{
 		ReadCategoryJsonPath(nameof(ShouldHaveField_Message));
@@ -22,7 +22,8 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 			.Be("text");
 	}
 
-	[Fact(DisplayName = "Should have field mutual")]
+	[Test]
+	[DisplayName("Should have field mutual")]
 	public void ShouldHaveField_Mutual()
 	{
 		ReadCategoryJsonPath(nameof(ShouldHaveField_Mutual));
@@ -36,7 +37,8 @@ public class FriendsGetRequestsResultModel : CategoryBaseTest
 			.NotBeEmpty();
 	}
 
-	[Fact(DisplayName = "Should have field user id")]
+	[Test]
+	[DisplayName("Should have field user id")]
 	public void ShouldHaveField_UserId()
 	{
 		ReadCategoryJsonPath(nameof(ShouldHaveField_UserId));

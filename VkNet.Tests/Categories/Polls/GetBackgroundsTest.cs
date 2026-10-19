@@ -1,7 +1,6 @@
 ﻿using AwesomeAssertions;
 using VkNet.Enums.StringEnums;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Polls;
 
@@ -9,7 +8,8 @@ public class GetBackgroundsTest : CategoryBaseTest
 {
 	protected override string Folder => "Polls";
 
-	[Fact(DisplayName = "Get backgrounds")]
+	[Test]
+	[DisplayName("Get backgrounds")]
 	public void GetBackgrounds()
 	{
 		Url = "https://api.vk.ru/method/polls.getBackgrounds";

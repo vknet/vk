@@ -3,13 +3,13 @@ using AwesomeAssertions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using VkNet.Utils;
-using Xunit;
 
 namespace VkNet.Tests.Utils;
 
 public class ExecuteErrorsTests : BaseTest
 {
-	[Fact(DisplayName = "If response contain invalid json throw json exception")]
+	[Test]
+	[DisplayName("If response contain invalid json throw json exception")]
 	public void IfResponseContainInvalidJson_ThrowJsonException()
 	{
 		// Arrange
@@ -21,7 +21,8 @@ public class ExecuteErrorsTests : BaseTest
 			.ThrowExactly<JsonSerializationException>();
 	}
 
-	[Fact(DisplayName = "If response contains execute errors than return aggregate exception")]
+	[Test]
+	[DisplayName("If response contains execute errors than return aggregate exception")]
 	public void IfResponseContainsExecuteErrors_ThanReturnAggregateException()
 	{
 		// Arrange
@@ -36,7 +37,8 @@ public class ExecuteErrorsTests : BaseTest
 			.HaveCount(3);
 	}
 
-	[Fact(DisplayName = "If response is empty then throw argument exception")]
+	[Test]
+	[DisplayName("If response is empty then throw argument exception")]
 	public void IfResponseIsEmptyThen_ThrowArgumentException() =>
 
 		// Act

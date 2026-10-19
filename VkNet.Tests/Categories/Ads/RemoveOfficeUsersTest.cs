@@ -1,6 +1,5 @@
 ﻿using AwesomeAssertions;
 using VkNet.Tests.Infrastructure;
-using Xunit;
 
 namespace VkNet.Tests.Categories.Ads;
 
@@ -8,7 +7,8 @@ public class RemoveOfficeUsersTest : CategoryBaseTest
 {
 	protected override string Folder => "Ads";
 
-	[Fact(DisplayName = "Remove office users")]
+	[Test]
+	[DisplayName("Remove office users")]
 	public void RemoveOfficeUsers()
 	{
 		Url = "https://api.vk.ru/method/ads.removeOfficeUsers";
